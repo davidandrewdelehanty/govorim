@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { SignedIn, SignedOut, SignIn, UserButton, useAuth } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, SignIn, UserButton, useAuth, useUser } from "@clerk/clerk-react";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
@@ -436,6 +436,23 @@ export default function App() {
   // Clerk auth — getToken() returns a JWT we attach to API calls so the
   // backend can verify the user is signed in.
   var auth = useAuth();
+  var { user } = useUser();
+
+  // Approval state — set when an /api/chat call returns 403 PENDING_APPROVAL.
+  // While pending, the main app is hidden and a "waiting for approval" screen shows.
+  var [pendingApproval, setPendingApproval] = useState(false);
+
+  // Admin panel state — opened from the user menu. Only visible/usable
+  // for the admin email (configured via VITE_ADMIN_EMAIL).
+  var [showAdmin, setShowAdmin]   = useState(false);
+  var [adminUsers, setAdminUsers] = useState([]);
+  var [adminLoad, setAdminLoad]   = useState(false);
+  var [adminErr, setAdminErr]     = useState("");
+  var [adminBusy, setAdminBusy]   = useState({}); // { userId: "approving" | "rejecting" }
+  var ADMIN_EMAIL = (import.meta.env.VITE_ADMIN_EMAIL || "").toLowerCase();
+  var currentEmail = (user && user.primaryEmailAddress && user.primaryEmailAddress.emailAddress || "").toLowerCase();
+  var isAdmin = !!ADMIN_EMAIL && currentEmail === ADMIN_EMAIL;
+
   var [msgs, setMsgs]         = useState([]);
   var [input, setInput]       = useState("");
   var [loading, setLoading]   = useState(false);
@@ -620,15 +637,67 @@ export default function App() {
         });
         clearTimeout(tid);
         var d = await r.json().catch(function(){ return {}; });
+        if (r.status === 403 && d.error === "PENDING_APPROVAL") {
+          setPendingApproval(true);
+          throw new Error(d.message || "Your account is pending approval.");
+        }
         if (!r.ok) throw new Error(d.error || ("HTTP " + r.status));
         return d.text || "";
       } catch(e) { clearTimeout(tid); throw (e.name === "AbortError" ? new Error("Timeout") : e); }
     };
     try { return await run(); } catch(e) {
+      // Don't retry on PENDING_APPROVAL — it's not a transient error.
+      if (e.message && /pending approval/i.test(e.message)) throw e;
       await new Promise(function(res){ setTimeout(res, 1500); });
       return await run();
     }
   };
+
+  // Admin actions — fetch users + approve/reject. Only meaningful when isAdmin.
+  var loadAdminUsers = async function() {
+    setAdminLoad(true); setAdminErr("");
+    try {
+      var token = await auth.getToken();
+      var r = await fetch("/api/admin/users", {
+        headers: { "Authorization": "Bearer " + token },
+      });
+      var d = await r.json();
+      if (!r.ok) throw new Error(d.error || "Failed to load users");
+      setAdminUsers(d.users || []);
+    } catch(e) {
+      setAdminErr(e.message || "Failed to load users");
+    } finally { setAdminLoad(false); }
+  };
+
+  var actOnUser = async function(userId, action) {
+    setAdminBusy(function(b){ var n = Object.assign({}, b); n[userId] = action; return n; });
+    try {
+      var token = await auth.getToken();
+      var r = await fetch("/api/admin/approve", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
+        body: JSON.stringify({ userId: userId, action: action }),
+      });
+      var d = await r.json();
+      if (!r.ok) throw new Error(d.error || "Failed");
+      // Refresh the user list and surface email-status hint.
+      await loadAdminUsers();
+      if (action === "approve") {
+        if (!d.emailSent) {
+          setAdminErr("User approved, but email was NOT sent: " + (d.emailError || "Resend not configured. See AUTH_SETUP.md."));
+        } else {
+          setAdminErr(""); // success — clear any prior error
+        }
+      }
+    } catch(e) {
+      setAdminErr(e.message || "Failed");
+    } finally {
+      setAdminBusy(function(b){ var n = Object.assign({}, b); delete n[userId]; return n; });
+    }
+  };
+
+  // Auto-load users when admin panel opens.
+  useEffect(function() { if (showAdmin && isAdmin) loadAdminUsers(); }, [showAdmin, isAdmin]);
 
   var startKeepalive = function() {
     if (keepAlive.current) clearInterval(keepAlive.current);
@@ -1395,6 +1464,52 @@ export default function App() {
         .auth-brand-title{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:#c8a276;line-height:1;margin-top:8px}
         .auth-brand-sub{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(210,197,175,.45);margin-top:6px}
         .userbtn-wrap{display:flex;align-items:center}
+
+        /* Pending-approval screen */
+        .pending{min-height:100vh;background:#1a1611;display:flex;align-items:center;justify-content:center;padding:32px;position:relative}
+        .pending::before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 20% 10%,rgba(150,80,60,.10) 0%,transparent 55%),radial-gradient(ellipse at 80% 90%,rgba(80,90,130,.08) 0%,transparent 55%)}
+        .pending-card{position:relative;max-width:480px;text-align:center;display:flex;flex-direction:column;gap:20px;align-items:center}
+        .pending-icon{font-size:56px}
+        .pending-title{font-family:'Playfair Display',serif;font-size:32px;color:#c8a276;line-height:1.2}
+        .pending-msg{font-size:16px;line-height:1.6;color:rgba(210,197,175,.78);max-width:400px}
+        .pending-email{font-size:13px;color:rgba(210,197,175,.5);background:rgba(200,162,118,.08);padding:8px 16px;border-radius:8px;border:1px solid rgba(200,162,118,.2)}
+        .pending-userbtn{margin-top:8px}
+
+        /* Admin panel overlay */
+        .adm-over{position:fixed;inset:0;background:rgba(26,22,17,.92);z-index:200;display:flex;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto}
+        .adm-modal{background:#1f1c16;border:1px solid rgba(210,197,175,.14);border-radius:16px;width:100%;max-width:760px;display:flex;flex-direction:column;gap:0;margin:32px 0}
+        .adm-head{padding:22px 28px 18px;border-bottom:1px solid rgba(210,197,175,.1);display:flex;align-items:center;justify-content:space-between;gap:16px}
+        .adm-title{font-family:'Playfair Display',serif;font-size:24px;color:#c8a276}
+        .adm-x{background:none;border:none;color:rgba(210,197,175,.6);font-size:24px;cursor:pointer;padding:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:all .15s}
+        .adm-x:hover{background:rgba(210,197,175,.08);color:#d2c5af}
+        .adm-body{padding:20px 28px;display:flex;flex-direction:column;gap:12px;max-height:65vh;overflow-y:auto}
+        .adm-empty{text-align:center;padding:32px;color:rgba(210,197,175,.5);font-style:italic}
+        .adm-row{display:flex;align-items:center;gap:14px;padding:14px 16px;background:#23201a;border:1px solid rgba(210,197,175,.08);border-radius:12px}
+        .adm-avatar{width:40px;height:40px;border-radius:50%;background:#1a1611 center/cover no-repeat;flex-shrink:0;border:1px solid rgba(210,197,175,.15)}
+        .adm-info{flex:1;min-width:0}
+        .adm-name{font-size:15px;color:#d2c5af;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .adm-email{font-size:13px;color:rgba(210,197,175,.55);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .adm-status{font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:6px;flex-shrink:0}
+        .adm-status.approved{background:rgba(90,133,86,.18);color:#9ec896;border:1px solid rgba(90,133,86,.3)}
+        .adm-status.rejected{background:rgba(157,70,48,.18);color:#c87a68;border:1px solid rgba(157,70,48,.3)}
+        .adm-status.pending{background:rgba(200,162,118,.12);color:#c8a276;border:1px solid rgba(200,162,118,.25)}
+        .adm-status.admin{background:rgba(135,168,196,.15);color:#a3c0d8;border:1px solid rgba(135,168,196,.3)}
+        .adm-actions{display:flex;gap:8px;flex-shrink:0}
+        .adm-btn{padding:7px 14px;border:none;border-radius:8px;font-size:13px;font-family:'Crimson Pro',serif;cursor:pointer;transition:opacity .15s;font-weight:600}
+        .adm-btn:disabled{opacity:.5;cursor:wait}
+        .adm-btn.approve{background:linear-gradient(135deg,#5a8556,#4a6845);color:#fff}
+        .adm-btn.reject{background:rgba(157,70,48,.15);border:1px solid rgba(157,70,48,.4);color:#c87a68}
+        .adm-btn.reject:hover:not(:disabled){background:rgba(157,70,48,.3)}
+        .adm-err{margin:0 28px 16px;padding:12px 16px;background:rgba(157,70,48,.18);border:1px solid rgba(157,70,48,.35);color:#c87a68;border-radius:10px;font-size:13px}
+        .adm-foot{padding:16px 28px;border-top:1px solid rgba(210,197,175,.08);display:flex;justify-content:space-between;align-items:center}
+        .adm-refresh{background:none;border:1px solid rgba(210,197,175,.18);color:rgba(210,197,175,.7);padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif}
+        .adm-refresh:hover{color:#d2c5af;border-color:rgba(210,197,175,.4)}
+        .adm-trigger{background:rgba(135,168,196,.12);border:1px solid rgba(135,168,196,.3);color:#a3c0d8;padding:6px 12px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'Crimson Pro',serif;display:flex;align-items:center;gap:6px}
+        .adm-trigger:hover{background:rgba(135,168,196,.2)}
+        @media (max-width:520px){
+          .adm-row{flex-wrap:wrap}
+          .adm-actions{width:100%;justify-content:flex-end}
+        }
       `}</style>
 
       <SignedOut>
@@ -1411,6 +1526,74 @@ export default function App() {
       </SignedOut>
 
       <SignedIn>
+      {pendingApproval ? (
+        <div className="pending">
+          <div className="pending-card">
+            <div className="pending-icon">⏳</div>
+            <div className="pending-title">Waiting for approval</div>
+            <div className="pending-msg">
+              Thanks for signing up! Your account is pending approval. You'll receive an email at the address below once you've been approved — usually within a day.
+            </div>
+            <div className="pending-email">{currentEmail}</div>
+            <div className="pending-userbtn"><UserButton afterSignOutUrl="/" /></div>
+          </div>
+        </div>
+      ) : (
+      <>
+      {showAdmin && isAdmin && (
+        <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setShowAdmin(false); }}>
+          <div className="adm-modal">
+            <div className="adm-head">
+              <div className="adm-title">👥 Manage Users</div>
+              <button className="adm-x" onClick={function(){ setShowAdmin(false); }}>×</button>
+            </div>
+            {adminErr && <div className="adm-err">{adminErr}</div>}
+            <div className="adm-body">
+              {adminLoad && <div className="adm-empty">Loading users…</div>}
+              {!adminLoad && adminUsers.length === 0 && <div className="adm-empty">No users yet.</div>}
+              {!adminLoad && adminUsers.map(function(u){
+                var status = u.isAdmin ? "admin" : (u.approved ? "approved" : (u.rejected ? "rejected" : "pending"));
+                var label  = u.isAdmin ? "Admin" : (u.approved ? "Approved" : (u.rejected ? "Rejected" : "Pending"));
+                var name   = (u.firstName + " " + u.lastName).trim() || u.email || "(no name)";
+                var busy   = adminBusy[u.id];
+                return (
+                  <div key={u.id} className="adm-row">
+                    <div className="adm-avatar" style={{backgroundImage:u.imageUrl?'url("'+u.imageUrl+'")':'none'}}/>
+                    <div className="adm-info">
+                      <div className="adm-name">{name}</div>
+                      <div className="adm-email">{u.email}</div>
+                    </div>
+                    <div className={"adm-status "+status}>{label}</div>
+                    {!u.isAdmin && (
+                      <div className="adm-actions">
+                        {!u.approved && (
+                          <button className="adm-btn approve" disabled={!!busy} onClick={function(){ actOnUser(u.id, "approve"); }}>
+                            {busy === "approve" ? "…" : "Approve"}
+                          </button>
+                        )}
+                        {!u.rejected && u.approved && (
+                          <button className="adm-btn reject" disabled={!!busy} onClick={function(){ actOnUser(u.id, "reject"); }}>
+                            {busy === "reject" ? "…" : "Revoke"}
+                          </button>
+                        )}
+                        {!u.approved && !u.rejected && (
+                          <button className="adm-btn reject" disabled={!!busy} onClick={function(){ actOnUser(u.id, "reject"); }}>
+                            {busy === "reject" ? "…" : "Reject"}
+                          </button>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            <div className="adm-foot">
+              <span style={{fontSize:12,color:"rgba(210,197,175,.5)"}}>{adminUsers.length} {adminUsers.length === 1 ? "user" : "users"}</span>
+              <button className="adm-refresh" onClick={loadAdminUsers} disabled={adminLoad}>Refresh</button>
+            </div>
+          </div>
+        </div>
+      )}
       {!seenLanding && (
         <div className="land">
           <div className="land-card">
@@ -1443,6 +1626,7 @@ export default function App() {
           <div className="logo"><span className="lru">Говорим</span><span className="lsub">Russian Practice</span></div>
           <div style={{display:"flex",alignItems:"center",gap:12}}>
             {started && <button className="tbadge" onClick={function(){ setShowTopic(true); }}>{isLit ? ("📖 " + (bookMeta.title || "Book")) : ("💬 "+act)}</button>}
+            {isAdmin && <button className="adm-trigger" onClick={function(){ setShowAdmin(true); }} title="Manage user approvals">👥 Users</button>}
             <div className="userbtn-wrap"><UserButton afterSignOutUrl="/" /></div>
           </div>
         </header>
@@ -1871,6 +2055,8 @@ export default function App() {
           </div>
         )}
       </div>
+      </>
+      )}
       </SignedIn>
     </>
   );

@@ -1,176 +1,214 @@
-# Adding Sign-In with Google to your deployed app
+# Sign-In, Approval, and Email Notifications
 
-This is a one-time setup, ~15 minutes. After it's done, every visit to your
-app starts with a sign-in screen, and only people you allow can use it.
+This walkthrough covers three things that work together:
+
+1. **Sign-in with Google** via Clerk
+2. **Manual approval** — every new signup waits for you to approve them
+3. **Approval emails** — users automatically receive an email when you approve them
+
+Total setup time: ~20 minutes.
 
 ---
 
 ## Step 1 — Sign up for Clerk (3 minutes)
 
-1. Go to <https://dashboard.clerk.com/sign-up> and create a free account.
-   (Free tier covers 10,000 monthly active users — way beyond personal use.)
-2. After signing in, click **"Create application"**.
-3. **Application name**: `Govorim` (or whatever you like).
-4. **Sign-in options**: enable **Google** (toggle on). You can also enable
-   **Email** if you want a password fallback.
-5. Click **"Create application"**.
+1. Go to <https://dashboard.clerk.com/sign-up> — free account, no credit card.
+2. Create an application named `Govorim` (or whatever).
+3. On signup, when asked for sign-in methods, **enable Google** (toggle on).
+4. Complete signup.
 
-You'll land on a page that shows your **API keys**. Keep this tab open.
+You'll land on the Clerk dashboard for your new app.
 
 ---
 
-## Step 2 — Lock the app to specific users (recommended, 2 minutes)
+## Step 2 — Enable Google sign-in (if not done in Step 1)
 
-This is the difference between "anyone with the URL can sign in" and
-"only people on your list can sign in." For a personal/family app you
-almost certainly want this.
+If your sign-in screen shows email but not the "Continue with Google" button:
 
-### Option A — Email allowlist via Clerk's Restrictions (best)
+1. In Clerk dashboard → left sidebar → **User & Authentication → SSO Connections**
+   (older dashboards may call it "Social Connections").
+2. Find **Google** in the list. Click it.
+3. Toggle it **On**.
+4. Clerk offers two modes:
+   - **"Use Clerk's shared credentials"** — works instantly, fine for personal/testing use.
+   - **"Use custom credentials"** — for production, requires creating a Google
+     OAuth client in [Google Cloud Console](https://console.cloud.google.com/apis/credentials).
+     For a personal app, skip this for now.
+5. Save.
 
-1. In the Clerk dashboard, go to **User & Authentication → Restrictions**.
-2. Toggle on **"Allowlist"**.
-3. Click **"Add identifier"** and paste your email (and your family's emails).
-4. Save.
-
-Now only those emails can sign up. Strangers who try get blocked at the
-sign-in screen with no account ever created.
-
-### Option B — Email allowlist via ALLOWED_EMAILS env var (backup)
-
-If the Clerk UI doesn't have Restrictions on the free tier, the
-serverless function also enforces an allowlist via the `ALLOWED_EMAILS`
-environment variable. Anyone can sign up but only listed emails can
-actually use the API.
-
-Format: comma-separated, no spaces. Example:
-
-```
-you@gmail.com,partner@gmail.com,kid@school.edu
-```
-
-This is configured in Vercel in Step 4 below.
+Refresh your app — the Google button should now appear above the email form.
 
 ---
 
-## Step 3 — Get your Clerk keys
+## Step 3 — Get your Clerk API keys (1 minute)
 
-In the Clerk dashboard, go to **API keys** in the left sidebar. You'll see:
+In the Clerk dashboard → **API keys** (left sidebar). You'll see:
 
-- **Publishable key** — starts with `pk_test_` or `pk_live_`. This goes
-  in the frontend; safe to expose.
-- **Secret key** — starts with `sk_test_` or `sk_live_`. This stays on
-  the server. Never put this anywhere a browser could see it.
+- **Publishable key** — `pk_test_...` or `pk_live_...` — frontend, safe to expose.
+- **Secret key** — `sk_test_...` or `sk_live_...` — backend, never expose.
 
-Copy both. Keep the page open.
+Copy both. Keep this tab open.
 
 ---
 
-## Step 4 — Add the keys to Vercel
+## Step 4 — Sign up for Resend (3 minutes) — for the approval emails
 
-1. Go to <https://vercel.com/dashboard> → your project → **Settings →
-   Environment Variables**.
-2. Add these three new variables:
+[Resend](https://resend.com) sends the email notifications when you approve users.
+Free tier: 100 emails/day, 3,000/month — way beyond personal use.
 
-   | Name | Value | Environments |
-   |------|-------|--------------|
-   | `VITE_CLERK_PUBLISHABLE_KEY` | your `pk_test_...` key | Production, Preview, Development |
-   | `CLERK_SECRET_KEY` | your `sk_test_...` key | Production, Preview, Development |
-   | `ALLOWED_EMAILS` *(optional)* | comma-separated emails | Production, Preview, Development |
+1. Go to <https://resend.com/signup> and create an account.
+2. After signing in, go to **API Keys** → click **"Create API Key"**.
+3. Name it `Govorim`, scope: **Sending access**, domain: All.
+4. Copy the key — starts with `re_...`.
 
-   The `VITE_` prefix on the publishable key is **mandatory** — Vite only
-   exposes env vars to the frontend if they start with `VITE_`.
-
-3. Click **Save** for each.
+You can also leave the "From" address as the default `onboarding@resend.dev`
+(that's what's used if you don't configure your own domain). For sending
+to your own personal email this is fine. If you want emails to come from
+your own domain (`approve@yoursite.com`), you'd verify the domain in
+Resend's Domains tab — optional.
 
 ---
 
-## Step 5 — Push the new code and redeploy
+## Step 5 — Add all five environment variables to Vercel
 
-If you haven't already pushed the auth changes to GitHub:
+1. <https://vercel.com/dashboard> → your project → **Settings → Environment Variables**.
+2. Add these (Production + Preview + Development for all):
+
+   | Name | Value | Notes |
+   |------|-------|-------|
+   | `VITE_CLERK_PUBLISHABLE_KEY` | `pk_test_...` from Clerk | Frontend |
+   | `VITE_ADMIN_EMAIL` | your email (the one you'll sign in with) | Frontend — controls who sees the admin panel |
+   | `CLERK_SECRET_KEY` | `sk_test_...` from Clerk | Backend |
+   | `ADMIN_EMAIL` | same email as above | Backend — auto-approves your account |
+   | `RESEND_API_KEY` | `re_...` from Resend | Backend |
+   | `APP_URL` *(optional)* | your Vercel URL like `https://govorim.vercel.app` | Used in approval emails |
+   | `RESEND_FROM_EMAIL` *(optional)* | `Govorim <hi@yourdomain.com>` if you have a verified domain | Backend |
+   | `GEMINI_API_KEY` | `AIzaSy...` (already set from before) | Backend |
+
+   The `VITE_` prefix on the first two is **mandatory** — Vite only exposes
+   env vars to the browser if they start with `VITE_`.
+
+   Note: Both `VITE_ADMIN_EMAIL` (frontend) and `ADMIN_EMAIL` (backend) need
+   to be set to the same value. The frontend uses it to show/hide the admin
+   button; the backend uses it to enforce admin-only API access. They're
+   redundant by design — frontend env vars are visible in browser source,
+   so the backend has its own copy as the source of truth.
+
+3. Save each.
+
+---
+
+## Step 6 — Push the code and redeploy
 
 ```bash
 cd /path/to/govorim-app
 git add .
-git commit -m "Add Clerk sign-in"
+git commit -m "Add approval workflow with email notifications"
 git push
 ```
 
-Vercel will auto-detect the push and start a new build within seconds.
+Vercel auto-redeploys. Wait for the green checkmark.
 
-If Vercel was already on the latest code (you only added env vars):
-
-1. Vercel dashboard → your project → **Deployments** tab.
-2. Find the latest deployment → click ⋮ menu → **Redeploy**.
-3. Uncheck **"Use existing Build Cache"**.
-4. Click **Redeploy**.
-
-Wait 1–2 minutes for the green checkmark.
+If you only added env vars without code changes: Vercel dashboard → Deployments
+→ latest → ⋮ → Redeploy → uncheck "Use existing Build Cache" → Redeploy.
 
 ---
 
-## Step 6 — Test it
+## Step 7 — Test the full flow
 
-1. Open your Vercel URL in a private/incognito window (so you're guaranteed
-   to be signed out).
-2. You should see the Говорим sign-in screen with a **"Continue with
-   Google"** button.
-3. Click it. Sign in with your Google account.
-4. You should now see the landing/begin screen, then the app.
-5. Top-right corner: a small avatar circle. Click it → "Sign out" should
-   take you back to the sign-in screen.
+### As you (the admin):
 
-If sign-in works but the chat fails with an auth error, the most likely
-cause is missing or wrong `CLERK_SECRET_KEY` on the server. Check your
-Vercel function logs (Deployments → latest → Functions tab → click an
-invocation) for the exact error.
+1. Open your app URL in an incognito window.
+2. Click **Continue with Google**, sign in with the email matching `ADMIN_EMAIL`.
+3. You should see the regular app — admins are auto-approved, you don't have to approve yourself.
+4. Top-right of the header: a small **👥 Users** button. That's the admin panel — only you see it.
+
+### As a new user (test with a different Google account or browser profile):
+
+1. Open your app URL.
+2. Click **Continue with Google**, sign in with a *different* Google account.
+3. You should see a **"Waiting for approval"** screen with the user's email shown.
+4. The user can sign out from this screen but cannot access the app yet.
+
+### Approving them:
+
+1. Switch back to your admin account.
+2. Click **👥 Users** in the header — modal opens with all signed-up users.
+3. Find the pending user (yellow "Pending" pill).
+4. Click **Approve**.
+5. You should see a confirmation. The user list refreshes.
+6. The user's email inbox should now have a "You're approved on Говорим" email
+   with a link back to the app.
+7. The user refreshes the app → they're in.
+
+### Revoking access:
+
+In the admin panel, click **Revoke** on an approved user. Their next API call
+returns 403 PENDING_APPROVAL and they're back to the waiting screen.
 
 ---
 
 ## Troubleshooting
 
-**"Setup required" screen on first load** → `VITE_CLERK_PUBLISHABLE_KEY`
-isn't set in Vercel, or you didn't redeploy after setting it. Re-check
-step 4, then trigger a redeploy (step 5).
+### "Google sign-in button doesn't appear"
 
-**Sign-in works but the chat returns "Not signed in" or "Invalid session"**
-→ `CLERK_SECRET_KEY` is missing or the value is wrong on the server.
-Make sure you copied the *secret* key (sk_…), not the publishable key,
-into the `CLERK_SECRET_KEY` env var.
+Google isn't enabled in Clerk. Go to Clerk dashboard → **User & Authentication
+→ SSO Connections** → enable Google.
 
-**"Your account isn't on the allow list for this app"** → expected if
-you set `ALLOWED_EMAILS` and signed in with a different email. Either
-add the new email to `ALLOWED_EMAILS` in Vercel and redeploy, or sign in
-with an allowed account.
+### "Setup required" screen on first load
 
-**Google sign-in button doesn't appear** → Google provider isn't enabled
-in Clerk. Go back to Clerk dashboard → User & Authentication → Social
-Connections → enable Google.
+`VITE_CLERK_PUBLISHABLE_KEY` is missing or wasn't applied. Re-check Vercel env
+vars and redeploy.
 
-**"Could not verify user: ..."** → the serverless function tried to
-look up the user via Clerk's API and failed. Almost always a bad
-`CLERK_SECRET_KEY`. Regenerate the secret key in Clerk, update Vercel,
-redeploy.
+### Sign-in works but the chat says "Not signed in"
+
+`CLERK_SECRET_KEY` is missing on the server side. Add it and redeploy.
+
+### "Your account is pending approval" but you ARE the admin
+
+Your `ADMIN_EMAIL` env var doesn't exactly match the email you're signed in
+with. Check both:
+- The `ADMIN_EMAIL` value in Vercel (case-insensitive, but spelling matters)
+- The email shown on your "pending" screen
+
+If they don't match, fix the env var and redeploy.
+
+### Admin panel "👥 Users" button doesn't appear
+
+Frontend `VITE_ADMIN_EMAIL` is missing or doesn't match your sign-in email.
+Make sure both `ADMIN_EMAIL` AND `VITE_ADMIN_EMAIL` are set to the same value.
+
+### Approving a user works but the email doesn't arrive
+
+Check the admin panel — there's an error banner that shows if Resend failed.
+Common causes:
+- `RESEND_API_KEY` is missing or wrong
+- The user's email is on a domain Resend has flagged (rare; check Resend dashboard for delivery logs)
+- Your daily Resend quota (100/day on free tier) is exhausted (very unlikely for personal use)
+
+Even if email fails, the user IS approved — they just won't get notified.
+You can text/message them manually that they're approved.
 
 ---
 
-## Optional polish
+## What's stored where
 
-- **Custom sign-in URL**: Clerk gives you a default `accounts.YOUR_APP.dev`
-  URL for hosted sign-in pages. You can attach your own domain in Clerk's
-  **Domains** settings if you want.
-- **Disable email/password and force Google-only**: in Clerk dashboard →
-  User & Authentication → Email, Phone, Username, turn off **Email
-  address** as an identifier. Now Google is the only sign-in option.
-- **Profile management page**: Clerk's `<UserButton>` (in the top-right
-  corner) opens a built-in profile page where users can change their
-  email, add 2FA, etc. — no extra work needed.
+- **Clerk** stores: user accounts (email, name, profile image, password hash if applicable),
+  approval status (in user's public metadata), Google OAuth tokens.
+- **Vercel** stores: nothing user-related; just runs the code.
+- **Resend** stores: outbound email delivery logs (subject, recipient, sent timestamp).
+- **Your app's localStorage** stores: vocab list, EPUB cache, bookmarks, question history,
+  landing-screen-seen flag — all per device, per user implicitly via browser.
 
 ---
 
-## Cost expectations after this
+## Costs after this
 
-- **Clerk**: $0/month (free tier covers up to 10,000 monthly active users)
-- **Gemini API**: still $0/month on the free tier
-- **Vercel**: still $0–$20/month depending on plan
+- Clerk: $0/month (free tier: 10,000 monthly active users)
+- Resend: $0/month (free tier: 3,000 emails/month, 100/day)
+- Gemini: $0/month (free tier: 1,500 requests/day)
+- Vercel: $0/month (Hobby tier for personal use)
 
-So adding auth doesn't change your cost picture — it just locks the door.
+If your Russian app suddenly takes off and exceeds free tiers on any of these,
+each provider has clear $5–$20/month entry points. None of them have surprise
+billing — they all rate-limit to $0 by default until you opt into paid tiers.

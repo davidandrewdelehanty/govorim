@@ -82,25 +82,27 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: "Invalid or expired session" });
   }
 
-  // ---- Email allowlist (optional): only specific users may use the app ----
-  const allowedRaw = process.env.ALLOWED_EMAILS || "";
-  const allowedEmails = allowedRaw
-    .split(",")
-    .map(function(e){ return e.trim().toLowerCase(); })
-    .filter(Boolean);
+  // ---- Approval gate: user must be approved by an admin to use the app ----
+  // The first user (matching ADMIN_EMAIL) is auto-approved; everyone else
+  // sits in pending status until the admin approves them via the admin UI.
+  try {
+    const user = await getClerk().users.getUser(userId);
+    const email = user && user.primaryEmailAddress
+      ? (user.primaryEmailAddress.emailAddress || "").toLowerCase()
+      : "";
+    const adminEmail = (process.env.ADMIN_EMAIL || "").toLowerCase();
+    const meta = (user && user.publicMetadata) || {};
+    const isAdmin = !!adminEmail && email === adminEmail;
+    const isApproved = meta.approved === true || isAdmin;
 
-  if (allowedEmails.length > 0) {
-    try {
-      const user = await getClerk().users.getUser(userId);
-      const email = user && user.primaryEmailAddress
-        ? (user.primaryEmailAddress.emailAddress || "").toLowerCase()
-        : "";
-      if (!email || allowedEmails.indexOf(email) === -1) {
-        return res.status(403).json({ error: "Your account isn't on the allow list for this app." });
-      }
-    } catch (err) {
-      return res.status(500).json({ error: "Could not verify user: " + (err.message || err) });
+    if (!isApproved) {
+      return res.status(403).json({
+        error: "PENDING_APPROVAL",
+        message: "Your account is pending approval. You'll receive an email once you're approved."
+      });
     }
+  } catch (err) {
+    return res.status(500).json({ error: "Could not verify user: " + (err.message || err) });
   }
 
   // ---- Per-IP rate limit (cheap layer of abuse protection) ----
