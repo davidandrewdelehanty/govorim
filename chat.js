@@ -1,16 +1,24 @@
-// Serverless function: translates the frontend's Anthropic-shaped request
-// into a Gemini API call, returns a normalized { text } response.
+// Serverless function: verifies Clerk auth, then proxies the request
+// to Google Gemini in Anthropic-shaped form. Only authenticated users
+// can call this endpoint, so random visitors can't burn through your
+// API quota.
 //
-// Required environment variable on Vercel: GEMINI_API_KEY
-// Optional: GEMINI_MODEL (defaults to gemini-2.5-flash)
+// Required env vars on Vercel:
+//   GEMINI_API_KEY            — your Google AI Studio key
+//   CLERK_SECRET_KEY          — your Clerk secret key (server-side)
+// Optional env vars:
+//   GEMINI_MODEL              — defaults to gemini-2.5-flash
+//   ALLOWED_EMAILS            — comma-separated emails; if set, ONLY
+//                               these users can call the API. Lock the
+//                               app to yourself + a few people this way.
+
+import { verifyToken, createClerkClient } from "@clerk/backend";
 
 // Simple in-memory rate limiter — best-effort, resets on cold start.
-// For a low-traffic personal app this is enough; if you need durable
-// rate limiting later, swap this for Upstash Redis or Vercel KV.
 const rateLimitMap = new Map();
-const RATE_WINDOW_MS = 60 * 1000;        // 1-minute window
-const RATE_MAX_PER_WINDOW = 15;          // 15 requests per IP per minute
-const RATE_DAILY_PER_IP = 200;           // 200 requests per IP per day
+const RATE_WINDOW_MS = 60 * 1000;
+const RATE_MAX_PER_WINDOW = 15;
+const RATE_DAILY_PER_IP = 200;
 
 function getClientIp(req) {
   const fwd = req.headers["x-forwarded-for"];
@@ -22,24 +30,27 @@ function checkRateLimit(ip) {
   const now = Date.now();
   const day = Math.floor(now / (24 * 60 * 60 * 1000));
   const rec = rateLimitMap.get(ip) || { hits: [], dailyKey: day, dailyCount: 0 };
-
-  // Reset daily counter when day rolls over
   if (rec.dailyKey !== day) { rec.dailyKey = day; rec.dailyCount = 0; }
-
-  // Drop hits outside the rolling minute window
   rec.hits = rec.hits.filter(function(t){ return now - t < RATE_WINDOW_MS; });
-
   if (rec.hits.length >= RATE_MAX_PER_WINDOW) {
     return { ok: false, reason: "Too many requests this minute. Wait a bit." };
   }
   if (rec.dailyCount >= RATE_DAILY_PER_IP) {
     return { ok: false, reason: "Daily limit reached for your IP. Try tomorrow." };
   }
-
   rec.hits.push(now);
   rec.dailyCount += 1;
   rateLimitMap.set(ip, rec);
   return { ok: true };
+}
+
+// Cache the Clerk client across invocations (warm starts reuse it).
+let clerkClient = null;
+function getClerk() {
+  if (!clerkClient) {
+    clerkClient = createClerkClient({ secretKey: process.env.CLERK_SECRET_KEY });
+  }
+  return clerkClient;
 }
 
 export default async function handler(req, res) {
@@ -50,12 +61,54 @@ export default async function handler(req, res) {
   if (!process.env.GEMINI_API_KEY) {
     return res.status(500).json({ error: "GEMINI_API_KEY not configured on the server" });
   }
+  if (!process.env.CLERK_SECRET_KEY) {
+    return res.status(500).json({ error: "CLERK_SECRET_KEY not configured on the server" });
+  }
 
-  // Rate limit per client IP
+  // ---- Auth: require a valid Clerk JWT ----
+  const authHeader = req.headers.authorization || "";
+  if (!authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({ error: "Not signed in" });
+  }
+  const token = authHeader.slice(7).trim();
+  let userId;
+  try {
+    const payload = await verifyToken(token, {
+      secretKey: process.env.CLERK_SECRET_KEY,
+    });
+    userId = payload && payload.sub;
+    if (!userId) throw new Error("No user id in token");
+  } catch (err) {
+    return res.status(401).json({ error: "Invalid or expired session" });
+  }
+
+  // ---- Email allowlist (optional): only specific users may use the app ----
+  const allowedRaw = process.env.ALLOWED_EMAILS || "";
+  const allowedEmails = allowedRaw
+    .split(",")
+    .map(function(e){ return e.trim().toLowerCase(); })
+    .filter(Boolean);
+
+  if (allowedEmails.length > 0) {
+    try {
+      const user = await getClerk().users.getUser(userId);
+      const email = user && user.primaryEmailAddress
+        ? (user.primaryEmailAddress.emailAddress || "").toLowerCase()
+        : "";
+      if (!email || allowedEmails.indexOf(email) === -1) {
+        return res.status(403).json({ error: "Your account isn't on the allow list for this app." });
+      }
+    } catch (err) {
+      return res.status(500).json({ error: "Could not verify user: " + (err.message || err) });
+    }
+  }
+
+  // ---- Per-IP rate limit (cheap layer of abuse protection) ----
   const ip = getClientIp(req);
   const rl = checkRateLimit(ip);
   if (!rl.ok) return res.status(429).json({ error: rl.reason });
 
+  // ---- Parse body ----
   let body = req.body;
   if (typeof body === "string") {
     try { body = JSON.parse(body); } catch { body = {}; }
@@ -66,8 +119,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Missing messages" });
   }
 
-  // Anthropic message format: { role: "user"|"assistant", content: "string" }
-  // Gemini expects: { role: "user"|"model", parts: [{ text: "string" }] }
+  // ---- Translate Anthropic-shaped messages → Gemini format ----
   const contents = messages.map(function(m) {
     return {
       role: m.role === "assistant" ? "model" : "user",
@@ -77,18 +129,15 @@ export default async function handler(req, res) {
 
   const model = process.env.GEMINI_MODEL || "gemini-2.5-flash";
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${process.env.GEMINI_API_KEY}`;
-
   const payload = {
     contents: contents,
-    generationConfig: {
-      maxOutputTokens: max_tokens,
-      temperature: 1.0,
-    },
+    generationConfig: { maxOutputTokens: max_tokens, temperature: 1.0 },
   };
   if (system && system.trim()) {
     payload.systemInstruction = { parts: [{ text: system }] };
   }
 
+  // ---- Call Gemini ----
   try {
     const ctrl = new AbortController();
     const tid = setTimeout(function(){ ctrl.abort(); }, 25000);

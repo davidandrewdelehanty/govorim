@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import { SignedIn, SignedOut, SignIn, UserButton, useAuth } from "@clerk/clerk-react";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
@@ -432,6 +433,9 @@ function FileBtn({ label, onLoad }) {
 }
 
 export default function App() {
+  // Clerk auth — getToken() returns a JWT we attach to API calls so the
+  // backend can verify the user is signed in.
+  var auth = useAuth();
   var [msgs, setMsgs]         = useState([]);
   var [input, setInput]       = useState("");
   var [loading, setLoading]   = useState(false);
@@ -600,9 +604,14 @@ export default function App() {
       var ctrl = new AbortController();
       var tid = setTimeout(function() { ctrl.abort(); }, 30000);
       try {
+        // Get a fresh JWT from Clerk to authorize the API call.
+        var token = "";
+        try { token = await auth.getToken(); } catch(e) { token = ""; }
+        var headers = {"Content-Type":"application/json"};
+        if (token) headers["Authorization"] = "Bearer " + token;
         var r = await fetch("/api/chat", {
           method:"POST", signal:ctrl.signal,
-          headers:{"Content-Type":"application/json"},
+          headers: headers,
           body:JSON.stringify({
             messages: messages,
             system: sys || sysprompt(act, vocab, tips),
@@ -1376,8 +1385,32 @@ export default function App() {
           .land-tips{padding:18px 20px}
           .land-tip{font-size:14px}
         }
+
+        /* Sign-in / sign-out auth UI */
+        .auth-page{min-height:100vh;background:#1a1611;display:flex;align-items:center;justify-content:center;padding:32px;position:relative}
+        .auth-page::before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 20% 10%,rgba(150,80,60,.10) 0%,transparent 55%),radial-gradient(ellipse at 80% 90%,rgba(80,90,130,.08) 0%,transparent 55%)}
+        .auth-card{position:relative;display:flex;flex-direction:column;align-items:center;gap:20px;max-width:440px;width:100%}
+        .auth-brand{text-align:center;margin-bottom:8px}
+        .auth-brand-flag{font-size:44px}
+        .auth-brand-title{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:#c8a276;line-height:1;margin-top:8px}
+        .auth-brand-sub{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(210,197,175,.45);margin-top:6px}
+        .userbtn-wrap{display:flex;align-items:center}
       `}</style>
 
+      <SignedOut>
+        <div className="auth-page">
+          <div className="auth-card">
+            <div className="auth-brand">
+              <div className="auth-brand-flag">🇷🇺</div>
+              <div className="auth-brand-title">Говорим</div>
+              <div className="auth-brand-sub">Russian Practice</div>
+            </div>
+            <SignIn routing="hash" />
+          </div>
+        </div>
+      </SignedOut>
+
+      <SignedIn>
       {!seenLanding && (
         <div className="land">
           <div className="land-card">
@@ -1408,7 +1441,10 @@ export default function App() {
       <div className="app">
         <header className="hdr">
           <div className="logo"><span className="lru">Говорим</span><span className="lsub">Russian Practice</span></div>
-          {started && <button className="tbadge" onClick={function(){ setShowTopic(true); }}>{isLit ? ("📖 " + (bookMeta.title || "Book")) : ("💬 "+act)}</button>}
+          <div style={{display:"flex",alignItems:"center",gap:12}}>
+            {started && <button className="tbadge" onClick={function(){ setShowTopic(true); }}>{isLit ? ("📖 " + (bookMeta.title || "Book")) : ("💬 "+act)}</button>}
+            <div className="userbtn-wrap"><UserButton afterSignOutUrl="/" /></div>
+          </div>
         </header>
 
         <div className="tabs">
@@ -1835,6 +1871,7 @@ export default function App() {
           </div>
         )}
       </div>
+      </SignedIn>
     </>
   );
 }
