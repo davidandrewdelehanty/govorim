@@ -278,4 +278,3 @@ For viral-popular usage (100+ daily active users):
 You'll know you're approaching free-tier limits when the API starts returning
 429 errors. At that point, decide whether to upgrade Gemini billing, add
 Cloudflare Turnstile to block bots, or implement BYOK.
-# govorim
