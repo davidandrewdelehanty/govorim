@@ -47,8 +47,7 @@ export default async function handler(req, res) {
 <html>
 <body style="font-family: Georgia, serif; background: #1a1611; color: #d2c5af; padding: 32px; max-width: 560px; margin: 0 auto;">
   <div style="background: #1f1c16; border: 1px solid rgba(210,197,175,0.14); border-radius: 16px; padding: 32px; text-align: center;">
-    <div style="font-size: 48px;">🇷🇺</div>
-    <h1 style="font-family: 'Playfair Display', Georgia, serif; color: #c8a276; font-size: 32px; margin: 16px 0 8px;">Говорим</h1>
+    <h1 style="font-family: 'Playfair Display', Georgia, serif; color: #c8a276; font-size: 36px; margin: 0 0 8px;">Говорим</h1>
     <p style="color: rgba(210,197,175,0.6); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin: 0 0 24px;">Russian Practice</p>
     <p style="font-size: 16px; line-height: 1.6;">Hi ${firstName},</p>
     <p style="font-size: 16px; line-height: 1.6;">Your account has been approved. You can now start practicing Russian — read EPUB books, get comprehension questions, and build your vocabulary.</p>

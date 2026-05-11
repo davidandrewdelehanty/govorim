@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "books": "node scripts/generate-books-manifest.js",
+    "prebuild": "node scripts/generate-books-manifest.js",
     "build": "vite build",
     "preview": "vite preview"
   },
