@@ -337,6 +337,228 @@ function isFrontMatter(heading, text) {
   return skip.some(function(p) { return p.test(h) || p.test(t); });
 }
 
+// ── TOC parsing ────────────────────────────────────────────────────────────
+// Modern EPUBs declare the author's intended chapter list in a table of contents
+// file (NCX for EPUB 2, nav.xhtml for EPUB 3). Using that gives us proper chapter
+// boundaries and good headings — far better than the spine order alone, which
+// treats every front-matter file (cover, title page, copyright) as a "chapter".
+
+// Quick label-only front-matter check used when filtering TOC entries.
+// Also matches against the author name and book title from OPF metadata, since
+// title pages commonly use the author's name as their TOC label.
+function isFrontMatterLabel(label, authorName, bookTitle) {
+  var l = (label || "").toLowerCase().trim();
+  if (!l) return true;
+
+  // Generic front-matter labels (Russian + English).
+  if (/^(cover|обложка|title page|титульн|titul|copyright|авторские права|table of contents|оглавление|содержание|toc|annotation|аннотация|colophon|выходные данные|book information|информация о книге|об авторе|about the author|acknowledg|благодарност|dedication|посвящение)\b/i.test(l)) return true;
+
+  // Title-page labels: author name or book title used as a TOC entry.
+  // Russian title pages frequently show "Антон Чехов" or "А. П. Чехов" as the
+  // first navPoint pointing at a page that just contains the author + title.
+  function tokens(s) {
+    return (s || "").toLowerCase().replace(/[.,]/g, " ").split(/\s+/).filter(function(t){ return t.length > 1; });
+  }
+  var labelToks = tokens(l);
+  if (authorName) {
+    var aToks = tokens(authorName);
+    if (aToks.length > 0) {
+      var sharedA = aToks.filter(function(t){ return labelToks.indexOf(t) !== -1; }).length;
+      // Whole-author match, or label is just a subset of author name (e.g. "Чехов", "А. П. Чехов")
+      if (sharedA >= 2) return true;
+      if (sharedA >= 1 && labelToks.length <= 3 && labelToks.every(function(t){ return aToks.indexOf(t) !== -1; })) return true;
+    }
+  }
+  if (bookTitle) {
+    var bToks = tokens(bookTitle);
+    if (bToks.length > 0 && labelToks.length > 0) {
+      var sharedB = bToks.filter(function(t){ return labelToks.indexOf(t) !== -1; }).length;
+      if (sharedB === bToks.length || (sharedB >= 2 && sharedB === labelToks.length)) return true;
+    }
+  }
+
+  return false;
+}
+
+// Resolve a relative path against a base directory (handles ../ and ./ correctly).
+function resolvePath(baseDir, relPath) {
+  var parts = (baseDir + relPath).split("/");
+  var stack = [];
+  for (var i = 0; i < parts.length; i++) {
+    var p = parts[i];
+    if (p === "" || p === ".") continue;
+    if (p === "..") stack.pop();
+    else stack.push(p);
+  }
+  return stack.join("/");
+}
+
+// Parse an NCX file (EPUB 2 TOC). Returns an ordered list of { label, file, fragment }
+// where `file` is the resolved zip-path and `fragment` is the anchor id (or "").
+// Only leaf navPoints are emitted (so a nested "Part / Chapter" TOC yields only chapters).
+async function parseNcxToc(zipFiles, opfDir, ncxPath) {
+  var fullPath = resolvePath(opfDir, ncxPath);
+  var data = zipFiles[fullPath] || zipFiles[ncxPath];
+  if (!data) return [];
+  var xml = typeof data === "string" ? data : await decompressEntry(data);
+  var ncxDir = fullPath.includes("/") ? fullPath.slice(0, fullPath.lastIndexOf("/") + 1) : "";
+
+  var doc;
+  try {
+    doc = new DOMParser().parseFromString(xml, "application/xml");
+  } catch(e) { return []; }
+  var nps = doc.getElementsByTagName("navPoint");
+  var entries = [];
+  for (var i = 0; i < nps.length; i++) {
+    var np = nps[i];
+    // Skip non-leaf navPoints — their children give finer-grained chapters.
+    if (np.getElementsByTagName("navPoint").length > 0) continue;
+    var labelEl   = np.querySelector("navLabel > text") || np.getElementsByTagName("text")[0];
+    var contentEl = np.getElementsByTagName("content")[0];
+    if (!labelEl || !contentEl) continue;
+    var label = (labelEl.textContent || "").trim();
+    var src   = contentEl.getAttribute("src") || "";
+    if (!src) continue;
+    var hashIdx = src.indexOf("#");
+    var file = hashIdx >= 0 ? src.slice(0, hashIdx) : src;
+    var frag = hashIdx >= 0 ? src.slice(hashIdx + 1) : "";
+    try { file = decodeURIComponent(file); } catch(e) {}
+    entries.push({ label: label, file: resolvePath(ncxDir, file), fragment: frag });
+  }
+  return entries;
+}
+
+// Parse an EPUB 3 nav.xhtml file. Returns { label, file, fragment } entries.
+async function parseNavToc(zipFiles, opfDir, navPath) {
+  var fullPath = resolvePath(opfDir, navPath);
+  var data = zipFiles[fullPath] || zipFiles[navPath];
+  if (!data) return [];
+  var html = typeof data === "string" ? data : await decompressEntry(data);
+  var navDir = fullPath.includes("/") ? fullPath.slice(0, fullPath.lastIndexOf("/") + 1) : "";
+
+  // Find the <nav> marked as the toc, or any <nav> as a fallback.
+  var navHtml = html.match(/<nav\b[^>]*\bepub:type\s*=\s*["'][^"']*\btoc\b[^"']*["'][^>]*>([\s\S]*?)<\/nav>/i)
+            || html.match(/<nav\b[^>]*>([\s\S]*?)<\/nav>/i);
+  if (!navHtml) return [];
+
+  // Pull <a href> entries. We don't need to preserve list nesting — order suffices.
+  var entries = [];
+  var linkRe = /<a\b[^>]*\bhref\s*=\s*["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
+  var m;
+  while ((m = linkRe.exec(navHtml[1])) !== null) {
+    var href  = m[1];
+    var label = m[2].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+    if (!href) continue;
+    var hashIdx = href.indexOf("#");
+    var file = hashIdx >= 0 ? href.slice(0, hashIdx) : href;
+    var frag = hashIdx >= 0 ? href.slice(hashIdx + 1) : "";
+    try { file = decodeURIComponent(file); } catch(e) {}
+    entries.push({ label: label, file: resolvePath(navDir, file), fragment: frag });
+  }
+  return entries;
+}
+
+// Given an HTML string and two anchor ids, return the HTML slice between them.
+// Either id may be empty (meaning "start of doc" or "end of doc"). Used to split
+// a single file into multiple chapters when the TOC points at fragments.
+function htmlSliceByAnchors(html, startId, endId) {
+  var startIdx = 0;
+  if (startId) {
+    var esc = startId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    var re  = new RegExp("<[^>]*\\bid\\s*=\\s*[\"']" + esc + "[\"']", "i");
+    var sm  = html.match(re);
+    if (sm) startIdx = sm.index;
+  }
+  var endIdx = html.length;
+  if (endId) {
+    var esc2 = endId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    var re2  = new RegExp("<[^>]*\\bid\\s*=\\s*[\"']" + esc2 + "[\"']", "i");
+    var slice = html.slice(startIdx);
+    var em = slice.match(re2);
+    if (em) endIdx = startIdx + em.index;
+  }
+  return html.slice(startIdx, endIdx);
+}
+
+// Build the chapter list from filtered TOC entries.
+// Consecutive entries pointing at the same file with different fragments split that file.
+async function buildChaptersFromToc(entries, zipFiles) {
+  var chapters = [];
+  for (var i = 0; i < entries.length; i++) {
+    var e    = entries[i];
+    var next = entries[i + 1];
+    var fileData = zipFiles[e.file];
+    if (!fileData) continue;
+    var html = typeof fileData === "string" ? fileData : await decompressEntry(fileData);
+
+    var chunk;
+    var sameFileNext = next && next.file === e.file;
+    if (e.fragment || sameFileNext) {
+      chunk = htmlSliceByAnchors(html, e.fragment || "", sameFileNext ? (next.fragment || "") : "");
+    } else {
+      chunk = html;
+    }
+    var text = htmlToText(chunk);
+    var cyr  = (text.match(/[а-яёА-ЯЁ]/g) || []).length;
+    if (cyr < 5) continue;
+    // Prefer a heading extracted from the chapter HTML over the TOC label —
+    // some EPUBs use generic / author / publisher labels in the TOC even though
+    // the actual chapter document has a clean <h1> or <h2> with the real title.
+    var headingFromHtml = "";
+    var hM = chunk.match(/<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/i);
+    if (hM) headingFromHtml = hM[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+    var heading = headingFromHtml || e.label || ("Глава " + (chapters.length + 1));
+    chapters.push({ heading: heading, text: text });
+  }
+  return chapters;
+}
+
+// ── Text-based chapter marker detection ─────────────────────────────────────
+// Authors mark their chapter divisions inside the actual text — usually with
+// Roman numerals (I, II, III...), Arabic numbers (1, 2, 3), or "Глава N" /
+// "Часть N" / "Chapter N". Detecting these is far more reliable than trusting
+// spine items or TOC labels, which often include front matter (cover, copyright,
+// title page) as if they were chapters.
+function isChapterMarker(line) {
+  var l = (line || "").trim();
+  if (!l || l.length > 30) return false;
+  // Roman numerals up to L (50) — covers virtually every Russian classic.
+  if (/^[IVXLivxl]{1,6}\.?$/.test(l)) return true;
+  // Arabic numbers up to 999 — handles short story collections, song books, etc.
+  if (/^\d{1,3}\.?$/.test(l)) return true;
+  // Explicit chapter words with a number
+  if (/^(глава|часть|chapter|part)\s+([0-9]+|[ivxl]+)\.?$/i.test(l)) return true;
+  // Special section names
+  if (/^(пролог|prologue|prolog|эпилог|epilogue|вступление|введение|заключение|послесловие)\.?$/i.test(l)) return true;
+  return false;
+}
+
+// Concatenate a chapter list, then re-split at in-text chapter markers.
+// Each marker line itself becomes the chapter heading; the text between markers
+// is the chapter body. Returns null when fewer than 2 markers are found
+// (caller should keep the existing chapter structure in that case).
+function splitByMarkers(chapters) {
+  var fullText = chapters.map(function(c){ return (c.text || ""); }).join("\n\n");
+  var lines = fullText.split("\n");
+  var markers = [];
+  for (var i = 0; i < lines.length; i++) {
+    if (isChapterMarker(lines[i])) {
+      markers.push({ idx: i, label: lines[i].trim().replace(/\.+$/, "").toUpperCase() });
+    }
+  }
+  if (markers.length < 2) return null;
+  var out = [];
+  for (var j = 0; j < markers.length; j++) {
+    var start = markers[j].idx + 1;
+    var end = (j + 1 < markers.length) ? markers[j + 1].idx : lines.length;
+    var chunk = lines.slice(start, end).join("\n").trim();
+    if (chunk.length < 50) continue; // skip tiny / empty splits
+    out.push({ heading: markers[j].label, text: chunk });
+  }
+  return out.length >= 2 ? out : null;
+}
+
+
 async function parseEpub(buffer) {
   var zipFiles = parseZip(buffer);
 
@@ -378,6 +600,77 @@ async function parseEpub(buffer) {
   }
 
   if (spineIds.length === 0) throw new Error("No spine items found in EPUB");
+
+  // ── First try TOC-based chapter extraction ──
+  // Most EPUBs ship a table of contents that lists the AUTHOR'S intended chapters
+  // (NCX for EPUB 2, nav.xhtml for EPUB 3). Using it gives us proper headings and
+  // skips front matter that the author considered non-chapter content (cover,
+  // title page, copyright, etc.) — a single spine item per "chapter" approach
+  // happily treats those as Chapter 1, 2, 3 because they're separate files.
+
+  // Find an NCX file. EPUB 2 puts the id on <spine toc="ncx-id">; EPUB 3 puts
+  // it in the manifest via media-type. Both forms appear in the wild.
+  var ncxPath = null;
+  var spineTocM = opfRaw.match(/<spine\b[^>]*\btoc\s*=\s*["']([^"']+)["']/i);
+  if (spineTocM && manifestItems[spineTocM[1]]) ncxPath = manifestItems[spineTocM[1]];
+  if (!ncxPath) {
+    var ncxItemM = opfRaw.match(/<item\b[^>]*media-type\s*=\s*["']application\/x-dtbncx\+xml["'][^>]*\bhref\s*=\s*["']([^"']+)["']/i)
+                || opfRaw.match(/<item\b[^>]*\bhref\s*=\s*["']([^"']+)["'][^>]*\bmedia-type\s*=\s*["']application\/x-dtbncx\+xml["']/i);
+    if (ncxItemM) ncxPath = ncxItemM[1];
+  }
+  // EPUB 3 nav doc — flagged via properties="nav" in the manifest.
+  var navHref = null;
+  var navItemM = opfRaw.match(/<item\b[^>]*\bproperties\s*=\s*["'][^"']*\bnav\b[^"']*["'][^>]*\bhref\s*=\s*["']([^"']+)["']/i)
+              || opfRaw.match(/<item\b[^>]*\bhref\s*=\s*["']([^"']+)["'][^>]*\bproperties\s*=\s*["'][^"']*\bnav\b/i);
+  if (navItemM) navHref = navItemM[1];
+
+  var tocEntries = [];
+  try {
+    if (ncxPath)       tocEntries = await parseNcxToc(zipFiles, opfDir, ncxPath);
+    else if (navHref)  tocEntries = await parseNavToc(zipFiles, opfDir, navHref);
+  } catch(e) { tocEntries = []; }
+
+  // Extract title/author NOW so we can use them to filter title-page entries
+  // (very common pattern: TOC entry labeled with author's name pointing at a
+  // page that only contains the author + title).
+  var titleM_  = opfRaw.match(/<dc:title[^>]*>([^<]+)<\/dc:title>/i);
+  var authorM_ = opfRaw.match(/<dc:creator[^>]*>([^<]+)<\/dc:creator>/i);
+  var bookTitle  = titleM_  ? titleM_[1].trim()  : "";
+  var bookAuthor = authorM_ ? authorM_[1].trim() : "";
+
+  // Filter out front-matter labels AND author/title-page entries.
+  var realEntries = tocEntries.filter(function(e){ return !isFrontMatterLabel(e.label, bookAuthor, bookTitle); });
+
+  if (realEntries.length >= 2) {
+    var tocChs = await buildChaptersFromToc(realEntries, zipFiles);
+    // Drop leading chapters that are dramatically shorter than the rest of the
+    // book — almost always front matter (cover, title page, copyright, dedication)
+    // that the EPUB packaged as a navigable chapter.
+    // Use the median chapter length to adapt to books with naturally short
+    // chapters (poetry, song lyrics) where a fixed threshold would over-trim.
+    var cyrLens = tocChs.map(function(c){ return ((c.text || "").match(/[а-яёА-ЯЁ]/g) || []).length; });
+    var sortedLens = cyrLens.slice().sort(function(a,b){ return a-b; });
+    var median = sortedLens.length > 0 ? sortedLens[Math.floor(sortedLens.length / 2)] : 0;
+    // Threshold: at least 150 Cyrillic chars, OR 25% of median, whichever is larger.
+    var threshold = Math.max(150, Math.floor(median * 0.25));
+    var maxDrops = Math.min(5, tocChs.length - 1);  // never drop everything
+    while (maxDrops > 0 && tocChs.length > 1) {
+      var firstCyr = ((tocChs[0].text || "").match(/[а-яёА-ЯЁ]/g) || []).length;
+      if (firstCyr < threshold) {
+        tocChs.shift();
+        maxDrops--;
+        continue;
+      }
+      break;
+    }
+    if (tocChs.length >= 2) {
+      return {
+        chapters: tocChs,
+        title:  bookTitle  || "Unknown title",
+        author: bookAuthor || "Unknown author"
+      };
+    }
+  }
 
   var chapters = [];
   for (var k = 0; k < spineIds.length; k++) {
@@ -437,6 +730,23 @@ async function parseEpub(buffer) {
 
   if (chapters.length === 0) {
     throw new Error("Could not extract Russian text. The EPUB may be empty, corrupted, in a different language, or use unusual encoding. If it's a DRM-locked file from a bookstore, it can't be read here — try a DRM-free source.");
+  }
+
+  // Trim leading "chapters" that are too short to be real story content (title pages,
+  // copyright, etc.) — uses the same adaptive median heuristic as the TOC path.
+  var spCyrLens = chapters.map(function(c){ return ((c.text || "").match(/[а-яёА-ЯЁ]/g) || []).length; });
+  var spSorted = spCyrLens.slice().sort(function(a,b){ return a-b; });
+  var spMedian = spSorted.length > 0 ? spSorted[Math.floor(spSorted.length / 2)] : 0;
+  var spThreshold = Math.max(150, Math.floor(spMedian * 0.25));
+  var spMaxDrops = Math.min(5, chapters.length - 1);
+  while (spMaxDrops > 0 && chapters.length > 1) {
+    var firstSpineCyr = ((chapters[0].text || "").match(/[а-яёА-ЯЁ]/g) || []).length;
+    if (firstSpineCyr < spThreshold) {
+      chapters.shift();
+      spMaxDrops--;
+      continue;
+    }
+    break;
   }
 
   // Extract title/author from OPF metadata
@@ -1402,7 +1712,27 @@ export default function App() {
       if (!result.chapters || result.chapters.length < 1) throw new Error("No chapters found in file.");
       var chs = result.chapters;
       if (opts.splitByNumberedSections) {
+        // Tsoi-style: digit on a line followed by song-title line. Keep this dedicated path
+        // because the song-title-on-next-line logic is different from generic marker splitting.
         chs = resplitByNumberedSections(chs);
+      } else {
+        // Default: re-split by in-text chapter markers (Roman numerals, "Глава N", etc.).
+        // The author told us the chapter boundaries by putting markers in the text — use
+        // those instead of trusting spine items or TOC labels.
+        var bymark = splitByMarkers(chs);
+        if (bymark && bymark.length >= 2) {
+          chs = bymark;
+        } else if (chs.length > 1) {
+          // No markers but we have multiple spine-based chapters. The user asked us not to
+          // title chapters ourselves, so collapse to one chapter and let page navigation handle it.
+          var merged = chs.map(function(c){ return c.text || ""; }).join("\n\n").trim();
+          chs = [{ heading: "", text: merged }];
+        } else if (chs.length === 1) {
+          // Single chapter from spine — strip any auto-generated heading.
+          var h = chs[0].heading || "";
+          if (/^глава\s+\d+$/i.test(h.trim()) || /^chapter\s+\d+$/i.test(h.trim())) h = "";
+          chs = [{ heading: h, text: chs[0].text || "" }];
+        }
       }
       var title = opts.title || result.title;
       var author = opts.author || result.author;
@@ -2486,7 +2816,7 @@ export default function App() {
                     <div className="lit-body">
                       <div className={"lit-left" + (noAIMode ? " noai" : "")}>
                         <div className="lhdr">Chapter {cidx+1} of {chapters.length} · click any word to define</div>
-                        <div className="lch-heading">{curChapter.heading}</div>
+                        {curChapter.heading && <div className="lch-heading">{curChapter.heading}</div>}
                         <div className="ltxt">{renderLit(curChapter.text)}</div>
                       </div>
                       {!noAIMode && (
