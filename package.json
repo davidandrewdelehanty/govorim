@@ -1,0 +1,24 @@
+{
+  "name": "govorim",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "books": "node scripts/generate-books-manifest.js",
+    "prebuild": "node scripts/generate-books-manifest.js",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@clerk/backend": "^1.16.0",
+    "@clerk/clerk-react": "^5.20.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "resend": "^4.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.10"
+  }
+}

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { SignedIn, SignedOut, SignIn, UserButton, useAuth, useUser } from "@clerk/clerk-react";
+import { SignIn, UserButton, useAuth, useUser } from "@clerk/clerk-react";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
@@ -268,18 +268,35 @@ function parseZip(buffer) {
 
 async function decompressEntry(entry) {
   if (typeof entry === "string") return entry;
+  // Cached text from a previous read — streams can only be consumed once, so we memoize here.
+  if (entry && typeof entry._text === "string") return entry._text;
+  // If a concurrent decompression is in flight on the same entry, wait for it.
+  if (entry && entry._reading) {
+    try { await entry._reading; } catch(e) {}
+    return entry._text || "";
+  }
   if (entry && entry.stream) {
-    var reader = entry.stream.getReader();
-    var chunks = [];
-    while (true) {
-      var r = await reader.read();
-      if (r.done) break;
-      chunks.push(r.value);
+    var run = (async function() {
+      var reader = entry.stream.getReader();
+      var chunks = [];
+      while (true) {
+        var r = await reader.read();
+        if (r.done) break;
+        chunks.push(r.value);
+      }
+      var total = chunks.reduce(function(a,c){ return a+c.length; }, 0);
+      var out = new Uint8Array(total); var pos = 0;
+      for (var ci = 0; ci < chunks.length; ci++) { out.set(chunks[ci], pos); pos += chunks[ci].length; }
+      return new TextDecoder("utf-8").decode(out);
+    })();
+    entry._reading = run;
+    try {
+      entry._text = await run;
+    } catch (e) {
+      entry._text = "";
     }
-    var total = chunks.reduce(function(a,c){ return a+c.length; }, 0);
-    var out = new Uint8Array(total); var pos = 0;
-    for (var ci = 0; ci < chunks.length; ci++) { out.set(chunks[ci], pos); pos += chunks[ci].length; }
-    return new TextDecoder("utf-8").decode(out);
+    delete entry._reading;
+    return entry._text;
   }
   return "";
 }
@@ -320,11 +337,239 @@ function isFrontMatter(heading, text) {
   return skip.some(function(p) { return p.test(h) || p.test(t); });
 }
 
+// ── TOC parsing ────────────────────────────────────────────────────────────
+// Modern EPUBs declare the author's intended chapter list in a table of contents
+// file (NCX for EPUB 2, nav.xhtml for EPUB 3). Using that gives us proper chapter
+// boundaries and good headings — far better than the spine order alone, which
+// treats every front-matter file (cover, title page, copyright) as a "chapter".
+
+// Quick label-only front-matter check used when filtering TOC entries.
+// Also matches against the author name and book title from OPF metadata, since
+// title pages commonly use the author's name as their TOC label.
+function isFrontMatterLabel(label, authorName, bookTitle) {
+  var l = (label || "").toLowerCase().trim();
+  if (!l) return true;
+
+  // Generic front-matter labels (Russian + English).
+  if (/^(cover|обложка|title page|титульн|titul|copyright|авторские права|table of contents|оглавление|содержание|toc|annotation|аннотация|colophon|выходные данные|book information|информация о книге|об авторе|about the author|acknowledg|благодарност|dedication|посвящение)\b/i.test(l)) return true;
+
+  // Title-page labels: author name or book title used as a TOC entry.
+  // Russian title pages frequently show "Антон Чехов" or "А. П. Чехов" as the
+  // first navPoint pointing at a page that just contains the author + title.
+  function tokens(s) {
+    return (s || "").toLowerCase().replace(/[.,]/g, " ").split(/\s+/).filter(function(t){ return t.length > 1; });
+  }
+  var labelToks = tokens(l);
+  if (authorName) {
+    var aToks = tokens(authorName);
+    if (aToks.length > 0) {
+      var sharedA = aToks.filter(function(t){ return labelToks.indexOf(t) !== -1; }).length;
+      // Whole-author match, or label is just a subset of author name (e.g. "Чехов", "А. П. Чехов")
+      if (sharedA >= 2) return true;
+      if (sharedA >= 1 && labelToks.length <= 3 && labelToks.every(function(t){ return aToks.indexOf(t) !== -1; })) return true;
+    }
+  }
+  if (bookTitle) {
+    var bToks = tokens(bookTitle);
+    if (bToks.length > 0 && labelToks.length > 0) {
+      var sharedB = bToks.filter(function(t){ return labelToks.indexOf(t) !== -1; }).length;
+      if (sharedB === bToks.length || (sharedB >= 2 && sharedB === labelToks.length)) return true;
+    }
+  }
+
+  return false;
+}
+
+// Resolve a relative path against a base directory (handles ../ and ./ correctly).
+function resolvePath(baseDir, relPath) {
+  var parts = (baseDir + relPath).split("/");
+  var stack = [];
+  for (var i = 0; i < parts.length; i++) {
+    var p = parts[i];
+    if (p === "" || p === ".") continue;
+    if (p === "..") stack.pop();
+    else stack.push(p);
+  }
+  return stack.join("/");
+}
+
+// Parse an NCX file (EPUB 2 TOC). Returns an ordered list of { label, file, fragment }
+// where `file` is the resolved zip-path and `fragment` is the anchor id (or "").
+// Only leaf navPoints are emitted (so a nested "Part / Chapter" TOC yields only chapters).
+async function parseNcxToc(zipFiles, opfDir, ncxPath) {
+  var fullPath = resolvePath(opfDir, ncxPath);
+  var data = zipFiles[fullPath] || zipFiles[ncxPath];
+  if (!data) return [];
+  var xml = typeof data === "string" ? data : await decompressEntry(data);
+  var ncxDir = fullPath.includes("/") ? fullPath.slice(0, fullPath.lastIndexOf("/") + 1) : "";
+
+  var doc;
+  try {
+    doc = new DOMParser().parseFromString(xml, "application/xml");
+  } catch(e) { return []; }
+  var nps = doc.getElementsByTagName("navPoint");
+  var entries = [];
+  for (var i = 0; i < nps.length; i++) {
+    var np = nps[i];
+    // Skip non-leaf navPoints — their children give finer-grained chapters.
+    if (np.getElementsByTagName("navPoint").length > 0) continue;
+    var labelEl   = np.querySelector("navLabel > text") || np.getElementsByTagName("text")[0];
+    var contentEl = np.getElementsByTagName("content")[0];
+    if (!labelEl || !contentEl) continue;
+    var label = (labelEl.textContent || "").trim();
+    var src   = contentEl.getAttribute("src") || "";
+    if (!src) continue;
+    var hashIdx = src.indexOf("#");
+    var file = hashIdx >= 0 ? src.slice(0, hashIdx) : src;
+    var frag = hashIdx >= 0 ? src.slice(hashIdx + 1) : "";
+    try { file = decodeURIComponent(file); } catch(e) {}
+    entries.push({ label: label, file: resolvePath(ncxDir, file), fragment: frag });
+  }
+  return entries;
+}
+
+// Parse an EPUB 3 nav.xhtml file. Returns { label, file, fragment } entries.
+async function parseNavToc(zipFiles, opfDir, navPath) {
+  var fullPath = resolvePath(opfDir, navPath);
+  var data = zipFiles[fullPath] || zipFiles[navPath];
+  if (!data) return [];
+  var html = typeof data === "string" ? data : await decompressEntry(data);
+  var navDir = fullPath.includes("/") ? fullPath.slice(0, fullPath.lastIndexOf("/") + 1) : "";
+
+  // Find the <nav> marked as the toc, or any <nav> as a fallback.
+  var navHtml = html.match(/<nav\b[^>]*\bepub:type\s*=\s*["'][^"']*\btoc\b[^"']*["'][^>]*>([\s\S]*?)<\/nav>/i)
+            || html.match(/<nav\b[^>]*>([\s\S]*?)<\/nav>/i);
+  if (!navHtml) return [];
+
+  // Pull <a href> entries. We don't need to preserve list nesting — order suffices.
+  var entries = [];
+  var linkRe = /<a\b[^>]*\bhref\s*=\s*["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
+  var m;
+  while ((m = linkRe.exec(navHtml[1])) !== null) {
+    var href  = m[1];
+    var label = m[2].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+    if (!href) continue;
+    var hashIdx = href.indexOf("#");
+    var file = hashIdx >= 0 ? href.slice(0, hashIdx) : href;
+    var frag = hashIdx >= 0 ? href.slice(hashIdx + 1) : "";
+    try { file = decodeURIComponent(file); } catch(e) {}
+    entries.push({ label: label, file: resolvePath(navDir, file), fragment: frag });
+  }
+  return entries;
+}
+
+// Given an HTML string and two anchor ids, return the HTML slice between them.
+// Either id may be empty (meaning "start of doc" or "end of doc"). Used to split
+// a single file into multiple chapters when the TOC points at fragments.
+function htmlSliceByAnchors(html, startId, endId) {
+  var startIdx = 0;
+  if (startId) {
+    var esc = startId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    var re  = new RegExp("<[^>]*\\bid\\s*=\\s*[\"']" + esc + "[\"']", "i");
+    var sm  = html.match(re);
+    if (sm) startIdx = sm.index;
+  }
+  var endIdx = html.length;
+  if (endId) {
+    var esc2 = endId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    var re2  = new RegExp("<[^>]*\\bid\\s*=\\s*[\"']" + esc2 + "[\"']", "i");
+    var slice = html.slice(startIdx);
+    var em = slice.match(re2);
+    if (em) endIdx = startIdx + em.index;
+  }
+  return html.slice(startIdx, endIdx);
+}
+
+// Build the chapter list from filtered TOC entries.
+// Consecutive entries pointing at the same file with different fragments split that file.
+async function buildChaptersFromToc(entries, zipFiles) {
+  var chapters = [];
+  for (var i = 0; i < entries.length; i++) {
+    var e    = entries[i];
+    var next = entries[i + 1];
+    var fileData = zipFiles[e.file];
+    if (!fileData) continue;
+    var html = typeof fileData === "string" ? fileData : await decompressEntry(fileData);
+
+    var chunk;
+    var sameFileNext = next && next.file === e.file;
+    if (e.fragment || sameFileNext) {
+      chunk = htmlSliceByAnchors(html, e.fragment || "", sameFileNext ? (next.fragment || "") : "");
+    } else {
+      chunk = html;
+    }
+    var text = htmlToText(chunk);
+    var cyr  = (text.match(/[а-яёА-ЯЁ]/g) || []).length;
+    if (cyr < 5) continue;
+    // Prefer a heading extracted from the chapter HTML over the TOC label —
+    // some EPUBs use generic / author / publisher labels in the TOC even though
+    // the actual chapter document has a clean <h1> or <h2> with the real title.
+    var headingFromHtml = "";
+    var hM = chunk.match(/<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/i);
+    if (hM) headingFromHtml = hM[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+    var heading = headingFromHtml || e.label || ("Глава " + (chapters.length + 1));
+    chapters.push({ heading: heading, text: text });
+  }
+  return chapters;
+}
+
+// ── Text-based chapter marker detection ─────────────────────────────────────
+// Authors mark their chapter divisions inside the actual text — usually with
+// Roman numerals (I, II, III...), Arabic numbers (1, 2, 3), or "Глава N" /
+// "Часть N" / "Chapter N". Detecting these is far more reliable than trusting
+// spine items or TOC labels, which often include front matter (cover, copyright,
+// title page) as if they were chapters.
+function isChapterMarker(line) {
+  var l = (line || "").trim();
+  if (!l || l.length > 30) return false;
+  // Roman numerals up to L (50) — covers virtually every Russian classic.
+  if (/^[IVXLivxl]{1,6}\.?$/.test(l)) return true;
+  // Arabic numbers up to 999 — handles short story collections, song books, etc.
+  if (/^\d{1,3}\.?$/.test(l)) return true;
+  // Explicit chapter words with a number
+  if (/^(глава|часть|chapter|part)\s+([0-9]+|[ivxl]+)\.?$/i.test(l)) return true;
+  // Special section names
+  if (/^(пролог|prologue|prolog|эпилог|epilogue|вступление|введение|заключение|послесловие)\.?$/i.test(l)) return true;
+  return false;
+}
+
+// Concatenate a chapter list, then re-split at in-text chapter markers.
+// Each marker line itself becomes the chapter heading; the text between markers
+// is the chapter body. Returns null when fewer than 2 markers are found
+// (caller should keep the existing chapter structure in that case).
+function splitByMarkers(chapters) {
+  var fullText = chapters.map(function(c){ return (c.text || ""); }).join("\n\n");
+  var lines = fullText.split("\n");
+  var markers = [];
+  for (var i = 0; i < lines.length; i++) {
+    if (isChapterMarker(lines[i])) {
+      markers.push({ idx: i, label: lines[i].trim().replace(/\.+$/, "").toUpperCase() });
+    }
+  }
+  if (markers.length < 2) return null;
+  var out = [];
+  for (var j = 0; j < markers.length; j++) {
+    var start = markers[j].idx + 1;
+    var end = (j + 1 < markers.length) ? markers[j + 1].idx : lines.length;
+    var chunk = lines.slice(start, end).join("\n").trim();
+    if (chunk.length < 50) continue; // skip tiny / empty splits
+    out.push({ heading: markers[j].label, text: chunk });
+  }
+  return out.length >= 2 ? out : null;
+}
+
+
 async function parseEpub(buffer) {
   var zipFiles = parseZip(buffer);
 
+  // Detect DRM-protected EPUBs early — Adobe ADEPT, Apple FairPlay, B&N, Kobo all add these files.
+  // Parsing won't yield readable text from DRM-locked files; tell the user clearly instead of "no Russian found".
+  if (zipFiles["META-INF/encryption.xml"] || zipFiles["META-INF/rights.xml"]) {
+    throw new Error("This EPUB is DRM-protected (locked by the seller). Try a DRM-free source: Project Gutenberg, Flibusta, or Litres exports marked « без DRM ».");
+  }
+
   var containerXml = zipFiles["META-INF/container.xml"];
-  if (!containerXml) throw new Error("Not a valid EPUB — no container.xml");
+  if (!containerXml) throw new Error("Not a valid EPUB — no container.xml. File may be corrupted or not actually an EPUB.");
   if (typeof containerXml !== "string") containerXml = await decompressEntry(containerXml);
 
   var opfMatch = containerXml.match(/full-path="([^"]+\.opf)"/i);
@@ -356,6 +601,77 @@ async function parseEpub(buffer) {
 
   if (spineIds.length === 0) throw new Error("No spine items found in EPUB");
 
+  // ── First try TOC-based chapter extraction ──
+  // Most EPUBs ship a table of contents that lists the AUTHOR'S intended chapters
+  // (NCX for EPUB 2, nav.xhtml for EPUB 3). Using it gives us proper headings and
+  // skips front matter that the author considered non-chapter content (cover,
+  // title page, copyright, etc.) — a single spine item per "chapter" approach
+  // happily treats those as Chapter 1, 2, 3 because they're separate files.
+
+  // Find an NCX file. EPUB 2 puts the id on <spine toc="ncx-id">; EPUB 3 puts
+  // it in the manifest via media-type. Both forms appear in the wild.
+  var ncxPath = null;
+  var spineTocM = opfRaw.match(/<spine\b[^>]*\btoc\s*=\s*["']([^"']+)["']/i);
+  if (spineTocM && manifestItems[spineTocM[1]]) ncxPath = manifestItems[spineTocM[1]];
+  if (!ncxPath) {
+    var ncxItemM = opfRaw.match(/<item\b[^>]*media-type\s*=\s*["']application\/x-dtbncx\+xml["'][^>]*\bhref\s*=\s*["']([^"']+)["']/i)
+                || opfRaw.match(/<item\b[^>]*\bhref\s*=\s*["']([^"']+)["'][^>]*\bmedia-type\s*=\s*["']application\/x-dtbncx\+xml["']/i);
+    if (ncxItemM) ncxPath = ncxItemM[1];
+  }
+  // EPUB 3 nav doc — flagged via properties="nav" in the manifest.
+  var navHref = null;
+  var navItemM = opfRaw.match(/<item\b[^>]*\bproperties\s*=\s*["'][^"']*\bnav\b[^"']*["'][^>]*\bhref\s*=\s*["']([^"']+)["']/i)
+              || opfRaw.match(/<item\b[^>]*\bhref\s*=\s*["']([^"']+)["'][^>]*\bproperties\s*=\s*["'][^"']*\bnav\b/i);
+  if (navItemM) navHref = navItemM[1];
+
+  var tocEntries = [];
+  try {
+    if (ncxPath)       tocEntries = await parseNcxToc(zipFiles, opfDir, ncxPath);
+    else if (navHref)  tocEntries = await parseNavToc(zipFiles, opfDir, navHref);
+  } catch(e) { tocEntries = []; }
+
+  // Extract title/author NOW so we can use them to filter title-page entries
+  // (very common pattern: TOC entry labeled with author's name pointing at a
+  // page that only contains the author + title).
+  var titleM_  = opfRaw.match(/<dc:title[^>]*>([^<]+)<\/dc:title>/i);
+  var authorM_ = opfRaw.match(/<dc:creator[^>]*>([^<]+)<\/dc:creator>/i);
+  var bookTitle  = titleM_  ? titleM_[1].trim()  : "";
+  var bookAuthor = authorM_ ? authorM_[1].trim() : "";
+
+  // Filter out front-matter labels AND author/title-page entries.
+  var realEntries = tocEntries.filter(function(e){ return !isFrontMatterLabel(e.label, bookAuthor, bookTitle); });
+
+  if (realEntries.length >= 2) {
+    var tocChs = await buildChaptersFromToc(realEntries, zipFiles);
+    // Drop leading chapters that are dramatically shorter than the rest of the
+    // book — almost always front matter (cover, title page, copyright, dedication)
+    // that the EPUB packaged as a navigable chapter.
+    // Use the median chapter length to adapt to books with naturally short
+    // chapters (poetry, song lyrics) where a fixed threshold would over-trim.
+    var cyrLens = tocChs.map(function(c){ return ((c.text || "").match(/[а-яёА-ЯЁ]/g) || []).length; });
+    var sortedLens = cyrLens.slice().sort(function(a,b){ return a-b; });
+    var median = sortedLens.length > 0 ? sortedLens[Math.floor(sortedLens.length / 2)] : 0;
+    // Threshold: at least 150 Cyrillic chars, OR 25% of median, whichever is larger.
+    var threshold = Math.max(150, Math.floor(median * 0.25));
+    var maxDrops = Math.min(5, tocChs.length - 1);  // never drop everything
+    while (maxDrops > 0 && tocChs.length > 1) {
+      var firstCyr = ((tocChs[0].text || "").match(/[а-яёА-ЯЁ]/g) || []).length;
+      if (firstCyr < threshold) {
+        tocChs.shift();
+        maxDrops--;
+        continue;
+      }
+      break;
+    }
+    if (tocChs.length >= 2) {
+      return {
+        chapters: tocChs,
+        title:  bookTitle  || "Unknown title",
+        author: bookAuthor || "Unknown author"
+      };
+    }
+  }
+
   var chapters = [];
   for (var k = 0; k < spineIds.length; k++) {
     var id   = spineIds[k];
@@ -369,7 +685,7 @@ async function parseEpub(buffer) {
     var html = typeof fileData === "string" ? fileData : await decompressEntry(fileData);
     var text = htmlToText(html);
     var cyrCount = (text.match(/[а-яёА-ЯЁ]/g) || []).length;
-    if (cyrCount < 20) continue;
+    if (cyrCount < 5) continue;
 
     var headMatch = html.match(/<h[1-3][^>]*>([^<]*)<\/h[1-3]>/i);
     var heading = headMatch ? headMatch[1].trim() : ("Глава " + (chapters.length+1));
@@ -387,7 +703,7 @@ async function parseEpub(buffer) {
       var ht = typeof fd === "string" ? fd : await decompressEntry(fd);
       var tx = htmlToText(ht);
       var cy = (tx.match(/[а-яёА-ЯЁ]/g) || []).length;
-      if (cy < 20) continue;
+      if (cy < 5) continue;
       var hm = ht.match(/<h[1-3][^>]*>([^<]*)<\/h[1-3]>/i);
       var hd = hm ? hm[1].trim() : ("Глава " + (chapters.length+1));
       if (isFrontMatter(hd, tx)) continue;
@@ -395,7 +711,43 @@ async function parseEpub(buffer) {
     }
   }
 
-  if (chapters.length === 0) throw new Error("No Russian text found in EPUB. Check it's the right file.");
+  if (chapters.length === 0) {
+    // Last resort: take everything that has ANY Russian, regardless of front-matter checks.
+    var lastKeys = Object.keys(zipFiles);
+    for (var li = 0; li < lastKeys.length; li++) {
+      var lf = lastKeys[li];
+      if (!/\.(x?html?)$/i.test(lf)) continue;
+      var ld = zipFiles[lf];
+      var lh = typeof ld === "string" ? ld : await decompressEntry(ld);
+      var lt = htmlToText(lh);
+      var lcy = (lt.match(/[а-яёА-ЯЁ]/g) || []).length;
+      if (lcy < 5) continue;
+      var lhm = lh.match(/<h[1-3][^>]*>([^<]*)<\/h[1-3]>/i);
+      var lhd = lhm ? lhm[1].trim() : ("Глава " + (chapters.length+1));
+      chapters.push({ heading: lhd, text: lt });
+    }
+  }
+
+  if (chapters.length === 0) {
+    throw new Error("Could not extract Russian text. The EPUB may be empty, corrupted, in a different language, or use unusual encoding. If it's a DRM-locked file from a bookstore, it can't be read here — try a DRM-free source.");
+  }
+
+  // Trim leading "chapters" that are too short to be real story content (title pages,
+  // copyright, etc.) — uses the same adaptive median heuristic as the TOC path.
+  var spCyrLens = chapters.map(function(c){ return ((c.text || "").match(/[а-яёА-ЯЁ]/g) || []).length; });
+  var spSorted = spCyrLens.slice().sort(function(a,b){ return a-b; });
+  var spMedian = spSorted.length > 0 ? spSorted[Math.floor(spSorted.length / 2)] : 0;
+  var spThreshold = Math.max(150, Math.floor(spMedian * 0.25));
+  var spMaxDrops = Math.min(5, chapters.length - 1);
+  while (spMaxDrops > 0 && chapters.length > 1) {
+    var firstSpineCyr = ((chapters[0].text || "").match(/[а-яёА-ЯЁ]/g) || []).length;
+    if (firstSpineCyr < spThreshold) {
+      chapters.shift();
+      spMaxDrops--;
+      continue;
+    }
+    break;
+  }
 
   // Extract title/author from OPF metadata
   var titleM  = opfRaw.match(/<dc:title[^>]*>([^<]+)<\/dc:title>/i);
@@ -405,6 +757,205 @@ async function parseEpub(buffer) {
 
   return { chapters: chapters, title: title, author: author };
 }
+
+// ── ENCODING / TEXT HELPERS ──────────────────────────────────────────────────
+// Russian texts are sometimes saved in cp1251 or KOI8-R rather than UTF-8.
+// This tries UTF-8 first, falls back if the result has replacement chars or no Cyrillic.
+function decodeBytes(buffer) {
+  var bytes = new Uint8Array(buffer);
+  var text = new TextDecoder("utf-8", { fatal: false }).decode(bytes);
+  if (text.indexOf("\uFFFD") > -1 || !/[а-яёА-ЯЁ]/.test(text)) {
+    try { text = new TextDecoder("windows-1251").decode(bytes); } catch(e) {}
+  }
+  return text;
+}
+
+// Try to split a long plain-text blob into chapters by common headings.
+function splitTextIntoChapters(text) {
+  // Look for "Глава N", "Часть N", "Chapter N", roman numerals on their own line, etc.
+  var lines = text.split(/\r?\n/);
+  var marks = [];
+  var headRe = /^\s*(Глава|ГЛАВА|Часть|ЧАСТЬ|Chapter|CHAPTER|Section)\s+[\dIVXLCDM]+/i;
+  var romanRe = /^\s*[IVXLCDM]{1,5}\.?\s*$/;
+  for (var i = 0; i < lines.length; i++) {
+    var l = lines[i].trim();
+    if (!l) continue;
+    if (headRe.test(l) || romanRe.test(l)) marks.push({ idx: i, heading: l });
+  }
+  if (marks.length < 2) {
+    // No reliable chapter markers — return the whole text as one chapter.
+    return [{ heading: "Текст", text: text.trim() }];
+  }
+  var out = [];
+  for (var j = 0; j < marks.length; j++) {
+    var startLine = marks[j].idx;
+    var endLine   = j + 1 < marks.length ? marks[j+1].idx : lines.length;
+    var body = lines.slice(startLine + 1, endLine).join("\n").trim();
+    if (body.length < 40) continue;  // skip tiny "chapters"
+    out.push({ heading: marks[j].heading, text: body });
+  }
+  return out.length ? out : [{ heading: "Текст", text: text.trim() }];
+}
+
+// ── FB2 (FictionBook) — XML-based, very common for Russian ebooks ───────────
+async function parseFb2(buffer, options) {
+  options = options || {};
+  // FB2 files declare their own encoding in the XML header.
+  var text = decodeBytes(buffer);
+  var encMatch = /encoding=["']([^"']+)["']/i.exec(text.slice(0, 200));
+  if (encMatch && !/utf-?8/i.test(encMatch[1])) {
+    try { text = new TextDecoder(encMatch[1]).decode(new Uint8Array(buffer)); } catch(e) {}
+  }
+  var parser = new DOMParser();
+  var doc = parser.parseFromString(text, "application/xml");
+  // DOMParser returns a <parsererror> root if it failed.
+  if (doc.querySelector("parsererror")) throw new Error("FB2 file is malformed XML");
+
+  // Title and author from <description><title-info>
+  var bookTitle = (doc.querySelector("title-info > book-title") || {}).textContent || "";
+  var fn = (doc.querySelector("title-info > author > first-name") || {}).textContent || "";
+  var ln = (doc.querySelector("title-info > author > last-name")  || {}).textContent || "";
+  var nick = (doc.querySelector("title-info > author > nickname") || {}).textContent || "";
+  var author = (fn + " " + ln).trim() || nick || "Unknown author";
+
+  // Each <section> in <body> is a chapter.
+  var sections = doc.querySelectorAll("body > section");
+  var chapters = [];
+  for (var i = 0; i < sections.length; i++) {
+    var sec = sections[i];
+    // <title> contains the chapter heading; collect its text.
+    var titleEl = sec.querySelector(":scope > title");
+    var heading = titleEl ? titleEl.textContent.replace(/\s+/g, " ").trim() : ("Глава " + (chapters.length + 1));
+    // Remove the title from the body so we don't repeat it.
+    if (titleEl) titleEl.remove();
+    // Collect all paragraph-like text with blank lines between.
+    var paras = [];
+    var ps = sec.querySelectorAll("p, v, subtitle");
+    for (var p = 0; p < ps.length; p++) {
+      var t = ps[p].textContent.replace(/\s+/g, " ").trim();
+      if (t) paras.push(t);
+    }
+    var body = paras.join("\n\n");
+    var cyrCount = (body.match(/[а-яёА-ЯЁ]/g) || []).length;
+    if (cyrCount < 5) continue;
+    chapters.push({ heading: heading, text: body });
+  }
+
+  // Fallback: if no <section>s, treat entire body as one chapter
+  if (chapters.length === 0) {
+    var bodyEl = doc.querySelector("body");
+    if (bodyEl) {
+      var ps2 = bodyEl.querySelectorAll("p");
+      var paras2 = [];
+      for (var k = 0; k < ps2.length; k++) {
+        var tt = ps2[k].textContent.replace(/\s+/g, " ").trim();
+        if (tt) paras2.push(tt);
+      }
+      if (paras2.length) chapters.push({ heading: bookTitle || "Текст", text: paras2.join("\n\n") });
+    }
+  }
+
+  if (chapters.length === 0) throw new Error("FB2 file has no readable Russian text.");
+  return { chapters: chapters, title: bookTitle || "Unknown title", author: author };
+}
+
+// ── FB2 inside a ZIP — common .fb2.zip distribution ─────────────────────────
+async function parseFb2Zip(buffer) {
+  var zipFiles = parseZip(buffer);
+  var keys = Object.keys(zipFiles);
+  var fb2Key = keys.find(function(k){ return /\.fb2$/i.test(k); });
+  if (!fb2Key) throw new Error("Zip does not contain an .fb2 file.");
+  var raw = zipFiles[fb2Key];
+  var fb2Text = typeof raw === "string" ? raw : await decompressEntry(raw);
+  // Re-encode the decoded text back to bytes so parseFb2 can re-read encoding header.
+  var bytes = new TextEncoder().encode(fb2Text);
+  return await parseFb2(bytes.buffer);
+}
+
+// ── Plain TXT ───────────────────────────────────────────────────────────────
+function parseTxt(buffer, fname) {
+  var text = decodeBytes(buffer);
+  if (!/[а-яёА-ЯЁ]/.test(text)) throw new Error("No Russian text found in this file.");
+  var chapters = splitTextIntoChapters(text);
+  var stem = (fname || "Текст").replace(/\.[^.]+$/, "").replace(/[_-]/g, " ");
+  return { chapters: chapters, title: stem, author: "" };
+}
+
+// ── HTML (single web page) ──────────────────────────────────────────────────
+function parseHtml(buffer, fname) {
+  var html = decodeBytes(buffer);
+  var titleM = html.match(/<title[^>]*>([^<]+)<\/title>/i);
+  var title = titleM ? titleM[1].trim() : (fname || "Текст").replace(/\.[^.]+$/, "");
+  var text = htmlToText(html);
+  if (!/[а-яёА-ЯЁ]/.test(text)) throw new Error("No Russian text found in this HTML.");
+  var chapters = splitTextIntoChapters(text);
+  return { chapters: chapters, title: title, author: "" };
+}
+
+// ── Master dispatcher — detects format and routes to the right parser ───────
+async function parseBook(buffer, fname) {
+  var lower = (fname || "").toLowerCase();
+  var bytes = new Uint8Array(buffer);
+
+  // Magic numbers
+  var isZip  = bytes.length >= 4 && bytes[0] === 0x50 && bytes[1] === 0x4B; // PK\x03\x04 or PK\x05\x06
+  var isXml  = bytes.length >= 5 && bytes[0] === 0x3C && bytes[1] === 0x3F && bytes[2] === 0x78; // "<?x"
+  var isPdf  = bytes.length >= 5 && bytes[0] === 0x25 && bytes[1] === 0x50 && bytes[2] === 0x44 && bytes[3] === 0x46;
+  var isMobi = bytes.length >= 68 && new TextDecoder().decode(bytes.slice(60, 68)) === "BOOKMOBI";
+
+  if (isPdf || lower.endsWith(".pdf")) {
+    throw new Error("PDF files aren't supported yet. Convert to EPUB or FB2 using Calibre (free, calibre-ebook.com).");
+  }
+  if (isMobi || /\.(mobi|azw3?)$/i.test(lower)) {
+    throw new Error("MOBI / AZW files are Kindle format and usually DRM-locked. Convert to EPUB with Calibre, or get a DRM-free EPUB / FB2 from another source.");
+  }
+
+  if (lower.endsWith(".fb2")) return await parseFb2(buffer);
+  if (lower.endsWith(".fb2.zip")) return await parseFb2Zip(buffer);
+  if (lower.endsWith(".txt")) return parseTxt(buffer, fname);
+  if (/\.(html?|xhtml)$/.test(lower)) return parseHtml(buffer, fname);
+  if (lower.endsWith(".epub")) return await parseEpub(buffer);
+
+  // No extension match — fall back to magic-number detection.
+  if (isZip) {
+    // Could be EPUB or FB2-in-zip — try EPUB first (has container.xml), else FB2.
+    try { return await parseEpub(buffer); }
+    catch(e) {
+      try { return await parseFb2Zip(buffer); }
+      catch(e2) { throw new Error("ZIP file is neither an EPUB nor an FB2 archive."); }
+    }
+  }
+  if (isXml) return await parseFb2(buffer);
+  // Last resort: treat as plain text
+  return parseTxt(buffer, fname);
+}
+
+// PUSHKIN_PNG: white-on-transparent silhouette of Alexander Pushkin (right-facing profile).
+// Rendered via CSS mask so the silhouette picks up `currentColor` from its container,
+// blending with the rest of the warm-tone palette.
+var PUSHKIN_PNG = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG4AAACWCAYAAAA/mr2PAAACvUlEQVR42u3dW1LDMBBEUaTK/rccfqCKDyCQ6DEtn14A2Lq6o5HiOG9vIiIiZ6Zd4Sbv9/v94UC01oArCufPgxIAsV0dUirABlQmvBtQmpNjoVS07gZWZm6AZaYbgswJ2NiWue4x7oWJuXNyAhcKsI2+iauVxq/3vLJ8NsBeX8s+7z8G3BXa/apHXg2wTHiak4AOcgi4K5+GVLr3DlomPKUyFF5nW2YYF2odcIxjHXAC3KnW9eolAbwnwYEWWCpBq2tdBy0TXgctE56uMhQecKc0J8qkDbhyCZwAB5z8ltlPhgHHONkKLu19H7pKiYIH3ElrnHJZ3zrGhcID7qRS6aC5vnWMC4XnY51QeIwLhQdcKDzgQuEBFwrPIXMoPMaFwnNWGQrvR+PAqw3v11IJXt3cDMGevCqF5sQGXFYGuFDrgAuFB9yppdKWoGhXurobkjFiKJW6SgFOxoPTrOxf3xgXCu1pcKzbC+0l48DbO269wkXIhjWufcRQLjZ3xh91ulJ4jWPhwRtwAEPBKZuh4EALNk4K7uPYti+eqxxozaPJOrJRa4xbX+bKlkrQNCegAXcONODs485N1fXapwOhJRS4UIhK5aCJunqyNrZlGsi4UAOBC+1IgQuF11JmmLWPcUfYB1wovF5xNoHHuGMD3JXBKZPrx4xxVzWObYHgQNs36ZVKXaUAJ8AB9018aZFxOkvgGKdcKpVSEhzrGCerwbEu2Djw1m0JlMpC8Ib8fhzrats37SVsEMyFN61UgjcXnjUudN2b/tpDwz/HvunGgTdnDPuufyyFNuDgrRu3vvoiAAwzjn1jx6lXvCh5PD4lBs8T0f+f1D3lQkEraBz7/j+By8507wMLBXclgM8sFTFri/c8h4I7CeKIZiy+m0uCGPG7AyDO3eocvX/aAXLVnvSSG99RQB0ciIiIjM87TzG8n8xH9rsAAAAASUVORK5CYII=";
+var PUSHKIN_ASPECT = 150 / 110;  // height / width of the source image
+
+function Pushkin({ size }) {
+  var s = size || 56;
+  var maskStyle = {
+    display: "inline-block",
+    width: s,
+    height: Math.round(s * PUSHKIN_ASPECT),
+    backgroundColor: "currentColor",
+    WebkitMaskImage: "url(" + PUSHKIN_PNG + ")",
+    WebkitMaskRepeat: "no-repeat",
+    WebkitMaskSize: "contain",
+    WebkitMaskPosition: "center",
+    maskImage: "url(" + PUSHKIN_PNG + ")",
+    maskRepeat: "no-repeat",
+    maskSize: "contain",
+    maskPosition: "center",
+    verticalAlign: "middle",
+  };
+  return <span style={maskStyle} aria-label="Pushkin"/>;
+}
+
 
 function FileBtn({ label, onLoad }) {
   var ref = useRef(null);
@@ -423,7 +974,7 @@ function FileBtn({ label, onLoad }) {
   };
   return (
     <div style={{display:"flex",flexDirection:"column",gap:6,width:"100%"}}>
-      <input ref={ref} type="file" accept=".epub" style={{display:"none"}} onChange={go}/>
+      <input ref={ref} type="file" accept=".epub,.fb2,.zip,.txt,.html,.htm,.xhtml" style={{display:"none"}} onChange={go}/>
       <button className="btn-p" onClick={function(){ ref.current && ref.current.click(); }} disabled={busy}>
         {busy ? "Loading…" : "📂 " + label}
       </button>
@@ -463,6 +1014,10 @@ export default function App() {
   var [tab, setTab]           = useState("chat");
   var [started, setStarted]   = useState(false);
   var [mode, setMode]         = useState("");      // "" until user picks "chat" or "read"
+  var [noAIMode, setNoAIMode] = useState(function() {
+    // Persist no-AI mode so the user doesn't have to re-pick it each visit if they refresh.
+    try { return localStorage.getItem("no_ai_mode_v1") === "1"; } catch(e) { return false; }
+  });
   var [bookMeta, setBookMeta] = useState({title:"", author:""});
 
   var [showTopic, setShowTopic] = useState(false);
@@ -486,7 +1041,11 @@ export default function App() {
   };
 
   var [chapters, setChapters]   = useState([]);
+  // Pre-loaded library: books shipped in /public/books/. Fetched once on mount from /books/index.json.
+  var [presetBooks, setPresetBooks] = useState([]);
   var [cidx, setCidx]           = useState(0);
+  var [pidx, setPidx]           = useState(0);  // Page within current chapter (5 paragraphs per page)
+  var PAGE_SIZE                 = 5;
   var [cbm,  setCbm]            = useState(0);
   var [lview, setLview]         = useState("read");
   var [lsearch, setLsearch]     = useState("");
@@ -513,6 +1072,10 @@ export default function App() {
   var isLit = mode === "read";
   var pct  = chapters.length > 0 ? Math.round((cidx / chapters.length) * 100) : 0;
   var curChapter = chapters[cidx] || { heading: "", text: "" };
+  // Pagination: split the chapter text by blank-line paragraph breaks to count pages.
+  // Each "page" shows PAGE_SIZE paragraphs.
+  var paragraphCount = ((curChapter.text || "").split(/\n{2,}/).filter(function(p){ return p.trim().length > 0; })).length;
+  var totalPages = Math.max(1, Math.ceil(paragraphCount / PAGE_SIZE));
 
   useEffect(function() {
     (async function() {
@@ -522,6 +1085,105 @@ export default function App() {
   }, []);
   useEffect(function() { storage && storage.set("vocab", JSON.stringify(vocab)).catch(function(){}); }, [vocab]);
   useEffect(function() { storage && storage.set("grammar", JSON.stringify(tips)).catch(function(){}); }, [tips]);
+
+  // Snap the reading view back to the top whenever the page or chapter changes.
+  // We defer to the next animation frame so the new paragraphs have laid out, then
+  // scroll BOTH the .lit-left container (desktop scroll) and the window/body
+  // (mobile, where the document itself can be the scrolling element).
+  useEffect(function() {
+    requestAnimationFrame(function() {
+      var el = document.querySelector(".lit-left");
+      if (el) el.scrollTop = 0;
+      if (typeof window !== "undefined" && window.scrollTo) window.scrollTo(0, 0);
+      if (document.documentElement) document.documentElement.scrollTop = 0;
+      if (document.body) document.body.scrollTop = 0;
+    });
+  }, [pidx, cidx]);
+
+  // Auto-advance the page when TTS reads past the end of the visible page.
+  // The reader stays in sync with the spoken word so you don't have to flip pages by hand.
+  useEffect(function() {
+    if (!playing || spokenChar < 0) return;
+    if (pidx >= totalPages - 1) return;
+    var text = curChapter.text || "";
+    var paragraphs = [];
+    var lastEnd = 0;
+    var re = /\n{2,}/g;
+    var m;
+    while ((m = re.exec(text)) !== null) {
+      var paraText = text.slice(lastEnd, m.index);
+      if (paraText.trim().length > 0) paragraphs.push({ start: lastEnd, end: m.index });
+      lastEnd = m.index + m[0].length;
+    }
+    if (lastEnd < text.length) {
+      var tail = text.slice(lastEnd);
+      if (tail.trim().length > 0) paragraphs.push({ start: lastEnd, end: text.length });
+    }
+    var endParaIdx = (pidx + 1) * PAGE_SIZE - 1;
+    if (endParaIdx >= paragraphs.length) return;
+    if (spokenChar > paragraphs[endParaIdx].end) {
+      setPidx(pidx + 1);
+    }
+  }, [spokenChar, pidx, playing]);
+
+  // ── CROSS-DEVICE SYNC via Clerk metadata ──────────────────────────────────
+  // On sign-in, fetch the server copy. If server has data, replace local state.
+  // If server is empty but local has data, upload local as initial state.
+  // After this initial sync, debounce any further changes and POST them.
+  var [syncedFromServer, setSyncedFromServer] = useState(false);
+  var [syncErr, setSyncErr] = useState("");  // Shown as a banner when sync fails (e.g. 8KB Clerk metadata limit hit)
+
+  useEffect(function() {
+    // Only sync for signed-in users (skip noAIMode unauthenticated users).
+    if (!auth.isSignedIn || syncedFromServer) return;
+    (async function() {
+      try {
+        var token = await auth.getToken();
+        if (!token) return;
+        var r = await fetch("/api/user-data", { headers: { Authorization: "Bearer " + token } });
+        if (!r.ok) return;
+        var data = await r.json();
+        var serverVocab = Array.isArray(data.vocab) ? data.vocab : [];
+        var serverTips  = Array.isArray(data.tips)  ? data.tips  : [];
+
+        if (serverVocab.length > 0 || serverTips.length > 0) {
+          setVocab(serverVocab);
+          setTips(serverTips);
+        } else if (vocab.length > 0 || tips.length > 0) {
+          await fetch("/api/user-data", {
+            method: "POST",
+            headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
+            body: JSON.stringify({ vocab: vocab, tips: tips }),
+          });
+        }
+        setSyncedFromServer(true);
+      } catch(e) {}
+    })();
+  }, [auth.isSignedIn]);
+
+  // After initial sync, push subsequent changes (debounced 1.5s).
+  useEffect(function() {
+    if (!auth.isSignedIn || !syncedFromServer) return;
+    var t = setTimeout(async function() {
+      try {
+        var token = await auth.getToken();
+        if (!token) return;
+        var r = await fetch("/api/user-data", {
+          method: "POST",
+          headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
+          body: JSON.stringify({ vocab: vocab, tips: tips }),
+        });
+        if (r.status === 413) {
+          // 8KB Clerk metadata limit reached — show a visible banner.
+          setSyncErr("Too many vocab words! Storage limit reached!");
+        } else if (r.ok) {
+          // Save succeeded — clear any previous error (user removed entries to get under the limit).
+          if (syncErr) setSyncErr("");
+        }
+      } catch(e) {}
+    }, 1500);
+    return function(){ clearTimeout(t); };
+  }, [vocab, tips, auth.isSignedIn, syncedFromServer]);
 
   useEffect(function() {
     var h = function(e) { if (popRef.current && !popRef.current.contains(e.target)) setPopup(null); };
@@ -882,8 +1544,16 @@ export default function App() {
     return JSON.parse(c.slice(s, e2+1));
   };
 
+  // In Read-without-AI mode, clicking a Russian word jumps TTS to that word and reads onward.
+  var jumpTTS = function(charPosition) {
+    var txt = (curChapter && curChapter.text) || "";
+    if (!txt) return;
+    playText(txt, charPosition);
+  };
+
   var defWord = async function(word, e) {
     e.stopPropagation();
+    if (noAIMode) return;  // No API calls in read-without-AI mode.
     var clean = word.replace(/[^а-яёА-ЯЁ]/g,"");
     if (!clean || clean.length < 2) return;
     var rect = e.currentTarget.getBoundingClientRect();
@@ -989,39 +1659,120 @@ export default function App() {
   var startLit = async function(idx, chs, metaOverride) {
     var p = chs || chapters; if (!p || !p.length) return;
     var i = idx !== undefined ? idx : cbm;
-    setCidx(i); setCbm(i); setStarted(true); setMsgs([]); setLoading(true);
+    setCidx(i); setCbm(i); setPidx(0); setStarted(true); setMsgs([]); setLoading(true);
     setPopup(null); stopTTS(); setLview("read");
     charPos.current = 0; paraText.current = "";
+    if (noAIMode) { setLoading(false); return; }
     await litAnalysis(p, i, metaOverride); setLoading(false);
   };
 
   var navLit = async function(idx) {
     stopTTS(); charPos.current = 0; paraText.current = "";
     if (idx < 0 || idx >= chapters.length) return;
-    setCidx(idx); setCbm(idx); setMsgs([]); setLoading(true); setLview("read");
+    setCidx(idx); setCbm(idx); setPidx(0); setMsgs([]); setLoading(true); setLview("read");
+    if (noAIMode) { setLoading(false); return; }
     await litAnalysis(chapters, idx); setLoading(false);
   };
 
-  var loadFile = async function(buf, fname) {
+  // Re-split chapters by lines that contain only a digit (or "digit.")
+  // Used for song-collection EPUBs like Tsoi, where each track number marks a new "chapter".
+  // The first non-empty line after the number becomes the chapter heading (song title).
+  var resplitByNumberedSections = function(chapters) {
+    var fullText = chapters.map(function(ch){ return ch.text || ""; }).join("\n\n");
+    var lines = fullText.split("\n");
+    var out = [];
+    var current = null;
+    var awaitingTitle = false;
+    for (var i = 0; i < lines.length; i++) {
+      var t = lines[i].trim();
+      if (/^\d{1,3}\.?$/.test(t)) {
+        // Track number found — start a new section
+        if (current && (current.text || "").trim()) out.push(current);
+        current = { heading: "", text: "" };
+        awaitingTitle = true;
+      } else if (current) {
+        if (awaitingTitle && t) {
+          current.heading = t;
+          current.text = t + "\n";
+          awaitingTitle = false;
+        } else if (!awaitingTitle) {
+          current.text += lines[i] + "\n";
+        }
+      }
+    }
+    if (current && (current.text || "").trim()) out.push(current);
+    return out.length ? out : chapters;
+  };
+
+  var loadFile = async function(buf, fname, opts) {
     setFErr("");
+    opts = opts || {};
     try {
-      var result = await parseEpub(buf);
-      if (!result.chapters || result.chapters.length < 1) throw new Error("No chapters found in EPUB.");
-      var meta = { title: result.title, author: result.author };
-      setChapters(result.chapters);
+      var result = await parseBook(buf, fname);
+      if (!result.chapters || result.chapters.length < 1) throw new Error("No chapters found in file.");
+      var chs = result.chapters;
+      if (opts.splitByNumberedSections) {
+        // Tsoi-style: digit on a line followed by song-title line. Keep this dedicated path
+        // because the song-title-on-next-line logic is different from generic marker splitting.
+        chs = resplitByNumberedSections(chs);
+      } else {
+        // Default: re-split by in-text chapter markers (Roman numerals, "Глава N", etc.).
+        // The author told us the chapter boundaries by putting markers in the text — use
+        // those instead of trusting spine items or TOC labels.
+        var bymark = splitByMarkers(chs);
+        if (bymark && bymark.length >= 2) {
+          chs = bymark;
+        } else if (chs.length > 1) {
+          // No markers but we have multiple spine-based chapters. The user asked us not to
+          // title chapters ourselves, so collapse to one chapter and let page navigation handle it.
+          var merged = chs.map(function(c){ return c.text || ""; }).join("\n\n").trim();
+          chs = [{ heading: "", text: merged }];
+        } else if (chs.length === 1) {
+          // Single chapter from spine — strip any auto-generated heading.
+          var h = chs[0].heading || "";
+          if (/^глава\s+\d+$/i.test(h.trim()) || /^chapter\s+\d+$/i.test(h.trim())) h = "";
+          chs = [{ heading: h, text: chs[0].text || "" }];
+        }
+      }
+      var title = opts.title || result.title;
+      var author = opts.author || result.author;
+      var meta = { title: title, author: author };
+      setChapters(chs);
       setBookMeta(meta);
       setCbm(0);
       try {
         await storage.set(EPUB_CACHE, JSON.stringify({
-          chapters: result.chapters, title: result.title, author: result.author
+          chapters: chs, title: title, author: author
         }));
         await storage.set(EPUB_BM, "0");
-        // New book → wipe question history so chapter indices don't inherit stale questions.
         await storage.delete(QHIST_KEY);
       } catch(e) {}
-      startLit(0, result.chapters, meta);
+      startLit(0, chs, meta);
     } catch(err) { setFErr(err.message); }
   };
+
+  // Download a preset book from the server and load it through the normal pipeline.
+  var loadPresetBook = async function(book) {
+    setFErr("");
+    try {
+      var r = await fetch("/books/" + book.filename);
+      if (!r.ok) throw new Error("Could not load « " + book.filename + " »: HTTP " + r.status);
+      var buf = await r.arrayBuffer();
+      await loadFile(buf, book.filename, {
+        splitByNumberedSections: !!book.splitByNumberedSections,
+        title: book.title,
+        author: book.author,
+      });
+    } catch(err) { setFErr(err.message || "Failed to load preset book"); }
+  };
+
+  // Fetch the library manifest once on mount. Silent if missing — pre-loaded books are optional.
+  useEffect(function() {
+    fetch("/books/index.json")
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(list){ if (Array.isArray(list)) setPresetBooks(list); })
+      .catch(function(){ /* no library, that's fine */ });
+  }, []);
 
   var send = async function() {
     if (!input.trim() || loading) return;
@@ -1051,9 +1802,37 @@ export default function App() {
     var ru = (entry.ru || "").trim();
     if (!ru) return;
     if (vocab.find(function(v){ return v.ru === ru; })) return;
-    setVocab(function(p){ return p.concat([Object.assign({}, entry, { ru: ru, id: Date.now() })]); });
+    var now = Date.now();
+    setVocab(function(p){ return p.concat([Object.assign({}, entry, { ru: ru, id: now, created: now })]); });
   };
-  var addT = function(tip) { if (!tips.find(function(t){ return t.tip===tip; })) setTips(function(p){ return p.concat([{tip:tip,id:Date.now()}]); }); };
+  var addT = function(tip) {
+    if (!tips.find(function(t){ return t.tip===tip; })) {
+      var now = Date.now();
+      setTips(function(p){ return p.concat([{tip:tip,id:now,created:now}]); });
+    }
+  };
+
+  // Format a timestamp (ms since epoch) as a friendly relative date string.
+  var formatVocabDate = function(ts) {
+    if (!ts || isNaN(ts)) return "";
+    var d = new Date(ts);
+    var now = new Date();
+    var diffMs = now - d;
+    var diffMins = Math.floor(diffMs / 60000);
+    var diffHrs  = Math.floor(diffMs / 3600000);
+    var diffDays = Math.floor(diffMs / 86400000);
+
+    if (diffMins < 1)  return "just now";
+    if (diffMins < 60) return diffMins + " min ago";
+    if (diffHrs  < 24 && now.getDate() === d.getDate()) {
+      return "Today, " + d.getHours().toString().padStart(2,"0") + ":" + d.getMinutes().toString().padStart(2,"0");
+    }
+    if (diffDays < 2)  return "Yesterday";
+    if (diffDays < 7)  return diffDays + " days ago";
+    // Older: "11 May 2026"
+    var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    return d.getDate() + " " + months[d.getMonth()] + " " + d.getFullYear();
+  };
 
   // Builds the canonical vocab entry from popup data:
   //   - nouns/adj/etc → lemma in nominative
@@ -1113,6 +1892,29 @@ export default function App() {
       });
     }
 
+    // ── Highlight matching ──
+    // The TTS engine fires onboundary events that may land in whitespace, punctuation,
+    // or be slightly off the start of a word. We compute the "active word" as the LAST
+    // Russian token whose start ≤ spokenChar. The highlight then stays on a word from
+    // the moment the engine reports its position until the next word's position arrives.
+    // This prevents the shakiness/skipping you see when matching only on exact ranges.
+    var activeStart = -1;
+    if (noAIMode && spokenChar >= 0) {
+      for (var ai = 0; ai < tokens.length; ai++) {
+        if (tokens[ai].isRu && tokens[ai].start <= spokenChar) {
+          activeStart = tokens[ai].start;
+        } else if (tokens[ai].isRu && tokens[ai].start > spokenChar) {
+          break;
+        }
+      }
+      // Clear the highlight if the spoken position has run well past the last Russian word
+      // (handles the moment between speech ending and onend firing).
+      if (activeStart >= 0) {
+        var lastRu = tokens.reduce(function(acc, t){ return t.isRu ? t : acc; }, null);
+        if (lastRu && spokenChar > lastRu.end + 200) activeStart = -1;
+      }
+    }
+
     // Group tokens into paragraphs at \n{2,} boundaries (within non-Russian tokens).
     var paragraphs = [[]];
     for (var ti = 0; ti < tokens.length; ti++) {
@@ -1147,21 +1949,78 @@ export default function App() {
 
     return paragraphs
       .filter(function(p){ return p.some(function(t){ return t.text.trim().length > 0; }); })
+      .slice(pidx * PAGE_SIZE, (pidx + 1) * PAGE_SIZE)
       .map(function(para, pi) {
+        // Detect play-style speaker attribution at the start of a paragraph.
+        // Russian plays commonly use Title Case names like "Маша. ..." or "Медведенко. ..."
+        // (Chekhov, Ostrovsky, Tolstoy plays). Older drama uses ALL CAPS like "ЛУКА. ..." (Gorky).
+        // Pattern: 1-3 Russian Title-Case or ALL-CAPS words, then . : — – or -, then space + dialogue.
+        var paraText = para.map(function(t){ return t.text; }).join("");
+        var speakerMatch = paraText.match(/^([А-ЯЁ][а-яёА-ЯЁ\-]+(?:\s+[А-ЯЁ][а-яёА-ЯЁ\-]+){0,2})\s*([.:—–\-])(\s+)/);
+        var speakerNameEnd = -1, attribEnd = -1;
+        // Guard against false positives — name must look like a name (≤40 chars) and there must be dialogue after.
+        if (speakerMatch && speakerMatch[1].length <= 40 && paraText.length > speakerMatch[0].length + 3) {
+          speakerNameEnd = (para[0] ? para[0].start : 0) + speakerMatch[1].length;
+          attribEnd     = (para[0] ? para[0].start : 0) + speakerMatch[0].length;
+        }
+
         return (
           <p key={pi} style={{marginBottom:"1.2em"}}>
-            {para.map(function(tk, i) {
-              var hl = spokenChar >= tk.start && spokenChar < tk.end;
-              if (tk.isRu) {
-                return (
-                  <span key={i}
-                    className={"rw" + (hl ? " rwhl" : "")}
-                    onClick={function(e){ defWord(tk.text, e); }}
-                    title="Click to define">{tk.text}</span>
-                );
+            {(function(){
+              // If this paragraph is a play line, replace the punctuation between name and dialogue with an em-dash.
+              if (speakerNameEnd > -1) {
+                var elems = [];
+                for (var i = 0; i < para.length; i++) {
+                  var tk = para[i];
+                  var hl = tk.isRu && tk.start === activeStart;
+                  var inName = tk.end <= speakerNameEnd;
+                  var inAttrib = tk.end <= attribEnd;
+
+                  // Skip the original separator (.:—) and the whitespace right after.
+                  if (inAttrib && !inName) continue;
+
+                  if (tk.isRu) {
+                    var clickPlay;
+                    if (inName) {
+                      clickPlay = undefined;
+                    } else if (noAIMode) {
+                      clickPlay = (function(pos){ return function(e){ e.stopPropagation(); jumpTTS(pos); }; })(tk.start);
+                    } else {
+                      clickPlay = (function(w){ return function(e){ defWord(w, e); }; })(tk.text);
+                    }
+                    elems.push(
+                      <span key={i}
+                        className={"rw" + (hl ? " rwhl" : "") + (inName ? " play-speaker" : "")}
+                        onClick={clickPlay}
+                        title={inName ? "" : (noAIMode ? "Click to read from here" : "Click to define")}>{tk.text}</span>
+                    );
+                    // Just after the speaker name finishes, insert the em-dash separator.
+                    if (inName && (i+1 >= para.length || para[i+1].end > speakerNameEnd)) {
+                      elems.push(<span key={"d"+i} className="play-dash">— </span>);
+                    }
+                  } else {
+                    elems.push(<span key={i}>{tk.text.replace(/\n/g, " ")}</span>);
+                  }
+                }
+                return elems;
               }
-              return <span key={i}>{tk.text.replace(/\n/g, " ")}</span>;
-            })}
+              // Regular paragraph rendering.
+              return para.map(function(tk, i) {
+                var hl = tk.isRu && tk.start === activeStart;
+                if (tk.isRu) {
+                  var clickReg = noAIMode
+                    ? (function(pos){ return function(e){ e.stopPropagation(); jumpTTS(pos); }; })(tk.start)
+                    : function(e){ defWord(tk.text, e); };
+                  return (
+                    <span key={i}
+                      className={"rw" + (hl ? " rwhl" : "")}
+                      onClick={clickReg}
+                      title={noAIMode ? "Click to read from here" : "Click to define"}>{tk.text}</span>
+                  );
+                }
+                return <span key={i}>{tk.text.replace(/\n/g, " ")}</span>;
+              });
+            })()}
           </p>
         );
       });
@@ -1329,8 +2188,13 @@ export default function App() {
             border-bottom:none;
             max-height:none;
             flex:1;
-            /* Leave room at the bottom for the floating nav + chat panel. */
-            padding-bottom:calc(40vh + 64px);
+            /* Leave room at the bottom for the floating two-row nav + chat panel.
+               Nav is now ~108px tall: page row (~46) + chapter row (~26) + gaps + padding. */
+            padding-bottom:calc(40vh + 120px);
+          }
+          /* In read-without-AI mode there's no chat panel, so only leave room for the nav bar. */
+          .lit-left.noai{
+            padding-bottom:calc(128px + env(safe-area-inset-bottom));
           }
           .lit-right{
             width:100%;
@@ -1365,20 +2229,35 @@ export default function App() {
             border-radius:14px 14px 0 0;
             box-shadow:0 -8px 28px rgba(0,0,0,.45);
           }
+          /* Read-without-AI: no chat panel below, so pin to the absolute bottom of the viewport
+             with safe-area padding for the iPhone home indicator. */
+          .lnav.noai{
+            bottom:0;
+            border-radius:14px 14px 0 0;
+            padding-bottom:calc(12px + env(safe-area-inset-bottom));
+          }
         }
         .lhdr{font-size:11px;color:rgba(210,197,175,.3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
         .lch-heading{font-family:'Playfair Display',serif;font-size:20px;color:#c8a276;margin-bottom:14px}
         .ltxt{font-size:17.5px;line-height:1.85;color:#d2c5af;font-family:'Crimson Pro',serif;word-wrap:break-word;overflow-wrap:break-word;letter-spacing:.005em}
+        .play-speaker{color:#c8a276;font-weight:600;letter-spacing:.04em;border-bottom:none !important;cursor:default !important}
+        .play-speaker:hover{color:#c8a276 !important;background:none !important}
+        .play-dash{color:rgba(210,197,175,.45);padding:0 6px;font-weight:300}
         .lit-msgs{flex:0 1 auto;max-height:50%;overflow-y:auto;padding:14px 20px 8px;display:flex;flex-direction:column;gap:10px}
         .lit-ibar{position:relative;padding:10px 20px 14px;border-top:1px solid rgba(210,197,175,.08);background:#1a1611;flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
         .lit-ibar textarea{flex:1;width:100%;resize:none;min-height:80px;max-height:none;padding:14px 60px 14px 16px;border-radius:14px;font-size:16px;line-height:1.55}
         .lit-ibar .isend{position:absolute;bottom:22px;right:28px;box-shadow:0 4px 14px rgba(0,0,0,.4)}
-        .lnav{display:flex;gap:8px;padding:12px 28px;border-top:1px solid rgba(210,197,175,.08);flex-shrink:0;background:#1a1611}
+        .lnav{display:flex;flex-direction:column;gap:6px;padding:10px 28px 12px;border-top:1px solid rgba(210,197,175,.08);flex-shrink:0;background:#1a1611}
+        .lnav-row{display:flex;gap:8px;justify-content:center;align-items:stretch}
+        .lnav-row-sm{margin-top:2px}
         .lnb{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(210,197,175,.14);background:rgba(210,197,175,.05);color:rgba(210,197,175,.55);font-family:'Crimson Pro',serif;font-size:14px;cursor:pointer;transition:all .15s;text-align:center}
         .lnb:hover:not(:disabled){background:rgba(210,197,175,.1);color:#d2c5af} .lnb:disabled{opacity:.22;cursor:default}
         .lnb.p{background:linear-gradient(135deg,#9d4630,#82362a);border-color:transparent;color:#fff} .lnb.p:hover{opacity:.9}
         .lbm{padding:10px 14px;border-radius:10px;border:1px solid rgba(200,162,118,.25);background:rgba(200,162,118,.07);color:#c8a276;font-size:15px;cursor:pointer;transition:background .15s}
         .lbm:hover{background:rgba(200,162,118,.15)}
+        .lnb-sm{flex:1;padding:7px 12px;border-radius:8px;border:1px solid rgba(200,162,118,.3);background:rgba(200,162,118,.08);color:#c8a276;font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;transition:all .15s;text-align:center}
+        .lnb-sm:hover:not(:disabled){background:rgba(200,162,118,.18);border-color:rgba(200,162,118,.5)}
+        .lnb-sm:disabled{opacity:.35;cursor:default}
         .navpanel{flex:1;overflow-y:auto;padding:16px 28px;display:flex;flex-direction:column;gap:8px}
         .lcard{padding:12px 14px;border-radius:10px;background:rgba(210,197,175,.04);border:1px solid rgba(210,197,175,.09);cursor:pointer;transition:all .15s}
         .lcard:hover{background:rgba(210,197,175,.08)} .lcard.cur{border-color:rgba(200,162,118,.4);background:rgba(200,162,118,.07)}
@@ -1433,14 +2312,19 @@ export default function App() {
         .mconf:hover{opacity:.85} .mconf.g{background:linear-gradient(135deg,#5a8556,#4a6845)}
 
         /* First-visit landing screen */
-        .land{position:fixed;inset:0;z-index:9999;background:#1a1611;display:flex;align-items:center;justify-content:center;padding:32px;overflow-y:auto}
+        .land{position:fixed;inset:0;z-index:9999;background:#1a1611;display:flex;align-items:flex-start;justify-content:center;padding:32px 32px 60px;overflow-y:auto}
         .land::before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 20% 10%,rgba(150,80,60,.10) 0%,transparent 55%),radial-gradient(ellipse at 80% 90%,rgba(80,90,130,.08) 0%,transparent 55%)}
         .land-card{position:relative;max-width:580px;width:100%;text-align:center;display:flex;flex-direction:column;gap:28px;align-items:center;padding:24px}
-        .land-flag{font-size:56px;margin-bottom:-4px}
+        .land-icon{font-size:56px;margin-bottom:-4px}
         .land-title{font-family:'Playfair Display',serif;font-size:54px;font-weight:700;color:#c8a276;letter-spacing:-1px;line-height:1}
         .land-sub{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:rgba(210,197,175,.45);margin-top:-12px}
         .land-tagline{font-family:'Crimson Pro',serif;font-style:italic;font-size:18px;color:rgba(210,197,175,.75);max-width:440px;line-height:1.5}
         .land-tips{background:rgba(200,162,118,.06);border:1px solid rgba(200,162,118,.18);border-radius:14px;padding:22px 26px;text-align:left;width:100%;max-width:440px;display:flex;flex-direction:column;gap:14px;margin-top:8px}
+        .land-features{background:rgba(80,120,90,.04);border:1px solid rgba(120,160,130,.16);border-radius:14px;padding:22px 26px;text-align:left;width:100%;max-width:440px;display:flex;flex-direction:column;gap:12px;margin-top:8px}
+        .land-features-title{font-family:'Playfair Display',serif;font-size:14px;color:#a8c2a8;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:4px}
+        .land-feat{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.5;color:#d2c5af}
+        .land-feat-icon{flex-shrink:0;font-size:18px;line-height:1.4;width:26px;text-align:center}
+        .land-feat strong{color:#c8a276;font-weight:600}
         .land-tips-title{font-family:'Playfair Display',serif;font-size:14px;color:#c8a276;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:4px}
         .land-tip{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5;color:#d2c5af}
         .land-tip-num{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(200,162,118,.15);border:1px solid rgba(200,162,118,.3);color:#c8a276;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:1px}
@@ -1451,8 +2335,9 @@ export default function App() {
         @media (max-width:520px){
           .land-title{font-size:42px}
           .land-tagline{font-size:16px}
-          .land-tips{padding:18px 20px}
+          .land-tips,.land-features{padding:18px 20px}
           .land-tip{font-size:14px}
+          .land-feat{font-size:13px}
         }
 
         /* Sign-in / sign-out auth UI */
@@ -1460,7 +2345,7 @@ export default function App() {
         .auth-page::before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 20% 10%,rgba(150,80,60,.10) 0%,transparent 55%),radial-gradient(ellipse at 80% 90%,rgba(80,90,130,.08) 0%,transparent 55%)}
         .auth-card{position:relative;display:flex;flex-direction:column;align-items:center;gap:20px;max-width:440px;width:100%}
         .auth-brand{text-align:center;margin-bottom:8px}
-        .auth-brand-flag{font-size:44px}
+        .auth-brand-icon{font-size:44px}
         .auth-brand-title{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:#c8a276;line-height:1;margin-top:8px}
         .auth-brand-sub{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(210,197,175,.45);margin-top:6px}
         .userbtn-wrap{display:flex;align-items:center}
@@ -1512,20 +2397,43 @@ export default function App() {
         }
       `}</style>
 
-      <SignedOut>
+      {/* Sign-in screen: shown only when NOT signed in AND NOT in noAIMode.
+          Clicking "Read without AI" bypasses auth entirely. */}
+      {!auth.isSignedIn && !noAIMode && (
         <div className="auth-page">
           <div className="auth-card">
             <div className="auth-brand">
-              <div className="auth-brand-flag">🇷🇺</div>
+              <div className="auth-brand-icon" style={{color:"#c8a276"}}><Pushkin size={56}/></div>
               <div className="auth-brand-title">Говорим</div>
               <div className="auth-brand-sub">Russian Practice</div>
             </div>
             <SignIn routing="hash" />
+            <div style={{display:"flex",alignItems:"center",gap:14,width:"100%",maxWidth:400,margin:"4px 0"}}>
+              <div style={{flex:1,height:1,background:"rgba(210,197,175,.12)"}}/>
+              <span style={{fontSize:11,letterSpacing:2,textTransform:"uppercase",color:"rgba(210,197,175,.4)"}}>or</span>
+              <div style={{flex:1,height:1,background:"rgba(210,197,175,.12)"}}/>
+            </div>
+            <button
+              onClick={function(){
+                setNoAIMode(true); setMode("read");
+                try { localStorage.setItem("no_ai_mode_v1","1"); } catch(e){}
+              }}
+              style={{background:"linear-gradient(135deg,#5a8556,#4a6845)",color:"#fff",border:"none",padding:"14px 28px",borderRadius:10,fontSize:15,fontFamily:"'Crimson Pro',serif",cursor:"pointer",width:"100%",maxWidth:400,display:"flex",alignItems:"center",justifyContent:"center",gap:10,boxShadow:"0 4px 14px rgba(0,0,0,.3)",transition:"opacity .15s"}}
+              onMouseOver={function(e){ e.currentTarget.style.opacity = ".92"; }}
+              onMouseOut={function(e){ e.currentTarget.style.opacity = "1"; }}>
+              <span style={{fontSize:18}}>🔊</span>
+              <span>Read without AI <span style={{opacity:.7,fontSize:13,fontStyle:"italic"}}>— no login required</span></span>
+            </button>
+            <div style={{fontSize:12,color:"rgba(210,197,175,.4)",textAlign:"center",maxWidth:400,lineHeight:1.5,marginTop:4}}>
+              Load an EPUB and listen with text-to-speech only.<br/>No AI features. No sign-in needed.
+            </div>
           </div>
         </div>
-      </SignedOut>
+      )}
 
-      <SignedIn>
+      {/* Main app: shown when signed in OR in noAIMode. */}
+      {(auth.isSignedIn || noAIMode) && (
+        <>
       {pendingApproval ? (
         <div className="pending">
           <div className="pending-card">
@@ -1597,26 +2505,58 @@ export default function App() {
       {!seenLanding && (
         <div className="land">
           <div className="land-card">
-            <div className="land-flag">🇷🇺</div>
+            <div className="land-icon" style={{color:"#c8a276"}}><Pushkin size={68}/></div>
             <div>
               <div className="land-title">Говорим</div>
               <div className="land-sub">Russian Practice</div>
             </div>
             <div className="land-tagline">
-              Read Russian books with a tutor that asks comprehension questions, explains grammar, and remembers what you've learned.
+              Read, listen, and converse in Russian — with an AI tutor that adapts to your level.
             </div>
+
+            <div className="land-features">
+              <div className="land-features-title">What you can do</div>
+              <div className="land-feat"><span className="land-feat-icon">💬</span><div><strong>Chat</strong> — Pick a topic, hear interesting facts, answer probing questions in Russian.</div></div>
+              <div className="land-feat"><span className="land-feat-icon">📖</span><div><strong>Read</strong> — Load any EPUB, FB2, TXT, or HTML book. Get chapter-by-chapter comprehension questions.</div></div>
+              <div className="land-feat"><span className="land-feat-icon">🔊</span><div><strong>Listen</strong> — Word-by-word TTS using natural Russian voices, with synchronized highlighting.</div></div>
+              <div className="land-feat"><span className="land-feat-icon">✏️</span><div><strong>Define</strong> — Tap any Russian word for translation, lemma, aspect pairs, and example sentences.</div></div>
+              <div className="land-feat"><span className="land-feat-icon">📚</span><div><strong>Build a library</strong> — Save vocab and grammar tips; they sync across all your devices.</div></div>
+              <div className="land-feat"><span className="land-feat-icon">🎭</span><div><strong>Plays formatted nicely</strong> — Character names highlighted, dialogue cleanly separated.</div></div>
+            </div>
+
             <div className="land-tips">
-              <div className="land-tips-title">Before you begin</div>
+              <div className="land-tips-title">For the best experience</div>
               <div className="land-tip">
                 <span className="land-tip-num">1</span>
-                <span>Open this app in <strong>Microsoft Edge</strong> for the best read-aloud experience. (On iPhone, use Safari with Premium Russian voices downloaded.)</span>
+                <span>Open the app in <strong>Microsoft Edge</strong> for the best Russian voices. (On iPhone, use Safari with Premium Russian voices downloaded in Settings → Accessibility → Spoken Content.)</span>
               </div>
               <div className="land-tip">
                 <span className="land-tip-num">2</span>
-                <span>In the voice picker (🔊), select a <strong>natural Russian voice</strong> — look for ones marked <strong>★ neural</strong> or <strong>✓ local</strong>.</span>
+                <span>In the 🎙 Voice picker, choose a voice marked <strong>★ neural</strong> or <strong>✓ local</strong>.</span>
+              </div>
+              <div className="land-tip">
+                <span className="land-tip-num">3</span>
+                <span>Want to read silently? Use <strong>🔊 Read without AI</strong> below — TTS works, but no API calls are made.</span>
               </div>
             </div>
-            <button className="land-begin" onClick={dismissLanding}>Begin</button>
+
+            <button className="land-begin" onClick={dismissLanding}>Begin →</button>
+            <button
+              onClick={function(){
+                dismissLanding();
+                setMode("read");
+                setNoAIMode(true);
+                try { localStorage.setItem("no_ai_mode_v1","1"); } catch(e){}
+              }}
+              style={{background:"linear-gradient(135deg,#5a8556,#4a6845)",color:"#fff",border:"none",padding:"14px 32px",borderRadius:10,fontSize:15,fontFamily:"'Crimson Pro',serif",cursor:"pointer",marginTop:8,boxShadow:"0 4px 14px rgba(0,0,0,.25)",display:"inline-flex",alignItems:"center",gap:10,transition:"opacity .15s"}}
+              onMouseOver={function(e){ e.currentTarget.style.opacity = ".92"; }}
+              onMouseOut={function(e){ e.currentTarget.style.opacity = "1"; }}>
+              <span style={{fontSize:18}}>🔊</span>
+              <span>Read without AI</span>
+            </button>
+            <div style={{fontSize:11,color:"rgba(210,197,175,.4)",marginTop:2,fontStyle:"italic",fontFamily:"'Crimson Pro',serif"}}>
+              Skip straight to the EPUB reader — no AI calls.
+            </div>
           </div>
         </div>
       )}
@@ -1627,10 +2567,11 @@ export default function App() {
           <div style={{display:"flex",alignItems:"center",gap:12}}>
             {started && <button className="tbadge" onClick={function(){ setShowTopic(true); }}>{isLit ? ("📖 " + (bookMeta.title || "Book")) : ("💬 "+act)}</button>}
             {isAdmin && <button className="adm-trigger" onClick={function(){ setShowAdmin(true); }} title="Manage user approvals">👥 Users</button>}
-            <div className="userbtn-wrap"><UserButton afterSignOutUrl="/" /></div>
+            {auth.isSignedIn && <div className="userbtn-wrap"><UserButton afterSignOutUrl="/" /></div>}
           </div>
         </header>
 
+        {!noAIMode && (
         <div className="tabs">
           {["chat","vocab","grammar"].map(function(t){
             return (
@@ -1642,6 +2583,19 @@ export default function App() {
             );
           })}
         </div>
+        )}
+        {noAIMode && (
+        <div className="tabs" style={{justifyContent:"space-between",alignItems:"center"}}>
+          <div style={{fontSize:13,color:"rgba(210,197,175,.5)",fontStyle:"italic",fontFamily:"'Crimson Pro',serif"}}>
+            🔊 Read-only mode — AI features disabled
+          </div>
+          <button className="tab" onClick={function(){
+            setNoAIMode(false); setMode(""); setStarted(false); setChapters([]);
+            setMsgs([]); setCidx(0); setCbm(0); setLview("read"); stopTTS();
+            try { localStorage.removeItem("no_ai_mode_v1"); } catch(e){}
+          }}>← Back to home</button>
+        </div>
+        )}
 
         {ttsErr && (
           <div style={{padding:"8px 28px",background:"rgba(157,70,48,.18)",borderBottom:"1px solid rgba(157,70,48,.35)",color:"#c87a68",fontSize:13,display:"flex",alignItems:"center",gap:10}}>
@@ -1650,11 +2604,18 @@ export default function App() {
           </div>
         )}
 
+        {syncErr && (
+          <div style={{padding:"8px 28px",background:"rgba(157,70,48,.18)",borderBottom:"1px solid rgba(157,70,48,.35)",color:"#c87a68",fontSize:13,display:"flex",alignItems:"center",gap:10}}>
+            <span style={{flex:1}}>⚠️ {syncErr} <span style={{opacity:.75,fontStyle:"italic"}}>Remove a few entries from the Vocabulary tab to keep syncing.</span></span>
+            <button onClick={function(){ setSyncErr(""); }} style={{background:"none",border:"none",color:"#c87a68",cursor:"pointer",fontSize:18,padding:0}}>×</button>
+          </div>
+        )}
+
         {tab==="chat" && (
           <div className="main">
             {!started && !mode && (
               <div className="ss">
-                <div className="sico">🇷🇺</div>
+                <div className="sico" style={{color:"#c8a276"}}><Pushkin size={64}/></div>
                 <h1 className="sti">Говорим</h1>
                 <p className="sde">Choose how you want to practice today.</p>
                 <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:14}}>
@@ -1665,6 +2626,10 @@ export default function App() {
                   <button className="btn-p" onClick={function(){ setMode("read"); }} style={{textAlign:"left",padding:"18px 22px"}}>
                     <div style={{fontSize:22,marginBottom:4}}>📖 Read</div>
                     <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Load any Russian EPUB, then practice with comprehension questions.</div>
+                  </button>
+                  <button className="btn-p" onClick={function(){ setMode("read"); setNoAIMode(true); try { localStorage.setItem("no_ai_mode_v1","1"); } catch(e){} }} style={{textAlign:"left",padding:"18px 22px",background:"linear-gradient(135deg,#5a8556,#4a6845)"}}>
+                    <div style={{fontSize:22,marginBottom:4}}>🔊 Read without AI</div>
+                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Load an EPUB and listen with text-to-speech only. No questions, no API calls.</div>
                   </button>
                 </div>
               </div>
@@ -1692,24 +2657,46 @@ export default function App() {
             {!started && mode === "read" && (
               <div className="ss">
                 <div className="sico">📖</div>
-                <h1 className="sti">{chapters.length > 0 ? bookMeta.title : "Open a Russian EPUB"}</h1>
-                <p className="sde">{chapters.length > 0 ? bookMeta.author : "Load any .epub file from your computer or phone. Works with EPUBs from Gutenberg, Litres, Flibusta, etc. Cached after first load."}</p>
+                <h1 className="sti">{chapters.length > 0 ? bookMeta.title : "Open a Russian book"}</h1>
+                <p className="sde">{chapters.length > 0 ? bookMeta.author : "Load EPUB, FB2, TXT, or HTML from your device. Supports books from Project Gutenberg, Litres, Flibusta, etc. Cached after first load."}</p>
                 <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:10}}>
                   {chapters.length > 0 ? (
                     <>
                       {cbm > 0 && <button className="btn-p" onClick={function(){ startLit(cbm); }}>📌 Resume at chapter {cbm+1}</button>}
                       <button className={cbm>0?"btn-g":"btn-p"} onClick={function(){ startLit(0); }}>{cbm>0?"Start from beginning":"Начать читать →"}</button>
-                      <FileBtn label="Load a different EPUB" onLoad={loadFile}/>
-                      <button className="btn-g" style={{fontSize:13,padding:"8px"}} onClick={async function(){
+                      <FileBtn label="Select a different book" onLoad={loadFile}/>
+                      <button onClick={async function(){
                         setChapters([]); setCidx(0); setCbm(0); setBookMeta({title:"",author:""});
                         try { await storage.delete(EPUB_CACHE); } catch(e) {}
                         try { await storage.delete(EPUB_BM); } catch(e) {}
                         try { await storage.delete(QHIST_KEY); } catch(e) {}
-                      }}>🗑 Clear cached book</button>
+                      }} style={{background:"none",border:"none",color:"rgba(210,197,175,.4)",fontSize:11,fontStyle:"italic",fontFamily:"'Crimson Pro',serif",cursor:"pointer",padding:"4px",marginTop:4,textDecoration:"underline",textDecorationColor:"rgba(210,197,175,.2)",alignSelf:"center"}}>clear cached book</button>
                     </>
                   ) : (
-                    <FileBtn label="Choose .epub file" onLoad={loadFile}/>
+                    <FileBtn label="Choose book file" onLoad={loadFile}/>
                   )}
+
+                  {/* Pre-loaded library — dropdown of books shipped with the app. */}
+                  {presetBooks.length > 0 && (
+                    <div style={{marginTop:18,paddingTop:18,borderTop:"1px solid rgba(210,197,175,.1)"}}>
+                      <div style={{fontSize:11,letterSpacing:2,textTransform:"uppercase",color:"rgba(210,197,175,.45)",marginBottom:10,textAlign:"center"}}>Or pick from the library</div>
+                      <select
+                        defaultValue=""
+                        onChange={function(e){
+                          var idx = e.target.value;
+                          if (idx === "") return;
+                          loadPresetBook(presetBooks[parseInt(idx,10)]);
+                          e.target.value = "";  // reset so picking again triggers onChange
+                        }}>
+                        <option value="" disabled>📖 Choose a book…</option>
+                        {presetBooks.map(function(book, idx) {
+                          var label = (book.title || book.filename) + (book.author ? " — " + book.author : "");
+                          return <option key={idx} value={idx}>{label}</option>;
+                        })}
+                      </select>
+                    </div>
+                  )}
+
                   {fErr && <p style={{color:"#c87a68",fontSize:13,lineHeight:1.5}}>{fErr}</p>}
                   <button className="btn-g" onClick={function(){ setMode(""); }}>← Back</button>
                 </div>
@@ -1723,7 +2710,7 @@ export default function App() {
                   <button className={"ltab"+(lview==="nav"?" on":"")} onClick={function(){ setLview("nav"); }}>🗂 Chapters</button>
                   <button className={"ltab"+(lview==="search"?" on":"")} onClick={function(){ setLview("search"); }}>🔍 Search</button>
                   <div className="lprog">
-                    <span className="lpct">Ch. {cidx+1}/{chapters.length} · {pct}%</span>
+                    <span className="lpct">Ch. {cidx+1}/{chapters.length} · Page {pidx+1}/{totalPages} · {pct}%</span>
                     <div className="lpbar"><div className="lpfill" style={{width:pct+"%"}}/></div>
                   </div>
                 </div>
@@ -1743,7 +2730,7 @@ export default function App() {
                     {showVP && (
                       <div className="vpanel" style={{maxHeight: diagLogs.length > 0 ? 380 : 180}}>
                         <div className="vphdr" style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:8}}>
-                          <span>Choose voice — Russian voices in gold</span>
+                          <span>Choose a Russian voice</span>
                           <div style={{display:"flex",gap:6}}>
                             {diagLogs.length > 0 && <button className="ttsbtn" style={{height:22,fontSize:11}} onClick={copyDiagLogs}>📋 Copy log</button>}
                             <button className="ttsbtn" style={{height:22,fontSize:11}} onClick={runDiagnostics}>🩺 Diagnose</button>
@@ -1761,6 +2748,7 @@ export default function App() {
                         )}
                         <div className="vplist">
                           {allVoices.length===0 && <div className="vpem">No voices found. Install a Russian voice in system settings.</div>}
+                          {allVoices.length>0 && allVoices.filter(function(v){ return v.lang.startsWith("ru")||/katya|katja|milena|yuri/i.test(v.name); }).length===0 && <div className="vpem">No Russian voices on this device.<br/>In Microsoft Edge you'll see Russian neural voices automatically — try opening the app in Edge. Or install a Russian voice in your system Speech settings.</div>}
                           {(function() {
                             var isRu = function(v) { return v.lang.startsWith("ru")||/katya|katja|milena|yuri/i.test(v.name); };
                             var isMsNatural = function(v) {
@@ -1773,12 +2761,11 @@ export default function App() {
                               return 2;
                             };
                             var byQuality = function(a, b) { return tier(a) - tier(b); };
-                            var ruVoices    = allVoices.filter(isRu).slice().sort(byQuality);
-                            var otherVoices = allVoices.filter(function(v){ return !isRu(v); }).slice().sort(byQuality);
-                            return ruVoices.concat(otherVoices);
+                            var ruVoices = allVoices.filter(isRu).slice().sort(byQuality);
+                            return ruVoices;
                           })()
                             .map(function(v,i){
-                              var ru = v.lang.startsWith("ru")||/katya|katja|milena|yuri/i.test(v.name);
+                              var ru = true;  // We've already filtered — all voices in the list are Russian.
                               var network = !v.localService;
                               // Microsoft Edge's Online Natural neural voices are network voices but
                               // they work reliably and sound great — flag them positively, not as a warning.
@@ -1827,11 +2814,12 @@ export default function App() {
                     )}
 
                     <div className="lit-body">
-                      <div className="lit-left">
+                      <div className={"lit-left" + (noAIMode ? " noai" : "")}>
                         <div className="lhdr">Chapter {cidx+1} of {chapters.length} · click any word to define</div>
-                        <div className="lch-heading">{curChapter.heading}</div>
+                        {curChapter.heading && <div className="lch-heading">{curChapter.heading}</div>}
                         <div className="ltxt">{renderLit(curChapter.text)}</div>
                       </div>
+                      {!noAIMode && (
                       <div className="lit-right">
                         <div className="lit-msgs" ref={msgsRef}>
                           {msgs.map(function(m,i){ return renderMsg(m,i); })}
@@ -1842,12 +2830,21 @@ export default function App() {
                           <button className="isend" onClick={send} disabled={loading||!input.trim()}>↑</button>
                         </div>
                       </div>
+                      )}
                     </div>
 
-                    <div className="lnav">
-                      <button className="lnb" onClick={function(){ navLit(cidx-1); }} disabled={cidx<=0||loading}>← Previous</button>
-                      <button className="lbm" onClick={function(){ setCbm(cidx); }}>📌</button>
-                      <button className="lnb p" onClick={function(){ navLit(cidx+1); }} disabled={cidx>=chapters.length-1||loading}>Next →</button>
+                    <div className={"lnav" + (noAIMode ? " noai" : "")}>
+                      <div className="lnav-row">
+                        {pidx > 0 && <button className="lnb" onClick={function(){ setPidx(Math.max(0, pidx-1)); }} disabled={loading}>← Page</button>}
+                        <button className="lbm" onClick={function(){ setCbm(cidx); }}>📌</button>
+                        {pidx < totalPages - 1 && <button className="lnb p" onClick={function(){ setPidx(Math.min(totalPages-1, pidx+1)); }} disabled={loading}>Page →</button>}
+                      </div>
+                      {chapters.length > 1 && (
+                        <div className="lnav-row lnav-row-sm">
+                          {cidx > 0 && <button className="lnb-sm" onClick={function(){ navLit(cidx-1); }} disabled={loading}>← Previous chapter</button>}
+                          {cidx < chapters.length - 1 && <button className="lnb-sm" onClick={function(){ navLit(cidx+1); }} disabled={loading}>Next chapter →</button>}
+                        </div>
+                      )}
                     </div>
                   </>
                 )}
@@ -1911,6 +2908,7 @@ export default function App() {
             {vocab.length===0 ? <p className="empty">No words saved yet.<br/>Click any Russian word to define and save it.</p>
               : <div className="ilist">{vocab.map(function(v){
                 var posLine = [v.pos, v.aspect].filter(Boolean).join(" · ");
+                var stamp = formatVocabDate(v.created || v.id);
                 return (
                   <div key={v.id} className="icard">
                     <div className="icont">
@@ -1924,6 +2922,7 @@ export default function App() {
                           {v.exampleTranslation && <div className="iext">{v.exampleTranslation}</div>}
                         </div>
                       )}
+                      {stamp && <span style={{fontSize:11,color:"rgba(210,197,175,.35)",fontStyle:"italic",fontFamily:"'Crimson Pro',serif",marginTop:6,display:"block"}}>Added {stamp}</span>}
                     </div>
                     <button className="rmb" title="Remove from vocabulary" onClick={function(){ setVocab(function(p){ return p.filter(function(x){ return x.id!==v.id; }); }); }}>×</button>
                   </div>
@@ -2057,7 +3056,8 @@ export default function App() {
       </div>
       </>
       )}
-      </SignedIn>
+      </>
+      )}
     </>
   );
 }
