@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { SignedIn, SignedOut, SignIn, UserButton, useAuth, useUser } from "@clerk/clerk-react";
+import { SignIn, UserButton, useAuth, useUser } from "@clerk/clerk-react";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
@@ -463,6 +463,10 @@ export default function App() {
   var [tab, setTab]           = useState("chat");
   var [started, setStarted]   = useState(false);
   var [mode, setMode]         = useState("");      // "" until user picks "chat" or "read"
+  var [noAIMode, setNoAIMode] = useState(function() {
+    // Persist no-AI mode so the user doesn't have to re-pick it each visit if they refresh.
+    try { return localStorage.getItem("no_ai_mode_v1") === "1"; } catch(e) { return false; }
+  });
   var [bookMeta, setBookMeta] = useState({title:"", author:""});
 
   var [showTopic, setShowTopic] = useState(false);
@@ -486,6 +490,8 @@ export default function App() {
   };
 
   var [chapters, setChapters]   = useState([]);
+  // Pre-loaded library: books shipped in /public/books/. Fetched once on mount from /books/index.json.
+  var [presetBooks, setPresetBooks] = useState([]);
   var [cidx, setCidx]           = useState(0);
   var [cbm,  setCbm]            = useState(0);
   var [lview, setLview]         = useState("read");
@@ -884,6 +890,7 @@ export default function App() {
 
   var defWord = async function(word, e) {
     e.stopPropagation();
+    if (noAIMode) return;  // No API calls in read-without-AI mode.
     var clean = word.replace(/[^а-яёА-ЯЁ]/g,"");
     if (!clean || clean.length < 2) return;
     var rect = e.currentTarget.getBoundingClientRect();
@@ -992,6 +999,7 @@ export default function App() {
     setCidx(i); setCbm(i); setStarted(true); setMsgs([]); setLoading(true);
     setPopup(null); stopTTS(); setLview("read");
     charPos.current = 0; paraText.current = "";
+    if (noAIMode) { setLoading(false); return; }
     await litAnalysis(p, i, metaOverride); setLoading(false);
   };
 
@@ -999,29 +1007,89 @@ export default function App() {
     stopTTS(); charPos.current = 0; paraText.current = "";
     if (idx < 0 || idx >= chapters.length) return;
     setCidx(idx); setCbm(idx); setMsgs([]); setLoading(true); setLview("read");
+    if (noAIMode) { setLoading(false); return; }
     await litAnalysis(chapters, idx); setLoading(false);
   };
 
-  var loadFile = async function(buf, fname) {
+  // Re-split chapters by lines that contain only a digit (or "digit.")
+  // Used for song-collection EPUBs like Tsoi, where each track number marks a new "chapter".
+  // The first non-empty line after the number becomes the chapter heading (song title).
+  var resplitByNumberedSections = function(chapters) {
+    var fullText = chapters.map(function(ch){ return ch.text || ""; }).join("\n\n");
+    var lines = fullText.split("\n");
+    var out = [];
+    var current = null;
+    var awaitingTitle = false;
+    for (var i = 0; i < lines.length; i++) {
+      var t = lines[i].trim();
+      if (/^\d{1,3}\.?$/.test(t)) {
+        // Track number found — start a new section
+        if (current && (current.text || "").trim()) out.push(current);
+        current = { heading: "", text: "" };
+        awaitingTitle = true;
+      } else if (current) {
+        if (awaitingTitle && t) {
+          current.heading = t;
+          current.text = t + "\n";
+          awaitingTitle = false;
+        } else if (!awaitingTitle) {
+          current.text += lines[i] + "\n";
+        }
+      }
+    }
+    if (current && (current.text || "").trim()) out.push(current);
+    return out.length ? out : chapters;
+  };
+
+  var loadFile = async function(buf, fname, opts) {
     setFErr("");
+    opts = opts || {};
     try {
       var result = await parseEpub(buf);
       if (!result.chapters || result.chapters.length < 1) throw new Error("No chapters found in EPUB.");
-      var meta = { title: result.title, author: result.author };
-      setChapters(result.chapters);
+      var chs = result.chapters;
+      if (opts.splitByNumberedSections) {
+        chs = resplitByNumberedSections(chs);
+      }
+      var title = opts.title || result.title;
+      var author = opts.author || result.author;
+      var meta = { title: title, author: author };
+      setChapters(chs);
       setBookMeta(meta);
       setCbm(0);
       try {
         await storage.set(EPUB_CACHE, JSON.stringify({
-          chapters: result.chapters, title: result.title, author: result.author
+          chapters: chs, title: title, author: author
         }));
         await storage.set(EPUB_BM, "0");
-        // New book → wipe question history so chapter indices don't inherit stale questions.
         await storage.delete(QHIST_KEY);
       } catch(e) {}
-      startLit(0, result.chapters, meta);
+      startLit(0, chs, meta);
     } catch(err) { setFErr(err.message); }
   };
+
+  // Download a preset book from the server and load it through the normal pipeline.
+  var loadPresetBook = async function(book) {
+    setFErr("");
+    try {
+      var r = await fetch("/books/" + book.filename);
+      if (!r.ok) throw new Error("Could not load « " + book.filename + " »: HTTP " + r.status);
+      var buf = await r.arrayBuffer();
+      await loadFile(buf, book.filename, {
+        splitByNumberedSections: !!book.splitByNumberedSections,
+        title: book.title,
+        author: book.author,
+      });
+    } catch(err) { setFErr(err.message || "Failed to load preset book"); }
+  };
+
+  // Fetch the library manifest once on mount. Silent if missing — pre-loaded books are optional.
+  useEffect(function() {
+    fetch("/books/index.json")
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(list){ if (Array.isArray(list)) setPresetBooks(list); })
+      .catch(function(){ /* no library, that's fine */ });
+  }, []);
 
   var send = async function() {
     if (!input.trim() || loading) return;
@@ -1512,7 +1580,9 @@ export default function App() {
         }
       `}</style>
 
-      <SignedOut>
+      {/* Sign-in screen: shown only when NOT signed in AND NOT in noAIMode.
+          Clicking "Read without AI" bypasses auth entirely. */}
+      {!auth.isSignedIn && !noAIMode && (
         <div className="auth-page">
           <div className="auth-card">
             <div className="auth-brand">
@@ -1521,11 +1591,32 @@ export default function App() {
               <div className="auth-brand-sub">Russian Practice</div>
             </div>
             <SignIn routing="hash" />
+            <div style={{display:"flex",alignItems:"center",gap:14,width:"100%",maxWidth:400,margin:"4px 0"}}>
+              <div style={{flex:1,height:1,background:"rgba(210,197,175,.12)"}}/>
+              <span style={{fontSize:11,letterSpacing:2,textTransform:"uppercase",color:"rgba(210,197,175,.4)"}}>or</span>
+              <div style={{flex:1,height:1,background:"rgba(210,197,175,.12)"}}/>
+            </div>
+            <button
+              onClick={function(){
+                setNoAIMode(true); setMode("read");
+                try { localStorage.setItem("no_ai_mode_v1","1"); } catch(e){}
+              }}
+              style={{background:"linear-gradient(135deg,#5a8556,#4a6845)",color:"#fff",border:"none",padding:"14px 28px",borderRadius:10,fontSize:15,fontFamily:"'Crimson Pro',serif",cursor:"pointer",width:"100%",maxWidth:400,display:"flex",alignItems:"center",justifyContent:"center",gap:10,boxShadow:"0 4px 14px rgba(0,0,0,.3)",transition:"opacity .15s"}}
+              onMouseOver={function(e){ e.currentTarget.style.opacity = ".92"; }}
+              onMouseOut={function(e){ e.currentTarget.style.opacity = "1"; }}>
+              <span style={{fontSize:18}}>🔊</span>
+              <span>Read without AI <span style={{opacity:.7,fontSize:13,fontStyle:"italic"}}>— no login required</span></span>
+            </button>
+            <div style={{fontSize:12,color:"rgba(210,197,175,.4)",textAlign:"center",maxWidth:400,lineHeight:1.5,marginTop:4}}>
+              Load an EPUB and listen with text-to-speech only.<br/>No AI features. No sign-in needed.
+            </div>
           </div>
         </div>
-      </SignedOut>
+      )}
 
-      <SignedIn>
+      {/* Main app: shown when signed in OR in noAIMode. */}
+      {(auth.isSignedIn || noAIMode) && (
+        <>
       {pendingApproval ? (
         <div className="pending">
           <div className="pending-card">
@@ -1617,6 +1708,22 @@ export default function App() {
               </div>
             </div>
             <button className="land-begin" onClick={dismissLanding}>Begin</button>
+            <button
+              onClick={function(){
+                dismissLanding();
+                setMode("read");
+                setNoAIMode(true);
+                try { localStorage.setItem("no_ai_mode_v1","1"); } catch(e){}
+              }}
+              style={{background:"linear-gradient(135deg,#5a8556,#4a6845)",color:"#fff",border:"none",padding:"14px 32px",borderRadius:10,fontSize:15,fontFamily:"'Crimson Pro',serif",cursor:"pointer",marginTop:8,boxShadow:"0 4px 14px rgba(0,0,0,.25)",display:"inline-flex",alignItems:"center",gap:10,transition:"opacity .15s"}}
+              onMouseOver={function(e){ e.currentTarget.style.opacity = ".92"; }}
+              onMouseOut={function(e){ e.currentTarget.style.opacity = "1"; }}>
+              <span style={{fontSize:18}}>🔊</span>
+              <span>Read without AI</span>
+            </button>
+            <div style={{fontSize:11,color:"rgba(210,197,175,.4)",marginTop:2,fontStyle:"italic",fontFamily:"'Crimson Pro',serif"}}>
+              Skip straight to the EPUB reader — no AI calls.
+            </div>
           </div>
         </div>
       )}
@@ -1627,10 +1734,11 @@ export default function App() {
           <div style={{display:"flex",alignItems:"center",gap:12}}>
             {started && <button className="tbadge" onClick={function(){ setShowTopic(true); }}>{isLit ? ("📖 " + (bookMeta.title || "Book")) : ("💬 "+act)}</button>}
             {isAdmin && <button className="adm-trigger" onClick={function(){ setShowAdmin(true); }} title="Manage user approvals">👥 Users</button>}
-            <div className="userbtn-wrap"><UserButton afterSignOutUrl="/" /></div>
+            {auth.isSignedIn && <div className="userbtn-wrap"><UserButton afterSignOutUrl="/" /></div>}
           </div>
         </header>
 
+        {!noAIMode && (
         <div className="tabs">
           {["chat","vocab","grammar"].map(function(t){
             return (
@@ -1642,6 +1750,19 @@ export default function App() {
             );
           })}
         </div>
+        )}
+        {noAIMode && (
+        <div className="tabs" style={{justifyContent:"space-between",alignItems:"center"}}>
+          <div style={{fontSize:13,color:"rgba(210,197,175,.5)",fontStyle:"italic",fontFamily:"'Crimson Pro',serif"}}>
+            🔊 Read-only mode — AI features disabled
+          </div>
+          <button className="tab" onClick={function(){
+            setNoAIMode(false); setMode(""); setStarted(false); setChapters([]);
+            setMsgs([]); setCidx(0); setCbm(0); setLview("read"); stopTTS();
+            try { localStorage.removeItem("no_ai_mode_v1"); } catch(e){}
+          }}>← Back to home</button>
+        </div>
+        )}
 
         {ttsErr && (
           <div style={{padding:"8px 28px",background:"rgba(157,70,48,.18)",borderBottom:"1px solid rgba(157,70,48,.35)",color:"#c87a68",fontSize:13,display:"flex",alignItems:"center",gap:10}}>
@@ -1665,6 +1786,10 @@ export default function App() {
                   <button className="btn-p" onClick={function(){ setMode("read"); }} style={{textAlign:"left",padding:"18px 22px"}}>
                     <div style={{fontSize:22,marginBottom:4}}>📖 Read</div>
                     <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Load any Russian EPUB, then practice with comprehension questions.</div>
+                  </button>
+                  <button className="btn-p" onClick={function(){ setMode("read"); setNoAIMode(true); try { localStorage.setItem("no_ai_mode_v1","1"); } catch(e){} }} style={{textAlign:"left",padding:"18px 22px",background:"linear-gradient(135deg,#5a8556,#4a6845)"}}>
+                    <div style={{fontSize:22,marginBottom:4}}>🔊 Read without AI</div>
+                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Load an EPUB and listen with text-to-speech only. No questions, no API calls.</div>
                   </button>
                 </div>
               </div>
@@ -1710,6 +1835,28 @@ export default function App() {
                   ) : (
                     <FileBtn label="Choose .epub file" onLoad={loadFile}/>
                   )}
+
+                  {/* Pre-loaded library — dropdown of books shipped with the app. */}
+                  {presetBooks.length > 0 && (
+                    <div style={{marginTop:18,paddingTop:18,borderTop:"1px solid rgba(210,197,175,.1)"}}>
+                      <div style={{fontSize:11,letterSpacing:2,textTransform:"uppercase",color:"rgba(210,197,175,.45)",marginBottom:10,textAlign:"center"}}>Or pick from the library</div>
+                      <select
+                        defaultValue=""
+                        onChange={function(e){
+                          var idx = e.target.value;
+                          if (idx === "") return;
+                          loadPresetBook(presetBooks[parseInt(idx,10)]);
+                          e.target.value = "";  // reset so picking again triggers onChange
+                        }}>
+                        <option value="" disabled>📖 Choose a book…</option>
+                        {presetBooks.map(function(book, idx) {
+                          var label = (book.title || book.filename) + (book.author ? " — " + book.author : "");
+                          return <option key={idx} value={idx}>{label}</option>;
+                        })}
+                      </select>
+                    </div>
+                  )}
+
                   {fErr && <p style={{color:"#c87a68",fontSize:13,lineHeight:1.5}}>{fErr}</p>}
                   <button className="btn-g" onClick={function(){ setMode(""); }}>← Back</button>
                 </div>
@@ -1832,6 +1979,7 @@ export default function App() {
                         <div className="lch-heading">{curChapter.heading}</div>
                         <div className="ltxt">{renderLit(curChapter.text)}</div>
                       </div>
+                      {!noAIMode && (
                       <div className="lit-right">
                         <div className="lit-msgs" ref={msgsRef}>
                           {msgs.map(function(m,i){ return renderMsg(m,i); })}
@@ -1842,6 +1990,7 @@ export default function App() {
                           <button className="isend" onClick={send} disabled={loading||!input.trim()}>↑</button>
                         </div>
                       </div>
+                      )}
                     </div>
 
                     <div className="lnav">
@@ -2057,7 +2206,8 @@ export default function App() {
       </div>
       </>
       )}
-      </SignedIn>
+      </>
+      )}
     </>
   );
 }
