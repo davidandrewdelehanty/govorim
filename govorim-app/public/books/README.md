@@ -1,6 +1,5 @@
 # Pre-loaded books library
 
-<<<<<<< HEAD
 Files in this folder are served at `/books/`. The app shows them as a dropdown
 ("Or pick from the library") on the Read mode picker screen.
 
@@ -36,39 +35,16 @@ So you can edit `index.json` after running the script to set author,
 description, etc. Those edits stick on the next run.
 
 ### Schema
-=======
-Files in this folder are served directly by Vercel at `/books/`.
-The app shows them as a clickable list on the EPUB picker screen.
-
-## How to add a book
-
-1. Drop the `.epub` file into this folder. Example: `dostoevsky-idiot.epub`
-2. Edit `index.json` and add an entry for it.
-3. Commit and push to GitHub. Vercel auto-deploys.
-
-## index.json schema
-
-Each entry is an object with these fields:
->>>>>>> e4012b39031d1f921e9248efaed2f23f57fb5129
 
 | Field | Required | What it does |
 |-------|----------|--------------|
 | `filename` | yes | Filename in this folder (e.g. `tsoi-songs.epub`) |
-<<<<<<< HEAD
 | `title` | yes (auto-filled) | Display title |
 | `author` | no | Author byline shown under the title |
 | `description` | no | One-line note shown in small text |
 | `splitByNumberedSections` | no | If `true`, re-split chapters using digits-on-own-line as boundaries (for song collections like Tsoi) |
 
 ### Example
-=======
-| `title` | recommended | Display title shown in the picker |
-| `author` | optional | Author byline shown under the title |
-| `description` | optional | One-line note shown in small text |
-| `splitByNumberedSections` | optional | If `true`, re-split chapters using digits-on-own-line as boundaries (for song collections like Tsoi) |
-
-## Example
->>>>>>> e4012b39031d1f921e9248efaed2f23f57fb5129
 
 ```json
 [
@@ -90,21 +66,10 @@ Each entry is an object with these fields:
 ## File size limits
 
 - Each file: 100MB max (Vercel limit)
-<<<<<<< HEAD
 - Total across all files: counts against your monthly bandwidth (100GB on Hobby, 1TB on Pro)
 
 ## Where to find Russian EPUBs
 
 - [Project Gutenberg Russian](https://www.gutenberg.org/browse/languages/ru) — public domain classics, free, no copyright issues
 - Librusec / Flibusta — large catalogs but check copyright status
-=======
-- Total across all files: counts against your monthly bandwidth
-  (100GB on Hobby tier, 1TB on Pro)
-
-## Where to find Russian EPUBs
-
-- [Project Gutenberg Russian](https://www.gutenberg.org/browse/languages/ru)
-  — public domain classics, free, no copyright issues
-- [Librusec / Flibusta] — large catalogs but check copyright status
->>>>>>> e4012b39031d1f921e9248efaed2f23f57fb5129
 - Litres — paid catalog with DRM-free options
