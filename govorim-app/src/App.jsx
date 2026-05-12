@@ -45,6 +45,18 @@ var QHIST_KEY  = "epub_qhist_v1";
 var LIT_CACHE_KEY = "gv_lit_cache_v1";
 var LIT_CACHE_MAX = 400;
 
+// Azure Speech Services neural voices for Russian. Shaped to look like the
+// objects returned by speechSynthesis.getVoices() so the existing voice picker
+// renders them with no special-casing. The `_azure: true` marker tells the
+// playback path to route through /api/tts instead of the browser. The `name`
+// is exactly the Azure voice ID — sent verbatim in the SSML <voice name="...">
+// attribute.
+var AZURE_VOICES = [
+  { _azure: true, name: "ru-RU-DmitryNeural",   lang: "ru-RU", localService: false, default: false, voiceURI: "azure:ru-RU-DmitryNeural" },
+  { _azure: true, name: "ru-RU-SvetlanaNeural", lang: "ru-RU", localService: false, default: false, voiceURI: "azure:ru-RU-SvetlanaNeural" },
+  { _azure: true, name: "ru-RU-DariyaNeural",   lang: "ru-RU", localService: false, default: false, voiceURI: "azure:ru-RU-DariyaNeural" },
+];
+
 // Different angles a session can take, so visiting the same chapter twice
 // asks about different aspects of the passage rather than repeating itself.
 var QUESTION_FOCI = [
@@ -1430,6 +1442,15 @@ export default function App() {
   // Queue of remaining TTS chunks (used by playText to chain Google-voice-friendly
   // short utterances). Each entry is {text, start}. Cleared by stopTTS/pauseTTS.
   var ttsQueue = useRef([]);
+  // Azure TTS state. Holds the currently-playing <audio> element (so stopTTS can
+  // halt it) and a per-session "Azure has been exhausted, don't bother trying"
+  // flag — once tripped, all subsequent reads automatically use the browser-native
+  // fallback (Google русский) until the page is reloaded.
+  var azureAudio       = useRef(null);
+  var azureExhausted   = useRef(false);
+  // Object URLs we've created for blob audio. We revoke them when starting a
+  // new playback to avoid leaking memory.
+  var azureBlobUrls    = useRef([]);
   var recentFoci = useRef([]);
 
   var inputRef = useRef(null);
@@ -1565,24 +1586,31 @@ export default function App() {
       // In strict Chrome, hide local Windows Microsoft voices (e.g. "Microsoft
       // Pavel - Russian") — they sound robotic compared to Google's network
       // voices, which Chrome has built in. Other browsers (Edge, Brave, etc.)
-      // see the full list. The filter is applied here once so both the picker
-      // (which reads allVoices) and the auto-selector below share the same view.
-      var all = isStrictChrome()
+      // see the full list.
+      var filtered = isStrictChrome()
         ? raw.filter(function(v){ return !isLocalMsVoice(v); })
         : raw;
+      // Inject Azure neural voices at the top of the list — they're shaped to
+      // look enough like SpeechSynthesisVoice that the picker UI just works,
+      // but the _azure marker reroutes playback through /api/tts when selected.
+      // We always include them; the actual Azure API call will 401/404 if the
+      // server-side key isn't configured.
+      var all = AZURE_VOICES.concat(filtered);
       setAllVoices(all);
-      // Priority order:
-      //   1. Local voices (work everywhere, predictable)
-      //   2. Microsoft Edge "Online (Natural)" neural voices (high quality, reliable in Edge)
-      //   3. Google network voices (high quality, reliable in Chrome on real sites — only
-      //      flaky inside sandboxed iframes, which we no longer worry about post-deploy)
-      //   4. Other network voices as a last resort
+      // Auto-select priority order:
+      //   1. Azure neural (highest quality, works everywhere, server-mediated)
+      //   2. Local voices (work everywhere, predictable, offline)
+      //   3. Microsoft Edge "Online (Natural)" neural voices (Edge-specific)
+      //   4. Google network voices (Chrome-specific)
+      //   5. Other network voices as a last resort
       var isMsNatural = function(v) {
         return /microsoft.*online.*natural/i.test(v.name) || /\(natural\)/i.test(v.name);
       };
       var isGoogle = function(v) { return /google/i.test(v.name); };
       var v =
-           all.find(function(v) { return /katya|katja/i.test(v.name) && v.localService; })
+           all.find(function(v) { return v._azure && /Dmitry/i.test(v.name); })
+        || all.find(function(v) { return v._azure; })
+        || all.find(function(v) { return /katya|katja/i.test(v.name) && v.localService; })
         || all.find(function(v) { return v.lang === "ru-RU" && v.localService; })
         || all.find(function(v) { return v.lang.startsWith("ru") && v.localService; })
         // Microsoft Edge online neural voices — high quality, reliable in Edge
@@ -1875,10 +1903,28 @@ export default function App() {
     if (keepAlive.current) { clearInterval(keepAlive.current); keepAlive.current = null; }
   };
 
+  // Halt any in-flight Azure audio playback. Cleanup of the blob URL waits a
+  // beat so the audio element finishes its current frame without console errors.
+  var stopAzureAudio = function() {
+    if (azureAudio.current) {
+      try { azureAudio.current.pause(); azureAudio.current.src = ""; } catch(e) {}
+      azureAudio.current = null;
+    }
+    // Revoke object URLs we created so they don't leak.
+    if (azureBlobUrls.current.length) {
+      var urls = azureBlobUrls.current;
+      azureBlobUrls.current = [];
+      setTimeout(function(){
+        urls.forEach(function(u){ try { URL.revokeObjectURL(u); } catch(e) {} });
+      }, 100);
+    }
+  };
+
   var stopTTS = useCallback(function() {
     stopKeepalive();
     ttsQueue.current = [];  // halt the chunk chain
     if (window.speechSynthesis) window.speechSynthesis.cancel();
+    stopAzureAudio();
     setPlaying(false); setSpkIdx(null); setSpokenChar(-1);
   }, []);
 
@@ -1895,9 +1941,123 @@ export default function App() {
     return true;
   };
 
+  // Find the best non-Azure Russian voice for fallback when Azure runs out of
+  // quota. Google русский is the preferred fallback per user instruction; we
+  // fall back further down the quality ladder if Google isn't available on
+  // this browser.
+  var findFallbackVoice = function() {
+    if (!allVoices || !allVoices.length) return null;
+    return allVoices.find(function(v){ return !v._azure && /google/i.test(v.name) && /^ru/i.test(v.lang); })
+        || allVoices.find(function(v){ return !v._azure && /microsoft.*online.*natural/i.test(v.name) && /^ru/i.test(v.lang); })
+        || allVoices.find(function(v){ return !v._azure && v.localService && /^ru/i.test(v.lang); })
+        || allVoices.find(function(v){ return !v._azure && /^ru/i.test(v.lang); })
+        || null;
+  };
+
+  // Play `text` via Azure Speech (server-mediated). On any 4xx/5xx, fall back
+  // permanently (for this session) to the best browser voice and retry the
+  // same passage there. Audio plays via a normal <audio> element so we get
+  // .pause(), .ended, .currentTime for free.
+  var playAzureText = useCallback(async function(text, from) {
+    if (from === undefined) from = 0;
+    if (!text || !text.trim()) return;
+    setTtsErr("");
+    stopAzureAudio();
+    // Slice from cursor position the same way the browser path does, so resuming
+    // from a saved charPos still works (best-effort — no word-level precision).
+    var snippet = text.slice(from);
+    if (!snippet.trim()) return;
+    // Hard cap to keep response time + cost reasonable per call. Anything longer
+    // gets truncated; the user can scroll to the next page if they want more.
+    if (snippet.length > 4000) snippet = snippet.slice(0, 4000);
+
+    setPlaying(true);
+    charPos.current = from;
+    try {
+      var r = await authFetch("/api/tts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: snippet, voice: voice.name }),
+      });
+      if (!r.ok) {
+        // Azure failure → fall back to a browser voice (Google русский preferred)
+        // and replay this same passage there. Don't try Azure again this session.
+        var errText = "";
+        try { errText = await r.text(); } catch(e) {}
+        azureExhausted.current = true;
+        var fb = findFallbackVoice();
+        if (fb) {
+          setVoice(fb);
+          setTtsErr("Azure unavailable (" + r.status + ") — switched to " + fb.name + " for the rest of this session.");
+          // Replay with the browser path. We don't await — the user gets audio
+          // ASAP from the fallback voice.
+          playText(text, from);
+        } else {
+          setTtsErr("Azure unavailable and no fallback Russian voice found in this browser. Try Chrome.");
+          setPlaying(false);
+        }
+        return;
+      }
+      var blob = await r.blob();
+      var url = URL.createObjectURL(blob);
+      azureBlobUrls.current.push(url);
+      var a = new Audio(url);
+      azureAudio.current = a;
+      a.onended = function() {
+        // Auto-advance to the next page if there is one — mirrors the browser-TTS
+        // flow but uses the audio.ended signal instead of word-boundary chars.
+        var nextPidx = pidx + 1;
+        if (nextPidx < totalPages) {
+          var nextPage = pages[nextPidx];
+          if (!nextPage) { setPlaying(false); charPos.current = 0; return; }
+          var nextText = (curChapter.text || "").slice(nextPage.startChar, nextPage.endChar);
+          setPidx(nextPidx);
+          if (!noAIMode && chapters.length > 0) {
+            setLoading(true);
+            litAnalysis(chapters, cidx, nextPidx).finally(function(){ setLoading(false); });
+          }
+          playAzureText(nextText, 0);
+        } else {
+          setPlaying(false);
+          charPos.current = 0;
+        }
+      };
+      a.onerror = function() {
+        setTtsErr("Audio playback error.");
+        setPlaying(false);
+      };
+      // Defensive against autoplay policy: catch and surface failures.
+      try { await a.play(); }
+      catch(playErr) {
+        // Most likely a user-gesture autoplay rejection. Tell the user clearly.
+        setTtsErr("Audio blocked by browser. Click ▶ again right after this message to start.");
+        setPlaying(false);
+      }
+    } catch(err) {
+      // Network error — also fall back to browser voice rather than failing silently.
+      azureExhausted.current = true;
+      var fb2 = findFallbackVoice();
+      if (fb2) {
+        setVoice(fb2);
+        setTtsErr("Network error reaching Azure — switched to " + fb2.name + ".");
+        playText(text, from);
+      } else {
+        setTtsErr("TTS error: " + (err.message || err));
+        setPlaying(false);
+      }
+    }
+  }, [voice, allVoices, pidx, totalPages, pages, curChapter, chapters, cidx, noAIMode]);
+
   var playText = useCallback(function(text, from) {
     if (from === undefined) from = 0;
     setTtsErr("");
+    // Route Azure voices through the server-mediated path. If Azure has already
+    // failed this session, the voice should already have been switched to a
+    // browser voice by playAzureText's fallback — but as a belt check, skip
+    // Azure when the exhausted flag is set.
+    if (voice && voice._azure && !azureExhausted.current) {
+      return playAzureText(text, from);
+    }
     if (!checkTTSAvailable()) return;
     stopKeepalive();
     window.speechSynthesis.cancel();
@@ -1972,6 +2132,7 @@ export default function App() {
     stopKeepalive();
     ttsQueue.current = [];  // pause halts the chain; resuming would need a fresh playText call
     if (window.speechSynthesis) window.speechSynthesis.cancel();
+    stopAzureAudio();
     setPlaying(false);
   }, []);
 
