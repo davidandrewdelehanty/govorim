@@ -3115,7 +3115,7 @@ export default function App() {
                           // so the onChange lookup still resolves correctly. Categories
                           // render in this fixed order; "Other" catches anything missing
                           // or unrecognized.
-                          var CATEGORIES = ["Novel", "Song Lyrics", "Poetry", "Short Stories"];
+                          var CATEGORIES = ["Novel", "Plays", "Song Lyrics", "Poetry", "Short Stories"];
                           var buckets = {};
                           CATEGORIES.forEach(function(c){ buckets[c] = []; });
                           buckets["Other"] = [];
