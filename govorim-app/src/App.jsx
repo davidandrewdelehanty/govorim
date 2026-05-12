@@ -983,6 +983,35 @@ function FileBtn({ label, onLoad }) {
   );
 }
 
+// Strict Chrome detection: actual Google Chrome only — NOT Edge, Brave, Opera,
+// Yandex, Vivaldi, Samsung Internet. Cached after the first call since this
+// can never change during a session. Note: Arc browser is indistinguishable
+// from Chrome here (it inherits Chromium's UA and vendor unchanged), so Arc
+// users will be treated as Chrome users.
+var _isChromeCached = null;
+function isStrictChrome() {
+  if (_isChromeCached !== null) return _isChromeCached;
+  if (typeof navigator === "undefined") return (_isChromeCached = false);
+  var ua = navigator.userAgent || "";
+  // Brave exposes navigator.brave even when masking its UA — most reliable signal
+  if (navigator.brave) return (_isChromeCached = false);
+  if (/Edg\//.test(ua))           return (_isChromeCached = false); // Edge
+  if (/OPR\//.test(ua))           return (_isChromeCached = false); // Opera
+  if (/SamsungBrowser/.test(ua))  return (_isChromeCached = false);
+  if (/YaBrowser/.test(ua))       return (_isChromeCached = false); // Yandex
+  if (/Vivaldi/.test(ua))         return (_isChromeCached = false);
+  // Must have Chrome/ in UA AND vendor must be Google Inc.
+  _isChromeCached = /Chrome\//.test(ua) && (navigator.vendor || "") === "Google Inc.";
+  return _isChromeCached;
+}
+
+// Local (Windows SAPI) Microsoft voices like "Microsoft Pavel - Russian (Russia)".
+// Distinct from the network "Microsoft ... Online (Natural)" voices: those have
+// localService === false, so the && check excludes them.
+function isLocalMsVoice(v) {
+  return /^microsoft\b/i.test(v.name) && v.localService === true;
+}
+
 export default function App() {
   // Clerk auth — getToken() returns a JWT we attach to API calls so the
   // backend can verify the user is signed in.
@@ -1232,16 +1261,27 @@ export default function App() {
 
   useEffect(function() {
     var find = function() {
-      var all = window.speechSynthesis.getVoices();
-      if (!all.length) return false;
+      var raw = window.speechSynthesis.getVoices();
+      if (!raw.length) return false;
+      // In strict Chrome, hide local Windows Microsoft voices (e.g. "Microsoft
+      // Pavel - Russian") — they sound robotic compared to Google's network
+      // voices, which Chrome has built in. Other browsers (Edge, Brave, etc.)
+      // see the full list. The filter is applied here once so both the picker
+      // (which reads allVoices) and the auto-selector below share the same view.
+      var all = isStrictChrome()
+        ? raw.filter(function(v){ return !isLocalMsVoice(v); })
+        : raw;
       setAllVoices(all);
       // Priority order:
       //   1. Local voices (work everywhere, predictable)
-      //   2. Microsoft Edge "Online (Natural)" neural voices (high quality, work reliably in Edge)
-      //   3. Other network voices as a last resort
+      //   2. Microsoft Edge "Online (Natural)" neural voices (high quality, reliable in Edge)
+      //   3. Google network voices (high quality, reliable in Chrome on real sites — only
+      //      flaky inside sandboxed iframes, which we no longer worry about post-deploy)
+      //   4. Other network voices as a last resort
       var isMsNatural = function(v) {
         return /microsoft.*online.*natural/i.test(v.name) || /\(natural\)/i.test(v.name);
       };
+      var isGoogle = function(v) { return /google/i.test(v.name); };
       var v =
            all.find(function(v) { return /katya|katja/i.test(v.name) && v.localService; })
         || all.find(function(v) { return v.lang === "ru-RU" && v.localService; })
@@ -1249,10 +1289,12 @@ export default function App() {
         // Microsoft Edge online neural voices — high quality, reliable in Edge
         || all.find(function(v) { return v.lang === "ru-RU" && isMsNatural(v); })
         || all.find(function(v) { return v.lang.startsWith("ru") && isMsNatural(v); })
-        // Other non-Google network voices
-        || all.find(function(v) { return v.lang === "ru-RU" && !/google/i.test(v.name); })
-        || all.find(function(v) { return /katya|katja/i.test(v.name); })
+        // Google Chrome's network voices — high quality, reliable on the deployed site
+        || all.find(function(v) { return v.lang === "ru-RU" && isGoogle(v); })
+        || all.find(function(v) { return v.lang.startsWith("ru") && isGoogle(v); })
+        // Other network voices
         || all.find(function(v) { return v.lang === "ru-RU"; })
+        || all.find(function(v) { return /katya|katja/i.test(v.name); })
         || all.find(function(v) { return v.lang.startsWith("ru"); });
       if (v) setVoice(v);
       return true;
@@ -1572,9 +1614,7 @@ export default function App() {
         setSpokenChar(-1);
         var err = (e && e.error) || "unknown";
         if (err !== "interrupted" && err !== "canceled") {
-          var hint = "";
-          if (voice && /google/i.test(voice.name)) hint = " (Google network voices often fail in iframes — try a local voice via 🎙 Voice)";
-          setTtsErr("Speech error: " + err + "." + hint);
+          setTtsErr("Speech error: " + err + ". Try clicking 🎙 Voice to pick a different voice.");
           setPlaying(false);
         }
       };
@@ -1612,9 +1652,7 @@ export default function App() {
         stopKeepalive();
         var err = (e && e.error) || "unknown";
         if (err !== "interrupted" && err !== "canceled") {
-          var hint = "";
-          if (voice && /google/i.test(voice.name)) hint = " (Google network voices often fail in iframes)";
-          setTtsErr("Speech error: " + err + "." + hint);
+          setTtsErr("Speech error: " + err + ".");
         }
         setSpkIdx(null);
       };
@@ -3004,10 +3042,13 @@ export default function App() {
                             var isMsNatural = function(v) {
                               return /microsoft.*online.*natural/i.test(v.name) || /\(natural\)/i.test(v.name);
                             };
-                            // Tier each voice: 0 = local, 1 = Microsoft Online Natural, 2 = other network.
+                            var isGoogle = function(v) { return /google/i.test(v.name); };
+                            // Tier each voice: 0 = local, 1 = high-quality network (MS Natural / Google),
+                            // 2 = other network. Google and MS Natural are both reliable on the deployed
+                            // site, so we group them together at the top of the network tier.
                             var tier = function(v) {
                               if (v.localService) return 0;
-                              if (isMsNatural(v)) return 1;
+                              if (isMsNatural(v) || isGoogle(v)) return 1;
                               return 2;
                             };
                             var byQuality = function(a, b) { return tier(a) - tier(b); };
@@ -3017,15 +3058,17 @@ export default function App() {
                             .map(function(v,i){
                               var ru = true;  // We've already filtered — all voices in the list are Russian.
                               var network = !v.localService;
-                              // Microsoft Edge's Online Natural neural voices are network voices but
-                              // they work reliably and sound great — flag them positively, not as a warning.
+                              // Microsoft Edge's Online Natural neural voices AND Chrome's Google network
+                              // voices are both high-quality neural — flag them positively, not as warnings.
                               var isMsNatural = /microsoft.*online.*natural/i.test(v.name) || /\(natural\)/i.test(v.name);
+                              var isGoogle = /google/i.test(v.name);
+                              var isHighQualityNetwork = isMsNatural || isGoogle;
                               var labelText, labelColor, rowOpacity;
                               if (!network) {
                                 labelText = " · local ✓";
                                 labelColor = null;
                                 rowOpacity = null;
-                              } else if (isMsNatural) {
+                              } else if (isHighQualityNetwork) {
                                 labelText = " · neural ★";
                                 labelColor = "#c8a276";
                                 rowOpacity = null;
@@ -3046,7 +3089,7 @@ export default function App() {
                                       u.onerror = function(e) {
                                         var err = (e && e.error) || "unknown";
                                         if (err !== "interrupted" && err !== "canceled") {
-                                          var hint = (network && !isMsNatural) ? " — pick a voice marked « local » or « neural ★ » instead" : "";
+                                          var hint = (network && !isHighQualityNetwork) ? " — pick a voice marked « local » or « neural ★ » instead" : "";
                                           setTtsErr("Voice « " + v.name + " » failed: " + err + hint);
                                         }
                                       };
