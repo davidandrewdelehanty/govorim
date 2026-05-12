@@ -1439,10 +1439,12 @@ export default function App() {
   var isLit = mode === "read";
   var pct  = chapters.length > 0 ? Math.round((cidx / chapters.length) * 100) : 0;
   var curChapter = chapters[cidx] || { heading: "", text: "" };
-  // Paginate the current chapter. For song collections (splitByNumberedSections),
-  // force whole-chapter-as-single-page so the user sees a full song on one screen
-  // and uses chapter-nav arrows to advance to the next song.
-  var singlePageMode = !!bookMeta.splitByNumberedSections;
+  // Paginate the current chapter. Single-page mode (whole-chapter-as-one-page)
+  // applies to any book in the "Song Lyrics" category, so users see a full song
+  // per screen and use chapter-nav arrows to advance. The legacy
+  // `splitByNumberedSections` flag also enables this for backward compatibility
+  // with books that were configured before the category-based rule existed.
+  var singlePageMode = bookMeta.category === "Song Lyrics" || !!bookMeta.splitByNumberedSections;
   var pages = useMemo(function() {
     return computePages(curChapter.text || "", { singlePage: singlePageMode });
   }, [curChapter.text, singlePageMode]);
@@ -1613,6 +1615,7 @@ export default function App() {
             setBookMeta({
               title: d.title || "Unknown title",
               author: d.author || "Unknown author",
+              category: d.category || "",
               splitByNumberedSections: !!d.splitByNumberedSections,
             });
           }
@@ -2214,7 +2217,7 @@ export default function App() {
     if (typeof pi !== "number") pi = 0;
     var ch = chs[i] || {};
     var m = metaOverride || bookMeta;
-    var sp = !!m.splitByNumberedSections;
+    var sp = m.category === "Song Lyrics" || !!m.splitByNumberedSections;
     // Use the SAME pagination the renderer uses — 5 paragraphs OR ~1700 chars
     // per page, with sentence-boundary splits for giant single-paragraph chapters.
     // Single-page mode (song lyrics) shows the whole chapter as one page.
@@ -2375,11 +2378,15 @@ export default function App() {
 
       var title = opts.title || result.title;
       var author = opts.author || result.author;
-      // bookMeta carries title/author plus presentation flags the reader needs
-      // (e.g. splitByNumberedSections controls single-page-per-chapter mode).
+      // bookMeta carries title/author plus presentation flags the reader needs.
+      // `category` drives single-page display mode (anything in "Song Lyrics"
+      // shows one song per screen). `splitByNumberedSections` is the older
+      // parsing flag — kept for backward compatibility and still triggers
+      // single-page mode independently.
       var meta = {
         title: title,
         author: author,
+        category: opts.category || "",
         splitByNumberedSections: !!opts.splitByNumberedSections,
       };
       setChapters(chs);
@@ -2388,6 +2395,7 @@ export default function App() {
       try {
         await storage.set(EPUB_CACHE, JSON.stringify({
           chapters: chs, title: title, author: author,
+          category: opts.category || "",
           splitByNumberedSections: !!opts.splitByNumberedSections
         }));
         await storage.set(EPUB_BM, "0");
@@ -2408,6 +2416,7 @@ export default function App() {
         splitByNumberedSections: !!book.splitByNumberedSections,
         title: book.title,
         author: book.author,
+        category: book.category || "",
         // Optional per-chapter YouTube links (used by song collections). Array
         // indexed 0..N where each entry is a URL or null/missing.
         songs: Array.isArray(book.songs) ? book.songs : null,
