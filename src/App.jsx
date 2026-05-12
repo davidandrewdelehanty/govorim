@@ -501,11 +501,70 @@ async function buildChaptersFromToc(entries, zipFiles) {
     var text = htmlToText(chunk);
     var cyr  = (text.match(/[а-яёА-ЯЁ]/g) || []).length;
     if (cyr < 5) continue;
+<<<<<<< HEAD
     chapters.push({ heading: e.label || ("Глава " + (chapters.length + 1)), text: text });
+=======
+    // Prefer a heading extracted from the chapter HTML over the TOC label —
+    // some EPUBs use generic / author / publisher labels in the TOC even though
+    // the actual chapter document has a clean <h1> or <h2> with the real title.
+    var headingFromHtml = "";
+    var hM = chunk.match(/<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/i);
+    if (hM) headingFromHtml = hM[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+    var heading = headingFromHtml || e.label || ("Глава " + (chapters.length + 1));
+    chapters.push({ heading: heading, text: text });
+>>>>>>> e4012b39031d1f921e9248efaed2f23f57fb5129
   }
   return chapters;
 }
 
+<<<<<<< HEAD
+=======
+// ── Text-based chapter marker detection ─────────────────────────────────────
+// Authors mark their chapter divisions inside the actual text — usually with
+// Roman numerals (I, II, III...), Arabic numbers (1, 2, 3), or "Глава N" /
+// "Часть N" / "Chapter N". Detecting these is far more reliable than trusting
+// spine items or TOC labels, which often include front matter (cover, copyright,
+// title page) as if they were chapters.
+function isChapterMarker(line) {
+  var l = (line || "").trim();
+  if (!l || l.length > 30) return false;
+  // Roman numerals up to L (50) — covers virtually every Russian classic.
+  if (/^[IVXLivxl]{1,6}\.?$/.test(l)) return true;
+  // Arabic numbers up to 999 — handles short story collections, song books, etc.
+  if (/^\d{1,3}\.?$/.test(l)) return true;
+  // Explicit chapter words with a number
+  if (/^(глава|часть|chapter|part)\s+([0-9]+|[ivxl]+)\.?$/i.test(l)) return true;
+  // Special section names
+  if (/^(пролог|prologue|prolog|эпилог|epilogue|вступление|введение|заключение|послесловие)\.?$/i.test(l)) return true;
+  return false;
+}
+
+// Concatenate a chapter list, then re-split at in-text chapter markers.
+// Each marker line itself becomes the chapter heading; the text between markers
+// is the chapter body. Returns null when fewer than 2 markers are found
+// (caller should keep the existing chapter structure in that case).
+function splitByMarkers(chapters) {
+  var fullText = chapters.map(function(c){ return (c.text || ""); }).join("\n\n");
+  var lines = fullText.split("\n");
+  var markers = [];
+  for (var i = 0; i < lines.length; i++) {
+    if (isChapterMarker(lines[i])) {
+      markers.push({ idx: i, label: lines[i].trim().replace(/\.+$/, "").toUpperCase() });
+    }
+  }
+  if (markers.length < 2) return null;
+  var out = [];
+  for (var j = 0; j < markers.length; j++) {
+    var start = markers[j].idx + 1;
+    var end = (j + 1 < markers.length) ? markers[j + 1].idx : lines.length;
+    var chunk = lines.slice(start, end).join("\n").trim();
+    if (chunk.length < 50) continue; // skip tiny / empty splits
+    out.push({ heading: markers[j].label, text: chunk });
+  }
+  return out.length >= 2 ? out : null;
+}
+
+>>>>>>> e4012b39031d1f921e9248efaed2f23f57fb5129
 
 async function parseEpub(buffer) {
   var zipFiles = parseZip(buffer);
@@ -591,6 +650,7 @@ async function parseEpub(buffer) {
 
   if (realEntries.length >= 2) {
     var tocChs = await buildChaptersFromToc(realEntries, zipFiles);
+<<<<<<< HEAD
     // Also drop the leading "chapter" if it's suspiciously short and looks like
     // a title page that slipped past label filtering (some EPUBs label title
     // pages with generic strings like "Начало" or "Введение в книгу").
@@ -602,6 +662,24 @@ async function parseEpub(buffer) {
       // Very short first chapter that mentions the author/title strongly = title page.
       if (firstLen < 400 && (hasAuthorInText || hasTitleInText)) {
         tocChs.shift();
+=======
+    // Drop leading chapters that are dramatically shorter than the rest of the
+    // book — almost always front matter (cover, title page, copyright, dedication)
+    // that the EPUB packaged as a navigable chapter.
+    // Use the median chapter length to adapt to books with naturally short
+    // chapters (poetry, song lyrics) where a fixed threshold would over-trim.
+    var cyrLens = tocChs.map(function(c){ return ((c.text || "").match(/[а-яёА-ЯЁ]/g) || []).length; });
+    var sortedLens = cyrLens.slice().sort(function(a,b){ return a-b; });
+    var median = sortedLens.length > 0 ? sortedLens[Math.floor(sortedLens.length / 2)] : 0;
+    // Threshold: at least 150 Cyrillic chars, OR 25% of median, whichever is larger.
+    var threshold = Math.max(150, Math.floor(median * 0.25));
+    var maxDrops = Math.min(5, tocChs.length - 1);  // never drop everything
+    while (maxDrops > 0 && tocChs.length > 1) {
+      var firstCyr = ((tocChs[0].text || "").match(/[а-яёА-ЯЁ]/g) || []).length;
+      if (firstCyr < threshold) {
+        tocChs.shift();
+        maxDrops--;
+>>>>>>> e4012b39031d1f921e9248efaed2f23f57fb5129
         continue;
       }
       break;
@@ -674,6 +752,26 @@ async function parseEpub(buffer) {
   if (chapters.length === 0) {
     throw new Error("Could not extract Russian text. The EPUB may be empty, corrupted, in a different language, or use unusual encoding. If it's a DRM-locked file from a bookstore, it can't be read here — try a DRM-free source.");
   }
+<<<<<<< HEAD
+=======
+
+  // Trim leading "chapters" that are too short to be real story content (title pages,
+  // copyright, etc.) — uses the same adaptive median heuristic as the TOC path.
+  var spCyrLens = chapters.map(function(c){ return ((c.text || "").match(/[а-яёА-ЯЁ]/g) || []).length; });
+  var spSorted = spCyrLens.slice().sort(function(a,b){ return a-b; });
+  var spMedian = spSorted.length > 0 ? spSorted[Math.floor(spSorted.length / 2)] : 0;
+  var spThreshold = Math.max(150, Math.floor(spMedian * 0.25));
+  var spMaxDrops = Math.min(5, chapters.length - 1);
+  while (spMaxDrops > 0 && chapters.length > 1) {
+    var firstSpineCyr = ((chapters[0].text || "").match(/[а-яёА-ЯЁ]/g) || []).length;
+    if (firstSpineCyr < spThreshold) {
+      chapters.shift();
+      spMaxDrops--;
+      continue;
+    }
+    break;
+  }
+>>>>>>> e4012b39031d1f921e9248efaed2f23f57fb5129
 
   // Extract title/author from OPF metadata
   var titleM  = opfRaw.match(/<dc:title[^>]*>([^<]+)<\/dc:title>/i);
@@ -1638,7 +1736,31 @@ export default function App() {
       if (!result.chapters || result.chapters.length < 1) throw new Error("No chapters found in file.");
       var chs = result.chapters;
       if (opts.splitByNumberedSections) {
+<<<<<<< HEAD
         chs = resplitByNumberedSections(chs);
+=======
+        // Tsoi-style: digit on a line followed by song-title line. Keep this dedicated path
+        // because the song-title-on-next-line logic is different from generic marker splitting.
+        chs = resplitByNumberedSections(chs);
+      } else {
+        // Default: re-split by in-text chapter markers (Roman numerals, "Глава N", etc.).
+        // The author told us the chapter boundaries by putting markers in the text — use
+        // those instead of trusting spine items or TOC labels.
+        var bymark = splitByMarkers(chs);
+        if (bymark && bymark.length >= 2) {
+          chs = bymark;
+        } else if (chs.length > 1) {
+          // No markers but we have multiple spine-based chapters. The user asked us not to
+          // title chapters ourselves, so collapse to one chapter and let page navigation handle it.
+          var merged = chs.map(function(c){ return c.text || ""; }).join("\n\n").trim();
+          chs = [{ heading: "", text: merged }];
+        } else if (chs.length === 1) {
+          // Single chapter from spine — strip any auto-generated heading.
+          var h = chs[0].heading || "";
+          if (/^глава\s+\d+$/i.test(h.trim()) || /^chapter\s+\d+$/i.test(h.trim())) h = "";
+          chs = [{ heading: h, text: chs[0].text || "" }];
+        }
+>>>>>>> e4012b39031d1f921e9248efaed2f23f57fb5129
       }
       var title = opts.title || result.title;
       var author = opts.author || result.author;
@@ -2722,7 +2844,7 @@ export default function App() {
                     <div className="lit-body">
                       <div className={"lit-left" + (noAIMode ? " noai" : "")}>
                         <div className="lhdr">Chapter {cidx+1} of {chapters.length} · click any word to define</div>
-                        <div className="lch-heading">{curChapter.heading}</div>
+                        {curChapter.heading && <div className="lch-heading">{curChapter.heading}</div>}
                         <div className="ltxt">{renderLit(curChapter.text)}</div>
                       </div>
                       {!noAIMode && (
