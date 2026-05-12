@@ -731,7 +731,6 @@ async function parseEpub(buffer) {
   if (chapters.length === 0) {
     throw new Error("Could not extract Russian text. The EPUB may be empty, corrupted, in a different language, or use unusual encoding. If it's a DRM-locked file from a bookstore, it can't be read here — try a DRM-free source.");
   }
-<<<<<<< HEAD
 
   // Trim leading "chapters" that are too short to be real story content (title pages,
   // copyright, etc.) — uses the same adaptive median heuristic as the TOC path.
@@ -749,8 +748,6 @@ async function parseEpub(buffer) {
     }
     break;
   }
-=======
->>>>>>> e4012b39031d1f921e9248efaed2f23f57fb5129
 
   // Extract title/author from OPF metadata
   var titleM  = opfRaw.match(/<dc:title[^>]*>([^<]+)<\/dc:title>/i);
@@ -1715,7 +1712,6 @@ export default function App() {
       if (!result.chapters || result.chapters.length < 1) throw new Error("No chapters found in file.");
       var chs = result.chapters;
       if (opts.splitByNumberedSections) {
-<<<<<<< HEAD
         // Tsoi-style: digit on a line followed by song-title line. Keep this dedicated path
         // because the song-title-on-next-line logic is different from generic marker splitting.
         chs = resplitByNumberedSections(chs);
@@ -1737,9 +1733,6 @@ export default function App() {
           if (/^глава\s+\d+$/i.test(h.trim()) || /^chapter\s+\d+$/i.test(h.trim())) h = "";
           chs = [{ heading: h, text: chs[0].text || "" }];
         }
-=======
-        chs = resplitByNumberedSections(chs);
->>>>>>> e4012b39031d1f921e9248efaed2f23f57fb5129
       }
       var title = opts.title || result.title;
       var author = opts.author || result.author;
@@ -1773,11 +1766,26 @@ export default function App() {
     } catch(err) { setFErr(err.message || "Failed to load preset book"); }
   };
 
-  // Fetch the library manifest once on mount. Silent if missing — pre-loaded books are optional.
+  // Fetch the library list on mount. Tries the runtime API first
+  // (api/books-list scans public/books/ live, so dropping a file in the
+  // folder is enough — no script run needed). Falls back to the static
+  // index.json manifest when the API isn't available (e.g., local
+  // `npm run dev`, which doesn't serve Vercel functions).
   useEffect(function() {
-    fetch("/books/index.json")
-      .then(function(r){ return r.ok ? r.json() : null; })
-      .then(function(list){ if (Array.isArray(list)) setPresetBooks(list); })
+    fetch("/api/books-list")
+      .then(function(r){
+        // Vite's dev server returns index.html for unknown routes — make sure we got JSON.
+        var ct = r.headers.get("content-type") || "";
+        if (r.ok && ct.indexOf("application/json") !== -1) return r.json();
+        return null;
+      })
+      .then(function(list){
+        if (Array.isArray(list) && list.length > 0) { setPresetBooks(list); return; }
+        // Fallback: static manifest produced by scripts/generate-books-manifest.js.
+        return fetch("/books/index.json")
+          .then(function(r){ return r.ok ? r.json() : null; })
+          .then(function(staticList){ if (Array.isArray(staticList)) setPresetBooks(staticList); });
+      })
       .catch(function(){ /* no library, that's fine */ });
   }, []);
 
@@ -2255,26 +2263,16 @@ export default function App() {
         .lit-ibar textarea{flex:1;width:100%;resize:none;min-height:80px;max-height:none;padding:14px 60px 14px 16px;border-radius:14px;font-size:16px;line-height:1.55}
         .lit-ibar .isend{position:absolute;bottom:22px;right:28px;box-shadow:0 4px 14px rgba(0,0,0,.4)}
         .lnav{display:flex;flex-direction:column;gap:6px;padding:10px 28px 12px;border-top:1px solid rgba(210,197,175,.08);flex-shrink:0;background:#1a1611}
-<<<<<<< HEAD
         .lnav-row{display:flex;gap:8px;justify-content:center;align-items:stretch}
-=======
-        .lnav-row{display:flex;gap:8px}
->>>>>>> e4012b39031d1f921e9248efaed2f23f57fb5129
         .lnav-row-sm{margin-top:2px}
         .lnb{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(210,197,175,.14);background:rgba(210,197,175,.05);color:rgba(210,197,175,.55);font-family:'Crimson Pro',serif;font-size:14px;cursor:pointer;transition:all .15s;text-align:center}
         .lnb:hover:not(:disabled){background:rgba(210,197,175,.1);color:#d2c5af} .lnb:disabled{opacity:.22;cursor:default}
         .lnb.p{background:linear-gradient(135deg,#9d4630,#82362a);border-color:transparent;color:#fff} .lnb.p:hover{opacity:.9}
         .lbm{padding:10px 14px;border-radius:10px;border:1px solid rgba(200,162,118,.25);background:rgba(200,162,118,.07);color:#c8a276;font-size:15px;cursor:pointer;transition:background .15s}
         .lbm:hover{background:rgba(200,162,118,.15)}
-<<<<<<< HEAD
         .lnb-sm{flex:1;padding:7px 12px;border-radius:8px;border:1px solid rgba(200,162,118,.3);background:rgba(200,162,118,.08);color:#c8a276;font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;transition:all .15s;text-align:center}
         .lnb-sm:hover:not(:disabled){background:rgba(200,162,118,.18);border-color:rgba(200,162,118,.5)}
         .lnb-sm:disabled{opacity:.35;cursor:default}
-=======
-        .lnb-sm{flex:1;padding:5px 8px;border-radius:6px;border:1px solid rgba(210,197,175,.08);background:transparent;color:rgba(210,197,175,.4);font-family:'Crimson Pro',serif;font-size:12px;font-style:italic;cursor:pointer;transition:all .15s;text-align:center}
-        .lnb-sm:hover:not(:disabled){background:rgba(210,197,175,.05);color:rgba(210,197,175,.7);border-color:rgba(210,197,175,.16)}
-        .lnb-sm:disabled{opacity:.2;cursor:default}
->>>>>>> e4012b39031d1f921e9248efaed2f23f57fb5129
         .navpanel{flex:1;overflow-y:auto;padding:16px 28px;display:flex;flex-direction:column;gap:8px}
         .lcard{padding:12px 14px;border-radius:10px;background:rgba(210,197,175,.04);border:1px solid rgba(210,197,175,.09);cursor:pointer;transition:all .15s}
         .lcard:hover{background:rgba(210,197,175,.08)} .lcard.cur{border-color:rgba(200,162,118,.4);background:rgba(200,162,118,.07)}
@@ -2852,7 +2850,6 @@ export default function App() {
 
                     <div className={"lnav" + (noAIMode ? " noai" : "")}>
                       <div className="lnav-row">
-<<<<<<< HEAD
                         {pidx > 0 && <button className="lnb" onClick={function(){ setPidx(Math.max(0, pidx-1)); }} disabled={loading}>← Page</button>}
                         <button className="lbm" onClick={function(){ setCbm(cidx); }}>📌</button>
                         {pidx < totalPages - 1 && <button className="lnb p" onClick={function(){ setPidx(Math.min(totalPages-1, pidx+1)); }} disabled={loading}>Page →</button>}
@@ -2863,16 +2860,6 @@ export default function App() {
                           {cidx < chapters.length - 1 && <button className="lnb-sm" onClick={function(){ navLit(cidx+1); }} disabled={loading}>Next chapter →</button>}
                         </div>
                       )}
-=======
-                        <button className="lnb" onClick={function(){ setPidx(Math.max(0, pidx-1)); }} disabled={pidx<=0||loading}>← Page</button>
-                        <button className="lbm" onClick={function(){ setCbm(cidx); }}>📌</button>
-                        <button className="lnb p" onClick={function(){ setPidx(Math.min(totalPages-1, pidx+1)); }} disabled={pidx>=totalPages-1||loading}>Page →</button>
-                      </div>
-                      <div className="lnav-row lnav-row-sm">
-                        <button className="lnb-sm" onClick={function(){ navLit(cidx-1); }} disabled={cidx<=0||loading}>← Previous chapter</button>
-                        <button className="lnb-sm" onClick={function(){ navLit(cidx+1); }} disabled={cidx>=chapters.length-1||loading}>Next chapter →</button>
-                      </div>
->>>>>>> e4012b39031d1f921e9248efaed2f23f57fb5129
                     </div>
                   </>
                 )}
