@@ -1277,6 +1277,11 @@ export default function App() {
   var [custom, setCustom]     = useState("");
   var [vocab, setVocab]       = useState([]);
   var [tips, setTips]         = useState([]);
+  // savedTopics: array of curriculum topic IDs the user has bookmarked from
+  // the grammar reference. Stored as just IDs (e.g. "a2-accusative") so saved
+  // entries stay in sync if curriculum.json gets edited later. Mirrors the
+  // vocab/tips persistence pattern below.
+  var [savedTopics, setSavedTopics] = useState([]);
   var [tab, setTab]           = useState("chat");
   var [started, setStarted]   = useState(false);
   var [mode, setMode]         = useState("");      // "" until user picks "chat" or "read"
@@ -1361,12 +1366,15 @@ export default function App() {
 
   useEffect(function() {
     (async function() {
-      try { var v = await storage.get("vocab"); var g = await storage.get("grammar");
-        if (v) setVocab(JSON.parse(v.value)); if (g) setTips(JSON.parse(g.value)); } catch(e) {}
+      try { var v = await storage.get("vocab"); var g = await storage.get("grammar"); var st = await storage.get("grammar-topics");
+        if (v) setVocab(JSON.parse(v.value)); if (g) setTips(JSON.parse(g.value));
+        if (st) setSavedTopics(JSON.parse(st.value));
+      } catch(e) {}
     })();
   }, []);
   useEffect(function() { storage && storage.set("vocab", JSON.stringify(vocab)).catch(function(){}); }, [vocab]);
   useEffect(function() { storage && storage.set("grammar", JSON.stringify(tips)).catch(function(){}); }, [tips]);
+  useEffect(function() { storage && storage.set("grammar-topics", JSON.stringify(savedTopics)).catch(function(){}); }, [savedTopics]);
 
   // Snap the reading view back to the top whenever the page or chapter changes.
   // We defer to the next animation frame so the new paragraphs have laid out, then
@@ -1599,6 +1607,9 @@ export default function App() {
     try { return await run(); } catch(e) {
       // Don't retry on PENDING_APPROVAL — it's not a transient error.
       if (e.message && /pending approval/i.test(e.message)) throw e;
+      // Don't retry on rate-limit / quota errors either — retrying just doubles
+      // the load against an already-exhausted quota.
+      if (e.message && /429|rate.?limit|quota|exhausted|Too many/i.test(e.message)) throw e;
       await new Promise(function(res){ setTimeout(res, 1500); });
       return await run();
     }
@@ -2348,6 +2359,16 @@ export default function App() {
       var now = Date.now();
       setTips(function(p){ return p.concat([{tip:tip,id:now,created:now}]); });
     }
+  };
+  // Bookmarks for grammar curriculum topics. We only store the topic ID — when
+  // the user clicks a saved card we re-render the full content from curriculum.json,
+  // so edits to the curriculum are reflected in already-saved entries.
+  var addTopic = function(topicId) {
+    if (!topicId) return;
+    setSavedTopics(function(p){ return p.indexOf(topicId) === -1 ? p.concat([topicId]) : p; });
+  };
+  var rmTopic = function(topicId) {
+    setSavedTopics(function(p){ return p.filter(function(id){ return id !== topicId; }); });
   };
 
   // Format a timestamp (ms since epoch) as a friendly relative date string.
@@ -3690,7 +3711,21 @@ export default function App() {
                 <div className="gramref">
                   <div className="gramref-hdr">
                     <button className="ttsbtn" onClick={function(){ setGramTopicId(""); }}>← All {topic.level} topics</button>
-                    <span style={{color:"rgba(210,197,175,.4)",fontSize:12,letterSpacing:1.5,textTransform:"uppercase"}}>{topic.level}</span>
+                    <div style={{display:"flex",alignItems:"center",gap:10}}>
+                      {(function(){
+                        var saved = savedTopics.indexOf(topic.id) !== -1;
+                        return (
+                          <button
+                            className="ttsbtn"
+                            title={saved ? "Already saved — click to remove from Grammar tab" : "Save to Grammar tab for quick review"}
+                            onClick={function(){ saved ? rmTopic(topic.id) : addTopic(topic.id); }}
+                            style={saved ? {color:"#9ab28e",borderColor:"rgba(154,178,142,.4)"} : null}>
+                            {saved ? "✓ Saved" : "📚 Save topic"}
+                          </button>
+                        );
+                      })()}
+                      <span style={{color:"rgba(210,197,175,.4)",fontSize:12,letterSpacing:1.5,textTransform:"uppercase"}}>{topic.level}</span>
+                    </div>
                   </div>
 
                   <div className="gramref-body">
@@ -3925,8 +3960,35 @@ export default function App() {
 
         {tab==="grammar" && (
           <div className="panel">
+            {/* Saved curriculum topics: cards that click to open the reference page.
+                Empty by default — only appears once the user has bookmarked something. */}
+            {savedTopics.length > 0 && curriculum && (
+              <>
+                <div className="phdr"><span className="pti">Saved Topics</span></div>
+                <div className="ilist" style={{marginBottom:20}}>
+                  {savedTopics.map(function(id) {
+                    var topic = curriculum.topics.find(function(t){ return t.id === id; });
+                    if (!topic) return null; // ID exists but topic was removed from curriculum
+                    return (
+                      <div key={id} className="icard" style={{cursor:"pointer"}}
+                        onClick={function(){ setMode("grammar"); setGramTopicId(id); setStarted(false); setMsgs([]); stopTTS(); setTab("chat"); }}>
+                        <div className="icont" style={{flex:1}}>
+                          <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:2}}>
+                            <span style={{fontSize:10,letterSpacing:1.5,padding:"2px 6px",border:"1px solid rgba(210,197,175,.25)",borderRadius:3,color:"rgba(210,197,175,.6)"}}>{topic.level}</span>
+                            <span className="ipri" style={{fontSize:15,color:"#c8a276"}}>📚 {topic.title}</span>
+                          </div>
+                          {topic.subtitle && <span style={{fontSize:13,fontStyle:"italic",color:"rgba(210,197,175,.55)",fontFamily:"'Crimson Pro',serif"}}>{topic.subtitle}</span>}
+                        </div>
+                        <button className="rmb" title="Remove from Grammar tab" onClick={function(e){ e.stopPropagation(); rmTopic(id); }}>×</button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            )}
+
             <div className="phdr"><span className="pti">Grammar Tips</span><button className="ab g" onClick={function(){ setNTip(""); setShowTip(true); }}>+ Add tip</button></div>
-            {tips.length===0 ? <p className="empty">No tips saved yet.<br/>Click 📝 Save tip under any tutor message.</p>
+            {tips.length===0 ? <p className="empty">No tips saved yet.<br/>Click 📝 Save tip under any tutor message, or use 📚 Grammar to bookmark a curriculum topic.</p>
               : <div className="ilist">{tips.map(function(t){
                 return (
                   <div key={t.id} className="icard">
