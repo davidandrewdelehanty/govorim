@@ -38,6 +38,12 @@ var EPUB_CACHE = "epub_data_v1";
 var EPUB_BM    = "epub_bm_v1";
 // Per-chapter question history (so we can ask different questions each visit).
 var QHIST_KEY  = "epub_qhist_v1";
+// Per-page AI response cache. Saves the entire tutor reply so revisiting a page
+// shows the same questions without firing a new Gemini call. Keyed by
+// "<bookTitle>|<bookAuthor>|<chapter>:<page>". Capped at ~400 entries, LRU by
+// timestamp. Bypassed by the manual "↻ New questions" button.
+var LIT_CACHE_KEY = "gv_lit_cache_v1";
+var LIT_CACHE_MAX = 400;
 
 // Different angles a session can take, so visiting the same chapter twice
 // asks about different aspects of the passage rather than repeating itself.
@@ -2043,7 +2049,39 @@ export default function App() {
     try { await storage.set(QHIST_KEY, JSON.stringify(hist)); } catch(e) {}
   };
 
-  var litAnalysis = async function(chs, i, pi, metaOverride) {
+  // ── Per-page tutor-response cache ─────────────────────────────────────────
+  // Save the AI's full reply so that flipping back to an already-visited page
+  // shows the same questions without firing a new Gemini call. Saved/loaded via
+  // the same storage shim as other state (works in browsers and Clerk metadata).
+  // Cache key is "<title>|<author>|<chapterIdx>:<pageIdx>" with the book's
+  // total chapter count appended as a soft fingerprint so two different books
+  // that happen to share a title/author don't collide.
+  var loadLitCache = async function() {
+    try {
+      var c = await storage.get(LIT_CACHE_KEY);
+      if (c && c.value) return JSON.parse(c.value);
+    } catch(e) {}
+    return {};
+  };
+  var saveLitCache = async function(cache) {
+    try {
+      // LRU eviction: when over the cap, drop the oldest entries by timestamp.
+      var keys = Object.keys(cache);
+      if (keys.length > LIT_CACHE_MAX) {
+        keys.sort(function(a, b){ return (cache[a].t || 0) - (cache[b].t || 0); });
+        var drop = keys.slice(0, keys.length - LIT_CACHE_MAX);
+        for (var i = 0; i < drop.length; i++) delete cache[drop[i]];
+      }
+      await storage.set(LIT_CACHE_KEY, JSON.stringify(cache));
+    } catch(e) {}
+  };
+  var litCacheKey = function(meta, totalChapters, ci, pi) {
+    var t = (meta && meta.title) || "untitled";
+    var a = (meta && meta.author) || "unknown";
+    return t + "|" + a + "|" + (totalChapters || 0) + "|" + ci + ":" + pi;
+  };
+
+  var litAnalysis = async function(chs, i, pi, metaOverride, force) {
     if (typeof pi !== "number") pi = 0;
     var ch = chs[i] || {};
     // Use the SAME pagination the renderer uses — 5 paragraphs OR ~1700 chars
@@ -2051,16 +2089,27 @@ export default function App() {
     var chPages = computePages(ch.text || "");
     var page = chPages[Math.min(pi, chPages.length - 1)] || chPages[0];
     var snippet = page ? (ch.text || "").slice(page.startChar, page.endChar) : (ch.text || "").slice(0, 1700);
-    // Hard cap so an unusually large page doesn't blow the prompt budget.
     if (snippet.length > 3500) snippet = snippet.slice(0, 3500);
 
     var m = metaOverride || bookMeta;
     var focus = pickFocus();
     var pageCount = chPages.length;
 
+    // ── Cache check ────────────────────────────────────────────────────────
+    // If we already have a saved tutor reply for this (book, chapter, page),
+    // reuse it instead of firing a new Gemini call. Big quota win, especially
+    // when readers flip back and forth between pages or revisit a book.
+    var cache = await loadLitCache();
+    var cKey = litCacheKey(m, chs.length, i, pi);
+    if (!force && cache[cKey] && cache[cKey].r) {
+      setMsgs([{role:"assistant",content:cache[cKey].r}]);
+      // Touch timestamp so this entry stays warm in LRU.
+      cache[cKey].t = Date.now();
+      saveLitCache(cache);
+      return;
+    }
+
     var hist = await loadQHist();
-    // Per-page history so a question already asked on page 2 doesn't block
-    // fresh questions on page 3.
     var chKey = String(i) + ":" + pi;
     var prevQs = (hist[chKey] || []).slice(-12);
 
@@ -2068,6 +2117,10 @@ export default function App() {
       var t = await api([{role:"user",content:"Go."}],
         litprompt(snippet, i, chs.length, m.title || "this book", m.author || "the author", focus, prevQs, pi, pageCount));
       setMsgs([{role:"assistant",content:t}]);
+
+      // Save to cache so future visits to this page don't re-hit the API.
+      cache[cKey] = { r: t, t: Date.now() };
+      saveLitCache(cache);
 
       var newQs = extractQuestions(t);
       if (newQs.length) {
@@ -3720,6 +3773,16 @@ export default function App() {
                           {loading && <div className="msg ai"><div className="typing"><div className="dot"/><div className="dot"/><div className="dot"/></div></div>}
                         </div>
                         <div className="lit-ibar">
+                          <button
+                            className="inew"
+                            title="Generate fresh questions for this page (costs an API call)"
+                            disabled={loading || noAIMode}
+                            onClick={async function() {
+                              if (!chapters.length) return;
+                              setLoading(true);
+                              await litAnalysis(chapters, cidx, pidx, undefined, true);
+                              setLoading(false);
+                            }}>↻</button>
                           <textarea ref={inputRef} value={input} onChange={function(e){ setInput(e.target.value); }} onKeyDown={onKey} placeholder="Напиши свой ответ…" disabled={loading}/>
                           <button className="isend" onClick={send} disabled={loading||!input.trim()}>↑</button>
                         </div>
