@@ -501,9 +501,6 @@ async function buildChaptersFromToc(entries, zipFiles) {
     var text = htmlToText(chunk);
     var cyr  = (text.match(/[а-яёА-ЯЁ]/g) || []).length;
     if (cyr < 5) continue;
-<<<<<<< HEAD
-    chapters.push({ heading: e.label || ("Глава " + (chapters.length + 1)), text: text });
-=======
     // Prefer a heading extracted from the chapter HTML over the TOC label —
     // some EPUBs use generic / author / publisher labels in the TOC even though
     // the actual chapter document has a clean <h1> or <h2> with the real title.
@@ -512,13 +509,10 @@ async function buildChaptersFromToc(entries, zipFiles) {
     if (hM) headingFromHtml = hM[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
     var heading = headingFromHtml || e.label || ("Глава " + (chapters.length + 1));
     chapters.push({ heading: heading, text: text });
->>>>>>> e4012b39031d1f921e9248efaed2f23f57fb5129
   }
   return chapters;
 }
 
-<<<<<<< HEAD
-=======
 // ── Text-based chapter marker detection ─────────────────────────────────────
 // Authors mark their chapter divisions inside the actual text — usually with
 // Roman numerals (I, II, III...), Arabic numbers (1, 2, 3), or "Глава N" /
@@ -564,7 +558,6 @@ function splitByMarkers(chapters) {
   return out.length >= 2 ? out : null;
 }
 
->>>>>>> e4012b39031d1f921e9248efaed2f23f57fb5129
 
 async function parseEpub(buffer) {
   var zipFiles = parseZip(buffer);
@@ -650,19 +643,6 @@ async function parseEpub(buffer) {
 
   if (realEntries.length >= 2) {
     var tocChs = await buildChaptersFromToc(realEntries, zipFiles);
-<<<<<<< HEAD
-    // Also drop the leading "chapter" if it's suspiciously short and looks like
-    // a title page that slipped past label filtering (some EPUBs label title
-    // pages with generic strings like "Начало" or "Введение в книгу").
-    while (tocChs.length > 1) {
-      var first = tocChs[0];
-      var firstLen = (first.text || "").length;
-      var hasAuthorInText = bookAuthor && first.text.toLowerCase().indexOf(bookAuthor.toLowerCase()) !== -1;
-      var hasTitleInText  = bookTitle  && first.text.toLowerCase().indexOf(bookTitle.toLowerCase())  !== -1;
-      // Very short first chapter that mentions the author/title strongly = title page.
-      if (firstLen < 400 && (hasAuthorInText || hasTitleInText)) {
-        tocChs.shift();
-=======
     // Drop leading chapters that are dramatically shorter than the rest of the
     // book — almost always front matter (cover, title page, copyright, dedication)
     // that the EPUB packaged as a navigable chapter.
@@ -679,7 +659,6 @@ async function parseEpub(buffer) {
       if (firstCyr < threshold) {
         tocChs.shift();
         maxDrops--;
->>>>>>> e4012b39031d1f921e9248efaed2f23f57fb5129
         continue;
       }
       break;
@@ -752,8 +731,6 @@ async function parseEpub(buffer) {
   if (chapters.length === 0) {
     throw new Error("Could not extract Russian text. The EPUB may be empty, corrupted, in a different language, or use unusual encoding. If it's a DRM-locked file from a bookstore, it can't be read here — try a DRM-free source.");
   }
-<<<<<<< HEAD
-=======
 
   // Trim leading "chapters" that are too short to be real story content (title pages,
   // copyright, etc.) — uses the same adaptive median heuristic as the TOC path.
@@ -771,7 +748,6 @@ async function parseEpub(buffer) {
     }
     break;
   }
->>>>>>> e4012b39031d1f921e9248efaed2f23f57fb5129
 
   // Extract title/author from OPF metadata
   var titleM  = opfRaw.match(/<dc:title[^>]*>([^<]+)<\/dc:title>/i);
@@ -1736,9 +1712,6 @@ export default function App() {
       if (!result.chapters || result.chapters.length < 1) throw new Error("No chapters found in file.");
       var chs = result.chapters;
       if (opts.splitByNumberedSections) {
-<<<<<<< HEAD
-        chs = resplitByNumberedSections(chs);
-=======
         // Tsoi-style: digit on a line followed by song-title line. Keep this dedicated path
         // because the song-title-on-next-line logic is different from generic marker splitting.
         chs = resplitByNumberedSections(chs);
@@ -1760,7 +1733,6 @@ export default function App() {
           if (/^глава\s+\d+$/i.test(h.trim()) || /^chapter\s+\d+$/i.test(h.trim())) h = "";
           chs = [{ heading: h, text: chs[0].text || "" }];
         }
->>>>>>> e4012b39031d1f921e9248efaed2f23f57fb5129
       }
       var title = opts.title || result.title;
       var author = opts.author || result.author;
@@ -1794,11 +1766,26 @@ export default function App() {
     } catch(err) { setFErr(err.message || "Failed to load preset book"); }
   };
 
-  // Fetch the library manifest once on mount. Silent if missing — pre-loaded books are optional.
+  // Fetch the library list on mount. Tries the runtime API first
+  // (api/books-list scans public/books/ live, so dropping a file in the
+  // folder is enough — no script run needed). Falls back to the static
+  // index.json manifest when the API isn't available (e.g., local
+  // `npm run dev`, which doesn't serve Vercel functions).
   useEffect(function() {
-    fetch("/books/index.json")
-      .then(function(r){ return r.ok ? r.json() : null; })
-      .then(function(list){ if (Array.isArray(list)) setPresetBooks(list); })
+    fetch("/api/books-list")
+      .then(function(r){
+        // Vite's dev server returns index.html for unknown routes — make sure we got JSON.
+        var ct = r.headers.get("content-type") || "";
+        if (r.ok && ct.indexOf("application/json") !== -1) return r.json();
+        return null;
+      })
+      .then(function(list){
+        if (Array.isArray(list) && list.length > 0) { setPresetBooks(list); return; }
+        // Fallback: static manifest produced by scripts/generate-books-manifest.js.
+        return fetch("/books/index.json")
+          .then(function(r){ return r.ok ? r.json() : null; })
+          .then(function(staticList){ if (Array.isArray(staticList)) setPresetBooks(staticList); });
+      })
       .catch(function(){ /* no library, that's fine */ });
   }, []);
 
