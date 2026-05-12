@@ -2964,7 +2964,9 @@ export default function App() {
                     <FileBtn label="Choose book file" onLoad={loadFile}/>
                   )}
 
-                  {/* Pre-loaded library — dropdown of books shipped with the app. */}
+                  {/* Pre-loaded library — dropdown of books shipped with the app,
+                      grouped into categories (Novel, Song Lyrics, Poetry, Short Stories,
+                      then "Other" for anything uncategorized). */}
                   {presetBooks.length > 0 && (
                     <div style={{marginTop:18,paddingTop:18,borderTop:"1px solid rgba(210,197,175,.1)"}}>
                       <div style={{fontSize:11,letterSpacing:2,textTransform:"uppercase",color:"rgba(210,197,175,.45)",marginBottom:10,textAlign:"center"}}>Or pick from the library</div>
@@ -2977,10 +2979,34 @@ export default function App() {
                           e.target.value = "";  // reset so picking again triggers onChange
                         }}>
                         <option value="" disabled>📖 Choose a book…</option>
-                        {presetBooks.map(function(book, idx) {
-                          var label = (book.title || book.filename) + (book.author ? " — " + book.author : "");
-                          return <option key={idx} value={idx}>{label}</option>;
-                        })}
+                        {(function() {
+                          // Group books by category, preserving the index into presetBooks
+                          // so the onChange lookup still resolves correctly. Categories
+                          // render in this fixed order; "Other" catches anything missing
+                          // or unrecognized.
+                          var CATEGORIES = ["Novel", "Song Lyrics", "Poetry", "Short Stories"];
+                          var buckets = {};
+                          CATEGORIES.forEach(function(c){ buckets[c] = []; });
+                          buckets["Other"] = [];
+                          presetBooks.forEach(function(book, idx) {
+                            var cat = (book && book.category) || "";
+                            var bucket = CATEGORIES.indexOf(cat) !== -1 ? cat : "Other";
+                            buckets[bucket].push({ book: book, idx: idx });
+                          });
+                          return CATEGORIES.concat(["Other"]).map(function(cat) {
+                            var entries = buckets[cat];
+                            if (!entries.length) return null;
+                            return (
+                              <optgroup key={cat} label={cat}>
+                                {entries.map(function(entry) {
+                                  var book = entry.book;
+                                  var label = (book.title || book.filename) + (book.author ? " — " + book.author : "");
+                                  return <option key={entry.idx} value={entry.idx}>{label}</option>;
+                                })}
+                              </optgroup>
+                            );
+                          });
+                        })()}
                       </select>
                     </div>
                   )}

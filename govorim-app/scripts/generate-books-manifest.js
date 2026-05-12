@@ -56,10 +56,20 @@ const next = files.map((filename) => {
   return { filename, title };
 });
 
-// 4. Sort by title (case-insensitive, locale-aware) so the dropdown reads alphabetically.
-next.sort((a, b) =>
-  (a.title || a.filename).localeCompare(b.title || b.filename, undefined, { sensitivity: "base" })
-);
+// 4. Sort by category (in display order), then by title within each category.
+//    Manual edits to `category` in index.json are preserved by step 3 above,
+//    so once you've categorized a book it stays categorized.
+const CATEGORY_ORDER = ["Novel", "Song Lyrics", "Poetry", "Short Stories"];
+const categoryRank = (c) => {
+  const idx = CATEGORY_ORDER.indexOf(c);
+  return idx === -1 ? CATEGORY_ORDER.length : idx; // unknown/missing → "Other" bucket at the end
+};
+next.sort((a, b) => {
+  const ra = categoryRank(a.category);
+  const rb = categoryRank(b.category);
+  if (ra !== rb) return ra - rb;
+  return (a.title || a.filename).localeCompare(b.title || b.filename, undefined, { sensitivity: "base" });
+});
 
 // 5. Report what changed.
 const added   = next.filter((n) => !byFilename[n.filename]).map((n) => n.filename);
