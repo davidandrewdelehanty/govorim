@@ -72,18 +72,37 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
+  // Log every hit BEFORE auth so we know the function is being reached at all.
+  // If this line doesn't appear in Vercel logs after a click, the issue is
+  // routing/caching, not auth.
+  const ip = getClientIp(req);
+  console.log("[tts] hit ip=" + ip + " has_auth=" + !!req.headers.authorization);
+
   // ---- Auth: verify Clerk JWT ────────────────────────────────────────────────
+  if (!process.env.CLERK_SECRET_KEY) {
+    console.log("[tts] FAIL: CLERK_SECRET_KEY env var missing");
+    return res.status(500).json({ error: "CLERK_SECRET_KEY not configured" });
+  }
   const authHeader = req.headers.authorization || "";
-  const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : "";
-  if (!token) return res.status(401).json({ error: "Missing auth token" });
+  if (!authHeader.startsWith("Bearer ")) {
+    console.log("[tts] FAIL: missing or non-bearer auth header (got: " + (authHeader ? authHeader.slice(0, 20) + "..." : "(empty)") + ")");
+    return res.status(401).json({ error: "Missing auth token" });
+  }
+  const token = authHeader.slice(7).trim();
+  if (!token) {
+    console.log("[tts] FAIL: empty bearer token");
+    return res.status(401).json({ error: "Empty auth token" });
+  }
 
   let userId, sessionClaims;
   try {
     const verified = await verifyToken(token, { secretKey: process.env.CLERK_SECRET_KEY });
-    userId = verified.sub;
+    userId = verified && verified.sub;
+    if (!userId) throw new Error("no sub in token");
     sessionClaims = verified;
   } catch (e) {
-    return res.status(401).json({ error: "Invalid auth token" });
+    console.log("[tts] FAIL: verifyToken threw: " + (e && e.message ? e.message : e));
+    return res.status(401).json({ error: "Invalid auth token: " + (e && e.message ? e.message : "unknown") });
   }
 
   // ---- Optional approval check (same as chat.js) ─────────────────────────────
@@ -99,7 +118,6 @@ export default async function handler(req, res) {
   }
 
   // ---- Rate limit per IP ─────────────────────────────────────────────────────
-  const ip = getClientIp(req);
   const rl = checkRateLimit(ip);
   if (!rl.ok) return res.status(429).json({ error: rl.reason });
 
