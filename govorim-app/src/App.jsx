@@ -2266,6 +2266,104 @@ export default function App() {
     );
   };
 
+  // Voice picker panel — extracted into a helper so we can drop it into BOTH
+  // the reading view (above the book text) and the chat view (above the input
+  // bar). Same state (showVP, voice, allVoices) drives both call sites, so
+  // picking a voice anywhere updates the entire app.
+  var renderVoicePicker = function() {
+    if (!showVP) return null;
+    return (
+      <div className="vpanel" style={{maxHeight: diagLogs.length > 0 ? 380 : 180}}>
+        <div className="vphdr" style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:8}}>
+          <span>Choose a Russian voice</span>
+          <div style={{display:"flex",gap:6}}>
+            {diagLogs.length > 0 && <button className="ttsbtn" style={{height:22,fontSize:11}} onClick={copyDiagLogs}>📋 Copy log</button>}
+            <button className="ttsbtn" style={{height:22,fontSize:11}} onClick={runDiagnostics}>🩺 Diagnose</button>
+          </div>
+        </div>
+        {diagLogs.length > 0 && (
+          <div style={{maxHeight:180,overflowY:"auto",padding:"6px 28px",fontFamily:"monospace",fontSize:11,color:"rgba(210,197,175,.7)",background:"#0a0908",borderBottom:"1px solid rgba(210,197,175,.06)",lineHeight:1.5}}>
+            {diagLogs.map(function(line,i){
+              var color = line.indexOf("onerror") >= 0 || line.indexOf("THREW") >= 0 ? "#c87a6806a"
+                       : line.indexOf("onstart") >= 0 ? "#82a882"
+                       : line.indexOf("===") >= 0 ? "#c8a276" : "rgba(210,197,175,.7)";
+              return <div key={i} style={{color:color,whiteSpace:"pre-wrap",wordBreak:"break-all"}}>{line}</div>;
+            })}
+          </div>
+        )}
+        <div className="vplist">
+          {allVoices.length===0 && <div className="vpem">No voices found. Install a Russian voice in system settings.</div>}
+          {allVoices.length>0 && allVoices.filter(function(v){ return v.lang.startsWith("ru")||/katya|katja|milena|yuri/i.test(v.name); }).length===0 && <div className="vpem">No Russian voices on this device.<br/>In Microsoft Edge you'll see Russian neural voices automatically — try opening the app in Edge. Or install a Russian voice in your system Speech settings.</div>}
+          {(function() {
+            var isRu = function(v) { return v.lang.startsWith("ru")||/katya|katja|milena|yuri/i.test(v.name); };
+            var isMsNatural = function(v) {
+              return /microsoft.*online.*natural/i.test(v.name) || /\(natural\)/i.test(v.name);
+            };
+            var isGoogle = function(v) { return /google/i.test(v.name); };
+            // Tier each voice: 0 = local, 1 = high-quality network (MS Natural / Google),
+            // 2 = other network. Google and MS Natural are both reliable on the deployed
+            // site, so we group them together at the top of the network tier.
+            var tier = function(v) {
+              if (v.localService) return 0;
+              if (isMsNatural(v) || isGoogle(v)) return 1;
+              return 2;
+            };
+            var byQuality = function(a, b) { return tier(a) - tier(b); };
+            var ruVoices = allVoices.filter(isRu).slice().sort(byQuality);
+            return ruVoices;
+          })()
+            .map(function(v,i){
+              var ru = true;  // We've already filtered — all voices in the list are Russian.
+              var network = !v.localService;
+              // Microsoft Edge's Online Natural neural voices AND Chrome's Google network
+              // voices are both high-quality neural — flag them positively, not as warnings.
+              var isMsNatural = /microsoft.*online.*natural/i.test(v.name) || /\(natural\)/i.test(v.name);
+              var isGoogle = /google/i.test(v.name);
+              var isHighQualityNetwork = isMsNatural || isGoogle;
+              var labelText, labelColor, rowOpacity;
+              if (!network) {
+                labelText = " · local ✓";
+                labelColor = null;
+                rowOpacity = null;
+              } else if (isHighQualityNetwork) {
+                labelText = " · neural ★";
+                labelColor = "#c8a276";
+                rowOpacity = null;
+              } else {
+                labelText = " · network ⚠";
+                labelColor = "#c87a68";
+                rowOpacity = 0.55;
+              }
+              return (
+                <button key={i} className={"vprow"+(voice&&voice.name===v.name?" sel":"")}
+                  style={rowOpacity ? {opacity: rowOpacity} : null}
+                  onClick={function(){
+                    setVoice(v); stopTTS(); setTtsErr("");
+                    // Speak a short test phrase so the user immediately knows if the voice works.
+                    setTimeout(function() {
+                      var u = new SpeechSynthesisUtterance("Привет! Я твой голос.");
+                      u.lang = "ru-RU"; u.voice = v; u.rate = 0.9;
+                      u.onerror = function(e) {
+                        var err = (e && e.error) || "unknown";
+                        if (err !== "interrupted" && err !== "canceled") {
+                          var hint = (network && !isHighQualityNetwork) ? " — pick a voice marked « local » or « neural ★ » instead" : "";
+                          setTtsErr("Voice « " + v.name + " » failed: " + err + hint);
+                        }
+                      };
+                      try { window.speechSynthesis.speak(u); }
+                      catch(ex) { setTtsErr("speak() threw: " + (ex.message || ex)); }
+                    }, 80);
+                  }}>
+                  <span className={"vpn"+(ru?" vpnru":"")}>{v.name}</span>
+                  <span className="vpl" style={labelColor ? {color:labelColor} : null}>{v.lang}{labelText}</span>
+                </button>
+              );
+          })}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
       <style>{`
@@ -3041,96 +3139,7 @@ export default function App() {
                       <button className="ttsbtn" onClick={function(){ setShowVP(function(v){ return !v; }); }}>🎙 Voice</button>
                     </div>
 
-                    {showVP && (
-                      <div className="vpanel" style={{maxHeight: diagLogs.length > 0 ? 380 : 180}}>
-                        <div className="vphdr" style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:8}}>
-                          <span>Choose a Russian voice</span>
-                          <div style={{display:"flex",gap:6}}>
-                            {diagLogs.length > 0 && <button className="ttsbtn" style={{height:22,fontSize:11}} onClick={copyDiagLogs}>📋 Copy log</button>}
-                            <button className="ttsbtn" style={{height:22,fontSize:11}} onClick={runDiagnostics}>🩺 Diagnose</button>
-                          </div>
-                        </div>
-                        {diagLogs.length > 0 && (
-                          <div style={{maxHeight:180,overflowY:"auto",padding:"6px 28px",fontFamily:"monospace",fontSize:11,color:"rgba(210,197,175,.7)",background:"#0a0908",borderBottom:"1px solid rgba(210,197,175,.06)",lineHeight:1.5}}>
-                            {diagLogs.map(function(line,i){
-                              var color = line.indexOf("onerror") >= 0 || line.indexOf("THREW") >= 0 ? "#c87a6806a"
-                                       : line.indexOf("onstart") >= 0 ? "#82a882"
-                                       : line.indexOf("===") >= 0 ? "#c8a276" : "rgba(210,197,175,.7)";
-                              return <div key={i} style={{color:color,whiteSpace:"pre-wrap",wordBreak:"break-all"}}>{line}</div>;
-                            })}
-                          </div>
-                        )}
-                        <div className="vplist">
-                          {allVoices.length===0 && <div className="vpem">No voices found. Install a Russian voice in system settings.</div>}
-                          {allVoices.length>0 && allVoices.filter(function(v){ return v.lang.startsWith("ru")||/katya|katja|milena|yuri/i.test(v.name); }).length===0 && <div className="vpem">No Russian voices on this device.<br/>In Microsoft Edge you'll see Russian neural voices automatically — try opening the app in Edge. Or install a Russian voice in your system Speech settings.</div>}
-                          {(function() {
-                            var isRu = function(v) { return v.lang.startsWith("ru")||/katya|katja|milena|yuri/i.test(v.name); };
-                            var isMsNatural = function(v) {
-                              return /microsoft.*online.*natural/i.test(v.name) || /\(natural\)/i.test(v.name);
-                            };
-                            var isGoogle = function(v) { return /google/i.test(v.name); };
-                            // Tier each voice: 0 = local, 1 = high-quality network (MS Natural / Google),
-                            // 2 = other network. Google and MS Natural are both reliable on the deployed
-                            // site, so we group them together at the top of the network tier.
-                            var tier = function(v) {
-                              if (v.localService) return 0;
-                              if (isMsNatural(v) || isGoogle(v)) return 1;
-                              return 2;
-                            };
-                            var byQuality = function(a, b) { return tier(a) - tier(b); };
-                            var ruVoices = allVoices.filter(isRu).slice().sort(byQuality);
-                            return ruVoices;
-                          })()
-                            .map(function(v,i){
-                              var ru = true;  // We've already filtered — all voices in the list are Russian.
-                              var network = !v.localService;
-                              // Microsoft Edge's Online Natural neural voices AND Chrome's Google network
-                              // voices are both high-quality neural — flag them positively, not as warnings.
-                              var isMsNatural = /microsoft.*online.*natural/i.test(v.name) || /\(natural\)/i.test(v.name);
-                              var isGoogle = /google/i.test(v.name);
-                              var isHighQualityNetwork = isMsNatural || isGoogle;
-                              var labelText, labelColor, rowOpacity;
-                              if (!network) {
-                                labelText = " · local ✓";
-                                labelColor = null;
-                                rowOpacity = null;
-                              } else if (isHighQualityNetwork) {
-                                labelText = " · neural ★";
-                                labelColor = "#c8a276";
-                                rowOpacity = null;
-                              } else {
-                                labelText = " · network ⚠";
-                                labelColor = "#c87a68";
-                                rowOpacity = 0.55;
-                              }
-                              return (
-                                <button key={i} className={"vprow"+(voice&&voice.name===v.name?" sel":"")}
-                                  style={rowOpacity ? {opacity: rowOpacity} : null}
-                                  onClick={function(){
-                                    setVoice(v); stopTTS(); setTtsErr("");
-                                    // Speak a short test phrase so the user immediately knows if the voice works.
-                                    setTimeout(function() {
-                                      var u = new SpeechSynthesisUtterance("Привет! Я твой голос.");
-                                      u.lang = "ru-RU"; u.voice = v; u.rate = 0.9;
-                                      u.onerror = function(e) {
-                                        var err = (e && e.error) || "unknown";
-                                        if (err !== "interrupted" && err !== "canceled") {
-                                          var hint = (network && !isHighQualityNetwork) ? " — pick a voice marked « local » or « neural ★ » instead" : "";
-                                          setTtsErr("Voice « " + v.name + " » failed: " + err + hint);
-                                        }
-                                      };
-                                      try { window.speechSynthesis.speak(u); }
-                                      catch(ex) { setTtsErr("speak() threw: " + (ex.message || ex)); }
-                                    }, 80);
-                                  }}>
-                                  <span className={"vpn"+(ru?" vpnru":"")}>{v.name}</span>
-                                  <span className="vpl" style={labelColor ? {color:labelColor} : null}>{v.lang}{labelText}</span>
-                                </button>
-                              );
-                          })}
-                        </div>
-                      </div>
-                    )}
+                    {renderVoicePicker()}
 
                     <div className="lit-body">
                       <div className={"lit-left" + (noAIMode ? " noai" : "")}>
@@ -3211,8 +3220,14 @@ export default function App() {
                   {msgs.map(function(m,i){ return renderMsg(m,i); })}
                   {loading && <div className="msg ai"><div className="typing"><div className="dot"/><div className="dot"/><div className="dot"/></div></div>}
                 </div>
+                {/* Voice picker panel — same control as in the reading view. Sits above
+                    the input bar so toggling 🎙 Voice opens it between the conversation
+                    and the textarea. The picker drives the same `voice` state used by
+                    the 🔊 Listen button on each AI message. */}
+                {renderVoicePicker()}
                 <div className="ibar">
                   <button className="inew" onClick={startChat}>↺ New</button>
+                  <button className="inew" title="Choose a voice for 🔊 Listen" onClick={function(){ setShowVP(function(v){ return !v; }); }}>🎙</button>
                   <textarea ref={inputRef} value={input} onChange={function(e){ setInput(e.target.value); }} onKeyDown={onKey} placeholder="Type in Russian or English…" rows={1} disabled={loading}/>
                   <button className="isend" onClick={send} disabled={loading||!input.trim()}>↑</button>
                 </div>
