@@ -1118,10 +1118,13 @@ export default function App() {
   // Grammar curriculum (📚 Grammar mode). Loaded once from /grammar/curriculum.json.
   // gramLevel = currently-selected CEFR level (e.g. "A2"); "" before user picks.
   // gramTopicId = currently-viewed topic's id; "" means "still on the picker screen".
+  // gramSearch = search query; when non-empty, replaces the picker dropdowns with
+  //   a cross-level result list.
   var [curriculum, setCurriculum] = useState(null);
   var [gramLevel, setGramLevel]   = useState("");
   var [gramTopicId, setGramTopicId] = useState("");
   var [gramErr, setGramErr]       = useState("");
+  var [gramSearch, setGramSearch] = useState("");
   var [cidx, setCidx]           = useState(0);
   var [pidx, setPidx]           = useState(0);  // Page within current chapter (5 paragraphs per page)
   var PAGE_SIZE                 = 5;
@@ -3161,45 +3164,129 @@ export default function App() {
                 {gramErr && <p style={{color:"#c87a68",fontSize:13,lineHeight:1.5,maxWidth:500}}>{gramErr}</p>}
 
                 {curriculum && (
-                  <div className="tsel" style={{width:"100%",maxWidth:500}}>
-                    <span className="slbl">Your level</span>
-                    <select value={gramLevel} onChange={function(e){ setGramLevel(e.target.value); }}>
-                      <option value="" disabled>— select a CEFR level —</option>
-                      {curriculum.levels.map(function(L) {
-                        return <option key={L.code} value={L.code}>{L.name}</option>;
-                      })}
-                    </select>
-                    {gramLevel && (function() {
-                      var L = curriculum.levels.find(function(x){ return x.code === gramLevel; });
-                      var topicsHere = curriculum.topics.filter(function(t){ return t.level === gramLevel; });
+                  <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:14}}>
+                    {/* Cross-level search — when this has text, it replaces the level/topic
+                        dropdowns with a flat list of matching topics from every level.
+                        Matches against title, subtitle, all bullets, and example text. */}
+                    <div style={{position:"relative"}}>
+                      <input
+                        type="text"
+                        value={gramSearch}
+                        onChange={function(e){ setGramSearch(e.target.value); }}
+                        placeholder="🔍 Search all levels (e.g. 'case', 'aspect', 'motion')"
+                        style={{width:"100%",padding:"10px 36px 10px 14px",fontSize:14,background:"rgba(210,197,175,.05)",border:"1px solid rgba(210,197,175,.15)",borderRadius:8,color:"#d2c5af",fontFamily:"'Crimson Pro',serif"}}
+                      />
+                      {gramSearch && (
+                        <button
+                          onClick={function(){ setGramSearch(""); }}
+                          title="Clear search"
+                          style={{position:"absolute",right:6,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",color:"rgba(210,197,175,.5)",cursor:"pointer",fontSize:18,padding:"2px 8px"}}>×</button>
+                      )}
+                    </div>
+
+                    {gramSearch.trim() ? (function() {
+                      // Search active — show flat result list across all levels.
+                      var q = gramSearch.trim().toLowerCase();
+                      var matches = curriculum.topics.filter(function(t) {
+                        if ((t.title || "").toLowerCase().indexOf(q) !== -1) return true;
+                        if ((t.subtitle || "").toLowerCase().indexOf(q) !== -1) return true;
+                        var sections = t.sections || [];
+                        for (var si = 0; si < sections.length; si++) {
+                          var sec = sections[si];
+                          if ((sec.heading || "").toLowerCase().indexOf(q) !== -1) return true;
+                          var items = sec.items || [];
+                          for (var ii = 0; ii < items.length; ii++) {
+                            var item = items[ii];
+                            if (typeof item === "string") {
+                              if (item.toLowerCase().indexOf(q) !== -1) return true;
+                            } else if (item) {
+                              if ((item.ru || "").toLowerCase().indexOf(q) !== -1) return true;
+                              if ((item.en || "").toLowerCase().indexOf(q) !== -1) return true;
+                            }
+                          }
+                        }
+                        return false;
+                      });
+                      // Sort by level so results group naturally (A1 → C2).
+                      var levelOrder = curriculum.levels.map(function(L){ return L.code; });
+                      matches.sort(function(a, b) {
+                        return levelOrder.indexOf(a.level) - levelOrder.indexOf(b.level);
+                      });
                       return (
                         <>
-                          {L && L.description && (
-                            <p style={{fontSize:13,fontStyle:"italic",color:"rgba(210,197,175,.55)",margin:"4px 2px 0",fontFamily:"'Crimson Pro',serif",lineHeight:1.5}}>{L.description}</p>
+                          <span className="slbl">
+                            {matches.length === 0 ? "No matches" : matches.length + " result" + (matches.length === 1 ? "" : "s") + " across all levels"}
+                          </span>
+                          {matches.length > 0 && (
+                            <div style={{display:"flex",flexDirection:"column",gap:1,background:"rgba(210,197,175,.04)",border:"1px solid rgba(210,197,175,.1)",borderRadius:8,overflow:"hidden",maxHeight:340,overflowY:"auto"}}>
+                              {matches.map(function(t) {
+                                return (
+                                  <button
+                                    key={t.id}
+                                    onClick={function(){ setGramTopicId(t.id); }}
+                                    style={{textAlign:"left",background:"none",border:"none",borderBottom:"1px solid rgba(210,197,175,.06)",padding:"12px 14px",cursor:"pointer",color:"#d2c5af",fontFamily:"'Crimson Pro',serif",display:"flex",alignItems:"flex-start",gap:12,transition:"background .12s"}}
+                                    onMouseEnter={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.06)"; }}
+                                    onMouseLeave={function(e){ e.currentTarget.style.background = "none"; }}>
+                                    <span style={{fontSize:11,fontWeight:600,letterSpacing:1.5,color:"#c8a276",background:"rgba(200,162,118,.12)",padding:"3px 7px",borderRadius:4,flexShrink:0,marginTop:1}}>{t.level}</span>
+                                    <span style={{display:"flex",flexDirection:"column",gap:2,flex:1,minWidth:0}}>
+                                      <span style={{fontSize:15,fontWeight:500,color:"#d2c5af"}}>{t.title}</span>
+                                      {t.subtitle && <span style={{fontSize:12,fontStyle:"italic",color:"rgba(210,197,175,.55)",lineHeight:1.45}}>{t.subtitle}</span>}
+                                    </span>
+                                  </button>
+                                );
+                              })}
+                            </div>
                           )}
-                          <span className="slbl" style={{marginTop:14}}>Topic ({topicsHere.length} available)</span>
-                          <select
-                            value=""
-                            onChange={function(e){
-                              var id = e.target.value;
-                              if (id) setGramTopicId(id);
-                              e.target.value = "";
-                            }}>
-                            <option value="" disabled>📖 Choose a topic…</option>
-                            {topicsHere.map(function(t) {
-                              return <option key={t.id} value={t.id}>{t.title}</option>;
-                            })}
-                          </select>
+                          {matches.length === 0 && (
+                            <p style={{fontSize:13,fontStyle:"italic",color:"rgba(210,197,175,.5)",textAlign:"center",padding:"12px 0"}}>
+                              Nothing matched "{gramSearch}". Try a different word, or clear the search to browse by level.
+                            </p>
+                          )}
                         </>
                       );
-                    })()}
+                    })() : (
+                      // No search — show the normal level/topic dropdown picker.
+                      <div className="tsel" style={{margin:0}}>
+                        <span className="slbl">Your level</span>
+                        <select value={gramLevel} onChange={function(e){ setGramLevel(e.target.value); }}>
+                          <option value="" disabled>— select a CEFR level —</option>
+                          {curriculum.levels.map(function(L) {
+                            return <option key={L.code} value={L.code}>{L.name}</option>;
+                          })}
+                        </select>
+                        {gramLevel && (function() {
+                          var L = curriculum.levels.find(function(x){ return x.code === gramLevel; });
+                          var topicsHere = curriculum.topics.filter(function(t){ return t.level === gramLevel; });
+                          return (
+                            <>
+                              {L && L.description && (
+                                <p style={{fontSize:13,fontStyle:"italic",color:"rgba(210,197,175,.55)",margin:"4px 2px 0",fontFamily:"'Crimson Pro',serif",lineHeight:1.5}}>{L.description}</p>
+                              )}
+                              <span className="slbl" style={{marginTop:14}}>Topic ({topicsHere.length} available)</span>
+                              <select
+                                value=""
+                                onChange={function(e){
+                                  var id = e.target.value;
+                                  if (id) setGramTopicId(id);
+                                  e.target.value = "";
+                                }}>
+                                <option value="" disabled>📖 Choose a topic…</option>
+                                {topicsHere.map(function(t) {
+                                  return <option key={t.id} value={t.id}>{t.title}</option>;
+                                })}
+                              </select>
+                            </>
+                          );
+                        })()}
+                      </div>
+                    )}
                   </div>
                 )}
 
                 {!curriculum && !gramErr && <p style={{color:"rgba(210,197,175,.55)",fontStyle:"italic"}}>Loading curriculum…</p>}
 
                 <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:8,marginTop:18}}>
-                  <button className="btn-g" onClick={function(){ setMode(""); setGramLevel(""); }}>← Back</button>
+                  <button className="btn-g" onClick={function(){ setMode(""); setGramLevel(""); setGramSearch(""); }}>← Back</button>
                 </div>
               </div>
             )}
