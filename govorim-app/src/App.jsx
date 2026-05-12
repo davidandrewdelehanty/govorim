@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { SignIn, UserButton, useAuth, useUser } from "@clerk/clerk-react";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
@@ -169,6 +169,128 @@ When you accept an answer:
 3. Then probe deeper or bridge to the next question.
 
 When the student is genuinely wrong on the comprehension itself: gently re-ask the question using different words and a simpler hint, NOT "no, the answer is X." Give them a second chance.`;
+}
+
+// Paginates a chapter for the on-screen reader. A page is at most 5 paragraphs
+// AND at most ~1700 characters — whichever limit is hit first. Paragraphs are
+// kept intact (never split mid-paragraph) EXCEPT when a chapter is one giant
+// paragraph with no paragraph breaks: in that case we fall back to sentence
+// boundaries so the user isn't faced with a 10,000-char wall of text.
+//
+// Returns an array of page descriptors:
+//   { startChar, endChar, paraIndices: number[], isSplit: boolean }
+// where paraIndices are indices into the filtered (non-empty) paragraph array
+// that the renderer produces. isSplit is true only in the giant-paragraph case.
+function computePages(chapterText) {
+  var PAGE_MAX_PARAGRAPHS = 5;
+  var PAGE_MAX_CHARS = 1700;
+
+  if (!chapterText || !chapterText.trim()) {
+    return [{ startChar: 0, endChar: 0, paraIndices: [], isSplit: false }];
+  }
+
+  // Scan paragraph ranges using the same boundary as the renderer (\n{2,}).
+  // Skip whitespace-only paragraphs so our indices match the renderer's
+  // post-filter array.
+  var paraRanges = [];
+  var br = /\n{2,}/g;
+  var lastEnd = 0;
+  var m;
+  while ((m = br.exec(chapterText)) !== null) {
+    if (chapterText.slice(lastEnd, m.index).trim().length > 0) {
+      paraRanges.push({ start: lastEnd, end: m.index });
+    }
+    lastEnd = m.index + m[0].length;
+  }
+  if (lastEnd < chapterText.length && chapterText.slice(lastEnd).trim().length > 0) {
+    paraRanges.push({ start: lastEnd, end: chapterText.length });
+  }
+
+  if (paraRanges.length === 0) {
+    return [{ startChar: 0, endChar: chapterText.length, paraIndices: [], isSplit: false }];
+  }
+
+  // GIANT-PARAGRAPH EXCEPTION: one paragraph, but it's larger than the cap.
+  // Split it at sentence boundaries near the 1700-char mark.
+  if (paraRanges.length === 1 && (paraRanges[0].end - paraRanges[0].start) > PAGE_MAX_CHARS) {
+    var pr = paraRanges[0];
+    var pt = chapterText.slice(pr.start, pr.end);
+    var pages = [];
+
+    // Sentence-end positions: . ! ? … (one or more), optionally followed by
+    // closing punctuation, then whitespace. Russian uses these same end marks.
+    var sentEnds = [];
+    var sre = /[.!?…]+["»)\]]?\s+/g;
+    var sm;
+    while ((sm = sre.exec(pt)) !== null) {
+      sentEnds.push(sm.index + sm[0].length);
+    }
+    if (sentEnds.length === 0 || sentEnds[sentEnds.length - 1] !== pt.length) {
+      sentEnds.push(pt.length);
+    }
+
+    var pageStart = 0;
+    for (var i = 0; i < sentEnds.length; i++) {
+      var sentEnd = sentEnds[i];
+      if (sentEnd - pageStart >= PAGE_MAX_CHARS || i === sentEnds.length - 1) {
+        pages.push({
+          startChar: pr.start + pageStart,
+          endChar:   pr.start + sentEnd,
+          paraIndices: [0],
+          isSplit: true,
+        });
+        pageStart = sentEnd;
+      }
+    }
+    return pages.length ? pages : [{ startChar: pr.start, endChar: pr.end, paraIndices: [0], isSplit: false }];
+  }
+
+  // NORMAL MULTI-PARAGRAPH CASE. Greedy bucketing with look-ahead: add a
+  // paragraph to the current page ONLY if doing so won't push us over the
+  // limits. The single exception is when the current page is empty — we
+  // always include at least one paragraph, even if it's huge (the "finish
+  // that paragraph" rule keeps it intact).
+  var pagesOut = [];
+  var currentIdx = [];
+  var currentLen = 0;
+
+  for (var pi = 0; pi < paraRanges.length; pi++) {
+    var p = paraRanges[pi];
+    var pLen = p.end - p.start;
+    // Separator between paragraphs is "\n\n" (2 chars) — count it for accuracy.
+    var addedLen = currentIdx.length === 0 ? pLen : pLen + 2;
+
+    var wouldOverflow = currentIdx.length > 0 && (
+      currentIdx.length >= PAGE_MAX_PARAGRAPHS ||
+      currentLen + addedLen > PAGE_MAX_CHARS
+    );
+
+    if (wouldOverflow) {
+      pagesOut.push({
+        startChar: paraRanges[currentIdx[0]].start,
+        endChar:   paraRanges[currentIdx[currentIdx.length - 1]].end,
+        paraIndices: currentIdx,
+        isSplit: false,
+      });
+      currentIdx = [];
+      currentLen = 0;
+      addedLen = pLen;
+    }
+
+    currentIdx.push(pi);
+    currentLen += addedLen;
+  }
+
+  if (currentIdx.length > 0) {
+    pagesOut.push({
+      startChar: paraRanges[currentIdx[0]].start,
+      endChar:   paraRanges[currentIdx[currentIdx.length - 1]].end,
+      paraIndices: currentIdx,
+      isSplit: false,
+    });
+  }
+
+  return pagesOut;
 }
 
 function defprompt(w) {
@@ -1135,8 +1257,7 @@ export default function App() {
   var [gramErr, setGramErr]       = useState("");
   var [gramSearch, setGramSearch] = useState("");
   var [cidx, setCidx]           = useState(0);
-  var [pidx, setPidx]           = useState(0);  // Page within current chapter (5 paragraphs per page)
-  var PAGE_SIZE                 = 5;
+  var [pidx, setPidx]           = useState(0);  // Current page within the current chapter
   var [cbm,  setCbm]            = useState(0);
   var [lview, setLview]         = useState("read");
   var [lsearch, setLsearch]     = useState("");
@@ -1163,10 +1284,12 @@ export default function App() {
   var isLit = mode === "read";
   var pct  = chapters.length > 0 ? Math.round((cidx / chapters.length) * 100) : 0;
   var curChapter = chapters[cidx] || { heading: "", text: "" };
-  // Pagination: split the chapter text by blank-line paragraph breaks to count pages.
-  // Each "page" shows PAGE_SIZE paragraphs.
-  var paragraphCount = ((curChapter.text || "").split(/\n{2,}/).filter(function(p){ return p.trim().length > 0; })).length;
-  var totalPages = Math.max(1, Math.ceil(paragraphCount / PAGE_SIZE));
+  // Paginate the current chapter (5 paragraphs OR ~1700 chars per page, whichever
+  // hits first; falls back to sentence boundaries for giant single-paragraph
+  // chapters). Memoized so we don't re-scan on unrelated re-renders.
+  var pages = useMemo(function() { return computePages(curChapter.text || ""); }, [curChapter.text]);
+  var totalPages = pages.length;
+  var currentPage = pages[Math.min(pidx, totalPages - 1)] || pages[0];
 
   useEffect(function() {
     (async function() {
@@ -1196,23 +1319,8 @@ export default function App() {
   useEffect(function() {
     if (!playing || spokenChar < 0) return;
     if (pidx >= totalPages - 1) return;
-    var text = curChapter.text || "";
-    var paragraphs = [];
-    var lastEnd = 0;
-    var re = /\n{2,}/g;
-    var m;
-    while ((m = re.exec(text)) !== null) {
-      var paraText = text.slice(lastEnd, m.index);
-      if (paraText.trim().length > 0) paragraphs.push({ start: lastEnd, end: m.index });
-      lastEnd = m.index + m[0].length;
-    }
-    if (lastEnd < text.length) {
-      var tail = text.slice(lastEnd);
-      if (tail.trim().length > 0) paragraphs.push({ start: lastEnd, end: text.length });
-    }
-    var endParaIdx = (pidx + 1) * PAGE_SIZE - 1;
-    if (endParaIdx >= paragraphs.length) return;
-    if (spokenChar > paragraphs[endParaIdx].end) {
+    if (!currentPage) return;
+    if (spokenChar > currentPage.endChar) {
       // Auto-advance during continuous TTS. Don't stop the audio, don't wipe the
       // current question list — just flip the page and regenerate questions for
       // the new page in the background. The new questions replace the old when
@@ -1836,23 +1944,21 @@ export default function App() {
   var litAnalysis = async function(chs, i, pi, metaOverride) {
     if (typeof pi !== "number") pi = 0;
     var ch = chs[i] || {};
-    // Build the snippet from JUST the paragraphs visible on the current page,
-    // matching the renderer's split (\n{2,}) and PAGE_SIZE. If the chapter
-    // doesn't have paragraph breaks (rare — single long block), fall back to
-    // a generous slice rather than asking about nothing.
-    var paras = (ch.text || "").split(/\n{2,}/).filter(function(p){ return p.trim().length > 0; });
-    var pageParas = paras.slice(pi * PAGE_SIZE, (pi + 1) * PAGE_SIZE);
-    var snippet = pageParas.length ? pageParas.join("\n\n") : (ch.text || "").slice(0, 1200);
-    // Hard cap so a single huge paragraph doesn't blow the prompt budget.
+    // Use the SAME pagination the renderer uses — 5 paragraphs OR ~1700 chars
+    // per page, with sentence-boundary splits for giant single-paragraph chapters.
+    var chPages = computePages(ch.text || "");
+    var page = chPages[Math.min(pi, chPages.length - 1)] || chPages[0];
+    var snippet = page ? (ch.text || "").slice(page.startChar, page.endChar) : (ch.text || "").slice(0, 1700);
+    // Hard cap so an unusually large page doesn't blow the prompt budget.
     if (snippet.length > 3500) snippet = snippet.slice(0, 3500);
 
     var m = metaOverride || bookMeta;
     var focus = pickFocus();
-    var pageCount = Math.max(1, Math.ceil(paras.length / PAGE_SIZE));
+    var pageCount = chPages.length;
 
     var hist = await loadQHist();
-    // Per-page history (was per-chapter), so a question already asked on page 2
-    // doesn't block fresh questions on page 3.
+    // Per-page history so a question already asked on page 2 doesn't block
+    // fresh questions on page 3.
     var chKey = String(i) + ":" + pi;
     var prevQs = (hist[chKey] || []).slice(-12);
 
@@ -2025,13 +2131,10 @@ export default function App() {
       // Build a page-scoped snippet so follow-up messages stay locked to what's
       // on the user's screen (same scoping the AI got in the initial question).
       var sys;
-      if (isLit && chapters.length > 0) {
-        var litParas = (curChapter.text || "").split(/\n{2,}/).filter(function(p){ return p.trim().length > 0; });
-        var litPageParas = litParas.slice(pidx * PAGE_SIZE, (pidx + 1) * PAGE_SIZE);
-        var litSnippet = litPageParas.length ? litPageParas.join("\n\n") : (curChapter.text || "").slice(0, 1200);
+      if (isLit && chapters.length > 0 && currentPage) {
+        var litSnippet = (curChapter.text || "").slice(currentPage.startChar, currentPage.endChar);
         if (litSnippet.length > 3500) litSnippet = litSnippet.slice(0, 3500);
-        var litPageCount = Math.max(1, Math.ceil(litParas.length / PAGE_SIZE));
-        sys = litprompt(litSnippet, cidx, chapters.length, bookMeta.title || "this book", bookMeta.author || "the author", null, null, pidx, litPageCount);
+        sys = litprompt(litSnippet, cidx, chapters.length, bookMeta.title || "this book", bookMeta.author || "the author", null, null, pidx, totalPages);
       }
       var t = await api(next, sys);
       setMsgs(function(prev){ return prev.concat([{role:"assistant",content:t}]); });
@@ -2198,9 +2301,25 @@ export default function App() {
       }
     }
 
-    return paragraphs
-      .filter(function(p){ return p.some(function(t){ return t.text.trim().length > 0; }); })
-      .slice(pidx * PAGE_SIZE, (pidx + 1) * PAGE_SIZE)
+    return (function() {
+      // Pull the non-empty paragraphs in the order they appear, matching how
+      // computePages indexes them.
+      var nonEmpty = paragraphs.filter(function(p){ return p.some(function(t){ return t.text.trim().length > 0; }); });
+      if (!currentPage) return [];
+
+      if (currentPage.isSplit) {
+        // Giant single-paragraph chapter: the only paragraph is split across
+        // multiple pages by sentence boundary. Render only the tokens that fall
+        // within this page's char range.
+        var giant = nonEmpty[0] || [];
+        var sliced = giant.filter(function(tok) {
+          return tok.start >= currentPage.startChar && tok.end <= currentPage.endChar;
+        });
+        return sliced.length > 0 ? [sliced] : [];
+      }
+      // Normal case: render the whole paragraphs that belong to this page.
+      return currentPage.paraIndices.map(function(idx){ return nonEmpty[idx] || []; }).filter(function(p){ return p.length > 0; });
+    })()
       .map(function(para, pi) {
         // Detect play-style speaker attribution at the start of a paragraph.
         // Russian plays commonly use Title Case names like "Маша. ..." or "Медведенко. ..."
