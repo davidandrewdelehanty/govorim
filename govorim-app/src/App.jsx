@@ -1729,8 +1729,13 @@ export default function App() {
     var slice = text.slice(from);
     if (!slice.trim()) return;
 
-    // Chrome quirk: speak() immediately after cancel() often fails silently.
-    // A small delay between cancel and speak fixes it.
+    // Chrome quirk #1: speak() immediately after cancel() often fails silently.
+    //   A delay between cancel and speak fixes it. 60ms isn't always enough on
+    //   Chrome/Windows; 250ms is more robust without feeling laggy.
+    // Chrome quirk #2: if a previous speak() left the engine in a half-paused
+    //   state (can happen after the keepalive's pause+resume cycle), the next
+    //   speak() produces no audio. Calling resume() defensively nudges it back
+    //   into a clean speaking state.
     setTimeout(function() {
       setPlaying(true); charPos.current = from;
       var u = new SpeechSynthesisUtterance(slice);
@@ -1754,9 +1759,12 @@ export default function App() {
           setPlaying(false);
         }
       };
-      try { window.speechSynthesis.speak(u); }
+      try {
+        if (window.speechSynthesis.paused) window.speechSynthesis.resume();
+        window.speechSynthesis.speak(u);
+      }
       catch(ex) { setTtsErr("speak() threw: " + (ex.message || ex)); setPlaying(false); }
-    }, 60);
+    }, 250);
   }, [voice]);
 
   var pauseTTS = useCallback(function() {
@@ -1792,9 +1800,14 @@ export default function App() {
         }
         setSpkIdx(null);
       };
-      try { window.speechSynthesis.speak(u); }
+      try {
+        // Same Chrome quirk workarounds as playText: nudge the engine out of
+        // any half-paused state before issuing the new utterance.
+        if (window.speechSynthesis.paused) window.speechSynthesis.resume();
+        window.speechSynthesis.speak(u);
+      }
       catch(ex) { setTtsErr("speak() threw: " + (ex.message || ex)); setSpkIdx(null); }
-    }, 60);
+    }, 250);
   }, [voice, spkIdx]);
 
   var runDiagnostics = function() {
