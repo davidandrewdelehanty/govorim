@@ -77,16 +77,25 @@ You are a language tutor, NOT a fact-checker. Accept the student's answers liber
 ${vocab.length ? "\nWeave these saved vocabulary words naturally into your messages so the student sees them again in context: " + vocab.map(function(v){ return v.ru; }).join(", ") : ""}`;
 }
 
-function litprompt(snippet, idx, total, title, author, focus, prevQuestions) {
+function litprompt(snippet, idx, total, title, author, focus, prevQuestions, pageIdx, pageCount) {
   var focusBlock = focus ? `\n${focus.note}\n` : "";
   var prevBlock = (prevQuestions && prevQuestions.length)
-    ? "\nQUESTIONS YOU ALREADY ASKED IN PREVIOUS SESSIONS — do NOT repeat any of these. Pick different details from the passage:\n"
+    ? "\nQUESTIONS YOU ALREADY ASKED ON THIS PAGE — do NOT repeat any of these. Pick different details from the passage:\n"
       + prevQuestions.map(function(q){ return "- " + q; }).join("\n") + "\n"
     : "";
-  return `You are a Russian comprehension tutor working with an INTERMEDIATE student (roughly B1 — NOT a native speaker). The student just read this passage from "${title}" by ${author} (chapter ${idx+1}/${total}):
+  var pageBlock = (typeof pageIdx === "number" && typeof pageCount === "number" && pageCount > 1)
+    ? `, page ${pageIdx + 1} of ${pageCount}`
+    : "";
+  return `You are a Russian comprehension tutor working with an INTERMEDIATE student (roughly B1 — NOT a native speaker). The student is reading "${title}" by ${author} (chapter ${idx+1}/${total}${pageBlock}) and is LOOKING AT this passage on screen RIGHT NOW:
 
-PASSAGE:
+PASSAGE ON SCREEN:
 "${snippet}"
+
+CRITICAL — STAY ON THIS PASSAGE:
+- Every comprehension question you ask MUST be answerable from the passage above.
+- Do NOT ask about characters, events, places, or details from earlier or later in the book. If you have memory of the wider plot, IGNORE it.
+- If something on this page references prior events but the prior events aren't shown here, do NOT quiz on those prior events — only on what's visible.
+- If a detail you want to ask about isn't actually in the passage above, drop the question and pick a different concrete detail that IS in it.
 
 Your job: ask 2–3 SPECIFIC comprehension questions IN RUSSIAN that the student can answer using info from the passage.
 ${focusBlock}${prevBlock}
@@ -1204,7 +1213,16 @@ export default function App() {
     var endParaIdx = (pidx + 1) * PAGE_SIZE - 1;
     if (endParaIdx >= paragraphs.length) return;
     if (spokenChar > paragraphs[endParaIdx].end) {
-      setPidx(pidx + 1);
+      // Auto-advance during continuous TTS. Don't stop the audio, don't wipe the
+      // current question list — just flip the page and regenerate questions for
+      // the new page in the background. The new questions replace the old when
+      // they arrive (litAnalysis calls setMsgs).
+      var nextPidx = pidx + 1;
+      setPidx(nextPidx);
+      if (!noAIMode && chapters.length > 0) {
+        setLoading(true);
+        litAnalysis(chapters, cidx, nextPidx).finally(function(){ setLoading(false); });
+      }
     }
   }, [spokenChar, pidx, playing]);
 
@@ -1815,29 +1833,41 @@ export default function App() {
     try { await storage.set(QHIST_KEY, JSON.stringify(hist)); } catch(e) {}
   };
 
-  var litAnalysis = async function(chs, i, metaOverride) {
+  var litAnalysis = async function(chs, i, pi, metaOverride) {
+    if (typeof pi !== "number") pi = 0;
     var ch = chs[i] || {};
-    var snippet = (ch.text || "").slice(0, 600);
+    // Build the snippet from JUST the paragraphs visible on the current page,
+    // matching the renderer's split (\n{2,}) and PAGE_SIZE. If the chapter
+    // doesn't have paragraph breaks (rare — single long block), fall back to
+    // a generous slice rather than asking about nothing.
+    var paras = (ch.text || "").split(/\n{2,}/).filter(function(p){ return p.trim().length > 0; });
+    var pageParas = paras.slice(pi * PAGE_SIZE, (pi + 1) * PAGE_SIZE);
+    var snippet = pageParas.length ? pageParas.join("\n\n") : (ch.text || "").slice(0, 1200);
+    // Hard cap so a single huge paragraph doesn't blow the prompt budget.
+    if (snippet.length > 3500) snippet = snippet.slice(0, 3500);
+
     var m = metaOverride || bookMeta;
     var focus = pickFocus();
+    var pageCount = Math.max(1, Math.ceil(paras.length / PAGE_SIZE));
 
     var hist = await loadQHist();
-    var chKey = String(i);
-    var prevQs = (hist[chKey] || []).slice(-12); // show the model up to 12 prior questions
+    // Per-page history (was per-chapter), so a question already asked on page 2
+    // doesn't block fresh questions on page 3.
+    var chKey = String(i) + ":" + pi;
+    var prevQs = (hist[chKey] || []).slice(-12);
 
     try {
       var t = await api([{role:"user",content:"Go."}],
-        litprompt(snippet, i, chs.length, m.title || "this book", m.author || "the author", focus, prevQs));
+        litprompt(snippet, i, chs.length, m.title || "this book", m.author || "the author", focus, prevQs, pi, pageCount));
       setMsgs([{role:"assistant",content:t}]);
 
-      // Append newly-asked questions to history, capped so storage doesn't grow forever.
       var newQs = extractQuestions(t);
       if (newQs.length) {
         hist[chKey] = (hist[chKey] || []).concat(newQs).slice(-25);
         saveQHist(hist);
       }
     } catch(err) {
-      setMsgs([{role:"assistant",content:"❓ Что вы заметили в этой главе?"}]);
+      setMsgs([{role:"assistant",content:"❓ Что вы заметили в этом отрывке?"}]);
     }
   };
 
@@ -1855,7 +1885,7 @@ export default function App() {
     setPopup(null); stopTTS(); setLview("read");
     charPos.current = 0; paraText.current = "";
     if (noAIMode) { setLoading(false); return; }
-    await litAnalysis(p, i, metaOverride); setLoading(false);
+    await litAnalysis(p, i, 0, metaOverride); setLoading(false);
   };
 
   var navLit = async function(idx) {
@@ -1863,7 +1893,18 @@ export default function App() {
     if (idx < 0 || idx >= chapters.length) return;
     setCidx(idx); setCbm(idx); setPidx(0); setMsgs([]); setLoading(true); setLview("read");
     if (noAIMode) { setLoading(false); return; }
-    await litAnalysis(chapters, idx); setLoading(false);
+    await litAnalysis(chapters, idx, 0); setLoading(false);
+  };
+
+  // Navigate to a new PAGE within the current chapter and refresh the tutor's
+  // questions so they reflect what's on screen now. Used by the page arrows
+  // and by the TTS-driven auto-advance. In noAIMode we just flip the page.
+  var navPage = async function(newPidx) {
+    if (newPidx < 0 || newPidx >= totalPages) return;
+    stopTTS(); charPos.current = 0; paraText.current = "";
+    setPidx(newPidx); setMsgs([]); setLoading(true); setLview("read");
+    if (noAIMode) { setLoading(false); return; }
+    await litAnalysis(chapters, cidx, newPidx); setLoading(false);
   };
 
   // Re-split chapters by lines that contain only a digit (or "digit.")
@@ -1981,9 +2022,17 @@ export default function App() {
     var um = {role:"user",content:input.trim()};
     var next = msgs.concat([um]); setMsgs(next); setInput(""); setLoading(true);
     try {
-      var sys = isLit && chapters.length > 0
-        ? litprompt(curChapter.text.slice(0,600), cidx, chapters.length, bookMeta.title || "this book", bookMeta.author || "the author")
-        : undefined;
+      // Build a page-scoped snippet so follow-up messages stay locked to what's
+      // on the user's screen (same scoping the AI got in the initial question).
+      var sys;
+      if (isLit && chapters.length > 0) {
+        var litParas = (curChapter.text || "").split(/\n{2,}/).filter(function(p){ return p.trim().length > 0; });
+        var litPageParas = litParas.slice(pidx * PAGE_SIZE, (pidx + 1) * PAGE_SIZE);
+        var litSnippet = litPageParas.length ? litPageParas.join("\n\n") : (curChapter.text || "").slice(0, 1200);
+        if (litSnippet.length > 3500) litSnippet = litSnippet.slice(0, 3500);
+        var litPageCount = Math.max(1, Math.ceil(litParas.length / PAGE_SIZE));
+        sys = litprompt(litSnippet, cidx, chapters.length, bookMeta.title || "this book", bookMeta.author || "the author", null, null, pidx, litPageCount);
+      }
       var t = await api(next, sys);
       setMsgs(function(prev){ return prev.concat([{role:"assistant",content:t}]); });
     } catch(err) {
@@ -2978,11 +3027,15 @@ export default function App() {
               <div className="land-tips-title">For the best experience</div>
               <div className="land-tip">
                 <span className="land-tip-num">1</span>
-                <span>Open the app in <strong>Microsoft Edge</strong> for the best Russian voices. (On iPhone, use Safari with Premium Russian voices downloaded in Settings → Accessibility → Spoken Content.)</span>
+                <span>Open the app in <strong>Google Chrome</strong> on a computer or Android. Chrome ships with high-quality Russian voices built in.<br/><span style={{opacity:.7,fontStyle:"italic",fontSize:13}}>On iPhone, use Safari with Russian Premium voices downloaded under Settings → Accessibility → Spoken Content → Voices.</span></span>
               </div>
               <div className="land-tip">
                 <span className="land-tip-num">2</span>
-                <span>In the 🎙 Voice picker, choose a voice marked <strong>★ neural</strong> or <strong>✓ local</strong>.</span>
+                <span>On any Russian text, tap <strong>🎙 Voice</strong>. In the picker, choose <strong>Google русский</strong> — it's the most natural-sounding option in Chrome and the one we recommend.</span>
+              </div>
+              <div className="land-tip">
+                <span className="land-tip-num">3</span>
+                <span>If you don't see <strong>Google русский</strong> listed, pick any voice marked <strong>★ neural</strong> or <strong>✓ local</strong> — those are the next best options.</span>
               </div>
             </div>
 
@@ -2993,7 +3046,30 @@ export default function App() {
 
       <div className="app">
         <header className="hdr">
-          <div className="logo"><span className="lru">Говорим</span><span className="lsub">Russian Practice</span></div>
+          <div
+            className="logo"
+            role="button"
+            tabIndex={0}
+            title="Back to home"
+            onClick={function(){
+              // Reset all the state that defines "where you are" so the user
+              // lands on the home screen (the chat/read/grammar mode picker).
+              // We do NOT clear `chapters` — if the user was reading a book,
+              // they can pick "Read" again and resume where they left off.
+              setMode("");
+              setStarted(false);
+              setMsgs([]);
+              setGramTopicId("");
+              setGramLevel("");
+              setGramSearch("");
+              setShowVP(false);
+              setTab("chat");
+              stopTTS();
+            }}
+            onKeyDown={function(e){ if (e.key === "Enter" || e.key === " ") { e.currentTarget.click(); } }}
+            style={{cursor:"pointer"}}>
+            <span className="lru">Говорим</span><span className="lsub">Russian Practice</span>
+          </div>
           <div style={{display:"flex",alignItems:"center",gap:12}}>
             {started && <button className="tbadge" onClick={function(){ setShowTopic(true); }}>{isLit ? ("📖 " + (bookMeta.title || "Book")) : ("💬 "+act)}</button>}
             {auth.isSignedIn && <button className="adm-trigger" onClick={openForum} title="Community forum">📝 Forum</button>}
@@ -3044,7 +3120,7 @@ export default function App() {
                   </button>
                   <button className="btn-p" onClick={function(){ setMode("read"); }} style={{textAlign:"left",padding:"18px 22px"}}>
                     <div style={{fontSize:22,marginBottom:4}}>📖 Read</div>
-                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Load any Russian EPUB, then practice with comprehension questions.</div>
+                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Load any Russian book file, then practice with comprehension questions.</div>
                   </button>
                   <button className="btn-p" onClick={function(){ setMode("grammar"); }} style={{textAlign:"left",padding:"18px 22px"}}>
                     <div style={{fontSize:22,marginBottom:4}}>📚 Grammar</div>
@@ -3115,7 +3191,7 @@ export default function App() {
                           // so the onChange lookup still resolves correctly. Categories
                           // render in this fixed order; "Other" catches anything missing
                           // or unrecognized.
-                          var CATEGORIES = ["Novel", "Plays", "Song Lyrics", "Poetry", "Short Stories"];
+                          var CATEGORIES = ["Novel", "Song Lyrics", "Poetry", "Short Stories"];
                           var buckets = {};
                           CATEGORIES.forEach(function(c){ buckets[c] = []; });
                           buckets["Other"] = [];
@@ -3432,9 +3508,9 @@ export default function App() {
 
                     <div className={"lnav" + (noAIMode ? " noai" : "")}>
                       <div className="lnav-row">
-                        {pidx > 0 && <button className="lnb" onClick={function(){ setPidx(Math.max(0, pidx-1)); }} disabled={loading}>← Page</button>}
+                        {pidx > 0 && <button className="lnb" onClick={function(){ navPage(pidx - 1); }} disabled={loading}>← Page</button>}
                         <button className="lbm" onClick={function(){ setCbm(cidx); }}>📌</button>
-                        {pidx < totalPages - 1 && <button className="lnb p" onClick={function(){ setPidx(Math.min(totalPages-1, pidx+1)); }} disabled={loading}>Page →</button>}
+                        {pidx < totalPages - 1 && <button className="lnb p" onClick={function(){ navPage(pidx + 1); }} disabled={loading}>Page →</button>}
                       </div>
                       {chapters.length > 1 && (
                         <div className="lnav-row lnav-row-sm">
