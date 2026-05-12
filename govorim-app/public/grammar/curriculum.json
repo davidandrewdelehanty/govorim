@@ -1,0 +1,1288 @@
+{
+  "version": 1,
+  "levels": [
+    { "code": "A1", "name": "A1 — Absolute Beginner", "description": "Alphabet, pronunciation, gender, basic sentences, the present tense." },
+    { "code": "A2", "name": "A2 — Elementary",        "description": "All six cases at an introductory level, past and future tense, aspect basics, full adjective agreement." },
+    { "code": "B1", "name": "B1 — Intermediate",      "description": "Motion verbs, complex sentences, reflexives, imperatives, reported speech, conditionals." },
+    { "code": "B2", "name": "B2 — Upper Intermediate", "description": "Numeral grammar in depth, participles, gerunds, more aspect nuance." },
+    { "code": "C1", "name": "C1 — Advanced",          "description": "Discourse particles, registers, derivational prefixes, impersonal constructions, advanced aspect." },
+    { "code": "C2", "name": "C2 — Mastery",           "description": "Archaic and literary grammar, Church Slavonic influence, poetic inversion, regionalisms, idiom." }
+  ],
+  "topics": [
+    {
+      "id": "a1-cyrillic-alphabet",
+      "level": "A1",
+      "title": "Cyrillic Alphabet",
+      "subtitle": "The first wall every learner climbs.",
+      "sections": [
+        { "heading": "What to learn", "type": "bullets", "items": [
+          "Printed letters",
+          "Handwritten letters (critical — Russian cursive looks very different from print)",
+          "Upper and lowercase forms"
+        ]},
+        { "heading": "Letters that trip up English speakers", "type": "bullets", "items": [
+          "Д д — looks unfamiliar in cursive",
+          "Т т — cursive т looks like English m",
+          "Г г — cursive г looks like English z",
+          "Л л — easy to confuse with П in cursive"
+        ]},
+        { "heading": "False-friend letters", "type": "bullets", "items": [
+          "Р reads as R (not P)",
+          "С reads as S (not C)",
+          "Н reads as N (not H)",
+          "В reads as V (not B)",
+          "У reads as U (not Y)"
+        ]}
+      ]
+    },
+    {
+      "id": "a1-pronunciation",
+      "level": "A1",
+      "title": "Pronunciation Fundamentals",
+      "subtitle": "The sounds that don't exist in English.",
+      "sections": [
+        { "heading": "Core topics", "type": "bullets", "items": [
+          "Hard vs soft consonants",
+          "Stress (unmarked in writing; you have to learn each word's stress)",
+          "Vowel reduction (unstressed о → a-sound)",
+          "Consonant devoicing (final voiced consonants devoice: хлеб → хлеп)",
+          "Pronunciation of ы (no English equivalent)",
+          "Soft sign ь (palatalizes the consonant before it)",
+          "Hard sign ъ (separates prefix from soft vowel)"
+        ]},
+        { "heading": "How to practice", "type": "bullets", "items": [
+          "Minimal pairs (брат vs брать)",
+          "Shadowing native audio",
+          "Reading aloud daily"
+        ]}
+      ]
+    },
+    {
+      "id": "a1-sentence-structure",
+      "level": "A1",
+      "title": "Basic Sentence Structure",
+      "subtitle": "Russian skips 'to be' in the present tense.",
+      "sections": [
+        { "heading": "Core rule", "type": "bullets", "items": [
+          "Subject + verb is the default word order, but Russian is flexible",
+          "In present tense, the verb 'to be' (быть) is omitted",
+          "Я студент = 'I am a student' — literally just 'I student'"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Я дома.", "en": "I'm home." },
+          { "ru": "Он студент.", "en": "He's a student." },
+          { "ru": "Это книга.", "en": "This is a book." },
+          { "ru": "Москва — большой город.", "en": "Moscow is a big city." }
+        ]}
+      ]
+    },
+    {
+      "id": "a1-personal-pronouns",
+      "level": "A1",
+      "title": "Personal Pronouns",
+      "subtitle": "The seven words that start every Russian conversation.",
+      "sections": [
+        { "heading": "The pronouns", "type": "bullets", "items": [
+          "я — I",
+          "ты — you (singular, informal)",
+          "он — he / it (masculine)",
+          "она — she / it (feminine)",
+          "оно — it (neuter)",
+          "мы — we",
+          "вы — you (plural OR formal singular)",
+          "они — they"
+        ]},
+        { "heading": "Note", "type": "bullets", "items": [
+          "ты vs вы matters socially — вы to strangers, elders, in formal situations",
+          "Russian pronouns decline through all six cases (you'll meet meня, мне, мной soon enough)"
+        ]}
+      ]
+    },
+    {
+      "id": "a1-present-tense",
+      "level": "A1",
+      "title": "Present Tense Verbs",
+      "subtitle": "Two conjugation patterns and a handful of stubborn irregulars.",
+      "sections": [
+        { "heading": "Core topics", "type": "bullets", "items": [
+          "Infinitives end in -ть (мостly), -ти, or -чь",
+          "First conjugation (-е- type): читать → читаю, читаешь, читает...",
+          "Second conjugation (-и- type): говорить → говорю, говоришь, говорит...",
+          "Common irregular verbs you must memorize"
+        ]},
+        { "heading": "Core verbs to learn first", "type": "bullets", "items": [
+          "быть — to be (used only outside present)",
+          "жить — to live",
+          "работать — to work",
+          "знать — to know",
+          "понимать — to understand",
+          "говорить — to speak / say",
+          "хотеть — to want (irregular!)",
+          "мочь — can / be able to (irregular!)"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Я живу в Москве.", "en": "I live in Moscow." },
+          { "ru": "Ты говоришь по-русски?", "en": "Do you speak Russian?" },
+          { "ru": "Мы понимаем.", "en": "We understand." }
+        ]}
+      ]
+    },
+    {
+      "id": "a1-gender",
+      "level": "A1",
+      "title": "Gender",
+      "subtitle": "Every noun is one of three. Endings give it away.",
+      "sections": [
+        { "heading": "The three genders (+ plural)", "type": "bullets", "items": [
+          "Masculine — usually ends in a consonant or -й",
+          "Feminine — usually ends in -а or -я",
+          "Neuter — usually ends in -о or -е",
+          "Plural is a separate agreement category, not a fourth gender"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "стол — masculine", "en": "table" },
+          { "ru": "книга — feminine", "en": "book" },
+          { "ru": "окно — neuter", "en": "window" },
+          { "ru": "папа — masculine (despite -a ending!)", "en": "dad" }
+        ]},
+        { "heading": "Trap", "type": "bullets", "items": [
+          "Nouns ending in -ь can be EITHER masculine or feminine — you have to memorize each one (день m., ночь f.)"
+        ]}
+      ]
+    },
+    {
+      "id": "a1-numbers",
+      "level": "A1",
+      "title": "Numbers (basics)",
+      "subtitle": "Counting, time, age, dates. The hard part comes later (B2).",
+      "sections": [
+        { "heading": "Topics", "type": "bullets", "items": [
+          "Cardinal numbers 0–100",
+          "Time expressions (сейчас час, два часа, три часа, пять часов...)",
+          "Age expressions (мне 30 лет)",
+          "Dates (Сегодня третье октября.)"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Мне двадцать пять лет.", "en": "I'm 25 years old." },
+          { "ru": "Сейчас три часа.", "en": "It's 3 o'clock." },
+          { "ru": "У меня один брат.", "en": "I have one brother." }
+        ]},
+        { "heading": "Warning", "type": "bullets", "items": [
+          "Numbers force surrounding nouns into specific cases — but you don't need to master that until B2. For now just learn the words."
+        ]}
+      ]
+    },
+    {
+      "id": "a1-question-formation",
+      "level": "A1",
+      "title": "Question Formation",
+      "subtitle": "Yes/no via intonation; wh-questions via question words.",
+      "sections": [
+        { "heading": "Question words", "type": "bullets", "items": [
+          "Кто? — who?",
+          "Что? — what?",
+          "Где? — where?",
+          "Когда? — when?",
+          "Почему? — why?",
+          "Как? — how?",
+          "Сколько? — how much / many?",
+          "Какой? — what kind / which? (agrees in gender)"
+        ]},
+        { "heading": "Yes/no questions", "type": "bullets", "items": [
+          "No word order change needed — just rising intonation on the questioned word",
+          "Ты студент? = 'Are you a student?' (compare Ты студент. = 'You are a student.')"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Где ты живёшь?", "en": "Where do you live?" },
+          { "ru": "Что это?", "en": "What is this?" },
+          { "ru": "Ты понимаешь?", "en": "Do you understand?" }
+        ]}
+      ]
+    },
+    {
+      "id": "a1-negation",
+      "level": "A1",
+      "title": "Negation",
+      "subtitle": "не before the word being negated; нет for 'there isn't'.",
+      "sections": [
+        { "heading": "Two key words", "type": "bullets", "items": [
+          "не — 'not' (placed directly before whatever you're negating)",
+          "нет — 'no' (one-word answer) AND 'there is not' (followed by genitive)"
+        ]},
+        { "heading": "Negative pronouns", "type": "bullets", "items": [
+          "никто — nobody",
+          "ничего — nothing",
+          "никогда — never",
+          "нигде — nowhere",
+          "никуда — to nowhere"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Я не знаю.", "en": "I don't know." },
+          { "ru": "У меня нет времени.", "en": "I don't have time." },
+          { "ru": "Никто ничего не знает.", "en": "Nobody knows anything (lit. nobody nothing not knows)." }
+        ]},
+        { "heading": "Watch out", "type": "bullets", "items": [
+          "Russian uses DOUBLE NEGATIVES — both the negative pronoun AND не are required (Никто не знает, never just Никто знает)."
+        ]}
+      ]
+    },
+
+    {
+      "id": "a2-nominative",
+      "level": "A2",
+      "title": "Nominative Case",
+      "subtitle": "The default. Subject of the sentence; dictionary form.",
+      "sections": [
+        { "heading": "Functions", "type": "bullets", "items": [
+          "Subject of the sentence",
+          "Predicate nouns after 'to be' in present (Это книга.)",
+          "The form you'll find in any dictionary"
+        ]},
+        { "heading": "Related topics to study together", "type": "bullets", "items": [
+          "Noun gender",
+          "Plural formation",
+          "Adjective agreement (gender, number, case all match the noun)"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Красивый дом стоит на холме.", "en": "A beautiful house stands on the hill." },
+          { "ru": "Новая книга интересная.", "en": "The new book is interesting." }
+        ]}
+      ]
+    },
+    {
+      "id": "a2-accusative",
+      "level": "A2",
+      "title": "Accusative Case",
+      "subtitle": "Direct object of a transitive verb.",
+      "sections": [
+        { "heading": "Functions", "type": "bullets", "items": [
+          "Direct object: Я вижу брата.",
+          "Motion 'into' or 'onto' with в/на: Я иду в школу."
+        ]},
+        { "heading": "Big rule: animacy matters", "type": "bullets", "items": [
+          "Masculine ANIMATE nouns take genitive-shaped endings in accusative (брат → брата)",
+          "Masculine INANIMATE nouns look identical to nominative (стол → стол)",
+          "Feminine -а/-я → -у/-ю regardless of animacy (книга → книгу)",
+          "Neuter looks identical to nominative"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Я вижу брата.", "en": "I see (my) brother. (animate, ending changes)" },
+          { "ru": "Я вижу стол.", "en": "I see the table. (inanimate, no change)" },
+          { "ru": "Я читаю книгу.", "en": "I'm reading a book." },
+          { "ru": "Мы идём в кино.", "en": "We're going to the cinema." }
+        ]}
+      ]
+    },
+    {
+      "id": "a2-prepositional",
+      "level": "A2",
+      "title": "Prepositional Case",
+      "subtitle": "Location, and what you're talking about.",
+      "sections": [
+        { "heading": "Functions", "type": "bullets", "items": [
+          "Location with в (in) and на (on/at): в Москве, на работе",
+          "'About' with о/об/обо: о книге"
+        ]},
+        { "heading": "Endings (singular)", "type": "bullets", "items": [
+          "Masc / Neut → -е (most nouns)",
+          "Fem -а/-я → -е (книга → о книге)",
+          "Fem -ь → -и (ночь → о ночи)",
+          "Words in -ия, -ие, -ий → -ии"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Я живу в Москве.", "en": "I live in Moscow." },
+          { "ru": "Мы говорим о книге.", "en": "We're talking about the book." },
+          { "ru": "Она работает на заводе.", "en": "She works at the factory." }
+        ]}
+      ]
+    },
+    {
+      "id": "a2-genitive",
+      "level": "A2",
+      "title": "Genitive Case",
+      "subtitle": "The most-used case in Russian — and its plural is a famous nightmare.",
+      "sections": [
+        { "heading": "Functions", "type": "bullets", "items": [
+          "Possession: книга брата ('brother's book')",
+          "Absence: нет времени ('no time')",
+          "Quantity: много людей ('many people')",
+          "Negation of an object: Я не знаю ответа.",
+          "After numbers 2–4 (singular genitive) and 5+ (plural genitive)",
+          "After most prepositions of place/source: из, от, у, без"
+        ]},
+        { "heading": "Endings (singular)", "type": "bullets", "items": [
+          "Masc / Neut → -а / -я",
+          "Fem -а/-я → -ы / -и"
+        ]},
+        { "heading": "Genitive plural — the famous trap", "type": "bullets", "items": [
+          "Masc nouns → -ов / -ев / -ей",
+          "Fem nouns ending in -а → drop the ending (книга → книг)",
+          "Neuter nouns → drop the ending (окно → окон)",
+          "Many words insert a 'fleeting vowel': окно → окон, девушка → девушек"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Нет времени.", "en": "There's no time." },
+          { "ru": "Много людей пришло.", "en": "Many people came." },
+          { "ru": "Стакан воды, пожалуйста.", "en": "A glass of water, please." },
+          { "ru": "Я из России.", "en": "I'm from Russia." }
+        ]}
+      ]
+    },
+    {
+      "id": "a2-dative",
+      "level": "A2",
+      "title": "Dative Case",
+      "subtitle": "Indirect object — the recipient. Also age and feelings.",
+      "sections": [
+        { "heading": "Functions", "type": "bullets", "items": [
+          "Indirect object: Я дал другу книгу.",
+          "Age: Мне двадцать лет.",
+          "Physical/emotional states: Мне холодно. Мне скучно.",
+          "Recipient of giving/showing/telling verbs"
+        ]},
+        { "heading": "Constructions to memorize", "type": "bullets", "items": [
+          "Мне нравится X — 'I like X' (literally: X is pleasing to me)",
+          "Мне нужно — 'I need to'",
+          "Мне можно? — 'May I?'",
+          "Мне кажется — 'It seems to me'"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Мне холодно.", "en": "I'm cold (lit. it is cold to me)." },
+          { "ru": "Я дал другу книгу.", "en": "I gave my friend a book." },
+          { "ru": "Мне нравится этот фильм.", "en": "I like this movie." }
+        ]}
+      ]
+    },
+    {
+      "id": "a2-instrumental",
+      "level": "A2",
+      "title": "Instrumental Case",
+      "subtitle": "'With' / 'by means of' / what someone IS (profession).",
+      "sections": [
+        { "heading": "Functions", "type": "bullets", "items": [
+          "With (accompaniment), using с: с другом",
+          "By means of (no preposition): писать ручкой ('writing with a pen')",
+          "Profession: работать врачом ('working as a doctor')",
+          "After certain verbs (заниматься, интересоваться, гордиться)"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Я говорю с другом.", "en": "I'm speaking with my friend." },
+          { "ru": "Она работает врачом.", "en": "She works as a doctor." },
+          { "ru": "Я занимаюсь русским языком.", "en": "I'm studying Russian." },
+          { "ru": "Чай с лимоном.", "en": "Tea with lemon." }
+        ]}
+      ]
+    },
+    {
+      "id": "a2-past-tense",
+      "level": "A2",
+      "title": "Past Tense",
+      "subtitle": "Easier than the present tense — it agrees with gender, not person.",
+      "sections": [
+        { "heading": "How it works", "type": "bullets", "items": [
+          "Drop the -ть from the infinitive and add: -л (masc), -ла (fem), -ло (neuter), -ли (plural)",
+          "The past tense agrees with the SUBJECT'S gender, not the speaker's",
+          "Some verbs have irregular stems (мочь → мог, идти → шёл)"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Он читал книгу.", "en": "He was reading a book." },
+          { "ru": "Она читала книгу.", "en": "She was reading a book." },
+          { "ru": "Они читали книгу.", "en": "They were reading a book." },
+          { "ru": "Я не знал.", "en": "I didn't know (said by a male)." },
+          { "ru": "Я не знала.", "en": "I didn't know (said by a female)." }
+        ]}
+      ]
+    },
+    {
+      "id": "a2-future-tense",
+      "level": "A2",
+      "title": "Future Tense",
+      "subtitle": "Two flavors — imperfective and perfective.",
+      "sections": [
+        { "heading": "Imperfective future (process / ongoing future action)", "type": "bullets", "items": [
+          "Conjugate быть (буду, будешь, будет, будем, будете, будут) + imperfective infinitive",
+          "Я буду читать. = 'I will read / I will be reading.'"
+        ]},
+        { "heading": "Perfective future (single completed future action)", "type": "bullets", "items": [
+          "Take the perfective verb and conjugate it in 'present' form — the meaning is automatically future",
+          "Я прочитаю. = 'I will read (and finish).'"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Завтра я буду работать весь день.", "en": "Tomorrow I'll be working all day." },
+          { "ru": "Я прочитаю книгу за неделю.", "en": "I'll read the book (cover to cover) in a week." }
+        ]}
+      ]
+    },
+    {
+      "id": "a2-aspect-intro",
+      "level": "A2",
+      "title": "Verb Aspect — Introduction",
+      "subtitle": "Probably the most important grammatical concept in Russian.",
+      "sections": [
+        { "heading": "The core distinction", "type": "bullets", "items": [
+          "IMPERFECTIVE: process, repetition, or ongoing action. Answers 'what was happening?'",
+          "PERFECTIVE: completed action, single event, with a result. Answers 'what happened (and got done)?'"
+        ]},
+        { "heading": "Aspect pairs", "type": "bullets", "items": [
+          "Most verbs come in pairs — same meaning, different aspect",
+          "делать / сделать — to do / to complete doing",
+          "писать / написать — to write / to finish writing",
+          "читать / прочитать — to read / to read through"
+        ]},
+        { "heading": "Practice", "type": "bullets", "items": [
+          "Time expressions: 'I read for an hour' (imperf) vs 'I read a book in an hour' (perf)",
+          "Sequencing: 'When I had finished (perf), I left (perf)'",
+          "Intentions: 'I'm going to write' (imperf — general intention) vs 'I will write and send it' (perf)"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Я писал письмо час.", "en": "I was writing the letter for an hour. (imperf — process)" },
+          { "ru": "Я написал письмо за час.", "en": "I wrote (completed) the letter in an hour. (perf — result)" }
+        ]}
+      ]
+    },
+    {
+      "id": "a2-adjective-declension",
+      "level": "A2",
+      "title": "Full Adjective Declension",
+      "subtitle": "Adjectives match the noun in gender, number, AND case.",
+      "sections": [
+        { "heading": "Triple agreement", "type": "bullets", "items": [
+          "Gender — masc / fem / neut",
+          "Number — singular / plural",
+          "Case — all six"
+        ]},
+        { "heading": "Nominative endings", "type": "bullets", "items": [
+          "Masc: -ый / -ий / -ой (новый, синий, большой)",
+          "Fem: -ая / -яя (новая, синяя)",
+          "Neut: -ое / -ее (новое, синее)",
+          "Plural: -ые / -ие (новые, синие)"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "новый дом → в новом доме (prep)", "en": "new house → in the new house" },
+          { "ru": "красивая книга → красивую книгу (acc)", "en": "beautiful book → (I see) the beautiful book" }
+        ]}
+      ]
+    },
+    {
+      "id": "a2-possessive-pronouns",
+      "level": "A2",
+      "title": "Possessive Pronouns",
+      "subtitle": "мой / твой / наш / ваш — agree with the noun like adjectives. Он/она/они are invariable.",
+      "sections": [
+        { "heading": "The forms (nominative)", "type": "bullets", "items": [
+          "мой / моя / моё / мои — my",
+          "твой / твоя / твоё / твои — your (sg.)",
+          "наш / наша / наше / наши — our",
+          "ваш / ваша / ваше / ваши — your (pl./formal)",
+          "его / её / их — his / her / their (NEVER change form)"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Это мой друг.", "en": "This is my friend." },
+          { "ru": "Это моя книга.", "en": "This is my book." },
+          { "ru": "Его машина новая.", "en": "His car is new. (его — invariable)" }
+        ]}
+      ]
+    },
+    {
+      "id": "a2-demonstratives",
+      "level": "A2",
+      "title": "Demonstratives — этот / тот",
+      "subtitle": "'This' vs 'that'. Both decline like adjectives.",
+      "sections": [
+        { "heading": "The forms (nominative)", "type": "bullets", "items": [
+          "этот / эта / это / эти — this / these",
+          "тот / та / то / те — that / those"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Этот фильм интересный.", "en": "This movie is interesting." },
+          { "ru": "Эта книга моя.", "en": "This book is mine." },
+          { "ru": "Я не помню тот день.", "en": "I don't remember that day." }
+        ]}
+      ]
+    },
+    {
+      "id": "a2-comparatives-superlatives",
+      "level": "A2",
+      "title": "Comparatives & Superlatives",
+      "subtitle": "'Better', 'more interesting', 'the most beautiful'.",
+      "sections": [
+        { "heading": "Simple comparatives (invariable)", "type": "bullets", "items": [
+          "лучше — better",
+          "хуже — worse",
+          "больше — more / bigger",
+          "меньше — less / smaller",
+          "Used predicatively: Эта книга интереснее."
+        ]},
+        { "heading": "Compound comparatives", "type": "bullets", "items": [
+          "более + adjective — more X",
+          "менее + adjective — less X",
+          "Used attributively: более интересный фильм"
+        ]},
+        { "heading": "Superlatives", "type": "bullets", "items": [
+          "самый + adjective — the most X (most common, declines normally)",
+          "самый красивый — the most beautiful",
+          "Some have synthetic forms: лучший (best), худший (worst)"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Эта книга интереснее.", "en": "This book is more interesting." },
+          { "ru": "Это самый красивый город.", "en": "This is the most beautiful city." }
+        ]}
+      ]
+    },
+
+    {
+      "id": "b1-motion-pairs",
+      "level": "B1",
+      "title": "Motion Verbs — Basic Pairs",
+      "subtitle": "Russian distinguishes HOW you go before WHERE you go.",
+      "sections": [
+        { "heading": "The three core pairs", "type": "bullets", "items": [
+          "On foot: идти / ходить",
+          "By transport: ехать / ездить",
+          "Carrying: нести / носить"
+        ]},
+        { "heading": "Other useful pairs", "type": "bullets", "items": [
+          "лететь / летать — to fly",
+          "плыть / плавать — to swim / sail",
+          "бежать / бегать — to run",
+          "вести / водить — to lead / drive (someone)",
+          "везти / возить — to transport"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Я иду в школу.", "en": "I'm going (right now, on foot) to school." },
+          { "ru": "Я хожу в школу каждый день.", "en": "I go to school every day." }
+        ]}
+      ]
+    },
+    {
+      "id": "b1-motion-uni-multi",
+      "level": "B1",
+      "title": "Motion — Unidirectional vs Multidirectional",
+      "subtitle": "Two imperfectives for the same verb. The brain rebels.",
+      "sections": [
+        { "heading": "The distinction", "type": "bullets", "items": [
+          "UNIDIRECTIONAL (идти, ехать, лететь) — going in one direction, right now, or a planned single trip",
+          "MULTIDIRECTIONAL (ходить, ездить, летать) — habitual, repeated, round-trip, random wandering, OR ability"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Я иду домой. (one direction, now)", "en": "I'm going home." },
+          { "ru": "Я хожу в спортзал три раза в неделю. (repeated)", "en": "I go to the gym 3 times a week." },
+          { "ru": "Вчера я ходил в кино. (round trip — went and came back)", "en": "Yesterday I went to the cinema." },
+          { "ru": "Ребёнок уже ходит. (ability)", "en": "The child already walks." }
+        ]}
+      ]
+    },
+    {
+      "id": "b1-motion-prefixes",
+      "level": "B1",
+      "title": "Motion Prefixes",
+      "subtitle": "Stick a prefix on a motion verb and you get a perfective with a specific direction.",
+      "sections": [
+        { "heading": "Common prefixes", "type": "bullets", "items": [
+          "при- (arrival): прийти — to arrive",
+          "у- (departure): уйти — to leave",
+          "в- (entry): войти — to enter",
+          "вы- (exit): выйти — to exit",
+          "пере- (crossing / across): перейти — to cross",
+          "до- (reaching a point): дойти — to reach",
+          "об- (around): обойти — to go around",
+          "под- (approaching): подойти — to approach",
+          "от- (away from): отойти — to step away"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Он пришёл домой в шесть.", "en": "He arrived home at six." },
+          { "ru": "Я перешёл улицу.", "en": "I crossed the street." },
+          { "ru": "Выйди отсюда!", "en": "Get out of here!" }
+        ]}
+      ]
+    },
+    {
+      "id": "b1-motion-aspect",
+      "level": "B1",
+      "title": "Motion Verbs + Aspect",
+      "subtitle": "Adding a prefix turns idti/ekhat' into a perfective. The multidirectionals stay imperfective.",
+      "sections": [
+        { "heading": "The pattern", "type": "bullets", "items": [
+          "Unidirectional + prefix = perfective (uses the unidirectional stem)",
+          "Multidirectional + prefix = imperfective partner to that perfective",
+          "Example: prefix при- + идти/ходить → прийти (pf) / приходить (impf)"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Он приходит каждый день. (impf, habitual)", "en": "He comes every day." },
+          { "ru": "Он пришёл вчера. (pf, single arrival)", "en": "He arrived yesterday." }
+        ]}
+      ]
+    },
+    {
+      "id": "b1-conjunctions",
+      "level": "B1",
+      "title": "Conjunctions — Building Complex Sentences",
+      "subtitle": "The connectors that turn a beginner into someone who can argue.",
+      "sections": [
+        { "heading": "Core conjunctions", "type": "bullets", "items": [
+          "потому что — because",
+          "так что — so / therefore",
+          "если — if",
+          "хотя — although",
+          "чтобы — in order to / so that (always followed by past or infinitive)",
+          "когда — when",
+          "пока — while / until",
+          "поэтому — therefore"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Я не пошёл, потому что было холодно.", "en": "I didn't go because it was cold." },
+          { "ru": "Я учу русский, чтобы читать Достоевского.", "en": "I'm learning Russian in order to read Dostoevsky." },
+          { "ru": "Хотя было холодно, я пошёл гулять.", "en": "Although it was cold, I went for a walk." }
+        ]}
+      ]
+    },
+    {
+      "id": "b1-relative-clauses",
+      "level": "B1",
+      "title": "Relative Clauses — который",
+      "subtitle": "'который' is the workhorse 'who/which/that' — and it declines.",
+      "sections": [
+        { "heading": "How it works", "type": "bullets", "items": [
+          "который agrees with its antecedent in GENDER and NUMBER",
+          "Its CASE is determined by its role in the relative clause, NOT by the antecedent",
+          "Always preceded by a comma"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Человек, который живёт здесь, — врач.", "en": "The person who lives here is a doctor." },
+          { "ru": "Книга, которую я читаю, очень интересная.", "en": "The book (which) I'm reading is very interesting." },
+          { "ru": "Друг, с которым я говорил, уехал.", "en": "The friend (with whom) I was speaking has left." }
+        ]}
+      ]
+    },
+    {
+      "id": "b1-reported-speech",
+      "level": "B1",
+      "title": "Reported Speech",
+      "subtitle": "Russian keeps the original tense. No backshift like in English.",
+      "sections": [
+        { "heading": "The key difference from English", "type": "bullets", "items": [
+          "English: He said he WAS tired. (past → past-shifted)",
+          "Russian: Он сказал, что он устал. (literally 'he said that he is tired')",
+          "Russian tenses don't shift in indirect speech — the verb stays in the tense it was originally in"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Он сказал, что он работает.", "en": "He said that he is working / was working." },
+          { "ru": "Она сказала, что придёт завтра.", "en": "She said she would come tomorrow. (literally 'will come')" }
+        ]}
+      ]
+    },
+    {
+      "id": "b1-conditionals",
+      "level": "B1",
+      "title": "Conditional Sentences — если бы",
+      "subtitle": "Hypotheticals always use 'бы + past tense'.",
+      "sections": [
+        { "heading": "Real vs hypothetical", "type": "bullets", "items": [
+          "REAL conditional (just 'если'): Если будет дождь, я останусь дома.",
+          "HYPOTHETICAL (если бы + past): Если бы у меня было время, я бы пошёл.",
+          "Note: бы appears in BOTH halves of a hypothetical"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Если бы я знал, я бы сказал тебе.", "en": "If I had known, I would have told you." },
+          { "ru": "Если будет хорошая погода, мы поедем за город.", "en": "If the weather is good, we'll go to the countryside." }
+        ]}
+      ]
+    },
+    {
+      "id": "b1-word-order",
+      "level": "B1",
+      "title": "Word Order Nuance",
+      "subtitle": "Russian word order is flexible, but not random. Position carries information.",
+      "sections": [
+        { "heading": "The principle", "type": "bullets", "items": [
+          "New information tends to go at the END of the sentence",
+          "Topic (what's being discussed) tends to come first; focus (the new thing) comes last",
+          "Moving a word forward EMPHASIZES or contrasts it"
+        ]},
+        { "heading": "The classic example", "type": "examples", "items": [
+          { "ru": "Я люблю тебя.", "en": "I love you. (neutral)" },
+          { "ru": "Тебя я люблю.", "en": "You — I love (it's YOU I love, not someone else)." },
+          { "ru": "Люблю тебя я.", "en": "Love you, I do. (often poetic/emphatic)" }
+        ]},
+        { "heading": "Note", "type": "bullets", "items": [
+          "Same dictionary meaning, very different emotional focus. This is what makes translating Russian poetry into English so brutal."
+        ]}
+      ]
+    },
+    {
+      "id": "b1-reflexive-verbs",
+      "level": "B1",
+      "title": "Reflexive Verbs (-ся / -сь)",
+      "subtitle": "Reflexive in form, but only sometimes reflexive in meaning.",
+      "sections": [
+        { "heading": "Three meanings", "type": "bullets", "items": [
+          "True reflexive (action on self): мыться — to wash oneself",
+          "Reciprocal (each other): встречаться — to meet each other",
+          "Passive-like (no doer): дверь открывается — the door opens",
+          "Lexicalized — the -ся version has its own meaning: учить (to teach) vs учиться (to study)"
+        ]},
+        { "heading": "Common reflexive verbs", "type": "bullets", "items": [
+          "учиться — to study",
+          "заниматься — to be busy with / to study (a subject)",
+          "бояться — to be afraid (takes genitive)",
+          "находиться — to be located",
+          "родиться — to be born",
+          "смеяться — to laugh",
+          "нравиться — to be pleasing (used in мне нравится)"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Я учусь в университете.", "en": "I study at university." },
+          { "ru": "Мы встречаемся в субботу.", "en": "We're meeting on Saturday." },
+          { "ru": "Я боюсь темноты.", "en": "I'm afraid of the dark. (genitive after бояться)" }
+        ]}
+      ]
+    },
+    {
+      "id": "b1-imperatives",
+      "level": "B1",
+      "title": "Imperatives",
+      "subtitle": "Commands — informal (ты) and formal/plural (вы).",
+      "sections": [
+        { "heading": "Formation", "type": "bullets", "items": [
+          "Take the present-tense они form, drop the ending, add -й/-и/-ь",
+          "читают → читай (informal) / читайте (formal)",
+          "говорят → говори / говорите",
+          "Aspect matters: imperfective for invitations and ongoing, perfective for single completed asks"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Говори по-русски!", "en": "Speak Russian! (informal)" },
+          { "ru": "Скажите, пожалуйста...", "en": "Please tell me... (formal, perfective — one-time)" },
+          { "ru": "Читай эту книгу.", "en": "Read this book. (imperf — read it / be reading it)" }
+        ]}
+      ]
+    },
+
+    {
+      "id": "b2-numerals-cardinal",
+      "level": "B2",
+      "title": "Cardinal Numerals — Deep Dive",
+      "subtitle": "Russian numerals decline AND they control the case of the noun they count. Famous misery.",
+      "sections": [
+        { "heading": "The rules for what follows a number", "type": "bullets", "items": [
+          "1 (один) + nominative singular: один стол",
+          "2, 3, 4 + genitive singular: два стола, три стола",
+          "5–20 + genitive plural: пять столов",
+          "Compound numbers go by the LAST digit: 22 = 'двадцать два стола' (last digit 2 → gen sg)",
+          "11–14 are exceptions — always gen plural (одиннадцать столов)"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "один час", "en": "one hour (nom sg)" },
+          { "ru": "два часа", "en": "two hours (gen sg)" },
+          { "ru": "пять часов", "en": "five hours (gen pl)" },
+          { "ru": "двадцать один час", "en": "21 hours (last digit 1 → nom sg)" }
+        ]}
+      ]
+    },
+    {
+      "id": "b2-numerals-ordinal",
+      "level": "B2",
+      "title": "Ordinal Numerals",
+      "subtitle": "'First', 'second', 'third' — these behave like adjectives.",
+      "sections": [
+        { "heading": "Key forms", "type": "bullets", "items": [
+          "первый — first",
+          "второй — second",
+          "третий — third (irregular declension!)",
+          "четвёртый — fourth",
+          "пятый — fifth",
+          "Ordinals agree with their noun in gender, number, case — just like adjectives"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "первый раз", "en": "the first time" },
+          { "ru": "вторая глава", "en": "the second chapter" },
+          { "ru": "Сегодня третье октября.", "en": "Today is the third of October. (neuter, agreeing with implicit число)" }
+        ]}
+      ]
+    },
+    {
+      "id": "b2-numerals-collective",
+      "level": "B2",
+      "title": "Collective Numerals",
+      "subtitle": "двое, трое, четверо — used with groups of (usually male) people.",
+      "sections": [
+        { "heading": "The forms", "type": "bullets", "items": [
+          "двое — two (as a group)",
+          "трое — three",
+          "четверо — four",
+          "пятеро — five",
+          "Used with mixed-gender groups, groups of children, and certain plural-only nouns"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "У нас трое детей.", "en": "We have three children." },
+          { "ru": "Двое мужчин стояли у двери.", "en": "Two men stood by the door." },
+          { "ru": "Сутки прошли. Двое суток прошло.", "en": "A day went by. Two days went by. (сутки is plural-only — needs a collective)" }
+        ]}
+      ]
+    },
+    {
+      "id": "b2-numerals-cases",
+      "level": "B2",
+      "title": "Numerals + Case Interaction",
+      "subtitle": "Numbers themselves decline. Throw them into the dative and feel the pain.",
+      "sections": [
+        { "heading": "Key fact", "type": "bullets", "items": [
+          "In oblique cases (anything except nom/acc), the NUMBER takes the case AND so does the noun — both in the same case, same number",
+          "пять домов (nom/acc, gen pl) → к пяти домам (dat, dat pl) → с пятью домами (instr, instr pl)"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Я был с тремя друзьями.", "en": "I was with three friends. (instr — both number and noun in instr)" },
+          { "ru": "О двух студентах.", "en": "About two students. (prep)" },
+          { "ru": "Полтора часа = an hour and a half (полтора itself is irregular)", "en": "" }
+        ]}
+      ]
+    },
+    {
+      "id": "b2-present-active-participle",
+      "level": "B2",
+      "title": "Present Active Participles",
+      "subtitle": "'The person doing X' — formed from imperfective verbs.",
+      "sections": [
+        { "heading": "Formation", "type": "bullets", "items": [
+          "Take они form, drop the -т, add -щий (declines like adjective)",
+          "читают → читающий — 'reading' / 'one who is reading'",
+          "Largely literary / journalistic. Spoken Russian prefers 'который' clauses."
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Человек, читающий газету, — мой дядя.", "en": "The man reading the newspaper is my uncle." },
+          { "ru": "= Человек, который читает газету, — мой дядя.", "en": "(same thing, spoken style)" }
+        ]}
+      ]
+    },
+    {
+      "id": "b2-past-active-participle",
+      "level": "B2",
+      "title": "Past Active Participles",
+      "subtitle": "'The person who was doing / who did X'.",
+      "sections": [
+        { "heading": "Formation", "type": "bullets", "items": [
+          "From past-tense stem: читал → читавший",
+          "From perfective: прочитал → прочитавший",
+          "Highly literary. Tolstoy and bureaucrats love these."
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Человек, написавший это письмо, — мой брат.", "en": "The man who wrote this letter is my brother." },
+          { "ru": "Студент, изучавший русский, поехал в Москву.", "en": "The student who was studying Russian went to Moscow." }
+        ]}
+      ]
+    },
+    {
+      "id": "b2-present-passive-participle",
+      "level": "B2",
+      "title": "Present Passive Participles",
+      "subtitle": "'The thing being X-ed' — often shows up as an adjective.",
+      "sections": [
+        { "heading": "Formation", "type": "bullets", "items": [
+          "Add -м- to the present stem: читаемый — '(being) read'",
+          "Rare in spoken Russian; common in technical and academic writing"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "любимый — favorite / beloved (lit. 'being loved')", "en": "" },
+          { "ru": "уважаемый коллега", "en": "esteemed colleague" }
+        ]}
+      ]
+    },
+    {
+      "id": "b2-past-passive-participle",
+      "level": "B2",
+      "title": "Past Passive Participles",
+      "subtitle": "'The thing that has been X-ed' — extremely common.",
+      "sections": [
+        { "heading": "Formation", "type": "bullets", "items": [
+          "From perfective verbs: прочитанный, написанный, открытый, закрытый",
+          "Two endings: -нный (most verbs) or -тый (some verbs)",
+          "Has a short form used predicatively: книга прочитана"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "прочитанная книга", "en": "a book that's been read (long form, attributive)" },
+          { "ru": "Книга прочитана.", "en": "The book has been read. (short form, predicate)" },
+          { "ru": "открытая дверь", "en": "an open(ed) door" }
+        ]}
+      ]
+    },
+    {
+      "id": "b2-imperfective-gerund",
+      "level": "B2",
+      "title": "Imperfective Gerunds (деепричастия)",
+      "subtitle": "'While X-ing' — a simultaneous action.",
+      "sections": [
+        { "heading": "Formation", "type": "bullets", "items": [
+          "Drop -ют/-ут from они form, add -я (or -а after hissing consonants)",
+          "читают → читая",
+          "Express action happening AT THE SAME TIME as the main verb",
+          "Subject must be the same as the main clause"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Читая книгу, он уснул.", "en": "While reading the book, he fell asleep." },
+          { "ru": "Гуляя по парку, я думал о тебе.", "en": "Walking through the park, I was thinking about you." }
+        ]}
+      ]
+    },
+    {
+      "id": "b2-perfective-gerund",
+      "level": "B2",
+      "title": "Perfective Gerunds",
+      "subtitle": "'Having X-ed' — a completed prior action.",
+      "sections": [
+        { "heading": "Formation", "type": "bullets", "items": [
+          "Take perfective past-tense stem, add -в (or -вши)",
+          "сделал → сделав",
+          "Express action that HAS BEEN COMPLETED before the main verb's action begins"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Сделав уроки, он пошёл гулять.", "en": "Having done his homework, he went for a walk." },
+          { "ru": "Прочитав письмо, она заплакала.", "en": "Having read the letter, she cried." }
+        ]}
+      ]
+    },
+
+    {
+      "id": "c1-aspect-iterative",
+      "level": "C1",
+      "title": "Aspect — Iterative Meaning",
+      "subtitle": "Repeated completed actions: 'I read each one' vs 'I read for a while each time'.",
+      "sections": [
+        { "heading": "The nuance", "type": "bullets", "items": [
+          "Imperfective for repeated events seen as a habit or pattern",
+          "Perfective is generally avoided for repetition — except in specific iterative constructions",
+          "Specific verbs like бывать (a 'multifrequentative' of быть) carry built-in repetition"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Я часто бывал в Москве.", "en": "I used to be in Moscow often. (iterative imperfective)" },
+          { "ru": "Каждый раз, когда он приходил, он приносил цветы.", "en": "Every time he came, he brought flowers." }
+        ]}
+      ]
+    },
+    {
+      "id": "c1-aspect-delimitative",
+      "level": "C1",
+      "title": "Delimitative Verbs (по-)",
+      "subtitle": "'To X for a little while' — bounded perfective with the prefix по-.",
+      "sections": [
+        { "heading": "The pattern", "type": "bullets", "items": [
+          "Prefix по- on an imperfective gives a perfective meaning 'do X for a limited time'",
+          "почитать = 'to read for a bit'",
+          "поспать = 'to take a nap'",
+          "погулять = 'to take a walk'",
+          "Different from the result-focused perfective"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Я почитал и пошёл спать.", "en": "I read for a bit and went to sleep." },
+          { "ru": "Давай погуляем!", "en": "Let's go for a walk!" }
+        ]}
+      ]
+    },
+    {
+      "id": "c1-aspect-semelfactive",
+      "level": "C1",
+      "title": "Semelfactive Verbs (-ну-)",
+      "subtitle": "'To X once, briefly' — a single instantaneous occurrence.",
+      "sections": [
+        { "heading": "The pattern", "type": "bullets", "items": [
+          "Suffix -ну- on certain verbs gives a one-shot, instantaneous meaning",
+          "крикнуть — to shout once (vs кричать, to be shouting)",
+          "толкнуть — to push once",
+          "вздохнуть — to give a single sigh"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Он крикнул и убежал.", "en": "He shouted (once) and ran off." }
+        ]}
+      ]
+    },
+    {
+      "id": "c1-aspect-ingressive",
+      "level": "C1",
+      "title": "Ingressive Meaning (за-)",
+      "subtitle": "'To begin X-ing' — the prefix за- marks the start of an action.",
+      "sections": [
+        { "heading": "The pattern", "type": "bullets", "items": [
+          "Prefix за- on certain verbs marks the BEGINNING of an action",
+          "заговорить — to start speaking",
+          "запеть — to start singing",
+          "заплакать — to start crying"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Она вдруг заговорила по-английски.", "en": "She suddenly started speaking English." },
+          { "ru": "Ребёнок заплакал.", "en": "The child started crying." }
+        ]}
+      ]
+    },
+    {
+      "id": "c1-particles",
+      "level": "C1",
+      "title": "Discourse Particles",
+      "subtitle": "Tiny words. Enormous emotional payload. Translators despair.",
+      "sections": [
+        { "heading": "The main offenders", "type": "bullets", "items": [
+          "же — emphasis / contrast / 'but really'",
+          "ведь — 'after all' / appealing to shared knowledge",
+          "бы — hypothetical / softening / wish",
+          "ли — yes/no question marker (especially in indirect questions)",
+          "мол / дескать — 'so they say' / signaling reported / often skeptical speech",
+          "то — emphatic / specifying (this, of all things)",
+          "вот — 'here' / pointing / introducing"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Что же ты делаешь?", "en": "What ARE you doing? (же = exasperation)" },
+          { "ru": "Ты ведь знаешь её.", "en": "You DO know her (after all)." },
+          { "ru": "Он, мол, не виноват.", "en": "He, supposedly, is not at fault. (мол = quoting skeptically)" },
+          { "ru": "Я-то знаю.", "en": "I, for one, know. (то = emphatic specifying)" }
+        ]}
+      ]
+    },
+    {
+      "id": "c1-conditional-mood",
+      "level": "C1",
+      "title": "Conditional Mood (бы + past)",
+      "subtitle": "Softening, wishing, and counterfactuals.",
+      "sections": [
+        { "heading": "How it works", "type": "bullets", "items": [
+          "бы + past tense forms the conditional / subjunctive mood",
+          "Used for hypotheticals (если бы...), wishes (хотел бы...), polite requests (не могли бы вы...)",
+          "бы can move around but typically follows the first stressed word"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Я бы пошёл, но устал.", "en": "I would go, but I'm tired." },
+          { "ru": "Хотел бы я знать.", "en": "I wish I knew (lit. 'I would want to know')." },
+          { "ru": "Не могли бы вы мне помочь?", "en": "Could you (would you be able to) help me?" }
+        ]}
+      ]
+    },
+    {
+      "id": "c1-subjunctive",
+      "level": "C1",
+      "title": "Subjunctive Meanings",
+      "subtitle": "Wishes, desires, polite tentativeness — all driven by бы.",
+      "sections": [
+        { "heading": "Common patterns", "type": "bullets", "items": [
+          "хотел бы — 'I would like'",
+          "мог бы — 'could / might'",
+          "сказал бы — 'would say'",
+          "чтобы + past — purpose / desire after verbs of wanting"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Я хотел бы кофе.", "en": "I'd like a coffee." },
+          { "ru": "Я хочу, чтобы ты пришёл.", "en": "I want you to come. (lit. 'I want that you would come')" }
+        ]}
+      ]
+    },
+    {
+      "id": "c1-impersonal",
+      "level": "C1",
+      "title": "Impersonal Constructions",
+      "subtitle": "Sentences with no grammatical subject. Very Russian.",
+      "sections": [
+        { "heading": "Common patterns", "type": "bullets", "items": [
+          "Dative + adverb: Мне холодно. (I'm cold)",
+          "Dative + verb: Мне нравится. (I like it)",
+          "Reflexive impersonals: Мне не спится. (I can't sleep)",
+          "Accusative + verb: Меня тошнит. (I feel nauseous)",
+          "Zero-subject 'natural' sentences: Светает. (It's getting light.)"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Мне холодно.", "en": "I'm cold. (lit. 'to me cold')" },
+          { "ru": "Меня тошнит.", "en": "I feel sick. (lit. 'me is nauseated')" },
+          { "ru": "Не спится.", "en": "Sleep won't come (no subject)." }
+        ]}
+      ]
+    },
+    {
+      "id": "c1-prefixes-derivation",
+      "level": "C1",
+      "title": "Prefixes & Verb Derivation",
+      "subtitle": "One base verb becomes an entire ecosystem.",
+      "sections": [
+        { "heading": "The principle", "type": "bullets", "items": [
+          "Adding a prefix to a verb creates a new verb (usually perfective) with a specific shade of meaning",
+          "writing example with писать:"
+        ]},
+        { "heading": "The ecosystem of писать", "type": "bullets", "items": [
+          "писать — to write",
+          "написать — to write (perfective; complete the writing)",
+          "подписать — to sign (under-write)",
+          "записать — to write down / record",
+          "переписать — to rewrite / copy over",
+          "выписать — to write out / extract",
+          "приписать — to attribute / write in addition",
+          "описать — to describe",
+          "расписать — to schedule / paint in detail",
+          "вписать — to write in / insert"
+        ]},
+        { "heading": "Note", "type": "bullets", "items": [
+          "Every common Russian verb has 5–15 prefixed cousins. Once you internalize the prefix meanings, you can often GUESS what a new verb means."
+        ]}
+      ]
+    },
+    {
+      "id": "c1-register-formal",
+      "level": "C1",
+      "title": "Register — Formal Russian",
+      "subtitle": "How educated, respectful Russian feels.",
+      "sections": [
+        { "heading": "Markers of formal Russian", "type": "bullets", "items": [
+          "Use of вы (always) and full first name + patronymic",
+          "Full forms of words (нет → отсутствует in writing)",
+          "Participial and gerund constructions instead of который / когда",
+          "Loan words from Latin/Greek tend to feel more formal",
+          "Avoidance of slang, contractions, and emotional particles"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Уважаемый Иван Петрович, позвольте Вас поздравить с праздником.", "en": "Esteemed Ivan Petrovich, allow me to congratulate you on the holiday." }
+        ]}
+      ]
+    },
+    {
+      "id": "c1-register-conversational",
+      "level": "C1",
+      "title": "Register — Conversational Russian",
+      "subtitle": "Real spoken Russian. Particles everywhere. Contractions of pronouns.",
+      "sections": [
+        { "heading": "Spoken-only patterns", "type": "bullets", "items": [
+          "Heavy use of particles (же, вот, ну, да, ведь, типа)",
+          "Reduction of pronouns and verbs (щас for сейчас, чё for что)",
+          "Diminutives everywhere — for things AND people (Машенька, чайку)",
+          "Word order shifts to put new info at the end, regardless of 'rules'",
+          "Filler words: короче ('long story short'), кстати, кажется"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Ну ты чё, серьёзно?", "en": "Wait, are you serious? (very colloquial)" },
+          { "ru": "Короче, я пошёл.", "en": "Long story short, I'm off." }
+        ]}
+      ]
+    },
+    {
+      "id": "c1-register-bureaucratic",
+      "level": "C1",
+      "title": "Register — Bureaucratic Russian (канцелярит)",
+      "subtitle": "The Soviet-flavored prose of forms, decrees, and contracts. A category of its own.",
+      "sections": [
+        { "heading": "Hallmarks", "type": "bullets", "items": [
+          "Heavy use of verbal nouns ending in -ние (рассмотрение, утверждение)",
+          "Constructions like 'являться + instrumental' instead of plain 'быть'",
+          "Long chains of genitive: рассмотрение вопроса утверждения списка предприятий...",
+          "Avoidance of personal verbs; preference for passive and impersonal",
+          "Words like в соответствии с, согласно, при условии"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "В соответствии с приказом № 47 от 12 марта 2024 года...", "en": "In accordance with order No. 47 dated March 12, 2024..." }
+        ]}
+      ]
+    },
+
+    {
+      "id": "c2-archaic-grammar",
+      "level": "C2",
+      "title": "Archaic Grammar",
+      "subtitle": "Forms you'll meet in 19th-century literature and modern poetry.",
+      "sections": [
+        { "heading": "What to recognize", "type": "bullets", "items": [
+          "Vocative case fossilized in fixed phrases (Боже мой, отче)",
+          "The old aorist and imperfect tenses (no longer used, but appear in Bible / chronicles)",
+          "Short-form adjectives used attributively, not just predicatively",
+          "Older negative-with-Genitive constructions where modern Russian uses Accusative"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Отче наш, иже еси на небесех... (Lord's Prayer, Church Slavonic)", "en": "" },
+          { "ru": "Боже мой! (vocative remnant in everyday exclamation)", "en": "My God!" }
+        ]}
+      ]
+    },
+    {
+      "id": "c2-poetic-inversion",
+      "level": "C2",
+      "title": "Poetic Word Order",
+      "subtitle": "Word order Russian poets use that prose never would.",
+      "sections": [
+        { "heading": "Features", "type": "bullets", "items": [
+          "Splitting of noun phrases across verses (adjective in one line, noun in the next)",
+          "Verb-final clauses for emphasis or rhythm",
+          "Heavy use of inversion to land a key word at the line break",
+          "Archaic syntax to evoke epic or sacred registers"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Я помню чудное мгновенье... (Pushkin: 'I remember a wondrous moment')", "en": "" }
+        ]}
+      ]
+    },
+    {
+      "id": "c2-church-slavonic",
+      "level": "C2",
+      "title": "Church Slavonic Influence",
+      "subtitle": "The liturgical layer of vocabulary and morphology that elevates 'high' Russian.",
+      "sections": [
+        { "heading": "What to look for", "type": "bullets", "items": [
+          "Words with -ра-/-ла- where modern Russian uses -оро-/-оло-: глава (head, elevated) vs голова (head, neutral)",
+          "Vocabulary doublets: рот (mouth, common) / уста (lips, elevated/poetic)",
+          "Old word-formation patterns: -ущий, -ющий participles trace back here"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "глава (chapter, head) vs голова (head, physical)", "en": "doublet — same root, two registers" },
+          { "ru": "град (city, poetic) vs город (city, neutral)", "en": "" }
+        ]}
+      ]
+    },
+    {
+      "id": "c2-soviet-stylistics",
+      "level": "C2",
+      "title": "Soviet-Era Stylistic Patterns",
+      "subtitle": "20th-century registers — propaganda, samizdat, official prose.",
+      "sections": [
+        { "heading": "Features to recognize", "type": "bullets", "items": [
+          "Compound abbreviations: колхоз, совхоз, ВЦСПС, КГБ — once everywhere",
+          "Heavy nominalization (verbal nouns over verbs) — already mentioned in canвцелярит",
+          "Vocabulary of struggle, building, plan, collective",
+          "Euphemism and double meaning in Soviet-era literature"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "пятилетний план", "en": "five-year plan" },
+          { "ru": "товарищ", "en": "comrade (Soviet honorific, now rarely used neutrally)" }
+        ]}
+      ]
+    },
+    {
+      "id": "c2-idiom-humor",
+      "level": "C2",
+      "title": "Idiomatic Speech, Humor & Irony",
+      "subtitle": "The final frontier — implication, irony, cultural reference.",
+      "sections": [
+        { "heading": "What you're working on at this level", "type": "bullets", "items": [
+          "Idioms you can't decode from the words: бить баклуши, гонять лысого, точить лясы",
+          "Cultural references — Pushkin, Soviet films, anekdoty, internet memes",
+          "Irony and sarcasm without explicit markers",
+          "Implicature — what's NOT said often carries more meaning than what is"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "Бить баклуши.", "en": "To idle / waste time (lit. 'to hit baklushas')." },
+          { "ru": "Ну и ну!", "en": "Well, well! (mild surprise)" },
+          { "ru": "Ага, конечно. (in the right tone)", "en": "Yeah, sure. (sarcastic)" }
+        ]}
+      ]
+    },
+    {
+      "id": "c2-stress-shifts",
+      "level": "C2",
+      "title": "Stress Shifts",
+      "subtitle": "Russian stress is mobile. Same word, different case, different syllable.",
+      "sections": [
+        { "heading": "The pain", "type": "bullets", "items": [
+          "Stress can move with case and number — and the pattern is not always predictable",
+          "Common pattern: stem stress in nom sg, ending stress in oblique cases",
+          "Common pattern: stem stress in singular, ending stress in plural",
+          "You ultimately have to learn the stress pattern of each word"
+        ]},
+        { "heading": "Examples", "type": "examples", "items": [
+          { "ru": "го́род (nom sg) → города́ (nom pl) — stress jumps", "en": "city → cities" },
+          { "ru": "ру́ки (nom pl) → руки́ (gen sg) — stress shift between forms", "en": "hands (nom pl) / of a hand (gen sg)" },
+          { "ru": "óкна (nom pl) vs окнá (gen sg)", "en": "windows / of a window" }
+        ]},
+        { "heading": "Note", "type": "bullets", "items": [
+          "Russian stress sometimes behaves like it lost a bet. Most learners just absorb stress through extensive listening rather than memorizing rules."
+        ]}
+      ]
+    }
+  ]
+}

@@ -1115,6 +1115,13 @@ export default function App() {
   var [chapters, setChapters]   = useState([]);
   // Pre-loaded library: books shipped in /public/books/. Fetched once on mount from /books/index.json.
   var [presetBooks, setPresetBooks] = useState([]);
+  // Grammar curriculum (📚 Grammar mode). Loaded once from /grammar/curriculum.json.
+  // gramLevel = currently-selected CEFR level (e.g. "A2"); "" before user picks.
+  // gramTopicId = currently-viewed topic's id; "" means "still on the picker screen".
+  var [curriculum, setCurriculum] = useState(null);
+  var [gramLevel, setGramLevel]   = useState("");
+  var [gramTopicId, setGramTopicId] = useState("");
+  var [gramErr, setGramErr]       = useState("");
   var [cidx, setCidx]           = useState(0);
   var [pidx, setPidx]           = useState(0);  // Page within current chapter (5 paragraphs per page)
   var PAGE_SIZE                 = 5;
@@ -1956,6 +1963,16 @@ export default function App() {
       .catch(function(){ /* no library, that's fine */ });
   }, []);
 
+  // Fetch the grammar curriculum once on mount. The file lives in /public/grammar/
+  // so it's served as a static asset; edits to the JSON take effect immediately
+  // on next deploy without code changes.
+  useEffect(function() {
+    fetch("/grammar/curriculum.json")
+      .then(function(r){ if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+      .then(function(data){ setCurriculum(data); })
+      .catch(function(err){ setGramErr("Couldn't load curriculum: " + (err.message || err)); });
+  }, []);
+
   var send = async function() {
     if (!input.trim() || loading) return;
     var um = {role:"user",content:input.trim()};
@@ -2450,6 +2467,15 @@ export default function App() {
         .ttslab{flex:1;font-size:12px;color:rgba(210,197,175,.4);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         .ttsbtn{background:none;border:1px solid rgba(210,197,175,.15);color:rgba(210,197,175,.4);height:26px;border-radius:8px;font-size:12px;cursor:pointer;padding:0 10px;transition:all .15s}
         .ttsbtn:hover{background:rgba(210,197,175,.08);color:rgba(210,197,175,.7)}
+        /* Grammar reference page (📚 Grammar mode) */
+        .gramref{flex:1;display:flex;flex-direction:column;min-height:0}
+        .gramref-hdr{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 28px;background:#1e1a14;border-bottom:1px solid rgba(210,197,175,.08);flex-shrink:0}
+        .gramref-body{flex:1;overflow-y:auto;padding:32px 28px 60px;max-width:780px;width:100%;margin:0 auto;line-height:1.55}
+        .gramref-body section h2{margin-top:4px}
+        .gramref-body section:first-of-type{margin-top:8px}
+        .gramref-nav{display:flex;gap:10px;margin-top:32px;padding-top:24px;border-top:1px solid rgba(210,197,175,.08)}
+        .gramref-nav .btn-g{font-size:13px;padding:10px 14px;text-align:center}
+        @media (max-width:600px){.gramref-body{padding:24px 18px 60px}.gramref-hdr{padding:10px 18px}.gramref-nav{flex-direction:column}}
         .vpanel{background:#1e1a14;border-bottom:1px solid rgba(210,197,175,.08);max-height:180px;display:flex;flex-direction:column;flex-shrink:0}
         .vphdr{padding:7px 28px 4px;border-bottom:1px solid rgba(210,197,175,.06);font-size:12px;color:rgba(210,197,175,.35)}
         .vplist{overflow-y:auto;padding:4px 28px}
@@ -3017,6 +3043,10 @@ export default function App() {
                     <div style={{fontSize:22,marginBottom:4}}>📖 Read</div>
                     <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Load any Russian EPUB, then practice with comprehension questions.</div>
                   </button>
+                  <button className="btn-p" onClick={function(){ setMode("grammar"); }} style={{textAlign:"left",padding:"18px 22px"}}>
+                    <div style={{fontSize:22,marginBottom:4}}>📚 Grammar</div>
+                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Pick your level and a topic. Quick reference pages with rules and examples.</div>
+                  </button>
                 </div>
               </div>
             )}
@@ -3114,6 +3144,158 @@ export default function App() {
                 </div>
               </div>
             )}
+
+            {/* ── Grammar reference (📚 Grammar) ────────────────────────────
+                Three sub-states, gated entirely by local state — no `started`:
+                  1. No level picked    → show level dropdown + intro
+                  2. Level picked, no topic → show topic dropdown for that level
+                  3. Topic picked → show the reference page for that topic
+                Picking a level keeps the user inside grammar mode; picking the
+                "← Back" buttons walks back one step at a time. */}
+            {mode === "grammar" && !gramTopicId && (
+              <div className="ss">
+                <div className="sico" style={{color:"#c8a276"}}>📚</div>
+                <h1 className="sti">Grammar Reference</h1>
+                <p className="sde">Pick your level, then choose a topic. Rules and examples on every page.</p>
+
+                {gramErr && <p style={{color:"#c87a68",fontSize:13,lineHeight:1.5,maxWidth:500}}>{gramErr}</p>}
+
+                {curriculum && (
+                  <div className="tsel" style={{width:"100%",maxWidth:500}}>
+                    <span className="slbl">Your level</span>
+                    <select value={gramLevel} onChange={function(e){ setGramLevel(e.target.value); }}>
+                      <option value="" disabled>— select a CEFR level —</option>
+                      {curriculum.levels.map(function(L) {
+                        return <option key={L.code} value={L.code}>{L.name}</option>;
+                      })}
+                    </select>
+                    {gramLevel && (function() {
+                      var L = curriculum.levels.find(function(x){ return x.code === gramLevel; });
+                      var topicsHere = curriculum.topics.filter(function(t){ return t.level === gramLevel; });
+                      return (
+                        <>
+                          {L && L.description && (
+                            <p style={{fontSize:13,fontStyle:"italic",color:"rgba(210,197,175,.55)",margin:"4px 2px 0",fontFamily:"'Crimson Pro',serif",lineHeight:1.5}}>{L.description}</p>
+                          )}
+                          <span className="slbl" style={{marginTop:14}}>Topic ({topicsHere.length} available)</span>
+                          <select
+                            value=""
+                            onChange={function(e){
+                              var id = e.target.value;
+                              if (id) setGramTopicId(id);
+                              e.target.value = "";
+                            }}>
+                            <option value="" disabled>📖 Choose a topic…</option>
+                            {topicsHere.map(function(t) {
+                              return <option key={t.id} value={t.id}>{t.title}</option>;
+                            })}
+                          </select>
+                        </>
+                      );
+                    })()}
+                  </div>
+                )}
+
+                {!curriculum && !gramErr && <p style={{color:"rgba(210,197,175,.55)",fontStyle:"italic"}}>Loading curriculum…</p>}
+
+                <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:8,marginTop:18}}>
+                  <button className="btn-g" onClick={function(){ setMode(""); setGramLevel(""); }}>← Back</button>
+                </div>
+              </div>
+            )}
+
+            {mode === "grammar" && gramTopicId && curriculum && (function() {
+              var topic = curriculum.topics.find(function(t){ return t.id === gramTopicId; });
+              if (!topic) {
+                return (
+                  <div className="ss">
+                    <p style={{color:"#c87a68"}}>Topic not found.</p>
+                    <button className="btn-g" onClick={function(){ setGramTopicId(""); }}>← Back to topics</button>
+                  </div>
+                );
+              }
+              // Topics in the same level, used for "Next topic" navigation.
+              var siblings = curriculum.topics.filter(function(t){ return t.level === topic.level; });
+              var thisIdx = siblings.findIndex(function(t){ return t.id === topic.id; });
+              var prev = thisIdx > 0 ? siblings[thisIdx - 1] : null;
+              var next = thisIdx < siblings.length - 1 ? siblings[thisIdx + 1] : null;
+
+              return (
+                <div className="gramref">
+                  <div className="gramref-hdr">
+                    <button className="ttsbtn" onClick={function(){ setGramTopicId(""); }}>← All {topic.level} topics</button>
+                    <span style={{color:"rgba(210,197,175,.4)",fontSize:12,letterSpacing:1.5,textTransform:"uppercase"}}>{topic.level}</span>
+                  </div>
+
+                  <div className="gramref-body">
+                    <h1 style={{fontFamily:"'Playfair Display',serif",fontSize:32,fontWeight:700,color:"#c8a276",marginBottom:6,lineHeight:1.15}}>{topic.title}</h1>
+                    {topic.subtitle && <p style={{fontStyle:"italic",fontSize:16,color:"rgba(210,197,175,.65)",marginBottom:24,fontFamily:"'Crimson Pro',serif",lineHeight:1.5}}>{topic.subtitle}</p>}
+
+                    {(topic.sections || []).map(function(sec, si) {
+                      return (
+                        <section key={si} style={{marginBottom:22}}>
+                          {sec.heading && <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:14,fontWeight:700,color:"rgba(210,197,175,.5)",textTransform:"uppercase",letterSpacing:2,marginBottom:10,paddingBottom:6,borderBottom:"1px solid rgba(210,197,175,.08)"}}>{sec.heading}</h2>}
+                          {sec.type === "bullets" && (
+                            <ul style={{listStyle:"none",padding:0,margin:0,display:"flex",flexDirection:"column",gap:8}}>
+                              {(sec.items || []).map(function(item, ii) {
+                                return (
+                                  <li key={ii} style={{paddingLeft:18,position:"relative",lineHeight:1.55,fontSize:15}}>
+                                    <span style={{position:"absolute",left:0,top:0,color:"#c8a276"}}>•</span>
+                                    {item}
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          )}
+                          {sec.type === "examples" && (
+                            <div style={{display:"flex",flexDirection:"column",gap:14}}>
+                              {(sec.items || []).map(function(ex, ii) {
+                                var ru = typeof ex === "string" ? ex : (ex.ru || "");
+                                var en = typeof ex === "string" ? "" : (ex.en || "");
+                                return (
+                                  <div key={ii} style={{borderLeft:"2px solid rgba(200,162,118,.35)",paddingLeft:14,display:"flex",flexDirection:"column",gap:3}}>
+                                    <div style={{display:"flex",alignItems:"flex-start",gap:8}}>
+                                      <span style={{fontSize:16,lineHeight:1.45,flex:1}}>{ru}</span>
+                                      {ru && (
+                                        <button
+                                          className="ttsbtn"
+                                          style={{height:22,fontSize:11,flexShrink:0}}
+                                          onClick={function(){ speakMsg(ru, "gram-" + topic.id + "-" + si + "-" + ii); }}
+                                          title="Listen">
+                                          🔊
+                                        </button>
+                                      )}
+                                    </div>
+                                    {en && <span style={{fontStyle:"italic",fontSize:13,color:"rgba(210,197,175,.55)",fontFamily:"'Crimson Pro',serif",lineHeight:1.5}}>{en}</span>}
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </section>
+                      );
+                    })}
+
+                    <div className="gramref-nav">
+                      <button
+                        className="btn-g"
+                        style={{flex:1,opacity: prev ? 1 : 0.35, cursor: prev ? "pointer" : "default"}}
+                        disabled={!prev}
+                        onClick={function(){ if (prev) { setGramTopicId(prev.id); window.scrollTo(0,0); } }}>
+                        {prev ? "← " + prev.title : "← Previous"}
+                      </button>
+                      <button
+                        className="btn-g"
+                        style={{flex:1,opacity: next ? 1 : 0.35, cursor: next ? "pointer" : "default"}}
+                        disabled={!next}
+                        onClick={function(){ if (next) { setGramTopicId(next.id); window.scrollTo(0,0); } }}>
+                        {next ? next.title + " →" : "Next →"}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
 
             {started && isLit && (
               <div className="lit-wrap">
