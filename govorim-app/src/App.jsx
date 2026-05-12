@@ -183,16 +183,28 @@ When the student is genuinely wrong on the comprehension itself: gently re-ask t
 // paragraph with no paragraph breaks: in that case we fall back to sentence
 // boundaries so the user isn't faced with a 10,000-char wall of text.
 //
+// Options:
+//   { singlePage: true } — bypass pagination entirely. Used for song lyrics
+//     where the user wants to see all of one song on one screen and use the
+//     chapter-nav buttons to advance to the next song.
+//
 // Returns an array of page descriptors:
 //   { startChar, endChar, paraIndices: number[], isSplit: boolean }
 // where paraIndices are indices into the filtered (non-empty) paragraph array
 // that the renderer produces. isSplit is true only in the giant-paragraph case.
-function computePages(chapterText) {
+function computePages(chapterText, options) {
+  options = options || {};
   var PAGE_MAX_PARAGRAPHS = 5;
   var PAGE_MAX_CHARS = 1700;
 
   if (!chapterText || !chapterText.trim()) {
     return [{ startChar: 0, endChar: 0, paraIndices: [], isSplit: false }];
+  }
+
+  // Single-page override: whole chapter on one screen, no pagination math.
+  // The renderer treats paraIndices=null as "all paragraphs in this chapter".
+  if (options.singlePage) {
+    return [{ startChar: 0, endChar: chapterText.length, paraIndices: null, isSplit: false, isSinglePage: true }];
   }
 
   // Scan paragraph ranges using the same boundary as the renderer (\n{2,}).
@@ -497,38 +509,102 @@ async function decompressEntry(entry) {
   return "";
 }
 
+// HTML → plain text. Defensive: handles malformed HTML, weird entity encodings,
+// XHTML namespace quirks, and "plain text" files that have HTML markup pasted in.
+// Strategy:
+//   1. Use DOMParser when possible (correctly handles tag nesting + entities)
+//   2. Regex-scrub any tags or entities that slipped through (mismatched braces,
+//      processing instructions, namespace prefixes, etc.)
+//   3. Normalize whitespace so paragraphs come out as clean text + double newlines
 function htmlToText(html) {
-  var parser = new DOMParser();
-  var doc = parser.parseFromString(html, "text/html");
-  var result = [];
-  var blockTags = {"P":1,"DIV":1,"H1":1,"H2":1,"H3":1,"H4":1,"H5":1,"H6":1,"LI":1,"BR":1,"TR":1};
-  function walk(node) {
-    if (node.nodeType === 3) {
-      var t = node.textContent.replace(/\s+/g," ");
-      if (t.trim()) result.push(t);
-    } else if (node.nodeType === 1) {
-      var tag = node.tagName.toUpperCase();
-      if (tag === "SCRIPT" || tag === "STYLE") return;
-      if (blockTags[tag]) result.push("\n\n");
-      for (var ci = 0; ci < node.childNodes.length; ci++) walk(node.childNodes[ci]);
-      if (blockTags[tag]) result.push("\n\n");
+  if (!html) return "";
+  var input = String(html);
+
+  var out;
+  try {
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(input, "text/html");
+    // Remove scripts/styles/comments/processing instructions before walking.
+    doc.querySelectorAll("script, style, noscript, head").forEach(function(el){ el.remove(); });
+    var result = [];
+    var blockTags = {"P":1,"DIV":1,"H1":1,"H2":1,"H3":1,"H4":1,"H5":1,"H6":1,
+                     "LI":1,"BR":1,"TR":1,"BLOCKQUOTE":1,"PRE":1,"SECTION":1,"ARTICLE":1,"HR":1};
+    function walk(node) {
+      if (!node) return;
+      if (node.nodeType === 3) {
+        var t = node.nodeValue;
+        if (t) result.push(t);
+      } else if (node.nodeType === 1) {
+        var tag = node.tagName.toUpperCase();
+        if (tag === "SCRIPT" || tag === "STYLE") return;
+        if (blockTags[tag]) result.push("\n\n");
+        for (var ci = 0; ci < node.childNodes.length; ci++) walk(node.childNodes[ci]);
+        if (blockTags[tag]) result.push("\n\n");
+      }
     }
+    walk(doc.body || doc.documentElement);
+    out = result.join("");
+  } catch (e) {
+    // DOMParser shouldn't fail in a browser, but fall back to using the raw
+    // input rather than throwing — the entity/tag scrub below will still work.
+    out = input;
   }
-  walk(doc.body || doc.documentElement);
-  return result.join("").replace(/\n{3,}/g,"\n\n").replace(/ {2,}/g," ").trim();
+
+  // Belt-and-suspenders pass: scrub anything that still looks like HTML.
+  // This catches:
+  //   - tags DOMParser may have left intact (e.g. self-closing with weird attrs)
+  //   - entities the parser didn't decode (when input wasn't proper HTML, like a
+  //     .txt with literal "<p>" or "&nbsp;" markup pasted in)
+  //   - namespace prefixes (<ns:p>) common in OOXML / XHTML exports
+  out = out
+    .replace(/<!--[\s\S]*?-->/g, "")                      // HTML comments
+    .replace(/<\?[\s\S]*?\?>/g, "")                       // processing instructions
+    .replace(/<\/?[a-zA-Z][a-zA-Z0-9:_.-]*(?:\s[^>]*)?>/g, "") // any leftover tags incl. namespaced
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&quot;/gi, '"')
+    .replace(/&apos;/gi, "'")
+    .replace(/&mdash;/gi, "—")
+    .replace(/&ndash;/gi, "–")
+    .replace(/&hellip;/gi, "…")
+    .replace(/&laquo;/gi, "«")
+    .replace(/&raquo;/gi, "»")
+    .replace(/&bull;/gi, "•")
+    .replace(/&middot;/gi, "·")
+    .replace(/&#x([0-9a-fA-F]+);/g, function(_, hex){ try { return String.fromCodePoint(parseInt(hex, 16)); } catch(_){ return ""; } })
+    .replace(/&#(\d+);/g, function(_, dec){ try { return String.fromCodePoint(parseInt(dec, 10)); } catch(_){ return ""; } })
+    .replace(/\u00A0/g, " ")                              // NBSP as a unicode char
+    .replace(/[\u200B-\u200D\uFEFF]/g, "")                // zero-width characters
+    .replace(/\r\n?/g, "\n")
+    .replace(/[ \t]+/g, " ")
+    .replace(/\n[ \t]+/g, "\n")
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+  return out;
 }
 
 function isFrontMatter(heading, text) {
   var h = (heading || "").toLowerCase().trim();
-  var t = (text || "").slice(0, 200).toLowerCase().trim();
-  // Publisher metadata / non-content sections to skip.
-  // Authorial content like prefaces, dedications, epigraphs are kept intentionally.
+  var t = (text || "").slice(0, 300).toLowerCase().trim();
+  // Publisher/editorial metadata to skip. Author content (prefaces by the
+  // author themselves, dedications, epigraphs) is intentionally NOT in this
+  // list — that content matters as part of the work.
+  // What IS skipped: copyright pages, ISBN blocks, publisher addresses,
+  // translator credits, generic forewords/intros by third parties.
   var skip = [
     /^аннотация\b/, /^оглавление\b/, /^содержание\b/,
     /^обложка\b/, /^титульн/, /^выходные данные\b/,
     /^cover\b/, /^title page\b/, /^contents\b/, /^table of contents\b/,
     /^copyright\b/, /^annotation\b/, /^colophon\b/, /^about the (author|book)\b/,
-    /^acknowledg(e?)ments\b/, /^издательств/
+    /^acknowledg(e?)ments\b/, /^издательств/,
+    /^foreword\b/, /^предисловие\b/, /^от издательства\b/, /^от переводчика\b/,
+    /^translator['s ]*note\b/, /^translation\b/, /^isbn\b/,
+    /^all rights reserved\b/, /^©\b/, /^©\s*\d/, /^\d{4}\s+©/,
+    /^напечатано в\b/, /^printed in\b/, /^универсальный десятичный код\b/, /^удк\b/, /^ббк\b/
   ];
   return skip.some(function(p) { return p.test(h) || p.test(t); });
 }
@@ -1071,6 +1147,12 @@ async function parseFb2Zip(buffer) {
 // ── Plain TXT ───────────────────────────────────────────────────────────────
 function parseTxt(buffer, fname) {
   var text = decodeBytes(buffer);
+  // Defensive: some sources save copy-pasted webpage content as .txt with the
+  // HTML tags still present. If we see tags or entities, run it through the
+  // HTML stripper before splitting into chapters.
+  if (/<\/?[a-zA-Z][a-zA-Z0-9:_-]*[\s>]/.test(text) || /&[a-zA-Z]{2,8};|&#\d+;/.test(text)) {
+    text = htmlToText(text);
+  }
   if (!/[а-яёА-ЯЁ]/.test(text)) throw new Error("No Russian text found in this file.");
   var chapters = splitTextIntoChapters(text);
   var stem = (fname || "Текст").replace(/\.[^.]+$/, "").replace(/[_-]/g, " ");
@@ -1357,10 +1439,13 @@ export default function App() {
   var isLit = mode === "read";
   var pct  = chapters.length > 0 ? Math.round((cidx / chapters.length) * 100) : 0;
   var curChapter = chapters[cidx] || { heading: "", text: "" };
-  // Paginate the current chapter (5 paragraphs OR ~1700 chars per page, whichever
-  // hits first; falls back to sentence boundaries for giant single-paragraph
-  // chapters). Memoized so we don't re-scan on unrelated re-renders.
-  var pages = useMemo(function() { return computePages(curChapter.text || ""); }, [curChapter.text]);
+  // Paginate the current chapter. For song collections (splitByNumberedSections),
+  // force whole-chapter-as-single-page so the user sees a full song on one screen
+  // and uses chapter-nav arrows to advance to the next song.
+  var singlePageMode = !!bookMeta.splitByNumberedSections;
+  var pages = useMemo(function() {
+    return computePages(curChapter.text || "", { singlePage: singlePageMode });
+  }, [curChapter.text, singlePageMode]);
   var totalPages = pages.length;
   var currentPage = pages[Math.min(pidx, totalPages - 1)] || pages[0];
 
@@ -1525,7 +1610,11 @@ export default function App() {
           var d = JSON.parse(c.value);
           if (d && d.chapters && d.chapters.length > 0) {
             setChapters(d.chapters);
-            setBookMeta({ title: d.title || "Unknown title", author: d.author || "Unknown author" });
+            setBookMeta({
+              title: d.title || "Unknown title",
+              author: d.author || "Unknown author",
+              splitByNumberedSections: !!d.splitByNumberedSections,
+            });
           }
         }
       } catch(e) {}
@@ -2124,14 +2213,16 @@ export default function App() {
   var litAnalysis = async function(chs, i, pi, metaOverride, force) {
     if (typeof pi !== "number") pi = 0;
     var ch = chs[i] || {};
+    var m = metaOverride || bookMeta;
+    var sp = !!m.splitByNumberedSections;
     // Use the SAME pagination the renderer uses — 5 paragraphs OR ~1700 chars
     // per page, with sentence-boundary splits for giant single-paragraph chapters.
-    var chPages = computePages(ch.text || "");
+    // Single-page mode (song lyrics) shows the whole chapter as one page.
+    var chPages = computePages(ch.text || "", { singlePage: sp });
     var page = chPages[Math.min(pi, chPages.length - 1)] || chPages[0];
     var snippet = page ? (ch.text || "").slice(page.startChar, page.endChar) : (ch.text || "").slice(0, 1700);
     if (snippet.length > 3500) snippet = snippet.slice(0, 3500);
 
-    var m = metaOverride || bookMeta;
     var focus = pickFocus();
     var pageCount = chPages.length;
 
@@ -2268,15 +2359,36 @@ export default function App() {
           chs = [{ heading: h, text: chs[0].text || "" }];
         }
       }
+      // Attach per-chapter YouTube URLs from the optional `songs` array on the
+      // book entry. The array is indexed by chapter position (0-based), so the
+      // user just lists URLs in song order in index.json. Missing/null entries
+      // mean "no link for this song".
+      if (Array.isArray(opts.songs)) {
+        chs = chs.map(function(ch, i){
+          var entry = opts.songs[i];
+          var url = "";
+          if (typeof entry === "string") url = entry;
+          else if (entry && typeof entry === "object" && typeof entry.youtube === "string") url = entry.youtube;
+          return url ? Object.assign({}, ch, { youtubeUrl: url }) : ch;
+        });
+      }
+
       var title = opts.title || result.title;
       var author = opts.author || result.author;
-      var meta = { title: title, author: author };
+      // bookMeta carries title/author plus presentation flags the reader needs
+      // (e.g. splitByNumberedSections controls single-page-per-chapter mode).
+      var meta = {
+        title: title,
+        author: author,
+        splitByNumberedSections: !!opts.splitByNumberedSections,
+      };
       setChapters(chs);
       setBookMeta(meta);
       setCbm(0);
       try {
         await storage.set(EPUB_CACHE, JSON.stringify({
-          chapters: chs, title: title, author: author
+          chapters: chs, title: title, author: author,
+          splitByNumberedSections: !!opts.splitByNumberedSections
         }));
         await storage.set(EPUB_BM, "0");
         await storage.delete(QHIST_KEY);
@@ -2296,6 +2408,9 @@ export default function App() {
         splitByNumberedSections: !!book.splitByNumberedSections,
         title: book.title,
         author: book.author,
+        // Optional per-chapter YouTube links (used by song collections). Array
+        // indexed 0..N where each entry is a URL or null/missing.
+        songs: Array.isArray(book.songs) ? book.songs : null,
       });
     } catch(err) { setFErr(err.message || "Failed to load preset book"); }
   };
@@ -2511,6 +2626,11 @@ export default function App() {
       // computePages indexes them.
       var nonEmpty = paragraphs.filter(function(p){ return p.some(function(t){ return t.text.trim().length > 0; }); });
       if (!currentPage) return [];
+
+      // Single-page mode (e.g. song lyrics): show the whole chapter, no slicing.
+      if (currentPage.isSinglePage || currentPage.paraIndices === null) {
+        return nonEmpty;
+      }
 
       if (currentPage.isSplit) {
         // Giant single-paragraph chapter: the only paragraph is split across
@@ -3515,7 +3635,7 @@ export default function App() {
                           // so the onChange lookup still resolves correctly. Categories
                           // render in this fixed order; "Other" catches anything missing
                           // or unrecognized.
-                          var CATEGORIES = ["Novel", "Song Lyrics", "Poetry", "Short Stories"];
+                          var CATEGORIES = ["Novel", "Plays", "Song Lyrics", "Poetry", "Short Stories"];
                           var buckets = {};
                           CATEGORIES.forEach(function(c){ buckets[c] = []; });
                           buckets["Other"] = [];
@@ -3805,7 +3925,11 @@ export default function App() {
                   <button className={"ltab"+(lview==="nav"?" on":"")} onClick={function(){ setLview("nav"); }}>🗂 Chapters</button>
                   <button className={"ltab"+(lview==="search"?" on":"")} onClick={function(){ setLview("search"); }}>🔍 Search</button>
                   <div className="lprog">
-                    <span className="lpct">Ch. {cidx+1}/{chapters.length} · Page {pidx+1}/{totalPages} · {pct}%</span>
+                    <span className="lpct">
+                      {singlePageMode
+                        ? <>Song {cidx+1}/{chapters.length} · {pct}%</>
+                        : <>Ch. {cidx+1}/{chapters.length} · Page {pidx+1}/{totalPages} · {pct}%</>}
+                    </span>
                     <div className="lpbar"><div className="lpfill" style={{width:pct+"%"}}/></div>
                   </div>
                 </div>
@@ -3826,8 +3950,30 @@ export default function App() {
 
                     <div className="lit-body">
                       <div className={"lit-left" + (noAIMode ? " noai" : "")}>
-                        <div className="lhdr">Chapter {cidx+1} of {chapters.length} · click any word to define</div>
-                        {curChapter.heading && <div className="lch-heading">{curChapter.heading}</div>}
+                        {/* Book title shown small above the chapter heading so the reader always knows
+                            which book they're in, even after navigating mid-chapter. */}
+                        {bookMeta.title && (
+                          <div style={{fontFamily:"'Crimson Pro',serif",fontStyle:"italic",fontSize:13,color:"rgba(210,197,175,.45)",marginBottom:4,letterSpacing:.3}}>
+                            {bookMeta.title}{bookMeta.author ? " — " + bookMeta.author : ""}
+                          </div>
+                        )}
+                        <div className="lhdr">
+                          {singlePageMode
+                            ? <>Song {cidx+1} of {chapters.length} · click any word to define</>
+                            : <>Chapter {cidx+1} of {chapters.length} · click any word to define</>}
+                        </div>
+                        {curChapter.heading && (
+                          <div className="lch-heading" style={{display:"flex",alignItems:"center",gap:12,flexWrap:"wrap"}}>
+                            <span>{curChapter.heading}</span>
+                            {curChapter.youtubeUrl && (
+                              <a href={curChapter.youtubeUrl} target="_blank" rel="noopener noreferrer"
+                                title="Listen on YouTube"
+                                style={{fontSize:12,color:"rgba(210,197,175,.7)",textDecoration:"none",padding:"4px 10px",border:"1px solid rgba(210,197,175,.25)",borderRadius:4,fontFamily:"'Inter',sans-serif"}}>
+                                🎵 Listen on YouTube ↗
+                              </a>
+                            )}
+                          </div>
+                        )}
                         <div className="ltxt">{renderLit(curChapter.text)}</div>
                       </div>
                       {!noAIMode && (
@@ -3862,8 +4008,8 @@ export default function App() {
                       </div>
                       {chapters.length > 1 && (
                         <div className="lnav-row lnav-row-sm">
-                          {cidx > 0 && <button className="lnb-sm" onClick={function(){ navLit(cidx-1); }} disabled={loading}>← Previous chapter</button>}
-                          {cidx < chapters.length - 1 && <button className="lnb-sm" onClick={function(){ navLit(cidx+1); }} disabled={loading}>Next chapter →</button>}
+                          {cidx > 0 && <button className="lnb-sm" onClick={function(){ navLit(cidx-1); }} disabled={loading}>← {singlePageMode ? "Previous song" : "Previous chapter"}</button>}
+                          {cidx < chapters.length - 1 && <button className="lnb-sm" onClick={function(){ navLit(cidx+1); }} disabled={loading}>{singlePageMode ? "Next song" : "Next chapter"} →</button>}
                         </div>
                       )}
                     </div>
