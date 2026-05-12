@@ -2337,6 +2337,251 @@ export default function App() {
     await litAnalysis(chapters, cidx, newPidx); setLoading(false);
   };
 
+  // ── Smart song-collection splitter ──────────────────────────────────────
+  // Tries multiple deterministic patterns to find song boundaries in a song-
+  // collection book. Returns an array of chapters (one per song) if any pattern
+  // produces >= 3 plausible sections, otherwise null. The caller (loadFile)
+  // falls back to AI-based detection only when this returns null/short.
+  //
+  // Patterns tried, in order of confidence:
+  //   1. standalone-numbered    — line is just "1." or "23"
+  //   2. inline-numbered        — "1. Песня" style title lines
+  //   3. standalone-roman       — line is just "I." or "IV"
+  //   4. inline-roman           — "I. Title"
+  //   5. all-caps-cyrillic      — short ALL-CAPS Russian line surrounded by blanks
+  //   6. title-case-cyrillic    — short Title Case line on its own, surrounded by blanks
+  //
+  // The strategy yielding the most plausible sections wins.
+  var splitSongsHeuristic = function(chapters) {
+    if (!chapters || !chapters.length) return null;
+    var fullText = chapters.map(function(ch){ return ch.text || ""; }).join("\n\n");
+    if (fullText.length < 300) return null;
+    var lines = fullText.split("\n");
+
+    var strategies = [
+      {
+        name: "standalone-numbered",
+        // Just a digit (optionally with . or )), nothing else
+        isTitleLine: function(L, i) {
+          var t = L[i].trim();
+          return /^\(?\d{1,3}[.)]?\)?$/.test(t);
+        },
+        // For standalone-numbered, the title is on the NEXT non-blank line
+        titleOffset: 1,
+      },
+      {
+        name: "inline-numbered",
+        // "1. Title" or "12) Title" — number then dot/paren then title text
+        isTitleLine: function(L, i) {
+          var t = L[i].trim();
+          return /^\d{1,3}[.)]\s+[А-ЯЁA-Z"«].{1,70}$/.test(t) && t.length < 80;
+        },
+        titleOffset: 0,
+      },
+      {
+        name: "standalone-roman",
+        isTitleLine: function(L, i) {
+          var t = L[i].trim();
+          return /^[IVX]{1,5}\.?$/.test(t);
+        },
+        titleOffset: 1,
+      },
+      {
+        name: "inline-roman",
+        isTitleLine: function(L, i) {
+          var t = L[i].trim();
+          return /^[IVX]{1,5}[.)]\s+[А-ЯЁA-Z"«].{1,70}$/.test(t) && t.length < 80;
+        },
+        titleOffset: 0,
+      },
+      {
+        name: "all-caps-cyrillic",
+        // Short ALL-CAPS Russian line, surrounded by blank lines.
+        // Avoids matching things like "ПРОЩАЙ!" inside a lyric line.
+        isTitleLine: function(L, i) {
+          var t = L[i].trim();
+          if (t.length < 3 || t.length > 80) return false;
+          if (!/^[А-ЯЁ][А-ЯЁ\s\-—–.,!?']{1,79}$/.test(t)) return false;
+          if (!/[А-ЯЁ]{3,}/.test(t)) return false;  // need actual Cyrillic letters
+          var prevBlank = i === 0 || !L[i-1].trim();
+          var nextBlank = i + 1 >= L.length || !L[i+1].trim();
+          return prevBlank && nextBlank;
+        },
+        titleOffset: 0,
+      },
+      {
+        name: "title-case-cyrillic",
+        // Short Title Case line alone, surrounded by blanks. Strict to avoid
+        // matching sentences. Excludes lines ending in . , ; : ! ? (which
+        // are likely sentences, not titles).
+        isTitleLine: function(L, i) {
+          var t = L[i].trim();
+          if (t.length < 3 || t.length > 60) return false;
+          if (!/^[А-ЯЁ]/.test(t)) return false;
+          if (/[.,;:!?]$/.test(t)) return false;
+          // Reject sentence-like lines (many words)
+          var words = t.split(/\s+/);
+          if (words.length > 7) return false;
+          // Must be alone on its line: blanks before AND after
+          var prevBlank = i === 0 || !L[i-1].trim();
+          var nextBlank = i + 1 >= L.length || !L[i+1].trim();
+          return prevBlank && nextBlank;
+        },
+        titleOffset: 0,
+      },
+    ];
+
+    var best = null;
+    var bestName = "";
+
+    for (var s = 0; s < strategies.length; s++) {
+      var strat = strategies[s];
+      var titleIdxs = [];
+      for (var i = 0; i < lines.length; i++) {
+        if (strat.isTitleLine(lines, i)) titleIdxs.push(i);
+      }
+      // Heuristic validity checks
+      if (titleIdxs.length < 3) continue;
+      // Sections shouldn't be too dense — if there's a title every 3 lines,
+      // we're probably matching false positives (like ALL CAPS dialogue tags).
+      var avgGap = lines.length / titleIdxs.length;
+      if (avgGap < 6) continue;
+
+      var sections = [];
+      for (var k = 0; k < titleIdxs.length; k++) {
+        var start = titleIdxs[k];
+        var end = k + 1 < titleIdxs.length ? titleIdxs[k+1] : lines.length;
+        var heading = lines[start].trim();
+        // For standalone-numbered/roman, the actual title is on the next
+        // non-blank line after the marker
+        if (strat.titleOffset === 1) {
+          for (var n = start + 1; n < end && n < lines.length; n++) {
+            if (lines[n].trim()) { heading = lines[n].trim(); break; }
+          }
+        }
+        var bodyText = lines.slice(start, end).join("\n").trim();
+        // Drop sections that are mostly empty / non-Russian — those are
+        // probably false-positive matches (front matter, table of contents).
+        var cyrCount = (bodyText.match(/[а-яёА-ЯЁ]/g) || []).length;
+        if (cyrCount < 20) continue;
+        sections.push({ heading: heading, text: bodyText });
+      }
+
+      if (sections.length >= 3) {
+        if (!best || sections.length > best.length) {
+          best = sections;
+          bestName = strat.name;
+        }
+      }
+    }
+
+    if (best) console.log("[songs] heuristic split via " + bestName + " → " + best.length + " songs");
+    return best;
+  };
+
+  // Apply a regex pattern (from AI or other source) to split full text into
+  // song chapters. Pattern matches a line that begins a new song.
+  var splitByRegexPattern = function(fullText, patternStr) {
+    try {
+      var re = new RegExp(patternStr, "m");
+      var lines = fullText.split("\n");
+      var indices = [];
+      for (var i = 0; i < lines.length; i++) {
+        // Test against trimmed line (most patterns assume no leading whitespace)
+        if (re.test(lines[i].trim())) indices.push(i);
+      }
+      if (indices.length < 3) return null;
+      var result = [];
+      for (var k = 0; k < indices.length; k++) {
+        var start = indices[k];
+        var end = k + 1 < indices.length ? indices[k+1] : lines.length;
+        var text = lines.slice(start, end).join("\n").trim();
+        var heading = lines[start].trim();
+        var cyr = (text.match(/[а-яёА-ЯЁ]/g) || []).length;
+        if (cyr < 20) continue;
+        result.push({ heading: heading, text: text });
+      }
+      return result.length >= 3 ? result : null;
+    } catch(e) { return null; }
+  };
+
+  // AI fallback: ask the model to identify the song-boundary pattern.
+  // Cached per book filename so we only pay tokens once per book lifetime.
+  var splitSongsAI = async function(chapters, fname) {
+    if (!chapters || !chapters.length) return null;
+    var fullText = chapters.map(function(ch){ return ch.text || ""; }).join("\n\n");
+    if (fullText.length < 300) return null;
+
+    var cacheKey = "gv_song_split_pattern_v1__" + (fname || "unknown");
+
+    // Cache hit: skip the API call.
+    try {
+      var c = await storage.get(cacheKey);
+      if (c && c.value) {
+        console.log("[songs] using cached AI pattern for " + fname);
+        var cached = splitByRegexPattern(fullText, c.value);
+        if (cached && cached.length >= 3) return cached;
+      }
+    } catch(e) {}
+
+    // Build a representative sample: head + middle + tail so the AI sees how
+    // formatting looks throughout the book, not just the first few songs.
+    var sample;
+    if (fullText.length <= 6000) {
+      sample = fullText;
+    } else {
+      var mid = Math.floor(fullText.length / 2);
+      sample =
+        fullText.slice(0, 3500) +
+        "\n\n[... middle of book ...]\n\n" +
+        fullText.slice(mid, mid + 1500) +
+        "\n\n[... later in book ...]\n\n" +
+        fullText.slice(-1500);
+    }
+
+    var prompt =
+      "This is text from a Russian song-lyrics book. Songs need to be split apart. " +
+      "Find the formatting pattern that marks the START of each song.\n\n" +
+      "Return JSON only — no prose. Schema:\n" +
+      '{ "regex": "<JS regex matching a line that starts a new song>", "examples": [up to 3 example titles] }\n\n' +
+      "The regex is tested against TRIMMED lines (no surrounding whitespace) in multiline mode. " +
+      "Don't include the / delimiters. Escape backslashes appropriately for JSON.\n\n" +
+      "Examples of good patterns:\n" +
+      '  "^\\\\d{1,3}\\\\.?$"           — standalone number like 1. or 23\n' +
+      '  "^\\\\d{1,3}\\\\.\\\\s+\\\\S"    — inline numbered title like "1. Title"\n' +
+      '  "^[IVX]{1,5}\\\\.?$"         — Roman numerals\n' +
+      '  "^[А-ЯЁ\\\\s\\\\-]{3,60}$"     — ALL CAPS Cyrillic title alone on line\n\n' +
+      "If you cannot find a reliable pattern, return: { \"regex\": \"\", \"examples\": [] }\n\n" +
+      "BOOK TEXT:\n" + sample;
+
+    try {
+      console.log("[songs] calling AI to detect split pattern for " + fname);
+      var resp = await api(
+        [{ role: "user", content: prompt }],
+        "You are a text-analysis assistant. You output only valid JSON.",
+        { json: true }
+      );
+      var parsed;
+      try { parsed = JSON.parse(resp); } catch(e) { parsed = null; }
+      if (!parsed || !parsed.regex) {
+        console.log("[songs] AI returned no usable pattern");
+        return null;
+      }
+      console.log("[songs] AI suggested pattern: " + parsed.regex);
+      var result = splitByRegexPattern(fullText, parsed.regex);
+      if (result && result.length >= 3) {
+        try { await storage.set(cacheKey, parsed.regex); } catch(e) {}
+        console.log("[songs] AI split → " + result.length + " songs");
+        return result;
+      }
+      console.log("[songs] AI pattern produced too few sections");
+      return null;
+    } catch(err) {
+      console.log("[songs] AI split failed: " + (err.message || err));
+      return null;
+    }
+  };
+
   // Re-split chapters by lines that contain only a digit (or "digit.")
   // Used for song-collection EPUBs like Tsoi, where each track number marks a new "chapter".
   // The first non-empty line after the number becomes the chapter heading (song title).
@@ -2374,14 +2619,51 @@ export default function App() {
       var result = await parseBook(buf, fname);
       if (!result.chapters || result.chapters.length < 1) throw new Error("No chapters found in file.");
       var chs = result.chapters;
-      if (opts.splitByNumberedSections) {
-        // Tsoi-style: digit on a line followed by song-title line. Keep this dedicated path
-        // because the song-title-on-next-line logic is different from generic marker splitting.
+      // Song-collection mode: any book in the "Song Lyrics" category should
+      // be split one-song-per-chapter, regardless of how the source EPUB
+      // structured its spine. We use a tiered strategy:
+      //   1. If the existing chapters already look like one-song-each (short,
+      //      named, multiple of them), trust the source's split.
+      //   2. Otherwise run the smart heuristic splitter — tries numbered,
+      //      Roman numeral, ALL CAPS, Title Case patterns.
+      //   3. If heuristics fail, ask the AI to find the boundary pattern.
+      //   4. Last resort: the legacy resplitByNumberedSections (if the user
+      //      explicitly set the flag in index.json).
+      var isSongBook = opts.category === "Song Lyrics";
+      if (isSongBook) {
+        // 1. Source-split heuristic: many "good" song EPUBs already have one
+        //    song per chapter. Detect this by: ≥5 chapters, each shortish (<3000 chars).
+        var avgLen = chs.reduce(function(a, c){ return a + (c.text || "").length; }, 0) / chs.length;
+        var alreadyOnePerChapter = chs.length >= 5 && avgLen < 3000;
+        if (!alreadyOnePerChapter) {
+          // 2. Try the smart heuristic splitter.
+          var smart = splitSongsHeuristic(chs);
+          if (smart && smart.length >= 3) {
+            chs = smart;
+          } else {
+            // 3. Heuristic failed → ask AI for a regex pattern.
+            try {
+              var aiResult = await splitSongsAI(chs, fname);
+              if (aiResult && aiResult.length >= 3) {
+                chs = aiResult;
+              } else if (opts.splitByNumberedSections) {
+                // 4. AI also failed AND user explicitly opted into the legacy splitter.
+                chs = resplitByNumberedSections(chs);
+              }
+            } catch(aiErr) {
+              console.log("[songs] AI fallback errored: " + (aiErr.message || aiErr));
+              if (opts.splitByNumberedSections) chs = resplitByNumberedSections(chs);
+            }
+          }
+        }
+      } else if (opts.splitByNumberedSections) {
+        // Non-song-category book with the legacy flag set: use original behavior.
         chs = resplitByNumberedSections(chs);
       } else {
-        // Default: re-split by in-text chapter markers (Roman numerals, "Глава N", etc.).
-        // The author told us the chapter boundaries by putting markers in the text — use
-        // those instead of trusting spine items or TOC labels.
+        // Default for novels/stories/plays: re-split by in-text chapter markers
+        // (Roman numerals, "Глава N", etc.). The author told us the chapter
+        // boundaries by putting markers in the text — use those instead of
+        // trusting spine items or TOC labels.
         var bymark = splitByMarkers(chs);
         if (bymark && bymark.length >= 2) {
           chs = bymark;
