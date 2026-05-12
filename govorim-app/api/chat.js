@@ -131,9 +131,17 @@ export default async function handler(req, res) {
 
   const model = process.env.GEMINI_MODEL || "gemini-2.5-flash";
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${process.env.GEMINI_API_KEY}`;
+  // When the caller asks for JSON (e.g. word-definition lookups), force Gemini
+  // into structured-output mode AND drop the temperature. JSON mode prevents
+  // markdown fences / preamble / trailing commentary; low temperature keeps the
+  // shape predictable. Falls back to creative-mode defaults otherwise.
+  const wantJson = !!(body && body.json);
+  const generationConfig = wantJson
+    ? { maxOutputTokens: max_tokens, temperature: 0.2, responseMimeType: "application/json" }
+    : { maxOutputTokens: max_tokens, temperature: 1.0 };
   const payload = {
     contents: contents,
-    generationConfig: { maxOutputTokens: max_tokens, temperature: 1.0 },
+    generationConfig: generationConfig,
   };
   if (system && system.trim()) {
     payload.systemInstruction = { parts: [{ text: system }] };

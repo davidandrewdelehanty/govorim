@@ -1563,20 +1563,24 @@ export default function App() {
     }
   }, [msgs.length, loading]);
 
-  var api = async function(messages, sys) {
+  var api = async function(messages, sys, opts) {
     var run = async function() {
       var ctrl = new AbortController();
       var tid = setTimeout(function() { ctrl.abort(); }, 30000);
       try {
         // authFetch handles JWT injection and one auto-refresh on 401.
+        var bodyObj = {
+          messages: messages,
+          system: sys || sysprompt(act, vocab, tips),
+          max_tokens: 2048
+        };
+        // Forward "json" flag so the backend can put Gemini into strict JSON mode
+        // (used by word-definition lookups). Default behavior unchanged.
+        if (opts && opts.json) bodyObj.json = true;
         var r = await authFetch("/api/chat", {
           method:"POST", signal:ctrl.signal,
           headers: {"Content-Type":"application/json"},
-          body:JSON.stringify({
-            messages: messages,
-            system: sys || sysprompt(act, vocab, tips),
-            max_tokens: 2048
-          }),
+          body:JSON.stringify(bodyObj),
         });
         clearTimeout(tid);
         var d = await r.json().catch(function(){ return {}; });
@@ -1962,12 +1966,26 @@ export default function App() {
   };
 
   var fetchDef = async function(word) {
-    var raw = await api([{role:"user",content:defprompt(word)}],
-      "You are a Russian-English dictionary. Return a single JSON object only. No markdown.");
-    var c = raw.replace(/```[a-z]*\n?/gi,"").replace(/```/g,"").trim();
+    // Ask the backend for strict JSON output. With responseMimeType set on the
+    // Gemini side, the response is just `{...}` with no markdown fences, no
+    // preamble, no trailing commentary. Lower temperature too (set server-side
+    // when json=true) so the shape is predictable.
+    var raw = await api(
+      [{role:"user",content:defprompt(word)}],
+      "You are a Russian-English dictionary. Return a single JSON object only. No markdown. No commentary.",
+      { json: true }
+    );
+    var c = (raw || "").replace(/```[a-z]*\n?/gi,"").replace(/```/g,"").trim();
     var s = c.indexOf("{"), e2 = c.lastIndexOf("}");
-    if (s === -1 || e2 === -1) throw new Error("No JSON");
-    return JSON.parse(c.slice(s, e2+1));
+    if (s === -1 || e2 === -1) throw new Error("Gemini returned no JSON object. Reply was: " + (c.slice(0, 80) || "(empty)"));
+    var parsed;
+    try { parsed = JSON.parse(c.slice(s, e2+1)); }
+    catch (jerr) { throw new Error("Gemini returned malformed JSON: " + jerr.message); }
+    // Validate the response has the field that matters most.
+    if (!parsed || typeof parsed.translation !== "string" || !parsed.translation.trim()) {
+      throw new Error("Gemini did not provide a translation for this word");
+    }
+    return parsed;
   };
 
   // In Read-without-AI mode, clicking a Russian word jumps TTS to that word and reads onward.
@@ -1995,10 +2013,21 @@ export default function App() {
       setPopup(function(p){ return p ? Object.assign({},p,{data:data,loading:false}) : null; });
     } catch(err) {
       var vars = yoVariants(clean);
-      if (vars.length) {
+      // Try the е↔ё variants automatically before giving up — but only on errors
+      // that suggest the word itself was the problem (not rate limits / auth).
+      var rawMsg = (err && err.message) || "Unknown error";
+      var likelyRateLimit = /Too many|rate.?limit|quota|429|HTTP 429|exhausted/i.test(rawMsg);
+      var likelyAuth      = /session|sign|approval|401|403/i.test(rawMsg);
+      if (vars.length && !likelyRateLimit && !likelyAuth) {
         setPopup(function(p){ return p ? Object.assign({},p,{loading:false,yo:{orig:clean,vars:vars}}) : null; });
       } else {
-        setPopup(function(p){ return p ? Object.assign({},p,{loading:false,error:'Could not define "'+clean+'"'}) : null; });
+        // Show a SHORT user-friendly message but the underlying cause too, so we
+        // can tell rate-limit issues from JSON-parse issues from bad-word issues.
+        var msg;
+        if (likelyRateLimit)      msg = 'Daily AI limit reached — try again later, or raise the GEMINI_MODEL quota.';
+        else if (likelyAuth)      msg = 'Sign-in required. Sign out and back in, then retry.';
+        else                       msg = 'Could not define "' + clean + '" — ' + rawMsg;
+        setPopup(function(p){ return p ? Object.assign({},p,{loading:false,error:msg}) : null; });
       }
     }
   };
