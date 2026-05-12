@@ -293,6 +293,65 @@ function computePages(chapterText) {
   return pagesOut;
 }
 
+// Split long TTS input into ~200-char chunks at sentence boundaries. Returns an
+// array of {text, start} where `start` is the char offset back into the original
+// text (so word-boundary events can be mapped to global positions for the
+// reading-along highlight).
+//
+// Why: Chrome's "Google русский" voice silently fails for utterances above
+// roughly 200 characters — no onstart, no onerror, just no sound. Chunking
+// and chaining via onend makes the playback reliable across all voices.
+// Microsoft local voices don't have this limit, but they get chunked the same
+// way for consistency.
+function chunkForTTS(text, from, maxLen) {
+  if (typeof maxLen !== "number") maxLen = 200;
+  var slice = (text || "").slice(from || 0);
+  if (!slice) return [];
+
+  // Find sentence-end positions: . ! ? … plus optional closing punctuation,
+  // followed by whitespace. Same matcher used by computePages' giant-paragraph
+  // path.
+  var sentEnds = [];
+  var re = /[.!?…]+["»)\]]?\s+/g;
+  var m;
+  while ((m = re.exec(slice)) !== null) {
+    sentEnds.push(m.index + m[0].length);
+  }
+  if (sentEnds.length === 0 || sentEnds[sentEnds.length - 1] !== slice.length) {
+    sentEnds.push(slice.length);
+  }
+
+  var chunks = [];
+  var chunkStart = 0;
+  var lastBoundary = 0;
+  for (var i = 0; i < sentEnds.length; i++) {
+    var end = sentEnds[i];
+    if (end - chunkStart > maxLen && lastBoundary > chunkStart) {
+      chunks.push({ text: slice.slice(chunkStart, lastBoundary), start: (from || 0) + chunkStart });
+      chunkStart = lastBoundary;
+    }
+    lastBoundary = end;
+  }
+
+  // Whatever's left after the last sentence boundary. If it's still huge
+  // (one massive run-on with no sentence breaks — Tolstoy style), split it
+  // at word boundaries.
+  var remainder = slice.slice(chunkStart);
+  var remainderStart = chunkStart;
+  while (remainder.length > maxLen * 1.5) {
+    var splitAt = remainder.lastIndexOf(" ", maxLen);
+    if (splitAt < 30) splitAt = maxLen; // no nearby space — force-split at maxLen
+    chunks.push({ text: remainder.slice(0, splitAt), start: (from || 0) + remainderStart });
+    remainderStart += splitAt;
+    remainder = remainder.slice(splitAt);
+  }
+  if (remainder.length > 0) {
+    chunks.push({ text: remainder, start: (from || 0) + remainderStart });
+  }
+
+  return chunks;
+}
+
 function defprompt(w) {
   return `Define the Russian word "${w}" for an English learner. Return JSON ONLY, no markdown.
 
@@ -1275,6 +1334,9 @@ export default function App() {
   var charPos  = useRef(0);
   var paraText = useRef("");
   var keepAlive = useRef(null);
+  // Queue of remaining TTS chunks (used by playText to chain Google-voice-friendly
+  // short utterances). Each entry is {text, start}. Cleared by stopTTS/pauseTTS.
+  var ttsQueue = useRef([]);
   var recentFoci = useRef([]);
 
   var inputRef = useRef(null);
@@ -1702,6 +1764,7 @@ export default function App() {
 
   var stopTTS = useCallback(function() {
     stopKeepalive();
+    ttsQueue.current = [];  // halt the chunk chain
     if (window.speechSynthesis) window.speechSynthesis.cancel();
     setPlaying(false); setSpkIdx(null); setSpokenChar(-1);
   }, []);
@@ -1729,46 +1792,72 @@ export default function App() {
     var slice = text.slice(from);
     if (!slice.trim()) return;
 
-    // Chrome quirk #1: speak() immediately after cancel() often fails silently.
-    //   A delay between cancel and speak fixes it. 60ms isn't always enough on
-    //   Chrome/Windows; 250ms is more robust without feeling laggy.
-    // Chrome quirk #2: if a previous speak() left the engine in a half-paused
-    //   state (can happen after the keepalive's pause+resume cycle), the next
-    //   speak() produces no audio. Calling resume() defensively nudges it back
-    //   into a clean speaking state.
-    setTimeout(function() {
-      setPlaying(true); charPos.current = from;
-      var u = new SpeechSynthesisUtterance(slice);
+    // Split into ~200-char chunks at sentence boundaries. Google русский silently
+    // fails on long utterances; even local voices benefit from shorter chunks
+    // (less chance of the Chrome 15-sec-cutoff bug). Each chunk knows its global
+    // char offset so word-boundary events map back to absolute positions.
+    var chunks = chunkForTTS(text, from, 200);
+    if (chunks.length === 0) return;
+    ttsQueue.current = chunks.slice(); // copy so .shift() doesn't mutate caller's reference
+
+    // playChunk pulls the next chunk from the queue and speaks it. When that
+    // chunk ends naturally, it calls itself again to keep the chain going.
+    var ssn = window.speechSynthesis;
+    var playNext = function() {
+      if (ttsQueue.current.length === 0) {
+        stopKeepalive();
+        setPlaying(false);
+        charPos.current = 0;
+        setSpokenChar(-1);
+        return;
+      }
+      var chunk = ttsQueue.current.shift();
+      var u = new SpeechSynthesisUtterance(chunk.text);
       u.lang = "ru-RU"; u.rate = 0.84;
       if (voice) u.voice = voice;
       u.onstart = function() { startKeepalive(); };
       u.onboundary = function(e) {
         if (e.name === "word") {
-          var pos = from + e.charIndex;
+          var pos = chunk.start + e.charIndex;
           charPos.current = pos;
           setSpokenChar(pos);
         }
       };
-      u.onend = function() { stopKeepalive(); setPlaying(false); charPos.current = 0; setSpokenChar(-1); };
+      u.onend = function() {
+        // Small inter-chunk delay smooths over the cancel/speak Chrome quirk
+        // and gives the engine a beat to reset state between chunks.
+        setTimeout(playNext, 30);
+      };
       u.onerror = function(e) {
+        var err = (e && e.error) || "unknown";
+        if (err === "interrupted" || err === "canceled") return; // expected on stop
+        ttsQueue.current = [];
         stopKeepalive();
         setSpokenChar(-1);
-        var err = (e && e.error) || "unknown";
-        if (err !== "interrupted" && err !== "canceled") {
-          setTtsErr("Speech error: " + err + ". Try clicking 🎙 Voice to pick a different voice.");
-          setPlaying(false);
-        }
+        setTtsErr("Speech error: " + err + ". Try clicking 🎙 Voice to pick a different voice.");
+        setPlaying(false);
       };
       try {
-        if (window.speechSynthesis.paused) window.speechSynthesis.resume();
-        window.speechSynthesis.speak(u);
+        if (ssn.paused) ssn.resume();
+        ssn.speak(u);
+      } catch (ex) {
+        ttsQueue.current = [];
+        setTtsErr("speak() threw: " + (ex.message || ex));
+        setPlaying(false);
       }
-      catch(ex) { setTtsErr("speak() threw: " + (ex.message || ex)); setPlaying(false); }
+    };
+
+    // Chrome quirk: speak() immediately after cancel() often fails silently —
+    // wait a beat after the cancel before starting the chain.
+    setTimeout(function() {
+      setPlaying(true); charPos.current = from;
+      playNext();
     }, 250);
   }, [voice]);
 
   var pauseTTS = useCallback(function() {
     stopKeepalive();
+    ttsQueue.current = [];  // pause halts the chain; resuming would need a fresh playText call
     if (window.speechSynthesis) window.speechSynthesis.cancel();
     setPlaying(false);
   }, []);
