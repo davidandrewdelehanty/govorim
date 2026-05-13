@@ -1348,6 +1348,16 @@ export default function App() {
   var [adminLoad, setAdminLoad]   = useState(false);
   var [adminErr, setAdminErr]     = useState("");
   var [adminBusy, setAdminBusy]   = useState({}); // { userId: "approving" | "rejecting" }
+  // Upload-song panel state — admin-only, accessed via "📤 Upload" trigger.
+  // Pasted song goes to a per-artist .txt in public/books/lyrics/ via the
+  // /api/admin/upload-song endpoint (commits to GitHub → Vercel redeploys).
+  var [showUpload, setShowUpload]   = useState(false);
+  var [upArtist, setUpArtist]       = useState("");
+  var [upTitle, setUpTitle]         = useState("");
+  var [upLyrics, setUpLyrics]       = useState("");
+  var [upBusy, setUpBusy]           = useState(false);
+  var [upMsg, setUpMsg]             = useState("");
+  var [upErr, setUpErr]             = useState("");
   var ADMIN_EMAIL = (import.meta.env.VITE_ADMIN_EMAIL || "").toLowerCase();
   var currentEmail = (user && user.primaryEmailAddress && user.primaryEmailAddress.emailAddress || "").toLowerCase();
   var isAdmin = !!ADMIN_EMAIL && currentEmail === ADMIN_EMAIL;
@@ -1892,6 +1902,39 @@ export default function App() {
 
   // Auto-load users when admin panel opens.
   useEffect(function() { if (showAdmin && isAdmin) loadAdminUsers(); }, [showAdmin, isAdmin]);
+
+  // Upload a song to the library. Hits /api/admin/upload-song which commits
+  // to GitHub → Vercel redeploys → song appears in picker after deploy.
+  var uploadSong = async function() {
+    if (upBusy) return;
+    setUpErr("");
+    setUpMsg("");
+    var artist = upArtist.trim();
+    var title  = upTitle.trim();
+    var lyrics = upLyrics.trim();
+    if (!artist) { setUpErr("Artist required"); return; }
+    if (!title)  { setUpErr("Song title required"); return; }
+    if (lyrics.length < 20) { setUpErr("Lyrics too short"); return; }
+    setUpBusy(true);
+    try {
+      var r = await authFetch("/api/admin/upload-song", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ artist: artist, title: title, lyrics: lyrics }),
+      });
+      var d = await r.json().catch(function(){ return {}; });
+      if (!r.ok) throw new Error(d.error || ("HTTP " + r.status));
+      setUpMsg(d.message || ("Song uploaded — deploy in progress. Song #" + d.songNumber + " for " + d.artist + "."));
+      // Clear title + lyrics so the admin can immediately add another song
+      // from the same artist; preserve artist for convenience.
+      setUpTitle("");
+      setUpLyrics("");
+    } catch(err) {
+      setUpErr(err.message || "Upload failed");
+    } finally {
+      setUpBusy(false);
+    }
+  };
 
   var startKeepalive = function() {
     if (keepAlive.current) clearInterval(keepAlive.current);
@@ -3771,6 +3814,63 @@ export default function App() {
           </div>
         </div>
       )}
+      {showUpload && isAdmin && (
+        <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setShowUpload(false); }}>
+          <div className="adm-modal" style={{maxWidth:640}}>
+            <div className="adm-head">
+              <div className="adm-title">📤 Upload Song</div>
+              <button className="adm-x" onClick={function(){ setShowUpload(false); }}>×</button>
+            </div>
+            <div className="adm-body" style={{padding:20,display:"flex",flexDirection:"column",gap:14}}>
+              <div style={{fontSize:12,opacity:.6,lineHeight:1.5}}>
+                Pasted lyrics get appended to a per-artist file under <code style={{background:"rgba(0,0,0,.3)",padding:"1px 5px",borderRadius:3}}>public/books/lyrics/&lt;artist&gt;.txt</code>.
+                Vercel redeploys after each upload — your new song appears in the picker in ~1-2 min.
+              </div>
+              {upErr && <div className="adm-err">{upErr}</div>}
+              {upMsg && (
+                <div style={{padding:"8px 12px",background:"rgba(138,171,124,.15)",border:"1px solid rgba(138,171,124,.4)",borderRadius:4,color:"#a8c89a",fontSize:13}}>
+                  ✓ {upMsg}
+                </div>
+              )}
+              <div>
+                <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Artist</label>
+                <input type="text" value={upArtist} onChange={function(e){ setUpArtist(e.target.value); }}
+                  placeholder="e.g. Виктор Цой"
+                  disabled={upBusy}
+                  style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
+              </div>
+              <div>
+                <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Song title</label>
+                <input type="text" value={upTitle} onChange={function(e){ setUpTitle(e.target.value); }}
+                  placeholder="e.g. Группа крови"
+                  disabled={upBusy}
+                  style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
+              </div>
+              <div>
+                <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Lyrics (Russian)</label>
+                <textarea value={upLyrics} onChange={function(e){ setUpLyrics(e.target.value); }}
+                  placeholder="Paste the song lyrics here..."
+                  rows={14}
+                  disabled={upBusy}
+                  style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",resize:"vertical",lineHeight:1.55,boxSizing:"border-box"}}/>
+                <div style={{fontSize:11,opacity:.45,marginTop:4,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>
+                  {upLyrics.length} chars · {(upLyrics.match(/[а-яёА-ЯЁ]/g) || []).length} Cyrillic letters
+                </div>
+              </div>
+              <div style={{display:"flex",gap:10,alignItems:"center",marginTop:4}}>
+                <button onClick={uploadSong} disabled={upBusy || !upArtist.trim() || !upTitle.trim() || upLyrics.trim().length < 20}
+                  style={{padding:"10px 22px",background:"#c8a276",color:"#1a1612",border:"none",borderRadius:4,fontWeight:600,fontSize:14,cursor:upBusy?"wait":"pointer",opacity:(upBusy || !upArtist.trim() || !upTitle.trim() || upLyrics.trim().length < 20)?.5:1,fontFamily:"'Crimson Pro',serif"}}>
+                  {upBusy ? "Uploading..." : "Upload song"}
+                </button>
+                <button onClick={function(){ setUpTitle(""); setUpLyrics(""); setUpMsg(""); setUpErr(""); }} disabled={upBusy}
+                  style={{padding:"10px 16px",background:"transparent",color:"#d2c5af",border:"1px solid rgba(210,197,175,.25)",borderRadius:4,fontSize:13,cursor:"pointer",fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>
+                  Clear song
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       {!seenLanding && (
         <div className="land">
           <div className="land-card">
@@ -3845,6 +3945,7 @@ export default function App() {
             {auth.isSignedIn && <button className="adm-trigger" onClick={openForum} title="Community forum">📝 Forum</button>}
             {auth.isSignedIn && <button className="adm-trigger" onClick={function(){ setFeedbackOpen(true); }} title="Send feedback">💬 Feedback</button>}
             {isAdmin && <button className="adm-trigger" onClick={function(){ setShowAdmin(true); }} title="Manage user approvals">👥 Users</button>}
+            {isAdmin && <button className="adm-trigger" onClick={function(){ setShowUpload(true); setUpErr(""); setUpMsg(""); }} title="Upload a song to the library">📤 Upload</button>}
             {auth.isSignedIn && <div className="userbtn-wrap"><UserButton afterSignOutUrl="/" /></div>}
           </div>
         </header>
