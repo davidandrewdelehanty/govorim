@@ -1886,6 +1886,19 @@ export default function App() {
   var [nEn, setNEn] = useState("");
   var [nTip, setNTip] = useState("");
 
+  // ── Vocab quiz state ──────────────────────────────────────────────────────
+  // Active when the user clicks "Review vocab" on the vocab tab. We generate
+  // multiple-choice questions where the correct answer is the English meaning
+  // of the Russian word, and the 3 distractors are English meanings from OTHER
+  // words OF THE SAME PART OF SPEECH (verbs quiz against verbs only, nouns
+  // against nouns, etc.).
+  var [quizMode, setQuizMode]         = useState(false);
+  var [quizQuestions, setQuizQuestions] = useState([]);
+  var [quizIdx, setQuizIdx]           = useState(0);
+  var [quizSelected, setQuizSelected] = useState(null);
+  var [quizScore, setQuizScore]       = useState(0);
+  var [quizSkipNote, setQuizSkipNote] = useState("");
+
   var [popup, setPopup]   = useState(null);
   var [popXY, setPopXY]   = useState({top:100,left:16});
   var popRef = useRef(null);
@@ -2140,28 +2153,13 @@ export default function App() {
     if (!find()) window.speechSynthesis.onvoiceschanged = find;
   }, []);
 
-  // Load any cached EPUB (single-slot) when user enters Read mode for the first time.
-  useEffect(function() {
-    if (mode !== "read") return;
-    (async function() {
-      try { var b = await storage.get(EPUB_BM); if (b) setCbm(parseInt(b.value) || 0); } catch(e) {}
-      try {
-        var c = await storage.get(EPUB_CACHE);
-        if (c && c.value) {
-          var d = JSON.parse(c.value);
-          if (d && d.chapters && d.chapters.length > 0) {
-            setChapters(d.chapters);
-            setBookMeta({
-              title: d.title || "Unknown title",
-              author: d.author || "Unknown author",
-              category: d.category || "",
-              splitByNumberedSections: !!d.splitByNumberedSections,
-            });
-          }
-        }
-      } catch(e) {}
-    })();
-  }, [mode]);
+  // Launch screen always shows a fresh "no book loaded" state. We deliberately
+  // do NOT auto-restore the previous book from EPUB_CACHE on mode entry —
+  // surfacing a half-remembered "Resume at chapter X" state on every visit was
+  // confusing. The cache is still written during loadFile (so the same file
+  // could be restored manually later), it just isn't read back on entry.
+  // Bookmark (cbm) restoration is also disabled because it has nothing to
+  // bookmark against when chapters is empty.
 
   // Persist bookmark whenever it changes (only meaningful with a loaded book).
   useEffect(function() {
@@ -3515,6 +3513,68 @@ export default function App() {
       setTips(function(p){ return p.concat([{tip:tip,id:now,created:now}]); });
     }
   };
+  // ── Vocab quiz generator ─────────────────────────────────────────────────
+  // Builds an array of multiple-choice questions from the vocab list. For each
+  // word (with an English meaning AND a part-of-speech tag), we pick 3 random
+  // distractors from OTHER words with the same `pos`. If a word's pos group has
+  // fewer than 3 valid siblings, that word is skipped (insufficient distractors).
+  // Words without a `pos` tag are also skipped — verbs-vs-nouns mixing defeats
+  // the pedagogy.
+  var startQuiz = function() {
+    // Group vocab by normalized pos. A word needs `en` (the English meaning to
+    // quiz on) and `pos` (so we can find same-category distractors) to qualify.
+    var groups = {};
+    vocab.forEach(function(v){
+      var p = (v.pos || "").toLowerCase().trim();
+      if (!p) return;          // no pos → skipped entirely
+      if (!v.en) return;       // no English meaning → can't quiz
+      if (!groups[p]) groups[p] = [];
+      groups[p].push(v);
+    });
+
+    var shuffle = function(arr) {
+      var a = arr.slice();
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+      }
+      return a;
+    };
+
+    var questions = [];
+    var skipped = 0;
+    vocab.forEach(function(v){
+      var p = (v.pos || "").toLowerCase().trim();
+      if (!p || !v.en) { skipped++; return; }
+      var siblings = (groups[p] || []).filter(function(x){ return x.id !== v.id; });
+      if (siblings.length < 3) { skipped++; return; }
+      var distractors = shuffle(siblings).slice(0, 3).map(function(s){ return s.en; });
+      questions.push({
+        word: v.ru,
+        correct: v.en,
+        options: shuffle(distractors.concat([v.en])),
+        pos: v.pos,
+      });
+    });
+
+    if (questions.length === 0) {
+      setQuizSkipNote("Не получилось собрать тест. Need at least 4 vocab words sharing the same part of speech (e.g. 4 verbs), each with an English meaning and a part-of-speech tag. Edit your vocab to add these.");
+      setQuizQuestions([]);
+      setQuizIdx(0);
+      setQuizSelected(null);
+      setQuizScore(0);
+      setQuizMode(true);
+      return;
+    }
+
+    setQuizSkipNote(skipped > 0 ? skipped + " word(s) skipped (no part-of-speech tag or too few same-pos siblings)." : "");
+    setQuizQuestions(shuffle(questions));
+    setQuizIdx(0);
+    setQuizSelected(null);
+    setQuizScore(0);
+    setQuizMode(true);
+  };
+
   // Bookmarks for grammar curriculum topics. We only store the topic ID — when
   // the user clicks a saved card we re-render the full content from curriculum.json,
   // so edits to the curriculum are reflected in already-saved entries.
@@ -4814,7 +4874,7 @@ export default function App() {
                     <>
                       {cbm > 0 && <button className="btn-p" onClick={function(){ startLit(cbm); }}>📌 Resume at chapter {cbm+1}</button>}
                       <button className={cbm>0?"btn-g":"btn-p"} onClick={function(){ startLit(0); }}>{cbm>0?"Start from beginning":"Начать читать →"}</button>
-                      <FileBtn label="Select a different book" onLoad={loadFile}/>
+                      <FileBtn label="Open an ebook" onLoad={loadFile}/>
                       <button onClick={async function(){
                         setChapters([]); setCidx(0); setCbm(0); setBookMeta({title:"",author:""});
                         try { await storage.delete(EPUB_CACHE); } catch(e) {}
@@ -4823,7 +4883,7 @@ export default function App() {
                       }} style={{background:"none",border:"none",color:"rgba(210,197,175,.4)",fontSize:11,fontStyle:"italic",fontFamily:"'Crimson Pro',serif",cursor:"pointer",padding:"4px",marginTop:4,textDecoration:"underline",textDecorationColor:"rgba(210,197,175,.2)",alignSelf:"center"}}>clear cached book</button>
                     </>
                   ) : (
-                    <FileBtn label="Choose book file" onLoad={loadFile}/>
+                    <FileBtn label="Open an ebook" onLoad={loadFile}/>
                   )}
 
                   {/* Pre-loaded library — dropdown of books shipped with the app,
@@ -5344,30 +5404,115 @@ export default function App() {
 
         {tab==="vocab" && (
           <div className="panel">
-            <div className="phdr"><span className="pti">My Vocabulary</span><button className="ab" onClick={function(){ setNRu(""); setNEn(""); setShowWord(true); }}>+ Add word</button></div>
-            {vocab.length===0 ? <p className="empty">No words saved yet.<br/>Click any Russian word to define and save it.</p>
-              : <div className="ilist">{vocab.map(function(v){
-                var posLine = [v.pos, v.aspect].filter(Boolean).join(" · ");
-                var stamp = formatVocabDate(v.created || v.id);
-                return (
-                  <div key={v.id} className="icard">
-                    <div className="icont">
-                      <span className="ipri">{v.ru}</span>
-                      {posLine && <span className="ipos">{posLine}</span>}
-                      {v.en && <span className="isec">{v.en}</span>}
-                      {v.grammar && <span className="igr">{v.grammar}</span>}
-                      {v.example && (
-                        <div className="iex">
-                          «&nbsp;{v.example}&nbsp;»
-                          {v.exampleTranslation && <div className="iext">{v.exampleTranslation}</div>}
-                        </div>
-                      )}
-                      {stamp && <span style={{fontSize:11,color:"rgba(210,197,175,.35)",fontStyle:"italic",fontFamily:"'Crimson Pro',serif",marginTop:6,display:"block"}}>Added {stamp}</span>}
-                    </div>
-                    <button className="rmb" title="Remove from vocabulary" onClick={function(){ setVocab(function(p){ return p.filter(function(x){ return x.id!==v.id; }); }); }}>×</button>
+            {quizMode ? (
+              // ── Quiz view ──────────────────────────────────────────────
+              <>
+                <div className="phdr">
+                  <span className="pti">📝 Vocab Quiz</span>
+                  <button className="ab" onClick={function(){ setQuizMode(false); }}>← Back to list</button>
+                </div>
+                {quizQuestions.length === 0 ? (
+                  <div style={{padding:"40px 20px",textAlign:"center"}}>
+                    <p style={{color:"rgba(210,197,175,.7)",fontSize:15,lineHeight:1.6,maxWidth:480,margin:"0 auto"}}>{quizSkipNote}</p>
+                    <button className="btn-g" style={{marginTop:24,maxWidth:280}} onClick={function(){ setQuizMode(false); }}>Back to vocab list</button>
                   </div>
-                );
-              })}</div>}
+                ) : quizIdx >= quizQuestions.length ? (
+                  // Final score screen
+                  <div style={{padding:"40px 20px",textAlign:"center"}}>
+                    <div style={{fontSize:48,marginBottom:12}}>{quizScore === quizQuestions.length ? "🎉" : quizScore >= quizQuestions.length * 0.7 ? "👏" : "📚"}</div>
+                    <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,color:"#c8a276",marginBottom:8}}>Quiz Complete!</h2>
+                    <p style={{fontSize:20,color:"#d2c5af",marginBottom:6}}>You got <strong style={{color:"#c8a276"}}>{quizScore}</strong> of <strong>{quizQuestions.length}</strong> correct.</p>
+                    <p style={{fontSize:14,color:"rgba(210,197,175,.5)",marginBottom:28}}>{Math.round(quizScore / quizQuestions.length * 100)}%</p>
+                    {quizSkipNote && <p style={{fontSize:12,color:"rgba(210,197,175,.4)",fontStyle:"italic",marginBottom:20,maxWidth:440,margin:"0 auto 20px"}}>{quizSkipNote}</p>}
+                    <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
+                      <button className="btn-p" style={{maxWidth:200}} onClick={startQuiz}>Retake quiz</button>
+                      <button className="btn-g" style={{maxWidth:200}} onClick={function(){ setQuizMode(false); }}>Back to vocab list</button>
+                    </div>
+                  </div>
+                ) : (
+                  // Current question
+                  <div style={{padding:"20px 4px"}}>
+                    <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:18,fontSize:13,color:"rgba(210,197,175,.5)"}}>
+                      <span>Question {quizIdx + 1} of {quizQuestions.length}</span>
+                      <span>Score: {quizScore} / {quizIdx + (quizSelected !== null ? 1 : 0)}</span>
+                    </div>
+                    {/* The Russian word being quizzed */}
+                    <div style={{textAlign:"center",marginBottom:8}}>
+                      <span style={{fontSize:12,color:"rgba(210,197,175,.45)",textTransform:"uppercase",letterSpacing:1.5}}>{quizQuestions[quizIdx].pos}</span>
+                    </div>
+                    <div style={{fontSize:42,fontFamily:"'Playfair Display',serif",color:"#c8a276",textAlign:"center",marginBottom:30,fontWeight:600}}>
+                      {quizQuestions[quizIdx].word}
+                    </div>
+                    {/* Multiple choice options */}
+                    <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:560,margin:"0 auto"}}>
+                      {quizQuestions[quizIdx].options.map(function(opt, i) {
+                        var isCorrect = opt === quizQuestions[quizIdx].correct;
+                        var isPicked  = opt === quizSelected;
+                        var bg = "rgba(210,197,175,.05)", brd = "rgba(210,197,175,.16)", col = "#d2c5af";
+                        if (quizSelected !== null) {
+                          if (isCorrect)      { bg = "rgba(90,133,86,.18)";  brd = "rgba(90,133,86,.6)";  col = "#9dbf99"; }
+                          else if (isPicked)  { bg = "rgba(157,70,48,.18)";  brd = "rgba(157,70,48,.6)";  col = "#c87a68"; }
+                          else                { col = "rgba(210,197,175,.4)"; }
+                        }
+                        return (
+                          <button key={i} disabled={quizSelected !== null} onClick={function(){
+                            setQuizSelected(opt);
+                            if (isCorrect) setQuizScore(function(s){ return s + 1; });
+                          }} style={{background:bg,border:"1px solid "+brd,color:col,padding:"14px 18px",borderRadius:10,fontSize:16,fontFamily:"'Crimson Pro',serif",cursor: quizSelected !== null ? "default" : "pointer", textAlign:"left", transition:"all .15s"}}>
+                            <span style={{display:"inline-block",width:20,color:"rgba(210,197,175,.45)",fontFamily:"'Inter',sans-serif",fontSize:13}}>{String.fromCharCode(65 + i)}.</span>
+                            {opt}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    {quizSelected !== null && (
+                      <div style={{marginTop:24,textAlign:"center"}}>
+                        <button className="btn-p" style={{maxWidth:280}} onClick={function(){
+                          setQuizIdx(function(i){ return i + 1; });
+                          setQuizSelected(null);
+                        }}>
+                          {quizIdx + 1 < quizQuestions.length ? "Next →" : "See results"}
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </>
+            ) : (
+              // ── Normal vocab list view ─────────────────────────────────
+              <>
+                <div className="phdr">
+                  <span className="pti">My Vocabulary</span>
+                  <div style={{display:"flex",gap:8}}>
+                    {vocab.length >= 4 && <button className="ab" onClick={startQuiz} title="Quiz yourself with multiple-choice questions on your saved vocab">📝 Review vocab</button>}
+                    <button className="ab" onClick={function(){ setNRu(""); setNEn(""); setShowWord(true); }}>+ Add word</button>
+                  </div>
+                </div>
+                {vocab.length===0 ? <p className="empty">No words saved yet.<br/>Click any Russian word to define and save it.</p>
+                  : <div className="ilist">{vocab.map(function(v){
+                    var posLine = [v.pos, v.aspect].filter(Boolean).join(" · ");
+                    var stamp = formatVocabDate(v.created || v.id);
+                    return (
+                      <div key={v.id} className="icard">
+                        <div className="icont">
+                          <span className="ipri">{v.ru}</span>
+                          {posLine && <span className="ipos">{posLine}</span>}
+                          {v.en && <span className="isec">{v.en}</span>}
+                          {v.grammar && <span className="igr">{v.grammar}</span>}
+                          {v.example && (
+                            <div className="iex">
+                              «&nbsp;{v.example}&nbsp;»
+                              {v.exampleTranslation && <div className="iext">{v.exampleTranslation}</div>}
+                            </div>
+                          )}
+                          {stamp && <span style={{fontSize:11,color:"rgba(210,197,175,.35)",fontStyle:"italic",fontFamily:"'Crimson Pro',serif",marginTop:6,display:"block"}}>Added {stamp}</span>}
+                        </div>
+                        <button className="rmb" title="Remove from vocabulary" onClick={function(){ setVocab(function(p){ return p.filter(function(x){ return x.id!==v.id; }); }); }}>×</button>
+                      </div>
+                    );
+                  })}</div>}
+              </>
+            )}
           </div>
         )}
 
