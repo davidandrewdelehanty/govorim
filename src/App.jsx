@@ -46,60 +46,91 @@ const LEVELS = [
 ];
 
 // Per-level calibration block injected into the chat system prompt. Each level
-// sets vocabulary breadth, sentence length, question style, and how generously
-// to score answers. Edit these strings to fine-tune behavior at any level.
+// defines (a) vocabulary breadth, (b) which grammatical structures the student
+// has learned (and the AI may use), (c) what to AVOID (the student hasn't met
+// these yet), and (d) what to ACTIVELY DRILL (the structures being practiced
+// at this level). Modelled after standard Russian-as-foreign-language curricula
+// (e.g. Russian Through Propaganda, Live from Moscow, New Penguin Russian Course).
 function levelCalibration(code) {
   var levels = {
     A1: {
-      label: "A1 (Beginner)",
-      vocab: "Use ONLY the most basic everyday vocabulary (first ~500 most common Russian words). Avoid anything that wouldn't appear in a beginner textbook. Stick to present tense. Use only nominative and accusative cases.",
-      sentences: "Each Russian sentence is 3–7 words. Very simple syntax. No subordinate clauses.",
-      questions: "Simplest possible questions: name, age, where from, family, favorite food/color/animal. Avoid abstract, hypothetical, or feeling-based questions.",
-      answers: "Accept one-word answers and celebrate them. Never push for more — encouragement over rigor.",
+      label: "A1 (Beginner — roughly first semester of Russian)",
+      vocab: "ONLY the ~500 most common Russian words (textbook chapter 1–5 vocabulary). Allowed: жить, работать, учиться, читать, писать, говорить, любить, знать, делать, думать, видеть, слушать, есть, пить, мама, папа, брат, сестра, друг, дом, семья, школа, университет, книга, музыка, фильм, еда, кошка, собака, цвет, день, месяц, год, утро, вечер, большой, маленький, хороший, плохой, новый, старый, любимый, красивый, русский, английский. NO abstract, idiomatic, technical, or literary vocabulary.",
+      grammarUse: "GRAMMAR YOU MAY USE: (a) Nominative case for subjects. (b) Prepositional case for LOCATION with в/на ('в Москве', 'на работе', 'в школе'). (c) Accusative case for direct objects ('я люблю маму', 'я читаю книгу', 'я люблю музыку'). (d) Present tense of regular verbs (imperfective). (e) Personal pronouns (я/ты/он/она/мы/вы/они). (f) Possessive pronouns in NOMINATIVE only (мой/моя/моё/мои, твой/твоя/твоё/твои, наш/ваш). (g) Numbers 1–20. (h) Adjective agreement IN NOMINATIVE only (большой дом, новая книга, любимое слово). (i) Basic question words: кто, что, где, какой.",
+      grammarAvoid: "DO NOT USE: Genitive case (no 'у меня есть', no 'нет' + noun, no 'из X', no quantities like 'много книг'). Dative case (no 'мне нравится', no 'кому'). Instrumental case (no 'работаю врачом', no 'с кем'). Past tense. Future tense. Verbal aspect (perfective/imperfective contrasts). Subordinate clauses with что / потому что / когда / который. Conditional with бы. Participles. Gerunds. Idioms. Adjective declension beyond nominative.",
+      grammarDrill: "ACTIVELY PRACTICE through your questions: (1) Prepositional case for location — 'Где ты живёшь?', 'Где ты работаешь?', 'Где твоя семья?'. (2) Accusative for direct objects — 'Что ты любишь?', 'Какую музыку ты слушаешь?', 'Какие книги ты читаешь?'. (3) Present-tense verb conjugation — 'Что ты делаешь утром?', 'Кем ты работаешь?'. (4) Adjective agreement in nominative — 'Какой твой любимый цвет?', 'Какая твоя любимая еда?'.",
+      sentences: "Each Russian sentence is 3–7 words. Simple subject-verb-object. No subordination.",
+      questions: "Concrete beginner topics only: name, age, where they live, where they work/study, family members, favorite color/food/music/animal. Avoid abstract, hypothetical, or feeling questions.",
+      answers: "Accept one-word and very short answers. Celebrate any attempt. Never push for more.",
     },
     A2: {
-      label: "A2 (Elementary)",
-      vocab: "Use common everyday vocabulary (~1500 words). Past and future tenses OK. Basic case use (nom, acc, gen, dat). Avoid idioms and complex grammar.",
-      sentences: "Russian sentences are 5–10 words. Simple syntax. Short subordinate clauses are OK occasionally.",
-      questions: "Concrete questions about daily life, basic preferences, simple descriptions, near-future plans, recent simple past events.",
+      label: "A2 (Elementary — first year complete)",
+      vocab: "Common everyday vocabulary (~1500 words). Include time/date expressions, more verbs, basic adjectives. Avoid idioms and abstract terms.",
+      grammarUse: "GRAMMAR YOU MAY USE: All A1 grammar PLUS: (a) Genitive case for possession ('у меня есть собака'), for negation ('у меня нет времени'), for 'из/с + откуда', for quantities and dates (2-го января, 3 года, 5 лет). (b) Past tense formation (-л, -ла, -ло, -ли). (c) Imperfective future with буду/будешь + infinitive. (d) Simple subordinate clauses with что, потому что, когда. (e) Adjective declension in cases learned (nom, prep, acc, gen).",
+      grammarAvoid: "DO NOT USE: Dative case (no 'мне нравится' — say 'я люблю' instead). Instrumental case. Aspect distinctions in past/future (use mostly imperfective; avoid teaching the contrast directly). Participles. Gerunds. Который-clauses. Conditional with бы.",
+      grammarDrill: "ACTIVELY PRACTICE: (1) Past-tense verbs — 'Что ты делал(а) вчера?', 'Где ты родился / родилась?'. (2) Genitive of possession — 'У тебя есть...?'. (3) Genitive of negation — 'У тебя нет...?'. (4) Time expressions and dates — 'Когда ты родился?', 'Сколько тебе лет?'. (5) Simple когда-clauses — 'Когда ты учился в школе...'.",
+      sentences: "5–10 words per sentence. Simple syntax. Short subordinate clauses occasionally.",
+      questions: "Daily life, basic preferences, simple descriptions, near-future plans, recent past events.",
       answers: "Accept short answers (1 phrase). Gently encourage 1 more detail when natural.",
     },
     B1: {
-      label: "B1 (Intermediate)",
-      vocab: "Common modern vocabulary (~3000 words). All six cases. Past, present, future, including perfective/imperfective aspect contrasts. Some common idioms OK.",
-      sentences: "Russian sentences are 8–15 words. Subordination is fine. Avoid heavy literary syntax or unusual participles.",
+      label: "B1 (Intermediate — second year)",
+      vocab: "Common modern vocabulary (~3000 words). Some common idioms OK in context.",
+      grammarUse: "GRAMMAR YOU MAY USE: All A2 grammar PLUS: (a) Dative case for indirect objects and 'мне нравится' pattern. (b) Instrumental case for occupation ('работать врачом'), accompaniment ('с другом'), means. (c) Verbal aspect (imperfective/perfective contrast) in past and future — this is THE central focus of B1. (d) Verbs of motion: идти/ходить, ехать/ездить (unidirectional vs multidirectional). (e) Reflexive verbs (-ся): мыться, учиться, заниматься. (f) Conditional/subjunctive with бы. (g) Comparatives (больше, лучше, моложе).",
+      grammarAvoid: "Avoid: heavy participle constructions (причастия used as adjectival modifiers), gerunds (деепричастия), complex который-clauses with embedded cases, archaic or literary syntax, advanced aspectual nuances (negation with imperfective, etc.).",
+      grammarDrill: "ACTIVELY PRACTICE: (1) Aspect contrasts in past and future ('Я читал' vs 'Я прочитал', 'Я буду читать' vs 'Я прочитаю'). (2) Dative with нравится ('Что тебе нравится?'). (3) Instrumental for occupation ('Кем ты хочешь стать?'). (4) Conditional with бы ('Что бы ты сделал?'). (5) Verbs of motion (идти/ходить).",
+      sentences: "8–15 words per sentence. Subordination is natural.",
       questions: "Everyday topics, preferences, opinions, recent experiences, simple hypotheticals.",
-      answers: "Expect 1–2 sentence answers. Push gently for more nuance when relevant.",
+      answers: "Expect 1–2 sentence answers. Push gently for nuance.",
     },
     B2: {
       label: "B2 (Upper Intermediate)",
-      vocab: "Wide vocabulary including common idioms, colloquialisms, and set expressions. Complex grammar: participles (причастия), gerunds (деепричастия), conditional mood, reported speech.",
-      sentences: "Longer sentences with multiple clauses are natural. Use varied sentence structure.",
+      vocab: "Wide vocabulary including common idioms, colloquialisms, set expressions.",
+      grammarUse: "GRAMMAR YOU MAY USE: All B1 grammar PLUS: (a) Active and passive participles (читающий, читавший, прочитанный, читаемый). (b) Gerunds / деепричастия (читая, прочитав). (c) Complex который-clauses. (d) Reported speech. (e) Prefixed verbs of motion (приехать, уехать, переехать, заехать, выйти, войти). (f) Counterfactual conditionals.",
+      grammarAvoid: "Avoid only archaic, dialectal, or very literary forms. Modern grammar in full is fair game.",
+      grammarDrill: "ACTIVELY PRACTICE: (1) Participle constructions in description. (2) Gerunds (деепричастия) for sequential or simultaneous actions. (3) Reported speech ('Он сказал, что...'). (4) Prefixed motion verbs (приехать vs уехать vs переехать). (5) Aspect nuance in negation.",
+      sentences: "Longer sentences with multiple clauses are natural. Vary sentence structure.",
       questions: "Opinions on abstract topics, hypotheticals, comparisons between past and present, cultural questions, exploring nuance.",
-      answers: "Expect 2–4 sentence developed answers. Encourage nuance, examples, and detail.",
+      answers: "Expect 2–4 developed sentences. Encourage nuance, examples, detail.",
     },
     C1: {
       label: "C1 (Advanced)",
-      vocab: "Rich vocabulary including idioms, colloquialisms, set expressions, register shifts. All grammatical structures including reflexive verb idiomatic use, full case nuance, archaic forms when contextually relevant.",
+      vocab: "Rich vocabulary including idioms, colloquialisms, set expressions, register variation.",
+      grammarUse: "ALL standard grammatical structures including subtle aspect choices, idiomatic case use, full participle/gerund constructions, archaic forms in fixed expressions.",
+      grammarAvoid: "Nothing significant — match what an educated native would naturally produce.",
+      grammarDrill: "ACTIVELY PRACTICE: (1) Subtle aspect choices in negation, with verbs of perception, in repeated action. (2) Particles (же, ведь, бы, ли) and their pragmatic functions. (3) Word formation with prefixes (приехать vs уехать vs переехать vs заехать vs съездить). (4) Register awareness (formal vs colloquial vs literary). (5) Idiomatic case use in set expressions.",
       sentences: "Natural near-native length and complexity. Use stylistic variety.",
-      questions: "Abstract, philosophical, opinion-based questions. Cultural depth, politics, hypotheticals, comparison of different worldviews.",
-      answers: "Expect fluent multi-sentence responses with developed ideas. Engage with their reasoning, not just their grammar.",
+      questions: "Abstract, philosophical, opinion-based questions. Cultural depth, politics, hypotheticals, comparison of worldviews.",
+      answers: "Expect fluent multi-sentence responses with developed ideas. Engage with reasoning.",
     },
     C2: {
       label: "C2 (Mastery)",
-      vocab: "Native-level vocabulary including literary, technical, slang, and regional variants. Switch registers (formal/informal/literary/jargon) as the topic requires.",
-      sentences: "Full native complexity. Use literary or sophisticated constructions when they fit naturally.",
-      questions: "Sophisticated discussion of any topic. Probe idiomatic command, register awareness, cultural depth, subtle distinctions between near-synonyms.",
-      answers: "Expect rich, fluent, nuanced answers. Engage as you would with an educated native speaker.",
+      vocab: "Native-level vocabulary including literary, technical, slang, regional variants. Switch registers (formal/informal/literary/jargon) as the topic requires.",
+      grammarUse: "ALL features of Russian grammar including literary or sophisticated constructions when natural.",
+      grammarAvoid: "Nothing.",
+      grammarDrill: "Sophisticated discussion of any topic. Probe idiomatic command, register awareness, cultural depth, subtle distinctions between near-synonyms (любить vs нравиться, спрашивать vs задавать вопрос), stress patterns in irregular nouns/verbs.",
+      sentences: "Full native complexity.",
+      questions: "Any topic at native depth.",
+      answers: "Engage as you would with an educated native speaker.",
     },
   };
   var l = levels[code] || levels.B1;
   return `STUDENT LEVEL: ${l.label}
-LANGUAGE CALIBRATION FOR THIS LEVEL (strict):
-- Vocabulary: ${l.vocab}
-- Sentence length: ${l.sentences}
-- Question style: ${l.questions}
-- Answer expectations: ${l.answers}
+LANGUAGE CALIBRATION FOR THIS LEVEL (strict — violating these is a pedagogical failure):
+
+VOCABULARY: ${l.vocab}
+
+${l.grammarUse}
+
+${l.grammarAvoid}
+
+${l.grammarDrill}
+
+SENTENCE LENGTH: ${l.sentences}
+QUESTION STYLE: ${l.questions}
+ANSWER EXPECTATIONS: ${l.answers}
+
+CRITICAL: Before sending each response, scan it for grammar/vocabulary the student hasn't learned yet. If you used a case, tense, or word the level above forbids, REWRITE the response using only allowed structures.
 `;
 }
 
@@ -526,7 +557,7 @@ You are a language tutor, NOT a fact-checker. Accept the student's answers liber
 ${vocab.length ? "\nWeave these saved vocabulary words naturally into your messages so the student sees them again in context: " + vocab.map(function(v){ return v.ru; }).join(", ") : ""}`;
 }
 
-function litprompt(snippet, idx, total, title, author, focus, prevQuestions, pageIdx, pageCount) {
+function litprompt(snippet, idx, total, title, author, focus, prevQuestions, pageIdx, pageCount, level) {
   var focusBlock = focus ? `\n${focus.note}\n` : "";
   var qCount = (prevQuestions && prevQuestions.length) || 0;
   var prevBlock = qCount
@@ -536,6 +567,7 @@ function litprompt(snippet, idx, total, title, author, focus, prevQuestions, pag
   var pageBlock = (typeof pageIdx === "number" && typeof pageCount === "number" && pageCount > 1)
     ? `, page ${pageIdx + 1} of ${pageCount}`
     : "";
+  var calibration = levelCalibration(level);
 
   // Aim for 6 comprehension questions per page/song. After that the AI signals
   // completion instead of inventing more. Re-asks of the same question count
@@ -547,11 +579,12 @@ function litprompt(snippet, idx, total, title, author, focus, prevQuestions, pag
     ? `\nCOMPLETION SIGNAL: ${qCount} questions have already been asked about this passage. The student has covered it well. If they're answering the LAST question right now, give your reaction (validate / correct as usual) and then CONGRATULATE in Russian — something like "Отлично, мы хорошо разобрали этот фрагмент! Можете перейти к следующей." Do NOT ask another question.\n`
     : `\nQUESTION PROGRESS: ${qCount} of ${TARGET_QUESTIONS} questions asked so far. Ask the next one.\n`;
 
-  return `You are a Russian comprehension tutor working with an INTERMEDIATE student (roughly B1 — NOT a native speaker). The student is reading "${title}" by ${author} (chapter ${idx+1}/${total}${pageBlock}) and is LOOKING AT this passage on screen RIGHT NOW:
+  return `You are a Russian comprehension tutor working with a Russian learner. The student is reading "${title}" by ${author} (chapter ${idx+1}/${total}${pageBlock}) and is LOOKING AT this passage on screen RIGHT NOW:
 
 PASSAGE ON SCREEN:
 "${snippet}"
 
+${calibration}
 CRITICAL — STAY ON THIS PASSAGE:
 - Every comprehension question MUST be answerable from the passage above.
 - Do NOT ask about characters, events, places, or details from earlier or later in the book. If you have memory of the wider plot, IGNORE it.
@@ -2867,10 +2900,10 @@ export default function App() {
       await storage.set(LIT_CACHE_KEY, JSON.stringify(cache));
     } catch(e) {}
   };
-  var litCacheKey = function(meta, totalChapters, ci, pi) {
+  var litCacheKey = function(meta, totalChapters, ci, pi, lvl) {
     var t = (meta && meta.title) || "untitled";
     var a = (meta && meta.author) || "unknown";
-    return t + "|" + a + "|" + (totalChapters || 0) + "|" + ci + ":" + pi;
+    return t + "|" + a + "|" + (totalChapters || 0) + "|" + ci + ":" + pi + "|" + (lvl || "B1");
   };
 
   var litAnalysis = async function(chs, i, pi, metaOverride, force) {
@@ -2894,7 +2927,7 @@ export default function App() {
     // reuse it instead of firing a new Gemini call. Big quota win, especially
     // when readers flip back and forth between pages or revisit a book.
     var cache = await loadLitCache();
-    var cKey = litCacheKey(m, chs.length, i, pi);
+    var cKey = litCacheKey(m, chs.length, i, pi, level);
     if (!force && cache[cKey] && cache[cKey].r) {
       setMsgs([{role:"assistant",content:cache[cKey].r}]);
       // Touch timestamp so this entry stays warm in LRU.
@@ -2909,7 +2942,7 @@ export default function App() {
 
     try {
       var t = await api([{role:"user",content:"Go."}],
-        litprompt(snippet, i, chs.length, m.title || "this book", m.author || "the author", focus, prevQs, pi, pageCount));
+        litprompt(snippet, i, chs.length, m.title || "this book", m.author || "the author", focus, prevQs, pi, pageCount, level));
       setMsgs([{role:"assistant",content:t}]);
 
       // Save to cache so future visits to this page don't re-hit the API.
@@ -3441,7 +3474,7 @@ export default function App() {
         // session arc.
         qhistForUpdate = await loadQHist();
         var prevQs = (qhistForUpdate[qhistKey] || []).slice(-12);
-        sys = litprompt(litSnippet, cidx, chapters.length, bookMeta.title || "this book", bookMeta.author || "the author", null, prevQs, pidx, totalPages);
+        sys = litprompt(litSnippet, cidx, chapters.length, bookMeta.title || "this book", bookMeta.author || "the author", null, prevQs, pidx, totalPages, level);
       }
       var t = await api(next, sys);
       setMsgs(function(prev){ return prev.concat([{role:"assistant",content:t}]); });
@@ -3909,6 +3942,14 @@ export default function App() {
         .lru{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#c8a276}
         .lsub{font-size:11px;color:rgba(210,197,175,.35);letter-spacing:2.5px;text-transform:uppercase}
         .tbadge{background:rgba(200,162,118,.1);border:1px solid rgba(200,162,118,.25);color:#c8a276;padding:6px 14px;border-radius:20px;font-size:13px;cursor:pointer;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        /* Persistent CEFR level selector pinned in the header. Compact pill style
+           that matches the Topic badge. The label sits to the left of the dropdown. */
+        .level-wrap{display:flex;align-items:center;gap:6px}
+        .level-lbl{font-size:10px;color:rgba(210,197,175,.4);text-transform:uppercase;letter-spacing:1.5px;font-weight:600}
+        .level-pill{background:rgba(200,162,118,.1);border:1px solid rgba(200,162,118,.25);color:#c8a276;padding:5px 10px;border-radius:14px;font-size:13px;font-family:'Crimson Pro',serif;cursor:pointer;width:auto;outline:none}
+        .level-pill:hover{background:rgba(200,162,118,.18)}
+        .level-pill option{background:#221e17}
+        @media(max-width:600px){.level-lbl{display:none}.level-pill{padding:4px 8px;font-size:12px}}
         .tbadge:hover{background:rgba(200,162,118,.18)}
         .tabs{display:flex;border-bottom:1px solid rgba(210,197,175,.1);padding:0 28px;position:relative;z-index:10}
         .tab{padding:11px 20px;background:none;border:none;color:rgba(210,197,175,.4);font-family:'Crimson Pro',serif;font-size:14px;cursor:pointer;border-bottom:2px solid transparent;position:relative;top:1px;transition:color .2s}
@@ -4679,6 +4720,12 @@ export default function App() {
             <span className="lru">Говорим</span><span className="lsub">Russian Practice</span>
           </div>
           <div style={{display:"flex",alignItems:"center",gap:12}}>
+            <div className="level-wrap" title="Russian proficiency level. Adapts AI questions to your skill. Changes apply immediately to chat and reading-mode analysis.">
+              <span className="level-lbl">Level</span>
+              <select className="level-pill" value={level} onChange={function(e){ setLevel(e.target.value); }}>
+                {LEVELS.map(function(l){ return <option key={l.code} value={l.code}>{l.label}</option>; })}
+              </select>
+            </div>
             {started && <button className="tbadge" onClick={function(){ setShowTopic(true); }}>{isLit ? ("📖 " + (bookMeta.title || "Book")) : ("💬 "+act)}</button>}
             {auth.isSignedIn && <button className="adm-trigger" onClick={openForum} title="Community forum">📝 Forum</button>}
             {auth.isSignedIn && <button className="adm-trigger" onClick={function(){ setFeedbackOpen(true); }} title="Send feedback">💬 Feedback</button>}
@@ -4748,10 +4795,6 @@ export default function App() {
                   <span className="slbl">Topic</span>
                   <select value={topic} onChange={function(e){ setTopic(e.target.value); setCustom(""); }}>
                     {TOPICS.map(function(t){ return <option key={t}>{t}</option>; })}
-                  </select>
-                  <span className="slbl" style={{marginTop:8}}>Level</span>
-                  <select value={level} onChange={function(e){ setLevel(e.target.value); }}>
-                    {LEVELS.map(function(l){ return <option key={l.code} value={l.code}>{l.label}</option>; })}
                   </select>
                 </div>
                 <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:8}}>
@@ -5379,10 +5422,6 @@ export default function App() {
                   <span className="slbl">Topic</span>
                   <select value={topic} onChange={function(e){ setTopic(e.target.value); setCustom(""); }}>
                     {TOPICS.map(function(t){ return <option key={t}>{t}</option>; })}
-                  </select>
-                  <span className="slbl" style={{marginTop:8}}>Level</span>
-                  <select value={level} onChange={function(e){ setLevel(e.target.value); }}>
-                    {LEVELS.map(function(l){ return <option key={l.code} value={l.code}>{l.label}</option>; })}
                   </select>
                 </>
               )}
