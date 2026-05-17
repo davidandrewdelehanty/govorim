@@ -3443,8 +3443,13 @@ export default function App() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&display=swap');
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-        html,body{height:100%;background:#1a1611;color:#d2c5af;font-family:'Crimson Pro',serif}
-        .app{min-height:100vh;background:#1a1611;display:flex;flex-direction:column;max-width:1000px;margin:0 auto}
+        html,body{height:100%;background:#1a1611;color:#d2c5af;font-family:'Crimson Pro',serif;overflow:hidden}
+        /* Lock the app to the viewport: full width, viewport height. Inner panels
+           (book text, chat messages) scroll within their own bounds — the page
+           itself never scrolls. Uses 100dvh (dynamic viewport height) so mobile
+           browsers with collapsing chrome behave correctly; falls back to 100vh
+           for older browsers. */
+        .app{height:100vh;height:100dvh;background:#1a1611;display:flex;flex-direction:column;width:100%;overflow:hidden}
         .app::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at 15% 0%,rgba(150,80,60,.06) 0%,transparent 50%),radial-gradient(ellipse at 85% 100%,rgba(80,90,130,.05) 0%,transparent 50%)}
         .hdr{padding:16px 28px 12px;border-bottom:1px solid rgba(210,197,175,.1);display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative;z-index:10}
         .logo{display:flex;align-items:baseline;gap:10px}
@@ -3543,7 +3548,11 @@ export default function App() {
         .vpem{font-size:13px;color:rgba(210,197,175,.3);padding:14px 0;text-align:center}
         .lit-body{flex:1;display:flex;min-height:0;overflow:hidden}
         .lit-left{flex:1;overflow-y:auto;padding:24px 28px;border-right:1px solid rgba(210,197,175,.08)}
-        .lit-right{width:380px;flex-shrink:0;display:flex;flex-direction:column;min-height:0}
+        /* Book text gets a comfortable reading width even when the column is very
+           wide on big monitors — humans don't enjoy reading lines that span
+           1000+ pixels. Center the content. */
+        .lit-left > *{max-width:760px;margin-left:auto;margin-right:auto}
+        .lit-right{width:460px;flex-shrink:0;display:flex;flex-direction:column;min-height:0}
         @media(max-width:900px){
           .lit-body{flex-direction:column}
           .lit-left{
