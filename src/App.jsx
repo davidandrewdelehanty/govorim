@@ -520,12 +520,66 @@ If the student answers correctly, affirm warmly and move to a NEW grammar topic 
 ${chatPromptFooter(vocab)}`;
 }
 
+// ── Vocabulary Practice ──────────────────────────────────────────────────────
+// Triggered from the vocab tab "Review Vocab → Chat Practice" button. The AI
+// walks through the user's saved vocab one word at a time, using each in
+// natural Russian context and asking a question about it.
+function vocabPracticePrompt(vocab, level) {
+  if (!vocab || vocab.length === 0) {
+    return `You are a Russian tutor. The student has no saved vocabulary yet. Tell them in Russian (B1 level): "Сначала сохрани несколько слов в свой словарь — нажми на любое русское слово в книге или в чате. Потом мы их повторим!" Be warm and brief.`;
+  }
+  var vocabList = vocab.map(function(v, i) {
+    var parts = [v.ru];
+    if (v.en) parts.push("(" + v.en + ")");
+    if (v.pos) parts.push("[" + v.pos + (v.aspect ? ", " + v.aspect : "") + "]");
+    if (v.example) parts.push("ex: " + v.example);
+    return (i+1) + ". " + parts.join(" ");
+  }).join("\n");
+
+  return `You are a Russian vocabulary tutor helping a student practice their saved vocab words by using each one in natural context. Your goal: solidify their memory and active use of these words.
+
+${levelCalibration(level)}
+${chatPromptIronRule()}
+
+THE STUDENT'S SAVED VOCABULARY (work through these — pick the order that feels natural for the conversation):
+${vocabList}
+
+YOUR APPROACH FOR EACH TURN:
+1. Pick ONE word from the list above that the student hasn't engaged with yet (or revisit one they got wrong earlier).
+2. Use the word in a NATURAL Russian sentence or short scenario (1–2 sentences) showing it in real use, not just defined.
+3. Ask ONE question about it — see "QUESTION TYPES" below.
+4. Wait for the student's reply.
+5. React warmly. If they got it right, affirm and move to the NEXT word. If they showed they don't really know it, briefly re-explain with a different example and ask a simpler follow-up.
+
+QUESTION TYPES (vary across the session — don't ask the same kind twice in a row):
+- Translation in context: "Что значит это слово в этом предложении?"
+- Personal usage: "А ты сам(а) делаешь это? Когда?"
+- Synonym/paraphrase: "Можешь сказать это по-другому?"
+- Scenario completion: "Что бы ты сказал(а), если бы…"
+- Where you'd hear it: "Где можно встретить это слово?"
+- Opposite/related word: "А какое слово противоположное?"
+- Form awareness (for verbs/nouns): "В каком падеже здесь это слово?" / "Какой вид у этого глагола?"
+
+EXAMPLES of your turns:
+- "Слово **завтрак** значит первый приём пищи утром. Сегодня я ела омлет на завтрак. А что ты обычно ешь по утрам?"
+- "Глагол **слушать** мы используем, когда хотим узнать что-то ухом — например, музыку, рассказ, лекцию. «Я слушаю джаз каждое утро». А ты что любишь слушать?"
+- "Слово **трудный** значит «не лёгкий, сложный». «Это очень трудный вопрос!» Скажи, какой самый трудный экзамен ты сдавал(а)?"
+
+CONVERSATION CONTINUITY:
+- Track which words you've already covered. Don't repeat a word twice unless the student needs more practice with it.
+- After working through most words, summarize briefly: "Мы повторили: слово1, слово2, слово3. Молодец!"
+- If the student gets a word clearly wrong, mark it mentally and circle back to it later in the session with a simpler version of the same word.
+
+${chatPromptFooter(vocab)}`;
+}
+
 function sysprompt(topic, vocab, tips, level) {
   // Topic-specific chat prompts. Each one is tuned to its subject matter —
   // literature shares author bios and famous quotes, music covers genres and
   // artists, history adapts complexity to level, etc. Topics not listed below
   // fall through to a generic "share an interesting fact + ask a question" prompt.
   if (topic === "Get to know each other") return getToKnowPrompt(vocab, level);
+  if (topic === "Vocabulary Practice") return vocabPracticePrompt(vocab, level);
   if (topic === "The Golden Age of Russian Literature: Russian Authors") return goldenAgePrompt(vocab, level);
   if (topic === "Contemporary Russian Music") return musicPrompt(vocab, level);
   if (topic === "Russian History") return historyPrompt(vocab, level);
@@ -1893,6 +1947,7 @@ export default function App() {
   // words OF THE SAME PART OF SPEECH (verbs quiz against verbs only, nouns
   // against nouns, etc.).
   var [quizMode, setQuizMode]         = useState(false);
+  var [quizMenu, setQuizMenu]         = useState(false);  // shows the 2-choice "Quiz vs Chat" menu
   var [quizQuestions, setQuizQuestions] = useState([]);
   var [quizIdx, setQuizIdx]           = useState(0);
   var [quizSelected, setQuizSelected] = useState(null);
@@ -3558,12 +3613,7 @@ export default function App() {
     });
 
     if (questions.length === 0) {
-      setQuizSkipNote("Не получилось собрать тест. Need at least 4 vocab words sharing the same part of speech (e.g. 4 verbs), each with an English meaning and a part-of-speech tag. Edit your vocab to add these.");
-      setQuizQuestions([]);
-      setQuizIdx(0);
-      setQuizSelected(null);
-      setQuizScore(0);
-      setQuizMode(true);
+      alert("You need more saved vocabulary! Add at least 4 words that share the same part of speech (e.g. 4 verbs), each with an English meaning and a part-of-speech tag.");
       return;
     }
 
@@ -3572,7 +3622,39 @@ export default function App() {
     setQuizIdx(0);
     setQuizSelected(null);
     setQuizScore(0);
+    setQuizMenu(false);
     setQuizMode(true);
+  };
+
+  // ── Chat Practice: walk through saved vocab one word at a time ────────────
+  // Switches to chat mode with topic "Vocabulary Practice". The AI uses each
+  // saved word in context (a natural Russian sentence) and asks a question
+  // about it. Different from the multiple-choice quiz — this is open-ended
+  // conversational practice where the user constructs answers.
+  var startVocabChat = async function() {
+    if (vocab.length === 0) {
+      alert("You need more saved vocabulary! Save at least one word before starting chat practice.");
+      return;
+    }
+    setQuizMenu(false);
+    setQuizMode(false);
+    setTopic("Vocabulary Practice");
+    setMode("chat");
+    setTab("chat");
+    setStarted(true);
+    setMsgs([]);
+    setLoading(true);
+    stopTTS();
+    try {
+      // Pass the system prompt explicitly because setTopic hasn't propagated
+      // to `act` yet on this render — api() would otherwise use the stale topic.
+      var sys = vocabPracticePrompt(vocab, level);
+      var t = await api([{role:"user",content:"Start please."}], sys);
+      setMsgs([{role:"assistant",content:t}]);
+    } catch(err) {
+      setMsgs([{role:"assistant",content:"*(Error: "+err.message+")*"}]);
+    }
+    setLoading(false);
   };
 
   // Bookmarks for grammar curriculum topics. We only store the topic ID — when
@@ -5409,7 +5491,7 @@ export default function App() {
               <>
                 <div className="phdr">
                   <span className="pti">📝 Vocab Quiz</span>
-                  <button className="ab" onClick={function(){ setQuizMode(false); }}>← Back to list</button>
+                  <button className="ab" onClick={function(){ setQuizMode(false); setQuizMenu(true); }}>← Back</button>
                 </div>
                 {quizQuestions.length === 0 ? (
                   <div style={{padding:"40px 20px",textAlign:"center"}}>
@@ -5426,7 +5508,7 @@ export default function App() {
                     {quizSkipNote && <p style={{fontSize:12,color:"rgba(210,197,175,.4)",fontStyle:"italic",marginBottom:20,maxWidth:440,margin:"0 auto 20px"}}>{quizSkipNote}</p>}
                     <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
                       <button className="btn-p" style={{maxWidth:200}} onClick={startQuiz}>Retake quiz</button>
-                      <button className="btn-g" style={{maxWidth:200}} onClick={function(){ setQuizMode(false); }}>Back to vocab list</button>
+                      <button className="btn-g" style={{maxWidth:200}} onClick={function(){ setQuizMode(false); setQuizMenu(false); }}>Back to vocab list</button>
                     </div>
                   </div>
                 ) : (
@@ -5478,13 +5560,46 @@ export default function App() {
                   </div>
                 )}
               </>
+            ) : quizMenu ? (
+              // ── Review choice menu (Multiple Choice vs Chat Practice) ──
+              <>
+                <div className="phdr">
+                  <span className="pti">📝 Review Vocabulary</span>
+                  <button className="ab" onClick={function(){ setQuizMenu(false); }}>← Back to list</button>
+                </div>
+                <div style={{padding:"24px 16px",display:"flex",flexDirection:"column",gap:14,maxWidth:560,margin:"0 auto"}}>
+                  <p style={{color:"rgba(210,197,175,.65)",fontSize:14,textAlign:"center",margin:"0 0 8px"}}>How would you like to practice your {vocab.length} saved {vocab.length === 1 ? "word" : "words"}?</p>
+                  {/* Multiple Choice Quiz option */}
+                  <button onClick={startQuiz}
+                    style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#d2c5af",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
+                    onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
+                    onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
+                    <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
+                      <span style={{fontSize:24}}>📝</span>
+                      <span style={{fontSize:18,fontWeight:600,color:"#c8a276",fontFamily:"'Playfair Display',serif"}}>Multiple Choice Quiz</span>
+                    </div>
+                    <p style={{fontSize:13,color:"rgba(210,197,175,.55)",margin:0,lineHeight:1.5}}>Quick recall test. Each question shows a Russian word with 4 English meaning options (from same-pos vocabulary).</p>
+                  </button>
+                  {/* Chat Practice option */}
+                  <button onClick={startVocabChat}
+                    style={{background:"rgba(90,133,86,.08)",border:"1px solid rgba(90,133,86,.3)",color:"#d2c5af",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
+                    onMouseOver={function(e){ e.currentTarget.style.background = "rgba(90,133,86,.14)"; }}
+                    onMouseOut={function(e){ e.currentTarget.style.background = "rgba(90,133,86,.08)"; }}>
+                    <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
+                      <span style={{fontSize:24}}>💬</span>
+                      <span style={{fontSize:18,fontWeight:600,color:"#9dbf99",fontFamily:"'Playfair Display',serif"}}>Chat Practice</span>
+                    </div>
+                    <p style={{fontSize:13,color:"rgba(210,197,175,.55)",margin:0,lineHeight:1.5}}>Open-ended conversation. The AI uses each saved word in a Russian sentence and asks a question about it — you reply naturally.</p>
+                  </button>
+                </div>
+              </>
             ) : (
               // ── Normal vocab list view ─────────────────────────────────
               <>
                 <div className="phdr">
                   <span className="pti">My Vocabulary</span>
                   <div style={{display:"flex",gap:8}}>
-                    {vocab.length >= 4 && <button className="ab" onClick={startQuiz} title="Quiz yourself with multiple-choice questions on your saved vocab">📝 Review vocab</button>}
+                    {vocab.length > 0 && <button className="ab" onClick={function(){ setQuizMenu(true); }} title="Quiz yourself or practice these words in chat">📝 Review vocab</button>}
                     <button className="ab" onClick={function(){ setNRu(""); setNEn(""); setShowWord(true); }}>+ Add word</button>
                   </div>
                 </div>
