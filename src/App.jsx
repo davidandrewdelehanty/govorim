@@ -4296,7 +4296,6 @@ export default function App() {
                   <select value={topic} onChange={function(e){ setTopic(e.target.value); setCustom(""); }}>
                     {TOPICS.map(function(t){ return <option key={t}>{t}</option>; })}
                   </select>
-                  <input type="text" placeholder="Or type a custom topic…" value={custom} onChange={function(e){ setCustom(e.target.value); }}/>
                 </div>
                 <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:8}}>
                   <button className="btn-p" onClick={startChat}>Начать разговор →</button>
@@ -4923,7 +4922,6 @@ export default function App() {
                   <select value={topic} onChange={function(e){ setTopic(e.target.value); setCustom(""); }}>
                     {TOPICS.map(function(t){ return <option key={t}>{t}</option>; })}
                   </select>
-                  <input type="text" placeholder="Or a custom topic…" value={custom} onChange={function(e){ setCustom(e.target.value); }}/>
                 </>
               )}
               <div className="mact">
