@@ -2518,10 +2518,17 @@ export default function App() {
   var splitSongsHeuristic = function(chapters, options) {
     options = options || {};
     var minSongs = typeof options.minSongs === "number" ? options.minSongs : 3;
-    if (!chapters || !chapters.length) return null;
+    if (!chapters || !chapters.length) {
+      console.log("[songs:heuristic] no chapters passed in — bail");
+      return null;
+    }
     var fullText = chapters.map(function(ch){ return ch.text || ""; }).join("\n\n");
-    if (fullText.length < 300) return null;
+    if (fullText.length < 300) {
+      console.log("[songs:heuristic] full text < 300 chars (" + fullText.length + ") — bail");
+      return null;
+    }
     var lines = fullText.split("\n");
+    console.log("[songs:heuristic] starting — " + lines.length + " lines, " + fullText.length + " chars, minSongs=" + minSongs);
 
     var strategies = [
       {
@@ -2605,12 +2612,20 @@ export default function App() {
       for (var i = 0; i < lines.length; i++) {
         if (strat.isTitleLine(lines, i)) titleIdxs.push(i);
       }
+      console.log("[songs:heuristic] " + strat.name + ": " + titleIdxs.length + " marker lines found"
+        + (titleIdxs.length > 0 ? " at lines " + titleIdxs.slice(0, 8).join(",") + (titleIdxs.length > 8 ? "..." : "") : ""));
       // Heuristic validity checks
-      if (titleIdxs.length < minSongs) continue;
+      if (titleIdxs.length < minSongs) {
+        console.log("[songs:heuristic]   ↳ rejected: needs >= " + minSongs);
+        continue;
+      }
       // Sections shouldn't be too dense — if there's a title every 3 lines,
       // we're probably matching false positives (like ALL CAPS dialogue tags).
       var avgGap = lines.length / titleIdxs.length;
-      if (avgGap < 6) continue;
+      if (avgGap < 6) {
+        console.log("[songs:heuristic]   ↳ rejected: density too high (avgGap=" + avgGap.toFixed(1) + ")");
+        continue;
+      }
 
       var sections = [];
       for (var k = 0; k < titleIdxs.length; k++) {
@@ -2631,6 +2646,7 @@ export default function App() {
         if (cyrCount < 20) continue;
         sections.push({ heading: heading, text: bodyText });
       }
+      console.log("[songs:heuristic]   ↳ " + sections.length + " valid sections after filtering");
 
       if (sections.length >= minSongs) {
         if (!best || sections.length > best.length) {
@@ -2753,12 +2769,15 @@ export default function App() {
   var resplitByNumberedSections = function(chapters) {
     var fullText = chapters.map(function(ch){ return ch.text || ""; }).join("\n\n");
     var lines = fullText.split("\n");
+    console.log("[songs:numbered] scanning " + lines.length + " lines for /^\\d{1,3}\\.?$/ markers");
     var out = [];
     var current = null;
     var awaitingTitle = false;
+    var markerLines = [];
     for (var i = 0; i < lines.length; i++) {
       var t = lines[i].trim();
       if (/^\d{1,3}\.?$/.test(t)) {
+        markerLines.push(i);
         // Track number found — start a new section
         if (current && (current.text || "").trim()) out.push(current);
         current = { heading: "", text: "" };
@@ -2774,6 +2793,10 @@ export default function App() {
       }
     }
     if (current && (current.text || "").trim()) out.push(current);
+    console.log("[songs:numbered] found " + markerLines.length + " markers at lines [" + markerLines.slice(0, 10).join(",") + (markerLines.length > 10 ? "..." : "") + "] → " + out.length + " sections");
+    if (out.length > 0) {
+      out.forEach(function(s, i){ console.log("  song " + (i+1) + ": \"" + (s.heading || "(no heading)") + "\""); });
+    }
     return out.length ? out : chapters;
   };
 
@@ -2795,13 +2818,20 @@ export default function App() {
       //   4. Last resort: the legacy resplitByNumberedSections (if the user
       //      explicitly set the flag in index.json).
       var isSongBook = opts.category === "Song Lyrics";
+      console.log("[songs:load] file=" + fname + " category=" + opts.category + " flag=" + opts.splitByNumberedSections + " initial-chapters=" + chs.length);
       if (isSongBook) {
         // 1. EXPLICIT FORMAT FLAG WINS. Uploads always set `splitByNumberedSections: true`
         //    because we know the file format (numbered Tsoi-style). Trust it. This is the
         //    fast path for every uploaded artist file.
         if (opts.splitByNumberedSections) {
+          console.log("[songs:load] explicit splitByNumberedSections flag set — trying numbered split first");
           var byNum = resplitByNumberedSections(chs);
-          if (byNum && byNum.length >= 1) chs = byNum;
+          if (byNum && byNum.length > chs.length) {
+            console.log("[songs:load] numbered split won: " + byNum.length + " sections (was " + chs.length + ")");
+            chs = byNum;
+          } else {
+            console.log("[songs:load] numbered split did not improve count (" + (byNum ? byNum.length : 0) + " vs " + chs.length + ")");
+          }
         }
         // 2. After (or in lieu of) the explicit flag, if we STILL have one big chapter,
         //    try smart splitting. This handles song books from external sources without
@@ -2810,17 +2840,27 @@ export default function App() {
         if (chs.length <= 1) {
           var avgLen0 = chs.length ? (chs[0].text || "").length : 0;
           if (avgLen0 > 500) {
+            console.log("[songs:load] still 1 chapter — running heuristic splitter");
             var smart = splitSongsHeuristic(chs, { minSongs: 2 });
             if (smart && smart.length >= 2) {
+              console.log("[songs:load] heuristic won: " + smart.length + " sections");
               chs = smart;
             } else {
+              console.log("[songs:load] heuristic failed → trying AI fallback");
               try {
                 var aiResult = await splitSongsAI(chs, fname);
-                if (aiResult && aiResult.length >= 2) chs = aiResult;
+                if (aiResult && aiResult.length >= 2) {
+                  console.log("[songs:load] AI won: " + aiResult.length + " sections");
+                  chs = aiResult;
+                } else {
+                  console.log("[songs:load] AI also failed — file will be shown as one page");
+                }
               } catch(aiErr) {
-                console.log("[songs] AI fallback errored: " + (aiErr.message || aiErr));
+                console.log("[songs:load] AI fallback errored: " + (aiErr.message || aiErr));
               }
             }
+          } else {
+            console.log("[songs:load] file too short for smart splitting (" + avgLen0 + " chars)");
           }
         }
       } else if (opts.splitByNumberedSections) {
@@ -3099,7 +3139,10 @@ export default function App() {
       }
     }
 
-    // Group tokens into paragraphs at \n{2,} boundaries (within non-Russian tokens).
+    // Group tokens into paragraphs. For song books, EVERY newline creates a
+    // new visual line (one lyric line per paragraph). For prose, only blank
+    // lines (\n{2,}) separate paragraphs — single newlines are just word-wrap.
+    var paraBreakRe = singlePageMode ? /\n+/g : /\n{2,}/g;
     var paragraphs = [[]];
     for (var ti = 0; ti < tokens.length; ti++) {
       var tok = tokens[ti];
@@ -3108,7 +3151,7 @@ export default function App() {
         continue;
       }
       var sub = tok.text, subStart = tok.start, lastIdx = 0;
-      var brkRe = /\n{2,}/g, brk;
+      var brkRe = new RegExp(paraBreakRe.source, "g"), brk;
       while ((brk = brkRe.exec(sub)) !== null) {
         if (brk.index > lastIdx) {
           paragraphs[paragraphs.length-1].push({
@@ -3161,7 +3204,11 @@ export default function App() {
         // (Chekhov, Ostrovsky, Tolstoy plays). Older drama uses ALL CAPS like "ЛУКА. ..." (Gorky).
         // Pattern: 1-3 Russian Title-Case or ALL-CAPS words, then . : — – or -, then space + dialogue.
         var paraText = para.map(function(t){ return t.text; }).join("");
-        var speakerMatch = paraText.match(/^([А-ЯЁ][а-яёА-ЯЁ\-]+(?:\s+[А-ЯЁ][а-яёА-ЯЁ\-]+){0,2})\s*([.:—–\-])(\s+)/);
+        // Play-line detection: NAME punct dialogue. Skip for song books since
+        // lines like "Владимирский централ - ветер северный" would otherwise
+        // false-match as a speaker named "Владимирский централ".
+        var speakerMatch = singlePageMode ? null
+          : paraText.match(/^([А-ЯЁ][а-яёА-ЯЁ\-]+(?:\s+[А-ЯЁ][а-яёА-ЯЁ\-]+){0,2})\s*([.:—–\-])(\s+)/);
         var speakerNameEnd = -1, attribEnd = -1;
         // Guard against false positives — name must look like a name (≤40 chars) and there must be dialogue after.
         if (speakerMatch && speakerMatch[1].length <= 40 && paraText.length > speakerMatch[0].length + 3) {
@@ -3170,7 +3217,7 @@ export default function App() {
         }
 
         return (
-          <p key={pi} style={{marginBottom:"1.2em"}}>
+          <p key={pi} style={{marginBottom: singlePageMode ? "0.35em" : "1.2em"}}>
             {(function(){
               // If this paragraph is a play line, replace the punctuation between name and dialogue with an em-dash.
               if (speakerNameEnd > -1) {
