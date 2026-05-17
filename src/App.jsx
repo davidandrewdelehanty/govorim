@@ -33,6 +33,76 @@ const TOPICS = [
   "False Cognates", "Verb Workout", "Grammar Jamboree",
 ];
 
+// CEFR proficiency levels — used to calibrate the chat AI's vocabulary,
+// sentence complexity, and question difficulty. Persisted in localStorage as
+// "gv_chat_level" so the user doesn't re-pick each session.
+const LEVELS = [
+  { code: "A1", label: "A1 — Beginner" },
+  { code: "A2", label: "A2 — Elementary" },
+  { code: "B1", label: "B1 — Intermediate" },
+  { code: "B2", label: "B2 — Upper Intermediate" },
+  { code: "C1", label: "C1 — Advanced" },
+  { code: "C2", label: "C2 — Mastery" },
+];
+
+// Per-level calibration block injected into the chat system prompt. Each level
+// sets vocabulary breadth, sentence length, question style, and how generously
+// to score answers. Edit these strings to fine-tune behavior at any level.
+function levelCalibration(code) {
+  var levels = {
+    A1: {
+      label: "A1 (Beginner)",
+      vocab: "Use ONLY the most basic everyday vocabulary (first ~500 most common Russian words). Avoid anything that wouldn't appear in a beginner textbook. Stick to present tense. Use only nominative and accusative cases.",
+      sentences: "Each Russian sentence is 3–7 words. Very simple syntax. No subordinate clauses.",
+      questions: "Simplest possible questions: name, age, where from, family, favorite food/color/animal. Avoid abstract, hypothetical, or feeling-based questions.",
+      answers: "Accept one-word answers and celebrate them. Never push for more — encouragement over rigor.",
+    },
+    A2: {
+      label: "A2 (Elementary)",
+      vocab: "Use common everyday vocabulary (~1500 words). Past and future tenses OK. Basic case use (nom, acc, gen, dat). Avoid idioms and complex grammar.",
+      sentences: "Russian sentences are 5–10 words. Simple syntax. Short subordinate clauses are OK occasionally.",
+      questions: "Concrete questions about daily life, basic preferences, simple descriptions, near-future plans, recent simple past events.",
+      answers: "Accept short answers (1 phrase). Gently encourage 1 more detail when natural.",
+    },
+    B1: {
+      label: "B1 (Intermediate)",
+      vocab: "Common modern vocabulary (~3000 words). All six cases. Past, present, future, including perfective/imperfective aspect contrasts. Some common idioms OK.",
+      sentences: "Russian sentences are 8–15 words. Subordination is fine. Avoid heavy literary syntax or unusual participles.",
+      questions: "Everyday topics, preferences, opinions, recent experiences, simple hypotheticals.",
+      answers: "Expect 1–2 sentence answers. Push gently for more nuance when relevant.",
+    },
+    B2: {
+      label: "B2 (Upper Intermediate)",
+      vocab: "Wide vocabulary including common idioms, colloquialisms, and set expressions. Complex grammar: participles (причастия), gerunds (деепричастия), conditional mood, reported speech.",
+      sentences: "Longer sentences with multiple clauses are natural. Use varied sentence structure.",
+      questions: "Opinions on abstract topics, hypotheticals, comparisons between past and present, cultural questions, exploring nuance.",
+      answers: "Expect 2–4 sentence developed answers. Encourage nuance, examples, and detail.",
+    },
+    C1: {
+      label: "C1 (Advanced)",
+      vocab: "Rich vocabulary including idioms, colloquialisms, set expressions, register shifts. All grammatical structures including reflexive verb idiomatic use, full case nuance, archaic forms when contextually relevant.",
+      sentences: "Natural near-native length and complexity. Use stylistic variety.",
+      questions: "Abstract, philosophical, opinion-based questions. Cultural depth, politics, hypotheticals, comparison of different worldviews.",
+      answers: "Expect fluent multi-sentence responses with developed ideas. Engage with their reasoning, not just their grammar.",
+    },
+    C2: {
+      label: "C2 (Mastery)",
+      vocab: "Native-level vocabulary including literary, technical, slang, and regional variants. Switch registers (formal/informal/literary/jargon) as the topic requires.",
+      sentences: "Full native complexity. Use literary or sophisticated constructions when they fit naturally.",
+      questions: "Sophisticated discussion of any topic. Probe idiomatic command, register awareness, cultural depth, subtle distinctions between near-synonyms.",
+      answers: "Expect rich, fluent, nuanced answers. Engage as you would with an educated native speaker.",
+    },
+  };
+  var l = levels[code] || levels.B1;
+  return `STUDENT LEVEL: ${l.label}
+LANGUAGE CALIBRATION FOR THIS LEVEL (strict):
+- Vocabulary: ${l.vocab}
+- Sentence length: ${l.sentences}
+- Question style: ${l.questions}
+- Answer expectations: ${l.answers}
+`;
+}
+
 // Generic EPUB cache slots — one book at a time. Loading a new EPUB replaces these.
 var EPUB_CACHE = "epub_data_v1";
 var EPUB_BM    = "epub_bm_v1";
@@ -59,9 +129,83 @@ var QUESTION_FOCI = [
   { tag: "relations",  note: "FOCUS THIS SESSION: questions about relationships between characters or between characters and objects/places." },
 ];
 
-function sysprompt(topic, vocab, tips) {
+// Specialized prompt for "Get to know each other": structured Q&A practice of
+// the common questions you'd encounter meeting someone new in Russian — name,
+// age, where you're from, family, hobbies, favorite music/books/films, etc.
+// One question per turn (matches the one-at-a-time pattern used elsewhere).
+function getToKnowPrompt(vocab, level) {
+  var calibration = levelCalibration(level);
+  return `You are a warm, friendly Russian native speaker meeting a Russian learner for the first time. Your job: practice common get-to-know-you conversation by asking the student ONE everyday question per turn and reacting warmly to their answers.
+
+${calibration}
+IRON RULE — ONE QUESTION PER TURN:
+- Every response asks EXACTLY ONE question, in Russian.
+- NEVER ask multiple questions at once. NEVER produce numbered lists.
+- The first turn (when the student has not yet said anything): a brief friendly greeting + your first question.
+- After that, each turn: a warm 1-sentence reaction to their previous answer, then ONE new question.
+
+QUESTION TOPICS — cycle through these over the conversation, in a natural order, picking what makes sense given what they just shared. Don't ask them all robotically:
+
+• Name: "Как тебя зовут?"
+• Origin / hometown: "Откуда ты?", "Где ты родился? / родилась?", "В каком городе ты вырос(ла)?"
+• Where they live now: "Где ты сейчас живёшь?"
+• Age: "Сколько тебе лет?"
+• Family: "Есть ли у тебя братья или сёстры?", "У тебя большая семья?", "Ты женат / замужем?", "У тебя есть дети?"
+• Appearance: "Какого цвета у тебя волосы?", "А глаза?", "Ты высокий / высокая?"
+• Work / study: "Чем ты занимаешься?", "Кем ты работаешь?", "Ты учишься или работаешь?", "Где ты учишься?"
+• Hobbies: "Что ты любишь делать в свободное время?", "Какое у тебя хобби?"
+• Music: "Какую музыку ты слушаешь?", "Кто твой любимый певец или группа?"
+• Books: "Какие книги ты любишь?", "Кто твой любимый писатель?"
+• Films / TV: "Какие фильмы тебе нравятся?", "Какой твой любимый сериал?"
+• Food: "Какая у тебя любимая еда?", "Ты любишь готовить?"
+• Sports: "Ты занимаешься спортом?", "Какой вид спорта тебе нравится?"
+• Pets: "У тебя есть домашнее животное?"
+• Travel: "В каких странах ты бывал(а)?", "Куда бы ты хотел(а) поехать?"
+• Languages: "На каких языках ты говоришь?", "Почему ты учишь русский?"
+• Daily life: "Во сколько ты обычно встаёшь?", "Какой у тебя любимый день недели?", "Чем ты любишь заниматься по выходным?"
+
+CONVERSATIONAL STYLE:
+- Use ты (informal) — this is friendly conversation.
+- React warmly to their answers: "Здорово!", "Как интересно!", "Серьёзно?", "Класс!", "Это круто!".
+- Occasionally model the kind of answer they could give by briefly sharing about yourself: "А я тоже из большого города. У меня есть брат. А у тебя?" — this teaches structure by example.
+- Build a natural thread. If they say they love music, ask about favorite artists next, not about their hair color. Bridge topics: "Раз ты любишь рок, может, ты играешь на гитаре?"
+- If their answer is very short or one word, a gentle follow-up to draw them out: "А почему именно это?" or "Расскажи чуть больше!" — but that counts as your ONE question for the turn.
+- Don't ask the same question twice. Track what they've shared and remember it.
+- Keep messages to 2–3 short Russian sentences.
+
+LANGUAGE STYLE:
+- Speak Russian at the level specified above (vocabulary, syntax, idioms — calibrate to that level).
+- Do NOT translate your Russian into English.
+- Bold any teachable new vocab as **слово (word)** — single-word glosses only.
+- If they slip on grammar but the meaning is clear, gently correct inline with [correct form]: "Здорово, что у тебя есть собака [одна собака — есть takes nominative]." Affirm the content first.
+
+GENEROUS ACCEPTANCE (very important):
+You are a language partner, NOT a quiz. Accept liberally:
+- ✅ Synonyms, partial answers, paraphrases — all CORRECT.
+- ✅ Answers in any grammatical form as long as meaning is right — fix grammar inline but affirm content first.
+- ✅ Answers in English when reaching for an unknown Russian word — affirm the meaning, then supply the Russian word as a gift, not a correction.
+- ✅ Short answers (one phrase) are fine — don't demand full sentences.
+
+Only treat something as wrong if it's clearly off-topic or a non-answer.
+
+When you accept an answer:
+1. AFFIRM with warmth — "Здорово!", "Молодец!", "Как интересно!", "Класс!".
+2. Optionally enrich: model a more sophisticated way to say it, or add a tiny related fact about yourself.
+3. Ask ONE next question — bridge naturally from what they said when possible.${vocab.length ? "\n\nWeave these saved vocabulary words naturally into your messages when relevant: " + vocab.map(function(v){ return v.ru; }).join(", ") : ""}`;
+}
+
+function sysprompt(topic, vocab, tips, level) {
+  // Specialized flow for the "Get to know each other" topic — structured practice
+  // of common questions you'd encounter meeting a new person. The generic
+  // "share an interesting fact and ask a follow-up" pattern doesn't fit here
+  // because we want personal Q&A practice, not topical exploration.
+  if (topic === "Get to know each other") {
+    return getToKnowPrompt(vocab, level);
+  }
+  var calibration = levelCalibration(level);
   return `You are a warm, curious Russian language tutor. Topic: "${topic}".
 
+${calibration}
 For each turn:
 1. Share ONE genuinely interesting fact, perspective, or short anecdote about the topic in Russian (1–2 sentences). Make it specific and surprising, not generic.
 2. Then ask a probing follow-up question that pulls the student into responding in Russian. The question should require more than да/нет — push them to use cases, verb aspect, or tense to express something concrete.
@@ -72,14 +216,14 @@ CONVERSATION CONTINUITY (very important):
 - If the student's answer reveals confusion or a misunderstanding, re-explain with a different angle before moving on. Don't drop the thread.
 
 Style rules:
-- Speak intermediate-level Russian only — do NOT add English translations of your Russian sentences.
+- Speak Russian at the level specified above — do NOT add English translations of your Russian sentences.
 - Correct student mistakes inline using [correct form], but only for grammar — never withhold acknowledgement of a correct comprehension answer because of a small grammar slip.
 - Bold key vocab the student should learn as **слово (word)** — the parenthetical gloss is fine; that's a single-word lookup, not a translation.
 - Occasionally add 📝 TIP: [grammar rule] when something useful comes up.
 - Keep messages to 2–4 Russian sentences. Be warm and encouraging.
 
 GENEROUS ACCEPTANCE (very important):
-You are a language tutor, NOT a fact-checker. Accept the student's answers liberally — synonyms, paraphrases, partial answers that capture the gist, and answers in different grammatical forms are all CORRECT. The student is intermediate, not native; if they understood the meaning, that's the goal. Affirm clearly first ("Да, точно!", "Молодец!"), THEN optionally enrich with a more specific word or correction. Only treat something as wrong if it's clearly off-topic.
+You are a language tutor, NOT a fact-checker. Accept the student's answers liberally — synonyms, paraphrases, partial answers that capture the gist, and answers in different grammatical forms are all CORRECT. If they understood the meaning, that's the goal. Affirm clearly first ("Да, точно!", "Молодец!"), THEN optionally enrich with a more specific word or correction. Only treat something as wrong if it's clearly off-topic.
 ${vocab.length ? "\nWeave these saved vocabulary words naturally into your messages so the student sees them again in context: " + vocab.map(function(v){ return v.ru; }).join(", ") : ""}`;
 }
 
@@ -1375,6 +1519,16 @@ export default function App() {
   var [loading, setLoading]   = useState(false);
   var [topic, setTopic]       = useState(TOPICS[0]);
   var [custom, setCustom]     = useState("");
+  // CEFR level for chat conversations. Persisted in localStorage so the user
+  // doesn't have to re-pick each session. Defaults to B1 (the prior hard-coded
+  // value, so behavior for existing users is unchanged on first load).
+  var [level, setLevel]       = useState(function(){
+    try { return localStorage.getItem("gv_chat_level") || "B1"; }
+    catch(e) { return "B1"; }
+  });
+  useEffect(function() {
+    try { localStorage.setItem("gv_chat_level", level); } catch(e) {}
+  }, [level]);
   var [vocab, setVocab]       = useState([]);
   var [tips, setTips]         = useState([]);
   // savedTopics: array of curriculum topic IDs the user has bookmarked from
@@ -1724,7 +1878,7 @@ export default function App() {
         // authFetch handles JWT injection and one auto-refresh on 401.
         var bodyObj = {
           messages: messages,
-          system: sys || sysprompt(act, vocab, tips),
+          system: sys || sysprompt(act, vocab, tips, level),
           max_tokens: 2048
         };
         // Forward "json" flag so the backend can put Gemini into strict JSON mode
@@ -4296,6 +4450,10 @@ export default function App() {
                   <select value={topic} onChange={function(e){ setTopic(e.target.value); setCustom(""); }}>
                     {TOPICS.map(function(t){ return <option key={t}>{t}</option>; })}
                   </select>
+                  <span className="slbl" style={{marginTop:8}}>Level</span>
+                  <select value={level} onChange={function(e){ setLevel(e.target.value); }}>
+                    {LEVELS.map(function(l){ return <option key={l.code} value={l.code}>{l.label}</option>; })}
+                  </select>
                 </div>
                 <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:8}}>
                   <button className="btn-p" onClick={startChat}>Начать разговор →</button>
@@ -4919,8 +5077,13 @@ export default function App() {
               <span className="mti">{isLit ? ("📖 " + (bookMeta.title || "Reading")) : "💬 Change Topic"}</span>
               {!isLit && (
                 <>
+                  <span className="slbl">Topic</span>
                   <select value={topic} onChange={function(e){ setTopic(e.target.value); setCustom(""); }}>
                     {TOPICS.map(function(t){ return <option key={t}>{t}</option>; })}
+                  </select>
+                  <span className="slbl" style={{marginTop:8}}>Level</span>
+                  <select value={level} onChange={function(e){ setLevel(e.target.value); }}>
+                    {LEVELS.map(function(l){ return <option key={l.code} value={l.code}>{l.label}</option>; })}
                   </select>
                 </>
               )}
