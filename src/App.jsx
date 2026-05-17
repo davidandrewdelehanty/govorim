@@ -2507,7 +2507,11 @@ export default function App() {
       });
       var d = await r.json().catch(function(){ return {}; });
       if (!r.ok) throw new Error(d.error || ("HTTP " + r.status));
-      setUpMsg(d.message || ("Song uploaded — deploy in progress. Song #" + d.songNumber + " for " + d.artist + "."));
+      setUpMsg(
+        d.isNewArtist
+          ? "✓ Created new artist file \"" + d.artist + "\" with song #1: \"" + title + "\". Vercel will redeploy in ~1-2 min."
+          : "✓ Appended song #" + d.songNumber + " (\"" + title + "\") to existing artist \"" + d.artist + "\". Vercel will redeploy in ~1-2 min."
+      );
       // Clear title + lyrics so the admin can immediately add another song
       // from the same artist; preserve artist for convenience.
       setUpTitle("");
