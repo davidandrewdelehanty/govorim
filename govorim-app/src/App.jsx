@@ -85,96 +85,91 @@ ${vocab.length ? "\nWeave these saved vocabulary words naturally into your messa
 
 function litprompt(snippet, idx, total, title, author, focus, prevQuestions, pageIdx, pageCount) {
   var focusBlock = focus ? `\n${focus.note}\n` : "";
-  var prevBlock = (prevQuestions && prevQuestions.length)
-    ? "\nQUESTIONS YOU ALREADY ASKED ON THIS PAGE — do NOT repeat any of these. Pick different details from the passage:\n"
+  var qCount = (prevQuestions && prevQuestions.length) || 0;
+  var prevBlock = qCount
+    ? "\nQUESTIONS YOU ALREADY ASKED ON THIS PASSAGE (do NOT repeat any of these — pick a different detail):\n"
       + prevQuestions.map(function(q){ return "- " + q; }).join("\n") + "\n"
     : "";
   var pageBlock = (typeof pageIdx === "number" && typeof pageCount === "number" && pageCount > 1)
     ? `, page ${pageIdx + 1} of ${pageCount}`
     : "";
+
+  // Aim for 6 comprehension questions per page/song. After that the AI signals
+  // completion instead of inventing more. Re-asks of the same question count
+  // toward this total — acceptable: time spent on a tricky question is still
+  // valuable learning.
+  var TARGET_QUESTIONS = 6;
+  var done = qCount >= TARGET_QUESTIONS;
+  var progressBlock = done
+    ? `\nCOMPLETION SIGNAL: ${qCount} questions have already been asked about this passage. The student has covered it well. If they're answering the LAST question right now, give your reaction (validate / correct as usual) and then CONGRATULATE in Russian — something like "Отлично, мы хорошо разобрали этот фрагмент! Можете перейти к следующей." Do NOT ask another question.\n`
+    : `\nQUESTION PROGRESS: ${qCount} of ${TARGET_QUESTIONS} questions asked so far. Ask the next one.\n`;
+
   return `You are a Russian comprehension tutor working with an INTERMEDIATE student (roughly B1 — NOT a native speaker). The student is reading "${title}" by ${author} (chapter ${idx+1}/${total}${pageBlock}) and is LOOKING AT this passage on screen RIGHT NOW:
 
 PASSAGE ON SCREEN:
 "${snippet}"
 
 CRITICAL — STAY ON THIS PASSAGE:
-- Every comprehension question you ask MUST be answerable from the passage above.
+- Every comprehension question MUST be answerable from the passage above.
 - Do NOT ask about characters, events, places, or details from earlier or later in the book. If you have memory of the wider plot, IGNORE it.
-- If something on this page references prior events but the prior events aren't shown here, do NOT quiz on those prior events — only on what's visible.
-- If a detail you want to ask about isn't actually in the passage above, drop the question and pick a different concrete detail that IS in it.
+- If a detail isn't actually in the passage above, pick a different concrete detail that IS in it.
 
-Your job: ask 2–3 SPECIFIC comprehension questions IN RUSSIAN that the student can answer using info from the passage.
-${focusBlock}${prevBlock}
-WHAT MAKES A GOOD QUESTION (read carefully):
+IRON RULE — ONE QUESTION AT A TIME:
+- Each response contains EXACTLY ONE question, marked with ❓.
+- NEVER produce a numbered list of questions ("1. ... 2. ... 3. ..."). NEVER ask multiple ❓ in one response.
+- The full comprehension session is ${TARGET_QUESTIONS} questions per passage, asked one by one as a back-and-forth.
+${progressBlock}${focusBlock}${prevBlock}
+WHAT MAKES A GOOD QUESTION:
 
-1. ANSWER VERIFIABILITY CHECK — before writing each question, locate the exact phrase or sentence in the passage that contains the answer. If you cannot point to a specific phrase that explicitly answers it, do NOT ask the question. Drop it and pick a different detail.
+1. ANSWER VERIFIABILITY CHECK — before asking, locate the exact phrase or sentence in the passage that contains the answer. If you cannot point to a specific phrase that explicitly answers it, do NOT ask the question. Pick a different concrete detail.
 
 2. The answer must NOT require:
    - Inferring meaning from cultural / historical context the student may not have
    - Interpreting metaphor, irony, or subtext
-   - Knowledge of 19th-century Russian society, customs, ranks, currencies, etc., unless the passage explains them
-   - Reading between the lines — the answer must be on the surface of the text
+   - Knowledge of 19th-century customs, ranks, currencies, etc., unless the passage explains them
+   - Reading between the lines — the answer must be on the surface
 
 3. INTERMEDIATE-LEVEL LANGUAGE in the question itself:
-   - Use common, modern Russian vocabulary (B1 register).
-   - Use clear, simple syntax — no long subordinate clauses.
-   - If the passage uses an archaic, dialectal, or unusually literary word that's relevant to the answer, PARAPHRASE it in your question using a modern equivalent — do not quote the archaic form back at the student.
-   - Don't use uncommon participles or adverbial participles (деепричастия) in your question.
+   - Use common, modern Russian (B1 register).
+   - Paraphrase archaic / unusually literary words from the passage rather than quoting them back.
+   - Keep syntax simple — no long subordinate clauses, no деепричастия.
 
-4. Each question targets a specific concrete detail: color, location, name, time, action, reason, manner, quantity, who-did-what-to-whom.
+4. Each question targets a SPECIFIC concrete detail: color, location, name, time, action, reason, manner, quantity, who-did-what-to-whom.
 
-5. Vary the grammar so the student exercises different cases and forms across the questions:
+5. Across the ${TARGET_QUESTIONS} questions in this session, VARY the case-grammar you elicit:
    • Какого цвета…? (genitive)
    • Где…? Откуда…? (prepositional / genitive)
    • Куда…? (accusative of direction)
    • Кто…? Кого…? Кому…? Чем…? (nom/acc/dat/instr)
    • Когда…? Сколько…? Почему…? Что сделал…?
 
-INTERNAL SELF-CHECK before sending each question (do this silently):
-  (a) Where in the passage is the answer? Quote the relevant phrase to yourself.
-  (b) Could a B1 learner produce the answer in 1–2 sentences using only the passage and a basic dictionary? If no — rewrite or drop.
-  (c) Does my question use any words the student would have to look up just to understand the question? If yes — paraphrase.
+RESPONSE FORMAT:
+- If this is the very first question of the session (qCount = 0): begin with ONE short English note (max 1 sentence) about a notable grammar feature in the passage, then your ONE Russian question on a new line prefixed with ❓.
+- If this is a follow-up (qCount > 0): briefly react to the student's previous answer using the rules below (1–2 sentences in Russian), then on a new line ask your ONE next question prefixed with ❓.
+- ONLY ONE ❓ per response. Never enumerate.
 
-Format your response as:
-1. ONE short English note (max 1 sentence) about a notable grammar feature in the passage.
-2. Then the questions, numbered, in Russian only — do NOT add English translations of your questions:
-   ❓1 [Russian question]
-   ❓2 [Russian question]
-   (etc.)
+Do NOT answer the question yourself — the student will.
 
-Do NOT answer the questions yourself — the student will.
+WHEN STUDENT ANSWERS (continuity rules):
+- Treat their previous answer as the anchor for your next message. Don't drop threads.
+- Before transitioning to a new question, you may probe the SAME detail one level deeper (why, contrast, alternative), counting as another question.
+- When you do move on, bridge from their previous answer explicitly ("Хорошо, ты сказал что X. А теперь — …").
+- If they get a question wrong or only partially right, re-ask in simpler words rather than telling them the answer.
 
-CONVERSATION CONTINUITY (very important):
-- After the student answers, ALWAYS treat their previous answer (and the question that prompted it) as the anchor for your next message. Before moving to a new question, probe the SAME detail one level deeper: ask why, ask for a contrast, ask them to imagine an alternative. Example: if they answered "дом был белый", follow up with "А почему именно белый, как ты думаешь?" or "Что ещё в этой сцене было светлым?".
-- When transitioning to a new question, bridge from their previous answer explicitly — reference what they said and connect the new question to it ("Хорошо, ты сказал что X. А теперь — …").
-- If they get a question wrong or only partially right, re-ask in a simpler way using different vocabulary; don't just move on.
-- Never abandon a thread mid-air. The student should always feel that each question follows naturally from what was just said.
-- Apply the SAME intermediate-level rule to follow-up questions: paraphrase archaic words, keep syntax simple, only ask things answerable from the passage (or from the student's previous answer).
-
-When the student responds:
-- Briefly validate or correct mistakes inline with [correct form].
-- Bold any teachable vocab as **слово (word)**.
-- Then either probe the same detail deeper OR bridge clearly to the next question (per the continuity rules above).
-- Stay concise.
-
-GENEROUS ANSWER ACCEPTANCE (very important — read this carefully):
-
+GENEROUS ANSWER ACCEPTANCE (very important):
 You are a language tutor, NOT a fact-checker. The student is intermediate, not native. ACCEPT answers liberally:
+- ✅ SYNONYMS and category equivalents are CORRECT (if the text says "ржавый" and the student says "brown" or "rusty" — accept).
+- ✅ PARTIAL answers that capture the essential meaning — accept.
+- ✅ PARAPHRASES — accept.
+- ✅ Answers in any grammatical form as long as meaning is right — fix grammar inline with [correct form] but affirm content first.
+- ✅ Answers in English when reaching for an unknown Russian word — affirm comprehension, then supply the Russian.
 
-- ✅ Accept SYNONYMS and category equivalents. If the text says "ржавый" (rust-colored) and the student says "brown", "red", "reddish", "rusty", "orange", "коричневый", "красноватый", "оранжевый" — that is CORRECT. Don't demand the exact word from the text. The student understood the color family; that's the comprehension goal.
-- ✅ Accept PARTIAL answers that capture the essential meaning. If the text says "old wooden house" and the student says "wooden" or "old", accept it.
-- ✅ Accept PARAPHRASES. The student doesn't have to echo the text verbatim.
-- ✅ Accept answers in any grammatical form as long as the meaning is right. Wrong case ending while content is right? Acknowledge correct content first, fix grammar inline with [correct form].
-- ✅ Accept answers in English if the student is reaching for a Russian word they don't know yet — affirm the comprehension, then supply the Russian equivalent.
-
-Only mark wrong if the answer is CLEARLY off-topic (e.g. "blue" for a rust-colored object, naming the wrong character or place, contradicting the text).
+Only mark wrong if the answer is CLEARLY off-topic (e.g. "blue" for a rust-colored object).
 
 When you accept an answer:
 1. AFFIRM clearly first — "Да, точно!", "Совершенно верно!", "Молодец!", "Правильно!".
-2. THEN you can enrich: mention the specific Russian word the text used as bonus information, not as a correction. Format: "Точно — в тексте Чехов использует слово **ржавый (rusty)**, что значит коричневато-красноватый цвет, как ты и сказал."
-3. Then probe deeper or bridge to the next question.
-
-When the student is genuinely wrong on the comprehension itself: gently re-ask the question using different words and a simpler hint, NOT "no, the answer is X." Give them a second chance.`;
+2. THEN you may enrich: mention the specific text word as bonus, not correction. "Точно — Чехов использует слово **ржавый (rusty)**, что значит коричневато-красный, как ты и сказал."
+3. Bridge to ONE next question (or, after ${TARGET_QUESTIONS} questions, signal completion as described above).`;
 }
 
 // Paginates a chapter for the on-screen reader. A page is at most 5 paragraphs
@@ -1351,13 +1346,26 @@ export default function App() {
   // Upload-song panel state — admin-only, accessed via "📤 Upload" trigger.
   // Pasted song goes to a per-artist .txt in public/books/lyrics/ via the
   // /api/admin/upload-song endpoint (commits to GitHub → Vercel redeploys).
+  // The same modal also handles full-book uploads via a Song/Book tab toggle.
   var [showUpload, setShowUpload]   = useState(false);
+  var [upMode, setUpMode]           = useState("song");  // "song" | "book"
   var [upArtist, setUpArtist]       = useState("");
   var [upTitle, setUpTitle]         = useState("");
   var [upLyrics, setUpLyrics]       = useState("");
   var [upBusy, setUpBusy]           = useState(false);
   var [upMsg, setUpMsg]             = useState("");
   var [upErr, setUpErr]             = useState("");
+  // Book-upload-specific fields (only used when upMode === "book")
+  var [upBookFile, setUpBookFile]     = useState(null);
+  var [upBookAuthor, setUpBookAuthor] = useState("");
+  var [upBookCategory, setUpBookCategory] = useState("Novel");
+  // Song-picker state — opened when the user picks a Song Lyrics artist from
+  // the library dropdown. Lists the artist's individual songs so the user can
+  // jump straight to one instead of starting at song 1.
+  var [songPickerBook, setSongPickerBook] = useState(null);
+  var [songPickerList, setSongPickerList] = useState([]);  // [{ title, index }]
+  var [songPickerLoad, setSongPickerLoad] = useState(false);
+  var [songPickerErr, setSongPickerErr]   = useState("");
   var ADMIN_EMAIL = (import.meta.env.VITE_ADMIN_EMAIL || "").toLowerCase();
   var currentEmail = (user && user.primaryEmailAddress && user.primaryEmailAddress.emailAddress || "").toLowerCase();
   var isAdmin = !!ADMIN_EMAIL && currentEmail === ADMIN_EMAIL;
@@ -1936,6 +1944,127 @@ export default function App() {
     }
   };
 
+  // Upload a full book (EPUB/FB2/TXT/HTML). Reads the file as base64, sends to
+  // /api/admin/upload-book which commits to public/books/<category-folder>/ on
+  // GitHub.
+  var uploadBook = async function() {
+    if (upBusy) return;
+    setUpErr("");
+    setUpMsg("");
+    var title  = upTitle.trim();
+    var author = upBookAuthor.trim();
+    var cat    = upBookCategory;
+    var file   = upBookFile;
+    if (!file) { setUpErr("Pick a file first"); return; }
+    if (!title) { setUpErr("Title required"); return; }
+    if (!cat)   { setUpErr("Category required"); return; }
+    // 20 MB cap matches the backend limit; warn earlier so we don't waste a round-trip.
+    if (file.size > 20 * 1024 * 1024) { setUpErr("File too large (max 20MB)"); return; }
+    setUpBusy(true);
+    try {
+      // Read the file as base64. Use FileReader since File.arrayBuffer + Buffer
+      // isn't available in the browser; readAsDataURL gives us "data:...;base64,XXX".
+      var fileBase64 = await new Promise(function(resolve, reject) {
+        var fr = new FileReader();
+        fr.onload  = function(){
+          var s = String(fr.result || "");
+          var idx = s.indexOf(",");
+          resolve(idx >= 0 ? s.slice(idx + 1) : s);
+        };
+        fr.onerror = function(){ reject(new Error("Could not read file")); };
+        fr.readAsDataURL(file);
+      });
+      var r = await authFetch("/api/admin/upload-book", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          filename:   file.name,
+          title:      title,
+          author:     author,
+          category:   cat,
+          fileBase64: fileBase64,
+        }),
+      });
+      var d = await r.json().catch(function(){ return {}; });
+      if (!r.ok) throw new Error(d.error || ("HTTP " + r.status));
+      setUpMsg(d.message || ("Book \"" + title + "\" uploaded — deploy in progress."));
+      // Clear after success so admin can add another
+      setUpBookFile(null);
+      setUpTitle("");
+      setUpBookAuthor("");
+    } catch(err) {
+      setUpErr(err.message || "Upload failed");
+    } finally {
+      setUpBusy(false);
+    }
+  };
+
+  // Open the inline song-picker for a Song Lyrics artist. Reads song titles
+  // from the book's `songs` array in index.json (populated by uploads). If
+  // titles aren't pre-populated (e.g. older artist entries), fetch the .txt
+  // and parse it to extract chapter headings.
+  var openSongPicker = async function(book) {
+    setSongPickerBook(book);
+    setSongPickerErr("");
+    setSongPickerList([]);
+    // Fast path: pre-baked song titles in the manifest entry
+    if (Array.isArray(book.songs) && book.songs.length > 0) {
+      var titlesFromManifest = book.songs.map(function(s, i){
+        var title = "";
+        if (s && typeof s === "object" && typeof s.title === "string") title = s.title;
+        return { title: title || ("Song " + (i + 1)), index: i };
+      });
+      if (titlesFromManifest.some(function(t){ return t.title && t.title.indexOf("Song ") !== 0; })) {
+        setSongPickerList(titlesFromManifest);
+        return;
+      }
+    }
+    // Slow path: fetch + parse the file to extract titles
+    setSongPickerLoad(true);
+    try {
+      var r = await fetch("/books/" + book.filename);
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      var buf = await r.arrayBuffer();
+      var result = await parseBook(buf, book.filename);
+      var chs = result.chapters || [];
+      // Apply the same splitting logic loadFile uses (heuristic, then legacy
+      // numbered fallback if explicitly opted in). Skip the AI fallback here —
+      // costs a token and the picker doesn't need perfection.
+      if (book.category === "Song Lyrics" || book.splitByNumberedSections) {
+        // Same priority as loadFile: trust the explicit flag first, then heuristic.
+        var didSplit = false;
+        if (book.splitByNumberedSections) {
+          var byNum = resplitByNumberedSections(chs);
+          if (byNum && byNum.length >= 1) { chs = byNum; didSplit = true; }
+        }
+        if (!didSplit || chs.length <= 1) {
+          var smart = splitSongsHeuristic(chs, { minSongs: 2 });
+          if (smart && smart.length >= 2) chs = smart;
+        }
+      }
+      setSongPickerList(chs.map(function(ch, i){
+        return { title: (ch.heading || "").trim() || ("Song " + (i + 1)), index: i };
+      }));
+    } catch(err) {
+      setSongPickerErr(err.message || "Could not load song list");
+    } finally {
+      setSongPickerLoad(false);
+    }
+  };
+
+  // User picked a specific song from the inline picker — load the book then
+  // jump to that song's chapter index.
+  var jumpToSong = async function(songIndex) {
+    var book = songPickerBook;
+    if (!book) return;
+    setSongPickerBook(null);
+    setSongPickerList([]);
+    await loadPresetBook(book);
+    // loadFile resets cidx via setCbm(0) but cidx itself stays. Force the jump.
+    setCidx(songIndex);
+    setPidx(0);
+  };
+
   var startKeepalive = function() {
     if (keepAlive.current) clearInterval(keepAlive.current);
     // Chrome cuts off speechSynthesis after ~15 seconds. Pause+resume keeps it alive.
@@ -2383,19 +2512,12 @@ export default function App() {
   // ── Smart song-collection splitter ──────────────────────────────────────
   // Tries multiple deterministic patterns to find song boundaries in a song-
   // collection book. Returns an array of chapters (one per song) if any pattern
-  // produces >= 3 plausible sections, otherwise null. The caller (loadFile)
-  // falls back to AI-based detection only when this returns null/short.
-  //
-  // Patterns tried, in order of confidence:
-  //   1. standalone-numbered    — line is just "1." or "23"
-  //   2. inline-numbered        — "1. Песня" style title lines
-  //   3. standalone-roman       — line is just "I." or "IV"
-  //   4. inline-roman           — "I. Title"
-  //   5. all-caps-cyrillic      — short ALL-CAPS Russian line surrounded by blanks
-  //   6. title-case-cyrillic    — short Title Case line on its own, surrounded by blanks
-  //
-  // The strategy yielding the most plausible sections wins.
-  var splitSongsHeuristic = function(chapters) {
+  // produces >= options.minSongs (default 3) plausible sections, otherwise null.
+  // For Song Lyrics books we lower the threshold to 2 since even 2 songs is
+  // valuable — for unknown books we keep 3 to avoid false-positive splits.
+  var splitSongsHeuristic = function(chapters, options) {
+    options = options || {};
+    var minSongs = typeof options.minSongs === "number" ? options.minSongs : 3;
     if (!chapters || !chapters.length) return null;
     var fullText = chapters.map(function(ch){ return ch.text || ""; }).join("\n\n");
     if (fullText.length < 300) return null;
@@ -2484,7 +2606,7 @@ export default function App() {
         if (strat.isTitleLine(lines, i)) titleIdxs.push(i);
       }
       // Heuristic validity checks
-      if (titleIdxs.length < 3) continue;
+      if (titleIdxs.length < minSongs) continue;
       // Sections shouldn't be too dense — if there's a title every 3 lines,
       // we're probably matching false positives (like ALL CAPS dialogue tags).
       var avgGap = lines.length / titleIdxs.length;
@@ -2510,7 +2632,7 @@ export default function App() {
         sections.push({ heading: heading, text: bodyText });
       }
 
-      if (sections.length >= 3) {
+      if (sections.length >= minSongs) {
         if (!best || sections.length > best.length) {
           best = sections;
           bestName = strat.name;
@@ -2674,28 +2796,30 @@ export default function App() {
       //      explicitly set the flag in index.json).
       var isSongBook = opts.category === "Song Lyrics";
       if (isSongBook) {
-        // 1. Source-split heuristic: many "good" song EPUBs already have one
-        //    song per chapter. Detect this by: ≥5 chapters, each shortish (<3000 chars).
-        var avgLen = chs.reduce(function(a, c){ return a + (c.text || "").length; }, 0) / chs.length;
-        var alreadyOnePerChapter = chs.length >= 5 && avgLen < 3000;
-        if (!alreadyOnePerChapter) {
-          // 2. Try the smart heuristic splitter.
-          var smart = splitSongsHeuristic(chs);
-          if (smart && smart.length >= 3) {
-            chs = smart;
-          } else {
-            // 3. Heuristic failed → ask AI for a regex pattern.
-            try {
-              var aiResult = await splitSongsAI(chs, fname);
-              if (aiResult && aiResult.length >= 3) {
-                chs = aiResult;
-              } else if (opts.splitByNumberedSections) {
-                // 4. AI also failed AND user explicitly opted into the legacy splitter.
-                chs = resplitByNumberedSections(chs);
+        // 1. EXPLICIT FORMAT FLAG WINS. Uploads always set `splitByNumberedSections: true`
+        //    because we know the file format (numbered Tsoi-style). Trust it. This is the
+        //    fast path for every uploaded artist file.
+        if (opts.splitByNumberedSections) {
+          var byNum = resplitByNumberedSections(chs);
+          if (byNum && byNum.length >= 1) chs = byNum;
+        }
+        // 2. After (or in lieu of) the explicit flag, if we STILL have one big chapter,
+        //    try smart splitting. This handles song books from external sources without
+        //    the explicit flag, AND the case where splitByNumberedSections didn't find
+        //    its markers (different format).
+        if (chs.length <= 1) {
+          var avgLen0 = chs.length ? (chs[0].text || "").length : 0;
+          if (avgLen0 > 500) {
+            var smart = splitSongsHeuristic(chs, { minSongs: 2 });
+            if (smart && smart.length >= 2) {
+              chs = smart;
+            } else {
+              try {
+                var aiResult = await splitSongsAI(chs, fname);
+                if (aiResult && aiResult.length >= 2) chs = aiResult;
+              } catch(aiErr) {
+                console.log("[songs] AI fallback errored: " + (aiErr.message || aiErr));
               }
-            } catch(aiErr) {
-              console.log("[songs] AI fallback errored: " + (aiErr.message || aiErr));
-              if (opts.splitByNumberedSections) chs = resplitByNumberedSections(chs);
             }
           }
         }
@@ -2810,13 +2934,30 @@ export default function App() {
       // Build a page-scoped snippet so follow-up messages stay locked to what's
       // on the user's screen (same scoping the AI got in the initial question).
       var sys;
+      var qhistKey = String(cidx) + ":" + pidx;
+      var qhistForUpdate = null;
       if (isLit && chapters.length > 0 && currentPage) {
         var litSnippet = (curChapter.text || "").slice(currentPage.startChar, currentPage.endChar);
         if (litSnippet.length > 3500) litSnippet = litSnippet.slice(0, 3500);
-        sys = litprompt(litSnippet, cidx, chapters.length, bookMeta.title || "this book", bookMeta.author || "the author", null, null, pidx, totalPages);
+        // Pass prevQs so the AI knows how many questions have been asked and
+        // doesn't repeat them — this is what enables the 6-question-per-song
+        // session arc.
+        qhistForUpdate = await loadQHist();
+        var prevQs = (qhistForUpdate[qhistKey] || []).slice(-12);
+        sys = litprompt(litSnippet, cidx, chapters.length, bookMeta.title || "this book", bookMeta.author || "the author", null, prevQs, pidx, totalPages);
       }
       var t = await api(next, sys);
       setMsgs(function(prev){ return prev.concat([{role:"assistant",content:t}]); });
+      // If we're in literature mode, extract any newly-asked question from
+      // the AI's reply and append it to qhist so the next turn knows the
+      // count + can avoid duplicates.
+      if (isLit && qhistForUpdate) {
+        var newQs = extractQuestions(t);
+        if (newQs.length) {
+          qhistForUpdate[qhistKey] = (qhistForUpdate[qhistKey] || []).concat(newQs).slice(-25);
+          saveQHist(qhistForUpdate);
+        }
+      }
     } catch(err) {
       setMsgs(function(prev){ return prev.concat([{role:"assistant",content:"*("+err.message+")*"}]); });
     }
@@ -3818,55 +3959,139 @@ export default function App() {
         <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setShowUpload(false); }}>
           <div className="adm-modal" style={{maxWidth:640}}>
             <div className="adm-head">
-              <div className="adm-title">📤 Upload Song</div>
+              <div className="adm-title">📤 Upload</div>
               <button className="adm-x" onClick={function(){ setShowUpload(false); }}>×</button>
             </div>
             <div className="adm-body" style={{padding:20,display:"flex",flexDirection:"column",gap:14}}>
-              <div style={{fontSize:12,opacity:.6,lineHeight:1.5}}>
-                Pasted lyrics get appended to a per-artist file under <code style={{background:"rgba(0,0,0,.3)",padding:"1px 5px",borderRadius:3}}>public/books/lyrics/&lt;artist&gt;.txt</code>.
-                Vercel redeploys after each upload — your new song appears in the picker in ~1-2 min.
+              {/* Mode tabs */}
+              <div style={{display:"flex",gap:0,borderBottom:"1px solid rgba(210,197,175,.15)"}}>
+                <button onClick={function(){ setUpMode("song"); setUpErr(""); setUpMsg(""); }}
+                  style={{flex:1,padding:"10px 14px",background:upMode==="song"?"rgba(200,162,118,.12)":"transparent",color:upMode==="song"?"#c8a276":"rgba(210,197,175,.6)",border:"none",borderBottom:upMode==="song"?"2px solid #c8a276":"2px solid transparent",cursor:"pointer",fontFamily:"'Crimson Pro',serif",fontSize:14,fontWeight:upMode==="song"?600:400}}>
+                  🎵 Song (paste lyrics)
+                </button>
+                <button onClick={function(){ setUpMode("book"); setUpErr(""); setUpMsg(""); }}
+                  style={{flex:1,padding:"10px 14px",background:upMode==="book"?"rgba(200,162,118,.12)":"transparent",color:upMode==="book"?"#c8a276":"rgba(210,197,175,.6)",border:"none",borderBottom:upMode==="book"?"2px solid #c8a276":"2px solid transparent",cursor:"pointer",fontFamily:"'Crimson Pro',serif",fontSize:14,fontWeight:upMode==="book"?600:400}}>
+                  📚 Book (upload file)
+                </button>
               </div>
+
+              {upMode === "song" && (
+                <div style={{fontSize:12,opacity:.6,lineHeight:1.5}}>
+                  Pasted lyrics get appended to a per-artist file under <code style={{background:"rgba(0,0,0,.3)",padding:"1px 5px",borderRadius:3}}>public/books/lyrics/&lt;artist&gt;.txt</code>.
+                  Vercel redeploys after each upload — your new song appears in the picker in ~1-2 min.
+                </div>
+              )}
+              {upMode === "book" && (
+                <div style={{fontSize:12,opacity:.6,lineHeight:1.5}}>
+                  Upload an EPUB, FB2, TXT, or HTML file. Max 20MB. The file gets committed to <code style={{background:"rgba(0,0,0,.3)",padding:"1px 5px",borderRadius:3}}>public/books/&lt;category&gt;/</code> and added to the manifest.
+                </div>
+              )}
+
               {upErr && <div className="adm-err">{upErr}</div>}
               {upMsg && (
                 <div style={{padding:"8px 12px",background:"rgba(138,171,124,.15)",border:"1px solid rgba(138,171,124,.4)",borderRadius:4,color:"#a8c89a",fontSize:13}}>
                   ✓ {upMsg}
                 </div>
               )}
-              <div>
-                <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Artist</label>
-                <input type="text" value={upArtist} onChange={function(e){ setUpArtist(e.target.value); }}
-                  placeholder="e.g. Виктор Цой"
-                  disabled={upBusy}
-                  style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
-              </div>
-              <div>
-                <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Song title</label>
-                <input type="text" value={upTitle} onChange={function(e){ setUpTitle(e.target.value); }}
-                  placeholder="e.g. Группа крови"
-                  disabled={upBusy}
-                  style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
-              </div>
-              <div>
-                <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Lyrics (Russian)</label>
-                <textarea value={upLyrics} onChange={function(e){ setUpLyrics(e.target.value); }}
-                  placeholder="Paste the song lyrics here..."
-                  rows={14}
-                  disabled={upBusy}
-                  style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",resize:"vertical",lineHeight:1.55,boxSizing:"border-box"}}/>
-                <div style={{fontSize:11,opacity:.45,marginTop:4,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>
-                  {upLyrics.length} chars · {(upLyrics.match(/[а-яёА-ЯЁ]/g) || []).length} Cyrillic letters
-                </div>
-              </div>
-              <div style={{display:"flex",gap:10,alignItems:"center",marginTop:4}}>
-                <button onClick={uploadSong} disabled={upBusy || !upArtist.trim() || !upTitle.trim() || upLyrics.trim().length < 20}
-                  style={{padding:"10px 22px",background:"#c8a276",color:"#1a1612",border:"none",borderRadius:4,fontWeight:600,fontSize:14,cursor:upBusy?"wait":"pointer",opacity:(upBusy || !upArtist.trim() || !upTitle.trim() || upLyrics.trim().length < 20)?.5:1,fontFamily:"'Crimson Pro',serif"}}>
-                  {upBusy ? "Uploading..." : "Upload song"}
-                </button>
-                <button onClick={function(){ setUpTitle(""); setUpLyrics(""); setUpMsg(""); setUpErr(""); }} disabled={upBusy}
-                  style={{padding:"10px 16px",background:"transparent",color:"#d2c5af",border:"1px solid rgba(210,197,175,.25)",borderRadius:4,fontSize:13,cursor:"pointer",fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>
-                  Clear song
-                </button>
-              </div>
+
+              {upMode === "song" && (
+                <>
+                  <div>
+                    <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Artist</label>
+                    <input type="text" value={upArtist} onChange={function(e){ setUpArtist(e.target.value); }}
+                      placeholder="e.g. Виктор Цой"
+                      disabled={upBusy}
+                      style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
+                  </div>
+                  <div>
+                    <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Song title</label>
+                    <input type="text" value={upTitle} onChange={function(e){ setUpTitle(e.target.value); }}
+                      placeholder="e.g. Группа крови"
+                      disabled={upBusy}
+                      style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
+                  </div>
+                  <div>
+                    <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Lyrics (Russian)</label>
+                    <textarea value={upLyrics} onChange={function(e){ setUpLyrics(e.target.value); }}
+                      placeholder="Paste the song lyrics here..."
+                      rows={12}
+                      disabled={upBusy}
+                      style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",resize:"vertical",lineHeight:1.55,boxSizing:"border-box"}}/>
+                    <div style={{fontSize:11,opacity:.45,marginTop:4,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>
+                      {upLyrics.length} chars · {(upLyrics.match(/[а-яёА-ЯЁ]/g) || []).length} Cyrillic letters
+                    </div>
+                  </div>
+                  <div style={{display:"flex",gap:10,alignItems:"center",marginTop:4}}>
+                    <button onClick={uploadSong} disabled={upBusy || !upArtist.trim() || !upTitle.trim() || upLyrics.trim().length < 20}
+                      style={{padding:"10px 22px",background:"#c8a276",color:"#1a1612",border:"none",borderRadius:4,fontWeight:600,fontSize:14,cursor:upBusy?"wait":"pointer",opacity:(upBusy || !upArtist.trim() || !upTitle.trim() || upLyrics.trim().length < 20)?.5:1,fontFamily:"'Crimson Pro',serif"}}>
+                      {upBusy ? "Uploading..." : "Upload song"}
+                    </button>
+                    <button onClick={function(){ setUpTitle(""); setUpLyrics(""); setUpMsg(""); setUpErr(""); }} disabled={upBusy}
+                      style={{padding:"10px 16px",background:"transparent",color:"#d2c5af",border:"1px solid rgba(210,197,175,.25)",borderRadius:4,fontSize:13,cursor:"pointer",fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>
+                      Clear song
+                    </button>
+                  </div>
+                </>
+              )}
+
+              {upMode === "book" && (
+                <>
+                  <div>
+                    <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Book file</label>
+                    <input type="file" accept=".epub,.fb2,.txt,.html,.htm,.xhtml"
+                      onChange={function(e){
+                        var f = e.target.files && e.target.files[0];
+                        setUpBookFile(f || null);
+                        // Auto-fill title from filename if empty
+                        if (f && !upTitle.trim()) {
+                          var stem = f.name.replace(/\.[^.]+$/, "").replace(/[_-]/g, " ");
+                          setUpTitle(stem);
+                        }
+                      }}
+                      disabled={upBusy}
+                      style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
+                    {upBookFile && (
+                      <div style={{fontSize:11,opacity:.55,marginTop:4,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>
+                        {upBookFile.name} · {Math.round(upBookFile.size / 1024)} KB
+                      </div>
+                    )}
+                  </div>
+                  <div>
+                    <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Title</label>
+                    <input type="text" value={upTitle} onChange={function(e){ setUpTitle(e.target.value); }}
+                      placeholder="e.g. Анна Каренина"
+                      disabled={upBusy}
+                      style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
+                  </div>
+                  <div>
+                    <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Author <span style={{opacity:.5}}>(optional)</span></label>
+                    <input type="text" value={upBookAuthor} onChange={function(e){ setUpBookAuthor(e.target.value); }}
+                      placeholder="e.g. Лев Толстой"
+                      disabled={upBusy}
+                      style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
+                  </div>
+                  <div>
+                    <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Category</label>
+                    <select value={upBookCategory} onChange={function(e){ setUpBookCategory(e.target.value); }} disabled={upBusy}
+                      style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}>
+                      <option value="Novel">Novel</option>
+                      <option value="Plays">Plays</option>
+                      <option value="Short Stories">Short Stories</option>
+                      <option value="Poetry">Poetry</option>
+                    </select>
+                  </div>
+                  <div style={{display:"flex",gap:10,alignItems:"center",marginTop:4}}>
+                    <button onClick={uploadBook} disabled={upBusy || !upBookFile || !upTitle.trim()}
+                      style={{padding:"10px 22px",background:"#c8a276",color:"#1a1612",border:"none",borderRadius:4,fontWeight:600,fontSize:14,cursor:upBusy?"wait":"pointer",opacity:(upBusy || !upBookFile || !upTitle.trim())?.5:1,fontFamily:"'Crimson Pro',serif"}}>
+                      {upBusy ? "Uploading..." : "Upload book"}
+                    </button>
+                    <button onClick={function(){ setUpBookFile(null); setUpTitle(""); setUpBookAuthor(""); setUpMsg(""); setUpErr(""); }} disabled={upBusy}
+                      style={{padding:"10px 16px",background:"transparent",color:"#d2c5af",border:"1px solid rgba(210,197,175,.25)",borderRadius:4,fontSize:13,cursor:"pointer",fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>
+                      Clear
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -4044,7 +4269,9 @@ export default function App() {
 
                   {/* Pre-loaded library — dropdown of books shipped with the app,
                       grouped into categories (Novel, Song Lyrics, Poetry, Short Stories,
-                      then "Other" for anything uncategorized). */}
+                      then "Other" for anything uncategorized). For Song Lyrics
+                      entries the dropdown selection routes to an inline song picker
+                      so users can pick a specific song instead of starting at #1. */}
                   {presetBooks.length > 0 && (
                     <div style={{marginTop:18,paddingTop:18,borderTop:"1px solid rgba(210,197,175,.1)"}}>
                       <div style={{fontSize:11,letterSpacing:2,textTransform:"uppercase",color:"rgba(210,197,175,.45)",marginBottom:10,textAlign:"center"}}>Or pick from the library</div>
@@ -4053,7 +4280,12 @@ export default function App() {
                         onChange={function(e){
                           var idx = e.target.value;
                           if (idx === "") return;
-                          loadPresetBook(presetBooks[parseInt(idx,10)]);
+                          var book = presetBooks[parseInt(idx,10)];
+                          if (book && book.category === "Song Lyrics") {
+                            openSongPicker(book);
+                          } else {
+                            loadPresetBook(book);
+                          }
                           e.target.value = "";  // reset so picking again triggers onChange
                         }}>
                         <option value="" disabled>📖 Choose a book…</option>
@@ -4078,7 +4310,7 @@ export default function App() {
                               <optgroup key={cat} label={cat}>
                                 {entries.map(function(entry) {
                                   var book = entry.book;
-                                  var label = (book.title || book.filename) + (book.author ? " — " + book.author : "");
+                                  var label = (book.title || book.filename) + (book.author && book.author !== book.title ? " — " + book.author : "");
                                   return <option key={entry.idx} value={entry.idx}>{label}</option>;
                                 })}
                               </optgroup>
@@ -4086,6 +4318,45 @@ export default function App() {
                           });
                         })()}
                       </select>
+
+                      {/* Inline song picker — shown after picking a Song Lyrics
+                          artist from the dropdown. Lists the artist's individual
+                          songs so you can jump straight to one. */}
+                      {songPickerBook && (
+                        <div style={{marginTop:14,padding:14,background:"rgba(0,0,0,.25)",border:"1px solid rgba(210,197,175,.15)",borderRadius:6}}>
+                          <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",marginBottom:10}}>
+                            <div style={{fontFamily:"'Crimson Pro',serif",fontSize:15}}>
+                              🎵 <span style={{fontStyle:"italic"}}>{songPickerBook.title}</span> · pick a song
+                            </div>
+                            <button onClick={function(){ setSongPickerBook(null); setSongPickerList([]); setSongPickerErr(""); }}
+                              style={{background:"transparent",color:"rgba(210,197,175,.55)",border:"none",cursor:"pointer",fontSize:18,padding:"0 4px"}}>×</button>
+                          </div>
+                          {songPickerLoad && (
+                            <div style={{fontSize:13,opacity:.6,padding:"6px 0",fontStyle:"italic"}}>Loading song list…</div>
+                          )}
+                          {songPickerErr && (
+                            <div style={{fontSize:13,color:"#c87a68",padding:"6px 0"}}>{songPickerErr}</div>
+                          )}
+                          {!songPickerLoad && !songPickerErr && songPickerList.length === 0 && (
+                            <div style={{fontSize:13,opacity:.6,padding:"6px 0",fontStyle:"italic"}}>No songs found.</div>
+                          )}
+                          {songPickerList.length > 0 && (
+                            <div style={{maxHeight:320,overflowY:"auto",display:"flex",flexDirection:"column",gap:2}}>
+                              {songPickerList.map(function(s){
+                                return (
+                                  <button key={s.index} onClick={function(){ jumpToSong(s.index); }}
+                                    style={{textAlign:"left",padding:"8px 12px",background:"transparent",color:"#d2c5af",border:"1px solid rgba(210,197,175,.1)",borderRadius:4,cursor:"pointer",fontSize:14,fontFamily:"'Crimson Pro',serif",display:"flex",justifyContent:"space-between",alignItems:"center"}}
+                                    onMouseEnter={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.1)"; e.currentTarget.style.borderColor = "rgba(200,162,118,.3)"; }}
+                                    onMouseLeave={function(e){ e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(210,197,175,.1)"; }}>
+                                    <span><span style={{opacity:.4,marginRight:8}}>{s.index + 1}.</span>{s.title}</span>
+                                    <span style={{opacity:.4,fontSize:12}}>▶</span>
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </div>
                   )}
 
