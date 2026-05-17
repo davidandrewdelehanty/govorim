@@ -2894,7 +2894,24 @@ export default function App() {
     var left = rect.left;
     if (left+pw > window.innerWidth-16) left = window.innerWidth-pw-16;
     if (left < 16) left = 16;
-    var top = window.innerHeight-rect.bottom > 220 ? rect.bottom+8 : rect.top-230;
+    // Vertical positioning: try below the word first. If the popup would extend
+    // past the viewport bottom, try above. If neither side has enough room,
+    // position at the top of the viewport — the CSS `max-height: calc(100vh-32px)`
+    // and `overflow-y: auto` on `.pop` guarantee the content scrolls internally
+    // instead of getting clipped. Estimate is conservative (340px) because
+    // popups can be tall: verbs with aspect+conjugations, long examples + tips.
+    var POPUP_EST = 340;
+    var spaceBelow = window.innerHeight - rect.bottom;
+    var spaceAbove = rect.top;
+    var top;
+    if (spaceBelow >= POPUP_EST + 16) {
+      top = rect.bottom + 8;
+    } else if (spaceAbove >= POPUP_EST + 16) {
+      top = rect.top - POPUP_EST - 8;
+    } else {
+      // Tight viewport — anchor to top with safe padding; CSS handles overflow.
+      top = 16;
+    }
     setPopXY({top:Math.max(8,top),left:left});
     setPopup({word:clean,data:null,loading:true,error:null,yo:null});
     try {
@@ -4230,60 +4247,64 @@ export default function App() {
         .lit-left > *{max-width:760px;margin-left:auto;margin-right:auto}
         .lit-right{width:460px;flex-shrink:0;display:flex;flex-direction:column;min-height:0}
         @media(max-width:900px){
-          .lit-body{flex-direction:column}
-          .lit-left{
-            border-right:none;
-            border-bottom:none;
-            max-height:none;
-            flex:1;
-            /* Leave room at the bottom for the floating two-row nav + chat panel.
-               Nav is now ~108px tall: page row (~46) + chapter row (~26) + gaps + padding. */
-            padding-bottom:calc(40vh + 120px);
+          /* Mobile reading layout: vertical flow, page scrolls.
+             - Book text dominates the top — natural height, fully readable
+             - Chat panel (messages + input) flows below in document order
+             - Nav buttons (Previous / 📌 / Next) sit at the very bottom
+             User scrolls DOWN to reach the answer field and the next-page buttons.
+             No more 40vh chat panel eating screen space.
+             Overrides the desktop "lock-to-viewport" model (overflow:hidden, height:100vh). */
+          html, body { overflow: auto; height: auto; }
+          .app { height: auto; min-height: 100vh; overflow: visible; }
+          .lit-body { flex-direction: column; overflow: visible; flex: none; }
+          .lit-left {
+            border-right: none;
+            border-bottom: 1px solid rgba(210,197,175,.08);
+            overflow: visible;
+            padding: 20px 18px 28px;
+            flex: none;
+            /* Reset desktop max-width centering — on mobile, book uses the full viewport width. */
+            max-width: none;
           }
-          /* In read-without-AI mode there's no chat panel, so only leave room for the nav bar. */
-          .lit-left.noai{
-            padding-bottom:calc(128px + env(safe-area-inset-bottom));
+          .lit-left > * { max-width: none; margin-left: 0; margin-right: 0; }
+          .lit-left.noai { padding-bottom: 20px; }
+          .lit-right {
+            position: static;
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            height: auto;
+            z-index: auto;
+            background: #1a1611;
+            border-top: none;
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+            padding-bottom: 0;
+            flex: none;
           }
-          .lit-right{
-            width:100%;
-            max-width:1000px;
-            position:fixed;
-            bottom:0;
-            left:0;
-            right:0;
-            margin:0 auto;
-            height:40vh;
-            background:rgba(26,22,17,.96);
-            -webkit-backdrop-filter:blur(10px);
-            backdrop-filter:blur(10px);
-            border-top:1px solid rgba(210,197,175,.12);
-            z-index:50;
-            padding-bottom:env(safe-area-inset-bottom);
+          .lit-msgs {
+            max-height: none;
+            overflow: visible;
+            padding: 16px 18px 8px;
           }
-          /* Pin the Previous / 📌 / Next bar directly above the floating chat,
-             with rounded top corners so the two together feel like a unified bottom sheet. */
-          .lnav{
-            position:fixed;
-            bottom:40vh;
-            left:0;
-            right:0;
-            max-width:1000px;
-            margin:0 auto;
-            z-index:51;
-            border-top:none;
-            background:rgba(26,22,17,.94);
-            -webkit-backdrop-filter:blur(10px);
-            backdrop-filter:blur(10px);
-            border-radius:14px 14px 0 0;
-            box-shadow:0 -8px 28px rgba(0,0,0,.45);
+          .lit-ibar {
+            flex: none;
+            padding: 10px 18px 16px;
           }
-          /* Read-without-AI: no chat panel below, so pin to the absolute bottom of the viewport
-             with safe-area padding for the iPhone home indicator. */
-          .lnav.noai{
-            bottom:0;
-            border-radius:14px 14px 0 0;
-            padding-bottom:calc(12px + env(safe-area-inset-bottom));
+          .lit-ibar textarea { min-height: 80px; }
+          .lnav {
+            position: static;
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            z-index: auto;
+            border-radius: 0;
+            box-shadow: none;
+            background: #1a1611;
+            border-top: 1px solid rgba(210,197,175,.08);
+            padding: 12px 18px calc(20px + env(safe-area-inset-bottom));
           }
+          .lnav.noai { bottom: auto; }
         }
         .lhdr{font-size:11px;color:rgba(210,197,175,.3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
         .lch-heading{font-family:'Playfair Display',serif;font-size:20px;color:#c8a276;margin-bottom:14px}
@@ -4315,7 +4336,7 @@ export default function App() {
         .lem{text-align:center;color:rgba(210,197,175,.28);padding:32px;font-size:14px}
         .lsbar{padding:12px 28px;border-bottom:1px solid rgba(210,197,175,.08)}
         .pover{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.15)}
-        .pop{position:fixed;z-index:201;background:#23201a;border:1px solid rgba(210,197,175,.2);border-radius:14px;padding:16px 18px 18px;box-shadow:0 12px 40px rgba(0,0,0,.6);animation:pf .15s ease}
+        .pop{position:fixed;z-index:201;background:#23201a;border:1px solid rgba(210,197,175,.2);border-radius:14px;padding:16px 18px 18px;box-shadow:0 12px 40px rgba(0,0,0,.6);animation:pf .15s ease;max-height:calc(100vh - 32px);overflow-y:auto;overscroll-behavior:contain}
         @keyframes pf{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
         .pcl{position:absolute;top:10px;right:12px;background:none;border:none;color:rgba(210,197,175,.35);font-size:18px;cursor:pointer}
         .pcl:hover{color:rgba(210,197,175,.7)}
