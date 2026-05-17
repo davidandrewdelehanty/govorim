@@ -42,7 +42,7 @@ var QHIST_KEY  = "epub_qhist_v1";
 // shows the same questions without firing a new Gemini call. Keyed by
 // "<bookTitle>|<bookAuthor>|<chapter>:<page>". Capped at ~400 entries, LRU by
 // timestamp. Bypassed by the manual "↻ New questions" button.
-var LIT_CACHE_KEY = "gv_lit_cache_v1";
+var LIT_CACHE_KEY = "gv_lit_cache_v2";  // v2: one-question-at-a-time prompt rolled out — bump to invalidate v1 multi-question cached responses
 var LIT_CACHE_MAX = 400;
 
 // Different angles a session can take, so visiting the same chapter twice
@@ -2970,6 +2970,10 @@ export default function App() {
     if (!input.trim() || loading) return;
     var um = {role:"user",content:input.trim()};
     var next = msgs.concat([um]); setMsgs(next); setInput(""); setLoading(true);
+    // Reset the auto-expanded textarea back to its compact starting height so
+    // the next message starts from a clean 1-row state. Without this, the
+    // textarea would stay at whatever height it grew to during typing.
+    if (inputRef.current) inputRef.current.style.height = '';
     try {
       // Build a page-scoped snippet so follow-up messages stay locked to what's
       // on the user's screen (same scoping the AI got in the initial question).
@@ -4738,7 +4742,17 @@ export default function App() {
                               await litAnalysis(chapters, cidx, pidx, undefined, true);
                               setLoading(false);
                             }}>↻</button>
-                          <textarea ref={inputRef} value={input} onChange={function(e){ setInput(e.target.value); }} onKeyDown={onKey} placeholder="Напиши свой ответ…" disabled={loading}/>
+                          <textarea ref={inputRef} value={input}
+                            onChange={function(e){
+                              setInput(e.target.value);
+                              // Auto-expand the textarea so the user always sees what they're typing
+                              // without scrolling inside the box. Reset to auto first so shrinking
+                              // (when content is deleted) works too, then size to fit content up
+                              // to a 240px cap (after which content scrolls inside).
+                              e.target.style.height = 'auto';
+                              e.target.style.height = Math.min(e.target.scrollHeight, 240) + 'px';
+                            }}
+                            onKeyDown={onKey} placeholder="Напиши свой ответ…" disabled={loading}/>
                           <button className="isend" onClick={send} disabled={loading||!input.trim()}>↑</button>
                         </div>
                       </div>
