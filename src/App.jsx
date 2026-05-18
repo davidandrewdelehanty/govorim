@@ -1732,6 +1732,65 @@ function parseHtml(buffer, fname) {
 }
 
 // ── Master dispatcher — detects format and routes to the right parser ───────
+// PDF parsing via pdfjs-dist. Lazy-loaded — only when the user actually opens
+// a .pdf file, so we don't bloat the initial bundle for users who only read
+// EPUB/FB2/TXT. Worker is loaded from a CDN since Vite's worker bundling for
+// pdfjs-dist requires fiddly config; the CDN approach is bulletproof.
+async function parsePdf(buffer, fname) {
+  var pdfjs;
+  try {
+    pdfjs = await import('pdfjs-dist');
+  } catch (e) {
+    throw new Error("Text Cannot Be Parsed. PDF parser failed to load.");
+  }
+  if (!pdfjs.GlobalWorkerOptions.workerSrc) {
+    var version = pdfjs.version || '4.10.38';
+    pdfjs.GlobalWorkerOptions.workerSrc =
+      'https://cdn.jsdelivr.net/npm/pdfjs-dist@' + version + '/build/pdf.worker.min.mjs';
+  }
+  try {
+    var pdf = await pdfjs.getDocument({ data: new Uint8Array(buffer) }).promise;
+    var allText = '';
+    for (var i = 1; i <= pdf.numPages; i++) {
+      var page = await pdf.getPage(i);
+      var content = await page.getTextContent();
+      // pdf.js returns text items with x/y coords. Use Y changes to detect line
+      // breaks so we preserve some structure (paragraphs, blank lines) rather
+      // than producing a single giant blob.
+      var pageText = '';
+      var lastY = null;
+      for (var j = 0; j < content.items.length; j++) {
+        var item = content.items[j];
+        if (typeof item.str !== 'string') continue;
+        var currentY = item.transform ? item.transform[5] : null;
+        if (lastY !== null && currentY !== null && Math.abs(currentY - lastY) > 2) {
+          pageText += '\n';
+        }
+        pageText += item.str + ' ';
+        lastY = currentY;
+      }
+      allText += pageText.trim() + '\n\n';
+    }
+    if (!/[а-яёА-ЯЁ]/.test(allText)) {
+      throw new Error('No Russian text found in this PDF.');
+    }
+    var chapters = splitTextIntoChapters(allText);
+    var stem = (fname || 'PDF').replace(/\.[^.]+$/, '').replace(/[_-]/g, ' ');
+    var author = '';
+    try {
+      var meta = await pdf.getMetadata();
+      if (meta && meta.info) {
+        if (meta.info.Title) stem = String(meta.info.Title).trim() || stem;
+        if (meta.info.Author) author = String(meta.info.Author).trim();
+      }
+    } catch(e) {}
+    return { chapters: chapters, title: stem, author: author };
+  } catch(e) {
+    if (e.message && e.message.indexOf('No Russian') !== -1) throw e;
+    throw new Error('Text Cannot Be Parsed. PDF parsing failed: ' + (e.message || 'unknown error'));
+  }
+}
+
 async function parseBook(buffer, fname) {
   var lower = (fname || "").toLowerCase();
   var bytes = new Uint8Array(buffer);
@@ -1743,10 +1802,10 @@ async function parseBook(buffer, fname) {
   var isMobi = bytes.length >= 68 && new TextDecoder().decode(bytes.slice(60, 68)) === "BOOKMOBI";
 
   if (isPdf || lower.endsWith(".pdf")) {
-    throw new Error("PDF files aren't supported yet. Convert to EPUB or FB2 using Calibre (free, calibre-ebook.com).");
+    return await parsePdf(buffer, fname);
   }
   if (isMobi || /\.(mobi|azw3?)$/i.test(lower)) {
-    throw new Error("MOBI / AZW files are Kindle format and usually DRM-locked. Convert to EPUB with Calibre, or get a DRM-free EPUB / FB2 from another source.");
+    throw new Error("Text Cannot Be Parsed. MOBI / AZW files are typically DRM-locked. Convert to EPUB or FB2 using Calibre (free, calibre-ebook.com) and try again.");
   }
 
   if (lower.endsWith(".fb2")) return await parseFb2(buffer);
@@ -1761,12 +1820,21 @@ async function parseBook(buffer, fname) {
     try { return await parseEpub(buffer); }
     catch(e) {
       try { return await parseFb2Zip(buffer); }
-      catch(e2) { throw new Error("ZIP file is neither an EPUB nor an FB2 archive."); }
+      catch(e2) { throw new Error("Text Cannot Be Parsed. The ZIP file is neither an EPUB nor an FB2 archive."); }
     }
   }
-  if (isXml) return await parseFb2(buffer);
-  // Last resort: treat as plain text
-  return parseTxt(buffer, fname);
+  if (isXml) {
+    try { return await parseFb2(buffer); }
+    catch(e) { throw new Error("Text Cannot Be Parsed. The XML file is not a valid FB2 document."); }
+  }
+  // Last resort: try treating as plain text. If that fails (no Russian content
+  // / unreadable bytes), surface the canonical "Text Cannot Be Parsed" message.
+  try {
+    return parseTxt(buffer, fname);
+  } catch(e) {
+    if (e.message && e.message.indexOf('No Russian') !== -1) throw e;
+    throw new Error("Text Cannot Be Parsed. Unrecognized file format. Supported formats: EPUB, FB2 (.fb2 or .fb2.zip), TXT, HTML, PDF.");
+  }
 }
 
 // PUSHKIN_PNG: white-on-transparent silhouette of Alexander Pushkin (right-facing profile).
@@ -1813,7 +1881,7 @@ function FileBtn({ label, onLoad }) {
   };
   return (
     <div style={{display:"flex",flexDirection:"column",gap:6,width:"100%"}}>
-      <input ref={ref} type="file" accept=".epub,.fb2,.zip,.txt,.html,.htm,.xhtml" style={{display:"none"}} onChange={go}/>
+      <input ref={ref} type="file" accept=".epub,.fb2,.zip,.txt,.html,.htm,.xhtml,.pdf" style={{display:"none"}} onChange={go}/>
       <button className="btn-p" onClick={function(){ ref.current && ref.current.click(); }} disabled={busy}>
         {busy ? "Loading…" : "📂 " + label}
       </button>
