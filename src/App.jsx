@@ -137,6 +137,12 @@ CRITICAL: Before sending each response, scan it for grammar/vocabulary the stude
 // Generic EPUB cache slots — one book at a time. Loading a new EPUB replaces these.
 var EPUB_CACHE = "epub_data_v1";
 var EPUB_BM    = "epub_bm_v1";
+// Multi-upload tracking — keeps the last MAX_UPLOADS uploaded books browsable
+// in the library view. List of metadata stored at UPLOADS_LIST_KEY; each
+// book's full parsed content stored at UPLOAD_BOOK_PREFIX + id.
+var UPLOADS_LIST_KEY  = "epub_uploads_v1";
+var UPLOAD_BOOK_PREFIX = "epub_upload_";
+var MAX_UPLOADS = 5;
 // Per-chapter question history (so we can ask different questions each visit).
 var QHIST_KEY  = "epub_qhist_v1";
 // Per-page AI response cache. Saves the entire tutor reply so revisiting a page
@@ -2074,6 +2080,12 @@ export default function App() {
   var [chapters, setChapters]   = useState([]);
   // Pre-loaded library: books shipped in /public/books/. Fetched once on mount from /books/index.json.
   var [presetBooks, setPresetBooks] = useState([]);
+  // Tracks recent uploads (last MAX_UPLOADS) so the library view can show them
+  // alongside the preset books. Each entry is metadata; full content lives at
+  // storage[UPLOAD_BOOK_PREFIX + id].
+  var [uploadedBooks, setUploadedBooks] = useState([]);
+  // Search filter for the library view — filters both preset + uploaded.
+  var [bookSearch, setBookSearch] = useState("");
   // Grammar curriculum (📚 Grammar mode). Loaded once from /grammar/curriculum.json.
   // gramLevel = currently-selected CEFR level (e.g. "A2"); "" before user picks.
   // gramTopicId = currently-viewed topic's id; "" means "still on the picker screen".
@@ -2319,6 +2331,21 @@ export default function App() {
   // could be restored manually later), it just isn't read back on entry.
   // Bookmark (cbm) restoration is also disabled because it has nothing to
   // bookmark against when chapters is empty.
+
+  // But we DO load the multi-upload metadata list so the library view can show
+  // the user's recent uploads alongside the preset books.
+  useEffect(function() {
+    if (mode !== "read") return;
+    (async function() {
+      try {
+        var r = await storage.get(UPLOADS_LIST_KEY);
+        if (r && r.value) {
+          var list = JSON.parse(r.value);
+          if (Array.isArray(list)) setUploadedBooks(list);
+        }
+      } catch(e) { console.log("Failed to load uploads list:", e); }
+    })();
+  }, [mode]);
 
   // Persist bookmark whenever it changes (only meaningful with a loaded book).
   useEffect(function() {
@@ -3589,6 +3616,36 @@ export default function App() {
         await storage.set(EPUB_BM, "0");
         await storage.delete(QHIST_KEY);
       } catch(e) {}
+      // Track user uploads (not preset book downloads) in the multi-upload list
+      // so they show up in the library view alongside the preset books.
+      if (!opts.fromPreset) {
+        try {
+          var id = "u" + Date.now();
+          var entry = {
+            id: id,
+            title: title,
+            author: author,
+            filename: fname || "Upload",
+            category: opts.category || "",
+            splitByNumberedSections: !!opts.splitByNumberedSections,
+            addedAt: Date.now(),
+          };
+          await storage.set(UPLOAD_BOOK_PREFIX + id, JSON.stringify({
+            chapters: chs, title: title, author: author,
+            category: entry.category, splitByNumberedSections: entry.splitByNumberedSections,
+            filename: entry.filename,
+          }));
+          // Update list, newest-first, with eviction of oldest beyond MAX_UPLOADS.
+          var current = uploadedBooks.slice();
+          current.unshift(entry);
+          while (current.length > MAX_UPLOADS) {
+            var evicted = current.pop();
+            try { await storage.delete(UPLOAD_BOOK_PREFIX + evicted.id); } catch(e) {}
+          }
+          await storage.set(UPLOADS_LIST_KEY, JSON.stringify(current));
+          setUploadedBooks(current);
+        } catch(e) { console.log("Failed to track upload:", e); }
+      }
       startLit(0, chs, meta);
     } catch(err) { setFErr(err.message); }
   };
@@ -3601,6 +3658,7 @@ export default function App() {
       if (!r.ok) throw new Error("Could not load « " + book.filename + " »: HTTP " + r.status);
       var buf = await r.arrayBuffer();
       await loadFile(buf, book.filename, {
+        fromPreset: true,
         splitByNumberedSections: !!book.splitByNumberedSections,
         title: book.title,
         author: book.author,
@@ -3610,6 +3668,51 @@ export default function App() {
         songs: Array.isArray(book.songs) ? book.songs : null,
       });
     } catch(err) { setFErr(err.message || "Failed to load preset book"); }
+  };
+
+  // Open one of the user's previously uploaded books from local storage.
+  // Reads the parsed content saved by loadFile and rehydrates the reader state.
+  var openUploadedBook = async function(book) {
+    setFErr("");
+    try {
+      var r = await storage.get(UPLOAD_BOOK_PREFIX + book.id);
+      if (!r || !r.value) {
+        setFErr("This uploaded book is no longer available in storage.");
+        return;
+      }
+      var d = JSON.parse(r.value);
+      var meta = {
+        title: d.title || book.title || "Untitled",
+        author: d.author || book.author || "",
+        category: d.category || book.category || "",
+        splitByNumberedSections: !!d.splitByNumberedSections,
+      };
+      setChapters(d.chapters);
+      setBookMeta(meta);
+      setCbm(0);
+      // Bring the entry to the top of the recents list (touch to refresh "addedAt").
+      try {
+        var updated = uploadedBooks.filter(function(x){ return x.id !== book.id; });
+        updated.unshift(Object.assign({}, book, { addedAt: Date.now() }));
+        await storage.set(UPLOADS_LIST_KEY, JSON.stringify(updated));
+        setUploadedBooks(updated);
+      } catch(e) {}
+      startLit(0, d.chapters, meta);
+    } catch(err) {
+      setFErr("Failed to open uploaded book: " + (err.message || err));
+    }
+  };
+
+  // Permanently remove an uploaded book from the library + storage.
+  var removeUploadedBook = async function(id) {
+    try {
+      await storage.delete(UPLOAD_BOOK_PREFIX + id);
+      var current = uploadedBooks.filter(function(b){ return b.id !== id; });
+      await storage.set(UPLOADS_LIST_KEY, JSON.stringify(current));
+      setUploadedBooks(current);
+    } catch(e) {
+      console.log("Failed to remove upload:", e);
+    }
   };
 
   // Fetch the library manifest once on mount. Silent if missing — pre-loaded books are optional.
@@ -4209,6 +4312,22 @@ export default function App() {
         .lru{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#c8a276}
         .lsub{font-size:11px;color:rgba(210,197,175,.35);letter-spacing:2.5px;text-transform:uppercase}
         .tbadge{background:rgba(200,162,118,.1);border:1px solid rgba(200,162,118,.25);color:#c8a276;padding:6px 14px;border-radius:20px;font-size:13px;cursor:pointer;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        /* Library browser: search + card-grid of preset & uploaded books.
+           Replaces the prior <select> dropdown on the Read launch screen. */
+        .lib-search{width:100%;padding:12px 16px;font-size:16px;background:rgba(210,197,175,.05);border:1px solid rgba(210,197,175,.18);border-radius:10px;color:#d2c5af;font-family:'Crimson Pro',serif;margin-bottom:20px;box-sizing:border-box;letter-spacing:.01em}
+        .lib-search:focus{outline:none;border-color:rgba(200,162,118,.5);background:rgba(210,197,175,.08)}
+        .lib-search::placeholder{color:rgba(210,197,175,.4)}
+        .lib-section{margin-bottom:22px}
+        .lib-section-hdr{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(210,197,175,.55);margin-bottom:10px;padding-left:4px;font-weight:600}
+        .lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+        .lib-card{padding:14px;border-radius:10px;background:rgba(210,197,175,.04);border:1px solid rgba(210,197,175,.1);cursor:pointer;transition:all .15s;position:relative;display:flex;flex-direction:column;gap:4px}
+        .lib-card:hover{background:rgba(210,197,175,.08);border-color:rgba(200,162,118,.3);transform:translateY(-1px)}
+        .lib-card-title{font-family:'Playfair Display',serif;font-size:15px;color:#c8a276;line-height:1.3;margin-bottom:2px}
+        .lib-card-author{font-size:12px;color:rgba(210,197,175,.6);font-style:italic;margin-bottom:6px}
+        .lib-card-meta{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:rgba(210,197,175,.4);margin-top:auto;padding-top:4px}
+        .lib-card-cat{background:rgba(200,162,118,.1);border:1px solid rgba(200,162,118,.25);color:#c8a276;padding:2px 8px;border-radius:10px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600}
+        .lib-card-remove{background:transparent;border:none;color:rgba(210,197,175,.35);font-size:18px;cursor:pointer;padding:0 4px;line-height:1}
+        .lib-card-remove:hover{color:#c87a68}
         /* Persistent CEFR level selector pinned in the header. Compact pill style
            that matches the Topic badge. The label sits to the left of the dropdown. */
         .level-wrap{display:flex;align-items:center;gap:6px}
@@ -5097,61 +5216,111 @@ export default function App() {
                     <FileBtn label="Open an ebook" onLoad={loadFile}/>
                   )}
 
-                  {/* Pre-loaded library — dropdown of books shipped with the app,
-                      grouped into categories (Novel, Song Lyrics, Poetry, Short Stories,
-                      then "Other" for anything uncategorized). For Song Lyrics
-                      entries the dropdown selection routes to an inline song picker
-                      so users can pick a specific song instead of starting at #1. */}
-                  {presetBooks.length > 0 && (
+                  {/* Library browser — searchable card layout for preset books +
+                      user uploads. Replaces the prior dropdown. Search filters
+                      across both titles and authors. Books are grouped by category;
+                      uploads show in their own "My Uploads" section at the top. */}
+                  {(presetBooks.length > 0 || uploadedBooks.length > 0) && (
                     <div style={{marginTop:18,paddingTop:18,borderTop:"1px solid rgba(210,197,175,.1)"}}>
-                      <div style={{fontSize:11,letterSpacing:2,textTransform:"uppercase",color:"rgba(210,197,175,.45)",marginBottom:10,textAlign:"center"}}>Or pick from the library</div>
-                      <select
-                        defaultValue=""
-                        onChange={function(e){
-                          var idx = e.target.value;
-                          if (idx === "") return;
-                          var book = presetBooks[parseInt(idx,10)];
-                          if (book && book.category === "Song Lyrics") {
-                            openSongPicker(book);
-                          } else {
-                            loadPresetBook(book);
-                          }
-                          e.target.value = "";  // reset so picking again triggers onChange
-                        }}>
-                        <option value="" disabled>📖 Choose a book…</option>
-                        {(function() {
-                          // Group books by category, preserving the index into presetBooks
-                          // so the onChange lookup still resolves correctly. Categories
-                          // render in this fixed order; "Other" catches anything missing
-                          // or unrecognized.
-                          var CATEGORIES = ["Novel", "Plays", "Song Lyrics", "Poetry", "Short Stories"];
-                          var buckets = {};
-                          CATEGORIES.forEach(function(c){ buckets[c] = []; });
-                          buckets["Other"] = [];
-                          presetBooks.forEach(function(book, idx) {
-                            var cat = (book && book.category) || "";
-                            var bucket = CATEGORIES.indexOf(cat) !== -1 ? cat : "Other";
-                            buckets[bucket].push({ book: book, idx: idx });
-                          });
-                          return CATEGORIES.concat(["Other"]).map(function(cat) {
-                            var entries = buckets[cat];
-                            if (!entries.length) return null;
-                            return (
-                              <optgroup key={cat} label={cat}>
-                                {entries.map(function(entry) {
-                                  var book = entry.book;
-                                  var label = (book.title || book.filename) + (book.author && book.author !== book.title ? " — " + book.author : "");
-                                  return <option key={entry.idx} value={entry.idx}>{label}</option>;
-                                })}
-                              </optgroup>
-                            );
-                          });
-                        })()}
-                      </select>
+                      <input
+                        type="text"
+                        placeholder="🔍 Search books and authors…"
+                        value={bookSearch}
+                        onChange={function(e){ setBookSearch(e.target.value); }}
+                        className="lib-search"
+                      />
+                      {(function() {
+                        var q = bookSearch.toLowerCase().trim();
+                        var matches = function(book) {
+                          if (!q) return true;
+                          var hay = ((book.title || "") + " " + (book.author || "") + " " + (book.filename || "")).toLowerCase();
+                          return hay.indexOf(q) !== -1;
+                        };
+                        // Filter uploaded books
+                        var filteredUploads = uploadedBooks.filter(matches);
+
+                        // Group preset books by category, preserving original index for lookup
+                        var CATEGORIES = ["Novel", "Plays", "Song Lyrics", "Poetry", "Short Stories"];
+                        var buckets = {};
+                        CATEGORIES.forEach(function(c){ buckets[c] = []; });
+                        buckets["Other"] = [];
+                        presetBooks.forEach(function(book, idx) {
+                          if (!matches(book)) return;
+                          var cat = (book && book.category) || "";
+                          var bucket = CATEGORIES.indexOf(cat) !== -1 ? cat : "Other";
+                          buckets[bucket].push({ book: book, idx: idx });
+                        });
+
+                        var presetCount = CATEGORIES.concat(["Other"]).reduce(function(a, c){ return a + buckets[c].length; }, 0);
+                        var totalResults = presetCount + filteredUploads.length;
+                        if (q && totalResults === 0) {
+                          return <div style={{padding:"40px 16px",textAlign:"center",color:"rgba(210,197,175,.5)",fontStyle:"italic"}}>No books match «{bookSearch}»</div>;
+                        }
+                        return (
+                          <>
+                            {/* My Uploads section — only when there are uploaded books matching the filter */}
+                            {filteredUploads.length > 0 && (
+                              <div className="lib-section">
+                                <div className="lib-section-hdr">My Uploads</div>
+                                <div className="lib-grid">
+                                  {filteredUploads.map(function(book) {
+                                    return (
+                                      <div key={book.id} className="lib-card" onClick={function(){ openUploadedBook(book); }}>
+                                        <div className="lib-card-title">{book.title || book.filename}</div>
+                                        {book.author && <div className="lib-card-author">{book.author}</div>}
+                                        <div className="lib-card-meta">
+                                          <span className="lib-card-cat">Upload</span>
+                                          <button
+                                            className="lib-card-remove"
+                                            title="Remove from library"
+                                            onClick={function(e){ e.stopPropagation(); removeUploadedBook(book.id); }}
+                                          >×</button>
+                                        </div>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            )}
+                            {/* Preset library, grouped by category */}
+                            {CATEGORIES.concat(["Other"]).map(function(cat) {
+                              var entries = buckets[cat];
+                              if (!entries.length) return null;
+                              return (
+                                <div key={cat} className="lib-section">
+                                  <div className="lib-section-hdr">{cat}</div>
+                                  <div className="lib-grid">
+                                    {entries.map(function(entry) {
+                                      var book = entry.book;
+                                      return (
+                                        <div key={entry.idx} className="lib-card" onClick={function(){
+                                          if (book.category === "Song Lyrics") {
+                                            openSongPicker(book);
+                                          } else {
+                                            loadPresetBook(book);
+                                          }
+                                        }}>
+                                          <div className="lib-card-title">{book.title || book.filename}</div>
+                                          {book.author && book.author !== book.title && <div className="lib-card-author">{book.author}</div>}
+                                          <div className="lib-card-meta">
+                                            {cat !== "Other" && <span className="lib-card-cat">{cat}</span>}
+                                            {cat === "Song Lyrics" && book.songs && book.songs.length > 0 && (
+                                              <span style={{fontSize:11,color:"rgba(210,197,175,.45)"}}>{book.songs.length} song{book.songs.length === 1 ? "" : "s"}</span>
+                                            )}
+                                          </div>
+                                        </div>
+                                      );
+                                    })}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </>
+                        );
+                      })()}
 
                       {/* Inline song picker — shown after picking a Song Lyrics
-                          artist from the dropdown. Lists the artist's individual
-                          songs so you can jump straight to one. */}
+                          artist from the library so users can jump to a specific song. */}
                       {songPickerBook && (
                         <div style={{marginTop:14,padding:14,background:"rgba(0,0,0,.25)",border:"1px solid rgba(210,197,175,.15)",borderRadius:6}}>
                           <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",marginBottom:10}}>
