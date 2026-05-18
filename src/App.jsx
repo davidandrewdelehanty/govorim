@@ -4344,7 +4344,7 @@ export default function App() {
         .bdg{background:#9d4630;color:#fff;font-size:10px;border-radius:10px;padding:1px 5px;margin-left:4px;vertical-align:middle}
         .bdg.g{background:#5a8556}
         .main{flex:1;display:flex;flex-direction:column;position:relative;z-index:1;min-height:0}
-        .ss{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 28px;text-align:center;gap:22px}
+        .ss{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:48px 28px;text-align:center;gap:22px;overflow-y:auto;min-height:0}
         .sico{font-size:54px;line-height:1}
         .sti{font-family:'Playfair Display',serif;font-size:30px;color:#d2c5af;font-weight:400}
         .sde{color:rgba(210,197,175,.5);font-size:16px;max-width:500px;line-height:1.6}
@@ -5221,7 +5221,54 @@ export default function App() {
                       across both titles and authors. Books are grouped by category;
                       uploads show in their own "My Uploads" section at the top. */}
                   {(presetBooks.length > 0 || uploadedBooks.length > 0) && (
-                    <div style={{marginTop:18,paddingTop:18,borderTop:"1px solid rgba(210,197,175,.1)"}}>
+                    <div style={{marginTop:18,paddingTop:18,borderTop:"1px solid rgba(210,197,175,.1)",width:"100%"}}>
+                      {/* Quick pick dropdown — for users who know exactly which book they want
+                          and prefer not to scroll through the card grid below. Lives alongside
+                          the card grid; both stay in sync via the same data source. */}
+                      {presetBooks.length > 0 && (
+                        <div style={{marginBottom:18}}>
+                          <div style={{fontSize:11,letterSpacing:2,textTransform:"uppercase",color:"rgba(210,197,175,.45)",marginBottom:8,textAlign:"left"}}>Quick pick</div>
+                          <select
+                            defaultValue=""
+                            onChange={function(e){
+                              var idx = e.target.value;
+                              if (idx === "") return;
+                              var book = presetBooks[parseInt(idx,10)];
+                              if (book && book.category === "Song Lyrics") {
+                                openSongPicker(book);
+                              } else {
+                                loadPresetBook(book);
+                              }
+                              e.target.value = "";  // reset so picking same again triggers onChange
+                            }}>
+                            <option value="" disabled>📖 Choose a book from the library…</option>
+                            {(function() {
+                              var CATEGORIES = ["Novel", "Plays", "Song Lyrics", "Poetry", "Short Stories"];
+                              var buckets = {};
+                              CATEGORIES.forEach(function(c){ buckets[c] = []; });
+                              buckets["Other"] = [];
+                              presetBooks.forEach(function(book, idx) {
+                                var cat = (book && book.category) || "";
+                                var bucket = CATEGORIES.indexOf(cat) !== -1 ? cat : "Other";
+                                buckets[bucket].push({ book: book, idx: idx });
+                              });
+                              return CATEGORIES.concat(["Other"]).map(function(cat) {
+                                var entries = buckets[cat];
+                                if (!entries.length) return null;
+                                return (
+                                  <optgroup key={cat} label={cat}>
+                                    {entries.map(function(entry) {
+                                      var book = entry.book;
+                                      var label = (book.title || book.filename) + (book.author && book.author !== book.title ? " — " + book.author : "");
+                                      return <option key={entry.idx} value={entry.idx}>{label}</option>;
+                                    })}
+                                  </optgroup>
+                                );
+                              });
+                            })()}
+                          </select>
+                        </div>
+                      )}
                       <input
                         type="text"
                         placeholder="🔍 Search books and authors…"
