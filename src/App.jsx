@@ -228,7 +228,7 @@ Only treat something as wrong if it's clearly off-topic or a non-answer.
 When you accept an answer:
 1. AFFIRM with warmth — "Здорово!", "Молодец!", "Как интересно!", "Класс!".
 2. Optionally enrich: model a more sophisticated way to say it, or add a tiny related fact about yourself.
-3. Ask ONE next question — bridge naturally from what they said when possible.${vocab.length ? "\n\nWeave these saved vocabulary words naturally into your messages when relevant: " + vocab.map(function(v){ return v.ru; }).join(", ") : ""}`;
+3. Ask ONE next question — bridge naturally from what they said when possible.${vocab.length ? "\n\nWeave these saved vocabulary words naturally into your messages when relevant: " + vocab.map(function(v){ return v.ru; }).join(", ") : ""}${chatPromptFootnotes(level)}`;
 }
 
 // Shared bits used by every specialized chat prompt. Each topic prompt picks
@@ -726,7 +726,7 @@ Style rules:
 
 GENEROUS ACCEPTANCE (very important):
 You are a language tutor, NOT a fact-checker. Accept the student's answers liberally — synonyms, paraphrases, partial answers that capture the gist, and answers in different grammatical forms are all CORRECT. If they understood the meaning, that's the goal. Affirm clearly first ("Да, точно!", "Молодец!"), THEN optionally enrich with a more specific word or correction. Only treat something as wrong if it's clearly off-topic.
-${vocab.length ? "\nWeave these saved vocabulary words naturally into your messages so the student sees them again in context: " + vocab.map(function(v){ return v.ru; }).join(", ") : ""}`;
+${vocab.length ? "\nWeave these saved vocabulary words naturally into your messages so the student sees them again in context: " + vocab.map(function(v){ return v.ru; }).join(", ") : ""}${chatPromptFootnotes(level)}`;
 }
 
 function litprompt(snippet, idx, total, title, author, focus, prevQuestions, pageIdx, pageCount, level) {
@@ -817,7 +817,7 @@ Only mark wrong if the answer is CLEARLY off-topic (e.g. "blue" for a rust-color
 When you accept an answer:
 1. AFFIRM clearly first — "Да, точно!", "Совершенно верно!", "Молодец!", "Правильно!".
 2. THEN you may enrich: mention the specific text word as bonus, not correction. "Точно — Чехов использует слово **ржавый (rusty)**, что значит коричневато-красный, как ты и сказал."
-3. Bridge to ONE next question (or, after ${TARGET_QUESTIONS} questions, signal completion as described above).`;
+3. Bridge to ONE next question (or, after ${TARGET_QUESTIONS} questions, signal completion as described above).${chatPromptFootnotes(level)}`;
 }
 
 // Paginates a chapter for the on-screen reader. A page is at most 5 paragraphs
