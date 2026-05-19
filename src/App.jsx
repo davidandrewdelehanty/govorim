@@ -278,32 +278,40 @@ function chatPromptFootnotes(level) {
   if (level === "C2") return "";  // Mastery — no English crutches.
   return `
 
-ENGLISH FOOTNOTES (because the student is at level ${level || "below C2"} — not yet at C2 mastery):
-After your Russian response, append a footnotes section. Format:
+╔══════════════════════════════════════════════════════════════════╗
+║ MANDATORY RESPONSE FORMAT — STUDENT IS AT ${level || "PRE-C2"} (BELOW MASTERY)         ║
+╠══════════════════════════════════════════════════════════════════╣
+║ EVERY response you generate has TWO PARTS:                       ║
+║   PART 1: Your Russian conversation (2-4 sentences)              ║
+║   PART 2: 1-3 English footnote lines, each on its OWN line       ║
+║                                                                   ║
+║ Each footnote line MUST start with the exact string "📝 NOTE: "  ║
+║ (the emoji, space, capital N-O-T-E, colon, space).               ║
+║                                                                   ║
+║ DO NOT BOLD the footnote line. DO NOT wrap it in ** markers.     ║
+║ Just plain text starting with 📝 NOTE:                           ║
+╚══════════════════════════════════════════════════════════════════╝
 
-[blank line]
-📝 NOTE: [1–2 sentence English explanation of vocabulary nuance OR grammar choice]
-📝 NOTE: [optional second note]
-📝 NOTE: [optional third note]
+EXACT FORMAT EXAMPLE (this is what your output must look like):
 
-What makes a GOOD footnote:
-- Vocabulary nuance: register (formal/informal/slang), etymology, false-friend warnings, related words, common collocations
-- Grammar choices: WHY this case, WHY this aspect, idiomatic constructions, word order patterns
+Слушай, вчера я смотрела очень интересный фильм про русского писателя. Это была драма. А ты что любишь смотреть?
+
+📝 NOTE: I used the past tense смотрела (feminine ending) — Russian past tense agrees with the subject's gender: смотрел (masc.), смотрела (fem.), смотрело (neut.), смотрели (plural).
+📝 NOTE: про русского писателя is accusative — про takes accusative case for "about/concerning". The adjective русского agrees with писателя (animate masc. acc. = gen. form).
+📝 NOTE: смотреть vs увидеть — both can mean "see", but смотреть = the deliberate action of watching, увидеть = the moment of catching sight of something.
+
+WHAT MAKES A GOOD FOOTNOTE:
+- Vocabulary nuance: register, etymology, false-friend warnings, related words, common collocations
+- Grammar choices: WHY this case, WHY this aspect, idiomatic constructions, word-order patterns
 - Cultural context: idioms, regional usage, register markers
 
-Good examples:
-- 📝 NOTE: завтрак (breakfast) comes from "за" (after) + "утро" (morning) — historically "the meal after morning rises". Today it just means breakfast.
-- 📝 NOTE: I used слушаю (imperfective) because listening to music is a habitual, ongoing action — not a single completed event. The perfective послушать would mean "to give it a quick listen".
-- 📝 NOTE: After quantity words like много, мало, несколько, Russian uses the genitive of what's being quantified — that's why it's много денег (gen pl), not много деньги.
-- 📝 NOTE: The construction "у меня есть X" literally means "by me there is X" — Russian doesn't have a verb "to have" like English. The X is in nominative.
-
-RULES FOR FOOTNOTES:
-- ONE to THREE bullets MAXIMUM. Less is better — pick the MOST instructive thing in your turn.
-- Each bullet ≤ 2 sentences of English.
-- Skip footnotes entirely if your Russian turn was trivially simple (e.g. just "Привет! Как дела?" — nothing worth noting).
-- Footnotes are TEACHING moments, NOT translations of what you said. Don't translate sentences.
-- Don't repeat what you already corrected with [correct form] inline. That's already covered.
-- Each footnote line MUST start with "📝 NOTE: " exactly so the UI can style it.`;
+RULES:
+- AT LEAST ONE 📝 NOTE: line in every response unless your Russian was trivially simple (one sentence with no notable structure — e.g., just "Привет, как дела?").
+- MAXIMUM 3 notes per response. Pick the most instructive thing(s).
+- Each note ≤ 2 sentences in English.
+- Notes are TEACHING moments — NOT translations of your sentences.
+- Don't restate what you already corrected inline with [correct form].
+- A blank line between your Russian and the first 📝 NOTE: line.`;
 }
 
 function chatPromptFooter(vocab, level) {
@@ -4240,8 +4248,14 @@ export default function App() {
         var t = line.trim();
         var trm = t.match(/^\*{1,2}([^*]+)\*{1,2}$/);
         if (trm && !/[а-яёА-ЯЁ]{3,}/.test(trm[1])) return <div key={li} className="tline">{trm[1]}</div>;
-        var tip = t.match(/^📝\s*(TIP|NOTE|Note|note)?[:\s]+(.+)$/i);
-        if (tip) return <div key={li} className="tipline">📝 {tip[2]}</div>;
+        // Detect English footnote / tip lines. Be forgiving about how the AI
+        // formats them — strip leading/trailing `*` (bold markers) and optional
+        // label prefix (TIP / NOTE / Note / note) before extracting the body.
+        var stripped = t.replace(/^\*+\s*/, "").replace(/\s*\*+$/, "");
+        if (stripped.charAt(0) === "📝" || stripped.indexOf("📝") === 0) {
+          var noteText = stripped.replace(/^📝\s*(?:TIP|NOTE|Note|note|Tip|tip)?\s*[:\-—]?\s*/i, "").trim();
+          if (noteText) return <div key={li} className="tipline">📝 {noteText}</div>;
+        }
         if (t.startsWith("❓")) return <div key={li} className="qline">{t}</div>;
         var toks = []; var rem = line; var ki = 0;
         while (rem.length > 0) {
