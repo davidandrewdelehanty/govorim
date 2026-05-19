@@ -269,9 +269,46 @@ function chatPromptIronRule() {
    - If you're not certain of a correction, don't make one — just affirm the content.`;
 }
 
-function chatPromptFooter(vocab) {
+// English footnotes — pedagogical sidebar attached to AI responses for
+// students below C2 mastery. The AI gives its main response in Russian, then
+// appends 1–3 brief English bullets explaining notable vocabulary or grammar
+// from that turn. C2 students don't get footnotes (they should be reasoning
+// in Russian only by that point).
+function chatPromptFootnotes(level) {
+  if (level === "C2") return "";  // Mastery — no English crutches.
+  return `
+
+ENGLISH FOOTNOTES (because the student is at level ${level || "below C2"} — not yet at C2 mastery):
+After your Russian response, append a footnotes section. Format:
+
+[blank line]
+📝 NOTE: [1–2 sentence English explanation of vocabulary nuance OR grammar choice]
+📝 NOTE: [optional second note]
+📝 NOTE: [optional third note]
+
+What makes a GOOD footnote:
+- Vocabulary nuance: register (formal/informal/slang), etymology, false-friend warnings, related words, common collocations
+- Grammar choices: WHY this case, WHY this aspect, idiomatic constructions, word order patterns
+- Cultural context: idioms, regional usage, register markers
+
+Good examples:
+- 📝 NOTE: завтрак (breakfast) comes from "за" (after) + "утро" (morning) — historically "the meal after morning rises". Today it just means breakfast.
+- 📝 NOTE: I used слушаю (imperfective) because listening to music is a habitual, ongoing action — not a single completed event. The perfective послушать would mean "to give it a quick listen".
+- 📝 NOTE: After quantity words like много, мало, несколько, Russian uses the genitive of what's being quantified — that's why it's много денег (gen pl), not много деньги.
+- 📝 NOTE: The construction "у меня есть X" literally means "by me there is X" — Russian doesn't have a verb "to have" like English. The X is in nominative.
+
+RULES FOR FOOTNOTES:
+- ONE to THREE bullets MAXIMUM. Less is better — pick the MOST instructive thing in your turn.
+- Each bullet ≤ 2 sentences of English.
+- Skip footnotes entirely if your Russian turn was trivially simple (e.g. just "Привет! Как дела?" — nothing worth noting).
+- Footnotes are TEACHING moments, NOT translations of what you said. Don't translate sentences.
+- Don't repeat what you already corrected with [correct form] inline. That's already covered.
+- Each footnote line MUST start with "📝 NOTE: " exactly so the UI can style it.`;
+}
+
+function chatPromptFooter(vocab, level) {
   return `CONVERSATION STYLE:
-- Speak Russian at the level specified above. Do NOT add English translations of your Russian sentences.
+- Speak Russian at the level specified above. Do NOT add English translations INSIDE your Russian sentences (English explanation belongs ONLY in the footnotes section below — not mixed into the Russian).
 - React warmly to answers; bridge from what the student said when possible.
 - Bold any teachable vocab as **слово (word)** — single-word gloss only, that's not a translation.
 - Correct grammar inline with [correct form] AFTER affirming content.
@@ -282,7 +319,7 @@ You are a language tutor, NOT a fact-checker. Accept liberally:
 - Synonyms, partial answers, paraphrases — all CORRECT.
 - Answers in English when reaching for an unknown Russian word — affirm meaning, then supply the Russian.
 - Grammar slips while meaning is right — fix inline with [correct form] but affirm first.
-Only mark wrong if clearly off-topic.${vocab.length ? "\n\nWeave these saved vocab words naturally when relevant: " + vocab.map(function(v){ return v.ru; }).join(", ") : ""}`;
+Only mark wrong if clearly off-topic.${vocab.length ? "\n\nWeave these saved vocab words naturally when relevant: " + vocab.map(function(v){ return v.ru; }).join(", ") : ""}${chatPromptFootnotes(level)}`;
 }
 
 // ── Golden Age of Russian Literature ─────────────────────────────────────────
@@ -313,7 +350,7 @@ EXAMPLES of how your turns should look:
 
 If the student doesn't know an author or work, briefly tell them (1 sentence) and continue with your question.
 
-${chatPromptFooter(vocab)}`;
+${chatPromptFooter(vocab, level)}`;
 }
 
 // ── Contemporary Russian Music ───────────────────────────────────────────────
@@ -346,7 +383,7 @@ EXAMPLES of your turns:
 
 Quote song lyrics when relevant (a line or two) — they're great vocabulary practice. If the student doesn't know an artist, briefly describe them and continue.
 
-${chatPromptFooter(vocab)}`;
+${chatPromptFooter(vocab, level)}`;
 }
 
 // ── Russian History ──────────────────────────────────────────────────────────
@@ -379,7 +416,7 @@ EXAMPLES (by level):
 
 If the student doesn't know a fact, briefly fill them in and ask a related question.
 
-${chatPromptFooter(vocab)}`;
+${chatPromptFooter(vocab, level)}`;
 }
 
 // ── The Book of Genesis: Синодальный Перевод ─────────────────────────────────
@@ -420,7 +457,7 @@ EXAMPLES of your turns:
 - "Слово «твердь» в стихе «И создал Бог твердь» (Бытие 1:6) — это перевод древнееврейского слова, означающего «расширение, купол». В английском KJV это «firmament». Современные переводы говорят «expanse». Как ты думаешь, почему Синодальный использует именно «твердь»?"
 - "Знаменитая строка из Бытия 1:1: «В начале сотворил Бог небо и землю». Заметь — глагол **сотворил** идёт перед именем Бога. Это совершенный вид (perfective): действие завершено. Почему именно завершено, как ты думаешь?"
 
-${chatPromptFooter(vocab)}`;
+${chatPromptFooter(vocab, level)}`;
 }
 
 // ── Verb Workout ─────────────────────────────────────────────────────────────
@@ -479,7 +516,7 @@ EXAMPLES:
 
 If the student gets it wrong, gently give the correct answer, briefly explain WHY, then ask a new drill. If they get it right, affirm warmly and move to a new verb/concept.
 
-${chatPromptFooter(vocab)}`;
+${chatPromptFooter(vocab, level)}`;
 }
 
 // ── Grammar Jamboree ─────────────────────────────────────────────────────────
@@ -552,7 +589,7 @@ EXAMPLES (by level):
 
 If the student answers correctly, affirm warmly and move to a NEW grammar topic next turn. If wrong, give the correct answer + brief why, then ask a similar question on the same topic to reinforce.
 
-${chatPromptFooter(vocab)}`;
+${chatPromptFooter(vocab, level)}`;
 }
 
 // ── Vocabulary Practice ──────────────────────────────────────────────────────
@@ -643,7 +680,7 @@ GENEROUS ACCEPTANCE:
 - Accept English when the student is reaching for an unknown Russian word — supply the Russian, affirm the meaning.
 - Only mark wrong if clearly off-topic or contradicting the word's meaning.
 
-REMEMBER: This is vocab practice. Every single turn focuses on a saved word. No exceptions.`;
+REMEMBER: This is vocab practice. Every single turn focuses on a saved word. No exceptions.${chatPromptFootnotes(level)}`;
 }
 
 function sysprompt(topic, vocab, tips, level) {
@@ -4203,8 +4240,8 @@ export default function App() {
         var t = line.trim();
         var trm = t.match(/^\*{1,2}([^*]+)\*{1,2}$/);
         if (trm && !/[а-яёА-ЯЁ]{3,}/.test(trm[1])) return <div key={li} className="tline">{trm[1]}</div>;
-        var tip = t.match(/^📝\s*TIP[:\s]+(.+)/);
-        if (tip) return <div key={li} className="tipline">📝 {tip[1]}</div>;
+        var tip = t.match(/^📝\s*(TIP|NOTE|Note|note)?[:\s]+(.+)$/i);
+        if (tip) return <div key={li} className="tipline">📝 {tip[2]}</div>;
         if (t.startsWith("❓")) return <div key={li} className="qline">{t}</div>;
         var toks = []; var rem = line; var ki = 0;
         while (rem.length > 0) {
