@@ -2003,9 +2003,26 @@ export default function App() {
   // the library dropdown. Lists the artist's individual songs so the user can
   // jump straight to one instead of starting at song 1.
   var [songPickerBook, setSongPickerBook] = useState(null);
+  // Ref to the song picker panel — used to scroll the picker into view
+  // automatically when it appears (so the user isn't left wondering where
+  // "pick a song" went after selecting an artist from the dropdown).
+  var songPickerRef = useRef(null);
   var [songPickerList, setSongPickerList] = useState([]);  // [{ title, index }]
   var [songPickerLoad, setSongPickerLoad] = useState(false);
   var [songPickerErr, setSongPickerErr]   = useState("");
+  // When the song picker appears, smooth-scroll it into view so the user
+  // doesn't lose track of where it landed (could be far below the dropdown,
+  // depending on how many books are in the library).
+  useEffect(function() {
+    if (songPickerBook && songPickerRef.current) {
+      // Defer one frame so the picker has actually rendered before scrolling.
+      requestAnimationFrame(function() {
+        if (songPickerRef.current) {
+          songPickerRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    }
+  }, [songPickerBook]);
   var ADMIN_EMAIL = (import.meta.env.VITE_ADMIN_EMAIL || "").toLowerCase();
   var currentEmail = (user && user.primaryEmailAddress && user.primaryEmailAddress.emailAddress || "").toLowerCase();
   var isAdmin = !!ADMIN_EMAIL && currentEmail === ADMIN_EMAIL;
@@ -2086,6 +2103,10 @@ export default function App() {
   var [uploadedBooks, setUploadedBooks] = useState([]);
   // Search filter for the library view — filters both preset + uploaded.
   var [bookSearch, setBookSearch] = useState("");
+  // Tracks which book is currently being loaded (after click). Shows a spinner
+  // overlay on the card and disables further clicks during the fetch+parse cycle
+  // so the user gets clear feedback that the click registered.
+  var [bookLoading, setBookLoading] = useState(null);  // null or filename/id
   // Grammar curriculum (📚 Grammar mode). Loaded once from /grammar/curriculum.json.
   // gramLevel = currently-selected CEFR level (e.g. "A2"); "" before user picks.
   // gramTopicId = currently-viewed topic's id; "" means "still on the picker screen".
@@ -3653,6 +3674,7 @@ export default function App() {
   // Download a preset book from the server and load it through the normal pipeline.
   var loadPresetBook = async function(book) {
     setFErr("");
+    setBookLoading(book.filename);
     try {
       var r = await fetch("/books/" + book.filename);
       if (!r.ok) throw new Error("Could not load « " + book.filename + " »: HTTP " + r.status);
@@ -3667,17 +3689,22 @@ export default function App() {
         // indexed 0..N where each entry is a URL or null/missing.
         songs: Array.isArray(book.songs) ? book.songs : null,
       });
-    } catch(err) { setFErr(err.message || "Failed to load preset book"); }
+    } catch(err) {
+      setFErr(err.message || "Failed to load preset book");
+    }
+    setBookLoading(null);
   };
 
   // Open one of the user's previously uploaded books from local storage.
   // Reads the parsed content saved by loadFile and rehydrates the reader state.
   var openUploadedBook = async function(book) {
     setFErr("");
+    setBookLoading(book.id);
     try {
       var r = await storage.get(UPLOAD_BOOK_PREFIX + book.id);
       if (!r || !r.value) {
         setFErr("This uploaded book is no longer available in storage.");
+        setBookLoading(null);
         return;
       }
       var d = JSON.parse(r.value);
@@ -3701,6 +3728,7 @@ export default function App() {
     } catch(err) {
       setFErr("Failed to open uploaded book: " + (err.message || err));
     }
+    setBookLoading(null);
   };
 
   // Permanently remove an uploaded book from the library + storage.
@@ -4328,6 +4356,13 @@ export default function App() {
         .lib-card-cat{background:rgba(200,162,118,.1);border:1px solid rgba(200,162,118,.25);color:#c8a276;padding:2px 8px;border-radius:10px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600}
         .lib-card-remove{background:transparent;border:none;color:rgba(210,197,175,.35);font-size:18px;cursor:pointer;padding:0 4px;line-height:1}
         .lib-card-remove:hover{color:#c87a68}
+        /* Loading state: dim the card content and overlay a centered spinner.
+           Disabled state (a different card is loading): grey out + ignore clicks. */
+        .lib-card.is-loading{pointer-events:none;border-color:rgba(200,162,118,.45);background:rgba(200,162,118,.06)}
+        .lib-card.is-loading > *:not(.lib-card-loader){opacity:.3}
+        .lib-card.is-disabled{pointer-events:none;opacity:.45}
+        .lib-card-loader{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(35,32,26,.65);border-radius:10px;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);z-index:1}
+        .lib-card-loader span{font-size:13px;color:#c8a276;font-family:'Crimson Pro',serif;font-style:italic}
         /* Persistent CEFR level selector pinned in the header. Compact pill style
            that matches the Topic badge. The label sits to the left of the dropdown. */
         .level-wrap{display:flex;align-items:center;gap:6px}
@@ -5311,8 +5346,15 @@ export default function App() {
                                 <div className="lib-section-hdr">My Uploads</div>
                                 <div className="lib-grid">
                                   {filteredUploads.map(function(book) {
+                                    var isLoading = bookLoading === book.id;
+                                    var isDisabled = bookLoading !== null && !isLoading;
                                     return (
-                                      <div key={book.id} className="lib-card" onClick={function(){ openUploadedBook(book); }}>
+                                      <div key={book.id}
+                                        className={"lib-card" + (isLoading ? " is-loading" : "") + (isDisabled ? " is-disabled" : "")}
+                                        onClick={function(){
+                                          if (bookLoading !== null) return;
+                                          openUploadedBook(book);
+                                        }}>
                                         <div className="lib-card-title">{book.title || book.filename}</div>
                                         {book.author && <div className="lib-card-author">{book.author}</div>}
                                         <div className="lib-card-meta">
@@ -5323,6 +5365,12 @@ export default function App() {
                                             onClick={function(e){ e.stopPropagation(); removeUploadedBook(book.id); }}
                                           >×</button>
                                         </div>
+                                        {isLoading && (
+                                          <div className="lib-card-loader">
+                                            <div className="typing"><div className="dot"/><div className="dot"/><div className="dot"/></div>
+                                            <span>Loading…</span>
+                                          </div>
+                                        )}
                                       </div>
                                     );
                                   })}
@@ -5339,14 +5387,19 @@ export default function App() {
                                   <div className="lib-grid">
                                     {entries.map(function(entry) {
                                       var book = entry.book;
+                                      var isLoading = bookLoading === book.filename;
+                                      var isDisabled = bookLoading !== null && !isLoading;
                                       return (
-                                        <div key={entry.idx} className="lib-card" onClick={function(){
-                                          if (book.category === "Song Lyrics") {
-                                            openSongPicker(book);
-                                          } else {
-                                            loadPresetBook(book);
-                                          }
-                                        }}>
+                                        <div key={entry.idx}
+                                          className={"lib-card" + (isLoading ? " is-loading" : "") + (isDisabled ? " is-disabled" : "")}
+                                          onClick={function(){
+                                            if (bookLoading !== null) return;
+                                            if (book.category === "Song Lyrics") {
+                                              openSongPicker(book);
+                                            } else {
+                                              loadPresetBook(book);
+                                            }
+                                          }}>
                                           <div className="lib-card-title">{book.title || book.filename}</div>
                                           {book.author && book.author !== book.title && <div className="lib-card-author">{book.author}</div>}
                                           <div className="lib-card-meta">
@@ -5355,6 +5408,12 @@ export default function App() {
                                               <span style={{fontSize:11,color:"rgba(210,197,175,.45)"}}>{book.songs.length} song{book.songs.length === 1 ? "" : "s"}</span>
                                             )}
                                           </div>
+                                          {isLoading && (
+                                            <div className="lib-card-loader">
+                                              <div className="typing"><div className="dot"/><div className="dot"/><div className="dot"/></div>
+                                              <span>Loading…</span>
+                                            </div>
+                                          )}
                                         </div>
                                       );
                                     })}
@@ -5367,9 +5426,10 @@ export default function App() {
                       })()}
 
                       {/* Inline song picker — shown after picking a Song Lyrics
-                          artist from the library so users can jump to a specific song. */}
+                          artist from the library so users can jump to a specific song.
+                          Auto-scrolls into view via songPickerRef when shown. */}
                       {songPickerBook && (
-                        <div style={{marginTop:14,padding:14,background:"rgba(0,0,0,.25)",border:"1px solid rgba(210,197,175,.15)",borderRadius:6}}>
+                        <div ref={songPickerRef} style={{marginTop:14,padding:14,background:"rgba(0,0,0,.25)",border:"1px solid rgba(200,162,118,.4)",borderRadius:6,scrollMarginTop:20}}>
                           <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",marginBottom:10}}>
                             <div style={{fontFamily:"'Crimson Pro',serif",fontSize:15}}>
                               🎵 <span style={{fontStyle:"italic"}}>{songPickerBook.title}</span> · pick a song
