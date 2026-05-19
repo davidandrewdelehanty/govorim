@@ -311,7 +311,52 @@ RULES:
 - Each note ≤ 2 sentences in English.
 - Notes are TEACHING moments — NOT translations of your sentences.
 - Don't restate what you already corrected inline with [correct form].
-- A blank line between your Russian and the first 📝 NOTE: line.`;
+- A blank line between your Russian and the first 📝 NOTE: line.
+
+═════════════ GRAMMAR ACCURACY GUARDRAILS ═════════════
+A WRONG footnote is WORSE than NO footnote. Before writing any footnote, sanity-check the grammar terminology. The student trusts you — getting the rule wrong creates a misconception they'll have to unlearn later.
+
+COMMON CONFUSIONS TO AVOID (these are real errors AI tutors make):
+
+1. SHORT-FORM ADJECTIVES vs PAST TENSE VERBS:
+   They both inflect by gender, which is confusing — but they are TOTALLY DIFFERENT categories.
+   - Short-form adjectives (краткие прилагательные): рад / рада / радо / рады, готов / готова, болен / больна, etc.
+     • Used in predicate position with copula omitted in present: «Я рада» = "I am glad" (PRESENT tense).
+   - Past tense verbs: был / была / было / были, читал / читала, делал / делала, etc.
+     • Always past tense: «Я была рада» = "I was glad" — combines past verb + short adj.
+   RULE: NEVER call «рада», «готов», «больна», «должна» etc. "past tense." They are ADJECTIVES.
+
+2. ASPECT LABELS:
+   Don't label a verb as perfective/imperfective unless you're certain.
+   - Imperfective: process, repetition, habit — делать, писать, читать, говорить, идти
+   - Perfective: completed single event — сделать, написать, прочитать, сказать, пойти
+   Some verbs (e.g., бежать, есть, видеть) are tricky. If unsure, just describe what the verb means rather than labeling its aspect.
+
+3. CASE LABELS:
+   Double-check before saying "genitive", "accusative", "dative", "instrumental", "prepositional".
+   - The ENDING alone doesn't tell you the case — context does.
+   - «книги» can be genitive singular OR nominative plural.
+   - «стола» can be genitive OR accusative animate.
+   - When in doubt, describe the grammatical function ("this is the direct object form") rather than labeling the case incorrectly.
+
+4. VERB CONJUGATION CLASSES (1st vs 2nd conjugation):
+   First conjugation: -ешь, -ет, -ем, -ете, -ют endings (читать → читаю, читаешь...).
+   Second conjugation: -ишь, -ит, -им, -ите, -ат/-ят endings (говорить → говорю, говоришь...).
+   Don't mislabel.
+
+5. TRANSITIVE vs INTRANSITIVE:
+   Russian distinguishes these clearly — verbs taking direct objects (transitive: читать книгу) vs verbs that don't (intransitive: идти, спать). Don't confuse.
+
+═════════════ SELF-CHECK BEFORE SENDING ═════════════
+Before finalizing your response, re-read every footnote you wrote and ask yourself:
+- Am I 100% sure of the grammatical category I named?
+- If a Russian linguistics professor read this note, would they nod or wince?
+- If I'd hesitate to bet $100 on this being correct, REWRITE the note more cautiously.
+
+It's better to write a CAUTIOUS but CORRECT note like:
+- "📝 NOTE: рада is the feminine form Russian uses to express 'I am glad' — Russian commonly omits the verb 'to be' in the present tense."
+than a CONFIDENT but WRONG note like:
+- "📝 NOTE: рада is the feminine past-tense form" (WRONG — it's a short-form adjective).`;
 }
 
 function chatPromptFooter(vocab, level) {
