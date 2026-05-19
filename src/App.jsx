@@ -4243,19 +4243,27 @@ export default function App() {
   };
 
   var renderBubble = function(text) {
+    // Diagnostic: log the raw AI message so we can verify whether footnotes
+    // are actually being produced. Visible in browser console (F12).
+    if (text && text.indexOf("📝") !== -1) {
+      console.log("[chat] response contains 📝 — note count:", (text.match(/📝/g) || []).length);
+    } else if (text) {
+      console.log("[chat] response — NO 📝 found. First 200 chars:", text.slice(0, 200));
+    }
     try {
       return text.split("\n").map(function(line, li) {
         var t = line.trim();
-        var trm = t.match(/^\*{1,2}([^*]+)\*{1,2}$/);
-        if (trm && !/[а-яёА-ЯЁ]{3,}/.test(trm[1])) return <div key={li} className="tline">{trm[1]}</div>;
-        // Detect English footnote / tip lines. Be forgiving about how the AI
-        // formats them — strip leading/trailing `*` (bold markers) and optional
-        // label prefix (TIP / NOTE / Note / note) before extracting the body.
+        // Detect English footnote / tip lines FIRST (before title check, which
+        // would otherwise match bolded notes like **📝 NOTE: x** and steal them).
+        // Be forgiving about formatting: strip leading/trailing `*` (bold) and
+        // optional label prefix (TIP / NOTE) and optional separator (: - —).
         var stripped = t.replace(/^\*+\s*/, "").replace(/\s*\*+$/, "");
-        if (stripped.charAt(0) === "📝" || stripped.indexOf("📝") === 0) {
+        if (stripped.indexOf("📝") === 0) {
           var noteText = stripped.replace(/^📝\s*(?:TIP|NOTE|Note|note|Tip|tip)?\s*[:\-—]?\s*/i, "").trim();
           if (noteText) return <div key={li} className="tipline">📝 {noteText}</div>;
         }
+        var trm = t.match(/^\*{1,2}([^*]+)\*{1,2}$/);
+        if (trm && !/[а-яёА-ЯЁ]{3,}/.test(trm[1])) return <div key={li} className="tline">{trm[1]}</div>;
         if (t.startsWith("❓")) return <div key={li} className="qline">{t}</div>;
         var toks = []; var rem = line; var ki = 0;
         while (rem.length > 0) {
