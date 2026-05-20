@@ -2446,9 +2446,19 @@ export default function App() {
         return /microsoft.*online.*natural/i.test(v.name) || /\(natural\)/i.test(v.name);
       };
       var isGoogle = function(v) { return /google/i.test(v.name); };
+      // iOS / macOS quality markers — prefer these for the auto-pick because
+      // they sound dramatically better than the default Russian voices.
+      var isEnhanced = function(v) { return /\b(enhanced|premium)\b/i.test(v.name) || /enhanced/i.test(v.voiceURI || ""); };
+      var isSiri = function(v) { return /\bsiri\b/i.test(v.name) || /com\.apple\.ttsbundle\.siri/i.test(v.voiceURI || ""); };
+      var isRuLang = function(v) { return v.lang && v.lang.toLowerCase().startsWith("ru"); };
       var v =
-           all.find(function(v) { return /katya|katja/i.test(v.name) && v.localService; })
-        || all.find(function(v) { return v.lang === "ru-RU" && v.localService; })
+           // iOS / macOS Premium / Siri Russian voices (highest quality local)
+           all.find(function(v) { return isRuLang(v) && v.localService && isSiri(v); })
+        || all.find(function(v) { return isRuLang(v) && v.localService && isEnhanced(v); })
+        // Named preference (Katya — set via user memory)
+        || all.find(function(v) { return /katya|katja/i.test(v.name) && v.localService; })
+        // Any local Russian voice
+        || all.find(function(v) { return isRuLang(v) && v.localService; })
         || all.find(function(v) { return v.lang.startsWith("ru") && v.localService; })
         // Microsoft Edge online neural voices — high quality, reliable in Edge
         || all.find(function(v) { return v.lang === "ru-RU" && isMsNatural(v); })
@@ -4388,18 +4398,41 @@ export default function App() {
           {allVoices.length===0 && <div className="vpem">No voices found. Install a Russian voice in system settings.</div>}
           {allVoices.length>0 && allVoices.filter(function(v){ return v.lang.startsWith("ru")||/katya|katja|milena|yuri/i.test(v.name); }).length===0 && <div className="vpem">No Russian voices on this device.<br/>In Microsoft Edge you'll see Russian neural voices automatically — try opening the app in Edge. Or install a Russian voice in your system Speech settings.</div>}
           {(function() {
-            var isRu = function(v) { return v.lang.startsWith("ru")||/katya|katja|milena|yuri/i.test(v.name); };
+            // Detect Russian voices. Be generous — lang prefix is the main signal,
+            // but we also catch known Russian voice names in BOTH Latin and Cyrillic
+            // because iOS sometimes localizes voice names to the system language
+            // (e.g. "Милена" instead of "Milena" when iOS UI is in Russian).
+            var isRu = function(v) {
+              if (v.lang && v.lang.toLowerCase().startsWith("ru")) return true;
+              // Cyrillic-named voices: catch them even if lang label is unset
+              if (/[а-яёА-ЯЁ]/.test(v.name)) return true;
+              // Known Russian voice names (Latin transliteration)
+              return /katya|katja|milena|yuri|tatyana|pavel|irina|maxim|alyona|elena|vladimir/i.test(v.name);
+            };
             var isMsNatural = function(v) {
               return /microsoft.*online.*natural/i.test(v.name) || /\(natural\)/i.test(v.name);
             };
             var isGoogle = function(v) { return /google/i.test(v.name); };
-            // Tier each voice: 0 = local, 1 = high-quality network (MS Natural / Google),
-            // 2 = other network. Google and MS Natural are both reliable on the deployed
-            // site, so we group them together at the top of the network tier.
+            // iOS / macOS Enhanced and Premium voices — higher-quality local
+            // voices that the user can download via Settings → Accessibility →
+            // Spoken Content → Voices → Russian. They sound noticeably better
+            // than the default voice.
+            var isEnhanced = function(v) {
+              return /\b(enhanced|premium)\b/i.test(v.name) || /enhanced/i.test(v.voiceURI || "");
+            };
+            // Apple Siri voices — top-tier neural voices on iOS 16+/macOS 13+.
+            // Named "Siri" or "Siri Voice N".
+            var isSiri = function(v) {
+              return /\bsiri\b/i.test(v.name) || /com\.apple\.ttsbundle\.siri/i.test(v.voiceURI || "");
+            };
+            // Tier each voice: 0 = local Siri/Enhanced/Premium (top quality),
+            // 1 = other local, 2 = high-quality network (MS Natural / Google),
+            // 3 = other network.
             var tier = function(v) {
-              if (v.localService) return 0;
-              if (isMsNatural(v) || isGoogle(v)) return 1;
-              return 2;
+              if (v.localService && (isSiri(v) || isEnhanced(v))) return 0;
+              if (v.localService) return 1;
+              if (isMsNatural(v) || isGoogle(v)) return 2;
+              return 3;
             };
             var byQuality = function(a, b) { return tier(a) - tier(b); };
             var ruVoices = allVoices.filter(isRu).slice().sort(byQuality);
@@ -4413,8 +4446,19 @@ export default function App() {
               var isMsNatural = /microsoft.*online.*natural/i.test(v.name) || /\(natural\)/i.test(v.name);
               var isGoogle = /google/i.test(v.name);
               var isHighQualityNetwork = isMsNatural || isGoogle;
+              // iOS / macOS quality markers — surface these prominently.
+              var isEnhanced = /\b(enhanced|premium)\b/i.test(v.name);
+              var isSiri = /\bsiri\b/i.test(v.name) || /com\.apple\.ttsbundle\.siri/i.test(v.voiceURI || "");
               var labelText, labelColor, rowOpacity;
-              if (!network) {
+              if (isSiri && !network) {
+                labelText = " · Siri ★★★";
+                labelColor = "#c8a276";
+                rowOpacity = null;
+              } else if (isEnhanced && !network) {
+                labelText = " · Enhanced ★★";
+                labelColor = "#c8a276";
+                rowOpacity = null;
+              } else if (!network) {
                 labelText = " · local ✓";
                 labelColor = null;
                 rowOpacity = null;
