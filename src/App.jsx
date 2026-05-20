@@ -3,16 +3,17 @@ import { SignIn, UserButton, useAuth, useUser } from "@clerk/clerk-react";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
-// Azure Speech cloud voices — exposed alongside the browser's native voices
-// in the picker. Picking one routes the speak() call through /api/tts instead
-// of speechSynthesis, so iOS Safari users get neural quality. The `_cloud`
-// and `_azureVoice` properties tag these as cloud voices internally; from the
-// picker's perspective they look just like any other voice.
-var CLOUD_VOICES = [
-  { name: "Dariya (Cloud Neural ★★★)", lang: "ru-RU", localService: false, _cloud: true, _azureVoice: "ru-RU-DariyaNeural", voiceURI: "azure:ru-RU-DariyaNeural" },
-  { name: "Svetlana (Cloud Neural ★★★)", lang: "ru-RU", localService: false, _cloud: true, _azureVoice: "ru-RU-SvetlanaNeural", voiceURI: "azure:ru-RU-SvetlanaNeural" },
-  { name: "Dmitry (Cloud Neural ★★★)", lang: "ru-RU", localService: false, _cloud: true, _azureVoice: "ru-RU-DmitryNeural", voiceURI: "azure:ru-RU-DmitryNeural" },
-];
+// Sole TTS voice for the entire app — Azure Dmitry Neural. No picker, no
+// alternatives. ALL spoken Russian (chat 🔊 Listen, book reading) routes
+// through /api/tts using this single voice.
+var DMITRY_CLOUD = {
+  name: "Dmitry",
+  lang: "ru-RU",
+  localService: false,
+  _cloud: true,
+  _azureVoice: "ru-RU-DmitryNeural",
+  voiceURI: "azure:ru-RU-DmitryNeural",
+};
 
 var storage = {
   get: function(key) {
@@ -2257,11 +2258,9 @@ export default function App() {
   var [lres, setLres]           = useState([]);
   var [fErr, setFErr]           = useState("");
 
-  var [voice, setVoice]         = useState(null);
-  // Mirror of `voice` state in a ref so async callbacks (speakMsg, picker test)
-  // always read the LATEST voice, even if React batches/closures lag behind.
-  // This is the safety net against Chrome PC's onvoiceschanged race condition.
-  var voiceRef = useRef(null);
+  var [voice, setVoice]         = useState(DMITRY_CLOUD);
+  // Mirror of `voice` in a ref so async callbacks always read the latest value.
+  var voiceRef = useRef(DMITRY_CLOUD);
   useEffect(function() { voiceRef.current = voice; }, [voice]);
   var [allVoices, setAllVoices] = useState([]);
   // Tracks whether the user has explicitly picked a voice from the picker.
@@ -2448,65 +2447,10 @@ export default function App() {
     return function() { document.removeEventListener("mousedown", h); };
   }, []);
 
-  useEffect(function() {
-    var find = function() {
-      var raw = window.speechSynthesis.getVoices();
-      if (!raw.length) return false;
-      var all = isStrictChrome()
-        ? raw.filter(function(v){ return !isLocalMsVoice(v); })
-        : raw;
-      all = CLOUD_VOICES.concat(all);
-      setAllVoices(all);
-
-      // If the user has already explicitly chosen a voice in this session, do
-      // NOT override it — even though onvoiceschanged may fire again as more
-      // voices stream in (Chrome PC loads Google network voices asynchronously
-      // after page load, triggering this handler several times).
-      if (userPickedRef.current) return true;
-
-      // First check localStorage — restore previously-chosen voice across reloads.
-      try {
-        var savedUri = localStorage.getItem(GVT_VOICE_KEY);
-        if (savedUri) {
-          var saved = all.find(function(v) { return v.voiceURI === savedUri; });
-          if (saved) { setVoice(saved); return true; }
-        }
-      } catch(e) {}
-
-      // Auto-pick priority. Cloud Dariya is now the #1 default on EVERY
-      // platform — consistent voice on iPhone Safari, Chrome PC, Edge, Mac.
-      // Users can override in the picker (their pick is saved per device).
-      // The browser-native fallbacks stay below for the rare case where cloud
-      // TTS isn't configured / fails / is intentionally disabled.
-      var isMsNatural = function(v) {
-        return /microsoft.*online.*natural/i.test(v.name) || /\(natural\)/i.test(v.name);
-      };
-      var isGoogle = function(v) { return /google/i.test(v.name); };
-      var isEnhanced = function(v) { return /\b(enhanced|premium)\b/i.test(v.name) || /enhanced/i.test(v.voiceURI || ""); };
-      var isSiri = function(v) { return /\bsiri\b/i.test(v.name) || /com\.apple\.ttsbundle\.siri/i.test(v.voiceURI || ""); };
-      var isRuLang = function(v) { return v.lang && v.lang.toLowerCase().startsWith("ru"); };
-      var v =
-           // PRIMARY DEFAULT — cloud Dariya, every platform. Best Russian
-           // neural voice we can deliver consistently.
-           all.find(function(v) { return v._cloud && v._azureVoice === "ru-RU-DariyaNeural"; })
-        // Fallbacks (only used if cloud voices are missing — should be rare):
-        || all.find(function(v) { return isRuLang(v) && v.localService && isSiri(v); })
-        || all.find(function(v) { return isRuLang(v) && v.localService && isEnhanced(v); })
-        || all.find(function(v) { return /katya|katja/i.test(v.name) && v.localService; })
-        || all.find(function(v) { return v.lang === "ru-RU" && isMsNatural(v); })
-        || all.find(function(v) { return v.lang.startsWith("ru") && isMsNatural(v); })
-        || all.find(function(v) { return v.lang === "ru-RU" && isGoogle(v); })
-        || all.find(function(v) { return v.lang.startsWith("ru") && isGoogle(v); })
-        || all.find(function(v) { return isRuLang(v) && v.localService; })
-        || all.find(function(v) { return v.lang.startsWith("ru") && v.localService; })
-        || all.find(function(v) { return v.lang === "ru-RU"; })
-        || all.find(function(v) { return /katya|katja/i.test(v.name); })
-        || all.find(function(v) { return v.lang.startsWith("ru"); });
-      if (v) setVoice(v);
-      return true;
-    };
-    if (!find()) window.speechSynthesis.onvoiceschanged = find;
-  }, []);
+  // (Voice auto-selector removed — Dmitry Azure is the only voice. The
+  // useEffect that previously scanned getVoices() and called setVoice was
+  // the source of bugs where browser-native voices kept overriding the user's
+  // pick on Chrome PC. Without it, the voice state is fixed at DMITRY_CLOUD.)
 
   // Launch screen always shows a fresh "no book loaded" state. We deliberately
   // do NOT auto-restore the previous book from EPUB_CACHE on mode entry —
@@ -3059,6 +3003,12 @@ export default function App() {
     // Read voice from the ref so we always see the most recent pick — never a
     // value captured by useCallback at an earlier render.
     var currentVoice = voiceRef.current;
+    console.log("[speak] speakMsg called. idx:", idx, "currentVoice:", currentVoice ? {
+      name: currentVoice.name,
+      _cloud: !!currentVoice._cloud,
+      _azureVoice: currentVoice._azureVoice || "(n/a)",
+      voiceURI: currentVoice.voiceURI,
+    } : "null");
     setTtsErr("");
     stopKeepalive();
     // Cancel any in-flight TTS (speechSynthesis OR cloud audio) before starting.
@@ -4614,10 +4564,20 @@ export default function App() {
                 <button key={i} className={"vprow"+(voice&&voice.name===v.name?" sel":"")}
                   style={rowOpacity ? {opacity: rowOpacity} : null}
                   onClick={function(){
+                    console.log("[picker] clicked voice:", {
+                      name: v.name,
+                      _cloud: !!v._cloud,
+                      _azureVoice: v._azureVoice || "(n/a)",
+                      voiceURI: v.voiceURI,
+                    });
                     // Record the explicit choice so the async voiceschanged
                     // handler stops overriding it, and persist for next session.
                     userPickedRef.current = true;
                     try { localStorage.setItem(GVT_VOICE_KEY, v.voiceURI || ""); } catch(e) {}
+                    // Also immediately push to ref so speakMsg sees the new
+                    // value even before React commits the state update (defends
+                    // against rapid 🎙pick → 🔊click sequences).
+                    voiceRef.current = v;
                     setVoice(v); stopTTS(); setTtsErr("");
                     // Speak a short test phrase so the user immediately knows if the voice works.
                     setTimeout(function() {
@@ -6107,7 +6067,7 @@ export default function App() {
                       }
                       <span className="ttslab">{playing?"Reading…":charPos.current>0?(voice&&voice.name||"Voice")+" — paused":voice?(voice.name+" — click ▶"):"No Russian voice found"}</span>
                       {charPos.current>0 && <button className="ttsbtn" onClick={function(){ stopTTS(); charPos.current=0; paraText.current=""; }}>⏹</button>}
-                      <button className="ttsbtn" onClick={function(){ setShowVP(function(v){ return !v; }); }}>🎙 {voice ? (voice._cloud ? voice._azureVoice.replace("ru-RU-","").replace("Neural","") + " (cloud)" : voice.name.length > 18 ? voice.name.slice(0, 16) + "…" : voice.name) : "Voice"}</button>
+                      {/* Voice picker removed — Dmitry Azure is the only voice option. */}
                     </div>
 
                     {renderVoicePicker()}
@@ -6240,7 +6200,7 @@ export default function App() {
                 {renderVoicePicker()}
                 <div className="ibar">
                   <button className="inew" onClick={startChat}>↺ New</button>
-                  <button className="inew" title={"Voice for 🔊 Listen: " + (voice ? (voice._cloud ? voice._azureVoice + " (Azure Cloud)" : voice.name) : "(none selected)")} onClick={function(){ setShowVP(function(v){ return !v; }); }}>🎙</button>
+                  {/* Voice picker removed — Dmitry Azure is the only voice option. */}
                   <textarea ref={inputRef} value={input} onChange={function(e){ setInput(e.target.value); }} onKeyDown={onKey} placeholder="Type in Russian or English…" rows={1} disabled={loading}/>
                   <button className="isend" onClick={send} disabled={loading||!input.trim()}>↑</button>
                 </div>
