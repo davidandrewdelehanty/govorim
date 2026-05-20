@@ -3,6 +3,17 @@ import { SignIn, UserButton, useAuth, useUser } from "@clerk/clerk-react";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
+// Azure Speech cloud voices — exposed alongside the browser's native voices
+// in the picker. Picking one routes the speak() call through /api/tts instead
+// of speechSynthesis, so iOS Safari users get neural quality. The `_cloud`
+// and `_azureVoice` properties tag these as cloud voices internally; from the
+// picker's perspective they look just like any other voice.
+var CLOUD_VOICES = [
+  { name: "Dariya (Cloud Neural ★★★)", lang: "ru-RU", localService: false, _cloud: true, _azureVoice: "ru-RU-DariyaNeural", voiceURI: "azure:ru-RU-DariyaNeural" },
+  { name: "Svetlana (Cloud Neural ★★★)", lang: "ru-RU", localService: false, _cloud: true, _azureVoice: "ru-RU-SvetlanaNeural", voiceURI: "azure:ru-RU-SvetlanaNeural" },
+  { name: "Dmitry (Cloud Neural ★★★)", lang: "ru-RU", localService: false, _cloud: true, _azureVoice: "ru-RU-DmitryNeural", voiceURI: "azure:ru-RU-DmitryNeural" },
+];
+
 var storage = {
   get: function(key) {
     return Promise.resolve().then(function() {
@@ -2435,6 +2446,10 @@ export default function App() {
       var all = isStrictChrome()
         ? raw.filter(function(v){ return !isLocalMsVoice(v); })
         : raw;
+      // Prepend cloud voices (Azure) so they sit at the top of the picker.
+      // They aren't real SpeechSynthesisVoice objects — speakMsg detects the
+      // _cloud flag and routes the call through /api/tts instead.
+      all = CLOUD_VOICES.concat(all);
       setAllVoices(all);
       // Priority order:
       //   1. Local voices (work everywhere, predictable)
@@ -2451,21 +2466,34 @@ export default function App() {
       var isEnhanced = function(v) { return /\b(enhanced|premium)\b/i.test(v.name) || /enhanced/i.test(v.voiceURI || ""); };
       var isSiri = function(v) { return /\bsiri\b/i.test(v.name) || /com\.apple\.ttsbundle\.siri/i.test(v.voiceURI || ""); };
       var isRuLang = function(v) { return v.lang && v.lang.toLowerCase().startsWith("ru"); };
+      // iOS detection — Safari/Chrome/Edge all use WebKit on iOS and all only
+      // expose the compact (robotic) Milena. On iOS the cloud Dariya is the
+      // dramatically better default.
+      var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
       var v =
-           // iOS / macOS Premium / Siri Russian voices (highest quality local)
-           all.find(function(v) { return isRuLang(v) && v.localService && isSiri(v); })
+           // On iOS, jump straight to cloud Dariya — the system local options
+           // are all robotic and there's no Enhanced exposure.
+           (isIOS && all.find(function(v) { return v._cloud && v._azureVoice === "ru-RU-DariyaNeural"; }))
+           // iOS / macOS Premium / Siri Russian voices (highest quality local — if exposed)
+        || all.find(function(v) { return isRuLang(v) && v.localService && isSiri(v); })
         || all.find(function(v) { return isRuLang(v) && v.localService && isEnhanced(v); })
-        // Named preference (Katya — set via user memory)
+        // Named user preference: Katya local (set via memory). Skipped if Katya
+        // isn't installed, which is the typical case.
         || all.find(function(v) { return /katya|katja/i.test(v.name) && v.localService; })
-        // Any local Russian voice
-        || all.find(function(v) { return isRuLang(v) && v.localService; })
-        || all.find(function(v) { return v.lang.startsWith("ru") && v.localService; })
-        // Microsoft Edge online neural voices — high quality, reliable in Edge
+        // Microsoft Edge online neural voices — Dariya / Dmitry / Svetlana.
+        // Sound dramatically better than Windows's local Irina/Pavel Desktop,
+        // so they outrank generic "any local" here. Streams from MS servers
+        // (free, no key needed on our side).
         || all.find(function(v) { return v.lang === "ru-RU" && isMsNatural(v); })
         || all.find(function(v) { return v.lang.startsWith("ru") && isMsNatural(v); })
-        // Google Chrome's network voices — high quality, reliable on the deployed site
+        // Google Chrome's network Russian voice — also dramatically better than
+        // Windows local voices. Reliable on the deployed site.
         || all.find(function(v) { return v.lang === "ru-RU" && isGoogle(v); })
         || all.find(function(v) { return v.lang.startsWith("ru") && isGoogle(v); })
+        // Any local Russian voice — Windows Irina/Pavel Desktop, iOS Milena.
+        // Robotic but reliable offline. Use as fallback when neural unavailable.
+        || all.find(function(v) { return isRuLang(v) && v.localService; })
+        || all.find(function(v) { return v.lang.startsWith("ru") && v.localService; })
         // Other network voices
         || all.find(function(v) { return v.lang === "ru-RU"; })
         || all.find(function(v) { return /katya|katja/i.test(v.name); })
@@ -2908,10 +2936,20 @@ export default function App() {
     if (keepAlive.current) { clearInterval(keepAlive.current); keepAlive.current = null; }
   };
 
+  // For cloud TTS: the currently-playing <audio> element. We keep a ref so
+  // stopTTS() can halt cloud playback, and so a second 🔊 Listen click on the
+  // same message stops it (matches the speechSynthesis behavior).
+  var cloudAudioRef = useRef(null);
+
   var stopTTS = useCallback(function() {
     stopKeepalive();
     ttsQueue.current = [];  // halt the chunk chain
     if (window.speechSynthesis) window.speechSynthesis.cancel();
+    // Halt cloud audio if any is playing.
+    if (cloudAudioRef.current) {
+      try { cloudAudioRef.current.pause(); cloudAudioRef.current.src = ""; } catch(e) {}
+      cloudAudioRef.current = null;
+    }
     setPlaying(false); setSpkIdx(null); setSpokenChar(-1);
   }, []);
 
@@ -3010,10 +3048,15 @@ export default function App() {
 
   var speakMsg = useCallback(function(text, idx) {
     setTtsErr("");
-    if (!checkTTSAvailable()) return;
     stopKeepalive();
-    window.speechSynthesis.cancel();
+    // Cancel any in-flight TTS (speechSynthesis OR cloud audio) before starting.
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+    if (cloudAudioRef.current) {
+      try { cloudAudioRef.current.pause(); cloudAudioRef.current.src = ""; } catch(e) {}
+      cloudAudioRef.current = null;
+    }
     if (spkIdx === idx) { setSpkIdx(null); return; }
+
     var ru = text.split("\n")
       .filter(function(l) { var t=l.trim(); return t && !/^\*{1,2}[^*]+\*{1,2}$/.test(t) && !/^📝/.test(t); })
       .join(" ")
@@ -3022,6 +3065,51 @@ export default function App() {
       .replace(/[a-zA-Z()/[\]{}|]/g,"").replace(/\s+/g," ").trim();
     if (!ru) return;
     setSpkIdx(idx);
+
+    // Cloud voice branch — bypass speechSynthesis entirely. Fetch MP3 from
+    // /api/tts and play via <audio>. Works on iOS, where the WebSpeech API
+    // is limited to compact Milena.
+    if (voice && voice._cloud) {
+      fetch("/api/tts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: ru, voice: voice._azureVoice, rate: -8 }),
+      }).then(function(r) {
+        if (!r.ok) {
+          return r.json().then(function(j) { throw new Error(j.error || "TTS failed (HTTP " + r.status + ")"); });
+        }
+        return r.blob();
+      }).then(function(blob) {
+        var audio = new Audio(URL.createObjectURL(blob));
+        cloudAudioRef.current = audio;
+        audio.onended = function() {
+          if (cloudAudioRef.current === audio) {
+            try { URL.revokeObjectURL(audio.src); } catch(e) {}
+            cloudAudioRef.current = null;
+          }
+          setSpkIdx(null);
+        };
+        audio.onerror = function() {
+          if (cloudAudioRef.current === audio) cloudAudioRef.current = null;
+          setSpkIdx(null);
+          setTtsErr("Cloud audio playback failed. Try a different voice.");
+        };
+        var p = audio.play();
+        if (p && typeof p.catch === "function") {
+          p.catch(function(e) {
+            setSpkIdx(null);
+            setTtsErr("Audio play() blocked: " + (e.message || e) + ". On iOS, tap the screen first.");
+          });
+        }
+      }).catch(function(err) {
+        setSpkIdx(null);
+        setTtsErr("Cloud TTS error: " + (err.message || err));
+      });
+      return;
+    }
+
+    // Local voice branch — original speechSynthesis path.
+    if (!checkTTSAvailable()) { setSpkIdx(null); return; }
     setTimeout(function() {
       var u = new SpeechSynthesisUtterance(ru);
       u.lang="ru-RU"; u.rate=0.84; if (voice) u.voice=voice;
@@ -4441,10 +4529,11 @@ export default function App() {
               return /\bsiri\b/i.test(v.name) || uri.indexOf("siri") !== -1;
             };
             var tier = function(v) {
-              if (v.localService && (isSiri(v) || isEnhanced(v))) return 0;
-              if (v.localService) return 1;
-              if (isMsNatural(v) || isGoogle(v)) return 2;
-              return 3;
+              if (v._cloud) return 0;  // Cloud voices first — highest practical quality, work everywhere
+              if (v.localService && (isSiri(v) || isEnhanced(v))) return 1;
+              if (v.localService) return 2;
+              if (isMsNatural(v) || isGoogle(v)) return 3;
+              return 4;
             };
             var byQuality = function(a, b) { return tier(a) - tier(b); };
             var ruVoices = allVoices.filter(isRu).slice().sort(byQuality);
@@ -4461,8 +4550,13 @@ export default function App() {
               // iOS / macOS quality markers — surface these prominently.
               var isEnhanced = /\b(enhanced|premium)\b/i.test(v.name);
               var isSiri = /\bsiri\b/i.test(v.name) || /com\.apple\.ttsbundle\.siri/i.test(v.voiceURI || "");
+              var isCloud = !!v._cloud;
               var labelText, labelColor, rowOpacity;
-              if (isSiri && !network) {
+              if (isCloud) {
+                labelText = " · Azure Cloud";
+                labelColor = "#c8a276";
+                rowOpacity = null;
+              } else if (isSiri && !network) {
                 labelText = " · Siri ★★★";
                 labelColor = "#c8a276";
                 rowOpacity = null;
@@ -4490,6 +4584,34 @@ export default function App() {
                     setVoice(v); stopTTS(); setTtsErr("");
                     // Speak a short test phrase so the user immediately knows if the voice works.
                     setTimeout(function() {
+                      // Cloud voice — fetch from /api/tts and play as audio.
+                      if (v._cloud) {
+                        fetch("/api/tts", {
+                          method: "POST",
+                          headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify({ text: "Привет! Я твой голос.", voice: v._azureVoice, rate: 0 }),
+                        }).then(function(r) {
+                          if (!r.ok) return r.json().then(function(j){ throw new Error(j.error || ("HTTP " + r.status)); });
+                          return r.blob();
+                        }).then(function(blob) {
+                          var audio = new Audio(URL.createObjectURL(blob));
+                          cloudAudioRef.current = audio;
+                          audio.onended = function(){
+                            if (cloudAudioRef.current === audio) {
+                              try { URL.revokeObjectURL(audio.src); } catch(e) {}
+                              cloudAudioRef.current = null;
+                            }
+                          };
+                          var p = audio.play();
+                          if (p && typeof p.catch === "function") {
+                            p.catch(function(e){ setTtsErr("Audio blocked: " + (e.message || e)); });
+                          }
+                        }).catch(function(err) {
+                          setTtsErr("Cloud voice test failed: " + (err.message || err) + ". Check that AZURE_SPEECH_KEY and AZURE_SPEECH_REGION are set in Vercel.");
+                        });
+                        return;
+                      }
+                      // Local voice path — original speechSynthesis test
                       var u = new SpeechSynthesisUtterance("Привет! Я твой голос.");
                       u.lang = "ru-RU"; u.voice = v; u.rate = 0.9;
                       u.onerror = function(e) {
