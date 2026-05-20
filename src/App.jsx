@@ -2998,7 +2998,12 @@ export default function App() {
       var chunk = ttsQueue.current.shift();
       var u = new SpeechSynthesisUtterance(chunk.text);
       u.lang = "ru-RU"; u.rate = 0.84;
-      if (voice) u.voice = voice;
+      // Cloud voices aren't real SpeechSynthesisVoice objects — assigning one
+      // to u.voice throws. For chunked book-reading mode we currently fall back
+      // to the system default Russian voice. (TODO: route playText through
+      // /api/tts when a cloud voice is selected, but that requires sequencing
+      // multiple Audio elements gaplessly.)
+      if (voice && !voice._cloud) u.voice = voice;
       u.onstart = function() { startKeepalive(); };
       u.onboundary = function(e) {
         if (e.name === "word") {
@@ -3134,7 +3139,10 @@ export default function App() {
     if (!checkTTSAvailable()) { setSpkIdx(null); return; }
     setTimeout(function() {
       var u = new SpeechSynthesisUtterance(ru);
-      u.lang="ru-RU"; u.rate=0.84; if (voice) u.voice=voice;
+      u.lang="ru-RU"; u.rate=0.84;
+      // Defensive: cloud voices should be handled by the cloud branch above and
+      // never reach here, but guard against any future code path that might.
+      if (voice && !voice._cloud) u.voice=voice;
       u.onstart = function(){ startKeepalive(); };
       u.onend = function(){ stopKeepalive(); setSpkIdx(null); };
       u.onerror = function(e){
@@ -3185,7 +3193,7 @@ export default function App() {
         var t0 = Date.now();
         var u = new SpeechSynthesisUtterance(text);
         u.lang = lang; u.rate = 1.0;
-        if (useVoice && voice) u.voice = voice;
+        if (useVoice && voice && !voice._cloud) u.voice = voice;
 
         u.onstart = function() { addLog(name + " onstart @ +" + (Date.now()-t0) + "ms"); };
         u.onend   = function() { addLog(name + " onend   @ +" + (Date.now()-t0) + "ms"); };
