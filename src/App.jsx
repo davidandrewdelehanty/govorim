@@ -2259,6 +2259,13 @@ export default function App() {
 
   var [voice, setVoice]         = useState(null);
   var [allVoices, setAllVoices] = useState([]);
+  // Tracks whether the user has explicitly picked a voice from the picker.
+  // Chrome on PC fires `onvoiceschanged` multiple times as Google network voices
+  // load asynchronously — without this guard, each fire re-runs the auto-selector
+  // and stomps the user's manual pick. Ref (not state) so we can read the
+  // up-to-date value from inside useEffect closures.
+  var userPickedRef = useRef(false);
+  var GVT_VOICE_KEY = "gv_voice_v1";  // localStorage: persist voice pick across sessions
   var [playing, setPlaying]     = useState(false);
   var [showVP, setShowVP]       = useState(false);
   var [spkIdx, setSpkIdx]       = useState(null);
@@ -2438,63 +2445,47 @@ export default function App() {
     var find = function() {
       var raw = window.speechSynthesis.getVoices();
       if (!raw.length) return false;
-      // In strict Chrome, hide local Windows Microsoft voices (e.g. "Microsoft
-      // Pavel - Russian") — they sound robotic compared to Google's network
-      // voices, which Chrome has built in. Other browsers (Edge, Brave, etc.)
-      // see the full list. The filter is applied here once so both the picker
-      // (which reads allVoices) and the auto-selector below share the same view.
       var all = isStrictChrome()
         ? raw.filter(function(v){ return !isLocalMsVoice(v); })
         : raw;
-      // Prepend cloud voices (Azure) so they sit at the top of the picker.
-      // They aren't real SpeechSynthesisVoice objects — speakMsg detects the
-      // _cloud flag and routes the call through /api/tts instead.
       all = CLOUD_VOICES.concat(all);
       setAllVoices(all);
-      // Priority order:
-      //   1. Local voices (work everywhere, predictable)
-      //   2. Microsoft Edge "Online (Natural)" neural voices (high quality, reliable in Edge)
-      //   3. Google network voices (high quality, reliable in Chrome on real sites — only
-      //      flaky inside sandboxed iframes, which we no longer worry about post-deploy)
-      //   4. Other network voices as a last resort
+
+      // If the user has already explicitly chosen a voice in this session, do
+      // NOT override it — even though onvoiceschanged may fire again as more
+      // voices stream in (Chrome PC loads Google network voices asynchronously
+      // after page load, triggering this handler several times).
+      if (userPickedRef.current) return true;
+
+      // First check localStorage — restore previously-chosen voice across reloads.
+      try {
+        var savedUri = localStorage.getItem(GVT_VOICE_KEY);
+        if (savedUri) {
+          var saved = all.find(function(v) { return v.voiceURI === savedUri; });
+          if (saved) { setVoice(saved); return true; }
+        }
+      } catch(e) {}
+
+      // Otherwise, run the priority-based auto-selector.
       var isMsNatural = function(v) {
         return /microsoft.*online.*natural/i.test(v.name) || /\(natural\)/i.test(v.name);
       };
       var isGoogle = function(v) { return /google/i.test(v.name); };
-      // iOS / macOS quality markers — prefer these for the auto-pick because
-      // they sound dramatically better than the default Russian voices.
       var isEnhanced = function(v) { return /\b(enhanced|premium)\b/i.test(v.name) || /enhanced/i.test(v.voiceURI || ""); };
       var isSiri = function(v) { return /\bsiri\b/i.test(v.name) || /com\.apple\.ttsbundle\.siri/i.test(v.voiceURI || ""); };
       var isRuLang = function(v) { return v.lang && v.lang.toLowerCase().startsWith("ru"); };
-      // iOS detection — Safari/Chrome/Edge all use WebKit on iOS and all only
-      // expose the compact (robotic) Milena. On iOS the cloud Dariya is the
-      // dramatically better default.
       var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
       var v =
-           // On iOS, jump straight to cloud Dariya — the system local options
-           // are all robotic and there's no Enhanced exposure.
            (isIOS && all.find(function(v) { return v._cloud && v._azureVoice === "ru-RU-DariyaNeural"; }))
-           // iOS / macOS Premium / Siri Russian voices (highest quality local — if exposed)
         || all.find(function(v) { return isRuLang(v) && v.localService && isSiri(v); })
         || all.find(function(v) { return isRuLang(v) && v.localService && isEnhanced(v); })
-        // Named user preference: Katya local (set via memory). Skipped if Katya
-        // isn't installed, which is the typical case.
         || all.find(function(v) { return /katya|katja/i.test(v.name) && v.localService; })
-        // Microsoft Edge online neural voices — Dariya / Dmitry / Svetlana.
-        // Sound dramatically better than Windows's local Irina/Pavel Desktop,
-        // so they outrank generic "any local" here. Streams from MS servers
-        // (free, no key needed on our side).
         || all.find(function(v) { return v.lang === "ru-RU" && isMsNatural(v); })
         || all.find(function(v) { return v.lang.startsWith("ru") && isMsNatural(v); })
-        // Google Chrome's network Russian voice — also dramatically better than
-        // Windows local voices. Reliable on the deployed site.
         || all.find(function(v) { return v.lang === "ru-RU" && isGoogle(v); })
         || all.find(function(v) { return v.lang.startsWith("ru") && isGoogle(v); })
-        // Any local Russian voice — Windows Irina/Pavel Desktop, iOS Milena.
-        // Robotic but reliable offline. Use as fallback when neural unavailable.
         || all.find(function(v) { return isRuLang(v) && v.localService; })
         || all.find(function(v) { return v.lang.startsWith("ru") && v.localService; })
-        // Other network voices
         || all.find(function(v) { return v.lang === "ru-RU"; })
         || all.find(function(v) { return /katya|katja/i.test(v.name); })
         || all.find(function(v) { return v.lang.startsWith("ru"); });
@@ -4611,6 +4602,10 @@ export default function App() {
                 <button key={i} className={"vprow"+(voice&&voice.name===v.name?" sel":"")}
                   style={rowOpacity ? {opacity: rowOpacity} : null}
                   onClick={function(){
+                    // Record the explicit choice so the async voiceschanged
+                    // handler stops overriding it, and persist for next session.
+                    userPickedRef.current = true;
+                    try { localStorage.setItem(GVT_VOICE_KEY, v.voiceURI || ""); } catch(e) {}
                     setVoice(v); stopTTS(); setTtsErr("");
                     // Speak a short test phrase so the user immediately knows if the voice works.
                     setTimeout(function() {
