@@ -3070,11 +3070,13 @@ export default function App() {
     // /api/tts and play via <audio>. Works on iOS, where the WebSpeech API
     // is limited to compact Milena.
     if (voice && voice._cloud) {
+      console.log("[cloud-tts] speakMsg start. voice:", voice._azureVoice, "textLen:", ru.length, "preview:", ru.slice(0, 60));
       fetch("/api/tts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: ru, voice: voice._azureVoice, rate: -8 }),
       }).then(function(r) {
+        console.log("[cloud-tts] fetch responded. status:", r.status, "ok:", r.ok);
         if (!r.ok) {
           return r.json().then(function(j) {
             var msg = j.error || ("HTTP " + r.status);
@@ -3088,28 +3090,40 @@ export default function App() {
         }
         return r.blob();
       }).then(function(blob) {
+        console.log("[cloud-tts] blob received. size:", blob.size, "type:", blob.type);
+        if (!blob.size) throw new Error("Received empty audio blob from server");
         var audio = new Audio(URL.createObjectURL(blob));
         cloudAudioRef.current = audio;
+        audio.onloadeddata = function() { console.log("[cloud-tts] audio.onloadeddata fired"); };
+        audio.oncanplay = function() { console.log("[cloud-tts] audio.oncanplay fired"); };
+        audio.onplay = function() { console.log("[cloud-tts] audio.onplay fired"); };
         audio.onended = function() {
+          console.log("[cloud-tts] audio.onended fired");
           if (cloudAudioRef.current === audio) {
             try { URL.revokeObjectURL(audio.src); } catch(e) {}
             cloudAudioRef.current = null;
           }
           setSpkIdx(null);
         };
-        audio.onerror = function() {
+        audio.onerror = function(e) {
+          console.log("[cloud-tts] audio.onerror fired. error code:", audio.error && audio.error.code, "message:", audio.error && audio.error.message);
           if (cloudAudioRef.current === audio) cloudAudioRef.current = null;
           setSpkIdx(null);
-          setTtsErr("Cloud audio playback failed. Try a different voice.");
+          setTtsErr("Cloud audio playback failed (code " + (audio.error && audio.error.code) + ").");
         };
         var p = audio.play();
+        console.log("[cloud-tts] audio.play() called. returned:", typeof p);
         if (p && typeof p.catch === "function") {
-          p.catch(function(e) {
+          p.then(function() {
+            console.log("[cloud-tts] audio.play() promise resolved");
+          }).catch(function(e) {
+            console.log("[cloud-tts] audio.play() promise REJECTED:", e.name, e.message);
             setSpkIdx(null);
-            setTtsErr("Audio play() blocked: " + (e.message || e) + ". On iOS, tap the screen first.");
+            setTtsErr("Audio play() blocked: " + (e.name || "Error") + " — " + (e.message || e) + ". On iOS, tap somewhere first.");
           });
         }
       }).catch(function(err) {
+        console.log("[cloud-tts] error in chain:", err && err.message);
         setSpkIdx(null);
         setTtsErr("Cloud TTS error: " + (err.message || err));
       });
