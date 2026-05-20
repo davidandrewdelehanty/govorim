@@ -2272,6 +2272,139 @@ export default function App() {
   // Bumped from v1 → v2 to wipe out stale Milena/Google saves from before the
   // cloud-first default became active. Old keys are intentionally orphaned.
   var GVT_VOICE_KEY = "gv_voice_v2";  // localStorage: persist voice pick across sessions
+  // ── Floating audio bar state (reading mode) ─────────────────────────────
+  // Sentence-by-sentence cloud TTS playback. Parses the current page into
+  // sentences, fetches each from /api/tts on demand, plays them sequentially.
+  // Always Azure Dmitry — no other voices supported.
+  var [audioSentences, setAudioSentences] = useState([]);
+  var [audioIdx, setAudioIdx] = useState(0);
+  var [audioPlaying, setAudioPlaying] = useState(false);
+  var [audioFetching, setAudioFetching] = useState(false);
+  var audioElemRef = useRef(null);
+  var audioIdxRef = useRef(0);  // mirror for use in async callbacks
+  useEffect(function() { audioIdxRef.current = audioIdx; }, [audioIdx]);
+  var audioPlayingRef = useRef(false);
+  useEffect(function() { audioPlayingRef.current = audioPlaying; }, [audioPlaying]);
+
+  // Parse a page of text into a flat array of sentence-like fragments. Each
+  // fragment becomes one /api/tts call. Handles both prose (sentences ending
+  // in .!?…) and poems/songs (line breaks become natural break points).
+  var parseSentences = function(text) {
+    if (!text) return [];
+    var out = [];
+    var lines = text.split(/\n+/);
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i].trim();
+      if (!line) continue;
+      // Match groups of non-terminator chars followed by terminator(s), OR
+      // any remaining tail without a terminator (poem line, last clause).
+      var matches = line.match(/[^.!?…]+[.!?…]+|[^.!?…]+$/g) || [line];
+      for (var j = 0; j < matches.length; j++) {
+        var s = matches[j].trim();
+        if (s) out.push(s);
+      }
+    }
+    return out;
+  };
+
+  // Halt and clear all audio bar state.
+  var resetAudioBar = function() {
+    if (audioElemRef.current) {
+      try { audioElemRef.current.pause(); audioElemRef.current.src = ""; } catch(e) {}
+      audioElemRef.current = null;
+    }
+    setAudioPlaying(false);
+    audioPlayingRef.current = false;
+  };
+
+  // Play one sentence by index. Auto-advances on end.
+  var playAudioSentence = function(idx) {
+    if (idx < 0 || idx >= audioSentences.length) {
+      setAudioPlaying(false); audioPlayingRef.current = false; return;
+    }
+    var sentence = audioSentences[idx];
+    if (audioElemRef.current) {
+      try { audioElemRef.current.pause(); audioElemRef.current.src = ""; } catch(e) {}
+      audioElemRef.current = null;
+    }
+    setAudioFetching(true);
+    fetch("/api/tts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text: sentence, voice: "ru-RU-DmitryNeural", rate: -8 }),
+    }).then(function(r) {
+      if (!r.ok) return r.json().then(function(j) { throw new Error(j.error || ("HTTP " + r.status)); });
+      return r.blob();
+    }).then(function(blob) {
+      var audio = new Audio(URL.createObjectURL(blob));
+      audioElemRef.current = audio;
+      setAudioFetching(false);
+      audio.onended = function() {
+        try { URL.revokeObjectURL(audio.src); } catch(e) {}
+        if (audioElemRef.current === audio) audioElemRef.current = null;
+        // Auto-advance to next sentence (only if still playing — user may have paused).
+        if (audioPlayingRef.current) {
+          var nextIdx = audioIdxRef.current + 1;
+          if (nextIdx < audioSentences.length) {
+            setAudioIdx(nextIdx); audioIdxRef.current = nextIdx;
+            playAudioSentence(nextIdx);
+          } else {
+            setAudioPlaying(false); audioPlayingRef.current = false;
+          }
+        }
+      };
+      audio.onerror = function() {
+        setAudioFetching(false);
+        setAudioPlaying(false); audioPlayingRef.current = false;
+      };
+      var p = audio.play();
+      if (p && typeof p.catch === "function") {
+        p.catch(function(e) {
+          setAudioFetching(false);
+          setAudioPlaying(false); audioPlayingRef.current = false;
+          setTtsErr("Audio blocked: " + (e.message || e));
+        });
+      }
+    }).catch(function(err) {
+      setAudioFetching(false);
+      setAudioPlaying(false); audioPlayingRef.current = false;
+      setTtsErr("TTS error: " + (err.message || err));
+    });
+  };
+
+  // Floating bar controls.
+  var audioPlayPause = function() {
+    if (audioSentences.length === 0) return;
+    if (audioPlaying) {
+      // Pause — keep audio element so we can resume.
+      if (audioElemRef.current) audioElemRef.current.pause();
+      setAudioPlaying(false); audioPlayingRef.current = false;
+    } else {
+      // Resume current audio if paused, else start a fresh fetch.
+      setAudioPlaying(true); audioPlayingRef.current = true;
+      if (audioElemRef.current && audioElemRef.current.src && audioElemRef.current.paused && audioElemRef.current.currentTime > 0) {
+        var p = audioElemRef.current.play();
+        if (p && typeof p.catch === "function") p.catch(function(){});
+      } else {
+        playAudioSentence(audioIdxRef.current);
+      }
+    }
+  };
+  var audioSkipBack = function() {
+    if (audioSentences.length === 0) return;
+    var newIdx = Math.max(0, audioIdxRef.current - 1);
+    setAudioIdx(newIdx); audioIdxRef.current = newIdx;
+    if (audioPlayingRef.current) playAudioSentence(newIdx);
+    else resetAudioBar();
+  };
+  var audioSkipForward = function() {
+    if (audioSentences.length === 0) return;
+    var newIdx = Math.min(audioSentences.length - 1, audioIdxRef.current + 1);
+    setAudioIdx(newIdx); audioIdxRef.current = newIdx;
+    if (audioPlayingRef.current) playAudioSentence(newIdx);
+    else resetAudioBar();
+  };
+
   var [playing, setPlaying]     = useState(false);
   var [showVP, setShowVP]       = useState(false);
   var [spkIdx, setSpkIdx]       = useState(null);
@@ -2304,6 +2437,23 @@ export default function App() {
   }, [curChapter.text, singlePageMode]);
   var totalPages = pages.length;
   var currentPage = pages[Math.min(pidx, totalPages - 1)] || pages[0];
+
+  // Re-parse sentences when page or chapter changes. Halts any in-flight audio.
+  useEffect(function() {
+    if (audioElemRef.current) {
+      try { audioElemRef.current.pause(); audioElemRef.current.src = ""; } catch(e) {}
+      audioElemRef.current = null;
+    }
+    setAudioPlaying(false); audioPlayingRef.current = false;
+    setAudioIdx(0); audioIdxRef.current = 0;
+    setAudioFetching(false);
+    if (mode === "read" && currentPage && curChapter && curChapter.text) {
+      var pageText = curChapter.text.slice(currentPage.startChar, currentPage.endChar);
+      setAudioSentences(parseSentences(pageText));
+    } else {
+      setAudioSentences([]);
+    }
+  }, [cidx, pidx, mode, curChapter && curChapter.text, currentPage && currentPage.startChar, currentPage && currentPage.endChar]);
 
   useEffect(function() {
     (async function() {
@@ -2373,16 +2523,10 @@ export default function App() {
     if (pidx >= totalPages - 1) return;
     if (!currentPage) return;
     if (spokenChar > currentPage.endChar) {
-      // Auto-advance during continuous TTS. Don't stop the audio, don't wipe the
-      // current question list — just flip the page and regenerate questions for
-      // the new page in the background. The new questions replace the old when
-      // they arrive (litAnalysis calls setMsgs).
-      var nextPidx = pidx + 1;
-      setPidx(nextPidx);
-      if (!noAIMode && chapters.length > 0) {
-        setLoading(true);
-        litAnalysis(chapters, cidx, nextPidx).finally(function(){ setLoading(false); });
-      }
+      // Auto-advance during continuous TTS — just flip the page silently.
+      // Comprehension questions are no longer auto-generated; user clicks the
+      // "Test your comprehension" button when they're ready.
+      setPidx(pidx + 1);
     }
   }, [spokenChar, pidx, playing]);
 
@@ -3397,30 +3541,25 @@ export default function App() {
   var startLit = async function(idx, chs, metaOverride) {
     var p = chs || chapters; if (!p || !p.length) return;
     var i = idx !== undefined ? idx : cbm;
-    setCidx(i); setCbm(i); setPidx(0); setStarted(true); setMsgs([]); setLoading(true);
+    // Open the book. Comprehension is button-triggered, not auto-loaded.
+    setCidx(i); setCbm(i); setPidx(0); setStarted(true); setMsgs([]);
     setPopup(null); stopTTS(); setLview("read");
     charPos.current = 0; paraText.current = "";
-    if (noAIMode) { setLoading(false); return; }
-    await litAnalysis(p, i, 0, metaOverride); setLoading(false);
   };
 
   var navLit = async function(idx) {
     stopTTS(); charPos.current = 0; paraText.current = "";
     if (idx < 0 || idx >= chapters.length) return;
-    setCidx(idx); setCbm(idx); setPidx(0); setMsgs([]); setLoading(true); setLview("read");
-    if (noAIMode) { setLoading(false); return; }
-    await litAnalysis(chapters, idx, 0); setLoading(false);
+    // Navigate; no auto-comprehension. User triggers via "Test your comprehension" button.
+    setCidx(idx); setCbm(idx); setPidx(0); setMsgs([]); setLview("read");
   };
 
-  // Navigate to a new PAGE within the current chapter and refresh the tutor's
-  // questions so they reflect what's on screen now. Used by the page arrows
-  // and by the TTS-driven auto-advance. In noAIMode we just flip the page.
+  // Navigate to a new PAGE within the current chapter. Comprehension questions
+  // are only loaded when the user explicitly clicks "Test your comprehension".
   var navPage = async function(newPidx) {
     if (newPidx < 0 || newPidx >= totalPages) return;
     stopTTS(); charPos.current = 0; paraText.current = "";
-    setPidx(newPidx); setMsgs([]); setLoading(true); setLview("read");
-    if (noAIMode) { setLoading(false); return; }
-    await litAnalysis(chapters, cidx, newPidx); setLoading(false);
+    setPidx(newPidx); setMsgs([]); setLview("read");
   };
 
   // ── Smart song-collection splitter ──────────────────────────────────────
@@ -4764,6 +4903,24 @@ export default function App() {
         .ttslab{flex:1;font-size:12px;color:rgba(210,197,175,.4);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         .ttsbtn{background:none;border:1px solid rgba(210,197,175,.15);color:rgba(210,197,175,.4);height:26px;border-radius:8px;font-size:12px;cursor:pointer;padding:0 10px;transition:all .15s}
         .ttsbtn:hover{background:rgba(210,197,175,.08);color:rgba(210,197,175,.7)}
+
+        /* Floating audio bar (reading mode) — sticky to viewport bottom,
+           always visible while reading so pause/skip are one tap away. */
+        .faudio{position:fixed;left:0;right:0;bottom:0;height:68px;background:rgba(26,22,17,.96);border-top:1px solid rgba(210,197,175,.18);display:flex;align-items:center;justify-content:center;gap:14px;z-index:100;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:0 22px;box-shadow:0 -4px 18px rgba(0,0,0,.4)}
+        .faudio-btn{background:rgba(210,197,175,.08);border:1px solid rgba(210,197,175,.28);color:#d2c5af;width:44px;height:44px;border-radius:50%;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s,opacity .15s}
+        .faudio-btn:hover{background:rgba(210,197,175,.18)}
+        .faudio-btn:disabled{opacity:.35;cursor:not-allowed}
+        .faudio-play{background:#c8a276;color:#1a1611;border-color:#c8a276;width:52px;height:52px;font-size:22px}
+        .faudio-play:hover{background:#d4ae7f}
+        .faudio-status{color:rgba(210,197,175,.55);font-size:12px;font-family:'Inter',system-ui,sans-serif;margin-left:10px;letter-spacing:.3px;min-width:90px;text-align:left}
+        @media(max-width:600px){
+          .faudio{padding:0 12px;gap:10px;height:62px}
+          .faudio-btn{width:40px;height:40px;font-size:15px}
+          .faudio-play{width:48px;height:48px;font-size:20px}
+          .faudio-status{font-size:11px;min-width:0;margin-left:6px}
+        }
+        /* Push reading-mode content up so the floating bar doesn't cover it. */
+        .lit-body{padding-bottom:80px}
         /* Grammar reference page (📚 Grammar mode) */
         .gramref{flex:1;display:flex;flex-direction:column;min-height:0}
         .gramref-hdr{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 28px;background:#1e1a14;border-bottom:1px solid rgba(210,197,175,.08);flex-shrink:0}
@@ -5515,10 +5672,6 @@ export default function App() {
                 <h1 className="sti">Говорим</h1>
                 <p className="sde">Choose how you want to practice today.</p>
                 <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:14}}>
-                  <button className="btn-p" onClick={function(){ setMode("chat"); }} style={{textAlign:"left",padding:"18px 22px"}}>
-                    <div style={{fontSize:22,marginBottom:4}}>💬 Chat</div>
-                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Pick a topic, hear interesting facts, answer probing questions.</div>
-                  </button>
                   <button className="btn-p" onClick={function(){ setMode("read"); }} style={{textAlign:"left",padding:"18px 22px"}}>
                     <div style={{fontSize:22,marginBottom:4}}>📖 Read</div>
                     <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Load any Russian book file, then practice with comprehension questions.</div>
@@ -6060,16 +6213,6 @@ export default function App() {
 
                 {lview==="read" && (
                   <>
-                    <div className="ttsbar">
-                      {!playing
-                        ? <button className="ttsplay" onClick={function(){ paraText.current=curChapter.text||""; playText(paraText.current,charPos.current); }}>▶</button>
-                        : <button className="ttspause" onClick={pauseTTS}>⏸</button>
-                      }
-                      <span className="ttslab">{playing?"Reading…":charPos.current>0?(voice&&voice.name||"Voice")+" — paused":voice?(voice.name+" — click ▶"):"No Russian voice found"}</span>
-                      {charPos.current>0 && <button className="ttsbtn" onClick={function(){ stopTTS(); charPos.current=0; paraText.current=""; }}>⏹</button>}
-                      {/* Voice picker removed — Dmitry Azure is the only voice option. */}
-                    </div>
-
                     {renderVoicePicker()}
 
                     <div className="lit-body">
@@ -6103,6 +6246,22 @@ export default function App() {
                       {!noAIMode && (
                       <div className="lit-right">
                         <div className="lit-msgs" ref={msgsRef}>
+                          {msgs.length === 0 && !loading && chapters.length > 0 && (
+                            <button
+                              className="btn-p test-comp-btn"
+                              style={{margin:"24px auto",display:"block",padding:"18px 26px",fontSize:17}}
+                              onClick={async function() {
+                                if (!chapters.length) return;
+                                setLoading(true);
+                                try {
+                                  await litAnalysis(chapters, cidx, pidx);
+                                } finally {
+                                  setLoading(false);
+                                }
+                              }}>
+                              📝 Test your comprehension
+                            </button>
+                          )}
                           {msgs.map(function(m,i){ return renderMsg(m,i); })}
                           {loading && <div className="msg ai"><div className="typing"><div className="dot"/><div className="dot"/><div className="dot"/></div></div>}
                         </div>
@@ -6147,6 +6306,27 @@ export default function App() {
                         </div>
                       )}
                     </div>
+
+                    {/* Floating audio player — always visible at bottom of viewport
+                        while reading. Sentence-by-sentence Dmitry Azure playback. */}
+                    {audioSentences.length > 0 && (
+                      <div className="faudio">
+                        <button className="faudio-btn" onClick={audioSkipBack}
+                          disabled={audioIdx <= 0 || audioFetching}
+                          title="Previous sentence">⏮</button>
+                        <button className={"faudio-btn faudio-play"} onClick={audioPlayPause}
+                          disabled={audioFetching}
+                          title={audioPlaying ? "Pause" : "Play"}>
+                          {audioFetching ? "…" : (audioPlaying ? "⏸" : "▶")}
+                        </button>
+                        <button className="faudio-btn" onClick={audioSkipForward}
+                          disabled={audioIdx >= audioSentences.length - 1 || audioFetching}
+                          title="Next sentence">⏭</button>
+                        <span className="faudio-status">
+                          Sentence {audioIdx + 1} / {audioSentences.length}
+                        </span>
+                      </div>
+                    )}
                   </>
                 )}
 
