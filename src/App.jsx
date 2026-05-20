@@ -4381,6 +4381,24 @@ export default function App() {
           <span>Choose a Russian voice</span>
           <div style={{display:"flex",gap:6}}>
             {diagLogs.length > 0 && <button className="ttsbtn" style={{height:22,fontSize:11}} onClick={copyDiagLogs}>📋 Copy log</button>}
+            <button className="ttsbtn" style={{height:22,fontSize:11}} onClick={function(){
+              // List every Russian voice the platform exposes, with full URI +
+              // localService flag — lets us see if Enhanced/Siri variants are
+              // present in JS (vs. only visible to native iOS apps).
+              var lines = ["=== RUSSIAN VOICE INSPECTOR ===",
+                "Total voices: " + allVoices.length];
+              var ruVoices = allVoices.filter(function(v){ return v.lang && v.lang.toLowerCase().startsWith("ru"); });
+              lines.push("Russian voices (lang ru-*): " + ruVoices.length);
+              ruVoices.forEach(function(v, i){
+                lines.push("[" + (i+1) + "] name=\"" + v.name + "\"  lang=" + v.lang + "  local=" + v.localService + "  default=" + v.default);
+                lines.push("    voiceURI=" + (v.voiceURI || "(none)"));
+              });
+              if (ruVoices.length === 0) {
+                lines.push("(no voices with lang ru-* — iOS Safari may not expose installed Russian voices to JavaScript)");
+              }
+              lines.push("=== INSPECTOR COMPLETE ===");
+              setDiagLogs(lines);
+            }}>🔬 Inspect</button>
             <button className="ttsbtn" style={{height:22,fontSize:11}} onClick={runDiagnostics}>🩺 Diagnose</button>
           </div>
         </div>
@@ -4396,18 +4414,14 @@ export default function App() {
         )}
         <div className="vplist">
           {allVoices.length===0 && <div className="vpem">No voices found. Install a Russian voice in system settings.</div>}
-          {allVoices.length>0 && allVoices.filter(function(v){ return v.lang.startsWith("ru")||/katya|katja|milena|yuri/i.test(v.name); }).length===0 && <div className="vpem">No Russian voices on this device.<br/>In Microsoft Edge you'll see Russian neural voices automatically — try opening the app in Edge. Or install a Russian voice in your system Speech settings.</div>}
+          {allVoices.length>0 && allVoices.filter(function(v){ return !!(v.lang && v.lang.toLowerCase().startsWith("ru")); }).length===0 && <div className="vpem">No Russian voices on this device.<br/>In Microsoft Edge you'll see Russian neural voices automatically — try opening the app in Edge. Or install a Russian voice in your system Speech settings.</div>}
           {(function() {
-            // Detect Russian voices. Be generous — lang prefix is the main signal,
-            // but we also catch known Russian voice names in BOTH Latin and Cyrillic
-            // because iOS sometimes localizes voice names to the system language
-            // (e.g. "Милена" instead of "Milena" when iOS UI is in Russian).
+            // Strict: ONLY voices whose lang code starts with "ru" (ru-RU, ru, etc.).
+            // We had a name-based fallback that was leaking unrelated voices on iOS
+            // (any voice with Cyrillic characters in its descriptor was matching);
+            // ditching it. If a voice doesn't claim ru-* it isn't useful for Russian.
             var isRu = function(v) {
-              if (v.lang && v.lang.toLowerCase().startsWith("ru")) return true;
-              // Cyrillic-named voices: catch them even if lang label is unset
-              if (/[а-яёА-ЯЁ]/.test(v.name)) return true;
-              // Known Russian voice names (Latin transliteration)
-              return /katya|katja|milena|yuri|tatyana|pavel|irina|maxim|alyona|elena|vladimir/i.test(v.name);
+              return !!(v.lang && v.lang.toLowerCase().startsWith("ru"));
             };
             var isMsNatural = function(v) {
               return /microsoft.*online.*natural/i.test(v.name) || /\(natural\)/i.test(v.name);
@@ -4415,19 +4429,17 @@ export default function App() {
             var isGoogle = function(v) { return /google/i.test(v.name); };
             // iOS / macOS Enhanced and Premium voices — higher-quality local
             // voices that the user can download via Settings → Accessibility →
-            // Spoken Content → Voices → Russian. They sound noticeably better
-            // than the default voice.
+            // Spoken Content → Voices → Russian. Detect via voiceURI which
+            // contains "enhanced" or "premium" for these tiers on iOS.
             var isEnhanced = function(v) {
-              return /\b(enhanced|premium)\b/i.test(v.name) || /enhanced/i.test(v.voiceURI || "");
+              var uri = (v.voiceURI || "").toLowerCase();
+              return /enhanced|premium/i.test(v.name) || uri.indexOf("enhanced") !== -1 || uri.indexOf("premium") !== -1;
             };
             // Apple Siri voices — top-tier neural voices on iOS 16+/macOS 13+.
-            // Named "Siri" or "Siri Voice N".
             var isSiri = function(v) {
-              return /\bsiri\b/i.test(v.name) || /com\.apple\.ttsbundle\.siri/i.test(v.voiceURI || "");
+              var uri = (v.voiceURI || "").toLowerCase();
+              return /\bsiri\b/i.test(v.name) || uri.indexOf("siri") !== -1;
             };
-            // Tier each voice: 0 = local Siri/Enhanced/Premium (top quality),
-            // 1 = other local, 2 = high-quality network (MS Natural / Google),
-            // 3 = other network.
             var tier = function(v) {
               if (v.localService && (isSiri(v) || isEnhanced(v))) return 0;
               if (v.localService) return 1;
