@@ -2258,6 +2258,11 @@ export default function App() {
   var [fErr, setFErr]           = useState("");
 
   var [voice, setVoice]         = useState(null);
+  // Mirror of `voice` state in a ref so async callbacks (speakMsg, picker test)
+  // always read the LATEST voice, even if React batches/closures lag behind.
+  // This is the safety net against Chrome PC's onvoiceschanged race condition.
+  var voiceRef = useRef(null);
+  useEffect(function() { voiceRef.current = voice; }, [voice]);
   var [allVoices, setAllVoices] = useState([]);
   // Tracks whether the user has explicitly picked a voice from the picker.
   // Chrome on PC fires `onvoiceschanged` multiple times as Google network voices
@@ -3043,6 +3048,9 @@ export default function App() {
   }, []);
 
   var speakMsg = useCallback(function(text, idx) {
+    // Read voice from the ref so we always see the most recent pick — never a
+    // value captured by useCallback at an earlier render.
+    var currentVoice = voiceRef.current;
     setTtsErr("");
     stopKeepalive();
     // Cancel any in-flight TTS (speechSynthesis OR cloud audio) before starting.
@@ -3065,12 +3073,12 @@ export default function App() {
     // Cloud voice branch — bypass speechSynthesis entirely. Fetch MP3 from
     // /api/tts and play via <audio>. Works on iOS, where the WebSpeech API
     // is limited to compact Milena.
-    if (voice && voice._cloud) {
-      console.log("[cloud-tts] speakMsg start. voice:", voice._azureVoice, "textLen:", ru.length, "preview:", ru.slice(0, 60));
+    if (currentVoice && currentVoice._cloud) {
+      console.log("[cloud-tts] speakMsg start. voice:", currentVoice._azureVoice, "textLen:", ru.length, "preview:", ru.slice(0, 60));
       fetch("/api/tts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: ru, voice: voice._azureVoice, rate: -8 }),
+        body: JSON.stringify({ text: ru, voice: currentVoice._azureVoice, rate: -8 }),
       }).then(function(r) {
         console.log("[cloud-tts] fetch responded. status:", r.status, "ok:", r.ok);
         if (!r.ok) {
@@ -3131,9 +3139,7 @@ export default function App() {
     setTimeout(function() {
       var u = new SpeechSynthesisUtterance(ru);
       u.lang="ru-RU"; u.rate=0.84;
-      // Defensive: cloud voices should be handled by the cloud branch above and
-      // never reach here, but guard against any future code path that might.
-      if (voice && !voice._cloud) u.voice=voice;
+      if (currentVoice && !currentVoice._cloud) u.voice=currentVoice;
       u.onstart = function(){ startKeepalive(); };
       u.onend = function(){ stopKeepalive(); setSpkIdx(null); };
       u.onerror = function(e){
@@ -3145,14 +3151,12 @@ export default function App() {
         setSpkIdx(null);
       };
       try {
-        // Same Chrome quirk workarounds as playText: nudge the engine out of
-        // any half-paused state before issuing the new utterance.
         if (window.speechSynthesis.paused) window.speechSynthesis.resume();
         window.speechSynthesis.speak(u);
       }
       catch(ex) { setTtsErr("speak() threw: " + (ex.message || ex)); setSpkIdx(null); }
     }, 250);
-  }, [voice, spkIdx]);
+  }, [spkIdx]);
 
   var runDiagnostics = function() {
     var logs = [];
@@ -6095,7 +6099,7 @@ export default function App() {
                       }
                       <span className="ttslab">{playing?"Reading…":charPos.current>0?(voice&&voice.name||"Voice")+" — paused":voice?(voice.name+" — click ▶"):"No Russian voice found"}</span>
                       {charPos.current>0 && <button className="ttsbtn" onClick={function(){ stopTTS(); charPos.current=0; paraText.current=""; }}>⏹</button>}
-                      <button className="ttsbtn" onClick={function(){ setShowVP(function(v){ return !v; }); }}>🎙 Voice</button>
+                      <button className="ttsbtn" onClick={function(){ setShowVP(function(v){ return !v; }); }}>🎙 {voice ? (voice._cloud ? voice._azureVoice.replace("ru-RU-","").replace("Neural","") + " (cloud)" : voice.name.length > 18 ? voice.name.slice(0, 16) + "…" : voice.name) : "Voice"}</button>
                     </div>
 
                     {renderVoicePicker()}
@@ -6228,7 +6232,7 @@ export default function App() {
                 {renderVoicePicker()}
                 <div className="ibar">
                   <button className="inew" onClick={startChat}>↺ New</button>
-                  <button className="inew" title="Choose a voice for 🔊 Listen" onClick={function(){ setShowVP(function(v){ return !v; }); }}>🎙</button>
+                  <button className="inew" title={"Voice for 🔊 Listen: " + (voice ? (voice._cloud ? voice._azureVoice + " (Azure Cloud)" : voice.name) : "(none selected)")} onClick={function(){ setShowVP(function(v){ return !v; }); }}>🎙</button>
                   <textarea ref={inputRef} value={input} onChange={function(e){ setInput(e.target.value); }} onKeyDown={onKey} placeholder="Type in Russian or English…" rows={1} disabled={loading}/>
                   <button className="isend" onClick={send} disabled={loading||!input.trim()}>↑</button>
                 </div>
