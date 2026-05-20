@@ -8,10 +8,10 @@
 //
 // Required environment variables on Vercel:
 //   AZURE_SPEECH_KEY     — the Cognitive Services subscription key
-//   AZURE_SPEECH_REGION  — e.g. "eastus", "westeurope" (the region you provisioned in)
+//   AZURE_SPEECH_REGION  — e.g. "eastus", "westeurope" (region your resource was provisioned in)
 //
-// Cost: ~$4 per 1M characters for neural voices on Azure's Pay-As-You-Go tier.
-// Average chat response = ~200 chars = $0.0008. Free tier: 500k chars/month.
+// Cost: ~$16 per 1M characters for neural voices on Azure's Pay-As-You-Go tier.
+// Free tier: 500k characters/month neural.
 
 const ALLOWED_VOICES = {
   "ru-RU-DariyaNeural": true,
@@ -34,21 +34,44 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const key = process.env.AZURE_SPEECH_KEY;
-  const region = process.env.AZURE_SPEECH_REGION;
-  if (!key || !region) {
+  // Read env vars and validate. Trim in case the user pasted with whitespace.
+  const key = (process.env.AZURE_SPEECH_KEY || "").trim();
+  const region = (process.env.AZURE_SPEECH_REGION || "").trim().toLowerCase();
+
+  if (!key) {
     return res.status(500).json({
-      error: "Azure Speech is not configured. Set AZURE_SPEECH_KEY and AZURE_SPEECH_REGION in Vercel env vars.",
+      error: "AZURE_SPEECH_KEY is not set",
+      hint: "Add it under Vercel → Settings → Environment Variables, then redeploy.",
+    });
+  }
+  if (!region) {
+    return res.status(500).json({
+      error: "AZURE_SPEECH_REGION is not set",
+      hint: "Add it under Vercel → Settings → Environment Variables, then redeploy. Example values: eastus, westus2, westeurope.",
+    });
+  }
+  // Sanity check region format — must be a single token of letters/digits.
+  if (!/^[a-z0-9]+$/i.test(region)) {
+    return res.status(500).json({
+      error: "AZURE_SPEECH_REGION looks malformed",
+      regionGot: region,
+      hint: "Expected a single region token like 'eastus' — not a URL or display name.",
     });
   }
 
-  const body = req.body || {};
+  // Defensive body parsing: Vercel usually parses JSON when Content-Type is
+  // application/json, but if a client sends raw text, req.body may be a string.
+  let body = req.body;
+  if (typeof body === "string") {
+    try { body = JSON.parse(body); } catch (e) { body = {}; }
+  }
+  body = body || {};
+
   const text = typeof body.text === "string" ? body.text : "";
   const voice = typeof body.voice === "string" && ALLOWED_VOICES[body.voice]
     ? body.voice
     : "ru-RU-DariyaNeural";
   const ratePct = typeof body.rate === "number" ? Math.max(-50, Math.min(50, body.rate)) : -8;
-  // -8% = slightly slower than native pace, better for language learners.
 
   if (!text.trim()) {
     return res.status(400).json({ error: "text is required" });
@@ -57,7 +80,6 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "text too long (max 5000 chars per request)" });
   }
 
-  // Build SSML — wrap text with the selected voice + prosody rate.
   const ssml = `<speak version="1.0" xml:lang="ru-RU" xmlns="http://www.w3.org/2001/10/synthesis">
 <voice name="${voice}">
 <prosody rate="${ratePct >= 0 ? "+" : ""}${ratePct}%">${escapeXml(text)}</prosody>
@@ -72,20 +94,37 @@ export default async function handler(req, res) {
       headers: {
         "Ocp-Apim-Subscription-Key": key,
         "Content-Type": "application/ssml+xml",
-        // 24kHz mono MP3 — good quality, ~5KB/sec, works on all browsers.
         "X-Microsoft-OutputFormat": "audio-24khz-48kbitrate-mono-mp3",
-        "User-Agent": "Govorim/1.0 (Russian language practice app)",
+        "User-Agent": "Govorim/1.0",
       },
       body: ssml,
     });
 
     if (!azureResp.ok) {
-      const errText = await azureResp.text().catch(() => "");
-      console.error("Azure TTS error:", azureResp.status, errText.slice(0, 500));
-      return res.status(azureResp.status >= 400 && azureResp.status < 500 ? 502 : 500).json({
+      let errText = "";
+      try { errText = await azureResp.text(); } catch (e) {}
+      console.error("[tts] Azure rejected:", azureResp.status, errText.slice(0, 500));
+
+      // Surface common error causes with targeted hints.
+      let hint = "";
+      if (azureResp.status === 401) {
+        hint = "Azure rejected the subscription key (401 Unauthorized). Verify AZURE_SPEECH_KEY is correct — copy KEY 1 (or KEY 2) from the 'Keys and Endpoint' page of your Speech resource. Make sure there's no extra whitespace.";
+      } else if (azureResp.status === 403) {
+        hint = "Azure rejected with 403 Forbidden. Common causes: (1) the Speech resource is suspended or its free tier quota is exhausted, (2) the key belongs to a different Azure resource type (must be a Speech / Cognitive Services Speech resource, not a generic Cognitive Services key), (3) the resource is in a different region than AZURE_SPEECH_REGION.";
+      } else if (azureResp.status === 404) {
+        hint = "Azure endpoint not found (404). AZURE_SPEECH_REGION is probably wrong. Check 'Keys and Endpoint' in the Azure portal — the 'Location/Region' field tells you the correct value (e.g., eastus, westeurope).";
+      } else if (azureResp.status === 429) {
+        hint = "Azure rate limit (429). Wait a moment or upgrade from the free tier.";
+      } else if (azureResp.status >= 500) {
+        hint = "Azure server error — try again in a moment.";
+      }
+
+      return res.status(502).json({
         error: "Azure TTS request failed",
         azureStatus: azureResp.status,
-        detail: errText.slice(0, 300),
+        azureDetail: errText.slice(0, 300),
+        region: region,
+        hint: hint,
       });
     }
 
@@ -96,11 +135,13 @@ export default async function handler(req, res) {
 
     res.setHeader("Content-Type", "audio/mpeg");
     res.setHeader("Content-Length", audioBuffer.length);
-    // Cache same text+voice in CDN for 1 hour to avoid re-paying Azure for identical phrases.
     res.setHeader("Cache-Control", "public, max-age=3600, s-maxage=3600");
     res.status(200).send(audioBuffer);
   } catch (e) {
-    console.error("TTS handler exception:", e);
-    return res.status(500).json({ error: e && e.message ? e.message : "TTS failed" });
+    console.error("[tts] handler exception:", e);
+    return res.status(500).json({
+      error: e && e.message ? e.message : "TTS failed",
+      stack: process.env.NODE_ENV === "development" ? (e && e.stack) : undefined,
+    });
   }
 }

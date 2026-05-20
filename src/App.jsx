@@ -3076,7 +3076,15 @@ export default function App() {
         body: JSON.stringify({ text: ru, voice: voice._azureVoice, rate: -8 }),
       }).then(function(r) {
         if (!r.ok) {
-          return r.json().then(function(j) { throw new Error(j.error || "TTS failed (HTTP " + r.status + ")"); });
+          return r.json().then(function(j) {
+            var msg = j.error || ("HTTP " + r.status);
+            if (j.azureStatus) msg += " (Azure " + j.azureStatus + ")";
+            if (j.hint) msg += " — " + j.hint;
+            else if (j.azureDetail) msg += " — detail: " + j.azureDetail;
+            throw new Error(msg);
+          }, function() {
+            throw new Error("HTTP " + r.status);
+          });
         }
         return r.blob();
       }).then(function(blob) {
@@ -4591,7 +4599,17 @@ export default function App() {
                           headers: { "Content-Type": "application/json" },
                           body: JSON.stringify({ text: "Привет! Я твой голос.", voice: v._azureVoice, rate: 0 }),
                         }).then(function(r) {
-                          if (!r.ok) return r.json().then(function(j){ throw new Error(j.error || ("HTTP " + r.status)); });
+                          if (!r.ok) {
+                            return r.json().then(function(j) {
+                              var msg = j.error || ("HTTP " + r.status);
+                              if (j.azureStatus) msg += " (Azure " + j.azureStatus + ")";
+                              if (j.hint) msg += " — " + j.hint;
+                              else if (j.azureDetail) msg += " — detail: " + j.azureDetail;
+                              throw new Error(msg);
+                            }, function() {
+                              throw new Error("HTTP " + r.status);
+                            });
+                          }
                           return r.blob();
                         }).then(function(blob) {
                           var audio = new Audio(URL.createObjectURL(blob));
@@ -4607,7 +4625,7 @@ export default function App() {
                             p.catch(function(e){ setTtsErr("Audio blocked: " + (e.message || e)); });
                           }
                         }).catch(function(err) {
-                          setTtsErr("Cloud voice test failed: " + (err.message || err) + ". Check that AZURE_SPEECH_KEY and AZURE_SPEECH_REGION are set in Vercel.");
+                          setTtsErr("Cloud voice test failed: " + (err.message || err));
                         });
                         return;
                       }
