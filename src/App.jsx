@@ -2270,7 +2270,9 @@ export default function App() {
   // and stomps the user's manual pick. Ref (not state) so we can read the
   // up-to-date value from inside useEffect closures.
   var userPickedRef = useRef(false);
-  var GVT_VOICE_KEY = "gv_voice_v1";  // localStorage: persist voice pick across sessions
+  // Bumped from v1 → v2 to wipe out stale Milena/Google saves from before the
+  // cloud-first default became active. Old keys are intentionally orphaned.
+  var GVT_VOICE_KEY = "gv_voice_v2";  // localStorage: persist voice pick across sessions
   var [playing, setPlaying]     = useState(false);
   var [showVP, setShowVP]       = useState(false);
   var [spkIdx, setSpkIdx]       = useState(null);
@@ -2471,7 +2473,11 @@ export default function App() {
         }
       } catch(e) {}
 
-      // Otherwise, run the priority-based auto-selector.
+      // Auto-pick priority. Cloud Dariya is now the #1 default on EVERY
+      // platform — consistent voice on iPhone Safari, Chrome PC, Edge, Mac.
+      // Users can override in the picker (their pick is saved per device).
+      // The browser-native fallbacks stay below for the rare case where cloud
+      // TTS isn't configured / fails / is intentionally disabled.
       var isMsNatural = function(v) {
         return /microsoft.*online.*natural/i.test(v.name) || /\(natural\)/i.test(v.name);
       };
@@ -2479,9 +2485,11 @@ export default function App() {
       var isEnhanced = function(v) { return /\b(enhanced|premium)\b/i.test(v.name) || /enhanced/i.test(v.voiceURI || ""); };
       var isSiri = function(v) { return /\bsiri\b/i.test(v.name) || /com\.apple\.ttsbundle\.siri/i.test(v.voiceURI || ""); };
       var isRuLang = function(v) { return v.lang && v.lang.toLowerCase().startsWith("ru"); };
-      var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
       var v =
-           (isIOS && all.find(function(v) { return v._cloud && v._azureVoice === "ru-RU-DariyaNeural"; }))
+           // PRIMARY DEFAULT — cloud Dariya, every platform. Best Russian
+           // neural voice we can deliver consistently.
+           all.find(function(v) { return v._cloud && v._azureVoice === "ru-RU-DariyaNeural"; })
+        // Fallbacks (only used if cloud voices are missing — should be rare):
         || all.find(function(v) { return isRuLang(v) && v.localService && isSiri(v); })
         || all.find(function(v) { return isRuLang(v) && v.localService && isEnhanced(v); })
         || all.find(function(v) { return /katya|katja/i.test(v.name) && v.localService; })
