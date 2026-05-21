@@ -28,6 +28,184 @@ function escapeXml(s) {
     .replace(/'/g, "&apos;");
 }
 
+// Russian typography customarily drops the ё diacritic, writing the letter as
+// plain "е" — but the pronunciation still requires "yo". Restore ё to the TTS
+// payload only (book text on screen stays unchanged). Two passes:
+//
+//   1. Static word list: words where ё is virtually always correct regardless
+//      of context (е.g. "еще" → "ещё", "идет" → "идёт", "черный" → "чёрный").
+//      Extend the YO_RESTORATION table below as you find missing words.
+//
+//   2. Grammar-aware pattern: "Все/все" + neuter past-tense verb (ending in
+//      -ло or -лось within a few words) implies neuter singular "Всё/всё"
+//      rather than plural "Все". Example: "Все смешалось" → "Всё смешалось"
+//      because "смешалось" is neuter past; if the verb were "смешались"
+//      (plural), no substitution would happen.
+//
+// Run BEFORE yoFix() so any restored ё's get phonetic-spelled too.
+
+const YO_RESTORATION = {
+  // — Adverbs / particles ————————————————————————————————
+  "еще": "ещё", "Еще": "Ещё", "ЕЩЕ": "ЕЩЁ",
+  "ее": "её", "Ее": "Её",  // feminine accusative/genitive pronoun "her" — always ё in speech
+
+  // — Common 3rd-person verb forms (-ёт / -ёшь / -ём / -ёте) ——————————————
+  "идет": "идёт", "Идет": "Идёт",
+  "идешь": "идёшь",
+  "идем": "идём",
+  "идете": "идёте",
+  "несет": "несёт", "Несет": "Несёт",
+  "несешь": "несёшь",
+  "несем": "несём",
+  "везет": "везёт", "Везет": "Везёт",
+  "везешь": "везёшь",
+  "ведет": "ведёт", "Ведет": "Ведёт",
+  "ведешь": "ведёшь",
+  "поведет": "поведёт",
+  "найдет": "найдёт", "Найдет": "Найдёт",
+  "найдешь": "найдёшь",
+  "найдем": "найдём",
+  "придет": "придёт", "Придет": "Придёт",
+  "придешь": "придёшь",
+  "пойдет": "пойдёт", "Пойдет": "Пойдёт",
+  "пойдешь": "пойдёшь",
+  "уйдет": "уйдёт",
+  "войдет": "войдёт",
+  "сойдет": "сойдёт",
+  "зайдет": "зайдёт",
+  "зовет": "зовёт", "Зовет": "Зовёт",
+  "зовешь": "зовёшь",
+  "лжет": "лжёт",
+  "льет": "льёт",
+  "бьет": "бьёт",
+  "пьет": "пьёт",
+  "поет": "поёт", "Поет": "Поёт",
+  "поешь": "поёшь",
+  "берет": "берёт", "Берет": "Берёт",  // also a hat — collision possible but rare
+  "берешь": "берёшь",
+  "берем": "берём",
+  "плетет": "плетёт",
+  "метет": "метёт",
+  "сметет": "сметёт",
+  "цветет": "цветёт",
+  "печет": "печёт",
+  "течет": "течёт",
+  "стережет": "стережёт",
+
+  // — Past tense masculine (-ёл / -ёс / -ёз / -ёг) ——————————————
+  "шел": "шёл", "Шел": "Шёл",
+  "пошел": "пошёл", "Пошел": "Пошёл",
+  "пришел": "пришёл", "Пришел": "Пришёл",
+  "ушел": "ушёл", "Ушел": "Ушёл",
+  "нашел": "нашёл", "Нашел": "Нашёл",
+  "зашел": "зашёл",
+  "вошел": "вошёл",
+  "сошел": "сошёл",
+  "обошел": "обошёл",
+  "перешел": "перешёл",
+  "вел": "вёл", "Вел": "Вёл",
+  "повел": "повёл",
+  "увел": "увёл",
+  "привел": "привёл",
+  "нес": "нёс", "Нес": "Нёс",
+  "понес": "понёс",
+  "привез": "привёз",
+  "увез": "увёз",
+  "приобрел": "приобрёл",
+
+  // — Adjectives (most common stems) ——————————————
+  "черный": "чёрный", "Черный": "Чёрный",
+  "черная": "чёрная", "Черная": "Чёрная",
+  "черное": "чёрное", "Черное": "Чёрное",
+  "черные": "чёрные", "Черные": "Чёрные",
+  "черного": "чёрного", "черному": "чёрному", "черным": "чёрным",
+  "черной": "чёрной", "черных": "чёрных", "черном": "чёрном", "черными": "чёрными",
+  "темный": "тёмный", "Темный": "Тёмный",
+  "темная": "тёмная", "темное": "тёмное", "темные": "тёмные",
+  "темного": "тёмного", "темной": "тёмной", "темном": "тёмном",
+  "темнота": "темнота",  // no ё in this form
+  "теплый": "тёплый", "Теплый": "Тёплый",
+  "теплая": "тёплая", "теплое": "тёплое", "теплые": "тёплые",
+  "теплого": "тёплого", "теплой": "тёплой", "теплом": "тёплом",
+  "легкий": "лёгкий", "Легкий": "Лёгкий",
+  "легкая": "лёгкая", "легкое": "лёгкое", "легкие": "лёгкие",
+  "легкого": "лёгкого", "легкой": "лёгкой",
+  "тяжелый": "тяжёлый", "Тяжелый": "Тяжёлый",
+  "тяжелая": "тяжёлая", "тяжелое": "тяжёлое", "тяжелые": "тяжёлые",
+  "тяжелого": "тяжёлого", "тяжелой": "тяжёлой",
+  "твердый": "твёрдый", "Твердый": "Твёрдый",
+  "твердая": "твёрдая", "твердое": "твёрдое", "твердые": "твёрдые",
+  "мертвый": "мёртвый", "Мертвый": "Мёртвый",
+  "мертвая": "мёртвая", "мертвое": "мёртвое", "мертвые": "мёртвые",
+  "веселый": "весёлый", "Веселый": "Весёлый",
+  "веселая": "весёлая", "веселое": "весёлое", "веселые": "весёлые",
+
+  // — Common nouns ——————————————
+  "ребенок": "ребёнок", "Ребенок": "Ребёнок",
+  "ребенка": "ребёнка",
+  "ребенку": "ребёнку",
+  "ребенком": "ребёнком",
+  "сестры": "сёстры", "Сестры": "Сёстры",
+  "сестрам": "сёстрам",
+  "сестрами": "сёстрами",
+  "сестрах": "сёстрах",
+  "тетя": "тётя", "Тетя": "Тётя",
+  "тетка": "тётка",
+  "ежик": "ёжик", "Ежик": "Ёжик",
+  "ежика": "ёжика",
+  "елка": "ёлка", "Елка": "Ёлка",
+  "елки": "ёлки",
+  "клен": "клён",
+  "клена": "клёна",
+  "лед": "лёд",      // nominative only — oblique cases lose ё via stress shift
+  "слезы": "слёзы",  // nominative plural of "слеза"
+  "слез": "слёз",    // genitive plural
+  "клест": "клёст",
+  "костер": "костёр", "Костер": "Костёр",
+
+  // — Common professional/agentive nouns in -ёр ——————————————
+  "актер": "актёр", "Актер": "Актёр",
+  "актеры": "актёры",
+  "актеров": "актёров",
+  "режиссер": "режиссёр", "Режиссер": "Режиссёр",
+  "режиссеры": "режиссёры",
+  "монтер": "монтёр",
+  "шофер": "шофёр",
+
+  // — Family of words around "идти/идущий" ——————————————
+  "идущий": "идущий",  // no ё — stress is elsewhere
+};
+
+// Pre-build a single regex from the keys for efficiency. Sort by length so
+// longer matches win when alternates overlap ("придет" before "идет").
+const YO_KEYS = Object.keys(YO_RESTORATION).sort(function(a, b){ return b.length - a.length; });
+// Russian word-boundary: preceded by start-of-string OR a non-Cyrillic-letter,
+// followed by a non-Cyrillic-letter or end-of-string.
+const YO_REGEX = new RegExp(
+  "(^|[^а-яёА-ЯЁ])(" + YO_KEYS.join("|") + ")(?=[^а-яёА-ЯЁ]|$)",
+  "g"
+);
+
+function restoreYo(text) {
+  if (!text) return text;
+
+  // 1. Static word substitutions
+  text = text.replace(YO_REGEX, function(_, prefix, word) {
+    return prefix + YO_RESTORATION[word];
+  });
+
+  // 2. Grammar-aware: "Все"/"все" + neuter past verb (-ло/-лось within ~3 words) → "Всё"/"всё"
+  // Captures the leading context char so we don't accidentally match inside another word.
+  text = text.replace(
+    /(^|[^а-яёА-ЯЁ])([Вв])се(?=\s+(?:[а-яёА-ЯЁ]+\s+){0,3}[а-яёА-ЯЁ]+(?:лось|ло)(?:[^а-яёА-ЯЁ]|$))/g,
+    function(_, prefix, v) {
+      return prefix + v + "сё";
+    }
+  );
+
+  return text;
+}
+
 // Azure's Russian neural voices have a known bug where they pronounce "ё" as
 // plain "е", losing the "yo" sound. Workaround: substitute "ё" with a
 // pronunciation-equivalent spelling before generating SSML. The user's book
@@ -110,7 +288,7 @@ export default async function handler(req, res) {
 
   const ssml = `<speak version="1.0" xml:lang="ru-RU" xmlns="http://www.w3.org/2001/10/synthesis">
 <voice name="${voice}">
-<prosody rate="${ratePct >= 0 ? "+" : ""}${ratePct}%">${escapeXml(yoFix(text))}</prosody>
+<prosody rate="${ratePct >= 0 ? "+" : ""}${ratePct}%">${escapeXml(yoFix(restoreYo(text)))}</prosody>
 </voice>
 </speak>`;
 
