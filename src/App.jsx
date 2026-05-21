@@ -2276,19 +2276,28 @@ export default function App() {
   // Sentence-by-sentence cloud TTS playback. Parses the current page into
   // sentences, fetches each from /api/tts on demand, plays them sequentially.
   // Always Azure Dmitry — no other voices supported.
+  //
+  // Gapless playback: while one sentence plays, we prefetch the next sentence
+  // in the background. When the current audio ends, the next sentence's blob
+  // is already cached and starts playing within ~100ms instead of after a
+  // full fetch round-trip (~500-1000ms). Cache keyed by sentence index, reset
+  // on page/chapter change. Generation counter (audioGenRef) prevents stale
+  // fetches from playing after the user has skipped or paused/resumed.
   var [audioSentences, setAudioSentences] = useState([]);
   var [audioIdx, setAudioIdx] = useState(0);
   var [audioPlaying, setAudioPlaying] = useState(false);
   var [audioFetching, setAudioFetching] = useState(false);
   var audioElemRef = useRef(null);
-  var audioIdxRef = useRef(0);  // mirror for use in async callbacks
+  var audioCacheRef = useRef({});  // idx → Promise<Blob>
+  var audioGenRef = useRef(0);     // incremented when a playback intent is superseded
+  var audioIdxRef = useRef(0);
   useEffect(function() { audioIdxRef.current = audioIdx; }, [audioIdx]);
   var audioPlayingRef = useRef(false);
   useEffect(function() { audioPlayingRef.current = audioPlaying; }, [audioPlaying]);
+  // Need sentences accessible from prefetchSentence (called via async chains).
+  var audioSentencesRef = useRef([]);
+  useEffect(function() { audioSentencesRef.current = audioSentences; }, [audioSentences]);
 
-  // Parse a page of text into a flat array of sentence-like fragments. Each
-  // fragment becomes one /api/tts call. Handles both prose (sentences ending
-  // in .!?…) and poems/songs (line breaks become natural break points).
   var parseSentences = function(text) {
     if (!text) return [];
     var out = [];
@@ -2296,8 +2305,6 @@ export default function App() {
     for (var i = 0; i < lines.length; i++) {
       var line = lines[i].trim();
       if (!line) continue;
-      // Match groups of non-terminator chars followed by terminator(s), OR
-      // any remaining tail without a terminator (poem line, last clause).
       var matches = line.match(/[^.!?…]+[.!?…]+|[^.!?…]+$/g) || [line];
       for (var j = 0; j < matches.length; j++) {
         var s = matches[j].trim();
@@ -2307,45 +2314,84 @@ export default function App() {
     return out;
   };
 
-  // Halt and clear all audio bar state.
-  var resetAudioBar = function() {
-    if (audioElemRef.current) {
-      try { audioElemRef.current.pause(); audioElemRef.current.src = ""; } catch(e) {}
-      audioElemRef.current = null;
-    }
-    setAudioPlaying(false);
-    audioPlayingRef.current = false;
-  };
-
-  // Play one sentence by index. Auto-advances on end.
-  var playAudioSentence = function(idx) {
-    if (idx < 0 || idx >= audioSentences.length) {
-      setAudioPlaying(false); audioPlayingRef.current = false; return;
-    }
-    var sentence = audioSentences[idx];
-    if (audioElemRef.current) {
-      try { audioElemRef.current.pause(); audioElemRef.current.src = ""; } catch(e) {}
-      audioElemRef.current = null;
-    }
-    setAudioFetching(true);
-    fetch("/api/tts", {
+  // Fetch (or return cached) the audio blob for sentence at `idx`. Stores
+  // the Promise in the cache so repeated calls don't refetch. Failures are
+  // removed from cache so retry works.
+  var prefetchSentence = function(idx) {
+    var sentences = audioSentencesRef.current;
+    if (idx < 0 || idx >= sentences.length) return null;
+    if (audioCacheRef.current[idx]) return audioCacheRef.current[idx];
+    var sentence = sentences[idx];
+    if (!sentence) return null;
+    var promise = fetch("/api/tts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text: sentence, voice: "ru-RU-DmitryNeural", rate: -8 }),
     }).then(function(r) {
       if (!r.ok) return r.json().then(function(j) { throw new Error(j.error || ("HTTP " + r.status)); });
       return r.blob();
-    }).then(function(blob) {
+    }).catch(function(err) {
+      // Evict failed entries so the next attempt re-fetches instead of replaying the error.
+      delete audioCacheRef.current[idx];
+      throw err;
+    });
+    audioCacheRef.current[idx] = promise;
+    return promise;
+  };
+
+  var resetAudioBar = function() {
+    if (audioElemRef.current) {
+      try { audioElemRef.current.pause(); audioElemRef.current.src = ""; } catch(e) {}
+      audioElemRef.current = null;
+    }
+    setAudioPlaying(false); audioPlayingRef.current = false;
+  };
+
+  // Play the sentence at `idx`. Kicks off prefetch for `idx+1` in parallel so
+  // the next sentence is already in memory when this one ends.
+  var playAudioSentence = function(idx) {
+    var sentences = audioSentencesRef.current;
+    if (idx < 0 || idx >= sentences.length) {
+      setAudioPlaying(false); audioPlayingRef.current = false;
+      setAudioFetching(false);
+      return;
+    }
+    audioGenRef.current++;
+    var myGen = audioGenRef.current;
+
+    // Halt any in-flight audio. Don't revoke its URL — we may revisit via the cache.
+    if (audioElemRef.current) {
+      try { audioElemRef.current.pause(); audioElemRef.current.src = ""; } catch(e) {}
+      audioElemRef.current = null;
+    }
+
+    // Prefetch the next sentence in parallel for gapless playback.
+    var nextPromise = prefetchSentence(idx + 1);
+    if (nextPromise) nextPromise.catch(function(){});  // swallow — failure here doesn't matter for current playback
+
+    // Show "loading" spinner only if this sentence isn't already cached.
+    var alreadyCached = !!audioCacheRef.current[idx];
+    if (!alreadyCached) setAudioFetching(true);
+
+    var promise = prefetchSentence(idx);
+    if (!promise) {
+      setAudioFetching(false);
+      setAudioPlaying(false); audioPlayingRef.current = false;
+      return;
+    }
+    promise.then(function(blob) {
+      if (audioGenRef.current !== myGen) return;  // superseded by skip/pause/page change
+      if (!audioPlayingRef.current) { setAudioFetching(false); return; }  // user paused
       var audio = new Audio(URL.createObjectURL(blob));
       audioElemRef.current = audio;
       setAudioFetching(false);
       audio.onended = function() {
         try { URL.revokeObjectURL(audio.src); } catch(e) {}
         if (audioElemRef.current === audio) audioElemRef.current = null;
-        // Auto-advance to next sentence (only if still playing — user may have paused).
-        if (audioPlayingRef.current) {
+        // Auto-advance ONLY if this generation is still current AND we're still in play mode.
+        if (audioPlayingRef.current && audioGenRef.current === myGen) {
           var nextIdx = audioIdxRef.current + 1;
-          if (nextIdx < audioSentences.length) {
+          if (nextIdx < audioSentencesRef.current.length) {
             setAudioIdx(nextIdx); audioIdxRef.current = nextIdx;
             playAudioSentence(nextIdx);
           } else {
@@ -2354,33 +2400,30 @@ export default function App() {
         }
       };
       audio.onerror = function() {
-        setAudioFetching(false);
+        if (audioElemRef.current === audio) audioElemRef.current = null;
         setAudioPlaying(false); audioPlayingRef.current = false;
       };
       var p = audio.play();
       if (p && typeof p.catch === "function") {
         p.catch(function(e) {
-          setAudioFetching(false);
           setAudioPlaying(false); audioPlayingRef.current = false;
           setTtsErr("Audio blocked: " + (e.message || e));
         });
       }
     }).catch(function(err) {
+      if (audioGenRef.current !== myGen) return;
       setAudioFetching(false);
       setAudioPlaying(false); audioPlayingRef.current = false;
       setTtsErr("TTS error: " + (err.message || err));
     });
   };
 
-  // Floating bar controls.
   var audioPlayPause = function() {
-    if (audioSentences.length === 0) return;
+    if (audioSentencesRef.current.length === 0) return;
     if (audioPlaying) {
-      // Pause — keep audio element so we can resume.
       if (audioElemRef.current) audioElemRef.current.pause();
       setAudioPlaying(false); audioPlayingRef.current = false;
     } else {
-      // Resume current audio if paused, else start a fresh fetch.
       setAudioPlaying(true); audioPlayingRef.current = true;
       if (audioElemRef.current && audioElemRef.current.src && audioElemRef.current.paused && audioElemRef.current.currentTime > 0) {
         var p = audioElemRef.current.play();
@@ -2391,15 +2434,15 @@ export default function App() {
     }
   };
   var audioSkipBack = function() {
-    if (audioSentences.length === 0) return;
+    if (audioSentencesRef.current.length === 0) return;
     var newIdx = Math.max(0, audioIdxRef.current - 1);
     setAudioIdx(newIdx); audioIdxRef.current = newIdx;
     if (audioPlayingRef.current) playAudioSentence(newIdx);
     else resetAudioBar();
   };
   var audioSkipForward = function() {
-    if (audioSentences.length === 0) return;
-    var newIdx = Math.min(audioSentences.length - 1, audioIdxRef.current + 1);
+    if (audioSentencesRef.current.length === 0) return;
+    var newIdx = Math.min(audioSentencesRef.current.length - 1, audioIdxRef.current + 1);
     setAudioIdx(newIdx); audioIdxRef.current = newIdx;
     if (audioPlayingRef.current) playAudioSentence(newIdx);
     else resetAudioBar();
@@ -2438,12 +2481,16 @@ export default function App() {
   var totalPages = pages.length;
   var currentPage = pages[Math.min(pidx, totalPages - 1)] || pages[0];
 
-  // Re-parse sentences when page or chapter changes. Halts any in-flight audio.
+  // Re-parse sentences when page or chapter changes. Halts any in-flight audio,
+  // wipes the prefetch cache, and bumps the generation counter so any pending
+  // fetches from the previous page abort instead of playing on the new page.
   useEffect(function() {
     if (audioElemRef.current) {
       try { audioElemRef.current.pause(); audioElemRef.current.src = ""; } catch(e) {}
       audioElemRef.current = null;
     }
+    audioCacheRef.current = {};
+    audioGenRef.current++;
     setAudioPlaying(false); audioPlayingRef.current = false;
     setAudioIdx(0); audioIdxRef.current = 0;
     setAudioFetching(false);
