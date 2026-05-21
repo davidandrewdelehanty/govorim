@@ -2637,31 +2637,53 @@ export default function App() {
     if (segments.length === 0) return null;
 
     // Weight each segment. Words count their character length; gaps count a
-    // fraction of theirs plus a bonus for sentence-ending or comma pauses.
+    // Weight each segment. Words count their character length; gaps count a
+    // fraction of theirs plus a smaller bonus for sentence-ending or comma
+    // pauses. Constants are tuned to match Dmitry's typical cadence — earlier
+    // values over-allocated time to punctuation, which made the highlight
+    // visibly trail the voice by the end of the sentence.
     var totalWeight = 0;
     segments.forEach(function(seg) {
       if (seg.kind === "word") {
         seg.weight = seg.text.length;
       } else {
         seg.weight = seg.text.length * 0.4;
-        if (/[.!?…]/.test(seg.text)) seg.weight += 3.0;
-        else if (/[,;:]/.test(seg.text)) seg.weight += 1.2;
+        if (/[.!?…]/.test(seg.text)) seg.weight += 1.2;       // was 3.0
+        else if (/[,;:]/.test(seg.text)) seg.weight += 0.5;    // was 1.2
       }
       totalWeight += seg.weight;
     });
     if (totalWeight <= 0) return null;
 
-    // Azure typically leaves ~80ms of silence at the start and a tiny tail at
-    // the end. Carve that out before distributing the remaining time.
-    var leadIn = 0.08;
-    var trailOut = 0.05;
+    // Azure Dmitry has a small pre-roll silence (~40-50ms) and tends to clip
+    // tightly at the tail. Anchor the highlight start a hair earlier than the
+    // raw audio start so it reads as a touch ahead rather than behind.
+    var leadIn = 0.04;
+    var trailOut = 0.02;
     var spokenDur = Math.max(0.1, audioDuration - leadIn - trailOut);
-    var timePerWeight = spokenDur / totalWeight;
+
+    // Forward bias: Dmitry consistently accelerates toward the end of each
+    // sentence — likely natural-speech modeling — so a uniform distribution
+    // visibly lags by the final clause. Apply a position-based multiplier
+    // that gives early segments slightly MORE allocated time and late
+    // segments slightly less. The sum is renormalized so the total still
+    // equals spokenDur. Tweak BIAS between 0.10 (subtle) and 0.25 (strong)
+    // if the perceived sync drifts in one direction.
+    var BIAS = 0.18;
+    var totalSegs = segments.length;
+    var totalAdj = 0;
+    segments.forEach(function(seg, i) {
+      var progress = totalSegs > 1 ? (i / (totalSegs - 1)) : 0;
+      seg.bias = (1 + BIAS) - (2 * BIAS) * progress;  // (1+BIAS) at start → (1-BIAS) at end
+      seg.adjWeight = seg.weight * seg.bias;
+      totalAdj += seg.adjWeight;
+    });
+    var timePerAdj = totalAdj > 0 ? spokenDur / totalAdj : 0;
 
     var t = leadIn;
     var timings = [];
     segments.forEach(function(seg) {
-      var dur = seg.weight * timePerWeight;
+      var dur = seg.adjWeight * timePerAdj;
       if (seg.kind === "word") {
         timings.push({
           pageStart: sentence.start + positionOffset + seg.at,
