@@ -2291,6 +2291,12 @@ export default function App() {
   var audioElemRef = useRef(null);
   var audioCacheRef = useRef({});  // idx → Promise<Blob>
   var audioGenRef = useRef(0);     // incremented when a playback intent is superseded
+  // When the user clicks a word mid-sentence, we don't want ▶ to replay the
+  // whole sentence from the start — we want it to play from that word on. This
+  // ref holds a one-shot override: text to play instead of the current sentence's
+  // full text. Consumed (cleared) the moment playback begins, so a subsequent
+  // skip-back to the same sentence plays the FULL sentence normally.
+  var sentenceOverrideRef = useRef(null);
   var audioIdxRef = useRef(0);
   useEffect(function() { audioIdxRef.current = audioIdx; }, [audioIdx]);
   var audioPlayingRef = useRef(false);
@@ -2341,12 +2347,25 @@ export default function App() {
     return best;
   };
 
-  // Fetch (or return cached) the audio blob for sentence at `idx`. Stores
-  // the Promise in the cache so repeated calls don't refetch. Failures are
-  // removed from cache so retry works.
-  var prefetchSentence = function(idx) {
+  // Fetch (or return cached) the audio blob for sentence at `idx`. If
+  // `overrideText` is given, fetches that text instead of the full sentence
+  // and returns the promise WITHOUT caching — used for "play from clicked
+  // word" jumps so subsequent navigation still hears the full sentence.
+  var prefetchSentence = function(idx, overrideText) {
     var sentences = audioSentencesRef.current;
     if (idx < 0 || idx >= sentences.length) return null;
+    if (overrideText) {
+      // One-shot fetch — not cached so a later skip-back to this sentence
+      // hears the FULL sentence rather than just the partial override text.
+      return fetch("/api/tts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: overrideText, voice: "ru-RU-DmitryNeural", rate: -8 }),
+      }).then(function(r) {
+        if (!r.ok) return r.json().then(function(j) { throw new Error(j.error || ("HTTP " + r.status)); });
+        return r.blob();
+      });
+    }
     if (audioCacheRef.current[idx]) return audioCacheRef.current[idx];
     var sentence = sentences[idx] && sentences[idx].text;
     if (!sentence) return null;
@@ -2358,7 +2377,6 @@ export default function App() {
       if (!r.ok) return r.json().then(function(j) { throw new Error(j.error || ("HTTP " + r.status)); });
       return r.blob();
     }).catch(function(err) {
-      // Evict failed entries so the next attempt re-fetches instead of replaying the error.
       delete audioCacheRef.current[idx];
       throw err;
     });
@@ -2392,15 +2410,21 @@ export default function App() {
       audioElemRef.current = null;
     }
 
-    // Prefetch the next sentence in parallel for gapless playback.
-    var nextPromise = prefetchSentence(idx + 1);
-    if (nextPromise) nextPromise.catch(function(){});  // swallow — failure here doesn't matter for current playback
+    // Consume the one-shot override if set. Subsequent playback of this same
+    // sentence will use the full sentence text (override is gone after this).
+    var overrideText = sentenceOverrideRef.current;
+    if (overrideText) sentenceOverrideRef.current = null;
 
-    // Show "loading" spinner only if this sentence isn't already cached.
-    var alreadyCached = !!audioCacheRef.current[idx];
+    // Prefetch the next sentence in parallel for gapless playback.
+    // (Always full text — overrides are only for the current jump.)
+    var nextPromise = prefetchSentence(idx + 1, null);
+    if (nextPromise) nextPromise.catch(function(){});
+
+    // Show "loading" spinner only if neither override nor cache will give an instant blob.
+    var alreadyCached = !overrideText && !!audioCacheRef.current[idx];
     if (!alreadyCached) setAudioFetching(true);
 
-    var promise = prefetchSentence(idx);
+    var promise = prefetchSentence(idx, overrideText);
     if (!promise) {
       setAudioFetching(false);
       setAudioPlaying(false); audioPlayingRef.current = false;
@@ -2462,6 +2486,7 @@ export default function App() {
   };
   var audioSkipBack = function() {
     if (audioSentencesRef.current.length === 0) return;
+    sentenceOverrideRef.current = null;  // manual skip = full sentence
     var newIdx = Math.max(0, audioIdxRef.current - 1);
     setAudioIdx(newIdx); audioIdxRef.current = newIdx;
     if (audioPlayingRef.current) playAudioSentence(newIdx);
@@ -2469,6 +2494,7 @@ export default function App() {
   };
   var audioSkipForward = function() {
     if (audioSentencesRef.current.length === 0) return;
+    sentenceOverrideRef.current = null;  // manual skip = full sentence
     var newIdx = Math.min(audioSentencesRef.current.length - 1, audioIdxRef.current + 1);
     setAudioIdx(newIdx); audioIdxRef.current = newIdx;
     if (audioPlayingRef.current) playAudioSentence(newIdx);
@@ -2518,6 +2544,7 @@ export default function App() {
     }
     audioCacheRef.current = {};
     audioGenRef.current++;
+    sentenceOverrideRef.current = null;
     setAudioPlaying(false); audioPlayingRef.current = false;
     setAudioIdx(0); audioIdxRef.current = 0;
     setAudioFetching(false);
@@ -3440,7 +3467,20 @@ export default function App() {
       // charPosition is into the FULL chapter text. Convert to page-relative.
       var pageOffset = charPosition - currentPage.startChar;
       var sIdx = findSentenceIdxForPageOffset(pageOffset);
-      if (sIdx >= 0) { setAudioIdx(sIdx); audioIdxRef.current = sIdx; }
+      if (sIdx >= 0) {
+        var sent = audioSentencesRef.current[sIdx];
+        // Slice the sentence text from the clicked word onward, so ▶ starts
+        // playback at that exact word rather than restarting the sentence.
+        var wordOffsetInSentence = pageOffset - sent.start;
+        if (wordOffsetInSentence > 0 && wordOffsetInSentence < sent.text.length) {
+          var partial = sent.text.slice(wordOffsetInSentence).replace(/^\s+/, "");
+          sentenceOverrideRef.current = partial || null;
+        } else {
+          // Word is at the start of the sentence — no override needed; play full sentence.
+          sentenceOverrideRef.current = null;
+        }
+        setAudioIdx(sIdx); audioIdxRef.current = sIdx;
+      }
     }
 
     var rect = e.currentTarget.getBoundingClientRect();
@@ -4980,10 +5020,29 @@ export default function App() {
         .inew{background:rgba(210,197,175,.06);color:rgba(210,197,175,.5);border:1px solid rgba(210,197,175,.15);padding:0 16px;border-radius:22px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif;height:44px;white-space:nowrap;transition:all .15s}
         .inew:hover{background:rgba(210,197,175,.12);color:#d2c5af}
         .lit-wrap{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden}
-        .lit-top{display:flex;align-items:center;gap:8px;padding:8px 28px;border-bottom:1px solid rgba(210,197,175,.1);flex-shrink:0;background:#1a1611}
+        .lit-top{display:flex;align-items:center;gap:8px;padding:8px 28px;border-bottom:1px solid rgba(210,197,175,.1);flex-shrink:0;background:#1a1611;flex-wrap:wrap}
         .ltab{padding:6px 14px;border-radius:16px;background:none;border:1px solid rgba(210,197,175,.14);color:rgba(210,197,175,.45);font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;transition:all .15s}
         .ltab.on{background:rgba(200,162,118,.12);border-color:rgba(200,162,118,.3);color:#c8a276}
         .ltab:hover:not(.on){background:rgba(210,197,175,.06)}
+        /* Inline page/chapter nav — compact buttons in the top tab row,
+           freed from the bottom of the screen so the floating audio bar
+           can sit there without blocking navigation. */
+        .lit-top-nav{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+        .lnb-inline{padding:5px 11px;border-radius:8px;border:1px solid rgba(210,197,175,.16);background:rgba(210,197,175,.05);color:rgba(210,197,175,.55);font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;transition:all .15s}
+        .lnb-inline:hover:not(:disabled){background:rgba(210,197,175,.1);color:#d2c5af}
+        .lnb-inline:disabled{opacity:.3;cursor:default}
+        .lnb-inline.p{background:linear-gradient(135deg,#9d4630,#82362a);border-color:transparent;color:#fff}
+        .lnb-inline.p:hover:not(:disabled){opacity:.9}
+        .lnb-inline.ch{border-color:rgba(200,162,118,.3);background:rgba(200,162,118,.08);color:#c8a276;font-size:12px;padding:5px 9px}
+        .lnb-inline.ch:hover:not(:disabled){background:rgba(200,162,118,.18);border-color:rgba(200,162,118,.5)}
+        .lbm-inline{border-color:rgba(200,162,118,.25);background:rgba(200,162,118,.07);color:#c8a276}
+        .lbm-inline:hover{background:rgba(200,162,118,.15)}
+        @media(max-width:780px){
+          .lit-top{padding:6px 12px;gap:5px}
+          .ltab{padding:5px 10px;font-size:12px}
+          .lnb-inline,.lnb-inline.ch{padding:4px 8px;font-size:11px}
+          .lprog{display:none}  /* progress hidden on narrow screens — nav is the priority */
+        }
         .lprog{margin-left:auto;display:flex;align-items:center;gap:10px}
         .lpct{font-size:12px;color:rgba(210,197,175,.35)}
         .lpbar{width:80px;height:3px;background:rgba(210,197,175,.1);border-radius:2px;overflow:hidden}
@@ -6295,6 +6354,21 @@ export default function App() {
                   <button className={"ltab"+(lview==="read"?" on":"")} onClick={function(){ setLview("read"); }}>📖 Read</button>
                   <button className={"ltab"+(lview==="nav"?" on":"")} onClick={function(){ setLview("nav"); }}>🗂 Chapters</button>
                   <button className={"ltab"+(lview==="search"?" on":"")} onClick={function(){ setLview("search"); }}>🔍 Search</button>
+                  {/* Page + chapter nav moved up here so they stay visible
+                      while the floating audio bar covers the bottom of the page. */}
+                  {lview === "read" && (
+                    <div className="lit-top-nav">
+                      {pidx > 0 && <button className="lnb-inline" onClick={function(){ navPage(pidx - 1); }} disabled={loading} title="Previous page">← Page</button>}
+                      <button className="lnb-inline lbm-inline" onClick={function(){ setCbm(cidx); }} title="Bookmark this chapter">📌</button>
+                      {pidx < totalPages - 1 && <button className="lnb-inline p" onClick={function(){ navPage(pidx + 1); }} disabled={loading} title="Next page">Page →</button>}
+                      {chapters.length > 1 && (
+                        <>
+                          {cidx > 0 && <button className="lnb-inline ch" onClick={function(){ navLit(cidx-1); }} disabled={loading} title={singlePageMode ? "Previous song" : "Previous chapter"}>« {singlePageMode ? "Song" : "Ch"}</button>}
+                          {cidx < chapters.length - 1 && <button className="lnb-inline ch" onClick={function(){ navLit(cidx+1); }} disabled={loading} title={singlePageMode ? "Next song" : "Next chapter"}>{singlePageMode ? "Song" : "Ch"} »</button>}
+                        </>
+                      )}
+                    </div>
+                  )}
                   <div className="lprog">
                     <span className="lpct">
                       {singlePageMode
@@ -6384,20 +6458,6 @@ export default function App() {
                           <button className="isend" onClick={send} disabled={loading||!input.trim()}>↑</button>
                         </div>
                       </div>
-                      )}
-                    </div>
-
-                    <div className={"lnav" + (noAIMode ? " noai" : "")}>
-                      <div className="lnav-row">
-                        {pidx > 0 && <button className="lnb" onClick={function(){ navPage(pidx - 1); }} disabled={loading}>← Page</button>}
-                        <button className="lbm" onClick={function(){ setCbm(cidx); }}>📌</button>
-                        {pidx < totalPages - 1 && <button className="lnb p" onClick={function(){ navPage(pidx + 1); }} disabled={loading}>Page →</button>}
-                      </div>
-                      {chapters.length > 1 && (
-                        <div className="lnav-row lnav-row-sm">
-                          {cidx > 0 && <button className="lnb-sm" onClick={function(){ navLit(cidx-1); }} disabled={loading}>← {singlePageMode ? "Previous song" : "Previous chapter"}</button>}
-                          {cidx < chapters.length - 1 && <button className="lnb-sm" onClick={function(){ navLit(cidx+1); }} disabled={loading}>{singlePageMode ? "Next song" : "Next chapter"} →</button>}
-                        </div>
                       )}
                     </div>
 
