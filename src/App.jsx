@@ -2419,6 +2419,27 @@ export default function App() {
   // The result is an array of {text, start, end} where start/end are
   // character positions within the input text, used later to map a clicked
   // word back to a sentence index.
+  // Russian abbreviations that end in a period but DON'T end a sentence, even
+  // when followed by a capitalized word. The classic example is "г." — short
+  // for "господин" / "город" / "год" — which constantly appears next to a
+  // proper noun in Gogol, Tolstoy, and most 19th-century prose ("г. Подточина",
+  // "г. Петербург", "в 1842 г."). Without this set, every such occurrence
+  // becomes a false sentence break, causing the audio to pause and re-fetch.
+  // Lookup is case-insensitive (the lookup converts the captured word to lower).
+  var RU_NON_TERMINAL_ABBR = new Set([
+    // Single-letter abbreviations (very common)
+    "г", "т", "д", "п", "е", "ч", "с", "н",
+    // Two-letter abbreviations and plurals
+    "тт", "вв", "гг", "сс", "пр", "ст", "до",
+    // Longer common abbreviations
+    "стр", "рис", "табл", "напр", "тов", "акад", "проф", "имп", "ген",
+    "пол", "св", "ул", "пл", "пер", "просп", "обл", "млн", "млрд",
+    "тыс", "руб", "коп", "сек", "мин", "см", "мм", "км", "кг", "вып",
+    "изд", "гл", "им", "век", "напис", "опубл", "род", "ум",
+    // English (sometimes appears in mixed-language texts)
+    "mr", "mrs", "ms", "dr", "vs", "etc"
+  ]);
+
   var parseSentences = function(text, opts) {
     opts = opts || {};
     if (!text) return [];
@@ -2476,8 +2497,10 @@ export default function App() {
               while (wStart >= 0 && /[а-яёА-ЯЁa-zA-Z]/.test(line[wStart])) wStart--;
               wStart++;
               var wordBefore = line.slice(wStart, wEnd);
-              if (wordBefore.length === 1 && /[А-ЯЁA-Z]/.test(wordBefore)) {
-                // Initial — not a boundary
+              var isInitial = wordBefore.length === 1 && /[А-ЯЁA-Z]/.test(wordBefore);
+              var isAbbrev = wordBefore.length > 0 && RU_NON_TERMINAL_ABBR.has(wordBefore.toLowerCase());
+              if (isInitial || isAbbrev) {
+                // Initial ("А.", "С.") or known abbreviation ("г.", "стр.", "т.") — not a sentence end.
                 isBoundary = false;
               } else {
                 isBoundary = true;
