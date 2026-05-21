@@ -2655,21 +2655,19 @@ export default function App() {
     });
     if (totalWeight <= 0) return null;
 
-    // Azure Dmitry has a small pre-roll silence (~40-50ms) and tends to clip
-    // tightly at the tail. Anchor the highlight start a hair earlier than the
-    // raw audio start so it reads as a touch ahead rather than behind.
-    var leadIn = 0.04;
+    // Azure Dmitry has a small pre-roll silence (~20-40ms) and tends to clip
+    // tightly at the tail. Anchor the highlight start near zero so the first
+    // word lights as soon as audio begins.
+    var leadIn = 0.02;
     var trailOut = 0.02;
     var spokenDur = Math.max(0.1, audioDuration - leadIn - trailOut);
 
-    // Forward bias: Dmitry consistently accelerates toward the end of each
-    // sentence — likely natural-speech modeling — so a uniform distribution
-    // visibly lags by the final clause. Apply a position-based multiplier
-    // that gives early segments slightly MORE allocated time and late
-    // segments slightly less. The sum is renormalized so the total still
-    // equals spokenDur. Tweak BIAS between 0.10 (subtle) and 0.25 (strong)
-    // if the perceived sync drifts in one direction.
-    var BIAS = 0.18;
+    // Forward bias: Dmitry accelerates toward the end of each sentence, so a
+    // uniform distribution lags by the final clause. A position-based
+    // multiplier gives early segments slightly more time and late segments
+    // slightly less; the sum renormalizes so the total still equals
+    // spokenDur. 0.10 = subtle, 0.25 = strong.
+    var BIAS = 0.12;
     var totalSegs = segments.length;
     var totalAdj = 0;
     segments.forEach(function(seg, i) {
@@ -2706,17 +2704,20 @@ export default function App() {
     }
   };
 
-  // Given an audio playback time (seconds), find the word that should be
-  // highlighted right now and apply the .rw-reading class to its DOM element.
-  // Uses a data-rw-start attribute lookup to map page-relative positions to
-  // the actual span. Idempotent — re-applying the same word is a no-op.
+  // Highlight the word about to be spoken. We don't use the raw `t` because
+  // the audio element's reported currentTime trails actual playback by tens
+  // of milliseconds AND human reading naturally precedes hearing — both push
+  // us to use a look-ahead. Bump LOOK_AHEAD up if the highlight still feels
+  // behind, down if it now feels too far ahead.
+  var LOOK_AHEAD = 0.18;
   var updateHighlightFromTime = function(t) {
     var timings = wordTimingsRef.current;
     if (!timings || !timings.length) return;
+    var lookT = t + LOOK_AHEAD;
     // Linear scan (sentences are short — usually <30 words — so this is fine).
     var hit = null;
     for (var i = 0; i < timings.length; i++) {
-      if (t >= timings[i].timeStart && t < timings[i].timeEnd) { hit = timings[i]; break; }
+      if (lookT >= timings[i].timeStart && lookT < timings[i].timeEnd) { hit = timings[i]; break; }
     }
     if (!hit) return;
     if (!currentPage) return;
