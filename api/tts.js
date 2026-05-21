@@ -28,6 +28,34 @@ function escapeXml(s) {
     .replace(/'/g, "&apos;");
 }
 
+// Azure's Russian neural voices have a known bug where they pronounce "ё" as
+// plain "е", losing the "yo" sound. Workaround: substitute "ё" with a
+// pronunciation-equivalent spelling before generating SSML. The user's book
+// text on screen is untouched — only the audio payload is mangled.
+//
+// Russian phonetics:
+//   - "ё" after a consonant  → consonant softens, vowel is "o".
+//                              Phonetic spelling: <consonant>ьо
+//                              (e.g. пёс → пьос, лёд → льод, тётя → тьотя)
+//   - "ё" at word start or after a vowel / ь / ъ / whitespace
+//                            → full "yo" diphthong.
+//                              Phonetic spelling: йо
+//                              (e.g. ёж → йож, приёмник → прийомник)
+function yoFix(text) {
+  if (!text) return text;
+  return text.replace(/ё/gi, function(match, offset, str) {
+    var isUpper = match === "Ё";
+    var prev = offset > 0 ? str[offset - 1] : "";
+    var afterVowelOrBoundary = !prev || /[аеиоуыэюяьъАЕИОУЫЭЮЯЬЪ\s.,;:!?"'«»()—–\-]/.test(prev);
+    if (afterVowelOrBoundary) {
+      // Word start, after vowel, after ь/ъ, or after whitespace/punctuation.
+      return isUpper ? "Йо" : "йо";
+    }
+    // After a consonant — soften it with ь and use plain о.
+    return isUpper ? "Ьо" : "ьо";
+  });
+}
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -82,7 +110,7 @@ export default async function handler(req, res) {
 
   const ssml = `<speak version="1.0" xml:lang="ru-RU" xmlns="http://www.w3.org/2001/10/synthesis">
 <voice name="${voice}">
-<prosody rate="${ratePct >= 0 ? "+" : ""}${ratePct}%">${escapeXml(text)}</prosody>
+<prosody rate="${ratePct >= 0 ? "+" : ""}${ratePct}%">${escapeXml(yoFix(text))}</prosody>
 </voice>
 </speak>`;
 
