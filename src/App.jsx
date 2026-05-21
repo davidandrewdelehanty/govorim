@@ -149,6 +149,19 @@ CRITICAL: Before sending each response, scan it for grammar/vocabulary the stude
 // Generic EPUB cache slots — one book at a time. Loading a new EPUB replaces these.
 var EPUB_CACHE = "epub_data_v1";
 var EPUB_BM    = "epub_bm_v1";
+
+// Per-book progress: { [bookKey]: { cidx, pidx, lastRead, title, author,
+// filename, totalChapters } }. Used to power "Continue reading" on the
+// library screen and to auto-restore where the user left off when they
+// reopen a book.
+var BOOK_PROGRESS = "book_progress_v1";
+
+// Stable identifier for a book — derived from filename + title so the same
+// book always gets the same key whether it's a preset or uploaded.
+function bookKey(meta) {
+  if (!meta) return "";
+  return (meta.filename || "") + "::" + (meta.title || "");
+}
 // Multi-upload tracking — keeps the last MAX_UPLOADS uploaded books browsable
 // in the library view. List of metadata stored at UPLOADS_LIST_KEY; each
 // book's full parsed content stored at UPLOAD_BOOK_PREFIX + id.
@@ -2235,6 +2248,40 @@ export default function App() {
   // alongside the preset books. Each entry is metadata; full content lives at
   // storage[UPLOAD_BOOK_PREFIX + id].
   var [uploadedBooks, setUploadedBooks] = useState([]);
+  // Per-book progress map. Loaded from storage on mount and after every save.
+  // Drives the "Continue reading" section on the library screen.
+  var [progressMap, setProgressMap] = useState({});
+  useEffect(function() {
+    (async function() {
+      try {
+        var r = await storage.get(BOOK_PROGRESS);
+        if (r) setProgressMap(JSON.parse(r.value) || {});
+      } catch(e) {}
+    })();
+  }, []);
+
+  // Save a book's reading progress. Debounced via the deps so it only fires
+  // when the page/chapter actually changes — not on every render.
+  var saveBookProgress = async function(meta, ci, pi, totalChapters) {
+    var key = bookKey(meta);
+    if (!key || !meta.title) return;
+    try {
+      var r = await storage.get(BOOK_PROGRESS);
+      var all = r ? (JSON.parse(r.value) || {}) : {};
+      all[key] = {
+        cidx: ci, pidx: pi,
+        lastRead: Date.now(),
+        title: meta.title,
+        author: meta.author || "",
+        filename: meta.filename || "",
+        category: meta.category || "",
+        splitByNumberedSections: !!meta.splitByNumberedSections,
+        totalChapters: totalChapters || 0,
+      };
+      await storage.set(BOOK_PROGRESS, JSON.stringify(all));
+      setProgressMap(all);
+    } catch(e) {}
+  };
   // Search filter for the library view — filters both preset + uploaded.
   var [bookSearch, setBookSearch] = useState("");
   // Tracks which book is currently being loaded (after click). Shows a spinner
@@ -2291,11 +2338,18 @@ export default function App() {
   var audioElemRef = useRef(null);
   var audioCacheRef = useRef({});  // idx → Promise<Blob>
   var audioGenRef = useRef(0);     // incremented when a playback intent is superseded
-  // When the user clicks a word mid-sentence, we don't want ▶ to replay the
-  // whole sentence from the start — we want it to play from that word on. This
-  // ref holds a one-shot override: text to play instead of the current sentence's
-  // full text. Consumed (cleared) the moment playback begins, so a subsequent
-  // skip-back to the same sentence plays the FULL sentence normally.
+  // Playback rate in Azure-percent. -25 = noticeably slower (good for tough
+  // passages), -8 = the previous default (slightly slow for learners),
+  // 0 = natural, +15 = slightly fast (good for familiar text).
+  var SPEED_OPTIONS = [{ label: "Slow", rate: -25 }, { label: "Normal", rate: -8 }, { label: "Fast", rate: 15 }];
+  var [audioSpeedIdx, setAudioSpeedIdx] = useState(1);  // default = Normal (-8)
+  var audioSpeedRef = useRef(-8);
+  useEffect(function() {
+    audioSpeedRef.current = SPEED_OPTIONS[audioSpeedIdx].rate;
+    // Speed change invalidates cached audio (was rendered at the old rate).
+    // Cache wipe is safe — next prefetch will rebuild at the new rate.
+    audioCacheRef.current = {};
+  }, [audioSpeedIdx]);
   var sentenceOverrideRef = useRef(null);
   var audioIdxRef = useRef(0);
   useEffect(function() { audioIdxRef.current = audioIdx; }, [audioIdx]);
@@ -2421,12 +2475,10 @@ export default function App() {
     var sentences = audioSentencesRef.current;
     if (idx < 0 || idx >= sentences.length) return null;
     if (overrideText) {
-      // One-shot fetch — not cached so a later skip-back to this sentence
-      // hears the FULL sentence rather than just the partial override text.
       return fetch("/api/tts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: overrideText, voice: "ru-RU-DmitryNeural", rate: -8 }),
+        body: JSON.stringify({ text: overrideText, voice: "ru-RU-DmitryNeural", rate: audioSpeedRef.current }),
       }).then(function(r) {
         if (!r.ok) return r.json().then(function(j) { throw new Error(j.error || ("HTTP " + r.status)); });
         return r.blob();
@@ -2438,7 +2490,7 @@ export default function App() {
     var promise = fetch("/api/tts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: sentence, voice: "ru-RU-DmitryNeural", rate: -8 }),
+      body: JSON.stringify({ text: sentence, voice: "ru-RU-DmitryNeural", rate: audioSpeedRef.current }),
     }).then(function(r) {
       if (!r.ok) return r.json().then(function(j) { throw new Error(j.error || ("HTTP " + r.status)); });
       return r.blob();
@@ -2586,6 +2638,16 @@ export default function App() {
 
   var act  = custom.trim() || topic;
   var isLit = mode === "read";
+
+  // Auto-save reading progress whenever the user moves to a new page or chapter.
+  // Skipped when no book is loaded, when title is missing (transient state), or
+  // when we're at chapter 0 / page 0 with no story actually started.
+  useEffect(function() {
+    if (!started || !isLit) return;
+    if (!bookMeta || !bookMeta.title) return;
+    if (!chapters || chapters.length === 0) return;
+    saveBookProgress(bookMeta, cidx, pidx, chapters.length);
+  }, [cidx, pidx, started, isLit, bookMeta.title, chapters.length]);
   var pct  = chapters.length > 0 ? Math.round((cidx / chapters.length) * 100) : 0;
   var curChapter = chapters[cidx] || { heading: "", text: "" };
   // Paginate the current chapter. Single-page mode (whole-chapter-as-one-page)
@@ -3736,13 +3798,28 @@ export default function App() {
     setLoading(false);
   };
 
-  var startLit = async function(idx, chs, metaOverride) {
+  var startLit = async function(idx, chs, metaOverride, startPidx) {
     var p = chs || chapters; if (!p || !p.length) return;
     var i = idx !== undefined ? idx : cbm;
+    var pi = (typeof startPidx === "number" && startPidx >= 0) ? startPidx : 0;
     // Open the book. Comprehension is button-triggered, not auto-loaded.
-    setCidx(i); setCbm(i); setPidx(0); setStarted(true); setMsgs([]);
+    setCidx(i); setCbm(i); setPidx(pi); setStarted(true); setMsgs([]);
     setPopup(null); stopTTS(); setLview("read");
     charPos.current = 0; paraText.current = "";
+  };
+
+  // Look up saved progress for a given book meta. Returns {cidx, pidx} or null.
+  var loadBookProgress = async function(meta) {
+    var key = bookKey(meta);
+    if (!key) return null;
+    try {
+      var r = await storage.get(BOOK_PROGRESS);
+      if (!r) return null;
+      var all = JSON.parse(r.value) || {};
+      var entry = all[key];
+      if (!entry) return null;
+      return { cidx: entry.cidx || 0, pidx: entry.pidx || 0 };
+    } catch(e) { return null; }
   };
 
   var navLit = async function(idx) {
@@ -4206,7 +4283,11 @@ export default function App() {
           setUploadedBooks(current);
         } catch(e) { console.log("Failed to track upload:", e); }
       }
-      startLit(0, chs, meta);
+      // Resume from saved progress if this exact book has been opened before.
+      var savedProg = await loadBookProgress(meta);
+      var startCi = savedProg ? savedProg.cidx : 0;
+      var startPi = savedProg ? savedProg.pidx : 0;
+      startLit(startCi, chs, meta, startPi);
     } catch(err) { setFErr(err.message); }
   };
 
@@ -4263,7 +4344,11 @@ export default function App() {
         await storage.set(UPLOADS_LIST_KEY, JSON.stringify(updated));
         setUploadedBooks(updated);
       } catch(e) {}
-      startLit(0, d.chapters, meta);
+      // Resume from saved progress if this book has been opened before.
+      var savedProg2 = await loadBookProgress(meta);
+      var startCi2 = savedProg2 ? savedProg2.cidx : 0;
+      var startPi2 = savedProg2 ? savedProg2.pidx : 0;
+      startLit(startCi2, d.chapters, meta, startPi2);
     } catch(err) {
       setFErr("Failed to open uploaded book: " + (err.message || err));
     }
@@ -5130,11 +5215,14 @@ export default function App() {
         .faudio-play{background:#c8a276;color:#1a1611;border-color:#c8a276;width:52px;height:52px;font-size:22px}
         .faudio-play:hover{background:#d4ae7f}
         .faudio-status{color:rgba(210,197,175,.55);font-size:12px;font-family:'Inter',system-ui,sans-serif;margin-left:10px;letter-spacing:.3px;min-width:90px;text-align:left}
+        .faudio-speed{margin-left:auto;background:rgba(210,197,175,.06);border:1px solid rgba(210,197,175,.2);color:rgba(210,197,175,.7);border-radius:14px;padding:6px 12px;font-size:12px;font-family:'Crimson Pro',serif;cursor:pointer;transition:all .15s;letter-spacing:.3px}
+        .faudio-speed:hover{background:rgba(200,162,118,.12);color:#c8a276;border-color:rgba(200,162,118,.3)}
         @media(max-width:600px){
           .faudio{padding:0 12px;gap:10px;height:62px}
           .faudio-btn{width:40px;height:40px;font-size:15px}
           .faudio-play{width:48px;height:48px;font-size:20px}
           .faudio-status{font-size:11px;min-width:0;margin-left:6px}
+          .faudio-speed{padding:5px 9px;font-size:11px}
         }
         /* Push reading-mode content up so the floating bar doesn't cover it. */
         .lit-body{padding-bottom:80px}
@@ -5949,6 +6037,72 @@ export default function App() {
                       uploads show in their own "My Uploads" section at the top. */}
                   {(presetBooks.length > 0 || uploadedBooks.length > 0) && (
                     <div style={{marginTop:18,paddingTop:18,borderTop:"1px solid rgba(210,197,175,.1)",width:"100%"}}>
+                      {/* Continue Reading — books with saved progress, newest first.
+                          Clicking one resumes at the saved chapter/page. */}
+                      {(function() {
+                        var entries = Object.keys(progressMap).map(function(k){ return progressMap[k]; });
+                        entries.sort(function(a, b){ return (b.lastRead || 0) - (a.lastRead || 0); });
+                        var recent = entries.slice(0, 6);
+                        if (recent.length === 0) return null;
+                        // Match recents against actual library entries so we can resume them.
+                        var findEntry = function(rec) {
+                          // Try uploaded books first (matched by filename or title)
+                          for (var i = 0; i < uploadedBooks.length; i++) {
+                            var u = uploadedBooks[i];
+                            if (rec.filename && u.filename === rec.filename && u.title === rec.title) return { type: "upload", book: u };
+                            if (u.title === rec.title && (u.author || "") === (rec.author || "")) return { type: "upload", book: u };
+                          }
+                          for (var j = 0; j < presetBooks.length; j++) {
+                            var pBook = presetBooks[j];
+                            if (rec.filename && pBook.filename === rec.filename) return { type: "preset", book: pBook };
+                          }
+                          return null;
+                        };
+                        return (
+                          <div className="lib-section" style={{marginBottom:18}}>
+                            <div className="lib-section-hdr">Continue reading</div>
+                            <div className="lib-grid">
+                              {recent.map(function(rec, i) {
+                                var match = findEntry(rec);
+                                if (!match) return null;
+                                var total = rec.totalChapters || 1;
+                                var pct = total > 1 ? Math.round((rec.cidx / total) * 100) : (rec.pidx > 0 ? 50 : 0);
+                                var humanLast = (function() {
+                                  var ms = Date.now() - (rec.lastRead || 0);
+                                  var min = Math.floor(ms / 60000);
+                                  if (min < 1) return "just now";
+                                  if (min < 60) return min + "m ago";
+                                  var hr = Math.floor(min / 60);
+                                  if (hr < 24) return hr + "h ago";
+                                  var d = Math.floor(hr / 24);
+                                  if (d < 30) return d + "d ago";
+                                  return "a while ago";
+                                })();
+                                return (
+                                  <div key={i} className="lcard" onClick={function() {
+                                    if (match.type === "upload") openUploadedBook(match.book);
+                                    else if (match.book.category === "Song Lyrics") openSongPicker(match.book);
+                                    else loadPresetBook(match.book);
+                                  }}>
+                                    <div className="lcn" style={{color:"rgba(200,162,118,.6)"}}>↻ {humanLast}</div>
+                                    <div className="lchead">{rec.title}</div>
+                                    {rec.author && <div className="lcp" style={{fontSize:12,opacity:.75}}>{rec.author}</div>}
+                                    <div style={{marginTop:8,fontSize:11,color:"rgba(210,197,175,.55)"}}>
+                                      Ch. {(rec.cidx || 0) + 1}{total > 1 ? "/" + total : ""}
+                                      {(rec.pidx || 0) > 0 && " · Page " + ((rec.pidx || 0) + 1)}
+                                      {" · " + pct + "%"}
+                                    </div>
+                                    <div style={{marginTop:6,height:3,background:"rgba(210,197,175,.1)",borderRadius:2,overflow:"hidden"}}>
+                                      <div style={{height:"100%",width:pct+"%",background:"#c8a276"}}/>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })()}
+
                       {/* Quick pick dropdown — for users who know exactly which book they want
                           and prefer not to scroll through the card grid below. Lives alongside
                           the card grid; both stay in sync via the same data source. */}
@@ -6545,6 +6699,11 @@ export default function App() {
                         <span className="faudio-status">
                           Sentence {audioIdx + 1} / {audioSentences.length}
                         </span>
+                        <button className="faudio-speed"
+                          onClick={function(){ setAudioSpeedIdx((audioSpeedIdx + 1) % SPEED_OPTIONS.length); }}
+                          title={"Playback speed (tap to cycle). Current: " + SPEED_OPTIONS[audioSpeedIdx].label}>
+                          {SPEED_OPTIONS[audioSpeedIdx].label}
+                        </button>
                       </div>
                     )}
                   </>
