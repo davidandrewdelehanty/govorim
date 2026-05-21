@@ -173,12 +173,16 @@ function ruOrdinalFeminine(n) {
   return String(n);
 }
 
-// Detect whether a book is a Bible / Gospel — verse numbers should not be
+// Detect whether a book is a Bible / scripture — verse numbers should not be
 // pronounced in these. Matches the book title against common Russian and
-// English forms.
+// English forms, including individual book names ("Бытие", "Деяния", etc),
+// and accepts an explicit `isBible: true` metadata flag.
 function isBibleBook(meta) {
-  if (!meta || !meta.title) return false;
-  return /библия|bible|евангелие|псалтирь|книг[аи]\s/i.test(meta.title);
+  if (!meta) return false;
+  if (meta.isBible === true) return true;
+  if (!meta.title) return false;
+  var t = meta.title;
+  return /библия|bible|евангелие|новый\s+завет|ветхий\s+завет|псалтир[ьи]|псалмы|апокалипсис|книг[аи]\s|деяния|послание|откровение|пророк[ао]?|святое\s+писание|священное\s+писание|синодальн/i.test(t);
 }
 
 var EPUB_CACHE = "epub_data_v1";
@@ -2410,6 +2414,21 @@ export default function App() {
   var parseSentences = function(text, opts) {
     opts = opts || {};
     if (!text) return [];
+
+    // Auto-detect verse-numbered text. If the title-based check didn't flag this
+    // as Bible, look at the text itself: if many verses appear with their
+    // leading number marker (start-of-line or after a sentence terminator),
+    // treat the whole text as Bible-like. Catches scriptures whose titles
+    // don't match the heuristic (e.g. "Бытие", "Псалом 22").
+    var isBible = !!opts.isBible;
+    if (!isBible) {
+      var sample = text.slice(0, 4000);
+      var verseMarkers = sample.match(/(?:^|\n|[.!?…»"]\s)\s*\d+(?::\d+)?[.:]?\s+[А-ЯЁA-Z]/g) || [];
+      // Threshold: 6 verse-pattern matches in the first ~4KB strongly suggests
+      // scripture. Regular prose with a few dates won't hit this.
+      if (verseMarkers.length >= 6) isBible = true;
+    }
+
     var sentences = [];
     var lines = text.split(/\n+/);
     for (var li = 0; li < lines.length; li++) {
@@ -2436,9 +2455,13 @@ export default function App() {
             while (k < line.length && /\s/.test(line[k])) k++;
             if (k >= line.length) {
               isBoundary = true;
-            } else if (/[А-ЯЁA-Z«"„(\[—–]/.test(line[k])) {
+            } else if (/[А-ЯЁA-Z«"„(\[—–]/.test(line[k]) || (isBible && /\d/.test(line[k]))) {
               // Looks like a new sentence — BUT verify the period isn't part
               // of an initial (single capital letter + period before a name).
+              // In Bible mode, a digit after a terminator is treated as a new
+              // verse marker → sentence boundary (otherwise the whole verse
+              // run would stay as one TTS chunk and only the FIRST number
+              // would get stripped, leaving the rest pronounced).
               var wEnd = endTerm;
               while (wEnd > 0 && /[.!?…]/.test(line[wEnd - 1])) wEnd--;
               var wStart = wEnd - 1;
@@ -2486,14 +2509,17 @@ export default function App() {
     }
 
     // ── Post-processing ────────────────────────────────────────────────────
-    // Bible: strip leading verse numbers ("1.", "1:1", "23 ") from each
-    // sentence's TTS text so Azure doesn't pronounce them. The display text
-    // (rendered from the chapter buffer) still shows numbers — only the audio
-    // skips them. Sentences that become empty after stripping are dropped.
-    if (opts.isBible) {
+    // Bible (explicit or auto-detected): strip leading verse markers from
+    // every sentence's TTS text, and drop sentences that became ONLY a
+    // number (e.g. parser produced "1." as its own sentence). Display text
+    // is unchanged — only the audio skips the numbers.
+    if (isBible) {
       result = result.map(function(s) {
         return Object.assign({}, s, {
-          text: s.text.replace(/^\s*\d+(?::\d+)?[.:]?\s+/, "").trim(),
+          text: s.text
+            .replace(/^\s*\d+(?::\d+)?[.:]?\s+/, "")   // leading verse marker with following word
+            .replace(/^\s*\d+(?::\d+)?[.:]?\s*$/, "")  // sentence that's ONLY a number
+            .trim(),
         });
       }).filter(function(s) { return s.text.length > 0; });
     }
