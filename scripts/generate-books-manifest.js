@@ -5,10 +5,10 @@
 // manual JSON edits.
 //
 // FOLDER CONVENTION (preferred):
-//   public/books/novel/tolstoy-anna.epub      → category "Novel"
+//   public/books/novel/tolstoy-anna.fb2       → category "Works" (novels + short stories combined)
 //   public/books/lyrics/tsoi-songs.epub       → category "Song Lyrics"
-//   public/books/poetry/akhmatova.epub        → category "Poetry"
-//   public/books/short-stories/chekhov.epub   → category "Short Stories"
+//   public/books/poetry/akhmatova.fb2         → category "Poetry"
+//   public/books/plays/chekhov-uncle-vanya.fb2 → category "Plays"
 //
 // Files dropped directly into public/books/ (no subfolder) still work — they
 // just go into the "Other" category until you move them. Any unknown subfolder
@@ -33,24 +33,27 @@ const SUPPORTED = /\.(fb2\.zip|epub|fb2|txt|html|htm|xhtml)$/i;
 
 // Maps a subfolder name → category (the canonical name used in the picker).
 // Add aliases here if you want to support multiple folder spellings for the
-// same category.
+// same category. The "novel" folder is the unified home for all prose works
+// (novels and short stories combined into "Works"); the legacy "short-stories"
+// folder name is still recognized if any files happen to live there.
 const FOLDER_TO_CATEGORY = {
-  "novel":         "Novel",
-  "novels":        "Novel",
+  "novel":         "Works",
+  "novels":        "Works",
+  "works":         "Works",
+  "short-stories": "Works",  // legacy folder name still maps to Works
+  "stories":       "Works",
   "lyrics":        "Song Lyrics",
   "song-lyrics":   "Song Lyrics",
   "songs":         "Song Lyrics",
   "poetry":        "Poetry",
   "poems":         "Poetry",
-  "short-stories": "Short Stories",
-  "stories":       "Short Stories",
   "plays":         "Plays",
   "play":          "Plays",
   "drama":         "Plays",
 };
 
 // Render order in the picker (must match the App.jsx CATEGORIES list).
-const CATEGORY_ORDER = ["Novel", "Plays", "Song Lyrics", "Poetry", "Short Stories"];
+const CATEGORY_ORDER = ["Works", "Plays", "Song Lyrics", "Poetry"];
 
 // 1. Load any existing manifest so we keep manual metadata edits.
 let existing = [];

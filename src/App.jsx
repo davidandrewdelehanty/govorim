@@ -2145,7 +2145,7 @@ export default function App() {
   // Book-upload-specific fields (only used when upMode === "book")
   var [upBookFile, setUpBookFile]     = useState(null);
   var [upBookAuthor, setUpBookAuthor] = useState("");
-  var [upBookCategory, setUpBookCategory] = useState("Novel");
+  var [upBookCategory, setUpBookCategory] = useState("Works");
   // Song-picker state — opened when the user picks a Song Lyrics artist from
   // the library dropdown. Lists the artist's individual songs so the user can
   // jump straight to one instead of starting at song 1.
@@ -5837,9 +5837,8 @@ export default function App() {
                     <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Category</label>
                     <select value={upBookCategory} onChange={function(e){ setUpBookCategory(e.target.value); }} disabled={upBusy}
                       style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}>
-                      <option value="Novel">Novel</option>
+                      <option value="Works">Works</option>
                       <option value="Plays">Plays</option>
-                      <option value="Short Stories">Short Stories</option>
                       <option value="Poetry">Poetry</option>
                     </select>
                   </div>
@@ -6124,12 +6123,17 @@ export default function App() {
                             }}>
                             <option value="" disabled>📖 Choose a book from the library…</option>
                             {(function() {
-                              var CATEGORIES = ["Novel", "Plays", "Song Lyrics", "Poetry", "Short Stories"];
+                              var CATEGORIES = ["Works", "Plays", "Song Lyrics", "Poetry"];
+                              // Normalize legacy "Novel" and "Short Stories" entries into "Works".
+                              var normalize = function(cat) {
+                                if (cat === "Novel" || cat === "Short Stories") return "Works";
+                                return cat;
+                              };
                               var buckets = {};
                               CATEGORIES.forEach(function(c){ buckets[c] = []; });
                               buckets["Other"] = [];
                               presetBooks.forEach(function(book, idx) {
-                                var cat = (book && book.category) || "";
+                                var cat = normalize((book && book.category) || "");
                                 var bucket = CATEGORIES.indexOf(cat) !== -1 ? cat : "Other";
                                 buckets[bucket].push({ book: book, idx: idx });
                               });
@@ -6167,14 +6171,20 @@ export default function App() {
                         // Filter uploaded books
                         var filteredUploads = uploadedBooks.filter(matches);
 
-                        // Group preset books by category, preserving original index for lookup
-                        var CATEGORIES = ["Novel", "Plays", "Song Lyrics", "Poetry", "Short Stories"];
+                        // Group preset books by category, preserving original index for lookup.
+                        // Normalize legacy "Novel"/"Short Stories" → "Works" so older entries
+                        // in index.json fall into the right bucket without an admin edit.
+                        var CATEGORIES = ["Works", "Plays", "Song Lyrics", "Poetry"];
+                        var normalize = function(cat) {
+                          if (cat === "Novel" || cat === "Short Stories") return "Works";
+                          return cat;
+                        };
                         var buckets = {};
                         CATEGORIES.forEach(function(c){ buckets[c] = []; });
                         buckets["Other"] = [];
                         presetBooks.forEach(function(book, idx) {
                           if (!matches(book)) return;
-                          var cat = (book && book.category) || "";
+                          var cat = normalize((book && book.category) || "");
                           var bucket = CATEGORIES.indexOf(cat) !== -1 ? cat : "Other";
                           buckets[bucket].push({ book: book, idx: idx });
                         });
