@@ -2648,6 +2648,14 @@ export default function App() {
 
   // Play the sentence at `idx`. Kicks off prefetch for `idx+1` in parallel so
   // the next sentence is already in memory when this one ends.
+  //
+  // IMPORTANT: we REUSE a single Audio element across sentences instead of
+  // creating a new one each time. Chrome's autoplay policy keeps user-gesture
+  // authorization attached to a specific element — so the .play() call on a
+  // freshly-created element from inside an onended handler gets blocked
+  // because the original ▶ click was on a *different* element. Reusing the
+  // same element preserves the trust chain. We only null the element out on
+  // a true teardown (page change, resetAudioBar).
   var playAudioSentence = function(idx) {
     var sentences = audioSentencesRef.current;
     if (idx < 0 || idx >= sentences.length) {
@@ -2658,10 +2666,14 @@ export default function App() {
     audioGenRef.current++;
     var myGen = audioGenRef.current;
 
-    // Halt any in-flight audio. Don't revoke its URL — we may revisit via the cache.
+    // Detach old handlers on the existing element BEFORE touching its state,
+    // so any 'pause' / 'emptied' / 'error' events fired by src changes don't
+    // accidentally invoke a previous-sentence callback.
     if (audioElemRef.current) {
-      try { audioElemRef.current.pause(); audioElemRef.current.src = ""; } catch(e) {}
-      audioElemRef.current = null;
+      audioElemRef.current.onplay = null;
+      audioElemRef.current.onended = null;
+      audioElemRef.current.onerror = null;
+      try { audioElemRef.current.pause(); } catch(e) {}
     }
     // Tear down the previous sentence's highlight before drawing the new one.
     clearSentenceHighlight();
@@ -2689,22 +2701,37 @@ export default function App() {
     promise.then(function(blob) {
       if (audioGenRef.current !== myGen) return;  // superseded by skip/pause/page change
       if (!audioPlayingRef.current) { setAudioFetching(false); return; }  // user paused
-      var audio = new Audio(URL.createObjectURL(blob));
-      audioElemRef.current = audio;
+
+      // Create the element on the FIRST sentence (inside the user's ▶ click);
+      // reuse it for every subsequent sentence. This is the key to keeping
+      // Chrome's user-activation valid across chained playback.
+      var audio = audioElemRef.current;
+      var isFreshElement = !audio;
+      if (!audio) {
+        audio = new Audio();
+        audioElemRef.current = audio;
+      } else {
+        // Free the previous blob URL before pointing at the new one.
+        try {
+          if (audio.src && audio.src.indexOf("blob:") === 0) URL.revokeObjectURL(audio.src);
+        } catch(e) {}
+      }
+
+      var newUrl = URL.createObjectURL(blob);
+      audio.src = newUrl;
       setAudioFetching(false);
 
       // Light up the entire sentence range as soon as playback actually starts.
-      // (Using `play` rather than `loadedmetadata` so the highlight only appears
-      // when sound is on its way out the speaker — never before.)
-      audio.addEventListener("play", function() {
+      audio.onplay = function() {
         if (audioElemRef.current !== audio) return;
         highlightSentence(audioSentencesRef.current[idx], override);
-      });
+      };
 
       audio.onended = function() {
-        try { URL.revokeObjectURL(audio.src); } catch(e) {}
+        try { URL.revokeObjectURL(newUrl); } catch(e) {}
         clearSentenceHighlight();
-        if (audioElemRef.current === audio) audioElemRef.current = null;
+        // Don't null audioElemRef here — keep the element alive for the next
+        // sentence so user-activation stays valid.
         // Auto-advance ONLY if this generation is still current AND we're still in play mode.
         if (audioPlayingRef.current && audioGenRef.current === myGen) {
           var nextIdx = audioIdxRef.current + 1;
@@ -2717,16 +2744,28 @@ export default function App() {
         }
       };
       audio.onerror = function() {
+        // Only treat as fatal if we're still the current generation — src
+        // swaps occasionally fire benign error events during the transition.
+        if (audioGenRef.current !== myGen) return;
         clearSentenceHighlight();
-        if (audioElemRef.current === audio) audioElemRef.current = null;
         setAudioPlaying(false); audioPlayingRef.current = false;
       };
+
       var p = audio.play();
       if (p && typeof p.catch === "function") {
         p.catch(function(e) {
           clearSentenceHighlight();
           setAudioPlaying(false); audioPlayingRef.current = false;
-          setTtsErr("Audio blocked: " + (e.message || e));
+          // Diagnostic note for the autoplay-block case: it means our element
+          // somehow lost its activation chain — either the element was just
+          // created (no gesture upstream) or playback was paused longer than
+          // Chrome's gesture window.
+          var msg = e && e.message ? e.message : String(e);
+          if (msg.indexOf("not allowed") !== -1 || msg.indexOf("user gesture") !== -1) {
+            setTtsErr("Audio blocked by browser — tap ▶ to resume" + (isFreshElement ? "" : " (try clicking play again)"));
+          } else {
+            setTtsErr("Audio blocked: " + msg);
+          }
         });
       }
     }).catch(function(err) {
