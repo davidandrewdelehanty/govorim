@@ -147,6 +147,40 @@ CRITICAL: Before sending each response, scan it for grammar/vocabulary the stude
 }
 
 // Generic EPUB cache slots — one book at a time. Loading a new EPUB replaces these.
+// Convert a number into its Russian feminine ordinal form, used for chapter
+// announcements ("Глава Первая", "Глава Двадцать первая", etc). "Глава" is a
+// feminine noun, so ordinals agreeing with it take the -ая ending.
+function ruOrdinalFeminine(n) {
+  if (!n || n < 1) return "";
+  var ones = ["", "Первая", "Вторая", "Третья", "Четвёртая", "Пятая", "Шестая", "Седьмая", "Восьмая", "Девятая"];
+  var teens = ["Десятая", "Одиннадцатая", "Двенадцатая", "Тринадцатая", "Четырнадцатая", "Пятнадцатая", "Шестнадцатая", "Семнадцатая", "Восемнадцатая", "Девятнадцатая"];
+  var tens = ["", "", "Двадцатая", "Тридцатая", "Сороковая", "Пятидесятая", "Шестидесятая", "Семидесятая", "Восьмидесятая", "Девяностая"];
+  // Cardinal-nominative form used as PREFIX in compound ordinals like
+  // "Двадцать первая" — only the final element of a compound takes the
+  // ordinal ending; everything before it is a regular cardinal.
+  var tensCardinal = ["", "", "Двадцать", "Тридцать", "Сорок", "Пятьдесят", "Шестьдесят", "Семьдесят", "Восемьдесят", "Девяносто"];
+  if (n < 10) return ones[n];
+  if (n < 20) return teens[n - 10];
+  if (n < 100) {
+    var t = Math.floor(n / 10);
+    var o = n % 10;
+    if (o === 0) return tens[t];
+    return tensCardinal[t] + " " + ones[o].toLowerCase();
+  }
+  // 100+: fall back to cardinal with "Сотая" / "Двухсотая" not worth the
+  // table. Just spell "Глава 105" by passing the number; Azure pronounces
+  // it acceptably for these rare cases.
+  return String(n);
+}
+
+// Detect whether a book is a Bible / Gospel — verse numbers should not be
+// pronounced in these. Matches the book title against common Russian and
+// English forms.
+function isBibleBook(meta) {
+  if (!meta || !meta.title) return false;
+  return /библия|bible|евангелие|псалтирь|книг[аи]\s/i.test(meta.title);
+}
+
 var EPUB_CACHE = "epub_data_v1";
 var EPUB_BM    = "epub_bm_v1";
 
@@ -2373,7 +2407,8 @@ export default function App() {
   // The result is an array of {text, start, end} where start/end are
   // character positions within the input text, used later to map a clicked
   // word back to a sentence index.
-  var parseSentences = function(text) {
+  var parseSentences = function(text, opts) {
+    opts = opts || {};
     if (!text) return [];
     var sentences = [];
     var lines = text.split(/\n+/);
@@ -2449,6 +2484,33 @@ export default function App() {
       result.push({ text: sentences[k], start: idx, end: idx + sentences[k].length });
       searchFrom = idx + sentences[k].length;
     }
+
+    // ── Post-processing ────────────────────────────────────────────────────
+    // Bible: strip leading verse numbers ("1.", "1:1", "23 ") from each
+    // sentence's TTS text so Azure doesn't pronounce them. The display text
+    // (rendered from the chapter buffer) still shows numbers — only the audio
+    // skips them. Sentences that become empty after stripping are dropped.
+    if (opts.isBible) {
+      result = result.map(function(s) {
+        return Object.assign({}, s, {
+          text: s.text.replace(/^\s*\d+(?::\d+)?[.:]?\s+/, "").trim(),
+        });
+      }).filter(function(s) { return s.text.length > 0; });
+    }
+
+    // Chapter announcement: prepend a synthetic "Глава [ordinal]." sentence at
+    // the start of every chapter's first page. If the original first sentence
+    // already announces the chapter ("Глава 5" / "Часть 3"), drop it first so
+    // the announcement isn't duplicated. Synthetic sentence has start/end = -1
+    // so position-based word-click mapping ignores it.
+    if (opts.isFirstPage && opts.chapterNumber > 0) {
+      if (result.length > 0 && /^\s*(глава|часть)\s+(\d+|[ivxlcdm]+\b)/i.test(result[0].text)) {
+        result.shift();
+      }
+      var announce = "Глава " + ruOrdinalFeminine(opts.chapterNumber) + ".";
+      result.unshift({ text: announce, start: -1, end: -1 });
+    }
+
     return result;
   };
 
@@ -2678,11 +2740,15 @@ export default function App() {
     setAudioFetching(false);
     if (mode === "read" && currentPage && curChapter && curChapter.text) {
       var pageText = curChapter.text.slice(currentPage.startChar, currentPage.endChar);
-      setAudioSentences(parseSentences(pageText));
+      setAudioSentences(parseSentences(pageText, {
+        isFirstPage: pidx === 0,
+        chapterNumber: cidx + 1,
+        isBible: isBibleBook(bookMeta),
+      }));
     } else {
       setAudioSentences([]);
     }
-  }, [cidx, pidx, mode, curChapter && curChapter.text, currentPage && currentPage.startChar, currentPage && currentPage.endChar]);
+  }, [cidx, pidx, mode, curChapter && curChapter.text, currentPage && currentPage.startChar, currentPage && currentPage.endChar, bookMeta.title]);
 
   useEffect(function() {
     (async function() {
