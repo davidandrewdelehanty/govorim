@@ -1080,6 +1080,7 @@ Required fields:
   "aspectPair": "<verbs ONLY: the aspectual partner infinitive if it is a clear, commonly-paired pair; empty string otherwise>",
   "aspect": "<verbs ONLY: 'imperfective' or 'perfective'; empty string otherwise>",
   "partOfSpeech": "<noun, verb, adjective, adverb, pronoun, preposition, conjunction, particle, etc.>",
+  "definitionRu": "<a short Russian-language definition of the word, as a Russian monolingual dictionary would phrase it. 1-2 sentences, in natural Russian. Do NOT just transliterate the English; explain the concept in Russian using simpler words.>",
   "translation": "<English translation; for verbs use 'to ...'>",
   "grammar": "<brief note: gender for nouns, conjugation/aspect for verbs, etc.>",
   "example": "<short Russian example sentence>",
@@ -2300,7 +2301,8 @@ export default function App() {
 
   var parseSentences = function(text) {
     if (!text) return [];
-    var out = [];
+    // First parse into plain sentence strings.
+    var sentences = [];
     var lines = text.split(/\n+/);
     for (var i = 0; i < lines.length; i++) {
       var line = lines[i].trim();
@@ -2308,10 +2310,35 @@ export default function App() {
       var matches = line.match(/[^.!?…]+[.!?…]+|[^.!?…]+$/g) || [line];
       for (var j = 0; j < matches.length; j++) {
         var s = matches[j].trim();
-        if (s) out.push(s);
+        if (s) sentences.push(s);
       }
     }
-    return out;
+    // Then locate each sentence in the original text to track character ranges.
+    // Used to align word-click position → sentence index for the audio player.
+    var result = [];
+    var searchFrom = 0;
+    for (var k = 0; k < sentences.length; k++) {
+      var idx = text.indexOf(sentences[k], searchFrom);
+      if (idx === -1) idx = searchFrom;
+      result.push({ text: sentences[k], start: idx, end: idx + sentences[k].length });
+      searchFrom = idx + sentences[k].length;
+    }
+    return result;
+  };
+
+  // Find which sentence index contains the given character position (page-relative).
+  // Returns -1 if not found.
+  var findSentenceIdxForPageOffset = function(pageOffset) {
+    var sents = audioSentencesRef.current;
+    for (var i = 0; i < sents.length; i++) {
+      if (pageOffset >= sents[i].start && pageOffset < sents[i].end) return i;
+    }
+    // Fallback: find closest sentence whose start is <= pageOffset
+    var best = -1;
+    for (var j = 0; j < sents.length; j++) {
+      if (sents[j].start <= pageOffset) best = j;
+    }
+    return best;
   };
 
   // Fetch (or return cached) the audio blob for sentence at `idx`. Stores
@@ -2321,7 +2348,7 @@ export default function App() {
     var sentences = audioSentencesRef.current;
     if (idx < 0 || idx >= sentences.length) return null;
     if (audioCacheRef.current[idx]) return audioCacheRef.current[idx];
-    var sentence = sentences[idx];
+    var sentence = sentences[idx] && sentences[idx].text;
     if (!sentence) return null;
     var promise = fetch("/api/tts", {
       method: "POST",
@@ -3393,11 +3420,29 @@ export default function App() {
     playText(txt, charPosition);
   };
 
-  var defWord = async function(word, e) {
+  var defWord = async function(word, e, charPosition) {
     e.stopPropagation();
     if (noAIMode) return;  // No API calls in read-without-AI mode.
     var clean = word.replace(/[^а-яёА-ЯЁ]/g,"");
     if (!clean || clean.length < 2) return;
+
+    // Stop any in-flight audio and park the player at the sentence that
+    // contains this word. User must press ▶ to resume from this point —
+    // we deliberately don't auto-play so the click feels like a "pause and
+    // look up", not an interruption.
+    if (audioElemRef.current) {
+      try { audioElemRef.current.pause(); audioElemRef.current.src = ""; } catch(err) {}
+      audioElemRef.current = null;
+    }
+    audioGenRef.current++;  // invalidate any pending fetches
+    setAudioPlaying(false); audioPlayingRef.current = false;
+    if (typeof charPosition === "number" && currentPage) {
+      // charPosition is into the FULL chapter text. Convert to page-relative.
+      var pageOffset = charPosition - currentPage.startChar;
+      var sIdx = findSentenceIdxForPageOffset(pageOffset);
+      if (sIdx >= 0) { setAudioIdx(sIdx); audioIdxRef.current = sIdx; }
+    }
+
     var rect = e.currentTarget.getBoundingClientRect();
     var pw = Math.min(280, window.innerWidth-32);
     var left = rect.left;
@@ -4514,7 +4559,7 @@ export default function App() {
                     } else if (noAIMode) {
                       clickPlay = (function(pos){ return function(e){ e.stopPropagation(); jumpTTS(pos); }; })(tk.start);
                     } else {
-                      clickPlay = (function(w){ return function(e){ defWord(w, e); }; })(tk.text);
+                      clickPlay = (function(w, pos){ return function(e){ defWord(w, e, pos); }; })(tk.text, tk.start);
                     }
                     elems.push(
                       <span key={i}
@@ -4538,7 +4583,7 @@ export default function App() {
                 if (tk.isRu) {
                   var clickReg = noAIMode
                     ? (function(pos){ return function(e){ e.stopPropagation(); jumpTTS(pos); }; })(tk.start)
-                    : function(e){ defWord(tk.text, e); };
+                    : (function(w, pos){ return function(e){ defWord(w, e, pos); }; })(tk.text, tk.start);
                   return (
                     <span key={i}
                       className={"rw" + (hl ? " rwhl" : "")}
@@ -5088,7 +5133,9 @@ export default function App() {
         .pcl:hover{color:rgba(210,197,175,.7)}
         .pw{font-family:'Playfair Display',serif;font-size:22px;color:#c8a276;margin-bottom:2px;padding-right:24px}
         .ppos{font-size:11px;color:rgba(210,197,175,.35);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
-        .ptr{font-size:18px;color:#d2c5af;margin-bottom:7px}
+        /* Russian-language definition — top of the popup body so the Russian reading practice happens first. */
+        .pdru{font-family:'Crimson Pro',serif;font-size:15px;color:#d2c5af;line-height:1.5;margin-bottom:8px;padding:8px 10px;background:rgba(200,162,118,.06);border-left:2px solid rgba(200,162,118,.4);border-radius:4px}
+        .ptr{font-size:16px;color:rgba(210,197,175,.65);margin-bottom:7px;font-style:italic;padding-left:2px}
         .pgr{font-size:13px;color:rgba(135,168,196,.8);margin-bottom:7px;background:rgba(135,168,196,.08);border-radius:8px;padding:5px 10px}
         .pex{font-size:13px;color:rgba(210,197,175,.5);border-top:1px solid rgba(210,197,175,.08);padding-top:7px;line-height:1.5}
         .pext{font-size:12px;color:rgba(210,197,175,.3);margin-top:3px}
@@ -6712,6 +6759,7 @@ export default function App() {
               {!popup.loading && !popup.error && !popup.yo && popup.data && (
                 <>
                   <div className="ppos">{popup.data.partOfSpeech}{popup.data.aspect ? " · " + popup.data.aspect : ""}</div>
+                  {popup.data.definitionRu && <div className="pdru">{popup.data.definitionRu}</div>}
                   <div className="ptr">{popup.data.translation}</div>
                   {popup.data.grammar && <div className="pgr">{popup.data.grammar}</div>}
                   {popup.data.example && <div className="pex">{popup.data.example}{popup.data.exampleTranslation&&<div className="pext">{popup.data.exampleTranslation}</div>}</div>}
