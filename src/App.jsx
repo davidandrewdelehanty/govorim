@@ -2390,18 +2390,13 @@ export default function App() {
   }, [audioSpeedIdx]);
   var sentenceOverrideRef = useRef(null);
 
-  // ── Word-level highlighting ────────────────────────────────────────────────
-  // As Azure's TTS plays a sentence, highlight the word currently being read
-  // in the rendered page text. Azure's REST API doesn't return word timing,
-  // so we use a heuristic: distribute the audio duration across the sentence's
-  // tokens, weighted by character length (with extra time for sentence-ending
-  // and comma pauses). A requestAnimationFrame loop polls the audio's
-  // currentTime and applies the .rw-reading class directly to the matching
-  // DOM element by data-rw-start attribute — bypassing React re-renders so
-  // long pages stay smooth.
-  var wordTimingsRef = useRef(null);        // [{pageStart, text, timeStart, timeEnd}]
-  var highlightedElementRef = useRef(null); // current DOM element with .rw-reading
-  var rafIdRef = useRef(null);              // requestAnimationFrame handle for cleanup
+  // ── Sentence-level reading highlight ───────────────────────────────────────
+  // As Azure plays a sentence, we tint every word in that sentence's character
+  // range. This sidesteps the word-timing heuristic entirely (which lagged or
+  // ran ahead depending on Dmitry's tempo): we already know exactly which
+  // sentence is playing, because we're driving each fetch ourselves. No RAF
+  // loop, no per-millisecond calculation — toggle a class once per sentence.
+  var highlightedElementsRef = useRef([]);  // DOM nodes currently lit up
   var audioIdxRef = useRef(0);
   useEffect(function() { audioIdxRef.current = audioIdx; }, [audioIdx]);
   var audioPlayingRef = useRef(false);
@@ -2608,156 +2603,38 @@ export default function App() {
     return promise;
   };
 
-  // ── Word-highlight helpers ─────────────────────────────────────────────────
-  // Estimate per-word timing within a sentence based on character length and
-  // punctuation pauses. Azure REST gives us audio + duration but no word
-  // boundaries, so this is a heuristic — it isn't sample-accurate but tracks
-  // closely enough that the highlight reads natural. Returns null if the
-  // sentence has no positional anchor (e.g. synthetic chapter announcements
-  // where sentence.start < 0).
-  var computeWordTimings = function(sentence, audioDuration, override) {
-    if (!sentence || !(audioDuration > 0) || sentence.start < 0) return null;
-    var text = (override && override.text) ? override.text : sentence.text;
-    var positionOffset = (override && typeof override.wordOffsetInSentence === "number")
-      ? override.wordOffsetInSentence : 0;
-    if (!text) return null;
-
-    // Tokenize into alternating word / gap segments. Words use Russian or
-    // Latin letters; gaps are whitespace + punctuation.
-    var segments = [];
-    var cursor = 0;
-    var wordRe = /[а-яёА-ЯЁa-zA-Z]+/g;
-    var m;
-    while ((m = wordRe.exec(text)) !== null) {
-      if (m.index > cursor) segments.push({ kind: "gap", text: text.slice(cursor, m.index), at: cursor });
-      segments.push({ kind: "word", text: m[0], at: m.index });
-      cursor = m.index + m[0].length;
-    }
-    if (cursor < text.length) segments.push({ kind: "gap", text: text.slice(cursor), at: cursor });
-    if (segments.length === 0) return null;
-
-    // Weight each segment. Words count their character length; gaps count a
-    // Weight each segment. Words count their character length; gaps count a
-    // fraction of theirs plus a smaller bonus for sentence-ending or comma
-    // pauses. Constants are tuned to match Dmitry's typical cadence — earlier
-    // values over-allocated time to punctuation, which made the highlight
-    // visibly trail the voice by the end of the sentence.
-    var totalWeight = 0;
-    segments.forEach(function(seg) {
-      if (seg.kind === "word") {
-        seg.weight = seg.text.length;
-      } else {
-        seg.weight = seg.text.length * 0.4;
-        if (/[.!?…]/.test(seg.text)) seg.weight += 1.2;       // was 3.0
-        else if (/[,;:]/.test(seg.text)) seg.weight += 0.5;    // was 1.2
-      }
-      totalWeight += seg.weight;
-    });
-    if (totalWeight <= 0) return null;
-
-    // Azure Dmitry has a small pre-roll silence (~20-40ms) and tends to clip
-    // tightly at the tail. Anchor the highlight start near zero so the first
-    // word lights as soon as audio begins.
-    var leadIn = 0.02;
-    var trailOut = 0.02;
-    var spokenDur = Math.max(0.1, audioDuration - leadIn - trailOut);
-
-    // Forward bias: Dmitry accelerates toward the end of each sentence, so a
-    // uniform distribution lags by the final clause. A position-based
-    // multiplier gives early segments slightly more time and late segments
-    // slightly less; the sum renormalizes so the total still equals
-    // spokenDur. 0.10 = subtle, 0.25 = strong.
-    var BIAS = 0.12;
-    var totalSegs = segments.length;
-    var totalAdj = 0;
-    segments.forEach(function(seg, i) {
-      var progress = totalSegs > 1 ? (i / (totalSegs - 1)) : 0;
-      seg.bias = (1 + BIAS) - (2 * BIAS) * progress;  // (1+BIAS) at start → (1-BIAS) at end
-      seg.adjWeight = seg.weight * seg.bias;
-      totalAdj += seg.adjWeight;
-    });
-    var timePerAdj = totalAdj > 0 ? spokenDur / totalAdj : 0;
-
-    var t = leadIn;
-    var timings = [];
-    segments.forEach(function(seg) {
-      var dur = seg.adjWeight * timePerAdj;
-      if (seg.kind === "word") {
-        timings.push({
-          pageStart: sentence.start + positionOffset + seg.at,
-          text: seg.text,
-          timeStart: t,
-          timeEnd: t + dur,
-        });
-      }
-      t += dur;
-    });
-    return timings;
-  };
-
-  // Clear the current highlight from the DOM (if any) and forget it.
-  var clearWordHighlight = function() {
-    var el = highlightedElementRef.current;
-    if (el) {
+  // ── Sentence-highlight helpers ─────────────────────────────────────────────
+  // Apply the .rw-reading class to every word in the playing sentence's range.
+  // If an override is passed (clicked a word mid-sentence), highlight only
+  // from that word onward to match what's actually being read aloud.
+  var clearSentenceHighlight = function() {
+    highlightedElementsRef.current.forEach(function(el) {
       try { el.classList.remove("rw-reading"); } catch(e) {}
-      highlightedElementRef.current = null;
-    }
+    });
+    highlightedElementsRef.current = [];
   };
 
-  // Highlight the word about to be spoken. We don't use the raw `t` because
-  // the audio element's reported currentTime trails actual playback by tens
-  // of milliseconds AND human reading naturally precedes hearing — both push
-  // us to use a look-ahead. Bump LOOK_AHEAD up if the highlight still feels
-  // behind, down if it now feels too far ahead.
-  var LOOK_AHEAD = 0.18;
-  var updateHighlightFromTime = function(t) {
-    var timings = wordTimingsRef.current;
-    if (!timings || !timings.length) return;
-    var lookT = t + LOOK_AHEAD;
-    // Linear scan (sentences are short — usually <30 words — so this is fine).
-    var hit = null;
-    for (var i = 0; i < timings.length; i++) {
-      if (lookT >= timings[i].timeStart && lookT < timings[i].timeEnd) { hit = timings[i]; break; }
-    }
-    if (!hit) return;
+  var highlightSentence = function(sentence, override) {
+    clearSentenceHighlight();
+    if (!sentence || sentence.start < 0) return;       // synthetic chapter announcement — nothing on screen to highlight
     if (!currentPage) return;
-    var chapterPos = hit.pageStart + currentPage.startChar;
-    var prev = highlightedElementRef.current;
-    if (prev && prev.dataset && prev.dataset.rwStart === String(chapterPos)) return;
-    // Use a more specific selector restricted to the reading area to avoid
-    // any other instance of the same start attribute elsewhere on the page.
-    var el = document.querySelector('.lit-body [data-rw-start="' + chapterPos + '"]');
-    if (!el) el = document.querySelector('[data-rw-start="' + chapterPos + '"]');
-    if (prev && prev !== el) {
-      try { prev.classList.remove("rw-reading"); } catch(e) {}
+    var startInPage = sentence.start;
+    if (override && typeof override.wordOffsetInSentence === "number") {
+      startInPage += override.wordOffsetInSentence;
     }
-    if (el) {
-      try { el.classList.add("rw-reading"); } catch(e) {}
-      highlightedElementRef.current = el;
-    } else {
-      highlightedElementRef.current = null;
-    }
-  };
-
-  // Start an animation-frame loop that polls the audio element and updates
-  // the highlight ~60 times per second. Cancels itself when the audio is
-  // paused, ended, or replaced. Cheaper than a setInterval and stays in sync
-  // with paint frames so the highlight transitions look fluid.
-  var startHighlightLoop = function(audio) {
-    if (rafIdRef.current) { cancelAnimationFrame(rafIdRef.current); rafIdRef.current = null; }
-    var tick = function() {
-      if (!audio || audio.paused || audio.ended || audioElemRef.current !== audio) {
-        rafIdRef.current = null;
-        return;
+    var endInPage = sentence.end;
+    var chapterStart = startInPage + currentPage.startChar;
+    var chapterEnd = endInPage + currentPage.startChar;
+    var nodes = document.querySelectorAll('.lit-body [data-rw-start]');
+    var hits = [];
+    for (var i = 0; i < nodes.length; i++) {
+      var pos = parseInt(nodes[i].dataset.rwStart, 10);
+      if (!isNaN(pos) && pos >= chapterStart && pos < chapterEnd) {
+        try { nodes[i].classList.add("rw-reading"); } catch(e) {}
+        hits.push(nodes[i]);
       }
-      updateHighlightFromTime(audio.currentTime);
-      rafIdRef.current = requestAnimationFrame(tick);
-    };
-    rafIdRef.current = requestAnimationFrame(tick);
-  };
-
-  var stopHighlightLoop = function() {
-    if (rafIdRef.current) { cancelAnimationFrame(rafIdRef.current); rafIdRef.current = null; }
+    }
+    highlightedElementsRef.current = hits;
   };
 
   var resetAudioBar = function() {
@@ -2765,9 +2642,7 @@ export default function App() {
       try { audioElemRef.current.pause(); audioElemRef.current.src = ""; } catch(e) {}
       audioElemRef.current = null;
     }
-    stopHighlightLoop();
-    clearWordHighlight();
-    wordTimingsRef.current = null;
+    clearSentenceHighlight();
     setAudioPlaying(false); audioPlayingRef.current = false;
   };
 
@@ -2788,10 +2663,8 @@ export default function App() {
       try { audioElemRef.current.pause(); audioElemRef.current.src = ""; } catch(e) {}
       audioElemRef.current = null;
     }
-    // Tear down highlight state from the previous sentence.
-    stopHighlightLoop();
-    clearWordHighlight();
-    wordTimingsRef.current = null;
+    // Tear down the previous sentence's highlight before drawing the new one.
+    clearSentenceHighlight();
 
     // Consume the one-shot override if set. Subsequent playback of this same
     // sentence will use the full sentence text (override is gone after this).
@@ -2820,28 +2693,17 @@ export default function App() {
       audioElemRef.current = audio;
       setAudioFetching(false);
 
-      // Compute heuristic word timings once the audio header is parsed and
-      // we know its duration. Stored on a ref so the RAF loop can read it.
-      audio.addEventListener("loadedmetadata", function() {
-        if (audioElemRef.current !== audio) return;
-        var sentObj = audioSentencesRef.current[idx];
-        wordTimingsRef.current = computeWordTimings(sentObj, audio.duration, override);
-      });
-      // Start / stop the highlight RAF loop in lockstep with playback state.
+      // Light up the entire sentence range as soon as playback actually starts.
+      // (Using `play` rather than `loadedmetadata` so the highlight only appears
+      // when sound is on its way out the speaker — never before.)
       audio.addEventListener("play", function() {
-        if (audioElemRef.current === audio) startHighlightLoop(audio);
-      });
-      audio.addEventListener("pause", function() {
-        // Don't clear the highlight on pause — leave the last word lit so the
-        // user can see where they paused. Loop will resume on the next play.
-        stopHighlightLoop();
+        if (audioElemRef.current !== audio) return;
+        highlightSentence(audioSentencesRef.current[idx], override);
       });
 
       audio.onended = function() {
         try { URL.revokeObjectURL(audio.src); } catch(e) {}
-        stopHighlightLoop();
-        clearWordHighlight();
-        wordTimingsRef.current = null;
+        clearSentenceHighlight();
         if (audioElemRef.current === audio) audioElemRef.current = null;
         // Auto-advance ONLY if this generation is still current AND we're still in play mode.
         if (audioPlayingRef.current && audioGenRef.current === myGen) {
@@ -2855,16 +2717,14 @@ export default function App() {
         }
       };
       audio.onerror = function() {
-        stopHighlightLoop();
-        clearWordHighlight();
+        clearSentenceHighlight();
         if (audioElemRef.current === audio) audioElemRef.current = null;
         setAudioPlaying(false); audioPlayingRef.current = false;
       };
       var p = audio.play();
       if (p && typeof p.catch === "function") {
         p.catch(function(e) {
-          stopHighlightLoop();
-          clearWordHighlight();
+          clearSentenceHighlight();
           setAudioPlaying(false); audioPlayingRef.current = false;
           setTtsErr("Audio blocked: " + (e.message || e));
         });
@@ -2963,9 +2823,7 @@ export default function App() {
     audioCacheRef.current = {};
     audioGenRef.current++;
     sentenceOverrideRef.current = null;
-    stopHighlightLoop();
-    clearWordHighlight();
-    wordTimingsRef.current = null;
+    clearSentenceHighlight();
     setAudioPlaying(false); audioPlayingRef.current = false;
     setAudioIdx(0); audioIdxRef.current = 0;
     setAudioFetching(false);
@@ -5453,10 +5311,12 @@ export default function App() {
         .rw{cursor:pointer;border-bottom:1px dotted rgba(210,197,175,.18);transition:color .15s,background .12s}
         .rw:hover{color:#c8a276;border-bottom-color:#c8a276}
         .rwhl{background:rgba(200,162,118,.18);color:#ece1cb;border-bottom-color:#c8a276;border-radius:3px;padding:1px 2px}
-        /* Word currently being read aloud by Azure TTS. Stronger highlight than
-           .rwhl (the click-target highlight) so it stands out during playback.
-           Applied via direct DOM (no React re-render) for performance. */
-        .rw-reading{background:#c8a276;color:#1a1612;border-bottom-color:transparent;border-radius:3px;padding:1px 3px;transition:background .08s ease-out,color .08s ease-out}
+        /* Words inside the sentence currently being read aloud. Applied at
+           the start of each sentence's playback via direct DOM manipulation
+           (no React re-render). Uses a soft warm tint so a whole sentence's
+           worth of words reads as a single coherent block, not as flashing
+           individual highlights. */
+        .rw-reading{background:rgba(200,162,118,.20);border-bottom-color:rgba(200,162,118,.45);border-radius:2px;padding:1px 1px;transition:background .15s ease}
         .acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
         .spk{padding:5px 12px;border-radius:20px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif;background:rgba(210,197,175,.07);border:1px solid rgba(210,197,175,.2);color:rgba(210,197,175,.7);transition:all .15s}
         .spk:hover{background:rgba(210,197,175,.14)} .spkon{background:rgba(157,70,48,.18);border-color:rgba(157,70,48,.35);color:#c87a6806a}
