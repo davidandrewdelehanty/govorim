@@ -6,7 +6,7 @@
 //     filename: "tolstoy-anna.epub",   // original filename, used for extension
 //     title:    "Анна Каренина",
 //     author:   "Лев Толстой",
-//     category: "Works" | "Plays" | "Poetry",
+//     category: "Works" | "Poetry",
 //     fileBase64: "<base64-encoded file bytes>"
 //   }
 //
@@ -45,14 +45,14 @@ function slugify(text) {
 
 // Categories the picker supports. Song Lyrics is NOT in this list — use the
 // upload-song endpoint for those, since they need different formatting.
-// "Works" is the unified prose category (formerly Novel + Short Stories merged).
-// Legacy "Novel" and "Short Stories" are kept as aliases that map to the same
-// folder, so any older client still hitting this endpoint keeps working.
+// "Works" is the unified prose-and-drama category (novels, short stories,
+// plays all merged). Legacy "Novel", "Short Stories", and "Plays" are kept
+// as aliases that map to the same folder, so older clients keep working.
 const CATEGORY_TO_FOLDER = {
   "Works":         "novel",
   "Novel":         "novel",          // legacy alias
   "Short Stories": "novel",          // legacy alias — files merged here
-  "Plays":         "plays",
+  "Plays":         "novel",          // legacy alias — files merged here
   "Poetry":        "poetry",
 };
 const ALLOWED_EXTS = ["epub", "fb2", "txt", "html", "htm", "xhtml"];

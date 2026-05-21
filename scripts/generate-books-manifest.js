@@ -5,10 +5,9 @@
 // manual JSON edits.
 //
 // FOLDER CONVENTION (preferred):
-//   public/books/novel/tolstoy-anna.fb2       → category "Works" (novels + short stories combined)
+//   public/books/novel/tolstoy-anna.fb2       → category "Works" (novels, short stories, plays all combined)
 //   public/books/lyrics/tsoi-songs.epub       → category "Song Lyrics"
 //   public/books/poetry/akhmatova.fb2         → category "Poetry"
-//   public/books/plays/chekhov-uncle-vanya.fb2 → category "Plays"
 //
 // Files dropped directly into public/books/ (no subfolder) still work — they
 // just go into the "Other" category until you move them. Any unknown subfolder
@@ -34,26 +33,27 @@ const SUPPORTED = /\.(fb2\.zip|epub|fb2|txt|html|htm|xhtml)$/i;
 // Maps a subfolder name → category (the canonical name used in the picker).
 // Add aliases here if you want to support multiple folder spellings for the
 // same category. The "novel" folder is the unified home for all prose works
-// (novels and short stories combined into "Works"); the legacy "short-stories"
-// folder name is still recognized if any files happen to live there.
+// AND plays — they're all combined into "Works". Legacy "short-stories" and
+// "plays" folder names are still recognized so files left in those locations
+// during migration get picked up correctly.
 const FOLDER_TO_CATEGORY = {
   "novel":         "Works",
   "novels":        "Works",
   "works":         "Works",
-  "short-stories": "Works",  // legacy folder name still maps to Works
+  "short-stories": "Works",  // legacy folder
   "stories":       "Works",
+  "plays":         "Works",  // legacy folder
+  "play":          "Works",
+  "drama":         "Works",
   "lyrics":        "Song Lyrics",
   "song-lyrics":   "Song Lyrics",
   "songs":         "Song Lyrics",
   "poetry":        "Poetry",
   "poems":         "Poetry",
-  "plays":         "Plays",
-  "play":          "Plays",
-  "drama":         "Plays",
 };
 
 // Render order in the picker (must match the App.jsx CATEGORIES list).
-const CATEGORY_ORDER = ["Works", "Plays", "Song Lyrics", "Poetry"];
+const CATEGORY_ORDER = ["Works", "Song Lyrics", "Poetry"];
 
 // 1. Load any existing manifest so we keep manual metadata edits.
 let existing = [];

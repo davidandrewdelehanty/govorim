@@ -5930,7 +5930,6 @@ export default function App() {
                     <select value={upBookCategory} onChange={function(e){ setUpBookCategory(e.target.value); }} disabled={upBusy}
                       style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}>
                       <option value="Works">Works</option>
-                      <option value="Plays">Plays</option>
                       <option value="Poetry">Poetry</option>
                     </select>
                   </div>
@@ -6215,10 +6214,10 @@ export default function App() {
                             }}>
                             <option value="" disabled>📖 Choose a book from the library…</option>
                             {(function() {
-                              var CATEGORIES = ["Works", "Plays", "Song Lyrics", "Poetry"];
-                              // Normalize legacy "Novel" and "Short Stories" entries into "Works".
+                              var CATEGORIES = ["Works", "Song Lyrics", "Poetry"];
+                              // Normalize legacy "Novel", "Short Stories", and "Plays" entries into "Works".
                               var normalize = function(cat) {
-                                if (cat === "Novel" || cat === "Short Stories") return "Works";
+                                if (cat === "Novel" || cat === "Short Stories" || cat === "Plays") return "Works";
                                 return cat;
                               };
                               var buckets = {};
@@ -6264,11 +6263,11 @@ export default function App() {
                         var filteredUploads = uploadedBooks.filter(matches);
 
                         // Group preset books by category, preserving original index for lookup.
-                        // Normalize legacy "Novel"/"Short Stories" → "Works" so older entries
-                        // in index.json fall into the right bucket without an admin edit.
-                        var CATEGORIES = ["Works", "Plays", "Song Lyrics", "Poetry"];
+                        // Normalize legacy "Novel"/"Short Stories"/"Plays" → "Works" so older
+                        // entries in index.json fall into the right bucket without an admin edit.
+                        var CATEGORIES = ["Works", "Song Lyrics", "Poetry"];
                         var normalize = function(cat) {
-                          if (cat === "Novel" || cat === "Short Stories") return "Works";
+                          if (cat === "Novel" || cat === "Short Stories" || cat === "Plays") return "Works";
                           return cat;
                         };
                         var buckets = {};
