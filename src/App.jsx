@@ -2305,22 +2305,88 @@ export default function App() {
   var audioSentencesRef = useRef([]);
   useEffect(function() { audioSentencesRef.current = audioSentences; }, [audioSentences]);
 
+  // Parse a page of text into sentence-like fragments. Each fragment becomes
+  // one /api/tts call. Rules for what counts as a sentence boundary:
+  //   1. End of line is always a boundary.
+  //   2. A terminator (. ! ? …) is a boundary ONLY when followed by whitespace
+  //      AND the next non-whitespace character is uppercase or an opening
+  //      quote/bracket. Lowercase that follows means it's an abbreviation
+  //      ("т.е. это", "г. произошло") — keep accumulating.
+  //   3. If the "word" immediately before the period is a single capital
+  //      letter, it's an initial (А.С. Пушкин) — not a boundary, even though
+  //      the next letter is uppercase.
+  //   4. Consecutive terminators ("?!", "…") count as a single terminator.
+  // The result is an array of {text, start, end} where start/end are
+  // character positions within the input text, used later to map a clicked
+  // word back to a sentence index.
   var parseSentences = function(text) {
     if (!text) return [];
-    // First parse into plain sentence strings.
     var sentences = [];
     var lines = text.split(/\n+/);
-    for (var i = 0; i < lines.length; i++) {
-      var line = lines[i].trim();
+    for (var li = 0; li < lines.length; li++) {
+      var line = lines[li].trim();
       if (!line) continue;
-      var matches = line.match(/[^.!?…]+[.!?…]+|[^.!?…]+$/g) || [line];
-      for (var j = 0; j < matches.length; j++) {
-        var s = matches[j].trim();
-        if (s) sentences.push(s);
+      var sentStart = 0;
+      var pos = 0;
+      while (pos < line.length) {
+        var ch = line[pos];
+        if (ch === "." || ch === "!" || ch === "?" || ch === "…") {
+          // Eat any consecutive terminators ("?!", "...", "…")
+          var endTerm = pos;
+          while (endTerm + 1 < line.length && /[.!?…]/.test(line[endTerm + 1])) endTerm++;
+          // What follows?
+          var nextIdx = endTerm + 1;
+          var isBoundary = false;
+          if (nextIdx >= line.length) {
+            isBoundary = true;  // end of line
+          } else if (!/\s/.test(line[nextIdx])) {
+            isBoundary = false; // no whitespace = abbreviation (т.е., decimals)
+          } else {
+            // Skip whitespace, peek at next real char
+            var k = nextIdx;
+            while (k < line.length && /\s/.test(line[k])) k++;
+            if (k >= line.length) {
+              isBoundary = true;
+            } else if (/[А-ЯЁA-Z«"„(\[—–]/.test(line[k])) {
+              // Looks like a new sentence — BUT verify the period isn't part
+              // of an initial (single capital letter + period before a name).
+              var wEnd = endTerm;
+              while (wEnd > 0 && /[.!?…]/.test(line[wEnd - 1])) wEnd--;
+              var wStart = wEnd - 1;
+              while (wStart >= 0 && /[а-яёА-ЯЁa-zA-Z]/.test(line[wStart])) wStart--;
+              wStart++;
+              var wordBefore = line.slice(wStart, wEnd);
+              if (wordBefore.length === 1 && /[А-ЯЁA-Z]/.test(wordBefore)) {
+                // Initial — not a boundary
+                isBoundary = false;
+              } else {
+                isBoundary = true;
+              }
+            } else {
+              // Lowercase next — abbreviation
+              isBoundary = false;
+            }
+          }
+          if (isBoundary) {
+            var sentText = line.slice(sentStart, endTerm + 1).trim();
+            if (sentText) sentences.push(sentText);
+            var sw = endTerm + 1;
+            while (sw < line.length && /\s/.test(line[sw])) sw++;
+            sentStart = sw;
+            pos = sw;
+          } else {
+            pos = endTerm + 1;
+          }
+        } else {
+          pos++;
+        }
+      }
+      if (sentStart < line.length) {
+        var lastSent = line.slice(sentStart).trim();
+        if (lastSent) sentences.push(lastSent);
       }
     }
-    // Then locate each sentence in the original text to track character ranges.
-    // Used to align word-click position → sentence index for the audio player.
+    // Locate each sentence in the original text to track character ranges.
     var result = [];
     var searchFrom = 0;
     for (var k = 0; k < sentences.length; k++) {
