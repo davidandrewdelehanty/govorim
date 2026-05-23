@@ -1921,7 +1921,7 @@ async function parseFb2(buffer, options) {
   // Inject it as the first paragraph of chapter 1 so the displayed text
   // matches what listeners hear.
   if (/Каренин/i.test(bookTitle) && chapters.length > 0) {
-    var ded = "«Мне отмщение, и Я воздам.»";
+    var ded = "«Мне отмщение, и Я аз воздам»";
     if (chapters[0].text.indexOf(ded) === -1) {
       chapters[0].text = ded + "\n\n" + chapters[0].text;
     }
