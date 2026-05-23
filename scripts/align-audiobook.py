@@ -91,6 +91,7 @@ def main():
     try:
         from aeneas.executetask import ExecuteTask
         from aeneas.task import Task
+        from aeneas.runtimeconfiguration import RuntimeConfiguration
     except ImportError:
         print("ERROR: aeneas not installed.\n", file=sys.stderr)
         print("Install instructions:", file=sys.stderr)
@@ -135,7 +136,7 @@ def main():
     task.sync_map_file_path_absolute = tmp_out
 
     try:
-        ExecuteTask(task).execute()
+        ExecuteTask(task, rconf=RuntimeConfiguration("tts=espeak-ng|tts_path=/usr/bin/espeak-ng")).execute()
         task.output_sync_map_file()
     except Exception as exc:
         print(f"ERROR: aeneas failed: {exc}", file=sys.stderr)
