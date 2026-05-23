@@ -2828,6 +2828,7 @@ export default function App() {
         }
         if (lastEnd > 0 && audio.currentTime > lastEnd + 0.1 &&
             pidxAbRef.current < (totalPagesAbRef.current || 1) - 1) {
+          pageFlipModeRef.current = 'auto';
           setPidx(pidxAbRef.current + 1);
           lastHit = -1;
         }
@@ -3186,8 +3187,36 @@ export default function App() {
   // Refs synced for audiobook auto-page-flip in the RAF tick
   var pidxAbRef = useRef(0);
   var totalPagesAbRef = useRef(1);
+  // 'auto' = page change caused by RAF auto-flip during playback;
+  // 'manual' = user navigated pages (forward, back, or jumped).
+  var pageFlipModeRef = useRef('manual');
   useEffect(function() { pidxAbRef.current = pidx; }, [pidx]);
   useEffect(function() { totalPagesAbRef.current = totalPages; }, [totalPages]);
+  // On page change, seek audio to that page's first sentence — but only
+  // for manual nav. Auto-flip during playback should NOT reseek (audio
+  // is already in the right place when the flip happens).
+  useEffect(function() {
+    if (pageFlipModeRef.current === 'auto') {
+      pageFlipModeRef.current = 'manual';  // reset for next change
+      return;
+    }
+    // Manual nav (forward, back, jump): wait for buildSentenceTimings to
+    // rebuild on the new page (it runs in a useEffect on [audiobookData,
+    // audioSentences]), then seek audio to the first sentence's begin time.
+    var t = setTimeout(function() {
+      var audio = audiobookAudioRef.current;
+      var timings = sentenceTimingsRef.current;
+      if (!audio || !timings || !timings.length) return;
+      var firstBegin = Infinity;
+      for (var i = 0; i < timings.length; i++) {
+        if (timings[i] && timings[i].begin < firstBegin) firstBegin = timings[i].begin;
+      }
+      if (firstBegin !== Infinity && isFinite(firstBegin)) {
+        try { audio.currentTime = firstBegin; } catch(e) {}
+      }
+    }, 80);
+    return function() { clearTimeout(t); };
+  }, [pidx]);
   var currentPage = pages[Math.min(pidx, totalPages - 1)] || pages[0];
 
   // Re-parse sentences when page or chapter changes. Halts any in-flight audio,
