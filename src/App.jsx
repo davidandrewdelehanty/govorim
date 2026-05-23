@@ -4844,6 +4844,7 @@ export default function App() {
         author: d.author || book.author || "",
         category: d.category || book.category || "",
         splitByNumberedSections: !!d.splitByNumberedSections,
+        audiobook: d.audiobook || null,
       };
       setChapters(d.chapters);
       setBookMeta(meta);
