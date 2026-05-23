@@ -3157,7 +3157,7 @@ export default function App() {
   // and per-sentence timestamps. If no audiobook is configured for this
   // chapter, audiobookData stays null and the UI falls back to TTS.
   useEffect(function() {
-    setAudiobookData(null);
+    setAudiobookData(null); console.log("[audiobook loader] bookMeta.audiobook:", bookMeta && bookMeta.audiobook, "cidx:", cidx);
     sentenceTimingsRef.current = [];
     var audiobook = bookMeta && bookMeta.audiobook;
     if (!audiobook) return;
