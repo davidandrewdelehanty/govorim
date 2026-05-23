@@ -7323,6 +7323,7 @@ export default function App() {
 
                 {lview==="nav" && (
                   <div className="navpanel">
+                    {(function(){ console.log("[gv-debug] rendering chapter list, count:", chapters.length, "first 3 headings:", chapters.slice(0,3).map(function(c){return c.heading})); return null; })()}
                     {chapters.map(function(ch,i){
                       return (
                         <div key={i} className={"lcard"+(i===cidx?" cur":"")} onClick={function(){ setLview("read"); navLit(i); }}>
