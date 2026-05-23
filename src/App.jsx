@@ -1842,27 +1842,62 @@ async function parseFb2(buffer, options) {
   var nick = (doc.querySelector("title-info > author > nickname") || {}).textContent || "";
   var author = (fn + " " + ln).trim() || nick || "Unknown author";
 
-  // Each <section> in <body> is a chapter.
+  // Each top-level <section> is a Part. <subtitle> markers within it delimit
+  // individual chapters. Books with no subtitle markers (single-story FB2s)
+  // keep the old per-section behavior.
   var sections = doc.querySelectorAll("body > section");
   var chapters = [];
   for (var i = 0; i < sections.length; i++) {
     var sec = sections[i];
-    // <title> contains the chapter heading; collect its text.
     var titleEl = sec.querySelector(":scope > title");
-    var heading = titleEl ? titleEl.textContent.replace(/\s+/g, " ").trim() : ("Глава " + (chapters.length + 1));
-    // Remove the title from the body so we don't repeat it.
-    if (titleEl) titleEl.remove();
-    // Collect all paragraph-like text with blank lines between.
-    var paras = [];
-    var ps = sec.querySelectorAll("p, v, subtitle");
-    for (var p = 0; p < ps.length; p++) {
-      var t = ps[p].textContent.replace(/\s+/g, " ").trim();
-      if (t) paras.push(t);
+    var partTitle = titleEl ? titleEl.textContent.replace(/\s+/g, " ").trim() : "";
+    var subtitleEls = sec.querySelectorAll(":scope > subtitle");
+
+    if (subtitleEls.length >= 2) {
+      // Split section content by subtitle markers.
+      var directChildren = Array.from(sec.children);
+      var currentSubtitle = null;
+      var currentParas = [];
+      var flush = function() {
+        if (currentSubtitle === null) return;
+        var body = currentParas.join("\n\n");
+        var cyrCount = (body.match(/[а-яёА-ЯЁ]/g) || []).length;
+        if (cyrCount >= 5) {
+          chapters.push({
+            heading: (partTitle ? partTitle + " — " : "") + currentSubtitle,
+            text: body,
+          });
+        }
+      };
+      for (var ci = 0; ci < directChildren.length; ci++) {
+        var child = directChildren[ci];
+        var tag = child.tagName.toLowerCase();
+        if (tag === "subtitle") {
+          flush();
+          currentSubtitle = child.textContent.replace(/\s+/g, " ").trim();
+          currentParas = [];
+        } else if (tag === "title") {
+          continue;
+        } else {
+          var t = child.textContent.replace(/\s+/g, " ").trim();
+          if (t && currentSubtitle !== null) currentParas.push(t);
+        }
+      }
+      flush();
+    } else {
+      var heading = partTitle || ("Глава " + (chapters.length + 1));
+      if (titleEl) titleEl.remove();
+      var paras = [];
+      var ps = sec.querySelectorAll("p, v, subtitle");
+      for (var p = 0; p < ps.length; p++) {
+        var t = ps[p].textContent.replace(/\s+/g, " ").trim();
+        if (t) paras.push(t);
+      }
+      var body = paras.join("\n\n");
+      var cyrCount = (body.match(/[а-яёА-ЯЁ]/g) || []).length;
+      if (cyrCount < 5) continue;
+      chapters.push({ heading: heading, text: body });
     }
-    var body = paras.join("\n\n");
-    var cyrCount = (body.match(/[а-яёА-ЯЁ]/g) || []).length;
-    if (cyrCount < 5) continue;
-    chapters.push({ heading: heading, text: body });
   }
 
   // Fallback: if no <section>s, treat entire body as one chapter
