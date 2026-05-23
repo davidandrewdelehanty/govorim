@@ -158,7 +158,7 @@ function splitBySubtitles(sectionContent) {
     const contentEnd = i + 1 < subtitles.length ? subtitles[i + 1].start : sectionContent.length;
     // Include subtitle text as the chapter's first line so sentence counts match
     // App.jsx (which includes subtitle elements via querySelectorAll).
-    const text = subtitles[i].title + "\n" + stripXml(sectionContent.slice(contentStart, contentEnd));
+    const text = stripXml(sectionContent.slice(contentStart, contentEnd));
     chapters.push({ title: subtitles[i].title, text });
   }
   return chapters;
@@ -184,18 +184,14 @@ function parseFb2(xml) {
       const subtitleSplits = splitBySubtitles(sectionContent);
 
       if (subtitleSplits) {
-        // First subtitle-chapter also includes the leaf's own title (e.g.
-        // "ЧАСТЬ ПЕРВАЯ") so the sentence count matches App.jsx flattening.
-        const leafTitle = extractTitle(sectionContent);
+        // Prose only — don't include subtitle text or leaf title.
+        // The audio is just narrated prose; including chapter markers as
+        // 'sentences' makes aeneas force-fit them and break alignment.
         subtitleSplits.forEach((sub, idx) => {
-          let chapterText = sub.text;
-          if (idx === 0 && leafTitle) {
-            chapterText = leafTitle + "\n" + chapterText;
-          }
           chapters.push({
             path: [...pathSoFar, idx + 1],
             title: sub.title,
-            text: chapterText,
+            text: sub.text,
           });
         });
       } else {
