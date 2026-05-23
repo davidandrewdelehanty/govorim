@@ -2384,6 +2384,7 @@ export default function App() {
   var [gramErr, setGramErr]       = useState("");
   var [gramSearch, setGramSearch] = useState("");
   var [cidx, setCidx]           = useState(0);
+  var [expandedPart, setExpandedPart] = useState(null);
   var [pidx, setPidx]           = useState(0);  // Current page within the current chapter
   var [cbm,  setCbm]            = useState(0);
   var [lview, setLview]         = useState("read");
@@ -7327,15 +7328,89 @@ export default function App() {
 
                 {lview==="nav" && (
                   <div className="navpanel">
-                    {chapters.map(function(ch,i){
-                      return (
-                        <div key={i} className={"lcard"+(i===cidx?" cur":"")} onClick={function(){ setLview("read"); navLit(i); }}>
-                          <div className="lcn">{i+1}{i===cbm?" 📌":""}{i===cidx?" ◀":""}</div>
-                          <div className="lchead">{ch.heading}</div>
-                          <div className="lcp">{ch.text.slice(0,80)}…</div>
-                        </div>
-                      );
-                    })}
+                    {(function(){
+                      // Group chapters by Part. Headings like "ЧАСТЬ ПЕРВАЯ — I"
+                      // are split on " — " to extract Part name + Chapter name.
+                      var groups = [];
+                      var currentGroup = null;
+                      for (var gi = 0; gi < chapters.length; gi++) {
+                        var h = chapters[gi].heading || "";
+                        var sep = h.indexOf(" — ");
+                        var partName = sep >= 0 ? h.slice(0, sep) : "";
+                        var chName   = sep >= 0 ? h.slice(sep + 3) : h;
+                        if (!currentGroup || partName !== currentGroup.partName) {
+                          currentGroup = { partName: partName, chapters: [] };
+                          groups.push(currentGroup);
+                        }
+                        currentGroup.chapters.push({ idx: gi, name: chName, ch: chapters[gi] });
+                      }
+                      // No Part structure (single-section books like Gogol): render flat as before.
+                      if (groups.length <= 1 && (!groups[0] || !groups[0].partName)) {
+                        return chapters.map(function(ch, i){
+                          return (
+                            <div key={i} className={"lcard"+(i===cidx?" cur":"")} onClick={function(){ setLview("read"); navLit(i); }}>
+                              <div className="lcn">{i+1}{i===cbm?" 📌":""}{i===cidx?" ◀":""}</div>
+                              <div className="lchead">{ch.heading}</div>
+                              <div className="lcp">{ch.text.slice(0,80)}…</div>
+                            </div>
+                          );
+                        });
+                      }
+                      // Find which Part contains the current chapter (auto-expand fallback).
+                      var defaultExpanded = -1;
+                      for (var di = 0; di < groups.length; di++) {
+                        if (groups[di].chapters.some(function(c){ return c.idx === cidx; })) {
+                          defaultExpanded = di;
+                          break;
+                        }
+                      }
+                      var activeExpanded = expandedPart === null ? defaultExpanded : expandedPart;
+                      // Hierarchical render with Part headers + collapsible chapter lists.
+                      return groups.map(function(g, gIdx){
+                        var isExpanded = activeExpanded === gIdx;
+                        var hasCurrent = g.chapters.some(function(c){ return c.idx === cidx; });
+                        return (
+                          <div key={gIdx}>
+                            <div
+                              onClick={function(){ setExpandedPart(isExpanded ? -1 : gIdx); }}
+                              style={{
+                                cursor: "pointer",
+                                padding: "12px 16px",
+                                marginTop: gIdx === 0 ? "0" : "10px",
+                                marginBottom: isExpanded ? "6px" : "0",
+                                background: hasCurrent ? "rgba(255,200,120,0.12)" : "rgba(255,255,255,0.06)",
+                                borderRadius: "8px",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                                gap: "10px",
+                                fontWeight: 600,
+                                fontSize: "1.05em",
+                                userSelect: "none",
+                              }}
+                            >
+                              <span>
+                                <span style={{display:"inline-block", width:"1.4em", opacity:0.7}}>{isExpanded ? "▾" : "▸"}</span>
+                                {g.partName || "Без названия"}
+                              </span>
+                              <span style={{opacity:0.55, fontSize:"0.85em", fontWeight:400}}>
+                                {g.chapters.length} {hasCurrent ? "· текущая" : ""}
+                              </span>
+                            </div>
+                            {isExpanded && g.chapters.map(function(c){
+                              var i = c.idx;
+                              return (
+                                <div key={i} className={"lcard"+(i===cidx?" cur":"")} onClick={function(){ setLview("read"); navLit(i); }} style={{marginLeft:"14px"}}>
+                                  <div className="lcn">{i+1}{i===cbm?" 📌":""}{i===cidx?" ◀":""}</div>
+                                  <div className="lchead">{c.name}</div>
+                                  <div className="lcp">{c.ch.text.slice(0,80)}…</div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        );
+                      });
+                    })()}
                   </div>
                 )}
 
