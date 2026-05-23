@@ -2397,6 +2397,28 @@ export default function App() {
   // sentence is playing, because we're driving each fetch ourselves. No RAF
   // loop, no per-millisecond calculation — toggle a class once per sentence.
   var highlightedElementsRef = useRef([]);  // DOM nodes currently lit up
+
+  // ── Audiobook mode (real human narration with pre-aligned timestamps) ─────
+  // When a book entry in index.json carries an `audiobook.chapters[cidx]`
+  // path, we fetch that chapter's alignment JSON at chapter-load time. It
+  // contains the streaming audio URL plus per-sentence {begin, end} pairs.
+  // Playback is then a single persistent HTMLAudioElement streaming from
+  // archive.org (or wherever), with a RAF loop that maps audio.currentTime
+  // to one of the parsed sentences and applies the same .rw-reading
+  // highlight that TTS mode uses.
+  var [audiobookData, setAudiobookData] = useState(null);    // {audio_url, fragments[], narrator?, year?}
+  var [audiobookMode, setAudiobookMode] = useState(false);   // user-toggleable; defaults true when audiobookData arrives
+  var audiobookAudioRef = useRef(null);                      // persistent <audio> streaming the recording
+  var audiobookRafRef = useRef(null);                        // RAF handle for the highlight loop
+  // Per-sentence timing for the CURRENT page only. Built when audiobookData
+  // and audioSentences are both available. timings[i] = {begin, end} if the
+  // i-th parsed sentence has a matched fragment, else null (no highlight).
+  var sentenceTimingsRef = useRef([]);
+  var audiobookDataRef = useRef(null);
+  useEffect(function() { audiobookDataRef.current = audiobookData; }, [audiobookData]);
+  var audiobookModeRef = useRef(false);
+  useEffect(function() { audiobookModeRef.current = audiobookMode; }, [audiobookMode]);
+
   var audioIdxRef = useRef(0);
   useEffect(function() { audioIdxRef.current = audioIdx; }, [audioIdx]);
   var audioPlayingRef = useRef(false);
@@ -2660,11 +2682,194 @@ export default function App() {
     highlightedElementsRef.current = hits;
   };
 
+  // ── Audiobook helpers ──────────────────────────────────────────────────────
+  // Normalise sentence text for fuzzy fragment-matching. The alignment JSON
+  // came from `extract-sentences.js` which mirrors parseSentences, but punc /
+  // whitespace differences can still slip in — normalise both sides.
+  var normalizeForMatch = function(s) {
+    return String(s || "")
+      .toLowerCase()
+      .replace(/[^а-яёa-z0-9\s]/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  };
+
+  // Build the mapping `sentenceIdx → {begin, end}` for the page that's
+  // currently rendered. Greedy linear walk: for each parsed sentence in
+  // order, scan forward from the previous match to find the next alignment
+  // fragment whose normalised text starts the same way. This is robust to
+  // synthetic announcement insertion (Bible / chapter ordinals) and to
+  // narrator-only audio (skipped author footnotes).
+  var buildSentenceTimings = function() {
+    var data = audiobookDataRef.current;
+    var sents = audioSentencesRef.current;
+    if (!data || !data.fragments || !sents || !sents.length) {
+      sentenceTimingsRef.current = [];
+      return;
+    }
+    var frags = data.fragments;
+    var fragIdx = 0;
+    var mapping = sents.map(function(sent) {
+      if (!sent || sent.start < 0) return null;  // synthetic chapter announcement
+      var normSent = normalizeForMatch(sent.text);
+      if (normSent.length < 3) return null;
+      var probe = normSent.slice(0, Math.min(40, normSent.length));
+      // Search from current fragIdx forward up to ~12 fragments — keeps
+      // mapping locally stable even if a fragment was inserted on either side.
+      for (var step = 0; step < 12 && fragIdx + step < frags.length; step++) {
+        var fragNorm = normalizeForMatch(frags[fragIdx + step].text);
+        if (fragNorm.indexOf(probe.slice(0, 25)) !== -1 ||
+            (probe.length >= 12 && fragNorm.indexOf(probe.slice(0, 12)) === 0)) {
+          fragIdx += step + 1;
+          return { begin: frags[fragIdx - 1].begin, end: frags[fragIdx - 1].end };
+        }
+      }
+      return null;
+    });
+    sentenceTimingsRef.current = mapping;
+  };
+
+  // Find which sentence (by index in audioSentencesRef.current) the given
+  // playback time falls into. Binary search would be possible but linear
+  // is plenty fast — one page's worth of sentences (≤30 typical).
+  var findSentenceIdxForTime = function(t) {
+    var timings = sentenceTimingsRef.current;
+    for (var i = 0; i < timings.length; i++) {
+      var tm = timings[i];
+      if (tm && t >= tm.begin && t < tm.end) return i;
+    }
+    return -1;
+  };
+
+  var stopAudiobookRaf = function() {
+    if (audiobookRafRef.current) {
+      cancelAnimationFrame(audiobookRafRef.current);
+      audiobookRafRef.current = null;
+    }
+  };
+
+  var startAudiobookRaf = function() {
+    stopAudiobookRaf();
+    var lastHit = -1;
+    var tick = function() {
+      var audio = audiobookAudioRef.current;
+      if (!audio || audio.paused || audio.ended) {
+        audiobookRafRef.current = null;
+        return;
+      }
+      var hit = findSentenceIdxForTime(audio.currentTime);
+      if (hit !== -1 && hit !== lastHit) {
+        lastHit = hit;
+        var sent = audioSentencesRef.current[hit];
+        if (sent) highlightSentence(sent, null);
+        if (audioIdxRef.current !== hit) {
+          audioIdxRef.current = hit;
+          setAudioIdx(hit);
+        }
+      }
+      audiobookRafRef.current = requestAnimationFrame(tick);
+    };
+    audiobookRafRef.current = requestAnimationFrame(tick);
+  };
+
+  // Start audiobook playback. Reuses a single Audio element so user-activation
+  // sticks across pause/resume cycles, just like the TTS path.
+  var playAudiobookFromSentence = function(startIdx) {
+    var data = audiobookDataRef.current;
+    if (!data || !data.audio_url) return false;
+
+    // Kill any TTS playback in flight; the two modes share the audio bar UI
+    // but not the actual element.
+    if (audioElemRef.current) {
+      try {
+        audioElemRef.current.pause();
+        audioElemRef.current.onplay = audioElemRef.current.onended = audioElemRef.current.onerror = null;
+      } catch(e) {}
+    }
+    clearSentenceHighlight();
+
+    var audio = audiobookAudioRef.current;
+    if (!audio) {
+      audio = new Audio();
+      audio.preload = "auto";
+      audio.crossOrigin = "anonymous";  // archive.org allows CORS streaming
+      audiobookAudioRef.current = audio;
+    }
+
+    // (Re)point at the chapter's audio URL if needed (chapter change).
+    if (audio.src !== data.audio_url) {
+      audio.src = data.audio_url;
+    }
+
+    // Seek to the chosen sentence's start time, if its timing is known.
+    var timing = sentenceTimingsRef.current[startIdx];
+    if (timing && timing.begin >= 0) {
+      try { audio.currentTime = timing.begin; } catch(e) {}
+    }
+
+    audio.onplay = function() {
+      if (audiobookAudioRef.current !== audio) return;
+      startAudiobookRaf();
+    };
+    audio.onpause = function() {
+      // Leave the highlight in place so the reader can see where they paused.
+      stopAudiobookRaf();
+    };
+    audio.onended = function() {
+      stopAudiobookRaf();
+      clearSentenceHighlight();
+      setAudioPlaying(false); audioPlayingRef.current = false;
+    };
+    audio.onerror = function() {
+      stopAudiobookRaf();
+      clearSentenceHighlight();
+      setAudioPlaying(false); audioPlayingRef.current = false;
+      setTtsErr("Audiobook stream error — the audio URL may be unreachable.");
+    };
+
+    setAudioPlaying(true); audioPlayingRef.current = true;
+    var p = audio.play();
+    if (p && typeof p.catch === "function") {
+      p.catch(function(e) {
+        stopAudiobookRaf();
+        clearSentenceHighlight();
+        setAudioPlaying(false); audioPlayingRef.current = false;
+        var msg = e && e.message ? e.message : String(e);
+        setTtsErr("Audiobook blocked: " + msg);
+      });
+    }
+    return true;
+  };
+
+  var pauseAudiobook = function() {
+    if (audiobookAudioRef.current) {
+      try { audiobookAudioRef.current.pause(); } catch(e) {}
+    }
+    stopAudiobookRaf();
+    setAudioPlaying(false); audioPlayingRef.current = false;
+  };
+
+  var stopAudiobookTotal = function() {
+    pauseAudiobook();
+    clearSentenceHighlight();
+    if (audiobookAudioRef.current) {
+      try {
+        audiobookAudioRef.current.onplay = null;
+        audiobookAudioRef.current.onpause = null;
+        audiobookAudioRef.current.onended = null;
+        audiobookAudioRef.current.onerror = null;
+        audiobookAudioRef.current.src = "";
+      } catch(e) {}
+      audiobookAudioRef.current = null;
+    }
+  };
+
   var resetAudioBar = function() {
     if (audioElemRef.current) {
       try { audioElemRef.current.pause(); audioElemRef.current.src = ""; } catch(e) {}
       audioElemRef.current = null;
     }
+    stopAudiobookTotal();
     clearSentenceHighlight();
     setAudioPlaying(false); audioPlayingRef.current = false;
   };
@@ -2801,6 +3006,24 @@ export default function App() {
 
   var audioPlayPause = function() {
     if (audioSentencesRef.current.length === 0) return;
+    // Audiobook branch — single streaming element, no per-sentence fetch chain.
+    if (audiobookModeRef.current && audiobookDataRef.current) {
+      if (audioPlaying) {
+        pauseAudiobook();
+      } else {
+        // If the audio element exists and is just paused mid-stream, resume.
+        // Otherwise start fresh from the current sentence's begin time.
+        var existing = audiobookAudioRef.current;
+        if (existing && existing.src && existing.paused && existing.currentTime > 0) {
+          setAudioPlaying(true); audioPlayingRef.current = true;
+          existing.play().then(function() { startAudiobookRaf(); }).catch(function(){});
+        } else {
+          playAudiobookFromSentence(audioIdxRef.current);
+        }
+      }
+      return;
+    }
+    // TTS branch (existing behaviour).
     if (audioPlaying) {
       if (audioElemRef.current) audioElemRef.current.pause();
       setAudioPlaying(false); audioPlayingRef.current = false;
@@ -2819,6 +3042,17 @@ export default function App() {
     sentenceOverrideRef.current = null;  // manual skip = full sentence
     var newIdx = Math.max(0, audioIdxRef.current - 1);
     setAudioIdx(newIdx); audioIdxRef.current = newIdx;
+    if (audiobookModeRef.current && audiobookDataRef.current) {
+      if (audioPlayingRef.current) playAudiobookFromSentence(newIdx);
+      else {
+        // Just seek the audio element; don't start playback.
+        var timing = sentenceTimingsRef.current[newIdx];
+        if (audiobookAudioRef.current && timing && timing.begin >= 0) {
+          try { audiobookAudioRef.current.currentTime = timing.begin; } catch(e) {}
+        }
+      }
+      return;
+    }
     if (audioPlayingRef.current) playAudioSentence(newIdx);
     else resetAudioBar();
   };
@@ -2827,6 +3061,16 @@ export default function App() {
     sentenceOverrideRef.current = null;  // manual skip = full sentence
     var newIdx = Math.min(audioSentencesRef.current.length - 1, audioIdxRef.current + 1);
     setAudioIdx(newIdx); audioIdxRef.current = newIdx;
+    if (audiobookModeRef.current && audiobookDataRef.current) {
+      if (audioPlayingRef.current) playAudiobookFromSentence(newIdx);
+      else {
+        var timing = sentenceTimingsRef.current[newIdx];
+        if (audiobookAudioRef.current && timing && timing.begin >= 0) {
+          try { audiobookAudioRef.current.currentTime = timing.begin; } catch(e) {}
+        }
+      }
+      return;
+    }
     if (audioPlayingRef.current) playAudioSentence(newIdx);
     else resetAudioBar();
   };
@@ -2882,6 +3126,12 @@ export default function App() {
       try { audioElemRef.current.pause(); audioElemRef.current.src = ""; } catch(e) {}
       audioElemRef.current = null;
     }
+    // Stop audiobook stream too — the alignment changes per chapter, and a
+    // mid-page audio source is no longer relevant once we navigate.
+    if (audiobookAudioRef.current) {
+      try { audiobookAudioRef.current.pause(); } catch(e) {}
+    }
+    stopAudiobookRaf();
     audioCacheRef.current = {};
     audioGenRef.current++;
     sentenceOverrideRef.current = null;
@@ -2900,6 +3150,47 @@ export default function App() {
       setAudioSentences([]);
     }
   }, [cidx, pidx, mode, curChapter && curChapter.text, currentPage && currentPage.startChar, currentPage && currentPage.endChar, bookMeta.title]);
+
+  // ── Audiobook alignment loader ─────────────────────────────────────────────
+  // When the current book has an audiobook entry for the current chapter,
+  // fetch its alignment JSON. The alignment carries the streaming audio URL
+  // and per-sentence timestamps. If no audiobook is configured for this
+  // chapter, audiobookData stays null and the UI falls back to TTS.
+  useEffect(function() {
+    setAudiobookData(null);
+    sentenceTimingsRef.current = [];
+    var audiobook = bookMeta && bookMeta.audiobook;
+    if (!audiobook) return;
+    var chapters = audiobook.chapters;
+    if (!Array.isArray(chapters)) return;
+    var path = chapters[cidx];
+    if (!path) return;
+    var url = path.indexOf("/") === 0 ? path : ("/books/" + path);
+    var cancelled = false;
+    fetch(url)
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .then(function(json) {
+        if (cancelled || !json) return;
+        if (!json.audio_url || !Array.isArray(json.fragments)) return;
+        setAudiobookData(json);
+        // Default to audiobook mode when one becomes available. User can
+        // still flip to TTS via the toggle in the audio bar.
+        setAudiobookMode(true);
+      })
+      .catch(function() {});
+    return function() { cancelled = true; };
+  }, [bookMeta && bookMeta.audiobook, cidx]);
+
+  // Once both audiobookData and audioSentences exist for the current page,
+  // build the runtime sentence-to-fragment mapping. Re-run when either side
+  // changes.
+  useEffect(function() {
+    if (audiobookData && audioSentences && audioSentences.length > 0) {
+      buildSentenceTimings();
+    } else {
+      sentenceTimingsRef.current = [];
+    }
+  }, [audiobookData, audioSentences]);
 
   useEffect(function() {
     (async function() {
@@ -5442,13 +5733,20 @@ export default function App() {
         .faudio-play{background:#c8a276;color:#1a1611;border-color:#c8a276;width:52px;height:52px;font-size:22px}
         .faudio-play:hover{background:#d4ae7f}
         .faudio-status{color:rgba(210,197,175,.55);font-size:12px;font-family:'Inter',system-ui,sans-serif;margin-left:10px;letter-spacing:.3px;min-width:90px;text-align:left}
+        .faudio-narrator{color:#c8a276;font-style:italic}
+        /* 🎧 ↔ 🤖 mode toggle — only renders when an audiobook is available */
+        .faudio-mode{background:rgba(210,197,175,.06);border:1px solid rgba(210,197,175,.2);color:rgba(210,197,175,.7);border-radius:50%;width:36px;height:36px;font-size:16px;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .faudio-mode:hover{background:rgba(200,162,118,.12);color:#c8a276;border-color:rgba(200,162,118,.4)}
+        .faudio-mode.active{background:rgba(200,162,118,.18);color:#c8a276;border-color:#c8a276}
         .faudio-speed{margin-left:auto;background:rgba(210,197,175,.06);border:1px solid rgba(210,197,175,.2);color:rgba(210,197,175,.7);border-radius:14px;padding:6px 12px;font-size:12px;font-family:'Crimson Pro',serif;cursor:pointer;transition:all .15s;letter-spacing:.3px}
         .faudio-speed:hover{background:rgba(200,162,118,.12);color:#c8a276;border-color:rgba(200,162,118,.3)}
+        .faudio-speed:disabled{opacity:.35;cursor:not-allowed}
         @media(max-width:600px){
           .faudio{padding:0 12px;gap:10px;height:62px}
           .faudio-btn{width:40px;height:40px;font-size:15px}
           .faudio-play{width:48px;height:48px;font-size:20px}
           .faudio-status{font-size:11px;min-width:0;margin-left:6px}
+          .faudio-mode{width:32px;height:32px;font-size:14px}
           .faudio-speed{padding:5px 9px;font-size:11px}
         }
         /* Push reading-mode content up so the floating bar doesn't cover it. */
@@ -6918,7 +7216,11 @@ export default function App() {
                     </div>
 
                     {/* Floating audio player — always visible at bottom of viewport
-                        while reading. Sentence-by-sentence Dmitry Azure playback. */}
+                        while reading. In TTS mode plays sentence-by-sentence via
+                        Azure Dmitry. In Audiobook mode (when the book has an
+                        aligned audiobook for the current chapter) streams a real
+                        recording from archive.org with sentence-precise highlight
+                        sync. */}
                     {audioSentences.length > 0 && (
                       <div className="faudio">
                         <button className="faudio-btn" onClick={audioSkipBack}
@@ -6933,11 +7235,35 @@ export default function App() {
                           disabled={audioIdx >= audioSentences.length - 1 || audioFetching}
                           title="Next sentence">⏭</button>
                         <span className="faudio-status">
+                          {audiobookMode && audiobookData ?
+                            <><span className="faudio-narrator">🎧 {audiobookData.narrator || "Audiobook"}</span> · </>
+                            : null}
                           Sentence {audioIdx + 1} / {audioSentences.length}
                         </span>
+                        {audiobookData && (
+                          <button className={"faudio-mode" + (audiobookMode ? " active" : "")}
+                            onClick={function(){
+                              // Toggle modes. Stop whatever's playing first; both
+                              // playback paths share the audio bar UI but not the
+                              // underlying audio element.
+                              if (audioPlayingRef.current) {
+                                if (audiobookModeRef.current) pauseAudiobook();
+                                else if (audioElemRef.current) {
+                                  try { audioElemRef.current.pause(); } catch(e) {}
+                                }
+                              }
+                              clearSentenceHighlight();
+                              setAudioPlaying(false); audioPlayingRef.current = false;
+                              setAudiobookMode(!audiobookMode);
+                            }}
+                            title={audiobookMode ? "Switch to AI voice (Azure Dmitry)" : "Switch to audiobook narrator"}>
+                            {audiobookMode ? "🎧" : "🤖"}
+                          </button>
+                        )}
                         <button className="faudio-speed"
                           onClick={function(){ setAudioSpeedIdx((audioSpeedIdx + 1) % SPEED_OPTIONS.length); }}
-                          title={"Playback speed (tap to cycle). Current: " + SPEED_OPTIONS[audioSpeedIdx].label}>
+                          title={"Playback speed (TTS mode only). Current: " + SPEED_OPTIONS[audioSpeedIdx].label}
+                          disabled={audiobookMode && !!audiobookData}>
                           {SPEED_OPTIONS[audioSpeedIdx].label}
                         </button>
                       </div>
