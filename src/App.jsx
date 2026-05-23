@@ -2757,18 +2757,22 @@ export default function App() {
     }
     var frags = data.fragments;
     var fragIdx = 0;
+    var firstSent = true;
     var mapping = sents.map(function(sent) {
       if (!sent || sent.start < 0) return null;  // synthetic chapter announcement
       var normSent = normalizeForMatch(sent.text);
       if (normSent.length < 3) return null;
       var probe = normSent.slice(0, Math.min(40, normSent.length));
-      // Search from current fragIdx forward up to ~12 fragments — keeps
-      // mapping locally stable even if a fragment was inserted on either side.
-      for (var step = 0; step < 12 && fragIdx + step < frags.length; step++) {
+      // For the first sentence on the page, search ALL fragments (the page
+      // may start anywhere in the chapter audio). For subsequent sentences,
+      // use a local 12-fragment window from the last match.
+      var maxStep = firstSent ? (frags.length - fragIdx) : 12;
+      for (var step = 0; step < maxStep && fragIdx + step < frags.length; step++) {
         var fragNorm = normalizeForMatch(frags[fragIdx + step].text);
         if (fragNorm.indexOf(probe.slice(0, 25)) !== -1 ||
             (probe.length >= 12 && fragNorm.indexOf(probe.slice(0, 12)) === 0)) {
           fragIdx += step + 1;
+          firstSent = false;
           return { begin: frags[fragIdx - 1].begin, end: frags[fragIdx - 1].end };
         }
       }
@@ -3079,7 +3083,9 @@ export default function App() {
           setAudioPlaying(true); audioPlayingRef.current = true;
           existing.play().then(function() { startAudiobookRaf(); }).catch(function(){});
         } else {
-          playAudiobookFromSentence(audioIdxRef.current);
+          // Fresh playback always starts from the top of the current page,
+          // not from a stale audioIdx that may belong to a different page.
+          playAudiobookFromSentence(0);
         }
       }
       return;
