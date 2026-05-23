@@ -3159,7 +3159,6 @@ export default function App() {
   useEffect(function() {
     setAudiobookData(null);
     sentenceTimingsRef.current = [];
-    console.log("[debug] audiobook loader. bookMeta:", bookMeta, "audiobook field:", bookMeta && bookMeta.audiobook, "cidx:", cidx);
     var audiobook = bookMeta && bookMeta.audiobook;
     if (!audiobook) return;
     var chapters = audiobook.chapters;
@@ -4754,8 +4753,6 @@ export default function App() {
         audiobook: opts.audiobook || null,
       };
       setChapters(chs);
-      console.log("[debug] setBookMeta called with:", JSON.stringify(meta));
-      console.log("[gv-debug] setBookMeta:", JSON.stringify(meta));
       setBookMeta(meta);
       setCbm(0);
       try {
@@ -4822,6 +4819,7 @@ export default function App() {
         // Optional per-chapter YouTube links (used by song collections). Array
         // indexed 0..N where each entry is a URL or null/missing.
         songs: Array.isArray(book.songs) ? book.songs : null,
+        audiobook: book.audiobook || null,
       });
     } catch(err) {
       setFErr(err.message || "Failed to load preset book");
@@ -4850,8 +4848,6 @@ export default function App() {
         audiobook: book.audiobook || d.audiobook || null,
       };
       setChapters(d.chapters);
-      console.log("[debug] setBookMeta called with:", JSON.stringify(meta));
-      console.log("[gv-debug] setBookMeta:", JSON.stringify(meta));
       setBookMeta(meta);
       setCbm(0);
       // Bring the entry to the top of the recents list (touch to refresh "addedAt").
