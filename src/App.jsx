@@ -4799,7 +4799,7 @@ export default function App() {
         splitByNumberedSections: !!opts.splitByNumberedSections,
         audiobook: opts.audiobook || null,
       };
-      setChapters(chs);
+      console.log("[gv-debug] setChapters #1 (fresh load):", chs.length); setChapters(chs);
       setBookMeta(meta);
       setCbm(0);
       try {
@@ -4894,7 +4894,7 @@ export default function App() {
         splitByNumberedSections: !!d.splitByNumberedSections,
         audiobook: book.audiobook || d.audiobook || null,
       };
-      setChapters(d.chapters);
+      console.log("[gv-debug] setChapters #2 (cached):", d.chapters ? d.chapters.length : "no chapters"); setChapters(d.chapters);
       setBookMeta(meta);
       setCbm(0);
       // Bring the entry to the top of the recents list (touch to refresh "addedAt").
@@ -6594,7 +6594,7 @@ export default function App() {
                       <button className={cbm>0?"btn-g":"btn-p"} onClick={function(){ startLit(0); }}>{cbm>0?"Start from beginning":"Начать читать →"}</button>
                       <FileBtn label="Open an ebook" onLoad={loadFile}/>
                       <button onClick={async function(){
-                        setChapters([]); setCidx(0); setCbm(0); setBookMeta({title:"",author:""});
+                        console.log("[gv-debug] setChapters #3 (clear)"); setChapters([]); setCidx(0); setCbm(0); setBookMeta({title:"",author:""});
                         try { await storage.delete(EPUB_CACHE); } catch(e) {}
                         try { await storage.delete(EPUB_BM); } catch(e) {}
                         try { await storage.delete(QHIST_KEY); } catch(e) {}
