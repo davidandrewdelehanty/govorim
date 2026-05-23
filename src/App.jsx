@@ -4755,6 +4755,7 @@ export default function App() {
       };
       setChapters(chs);
       console.log("[debug] setBookMeta called with:", JSON.stringify(meta));
+      console.log("[gv-debug] setBookMeta:", JSON.stringify(meta));
       setBookMeta(meta);
       setCbm(0);
       try {
@@ -4846,10 +4847,11 @@ export default function App() {
         author: d.author || book.author || "",
         category: d.category || book.category || "",
         splitByNumberedSections: !!d.splitByNumberedSections,
-        audiobook: d.audiobook || null,
+        audiobook: book.audiobook || d.audiobook || null,
       };
       setChapters(d.chapters);
       console.log("[debug] setBookMeta called with:", JSON.stringify(meta));
+      console.log("[gv-debug] setBookMeta:", JSON.stringify(meta));
       setBookMeta(meta);
       setCbm(0);
       // Bring the entry to the top of the recents list (touch to refresh "addedAt").
