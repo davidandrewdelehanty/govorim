@@ -3159,6 +3159,7 @@ export default function App() {
   useEffect(function() {
     setAudiobookData(null);
     sentenceTimingsRef.current = [];
+    console.log("[debug] audiobook loader. bookMeta:", bookMeta, "audiobook field:", bookMeta && bookMeta.audiobook, "cidx:", cidx);
     var audiobook = bookMeta && bookMeta.audiobook;
     if (!audiobook) return;
     var chapters = audiobook.chapters;
@@ -4753,6 +4754,7 @@ export default function App() {
         audiobook: opts.audiobook || null,
       };
       setChapters(chs);
+      console.log("[debug] setBookMeta called with:", JSON.stringify(meta));
       setBookMeta(meta);
       setCbm(0);
       try {
@@ -4847,6 +4849,7 @@ export default function App() {
         audiobook: d.audiobook || null,
       };
       setChapters(d.chapters);
+      console.log("[debug] setBookMeta called with:", JSON.stringify(meta));
       setBookMeta(meta);
       setCbm(0);
       // Bring the entry to the top of the recents list (touch to refresh "addedAt").
