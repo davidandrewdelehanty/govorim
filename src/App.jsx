@@ -1915,6 +1915,18 @@ async function parseFb2(buffer, options) {
   }
 
   if (chapters.length === 0) throw new Error("FB2 file has no readable Russian text.");
+
+  // Anna Karenina's biblical epigraph (Romans 12:19) is read aloud at the
+  // start of every audiobook recording but is missing from most FB2 sources.
+  // Inject it as the first paragraph of chapter 1 so the displayed text
+  // matches what listeners hear.
+  if (/Каренин/i.test(bookTitle) && chapters.length > 0) {
+    var ded = "«Мне отмщение, и Я воздам.»";
+    if (chapters[0].text.indexOf(ded) === -1) {
+      chapters[0].text = ded + "\n\n" + chapters[0].text;
+    }
+  }
+
   return { chapters: chapters, title: bookTitle || "Unknown title", author: author };
 }
 
