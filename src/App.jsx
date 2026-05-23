@@ -2814,6 +2814,19 @@ export default function App() {
           audioIdxRef.current = hit;
           setAudioIdx(hit);
         }
+      } else if (hit === -1) {
+        // Audio has played past the last mapped sentence on this page.
+        // Auto-flip to the next page so highlighting can continue.
+        var timings = sentenceTimingsRef.current;
+        var lastEnd = 0;
+        for (var ti = 0; ti < timings.length; ti++) {
+          if (timings[ti] && timings[ti].end > lastEnd) lastEnd = timings[ti].end;
+        }
+        if (lastEnd > 0 && audio.currentTime > lastEnd + 0.1 &&
+            pidxAbRef.current < (totalPagesAbRef.current || 1) - 1) {
+          setPidx(pidxAbRef.current + 1);
+          lastHit = -1;
+        }
       }
       audiobookRafRef.current = requestAnimationFrame(tick);
     };
@@ -3164,6 +3177,11 @@ export default function App() {
     return computePages(curChapter.text || "", { singlePage: singlePageMode });
   }, [curChapter.text, singlePageMode]);
   var totalPages = pages.length;
+  // Refs synced for audiobook auto-page-flip in the RAF tick
+  var pidxAbRef = useRef(0);
+  var totalPagesAbRef = useRef(1);
+  useEffect(function() { pidxAbRef.current = pidx; }, [pidx]);
+  useEffect(function() { totalPagesAbRef.current = totalPages; }, [totalPages]);
   var currentPage = pages[Math.min(pidx, totalPages - 1)] || pages[0];
 
   // Re-parse sentences when page or chapter changes. Halts any in-flight audio,
