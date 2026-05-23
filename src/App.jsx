@@ -4760,10 +4760,14 @@ export default function App() {
         if (bymark && bymark.length >= 2) {
           chs = bymark;
         } else if (chs.length > 1) {
-          // No markers but we have multiple spine-based chapters. The user asked us not to
-          // title chapters ourselves, so collapse to one chapter and let page navigation handle it.
-          var merged = chs.map(function(c){ return c.text || ""; }).join("\n\n").trim();
-          chs = [{ heading: "", text: merged }];
+          // Only collapse if chapters have no meaningful headings. Books with
+          // subtitle-split chapters (e.g. "ЧАСТЬ ПЕРВАЯ — I") already have
+          // proper headings and should NOT be merged.
+          var hasHeadings = chs.some(function(c){ return c.heading && c.heading.trim().length > 0; });
+          if (!hasHeadings) {
+            var merged = chs.map(function(c){ return c.text || ""; }).join("\n\n").trim();
+            chs = [{ heading: "", text: merged }];
+          }
         } else if (chs.length === 1) {
           // Single chapter from spine — strip any auto-generated heading.
           var h = chs[0].heading || "";
@@ -4799,7 +4803,7 @@ export default function App() {
         splitByNumberedSections: !!opts.splitByNumberedSections,
         audiobook: opts.audiobook || null,
       };
-      console.log("[gv-debug] setChapters #1 (fresh load):", chs.length); setChapters(chs);
+      setChapters(chs);
       setBookMeta(meta);
       setCbm(0);
       try {
@@ -4894,7 +4898,7 @@ export default function App() {
         splitByNumberedSections: !!d.splitByNumberedSections,
         audiobook: book.audiobook || d.audiobook || null,
       };
-      console.log("[gv-debug] setChapters #2 (cached):", d.chapters ? d.chapters.length : "no chapters"); setChapters(d.chapters);
+      setChapters(d.chapters);
       setBookMeta(meta);
       setCbm(0);
       // Bring the entry to the top of the recents list (touch to refresh "addedAt").
@@ -6594,7 +6598,7 @@ export default function App() {
                       <button className={cbm>0?"btn-g":"btn-p"} onClick={function(){ startLit(0); }}>{cbm>0?"Start from beginning":"Начать читать →"}</button>
                       <FileBtn label="Open an ebook" onLoad={loadFile}/>
                       <button onClick={async function(){
-                        console.log("[gv-debug] setChapters #3 (clear)"); setChapters([]); setCidx(0); setCbm(0); setBookMeta({title:"",author:""});
+                        setChapters([]); setCidx(0); setCbm(0); setBookMeta({title:"",author:""});
                         try { await storage.delete(EPUB_CACHE); } catch(e) {}
                         try { await storage.delete(EPUB_BM); } catch(e) {}
                         try { await storage.delete(QHIST_KEY); } catch(e) {}
@@ -7323,7 +7327,6 @@ export default function App() {
 
                 {lview==="nav" && (
                   <div className="navpanel">
-                    {(function(){ console.log("[gv-debug] rendering chapter list, count:", chapters.length, "first 3 headings:", chapters.slice(0,3).map(function(c){return c.heading})); return null; })()}
                     {chapters.map(function(ch,i){
                       return (
                         <div key={i} className={"lcard"+(i===cidx?" cur":"")} onClick={function(){ setLview("read"); navLit(i); }}>
