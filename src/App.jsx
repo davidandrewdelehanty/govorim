@@ -3190,6 +3190,10 @@ export default function App() {
   // 'auto' = page change caused by RAF auto-flip during playback;
   // 'manual' = user navigated pages (forward, back, or jumped).
   var pageFlipModeRef = useRef('manual');
+  // Tracks the last cidx so the page/chapter-change effect can distinguish
+  // a chapter change (full audio reset) from a within-chapter page change
+  // (during audiobook playback we want to keep the stream rolling).
+  var lastCidxRef = useRef(-1);
   useEffect(function() { pidxAbRef.current = pidx; }, [pidx]);
   useEffect(function() { totalPagesAbRef.current = totalPages; }, [totalPages]);
   // On page change, seek audio to that page's first sentence — but only
@@ -3223,23 +3227,39 @@ export default function App() {
   // wipes the prefetch cache, and bumps the generation counter so any pending
   // fetches from the previous page abort instead of playing on the new page.
   useEffect(function() {
+    var chapterChanged = lastCidxRef.current !== cidx;
+    lastCidxRef.current = cidx;
+    // TTS per-sentence-fetch state is always cleaned: stale fetches must not
+    // play on a different page.
     if (audioElemRef.current) {
       try { audioElemRef.current.pause(); audioElemRef.current.src = ""; } catch(e) {}
       audioElemRef.current = null;
     }
-    // Stop audiobook stream too — the alignment changes per chapter, and a
-    // mid-page audio source is no longer relevant once we navigate.
-    if (audiobookAudioRef.current) {
-      try { audiobookAudioRef.current.pause(); } catch(e) {}
-    }
-    stopAudiobookRaf();
     audioCacheRef.current = {};
     audioGenRef.current++;
     sentenceOverrideRef.current = null;
-    clearSentenceHighlight();
-    setAudioPlaying(false); audioPlayingRef.current = false;
-    setAudioIdx(0); audioIdxRef.current = 0;
     setAudioFetching(false);
+    // During audiobook playback, a within-chapter page change should NOT
+    // pause the stream — the same audio file spans every page of the
+    // chapter, and the new page's sentence timings are about to be rebuilt
+    // by the buildSentenceTimings useEffect. The RAF tick will then re-anchor
+    // the highlight on the next frame.
+    var keepAudiobookStream =
+      audiobookModeRef.current && audiobookDataRef.current && audiobookAudioRef.current && !chapterChanged;
+    if (keepAudiobookStream) {
+      clearSentenceHighlight();
+      // Leave audioIdx alone — the RAF tick will set it to the correct
+      // sentence on the new page within one frame. Resetting to 0 here
+      // would briefly flash sentence 1's number in the UI.
+    } else {
+      if (audiobookAudioRef.current) {
+        try { audiobookAudioRef.current.pause(); } catch(e) {}
+      }
+      stopAudiobookRaf();
+      clearSentenceHighlight();
+      setAudioPlaying(false); audioPlayingRef.current = false;
+      setAudioIdx(0); audioIdxRef.current = 0;
+    }
     if (mode === "read" && currentPage && curChapter && curChapter.text) {
       var pageText = curChapter.text.slice(currentPage.startChar, currentPage.endChar);
       setAudioSentences(parseSentences(pageText, {
