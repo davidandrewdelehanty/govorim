@@ -2779,6 +2779,13 @@ export default function App() {
       return null;
     });
     sentenceTimingsRef.current = mapping;
+    try {
+      var matched = mapping.filter(function(m){ return m; }).length;
+      console.log('[buildSentenceTimings] mapped', matched, '/', mapping.length, 'sentences for page', (typeof pidx !== 'undefined' ? pidx : '?'));
+      if (mapping.length > 0 && matched === 0 && sents[0]) {
+        console.log('[buildSentenceTimings] first sentence (unmatched):', sents[0].text.slice(0, 80));
+      }
+    } catch(e) {}
   };
 
   // Find which sentence (by index in audioSentencesRef.current) the given
@@ -3248,9 +3255,13 @@ export default function App() {
       audiobookModeRef.current && audiobookDataRef.current && audiobookAudioRef.current && !chapterChanged;
     if (keepAudiobookStream) {
       clearSentenceHighlight();
+      // Invalidate timings until buildSentenceTimings rebuilds for the new
+      // page. Otherwise the RAF tick sees stale page-1 timings, decides
+      // audio is past the page, and auto-flips AGAIN before the new page's
+      // timings come online — making the flip skip a page.
+      sentenceTimingsRef.current = [];
       // Leave audioIdx alone — the RAF tick will set it to the correct
-      // sentence on the new page within one frame. Resetting to 0 here
-      // would briefly flash sentence 1's number in the UI.
+      // sentence on the new page within one frame.
     } else {
       if (audiobookAudioRef.current) {
         try { audiobookAudioRef.current.pause(); } catch(e) {}
