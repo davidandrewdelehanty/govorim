@@ -13,7 +13,7 @@ per audio file, so re-aligning is essentially free after the first run.
 import argparse, os, subprocess, sys, time
 
 # Anna Karenina chapter counts per part
-PART_CHAPTERS = [34, 35, 32, 24, 33, 32, 31, 19]
+PART_CHAPTERS = [34, 35, 32, 23, 33, 32, 31, 19]
 NARRATOR = "Андрей Кузнецов"
 AUDIO_DIR = "/mnt/c/Users/david/Downloads/anna-audio-v2"
 TEXT_DIR = "public/books/novel"

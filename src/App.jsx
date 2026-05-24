@@ -1926,6 +1926,20 @@ async function parseFb2(buffer, options) {
       chapters[0].text = ded + "\n\n" + chapters[0].text;
     }
   }
+  // Anna Karenina's FB2 source has a spurious chapter break in the middle
+  // of Part 4 Chapter 5 (the lawyer office scene). The narrator reads it as
+  // one continuous chapter; the book actually has 239 chapters, not 240.
+  // Merge the truncated short chapter into the next one so the chapter
+  // count matches the audiobook manifest.
+  if (/Каренин/i.test(bookTitle) && chapters.length === 240) {
+    for (var ci = 0; ci < chapters.length - 1; ci++) {
+      if (chapters[ci].text.length < 1000) {
+        chapters[ci].text = chapters[ci].text + "\n\n" + chapters[ci+1].text;
+        chapters.splice(ci + 1, 1);
+        break;
+      }
+    }
+  }
 
   return { chapters: chapters, title: bookTitle || "Unknown title", author: author };
 }
