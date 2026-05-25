@@ -2298,7 +2298,7 @@ export default function App() {
   var [tab, setTab]           = useState("chat");
   var [started, setStarted]   = useState(false);
   var [mode, setMode]         = useState("read"); // chat removed; default to reading
-  var [noAIMode, setNoAIMode] = useState(true);   // always on: AI/chat features removed
+  var [noAIMode, setNoAIMode] = useState(false);  // define uses AI; chat-specific UI gated separately below
   // Clear any leftover "no_ai_mode_v1" flag from older versions so users who previously
   // bypassed login don't get stuck in a partially-broken state.
   useEffect(function() {
@@ -6647,7 +6647,7 @@ export default function App() {
 
         {tab==="chat" && (
           <div className="main">
-            {!started && !mode && !noAIMode && (
+            {!started && !mode && (
               <div className="ss">
                 <div className="sico" style={{color:"#c8a276"}}><Pushkin size={64}/></div>
                 <h1 className="sti">Говорим</h1>
@@ -7316,7 +7316,7 @@ export default function App() {
                         )}
                         <div className="ltxt">{renderLit(curChapter.text)}</div>
                       </div>
-                      {!noAIMode && (
+                      {false && (
                       <div className="lit-right">
                         <div className="lit-msgs" ref={msgsRef}>
                           {msgs.length === 0 && !loading && chapters.length > 0 && (
