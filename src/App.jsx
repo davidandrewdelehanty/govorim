@@ -2297,8 +2297,8 @@ export default function App() {
   var [savedTopics, setSavedTopics] = useState([]);
   var [tab, setTab]           = useState("chat");
   var [started, setStarted]   = useState(false);
-  var [mode, setMode]         = useState("");      // "" until user picks "chat" or "read"
-  var [noAIMode, setNoAIMode] = useState(false);  // legacy flag kept for internal use only; never user-facing now
+  var [mode, setMode]         = useState("read"); // chat removed; default to reading
+  var [noAIMode, setNoAIMode] = useState(true);   // always on: AI/chat features removed
   // Clear any leftover "no_ai_mode_v1" flag from older versions so users who previously
   // bypassed login don't get stuck in a partially-broken state.
   useEffect(function() {
@@ -6620,19 +6620,17 @@ export default function App() {
           </div>
         </header>
 
-        {!noAIMode && (
         <div className="tabs">
           {["chat","vocab","grammar"].map(function(t){
             return (
               <button key={t} className={"tab"+(tab===t?" on":"")} onClick={function(){ setTab(t); }}>
-                {t==="chat"?"Conversation":t==="vocab"?"Vocabulary":"Grammar"}
+                {t==="chat"?"Reading":t==="vocab"?"Vocabulary":"Grammar"}
                 {t==="vocab"&&vocab.length>0&&<span className="bdg">{vocab.length}</span>}
                 {t==="grammar"&&tips.length>0&&<span className="bdg g">{tips.length}</span>}
               </button>
             );
           })}
         </div>
-        )}
         {ttsErr && (
           <div style={{padding:"8px 28px",background:"rgba(157,70,48,.18)",borderBottom:"1px solid rgba(157,70,48,.35)",color:"#c87a68",fontSize:13,display:"flex",alignItems:"center",gap:10}}>
             <span style={{flex:1}}>🔊 {ttsErr}</span>
@@ -6649,7 +6647,7 @@ export default function App() {
 
         {tab==="chat" && (
           <div className="main">
-            {!started && !mode && (
+            {!started && !mode && !noAIMode && (
               <div className="ss">
                 <div className="sico" style={{color:"#c8a276"}}><Pushkin size={64}/></div>
                 <h1 className="sti">Говорим</h1>
