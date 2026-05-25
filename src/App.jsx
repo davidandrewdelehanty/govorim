@@ -1152,6 +1152,315 @@ function tokenise(text) {
   return (text || "").match(/[а-яёА-ЯЁ]+|[^а-яёА-ЯЁ]+/g) || [];
 }
 
+// ── Russian Wiktionary parser ───────────────────────────────────────────────
+// Fetches a page from ru.wiktionary.org and extracts dictionary fields.
+// Returns same shape as previous AI-based fetcher (translation, definitionRu,
+// partOfSpeech, aspect, etc.) so popup render code is unchanged.
+
+async function wiktTryFetch(word) {
+  var url = "https://ru.wiktionary.org/w/api.php?action=parse&page=" +
+            encodeURIComponent(word) +
+            "&format=json&prop=wikitext&formatversion=2&origin=*&redirects=1";
+  var resp;
+  try { resp = await fetch(url); }
+  catch (e) { throw new Error("Wiktionary unreachable"); }
+  if (!resp.ok) {
+    if (resp.status === 404) return null;
+    throw new Error("Wiktionary HTTP " + resp.status);
+  }
+  var json = await resp.json();
+  if (json.error) {
+    if (json.error.code === "missingtitle" || json.error.code === "nosuchpage") return null;
+    throw new Error("Wiktionary: " + (json.error.info || json.error.code));
+  }
+  var wikitext = (json.parse && json.parse.wikitext) || "";
+  if (!wikitext) return null;
+  var pageTitle = (json.parse && json.parse.title) || word;
+  return wiktParse(wikitext, pageTitle, word);
+}
+
+function wiktParse(wt, pageTitle, clickedWord) {
+  var section = wiktExtractRussianSection(wt);
+  if (!section) return null;
+
+  var pos = wiktExtractPOS(section);
+  var defs = wiktExtractDefinitions(section);
+  var examples = wiktExtractExamples(section);
+  var enTr = wiktExtractEnglishTranslation(section);
+  var syns = wiktExtractListSection(section, "Синонимы", [3, 4]);
+
+  var isForm = false;
+  var lemma = pageTitle;
+  if (defs.length === 1) {
+    var d0 = defs[0].toLowerCase();
+    if (/\bформа\b|род\.?\s*падеж|дат\.?\s*падеж|вин\.?\s*падеж|твор\.?\s*падеж|предл\.?\s*падеж/.test(d0)) {
+      isForm = true;
+    }
+  }
+  var formLemma = wiktExtractFormLemma(section);
+  if (formLemma) { isForm = true; lemma = formLemma; }
+
+  var grammar = "";
+  if (pos.gender) grammar = pos.gender;
+  if (syns && syns.length) grammar = (grammar ? grammar + "; " : "") + "син.: " + syns.slice(0,3).join(", ");
+
+  var definitionRu = defs.length === 1
+    ? defs[0]
+    : defs.map(function(d, idx) { return (idx + 1) + ". " + d; }).join("  ");
+
+  return {
+    word: pageTitle,
+    lemma: lemma,
+    partOfSpeech: pos.pos || "",
+    aspect: pos.aspect || "",
+    aspectPair: pos.aspectPair || "",
+    definitionRu: definitionRu,
+    translation: enTr || "",
+    grammar: grammar,
+    example: examples[0] ? examples[0].ru : "",
+    exampleTranslation: examples[0] ? examples[0].en : "",
+    isForm: isForm
+  };
+}
+
+function wiktExtractRussianSection(wt) {
+  var patterns = [
+    /^=\s*\{\{-ru-\}\}\s*=\s*$/m,
+    /^==\s*Русский\s*==\s*$/m
+  ];
+  for (var i = 0; i < patterns.length; i++) {
+    var m = patterns[i].exec(wt);
+    if (m) {
+      var start = m.index + m[0].length;
+      var endRe = /^=\s*\{\{-[a-z]{2,3}-\}\}\s*=\s*$|^==\s*[^=][^\n]*==\s*$/mg;
+      endRe.lastIndex = start;
+      var endM = endRe.exec(wt);
+      var end = endM ? endM.index : wt.length;
+      return wt.slice(start, end);
+    }
+  }
+  if (/\{\{\s*(сущ|гл|прил|мест|нареч|adv|числ|союз|предл|част|межд)[\s\-]/.test(wt)) {
+    return wt;
+  }
+  return null;
+}
+
+function wiktExtractPOS(section) {
+  var posMap = [
+    ["сущ", "noun"],
+    ["гл", "verb"],
+    ["прил", "adjective"],
+    ["мест", "pronoun"],
+    ["нареч", "adverb"], ["adv", "adverb"],
+    ["числ", "numeral"],
+    ["союз", "conjunction"],
+    ["предл", "preposition"],
+    ["част", "particle"],
+    ["межд", "interjection"]
+  ];
+  for (var i = 0; i < posMap.length; i++) {
+    var tname = posMap[i][0], pname = posMap[i][1];
+    var found = wiktFindAllTemplates(section, tname + " ru");
+    if (!found.length) found = wiktFindAllTemplates(section, tname + "-ru");
+    if (found.length) {
+      var t = found[0];
+      var result = {pos: pname, aspect: "", aspectPair: "", gender: ""};
+      for (var j = 0; j < t.args.length; j++) {
+        var arg = t.args[j];
+        var am = arg.match(/^вид\s*=\s*(.+)$/);
+        if (am) {
+          var v = am[1].trim();
+          if (/несов/i.test(v)) result.aspect = "imperfective";
+          else if (/сов/i.test(v)) result.aspect = "perfective";
+        }
+        var pm = arg.match(/^соотв\s*=\s*(.+)$/);
+        if (pm) result.aspectPair = pm[1].trim();
+      }
+      if (pname === "noun") {
+        for (var k = 0; k < t.args.length; k++) {
+          var a = t.args[k];
+          if (/^m\b|^мужской/i.test(a)) { result.gender = "м. род"; break; }
+          if (/^f\b|^женский/i.test(a)) { result.gender = "ж. род"; break; }
+          if (/^n\b|^средний/i.test(a)) { result.gender = "ср. род"; break; }
+        }
+      }
+      return result;
+    }
+  }
+  return {pos: "", aspect: "", aspectPair: "", gender: ""};
+}
+
+function wiktExtractDefinitions(section) {
+  var content = wiktFindSection(section, "Значение", [3, 4]);
+  if (!content) return [];
+  var defs = [];
+  var lines = content.split("\n");
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i];
+    var m = line.match(/^#(?!:)\s*(.+)$/);
+    if (m) {
+      var def = wiktCleanText(m[1]);
+      if (def) defs.push(def);
+    }
+  }
+  return defs;
+}
+
+function wiktExtractExamples(section) {
+  var examples = [];
+  var matches = wiktFindAllTemplates(section, "пример");
+  for (var i = 0; i < matches.length; i++) {
+    var t = matches[i];
+    var ru = t.args[0] ? wiktCleanText(t.args[0]) : "";
+    var en = "";
+    for (var j = 0; j < t.args.length; j++) {
+      var em = t.args[j].match(/^перевод\s*=\s*(.+)$/);
+      if (em) en = wiktCleanText(em[1]);
+    }
+    if (ru) examples.push({ru: ru, en: en});
+  }
+  return examples;
+}
+
+function wiktExtractEnglishTranslation(section) {
+  var content = wiktFindSection(section, "Перевод", [3, 4]);
+  var blocks = wiktFindAllTemplates(content || section, "перев-блок");
+  for (var i = 0; i < blocks.length; i++) {
+    for (var j = 0; j < blocks[i].args.length; j++) {
+      var m = blocks[i].args[j].match(/^en\s*=\s*(.+)$/);
+      if (m) {
+        var en = wiktCleanText(m[1]);
+        if (en) return en;
+      }
+    }
+  }
+  return "";
+}
+
+function wiktExtractListSection(section, name, levels) {
+  var content = wiktFindSection(section, name, levels);
+  if (!content) return [];
+  var items = [];
+  var lines = content.split("\n");
+  for (var i = 0; i < lines.length; i++) {
+    var m = lines[i].match(/^#(?!:)\s*(.+)$/);
+    if (m) {
+      var item = wiktCleanText(m[1]);
+      if (item) items.push(item);
+    }
+  }
+  return items;
+}
+
+function wiktExtractFormLemma(section) {
+  var formTpls = ["форма-сущ", "форма-гл", "форма-прил", "форма-мест", "форма-числ"];
+  for (var i = 0; i < formTpls.length; i++) {
+    var found = wiktFindAllTemplates(section, formTpls[i]);
+    if (found.length) {
+      for (var j = 0; j < found[0].args.length; j++) {
+        var arg = found[0].args[j];
+        var lm = arg.match(/^(?:слово|сл|инф|инфинитив|лемма)\s*=\s*(.+)$/i);
+        if (lm) return lm[1].trim();
+        if (/^[а-яё\-]+$/i.test(arg)) return arg.trim();
+      }
+    }
+  }
+  return "";
+}
+
+function wiktFindSection(text, name, levels) {
+  if (!text) return null;
+  for (var i = 0; i < levels.length; i++) {
+    var lvl = levels[i];
+    var eq = "";
+    for (var k = 0; k < lvl; k++) eq += "=";
+    var re = new RegExp("^" + eq + "\\s*" + wiktEsc(name) + "\\s*" + eq + "\\s*$", "m");
+    var m = re.exec(text);
+    if (m) {
+      var start = m.index + m[0].length;
+      var endRe = new RegExp("^={1," + lvl + "}[^=].*?={1," + lvl + "}\\s*$", "mg");
+      endRe.lastIndex = start;
+      var endM = endRe.exec(text);
+      var end = endM ? endM.index : text.length;
+      return text.slice(start, end);
+    }
+  }
+  return null;
+}
+
+function wiktFindAllTemplates(text, name) {
+  if (!text) return [];
+  var results = [];
+  var nameRe = new RegExp("\\{\\{\\s*" + wiktEsc(name) + "(?:[\\s\\-][^|}\\n]*?)?(?=\\s*[|}\\n])", "g");
+  var m;
+  while ((m = nameRe.exec(text)) !== null) {
+    var start = m.index;
+    var i = start + m[0].length;
+    while (i < text.length && text[i] !== "|" && !(text[i] === "}" && text[i+1] === "}")) i++;
+    var depth = 1;
+    var args = [];
+    var current = "";
+    while (i < text.length && depth > 0) {
+      var c = text[i];
+      if (c === "{" && text[i+1] === "{") { current += "{{"; depth++; i += 2; continue; }
+      if (c === "}" && text[i+1] === "}") {
+        depth--;
+        if (depth === 0) {
+          if (current.trim()) args.push(current);
+          i += 2;
+          break;
+        }
+        current += "}}"; i += 2; continue;
+      }
+      if (c === "|" && depth === 1) {
+        args.push(current);
+        current = "";
+        i++;
+        continue;
+      }
+      current += c;
+      i++;
+    }
+    results.push({start: start, end: i, args: args.map(function(a){ return a.trim(); })});
+    nameRe.lastIndex = i;
+  }
+  return results;
+}
+
+function wiktCleanText(text) {
+  if (!text) return "";
+  text = text.replace(/<ref[^>]*\/>/g, "");
+  text = text.replace(/<ref[^>]*>[\s\S]*?<\/ref>/g, "");
+  text = text.replace(/<!--[\s\S]*?-->/g, "");
+  for (var i = 0; i < 5; i++) {
+    text = text.replace(/\{\{[^{}]*\}\}/g, function(m){
+      var pipe = m.indexOf("|");
+      if (pipe > 0) {
+        var nm = m.slice(2, pipe).trim().toLowerCase();
+        var inner = m.slice(pipe + 1, m.length - 2);
+        if (nm === "выдел" || nm === "выделить" || nm === "=" ) {
+          return inner.split("|")[0];
+        }
+      }
+      return "";
+    });
+  }
+  text = text.replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, "$2");
+  text = text.replace(/\[\[([^\]]+)\]\]/g, "$1");
+  text = text.replace(/\[https?:[^\s\]]+\s+([^\]]+)\]/g, "$1");
+  text = text.replace(/\[https?:[^\]]+\]/g, "");
+  text = text.replace(/<[^>]+>/g, "");
+  text = text.replace(/'''([^']+)'''/g, "$1");
+  text = text.replace(/''([^']+)''/g, "$1");
+  text = text.replace(/&nbsp;/g, " ");
+  text = text.replace(/\s+/g, " ").trim();
+  return text;
+}
+
+function wiktEsc(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 function yoVariants(word) {
   var out = [];
   for (var i = 0; i < word.length; i++) {
@@ -4200,26 +4509,45 @@ export default function App() {
   };
 
   var fetchDef = async function(word) {
-    // Ask the backend for strict JSON output. With responseMimeType set on the
-    // Gemini side, the response is just `{...}` with no markdown fences, no
-    // preamble, no trailing commentary. Lower temperature too (set server-side
-    // when json=true) so the shape is predictable.
-    var raw = await api(
-      [{role:"user",content:defprompt(word)}],
-      "You are a Russian-English dictionary. Return a single JSON object only. No markdown. No commentary.",
-      { json: true }
-    );
-    var c = (raw || "").replace(/```[a-z]*\n?/gi,"").replace(/```/g,"").trim();
-    var s = c.indexOf("{"), e2 = c.lastIndexOf("}");
-    if (s === -1 || e2 === -1) throw new Error("Gemini returned no JSON object. Reply was: " + (c.slice(0, 80) || "(empty)"));
-    var parsed;
-    try { parsed = JSON.parse(c.slice(s, e2+1)); }
-    catch (jerr) { throw new Error("Gemini returned malformed JSON: " + jerr.message); }
-    // Validate the response has the field that matters most.
-    if (!parsed || typeof parsed.translation !== "string" || !parsed.translation.trim()) {
-      throw new Error("Gemini did not provide a translation for this word");
+    // ── Russian Wiktionary (Викисловарь) lookup ────────────────────────────
+    // Free, no API key, full CORS via origin=*. Cached in localStorage.
+    var clean = (word || "").trim();
+    if (!clean) throw new Error("Empty word");
+
+    var cacheKey = "wikt:" + clean.toLowerCase();
+    try {
+      var cached = localStorage.getItem(cacheKey);
+      if (cached) {
+        var pc = JSON.parse(cached);
+        if (pc && pc.data) return pc.data;
+      }
+    } catch (_) {}
+
+    var data = await wiktTryFetch(clean);
+    if (!data && clean.toLowerCase() !== clean) {
+      data = await wiktTryFetch(clean.toLowerCase());
     }
-    return parsed;
+    if (!data) throw new Error('Not found in Wiktionary: "' + clean + '"');
+
+    if (data.isForm && data.lemma && data.lemma.toLowerCase() !== clean.toLowerCase()) {
+      var lemmaData = await wiktTryFetch(data.lemma);
+      if (lemmaData) {
+        lemmaData.formOf = clean;
+        data = lemmaData;
+      }
+    }
+
+    if (!data.translation) data.translation = data.lemma || clean;
+
+    try {
+      localStorage.setItem(cacheKey, JSON.stringify({data: data, ts: Date.now()}));
+    } catch (_) {}
+
+    if (typeof window !== "undefined" && window.WIKT_DEBUG) {
+      console.log("[wikt]", clean, "→", data);
+    }
+
+    return data;
   };
 
   // In Read-without-AI mode, clicking a Russian word jumps TTS to that word and reads onward.
