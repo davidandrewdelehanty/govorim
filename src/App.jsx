@@ -1461,6 +1461,41 @@ function wiktEsc(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+async function wiktGetDefinition(word) {
+  // Returns just the Russian-language definition string, or "" if not found.
+  // Cached in localStorage under "wiktdef:<lowercase word>".
+  var clean = (word || "").trim();
+  if (!clean) return "";
+
+  var cacheKey = "wiktdef:" + clean.toLowerCase();
+  try {
+    var cached = localStorage.getItem(cacheKey);
+    if (cached) {
+      var pc = JSON.parse(cached);
+      if (pc) return pc.def || "";
+    }
+  } catch (_) {}
+
+  var data = await wiktTryFetch(clean);
+  if (!data && clean.toLowerCase() !== clean) {
+    data = await wiktTryFetch(clean.toLowerCase());
+  }
+  if (!data) {
+    try { localStorage.setItem(cacheKey, JSON.stringify({def: "", ts: Date.now()})); } catch (_) {}
+    return "";
+  }
+
+  // If we landed on an inflected form, resolve to the lemma.
+  if (data.isForm && data.lemma && data.lemma.toLowerCase() !== clean.toLowerCase()) {
+    var lemmaData = await wiktTryFetch(data.lemma);
+    if (lemmaData) data = lemmaData;
+  }
+
+  var def = data.definitionRu || "";
+  try { localStorage.setItem(cacheKey, JSON.stringify({def: def, ts: Date.now()})); } catch (_) {}
+  return def;
+}
+
 function yoVariants(word) {
   var out = [];
   for (var i = 0; i < word.length; i++) {
@@ -4509,45 +4544,44 @@ export default function App() {
   };
 
   var fetchDef = async function(word) {
-    // ── Russian Wiktionary (Викисловарь) lookup ────────────────────────────
-    // Free, no API key, full CORS via origin=*. Cached in localStorage.
+    // Hybrid: AI (Gemini) provides the full dictionary entry (translation, POS,
+    // aspect, grammar, example). Wiktionary provides the Russian-language
+    // definition that goes in the "definitionRu" slot. Both run in parallel;
+    // Wiktionary failures fall back silently to the AI-generated Russian def.
     var clean = (word || "").trim();
     if (!clean) throw new Error("Empty word");
 
-    var cacheKey = "wikt:" + clean.toLowerCase();
-    try {
-      var cached = localStorage.getItem(cacheKey);
-      if (cached) {
-        var pc = JSON.parse(cached);
-        if (pc && pc.data) return pc.data;
-      }
-    } catch (_) {}
+    // Kick off Wiktionary in parallel; never let it reject the outer promise.
+    var wiktPromise = wiktGetDefinition(clean).catch(function(){ return ""; });
 
-    var data = await wiktTryFetch(clean);
-    if (!data && clean.toLowerCase() !== clean) {
-      data = await wiktTryFetch(clean.toLowerCase());
-    }
-    if (!data) throw new Error('Not found in Wiktionary: "' + clean + '"');
-
-    if (data.isForm && data.lemma && data.lemma.toLowerCase() !== clean.toLowerCase()) {
-      var lemmaData = await wiktTryFetch(data.lemma);
-      if (lemmaData) {
-        lemmaData.formOf = clean;
-        data = lemmaData;
-      }
+    // ── AI fetch (Gemini) — same prompt + parse as the original ────────────
+    var raw = await api(
+      [{role:"user",content:defprompt(clean)}],
+      "You are a Russian-English dictionary. Return a single JSON object only. No markdown. No commentary.",
+      { json: true }
+    );
+    var c = (raw || "").replace(/```[a-z]*\n?/gi,"").replace(/```/g,"").trim();
+    var s = c.indexOf("{"), e2 = c.lastIndexOf("}");
+    if (s === -1 || e2 === -1) throw new Error("Gemini returned no JSON object. Reply was: " + (c.slice(0, 80) || "(empty)"));
+    var parsed;
+    try { parsed = JSON.parse(c.slice(s, e2+1)); }
+    catch (jerr) { throw new Error("Gemini returned malformed JSON: " + jerr.message); }
+    if (!parsed || typeof parsed.translation !== "string" || !parsed.translation.trim()) {
+      throw new Error("Gemini did not provide a translation for this word");
     }
 
-    if (!data.translation) data.translation = data.lemma || clean;
-
-    try {
-      localStorage.setItem(cacheKey, JSON.stringify({data: data, ts: Date.now()}));
-    } catch (_) {}
+    // Overlay Wiktionary's Russian definition if we got one
+    var wiktDef = await wiktPromise;
+    if (wiktDef) {
+      parsed.definitionRu = wiktDef;
+      parsed.definitionSource = "wiktionary";
+    }
 
     if (typeof window !== "undefined" && window.WIKT_DEBUG) {
-      console.log("[wikt]", clean, "→", data);
+      console.log("[def]", clean, "→", parsed);
     }
 
-    return data;
+    return parsed;
   };
 
   // In Read-without-AI mode, clicking a Russian word jumps TTS to that word and reads onward.
