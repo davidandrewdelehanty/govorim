@@ -2803,6 +2803,15 @@ export default function App() {
   // sentence is playing, because we're driving each fetch ourselves. No RAF
   // loop, no per-millisecond calculation — toggle a class once per sentence.
   var highlightedElementsRef = useRef([]);  // DOM nodes currently lit up
+  // Live mirror of `currentPage`. highlightSentence() runs from the long-lived
+  // audiobook RAF loop, which captures its closure once at play time and is NOT
+  // restarted on a within-chapter page flip. Reading currentPage directly would
+  // therefore use the page that was current when playback started, so after a
+  // flip chapterStart/chapterEnd point at the old page's char range and nothing
+  // matches — the highlight silently disappears. Reading from this ref keeps the
+  // highlight anchored to whatever page is actually on screen. (Synced below,
+  // once currentPage is defined.)
+  var currentPageRef = useRef(null);
 
   // ── Audiobook mode (real human narration with pre-aligned timestamps) ─────
   // When a book entry in index.json carries an `audiobook.chapters[cidx]`
@@ -3068,14 +3077,17 @@ export default function App() {
   var highlightSentence = function(sentence, override) {
     clearSentenceHighlight();
     if (!sentence || sentence.start < 0) return;       // synthetic chapter announcement — nothing on screen to highlight
-    if (!currentPage) return;
+    // Read the page from the ref, not the closed-over value: the audiobook RAF
+    // loop may call this with a closure captured before a page flip.
+    var page = currentPageRef.current || currentPage;
+    if (!page) return;
     var startInPage = sentence.start;
     if (override && typeof override.wordOffsetInSentence === "number") {
       startInPage += override.wordOffsetInSentence;
     }
     var endInPage = sentence.end;
-    var chapterStart = startInPage + currentPage.startChar;
-    var chapterEnd = endInPage + currentPage.startChar;
+    var chapterStart = startInPage + page.startChar;
+    var chapterEnd = endInPage + page.startChar;
     var nodes = document.querySelectorAll('.lit-body [data-rw-start]');
     var hits = [];
     for (var i = 0; i < nodes.length; i++) {
@@ -3153,7 +3165,12 @@ export default function App() {
     var timings = sentenceTimingsRef.current;
     for (var i = 0; i < timings.length; i++) {
       var tm = timings[i];
-      if (tm && t >= tm.begin && t < tm.end) return i;
+      if (!tm) continue;
+      // Match if t is in this sentence OR in the gap before it (next upcoming).
+      // This handles inter-sentence gaps and the moment right after a page flip
+      // where audio.currentTime briefly sits before timings[0].begin of the new
+      // page. Auto-flip uses lastEnd, so this never triggers a spurious flip.
+      if (t < tm.end) return i;
     }
     return -1;
   };
@@ -3587,6 +3604,9 @@ export default function App() {
     return function() { clearTimeout(t); };
   }, [pidx]);
   var currentPage = pages[Math.min(pidx, totalPages - 1)] || pages[0];
+  // Keep the ref read by highlightSentence() in lockstep with the rendered page,
+  // so the audiobook RAF loop highlights the right page after a flip.
+  useEffect(function() { currentPageRef.current = currentPage; }, [currentPage]);
 
   // Re-parse sentences when page or chapter changes. Halts any in-flight audio,
   // wipes the prefetch cache, and bumps the generation counter so any pending
