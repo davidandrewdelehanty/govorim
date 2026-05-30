@@ -2935,8 +2935,8 @@ export default function App() {
               wStart++;
               var wordBefore = line.slice(wStart, wEnd);
               var isInitial = wordBefore.length === 1 && /[А-ЯЁA-Z]/.test(wordBefore);
-              var isAbbrev = wordBefore.length > 0 && RU_NON_TERMINAL_ABBR.has(wordBefore.toLowerCase());
-              if (isInitial || isAbbrev) {
+              var isAbbrev = wordBefore.length > 0 && wordBefore.toLowerCase() !== "пол" && RU_NON_TERMINAL_ABBR.has(wordBefore.toLowerCase());
+              if (line[endTerm] === "." && (isInitial || isAbbrev)) {
                 // Initial ("А.", "С.") or known abbreviation ("г.", "стр.", "т.") — not a sentence end.
                 isBoundary = false;
               } else {
