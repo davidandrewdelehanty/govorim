@@ -2191,6 +2191,68 @@ async function parseFb2(buffer, options) {
   // keep the old per-section behavior.
   var sections = doc.querySelectorAll("body > section");
   var chapters = [];
+  // Scripture mode: deeply-nested Bibles (… Завет > division > book > Глава N)
+  // become one chapter per "Book — Глава N" so the nav drawer groups them by
+  // book. Requires a "Завет" top section AND 3+ nesting levels, so ordinary
+  // books are never affected.
+  var isScripture = Array.from(sections).some(function(s){
+    var tt = (s.querySelector(":scope > title") || {}).textContent || "";
+    if (!/Завет/i.test(tt)) return false;
+    return Array.from(s.children).some(function(c){
+      return c.tagName.toLowerCase() === "section" && Array.from(c.children).some(function(x){
+        return x.tagName.toLowerCase() === "section";
+      });
+    });
+  });
+  if (isScripture) {
+    var gatherScripture = function(sec){
+      var out = [];
+      var dt = sec.querySelector(":scope > title");
+      var nodes = sec.querySelectorAll("title, subtitle, p, v");
+      for (var qi = 0; qi < nodes.length; qi++) {
+        if (nodes[qi] === dt) continue;
+        var t = nodes[qi].textContent.replace(/\s+/g, " ").trim();
+        if (t) out.push(t);
+      }
+      return out.join("\n\n");
+    };
+    var isChapTitle = function(x){ return /^(глава|псалом|песнь)\s*\d+/i.test(x); };
+    var pushScripture = function(heading, text){
+      var cyr = (text.match(/[а-яёА-ЯЁ]/g) || []).length;
+      if (cyr >= 5) chapters.push({ heading: heading, text: text });
+    };
+    var emitScripture = function(sec, parentTitle){
+      var te = sec.querySelector(":scope > title");
+      var title = te ? te.textContent.replace(/\s+/g, " ").trim() : "";
+      var childSecs = Array.from(sec.children).filter(function(c){ return c.tagName.toLowerCase() === "section"; });
+      if (isChapTitle(title)) {
+        pushScripture((parentTitle ? parentTitle + " — " : "") + title, gatherScripture(sec));
+        return;
+      }
+      if (childSecs.length) {
+        var anyChap = childSecs.some(function(c){
+          var ct = ((c.querySelector(":scope > title") || {}).textContent || "").replace(/\s+/g, " ").trim();
+          return isChapTitle(ct);
+        });
+        if (anyChap) {
+          childSecs.forEach(function(c){ emitScripture(c, title); });
+        } else {
+          var deeper = childSecs.some(function(c){
+            return Array.from(c.children).some(function(x){ return x.tagName.toLowerCase() === "section"; });
+          });
+          if (deeper) {
+            childSecs.forEach(function(c){ emitScripture(c, title); });
+          } else {
+            pushScripture(title + " — Глава 1", gatherScripture(sec));
+          }
+        }
+      } else {
+        pushScripture((parentTitle ? parentTitle + " — " : "") + (title || "Глава 1"), gatherScripture(sec));
+      }
+    };
+    Array.from(sections).forEach(function(s){ emitScripture(s, ""); });
+  }
+  if (!isScripture) {
   for (var i = 0; i < sections.length; i++) {
     var sec = sections[i];
     var titleEl = sec.querySelector(":scope > title");
@@ -2243,6 +2305,7 @@ async function parseFb2(buffer, options) {
       chapters.push({ heading: heading, text: body });
     }
   }
+  } // end if (!isScripture)
 
   // Fallback: if no <section>s, treat entire body as one chapter
   if (chapters.length === 0) {
