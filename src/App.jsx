@@ -2192,9 +2192,9 @@ async function parseFb2(buffer, options) {
   var sections = doc.querySelectorAll("body > section");
   var chapters = [];
   // Scripture mode: deeply-nested Bibles (… Завет > division > book > Глава N)
-  // become one chapter per "Book — Глава N" so the nav drawer groups them by
-  // book. Requires a "Завет" top section AND 3+ nesting levels, so ordinary
-  // books are never affected.
+  // become one chapter per "Testament — Book — Глава N" so the nav drawer nests
+  // Testament > Book > Chapter. Requires a "Завет" top section AND 3+ nesting
+  // levels, so ordinary books are untouched. The division tier is skipped.
   var isScripture = Array.from(sections).some(function(s){
     var tt = (s.querySelector(":scope > title") || {}).textContent || "";
     if (!/Завет/i.test(tt)) return false;
@@ -2217,16 +2217,17 @@ async function parseFb2(buffer, options) {
       return out.join("\n\n");
     };
     var isChapTitle = function(x){ return /^(глава|псалом|песнь)\s*\d+/i.test(x); };
-    var pushScripture = function(heading, text){
+    var pushScripture = function(parts, text){
+      var heading = parts.filter(function(z){ return z; }).join(" — ");
       var cyr = (text.match(/[а-яёА-ЯЁ]/g) || []).length;
       if (cyr >= 5) chapters.push({ heading: heading, text: text });
     };
-    var emitScripture = function(sec, parentTitle){
+    var emitScripture = function(sec, testament, book){
       var te = sec.querySelector(":scope > title");
       var title = te ? te.textContent.replace(/\s+/g, " ").trim() : "";
       var childSecs = Array.from(sec.children).filter(function(c){ return c.tagName.toLowerCase() === "section"; });
       if (isChapTitle(title)) {
-        pushScripture((parentTitle ? parentTitle + " — " : "") + title, gatherScripture(sec));
+        pushScripture([testament, book, title], gatherScripture(sec));
         return;
       }
       if (childSecs.length) {
@@ -2235,22 +2236,26 @@ async function parseFb2(buffer, options) {
           return isChapTitle(ct);
         });
         if (anyChap) {
-          childSecs.forEach(function(c){ emitScripture(c, title); });
+          childSecs.forEach(function(c){ emitScripture(c, testament, title); });
         } else {
           var deeper = childSecs.some(function(c){
             return Array.from(c.children).some(function(x){ return x.tagName.toLowerCase() === "section"; });
           });
           if (deeper) {
-            childSecs.forEach(function(c){ emitScripture(c, title); });
+            if (!testament) {
+              childSecs.forEach(function(c){ emitScripture(c, title, ""); });
+            } else {
+              childSecs.forEach(function(c){ emitScripture(c, testament, book); });
+            }
           } else {
-            pushScripture(title + " — Глава 1", gatherScripture(sec));
+            pushScripture([testament, (book || title), "Глава 1"], gatherScripture(sec));
           }
         }
       } else {
-        pushScripture((parentTitle ? parentTitle + " — " : "") + (title || "Глава 1"), gatherScripture(sec));
+        pushScripture([testament, (book || title), "Глава 1"], gatherScripture(sec));
       }
     };
-    Array.from(sections).forEach(function(s){ emitScripture(s, ""); });
+    Array.from(sections).forEach(function(s){ emitScripture(s, "", ""); });
   }
   if (!isScripture) {
   for (var i = 0; i < sections.length; i++) {
@@ -2806,6 +2811,7 @@ export default function App() {
   var [gramSearch, setGramSearch] = useState("");
   var [cidx, setCidx]           = useState(0);
   var [expandedPart, setExpandedPart] = useState(null);
+  var [expandedNav, setExpandedNav] = useState({});
   var [pidx, setPidx]           = useState(0);  // Current page within the current chapter
   var [cbm,  setCbm]            = useState(0);
   var [lview, setLview]         = useState("read");
@@ -7893,23 +7899,17 @@ export default function App() {
                 {lview==="nav" && (
                   <div className="navpanel">
                     {(function(){
-                      // Group chapters by Part. Headings like "ЧАСТЬ ПЕРВАЯ — I"
-                      // are split on " — " to extract Part name + Chapter name.
-                      var groups = [];
-                      var currentGroup = null;
-                      for (var gi = 0; gi < chapters.length; gi++) {
-                        var h = chapters[gi].heading || "";
-                        var sep = h.indexOf(" — ");
-                        var partName = sep >= 0 ? h.slice(0, sep) : "";
-                        var chName   = sep >= 0 ? h.slice(sep + 3) : h;
-                        if (!currentGroup || partName !== currentGroup.partName) {
-                          currentGroup = { partName: partName, chapters: [] };
-                          groups.push(currentGroup);
-                        }
-                        currentGroup.chapters.push({ idx: gi, name: chName, ch: chapters[gi] });
-                      }
-                      // No Part structure (single-section books like Gogol): render flat as before.
-                      if (groups.length <= 1 && (!groups[0] || !groups[0].partName)) {
+                      // Build a nav tree from chapter headings split on " — ": the last segment is
+                      // the chapter label, earlier segments are collapsible tiers (1 seg = flat,
+                      // 2 = Part>Chapter like Anna Karenina, 3 = Testament>Book>Chapter for the Bible).
+                      var SEP = " — ";
+                      var maxDepth = 1;
+                      var navItems = chapters.map(function(ch, i){
+                        var segs = (ch.heading || "").split(SEP);
+                        if (segs.length > maxDepth) maxDepth = segs.length;
+                        return { idx: i, segs: segs, ch: ch };
+                      });
+                      if (maxDepth <= 1) {
                         return chapters.map(function(ch, i){
                           return (
                             <div key={i} className={"lcard"+(i===cidx?" cur":"")} onClick={function(){ setLview("read"); navLit(i); }}>
@@ -7920,60 +7920,51 @@ export default function App() {
                           );
                         });
                       }
-                      // Find which Part contains the current chapter (auto-expand fallback).
-                      var defaultExpanded = -1;
-                      for (var di = 0; di < groups.length; di++) {
-                        if (groups[di].chapters.some(function(c){ return c.idx === cidx; })) {
-                          defaultExpanded = di;
-                          break;
+                      var navRoot = { children: {}, order: [], chapters: [], key: "" };
+                      navItems.forEach(function(it){
+                        var node = navRoot, kp = "";
+                        var groupSegs = it.segs.slice(0, it.segs.length - 1);
+                        for (var gsi = 0; gsi < groupSegs.length; gsi++){
+                          var seg = groupSegs[gsi];
+                          kp = kp ? kp + SEP + seg : seg;
+                          if (!node.children[seg]) { node.children[seg] = { name: seg, key: kp, children: {}, order: [], chapters: [] }; node.order.push(seg); }
+                          node = node.children[seg];
                         }
-                      }
-                      var activeExpanded = expandedPart === null ? defaultExpanded : expandedPart;
-                      // Hierarchical render with Part headers + collapsible chapter lists.
-                      return groups.map(function(g, gIdx){
-                        var isExpanded = activeExpanded === gIdx;
-                        var hasCurrent = g.chapters.some(function(c){ return c.idx === cidx; });
+                        node.chapters.push({ idx: it.idx, name: it.segs[it.segs.length - 1], ch: it.ch });
+                      });
+                      var curSegs = ((chapters[cidx] && chapters[cidx].heading) || "").split(SEP);
+                      var curKeys = {}; var ckp = "";
+                      for (var cki = 0; cki < curSegs.length - 1; cki++){ ckp = ckp ? ckp + SEP + curSegs[cki] : curSegs[cki]; curKeys[ckp] = true; }
+                      var navOpen = function(key){ return (expandedNav && (key in expandedNav)) ? expandedNav[key] : !!curKeys[key]; };
+                      var navToggle = function(key){ var was = navOpen(key); var next = {}; for (var k in (expandedNav||{})) next[k] = expandedNav[k]; next[key] = !was; setExpandedNav(next); };
+                      var navHasCur = function(node){
+                        if (node.chapters.some(function(c){ return c.idx === cidx; })) return true;
+                        return node.order.some(function(s){ return navHasCur(node.children[s]); });
+                      };
+                      var renderNode = function(node, depth){
+                        var open = navOpen(node.key);
+                        var cur = navHasCur(node);
                         return (
-                          <div key={gIdx}>
-                            <div
-                              onClick={function(){ setExpandedPart(isExpanded ? -1 : gIdx); }}
-                              style={{
-                                cursor: "pointer",
-                                padding: "12px 16px",
-                                marginTop: gIdx === 0 ? "0" : "10px",
-                                marginBottom: isExpanded ? "6px" : "0",
-                                background: hasCurrent ? "rgba(255,200,120,0.12)" : "rgba(255,255,255,0.06)",
-                                borderRadius: "8px",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "space-between",
-                                gap: "10px",
-                                fontWeight: 600,
-                                fontSize: "1.05em",
-                                userSelect: "none",
-                              }}
-                            >
-                              <span>
-                                <span style={{display:"inline-block", width:"1.4em", opacity:0.7}}>{isExpanded ? "▾" : "▸"}</span>
-                                {g.partName || "Без названия"}
-                              </span>
-                              <span style={{opacity:0.55, fontSize:"0.85em", fontWeight:400}}>
-                                {g.chapters.length} {hasCurrent ? "· текущая" : ""}
-                              </span>
+                          <div key={node.key}>
+                            <div onClick={function(){ navToggle(node.key); }}
+                              style={{ cursor:"pointer", padding:"10px 14px", marginTop: depth===0 ? "8px" : "4px", marginLeft:(depth*14)+"px", background: cur ? "rgba(255,200,120,0.12)" : "rgba(255,255,255,0.06)", borderRadius:"8px", display:"flex", alignItems:"center", justifyContent:"space-between", gap:"10px", fontWeight: depth===0 ? 700 : 600, fontSize: depth===0 ? "1.06em" : "1em", userSelect:"none" }}>
+                              <span><span style={{display:"inline-block", width:"1.4em", opacity:0.7}}>{open ? "▾" : "▸"}</span>{node.name}</span>
+                              <span style={{opacity:0.55, fontSize:"0.85em", fontWeight:400}}>{cur ? "· текущая" : ""}</span>
                             </div>
-                            {isExpanded && g.chapters.map(function(c){
+                            {open && node.order.map(function(s){ return renderNode(node.children[s], depth+1); })}
+                            {open && node.chapters.map(function(c){
                               var i = c.idx;
                               return (
-                                <div key={i} className={"lcard"+(i===cidx?" cur":"")} onClick={function(){ setLview("read"); navLit(i); }} style={{marginLeft:"14px"}}>
+                                <div key={i} className={"lcard"+(i===cidx?" cur":"")} onClick={function(){ setLview("read"); navLit(i); }} style={{marginLeft:((depth+1)*14)+"px"}}>
                                   <div className="lcn">{i+1}{i===cbm?" 📌":""}{i===cidx?" ◀":""}</div>
                                   <div className="lchead">{c.name}</div>
-                                  <div className="lcp">{c.ch.text.slice(0,80)}…</div>
                                 </div>
                               );
                             })}
                           </div>
                         );
-                      });
+                      };
+                      return navRoot.order.map(function(s){ return renderNode(navRoot.children[s], 0); });
                     })()}
                   </div>
                 )}
