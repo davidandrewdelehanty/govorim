@@ -6947,19 +6947,22 @@ export default function App() {
               <div className="land-sub">Russian Practice</div>
             </div>
             <div className="land-tagline">
-              Read, listen, and converse in Russian — with an AI tutor that adapts to your level.
+              A reader for Russian-language texts — tap any word for an instant definition, follow along with audio, and work through each page with an AI tutor tuned to your level.
             </div>
 
             <div className="land-features">
               <div className="land-features-title">What you can do</div>
               <div className="land-feat"><span className="land-feat-icon">💬</span><div><strong>Chat</strong> — Pick a topic, hear interesting facts, answer probing questions in Russian.</div></div>
-              <div className="land-feat"><span className="land-feat-icon">📖</span><div><strong>Read</strong> — Load any EPUB, FB2, TXT, or HTML book. Get chapter-by-chapter comprehension questions.</div></div>
-              <div className="land-feat"><span className="land-feat-icon">🔊</span><div><strong>Listen</strong> — Word-by-word TTS using natural Russian voices, with synchronized highlighting.</div></div>
+              <div className="land-feat"><span className="land-feat-icon">📖</span><div><strong>Read</strong> — Choose from the built-in library or load your own EPUB, FB2, TXT, or HTML book, with chapter-by-chapter comprehension questions.</div></div>
+              <div className="land-feat"><span className="land-feat-icon">🔊</span><div><strong>Listen</strong> — Library books play real narrated audio synced line-by-line; books you load yourself use your device's text-to-speech.</div></div>
               <div className="land-feat"><span className="land-feat-icon">✏️</span><div><strong>Define</strong> — Tap any Russian word for translation, lemma, aspect pairs, and example sentences.</div></div>
               <div className="land-feat"><span className="land-feat-icon">📚</span><div><strong>Build a library</strong> — Save vocab and grammar tips; they sync across all your devices.</div></div>
               <div className="land-feat"><span className="land-feat-icon">🎭</span><div><strong>Plays formatted nicely</strong> — Character names highlighted, dialogue cleanly separated.</div></div>
             </div>
 
+            <div style={{margin:"2px 0 0",padding:"12px 14px",borderRadius:10,background:"rgba(200,162,118,.10)",border:"1px solid rgba(200,162,118,.28)",fontSize:14,lineHeight:1.55,color:"rgba(210,197,175,.92)"}}>
+              <strong style={{color:"#c8a276"}}>About the audio:</strong> The built-in library — Патриот, Тёмные аллеи, Анна Каренина and others — comes with real human narration, synced to the text sentence by sentence. Any book <em>you</em> load is read by your device's text-to-speech instead: it follows the words, but gets a lot of pronunciation wrong (stress, ё vs е, names), so treat it as a reading aid rather than a model of correct speech.
+            </div>
             <div className="land-tips">
               <div className="land-tips-title">For the best experience</div>
               <div className="land-tip">
