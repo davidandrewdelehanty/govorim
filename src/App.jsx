@@ -3691,6 +3691,27 @@ export default function App() {
     return function() { cancelled = true; };
   }, [bookMeta && bookMeta.audiobook, cidx]);
 
+  // When the loaded chapter changes, re-point the audio element at the new
+  // chapter's file. Without this, switching chapters leaves the previous
+  // chapter's audio playing under the new chapter's text and highlight.
+  useEffect(function() {
+    var data = audiobookData;
+    var audio = audiobookAudioRef.current;
+    if (!data || !data.audio_url || !audio) return;
+    var want = data.audio_url;
+    try { want = new URL(data.audio_url, window.location.href).href; } catch(e) {}
+    if (audio.src !== want) {
+      var wasPlaying = audioPlayingRef.current;
+      try { audio.pause(); } catch(e) {}
+      audio.src = data.audio_url;
+      try { audio.load(); } catch(e) {}
+      if (wasPlaying) {
+        var t = setTimeout(function(){ playAudiobookFromSentence(0); }, 150);
+        return function(){ clearTimeout(t); };
+      }
+    }
+  }, [audiobookData]);
+
   // Once both audiobookData and audioSentences exist for the current page,
   // build the runtime sentence-to-fragment mapping. Re-run when either side
   // changes.
