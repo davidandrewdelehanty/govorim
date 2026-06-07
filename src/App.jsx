@@ -6952,7 +6952,6 @@ export default function App() {
 
             <div className="land-features">
               <div className="land-features-title">What you can do</div>
-              <div className="land-feat"><span className="land-feat-icon">💬</span><div><strong>Chat</strong> — Pick a topic, hear interesting facts, answer probing questions in Russian.</div></div>
               <div className="land-feat"><span className="land-feat-icon">📖</span><div><strong>Read</strong> — Choose from the built-in library or load your own EPUB, FB2, TXT, or HTML book, with chapter-by-chapter comprehension questions.</div></div>
               <div className="land-feat"><span className="land-feat-icon">🔊</span><div><strong>Listen</strong> — Library books play real narrated audio synced line-by-line; books you load yourself use your device's text-to-speech.</div></div>
               <div className="land-feat"><span className="land-feat-icon">✏️</span><div><strong>Define</strong> — Tap any Russian word for translation, lemma, aspect pairs, and example sentences.</div></div>
