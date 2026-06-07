@@ -7666,15 +7666,15 @@ export default function App() {
                       while the floating audio bar covers the bottom of the page. */}
                   {lview === "read" && (
                     <div className="lit-top-nav">
-                      {pidx > 0 && <button className="lnb-inline" onClick={function(){ navPage(pidx - 1); }} disabled={loading} title="Previous page">← Page</button>}
-                      <button className="lnb-inline lbm-inline" onClick={function(){ setCbm(cidx); }} title="Bookmark this chapter">📌</button>
-                      {pidx < totalPages - 1 && <button className="lnb-inline p" onClick={function(){ navPage(pidx + 1); }} disabled={loading} title="Next page">Page →</button>}
+                      <button className="lnb-inline" style={{fontSize:15,padding:"8px 14px"}} onClick={function(){ if (pidx > 0) navPage(pidx - 1); }} disabled={loading || pidx <= 0} title="Previous page">‹ Previous Page</button>
+                      <button className="lnb-inline p" style={{fontSize:15,padding:"8px 14px"}} onClick={function(){ if (pidx < totalPages - 1) navPage(pidx + 1); }} disabled={loading || pidx >= totalPages - 1} title="Next page">Next Page ›</button>
                       {chapters.length > 1 && (
                         <>
-                          {cidx > 0 && <button className="lnb-inline ch" onClick={function(){ navLit(cidx-1); }} disabled={loading} title={singlePageMode ? "Previous song" : "Previous chapter"}>« {singlePageMode ? "Song" : "Ch"}</button>}
-                          {cidx < chapters.length - 1 && <button className="lnb-inline ch" onClick={function(){ navLit(cidx+1); }} disabled={loading} title={singlePageMode ? "Next song" : "Next chapter"}>{singlePageMode ? "Song" : "Ch"} »</button>}
+                          <button className="lnb-inline ch" style={{fontSize:15,padding:"8px 14px"}} onClick={function(){ if (cidx > 0) navLit(cidx-1); }} disabled={loading || cidx <= 0} title={singlePageMode ? "Previous song" : "Previous chapter"}>‹ {singlePageMode ? "Previous Song" : "Previous Chapter"}</button>
+                          <button className="lnb-inline ch" style={{fontSize:15,padding:"8px 14px"}} onClick={function(){ if (cidx < chapters.length - 1) navLit(cidx+1); }} disabled={loading || cidx >= chapters.length - 1} title={singlePageMode ? "Next song" : "Next chapter"}>{singlePageMode ? "Next Song" : "Next Chapter"} ›</button>
                         </>
                       )}
+                      <button className="lnb-inline lbm-inline" onClick={function(){ setCbm(cidx); }} title="Bookmark this chapter">📌</button>
                     </div>
                   )}
                   <div className="lprog">
