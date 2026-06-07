@@ -2190,6 +2190,8 @@ async function parseFb2(buffer, options) {
   // individual chapters. Books with no subtitle markers (single-story FB2s)
   // keep the old per-section behavior.
   var sections = doc.querySelectorAll("body > section");
+  var __DBG = Array.from(sections).some(function(s){ var tt=((s.querySelector(":scope > title")||{}).textContent)||""; return /Завет/i.test(tt) || /Завет/i.test((s.textContent||"").slice(0,300)); });
+  if (__DBG) { window.__PROBE=["sections.length = "+sections.length]; Array.from(sections).slice(0,5).forEach(function(s,i){ var t=(((s.querySelector(":scope > title")||{}).textContent)||"(no title)").replace(/\s+/g," ").trim().slice(0,45); var k=Array.from(s.children).filter(function(c){return c.tagName.toLowerCase()==="section";}).length; var ch=Array.from(s.children).map(function(c){return c.tagName.toLowerCase();}).slice(0,6).join(","); window.__PROBE.push("top["+i+"] tag="+s.tagName+" title="+JSON.stringify(t)+" sectionKids="+k+" children=["+ch+"]"); }); }
   var chapters = [];
   // Scripture mode: deeply-nested Bibles (… Завет > division > book > Глава N)
   // become one chapter per "Testament — Book — Глава N" so the nav drawer nests
@@ -2204,6 +2206,7 @@ async function parseFb2(buffer, options) {
       });
     });
   });
+  if (typeof __DBG!=="undefined" && __DBG && window.__PROBE) window.__PROBE.push("isScripture = "+isScripture);
   if (isScripture) {
     var gatherScripture = function(sec){
       var out = [];
@@ -2219,6 +2222,7 @@ async function parseFb2(buffer, options) {
     var isChapTitle = function(x){ return /^(глава|псалом|песнь)\s*\d+/i.test(x); };
     var pushScripture = function(parts, text){
       var heading = parts.filter(function(z){ return z; }).join(" — ");
+      if (typeof __DBG!=="undefined" && __DBG && window.__PROBE && window.__PROBE.length<16) window.__PROBE.push("push heading = "+JSON.stringify(heading));
       var cyr = (text.match(/[а-яёА-ЯЁ]/g) || []).length;
       if (cyr >= 5) chapters.push({ heading: heading, text: text });
     };
@@ -2256,6 +2260,7 @@ async function parseFb2(buffer, options) {
       }
     };
     Array.from(sections).forEach(function(s){ emitScripture(s, "", ""); });
+    if (__DBG && typeof document!=="undefined" && document.body) { var __p=document.getElementById("__probe_overlay"); if(!__p){__p=document.createElement("pre");__p.id="__probe_overlay";__p.setAttribute("style","position:fixed;bottom:0;left:0;right:0;background:#fff;color:#000;z-index:999999;font:12px monospace;white-space:pre-wrap;max-height:55vh;overflow:auto;padding:10px;border-top:3px solid red");document.body.appendChild(__p);} __p.textContent="PROBE — screenshot this:\n"+window.__PROBE.join("\n"); }
   }
   if (!isScripture) {
   for (var i = 0; i < sections.length; i++) {
@@ -8319,4 +8324,3 @@ export default function App() {
     </>
   );
 }
-if (typeof window !== "undefined") { window.__DEPLOYPROBE = "DEPLOYPROBE_4827"; }
