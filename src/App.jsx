@@ -2212,7 +2212,14 @@ async function parseFb2(buffer, options) {
       for (var qi = 0; qi < nodes.length; qi++) {
         if (nodes[qi] === dt) continue;
         var t = nodes[qi].textContent.replace(/\s+/g, " ").trim();
-        if (t) out.push(t);
+        if (t) {
+          // Verses bundle multiple-per-<p>; split each verse onto its own
+          // paragraph so the reader highlights verse-by-verse regardless of
+          // Bible-mode. Verse marker = a number after sentence punctuation,
+          // before a capital/quote. Leading number stays visible on screen.
+          t = t.replace(/([.!?…»"])\s+(?=\d{1,3}\s+[«"„(\[—–А-ЯЁ])/g, "$1\n\n");
+          out.push(t);
+        }
       }
       return out.join("\n\n");
     };
