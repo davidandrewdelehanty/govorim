@@ -5327,10 +5327,17 @@ export default function App() {
         // (Roman numerals, "Глава N", etc.). The author told us the chapter
         // boundaries by putting markers in the text — use those instead of
         // trusting spine items or TOC labels.
-        var bymark = splitByMarkers(chs);
+        // Scripture (Bible) already arrives fully structured from the FB2 parser as
+        // "Testament — Book — Глава N". Re-splitting by in-text markers (isChapterMarker
+        // treats bare numbers / "Глава N" as boundaries) would flatten it to bare "Глава N"
+        // and destroy the Testament/Book tiers - so skip the re-split when 3-tier headings exist.
+        var alreadyScripture = chs.length > 1 && chs.some(function(c){
+          return c.heading && c.heading.split(/\s+[\u2013\u2014]\s+/).length >= 3;
+        });
+        var bymark = alreadyScripture ? null : splitByMarkers(chs);
         if (bymark && bymark.length >= 2) {
           chs = bymark;
-        } else if (chs.length > 1) {
+        } else if (!alreadyScripture && chs.length > 1) {
           // Only collapse if chapters have no meaningful headings. Books with
           // subtitle-split chapters (e.g. "ЧАСТЬ ПЕРВАЯ — I") already have
           // proper headings and should NOT be merged.
