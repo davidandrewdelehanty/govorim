@@ -3277,6 +3277,14 @@ export default function App() {
       var hit = findSentenceIdxForTime(audio.currentTime);
       if (hit !== -1 && hit !== lastHit) {
         lastHit = hit;
+        try {
+          var _tm = sentenceTimingsRef.current[hit];
+          var _st = audioSentencesRef.current[hit];
+          console.log("[HL] t=" + audio.currentTime.toFixed(2)
+            + " -> idx " + hit
+            + " [" + (_tm ? _tm.begin.toFixed(2) + "," + _tm.end.toFixed(2) : "null") + "]"
+            + " | " + (_st ? _st.text.slice(0,40) : "?"));
+        } catch(e) {}
         var sent = audioSentencesRef.current[hit];
         if (sent) {
           highlightSentence(sent, null);
