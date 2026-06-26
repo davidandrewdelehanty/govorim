@@ -3239,16 +3239,23 @@ export default function App() {
   // is plenty fast — one page's worth of sentences (≤30 typical).
   var findSentenceIdxForTime = function(t) {
     var timings = sentenceTimingsRef.current;
+    // Highlight the sentence currently being SPOKEN: the last one whose begin
+    // has arrived, held through any silent gap until the next actually begins.
+    // (The old logic snapped to the upcoming sentence the instant the previous
+    // ended, so inter-sentence pauses made the highlight run ahead of the voice
+    // — very visible with tight word-timed alignment that leaves real gaps.)
+    var firstIdx = -1, maxEnd = 0, best = -1;
     for (var i = 0; i < timings.length; i++) {
       var tm = timings[i];
       if (!tm) continue;
-      // Match if t is in this sentence OR in the gap before it (next upcoming).
-      // This handles inter-sentence gaps and the moment right after a page flip
-      // where audio.currentTime briefly sits before timings[0].begin of the new
-      // page. Auto-flip uses lastEnd, so this never triggers a spurious flip.
-      if (t < tm.end) return i;
+      if (firstIdx === -1) firstIdx = i;
+      if (tm.end > maxEnd) maxEnd = tm.end;
+      if (tm.begin <= t + 0.05) best = i;   // light up right as the first word sounds
     }
-    return -1;
+    if (firstIdx === -1) return -1;          // nothing mapped on this page
+    if (t >= maxEnd) return -1;              // past the page -> RAF triggers auto-flip
+    if (best === -1) return firstIdx;        // before first sentence (e.g. just after a page flip)
+    return best;
   };
 
   var stopAudiobookRaf = function() {
