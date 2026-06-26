@@ -3278,7 +3278,20 @@ export default function App() {
       if (hit !== -1 && hit !== lastHit) {
         lastHit = hit;
         var sent = audioSentencesRef.current[hit];
-        if (sent) highlightSentence(sent, null);
+        if (sent) {
+          highlightSentence(sent, null);
+          try {
+            var _els = highlightedElementsRef.current;
+            var _el = _els && _els.length ? _els[0] : null;
+            if (_el && _el.getBoundingClientRect) {
+              var _r = _el.getBoundingClientRect();
+              var _vh = window.innerHeight || (document.documentElement && document.documentElement.clientHeight) || 800;
+              if (_r.top < _vh * 0.18 || _r.bottom > _vh * 0.82) {
+                _el.scrollIntoView({ behavior: "smooth", block: "center" });
+              }
+            }
+          } catch(e) {}
+        }
         if (audioIdxRef.current !== hit) {
           audioIdxRef.current = hit;
           setAudioIdx(hit);
@@ -3646,7 +3659,7 @@ export default function App() {
   // with books that were configured before the category-based rule existed.
   var singlePageMode = bookMeta.category === "Song Lyrics" || !!bookMeta.splitByNumberedSections;
   var pages = useMemo(function() {
-    return computePages(curChapter.text || "", { singlePage: singlePageMode });
+    return computePages(curChapter.text || "", { singlePage: true });
   }, [curChapter.text, singlePageMode]);
   var totalPages = pages.length;
   // Refs synced for audiobook auto-page-flip in the RAF tick
@@ -4888,7 +4901,7 @@ export default function App() {
     // Use the SAME pagination the renderer uses — 5 paragraphs OR ~1700 chars
     // per page, with sentence-boundary splits for giant single-paragraph chapters.
     // Single-page mode (song lyrics) shows the whole chapter as one page.
-    var chPages = computePages(ch.text || "", { singlePage: sp });
+    var chPages = computePages(ch.text || "", { singlePage: true });
     var page = chPages[Math.min(pi, chPages.length - 1)] || chPages[0];
     var snippet = page ? (ch.text || "").slice(page.startChar, page.endChar) : (ch.text || "").slice(0, 1700);
     if (snippet.length > 3500) snippet = snippet.slice(0, 3500);
@@ -7758,8 +7771,10 @@ export default function App() {
                       while the floating audio bar covers the bottom of the page. */}
                   {lview === "read" && (
                     <div className="lit-top-nav">
+                      {totalPages > 1 && (<>
                       <button className="lnb-inline" style={{fontSize:15,padding:"8px 14px"}} onClick={function(){ if (pidx > 0) navPage(pidx - 1); }} disabled={loading || pidx <= 0} title="Previous page">‹ Previous Page</button>
                       <button className="lnb-inline p" style={{fontSize:15,padding:"8px 14px"}} onClick={function(){ if (pidx < totalPages - 1) navPage(pidx + 1); }} disabled={loading || pidx >= totalPages - 1} title="Next page">Next Page ›</button>
+                      </>)}
                       {chapters.length > 1 && (
                         <>
                           <button className="lnb-inline ch" style={{fontSize:15,padding:"8px 14px"}} onClick={function(){ if (cidx > 0) navLit(cidx-1); }} disabled={loading || cidx <= 0} title={singlePageMode ? "Previous song" : "Previous chapter"}>‹ {singlePageMode ? "Previous Song" : "Previous Chapter"}</button>
@@ -7773,7 +7788,7 @@ export default function App() {
                     <span className="lpct">
                       {singlePageMode
                         ? <>Song {cidx+1}/{chapters.length} · {pct}%</>
-                        : <>Ch. {cidx+1}/{chapters.length} · Page {pidx+1}/{totalPages} · {pct}%</>}
+                        : <>Ch. {cidx+1}/{chapters.length}{totalPages > 1 ? " · Page " + (pidx+1) + "/" + totalPages : ""} · {pct}%</>}
                     </span>
                     <div className="lpbar"><div className="lpfill" style={{width:pct+"%"}}/></div>
                   </div>
