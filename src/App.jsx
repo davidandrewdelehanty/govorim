@@ -3224,6 +3224,22 @@ export default function App() {
       }
       return null;
     });
+    // Safety net: never leave a sentence un-timed. Short dialogue lines
+    // (e.g. "— Эй, кто там!") sometimes slip the prefix matcher's window;
+    // with no timing the highlighter skips them and drifts. Give any unmatched
+    // sentence the gap between its nearest timed neighbors so it still lights up.
+    (function(){
+      var n = mapping.length;
+      for (var bi = 0; bi < n; bi++) {
+        if (mapping[bi] || !sents[bi] || sents[bi].start < 0) continue;
+        var pe = null, nb = null;
+        for (var pa = bi - 1; pa >= 0; pa--) { if (mapping[pa]) { pe = mapping[pa].end; break; } }
+        for (var nx = bi + 1; nx < n; nx++) { if (mapping[nx]) { nb = mapping[nx].begin; break; } }
+        if (pe != null && nb != null) mapping[bi] = { begin: pe, end: (nb > pe ? nb : pe) };
+        else if (pe != null) mapping[bi] = { begin: pe, end: pe };
+        else if (nb != null) mapping[bi] = { begin: nb, end: nb };
+      }
+    })();
     sentenceTimingsRef.current = mapping;
     try {
       var matched = mapping.filter(function(m){ return m; }).length;
