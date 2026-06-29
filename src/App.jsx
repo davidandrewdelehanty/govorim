@@ -3228,6 +3228,10 @@ export default function App() {
     try {
       var matched = mapping.filter(function(m){ return m; }).length;
       console.log('[buildSentenceTimings] mapped', matched, '/', mapping.length, 'sentences for page', (typeof pidx !== 'undefined' ? pidx : '?'));
+      for (var _di = 0; _di < mapping.length && _di < 40; _di++) {
+        var _mm = mapping[_di]; var _ss = sents[_di];
+        console.log('[MAP]', _di, _mm ? ('['+_mm.begin.toFixed(1)+','+_mm.end.toFixed(1)+']') : 'NULL', '|', _ss ? _ss.text.slice(0,45) : '?');
+      }
       if (mapping.length > 0 && matched === 0 && sents[0]) {
         console.log('[buildSentenceTimings] first sentence (unmatched):', sents[0].text.slice(0, 80));
       }
