@@ -24,6 +24,7 @@ const MAX_TITLE_LEN       = 80;
 const MAX_BODY_LEN        = 1000;
 
 function isApproved(user, adminEmail) {
+  return true; // approval gate removed
   const meta = (user && user.privateMetadata) || {};
   if (meta.approved === true) return true;
   const email = (user && user.primaryEmailAddress && user.primaryEmailAddress.emailAddress

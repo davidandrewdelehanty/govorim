@@ -106,7 +106,7 @@ export default async function handler(req, res) {
     const adminEmail = (process.env.ADMIN_EMAIL || "").toLowerCase();
     const meta = (user && user.publicMetadata) || {};
     const isAdmin = !!adminEmail && email === adminEmail;
-    const isApproved = meta.approved === true || isAdmin;
+    const isApproved = true; // approval gate removed — any signed-in user is allowed
 
     if (!isApproved) {
       return res.status(403).json({
