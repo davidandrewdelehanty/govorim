@@ -3950,18 +3950,16 @@ export default function App() {
         if (!r.ok) return;
         var data = await r.json();
         var serverVocab = Array.isArray(data.vocab) ? data.vocab : [];
-        // Backfill a guaranteed-unique id on every entry. Older saves (and
-        // same-millisecond Date.now() collisions) can leave entries without a
-        // unique id, which breaks single-item removal (it nukes the whole list).
-        serverVocab = serverVocab.map(function(v, i){
-          return (v && v.id != null) ? v : Object.assign({}, v, { id: "v" + i + "_" + Date.now() + "_" + Math.random().toString(36).slice(2,7) });
-        });
-        // Repair any DUPLICATE ids too.
+        // The server stores `created` but strips `id`. Use a stable per-entry
+        // key (`_key`) derived from created (or backfilled) so single-item
+        // removal targets exactly one word. Guaranteed unique even on collisions.
         var _seen = {};
         serverVocab = serverVocab.map(function(v, i){
-          var id = v.id;
-          if (_seen[id]) { id = String(id) + "_dup" + i; v = Object.assign({}, v, { id: id }); }
-          _seen[id] = 1; return v;
+          v = Object.assign({}, v);
+          var k = (v.created != null ? String(v.created) : (v.id != null ? String(v.id) : "row"));
+          k = k + "_" + i;            // index guarantees uniqueness
+          v._key = k;
+          return v;
         });
         var serverTips  = Array.isArray(data.tips)  ? data.tips  : [];
 
@@ -5662,8 +5660,10 @@ export default function App() {
     if (!ru) return;
     if (vocab.find(function(v){ return v.ru === ru; })) return;
     var now = Date.now();
-    var uid = "v_" + now + "_" + Math.random().toString(36).slice(2,7);
-    setVocab(function(p){ return p.concat([Object.assign({}, entry, { ru: ru, id: uid, created: now })]); });
+    setVocab(function(p){
+      var key = String(now) + "_" + p.length;
+      return p.concat([Object.assign({}, entry, { ru: ru, created: now, _key: key })]);
+    });
   };
   var addT = function(tip) {
     if (!tips.find(function(t){ return t.tip===tip; })) {
@@ -8185,7 +8185,7 @@ export default function App() {
                           )}
                           {stamp && <span style={{fontSize:11,color:"rgba(210,197,175,.35)",fontStyle:"italic",fontFamily:"'Crimson Pro',serif",marginTop:6,display:"block"}}>Added {stamp}</span>}
                         </div>
-                        <button className="rmb" title="Remove from vocabulary" onClick={function(){ setVocab(function(p){ return p.filter(function(x){ return x.id!==v.id; }); }); }}>×</button>
+                        <button className="rmb" title="Remove from vocabulary" onClick={function(){ setVocab(function(p){ return p.filter(function(x){ return (x._key||x.id||x.created) !== (v._key||v.id||v.created); }); }); }}>×</button>
                       </div>
                     );
                   })}</div>}
