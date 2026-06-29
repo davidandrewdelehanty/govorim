@@ -2281,7 +2281,16 @@ async function parseFb2(buffer, options) {
     var sec = sections[i];
     var titleEl = sec.querySelector(":scope > title");
     var partTitle = titleEl ? titleEl.textContent.replace(/\s+/g, " ").trim() : "";
-    var subtitleEls = sec.querySelectorAll(":scope > subtitle");
+    var allSubtitleEls = sec.querySelectorAll(":scope > subtitle");
+    // A subtitle only marks a real chapter break if it has actual textual
+    // content. Decorative scene-breaks like "* * *", "***", "…", or dingbats
+    // must NOT split the section (they divide scenes WITHIN a chapter). We
+    // test for at least one letter or digit; punctuation/symbols-only = scene break.
+    var isMeaningfulSubtitle = function(el) {
+      var txt = (el.textContent || "").trim();
+      return /[\p{L}\p{N}]/u.test(txt);
+    };
+    var subtitleEls = Array.prototype.filter.call(allSubtitleEls, isMeaningfulSubtitle);
 
     if (subtitleEls.length >= 2) {
       // Split section content by subtitle markers.
@@ -2303,8 +2312,14 @@ async function parseFb2(buffer, options) {
         var child = directChildren[ci];
         var tag = child.tagName.toLowerCase();
         if (tag === "subtitle") {
+          var subTxt = child.textContent.replace(/\s+/g, " ").trim();
+          if (!/[\p{L}\p{N}]/u.test(subTxt)) {
+            // decorative scene-break — keep it as in-chapter content, not a split
+            if (currentSubtitle !== null) currentParas.push(subTxt);
+            continue;
+          }
           flush();
-          currentSubtitle = child.textContent.replace(/\s+/g, " ").trim();
+          currentSubtitle = subTxt;
           currentParas = [];
         } else if (tag === "title") {
           continue;
