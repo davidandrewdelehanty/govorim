@@ -2653,7 +2653,7 @@ export default function App() {
   // /api/admin/upload-song endpoint (commits to GitHub → Vercel redeploys).
   // The same modal also handles full-book uploads via a Song/Book tab toggle.
   var [showUpload, setShowUpload]   = useState(false);
-  var [upMode, setUpMode]           = useState("song");  // "song" | "book"
+  var [upMode, setUpMode]           = useState("book");  // "song" | "book"
   var [upArtist, setUpArtist]       = useState("");
   var [upTitle, setUpTitle]         = useState("");
   var [upLyrics, setUpLyrics]       = useState("");
@@ -6923,24 +6923,9 @@ export default function App() {
               <button className="adm-x" onClick={function(){ setShowUpload(false); }}>×</button>
             </div>
             <div className="adm-body" style={{padding:20,display:"flex",flexDirection:"column",gap:14}}>
-              {/* Mode tabs */}
-              <div style={{display:"flex",gap:0,borderBottom:"1px solid rgba(210,197,175,.15)"}}>
-                <button onClick={function(){ setUpMode("song"); setUpErr(""); setUpMsg(""); }}
-                  style={{flex:1,padding:"10px 14px",background:upMode==="song"?"rgba(200,162,118,.12)":"transparent",color:upMode==="song"?"#c8a276":"rgba(210,197,175,.6)",border:"none",borderBottom:upMode==="song"?"2px solid #c8a276":"2px solid transparent",cursor:"pointer",fontFamily:"'Crimson Pro',serif",fontSize:14,fontWeight:upMode==="song"?600:400}}>
-                  🎵 Song (paste lyrics)
-                </button>
-                <button onClick={function(){ setUpMode("book"); setUpErr(""); setUpMsg(""); }}
-                  style={{flex:1,padding:"10px 14px",background:upMode==="book"?"rgba(200,162,118,.12)":"transparent",color:upMode==="book"?"#c8a276":"rgba(210,197,175,.6)",border:"none",borderBottom:upMode==="book"?"2px solid #c8a276":"2px solid transparent",cursor:"pointer",fontFamily:"'Crimson Pro',serif",fontSize:14,fontWeight:upMode==="book"?600:400}}>
-                  📚 Book (upload file)
-                </button>
-              </div>
 
-              {upMode === "song" && (
-                <div style={{fontSize:12,opacity:.6,lineHeight:1.5}}>
-                  Pasted lyrics get appended to a per-artist file under <code style={{background:"rgba(0,0,0,.3)",padding:"1px 5px",borderRadius:3}}>public/books/lyrics/&lt;artist&gt;.txt</code>.
-                  Vercel redeploys after each upload — your new song appears in the picker in ~1-2 min.
-                </div>
-              )}
+
+
               {upMode === "book" && (
                 <div style={{fontSize:12,opacity:.6,lineHeight:1.5}}>
                   Upload an EPUB, FB2, TXT, or HTML file. Max 20MB. The file gets committed to <code style={{background:"rgba(0,0,0,.3)",padding:"1px 5px",borderRadius:3}}>public/books/&lt;category&gt;/</code> and added to the manifest.
@@ -6952,46 +6937,6 @@ export default function App() {
                 <div style={{padding:"8px 12px",background:"rgba(138,171,124,.15)",border:"1px solid rgba(138,171,124,.4)",borderRadius:4,color:"#a8c89a",fontSize:13}}>
                   ✓ {upMsg}
                 </div>
-              )}
-
-              {upMode === "song" && (
-                <>
-                  <div>
-                    <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Artist</label>
-                    <input type="text" value={upArtist} onChange={function(e){ setUpArtist(e.target.value); }}
-                      placeholder="e.g. Виктор Цой"
-                      disabled={upBusy}
-                      style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
-                  </div>
-                  <div>
-                    <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Song title</label>
-                    <input type="text" value={upTitle} onChange={function(e){ setUpTitle(e.target.value); }}
-                      placeholder="e.g. Группа крови"
-                      disabled={upBusy}
-                      style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
-                  </div>
-                  <div>
-                    <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Lyrics (Russian)</label>
-                    <textarea value={upLyrics} onChange={function(e){ setUpLyrics(e.target.value); }}
-                      placeholder="Paste the song lyrics here..."
-                      rows={12}
-                      disabled={upBusy}
-                      style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",resize:"vertical",lineHeight:1.55,boxSizing:"border-box"}}/>
-                    <div style={{fontSize:11,opacity:.45,marginTop:4,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>
-                      {upLyrics.length} chars · {(upLyrics.match(/[а-яёА-ЯЁ]/g) || []).length} Cyrillic letters
-                    </div>
-                  </div>
-                  <div style={{display:"flex",gap:10,alignItems:"center",marginTop:4}}>
-                    <button onClick={uploadSong} disabled={upBusy || !upArtist.trim() || !upTitle.trim() || upLyrics.trim().length < 20}
-                      style={{padding:"10px 22px",background:"#c8a276",color:"#1a1612",border:"none",borderRadius:4,fontWeight:600,fontSize:14,cursor:upBusy?"wait":"pointer",opacity:(upBusy || !upArtist.trim() || !upTitle.trim() || upLyrics.trim().length < 20)?.5:1,fontFamily:"'Crimson Pro',serif"}}>
-                      {upBusy ? "Uploading..." : "Upload song"}
-                    </button>
-                    <button onClick={function(){ setUpTitle(""); setUpLyrics(""); setUpMsg(""); setUpErr(""); }} disabled={upBusy}
-                      style={{padding:"10px 16px",background:"transparent",color:"#d2c5af",border:"1px solid rgba(210,197,175,.25)",borderRadius:4,fontSize:13,cursor:"pointer",fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>
-                      Clear song
-                    </button>
-                  </div>
-                </>
               )}
 
               {upMode === "book" && (
