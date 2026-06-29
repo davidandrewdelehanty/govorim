@@ -3983,6 +3983,10 @@ export default function App() {
     if (!auth.isSignedIn || !syncedFromServer) return;
     var t = setTimeout(async function() {
       try {
+        // SAFETY: never let an empty vocab+tips state overwrite the server.
+        // An empty client list almost always means "not loaded yet" or a bug,
+        // not a real "user deleted everything" — refuse to POST it.
+        if ((!vocab || vocab.length === 0) && (!tips || tips.length === 0)) return;
         var r = await authFetch("/api/user-data", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
