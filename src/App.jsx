@@ -6915,7 +6915,7 @@ export default function App() {
           </div>
         </div>
       )}
-      {showUpload && isAdmin && (
+      {false && showUpload && isAdmin && (
         <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setShowUpload(false); }}>
           <div className="adm-modal" style={{maxWidth:640}}>
             <div className="adm-head">
@@ -7081,7 +7081,7 @@ export default function App() {
             {auth.isSignedIn && <button className="adm-trigger" onClick={openForum} title="Community forum">📝 Forum</button>}
             {auth.isSignedIn && <button className="adm-trigger" onClick={function(){ setFeedbackOpen(true); }} title="Send feedback">💬 Feedback</button>}
             {isAdmin && <button className="adm-trigger" onClick={function(){ setShowAdmin(true); }} title="Manage user approvals">👥 Users</button>}
-            {isAdmin && <button className="adm-trigger" onClick={function(){ setShowUpload(true); setUpErr(""); setUpMsg(""); }} title="Upload a song to the library">📤 Upload</button>}
+            {false && <button className="adm-trigger" onClick={function(){ setShowUpload(true); setUpErr(""); setUpMsg(""); }} title="Upload a song to the library">📤 Upload</button>}
             {auth.isSignedIn && <div className="userbtn-wrap"><UserButton afterSignOutUrl="/" /></div>}
           </div>
         </header>
@@ -7153,13 +7153,13 @@ export default function App() {
               <div className="ss">
                 <div className="sico">📖</div>
                 <h1 className="sti">{chapters.length > 0 ? bookMeta.title : "Open a Russian book"}</h1>
-                <p className="sde">{chapters.length > 0 ? bookMeta.author : "Load EPUB, FB2, TXT, or HTML from your device. Supports books from Project Gutenberg, Litres, Flibusta, etc. Cached after first load."}</p>
+                <p className="sde">{chapters.length > 0 ? bookMeta.author : "Choose a book from the library to begin reading."}</p>
                 <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:10}}>
                   {chapters.length > 0 ? (
                     <>
                       {cbm > 0 && <button className="btn-p" onClick={function(){ startLit(cbm); }}>📌 Resume at chapter {cbm+1}</button>}
                       <button className={cbm>0?"btn-g":"btn-p"} onClick={function(){ startLit(0); }}>{cbm>0?"Start from beginning":"Начать читать →"}</button>
-                      <FileBtn label="Open an ebook" onLoad={loadFile}/>
+                      
                       <button onClick={async function(){
                         setChapters([]); setCidx(0); setCbm(0); setBookMeta({title:"",author:""});
                         try { await storage.delete(EPUB_CACHE); } catch(e) {}
@@ -7167,15 +7167,13 @@ export default function App() {
                         try { await storage.delete(QHIST_KEY); } catch(e) {}
                       }} style={{background:"none",border:"none",color:"rgba(210,197,175,.4)",fontSize:11,fontStyle:"italic",fontFamily:"'Crimson Pro',serif",cursor:"pointer",padding:"4px",marginTop:4,textDecoration:"underline",textDecorationColor:"rgba(210,197,175,.2)",alignSelf:"center"}}>clear cached book</button>
                     </>
-                  ) : (
-                    <FileBtn label="Open an ebook" onLoad={loadFile}/>
-                  )}
+                  ) : ( <></> )}
 
                   {/* Library browser — searchable card layout for preset books +
                       user uploads. Replaces the prior dropdown. Search filters
                       across both titles and authors. Books are grouped by category;
                       uploads show in their own "My Uploads" section at the top. */}
-                  {(presetBooks.length > 0 || uploadedBooks.length > 0) && (
+                  {(presetBooks.length > 0) && (
                     <div style={{marginTop:18,paddingTop:18,borderTop:"1px solid rgba(210,197,175,.1)",width:"100%"}}>
                       {/* Continue Reading — books with saved progress, newest first.
                           Clicking one resumes at the saved chapter/page. */}
