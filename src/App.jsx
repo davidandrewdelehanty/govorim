@@ -2189,7 +2189,19 @@ async function parseFb2(buffer, options) {
   // Each top-level <section> is a Part. <subtitle> markers within it delimit
   // individual chapters. Books with no subtitle markers (single-story FB2s)
   // keep the old per-section behavior.
-  var sections = doc.querySelectorAll("body > section");
+  // Use only the MAIN body for chapters. FB2 stores footnotes/endnotes in a
+  // separate <body name="notes"> (and sometimes name="comments"); those must
+  // NOT become chapters. Prefer the first unnamed body; fall back to the first
+  // body if every body is named.
+  var allBodies = Array.prototype.slice.call(doc.querySelectorAll("body"));
+  var mainBody = null;
+  for (var _bi = 0; _bi < allBodies.length; _bi++) {
+    if (!allBodies[_bi].getAttribute("name")) { mainBody = allBodies[_bi]; break; }
+  }
+  if (!mainBody) mainBody = allBodies[0] || null;
+  var sections = mainBody
+    ? Array.prototype.slice.call(mainBody.children).filter(function(c){ return c.tagName && c.tagName.toLowerCase() === "section"; })
+    : [];
   var chapters = [];
   // Scripture mode: deeply-nested Bibles (… Завет > division > book > Глава N)
   // become one chapter per "Testament — Book — Глава N" so the nav drawer nests
