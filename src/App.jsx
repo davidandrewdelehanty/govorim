@@ -3950,6 +3950,19 @@ export default function App() {
         if (!r.ok) return;
         var data = await r.json();
         var serverVocab = Array.isArray(data.vocab) ? data.vocab : [];
+        // Backfill a guaranteed-unique id on every entry. Older saves (and
+        // same-millisecond Date.now() collisions) can leave entries without a
+        // unique id, which breaks single-item removal (it nukes the whole list).
+        serverVocab = serverVocab.map(function(v, i){
+          return (v && v.id != null) ? v : Object.assign({}, v, { id: "v" + i + "_" + Date.now() + "_" + Math.random().toString(36).slice(2,7) });
+        });
+        // Repair any DUPLICATE ids too.
+        var _seen = {};
+        serverVocab = serverVocab.map(function(v, i){
+          var id = v.id;
+          if (_seen[id]) { id = String(id) + "_dup" + i; v = Object.assign({}, v, { id: id }); }
+          _seen[id] = 1; return v;
+        });
         var serverTips  = Array.isArray(data.tips)  ? data.tips  : [];
 
         if (serverVocab.length > 0 || serverTips.length > 0) {
@@ -5649,7 +5662,8 @@ export default function App() {
     if (!ru) return;
     if (vocab.find(function(v){ return v.ru === ru; })) return;
     var now = Date.now();
-    setVocab(function(p){ return p.concat([Object.assign({}, entry, { ru: ru, id: now, created: now })]); });
+    var uid = "v_" + now + "_" + Math.random().toString(36).slice(2,7);
+    setVocab(function(p){ return p.concat([Object.assign({}, entry, { ru: ru, id: uid, created: now })]); });
   };
   var addT = function(tip) {
     if (!tips.find(function(t){ return t.tip===tip; })) {
