@@ -3784,18 +3784,22 @@ export default function App() {
           var applyHL = function(){
             attempts++;
             try {
+              var nodeCount = document.querySelectorAll(".lit-body [data-rw-start]").length;
               var sIdx = findSentenceIdxForPageOffset(pageRel);
+              var sentsLen = (audioSentencesRef.current || parsed || []).length;
+              alert("[srcHL try " + attempts + "] pageRel=" + pageRel + " sIdx=" + sIdx + " sents=" + sentsLen + " rwNodes=" + nodeCount);
               if (sIdx >= 0) {
                 var sent = (audioSentencesRef.current || parsed)[sIdx];
                 if (sent) {
                   highlightSentence(sent, null);
                   var els = highlightedElementsRef.current;
+                  alert("[srcHL] highlighted " + (els ? els.length : 0) + " word nodes for sentence: " + (sent.text||"").slice(0,40));
                   var el = els && els.length ? els[0] : null;
                   if (el && el.scrollIntoView) el.scrollIntoView({ behavior: "smooth", block: "center" });
                 }
               }
-            } catch(e) {}
-            if (attempts < 8) setTimeout(applyHL, 250);  // ~2s of re-assertion
+            } catch(e) { alert("[srcHL] error: " + (e.message||e)); }
+            if (attempts < 2) setTimeout(applyHL, 400);
           };
           setTimeout(applyHL, 200);
         }
