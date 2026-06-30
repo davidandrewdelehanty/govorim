@@ -4985,6 +4985,10 @@ export default function App() {
   var startLit = async function(idx, chs, metaOverride, startPidx) {
     var p = chs || chapters; if (!p || !p.length) return;
     var i = idx !== undefined ? idx : cbm;
+    // Clamp to a valid chapter — a stale source-link jump (or any bad idx) must
+    // never land on a non-existent chapter (which renders an empty reader).
+    if (typeof i !== "number" || isNaN(i) || i < 0) i = 0;
+    if (i >= p.length) i = p.length - 1;
     var pi = (typeof startPidx === "number" && startPidx >= 0) ? startPidx : 0;
     // Open the book. Comprehension is button-triggered, not auto-loaded.
     setCidx(i); setCbm(i); setPidx(pi); setStarted(true); setMsgs([]);
@@ -5678,7 +5682,9 @@ export default function App() {
     }
     if (!book) { alert("That book isn't in the library anymore."); return; }
     srcJumpChapterRef.current = (typeof v.srcChapter === "number") ? v.srcChapter : 0;
-    setTab("read");
+    // Don't setTab — loadPresetBook -> startLit drives the reader view itself,
+    // exactly like clicking a book in the picker. (setTab("read") showed a
+    // non-existent tab = empty frame.)
     loadPresetBook(book);
   };
 
