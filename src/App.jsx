@@ -2789,6 +2789,8 @@ export default function App() {
   var [chapters, setChapters]   = useState([]);
   // Pre-loaded library: books shipped in /public/books/. Fetched once on mount from /books/index.json.
   var [presetBooks, setPresetBooks] = useState([]);
+  var srcJumpChapterRef = useRef(null);
+  var [vocabCollapsed, setVocabCollapsed] = useState({});
   // Tracks recent uploads (last MAX_UPLOADS) so the library view can show them
   // alongside the preset books. Each entry is metadata; full content lives at
   // storage[UPLOAD_BOOK_PREFIX + id].
@@ -5481,6 +5483,10 @@ export default function App() {
       var savedProg = await loadBookProgress(meta);
       var startCi = savedProg ? savedProg.cidx : 0;
       var startPi = savedProg ? savedProg.pidx : 0;
+      if (srcJumpChapterRef.current !== null && srcJumpChapterRef.current !== undefined) {
+        startCi = srcJumpChapterRef.current; startPi = 0;
+        srcJumpChapterRef.current = null;
+      }
       startLit(startCi, chs, meta, startPi);
     } catch(err) { setFErr(err.message); }
   };
@@ -5663,7 +5669,19 @@ export default function App() {
   // fewer than 3 valid siblings, that word is skipped (insufficient distractors).
   // Words without a `pos` tag are also skipped — verbs-vs-nouns mixing defeats
   // the pedagogy.
-  var startQuiz = function() {
+  var goToSource = function(v) {
+    if (!v || !v.srcBook) return;
+    var book = null;
+    for (var i = 0; i < presetBooks.length; i++) {
+      if (presetBooks[i].filename === v.srcBook) { book = presetBooks[i]; break; }
+    }
+    if (!book) { alert("That book isn't in the library anymore."); return; }
+    srcJumpChapterRef.current = (typeof v.srcChapter === "number") ? v.srcChapter : 0;
+    setTab("read");
+    loadPresetBook(book);
+  };
+
+  var startQuiz = function(posFilter) {
     // Group vocab by normalized pos. A word needs `en` (the English meaning to
     // quiz on) and `pos` (so we can find same-category distractors) to qualify.
     var groups = {};
@@ -5702,6 +5720,8 @@ export default function App() {
     vocab.forEach(function(v){
       var p = (v.pos || "").toLowerCase().trim();
       if (!p || !v.en) { skipped++; return; }
+      var filterPos = (typeof posFilter === "string" && posFilter) ? posFilter.toLowerCase().trim() : null;
+      if (filterPos && p !== filterPos) { skipped++; return; }
       if ((groups[p] || []).length < QUIZ_MIN) { skipped++; return; }   // only quiz 10+ types
       var siblings = (groups[p] || []).filter(function(x){ return (x._key||x.id) !== (v._key||v.id); });
       if (siblings.length < 3) { skipped++; return; }
@@ -8166,28 +8186,80 @@ export default function App() {
                   </div>
                 </div>
                 {vocab.length===0 ? <p className="empty">No words saved yet.<br/>Click any Russian word to define and save it.</p>
-                  : <div className="ilist">{vocab.map(function(v){
-                    var posLine = [v.pos, v.aspect].filter(Boolean).join(" · ");
-                    var stamp = formatVocabDate(v.created || v.id);
-                    return (
-                      <div key={v.id} className="icard">
-                        <div className="icont">
-                          <span className="ipri">{v.ru}</span>
-                          {posLine && <span className="ipos">{posLine}</span>}
-                          {v.en && <span className="isec">{v.en}</span>}
-                          {v.grammar && <span className="igr">{v.grammar}</span>}
-                          {v.example && (
-                            <div className="iex">
-                              «&nbsp;{v.example}&nbsp;»
-                              {v.exampleTranslation && <div className="iext">{v.exampleTranslation}</div>}
+                  : (function(){
+                      // Group vocab by part of speech. Words with no pos go last under "Other".
+                      var groups = {}; var order = [];
+                      vocab.forEach(function(v){
+                        var key = (v.pos || "").trim() || "Other";
+                        if (!groups[key]) { groups[key] = []; order.push(key); }
+                        groups[key].push(v);
+                      });
+                      // Sort: named pos groups alphabetically, "Other" always last.
+                      order.sort(function(a,b){
+                        if (a==="Other") return 1; if (b==="Other") return -1;
+                        return a.localeCompare(b);
+                      });
+                      var QMIN = 10;
+                      var renderCard = function(v){
+                        var posLine = [v.pos, v.aspect].filter(Boolean).join(" · ");
+                        var stamp = formatVocabDate(v.created || v.id);
+                        return (
+                          <div key={v._key||v.id||v.ru} className="icard">
+                            <div className="icont">
+                              <span className="ipri">{v.ru}</span>
+                              {posLine && <span className="ipos">{posLine}</span>}
+                              {v.en && <span className="isec">{v.en}</span>}
+                              {v.grammar && <span className="igr">{v.grammar}</span>}
+                              {v.example && (
+                                <div className="iex">
+                                  «&nbsp;{v.example}&nbsp;»
+                                  {v.exampleTranslation && <div className="iext">{v.exampleTranslation}</div>}
+                                </div>
+                              )}
+                              <div style={{display:"flex",alignItems:"center",gap:10,marginTop:6,flexWrap:"wrap"}}>
+                                {stamp && <span style={{fontSize:11,color:"rgba(210,197,175,.35)",fontStyle:"italic",fontFamily:"'Crimson Pro',serif"}}>Added {stamp}</span>}
+                                {v.srcBook && (
+                                  <button onClick={function(){ goToSource(v); }}
+                                    title={"Open " + (v.srcTitle||"source") + (typeof v.srcChapter==="number" ? " — chapter " + (v.srcChapter+1) : "")}
+                                    style={{fontSize:11,background:"none",border:"none",color:"#c8a276",cursor:"pointer",fontFamily:"'Inter',sans-serif",padding:0,textDecoration:"underline"}}>
+                                    ↗ {v.srcTitle ? (v.srcTitle.length>22 ? v.srcTitle.slice(0,22)+"\u2026" : v.srcTitle) : "source"}
+                                  </button>
+                                )}
+                              </div>
                             </div>
-                          )}
-                          {stamp && <span style={{fontSize:11,color:"rgba(210,197,175,.35)",fontStyle:"italic",fontFamily:"'Crimson Pro',serif",marginTop:6,display:"block"}}>Added {stamp}</span>}
+                            <button className="rmb" title="Remove from vocabulary" onClick={function(){ setVocab(function(p){ return p.filter(function(x){ return (x._key||x.id||x.created) !== (v._key||v.id||v.created); }); }); }}>×</button>
+                          </div>
+                        );
+                      };
+                      return (
+                        <div className="ilist">
+                          {order.map(function(g){
+                            var words = groups[g];
+                            var collapsed = !!vocabCollapsed[g];
+                            var canQuiz = words.filter(function(w){ return w.en; }).length >= QMIN;
+                            return (
+                              <div key={g} style={{marginBottom:18}}>
+                                <div style={{display:"flex",alignItems:"center",gap:10,padding:"6px 2px",borderBottom:"1px solid rgba(210,197,175,.15)",marginBottom:8}}>
+                                  <button onClick={function(){ setVocabCollapsed(function(pp){ var n=Object.assign({},pp); n[g]=!n[g]; return n; }); }}
+                                    style={{background:"none",border:"none",color:"#d2c5af",cursor:"pointer",fontSize:14,fontWeight:600,fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:6,flex:1,textAlign:"left",padding:0}}>
+                                    <span style={{fontSize:11,opacity:.6}}>{collapsed?"\u25b6":"\u25bc"}</span>
+                                    <span style={{textTransform:"capitalize"}}>{g}</span>
+                                    <span style={{opacity:.5,fontWeight:400}}>({words.length})</span>
+                                  </button>
+                                  {canQuiz && (
+                                    <button onClick={function(){ startQuiz(g); }}
+                                      style={{fontSize:12,background:"#c8a276",color:"#1a1612",border:"none",borderRadius:4,padding:"4px 12px",fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>
+                                      Quiz
+                                    </button>
+                                  )}
+                                </div>
+                                {!collapsed && words.map(renderCard)}
+                              </div>
+                            );
+                          })}
                         </div>
-                        <button className="rmb" title="Remove from vocabulary" onClick={function(){ setVocab(function(p){ return p.filter(function(x){ return (x._key||x.id||x.created) !== (v._key||v.id||v.created); }); }); }}>×</button>
-                      </div>
-                    );
-                  })}</div>}
+                      );
+                    })()}
               </>
             )}
           </div>
