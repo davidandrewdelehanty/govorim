@@ -3449,6 +3449,7 @@ export default function App() {
   };
 
   var resetAudioBar = function() {
+    try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch(e) {}
     if (audioElemRef.current) {
       try { audioElemRef.current.pause(); audioElemRef.current.src = ""; } catch(e) {}
       audioElemRef.current = null;
@@ -3468,6 +3469,20 @@ export default function App() {
   // because the original ▶ click was on a *different* element. Reusing the
   // same element preserves the trust chain. We only null the element out on
   // a true teardown (page change, resetAudioBar).
+  // Pick the best available native Russian voice: the user's saved pick (if a
+  // real local voice), else Katya, else any ru-* voice, else null (system default).
+  var pickRussianVoice = function() {
+    try {
+      var cur = voiceRef.current;
+      if (cur && !cur._cloud && cur.lang) return cur;
+      var vs = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+      var ru = vs.filter(function(v){ return v.lang && v.lang.toLowerCase().indexOf("ru")===0; });
+      if (!ru.length) return null;
+      var katya = ru.filter(function(v){ return /katya/i.test(v.name); })[0];
+      return katya || ru[0];
+    } catch(e){ return null; }
+  };
+
   var playAudioSentence = function(idx) {
     var sentences = audioSentencesRef.current;
     if (idx < 0 || idx >= sentences.length) {
@@ -3495,97 +3510,41 @@ export default function App() {
     var override = sentenceOverrideRef.current;  // either {text, wordOffsetInSentence} or null
     if (override) sentenceOverrideRef.current = null;
 
-    // Prefetch the next sentence in parallel for gapless playback.
-    // (Always full text — overrides are only for the current jump.)
-    var nextPromise = prefetchSentence(idx + 1, null);
-    if (nextPromise) nextPromise.catch(function(){});
-
-    // Show "loading" spinner only if neither override nor cache will give an instant blob.
-    var alreadyCached = !override && !!audioCacheRef.current[idx];
-    if (!alreadyCached) setAudioFetching(true);
-
-    var promise = prefetchSentence(idx, override);
-    if (!promise) {
-      setAudioFetching(false);
-      setAudioPlaying(false); audioPlayingRef.current = false;
-      return;
+    // ---- NATIVE TTS (browser speechSynthesis). Azure cloud TTS removed. ----
+    var sentObj = audioSentencesRef.current[idx];
+    var sentText = sentObj && sentObj.text;
+    if (!sentText) { setAudioPlaying(false); audioPlayingRef.current = false; return; }
+    var speakText = (override && typeof override.text === "string" && override.text) ? override.text : sentText;
+    if (!window.speechSynthesis) {
+      setTtsErr("This browser has no speech synthesis. Try Chrome or Edge.");
+      setAudioPlaying(false); audioPlayingRef.current = false; return;
     }
-    promise.then(function(blob) {
-      if (audioGenRef.current !== myGen) return;  // superseded by skip/pause/page change
-      if (!audioPlayingRef.current) { setAudioFetching(false); return; }  // user paused
-
-      // Create the element on the FIRST sentence (inside the user's ▶ click);
-      // reuse it for every subsequent sentence. This is the key to keeping
-      // Chrome's user-activation valid across chained playback.
-      var audio = audioElemRef.current;
-      var isFreshElement = !audio;
-      if (!audio) {
-        audio = new Audio();
-        audioElemRef.current = audio;
-      } else {
-        // Free the previous blob URL before pointing at the new one.
-        try {
-          if (audio.src && audio.src.indexOf("blob:") === 0) URL.revokeObjectURL(audio.src);
-        } catch(e) {}
+    setAudioFetching(false);
+    try { window.speechSynthesis.cancel(); } catch(e) {}
+    var u = new SpeechSynthesisUtterance(speakText);
+    u.lang = "ru-RU";
+    var pct = (typeof audioSpeedRef !== "undefined" && audioSpeedRef.current) ? audioSpeedRef.current : 0;
+    var rate = 1 + (pct/100); if (rate<0.5) rate=0.5; if (rate>1.5) rate=1.5;
+    u.rate = rate;
+    var rv = pickRussianVoice(); if (rv) u.voice = rv;
+    u.onstart = function(){ if (audioGenRef.current!==myGen) return; highlightSentence(audioSentencesRef.current[idx], override); };
+    u.onend = function(){
+      if (audioGenRef.current!==myGen) return;
+      clearSentenceHighlight();
+      if (audioPlayingRef.current && audioGenRef.current===myGen) {
+        var nextIdx = audioIdxRef.current + 1;
+        if (nextIdx < audioSentencesRef.current.length) { setAudioIdx(nextIdx); audioIdxRef.current=nextIdx; playAudioSentence(nextIdx); }
+        else { setAudioPlaying(false); audioPlayingRef.current=false; }
       }
-
-      var newUrl = URL.createObjectURL(blob);
-      audio.src = newUrl;
-      setAudioFetching(false);
-
-      // Light up the entire sentence range as soon as playback actually starts.
-      audio.onplay = function() {
-        if (audioElemRef.current !== audio) return;
-        highlightSentence(audioSentencesRef.current[idx], override);
-      };
-
-      audio.onended = function() {
-        try { URL.revokeObjectURL(newUrl); } catch(e) {}
-        clearSentenceHighlight();
-        // Don't null audioElemRef here — keep the element alive for the next
-        // sentence so user-activation stays valid.
-        // Auto-advance ONLY if this generation is still current AND we're still in play mode.
-        if (audioPlayingRef.current && audioGenRef.current === myGen) {
-          var nextIdx = audioIdxRef.current + 1;
-          if (nextIdx < audioSentencesRef.current.length) {
-            setAudioIdx(nextIdx); audioIdxRef.current = nextIdx;
-            playAudioSentence(nextIdx);
-          } else {
-            setAudioPlaying(false); audioPlayingRef.current = false;
-          }
-        }
-      };
-      audio.onerror = function() {
-        // Only treat as fatal if we're still the current generation — src
-        // swaps occasionally fire benign error events during the transition.
-        if (audioGenRef.current !== myGen) return;
-        clearSentenceHighlight();
-        setAudioPlaying(false); audioPlayingRef.current = false;
-      };
-
-      var p = audio.play();
-      if (p && typeof p.catch === "function") {
-        p.catch(function(e) {
-          clearSentenceHighlight();
-          setAudioPlaying(false); audioPlayingRef.current = false;
-          // Diagnostic note for the autoplay-block case: it means our element
-          // somehow lost its activation chain — either the element was just
-          // created (no gesture upstream) or playback was paused longer than
-          // Chrome's gesture window.
-          var msg = e && e.message ? e.message : String(e);
-          if (msg.indexOf("not allowed") !== -1 || msg.indexOf("user gesture") !== -1) {
-            setTtsErr("Audio blocked by browser — tap ▶ to resume" + (isFreshElement ? "" : " (try clicking play again)"));
-          } else {
-            setTtsErr("Audio blocked: " + msg);
-          }
-        });
-      }
-    }).catch(function(err) {
-      if (audioGenRef.current !== myGen) return;
-      setAudioFetching(false);
-      setAudioPlaying(false); audioPlayingRef.current = false;
-      setTtsErr("TTS error: " + (err.message || err));
-    });
+    };
+    u.onerror = function(){
+      if (audioGenRef.current!==myGen) return;
+      clearSentenceHighlight();
+      setAudioPlaying(false); audioPlayingRef.current=false;
+      setTtsErr("Speech error — your browser may lack a Russian voice. Try Edge, or install one in system settings.");
+    };
+    try { window.speechSynthesis.speak(u); }
+    catch(e){ clearSentenceHighlight(); setAudioPlaying(false); audioPlayingRef.current=false; setTtsErr("Speech error: "+(e.message||e)); }
   };
 
   var audioPlayPause = function() {
@@ -3611,6 +3570,7 @@ export default function App() {
     }
     // TTS branch (existing behaviour).
     if (audioPlaying) {
+      try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch(e) {}
       if (audioElemRef.current) audioElemRef.current.pause();
       setAudioPlaying(false); audioPlayingRef.current = false;
     } else {
