@@ -3478,8 +3478,13 @@ export default function App() {
       var vs = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
       var ru = vs.filter(function(v){ return v.lang && v.lang.toLowerCase().indexOf("ru")===0; });
       if (!ru.length) return null;
+      // Prefer Katya, then any LOCAL voice (localService=true, e.g. Microsoft
+      // Irina/Pavel — reliable), then anything. Google's network voice is
+      // last resort: it throws spurious errors and needs connectivity.
       var katya = ru.filter(function(v){ return /katya/i.test(v.name); })[0];
-      return katya || ru[0];
+      if (katya) return katya;
+      var local = ru.filter(function(v){ return v.localService; })[0];
+      return local || ru[0];
     } catch(e){ return null; }
   };
 
@@ -3520,7 +3525,9 @@ export default function App() {
       setAudioPlaying(false); audioPlayingRef.current = false; return;
     }
     setAudioFetching(false);
-    try { window.speechSynthesis.cancel(); } catch(e) {}
+    // Only cancel if something is actually queued/speaking — a bare cancel()
+    // right before speak() makes Chrome drop the new utterance.
+    try { if (window.speechSynthesis.speaking || window.speechSynthesis.pending) window.speechSynthesis.cancel(); } catch(e) {}
     var u = new SpeechSynthesisUtterance(speakText);
     u.lang = "ru-RU";
     var pct = (typeof audioSpeedRef !== "undefined" && audioSpeedRef.current) ? audioSpeedRef.current : 0;
@@ -3537,11 +3544,15 @@ export default function App() {
         else { setAudioPlaying(false); audioPlayingRef.current=false; }
       }
     };
-    u.onerror = function(){
+    u.onerror = function(ev){
       if (audioGenRef.current!==myGen) return;
+      // Chrome fires 'interrupted'/'canceled' on normal cancel()/page change —
+      // those are benign, not real failures. Ignore them.
+      var reason = ev && ev.error ? ev.error : "";
+      if (reason === "interrupted" || reason === "canceled") return;
       clearSentenceHighlight();
       setAudioPlaying(false); audioPlayingRef.current=false;
-      setTtsErr("Speech error — your browser may lack a Russian voice. Try Edge, or install one in system settings.");
+      setTtsErr("Speech error (" + (reason||"unknown") + "). Try Edge if it persists.");
     };
     try { window.speechSynthesis.speak(u); }
     catch(e){ clearSentenceHighlight(); setAudioPlaying(false); audioPlayingRef.current=false; setTtsErr("Speech error: "+(e.message||e)); }
