@@ -3791,11 +3791,21 @@ export default function App() {
               if (sIdx >= 0) {
                 var sent = (audioSentencesRef.current || parsed)[sIdx];
                 if (sent) {
-                  highlightSentence(sent, null);
-                  var els = highlightedElementsRef.current;
-                  alert("[srcHL] highlighted " + (els ? els.length : 0) + " word nodes for sentence: " + (sent.text||"").slice(0,40));
-                  var el = els && els.length ? els[0] : null;
-                  if (el && el.scrollIntoView) el.scrollIntoView({ behavior: "smooth", block: "center" });
+                  // Highlight directly by the sentence's page-relative range,
+                  // matched against data-rw-start (which are page-relative here
+                  // because startChar offsetting already happened upstream).
+                  // Bypasses highlightSentence's stale page-ref problem.
+                  clearSentenceHighlight();
+                  var cs = currentPage.startChar || 0;
+                  var lo = cs + sent.start, hi = cs + sent.end;
+                  var nodes = document.querySelectorAll(".lit-body [data-rw-start]");
+                  var hits = [];
+                  for (var ni = 0; ni < nodes.length; ni++) {
+                    var pp = parseInt(nodes[ni].dataset.rwStart, 10);
+                    if (!isNaN(pp) && pp >= lo && pp < hi) { nodes[ni].classList.add("rw-reading"); hits.push(nodes[ni]); }
+                  }
+                  highlightedElementsRef.current = hits;
+                  if (hits.length && hits[0].scrollIntoView) hits[0].scrollIntoView({ behavior: "smooth", block: "center" });
                 }
               }
             } catch(e) { alert("[srcHL] error: " + (e.message||e)); }
