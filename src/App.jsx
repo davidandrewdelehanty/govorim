@@ -3773,11 +3773,16 @@ export default function App() {
       if (srcJumpOffsetRef.current != null) {
         var wantOffset = srcJumpOffsetRef.current;
         var pageRel = wantOffset - currentPage.startChar;
-        // Only act if the offset falls on THIS page (it should, same chapter).
         if (pageRel >= 0 && pageRel <= pageText.length) {
           srcJumpOffsetRef.current = null;
-          audioSentencesRef.current = parsed;  // ensure helpers see the fresh list
-          setTimeout(function(){
+          audioSentencesRef.current = parsed;
+          // Retry a few times: other effects (audiobook loader, page-change
+          // handlers) call clearSentenceHighlight() right after a jump, so a
+          // single timed highlight gets wiped. Re-assert it over ~2s and stop
+          // once it sticks (the word nodes are present and stay highlighted).
+          var attempts = 0;
+          var applyHL = function(){
+            attempts++;
             try {
               var sIdx = findSentenceIdxForPageOffset(pageRel);
               if (sIdx >= 0) {
@@ -3790,7 +3795,9 @@ export default function App() {
                 }
               }
             } catch(e) {}
-          }, 220);  // let the DOM (word nodes with data-rw-start) render first
+            if (attempts < 8) setTimeout(applyHL, 250);  // ~2s of re-assertion
+          };
+          setTimeout(applyHL, 200);
         }
       }
     } else {
