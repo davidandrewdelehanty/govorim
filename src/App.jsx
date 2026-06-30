@@ -5433,6 +5433,7 @@ export default function App() {
       var meta = {
         title: title,
         author: author,
+        filename: fname || "",   // needed for vocab source backlinks (goToSource matches on this)
         category: opts.category || "",
         splitByNumberedSections: !!opts.splitByNumberedSections,
         audiobook: opts.audiobook || null,
