@@ -5682,9 +5682,10 @@ export default function App() {
     }
     if (!book) { alert("That book isn't in the library anymore."); return; }
     srcJumpChapterRef.current = (typeof v.srcChapter === "number") ? v.srcChapter : 0;
-    // Don't setTab — loadPresetBook -> startLit drives the reader view itself,
-    // exactly like clicking a book in the picker. (setTab("read") showed a
-    // non-existent tab = empty frame.)
+    // The reader renders inside the "chat" tab (when started && isLit), so we
+    // must switch there — from the vocab tab the reader is otherwise hidden.
+    setMode("read");
+    setTab("chat");
     loadPresetBook(book);
   };
 
