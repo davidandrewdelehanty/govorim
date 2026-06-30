@@ -3784,10 +3784,7 @@ export default function App() {
           var applyHL = function(){
             attempts++;
             try {
-              var nodeCount = document.querySelectorAll(".lit-body [data-rw-start]").length;
               var sIdx = findSentenceIdxForPageOffset(pageRel);
-              var sentsLen = (audioSentencesRef.current || parsed || []).length;
-              alert("[srcHL try " + attempts + "] pageRel=" + pageRel + " sIdx=" + sIdx + " sents=" + sentsLen + " rwNodes=" + nodeCount);
               if (sIdx >= 0) {
                 var sent = (audioSentencesRef.current || parsed)[sIdx];
                 if (sent) {
@@ -3808,7 +3805,7 @@ export default function App() {
                   if (hits.length && hits[0].scrollIntoView) hits[0].scrollIntoView({ behavior: "smooth", block: "center" });
                 }
               }
-            } catch(e) { alert("[srcHL] error: " + (e.message||e)); }
+            } catch(e) {}
             if (attempts < 2) setTimeout(applyHL, 400);
           };
           setTimeout(applyHL, 200);
