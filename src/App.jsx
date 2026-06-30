@@ -2790,6 +2790,7 @@ export default function App() {
   // Pre-loaded library: books shipped in /public/books/. Fetched once on mount from /books/index.json.
   var [presetBooks, setPresetBooks] = useState([]);
   var srcJumpChapterRef = useRef(null);
+  var srcJumpOffsetRef = useRef(null);  // vocab source-link: char offset of the saved word, to highlight its sentence on arrival
   var [vocabCollapsed, setVocabCollapsed] = useState({});
   // Tracks recent uploads (last MAX_UPLOADS) so the library view can show them
   // alongside the preset books. Each entry is metadata; full content lives at
@@ -3760,11 +3761,38 @@ export default function App() {
     }
     if (mode === "read" && currentPage && curChapter && curChapter.text) {
       var pageText = curChapter.text.slice(currentPage.startChar, currentPage.endChar);
-      setAudioSentences(parseSentences(pageText, {
+      var parsed = parseSentences(pageText, {
         isFirstPage: pidx === 0,
         chapterNumber: cidx + 1,
         isBible: isBibleBook(bookMeta),
-      }));
+      });
+      setAudioSentences(parsed);
+      // Vocab source-link: if we jumped here to show a saved word, highlight the
+      // sentence that contains it and scroll it into view. Offset is chapter-
+      // relative; convert to page-relative. Runs once, then clears the ref.
+      if (srcJumpOffsetRef.current != null) {
+        var wantOffset = srcJumpOffsetRef.current;
+        var pageRel = wantOffset - currentPage.startChar;
+        // Only act if the offset falls on THIS page (it should, same chapter).
+        if (pageRel >= 0 && pageRel <= pageText.length) {
+          srcJumpOffsetRef.current = null;
+          audioSentencesRef.current = parsed;  // ensure helpers see the fresh list
+          setTimeout(function(){
+            try {
+              var sIdx = findSentenceIdxForPageOffset(pageRel);
+              if (sIdx >= 0) {
+                var sent = (audioSentencesRef.current || parsed)[sIdx];
+                if (sent) {
+                  highlightSentence(sent, null);
+                  var els = highlightedElementsRef.current;
+                  var el = els && els.length ? els[0] : null;
+                  if (el && el.scrollIntoView) el.scrollIntoView({ behavior: "smooth", block: "center" });
+                }
+              }
+            } catch(e) {}
+          }, 220);  // let the DOM (word nodes with data-rw-start) render first
+        }
+      }
     } else {
       setAudioSentences([]);
     }
@@ -4819,7 +4847,7 @@ export default function App() {
       top = 16;
     }
     setPopXY({top:Math.max(8,top),left:left});
-    setPopup({word:clean,data:null,loading:true,error:null,yo:null});
+    setPopup({word:clean,data:null,loading:true,error:null,yo:null,srcOffset:(typeof charPosition==="number"?charPosition:null)});
     try {
       var data = await fetchDef(clean);
       setPopup(function(p){ return p ? Object.assign({},p,{data:data,loading:false}) : null; });
@@ -5682,6 +5710,7 @@ export default function App() {
     }
     if (!book) { alert("That book isn't in the library anymore."); return; }
     srcJumpChapterRef.current = (typeof v.srcChapter === "number") ? v.srcChapter : 0;
+    srcJumpOffsetRef.current = (typeof v.srcOffset === "number") ? v.srcOffset : null;
     // The reader renders inside the "chat" tab (when started && isLit), so we
     // must switch there — from the vocab tab the reader is otherwise hidden.
     setMode("read");
@@ -8415,7 +8444,10 @@ export default function App() {
                 var entry = formatVocabEntry(popup.data, popup.word);
                 return (
                   <button className="psave" onClick={function(){
-                    if (entry.ru) addV(entry);
+                    if (entry.ru) {
+                      if (popup.srcOffset != null) entry.srcOffset = popup.srcOffset;
+                      addV(entry);
+                    }
                     setPopup(null);
                   }}>+ Save « {entry.ru || popup.word} » to vocabulary</button>
                 );

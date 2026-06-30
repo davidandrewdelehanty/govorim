@@ -51,6 +51,7 @@ export default async function handler(req, res) {
         if (v.srcBook) out.srcBook = v.srcBook;
         if (v.srcTitle) out.srcTitle = v.srcTitle;
         if (v.srcChapter !== undefined && v.srcChapter !== null) out.srcChapter = v.srcChapter;
+        if (v.srcOffset !== undefined && v.srcOffset !== null) out.srcOffset = v.srcOffset;
         if (v.grammar) out.grammar = v.grammar;
         if (v.example) out.example = v.example;
         if (v.created) out.created = v.created;
