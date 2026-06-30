@@ -47,6 +47,10 @@ export default async function handler(req, res) {
         if (v.ru) out.ru = v.ru;
         if (v.en) out.en = v.en;
         if (v.pos) out.pos = v.pos;
+        // Source backlink (where the word was saved from).
+        if (v.srcBook) out.srcBook = v.srcBook;
+        if (v.srcTitle) out.srcTitle = v.srcTitle;
+        if (v.srcChapter !== undefined && v.srcChapter !== null) out.srcChapter = v.srcChapter;
         if (v.grammar) out.grammar = v.grammar;
         if (v.example) out.example = v.example;
         if (v.created) out.created = v.created;

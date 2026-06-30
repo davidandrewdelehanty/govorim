@@ -5636,9 +5636,18 @@ export default function App() {
     if (!ru) return;
     if (vocab.find(function(v){ return v.ru === ru; })) return;
     var now = Date.now();
+    // Capture where the word was saved from, for the source backlink. Only set
+    // when reading a book (bookMeta.filename present). Stored fields are added
+    // to the server allowlist in api/user-data.js so they persist.
+    var srcFields = {};
+    if (bookMeta && bookMeta.filename) {
+      srcFields.srcBook = bookMeta.filename;
+      srcFields.srcTitle = bookMeta.title || "";
+      srcFields.srcChapter = (typeof cidx === "number") ? cidx : null;
+    }
     setVocab(function(p){
       var key = String(now) + "_" + p.length;
-      return p.concat([Object.assign({}, entry, { ru: ru, created: now, _key: key })]);
+      return p.concat([Object.assign({}, entry, srcFields, { ru: ru, created: now, _key: key })]);
     });
   };
   var addT = function(tip) {
