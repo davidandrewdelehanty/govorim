@@ -2853,9 +2853,9 @@ export default function App() {
   var [lres, setLres]           = useState([]);
   var [fErr, setFErr]           = useState("");
 
-  var [voice, setVoice]         = useState(DMITRY_CLOUD);
+  var [voice, setVoice]         = useState(null); // native browser TTS (Azure removed)
   // Mirror of `voice` in a ref so async callbacks always read the latest value.
-  var voiceRef = useRef(DMITRY_CLOUD);
+  var voiceRef = useRef(null); // native browser TTS (Azure removed)
   useEffect(function() { voiceRef.current = voice; }, [voice]);
   var [allVoices, setAllVoices] = useState([]);
   // Tracks whether the user has explicitly picked a voice from the picker.
@@ -4631,7 +4631,8 @@ export default function App() {
     setTimeout(function() {
       var u = new SpeechSynthesisUtterance(ru);
       u.lang="ru-RU"; u.rate=0.84;
-      if (currentVoice && !currentVoice._cloud) u.voice=currentVoice;
+      var _rv = (currentVoice && !currentVoice._cloud) ? currentVoice : pickRussianVoice();
+      if (_rv) u.voice=_rv;
       u.onstart = function(){ startKeepalive(); };
       u.onend = function(){ stopKeepalive(); setSpkIdx(null); };
       u.onerror = function(e){
