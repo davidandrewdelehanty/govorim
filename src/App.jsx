@@ -5675,6 +5675,19 @@ export default function App() {
       groups[p].push(v);
     });
 
+    // GATE: a quiz needs at least 10 words sharing one part of speech. If no
+    // type reaches 10, tell the user clearly instead of starting an empty quiz.
+    var QUIZ_MIN = 10;
+    var biggest = 0, biggestType = "";
+    Object.keys(groups).forEach(function(k){
+      if (groups[k].length > biggest) { biggest = groups[k].length; biggestType = k; }
+    });
+    if (biggest < QUIZ_MIN) {
+      var near = biggest > 0 ? (" Your largest group is " + biggestType + " with " + biggest + ".") : "";
+      alert("A quiz needs at least 10 saved words of the same part of speech (for example, 10 nouns or 10 verbs), each with an English meaning." + near + " Keep adding words!");
+      return;
+    }
+
     var shuffle = function(arr) {
       var a = arr.slice();
       for (var i = a.length - 1; i > 0; i--) {
@@ -5689,7 +5702,8 @@ export default function App() {
     vocab.forEach(function(v){
       var p = (v.pos || "").toLowerCase().trim();
       if (!p || !v.en) { skipped++; return; }
-      var siblings = (groups[p] || []).filter(function(x){ return x.id !== v.id; });
+      if ((groups[p] || []).length < QUIZ_MIN) { skipped++; return; }   // only quiz 10+ types
+      var siblings = (groups[p] || []).filter(function(x){ return (x._key||x.id) !== (v._key||v.id); });
       if (siblings.length < 3) { skipped++; return; }
       var distractors = shuffle(siblings).slice(0, 3).map(function(s){ return s.en; });
       questions.push({
