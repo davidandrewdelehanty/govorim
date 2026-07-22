@@ -6830,12 +6830,21 @@ export default function App() {
         <div className="auth-page">
           <div className="auth-card">
             <div className="auth-brand">
-              <div className="auth-brand-icon" style={{color:"#c8a276"}}><Pushkin size={56}/></div>
+              <div className="auth-brand-icon" style={{color:"#8b4513"}}><Pushkin size={56}/></div>
               <div className="auth-brand-title">Говорим</div>
               <div className="auth-brand-sub">Russian Practice</div>
             </div>
-            <SignIn routing="hash" />
-            <div style={{fontSize:12,color:"rgba(210,197,175,.4)",textAlign:"center",maxWidth:400,lineHeight:1.5,marginTop:8}}>
+            <SignIn routing="hash" appearance={{
+              variables: {
+                colorBackground: "#f5f0e8",
+                colorText: "#2a1f14",
+                colorTextSecondary: "rgba(42,31,20,.6)",
+                colorInputBackground: "#fff",
+                colorInputText: "#2a1f14",
+                colorPrimary: "#8b4513",
+              }
+            }} />
+            <div style={{fontSize:12,color:"rgba(42,31,20,.4)",textAlign:"center",maxWidth:400,lineHeight:1.5,marginTop:8}}>
               Russian reading + AI tutor. Approval required after sign-up.
             </div>
           </div>
@@ -7228,7 +7237,7 @@ export default function App() {
 
         {tab==="chat" && (
           <div className="main">
-            {!started && !mode && (
+            {false && !started && !mode && (
               <div className="ss">
                 <div className="sico" style={{color:"#c8a276"}}><Pushkin size={64}/></div>
                 <h1 className="sti">Говорим</h1>
