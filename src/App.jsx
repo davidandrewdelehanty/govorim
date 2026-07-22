@@ -3246,11 +3246,30 @@ export default function App() {
       var maxStep = firstSent ? (frags.length - fragIdx) : 12;
       for (var step = 0; step < maxStep && fragIdx + step < frags.length; step++) {
         var fragNorm = normalizeForMatch(frags[fragIdx + step].text);
+        // Primary match: sentence starts the fragment (sentence-per-fragment alignment)
         if (fragNorm.indexOf(probe.slice(0, 25)) !== -1 ||
             (probe.length >= 12 && fragNorm.indexOf(probe.slice(0, 12)) === 0)) {
           fragIdx += step + 1;
           firstSent = false;
           return { begin: frags[fragIdx - 1].begin, end: frags[fragIdx - 1].end };
+        }
+        // Secondary match: sentence appears INSIDE the current fragment's text
+        // (paragraph-per-fragment alignment — distribute time proportionally).
+        // Only check the CURRENT fragment (step=0) to avoid jumping ahead.
+        if (step === 0 && fragIdx < frags.length) {
+          var curFragNorm = normalizeForMatch(frags[fragIdx].text);
+          if (curFragNorm.indexOf(probe.slice(0, Math.min(20, probe.length))) !== -1) {
+            // Sentence is inside this fragment — estimate its position proportionally
+            // by where it appears in the fragment's text.
+            var frag = frags[fragIdx];
+            var fragDur = frag.end - frag.begin;
+            var posInFrag = curFragNorm.indexOf(probe.slice(0, Math.min(20, probe.length)));
+            var ratio = fragDur > 0 ? posInFrag / Math.max(1, curFragNorm.length) : 0;
+            var estBegin = frag.begin + ratio * fragDur;
+            var estEnd   = frag.end;   // hold to end of fragment
+            firstSent = false;
+            return { begin: Math.round(estBegin * 1000) / 1000, end: Math.round(estEnd * 1000) / 1000 };
+          }
         }
       }
       return null;
