@@ -2777,6 +2777,20 @@ export default function App() {
   var [popup, setPopup]   = useState(null);
   var [popXY, setPopXY]   = useState({top:100,left:16});
   var popRef = useRef(null);
+  // After the popup renders, clamp it so it never extends below the viewport.
+  // The initial position is an estimate; this corrects it using actual height.
+  useEffect(function() {
+    if (!popup || !popRef.current) return;
+    var el = popRef.current;
+    var r = el.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var pad = 12;
+    if (r.bottom > vh - pad) {
+      var overflow = r.bottom - (vh - pad);
+      var newTop = Math.max(pad, popXY.top - overflow);
+      if (newTop !== popXY.top) setPopXY(function(prev){ return {top: newTop, left: prev.left}; });
+    }
+  }, [popup]);
 
   // First-visit landing screen: remembered in localStorage so users only see it once per device.
   var [seenLanding, setSeenLanding] = useState(function() {
