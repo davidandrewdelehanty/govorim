@@ -7556,47 +7556,63 @@ export default function App() {
                                 </div>
                               </div>
                             )}
-                            {/* Preset library, grouped by category */}
+                            {/* Preset library, grouped by category, then by audiobook availability */}
                             {CATEGORIES.concat(["Other"]).map(function(cat) {
                               var entries = buckets[cat];
                               if (!entries.length) return null;
+                              var withAudio = entries.filter(function(e){ return !!(e.book.audiobook); });
+                              var textOnly  = entries.filter(function(e){ return !e.book.audiobook; });
+                              var renderCard = function(entry) {
+                                var book = entry.book;
+                                var isLoading = bookLoading === book.filename;
+                                var isDisabled = bookLoading !== null && !isLoading;
+                                return (
+                                  <div key={entry.idx}
+                                    className={"lib-card" + (isLoading ? " is-loading" : "") + (isDisabled ? " is-disabled" : "")}
+                                    onClick={function(){
+                                      if (bookLoading !== null) return;
+                                      if (book.category === "Song Lyrics") {
+                                        openSongPicker(book);
+                                      } else {
+                                        loadPresetBook(book);
+                                      }
+                                    }}>
+                                    <div className="lib-card-title">{book.title || book.filename}</div>
+                                    {book.author && book.author !== book.title && <div className="lib-card-author">{book.author}</div>}
+                                    <div className="lib-card-meta">
+                                      {cat !== "Other" && <span className="lib-card-cat">{cat}</span>}
+                                      {book.audiobook && <span style={{fontSize:11,color:"#c4955a"}}>🎧 Audiobook</span>}
+                                      {cat === "Song Lyrics" && book.songs && book.songs.length > 0 && (
+                                        <span style={{fontSize:11,color:"rgba(42,31,20,.45)"}}>{book.songs.length} song{book.songs.length === 1 ? "" : "s"}</span>
+                                      )}
+                                    </div>
+                                    {isLoading && (
+                                      <div className="lib-card-loader">
+                                        <div className="typing"><div className="dot"/><div className="dot"/><div className="dot"/></div>
+                                        <span>Loading…</span>
+                                      </div>
+                                    )}
+                                  </div>
+                                );
+                              };
                               return (
                                 <div key={cat} className="lib-section">
-                                  <div className="lib-section-hdr">{cat}</div>
-                                  <div className="lib-grid">
-                                    {entries.map(function(entry) {
-                                      var book = entry.book;
-                                      var isLoading = bookLoading === book.filename;
-                                      var isDisabled = bookLoading !== null && !isLoading;
-                                      return (
-                                        <div key={entry.idx}
-                                          className={"lib-card" + (isLoading ? " is-loading" : "") + (isDisabled ? " is-disabled" : "")}
-                                          onClick={function(){
-                                            if (bookLoading !== null) return;
-                                            if (book.category === "Song Lyrics") {
-                                              openSongPicker(book);
-                                            } else {
-                                              loadPresetBook(book);
-                                            }
-                                          }}>
-                                          <div className="lib-card-title">{book.title || book.filename}</div>
-                                          {book.author && book.author !== book.title && <div className="lib-card-author">{book.author}</div>}
-                                          <div className="lib-card-meta">
-                                            {cat !== "Other" && <span className="lib-card-cat">{cat}</span>}
-                                            {cat === "Song Lyrics" && book.songs && book.songs.length > 0 && (
-                                              <span style={{fontSize:11,color:"rgba(210,197,175,.45)"}}>{book.songs.length} song{book.songs.length === 1 ? "" : "s"}</span>
-                                            )}
-                                          </div>
-                                          {isLoading && (
-                                            <div className="lib-card-loader">
-                                              <div className="typing"><div className="dot"/><div className="dot"/><div className="dot"/></div>
-                                              <span>Loading…</span>
-                                            </div>
-                                          )}
-                                        </div>
-                                      );
-                                    })}
-                                  </div>
+                                  {withAudio.length > 0 && (
+                                    <>
+                                      <div className="lib-section-hdr">🎧 {cat} — With Audiobook</div>
+                                      <div className="lib-grid" style={{marginBottom:18}}>
+                                        {withAudio.map(renderCard)}
+                                      </div>
+                                    </>
+                                  )}
+                                  {textOnly.length > 0 && (
+                                    <>
+                                      <div className="lib-section-hdr">📖 {cat} — Text Only</div>
+                                      <div className="lib-grid">
+                                        {textOnly.map(renderCard)}
+                                      </div>
+                                    </>
+                                  )}
                                 </div>
                               );
                             })}
