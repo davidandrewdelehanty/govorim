@@ -3327,7 +3327,7 @@ export default function App() {
       if (!tm) continue;
       if (firstIdx === -1) firstIdx = i;
       if (tm.end > maxEnd) maxEnd = tm.end;
-      if (tm.begin <= t + 0.3) best = i;    // slight look-ahead so highlight fires as sentence begins
+      if (tm.begin <= t + 1.5) best = i;    // look-ahead to compensate for alignment offset
     }
     if (firstIdx === -1) return -1;          // nothing mapped on this page
     if (t >= maxEnd) return -1;              // past the page -> RAF triggers auto-flip
