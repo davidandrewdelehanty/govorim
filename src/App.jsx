@@ -7153,7 +7153,7 @@ export default function App() {
           </div>
         </div>
       )}
-      {!seenLanding && (
+      {false && !seenLanding && (
         <div className="land">
           <div className="land-card">
             <div className="land-icon" style={{color:"#c8a276"}}><Pushkin size={68}/></div>
