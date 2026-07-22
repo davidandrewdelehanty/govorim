@@ -7460,18 +7460,28 @@ export default function App() {
                                 var bucket = CATEGORIES.indexOf(cat) !== -1 ? cat : "Other";
                                 buckets[bucket].push({ book: book, idx: idx });
                               });
-                              return CATEGORIES.concat(["Other"]).map(function(cat) {
+                              return CATEGORIES.concat(["Other"]).flatMap(function(cat) {
                                 var entries = buckets[cat];
-                                if (!entries.length) return null;
-                                return (
-                                  <optgroup key={cat} label={cat}>
-                                    {entries.map(function(entry) {
-                                      var book = entry.book;
-                                      var label = (book.title || book.filename) + (book.author && book.author !== book.title ? " — " + book.author : "");
-                                      return <option key={entry.idx} value={entry.idx}>{label}</option>;
-                                    })}
+                                if (!entries.length) return [];
+                                var withAudio = entries.filter(function(e){ return !!e.book.audiobook; });
+                                var textOnly  = entries.filter(function(e){ return !e.book.audiobook; });
+                                var makeOption = function(entry) {
+                                  var book = entry.book;
+                                  var label = (book.title || book.filename) + (book.author && book.author !== book.title ? " — " + book.author : "");
+                                  return <option key={entry.idx} value={entry.idx}>{label}</option>;
+                                };
+                                var groups = [];
+                                if (withAudio.length) groups.push(
+                                  <optgroup key={cat+"-audio"} label={"🎧 " + cat + " — With Audiobook"}>
+                                    {withAudio.map(makeOption)}
                                   </optgroup>
                                 );
+                                if (textOnly.length) groups.push(
+                                  <optgroup key={cat+"-text"} label={"📖 " + cat + " — Text Only"}>
+                                    {textOnly.map(makeOption)}
+                                  </optgroup>
+                                );
+                                return groups;
                               });
                             })()}
                           </select>
