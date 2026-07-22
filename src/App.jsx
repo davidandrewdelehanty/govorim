@@ -1,3 +1,4 @@
+// THEME_VERSION=2
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { SignIn, UserButton, useAuth, useUser } from "@clerk/clerk-react";
 
@@ -6819,6 +6820,25 @@ export default function App() {
         @media (max-width:520px){
           .adm-row{flex-wrap:wrap}
           .adm-actions{width:100%;justify-content:flex-end}
+        }
+      .cl-formFieldInput,.cl-input,[class*='cl-formFieldInput'],[class*='cl-input']{
+          background:#ffffff !important;
+          color:#2a1f14 !important;
+          border-color:rgba(196,149,90,.4) !important;
+        }
+        [class*='cl-card'],[class*='cl-modalContent']{
+          background:#f5f0e8 !important;
+          color:#2a1f14 !important;
+        }
+        [class*='cl-headerTitle'],[class*='cl-headerSubtitle'],[class*='cl-formFieldLabel'],[class*='cl-identityPreviewText']{
+          color:#2a1f14 !important;
+        }
+        [class*='cl-formButtonPrimary']{
+          background:#c4955a !important;
+          color:#fff !important;
+        }
+        [class*='cl-footerActionLink'],[class*='cl-formFieldAction']{
+          color:#c4955a !important;
         }
       `}</style>
 
