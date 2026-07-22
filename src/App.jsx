@@ -3685,7 +3685,18 @@ export default function App() {
     saveBookProgress(bookMeta, cidx, pidx, chapters.length);
   }, [cidx, pidx, started, isLit, bookMeta.title, chapters.length]);
   var pct  = chapters.length > 0 ? Math.round((cidx / chapters.length) * 100) : 0;
-  var curChapter = chapters[cidx] || { heading: "", text: "" };
+  var curChapter = (function(){
+    var ch = chapters[cidx] || { heading: "", text: "" };
+    // If the audiobook JSON was built from Whisper transcription (transcript:true),
+    // use the fragment texts as the chapter content instead of the FB2 text.
+    // This gives perfect highlight alignment since text IS the transcript.
+    if (audiobookData && audiobookData.transcript &&
+        Array.isArray(audiobookData.fragments) && audiobookData.fragments.length > 0) {
+      var transcriptText = audiobookData.fragments.map(function(f){ return f.text; }).join(" ");
+      return Object.assign({}, ch, { text: transcriptText });
+    }
+    return ch;
+  })();
   // Paginate the current chapter. Single-page mode (whole-chapter-as-one-page)
   // applies to any book in the "Song Lyrics" category, so users see a full song
   // per screen and use chapter-nav arrows to advance. The legacy
