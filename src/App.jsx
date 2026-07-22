@@ -3321,17 +3321,47 @@ export default function App() {
     // (The old logic snapped to the upcoming sentence the instant the previous
     // ended, so inter-sentence pauses made the highlight run ahead of the voice
     // — very visible with tight word-timed alignment that leaves real gaps.)
-    var firstIdx = -1, maxEnd = 0, best = -1;
+    // Build an array of valid timings with their indices
+    var firstIdx = -1, maxEnd = 0;
+    var valid = [];
     for (var i = 0; i < timings.length; i++) {
       var tm = timings[i];
       if (!tm) continue;
       if (firstIdx === -1) firstIdx = i;
       if (tm.end > maxEnd) maxEnd = tm.end;
-      if (tm.begin <= t + 1.5) best = i;    // look-ahead to compensate for alignment offset
+      valid.push({ idx: i, begin: tm.begin, end: tm.end });
     }
-    if (firstIdx === -1) return -1;          // nothing mapped on this page
-    if (t >= maxEnd) return -1;              // past the page -> RAF triggers auto-flip
-    if (best === -1) return firstIdx;        // before first sentence (e.g. just after a page flip)
+    if (firstIdx === -1) return -1;   // nothing mapped on this page
+    if (t >= maxEnd) return -1;       // past the page → RAF triggers auto-flip
+
+    // Find which sentence t falls inside, or which gap it's in.
+    // Strategy: hold the previous sentence through a gap until t reaches
+    // the midpoint between prev.end and next.begin, then snap to next.
+    var best = -1;
+    for (var vi = 0; vi < valid.length; vi++) {
+      var cur = valid[vi];
+      if (t < cur.begin) {
+        // t is before this sentence — check if we're in the gap before it
+        if (vi === 0) {
+          // Before first sentence — return first if close enough
+          best = (t >= cur.begin - 2.0) ? cur.idx : -1;
+        } else {
+          var prev = valid[vi - 1];
+          // In gap between prev and cur: hold prev until midpoint
+          var mid = prev.end + (cur.begin - prev.end) * 0.5;
+          best = (t < mid) ? prev.idx : cur.idx;
+        }
+        break;
+      }
+      if (t >= cur.begin && t < cur.end) {
+        // t is inside this sentence — exact match
+        best = cur.idx;
+        break;
+      }
+      // t is past this sentence's end — keep going
+      best = cur.idx;
+    }
+    if (best === -1) best = firstIdx;
     return best;
   };
 
