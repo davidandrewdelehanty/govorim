@@ -7341,7 +7341,7 @@ export default function App() {
 
         {tab==="chat" && (
           <div className="main">
-            {false && !started && !mode && (
+            {!started && !mode && (
               <div className="ss">
                 <div className="sico" style={{color:"#c8a276"}}><Pushkin size={64}/></div>
                 <h1 className="sti">Говорим</h1>
