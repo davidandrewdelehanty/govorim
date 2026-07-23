@@ -2224,6 +2224,10 @@ async function parseFb2(buffer, options) {
       var nodes = sec.querySelectorAll("title, subtitle, p, v");
       for (var qi = 0; qi < nodes.length; qi++) {
         if (nodes[qi] === dt) continue;
+        // Skip ALL title/subtitle elements — headings are in chapter.heading,
+        // not in chapter.text, so they don't confuse buildSentenceTimings
+        var qTag = nodes[qi].tagName.toLowerCase();
+        if (qTag === "title" || qTag === "subtitle") continue;
         var t = nodes[qi].textContent.replace(/\s+/g, " ").trim();
         if (t) {
           // Verses bundle multiple-per-<p>; split each verse onto its own
