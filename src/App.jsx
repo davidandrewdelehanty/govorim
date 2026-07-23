@@ -3689,6 +3689,7 @@ export default function App() {
             if (timings[ti] && timings[ti].begin <= t + 0.5) best = ti;
           }
           if (best >= 0 && audioSentencesRef.current[best]) {
+            console.log("[SKIP POST] t="+t.toFixed(2)+" best="+best+" text="+(audioSentencesRef.current[best]?audioSentencesRef.current[best].text.slice(0,40):"?"));
             setAudioIdx(best); audioIdxRef.current = best;
             highlightSentence(audioSentencesRef.current[best], null);
           }
@@ -3731,6 +3732,7 @@ export default function App() {
             if (timings[ti] && timings[ti].begin <= t + 0.5) best = ti;
           }
           if (best >= 0 && audioSentencesRef.current[best]) {
+            console.log("[SKIP POST] t="+t.toFixed(2)+" best="+best+" text="+(audioSentencesRef.current[best]?audioSentencesRef.current[best].text.slice(0,40):"?"));
             setAudioIdx(best); audioIdxRef.current = best;
             highlightSentence(audioSentencesRef.current[best], null);
           }
