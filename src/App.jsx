@@ -3246,10 +3246,10 @@ export default function App() {
   var normalizeForMatch = function(s) {
     return String(s || "")
       .toLowerCase()
-      .replace(/^\d+\s+/gm, "")      // strip leading verse numbers (e.g. "1 В начале")
-      .replace(/\s\d+\s+/g, " ")    // strip inline verse numbers (e.g. " 3 Бог сказал")
+      .replace(/^\d+\s+/gm, "")      // strip leading verse numbers
+      .replace(/\s\d+\s+/g, " ")    // strip inline verse numbers
       .replace(/[^а-яёa-z0-9\s]/g, "")
-      .replace(/\s+/g, " ")
+      .replace(/\s+/g, "")            // collapse ALL spaces for matching
       .trim();
   };
 
@@ -3341,8 +3341,7 @@ export default function App() {
         var fragNorm = normalizeForMatch(frags[fragIdx + step].text);
         // Primary match: sentence starts the fragment (sentence-per-fragment alignment)
         if (fragNorm.indexOf(probe.slice(0, 25)) !== -1 ||
-            (probe.length >= 12 && fragNorm.indexOf(probe.slice(0, 12)) === 0) ||
-            (firstSent && probe.length >= 6 && fragNorm.indexOf(probe.slice(0, 6)) !== -1)) {
+            (probe.length >= 12 && fragNorm.indexOf(probe.slice(0, 12)) === 0)) {
           fragIdx += step + 1;
           firstSent = false;
           return { begin: frags[fragIdx - 1].begin, end: frags[fragIdx - 1].end };
