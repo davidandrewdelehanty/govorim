@@ -3251,9 +3251,12 @@ export default function App() {
     // For transcript mode: fragments ARE the sentences — map directly by position
     // This is exact since the displayed text comes from the same Whisper output
     if (data.transcript) {
+      // Count synthetic (non-real) sentences before mapping — they consume
+      // sentence indices but have no corresponding fragment
+      var fragOffset = 0;
       var directMapping = sents.map(function(sent, si) {
-        if (!sent || sent.start < 0) return null;
-        var frag = frags[si];
+        if (!sent || sent.start < 0) { fragOffset++; return null; }
+        var frag = frags[si - fragOffset];
         if (!frag) return null;
         return { begin: frag.begin, end: frag.end };
       });
