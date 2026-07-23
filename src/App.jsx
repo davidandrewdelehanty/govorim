@@ -7299,14 +7299,14 @@ export default function App() {
             <span className="lru">Говорим</span><span className="lsub">Russian Practice</span>
           </div>
           <div style={{display:"flex",alignItems:"center",gap:12}}>
-            <div className="level-wrap" title="Russian proficiency level. Adapts AI questions to your skill. Changes apply immediately to chat and reading-mode analysis.">
+            {false && <div className="level-wrap" title="Russian proficiency level. Adapts AI questions to your skill. Changes apply immediately to chat and reading-mode analysis.">
               <span className="level-lbl">Level</span>
               <select className="level-pill" value={level} onChange={function(e){ setLevel(e.target.value); }}>
                 {LEVELS.map(function(l){ return <option key={l.code} value={l.code}>{l.label}</option>; })}
               </select>
-            </div>
+            </div>}
             {started && <button className="tbadge" onClick={function(){ setShowTopic(true); }}>{isLit ? ("📖 " + (bookMeta.title || "Book")) : ("💬 "+act)}</button>}
-            {auth.isSignedIn && <button className="adm-trigger" onClick={openForum} title="Community forum">📝 Forum</button>}
+            {false && auth.isSignedIn && <button className="adm-trigger" onClick={openForum} title="Community forum">📝 Forum</button>}
             {auth.isSignedIn && <button className="adm-trigger" onClick={function(){ setFeedbackOpen(true); }} title="Send feedback">💬 Feedback</button>}
             {false && <button className="adm-trigger" onClick={function(){ setShowAdmin(true); }} title="Manage user approvals">👥 Users</button>}
             {false && <button className="adm-trigger" onClick={function(){ setShowUpload(true); setUpErr(""); setUpMsg(""); }} title="Upload a song to the library">📤 Upload</button>}
