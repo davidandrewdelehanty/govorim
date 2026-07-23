@@ -3842,11 +3842,19 @@ export default function App() {
     var ch = chapters[cidx] || { heading: "", text: "" };
     // If the audiobook JSON was built from Whisper transcription (transcript:true),
     // use the fragment texts as the chapter content instead of the FB2 text.
-    // This gives perfect highlight alignment since text IS the transcript.
     if (audiobookData && audiobookData.transcript &&
         Array.isArray(audiobookData.fragments) && audiobookData.fragments.length > 0) {
       var transcriptText = audiobookData.fragments.map(function(f){ return f.text; }).join(" ");
       return Object.assign({}, ch, { text: transcriptText });
+    }
+    // Bible: split on verse numbers so each verse is its own paragraph
+    if (bookMeta && bookMeta.filename && bookMeta.filename.indexOf("Библии") !== -1) {
+      var bibleText = (ch.text || "")
+        // Insert double newline before verse numbers (digit(s) at word boundary)
+        .replace(/\s+(\d+)\s+(?=[А-ЯЁA-Z«"])/g, function(m, num) {
+          return "\n\n" + num + " ";
+        });
+      return Object.assign({}, ch, { text: bibleText });
     }
     return ch;
   })();
