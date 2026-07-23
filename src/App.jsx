@@ -6531,7 +6531,7 @@ export default function App() {
            (no React re-render). Uses a soft warm tint so a whole sentence's
            worth of words reads as a single coherent block, not as flashing
            individual highlights. */
-        .rw-reading{font-weight:700;background:none;border-bottom:none;transition:font-weight .1s ease}
+        .rw-reading{color:#8b4513;border-bottom:2px solid #c4955a;transition:color .1s ease,border-color .1s ease}
         .acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
         .spk{padding:5px 12px;border-radius:20px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif;background:rgba(42,31,20,.07);border:1px solid rgba(42,31,20,.2);color:rgba(42,31,20,.7);transition:all .15s}
         .spk:hover{background:rgba(42,31,20,.14)} .spkon{background:rgba(196,149,90,.18);border-color:rgba(196,149,90,.35);color:#c87a6806a}
