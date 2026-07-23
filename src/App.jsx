@@ -3326,6 +3326,9 @@ export default function App() {
     var firstSent = true;
     var mapping = sents.map(function(sent) {
       if (!sent || sent.start < 0) return null;  // synthetic chapter announcement
+      // Skip very short heading sentences (chapter titles, section names) that
+      // aren't in the audio — they shift the fragment index and break alignment
+      if (normSent.length < 15 && fragIdx === 0) return null;
       var normSent = normalizeForMatch(sent.text);
       if (normSent.length < 3) return null;
       var probe = normSent.slice(0, Math.min(40, normSent.length));
