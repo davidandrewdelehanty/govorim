@@ -3228,6 +3228,8 @@ export default function App() {
   var normalizeForMatch = function(s) {
     return String(s || "")
       .toLowerCase()
+      .replace(/^\d+\s+/gm, "")      // strip leading verse numbers (e.g. "1 В начале")
+      .replace(/\s\d+\s+/g, " ")    // strip inline verse numbers (e.g. " 3 Бог сказал")
       .replace(/[^а-яёa-z0-9\s]/g, "")
       .replace(/\s+/g, " ")
       .trim();
