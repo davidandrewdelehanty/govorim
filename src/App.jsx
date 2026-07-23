@@ -3714,6 +3714,7 @@ export default function App() {
       for (var fi = 0; fi < frags.length; fi++) {
         if (frags[fi].begin > curTime + 0.5) { targetFrag = fi; break; }
       }
+      console.log("[SKIP FWD] curTime="+curTime.toFixed(2)+" targetFrag="+targetFrag+" targetTime="+(frags[targetFrag]?frags[targetFrag].begin:"?"));
       var targetTime = frags[targetFrag] ? frags[targetFrag].begin : curTime;
       if (audiobookAudioRef.current) {
         try { audiobookAudioRef.current.currentTime = targetTime; } catch(e) {}
