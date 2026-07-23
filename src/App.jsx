@@ -2337,7 +2337,21 @@ async function parseFb2(buffer, options) {
       var ps = sec.querySelectorAll("p, v, subtitle");
       for (var p = 0; p < ps.length; p++) {
         var t = ps[p].textContent.replace(/\s+/g, " ").trim();
-        if (t) paras.push(t);
+        if (!t) continue;
+        // Bible verse splitting: split paragraphs containing multiple verses
+        // into individual verse paragraphs (e.g. "1 In the beginning... 2 And the earth")
+        if (isScripture || /^\d+\s/.test(t)) {
+          var verseParts = t.split(/(?<=[.!?»а-яёА-ЯЁa-zA-Z])\s+(\d+)\s+(?=[А-ЯЁ«\u2014])/);
+          if (verseParts.length > 1) {
+            // Reassemble: split returns [text, num, text, num, text...]
+            paras.push(verseParts[0].trim());
+            for (var vi = 1; vi < verseParts.length - 1; vi += 2) {
+              paras.push((verseParts[vi] + " " + verseParts[vi+1]).trim());
+            }
+            continue;
+          }
+        }
+        paras.push(t);
       }
       var body = paras.join("\n\n");
       var cyrCount = (body.match(/[а-яёА-ЯЁ]/g) || []).length;
