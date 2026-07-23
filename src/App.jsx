@@ -3248,22 +3248,60 @@ export default function App() {
     }
     var frags = data.fragments;
 
-    // For transcript mode: fragments ARE the sentences — map directly by position
-    // This is exact since the displayed text comes from the same Whisper output
+    // For transcript mode: match each parsed sentence to the fragment whose
+    // text starts with the same words. Since both come from Whisper, they share
+    // vocabulary but may differ in sentence boundaries (Whisper sometimes splits
+    // long sentences across multiple fragments).
     if (data.transcript) {
-      // Count synthetic (non-real) sentences before mapping — they consume
-      // sentence indices but have no corresponding fragment
-      var fragOffset = 0;
-      var directMapping = sents.map(function(sent, si) {
-        if (!sent || sent.start < 0) { fragOffset++; return null; }
-        var frag = frags[si - fragOffset];
-        if (!frag) return null;
-        return { begin: frag.begin, end: frag.end };
+      function normTr(s) {
+        return s.toLowerCase().replace(/[^а-яёa-z0-9\s]/g,'').replace(/\s+/g,' ').trim();
+      }
+      var fi = 0; // fragment pointer
+      var transcriptMapping = sents.map(function(sent) {
+        if (!sent || sent.start < 0) return null;
+        var sentNorm = normTr(sent.text || '');
+        if (sentNorm.length < 3) return null;
+        var probe = sentNorm.slice(0, Math.min(25, sentNorm.length));
+        // Search forward through fragments for best match
+        var bestFi = fi;
+        var bestScore = 0;
+        var searchEnd = Math.min(fi + 15, frags.length);
+        for (var fj = fi; fj < searchEnd; fj++) {
+          var fragNorm = normTr(frags[fj].text || '');
+          // Check if fragment starts with probe or probe starts with fragment
+          var score = 0;
+          if (fragNorm.indexOf(probe.slice(0,15)) !== -1) score = 2;
+          if (fragNorm.slice(0,15) === probe.slice(0,15)) score = 3;
+          if (score > bestScore) { bestScore = score; bestFi = fj; }
+        }
+        if (bestScore > 0) {
+          fi = bestFi + 1;
+          // Span multiple fragments if sentence is longer than one fragment
+          var spanEnd = frags[bestFi].end;
+          var sentWords = sentNorm.split(' ').length;
+          var fragWords = normTr(frags[bestFi].text||'').split(' ').length;
+          if (sentWords > fragWords * 1.5 && bestFi + 1 < frags.length) {
+            spanEnd = frags[bestFi + 1].end;
+            fi = bestFi + 2;
+          }
+          return { begin: frags[bestFi].begin, end: spanEnd };
+        }
+        return null;
       });
-      sentenceTimingsRef.current = directMapping;
+      // Safety net: fill nulls from neighbors
+      for (var bi = 0; bi < transcriptMapping.length; bi++) {
+        if (transcriptMapping[bi]) continue;
+        var pe = null, nb = null;
+        for (var pa = bi-1; pa >= 0; pa--) { if(transcriptMapping[pa]){pe=transcriptMapping[pa].end;break;} }
+        for (var nx = bi+1; nx < transcriptMapping.length; nx++) { if(transcriptMapping[nx]){nb=transcriptMapping[nx].begin;break;} }
+        if (pe!=null&&nb!=null) transcriptMapping[bi]={begin:pe,end:nb};
+        else if (pe!=null) transcriptMapping[bi]={begin:pe,end:pe+2};
+        else if (nb!=null) transcriptMapping[bi]={begin:Math.max(0,nb-2),end:nb};
+      }
+      sentenceTimingsRef.current = transcriptMapping;
       try {
-        var matched = directMapping.filter(function(m){ return m; }).length;
-        console.log('[buildSentenceTimings] transcript direct-map', matched, '/', directMapping.length, 'sentences');
+        var matched = transcriptMapping.filter(function(m){ return m; }).length;
+        console.log('[buildSentenceTimings] transcript text-match', matched, '/', transcriptMapping.length, 'sentences');
       } catch(e) {}
       return;
     }
