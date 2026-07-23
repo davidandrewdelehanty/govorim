@@ -6833,7 +6833,7 @@ export default function App() {
         .lem{text-align:center;color:rgba(42,31,20,.28);padding:32px;font-size:14px}
         .lsbar{padding:12px 28px;border-bottom:1px solid rgba(42,31,20,.08)}
         .pover{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.15)}
-        .pop{position:fixed;z-index:201;background:#23201a;border:1px solid rgba(42,31,20,.2);border-radius:14px;padding:16px 18px 18px;box-shadow:none;animation:pf .15s ease;max-height:calc(100vh - 32px);overflow-y:auto;overscroll-behavior:contain}
+        .pop{position:fixed;z-index:201;background:#f5f0e8;border:1px solid rgba(196,149,90,.3);border-radius:14px;padding:16px 18px 18px;box-shadow:0 4px 24px rgba(42,31,20,.12);animation:pf .15s ease;max-height:calc(100vh - 32px);overflow-y:auto;overscroll-behavior:contain}
         @keyframes pf{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
         .pcl{position:absolute;top:10px;right:12px;background:none;border:none;color:rgba(42,31,20,.35);font-size:18px;cursor:pointer}
         .pcl:hover{color:rgba(42,31,20,.7)}
