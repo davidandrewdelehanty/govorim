@@ -3663,38 +3663,52 @@ export default function App() {
   };
   var audioSkipBack = function() {
     if (audioSentencesRef.current.length === 0) return;
-    sentenceOverrideRef.current = null;  // manual skip = full sentence
-    var newIdx = Math.max(0, audioIdxRef.current - 1);
-    setAudioIdx(newIdx); audioIdxRef.current = newIdx;
+    sentenceOverrideRef.current = null;
     if (audiobookModeRef.current && audiobookDataRef.current) {
-      if (audioPlayingRef.current) playAudiobookFromSentence(newIdx);
-      else {
-        // Just seek the audio element; don't start playback.
-        var timing = sentenceTimingsRef.current[newIdx];
-        if (audiobookAudioRef.current && timing && timing.begin >= 0) {
-          try { audiobookAudioRef.current.currentTime = timing.begin; } catch(e) {}
-        }
+      // Skip by fragment: find previous fragment boundary relative to current time
+      var frags = audiobookDataRef.current.fragments || [];
+      var curTime = audiobookAudioRef.current ? audiobookAudioRef.current.currentTime : 0;
+      // Find the fragment we're currently in or just passed
+      var curFrag = 0;
+      for (var fi = 0; fi < frags.length; fi++) {
+        if (frags[fi].begin <= curTime) curFrag = fi;
+        else break;
       }
+      // Go back one fragment (or stay at 0)
+      var targetFrag = Math.max(0, curFrag - 1);
+      var targetTime = frags[targetFrag] ? frags[targetFrag].begin : 0;
+      if (audiobookAudioRef.current) {
+        try { audiobookAudioRef.current.currentTime = targetTime; } catch(e) {}
+      }
+      if (audioPlayingRef.current) startAudiobookRaf();
       return;
     }
+    var newIdx = Math.max(0, audioIdxRef.current - 1);
+    setAudioIdx(newIdx); audioIdxRef.current = newIdx;
     if (audioPlayingRef.current) playAudioSentence(newIdx);
     else resetAudioBar();
   };
   var audioSkipForward = function() {
     if (audioSentencesRef.current.length === 0) return;
-    sentenceOverrideRef.current = null;  // manual skip = full sentence
-    var newIdx = Math.min(audioSentencesRef.current.length - 1, audioIdxRef.current + 1);
-    setAudioIdx(newIdx); audioIdxRef.current = newIdx;
+    sentenceOverrideRef.current = null;
     if (audiobookModeRef.current && audiobookDataRef.current) {
-      if (audioPlayingRef.current) playAudiobookFromSentence(newIdx);
-      else {
-        var timing = sentenceTimingsRef.current[newIdx];
-        if (audiobookAudioRef.current && timing && timing.begin >= 0) {
-          try { audiobookAudioRef.current.currentTime = timing.begin; } catch(e) {}
-        }
+      // Skip by fragment: find next fragment boundary relative to current time
+      var frags = audiobookDataRef.current.fragments || [];
+      var curTime = audiobookAudioRef.current ? audiobookAudioRef.current.currentTime : 0;
+      // Find the next fragment after current time
+      var targetFrag = frags.length - 1;
+      for (var fi = 0; fi < frags.length; fi++) {
+        if (frags[fi].begin > curTime + 0.5) { targetFrag = fi; break; }
       }
+      var targetTime = frags[targetFrag] ? frags[targetFrag].begin : curTime;
+      if (audiobookAudioRef.current) {
+        try { audiobookAudioRef.current.currentTime = targetTime; } catch(e) {}
+      }
+      if (audioPlayingRef.current) startAudiobookRaf();
       return;
     }
+    var newIdx = Math.min(audioSentencesRef.current.length - 1, audioIdxRef.current + 1);
+    setAudioIdx(newIdx); audioIdxRef.current = newIdx;
     if (audioPlayingRef.current) playAudioSentence(newIdx);
     else resetAudioBar();
   };
