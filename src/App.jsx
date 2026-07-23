@@ -3247,6 +3247,24 @@ export default function App() {
       return;
     }
     var frags = data.fragments;
+
+    // For transcript mode: fragments ARE the sentences — map directly by position
+    // This is exact since the displayed text comes from the same Whisper output
+    if (data.transcript) {
+      var directMapping = sents.map(function(sent, si) {
+        if (!sent || sent.start < 0) return null;
+        var frag = frags[si];
+        if (!frag) return null;
+        return { begin: frag.begin, end: frag.end };
+      });
+      sentenceTimingsRef.current = directMapping;
+      try {
+        var matched = directMapping.filter(function(m){ return m; }).length;
+        console.log('[buildSentenceTimings] transcript direct-map', matched, '/', directMapping.length, 'sentences');
+      } catch(e) {}
+      return;
+    }
+
     var fragIdx = 0;
     var firstSent = true;
     var mapping = sents.map(function(sent) {
