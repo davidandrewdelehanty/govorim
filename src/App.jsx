@@ -3341,7 +3341,8 @@ export default function App() {
         var fragNorm = normalizeForMatch(frags[fragIdx + step].text);
         // Primary match: sentence starts the fragment (sentence-per-fragment alignment)
         if (fragNorm.indexOf(probe.slice(0, 25)) !== -1 ||
-            (probe.length >= 12 && fragNorm.indexOf(probe.slice(0, 12)) === 0)) {
+            (probe.length >= 12 && fragNorm.indexOf(probe.slice(0, 12)) === 0) ||
+            (firstSent && probe.length >= 6 && fragNorm.indexOf(probe.slice(0, 6)) !== -1)) {
           fragIdx += step + 1;
           firstSent = false;
           return { begin: frags[fragIdx - 1].begin, end: frags[fragIdx - 1].end };
