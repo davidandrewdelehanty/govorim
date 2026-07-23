@@ -3680,9 +3680,21 @@ export default function App() {
       if (audiobookAudioRef.current) {
         try { audiobookAudioRef.current.currentTime = targetTime; } catch(e) {}
       }
-      if (audioPlayingRef.current) {
-        setTimeout(function(){ startAudiobookRaf(); }, 100);
-      }
+      setTimeout(function(){
+        if (audiobookAudioRef.current) {
+          var t = audiobookAudioRef.current.currentTime;
+          var timings = sentenceTimingsRef.current;
+          var best = -1;
+          for (var ti = 0; ti < timings.length; ti++) {
+            if (timings[ti] && timings[ti].begin <= t + 0.5) best = ti;
+          }
+          if (best >= 0 && audioSentencesRef.current[best]) {
+            setAudioIdx(best); audioIdxRef.current = best;
+            highlightSentence(audioSentencesRef.current[best], null);
+          }
+        }
+        if (audioPlayingRef.current) startAudiobookRaf();
+      }, 120);
       return;
     }
     var newIdx = Math.max(0, audioIdxRef.current - 1);
@@ -3706,10 +3718,24 @@ export default function App() {
       if (audiobookAudioRef.current) {
         try { audiobookAudioRef.current.currentTime = targetTime; } catch(e) {}
       }
-      if (audioPlayingRef.current) {
-        // Small delay so the seek completes before RAF starts reading currentTime
-        setTimeout(function(){ startAudiobookRaf(); }, 100);
-      }
+      // Immediately highlight the target fragment's sentence
+      var targetFragIdx = targetFrag;
+      setTimeout(function(){
+        if (audiobookAudioRef.current) {
+          var t = audiobookAudioRef.current.currentTime;
+          // Find sentence index that matches this exact time
+          var timings = sentenceTimingsRef.current;
+          var best = -1;
+          for (var ti = 0; ti < timings.length; ti++) {
+            if (timings[ti] && timings[ti].begin <= t + 0.5) best = ti;
+          }
+          if (best >= 0 && audioSentencesRef.current[best]) {
+            setAudioIdx(best); audioIdxRef.current = best;
+            highlightSentence(audioSentencesRef.current[best], null);
+          }
+        }
+        if (audioPlayingRef.current) startAudiobookRaf();
+      }, 120);
       return;
     }
     var newIdx = Math.min(audioSentencesRef.current.length - 1, audioIdxRef.current + 1);
