@@ -6245,7 +6245,12 @@ export default function App() {
                       elems.push(<span key={"d"+i} className="play-dash">— </span>);
                     }
                   } else {
+                    var verseNumMatch2 = tk.text.match(/^(\d+)(\s*)$/);
+                  if (verseNumMatch2 && bookMeta && bookMeta.filename && bookMeta.filename.indexOf("Библии") !== -1) {
+                    elems.push(<span key={i}><span style={{fontSize:"0.7em",fontWeight:700,color:"#c4955a",verticalAlign:"super",lineHeight:1,marginRight:"2px",fontFamily:"sans-serif"}}>{verseNumMatch2[1]}</span>{verseNumMatch2[2]}</span>);
+                  } else {
                     elems.push(<span key={i}>{tk.text.replace(/\n/g, " ")}</span>);
+                  }
                   }
                 }
                 return elems;
@@ -6263,6 +6268,21 @@ export default function App() {
                       data-rw-start={tk.start}
                       onClick={clickReg}
                       title={noAIMode ? "Click to read from here" : "Click to define"}>{tk.text}</span>
+                  );
+                }
+                // Bible verse numbers: token is just a number (e.g. "1", "23")
+                // followed by a space — render as styled verse number
+                var verseNumMatch = tk.text.match(/^(\d+)(\s*)$/);
+                if (verseNumMatch && bookMeta && bookMeta.filename && bookMeta.filename.indexOf("Библии") !== -1) {
+                  return (
+                    <span key={i}>
+                      <span style={{
+                        fontSize:"0.7em", fontWeight:700, color:"#c4955a",
+                        verticalAlign:"super", lineHeight:1, marginRight:"2px",
+                        fontFamily:"sans-serif", letterSpacing:"0.02em"
+                      }}>{verseNumMatch[1]}</span>
+                      {verseNumMatch[2]}
+                    </span>
                   );
                 }
                 return <span key={i}>{tk.text.replace(/\n/g, " ")}</span>;
