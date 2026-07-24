@@ -3381,6 +3381,30 @@ export default function App() {
       return best;
     };
 
+    // ── Global re-sync over the WHOLE text ─────────────────────────────────
+    // Anchor words that occur exactly once in BOTH the page text and the
+    // transcript are unambiguous landmarks. When the local (14-word) and
+    // medium-range (600-word) searches both fail — i.e. a large chunk of text
+    // has no counterpart in the audio, or vice-versa — jump straight to the
+    // next such landmark anywhere ahead. This lets the highlight go dark across
+    // an arbitrarily long mismatched stretch and pick back up the instant the
+    // text and narration agree again, no matter how far apart that is.
+    var bCount = Object.create(null);
+    for (var bc = 0; bc < B.length; bc++) bCount[B[bc].norm] = (bCount[B[bc].norm] || 0) + 1;
+    var uniq = [];   // {bi, tj} for words unique in both, in book order
+    for (var ub = 0; ub < B.length; ub++) {
+      var uw = B[ub].norm;
+      if (bCount[uw] === 1 && occ(uw) === 1) uniq.push({ bi: ub, tj: tIndex[uw][0] });
+    }
+    var uap = 0;     // pointer into uniq; only advances (i never decreases)
+    var globalResync = function(i, j) {
+      while (uap < uniq.length && uniq[uap].bi < i) uap++;
+      for (var k = uap; k < uniq.length; k++) {
+        if (uniq[k].tj > j) return uniq[k];   // next landmark ahead in both streams
+      }
+      return null;
+    };
+
     var out = [], i = 0, j = 0;
     while (i < B.length && j < T.length) {
       if (B[i].norm === T[j].norm) {
@@ -3392,7 +3416,9 @@ export default function App() {
       if (r) { i += r.a; j += r.b; continue; }
       var anc = anchorResync(i, j);
       if (anc) { i += anc.a; j = anc.p; continue; }
-      i++; j++;   // genuine divergence on both sides — step past and keep scanning
+      var g = globalResync(i, j);
+      if (g) { i = g.bi; j = g.tj; continue; }   // leap to the next whole-text landmark
+      i++; j++;   // no landmark left — step past and keep scanning
     }
     // Mark clean consecutive runs so the highlight holds across the tiny gap
     // between two matched words, but blanks out across a real divergence.
