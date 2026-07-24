@@ -3735,14 +3735,15 @@ export default function App() {
     // Seek to the chosen sentence's start time, if its timing is known.
     var timing = sentenceTimingsRef.current[startIdx];
     var seekTo = (timing && timing.begin >= 0) ? timing.begin : 0;
-    // Skip a substantial leading preamble (chapter announcement / intro music
-    // that plays before the actual text): if the chapter's first spoken word is
-    // more than a few seconds in and we'd otherwise start ahead of it, jump
-    // straight to it so the intro isn't played and the highlight starts on word
-    // one. Short natural lead-ins / epigraphs (≤3s) are left alone.
+    // Starting the chapter from the top (the play button passes startIdx 0):
+    // go straight to the timestamp of the chapter's first spoken word — that
+    // is the first word of the text (e.g. Onegin ch1 "Мой" @ 45.73s), so the
+    // audio and the highlight both begin there and the spoken preamble is
+    // skipped entirely. For a mid-chapter start, only jump forward if the
+    // chosen sentence would otherwise land inside the preamble.
     if (data.word_timings && data.word_timings.length) {
       var contentStart = data.word_timings[0].begin;
-      if (contentStart > 3 && seekTo < contentStart) seekTo = contentStart;
+      if (!startIdx || seekTo < contentStart) seekTo = contentStart;
     }
     // Apply the seek now AND once the media is ready — a fresh src won't accept
     // currentTime until it has loaded metadata, so the deferred one is what
