@@ -3318,10 +3318,66 @@ export default function App() {
       var n = normWordForAlign(wordTimings[wi].word);
       if (n) T.push({ begin: wordTimings[wi].begin, end: wordTimings[wi].end, norm: n });
     }
-    var WINDOW = 60;   // look-ahead for re-sync; must exceed the longest run of
-                       // transcript-only words (spoken chapter intros / titles
-                       // that aren't in the displayed text) so the aligner can
-                       // step over them instead of desyncing.
+    if (!B.length || !T.length) { wordTimelineRef.current = []; return; }
+
+    // ── Index every transcript word up front (the "value" per word the reader
+    //    asked for): norm -> ascending list of the positions where it occurs.
+    //    This lets the aligner resync by jumping straight to a distant
+    //    occurrence when the audio deviates, instead of giving up once a fixed
+    //    look-ahead window is exhausted.
+    var tIndex = Object.create(null);
+    for (var t = 0; t < T.length; t++) {
+      var key = T[t].norm;
+      (tIndex[key] || (tIndex[key] = [])).push(t);
+    }
+    var occ = function(norm) { var a = tIndex[norm]; return a ? a.length : 0; };
+    // First transcript position of `norm` at or after `from` (binary search).
+    var nextPos = function(norm, from) {
+      var a = tIndex[norm]; if (!a) return -1;
+      var lo = 0, hi = a.length - 1, res = -1;
+      while (lo <= hi) { var mid = (lo + hi) >> 1; if (a[mid] >= from) { res = a[mid]; hi = mid - 1; } else lo = mid + 1; }
+      return res;
+    };
+
+    var SMALL = 14;        // cheap local diamond: ordinary word-to-word drift.
+    var BOOK_SCAN = 600;   // how far ahead in the book we hunt for an anchor.
+    var MAX_ANCHOR_OCC = 8;// only anchor on reasonably rare words (avoid "и" etc).
+
+    // Small symmetric diamond around (i,j); returns {a,b} to advance, or null.
+    var localResync = function(i, j) {
+      for (var d = 1; d <= SMALL; d++) {
+        for (var a = 0; a <= d; a++) {
+          var b = d - a;
+          if (i + a < B.length && j + b < T.length && B[i + a].norm === T[j + b].norm) return { a: a, b: b };
+        }
+      }
+      return null;
+    };
+    // Long-range resync: scan ahead in the book for the word that gives the
+    // nearest joint re-sync, measured as (book words skipped) + (transcript
+    // words skipped). Searching transcript positions at/after j lets this
+    // bridge BOTH kinds of deviation: the audio running ahead of the text
+    // (p > j) and the audio skipping text that's still on the page (p === j,
+    // so we advance the book pointer instead). Unique words are trusted
+    // outright; a merely-rare word must be confirmed by its neighbour so we
+    // don't latch onto a spurious repeat.
+    var anchorResync = function(i, j) {
+      var best = null, bestCost = Infinity;
+      for (var a = 0; a < BOOK_SCAN && i + a < B.length; a++) {
+        if (a > bestCost) break;   // cost >= a, so no farther word can beat best
+        var w = B[i + a].norm, c = occ(w);
+        if (c === 0 || c > MAX_ANCHOR_OCC) continue;
+        var p = nextPos(w, j);
+        if (p < 0) continue;
+        var ok = (c === 1);
+        if (!ok && i + a + 1 < B.length && T[p + 1] && T[p + 1].norm === B[i + a + 1].norm) ok = true;
+        if (!ok) continue;
+        var cost = a + (p - j);
+        if (cost < bestCost) { bestCost = cost; best = { a: a, p: p }; }
+      }
+      return best;
+    };
+
     var out = [], i = 0, j = 0;
     while (i < B.length && j < T.length) {
       if (B[i].norm === T[j].norm) {
@@ -3329,16 +3385,11 @@ export default function App() {
         i++; j++;
         continue;
       }
-      // Mismatch: find the nearest re-sync within the lookahead window.
-      var found = null;
-      for (var d = 1; d <= WINDOW && !found; d++) {
-        for (var a = 0; a <= d; a++) {
-          var b = d - a;
-          if (i + a < B.length && j + b < T.length && B[i + a].norm === T[j + b].norm) { found = { a: a, b: b }; break; }
-        }
-      }
-      if (found) { i += found.a; j += found.b; }
-      else { i++; j++; }   // no agreement in window — step both and keep scanning
+      var r = localResync(i, j);
+      if (r) { i += r.a; j += r.b; continue; }
+      var anc = anchorResync(i, j);
+      if (anc) { i += anc.a; j = anc.p; continue; }
+      i++; j++;   // genuine divergence on both sides — step past and keep scanning
     }
     // Mark clean consecutive runs so the highlight holds across the tiny gap
     // between two matched words, but blanks out across a real divergence.
