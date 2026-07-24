@@ -3555,8 +3555,10 @@ export default function App() {
         }
       }
 
-      var hit = findSentenceIdxForTime(audio.currentTime);
-      if (hit !== -1 && hit !== lastHit) {
+      // Skip sentence highlighting if we have word-level timestamps
+      var hasWordTimings = wordTimingMapRef.current && wordTimingMapRef.current.length > 0;
+      var hit = hasWordTimings ? -2 : findSentenceIdxForTime(audio.currentTime);
+      if (hit !== -1 && hit !== -2 && hit !== lastHit) {
         lastHit = hit;
         var sent = audioSentencesRef.current[hit];
         if (sent) {
