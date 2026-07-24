@@ -2964,10 +2964,9 @@ export default function App() {
   var [audiobookMode, setAudiobookMode] = useState(false);   // user-toggleable; defaults true when audiobookData arrives
   var audiobookAudioRef = useRef(null);                      // persistent <audio> streaming the recording
   var audiobookRafRef = useRef(null);                        // RAF handle for the highlight loop
-  var wordTimingMapRef = useRef([]);   // word_timings array for word-level highlight
-  var activeWordRef = useRef(-1);      // index of currently highlighted word
-  var wordRenderIdxRef = useRef(0);    // counter for assigning data-wi to rendered word spans
-  var pageWordOffsetRef = useRef(0);   // word index offset for current page
+  var wordTimingMapRef = useRef([]);   // (legacy) raw word_timings list — no longer read
+  var activeWordRef = useRef(-1);      // char-offset of the currently highlighted word (-1 = none)
+  var wordTimelineRef = useRef([]);    // precomputed alignment: [{begin,end,start,holdToNext,nextBegin}]
   // Per-sentence timing for the CURRENT page only. Built when audiobookData
   // and audioSentences are both available. timings[i] = {begin, end} if the
   // i-th parsed sentence has a matched fragment, else null (no highlight).
@@ -3297,6 +3296,57 @@ export default function App() {
   // fragment whose normalised text starts the same way. This is robust to
   // synthetic announcement insertion (Bible / chapter ordinals) and to
   // narrator-only audio (skipped author footnotes).
+  // ── Word-level alignment (transcript ↔ book text) ─────────────────────────
+  // WhisperX gives per-word timings for what it HEARD, which drifts from the
+  // book text (inserted / dropped / misheard words). We align the two sequences
+  // once per chapter with a greedy re-sync: match word-for-word; on a mismatch,
+  // look ahead a small window in both streams for the next agreement, skip the
+  // divergent stretch (highlight nothing there), and resume. The result is a
+  // timeline mapping audio time → the character offset of the book word to
+  // highlight — the same value rendered as each word span's data-rw-start.
+  var normWordForAlign = function(s) {
+    return String(s || "").toLowerCase().replace(/ё/g, "е").replace(/[^а-яa-z0-9]/g, "");
+  };
+  var buildWordTimeline = function(chapterText, wordTimings) {
+    if (!chapterText || !wordTimings || !wordTimings.length) { wordTimelineRef.current = []; return; }
+    // Book words: Russian letter runs, keyed by absolute char offset (== data-rw-start).
+    var B = [], re = /[а-яёА-ЯЁ]+/g, m;
+    while ((m = re.exec(chapterText)) !== null) B.push({ start: m.index, norm: normWordForAlign(m[0]) });
+    // Transcript words with their times.
+    var T = [];
+    for (var wi = 0; wi < wordTimings.length; wi++) {
+      var n = normWordForAlign(wordTimings[wi].word);
+      if (n) T.push({ begin: wordTimings[wi].begin, end: wordTimings[wi].end, norm: n });
+    }
+    var WINDOW = 10;
+    var out = [], i = 0, j = 0;
+    while (i < B.length && j < T.length) {
+      if (B[i].norm === T[j].norm) {
+        out.push({ begin: T[j].begin, end: T[j].end, start: B[i].start, bi: i, tj: j });
+        i++; j++;
+        continue;
+      }
+      // Mismatch: find the nearest re-sync within the lookahead window.
+      var found = null;
+      for (var d = 1; d <= WINDOW && !found; d++) {
+        for (var a = 0; a <= d; a++) {
+          var b = d - a;
+          if (i + a < B.length && j + b < T.length && B[i + a].norm === T[j + b].norm) { found = { a: a, b: b }; break; }
+        }
+      }
+      if (found) { i += found.a; j += found.b; }
+      else { i++; j++; }   // no agreement in window — step both and keep scanning
+    }
+    // Mark clean consecutive runs so the highlight holds across the tiny gap
+    // between two matched words, but blanks out across a real divergence.
+    for (var k = 0; k < out.length; k++) {
+      var nx = out[k + 1];
+      out[k].holdToNext = !!(nx && nx.bi === out[k].bi + 1 && nx.tj === out[k].tj + 1);
+      out[k].nextBegin = nx ? nx.begin : Infinity;
+    }
+    wordTimelineRef.current = out;
+  };
+
   var buildSentenceTimings = function() {
     var data = audiobookDataRef.current;
     var sents = audioSentencesRef.current;
@@ -3512,37 +3562,46 @@ export default function App() {
       // Skip highlighting for books that disable it (e.g. Bible)
       if (audiobookDataRef.current && audiobookDataRef.current.noHighlight) return;
 
-      // Word-level highlighting
-      var wtMap = wordTimingMapRef.current;
-      if (wtMap && wtMap.length) {
+      // ── Word-level highlighting (precomputed alignment; see buildWordTimeline) ──
+      var timeline = wordTimelineRef.current;
+      var hasWordTimings = timeline && timeline.length > 0;
+      if (hasWordTimings) {
         var ct = audio.currentTime;
-        // Binary search for current word
-        var lo = 0, hi = wtMap.length - 1, wHit = -1;
+        // Last timeline entry whose word has already begun.
+        var lo = 0, hi = timeline.length - 1, k = -1;
         while (lo <= hi) {
           var mid = (lo + hi) >> 1;
-          if (wtMap[mid].begin <= ct) { wHit = mid; lo = mid + 1; }
+          if (timeline[mid].begin <= ct) { k = mid; lo = mid + 1; }
           else hi = mid - 1;
         }
-        if (wHit !== activeWordRef.current) {
-          activeWordRef.current = wHit;
-          // Remove previous word highlight
+        var targetStart = -1;
+        if (k >= 0) {
+          var e = timeline[k];
+          if (ct <= e.end) targetStart = e.start;                          // inside the spoken word
+          else if (e.holdToNext && ct < e.nextBegin) targetStart = e.start; // clean gap to next word — hold
+          // else: a real divergence (skipped words) or trailing silence — highlight nothing
+        }
+        if (targetStart !== activeWordRef.current) {
+          activeWordRef.current = targetStart;
           try {
-            var prev = document.querySelector(".word-active");
-            if (prev) prev.classList.remove("word-active");
+            var prevW = document.querySelector(".lit-body .word-active");
+            if (prevW) prevW.classList.remove("word-active");
           } catch(e) {}
-          // Add new word highlight
-          if (wHit >= 0) {
+          if (targetStart >= 0) {
             try {
-              var wBegin = wtMap[wHit].begin;
-              var wEl = document.querySelector("[data-wi=\"" + (wHit + 1) + "\"]");
-              if (wEl) { wEl.classList.add("word-active"); wEl.scrollIntoView({block:"nearest",behavior:"smooth"}); }
+              var wEl = document.querySelector('.lit-body [data-rw-start="' + targetStart + '"]');
+              if (wEl) {
+                wEl.classList.add("word-active");
+                var wr = wEl.getBoundingClientRect();
+                var wvh = window.innerHeight || 800;
+                if (wr.top < wvh * 0.15 || wr.bottom > wvh * 0.85) wEl.scrollIntoView({ block: "center", behavior: "smooth" });
+              }
             } catch(e) {}
           }
         }
       }
 
-      // Skip sentence highlighting if we have word-level timestamps
-      var hasWordTimings = wordTimingMapRef.current && wordTimingMapRef.current.length > 0;
+      // Sentence highlighting only when there is no word-level alignment.
       var hit = hasWordTimings ? -2 : findSentenceIdxForTime(audio.currentTime);
       if (hit !== -1 && hit !== -2 && hit !== lastHit) {
         lastHit = hit;
@@ -4169,6 +4228,14 @@ export default function App() {
     } else {
       sentenceTimingsRef.current = [];
     }
+    // Precompute the whole-chapter word alignment (chapters render single-page,
+    // so data-rw-start offsets are chapter-absolute and match this timeline).
+    if (audiobookData && audiobookData.word_timings && curChapter.text) {
+      buildWordTimeline(curChapter.text, audiobookData.word_timings);
+    } else {
+      wordTimelineRef.current = [];
+    }
+    activeWordRef.current = -1;
   }, [audiobookData, audioSentences]);
 
   useEffect(function() {
@@ -6277,10 +6344,6 @@ export default function App() {
     }
 
     return (function() {
-      // Reset the per-render word counter so data-wi numbering restarts at 1 on
-      // every render pass. Without this the counter climbs across re-renders and
-      // the [data-wi] lookup during playback stops matching. (word highlight fix)
-      wordRenderIdxRef.current = 0;
       // Pull the non-empty paragraphs in the order they appear, matching how
       // computePages indexes them.
       var nonEmpty = paragraphs.filter(function(p){ return p.some(function(t){ return t.text.trim().length > 0; }); });
@@ -6372,17 +6435,13 @@ export default function App() {
               return para.map(function(tk, i) {
                 var hl = tk.isRu && tk.start === activeStart;
                 if (tk.isRu) {
-                  wordRenderIdxRef.current = (wordRenderIdxRef.current || 0) + 1;
-                  var wordIdx = wordRenderIdxRef.current;
                   var clickReg = noAIMode
                     ? (function(pos){ return function(e){ e.stopPropagation(); jumpTTS(pos); }; })(tk.start)
                     : (function(w, pos){ return function(e){ defWord(w, e, pos); }; })(tk.text, tk.start);
-                  // Find word timestamp for this token
                   return (
                     <span key={i}
                       className={"rw" + (hl ? " rwhl" : "")}
                       data-rw-start={tk.start}
-                      data-wi={wordIdx}
                       onClick={clickReg}
                       title={noAIMode ? "Click to read from here" : "Click to define"}>{tk.text}</span>
                   );
@@ -6772,6 +6831,7 @@ export default function App() {
         .rw{cursor:pointer;border-bottom:1px dotted rgba(42,31,20,.18);transition:color .15s,background .12s}
         .rw:hover{color:#c4955a;border-bottom-color:#c4955a}
         .rwhl{background:rgba(196,149,90,.18);color:#ece1cb;border-bottom-color:#c4955a;border-radius:3px;padding:1px 2px}
+        .word-active{background:rgba(196,149,90,.34);color:#fff;border-radius:3px;padding:1px 2px;box-shadow:0 0 0 1px rgba(196,149,90,.55);transition:background .08s ease}
         /* Words inside the sentence currently being read aloud. Applied at
            the start of each sentence's playback via direct DOM manipulation
            (no React re-render). Uses a soft warm tint so a whole sentence's
