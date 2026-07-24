@@ -6276,7 +6276,7 @@ export default function App() {
         }
 
         return (
-          <p key={pi} style={{marginBottom: singlePageMode ? "0.35em" : "1.2em"}}>
+          <p key={pi} style={{marginBottom: singlePageMode ? "0.35em" : (bookMeta && bookMeta.filename && bookMeta.filename.indexOf("негин") !== -1 ? "0.1em" : "1.2em")}}>
             {(function(){
               // If this paragraph is a play line, replace the punctuation between name and dialogue with an em-dash.
               if (speakerNameEnd > -1) {
