@@ -3722,9 +3722,14 @@ export default function App() {
       audiobookAudioRef.current = audio;
     }
 
-    // (Re)point at the chapter's audio URL if needed (chapter change).
+    // (Re)point at the chapter's audio URL if needed (chapter change). Changing
+    // src resets the element to readyState 0, so any currentTime we set now is
+    // discarded once the new media loads — we must defer the seek (below) until
+    // metadata is available, or playback starts from 0 (the spoken preamble).
+    var srcChanged = false;
     if (audio.src !== data.audio_url) {
       audio.src = data.audio_url;
+      srcChanged = true;
     }
 
     // Seek to the chosen sentence's start time, if its timing is known.
@@ -3739,7 +3744,15 @@ export default function App() {
       var contentStart = data.word_timings[0].begin;
       if (contentStart > 3 && seekTo < contentStart) seekTo = contentStart;
     }
-    try { audio.currentTime = seekTo; } catch(e) {}
+    // Apply the seek now AND once the media is ready — a fresh src won't accept
+    // currentTime until it has loaded metadata, so the deferred one is what
+    // actually lands the playhead on the first spoken word of the text.
+    var doSeek = function() { try { audio.currentTime = seekTo; } catch(e) {} };
+    if (srcChanged || audio.readyState < 1) {
+      var onMeta = function() { audio.removeEventListener("loadedmetadata", onMeta); doSeek(); };
+      audio.addEventListener("loadedmetadata", onMeta);
+    }
+    doSeek();
 
     audio.onplay = function() {
       if (audiobookAudioRef.current !== audio) return;
