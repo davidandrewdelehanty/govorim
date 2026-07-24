@@ -3675,9 +3675,17 @@ export default function App() {
 
     // Seek to the chosen sentence's start time, if its timing is known.
     var timing = sentenceTimingsRef.current[startIdx];
-    if (timing && timing.begin >= 0) {
-      try { audio.currentTime = timing.begin; } catch(e) {}
+    var seekTo = (timing && timing.begin >= 0) ? timing.begin : 0;
+    // Skip a substantial leading preamble (chapter announcement / intro music
+    // that plays before the actual text): if the chapter's first spoken word is
+    // more than a few seconds in and we'd otherwise start ahead of it, jump
+    // straight to it so the intro isn't played and the highlight starts on word
+    // one. Short natural lead-ins / epigraphs (≤3s) are left alone.
+    if (data.word_timings && data.word_timings.length) {
+      var contentStart = data.word_timings[0].begin;
+      if (contentStart > 3 && seekTo < contentStart) seekTo = contentStart;
     }
+    try { audio.currentTime = seekTo; } catch(e) {}
 
     audio.onplay = function() {
       if (audiobookAudioRef.current !== audio) return;
