@@ -3253,6 +3253,40 @@ export default function App() {
       .trim();
   };
 
+  // Levenshtein distance for fuzzy matching when substring fails
+  var levenshtein = function(a, b) {
+    var m = a.length, n = b.length;
+    var dp = [];
+    for (var i = 0; i <= m; i++) {
+      dp[i] = [i];
+      for (var j = 1; j <= n; j++) {
+        dp[i][j] = i === 0 ? j :
+          a[i-1] === b[j-1] ? dp[i-1][j-1] :
+          1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
+      }
+    }
+    return dp[m][n];
+  };
+
+  // Check if two normalized strings are a fuzzy match
+  // Uses: exact substring → Levenshtein on first 20 chars → consonant skeleton
+  var fuzzyMatch = function(probe, target) {
+    if (!probe || !target) return false;
+    // Level 1: exact substring
+    if (target.indexOf(probe.slice(0, 15)) !== -1) return true;
+    if (probe.length >= 12 && target.indexOf(probe.slice(0, 12)) === 0) return true;
+    // Level 2: Levenshtein on first 20 chars (tolerates 2 char differences)
+    var p20 = probe.slice(0, 20);
+    var t20 = target.slice(0, 20);
+    if (p20.length >= 8 && levenshtein(p20, t20) <= 2) return true;
+    // Level 3: consonant skeleton match (strip vowels, compare first 10 chars)
+    var vowels = /[аеёиоуыьъэюяaeiou]/g;
+    var pCons = probe.replace(vowels, "").slice(0, 10);
+    var tCons = target.replace(vowels, "").slice(0, 10);
+    if (pCons.length >= 6 && pCons === tCons) return true;
+    return false;
+  };
+
   // Build the mapping `sentenceIdx → {begin, end}` for the page that's
   // currently rendered. Greedy linear walk: for each parsed sentence in
   // order, scan forward from the previous match to find the next alignment
@@ -3292,6 +3326,7 @@ export default function App() {
           var score = 0;
           if (fragNorm.indexOf(probe.slice(0,15)) !== -1) score = 2;
           if (fragNorm.slice(0,15) === probe.slice(0,15)) score = 3;
+          if (score === 0 && fuzzyMatch(probe, fragNorm)) score = 1;
           if (score > bestScore) { bestScore = score; bestFi = fj; }
         }
         if (bestScore > 0) {
@@ -3340,8 +3375,7 @@ export default function App() {
       for (var step = 0; step < maxStep && fragIdx + step < frags.length; step++) {
         var fragNorm = normalizeForMatch(frags[fragIdx + step].text);
         // Primary match: sentence starts the fragment (sentence-per-fragment alignment)
-        if (fragNorm.indexOf(probe.slice(0, 25)) !== -1 ||
-            (probe.length >= 12 && fragNorm.indexOf(probe.slice(0, 12)) === 0)) {
+        if (fuzzyMatch(probe, fragNorm)) {
           fragIdx += step + 1;
           firstSent = false;
           return { begin: frags[fragIdx - 1].begin, end: frags[fragIdx - 1].end };
