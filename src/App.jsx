@@ -2964,6 +2964,9 @@ export default function App() {
   var [audiobookMode, setAudiobookMode] = useState(false);   // user-toggleable; defaults true when audiobookData arrives
   var audiobookAudioRef = useRef(null);                      // persistent <audio> streaming the recording
   var audiobookRafRef = useRef(null);                        // RAF handle for the highlight loop
+  var [abCur, setAbCur] = useState(0);                       // audiobook playhead position (s), for the counter/scrubber
+  var [abDur, setAbDur] = useState(0);                       // audiobook total duration (s)
+  var fmtClock = function(s){ s = Math.max(0, Math.floor(s || 0)); var mm = Math.floor(s / 60), ss = s % 60; return mm + ":" + (ss < 10 ? "0" : "") + ss; };
   var wordTimingMapRef = useRef([]);   // (legacy) raw word_timings list — no longer read
   var activeWordRef = useRef(-1);      // char-offset of the currently highlighted word (-1 = none)
   var wordTimelineRef = useRef([]);    // precomputed alignment: [{begin,end,start,holdToNext,nextBegin}]
@@ -3720,6 +3723,11 @@ export default function App() {
       audio.preload = "auto";
       audio.crossOrigin = "anonymous";  // archive.org allows CORS streaming
       audiobookAudioRef.current = audio;
+      // Drive the on-screen time counter / scrubber.
+      audio.addEventListener("timeupdate", function(){ setAbCur(audio.currentTime || 0); });
+      audio.addEventListener("seeked", function(){ setAbCur(audio.currentTime || 0); });
+      audio.addEventListener("durationchange", function(){ setAbDur(isFinite(audio.duration) ? audio.duration : 0); });
+      audio.addEventListener("loadedmetadata", function(){ setAbDur(isFinite(audio.duration) ? audio.duration : 0); setAbCur(audio.currentTime || 0); });
     }
 
     // (Re)point at the chapter's audio URL if needed (chapter change). Changing
@@ -6989,6 +6997,8 @@ export default function App() {
         .faudio-play:hover{background:#d4ae7f}
         .faudio-status{color:rgba(42,31,20,.55);font-size:12px;font-family:'Inter',system-ui,sans-serif;margin-left:10px;letter-spacing:.3px;min-width:90px;text-align:left}
         .faudio-narrator{color:#c4955a;font-style:italic}
+        .faudio-seek{flex:1;min-width:80px;max-width:280px;accent-color:#c4955a;cursor:pointer;height:4px}
+        .faudio-clock{color:rgba(42,31,20,.7);font-size:12px;font-family:'Inter',system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.3px;min-width:82px;text-align:right;white-space:nowrap}
         /* 🎧 ↔ 🤖 mode toggle — only renders when an audiobook is available */
         .faudio-mode{background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.2);color:rgba(42,31,20,.7);border-radius:50%;width:36px;height:36px;font-size:16px;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;flex-shrink:0}
         .faudio-mode:hover{background:rgba(196,149,90,.12);color:#c4955a;border-color:rgba(196,149,90,.4)}
@@ -7001,6 +7011,8 @@ export default function App() {
           .faudio-btn{width:40px;height:40px;font-size:15px}
           .faudio-play{width:48px;height:48px;font-size:20px}
           .faudio-status{font-size:11px;min-width:0;margin-left:6px}
+          .faudio-seek{min-width:60px;max-width:140px}
+          .faudio-clock{font-size:11px;min-width:74px}
           .faudio-mode{width:32px;height:32px;font-size:14px}
           .faudio-speed{padding:5px 9px;font-size:11px}
         }
@@ -8504,6 +8516,19 @@ export default function App() {
                             : null}
                           Sentence {audioIdx + 1} / {audioSentences.length}
                         </span>
+                        {audiobookMode && audiobookData && (
+                          <>
+                            <input className="faudio-seek" type="range" min="0"
+                              max={abDur || 0} step="0.1" value={abCur > (abDur || 0) ? (abDur || 0) : abCur}
+                              title="Scrub"
+                              onChange={function(e){
+                                var t = parseFloat(e.target.value) || 0;
+                                if (audiobookAudioRef.current) { try { audiobookAudioRef.current.currentTime = t; } catch(_e) {} }
+                                setAbCur(t);
+                              }} />
+                            <span className="faudio-clock">{fmtClock(abCur)} / {fmtClock(abDur)}</span>
+                          </>
+                        )}
                         {audiobookData && (
                           <button className={"faudio-mode" + (audiobookMode ? " active" : "")}
                             onClick={function(){
