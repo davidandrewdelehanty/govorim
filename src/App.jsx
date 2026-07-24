@@ -3412,9 +3412,11 @@ export default function App() {
         var pe = null, nb = null;
         for (var pa = bi - 1; pa >= 0; pa--) { if (mapping[pa]) { pe = mapping[pa].end; break; } }
         for (var nx = bi + 1; nx < n; nx++) { if (mapping[nx]) { nb = mapping[nx].begin; break; } }
-        if (pe != null && nb != null) mapping[bi] = { begin: pe, end: (nb > pe ? nb : pe) };
-        else if (pe != null) mapping[bi] = { begin: pe, end: pe };
-        else if (nb != null) mapping[bi] = { begin: nb, end: nb };
+        // Hold at previous sentence end until next sentence begins
+        // This keeps the highlight on the last known sentence through gaps
+        if (pe != null && nb != null) mapping[bi] = { begin: pe, end: nb };
+        else if (pe != null) mapping[bi] = { begin: pe, end: pe + 5.0 };
+        else if (nb != null) mapping[bi] = { begin: Math.max(0, nb - 0.5), end: nb };
       }
     })();
     sentenceTimingsRef.current = mapping;
@@ -3446,6 +3448,8 @@ export default function App() {
     }
     if (firstIdx === -1) return -1;   // nothing mapped on this page
     if (t >= maxEnd) return -1;       // past the page → RAF triggers auto-flip
+    // If t is before any mapped sentence, return first
+    if (valid.length > 0 && t < valid[0].begin) return firstIdx;
 
     // Find which sentence t falls inside, or which gap it's in.
     // Strategy: hold the previous sentence through a gap until t reaches
