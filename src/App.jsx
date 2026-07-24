@@ -6277,6 +6277,10 @@ export default function App() {
     }
 
     return (function() {
+      // Reset the per-render word counter so data-wi numbering restarts at 1 on
+      // every render pass. Without this the counter climbs across re-renders and
+      // the [data-wi] lookup during playback stops matching. (word highlight fix)
+      wordRenderIdxRef.current = 0;
       // Pull the non-empty paragraphs in the order they appear, matching how
       // computePages indexes them.
       var nonEmpty = paragraphs.filter(function(p){ return p.some(function(t){ return t.text.trim().length > 0; }); });
