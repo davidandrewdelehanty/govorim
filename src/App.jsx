@@ -3460,6 +3460,8 @@ export default function App() {
         audiobookRafRef.current = null;
         return;
       }
+      // Skip highlighting for books that disable it (e.g. Bible)
+      if (audiobookDataRef.current && audiobookDataRef.current.noHighlight) return;
       var hit = findSentenceIdxForTime(audio.currentTime);
       if (hit !== -1 && hit !== lastHit) {
         lastHit = hit;
