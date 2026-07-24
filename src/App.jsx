@@ -2964,6 +2964,8 @@ export default function App() {
   var [audiobookMode, setAudiobookMode] = useState(false);   // user-toggleable; defaults true when audiobookData arrives
   var audiobookAudioRef = useRef(null);                      // persistent <audio> streaming the recording
   var audiobookRafRef = useRef(null);                        // RAF handle for the highlight loop
+  var wordTimingMapRef = useRef([]);   // [{charStart, begin, end, word}] for word-level highlight
+  var activeWordRef = useRef(-1);      // index into wordTimingMapRef of currently highlighted word
   // Per-sentence timing for the CURRENT page only. Built when audiobookData
   // and audioSentences are both available. timings[i] = {begin, end} if the
   // i-th parsed sentence has a matched fragment, else null (no highlight).
@@ -3302,6 +3304,29 @@ export default function App() {
     }
     var frags = data.fragments;
 
+    // Build word-level timing map for word-by-word highlighting
+    if (data.word_timings && data.word_timings.length) {
+      var allPageText = sents.map(function(st){ return st ? (st.text||"") : ""; }).join(" ");
+      var wts = data.word_timings;
+      var wtMap = [];
+      var searchPos = 0;
+      for (var wi = 0; wi < wts.length; wi++) {
+        var wrd = wts[wi].word.replace(/[^\w]/g,"").toLowerCase().replace(/ё/g,"е");
+        if (!wrd) continue;
+        for (var si = searchPos; si < allPageText.length - wrd.length + 1; si++) {
+          var chunk = allPageText.slice(si,si+wrd.length).replace(/[^\w]/g,"").toLowerCase().replace(/ё/g,"е");
+          if (chunk === wrd) {
+            wtMap.push({ charStart: si, begin: wts[wi].begin, end: wts[wi].end });
+            searchPos = si + wrd.length;
+            break;
+          }
+        }
+      }
+      wordTimingMapRef.current = wtMap;
+    } else {
+      wordTimingMapRef.current = [];
+    }
+
     // For transcript mode: match each parsed sentence to the fragment whose
     // text starts with the same words. Since both come from Whisper, they share
     // vocabulary but may differ in sentence boundaries (Whisper sometimes splits
@@ -3500,6 +3525,36 @@ export default function App() {
       }
       // Skip highlighting for books that disable it (e.g. Bible)
       if (audiobookDataRef.current && audiobookDataRef.current.noHighlight) return;
+
+      // Word-level highlighting
+      var wtMap = wordTimingMapRef.current;
+      if (wtMap && wtMap.length) {
+        var ct = audio.currentTime;
+        // Binary search for current word
+        var lo = 0, hi = wtMap.length - 1, wHit = -1;
+        while (lo <= hi) {
+          var mid = (lo + hi) >> 1;
+          if (wtMap[mid].begin <= ct) { wHit = mid; lo = mid + 1; }
+          else hi = mid - 1;
+        }
+        if (wHit !== activeWordRef.current) {
+          activeWordRef.current = wHit;
+          // Remove previous word highlight
+          try {
+            var prev = document.querySelector(".word-active");
+            if (prev) prev.classList.remove("word-active");
+          } catch(e) {}
+          // Add new word highlight
+          if (wHit >= 0) {
+            try {
+              var wBegin = wtMap[wHit].begin;
+              var wEl = document.querySelector("[data-word-t=\"" + wBegin + "\"]");
+              if (wEl) wEl.classList.add("word-active");
+            } catch(e) {}
+          }
+        }
+      }
+
       var hit = findSentenceIdxForTime(audio.currentTime);
       if (hit !== -1 && hit !== lastHit) {
         lastHit = hit;
@@ -6328,10 +6383,20 @@ export default function App() {
                   var clickReg = noAIMode
                     ? (function(pos){ return function(e){ e.stopPropagation(); jumpTTS(pos); }; })(tk.start)
                     : (function(w, pos){ return function(e){ defWord(w, e, pos); }; })(tk.text, tk.start);
+                  // Find word timestamp for this token
+                  var wtEntry = null;
+                  if (wordTimingMapRef.current.length) {
+                    for (var wmi = 0; wmi < wordTimingMapRef.current.length; wmi++) {
+                      if (wordTimingMapRef.current[wmi].charStart === tk.start) {
+                        wtEntry = wordTimingMapRef.current[wmi]; break;
+                      }
+                    }
+                  }
                   return (
                     <span key={i}
                       className={"rw" + (hl ? " rwhl" : "")}
                       data-rw-start={tk.start}
+                      data-word-t={wtEntry ? wtEntry.begin : undefined}
                       onClick={clickReg}
                       title={noAIMode ? "Click to read from here" : "Click to define"}>{tk.text}</span>
                   );
