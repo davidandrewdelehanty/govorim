@@ -3318,7 +3318,10 @@ export default function App() {
       var n = normWordForAlign(wordTimings[wi].word);
       if (n) T.push({ begin: wordTimings[wi].begin, end: wordTimings[wi].end, norm: n });
     }
-    var WINDOW = 10;
+    var WINDOW = 60;   // look-ahead for re-sync; must exceed the longest run of
+                       // transcript-only words (spoken chapter intros / titles
+                       // that aren't in the displayed text) so the aligner can
+                       // step over them instead of desyncing.
     var out = [], i = 0, j = 0;
     while (i < B.length && j < T.length) {
       if (B[i].norm === T[j].norm) {
