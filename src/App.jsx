@@ -5800,7 +5800,18 @@ export default function App() {
         var alreadyScripture = chs.length > 1 && chs.some(function(c){
           return c.heading && c.heading.split(/\s+[\u2013\u2014]\s+/).length >= 3;
         });
-        var bymark = alreadyScripture ? null : splitByMarkers(chs);
+        // Don't re-split by in-text markers when the source already gave us two
+        // or more real, distinct chapter headings (e.g. an FB2 with a
+        // <title>\u0413\u043b\u0430\u0432\u0430 \u043f\u0435\u0440\u0432\u0430\u044f</title> per chapter). The marker re-split exists for
+        // blob / heading-less imports; run on a properly-structured book it shreds
+        // poems on their stanza numerals \u2014 \u041e\u043d\u0435\u0433\u0438\u043d's "I, II, III \u2026" each became a
+        // "chapter", so a whole \u0413\u043b\u0430\u0432\u0430's audio played against a single stanza of
+        // text. Placeholder headings ("\u0413\u043b\u0430\u0432\u0430 1", "Chapter 1") don't count as real.
+        var realHeadings = chs.filter(function(c){
+          var h = (c.heading || "").trim();
+          return h && !/^\u0433\u043b\u0430\u0432\u0430\s+\d+$/i.test(h) && !/^chapter\s+\d+$/i.test(h);
+        }).length;
+        var bymark = (alreadyScripture || realHeadings >= 2) ? null : splitByMarkers(chs);
         if (bymark && bymark.length >= 2) {
           chs = bymark;
         } else if (!alreadyScripture && chs.length > 1) {
