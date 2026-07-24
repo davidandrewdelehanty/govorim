@@ -2964,8 +2964,10 @@ export default function App() {
   var [audiobookMode, setAudiobookMode] = useState(false);   // user-toggleable; defaults true when audiobookData arrives
   var audiobookAudioRef = useRef(null);                      // persistent <audio> streaming the recording
   var audiobookRafRef = useRef(null);                        // RAF handle for the highlight loop
-  var wordTimingMapRef = useRef([]);   // [{charStart, begin, end, word}] for word-level highlight
-  var activeWordRef = useRef(-1);      // index into wordTimingMapRef of currently highlighted word
+  var wordTimingMapRef = useRef([]);   // word_timings array for word-level highlight
+  var activeWordRef = useRef(-1);      // index of currently highlighted word
+  var wordRenderIdxRef = useRef(0);    // counter for assigning data-wi to rendered word spans
+  var pageWordOffsetRef = useRef(0);   // word index offset for current page
   // Per-sentence timing for the CURRENT page only. Built when audiobookData
   // and audioSentences are both available. timings[i] = {begin, end} if the
   // i-th parsed sentence has a matched fragment, else null (no highlight).
@@ -3304,25 +3306,9 @@ export default function App() {
     }
     var frags = data.fragments;
 
-    // Build word-level timing map for word-by-word highlighting
+    // Build word-level timing map — simple sequential list of word timestamps
     if (data.word_timings && data.word_timings.length) {
-      var allPageText = sents.map(function(st){ return st ? (st.text||"") : ""; }).join(" ");
-      var wts = data.word_timings;
-      var wtMap = [];
-      var searchPos = 0;
-      for (var wi = 0; wi < wts.length; wi++) {
-        var wrd = wts[wi].word.replace(/[^\w]/g,"").toLowerCase().replace(/ё/g,"е");
-        if (!wrd) continue;
-        for (var si = searchPos; si < allPageText.length - wrd.length + 1; si++) {
-          var chunk = allPageText.slice(si,si+wrd.length).replace(/[^\w]/g,"").toLowerCase().replace(/ё/g,"е");
-          if (chunk === wrd) {
-            wtMap.push({ charStart: si, begin: wts[wi].begin, end: wts[wi].end });
-            searchPos = si + wrd.length;
-            break;
-          }
-        }
-      }
-      wordTimingMapRef.current = wtMap;
+      wordTimingMapRef.current = data.word_timings;
     } else {
       wordTimingMapRef.current = [];
     }
@@ -3548,8 +3534,8 @@ export default function App() {
           if (wHit >= 0) {
             try {
               var wBegin = wtMap[wHit].begin;
-              var wEl = document.querySelector("[data-word-t=\"" + wBegin + "\"]");
-              if (wEl) wEl.classList.add("word-active");
+              var wEl = document.querySelector("[data-wi=\"" + (wHit + 1) + "\"]");
+              if (wEl) { wEl.classList.add("word-active"); wEl.scrollIntoView({block:"nearest",behavior:"smooth"}); }
             } catch(e) {}
           }
         }
@@ -6382,23 +6368,17 @@ export default function App() {
               return para.map(function(tk, i) {
                 var hl = tk.isRu && tk.start === activeStart;
                 if (tk.isRu) {
+                  wordRenderIdxRef.current = (wordRenderIdxRef.current || 0) + 1;
+                  var wordIdx = wordRenderIdxRef.current;
                   var clickReg = noAIMode
                     ? (function(pos){ return function(e){ e.stopPropagation(); jumpTTS(pos); }; })(tk.start)
                     : (function(w, pos){ return function(e){ defWord(w, e, pos); }; })(tk.text, tk.start);
                   // Find word timestamp for this token
-                  var wtEntry = null;
-                  if (wordTimingMapRef.current.length) {
-                    for (var wmi = 0; wmi < wordTimingMapRef.current.length; wmi++) {
-                      if (wordTimingMapRef.current[wmi].charStart === tk.start) {
-                        wtEntry = wordTimingMapRef.current[wmi]; break;
-                      }
-                    }
-                  }
                   return (
                     <span key={i}
                       className={"rw" + (hl ? " rwhl" : "")}
                       data-rw-start={tk.start}
-                      data-word-t={wtEntry ? wtEntry.begin : undefined}
+                      data-wi={wordIdx}
                       onClick={clickReg}
                       title={noAIMode ? "Click to read from here" : "Click to define"}>{tk.text}</span>
                   );
