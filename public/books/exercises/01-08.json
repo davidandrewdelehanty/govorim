@@ -2,133 +2,186 @@
   "cases": [
     {
       "id": "c1",
-      "sentence": "Он послал ветер на ___, и воды стали убывать.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землю"],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "He sent a wind over the earth, and the waters began to recede.",
-      "explain": "The preposition на expressing motion takes the accusative case."
+      "sentence": "...но ___ не нашел сухого места, чтобы опуститься, и вернулся к Ною в ковчег.",
+      "lemma": "голубь",
+      "options": [
+        "голубь",
+        "голубя",
+        "голубю",
+        "голубем"
+      ],
+      "correct": "голубь",
+      "case": "Именительный (Nominative)",
+      "translation": "...but the dove found no dry place to land, and returned to Noah in the ark.",
+      "explain": "Голубь is the subject of не нашел, so it stands in the nominative."
     },
     {
       "id": "c2",
-      "sentence": "Дождь перестал литься с ___.",
-      "lemma": "небо",
-      "options": ["небо", "неба", "небу", "небом"],
-      "correct": "неба",
-      "case": "Родительный (Genitive)",
-      "translation": "The rain stopped falling from the sky.",
-      "explain": "The preposition с (from) governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Ковчег остановился на Араратских ___.",
-      "lemma": "гора",
-      "options": ["горы", "гор", "горах", "горами"],
-      "correct": "горах",
-      "case": "Предложный (Prepositional)",
-      "translation": "The ark rested on the mountains of Ararat.",
-      "explain": "The preposition на indicating location takes the prepositional case (plural)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Голубь не нашёл сухого места и вернулся к ___ в ковчег.",
-      "lemma": "Ной",
-      "options": ["Ной", "Ноя", "Ною", "Ноем"],
-      "correct": "Ною",
-      "case": "Дательный (Dative)",
-      "translation": "The dove found no dry place and returned to Noah into the ark.",
-      "explain": "The preposition к (toward/to) governs the dative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Выйди из ___ и ты, и твоя жена.",
+      "sentence": "Спустя семь дней он опять выпустил голубя из ___.",
       "lemma": "ковчег",
-      "options": ["ковчег", "ковчега", "ковчегу", "ковчегом"],
+      "options": [
+        "ковчег",
+        "ковчега",
+        "ковчегу",
+        "ковчегом"
+      ],
       "correct": "ковчега",
       "case": "Родительный (Genitive)",
-      "translation": "Come out of the ark, you and your wife.",
+      "translation": "Seven days later he again sent the dove out of the ark.",
       "explain": "The preposition из (out of) governs the genitive case."
     },
     {
-      "id": "c6",
-      "sentence": "Ной построил ___ жертвенник и принёс жертвы.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господу",
+      "id": "c3",
+      "sentence": "...но голубь не нашел сухого места, чтобы опуститься, и вернулся к ___ в ковчег.",
+      "lemma": "Ной",
+      "options": [
+        "Ной",
+        "Ноя",
+        "Ною",
+        "Ноем"
+      ],
+      "correct": "Ною",
       "case": "Дательный (Dative)",
-      "translation": "Noah built an altar to the Lord and offered sacrifices.",
-      "explain": "The dative case marks the indirect object (the recipient 'to the Lord')."
+      "translation": "...but the dove found no dry place to land, and returned to Noah in the ark.",
+      "explain": "The preposition к (to) governs the dative case."
     },
     {
-      "id": "c7",
-      "sentence": "Никогда впредь не стану я проклинать землю из-за ___.",
-      "lemma": "человек",
-      "options": ["человек", "человека", "человеку", "человеком"],
-      "correct": "человека",
-      "case": "Родительный (Genitive)",
-      "translation": "Never again will I curse the ground because of man.",
-      "explain": "The preposition из-за (because of) governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Потом Ной выпустил ___, чтобы увидеть, сошла ли вода.",
+      "id": "c4",
+      "sentence": "Ной протянул руку и взял ___ обратно к себе в ковчег.",
       "lemma": "голубь",
-      "options": ["голубь", "голубя", "голубю", "голубем"],
+      "options": [
+        "голубь",
+        "голубя",
+        "голубю",
+        "голубем"
+      ],
       "correct": "голубя",
       "case": "Винительный (Accusative)",
-      "translation": "Then Noah sent out a dove to see whether the water had gone down.",
-      "explain": "The transitive verb выпустил (sent out) takes a direct object; for an animate masculine noun the accusative equals the genitive form."
+      "translation": "Noah reached out his hand and took the dove back to himself into the ark.",
+      "explain": "Голубь is animate, so its accusative form (direct object of взял) matches the genitive: голубя."
+    },
+    {
+      "id": "c5",
+      "sentence": "Иной вышел из ковчега вместе со своими сыновьями, с ___ и женами своих сыновей.",
+      "lemma": "жена",
+      "options": [
+        "жена",
+        "жены",
+        "жену",
+        "женой"
+      ],
+      "correct": "женой",
+      "case": "Творительный (Instrumental)",
+      "translation": "Noah came out of the ark together with his sons, his wife, and his sons' wives.",
+      "explain": "The preposition с meaning 'together with' governs the instrumental case."
+    },
+    {
+      "id": "c6",
+      "sentence": "Когда вечером голубь вернулся, в ___ у него был свежесорванный масличный лист.",
+      "lemma": "клюв",
+      "options": [
+        "клюв",
+        "клюва",
+        "клюву",
+        "клюве"
+      ],
+      "correct": "клюве",
+      "case": "Предложный (Prepositional)",
+      "translation": "When the dove returned in the evening, there was a freshly plucked olive leaf in its beak.",
+      "explain": "The preposition в expressing location governs the prepositional case."
     }
   ],
   "reading": [
     {
       "id": "r1",
-      "ru": "На семнадцатый день седьмого месяца ковчег остановился на Араратских горах.",
-      "question": "Where did the ark come to rest?",
-      "options": ["On the mountains of Ararat", "In the land of Shinar", "On a plain", "By a river"],
-      "correct": "On the mountains of Ararat",
-      "explain": "The text says the ark rested on the mountains of Ararat."
+      "ru": "И Он послал ветер на землю, и воды стали убывать.",
+      "question": "What did God do to make the floodwaters begin to recede?",
+      "options": [
+        "He sent a wind over the earth",
+        "He sent Noah out of the ark",
+        "He sent a raven to dry the land",
+        "He caused an earthquake"
+      ],
+      "correct": "He sent a wind over the earth",
+      "explain": "The text says 'Он послал ветер на землю, и воды стали убывать' (he sent a wind over the earth, and the waters began to recede)."
     },
     {
       "id": "r2",
-      "ru": "Когда вечером голубь вернулся, в клюве у него был свежесорванный масличный лист.",
-      "question": "What did the dove bring back in its beak?",
-      "options": ["A freshly plucked olive leaf", "A branch of fig", "A grain of wheat", "Nothing at all"],
-      "correct": "A freshly plucked olive leaf",
-      "explain": "The text says the dove returned in the evening with a freshly plucked olive leaf in its beak."
+      "ru": "На семнадцатый день седьмого месяца ковчег остановился на Араратских горах.",
+      "question": "Where did the ark come to rest?",
+      "options": [
+        "On the mountains of Ararat",
+        "On the plains of Shinar",
+        "On Mount Sinai",
+        "In the land of Egypt"
+      ],
+      "correct": "On the mountains of Ararat",
+      "explain": "The text says the ark 'остановился на Араратских горах' (came to rest on the mountains of Ararat)."
     },
     {
       "id": "r3",
-      "ru": "Он подождал ещё семь дней и снова выпустил голубя, и на этот раз голубь не вернулся.",
-      "question": "What happened after Noah sent the dove out the last time?",
-      "options": ["The dove did not return", "The dove brought an olive leaf", "The dove died", "A raven returned instead"],
-      "correct": "The dove did not return",
-      "explain": "The text says that this time the dove did not come back."
+      "ru": "Потом Ной выпустил голубя, чтобы увидеть, сошла ли вода с поверхности земли, но голубь не нашел сухого места, чтобы опуститься и вернулся к Ною в ковчег, потому что вода покрывала всю землю.",
+      "question": "Why did the dove return to Noah the first time it was sent out?",
+      "options": [
+        "It found no dry place to land",
+        "It was injured by the raven",
+        "It preferred to stay with Noah",
+        "It brought back an olive leaf"
+      ],
+      "correct": "It found no dry place to land",
+      "explain": "The text says the dove 'не нашел сухого места, чтобы опуститься' (found no dry place to land) because water still covered the earth."
     },
     {
       "id": "r4",
-      "ru": "Ной построил Господу жертвенник и принёс на нём жертвы всесожжения из всех видов чистых животных и птиц.",
-      "question": "What did Noah do after leaving the ark?",
-      "options": ["He built an altar and offered burnt offerings", "He planted a vineyard", "He built a city", "He sent out a raven"],
-      "correct": "He built an altar and offered burnt offerings",
-      "explain": "The text says Noah built an altar to the Lord and offered burnt offerings on it."
+      "ru": "Когда вечером голубь вернулся, в клюве у него был свежесорванный масличный лист.",
+      "question": "What did the dove bring back in its beak on its second flight?",
+      "options": [
+        "A freshly plucked olive leaf",
+        "A piece of bread",
+        "A twig from the ark",
+        "Nothing at all"
+      ],
+      "correct": "A freshly plucked olive leaf",
+      "explain": "The text says the dove returned with 'свежесорванный масличный лист' (a freshly plucked olive leaf) in its beak."
     },
     {
       "id": "r5",
-      "ru": "Через сорок дней Ной открыл окно, которое он сделал в ковчеге, и выпустил ворона, и тот улетал и прилетал обратно до тех пор, пока вода на земле не высохла.",
-      "question": "Which bird did Noah send out first?",
-      "options": ["A raven", "A dove", "An eagle", "A sparrow"],
-      "correct": "A raven",
-      "explain": "The text says Noah first sent out a raven, which flew back and forth until the water dried up."
+      "ru": "Выведи наружу все живые существа, которые с тобой, птиц, зверей и всех присмыкающихся, чтобы они могли расти числом и плодиться, и размножаться на земле».",
+      "question": "What did God command Noah to do with the living creatures in the ark?",
+      "options": [
+        "Bring them out so they could multiply on the earth",
+        "Keep them in the ark forever",
+        "Sacrifice them all at once",
+        "Release only the birds"
+      ],
+      "correct": "Bring them out so they could multiply on the earth",
+      "explain": "God told Noah to bring the creatures out 'чтобы они могли расти числом и плодиться, и размножаться на земле' (so they could increase and multiply on the earth)."
     },
     {
       "id": "r6",
-      "ru": "Тогда Ной понял, что вода сошла с земли.",
-      "question": "What did the olive leaf show Noah?",
-      "options": ["That the water had receded from the earth", "That a storm was coming", "That the ark was sinking", "That the dove was hungry"],
-      "correct": "That the water had receded from the earth",
-      "explain": "The text says Noah then understood that the water had gone down from the earth."
+      "ru": "Ной построил Господу жертвенник и принес на нем жертвы всесожжения из всех видов чистых животных и птиц.",
+      "question": "What was the first thing Noah did after leaving the ark?",
+      "options": [
+        "He built an altar and offered burnt offerings to the Lord",
+        "He planted a vineyard",
+        "He built a tower to the sky",
+        "He sent all the animals away forever"
+      ],
+      "correct": "He built an altar and offered burnt offerings to the Lord",
+      "explain": "The text says Noah 'построил Господу жертвенник и принес на нем жертвы всесожжения' (built an altar to the Lord and offered burnt offerings on it)."
+    },
+    {
+      "id": "r7",
+      "ru": "Пока существует земля, не прекратятся сев и жатва, холод и зной, лето и зима, день и ночь».",
+      "question": "What did God promise would never cease as long as the earth remains?",
+      "options": [
+        "Seedtime and harvest, cold and heat, summer and winter, day and night",
+        "Floods and famine",
+        "War and peace",
+        "Life and death"
+      ],
+      "correct": "Seedtime and harvest, cold and heat, summer and winter, day and night",
+      "explain": "God promises that 'сев и жатва, холод и зной, лето и зима, день и ночь' will never cease while the earth remains."
     }
   ]
 }

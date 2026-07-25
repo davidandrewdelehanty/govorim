@@ -2,133 +2,161 @@
   "cases": [
     {
       "id": "c1",
-      "sentence": "Приближаясь к брату, поклонился до ___ семь раз.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землю"],
-      "correct": "земли",
-      "case": "Родительный (Genitive)",
-      "translation": "As he approached his brother, he bowed to the ground seven times.",
-      "explain": "The preposition до (up to) governs the genitive case."
+      "sentence": "Иаков посмотрел и увидел, что идёт ___, и с ним четыреста человек.",
+      "lemma": "Исав",
+      "options": ["Исав", "Исава", "Исаву", "Исавом"],
+      "correct": "Исав",
+      "case": "Именительный (Nominative)",
+      "translation": "Jacob looked and saw that Esau was coming, with four hundred men with him.",
+      "explain": "Исав is the subject of the verb идёт (\"is coming\"), so it stands in the nominative case."
     },
     {
       "id": "c2",
-      "sentence": "Исав обнял его, бросился ему на ___ и расцеловал его.",
-      "lemma": "шея",
-      "options": ["шея", "шеи", "шею", "шеей"],
-      "correct": "шею",
-      "case": "Винительный (Accusative)",
-      "translation": "Esau embraced him, fell on his neck, and kissed him.",
-      "explain": "The preposition на (motion onto) takes the accusative case."
+      "sentence": "Приближаясь к брату, он поклонился до ___ семь раз.",
+      "lemma": "земля",
+      "options": ["земля", "земли", "земле", "землёй"],
+      "correct": "земли",
+      "case": "Родительный (Genitive)",
+      "translation": "As he approached his brother, he bowed to the ground seven times.",
+      "explain": "The preposition до (\"to, as far as\") governs the genitive case, hence земли."
     },
     {
       "id": "c3",
-      "sentence": "Если я нашёл расположение в твоих глазах, то прими от меня этот ___.",
-      "lemma": "дар",
-      "options": ["дар", "дара", "дару", "даром"],
-      "correct": "дар",
-      "case": "Винительный (Accusative)",
-      "translation": "If I have found favor in your eyes, then accept this gift from me.",
-      "explain": "The transitive verb принять takes its direct object in the accusative; for an inanimate noun the accusative equals the nominative form."
+      "sentence": "Сам же он пошёл вперёд и, приближаясь к ___, поклонился до земли семь раз.",
+      "lemma": "брат",
+      "options": ["брат", "брата", "брату", "братом"],
+      "correct": "брату",
+      "case": "Дательный (Dative)",
+      "translation": "He himself went ahead and, as he approached his brother, bowed to the ground seven times.",
+      "explain": "The preposition к (\"toward\") requires the dative case, hence брату."
     },
     {
       "id": "c4",
-      "sentence": "Я пойду медленно, пока не приду к моему ___ в Сеир.",
-      "lemma": "господин",
-      "options": ["господин", "господина", "господину", "господином"],
-      "correct": "господину",
-      "case": "Дательный (Dative)",
-      "translation": "I will go slowly until I come to my lord in Seir.",
-      "explain": "The preposition к (direction toward) governs the dative case."
+      "sentence": "Там он установил ___ и назвал его Бог, Бог Израиля.",
+      "lemma": "жертвенник",
+      "options": ["жертвенник", "жертвенника", "жертвеннику", "жертвенником"],
+      "correct": "жертвенник",
+      "case": "Винительный (Accusative)",
+      "translation": "There he set up an altar and called it God, the God of Israel.",
+      "explain": "The transitive verb установил (\"set up\") takes a direct object in the accusative case; for this inanimate masculine noun the accusative жертвенник has the same form as the nominative."
     },
     {
       "id": "c5",
-      "sentence": "Он разделил детей между Лией, Рахилью и двумя ___.",
-      "lemma": "служанка",
-      "options": ["служанки", "служанок", "служанками", "служанках"],
-      "correct": "служанками",
+      "sentence": "Придя из Падан-Арама, Иаков поселился перед ___.",
+      "lemma": "город",
+      "options": ["город", "города", "городу", "городом"],
+      "correct": "городом",
       "case": "Творительный (Instrumental)",
-      "translation": "He divided the children between Leah, Rachel, and the two maidservants.",
-      "explain": "The preposition между governs the instrumental case (and the numeral двумя requires the instrumental plural)."
+      "translation": "Coming from Paddan Aram, Jacob camped before the city.",
+      "explain": "The preposition перед (\"in front of / before\") governs the instrumental case, hence городом."
     },
     {
       "id": "c6",
-      "sentence": "Он построил себе жилище и сделал шалаши для ___.",
-      "lemma": "скот",
-      "options": ["скот", "скота", "скотом", "скоте"],
-      "correct": "скота",
-      "case": "Родительный (Genitive)",
-      "translation": "He built himself a dwelling and made shelters for the livestock.",
-      "explain": "The preposition для (for) governs the genitive case."
+      "sentence": "Мой господин знает, что дети слабы, и что я должен заботиться о дойных ___ и коровах.",
+      "lemma": "овца",
+      "options": ["овцы", "овец", "овцам", "овцах"],
+      "correct": "овцах",
+      "case": "Предложный (Prepositional)",
+      "translation": "My lord knows that the children are weak, and that I must take care of the nursing sheep and cows.",
+      "explain": "The preposition о (\"about, concerning\") governs the prepositional case, hence овцах."
     },
     {
       "id": "c7",
-      "sentence": "Иаков благополучно прибыл в город Шехем и поселился перед ___.",
-      "lemma": "город",
-      "options": ["город", "города", "городом", "городе"],
-      "correct": "городом",
+      "sentence": "Подошли служанки со своими ___ и поклонились.",
+      "lemma": "дети",
+      "options": ["дети", "детям", "детьми", "детях"],
+      "correct": "детьми",
       "case": "Творительный (Instrumental)",
-      "translation": "Jacob arrived safely at the city of Shechem and settled before the city.",
-      "explain": "The preposition перед (in front of) governs the instrumental case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Я хотел найти расположение в твоих ___, мой господин.",
-      "lemma": "глаз",
-      "options": ["глаза", "глаз", "глазами", "глазах"],
-      "correct": "глазах",
-      "case": "Предложный (Prepositional)",
-      "translation": "I wanted to find favor in your eyes, my lord.",
-      "explain": "The preposition в indicating location takes the prepositional case (here plural)."
+      "translation": "The servants came near with their children and bowed.",
+      "explain": "The preposition со (a form of с, \"with\") governs the instrumental case, hence детьми."
     }
   ],
   "reading": [
     {
       "id": "r1",
       "ru": "Иаков посмотрел и увидел, что идет Исав, и с ним четыреста человек.",
-      "question": "How many men were with Esau as he approached Jacob?",
-      "options": ["Four hundred", "Four thousand", "One hundred", "Twelve"],
+      "question": "How many men were with Esau when Jacob saw him approaching?",
+      "options": ["Four hundred", "Two hundred", "Six hundred", "A thousand"],
       "correct": "Four hundred",
-      "explain": "The text says 'с ним четыреста человек' (four hundred men were with him)."
+      "explain": "The text states that Esau was coming with four hundred men."
     },
     {
       "id": "r2",
-      "ru": "Но Исав побежал Иакову навстречу, обнял его, бросился ему на шею и расцеловал его, и они заплакали.",
-      "question": "How did Esau react when he met Jacob?",
-      "options": ["He embraced and kissed him, and they wept", "He attacked him with a sword", "He turned away in anger", "He demanded tribute"],
-      "correct": "He embraced and kissed him, and they wept",
-      "explain": "The text says Esau 'обнял его... и расцеловал его, и они заплакали' (embraced him, kissed him, and they wept)."
+      "ru": "Он поставил служанок и их детей впереди.",
+      "question": "How did Jacob arrange his family as they went out to meet Esau?",
+      "options": [
+        "He put the servants and their children in front, then Leah and her children, with Rachel and Joseph last",
+        "He put Rachel and Joseph in front, then Leah, then the servants",
+        "He sent Leah out first alone to meet Esau",
+        "He hid all the children behind the servants only"
+      ],
+      "correct": "He put the servants and their children in front, then Leah and her children, with Rachel and Joseph last",
+      "explain": "The text says Jacob put the servants and their children in front, Leah and her children after them, and Rachel with Joseph at the rear."
     },
     {
       "id": "r3",
-      "ru": "Исав сказал, «У меня всего вдоволь, брат, оставь свое себе».",
-      "question": "What did Esau first say about Jacob's gift?",
-      "options": ["He had plenty and Jacob should keep his own", "He wanted twice as much", "He would take only the sheep", "He refused to answer"],
-      "correct": "He had plenty and Jacob should keep his own",
-      "explain": "The text says 'У меня всего вдоволь, брат, оставь свое себе' (I have plenty, brother; keep what is yours)."
+      "ru": "Исав посмотрел, увидел женщин и детей и спросил, «Кто это с тобой?»",
+      "question": "What did Esau ask when he saw the women and children with Jacob?",
+      "options": [
+        "\"Who are these with you?\"",
+        "\"Where have you come from?\"",
+        "\"Why did you leave me?\"",
+        "\"What is your name?\""
+      ],
+      "correct": "\"Who are these with you?\"",
+      "explain": "Esau saw the women and children and asked, \"Who are these with you?\""
     },
     {
       "id": "r4",
       "ru": "Иаков настаивал, и Исав принял дары.",
-      "question": "What happened after Jacob insisted?",
-      "options": ["Esau accepted the gifts", "Esau left in anger", "Esau returned the gifts", "Jacob gave up"],
+      "question": "What happened after Jacob insisted that Esau take the gifts?",
+      "options": [
+        "Esau accepted the gifts",
+        "Esau refused the gifts again",
+        "Esau gave the gifts back to Jacob's servants",
+        "Esau asked for more gifts"
+      ],
       "correct": "Esau accepted the gifts",
-      "explain": "The text says 'Иаков настаивал, и Исав принял дары' (Jacob insisted, and Esau accepted the gifts)."
+      "explain": "The text says Jacob insisted, and Esau accepted the gifts."
     },
     {
       "id": "r5",
-      "ru": "Иаков же пошел в Сукот, где он построил себе жилище и сделал шалаши для скота.",
-      "question": "What did Jacob build at Succoth?",
-      "options": ["A dwelling for himself and shelters for his livestock", "A temple to the Lord", "A defensive wall", "A large well"],
-      "correct": "A dwelling for himself and shelters for his livestock",
-      "explain": "The text says he 'построил себе жилище и сделал шалаши для скота' (built himself a dwelling and made shelters for the livestock)."
+      "ru": "Если их сильно гнать хотя бы один день, то животные погибнут.",
+      "question": "Why did Jacob say he needed to travel slowly with his group?",
+      "options": [
+        "Because driving the flocks and children too hard for even one day would kill the animals",
+        "Because he was afraid of Esau's men",
+        "Because the road to Seir was blocked",
+        "Because Rachel was too tired to walk"
+      ],
+      "correct": "Because driving the flocks and children too hard for even one day would kill the animals",
+      "explain": "Jacob explains that if the animals are driven hard even one day, they will die."
     },
     {
       "id": "r6",
-      "ru": "За стокий сит он купил у сыновей Хамора, отца Шехема, участок земли, на котором поставил свой шатер.",
-      "question": "From whom did Jacob buy the parcel of land?",
-      "options": ["From the sons of Hamor, Shechem's father", "From Esau his brother", "From Laban the Aramean", "From the king of Canaan"],
-      "correct": "From the sons of Hamor, Shechem's father",
-      "explain": "The text says he bought it 'у сыновей Хамора, отца Шехема' (from the sons of Hamor, Shechem's father)."
+      "ru": "Иаков благополучно прибыл в город Шехем в Ханаане, придя из Падан-Арама и поселился перед городом.",
+      "question": "Where did Jacob settle after coming from Paddan Aram?",
+      "options": [
+        "Near the city of Shechem in Canaan",
+        "In the land of Seir with Esau",
+        "In Sukkot by the river",
+        "In Egypt near the Nile"
+      ],
+      "correct": "Near the city of Shechem in Canaan",
+      "explain": "The text says Jacob arrived safely at the city of Shechem in Canaan and camped before the city."
+    },
+    {
+      "id": "r7",
+      "ru": "Там он установил жертвенник и назвал его Бог, Бог Израиля.",
+      "question": "What did Jacob name the altar he built near Shechem?",
+      "options": [
+        "God, the God of Israel",
+        "The Lord Will Provide",
+        "The Rock of Ages",
+        "The Altar of Peace"
+      ],
+      "correct": "God, the God of Israel",
+      "explain": "The text says he set up an altar there and called it God, the God of Israel."
     }
   ]
 }

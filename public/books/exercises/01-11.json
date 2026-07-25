@@ -2,133 +2,186 @@
   "cases": [
     {
       "id": "c1",
-      "sentence": "Во всём ___ был один язык и одно наречие.",
-      "lemma": "мир",
-      "options": ["мир", "мира", "мире", "миром"],
-      "correct": "мире",
-      "case": "Предложный (Prepositional)",
-      "translation": "In all the world there was one language and one speech.",
-      "explain": "The preposition в (во) indicating location takes the prepositional case."
+      "sentence": "Во всём мире был один ___ и одно наречие.",
+      "lemma": "язык",
+      "options": [
+        "язык",
+        "языка",
+        "языку",
+        "языком"
+      ],
+      "correct": "язык",
+      "case": "Именительный (Nominative)",
+      "translation": "The whole world had one language and one speech.",
+      "explain": "Язык is the subject complement of был, so it stands in the nominative."
     },
     {
       "id": "c2",
-      "sentence": "Двигаясь к востоку, люди вышли на ___ в Шинаре.",
-      "lemma": "равнина",
-      "options": ["равнина", "равнины", "равнине", "равнину"],
-      "correct": "равнину",
-      "case": "Винительный (Accusative)",
-      "translation": "Traveling toward the east, the people came out onto a plain in Shinar.",
-      "explain": "The preposition на expressing motion onto takes the accusative case."
+      "sentence": "Но, дойдя до ___, они поселились там.",
+      "lemma": "Харан",
+      "options": [
+        "Харан",
+        "Харана",
+        "Харану",
+        "Хараном"
+      ],
+      "correct": "Харана",
+      "case": "Родительный (Genitive)",
+      "translation": "But, having come as far as Haran, they settled there.",
+      "explain": "The preposition до (as far as) governs the genitive case."
     },
     {
       "id": "c3",
-      "sentence": "Кирпичи у них были вместо ___.",
-      "lemma": "камень",
-      "options": ["камень", "камня", "камню", "камнем"],
-      "correct": "камня",
-      "case": "Родительный (Genitive)",
-      "translation": "They had brick instead of stone.",
-      "explain": "The preposition вместо (instead of) governs the genitive case."
+      "sentence": "Двигаясь к ___, люди вышли на равнину в Шинаре и поселились там.",
+      "lemma": "восток",
+      "options": [
+        "восток",
+        "востока",
+        "востоку",
+        "востоком"
+      ],
+      "correct": "востоку",
+      "case": "Дательный (Dative)",
+      "translation": "Moving toward the east, people came to a plain in Shinar and settled there.",
+      "explain": "The preposition к (toward) governs the dative case."
     },
     {
       "id": "c4",
-      "sentence": "Она была ___ Арана, отца Милки и Иски.",
-      "lemma": "дочь",
-      "options": ["дочь", "дочери", "дочерью", "дочерей"],
-      "correct": "дочерью",
-      "case": "Творительный (Instrumental)",
-      "translation": "She was the daughter of Haran, the father of Milcah and Iscah.",
-      "explain": "The predicate noun with the past tense of быть (была) takes the instrumental case."
+      "sentence": "Потом они сказали, «Давайте построим себе ___ с башни до небес, чтобы прославить свое имя».",
+      "lemma": "город",
+      "options": [
+        "город",
+        "города",
+        "городу",
+        "городом"
+      ],
+      "correct": "город",
+      "case": "Винительный (Accusative)",
+      "translation": "Then they said, 'Come, let us build ourselves a city with a tower to the heavens, to make a name for ourselves.'",
+      "explain": "Город is the direct object of построим (to build); for this inanimate noun the accusative matches the nominative form."
     },
     {
       "id": "c5",
-      "sentence": "Арпахшад родился через два года после ___.",
-      "lemma": "потоп",
-      "options": ["потоп", "потопа", "потопу", "потопом"],
-      "correct": "потопа",
-      "case": "Родительный (Genitive)",
-      "translation": "Arpachshad was born two years after the flood.",
-      "explain": "The preposition после (after) governs the genitive case."
+      "sentence": "До вавилонского рассеяния все люди на земле были одним ___, и у них был один язык.",
+      "lemma": "народ",
+      "options": [
+        "народ",
+        "народа",
+        "народу",
+        "народом"
+      ],
+      "correct": "народом",
+      "case": "Творительный (Instrumental)",
+      "translation": "Before the Babylonian dispersion, all the people on earth were one people, and they had one language.",
+      "explain": "The instrumental народом is used as the predicate complement of были (were) — 'were [as] one people'."
     },
     {
       "id": "c6",
-      "sentence": "И Господь рассеял их оттуда по всему ___.",
-      "lemma": "свет",
-      "options": ["свет", "света", "свету", "светом"],
-      "correct": "свету",
-      "case": "Дательный (Dative)",
-      "translation": "And the Lord scattered them from there over all the world.",
-      "explain": "The preposition по (over/throughout) governs the dative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Но, дойдя до ___, они поселились там.",
-      "lemma": "Харан",
-      "options": ["Харан", "Харана", "Харану", "Хараном"],
-      "correct": "Харана",
-      "case": "Родительный (Genitive)",
-      "translation": "But having reached Haran, they settled there.",
-      "explain": "The preposition до (up to/as far as) governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Тирах взял своего сына Авраама и своего ___ Лота.",
-      "lemma": "внук",
-      "options": ["внук", "внука", "внуку", "внуком"],
-      "correct": "внука",
-      "case": "Винительный (Accusative)",
-      "translation": "Terah took his son Abram and his grandson Lot.",
-      "explain": "The transitive verb взял (took) takes a direct object; for an animate masculine noun the accusative equals the genitive form."
+      "sentence": "Во всём ___ был один язык и одно наречие.",
+      "lemma": "мир",
+      "options": [
+        "мир",
+        "мира",
+        "миру",
+        "мире"
+      ],
+      "correct": "мире",
+      "case": "Предложный (Prepositional)",
+      "translation": "The whole world had one language and one speech.",
+      "explain": "The preposition в expressing location governs the prepositional case."
     }
   ],
   "reading": [
     {
       "id": "r1",
-      "ru": "Во всем мире был один язык и одно наречие.",
-      "question": "What was the state of language in all the world at first?",
-      "options": ["There was one language and one speech", "There were many languages", "Each nation had its own tongue", "No one could speak"],
-      "correct": "There was one language and one speech",
-      "explain": "The text says the whole world had one language and one speech."
+      "ru": "Они сказали друг другу, «Давайте сделаем кирпичи и обожжем их получше».",
+      "question": "What did the people decide to make?",
+      "options": [
+        "Bricks, and bake them thoroughly",
+        "Boats to sail away",
+        "Tents to live in",
+        "Weapons for war"
+      ],
+      "correct": "Bricks, and bake them thoroughly",
+      "explain": "The people say 'Давайте сделаем кирпичи и обожжем их получше' (let us make bricks and bake them thoroughly)."
     },
     {
       "id": "r2",
-      "ru": "Кирпичи у них были вместо камня и смола вместо известкового раствора.",
-      "question": "What building materials did the people use?",
-      "options": ["Brick instead of stone and tar instead of mortar", "Wood and clay", "Gold and silver", "Stone and lime"],
-      "correct": "Brick instead of stone and tar instead of mortar",
-      "explain": "The text says they used brick for stone and tar for mortar."
+      "ru": "Потом они сказали, «Давайте построим себе город с башни до небес, чтобы прославить свое имя и не рассеяться по всей земле».",
+      "question": "Why did the people want to build the city and tower?",
+      "options": [
+        "To make a name for themselves and avoid being scattered",
+        "To store grain for a coming famine",
+        "To worship idols",
+        "To escape a flood"
+      ],
+      "correct": "To make a name for themselves and avoid being scattered",
+      "explain": "They say it is 'чтобы прославить свое имя и не рассеяться по всей земле' (to make a name for themselves and not be scattered over the whole earth)."
     },
     {
       "id": "r3",
       "ru": "И Господь рассеял их оттуда по всему свету, и они перестали строить тот город.",
-      "question": "What happened after the Lord scattered the people?",
-      "options": ["They stopped building the city", "They finished the tower", "They built a new city", "They returned to the east"],
-      "correct": "They stopped building the city",
-      "explain": "The text says the Lord scattered them and they stopped building the city."
+      "question": "What did the Lord do in response to the tower?",
+      "options": [
+        "He scattered the people over the whole world",
+        "He destroyed the city with fire",
+        "He sent a flood",
+        "He blessed their work"
+      ],
+      "correct": "He scattered the people over the whole world",
+      "explain": "The text says 'Господь рассеял их оттуда по всему свету' (the Lord scattered them from there over the whole world)."
     },
     {
       "id": "r4",
       "ru": "Вот почему он был назван Вавилон, ведь Господь смешал там язык всего мира.",
-      "question": "Why was the place named Babel?",
-      "options": ["Because there the Lord confused the language of all the world", "Because it was the largest city", "Because Noah lived there", "Because of a great flood"],
-      "correct": "Because there the Lord confused the language of all the world",
-      "explain": "The text says it was named Babel because there the Lord confused the language of all the world."
+      "question": "Why was the city named Babylon?",
+      "options": [
+        "Because the Lord confused the language of the whole world there",
+        "Because Abraham was born there",
+        "Because it was built of gold",
+        "Because Noah lived there"
+      ],
+      "correct": "Because the Lord confused the language of the whole world there",
+      "explain": "The text explains 'Господь смешал там язык всего мира' (the Lord confused the language of the whole world there)."
     },
     {
       "id": "r5",
-      "ru": "Сара была бесплодна, и у нее не было детей.",
-      "question": "What is said about Sarai?",
-      "options": ["She was barren and had no children", "She had many sons", "She was the daughter of Terah", "She died in Ur"],
-      "correct": "She was barren and had no children",
-      "explain": "The text says Sarai was barren and had no children."
+      "ru": "Симу было сто лет, когда у него родился Арпахшад, через два года после потопа.",
+      "question": "How old was Shem when Arpachshad was born?",
+      "options": [
+        "100 years old",
+        "500 years old",
+        "35 years old",
+        "600 years old"
+      ],
+      "correct": "100 years old",
+      "explain": "The text says 'Симу было сто лет, когда у него родился Арпахшад' (Shem was 100 years old when Arpachshad was born)."
     },
     {
       "id": "r6",
+      "ru": "Сара была бесплодна, и у нее не было детей.",
+      "question": "What is said about Sarai (Sarah)?",
+      "options": [
+        "She was barren and had no children",
+        "She died in Haran",
+        "She was Nahor's wife",
+        "She built the tower of Babel"
+      ],
+      "correct": "She was barren and had no children",
+      "explain": "The text says 'Сара была бесплодна, и у нее не было детей' (Sarai was barren and had no children)."
+    },
+    {
+      "id": "r7",
       "ru": "Тирах жил 205 лет и умер в Харане.",
-      "question": "Where did Terah die?",
-      "options": ["In Haran", "In Ur of the Chaldees", "In Canaan", "In Babel"],
-      "correct": "In Haran",
-      "explain": "The text says Terah lived 205 years and died in Haran."
+      "question": "How long did Terah live, and where did he die?",
+      "options": [
+        "205 years, and he died in Haran",
+        "950 years, and he died in the ark",
+        "70 years, and he died in Egypt",
+        "119 years, and he died in Ur"
+      ],
+      "correct": "205 years, and he died in Haran",
+      "explain": "The text says 'Тирах жил 205 лет и умер в Харане' (Terah lived 205 years and died in Haran)."
     }
   ]
 }

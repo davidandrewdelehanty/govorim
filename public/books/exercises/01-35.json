@@ -2,83 +2,63 @@
   "cases": [
     {
       "id": "c1",
-      "sentence": "Поселись там и построй там ___ Богу, который явился тебе.",
-      "lemma": "жертвенник",
-      "options": ["жертвенник", "жертвенника", "жертвеннику", "жертвенником"],
-      "correct": "жертвенник",
-      "case": "Винительный (Accusative)",
-      "translation": "Settle there and build an altar to God, who appeared to you.",
-      "explain": "The transitive verb построить takes its direct object in the accusative; for an inanimate noun the accusative equals the nominative form."
+      "sentence": "___ сказал Иакову: «Поднимись в Вифиль, поселись там и построй там жертвенник Богу».",
+      "lemma": "Бог",
+      "options": ["Бог", "Бога", "Богу", "Богом"],
+      "correct": "Бог",
+      "case": "Именительный (Nominative)",
+      "translation": "God said to Jacob: 'Arise, go up to Bethel, live there, and build there an altar to God.'",
+      "explain": "Бог is the subject performing the action «сказал», so it stands in the nominative case."
     },
     {
       "id": "c2",
-      "sentence": "Избавьтесь от чужих ___, которые у вас с собой.",
-      "lemma": "бог",
-      "options": ["боги", "богов", "богами", "богах"],
-      "correct": "богов",
+      "sentence": "...когда ты бежал от своего ___ Исава».",
+      "lemma": "брат",
+      "options": ["брат", "брата", "брату", "братом"],
+      "correct": "брата",
       "case": "Родительный (Genitive)",
-      "translation": "Rid yourselves of the foreign gods that are with you.",
-      "explain": "The preposition от, with the verb избавиться, governs the genitive case (here plural)."
+      "translation": "...when you fled from your brother Esau.",
+      "explain": "The preposition «от» (from) always governs the genitive case."
     },
     {
       "id": "c3",
-      "sentence": "Иаков закопал их под ___ в Шехеме.",
-      "lemma": "дуб",
-      "options": ["дуб", "дуба", "дубом", "дубе"],
-      "correct": "дубом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Jacob buried them under the oak at Shechem.",
-      "explain": "The preposition под indicating location ('under') governs the instrumental case."
+      "sentence": "Бог сказал ___, «Поднимись в Вифиль, поселись там...»",
+      "lemma": "Иаков",
+      "options": ["Иаков", "Иакова", "Иакову", "Иаковом"],
+      "correct": "Иакову",
+      "case": "Дательный (Dative)",
+      "translation": "God said to Jacob, 'Arise, go up to Bethel, live there...'",
+      "explain": "The verb «сказать» takes its addressee in the dative case — сказал кому? Иакову."
     },
     {
       "id": "c4",
-      "sentence": "Ужас Божий объял все ___ вокруг них.",
-      "lemma": "город",
-      "options": ["города", "городов", "городами", "городах"],
-      "correct": "города",
+      "sentence": "«___, которую я дал Аврааму и Исааку, я отдаю тебе».",
+      "lemma": "земля",
+      "options": ["земля", "земли", "землю", "землёй"],
+      "correct": "землю",
       "case": "Винительный (Accusative)",
-      "translation": "The terror of God fell upon all the cities around them.",
-      "explain": "The transitive verb объять takes its direct object in the accusative; for an inanimate plural the accusative equals the nominative form."
+      "translation": "'The land that I gave to Abraham and Isaac, I am giving to you.'",
+      "explain": "The land is the direct object of the verb «отдаю» (I give), which requires the accusative case."
     },
     {
       "id": "c5",
-      "sentence": "Иаков поставил каменный столб на том ___, где Бог говорил с ним.",
-      "lemma": "место",
-      "options": ["место", "места", "местом", "месте"],
-      "correct": "месте",
-      "case": "Предложный (Prepositional)",
-      "translation": "Jacob set up a stone pillar at the place where God had spoken with him.",
-      "explain": "The preposition на indicating location takes the prepositional case."
+      "sentence": "Иаков закопал их под ___ в Шехеме.",
+      "lemma": "дуб",
+      "options": ["дуб", "дуба", "дубу", "дубом"],
+      "correct": "дубом",
+      "case": "Творительный (Instrumental)",
+      "translation": "Jacob buried them under the oak in Shechem.",
+      "explain": "The preposition «под» (under, indicating location) governs the instrumental case here."
     },
     {
       "id": "c6",
-      "sentence": "Землю я отдаю тебе, и отдам её твоим ___.",
-      "lemma": "потомок",
-      "options": ["потомки", "потомков", "потомкам", "потомками"],
-      "correct": "потомкам",
-      "case": "Дательный (Dative)",
-      "translation": "The land I give to you, and I will give it to your descendants.",
-      "explain": "The verb отдать (to give to someone) takes its indirect object in the dative case (here plural)."
-    },
-    {
-      "id": "c7",
-      "sentence": "Над её ___ Иаков поставил памятный камень.",
-      "lemma": "могила",
-      "options": ["могила", "могилы", "могилу", "могилой"],
-      "correct": "могилой",
-      "case": "Творительный (Instrumental)",
-      "translation": "Over her grave Jacob set up a memorial stone.",
-      "explain": "The preposition над (over, above) governs the instrumental case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Они отдали Иакову всех чужих богов и серьги из ___.",
-      "lemma": "ухо",
-      "options": ["уши", "ушей", "ушами", "ушах"],
-      "correct": "ушей",
-      "case": "Родительный (Genitive)",
-      "translation": "They gave Jacob all the foreign gods and the rings from their ears.",
-      "explain": "The preposition из (out of) governs the genitive case (here plural)."
+      "sentence": "Иаков поставил каменный столб на том ___, где Бог говорил с ним.",
+      "lemma": "место",
+      "options": ["место", "места", "месту", "месте"],
+      "correct": "месте",
+      "case": "Предложный (Prepositional)",
+      "translation": "Jacob set up a stone pillar in that place where God had spoken with him.",
+      "explain": "The preposition «на» (at/on, indicating a fixed location) requires the prepositional case: на том месте."
     }
   ],
   "reading": [
@@ -86,49 +66,57 @@
       "id": "r1",
       "ru": "Бог сказал Иакову, «Поднимись в Вифиль, поселись там и построй там жертвенник Богу, который явился тебе, когда ты бежал от своего брата Исава».",
       "question": "What did God tell Jacob to do at Bethel?",
-      "options": ["Settle there and build an altar to God", "Tear down the city", "Take another wife", "Bury his father"],
-      "correct": "Settle there and build an altar to God",
-      "explain": "The text says 'поселись там и построй там жертвенник Богу' (settle there and build an altar to God)."
+      "options": ["Build an altar to God who appeared to him when he fled from Esau", "Marry a woman from Bethel", "Bury his father's idols there", "Establish a new kingdom"],
+      "correct": "Build an altar to God who appeared to him when he fled from Esau",
+      "explain": "God told Jacob to go up to Bethel and build an altar there to the God who had appeared to him when he fled from his brother Esau."
     },
     {
       "id": "r2",
-      "ru": "Они отдали Иакову всех чужих богов, которые у них были, и серьги из ушей, и Иаков закопал их под дубом в Шехеме.",
-      "question": "What did Jacob do with the foreign gods and earrings?",
-      "options": ["He buried them under the oak at Shechem", "He burned them in a fire", "He gave them to Esau", "He threw them into a river"],
+      "ru": "Иаков закопал их под дубом в Шехеме.",
+      "question": "What did Jacob do with the foreign gods and earrings his household gave him?",
+      "options": ["He buried them under the oak at Shechem", "He threw them into a river", "He sold them in the marketplace", "He gave them to a priest"],
       "correct": "He buried them under the oak at Shechem",
-      "explain": "The text says 'Иаков закопал их под дубом в Шехеме' (Jacob buried them under the oak at Shechem)."
+      "explain": "Jacob buried the foreign gods and earrings under the oak near Shechem before continuing on to Bethel."
     },
     {
       "id": "r3",
-      "ru": "Бог сказал ему, «Я Бог всемогущий, плодись и умножайся. Народ и множество народов произойдут от тебя, и цари произойдут от твоих чресел».",
-      "question": "What did God promise would come from Jacob?",
-      "options": ["A nation, a company of nations, and kings", "Great wealth only", "A very long life", "Many fortified cities"],
-      "correct": "A nation, a company of nations, and kings",
-      "explain": "The text says 'Народ и множество народов произойдут от тебя, и цари произойдут от твоих чресел' (a nation and a company of nations will come from you, and kings)."
+      "ru": "Дзевора, кормилица Ревекия, умерла и была похоронена под дубом близ Вифиля, поэтому он был назван «Дуб плача».",
+      "question": "Who died and was buried under an oak near Bethel, giving the tree its name?",
+      "options": ["Rebekah's nurse, Deborah", "Rachel", "Isaac's servant", "Jacob's mother"],
+      "correct": "Rebekah's nurse, Deborah",
+      "explain": "Deborah, Rebekah's nurse, died and was buried under the oak near Bethel, which was then called 'the oak of weeping.'"
     },
     {
       "id": "r4",
-      "ru": "Когда Рахиль испускала дух, умирая, она назвала сына Бен-Онии, но отец назвал его Вениамин.",
-      "question": "What did the father name the son whom Rachel called Ben-Oni?",
-      "options": ["Benjamin", "Israel", "Joseph", "Reuben"],
-      "correct": "Benjamin",
-      "explain": "The text says 'отец назвал его Вениамин' (his father named him Benjamin)."
+      "ru": "Бог сказал ему, «Я Бог всемогущий, плодись и умножайся. Народ и множество народов произойдут от тебя, и цари произойдут от твоих чресел».",
+      "question": "What did God promise Jacob (now Israel) after renaming him?",
+      "options": ["That nations and kings would come from him", "That he would live forever", "That he would become a priest", "That he would return to Egypt"],
+      "correct": "That nations and kings would come from him",
+      "explain": "God, identifying himself as God Almighty, promised Jacob that a nation and company of nations, and kings, would come from him."
     },
     {
       "id": "r5",
-      "ru": "Рахиль умерла и была похоронена на пути в Ефрафу, то есть в Вифлеем.",
-      "question": "Where was Rachel buried?",
-      "options": ["On the way to Ephrath (Bethlehem)", "In Bethel", "In Hebron", "In Paddan Aram"],
-      "correct": "On the way to Ephrath (Bethlehem)",
-      "explain": "The text says she 'была похоронена на пути в Ефрафу, то есть в Вифлеем' (was buried on the way to Ephrath, that is, Bethlehem)."
+      "ru": "Когда Рахиль испускала дух, умирая, она назвала сына Бен-Онии, но отец назвал его Вениамин.",
+      "question": "What happened as Rachel was dying in childbirth?",
+      "options": ["She named her son Ben-Oni, but Jacob renamed him Benjamin", "She asked Jacob to bury her in Egypt", "She refused to name the child", "She named the child after Joseph"],
+      "correct": "She named her son Ben-Oni, but Jacob renamed him Benjamin",
+      "explain": "As she was dying, Rachel named her newborn son Ben-Oni, but his father Jacob called him Benjamin."
     },
     {
       "id": "r6",
-      "ru": "У Иакова было двенадцать сыновей.",
-      "question": "How many sons did Jacob have?",
-      "options": ["Twelve", "Ten", "Seven", "Four"],
-      "correct": "Twelve",
-      "explain": "The text says 'У Иакова было двенадцать сыновей' (Jacob had twelve sons)."
+      "ru": "Рувим лег с наложницей отца Валлой, и Израиль узнал об этом.",
+      "question": "What did Reuben do while Israel lived in that land?",
+      "options": ["He slept with his father's concubine Bilhah", "He stole from his brothers", "He killed a Shechemite", "He refused to bury Isaac"],
+      "correct": "He slept with his father's concubine Bilhah",
+      "explain": "Reuben lay with Bilhah, his father's concubine, and Israel heard about it."
+    },
+    {
+      "id": "r7",
+      "ru": "Исаак испустил дух, умер и отошел к своим предкам, старым и насытившимся жизнью. Его сыновья Исаав и Иаков похоронили его.",
+      "question": "How did Isaac's life end, and who buried him?",
+      "options": ["He died old and full of days, and was buried by Esau and Jacob", "He died young in an accident", "He was buried by his servants only", "He disappeared without a trace"],
+      "correct": "He died old and full of days, and was buried by Esau and Jacob",
+      "explain": "Isaac died at the age of 180, old and full of days, and his sons Esau and Jacob buried him."
     }
   ]
 }

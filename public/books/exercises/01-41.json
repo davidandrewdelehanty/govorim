@@ -2,133 +2,177 @@
   "cases": [
     {
       "id": "c1",
+      "sentence": "Фараону приснился ___.",
+      "lemma": "сон",
+      "options": ["сон", "сна", "сну", "сном"],
+      "correct": "сон",
+      "case": "Именительный (Nominative)",
+      "translation": "Pharaoh had a dream.",
+      "explain": "Сон is the grammatical subject of приснился, so it stands in the nominative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Из всех стран приходили в Египет, чтобы купить у Иосифа ___.",
+      "lemma": "зерно",
+      "options": ["зерно", "зерна", "зерну", "зерном"],
+      "correct": "зерна",
+      "case": "Родительный (Genitive)",
+      "translation": "People from all countries came to Egypt to buy grain from Joseph.",
+      "explain": "The partitive genitive is used after купить to mean 'some of' the grain."
+    },
+    {
+      "id": "c3",
+      "sentence": "Фараон сказал ___, «Мне приснился сон, и никто не может его истолковать».",
+      "lemma": "Иосиф",
+      "options": ["Иосиф", "Иосифа", "Иосифу", "Иосифом"],
+      "correct": "Иосифу",
+      "case": "Дательный (Dative)",
+      "translation": "Pharaoh said to Joseph, 'I have had a dream, and no one can interpret it.'",
+      "explain": "The verb сказать takes its indirect object (to whom) in the dative case."
+    },
+    {
+      "id": "c4",
+      "sentence": "Голод опустошит ___.",
+      "lemma": "земля",
+      "options": ["земля", "земли", "земле", "землю"],
+      "correct": "землю",
+      "case": "Винительный (Accusative)",
+      "translation": "The famine will devastate the land.",
+      "explain": "The transitive verb опустошить takes its direct object in the accusative case."
+    },
+    {
+      "id": "c5",
+      "sentence": "Я ставлю тебя над Моим ___.",
+      "lemma": "дом",
+      "options": ["дом", "дома", "дому", "домом"],
+      "correct": "домом",
+      "case": "Творительный (Instrumental)",
+      "translation": "I am setting you over my house.",
+      "explain": "The preposition над (over) governs the instrumental case."
+    },
+    {
+      "id": "c6",
       "sentence": "Он стоял на ___ Нила, и вот из реки поднялись семь коров.",
       "lemma": "берег",
       "options": ["берег", "берега", "берегу", "берегом"],
       "correct": "берегу",
       "case": "Предложный (Prepositional)",
-      "translation": "He stood on the bank of the Nile, and behold, seven cows came up out of the river.",
-      "explain": "The preposition на indicating location takes the prepositional case (the special locative form берегу)."
-    },
-    {
-      "id": "c2",
-      "sentence": "И вот из ___ поднялись семь коров, гладких и жирных.",
-      "lemma": "река",
-      "options": ["река", "реки", "реке", "рекой"],
-      "correct": "реки",
-      "case": "Родительный (Genitive)",
-      "translation": "And behold, out of the river came up seven cows, sleek and fat.",
-      "explain": "The preposition из (out of) governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Из реки поднялись семь ___, гладких и жирных.",
-      "lemma": "корова",
-      "options": ["коровы", "коров", "коровам", "коровами"],
-      "correct": "коров",
-      "case": "Родительный множественного (Genitive plural)",
-      "translation": "Out of the river came up seven cows, sleek and fat.",
-      "explain": "Numerals from five upward (семь) govern the genitive plural."
-    },
-    {
-      "id": "c4",
-      "sentence": "Семь колосьев, здоровых и полных, росли на одном ___.",
-      "lemma": "стебель",
-      "options": ["стебель", "стебля", "стебле", "стеблем"],
-      "correct": "стебле",
-      "case": "Предложный (Prepositional)",
-      "translation": "Seven ears of grain, healthy and full, grew on one stalk.",
-      "explain": "The preposition на indicating location takes the prepositional case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Вслед за ними выросли ещё семь колосьев, тощих и опалённых восточным ___.",
-      "lemma": "ветер",
-      "options": ["ветер", "ветра", "ветру", "ветром"],
-      "correct": "ветром",
-      "case": "Творительный (Instrumental)",
-      "translation": "After them grew seven more ears, thin and scorched by the east wind.",
-      "explain": "The passive participle опалённых takes its agent (the wind) in the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Фараон послал за ___, его спешно привели из темницы.",
-      "lemma": "Иосиф",
-      "options": ["Иосиф", "Иосифа", "Иосифу", "Иосифом"],
-      "correct": "Иосифом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Pharaoh sent for Joseph, and they brought him hastily out of the dungeon.",
-      "explain": "The construction послать за (to send for) governs the instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Иосиф открыл склады и стал продавать зерно ___.",
-      "lemma": "египтянин",
-      "options": ["египтяне", "египтян", "египтянам", "египтянами"],
-      "correct": "египтянам",
-      "case": "Дательный (Dative)",
-      "translation": "Joseph opened the storehouses and began to sell grain to the Egyptians.",
-      "explain": "The verb продавать (to sell to someone) takes its recipient in the dative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Он повесил ему на ___ золотую цепь.",
-      "lemma": "шея",
-      "options": ["шея", "шеи", "шее", "шею"],
-      "correct": "шею",
-      "case": "Винительный (Accusative)",
-      "translation": "He hung a gold chain on his neck.",
-      "explain": "The preposition на expressing motion onto takes the accusative case."
+      "translation": "He was standing on the bank of the Nile, and behold, seven cows came up out of the river.",
+      "explain": "The preposition на indicating location takes the prepositional case, here in its special locative form берегу."
     }
   ],
   "reading": [
     {
       "id": "r1",
-      "ru": "Прошло два года, и фараону приснился сон.",
-      "question": "What happened after two years had passed?",
-      "options": ["Pharaoh had a dream", "Joseph was freed", "A famine began", "Pharaoh died"],
-      "correct": "Pharaoh had a dream",
-      "explain": "The text says 'Прошло два года, и фараону приснился сон' (Two years passed, and Pharaoh had a dream)."
+      "ru": "Он стоял на берегу Нила, и вот из реки поднялись семь коров, гладких и жирных, и стали пастись в тростниках.",
+      "question": "In Pharaoh's first dream, what came up out of the Nile?",
+      "options": ["Seven sleek, fat cows", "Seven thin cows", "Seven ears of grain", "A great flood"],
+      "correct": "Seven sleek, fat cows",
+      "explain": "The text says 'из реки поднялись семь коров, гладких и жирных' (seven sleek, fat cows came up out of the river)."
     },
     {
       "id": "r2",
-      "ru": "Он созвал всех чародеев и мудрецов Египта и рассказал им свои сны, но никто не смог их истолковать.",
-      "question": "What happened when Pharaoh summoned Egypt's magicians and wise men?",
-      "options": ["No one could interpret his dreams", "They interpreted them correctly", "They refused to come", "They were afraid"],
-      "correct": "No one could interpret his dreams",
-      "explain": "The text says 'никто не смог их истолковать' (no one could interpret them)."
+      "ru": "И безобразные, тощие коровы пожирали семь гладких жирных коров.",
+      "question": "What did the ugly, thin cows do in the dream?",
+      "options": ["They devoured the fat cows", "They ran away", "They gave birth to calves", "They drowned in the Nile"],
+      "correct": "They devoured the fat cows",
+      "explain": "The text says the ugly, thin cows 'пожирали семь гладких жирных коров' (devoured the seven sleek, fat cows)."
     },
     {
       "id": "r3",
-      "ru": "Иосиф ответил, «Не я, но Бог даст фараону ответ во благо».",
-      "question": "Who did Joseph say would give Pharaoh the answer?",
-      "options": ["God", "Joseph himself", "The magicians", "The cup bearer"],
-      "correct": "God",
-      "explain": "Joseph says 'Не я, но Бог даст фараону ответ во благо' (Not I, but God will give Pharaoh a favorable answer)."
+      "ru": "Тощие колоссия проглотили семь здоровых, полных колоссиев.",
+      "question": "In Pharaoh's second dream, what happened to the seven healthy heads of grain?",
+      "options": ["They were swallowed by seven thin heads of grain", "They were eaten by birds", "They turned to gold", "They were burned by fire"],
+      "correct": "They were swallowed by seven thin heads of grain",
+      "explain": "The text says the thin heads of grain 'проглотили семь здоровых, полных колоссиев' (swallowed the seven healthy, full heads of grain)."
     },
     {
       "id": "r4",
-      "ru": "Семь хороших коров — это семь лет, и семь хороших колосьев — это семь лет.",
-      "question": "What did the seven good cows and seven good ears represent?",
-      "options": ["Seven years", "Seven days", "Seven months", "Seven cities"],
-      "correct": "Seven years",
-      "explain": "The text says 'Семь хороших коров — это семь лет' (The seven good cows are seven years)."
+      "ru": "Он созвал всех чародеев и мудрецов Египта и рассказал им свои сны, но никто не смог их истолковать.",
+      "question": "What happened when Pharaoh told his dreams to Egypt's magicians and wise men?",
+      "options": ["None of them could interpret the dreams", "They all agreed on one interpretation", "They refused to listen", "They fled the palace"],
+      "correct": "None of them could interpret the dreams",
+      "explain": "The text says 'никто не смог их истолковать' (no one was able to interpret them)."
     },
     {
       "id": "r5",
-      "ru": "В земле египетской наступают семь лет великого изобилия, а за ними последуют семь лет голода, когда все изобилие в Египте будет забыто, и голод опустошит землю.",
-      "question": "What would follow the seven years of plenty?",
-      "options": ["Seven years of famine", "Seven years of war", "Seven more years of plenty", "A great flood"],
-      "correct": "Seven years of famine",
-      "explain": "The text says 'за ними последуют семь лет голода' (after them will follow seven years of famine)."
+      "ru": "Тогда главный виночерпий сказал фараону, «Теперь я вспоминаю, что провинился.",
+      "question": "Who reminded Pharaoh about Joseph's ability to interpret dreams?",
+      "options": ["The chief cupbearer", "The chief baker", "A magician", "Joseph's brother"],
+      "correct": "The chief cupbearer",
+      "explain": "The text says 'главный виночерпий сказал фараону' (the chief cupbearer spoke to Pharaoh) and told him about Joseph."
     },
     {
       "id": "r6",
+      "ru": "Иосиф ответил, «Не я, но Бог даст фараону ответ во благо».",
+      "question": "How did Joseph respond when Pharaoh said he heard Joseph could interpret dreams?",
+      "options": ["He said it was not him, but God who would give Pharaoh a favorable answer", "He said he could not help", "He asked for payment first", "He said only priests could interpret dreams"],
+      "correct": "He said it was not him, but God who would give Pharaoh a favorable answer",
+      "explain": "Joseph says 'Не я, но Бог даст фараону ответ во благо' (Not I, but God will give Pharaoh a favorable answer)."
+    },
+    {
+      "id": "r7",
+      "ru": "Семь хороших коров — это семь лет, и семь хороших колосьев — это семь лет.",
+      "question": "According to Joseph, what do the seven good cows and seven good heads of grain represent?",
+      "options": ["Seven years", "Seven kings", "Seven cities", "Seven plagues"],
+      "correct": "Seven years",
+      "explain": "Joseph explains 'Семь хороших коров — это семь лет' (the seven good cows are seven years)."
+    },
+    {
+      "id": "r8",
+      "ru": "В земле египетской наступают семь лет великого изобилия, а за ними последуют семь лет голода",
+      "question": "What did Joseph predict would happen in Egypt?",
+      "options": ["Seven years of great abundance followed by seven years of famine", "Seven years of war", "Seven years of drought only", "Seven years of peace"],
+      "correct": "Seven years of great abundance followed by seven years of famine",
+      "explain": "Joseph says 'наступают семь лет великого изобилия, а за ними последуют семь лет голода' (seven years of great abundance are coming, followed by seven years of famine)."
+    },
+    {
+      "id": "r9",
+      "ru": "Пусть же фараон найдет проницательного и мудрого человека и поставит его над землей Египта.",
+      "question": "What did Joseph advise Pharaoh to do?",
+      "options": ["Find a discerning and wise man to set over the land of Egypt", "Destroy the grain stores", "Move the capital city", "Go to war with neighboring nations"],
+      "correct": "Find a discerning and wise man to set over the land of Egypt",
+      "explain": "Joseph advises Pharaoh to find 'проницательного и мудрого человека и поставит его над землей Египта' (a discerning and wise man to set over the land of Egypt)."
+    },
+    {
+      "id": "r10",
+      "ru": "И фараон сказал Иосифу, «Раз Бог открыл тебе все это, значит нет никого мудрее и проницательнее тебя».",
+      "question": "Why did Pharaoh choose Joseph for the position?",
+      "options": ["Because God had revealed all this to him, making him the wisest", "Because Joseph was Egyptian royalty", "Because the magicians recommended him", "Because Joseph paid a bribe"],
+      "correct": "Because God had revealed all this to him, making him the wisest",
+      "explain": "Pharaoh says 'Раз Бог открыл тебе все это, значит нет никого мудрее и проницательнее тебя' (since God has shown you all this, there is no one wiser and more discerning than you)."
+    },
+    {
+      "id": "r11",
+      "ru": "Он снял с пальца свой перстень и надел на палец Иосифу, он надел его в одежды из тонкого полотна и повесил ему на шею золотую цепь.",
+      "question": "How did Pharaoh honor Joseph?",
+      "options": ["He gave him his signet ring, fine linen robes, and a gold chain", "He gave him a new name only", "He gave him a palace", "He made him a priest"],
+      "correct": "He gave him his signet ring, fine linen robes, and a gold chain",
+      "explain": "The text describes Pharaoh giving Joseph his 'перстень', 'одежды из тонкого полотна' and a 'золотую цепь' (signet ring, fine linen robes, and a gold chain)."
+    },
+    {
+      "id": "r12",
       "ru": "Иосифу было тридцать лет, когда он поступил на службу к фараону, царю Египта.",
       "question": "How old was Joseph when he entered Pharaoh's service?",
-      "options": ["Thirty years old", "Seventeen years old", "Forty years old", "Twenty-five years old"],
-      "correct": "Thirty years old",
+      "options": ["Thirty", "Seventeen", "Twenty-five", "Forty"],
+      "correct": "Thirty",
       "explain": "The text says 'Иосифу было тридцать лет' (Joseph was thirty years old)."
+    },
+    {
+      "id": "r13",
+      "ru": "Иосиф назвал своего первенца Монассия и сказал, «Это потому что Бог дал мне забыть все мои страдания и дом моего отца».",
+      "question": "Why did Joseph name his firstborn son Manasseh?",
+      "options": ["Because God made him forget his hardship and his father's house", "Because it was his father's name", "Because it means 'first' in Egyptian", "Because his wife chose the name"],
+      "correct": "Because God made him forget his hardship and his father's house",
+      "explain": "Joseph says it is 'потому что Бог дал мне забыть все мои страдания и дом моего отца' (because God has made me forget all my hardship and my father's house)."
+    },
+    {
+      "id": "r14",
+      "ru": "Из всех стран приходили в Египет, чтобы купить у Иосифа зерна, потому что по всему миру был жестокий голод.",
+      "question": "Why did people from all countries come to Egypt?",
+      "options": ["To buy grain from Joseph because the famine was severe everywhere", "To settle permanently in Egypt", "To pay tribute to Pharaoh", "To trade in gold"],
+      "correct": "To buy grain from Joseph because the famine was severe everywhere",
+      "explain": "The text says they came 'чтобы купить у Иосифа зерна, потому что по всему миру был жестокий голод' (to buy grain from Joseph because the famine was severe throughout the world)."
     }
   ]
 }

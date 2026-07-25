@@ -2,133 +2,290 @@
   "cases": [
     {
       "id": "c1",
-      "sentence": "Возвращайся в ___ отцов к своей родне.",
+      "sentence": "___ сказал Иакову, «Возвращайся в землю отцов к своей родне, и я буду с тобой».",
+      "lemma": "Господь",
+      "options": ["Господь", "Господа", "Господу", "Господом"],
+      "correct": "Господь",
+      "case": "Именительный (Nominative)",
+      "translation": "The Lord said to Jacob, \"Return to the land of your fathers, to your relatives, and I will be with you.\"",
+      "explain": "Господь is the subject performing the action сказал (\"said\"), so the verb's subject takes the nominative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Иаков забрал все, чем владел наш отец, и скопил себе богатство за счёт нашего ___.",
+      "lemma": "отец",
+      "options": ["отец", "отца", "отцу", "отцом"],
+      "correct": "отца",
+      "case": "Родительный (Genitive)",
+      "translation": "Jacob has taken all that our father owned, and accumulated wealth at the expense of our father.",
+      "explain": "The compound preposition за счёт (\"at the expense of\") governs the genitive case."
+    },
+    {
+      "id": "c3",
+      "sentence": "Иаков был вне себя от ___ и стал выговаривать Лавану.",
+      "lemma": "гнев",
+      "options": ["гнев", "гнева", "гневу", "гневом"],
+      "correct": "гнева",
+      "case": "Родительный (Genitive)",
+      "translation": "Jacob was beside himself with anger and began to reproach Laban.",
+      "explain": "The preposition от (\"from/out of\") governs the genitive case, expressing the cause of his state — от гнева."
+    },
+    {
+      "id": "c4",
+      "sentence": "Лаван сказал ___, «Что ты сделал? Ты обманул меня и увел моих дочерей, как пленников на войне».",
+      "lemma": "Иаков",
+      "options": ["Иаков", "Иакова", "Иакову", "Иаковом"],
+      "correct": "Иакову",
+      "case": "Дательный (Dative)",
+      "translation": "Laban said to Jacob, \"What have you done? You deceived me and carried off my daughters like captives of war.\"",
+      "explain": "The verb сказал (\"said\") takes an indirect object in the dative case — сказал кому? Иакову."
+    },
+    {
+      "id": "c5",
+      "sentence": "Иаков отправился в путь к своему ___ Исааку в землю Ханаана.",
+      "lemma": "отец",
+      "options": ["отец", "отца", "отцу", "отцом"],
+      "correct": "отцу",
+      "case": "Дательный (Dative)",
+      "translation": "Jacob set out on the way to his father Isaac, to the land of Canaan.",
+      "explain": "The preposition к (\"toward\") governs the dative case, showing motion toward a person — к отцу."
+    },
+    {
+      "id": "c6",
+      "sentence": "Возвращайся в ___ отцов к своей родне, и я буду с тобой».",
       "lemma": "земля",
       "options": ["земля", "земли", "землю", "землёй"],
       "correct": "землю",
       "case": "Винительный (Accusative)",
-      "translation": "Return to the land of your fathers, to your kin.",
-      "explain": "The preposition в expressing motion into takes the accusative case."
+      "translation": "Return to the land of your fathers, to your relatives, and I will be with you.",
+      "explain": "The preposition в + accusative case expresses motion into a destination — в землю."
     },
     {
-      "id": "c2",
-      "sentence": "Возвращайся в землю отцов к своей ___.",
-      "lemma": "родня",
-      "options": ["родня", "родню", "родне", "роднёй"],
-      "correct": "родне",
-      "case": "Дательный (Dative)",
-      "translation": "Return to the land of your fathers, to your kin.",
-      "explain": "The preposition к (direction toward) governs the dative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Он бежал со всем своим имуществом и, перейдя ___, направился к Нагориям Галаада.",
-      "lemma": "река",
-      "options": ["река", "реки", "реку", "рекой"],
-      "correct": "реку",
-      "case": "Винительный (Accusative)",
-      "translation": "He fled with all he had and, crossing the river, headed toward the highlands of Gilead.",
-      "explain": "The transitive verb перейти (to cross) takes its direct object in the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Иаков посадил детей и жён на ___.",
-      "lemma": "верблюд",
-      "options": ["верблюды", "верблюдов", "верблюдам", "верблюдами"],
-      "correct": "верблюдов",
-      "case": "Винительный (Accusative)",
-      "translation": "Jacob set his children and wives on the camels.",
-      "explain": "The preposition на (motion onto) takes the accusative; for an animate plural noun the accusative equals the genitive form."
-    },
-    {
-      "id": "c5",
-      "sentence": "Лаван с роднёй тоже стали там ___.",
-      "lemma": "лагерь",
-      "options": ["лагерь", "лагеря", "лагерю", "лагерем"],
-      "correct": "лагерем",
+      "id": "c7",
+      "sentence": "Лаван заключает с ___ договор.",
+      "lemma": "Иаков",
+      "options": ["Иаков", "Иакова", "Иакову", "Иаковом"],
+      "correct": "Иаковом",
       "case": "Творительный (Instrumental)",
-      "translation": "Laban and his kin also encamped there.",
-      "explain": "The expression стать лагерем (to make camp) uses the instrumental case."
+      "translation": "Laban makes a covenant with Jacob.",
+      "explain": "The preposition с (\"with\") governs the instrumental case — с Иаковом."
     },
     {
-      "id": "c6",
+      "id": "c8",
+      "sentence": "Иаков уже поставил шатер в Нагорье Галаада, и Лаван с ___ тоже стали там лагерем.",
+      "lemma": "родня",
+      "options": ["родня", "родни", "родне", "родней"],
+      "correct": "родней",
+      "case": "Творительный (Instrumental)",
+      "translation": "Jacob had already pitched his tent in the mountain of Gilead, and Laban with his relatives also camped there.",
+      "explain": "The preposition с (\"with\") governs the instrumental case — с родней."
+    },
+    {
+      "id": "c9",
       "sentence": "Таковы были те двадцать лет, что я жил в твоём ___.",
       "lemma": "дом",
       "options": ["дом", "дома", "дому", "доме"],
       "correct": "доме",
       "case": "Предложный (Prepositional)",
-      "translation": "Such were those twenty years that I lived in your house.",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Не могу встать перед тобой, потому что у меня то, что обычно бывает у ___.",
-      "lemma": "женщина",
-      "options": ["женщины", "женщин", "женщинам", "женщинами"],
-      "correct": "женщин",
-      "case": "Родительный (Genitive)",
-      "translation": "I cannot rise before you, for I have what usually happens to women.",
-      "explain": "The preposition у governs the genitive case, here in the genitive plural."
-    },
-    {
-      "id": "c8",
-      "sentence": "После ___ Лии он вошёл в шатёр Рахили.",
-      "lemma": "шатёр",
-      "options": ["шатёр", "шатра", "шатру", "шатром"],
-      "correct": "шатра",
-      "case": "Родительный (Genitive)",
-      "translation": "After Leah's tent, he entered Rachel's tent.",
-      "explain": "The preposition после (after) governs the genitive case."
+      "translation": "Those were the twenty years that I lived in your house.",
+      "explain": "The preposition в + prepositional case expresses location, not motion — жил в доме."
     }
   ],
   "reading": [
     {
       "id": "r1",
-      "ru": "Господь сказал Иакову, «Возвращайся в землю отцов к своей родне, и я буду с тобой».",
-      "question": "What did the Lord command Jacob to do?",
-      "options": ["Return to the land of his fathers", "Stay and serve Laban longer", "Go down to Egypt", "Build a city"],
-      "correct": "Return to the land of his fathers",
-      "explain": "The text says 'Возвращайся в землю отцов к своей родне' (Return to the land of your fathers, to your kin)."
+      "ru": "Иаков услышал, как сыновья Лавана говорили",
+      "question": "What did Jacob overhear Laban's sons saying about him?",
+      "options": [
+        "That he had taken all that belonged to their father and grown rich from it",
+        "That he was planning to return to Canaan",
+        "That Laban wanted to make a covenant with him",
+        "That Rachel had stolen the household idols"
+      ],
+      "correct": "That he had taken all that belonged to their father and grown rich from it",
+      "explain": "The sons of Laban complained that Jacob had taken their father's wealth and grown rich at his expense."
     },
     {
       "id": "r2",
-      "ru": "На третий день Лавану сообщили, что Иаков бежал.",
-      "question": "When was Laban told that Jacob had fled?",
-      "options": ["On the third day", "On the seventh day", "After a month", "The same night"],
-      "correct": "On the third day",
-      "explain": "The text says 'На третий день Лавану сообщили' (On the third day Laban was told)."
+      "ru": "Господь сказал Иакову, «Возвращайся в землю отцов к своей родне, и я буду с тобой».",
+      "question": "What did the Lord command Jacob to do?",
+      "options": [
+        "Return to the land of his fathers and his relatives",
+        "Build an altar at Bethel",
+        "Marry Rachel and Leah",
+        "Make peace with Laban"
+      ],
+      "correct": "Return to the land of his fathers and his relatives",
+      "explain": "The Lord told Jacob to return to the land of his fathers, promising to be with him."
     },
     {
       "id": "r3",
-      "ru": "Когда Лаван ушел стричь овец, Рахиль украла его башков, а Иаков обманул Арамея Лавана, не известив его о своем уходе.",
-      "question": "What did Rachel do while Laban was away shearing his sheep?",
-      "options": ["She stole his household idols", "She fled to Egypt", "She warned her father", "She stayed behind"],
-      "correct": "She stole his household idols",
-      "explain": "The text says 'Рахиль украла его башков' (Rachel stole his household idols)."
+      "ru": "Но Бог не дал меня ему в обиду».",
+      "question": "According to Jacob, even though Laban deceived him and changed his wages, what did God do?",
+      "options": [
+        "God did not allow Laban to harm him",
+        "God punished Laban immediately",
+        "God gave Jacob's wages to Laban",
+        "God sent an angel to kill Laban's flocks"
+      ],
+      "correct": "God did not allow Laban to harm him",
+      "explain": "Jacob tells Rachel and Leah that God did not let Laban hurt him despite the repeated deception."
     },
     {
       "id": "r4",
-      "ru": "Рахиль же взяла домашних башков, положила их в верблюжье седло и села на них.",
-      "question": "Where did Rachel hide the household idols?",
-      "options": ["In the camel's saddle", "Under a tree", "Beneath the tent floor", "In a clay jar"],
-      "correct": "In the camel's saddle",
-      "explain": "The text says she 'положила их в верблюжье седло и села на них' (put them in the camel's saddle and sat on them)."
+      "ru": "Если он говорил, «Платы твоей будут крапчатые», то весь скот рождал крапчатых, а если он говорил, «Платы твоей будут пестрые», то весь скот рождал пестрых.",
+      "question": "What happened to the flocks according to what Laban named as Jacob's wages?",
+      "options": [
+        "Whatever pattern Laban named as wages, the whole flock bore offspring in that pattern",
+        "The flocks all died of disease",
+        "The flocks multiplied without any pattern",
+        "Jacob's flocks were taken away by Laban's sons"
+      ],
+      "correct": "Whatever pattern Laban named as wages, the whole flock bore offspring in that pattern",
+      "explain": "Whenever Laban specified speckled or streaked animals as Jacob's wages, the flock produced offspring matching that description, showing God's provision."
     },
     {
       "id": "r5",
-      "ru": "Двадцать лет я прожил у тебя, твои овцы и козы не выкидывали, баранов из твоих стад я не ел.",
-      "question": "How many years did Jacob live and work with Laban?",
-      "options": ["Twenty years", "Ten years", "Seven years", "Fourteen years"],
-      "correct": "Twenty years",
-      "explain": "The text says 'Двадцать лет я прожил у тебя' (Twenty years I lived with you)."
+      "ru": "Ангел Бога сказал мне во сне, «Иаков».",
+      "question": "Who spoke to Jacob in his dream?",
+      "options": [
+        "The angel of God",
+        "Laban",
+        "Isaac",
+        "Rachel"
+      ],
+      "correct": "The angel of God",
+      "explain": "Jacob recounts that the angel of God addressed him by name in a dream."
     },
     {
       "id": "r6",
-      "ru": "Иаков взял камень и поставил его памятным знаком.",
-      "question": "What did Jacob do with the stone?",
-      "options": ["He set it up as a memorial marker", "He threw it into the river", "He built a house with it", "He gave it to Laban"],
-      "correct": "He set it up as a memorial marker",
-      "explain": "The text says he 'поставил его памятным знаком' (set it up as a memorial marker)."
+      "ru": "Я бог Вифиля, где ты возлил масло на памятник и поклялся мне.",
+      "question": "What had Jacob done at Bethel, according to the angel?",
+      "options": [
+        "Poured oil on a pillar and made a vow",
+        "Built a house for his family",
+        "Buried his father Isaac",
+        "Fought with Laban's sons"
+      ],
+      "correct": "Poured oil on a pillar and made a vow",
+      "explain": "The angel identifies himself as the God of Bethel, where Jacob anointed a pillar with oil and made a vow."
+    },
+    {
+      "id": "r7",
+      "ru": "Да есть ли у нас еще доли в наследстве Отца?",
+      "question": "What complaint do Rachel and Leah raise about their father's inheritance?",
+      "options": [
+        "They feel they have no remaining share or inheritance from their father",
+        "They feel Laban owes them more sheep",
+        "They want Jacob to divide his wealth between them",
+        "They complain that Laban favors Rachel over Leah"
+      ],
+      "correct": "They feel they have no remaining share or inheritance from their father",
+      "explain": "Rachel and Leah ask rhetorically whether they still have any portion or inheritance in their father's estate, implying they have none."
+    },
+    {
+      "id": "r8",
+      "ru": "Иаков посадил детей и жен на верблюдов, погнал весь скот впереди себя",
+      "question": "How did Jacob prepare to leave Laban's household?",
+      "options": [
+        "He put his children and wives on camels and drove his livestock ahead of him",
+        "He sold all his flocks to Laban",
+        "He left his family behind and traveled alone",
+        "He waited for Laban's permission to depart"
+      ],
+      "correct": "He put his children and wives on camels and drove his livestock ahead of him",
+      "explain": "Jacob set his children and wives on camels and drove his flocks ahead as he departed for Canaan."
+    },
+    {
+      "id": "r9",
+      "ru": "Когда Лаван ушел стричь овец, Рахиль украла его башков",
+      "question": "What did Rachel do while Laban was away shearing his sheep?",
+      "options": [
+        "She stole her father's household idols",
+        "She freed all of Laban's servants",
+        "She told Jacob to stay behind",
+        "She destroyed Laban's altar"
+      ],
+      "correct": "She stole her father's household idols",
+      "explain": "While Laban was occupied shearing sheep, Rachel stole his household idols."
+    },
+    {
+      "id": "r10",
+      "ru": "Но ночью Бог явился Арамею Лавану во сне и сказал ему, «Берегись, не говори ничего Иакову, ни хорошего, ни плохого».",
+      "question": "What warning did God give Laban in a dream?",
+      "options": [
+        "Not to say anything to Jacob, good or bad",
+        "To kill Jacob for stealing his idols",
+        "To turn back and never pursue Jacob",
+        "To give Jacob half of his flocks"
+      ],
+      "correct": "Not to say anything to Jacob, good or bad",
+      "explain": "God warned Laban in a dream not to speak to Jacob either good or bad."
+    },
+    {
+      "id": "r11",
+      "ru": "Ты не дал мне даже поцеловать на прощание внуков и дочерей.",
+      "question": "What does Laban complain Jacob denied him?",
+      "options": [
+        "The chance to kiss his grandchildren and daughters goodbye",
+        "The chance to bless Jacob's flocks",
+        "The right to keep the household idols",
+        "A final meal together"
+      ],
+      "correct": "The chance to kiss his grandchildren and daughters goodbye",
+      "explain": "Laban complains that Jacob did not even let him kiss his grandchildren and daughters farewell."
+    },
+    {
+      "id": "r12",
+      "ru": "Рахиль же взяла домашних башков, положила их в верблюжье седло и села на них.",
+      "question": "How did Rachel hide the household idols from Laban's search?",
+      "options": [
+        "She put them in the camel's saddle and sat on them",
+        "She buried them outside the tent",
+        "She gave them to a servant to hide",
+        "She threw them into a river"
+      ],
+      "correct": "She put them in the camel's saddle and sat on them",
+      "explain": "Rachel hid the idols by placing them in the camel's saddle and sitting on them."
+    },
+    {
+      "id": "r13",
+      "ru": "Двадцать лет я прожил у тебя, твои овцы и козы не выкидывали, баранов из твоих стад я не ел.",
+      "question": "How does Jacob describe his twenty years of service to Laban?",
+      "options": [
+        "He cared faithfully for the flocks without loss and did not eat from Laban's rams",
+        "He constantly lost sheep to wild animals",
+        "He complained he was never given enough food",
+        "He spent most of the time fighting with Laban's sons"
+      ],
+      "correct": "He cared faithfully for the flocks without loss and did not eat from Laban's rams",
+      "explain": "Jacob recounts that during his twenty years of service, Laban's ewes and goats did not miscarry, and he did not eat the rams of the flock."
+    },
+    {
+      "id": "r14",
+      "ru": "Давай же заключим договор, ты и я, и пусть он будет свидетельством между нами».",
+      "question": "What did Laban propose to Jacob after their argument?",
+      "options": [
+        "That they make a covenant to serve as a witness between them",
+        "That Jacob return all his wages",
+        "That Rachel and Leah stay with Laban",
+        "That they fight to settle the dispute"
+      ],
+      "correct": "That they make a covenant to serve as a witness between them",
+      "explain": "Laban proposes that he and Jacob make a covenant as a witness between them."
+    },
+    {
+      "id": "r15",
+      "ru": "а рано утром Лаван поцеловал внуков и дочерей, благословил их и отправился домой.",
+      "question": "How does the chapter end?",
+      "options": [
+        "Laban kisses his grandchildren and daughters, blesses them, and returns home",
+        "Laban attacks Jacob's camp",
+        "Jacob and Laban build a temple together",
+        "Rachel confesses to stealing the idols"
+      ],
+      "correct": "Laban kisses his grandchildren and daughters, blesses them, and returns home",
+      "explain": "The chapter closes with Laban kissing his grandchildren and daughters, blessing them, and departing for home."
     }
   ]
 }

@@ -2,133 +2,199 @@
   "cases": [
     {
       "id": "c1",
-      "sentence": "Я ваш брат Иосиф, которого вы продали в ___.",
-      "lemma": "Египет",
-      "options": ["Египет", "Египта", "Египту", "Египтом"],
-      "correct": "Египет",
-      "case": "Винительный (Accusative)",
-      "translation": "I am your brother Joseph, whom you sold into Egypt.",
-      "explain": "The preposition в expressing motion into a place takes the accusative case."
+      "sentence": "У Иакова замерло ___, и он не поверил им.",
+      "lemma": "сердце",
+      "options": [
+        "сердце",
+        "сердца",
+        "сердцу",
+        "сердцем"
+      ],
+      "correct": "сердце",
+      "case": "Именительный (Nominative)",
+      "translation": "Jacob's heart stood still, and he did not believe them.",
+      "explain": "Сердце is the subject of the verb замерло, so it stands in the nominative case."
     },
     {
       "id": "c2",
-      "sentence": "Он сделал меня ___ фараону.",
-      "lemma": "отец",
-      "options": ["отец", "отца", "отцу", "отцом"],
-      "correct": "отцом",
-      "case": "Творительный (Instrumental)",
-      "translation": "He made me a father to Pharaoh.",
-      "explain": "The predicate noun after сделать (to make someone something) stands in the instrumental case."
+      "sentence": "Слух о том, что пришли братья Иосифа, дошел до двора ___.",
+      "lemma": "фараон",
+      "options": [
+        "фараон",
+        "фараона",
+        "фараону",
+        "фараоном"
+      ],
+      "correct": "фараона",
+      "case": "Родительный (Genitive)",
+      "translation": "The report that Joseph's brothers had come reached Pharaoh's court.",
+      "explain": "Двор ___ (court of Pharaoh) is a possessive genitive construction."
     },
     {
       "id": "c3",
-      "sentence": "Он сделал меня отцом ___.",
-      "lemma": "фараон",
-      "options": ["фараон", "фараона", "фараону", "фараоном"],
-      "correct": "фараону",
+      "sentence": "Расскажите же моему ___ о том, как я прославлен в Египте.",
+      "lemma": "отец",
+      "options": [
+        "отец",
+        "отца",
+        "отцу",
+        "отцом"
+      ],
+      "correct": "отцу",
       "case": "Дательный (Dative)",
-      "translation": "He made me a father to Pharaoh.",
-      "explain": "'A father to Pharaoh' expresses the person related, which takes the dative case."
+      "translation": "Tell my father about how I have been honored in Egypt.",
+      "explain": "The verb расскажите (tell) takes its indirect object (to whom) in the dative case."
     },
     {
       "id": "c4",
-      "sentence": "Ты будешь жить в ___ Гошен.",
-      "lemma": "область",
-      "options": ["область", "области", "областью", "областям"],
-      "correct": "области",
-      "case": "Предложный (Prepositional)",
-      "translation": "You will live in the region of Goshen.",
-      "explain": "The preposition в indicating location takes the prepositional case."
+      "sentence": "Каждому он подарил новую ___.",
+      "lemma": "одежда",
+      "options": [
+        "одежда",
+        "одежды",
+        "одежде",
+        "одежду"
+      ],
+      "correct": "одежду",
+      "case": "Винительный (Accusative)",
+      "translation": "To each of them he gave a new set of clothing.",
+      "explain": "The transitive verb подарил (gave as a gift) takes its direct object in the accusative case."
     },
     {
       "id": "c5",
-      "sentence": "Иосиф дал им ___, как приказал фараон.",
-      "lemma": "колесница",
-      "options": ["колесницы", "колесниц", "колесницам", "колесницами"],
-      "correct": "колесницы",
-      "case": "Винительный (Accusative)",
-      "translation": "Joseph gave them wagons, as Pharaoh had commanded.",
-      "explain": "The transitive verb дать takes its direct object (the wagons) in the accusative case."
+      "sentence": "Он поцеловал всех братьев и с ___ обнимал их.",
+      "lemma": "плач",
+      "options": [
+        "плач",
+        "плача",
+        "плачу",
+        "плачем"
+      ],
+      "correct": "плачем",
+      "case": "Творительный (Instrumental)",
+      "translation": "He kissed all his brothers and embraced them, weeping.",
+      "explain": "The preposition с (with) governs the instrumental case."
     },
     {
       "id": "c6",
-      "sentence": "Каждому он подарил новую ___.",
-      "lemma": "одежда",
-      "options": ["одежда", "одежды", "одежду", "одеждой"],
-      "correct": "одежду",
-      "case": "Винительный (Accusative)",
-      "translation": "To each he gave new clothing.",
-      "explain": "The transitive verb подарить takes its direct object in the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "А Вениамину дал триста шекелей ___.",
-      "lemma": "серебро",
-      "options": ["серебро", "серебра", "серебру", "серебром"],
-      "correct": "серебра",
-      "case": "Родительный (Genitive)",
-      "translation": "But to Benjamin he gave three hundred shekels of silver.",
-      "explain": "The material measured (shekels of silver) takes the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Отцу он послал десять ослов, нагруженных лучшим ___ Египта.",
-      "lemma": "добро",
-      "options": ["добро", "добра", "добру", "добром"],
-      "correct": "добром",
-      "case": "Творительный (Instrumental)",
-      "translation": "To his father he sent ten donkeys loaded with the best goods of Egypt.",
-      "explain": "The material something is loaded with (нагруженный) stands in the instrumental case."
+      "sentence": "Уже два года, как в ___ голод.",
+      "lemma": "страна",
+      "options": [
+        "страна",
+        "страны",
+        "страну",
+        "стране"
+      ],
+      "correct": "стране",
+      "case": "Предложный (Prepositional)",
+      "translation": "For two years now there has been famine in the land.",
+      "explain": "The preposition в indicating location governs the prepositional case."
     }
   ],
   "reading": [
     {
       "id": "r1",
-      "ru": "Иосиф сказал братьям, «Я Иосиф, жив ли еще мой отец?»",
-      "question": "What did Joseph first ask his brothers when he revealed himself?",
-      "options": ["Whether his father was still alive", "Whether they had brought silver", "Whether they were hungry", "Whether Benjamin was safe"],
-      "correct": "Whether his father was still alive",
-      "explain": "Joseph asks 'жив ли еще мой отец?' (is my father still alive?)."
+      "ru": "Тогда Иосиф не мог более сдерживать себя перед рабами и воскликнул.",
+      "question": "What happened when Joseph could no longer control his emotions in front of his servants?",
+      "options": [
+        "He cried out for everyone to leave",
+        "He forgave his brothers publicly at once",
+        "He fainted from joy",
+        "He ordered a feast"
+      ],
+      "correct": "He cried out for everyone to leave",
+      "explain": "Joseph could not control himself and cried out 'Уходите все прочь от меня!' — leave me, everyone!"
     },
     {
       "id": "r2",
-      "ru": "Это Бог послал меня перед вами для спасения вашей жизни",
-      "question": "Why does Joseph say he was sent to Egypt?",
-      "options": ["To preserve their lives", "To become rich", "To punish his brothers", "To rule over Canaan"],
-      "correct": "To preserve their lives",
-      "explain": "Joseph says God sent him ahead 'для спасения вашей жизни' (to save your life)."
+      "ru": "Иосиф сказал братьям, «Я Иосиф, жив ли еще мой отец?»",
+      "question": "What was Joseph's first question to his brothers after revealing himself?",
+      "options": [
+        "Is my father still alive?",
+        "Where is Benjamin?",
+        "Why did you sell me?",
+        "Do you forgive me?"
+      ],
+      "correct": "Is my father still alive?",
+      "explain": "Joseph reveals himself and immediately asks whether his father is still alive."
     },
     {
       "id": "r3",
-      "ru": "Он обнял своего брата Вениамина и заплакал, и Вениамин плакал, обнимая его.",
-      "question": "How did Joseph react to seeing Benjamin?",
-      "options": ["He embraced him and wept", "He questioned him sternly", "He sent him away", "He ignored him"],
-      "correct": "He embraced him and wept",
-      "explain": "The text says Joseph embraced Benjamin and wept, and Benjamin wept too."
+      "ru": "Это Бог послал меня перед вами для спасения вашей жизни",
+      "question": "According to Joseph, who sent him to Egypt ahead of his brothers?",
+      "options": [
+        "God, to preserve their lives",
+        "Pharaoh, to rule Egypt",
+        "Jacob, to find food",
+        "The brothers themselves"
+      ],
+      "correct": "God, to preserve their lives",
+      "explain": "Joseph tells his brothers that God sent him ahead of them to save their lives."
     },
     {
       "id": "r4",
-      "ru": "Иосиф дал им колесницы, как приказал фараон, и припасы в дорогу.",
-      "question": "What did Joseph give his brothers for the journey?",
-      "options": ["Wagons and provisions", "Weapons and armor", "Gold and jewels", "Only bread"],
-      "correct": "Wagons and provisions",
-      "explain": "The text says Joseph gave them wagons and 'припасы в дорогу' (provisions for the road)."
+      "ru": "Ты будешь жить в области Гошен и будешь рядом со мной",
+      "question": "Where did Joseph invite his father to come and live?",
+      "options": [
+        "In the region of Goshen",
+        "In Pharaoh's palace",
+        "In Canaan",
+        "In Beersheba"
+      ],
+      "correct": "In the region of Goshen",
+      "explain": "Joseph tells his father he will live in the region of Goshen, near him."
     },
     {
       "id": "r5",
-      "ru": "У Иакова замерло сердце, и он не поверил им.",
-      "question": "How did Jacob first react to the news that Joseph was alive?",
-      "options": ["His heart went numb and he did not believe them", "He immediately rejoiced", "He fell ill", "He set out at once"],
-      "correct": "His heart went numb and he did not believe them",
-      "explain": "The text says Jacob's heart froze and he did not believe them."
+      "ru": "«Скажи братьям, сделайте вот что, навьючьте своих животных, возвращайтесь в землю Ханаана и приведите ко мне отца и ваши семьи.",
+      "question": "What did Pharaoh tell Joseph to instruct his brothers to do?",
+      "options": [
+        "Load their animals and bring their father and families from Canaan",
+        "Stay in Canaan and send grain",
+        "Return all silver to Egypt",
+        "Build storage cities in Goshen"
+      ],
+      "correct": "Load their animals and bring their father and families from Canaan",
+      "explain": "Pharaoh instructs Joseph to have the brothers load their animals and bring their father and families to Egypt."
     },
     {
       "id": "r6",
+      "ru": "а Вениамину дал триста шекелей серебра и пять смен одежды.",
+      "question": "What extra gift did Joseph give specifically to Benjamin?",
+      "options": [
+        "Three hundred shekels of silver and five changes of clothing",
+        "A golden cup",
+        "A chariot of his own",
+        "Ten donkeys"
+      ],
+      "correct": "Three hundred shekels of silver and five changes of clothing",
+      "explain": "Joseph gave Benjamin three hundred shekels of silver and five changes of clothing."
+    },
+    {
+      "id": "r7",
+      "ru": "У Иакова замерло сердце, и он не поверил им.",
+      "question": "How did Jacob react when told Joseph was alive?",
+      "options": [
+        "His heart stood still and he didn't believe them",
+        "He rejoiced immediately",
+        "He fainted",
+        "He wept for joy at once"
+      ],
+      "correct": "His heart stood still and he didn't believe them",
+      "explain": "Jacob's heart stood still and he did not believe the news at first."
+    },
+    {
+      "id": "r8",
       "ru": "И Израиль сказал, «Довольно, мой сын Иосиф жив, пойду и увижу его, прежде чем умру».",
-      "question": "What did Israel decide to do?",
-      "options": ["To go and see Joseph before he dies", "To stay in Canaan", "To send more sons to Egypt", "To wait for Joseph to come to him"],
-      "correct": "To go and see Joseph before he dies",
-      "explain": "Israel says he will go and see Joseph 'прежде чем умру' (before I die)."
+      "question": "What did Israel (Jacob) decide to do once convinced Joseph was alive?",
+      "options": [
+        "Go and see Joseph before he dies",
+        "Stay in Canaan forever",
+        "Send Benjamin ahead alone",
+        "Refuse to travel to Egypt"
+      ],
+      "correct": "Go and see Joseph before he dies",
+      "explain": "Israel says it is enough, and that he will go to see Joseph before he dies."
     }
   ]
 }

@@ -1,0 +1,183 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "___, которого любил Иисус, сказал тогда Петру, «Это Господь».",
+      "lemma": "ученик",
+      "options": ["ученик", "ученика", "ученику", "учеником"],
+      "correct": "ученик",
+      "case": "Именительный (Nominative)",
+      "translation": "The disciple whom Jesus loved said then to Peter, 'It is the Lord.'",
+      "explain": "Ученик is the subject of the verb сказал (said), so it stands in the nominative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Это было у Тибериадского ___.",
+      "lemma": "море",
+      "options": ["море", "моря", "морю", "морем"],
+      "correct": "моря",
+      "case": "Родительный (Genitive)",
+      "translation": "This was by the Sea of Tiberias.",
+      "explain": "The preposition у (by/at) governs the genitive case, so море becomes моря."
+    },
+    {
+      "id": "c3",
+      "sentence": "Ученик, которого любил Иисус, сказал тогда ___, «Это Господь».",
+      "lemma": "Петр",
+      "options": ["Петр", "Петра", "Петру", "Петром"],
+      "correct": "Петру",
+      "case": "Дательный (Dative)",
+      "translation": "The disciple whom Jesus loved said then to Peter, 'It is the Lord.'",
+      "explain": "The verb сказал (said) takes an indirect object in the dative case — said TO Peter."
+    },
+    {
+      "id": "c4",
+      "sentence": "«Я пойду ловить ___», — сказал Симон Петр.",
+      "lemma": "рыба",
+      "options": ["рыба", "рыбы", "рыбу", "рыбой"],
+      "correct": "рыбу",
+      "case": "Винительный (Accusative)",
+      "translation": "'I am going to catch fish,' said Simon Peter.",
+      "explain": "The transitive verb ловить (to catch) takes its direct object in the accusative case."
+    },
+    {
+      "id": "c5",
+      "sentence": "Он обвязался верхней ___, так как был раздет, и прыгнул в воду.",
+      "lemma": "одежда",
+      "options": ["одежда", "одежды", "одежде", "одеждой"],
+      "correct": "одеждой",
+      "case": "Творительный (Instrumental)",
+      "translation": "He wrapped himself with his outer garment, since he was undressed, and jumped into the water.",
+      "explain": "The reflexive verb обвязаться (to wrap oneself) governs the instrumental case for the thing used to wrap."
+    },
+    {
+      "id": "c6",
+      "sentence": "Рано утром Иисус стоял на ___, но ученики не узнали его.",
+      "lemma": "берег",
+      "options": ["берег", "берега", "берегу", "берегом"],
+      "correct": "берегу",
+      "case": "Предложный (Prepositional)",
+      "translation": "Early in the morning Jesus stood on the shore, but the disciples did not recognize him.",
+      "explain": "The preposition на (on), indicating location, governs the prepositional (locative) case: на берегу."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Симон Петр, Фома, называемый Близнец, Нафанаил из Каны Галилейской, сыновья Зеведея и два других ученика собрались вместе.",
+      "question": "Who gathered together at the Sea of Tiberias?",
+      "options": [
+        "Simon Peter, Thomas, Nathanael, the sons of Zebedee, and two other disciples",
+        "Only Peter and John",
+        "All twelve apostles plus Mary Magdalene",
+        "Nathanael and the sons of Zebedee alone"
+      ],
+      "correct": "Simon Peter, Thomas, Nathanael, the sons of Zebedee, and two other disciples",
+      "explain": "The text lists Simon Peter, Thomas called Didymus, Nathanael of Cana, the sons of Zebedee, and two other disciples as being together."
+    },
+    {
+      "id": "r2",
+      "ru": "Они отплыли на лодке, но в ту ночь ничего не поймали.",
+      "question": "What happened when the disciples went out fishing that night?",
+      "options": [
+        "They caught nothing",
+        "They caught 153 fish",
+        "Their boat capsized",
+        "They caught fish right away"
+      ],
+      "correct": "They caught nothing",
+      "explain": "The text states they sailed out in the boat but caught nothing that night."
+    },
+    {
+      "id": "r3",
+      "ru": "Он сказал, «забросьте сеть с правого борта и поймайте».",
+      "question": "What did Jesus instruct the disciples to do?",
+      "options": [
+        "Cast the net on the right side of the boat",
+        "Return to shore immediately",
+        "Cast the net on the left side",
+        "Wait until morning to fish"
+      ],
+      "correct": "Cast the net on the right side of the boat",
+      "explain": "Jesus told them to cast the net on the right side of the boat and they would catch fish."
+    },
+    {
+      "id": "r4",
+      "ru": "Как только Петр услышал, что это Господь, он обвязался верхней одеждой, так как был раздет, и прыгнул в воду.",
+      "question": "What did Peter do as soon as he heard it was the Lord?",
+      "options": [
+        "He put on his outer garment and jumped into the water",
+        "He stayed in the boat and waited",
+        "He began to weep",
+        "He asked Jesus for proof first"
+      ],
+      "correct": "He put on his outer garment and jumped into the water",
+      "explain": "Peter wrapped himself in his outer garment, since he was undressed, and jumped into the sea."
+    },
+    {
+      "id": "r5",
+      "ru": "В ней было 153 большие рыбы, однако сеть не порвалась.",
+      "question": "How many fish were caught in the net, and what happened to the net?",
+      "options": [
+        "153 fish, and the net did not tear",
+        "100 fish, and the net tore",
+        "153 fish, and the net tore",
+        "200 fish, and the net did not tear"
+      ],
+      "correct": "153 fish, and the net did not tear",
+      "explain": "The text says the net held 153 large fish yet did not tear."
+    },
+    {
+      "id": "r6",
+      "ru": "Иисус сказал, «Тогда паси Моих ягнят».",
+      "question": "What did Jesus tell Peter to do after Peter's first affirmation of love?",
+      "options": [
+        "Feed my lambs",
+        "Follow me immediately",
+        "Tend my sheep",
+        "Preach to the nations"
+      ],
+      "correct": "Feed my lambs",
+      "explain": "After Peter said he loved Jesus the first time, Jesus told him, 'Then feed my lambs.'"
+    },
+    {
+      "id": "r7",
+      "ru": "Петр опечалился, что Иисус спросил его в третий раз, «Любишь ли ты меня?»",
+      "question": "How did Peter feel when Jesus asked him a third time whether he loved him?",
+      "options": [
+        "Grieved",
+        "Angry",
+        "Indifferent",
+        "Joyful"
+      ],
+      "correct": "Grieved",
+      "explain": "The text says Peter was grieved that Jesus asked him a third time whether he loved him."
+    },
+    {
+      "id": "r8",
+      "ru": "Но когда состаришься, то протянешь руки, и другой подпояшет тебя и поведет туда, куда ты не захочешь».",
+      "question": "What did Jesus say would happen to Peter when he grew old?",
+      "options": [
+        "Another would dress him and lead him where he did not want to go",
+        "He would become a fisherman again",
+        "He would be crowned king",
+        "He would remain young forever"
+      ],
+      "correct": "Another would dress him and lead him where he did not want to go",
+      "explain": "Jesus said that when Peter grew old, another would dress him and carry him where he did not wish to go."
+    },
+    {
+      "id": "r9",
+      "ru": "Он и есть тот ученик, который свидетельствует об этом, и который это записал.",
+      "question": "Who is identified as the one who testifies about these events and wrote them down?",
+      "options": [
+        "The disciple whom Jesus loved",
+        "Simon Peter",
+        "Thomas",
+        "Nathanael"
+      ],
+      "correct": "The disciple whom Jesus loved",
+      "explain": "The closing verses identify the disciple whom Jesus loved as the one who testifies and wrote these things."
+    }
+  ]
+}

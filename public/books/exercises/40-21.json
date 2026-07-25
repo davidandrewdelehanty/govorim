@@ -1,0 +1,162 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "___ отвечал «Это пророк Иисус из Назарета, что в Галилее».",
+      "lemma": "народ",
+      "options": ["народ", "народа", "народу", "народом"],
+      "correct": "народ",
+      "case": "Именительный (Nominative)",
+      "translation": "The crowd answered, 'This is the prophet Jesus from Nazareth in Galilee.'",
+      "explain": "Народ is the subject of the verb отвечал, so it stands in the nominative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Скажите дочери ___, вот идет к тебе царь твой, кроткий, верхом на ослице и осленке.",
+      "lemma": "Сион",
+      "options": ["Сион", "Сиона", "Сиону", "Сионом"],
+      "correct": "Сиона",
+      "case": "Родительный (Genitive)",
+      "translation": "Tell the daughter of Zion, behold, your king comes to you, gentle, riding on a donkey and a colt.",
+      "explain": "The noun дочь (daughter) takes a genitive complement — the daughter OF Zion."
+    },
+    {
+      "id": "c3",
+      "sentence": "Скажите ___ Сиона, вот идет к тебе царь твой, кроткий, верхом на ослице и осленке.",
+      "lemma": "дочь",
+      "options": ["дочь", "дочери", "дочерью", "дочерей"],
+      "correct": "дочери",
+      "case": "Дательный (Dative)",
+      "translation": "Tell the daughter of Zion, behold, your king comes to you, gentle, riding on a donkey and a colt.",
+      "explain": "The verb сказать (to tell/say) requires its addressee in the dative case — tell TO the daughter."
+    },
+    {
+      "id": "c4",
+      "sentence": "Иисус вошел в ___ и выгнал оттуда всех продающих и покупающих.",
+      "lemma": "храм",
+      "options": ["храм", "храма", "храму", "храмом"],
+      "correct": "храм",
+      "case": "Винительный (Accusative)",
+      "translation": "Jesus entered the temple and drove out all those who were selling and buying there.",
+      "explain": "The preposition в expressing motion into takes the accusative; for the inanimate masculine храм the accusative equals the nominative."
+    },
+    {
+      "id": "c5",
+      "sentence": "Дом мой будет назван ___ молитвы, а вы превратили его в разбойничье логово.",
+      "lemma": "дом",
+      "options": ["дом", "дома", "дому", "домом"],
+      "correct": "домом",
+      "case": "Творительный (Instrumental)",
+      "translation": "My house will be called a house of prayer, but you have turned it into a den of robbers.",
+      "explain": "The passive verb назван (will be called) requires its predicate noun in the instrumental case."
+    },
+    {
+      "id": "c6",
+      "sentence": "Они пришли в селение Вифагия, что расположено на Масличной ___.",
+      "lemma": "гора",
+      "options": ["гора", "горы", "гору", "горе"],
+      "correct": "горе",
+      "case": "Предложный (Prepositional)",
+      "translation": "They came to the village of Bethphage, which is located on the Mount of Olives.",
+      "explain": "The preposition на indicating location (on the mount) governs the prepositional case."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Ученики пошли и сделали все так, как велел им Иисус.",
+      "question": "How did the disciples respond to Jesus' instructions about the donkey?",
+      "options": ["They did exactly as Jesus commanded them", "They refused to go", "They asked the villagers for money instead", "They brought a horse instead of a donkey"],
+      "correct": "They did exactly as Jesus commanded them",
+      "explain": "The text says 'Ученики пошли и сделали все так, как велел им Иисус' (the disciples went and did just as Jesus had commanded them)."
+    },
+    {
+      "id": "r2",
+      "ru": "Толпы людей, что шли впереди и позади него, громко кричали «Ассанна сыну Давида! Благословен тот, кто приходит во имя Господа! Ассанна в вышине небес!»",
+      "question": "What did the crowds shout as Jesus entered Jerusalem?",
+      "options": ["Hosanna to the son of David", "Crucify him", "Long live Caesar", "Woe to the Pharisees"],
+      "correct": "Hosanna to the son of David",
+      "explain": "The crowds cried out 'Ассанна сыну Давида! Благословен тот, кто приходит во имя Господа!' (Hosanna to the son of David! Blessed is he who comes in the name of the Lord!)."
+    },
+    {
+      "id": "r3",
+      "ru": "И когда Иисус вошел в Иерусалим, весь город пришел в волнение, и все спрашивали «Кто это?»",
+      "question": "How did the city of Jerusalem react to Jesus' entrance?",
+      "options": ["The whole city was stirred up, asking who he was", "The city ignored him completely", "The city closed its gates", "The city celebrated with a feast"],
+      "correct": "The whole city was stirred up, asking who he was",
+      "explain": "The text says 'весь город пришел в волнение, и все спрашивали «Кто это?»' (the whole city was stirred up, and everyone asked 'Who is this?')."
+    },
+    {
+      "id": "r4",
+      "ru": "Иисус вошел в храм и выгнал оттуда всех продающих и покупающих.",
+      "question": "What did Jesus do upon entering the temple?",
+      "options": ["He drove out all those buying and selling there", "He began teaching the Ten Commandments", "He healed the priests", "He blessed the money changers"],
+      "correct": "He drove out all those buying and selling there",
+      "explain": "The text says Jesus 'выгнал оттуда всех продающих и покупающих' (drove out all those who were selling and buying)."
+    },
+    {
+      "id": "r5",
+      "ru": "дом мой будет назван домом молитвы, а вы превратили его в разбойничье логово",
+      "question": "What did Jesus say the temple had been turned into?",
+      "options": ["A den of robbers", "A marketplace only", "A school for scribes", "A place of healing"],
+      "correct": "A den of robbers",
+      "explain": "Jesus said the house of prayer had been turned 'в разбойничье логово' (into a den of robbers)."
+    },
+    {
+      "id": "r6",
+      "ru": "Иисус сказал дереву, «Пусть же от тебя никогда больше не будет плодов». Инжир сразу же засох.",
+      "question": "What happened to the fig tree after Jesus cursed it?",
+      "options": ["It immediately withered", "It grew fruit overnight", "It was cut down by the disciples", "Nothing happened"],
+      "correct": "It immediately withered",
+      "explain": "The text says 'Инжир сразу же засох' (the fig tree immediately withered)."
+    },
+    {
+      "id": "r7",
+      "ru": "если вы будете верить, не сомневаясь, то сможете сделать не только то, что было сделано с инжиром",
+      "question": "What did Jesus teach the disciples about faith after the fig tree withered?",
+      "options": ["Believing without doubting allows even greater things than what happened to the fig tree", "Faith is unnecessary if you pray correctly", "Only priests can perform such miracles", "The fig tree incident could never be repeated"],
+      "correct": "Believing without doubting allows even greater things than what happened to the fig tree",
+      "explain": "Jesus said if they believed without doubting, they could do 'не только то, что было сделано с инжиром' (not only what was done to the fig tree) but even more."
+    },
+    {
+      "id": "r8",
+      "ru": "«Мы не знаем», — ответили они.",
+      "question": "How did the chief priests and elders answer Jesus' question about John's baptism?",
+      "options": ["They said they did not know", "They said it was from heaven", "They said it was from men", "They refused to answer at all"],
+      "correct": "They said they did not know",
+      "explain": "Unable to commit to either answer, they said '«Мы не знаем»' (We do not know)."
+    },
+    {
+      "id": "r9",
+      "ru": "«Не хочу», — ответил сын, но потом передумал и все же пошел.",
+      "question": "How did the first son respond in the parable of the two sons?",
+      "options": ["He initially refused but later changed his mind and went", "He agreed at once and went immediately", "He agreed but never went", "He asked his father for help first"],
+      "correct": "He initially refused but later changed his mind and went",
+      "explain": "The text says the son first said '«Не хочу»' (I will not) but 'потом передумал и все же пошел' (later changed his mind and went anyway)."
+    },
+    {
+      "id": "r10",
+      "ru": "Говорю вам истину, сборщики налогов и блудницы впереди вас идут в Царство Божие.",
+      "question": "What did Jesus say about tax collectors and prostitutes?",
+      "options": ["They are entering the kingdom of God ahead of the religious leaders", "They would never be allowed into the kingdom of God", "They were exempt from following the law", "They had already been condemned"],
+      "correct": "They are entering the kingdom of God ahead of the religious leaders",
+      "explain": "Jesus said 'сборщики налогов и блудницы впереди вас идут в Царство Божие' (tax collectors and prostitutes are entering the kingdom of God ahead of you)."
+    },
+    {
+      "id": "r11",
+      "ru": "Они схватили его, выбросили из виноградника и убили.",
+      "question": "What did the tenant farmers do to the landowner's son in the parable?",
+      "options": ["They seized him, threw him out of the vineyard, and killed him", "They welcomed him and gave him the harvest", "They imprisoned him until the owner arrived", "They sent him back with a message of respect"],
+      "correct": "They seized him, threw him out of the vineyard, and killed him",
+      "explain": "The text says they 'схватили его, выбросили из виноградника и убили' (seized him, threw him out of the vineyard, and killed him)."
+    },
+    {
+      "id": "r12",
+      "ru": "Камень, который отвергли строители, стал краеугольным.",
+      "question": "What does Jesus say became the cornerstone?",
+      "options": ["The stone the builders rejected", "The tower the landowner built", "The gate of the vineyard", "The wine press dug by the landowner"],
+      "correct": "The stone the builders rejected",
+      "explain": "Jesus quotes Scripture: 'Камень, который отвергли строители, стал краеугольным' (the stone the builders rejected became the cornerstone)."
+    }
+  ]
+}

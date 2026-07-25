@@ -1,0 +1,161 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Вдруг произошло сильное землетрясение, потому что ___ Господа спустился с неба, подошел к гробнице и отвалил камень.",
+      "lemma": "ангел",
+      "options": [
+        "ангел",
+        "ангела",
+        "ангелу",
+        "ангелом"
+      ],
+      "correct": "ангел",
+      "case": "Именительный (Nominative)",
+      "translation": "Suddenly there was a great earthquake, because an angel of the Lord came down from heaven, approached the tomb, and rolled away the stone.",
+      "explain": "Ангел is the subject of спустился (came down) — nominative."
+    },
+    {
+      "id": "c2",
+      "sentence": "потому что ангел Господа спустился с ___, подошел к гробнице и отвалил камень.",
+      "lemma": "небо",
+      "options": [
+        "небо",
+        "неба",
+        "небу",
+        "небом"
+      ],
+      "correct": "неба",
+      "case": "Родительный (Genitive)",
+      "translation": "...because an angel of the Lord came down from heaven, approached the tomb, and rolled away the stone.",
+      "explain": "The preposition с meaning “down from” takes the genitive → неба."
+    },
+    {
+      "id": "c3",
+      "sentence": "спустился с неба, подошел к ___ и отвалил камень.",
+      "lemma": "гробница",
+      "options": [
+        "гробница",
+        "гробницы",
+        "гробницу",
+        "гробнице"
+      ],
+      "correct": "гробнице",
+      "case": "Дательный (Dative)",
+      "translation": "...came down from heaven, approached the tomb, and rolled away the stone.",
+      "explain": "The preposition к (toward) takes the dative → гробнице."
+    },
+    {
+      "id": "c4",
+      "sentence": "подошел к гробнице и отвалил ___.",
+      "lemma": "камень",
+      "options": [
+        "камень",
+        "камня",
+        "камню",
+        "камнем"
+      ],
+      "correct": "камень",
+      "case": "Винительный (Accusative)",
+      "translation": "...approached the tomb and rolled away the stone.",
+      "explain": "Отвалил (rolled away) takes a direct object; камень is inanimate, so the accusative matches the nominative: камень."
+    },
+    {
+      "id": "c5",
+      "sentence": "Своим ___ он был, как молния, а его одежда была белой, как снег.",
+      "lemma": "вид",
+      "options": [
+        "вид",
+        "вида",
+        "виду",
+        "видом"
+      ],
+      "correct": "видом",
+      "case": "Творительный (Instrumental)",
+      "translation": "In his appearance he was like lightning, and his clothes were white as snow.",
+      "explain": "Instrumental of manner/comparison — “in his appearance” → видом (no preposition needed)."
+    },
+    {
+      "id": "c6",
+      "sentence": "Мне дана вся власть на ___ и на земле.",
+      "lemma": "небо",
+      "options": [
+        "небо",
+        "неба",
+        "небу",
+        "небе"
+      ],
+      "correct": "небе",
+      "case": "Предложный (Prepositional)",
+      "translation": "All authority has been given to me in heaven and on earth.",
+      "explain": "The preposition на indicating location (not motion) takes the prepositional → небе."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Его здесь нет, он воскрес, как и говорил ранее.",
+      "question": "What did the angel tell the women about Jesus?",
+      "options": [
+        "He is not here; he has risen",
+        "He has gone to Rome",
+        "He is still in the tomb",
+        "He will return next year"
+      ],
+      "correct": "He is not here; he has risen",
+      "explain": "The angel said Jesus was not there, for he had risen, just as he had said."
+    },
+    {
+      "id": "r2",
+      "ru": "Они подошли, обняли его ноги и поклонились ему.",
+      "question": "How did the women react when Jesus met them on the road?",
+      "options": [
+        "They took hold of his feet and worshiped him",
+        "They ran away in fear",
+        "They did not recognize him",
+        "They asked him to prove who he was"
+      ],
+      "correct": "They took hold of his feet and worshiped him",
+      "explain": "The women came, clasped his feet, and worshiped him."
+    },
+    {
+      "id": "r3",
+      "ru": "Они дали солдатам много денег и сказали. Говорите всем так, его ученики пришли ночью и выкрали его, пока мы спали.",
+      "question": "What story did the chief priests pay the soldiers to spread?",
+      "options": [
+        "That the disciples stole Jesus' body while the guards slept",
+        "That Jesus was never buried",
+        "That an earthquake destroyed the tomb",
+        "That the guards saw Jesus ascend to heaven"
+      ],
+      "correct": "That the disciples stole Jesus' body while the guards slept",
+      "explain": "The priests bribed the soldiers to say the disciples came at night and stole the body while they slept."
+    },
+    {
+      "id": "r4",
+      "ru": "Тогда, подойдя, Иисус сказал им, Мне дана вся власть на небе и на земле.",
+      "question": "What did Jesus say had been given to him?",
+      "options": [
+        "All authority in heaven and on earth",
+        "A new name",
+        "The keys of the kingdom",
+        "Twelve legions of angels"
+      ],
+      "correct": "All authority in heaven and on earth",
+      "explain": "Jesus said all authority in heaven and on earth had been given to him."
+    },
+    {
+      "id": "r5",
+      "ru": "Крестите их во имя Отца, Сына и Святого Духа и учите их исполнять все, что я вам повелел.",
+      "question": "What did Jesus command his disciples to do to all nations?",
+      "options": [
+        "Baptize them and teach them to obey everything he commanded",
+        "Conquer them militarily",
+        "Give them silver coins",
+        "Send them to Jerusalem"
+      ],
+      "correct": "Baptize them and teach them to obey everything he commanded",
+      "explain": "Jesus commanded them to baptize all nations and teach them to obey all he had commanded."
+    }
+  ]
+}

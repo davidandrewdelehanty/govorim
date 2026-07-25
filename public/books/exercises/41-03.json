@@ -1,0 +1,170 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Там был ___ с иссохшей рукой.",
+      "lemma": "человек",
+      "options": ["человек", "человека", "человеку", "человеком"],
+      "correct": "человек",
+      "case": "Именительный (Nominative)",
+      "translation": "There was a man with a withered hand.",
+      "explain": "Человек is the subject of был (there was) → nominative, the dictionary form."
+    },
+    {
+      "id": "c2",
+      "sentence": "Иисус исцеляет ___ с высохшей рукой.",
+      "lemma": "человек",
+      "options": ["человек", "человека", "человеку", "человеком"],
+      "correct": "человека",
+      "case": "Винительный (Accusative)",
+      "translation": "Jesus heals the man with the withered hand.",
+      "explain": "Человек is the direct object of исцеляет (heals); being an animate masculine noun, its accusative matches the genitive: человека."
+    },
+    {
+      "id": "c3",
+      "sentence": "За ними следовало великое множество народа из Галилеи, Иудеи, Иерусалима, Идумеи, из-за ___ Иордана, из окрестностей Тира и Сидона.",
+      "lemma": "река",
+      "options": ["река", "реки", "реке", "рекой"],
+      "correct": "реки",
+      "case": "Родительный (Genitive)",
+      "translation": "A great multitude followed from Galilee, Judea, Jerusalem, Idumea, from beyond the Jordan river, and from around Tyre and Sidon.",
+      "explain": "The preposition из-за (from beyond) governs the genitive → реки."
+    },
+    {
+      "id": "c4",
+      "sentence": "А Иисус пошел с учениками к ___.",
+      "lemma": "озеро",
+      "options": ["озеро", "озера", "озеру", "озером"],
+      "correct": "озеру",
+      "case": "Дательный (Dative)",
+      "translation": "And Jesus went with his disciples to the lake.",
+      "explain": "The preposition к (to/toward) always takes the dative → озеру."
+    },
+    {
+      "id": "c5",
+      "sentence": "Иисус пошел с ___ к озеру.",
+      "lemma": "ученик",
+      "options": ["ученики", "учеников", "ученикам", "учениками"],
+      "correct": "учениками",
+      "case": "Творительный (Instrumental)",
+      "translation": "Jesus went with his disciples to the lake.",
+      "explain": "The preposition с (with) takes the instrumental → учениками, the instrumental plural of ученик."
+    },
+    {
+      "id": "c6",
+      "sentence": "...потому что они говорили, он не в своем ___.",
+      "lemma": "ум",
+      "options": ["ум", "ума", "уму", "уме"],
+      "correct": "уме",
+      "case": "Предложный (Prepositional)",
+      "translation": "...because they said he was out of his mind.",
+      "explain": "В marking a state (в уме — 'in one's mind') takes the prepositional → уме."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Фарисеи внимательно наблюдали за ним, не исцелит ли он этого человека в субботу, чтобы потом обвинить его.",
+      "question": "Why were the Pharisees watching Jesus closely in the synagogue?",
+      "options": [
+        "To see if he would heal on the Sabbath so they could accuse him",
+        "To learn how to heal the sick themselves",
+        "To invite him to dinner",
+        "To warn him about Herod"
+      ],
+      "correct": "To see if he would heal on the Sabbath so they could accuse him",
+      "explain": "The Pharisees watched to see whether Jesus would heal on the Sabbath, so that they could accuse him."
+    },
+    {
+      "id": "r2",
+      "ru": "Выйдя из синагоги, фарисеи немедленно начали совещаться со сторонниками Ирода о том, как им убить Иисуса.",
+      "question": "What did the Pharisees do immediately after leaving the synagogue?",
+      "options": [
+        "They began plotting with the Herodians to kill Jesus",
+        "They went to warn the crowd",
+        "They followed Jesus to the sea",
+        "They asked Jesus for forgiveness"
+      ],
+      "correct": "They began plotting with the Herodians to kill Jesus",
+      "explain": "Leaving the synagogue, the Pharisees immediately conspired with the Herodians about how to kill Jesus."
+    },
+    {
+      "id": "r3",
+      "ru": "За ними следовало великое множество народа из Галилеи, Иудеи, Иерусалима, Идумеи, из-за реки Иордана, из окрестностей Тира и Сидона.",
+      "question": "From how wide an area did the crowds following Jesus come?",
+      "options": [
+        "From Galilee, Judea, Jerusalem, Idumea, beyond the Jordan, and around Tyre and Sidon",
+        "Only from Galilee",
+        "Only from Jerusalem",
+        "From Rome and Egypt"
+      ],
+      "correct": "From Galilee, Judea, Jerusalem, Idumea, beyond the Jordan, and around Tyre and Sidon",
+      "explain": "A great multitude followed him from Galilee, Judea, Jerusalem, Idumea, beyond the Jordan, and the region of Tyre and Sidon."
+    },
+    {
+      "id": "r4",
+      "ru": "А те, в ком были нечистые духи, когда видели Его, падали перед Ним ниц и кричали «Ты Сын Бога!»",
+      "question": "What did people with unclean spirits do and say when they saw Jesus?",
+      "options": [
+        "They fell down before him and cried out, \"You are the Son of God!\"",
+        "They ran away in fear",
+        "They asked him for money",
+        "They stayed silent"
+      ],
+      "correct": "They fell down before him and cried out, \"You are the Son of God!\"",
+      "explain": "Those with unclean spirits fell down before him and cried out, \"You are the Son of God!\""
+    },
+    {
+      "id": "r5",
+      "ru": "Итак, Иисус назначил двенадцать человек.",
+      "question": "What did Jesus do after going up the mountain and calling those he wanted?",
+      "options": [
+        "He appointed twelve men as apostles",
+        "He fed a large crowd",
+        "He healed a blind man",
+        "He taught a parable about seeds"
+      ],
+      "correct": "He appointed twelve men as apostles",
+      "explain": "Jesus went up the mountain, called those he wanted, and appointed twelve men to be his apostles."
+    },
+    {
+      "id": "r6",
+      "ru": "Услышав об этом, родственники Иисуса пришли забрать его, потому что они говорили, он не в своем уме, а учители закона, пришедшие из Иерусалима, утверждали.",
+      "question": "Why did Jesus' relatives come to take charge of him?",
+      "options": [
+        "Because they said he was out of his mind",
+        "Because he was sick",
+        "Because he asked them to come",
+        "Because Herod summoned him"
+      ],
+      "correct": "Because they said he was out of his mind",
+      "explain": "His relatives came to take him because they said he was out of his mind."
+    },
+    {
+      "id": "r7",
+      "ru": "Но тот, кто будет хулить Святого Духа, тому не простится никогда.",
+      "question": "According to Jesus, what sin will never be forgiven?",
+      "options": [
+        "Blasphemy against the Holy Spirit",
+        "Stealing bread",
+        "Working on the Sabbath",
+        "Doubting the apostles"
+      ],
+      "correct": "Blasphemy against the Holy Spirit",
+      "explain": "Jesus says whoever blasphemes against the Holy Spirit will never be forgiven."
+    },
+    {
+      "id": "r8",
+      "ru": "Кто исполняет Божью волю, тот мне и брат, и сестра, и мать».",
+      "question": "Whom does Jesus call his true mother and brothers?",
+      "options": [
+        "Whoever does God's will",
+        "Only his blood relatives",
+        "The twelve apostles only",
+        "The Pharisees"
+      ],
+      "correct": "Whoever does God's will",
+      "explain": "Jesus says whoever does God's will is his brother, sister, and mother."
+    }
+  ]
+}

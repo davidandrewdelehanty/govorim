@@ -2,133 +2,121 @@
   "cases": [
     {
       "id": "c1",
-      "sentence": "К седьмому ___ Бог закончил труд.",
-      "lemma": "день",
-      "options": ["день", "дня", "дню", "днём"],
-      "correct": "дню",
-      "case": "Дательный (Dative)",
-      "translation": "By the seventh day God finished his work.",
-      "explain": "The preposition к governs the dative case."
+      "sentence": "Тогда Господь Бог создал человека из земного праха и вдунул ему в ноздри дыхания жизни, и ___ стал живым существом.",
+      "lemma": "человек",
+      "options": ["человек", "человека", "человеку", "человеком"],
+      "correct": "человек",
+      "case": "Именительный (Nominative)",
+      "translation": "Then the Lord God formed man from the dust of the ground and breathed into his nostrils the breath of life, and man became a living being.",
+      "explain": "Человек is the subject of стал (became), so it takes the nominative case."
     },
     {
       "id": "c2",
-      "sentence": "На седьмой день он отдыхал от своего ___.",
-      "lemma": "труд",
-      "options": ["труд", "труда", "труду", "трудом"],
-      "correct": "труда",
+      "sentence": "на земле тогда еще не было ни кустарника полевого, ни полевой ___.",
+      "lemma": "трава",
+      "options": ["трава", "травы", "траву", "травой"],
+      "correct": "травы",
       "case": "Родительный (Genitive)",
-      "translation": "On the seventh day he rested from his work.",
-      "explain": "The preposition от governs the genitive case."
+      "translation": "There was not yet any bush of the field, nor any plant of the field, on the earth.",
+      "explain": "The negation не было requires the genitive case for the thing that does not exist (genitive of negation)."
     },
     {
       "id": "c3",
-      "sentence": "Господь Бог посадил сад на ___, в Эдеме.",
-      "lemma": "восток",
-      "options": ["восток", "востока", "востоку", "востоке"],
-      "correct": "востоке",
-      "case": "Предложный (Prepositional)",
-      "translation": "The Lord God planted a garden in the east, in Eden.",
-      "explain": "The preposition на indicating location takes the prepositional case."
+      "sentence": "Так человек дал имена всему ___, всем птицам небесным и всем полевым зверям.",
+      "lemma": "скот",
+      "options": ["скот", "скота", "скоту", "скотом"],
+      "correct": "скоту",
+      "case": "Дательный (Dative)",
+      "translation": "So the man gave names to all livestock, to all the birds of the sky, and to all the wild animals.",
+      "explain": "The verb дать (to give) takes its recipient in the dative case — the livestock received names."
     },
     {
       "id": "c4",
-      "sentence": "Не было человека, чтобы обрабатывать ___.",
-      "lemma": "почва",
-      "options": ["почва", "почвы", "почве", "почву"],
-      "correct": "почву",
+      "sentence": "Поэтому оставит человек ___ и мать и соединится со своей женой.",
+      "lemma": "отец",
+      "options": ["отец", "отца", "отцу", "отцом"],
+      "correct": "отца",
       "case": "Винительный (Accusative)",
-      "translation": "There was no man to till the ground.",
-      "explain": "The transitive verb обрабатывать takes a direct object in the accusative."
+      "translation": "Therefore a man will leave his father and mother and be united with his wife.",
+      "explain": "Отца is the direct object of оставит (will leave); animate masculine nouns take an accusative identical to the genitive."
     },
     {
       "id": "c5",
-      "sentence": "Господь Бог создал человека из земного ___.",
-      "lemma": "прах",
-      "options": ["прах", "праха", "праху", "прахом"],
-      "correct": "праха",
-      "case": "Родительный (Genitive)",
-      "translation": "The Lord God formed the man from the dust of the earth.",
-      "explain": "The preposition из governs the genitive case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Господь Бог поселил человека в Эдемском ___.",
-      "lemma": "сад",
-      "options": ["сад", "сада", "саду", "садом"],
-      "correct": "саду",
-      "case": "Предложный (Prepositional)",
-      "translation": "The Lord God settled the man in the garden of Eden.",
-      "explain": "The preposition в indicating location takes the prepositional (here the locative -у form)."
-    },
-    {
-      "id": "c7",
-      "sentence": "Человек соединится со своей ___.",
+      "sentence": "и соединится со своей ___, и двое станут одной плотью.",
       "lemma": "жена",
       "options": ["жена", "жены", "жену", "женой"],
       "correct": "женой",
       "case": "Творительный (Instrumental)",
-      "translation": "A man will join with his wife.",
-      "explain": "The preposition с (со) in the sense of 'together with' governs the instrumental case."
+      "translation": "And will be united with his wife, and the two will become one flesh.",
+      "explain": "The preposition с (with) governs the instrumental case."
     },
     {
-      "id": "c8",
-      "sentence": "Из ребра Господь Бог создал ___ и привел ее к нему.",
-      "lemma": "женщина",
-      "options": ["женщина", "женщины", "женщине", "женщину"],
-      "correct": "женщину",
-      "case": "Винительный (Accusative)",
-      "translation": "From the rib the Lord God made a woman and brought her to him.",
-      "explain": "The transitive verb создал takes a direct object in the accusative."
+      "id": "c6",
+      "sentence": "Затем Господь Бог посадил сад на ___, в Эдеме, и поселил там человека, которого Он создал.",
+      "lemma": "восток",
+      "options": ["восток", "востока", "востоку", "востоке"],
+      "correct": "востоке",
+      "case": "Предложный (Prepositional)",
+      "translation": "Then the Lord God planted a garden in the east, in Eden, and put there the man whom He had made.",
+      "explain": "The preposition на indicating location governs the prepositional case."
     }
   ],
   "reading": [
     {
       "id": "r1",
-      "ru": "Тогда Господь Бог создал человека из земного праха и вдунул ему в ноздри дыхания жизни, и человек стал живым существом.",
-      "question": "From what did God form the man?",
-      "options": ["From the dust of the earth", "From a rib", "From water", "From a stone"],
-      "correct": "From the dust of the earth",
-      "explain": "The text says God created the man 'из земного праха' (from the dust of the earth)."
+      "ru": "Он благословил седьмой день и сделал его святым, потому что в этот день он отдыхал от своего труда, который он делал и завершил.",
+      "question": "Why did God bless the seventh day?",
+      "options": ["Because he rested from his work on it", "Because it was the day he created light", "Because it was the day he created man", "Because it was the first day of creation"],
+      "correct": "Because he rested from his work on it",
+      "explain": "The text says he blessed the day 'потому что в этот день он отдыхал от своего труда' — because on it he rested from his work."
     },
     {
       "id": "r2",
-      "ru": "Затем Господь Бог посадил сад на востоке, в Эдеме, и поселил там человека, которого Он создал.",
-      "question": "Where did God plant the garden?",
-      "options": ["In the east, in Eden", "In the far west", "Beside the Euphrates", "On a high mountain"],
-      "correct": "In the east, in Eden",
-      "explain": "The text states the garden was planted 'на востоке, в Эдеме' (in the east, in Eden)."
+      "ru": "Когда Господь Бог создавал землю и небо, на земле тогда еще не было ни кустарника полевого, ни полевой травы, потому что Господь Бог не посылал на землю дождя, и не было человека, чтобы обрабатывать почву, только поток поднимался из земли и орошал всю ее поверхность.",
+      "question": "Why had no plants grown yet before man was created?",
+      "options": ["Because God had not sent rain and there was no man to till the ground", "Because it was winter", "Because God forbade all plants", "Because the earth was covered in ice"],
+      "correct": "Because God had not sent rain and there was no man to till the ground",
+      "explain": "The text says God had not sent rain, 'и не было человека, чтобы обрабатывать почву' — and there was no man to till the ground."
     },
     {
       "id": "r3",
-      "ru": "Посреди же сада росли дерево жизни и дерево познания добра и зла.",
-      "question": "What grew in the middle of the garden?",
-      "options": ["The tree of life and the tree of knowledge of good and evil", "Only the tree of life", "A grapevine", "Wheat and barley"],
-      "correct": "The tree of life and the tree of knowledge of good and evil",
-      "explain": "The text names 'дерево жизни и дерево познания добра и зла' growing in the middle of the garden."
+      "ru": "Тогда Господь Бог создал человека из земного праха и вдунул ему в ноздри дыхания жизни, и человек стал живым существом.",
+      "question": "How did God create the man?",
+      "options": ["From dust of the ground, breathing life into his nostrils", "From a rib of an animal", "From water and clay", "From the tree of life"],
+      "correct": "From dust of the ground, breathing life into his nostrils",
+      "explain": "The text says God created man 'из земного праха' and breathed the breath of life into his nostrils."
     },
     {
       "id": "r4",
-      "ru": "Первый называется Пишон, он течет вокруг всей земли Хавила, где есть золото.",
-      "question": "What is found in the land of Havilah, which the Pishon flows around?",
-      "options": ["Gold", "Silver", "Iron", "Salt"],
-      "correct": "Gold",
-      "explain": "The text says of the land of Havilah 'где есть золото' (where there is gold)."
+      "ru": "Из Эдема вытекала река, орошавшая сад, а далее она разделялась на четыре потока.",
+      "question": "What happened to the river that flowed out of Eden?",
+      "options": ["It divided into four rivers", "It dried up", "It flowed into the sea", "It turned to blood"],
+      "correct": "It divided into four rivers",
+      "explain": "The text says the river 'разделялась на четыре потока' — divided into four streams."
     },
     {
       "id": "r5",
-      "ru": "Тогда Господь Бог погрузил человека в глубокий сон, и пока тот спал, взял одно из его ребер и закрыл это место плотью.",
-      "question": "What did God do while the man was in a deep sleep?",
-      "options": ["He took one of his ribs", "He removed his heart", "He planted a new tree", "He named the animals"],
-      "correct": "He took one of his ribs",
-      "explain": "The text says while the man slept God 'взял одно из его ребер' (took one of his ribs)."
+      "ru": "Господь Бог заповедал человеку, «Можешь есть плоды с любого дерева в саду, но не ешь с дерева познания добра и зла, потому что в день, когда ты съешь плод с него, ты непременно умрешь».",
+      "question": "What did God command the man not to do?",
+      "options": ["Eat from the tree of the knowledge of good and evil", "Eat any fruit at all", "Leave the garden", "Speak to animals"],
+      "correct": "Eat from the tree of the knowledge of good and evil",
+      "explain": "God commands 'не ешь с дерева познания добра и зла' — do not eat from the tree of the knowledge of good and evil."
     },
     {
       "id": "r6",
-      "ru": "И Адам и его жена были наги, но не испытывали стыда.",
-      "question": "How did Adam and his wife feel about being naked?",
-      "options": ["They felt no shame", "They were afraid", "They were cold", "They hid themselves"],
-      "correct": "They felt no shame",
-      "explain": "The text says they were naked 'но не испытывали стыда' (but felt no shame)."
+      "ru": "Так человек дал имена всему скоту, всем птицам небесным и всем полевым зверям. Но для Адама не нашлось подходящего помощника.",
+      "question": "What was the result after the man named all the animals?",
+      "options": ["No suitable helper was found for him", "He found a wife immediately", "He became lonely and left the garden", "God punished him"],
+      "correct": "No suitable helper was found for him",
+      "explain": "The text says 'для Адама не нашлось подходящего помощника' — no suitable helper was found for Adam."
+    },
+    {
+      "id": "r7",
+      "ru": "Из ребра, которое он вынул из человека, Господь Бог создал женщину и привел ее к нему.",
+      "question": "How did God make the woman?",
+      "options": ["From a rib taken from the man", "From dust of the ground", "From a tree branch", "From the man's breath"],
+      "correct": "From a rib taken from the man",
+      "explain": "The text says God made the woman 'из ребра, которое он вынул из человека' — from the rib he took from the man."
     }
   ]
 }

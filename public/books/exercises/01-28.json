@@ -2,203 +2,133 @@
   "cases": [
     {
       "id": "c1",
-      "sentence": "Исаак позвал ___, благословил его и дал ему такой наказ.",
+      "sentence": "___ оставил Версавию и направился в Харан.",
       "lemma": "Иаков",
-      "options": [
-        "Иаков",
-        "Иакова",
-        "Иакову",
-        "Иаковом"
-      ],
-      "correct": "Иакова",
-      "case": "Винительный (Accusative)",
-      "translation": "Isaac called Jacob, blessed him, and gave him this charge.",
-      "explain": "Иаков is the direct object of позвал (called); for animate masculine nouns the accusative equals the genitive → Иакова."
+      "options": ["Иаков", "Иакова", "Иакову", "Иаковом"],
+      "correct": "Иаков",
+      "case": "Именительный (Nominative)",
+      "translation": "Jacob left Beersheba and set out for Haran.",
+      "explain": "Иаков is the subject of 'оставил', so it takes the nominative case."
     },
     {
       "id": "c2",
-      "sentence": "Землю, на которой ты сейчас лежишь, я дам тебе и твоим ___.",
-      "lemma": "потомки",
-      "options": [
-        "потомки",
-        "потомков",
-        "потомкам",
-        "потомками"
-      ],
-      "correct": "потомкам",
-      "case": "Дательный (Dative)",
-      "translation": "The land on which you now lie I will give to you and to your descendants.",
-      "explain": "Потомки are the recipients of дам (will give to) — the indirect object → dative (plural)."
+      "sentence": "Возьми там себе жену из дочерей ___, брата твоей матери.",
+      "lemma": "Лаван",
+      "options": ["Лаван", "Лавана", "Лавану", "Лаваном"],
+      "correct": "Лавана",
+      "case": "Родительный (Genitive)",
+      "translation": "Take a wife there from the daughters of Laban, your mother's brother.",
+      "explain": "Лавана shows whose daughters they are — a genitive of relation."
     },
     {
       "id": "c3",
-      "sentence": "Возьми там себе жену из ___ Лавана, брата твоей матери.",
-      "lemma": "дочь",
-      "options": [
-        "дочери",
-        "дочерей",
-        "дочерям",
-        "дочерями"
-      ],
-      "correct": "дочерей",
-      "case": "Родительный (Genitive)",
-      "translation": "Take yourself a wife there from the daughters of Laban, your mother's brother.",
-      "explain": "The preposition из (from among) governs the genitive → дочерей (genitive plural)."
+      "sentence": "Землю, на которой ты сейчас лежишь, я дам тебе и твоим ___.",
+      "lemma": "потомок",
+      "options": ["потомки", "потомков", "потомкам", "потомками"],
+      "correct": "потомкам",
+      "case": "Дательный (Dative)",
+      "translation": "The land on which you are now lying, I will give to you and to your descendants.",
+      "explain": "The indirect object of 'дам' (to give) takes the dative case."
     },
     {
       "id": "c4",
-      "sentence": "Иаков… поставил его памятным ___ и возлил на него масло.",
-      "lemma": "знак",
-      "options": [
-        "знак",
-        "знака",
-        "знаку",
-        "знаком"
-      ],
-      "correct": "знаком",
-      "case": "Творительный (Instrumental)",
-      "translation": "Jacob set it up as a pillar (memorial marker) and poured oil on it.",
-      "explain": "Поставить X (something) as Y takes the instrumental for the role Y → знаком."
+      "sentence": "Иаков поднялся рано утром, взял ___, который он клал себе под голову, поставил его памятным знаком.",
+      "lemma": "камень",
+      "options": ["камень", "камня", "камню", "камнем"],
+      "correct": "камень",
+      "case": "Винительный (Accusative)",
+      "translation": "Jacob rose early in the morning, took the stone he had put under his head, and set it up as a memorial pillar.",
+      "explain": "The transitive verb взять (to take) takes its direct object in the accusative case."
     },
     {
       "id": "c5",
-      "sentence": "Он остановился на ночь, потому что ___ уже село.",
-      "lemma": "солнце",
-      "options": [
-        "солнце",
-        "солнца",
-        "солнцу",
-        "солнцем"
-      ],
-      "correct": "солнце",
-      "case": "Именительный (Nominative)",
-      "translation": "He stopped for the night, because the sun had already set.",
-      "explain": "Солнце is the subject that performs село (had set) → nominative."
+      "sentence": "Потом Исаак простился с ___, и тот пошел в Падан-Арам к Лавану.",
+      "lemma": "Иаков",
+      "options": ["Иаков", "Иакова", "Иакову", "Иаковом"],
+      "correct": "Иаковом",
+      "case": "Творительный (Instrumental)",
+      "translation": "Then Isaac said goodbye to Jacob, and he went to Paddan Aram to Laban.",
+      "explain": "The preposition с (with) governs the instrumental case."
     },
     {
       "id": "c6",
-      "sentence": "Он взял там один из ___, положил себе под голову и лёг спать.",
-      "lemma": "камень",
-      "options": [
-        "камни",
-        "камней",
-        "камням",
-        "камнями"
-      ],
-      "correct": "камней",
-      "case": "Родительный (Genitive)",
-      "translation": "He took one of the stones there, put it under his head, and lay down to sleep.",
-      "explain": "'One of' + a group takes из + genitive plural → камней."
+      "sentence": "Он увидел лестницу, которая стояла на ___, а верхом достигало небо.",
+      "lemma": "земля",
+      "options": ["земля", "земли", "землю", "земле"],
+      "correct": "земле",
+      "case": "Предложный (Prepositional)",
+      "translation": "He saw a stairway that stood on the ground, its top reaching to heaven.",
+      "explain": "The preposition на indicating static location governs the prepositional case."
     },
     {
       "id": "c7",
-      "sentence": "Истинно на этом ___ Господь, а я и не знал.",
-      "lemma": "место",
-      "options": [
-        "место",
-        "места",
-        "месту",
-        "месте"
-      ],
-      "correct": "месте",
-      "case": "Предложный (Prepositional)",
-      "translation": "Surely the Lord is in this place, and I did not know it.",
-      "explain": "На marking a static location (in this place) takes the prepositional → месте."
+      "sentence": "Все народы на земле получат благословение через тебя и твое ___.",
+      "lemma": "потомство",
+      "options": ["потомство", "потомства", "потомству", "потомством"],
+      "correct": "потомство",
+      "case": "Винительный (Accusative)",
+      "translation": "All the nations of the earth will receive blessing through you and your descendants.",
+      "explain": "The preposition через (through) governs the accusative case."
     },
     {
       "id": "c8",
-      "sentence": "…и ___ Бога поднимались и спускались по ней.",
-      "lemma": "ангел",
-      "options": [
-        "ангелы",
-        "ангелов",
-        "ангелам",
-        "ангелами"
-      ],
-      "correct": "ангелы",
-      "case": "Именительный (Nominative)",
-      "translation": "…and the angels of God were going up and coming down on it.",
-      "explain": "Ангелы is the subject that performs поднимались и спускались (were ascending and descending) → nominative (plural)."
+      "sentence": "Дойдя до некоего ___, он остановился на ночь, потому что солнце уже село.",
+      "lemma": "место",
+      "options": ["место", "места", "месту", "местом"],
+      "correct": "места",
+      "case": "Родительный (Genitive)",
+      "translation": "Coming to a certain place, he stopped for the night because the sun had already set.",
+      "explain": "The preposition до (as far as/until) governs the genitive case."
     }
   ],
   "reading": [
     {
       "id": "r1",
-      "ru": "Потом Исаак простился с Иаковом, и тот пошел в Падан-Арам к Лавану, сыну Арамея-Битуила, брату Ревекки, матери Иакова и Исава.",
-      "question": "Where did Jacob go after Isaac sent him off?",
-      "options": [
-        "To Paddan-Aram, to Laban",
-        "To Egypt",
-        "To Canaan",
-        "To Beersheba to stay"
-      ],
-      "correct": "To Paddan-Aram, to Laban",
-      "explain": "Jacob went to Paddan-Aram to Laban, the brother of his mother Rebekah."
+      "ru": "Возьми там себе жену из дочерей Лавана, брата твоей матери.",
+      "question": "Whom did Isaac instruct Jacob to marry?",
+      "options": ["One of the daughters of Laban, his mother's brother", "A Canaanite woman", "Ishmael's daughter", "Esau's sister-in-law"],
+      "correct": "One of the daughters of Laban, his mother's brother",
+      "explain": "Isaac told Jacob to take a wife 'из дочерей Лавана, брата твоей матери' (from the daughters of Laban, his mother's brother)."
     },
     {
       "id": "r2",
-      "ru": "Иаков оставил Версавию и направился в Харан.",
-      "question": "Where did Jacob head after leaving Beersheba?",
-      "options": [
-        "To Haran",
-        "To Egypt",
-        "To Gerar",
-        "To Bethel"
-      ],
-      "correct": "To Haran",
-      "explain": "Jacob left Beersheba and set out toward Haran."
+      "ru": "он пошел к Измаилу и взял себе в жены, помимо тех, которые у него уже были, Махалату, сестру Невайота, дочь Измаила, сына Авраама.",
+      "question": "Whom did Esau additionally marry after realizing his father disliked Canaanite wives?",
+      "options": ["Mahalath, daughter of Ishmael", "Rebekah's niece", "A daughter of Laban", "A Philistine woman"],
+      "correct": "Mahalath, daughter of Ishmael",
+      "explain": "The text says Esau went to Ishmael and took Mahalath, Ishmael's daughter, as a wife."
     },
     {
       "id": "r3",
       "ru": "Ему приснился сон, он увидел лестницу, которая стояла на земле, а верхом достигало небо, и ангелы Бога поднимались и спускались по ней.",
       "question": "What did Jacob see in his dream?",
-      "options": [
-        "A stairway between earth and heaven with angels on it",
-        "A burning bush",
-        "A river of fire",
-        "A great walled city"
-      ],
-      "correct": "A stairway between earth and heaven with angels on it",
-      "explain": "He dreamed of a stairway set on the earth reaching heaven, with angels of God going up and down it."
+      "options": ["A stairway reaching to heaven with angels going up and down", "A burning bush", "A river of fire", "A flock of sheep"],
+      "correct": "A stairway reaching to heaven with angels going up and down",
+      "explain": "Jacob dreamed of a stairway reaching to heaven with 'ангелы Бога поднимались и спускались по ней' (angels of God going up and down on it)."
     },
     {
       "id": "r4",
-      "ru": "Ему было страшно, и он сказал, «Как устрашает это место! Не иначе, как здесь дом Бога, и это врата небес».",
-      "question": "What did Jacob call the place when he awoke afraid?",
-      "options": [
-        "The house of God and the gate of heaven",
-        "A cursed field",
-        "A place of graves",
-        "The city of Luz"
-      ],
-      "correct": "The house of God and the gate of heaven",
-      "explain": "Afraid, Jacob said this was none other than the house of God and the gate of heaven."
+      "ru": "Землю, на которой ты сейчас лежишь, я дам тебе и твоим потомкам.",
+      "question": "What did the Lord promise Jacob concerning the land?",
+      "options": ["That He would give it to Jacob and his descendants", "That Jacob would never return to it", "That it belonged to Esau", "That it would be destroyed"],
+      "correct": "That He would give it to Jacob and his descendants",
+      "explain": "The Lord said He would give the land Jacob was lying on to him and his descendants."
     },
     {
       "id": "r5",
-      "ru": "Он назвал это место Вифиль, хотя вначале тот город назывался Луз.",
-      "question": "What was the city's earlier name before Jacob called it Bethel?",
-      "options": [
-        "Luz",
-        "Haran",
-        "Gerar",
-        "Mamre"
-      ],
-      "correct": "Luz",
-      "explain": "He named the place Bethel, though the city had first been called Luz."
+      "ru": "Как устрашает это место! Не иначе, как здесь дом Бога, и это врата небес",
+      "question": "What did Jacob conclude about the place after waking up?",
+      "options": ["That it was the house of God and the gate of heaven", "That it was a cursed place", "That it was just an ordinary field", "That it belonged to Laban"],
+      "correct": "That it was the house of God and the gate of heaven",
+      "explain": "Jacob said the place was surely 'дом Бога' and 'врата небес' (the house of God and the gate of heaven)."
     },
     {
       "id": "r6",
-      "ru": "Иаков поднялся рано утром, взял камень, который он клал себе под голову, поставил его памятным знаком и возлил на него масло.",
-      "question": "What did Jacob do with the stone he had used as a pillow?",
-      "options": [
-        "Set it up as a pillar and poured oil on it",
-        "Threw it into a well",
-        "Built a wall from it",
-        "Gave it to Laban"
-      ],
-      "correct": "Set it up as a pillar and poured oil on it",
-      "explain": "Jacob set the stone up as a pillar and poured oil on its top."
+      "ru": "Если Бог будет со мной и сохранит меня в этом странстве, даст мне хлеба в пищу и одежду на плечи, так что я вернусь и буду жить в мире в доме моего отца.",
+      "question": "What did Jacob vow if God provided for him on his journey?",
+      "options": ["He made a series of conditions culminating in a vow to give God a tenth of everything", "He vowed to never marry", "He vowed to return the stone to Laban", "He vowed to build a temple immediately"],
+      "correct": "He made a series of conditions culminating in a vow to give God a tenth of everything",
+      "explain": "Jacob vowed that if God kept him and brought him back safely, the stone would be God's house, and he would give a tenth of everything."
     }
   ]
 }

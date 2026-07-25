@@ -1,0 +1,138 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "___ был разгневан. Он послал свое войско, уничтожил тех убийц и сжег их город.",
+      "lemma": "царь",
+      "options": ["царь", "царя", "царю", "царем"],
+      "correct": "царь",
+      "case": "Именительный (Nominative)",
+      "translation": "The king was enraged. He sent his army, destroyed those murderers, and burned their city.",
+      "explain": "Царь is the subject of the verb был разгневан, so it stands in the nominative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Один из них, учитель ___, чтобы поймать Иисуса на слове, спросил, «Учитель, какая заповедь в законе самая важная?»",
+      "lemma": "закон",
+      "options": ["закон", "закона", "закону", "законом"],
+      "correct": "закона",
+      "case": "Родительный (Genitive)",
+      "translation": "One of them, a teacher of the law, asked him a question to test him: 'Teacher, which is the greatest commandment in the law?'",
+      "explain": "The noun учитель (teacher) takes a genitive complement — a teacher OF the law."
+    },
+    {
+      "id": "c3",
+      "sentence": "Так и отдавайте, кесарево кесарю, а Божие ___.",
+      "lemma": "Бог",
+      "options": ["Бог", "Бога", "Богу", "Богом"],
+      "correct": "Богу",
+      "case": "Дательный (Dative)",
+      "translation": "So give to Caesar what is Caesar's, and to God what is God's.",
+      "explain": "The verb отдавать (to give back, render) governs the dative case for its recipient — render TO God."
+    },
+    {
+      "id": "c4",
+      "sentence": "Покажите мне ___, которой платится дань.",
+      "lemma": "монета",
+      "options": ["монета", "монеты", "монете", "монету"],
+      "correct": "монету",
+      "case": "Винительный (Accusative)",
+      "translation": "Show me the coin used to pay the tax.",
+      "explain": "The transitive verb показать (to show) takes its direct object in the accusative case."
+    },
+    {
+      "id": "c5",
+      "sentence": "Давид, вдохновляемый духом, называет его ___.",
+      "lemma": "Господь",
+      "options": ["Господь", "Господа", "Господу", "Господом"],
+      "correct": "Господом",
+      "case": "Творительный (Instrumental)",
+      "translation": "David, inspired by the Spirit, calls him Lord.",
+      "explain": "The verb называть (to call someone something) requires the predicate noun in the instrumental case."
+    },
+    {
+      "id": "c6",
+      "sentence": "Иисус продолжал учить народ в этой ___, говоря о Царстве Небесном.",
+      "lemma": "притча",
+      "options": ["притча", "притчи", "притче", "притчу"],
+      "correct": "притче",
+      "case": "Предложный (Prepositional)",
+      "translation": "Jesus continued teaching the people in this parable, speaking of the Kingdom of Heaven.",
+      "explain": "The preposition в indicating the form of speech (in a parable) governs the prepositional case."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Царство небесное можно сравнить со свадебным пиром, который один царь приготовил для своего сына.",
+      "question": "What is the kingdom of heaven compared to in this parable?",
+      "options": ["A wedding feast a king prepared for his son", "A vineyard leased to farmers", "A treasure hidden in a field", "A net cast into the sea"],
+      "correct": "A wedding feast a king prepared for his son",
+      "explain": "The text says the kingdom of heaven is like 'свадебным пиром, который один царь приготовил для своего сына' (a wedding feast that a king prepared for his son)."
+    },
+    {
+      "id": "r2",
+      "ru": "Пойдите теперь на перекрестки дорог и приглашайте на пир всех, кого вы встретите».",
+      "question": "What did the king instruct his servants to do after the first guests refused to come?",
+      "options": ["Invite everyone they found at the crossroads", "Cancel the wedding feast entirely", "Arrest the guests who refused", "Give the feast to the poor only"],
+      "correct": "Invite everyone they found at the crossroads",
+      "explain": "The king said, 'Пойдите теперь на перекрестки дорог и приглашайте на пир всех, кого вы встретите' (Go now to the crossroads and invite to the feast everyone you find)."
+    },
+    {
+      "id": "r3",
+      "ru": "Тогда царь приказал слугам, свяжите его по рукам и ногам и выбросьте вон, во тьму, где будет плач и скрежет зубов.",
+      "question": "What did the king order done to the guest without wedding clothing?",
+      "options": ["To bind him and throw him into the outer darkness", "To give him proper clothing", "To seat him at the head of the table", "To send him home peacefully"],
+      "correct": "To bind him and throw him into the outer darkness",
+      "explain": "The king ordered, 'свяжите его по рукам и ногам и выбросьте вон, во тьму' (bind him hand and foot and throw him out into the darkness)."
+    },
+    {
+      "id": "r4",
+      "ru": "Скажи нам, как ты считаешь, следует ли платить налог кесарю или нет?",
+      "question": "What question did the Pharisees' disciples and Herodians ask Jesus?",
+      "options": ["Whether it is right to pay taxes to Caesar", "Whether it is right to heal on the Sabbath", "Whether divorce is lawful", "Whether the resurrection is real"],
+      "correct": "Whether it is right to pay taxes to Caesar",
+      "explain": "They asked, 'следует ли платить налог кесарю или нет?' (should tax be paid to Caesar or not?)."
+    },
+    {
+      "id": "r5",
+      "ru": "так и отдавайте, кесарева кесарю, а Божие Богу",
+      "question": "What was Jesus' answer about paying taxes to Caesar?",
+      "options": ["Give to Caesar what is Caesar's, and to God what is God's", "No one should pay taxes to a pagan ruler", "Taxes should be paid only in the temple", "Caesar has no authority over believers"],
+      "correct": "Give to Caesar what is Caesar's, and to God what is God's",
+      "explain": "Jesus said, 'отдавайте, кесарева кесарю, а Божие Богу' (give to Caesar what is Caesar's, and to God what is God's)."
+    },
+    {
+      "id": "r6",
+      "ru": "Воскреснув, люди не будут ни жениться, ни выходить замуж, а будут как ангелы на небесах.",
+      "question": "According to Jesus, what will people be like after the resurrection?",
+      "options": ["Like the angels in heaven, neither marrying nor being given in marriage", "Married to whichever spouse they had last", "Reborn as children again", "Unable to recognize one another"],
+      "correct": "Like the angels in heaven, neither marrying nor being given in marriage",
+      "explain": "Jesus said that after the resurrection, people 'будут как ангелы на небесах' (will be like the angels in heaven)."
+    },
+    {
+      "id": "r7",
+      "ru": "Он Бог не мертвых, а живых.",
+      "question": "How does Jesus describe God in his answer to the Sadducees?",
+      "options": ["The God of the living, not of the dead", "The God who created only the Israelites", "The God of the dead alone", "A distant God who does not intervene"],
+      "correct": "The God of the living, not of the dead",
+      "explain": "Jesus says, 'Он Бог не мертвых, а живых' (He is God not of the dead, but of the living)."
+    },
+    {
+      "id": "r8",
+      "ru": "Люби Господа Бога твоего всем сердцем твоим и всей душой твоей и всем разумом твоим",
+      "question": "What did Jesus say was the greatest commandment?",
+      "options": ["To love the Lord God with all your heart, soul, and mind", "To honor your father and mother", "To keep the Sabbath holy", "To give generously to the poor"],
+      "correct": "To love the Lord God with all your heart, soul, and mind",
+      "explain": "Jesus answered, 'Люби Господа Бога твоего всем сердцем твоим и всей душой твоей и всем разумом твоим' (Love the Lord your God with all your heart, soul, and mind)."
+    },
+    {
+      "id": "r9",
+      "ru": "Итак, если Давид называет его Господом, то как же в таком случае он может быть ему сыном?",
+      "question": "What puzzle does Jesus pose about David and the Christ?",
+      "options": ["How can the Christ be David's son if David calls him Lord?", "Why did David never meet the Messiah?", "Why does David rule over the Pharisees?", "How could David have two sons at once?"],
+      "correct": "How can the Christ be David's son if David calls him Lord?",
+      "explain": "Jesus asks, 'если Давид называет его Господом, то как же в таком случае он может быть ему сыном?' (if David calls him Lord, how can he be his son?)."
+    }
+  ]
+}

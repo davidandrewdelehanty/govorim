@@ -1,0 +1,183 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "___ стала просить у Пилата, чтобы он сделал то, что обычно делал для них.",
+      "lemma": "толпа",
+      "options": ["толпа", "толпы", "толпе", "толпу"],
+      "correct": "толпа",
+      "case": "Именительный (Nominative)",
+      "translation": "The crowd began to ask Pilate to do what he usually did for them.",
+      "explain": "Толпа is the subject of стала просить (began to ask), so it takes the nominative."
+    },
+    {
+      "id": "c2",
+      "sentence": "Толпа стала просить у ___, чтобы он сделал то, что обычно делал для них.",
+      "lemma": "Пилат",
+      "options": ["Пилат", "Пилата", "Пилату", "Пилатом"],
+      "correct": "Пилата",
+      "case": "Родительный (Genitive)",
+      "translation": "The crowd began to ask Pilate to do what he usually did for them.",
+      "explain": "The preposition у (at/from) always takes the genitive → Пилата."
+    },
+    {
+      "id": "c3",
+      "sentence": "Они, связав Иисуса, отвели и передали его ___.",
+      "lemma": "Иосиф",
+      "options": ["Иосиф", "Иосифа", "Иосифу", "Иосифом"],
+      "correct": "Иосифу",
+      "case": "Дательный (Dative)",
+      "translation": "Having bound Jesus, they led him away and handed him over to Pilate.",
+      "explain": "Иосиф купил льняное полотно... he later gave the body to Joseph: отдал тело Иосифу — the recipient of отдал (gave) takes the dative."
+    },
+    {
+      "id": "c4",
+      "sentence": "Они одели его в пурпурную ___ и, сплетя венок из терновника, надели на него.",
+      "lemma": "мантия",
+      "options": ["мантия", "мантии", "мантию", "мантией"],
+      "correct": "мантию",
+      "case": "Винительный (Accusative)",
+      "translation": "They dressed him in a purple robe and, weaving a crown of thorns, put it on him.",
+      "explain": "Одеть кого-то в + accusative (dress someone in) — мантию is what he was dressed into."
+    },
+    {
+      "id": "c5",
+      "sentence": "Иосиф купил льняное полотно, снял тело, обернул его ___.",
+      "lemma": "полотно",
+      "options": ["полотно", "полотна", "полотну", "полотном"],
+      "correct": "полотном",
+      "case": "Творительный (Instrumental)",
+      "translation": "Joseph bought a linen cloth, took the body down, and wrapped it in the cloth.",
+      "explain": "The verb обернуть (wrap) governs the instrumental of the material used → полотном."
+    },
+    {
+      "id": "c6",
+      "sentence": "Иисус испустил дух, и завеса в ___ разорвалась надвое, сверху донизу.",
+      "lemma": "храм",
+      "options": ["храм", "храма", "храму", "храме"],
+      "correct": "храме",
+      "case": "Предложный (Prepositional)",
+      "translation": "Jesus breathed his last, and the curtain in the temple was torn in two, from top to bottom.",
+      "explain": "В (in) marking location, with no motion, takes the prepositional → храме."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Они, связав Иисуса, отвели и передали его Пилату.",
+      "question": "What did the chief priests and elders do with Jesus early in the morning?",
+      "options": [
+        "Bound him and handed him over to Pilate",
+        "Released him to the crowd",
+        "Took him to the temple to pray",
+        "Sent him to King Herod"
+      ],
+      "correct": "Bound him and handed him over to Pilate",
+      "explain": "Early in the morning they bound Jesus, led him away, and delivered him to Pilate."
+    },
+    {
+      "id": "r2",
+      "ru": "«Хотите, чтобы я отпустил вам царя иудеев?» — спросил Пилат.",
+      "question": "What did Pilate ask the crowd during the Passover custom of releasing a prisoner?",
+      "options": [
+        "Whether they wanted him to release the King of the Jews",
+        "Whether they wanted him to release Barabbas immediately",
+        "Whether they wanted to crucify Barabbas",
+        "Whether they wanted a new governor"
+      ],
+      "correct": "Whether they wanted him to release the King of the Jews",
+      "explain": "Pilate asked, \"Do you want me to release to you the King of the Jews?\""
+    },
+    {
+      "id": "r3",
+      "ru": "Пилат, чтобы удовлетворить толпу, освободил им Варавву, а Иисуса отдал на распятие, приказав сперва бичевать его.",
+      "question": "What did Pilate do to satisfy the crowd?",
+      "options": [
+        "Released Barabbas and handed Jesus over to be flogged and crucified",
+        "Released Jesus and imprisoned Barabbas",
+        "Sentenced both men to death",
+        "Sent the matter to Herod"
+      ],
+      "correct": "Released Barabbas and handed Jesus over to be flogged and crucified",
+      "explain": "To satisfy the crowd, Pilate released Barabbas and handed Jesus over to be flogged and crucified."
+    },
+    {
+      "id": "r4",
+      "ru": "Они одели его в пурпурную мантию и, сплетя венок из терновника, надели на него.",
+      "question": "How did the soldiers mock Jesus?",
+      "options": [
+        "They dressed him in a purple robe and put a crown of thorns on him",
+        "They gave him royal jewelry",
+        "They made him carry a golden staff",
+        "They crowned him with olive branches"
+      ],
+      "correct": "They dressed him in a purple robe and put a crown of thorns on him",
+      "explain": "The soldiers clothed Jesus in purple and wove a crown of thorns for him."
+    },
+    {
+      "id": "r5",
+      "ru": "По дороге они остановили человека, шедшего с поля, это был Симон из Кирены, отец Александра и Руфа, и заставили его нести крест.",
+      "question": "Who was forced to carry Jesus's cross?",
+      "options": [
+        "Simon of Cyrene",
+        "Peter",
+        "Joseph of Arimathea",
+        "A Roman centurion"
+      ],
+      "correct": "Simon of Cyrene",
+      "explain": "The soldiers stopped Simon of Cyrene, coming in from the field, and made him carry the cross."
+    },
+    {
+      "id": "r6",
+      "ru": "Они распяли Иисуса, а его одежду разделили между собой, бросая жребий, кому что взять.",
+      "question": "What did the soldiers do with Jesus's clothing?",
+      "options": [
+        "Divided it among themselves by casting lots",
+        "Burned it",
+        "Gave it to the poor",
+        "Kept it as evidence"
+      ],
+      "correct": "Divided it among themselves by casting lots",
+      "explain": "They crucified Jesus and divided his clothes among themselves by casting lots."
+    },
+    {
+      "id": "r7",
+      "ru": "Проходившие мимо бронили его, качая головами они говорили «Ну что? Ты ведь собирался разрушить храм и в три дня отстроить его? Спаси себя! Сойди с креста!»",
+      "question": "What did people passing by say to mock Jesus on the cross?",
+      "options": [
+        "They told him to save himself and come down from the cross since he claimed he could destroy and rebuild the temple",
+        "They told him to pray to the priests for help",
+        "They asked him to perform a miracle for money",
+        "They asked him why he had come to Jerusalem"
+      ],
+      "correct": "They told him to save himself and come down from the cross since he claimed he could destroy and rebuild the temple",
+      "explain": "Passersby mocked him, saying he should save himself and come down from the cross since he claimed he could destroy and rebuild the temple."
+    },
+    {
+      "id": "r8",
+      "ru": "В девятом часу Иисус громко крикнул «Элои, Элои, лема савахтани», что означает «Боже мой, Боже мой, почему ты меня оставил?»",
+      "question": "What did Jesus cry out at the ninth hour?",
+      "options": [
+        "\"My God, my God, why have you forsaken me?\"",
+        "\"Father, forgive them\"",
+        "\"It is finished\"",
+        "\"Into your hands I commit my spirit\""
+      ],
+      "correct": "\"My God, my God, why have you forsaken me?\"",
+      "explain": "At the ninth hour Jesus cried out, \"Eloi, Eloi, lema sabachthani,\" which means \"My God, my God, why have you forsaken me?\""
+    },
+    {
+      "id": "r9",
+      "ru": "Иосиф купил льняное полотно, снял тело, обернул его полотном и положил вырубленную в скале гробницу.",
+      "question": "What did Joseph of Arimathea do with Jesus's body?",
+      "options": [
+        "Wrapped it in linen cloth and laid it in a rock-cut tomb",
+        "Buried it in the ground without a shroud",
+        "Left it on the cross overnight",
+        "Cremated it according to custom"
+      ],
+      "correct": "Wrapped it in linen cloth and laid it in a rock-cut tomb",
+      "explain": "Joseph bought a linen cloth, took the body down, wrapped it, and laid it in a tomb cut out of rock."
+    }
+  ]
+}

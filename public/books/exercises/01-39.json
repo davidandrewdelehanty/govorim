@@ -2,133 +2,121 @@
   "cases": [
     {
       "id": "c1",
-      "sentence": "Иосифа привели в ___, и египтянин Патифар купил Иосифа у измаильтян.",
-      "lemma": "Египет",
-      "options": ["Египет", "Египта", "Египту", "Египтом"],
-      "correct": "Египет",
-      "case": "Винительный (Accusative)",
-      "translation": "Joseph was brought to Egypt, and the Egyptian Potiphar bought Joseph from the Ishmaelites.",
-      "explain": "The preposition в expressing motion into takes the accusative case."
+      "sentence": "___ был с Иосифом, и он преуспевал.",
+      "lemma": "Господь",
+      "options": ["Господь", "Господа", "Господу", "Господом"],
+      "correct": "Господь",
+      "case": "Именительный (Nominative)",
+      "translation": "The Lord was with Joseph, and he prospered.",
+      "explain": "Господь is the subject of был, so it stands in the nominative case."
     },
     {
       "id": "c2",
-      "sentence": "Господь был с ___, и он преуспевал.",
-      "lemma": "Иосиф",
-      "options": ["Иосиф", "Иосифа", "Иосифу", "Иосифом"],
-      "correct": "Иосифом",
-      "case": "Творительный (Instrumental)",
-      "translation": "The Lord was with Joseph, and he prospered.",
-      "explain": "The preposition с in the sense of 'together with' governs the instrumental case."
+      "sentence": "Он преуспевал, живя в доме у своего египетского ___.",
+      "lemma": "господин",
+      "options": ["господин", "господина", "господину", "господином"],
+      "correct": "господина",
+      "case": "Родительный (Genitive)",
+      "translation": "He prospered, living in the house of his Egyptian master.",
+      "explain": "The preposition у governs the genitive case."
     },
     {
       "id": "c3",
-      "sentence": "Иосиф преуспевал, живя в ___ у своего египетского господина.",
-      "lemma": "дом",
-      "options": ["дом", "дома", "доме", "домом"],
-      "correct": "доме",
-      "case": "Предложный (Prepositional)",
-      "translation": "Joseph prospered, living in the house of his Egyptian master.",
-      "explain": "The preposition в indicating location takes the prepositional case."
+      "sentence": "Поэтому он доверил ___ все, что у него было.",
+      "lemma": "Иосиф",
+      "options": ["Иосиф", "Иосифа", "Иосифу", "Иосифом"],
+      "correct": "Иосифу",
+      "case": "Дательный (Dative)",
+      "translation": "So he entrusted Joseph with everything he had.",
+      "explain": "The verb доверить takes its indirect object (to whom) in the dative case."
     },
     {
       "id": "c4",
-      "sentence": "Главный страж поставил Иосифа над всеми ___.",
-      "lemma": "узник",
-      "options": ["узники", "узников", "узникам", "узниками"],
-      "correct": "узниками",
-      "case": "Творительный (Instrumental)",
-      "translation": "The chief guard set Joseph over all the prisoners.",
-      "explain": "The preposition над (over) governs the instrumental case."
-    },
-    {
-      "id": "c5",
       "sentence": "Она схватила его за ___ и сказала, «Ложись со мной».",
       "lemma": "одежда",
-      "options": ["одежда", "одежду", "одежде", "одеждой"],
+      "options": ["одежда", "одежды", "одежде", "одежду"],
       "correct": "одежду",
       "case": "Винительный (Accusative)",
       "translation": "She caught him by his garment and said, 'Lie with me.'",
-      "explain": "The preposition за in the sense of 'by/hold of' here takes the accusative case."
+      "explain": "The construction хватать за + accusative (to grab by/at something) requires the accusative case."
+    },
+    {
+      "id": "c5",
+      "sentence": "Иосиф нашел расположение в его глазах и стал его личным ___.",
+      "lemma": "слуга",
+      "options": ["слуга", "слуги", "слуге", "слугой"],
+      "correct": "слугой",
+      "case": "Творительный (Instrumental)",
+      "translation": "Joseph found favor in his eyes and became his personal servant.",
+      "explain": "The verb стать (to become) takes its predicate noun in the instrumental case."
     },
     {
       "id": "c6",
-      "sentence": "Он вырвался и убежал, оставив верхнюю одежду у неё в ___.",
-      "lemma": "рука",
-      "options": ["руки", "рук", "руках", "руками"],
-      "correct": "руках",
-      "case": "Предложный множественного (Prepositional plural)",
-      "translation": "He tore himself away and ran off, leaving his outer garment in her hands.",
-      "explain": "The preposition в indicating location takes the prepositional case, here in the plural."
-    },
-    {
-      "id": "c7",
-      "sentence": "Он взял Иосифа и посадил его в ___, где были заключены царские узники.",
-      "lemma": "темница",
-      "options": ["темница", "темницы", "темницу", "темницей"],
-      "correct": "темницу",
-      "case": "Винительный (Accusative)",
-      "translation": "He took Joseph and put him into the prison, where the king's prisoners were held.",
-      "explain": "The preposition в expressing motion into takes the accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Он даровал ему расположение в глазах главного ___.",
-      "lemma": "страж",
-      "options": ["страж", "стража", "стражу", "стражем"],
-      "correct": "стража",
-      "case": "Родительный (Genitive)",
-      "translation": "He granted him favor in the eyes of the chief guard.",
-      "explain": "The noun after глазах (in the eyes of) stands in the genitive of possession."
+      "sentence": "Он преуспевал, живя в ___ у своего египетского господина.",
+      "lemma": "дом",
+      "options": ["дом", "дома", "дому", "доме"],
+      "correct": "доме",
+      "case": "Предложный (Prepositional)",
+      "translation": "He prospered, living in the house of his Egyptian master.",
+      "explain": "The preposition в indicating location takes the prepositional case."
     }
   ],
   "reading": [
     {
       "id": "r1",
       "ru": "Иосифа привели в Египет, и египтянин Патифар, сановник фараона и начальник его стражи, купил Иосифа у измаильтян, которые его туда привели.",
-      "question": "Who bought Joseph after he was brought to Egypt?",
-      "options": ["Potiphar, an officer of Pharaoh", "The king of Egypt", "A merchant from Gilead", "The keeper of the prison"],
-      "correct": "Potiphar, an officer of Pharaoh",
+      "question": "Who bought Joseph in Egypt?",
+      "options": ["Potiphar, an Egyptian officer of Pharaoh", "Pharaoh himself", "A group of Midianite traders", "Joseph's own brothers"],
+      "correct": "Potiphar, an Egyptian officer of Pharaoh",
       "explain": "The text says 'египтянин Патифар, сановник фараона... купил Иосифа' (the Egyptian Potiphar, an officer of Pharaoh, bought Joseph)."
     },
     {
       "id": "r2",
-      "ru": "Господь был с Иосифом, и он преуспевал, живя в доме у своего египетского господина.",
-      "question": "Why did Joseph prosper in his master's house?",
-      "options": ["The Lord was with him", "He was very wealthy", "He was Potiphar's son", "He was a skilled soldier"],
-      "correct": "The Lord was with him",
-      "explain": "The text says 'Господь был с Иосифом, и он преуспевал' (The Lord was with Joseph, and he prospered)."
+      "ru": "Патифар поставил его над своим домом и доверил ему все свои владения.",
+      "question": "What did Potiphar do after seeing the Lord's favor on Joseph?",
+      "options": ["He put Joseph in charge of his household and possessions", "He sold Joseph to another master", "He imprisoned Joseph immediately", "He sent Joseph back to Canaan"],
+      "correct": "He put Joseph in charge of his household and possessions",
+      "explain": "The text says Potiphar 'поставил его над своим домом и доверил ему все свои владения' (put him over his household and entrusted him with all his possessions)."
     },
     {
       "id": "r3",
-      "ru": "Патифар поставил его над своим домом и доверил ему все свои владения.",
-      "question": "What responsibility did Potiphar give Joseph?",
-      "options": ["Charge over his house and all his possessions", "Command of his army", "Care of his children", "Management of his fields only"],
-      "correct": "Charge over his house and all his possessions",
-      "explain": "The text says Potiphar 'поставил его над своим домом и доверил ему все свои владения' (set him over his house and entrusted all his possessions to him)."
+      "ru": "Иосиф же был хорошо сложен и красив, и через некоторое время жена его господина стала заглядываться на него и сказала, «Ложись со мной».",
+      "question": "What did Potiphar's wife say to Joseph?",
+      "options": ["\"Lie with me\"", "\"Leave this house\"", "\"Marry me\"", "\"Tell no one\""],
+      "correct": "\"Lie with me\"",
+      "explain": "The text quotes her saying «Ложись со мной» ('Lie with me')."
     },
     {
       "id": "r4",
-      "ru": "Иосиф же был хорошо сложен и красив, и через некоторое время жена его господина стала заглядываться на него и сказала, «Ложись со мной».",
-      "question": "What did the master's wife say to Joseph?",
-      "options": ["\"Lie with me\"", "\"Leave this house\"", "\"Serve my husband\"", "\"Bring me food\""],
-      "correct": "\"Lie with me\"",
-      "explain": "The text says the master's wife said 'Ложись со мной' (Lie with me)."
+      "ru": "Как же я могу совершить такое великое зло и грех против Бога?»",
+      "question": "Why did Joseph refuse Potiphar's wife?",
+      "options": ["Because it would be a great wickedness and sin against God", "Because he did not find her attractive", "Because he feared only Potiphar's punishment", "Because he was already married"],
+      "correct": "Because it would be a great wickedness and sin against God",
+      "explain": "Joseph asks how he 'могу совершить такое великое зло и грех против Бога' (could do such great wickedness and sin against God)."
     },
     {
       "id": "r5",
       "ru": "Она схватила его за одежду и сказала, «Ложись со мной», но он вырвался и убежал, оставив верхнюю одежду у нее в руках.",
-      "question": "What happened when the wife grabbed Joseph's garment?",
-      "options": ["He fled and left his garment in her hands", "He obeyed her", "He called for help", "He struck her"],
-      "correct": "He fled and left his garment in her hands",
-      "explain": "The text says 'он вырвался и убежал, оставив верхнюю одежду у нее в руках' (he tore away and fled, leaving his garment in her hands)."
+      "question": "What happened when Potiphar's wife grabbed Joseph?",
+      "options": ["He fled, leaving his garment in her hand", "He struck her and fled", "He gave in to her demand", "He called for help from the servants"],
+      "correct": "He fled, leaving his garment in her hand",
+      "explain": "The text says he 'вырвался и убежал, оставив верхнюю одежду у нее в руках' (tore free and fled, leaving his outer garment in her hands)."
     },
     {
       "id": "r6",
       "ru": "Он взял Иосифа и посадил его в темницу, где были заключены царские узники.",
-      "question": "Where did the master put Joseph?",
-      "options": ["In the prison where the king's prisoners were held", "In his own house", "Back with the Ishmaelites", "In the fields"],
-      "correct": "In the prison where the king's prisoners were held",
-      "explain": "The text says he put Joseph 'в темницу, где были заключены царские узники' (into the prison where the king's prisoners were held)."
+      "question": "What did Potiphar do to Joseph after hearing his wife's accusation?",
+      "options": ["He put him in the prison where the king's prisoners were kept", "He sent him back to Canaan", "He had him executed", "He sold him to another Egyptian"],
+      "correct": "He put him in the prison where the king's prisoners were kept",
+      "explain": "The text says he 'посадил его в темницу, где были заключены царские узники' (put him in the prison where the king's prisoners were kept)."
+    },
+    {
+      "id": "r7",
+      "ru": "Главный страж поставил Иосифа над всеми узниками, и он отвечал за все дела в темнице.",
+      "question": "What responsibility did the chief jailer give Joseph in prison?",
+      "options": ["Authority over all the prisoners and matters in the prison", "Only cooking duties", "Guarding the main gate", "Sole responsibility over the prison's money"],
+      "correct": "Authority over all the prisoners and matters in the prison",
+      "explain": "The text says the chief jailer 'поставил Иосифа над всеми узниками, и он отвечал за все дела в темнице' (put Joseph over all the prisoners, and he was responsible for everything in the prison)."
     }
   ]
 }

@@ -2,133 +2,238 @@
   "cases": [
     {
       "id": "c1",
-      "sentence": "В той ___ по-прежнему свирепствовал голод.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землю"],
-      "correct": "земле",
-      "case": "Предложный (Prepositional)",
-      "translation": "In that land the famine still raged.",
-      "explain": "The preposition в indicating location takes the prepositional case."
+      "sentence": "Тот ___ нас строго предупредил, не показывайтесь мне на глаза, если с вами не будет вашего брата.",
+      "lemma": "человек",
+      "options": [
+        "человек",
+        "человека",
+        "человеку",
+        "человеком"
+      ],
+      "correct": "человек",
+      "case": "Именительный (Nominative)",
+      "translation": "That man sternly warned us, saying you shall not see my face unless your brother is with you.",
+      "explain": "Человек is the subject of the verb предупредил, so it stands in the nominative case."
     },
     {
       "id": "c2",
-      "sentence": "Тот человек нас строго предупредил, не показывайтесь мне на ___.",
-      "lemma": "глаз",
-      "options": ["глаза", "глаз", "глазам", "глазами"],
-      "correct": "глаза",
-      "case": "Винительный (Accusative)",
-      "translation": "That man solemnly warned us, do not show yourselves before my eyes.",
-      "explain": "The idiom показываться на глаза uses на with the accusative case."
+      "sentence": "Возьмите вдвое больше ___, чтобы вам принести с собой и то, что было положено обратно в ваши мешки.",
+      "lemma": "серебро",
+      "options": [
+        "серебро",
+        "серебра",
+        "серебру",
+        "серебром"
+      ],
+      "correct": "серебра",
+      "case": "Родительный (Genitive)",
+      "translation": "Take double the silver with you, so that you may bring back what was put in your sacks.",
+      "explain": "The comparative phrase 'больше' (more) governs the genitive case of quantity."
     },
     {
       "id": "c3",
-      "sentence": "Приведите сюда вашего ___.",
-      "lemma": "брат",
-      "options": ["брат", "брата", "брату", "братом"],
-      "correct": "брата",
-      "case": "Винительный (Accusative)",
-      "translation": "Bring your brother here.",
-      "explain": "The transitive verb привести takes an animate direct object in the accusative case."
+      "sentence": "Он сказал своему ___, «Отведи этих людей ко мне в дом и приготовь обед».",
+      "lemma": "управляющий",
+      "options": [
+        "управляющий",
+        "управляющего",
+        "управляющему",
+        "управляющим"
+      ],
+      "correct": "управляющему",
+      "case": "Дательный (Dative)",
+      "translation": "He said to his steward, 'Take these men to my house and prepare a meal.'",
+      "explain": "The verb сказал takes its indirect object (to whom) in the dative case."
     },
     {
       "id": "c4",
-      "sentence": "Он вновь вышел и, совладав со своими ___, сказал.",
-      "lemma": "чувство",
-      "options": ["чувства", "чувств", "чувствам", "чувствами"],
-      "correct": "чувствами",
-      "case": "Творительный (Instrumental)",
-      "translation": "He came out again and, having mastered his feelings, said.",
-      "explain": "The preposition с in the sense of dealing with something governs the instrumental case."
+      "sentence": "Он вошел к себе в ___ и там разрыдался.",
+      "lemma": "комната",
+      "options": [
+        "комната",
+        "комнаты",
+        "комнате",
+        "комнату"
+      ],
+      "correct": "комнату",
+      "case": "Винительный (Accusative)",
+      "translation": "He went into his room and wept there.",
+      "explain": "The preposition в indicating motion into a place governs the accusative case."
     },
     {
       "id": "c5",
-      "sentence": "Положите в ___ лучшие плоды этой земли.",
-      "lemma": "сумка",
-      "options": ["сумка", "сумки", "сумке", "сумкой"],
-      "correct": "сумке",
-      "case": "Предложный (Prepositional)",
-      "translation": "Put the best fruits of this land in the bag.",
-      "explain": "The preposition в expressing location takes the prepositional case."
+      "sentence": "Глубоко тронутый ___ брата, он поспешно ушел и искал укромного места.",
+      "lemma": "вид",
+      "options": [
+        "вид",
+        "вида",
+        "виду",
+        "видом"
+      ],
+      "correct": "видом",
+      "case": "Творительный (Instrumental)",
+      "translation": "Deeply moved by the sight of his brother, he hurried out and sought a private place.",
+      "explain": "The instrumental case expresses the cause: он был тронут (чем?) видом — moved by the sight."
     },
     {
       "id": "c6",
-      "sentence": "Отнесите в дар тому ___.",
-      "lemma": "человек",
-      "options": ["человек", "человека", "человеку", "человеком"],
-      "correct": "человеку",
-      "case": "Дательный (Dative)",
-      "translation": "Carry it as a gift to that man.",
-      "explain": "The recipient of the gift stands in the dative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Возьмите вдвое больше ___.",
-      "lemma": "серебро",
-      "options": ["серебро", "серебра", "серебру", "серебром"],
-      "correct": "серебра",
-      "case": "Родительный (Genitive)",
-      "translation": "Take twice as much silver.",
-      "explain": "The quantity word больше governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Управляющий дал им ___ вымыть ноги.",
-      "lemma": "вода",
-      "options": ["вода", "воды", "воде", "воду"],
-      "correct": "воды",
-      "case": "Родительный (Genitive)",
-      "translation": "The steward gave them water to wash their feet.",
-      "explain": "The partitive object of дать (some water) takes the genitive case."
+      "sentence": "Тот человек подробно расспрашивал нас, о нас самих и о нашей ___.",
+      "lemma": "семья",
+      "options": [
+        "семья",
+        "семьи",
+        "семье",
+        "семью"
+      ],
+      "correct": "семье",
+      "case": "Предложный (Prepositional)",
+      "translation": "That man questioned us closely, about ourselves and about our family.",
+      "explain": "The preposition о (about) governs the prepositional case."
     }
   ],
   "reading": [
     {
       "id": "r1",
       "ru": "В той земле по-прежнему свирепствовал голод.",
-      "question": "What condition persisted in the land?",
-      "options": ["Famine", "War", "Flood", "Plague"],
-      "correct": "Famine",
-      "explain": "The text says 'свирепствовал голод' (the famine raged)."
+      "question": "What was still happening in the land?",
+      "options": [
+        "Famine was still severe",
+        "A war had started",
+        "Crops had failed only once",
+        "Egypt had run out of gold"
+      ],
+      "correct": "Famine was still severe",
+      "explain": "The text says 'В той земле по-прежнему свирепствовал голод' — the famine still raged in the land."
     },
     {
       "id": "r2",
-      "ru": "Я лично буду за него порукой, с меня лично ты спросишь за него.",
-      "question": "What did Judah promise regarding Benjamin?",
-      "options": ["To be personally responsible for him", "To pay silver for him", "To leave him in Egypt", "To ask Joseph about him"],
-      "correct": "To be personally responsible for him",
-      "explain": "Judah says he will personally be surety (поруко́й) for the boy."
+      "ru": "Если ты отпустишь с нами брата, то мы пойдем и купим для тебя еды.",
+      "question": "What did Judah say would happen if their father sent Benjamin with them?",
+      "options": [
+        "They would go and buy food",
+        "They would stay in Canaan",
+        "They would return with silver",
+        "They would refuse to go"
+      ],
+      "correct": "They would go and buy food",
+      "explain": "Judah says 'мы пойдем и купим для тебя еды' — we will go and buy you food."
     },
     {
       "id": "r3",
-      "ru": "Возьмите вдвое больше серебра, чтобы вам принести с собой и то, что было положено обратно в ваши мешки.",
-      "question": "How much silver were the brothers told to take?",
-      "options": ["Double the amount", "Half the amount", "No silver at all", "Ten times the amount"],
-      "correct": "Double the amount",
-      "explain": "The text says 'вдвое больше серебра' (twice as much silver)."
+      "ru": "Зачем вы навели на меня эту беду?",
+      "question": "What did Israel ask his sons?",
+      "options": [
+        "Why did you bring this trouble on me?",
+        "Why did you sell Joseph?",
+        "Why did you leave Benjamin behind?",
+        "Why did you not buy enough food?"
+      ],
+      "correct": "Why did you bring this trouble on me?",
+      "explain": "Israel asks 'Зачем вы навели на меня эту беду?' — why have you brought this trouble on me?"
     },
     {
       "id": "r4",
-      "ru": "Затем он вывел к ним Симеона.",
-      "question": "Whom did he bring out to the brothers?",
-      "options": ["Simeon", "Benjamin", "Judah", "Reuben"],
-      "correct": "Simeon",
-      "explain": "The text says 'он вывел к ним Симеона' (he brought Simeon out to them)."
+      "ru": "Я лично буду за него порукой, с меня лично ты спросишь за него.",
+      "question": "What did Judah pledge to his father regarding Benjamin?",
+      "options": [
+        "To personally guarantee Benjamin's safety",
+        "To take Benjamin's place in Egypt immediately",
+        "To never return to Canaan",
+        "To give his own money to Joseph"
+      ],
+      "correct": "To personally guarantee Benjamin's safety",
+      "explain": "Judah says he will personally be surety ('порукой') for the boy."
     },
     {
       "id": "r5",
-      "ru": "Он вошел к себе в комнату и там разрыдался.",
-      "question": "What did Joseph do in his room?",
-      "options": ["He burst into tears", "He fell asleep", "He prayed aloud", "He ate a meal"],
-      "correct": "He burst into tears",
-      "explain": "The text says he entered his room and 'там разрыдался' (wept there)."
+      "ru": "Положите в сумке лучшие плоды этой земли и отнесите в дар тому человеку.",
+      "question": "What did Israel tell his sons to bring as a gift?",
+      "options": [
+        "The best products of the land",
+        "Gold and jewelry",
+        "Their flocks and herds",
+        "Weapons and tools"
+      ],
+      "correct": "The best products of the land",
+      "explain": "Israel tells them to take 'лучшие плоды этой земли' — the best fruits of the land — as a gift."
     },
     {
       "id": "r6",
-      "ru": "Они пировали и пили с ним в волю.",
-      "question": "How did the brothers spend the meal with Joseph?",
-      "options": ["They feasted and drank freely", "They ate in silence", "They refused the food", "They ate separately in fear"],
-      "correct": "They feasted and drank freely",
-      "explain": "The text says 'Они пировали и пили с ним в волю' (they feasted and drank freely with him)."
+      "ru": "Когда Иосиф увидел, что Вениамин с ними, он сказал своему управляющему, «Отведи этих людей ко мне в дом, заколи что-нибудь из кота и приготовь обед, они будут есть со мной в полдень».",
+      "question": "What did Joseph instruct his steward to do when he saw Benjamin?",
+      "options": [
+        "Prepare a meal for the brothers to eat with him",
+        "Arrest the brothers immediately",
+        "Send the brothers away",
+        "Give the brothers more silver"
+      ],
+      "correct": "Prepare a meal for the brothers to eat with him",
+      "explain": "Joseph tells his steward to bring the men to his house and prepare a meal, for they will dine with him at noon."
+    },
+    {
+      "id": "r7",
+      "ru": "Они испугались, когда их привели к нему в дом, потому что подумали, «Нас привели сюда из-за серебра, которое вернулось в наши мешки в первый раз.",
+      "question": "Why were the brothers afraid when they were brought to Joseph's house?",
+      "options": [
+        "They thought it was because of the silver returned in their sacks",
+        "They thought Joseph had recognized them as spies",
+        "They thought their father had died",
+        "They thought Benjamin had stolen something"
+      ],
+      "correct": "They thought it was because of the silver returned in their sacks",
+      "explain": "They feared they were brought in because of the silver that had been returned to their sacks the first time."
+    },
+    {
+      "id": "r8",
+      "ru": "Он ответил, «Все в порядке, не бойтесь. Ваш Бог, Бог вашего Отца, положил это сокровище в ваши мешки, а я получил ваше серебро».",
+      "question": "How did the steward explain the silver found in their sacks?",
+      "options": [
+        "He said their God had put the treasure there",
+        "He said he had made a mistake",
+        "He said Joseph had given it as a gift",
+        "He said it belonged to the Egyptians"
+      ],
+      "correct": "He said their God had put the treasure there",
+      "explain": "The steward says their God, the God of their father, put the treasure in their sacks."
+    },
+    {
+      "id": "r9",
+      "ru": "Он спросил их о здоровье, потом сказал, «А как ваш престарелый отец, о котором вы говорили мне, жив ли он еще?»",
+      "question": "What did Joseph ask his brothers about?",
+      "options": [
+        "Whether their elderly father was still alive",
+        "Whether they had more brothers",
+        "Whether they had enough food",
+        "Whether Benjamin was married"
+      ],
+      "correct": "Whether their elderly father was still alive",
+      "explain": "Joseph asks about their aged father, whether he is still alive."
+    },
+    {
+      "id": "r10",
+      "ru": "Глубоко тронутый видом брата, он поспешно ушел и искал укромного места.",
+      "question": "What did Joseph do after seeing Benjamin?",
+      "options": [
+        "He hurried away to find a private place to weep",
+        "He announced his identity immediately",
+        "He ordered a feast at once",
+        "He sent Benjamin back to Canaan"
+      ],
+      "correct": "He hurried away to find a private place to weep",
+      "explain": "Deeply moved, Joseph hurried out to find a private place, where he wept."
+    },
+    {
+      "id": "r11",
+      "ru": "Им подавали кушанье со стола Иосифа, и доля Вениамина была в пятеро больше, чем у других.",
+      "question": "How much larger was Benjamin's portion compared to the others?",
+      "options": [
+        "Five times as much",
+        "Twice as much",
+        "The same amount",
+        "Half as much"
+      ],
+      "correct": "Five times as much",
+      "explain": "The text says Benjamin's portion was five times as large as the others'."
     }
   ]
 }

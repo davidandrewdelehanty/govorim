@@ -2,203 +2,173 @@
   "cases": [
     {
       "id": "c1",
-      "sentence": "Рахиль видела, что она не рожает Иакову ___.",
-      "lemma": "дети",
-      "options": [
-        "дети",
-        "детей",
-        "детям",
-        "детьми"
-      ],
-      "correct": "детей",
-      "case": "Родительный (Genitive)",
-      "translation": "Rachel saw that she was bearing Jacob no children.",
-      "explain": "Under negation the direct object of не рожает (bears no) goes to the genitive → детей."
+      "sentence": "___ начал богатеть, у него теперь были большие стада, а также служанки, слуги, верблюды и ослы.",
+      "lemma": "Иаков",
+      "options": ["Иаков", "Иакова", "Иакову", "Иаковом"],
+      "correct": "Иаков",
+      "case": "Именительный (Nominative)",
+      "translation": "Jacob began to grow rich; he now had large flocks, as well as maidservants, menservants, camels, and donkeys.",
+      "explain": "Иаков is the subject of 'начал', so it takes the nominative case."
     },
     {
       "id": "c2",
-      "sentence": "…и позавидовала своей ___ Лии.",
-      "lemma": "сестра",
-      "options": [
-        "сестра",
-        "сестру",
-        "сестры",
-        "сестре"
-      ],
-      "correct": "сестре",
-      "case": "Дательный (Dative)",
-      "translation": "…and she envied her sister Leah.",
-      "explain": "The verb позавидовать (to envy) governs the dative of the person envied → сестре."
+      "sentence": "Так она дала ему в жены свою ___ Валлу.",
+      "lemma": "служанка",
+      "options": ["служанка", "служанки", "служанке", "служанку"],
+      "correct": "служанку",
+      "case": "Винительный (Accusative)",
+      "translation": "So she gave him her servant Bilhah as a wife, and Jacob lay with her.",
+      "explain": "The verb дать (to give) takes its direct object, служанку, in the accusative case."
     },
     {
       "id": "c3",
-      "sentence": "Во время жатвы ___ Рувим вышел в поле, нашёл мандрагоры.",
-      "lemma": "пшеница",
-      "options": [
-        "пшеница",
-        "пшеницу",
-        "пшеницы",
-        "пшеницей"
-      ],
-      "correct": "пшеницы",
+      "sentence": "Рахиль сказала Лии, «Пожалуйста, дай мне несколько ___ твоего сына».",
+      "lemma": "мандрагора",
+      "options": ["мандрагоры", "мандрагор", "мандрагорам", "мандрагорами"],
+      "correct": "мандрагор",
       "case": "Родительный (Genitive)",
-      "translation": "During the wheat harvest Reuben went out into the field and found mandrakes.",
-      "explain": "Жатва пшеницы ('harvest of wheat') expresses possession → genitive → пшеницы."
+      "translation": "Rachel said to Leah, 'Please give me some of your son's mandrakes.'",
+      "explain": "The quantifier несколько (some/several) governs the genitive case."
     },
     {
       "id": "c4",
-      "sentence": "Ты должен лечь со мной, я заплатила за тебя ___ сына.",
-      "lemma": "мандрагоры",
-      "options": [
-        "мандрагоры",
-        "мандрагор",
-        "мандрагорам",
-        "мандрагорами"
-      ],
-      "correct": "мандрагорами",
-      "case": "Творительный (Instrumental)",
-      "translation": "You must lie with me; I have hired you with my son's mandrakes.",
-      "explain": "The means of payment ('paid with mandrakes') is expressed by the instrumental → мандрагорами."
+      "sentence": "Валла, служанка Рахили, снова забеременела и родила ___ второго сына.",
+      "lemma": "Иаков",
+      "options": ["Иаков", "Иакова", "Иакову", "Иаковом"],
+      "correct": "Иакову",
+      "case": "Дательный (Dative)",
+      "translation": "Bilhah, Rachel's servant, conceived again and bore Jacob a second son.",
+      "explain": "The verb родить (to bear a child to someone) takes its indirect object in the dative case."
     },
     {
       "id": "c5",
-      "sentence": "Также Иаков поворачивал их к пёстрым и тёмным ___.",
-      "lemma": "животное",
-      "options": [
-        "животные",
-        "животных",
-        "животным",
-        "животными"
-      ],
-      "correct": "животным",
-      "case": "Дательный (Dative)",
-      "translation": "Jacob also turned them toward the streaked and dark animals.",
-      "explain": "The preposition к (toward) governs the dative → животным (dative plural)."
+      "sentence": "Во время брачной поры, когда животные приходили пить, они спаривались перед ___, и потомство рождалось пестрым, крапчатым или пятнистым.",
+      "lemma": "ветка",
+      "options": ["ветки", "веток", "веткам", "ветками"],
+      "correct": "ветками",
+      "case": "Творительный (Instrumental)",
+      "translation": "During the mating season, when the animals came to drink, they mated in front of the branches, and the offspring were born streaked, speckled, or spotted.",
+      "explain": "The preposition перед (in front of) governs the instrumental case."
     },
     {
       "id": "c6",
-      "sentence": "Лия взяла свою ___ Зелфу и дала её Иакову в жёны.",
-      "lemma": "служанка",
-      "options": [
-        "служанка",
-        "служанку",
-        "служанки",
-        "служанкой"
-      ],
-      "correct": "служанку",
-      "case": "Винительный (Accusative)",
-      "translation": "Leah took her servant Zilpah and gave her to Jacob as a wife.",
-      "explain": "Служанка is the direct object of взяла (took) → accusative; feminine -а nouns take -у."
+      "sentence": "«Если я нашел милость в твоих ___, прошу тебя, останься».",
+      "lemma": "глаз",
+      "options": ["глаза", "глаз", "глазам", "глазах"],
+      "correct": "глазах",
+      "case": "Предложный (Prepositional)",
+      "translation": "'If I have found favor in your eyes, please stay.'",
+      "explain": "The preposition в indicating location governs the prepositional case."
     },
     {
       "id": "c7",
-      "sentence": "Иаков начал богатеть, у него теперь были большие ___.",
-      "lemma": "стадо",
-      "options": [
-        "стада",
-        "стад",
-        "стадам",
-        "стадами"
-      ],
-      "correct": "стада",
-      "case": "Именительный (Nominative)",
-      "translation": "Jacob began to grow rich; he now had large flocks.",
-      "explain": "Стада is the subject of были (there were / he had) → nominative (plural)."
+      "sentence": "После того, как Рахиль родила Иосифа, Иаков сказал ___, «Отпусти меня, чтобы я мог вернуться в родные края.",
+      "lemma": "Лаван",
+      "options": ["Лаван", "Лавана", "Лавану", "Лаваном"],
+      "correct": "Лавану",
+      "case": "Дательный (Dative)",
+      "translation": "After Rachel bore Joseph, Jacob said to Laban, 'Send me away, that I may return to my own country.'",
+      "explain": "The verb сказать (to say to someone) takes its indirect object in the dative case."
     },
     {
       "id": "c8",
-      "sentence": "Если я нашёл милость в твоих ___, прошу тебя, останься.",
-      "lemma": "глаз",
-      "options": [
-        "глаза",
-        "глаз",
-        "глазами",
-        "глазах"
-      ],
-      "correct": "глазах",
-      "case": "Предложный (Prepositional)",
-      "translation": "If I have found favor in your eyes, please, stay.",
-      "explain": "В marking a static location (in your eyes) takes the prepositional → глазах (prepositional plural)."
+      "sentence": "Иаков стал жить и с Рахилью, и любил Рахиль больше, чем ___.",
+      "lemma": "Лия",
+      "options": ["Лия", "Лии", "Лию", "Лией"],
+      "correct": "Лию",
+      "case": "Винительный (Accusative)",
+      "translation": "Jacob began to live with Rachel too, and he loved Rachel more than Leah.",
+      "explain": "Лию is the direct object of 'любил' (loved), which requires the accusative case."
     }
   ],
   "reading": [
     {
       "id": "r1",
       "ru": "Она сказала Иакову, «Дай мне детей, или я умру».",
-      "question": "What did Rachel demand of Jacob?",
-      "options": [
-        "Children, or she would die",
-        "A new house",
-        "That he send Leah away",
-        "Great wealth"
-      ],
+      "question": "What did Rachel demand from Jacob out of jealousy of her sister?",
+      "options": ["Children, or she would die", "Jacob's love", "More servants", "To leave Laban's household"],
       "correct": "Children, or she would die",
-      "explain": "Rachel said to Jacob, 'Give me children, or I will die.'"
+      "explain": "Rachel said to Jacob, 'Дай мне детей, или я умру' (Give me children, or I will die)."
     },
     {
       "id": "r2",
       "ru": "Иаков разгневался на нее и сказал, «Разве я бог, который не дает тебе детей?»",
       "question": "How did Jacob respond to Rachel's demand?",
-      "options": [
-        "He grew angry, saying he was not God",
-        "He wept with her",
-        "He agreed at once",
-        "He simply prayed"
-      ],
-      "correct": "He grew angry, saying he was not God",
-      "explain": "Jacob's anger burned, and he asked whether he was in God's place, who had withheld children."
+      "options": ["He grew angry and asked if he were God, who withholds children", "He agreed immediately to find her a servant", "He wept and prayed for her", "He sent her away in anger"],
+      "correct": "He grew angry and asked if he were God, who withholds children",
+      "explain": "Jacob became angry and asked, 'Разве я бог, который не дает тебе детей?' (Am I God, who withholds children from you?)."
     },
     {
       "id": "r3",
-      "ru": "Во время жатвы пшеницы Рувим вышел в поле, нашел мандрагоры и принес их матери.",
-      "question": "What did Reuben find in the field during the wheat harvest?",
-      "options": [
-        "Mandrakes",
-        "Gold",
-        "Lost sheep",
-        "A new well"
-      ],
-      "correct": "Mandrakes",
-      "explain": "During the wheat harvest Reuben found mandrakes in the field and brought them to his mother."
+      "ru": "Тогда Рахиль сказала, великой борьбой боролась я с моей сестрой и победила, и она назвала его Нефалим.",
+      "question": "Why did Rachel name Bilhah's second son Naphtali?",
+      "options": ["Because she said she had struggled with her sister and won", "Because he was born at night", "Because Jacob chose the name", "Because he resembled Leah's son"],
+      "correct": "Because she said she had struggled with her sister and won",
+      "explain": "Rachel said she had wrestled a great struggle with her sister and won, and named him Naphtali."
     },
     {
       "id": "r4",
-      "ru": "Тогда Бог вспомнил Рахиль, он услышал ее и открыл ей утробу, она забеременела и родила сына, и сказала, Бог снял мой позор.",
-      "question": "What happened when God remembered Rachel?",
-      "options": [
-        "She conceived and bore a son",
-        "She left Jacob",
-        "She grew ill",
-        "She adopted a child"
-      ],
-      "correct": "She conceived and bore a son",
-      "explain": "God remembered Rachel, opened her womb, and she conceived and bore a son."
+      "ru": "Тогда Лия сказала, какая удача, и она назвала его гад.",
+      "question": "What did Leah say when Zilpah bore Jacob a son, leading her to name him Gad?",
+      "options": ["'What good fortune!'", "'I am so tired'", "'This is my last child'", "'Now I am cursed'"],
+      "correct": "'What good fortune!'",
+      "explain": "Leah said 'какая удача' (what good fortune) and named the son Gad."
     },
     {
       "id": "r5",
-      "ru": "Через какое-то время она родила дочь и назвала ее Дина.",
-      "question": "What did Leah name the daughter she bore?",
-      "options": [
-        "Dinah",
-        "Rachel",
-        "Leah",
-        "Zilpah"
-      ],
-      "correct": "Dinah",
-      "explain": "After a time she bore a daughter and named her Dinah."
+      "ru": "Рахиль сказала Лии, «Пожалуйста, дай мне несколько мандрагор твоего сына».",
+      "question": "What did Rachel ask Leah for after Reuben found mandrakes in the field?",
+      "options": ["Some of her son's mandrakes", "Her servant Zilpah", "A share of the harvest", "Her blessing"],
+      "correct": "Some of her son's mandrakes",
+      "explain": "Rachel asked Leah to give her some of her son's mandrakes."
     },
     {
       "id": "r6",
-      "ru": "Иаков начал богатеть, у него теперь были большие стада, а также служанки, слуги, верблюды и ослы.",
-      "question": "How did Jacob's situation change by the end of the chapter?",
-      "options": [
-        "He became rich with large flocks and servants",
-        "He lost everything he owned",
-        "He returned home poor",
-        "He gave all his flocks to Laban"
-      ],
-      "correct": "He became rich with large flocks and servants",
-      "explain": "Jacob increased greatly, gaining large flocks, servants, camels, and donkeys."
+      "ru": "«Хорошо», — сказала Рахиль, «пусть он ляжет с тобой сегодня ночью в обмен на мандрагоры твоего сына».",
+      "question": "What did Rachel offer Leah in exchange for the mandrakes?",
+      "options": ["A night with Jacob", "Her share of the flock", "Her servant Bilhah", "Money"],
+      "correct": "A night with Jacob",
+      "explain": "Rachel agreed that Jacob would lie with Leah that night in exchange for the mandrakes."
+    },
+    {
+      "id": "r7",
+      "ru": "Тогда Лия сказала, «Бог вознаградил меня за то, что я дала мужу мою служанку», и она назвала его Иссахар.",
+      "question": "Why did Leah name her fifth son Issachar?",
+      "options": ["Because she said God rewarded her for giving her servant to her husband", "Because he was born on the Sabbath", "Because Rachel suggested the name", "Because he was very strong"],
+      "correct": "Because she said God rewarded her for giving her servant to her husband",
+      "explain": "Leah said God had rewarded her for giving her servant to her husband, and named him Issachar."
+    },
+    {
+      "id": "r8",
+      "ru": "Тогда Бог вспомнил Рахиль, он услышал ее и открыл ей утробу, она забеременела и родила сына, и сказала, Бог снял мой позор.",
+      "question": "What happened when God finally remembered Rachel?",
+      "options": ["She conceived and bore a son, saying God had taken away her disgrace", "She adopted one of Leah's sons", "She died in childbirth", "She remained barren but was comforted"],
+      "correct": "She conceived and bore a son, saying God had taken away her disgrace",
+      "explain": "God remembered Rachel, opened her womb, and she bore a son, saying He had taken away her reproach."
+    },
+    {
+      "id": "r9",
+      "ru": "После того, как Рахиль родила Иосифа, Иаков сказал Лавану, «Отпусти меня, чтобы я мог вернуться в родные края.",
+      "question": "What did Jacob ask of Laban after Joseph was born?",
+      "options": ["To be released to return to his own country", "To be given more wives", "To be made Laban's heir", "To be given a permanent house"],
+      "correct": "To be released to return to his own country",
+      "explain": "Jacob asked Laban to send him away so he could return to his own country."
+    },
+    {
+      "id": "r10",
+      "ru": "Позволь мне обойти все твои стада и отделить оттуда всех крапчатых и пятнистых овец, всех темных ягнят и всех пятнистых и крапчатых козлов.",
+      "question": "What wages did Jacob propose to take from Laban's flocks?",
+      "options": ["The speckled, spotted, and dark-colored animals", "Half of all the flocks", "Only the strongest animals", "A fixed sum of silver each year"],
+      "correct": "The speckled, spotted, and dark-colored animals",
+      "explain": "Jacob proposed taking all the speckled and spotted sheep and dark lambs and speckled and spotted goats as his wages."
+    },
+    {
+      "id": "r11",
+      "ru": "Иаков нарезал свежих веток тополя, миндаля и чинары и сделал на них белые полоски, сняв кору и обнажив белое дерево внутри.",
+      "question": "What did Jacob do with fresh branches to influence the breeding of the flocks?",
+      "options": ["He peeled white streaks into them and placed them at the watering troughs", "He burned them as an offering", "He fed them to the strongest animals", "He built a fence with them"],
+      "correct": "He peeled white streaks into them and placed them at the watering troughs",
+      "explain": "Jacob cut fresh branches, peeled white streaks into them, and set them at the watering troughs."
     }
   ]
 }

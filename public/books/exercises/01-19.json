@@ -2,133 +2,165 @@
   "cases": [
     {
       "id": "c1",
-      "sentence": "Два ангела пришли в ___ к вечеру.",
-      "lemma": "Содом",
-      "options": ["Содом", "Содома", "Содому", "Содомом"],
-      "correct": "Содом",
-      "case": "Винительный (Accusative)",
-      "translation": "The two angels came into Sodom toward evening.",
-      "explain": "The preposition в expressing motion into takes the accusative; for the inanimate masculine Содом the accusative equals the nominative."
+      "sentence": "___ Лота оглянулась назад и превратилась в соляной столб.",
+      "lemma": "жена",
+      "options": ["жена", "жены", "жену", "женой"],
+      "correct": "жена",
+      "case": "Именительный (Nominative)",
+      "translation": "Lot's wife looked back and turned into a pillar of salt.",
+      "explain": "Жена is the subject of the verb оглянулась, so it stands in the nominative case."
     },
     {
       "id": "c2",
-      "sentence": "Он встал им навстречу и поклонился до ___.",
+      "sentence": "Лот сидел у ворот ___.",
+      "lemma": "город",
+      "options": ["город", "города", "городу", "городом"],
+      "correct": "города",
+      "case": "Родительный (Genitive)",
+      "translation": "Lot was sitting at the gate of the city.",
+      "explain": "The genitive города shows possession — 'the gate of the city'."
+    },
+    {
+      "id": "c3",
+      "sentence": "Два ангела пришли в Содом к ___.",
+      "lemma": "вечер",
+      "options": ["вечер", "вечера", "вечеру", "вечером"],
+      "correct": "вечеру",
+      "case": "Дательный (Dative)",
+      "translation": "Two angels came to Sodom by evening.",
+      "explain": "The preposition к governs the dative case."
+    },
+    {
+      "id": "c4",
+      "sentence": "Он приготовил для них ___, испек пресный хлеб.",
+      "lemma": "еда",
+      "options": ["еда", "еды", "еду", "едой"],
+      "correct": "еду",
+      "case": "Винительный (Accusative)",
+      "translation": "He prepared food for them and baked unleavened bread.",
+      "explain": "The transitive verb приготовить takes its direct object in the accusative case."
+    },
+    {
+      "id": "c5",
+      "sentence": "Тогда Господь пролил ___ на Содом и Гоморру горящую серу с небес.",
+      "lemma": "дождь",
+      "options": ["дождь", "дождя", "дождю", "дождём"],
+      "correct": "дождём",
+      "case": "Творительный (Instrumental)",
+      "translation": "Then the Lord rained burning sulfur on Sodom and Gomorrah from the sky.",
+      "explain": "The instrumental дождём expresses the substance that rained down."
+    },
+    {
+      "id": "c6",
+      "sentence": "Беги в горы и не останавливайся нигде в ___.",
+      "lemma": "долина",
+      "options": ["долина", "долины", "долине", "долиной"],
+      "correct": "долине",
+      "case": "Предложный (Prepositional)",
+      "translation": "Flee to the mountains and don't stop anywhere in the valley.",
+      "explain": "The preposition в indicating location takes the prepositional case."
+    },
+    {
+      "id": "c7",
+      "sentence": "Густой дым поднимается от ___, как дым из печи.",
       "lemma": "земля",
       "options": ["земля", "земли", "земле", "землю"],
       "correct": "земли",
       "case": "Родительный (Genitive)",
-      "translation": "He rose to meet them and bowed down to the ground.",
-      "explain": "The preposition до (up to) governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Нет, мы переночуем на ___.",
-      "lemma": "площадь",
-      "options": ["площадь", "площади", "площадью", "площадей"],
-      "correct": "площади",
-      "case": "Предложный (Prepositional)",
-      "translation": "No, we will spend the night in the square.",
-      "explain": "The preposition на indicating location takes the prepositional case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Они поразили их ___, так что те не могли найти дверь.",
-      "lemma": "слепота",
-      "options": ["слепота", "слепоты", "слепоте", "слепотой"],
-      "correct": "слепотой",
-      "case": "Творительный (Instrumental)",
-      "translation": "They struck them with blindness, so that they could not find the door.",
-      "explain": "The verb поразить (to strike with) takes the instrumental case for the means."
-    },
-    {
-      "id": "c5",
-      "sentence": "Лот вышел к ним и запер за собой ___.",
-      "lemma": "дверь",
-      "options": ["дверь", "двери", "дверью", "дверей"],
-      "correct": "дверь",
-      "case": "Винительный (Accusative)",
-      "translation": "Lot went out to them and shut the door behind himself.",
-      "explain": "The transitive verb запереть takes its direct object in the accusative; for this feminine noun the accusative equals the nominative."
-    },
-    {
-      "id": "c6",
-      "sentence": "У меня есть две ___, которые никогда еще не были с мужчиной.",
-      "lemma": "дочь",
-      "options": ["дочь", "дочери", "дочерью", "дочерей"],
-      "correct": "дочери",
-      "case": "Родительный (Genitive)",
-      "translation": "I have two daughters who have never yet been with a man.",
-      "explain": "The numeral две (two) governs the genitive singular."
-    },
-    {
-      "id": "c7",
-      "sentence": "А жена Лота оглянулась назад и превратилась в соляной ___.",
-      "lemma": "столб",
-      "options": ["столб", "столба", "столбу", "столбом"],
-      "correct": "столб",
-      "case": "Винительный (Accusative)",
-      "translation": "But Lot's wife looked back and turned into a pillar of salt.",
-      "explain": "The construction превратиться в (to turn into) takes the accusative; for the inanimate masculine столб the accusative equals the nominative."
+      "translation": "Thick smoke was rising from the ground, like smoke from a furnace.",
+      "explain": "The preposition от governs the genitive case."
     },
     {
       "id": "c8",
-      "sentence": "Авраам поднялся рано и вернулся к тому ___.",
-      "lemma": "место",
-      "options": ["место", "места", "месту", "местом"],
-      "correct": "месту",
-      "case": "Дательный (Dative)",
-      "translation": "Abraham got up early and returned to that place.",
-      "explain": "The preposition к governs the dative case."
+      "sentence": "Те двое взяли его за ___, и его жену, и двух дочерей.",
+      "lemma": "рука",
+      "options": ["рука", "руки", "руку", "рукой"],
+      "correct": "руку",
+      "case": "Винительный (Accusative)",
+      "translation": "The two men took him by the hand, and his wife, and his two daughters.",
+      "explain": "The preposition за (taking hold of a part of the body) governs the accusative case here."
     }
   ],
   "reading": [
     {
       "id": "r1",
       "ru": "Два ангела пришли в Содом к вечеру, и Лот сидел у ворот города.",
-      "question": "Where was Lot when the two angels arrived?",
-      "options": ["Sitting at the city gate", "Working in the field", "Asleep on the roof", "Traveling on the road"],
-      "correct": "Sitting at the city gate",
-      "explain": "The text says 'Лот сидел у ворот города' (Lot sat at the gate of the city)."
+      "question": "Where was Lot sitting when the two angels arrived?",
+      "options": ["At the gate of the city", "In his house", "At the well", "In the fields"],
+      "correct": "At the gate of the city",
+      "explain": "The text says Lot sat 'у ворот города' — at the gate of the city."
     },
     {
       "id": "r2",
-      "ru": "Он приготовил для них еду, испек пресный хлеб, и они поели.",
-      "question": "What did Lot prepare for the two visitors?",
-      "options": ["A meal with unleavened bread", "A burnt sacrifice", "Only wine", "Nothing at all"],
-      "correct": "A meal with unleavened bread",
-      "explain": "The text says he prepared food and 'испек пресный хлеб' (baked unleavened bread)."
+      "ru": "Но он так настаивал, что они последовали за ним и вошли в дом.",
+      "question": "What convinced the angels to enter Lot's house?",
+      "options": ["Lot's insistence", "An offer of money", "A storm outside", "Sarah's request"],
+      "correct": "Lot's insistence",
+      "explain": "The text says 'он так настаивал' — he insisted so strongly that they went in with him."
     },
     {
       "id": "r3",
-      "ru": "А тех, кто были у двери дома, и молодых, и старых, они поразили слепотой, так что те не могли найти дверь.",
-      "question": "What happened to the men at the door of Lot's house?",
-      "options": ["They were struck with blindness", "They were killed", "They broke down the door", "They fled the city"],
-      "correct": "They were struck with blindness",
-      "explain": "The text says the angels 'поразили слепотой' (struck them with blindness) so they could not find the door."
+      "ru": "Но прежде чем они легли, все мужчины Содома, молодые и старые, окружили дом.",
+      "question": "Who surrounded Lot's house before the guests lay down?",
+      "options": ["All the men of Sodom, young and old", "Only the elders of the city", "A group of angels", "Lot's own servants"],
+      "correct": "All the men of Sodom, young and old",
+      "explain": "The text says 'все мужчины Содома, молодые и старые, окружили дом'."
     },
     {
       "id": "r4",
-      "ru": "Тогда Господь пролил дождем на Содом и Гоморру горящую серу с небес от Господа.",
-      "question": "What did the Lord rain down on Sodom and Gomorrah?",
-      "options": ["Burning sulfur", "A great flood", "Hailstones", "Swarms of locusts"],
-      "correct": "Burning sulfur",
-      "explain": "The text says the Lord rained down 'горящую серу' (burning sulfur) from the heavens."
+      "ru": "Лот вышел к ним и запер за собой дверь.",
+      "question": "What did Lot do when he went out to the men?",
+      "options": ["He shut the door behind him", "He brought his daughters out immediately", "He ran away from the house", "He called for the angels to fight"],
+      "correct": "He shut the door behind him",
+      "explain": "The text says Lot 'запер за собой дверь' — shut the door behind himself."
     },
     {
       "id": "r5",
-      "ru": "А жена Лота оглянулась назад и превратилась в соляной столб.",
-      "question": "What happened to Lot's wife when she looked back?",
-      "options": ["She turned into a pillar of salt", "She was struck blind", "She fainted", "She ran to the mountains"],
-      "correct": "She turned into a pillar of salt",
-      "explain": "The text says she 'превратилась в соляной столб' (turned into a pillar of salt)."
+      "ru": "А тех, кто были у двери дома, и молодых, и старых, они поразили слепотой, так что те не могли найти дверь.",
+      "question": "How did the angels stop the men outside the door?",
+      "options": ["They struck them with blindness", "They killed them", "They set the house on fire", "They locked them outside"],
+      "correct": "They struck them with blindness",
+      "explain": "The text says the angels 'поразили слепотой' the men at the door, so they could not find it."
     },
     {
       "id": "r6",
-      "ru": "Он жил в пещере со своими двумя дочерьми.",
-      "question": "Where did Lot live after leaving Zoar?",
-      "options": ["In a cave with his two daughters", "In a tent in the valley", "Back in the city", "Alone on a mountaintop"],
-      "correct": "In a cave with his two daughters",
-      "explain": "The text says 'Он жил в пещере со своими двумя дочерьми' (He lived in a cave with his two daughters)."
+      "ru": "Когда взошла заря, ангелы стали торопить Лота, говоря, «Торопись, уводи отсюда свою жену и двух дочерей, а не то ты погибнешь, когда наказание падет на город».",
+      "question": "What did the angels urge Lot to do at dawn?",
+      "options": ["Hurry and take his wife and two daughters out of the city", "Stay and pray for the city", "Fight the men of Sodom", "Go back for his belongings"],
+      "correct": "Hurry and take his wife and two daughters out of the city",
+      "explain": "The angels told Lot to hurry and take his wife and two daughters, or he would perish when the city was punished."
+    },
+    {
+      "id": "r7",
+      "ru": "А жена Лота оглянулась назад и превратилась в соляной столб.",
+      "question": "What happened to Lot's wife?",
+      "options": ["She looked back and turned into a pillar of salt", "She died of fear before reaching Zoar", "She escaped safely to the mountains", "She stayed behind in Sodom"],
+      "correct": "She looked back and turned into a pillar of salt",
+      "explain": "The text states she looked back and became a pillar of salt."
+    },
+    {
+      "id": "r8",
+      "ru": "Так, когда Бог уничтожил города-долины, он вспомнил Авраама и спас Лота от бедствия, которое разрушило города, в которых жил Лот.",
+      "question": "Why did God rescue Lot from the destruction?",
+      "options": ["Because God remembered Abraham", "Because Lot prayed for himself", "Because Lot's wife interceded", "Because Lot had built an altar"],
+      "correct": "Because God remembered Abraham",
+      "explain": "The text says God 'вспомнил Авраама и спас Лота' — remembered Abraham and saved Lot."
+    },
+    {
+      "id": "r9",
+      "ru": "Лот и две его дочери покинули Циар и поселились в горах, так как он боялся оставаться в Циаре.",
+      "question": "Why did Lot leave Zoar to live in the mountains?",
+      "options": ["Because he was afraid to stay in Zoar", "Because the king expelled him", "Because the town was destroyed too", "Because his daughters wanted to travel"],
+      "correct": "Because he was afraid to stay in Zoar",
+      "explain": "The text says he was afraid to remain in Zoar, so he settled in the mountains instead."
+    },
+    {
+      "id": "r10",
+      "ru": "Так обе дочери Лоты забеременели от отца.",
+      "question": "What was the outcome of the daughters' plan with wine?",
+      "options": ["Both daughters became pregnant by their father", "They ran away from him", "They found husbands in the mountains", "They died soon after"],
+      "correct": "Both daughters became pregnant by their father",
+      "explain": "The text says both of Lot's daughters became pregnant by their father."
     }
   ]
 }

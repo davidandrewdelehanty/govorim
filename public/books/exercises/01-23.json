@@ -2,83 +2,63 @@
   "cases": [
     {
       "id": "c1",
-      "sentence": "Сара прожила 127 ___, это годы жизни Сары.",
-      "lemma": "год",
-      "options": ["год", "года", "годы", "лет"],
-      "correct": "лет",
-      "case": "Родительный множественного (Genitive plural)",
-      "translation": "Sarah lived 127 years; these were the years of Sarah's life.",
-      "explain": "After large numerals ending in a count above four, год takes its suppletive genitive plural лет."
+      "sentence": "___ сидел среди своего народа и ответил Аврааму при всех хетах.",
+      "lemma": "Эфрон",
+      "options": ["Эфрон", "Эфрона", "Эфрону", "Эфроном"],
+      "correct": "Эфрон",
+      "case": "Именительный (Nominative)",
+      "translation": "Ephron was sitting among his people and answered Abraham in front of all the Hittites.",
+      "explain": "Эфрон is the subject of сидел/ответил, so it stands in the nominative case."
     },
     {
       "id": "c2",
-      "sentence": "Она умерла в Кириат-Арбе, то есть ___.",
-      "lemma": "Хеврон",
-      "options": ["Хеврон", "Хеврона", "Хеврону", "Хевроне"],
-      "correct": "Хевроне",
-      "case": "Предложный (Prepositional)",
-      "translation": "She died in Kiriath-Arba, that is, Hebron.",
-      "explain": "The preposition в indicating location takes the prepositional case (in apposition to Кириат-Арбе)."
+      "sentence": "Продайте мне в собственность место для ___, чтобы я мог похоронить умершую.",
+      "lemma": "погребение",
+      "options": ["погребение", "погребения", "погребению", "погребением"],
+      "correct": "погребения",
+      "case": "Родительный (Genitive)",
+      "translation": "Sell me a burial place as a possession, so that I may bury my dead.",
+      "explain": "The preposition для governs the genitive case."
     },
     {
       "id": "c3",
-      "sentence": "И Авраам пришел горевать по ___ и оплакивать ее.",
-      "lemma": "Сара",
-      "options": ["Сара", "Сары", "Саре", "Сарой"],
-      "correct": "Саре",
+      "sentence": "Хеты ответили ___, «Господин, послушай...»",
+      "lemma": "Авраам",
+      "options": ["Авраам", "Авраама", "Аврааму", "Авраамом"],
+      "correct": "Аврааму",
       "case": "Дательный (Dative)",
-      "translation": "And Abraham came to grieve for Sarah and to weep for her.",
-      "explain": "The preposition по in the sense of grieving 'for' someone governs the dative case."
+      "translation": "The Hittites answered Abraham, 'Sir, listen...'",
+      "explain": "The verb ответить takes its addressee in the dative case."
     },
     {
       "id": "c4",
-      "sentence": "Потом Авраам отошел от тела покойной жены и обратился к ___.",
-      "lemma": "хет",
-      "options": ["хет", "хета", "хетам", "хетов"],
-      "correct": "хетам",
-      "case": "Дательный (Dative)",
-      "translation": "Then Abraham rose from beside his dead wife and turned to the Hittites.",
-      "explain": "The preposition к governs the dative case (here the dative plural)."
+      "sentence": "Чтобы он продал мне ___ Махпелу, которая принадлежит ему.",
+      "lemma": "пещера",
+      "options": ["пещера", "пещеры", "пещере", "пещеру"],
+      "correct": "пещеру",
+      "case": "Винительный (Accusative)",
+      "translation": "That he might sell me the cave of Machpelah, which belongs to him.",
+      "explain": "The verb продать takes its direct object in the accusative case."
     },
     {
       "id": "c5",
-      "sentence": "Продайте мне в собственность ___ для погребения.",
-      "lemma": "место",
-      "options": ["место", "места", "месту", "местом"],
-      "correct": "место",
-      "case": "Винительный (Accusative)",
-      "translation": "Sell me a burial place as a possession.",
-      "explain": "The transitive verb продать takes its direct object in the accusative; for the neuter место the accusative equals the nominative."
+      "sentence": "Земля ___ в четыреста шекелей серебра, разве это много для тебя или для меня?",
+      "lemma": "цена",
+      "options": ["цена", "цены", "цене", "ценой"],
+      "correct": "ценой",
+      "case": "Творительный (Instrumental)",
+      "translation": "The land is worth four hundred shekels of silver — is that much between you and me?",
+      "explain": "The instrumental ценой expresses price or measure ('at a price of...')."
     },
     {
       "id": "c6",
-      "sentence": "Авраам согласился с ___ Эфрона и отвесил ему цену поля.",
-      "lemma": "условие",
-      "options": ["условие", "условия", "условию", "условиями"],
-      "correct": "условиями",
-      "case": "Творительный (Instrumental)",
-      "translation": "Abraham agreed to Ephron's terms and weighed out the price of the field for him.",
-      "explain": "The verb согласиться с (to agree with/to) governs the instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Я отдаю тебе ___ и отдаю тебе пещеру, которая на нем.",
-      "lemma": "поле",
-      "options": ["поле", "поля", "полю", "полем"],
-      "correct": "поле",
-      "case": "Винительный (Accusative)",
-      "translation": "I give you the field, and I give you the cave that is in it.",
-      "explain": "The transitive verb отдавать takes its direct object in the accusative; for the neuter поле the accusative equals the nominative."
-    },
-    {
-      "id": "c8",
-      "sentence": "Земля ценой в четыреста шекелей ___, разве это много?",
-      "lemma": "серебро",
-      "options": ["серебро", "серебра", "серебру", "серебром"],
-      "correct": "серебра",
-      "case": "Родительный (Genitive)",
-      "translation": "Land worth four hundred shekels of silver — is that much?",
-      "explain": "The genitive expresses the material measured out ('shekels of silver')."
+      "sentence": "Эфрон ответил Аврааму при всех ___, которые пришли к воротам его города.",
+      "lemma": "хет",
+      "options": ["хеты", "хетов", "хетам", "хетах"],
+      "correct": "хетах",
+      "case": "Предложный (Prepositional)",
+      "translation": "Ephron answered Abraham in front of all the Hittites who had come to the gate of his city.",
+      "explain": "The preposition при (in the presence of) governs the prepositional case."
     }
   ],
   "reading": [
@@ -86,49 +66,41 @@
       "id": "r1",
       "ru": "Сара прожила 127 лет, это годы жизни Сары.",
       "question": "How long did Sarah live?",
-      "options": ["127 years", "100 years", "90 years", "137 years"],
+      "options": ["127 years", "100 years", "90 years", "150 years"],
       "correct": "127 years",
-      "explain": "The text says 'Сара прожила 127 лет' (Sarah lived 127 years)."
+      "explain": "The text says Sarah lived 127 years."
     },
     {
       "id": "r2",
       "ru": "Она умерла в Кириат-Арбе, то есть Хевроне.",
       "question": "Where did Sarah die?",
-      "options": ["In Kiriath-Arba (Hebron)", "In Beersheba", "In Egypt", "In Haran"],
-      "correct": "In Kiriath-Arba (Hebron)",
-      "explain": "The text says she died 'в Кириат-Арбе, то есть Хевроне' (in Kiriath-Arba, that is, Hebron)."
+      "options": ["In Kiriath Arba, that is, Hebron", "In Beersheba", "In Egypt", "In Gerar"],
+      "correct": "In Kiriath Arba, that is, Hebron",
+      "explain": "The text says Sarah died 'в Кириат-Арбе, то есть Хевроне'."
     },
     {
       "id": "r3",
-      "ru": "Тогда Авраам встал и поклонился людям той земли хетам.",
-      "question": "What did Abraham do before the people of the land, the Hittites?",
-      "options": ["He bowed down to them", "He wept aloud", "He drew his sword", "He offered a sacrifice"],
-      "correct": "He bowed down to them",
-      "explain": "The text says Abraham 'поклонился людям той земли хетам' (bowed down to the people of the land, the Hittites)."
+      "ru": "Хеты ответили Аврааму, «Господин, послушай, ты могучий вождь среди нас, похорони умершую в лучшем из наших погребальных мест, никто из нас не откажет тебе в погребальном месте, чтобы похоронить умершую».",
+      "question": "What did the Hittites offer Abraham?",
+      "options": ["To bury Sarah in the best of their burial places", "To sell him the whole land", "To give him gold instead of land", "To bury her outside the city walls"],
+      "correct": "To bury Sarah in the best of their burial places",
+      "explain": "The Hittites told Abraham to bury his dead in the best of their tombs."
     },
     {
       "id": "r4",
-      "ru": "Авраам согласился с условиями Эфрона и отвесил ему цену поля, названную при хетах, четыреста шекелей серебра, по мере принятой у купцов.",
-      "question": "How much did Abraham weigh out for the field?",
-      "options": ["Four hundred shekels of silver", "One hundred shekels of silver", "A thousand shekels of silver", "Fifty shekels of silver"],
+      "ru": "Эфрон ответил Аврааму, «Послушай меня, господин мой, земля ценой в четыреста шекелей серебра, разве это много для тебя или для меня? Хорони свою умершую».",
+      "question": "What price did Ephron mention for the field?",
+      "options": ["Four hundred shekels of silver", "A hundred shekels of gold", "Nothing, he gave it for free", "A thousand shekels of silver"],
       "correct": "Four hundred shekels of silver",
-      "explain": "The text names the price as 'четыреста шекелей серебра' (four hundred shekels of silver)."
+      "explain": "Ephron named the price of the land as four hundred shekels of silver."
     },
     {
       "id": "r5",
       "ru": "После этого Авраам похоронил свою жену Сару в пещере на поле Махпела рядом с Мамре, что в Хевроне, в земле Ханаана.",
-      "question": "Where did Abraham bury his wife Sarah?",
-      "options": ["In the cave in the field of Machpelah near Mamre", "In Beersheba", "In Egypt", "On a mountaintop"],
-      "correct": "In the cave in the field of Machpelah near Mamre",
-      "explain": "The text says he buried her 'в пещере на поле Махпела рядом с Мамре' (in the cave in the field of Machpelah near Mamre)."
-    },
-    {
-      "id": "r6",
-      "ru": "И поле и пещера на нем перешли от хетов в собственность Аврааму, как место для погребения.",
-      "question": "What did the field and the cave become for Abraham?",
-      "options": ["A possession for a burial place", "A place of worship", "Farmland for crops", "A walled city"],
-      "correct": "A possession for a burial place",
-      "explain": "The text says they passed to Abraham 'в собственность... как место для погребения' (as a possession, as a burial place)."
+      "question": "Where did Abraham finally bury Sarah?",
+      "options": ["In the cave in the field of Machpelah near Mamre, in Hebron", "In a tomb in Beersheba", "In Egypt near the Nile", "On top of Mount Moriah"],
+      "correct": "In the cave in the field of Machpelah near Mamre, in Hebron",
+      "explain": "The text says Abraham buried Sarah in the cave of the field of Machpelah near Mamre, in Hebron."
     }
   ]
 }
