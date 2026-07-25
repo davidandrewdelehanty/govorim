@@ -2967,6 +2967,9 @@ export default function App() {
   var [abCur, setAbCur] = useState(0);                       // audiobook playhead position (s), for the counter/scrubber
   var [abDur, setAbDur] = useState(0);                       // audiobook total duration (s)
   var fmtClock = function(s){ s = Math.max(0, Math.floor(s || 0)); var mm = Math.floor(s / 60), ss = s % 60; return mm + ":" + (ss < 10 ? "0" : "") + ss; };
+  // Dual-language Bible: English (WEB, public domain) shown under each Russian
+  // verse. Keyed {verseNumber: englishText} for the CURRENT chapter only.
+  var [bibleEn, setBibleEn] = useState(null);
   var wordTimingMapRef = useRef([]);   // (legacy) raw word_timings list — no longer read
   var activeWordRef = useRef(-1);      // char-offset of the currently highlighted word (-1 = none)
   var wordTimelineRef = useRef([]);    // precomputed alignment: [{begin,end,start,holdToNext,nextBegin}]
@@ -4307,6 +4310,23 @@ export default function App() {
       .catch(function() {});
     return function() { cancelled = true; };
   }, [bookMeta && bookMeta.audiobook, cidx]);
+
+  // Dual-language Bible: load the English (WEB) verses for the current chapter,
+  // keyed by the same book-chapter as the audio so they line up 1:1 with the
+  // displayed Russian verses. Non-Bible books clear it.
+  useEffect(function() {
+    setBibleEn(null);
+    if (!isBibleBook(bookMeta)) return;
+    var chs = bookMeta && bookMeta.audiobook && bookMeta.audiobook.chapters;
+    var key = chs && chs[cidx] && (String(chs[cidx]).match(/(\d+-\d+)\.json$/) || [])[1];
+    if (!key) return;
+    var cancelled = false;
+    fetch("/books/bible-en/" + key + ".json")
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .then(function(j) { if (!cancelled && j) setBibleEn(j); })
+      .catch(function() {});
+    return function() { cancelled = true; };
+  }, [bookMeta && bookMeta.filename, cidx]);
 
   // When the loaded chapter changes, re-point the audio element at the new
   // chapter's file. Without this, switching chapters leaves the previous
@@ -6506,6 +6526,15 @@ export default function App() {
           attribEnd     = (para[0] ? para[0].start : 0) + speakerMatch[0].length;
         }
 
+        // Dual-language Bible: the English line for this verse (if loaded and
+        // this paragraph is a numbered verse). Display-only; the audio and word
+        // highlighting stay Russian, since the aligner only tokenizes Cyrillic.
+        var bibleEnLine = null;
+        if (bibleEn) {
+          var vno = (paraText.match(/^\s*(\d+)/) || [])[1];
+          if (vno && bibleEn[vno]) bibleEnLine = bibleEn[vno];
+        }
+
         return (
           <p key={pi} style={{marginBottom: singlePageMode ? "0.35em" : (bookMeta && bookMeta.filename && bookMeta.filename.indexOf("негин") !== -1 ? "0.1em" : "1.2em")}}>
             {(function(){
@@ -6585,6 +6614,7 @@ export default function App() {
                 return <span key={i}>{tk.text.replace(/\n/g, " ")}</span>;
               });
             })()}
+            {bibleEnLine ? <span className="bible-en">{bibleEnLine}</span> : null}
           </p>
         );
       });
@@ -6953,6 +6983,8 @@ export default function App() {
         .rw:hover{color:#c4955a;border-bottom-color:#c4955a}
         .rwhl{background:rgba(196,149,90,.18);color:#ece1cb;border-bottom-color:#c4955a;border-radius:3px;padding:1px 2px}
         .word-active{background:rgba(196,149,90,.34);color:#fff;border-radius:3px;padding:1px 2px;box-shadow:0 0 0 1px rgba(196,149,90,.55);transition:background .08s ease}
+        /* Dual-language Bible: English translation shown under each Russian verse */
+        .bible-en{display:block;margin-top:3px;color:rgba(42,31,20,.5);font-size:0.9em;font-style:italic;line-height:1.5;letter-spacing:.005em}
         /* Words inside the sentence currently being read aloud. Applied at
            the start of each sentence's playback via direct DOM manipulation
            (no React re-render). Uses a soft warm tint so a whole sentence's
