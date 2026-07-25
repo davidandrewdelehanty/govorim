@@ -2970,6 +2970,9 @@ export default function App() {
   // Dual-language Bible: English (WEB, public domain) shown under each Russian
   // verse. Keyed {verseNumber: englishText} for the CURRENT chapter only.
   var [bibleEn, setBibleEn] = useState(null);
+  // Bible section-heading translations ({russianHeading: englishHeading}), one
+  // global file shared by every chapter. Loaded lazily on first Bible chapter.
+  var [bibleHeadings, setBibleHeadings] = useState(null);
   var wordTimingMapRef = useRef([]);   // (legacy) raw word_timings list — no longer read
   var activeWordRef = useRef(-1);      // char-offset of the currently highlighted word (-1 = none)
   var wordTimelineRef = useRef([]);    // precomputed alignment: [{begin,end,start,holdToNext,nextBegin}]
@@ -4328,6 +4331,21 @@ export default function App() {
       .catch(function() {});
     return function() { cancelled = true; };
   }, [bookMeta && bookMeta.filename, cidx]);
+
+  // Load the Bible section-heading translations once (same map for every
+  // chapter). Fetched the first time a Bible chapter is opened, then reused.
+  useEffect(function() {
+    if (bibleHeadings) return;
+    var chs = bookMeta && bookMeta.audiobook && bookMeta.audiobook.chapters;
+    var key = chs && chs[cidx] && (String(chs[cidx]).match(/bible-nrp\/(\d+-\d+)\.json/) || [])[1];
+    if (!key) return;
+    var cancelled = false;
+    fetch("/books/bible-headings-en.json")
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .then(function(j) { if (!cancelled && j) setBibleHeadings(j); })
+      .catch(function() {});
+    return function() { cancelled = true; };
+  }, [bookMeta && bookMeta.filename, cidx, bibleHeadings]);
 
   // When the loaded chapter changes, re-point the audio element at the new
   // chapter's file. Without this, switching chapters leaves the previous
@@ -6509,7 +6527,7 @@ export default function App() {
       // Normal case: render the whole paragraphs that belong to this page.
       return currentPage.paraIndices.map(function(idx){ return nonEmpty[idx] || []; }).filter(function(p){ return p.length > 0; });
     })()
-      .map(function(para, pi) {
+      .map(function(para, pi, paraArr) {
         // Detect play-style speaker attribution at the start of a paragraph.
         // Russian plays commonly use Title Case names like "Маша. ..." or "Медведенко. ..."
         // (Chekhov, Ostrovsky, Tolstoy plays). Older drama uses ALL CAPS like "ЛУКА. ..." (Gorky).
@@ -6530,10 +6548,32 @@ export default function App() {
         // Dual-language Bible: the English line for this verse (if loaded and
         // this paragraph is a numbered verse). Display-only; the audio and word
         // highlighting stay Russian, since the aligner only tokenizes Cyrillic.
-        var bibleEnLine = null;
-        if (bibleEn) {
-          var vno = (paraText.match(/^\s*(\d+)/) || [])[1];
-          if (vno && bibleEn[vno]) bibleEnLine = bibleEn[vno];
+        var bibleEnLine = null, bibleHeadingLine = null;
+        if (bibleEn || bibleHeadings) {
+          // Section headings ("Сотворение мира") and the chapter title
+          // ("Глава 1") live inside <title>/<subtitle><p>..</p></title>; the
+          // verse-splitter merges them into a fake verse ("1 Сотворение мира"),
+          // and mid-chapter headings appear as bare paragraphs ("Каин и Авель").
+          // Strip an optional leading verse number and see if what's left is a
+          // known section heading — if so, show its English translation instead
+          // of treating it as scripture.
+          var headKey = paraText.replace(/^\s*\d+\s+/, "").trim();
+          if (bibleHeadings && bibleHeadings[headKey]) {
+            bibleHeadingLine = bibleHeadings[headKey];
+          } else if (bibleEn) {
+            var vno = (paraText.match(/^\s*(\d+)/) || [])[1];
+            if (vno && bibleEn[vno]) {
+              // Fallback for any heading artifact not in the headings map: the
+              // real verse with a given number always comes AFTER its heading,
+              // so only attach English to the LAST paragraph carrying that number.
+              var isLastForNum = true;
+              for (var pj = pi + 1; pj < paraArr.length; pj++) {
+                var pjt = paraArr[pj].map(function(t){ return t.text; }).join("");
+                if ((pjt.match(/^\s*(\d+)/) || [])[1] === vno) { isLastForNum = false; break; }
+              }
+              if (isLastForNum) bibleEnLine = bibleEn[vno];
+            }
+          }
         }
 
         return (
@@ -6600,6 +6640,10 @@ export default function App() {
                 // Bible verse numbers: token is just a number (e.g. "1", "23")
                 // followed by a space — render as styled verse number
                 var verseNumMatch = tk.text.match(/^(\d+)(\s*)$/);
+                // On a section-heading paragraph the leading number is a parsing
+                // artifact (the chapter-title number merged in) — drop it so the
+                // heading reads cleanly ("Сотворение мира", not "1 Сотворение мира").
+                if (verseNumMatch && bibleHeadingLine) { return null; }
                 if (verseNumMatch && bookMeta && bookMeta.filename && bookMeta.filename.indexOf("Библии") !== -1) {
                   return (
                     <span key={i}>
@@ -6615,7 +6659,8 @@ export default function App() {
                 return <span key={i}>{tk.text.replace(/\n/g, " ")}</span>;
               });
             })()}
-            {bibleEnLine ? <span className="bible-en">{bibleEnLine}</span> : null}
+            {bibleHeadingLine ? <span className="bible-en bible-heading-en">{bibleHeadingLine}</span>
+              : (bibleEnLine ? <span className="bible-en">{bibleEnLine}</span> : null)}
           </p>
         );
       });
@@ -6986,6 +7031,7 @@ export default function App() {
         .word-active{background:rgba(196,149,90,.34);color:#fff;border-radius:3px;padding:1px 2px;box-shadow:0 0 0 1px rgba(196,149,90,.55);transition:background .08s ease}
         /* Dual-language Bible: English translation shown under each Russian verse */
         .bible-en{display:block;margin-top:3px;color:rgba(42,31,20,.5);font-size:0.9em;font-style:italic;line-height:1.5;letter-spacing:.005em}
+        .bible-heading-en{font-style:normal;font-weight:600;color:rgba(42,31,20,.62);font-size:0.95em;letter-spacing:.01em}
         /* Words inside the sentence currently being read aloud. Applied at
            the start of each sentence's playback via direct DOM manipulation
            (no React re-render). Uses a soft warm tint so a whole sentence's
