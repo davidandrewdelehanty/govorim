@@ -4397,6 +4397,23 @@ export default function App() {
     setExQuestions(qs); setExIdx(0); setExSelected(null); setExScore(0); setExCat("grammar");
   };
 
+  // Start (or restart) the reading-comprehension quiz (English questions).
+  var startReadingQuiz = function() {
+    if (!exData || !exData.reading || !exData.reading.length) return;
+    var exShuffle = function(arr) {
+      var a = arr.slice();
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+      }
+      return a;
+    };
+    var qs = exShuffle(exData.reading).map(function(q) {
+      return Object.assign({}, q, { options: exShuffle(q.options || []) });
+    });
+    setExQuestions(qs); setExIdx(0); setExSelected(null); setExScore(0); setExCat("reading");
+  };
+
   // When the loaded chapter changes, re-point the audio element at the new
   // chapter's file. Without this, switching chapters leaves the previous
   // chapter's audio playing under the new chapter's text and highlight.
@@ -8816,63 +8833,68 @@ export default function App() {
                     {exCat === "menu" && (
                       <div style={{padding:"18px 8px"}}>
                         <div style={{textAlign:"center",marginBottom:20}}>
-                          <div style={{fontSize:20,fontFamily:"'Playfair Display',serif",color:"#c8a276",fontWeight:600}}>{exData.title || "Exercises"}</div>
-                          {exData.source && <div style={{fontSize:13,color:"rgba(210,197,175,.5)",marginTop:4}}>{exData.source}</div>}
+                          <div style={{fontSize:20,fontFamily:"'Playfair Display',serif",color:"#2a1f14",fontWeight:600}}>{exData.title || "Exercises"}</div>
+                          {exData.source && <div style={{fontSize:13,color:"rgba(42,31,20,.5)",marginTop:4}}>{exData.source}</div>}
                         </div>
                         <div style={{display:"flex",flexDirection:"column",gap:14}}>
                           {/* Grammar (available) */}
                           <button onClick={startCaseQuiz}
-                            style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#d2c5af",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
-                            onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
-                            onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
+                            style={{background:"rgba(196,149,90,.12)",border:"1px solid rgba(196,149,90,.45)",color:"#2a1f14",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
+                            onMouseOver={function(e){ e.currentTarget.style.background = "rgba(196,149,90,.2)"; }}
+                            onMouseOut={function(e){ e.currentTarget.style.background = "rgba(196,149,90,.12)"; }}>
                             <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
                               <span style={{fontSize:24}}>🔤</span>
-                              <span style={{fontSize:18,fontWeight:600,color:"#c8a276",fontFamily:"'Playfair Display',serif"}}>Grammar — Cases</span>
+                              <span style={{fontSize:18,fontWeight:600,color:"#2a1f14",fontFamily:"'Playfair Display',serif"}}>Grammar — Cases</span>
                             </div>
-                            <p style={{fontSize:13,color:"rgba(210,197,175,.55)",margin:0,lineHeight:1.5}}>{(exData.cases||[]).length} questions. Pick the correct case form to fill each blank, with the English line for context.</p>
+                            <p style={{fontSize:13,color:"rgba(42,31,20,.55)",margin:0,lineHeight:1.5}}>{(exData.cases||[]).length} questions. Pick the correct case form to fill each blank, with the English line for context.</p>
                           </button>
-                          {/* Reading (coming soon) */}
-                          <button onClick={function(){ setExCat("reading"); }}
-                            style={{background:"rgba(90,133,86,.06)",border:"1px solid rgba(90,133,86,.22)",color:"#d2c5af",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s",opacity:.85}}
-                            onMouseOver={function(e){ e.currentTarget.style.background = "rgba(90,133,86,.1)"; }}
-                            onMouseOut={function(e){ e.currentTarget.style.background = "rgba(90,133,86,.06)"; }}>
+                          {/* Reading comprehension */}
+                          {(function(){
+                            var hasReading = exData.reading && exData.reading.length;
+                            return (
+                          <button onClick={hasReading ? startReadingQuiz : function(){ setExCat("reading-soon"); }}
+                            style={{background:"rgba(90,133,86,.1)",border:"1px solid rgba(90,133,86,.35)",color:"#2a1f14",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
+                            onMouseOver={function(e){ e.currentTarget.style.background = "rgba(90,133,86,.16)"; }}
+                            onMouseOut={function(e){ e.currentTarget.style.background = "rgba(90,133,86,.1)"; }}>
                             <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
                               <span style={{fontSize:24}}>📖</span>
-                              <span style={{fontSize:18,fontWeight:600,color:"#9dbf99",fontFamily:"'Playfair Display',serif"}}>Reading — Comprehension</span>
-                              <span style={{fontSize:11,color:"rgba(210,197,175,.4)",border:"1px solid rgba(210,197,175,.25)",borderRadius:20,padding:"2px 8px",fontFamily:"'Inter',sans-serif"}}>soon</span>
+                              <span style={{fontSize:18,fontWeight:600,color:"#2f5a2a",fontFamily:"'Playfair Display',serif"}}>Reading — Comprehension</span>
+                              {!hasReading && <span style={{fontSize:11,color:"rgba(42,31,20,.4)",border:"1px solid rgba(42,31,20,.25)",borderRadius:20,padding:"2px 8px",fontFamily:"'Inter',sans-serif"}}>soon</span>}
                             </div>
-                            <p style={{fontSize:13,color:"rgba(210,197,175,.55)",margin:0,lineHeight:1.5}}>Questions about what the passage says. Coming next.</p>
+                            <p style={{fontSize:13,color:"rgba(42,31,20,.55)",margin:0,lineHeight:1.5}}>{hasReading ? (exData.reading.length + " questions in English about what the passage says.") : "Questions about what the passage says. Coming next."}</p>
                           </button>
+                            );
+                          })()}
                         </div>
                       </div>
                     )}
 
-                    {/* ── Reading placeholder ──────────────────────────────── */}
-                    {exCat === "reading" && (
+                    {/* ── Reading placeholder (only when no reading set exists) ── */}
+                    {exCat === "reading-soon" && (
                       <div style={{padding:"40px 20px",textAlign:"center"}}>
                         <div style={{fontSize:40,marginBottom:12}}>📖</div>
-                        <p style={{color:"rgba(210,197,175,.7)",fontSize:15,lineHeight:1.6,maxWidth:440,margin:"0 auto 24px"}}>Reading-comprehension exercises for this passage are coming soon.</p>
+                        <p style={{color:"rgba(42,31,20,.7)",fontSize:15,lineHeight:1.6,maxWidth:440,margin:"0 auto 24px"}}>Reading-comprehension exercises for this passage are coming soon.</p>
                         <button className="btn-g" style={{maxWidth:240}} onClick={function(){ setExCat("menu"); }}>← Back</button>
                       </div>
                     )}
 
-                    {/* ── Grammar case quiz ────────────────────────────────── */}
-                    {exCat === "grammar" && (
+                    {/* ── Quiz runner (grammar cases OR reading comprehension) ── */}
+                    {(exCat === "grammar" || exCat === "reading") && (
                       <div style={{padding:"14px 4px"}}>
                         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
                           <button className="ab" onClick={function(){ setExCat("menu"); }}>← Back</button>
-                          <span style={{fontSize:13,color:"rgba(210,197,175,.5)"}}>Score: {exScore} / {exIdx + (exSelected !== null ? 1 : 0)}</span>
+                          <span style={{fontSize:13,color:"rgba(42,31,20,.5)"}}>Score: {exScore} / {exIdx + (exSelected !== null ? 1 : 0)}</span>
                         </div>
 
                         {exIdx >= exQuestions.length ? (
                           // Results screen
                           <div style={{padding:"30px 20px",textAlign:"center"}}>
                             <div style={{fontSize:48,marginBottom:12}}>{exScore === exQuestions.length ? "🎉" : exScore >= exQuestions.length * 0.7 ? "👏" : "📚"}</div>
-                            <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,color:"#c8a276",marginBottom:8}}>Done!</h2>
-                            <p style={{fontSize:20,color:"#d2c5af",marginBottom:6}}>You got <strong style={{color:"#c8a276"}}>{exScore}</strong> of <strong>{exQuestions.length}</strong> correct.</p>
-                            <p style={{fontSize:14,color:"rgba(210,197,175,.5)",marginBottom:28}}>{Math.round(exScore / exQuestions.length * 100)}%</p>
+                            <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,color:"#2a1f14",marginBottom:8}}>Done!</h2>
+                            <p style={{fontSize:20,color:"#2a1f14",marginBottom:6}}>You got <strong style={{color:"#c4955a"}}>{exScore}</strong> of <strong>{exQuestions.length}</strong> correct.</p>
+                            <p style={{fontSize:14,color:"rgba(42,31,20,.5)",marginBottom:28}}>{Math.round(exScore / exQuestions.length * 100)}%</p>
                             <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
-                              <button className="btn-p" style={{maxWidth:200}} onClick={startCaseQuiz}>Try again</button>
+                              <button className="btn-p" style={{maxWidth:200}} onClick={exCat === "reading" ? startReadingQuiz : startCaseQuiz}>Try again</button>
                               <button className="btn-g" style={{maxWidth:200}} onClick={function(){ setExCat("menu"); }}>Back to exercises</button>
                             </div>
                           </div>
@@ -8880,15 +8902,21 @@ export default function App() {
                           var q = exQuestions[exIdx];
                           var answered = exSelected !== null;
                           var wasRight = answered && exSelected === q.correct;
+                          var isReading = exCat === "reading";
                           var parts = String(q.sentence || "").split("___");
                           return (
                             <div>
-                              <div style={{fontSize:13,color:"rgba(210,197,175,.5)",marginBottom:14}}>Question {exIdx + 1} of {exQuestions.length}</div>
+                              <div style={{fontSize:13,color:"rgba(42,31,20,.5)",marginBottom:14}}>Question {exIdx + 1} of {exQuestions.length}</div>
 
+                              {isReading && (
+                                <div style={{fontSize:21,fontFamily:"'Crimson Pro',serif",color:"#2a1f14",textAlign:"center",lineHeight:1.5,marginBottom:24,maxWidth:540,marginLeft:"auto",marginRight:"auto"}}>{q.question}</div>
+                              )}
+
+                              {!isReading && (<>
                               {/* Sentence with the blank (filled with the correct form once answered) */}
-                              <div style={{fontSize:26,fontFamily:"'Crimson Pro',serif",color:"#e7dcc7",textAlign:"center",lineHeight:1.5,marginBottom:14}}>
+                              <div style={{fontSize:26,fontFamily:"'Crimson Pro',serif",color:"#2a1f14",textAlign:"center",lineHeight:1.5,marginBottom:14}}>
                                 {parts[0]}
-                                <span style={{display:"inline-block",minWidth:70,textAlign:"center",fontWeight:700,color: answered ? "#9dbf99" : "rgba(200,162,118,.7)",borderBottom:"2px solid rgba(200,162,118,.5)",padding:"0 6px"}}>
+                                <span style={{display:"inline-block",minWidth:70,textAlign:"center",fontWeight:700,color: answered ? "#2f5a2a" : "#a56a24",borderBottom:"2px solid rgba(196,149,90,.6)",padding:"0 6px"}}>
                                   {answered ? q.correct : "   "}
                                 </span>
                                 {parts[1] || ""}
@@ -8896,27 +8924,28 @@ export default function App() {
 
                               {/* Lemma prompt + English translation */}
                               <div style={{textAlign:"center",marginBottom:22}}>
-                                <div style={{fontSize:15,color:"rgba(210,197,175,.75)"}}>Put <strong style={{color:"#c8a276",fontSize:18}}>{q.lemma}</strong> in the correct case</div>
-                                {q.translation && <div style={{fontSize:14,color:"rgba(210,197,175,.5)",fontStyle:"italic",marginTop:8}}>{q.translation}</div>}
+                                <div style={{fontSize:15,color:"rgba(42,31,20,.75)"}}>Put <strong style={{color:"#a56a24",fontSize:18}}>{q.lemma}</strong> in the correct case</div>
+                                {q.translation && <div style={{fontSize:14,color:"rgba(42,31,20,.5)",fontStyle:"italic",marginTop:8}}>{q.translation}</div>}
                               </div>
+                              </>)}
 
                               {/* Options */}
                               <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:520,margin:"0 auto"}}>
                                 {q.options.map(function(opt, i) {
                                   var isCorrect = opt === q.correct;
                                   var isPicked  = opt === exSelected;
-                                  var bg = "rgba(210,197,175,.05)", brd = "rgba(210,197,175,.16)", col = "#d2c5af";
+                                  var bg = "rgba(42,31,20,.05)", brd = "rgba(42,31,20,.16)", col = "#2a1f14";
                                   if (answered) {
-                                    if (isCorrect)     { bg = "rgba(90,133,86,.18)"; brd = "rgba(90,133,86,.6)"; col = "#9dbf99"; }
-                                    else if (isPicked) { bg = "rgba(157,70,48,.18)"; brd = "rgba(157,70,48,.6)"; col = "#c87a68"; }
-                                    else               { col = "rgba(210,197,175,.4)"; }
+                                    if (isCorrect)     { bg = "rgba(90,133,86,.18)"; brd = "rgba(90,133,86,.6)"; col = "#2f5a2a"; }
+                                    else if (isPicked) { bg = "rgba(157,70,48,.18)"; brd = "rgba(157,70,48,.6)"; col = "#9d4630"; }
+                                    else               { col = "rgba(42,31,20,.4)"; }
                                   }
                                   return (
                                     <button key={i} disabled={answered} onClick={function(){
                                       setExSelected(opt);
                                       if (isCorrect) setExScore(function(s){ return s + 1; });
                                     }} style={{background:bg,border:"1px solid "+brd,color:col,padding:"13px 18px",borderRadius:10,fontSize:18,fontFamily:"'Crimson Pro',serif",cursor: answered ? "default" : "pointer",textAlign:"left",transition:"all .15s"}}>
-                                      <span style={{display:"inline-block",width:20,color:"rgba(210,197,175,.45)",fontFamily:"'Inter',sans-serif",fontSize:13}}>{String.fromCharCode(65 + i)}.</span>
+                                      <span style={{display:"inline-block",width:20,color:"rgba(42,31,20,.45)",fontFamily:"'Inter',sans-serif",fontSize:13}}>{String.fromCharCode(65 + i)}.</span>
                                       {opt}
                                     </button>
                                   );
@@ -8925,11 +8954,11 @@ export default function App() {
 
                               {/* Feedback: case name + explanation */}
                               {answered && (
-                                <div style={{maxWidth:520,margin:"18px auto 0",background:"rgba(210,197,175,.05)",border:"1px solid rgba(210,197,175,.14)",borderRadius:10,padding:"14px 16px"}}>
-                                  <div style={{fontSize:15,fontWeight:600,color: wasRight ? "#9dbf99" : "#c87a68",marginBottom:6}}>
-                                    {wasRight ? "✓ Correct" : "✗ Not quite"} — {q.case}
+                                <div style={{maxWidth:520,margin:"18px auto 0",background:"rgba(42,31,20,.05)",border:"1px solid rgba(42,31,20,.14)",borderRadius:10,padding:"14px 16px"}}>
+                                  <div style={{fontSize:15,fontWeight:600,color: wasRight ? "#2f5a2a" : "#9d4630",marginBottom:6}}>
+                                    {wasRight ? "✓ Correct" : "✗ Not quite"}{!isReading && q.case ? " — " + q.case : ""}
                                   </div>
-                                  <div style={{fontSize:14,color:"rgba(210,197,175,.7)",lineHeight:1.55}}>{q.explain}</div>
+                                  <div style={{fontSize:14,color:"rgba(42,31,20,.7)",lineHeight:1.55}}>{q.explain}</div>
                                 </div>
                               )}
 
