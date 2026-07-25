@@ -2602,7 +2602,7 @@ function FileBtn({ label, onLoad }) {
       <button className="btn-p" onClick={function(){ ref.current && ref.current.click(); }} disabled={busy}>
         {busy ? "Loading…" : "📂 " + label}
       </button>
-      {err && <p style={{color:"#c87a68",fontSize:13}}>{err}</p>}
+      {err && <p style={{color:"#9d4630",fontSize:13}}>{err}</p>}
     </div>
   );
 }
@@ -6839,7 +6839,7 @@ export default function App() {
           </div>
         </div>
         {diagLogs.length > 0 && (
-          <div style={{maxHeight:180,overflowY:"auto",padding:"6px 28px",fontFamily:"monospace",fontSize:11,color:"rgba(210,197,175,.7)",background:"#0a0908",borderBottom:"1px solid rgba(210,197,175,.06)",lineHeight:1.5}}>
+          <div style={{maxHeight:180,overflowY:"auto",padding:"6px 28px",fontFamily:"monospace",fontSize:11,color:"#d8d8d8",background:"#0a0908",borderBottom:"1px solid rgba(210,197,175,.06)",lineHeight:1.5}}>
             {diagLogs.map(function(line,i){
               var color = line.indexOf("onerror") >= 0 || line.indexOf("THREW") >= 0 ? "#c87a6806a"
                        : line.indexOf("onstart") >= 0 ? "#82a882"
@@ -6902,15 +6902,15 @@ export default function App() {
               var labelText, labelColor, rowOpacity;
               if (isCloud) {
                 labelText = " · Azure Cloud";
-                labelColor = "#c8a276";
+                labelColor = "#c4955a";
                 rowOpacity = null;
               } else if (isSiri && !network) {
                 labelText = " · Siri ★★★";
-                labelColor = "#c8a276";
+                labelColor = "#c4955a";
                 rowOpacity = null;
               } else if (isEnhanced && !network) {
                 labelText = " · Enhanced ★★";
-                labelColor = "#c8a276";
+                labelColor = "#c4955a";
                 rowOpacity = null;
               } else if (!network) {
                 labelText = " · local ✓";
@@ -6918,11 +6918,11 @@ export default function App() {
                 rowOpacity = null;
               } else if (isHighQualityNetwork) {
                 labelText = " · neural ★";
-                labelColor = "#c8a276";
+                labelColor = "#c4955a";
                 rowOpacity = null;
               } else {
                 labelText = " · network ⚠";
-                labelColor = "#c87a68";
+                labelColor = "#9d4630";
                 rowOpacity = 0.55;
               }
               return (
@@ -7012,7 +7012,7 @@ export default function App() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&display=swap');
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-        html,body{height:100%;background:#f5f0e8;color:#2a1f14;font-family:'Crimson Pro',serif;overflow:hidden}
+        html,body{height:100%;background:#f5f0e8;color:#000;font-family:'Crimson Pro',serif;overflow:hidden}
         /* Lock the app to the viewport: full width, viewport height. Inner panels
            (book text, chat messages) scroll within their own bounds — the page
            itself never scrolls. Uses 100dvh (dynamic viewport height) so mobile
@@ -7027,7 +7027,7 @@ export default function App() {
         .tbadge{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#c4955a;padding:6px 14px;border-radius:20px;font-size:13px;cursor:pointer;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         /* Library browser: search + card-grid of preset & uploaded books.
            Replaces the prior <select> dropdown on the Read launch screen. */
-        .lib-search{width:100%;padding:12px 16px;font-size:16px;background:rgba(42,31,20,.05);border:1px solid rgba(42,31,20,.18);border-radius:10px;color:#2a1f14;font-family:'Crimson Pro',serif;margin-bottom:20px;box-sizing:border-box;letter-spacing:.01em}
+        .lib-search{width:100%;padding:12px 16px;font-size:16px;background:rgba(42,31,20,.05);border:1px solid rgba(42,31,20,.18);border-radius:10px;color:#000;font-family:'Crimson Pro',serif;margin-bottom:20px;box-sizing:border-box;letter-spacing:.01em}
         .lib-search:focus{outline:none;border-color:rgba(196,149,90,.5);background:rgba(42,31,20,.08)}
         .lib-search::placeholder{color:rgba(42,31,20,.4)}
         .lib-section{margin-bottom:22px}
@@ -7040,7 +7040,7 @@ export default function App() {
         .lib-card-meta{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:rgba(42,31,20,.4);margin-top:auto;padding-top:4px}
         .lib-card-cat{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#c4955a;padding:2px 8px;border-radius:10px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600}
         .lib-card-remove{background:transparent;border:none;color:rgba(42,31,20,.35);font-size:18px;cursor:pointer;padding:0 4px;line-height:1}
-        .lib-card-remove:hover{color:#c87a68}
+        .lib-card-remove:hover{color:#9d4630}
         /* Loading state: dim the card content and overlay a centered spinner.
            Disabled state (a different card is loading): grey out + ignore clicks. */
         .lib-card.is-loading{pointer-events:none;border-color:rgba(196,149,90,.45);background:rgba(196,149,90,.06)}
@@ -7066,11 +7066,11 @@ export default function App() {
         .main{flex:1;display:flex;flex-direction:column;position:relative;z-index:1;min-height:0}
         .ss{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:48px 28px;text-align:center;gap:22px;overflow-y:auto;min-height:0}
         .sico{font-size:54px;line-height:1}
-        .sti{font-family:'Playfair Display',serif;font-size:30px;color:#2a1f14;font-weight:400}
+        .sti{font-family:'Playfair Display',serif;font-size:30px;color:#000;font-weight:400}
         .sde{color:rgba(42,31,20,.5);font-size:16px;max-width:500px;line-height:1.6}
         .tsel{width:100%;max-width:500px;display:flex;flex-direction:column;gap:12px;text-align:left}
         .slbl{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:rgba(42,31,20,.35)}
-        select,input[type="text"],textarea{width:100%;background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.16);color:#2a1f14;padding:12px 16px;border-radius:10px;font-family:'Crimson Pro',serif;font-size:16px;outline:none;transition:border-color .2s}
+        select,input[type="text"],textarea{width:100%;background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.16);color:#000;padding:12px 16px;border-radius:10px;font-family:'Crimson Pro',serif;font-size:16px;outline:none;transition:border-color .2s}
         select{appearance:none;cursor:pointer} select option{background:#ede8dd}
         ::placeholder{color:rgba(42,31,20,.28)}
         input:focus,textarea:focus,select:focus{border-color:rgba(196,149,90,.5)}
@@ -7089,12 +7089,12 @@ export default function App() {
         .tline{color:rgba(42,31,20,.5);font-size:14px;margin-top:6px;display:block;line-height:1.65;padding-top:5px;border-top:1px solid rgba(42,31,20,.08)}
         .tipline{color:rgba(128,168,128,.85);font-size:13.5px;border-left:2px solid rgba(128,168,128,.35);padding-left:8px;margin-top:7px;display:block;line-height:1.5}
         .qline{color:#c4955a;font-size:15px;margin-top:10px;display:block;line-height:1.6;padding:8px 12px;background:rgba(196,149,90,.07);border-radius:8px;border-left:2px solid rgba(196,149,90,.4)}
-        .vw{color:#c4955a} .corr{color:#87a8c4}
+        .vw{color:#c4955a} .corr{color:#2f4a6b}
         .vw.rw{color:#c4955a;border-bottom:1px dotted rgba(196,149,90,.5)}
-        .vw.rw:hover{color:#ece1cb;border-bottom-color:#ece1cb;background:rgba(196,149,90,.18);border-radius:2px}
+        .vw.rw:hover{color:#000;border-bottom-color:#c4955a;background:rgba(196,149,90,.18);border-radius:2px}
         .rw{cursor:pointer;border-bottom:1px dotted rgba(42,31,20,.18);transition:color .15s,background .12s}
         .rw:hover{color:#c4955a;border-bottom-color:#c4955a}
-        .rwhl{background:rgba(196,149,90,.18);color:#ece1cb;border-bottom-color:#c4955a;border-radius:3px;padding:1px 2px}
+        .rwhl{background:rgba(196,149,90,.18);color:#000;border-bottom-color:#c4955a;border-radius:3px;padding:1px 2px}
         .word-active{background:rgba(196,149,90,.34);color:#fff;border-radius:3px;padding:1px 2px;box-shadow:0 0 0 1px rgba(196,149,90,.55);transition:background .08s ease}
         /* Dual-language Bible: English translation shown under each Russian verse */
         .bible-en{display:block;margin-top:3px;color:rgba(42,31,20,.5);font-size:0.9em;font-style:italic;line-height:1.5;letter-spacing:.005em}
@@ -7107,7 +7107,7 @@ export default function App() {
         .rw-reading{color:#8b4513;border-bottom:2px solid #c4955a;transition:color .1s ease,border-color .1s ease}
         .acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
         .spk{padding:5px 12px;border-radius:20px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif;background:rgba(42,31,20,.07);border:1px solid rgba(42,31,20,.2);color:rgba(42,31,20,.7);transition:all .15s}
-        .spk:hover{background:rgba(42,31,20,.14)} .spkon{background:rgba(196,149,90,.18);border-color:rgba(196,149,90,.35);color:#c87a6806a}
+        .spk:hover{background:rgba(42,31,20,.14)} .spkon{background:rgba(196,149,90,.18);border-color:rgba(196,149,90,.35);color:#e08a78}
         .chip{padding:5px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-family:'Crimson Pro',serif;border:1px solid;transition:background .15s}
         .vc{background:rgba(196,149,90,.09);border-color:rgba(196,149,90,.28);color:#c4955a} .vc:hover:not(:disabled){background:rgba(196,149,90,.18)}
         .tc{background:rgba(128,168,128,.08);border-color:rgba(128,168,128,.25);color:rgba(128,168,128,.9)} .tc:hover:not(:disabled){background:rgba(128,168,128,.15)}
@@ -7122,7 +7122,7 @@ export default function App() {
         .isend{background:linear-gradient(135deg,#c4955a,#a87a42);color:#fff;border:none;width:44px;height:44px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity .15s}
         .isend:hover:not(:disabled){opacity:.85} .isend:disabled{opacity:.35;cursor:default}
         .inew{background:rgba(42,31,20,.06);color:rgba(42,31,20,.5);border:1px solid rgba(42,31,20,.15);padding:0 16px;border-radius:22px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif;height:44px;white-space:nowrap;transition:all .15s}
-        .inew:hover{background:rgba(42,31,20,.12);color:#2a1f14}
+        .inew:hover{background:rgba(42,31,20,.12);color:#000}
         .lit-wrap{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden}
         .lit-top{display:flex;align-items:center;gap:8px;padding:8px 28px;border-bottom:1px solid rgba(42,31,20,.1);flex-shrink:0;background:#f5f0e8;flex-wrap:wrap}
         .ltab{padding:6px 14px;border-radius:16px;background:none;border:1px solid rgba(42,31,20,.14);color:rgba(42,31,20,.45);font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;transition:all .15s}
@@ -7133,7 +7133,7 @@ export default function App() {
            can sit there without blocking navigation. */
         .lit-top-nav{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
         .lnb-inline{padding:5px 11px;border-radius:8px;border:1px solid rgba(42,31,20,.16);background:rgba(42,31,20,.05);color:rgba(42,31,20,.55);font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;transition:all .15s}
-        .lnb-inline:hover:not(:disabled){background:rgba(42,31,20,.1);color:#2a1f14}
+        .lnb-inline:hover:not(:disabled){background:rgba(42,31,20,.1);color:#000}
         .lnb-inline:disabled{opacity:.3;cursor:default}
         .lnb-inline.p{background:linear-gradient(135deg,#c4955a,#a87a42);border-color:transparent;color:#fff}
         .lnb-inline.p:hover:not(:disabled){opacity:.9}
@@ -7154,7 +7154,7 @@ export default function App() {
         .ttsbar{display:flex;align-items:center;gap:10px;padding:7px 28px;background:#f0ebe0;border-bottom:1px solid rgba(42,31,20,.08);flex-shrink:0}
         .ttsplay{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#c4955a,#a87a42);border:none;color:#fff;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity .15s}
         .ttsplay:hover{opacity:.85}
-        .ttspause{width:32px;height:32px;border-radius:50%;background:rgba(196,149,90,.2);border:1px solid rgba(196,149,90,.4);color:#c87a6806a;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .ttspause{width:32px;height:32px;border-radius:50%;background:rgba(196,149,90,.2);border:1px solid rgba(196,149,90,.4);color:#e08a78;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
         .ttslab{flex:1;font-size:12px;color:rgba(42,31,20,.4);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         .ttsbtn{background:none;border:1px solid rgba(42,31,20,.15);color:rgba(42,31,20,.4);height:26px;border-radius:8px;font-size:12px;cursor:pointer;padding:0 10px;transition:all .15s}
         .ttsbtn:hover{background:rgba(42,31,20,.08);color:rgba(42,31,20,.7)}
@@ -7162,7 +7162,7 @@ export default function App() {
         /* Floating audio bar (reading mode) — sticky to viewport bottom,
            always visible while reading so pause/skip are one tap away. */
         .faudio{position:fixed;left:0;right:0;bottom:0;height:68px;background:rgba(245,240,232,.96);border-top:1px solid rgba(42,31,20,.18);display:flex;align-items:center;justify-content:center;gap:14px;z-index:100;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:0 22px;box-shadow:0 -4px 18px rgba(42,31,20,.15)}
-        .faudio-btn{background:rgba(42,31,20,.08);border:1px solid rgba(42,31,20,.28);color:#2a1f14;width:44px;height:44px;border-radius:50%;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s,opacity .15s}
+        .faudio-btn{background:rgba(42,31,20,.08);border:1px solid rgba(42,31,20,.28);color:#000;width:44px;height:44px;border-radius:50%;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s,opacity .15s}
         .faudio-btn:hover{background:rgba(42,31,20,.18)}
         .faudio-btn:disabled{opacity:.35;cursor:not-allowed}
         .faudio-play{background:#c4955a;color:#fff;border-color:#c4955a;width:52px;height:52px;font-size:22px}
@@ -7204,7 +7204,7 @@ export default function App() {
         .vplist{overflow-y:auto;padding:4px 28px}
         .vprow{width:100%;background:none;border:none;border-bottom:1px solid rgba(42,31,20,.05);padding:7px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:10px;transition:background .15s}
         .vprow:hover,.vprow.sel{background:rgba(196,149,90,.06)}
-        .vpn{font-size:14px;color:#2a1f14;font-family:'Crimson Pro',serif;text-align:left}
+        .vpn{font-size:14px;color:#000;font-family:'Crimson Pro',serif;text-align:left}
         .vpnru{color:#c4955a} .vpl{font-size:11px;color:rgba(42,31,20,.28)}
         .vpem{font-size:13px;color:rgba(42,31,20,.3);padding:14px 0;text-align:center}
         .lit-body{flex:1;display:flex;min-height:0;overflow:hidden}
@@ -7243,7 +7243,7 @@ export default function App() {
             margin: 0;
             height: auto;
             z-index: auto;
-            background: #1a1611;
+            background: #f5f0e8;
             border-top: none;
             -webkit-backdrop-filter: none;
             backdrop-filter: none;
@@ -7268,7 +7268,7 @@ export default function App() {
             z-index: auto;
             border-radius: 0;
             box-shadow: none;
-            background: #1a1611;
+            background: #f5f0e8;
             border-top: 1px solid rgba(42,31,20,.08);
             padding: 12px 18px calc(20px + env(safe-area-inset-bottom));
           }
@@ -7276,7 +7276,7 @@ export default function App() {
         }
         .lhdr{font-size:11px;color:rgba(42,31,20,.3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
         .lch-heading{font-family:'Playfair Display',serif;font-size:20px;color:#c4955a;margin-bottom:14px}
-        .ltxt{font-size:17.5px;line-height:1.85;color:#2a1f14;font-family:'Crimson Pro',serif;word-wrap:break-word;overflow-wrap:break-word;letter-spacing:.005em}
+        .ltxt{font-size:17.5px;line-height:1.85;color:#000;font-family:'Crimson Pro',serif;word-wrap:break-word;overflow-wrap:break-word;letter-spacing:.005em}
         .play-speaker{color:#c4955a;font-weight:600;letter-spacing:.04em;border-bottom:none !important;cursor:default !important}
         .play-speaker:hover{color:#c4955a !important;background:none !important}
         .play-dash{color:rgba(42,31,20,.45);padding:0 6px;font-weight:300}
@@ -7287,7 +7287,7 @@ export default function App() {
         .lnav-row{display:flex;gap:8px;justify-content:center;align-items:stretch}
         .lnav-row-sm{margin-top:2px}
         .lnb{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(42,31,20,.14);background:rgba(42,31,20,.05);color:rgba(42,31,20,.55);font-family:'Crimson Pro',serif;font-size:14px;cursor:pointer;transition:all .15s;text-align:center}
-        .lnb:hover:not(:disabled){background:rgba(42,31,20,.1);color:#2a1f14} .lnb:disabled{opacity:.22;cursor:default}
+        .lnb:hover:not(:disabled){background:rgba(42,31,20,.1);color:#000} .lnb:disabled{opacity:.22;cursor:default}
         .lnb.p{background:linear-gradient(135deg,#9d4630,#82362a);border-color:transparent;color:#fff} .lnb.p:hover{opacity:.9}
         .lbm{padding:10px 14px;border-radius:10px;border:1px solid rgba(196,149,90,.25);background:rgba(196,149,90,.07);color:#c4955a;font-size:15px;cursor:pointer;transition:background .15s}
         .lbm:hover{background:rgba(196,149,90,.15)}
@@ -7310,20 +7310,20 @@ export default function App() {
         .pw{font-family:'Playfair Display',serif;font-size:22px;color:#c4955a;margin-bottom:2px;padding-right:24px}
         .ppos{font-size:11px;color:rgba(42,31,20,.35);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
         /* Russian-language definition — top of the popup body so the Russian reading practice happens first. */
-        .pdru{font-family:'Crimson Pro',serif;font-size:15px;color:#2a1f14;line-height:1.5;margin-bottom:8px;padding:8px 10px;background:rgba(196,149,90,.06);border-left:2px solid rgba(196,149,90,.4);border-radius:4px}
+        .pdru{font-family:'Crimson Pro',serif;font-size:15px;color:#000;line-height:1.5;margin-bottom:8px;padding:8px 10px;background:rgba(196,149,90,.06);border-left:2px solid rgba(196,149,90,.4);border-radius:4px}
         .ptr{font-size:16px;color:rgba(42,31,20,.65);margin-bottom:7px;font-style:italic;padding-left:2px}
-        .pgr{font-size:13px;color:rgba(135,168,196,.8);margin-bottom:7px;background:rgba(135,168,196,.08);border-radius:8px;padding:5px 10px}
+        .pgr{font-size:13px;color:#33507a;margin-bottom:7px;background:rgba(135,168,196,.08);border-radius:8px;padding:5px 10px}
         .pex{font-size:13px;color:rgba(42,31,20,.5);border-top:1px solid rgba(42,31,20,.08);padding-top:7px;line-height:1.5}
         .pext{font-size:12px;color:rgba(42,31,20,.3);margin-top:3px}
         .pload{color:rgba(42,31,20,.4);font-size:14px;text-align:center;padding:14px 0}
-        .perr{color:#c87a68;font-size:13px}
+        .perr{color:#9d4630;font-size:13px}
         .psave{margin-top:12px;width:100%;border:1px solid rgba(196,149,90,.28);background:rgba(196,149,90,.09);color:#c4955a;padding:10px;border-radius:10px;font-size:14px;cursor:pointer;font-family:'Crimson Pro',serif;transition:background .15s}
         .psave:hover{background:rgba(196,149,90,.2)}
-        .yobtn{width:100%;background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.15);color:#2a1f14;padding:9px;border-radius:10px;font-size:15px;cursor:pointer;font-family:'Crimson Pro',serif;transition:background .15s;text-align:left;margin-bottom:4px}
+        .yobtn{width:100%;background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.15);color:#000;padding:9px;border-radius:10px;font-size:15px;cursor:pointer;font-family:'Crimson Pro',serif;transition:background .15s;text-align:left;margin-bottom:4px}
         .yobtn:hover{background:rgba(42,31,20,.12)}
         .panel{flex:1;padding:28px;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
         .phdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
-        .pti{font-family:'Playfair Display',serif;font-size:20px;color:#2a1f14}
+        .pti{font-family:'Playfair Display',serif;font-size:20px;color:#000}
         .ab{border:1px solid rgba(196,149,90,.28);background:rgba(196,149,90,.08);color:#c4955a;padding:7px 16px;border-radius:20px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif;transition:background .15s}
         .ab:hover{background:rgba(196,149,90,.18)}
         .ab.g{border-color:rgba(128,168,128,.28);background:rgba(128,168,128,.07);color:rgba(128,168,128,.9)} .ab.g:hover{background:rgba(128,168,128,.15)}
@@ -7332,20 +7332,20 @@ export default function App() {
         .icard{background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.09);border-radius:12px;padding:13px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;transition:background .15s}
         .icard:hover{background:rgba(42,31,20,.07)}
         .icont{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
-        .ipri{font-size:17px;color:#2a1f14;font-family:'Playfair Display',serif}
+        .ipri{font-size:17px;color:#000;font-family:'Playfair Display',serif}
         .ipos{font-size:11px;color:rgba(196,149,90,.7);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:1px}
         .isec{font-size:14px;color:rgba(42,31,20,.75)}
-        .igr{font-size:12px;color:rgba(135,168,196,.7);background:rgba(135,168,196,.06);border-radius:6px;padding:3px 8px;align-self:flex-start;margin-top:3px}
+        .igr{font-size:12px;color:#33507a;background:rgba(135,168,196,.06);border-radius:6px;padding:3px 8px;align-self:flex-start;margin-top:3px}
         .iex{font-size:13px;color:rgba(42,31,20,.5);font-style:italic;margin-top:6px;padding-top:6px;border-top:1px solid rgba(42,31,20,.06);line-height:1.5}
         .iext{font-style:normal;font-size:12px;color:rgba(42,31,20,.35);margin-top:2px}
         .rmb{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:rgba(200,128,112,.75);font-size:18px;cursor:pointer;padding:0;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
         .rmb:hover{background:rgba(196,149,90,.3);border-color:rgba(196,149,90,.5);color:#fff}
         .mover{position:fixed;inset:0;background:rgba(26,22,17,.85);z-index:100;display:flex;align-items:center;justify-content:center;padding:24px}
-        .modal{background:#1f1c16;border:1px solid rgba(42,31,20,.14);border-radius:16px;padding:28px;width:100%;max-width:480px;display:flex;flex-direction:column;gap:16px}
-        .mti{font-family:'Playfair Display',serif;font-size:22px;color:#2a1f14}
+        .modal{background:#fbf8f2;border:1px solid rgba(42,31,20,.14);border-radius:16px;padding:28px;width:100%;max-width:480px;display:flex;flex-direction:column;gap:16px}
+        .mti{font-family:'Playfair Display',serif;font-size:22px;color:#000}
         .mact{display:flex;gap:10px;justify-content:flex-end;margin-top:4px}
         .mcanc{background:none;border:1px solid rgba(42,31,20,.18);color:rgba(42,31,20,.55);padding:10px 20px;border-radius:10px;font-size:15px;cursor:pointer;font-family:'Crimson Pro',serif;transition:all .15s}
-        .mcanc:hover{color:#2a1f14;border-color:rgba(42,31,20,.35)}
+        .mcanc:hover{color:#000;border-color:rgba(42,31,20,.35)}
         .mconf{background:linear-gradient(135deg,#c4955a,#a87a42);color:#fff;border:none;padding:10px 20px;border-radius:10px;font-size:15px;cursor:pointer;font-family:'Crimson Pro',serif;transition:opacity .15s}
         .mconf:hover{opacity:.85} .mconf.g{background:linear-gradient(135deg,#5a8556,#4a6845)}
 
@@ -7359,12 +7359,12 @@ export default function App() {
         .land-tagline{font-family:'Crimson Pro',serif;font-style:italic;font-size:18px;color:rgba(42,31,20,.75);max-width:440px;line-height:1.5}
         .land-tips{background:rgba(196,149,90,.06);border:1px solid rgba(196,149,90,.18);border-radius:14px;padding:22px 26px;text-align:left;width:100%;max-width:440px;display:flex;flex-direction:column;gap:14px;margin-top:8px}
         .land-features{background:rgba(80,120,90,.04);border:1px solid rgba(120,160,130,.16);border-radius:14px;padding:22px 26px;text-align:left;width:100%;max-width:440px;display:flex;flex-direction:column;gap:12px;margin-top:8px}
-        .land-features-title{font-family:'Playfair Display',serif;font-size:14px;color:#a8c2a8;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:4px}
-        .land-feat{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.5;color:#2a1f14}
+        .land-features-title{font-family:'Playfair Display',serif;font-size:14px;color:#3f6b3a;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:4px}
+        .land-feat{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.5;color:#000}
         .land-feat-icon{flex-shrink:0;font-size:18px;line-height:1.4;width:26px;text-align:center}
         .land-feat strong{color:#c4955a;font-weight:600}
         .land-tips-title{font-family:'Playfair Display',serif;font-size:14px;color:#c4955a;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:4px}
-        .land-tip{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5;color:#2a1f14}
+        .land-tip{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5;color:#000}
         .land-tip-num{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(196,149,90,.15);border:1px solid rgba(196,149,90,.3);color:#c4955a;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:1px}
         .land-tip strong{color:#c4955a;font-weight:600}
         .land-begin{background:linear-gradient(135deg,#9d4630,#82362a);color:#fff;border:none;padding:16px 48px;border-radius:12px;font-size:18px;font-family:'Crimson Pro',serif;cursor:pointer;transition:opacity .15s,transform .1s;letter-spacing:1px;margin-top:8px;box-shadow:none;transform:translateY(-1px)}
@@ -7399,19 +7399,19 @@ export default function App() {
 
         /* Admin panel overlay */
         .adm-over{position:fixed;inset:0;background:rgba(26,22,17,.92);z-index:200;display:flex;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto}
-        .adm-modal{background:#1f1c16;border:1px solid rgba(42,31,20,.14);border-radius:16px;width:100%;max-width:760px;display:flex;flex-direction:column;gap:0;margin:32px 0}
+        .adm-modal{background:#fbf8f2;border:1px solid rgba(42,31,20,.14);border-radius:16px;width:100%;max-width:760px;display:flex;flex-direction:column;gap:0;margin:32px 0}
 
         /* Forum styles */
         .forum-modal{max-width:680px;max-height:88vh}
         .forum-back{background:none;border:none;color:#c4955a;font-size:22px;cursor:pointer;padding:0 8px 0 0;line-height:1}
-        .forum-thr-title{font-size:16px;color:#2a1f14;font-weight:normal}
+        .forum-thr-title{font-size:16px;color:#000;font-weight:normal}
         .forum-list{display:flex;flex-direction:column;gap:8px;padding:14px 18px}
         .forum-thread-card{padding:12px 14px;border:1px solid rgba(42,31,20,.1);border-radius:10px;background:rgba(42,31,20,.04);cursor:pointer;transition:all .15s}
         .forum-thread-card:hover{background:rgba(42,31,20,.08);border-color:rgba(196,149,90,.3)}
-        .forum-thread-title{font-family:'Crimson Pro',serif;color:#2a1f14;font-size:16px;margin-bottom:4px}
+        .forum-thread-title{font-family:'Crimson Pro',serif;color:#000;font-size:16px;margin-bottom:4px}
         .forum-thread-meta{font-family:'Crimson Pro',serif;color:rgba(42,31,20,.5);font-size:12px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
         .forum-compose{padding:18px;display:flex;flex-direction:column;gap:10px}
-        .forum-compose input,.forum-compose textarea{background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.16);border-radius:8px;padding:10px 12px;font-family:'Crimson Pro',serif;color:#2a1f14;font-size:14px;outline:none}
+        .forum-compose input,.forum-compose textarea{background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.16);border-radius:8px;padding:10px 12px;font-family:'Crimson Pro',serif;color:#000;font-size:14px;outline:none}
         .forum-compose input:focus,.forum-compose textarea:focus{border-color:rgba(196,149,90,.5);background:rgba(42,31,20,.08)}
         .forum-compose textarea{resize:vertical;min-height:120px;line-height:1.5}
         .forum-compose-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:4px}
@@ -7421,19 +7421,19 @@ export default function App() {
         .forum-post-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:4px}
         .forum-post-author{font-family:'Crimson Pro',serif;font-size:12px;color:#c4955a;letter-spacing:.5px}
         .forum-post-ts{font-family:'Crimson Pro',serif;font-size:11px;color:rgba(42,31,20,.4);font-style:italic}
-        .forum-post-body{font-family:'Crimson Pro',serif;color:#2a1f14;font-size:14px;line-height:1.5;white-space:pre-wrap;word-break:break-word}
+        .forum-post-body{font-family:'Crimson Pro',serif;color:#000;font-size:14px;line-height:1.5;white-space:pre-wrap;word-break:break-word}
         .forum-reply{display:flex;gap:8px;padding:10px 14px;border-top:1px solid rgba(42,31,20,.08);align-items:flex-end}
-        .forum-reply textarea{flex:1;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.14);border-radius:8px;padding:8px 12px;font-family:'Crimson Pro',serif;color:#2a1f14;font-size:14px;resize:none;min-height:36px;max-height:120px;outline:none;line-height:1.4}
+        .forum-reply textarea{flex:1;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.14);border-radius:8px;padding:8px 12px;font-family:'Crimson Pro',serif;color:#000;font-size:14px;resize:none;min-height:36px;max-height:120px;outline:none;line-height:1.4}
         .forum-reply textarea:focus{border-color:rgba(196,149,90,.4)}
 
         /* Feedback styles */
         .feedback-modal{max-width:520px}
         .feedback-body{padding:16px 20px;display:flex;flex-direction:column;gap:10px}
         .feedback-help{font-family:'Crimson Pro',serif;color:rgba(42,31,20,.6);font-size:13px;margin:0;font-style:italic}
-        .feedback-body textarea{background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.16);border-radius:8px;padding:10px 12px;font-family:'Crimson Pro',serif;color:#2a1f14;font-size:14px;outline:none;resize:vertical;min-height:140px;line-height:1.5}
+        .feedback-body textarea{background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.16);border-radius:8px;padding:10px 12px;font-family:'Crimson Pro',serif;color:#000;font-size:14px;outline:none;resize:vertical;min-height:140px;line-height:1.5}
         .feedback-body textarea:focus{border-color:rgba(196,149,90,.5);background:rgba(42,31,20,.08)}
         .feedback-msg{font-family:'Crimson Pro',serif;font-size:13px;padding:6px 0}
-        .feedback-msg.ok{color:#a8c2a8}
+        .feedback-msg.ok{color:#3f6b3a}
         .feedback-msg.err{color:#d97a6b}
 
         @media (max-width:560px){
@@ -7443,30 +7443,30 @@ export default function App() {
         .adm-head{padding:22px 28px 18px;border-bottom:1px solid rgba(42,31,20,.1);display:flex;align-items:center;justify-content:space-between;gap:16px}
         .adm-title{font-family:'Playfair Display',serif;font-size:24px;color:#c4955a}
         .adm-x{background:none;border:none;color:rgba(42,31,20,.6);font-size:24px;cursor:pointer;padding:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:all .15s}
-        .adm-x:hover{background:rgba(42,31,20,.08);color:#2a1f14}
+        .adm-x:hover{background:rgba(42,31,20,.08);color:#000}
         .adm-body{padding:20px 28px;display:flex;flex-direction:column;gap:12px;max-height:65vh;overflow-y:auto}
         .adm-empty{text-align:center;padding:32px;color:rgba(42,31,20,.5);font-style:italic}
-        .adm-row{display:flex;align-items:center;gap:14px;padding:14px 16px;background:#23201a;border:1px solid rgba(42,31,20,.08);border-radius:12px}
+        .adm-row{display:flex;align-items:center;gap:14px;padding:14px 16px;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.08);border-radius:12px}
         .adm-avatar{width:40px;height:40px;border-radius:50%;background:#f5f0e8 center/cover no-repeat;flex-shrink:0;border:1px solid rgba(42,31,20,.15)}
         .adm-info{flex:1;min-width:0}
-        .adm-name{font-size:15px;color:#2a1f14;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .adm-name{font-size:15px;color:#000;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         .adm-email{font-size:13px;color:rgba(42,31,20,.55);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         .adm-status{font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:6px;flex-shrink:0}
-        .adm-status.approved{background:rgba(90,133,86,.18);color:#9ec896;border:1px solid rgba(90,133,86,.3)}
-        .adm-status.rejected{background:rgba(196,149,90,.18);color:#c87a68;border:1px solid rgba(196,149,90,.3)}
+        .adm-status.approved{background:rgba(90,133,86,.18);color:#2f5a2a;border:1px solid rgba(90,133,86,.3)}
+        .adm-status.rejected{background:rgba(196,149,90,.18);color:#9d4630;border:1px solid rgba(196,149,90,.3)}
         .adm-status.pending{background:rgba(196,149,90,.12);color:#c4955a;border:1px solid rgba(196,149,90,.25)}
-        .adm-status.admin{background:rgba(135,168,196,.15);color:#a3c0d8;border:1px solid rgba(135,168,196,.3)}
+        .adm-status.admin{background:rgba(135,168,196,.15);color:#2f4a6b;border:1px solid rgba(135,168,196,.3)}
         .adm-actions{display:flex;gap:8px;flex-shrink:0}
         .adm-btn{padding:7px 14px;border:none;border-radius:8px;font-size:13px;font-family:'Crimson Pro',serif;cursor:pointer;transition:opacity .15s;font-weight:600}
         .adm-btn:disabled{opacity:.5;cursor:wait}
         .adm-btn.approve{background:linear-gradient(135deg,#5a8556,#4a6845);color:#fff}
-        .adm-btn.reject{background:rgba(196,149,90,.15);border:1px solid rgba(196,149,90,.4);color:#c87a68}
+        .adm-btn.reject{background:rgba(196,149,90,.15);border:1px solid rgba(196,149,90,.4);color:#9d4630}
         .adm-btn.reject:hover:not(:disabled){background:rgba(196,149,90,.3)}
-        .adm-err{margin:0 28px 16px;padding:12px 16px;background:rgba(196,149,90,.18);border:1px solid rgba(196,149,90,.35);color:#c87a68;border-radius:10px;font-size:13px}
+        .adm-err{margin:0 28px 16px;padding:12px 16px;background:rgba(196,149,90,.18);border:1px solid rgba(196,149,90,.35);color:#9d4630;border-radius:10px;font-size:13px}
         .adm-foot{padding:16px 28px;border-top:1px solid rgba(42,31,20,.08);display:flex;justify-content:space-between;align-items:center}
         .adm-refresh{background:none;border:1px solid rgba(42,31,20,.18);color:rgba(42,31,20,.7);padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif}
-        .adm-refresh:hover{color:#2a1f14;border-color:rgba(42,31,20,.4)}
-        .adm-trigger{background:rgba(135,168,196,.12);border:1px solid rgba(135,168,196,.3);color:#a3c0d8;padding:6px 12px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'Crimson Pro',serif;display:flex;align-items:center;gap:6px}
+        .adm-refresh:hover{color:#000;border-color:rgba(42,31,20,.4)}
+        .adm-trigger{background:rgba(135,168,196,.12);border:1px solid rgba(135,168,196,.3);color:#2f4a6b;padding:6px 12px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'Crimson Pro',serif;display:flex;align-items:center;gap:6px}
         .adm-trigger:hover{background:rgba(135,168,196,.2)}
         @media (max-width:520px){
           .adm-row{flex-wrap:wrap}
@@ -7474,15 +7474,15 @@ export default function App() {
         }
       .cl-formFieldInput,.cl-input,[class*='cl-formFieldInput'],[class*='cl-input']{
           background:#ffffff !important;
-          color:#2a1f14 !important;
+          color:#000 !important;
           border-color:rgba(196,149,90,.4) !important;
         }
         [class*='cl-card'],[class*='cl-modalContent']{
           background:#f5f0e8 !important;
-          color:#2a1f14 !important;
+          color:#000 !important;
         }
         [class*='cl-headerTitle'],[class*='cl-headerSubtitle'],[class*='cl-formFieldLabel'],[class*='cl-identityPreviewText']{
-          color:#2a1f14 !important;
+          color:#000 !important;
         }
         [class*='cl-formButtonPrimary']{
           background:#c4955a !important;
@@ -7506,20 +7506,20 @@ export default function App() {
             <SignIn routing="hash" appearance={{
               variables: {
                 colorBackground: "#f5f0e8",
-                colorText: "#2a1f14",
+                colorText: "#000",
                 colorTextSecondary: "rgba(42,31,20,.6)",
                 colorInputBackground: "#ffffff",
-                colorInputText: "#2a1f14",
+                colorInputText: "#000",
                 colorPrimary: "#c4955a",
                 colorDanger: "#c4955a",
               },
               elements: {
                 card: "background:#f5f0e8;box-shadow:none;border:1px solid rgba(196,149,90,.2)",
-                formFieldInput: "background:#ffffff;color:#2a1f14;border-color:rgba(196,149,90,.3)",
-                formFieldLabel: "color:#2a1f14",
-                headerTitle: "color:#2a1f14",
+                formFieldInput: "background:#ffffff;color:#000;border-color:rgba(196,149,90,.3)",
+                formFieldLabel: "color:#000",
+                headerTitle: "color:#000",
                 headerSubtitle: "color:rgba(42,31,20,.6)",
-                socialButtonsBlockButton: "border-color:rgba(196,149,90,.3);color:#2a1f14",
+                socialButtonsBlockButton: "border-color:rgba(196,149,90,.3);color:#000",
                 dividerLine: "background:rgba(196,149,90,.2)",
                 dividerText: "color:rgba(42,31,20,.5)",
                 footerActionLink: "color:#c4955a",
@@ -7714,7 +7714,7 @@ export default function App() {
               })}
             </div>
             <div className="adm-foot">
-              <span style={{fontSize:12,color:"rgba(210,197,175,.5)"}}>{adminUsers.length} {adminUsers.length === 1 ? "user" : "users"}</span>
+              <span style={{fontSize:12,color:"rgba(0,0,0,.5)"}}>{adminUsers.length} {adminUsers.length === 1 ? "user" : "users"}</span>
               <button className="adm-refresh" onClick={loadAdminUsers} disabled={adminLoad}>Refresh</button>
             </div>
           </div>
@@ -7739,7 +7739,7 @@ export default function App() {
 
               {upErr && <div className="adm-err">{upErr}</div>}
               {upMsg && (
-                <div style={{padding:"8px 12px",background:"rgba(138,171,124,.15)",border:"1px solid rgba(138,171,124,.4)",borderRadius:4,color:"#a8c89a",fontSize:13}}>
+                <div style={{padding:"8px 12px",background:"rgba(138,171,124,.15)",border:"1px solid rgba(138,171,124,.4)",borderRadius:4,color:"#2f5a2a",fontSize:13}}>
                   ✓ {upMsg}
                 </div>
               )}
@@ -7759,7 +7759,7 @@ export default function App() {
                         }
                       }}
                       disabled={upBusy}
-                      style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
+                      style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#000",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
                     {upBookFile && (
                       <div style={{fontSize:11,opacity:.55,marginTop:4,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>
                         {upBookFile.name} · {Math.round(upBookFile.size / 1024)} KB
@@ -7771,19 +7771,19 @@ export default function App() {
                     <input type="text" value={upTitle} onChange={function(e){ setUpTitle(e.target.value); }}
                       placeholder="e.g. Анна Каренина"
                       disabled={upBusy}
-                      style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
+                      style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#000",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
                   </div>
                   <div>
                     <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Author <span style={{opacity:.5}}>(optional)</span></label>
                     <input type="text" value={upBookAuthor} onChange={function(e){ setUpBookAuthor(e.target.value); }}
                       placeholder="e.g. Лев Толстой"
                       disabled={upBusy}
-                      style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
+                      style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#000",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
                   </div>
                   <div>
                     <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Category</label>
                     <select value={upBookCategory} onChange={function(e){ setUpBookCategory(e.target.value); }} disabled={upBusy}
-                      style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#d2c5af",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}>
+                      style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#000",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}>
                       <option value="Works">Works</option>
                       <option value="Poetry">Poetry</option>
                     </select>
@@ -7794,7 +7794,7 @@ export default function App() {
                       {upBusy ? "Uploading..." : "Upload book"}
                     </button>
                     <button onClick={function(){ setUpBookFile(null); setUpTitle(""); setUpBookAuthor(""); setUpMsg(""); setUpErr(""); }} disabled={upBusy}
-                      style={{padding:"10px 16px",background:"transparent",color:"#d2c5af",border:"1px solid rgba(210,197,175,.25)",borderRadius:4,fontSize:13,cursor:"pointer",fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>
+                      style={{padding:"10px 16px",background:"transparent",color:"#000",border:"1px solid rgba(210,197,175,.25)",borderRadius:4,fontSize:13,cursor:"pointer",fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>
                       Clear
                     </button>
                   </div>
@@ -7807,7 +7807,7 @@ export default function App() {
       {false && !seenLanding && (
         <div className="land">
           <div className="land-card">
-            <div className="land-icon" style={{color:"#c8a276"}}><Pushkin size={68}/></div>
+            <div className="land-icon" style={{color:"#c4955a"}}><Pushkin size={68}/></div>
             <div>
               <div className="land-title">Говорим</div>
               <div className="land-sub">Russian Practice</div>
@@ -7825,8 +7825,8 @@ export default function App() {
               <div className="land-feat"><span className="land-feat-icon">📚</span><div><strong>Build a library</strong> — Save vocab and grammar tips; they sync across all your devices.</div></div>
             </div>
 
-            <div style={{margin:"2px 0 0",padding:"12px 14px",borderRadius:10,background:"rgba(200,162,118,.10)",border:"1px solid rgba(200,162,118,.28)",fontSize:14,lineHeight:1.55,color:"rgba(210,197,175,.92)"}}>
-              <strong style={{color:"#c8a276"}}>About the audio:</strong> Most books in the library — Патриот, Тёмные аллеи, Анна Каренина and others — come with real human narration, synced to the text sentence by sentence and highlighted as it’s read. A few are still text-only while we add their audio.
+            <div style={{margin:"2px 0 0",padding:"12px 14px",borderRadius:10,background:"rgba(200,162,118,.10)",border:"1px solid rgba(200,162,118,.28)",fontSize:14,lineHeight:1.55,color:"rgba(0,0,0,.92)"}}>
+              <strong style={{color:"#c4955a"}}>About the audio:</strong> Most books in the library — Патриот, Тёмные аллеи, Анна Каренина and others — come with real human narration, synced to the text sentence by sentence and highlighted as it’s read. A few are still text-only while we add their audio.
             </div>
             <div className="land-tips">
               <div className="land-tips-title">For the best experience</div>
@@ -7903,16 +7903,16 @@ export default function App() {
           })}
         </div>
         {ttsErr && (
-          <div style={{padding:"8px 28px",background:"rgba(157,70,48,.18)",borderBottom:"1px solid rgba(157,70,48,.35)",color:"#c87a68",fontSize:13,display:"flex",alignItems:"center",gap:10}}>
+          <div style={{padding:"8px 28px",background:"rgba(157,70,48,.18)",borderBottom:"1px solid rgba(157,70,48,.35)",color:"#9d4630",fontSize:13,display:"flex",alignItems:"center",gap:10}}>
             <span style={{flex:1}}>🔊 {ttsErr}</span>
-            <button onClick={function(){ setTtsErr(""); }} style={{background:"none",border:"none",color:"#c87a68",cursor:"pointer",fontSize:18,padding:0}}>×</button>
+            <button onClick={function(){ setTtsErr(""); }} style={{background:"none",border:"none",color:"#9d4630",cursor:"pointer",fontSize:18,padding:0}}>×</button>
           </div>
         )}
 
         {syncErr && (
-          <div style={{padding:"8px 28px",background:"rgba(157,70,48,.18)",borderBottom:"1px solid rgba(157,70,48,.35)",color:"#c87a68",fontSize:13,display:"flex",alignItems:"center",gap:10}}>
+          <div style={{padding:"8px 28px",background:"rgba(157,70,48,.18)",borderBottom:"1px solid rgba(157,70,48,.35)",color:"#9d4630",fontSize:13,display:"flex",alignItems:"center",gap:10}}>
             <span style={{flex:1}}>⚠️ {syncErr} <span style={{opacity:.75,fontStyle:"italic"}}>Remove a few entries from the Vocabulary tab to keep syncing.</span></span>
-            <button onClick={function(){ setSyncErr(""); }} style={{background:"none",border:"none",color:"#c87a68",cursor:"pointer",fontSize:18,padding:0}}>×</button>
+            <button onClick={function(){ setSyncErr(""); }} style={{background:"none",border:"none",color:"#9d4630",cursor:"pointer",fontSize:18,padding:0}}>×</button>
           </div>
         )}
 
@@ -7920,7 +7920,7 @@ export default function App() {
           <div className="main">
             {!started && !mode && (
               <div className="ss">
-                <div className="sico" style={{color:"#c8a276"}}><Pushkin size={64}/></div>
+                <div className="sico" style={{color:"#c4955a"}}><Pushkin size={64}/></div>
                 <h1 className="sti">Говорим</h1>
                 <p className="sde">Choose how you want to practice today.</p>
                 <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:14}}>
@@ -7970,7 +7970,7 @@ export default function App() {
                         try { await storage.delete(EPUB_CACHE); } catch(e) {}
                         try { await storage.delete(EPUB_BM); } catch(e) {}
                         try { await storage.delete(QHIST_KEY); } catch(e) {}
-                      }} style={{background:"none",border:"none",color:"rgba(210,197,175,.4)",fontSize:11,fontStyle:"italic",fontFamily:"'Crimson Pro',serif",cursor:"pointer",padding:"4px",marginTop:4,textDecoration:"underline",textDecorationColor:"rgba(210,197,175,.2)",alignSelf:"center"}}>clear cached book</button>
+                      }} style={{background:"none",border:"none",color:"rgba(0,0,0,.4)",fontSize:11,fontStyle:"italic",fontFamily:"'Crimson Pro',serif",cursor:"pointer",padding:"4px",marginTop:4,textDecoration:"underline",textDecorationColor:"rgba(210,197,175,.2)",alignSelf:"center"}}>clear cached book</button>
                     </>
                   ) : ( <></> )}
 
@@ -8027,10 +8027,10 @@ export default function App() {
                                     else if (match.book.category === "Song Lyrics") openSongPicker(match.book);
                                     else loadPresetBook(match.book);
                                   }}>
-                                    <div className="lcn" style={{color:"rgba(200,162,118,.6)"}}>↻ {humanLast}</div>
+                                    <div className="lcn" style={{color:"rgba(0,0,0,.5)"}}>↻ {humanLast}</div>
                                     <div className="lchead">{rec.title}</div>
                                     {rec.author && <div className="lcp" style={{fontSize:12,opacity:.75}}>{rec.author}</div>}
-                                    <div style={{marginTop:8,fontSize:11,color:"rgba(210,197,175,.55)"}}>
+                                    <div style={{marginTop:8,fontSize:11,color:"rgba(0,0,0,.55)"}}>
                                       Ch. {(rec.cidx || 0) + 1}{total > 1 ? "/" + total : ""}
                                       {(rec.pidx || 0) > 0 && " · Page " + ((rec.pidx || 0) + 1)}
                                       {" · " + pct + "%"}
@@ -8051,7 +8051,7 @@ export default function App() {
                           the card grid; both stay in sync via the same data source. */}
                       {presetBooks.length > 0 && (
                         <div style={{marginBottom:18}}>
-                          <div style={{fontSize:11,letterSpacing:2,textTransform:"uppercase",color:"rgba(210,197,175,.45)",marginBottom:8,textAlign:"left"}}>Quick pick</div>
+                          <div style={{fontSize:11,letterSpacing:2,textTransform:"uppercase",color:"rgba(0,0,0,.45)",marginBottom:8,textAlign:"left"}}>Quick pick</div>
                           <select
                             defaultValue=""
                             onChange={function(e){
@@ -8146,7 +8146,7 @@ export default function App() {
                         var presetCount = CATEGORIES.concat(["Other"]).reduce(function(a, c){ return a + buckets[c].length; }, 0);
                         var totalResults = presetCount + filteredUploads.length;
                         if (q && totalResults === 0) {
-                          return <div style={{padding:"40px 16px",textAlign:"center",color:"rgba(210,197,175,.5)",fontStyle:"italic"}}>No books match «{bookSearch}»</div>;
+                          return <div style={{padding:"40px 16px",textAlign:"center",color:"rgba(0,0,0,.5)",fontStyle:"italic"}}>No books match «{bookSearch}»</div>;
                         }
                         return (
                           <>
@@ -8261,13 +8261,13 @@ export default function App() {
                               🎵 <span style={{fontStyle:"italic"}}>{songPickerBook.title}</span> · pick a song
                             </div>
                             <button onClick={function(){ setSongPickerBook(null); setSongPickerList([]); setSongPickerErr(""); }}
-                              style={{background:"transparent",color:"rgba(210,197,175,.55)",border:"none",cursor:"pointer",fontSize:18,padding:"0 4px"}}>×</button>
+                              style={{background:"transparent",color:"rgba(0,0,0,.55)",border:"none",cursor:"pointer",fontSize:18,padding:"0 4px"}}>×</button>
                           </div>
                           {songPickerLoad && (
                             <div style={{fontSize:13,opacity:.6,padding:"6px 0",fontStyle:"italic"}}>Loading song list…</div>
                           )}
                           {songPickerErr && (
-                            <div style={{fontSize:13,color:"#c87a68",padding:"6px 0"}}>{songPickerErr}</div>
+                            <div style={{fontSize:13,color:"#9d4630",padding:"6px 0"}}>{songPickerErr}</div>
                           )}
                           {!songPickerLoad && !songPickerErr && songPickerList.length === 0 && (
                             <div style={{fontSize:13,opacity:.6,padding:"6px 0",fontStyle:"italic"}}>No songs found.</div>
@@ -8277,7 +8277,7 @@ export default function App() {
                               {songPickerList.map(function(s){
                                 return (
                                   <button key={s.index} onClick={function(){ jumpToSong(s.index); }}
-                                    style={{textAlign:"left",padding:"8px 12px",background:"transparent",color:"#d2c5af",border:"1px solid rgba(210,197,175,.1)",borderRadius:4,cursor:"pointer",fontSize:14,fontFamily:"'Crimson Pro',serif",display:"flex",justifyContent:"space-between",alignItems:"center"}}
+                                    style={{textAlign:"left",padding:"8px 12px",background:"transparent",color:"#000",border:"1px solid rgba(210,197,175,.1)",borderRadius:4,cursor:"pointer",fontSize:14,fontFamily:"'Crimson Pro',serif",display:"flex",justifyContent:"space-between",alignItems:"center"}}
                                     onMouseEnter={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.1)"; e.currentTarget.style.borderColor = "rgba(200,162,118,.3)"; }}
                                     onMouseLeave={function(e){ e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(210,197,175,.1)"; }}>
                                     <span><span style={{opacity:.4,marginRight:8}}>{s.index + 1}.</span>{s.title}</span>
@@ -8292,7 +8292,7 @@ export default function App() {
                     </div>
                   )}
 
-                  {fErr && <p style={{color:"#c87a68",fontSize:13,lineHeight:1.5}}>{fErr}</p>}
+                  {fErr && <p style={{color:"#9d4630",fontSize:13,lineHeight:1.5}}>{fErr}</p>}
                   <button className="btn-g" onClick={function(){ setMode(""); }}>← Back</button>
                 </div>
               </div>
@@ -8307,11 +8307,11 @@ export default function App() {
                 "← Back" buttons walks back one step at a time. */}
             {mode === "grammar" && !gramTopicId && (
               <div className="ss">
-                <div className="sico" style={{color:"#c8a276"}}>📚</div>
+                <div className="sico" style={{color:"#c4955a"}}>📚</div>
                 <h1 className="sti">Grammar Reference</h1>
                 <p className="sde">Pick your level, then choose a topic. Rules and examples on every page.</p>
 
-                {gramErr && <p style={{color:"#c87a68",fontSize:13,lineHeight:1.5,maxWidth:500}}>{gramErr}</p>}
+                {gramErr && <p style={{color:"#9d4630",fontSize:13,lineHeight:1.5,maxWidth:500}}>{gramErr}</p>}
 
                 {curriculum && (
                   <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:14}}>
@@ -8324,13 +8324,13 @@ export default function App() {
                         value={gramSearch}
                         onChange={function(e){ setGramSearch(e.target.value); }}
                         placeholder="🔍 Search all levels (e.g. 'case', 'aspect', 'motion')"
-                        style={{width:"100%",padding:"10px 36px 10px 14px",fontSize:14,background:"rgba(210,197,175,.05)",border:"1px solid rgba(210,197,175,.15)",borderRadius:8,color:"#d2c5af",fontFamily:"'Crimson Pro',serif"}}
+                        style={{width:"100%",padding:"10px 36px 10px 14px",fontSize:14,background:"rgba(210,197,175,.05)",border:"1px solid rgba(210,197,175,.15)",borderRadius:8,color:"#000",fontFamily:"'Crimson Pro',serif"}}
                       />
                       {gramSearch && (
                         <button
                           onClick={function(){ setGramSearch(""); }}
                           title="Clear search"
-                          style={{position:"absolute",right:6,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",color:"rgba(210,197,175,.5)",cursor:"pointer",fontSize:18,padding:"2px 8px"}}>×</button>
+                          style={{position:"absolute",right:6,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",color:"rgba(0,0,0,.5)",cursor:"pointer",fontSize:18,padding:"2px 8px"}}>×</button>
                       )}
                     </div>
 
@@ -8374,13 +8374,13 @@ export default function App() {
                                   <button
                                     key={t.id}
                                     onClick={function(){ setGramTopicId(t.id); }}
-                                    style={{textAlign:"left",background:"none",border:"none",borderBottom:"1px solid rgba(210,197,175,.06)",padding:"12px 14px",cursor:"pointer",color:"#d2c5af",fontFamily:"'Crimson Pro',serif",display:"flex",alignItems:"flex-start",gap:12,transition:"background .12s"}}
+                                    style={{textAlign:"left",background:"none",border:"none",borderBottom:"1px solid rgba(210,197,175,.06)",padding:"12px 14px",cursor:"pointer",color:"#000",fontFamily:"'Crimson Pro',serif",display:"flex",alignItems:"flex-start",gap:12,transition:"background .12s"}}
                                     onMouseEnter={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.06)"; }}
                                     onMouseLeave={function(e){ e.currentTarget.style.background = "none"; }}>
-                                    <span style={{fontSize:11,fontWeight:600,letterSpacing:1.5,color:"#c8a276",background:"rgba(200,162,118,.12)",padding:"3px 7px",borderRadius:4,flexShrink:0,marginTop:1}}>{t.level}</span>
+                                    <span style={{fontSize:11,fontWeight:600,letterSpacing:1.5,color:"#c4955a",background:"rgba(200,162,118,.12)",padding:"3px 7px",borderRadius:4,flexShrink:0,marginTop:1}}>{t.level}</span>
                                     <span style={{display:"flex",flexDirection:"column",gap:2,flex:1,minWidth:0}}>
-                                      <span style={{fontSize:15,fontWeight:500,color:"#d2c5af"}}>{t.title}</span>
-                                      {t.subtitle && <span style={{fontSize:12,fontStyle:"italic",color:"rgba(210,197,175,.55)",lineHeight:1.45}}>{t.subtitle}</span>}
+                                      <span style={{fontSize:15,fontWeight:500,color:"#000"}}>{t.title}</span>
+                                      {t.subtitle && <span style={{fontSize:12,fontStyle:"italic",color:"rgba(0,0,0,.55)",lineHeight:1.45}}>{t.subtitle}</span>}
                                     </span>
                                   </button>
                                 );
@@ -8388,7 +8388,7 @@ export default function App() {
                             </div>
                           )}
                           {matches.length === 0 && (
-                            <p style={{fontSize:13,fontStyle:"italic",color:"rgba(210,197,175,.5)",textAlign:"center",padding:"12px 0"}}>
+                            <p style={{fontSize:13,fontStyle:"italic",color:"rgba(0,0,0,.5)",textAlign:"center",padding:"12px 0"}}>
                               Nothing matched "{gramSearch}". Try a different word, or clear the search to browse by level.
                             </p>
                           )}
@@ -8410,7 +8410,7 @@ export default function App() {
                           return (
                             <>
                               {L && L.description && (
-                                <p style={{fontSize:13,fontStyle:"italic",color:"rgba(210,197,175,.55)",margin:"4px 2px 0",fontFamily:"'Crimson Pro',serif",lineHeight:1.5}}>{L.description}</p>
+                                <p style={{fontSize:13,fontStyle:"italic",color:"rgba(0,0,0,.55)",margin:"4px 2px 0",fontFamily:"'Crimson Pro',serif",lineHeight:1.5}}>{L.description}</p>
                               )}
                               <span className="slbl" style={{marginTop:14}}>Topic ({topicsHere.length} available)</span>
                               <select
@@ -8433,7 +8433,7 @@ export default function App() {
                   </div>
                 )}
 
-                {!curriculum && !gramErr && <p style={{color:"rgba(210,197,175,.55)",fontStyle:"italic"}}>Loading curriculum…</p>}
+                {!curriculum && !gramErr && <p style={{color:"rgba(0,0,0,.55)",fontStyle:"italic"}}>Loading curriculum…</p>}
 
                 <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:8,marginTop:18}}>
                   <button className="btn-g" onClick={function(){ setMode(""); setGramLevel(""); setGramSearch(""); }}>← Back</button>
@@ -8446,7 +8446,7 @@ export default function App() {
               if (!topic) {
                 return (
                   <div className="ss">
-                    <p style={{color:"#c87a68"}}>Topic not found.</p>
+                    <p style={{color:"#9d4630"}}>Topic not found.</p>
                     <button className="btn-g" onClick={function(){ setGramTopicId(""); }}>← Back to topics</button>
                   </div>
                 );
@@ -8469,29 +8469,29 @@ export default function App() {
                             className="ttsbtn"
                             title={saved ? "Already saved — click to remove from Grammar tab" : "Save to Grammar tab for quick review"}
                             onClick={function(){ saved ? rmTopic(topic.id) : addTopic(topic.id); }}
-                            style={saved ? {color:"#9ab28e",borderColor:"rgba(154,178,142,.4)"} : null}>
+                            style={saved ? {color:"#2f5a2a",borderColor:"rgba(154,178,142,.4)"} : null}>
                             {saved ? "✓ Saved" : "📚 Save topic"}
                           </button>
                         );
                       })()}
-                      <span style={{color:"rgba(210,197,175,.4)",fontSize:12,letterSpacing:1.5,textTransform:"uppercase"}}>{topic.level}</span>
+                      <span style={{color:"rgba(0,0,0,.4)",fontSize:12,letterSpacing:1.5,textTransform:"uppercase"}}>{topic.level}</span>
                     </div>
                   </div>
 
                   <div className="gramref-body">
-                    <h1 style={{fontFamily:"'Playfair Display',serif",fontSize:32,fontWeight:700,color:"#c8a276",marginBottom:6,lineHeight:1.15}}>{topic.title}</h1>
-                    {topic.subtitle && <p style={{fontStyle:"italic",fontSize:16,color:"rgba(210,197,175,.65)",marginBottom:24,fontFamily:"'Crimson Pro',serif",lineHeight:1.5}}>{topic.subtitle}</p>}
+                    <h1 style={{fontFamily:"'Playfair Display',serif",fontSize:32,fontWeight:700,color:"#c4955a",marginBottom:6,lineHeight:1.15}}>{topic.title}</h1>
+                    {topic.subtitle && <p style={{fontStyle:"italic",fontSize:16,color:"rgba(0,0,0,.65)",marginBottom:24,fontFamily:"'Crimson Pro',serif",lineHeight:1.5}}>{topic.subtitle}</p>}
 
                     {(topic.sections || []).map(function(sec, si) {
                       return (
                         <section key={si} style={{marginBottom:22}}>
-                          {sec.heading && <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:14,fontWeight:700,color:"rgba(210,197,175,.5)",textTransform:"uppercase",letterSpacing:2,marginBottom:10,paddingBottom:6,borderBottom:"1px solid rgba(210,197,175,.08)"}}>{sec.heading}</h2>}
+                          {sec.heading && <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:14,fontWeight:700,color:"rgba(0,0,0,.5)",textTransform:"uppercase",letterSpacing:2,marginBottom:10,paddingBottom:6,borderBottom:"1px solid rgba(210,197,175,.08)"}}>{sec.heading}</h2>}
                           {sec.type === "bullets" && (
                             <ul style={{listStyle:"none",padding:0,margin:0,display:"flex",flexDirection:"column",gap:8}}>
                               {(sec.items || []).map(function(item, ii) {
                                 return (
                                   <li key={ii} style={{paddingLeft:18,position:"relative",lineHeight:1.55,fontSize:15}}>
-                                    <span style={{position:"absolute",left:0,top:0,color:"#c8a276"}}>•</span>
+                                    <span style={{position:"absolute",left:0,top:0,color:"#c4955a"}}>•</span>
                                     {item}
                                   </li>
                                 );
@@ -8517,7 +8517,7 @@ export default function App() {
                                         </button>
                                       )}
                                     </div>
-                                    {en && <span style={{fontStyle:"italic",fontSize:13,color:"rgba(210,197,175,.55)",fontFamily:"'Crimson Pro',serif",lineHeight:1.5}}>{en}</span>}
+                                    {en && <span style={{fontStyle:"italic",fontSize:13,color:"rgba(0,0,0,.55)",fontFamily:"'Crimson Pro',serif",lineHeight:1.5}}>{en}</span>}
                                   </div>
                                 );
                               })}
@@ -8591,7 +8591,7 @@ export default function App() {
                         {/* Book title shown small above the chapter heading so the reader always knows
                             which book they're in, even after navigating mid-chapter. */}
                         {bookMeta.title && (
-                          <div style={{fontFamily:"'Crimson Pro',serif",fontStyle:"italic",fontSize:13,color:"rgba(210,197,175,.45)",marginBottom:4,letterSpacing:.3}}>
+                          <div style={{fontFamily:"'Crimson Pro',serif",fontStyle:"italic",fontSize:13,color:"rgba(0,0,0,.45)",marginBottom:4,letterSpacing:.3}}>
                             {bookMeta.title}{bookMeta.author ? " — " + bookMeta.author : ""}
                           </div>
                         )}
@@ -8606,7 +8606,7 @@ export default function App() {
                             {curChapter.youtubeUrl && (
                               <a href={curChapter.youtubeUrl} target="_blank" rel="noopener noreferrer"
                                 title="Listen on YouTube"
-                                style={{fontSize:12,color:"rgba(210,197,175,.7)",textDecoration:"none",padding:"4px 10px",border:"1px solid rgba(210,197,175,.25)",borderRadius:4,fontFamily:"'Inter',sans-serif"}}>
+                                style={{fontSize:12,color:"rgba(0,0,0,.7)",textDecoration:"none",padding:"4px 10px",border:"1px solid rgba(210,197,175,.25)",borderRadius:4,fontFamily:"'Inter',sans-serif"}}>
                                 🎵 Listen on YouTube ↗
                               </a>
                             )}
@@ -8833,18 +8833,18 @@ export default function App() {
                     {exCat === "menu" && (
                       <div style={{padding:"18px 8px"}}>
                         <div style={{textAlign:"center",marginBottom:20}}>
-                          <div style={{fontSize:20,fontFamily:"'Playfair Display',serif",color:"#2a1f14",fontWeight:600}}>{exData.title || "Exercises"}</div>
+                          <div style={{fontSize:20,fontFamily:"'Playfair Display',serif",color:"#000",fontWeight:600}}>{exData.title || "Exercises"}</div>
                           {exData.source && <div style={{fontSize:13,color:"rgba(42,31,20,.5)",marginTop:4}}>{exData.source}</div>}
                         </div>
                         <div style={{display:"flex",flexDirection:"column",gap:14}}>
                           {/* Grammar (available) */}
                           <button onClick={startCaseQuiz}
-                            style={{background:"rgba(196,149,90,.12)",border:"1px solid rgba(196,149,90,.45)",color:"#2a1f14",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
+                            style={{background:"rgba(196,149,90,.12)",border:"1px solid rgba(196,149,90,.45)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
                             onMouseOver={function(e){ e.currentTarget.style.background = "rgba(196,149,90,.2)"; }}
                             onMouseOut={function(e){ e.currentTarget.style.background = "rgba(196,149,90,.12)"; }}>
                             <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
                               <span style={{fontSize:24}}>🔤</span>
-                              <span style={{fontSize:18,fontWeight:600,color:"#2a1f14",fontFamily:"'Playfair Display',serif"}}>Grammar — Cases</span>
+                              <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Playfair Display',serif"}}>Grammar — Cases</span>
                             </div>
                             <p style={{fontSize:13,color:"rgba(42,31,20,.55)",margin:0,lineHeight:1.5}}>{(exData.cases||[]).length} questions. Pick the correct case form to fill each blank, with the English line for context.</p>
                           </button>
@@ -8853,7 +8853,7 @@ export default function App() {
                             var hasReading = exData.reading && exData.reading.length;
                             return (
                           <button onClick={hasReading ? startReadingQuiz : function(){ setExCat("reading-soon"); }}
-                            style={{background:"rgba(90,133,86,.1)",border:"1px solid rgba(90,133,86,.35)",color:"#2a1f14",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
+                            style={{background:"rgba(90,133,86,.1)",border:"1px solid rgba(90,133,86,.35)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
                             onMouseOver={function(e){ e.currentTarget.style.background = "rgba(90,133,86,.16)"; }}
                             onMouseOut={function(e){ e.currentTarget.style.background = "rgba(90,133,86,.1)"; }}>
                             <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
@@ -8890,8 +8890,8 @@ export default function App() {
                           // Results screen
                           <div style={{padding:"30px 20px",textAlign:"center"}}>
                             <div style={{fontSize:48,marginBottom:12}}>{exScore === exQuestions.length ? "🎉" : exScore >= exQuestions.length * 0.7 ? "👏" : "📚"}</div>
-                            <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,color:"#2a1f14",marginBottom:8}}>Done!</h2>
-                            <p style={{fontSize:20,color:"#2a1f14",marginBottom:6}}>You got <strong style={{color:"#c4955a"}}>{exScore}</strong> of <strong>{exQuestions.length}</strong> correct.</p>
+                            <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,color:"#000",marginBottom:8}}>Done!</h2>
+                            <p style={{fontSize:20,color:"#000",marginBottom:6}}>You got <strong style={{color:"#c4955a"}}>{exScore}</strong> of <strong>{exQuestions.length}</strong> correct.</p>
                             <p style={{fontSize:14,color:"rgba(42,31,20,.5)",marginBottom:28}}>{Math.round(exScore / exQuestions.length * 100)}%</p>
                             <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
                               <button className="btn-p" style={{maxWidth:200}} onClick={exCat === "reading" ? startReadingQuiz : startCaseQuiz}>Try again</button>
@@ -8909,12 +8909,16 @@ export default function App() {
                               <div style={{fontSize:13,color:"rgba(42,31,20,.5)",marginBottom:14}}>Question {exIdx + 1} of {exQuestions.length}</div>
 
                               {isReading && (
-                                <div style={{fontSize:21,fontFamily:"'Crimson Pro',serif",color:"#2a1f14",textAlign:"center",lineHeight:1.5,marginBottom:24,maxWidth:540,marginLeft:"auto",marginRight:"auto"}}>{q.question}</div>
+                                <div style={{maxWidth:560,margin:"0 auto 24px"}}>
+                                  {/* The Russian line to read, then the English question below it. */}
+                                  {q.ru && <div style={{fontSize:23,fontFamily:"'Crimson Pro',serif",color:"#000",textAlign:"center",lineHeight:1.55,marginBottom:14}}>{q.ru}</div>}
+                                  <div style={{fontSize:16,fontFamily:"'Inter',sans-serif",color:"rgba(42,31,20,.7)",textAlign:"center",lineHeight:1.5,fontWeight:600}}>{q.question}</div>
+                                </div>
                               )}
 
                               {!isReading && (<>
                               {/* Sentence with the blank (filled with the correct form once answered) */}
-                              <div style={{fontSize:26,fontFamily:"'Crimson Pro',serif",color:"#2a1f14",textAlign:"center",lineHeight:1.5,marginBottom:14}}>
+                              <div style={{fontSize:26,fontFamily:"'Crimson Pro',serif",color:"#000",textAlign:"center",lineHeight:1.5,marginBottom:14}}>
                                 {parts[0]}
                                 <span style={{display:"inline-block",minWidth:70,textAlign:"center",fontWeight:700,color: answered ? "#2f5a2a" : "#a56a24",borderBottom:"2px solid rgba(196,149,90,.6)",padding:"0 6px"}}>
                                   {answered ? q.correct : "   "}
@@ -8934,7 +8938,7 @@ export default function App() {
                                 {q.options.map(function(opt, i) {
                                   var isCorrect = opt === q.correct;
                                   var isPicked  = opt === exSelected;
-                                  var bg = "rgba(42,31,20,.05)", brd = "rgba(42,31,20,.16)", col = "#2a1f14";
+                                  var bg = "rgba(42,31,20,.05)", brd = "rgba(42,31,20,.16)", col = "#000";
                                   if (answered) {
                                     if (isCorrect)     { bg = "rgba(90,133,86,.18)"; brd = "rgba(90,133,86,.6)"; col = "#2f5a2a"; }
                                     else if (isPicked) { bg = "rgba(157,70,48,.18)"; brd = "rgba(157,70,48,.6)"; col = "#9d4630"; }
@@ -9015,17 +9019,17 @@ export default function App() {
                 </div>
                 {quizQuestions.length === 0 ? (
                   <div style={{padding:"40px 20px",textAlign:"center"}}>
-                    <p style={{color:"rgba(210,197,175,.7)",fontSize:15,lineHeight:1.6,maxWidth:480,margin:"0 auto"}}>{quizSkipNote}</p>
+                    <p style={{color:"rgba(0,0,0,.7)",fontSize:15,lineHeight:1.6,maxWidth:480,margin:"0 auto"}}>{quizSkipNote}</p>
                     <button className="btn-g" style={{marginTop:24,maxWidth:280}} onClick={function(){ setQuizMode(false); }}>Back to vocab list</button>
                   </div>
                 ) : quizIdx >= quizQuestions.length ? (
                   // Final score screen
                   <div style={{padding:"40px 20px",textAlign:"center"}}>
                     <div style={{fontSize:48,marginBottom:12}}>{quizScore === quizQuestions.length ? "🎉" : quizScore >= quizQuestions.length * 0.7 ? "👏" : "📚"}</div>
-                    <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,color:"#c8a276",marginBottom:8}}>Quiz Complete!</h2>
-                    <p style={{fontSize:20,color:"#d2c5af",marginBottom:6}}>You got <strong style={{color:"#c8a276"}}>{quizScore}</strong> of <strong>{quizQuestions.length}</strong> correct.</p>
-                    <p style={{fontSize:14,color:"rgba(210,197,175,.5)",marginBottom:28}}>{Math.round(quizScore / quizQuestions.length * 100)}%</p>
-                    {quizSkipNote && <p style={{fontSize:12,color:"rgba(210,197,175,.4)",fontStyle:"italic",marginBottom:20,maxWidth:440,margin:"0 auto 20px"}}>{quizSkipNote}</p>}
+                    <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,color:"#c4955a",marginBottom:8}}>Quiz Complete!</h2>
+                    <p style={{fontSize:20,color:"#000",marginBottom:6}}>You got <strong style={{color:"#c4955a"}}>{quizScore}</strong> of <strong>{quizQuestions.length}</strong> correct.</p>
+                    <p style={{fontSize:14,color:"rgba(0,0,0,.5)",marginBottom:28}}>{Math.round(quizScore / quizQuestions.length * 100)}%</p>
+                    {quizSkipNote && <p style={{fontSize:12,color:"rgba(0,0,0,.4)",fontStyle:"italic",marginBottom:20,maxWidth:440,margin:"0 auto 20px"}}>{quizSkipNote}</p>}
                     <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
                       <button className="btn-p" style={{maxWidth:200}} onClick={startQuiz}>Retake quiz</button>
                       <button className="btn-g" style={{maxWidth:200}} onClick={function(){ setQuizMode(false); setQuizMenu(false); }}>Back to vocab list</button>
@@ -9034,15 +9038,15 @@ export default function App() {
                 ) : (
                   // Current question
                   <div style={{padding:"20px 4px"}}>
-                    <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:18,fontSize:13,color:"rgba(210,197,175,.5)"}}>
+                    <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:18,fontSize:13,color:"rgba(0,0,0,.5)"}}>
                       <span>Question {quizIdx + 1} of {quizQuestions.length}</span>
                       <span>Score: {quizScore} / {quizIdx + (quizSelected !== null ? 1 : 0)}</span>
                     </div>
                     {/* The Russian word being quizzed */}
                     <div style={{textAlign:"center",marginBottom:8}}>
-                      <span style={{fontSize:12,color:"rgba(210,197,175,.45)",textTransform:"uppercase",letterSpacing:1.5}}>{quizQuestions[quizIdx].pos}</span>
+                      <span style={{fontSize:12,color:"rgba(0,0,0,.45)",textTransform:"uppercase",letterSpacing:1.5}}>{quizQuestions[quizIdx].pos}</span>
                     </div>
-                    <div style={{fontSize:42,fontFamily:"'Playfair Display',serif",color:"#c8a276",textAlign:"center",marginBottom:30,fontWeight:600}}>
+                    <div style={{fontSize:42,fontFamily:"'Playfair Display',serif",color:"#c4955a",textAlign:"center",marginBottom:30,fontWeight:600}}>
                       {quizQuestions[quizIdx].word}
                     </div>
                     {/* Multiple choice options */}
@@ -9050,18 +9054,18 @@ export default function App() {
                       {quizQuestions[quizIdx].options.map(function(opt, i) {
                         var isCorrect = opt === quizQuestions[quizIdx].correct;
                         var isPicked  = opt === quizSelected;
-                        var bg = "rgba(210,197,175,.05)", brd = "rgba(210,197,175,.16)", col = "#d2c5af";
+                        var bg = "rgba(42,31,20,.04)", brd = "rgba(42,31,20,.16)", col = "#000";
                         if (quizSelected !== null) {
-                          if (isCorrect)      { bg = "rgba(90,133,86,.18)";  brd = "rgba(90,133,86,.6)";  col = "#9dbf99"; }
-                          else if (isPicked)  { bg = "rgba(157,70,48,.18)";  brd = "rgba(157,70,48,.6)";  col = "#c87a68"; }
-                          else                { col = "rgba(210,197,175,.4)"; }
+                          if (isCorrect)      { bg = "rgba(90,133,86,.18)";  brd = "rgba(90,133,86,.6)";  col = "#2f5a2a"; }
+                          else if (isPicked)  { bg = "rgba(157,70,48,.18)";  brd = "rgba(157,70,48,.6)";  col = "#9d4630"; }
+                          else                { col = "rgba(0,0,0,.4)"; }
                         }
                         return (
                           <button key={i} disabled={quizSelected !== null} onClick={function(){
                             setQuizSelected(opt);
                             if (isCorrect) setQuizScore(function(s){ return s + 1; });
                           }} style={{background:bg,border:"1px solid "+brd,color:col,padding:"14px 18px",borderRadius:10,fontSize:16,fontFamily:"'Crimson Pro',serif",cursor: quizSelected !== null ? "default" : "pointer", textAlign:"left", transition:"all .15s"}}>
-                            <span style={{display:"inline-block",width:20,color:"rgba(210,197,175,.45)",fontFamily:"'Inter',sans-serif",fontSize:13}}>{String.fromCharCode(65 + i)}.</span>
+                            <span style={{display:"inline-block",width:20,color:"rgba(0,0,0,.45)",fontFamily:"'Inter',sans-serif",fontSize:13}}>{String.fromCharCode(65 + i)}.</span>
                             {opt}
                           </button>
                         );
@@ -9088,28 +9092,28 @@ export default function App() {
                   <button className="ab" onClick={function(){ setQuizMenu(false); }}>← Back to list</button>
                 </div>
                 <div style={{padding:"24px 16px",display:"flex",flexDirection:"column",gap:14,maxWidth:560,margin:"0 auto"}}>
-                  <p style={{color:"rgba(210,197,175,.65)",fontSize:14,textAlign:"center",margin:"0 0 8px"}}>How would you like to practice your {vocab.length} saved {vocab.length === 1 ? "word" : "words"}?</p>
+                  <p style={{color:"rgba(0,0,0,.65)",fontSize:14,textAlign:"center",margin:"0 0 8px"}}>How would you like to practice your {vocab.length} saved {vocab.length === 1 ? "word" : "words"}?</p>
                   {/* Multiple Choice Quiz option */}
                   <button onClick={startQuiz}
-                    style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#d2c5af",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
+                    style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
                     onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
                     onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
                     <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
                       <span style={{fontSize:24}}>📝</span>
-                      <span style={{fontSize:18,fontWeight:600,color:"#c8a276",fontFamily:"'Playfair Display',serif"}}>Multiple Choice Quiz</span>
+                      <span style={{fontSize:18,fontWeight:600,color:"#c4955a",fontFamily:"'Playfair Display',serif"}}>Multiple Choice Quiz</span>
                     </div>
-                    <p style={{fontSize:13,color:"rgba(210,197,175,.55)",margin:0,lineHeight:1.5}}>Quick recall test. Each question shows a Russian word with 4 English meaning options (from same-pos vocabulary).</p>
+                    <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>Quick recall test. Each question shows a Russian word with 4 English meaning options (from same-pos vocabulary).</p>
                   </button>
                   {/* Chat Practice option */}
                   <button onClick={startVocabChat}
-                    style={{background:"rgba(90,133,86,.08)",border:"1px solid rgba(90,133,86,.3)",color:"#d2c5af",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
+                    style={{background:"rgba(90,133,86,.08)",border:"1px solid rgba(90,133,86,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
                     onMouseOver={function(e){ e.currentTarget.style.background = "rgba(90,133,86,.14)"; }}
                     onMouseOut={function(e){ e.currentTarget.style.background = "rgba(90,133,86,.08)"; }}>
                     <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
                       <span style={{fontSize:24}}>💬</span>
-                      <span style={{fontSize:18,fontWeight:600,color:"#9dbf99",fontFamily:"'Playfair Display',serif"}}>Chat Practice</span>
+                      <span style={{fontSize:18,fontWeight:600,color:"#2f5a2a",fontFamily:"'Playfair Display',serif"}}>Chat Practice</span>
                     </div>
-                    <p style={{fontSize:13,color:"rgba(210,197,175,.55)",margin:0,lineHeight:1.5}}>Open-ended conversation. The AI uses each saved word in a Russian sentence and asks a question about it — you reply naturally.</p>
+                    <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>Open-ended conversation. The AI uses each saved word in a Russian sentence and asks a question about it — you reply naturally.</p>
                   </button>
                 </div>
               </>
@@ -9155,11 +9159,11 @@ export default function App() {
                                 </div>
                               )}
                               <div style={{display:"flex",alignItems:"center",gap:10,marginTop:6,flexWrap:"wrap"}}>
-                                {stamp && <span style={{fontSize:11,color:"rgba(210,197,175,.35)",fontStyle:"italic",fontFamily:"'Crimson Pro',serif"}}>Added {stamp}</span>}
+                                {stamp && <span style={{fontSize:11,color:"rgba(0,0,0,.35)",fontStyle:"italic",fontFamily:"'Crimson Pro',serif"}}>Added {stamp}</span>}
                                 {v.srcBook && (
                                   <button onClick={function(){ goToSource(v); }}
                                     title={"Open " + (v.srcTitle||"source") + (typeof v.srcChapter==="number" ? " — chapter " + (v.srcChapter+1) : "")}
-                                    style={{fontSize:11,background:"none",border:"none",color:"#c8a276",cursor:"pointer",fontFamily:"'Inter',sans-serif",padding:0,textDecoration:"underline"}}>
+                                    style={{fontSize:11,background:"none",border:"none",color:"#c4955a",cursor:"pointer",fontFamily:"'Inter',sans-serif",padding:0,textDecoration:"underline"}}>
                                     ↗ {v.srcTitle ? (v.srcTitle.length>22 ? v.srcTitle.slice(0,22)+"\u2026" : v.srcTitle) : "source"}
                                   </button>
                                 )}
@@ -9179,7 +9183,7 @@ export default function App() {
                               <div key={g} style={{marginBottom:18}}>
                                 <div style={{display:"flex",alignItems:"center",gap:10,padding:"6px 2px",borderBottom:"1px solid rgba(210,197,175,.15)",marginBottom:8}}>
                                   <button onClick={function(){ setVocabCollapsed(function(pp){ var n=Object.assign({},pp); n[g]=!n[g]; return n; }); }}
-                                    style={{background:"none",border:"none",color:"#d2c5af",cursor:"pointer",fontSize:14,fontWeight:600,fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:6,flex:1,textAlign:"left",padding:0}}>
+                                    style={{background:"none",border:"none",color:"#000",cursor:"pointer",fontSize:14,fontWeight:600,fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:6,flex:1,textAlign:"left",padding:0}}>
                                     <span style={{fontSize:11,opacity:.6}}>{collapsed?"\u25b6":"\u25bc"}</span>
                                     <span style={{textTransform:"capitalize"}}>{g}</span>
                                     <span style={{opacity:.5,fontWeight:400}}>({words.length})</span>
@@ -9219,10 +9223,10 @@ export default function App() {
                         onClick={function(){ setMode("grammar"); setGramTopicId(id); setStarted(false); setMsgs([]); stopTTS(); setTab("chat"); }}>
                         <div className="icont" style={{flex:1}}>
                           <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:2}}>
-                            <span style={{fontSize:10,letterSpacing:1.5,padding:"2px 6px",border:"1px solid rgba(210,197,175,.25)",borderRadius:3,color:"rgba(210,197,175,.6)"}}>{topic.level}</span>
-                            <span className="ipri" style={{fontSize:15,color:"#c8a276"}}>📚 {topic.title}</span>
+                            <span style={{fontSize:10,letterSpacing:1.5,padding:"2px 6px",border:"1px solid rgba(210,197,175,.25)",borderRadius:3,color:"rgba(0,0,0,.6)"}}>{topic.level}</span>
+                            <span className="ipri" style={{fontSize:15,color:"#c4955a"}}>📚 {topic.title}</span>
                           </div>
-                          {topic.subtitle && <span style={{fontSize:13,fontStyle:"italic",color:"rgba(210,197,175,.55)",fontFamily:"'Crimson Pro',serif"}}>{topic.subtitle}</span>}
+                          {topic.subtitle && <span style={{fontSize:13,fontStyle:"italic",color:"rgba(0,0,0,.55)",fontFamily:"'Crimson Pro',serif"}}>{topic.subtitle}</span>}
                         </div>
                         <button className="rmb" title="Remove from Grammar tab" onClick={function(e){ e.stopPropagation(); rmTopic(id); }}>×</button>
                       </div>
@@ -9310,7 +9314,7 @@ export default function App() {
                   <>
                     <div className="pw">{headline}</div>
                     {showClickedHint && (
-                      <div style={{fontSize:11,color:"rgba(210,197,175,.4)",marginBottom:6,marginTop:-2}}>
+                      <div style={{fontSize:11,color:"rgba(0,0,0,.4)",marginBottom:6,marginTop:-2}}>
                         you clicked: {clicked}
                       </div>
                     )}
