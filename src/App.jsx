@@ -4316,9 +4316,10 @@ export default function App() {
   // displayed Russian verses. Non-Bible books clear it.
   useEffect(function() {
     setBibleEn(null);
-    if (!isBibleBook(bookMeta)) return;
+    // Fire for any chapter whose audio is a bible-nrp file (avoids the shared
+    // isBibleBook() detector, which misses this book's "Библии" title).
     var chs = bookMeta && bookMeta.audiobook && bookMeta.audiobook.chapters;
-    var key = chs && chs[cidx] && (String(chs[cidx]).match(/(\d+-\d+)\.json$/) || [])[1];
+    var key = chs && chs[cidx] && (String(chs[cidx]).match(/bible-nrp\/(\d+-\d+)\.json/) || [])[1];
     if (!key) return;
     var cancelled = false;
     fetch("/books/bible-en/" + key + ".json")
