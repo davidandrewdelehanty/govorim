@@ -2792,6 +2792,17 @@ export default function App() {
   var [quizScore, setQuizScore]       = useState(0);
   var [quizSkipNote, setQuizSkipNote] = useState("");
 
+  // ── Exercises (grammar/reading drills tied to the current chapter) ─────────
+  // exData: the loaded exercise set for the current chapter (or null).
+  // exCat: which category the user picked ("menu" | "grammar" | "reading").
+  // The grammar quiz reuses the same MC pattern as the vocab quiz.
+  var [exData, setExData]         = useState(null);
+  var [exCat, setExCat]           = useState("menu");
+  var [exQuestions, setExQuestions] = useState([]);
+  var [exIdx, setExIdx]           = useState(0);
+  var [exSelected, setExSelected] = useState(null);
+  var [exScore, setExScore]       = useState(0);
+
   var [popup, setPopup]   = useState(null);
   var [popXY, setPopXY]   = useState({top:100,left:16});
   var popRef = useRef(null);
@@ -4346,6 +4357,45 @@ export default function App() {
       .catch(function() {});
     return function() { cancelled = true; };
   }, [bookMeta && bookMeta.filename, cidx, bibleHeadings]);
+
+  // Exercises: load the drill set for the current chapter (if one exists),
+  // keyed by the same book-chapter as the audio (e.g. "01-01" = Genesis 1).
+  // Resets the exercise view whenever the chapter changes.
+  useEffect(function() {
+    setExData(null); setExCat("menu"); setExSelected(null); setExIdx(0); setExScore(0);
+    var chs = bookMeta && bookMeta.audiobook && bookMeta.audiobook.chapters;
+    var key = chs && chs[cidx] && (String(chs[cidx]).match(/bible-nrp\/(\d+-\d+)\.json/) || [])[1];
+    if (!key) return;
+    var cancelled = false;
+    fetch("/books/exercises/" + key + ".json")
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .then(function(j) { if (!cancelled && j) setExData(j); })
+      .catch(function() {});
+    return function() { cancelled = true; };
+  }, [bookMeta && bookMeta.filename, cidx]);
+
+  // If the current chapter has no exercises but the Exercises tab is somehow
+  // still selected (e.g. after navigating), fall back to the reading view.
+  useEffect(function() {
+    if (lview === "exercises" && !exData) setLview("read");
+  }, [exData, lview]);
+
+  // Start (or restart) the grammar case quiz: shuffle questions & options.
+  var startCaseQuiz = function() {
+    if (!exData || !exData.cases || !exData.cases.length) return;
+    var exShuffle = function(arr) {
+      var a = arr.slice();
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+      }
+      return a;
+    };
+    var qs = exShuffle(exData.cases).map(function(q) {
+      return Object.assign({}, q, { options: exShuffle(q.options || []) });
+    });
+    setExQuestions(qs); setExIdx(0); setExSelected(null); setExScore(0); setExCat("grammar");
+  };
 
   // When the loaded chapter changes, re-point the audio element at the new
   // chapter's file. Without this, switching chapters leaves the previous
@@ -8487,6 +8537,7 @@ export default function App() {
                   <button className={"ltab"+(lview==="read"?" on":"")} onClick={function(){ setLview("read"); }}>📖 Read</button>
                   <button className={"ltab"+(lview==="nav"?" on":"")} onClick={function(){ setLview("nav"); }}>🗂 Chapters</button>
                   <button className={"ltab"+(lview==="search"?" on":"")} onClick={function(){ setLview("search"); }}>🔍 Search</button>
+                  {exData && <button className={"ltab"+(lview==="exercises"?" on":"")} onClick={function(){ setLview("exercises"); }}>📝 Exercises</button>}
                   {/* Page + chapter nav moved up here so they stay visible
                       while the floating audio bar covers the bottom of the page. */}
                   {lview === "read" && (
@@ -8757,6 +8808,147 @@ export default function App() {
                       })}
                     </div>
                   </>
+                )}
+
+                {lview==="exercises" && exData && (
+                  <div className="navpanel" style={{maxWidth:640,margin:"0 auto"}}>
+                    {/* ── Category menu: Grammar vs Reading ─────────────────── */}
+                    {exCat === "menu" && (
+                      <div style={{padding:"18px 8px"}}>
+                        <div style={{textAlign:"center",marginBottom:20}}>
+                          <div style={{fontSize:20,fontFamily:"'Playfair Display',serif",color:"#c8a276",fontWeight:600}}>{exData.title || "Exercises"}</div>
+                          {exData.source && <div style={{fontSize:13,color:"rgba(210,197,175,.5)",marginTop:4}}>{exData.source}</div>}
+                        </div>
+                        <div style={{display:"flex",flexDirection:"column",gap:14}}>
+                          {/* Grammar (available) */}
+                          <button onClick={startCaseQuiz}
+                            style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#d2c5af",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
+                            onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
+                            onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
+                            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
+                              <span style={{fontSize:24}}>🔤</span>
+                              <span style={{fontSize:18,fontWeight:600,color:"#c8a276",fontFamily:"'Playfair Display',serif"}}>Grammar — Cases</span>
+                            </div>
+                            <p style={{fontSize:13,color:"rgba(210,197,175,.55)",margin:0,lineHeight:1.5}}>{(exData.cases||[]).length} questions. Pick the correct case form to fill each blank, with the English line for context.</p>
+                          </button>
+                          {/* Reading (coming soon) */}
+                          <button onClick={function(){ setExCat("reading"); }}
+                            style={{background:"rgba(90,133,86,.06)",border:"1px solid rgba(90,133,86,.22)",color:"#d2c5af",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s",opacity:.85}}
+                            onMouseOver={function(e){ e.currentTarget.style.background = "rgba(90,133,86,.1)"; }}
+                            onMouseOut={function(e){ e.currentTarget.style.background = "rgba(90,133,86,.06)"; }}>
+                            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
+                              <span style={{fontSize:24}}>📖</span>
+                              <span style={{fontSize:18,fontWeight:600,color:"#9dbf99",fontFamily:"'Playfair Display',serif"}}>Reading — Comprehension</span>
+                              <span style={{fontSize:11,color:"rgba(210,197,175,.4)",border:"1px solid rgba(210,197,175,.25)",borderRadius:20,padding:"2px 8px",fontFamily:"'Inter',sans-serif"}}>soon</span>
+                            </div>
+                            <p style={{fontSize:13,color:"rgba(210,197,175,.55)",margin:0,lineHeight:1.5}}>Questions about what the passage says. Coming next.</p>
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* ── Reading placeholder ──────────────────────────────── */}
+                    {exCat === "reading" && (
+                      <div style={{padding:"40px 20px",textAlign:"center"}}>
+                        <div style={{fontSize:40,marginBottom:12}}>📖</div>
+                        <p style={{color:"rgba(210,197,175,.7)",fontSize:15,lineHeight:1.6,maxWidth:440,margin:"0 auto 24px"}}>Reading-comprehension exercises for this passage are coming soon.</p>
+                        <button className="btn-g" style={{maxWidth:240}} onClick={function(){ setExCat("menu"); }}>← Back</button>
+                      </div>
+                    )}
+
+                    {/* ── Grammar case quiz ────────────────────────────────── */}
+                    {exCat === "grammar" && (
+                      <div style={{padding:"14px 4px"}}>
+                        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
+                          <button className="ab" onClick={function(){ setExCat("menu"); }}>← Back</button>
+                          <span style={{fontSize:13,color:"rgba(210,197,175,.5)"}}>Score: {exScore} / {exIdx + (exSelected !== null ? 1 : 0)}</span>
+                        </div>
+
+                        {exIdx >= exQuestions.length ? (
+                          // Results screen
+                          <div style={{padding:"30px 20px",textAlign:"center"}}>
+                            <div style={{fontSize:48,marginBottom:12}}>{exScore === exQuestions.length ? "🎉" : exScore >= exQuestions.length * 0.7 ? "👏" : "📚"}</div>
+                            <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,color:"#c8a276",marginBottom:8}}>Done!</h2>
+                            <p style={{fontSize:20,color:"#d2c5af",marginBottom:6}}>You got <strong style={{color:"#c8a276"}}>{exScore}</strong> of <strong>{exQuestions.length}</strong> correct.</p>
+                            <p style={{fontSize:14,color:"rgba(210,197,175,.5)",marginBottom:28}}>{Math.round(exScore / exQuestions.length * 100)}%</p>
+                            <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
+                              <button className="btn-p" style={{maxWidth:200}} onClick={startCaseQuiz}>Try again</button>
+                              <button className="btn-g" style={{maxWidth:200}} onClick={function(){ setExCat("menu"); }}>Back to exercises</button>
+                            </div>
+                          </div>
+                        ) : (function(){
+                          var q = exQuestions[exIdx];
+                          var answered = exSelected !== null;
+                          var wasRight = answered && exSelected === q.correct;
+                          var parts = String(q.sentence || "").split("___");
+                          return (
+                            <div>
+                              <div style={{fontSize:13,color:"rgba(210,197,175,.5)",marginBottom:14}}>Question {exIdx + 1} of {exQuestions.length}</div>
+
+                              {/* Sentence with the blank (filled with the correct form once answered) */}
+                              <div style={{fontSize:26,fontFamily:"'Crimson Pro',serif",color:"#e7dcc7",textAlign:"center",lineHeight:1.5,marginBottom:14}}>
+                                {parts[0]}
+                                <span style={{display:"inline-block",minWidth:70,textAlign:"center",fontWeight:700,color: answered ? "#9dbf99" : "rgba(200,162,118,.7)",borderBottom:"2px solid rgba(200,162,118,.5)",padding:"0 6px"}}>
+                                  {answered ? q.correct : "   "}
+                                </span>
+                                {parts[1] || ""}
+                              </div>
+
+                              {/* Lemma prompt + English translation */}
+                              <div style={{textAlign:"center",marginBottom:22}}>
+                                <div style={{fontSize:15,color:"rgba(210,197,175,.75)"}}>Put <strong style={{color:"#c8a276",fontSize:18}}>{q.lemma}</strong> in the correct case</div>
+                                {q.translation && <div style={{fontSize:14,color:"rgba(210,197,175,.5)",fontStyle:"italic",marginTop:8}}>{q.translation}</div>}
+                              </div>
+
+                              {/* Options */}
+                              <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:520,margin:"0 auto"}}>
+                                {q.options.map(function(opt, i) {
+                                  var isCorrect = opt === q.correct;
+                                  var isPicked  = opt === exSelected;
+                                  var bg = "rgba(210,197,175,.05)", brd = "rgba(210,197,175,.16)", col = "#d2c5af";
+                                  if (answered) {
+                                    if (isCorrect)     { bg = "rgba(90,133,86,.18)"; brd = "rgba(90,133,86,.6)"; col = "#9dbf99"; }
+                                    else if (isPicked) { bg = "rgba(157,70,48,.18)"; brd = "rgba(157,70,48,.6)"; col = "#c87a68"; }
+                                    else               { col = "rgba(210,197,175,.4)"; }
+                                  }
+                                  return (
+                                    <button key={i} disabled={answered} onClick={function(){
+                                      setExSelected(opt);
+                                      if (isCorrect) setExScore(function(s){ return s + 1; });
+                                    }} style={{background:bg,border:"1px solid "+brd,color:col,padding:"13px 18px",borderRadius:10,fontSize:18,fontFamily:"'Crimson Pro',serif",cursor: answered ? "default" : "pointer",textAlign:"left",transition:"all .15s"}}>
+                                      <span style={{display:"inline-block",width:20,color:"rgba(210,197,175,.45)",fontFamily:"'Inter',sans-serif",fontSize:13}}>{String.fromCharCode(65 + i)}.</span>
+                                      {opt}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+
+                              {/* Feedback: case name + explanation */}
+                              {answered && (
+                                <div style={{maxWidth:520,margin:"18px auto 0",background:"rgba(210,197,175,.05)",border:"1px solid rgba(210,197,175,.14)",borderRadius:10,padding:"14px 16px"}}>
+                                  <div style={{fontSize:15,fontWeight:600,color: wasRight ? "#9dbf99" : "#c87a68",marginBottom:6}}>
+                                    {wasRight ? "✓ Correct" : "✗ Not quite"} — {q.case}
+                                  </div>
+                                  <div style={{fontSize:14,color:"rgba(210,197,175,.7)",lineHeight:1.55}}>{q.explain}</div>
+                                </div>
+                              )}
+
+                              {answered && (
+                                <div style={{marginTop:22,textAlign:"center"}}>
+                                  <button className="btn-p" style={{maxWidth:260}} onClick={function(){
+                                    setExIdx(function(i){ return i + 1; });
+                                    setExSelected(null);
+                                  }}>
+                                    {exIdx + 1 < exQuestions.length ? "Next →" : "See results"}
+                                  </button>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })()}
+                      </div>
+                    )}
+                  </div>
                 )}
               </div>
             )}
