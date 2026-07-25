@@ -1,0 +1,134 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Когда Бог сотворил ___, Он создал его по подобию Божьему.",
+      "lemma": "человек",
+      "options": ["человек", "человека", "человеку", "человеком"],
+      "correct": "человека",
+      "case": "Винительный (Accusative)",
+      "translation": "When God created man, he made him in God's likeness.",
+      "explain": "The transitive verb сотворить takes an animate direct object in the accusative (matching the genitive form)."
+    },
+    {
+      "id": "c2",
+      "sentence": "У него родился сын по его образу и ___.",
+      "lemma": "подобие",
+      "options": ["подобие", "подобия", "подобию", "подобием"],
+      "correct": "подобию",
+      "case": "Дательный (Dative)",
+      "translation": "A son was born to him in his image and likeness.",
+      "explain": "The preposition по (according to) governs the dative case."
+    },
+    {
+      "id": "c3",
+      "sentence": "После рождения ___ Адам жил 800 лет.",
+      "lemma": "Сиф",
+      "options": ["Сиф", "Сифа", "Сифу", "Сифом"],
+      "correct": "Сифа",
+      "case": "Родительный (Genitive)",
+      "translation": "After the birth of Seth, Adam lived 800 years.",
+      "explain": "The preposition после governs the genitive case."
+    },
+    {
+      "id": "c4",
+      "sentence": "Он утешит нас в ___, в тяжком труде рук наших.",
+      "lemma": "работа",
+      "options": ["работа", "работы", "работе", "работу"],
+      "correct": "работе",
+      "case": "Предложный (Prepositional)",
+      "translation": "He will comfort us in our work, in the hard labor of our hands.",
+      "explain": "The preposition в indicating a state or situation takes the prepositional case."
+    },
+    {
+      "id": "c5",
+      "sentence": "Он утешит нас на земле, проклятой ___.",
+      "lemma": "Господь",
+      "options": ["Господь", "Господа", "Господу", "Господом"],
+      "correct": "Господом",
+      "case": "Творительный (Instrumental)",
+      "translation": "He will comfort us on the earth cursed by the Lord.",
+      "explain": "The passive participle проклятой takes the agent (the one who curses) in the instrumental case."
+    },
+    {
+      "id": "c6",
+      "sentence": "Енох ходил с ___ триста лет.",
+      "lemma": "Бог",
+      "options": ["Бог", "Бога", "Богу", "Богом"],
+      "correct": "Богом",
+      "case": "Творительный (Instrumental)",
+      "translation": "Enoch walked with God for three hundred years.",
+      "explain": "The preposition с in the sense of 'together with' governs the instrumental case."
+    },
+    {
+      "id": "c7",
+      "sentence": "Когда ___ исполнилось 500 лет, у него родились Сим, Хам и Иофет.",
+      "lemma": "Ной",
+      "options": ["Ной", "Ноя", "Ною", "Ноем"],
+      "correct": "Ною",
+      "case": "Дательный (Dative)",
+      "translation": "When Noah turned 500 years old, Shem, Ham, and Japheth were born to him.",
+      "explain": "The age construction 'кому исполнилось' (someone turned a certain age) takes the dative case."
+    },
+    {
+      "id": "c8",
+      "sentence": "Вот родословие потомков ___.",
+      "lemma": "Адам",
+      "options": ["Адам", "Адама", "Адаму", "Адамом"],
+      "correct": "Адама",
+      "case": "Родительный (Genitive)",
+      "translation": "This is the genealogy of the descendants of Adam.",
+      "explain": "The possessive 'descendants of Adam' requires the genitive case."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Когда Адам прожил 130 лет, у него родился сын по его образу и подобию, и он назвал его Сиф.",
+      "question": "How old was Adam when Seth was born, and what did he name him?",
+      "options": ["He was 130 and named him Seth", "He was 105 and named him Enosh", "He was 800 and named him Cain", "He was 930 and named him Noah"],
+      "correct": "He was 130 and named him Seth",
+      "explain": "The text says when Adam had lived 130 years a son was born whom he named Seth (Сиф)."
+    },
+    {
+      "id": "r2",
+      "ru": "Всего Адам жил 930 лет и умер.",
+      "question": "How many years did Adam live in all?",
+      "options": ["930 years", "912 years", "800 years", "365 years"],
+      "correct": "930 years",
+      "explain": "The text says 'Всего Адам жил 930 лет' (in all Adam lived 930 years)."
+    },
+    {
+      "id": "r3",
+      "ru": "Енох ходил с Богом, потом его не стало, потому что Бог взял его.",
+      "question": "What was unusual about the end of Enoch's life?",
+      "options": ["God took him instead of him simply dying", "He lived the longest of all", "He was the first man to die", "He had no children"],
+      "correct": "God took him instead of him simply dying",
+      "explain": "The text says 'его не стало, потому что Бог взял его' (he was no more, because God took him)."
+    },
+    {
+      "id": "r4",
+      "ru": "Всего Мафусал жил 969 лет и умер.",
+      "question": "How many years did Methuselah live?",
+      "options": ["969 years", "962 years", "895 years", "777 years"],
+      "correct": "969 years",
+      "explain": "The text says 'Всего Мафусал жил 969 лет' (in all Methuselah lived 969 years)."
+    },
+    {
+      "id": "r5",
+      "ru": "Он назвал его Ной и сказал, «Он утешит нас в работе, в тяжком труде рук наших, на земле, проклятой Господом».",
+      "question": "Why did Lamech name his son Noah?",
+      "options": ["Because he would comfort them in their labor on the cursed ground", "Because he was the firstborn son", "Because he walked with God", "Because he built a city"],
+      "correct": "Because he would comfort them in their labor on the cursed ground",
+      "explain": "Lamech says Noah 'утешит нас в работе... на земле, проклятой Господом' (will comfort us in our work on the ground cursed by the Lord)."
+    },
+    {
+      "id": "r6",
+      "ru": "Когда Ною исполнилось 500 лет, у него родились Сим, Хам и Иофет.",
+      "question": "Who were born to Noah when he was 500 years old?",
+      "options": ["Shem, Ham, and Japheth", "Cain and Abel", "Seth and Enosh", "Jared and Enoch"],
+      "correct": "Shem, Ham, and Japheth",
+      "explain": "The text names 'Сим, Хам и Иофет' (Shem, Ham, and Japheth) as born to Noah at 500 years."
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Господь сказал ___.",
+      "lemma": "Моисей",
+      "options": ["Моисей", "Моисея", "Моисею", "Моисеем"],
+      "correct": "Моисею",
+      "case": "Дательный (Dative)",
+      "translation": "Yahweh said to Moses.",
+      "explain": "Моисей is the indirect object of сказал (said to whom), which takes the dative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Рука Господа поразит страшным ___ твой скот.",
+      "lemma": "мор",
+      "options": ["мор", "мора", "мору", "мором"],
+      "correct": "мором",
+      "case": "Творительный (Instrumental)",
+      "translation": "The hand of Yahweh will strike your livestock with a terrible pestilence.",
+      "explain": "The means of the action (strike with what) is expressed in the instrumental case."
+    },
+    {
+      "id": "c3",
+      "sentence": "Они взяли ___ из печи.",
+      "lemma": "зола",
+      "options": ["зола", "золы", "золе", "золу"],
+      "correct": "золу",
+      "case": "Винительный (Accusative)",
+      "translation": "They took ashes from the furnace.",
+      "explain": "зола is the direct object of взяли; feminine nouns in -а end in -у in the accusative."
+    },
+    {
+      "id": "c4",
+      "sentence": "Какого Египет не знал со времен своего ___.",
+      "lemma": "основание",
+      "options": ["основание", "основания", "основанию", "основанием"],
+      "correct": "основания",
+      "case": "Родительный (Genitive)",
+      "translation": "…such as Egypt had not known since its founding.",
+      "explain": "The phrase со времён (since the time of) governs the genitive case."
+    },
+    {
+      "id": "c5",
+      "sentence": "Молния ударила в ___.",
+      "lemma": "земля",
+      "options": ["земля", "землю", "земли", "землёй"],
+      "correct": "землю",
+      "case": "Винительный (Accusative)",
+      "translation": "Lightning struck the earth.",
+      "explain": "The preposition в with direction takes the accusative; feminine nouns in -я end in -ю in the accusative."
+    },
+    {
+      "id": "c6",
+      "sentence": "Такой бури не было в ___.",
+      "lemma": "Египет",
+      "options": ["Египет", "Египта", "Египту", "Египте"],
+      "correct": "Египте",
+      "case": "Предложный (Prepositional)",
+      "translation": "There had been no such storm in Egypt.",
+      "explain": "The preposition в indicating location takes the prepositional case."
+    },
+    {
+      "id": "c7",
+      "sentence": "Моисей поднял ___ к небу.",
+      "lemma": "посох",
+      "options": ["посох", "посоха", "посоху", "посохом"],
+      "correct": "посох",
+      "case": "Винительный (Accusative)",
+      "translation": "Moses raised his staff toward the sky.",
+      "explain": "посох is the direct object of поднял; an inanimate masculine noun has accusative equal to nominative."
+    },
+    {
+      "id": "c8",
+      "sentence": "Моисей поднял посох к ___.",
+      "lemma": "небо",
+      "options": ["небо", "неба", "небу", "небом"],
+      "correct": "небу",
+      "case": "Дательный (Dative)",
+      "translation": "Moses raised his staff toward the sky.",
+      "explain": "The preposition к (toward) always governs the dative case."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Весь скот египтян пал, но у израилетян не пало ни одно животное.",
+      "question": "What happened to the livestock in the plague?",
+      "options": ["All Egypt's livestock died but Israel's did not", "All livestock everywhere died", "Only Israel's livestock died", "Nothing happened to the livestock"],
+      "correct": "All Egypt's livestock died but Israel's did not",
+      "explain": "The text says all the livestock of the Egyptians died, but not one animal of the Israelites."
+    },
+    {
+      "id": "r2",
+      "ru": "Чародеи не смогли появиться перед Моисеем из-за нарывов, которые появились на них и на всех египтянах.",
+      "question": "Why couldn't the magicians stand before Moses?",
+      "options": ["Because of the boils on them", "They were afraid of him", "They had fled the country", "Pharaoh forbade them"],
+      "correct": "Because of the boils on them",
+      "explain": "The text says the magicians could not appear before Moses because of the boils that broke out on them."
+    },
+    {
+      "id": "r3",
+      "ru": "Только в земле Гошен, где жили израилетяне, града не было.",
+      "question": "Where was there no hail?",
+      "options": ["In the land of Goshen", "In Pharaoh's palace", "Everywhere in Egypt", "By the Nile"],
+      "correct": "In the land of Goshen",
+      "explain": "The text says only in the land of Goshen, where the Israelites lived, there was no hail."
+    },
+    {
+      "id": "r4",
+      "ru": "На этот раз я согрешил, сказал он им.",
+      "question": "What did Pharaoh admit this time?",
+      "options": ["That he had sinned", "That he was innocent", "That God was weak", "That he would flee"],
+      "correct": "That he had sinned",
+      "explain": "Pharaoh confesses, 'This time I have sinned.'"
+    },
+    {
+      "id": "r5",
+      "ru": "Лен и ячмень погибли, потому что в ту пору ячмень колосился, а лен свел, а пшеница и полба не погибли, они созревают позже.",
+      "question": "Which crops were destroyed and which survived?",
+      "options": ["Flax and barley were destroyed, wheat and spelt survived", "Wheat and spelt were destroyed", "All crops were destroyed", "All crops survived"],
+      "correct": "Flax and barley were destroyed, wheat and spelt survived",
+      "explain": "The text says the flax and barley were struck, but the wheat and spelt were not, because they ripen later."
+    },
+    {
+      "id": "r6",
+      "ru": "Сердце фараона исполнилось упрямством, и он не отпустил израилетян, как Господь и говорил через Моисея.",
+      "question": "What was Pharaoh's final response?",
+      "options": ["His heart hardened and he did not release the Israelites", "He released the Israelites", "He fled to Goshen", "He began to worship Yahweh"],
+      "correct": "His heart hardened and he did not release the Israelites",
+      "explain": "The text says Pharaoh's heart was filled with stubbornness and he did not let the Israelites go."
+    }
+  ]
+}

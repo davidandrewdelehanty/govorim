@@ -1,0 +1,134 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Наполни ___ этих людей едой.",
+      "lemma": "мешок",
+      "options": ["мешки", "мешков", "мешкам", "мешками"],
+      "correct": "мешки",
+      "case": "Винительный (Accusative)",
+      "translation": "Fill these men's sacks with food.",
+      "explain": "The transitive verb наполнить takes its direct object in the accusative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Наполни мешки этих людей ___.",
+      "lemma": "еда",
+      "options": ["еда", "еды", "еде", "едой"],
+      "correct": "едой",
+      "case": "Творительный (Instrumental)",
+      "translation": "Fill these men's sacks with food.",
+      "explain": "The verb наполнить takes the filling material in the instrumental case."
+    },
+    {
+      "id": "c3",
+      "sentence": "Ведь это чаши моего ___, из которой он пьёт.",
+      "lemma": "господин",
+      "options": ["господин", "господина", "господину", "господином"],
+      "correct": "господина",
+      "case": "Родительный (Genitive)",
+      "translation": "For this is the cup of my lord, from which he drinks.",
+      "explain": "Possession (the cup of my lord) is expressed with the genitive case."
+    },
+    {
+      "id": "c4",
+      "sentence": "Позволь твоему ___ сказать моему господину слово.",
+      "lemma": "раб",
+      "options": ["раб", "раба", "рабу", "рабом"],
+      "correct": "рабу",
+      "case": "Дательный (Dative)",
+      "translation": "Let your servant speak a word to my lord.",
+      "explain": "The verb позволить takes the person permitted in the dative case."
+    },
+    {
+      "id": "c5",
+      "sentence": "Чаша нашлась в ___ у Вениамина.",
+      "lemma": "мешок",
+      "options": ["мешок", "мешка", "мешку", "мешке"],
+      "correct": "мешке",
+      "case": "Предложный (Prepositional)",
+      "translation": "The cup was found in Benjamin's sack.",
+      "explain": "The preposition в indicating location takes the prepositional case."
+    },
+    {
+      "id": "c6",
+      "sentence": "Почему вы заплатили ___ за добро?",
+      "lemma": "зло",
+      "options": ["зло", "зла", "злу", "злом"],
+      "correct": "злом",
+      "case": "Творительный (Instrumental)",
+      "translation": "Why have you repaid evil for good?",
+      "explain": "The means of payment with заплатить stands in the instrumental case."
+    },
+    {
+      "id": "c7",
+      "sentence": "Не гневайся на твоего раба, хотя ты равен самому ___.",
+      "lemma": "фараон",
+      "options": ["фараон", "фараона", "фараону", "фараоном"],
+      "correct": "фараону",
+      "case": "Дательный (Dative)",
+      "translation": "Do not be angry at your servant, though you are equal to Pharaoh himself.",
+      "explain": "The adjective равен (equal to) governs the dative case."
+    },
+    {
+      "id": "c8",
+      "sentence": "Они бросились перед ним на ___.",
+      "lemma": "земля",
+      "options": ["земля", "земли", "земле", "землю"],
+      "correct": "землю",
+      "case": "Винительный (Accusative)",
+      "translation": "They threw themselves down before him to the ground.",
+      "explain": "The preposition на expressing motion onto a surface takes the accusative case."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Чаша нашлась в мешке у Вениамина.",
+      "question": "In whose sack was the cup found?",
+      "options": ["Benjamin's", "Judah's", "Reuben's", "Simeon's"],
+      "correct": "Benjamin's",
+      "explain": "The text says 'Чаша нашлась в мешке у Вениамина' (the cup was found in Benjamin's sack)."
+    },
+    {
+      "id": "r2",
+      "ru": "Они разорвали на себе одежду, нагрузили каждый своего осла и вернулись в город.",
+      "question": "What did the brothers do when the cup was discovered?",
+      "options": ["They tore their clothes and returned to the city", "They fled into the desert", "They attacked the steward", "They abandoned Benjamin"],
+      "correct": "They tore their clothes and returned to the city",
+      "explain": "The text says they tore their clothes, loaded their donkeys, and returned to the city."
+    },
+    {
+      "id": "r3",
+      "ru": "Как только рассвело, братьев отправили в путь вместе с их ослами.",
+      "question": "When were the brothers sent on their way?",
+      "options": ["As soon as it was light", "At midnight", "After three days", "At noon"],
+      "correct": "As soon as it was light",
+      "explain": "The text says 'Как только рассвело' (as soon as it dawned) they were sent off."
+    },
+    {
+      "id": "r4",
+      "ru": "Иуда и его братья вернулись в дом Иосифа, который все еще был там, они бросились перед ним на землю.",
+      "question": "What did Judah and his brothers do at Joseph's house?",
+      "options": ["They fell to the ground before him", "They demanded their silver back", "They fled the city", "They refused to enter"],
+      "correct": "They fell to the ground before him",
+      "explain": "The text says they returned to Joseph's house and threw themselves to the ground before him."
+    },
+    {
+      "id": "r5",
+      "ru": "Управляющий начал искать, начиная со старшего, кончая младшим.",
+      "question": "How did the steward search the sacks?",
+      "options": ["From the oldest to the youngest", "From the youngest to the oldest", "Only Benjamin's sack", "In random order"],
+      "correct": "From the oldest to the youngest",
+      "explain": "The text says the steward searched beginning with the oldest and ending with the youngest."
+    },
+    {
+      "id": "r6",
+      "ru": "Итак, молю тебя, позволь твоему рабу остаться здесь, рабом моего господина, вместо мальчика, и позволь мальчику вернуться с братьями",
+      "question": "What did Judah offer to do?",
+      "options": ["To stay as a slave in place of the boy", "To pay a ransom in gold", "To bring Jacob to Egypt", "To fight the steward"],
+      "correct": "To stay as a slave in place of the boy",
+      "explain": "Judah begs to remain as a slave instead of the boy, letting the boy return with his brothers."
+    }
+  ]
+}

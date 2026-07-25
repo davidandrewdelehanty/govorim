@@ -1,0 +1,134 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Он стоял на ___ Нила, и вот из реки поднялись семь коров.",
+      "lemma": "берег",
+      "options": ["берег", "берега", "берегу", "берегом"],
+      "correct": "берегу",
+      "case": "Предложный (Prepositional)",
+      "translation": "He stood on the bank of the Nile, and behold, seven cows came up out of the river.",
+      "explain": "The preposition на indicating location takes the prepositional case (the special locative form берегу)."
+    },
+    {
+      "id": "c2",
+      "sentence": "И вот из ___ поднялись семь коров, гладких и жирных.",
+      "lemma": "река",
+      "options": ["река", "реки", "реке", "рекой"],
+      "correct": "реки",
+      "case": "Родительный (Genitive)",
+      "translation": "And behold, out of the river came up seven cows, sleek and fat.",
+      "explain": "The preposition из (out of) governs the genitive case."
+    },
+    {
+      "id": "c3",
+      "sentence": "Из реки поднялись семь ___, гладких и жирных.",
+      "lemma": "корова",
+      "options": ["коровы", "коров", "коровам", "коровами"],
+      "correct": "коров",
+      "case": "Родительный множественного (Genitive plural)",
+      "translation": "Out of the river came up seven cows, sleek and fat.",
+      "explain": "Numerals from five upward (семь) govern the genitive plural."
+    },
+    {
+      "id": "c4",
+      "sentence": "Семь колосьев, здоровых и полных, росли на одном ___.",
+      "lemma": "стебель",
+      "options": ["стебель", "стебля", "стебле", "стеблем"],
+      "correct": "стебле",
+      "case": "Предложный (Prepositional)",
+      "translation": "Seven ears of grain, healthy and full, grew on one stalk.",
+      "explain": "The preposition на indicating location takes the prepositional case."
+    },
+    {
+      "id": "c5",
+      "sentence": "Вслед за ними выросли ещё семь колосьев, тощих и опалённых восточным ___.",
+      "lemma": "ветер",
+      "options": ["ветер", "ветра", "ветру", "ветром"],
+      "correct": "ветром",
+      "case": "Творительный (Instrumental)",
+      "translation": "After them grew seven more ears, thin and scorched by the east wind.",
+      "explain": "The passive participle опалённых takes its agent (the wind) in the instrumental case."
+    },
+    {
+      "id": "c6",
+      "sentence": "Фараон послал за ___, его спешно привели из темницы.",
+      "lemma": "Иосиф",
+      "options": ["Иосиф", "Иосифа", "Иосифу", "Иосифом"],
+      "correct": "Иосифом",
+      "case": "Творительный (Instrumental)",
+      "translation": "Pharaoh sent for Joseph, and they brought him hastily out of the dungeon.",
+      "explain": "The construction послать за (to send for) governs the instrumental case."
+    },
+    {
+      "id": "c7",
+      "sentence": "Иосиф открыл склады и стал продавать зерно ___.",
+      "lemma": "египтянин",
+      "options": ["египтяне", "египтян", "египтянам", "египтянами"],
+      "correct": "египтянам",
+      "case": "Дательный (Dative)",
+      "translation": "Joseph opened the storehouses and began to sell grain to the Egyptians.",
+      "explain": "The verb продавать (to sell to someone) takes its recipient in the dative case."
+    },
+    {
+      "id": "c8",
+      "sentence": "Он повесил ему на ___ золотую цепь.",
+      "lemma": "шея",
+      "options": ["шея", "шеи", "шее", "шею"],
+      "correct": "шею",
+      "case": "Винительный (Accusative)",
+      "translation": "He hung a gold chain on his neck.",
+      "explain": "The preposition на expressing motion onto takes the accusative case."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Прошло два года, и фараону приснился сон.",
+      "question": "What happened after two years had passed?",
+      "options": ["Pharaoh had a dream", "Joseph was freed", "A famine began", "Pharaoh died"],
+      "correct": "Pharaoh had a dream",
+      "explain": "The text says 'Прошло два года, и фараону приснился сон' (Two years passed, and Pharaoh had a dream)."
+    },
+    {
+      "id": "r2",
+      "ru": "Он созвал всех чародеев и мудрецов Египта и рассказал им свои сны, но никто не смог их истолковать.",
+      "question": "What happened when Pharaoh summoned Egypt's magicians and wise men?",
+      "options": ["No one could interpret his dreams", "They interpreted them correctly", "They refused to come", "They were afraid"],
+      "correct": "No one could interpret his dreams",
+      "explain": "The text says 'никто не смог их истолковать' (no one could interpret them)."
+    },
+    {
+      "id": "r3",
+      "ru": "Иосиф ответил, «Не я, но Бог даст фараону ответ во благо».",
+      "question": "Who did Joseph say would give Pharaoh the answer?",
+      "options": ["God", "Joseph himself", "The magicians", "The cup bearer"],
+      "correct": "God",
+      "explain": "Joseph says 'Не я, но Бог даст фараону ответ во благо' (Not I, but God will give Pharaoh a favorable answer)."
+    },
+    {
+      "id": "r4",
+      "ru": "Семь хороших коров — это семь лет, и семь хороших колосьев — это семь лет.",
+      "question": "What did the seven good cows and seven good ears represent?",
+      "options": ["Seven years", "Seven days", "Seven months", "Seven cities"],
+      "correct": "Seven years",
+      "explain": "The text says 'Семь хороших коров — это семь лет' (The seven good cows are seven years)."
+    },
+    {
+      "id": "r5",
+      "ru": "В земле египетской наступают семь лет великого изобилия, а за ними последуют семь лет голода, когда все изобилие в Египте будет забыто, и голод опустошит землю.",
+      "question": "What would follow the seven years of plenty?",
+      "options": ["Seven years of famine", "Seven years of war", "Seven more years of plenty", "A great flood"],
+      "correct": "Seven years of famine",
+      "explain": "The text says 'за ними последуют семь лет голода' (after them will follow seven years of famine)."
+    },
+    {
+      "id": "r6",
+      "ru": "Иосифу было тридцать лет, когда он поступил на службу к фараону, царю Египта.",
+      "question": "How old was Joseph when he entered Pharaoh's service?",
+      "options": ["Thirty years old", "Seventeen years old", "Forty years old", "Twenty-five years old"],
+      "correct": "Thirty years old",
+      "explain": "The text says 'Иосифу было тридцать лет' (Joseph was thirty years old)."
+    }
+  ]
+}
