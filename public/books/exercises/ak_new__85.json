@@ -1,0 +1,291 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "___ и два извозчика стояли у крыльца.",
+      "lemma": "карета",
+      "options": [
+        "карета",
+        "кареты",
+        "карете",
+        "каретой"
+      ],
+      "correct": "карета",
+      "case": "Именительный (Nominative)",
+      "translation": "The carriage and two cabs stood at the porch.",
+      "explain": "Карета is the subject of the sentence (стояли), so it is in the Nominative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Карета и два извозчика стояли у ___.",
+      "lemma": "крыльцо",
+      "options": [
+        "крыльцо",
+        "крыльца",
+        "крыльцу",
+        "крыльцом"
+      ],
+      "correct": "крыльца",
+      "case": "Родительный (Genitive)",
+      "translation": "The carriage and two cabs stood by the porch.",
+      "explain": "The preposition у (\"by/at\") governs the Genitive case."
+    },
+    {
+      "id": "c3",
+      "sentence": "Он сделает то, что свойственно его низкому ___.",
+      "lemma": "характер",
+      "options": [
+        "характер",
+        "характера",
+        "характеру",
+        "характером"
+      ],
+      "correct": "характеру",
+      "case": "Дательный (Dative)",
+      "translation": "He will do what is characteristic of his base character.",
+      "explain": "The predicate свойственно (\"characteristic of\") governs the Dative case."
+    },
+    {
+      "id": "c4",
+      "sentence": "Лакей принес толстый ___, надписанный рукою Алексея Александровича.",
+      "lemma": "пакет",
+      "options": [
+        "пакет",
+        "пакета",
+        "пакету",
+        "пакетом"
+      ],
+      "correct": "пакет",
+      "case": "Винительный (Accusative)",
+      "translation": "The footman brought a thick packet, addressed in Alexei Alexandrovich's hand.",
+      "explain": "Пакет is the direct object of the transitive verb принес (brought), so it takes the Accusative case."
+    },
+    {
+      "id": "c5",
+      "sentence": "Лакей принес толстый пакет, надписанный ___ Алексея Александровича.",
+      "lemma": "рука",
+      "options": [
+        "рука",
+        "руки",
+        "руке",
+        "рукою"
+      ],
+      "correct": "рукою",
+      "case": "Творительный (Instrumental)",
+      "translation": "The footman brought a thick packet, addressed by Alexei Alexandrovich's own hand.",
+      "explain": "The Instrumental case expresses the means/agent — \"addressed by his own hand.\""
+    },
+    {
+      "id": "c6",
+      "sentence": "Она в ___ души своей уже чувствовала, что она не в силах будет ничего разорвать.",
+      "lemma": "глубина",
+      "options": [
+        "глубина",
+        "глубины",
+        "глубине",
+        "глубиной"
+      ],
+      "correct": "глубине",
+      "case": "Предложный (Prepositional)",
+      "translation": "In the depths of her soul she already felt that she would not have the strength to tear anything up.",
+      "explain": "The preposition в expressing a static location (\"in the depths\") requires the Prepositional case."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "По всем комнатам дачного дома ходили дворники, садовники и лакеи, вынося вещи.",
+      "question": "What is happening throughout the dacha as the passage opens?",
+      "options": [
+        "Servants are packing up and carrying out belongings",
+        "A party is being set up",
+        "A fire is being put out",
+        "Guests are arriving"
+      ],
+      "correct": "Servants are packing up and carrying out belongings",
+      "explain": "Porters, gardeners, and footmen are going through all the rooms carrying out belongings."
+    },
+    {
+      "id": "r2",
+      "ru": "Анна взглянула в окно и увидала у крыльца курьера Алексея Александровича, который звонил у входной двери.",
+      "question": "Whom does Anna see arriving at the porch?",
+      "options": [
+        "Vronsky",
+        "Alexei Alexandrovich's courier",
+        "Betsy",
+        "The governess"
+      ],
+      "correct": "Alexei Alexandrovich's courier",
+      "explain": "Anna looks out the window and sees Alexei Alexandrovich's courier ringing at the front door."
+    },
+    {
+      "id": "r3",
+      "ru": "«Курьеру приказано привезти ответ», — сказал он.",
+      "question": "What was the courier instructed to do?",
+      "options": [
+        "Wait for an answer to bring back",
+        "Deliver flowers",
+        "Take Anna to the station",
+        "Arrest Anna"
+      ],
+      "correct": "Wait for an answer to bring back",
+      "explain": "The footman says the courier was ordered to bring back a reply."
+    },
+    {
+      "id": "r4",
+      "ru": "Пачка заклеенных в бандерольке неперегнутых ассигнаций выпала из него.",
+      "question": "What falls out of the envelope along with the letter?",
+      "options": [
+        "A photograph",
+        "A bundle of banknotes",
+        "A ring",
+        "A key"
+      ],
+      "correct": "A bundle of banknotes",
+      "explain": "A packet of sealed, uncreased banknotes falls out of the letter."
+    },
+    {
+      "id": "r5",
+      "ru": "Когда она кончила, она почувствовала, что ей холодно, и что над ней обрушилось такое страшное несчастье, какого она не ожидала.",
+      "question": "How does Anna feel after finishing reading the letter?",
+      "options": [
+        "Relieved and warm",
+        "Cold, crushed by an unexpected terrible misfortune",
+        "Amused",
+        "Indifferent"
+      ],
+      "correct": "Cold, crushed by an unexpected terrible misfortune",
+      "explain": "When she finished, she felt cold and that a terrible misfortune she had not expected had fallen on her."
+    },
+    {
+      "id": "r6",
+      "ru": "Да, низкий, гадкий человек, и этого никто, кроме меня, не понимает и не поймет.",
+      "question": "How does Anna privately describe her husband in her thoughts?",
+      "options": [
+        "A noble, generous man",
+        "A low, vile man that only she truly understands",
+        "A weak, pitiable fool",
+        "A kind and gentle soul"
+      ],
+      "correct": "A low, vile man that only she truly understands",
+      "explain": "She thinks of him as a low, vile man, something no one but she understands."
+    },
+    {
+      "id": "r7",
+      "ru": "как он восемь лет душил мою жизнь, душил все, что было во мне живого",
+      "question": "For how many years does Anna feel her husband has been suffocating her life?",
+      "options": [
+        "Three years",
+        "Eight years",
+        "Twenty years",
+        "One year"
+      ],
+      "correct": "Eight years",
+      "explain": "Anna thinks of how he has suffocated her life for eight years, stifling everything alive in her."
+    },
+    {
+      "id": "r8",
+      "ru": "«Вы сами можете предположить то, что ожидает вас и вашего сына», — вспомнила она слова из письма.",
+      "question": "What threatening phrase from the letter does Anna recall?",
+      "options": [
+        "A line implying consequences for her and her son",
+        "A declaration of love",
+        "A request for forgiveness",
+        "An invitation to a party"
+      ],
+      "correct": "A line implying consequences for her and her son",
+      "explain": "She recalls the line from the letter: 'You yourself can guess what awaits you and your son.'"
+    },
+    {
+      "id": "r9",
+      "ru": "Я разорву эту его паутину лжи, в которой он меня хочет опутать.",
+      "question": "What does Anna vow to do regarding her husband's \"web of lies\"?",
+      "options": [
+        "Tear through it",
+        "Accept it quietly",
+        "Ignore it forever",
+        "Thank him for it"
+      ],
+      "correct": "Tear through it",
+      "explain": "She vows: 'I will tear through this web of lies with which he wants to entangle me.'"
+    },
+    {
+      "id": "r10",
+      "ru": "Она села к письменному столу, но вместо того, чтобы писать, сложив руки на стол, положила на них голову и заплакала",
+      "question": "What does Anna do instead of writing at her desk?",
+      "options": [
+        "She falls asleep",
+        "She puts her head on her folded arms and weeps",
+        "She tears up all her papers",
+        "She calls for Vronsky"
+      ],
+      "correct": "She puts her head on her folded arms and weeps",
+      "explain": "Instead of writing, she folds her arms on the desk, lays her head on them, and weeps."
+    },
+    {
+      "id": "r11",
+      "ru": "Она плакала о том, что мечта ее об уяснении, определении своего положения разрушена навсегда.",
+      "question": "What does Anna weep over?",
+      "options": [
+        "The loss of money",
+        "Her shattered dream of clarifying/resolving her situation",
+        "A quarrel with Seryozha",
+        "Missing a train"
+      ],
+      "correct": "Her shattered dream of clarifying/resolving her situation",
+      "explain": "She weeps because her dream of clarifying and settling her position is forever destroyed."
+    },
+    {
+      "id": "r12",
+      "ru": "Послышавшиеся шаги Лакея заставили ее очнуться.",
+      "question": "What brings Anna back to herself after she has been crying?",
+      "options": [
+        "A clock striking",
+        "The footsteps of the footman",
+        "Vronsky's voice",
+        "A knock at the window"
+      ],
+      "correct": "The footsteps of the footman",
+      "explain": "The sound of the footman's approaching steps makes her come to herself."
+    },
+    {
+      "id": "r13",
+      "ru": "«Курьер просит ответа», — доложил Лакей.",
+      "question": "What does the footman report?",
+      "options": [
+        "That the courier is asking for an answer",
+        "That dinner is ready",
+        "That a guest has arrived",
+        "That the carriage broke down"
+      ],
+      "correct": "That the courier is asking for an answer",
+      "explain": "The footman reports that the courier is asking for a reply."
+    },
+    {
+      "id": "r14",
+      "ru": "Она подошла к столу, написала мужу «Я получила ваше письмо, а...» и, позвонив, отдала лакею.",
+      "question": "What brief reply does Anna begin writing to her husband?",
+      "options": [
+        "A full page of accusations",
+        "\"I have received your letter, and...\"",
+        "A request for a divorce",
+        "Nothing at all — a blank page"
+      ],
+      "correct": "\"I have received your letter, and...\"",
+      "explain": "She goes to the table and writes to her husband: 'I have received your letter, and...' before handing it to the footman."
+    },
+    {
+      "id": "r15",
+      "ru": "«Мы не едем», — сказала она вошедшей Аннушке. «Совсем не едем».",
+      "question": "What does Anna announce to Annushka?",
+      "options": [
+        "That they are leaving immediately",
+        "That they are not going after all",
+        "That Vronsky is coming to visit",
+        "That she is going to bed"
+      ],
+      "correct": "That they are not going after all",
+      "explain": "Anna tells Annushka, who has come in, 'We are not going. Not going at all.'"
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "cases": [
     {
       "id": "c1",
-      "sentence": "Но ___ этот был целый мир для Левина.",
+      "sentence": "___ был большой, старинный, и Левин, хотя жил один, но топил и занимал весь дом.",
       "lemma": "дом",
       "options": [
         "дом",
@@ -12,232 +12,202 @@
       ],
       "correct": "дом",
       "case": "Именительный (Nominative)",
-      "translation": "But this house was a whole world for Levin.",
-      "explain": "Дом is the grammatical subject of был (was), so it stands in the nominative case."
+      "translation": "The house was large, old, and Levin, though he lived alone, heated and occupied the whole house.",
+      "explain": "Дом is the subject of the verb был (was), so it stands in the nominative case."
     },
     {
       "id": "c2",
-      "sentence": "Через два года будут у меня в ___ две голландки.",
-      "lemma": "стадо",
+      "sentence": "Любовь к женщине он не только не мог себе представить без ___.",
+      "lemma": "брак",
       "options": [
-        "стадо",
-        "стада",
-        "стаду",
-        "стаде"
+        "брак",
+        "брака",
+        "браку",
+        "браком"
       ],
-      "correct": "стаде",
-      "case": "Предложный (Prepositional)",
-      "translation": "In two years I will have two Dutch cows in my herd.",
-      "explain": "The preposition в (in) governs the prepositional case, giving стаде."
+      "correct": "брака",
+      "case": "Родительный (Genitive)",
+      "translation": "He could not even imagine love for a woman without marriage.",
+      "explain": "The preposition без (without) always governs the genitive case."
     },
     {
       "id": "c3",
-      "sentence": "На те деньги, что ему подарил Левин, чтобы лошадь купить, пьет без просопу и ___ избил до смерти.",
-      "lemma": "жена",
-      "options": [
-        "жена",
-        "жены",
-        "жену",
-        "женой"
-      ],
-      "correct": "жену",
-      "case": "Винительный (Accusative)",
-      "translation": "With the money Levin gave him to buy a horse, he drinks nonstop and beat his wife nearly to death.",
-      "explain": "Жену is the direct object of the transitive verb избил (beat), so it is accusative."
-    },
-    {
-      "id": "c4",
-      "sentence": "Будущая жена его должна была быть повторением того идеала ___, каким была для него мать.",
+      "sentence": "Любовь к ___ он не только не мог себе представить без брака.",
       "lemma": "женщина",
       "options": [
         "женщина",
         "женщины",
         "женщине",
-        "женщиной"
+        "женщину"
       ],
-      "correct": "женщины",
-      "case": "Родительный (Genitive)",
-      "translation": "His future wife had to be a repetition of the ideal of woman that his mother had been for him.",
-      "explain": "Женщины depends on идеала (ideal of), a noun-modifying genitive."
+      "correct": "женщине",
+      "case": "Дательный (Dative)",
+      "translation": "He could not imagine love for a woman without marriage.",
+      "explain": "The preposition к (toward) governs the dative case."
+    },
+    {
+      "id": "c4",
+      "sentence": "Он читал ___, думал о том, что читал.",
+      "lemma": "книга",
+      "options": [
+        "книга",
+        "книги",
+        "книге",
+        "книгу"
+      ],
+      "correct": "книгу",
+      "case": "Винительный (Accusative)",
+      "translation": "He read the book, thought about what he read.",
+      "explain": "Книгу is the direct object of the transitive verb читал (read), so it takes the accusative case."
     },
     {
       "id": "c5",
-      "sentence": "Он подошел к ___, где у него стояли две пудовые гири.",
-      "lemma": "угол",
+      "sentence": "Он уселся в своем кресле с ___.",
+      "lemma": "книга",
       "options": [
-        "угол",
-        "угла",
-        "углу",
-        "углом"
+        "книга",
+        "книги",
+        "книге",
+        "книгою"
       ],
-      "correct": "углу",
-      "case": "Дательный (Dative)",
-      "translation": "He went over to the corner where he kept two heavy weights.",
-      "explain": "The preposition к (toward) governs the dative case, giving углу."
+      "correct": "книгою",
+      "case": "Творительный (Instrumental)",
+      "translation": "He settled into his armchair with a book.",
+      "explain": "The preposition с (with) governs the instrumental case here."
     },
     {
       "id": "c6",
-      "sentence": "Понятие о ней было для него священным ___.",
-      "lemma": "воспоминание",
+      "sentence": "Это была книга Тиндаля о ___.",
+      "lemma": "теплота",
       "options": [
-        "воспоминание",
-        "воспоминания",
-        "воспоминанию",
-        "воспоминанием"
+        "теплота",
+        "теплоты",
+        "теплоте",
+        "теплотой"
       ],
-      "correct": "воспоминанием",
-      "case": "Творительный (Instrumental)",
-      "translation": "The idea of her was for him a sacred memory.",
-      "explain": "Воспоминанием is the predicate noun after было ... для него (was a memory), governed instrumentally by быть."
-    },
-    {
-      "id": "c7",
-      "sentence": "Когда он вошел в маленькую ___, где всегда пил чай, и уселся в своем кресле.",
-      "lemma": "гостиная",
-      "options": [
-        "гостиная",
-        "гостиной",
-        "гостиную",
-        "гостиной"
-      ],
-      "correct": "гостиную",
-      "case": "Винительный (Accusative)",
-      "translation": "When he entered the small drawing room, where he always drank tea, and settled into his armchair.",
-      "explain": "The preposition в (into) with motion governs the accusative case, giving гостиную."
-    },
-    {
-      "id": "c8",
-      "sentence": "Он вспоминал свои осуждения ___ за его самодовольство.",
-      "lemma": "Тиндаль",
-      "options": [
-        "Тиндаль",
-        "Тиндаля",
-        "Тиндалю",
-        "Тиндалем"
-      ],
-      "correct": "Тиндалю",
-      "case": "Дательный (Dative)",
-      "translation": "He recalled his criticisms of Tyndall for his self-satisfaction.",
-      "explain": "Осуждение governs the dative case for the person criticized, giving Тиндалю."
+      "correct": "теплоте",
+      "case": "Предложный (Prepositional)",
+      "translation": "This was Tyndall's book about heat.",
+      "explain": "The preposition о (about) governs the prepositional case."
     }
   ],
   "reading": [
     {
       "id": "r1",
-      "ru": "Дом был большой, старинный, и Левин, хотя жил один, но топил и занимал весь дом.",
-      "question": "What kind of house did Levin live in?",
+      "ru": "Но дом этот был целый мир для Левина.",
+      "question": "What did the house represent for Levin?",
       "options": [
-        "A large, old house that he heated and occupied entirely, though living alone",
-        "A small rented apartment",
-        "A newly built cottage",
-        "A house he shared with several tenants"
+        "A whole world for him",
+        "A mere investment property",
+        "A burden he wanted to sell",
+        "A place he rarely visited"
       ],
-      "correct": "A large, old house that he heated and occupied entirely, though living alone",
-      "explain": "The text says Дом был большой, старинный, и Левин ... топил и занимал весь дом."
+      "correct": "A whole world for him",
+      "explain": "The text says the house was a whole world for Levin, where his father and mother had lived and died."
     },
     {
       "id": "r2",
-      "ru": "Но дом этот был целый мир для Левина.",
-      "question": "What did the house mean to Levin?",
+      "ru": "Левин едва помнил свою мать.",
+      "question": "What was Levin's relationship to memories of his mother?",
       "options": [
-        "It was an entire world to him",
-        "It was just a burden to maintain",
-        "It meant nothing special to him",
-        "It was a temporary shelter"
+        "He barely remembered her",
+        "He remembered her vividly every day",
+        "He never thought about her",
+        "He resented her memory"
       ],
-      "correct": "It was an entire world to him",
-      "explain": "The text says дом этот был целый мир для Левина."
+      "correct": "He barely remembered her",
+      "explain": "The text states 'Левин едва помнил свою мать' (Levin barely remembered his mother)."
     },
     {
       "id": "r3",
-      "ru": "Это был мир, в котором жили и умерли его отец и мать.",
-      "question": "Why was the house so significant to Levin?",
+      "ru": "Это было главным делом жизни, от которого зависело все ее счастье.",
+      "question": "What did Levin consider the most important matter in life, upon which all happiness depended?",
       "options": [
-        "His father and mother had lived and died there",
-        "It was built by his own hands",
-        "He had been born abroad and only recently bought it",
-        "It once belonged to Sergei Ivanovich"
+        "Marriage",
+        "Farming",
+        "His book about heat",
+        "His brother's opinion"
       ],
-      "correct": "His father and mother had lived and died there",
-      "explain": "The text says it was the world в котором жили и умерли его отец и мать."
+      "correct": "Marriage",
+      "explain": "The passage says it was the main business of life, on which all her happiness depended, referring to marriage."
     },
     {
       "id": "r4",
-      "ru": "Левин едва помнил свою мать.",
-      "question": "How well did Levin remember his mother?",
+      "ru": "Когда он вошел в маленькую гостиную, где всегда пил чай, и уселся в своем кресле с книгою, а Агафья Михайловна принесла ему чаю и со своим обычным «А я сяду, батюшка», села на стул у окна, он почувствовал, что, как ни странно это было, он не расстался с своими мечтами, и что он без них жить не может.",
+      "question": "What did Levin realize as he sat in the drawing room with his book?",
       "options": [
-        "He barely remembered her",
-        "He remembered her vividly and in detail",
-        "He had no memory of her existence",
-        "He remembered only her voice"
+        "That he had not given up his dreams and could not live without them",
+        "That he wanted to sell the house",
+        "That he no longer cherished his family's memory",
+        "That Agafya Mikhailovna should leave"
       ],
-      "correct": "He barely remembered her",
-      "explain": "The text says Левин едва помнил свою мать — Levin barely remembered his mother."
+      "correct": "That he had not given up his dreams and could not live without them",
+      "explain": "The text says he felt he had not parted with his dreams and could not live without them."
     },
     {
       "id": "r5",
-      "ru": "Любовь к женщине он не только не мог себе представить без брака, но он прежде представлял себе семью, а потом уже ту женщину, которая даст ему семью.",
-      "question": "How did Levin conceive of love and marriage?",
-      "options": [
-        "He imagined the family first, and only then the woman who would give it to him",
-        "He believed love had nothing to do with marriage",
-        "He wanted a wife before even considering a family",
-        "He rejected the idea of marriage altogether"
-      ],
-      "correct": "He imagined the family first, and only then the woman who would give it to him",
-      "explain": "The text says he прежде представлял себе семью, а потом уже ту женщину, которая даст ему семью."
-    },
-    {
-      "id": "r6",
-      "ru": "Это было главным делом жизни, от которого зависело все ее счастье.",
-      "question": "How important was marriage to Levin, compared to most of his acquaintances?",
-      "options": [
-        "For him it was the main business of life, on which all happiness depended",
-        "It was one trivial matter among many, as for his acquaintances",
-        "He considered it unimportant compared to his career",
-        "He thought only wealth determined happiness"
-      ],
-      "correct": "For him it was the main business of life, on which all happiness depended",
-      "explain": "The text says marriage was for him главным делом жизни, от которого зависело все ее счастье, unlike his acquaintances."
-    },
-    {
-      "id": "r7",
       "ru": "Он слушал разговор Агафьи Михайловны о том, как Прохор Бога забыл, и на те деньги, что ему подарил Левин, чтобы лошадь купить, пьет без просопу и жену избил до смерти.",
       "question": "What did Agafya Mikhailovna tell Levin about Prokhor?",
       "options": [
-        "That Prokhor drank up the money meant for a horse and nearly beat his wife to death",
-        "That Prokhor had bought a fine new horse",
-        "That Prokhor had left the village for good",
-        "That Prokhor had repaid all his debts"
+        "That Prokhor spent the money Levin gave him for a horse on drink and beat his wife nearly to death",
+        "That Prokhor bought a fine horse and became prosperous",
+        "That Prokhor left the village",
+        "That Prokhor became a devout churchgoer"
       ],
-      "correct": "That Prokhor drank up the money meant for a horse and nearly beat his wife to death",
-      "explain": "The text says Prokhor pьет без просопу и жену избил до смерти with the money Levin gave him for a horse."
+      "correct": "That Prokhor spent the money Levin gave him for a horse on drink and beat his wife nearly to death",
+      "explain": "Agafya Mikhailovna recounts that Prokhor forgot God, drank away the money for a horse, and beat his wife nearly to death."
+    },
+    {
+      "id": "r6",
+      "ru": "Это была книга Тиндаля о теплоте.",
+      "question": "What was the subject of the book Levin was reading?",
+      "options": [
+        "Heat (physics)",
+        "Farming techniques",
+        "Russian history",
+        "Marriage customs"
+      ],
+      "correct": "Heat (physics)",
+      "explain": "The text identifies it as Tyndall's book about heat."
+    },
+    {
+      "id": "r7",
+      "ru": "Через два года будут у меня в стаде две голландки, сама Пава еще может быть жива, двенадцать молодых беркутовых дочерей, да подсыпать к ним наказовый конец этих трех.",
+      "question": "What joyful thought about his farm suddenly came to Levin's mind?",
+      "options": [
+        "A vision of his future dairy herd growing and thriving",
+        "A memory of his mother",
+        "A worry about Agafya Mikhailovna",
+        "A plan to sell the house"
+      ],
+      "correct": "A vision of his future dairy herd growing and thriving",
+      "explain": "Levin imagines that in two years he will have Dutch cows, Pava still alive, and twelve young heifers in his herd."
     },
     {
       "id": "r8",
-      "ru": "Через два года будут у меня в стаде две голландки, сама Пава еще может быть жива, двенадцать молодых беркутовых дочерей, да подсыпать к ним наказовый конец этих трех.",
-      "question": "What joyful thought about his herd occurred to Levin?",
+      "ru": "Старая ласка, еще не совсем переварившая радость его приезда, и бегавшая, чтобы полаять на дворе, вернулась, махая хвостом и внося с собой запах воздуха, подошла к нему, подсунула голову под его руку, жалобно подвизгивая и требуя, чтобы он полоскал.",
+      "question": "What did the old dog Laska do when she returned to Levin?",
       "options": [
-        "In two years he would have a much larger, improved herd including Pava's offspring",
-        "That his entire herd would be sold off",
-        "That Pava would soon die",
-        "That he should abandon cattle breeding"
+        "She nuzzled her head under his hand, whining for him to pet her",
+        "She ran away from him",
+        "She barked angrily at Agafya Mikhailovna",
+        "She fell asleep immediately"
       ],
-      "correct": "In two years he would have a much larger, improved herd including Pava's offspring",
-      "explain": "Levin imagines that through two years будут у меня в стаде две голландки ... двенадцать молодых беркутовых дочерей."
+      "correct": "She nuzzled her head under his hand, whining for him to pet her",
+      "explain": "The text describes Laska pushing her head under his hand and whimpering plaintively, wanting him to pet her."
     },
     {
       "id": "r9",
-      "ru": "Старая ласка, еще не совсем переварившая радость его приезда, и бегавшая, чтобы полаять на дворе, вернулась, махая хвостом и внося с собой запах воздуха, подошла к нему, подсунула голову под его руку, жалобно подвизгивая и требуя, чтобы он полоскал.",
-      "question": "How did the old dog Laska behave when she returned?",
+      "ru": "Левин внимательно следил за этими последними ее движениями.",
+      "question": "What did Levin do as he watched the dog settle down contentedly?",
       "options": [
-        "She wagged her tail, nuzzled her head under his hand, and whimpered for attention",
-        "She growled and refused to come near him",
-        "She had run away and did not return",
-        "She fell asleep immediately by the door"
+        "He watched her closely and reflected that he was the same as her",
+        "He ignored her completely",
+        "He scolded her",
+        "He left the room"
       ],
-      "correct": "She wagged her tail, nuzzled her head under his hand, and whimpered for attention",
-      "explain": "The text says Laska вернулась, махая хвостом ... подсунула голову под его руку, жалобно подвизгивая."
+      "correct": "He watched her closely and reflected that he was the same as her",
+      "explain": "Immediately after, Levin says to himself 'So it is with me too,' watching her final movements."
     }
   ]
 }
