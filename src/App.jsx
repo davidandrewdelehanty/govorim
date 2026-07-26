@@ -4364,7 +4364,18 @@ export default function App() {
   useEffect(function() {
     setExData(null); setExCat("menu"); setExSelected(null); setExIdx(0); setExScore(0);
     var chs = bookMeta && bookMeta.audiobook && bookMeta.audiobook.chapters;
-    var key = chs && chs[cidx] && (String(chs[cidx]).match(/bible-nrp\/(\d+-\d+)\.json/) || [])[1];
+    var cp = chs && chs[cidx] ? String(chs[cidx]) : "";
+    // Exercise key: Bible chapters keep their "NN-NN" key; every other book
+    // derives a unique key from its audio path (folder__basename), e.g.
+    // "audio/ak_new/01-cleaned.json" -> "ak_new__01-cleaned".
+    var key = "";
+    var bm = cp.match(/bible-nrp\/(\d+-\d+)\.json/);
+    if (bm) { key = bm[1]; }
+    else if (cp) {
+      var s = cp.split("?")[0];
+      if (s.indexOf("audio/") !== -1) s = s.split("audio/").pop();
+      key = s.replace(/\.json$/, "").replace(/\//g, "__");
+    }
     if (!key) return;
     var cancelled = false;
     fetch("/books/exercises/" + key + ".json")

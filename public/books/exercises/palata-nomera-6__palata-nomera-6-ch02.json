@@ -1,0 +1,425 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Он извинился перед ___",
+      "lemma": "почтмейстер",
+      "options": [
+        "почтмейстеру",
+        "почтмейстером",
+        "почтмейстера",
+        "почтмейстер"
+      ],
+      "correct": "почтмейстером",
+      "case": "Творительный (Instrumental)",
+      "translation": "He apologized to the postmaster.",
+      "explain": "The preposition перед (\"before/in front of\") always governs the Instrumental case, so почтмейстер becomes почтмейстером."
+    },
+    {
+      "id": "c2",
+      "sentence": "Ваш припадок испугал нас вчера с ___",
+      "lemma": "доктор",
+      "options": [
+        "доктора",
+        "доктором",
+        "доктору",
+        "доктор"
+      ],
+      "correct": "доктором",
+      "case": "Творительный (Instrumental)",
+      "translation": "Your fit scared us yesterday, me and the doctor.",
+      "explain": "The preposition с (\"with\") governs the Instrumental case, so доктор becomes доктором."
+    },
+    {
+      "id": "c3",
+      "sentence": "Ложитесь в ___",
+      "lemma": "больница",
+      "options": [
+        "больницы",
+        "больницу",
+        "больнице",
+        "больницей"
+      ],
+      "correct": "больницу",
+      "case": "Винительный (Accusative)",
+      "translation": "Go lie down in the hospital.",
+      "explain": "The preposition в expressing motion into governs the Accusative case, so больница becomes больницу."
+    },
+    {
+      "id": "c4",
+      "sentence": "Я нашел во всем городе одного только умного ___",
+      "lemma": "человек",
+      "options": [
+        "человека",
+        "человек",
+        "человеку",
+        "человеком"
+      ],
+      "correct": "человека",
+      "case": "Винительный (Accusative)",
+      "translation": "In the whole town I found only one intelligent person.",
+      "explain": "Человека is the direct object of the transitive verb нашел (\"found\") and is animate, so it takes the Genitive-like Accusative ending -а."
+    },
+    {
+      "id": "c5",
+      "sentence": "Никита вошел с охапкой ___",
+      "lemma": "халат",
+      "options": [
+        "халата",
+        "халатом",
+        "халату",
+        "халат"
+      ],
+      "correct": "халата",
+      "case": "Родительный (Genitive)",
+      "translation": "Nikita came in with an armful of a robe.",
+      "explain": "\"Охапка (чего?) халата\" — the noun describing what the armful consists of takes the Genitive case."
+    },
+    {
+      "id": "c6",
+      "sentence": "Андрей Ефимович сидел на кровати Ивана Дмитриевича и ждал ___",
+      "lemma": "Хоботов",
+      "options": [
+        "Хоботова",
+        "Хоботову",
+        "Хоботовым",
+        "Хоботов"
+      ],
+      "correct": "Хоботова",
+      "case": "Родительный (Genitive)",
+      "translation": "Andrei Yefimych sat on Ivan Dmitrich's bed and waited for Khobotov.",
+      "explain": "The verb ждать governs the Genitive case for a person, so Хоботов becomes Хоботова."
+    },
+    {
+      "id": "c7",
+      "sentence": "Никита ударил его кулаком по ___",
+      "lemma": "лицо",
+      "options": [
+        "лицу",
+        "лица",
+        "лицом",
+        "лицо"
+      ],
+      "correct": "лицу",
+      "case": "Дательный (Dative)",
+      "translation": "Nikita punched him in the face with his fist.",
+      "explain": "The preposition по governing the target of a strike takes the Dative case, so лицо becomes лицу."
+    },
+    {
+      "id": "c8",
+      "sentence": "Недалеко от больничного забора в ста саженях стоял высокий белый дом, обнесенный каменной ___",
+      "lemma": "стена",
+      "options": [
+        "стену",
+        "стены",
+        "стеной",
+        "стене"
+      ],
+      "correct": "стеной",
+      "case": "Творительный (Instrumental)",
+      "translation": "Not far from the hospital fence, about a hundred sazhens away, stood a tall white house, enclosed by a stone wall.",
+      "explain": "The instrument/means by which the house is enclosed is expressed by the Instrumental case, so стена becomes стеной."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "По уходе гостей Андрей Ефимович, дрожа как в лихорадке, лег на диван и долго еще повторял «Тупые люди, глупые люди».",
+      "question": "What did Andrei Yefimych do right after his guests left?",
+      "options": [
+        "He lay on the sofa, trembling, repeating \"Stupid people, foolish people\"",
+        "He immediately went to apologize to Khobotov",
+        "He fell asleep peacefully",
+        "He wrote a letter of resignation"
+      ],
+      "correct": "He lay on the sofa, trembling, repeating \"Stupid people, foolish people\"",
+      "explain": "The text says he \"лег на диван и долго еще повторял «Тупые люди, глупые люди»\"."
+    },
+    {
+      "id": "r2",
+      "ru": "Доктор всю ночь не мог уснуть от стыда и досады на себя, а утром часов в десять отправился в почтовую контору и извинился перед почтмейстером.",
+      "question": "What did Andrei Yefimych do the next morning out of shame?",
+      "options": [
+        "He went to the post office and apologized to the postmaster",
+        "He visited Ivan Dmitrich to apologize",
+        "He resigned his post",
+        "He wrote a letter to the town council"
+      ],
+      "correct": "He went to the post office and apologized to the postmaster",
+      "explain": "The text says he \"отправился в почтовую контору и извинился перед почтмейстером\"."
+    },
+    {
+      "id": "r3",
+      "ru": "«Кто старое помянет, тому глаз вон».",
+      "question": "What forgiving proverb does Mikhail Averyanych offer the doctor?",
+      "options": [
+        "\"Let bygones be bygones\" (lit. whoever recalls the old, loses an eye)",
+        "\"A friend in need is a friend indeed\"",
+        "\"Time heals all wounds\"",
+        "\"Better late than never\""
+      ],
+      "correct": "\"Let bygones be bygones\" (lit. whoever recalls the old, loses an eye)",
+      "explain": "Mikhail Averyanych says the Russian proverb \"Кто старое помянет, тому глаз вон\"."
+    },
+    {
+      "id": "r4",
+      "ru": "Вы живете в самой неблагоприятной обстановке.",
+      "question": "What does Mikhail Averyanych say about the doctor's living conditions?",
+      "options": [
+        "That he lives in the most unfavorable circumstances",
+        "That his house is too luxurious",
+        "That he lives too far from the hospital",
+        "That his rent is too high"
+      ],
+      "correct": "That he lives in the most unfavorable circumstances",
+      "explain": "Mikhail Averyanych tells him \"Вы живете в самой неблагоприятной обстановке\"."
+    },
+    {
+      "id": "r5",
+      "ru": "Болезни нет никакой, а просто я попал в заколдованный круг, из которого нет выхода.",
+      "question": "How does Andrei Yefimych describe his own condition to the postmaster?",
+      "options": [
+        "That he has no illness but is caught in an enchanted circle with no way out",
+        "That he is completely cured",
+        "That he needs surgery",
+        "That he is being poisoned"
+      ],
+      "correct": "That he has no illness but is caught in an enchanted circle with no way out",
+      "explain": "He says \"Болезни нет никакой, а просто я попал в заколдованный круг, из которого нет выхода\"."
+    },
+    {
+      "id": "r6",
+      "ru": "А я к вам по делу, коллега. Пришел приглашать вас. Не хотите ли со мной на консилиум, а?",
+      "question": "What does Khobotov invite Andrei Yefimych to do?",
+      "options": [
+        "Join him for a medical consultation",
+        "Go fishing",
+        "Attend a town meeting",
+        "Play billiards"
+      ],
+      "correct": "Join him for a medical consultation",
+      "explain": "Khobotov says \"Не хотите ли со мной на консилиум\" (Would you like to join me for a consultation)."
+    },
+    {
+      "id": "r7",
+      "ru": "Он рад был случаю загладить вчерашнюю вину и помириться.",
+      "question": "Why was Andrei Yefimych glad about Khobotov's invitation?",
+      "options": [
+        "It gave him a chance to make amends for yesterday's incident",
+        "It meant he would earn extra money",
+        "It meant he could avoid Mikhail Averyanych",
+        "It gave him an excuse to leave town"
+      ],
+      "correct": "It gave him a chance to make amends for yesterday's incident",
+      "explain": "The text says he \"рад был случаю загладить вчерашнюю вину и помириться\"."
+    },
+    {
+      "id": "r8",
+      "ru": "Тут у одного произошло осложнение со стороны легких», сказал в полголоса Хоботов, входя с Андреем Ефимовичем в палату.",
+      "question": "What excuse does Khobotov give for bringing Andrei Yefimych to the ward?",
+      "options": [
+        "A patient supposedly had a lung complication",
+        "A patient needed surgery",
+        "A patient was refusing food",
+        "A patient had escaped"
+      ],
+      "correct": "A patient supposedly had a lung complication",
+      "explain": "Khobotov says \"у одного произошло осложнение со стороны легких\" as a pretext."
+    },
+    {
+      "id": "r9",
+      "ru": "«Пожалуйста, одеваться, Ваше Высокоблагородие», — сказал он тихо.",
+      "question": "What does Nikita tell Andrei Yefimych to do when he enters carrying a robe and clothes?",
+      "options": [
+        "To get dressed (in hospital clothes)",
+        "To leave the ward immediately",
+        "To sit and wait for Khobotov",
+        "To lie down and rest"
+      ],
+      "correct": "To get dressed (in hospital clothes)",
+      "explain": "Nikita says \"Пожалуйста, одеваться, Ваше Высокоблагородие\" (Please get dressed, Your Excellency)."
+    },
+    {
+      "id": "r10",
+      "ru": "Андрей Ефимович все понял.",
+      "question": "What does Andrei Yefimych realize when he sees Nikita with the hospital clothes?",
+      "options": [
+        "That he himself is now being committed as a patient",
+        "That Khobotov was joking",
+        "That the patient with lung problems needed him",
+        "That he was being promoted"
+      ],
+      "correct": "That he himself is now being committed as a patient",
+      "explain": "The short sentence \"Андрей Ефимович все понял\" marks his realization that he is now a patient himself."
+    },
+    {
+      "id": "r11",
+      "ru": "а от халата пахло копченой рыбой.",
+      "question": "What did the hospital robe smell like?",
+      "options": [
+        "Smoked fish",
+        "Fresh bread",
+        "Medicine",
+        "Tobacco"
+      ],
+      "correct": "Smoked fish",
+      "explain": "The text notes \"от халата пахло копченой рыбой\" (the robe smelled of smoked fish)."
+    },
+    {
+      "id": "r12",
+      "ru": "Он опять прошелся. «Это какое-то недоразумение», — проговорил он, разводя руками в недоумении.",
+      "question": "What does Andrei Yefimych keep telling himself about his situation?",
+      "options": [
+        "That it's all some kind of misunderstanding",
+        "That he deserves this",
+        "That he will escape soon",
+        "That Khobotov will be punished"
+      ],
+      "correct": "That it's all some kind of misunderstanding",
+      "explain": "He repeats \"Это какое-то недоразумение\" (This is some sort of misunderstanding)."
+    },
+    {
+      "id": "r13",
+      "ru": "«Ага...» И вас засадили сюда, голубчик, проговорил он сиплым с просонок голосом, зажмурив один глаз.",
+      "question": "How does Ivan Dmitrich react upon waking and seeing the doctor in a patient's robe?",
+      "options": [
+        "He mocks him for now being locked up too",
+        "He apologizes for his past outbursts",
+        "He panics and calls for help",
+        "He ignores him completely"
+      ],
+      "correct": "He mocks him for now being locked up too",
+      "explain": "Ivan Dmitrich says mockingly \"И вас засадили сюда, голубчик\" (So they've locked you up here too, my friend)."
+    },
+    {
+      "id": "r14",
+      "ru": "Проклятая жизнь, проворчал он.",
+      "question": "What does Ivan Dmitrich grumble about life?",
+      "options": [
+        "That it's a cursed life",
+        "That it's a beautiful life",
+        "That life is too short",
+        "That life is fair"
+      ],
+      "correct": "That it's a cursed life",
+      "explain": "Ivan Dmitrich mutters \"Проклятая жизнь\" (Cursed life)."
+    },
+    {
+      "id": "r15",
+      "ru": "Недалеко от больничного забора в ста сажениях, не больше, стоял высокий белый дом, обнесенный каменной стеною.",
+      "question": "What building does Andrei Yefimych see from the window, not far from the hospital fence?",
+      "options": [
+        "The town prison",
+        "A church",
+        "A second hospital wing",
+        "A private mansion"
+      ],
+      "correct": "The town prison",
+      "explain": "The text identifies this tall white walled building as \"Это была тюрьма\" (the prison)."
+    },
+    {
+      "id": "r16",
+      "ru": "отчаяние вдруг овладело им, он ухватился обеими руками за решетку и изо всей силы потряс ее.",
+      "question": "What does Andrei Yefimych do in a moment of despair by the window?",
+      "options": [
+        "He grabs the window bars with both hands and shakes them with all his strength",
+        "He breaks the window glass",
+        "He calls out for Nikita",
+        "He falls to his knees and prays"
+      ],
+      "correct": "He grabs the window bars with both hands and shakes them with all his strength",
+      "explain": "The text says \"он ухватился обеими руками за решетку и изо всей силы потряс ее\"."
+    },
+    {
+      "id": "r17",
+      "ru": "Никита быстро отворил дверь, грубо обеими руками и коленом отпихнул Андрея Ефимовича, потом размахнулся и ударил его кулаком по лицу.",
+      "question": "How does Nikita respond when Andrei Yefimych and Ivan Dmitrich demand to be let out?",
+      "options": [
+        "He shoves Andrei Yefimych and punches him in the face",
+        "He calmly explains hospital rules",
+        "He fetches Khobotov to intervene",
+        "He unlocks the door for them"
+      ],
+      "correct": "He shoves Andrei Yefimych and punches him in the face",
+      "explain": "Nikita \"отпихнул Андрея Ефимовича, потом размахнулся и ударил его кулаком по лицу\"."
+    },
+    {
+      "id": "r18",
+      "ru": "В самом деле во рту было солено.",
+      "question": "What physical sensation confirms to Andrei Yefimych that he has been struck hard?",
+      "options": [
+        "A salty taste in his mouth (from blood)",
+        "Ringing in his ears",
+        "Numbness in his legs",
+        "Blurred vision"
+      ],
+      "correct": "A salty taste in his mouth (from blood)",
+      "explain": "The text says \"во рту было солено\" — likely blood from his teeth."
+    },
+    {
+      "id": "r19",
+      "ru": "Как могло случиться, что в продолжении больше, чем двадцати лет он не знал и не хотел знать этого?",
+      "question": "What realization strikes Andrei Yefimych after being beaten, about his patients' suffering?",
+      "options": [
+        "That for over twenty years he never knew or wanted to know their pain",
+        "That he should resign immediately",
+        "That Nikita should be fired",
+        "That the hospital should be rebuilt"
+      ],
+      "correct": "That for over twenty years he never knew or wanted to know their pain",
+      "explain": "He realizes he never understood \"такую же точно боль\" his patients endured, wondering how in twenty years he never knew or wanted to know."
+    },
+    {
+      "id": "r20",
+      "ru": "Под вечер Андрей Ефимович умер от апоплексического удара.",
+      "question": "How does Andrei Yefimych die?",
+      "options": [
+        "From an apoplectic stroke",
+        "In his sleep peacefully",
+        "By Nikita's hand directly",
+        "From starvation"
+      ],
+      "correct": "From an apoplectic stroke",
+      "explain": "The text states plainly \"Андрей Ефимович умер от апоплексического удара\"."
+    },
+    {
+      "id": "r21",
+      "ru": "Стадо оленей, необыкновенно красивых и грациозных, о которых он читал вчера, пробежало мимо него.",
+      "question": "What vision passes before Andrei Yefimych as he dies?",
+      "options": [
+        "A herd of beautiful, graceful deer he had read about",
+        "A vision of his mother",
+        "A choir of angels",
+        "His childhood home"
+      ],
+      "correct": "A herd of beautiful, graceful deer he had read about",
+      "explain": "As he dies, \"Стадо оленей, необыкновенно красивых и грациозных ... пробежало мимо него\"."
+    },
+    {
+      "id": "r22",
+      "ru": "Пришли мужики, взяли его за руки и за ноги и отнесли в часовню.",
+      "question": "What happened to Andrei Yefimych's body after he died?",
+      "options": [
+        "Peasants carried him by his arms and legs to the chapel",
+        "He was buried immediately without ceremony",
+        "His body was sent to another town",
+        "He was cremated"
+      ],
+      "correct": "Peasants carried him by his arms and legs to the chapel",
+      "explain": "The text says \"Пришли мужики, взяли его за руки и за ноги и отнесли в часовню\"."
+    },
+    {
+      "id": "r23",
+      "ru": "На похоронах были только Михаил Аверьянович и Дарьюшка.",
+      "question": "Who attended Andrei Yefimych's funeral?",
+      "options": [
+        "Only Mikhail Averyanych and Daryushka",
+        "The whole town",
+        "Only Khobotov and the hospital staff",
+        "No one attended"
+      ],
+      "correct": "Only Mikhail Averyanych and Daryushka",
+      "explain": "The final line states \"На похоронах были только Михаил Аверьянович и Дарьюшка\"."
+    }
+  ]
+}

@@ -1,0 +1,411 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "___ пришла, она влюбилась",
+      "lemma": "пора",
+      "options": ["пора", "поры", "поре", "порой"],
+      "correct": "пора",
+      "case": "Именительный (Nominative)",
+      "translation": "The time had come, she fell in love",
+      "explain": "Пора is the grammatical subject of пришла (had come), so it stands in the nominative."
+    },
+    {
+      "id": "c2",
+      "sentence": "у ___ любовницы прекрасной мне приходили на язык",
+      "lemma": "нога",
+      "options": ["ноги", "ног", "ногам", "ногами"],
+      "correct": "ног",
+      "case": "Родительный (Genitive)",
+      "translation": "At the feet of my beautiful mistress they used to come to my tongue",
+      "explain": "The preposition у (at) governs the genitive plural, so ноги becomes ног."
+    },
+    {
+      "id": "c3",
+      "sentence": "пошли тихонько внука с запиской этой к ___",
+      "lemma": "сосед",
+      "options": ["сосед", "соседа", "соседу", "соседом"],
+      "correct": "соседу",
+      "case": "Дательный (Dative)",
+      "translation": "Quietly send the grandson with this note to the neighbor",
+      "explain": "The preposition к (toward) always requires the dative case, so сосед becomes соседу."
+    },
+    {
+      "id": "c4",
+      "sentence": "Дай, няня, мне перо, ___",
+      "lemma": "бумага",
+      "options": ["бумага", "бумаги", "бумагу", "бумагой"],
+      "correct": "бумагу",
+      "case": "Винительный (Accusative)",
+      "translation": "Give me a pen and paper, nanny",
+      "explain": "Бумагу is the direct object of the imperative дай (give), so it takes the accusative case."
+    },
+    {
+      "id": "c5",
+      "sentence": "И в ___ идет она грустить",
+      "lemma": "сад",
+      "options": ["сад", "сада", "саду", "садом"],
+      "correct": "сад",
+      "case": "Винительный (Accusative)",
+      "translation": "And she goes into the garden to grieve",
+      "explain": "The preposition в expressing motion into a place governs the accusative, so сад stays сад (inanimate accusative = nominative form)."
+    },
+    {
+      "id": "c6",
+      "sentence": "на столик ставят вощиной кувшин с брусничной ___",
+      "lemma": "вода",
+      "options": ["вода", "воды", "воду", "водой"],
+      "correct": "водой",
+      "case": "Творительный (Instrumental)",
+      "translation": "They set a waxed pitcher of lingonberry water on the little table",
+      "explain": "The preposition с meaning 'with' governs the instrumental case, so вода becomes водой."
+    },
+    {
+      "id": "c7",
+      "sentence": "В саду служанки на грядах сбирали ягоды в ___",
+      "lemma": "куст",
+      "options": ["кусты", "кустов", "кустам", "кустах"],
+      "correct": "кустах",
+      "case": "Предложный (Prepositional)",
+      "translation": "In the garden the maidservants on the beds were gathering berries among the bushes",
+      "explain": "The preposition в indicating static location requires the prepositional plural, so кусты becomes кустах."
+    },
+    {
+      "id": "c8",
+      "sentence": "Приносит на ___ чай",
+      "lemma": "поднос",
+      "options": ["поднос", "подноса", "подносу", "подносе"],
+      "correct": "подносе",
+      "case": "Предложный (Prepositional)",
+      "translation": "She brings tea on a tray",
+      "explain": "The preposition на indicating a static surface requires the prepositional case, so поднос becomes подносе."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Куда? Уж эти мне поэты.",
+      "question": "What is Onegin's teasing reaction to Lensky's plans?",
+      "options": [
+        "He mockingly sighs, 'Oh, these poets of mine'",
+        "He forbids Lensky from leaving",
+        "He asks to come along immediately",
+        "He ignores Lensky completely"
+      ],
+      "correct": "He mockingly sighs, 'Oh, these poets of mine'",
+      "explain": "Onegin teases Lensky with 'Where to? Oh, these poets of mine,' mocking his romantic eagerness."
+    },
+    {
+      "id": "r2",
+      "ru": "У Лариных. Вот это чудно.",
+      "question": "Where does Lensky say he spends every evening, prompting Onegin's surprise?",
+      "options": [
+        "At the Larins' house",
+        "At the theater",
+        "At his own estate",
+        "In the village tavern"
+      ],
+      "correct": "At the Larins' house",
+      "explain": "Lensky answers 'At the Larins',' and Onegin remarks 'how wonderful' in surprise."
+    },
+    {
+      "id": "r3",
+      "ru": "Простая русская семья, К гостям усердие большое, Варенье и вечный разговор Про дождь, про день, про скотный двор.",
+      "question": "How does Onegin describe the Larin household to Lensky?",
+      "options": [
+        "A simple Russian family, eager hospitality, jam, and endless talk of weather and the farmyard",
+        "A wealthy aristocratic salon full of intellectuals",
+        "A foreign household that speaks only French",
+        "An empty house with no one living there"
+      ],
+      "correct": "A simple Russian family, eager hospitality, jam, and endless talk of weather and the farmyard",
+      "explain": "Onegin sums up the Larins as a simple family with great hospitality and conversation about rain, the day, and the farmyard."
+    },
+    {
+      "id": "r4",
+      "ru": "Несут на блюдечках варенье, на столик ставят вощиной кувшин с брусничной водой.",
+      "question": "What refreshments are served to the young men at the Larins'?",
+      "options": [
+        "Jam on little saucers and a pitcher of lingonberry water",
+        "Champagne and caviar",
+        "Bread and salt only",
+        "Hot tea with lemon"
+      ],
+      "correct": "Jam on little saucers and a pitcher of lingonberry water",
+      "explain": "The text describes jam brought on saucers and a waxed pitcher of lingonberry water set on the table."
+    },
+    {
+      "id": "r5",
+      "ru": "Скажи, которая Татьяна?",
+      "question": "What does Onegin ask Lensky as they ride home?",
+      "options": [
+        "Which of the sisters is Tatiana",
+        "Where the Larins' estate is located",
+        "When the wedding will take place",
+        "Why Lensky visits so often"
+      ],
+      "correct": "Which of the sisters is Tatiana",
+      "explain": "Onegin asks Lensky directly, 'Tell me, which one is Tatiana?'"
+    },
+    {
+      "id": "r6",
+      "ru": "Неужто ты влюблен в меньшую?",
+      "question": "What surprised question does Onegin ask Lensky about Olga?",
+      "options": [
+        "Whether he is really in love with the younger sister",
+        "Whether he plans to marry the elder sister",
+        "Whether he has ever met Olga before",
+        "Whether Olga is older than Tatiana"
+      ],
+      "correct": "Whether he is really in love with the younger sister",
+      "explain": "Onegin teases, 'Can it be you're in love with the younger one?' referring to Olga."
+    },
+    {
+      "id": "r7",
+      "ru": "Меж тем Онегина явление у Ларина произвело на всех большое впечатление и всех соседей развлекло.",
+      "question": "What effect did Onegin's appearance at the Larins' have on the neighborhood?",
+      "options": [
+        "It made a big impression on everyone and amused all the neighbors",
+        "It went completely unnoticed",
+        "It frightened all the guests away",
+        "It caused a public scandal immediately"
+      ],
+      "correct": "It made a big impression on everyone and amused all the neighbors",
+      "explain": "The text says Onegin's appearance at the Larins' 'made a big impression on everyone and amused all the neighbors.'"
+    },
+    {
+      "id": "r8",
+      "ru": "Татьяне прочить жениха.",
+      "question": "What gossip do the neighbors start about Tatiana?",
+      "options": [
+        "They start predicting/matching a bridegroom for Tatiana",
+        "They accuse her of rudeness",
+        "They claim she is moving to Moscow",
+        "They say she refuses all visitors"
+      ],
+      "correct": "They start predicting/matching a bridegroom for Tatiana",
+      "explain": "The gossip includes 'predicting a bridegroom for Tatiana,' assuming Onegin's interest."
+    },
+    {
+      "id": "r9",
+      "ru": "Пора пришла, она влюбилась.",
+      "question": "What happens to Tatiana as a result of hearing all this gossip and meeting Onegin?",
+      "options": [
+        "Her time had come, and she fell in love",
+        "She decided never to marry",
+        "She left for Moscow immediately",
+        "She grew angry at her mother"
+      ],
+      "correct": "Her time had come, and she fell in love",
+      "explain": "The narrator states plainly: 'The time had come, she fell in love.'"
+    },
+    {
+      "id": "r10",
+      "ru": "Увы, теперь и дни, и ночи, и жаркий одинокий сон, все полно им.",
+      "question": "How completely does Onegin now occupy Tatiana's thoughts?",
+      "options": [
+        "Her days, nights, and even her lonely dreams are all full of him",
+        "She thinks of him only occasionally",
+        "She has already forgotten him",
+        "She thinks only of Lensky instead"
+      ],
+      "correct": "Her days, nights, and even her lonely dreams are all full of him",
+      "explain": "The text says her days, nights, and even her hot lonely sleep are 'all full of him.'"
+    },
+    {
+      "id": "r11",
+      "ru": "Теперь с каким она вниманием читает сладостный роман",
+      "question": "How does Tatiana now read her sentimental novels?",
+      "options": [
+        "With intense, absorbed attention",
+        "With complete boredom",
+        "Only to please her mother",
+        "She has stopped reading them"
+      ],
+      "correct": "With intense, absorbed attention",
+      "explain": "The text asks with what attention she now reads a sweet novel, showing her rapt absorption."
+    },
+    {
+      "id": "r12",
+      "ru": "Но наш герой, кто б ни был он, уж верно был не Грандисон.",
+      "question": "How does the narrator contrast Onegin with the fictional hero Grandison?",
+      "options": [
+        "He assures us Onegin was certainly not a Grandison",
+        "He claims Onegin was exactly like Grandison",
+        "He says Onegin had never heard of Grandison",
+        "He compares Onegin favorably to Grandison"
+      ],
+      "correct": "He assures us Onegin was certainly not a Grandison",
+      "explain": "The narrator notes that whoever our hero really was, 'he certainly was not a Grandison,' the idealized novel hero."
+    },
+    {
+      "id": "r13",
+      "ru": "Татьяна, милая Татьяна, с тобой теперь я слезы лью.",
+      "question": "How does the narrator express his feelings toward Tatiana at this point?",
+      "options": [
+        "He says he now sheds tears together with her",
+        "He mocks her foolishness",
+        "He says he feels nothing for her",
+        "He blames her for her own troubles"
+      ],
+      "correct": "He says he now sheds tears together with her",
+      "explain": "The narrator addresses her directly: 'Tatiana, dear Tatiana, with you now I shed tears.'"
+    },
+    {
+      "id": "r14",
+      "ru": "Тоска любви Татьяну гонит, И в сад идет она грустить.",
+      "question": "What drives Tatiana out into the garden?",
+      "options": [
+        "The anguish of love",
+        "A summons from her mother",
+        "A sudden storm",
+        "A visit from Onegin"
+      ],
+      "correct": "The anguish of love",
+      "explain": "The text says 'the anguish of love drives Tatiana, and she goes into the garden to grieve.'"
+    },
+    {
+      "id": "r15",
+      "ru": "Татьяна в темноте не спит и тихо с няней говорит.",
+      "question": "What does Tatiana do at night instead of sleeping?",
+      "options": [
+        "She quietly talks with her nanny",
+        "She writes letters to Onegin immediately",
+        "She goes riding alone",
+        "She reads by candlelight silently"
+      ],
+      "correct": "She quietly talks with her nanny",
+      "explain": "The text says 'Tatiana does not sleep in the dark, and quietly talks with her nanny.'"
+    },
+    {
+      "id": "r16",
+      "ru": "Да как же ты венчалась, няня?",
+      "question": "What does Tatiana ask her old nanny about?",
+      "options": [
+        "How the nanny got married",
+        "Where the nanny was born",
+        "What the nanny's parents were like",
+        "Whether the nanny ever loved a poet"
+      ],
+      "correct": "How the nanny got married",
+      "explain": "Tatiana asks her nanny, 'But how did you get married, nanny?'"
+    },
+    {
+      "id": "r17",
+      "ru": "Я, знаешь, няня, влюблена",
+      "question": "What does Tatiana finally confess to her nanny?",
+      "options": [
+        "That she is in love",
+        "That she is ill",
+        "That she wants to leave home",
+        "That she hates Onegin"
+      ],
+      "correct": "That she is in love",
+      "explain": "Tatiana confesses directly, 'You know, nanny, I am in love.'"
+    },
+    {
+      "id": "r18",
+      "ru": "Дай, няня, мне перо, бумагу.",
+      "question": "What does Tatiana ask her nanny to bring her?",
+      "options": [
+        "A pen and paper",
+        "A cup of tea",
+        "Her shawl",
+        "A candle"
+      ],
+      "correct": "A pen and paper",
+      "explain": "Tatiana asks, 'Give me, nanny, a pen and paper,' intending to write her letter."
+    },
+    {
+      "id": "r19",
+      "ru": "Письмо готово, сложено.",
+      "question": "What has Tatiana finished by dawn?",
+      "options": [
+        "Her letter is ready and folded",
+        "Her packing for a trip",
+        "A new dress she was sewing",
+        "A song she was composing"
+      ],
+      "correct": "Her letter is ready and folded",
+      "explain": "The text states plainly, 'The letter is ready, folded.'"
+    },
+    {
+      "id": "r20",
+      "ru": "Я к вам пишу, чего же боли?",
+      "question": "How does Tatiana's letter to Onegin begin?",
+      "options": [
+        "\"I am writing to you, what more is there to say?\"",
+        "\"I hate you and never wish to see you\"",
+        "\"Please forgive my brother\"",
+        "\"My mother insists that we marry\""
+      ],
+      "correct": "\"I am writing to you, what more is there to say?\"",
+      "explain": "Tatiana's letter opens with 'I am writing to you, what more is there [to say]?'"
+    },
+    {
+      "id": "r21",
+      "ru": "Ты в сновидениях мне являлся.",
+      "question": "What does Tatiana claim in her letter about how she first knew Onegin?",
+      "options": [
+        "That he had appeared to her in dreams",
+        "That her mother had described him in detail",
+        "That she had read about him in a novel",
+        "That Lensky had introduced them formally"
+      ],
+      "correct": "That he had appeared to her in dreams",
+      "explain": "Her letter says 'you appeared to me in my dreams' even before they met."
+    },
+    {
+      "id": "r22",
+      "ru": "Татьяна то вздохнет, то охнет.",
+      "question": "How does Tatiana behave after finishing and sealing her letter?",
+      "options": [
+        "She alternately sighs and moans in anxiety",
+        "She laughs with relief",
+        "She falls asleep instantly",
+        "She tears up the letter"
+      ],
+      "correct": "She alternately sighs and moans in anxiety",
+      "explain": "The text says 'Tatiana now sighs, now moans,' showing her nervous agitation."
+    },
+    {
+      "id": "r23",
+      "ru": "Приехал Ольгин обожатель.",
+      "question": "Who arrives at the Larin house while Tatiana anxiously awaits a reply?",
+      "options": [
+        "Olga's admirer (Lensky)",
+        "A traveling merchant",
+        "Tatiana's aunt from Moscow",
+        "The regimental commander"
+      ],
+      "correct": "Olga's admirer (Lensky)",
+      "explain": "The text announces 'Olga's admirer has arrived,' meaning Lensky."
+    },
+    {
+      "id": "r24",
+      "ru": "Вдруг топот. Кровь я застыла.",
+      "question": "What sudden sound startles and terrifies Tatiana?",
+      "options": [
+        "The sound of hoofbeats approaching",
+        "A clap of thunder",
+        "Her nanny's scream",
+        "A knock at the door"
+      ],
+      "correct": "The sound of hoofbeats approaching",
+      "explain": "The text describes a sudden 'topot' (hoofbeat sound) that freezes her blood with fear, as Onegin arrives."
+    },
+    {
+      "id": "r25",
+      "ru": "В саду служанки на грядах сбирали ягоды в кустах, и хором по наказу пели.",
+      "question": "What are the maidservants doing in the garden while Tatiana waits for Onegin?",
+      "options": [
+        "Gathering berries in the bushes while singing in chorus, as instructed",
+        "Weeding the vegetable beds silently",
+        "Sleeping under the trees",
+        "Washing linens by the stream"
+      ],
+      "correct": "Gathering berries in the bushes while singing in chorus, as instructed",
+      "explain": "The text says the maidservants gathered berries among the bushes and sang in chorus as ordered (so they would not eat the berries secretly)."
+    }
+  ]
+}

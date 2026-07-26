@@ -1,0 +1,202 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Это был ___, покрытый кожей.",
+      "lemma": "скелет",
+      "options": ["скелет", "скелета", "скелету", "скелетом"],
+      "correct": "скелет",
+      "case": "Именительный (Nominative)",
+      "translation": "It was a skeleton covered with skin.",
+      "explain": "Скелет is a predicate noun linked by был (was), so it stands in the nominative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Николай глухим голосом, ни на секунду не спуская глаз с ___ брата.",
+      "lemma": "лицо",
+      "options": ["лицо", "лица", "лицу", "лицом"],
+      "correct": "лица",
+      "case": "Родительный (Genitive)",
+      "translation": "Nikolai, in a hollow voice, not taking his eyes off his brother's face for a second.",
+      "explain": "The preposition с (from/off) governs the genitive case, giving лица."
+    },
+    {
+      "id": "c3",
+      "sentence": "Он зажег свечу и осторожно встал и пошел к ___.",
+      "lemma": "зеркало",
+      "options": ["зеркало", "зеркала", "зеркалу", "зеркалом"],
+      "correct": "зеркалу",
+      "case": "Дательный (Dative)",
+      "translation": "He lit a candle, got up carefully, and went to the mirror.",
+      "explain": "The preposition к (toward) governs the dative case, giving зеркалу."
+    },
+    {
+      "id": "c4",
+      "sentence": "Так как в доме было сыро и одна только комната топлена, то Левин уложил ___ спать в своей же спальне за перегородкой.",
+      "lemma": "брат",
+      "options": ["брат", "брата", "брату", "братом"],
+      "correct": "брата",
+      "case": "Винительный (Accusative)",
+      "translation": "Since the house was damp and only one room was heated, Levin put his brother to sleep in his own bedroom behind a partition.",
+      "explain": "Брата is the direct object of the transitive verb уложил (put to bed); брат is animate, so its accusative form matches the genitive: брата."
+    },
+    {
+      "id": "c5",
+      "sentence": "Это был скелет, покрытый ___.",
+      "lemma": "кожа",
+      "options": ["кожа", "кожи", "коже", "кожей"],
+      "correct": "кожей",
+      "case": "Творительный (Instrumental)",
+      "translation": "It was a skeleton covered with skin.",
+      "explain": "Кожей is instrumental, expressing the material a thing is covered with after покрытый (covered), giving кожей."
+    },
+    {
+      "id": "c6",
+      "sentence": "Николай сказал, что он приехал, главное, побывать в своем ___, дотронуться до земли.",
+      "lemma": "гнездо",
+      "options": ["гнездо", "гнезда", "гнезду", "гнезде"],
+      "correct": "гнезде",
+      "case": "Предложный (Prepositional)",
+      "translation": "Nikolai said he had come, above all, to visit his home nest, to touch the earth.",
+      "explain": "The preposition в (in), indicating location, governs the prepositional case, giving гнезде."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Сбежав до половины лестницы, Левин услыхал в передней знакомый ему звук покашливания.",
+      "question": "What sound alerted Levin to his brother's arrival?",
+      "options": ["A familiar cough in the hallway", "A knock at the door", "A shout from outside", "Footsteps on the stairs"],
+      "correct": "A familiar cough in the hallway",
+      "explain": "The text says Левин услыхал в передней знакомый ему звук покашливания — Levin heard a familiar cough in the hallway."
+    },
+    {
+      "id": "r2",
+      "ru": "Левин любил своего брата, но быть с ним вместе всегда было мучением.",
+      "question": "How did Levin generally feel about being with his brother Nikolai?",
+      "options": ["He loved him, but being together was always a torment", "He avoided him out of hatred", "He felt only joy", "He felt nothing in particular"],
+      "correct": "He loved him, but being together was always a torment",
+      "explain": "The text says Левин любил своего брата, но быть с ним вместе всегда было мучением — Levin loved his brother, but being with him was always a torment."
+    },
+    {
+      "id": "r3",
+      "ru": "Как только он вблизи увидал брата, это чувство личного разочарования тотчас же исчезло и заменилось жалостью.",
+      "question": "What replaced Levin's feeling of personal disappointment when he saw his brother up close?",
+      "options": ["Pity", "Anger", "Relief", "Indifference"],
+      "correct": "Pity",
+      "explain": "The text says это чувство личного разочарования тотчас же исчезло и заменилось жалостью — his disappointment vanished at once and was replaced by pity."
+    },
+    {
+      "id": "r4",
+      "ru": "Это был скелет, покрытый кожей.",
+      "question": "How is Nikolai's physical condition described?",
+      "options": ["He was a skeleton covered with skin", "He looked strong and healthy", "He had gained weight", "He looked unchanged from before"],
+      "correct": "He was a skeleton covered with skin",
+      "explain": "The text says Это был скелет, покрытый кожей — he was a skeleton covered with skin."
+    },
+    {
+      "id": "r5",
+      "ru": "«Вот я приехал к тебе», — сказал Николай глухим голосом, ни на секунду не спуская глаз с лица брата.",
+      "question": "What did Nikolai say upon arriving?",
+      "options": ["'Here I am, come to you'", "'I am leaving forever'", "'Give me money'", "'I am dying'"],
+      "correct": "'Here I am, come to you'",
+      "explain": "Nikolai says Вот я приехал к тебе — Here I am, I've come to you."
+    },
+    {
+      "id": "r6",
+      "ru": "Николай сказал, что он приехал теперь получить эти деньги и, главное, побывать в своем гнезде, дотронуться до земли, чтобы набраться, как богатыри, силы для предстоящей деятельности.",
+      "question": "Besides collecting money, why did Nikolai say he came?",
+      "options": ["To visit his home nest and touch the earth to gather strength", "To sell the estate", "To meet a doctor", "To see Sergei Ivanovich"],
+      "correct": "To visit his home nest and touch the earth to gather strength",
+      "explain": "The text says главное, побывать в своем гнезде, дотронуться до земли, чтобы набраться ... силы — mainly, to visit his home nest and touch the earth to gather strength."
+    },
+    {
+      "id": "r7",
+      "ru": "Известие о смерти Парфена Денисовича неприятно подействовало на него.",
+      "question": "How did Nikolai react to the news of Parfen Denisovich's death?",
+      "options": ["It affected him unpleasantly, though he quickly recovered his composure", "He laughed", "He was indifferent", "He became angry at Levin"],
+      "correct": "It affected him unpleasantly, though he quickly recovered his composure",
+      "explain": "The text says известие о смерти Парфена Денисовича неприятно подействовало на него — the news of Parfen Denisovich's death affected him unpleasantly."
+    },
+    {
+      "id": "r8",
+      "ru": "«Да, вот поживу у тебя месяц-два, а потом в Москву. Ты знаешь, мне Мягков обещал место, и я поступаю на службу.",
+      "question": "What job prospect did Nikolai mention?",
+      "options": ["Myagkov had promised him a position", "He planned to become a farmer", "He wanted to study abroad", "He wanted to join the army"],
+      "correct": "Myagkov had promised him a position",
+      "explain": "Nikolai says мне Мягков обещал место, и я поступаю на службу — Myagkov promised me a position, and I'm taking up a job."
+    },
+    {
+      "id": "r9",
+      "ru": "«Марью Николаевну? Как? За что же?» «Ах, она гадкая женщина. Кучу неприятностей мне сделала».",
+      "question": "Why did Nikolai dismiss Marya Nikolaevna, as he claimed?",
+      "options": ["He called her a nasty woman who caused him a lot of trouble", "She stole from him", "She left on her own", "She got married"],
+      "correct": "He called her a nasty woman who caused him a lot of trouble",
+      "explain": "Nikolai says она гадкая женщина. Кучу неприятностей мне сделала — she's a nasty woman, she caused me a lot of trouble."
+    },
+    {
+      "id": "r10",
+      "ru": "Он не мог сказать, что он прогнал Марью Николаевну за то, что чай был слаб.",
+      "question": "What was the real reason Nikolai dismissed Marya Nikolaevna, which he didn't admit?",
+      "options": ["That the tea she made was weak", "That she stole money", "That she insulted him", "That she was lazy"],
+      "correct": "That the tea she made was weak",
+      "explain": "The text says он не мог сказать, что он прогнал Марью Николаевну за то, что чай был слаб — he could not say he had dismissed her because the tea was weak."
+    },
+    {
+      "id": "r11",
+      "ru": "Эти два человека были так родны и близки друг другу, что малейшее движение, тон голоса говорил для обоих больше, чем все, что можно сказать словами.",
+      "question": "How close were Levin and his brother, according to the text?",
+      "options": ["So close that the slightest gesture or tone said more than words", "Distant and formal", "Strangers who barely knew each other", "Constantly arguing"],
+      "correct": "So close that the slightest gesture or tone said more than words",
+      "explain": "The text says малейшее движение, тон голоса говорил для обоих больше, чем все, что можно сказать словами — the slightest gesture or tone of voice told them more than anything words could say."
+    },
+    {
+      "id": "r12",
+      "ru": "Теперь у них обоих была одна мысль — болезнь и близкость смерти Николая, подавлявшая все остальное.",
+      "question": "What single thought occupied both brothers, though unspoken?",
+      "options": ["Nikolai's illness and nearness to death", "Their inheritance", "Their childhood memories", "Levin's marriage plans"],
+      "correct": "Nikolai's illness and nearness to death",
+      "explain": "The text says у них обоих была одна мысль — болезнь и близость смерти Николая — they both had one thought: Nikolai's illness and nearness to death."
+    },
+    {
+      "id": "r13",
+      "ru": "Так как в доме было сыро и одна только комната топлена, то Левин уложил брата спать в своей же спальне за перегородкой.",
+      "question": "Why did Levin have his brother sleep in his own bedroom behind a partition?",
+      "options": ["Because the house was damp and only one room was heated", "Because there were no other rooms", "Because Nikolai insisted", "Because it was tradition"],
+      "correct": "Because the house was damp and only one room was heated",
+      "explain": "The text says в доме было сыро и одна только комната топлена — the house was damp and only one room was heated."
+    },
+    {
+      "id": "r14",
+      "ru": "Мысли Левина были самые разнообразные, но конец всех мыслей был один — смерть.",
+      "question": "What was the single conclusion to all of Levin's varied thoughts that night?",
+      "options": ["Death", "Marriage", "Money", "Farming"],
+      "correct": "Death",
+      "explain": "The text says конец всех мыслей был один — смерть — the end of all his thoughts was one thing: death."
+    },
+    {
+      "id": "r15",
+      "ru": "Он зажег свечу и осторожно встал и пошел к зеркалу и стал смотреть свое лицо и волосы.",
+      "question": "What did Levin do after lighting a candle in the night?",
+      "options": ["He went to the mirror and examined his face and hair", "He went outside", "He woke his brother", "He wrote a letter"],
+      "correct": "He went to the mirror and examined his face and hair",
+      "explain": "The text says пошел к зеркалу и стал смотреть свое лицо и волосы — he went to the mirror and began examining his face and hair."
+    },
+    {
+      "id": "r16",
+      "ru": "И вдруг ему вспомнилось, как они детьми вместе ложились спать и ждали только того, чтобы Федор Богданович вышел за дверь, чтобы кидать друг в друга подушками и хохотать, хохотать неудержимо, так что даже страх пред Федором Богдановичем не мог остановить это через край бившее и пенящееся сознание счастья жизни».",
+      "question": "What childhood memory came to Levin's mind that night?",
+      "options": ["Throwing pillows and laughing with his brother once their tutor left the room", "Their mother's death", "Their first day of school", "A family trip"],
+      "correct": "Throwing pillows and laughing with his brother once their tutor left the room",
+      "explain": "The text says ждали только того, чтобы Федор Богданович вышел за дверь, чтобы кидать друг в друга подушками и хохотать — they waited for Fyodor Bogdanovich to leave so they could throw pillows at each other and laugh."
+    },
+    {
+      "id": "r17",
+      "ru": "«А я хорошо спал. У меня теперь уже нет пота. Посмотри, пощупай рубашку. Нет пота?»",
+      "question": "What did Nikolai say about his health that night?",
+      "options": ["That he had slept well and no longer had night sweats", "That he felt much worse", "That he wanted to leave immediately", "That he was in great pain"],
+      "correct": "That he had slept well and no longer had night sweats",
+      "explain": "Nikolai says Я хорошо спал. У меня теперь уже нет пота — I slept well. I no longer have sweats now."
+    }
+  ]
+}

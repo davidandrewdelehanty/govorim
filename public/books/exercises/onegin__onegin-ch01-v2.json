@@ -1,0 +1,417 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Мой ___ самых честных правил",
+      "lemma": "дядя",
+      "options": ["дядя", "дяди", "дяде", "дядей"],
+      "correct": "дядя",
+      "case": "Именительный (Nominative)",
+      "translation": "My uncle has the strictest of principles",
+      "explain": "Дядя is the grammatical subject of the clause (он ... правил), so it must stand in the nominative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Родился на брегах ___",
+      "lemma": "Нева",
+      "options": ["Нева", "Невы", "Неве", "Невой"],
+      "correct": "Невы",
+      "case": "Родительный (Genitive)",
+      "translation": "He was born on the banks of the Neva",
+      "explain": "На брегах (on the banks) governs Невы in the genitive to express possession — the banks of the Neva."
+    },
+    {
+      "id": "c3",
+      "sentence": "Онегин полетел к ___",
+      "lemma": "театр",
+      "options": ["театр", "театра", "театру", "театре"],
+      "correct": "театру",
+      "case": "Дательный (Dative)",
+      "translation": "Onegin flew off to the theater",
+      "explain": "The preposition к always requires the dative case, so театр becomes театру."
+    },
+    {
+      "id": "c4",
+      "sentence": "Давно ли для вас я забывал ___ славы",
+      "lemma": "жажда",
+      "options": ["жажда", "жажды", "жажде", "жажду"],
+      "correct": "жажду",
+      "case": "Винительный (Accusative)",
+      "translation": "Was it long ago that for your sake I forgot the thirst for glory",
+      "explain": "Жажду is the direct object of the transitive verb забывал (forgot), so it takes the accusative case."
+    },
+    {
+      "id": "c5",
+      "sentence": "___ нимф окружена",
+      "lemma": "толпа",
+      "options": ["толпа", "толпы", "толпе", "толпою"],
+      "correct": "толпою",
+      "case": "Творительный (Instrumental)",
+      "translation": "Surrounded by a crowd of nymphs",
+      "explain": "The short passive participle окружена (surrounded) requires the instrumental of the agent/means, hence толпою."
+    },
+    {
+      "id": "c6",
+      "sentence": "Не найдёт знакомых лиц на ___ скучной",
+      "lemma": "сцена",
+      "options": ["сцена", "сцены", "сцене", "сцену"],
+      "correct": "сцене",
+      "case": "Предложный (Prepositional)",
+      "translation": "He won't find familiar faces on the boring stage",
+      "explain": "The preposition на indicating static location (where, not motion-to) requires the prepositional case, сцене."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Мой дядя самых честных правил, Когда ни в шутку за ним мог, Он уважать себя заставил, И лучше выдумать не мог.",
+      "question": "What is said about Onegin's uncle in the opening lines?",
+      "options": [
+        "He has the strictest of principles",
+        "He is a famous poet",
+        "He hates his family",
+        "He is a wealthy merchant"
+      ],
+      "correct": "He has the strictest of principles",
+      "explain": "The poem opens by describing the uncle as a man of \"the most honest rules,\" i.e., strict principles."
+    },
+    {
+      "id": "r2",
+      "ru": "Так думал молодой Повеса, летя в пыли на почтовых.",
+      "question": "How is the young rake (Onegin) traveling as he has these thoughts?",
+      "options": [
+        "Riding in a mail-coach, hurrying through the dust",
+        "Walking slowly through a forest",
+        "Sailing down the Neva river",
+        "Riding a horse to war"
+      ],
+      "correct": "Riding in a mail-coach, hurrying through the dust",
+      "explain": "The text says the young rake was \"flying in the dust on post-horses,\" i.e., traveling by mail coach."
+    },
+    {
+      "id": "r3",
+      "ru": "Родился на брегах Невы, где, может быть, родились вы.",
+      "question": "Where was Onegin born?",
+      "options": [
+        "On the banks of the Neva",
+        "In Moscow",
+        "In Paris",
+        "In the countryside"
+      ],
+      "correct": "On the banks of the Neva",
+      "explain": "The text states he was born \"на брегах Невы\" — on the banks of the Neva, i.e., in St. Petersburg."
+    },
+    {
+      "id": "r4",
+      "ru": "Давал три балла ежегодно и промотался на конец.",
+      "question": "What did Onegin's father do that eventually ruined him financially?",
+      "options": [
+        "He gave three balls every year and eventually squandered his fortune",
+        "He invested in foreign trade",
+        "He gambled at cards nightly",
+        "He built an expensive estate"
+      ],
+      "correct": "He gave three balls every year and eventually squandered his fortune",
+      "explain": "The text says the father \"gave three balls annually and in the end squandered\" his money."
+    },
+    {
+      "id": "r5",
+      "ru": "Сперва мадам за ним ходила, потом мусье ее сменил.",
+      "question": "Who cared for young Onegin before the French tutor Monsieur arrived?",
+      "options": [
+        "A madame (governess)",
+        "His grandmother",
+        "A priest",
+        "No one, he was alone"
+      ],
+      "correct": "A madame (governess)",
+      "explain": "The text says \"at first a madame looked after him, then a monsieur replaced her.\""
+    },
+    {
+      "id": "r6",
+      "ru": "Когда же юности мятежной пришла Евгению пора, пора надежды, грусти нежной, мусье прогнали со двора.",
+      "question": "What happened to the French tutor Monsieur when Onegin reached the age of rebellious youth?",
+      "options": [
+        "He was driven off/dismissed from the household",
+        "He was promoted to be Onegin's business partner",
+        "He married into the family",
+        "He became a priest"
+      ],
+      "correct": "He was driven off/dismissed from the household",
+      "explain": "The text says \"the monsieur was driven off the estate\" once Onegin's turbulent youth arrived."
+    },
+    {
+      "id": "r7",
+      "ru": "Вот мой Онегин на свободе, Острижен по последней моде, Как Дэнди лондонский одет, И, наконец, увидел свет.",
+      "question": "How is Onegin described once he gains his freedom (finishes his upbringing)?",
+      "options": [
+        "Cropped in the latest fashion, dressed like a London dandy",
+        "Wearing peasant clothes and unkempt",
+        "In military uniform",
+        "Dressed as a monk"
+      ],
+      "correct": "Cropped in the latest fashion, dressed like a London dandy",
+      "explain": "The text describes him as \"cropped in the latest fashion, dressed like a London dandy,\" entering society."
+    },
+    {
+      "id": "r8",
+      "ru": "Так воспитанием, слава Богу, У нас не мудрено блеснуть».",
+      "question": "What does the narrator wryly say about this kind of upbringing?",
+      "options": [
+        "Thanks to such an upbringing, it's no wonder one can shine in society",
+        "Only rigorous scholars succeed in society",
+        "Education is the most important virtue",
+        "Nobody in Russia receives an education"
+      ],
+      "correct": "Thanks to such an upbringing, it's no wonder one can shine in society",
+      "explain": "The narrator ironically notes that with such an upbringing, \"thank God, it's no wonder to shine\" superficially."
+    },
+    {
+      "id": "r9",
+      "ru": "Онегин был, по мнению многих судей решительных и строгих, ученый малый, но педант.",
+      "question": "How do the strict critics/judges regard Onegin?",
+      "options": [
+        "A learned fellow, but a pedant",
+        "A brilliant scientist",
+        "An uneducated fool",
+        "A skilled soldier"
+      ],
+      "correct": "A learned fellow, but a pedant",
+      "explain": "The text says that in the opinion of many strict judges, he was \"a learned fellow, but a pedant.\""
+    },
+    {
+      "id": "r10",
+      "ru": "Бронил Гомера, Феокрита, зато читал Адама Смита и был глубокий эконом.",
+      "question": "Which author did Onegin actually read and admire, despite scorning classical poets like Homer?",
+      "options": [
+        "Adam Smith",
+        "Voltaire",
+        "Shakespeare",
+        "Dante"
+      ],
+      "correct": "Adam Smith",
+      "explain": "The text says he scorned Homer and Theocritus, \"but read Adam Smith and was a deep economist.\""
+    },
+    {
+      "id": "r11",
+      "ru": "Отец понять его не мог и земли отдавал в залог.",
+      "question": "What financial trouble does Onegin's father face?",
+      "options": [
+        "He kept mortgaging/pawning his lands",
+        "He sold the family house",
+        "He borrowed money from Onegin",
+        "He declared bankruptcy in court"
+      ],
+      "correct": "He kept mortgaging/pawning his lands",
+      "explain": "The text says his father \"could not understand him and kept giving his lands as collateral,\" i.e., mortgaging them."
+    },
+    {
+      "id": "r12",
+      "ru": "Пока мест в утреннем уборе, надев широкий боливар, Онегин едет на бульвар.",
+      "question": "What hat does Onegin wear as he heads out to the boulevard?",
+      "options": [
+        "A wide bolivar hat",
+        "A fur ushanka",
+        "A top hat",
+        "A straw boater"
+      ],
+      "correct": "A wide bolivar hat",
+      "explain": "The text specifies he put on \"a wide bolivar\" (a fashionable hat style) before heading to the boulevard."
+    },
+    {
+      "id": "r13",
+      "ru": "Морозной пылью серебрится его бобровый воротник.",
+      "question": "What detail of Onegin's clothing is described as silvered with frosty dust?",
+      "options": [
+        "His beaver fur collar",
+        "His leather gloves",
+        "His silk scarf",
+        "His woolen hat"
+      ],
+      "correct": "His beaver fur collar",
+      "explain": "The text says \"his beaver collar is silvered with frosty dust.\""
+    },
+    {
+      "id": "r14",
+      "ru": "Театр, злой законодатель, Непостоянный обожатель Очаровательных актрис, Почетный гражданин кулис, Онегин полетел к театру, Где каждый критикой дыша Готов охлопать антроша, Обшикать Федру, Клеопатру, Маину вызвать для того, Чтоб только слышали его.",
+      "question": "How does the narrator describe the theater in this stanza?",
+      "options": [
+        "A harsh lawgiver and a fickle admirer of charming actresses",
+        "A quiet, sacred place of worship",
+        "A place only for children",
+        "An abandoned building"
+      ],
+      "correct": "A harsh lawgiver and a fickle admirer of charming actresses",
+      "explain": "The narrator calls the theater \"a harsh lawgiver, a fickle admirer of charming actresses.\""
+    },
+    {
+      "id": "r15",
+      "ru": "Там в старые годы Сатиры смелый властелин Блистал фан-визин, друг свободы, И переменчивый княжнин.",
+      "question": "Which real-life Russian playwright, called \"friend of freedom,\" is mentioned as having shone there in the old days?",
+      "options": [
+        "Fonvizin",
+        "Pushkin",
+        "Gogol",
+        "Chekhov"
+      ],
+      "correct": "Fonvizin",
+      "explain": "The text names \"Fonvizin, friend of freedom\" as having shone in the theater's earlier days."
+    },
+    {
+      "id": "r16",
+      "ru": "Блистательно, полувоздушно, Смычку волшебному послушно, Толпою нимф окружена, Стоит истомина.",
+      "question": "Who is described as standing amid a crowd of nymphs, obedient to the magic bow (music)?",
+      "options": [
+        "Istomina, the ballerina",
+        "Onegin's mother",
+        "The theater manager",
+        "A random spectator"
+      ],
+      "correct": "Istomina, the ballerina",
+      "explain": "The text says \"surrounded by a crowd of nymphs, stands Istomina,\" the celebrated ballet dancer."
+    },
+    {
+      "id": "r17",
+      "ru": "Двойной лорнет скосясь наводит на ложе незнакомых дам.",
+      "question": "What does Onegin do with his double lorgnette once inside the theater?",
+      "options": [
+        "He aims it at the box of unfamiliar ladies",
+        "He gives it away to a friend",
+        "He drops it on the floor",
+        "He uses it to read a letter"
+      ],
+      "correct": "He aims it at the box of unfamiliar ladies",
+      "explain": "The text says his \"double lorgnette, squinting, aims at the box of unfamiliar ladies.\""
+    },
+    {
+      "id": "r18",
+      "ru": "Балеты долго я терпел, но и дедло мне надоел.",
+      "question": "How does Onegin (the narrator's persona) feel about the ballets by this point?",
+      "options": [
+        "Tired of them, bored even with the choreographer Didelot",
+        "Thrilled and wanting to see another",
+        "Fast asleep immediately",
+        "Demanding his money back"
+      ],
+      "correct": "Tired of them, bored even with the choreographer Didelot",
+      "explain": "The text says \"I endured ballets for a long time, but even Didelot has bored me,\" reflecting jaded weariness."
+    },
+    {
+      "id": "r19",
+      "ru": "А уж Онегин вышел вон, Домой одеться едет он.",
+      "question": "What does Onegin do right after leaving the theater?",
+      "options": [
+        "He goes home to change his clothes",
+        "He goes straight to a duel",
+        "He returns to the countryside",
+        "He falls asleep in his carriage"
+      ],
+      "correct": "He goes home to change his clothes",
+      "explain": "The text says Onegin \"has left already, he's off home to dress\" after the theater."
+    },
+    {
+      "id": "r20",
+      "ru": "Увы, на разные забавы я много жизни погубил, но если б не страдали нравы, я балы б до сих пор любил.",
+      "question": "What does the narrator admit about his own past regarding amusements?",
+      "options": [
+        "He squandered much of his life on various amusements",
+        "He never enjoyed any parties",
+        "He regrets never attending balls",
+        "He devoted his life entirely to work"
+      ],
+      "correct": "He squandered much of his life on various amusements",
+      "explain": "The narrator confesses, \"Alas, on various amusements I squandered much of my life.\""
+    },
+    {
+      "id": "r21",
+      "ru": "Люблю их ножки, только вряд найдете вы в России целой три пары стройных женских ног.",
+      "question": "What humorous claim does the narrator make about women's feet in Russia?",
+      "options": [
+        "You'll hardly find three pairs of shapely women's feet in all of Russia",
+        "All Russian women have identical feet",
+        "Feet are not admired in Russian culture",
+        "Every woman in Russia has beautiful feet"
+      ],
+      "correct": "You'll hardly find three pairs of shapely women's feet in all of Russia",
+      "explain": "The narrator jokes that \"you will hardly find in all of Russia three pairs of shapely women's feet.\""
+    },
+    {
+      "id": "r22",
+      "ru": "Что ж мой Онегин, полусонный, В постелью с бала едет он, А Петербург неугомонный, Уж барабаном пробужден.",
+      "question": "What is happening in St. Petersburg as sleepy Onegin heads home from the ball?",
+      "options": [
+        "The restless city is being woken up by a drum",
+        "The city is completely silent and asleep",
+        "A fire has broken out",
+        "Church bells are ringing for a wedding"
+      ],
+      "correct": "The restless city is being woken up by a drum",
+      "explain": "The text contrasts drowsy Onegin heading home with \"the restless Petersburg, already awakened by the drum.\""
+    },
+    {
+      "id": "r23",
+      "ru": "Нет, рано чувства в нем остыли.",
+      "question": "What does the narrator say happened to Onegin's feelings?",
+      "options": [
+        "His feelings cooled early",
+        "His feelings grew more passionate with age",
+        "He fell deeply in love for the first time",
+        "His feelings never changed"
+      ],
+      "correct": "His feelings cooled early",
+      "explain": "The text states plainly, \"No, his feelings cooled early,\" reflecting his growing ennui."
+    },
+    {
+      "id": "r24",
+      "ru": "Он застрелиться, слава богу, Попробовать не захотел, Но к жизни вовсе охладел.",
+      "question": "What did Onegin, in his despondency, ultimately decide NOT to do?",
+      "options": [
+        "Try to shoot himself",
+        "Leave Russia forever",
+        "Marry a wealthy widow",
+        "Join the army"
+      ],
+      "correct": "Try to shoot himself",
+      "explain": "The text says \"he did not try to shoot himself, thank God, but grew utterly cold to life.\""
+    },
+    {
+      "id": "r25",
+      "ru": "И вы, красотки молодые, которых позднюю порой уносят дрожки удалые по Петербургской мостовой, и вас покинул мой Евгений.",
+      "question": "Whom does the narrator say Onegin abandoned, along with the pretty young women carried along the Petersburg pavement?",
+      "options": [
+        "His former pursuit of society's pleasures and beauties",
+        "His childhood friends",
+        "His business partners",
+        "His tutors"
+      ],
+      "correct": "His former pursuit of society's pleasures and beauties",
+      "explain": "The text says Onegin, an apostate from stormy pleasures, also abandoned these pretty young women and society's diversions."
+    },
+    {
+      "id": "r26",
+      "ru": "Отрядом книг уставил полку, читал, читал, а все без толку.",
+      "question": "What does Onegin do after stocking a shelf with books?",
+      "options": [
+        "He reads and reads, but finds no use in it",
+        "He immediately writes his own novel",
+        "He sells them all",
+        "He memorizes every page"
+      ],
+      "correct": "He reads and reads, but finds no use in it",
+      "explain": "The text says he \"stocked a shelf with a detachment of books, read, read — but all to no avail.\""
+    },
+    {
+      "id": "r27",
+      "ru": "Кто жил и мыслил, тот не может в душе не презирать людей.",
+      "question": "What does the narrator claim about anyone who has truly lived and thought deeply?",
+      "options": [
+        "In his soul he cannot help but despise people",
+        "He will always love humanity unconditionally",
+        "He becomes a hermit",
+        "He forgets his past entirely"
+      ],
+      "correct": "In his soul he cannot help but despise people",
+      "explain": "The narrator states \"whoever has lived and thought cannot help but despise people in his soul,\" a cynical reflection shared with Onegin."
+    }
+  ]
+}
