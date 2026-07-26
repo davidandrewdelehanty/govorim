@@ -1,0 +1,286 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "___ в университете мне не нравилась",
+      "lemma": "учеба",
+      "options": ["учеба", "учебы", "учебе", "учебой"],
+      "correct": "учеба",
+      "case": "Именительный (Nominative)",
+      "translation": "I didn't like studying at the university.",
+      "explain": "Учеба is the subject of the verb нравилась (was pleasing), so it stands in the Nominative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Наркотики раз и навсегда лишились в моих глазах гламурного и романтического ___",
+      "lemma": "ореол",
+      "options": ["ореол", "ореола", "ореолу", "ореолом"],
+      "correct": "ореола",
+      "case": "Родительный (Genitive)",
+      "translation": "Drugs permanently lost their glamorous and romantic aura in my eyes.",
+      "explain": "The verb лишиться (\"to lose/be deprived of\") governs the Genitive case, so ореол becomes ореола."
+    },
+    {
+      "id": "c3",
+      "sentence": "Мы относили зачетки милейшему ___",
+      "lemma": "профессор",
+      "options": ["профессор", "профессора", "профессору", "профессором"],
+      "correct": "профессору",
+      "case": "Дательный (Dative)",
+      "translation": "We would bring our grade books to the sweetest professor.",
+      "explain": "Профессор is the indirect object of относили (we brought to), so it takes the Dative case."
+    },
+    {
+      "id": "c4",
+      "sentence": "Я занял 150 долларов у друзей и отнес на ___",
+      "lemma": "кафедра",
+      "options": ["кафедра", "кафедры", "кафедре", "кафедру"],
+      "correct": "кафедру",
+      "case": "Винительный (Accusative)",
+      "translation": "I borrowed $150 from friends and took it to the department office.",
+      "explain": "The preposition на indicating direction governs the Accusative case, so кафедра becomes кафедру."
+    },
+    {
+      "id": "c5",
+      "sentence": "Прийти к преподу, объявить, что ты работаешь ___ прокурора",
+      "lemma": "помощник",
+      "options": ["помощник", "помощника", "помощнику", "помощником"],
+      "correct": "помощником",
+      "case": "Творительный (Instrumental)",
+      "translation": "Go to the professor and announce that you work as the prosecutor's assistant.",
+      "explain": "The verb работать (\"to work as\") governs the Instrumental case for the profession, so помощник becomes помощником."
+    },
+    {
+      "id": "c6",
+      "sentence": "А ты как дурак должен сидеть в ___, где преподаватель с трудом рассказывает о законе",
+      "lemma": "аудитория",
+      "options": ["аудитория", "аудитории", "аудиторию", "аудиторией"],
+      "correct": "аудитории",
+      "case": "Предложный (Prepositional)",
+      "translation": "And you, like a fool, have to sit in the lecture hall while the professor struggles to explain the law.",
+      "explain": "The preposition в indicating location governs the Prepositional case, so аудитория becomes аудитории."
+    },
+    {
+      "id": "c7",
+      "sentence": "Мага не мог унести все сам и взял только половину ___",
+      "lemma": "сумма",
+      "options": ["сумма", "суммы", "сумме", "суммой"],
+      "correct": "суммы",
+      "case": "Родительный (Genitive)",
+      "translation": "Maga couldn't carry it all himself and took only half of the sum.",
+      "explain": "\"Половина (чего?) суммы\" — the noun naming what is halved takes the Genitive case."
+    },
+    {
+      "id": "c8",
+      "sentence": "Профессор проверял ___ одну за другой, доставая из нее купюры",
+      "lemma": "зачетка",
+      "options": ["зачетка", "зачетки", "зачетке", "зачетку"],
+      "correct": "зачетку",
+      "case": "Винительный (Accusative)",
+      "translation": "The professor checked each grade book one by one, pulling the bills out of it.",
+      "explain": "Зачетка is the direct object of проверял (checked), so it takes the Accusative case."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Учеба в университете мне не нравилась.",
+      "question": "How did Navalny generally feel about his university studies?",
+      "options": ["He disliked them", "He loved every class", "He found them far too easy", "He skipped happily without regret"],
+      "correct": "He disliked them",
+      "explain": "The chapter opens \"Учеба в университете мне не нравилась\"."
+    },
+    {
+      "id": "r2",
+      "ru": "Автобус номер 26 — мой враг, объект моей постоянной неловкости и боль моих студенческих лет.",
+      "question": "What does Navalny call his biggest daily obstacle as a student?",
+      "options": ["Bus number 26", "His professors", "The Moscow metro system", "His roommates"],
+      "correct": "Bus number 26",
+      "explain": "He calls it \"мой враг, объект моей постоянной неловкости и боль моих студенческих лет\"."
+    },
+    {
+      "id": "r3",
+      "ru": "Чтобы успеть в университет к первой паре, начинавшейся в 9.00, я должен был проснуться в 5.55",
+      "question": "What time did Navalny have to wake up to make his 9:00 a.m. class?",
+      "options": ["5:55", "6:30", "7:00", "5:00"],
+      "correct": "5:55",
+      "explain": "He says he \"должен был проснуться в 5.55\" to make the 9:00 class."
+    },
+    {
+      "id": "r4",
+      "ru": "Последний рейс ко мне в городок уходил в 21.28.",
+      "question": "What time did the last bus home leave, severely limiting his social life?",
+      "options": ["21:28 (9:28 pm)", "23:00", "20:00", "22:45"],
+      "correct": "21:28 (9:28 pm)",
+      "explain": "The text states \"Последний рейс ко мне в городок уходил в 21.28\"."
+    },
+    {
+      "id": "r5",
+      "ru": "Не так и далеко, 6,2 километра.",
+      "question": "How far did Navalny sometimes walk home from the train station instead of taking the bus?",
+      "options": ["6.2 kilometers", "2 kilometers", "15 kilometers", "1 kilometer"],
+      "correct": "6.2 kilometers",
+      "explain": "He describes the walk as \"не так и далеко, 6,2 километра\"."
+    },
+    {
+      "id": "r6",
+      "ru": "Мой брат Олег, который на семь лет младше меня, назовет уже весьма приличное количество одноклассников и однокурсников, сторчавшихся до клиник или трагического конца.",
+      "question": "What did Navalny's younger brother Oleg observe about their generation and the drug epidemic?",
+      "options": ["Many classmates ended up in rehab clinics or died from drugs", "Very few people were affected at all", "Most became doctors treating addicts", "Nobody he knew ever used drugs"],
+      "correct": "Many classmates ended up in rehab clinics or died from drugs",
+      "explain": "Oleg names classmates \"сторчавшихся до клиник или трагического конца\"."
+    },
+    {
+      "id": "r7",
+      "ru": "Это наркоманы. Они ищут нычки. Сейчас их называют закладки.",
+      "question": "What were the young men in tracksuits near the fence actually doing, according to a friend's explanation?",
+      "options": ["Searching for hidden drug stashes (\"zakladki\")", "Collecting trash for recycling money", "Looking for lost pets", "Selling newspapers door to door"],
+      "correct": "Searching for hidden drug stashes (\"zakladki\")",
+      "explain": "His friend explains: \"Это наркоманы. Они ищут нычки. Сейчас их называют закладки\"."
+    },
+    {
+      "id": "r8",
+      "ru": "Студенты-нигерийцы наладили каналы поставки героина и стали первой настоящей наркомафией в России",
+      "question": "Who does Navalny say organized Russia's first real drug mafia, operating out of his university?",
+      "options": ["Nigerian students", "Local gang members", "Corrupt professors", "Afghan war veterans"],
+      "correct": "Nigerian students",
+      "explain": "The text states \"Студенты-нигерийцы наладили каналы поставки героина и стали первой настоящей наркомафией в России\"."
+    },
+    {
+      "id": "r9",
+      "ru": "Любой экзамен можно было сдать за деньги, и это делалось совершенно открыто.",
+      "question": "What did Navalny find shocking about exams at his university?",
+      "options": ["They could openly be bought with money", "They were extremely difficult to pass", "They were canceled very often", "Only wealthy families' children took them"],
+      "correct": "They could openly be bought with money",
+      "explain": "He writes \"Любой экзамен можно было сдать за деньги, и это делалось совершенно открыто\"."
+    },
+    {
+      "id": "r10",
+      "ru": "Мага не может унести все сам. Леха, помоги по-братски, возьми половину.",
+      "question": "What did Navalny's classmate Maga ask him to help carry?",
+      "options": ["A stack of grade books stuffed with bribe money", "Textbooks for the whole class", "Boxes of exam papers", "Bottles of alcohol for a party"],
+      "correct": "A stack of grade books stuffed with bribe money",
+      "explain": "Maga says \"Леха, помоги по-братски, возьми половину\" about the stack of зачетки full of cash."
+    },
+    {
+      "id": "r11",
+      "ru": "Прийти к преподу, объявить, что ты работаешь в прокуратуре или чем-то подобном, типа помощником прокурора.",
+      "question": "What bluff did Navalny use to get professors to pass him without studying?",
+      "options": ["Claiming he worked as a prosecutor's assistant", "Claiming he was seriously ill", "Claiming a family emergency", "Claiming he had already graduated"],
+      "correct": "Claiming he worked as a prosecutor's assistant",
+      "explain": "His trick was to announce \"что ты работаешь в прокуратуре ... типа помощником прокурора\"."
+    },
+    {
+      "id": "r12",
+      "ru": "Я ему поставил 4, потому что он выдал себя за моего коллегу в прокуратуре.",
+      "question": "Why did a criminal-procedure professor cancel Navalny's grade after granting it?",
+      "options": ["Because Navalny had falsely claimed to work with him at the prosecutor's office", "Because Navalny cheated on a written test", "Because Navalny missed the exam entirely", "Because Navalny had insulted him publicly"],
+      "correct": "Because Navalny had falsely claimed to work with him at the prosecutor's office",
+      "explain": "The professor announces \"Я ему поставил 4, потому что он выдал себя за моего коллегу в прокуратуре\"."
+    },
+    {
+      "id": "r13",
+      "ru": "И тут мои раздумья прервало появление Ивана Даниловича Козычкина, заведующего кафедрой уголовного процесса.",
+      "question": "Who did Navalny turn to after the vengeful professor blocked his exam?",
+      "options": ["The head of the department, Ivan Danilovich Kozychkin", "The university rector", "His own father", "A classmate's lawyer father"],
+      "correct": "The head of the department, Ivan Danilovich Kozychkin",
+      "explain": "He was interrupted by \"появление Ивана Даниловича Козычкина, заведующего кафедрой уголовного процесса\"."
+    },
+    {
+      "id": "r14",
+      "ru": "Я занял 150 долларов у друзей и отнес на кафедру.",
+      "question": "How much did Navalny borrow to bribe the department head?",
+      "options": ["$150", "$50", "$500", "$1,000"],
+      "correct": "$150",
+      "explain": "He states \"Я занял 150 долларов у друзей и отнес на кафедру\"."
+    },
+    {
+      "id": "r15",
+      "ru": "Мне нравится и нравилось быть юристом.",
+      "question": "Despite his criticism of legal education, how does Navalny feel about being a lawyer?",
+      "options": ["He genuinely likes being a lawyer", "He deeply regrets studying law", "He never actually practiced law", "He always wanted to be a doctor instead"],
+      "correct": "He genuinely likes being a lawyer",
+      "explain": "He states plainly \"Мне нравится и нравилось быть юристом\"."
+    },
+    {
+      "id": "r16",
+      "ru": "А главное, мне нужна была машина.",
+      "question": "What material desire motivated young Navalny to want to start working sooner?",
+      "options": ["A car", "A house", "A boat", "A motorcycle"],
+      "correct": "A car",
+      "explain": "He admits \"А главное, мне нужна была машина\"."
+    },
+    {
+      "id": "r17",
+      "ru": "В итоге я в отчаянии купил вовсе не BMW и даже не Volkswagen, а дурацкие Renault.",
+      "question": "What car did Navalny end up buying in Germany, to his later embarrassment?",
+      "options": ["A Renault 19", "A BMW 3-series", "A Volkswagen Golf", "A Mercedes"],
+      "correct": "A Renault 19",
+      "explain": "In desperation \"я ... купил вовсе не BMW и даже не Volkswagen, а дурацкие Renault\"."
+    },
+    {
+      "id": "r18",
+      "ru": "Таможня в России 90-х – место фантастическое. Символ коррупции, возможностей и быстрых состояний.",
+      "question": "How does Navalny describe Russian customs offices in the 1990s?",
+      "options": ["A symbol of corruption and quick fortunes", "A model of bureaucratic efficiency", "A place with almost no problems", "A purely formal, harmless office"],
+      "correct": "A symbol of corruption and quick fortunes",
+      "explain": "He calls customs \"Символ коррупции, возможностей и быстрых состояний\"."
+    },
+    {
+      "id": "r19",
+      "ru": "Я решил пошлину заплатить, все удивлялись, услышав это",
+      "question": "What decision did Navalny make about his car's customs duty that surprised everyone?",
+      "options": ["He decided to actually pay the duty honestly", "He decided to smuggle the car in", "He decided to bribe an official directly", "He decided to abandon the car altogether"],
+      "correct": "He decided to actually pay the duty honestly",
+      "explain": "He says \"Я решил пошлину заплатить, все удивлялись, услышав это\"."
+    },
+    {
+      "id": "r20",
+      "ru": "Приезжает Естржемский, пресс-секретарь Ельцина, и его должно встречать все руководство таможни",
+      "question": "Why did the customs office suddenly stop processing people for a day, delaying Navalny?",
+      "options": ["Yeltsin's press secretary Yastrzhembsky was arriving and staff went to greet him", "A strike had begun among workers", "The building was undergoing inspection", "A bomb threat was reported"],
+      "correct": "Yeltsin's press secretary Yastrzhembsky was arriving and staff went to greet him",
+      "explain": "The text explains \"Приезжает Естржемский, пресс-секретарь Ельцина, и его должно встречать все руководство таможни\"."
+    },
+    {
+      "id": "r21",
+      "ru": "Но вот именно тогда, так случайный личный опыт формирует наши политические взгляды, я разочаровался в Ельцине.",
+      "question": "What moment triggered Navalny's personal disillusionment with Yeltsin?",
+      "options": ["Watching Yeltsin's press secretary swagger through customs while ordinary people waited for days", "Losing money in a stock scheme", "Being denied a travel visa", "Reading a critical newspaper article"],
+      "correct": "Watching Yeltsin's press secretary swagger through customs while ordinary people waited for days",
+      "explain": "He states that right at that customs moment \"я разочаровался в Ельцине\"."
+    },
+    {
+      "id": "r22",
+      "ru": "Позже из мемуаров ельцинского охранника Александра Коржакова мы все узнали, что типичный рабочий день Ельцина продолжался до 12 часов",
+      "question": "What did Yeltsin's bodyguard Korzhakov's memoirs later reveal about Yeltsin's work habits?",
+      "options": ["His workday typically ended by noon, followed by drinking", "He worked sixteen-hour days without rest", "He never took any vacations", "He worked mostly at night"],
+      "correct": "His workday typically ended by noon, followed by drinking",
+      "explain": "Korzhakov's memoirs revealed Yeltsin's workday \"продолжался до 12 часов\", after which he'd call for vodka."
+    },
+    {
+      "id": "r23",
+      "ru": "96-й год, все-таки мне 20 лет.",
+      "question": "How old was Navalny in 1996, around the time he bought his first car?",
+      "options": ["20", "18", "25", "22"],
+      "correct": "20",
+      "explain": "He notes \"96-й год, все-таки мне 20 лет\"."
+    },
+    {
+      "id": "r24",
+      "ru": "Единственное, что, наверное, мой интерес к политике поугас.",
+      "question": "What effect did buying a car and gaining independence have on young Navalny?",
+      "options": ["His interest in politics faded for a while", "His interest in politics intensified sharply", "He quit university entirely", "He moved to another city"],
+      "correct": "His interest in politics faded for a while",
+      "explain": "He admits \"Единственное, что, наверное, мой интерес к политике поугас\"."
+    },
+    {
+      "id": "r25",
+      "ru": "Вернул мне его другой человек. Владимир Владимирович Путин.",
+      "question": "Who does the chapter say reignited Navalny's interest in politics?",
+      "options": ["Vladimir Putin", "Boris Yeltsin", "Anatoly Chubais", "Yegor Gaidar"],
+      "correct": "Vladimir Putin",
+      "explain": "The chapter's final line states \"Вернул мне его другой человек. Владимир Владимирович Путин\"."
+    }
+  ]
+}

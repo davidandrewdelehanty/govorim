@@ -1,0 +1,286 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "___ была совершенно правильной, уместной и очень успешной",
+      "lemma": "кампания",
+      "options": ["кампания", "кампании", "кампанию", "кампанией"],
+      "correct": "кампания",
+      "case": "Именительный (Nominative)",
+      "translation": "The campaign was entirely correct, appropriate, and very successful.",
+      "explain": "Кампания is the subject of the verb была (was), so it stands in the Nominative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Чуть ли не каждая третья смерть прямо или косвенно происходила из-за ___",
+      "lemma": "алкоголь",
+      "options": ["алкоголь", "алкоголя", "алкоголю", "алкоголем"],
+      "correct": "алкоголя",
+      "case": "Родительный (Genitive)",
+      "translation": "Nearly every third death was directly or indirectly caused by alcohol.",
+      "explain": "The preposition из-за (\"because of\") governs the Genitive case, so алкоголь becomes алкоголя."
+    },
+    {
+      "id": "c3",
+      "sentence": "К 1979 ___ политбюро ЦК КПСС напоминало «парк гериатрического периода»",
+      "lemma": "год",
+      "options": ["год", "года", "году", "годом"],
+      "correct": "году",
+      "case": "Дательный (Dative)",
+      "translation": "By 1979, the Politburo of the Central Committee resembled a \"geriatric care park.\"",
+      "explain": "The preposition к indicating a point in time governs the Dative case, so год becomes году."
+    },
+    {
+      "id": "c4",
+      "sentence": "Спустя два месяца после своего прихода к власти, он допустил просто фатальную ___",
+      "lemma": "ошибка",
+      "options": ["ошибка", "ошибки", "ошибке", "ошибку"],
+      "correct": "ошибку",
+      "case": "Винительный (Accusative)",
+      "translation": "Two months after coming to power, he made a simply fatal mistake.",
+      "explain": "Ошибка is the direct object of допустил (made/committed), so it takes the Accusative case."
+    },
+    {
+      "id": "c5",
+      "sentence": "Не КПСС, Госплан и КГБ довели страну до того, что ее пришлось спасать ___",
+      "lemma": "перестройка",
+      "options": ["перестройка", "перестройки", "перестройке", "перестройкой"],
+      "correct": "перестройкой",
+      "case": "Творительный (Instrumental)",
+      "translation": "It wasn't the Communist Party, Gosplan, and the KGB who brought the country down — it had to be saved by perestroika.",
+      "explain": "The Instrumental expresses the means (\"saved by perestroika\"), so перестройка becomes перестройкой."
+    },
+    {
+      "id": "c6",
+      "sentence": "Я пишу эту главу в ___, где восстанавливаюсь после отравления",
+      "lemma": "Германия",
+      "options": ["Германия", "Германии", "Германию", "Германией"],
+      "correct": "Германии",
+      "case": "Предложный (Prepositional)",
+      "translation": "I'm writing this chapter in Germany, where I'm recovering from the poisoning.",
+      "explain": "The preposition в indicating location governs the Prepositional case, so Германия becomes Германии."
+    },
+    {
+      "id": "c7",
+      "sentence": "Приведу характерный ___ тех времен",
+      "lemma": "анекдот",
+      "options": ["анекдот", "анекдота", "анекдоту", "анекдотом"],
+      "correct": "анекдот",
+      "case": "Винительный (Accusative)",
+      "translation": "Let me give a characteristic joke from those times.",
+      "explain": "Анекдот is the direct object of приведу (I'll give/cite), so it takes the Accusative case."
+    },
+    {
+      "id": "c8",
+      "sentence": "По официальным ___ его подушевое потребление алкоголя упало в два с половиной раза",
+      "lemma": "данные",
+      "options": ["данные", "данных", "данным", "данными"],
+      "correct": "данным",
+      "case": "Дательный (Dative)",
+      "translation": "According to official data, per capita alcohol consumption fell by two and a half times.",
+      "explain": "The preposition по meaning \"according to\" governs the Dative case, so данные becomes данным."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Горбачева в стране не любили. У нас в семье тоже.",
+      "question": "How did most people in the USSR, including Alexei's family, feel about Gorbachev, contrary to Western perception?",
+      "options": ["They didn't like him", "They adored him", "They were completely indifferent", "They feared him greatly"],
+      "correct": "They didn't like him",
+      "explain": "The chapter opens: \"Горбачева в стране не любили. У нас в семье тоже\"."
+    },
+    {
+      "id": "r2",
+      "ru": "Начал антиалкогольную кампанию.",
+      "question": "What was Gorbachev's first major policy, which turned out to be damaging?",
+      "options": ["The anti-alcohol campaign", "Nationalizing industry", "Banning religion", "Raising taxes sharply"],
+      "correct": "The anti-alcohol campaign",
+      "explain": "Two months into power he \"начал антиалкогольную кампанию\"."
+    },
+    {
+      "id": "r3",
+      "ru": "Мужская смертность снизилась на 12%, а женская на 7%",
+      "question": "What measurable health effect did the anti-alcohol campaign have?",
+      "options": ["Male mortality fell by 12% and female by 7%", "Mortality rose sharply", "There was no measurable change", "Only child mortality changed"],
+      "correct": "Male mortality fell by 12% and female by 7%",
+      "explain": "The text states \"Мужская смертность снизилась на 12%, а женская на 7%\"."
+    },
+    {
+      "id": "r4",
+      "ru": "В винодельческих регионах массово и совершенно варварски вырубалась виноградная лоза.",
+      "question": "What drastic and destructive measure was taken in wine-growing regions?",
+      "options": ["Vineyards were massively and barbarically cut down", "Vineyards were expanded", "Wine production was subsidized", "Vineyards were merely nationalized"],
+      "correct": "Vineyards were massively and barbarically cut down",
+      "explain": "The text says \"массово и совершенно варварски вырубалась виноградная лоза\" (grapevines were cut down en masse and barbarically)."
+    },
+    {
+      "id": "r5",
+      "ru": "Спустя всего два года, в 1987-м, антиалкогольная кампания была свернута.",
+      "question": "When was the anti-alcohol campaign abandoned?",
+      "options": ["In 1987, after just two years", "In 1991, at the end of the USSR", "In 1985, almost immediately", "In 1995, under Yeltsin"],
+      "correct": "In 1987, after just two years",
+      "explain": "The campaign \"была свернута\" in 1987, only two years after it began."
+    },
+    {
+      "id": "r6",
+      "ru": "Наряду с Чернобылем и экономическим кризисом, ввод советских войск в Афганистан в 1979 году и последующая бессмысленная война длиной в 10 лет, безусловно, стали могильщиками СССР.",
+      "question": "Along with Chernobyl and the economic crisis, what does Navalny say helped bring down the USSR?",
+      "options": ["The war in Afghanistan", "The Korean War", "The Cuban Missile Crisis", "The Vietnam War"],
+      "correct": "The war in Afghanistan",
+      "explain": "He lists the Afghan war among the \"могильщиками СССР\" (gravediggers of the USSR)."
+    },
+    {
+      "id": "r7",
+      "ru": "По официальным данным, за 10 лет мы положили в этой войне 15 тысяч человек.",
+      "question": "How many Soviet soldiers officially died in the Afghan war, according to the figures cited?",
+      "options": ["15,000", "26,000", "5,000", "50,000"],
+      "correct": "15,000",
+      "explain": "Official figures state \"за 10 лет мы положили в этой войне 15 тысяч человек\"."
+    },
+    {
+      "id": "r8",
+      "ru": "По исследованию офицеров генерального штаба 26 тысяч.",
+      "question": "What alternative, higher death toll figure does Navalny cite from General Staff officers' own research?",
+      "options": ["26,000", "15,000", "10,000", "40,000"],
+      "correct": "26,000",
+      "explain": "He notes an alternate estimate: \"По исследованию офицеров генерального штаба 26 тысяч\"."
+    },
+    {
+      "id": "r9",
+      "ru": "Однажды у учительницы из нашей школы в Афганистане погиб сын.",
+      "question": "What personal tragedy struck a teacher at Alexei's school?",
+      "options": ["Her son died in Afghanistan", "Her husband was arrested", "Her house burned down", "She lost her job unexpectedly"],
+      "correct": "Her son died in Afghanistan",
+      "explain": "He recalls that \"у учительницы из нашей школы в Афганистане погиб сын\"."
+    },
+    {
+      "id": "r10",
+      "ru": "Так на военном жаргоне называли запаянные цинковые гробы, в которых возвращались тела погибших. Груз 200.",
+      "question": "What military slang term referred to the sealed zinc coffins bringing home the dead?",
+      "options": ["\"Cargo 200\"", "\"Red Star\"", "\"Black Tulip\"", "\"Silent Guard\""],
+      "correct": "\"Cargo 200\"",
+      "explain": "The zinc coffins were called \"Груз 200\" (Cargo 200) in military slang."
+    },
+    {
+      "id": "r11",
+      "ru": "В октябре 1987 года на центральном телевидении вышла программа «Взгляд».",
+      "question": "What TV program had a profound influence on young Alexei's political views?",
+      "options": ["\"Vzglyad\" (\"The Gaze\")", "\"Vremya\" (\"Time\")", "\"KVN\"", "\"600 Seconds\""],
+      "correct": "\"Vzglyad\" (\"The Gaze\")",
+      "explain": "He states the program «Взгляд», which premiered in October 1987, \"стала для меня всем\"."
+    },
+    {
+      "id": "r12",
+      "ru": "Владислав Листьев, главный взглядовец, был застрелен в собственном подъезде.",
+      "question": "What happened to Vzglyad host Vladislav Listyev, according to the text?",
+      "options": ["He was shot dead in his own building's entrance", "He emigrated to the United States", "He became a government minister", "He retired peacefully"],
+      "correct": "He was shot dead in his own building's entrance",
+      "explain": "The text says Listyev \"был застрелен в собственном подъезде\"."
+    },
+    {
+      "id": "r13",
+      "ru": "Сейчас он возглавляет первый канал государственного телевидения и стал одним из главных путинских пропагандистов.",
+      "question": "What did former Vzglyad figure Konstantin Ernst become in later years?",
+      "options": ["Head of Channel One and a leading pro-Putin propagandist", "A dissident living in exile", "A film director working abroad", "A member of the opposition parliament"],
+      "correct": "Head of Channel One and a leading pro-Putin propagandist",
+      "explain": "Ernst \"возглавляет первый канал государственного телевидения и стал одним из главных путинских пропагандистов\"."
+    },
+    {
+      "id": "r14",
+      "ru": "Вся страна была в шоке, когда кооператор Артем Тарасов был провозглашен первым советским миллионером",
+      "question": "Who was declared the first Soviet millionaire, shocking the country?",
+      "options": ["Artyom Tarasov", "Boris Yeltsin", "Anatoly Chubais", "Grigory Yavlinsky"],
+      "correct": "Artyom Tarasov",
+      "explain": "The text says \"кооператор Артем Тарасов был провозглашен первым советским миллионером\"."
+    },
+    {
+      "id": "r15",
+      "ru": "Мой отец тогда получал 300 рублей, мать — 160.",
+      "question": "What were Alexei's parents' monthly salaries around this time, for comparison?",
+      "options": ["300 rubles and 160 rubles", "3,000 and 1,600 rubles", "30 and 16 rubles", "500 and 250 rubles"],
+      "correct": "300 rubles and 160 rubles",
+      "explain": "He notes \"Мой отец тогда получал 300 рублей, мать — 160\"."
+    },
+    {
+      "id": "r16",
+      "ru": "19 августа 1991 года я очень недовольный вышел из дома.",
+      "question": "What date does the chapter's narrative build toward, when Alexei reluctantly left the house?",
+      "options": ["August 19, 1991", "December 25, 1991", "August 20, 1991", "November 9, 1989"],
+      "correct": "August 19, 1991",
+      "explain": "The chapter ends approaching \"19 августа 1991 года\"."
+    },
+    {
+      "id": "r17",
+      "ru": "Родители заставили меня идти на дачу.",
+      "question": "Why was young Alexei annoyed on the morning of August 19, 1991?",
+      "options": ["His parents made him go work at the dacha", "He had to take an exam", "He had a dentist appointment", "He had army duty that day"],
+      "correct": "His parents made him go work at the dacha",
+      "explain": "He complains that \"родители заставили меня идти на дачу\"."
+    },
+    {
+      "id": "r18",
+      "ru": "Но перейти дорогу оказалось не так легко. По ней ехали танки.",
+      "question": "What did Alexei encounter trying to cross the road on his way to the dacha?",
+      "options": ["Tanks driving down the road", "A military parade rehearsal", "A traffic jam of buses", "Soldiers marching in formation"],
+      "correct": "Tanks driving down the road",
+      "explain": "The chapter closes with \"перейти дорогу оказалось не так легко. По ней ехали танки\"."
+    },
+    {
+      "id": "r19",
+      "ru": "Идеологическая плотина затрещала, и хотя советские лидеры отчаянно попытались заткнуть брешь, было поздно.",
+      "question": "What metaphor does Navalny use to describe the effect of glasnost on censorship?",
+      "options": ["A dam cracking that leaders couldn't plug in time", "A river drying up slowly", "A wall being freshly repainted", "A fire that was quickly extinguished"],
+      "correct": "A dam cracking that leaders couldn't plug in time",
+      "explain": "He describes \"Идеологическая плотина затрещала\", and leaders' attempts to plug the breach came too late."
+    },
+    {
+      "id": "r20",
+      "ru": "Вводились талоны, специальные бумажки, дававшие право купить в магазине дефицит.",
+      "question": "What were \"талоны\" (ration coupons) used for in the late Soviet economy?",
+      "options": ["They gave the right to buy scarce goods", "They were used to vote in elections", "They were traded like currency abroad", "They granted permission to travel"],
+      "correct": "They gave the right to buy scarce goods",
+      "explain": "Талоны were \"специальные бумажки, дававшие право купить в магазине дефицит\"."
+    },
+    {
+      "id": "r21",
+      "ru": "Плановая экономика трещала по швам, товаров не хватало.",
+      "question": "What was happening to the planned economy during this period?",
+      "options": ["It was falling apart, with shortages of goods", "It was thriving under reforms", "It was being privatized smoothly", "It was completely unaffected"],
+      "correct": "It was falling apart, with shortages of goods",
+      "explain": "The text says \"Плановая экономика трещала по швам, товаров не хватало\"."
+    },
+    {
+      "id": "r22",
+      "ru": "Григорий Явлинский и группа его коллег предложили план «500 дней»",
+      "question": "What reform plan did economist Grigory Yavlinsky propose?",
+      "options": ["The \"500 Days\" program", "The \"1000 Days\" plan", "The \"New Economic Policy\"", "The \"Five-Year Plan\""],
+      "correct": "The \"500 Days\" program",
+      "explain": "Yavlinsky and colleagues \"предложили план «500 дней»\"."
+    },
+    {
+      "id": "r23",
+      "ru": "Но сейчас, в 44 года, я отношусь к нему хорошо, хотя бы потому, что он оказался абсолютно некоррумпированным человеком.",
+      "question": "Why does the adult Navalny say he now views Gorbachev favorably, despite past criticism?",
+      "options": ["Because Gorbachev turned out to be completely uncorrupt", "Because Gorbachev apologized publicly to him", "Because Gorbachev supported his campaigns", "Because Gorbachev personally restored the economy"],
+      "correct": "Because Gorbachev turned out to be completely uncorrupt",
+      "explain": "He explains he now respects Gorbachev partly \"потому, что он оказался абсолютно некоррумпированным человеком\"."
+    },
+    {
+      "id": "r24",
+      "ru": "Но он действительно снизил вероятность мировой ядерной войны почти до нуля",
+      "question": "What positive global achievement does Navalny credit to Gorbachev?",
+      "options": ["He nearly eliminated the risk of global nuclear war", "He ended the Cold War overnight", "He personally disbanded the KGB", "He introduced a stable new currency"],
+      "correct": "He nearly eliminated the risk of global nuclear war",
+      "explain": "Navalny credits him: \"Он действительно снизил вероятность мировой ядерной войны почти до нуля\"."
+    },
+    {
+      "id": "r25",
+      "ru": "В 87-89 годах вышли три фильма, которые стали абсолютно культовыми",
+      "question": "What kind of works, released in 1987-89, does Navalny say convinced him there was no turning back for the USSR?",
+      "options": ["Three cult films", "Three rock albums", "Three novels", "Three TV series"],
+      "correct": "Three cult films",
+      "explain": "He recalls \"В 87-89 годах вышли три фильма, которые стали абсолютно культовыми фильмами\", after which \"назад дороги нет\"."
+    }
+  ]
+}

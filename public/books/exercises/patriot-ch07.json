@@ -1,0 +1,286 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "___ был старый, в ужасных пятнах",
+      "lemma": "матрас",
+      "options": ["матрас", "матраса", "матрасу", "матрасом"],
+      "correct": "матрас",
+      "case": "Именительный (Nominative)",
+      "translation": "The mattress was old, covered in horrible stains.",
+      "explain": "Матрас is the grammatical subject of был (was), so it is Nominative."
+    },
+    {
+      "id": "c2",
+      "sentence": "После ___ я буквально еле ходил, ноги и руки дрожали, связи между мозгом и мышцами были разрушены",
+      "lemma": "больница",
+      "options": ["больница", "больницы", "больнице", "больницей"],
+      "correct": "больницы",
+      "case": "Родительный (Genitive)",
+      "translation": "After the hospital I could barely walk, my legs and arms shook, the connections between brain and muscles were broken.",
+      "explain": "The preposition после governs the Genitive case."
+    },
+    {
+      "id": "c3",
+      "sentence": "Пишу это и не могу сдержать иронической ___",
+      "lemma": "улыбка",
+      "options": ["улыбка", "улыбки", "улыбку", "улыбкой"],
+      "correct": "улыбки",
+      "case": "Родительный (Genitive)",
+      "translation": "I write this and cannot suppress an ironic smile.",
+      "explain": "Negating сдержать (to hold back) shifts its direct object into the Genitive case."
+    },
+    {
+      "id": "c4",
+      "sentence": "К ___ готовы",
+      "lemma": "вылет",
+      "options": ["вылет", "вылета", "вылету", "вылетом"],
+      "correct": "вылету",
+      "case": "Дательный (Dative)",
+      "translation": "Ready for departure.",
+      "explain": "The preposition к governs the Dative case."
+    },
+    {
+      "id": "c5",
+      "sentence": "Я снял ___, аккуратно свернул ее и положил, стараясь выбрать самую чистую часть скамейки",
+      "lemma": "куртка",
+      "options": ["куртка", "куртки", "куртку", "курткой"],
+      "correct": "куртку",
+      "case": "Винительный (Accusative)",
+      "translation": "I took off my jacket, carefully folded it, and set it down, trying to pick the cleanest part of the bench.",
+      "explain": "Куртку is the direct object of снял (took off), so it is Accusative."
+    },
+    {
+      "id": "c6",
+      "sentence": "Я записал на бумажке ___ к этому ролику",
+      "lemma": "текст",
+      "options": ["текст", "текста", "тексту", "текстом"],
+      "correct": "текст",
+      "case": "Винительный (Accusative)",
+      "translation": "I wrote down on a scrap of paper the text for this video.",
+      "explain": "Текст is the direct object of записал (wrote down); for this inanimate masculine noun the Accusative matches the Nominative."
+    },
+    {
+      "id": "c7",
+      "sentence": "Полицейские стали ___ возле меня",
+      "lemma": "полукруг",
+      "options": ["полукруг", "полукруга", "полукругу", "полукругом"],
+      "correct": "полукругом",
+      "case": "Творительный (Instrumental)",
+      "translation": "The policemen formed a semicircle around me.",
+      "explain": "Полукругом expresses the shape/manner in which they stood, an Instrumental use."
+    },
+    {
+      "id": "c8",
+      "sentence": "В ___ было человек шесть, но смотрел я только на него",
+      "lemma": "комната",
+      "options": ["комната", "комнаты", "комнату", "комнате"],
+      "correct": "комнате",
+      "case": "Предложный (Prepositional)",
+      "translation": "There were about six people in the room, but I was only looking at him.",
+      "explain": "The preposition в indicating location governs the Prepositional case."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Я в тюрьме.",
+      "question": "Where is Navalny writing this chapter from, in contrast to the previous one?",
+      "options": ["Prison", "A hospital in Berlin", "His Moscow apartment", "A hotel in Frankfurt"],
+      "correct": "Prison",
+      "explain": "He explicitly states \"Я в тюрьме\" (I'm in prison), contrasting it with writing the previous chapter in a house in Freiburg."
+    },
+    {
+      "id": "r2",
+      "ru": "«Ты же понимаешь, они могут снова тебя отравить.",
+      "question": "What concern did Yulia raise that convinced Navalny to delay his return to Russia?",
+      "options": ["That they might poison him again", "That the flight would be cancelled", "That his passport had expired", "That the apartment wasn't ready"],
+      "correct": "That they might poison him again",
+      "explain": "Yulia warned him that they could poison him again, so he should return in better physical shape."
+    },
+    {
+      "id": "r3",
+      "ru": "Контакты с тренером и физиотерапевтом закончились недавно, и под предлогом подготовки к отъезду и работы над проектом «Сайко», большим расследованием о дворце Путина, которое я должен был выпустить на следующий день после возвращения, на спорт я, конечно, забил.",
+      "question": "What excuse did Navalny use to stop exercising with his trainer and physiotherapist?",
+      "options": ["Preparing for departure and working on the Putin's Palace investigation", "A doctor's advice to rest completely", "Lack of time due to interviews", "A recurring back injury"],
+      "correct": "Preparing for departure and working on the Putin's Palace investigation",
+      "explain": "He says he used preparing to leave and working on the \"Saiko\" project (the Putin's Palace investigation) as his excuse to skip exercise."
+    },
+    {
+      "id": "r4",
+      "ru": "Я еще лежал в реанимации, когда певчих пришла ко мне в палату и сказала, цитата, Давай-ка врежем им хорошенько.",
+      "question": "What did Maria Pevchikh reportedly say to Navalny while he was still in intensive care?",
+      "options": ["\"Let's really hit them hard\"", "\"You should retire from politics\"", "\"We should postpone the investigation\"", "\"I'm quitting the team\""],
+      "correct": "\"Let's really hit them hard\"",
+      "explain": "While he was still in intensive care, she came to his room and said, quote, \"Let's give them a good hit.\""
+    },
+    {
+      "id": "r5",
+      "ru": "Упражнение довольно бессмысленное, ведь все мои счета уже много месяцев заблокированы по искам повара Путина Евгения Пригожина, человека еще во времена СССР, судимого за разбой, а сейчас ставшего благодаря дружбе с Путиным успешным предпринимателем, монополизировавшим поставки питания в московские школы и детские сады.",
+      "question": "Whose lawsuits had frozen Navalny's bank accounts for months?",
+      "options": ["Putin's chef, Yevgeny Prigozhin", "Vladimir Putin personally", "The Investigative Committee", "The Bank of Russia"],
+      "correct": "Putin's chef, Yevgeny Prigozhin",
+      "explain": "His accounts had been frozen for months due to lawsuits from Putin's chef, Yevgeny Prigozhin."
+    },
+    {
+      "id": "r6",
+      "ru": "Мы позвали Ольгу Михайлову, моего адвоката, которая специально приехала, чтобы лететь со мной обратно на случай, если меня задержат в зале пограничного контроля.",
+      "question": "Why did lawyer Olga Mikhailova specially travel to fly back with Navalny?",
+      "options": ["In case he was detained at border control", "To act as his personal translator", "To film a documentary about the trip", "To handle his luggage"],
+      "correct": "In case he was detained at border control",
+      "explain": "Mikhailova came specifically to fly back with him in case he was detained at passport control."
+    },
+    {
+      "id": "r7",
+      "ru": "Ну и в-третьих, мой испытательный срок, начавшийся в 2014 году после многочисленных продлений, окончательно завершился 30 декабря 2020 года, то есть 18 дней назад.",
+      "question": "When had Navalny's probation period, started in 2014, finally ended?",
+      "options": ["December 30, 2020", "January 17, 2021", "December 30, 2014", "October 2020"],
+      "correct": "December 30, 2020",
+      "explain": "His probation, begun in 2014, finally ended on December 30, 2020, eighteen days before this narration."
+    },
+    {
+      "id": "r8",
+      "ru": "И червячок этот говорил мне, «Чувак, ты сам знаешь, что если Путин в курсе, что ты хочешь всей стране показать его дворец изнутри, рассказать о том, как содержится его любовница и как государственный Газпром покупает им квартиры, то у него просто съедет крыша, и он тебя закроет в ту секунду, когда сможет это сделать».",
+      "question": "What nagging worry (the \"little worm\") kept bothering Navalny about the Putin's Palace investigation?",
+      "options": ["That if Putin found out about it, he'd lock Navalny up the moment he could", "That the investigation contained factual errors", "That the video's quality was too low", "That the palace didn't actually belong to Putin"],
+      "correct": "That if Putin found out about it, he'd lock Navalny up the moment he could",
+      "explain": "The nagging thought warned him that if Putin knew about the exposé, he would go mad and lock Navalny up the instant he could."
+    },
+    {
+      "id": "r9",
+      "ru": "Встречать нас будет несколько тысяч человек.",
+      "question": "How many people were expected to greet Navalny at the airport?",
+      "options": ["Several thousand", "About a hundred", "Just close friends and family", "Only journalists"],
+      "correct": "Several thousand",
+      "explain": "He notes that several thousand people were expected to come meet them."
+    },
+    {
+      "id": "r10",
+      "ru": "Я – персона в зоне риска, и полиция должна учитывать это в своей работе.",
+      "question": "How did German police classify Navalny while he was in Germany?",
+      "options": ["A person at risk, requiring police to factor that into their work", "A low-priority visitor needing no protection", "A foreign diplomat with immunity", "A private citizen under investigation"],
+      "correct": "A person at risk, requiring police to factor that into their work",
+      "explain": "He explains that as a person at risk, German police had to take that into account in their work."
+    },
+    {
+      "id": "r11",
+      "ru": "Первое, что я увидел, зайдя в самолет, — огромный еж.",
+      "question": "What was the first thing Navalny saw upon boarding the plane home?",
+      "options": ["A huge \"hedgehog\" of journalists with cameras and phones", "An empty cabin", "Police officers waiting for him", "A large bouquet of flowers"],
+      "correct": "A huge \"hedgehog\" of journalists with cameras and phones",
+      "explain": "He describes seeing a huge \"hedgehog\" — a mass of journalists bristling with phones and cameras."
+    },
+    {
+      "id": "r12",
+      "ru": "Я хочу заверить всех в Израиле, что со мной все будет так же хорошо, как с ситуацией на Ближнем Востоке.",
+      "question": "What joking comment did Navalny make to an Israeli TV crew on the plane?",
+      "options": ["That he'd be fine, just like the situation in the Middle East", "That he planned to visit Israel soon", "That he supported Israeli politics", "That he had Israeli relatives"],
+      "correct": "That he'd be fine, just like the situation in the Middle East",
+      "explain": "He jokingly assured Israeli viewers that things would go just as well for him as they were going in the Middle East."
+    },
+    {
+      "id": "r13",
+      "ru": "Наше судно направляется в сторону аэропорта Шереметьево.",
+      "question": "Which airport was the plane diverted to instead of Vnukovo?",
+      "options": ["Sheremetyevo", "Domodedovo", "Pulkovo", "Zhukovsky"],
+      "correct": "Sheremetyevo",
+      "explain": "The captain announced the aircraft was heading toward Sheremetyevo airport instead."
+    },
+    {
+      "id": "r14",
+      "ru": "Во Внуково, где нас встречают несколько тысяч человек, идут задержания.",
+      "question": "What was happening at Vnukovo airport while Navalny's flight was being diverted?",
+      "options": ["Detentions of the thousands of people gathered to greet him", "A fire alarm evacuation", "A press conference by Kremlin officials", "A public celebration"],
+      "correct": "Detentions of the thousands of people gathered to greet him",
+      "explain": "Journalists reported that detentions were underway at Vnukovo, where thousands had gathered to meet him."
+    },
+    {
+      "id": "r15",
+      "ru": "«Алексей Анатольевич, пройдите, пожалуйста, со мной».",
+      "question": "What did the border officer say to Navalny at passport control?",
+      "options": ["\"Alexei Anatolyevich, please come with me\"", "\"Welcome home, sir\"", "\"Your passport has expired\"", "\"Please wait in line\""],
+      "correct": "\"Alexei Anatolyevich, please come with me\"",
+      "explain": "The officer politely asked him to come along, signaling the start of his detention."
+    },
+    {
+      "id": "r16",
+      "ru": "«У ВД Химки».",
+      "question": "Which police department was Navalny told he had been taken to?",
+      "options": ["Khimki police department", "Central Moscow police department", "Sheremetyevo airport police", "Simonovsky district police"],
+      "correct": "Khimki police department",
+      "explain": "He was told he had been brought to the Khimki police department (УВД Химки)."
+    },
+    {
+      "id": "r17",
+      "ru": "Это же Осипов!",
+      "question": "Who did Navalny think he recognized among the police officers conducting the search?",
+      "options": ["One of his eight poisoners, Osipov", "A childhood friend", "A former Yabloko colleague", "A journalist in disguise"],
+      "correct": "One of his eight poisoners, Osipov",
+      "explain": "He was startled, thinking he recognized Osipov, one of the FSB operatives believed to have poisoned him."
+    },
+    {
+      "id": "r18",
+      "ru": "Вот ваша одноразовая постель, вот подполковник протянул квадратную коробку, еда и чай, вот матрас».",
+      "question": "What did the lieutenant colonel hand Navalny along with his bedding?",
+      "options": ["A box with food and tea", "A change of clothes", "Reading material", "A phone charger"],
+      "correct": "A box with food and tea",
+      "explain": "The lieutenant colonel handed him a square box with food and tea along with his disposable bedding and mattress."
+    },
+    {
+      "id": "r19",
+      "ru": "Начальник УВД Химки просит арестовать тебя на месяц.",
+      "question": "What was the head of the Khimki police department requesting at the impromptu hearing?",
+      "options": ["That Navalny be arrested for a month", "That Navalny be released immediately", "That Navalny pay a fine", "That Navalny be deported"],
+      "correct": "That Navalny be arrested for a month",
+      "explain": "He was told the head of the Khimki police department was asking for him to be arrested for a month."
+    },
+    {
+      "id": "r20",
+      "ru": "В это время, как удачно, с улицы начало доноситься скандирование «Свободу Навальному» и «Пропустите».",
+      "question": "What could be heard from outside during the improvised court hearing at the police station?",
+      "options": ["Chants of \"Freedom for Navalny\" and \"Let us through\"", "Sirens from approaching riot police", "Complete silence", "Music from a nearby celebration"],
+      "correct": "Chants of \"Freedom for Navalny\" and \"Let us through\"",
+      "explain": "Chanting of \"Freedom to Navalny\" and \"Let us in\" could be heard from the street during the hearing."
+    },
+    {
+      "id": "r21",
+      "ru": "Именем Российской Федерации арестован.",
+      "question": "How does Navalny sum up the outcome of the impromptu police-station hearing?",
+      "options": ["He was arrested \"in the name of the Russian Federation\"", "The judge dismissed all charges", "The hearing was postponed indefinitely", "He was released on bail"],
+      "correct": "He was arrested \"in the name of the Russian Federation\"",
+      "explain": "He summarizes the outcome tersely: arrested in the name of the Russian Federation."
+    },
+    {
+      "id": "r22",
+      "ru": "«Матросская тишина».",
+      "question": "Which detention facility was named on the summons Navalny was handed?",
+      "options": ["Matrosskaya Tishina", "Butyrka", "Lefortovo", "Kresty"],
+      "correct": "Matrosskaya Tishina",
+      "explain": "The summons named the pretrial detention center \"Matrosskaya Tishina\" as his destination."
+    },
+    {
+      "id": "r23",
+      "ru": "Я неожиданно для самого себя заорал в ответ «Ничего не бойтесь!»",
+      "question": "What did Navalny unexpectedly shout back to the crowd as he was led away?",
+      "options": ["\"Don't be afraid of anything!\"", "\"I'll be back soon!\"", "\"Watch the video!\"", "\"Free Russia now!\""],
+      "correct": "\"Don't be afraid of anything!\"",
+      "explain": "To his own surprise, he shouted back \"Don't be afraid of anything!\" to the supporters outside."
+    },
+    {
+      "id": "r24",
+      "ru": "Обыскивали вежливо, но дотошно, еще бы.",
+      "question": "How does Navalny describe the manner of the search conducted on him?",
+      "options": ["Polite but thorough", "Rushed and careless", "Violent and abusive", "Brief and superficial"],
+      "correct": "Polite but thorough",
+      "explain": "He says the search was conducted politely but very thoroughly."
+    },
+    {
+      "id": "r25",
+      "ru": "Так я и написал эту главу.",
+      "question": "How does Navalny explain, at the very end, that he managed to write this chapter?",
+      "options": ["Because guards allowed him only paper and a pen in his cell", "Because he dictated it over the phone", "Because he had a laptop smuggled in", "Because he wrote it from memory after release"],
+      "correct": "Because guards allowed him only paper and a pen in his cell",
+      "explain": "The chapter ends with guards granting him paper and a pen, which is how he says he came to write the chapter."
+    }
+  ]
+}

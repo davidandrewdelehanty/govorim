@@ -1,0 +1,186 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Красивый ___ с черной с проседью бородой неподвижно стоял, держа чашку с медом.",
+      "lemma": "старик",
+      "options": ["старик", "старика", "старику", "стариком"],
+      "correct": "старик",
+      "case": "Именительный (Nominative)",
+      "translation": "The handsome old man with a graying black beard stood motionless, holding a cup of honey.",
+      "explain": "Старик is the subject of стоял (stood), so it stands in the nominative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Никто не объявлял ___, а люди просто сочувствуют страданиям ближних.",
+      "lemma": "война",
+      "options": ["война", "войны", "войне", "войну"],
+      "correct": "войны",
+      "case": "Родительный (Genitive)",
+      "translation": "No one declared war, but people simply sympathize with the suffering of their neighbors.",
+      "explain": "A negated transitive verb (не объявлял) takes its object in the genitive case: войны."
+    },
+    {
+      "id": "c3",
+      "sentence": "Люди сочувствуют чужому ___ и желают помочь ближнему.",
+      "lemma": "страдание",
+      "options": ["страдание", "страдания", "страданию", "страданием"],
+      "correct": "страданию",
+      "case": "Дательный (Dative)",
+      "translation": "People sympathize with a stranger's suffering and wish to help their neighbor.",
+      "explain": "The verb сочувствовать (to sympathize with) governs the dative case."
+    },
+    {
+      "id": "c4",
+      "sentence": "Сергей Иванович осторожно вынимал из чашки живую ___, попавшую в мед.",
+      "lemma": "пчела",
+      "options": ["пчела", "пчелы", "пчеле", "пчелу"],
+      "correct": "пчелу",
+      "case": "Винительный (Accusative)",
+      "translation": "Sergei Ivanovich carefully took out of the cup a live bee that had fallen into the honey.",
+      "explain": "The verb вынимал (was taking out) governs the accusative case for its direct object."
+    },
+    {
+      "id": "c5",
+      "sentence": "Старик неподвижно стоял, держа чашку с ___.",
+      "lemma": "мед",
+      "options": ["мед", "меда", "меду", "медом"],
+      "correct": "медом",
+      "case": "Творительный (Instrumental)",
+      "translation": "The old man stood motionless, holding a cup of honey.",
+      "explain": "The preposition с (with) governs the instrumental case."
+    },
+    {
+      "id": "c6",
+      "sentence": "В восьмидесятимиллионном ___ всегда найдутся десятки тысяч людей, потерявших общественное положение.",
+      "lemma": "народ",
+      "options": ["народ", "народа", "народу", "народе"],
+      "correct": "народе",
+      "case": "Предложный (Prepositional)",
+      "translation": "Among eighty million people there will always be found tens of thousands who have lost their social standing.",
+      "explain": "The preposition в (in/among) governs the prepositional case here."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "«А ты знаешь, Костя, с кем Сергей Иванович ехал сюда?» — сказал Долли, отделив детей огурцами и медом.",
+      "question": "What news does Dolly share with Levin (Kostya) about who Sergei Ivanovich was traveling with?",
+      "options": ["That he was traveling with Vronsky", "That he was traveling with Kitty", "That he was traveling alone", "That he was traveling with the old prince"],
+      "correct": "That he was traveling with Vronsky",
+      "explain": "Dolly asks Kostya if he knows who Sergei Ivanovich traveled with, having given the children cucumbers and honey to distract them."
+    },
+    {
+      "id": "r2",
+      "ru": "«С Вронским. Он едет в Сербию».",
+      "question": "Where is Vronsky going, according to Dolly?",
+      "options": ["To Serbia", "To Moscow", "To England", "To Turkey"],
+      "correct": "To Serbia",
+      "explain": "Dolly says Sergei Ivanovich traveled with Vronsky, who is going to Serbia."
+    },
+    {
+      "id": "r3",
+      "ru": "«Это ему идет», — сказал Левин.",
+      "question": "How did Levin react to hearing that Vronsky was leading a squadron at his own expense?",
+      "options": ["He said it suited Vronsky", "He said it was foolish", "He refused to comment", "He laughed scornfully"],
+      "correct": "He said it suited Vronsky",
+      "explain": "Levin remarked, \"That suits him,\" about Vronsky leading a squadron at his own expense."
+    },
+    {
+      "id": "r4",
+      "ru": "— С турками, — спокойно улыбаясь, отвечал Сергей Иванович, выпроставший беспомощно двигавшую ножками почерневшую от меда пчелу и ссаживая ее с ножа на крепкий осиновый листок.",
+      "question": "What was Sergei Ivanovich doing with the bee stuck in the honey?",
+      "options": ["Carefully freeing it with a knife and setting it on a leaf", "Ignoring it completely", "Crushing it", "Feeding it to the children"],
+      "correct": "Carefully freeing it with a knife and setting it on a leaf",
+      "explain": "While calmly answering that they were fighting the Turks, he freed the honey-covered bee with his knife and set it on an aspen leaf."
+    },
+    {
+      "id": "r5",
+      "ru": "Никто не объявлял войны, а люди сочувствуют страданиям ближних и желают помочь им, сказал Сергей Иванович.",
+      "question": "According to Sergei Ivanovich, why are people going to help, even though no war was declared?",
+      "options": ["Because people sympathize with the suffering of their neighbors and want to help them", "Because the government ordered them to", "Because they wanted adventure", "Because Vronsky asked for volunteers"],
+      "correct": "Because people sympathize with the suffering of their neighbors and want to help them",
+      "explain": "Sergei Ivanovich explains that no war was declared, but people sympathize with the suffering of others and wish to help."
+    },
+    {
+      "id": "r6",
+      "ru": "«Да это и не пчела, это оса», — сказал Левин.",
+      "question": "What insect did Dolly mistake for a bee?",
+      "options": ["A wasp", "A fly", "A moth", "A beetle"],
+      "correct": "A wasp",
+      "explain": "Levin corrects Dolly, saying it isn't a bee but a wasp."
+    },
+    {
+      "id": "r7",
+      "ru": "Война, с одной стороны, есть такое животное, жестокое, ужасное дело, что ни один человек, не говорю уже христианин, не может лично взять на свою ответственность начало войны.",
+      "question": "How does Levin describe war?",
+      "options": ["As such a brutal, terrible affair that no person, let alone a Christian, could take responsibility for starting one", "As a noble and glorious undertaking", "As something only governments should discuss", "As a necessary evil that everyone should support"],
+      "correct": "As such a brutal, terrible affair that no person, let alone a Christian, could take responsibility for starting one",
+      "explain": "Levin argues that war is such a brutal and terrible affair that no individual, let alone a Christian, could take personal responsibility for starting one."
+    },
+    {
+      "id": "r8",
+      "ru": "«В том-то и штука, батюшка, что могут быть случаи, когда правительство не исполняет воли граждан, и тогда общество заявляет свою волю», — сказал Котовасов.",
+      "question": "What point does Katavasov make about government and the will of the people?",
+      "options": ["That there can be cases when the government fails to carry out the people's will, and then society expresses its own will", "That the government always represents the people perfectly", "That society should never oppose the government", "That war is only just when declared officially"],
+      "correct": "That there can be cases when the government fails to carry out the people's will, and then society expresses its own will",
+      "explain": "Katavasov argues that sometimes government fails to carry out the citizens' will, and then society expresses its will directly."
+    },
+    {
+      "id": "r9",
+      "ru": "Убивают братьев, единокровных и единоверцев.",
+      "question": "What atrocity does Sergei Ivanovich say is being committed against fellow Slavs and fellow believers?",
+      "options": ["They are being killed", "They are being enslaved", "They are being taxed unfairly", "They are being exiled"],
+      "correct": "They are being killed",
+      "explain": "Sergei Ivanovich says brothers of the same blood and faith are being killed."
+    },
+    {
+      "id": "r10",
+      "ru": "«Но не убил бы», — сказал Левин.",
+      "question": "When Sergei Ivanovich pressed Levin about defending a woman being beaten, what did Levin say he would NOT do?",
+      "options": ["Kill the attacker", "Call the police", "Run away", "Ignore the situation"],
+      "correct": "Kill the attacker",
+      "explain": "Levin says he would intervene but would not kill the attacker."
+    },
+    {
+      "id": "r11",
+      "ru": "Я жил за границей, читал газеты и, признаюсь, еще до болгарских ужасов никак не понимал, почему все русские так вдруг полюбили братьев-славян, а я никакой к ним любви не чувствую.",
+      "question": "What did the old prince say about his own feelings toward the Slavic brothers before the Bulgarian atrocities?",
+      "options": ["That he lived abroad, read the papers, and never understood why Russians suddenly loved their Slavic brothers, since he felt no such love himself", "That he always felt deep love for the Slavs", "That he never read any news about it", "That he supported the war from the very beginning"],
+      "correct": "That he lived abroad, read the papers, and never understood why Russians suddenly loved their Slavic brothers, since he felt no such love himself",
+      "explain": "The old prince admits he lived abroad, read the papers, and could not understand the sudden love for the Slavic brothers, feeling none himself."
+    },
+    {
+      "id": "r12",
+      "ru": "«Личные мнения тут ничего не значат», — сказал Сергей Иванович.",
+      "question": "What did Sergei Ivanovich say about the value of personal opinions in this matter?",
+      "options": ["That personal opinions mean nothing here", "That personal opinions are the most important thing", "That only the Tsar's opinion matters", "That Levin's opinion was correct"],
+      "correct": "That personal opinions mean nothing here",
+      "explain": "Sergei Ivanovich states that personal opinions mean nothing in this matter."
+    },
+    {
+      "id": "r13",
+      "ru": "«Да извините меня, я этого не вижу. Народ и знать не знает», — сказал князь.",
+      "question": "How did the old prince respond to the claim that the people had expressed their will?",
+      "options": ["He said he didn't see it that way, and that the people don't even know about it", "He agreed completely", "He said the people had voted on it", "He refused to answer"],
+      "correct": "He said he didn't see it that way, and that the people don't even know about it",
+      "explain": "The prince responds that he doesn't see it that way, and that the common people don't even know about it."
+    },
+    {
+      "id": "r14",
+      "ru": "Красивый старик с черной с проседью бородой и густыми серебряными волосами неподвижно стоял, держа чашку с медом, ласково и спокойно с высоты своего роста, глядя на господ, очевидно, ничего не понимая и не желая понимать.",
+      "question": "How is the old beekeeper described as he stood listening to the conversation?",
+      "options": ["A handsome old man with a graying black beard and silvery hair, standing calmly, clearly not understanding or caring to understand", "A frightened young boy", "An angry old woman", "A soldier in uniform"],
+      "correct": "A handsome old man with a graying black beard and silvery hair, standing calmly, clearly not understanding or caring to understand",
+      "explain": "The old beekeeper is described as handsome, with a graying black beard and silvery hair, standing calmly and clearly not understanding the debate."
+    },
+    {
+      "id": "r15",
+      "ru": "«Значит, по-моему, — сказал начинавший горячиться Левин, — что в восьмидесятимиллионном народе всегда найдутся не сотни, как теперь, а десятки тысяч людей, потерявших общественное положение.",
+      "question": "What does Levin argue about the number of people who actually understand or care about the Slavic cause, out of eighty million?",
+      "options": ["That only tens of thousands, not the whole nation, truly know or care about it", "That every single Russian understands it perfectly", "That no one cares at all", "That only the aristocracy understands it"],
+      "correct": "That only tens of thousands, not the whole nation, truly know or care about it",
+      "explain": "Growing heated, Levin argues that among eighty million people there will always be tens of thousands who have lost their social standing, not the whole nation acting as one."
+    }
+  ]
+}

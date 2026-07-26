@@ -1,0 +1,286 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "___ был страшно коррумпирован",
+      "lemma": "регион",
+      "options": ["регион", "региона", "региону", "регионом"],
+      "correct": "регион",
+      "case": "Именительный (Nominative)",
+      "translation": "The region was terribly corrupt.",
+      "explain": "Регион is the grammatical subject of был (was), so it is Nominative."
+    },
+    {
+      "id": "c2",
+      "sentence": "мы просили деньги у ___ природных ресурсов",
+      "lemma": "министр",
+      "options": ["министр", "министра", "министру", "министром"],
+      "correct": "министра",
+      "case": "Родительный (Genitive)",
+      "translation": "We asked for money from the minister of natural resources.",
+      "explain": "The preposition у governs the Genitive case."
+    },
+    {
+      "id": "c3",
+      "sentence": "Во-первых, к тому ___ я начал понимать, что мне не хватает знаний",
+      "lemma": "момент",
+      "options": ["момент", "момента", "моменту", "моментом"],
+      "correct": "моменту",
+      "case": "Дательный (Dative)",
+      "translation": "First, by that point I had begun to understand that I lacked knowledge.",
+      "explain": "The preposition к governs the Dative case."
+    },
+    {
+      "id": "c4",
+      "sentence": "Я подал ___ в Ельский университет на программу Yale World Fellows",
+      "lemma": "заявка",
+      "options": ["заявка", "заявки", "заявку", "заявкой"],
+      "correct": "заявку",
+      "case": "Винительный (Accusative)",
+      "translation": "I submitted an application to Yale University for the Yale World Fellows program.",
+      "explain": "Заявку is the direct object of подал (submitted), so it is Accusative."
+    },
+    {
+      "id": "c5",
+      "sentence": "Я, конечно же, пытался этот секретный ___ найти",
+      "lemma": "отчет",
+      "options": ["отчет", "отчета", "отчету", "отчетом"],
+      "correct": "отчет",
+      "case": "Винительный (Accusative)",
+      "translation": "I certainly tried to find this secret report.",
+      "explain": "Отчёт is the direct object of найти (to find); for this inanimate masculine noun the Accusative form matches the Nominative."
+    },
+    {
+      "id": "c6",
+      "sentence": "довольно быстро оказывается, что ты с утра до вечера занимаешься ___",
+      "lemma": "коррупция",
+      "options": ["коррупция", "коррупции", "коррупцию", "коррупцией"],
+      "correct": "коррупцией",
+      "case": "Творительный (Instrumental)",
+      "translation": "It quickly turns out that from morning to night you're dealing with corruption.",
+      "explain": "The verb заниматься (to be occupied with) governs the Instrumental case."
+    },
+    {
+      "id": "c7",
+      "sentence": "Токарев, будучи ___ крайне непубличным, в результате все-таки высказался",
+      "lemma": "человек",
+      "options": ["человек", "человека", "человеку", "человеком"],
+      "correct": "человеком",
+      "case": "Творительный (Instrumental)",
+      "translation": "Tokarev, being an extremely non-public person, nevertheless eventually spoke out.",
+      "explain": "A predicate noun after будучи (being) takes the Instrumental case."
+    },
+    {
+      "id": "c8",
+      "sentence": "Однажды я спросил у него, «Сколько членов у вас в ___?»",
+      "lemma": "организация",
+      "options": ["организация", "организации", "организацию", "организацией"],
+      "correct": "организации",
+      "case": "Предложный (Prepositional)",
+      "translation": "I once asked him, \"How many members do you have in the organization?\"",
+      "explain": "The preposition в indicating location governs the Prepositional case."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "И внезапно они выбрали нового лидера, молодого парня по имени Никита Белых.",
+      "question": "Who did the SPS party unexpectedly choose as its new leader?",
+      "options": ["Nikita Belykh", "Boris Nemtsov", "Ilya Yashin", "Dmitry Rogozin"],
+      "correct": "Nikita Belykh",
+      "explain": "The text says SPS suddenly chose a young man named Nikita Belykh as its new leader."
+    },
+    {
+      "id": "r2",
+      "ru": "В 2007 году состоялись выборы в Государственную Думу, и Белых, в том числе, наверное, под моим влиянием и под влиянием либеральной общественности в целом, решил на этих выборах выступить с достаточно радикальных позиций, антипутинских позиций.",
+      "question": "What kind of political stance did Belykh decide to take in the 2007 Duma elections?",
+      "options": ["Fairly radical, anti-Putin positions", "Full support for Putin's party", "A strictly neutral, apolitical stance", "An alliance with the Communist Party"],
+      "correct": "Fairly radical, anti-Putin positions",
+      "explain": "Navalny says Belykh decided to run on fairly radical, anti-Putin positions in the 2007 elections."
+    },
+    {
+      "id": "r3",
+      "ru": "СПС получил меньше 1%.",
+      "question": "What share of the vote did SPS get in the 2007 elections?",
+      "options": ["Less than 1%", "About 25%", "Just over 50%", "Around 10%"],
+      "correct": "Less than 1%",
+      "explain": "The text states SPS got less than 1%."
+    },
+    {
+      "id": "r4",
+      "ru": "Мы твою партию разгоним, но тебя мы сделаем, если хочешь, губернатором.",
+      "question": "What deal was reportedly offered to Belykh after his party's defeat?",
+      "options": ["His party would be dissolved, but he could become governor", "He would be given a seat in the Duma", "He would be exiled abroad", "He would be made a minister in Moscow"],
+      "correct": "His party would be dissolved, but he could become governor",
+      "explain": "He was told his party would be broken up, but he could be made governor if he wanted."
+    },
+    {
+      "id": "r5",
+      "ru": "Белых отдали Кировскую область, одну из самых бедных.",
+      "question": "Which region was Belykh given to govern?",
+      "options": ["Kirov Oblast, one of the poorest", "Moscow Oblast", "Krasnodar Krai", "Sverdlovsk Oblast"],
+      "correct": "Kirov Oblast, one of the poorest",
+      "explain": "Belykh was given Kirov Oblast, described as one of the poorest regions."
+    },
+    {
+      "id": "r6",
+      "ru": "Моя семья осталась в Москве, Юлю и детей я видел только по выходным.",
+      "question": "How often did Navalny initially see his family after taking the advisor position in Kirov?",
+      "options": ["Only on weekends", "Every day", "Once a year", "Never, for the whole year"],
+      "correct": "Only on weekends",
+      "explain": "His family stayed in Moscow and he saw Yulia and the children only on weekends."
+    },
+    {
+      "id": "r7",
+      "ru": "Даша пошла там во второй класс, Захару к тому моменту было чуть больше года.",
+      "question": "What grade did Navalny's daughter Dasha start in Kirov?",
+      "options": ["Second grade", "First grade", "Fifth grade", "Kindergarten"],
+      "correct": "Second grade",
+      "explain": "The text says Dasha started second grade there."
+    },
+    {
+      "id": "r8",
+      "ru": "У меня теперь есть и дочь, и сын!",
+      "question": "What was Navalny celebrating with the birth of his son Zakhar?",
+      "options": ["Now having both a daughter and a son", "His first child overall", "Twins being born", "Becoming a grandfather"],
+      "correct": "Now having both a daughter and a son",
+      "explain": "He exclaims that now he has both a daughter and a son."
+    },
+    {
+      "id": "r9",
+      "ru": "Регион был страшно коррумпирован, и, как это часто бывает, во главе его раньше стоял бывший прокурор.",
+      "question": "What had previously been true of the person who led the corrupt region, according to Navalny?",
+      "options": ["He was a former prosecutor", "He was a former teacher", "He was a former journalist", "He was a former banker"],
+      "correct": "He was a former prosecutor",
+      "explain": "The region had previously been headed by a former prosecutor, as is often the case."
+    },
+    {
+      "id": "r10",
+      "ru": "Чтобы только обсудить мою идею, потребовалось пять больших совещаний с губернатором, и даже после этого Wi-Fi не провели.",
+      "question": "What did it take just to discuss Navalny's idea of installing Wi-Fi in the government building?",
+      "options": ["Five large meetings with the governor, and even then it wasn't installed", "One quick phone call", "A formal vote by the regional parliament", "A visit from a Moscow official"],
+      "correct": "Five large meetings with the governor, and even then it wasn't installed",
+      "explain": "It took five large meetings with the governor just to discuss the idea, and even then Wi-Fi was never installed."
+    },
+    {
+      "id": "r11",
+      "ru": "Стало очевидно, что в коррумпированной среде ты должен сам стать коррумпированным, если хочешь просто помочь людям.",
+      "question": "What painful realization did Navalny come to about operating in a corrupt environment?",
+      "options": ["That you had to become corrupt yourself just to help people", "That corruption could be eliminated with enough paperwork", "That only outsiders could fight corruption effectively", "That corruption was exaggerated by the media"],
+      "correct": "That you had to become corrupt yourself just to help people",
+      "explain": "He realized that in a corrupt environment you must become corrupt yourself just to help people."
+    },
+    {
+      "id": "r12",
+      "ru": "Это означает, что я должен придумать какую-то странную схему, по которой человеку-министра нужно дать больше леса, а взамен министр тогда даст государственных денег на Кировскую область.",
+      "question": "What kind of scheme was Navalny expected to devise involving the minister's associate and timber?",
+      "options": ["Giving the minister's man more timber in exchange for state funding for the region", "Selling timber abroad for personal profit", "Donating timber to an orphanage for good publicity", "Auctioning timber rights to foreign investors"],
+      "correct": "Giving the minister's man more timber in exchange for state funding for the region",
+      "explain": "He was expected to devise a scheme giving the minister's man more timber in exchange for state funding for Kirov Oblast."
+    },
+    {
+      "id": "r13",
+      "ru": "Через несколько лет это название будет известно всей стране.",
+      "question": "What does Navalny foreshadow about the folder labeled \"Kirovles\"?",
+      "options": ["That its name would soon become known to the whole country", "That it would be quietly forgotten", "That it would be renamed", "That it would be sold to a foreign company"],
+      "correct": "That its name would soon become known to the whole country",
+      "explain": "He writes that within a few years, that name (Kirovles) would be known to the entire country."
+    },
+    {
+      "id": "r14",
+      "ru": "Там работало 4000 человек, и его положение было катастрофическим.",
+      "question": "How many people worked at Kirovles, and what was its condition?",
+      "options": ["4,000 people, and its condition was catastrophic", "400 people, and it was thriving", "40,000 people, and it was stable", "4,000 people, and it was profitable"],
+      "correct": "4,000 people, and its condition was catastrophic",
+      "explain": "The text says 4,000 people worked there and its condition was catastrophic."
+    },
+    {
+      "id": "r15",
+      "ru": "Я уже и думать об этом забыл, когда спустя несколько месяцев вдруг узнал, что Опалевы незаметно в должности восстановили, аудит отменили, проигнорировав решения, принятые на всех уровнях кировской власти.",
+      "question": "What happened months later regarding the Kirovles director Opalev, despite Navalny's efforts?",
+      "options": ["He was quietly reinstated and the audit was cancelled", "He was sentenced to prison", "He fled the country", "He was promoted to a federal ministry"],
+      "correct": "He was quietly reinstated and the audit was cancelled",
+      "explain": "Navalny learned months later that Opalev had been quietly reinstated and the audit cancelled, ignoring decisions made at every level of Kirov's government."
+    },
+    {
+      "id": "r16",
+      "ru": "Однако суть путинской власти в том, что правила могут поменяться и в любой момент обернуться против тебя.",
+      "question": "What does Navalny say is the essence of Putin's system of power?",
+      "options": ["That the rules can change at any moment and turn against you", "That rules are always applied fairly and consistently", "That only foreigners are affected by sudden rule changes", "That the rules never actually change"],
+      "correct": "That the rules can change at any moment and turn against you",
+      "explain": "He states that the essence of Putin's power is that the rules can change and turn against you at any moment."
+    },
+    {
+      "id": "r17",
+      "ru": "В новостях показывали, как Никиту Белых задерживают в московском ресторане при получении взятки.",
+      "question": "What did Navalny see on the news years later, while on vacation, about Nikita Belykh?",
+      "options": ["Belykh being detained in a Moscow restaurant for taking a bribe", "Belykh winning a national election", "Belykh being appointed a federal minister", "Belykh announcing his retirement from politics"],
+      "correct": "Belykh being detained in a Moscow restaurant for taking a bribe",
+      "explain": "The news showed Nikita Belykh being detained in a Moscow restaurant while receiving a bribe."
+    },
+    {
+      "id": "r18",
+      "ru": "Российские жулики воровали в России, а тратили на ворованное на Западе.",
+      "question": "What pattern did Navalny observe about Russian crooks and stolen money?",
+      "options": ["They stole in Russia but spent the stolen money in the West", "They stole abroad and invested it back in Russia", "They only stole from foreign companies", "They kept all stolen money in Russian banks"],
+      "correct": "They stole in Russia but spent the stolen money in the West",
+      "explain": "He notes Russian crooks stole in Russia but spent their stolen money in the West."
+    },
+    {
+      "id": "r19",
+      "ru": "Отвечая по сто раз в день на вопросы вроде «Как ваши дела?», «Как провели выходные?», мне, угрюмому русскому, приходилось так много улыбаться, что по вечерам у меня болели щеки.",
+      "question": "What minor discomfort did Navalny experience from constant American friendliness at Yale?",
+      "options": ["His cheeks hurt from smiling so much", "He got headaches from small talk", "He lost his voice from talking too much", "He developed insomnia from the social pace"],
+      "correct": "His cheeks hurt from smiling so much",
+      "explain": "He says answering friendly small-talk questions all day made him, a gloomy Russian, smile so much that his cheeks hurt by evening."
+    },
+    {
+      "id": "r20",
+      "ru": "А он ответил, «Ну, у нас не самая большая молодежная организация, около 12 миллионов».",
+      "question": "How large did the Indonesian youth organization leader say his group was?",
+      "options": ["About 12 million members", "About 200 members", "About 2 million members", "About 120,000 members"],
+      "correct": "About 12 million members",
+      "explain": "He answered that his was not even the largest youth organization, with around 12 million members."
+    },
+    {
+      "id": "r21",
+      "ru": "Транснефть – это крупнейшая в мире трубопроводная компания, занимающаяся транспортировкой нефти по всей России.",
+      "question": "What kind of company is Transneft, as described by Navalny?",
+      "options": ["The world's largest pipeline company, transporting oil across Russia", "A small regional trucking firm", "A foreign-owned refinery operator", "A private investment bank"],
+      "correct": "The world's largest pipeline company, transporting oil across Russia",
+      "explain": "Transneft is described as the world's largest pipeline company, transporting oil throughout Russia."
+    },
+    {
+      "id": "r22",
+      "ru": "Вот результаты этой проверки самым возмутительным образом засекретило по запросу самой Транснефти.",
+      "question": "What happened to the results of the Audit Chamber's inspection of Transneft?",
+      "options": ["They were classified as secret at Transneft's own request", "They were published in full immediately", "They were leaked to Western media", "They were sent directly to Putin"],
+      "correct": "They were classified as secret at Transneft's own request",
+      "explain": "The results of the inspection were outrageously classified at Transneft's own request."
+    },
+    {
+      "id": "r23",
+      "ru": "Украдено на этом трубопроводе было около 4 миллиардов долларов.",
+      "question": "About how much money did Navalny estimate was stolen on the pipeline project?",
+      "options": ["About 4 billion dollars", "About 400 million dollars", "About 40 billion dollars", "About 4 million dollars"],
+      "correct": "About 4 billion dollars",
+      "explain": "The text states around 4 billion dollars was stolen on the pipeline."
+    },
+    {
+      "id": "r24",
+      "ru": "Главой госкорпорации был тогда и по сегодняшний день остается Николай Токарев, бывший сотрудник КГБ, ближайший друг Путина, с которым они сидели в одном кабинете в советской резидентуре в Дрездене.",
+      "question": "What was Nikolai Tokarev's connection to Putin, according to Navalny?",
+      "options": ["A former KGB officer and close friend who shared an office with Putin in Dresden", "A distant cousin of Putin's", "A former political rival", "A journalist who exposed Putin's early career"],
+      "correct": "A former KGB officer and close friend who shared an office with Putin in Dresden",
+      "explain": "Tokarev is described as a former KGB officer and Putin's closest friend, with whom he shared an office in the Soviet residency in Dresden."
+    },
+    {
+      "id": "r25",
+      "ru": "Мы собрались, на четырех человек у нас вышло восемь чемоданов, и полетели в Москву.",
+      "question": "How many suitcases did Navalny's family of four end up with when they flew back to Moscow?",
+      "options": ["Eight", "Four", "Two", "Twelve"],
+      "correct": "Eight",
+      "explain": "The text says the family of four ended up with eight suitcases when they flew to Moscow."
+    }
+  ]
+}

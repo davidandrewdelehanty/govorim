@@ -1,0 +1,138 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Одна была ___ «Король Лир в степи», другая был квартет, посвященный памяти Баха.",
+      "lemma": "фантазия",
+      "options": ["фантазия", "фантазии", "фантазию", "фантазией"],
+      "correct": "фантазия",
+      "case": "Именительный (Nominative)",
+      "translation": "One was a fantasia, 'King Lear in the Steppe,' the other a quartet dedicated to the memory of Bach.",
+      "explain": "Фантазия is the predicate noun renaming the subject after была (was), so it stays nominative."
+    },
+    {
+      "id": "c2",
+      "sentence": "Одна была фантазия «Король Лир в степи», другая был квартет, посвященный памяти ___.",
+      "lemma": "Бах",
+      "options": ["Бах", "Баха", "Баху", "Бахом"],
+      "correct": "Баха",
+      "case": "Родительный (Genitive)",
+      "translation": "One was a fantasia 'King Lear in the Steppe', the other a quartet dedicated to the memory of Bach.",
+      "explain": "The noun памяти (in memory of) requires its complement in the genitive case, hence Баха."
+    },
+    {
+      "id": "c3",
+      "sentence": "Проводив свояченицу к ее ___, он стал у колонны и решился как можно внимательнее и добросовестнее слушать.",
+      "lemma": "кресло",
+      "options": ["кресло", "кресла", "креслу", "креслом"],
+      "correct": "креслу",
+      "case": "Дательный (Dative)",
+      "translation": "Having escorted his sister-in-law to her armchair, he stood by a column and resolved to listen as attentively and conscientiously as possible.",
+      "explain": "The preposition к (to/toward) governs the dative case, hence креслу."
+    },
+    {
+      "id": "c4",
+      "sentence": "Проводив ___ к ее креслу, он стал у колонны и решился как можно внимательнее и добросовестнее слушать.",
+      "lemma": "свояченица",
+      "options": ["свояченица", "свояченицы", "свояченицу", "свояченицей"],
+      "correct": "свояченицу",
+      "case": "Винительный (Accusative)",
+      "translation": "Having escorted his sister-in-law to her armchair, he stood by a column and resolved to listen as attentively and conscientiously as possible.",
+      "explain": "Свояченицу is the direct object of the verb проводив (having escorted), so it takes the accusative case."
+    },
+    {
+      "id": "c5",
+      "sentence": "...и рад был, увидав одного из известных знатоков в разговоре со знакомым ему ___.",
+      "lemma": "Песцов",
+      "options": ["Песцов", "Песцова", "Песцову", "Песцовым"],
+      "correct": "Песцовым",
+      "case": "Творительный (Instrumental)",
+      "translation": "...and he was glad to see one of the well-known connoisseurs in conversation with his acquaintance Pestsov.",
+      "explain": "The preposition со (with) governs the instrumental case, hence Песцовым."
+    },
+    {
+      "id": "c6",
+      "sentence": "Тут только Левин вспомнил заглавие фантазии и поспешил прочесть в русском переводе стихи Шекспира, напечатанные на ___ афиши.",
+      "lemma": "оборот",
+      "options": ["оборот", "оборота", "обороту", "обороте"],
+      "correct": "обороте",
+      "case": "Предложный (Prepositional)",
+      "translation": "Only then did Levin remember the title of the fantasia and hastened to read, in Russian translation, Shakespeare's verses printed on the back of the playbill.",
+      "explain": "The preposition на (on) governs the prepositional case here, hence обороте."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Одна была фантазия «Король Лир в степи», другая был квартет, посвященный памяти Баха.",
+      "question": "What two pieces were performed at the morning concert?",
+      "options": ["A fantasia on King Lear and a quartet dedicated to Bach's memory", "A symphony and an opera aria", "Two piano sonatas", "A ballet and a choral work"],
+      "correct": "A fantasia on King Lear and a quartet dedicated to Bach's memory",
+      "explain": "The two new-style pieces were the fantasia 'King Lear in the Steppe' and a quartet dedicated to the memory of Bach."
+    },
+    {
+      "id": "r2",
+      "ru": "Проводив свояченицу к ее креслу, он стал у колонны и решился как можно внимательнее и добросовестнее слушать.",
+      "question": "What did Levin do after seeing his sister-in-law to her seat?",
+      "options": ["He stood by a column and resolved to listen as carefully as possible", "He left the concert hall", "He fell asleep", "He went to find Pestsov"],
+      "correct": "He stood by a column and resolved to listen as carefully as possible",
+      "explain": "After escorting his sister-in-law to her seat, Levin stood by a column, determined to listen as attentively and conscientiously as he could."
+    },
+    {
+      "id": "r3",
+      "ru": "Он старался избегать встреч со знатоками музыки и говорунами, а стоял, глядя вниз перед собой, и слушал.",
+      "question": "Whom did Levin try to avoid at the concert?",
+      "options": ["Music connoisseurs and chatterers", "The conductor", "His sister-in-law", "The ladies in hats"],
+      "correct": "Music connoisseurs and chatterers",
+      "explain": "Levin tried to avoid meeting music connoisseurs and talkers, standing and listening while looking down instead."
+    },
+    {
+      "id": "r4",
+      "ru": "Но чем более он слушал фантазию короля Лира, тем далее он чувствовал себя от возможности составить себе какое-нибудь определенное мнение.",
+      "question": "What happened to Levin's ability to form an opinion the more he listened?",
+      "options": ["He felt further from forming any definite opinion", "He became more certain he loved the piece", "He decided it was brilliant", "He fell asleep from boredom"],
+      "correct": "He felt further from forming any definite opinion",
+      "explain": "The more he listened to the King Lear fantasia, the further he felt from being able to form any definite opinion of it."
+    },
+    {
+      "id": "r5",
+      "ru": "Левин во время исполнения испытывал чувство глухого, смотрящего на танцующих.",
+      "question": "What comparison describes Levin's experience during the performance?",
+      "options": ["Like a deaf man watching people dance", "Like a blind man listening to a storm", "Like a child hearing a lullaby", "Like a soldier hearing a battle cry"],
+      "correct": "Like a deaf man watching people dance",
+      "explain": "During the performance Levin felt like a deaf man watching people dance."
+    },
+    {
+      "id": "r6",
+      "ru": "Желая разъяснить по впечатлению других свое недоумение, Левин пошел ходить, отыскивая знатоков, и рад был, увидав одного из известных знатоков в разговоре со знакомым ему Песцовым.",
+      "question": "Why did Levin go looking for connoisseurs after the piece ended?",
+      "options": ["To clarify his confusion using others' impressions", "To ask for their autographs", "To find his sister-in-law", "To argue about politics"],
+      "correct": "To clarify his confusion using others' impressions",
+      "explain": "Wanting to clear up his confusion by learning others' impressions, Levin went looking for connoisseurs and found Pestsov talking with one."
+    },
+    {
+      "id": "r7",
+      "ru": "«То есть почему же тут корделия?» — робко спросил Левин, совершенно забыв, что фантазия изображала короля Лира в степи.",
+      "question": "What mistake did Levin make while talking with Pestsov?",
+      "options": ["He forgot the fantasia depicted King Lear and asked why Cordelia was mentioned", "He called Pestsov by the wrong name", "He praised the wrong composer", "He confused Bach with Wagner"],
+      "correct": "He forgot the fantasia depicted King Lear and asked why Cordelia was mentioned",
+      "explain": "Levin had completely forgotten the fantasia depicted King Lear in the steppe, so he timidly asked why Cordelia came into it."
+    },
+    {
+      "id": "r8",
+      "ru": "Левин доказывал, что ошибка Вагнера и всех его последователей в том, что музыка хочет переходить в область чужого искусства, что также ошибается поэзия, когда описывает черты лиц, что должна делать живопись.",
+      "question": "What argument did Levin make about Wagner's error?",
+      "options": ["That music was overstepping into the domain of other arts", "That Wagner's music was too quiet", "That Wagner copied Bach", "That Wagner refused to write operas"],
+      "correct": "That music was overstepping into the domain of other arts",
+      "explain": "Levin argued that Wagner's mistake, like poetry describing faces, was that music wanted to move into the domain of another art."
+    },
+    {
+      "id": "r9",
+      "ru": "«Ну так поезжайте сейчас», — сказала ему Львова, которой он передал это.",
+      "question": "What did Lvova advise Levin to do about his forgotten visit to Count Bol?",
+      "options": ["Go visit him right away", "Forget about it entirely", "Write him a letter instead", "Wait until tomorrow"],
+      "correct": "Go visit him right away",
+      "explain": "When Levin told Lvova he had forgotten his visit to Count Bol, she told him to go right away."
+    }
+  ]
+}

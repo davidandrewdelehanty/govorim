@@ -1,0 +1,180 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Каждый ___, с которым он знакомился, делался его сторонником.",
+      "lemma": "дворянин",
+      "options": ["дворянин", "дворянина", "дворянину", "дворянином"],
+      "correct": "дворянин",
+      "case": "Именительный (Nominative)",
+      "translation": "Every nobleman he became acquainted with became his supporter.",
+      "explain": "Дворянин is the subject of the verb делался (was becoming), so it stands in the nominative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "...если новый губернский предводитель не даст ___ с лакеями в чулках.",
+      "lemma": "бал",
+      "options": ["бал", "бала", "балу", "балом"],
+      "correct": "бала",
+      "case": "Родительный (Genitive)",
+      "translation": "...if the new provincial marshal did not give a ball with footmen in stockings.",
+      "explain": "The negated verb не даст (will not give) governs the genitive case (genitive of negation), giving бала."
+    },
+    {
+      "id": "c3",
+      "sentence": "Письмо было от ___.",
+      "lemma": "Анна",
+      "options": ["Анна", "Анны", "Анне", "Анной"],
+      "correct": "Анны",
+      "case": "Родительный (Genitive)",
+      "translation": "The letter was from Anna.",
+      "explain": "The preposition от (from) always governs the genitive case, giving Анны."
+    },
+    {
+      "id": "c4",
+      "sentence": "___ Невидовского очень много содействовал он.",
+      "lemma": "успех",
+      "options": ["успех", "успеха", "успеху", "успехом"],
+      "correct": "успеху",
+      "case": "Дательный (Dative)",
+      "translation": "He had contributed a great deal to Nevedovsky's success.",
+      "explain": "The verb содействовал (contributed to) governs the dative case, giving успеху."
+    },
+    {
+      "id": "c5",
+      "sentence": "...нужно было заявить свои права на ___ пред Анной.",
+      "lemma": "свобода",
+      "options": ["свобода", "свободы", "свободу", "свободой"],
+      "correct": "свободу",
+      "case": "Винительный (Accusative)",
+      "translation": "...he needed to assert his right to freedom before Anna.",
+      "explain": "The preposition на with the meaning \"to/for\" here governs the accusative case, giving свободу."
+    },
+    {
+      "id": "c6",
+      "sentence": "...чтобы отплатить Свияжскому ___ на выборах...",
+      "lemma": "поддержка",
+      "options": ["поддержка", "поддержки", "поддержку", "поддержкой"],
+      "correct": "поддержкой",
+      "case": "Творительный (Instrumental)",
+      "translation": "...in order to repay Sviyazhsky with support in the elections...",
+      "explain": "The verb отплатить (to repay) governs the instrumental case for the means of repayment, giving поддержкой."
+    },
+    {
+      "id": "c7",
+      "sentence": "...ему было скучно в ___...",
+      "lemma": "деревня",
+      "options": ["деревня", "деревни", "деревню", "деревне"],
+      "correct": "деревне",
+      "case": "Предложный (Prepositional)",
+      "translation": "...he was bored in the country...",
+      "explain": "The preposition в (in) expressing location governs the prepositional case, giving деревне."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Вновь избранный губернский предводитель и многие из торжествующей партии новых обедали в этот день у Вронского.",
+      "question": "Where did the newly elected marshal of nobility and many of the triumphant new party dine on this day?",
+      "options": ["At Vronsky's house", "At the governor's palace", "At Sviyazhsky's estate", "At a restaurant in town"],
+      "correct": "At Vronsky's house",
+      "explain": "The text states they dined that day at Vronsky's (у Вронского)."
+    },
+    {
+      "id": "r2",
+      "ru": "Вронский приехал на выборы и потому, что ему было скучно в деревне и нужно было заявить свои права на свободу пред Анной",
+      "question": "Why, among other reasons, did Vronsky come to the elections?",
+      "options": ["Because he was bored in the country and wanted to assert his right to freedom before Anna", "Because he wanted to become marshal of nobility", "Because Anna insisted he attend", "Because he needed money"],
+      "correct": "Because he was bored in the country and wanted to assert his right to freedom before Anna",
+      "explain": "The text gives boredom in the country and the need to assert his freedom before Anna as reasons."
+    },
+    {
+      "id": "r3",
+      "ru": "Он был совершенно новый человек в кругу дворян, но, очевидно, имел успех и не ошибался, думая, что приобрел уже влияние между дворянами.",
+      "question": "How did Vronsky fare among the nobility despite being new to their circle?",
+      "options": ["He was clearly successful and gained influence among them", "He was rejected by most nobles", "He avoided contact with the nobility", "He was mocked for his inexperience"],
+      "correct": "He was clearly successful and gained influence among them",
+      "explain": "The text says he evidently had success and had already acquired influence among the nobles."
+    },
+    {
+      "id": "r4",
+      "ru": "Он ясно видел, и другие признавали это, что успеху Невидовского очень много содействовал он.",
+      "question": "What did Vronsky and others recognize about Nevedovsky's success?",
+      "options": ["That Vronsky had contributed a great deal to it", "That it was due to bribery", "That Sviyazhsky alone had secured it", "That it was unexpected and undeserved"],
+      "correct": "That Vronsky had contributed a great deal to it",
+      "explain": "The text states others recognized Vronsky's great contribution to Nevedovsky's success."
+    },
+    {
+      "id": "r5",
+      "ru": "Самые выборы так заманили его, что если он будет женат к будущему трехлетию, он и сам подумывал баллотироваться.",
+      "question": "What did Vronsky consider doing at the next election, if he were married by then?",
+      "options": ["Running as a candidate himself", "Refusing to attend again", "Moving abroad", "Supporting a different candidate"],
+      "correct": "Running as a candidate himself",
+      "explain": "The elections so enticed him that he considered standing for election himself."
+    },
+    {
+      "id": "r6",
+      "ru": "По левую руку сидел Невидовский со своим юным, непоколебимым и ядовитым лицом.",
+      "question": "Who sat to Vronsky's left at the dinner?",
+      "options": ["Nevedovsky", "The governor", "Sviyazhsky", "Stepan Arkadyevich"],
+      "correct": "Nevedovsky",
+      "explain": "The text says Nevedovsky sat on his left."
+    },
+    {
+      "id": "r7",
+      "ru": "Свияжский комически передал слезливую речь предводителя и заметил, обращаясь к Невидовскому, что его превосходительству придется избрать другую, более сложную, чем слезы, поверку сумм.",
+      "question": "What did Sviyazhsky do at the dinner regarding the old marshal's speech?",
+      "options": ["He comically retold the old marshal's tearful speech", "He praised the old marshal's honesty", "He refused to discuss the elections", "He gave a serious political speech of his own"],
+      "correct": "He comically retold the old marshal's tearful speech",
+      "explain": "The text says Sviyazhsky comically related the marshal's tearful speech."
+    },
+    {
+      "id": "r8",
+      "ru": "Невидовский делал вид, что он не только равнодушен, но и презирает это звание.",
+      "question": "How did Nevedovsky outwardly react to being addressed as marshal?",
+      "options": ["He pretended to be indifferent to and even contemptuous of the title", "He proudly accepted every compliment", "He refused to answer to the new title", "He wept with joy"],
+      "correct": "He pretended to be indifferent to and even contemptuous of the title",
+      "explain": "The text says Nevedovsky pretended to be not only indifferent but scornful of the title."
+    },
+    {
+      "id": "r9",
+      "ru": "Дарья же Александровна, получив депешу, только вздохнула о рубле за телеграмму и поняла, что дело было в конце обеда.",
+      "question": "How did Darya Alexandrovna react upon receiving Stepan Arkadyevich's telegram?",
+      "options": ["She merely sighed over the cost of the telegram and realized it was sent late in the dinner", "She rushed to send a reply immediately", "She was overjoyed at the news", "She ignored the telegram entirely"],
+      "correct": "She merely sighed over the cost of the telegram and realized it was sent late in the dinner",
+      "explain": "The text says she only sighed about the ruble spent and understood it was sent late in the dinner."
+    },
+    {
+      "id": "r10",
+      "ru": "Вронский был доволен. Он никак не ожидал такого милого тона в провинции.",
+      "question": "What surprised Vronsky pleasantly about the provincial gathering?",
+      "options": ["The pleasant tone he had not expected in the provinces", "The quality of the food", "The size of the crowd", "The governor's speech"],
+      "correct": "The pleasant tone he had not expected in the provinces",
+      "explain": "The text says he had not at all expected such a pleasant tone in the provinces."
+    },
+    {
+      "id": "r11",
+      "ru": "Уже пред выходом из-за стола, когда все закурили, коммердинер Вронского подошел к нему с письмом на подносе.",
+      "question": "How did Vronsky's letter arrive?",
+      "options": ["His valet brought it to him on a tray as everyone was smoking after dinner", "It was delivered by a telegraph messenger", "Anna delivered it in person", "It arrived by mail the next morning"],
+      "correct": "His valet brought it to him on a tray as everyone was smoking after dinner",
+      "explain": "The text says his valet approached with a letter on a tray as everyone was lighting up."
+    },
+    {
+      "id": "r12",
+      "ru": "Аня очень больна. Доктор говорит, что может быть воспаление.",
+      "question": "What news did Anna's letter bring about their daughter?",
+      "options": ["That the baby, Annie, was very ill and might have inflammation", "That the baby had fully recovered", "That the baby needed to travel to Moscow", "That the doctor refused to visit"],
+      "correct": "That the baby, Annie, was very ill and might have inflammation",
+      "explain": "The letter reports that Annie is very ill and the doctor says it might be inflammation."
+    },
+    {
+      "id": "r13",
+      "ru": "Но надо было ехать, и он по первому поезду в ночь уехал к себе.",
+      "question": "How did Vronsky respond after reading Anna's letter?",
+      "options": ["He left that same night on the first train", "He decided to stay and finish the celebrations", "He sent a telegram instead of going", "He waited until morning to decide"],
+      "correct": "He left that same night on the first train",
+      "explain": "The text says he had to go, and left for home that night on the first train."
+    }
+  ]
+}
