@@ -2802,6 +2802,15 @@ export default function App() {
   var [exIdx, setExIdx]           = useState(0);
   var [exSelected, setExSelected] = useState(null);
   var [exScore, setExScore]       = useState(0);
+  // ── Live AI vocabulary quiz (verbs & nouns from the current chapter) ───────
+  // vqWords: [{ru,pos,en,distractors[]}]; vqCount: ru->times-correct (mastered
+  // at 2, then dropped from rotation); vqCur: {w, options[]} the active question.
+  var [vqWords, setVqWords]       = useState(null);
+  var [vqCount, setVqCount]       = useState({});
+  var [vqCur, setVqCur]           = useState(null);
+  var [vqSel, setVqSel]           = useState(null);
+  var [vqLoading, setVqLoading]   = useState(false);
+  var [vqErr, setVqErr]           = useState("");
 
   var [popup, setPopup]   = useState(null);
   var [popXY, setPopXY]   = useState({top:100,left:16});
@@ -4363,6 +4372,7 @@ export default function App() {
   // Resets the exercise view whenever the chapter changes.
   useEffect(function() {
     setExData(null); setExCat("menu"); setExSelected(null); setExIdx(0); setExScore(0);
+    setVqWords(null); setVqCount({}); setVqCur(null); setVqSel(null); setVqErr(""); setVqLoading(false);
     var chs = bookMeta && bookMeta.audiobook && bookMeta.audiobook.chapters;
     var cp = chs && chs[cidx] ? String(chs[cidx]) : "";
     // Exercise key: Bible chapters keep their "NN-NN" key; every other book
@@ -4388,7 +4398,7 @@ export default function App() {
   // If the current chapter has no exercises but the Exercises tab is somehow
   // still selected (e.g. after navigating), fall back to the reading view.
   useEffect(function() {
-    if (lview === "exercises" && !exData) setLview("read");
+    if (lview === "exercises" && !exData && noAIMode) setLview("read");
   }, [exData, lview]);
 
   // Start (or restart) the grammar case quiz: shuffle questions & options.
@@ -4423,6 +4433,75 @@ export default function App() {
       return Object.assign({}, q, { options: exShuffle(q.options || []) });
     });
     setExQuestions(qs); setExIdx(0); setExSelected(null); setExScore(0); setExCat("reading");
+  };
+
+  // ── Live AI vocabulary quiz ────────────────────────────────────────────────
+  // Pull the useful verbs & nouns from the current chapter (via the same AI the
+  // "define" feature uses), quiz them multiple-choice with a real sentence from
+  // the text for context, and drop each word once it's been answered right twice.
+  var vqShuffle = function(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  };
+  var vqPickNext = function(words, counts, lastRu) {
+    var rem = words.filter(function(w){ return (counts[w.ru] || 0) < 2; });
+    if (!rem.length) return null;
+    var pool = rem.length > 1 ? rem.filter(function(w){ return w.ru !== lastRu; }) : rem;
+    if (!pool.length) pool = rem;
+    var w = pool[Math.floor(Math.random() * pool.length)];
+    var opts = vqShuffle([w.en].concat((w.distractors || []).slice(0, 3)));
+    return { w: w, options: opts };
+  };
+  var startVocabQuiz = async function() {
+    setExCat("vocab"); setVqErr(""); setVqWords(null); setVqCur(null); setVqSel(null); setVqCount({});
+    setVqLoading(true);
+    try {
+      var text = String((curChapter && curChapter.text) || "").replace(/\s+/g, " ").trim().slice(0, 6000);
+      if (!text) throw new Error("No chapter text to draw vocabulary from.");
+      var prompt = 'From the Russian passage below, choose the 10-14 most useful VERBS and NOUNS for a learner to know. '
+        + 'For each, return: the dictionary form ("ru" — infinitive for verbs, nominative singular for nouns), the part of speech ("pos": "noun" or "verb"), the correct English meaning ("en"; for verbs use "to ..."), '
+        + 'exactly 3 plausible-but-WRONG English meanings of the SAME part of speech ("distractors"), and "context": one short sentence copied VERBATIM from the passage where the word appears, with the word (in whatever form it appears) wrapped in **double asterisks**. '
+        + 'Only nouns and verbs that actually occur in the passage. Distractors must be real English words of the same type but clearly incorrect for this word. Return JSON only:\n'
+        + '{"words":[{"ru":"...","pos":"noun","en":"...","distractors":["...","...","..."],"context":"...**...**..."}]}\n\nPASSAGE:\n' + text;
+      var raw = await api(
+        [{ role: "user", content: prompt }],
+        "You are a Russian vocabulary tutor. Return a single JSON object only. No markdown, no commentary.",
+        { json: true }
+      );
+      var c = String(raw || "").replace(/```[a-z]*\n?/gi, "").replace(/```/g, "").trim();
+      var s = c.indexOf("{"), e = c.lastIndexOf("}");
+      if (s === -1 || e === -1) throw new Error("The AI did not return a vocabulary list. Try again.");
+      var parsed = JSON.parse(c.slice(s, e + 1));
+      var seen = {};
+      var words = (parsed.words || []).filter(function(w){
+        return w && w.ru && w.en && (w.pos === "noun" || w.pos === "verb")
+          && Array.isArray(w.distractors) && w.distractors.length >= 3;
+      }).filter(function(w){ if (seen[w.ru]) return false; seen[w.ru] = 1; return true; });
+      if (!words.length) throw new Error("Couldn't find quizzable vocabulary in this chapter.");
+      setVqWords(words);
+      var counts = {};
+      setVqCount(counts);
+      setVqCur(vqPickNext(words, counts, null));
+    } catch (err) {
+      setVqErr((err && err.message) || "Could not build the vocabulary quiz.");
+    } finally {
+      setVqLoading(false);
+    }
+  };
+  var vqAnswer = function(opt) {
+    if (vqSel !== null || !vqCur) return;
+    setVqSel(opt);
+    if (opt === vqCur.w.en) {
+      setVqCount(function(m){ var n = Object.assign({}, m); n[vqCur.w.ru] = (n[vqCur.w.ru] || 0) + 1; return n; });
+    }
+  };
+  var vqNext = function() {
+    setVqCur(vqPickNext(vqWords || [], vqCount, vqCur ? vqCur.w.ru : null));
+    setVqSel(null);
   };
 
   // When the loaded chapter changes, re-point the audio element at the new
@@ -8565,7 +8644,7 @@ export default function App() {
                   <button className={"ltab"+(lview==="read"?" on":"")} onClick={function(){ setLview("read"); }}>📖 Read</button>
                   <button className={"ltab"+(lview==="nav"?" on":"")} onClick={function(){ setLview("nav"); }}>🗂 Chapters</button>
                   <button className={"ltab"+(lview==="search"?" on":"")} onClick={function(){ setLview("search"); }}>🔍 Search</button>
-                  {exData && <button className={"ltab"+(lview==="exercises"?" on":"")} onClick={function(){ setLview("exercises"); }}>📝 Exercises</button>}
+                  {(exData || !noAIMode) && <button className={"ltab"+(lview==="exercises"?" on":"")} onClick={function(){ setLview("exercises"); }}>📝 Exercises</button>}
                   {/* Page + chapter nav moved up here so they stay visible
                       while the floating audio bar covers the bottom of the page. */}
                   {lview === "read" && (
@@ -8838,17 +8917,31 @@ export default function App() {
                   </>
                 )}
 
-                {lview==="exercises" && exData && (
+                {lview==="exercises" && (exData || !noAIMode) && (
                   <div className="navpanel" style={{maxWidth:640,margin:"0 auto"}}>
-                    {/* ── Category menu: Grammar vs Reading ─────────────────── */}
+                    {/* ── Category menu: Vocabulary / Grammar / Reading ──────── */}
                     {exCat === "menu" && (
                       <div style={{padding:"18px 8px"}}>
                         <div style={{textAlign:"center",marginBottom:20}}>
-                          <div style={{fontSize:20,fontFamily:"'Playfair Display',serif",color:"#000",fontWeight:600}}>{exData.title || "Exercises"}</div>
-                          {exData.source && <div style={{fontSize:13,color:"rgba(42,31,20,.5)",marginTop:4}}>{exData.source}</div>}
+                          <div style={{fontSize:20,fontFamily:"'Playfair Display',serif",color:"#000",fontWeight:600}}>{(exData && exData.title) || "Exercises"}</div>
+                          {exData && exData.source && <div style={{fontSize:13,color:"rgba(42,31,20,.5)",marginTop:4}}>{exData.source}</div>}
                         </div>
                         <div style={{display:"flex",flexDirection:"column",gap:14}}>
-                          {/* Grammar (available) */}
+                          {/* Vocabulary — live AI quiz on this chapter's verbs & nouns */}
+                          {!noAIMode && (
+                          <button onClick={startVocabQuiz}
+                            style={{background:"rgba(90,120,150,.1)",border:"1px solid rgba(90,120,150,.4)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
+                            onMouseOver={function(e){ e.currentTarget.style.background = "rgba(90,120,150,.16)"; }}
+                            onMouseOut={function(e){ e.currentTarget.style.background = "rgba(90,120,150,.1)"; }}>
+                            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
+                              <span style={{fontSize:24}}>🗂️</span>
+                              <span style={{fontSize:18,fontWeight:600,color:"#33507a",fontFamily:"'Playfair Display',serif"}}>Vocabulary</span>
+                            </div>
+                            <p style={{fontSize:13,color:"rgba(42,31,20,.55)",margin:0,lineHeight:1.5}}>Key verbs and nouns from this chapter, shown in a sentence for context. Get each right twice to clear it.</p>
+                          </button>
+                          )}
+                          {/* Grammar (only when a prebuilt exercise set exists) */}
+                          {exData && (<>
                           <button onClick={startCaseQuiz}
                             style={{background:"rgba(196,149,90,.12)",border:"1px solid rgba(196,149,90,.45)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
                             onMouseOver={function(e){ e.currentTarget.style.background = "rgba(196,149,90,.2)"; }}
@@ -8876,7 +8969,100 @@ export default function App() {
                           </button>
                             );
                           })()}
+                          </>)}
                         </div>
+                      </div>
+                    )}
+
+                    {/* ── Vocabulary quiz (live AI: verbs & nouns of this chapter) ── */}
+                    {exCat === "vocab" && (
+                      <div style={{padding:"14px 4px"}}>
+                        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
+                          <button className="ab" onClick={function(){ setExCat("menu"); }}>← Back</button>
+                          {vqWords && <span style={{fontSize:13,color:"rgba(42,31,20,.6)"}}>Cleared {(vqWords||[]).filter(function(w){ return (vqCount[w.ru]||0) >= 2; }).length} / {vqWords.length}</span>}
+                        </div>
+
+                        {vqLoading ? (
+                          <div style={{padding:"48px 20px",textAlign:"center"}}>
+                            <div style={{fontSize:36,marginBottom:12}}>🗂️</div>
+                            <p style={{color:"rgba(42,31,20,.7)",fontSize:15}}>Finding the key words in this chapter…</p>
+                          </div>
+                        ) : vqErr ? (
+                          <div style={{padding:"40px 20px",textAlign:"center"}}>
+                            <p style={{color:"#9d4630",fontSize:15,lineHeight:1.6,maxWidth:440,margin:"0 auto 22px"}}>{vqErr}</p>
+                            <div style={{display:"flex",gap:10,justifyContent:"center"}}>
+                              <button className="btn-p" style={{maxWidth:200}} onClick={startVocabQuiz}>Try again</button>
+                              <button className="btn-g" style={{maxWidth:200}} onClick={function(){ setExCat("menu"); }}>Back</button>
+                            </div>
+                          </div>
+                        ) : !vqCur ? (
+                          <div style={{padding:"30px 20px",textAlign:"center"}}>
+                            <div style={{fontSize:48,marginBottom:12}}>🎉</div>
+                            <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,color:"#000",marginBottom:8}}>All cleared!</h2>
+                            <p style={{fontSize:16,color:"#000",marginBottom:24}}>You got every one of the {(vqWords||[]).length} words right twice.</p>
+                            <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
+                              <button className="btn-p" style={{maxWidth:200}} onClick={startVocabQuiz}>New set</button>
+                              <button className="btn-g" style={{maxWidth:200}} onClick={function(){ setExCat("menu"); }}>Back to exercises</button>
+                            </div>
+                          </div>
+                        ) : (function(){
+                          var w = vqCur.w;
+                          var answered = vqSel !== null;
+                          var wasRight = answered && vqSel === w.en;
+                          var cnt = vqCount[w.ru] || 0;
+                          return (
+                            <div>
+                              {/* The word shown in a real sentence from the text (no translation) */}
+                              <div style={{fontSize:20,fontFamily:"'Crimson Pro',serif",color:"#2a1f14",textAlign:"center",lineHeight:1.6,marginBottom:18,maxWidth:560,marginLeft:"auto",marginRight:"auto"}}>
+                                {(function(ctx){
+                                  return String(ctx||"").split("**").map(function(seg,i){
+                                    return i%2===1
+                                      ? <strong key={i} style={{color:"#33507a"}}>{seg}</strong>
+                                      : <span key={i}>{seg}</span>;
+                                  });
+                                })(w.context)}
+                              </div>
+                              {/* The word being quizzed + instruction */}
+                              <div style={{textAlign:"center",marginBottom:20}}>
+                                <span style={{fontSize:12,color:"rgba(42,31,20,.45)",textTransform:"uppercase",letterSpacing:1.5}}>{w.pos}</span>
+                                <div style={{fontSize:30,fontFamily:"'Playfair Display',serif",color:"#000",fontWeight:600,margin:"2px 0 4px"}}>{w.ru}</div>
+                                <div style={{fontSize:14,color:"rgba(42,31,20,.6)"}}>What does it mean?</div>
+                              </div>
+                              {/* Options */}
+                              <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:520,margin:"0 auto"}}>
+                                {vqCur.options.map(function(opt, i) {
+                                  var isCorrect = opt === w.en;
+                                  var isPicked = opt === vqSel;
+                                  var bg = "rgba(42,31,20,.04)", brd = "rgba(42,31,20,.16)", col = "#000";
+                                  if (answered) {
+                                    if (isCorrect)     { bg = "rgba(90,133,86,.2)";  brd = "rgba(90,133,86,.65)"; col = "#2f5a2a"; }
+                                    else if (isPicked) { bg = "rgba(157,70,48,.16)"; brd = "rgba(157,70,48,.6)";  col = "#9d4630"; }
+                                    else               { col = "rgba(42,31,20,.4)"; }
+                                  }
+                                  return (
+                                    <button key={i} disabled={answered} onClick={function(){ vqAnswer(opt); }}
+                                      style={{background:bg,border:"1px solid "+brd,color:col,padding:"13px 18px",borderRadius:10,fontSize:17,fontFamily:"'Crimson Pro',serif",cursor: answered ? "default" : "pointer",textAlign:"left",transition:"all .15s"}}>
+                                      <span style={{display:"inline-block",width:20,color:"rgba(42,31,20,.45)",fontFamily:"'Inter',sans-serif",fontSize:13}}>{String.fromCharCode(65 + i)}.</span>
+                                      {opt}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                              {answered && (
+                                <div style={{maxWidth:520,margin:"16px auto 0",textAlign:"center",fontSize:15,fontWeight:600,color: wasRight ? "#2f5a2a" : "#9d4630"}}>
+                                  {wasRight
+                                    ? (cnt >= 2 ? "✓ Cleared!" : "✓ Correct — get it once more to clear it")
+                                    : ("✗ It means: " + w.en)}
+                                </div>
+                              )}
+                              {answered && (
+                                <div style={{marginTop:20,textAlign:"center"}}>
+                                  <button className="btn-p" style={{maxWidth:240}} onClick={vqNext}>Next →</button>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })()}
                       </div>
                     )}
 
