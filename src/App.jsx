@@ -3671,6 +3671,20 @@ export default function App() {
       // Skip highlighting for books that disable it (e.g. Bible)
       if (audiobookDataRef.current && audiobookDataRef.current.noHighlight) return;
 
+      // Chapters that are a time-slice of a larger shared recording (e.g. the
+      // per-section Палата № 6 files) carry stopAtEnd: pause when the playhead
+      // passes this section's last word so the audio never bleeds into the next.
+      var _abd = audiobookDataRef.current;
+      if (_abd && _abd.stopAtEnd && _abd.word_timings && _abd.word_timings.length) {
+        var _endT = _abd.word_timings[_abd.word_timings.length - 1].end;
+        if (audio.currentTime > _endT + 0.4) {
+          try { audio.pause(); } catch(e) {}
+          stopAudiobookRaf();
+          setAudioPlaying(false); audioPlayingRef.current = false;
+          return;
+        }
+      }
+
       // ── Word-level highlighting (precomputed alignment; see buildWordTimeline) ──
       var timeline = wordTimelineRef.current;
       var hasWordTimings = timeline && timeline.length > 0;

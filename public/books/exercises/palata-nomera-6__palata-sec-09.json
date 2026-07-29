@@ -1,0 +1,401 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "В больничном саду пели ___",
+      "lemma": "скворцы",
+      "options": [
+        "скворцы",
+        "скворцов",
+        "скворцам",
+        "скворцами"
+      ],
+      "correct": "скворцы",
+      "case": "Именительный (Nominative)",
+      "translation": "Starlings were singing in the hospital garden.",
+      "explain": "Скворцы is the subject of пели (\"were singing\"), so it takes the Nominative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "доктор вышел проводить до ___",
+      "lemma": "ворота",
+      "options": [
+        "ворота",
+        "ворот",
+        "воротам",
+        "воротами"
+      ],
+      "correct": "ворот",
+      "case": "Родительный (Genitive)",
+      "translation": "The doctor went out to see his friend off to the gate.",
+      "explain": "The preposition до governs the Genitive case, so ворота becomes ворот."
+    },
+    {
+      "id": "c3",
+      "sentence": "Дай копеечку! – обратился он к ___",
+      "lemma": "доктор",
+      "options": [
+        "доктор",
+        "доктора",
+        "доктору",
+        "доктором"
+      ],
+      "correct": "доктору",
+      "case": "Дательный (Dative)",
+      "translation": "\"Give me a kopeck!\" he addressed the doctor.",
+      "explain": "The preposition к governs the Dative case, so доктор becomes доктору."
+    },
+    {
+      "id": "c4",
+      "sentence": "Андрей Ефимыч... пошел во флигель вслед за ___",
+      "lemma": "еврей",
+      "options": [
+        "еврей",
+        "еврея",
+        "еврею",
+        "евреем"
+      ],
+      "correct": "евреем",
+      "case": "Творительный (Instrumental)",
+      "translation": "Andrei Yefimych went into the lodge following the Jew.",
+      "explain": "The preposition за expressing \"following after\" governs the Instrumental case, so еврей becomes евреем."
+    },
+    {
+      "id": "c5",
+      "sentence": "Как бы этому еврею выдать ___",
+      "lemma": "сапоги",
+      "options": [
+        "сапоги",
+        "сапог",
+        "сапогам",
+        "сапогами"
+      ],
+      "correct": "сапоги",
+      "case": "Винительный (Accusative)",
+      "translation": "He should be given some boots.",
+      "explain": "Сапоги is the direct object of выдать (\"to issue/give out\"); as an inanimate plural noun its Accusative form matches the Nominative."
+    },
+    {
+      "id": "c6",
+      "sentence": "Дверь из сеней в ___ была отворена",
+      "lemma": "палата",
+      "options": [
+        "палата",
+        "палаты",
+        "палате",
+        "палату"
+      ],
+      "correct": "палату",
+      "case": "Винительный (Accusative)",
+      "translation": "The door from the hallway into the ward was open.",
+      "explain": "The preposition в expressing motion/direction into a space governs the Accusative case, so палата becomes палату."
+    },
+    {
+      "id": "c7",
+      "sentence": "с угрожающим видом и судорожно запахиваясь в ___",
+      "lemma": "халат",
+      "options": [
+        "халат",
+        "халата",
+        "халату",
+        "халате"
+      ],
+      "correct": "халат",
+      "case": "Винительный (Accusative)",
+      "translation": "With a threatening look, convulsively wrapping himself in his dressing gown.",
+      "explain": "The preposition в expressing motion/wrapping into governs the Accusative case, so халат stays халат (inanimate, same as Nominative)."
+    },
+    {
+      "id": "c8",
+      "sentence": "У меня мания преследования, постоянный мучительный ___",
+      "lemma": "страх",
+      "options": [
+        "страх",
+        "страха",
+        "страху",
+        "страхом"
+      ],
+      "correct": "страх",
+      "case": "Именительный (Nominative)",
+      "translation": "I have a persecution mania, a constant tormenting fear.",
+      "explain": "Страх stands in apposition to мания as a nominal predicate, taking the Nominative case."
+    },
+    {
+      "id": "c9",
+      "sentence": "Диоген жил в ___",
+      "lemma": "бочка",
+      "options": [
+        "бочка",
+        "бочки",
+        "бочке",
+        "бочкой"
+      ],
+      "correct": "бочке",
+      "case": "Предложный (Prepositional)",
+      "translation": "Diogenes lived in a barrel.",
+      "explain": "The preposition в indicating location governs the Prepositional case, so бочка becomes бочке."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "В один из весенних вечеров, в конце марта, когда уже на земле не было снега и в больничном саду пели скворцы, доктор вышел проводить до ворот своего приятеля почтмейстера.",
+      "question": "What season and setting is described at the start of the chapter?",
+      "options": [
+        "A spring evening at the end of March, with the snow gone and starlings singing in the hospital garden",
+        "A snowy winter night",
+        "A hot summer afternoon",
+        "A foggy autumn morning"
+      ],
+      "correct": "A spring evening at the end of March, with the snow gone and starlings singing in the hospital garden",
+      "explain": "It was \"в один из весенних вечеров, в конце марта, когда уже на земле не было снега и в больничном саду пели скворцы\"."
+    },
+    {
+      "id": "r2",
+      "ru": "Как раз в это время во двор входил жид Мойсейка, возвращавшийся с добычи.",
+      "question": "Who entered the hospital yard just as the doctor was seeing off the postmaster?",
+      "options": [
+        "Moiseika, returning from begging",
+        "Ivan Dmitrich",
+        "Nikita",
+        "A new patient"
+      ],
+      "correct": "Moiseika, returning from begging",
+      "explain": "\"Во двор входил жид Мойсейка, возвращавшийся с добычи\"."
+    },
+    {
+      "id": "r3",
+      "ru": "Андрей Ефимыч, который никогда не умел отказывать, подал ему гривенник.",
+      "question": "What did Andrei Yefimych give Moiseika when asked for a coin?",
+      "options": [
+        "A ten-kopeck coin",
+        "A whole ruble",
+        "Nothing at all",
+        "A piece of bread"
+      ],
+      "correct": "A ten-kopeck coin",
+      "explain": "\"Андрей Ефимыч... подал ему гривенник\" (a ten-kopeck piece)."
+    },
+    {
+      "id": "r4",
+      "ru": "При входе доктора, с кучи хлама вскочил Никита и вытянулся.",
+      "question": "What did Andrei Yefimych ask Nikita to arrange for Moiseika?",
+      "options": [
+        "That he be given boots so he wouldn't catch cold",
+        "That he be released from the hospital",
+        "That he be given new clothes",
+        "That he be moved to a different room"
+      ],
+      "correct": "That he be given boots so he wouldn't catch cold",
+      "explain": "He asked, \"Как бы этому еврею выдать сапоги, что ли, а то простудится\"."
+    },
+    {
+      "id": "r5",
+      "ru": "Иван Дмитрич, лежа на кровати и приподнявшись на локоть, с тревогой прислушивался к чужому голосу и вдруг узнал доктора.",
+      "question": "How did Ivan Dmitrich react upon recognizing the doctor's voice?",
+      "options": [
+        "He shook with rage, jumped up, and ran into the middle of the ward with an angry face",
+        "He calmly greeted him",
+        "He hid under the blanket",
+        "He began crying quietly"
+      ],
+      "correct": "He shook with rage, jumped up, and ran into the middle of the ward with an angry face",
+      "explain": "\"Он весь затрясся от гнева, вскочил и с красным, злым лицом... выбежал на середину палаты\"."
+    },
+    {
+      "id": "r6",
+      "ru": "Он весь затрясся от гнева, вскочил и с красным, злым лицом, с глазами навыкате, выбежал на середину палаты.",
+      "question": "What did Ivan Dmitrich shout when he saw the doctor?",
+      "options": [
+        "\"The doctor has come!\" and burst out laughing",
+        "\"Help me, please!\"",
+        "\"I forgive you!\"",
+        "Nothing; he remained silent"
+      ],
+      "correct": "\"The doctor has come!\" and burst out laughing",
+      "explain": "\"– Доктор пришел! – крикнул он и захохотал\"."
+    },
+    {
+      "id": "r7",
+      "ru": "Господа, поздравляю, доктор удостоивает нас своим визитом!",
+      "question": "What insulting names does Ivan Dmitrich call the doctor?",
+      "options": [
+        "Thief, charlatan, and executioner",
+        "Coward and liar",
+        "Fool and drunkard",
+        "Traitor and spy"
+      ],
+      "correct": "Thief, charlatan, and executioner",
+      "explain": "He shouts \"Вор!... Шарлатан! Палач!\""
+    },
+    {
+      "id": "r8",
+      "ru": "– Убить эту гадину!",
+      "question": "What argument does Ivan Dmitrich make about why he is locked up while other madmen roam free?",
+      "options": [
+        "That it's mere chance who gets locked up and who doesn't, since the staff are morally no better than the patients",
+        "That he committed a specific crime",
+        "That the hospital has no more room for him elsewhere",
+        "That he asked to be locked up himself"
+      ],
+      "correct": "That it's mere chance who gets locked up and who doesn't, since the staff are morally no better than the patients",
+      "explain": "He argues \"вы... в нравственном отношении неизмеримо ниже каждого из нас, почему же мы сидим, а вы нет?\" and the doctor agrees it is \"одна только пустая случайность\"."
+    },
+    {
+      "id": "r9",
+      "ru": "Но ведь десятки, сотни сумасшедших гуляют на свободе, потому что ваше невежество неспособно отличить их от здоровых.",
+      "question": "Why does Andrei Yefimych say he cannot simply let Ivan Dmitrich go free?",
+      "options": [
+        "Because it isn't in his power, and Ivan Dmitrich would just be caught by townspeople or police and brought back",
+        "Because Ivan Dmitrich is too dangerous",
+        "Because the law forbids doctors from releasing patients",
+        "Because Ivan Dmitrich doesn't want to leave"
+      ],
+      "correct": "Because it isn't in his power, and Ivan Dmitrich would just be caught by townspeople or police and brought back",
+      "explain": "He explains, \"Потому что это не в моей власти... Вас задержат горожане или полиция и вернут назад\"."
+    },
+    {
+      "id": "r10",
+      "ru": "Вы, фельдшер, смотритель и вся ваша больничная сволочь в нравственном отношении неизмеримо ниже каждого из нас, почему же мы сидим, а вы нет?",
+      "question": "What does Andrei Yefimych say is the best course of action for Ivan Dmitrich, though ultimately useless?",
+      "options": [
+        "To escape, though it would be pointless since he would be caught",
+        "To appeal to the courts",
+        "To write to his family for help",
+        "To befriend the staff"
+      ],
+      "correct": "To escape, though it would be pointless since he would be caught",
+      "explain": "He says \"Самое лучшее в вашем положении – бежать отсюда. Но, к сожалению, это бесполезно. Вас задержат\"."
+    },
+    {
+      "id": "r11",
+      "ru": "Вас задержат горожане или полиция и вернут назад.",
+      "question": "What vision of the future does Ivan Dmitrich passionately proclaim, addressing an imaginary future generation?",
+      "options": [
+        "That truth will triumph and a new dawn will come, even if he himself won't live to see it",
+        "That he will be released within the year",
+        "That the hospital will be rebuilt",
+        "That Nikita will be punished"
+      ],
+      "correct": "That truth will triumph and a new dawn will come, even if he himself won't live to see it",
+      "explain": "He proclaims \"воссияет заря новой жизни, восторжествует правда... чьи-нибудь правнуки дождутся\"."
+    },
+    {
+      "id": "r12",
+      "ru": "Голос Ивана Дмитрича и его молодое умное лицо с гримасами понравились Андрею Ефимычу.",
+      "question": "How does Andrei Yefimych respond to Ivan Dmitrich's outburst about a coming golden age?",
+      "options": [
+        "He says that even so, the laws of nature will remain the same and people will still grow old and die",
+        "He agrees enthusiastically and joins the celebration",
+        "He orders Ivan Dmitrich to be restrained",
+        "He walks out without responding"
+      ],
+      "correct": "He says that even so, the laws of nature will remain the same and people will still grow old and die",
+      "explain": "He replies that \"сущность вещей не изменится, законы природы останутся всё те же. Люди будут болеть, стариться и умирать так же, как и теперь\"."
+    },
+    {
+      "id": "r13",
+      "ru": "Когда общество ограждает себя от преступников, психических больных и вообще неудобных людей, то оно непобедимо.",
+      "question": "What example does the doctor cite to argue that inner contentment doesn't depend on circumstances?",
+      "options": [
+        "Diogenes, who lived in a barrel yet was happier than all earthly kings",
+        "Napoleon in exile",
+        "A wealthy merchant's life",
+        "A soldier's discipline"
+      ],
+      "correct": "Diogenes, who lived in a barrel yet was happier than all earthly kings",
+      "explain": "\"Диоген жил в бочке, однако же был счастливее всех царей земных\"."
+    },
+    {
+      "id": "r14",
+      "ru": "– Вы шутите, – сказал он, щуря глаза.",
+      "question": "How does Ivan Dmitrich dismiss Andrei Yefimych's philosophy of inner contentment?",
+      "options": [
+        "He says he loves life passionately and has moments of longing to truly live",
+        "He agrees it is wise and calming",
+        "He falls asleep during the conversation",
+        "He asks to read the same books"
+      ],
+      "correct": "He says he loves life passionately and has moments of longing to truly live",
+      "explain": "He exclaims, \"Я люблю жизнь, люблю страстно!... бывают минуты, когда меня охватывает жажда жизни\"."
+    },
+    {
+      "id": "r15",
+      "ru": "Иван Дмитрич с блестящими глазами поднялся и, протягивая руки к окну, продолжал с волнением в голосе: – Из-за этих решеток благословляю вас!",
+      "question": "What does Ivan Dmitrich experience when daydreaming, according to his own description?",
+      "options": [
+        "Visions of ghosts, voices, music, and himself wandering through forests or by the sea",
+        "Total blankness and silence",
+        "Memories only of his childhood home",
+        "Nightmares about his father"
+      ],
+      "correct": "Visions of ghosts, voices, music, and himself wandering through forests or by the sea",
+      "explain": "\"Ко мне ходят какие-то люди, я слышу голоса, музыку, и кажется мне, что я гуляю по каким-то лесам, по берегу моря\"."
+    },
+    {
+      "id": "r16",
+      "ru": "А я глубоко верю, что если нет бессмертия, то его рано или поздно изобретет великий человеческий ум.",
+      "question": "What does Ivan Dmitrich call the town when the doctor mentions no new interesting people have arrived?",
+      "options": [
+        "An unfortunate town",
+        "A paradise",
+        "A growing city",
+        "A forgotten village"
+      ],
+      "correct": "An unfortunate town",
+      "explain": "He agrees, sighing, \"Да, несчастный город!\""
+    },
+    {
+      "id": "r17",
+      "ru": "Диоген жил в бочке, однако же был счастливее всех царей земных.",
+      "question": "What interrupts Ivan Dmitrich while the doctor is describing intellectual trends abroad and in Russia?",
+      "options": [
+        "He suddenly seems to remember something terrible, grabs his head, and turns his back to the doctor",
+        "A nurse enters the room",
+        "Nikita starts shouting outside",
+        "The lights go out"
+      ],
+      "correct": "He suddenly seems to remember something terrible, grabs his head, and turns his back to the doctor",
+      "explain": "\"Вдруг, точно вспомнив что-то ужасное, схватил себя за голову и лег на постель, спиной к доктору\"."
+    },
+    {
+      "id": "r18",
+      "ru": "У меня мания преследования, постоянный мучительный страх, но бывают минуты, когда меня охватывает жажда жизни, и тогда я боюсь сойти с ума.",
+      "question": "What does Andrei Yefimych ask Nikita to do as he leaves the ward?",
+      "options": [
+        "To clean up, because the smell is terribly heavy",
+        "To lock the door more securely",
+        "To bring Ivan Dmitrich some food",
+        "To fetch Khobotov"
+      ],
+      "correct": "To clean up, because the smell is terribly heavy",
+      "explain": "He says, \"Как бы здесь убрать, Никита… Ужасно тяжелый запах!\""
+    },
+    {
+      "id": "r19",
+      "ru": "Впрочем, приехал недавно молодой врач Хоботов.",
+      "question": "What impression does Andrei Yefimych form of Ivan Dmitrich after their conversation?",
+      "options": [
+        "That he is the first person in a long time with whom one can actually talk",
+        "That he is hopelessly insane",
+        "That he is dangerous and should be restrained further",
+        "That he should be released immediately"
+      ],
+      "correct": "That he is the first person in a long time with whom one can actually talk",
+      "explain": "He thinks, \"За всё время, пока я тут живу, это, кажется, первый, с которым можно поговорить\"."
+    },
+    {
+      "id": "r20",
+      "ru": "Читая и потом ложась спать, он всё время думал об Иване Дмитриче, а проснувшись на другой день утром, вспомнил, что вчера познакомился с умным и интересным человеком, и решил сходить к нему еще раз при первой возможности.",
+      "question": "What did Andrei Yefimych decide to do the next morning after his visit?",
+      "options": [
+        "To go visit Ivan Dmitrich again at the first opportunity",
+        "To transfer Ivan Dmitrich to another hospital",
+        "To ask Khobotov to take over his care",
+        "To stop visiting Ward No. 6 altogether"
+      ],
+      "correct": "To go visit Ivan Dmitrich again at the first opportunity",
+      "explain": "He \"вспомнил, что вчера познакомился с умным и интересным человеком, и решил сходить к нему еще раз при первой возможности\"."
+    }
+  ]
+}

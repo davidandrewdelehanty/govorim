@@ -1,0 +1,187 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "В городе, на самой главной улице, в собственном доме проживал ___ Громов, человек солидный и зажиточный.",
+      "lemma": "чиновник",
+      "options": [
+        "чиновник",
+        "чиновника",
+        "чиновнику",
+        "чиновником"
+      ],
+      "correct": "чиновник",
+      "case": "Именительный (Nominative)",
+      "translation": "In town, on the main street, in his own house, lived the official Gromov, a solid and well-off man.",
+      "explain": "Чиновник is the subject of проживал (\"lived\"), so it takes the Nominative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Через неделю после ___ Сергея старик-отец был отдан под суд за подлоги и растраты.",
+      "lemma": "похороны",
+      "options": [
+        "похороны",
+        "похорон",
+        "похоронам",
+        "похоронами"
+      ],
+      "correct": "похорон",
+      "case": "Родительный (Genitive)",
+      "translation": "A week after Sergei's funeral, the old father was put on trial for forgery and embezzlement.",
+      "explain": "The preposition после (\"after\") governs the Genitive case, so похороны becomes похорон."
+    },
+    {
+      "id": "c3",
+      "sentence": "Он по протекции получил место учителя, но не сошелся с товарищами, не понравился ___ и скоро бросил место.",
+      "lemma": "ученик",
+      "options": [
+        "ученики",
+        "учеников",
+        "ученикам",
+        "учениками"
+      ],
+      "correct": "ученикам",
+      "case": "Дательный (Dative)",
+      "translation": "Through connections he got a teaching post, but did not get along with his colleagues, did not please the pupils, and soon quit the post.",
+      "explain": "The verb понравился (\"pleased/was liked by\") governs the Dative case, so ученики becomes ученикам."
+    },
+    {
+      "id": "c4",
+      "sentence": "Старик-отец был отдан под ___ за подлоги и растраты и вскоре умер в тюремной больнице от тифа.",
+      "lemma": "суд",
+      "options": [
+        "суд",
+        "суда",
+        "суду",
+        "судом"
+      ],
+      "correct": "суд",
+      "case": "Винительный (Accusative)",
+      "translation": "The old father was put on trial for forgery and embezzlement and soon died of typhus in the prison hospital.",
+      "explain": "The expression отдан под суд (\"put on trial\") uses под with the Accusative case here."
+    },
+    {
+      "id": "c5",
+      "sentence": "Такой жизни не выдержал Иван Дмитрич; он пал ___, захирел и, бросив университет, уехал домой.",
+      "lemma": "дух",
+      "options": [
+        "дух",
+        "духа",
+        "духу",
+        "духом"
+      ],
+      "correct": "духом",
+      "case": "Творительный (Instrumental)",
+      "translation": "Ivan Dmitrich could not endure such a life; he lost heart, withered, and, abandoning university, went home.",
+      "explain": "The idiom пасть духом (\"to lose heart\") requires дух in the Instrumental case, so дух becomes духом."
+    },
+    {
+      "id": "c6",
+      "sentence": "Иван Дмитрич, проживая в Петербурге, где он учился в ___, получал 60—70 рублей в месяц.",
+      "lemma": "университет",
+      "options": [
+        "университет",
+        "университета",
+        "университету",
+        "университете"
+      ],
+      "correct": "университете",
+      "case": "Предложный (Prepositional)",
+      "translation": "Ivan Dmitrich, living in Petersburg, where he studied at the university, received 60-70 rubles a month.",
+      "explain": "The preposition в (\"at/in\") indicating location governs the Prepositional case, so университет becomes университете."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Лет 12—15 тому назад, в городе, на самой главной улице, в собственном доме проживал чиновник Громов, человек солидный и зажиточный.",
+      "question": "What kind of man was the official (chinovnik) Gromov, Ivan Dmitrich's father?",
+      "options": [
+        "A respectable and well-off man",
+        "A poor peasant",
+        "A famous actor",
+        "A traveling priest"
+      ],
+      "correct": "A respectable and well-off man",
+      "explain": "The text calls him человек солидный и зажиточный (a respectable and well-off man)."
+    },
+    {
+      "id": "r2",
+      "ru": "Через неделю после похорон Сергея старик-отец был отдан под суд за подлоги и растраты и вскоре умер в тюремной больнице от тифа.",
+      "question": "What happened to the father a week after Sergei's funeral?",
+      "options": [
+        "He was put on trial for forgery and embezzlement and died of typhus in the prison hospital",
+        "He was promoted to a higher position",
+        "He retired peacefully",
+        "He moved to another city"
+      ],
+      "correct": "He was put on trial for forgery and embezzlement and died of typhus in the prison hospital",
+      "explain": "The text says he был отдан под суд за подлоги и растраты and later умер в тюремной больнице от тифа."
+    },
+    {
+      "id": "r3",
+      "ru": "Такой жизни не выдержал Иван Дмитрич; он пал духом, захирел и, бросив университет, уехал домой.",
+      "question": "How did Ivan Dmitrich react to his hardships in Petersburg?",
+      "options": [
+        "He lost heart, grew weak, and left university to go home",
+        "He thrived and graduated with honors",
+        "He joined the military",
+        "He became wealthy through tutoring"
+      ],
+      "correct": "He lost heart, grew weak, and left university to go home",
+      "explain": "The text says он пал духом, захирел и, бросив университет, уехал домой."
+    },
+    {
+      "id": "r4",
+      "ru": "Всегда он был бледен, худ, подвержен простуде, мало ел, дурно спал.",
+      "question": "What was Ivan Dmitrich's physical condition generally like?",
+      "options": [
+        "Pale, thin, prone to colds, ate little, slept poorly",
+        "Robust, tanned, and always well-rested",
+        "Overweight and lazy",
+        "Strong and athletic"
+      ],
+      "correct": "Pale, thin, prone to colds, ate little, slept poorly",
+      "explain": "The text says всегда он был бледен, худ, подвержен простуде, мало ел, дурно спал."
+    },
+    {
+      "id": "r5",
+      "ru": "О чем, бывало, ни заговоришь с ним, он всё сводит к одному: в городе душно и скучно жить, у общества нет высших интересов, оно ведет тусклую, бессмысленную жизнь, разнообразя ее насилием, грубым развратом и лицемерием; подлецы сыты и одеты, а честные питаются крохами; нужны школы, местная газета с честным направлением, театр, публичные чтения, сплоченность интеллигентных сил; нужно, чтоб общество сознало себя и ужаснулось.",
+      "question": "What recurring theme did Ivan Dmitrich return to in conversation?",
+      "options": [
+        "That life in the town was stifling and dull, lacking higher interests",
+        "The beauty of nature",
+        "His plans to get married",
+        "His love of cooking"
+      ],
+      "correct": "That life in the town was stifling and dull, lacking higher interests",
+      "explain": "The text says he always concluded that в городе душно и скучно жить, у общества нет высших интересов."
+    },
+    {
+      "id": "r6",
+      "ru": "В городе, несмотря на резкость его суждений и нервность, его любили и за глаза ласково называли Ваней.",
+      "question": "Despite his sharp opinions and nervousness, how did the townspeople feel about Ivan Dmitrich?",
+      "options": [
+        "They liked him and affectionately called him Vanya behind his back",
+        "They feared and avoided him",
+        "They mocked him openly",
+        "They considered him a criminal"
+      ],
+      "correct": "They liked him and affectionately called him Vanya behind his back",
+      "explain": "The text says его любили и за глаза ласково называли Ваней."
+    },
+    {
+      "id": "r7",
+      "ru": "Бывало, всё сидит в клубе, нервно теребит бородку и перелистывает журналы и книги; и по лицу его видно, что он не читает, а глотает, едва успев разжевать.",
+      "question": "How did Ivan Dmitrich behave when reading in the club?",
+      "options": [
+        "He read voraciously, as if devouring rather than truly digesting the material",
+        "He fell asleep after a few pages",
+        "He read only poetry aloud",
+        "He refused to read anything"
+      ],
+      "correct": "He read voraciously, as if devouring rather than truly digesting the material",
+      "explain": "The text says по лицу его видно, что он не читает, а глотает, едва успев разжевать (he devours rather than reads)."
+    }
+  ]
+}
