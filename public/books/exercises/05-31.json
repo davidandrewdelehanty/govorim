@@ -1,0 +1,134 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "___ пошел и сказал всему Израилю такие слова.",
+      "lemma": "Моисей",
+      "options": ["Моисей", "Моисея", "Моисею", "Моисеем"],
+      "correct": "Моисей",
+      "case": "Именительный (Nominative)",
+      "translation": "Moses went and spoke these words to all Israel.",
+      "explain": "Моисей is the grammatical subject of the verb пошел (went), so it stands in the nominative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Господь сказал мне, ты не перейдешь через ___.",
+      "lemma": "Иордан",
+      "options": ["Иордан", "Иордана", "Иордану", "Иорданом"],
+      "correct": "Иордан",
+      "case": "Винительный (Accusative)",
+      "translation": "The Lord said to me, you will not cross over the Jordan.",
+      "explain": "The preposition через (across/through) governs the accusative case with inanimate nouns."
+    },
+    {
+      "id": "c3",
+      "sentence": "Он истребит эти народы перед ___.",
+      "lemma": "ты",
+      "options": ["тобой", "тебе", "тебя", "тобою"],
+      "correct": "тобой",
+      "case": "Творительный (Instrumental)",
+      "translation": "He will destroy these nations before you.",
+      "explain": "The preposition перед (before/in front of) governs the instrumental case."
+    },
+    {
+      "id": "c4",
+      "sentence": "Ты завладеешь их ___.",
+      "lemma": "земля",
+      "options": ["земля", "земли", "землю", "землей"],
+      "correct": "землей",
+      "case": "Творительный (Instrumental)",
+      "translation": "You will possess their land.",
+      "explain": "The verb завладеть (to possess/take over) governs the instrumental case."
+    },
+    {
+      "id": "c5",
+      "sentence": "Господь отдаст ___ вам.",
+      "lemma": "они",
+      "options": ["их", "им", "они", "ими"],
+      "correct": "их",
+      "case": "Винительный (Accusative)",
+      "translation": "The Lord will deliver them to you.",
+      "explain": "The transitive verb отдаст (will give) takes the accusative case for its direct object."
+    },
+    {
+      "id": "c6",
+      "sentence": "Господь твой Бог идет с ___.",
+      "lemma": "ты",
+      "options": ["ты", "тебе", "тебя", "тобой"],
+      "correct": "тобой",
+      "case": "Творительный (Instrumental)",
+      "translation": "Your God goes with you.",
+      "explain": "The preposition с (with) governs the instrumental case."
+    },
+    {
+      "id": "c7",
+      "sentence": "Моисей записал этот ___ и дал его всем священникам.",
+      "lemma": "закон",
+      "options": ["закон", "закона", "закону", "законом"],
+      "correct": "закон",
+      "case": "Винительный (Accusative)",
+      "translation": "Moses wrote this law and gave it to all the priests.",
+      "explain": "The transitive verb дал (gave) takes the accusative case for its direct object."
+    },
+    {
+      "id": "c8",
+      "sentence": "Их дети должны слушать его и учиться бояться Господа вашего ___.",
+      "lemma": "Бог",
+      "options": ["Бог", "Бога", "Богу", "Богом"],
+      "correct": "Бога",
+      "case": "Родительный (Genitive)",
+      "translation": "Their children must listen to it and learn to fear your God.",
+      "explain": "The verb бояться (to fear) governs the genitive case."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Мне уже сто двадцать лет, и я не могу больше вести вас.",
+      "question": "How old was Moses, and what could he no longer do?",
+      "options": ["He was 120 years old and could not lead the people", "He was 100 years old and could not fight", "He was 140 years old and could not remember", "He was 110 years old and could not speak"],
+      "correct": "He was 120 years old and could not lead the people",
+      "explain": "Moses explicitly states he is 120 years old and can no longer lead: «Мне уже сто двадцать лет, и я не могу больше вести вас»."
+    },
+    {
+      "id": "r2",
+      "ru": "Он истребит эти народы перед тобой, и ты завладеешь их землей.",
+      "question": "What will happen to the nations that the Israelites will encounter?",
+      "options": ["They will be destroyed, and the Israelites will possess their land", "They will make peace with the Israelites", "They will teach the Israelites their language", "They will join with the Israelites in worship"],
+      "correct": "They will be destroyed, and the Israelites will possess their land",
+      "explain": "The text states that God will destroy the nations before the Israelites and they will take possession of their land."
+    },
+    {
+      "id": "r3",
+      "ru": "Будьте крепки и отважны, не бойтесь и не страшитесь их.",
+      "question": "What does Moses encourage the Israelites to be?",
+      "options": ["Strong, courageous, unafraid, and unafraid", "Weak but humble", "Careful but cautious", "Silent and obedient"],
+      "correct": "Strong, courageous, unafraid, and unafraid",
+      "explain": "Moses commands them to be крепки (strong), отважны (courageous), and not to fear: «Будьте крепки и отважны, не бойтесь»."
+    },
+    {
+      "id": "r4",
+      "ru": "Моисей записал этот закон и дал его всем священникам сыновьям Левия.",
+      "question": "What did Moses give to the priests, the sons of Levi?",
+      "options": ["The law that he had written", "The Ten Commandments", "The Book of Joshua", "A list of sacrifices"],
+      "correct": "The law that he had written",
+      "explain": "Moses wrote the law and delivered it to the priests: «Моисей записал этот закон и дал его всем священникам»."
+    },
+    {
+      "id": "r5",
+      "ru": "Раз в семь лет, в год прощения долгов на праздники шалашей, читай этот закон вслух перед всем Израилем.",
+      "question": "How often and when should the law be read aloud before all Israel?",
+      "options": ["Once every seven years during the Feast of Booths in the year of release", "Every year on the Sabbath", "Once every forty years", "Every month during spring festivals"],
+      "correct": "Once every seven years during the Feast of Booths in the year of release",
+      "explain": "The text specifies: «Раз в семь лет, в год прощения долгов на праздники шалашей»."
+    },
+    {
+      "id": "r6",
+      "ru": "Собери народ, мужчин, женщин и детей, и чужеземцев, живущих в твоих городах.",
+      "question": "Who should be gathered together to hear the law?",
+      "options": ["Men, women, children, and foreigners living in the cities", "Only the priests and elders", "Only the able-bodied men", "Only the wealthy people"],
+      "correct": "Men, women, children, and foreigners living in the cities",
+      "explain": "Moses commands to gather all groups: «Собери народ, мужчин, женщин и детей, и чужеземцев»."
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Вот цари ___, которых победили израилетяне.",
+      "lemma": "земля",
+      "options": ["земли", "земле", "земля", "землей"],
+      "correct": "земли",
+      "case": "Родительный (Genitive)",
+      "translation": "These are the kings of the land whom the children of Israel struck.",
+      "explain": "The genitive singular follows the noun цари (kings), showing possession or association."
+    },
+    {
+      "id": "c2",
+      "sentence": "Сигон, царь Амареев, который жил в Хешбоне, он властвовал от Араэра, что на берегу реки ___.",
+      "lemma": "Арнон",
+      "options": ["Арнона", "Арнону", "Арнон", "Арноном"],
+      "correct": "Арнона",
+      "case": "Родительный (Genitive)",
+      "translation": "Sihon king of the Amorites, who lived in Heshbon, ruled from Aroer which is on the edge of the valley of the Arnon.",
+      "explain": "The genitive singular follows the preposition на берегу (on the bank of) which requires the genitive case."
+    },
+    {
+      "id": "c3",
+      "sentence": "Это половина ___.",
+      "lemma": "Галаад",
+      "options": ["Галаадом", "Галааду", "Галаада", "Галаад"],
+      "correct": "Галаада",
+      "case": "Родительный (Genitive)",
+      "translation": "He possessed half of Gilead.",
+      "explain": "The genitive singular follows the word половина (half), indicating possession."
+    },
+    {
+      "id": "c4",
+      "sentence": "Еще он владел Иорданской долиной к востоку от озера Кенерет до ___ Иорданской долины.",
+      "lemma": "море",
+      "options": ["морем", "морях", "моря", "морю"],
+      "correct": "моря",
+      "case": "Родительный (Genitive)",
+      "translation": "And the Arabah to the sea of Chinneroth eastward, and to the sea of the Arabah.",
+      "explain": "The genitive singular follows the preposition до (up to/until)."
+    },
+    {
+      "id": "c5",
+      "sentence": "Ок, царь Башана, один из последних рифаимов, живший в Аштороте и Эдрее, властвовал над горой ___.",
+      "lemma": "Хермон",
+      "options": ["Хермоном", "Хермону", "Хермона", "Хермон"],
+      "correct": "Хермон",
+      "case": "Именительный (Nominative)",
+      "translation": "Og king of Bashan, of the remnant of the Rephaim, who lived at Ashtaroth and at Edrei, ruled Mount Hermon.",
+      "explain": "The nominative is used after the verb властвовал (ruled over) as the direct object."
+    },
+    {
+      "id": "c6",
+      "sentence": "Моисей, слуга Господа, и израилетяне разбили их. Моисей, слуга Господа, отдал их ___ во владение Рувимитам.",
+      "lemma": "земля",
+      "options": ["земле", "земли", "землю", "землей"],
+      "correct": "землю",
+      "case": "Винительный (Accusative)",
+      "translation": "Moses gave their land as a possession to the Reubenites.",
+      "explain": "The accusative singular follows the transitive verb отдал (gave) as the direct object."
+    },
+    {
+      "id": "c7",
+      "sentence": "Вот цари ___ к западу от Иордана, которых Иисус разбил.",
+      "lemma": "земля",
+      "options": ["земли", "земле", "землю", "землей"],
+      "correct": "земли",
+      "case": "Родительный (Genitive)",
+      "translation": "These are the kings of the land whom Joshua and the children of Israel struck beyond the Jordan westward.",
+      "explain": "The genitive singular follows the noun цари (kings), indicating possession."
+    },
+    {
+      "id": "c8",
+      "sentence": "Их ___ Иисус отдал в наследие родам Израиля.",
+      "lemma": "земля",
+      "options": ["земли", "земле", "земля", "землей"],
+      "correct": "земли",
+      "case": "Винительный (Accusative)",
+      "translation": "Joshua gave their lands for an inheritance to the tribes of Israel.",
+      "explain": "The accusative singular follows the transitive verb отдал (gave)."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Вот цари земли, которых победили израилетяне, и чьи земли они взяли к востоку от Иордана, от реки Орнона до горы Хермон, со всей восточной частью Иорданской долины.",
+      "question": "Which kings' lands did the Israelites take east of the Jordan?",
+      "options": ["From the river Arnon to Mount Hermon, including the entire eastern part of the Jordan Valley", "Only the kings near Jericho", "The kings of the southern regions", "The kings of the Mediterranean coast"],
+      "correct": "From the river Arnon to Mount Hermon, including the entire eastern part of the Jordan Valley",
+      "explain": "The text specifies от реки Орнона до горы Хермон, со всей восточной частью Иорданской долины — from the river Arnon to Mount Hermon."
+    },
+    {
+      "id": "r2",
+      "ru": "Сигон, царь Амареев, который жил в Хешбоне, он властвовал от Араэра, что на берегу реки Арнона, и от середины долины до реки Ебока, границы Аманитян.",
+      "question": "Over what territory did Sihon, king of the Amorites, rule?",
+      "options": ["From Aroer on the bank of the Arnon to the river Jabbok, the border of Ammon", "The entire Gilead region", "All the land from the sea to the desert", "The northern mountains and valleys"],
+      "correct": "From Aroer on the bank of the Arnon to the river Jabbok, the border of Ammon",
+      "explain": "The text describes Сигон властвовал от Араэра, что на берегу реки Арнона, и от середины долины до реки Ебока — Sihon ruled from Aroer to the Jabbok."
+    },
+    {
+      "id": "r3",
+      "ru": "Моисей, слуга Господа, и израилетяне разбили их. Моисей, слуга Господа, отдал их землю во владение Рувимитом, Гадитом и половине рода Монассии.",
+      "question": "Who received the lands east of the Jordan as inheritance?",
+      "options": ["The Reubenites, Gadites, and half-tribe of Manasseh", "Only the Reubenites", "The entire tribe of Judah", "The Levites and priests"],
+      "correct": "The Reubenites, Gadites, and half-tribe of Manasseh",
+      "explain": "Moses gave the lands to Рувимитом, Гадитом и половине рода Монассии — the Reubenites, Gadites, and half-tribe of Manasseh."
+    },
+    {
+      "id": "r4",
+      "ru": "Вот цари земли, которых Иисус разбил к западу от Иордана, от Баалгада в долине Ливан до горы Халак, которая высадится к Сеиру.",
+      "question": "What region on the west side of the Jordan did Joshua conquer?",
+      "options": ["From Baal Gad in the valley of Lebanon to Mount Halak", "Only the region near Jericho", "The coastal plains by the Mediterranean", "The southern desert regions"],
+      "correct": "From Baal Gad in the valley of Lebanon to Mount Halak",
+      "explain": "The text specifies от Баалгада в долине Ливан до горы Халак — from Baal Gad to Mount Halak."
+    },
+    {
+      "id": "r5",
+      "ru": "Царь Иерихона один, царь Гая, что рядом с Вифилем один, царь Иерусалима один, царь Хеврона один, царь Ермута один, царь Лахиша один.",
+      "question": "What was the structure of the list of kings defeated by Joshua?",
+      "options": ["Each city had one king listed", "Multiple kings ruled each city", "Kings were grouped by alliances", "Kings were listed by age"],
+      "correct": "Each city had one king listed",
+      "explain": "The text repeats царь ... один (one king) for each city listed, showing each city had one king."
+    },
+    {
+      "id": "r6",
+      "ru": "Всего 31 царь.",
+      "question": "How many kings in total are listed in this enumeration?",
+      "options": ["31 kings", "15 kings", "50 kings", "7 kings"],
+      "correct": "31 kings",
+      "explain": "The chapter concludes with Всего 31 царь — 31 kings in total."
+    }
+  ]
+}
