@@ -1,0 +1,134 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Иааш, ___ Иудеи. Иааш было семь лет, когда он начал царствовать.",
+      "lemma": "царь",
+      "options": ["царь", "царя", "царем", "царю"],
+      "correct": "царь",
+      "case": "Именительный (Nominative)",
+      "translation": "Joash, king of Judea. Joash was seven years old when he began to reign.",
+      "explain": "The title after the appositive name takes the nominative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Его мать звали Цивия, она была родом из ___.",
+      "lemma": "Версавия",
+      "options": ["Версавия", "Версавии", "Версавию", "Версавией"],
+      "correct": "Версавии",
+      "case": "Родительный (Genitive)",
+      "translation": "His mother's name was Zibiah, of Beersheba.",
+      "explain": "The phrase 'родом из' (native of) requires the genitive case."
+    },
+    {
+      "id": "c3",
+      "sentence": "Иааш делал то, что было правильным в глазах ___, все время, пока был жив священник Иодай.",
+      "lemma": "Бог",
+      "options": ["Бог", "Бога", "Богу", "Богом"],
+      "correct": "Бога",
+      "case": "Родительный (Genitive)",
+      "translation": "Joash did that which was right in the sight of God all the days Jehoiada the priest lived.",
+      "explain": "The phrase 'в глазах Бога' (in the eyes/sight of God) uses the genitive after в глазах."
+    },
+    {
+      "id": "c4",
+      "sentence": "Спустя некоторое время Иааш решил восстановить дом ___, и он собрал священников и левитов.",
+      "lemma": "Бог",
+      "options": ["Бог", "Бога", "Богу", "Божьим"],
+      "correct": "Бога",
+      "case": "Родительный (Genitive)",
+      "translation": "After this, Joash determined to restore the house of the Lord, so he gathered the priests and the Levites.",
+      "explain": "The possessive phrase 'дом Бога' (house of God) requires the genitive case."
+    },
+    {
+      "id": "c5",
+      "sentence": "Ходите по городам Иудеи и собирайте со всех израилетян деньги, которые должны ежегодно поступать на поддержание дома вашего ___.",
+      "lemma": "Бог",
+      "options": ["Бог", "Бога", "Богу", "Божий"],
+      "correct": "Бога",
+      "case": "Родительный (Genitive)",
+      "translation": "Go throughout the cities of Judah and collect money to repair the house of your God from all Israel.",
+      "explain": "The possessive 'дома вашего Бога' (house of your God) uses the genitive."
+    },
+    {
+      "id": "c6",
+      "sentence": "Царский писарь и поверенные первосвященника приходили и опустошали ящик, и его снова относили на ___.",
+      "lemma": "место",
+      "options": ["место", "места", "месту", "месте"],
+      "correct": "место",
+      "case": "Винительный (Accusative)",
+      "translation": "The king's secretary and the chief priest's officer would come and empty the chest, and carry it back to its place.",
+      "explain": "The verb относили (carried) takes a direct object in the accusative case."
+    },
+    {
+      "id": "c7",
+      "sentence": "Они наняли каменщиков и плотников, чтобы обновить дом Господа, и мастеров по работе с железом и бронзой, чтобы восстановить ___.",
+      "lemma": "дом",
+      "options": ["дом", "дома", "дому", "домом"],
+      "correct": "дом",
+      "case": "Винительный (Accusative)",
+      "translation": "They hired masons and carpenters to restore the house of the Lord, and also those who worked iron and bronze to repair the house.",
+      "explain": "The verb восстановить (to restore) is transitive and takes its direct object in the accusative."
+    },
+    {
+      "id": "c8",
+      "sentence": "Завершив работу, они принесли оставшиеся деньги царю и ___, и на них была изготовлена утварь для дома Господа.",
+      "lemma": "Иодай",
+      "options": ["Иодай", "Иодая", "Иодаю", "Иодаем"],
+      "correct": "Иодаю",
+      "case": "Дательный (Dative)",
+      "translation": "When they had finished, they brought the rest of the money before the king and Jehoiada, from which were made vessels for the Lord's house.",
+      "explain": "The verb принесли (brought) with the preposition-like construction 'to' requires the dative case."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Иааш, царь Иудеи. Иааш было семь лет, когда он начал царствовать, и правил он в Иерусалиме сорок лет.",
+      "question": "How old was Joash when he became king and how long did he reign?",
+      "options": ["Seven years old, reigned forty years", "Twenty-five years old, reigned twenty-nine years", "Forty-two years old, reigned eight years", "Sixteen years old, reigned fifty-two years"],
+      "correct": "Seven years old, reigned forty years",
+      "explain": "The text states 'Иааш было семь лет, когда он начал царствовать, и правил он в Иерусалиме сорок лет' — Joash was seven years old when he began to reign, and he reigned forty years in Jerusalem."
+    },
+    {
+      "id": "r2",
+      "ru": "Иааш делал то, что было правильным в глазах Господа, все время, пока был жив священник Иодай.",
+      "question": "During whose lifetime did Joash do what was right in God's sight?",
+      "options": ["While Jehoiada the priest lived", "While his mother lived", "While he had advisors", "Throughout his reign"],
+      "correct": "While Jehoiada the priest lived",
+      "explain": "The text says he did what was right 'все время, пока был жив священник Иодай' — all the days Jehoiada the priest lived."
+    },
+    {
+      "id": "r3",
+      "ru": "Спустя некоторое время Иааш решил восстановить дом Господа.",
+      "question": "What major project did Joash undertake?",
+      "options": ["Restoration of the Lord's house", "Building a new temple", "Fortification of Jerusalem", "Conquest of neighboring lands"],
+      "correct": "Restoration of the Lord's house",
+      "explain": "The text explicitly states 'Иааш решил восстановить дом Господа' — Joash determined to restore the house of the Lord."
+    },
+    {
+      "id": "r4",
+      "ru": "По повелению царя был изготовлен ящик, который поставили снаружи у ворот Господнего дома.",
+      "question": "Where was the collection chest placed?",
+      "options": ["Outside at the gate of the Lord's house", "Inside the temple treasury", "At the king's palace", "In the city marketplace"],
+      "correct": "Outside at the gate of the Lord's house",
+      "explain": "The text says the chest was placed 'снаружи у ворот Господнего дома' — outside at the gate of the Lord's house."
+    },
+    {
+      "id": "r5",
+      "ru": "Пока Иодай был жив, в доме Господа постоянно совершались всесожжения.",
+      "question": "What religious practice continued while Jehoiada lived?",
+      "options": ["Burnt offerings were continually made in the Lord's house", "The temple was closed for repairs", "Sacrifices were forbidden", "Only priestly offerings were permitted"],
+      "correct": "Burnt offerings were continually made in the Lord's house",
+      "explain": "The text states 'в доме Господа постоянно совершались всесожжения' — in the Lord's house burnt offerings were continually made."
+    },
+    {
+      "id": "r6",
+      "ru": "После смерти Иодая вожди иудеи явились на поклон к царю, и он стал прислушиваться к их советам.",
+      "question": "What happened after Jehoiada died?",
+      "options": ["The leaders of Judah came to the king and he began listening to their advice", "The king died and was replaced", "The enemies conquered Jerusalem", "A famine struck the land"],
+      "correct": "The leaders of Judah came to the king and he began listening to their advice",
+      "explain": "The text says 'После смерти Иодая вожди иудеи явились на поклон к царю, и он стал прислушиваться к их советам' — After Jehoiada's death, the princes of Judah came to the king, and he listened to them."
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Царь Дарий дал повеление, и в архивах, что хранились в сокровищнице ___, устроили поиск.",
+      "lemma": "Вавилон",
+      "options": ["Вавилон", "Вавилона", "Вавилоне", "Вавилоном"],
+      "correct": "Вавилоне",
+      "case": "Предложный (Prepositional)",
+      "translation": "King Darius gave a command, and a search was made in the archives kept in the treasury at Babylon.",
+      "explain": "The preposition в (in) requires the prepositional case for location."
+    },
+    {
+      "id": "c2",
+      "sentence": "Пусть дом будет 60 локтей в высоту и 60 локтей в ___.",
+      "lemma": "ширина",
+      "options": ["ширина", "ширины", "ширину", "шириной"],
+      "correct": "ширину",
+      "case": "Винительный (Accusative)",
+      "translation": "Let the house be sixty cubits in height and sixty cubits in width.",
+      "explain": "The preposition в (in) governing measurement requires the accusative case."
+    },
+    {
+      "id": "c3",
+      "sentence": "Пусть золотые и серебряные вещи Божьего дома вернутся на свое место в ___ дом.",
+      "lemma": "Иерусалим",
+      "options": ["Иерусалим", "Иерусалима", "Иерусалиме", "Иерусалимом"],
+      "correct": "Иерусалим",
+      "case": "Именительный (Nominative)",
+      "translation": "Let the gold and silver vessels of God's house be returned to their place in the Jerusalem house.",
+      "explain": "The nominative case marks the object 'to where' things were returned; в + accusative (which coincides with nominative for inanimate nouns) or nominative subject."
+    },
+    {
+      "id": "c4",
+      "sentence": "Не вмешивайтесь в работу над этим Божьим ___.",
+      "lemma": "дом",
+      "options": ["дом", "дома", "дому", "домом"],
+      "correct": "домом",
+      "case": "Творительный (Instrumental)",
+      "translation": "Do not interfere with the work on this house of God.",
+      "explain": "The preposition над (over/concerning) requires the instrumental case; над чем? (over/concerning what?) needs instrumental."
+    },
+    {
+      "id": "c5",
+      "sentence": "Пусть иудейский наместник и старейшины иудеев отстраивают этот Божий ___ на его прежнем месте.",
+      "lemma": "дом",
+      "options": ["дом", "дома", "дому", "доме"],
+      "correct": "дом",
+      "case": "Именительный (Nominative)",
+      "translation": "Let the Jewish governor and the elders of the Jews rebuild this house of God in its former place.",
+      "explain": "The direct object of the transitive verb отстраивают (are rebuilding) requires the accusative case; for inanimate nouns this coincides with nominative."
+    },
+    {
+      "id": "c6",
+      "sentence": "Все, что потребуется, тельцы, бараны, гнята, для всесожжений Богу Небесному, пшеница, соль, вино и масло, как скажут священники из ___, должно выдаваться им ежедневно.",
+      "lemma": "Иерусалим",
+      "options": ["Иерусалим", "Иерусалима", "Иерусалиме", "Иерусалимом"],
+      "correct": "Иерусалима",
+      "case": "Родительный (Genitive)",
+      "translation": "Everything that is needed—cattle, rams, lambs for burnt offerings to the God of heaven, wheat, salt, wine and oil, as specified by the priests from Jerusalem—should be given to them daily.",
+      "explain": "The preposition из (from) requires the genitive case; из чего? (from where?) needs genitive."
+    },
+    {
+      "id": "c7",
+      "sentence": "Я даю такое повеление, что если кто-нибудь изменит этот указ, то пусть из его дома вынут кол и посадят его на ___.",
+      "lemma": "кол",
+      "options": ["кол", "кола", "колу", "колом"],
+      "correct": "колу",
+      "case": "Дательный (Dative)",
+      "translation": "I make a decree that if anyone alters this order, let a beam be pulled out from his house and he shall be impaled on it.",
+      "explain": "The verb посадят requires the dative case for the object; посадят на что? (impale on what?) requires dative in this construction."
+    },
+    {
+      "id": "c8",
+      "sentence": "Пусть Бог, который утвердил там свое имя, не позволит всякому ___  или народу поднять руку против этого указа.",
+      "lemma": "царь",
+      "options": ["царь", "царя", "царю", "царем"],
+      "correct": "царю",
+      "case": "Дательный (Dative)",
+      "translation": "May the God who has established his name there not permit any king or people to raise their hand against this decree.",
+      "explain": "The verb позволить with negative requires the dative; не позволить кому? (not allow to whom?) requires dative."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Царь Дарий дал повеление, и в архивах, что хранились в сокровищнице Вавилоне, устроили поиск.",
+      "question": "What did King Darius command to be done?",
+      "options": ["A search was made in the archives kept in the treasury at Babylon", "He ordered the temple to be destroyed", "He stopped the construction", "He demanded payment from the Jews"],
+      "correct": "A search was made in the archives kept in the treasury at Babylon",
+      "explain": "Царь Дарий дал повеление и в архивах устроили поиск — King Darius gave a command and a search was made in the archives."
+    },
+    {
+      "id": "r2",
+      "ru": "В Якбатане, столице провинции Мидия, нашелся свиток, и в нем было написано «Памятная запись».",
+      "question": "Where was a scroll found with King Cyrus's decree?",
+      "options": ["At Achmetha, the capital of Media", "At Babylon", "At Jerusalem", "At Susa"],
+      "correct": "At Achmetha, the capital of Media",
+      "explain": "В Якбатане, столице провинции Мидия, нашелся свиток — a scroll was found at Achmetha, the capital of Media."
+    },
+    {
+      "id": "r3",
+      "ru": "Пусть дом, место, где приносятся жертвы и сжигаются всесожжения, будет отстроен, и пусть будут заложены его основания.",
+      "question": "What was decreed about the temple building in Cyrus's original decree?",
+      "options": ["That it should be rebuilt and its foundations laid", "That it should be destroyed", "That it should remain unfinished", "That only the foundation should be built"],
+      "correct": "That it should be rebuilt and its foundations laid",
+      "explain": "Пусть дом будет отстроен и пусть будут заложены его основания — the house should be rebuilt and its foundations laid."
+    },
+    {
+      "id": "r4",
+      "ru": "Пусть он будет 60 локтей в высоту и 60 локтей в ширину, с тремя рядами из больших камней и одним из дерева.",
+      "question": "What were the dimensions and construction materials of the temple?",
+      "options": ["Sixty cubits high and wide, with three courses of large stones and one of timber", "Made entirely of wood", "Twice as high as it was wide", "Made of gold and silver"],
+      "correct": "Sixty cubits high and wide, with three courses of large stones and one of timber",
+      "explain": "он будет 60 локтей в высоту и ширину с рядами больших камней и дерева — sixty cubits in height and width with rows of stone and timber."
+    },
+    {
+      "id": "r5",
+      "ru": "Затем они поставили священников по их отделениям и левитов по их группам для служения Богу в Иерусалиме, как предписано в книге Моисея.",
+      "question": "How were the priests and Levites organized for service?",
+      "options": ["By their divisions and groups as prescribed in the Book of Moses", "According to the king's command", "By age and seniority", "Randomly selected"],
+      "correct": "By their divisions and groups as prescribed in the Book of Moses",
+      "explain": "священников по их отделениям и левитов по их группам для служения Богу как предписано в книге Моисея — priests by divisions and Levites by groups as prescribed in the Book of Moses."
+    },
+    {
+      "id": "r6",
+      "ru": "Семь дней они радостно отмечали праздник пресных хлебов, потому что Господь наполнил их радостью, расположив к ним царя Персии, так что тот стал помогать им в работе над домом Господа, Бога Израиля.",
+      "question": "Why did the people celebrate the Feast of Unleavened Bread with such joy?",
+      "options": ["Because the Lord filled them with joy and disposed the king of Persia to help them with the work on God's house", "Because the work was finally completed", "Because they returned from captivity", "Because the prophets commanded them to"],
+      "correct": "Because the Lord filled them with joy and disposed the king of Persia to help them with the work on God's house",
+      "explain": "Господь наполнил их радостью расположив к ним царя Персии — the Lord filled them with joy by inclining the king of Persia to help them."
+    }
+  ]
+}
