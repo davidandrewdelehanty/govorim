@@ -16,7 +16,7 @@
 
 import { requireAdmin } from "./_helpers.js";
 import { ghGet, ghPut } from "./_gh.js";
-import { parseFb2, applyTranscriptEdits, applyFb2Insertions } from "./_talign.js";
+import { parseFb2, tokenizeFb2, applyTranscriptEdits, applyFb2Edits } from "./_talign.js";
 
 function backupPath(origPath, ts) {
   const flat = String(origPath).replace(/^public\/books\//, "").replace(/[\/]/g, "__");
@@ -79,25 +79,30 @@ export default async function handler(req, res) {
       committed.push({ path: ch.path, edits: applied.changed });
     }
 
-    // ---- FB2 insertions ----
-    if (fb2Inserts.length && body.fb2Path) {
+    // ---- FB2 edits (insertions + deletions) ----
+    const fb2Deletions = Array.isArray(body.fb2Deletions) ? body.fb2Deletions : [];
+    if ((fb2Inserts.length || fb2Deletions.length) && body.fb2Path) {
       const got = await ghGet(body.fb2Path);
       if (!got) { errors.push({ path: body.fb2Path, error: "FB2 not found" }); }
       else if (body.fb2Sha && got.sha !== body.fb2Sha) {
-        errors.push({ path: body.fb2Path, error: "FB2 changed since scan — re-scan before inserting", conflict: true });
+        errors.push({ path: body.fb2Path, error: "FB2 changed since scan — re-scan before editing", conflict: true });
       } else {
         const parsed = parseFb2(got.content);
-        const out = applyFb2Insertions(got.content, parsed, fb2Inserts);
+        const fbToks = tokenizeFb2(parsed);
+        const out = applyFb2Edits(got.content, parsed, fbToks, fb2Inserts, fb2Deletions);
         if (out.count > 0) {
           if (doBackup) {
             const bp = backupPath(body.fb2Path, ts);
-            await ghPut(bp, got.content, null, "Backup " + body.fb2Path + " before inserting " + out.count + " sentence(s)");
+            await ghPut(bp, got.content, null, "Backup " + body.fb2Path + " before FB2 edits (" + out.inserts + " insert / " + out.deletions + " remove)");
             backups.push(bp);
           }
-          await ghPut(body.fb2Path, out.raw, got.sha, "Insert " + out.count + " missing sentence(s) into " + body.fb2Path.split("/").pop());
-          committed.push({ path: body.fb2Path, inserts: out.count });
+          const msgParts = [];
+          if (out.inserts) msgParts.push("insert " + out.inserts + " passage(s)");
+          if (out.deletions) msgParts.push("remove " + out.deletions + " passage(s)");
+          await ghPut(body.fb2Path, out.raw, got.sha, "FB2 edits: " + msgParts.join(", ") + " in " + body.fb2Path.split("/").pop());
+          committed.push({ path: body.fb2Path, inserts: out.inserts, deletions: out.deletions });
         } else {
-          errors.push({ path: body.fb2Path, error: "no insertions applied" });
+          errors.push({ path: body.fb2Path, error: "no FB2 edits applied" });
         }
       }
     }

@@ -2750,7 +2750,7 @@ export default function App() {
   var [ttProgress, setTtProgress] = useState(null);      // {done,total,label}
   var [ttChapter, setTtChapter]   = useState(null);      // chapter index open for review
   var [ttDecisions, setTtDecisions] = useState({});      // discKey -> {action, text}
-  var [ttFilter, setTtFilter]     = useState({ sub:true, missing:true, omitted:false, actionable:true });
+  var [ttFilter, setTtFilter]     = useState({ sub:true, missing:true, omitted:true, actionable:true });
   var [ttApplying, setTtApplying] = useState(false);
   var [ttApplyMsg, setTtApplyMsg] = useState("");
   var [ttAiBusy, setTtAiBusy]     = useState(false);
@@ -5056,7 +5056,7 @@ export default function App() {
 
   // Count accepted edits for a book across all its scanned chapters.
   var ttAcceptedForBook = function(book) {
-    var subs = 0, inserts = 0;
+    var subs = 0, inserts = 0, dels = 0;
     for (var ci = 0; ci < (book ? book.nChapters : 0); ci++) {
       var scan = ttScans[book.fb2Path + "|" + ci];
       if (!scan || !scan.discrepancies) continue;
@@ -5065,9 +5065,10 @@ export default function App() {
         if (!dec || dec.action !== "accept") return;
         if (d.kind === "missing") inserts++;
         else if (d.kind === "sub") subs++;
+        else if (d.kind === "omitted") dels++;
       });
     }
-    return { subs: subs, inserts: inserts, total: subs + inserts };
+    return { subs: subs, inserts: inserts, dels: dels, total: subs + inserts + dels };
   };
 
   var ttApply = async function(book) {
@@ -5075,6 +5076,7 @@ export default function App() {
     try {
       var chaptersPayload = [];
       var fb2Inserts = [];
+      var fb2Deletions = [];
       var fb2Sha = null;
       for (var ci = 0; ci < book.nChapters; ci++) {
         var scan = ttScans[book.fb2Path + "|" + ci];
@@ -5084,6 +5086,7 @@ export default function App() {
         scan.discrepancies.forEach(function(d) {
           var dec = ttDecisions[ttKey(book.fb2Path, ci, d.id)];
           if (!dec || dec.action !== "accept") return;
+          if (d.kind === "omitted") { fb2Deletions.push({ fbStart: d.fbStart, fbEnd: d.fbEnd }); return; }
           var text = (dec.text != null ? dec.text : ttTargetText(d)).trim();
           if (!text) return;
           if (d.kind === "sub") {
@@ -5101,11 +5104,11 @@ export default function App() {
         });
         if (edits.length) chaptersPayload.push({ path: book.chapters[ci].path, sha: scan.chapterSha, edits: edits });
       }
-      if (!chaptersPayload.length && !fb2Inserts.length) { setTtErr("Nothing approved to commit."); setTtApplying(false); return; }
+      if (!chaptersPayload.length && !fb2Inserts.length && !fb2Deletions.length) { setTtErr("Nothing approved to commit."); setTtApplying(false); return; }
 
       var r = await authFetch("/api/admin/transcript-apply", {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fb2Path: book.fb2Path, fb2Sha: fb2Sha, fb2Inserts: fb2Inserts, chapters: chaptersPayload, backup: true }),
+        body: JSON.stringify({ fb2Path: book.fb2Path, fb2Sha: fb2Sha, fb2Inserts: fb2Inserts, fb2Deletions: fb2Deletions, chapters: chaptersPayload, backup: true }),
       });
       var d = await r.json();
       if (!r.ok) throw new Error(d.error || "Apply failed");
@@ -5202,7 +5205,7 @@ export default function App() {
   // Filter predicate shared by render + keyboard nav.
   var ttShouldShow = function(d){
     if(!ttFilter[d.kind]) return false;
-    if(ttFilter.actionable){ if(d.kind==="omitted") return false; if(d.kind==="missing"&&d.suggest==="ignore") return false; }
+    if(ttFilter.actionable){ if(d.suggest==="ignore") return false; }
     if(ttSearch){ var q=ttSearch.toLowerCase(); if(((d.trText||"")+" "+(d.fbText||"")).toLowerCase().indexOf(q)<0) return false; }
     return true;
   };
@@ -5246,7 +5249,7 @@ export default function App() {
       var setIdx = function(i){ if(i<0)i=0; if(i>=discs.length)i=discs.length-1; var k=ttKey(ttSel.fb2Path,ttChapter,discs[i].id); setTtActive(k); setTimeout(function(){ var el=document.getElementById("tt-"+k.replace(/[^a-zA-Z0-9]/g,"_")); if(el&&el.scrollIntoView) el.scrollIntoView({block:"center",behavior:"smooth"}); },0); };
       if(e.key==="ArrowDown"||e.key==="j"){ e.preventDefault(); setIdx(idx+1); }
       else if(e.key==="ArrowUp"||e.key==="k"){ e.preventDefault(); setIdx(idx<=0?0:idx-1); }
-      else if((e.key==="Enter"||e.key==="a") && idx>=0){ e.preventDefault(); var d=discs[idx]; if(d.kind!=="omitted") ttSetDecision(ttKey(ttSel.fb2Path,ttChapter,d.id),{action:"accept"}); }
+      else if((e.key==="Enter"||e.key==="a") && idx>=0){ e.preventDefault(); var d=discs[idx]; ttSetDecision(ttKey(ttSel.fb2Path,ttChapter,d.id),{action:"accept"}); }
       else if((e.key==="x"||e.key==="Backspace") && idx>=0){ e.preventDefault(); ttSetDecision(ttKey(ttSel.fb2Path,ttChapter,discs[idx].id),{action:"reject"}); }
       else if(e.key==="Escape"){ if(ttActive) setTtActive(null); else setTtChapter(null); }
     };
@@ -8263,7 +8266,8 @@ export default function App() {
                     {segs.map(function(seg,si){
                       var joined=seg.words.map(function(w){return w.word;}).join(" ");
                       var caretD = caretMap[fi+":"+seg.start];
-                      var caret = caretD ? <span key={"c"+si} className="ts-caret" title={"Audio skips: "+caretD.fbText} onClick={function(e){ e.stopPropagation(); setTtActive(dkey(ci,caretD.id)); }}>⌄</span> : null;
+                      var caretDec = caretD ? (ttDecisions[dkey(ci,caretD.id)]||{}) : null;
+                      var caret = caretD ? <span key={"c"+si} className={"ts-caret"+(caretDec.action==="accept"?" del":"")+(ttActive===dkey(ci,caretD.id)?" active":"")} title={(caretDec.action==="accept"?"Will remove from book: ":"In book, not in audio: ")+caretD.fbText} onClick={function(e){ e.stopPropagation(); setTtActive(dkey(ci,caretD.id)); }}>{caretDec.action==="accept"?"✕":"⌄"}</span> : null;
                       if(!seg.d) return <span key={si}>{caret}{joined+" "}</span>;
                       var d=seg.d, k=dkey(ci,d.id), dec=ttDecisions[k]||{}, ai=ttVerdicts[k];
                       var airec = ai && (ai.verdict==="asr_error"||ai.verdict==="missing");
@@ -8315,14 +8319,21 @@ export default function App() {
                     </div>
                     <div className="ts-ctx">…{d.trContextBefore} <b className="ts-hl">{d.trText||"∅"}</b> {d.trContextAfter}…</div>
                     {d.note && <div style={{fontSize:12,color:"#9d4630",marginBottom:8,fontStyle:"italic"}}>⚠ {d.note}</div>}
-                    {d.kind!=="omitted" && (
+                    {d.kind==="omitted" ? (
+                      <div className="ts-io">
+                        <div className="ts-col"><label>in the book, not in the audio — will be removed</label><div className="ts-old">{d.fbText||"—"}</div></div>
+                      </div>
+                    ) : (
                       <div className="ts-io">
                         <div className="ts-col"><label>audio heard</label><div className="ts-old">{d.trText||"—"}</div></div>
                         <div className="ts-col"><label>{d.kind==="missing"?"insert into FB2":"FB2 text"}</label><div className="ts-new">{d.fbText||d.trText}</div></div>
                       </div>
                     )}
                     {d.kind==="omitted" ? (
-                      <div className="ts-note">The recording skips this text (abridged) — informational only.</div>
+                      <div className="ts-actions" onClick={function(e){ e.stopPropagation(); }}>
+                        <button className="ts-b rej" onClick={function(){ ttSetDecision(k,{action:"accept"}); }} style={dec.action==="accept"?{background:"#9d4630",color:"#fff",border:"none"}:{}}>{dec.action==="accept"?"✓ Will remove":"🗑 Remove from FB2"}</button>
+                        <button className="ts-b ghost" onClick={function(){ ttSetDecision(k,{action:dec.action==="reject"?"":"reject"}); }}>Keep</button>
+                      </div>
                     ) : (
                       <div className="ts-actions" onClick={function(e){ e.stopPropagation(); }}>
                         <input className="ts-field" value={dec.text!=null?dec.text:ttTargetText(d)} onChange={function(e){ ttSetDecision(k,{text:e.target.value}); }}/>
@@ -8372,7 +8383,15 @@ export default function App() {
                   {d.explain && <div className="ts-insp-explain">{d.explain}</div>}
                 </>
               ) : (
-                <div className="ts-note">This text is in the book but the recording skips it (abridged). Nothing to fix — it's here so you can spot where the audio and text diverge.</div>
+                <>
+                  <label className="ts-insp-lbl">In the book, not in the audio</label>
+                  <div className="ts-old" style={{fontSize:15,lineHeight:1.6,marginBottom:6}}>{d.fbText}</div>
+                  <div className="ts-insp-hint">The recording skips this text. Removing it trims the book to match the narration, so word-highlighting stays in sync.</div>
+                  <div className="ts-insp-btns">
+                    <button className={"ts-b rej big"+(dec.action==="accept"?" on":"")} style={dec.action==="accept"?{background:"#9d4630",color:"#fff",border:"none"}:{}} onClick={function(){ ttSetDecision(k,{action:"accept"}); }}>{dec.action==="accept"?"✓ Will remove from FB2":"🗑 Remove from FB2"}</button>
+                    <button className={"ts-b ghost big"+(dec.action==="reject"?" on":"")} onClick={function(){ ttSetDecision(k,{action:dec.action==="reject"?"":"reject"}); }}>Keep</button>
+                  </div>
+                </>
               )}
             </div>
           );
@@ -8439,7 +8458,9 @@ export default function App() {
               .ts-mm.active{box-shadow:0 0 0 2px #c4955a;background:rgba(196,149,90,.26)}
               .ts-mm.acc{background:rgba(58,125,68,.22);border-color:#3a7d44;color:#245029}
               .ts-mm.rej{opacity:.4;border-bottom-style:none;background:transparent}
-              .ts-caret{color:#9d4630;font-weight:700;cursor:pointer;padding:0 1px;opacity:.6}
+              .ts-caret{color:#9d4630;font-weight:700;cursor:pointer;padding:0 1px;opacity:.55;font-size:.85em;vertical-align:middle}
+              .ts-caret.del{opacity:1;background:rgba(157,70,48,.2);border-radius:3px;padding:0 3px}
+              .ts-caret.active{box-shadow:0 0 0 2px #c4955a;border-radius:3px;opacity:1}
               .ts-caret:hover{opacity:1}
               /* popover */
               .ts-pop{position:absolute;bottom:100%;left:50%;transform:translateX(-50%) translateY(-4px);min-width:230px;max-width:340px;background:#fff;border:1px solid rgba(42,31,20,.14);border-radius:11px;box-shadow:0 14px 40px rgba(26,22,17,.28);padding:11px;z-index:80;opacity:0;visibility:hidden;transition:opacity .12s,transform .12s;pointer-events:none;font-family:'Inter',system-ui,sans-serif;font-size:12.5px;line-height:1.5;white-space:normal;text-align:left}
@@ -8646,7 +8667,7 @@ export default function App() {
                 <span><b>{ttSel?ttSel.title:"—"}</b>{ttChapter!=null?(" · Ch "+(ttChapter+1)):""}</span>
                 {chapSummary && chapSummary.summary && <span>match <b>{Math.round((chapSummary.summary.ratio||0)*100)}%</b></span>}
                 {ttChapter!=null && <span><b>{discs.length}</b> shown</span>}
-                <span><b>{acc.subs}</b> fixes · <b>{acc.inserts}</b> inserts staged</span>
+                <span><b>{acc.subs}</b> fixes · <b>{acc.inserts}</b> inserts · <b>{acc.dels||0}</b> removals staged</span>
                 {ttChapter!=null && <span className="ts-kbd"><kbd>↑</kbd><kbd>↓</kbd> move · <kbd>↵</kbd> accept · <kbd>x</kbd> skip</span>}
                 <button className="ts-commit" disabled={ttApplying||acc.total===0} onClick={function(){ ttApply(ttSel); }}>{ttApplying?"Committing…":("⬆ Commit "+acc.total+" change"+(acc.total===1?"":"s"))}</button>
               </div>

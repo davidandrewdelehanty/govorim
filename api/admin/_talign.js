@@ -120,7 +120,7 @@ function tokenizeFb2(parsed) {
     const words = parsed.paras[pi].text.split(/\s+/);
     for (let w = 0; w < words.length; w++) {
       const n = normWord(words[w]);
-      if (n) toks.push({ norm: n, raw: words[w], paraIdx: pi });
+      if (n) toks.push({ norm: n, raw: words[w], paraIdx: pi, wpi: w });
     }
   }
   return toks;
@@ -348,7 +348,10 @@ function classifyRegion(region, fbToks, trToks, spanStart) {
     return Object.assign(base, {
       kind: "omitted",
       confidence: cl >= 3 ? "high" : "low",
-      suggest: "info",
+      // Text in the book that the recording never speaks → offer to remove it
+      // from the FB2 so the displayed text matches the narration. Tiny stopword
+      // runs are treated as noise.
+      suggest: cl >= 1 ? "removeFb2" : "ignore",
       needsAI: false,
     });
   }
@@ -616,6 +619,62 @@ function applyFb2Insertions(raw, parsed, inserts) {
   return { raw: out, count: items.length };
 }
 
+function escapeXml(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+// ---------------------------------------------------------------------------
+// APPLY: combined FB2 edits — insertions AND deletions in one offset-safe pass.
+//   inserts   = [{ afterParaIdx, text }]
+//   deletions = [{ fbStart, fbEnd }]  (token index ranges into fbToks)
+// Deletion strategy: remove the run's words from the affected paragraph(s). If
+// a paragraph loses ALL its words, the whole <p> element is removed; otherwise
+// the <p> is rewritten with the remaining words (inline tags in that one
+// paragraph are flattened — acceptable, and the admin reviews + backs up first).
+// All edits are computed against the ORIGINAL raw/parse, then applied high-
+// offset-first so earlier splices don't shift later ones.
+// ---------------------------------------------------------------------------
+function applyFb2Edits(raw, parsed, fbToks, inserts, deletions) {
+  const edits = [];
+  // insertions → zero-length splices at a paragraph's raw end
+  (inserts || []).forEach(function (ins) {
+    const p = ins && ins.afterParaIdx != null ? parsed.paras[ins.afterParaIdx] : null;
+    if (!p || !ins.text) return;
+    edits.push({ start: p.rawEnd, end: p.rawEnd, text: "\n<p>" + escapeXml(ins.text) + "</p>", kind: "ins" });
+  });
+  // deletions → gather removed token indices, group by paragraph via wpi
+  const remove = {};
+  (deletions || []).forEach(function (d) { if (d && d.fbStart != null) for (let i = d.fbStart; i < d.fbEnd; i++) remove[i] = true; });
+  const byPara = {};
+  for (let i = 0; i < fbToks.length; i++) {
+    if (remove[i]) { const t = fbToks[i]; if (t.wpi != null) { if (!byPara[t.paraIdx]) byPara[t.paraIdx] = {}; byPara[t.paraIdx][t.wpi] = true; } }
+  }
+  Object.keys(byPara).forEach(function (piStr) {
+    const pi = +piStr, para = parsed.paras[pi];
+    if (!para) return;
+    const words = para.text.split(/\s+/);
+    const kept = [];
+    for (let w = 0; w < words.length; w++) if (!byPara[pi][w]) kept.push(words[w]);
+    if (kept.join("").replace(/[^\wа-яё]/gi, "").trim() === "") {
+      // whole paragraph gone — remove the element (and a leading newline if any)
+      let start = para.rawStart;
+      if (raw[start - 1] === "\n") start = start - 1;
+      edits.push({ start: start, end: para.rawEnd, text: "", kind: "del" });
+    } else {
+      edits.push({ start: para.rawStart, end: para.rawEnd, text: "<p>" + escapeXml(kept.join(" ")) + "</p>", kind: "del" });
+    }
+  });
+  // apply high-offset first
+  edits.sort(function (a, b) { return b.start - a.start || b.end - a.end; });
+  let out = raw, nIns = 0, nDel = 0;
+  for (let i = 0; i < edits.length; i++) {
+    const e = edits[i];
+    out = out.slice(0, e.start) + e.text + out.slice(e.end);
+    if (e.kind === "ins") nIns++; else nDel++;
+  }
+  return { raw: out, inserts: nIns, deletions: nDel, count: nIns + nDel };
+}
+
 // Given a discrepancy's fbAnchorTokenIndex, resolve which paragraph to insert
 // after (the paragraph of the token just before the insertion point).
 function paraForInsertion(fbToks, fbAnchorTokenIndex) {
@@ -628,6 +687,6 @@ export {
   normWord, splitAffix, levenshtein, decodeEntities,
   parseFb2, tokenizeFb2, tokenizeTranscript, smartJoin,
   myersDiff, mergeOps, anchorChapter, classifyRegion, scanChapter,
-  applyTranscriptEdits, applyFb2Insertions, paraForInsertion, findNgram,
+  applyTranscriptEdits, applyFb2Insertions, applyFb2Edits, paraForInsertion, findNgram,
   validateTimingIntegrity,
 };
