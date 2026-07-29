@@ -1,0 +1,134 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Давид спросил о ком-нибудь из ___ Саула.",
+      "lemma": "дом",
+      "options": ["дом", "дома", "дому", "доме"],
+      "correct": "дома",
+      "case": "Родительный (Genitive)",
+      "translation": "David asked about someone from Saul's house.",
+      "explain": "The genitive case shows possession (Saul's house)."
+    },
+    {
+      "id": "c2",
+      "sentence": "В доме Саула был слуга по имени ___.",
+      "lemma": "Цива",
+      "options": ["Цива", "Цивы", "Циве", "Цивой"],
+      "correct": "Цива",
+      "case": "Именительный (Nominative)",
+      "translation": "In Saul's house there was a servant named Ziba.",
+      "explain": "The nominative case is used for the grammatical subject of the sentence."
+    },
+    {
+      "id": "c3",
+      "sentence": "Остался еще ___ Иоаннафана, он хромой на обе ноги.",
+      "lemma": "сын",
+      "options": ["сын", "сына", "сыну", "сыне"],
+      "correct": "сын",
+      "case": "Именительный (Nominative)",
+      "translation": "There is still a son of Jonathan, who is lame in both feet.",
+      "explain": "The nominative case is used for the grammatical subject of the sentence."
+    },
+    {
+      "id": "c4",
+      "sentence": "Он в доме Махира, ___ Амиила, в Лодеваре.",
+      "lemma": "сын",
+      "options": ["сын", "сына", "сыну", "сыне"],
+      "correct": "сына",
+      "case": "Родительный (Genitive)",
+      "translation": "He is in the house of Machir, son of Ammiel, in Lo Debar.",
+      "explain": "The genitive case shows possession or relationship (son of Ammiel)."
+    },
+    {
+      "id": "c5",
+      "sentence": "Царь Давид послал забрать его из ___.",
+      "lemma": "дом",
+      "options": ["дом", "дома", "дому", "доме"],
+      "correct": "дома",
+      "case": "Родительный (Genitive)",
+      "translation": "King David sent to fetch him from the house.",
+      "explain": "The preposition из (from) governs the genitive case."
+    },
+    {
+      "id": "c6",
+      "sentence": "Когда Мефибашет, ___ Иоаннафана, внук Саула, пришел к Давиду.",
+      "lemma": "сын",
+      "options": ["сын", "сына", "сыну", "сыне"],
+      "correct": "сын",
+      "case": "Именительный (Nominative)",
+      "translation": "When Mephibosheth, the son of Jonathan, grandson of Saul, came to David.",
+      "explain": "The nominative case is used in appositive phrases renaming the subject."
+    },
+    {
+      "id": "c7",
+      "sentence": "Я верну тебе всю ___.",
+      "lemma": "земля",
+      "options": ["земля", "земли", "земле", "землю"],
+      "correct": "землю",
+      "case": "Винительный (Accusative)",
+      "translation": "I will restore to you all the land.",
+      "explain": "The accusative case marks the direct object of the verb верну."
+    },
+    {
+      "id": "c8",
+      "sentence": "У Цива было пятнадцать ___ и двадцать слуг.",
+      "lemma": "сын",
+      "options": ["сын", "сына", "сыну", "сынов"],
+      "correct": "сынов",
+      "case": "Родительный (Genitive)",
+      "translation": "Ziba had fifteen sons and twenty servants.",
+      "explain": "After numerals higher than 4, the genitive plural is used."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Давид спросил, остался ли из дома Саула кто-нибудь, кому я мог бы оказать милость ради Иоаннафана.",
+      "question": "Why did David want to show kindness?",
+      "options": ["For Jonathan's sake", "Out of respect for Saul", "To show his power", "To gain allies"],
+      "correct": "For Jonathan's sake",
+      "explain": "David explicitly states he wants to show kindness for the sake of Jonathan (Saul's son)."
+    },
+    {
+      "id": "r2",
+      "ru": "В доме Саула был слуга по имени Цива, его позвали к Давиду, и царь спросил его, «Ты Цива?»",
+      "question": "Who was Ziba?",
+      "options": ["A servant in Saul's house", "A son of Saul", "A nephew of Jonathan", "A commander of troops"],
+      "correct": "A servant in Saul's house",
+      "explain": "The text explicitly identifies Ziba as a servant in Saul's household."
+    },
+    {
+      "id": "r3",
+      "ru": "Остался еще сын Иоаннафана, он хромой на обе ноги.",
+      "question": "What was wrong with Jonathan's son?",
+      "options": ["He was lame in both feet", "He was blind", "He was deaf", "He was mute"],
+      "correct": "He was lame in both feet",
+      "explain": "Ziba tells David that Jonathan's remaining son is lame in both his feet."
+    },
+    {
+      "id": "r4",
+      "ru": "Когда Мефибашет, сын Иоаннафана, внук Саула, пришел к Давиду, он поклонился ему в знак почтения.",
+      "question": "How did Mephibosheth respond to David?",
+      "options": ["He bowed to show respect", "He spoke disrespectfully", "He tried to run away", "He demanded compensation"],
+      "correct": "He bowed to show respect",
+      "explain": "The text states that Mephibosheth bowed to David as a sign of respect."
+    },
+    {
+      "id": "r5",
+      "ru": "Я верну тебе всю землю, которая принадлежала твоему деду Саулу, и ты всегда будешь есть за моим столом.",
+      "question": "What two things did David promise to Mephibosheth?",
+      "options": ["Return his grandfather's land and eat at David's table", "Give him gold and silver", "Make him a commander and grant him a city", "Marry him to his daughter and make him rich"],
+      "correct": "Return his grandfather's land and eat at David's table",
+      "explain": "David promises to restore all Saul's land to Mephibosheth and have him always eat at the royal table."
+    },
+    {
+      "id": "r6",
+      "ru": "Мефибашет ел за столом Давида, как один из сыновей царя.",
+      "question": "How was Mephibosheth treated at David's court?",
+      "options": ["As one of the king's sons", "As a servant", "As a prisoner", "As a messenger"],
+      "correct": "As one of the king's sons",
+      "explain": "The text indicates that Mephibosheth ate at David's table as one of the king's own sons."
+    }
+  ]
+}

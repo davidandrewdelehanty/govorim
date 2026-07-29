@@ -1,0 +1,134 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Филистимляне воевали с Израилем, и израилетяне бежали от них и падали сраженными на горе ___.",
+      "lemma": "Гильбоа",
+      "options": ["Гильбоа", "Гильбои", "Гильбое", "Гильбоей"],
+      "correct": "Гильбоа",
+      "case": "Винительный (Accusative)",
+      "translation": "The Philistines fought against Israel, and the men of Israel fled and fell slain on Mount Gilboa.",
+      "explain": "The preposition на with falling/location takes the accusative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Филистимляне нагнали Саула и его ___ и убили его сыновей.",
+      "lemma": "сын",
+      "options": ["сын", "сына", "сыны", "сыновей"],
+      "correct": "сыновей",
+      "case": "Винительный (Accusative)",
+      "translation": "The Philistines overtook Saul and his sons and killed his sons.",
+      "explain": "The verb убили (killed) is transitive and takes the accusative case."
+    },
+    {
+      "id": "c3",
+      "sentence": "Вокруг Саула разгорелась жестокая ___.",
+      "lemma": "битва",
+      "options": ["битва", "битвы", "битву", "битвой"],
+      "correct": "битва",
+      "case": "Именительный (Nominative)",
+      "translation": "The battle went hard against Saul.",
+      "explain": "Битва is the subject of the verb разгорелась, taking nominative case."
+    },
+    {
+      "id": "c4",
+      "sentence": "Саул сказал своему ___ , «Обнажи меч и закали меня».",
+      "lemma": "оруженосец",
+      "options": ["оруженосец", "оруженосца", "оруженосцу", "оруженосцем"],
+      "correct": "оруженосцу",
+      "case": "Дательный (Dative)",
+      "translation": "Saul said to his armor bearer, Draw your sword and run me through.",
+      "explain": "The verb сказал (said) takes the dative case for the person addressed."
+    },
+    {
+      "id": "c5",
+      "sentence": "Но его ___ не решился сделать это, потому что очень испугался.",
+      "lemma": "оруженосец",
+      "options": ["оруженосец", "оруженосца", "оруженосцу", "оруженосцем"],
+      "correct": "оруженосец",
+      "case": "Именительный (Nominative)",
+      "translation": "But his armor bearer would not do it because he was very afraid.",
+      "explain": "Оруженосец is the subject of не решился, taking nominative case."
+    },
+    {
+      "id": "c6",
+      "sentence": "Тогда Саул взял свой собственный ___ и бросился на него.",
+      "lemma": "меч",
+      "options": ["меч", "меча", "мечу", "мечом"],
+      "correct": "меч",
+      "case": "Винительный (Accusative)",
+      "translation": "Then Saul took his own sword and fell on it.",
+      "explain": "The verb взял (took) is transitive and takes the accusative case."
+    },
+    {
+      "id": "c7",
+      "sentence": "Так погибли Саул, три его сына и ___ , и все его люди погибли в тот же день.",
+      "lemma": "оруженосец",
+      "options": ["оруженосец", "оруженосца", "оруженосцу", "оруженосцем"],
+      "correct": "оруженосец",
+      "case": "Именительный (Nominative)",
+      "translation": "So Saul, his three sons, and his armor bearer died, and all his men that day.",
+      "explain": "Оруженосец is part of the compound subject of погибли, requiring nominative."
+    },
+    {
+      "id": "c8",
+      "sentence": "Они положили его ___ в храме Астарты и повесили его тело на стене Бет-Шиана.",
+      "lemma": "оружие",
+      "options": ["оружие", "оружия", "оружию", "оружием"],
+      "correct": "оружие",
+      "case": "Винительный (Accusative)",
+      "translation": "They put his armor in the house of the Ashtaroth and fastened his body to the wall of Beth Shan.",
+      "explain": "The verb положили (put) is transitive and takes the accusative case."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Филистимляне воевали с Израилем, и израилетяне бежали от них и падали сраженными на горе Гильбоа.",
+      "question": "What happened to the Israeli forces?",
+      "options": ["They fled and fell slain on Mount Gilboa", "They defeated the Philistines", "They retreated to Jerusalem", "They made peace with the Philistines"],
+      "correct": "They fled and fell slain on Mount Gilboa",
+      "explain": "The men of Israel fled before the Philistines and fell down slain on Mount Gilboa."
+    },
+    {
+      "id": "r2",
+      "ru": "Филистимляне нагнали Саула и его сыновей и убили его сыновей, Иоаннафана, Авинодава и Малхишуа.",
+      "question": "Which of Saul sons were killed?",
+      "options": ["Jonathan, Abinadab, and Malchishua", "Jonathan alone", "Abinadab and Malchishua only", "None of his sons"],
+      "correct": "Jonathan, Abinadab, and Malchishua",
+      "explain": "The Philistines killed Jonathan, Abinadab, and Malchishua, the sons of Saul."
+    },
+    {
+      "id": "r3",
+      "ru": "Саул сказал своему оруженосцу, «Обнажи меч и закали меня, иначе эти необрезанные придут, станут глумиться надо мной и убьют меня».",
+      "question": "Why did Saul ask his armor bearer to kill him?",
+      "options": ["To avoid the uncircumcised coming to mock and kill him", "To sacrifice himself for his people", "He was tired of fighting", "He wanted to join Samuel in the spirit world"],
+      "correct": "To avoid the uncircumcised coming to mock and kill him",
+      "explain": "Saul feared the uncircumcised would come, abuse him, and kill him."
+    },
+    {
+      "id": "r4",
+      "ru": "Но его оруженосец не решился сделать это, потому что очень испугался. Тогда Саул взял свой собственный меч и бросился на него.",
+      "question": "What did Saul do when his armor bearer refused?",
+      "options": ["He took his own sword and fell on it", "He fled the battlefield", "He surrendered to the Philistines", "He called for help"],
+      "correct": "He took his own sword and fell on it",
+      "explain": "When the armor bearer would not, Saul took his own sword and fell on it."
+    },
+    {
+      "id": "r5",
+      "ru": "Когда оруженосец увидел, что Саул мертв, он тоже бросился на свой меч и умер вместе с ним.",
+      "question": "What did Saul armor bearer do?",
+      "options": ["He also fell on his own sword and died with Saul", "He escaped to Egypt", "He served the Philistines", "He became a prophet"],
+      "correct": "He also fell on his own sword and died with Saul",
+      "explain": "When the armor bearer saw Saul was dead, he likewise fell on his sword and died with him."
+    },
+    {
+      "id": "r6",
+      "ru": "На следующий день, когда филистимляне пришли грабить мертвых, они нашли Саула и трех его сыновей, павших на горе Гильбоа.",
+      "question": "What did the Philistines find the next day?",
+      "options": ["Saul and his three sons lying on Mount Gilboa", "Survivors from Israel", "Gold and treasure", "A new army arriving from Israel"],
+      "correct": "Saul and his three sons lying on Mount Gilboa",
+      "explain": "The Philistines found Saul and his three sons fallen on Mount Gilboa."
+    }
+  ]
+}

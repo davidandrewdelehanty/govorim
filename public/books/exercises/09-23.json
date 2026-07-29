@@ -1,0 +1,134 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Эдемитянин Дуэк, который стоял вместе с приближенными ___, сказал Саулу...",
+      "lemma": "Саул",
+      "options": ["Саула", "Саул", "Саулу", "Саулом"],
+      "correct": "Саула",
+      "case": "Родительный (Genitive)",
+      "translation": "The Edomite Doeg, who stood with Saul's officials, spoke to Saul...",
+      "explain": "The genitive case shows possession - 'Saul's officials' uses the genitive."
+    },
+    {
+      "id": "c2",
+      "sentence": "Я видел, как сын Исея приходил к Ахимелеху, сыну ___.",
+      "lemma": "Ахитув",
+      "options": ["Ахитува", "Ахитув", "Ахитуву", "Ахитувом"],
+      "correct": "Ахитува",
+      "case": "Родительный (Genitive)",
+      "translation": "I saw the son of Jesse come to Ahimelech, son of Ahitub.",
+      "explain": "The genitive case shows kinship relationship - 'son of Ahitub'."
+    },
+    {
+      "id": "c3",
+      "sentence": "Ахимелех спрашивал для него ___ и дал ему пищу.",
+      "lemma": "Господь",
+      "options": ["Господа", "Господь", "Господу", "Господом"],
+      "correct": "Господа",
+      "case": "Винительный (Accusative)",
+      "translation": "Ahimelech inquired of the Lord for him and gave him food.",
+      "explain": "The transitive verb спрашивал governs the accusative case."
+    },
+    {
+      "id": "c4",
+      "sentence": "Тогда царь послал за ___ Ахимелехом.",
+      "lemma": "священник",
+      "options": ["священника", "священник", "священнику", "священником"],
+      "correct": "священником",
+      "case": "Творительный (Instrumental)",
+      "translation": "Then the king sent for the priest Ahimelech.",
+      "explain": "The verb послал с за governs the instrumental case."
+    },
+    {
+      "id": "c5",
+      "sentence": "Саул сказал, «Почему вы сговорились против меня, ты и сын ___?»",
+      "lemma": "Иссей",
+      "options": ["Иссея", "Иссей", "Иссею", "Иссеем"],
+      "correct": "Иссея",
+      "case": "Родительный (Genitive)",
+      "translation": "Saul said, 'Why have you conspired against me, you and the son of Jesse?'",
+      "explain": "The genitive case shows kinship - 'son of Jesse' requires genitive."
+    },
+    {
+      "id": "c6",
+      "sentence": "Ты дал ему хлеб и меч, спрашивал для него Бога, чтобы он восстал против меня и устроил мне ___.",
+      "lemma": "засада",
+      "options": ["засаду", "засада", "засаде", "засадой"],
+      "correct": "засаду",
+      "case": "Винительный (Accusative)",
+      "translation": "You gave him bread and a sword, inquired of God for him so that he would rise up against me and lay an ambush for me.",
+      "explain": "The transitive verb устроил governs the accusative case."
+    },
+    {
+      "id": "c7",
+      "sentence": "«Кто из всех твоих слуг так верен тебе, как ___?» — спросил Ахимелех.",
+      "lemma": "Давид",
+      "options": ["Давида", "Давид", "Давиду", "Давидом"],
+      "correct": "Давид",
+      "case": "Именительный (Nominative)",
+      "translation": "'Who of all your servants is as faithful as David?' asked Ahimelech.",
+      "explain": "Давид is the subject of the implied predicate, standing in nominative case."
+    },
+    {
+      "id": "c8",
+      "sentence": "И царь приказал страже убить ___.",
+      "lemma": "священник",
+      "options": ["священников", "священник", "священнику", "священником"],
+      "correct": "священников",
+      "case": "Винительный (Accusative)",
+      "translation": "And the king commanded the guard to kill the priests.",
+      "explain": "The transitive verb убить governs the accusative case."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Доэк, который стоял вместе с приближенными Саула, сказал: Я видел, как сын Исея приходил к Ахимелеху.",
+      "question": "Who betrayed Ahimelech to Saul?",
+      "options": ["Doeg the Edomite", "Jonathan", "One of David's men", "A servant of Ahimelech"],
+      "correct": "Doeg the Edomite",
+      "explain": "Doeg says: 'Я видел, как сын Исея приходил к Ахимелеху' — I saw the son of Jesse come to Ahimelech, revealing this to Saul."
+    },
+    {
+      "id": "r2",
+      "ru": "Ахимелех ответил царю, «Кто из всех твоих слуг так верен тебе, как Давид, который и зять царя, и начальник над твоей стражей?»",
+      "question": "What roles did Ahimelech say David held?",
+      "options": ["King's son-in-law and commander of the guard", "Chief priest and prophet", "General of the army", "Ambassador to foreign lands"],
+      "correct": "King's son-in-law and commander of the guard",
+      "explain": "Ahimelech says: 'Давид, который и зять царя, и начальник над твоей стражей' — David, who is both the king's son-in-law and captain of your guard."
+    },
+    {
+      "id": "r3",
+      "ru": "Но слуги царя не хотели поднять руку на священников Господа, чтобы убить их.",
+      "question": "What did the king's servants refuse to do?",
+      "options": ["Kill the priests of the Lord", "Arrest the priests", "Confiscate the sanctuary", "Question Ahimelech"],
+      "correct": "Kill the priests of the Lord",
+      "explain": "The text says: 'слуги царя не хотели поднять руку на священников Господа, чтобы убить их' — the king's servants would not put out their hand to kill the Lord's priests."
+    },
+    {
+      "id": "r4",
+      "ru": "Тогда царь приказал Доэгу, «Ты ступай и умертви священников».",
+      "question": "Who did Saul finally order to kill the priests?",
+      "options": ["Doeg the Edomite", "The captain of the guard", "Abner", "His own son Jonathan"],
+      "correct": "Doeg the Edomite",
+      "explain": "Saul commanded: 'Ты ступай и умертви священников' — You go and kill the priests, addressing Doeg."
+    },
+    {
+      "id": "r5",
+      "ru": "В тот день он убил восемьдесят пять человек, которые носили льняной эфот.",
+      "question": "How many priests did Doeg kill?",
+      "options": ["Eighty-five who wore a linen ephod", "Thirty priests and their families", "All the priests of Nob", "Twenty high priests"],
+      "correct": "Eighty-five who wore a linen ephod",
+      "explain": "The text states: 'он убил восемьдесят пять человек, которые носили льняной эфот' — he killed eighty-five men who wore a linen ephod."
+    },
+    {
+      "id": "r6",
+      "ru": "Но один из сыновей Ахимелеха, по имени Авиатар, спасся и бежал к Давиду.",
+      "question": "Who escaped from Saul's massacre?",
+      "options": ["Abiathar, son of Ahimelech", "Jonathan, David's friend", "Ahimelech himself", "One of David's soldiers"],
+      "correct": "Abiathar, son of Ahimelech",
+      "explain": "The text says: 'один из сыновей Ахимелеха, по имени Авиатар, спасся и бежал к Давиду' — one of Ahimelech's sons, named Abiathar, escaped and fled to David."
+    }
+  ]
+}
