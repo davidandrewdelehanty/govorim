@@ -8,22 +8,22 @@
 
 import { requireAdmin } from "./_helpers.js";
 import { ghGet } from "./_gh.js";
-import { parseFb2, tokenizeFb2, scanChapter } from "./_talign.js";
+import { tokenizeFb2, scanChapter } from "./_talign.js";
+import { loadParsedBook } from "./_book.js";
 
-// Warm-invocation cache: fb2Path → { sha, parsed, fbToks }
+// Warm-invocation cache: bookPath → { sha, parsed, fbToks }
 const fbCache = new Map();
 
-async function getFb2(fb2Path) {
-  const got = await ghGet(fb2Path);
-  if (!got) throw new Error("FB2 not found: " + fb2Path);
-  const cached = fbCache.get(fb2Path);
+async function getFb2(bookPath) {
+  const got = await loadParsedBook(bookPath);
+  if (!got) throw new Error("Book not found: " + bookPath);
+  const cached = fbCache.get(bookPath);
   if (cached && cached.sha === got.sha) {
     return { sha: got.sha, parsed: cached.parsed, fbToks: cached.fbToks };
   }
-  const parsed = parseFb2(got.content);
-  const fbToks = tokenizeFb2(parsed);
-  fbCache.set(fb2Path, { sha: got.sha, parsed: parsed, fbToks: fbToks });
-  return { sha: got.sha, parsed: parsed, fbToks: fbToks };
+  const fbToks = tokenizeFb2(got.parsed);
+  fbCache.set(bookPath, { sha: got.sha, parsed: got.parsed, fbToks: fbToks });
+  return { sha: got.sha, parsed: got.parsed, fbToks: fbToks };
 }
 
 export default async function handler(req, res) {
@@ -38,7 +38,7 @@ export default async function handler(req, res) {
   const chapterIndex = body && body.chapterIndex != null ? body.chapterIndex : 0;
   const totalChapters = body && body.totalChapters != null ? body.totalChapters : 0;
   if (!fb2Path || !chapterPath) return res.status(400).json({ error: "fb2Path and chapterPath required" });
-  if (!/\.fb2$/i.test(fb2Path)) return res.status(400).json({ error: "This book has no .fb2 source; alignment is unsupported." });
+  if (!/\.(fb2|epub)$/i.test(fb2Path)) return res.status(400).json({ error: "Only .fb2 and .epub sources can be aligned." });
 
   try {
     const fb = await getFb2(fb2Path);

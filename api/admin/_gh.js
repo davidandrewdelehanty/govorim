@@ -42,6 +42,32 @@ async function ghGet(path, opts) {
   };
 }
 
+// GET a binary file (e.g. EPUB) → { sha, buffer }. Falls back to the git blobs
+// API when the contents API omits inline content (files > 1MB).
+async function ghGetBinary(path, opts) {
+  const env = opts || ghEnv();
+  const { token, owner, repo, branch } = env;
+  const url = "https://api.github.com/repos/" + owner + "/" + repo +
+              "/contents/" + encodeURIComponent(path).replace(/%2F/g, "/") +
+              "?ref=" + encodeURIComponent(branch) + "&t=" + Date.now();
+  const r = await fetch(url, {
+    cache: "no-store",
+    headers: { "Authorization": "Bearer " + token, "Accept": "application/vnd.github+json", "User-Agent": "govorim-transcript-tools" },
+  });
+  if (r.status === 404) return null;
+  if (!r.ok) { const t = await r.text(); throw new Error("GitHub GET failed (" + r.status + ") for " + path + ": " + t.slice(0, 200)); }
+  const data = await r.json();
+  if (data.content) return { sha: data.sha, buffer: Buffer.from(data.content, "base64") };
+  // large file: fetch the blob by sha
+  const b = await fetch("https://api.github.com/repos/" + owner + "/" + repo + "/git/blobs/" + data.sha, {
+    cache: "no-store",
+    headers: { "Authorization": "Bearer " + token, "Accept": "application/vnd.github+json", "User-Agent": "govorim-transcript-tools" },
+  });
+  if (!b.ok) throw new Error("GitHub blob fetch failed (" + b.status + ")");
+  const bd = await b.json();
+  return { sha: data.sha, buffer: Buffer.from(bd.content || "", "base64") };
+}
+
 // PUT (create/update) a file. `content` may be a UTF-8 string or a Buffer.
 async function ghPut(path, content, sha, message, opts) {
   const { token, owner, repo, branch } = opts || ghEnv();
@@ -72,4 +98,4 @@ async function ghPut(path, content, sha, message, opts) {
   return await r.json();
 }
 
-export { ghEnv, ghGet, ghPut };
+export { ghEnv, ghGet, ghGetBinary, ghPut };

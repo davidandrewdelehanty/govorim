@@ -534,12 +534,43 @@ function scanChapter(fb2Parsed, fbToks, transcriptJson, chapterIndex, totalChapt
     }
   }
 
+  // Split multi-paragraph "omitted" blocks (whole passages the narrator skipped)
+  // into per-paragraph removals, so each skipped paragraph is a clean,
+  // individually-removable discrepancy instead of one giant blob.
+  const splitDiscs = [];
+  for (let d = 0; d < discrepancies.length; d++) {
+    const x = discrepancies[d];
+    const startPara = (x.kind === "omitted" && x.fbStart != null && fbToks[x.fbStart]) ? fbToks[x.fbStart].paraIdx : null;
+    const endPara = (x.kind === "omitted" && x.fbEnd != null && fbToks[x.fbEnd - 1]) ? fbToks[x.fbEnd - 1].paraIdx : null;
+    if (x.duplicate || x.kind !== "omitted" || startPara == null || endPara == null || startPara === endPara) {
+      splitDiscs.push(x); continue;
+    }
+    let segStart = x.fbStart;
+    for (let i = x.fbStart + 1; i <= x.fbEnd; i++) {
+      const atEnd = (i === x.fbEnd);
+      if (atEnd || fbToks[i].paraIdx !== fbToks[i - 1].paraIdx) {
+        splitDiscs.push(Object.assign({}, x, {
+          fbStart: segStart, fbEnd: i,
+          fbText: fbToks.slice(segStart, i).map(function (t) { return t.raw; }).join(" "),
+          fbCount: i - segStart,
+          fbContextBefore: ctxRaw(fbToks, segStart - 4, segStart),
+          fbContextAfter: ctxRaw(fbToks, i, i + 4),
+          note: "In the book but not spoken in the audio — remove it to match the narration.",
+          afterParaIdx: fbToks[segStart].paraIdx,
+        }));
+        segStart = i;
+      }
+    }
+  }
+  discrepancies.length = 0;
+  for (let s = 0; s < splitDiscs.length; s++) discrepancies.push(splitDiscs[s]);
+
   // Stable content-based IDs so accept/skip/committed decisions survive a
   // re-scan (positional ids shifted whenever a discrepancy was resolved).
   const idSeen = {};
   for (let d = 0; d < discrepancies.length; d++) {
     const x = discrepancies[d];
-    if (/^dup/.test(x.id || "")) continue; // dup ids are already content-stable
+    if (/^(dup|nsp|find)/.test(x.id || "")) continue; // already content-stable
     let base = x.kind + "|" + normWord(x.fbText).slice(0, 24) + "|" + normWord(x.trText).slice(0, 24);
     let sig = base, n = 1;
     while (idSeen[sig]) { sig = base + "#" + (n++); }

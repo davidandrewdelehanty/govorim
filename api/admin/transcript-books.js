@@ -24,13 +24,15 @@ export default async function handler(req, res) {
       if (!chapters || !chapters.length) continue;
       const filename = e.filename || "";
       const isFb2 = /\.fb2$/i.test(filename);
+      const isEpub = /\.epub$/i.test(filename);
       books.push({
         title: e.title || filename,
         author: e.author || "",
         filename: filename,
         fb2Path: "public/books/" + filename,
-        supported: isFb2,
-        note: isFb2 ? "" : "Alignment needs an .fb2 source (this book is " + (filename.split(".").pop() || "?") + ").",
+        supported: isFb2 || isEpub,
+        isEpub: isEpub,
+        note: (isFb2 || isEpub) ? (isEpub ? "EPUB: scanning + transcript fixes work; book-text edits (remove/insert) are FB2-only for now." : "") : "Alignment needs an .fb2 or .epub source (this book is " + (filename.split(".").pop() || "?") + ").",
         narrator: (ab && ab.narrator) || "",
         chapters: chapters.map(function (c, ci) {
           return { index: ci, path: "public/books/" + c, name: String(c).split("/").pop() };

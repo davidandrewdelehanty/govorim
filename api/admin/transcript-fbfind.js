@@ -6,8 +6,8 @@
 // feed straight into transcript-apply's fb2Deletions.
 
 import { requireAdmin } from "./_helpers.js";
-import { ghGet } from "./_gh.js";
-import { parseFb2, tokenizeFb2, normWord } from "./_talign.js";
+import { tokenizeFb2, normWord } from "./_talign.js";
+import { loadParsedBook } from "./_book.js";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
@@ -18,14 +18,13 @@ export default async function handler(req, res) {
   if (typeof body === "string") { try { body = JSON.parse(body); } catch { body = {}; } }
   const fb2Path = body && body.fb2Path;
   const query = (body && body.query ? String(body.query) : "").trim();
-  if (!fb2Path || !/\.fb2$/i.test(fb2Path)) return res.status(400).json({ error: "valid .fb2 fb2Path required" });
+  if (!fb2Path || !/\.(fb2|epub)$/i.test(fb2Path)) return res.status(400).json({ error: "valid .fb2 or .epub path required" });
   if (!query) return res.status(400).json({ error: "query required" });
 
   try {
-    const got = await ghGet(fb2Path);
-    if (!got) return res.status(404).json({ error: "FB2 not found" });
-    const parsed = parseFb2(got.content);
-    const fbToks = tokenizeFb2(parsed);
+    const got = await loadParsedBook(fb2Path);
+    if (!got) return res.status(404).json({ error: "Book not found" });
+    const fbToks = tokenizeFb2(got.parsed);
     const fbNorms = fbToks.map(function (t) { return t.norm; });
 
     // normalized query tokens (skip tokens that normalize empty)

@@ -8705,6 +8705,44 @@ export default function App() {
               .ts-wcounts{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
               .ts-tree::-webkit-scrollbar,.ts-main-scroll::-webkit-scrollbar,.ts-inspect::-webkit-scrollbar{width:9px}
               .ts-tree::-webkit-scrollbar-thumb,.ts-main-scroll::-webkit-scrollbar-thumb,.ts-inspect::-webkit-scrollbar-thumb{background:rgba(42,31,20,.18);border-radius:5px}
+
+              /* ============ MOBILE / narrow screens ============ */
+              @media (max-width: 860px){
+                .ts-over{padding:0}
+                .ts-shell{width:100vw;height:100vh;max-width:none;border-radius:0;border:none}
+                .ts-top{padding:10px 12px;gap:8px}
+                .ts-brand{font-size:15px}
+                .ts-crumbs{font-size:11px;flex:1}
+                /* stack the three columns vertically, each scrolls on its own */
+                .ts-body{flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch}
+                .ts-side{width:100%;flex:0 0 auto;max-height:34vh;border-right:none;border-bottom:2px solid rgba(42,31,20,.14)}
+                .ts-main{width:100%;flex:1 1 auto;min-height:46vh}
+                .ts-inspect{width:100%;flex:0 0 auto;max-height:none;border-left:none;border-top:2px solid rgba(42,31,20,.14)}
+                .ts-toolbar{flex-wrap:wrap;gap:6px;padding:8px 10px}
+                .ts-tabs{order:1}
+                .ts-search{order:3;flex:1 1 100%}
+                .ts-chips{order:4;flex-wrap:wrap}
+                .ts-toolbar > div[style*="flex:1"]{display:none}
+                .ts-read{padding:16px 16px 48px;font-size:17px;line-height:1.9;max-width:none}
+                .ts-list{padding:12px 12px 48px}
+                .ts-status{flex-wrap:wrap;gap:6px 12px;padding:8px 12px;font-size:11px}
+                .ts-kbd{display:none}
+                .ts-commit{margin-left:auto}
+                /* hover popovers don't work on touch — tap selects → inspector shows actions */
+                .ts-pop{display:none !important}
+                .ts-mm{padding:1px 3px}
+                /* text editor: tighter gutter */
+                .ts-code{font-size:13px}
+                .ts-ln{width:34px;font-size:10px}
+                .ts-linedel{opacity:1;color:#9d4630}
+                .ts-wgrid{grid-template-columns:1fr}
+                .ts-welcome{padding:20px}
+                .ts-inspect{padding:14px}
+              }
+              @media (max-width: 860px) and (min-width: 0px){
+                /* make the delete ✕ always visible on touch (no hover) */
+                .ts-line .ts-linedel{color:#c9a}
+              }
             `}</style>
 
             <div className="ts-shell" onClick={function(){ /* click on empty shell deselects */ }}>

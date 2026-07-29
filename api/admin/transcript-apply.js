@@ -81,7 +81,9 @@ export default async function handler(req, res) {
 
     // ---- FB2 edits (insertions + deletions) ----
     const fb2Deletions = Array.isArray(body.fb2Deletions) ? body.fb2Deletions : [];
-    if ((fb2Inserts.length || fb2Deletions.length) && body.fb2Path) {
+    if ((fb2Inserts.length || fb2Deletions.length) && body.fb2Path && /\.epub$/i.test(body.fb2Path)) {
+      errors.push({ path: body.fb2Path, error: "Book-text edits (remove/insert) aren't supported for EPUB yet — transcript fixes were still applied." });
+    } else if ((fb2Inserts.length || fb2Deletions.length) && body.fb2Path) {
       const got = await ghGet(body.fb2Path);
       if (!got) { errors.push({ path: body.fb2Path, error: "FB2 not found" }); }
       else if (body.fb2Sha && got.sha !== body.fb2Sha) {
