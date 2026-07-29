@@ -463,6 +463,19 @@ function scanChapter(fb2Parsed, fbToks, transcriptJson, chapterIndex, totalChapt
 // ---------------------------------------------------------------------------
 function applyTranscriptEdits(js, edits) {
   const frags = js.fragments;
+
+  // Snapshot each fragment's timing envelope + per-word (begin,end) signature so
+  // we can prove afterwards that we only disturbed the fragments we meant to.
+  const snap = frags.map(function (f) {
+    const ws = (f && f.words) || [];
+    return {
+      begin: ws.length ? ws[0].begin : null,
+      end:   ws.length ? ws[ws.length - 1].end : null,
+      sig:   ws.map(function (w) { return w.begin + ":" + w.end; }).join("|"),
+    };
+  });
+  const editedSet = {};
+
   let changed = 0;
   for (let e = 0; e < edits.length; e++) {
     const ed = edits[e];
@@ -481,12 +494,14 @@ function applyTranscriptEdits(js, edits) {
       }
       f.words = f.words.slice(0, a).concat(inserted, f.words.slice(b + 1));
       f.text = smartJoin(f.words);
+      editedSet[ed.run.fragIdx] = true;
       changed++;
     } else {
       const f = frags[ed.fragIdx];
       if (!f || !Array.isArray(f.words) || !f.words[ed.wIdx]) continue;
       f.words[ed.wIdx].word = ed.newWord;
       f.text = smartJoin(f.words);
+      editedSet[ed.fragIdx] = true;
       changed++;
     }
   }
@@ -499,7 +514,44 @@ function applyTranscriptEdits(js, edits) {
     }
   }
   js.word_timings = wt;
-  return { js: js, changed: changed };
+
+  const integrity = validateTimingIntegrity(frags, snap, editedSet);
+  return { js: js, changed: changed, integrity: integrity };
+}
+
+// Prove that an edit didn't corrupt timings:
+//   1. Fragments we did NOT edit keep byte-identical (begin,end) for every word.
+//   2. Edited fragments stay monotonic (begin <= end, begins non-decreasing) and
+//      within their original time envelope (no word starts before the fragment
+//      used to start, or ends after it used to end — so playback can't drift).
+//   3. Globally, begins are non-decreasing across the whole chapter.
+// Returns { ok, error }. On failure the caller must NOT commit the file.
+function validateTimingIntegrity(frags, snap, editedSet) {
+  const EPS = 0.051; // rounding tolerance (timings are stored to 3 decimals)
+  let lastBegin = -Infinity;
+  for (let fi = 0; fi < frags.length; fi++) {
+    const ws = (frags[fi] && frags[fi].words) || [];
+    const s = snap[fi] || {};
+    if (!editedSet[fi]) {
+      // untouched fragment — timing signature must be unchanged
+      const sig = ws.map(function (w) { return w.begin + ":" + w.end; }).join("|");
+      if (sig !== s.sig) return { ok: false, error: "timing changed in an unedited fragment #" + fi };
+    } else {
+      for (let wi = 0; wi < ws.length; wi++) {
+        const w = ws[wi];
+        if (typeof w.begin !== "number" || typeof w.end !== "number" || isNaN(w.begin) || isNaN(w.end))
+          return { ok: false, error: "non-numeric timing in fragment #" + fi };
+        if (w.end + EPS < w.begin) return { ok: false, error: "end<begin in fragment #" + fi };
+        if (s.begin != null && w.begin + EPS < s.begin) return { ok: false, error: "word starts before fragment envelope #" + fi };
+        if (s.end != null && w.end - EPS > s.end) return { ok: false, error: "word ends after fragment envelope #" + fi };
+      }
+    }
+    for (let wi = 0; wi < ws.length; wi++) {
+      if (ws[wi].begin + EPS < lastBegin) return { ok: false, error: "non-monotonic begin at fragment #" + fi };
+      lastBegin = Math.max(lastBegin, ws[wi].begin);
+    }
+  }
+  return { ok: true, error: "" };
 }
 
 // ---------------------------------------------------------------------------
@@ -534,4 +586,5 @@ export {
   parseFb2, tokenizeFb2, tokenizeTranscript, smartJoin,
   myersDiff, mergeOps, anchorChapter, classifyRegion, scanChapter,
   applyTranscriptEdits, applyFb2Insertions, paraForInsertion, findNgram,
+  validateTimingIntegrity,
 };

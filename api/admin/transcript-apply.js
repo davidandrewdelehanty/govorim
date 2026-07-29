@@ -63,6 +63,12 @@ export default async function handler(req, res) {
       const applied = applyTranscriptEdits(js, ch.edits);
       if (!applied.changed) { errors.push({ path: ch.path, error: "no edits applied (indices stale?)" }); continue; }
 
+      // Safety guard: never commit a transcript whose word timings drifted.
+      if (applied.integrity && !applied.integrity.ok) {
+        errors.push({ path: ch.path, error: "timing-integrity check failed — not committed: " + applied.integrity.error, timing: true });
+        continue;
+      }
+
       if (doBackup) {
         const bp = backupPath(ch.path, ts);
         await ghPut(bp, got.content, null, "Backup " + ch.path + " before transcript fixes", );
