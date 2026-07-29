@@ -1,0 +1,164 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Царь Ксеркс наложил дань на все ___.",
+      "lemma": "царство",
+      "options": ["царство", "царства", "царству", "царством"],
+      "correct": "царство",
+      "case": "Винительный (Accusative)",
+      "translation": "King Ahasuerus laid a tribute on all kingdom.",
+      "explain": "The transitive verb 'наложил' (laid) governs the accusative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Иудей Мардахей был вторым после ___.",
+      "lemma": "царь",
+      "options": ["царь", "царя", "царю", "царём"],
+      "correct": "царя",
+      "case": "Родительный (Genitive)",
+      "translation": "The Jew Mordecai was second after the king.",
+      "explain": "The preposition 'после' (after) governs the genitive case."
+    },
+    {
+      "id": "c3",
+      "sentence": "Он трудился на благо своего ___.",
+      "lemma": "народ",
+      "options": ["народ", "народа", "народу", "народом"],
+      "correct": "народа",
+      "case": "Родительный (Genitive)",
+      "translation": "He worked for the good of his people.",
+      "explain": "The preposition 'для' (implied 'благо') governs the genitive case."
+    },
+    {
+      "id": "c4",
+      "sentence": "Множество соплеменников глубоко чтило его и помогало ___ народу.",
+      "lemma": "иудей",
+      "options": ["иудей", "иудеи", "иудеем", "иудеям"],
+      "correct": "иудеям",
+      "case": "Дательный (Dative)",
+      "translation": "Many compatriots deeply honored him and helped the Jewish people.",
+      "explain": "The verb 'помогало' (helped) governs the dative case."
+    },
+    {
+      "id": "c5",
+      "sentence": "Его деяния записаны в ___ Мидии и Персии.",
+      "lemma": "книга",
+      "options": ["книга", "книги", "книгу", "книгой"],
+      "correct": "книгу",
+      "case": "Винительный (Accusative)",
+      "translation": "His deeds are written in the books of Media and Persia.",
+      "explain": "The verb 'записаны' (recorded) with the preposition 'в' can govern accusative or prepositional case."
+    },
+    {
+      "id": "c6",
+      "sentence": "Его величие чтили все ___ Мидии и Персии.",
+      "lemma": "царь",
+      "options": ["царь", "цари", "царям", "царей"],
+      "correct": "царей",
+      "case": "Родительный (Genitive)",
+      "translation": "All kings of Media and Persia honored his greatness.",
+      "explain": "The noun in genitive expresses possession (kings of...); plural genitive form."
+    },
+    {
+      "id": "c7",
+      "sentence": "Мардахей говорил ради благополучия всех ___.",
+      "lemma": "иудей",
+      "options": ["иудей", "иудеи", "иудеев", "иудеями"],
+      "correct": "иудеев",
+      "case": "Родительный (Genitive)",
+      "translation": "Mordecai spoke for the prosperity of all Jews.",
+      "explain": "The preposition 'всех' (of all) requires the genitive case; plural genitive."
+    },
+    {
+      "id": "c8",
+      "sentence": "Дань была наложена до самых далеких ___ царства.",
+      "lemma": "побережье",
+      "options": ["побережье", "побережья", "побережьями", "побережий"],
+      "correct": "побережий",
+      "case": "Родительный (Genitive)",
+      "translation": "Tribute was laid on the remotest shores of the kingdom.",
+      "explain": "The preposition 'до' (until/to) governs the genitive case; plural genitive form."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Величие Мардахея Царь Ксеркс наложил дань на все царство до самых далеких его побережий.",
+      "question": "What did King Ahasuerus do to his entire kingdom?",
+      "options": [
+        "He imposed a tribute on all his kingdom",
+        "He distributed wealth to all his kingdom",
+        "He expanded his kingdom across many shores",
+        "He released his subjects from taxation"
+      ],
+      "correct": "He imposed a tribute on all his kingdom",
+      "explain": "The text states: 'Царь Ксеркс наложил дань на все царство' (King Ahasuerus laid/imposed tribute on all kingdom)."
+    },
+    {
+      "id": "r2",
+      "ru": "Иудей Мардахей был вторым после царя Ксеркса, он был велик среди иудеев, и множество соплеменников глубоко чтило его.",
+      "question": "What was Mordecai's position and status?",
+      "options": [
+        "He was second only to King Ahasuerus and greatly honored by the Jews",
+        "He was the highest authority among the Jews",
+        "He served as the king's chief advisor only",
+        "He was a wealthy merchant respected by all people"
+      ],
+      "correct": "He was second only to King Ahasuerus and greatly honored by the Jews",
+      "explain": "The text clearly states: 'был вторым после царя Ксеркса' (was second after King Ahasuerus) and 'множество соплеменников глубоко чтило его' (a multitude of his countrymen deeply honored him)."
+    },
+    {
+      "id": "r3",
+      "ru": "Все дела его власти и могущества и полный рассказ о величии Мардахея, которым наделил его царь, записаны в летописи царей Мидии и Персии.",
+      "question": "Where were the accounts of Mordecai's deeds and greatness recorded?",
+      "options": [
+        "In the chronicles of the kings of Media and Persia",
+        "In personal journals kept by Mordecai",
+        "In letters written to various provinces",
+        "In synagogue records throughout the kingdom"
+      ],
+      "correct": "In the chronicles of the kings of Media and Persia",
+      "explain": "The text explicitly states: 'записаны в летописи царей Мидии и Персии' (recorded in the chronicles of the kings of Media and Persia)."
+    },
+    {
+      "id": "r4",
+      "ru": "Он трудился на благо своего народа и говорил ради благополучия всех иудеев.",
+      "question": "For what purpose did Mordecai work and speak?",
+      "options": [
+        "For the benefit of his people and the well-being of all Jews",
+        "To gain personal wealth and influence",
+        "To challenge the authority of the king",
+        "To establish himself as a prophet among the Jews"
+      ],
+      "correct": "For the benefit of his people and the well-being of all Jews",
+      "explain": "The text states: 'Он трудился на благо своего народа и говорил ради благополучия всех иудеев' (He worked for the good of his people and spoke for the well-being of all Jews)."
+    },
+    {
+      "id": "r5",
+      "ru": "Множество соплеменников глубоко чтило его, потому что он трудился на благо своего народа.",
+      "question": "Why did Mordecai's compatriots deeply honor him?",
+      "options": [
+        "Because he worked for the benefit of his people",
+        "Because he was the wealthiest man in the kingdom",
+        "Because he was appointed by the Persian king",
+        "Because he defeated the kingdom's enemies in battle"
+      ],
+      "correct": "Because he worked for the benefit of his people",
+      "explain": "The text shows the reason: 'потому что он трудился на благо своего народа' (because he worked for the good/benefit of his people)."
+    },
+    {
+      "id": "r6",
+      "ru": "Нет на земле такого человека, как он, непорочного и праведного, кто живет в страхе перед Богом и сторонится зла.",
+      "question": "What qualities are attributed to this man in the passage?",
+      "options": [
+        "He is blameless, upright, fears God, and turns away from evil",
+        "He is the richest and most powerful in the land",
+        "He is a skilled warrior and military strategist",
+        "He is a prophet chosen by God to lead the people"
+      ],
+      "correct": "He is blameless, upright, fears God, and turns away from evil",
+      "explain": "The text explicitly lists these qualities: 'непорочного и праведного, кто живет в страхе перед Богом и сторонится зла' (blameless and upright, who lives in fear before God and turns away from evil)."
+    }
+  ]
+}
