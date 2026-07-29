@@ -8275,7 +8275,8 @@ export default function App() {
                           <span className="ts-pop" onClick={function(e){ e.stopPropagation(); }}>
                             <div className="ts-pop-h"><span className="ts-tag" style={{color:KIND[d.kind].fg,background:KIND[d.kind].bg,borderColor:KIND[d.kind].bd}}>{KIND[d.kind].glyph} {KIND[d.kind].label}</span><span className="ts-dot" style={{background:confColor[d.confidence]}}/><span style={{fontSize:11,color:confColor[d.confidence]}}>{d.confidence}</span></div>
                             {d.kind!=="missing" && <div className="ts-pop-diff"><span className="ts-old">{d.trText}</span><span className="ts-arr">→</span><span className="ts-new">{dec.text!=null?dec.text:ttTargetText(d)}</span></div>}
-                            {d.kind==="missing" && <div className="ts-pop-mini">Insert “{dec.text!=null?dec.text:d.trText}” into the FB2.</div>}
+                            {d.kind==="missing" && !d.inBook && <div className="ts-pop-mini">Insert “{dec.text!=null?dec.text:d.trText}” into the FB2.</div>}
+                            {d.inBook && <div className="ts-pop-mini" style={{color:"#9d4630"}}>⚠ Already in the book — likely an alignment artifact, not a real insertion.</div>}
                             {ai && <div className="ts-pop-ai">✨ {ai.verdict}{ai.reason?(" · "+ai.reason):""}</div>}
                             <div className="ts-pop-btns">
                               <button className="ts-b acc xs" onClick={function(e){ e.stopPropagation(); ttSetDecision(k,{action:"accept"}); }}>{d.kind==="missing"?"Insert":"Replace"}</button>
@@ -8313,6 +8314,7 @@ export default function App() {
                       {dec.action==="reject" && <span className="ts-state rej">skipped</span>}
                     </div>
                     <div className="ts-ctx">…{d.trContextBefore} <b className="ts-hl">{d.trText||"∅"}</b> {d.trContextAfter}…</div>
+                    {d.note && <div style={{fontSize:12,color:"#9d4630",marginBottom:8,fontStyle:"italic"}}>⚠ {d.note}</div>}
                     {d.kind!=="omitted" && (
                       <div className="ts-io">
                         <div className="ts-col"><label>audio heard</label><div className="ts-old">{d.trText||"—"}</div></div>
@@ -8343,6 +8345,7 @@ export default function App() {
           return (
             <div className="ts-insp-body">
               <div className="ts-insp-tag"><span className="ts-tag" style={{color:KIND[d.kind].fg,background:KIND[d.kind].bg,borderColor:KIND[d.kind].bd}}>{KIND[d.kind].glyph} {KIND[d.kind].label}</span><span className="ts-dot" style={{background:confColor[d.confidence]}}/><span style={{fontSize:11,color:confColor[d.confidence]}}>{d.confidence} confidence</span></div>
+              {d.note && <div style={{margin:"0 0 12px",padding:"8px 11px",background:"rgba(157,70,48,.1)",border:"1px solid rgba(157,70,48,.3)",borderRadius:9,fontSize:12,color:"#9d4630",lineHeight:1.5}}>⚠ {d.note}</div>}
               <div className="ts-insp-ctx">…{d.trContextBefore} <b className="ts-hl">{d.trText||"∅"}</b> {d.trContextAfter}…</div>
               {d.kind!=="omitted" ? (
                 <>

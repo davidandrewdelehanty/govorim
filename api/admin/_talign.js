@@ -398,6 +398,34 @@ function singleFragmentRun(tr) {
   return { fragIdx: fi, wStart: wStart, wEnd: wEnd };
 }
 
+// Detect whether a transcript run's words already appear (even in ASR-garbled
+// form) as a cluster somewhere in the FB2. Used to suppress FALSE "missing"
+// insertions: repeated phrases/refrains (e.g. a recurring lullaby) that the
+// local anchored diff failed to match, and which would otherwise be proposed
+// for insertion into text that already contains them. Anchors on the run's most
+// distinctive (longest) content word, then measures multiset overlap in a
+// window around each occurrence — order- and typo-tolerant.
+function runPresentInFb2(runNorms, fbNorms) {
+  const content = runNorms.filter(function (w) { return w.length >= 3 && !STOP[w]; });
+  if (content.length < 2 || runNorms.length < 3) return false;
+  let pivot = content[0];
+  for (let i = 1; i < content.length; i++) if (content[i].length > pivot.length) pivot = content[i];
+  const runCounts = {};
+  runNorms.forEach(function (w) { runCounts[w] = (runCounts[w] || 0) + 1; });
+  let total = 0; for (const w in runCounts) total += runCounts[w];
+  const m = runNorms.length;
+  for (let i = 0; i < fbNorms.length; i++) {
+    if (fbNorms[i] !== pivot) continue;
+    const a = Math.max(0, i - m), b = Math.min(fbNorms.length, i + m);
+    const wc = {};
+    for (let j = a; j < b; j++) wc[fbNorms[j]] = (wc[fbNorms[j]] || 0) + 1;
+    let overlap = 0;
+    for (const w in runCounts) overlap += Math.min(runCounts[w], wc[w] || 0);
+    if (total > 0 && overlap / total >= 0.6) return true;
+  }
+  return false;
+}
+
 // ---------------------------------------------------------------------------
 // scanChapter: full pipeline for one chapter. Returns discrepancies + summary.
 // ---------------------------------------------------------------------------
@@ -415,6 +443,7 @@ function scanChapter(fb2Parsed, fbToks, transcriptJson, chapterIndex, totalChapt
   const ratio = trToks.length ? eqCount / Math.max(span.length, trToks.length) : 0;
 
   const regions = mergeOps(ops, 2);
+  const fbNorms = fbToks.map(function (t) { return t.norm; });
   const discrepancies = [];
   let idc = 0;
   const ctxRaw = function (toks, a, b) {
@@ -432,6 +461,20 @@ function scanChapter(fb2Parsed, fbToks, transcriptJson, chapterIndex, totalChapt
     d.fbEnd = anchor.start + regions[r].i2;
     d.trStart = regions[r].j1;
     d.trEnd = regions[r].j2;
+    // Guard against FALSE "missing" insertions: if the transcript run's text
+    // already appears in the FB2 (a repeated phrase the diff mis-aligned),
+    // don't propose inserting it — flag it and drop it out of the actionable set.
+    if (d.kind === "missing") {
+      const runNorms = [];
+      for (let j = d.trStart; j < d.trEnd; j++) if (trToks[j]) runNorms.push(trToks[j].norm);
+      if (runPresentInFb2(runNorms, fbNorms)) {
+        d.inBook = true;
+        d.suggest = "ignore";
+        d.confidence = "low";
+        d.needsAI = false;
+        d.note = "This text already appears in the book — likely an alignment artifact from a repeated phrase, not a genuinely missing sentence.";
+      }
+    }
     // A few words of surrounding context from each side, for the review UI.
     d.fbContextBefore = ctxRaw(fbToks, d.fbStart - 6, d.fbStart);
     d.fbContextAfter = ctxRaw(fbToks, d.fbEnd, d.fbEnd + 6);
