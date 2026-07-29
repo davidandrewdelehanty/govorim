@@ -2767,6 +2767,15 @@ export default function App() {
   var [ttFindHits, setTtFindHits]   = useState(null); // search results
   var [ttFindBusy, setTtFindBusy]   = useState(false);
   var [ttFindErr, setTtFindErr]     = useState("");
+  // Text editor (whole-book IDE view)
+  var [ttDoc, setTtDoc]             = useState(null);   // {paras:[{i,text,kind}], fb2Sha}
+  var [ttDocBusy, setTtDocBusy]     = useState(false);
+  var [ttDocErr, setTtDocErr]       = useState("");
+  var [ttDocDel, setTtDocDel]       = useState({});     // paraIdx -> true (marked for removal)
+  var [ttDocEdit, setTtDocEdit]     = useState({});     // paraIdx -> new text
+  var [ttEditingPara, setTtEditingPara] = useState(null);
+  var [ttDocSaving, setTtDocSaving] = useState(false);
+  var [ttDocFilter, setTtDocFilter] = useState("");
   var ttMainRef = useRef(null);
 
   var [msgs, setMsgs]         = useState([]);
@@ -5294,6 +5303,52 @@ export default function App() {
     ttSetDecision(ttKey(ttSel.fb2Path, ttChapter, id), {action:"accept"});
     setTtView("list"); setTtActive(ttKey(ttSel.fb2Path, ttChapter, id));
   };
+
+  // ── Text editor: load the whole book's paragraphs, delete/edit, save ──
+  var ttLoadDoc = async function(book){
+    setTtDocBusy(true); setTtDocErr(""); setTtDoc(null);
+    setTtDocDel({}); setTtDocEdit({}); setTtEditingPara(null);
+    try{
+      var r = await authFetch("/api/admin/transcript-fbtext", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({ fb2Path: book.fb2Path }),
+      });
+      var d = await r.json();
+      if(!r.ok) throw new Error(d.error || "Failed to load text");
+      setTtDoc({ paras: d.paras||[], fb2Sha: d.fb2Sha, __book: book.fb2Path });
+    } catch(e){ setTtDocErr(e.message || "Failed to load text"); }
+    finally{ setTtDocBusy(false); }
+  };
+  var ttToggleDelPara = function(i){
+    setTtDocDel(function(prev){ var n=Object.assign({},prev); if(n[i]) delete n[i]; else n[i]=true; return n; });
+  };
+  var ttSaveDoc = async function(book){
+    if(!ttDoc) return;
+    var dels = [];
+    Object.keys(ttDocDel).forEach(function(k){ if(ttDocDel[k]) dels.push({ paraIdx: +k }); });
+    Object.keys(ttDocEdit).forEach(function(k){
+      if(ttDocDel[k]) return; // deleted wins
+      var orig = ttDoc.paras[+k] ? ttDoc.paras[+k].text : null;
+      if(ttDocEdit[k]!=null && ttDocEdit[k].trim() && ttDocEdit[k]!==orig) dels.push({ paraIdx:+k, text: ttDocEdit[k].trim() });
+    });
+    if(!dels.length){ setTtDocErr("No changes to save."); return; }
+    setTtDocSaving(true); setTtDocErr(""); setTtApplyMsg("");
+    try{
+      var r = await authFetch("/api/admin/transcript-apply", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({ fb2Path: book.fb2Path, fb2Sha: ttDoc.fb2Sha, fb2Deletions: dels, backup: true }),
+      });
+      var d = await r.json();
+      if(!r.ok) throw new Error(d.error || "Save failed");
+      var nDel = dels.filter(function(x){return x.text==null;}).length, nEd = dels.length-nDel;
+      setTtApplyMsg("✓ Saved — "+nDel+" removed, "+nEd+" edited. Vercel redeploys in ~1-2 min.");
+      // reload fresh doc + invalidate chapter scans (indices changed)
+      setTtScans(function(prev){ var n=Object.assign({},prev); for(var ci=0;ci<book.nChapters;ci++) delete n[book.fb2Path+"|"+ci]; return n; });
+      await ttLoadDoc(book);
+    } catch(e){ setTtDocErr(e.message || "Save failed"); }
+    finally{ setTtDocSaving(false); }
+  };
+  useEffect(function(){ if(ttOpen && ttSel && ttView==="text" && (!ttDoc || ttDoc.__book!==ttSel.fb2Path) && !ttDocBusy) ttLoadDoc(ttSel); }, [ttOpen, ttSel, ttView]); // eslint-disable-line
 
   // Keyboard navigation within a chapter (IDE-style): j/k or arrows move the
   // active mismatch, Enter/a accept, x skip, Esc closes.
@@ -8623,6 +8678,21 @@ export default function App() {
               .ts-empty{padding:60px 24px;text-align:center;color:#8a7b64;font-size:14px;line-height:1.6}
               .ts-empty.sm{padding:20px}
               .ts-spin::after{content:" ⏳"}
+              /* Text editor — IDE look: white bg, black monospace */
+              .ts-code{background:#ffffff;color:#111;font-family:'SF Mono','JetBrains Mono','Menlo','Consolas',monospace;font-size:13.5px;line-height:1.75;padding:10px 0 60px;min-height:100%}
+              .ts-line{display:flex;align-items:flex-start;gap:6px;padding:1px 20px 1px 0;border-left:3px solid transparent}
+              .ts-line:hover{background:#f4f6f8}
+              .ts-line.del{background:rgba(157,70,48,.09);border-left-color:#9d4630}
+              .ts-line.del .ts-linetext{text-decoration:line-through;color:#9d4630;opacity:.75}
+              .ts-line.edited{border-left-color:#2f8a45;background:rgba(47,138,69,.06)}
+              .ts-ln{width:54px;text-align:right;color:#b6b6b6;user-select:none;flex-shrink:0;padding-top:2px;font-size:11px}
+              .ts-linedel{width:20px;flex-shrink:0;border:none;background:none;color:#cfcfcf;cursor:pointer;font-size:12px;line-height:1.75;padding:0}
+              .ts-line:hover .ts-linedel{color:#9d4630}
+              .ts-line.del .ts-linedel{color:#9d4630}
+              .ts-linetext{flex:1;white-space:pre-wrap;cursor:text;color:#111}
+              .ts-linetext:hover{background:#eef1f4}
+              .ts-lineedit{flex:1;font-family:inherit;font-size:13.5px;line-height:1.6;border:1px solid #c4955a;border-radius:4px;padding:5px 7px;color:#000;background:#fffdf5;resize:vertical;min-height:3.2em;box-sizing:border-box}
+              .ts-lineedit:focus{outline:none;box-shadow:0 0 0 2px rgba(196,149,90,.3)}
               .ts-welcome{padding:36px;max-width:760px;margin:0 auto}
               .ts-welcome h2{font-family:'Playfair Display',serif;font-size:26px;color:#2a1f14;margin:0 0 6px}
               .ts-welcome p{color:#6b5d49;font-size:14px;line-height:1.7;margin:0 0 18px}
@@ -8673,7 +8743,7 @@ export default function App() {
                           </div>
                           {exp && (
                             <div className="ts-chs">
-                              <div className="ts-scanrow"><button className="ts-b sm ghost" disabled={ttScanning||!book.supported} onClick={function(e){ e.stopPropagation(); ttScanBook(book); }}>{c.scanned>0?"↻ Re-scan book":"⤓ Scan book"}</button></div>
+                              <div className="ts-scanrow" style={{display:"flex",gap:6}}><button className="ts-b sm ghost" disabled={ttScanning||!book.supported} onClick={function(e){ e.stopPropagation(); ttScanBook(book); }}>{c.scanned>0?"↻ Re-scan book":"⤓ Scan book"}</button><button className="ts-b sm ghost" disabled={!book.supported} onClick={function(e){ e.stopPropagation(); setTtSel(book); setTtView("text"); }} title="Edit the whole book text">📄 Text</button></div>
                               {book.supported && Array.from({length:book.nChapters}).map(function(_,ci){
                                 var s=ttScans[book.fb2Path+"|"+ci]; var sum=s&&s.summary;
                                 return (
@@ -8694,7 +8764,52 @@ export default function App() {
 
                 {/* MAIN */}
                 <div className="ts-main">
-                  {ttChapter==null ? (
+                  {ttSel && ttView==="text" ? (() => {
+                    var nDel = Object.keys(ttDocDel).filter(function(k){return ttDocDel[k];}).length;
+                    var nEd = ttDoc ? Object.keys(ttDocEdit).filter(function(k){ return !ttDocDel[k] && ttDocEdit[k]!=null && ttDoc.paras[+k] && ttDocEdit[k]!==ttDoc.paras[+k].text; }).length : 0;
+                    var q = ttDocFilter.trim().toLowerCase();
+                    var all = ttDoc ? ttDoc.paras : [];
+                    var visible = q ? all.filter(function(p){ return p.text.toLowerCase().indexOf(q)>=0; }) : all;
+                    var tooMany = !q && all.length > 2500;
+                    return (
+                    <>
+                      <div className="ts-toolbar">
+                        <div className="ts-tabs">
+                          <button onClick={function(){ setTtView("reading"); if(ttChapter==null && ttSel.nChapters){ ttOpenChapter(ttSel,0); } }}>📖 Reading</button>
+                          <button onClick={function(){ setTtView("list"); if(ttChapter==null && ttSel.nChapters){ ttOpenChapter(ttSel,0); } }}>☰ List</button>
+                          <button className="on">📄 Text</button>
+                        </div>
+                        <input className="ts-search" placeholder="Jump to a passage…" value={ttDocFilter} onChange={function(e){ setTtDocFilter(e.target.value); }}/>
+                        <div style={{flex:1}}/>
+                        <span style={{fontSize:12,color:"#6b5d49"}}><b style={{color:"#9d4630"}}>{nDel}</b> to remove{nEd?(" · "+nEd+" edited"):""}</span>
+                        <button className="ts-b ghost sm" onClick={function(){ ttLoadDoc(ttSel); }} disabled={ttDocBusy||ttDocSaving}>Reload</button>
+                        <button className="ts-commit" disabled={ttDocSaving||(nDel+nEd===0)} onClick={function(){ ttSaveDoc(ttSel); }}>{ttDocSaving?"Saving…":("💾 Save "+(nDel+nEd)+" change"+(nDel+nEd===1?"":"s"))}</button>
+                      </div>
+                      <div className="ts-main-scroll">
+                        <div className="ts-code">
+                          {ttDocBusy && <div className="ts-empty">Loading the whole book…</div>}
+                          {ttDocErr && <div className="ts-empty" style={{color:"#9d4630"}}>{ttDocErr}</div>}
+                          {ttDoc && !ttDocBusy && tooMany && <div className="ts-empty">This book has {all.length} paragraphs — type in the box above to jump to the passage you want to trim.</div>}
+                          {ttDoc && !ttDocBusy && !tooMany && visible.length===0 && <div className="ts-empty">{q?"No paragraphs match.":"Empty."}</div>}
+                          {ttDoc && !ttDocBusy && !tooMany && visible.map(function(p){
+                            var del = !!ttDocDel[p.i];
+                            var txt = ttDocEdit[p.i]!=null ? ttDocEdit[p.i] : p.text;
+                            var edited = ttDocEdit[p.i]!=null && ttDocEdit[p.i]!==p.text;
+                            return (
+                              <div key={p.i} className={"ts-line"+(del?" del":"")+(edited&&!del?" edited":"")}>
+                                <span className="ts-ln">{p.i+1}</span>
+                                <button className="ts-linedel" title={del?"restore":"remove this paragraph"} onClick={function(){ ttToggleDelPara(p.i); }}>{del?"↺":"✕"}</button>
+                                {ttEditingPara===p.i
+                                  ? <textarea autoFocus className="ts-lineedit" defaultValue={txt} onBlur={function(e){ var v=e.target.value; setTtDocEdit(function(prev){ var n=Object.assign({},prev); n[p.i]=v; return n; }); setTtEditingPara(null); }}/>
+                                  : <span className="ts-linetext" onClick={function(){ if(!del) setTtEditingPara(p.i); }}>{txt}</span>}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </>
+                    );
+                  })() : ttChapter==null ? (
                     <div className="ts-main-scroll">
                       <div className="ts-welcome">
                         <h2>Transcript Studio</h2>
@@ -8724,6 +8839,7 @@ export default function App() {
                         <div className="ts-tabs">
                           <button className={ttView==="reading"?"on":""} onClick={function(){ setTtView("reading"); }}>📖 Reading</button>
                           <button className={ttView==="list"?"on":""} onClick={function(){ setTtView("list"); }}>☰ List</button>
+                          <button className={ttView==="text"?"on":""} onClick={function(){ setTtView("text"); }}>📄 Text</button>
                         </div>
                         <input className="ts-search" placeholder="Filter…" value={ttSearch} onChange={function(e){ setTtSearch(e.target.value); }}/>
                         <div className="ts-chips">

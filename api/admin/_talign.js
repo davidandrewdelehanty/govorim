@@ -700,9 +700,25 @@ function applyFb2Edits(raw, parsed, fbToks, inserts, deletions) {
     if (!p || !ins.text) return;
     edits.push({ start: p.rawEnd, end: p.rawEnd, text: "\n<p>" + escapeXml(ins.text) + "</p>", kind: "ins" });
   });
-  // deletions → gather removed token indices, group by paragraph via wpi
+  // deletions → gather removed token indices, group by paragraph via wpi.
+  // A deletion may instead reference a whole paragraph by { paraIdx } (remove
+  // it entirely) or { paraIdx, text } (replace its text) — used by the Text
+  // editor, which works paragraph-by-paragraph and preserves book structure.
   const remove = {};
-  (deletions || []).forEach(function (d) { if (d && d.fbStart != null) for (let i = d.fbStart; i < d.fbEnd; i++) remove[i] = true; });
+  (deletions || []).forEach(function (d) {
+    if (!d) return;
+    if (d.fbStart != null) { for (let i = d.fbStart; i < d.fbEnd; i++) remove[i] = true; return; }
+    if (d.paraIdx != null && parsed.paras[d.paraIdx]) {
+      const para = parsed.paras[d.paraIdx];
+      if (d.text != null && String(d.text).trim() !== "") {
+        edits.push({ start: para.rawStart, end: para.rawEnd, text: "<p>" + escapeXml(String(d.text).trim()) + "</p>", kind: "del" });
+      } else {
+        let start = para.rawStart;
+        if (raw[start - 1] === "\n") start = start - 1;
+        edits.push({ start: start, end: para.rawEnd, text: "", kind: "del" });
+      }
+    }
+  });
   const byPara = {};
   for (let i = 0; i < fbToks.length; i++) {
     if (remove[i]) { const t = fbToks[i]; if (t.wpi != null) { if (!byPara[t.paraIdx]) byPara[t.paraIdx] = {}; byPara[t.paraIdx][t.wpi] = true; } }
