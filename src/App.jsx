@@ -2738,6 +2738,25 @@ export default function App() {
   var currentEmail = (user && user.primaryEmailAddress && user.primaryEmailAddress.emailAddress || "").toLowerCase();
   var isAdmin = !!ADMIN_EMAIL && currentEmail === ADMIN_EMAIL;
 
+  // ── Transcript Tools (admin): compare audiobook transcripts vs FB2, fix ASR
+  // errors in the JSON, and insert missing sentences into the FB2. ────────────
+  var [ttOpen, setTtOpen]         = useState(false);
+  var [ttBooks, setTtBooks]       = useState([]);
+  var [ttBooksLoad, setTtBooksLoad] = useState(false);
+  var [ttErr, setTtErr]           = useState("");
+  var [ttSel, setTtSel]           = useState(null);      // selected book object
+  var [ttScans, setTtScans]       = useState({});        // key "fb2Path|ci" -> scan result
+  var [ttScanning, setTtScanning] = useState(false);
+  var [ttProgress, setTtProgress] = useState(null);      // {done,total,label}
+  var [ttChapter, setTtChapter]   = useState(null);      // chapter index open for review
+  var [ttDecisions, setTtDecisions] = useState({});      // discKey -> {action, text}
+  var [ttFilter, setTtFilter]     = useState({ sub:true, missing:true, omitted:false, actionable:true });
+  var [ttApplying, setTtApplying] = useState(false);
+  var [ttApplyMsg, setTtApplyMsg] = useState("");
+  var [ttAiBusy, setTtAiBusy]     = useState(false);
+  var [ttVerdicts, setTtVerdicts] = useState({});        // discKey -> {verdict,reason,suggestion}
+  var ttScanAbort = useRef(false);
+
   var [msgs, setMsgs]         = useState([]);
   var [input, setInput]       = useState("");
   var [loading, setLoading]   = useState(false);
@@ -4924,6 +4943,228 @@ export default function App() {
       return await run();
     }
   };
+
+  // ── Transcript Tools handlers ────────────────────────────────────────────
+  var ttKey = function(fb2Path, ci, id) { return fb2Path + "|" + ci + "|" + id; };
+
+  var ttLoadBooks = async function() {
+    setTtBooksLoad(true); setTtErr("");
+    try {
+      var r = await authFetch("/api/admin/transcript-books");
+      var d = await r.json();
+      if (!r.ok) throw new Error(d.error || "Failed to load audiobooks");
+      setTtBooks(d.books || []);
+    } catch (e) { setTtErr(e.message || "Failed to load audiobooks"); }
+    finally { setTtBooksLoad(false); }
+  };
+
+  var ttDefaultDecision = function(d) {
+    // Conservative defaults: obvious ASR fixes are pre-accepted; everything
+    // else waits for an explicit call (review-then-commit).
+    if (d.kind === "sub" && d.confidence === "high") return { action: "accept", text: ttTargetText(d) };
+    return { action: "", text: ttTargetText(d) };
+  };
+  var ttTargetText = function(d) {
+    if (d.kind === "missing") return d.trText;
+    if (d.kind === "sub") {
+      if (d.target && d.target.length) return d.target.map(function(t){ return t.newWord; }).join(" ");
+      return (d.fbWords && d.fbWords.length) ? d.fbWords.join(" ") : d.fbText;
+    }
+    return "";
+  };
+
+  var ttScanOne = async function(book, ci) {
+    var ch = book.chapters[ci];
+    var r = await authFetch("/api/admin/transcript-scan", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ fb2Path: book.fb2Path, chapterPath: ch.path, chapterIndex: ci, totalChapters: book.nChapters }),
+    });
+    var d = await r.json();
+    if (!r.ok) throw new Error(d.error || ("Scan failed for chapter " + (ci + 1)));
+    // seed default decisions
+    setTtDecisions(function(prev) {
+      var next = Object.assign({}, prev);
+      (d.discrepancies || []).forEach(function(x) {
+        var k = ttKey(book.fb2Path, ci, x.id);
+        if (!next[k]) next[k] = ttDefaultDecision(x);
+      });
+      return next;
+    });
+    setTtScans(function(prev) {
+      var next = Object.assign({}, prev);
+      next[book.fb2Path + "|" + ci] = d;
+      return next;
+    });
+    return d;
+  };
+
+  var ttScanBook = async function(book) {
+    if (!book.supported) { setTtErr(book.note || "Unsupported book"); return; }
+    ttScanAbort.current = false;
+    setTtScanning(true); setTtErr(""); setTtApplyMsg("");
+    try {
+      for (var ci = 0; ci < book.nChapters; ci++) {
+        if (ttScanAbort.current) break;
+        setTtProgress({ done: ci, total: book.nChapters, label: book.title + " — ch " + (ci + 1) + "/" + book.nChapters });
+        try { await ttScanOne(book, ci); }
+        catch (e) { /* record per-chapter error but keep going */
+          setTtScans(function(prev){ var n=Object.assign({},prev); n[book.fb2Path+"|"+ci]={error:e.message||"scan failed",discrepancies:[],summary:{}}; return n; });
+        }
+      }
+      setTtProgress({ done: book.nChapters, total: book.nChapters, label: "Done" });
+    } finally { setTtScanning(false); }
+  };
+
+  var ttScanAll = async function() {
+    ttScanAbort.current = false;
+    setTtScanning(true); setTtErr(""); setTtApplyMsg("");
+    try {
+      var supported = ttBooks.filter(function(b){ return b.supported; });
+      var totalCh = supported.reduce(function(s,b){ return s + b.nChapters; }, 0);
+      var done = 0;
+      for (var bi = 0; bi < supported.length; bi++) {
+        var book = supported[bi];
+        for (var ci = 0; ci < book.nChapters; ci++) {
+          if (ttScanAbort.current) break;
+          setTtProgress({ done: done, total: totalCh, label: book.title + " — ch " + (ci + 1) + "/" + book.nChapters });
+          try { await ttScanOne(book, ci); } catch (e) {
+            setTtScans(function(prev){ var n=Object.assign({},prev); n[book.fb2Path+"|"+ci]={error:e.message||"scan failed",discrepancies:[],summary:{}}; return n; });
+          }
+          done++;
+        }
+        if (ttScanAbort.current) break;
+      }
+      setTtProgress({ done: totalCh, total: totalCh, label: "Done" });
+    } finally { setTtScanning(false); }
+  };
+
+  var ttSetDecision = function(k, patch) {
+    setTtDecisions(function(prev) {
+      var next = Object.assign({}, prev);
+      next[k] = Object.assign({}, next[k] || {}, patch);
+      return next;
+    });
+  };
+
+  // Count accepted edits for a book across all its scanned chapters.
+  var ttAcceptedForBook = function(book) {
+    var subs = 0, inserts = 0;
+    for (var ci = 0; ci < (book ? book.nChapters : 0); ci++) {
+      var scan = ttScans[book.fb2Path + "|" + ci];
+      if (!scan || !scan.discrepancies) continue;
+      scan.discrepancies.forEach(function(d) {
+        var dec = ttDecisions[ttKey(book.fb2Path, ci, d.id)];
+        if (!dec || dec.action !== "accept") return;
+        if (d.kind === "missing") inserts++;
+        else if (d.kind === "sub") subs++;
+      });
+    }
+    return { subs: subs, inserts: inserts, total: subs + inserts };
+  };
+
+  var ttApply = async function(book) {
+    setTtApplying(true); setTtErr(""); setTtApplyMsg("");
+    try {
+      var chaptersPayload = [];
+      var fb2Inserts = [];
+      var fb2Sha = null;
+      for (var ci = 0; ci < book.nChapters; ci++) {
+        var scan = ttScans[book.fb2Path + "|" + ci];
+        if (!scan || !scan.discrepancies) continue;
+        if (scan.fb2Sha) fb2Sha = scan.fb2Sha;
+        var edits = [];
+        scan.discrepancies.forEach(function(d) {
+          var dec = ttDecisions[ttKey(book.fb2Path, ci, d.id)];
+          if (!dec || dec.action !== "accept") return;
+          var text = (dec.text != null ? dec.text : ttTargetText(d)).trim();
+          if (!text) return;
+          if (d.kind === "sub") {
+            var words = text.split(/\s+/);
+            if (d.run) edits.push({ run: d.run, newWords: words });
+            else if (d.target) {
+              // per-word fallback (counts must match)
+              if (d.target.length === words.length) {
+                for (var t = 0; t < d.target.length; t++) edits.push({ fragIdx: d.target[t].fragIdx, wIdx: d.target[t].wIdx, newWord: words[t] });
+              }
+            }
+          } else if (d.kind === "missing") {
+            fb2Inserts.push({ afterParaIdx: d.afterParaIdx, text: text });
+          }
+        });
+        if (edits.length) chaptersPayload.push({ path: book.chapters[ci].path, sha: scan.chapterSha, edits: edits });
+      }
+      if (!chaptersPayload.length && !fb2Inserts.length) { setTtErr("Nothing approved to commit."); setTtApplying(false); return; }
+
+      var r = await authFetch("/api/admin/transcript-apply", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fb2Path: book.fb2Path, fb2Sha: fb2Sha, fb2Inserts: fb2Inserts, chapters: chaptersPayload, backup: true }),
+      });
+      var d = await r.json();
+      if (!r.ok) throw new Error(d.error || "Apply failed");
+      var parts = [];
+      if (d.committed && d.committed.length) parts.push(d.committed.length + " file(s) committed");
+      if (d.backups && d.backups.length) parts.push(d.backups.length + " backup(s) saved");
+      if (d.errors && d.errors.length) parts.push(d.errors.length + " error(s): " + d.errors.map(function(e){ return e.error; }).join("; "));
+      setTtApplyMsg((d.ok ? "✓ " : "⚠ ") + parts.join(" · ") + ". Vercel redeploys in ~1-2 min.");
+      // Invalidate scans for this book (indices/positions changed); force re-scan.
+      setTtScans(function(prev) {
+        var next = Object.assign({}, prev);
+        for (var ci2 = 0; ci2 < book.nChapters; ci2++) delete next[book.fb2Path + "|" + ci2];
+        return next;
+      });
+      setTtChapter(null);
+    } catch (e) { setTtErr(e.message || "Apply failed"); }
+    finally { setTtApplying(false); }
+  };
+
+  // Ask the AI to judge ambiguous discrepancies in the open chapter.
+  var ttAskAI = async function(book, ci) {
+    var scan = ttScans[book.fb2Path + "|" + ci];
+    if (!scan || !scan.discrepancies) return;
+    var items = scan.discrepancies.filter(function(d){ return d.needsAI || d.confidence === "low"; }).slice(0, 25);
+    if (!items.length) { setTtApplyMsg("No ambiguous items in this chapter."); return; }
+    setTtAiBusy(true); setTtErr("");
+    try {
+      var payload = items.map(function(d){
+        return {
+          id: d.id, kind: d.kind,
+          fb2: d.fbText, transcript: d.trText,
+          context: (d.trContextBefore + " ⟦" + d.trText + "⟧ " + d.trContextAfter).trim(),
+        };
+      });
+      var sys = "You are a Russian-language proofreading assistant comparing an audiobook ASR transcript against the book's FB2 source text. For each item decide the best category:\n" +
+        "- \"asr_error\": the transcript mis-heard a word the narrator actually read from the book; the FB2 spelling is correct → fix the JSON to the FB2 word.\n" +
+        "- \"variant\": the narration genuinely differs from the FB2 (different wording/edition); leave the transcript as-is.\n" +
+        "- \"missing\": the transcript contains a real sentence/phrase absent from the FB2 → it should be inserted into the FB2.\n" +
+        "- \"noise\": trivial/alignment artifact, ignore.\n" +
+        "Return ONLY JSON: {\"results\":[{\"id\":\"...\",\"verdict\":\"asr_error|variant|missing|noise\",\"suggestion\":\"the corrected word/sentence, or empty\",\"reason\":\"<=12 words\"}]}";
+      var prompt = "Items:\n" + JSON.stringify(payload, null, 1);
+      var txt = await api([{ role: "user", content: prompt }], sys, { json: true });
+      var parsed = {}; try { parsed = JSON.parse(txt); } catch (e) { parsed = {}; }
+      var results = (parsed && parsed.results) || [];
+      setTtVerdicts(function(prev) {
+        var next = Object.assign({}, prev);
+        results.forEach(function(rz) {
+          var k = ttKey(book.fb2Path, ci, rz.id);
+          next[k] = { verdict: rz.verdict, suggestion: rz.suggestion || "", reason: rz.reason || "" };
+        });
+        return next;
+      });
+      setTtApplyMsg("AI reviewed " + results.length + " item(s).");
+    } catch (e) { setTtErr("AI review failed: " + (e.message || e)); }
+    finally { setTtAiBusy(false); }
+  };
+
+  var ttApplyAiSuggestion = function(book, ci, d) {
+    var k = ttKey(book.fb2Path, ci, d.id);
+    var v = ttVerdicts[k];
+    if (!v) return;
+    if (v.verdict === "asr_error") ttSetDecision(k, { action: "accept", text: (v.suggestion || ttTargetText(d)) });
+    else if (v.verdict === "missing") ttSetDecision(k, { action: "accept", text: (v.suggestion || d.trText) });
+    else ttSetDecision(k, { action: "reject" });
+  };
+
+  useEffect(function() { if (ttOpen && isAdmin && !ttBooks.length && !ttBooksLoad) ttLoadBooks(); }, [ttOpen]); // eslint-disable-line
 
   // Admin actions — fetch users + approve/reject. Only meaningful when isAdmin.
   // ── Forum + feedback handlers ────────────────────────────────────────────
@@ -7875,6 +8116,213 @@ export default function App() {
         </div>
       )}
 
+      {ttOpen && isAdmin && (() => {
+        var KIND = {
+          sub:     { bg:"rgba(196,149,90,.15)", bd:"rgba(196,149,90,.5)",  fg:"#8a5a1a", label:"ASR / wording" },
+          missing: { bg:"rgba(90,133,86,.16)",  bd:"rgba(90,133,86,.5)",   fg:"#3a6a35", label:"Missing in FB2" },
+          omitted: { bg:"rgba(120,120,120,.12)",bd:"rgba(120,120,120,.4)", fg:"#555",    label:"Not in audio" },
+        };
+        var confColor = { high:"#5a8556", med:"#c4955a", low:"#9d4630" };
+        var bookCounts = function(book){
+          var c = { sub:0, missing:0, omitted:0, scanned:0 };
+          for (var ci=0; ci<book.nChapters; ci++){
+            var s = ttScans[book.fb2Path+"|"+ci];
+            if (!s) continue; c.scanned++;
+            (s.discrepancies||[]).forEach(function(d){ c[d.kind] = (c[d.kind]||0)+1; });
+          }
+          return c;
+        };
+        var shouldShow = function(d){
+          if (!ttFilter[d.kind]) return false;
+          if (ttFilter.actionable){
+            if (d.kind==="omitted") return false;
+            if (d.kind==="missing" && d.suggest==="ignore") return false;
+          }
+          return true;
+        };
+        var pill = function(txt,color){ return <span style={{fontSize:11,padding:"1px 7px",borderRadius:10,background:color+"22",color:color,border:"1px solid "+color+"55",whiteSpace:"nowrap"}}>{txt}</span>; };
+
+        return (
+        <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over" && !ttScanning && !ttApplying) setTtOpen(false); }}>
+          <div className="adm-modal" style={{maxWidth:920}}>
+            <div className="adm-head">
+              <div className="adm-title">🔧 Transcript Tools{ttSel ? <span style={{fontSize:15,color:"#2a1f14",opacity:.7,marginLeft:10,fontFamily:"'Crimson Pro',serif"}}>· {ttSel.title}{ttChapter!=null?(" · ch "+(ttChapter+1)):""}</span> : null}</div>
+              <button className="adm-x" onClick={function(){ setTtOpen(false); }}>×</button>
+            </div>
+
+            {ttErr && <div className="adm-err" style={{margin:"12px 28px 0"}}>{ttErr}</div>}
+            {ttApplyMsg && <div style={{margin:"12px 28px 0",padding:"8px 12px",background:"rgba(138,171,124,.15)",border:"1px solid rgba(138,171,124,.4)",borderRadius:6,color:"#2f5a2a",fontSize:13}}>{ttApplyMsg}</div>}
+            {ttScanning && ttProgress && (
+              <div style={{margin:"12px 28px 0"}}>
+                <div style={{fontSize:12,color:"#2a1f14",opacity:.7,marginBottom:5}}>Scanning: {ttProgress.label} ({ttProgress.done}/{ttProgress.total})
+                  <button onClick={function(){ ttScanAbort.current=true; }} style={{marginLeft:10,fontSize:11,padding:"1px 8px",border:"1px solid rgba(157,70,48,.4)",background:"rgba(157,70,48,.1)",color:"#9d4630",borderRadius:8,cursor:"pointer"}}>Stop</button>
+                </div>
+                <div style={{height:6,background:"rgba(42,31,20,.1)",borderRadius:3,overflow:"hidden"}}>
+                  <div style={{height:"100%",width:(ttProgress.total?Math.round(ttProgress.done/ttProgress.total*100):0)+"%",background:"#c4955a",transition:"width .2s"}}/>
+                </div>
+              </div>
+            )}
+
+            {/* ============ DASHBOARD (no book selected) ============ */}
+            {!ttSel && (
+              <div className="adm-body">
+                <div style={{display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"}}>
+                  <button className="adm-btn approve" disabled={ttScanning||ttBooksLoad} onClick={ttScanAll}>{ttScanning?"Scanning…":"⤓ Scan all books"}</button>
+                  <button className="adm-refresh" onClick={ttLoadBooks} disabled={ttBooksLoad||ttScanning}>Refresh list</button>
+                  <span style={{fontSize:12,opacity:.6}}>Audiobooks with a transcript + FB2 source.</span>
+                </div>
+                {ttBooksLoad && <div className="adm-empty">Loading audiobooks…</div>}
+                {!ttBooksLoad && ttBooks.length===0 && <div className="adm-empty">No audiobooks found.</div>}
+                {ttBooks.map(function(book){
+                  var c = bookCounts(book);
+                  return (
+                    <div key={book.fb2Path} className="adm-row" style={{cursor:book.supported?"pointer":"default",opacity:book.supported?1:.55}}
+                      onClick={function(){ if(book.supported){ setTtSel(book); setTtChapter(null); } }}>
+                      <div className="adm-info">
+                        <div className="adm-name">{book.title}</div>
+                        <div className="adm-email">{book.author ? book.author+" · " : ""}{book.nChapters} ch{book.supported?"":" · "+book.note}</div>
+                      </div>
+                      <div style={{display:"flex",gap:6,alignItems:"center"}}>
+                        {c.scanned>0 ? <>
+                          {pill(c.sub+" subs", KIND.sub.fg)}
+                          {pill(c.missing+" missing", KIND.missing.fg)}
+                          {pill(c.scanned+"/"+book.nChapters+" scanned", "#666")}
+                        </> : (book.supported ? <span style={{fontSize:12,opacity:.5}}>not scanned</span> : null)}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* ============ BOOK VIEW (chapters) ============ */}
+            {ttSel && ttChapter==null && (() => {
+              var acc = ttAcceptedForBook(ttSel);
+              return (
+              <div className="adm-body">
+                <div style={{display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"}}>
+                  <button className="adm-refresh" onClick={function(){ setTtSel(null); }}>‹ All books</button>
+                  <button className="adm-btn approve" disabled={ttScanning} onClick={function(){ ttScanBook(ttSel); }}>{bookCounts(ttSel).scanned>0?"↻ Re-scan book":"⤓ Scan book"}</button>
+                  <div style={{flex:1}}/>
+                  {acc.total>0 && <button className="adm-btn approve" disabled={ttApplying} onClick={function(){ ttApply(ttSel); }} style={{background:"linear-gradient(135deg,#5a8556,#3a6a35)"}}>{ttApplying?"Committing…":("✓ Commit "+acc.subs+" fix"+(acc.subs===1?"":"es")+" + "+acc.inserts+" insert"+(acc.inserts===1?"":"s"))}</button>}
+                </div>
+                <div style={{fontSize:12,opacity:.6}}>Click a chapter to review. Fixes to the JSON and insertions into the FB2 are staged here and only committed when you press Commit.</div>
+                {Array.from({length:ttSel.nChapters}).map(function(_,ci){
+                  var s = ttScans[ttSel.fb2Path+"|"+ci];
+                  var sum = s && s.summary ? s.summary : null;
+                  return (
+                    <div key={ci} className="adm-row" style={{cursor:s?"pointer":"default"}} onClick={function(){ if(s) setTtChapter(ci); }}>
+                      <div className="adm-info">
+                        <div className="adm-name">Chapter {ci+1} {s && s.anchorOk===false && <span title="Could not confidently locate this chapter in the FB2" style={{color:"#9d4630",fontSize:12}}>⚠ anchor</span>}</div>
+                        <div className="adm-email">{s ? (s.error ? ("error: "+s.error) : ((sum&&sum.ratio!=null)?("match "+Math.round(sum.ratio*100)+"%"):"")) : "not scanned"}</div>
+                      </div>
+                      <div style={{display:"flex",gap:6,alignItems:"center"}}>
+                        {sum && <>
+                          {pill((sum.sub||0)+" subs", KIND.sub.fg)}
+                          {pill((sum.missing||0)+" missing", KIND.missing.fg)}
+                          {sum.needsAI>0 && pill(sum.needsAI+" ?", "#7a5ea0")}
+                        </>}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              );
+            })()}
+
+            {/* ============ REVIEW VIEW (one chapter) ============ */}
+            {ttSel && ttChapter!=null && (() => {
+              var ci = ttChapter;
+              var scan = ttScans[ttSel.fb2Path+"|"+ci];
+              var discs = (scan && scan.discrepancies) ? scan.discrepancies.filter(shouldShow) : [];
+              var acc = ttAcceptedForBook(ttSel);
+              return (
+              <>
+              <div style={{padding:"10px 28px 0",display:"flex",alignItems:"center",gap:8,flexWrap:"wrap"}}>
+                <button className="adm-refresh" onClick={function(){ setTtChapter(null); }}>‹ Chapters</button>
+                {["sub","missing","omitted"].map(function(kd){
+                  return <label key={kd} style={{fontSize:12,display:"flex",alignItems:"center",gap:4,cursor:"pointer",color:KIND[kd].fg}}>
+                    <input type="checkbox" checked={!!ttFilter[kd]} onChange={function(e){ setTtFilter(Object.assign({},ttFilter,{[kd]:e.target.checked})); }}/>{KIND[kd].label}
+                  </label>;
+                })}
+                <label style={{fontSize:12,display:"flex",alignItems:"center",gap:4,cursor:"pointer",opacity:.75}}>
+                  <input type="checkbox" checked={!!ttFilter.actionable} onChange={function(e){ setTtFilter(Object.assign({},ttFilter,{actionable:e.target.checked})); }}/>hide noise
+                </label>
+                <div style={{flex:1}}/>
+                <button className="adm-refresh" disabled={ttAiBusy} onClick={function(){ ttAskAI(ttSel,ci); }}>{ttAiBusy?"AI…":"✨ Ask AI on ambiguous"}</button>
+              </div>
+              <div className="adm-body" style={{maxHeight:"58vh"}}>
+                {discs.length===0 && <div className="adm-empty">No discrepancies match the current filters.</div>}
+                {discs.map(function(d){
+                  var k = ttKey(ttSel.fb2Path, ci, d.id);
+                  var dec = ttDecisions[k] || {};
+                  var v = ttVerdicts[k];
+                  var accepted = dec.action==="accept", rejected = dec.action==="reject";
+                  return (
+                    <div key={d.id} style={{border:"1px solid "+(accepted?"rgba(90,133,86,.5)":rejected?"rgba(157,70,48,.3)":"rgba(42,31,20,.12)"),borderRadius:10,padding:"10px 12px",background:accepted?"rgba(90,133,86,.06)":rejected?"rgba(157,70,48,.04)":"#fff",opacity:rejected?.6:1}}>
+                      <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:6,flexWrap:"wrap"}}>
+                        <span style={{fontSize:11,padding:"2px 8px",borderRadius:10,background:KIND[d.kind].bg,color:KIND[d.kind].fg,border:"1px solid "+KIND[d.kind].bd}}>{KIND[d.kind].label}</span>
+                        <span style={{display:"flex",alignItems:"center",gap:4,fontSize:11,color:confColor[d.confidence]}}><span style={{width:7,height:7,borderRadius:4,background:confColor[d.confidence],display:"inline-block"}}/>{d.confidence}</span>
+                        {v && pill("AI: "+v.verdict, "#7a5ea0")}
+                        {v && v.reason && <span style={{fontSize:11,opacity:.6,fontStyle:"italic"}}>{v.reason}</span>}
+                      </div>
+
+                      {/* context */}
+                      <div style={{fontSize:12,color:"#2a1f14",opacity:.55,marginBottom:6,fontFamily:"'Crimson Pro',serif"}}>
+                        …{d.trContextBefore} <b style={{opacity:1,color:"#8a5a1a"}}>⟦{d.trText}⟧</b> {d.trContextAfter}…
+                      </div>
+
+                      {/* sides */}
+                      {d.kind!=="missing" && (
+                        <div style={{display:"flex",gap:14,fontSize:13,flexWrap:"wrap",marginBottom:6}}>
+                          <div><span style={{opacity:.5,fontSize:11}}>Audio heard</span><div style={{color:"#9d4630"}}>{d.trText||"—"}</div></div>
+                          <div><span style={{opacity:.5,fontSize:11}}>FB2 text</span><div style={{color:"#3a6a35"}}>{d.fbText||"—"}</div></div>
+                        </div>
+                      )}
+
+                      {/* actions */}
+                      {d.kind==="omitted" ? (
+                        <div style={{fontSize:12,opacity:.6,fontStyle:"italic"}}>The recording skips this text (abridged). No action — informational.</div>
+                      ) : d.kind==="sub" ? (
+                        <div style={{display:"flex",gap:8,alignItems:"center",flexWrap:"wrap"}}>
+                          <span style={{fontSize:11,opacity:.6}}>Set transcript →</span>
+                          <input value={dec.text!=null?dec.text:ttTargetText(d)} onChange={function(e){ ttSetDecision(k,{text:e.target.value}); }}
+                            style={{flex:"1 1 200px",minWidth:120,padding:"6px 9px",border:"1px solid rgba(42,31,20,.2)",borderRadius:6,fontSize:13,color:"#000",background:"#fbf8f2",fontFamily:"'Crimson Pro',serif"}}/>
+                          <button onClick={function(){ ttSetDecision(k,{action:"accept"}); }} style={{padding:"6px 12px",borderRadius:6,border:"none",cursor:"pointer",fontWeight:600,fontSize:12,background:accepted?"#5a8556":"rgba(90,133,86,.15)",color:accepted?"#fff":"#3a6a35"}}>Fix JSON</button>
+                          <button onClick={function(){ ttSetDecision(k,{action:rejected?"":"reject"}); }} style={{padding:"6px 12px",borderRadius:6,border:"1px solid rgba(157,70,48,.4)",cursor:"pointer",fontSize:12,background:"transparent",color:"#9d4630"}}>Skip</button>
+                          {v && v.verdict && <button onClick={function(){ ttApplyAiSuggestion(ttSel,ci,d); }} style={{padding:"6px 10px",borderRadius:6,border:"1px solid #7a5ea0",cursor:"pointer",fontSize:12,background:"transparent",color:"#7a5ea0"}}>Use AI</button>}
+                        </div>
+                      ) : (
+                        <div>
+                          <div style={{fontSize:11,opacity:.6,marginBottom:4}}>Insert into FB2 after ¶ ending: <i>“…{d.afterParaPreview}”</i></div>
+                          <div style={{display:"flex",gap:8,alignItems:"flex-start",flexWrap:"wrap"}}>
+                            <textarea value={dec.text!=null?dec.text:d.trText} onChange={function(e){ ttSetDecision(k,{text:e.target.value}); }} rows={2}
+                              style={{flex:"1 1 260px",minWidth:160,padding:"6px 9px",border:"1px solid rgba(42,31,20,.2)",borderRadius:6,fontSize:13,color:"#000",background:"#fbf8f2",fontFamily:"'Crimson Pro',serif",resize:"vertical"}}/>
+                            <div style={{display:"flex",flexDirection:"column",gap:6}}>
+                              <button onClick={function(){ ttSetDecision(k,{action:"accept"}); }} style={{padding:"6px 12px",borderRadius:6,border:"none",cursor:"pointer",fontWeight:600,fontSize:12,background:accepted?"#5a8556":"rgba(90,133,86,.15)",color:accepted?"#fff":"#3a6a35"}}>Insert</button>
+                              <button onClick={function(){ ttSetDecision(k,{action:rejected?"":"reject"}); }} style={{padding:"6px 12px",borderRadius:6,border:"1px solid rgba(157,70,48,.4)",cursor:"pointer",fontSize:12,background:"transparent",color:"#9d4630"}}>Skip</button>
+                              {v && v.verdict && <button onClick={function(){ ttApplyAiSuggestion(ttSel,ci,d); }} style={{padding:"6px 10px",borderRadius:6,border:"1px solid #7a5ea0",cursor:"pointer",fontSize:12,background:"transparent",color:"#7a5ea0"}}>Use AI</button>}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="adm-foot">
+                <span style={{fontSize:12,color:"rgba(0,0,0,.6)"}}>{discs.length} shown · {acc.total} approved for {ttSel.title}</span>
+                <button className="adm-refresh" disabled={ttApplying||acc.total===0} onClick={function(){ ttApply(ttSel); }} style={{background:acc.total>0?"linear-gradient(135deg,#5a8556,#3a6a35)":undefined,color:acc.total>0?"#fff":undefined,border:acc.total>0?"none":undefined}}>{ttApplying?"Committing…":("Commit "+acc.subs+" + "+acc.inserts)}</button>
+              </div>
+              </>
+              );
+            })()}
+
+          </div>
+        </div>
+        );
+      })()}
+
       {false && showAdmin && isAdmin && (
         <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setShowAdmin(false); }}>
           <div className="adm-modal">
@@ -8096,6 +8544,7 @@ export default function App() {
             {auth.isSignedIn && <button className="adm-trigger" onClick={function(){ setFeedbackOpen(true); }} title="Send feedback">💬 Feedback</button>}
             {false && <button className="adm-trigger" onClick={function(){ setShowAdmin(true); }} title="Manage user approvals">👥 Users</button>}
             {false && <button className="adm-trigger" onClick={function(){ setShowUpload(true); setUpErr(""); setUpMsg(""); }} title="Upload a song to the library">📤 Upload</button>}
+            {isAdmin && <button className="adm-trigger" onClick={function(){ setTtOpen(true); }} title="Compare transcripts vs FB2, fix ASR errors, insert missing sentences">🔧 Transcripts</button>}
             {auth.isSignedIn && <div className="userbtn-wrap"><UserButton afterSignOutUrl="/" /></div>}
           </div>
         </header>
