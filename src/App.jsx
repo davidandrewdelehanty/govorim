@@ -2811,6 +2811,12 @@ export default function App() {
   var [vqSel, setVqSel]           = useState(null);
   var [vqLoading, setVqLoading]   = useState(false);
   var [vqErr, setVqErr]           = useState("");
+  // Exercise audio clips: play the snippet of the recording for a question's
+  // sentence, located in the current chapter's word_timings. exPlaying = the id
+  // of the clip currently playing (drives the ▶/⏸ button state).
+  var [exPlaying, setExPlaying]   = useState(null);
+  var exClipAudioRef              = useRef(null);
+  var exClipRafRef                = useRef(null);
 
   var [popup, setPopup]   = useState(null);
   var [popXY, setPopXY]   = useState({top:100,left:16});
@@ -4387,6 +4393,7 @@ export default function App() {
   useEffect(function() {
     setExData(null); setExCat("menu"); setExSelected(null); setExIdx(0); setExScore(0);
     setVqWords(null); setVqCount({}); setVqCur(null); setVqSel(null); setVqErr(""); setVqLoading(false);
+    stopExClip();
     // Exercises are keyed to the READING chapter (from the FB2), not the audio —
     // audio is only for listening. PREFERRED key: "<bookslug>__ch<cidx>" derived
     // from the book file + reading-chapter index. FALLBACK (older sets): the
@@ -4530,6 +4537,90 @@ export default function App() {
   var vqNext = function() {
     setVqCur(vqPickNext(vqWords || [], vqCount, vqCur ? vqCur.w.ru : null));
     setVqSel(null);
+  };
+
+  // ── Exercise audio clips ───────────────────────────────────────────────────
+  // Locate a question's sentence inside the current chapter's recording (via the
+  // word_timings) and play just that snippet, so the learner hears the exact
+  // line the question is about — no synthesis, the real narrator.
+  var exClipWords = useMemo(function() {
+    var wt = audiobookData && audiobookData.word_timings;
+    if (!wt || !wt.length || !audiobookData.audio_url) return null;
+    return { wt: wt, norm: wt.map(function(w){ return normWordForAlign(w.word); }), url: audiobookData.audio_url };
+  }, [audiobookData]);
+  var exFindClip = function(sentence) {
+    if (!exClipWords) return null;
+    var target = String(sentence || "").replace(/\*\*/g, " ").split(/\s+/).map(normWordForAlign).filter(Boolean);
+    if (target.length < 2) return null;
+    var norm = exClipWords.norm, wt = exClipWords.wt;
+    var head = target.slice(0, Math.min(6, target.length));
+    var best = { score: -1, idx: -1 };
+    for (var i = 0; i < norm.length; i++) {
+      var k = 0, j = i, lim = Math.min(norm.length, i + head.length + 6);
+      while (j < lim && k < head.length) { if (norm[j] === head[k]) k++; j++; }
+      if (k > best.score) { best = { score: k, idx: i }; if (k === head.length) break; }
+    }
+    if (best.idx < 0 || best.score < Math.min(3, head.length)) return null;
+    var start = best.idx;
+    var endIdx = Math.min(wt.length - 1, start + target.length - 1);
+    return { url: exClipWords.url, b: wt[start].begin, e: wt[endIdx].end };
+  };
+  var stopExClip = function() {
+    if (exClipRafRef.current) { cancelAnimationFrame(exClipRafRef.current); exClipRafRef.current = null; }
+    var a = exClipAudioRef.current;
+    if (a) { try { a.pause(); } catch(e) {} }
+    setExPlaying(null);
+  };
+  var playExClip = function(id, sentence) {
+    if (exPlaying === id) { stopExClip(); return; }
+    var clip = exFindClip(sentence);
+    if (!clip) return;
+    // Don't fight the main audiobook player.
+    try { if (audiobookAudioRef.current) audiobookAudioRef.current.pause(); } catch(e) {}
+    if (exClipRafRef.current) { cancelAnimationFrame(exClipRafRef.current); exClipRafRef.current = null; }
+    var a = exClipAudioRef.current;
+    if (!a) { a = new Audio(); a.preload = "auto"; exClipAudioRef.current = a; }
+    var run = function() {
+      try { a.currentTime = clip.b; } catch(e) {}
+      var p = a.play();
+      if (p && p.then) p.catch(function(){ setExPlaying(null); });
+      setExPlaying(id);
+      var tick = function() {
+        var au = exClipAudioRef.current;
+        if (!au || au.paused) { setExPlaying(null); return; }
+        if (au.currentTime >= clip.e) { try { au.pause(); } catch(e) {} setExPlaying(null); return; }
+        exClipRafRef.current = requestAnimationFrame(tick);
+      };
+      exClipRafRef.current = requestAnimationFrame(tick);
+    };
+    a.onended = function() { setExPlaying(null); };
+    if (a.src !== clip.url) {
+      a.src = clip.url;
+      var onMeta = function() { a.removeEventListener("loadedmetadata", onMeta); run(); };
+      a.addEventListener("loadedmetadata", onMeta);
+      try { a.load(); } catch(e) {}
+    } else if (a.readyState < 1) {
+      var onMeta2 = function() { a.removeEventListener("loadedmetadata", onMeta2); run(); };
+      a.addEventListener("loadedmetadata", onMeta2);
+    } else {
+      run();
+    }
+  };
+  // A small round speaker button; renders only when the current chapter's audio
+  // is loaded and the sentence can be located in it.
+  var exClipBtn = function(id, sentence) {
+    if (!exClipWords) return null;
+    if (!exFindClip(sentence)) return null;   // only show when the line is findable in the recording
+    var playing = exPlaying === id;
+    return (
+      <button onClick={function(e){ e.stopPropagation(); playExClip(id, sentence); }}
+        title="Play this line from the recording"
+        style={{background: playing ? "rgba(196,149,90,.25)" : "rgba(42,31,20,.06)", border:"1px solid rgba(42,31,20,.18)",
+          color:"#2a1f14", width:30, height:30, minWidth:30, borderRadius:"50%", cursor:"pointer", fontSize:13,
+          display:"inline-flex", alignItems:"center", justifyContent:"center", verticalAlign:"middle", flexShrink:0, padding:0, lineHeight:1}}>
+        {playing ? "⏸" : "🔊"}
+      </button>
+    );
   };
 
   // When the loaded chapter changes, re-point the audio element at the new
@@ -9050,6 +9141,12 @@ export default function App() {
                                   });
                                 })(w.context)}
                               </div>
+                              {/* Play the recording of this usage example. */}
+                              {exClipWords && w.context && (
+                                <div style={{textAlign:"center",marginBottom:16}}>
+                                  {exClipBtn("v"+w.ru, w.context)}
+                                </div>
+                              )}
                               {/* The word being quizzed + instruction */}
                               <div style={{textAlign:"center",marginBottom:20}}>
                                 <span style={{fontSize:12,color:"rgba(42,31,20,.45)",textTransform:"uppercase",letterSpacing:1.5}}>{w.pos}</span>
@@ -9135,8 +9232,11 @@ export default function App() {
 
                               {isReading && (
                                 <div style={{maxWidth:560,margin:"0 auto 24px"}}>
-                                  {/* The Russian line to read, then the English question below it. */}
-                                  {q.ru && <div style={{fontSize:23,fontFamily:"'Crimson Pro',serif",color:"#000",textAlign:"center",lineHeight:1.55,marginBottom:14}}>{q.ru}</div>}
+                                  {/* The Russian line to read (with a play button for the recording), then the English question below it. */}
+                                  {q.ru && <div style={{display:"flex",alignItems:"flex-start",justifyContent:"center",gap:10,marginBottom:14}}>
+                                    {exClipBtn("r"+exIdx, q.ru)}
+                                    <div style={{fontSize:23,fontFamily:"'Crimson Pro',serif",color:"#000",textAlign:"center",lineHeight:1.55}}>{q.ru}</div>
+                                  </div>}
                                   <div style={{fontSize:16,fontFamily:"'Inter',sans-serif",color:"rgba(42,31,20,.7)",textAlign:"center",lineHeight:1.5,fontWeight:600}}>{q.question}</div>
                                 </div>
                               )}
@@ -9150,6 +9250,13 @@ export default function App() {
                                 </span>
                                 {parts[1] || ""}
                               </div>
+
+                              {/* Play the recording of this sentence (blank filled with the answer). */}
+                              {exClipWords && (
+                                <div style={{textAlign:"center",marginBottom:14}}>
+                                  {exClipBtn("g"+exIdx, (parts[0] || "") + q.correct + (parts[1] || ""))}
+                                </div>
+                              )}
 
                               {/* Lemma prompt + English translation */}
                               <div style={{textAlign:"center",marginBottom:22}}>
