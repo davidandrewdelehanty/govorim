@@ -8152,16 +8152,39 @@ export default function App() {
 
             {ttErr && <div className="adm-err" style={{margin:"12px 28px 0"}}>{ttErr}</div>}
             {ttApplyMsg && <div style={{margin:"12px 28px 0",padding:"8px 12px",background:"rgba(138,171,124,.15)",border:"1px solid rgba(138,171,124,.4)",borderRadius:6,color:"#2f5a2a",fontSize:13}}>{ttApplyMsg}</div>}
-            {ttScanning && ttProgress && (
-              <div style={{margin:"12px 28px 0"}}>
-                <div style={{fontSize:12,color:"#2a1f14",opacity:.7,marginBottom:5}}>Scanning: {ttProgress.label} ({ttProgress.done}/{ttProgress.total})
-                  <button onClick={function(){ ttScanAbort.current=true; }} style={{marginLeft:10,fontSize:11,padding:"1px 8px",border:"1px solid rgba(157,70,48,.4)",background:"rgba(157,70,48,.1)",color:"#9d4630",borderRadius:8,cursor:"pointer"}}>Stop</button>
-                </div>
-                <div style={{height:6,background:"rgba(42,31,20,.1)",borderRadius:3,overflow:"hidden"}}>
-                  <div style={{height:"100%",width:(ttProgress.total?Math.round(ttProgress.done/ttProgress.total*100):0)+"%",background:"#c4955a",transition:"width .2s"}}/>
-                </div>
+            {ttBooksLoad && (
+              <div style={{margin:"12px 28px 0",padding:"10px 14px",background:"rgba(196,149,90,.12)",border:"1px solid rgba(196,149,90,.4)",borderRadius:8,fontSize:13,color:"#2a1f14",fontWeight:600}}>
+                ⏳ Loading audiobook list…
               </div>
             )}
+            {(ttScanning || (ttProgress && ttProgress.done > 0 && ttProgress.done >= ttProgress.total)) && (() => {
+              var errCount = Object.keys(ttScans).filter(function(k){ return ttScans[k] && ttScans[k].error; }).length;
+              var totalDisc = Object.keys(ttScans).reduce(function(s,k){ var v=ttScans[k]; return s + ((v && v.summary && v.summary.total) || 0); }, 0);
+              var pct = (ttProgress && ttProgress.total) ? Math.round(ttProgress.done / ttProgress.total * 100) : 0;
+              return (
+              <div style={{margin:"12px 28px 0",padding:"10px 14px",background: ttScanning ? "rgba(196,149,90,.12)" : "rgba(138,171,124,.15)", border:"1px solid "+(ttScanning?"rgba(196,149,90,.4)":"rgba(138,171,124,.45)"), borderRadius:8}}>
+                <div style={{fontSize:13,color:"#2a1f14",fontWeight:600,display:"flex",alignItems:"center",gap:8,flexWrap:"wrap"}}>
+                  {ttScanning ? (
+                    <>
+                      <span>⏳ Scanning… {ttProgress ? ("chapter " + Math.min(ttProgress.done + 1, ttProgress.total) + " of " + ttProgress.total) : "starting…"}</span>
+                      <button onClick={function(){ ttScanAbort.current = true; }} style={{fontSize:11,padding:"2px 10px",border:"1px solid rgba(157,70,48,.4)",background:"rgba(157,70,48,.1)",color:"#9d4630",borderRadius:8,cursor:"pointer"}}>Stop</button>
+                    </>
+                  ) : (
+                    <span style={{color:"#2f5a2a"}}>✓ Scan complete — found {totalDisc} discrepanc{totalDisc===1?"y":"ies"} across the chapters scanned.{errCount>0 ? " ("+errCount+" chapter(s) couldn't be scanned — see the chapter list.)" : ""} Open a book below to review.</span>
+                  )}
+                </div>
+                {ttProgress && (
+                  <>
+                    <div style={{fontSize:11,opacity:.7,margin:"5px 0"}}>{ttProgress.label}</div>
+                    <div style={{height:8,background:"rgba(42,31,20,.1)",borderRadius:4,overflow:"hidden"}}>
+                      <div style={{height:"100%",width:pct+"%",background: ttScanning ? "#c4955a" : "#8aab7c",transition:"width .3s"}}/>
+                    </div>
+                  </>
+                )}
+                {ttScanning && <div style={{fontSize:11,opacity:.6,marginTop:6,fontStyle:"italic"}}>Each chapter is fetched from GitHub and aligned against the FB2 — a full book can take a minute or two. You can keep this open.</div>}
+              </div>
+              );
+            })()}
 
             {/* ============ DASHBOARD (no book selected) ============ */}
             {!ttSel && (
