@@ -16,14 +16,18 @@ function ghEnv() {
 // GET a file's decoded UTF-8 content + sha. Returns null on 404.
 async function ghGet(path, opts) {
   const { token, owner, repo, branch } = opts || ghEnv();
+  // Cache-bust so a scan right after a commit never re-reads a stale copy
+  // (which made just-fixed discrepancies reappear).
   const url = "https://api.github.com/repos/" + owner + "/" + repo +
               "/contents/" + encodeURIComponent(path).replace(/%2F/g, "/") +
-              "?ref=" + encodeURIComponent(branch);
+              "?ref=" + encodeURIComponent(branch) + "&t=" + Date.now();
   const r = await fetch(url, {
+    cache: "no-store",
     headers: {
       "Authorization": "Bearer " + token,
       "Accept":        "application/vnd.github+json",
       "User-Agent":    "govorim-transcript-tools",
+      "If-None-Match":  "",
     },
   });
   if (r.status === 404) return null;

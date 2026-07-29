@@ -2763,6 +2763,10 @@ export default function App() {
   var [ttActive, setTtActive]       = useState(null);       // active discrepancy key
   var [ttExpanded, setTtExpanded]   = useState({});         // sidebar: which books are expanded
   var [ttSearch, setTtSearch]       = useState("");
+  var [ttFindQuery, setTtFindQuery] = useState("");   // manual FB2 text search
+  var [ttFindHits, setTtFindHits]   = useState(null); // search results
+  var [ttFindBusy, setTtFindBusy]   = useState(false);
+  var [ttFindErr, setTtFindErr]     = useState("");
   var ttMainRef = useRef(null);
 
   var [msgs, setMsgs]         = useState([]);
@@ -5116,14 +5120,27 @@ export default function App() {
       if (d.committed && d.committed.length) parts.push(d.committed.length + " file(s) committed");
       if (d.backups && d.backups.length) parts.push(d.backups.length + " backup(s) saved");
       if (d.errors && d.errors.length) parts.push(d.errors.length + " error(s): " + d.errors.map(function(e){ return e.error; }).join("; "));
-      setTtApplyMsg((d.ok ? "✓ " : "⚠ ") + parts.join(" · ") + ". Vercel redeploys in ~1-2 min.");
-      // Invalidate scans for this book (indices/positions changed); force re-scan.
+      setTtApplyMsg((d.ok ? "✓ " : "⚠ ") + parts.join(" · ") + ". Re-scanning to confirm… (Vercel redeploys the live site in ~1-2 min.)");
+      var openCi = ttChapter;
+      // The FB2/transcript changed, so token indices for the whole book are now
+      // stale — drop all cached scans + text so nothing re-uses old positions.
       setTtScans(function(prev) {
         var next = Object.assign({}, prev);
         for (var ci2 = 0; ci2 < book.nChapters; ci2++) delete next[book.fb2Path + "|" + ci2];
         return next;
       });
-      setTtChapter(null);
+      setTtTextCache(function(prev){
+        var next = Object.assign({}, prev);
+        for (var ci3 = 0; ci3 < book.nChapters; ci3++) { var p = book.chapters[ci3] && book.chapters[ci3].path; if (p) delete next[p]; }
+        return next;
+      });
+      setTtActive(null);
+      // Re-scan the chapter the user is on, reading FRESH from GitHub (no-store),
+      // so committed fixes are gone immediately instead of reappearing.
+      if (openCi != null) {
+        try { await ttScanOne(book, openCi); ttLoadText(book.chapters[openCi].path); }
+        catch (e2) { setTtChapter(null); }
+      }
     } catch (e) { setTtErr(e.message || "Apply failed"); }
     finally { setTtApplying(false); }
   };
@@ -5235,6 +5252,47 @@ export default function App() {
     var key = book.fb2Path+"|"+ci;
     if(!ttScans[key] || ttScans[key].error){ try{ await ttScanOne(book, ci); }catch(e){} }
     ttLoadText(book.chapters[ci].path);
+  };
+
+  // Manual FB2 text search — for removing passages the auto-alignment doesn't
+  // surface (repeated refrains, source duplications the diff slides across).
+  var ttFbFind = async function(){
+    if(!ttSel || !ttFindQuery.trim()){ return; }
+    setTtFindBusy(true); setTtFindErr(""); setTtFindHits(null);
+    try{
+      var r = await authFetch("/api/admin/transcript-fbfind", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({ fb2Path: ttSel.fb2Path, query: ttFindQuery }),
+      });
+      var d = await r.json();
+      if(!r.ok) throw new Error(d.error || "Search failed");
+      setTtFindHits(d.hits || []);
+    } catch(e){ setTtFindErr(e.message || "Search failed"); }
+    finally{ setTtFindBusy(false); }
+  };
+  // Stage one found occurrence for removal — injected as an "omitted" removal
+  // into the open chapter so it flows through the normal commit pipeline.
+  var ttAddFindRemoval = function(hit){
+    if(ttChapter==null) return;
+    var key = ttSel.fb2Path+"|"+ttChapter;
+    var id = "find_"+hit.fbStart+"_"+hit.fbEnd;
+    setTtScans(function(prev){
+      var next = Object.assign({}, prev);
+      var scan = next[key]; if(!scan) return prev;
+      var discs = (scan.discrepancies||[]).slice();
+      if(!discs.some(function(x){ return x.id===id; })){
+        discs.push({ id:id, kind:"omitted", suggest:"removeFb2", confidence:"high", needsAI:false, duplicate:true,
+          fbStart:hit.fbStart, fbEnd:hit.fbEnd, trStart:null, trEnd:null,
+          fbText:hit.match, trText:"", fbCount:hit.fbEnd-hit.fbStart, trCount:0,
+          fbContextBefore:hit.before, fbContextAfter:hit.after, trContextBefore:"", trContextAfter:"",
+          afterParaIdx:hit.paraIdx||0, afterParaPreview:"",
+          note:"Manually selected for removal from the FB2." });
+      }
+      next[key] = Object.assign({}, scan, {discrepancies:discs});
+      return next;
+    });
+    ttSetDecision(ttKey(ttSel.fb2Path, ttChapter, id), {action:"accept"});
+    setTtView("list"); setTtActive(ttKey(ttSel.fb2Path, ttChapter, id));
   };
 
   // Keyboard navigation within a chapter (IDE-style): j/k or arrows move the
@@ -8351,7 +8409,34 @@ export default function App() {
 
         // ---- inspector (right) ----
         var renderInspector = function(){
-          if(!activeDisc) return <div className="ts-insp-empty">Select a mismatch — click a highlight, or press <kbd>↓</kbd>.<div style={{marginTop:14,fontSize:12,opacity:.6,lineHeight:1.7}}><b>Shortcuts</b><br/><kbd>↑</kbd>/<kbd>↓</kbd> or <kbd>j</kbd>/<kbd>k</kbd> — move<br/><kbd>Enter</kbd> / <kbd>a</kbd> — accept<br/><kbd>x</kbd> — skip<br/><kbd>Esc</kbd> — back</div></div>;
+          if(!activeDisc) return (
+            <div className="ts-insp-empty">
+              Select a mismatch — click a highlight, or press <kbd>↓</kbd>.
+              <div style={{marginTop:12,fontSize:12,opacity:.6,lineHeight:1.7}}><b>Shortcuts</b><br/><kbd>↑</kbd>/<kbd>↓</kbd> or <kbd>j</kbd>/<kbd>k</kbd> — move · <kbd>Enter</kbd> accept · <kbd>x</kbd> skip · <kbd>Esc</kbd> back</div>
+              <div style={{marginTop:18,paddingTop:16,borderTop:"1px solid rgba(42,31,20,.12)"}}>
+                <label className="ts-insp-lbl">🔎 Find &amp; remove text from the book</label>
+                <div style={{fontSize:11.5,color:"#6b5d49",lineHeight:1.5,marginBottom:8}}>Paste a phrase to see every place it appears in the FB2 — then remove the copies the audio doesn't say.</div>
+                <textarea className="ts-field big" rows={2} placeholder="e.g. Баю, баюшки, баю, а я песенку спою" value={ttFindQuery} onChange={function(e){ setTtFindQuery(e.target.value); }} style={{marginBottom:8}}/>
+                <button className="ts-b acc" disabled={ttFindBusy||!ttFindQuery.trim()} onClick={ttFbFind}>{ttFindBusy?"Searching…":"Search FB2"}</button>
+                {ttFindErr && <div style={{marginTop:8,fontSize:12,color:"#9d4630"}}>{ttFindErr}</div>}
+                {ttFindHits!=null && (
+                  <div style={{marginTop:10}}>
+                    <div style={{fontSize:12,fontWeight:600,marginBottom:6}}>{ttFindHits.length} occurrence{ttFindHits.length===1?"":"s"} in the book{ttChapter==null?" — open a chapter to stage removals":""}</div>
+                    {ttFindHits.map(function(h,hi){
+                      var id = ttChapter!=null ? ttKey(ttSel.fb2Path, ttChapter, "find_"+h.fbStart+"_"+h.fbEnd) : null;
+                      var staged = id && ttDecisions[id] && ttDecisions[id].action==="accept";
+                      return (
+                        <div key={hi} style={{border:"1px solid rgba(42,31,20,.12)",borderRadius:8,padding:"8px 10px",marginBottom:7,background:staged?"rgba(157,70,48,.06)":"#fff"}}>
+                          <div style={{fontFamily:"'Crimson Pro',serif",fontSize:13,lineHeight:1.5,color:"#4a3f30"}}>…{h.before} <b style={{color:"#9d4630",background:"rgba(157,70,48,.12)",padding:"0 3px",borderRadius:3}}>{h.match}</b> {h.after}…</div>
+                          <button className="ts-b rej xs" style={Object.assign({marginTop:6},staged?{background:"#9d4630",color:"#fff",border:"none"}:{})} disabled={ttChapter==null} onClick={function(){ ttAddFindRemoval(h); }}>{staged?"✓ Staged for removal":"🗑 Remove this one"}</button>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            </div>
+          );
           var d=activeDisc, k=dkey(ttChapter,d.id), dec=ttDecisions[k]||{}, ai=ttVerdicts[k];
           return (
             <div className="ts-insp-body">

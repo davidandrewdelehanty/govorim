@@ -489,6 +489,64 @@ function scanChapter(fb2Parsed, fbToks, transcriptJson, chapterIndex, totalChapt
     d.afterParaPreview = (fb2Parsed.paras[afterPara] ? fb2Parsed.paras[afterPara].text : "").slice(-90);
     discrepancies.push(d);
   }
+
+  // Detect BACK-TO-BACK duplicate phrases in the FB2 that the audio speaks only
+  // once (e.g. a lullaby printed twice in the source but read once). The token
+  // diff "slides" across repeated text and never flags these, so we scan the
+  // span directly for an adjacent exact repeat and, if the transcript doesn't
+  // contain that phrase twice in a row, offer to remove the second copy.
+  const trNormArr = trToks.map(function (t) { return t.norm; });
+  const usedDup = {};
+  let dupN = 0;
+  for (let i = anchor.start; i + 8 <= anchor.end; i++) {
+    if (usedDup[i]) continue;
+    let L = 0;
+    for (let LL = 16; LL >= 4; LL--) {
+      if (i + 2 * LL > anchor.end) continue;
+      let ok = true, content = 0;
+      for (let t = 0; t < LL; t++) {
+        if (fbNorms[i + t] !== fbNorms[i + LL + t]) { ok = false; break; }
+        if (!STOP[fbNorms[i + t]] && fbNorms[i + t].length > 1) content++;
+      }
+      if (ok && content >= 2) { L = LL; break; }
+    }
+    if (L >= 4) {
+      const gram = fbNorms.slice(i, i + 2 * L); // the doubled phrase P P
+      const inAudio = findNgram(trNormArr, gram, null) >= 0; // does audio also say it twice in a row?
+      if (!inAudio) {
+        const d2 = {
+          kind: "omitted", confidence: "high", suggest: "removeFb2", needsAI: false,
+          fbStart: i + L, fbEnd: i + 2 * L, trStart: null, trEnd: null,
+          fbText: fbToks.slice(i + L, i + 2 * L).map(function (t) { return t.raw; }).join(" "),
+          trText: "", fbCount: L, trCount: 0,
+          duplicate: true,
+          note: "This phrase is printed twice back-to-back in the book, but the audio says it once. Remove the repeat to match the narration.",
+          fbContextBefore: ctxRaw(fbToks, i - 4, i + L),
+          fbContextAfter: ctxRaw(fbToks, i + 2 * L, i + 2 * L + 4),
+          trContextBefore: "", trContextAfter: "",
+          afterParaIdx: paraForInsertion(fbToks, i + L), afterParaPreview: "",
+        };
+        d2.id = "dup" + (dupN++) + "_" + (i + L);
+        d2.chapterIndex = chapterIndex;
+        discrepancies.push(d2);
+        for (let t = i; t < i + 2 * L; t++) usedDup[t] = true;
+      }
+    }
+  }
+
+  // Stable content-based IDs so accept/skip/committed decisions survive a
+  // re-scan (positional ids shifted whenever a discrepancy was resolved).
+  const idSeen = {};
+  for (let d = 0; d < discrepancies.length; d++) {
+    const x = discrepancies[d];
+    if (/^dup/.test(x.id || "")) continue; // dup ids are already content-stable
+    let base = x.kind + "|" + normWord(x.fbText).slice(0, 24) + "|" + normWord(x.trText).slice(0, 24);
+    let sig = base, n = 1;
+    while (idSeen[sig]) { sig = base + "#" + (n++); }
+    idSeen[sig] = true;
+    x.id = sig;
+  }
+
   const summary = { sub: 0, missing: 0, omitted: 0, high: 0, med: 0, low: 0, needsAI: 0 };
   for (let d = 0; d < discrepancies.length; d++) {
     const x = discrepancies[d];
