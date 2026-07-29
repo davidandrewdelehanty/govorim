@@ -4387,25 +4387,39 @@ export default function App() {
   useEffect(function() {
     setExData(null); setExCat("menu"); setExSelected(null); setExIdx(0); setExScore(0);
     setVqWords(null); setVqCount({}); setVqCur(null); setVqSel(null); setVqErr(""); setVqLoading(false);
+    // Exercises are keyed to the READING chapter (from the FB2), not the audio —
+    // audio is only for listening. PREFERRED key: "<bookslug>__ch<cidx>" derived
+    // from the book file + reading-chapter index. FALLBACK (older sets): the
+    // audio-path key (Bible "NN-NN", else folder__basename).
+    var fn = (bookMeta && bookMeta.filename) || "";
+    var slug = fn.split("/").pop().replace(/\.[^.]+$/, "").replace(/[^A-Za-z0-9_-]/g, "_");
+    var rkey = slug ? (slug + "__ch" + cidx) : "";
     var chs = bookMeta && bookMeta.audiobook && bookMeta.audiobook.chapters;
     var cp = chs && chs[cidx] ? String(chs[cidx]) : "";
-    // Exercise key: Bible chapters keep their "NN-NN" key; every other book
-    // derives a unique key from its audio path (folder__basename), e.g.
-    // "audio/ak_new/01-cleaned.json" -> "ak_new__01-cleaned".
-    var key = "";
+    var akey = "";
     var bm = cp.match(/bible-nrp\/(\d+-\d+)\.json/);
-    if (bm) { key = bm[1]; }
+    if (bm) { akey = bm[1]; }
     else if (cp) {
       var s = cp.split("?")[0];
       if (s.indexOf("audio/") !== -1) s = s.split("audio/").pop();
-      key = s.replace(/\.json$/, "").replace(/\//g, "__");
+      akey = s.replace(/\.json$/, "").replace(/\//g, "__");
     }
-    if (!key) return;
+    var keys = [];
+    if (rkey) keys.push(rkey);
+    if (akey && akey !== rkey) keys.push(akey);
+    if (!keys.length) return;
     var cancelled = false;
-    fetch("/books/exercises/" + key + ".json")
-      .then(function(r) { return r.ok ? r.json() : null; })
-      .then(function(j) { if (!cancelled && j) setExData(j); })
-      .catch(function() {});
+    var tryLoad = function(i) {
+      if (cancelled || i >= keys.length) return;
+      fetch("/books/exercises/" + keys[i] + ".json")
+        .then(function(r) { return r.ok ? r.json() : null; })
+        .then(function(j) {
+          if (cancelled) return;
+          if (j) setExData(j); else tryLoad(i + 1);
+        })
+        .catch(function() { if (!cancelled) tryLoad(i + 1); });
+    };
+    tryLoad(0);
     return function() { cancelled = true; };
   }, [bookMeta && bookMeta.filename, cidx]);
 
