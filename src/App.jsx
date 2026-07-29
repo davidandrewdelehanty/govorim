@@ -2756,6 +2756,14 @@ export default function App() {
   var [ttAiBusy, setTtAiBusy]     = useState(false);
   var [ttVerdicts, setTtVerdicts] = useState({});        // discKey -> {verdict,reason,suggestion}
   var ttScanAbort = useRef(false);
+  // Transcript Studio (IDE-style workbench) UI state
+  var [ttView, setTtView]           = useState("reading");  // "reading" | "list"
+  var [ttTextCache, setTtTextCache] = useState({});         // chapterPath -> transcript json (fetched static)
+  var [ttTextLoading, setTtTextLoading] = useState(false);
+  var [ttActive, setTtActive]       = useState(null);       // active discrepancy key
+  var [ttExpanded, setTtExpanded]   = useState({});         // sidebar: which books are expanded
+  var [ttSearch, setTtSearch]       = useState("");
+  var ttMainRef = useRef(null);
 
   var [msgs, setMsgs]         = useState([]);
   var [input, setInput]       = useState("");
@@ -5165,6 +5173,91 @@ export default function App() {
   };
 
   useEffect(function() { if (ttOpen && isAdmin && !ttBooks.length && !ttBooksLoad) ttLoadBooks(); }, [ttOpen]); // eslint-disable-line
+
+  // ── Transcript Studio helpers (inline reading view, batch ops, keyboard) ──
+  // Frontend tokenizer — must match backend tokenizeTranscript exactly so the
+  // discrepancy token indices (trStart/trEnd) line up with the rendered words.
+  var ttNorm = function(s){ return String(s==null?"":s).toLowerCase().replace(/ё/g,"е").replace(/[^а-яa-z0-9]/g,""); };
+  var ttTokenizeText = function(js){
+    var toks=[]; var frags=(js&&js.fragments)||[];
+    for(var fi=0;fi<frags.length;fi++){ var ws=frags[fi].words||[]; for(var wi=0;wi<ws.length;wi++){ if(ttNorm(ws[wi]&&ws[wi].word)) toks.push({fi:fi,wi:wi}); } }
+    return toks;
+  };
+  var ttStaticUrl = function(path){ return "/" + String(path).replace(/^public\//,""); };
+  var ttLoadText = async function(chapterPath){
+    if (ttTextCache[chapterPath]) return ttTextCache[chapterPath];
+    setTtTextLoading(true);
+    try{
+      var r = await fetch(ttStaticUrl(chapterPath));
+      if(!r.ok) throw new Error("HTTP "+r.status);
+      var js = await r.json();
+      setTtTextCache(function(p){ var n=Object.assign({},p); n[chapterPath]=js; return n; });
+      return js;
+    } catch(e){
+      setTtTextCache(function(p){ var n=Object.assign({},p); n[chapterPath]={__error:(e.message||"load failed")}; return n; });
+      return null;
+    } finally { setTtTextLoading(false); }
+  };
+
+  // Filter predicate shared by render + keyboard nav.
+  var ttShouldShow = function(d){
+    if(!ttFilter[d.kind]) return false;
+    if(ttFilter.actionable){ if(d.kind==="omitted") return false; if(d.kind==="missing"&&d.suggest==="ignore") return false; }
+    if(ttSearch){ var q=ttSearch.toLowerCase(); if(((d.trText||"")+" "+(d.fbText||"")).toLowerCase().indexOf(q)<0) return false; }
+    return true;
+  };
+  var ttCurrentDiscs = function(){
+    if(!ttSel || ttChapter==null) return [];
+    var scan = ttScans[ttSel.fb2Path+"|"+ttChapter];
+    if(!scan||!scan.discrepancies) return [];
+    return scan.discrepancies.filter(ttShouldShow);
+  };
+
+  // Batch decision helper.
+  var ttBatch = function(book, ci, predicate, action){
+    var scan = ttScans[book.fb2Path+"|"+ci];
+    if(!scan||!scan.discrepancies) return;
+    setTtDecisions(function(prev){
+      var next=Object.assign({},prev);
+      scan.discrepancies.forEach(function(d){
+        if(predicate(d)){ var k=ttKey(book.fb2Path,ci,d.id); var cur=next[k]||{}; next[k]=Object.assign({},cur,{action:action, text:(cur.text!=null?cur.text:ttTargetText(d))}); }
+      });
+      return next;
+    });
+  };
+
+  // Open a chapter for review — scan it first if needed, then load its text.
+  var ttOpenChapter = async function(book, ci){
+    setTtSel(book); setTtChapter(ci); setTtActive(null);
+    var key = book.fb2Path+"|"+ci;
+    if(!ttScans[key] || ttScans[key].error){ try{ await ttScanOne(book, ci); }catch(e){} }
+    ttLoadText(book.chapters[ci].path);
+  };
+
+  // Keyboard navigation within a chapter (IDE-style): j/k or arrows move the
+  // active mismatch, Enter/a accept, x skip, Esc closes.
+  useEffect(function(){
+    if(!ttOpen || !isAdmin || ttChapter==null) return;
+    var handler = function(e){
+      if(e.target && /INPUT|TEXTAREA/.test(e.target.tagName)) return;
+      var discs = ttCurrentDiscs();
+      if(!discs.length) return;
+      var idx = ttActive==null ? -1 : discs.findIndex(function(d){ return ttKey(ttSel.fb2Path,ttChapter,d.id)===ttActive; });
+      var setIdx = function(i){ if(i<0)i=0; if(i>=discs.length)i=discs.length-1; var k=ttKey(ttSel.fb2Path,ttChapter,discs[i].id); setTtActive(k); setTimeout(function(){ var el=document.getElementById("tt-"+k.replace(/[^a-zA-Z0-9]/g,"_")); if(el&&el.scrollIntoView) el.scrollIntoView({block:"center",behavior:"smooth"}); },0); };
+      if(e.key==="ArrowDown"||e.key==="j"){ e.preventDefault(); setIdx(idx+1); }
+      else if(e.key==="ArrowUp"||e.key==="k"){ e.preventDefault(); setIdx(idx<=0?0:idx-1); }
+      else if((e.key==="Enter"||e.key==="a") && idx>=0){ e.preventDefault(); var d=discs[idx]; if(d.kind!=="omitted") ttSetDecision(ttKey(ttSel.fb2Path,ttChapter,d.id),{action:"accept"}); }
+      else if((e.key==="x"||e.key==="Backspace") && idx>=0){ e.preventDefault(); ttSetDecision(ttKey(ttSel.fb2Path,ttChapter,discs[idx].id),{action:"reject"}); }
+      else if(e.key==="Escape"){ if(ttActive) setTtActive(null); else setTtChapter(null); }
+    };
+    window.addEventListener("keydown", handler);
+    return function(){ window.removeEventListener("keydown", handler); };
+  }, [ttOpen, isAdmin, ttChapter, ttActive, ttSel, ttScans, ttDecisions, ttFilter, ttSearch]); // eslint-disable-line
+
+  // Load transcript text when a chapter opens (for the reading view).
+  useEffect(function(){
+    if(ttOpen && ttSel && ttChapter!=null){ var p=ttSel.chapters[ttChapter] && ttSel.chapters[ttChapter].path; if(p && !ttTextCache[p]) ttLoadText(p); }
+  }, [ttOpen, ttSel, ttChapter]); // eslint-disable-line
 
   // Admin actions — fetch users + approve/reject. Only meaningful when isAdmin.
   // ── Forum + feedback handlers ────────────────────────────────────────────
@@ -8118,231 +8211,444 @@ export default function App() {
 
       {ttOpen && isAdmin && (() => {
         var KIND = {
-          sub:     { bg:"rgba(196,149,90,.15)", bd:"rgba(196,149,90,.5)",  fg:"#8a5a1a", label:"ASR / wording" },
-          missing: { bg:"rgba(90,133,86,.16)",  bd:"rgba(90,133,86,.5)",   fg:"#3a6a35", label:"Missing in FB2" },
-          omitted: { bg:"rgba(120,120,120,.12)",bd:"rgba(120,120,120,.4)", fg:"#555",    label:"Not in audio" },
+          sub:     { fg:"#b8791f", bg:"rgba(184,121,31,.14)",  bd:"rgba(184,121,31,.55)", label:"ASR / wording", glyph:"≠" },
+          missing: { fg:"#3a7d44", bg:"rgba(58,125,68,.14)",   bd:"rgba(58,125,68,.55)",  label:"Missing in FB2", glyph:"＋" },
+          omitted: { fg:"#7d7469", bg:"rgba(120,120,120,.12)", bd:"rgba(120,120,120,.4)", label:"Not in audio", glyph:"∅" },
         };
         var confColor = { high:"#5a8556", med:"#c4955a", low:"#9d4630" };
+        var dkey = function(ci,id){ return ttKey(ttSel ? ttSel.fb2Path : "", ci, id); };
+        var safeId = function(k){ return "tt-" + String(k).replace(/[^a-zA-Z0-9]/g,"_"); };
         var bookCounts = function(book){
-          var c = { sub:0, missing:0, omitted:0, scanned:0 };
-          for (var ci=0; ci<book.nChapters; ci++){
-            var s = ttScans[book.fb2Path+"|"+ci];
-            if (!s) continue; c.scanned++;
-            (s.discrepancies||[]).forEach(function(d){ c[d.kind] = (c[d.kind]||0)+1; });
-          }
+          var c={sub:0,missing:0,omitted:0,scanned:0,needsAI:0};
+          for(var ci=0;ci<book.nChapters;ci++){ var s=ttScans[book.fb2Path+"|"+ci]; if(!s)continue; c.scanned++; (s.discrepancies||[]).forEach(function(d){ c[d.kind]=(c[d.kind]||0)+1; if(d.needsAI)c.needsAI++; }); }
           return c;
         };
-        var shouldShow = function(d){
-          if (!ttFilter[d.kind]) return false;
-          if (ttFilter.actionable){
-            if (d.kind==="omitted") return false;
-            if (d.kind==="missing" && d.suggest==="ignore") return false;
-          }
-          return true;
+        var chapSummary = (ttSel && ttChapter!=null) ? (ttScans[ttSel.fb2Path+"|"+ttChapter]||null) : null;
+        var acc = ttSel ? ttAcceptedForBook(ttSel) : {subs:0,inserts:0,total:0};
+        var discs = ttCurrentDiscs();
+        var scanErrCount = Object.keys(ttScans).filter(function(k){ return ttScans[k] && ttScans[k].error; }).length;
+
+        // active discrepancy (for inspector)
+        var activeDisc=null;
+        if(ttActive && chapSummary && chapSummary.discrepancies){ activeDisc = chapSummary.discrepancies.find(function(d){ return dkey(ttChapter,d.id)===ttActive; }) || null; }
+
+        // batch actions for the open chapter
+        var acceptHigh = function(){ ttBatch(ttSel, ttChapter, function(d){ return d.kind==="sub" && d.confidence==="high"; }, "accept"); };
+        var acceptAI = function(){ if(!chapSummary)return; chapSummary.discrepancies.forEach(function(d){ if(ttVerdicts[dkey(ttChapter,d.id)]) ttApplyAiSuggestion(ttSel, ttChapter, d); }); };
+        var clearStaged = function(){ if(!chapSummary)return; setTtDecisions(function(prev){ var n=Object.assign({},prev); chapSummary.discrepancies.forEach(function(d){ delete n[dkey(ttChapter,d.id)]; }); return n; }); };
+
+        // ---- reading view ----
+        var renderReading = function(){
+          var ci=ttChapter, path=ttSel.chapters[ci].path, text=ttTextCache[path];
+          if(!chapSummary || !chapSummary.discrepancies) return <div className="ts-empty">This chapter isn't scanned yet.<br/><button className="ts-b acc" style={{marginTop:10}} onClick={function(){ ttScanOne(ttSel,ci); }}>⤓ Scan this chapter</button></div>;
+          if(ttTextLoading && !text) return <div className="ts-empty ts-spin">Loading chapter text…</div>;
+          if(!text) return <div className="ts-empty">Chapter text not loaded.<br/><button className="ts-b" style={{marginTop:10}} onClick={function(){ ttLoadText(path); }}>Retry</button></div>;
+          if(text.__error) return <div className="ts-empty">Couldn't load the transcript text ({text.__error}).<br/><span style={{opacity:.7}}>Switch to List view to review this chapter.</span></div>;
+
+          var toks=ttTokenizeText(text);
+          var map={}, caretMap={};
+          chapSummary.discrepancies.forEach(function(d){
+            if(!ttShouldShow(d)) return;
+            if(d.kind==="omitted"){ var tc=toks[d.trStart]||toks[d.trStart-1]; if(tc) caretMap[tc.fi+":"+tc.wi]=d; return; }
+            for(var i=d.trStart;i<d.trEnd;i++){ var t=toks[i]; if(t) map[t.fi+":"+t.wi]=d; }
+          });
+          var frags=text.fragments||[];
+          return (
+            <div className="ts-read" id="ts-readtop">
+              {frags.map(function(f,fi){
+                var ws=f.words||[]; var segs=[]; var cur=null;
+                for(var wi=0;wi<ws.length;wi++){ var d=map[fi+":"+wi]; if(cur && cur.d===d){ cur.words.push(ws[wi]); } else { cur={d:d,words:[ws[wi]],start:wi}; segs.push(cur); } }
+                return (
+                  <span key={fi} className="ts-sent">
+                    {segs.map(function(seg,si){
+                      var joined=seg.words.map(function(w){return w.word;}).join(" ");
+                      var caretD = caretMap[fi+":"+seg.start];
+                      var caret = caretD ? <span key={"c"+si} className="ts-caret" title={"Audio skips: "+caretD.fbText} onClick={function(e){ e.stopPropagation(); setTtActive(dkey(ci,caretD.id)); }}>⌄</span> : null;
+                      if(!seg.d) return <span key={si}>{caret}{joined+" "}</span>;
+                      var d=seg.d, k=dkey(ci,d.id), dec=ttDecisions[k]||{}, ai=ttVerdicts[k];
+                      var airec = ai && (ai.verdict==="asr_error"||ai.verdict==="missing");
+                      var cls="ts-mm "+d.kind+(dec.action==="accept"?" acc":dec.action==="reject"?" rej":"")+(airec?" airec":"")+(ttActive===k?" active":"");
+                      var shown = (d.kind==="sub" && dec.action==="accept") ? (dec.text!=null?dec.text:ttTargetText(d)) : joined;
+                      return (
+                        <span key={si}>{caret}<span id={safeId(k)} className={cls} data-conf={d.confidence} onClick={function(e){ e.stopPropagation(); setTtActive(k); }}>
+                          {shown}
+                          <span className="ts-pop" onClick={function(e){ e.stopPropagation(); }}>
+                            <div className="ts-pop-h"><span className="ts-tag" style={{color:KIND[d.kind].fg,background:KIND[d.kind].bg,borderColor:KIND[d.kind].bd}}>{KIND[d.kind].glyph} {KIND[d.kind].label}</span><span className="ts-dot" style={{background:confColor[d.confidence]}}/><span style={{fontSize:11,color:confColor[d.confidence]}}>{d.confidence}</span></div>
+                            {d.kind!=="missing" && <div className="ts-pop-diff"><span className="ts-old">{d.trText}</span><span className="ts-arr">→</span><span className="ts-new">{dec.text!=null?dec.text:ttTargetText(d)}</span></div>}
+                            {d.kind==="missing" && <div className="ts-pop-mini">Insert “{dec.text!=null?dec.text:d.trText}” into the FB2.</div>}
+                            {ai && <div className="ts-pop-ai">✨ {ai.verdict}{ai.reason?(" · "+ai.reason):""}</div>}
+                            <div className="ts-pop-btns">
+                              <button className="ts-b acc xs" onClick={function(e){ e.stopPropagation(); ttSetDecision(k,{action:"accept"}); }}>{d.kind==="missing"?"Insert":"Replace"}</button>
+                              <button className="ts-b rej xs" onClick={function(e){ e.stopPropagation(); ttSetDecision(k,{action:dec.action==="reject"?"":"reject"}); }}>Skip</button>
+                              {ai && ai.verdict && <button className="ts-b ai xs" onClick={function(e){ e.stopPropagation(); ttApplyAiSuggestion(ttSel,ci,d); }}>Use AI</button>}
+                            </div>
+                          </span>
+                        </span>{" "}</span>
+                      );
+                    })}
+                  </span>
+                );
+              })}
+            </div>
+          );
         };
-        var pill = function(txt,color){ return <span style={{fontSize:11,padding:"1px 7px",borderRadius:10,background:color+"22",color:color,border:"1px solid "+color+"55",whiteSpace:"nowrap"}}>{txt}</span>; };
+
+        // ---- list view ----
+        var renderList = function(){
+          if(!chapSummary || !chapSummary.discrepancies) return <div className="ts-empty">This chapter isn't scanned yet.<br/><button className="ts-b acc" style={{marginTop:10}} onClick={function(){ ttScanOne(ttSel,ttChapter); }}>⤓ Scan this chapter</button></div>;
+          if(!discs.length) return <div className="ts-empty">No mismatches match the current filters.</div>;
+          return (
+            <div className="ts-list">
+              {discs.map(function(d){
+                var k=dkey(ttChapter,d.id), dec=ttDecisions[k]||{}, ai=ttVerdicts[k];
+                var airec=ai&&(ai.verdict==="asr_error"||ai.verdict==="missing");
+                return (
+                  <div key={d.id} id={safeId(k)} className={"ts-card"+(dec.action==="accept"?" acc":dec.action==="reject"?" rej":"")+(ttActive===k?" active":"")+(airec?" airec":"")} onClick={function(){ setTtActive(k); }}>
+                    <div className="ts-card-h">
+                      <span className="ts-tag" style={{color:KIND[d.kind].fg,background:KIND[d.kind].bg,borderColor:KIND[d.kind].bd}}>{KIND[d.kind].glyph} {KIND[d.kind].label}</span>
+                      <span className="ts-dot" style={{background:confColor[d.confidence]}}/><span style={{fontSize:11,color:confColor[d.confidence]}}>{d.confidence}</span>
+                      {ai && <span className="ts-aitag">✨ {ai.verdict}</span>}
+                      <div style={{flex:1}}/>
+                      {dec.action==="accept" && <span className="ts-state acc">staged</span>}
+                      {dec.action==="reject" && <span className="ts-state rej">skipped</span>}
+                    </div>
+                    <div className="ts-ctx">…{d.trContextBefore} <b className="ts-hl">{d.trText||"∅"}</b> {d.trContextAfter}…</div>
+                    {d.kind!=="omitted" && (
+                      <div className="ts-io">
+                        <div className="ts-col"><label>audio heard</label><div className="ts-old">{d.trText||"—"}</div></div>
+                        <div className="ts-col"><label>{d.kind==="missing"?"insert into FB2":"FB2 text"}</label><div className="ts-new">{d.fbText||d.trText}</div></div>
+                      </div>
+                    )}
+                    {d.kind==="omitted" ? (
+                      <div className="ts-note">The recording skips this text (abridged) — informational only.</div>
+                    ) : (
+                      <div className="ts-actions" onClick={function(e){ e.stopPropagation(); }}>
+                        <input className="ts-field" value={dec.text!=null?dec.text:ttTargetText(d)} onChange={function(e){ ttSetDecision(k,{text:e.target.value}); }}/>
+                        <button className="ts-b acc" onClick={function(){ ttSetDecision(k,{action:"accept"}); }}>{d.kind==="missing"?"Insert":"Replace"}</button>
+                        <button className="ts-b rej" onClick={function(){ ttSetDecision(k,{action:dec.action==="reject"?"":"reject"}); }}>Skip</button>
+                        {ai && ai.verdict && <button className="ts-b ai" onClick={function(){ ttApplyAiSuggestion(ttSel,ttChapter,d); }}>Use AI</button>}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          );
+        };
+
+        // ---- inspector (right) ----
+        var renderInspector = function(){
+          if(!activeDisc) return <div className="ts-insp-empty">Select a mismatch — click a highlight, or press <kbd>↓</kbd>.<div style={{marginTop:14,fontSize:12,opacity:.6,lineHeight:1.7}}><b>Shortcuts</b><br/><kbd>↑</kbd>/<kbd>↓</kbd> or <kbd>j</kbd>/<kbd>k</kbd> — move<br/><kbd>Enter</kbd> / <kbd>a</kbd> — accept<br/><kbd>x</kbd> — skip<br/><kbd>Esc</kbd> — back</div></div>;
+          var d=activeDisc, k=dkey(ttChapter,d.id), dec=ttDecisions[k]||{}, ai=ttVerdicts[k];
+          return (
+            <div className="ts-insp-body">
+              <div className="ts-insp-tag"><span className="ts-tag" style={{color:KIND[d.kind].fg,background:KIND[d.kind].bg,borderColor:KIND[d.kind].bd}}>{KIND[d.kind].glyph} {KIND[d.kind].label}</span><span className="ts-dot" style={{background:confColor[d.confidence]}}/><span style={{fontSize:11,color:confColor[d.confidence]}}>{d.confidence} confidence</span></div>
+              <div className="ts-insp-ctx">…{d.trContextBefore} <b className="ts-hl">{d.trText||"∅"}</b> {d.trContextAfter}…</div>
+              {d.kind!=="omitted" ? (
+                <>
+                  <div className="ts-insp-io">
+                    <div><label>audio heard</label><div className="ts-old">{d.trText||"—"}</div></div>
+                    <div><label>{d.kind==="missing"?"to insert into FB2":"FB2 (book) text"}</label><div className="ts-new">{d.fbText||d.trText}</div></div>
+                  </div>
+                  <label className="ts-insp-lbl">{d.kind==="missing"?"Sentence to insert":"Replacement for the transcript"}</label>
+                  {d.kind==="missing"
+                    ? <textarea className="ts-field big" rows={3} value={dec.text!=null?dec.text:d.trText} onChange={function(e){ ttSetDecision(k,{text:e.target.value}); }}/>
+                    : <input className="ts-field big" value={dec.text!=null?dec.text:ttTargetText(d)} onChange={function(e){ ttSetDecision(k,{text:e.target.value}); }}/>}
+                  {d.kind==="missing" && <div className="ts-insp-hint">Inserts as a new paragraph after: “…{d.afterParaPreview}”</div>}
+                  <div className="ts-insp-btns">
+                    <button className={"ts-b acc big"+(dec.action==="accept"?" on":"")} onClick={function(){ ttSetDecision(k,{action:"accept"}); }}>{dec.action==="accept"?"✓ Staged":(d.kind==="missing"?"Insert into FB2":"Replace in JSON")}</button>
+                    <button className={"ts-b rej big"+(dec.action==="reject"?" on":"")} onClick={function(){ ttSetDecision(k,{action:dec.action==="reject"?"":"reject"}); }}>Skip</button>
+                  </div>
+                  <div className="ts-insp-ai">
+                    {ai ? <>
+                      <div className="ts-ai-verdict">✨ AI: <b>{ai.verdict}</b>{ai.reason?(" — "+ai.reason):""}</div>
+                      {ai.suggestion && <div className="ts-ai-sugg">suggests: “{ai.suggestion}”</div>}
+                      {ai.verdict && <button className="ts-b ai" onClick={function(){ ttApplyAiSuggestion(ttSel,ttChapter,d); }}>Apply AI suggestion</button>}
+                    </> : <button className="ts-b ghost" disabled={ttAiBusy} onClick={function(){ ttAskAI(ttSel,ttChapter); }}>{ttAiBusy?"Asking AI…":"✨ Ask AI about this chapter"}</button>}
+                  </div>
+                  {d.explain && <div className="ts-insp-explain">{d.explain}</div>}
+                </>
+              ) : (
+                <div className="ts-note">This text is in the book but the recording skips it (abridged). Nothing to fix — it's here so you can spot where the audio and text diverge.</div>
+              )}
+            </div>
+          );
+        };
 
         return (
-        <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over" && !ttScanning && !ttApplying) setTtOpen(false); }}>
-          <div className="adm-modal" style={{maxWidth:920}}>
-            <div className="adm-head">
-              <div className="adm-title">🔧 Transcript Tools{ttSel ? <span style={{fontSize:15,color:"#2a1f14",opacity:.7,marginLeft:10,fontFamily:"'Crimson Pro',serif"}}>· {ttSel.title}{ttChapter!=null?(" · ch "+(ttChapter+1)):""}</span> : null}</div>
-              <button className="adm-x" onClick={function(){ setTtOpen(false); }}>×</button>
-            </div>
+          <div className="ts-over" onClick={function(e){ if(e.target.className==="ts-over" && !ttScanning && !ttApplying) setTtOpen(false); }}>
+            <style>{`
+              .ts-over{position:fixed;inset:0;background:rgba(26,22,17,.55);backdrop-filter:blur(3px);z-index:300;display:flex;align-items:center;justify-content:center;padding:2vh 2vw}
+              .ts-shell{width:96vw;height:96vh;max-width:1500px;background:#f7f3ec;border:1px solid rgba(42,31,20,.14);border-radius:16px;box-shadow:0 30px 90px rgba(20,15,10,.5);display:flex;flex-direction:column;overflow:hidden;font-family:'Inter',-apple-system,system-ui,sans-serif;color:#2a1f14}
+              .ts-top{display:flex;align-items:center;gap:14px;padding:12px 18px;background:linear-gradient(180deg,#fbf8f2,#f2ebdf);border-bottom:1px solid rgba(42,31,20,.1);flex-shrink:0}
+              .ts-brand{font-family:'Playfair Display',serif;font-size:19px;color:#c4955a;letter-spacing:.3px;white-space:nowrap}
+              .ts-crumbs{font-size:13px;color:#6b5d49;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+              .ts-crumbs b{color:#2a1f14}
+              .ts-x{margin-left:auto;background:none;border:none;font-size:22px;color:#8a7b64;cursor:pointer;width:34px;height:34px;border-radius:9px;transition:all .15s}
+              .ts-x:hover{background:rgba(42,31,20,.08);color:#000}
+              .ts-banner{margin:10px 18px 0;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;flex-shrink:0}
+              .ts-banner.scan{background:rgba(196,149,90,.12);border:1px solid rgba(196,149,90,.4);color:#7a4f12}
+              .ts-banner.done{background:rgba(58,125,68,.13);border:1px solid rgba(58,125,68,.4);color:#2c5e34}
+              .ts-banner.err{background:rgba(157,70,48,.12);border:1px solid rgba(157,70,48,.4);color:#9d4630}
+              .ts-bar{height:8px;background:rgba(42,31,20,.1);border-radius:4px;overflow:hidden;margin-top:6px}
+              .ts-bar>div{height:100%;background:#c4955a;transition:width .3s}
+              .ts-body{flex:1;display:flex;min-height:0}
+              /* sidebar */
+              .ts-side{width:280px;flex-shrink:0;background:#efe8db;border-right:1px solid rgba(42,31,20,.1);display:flex;flex-direction:column;min-height:0}
+              .ts-side-h{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid rgba(42,31,20,.08);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#8a7b64}
+              .ts-tree{flex:1;overflow-y:auto;padding:6px}
+              .ts-book{display:flex;align-items:center;gap:6px;padding:7px 9px;border-radius:8px;cursor:pointer;font-size:13.5px;font-weight:600;transition:background .12s}
+              .ts-book:hover{background:rgba(196,149,90,.13)}
+              .ts-book.sel{background:rgba(196,149,90,.2)}
+              .ts-tw{width:12px;color:#8a7b64;font-size:11px}
+              .ts-bt{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+              .ts-badge{font-size:10.5px;padding:1px 7px;border-radius:9px;background:rgba(184,121,31,.16);color:#8a5a12;font-weight:700}
+              .ts-badge.warn{background:rgba(157,70,48,.14);color:#9d4630}
+              .ts-badge.err{background:rgba(157,70,48,.2);color:#9d4630}
+              .ts-chs{margin:2px 0 6px 14px;border-left:1px solid rgba(42,31,20,.12);padding-left:6px}
+              .ts-scanrow{padding:4px 4px 6px}
+              .ts-ch{display:flex;align-items:center;gap:7px;padding:5px 9px;border-radius:7px;cursor:pointer;font-size:12.5px;transition:background .12s}
+              .ts-ch:hover{background:rgba(196,149,90,.13)}
+              .ts-ch.sel{background:rgba(196,149,90,.24);font-weight:600}
+              .ts-cn{flex:1;color:#4a3f30}
+              .ts-chcounts{font-size:11px;color:#8a5a12;font-weight:700}
+              .ts-dim{color:#b8ac97}
+              /* main */
+              .ts-main{flex:1;display:flex;flex-direction:column;min-width:0;background:#fffdf8}
+              .ts-toolbar{display:flex;align-items:center;gap:8px;padding:9px 14px;border-bottom:1px solid rgba(42,31,20,.09);flex-wrap:wrap;flex-shrink:0}
+              .ts-tabs{display:flex;background:rgba(42,31,20,.06);border-radius:9px;padding:2px}
+              .ts-tabs button{border:none;background:none;padding:5px 12px;border-radius:7px;font-size:12.5px;cursor:pointer;color:#6b5d49;font-weight:600;transition:all .12s}
+              .ts-tabs button.on{background:#fff;color:#2a1f14;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+              .ts-search{flex:0 1 200px;padding:6px 10px;border:1px solid rgba(42,31,20,.15);border-radius:8px;font-size:12.5px;background:#fff;color:#000;font-family:inherit}
+              .ts-chips{display:flex;gap:5px}
+              .ts-chip{font-size:11.5px;padding:4px 9px;border-radius:8px;border:1px solid;cursor:pointer;user-select:none;transition:all .12s;font-weight:600}
+              .ts-main-scroll{flex:1;overflow-y:auto;min-height:0}
+              .ts-read{padding:26px 40px 60px;font-family:'Crimson Pro',Georgia,serif;font-size:19px;line-height:2.05;color:#2a1f14;max-width:860px;margin:0 auto}
+              .ts-sent{}
+              .ts-mm{border-radius:4px;padding:0 2px;margin:0 1px;cursor:pointer;position:relative;border-bottom:2px solid;transition:background .12s,box-shadow .12s;white-space:normal}
+              .ts-mm.sub{background:rgba(184,121,31,.13);border-color:rgba(184,121,31,.55);color:#7a4f12}
+              .ts-mm.missing{background:rgba(58,125,68,.13);border-color:rgba(58,125,68,.55);color:#2c5e34}
+              .ts-mm.omitted{background:rgba(120,120,120,.1);border-color:rgba(120,120,120,.4);color:#6b6258}
+              .ts-mm[data-conf="low"]{border-bottom-style:dotted}
+              .ts-mm[data-conf="med"]{border-bottom-style:dashed}
+              .ts-mm:hover{background:rgba(196,149,90,.28);box-shadow:0 1px 8px rgba(184,121,31,.3)}
+              .ts-mm.airec{box-shadow:0 0 0 2px rgba(122,94,160,.45);border-radius:5px}
+              .ts-mm.active{box-shadow:0 0 0 2px #c4955a;background:rgba(196,149,90,.26)}
+              .ts-mm.acc{background:rgba(58,125,68,.22);border-color:#3a7d44;color:#245029}
+              .ts-mm.rej{opacity:.4;border-bottom-style:none;background:transparent}
+              .ts-caret{color:#9d4630;font-weight:700;cursor:pointer;padding:0 1px;opacity:.6}
+              .ts-caret:hover{opacity:1}
+              /* popover */
+              .ts-pop{position:absolute;bottom:100%;left:50%;transform:translateX(-50%) translateY(-4px);min-width:230px;max-width:340px;background:#fff;border:1px solid rgba(42,31,20,.14);border-radius:11px;box-shadow:0 14px 40px rgba(26,22,17,.28);padding:11px;z-index:80;opacity:0;visibility:hidden;transition:opacity .12s,transform .12s;pointer-events:none;font-family:'Inter',system-ui,sans-serif;font-size:12.5px;line-height:1.5;white-space:normal;text-align:left}
+              .ts-pop::before{content:"";position:absolute;top:100%;left:0;right:0;height:8px}
+              .ts-mm:hover .ts-pop,.ts-mm.active .ts-pop{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);pointer-events:auto}
+              .ts-pop-h{display:flex;align-items:center;gap:6px;margin-bottom:7px}
+              .ts-tag{font-size:10.5px;padding:1px 7px;border-radius:8px;border:1px solid;font-weight:700;white-space:nowrap}
+              .ts-dot{width:7px;height:7px;border-radius:4px;display:inline-block}
+              .ts-pop-diff{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:7px}
+              .ts-old{color:#9d4630;text-decoration:line-through;text-decoration-color:rgba(157,70,48,.5)}
+              .ts-new{color:#2c5e34;font-weight:600}
+              .ts-arr{color:#8a7b64}
+              .ts-pop-mini{margin-bottom:7px;color:#2c5e34}
+              .ts-pop-ai{margin-bottom:7px;color:#7a5ea0;font-size:11.5px}
+              .ts-pop-btns{display:flex;gap:5px}
+              /* buttons */
+              .ts-b{border:none;border-radius:8px;padding:6px 12px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .12s}
+              .ts-b.xs{padding:4px 9px;font-size:11.5px}
+              .ts-b.sm{padding:4px 10px;font-size:11.5px}
+              .ts-b.big{padding:9px 14px;font-size:13px}
+              .ts-b.acc{background:rgba(58,125,68,.16);color:#2c5e34}
+              .ts-b.acc:hover,.ts-b.acc.on{background:#3a7d44;color:#fff}
+              .ts-b.rej{background:rgba(157,70,48,.12);color:#9d4630;border:1px solid rgba(157,70,48,.3)}
+              .ts-b.rej:hover,.ts-b.rej.on{background:rgba(157,70,48,.28)}
+              .ts-b.ai{background:rgba(122,94,160,.14);color:#7a5ea0;border:1px solid rgba(122,94,160,.35)}
+              .ts-b.ai:hover{background:rgba(122,94,160,.28)}
+              .ts-b.ghost{background:rgba(42,31,20,.06);color:#4a3f30}
+              .ts-b.ghost:hover{background:rgba(42,31,20,.12)}
+              .ts-b:disabled{opacity:.5;cursor:default}
+              /* list view */
+              .ts-list{padding:16px 20px 60px;max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+              .ts-card{border:1px solid rgba(42,31,20,.12);border-radius:11px;padding:12px 14px;background:#fff;cursor:pointer;transition:box-shadow .12s,border-color .12s}
+              .ts-card:hover{box-shadow:0 3px 14px rgba(26,22,17,.1)}
+              .ts-card.active{border-color:#c4955a;box-shadow:0 0 0 2px rgba(196,149,90,.35)}
+              .ts-card.acc{background:rgba(58,125,68,.06);border-color:rgba(58,125,68,.4)}
+              .ts-card.rej{opacity:.55}
+              .ts-card.airec{border-left:3px solid #7a5ea0}
+              .ts-card-h{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+              .ts-aitag{font-size:11px;color:#7a5ea0;font-weight:600}
+              .ts-state{font-size:10.5px;padding:2px 8px;border-radius:8px;font-weight:700}
+              .ts-state.acc{background:rgba(58,125,68,.16);color:#2c5e34}
+              .ts-state.rej{background:rgba(157,70,48,.14);color:#9d4630}
+              .ts-ctx{font-family:'Crimson Pro',Georgia,serif;font-size:15px;color:#6b5d49;margin-bottom:8px;line-height:1.6}
+              .ts-hl{color:#8a5a12;background:rgba(184,121,31,.16);padding:0 3px;border-radius:3px}
+              .ts-io{display:flex;gap:16px;margin-bottom:9px;flex-wrap:wrap}
+              .ts-col{flex:1;min-width:140px}
+              .ts-io label,.ts-insp-io label{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:#a0917b;margin-bottom:2px}
+              .ts-io .ts-old,.ts-insp-io .ts-old{font-size:14px}
+              .ts-io .ts-new,.ts-insp-io .ts-new{font-size:14px}
+              .ts-actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+              .ts-field{flex:1;min-width:120px;padding:7px 10px;border:1px solid rgba(42,31,20,.18);border-radius:8px;font-size:13px;color:#000;background:#fbf8f2;font-family:'Crimson Pro',serif}
+              .ts-field.big{width:100%;box-sizing:border-box}
+              .ts-field:focus{outline:none;border-color:#c4955a;box-shadow:0 0 0 2px rgba(196,149,90,.25)}
+              .ts-note{font-size:12.5px;color:#6b5d49;font-style:italic;line-height:1.6}
+              /* inspector */
+              .ts-inspect{width:340px;flex-shrink:0;background:#f2ebdf;border-left:1px solid rgba(42,31,20,.1);overflow-y:auto;padding:16px}
+              .ts-insp-empty{font-size:13px;color:#6b5d49;line-height:1.6}
+              .ts-insp-empty kbd,.ts-kbd kbd{background:rgba(42,31,20,.1);border:1px solid rgba(42,31,20,.18);border-radius:5px;padding:1px 6px;font-size:11px;font-family:inherit}
+              .ts-insp-tag{display:flex;align-items:center;gap:7px;margin-bottom:12px;flex-wrap:wrap}
+              .ts-insp-ctx{font-family:'Crimson Pro',serif;font-size:15px;color:#4a3f30;line-height:1.7;margin-bottom:14px;padding:10px;background:rgba(255,255,255,.5);border-radius:9px}
+              .ts-insp-io{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+              .ts-insp-lbl{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#8a7b64;margin-bottom:5px;font-weight:600}
+              .ts-insp-hint{font-size:11.5px;color:#6b5d49;font-style:italic;margin-top:6px}
+              .ts-insp-btns{display:flex;gap:8px;margin-top:12px}
+              .ts-insp-ai{margin-top:16px;padding-top:14px;border-top:1px solid rgba(42,31,20,.1)}
+              .ts-ai-verdict{font-size:12.5px;color:#7a5ea0;margin-bottom:6px}
+              .ts-ai-sugg{font-size:12.5px;color:#2c5e34;margin-bottom:8px;font-style:italic}
+              .ts-insp-explain{margin-top:14px;font-size:12px;color:#6b5d49;line-height:1.6;font-style:italic}
+              /* status bar */
+              .ts-status{display:flex;align-items:center;gap:16px;padding:8px 16px;background:#e9e1d3;border-top:1px solid rgba(42,31,20,.1);font-size:12px;color:#6b5d49;flex-shrink:0;flex-wrap:wrap}
+              .ts-status b{color:#2a1f14}
+              .ts-kbd{margin-left:auto;font-size:11px;color:#8a7b64}
+              .ts-commit{background:linear-gradient(135deg,#5a8556,#3a6a35);color:#fff;border:none;border-radius:9px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity .15s}
+              .ts-commit:disabled{opacity:.4;cursor:default}
+              .ts-empty{padding:60px 24px;text-align:center;color:#8a7b64;font-size:14px;line-height:1.6}
+              .ts-empty.sm{padding:20px}
+              .ts-spin::after{content:" ⏳"}
+              .ts-welcome{padding:36px;max-width:760px;margin:0 auto}
+              .ts-welcome h2{font-family:'Playfair Display',serif;font-size:26px;color:#2a1f14;margin:0 0 6px}
+              .ts-welcome p{color:#6b5d49;font-size:14px;line-height:1.7;margin:0 0 18px}
+              .ts-wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+              .ts-wcard{border:1px solid rgba(42,31,20,.12);border-radius:12px;padding:14px;background:#fff;cursor:pointer;transition:box-shadow .12s,transform .12s}
+              .ts-wcard:hover{box-shadow:0 6px 20px rgba(26,22,17,.12);transform:translateY(-2px)}
+              .ts-wcard.dis{opacity:.5;cursor:default}
+              .ts-wtitle{font-weight:700;font-size:14px;margin-bottom:3px}
+              .ts-wmeta{font-size:11.5px;color:#8a7b64}
+              .ts-wcounts{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+              .ts-tree::-webkit-scrollbar,.ts-main-scroll::-webkit-scrollbar,.ts-inspect::-webkit-scrollbar{width:9px}
+              .ts-tree::-webkit-scrollbar-thumb,.ts-main-scroll::-webkit-scrollbar-thumb,.ts-inspect::-webkit-scrollbar-thumb{background:rgba(42,31,20,.18);border-radius:5px}
+            `}</style>
 
-            {ttErr && <div className="adm-err" style={{margin:"12px 28px 0"}}>{ttErr}</div>}
-            {ttApplyMsg && <div style={{margin:"12px 28px 0",padding:"8px 12px",background:"rgba(138,171,124,.15)",border:"1px solid rgba(138,171,124,.4)",borderRadius:6,color:"#2f5a2a",fontSize:13}}>{ttApplyMsg}</div>}
-            {ttBooksLoad && (
-              <div style={{margin:"12px 28px 0",padding:"10px 14px",background:"rgba(196,149,90,.12)",border:"1px solid rgba(196,149,90,.4)",borderRadius:8,fontSize:13,color:"#2a1f14",fontWeight:600}}>
-                ⏳ Loading audiobook list…
+            <div className="ts-shell" onClick={function(){ /* click on empty shell deselects */ }}>
+              <div className="ts-top">
+                <div className="ts-brand">◆ Transcript Studio</div>
+                <div className="ts-crumbs">{ttSel ? <><b>{ttSel.title}</b>{ttChapter!=null?<> · Chapter {ttChapter+1}</>:null}</> : "Compare audiobook transcripts against the book text"}</div>
+                <button className="ts-x" onClick={function(){ setTtOpen(false); }}>×</button>
               </div>
-            )}
-            {(ttScanning || (ttProgress && ttProgress.done > 0 && ttProgress.done >= ttProgress.total)) && (() => {
-              var errCount = Object.keys(ttScans).filter(function(k){ return ttScans[k] && ttScans[k].error; }).length;
-              var totalDisc = Object.keys(ttScans).reduce(function(s,k){ var v=ttScans[k]; return s + ((v && v.summary && v.summary.total) || 0); }, 0);
-              var pct = (ttProgress && ttProgress.total) ? Math.round(ttProgress.done / ttProgress.total * 100) : 0;
-              return (
-              <div style={{margin:"12px 28px 0",padding:"10px 14px",background: ttScanning ? "rgba(196,149,90,.12)" : "rgba(138,171,124,.15)", border:"1px solid "+(ttScanning?"rgba(196,149,90,.4)":"rgba(138,171,124,.45)"), borderRadius:8}}>
-                <div style={{fontSize:13,color:"#2a1f14",fontWeight:600,display:"flex",alignItems:"center",gap:8,flexWrap:"wrap"}}>
-                  {ttScanning ? (
-                    <>
-                      <span>⏳ Scanning… {ttProgress ? ("chapter " + Math.min(ttProgress.done + 1, ttProgress.total) + " of " + ttProgress.total) : "starting…"}</span>
-                      <button onClick={function(){ ttScanAbort.current = true; }} style={{fontSize:11,padding:"2px 10px",border:"1px solid rgba(157,70,48,.4)",background:"rgba(157,70,48,.1)",color:"#9d4630",borderRadius:8,cursor:"pointer"}}>Stop</button>
-                    </>
+
+              {ttErr && <div className="ts-banner err">{ttErr}</div>}
+              {ttApplyMsg && !ttScanning && <div className="ts-banner done">{ttApplyMsg}</div>}
+              {(ttScanning || (ttProgress && ttProgress.done>0 && ttProgress.done>=ttProgress.total && !ttApplyMsg)) && (
+                <div className={"ts-banner "+(ttScanning?"scan":"done")}>
+                  {ttScanning
+                    ? <>⏳ Scanning… {ttProgress ? ("chapter "+Math.min(ttProgress.done+1,ttProgress.total)+" of "+ttProgress.total) : "starting…"} <button className="ts-b rej xs" style={{marginLeft:8}} onClick={function(){ ttScanAbort.current=true; }}>Stop</button></>
+                    : <>✓ Scan complete{scanErrCount>0?(" · "+scanErrCount+" chapter(s) couldn't be scanned"):""}. Pick a chapter on the left to review.</>}
+                  {ttProgress && <div className="ts-bar"><div style={{width:(ttProgress.total?Math.round(ttProgress.done/ttProgress.total*100):0)+"%",background:ttScanning?"#c4955a":"#8aab7c"}}/></div>}
+                </div>
+              )}
+
+              <div className="ts-body">
+                {/* SIDEBAR */}
+                <div className="ts-side">
+                  <div className="ts-side-h"><span>Library</span><div style={{flex:1}}/><button className="ts-b sm acc" disabled={ttScanning||ttBooksLoad} onClick={ttScanAll}>{ttScanning?"…":"Scan all"}</button></div>
+                  <div className="ts-tree">
+                    {ttBooksLoad && <div className="ts-empty sm">Loading…</div>}
+                    {!ttBooksLoad && ttBooks.length===0 && <div className="ts-empty sm">No audiobooks.</div>}
+                    {ttBooks.map(function(book){
+                      var c=bookCounts(book); var exp=ttExpanded[book.fb2Path];
+                      return (
+                        <div key={book.fb2Path}>
+                          <div className={"ts-book"+(ttSel&&ttSel.fb2Path===book.fb2Path?" sel":"")} onClick={function(){ setTtExpanded(function(p){ var n=Object.assign({},p); n[book.fb2Path]=!p[book.fb2Path]; return n; }); setTtSel(book); }}>
+                            <span className="ts-tw">{exp?"▾":"▸"}</span>
+                            <span className="ts-bt">{book.title}</span>
+                            {!book.supported ? <span className="ts-badge warn">no fb2</span> : (c.scanned>0 && (c.sub+c.missing)>0 ? <span className="ts-badge">{c.sub+c.missing}</span> : null)}
+                          </div>
+                          {exp && (
+                            <div className="ts-chs">
+                              <div className="ts-scanrow"><button className="ts-b sm ghost" disabled={ttScanning||!book.supported} onClick={function(e){ e.stopPropagation(); ttScanBook(book); }}>{c.scanned>0?"↻ Re-scan book":"⤓ Scan book"}</button></div>
+                              {book.supported && Array.from({length:book.nChapters}).map(function(_,ci){
+                                var s=ttScans[book.fb2Path+"|"+ci]; var sum=s&&s.summary;
+                                return (
+                                  <div key={ci} className={"ts-ch"+(ttSel&&ttSel.fb2Path===book.fb2Path&&ttChapter===ci?" sel":"")} onClick={function(){ ttOpenChapter(book,ci); }}>
+                                    <span className="ts-cn">Ch {ci+1}</span>
+                                    {s ? (s.error ? <span className="ts-badge err">err</span> : (sum ? <span className="ts-chcounts">{sum.sub}{sum.missing?(" +"+sum.missing):""}</span> : null)) : <span className="ts-dim">·</span>}
+                                    {s && s.anchorOk===false && <span className="ts-badge warn" title="weak anchor">⚠</span>}
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* MAIN */}
+                <div className="ts-main">
+                  {ttChapter==null ? (
+                    <div className="ts-main-scroll">
+                      <div className="ts-welcome">
+                        <h2>Transcript Studio</h2>
+                        <p>Scan an audiobook to compare its ASR transcript against the book's FB2 text. Mismatches are highlighted inline — hover to replace, or click for details. AI can flag which are real errors. Nothing is written until you commit.</p>
+                        <div className="ts-wgrid">
+                          {ttBooks.map(function(book){
+                            var c=bookCounts(book);
+                            return (
+                              <div key={book.fb2Path} className={"ts-wcard"+(book.supported?"":" dis")} onClick={function(){ if(book.supported){ setTtSel(book); setTtExpanded(function(p){ var n=Object.assign({},p); n[book.fb2Path]=true; return n; }); } }}>
+                                <div className="ts-wtitle">{book.title}</div>
+                                <div className="ts-wmeta">{book.author?book.author+" · ":""}{book.nChapters} ch{book.supported?"":" · no fb2"}</div>
+                                <div className="ts-wcounts">
+                                  {c.scanned>0 ? <>
+                                    <span className="ts-tag" style={{color:KIND.sub.fg,background:KIND.sub.bg,borderColor:KIND.sub.bd}}>{c.sub} subs</span>
+                                    <span className="ts-tag" style={{color:KIND.missing.fg,background:KIND.missing.bg,borderColor:KIND.missing.bd}}>{c.missing} missing</span>
+                                  </> : (book.supported ? <span style={{fontSize:11,color:"#a0917b"}}>not scanned</span> : null)}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
                   ) : (
-                    <span style={{color:"#2f5a2a"}}>✓ Scan complete — found {totalDisc} discrepanc{totalDisc===1?"y":"ies"} across the chapters scanned.{errCount>0 ? " ("+errCount+" chapter(s) couldn't be scanned — see the chapter list.)" : ""} Open a book below to review.</span>
+                    <>
+                      <div className="ts-toolbar">
+                        <div className="ts-tabs">
+                          <button className={ttView==="reading"?"on":""} onClick={function(){ setTtView("reading"); }}>📖 Reading</button>
+                          <button className={ttView==="list"?"on":""} onClick={function(){ setTtView("list"); }}>☰ List</button>
+                        </div>
+                        <input className="ts-search" placeholder="Filter…" value={ttSearch} onChange={function(e){ setTtSearch(e.target.value); }}/>
+                        <div className="ts-chips">
+                          {["sub","missing","omitted"].map(function(kd){ var on=!!ttFilter[kd]; return <span key={kd} className="ts-chip" style={{borderColor:KIND[kd].bd,background:on?KIND[kd].bg:"transparent",color:on?KIND[kd].fg:"#a0917b"}} onClick={function(){ setTtFilter(Object.assign({},ttFilter,{[kd]:!ttFilter[kd]})); }}>{KIND[kd].glyph} {kd}</span>; })}
+                          <span className="ts-chip" style={{borderColor:"rgba(42,31,20,.2)",background:ttFilter.actionable?"rgba(42,31,20,.08)":"transparent",color:ttFilter.actionable?"#4a3f30":"#a0917b"}} onClick={function(){ setTtFilter(Object.assign({},ttFilter,{actionable:!ttFilter.actionable})); }}>hide noise</span>
+                        </div>
+                        <div style={{flex:1}}/>
+                        <button className="ts-b ai sm" disabled={ttAiBusy} onClick={function(){ ttAskAI(ttSel,ttChapter); }}>{ttAiBusy?"AI…":"✨ Ask AI"}</button>
+                        <button className="ts-b acc sm" onClick={acceptHigh} title="Accept all high-confidence ASR fixes">✓ High-conf</button>
+                        <button className="ts-b ai sm" onClick={acceptAI} title="Apply all AI recommendations">✓ AI recs</button>
+                        <button className="ts-b ghost sm" onClick={clearStaged} title="Unstage everything in this chapter">Clear</button>
+                      </div>
+                      <div className="ts-main-scroll" ref={ttMainRef}>
+                        {ttView==="reading" ? renderReading() : renderList()}
+                      </div>
+                    </>
                   )}
                 </div>
-                {ttProgress && (
-                  <>
-                    <div style={{fontSize:11,opacity:.7,margin:"5px 0"}}>{ttProgress.label}</div>
-                    <div style={{height:8,background:"rgba(42,31,20,.1)",borderRadius:4,overflow:"hidden"}}>
-                      <div style={{height:"100%",width:pct+"%",background: ttScanning ? "#c4955a" : "#8aab7c",transition:"width .3s"}}/>
-                    </div>
-                  </>
-                )}
-                {ttScanning && <div style={{fontSize:11,opacity:.6,marginTop:6,fontStyle:"italic"}}>Each chapter is fetched from GitHub and aligned against the FB2 — a full book can take a minute or two. You can keep this open.</div>}
+
+                {/* INSPECTOR */}
+                {ttChapter!=null && <div className="ts-inspect">{renderInspector()}</div>}
               </div>
-              );
-            })()}
 
-            {/* ============ DASHBOARD (no book selected) ============ */}
-            {!ttSel && (
-              <div className="adm-body">
-                <div style={{display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"}}>
-                  <button className="adm-btn approve" disabled={ttScanning||ttBooksLoad} onClick={ttScanAll}>{ttScanning?"Scanning…":"⤓ Scan all books"}</button>
-                  <button className="adm-refresh" onClick={ttLoadBooks} disabled={ttBooksLoad||ttScanning}>Refresh list</button>
-                  <span style={{fontSize:12,opacity:.6}}>Audiobooks with a transcript + FB2 source.</span>
-                </div>
-                {ttBooksLoad && <div className="adm-empty">Loading audiobooks…</div>}
-                {!ttBooksLoad && ttBooks.length===0 && <div className="adm-empty">No audiobooks found.</div>}
-                {ttBooks.map(function(book){
-                  var c = bookCounts(book);
-                  return (
-                    <div key={book.fb2Path} className="adm-row" style={{cursor:book.supported?"pointer":"default",opacity:book.supported?1:.55}}
-                      onClick={function(){ if(book.supported){ setTtSel(book); setTtChapter(null); } }}>
-                      <div className="adm-info">
-                        <div className="adm-name">{book.title}</div>
-                        <div className="adm-email">{book.author ? book.author+" · " : ""}{book.nChapters} ch{book.supported?"":" · "+book.note}</div>
-                      </div>
-                      <div style={{display:"flex",gap:6,alignItems:"center"}}>
-                        {c.scanned>0 ? <>
-                          {pill(c.sub+" subs", KIND.sub.fg)}
-                          {pill(c.missing+" missing", KIND.missing.fg)}
-                          {pill(c.scanned+"/"+book.nChapters+" scanned", "#666")}
-                        </> : (book.supported ? <span style={{fontSize:12,opacity:.5}}>not scanned</span> : null)}
-                      </div>
-                    </div>
-                  );
-                })}
+              {/* STATUS BAR */}
+              <div className="ts-status">
+                <span><b>{ttSel?ttSel.title:"—"}</b>{ttChapter!=null?(" · Ch "+(ttChapter+1)):""}</span>
+                {chapSummary && chapSummary.summary && <span>match <b>{Math.round((chapSummary.summary.ratio||0)*100)}%</b></span>}
+                {ttChapter!=null && <span><b>{discs.length}</b> shown</span>}
+                <span><b>{acc.subs}</b> fixes · <b>{acc.inserts}</b> inserts staged</span>
+                {ttChapter!=null && <span className="ts-kbd"><kbd>↑</kbd><kbd>↓</kbd> move · <kbd>↵</kbd> accept · <kbd>x</kbd> skip</span>}
+                <button className="ts-commit" disabled={ttApplying||acc.total===0} onClick={function(){ ttApply(ttSel); }}>{ttApplying?"Committing…":("⬆ Commit "+acc.total+" change"+(acc.total===1?"":"s"))}</button>
               </div>
-            )}
-
-            {/* ============ BOOK VIEW (chapters) ============ */}
-            {ttSel && ttChapter==null && (() => {
-              var acc = ttAcceptedForBook(ttSel);
-              return (
-              <div className="adm-body">
-                <div style={{display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"}}>
-                  <button className="adm-refresh" onClick={function(){ setTtSel(null); }}>‹ All books</button>
-                  <button className="adm-btn approve" disabled={ttScanning} onClick={function(){ ttScanBook(ttSel); }}>{bookCounts(ttSel).scanned>0?"↻ Re-scan book":"⤓ Scan book"}</button>
-                  <div style={{flex:1}}/>
-                  {acc.total>0 && <button className="adm-btn approve" disabled={ttApplying} onClick={function(){ ttApply(ttSel); }} style={{background:"linear-gradient(135deg,#5a8556,#3a6a35)"}}>{ttApplying?"Committing…":("✓ Commit "+acc.subs+" fix"+(acc.subs===1?"":"es")+" + "+acc.inserts+" insert"+(acc.inserts===1?"":"s"))}</button>}
-                </div>
-                <div style={{fontSize:12,opacity:.6}}>Click a chapter to review. Fixes to the JSON and insertions into the FB2 are staged here and only committed when you press Commit.</div>
-                {Array.from({length:ttSel.nChapters}).map(function(_,ci){
-                  var s = ttScans[ttSel.fb2Path+"|"+ci];
-                  var sum = s && s.summary ? s.summary : null;
-                  return (
-                    <div key={ci} className="adm-row" style={{cursor:s?"pointer":"default"}} onClick={function(){ if(s) setTtChapter(ci); }}>
-                      <div className="adm-info">
-                        <div className="adm-name">Chapter {ci+1} {s && s.anchorOk===false && <span title="Could not confidently locate this chapter in the FB2" style={{color:"#9d4630",fontSize:12}}>⚠ anchor</span>}</div>
-                        <div className="adm-email">{s ? (s.error ? ("error: "+s.error) : ((sum&&sum.ratio!=null)?("match "+Math.round(sum.ratio*100)+"%"):"")) : "not scanned"}</div>
-                      </div>
-                      <div style={{display:"flex",gap:6,alignItems:"center"}}>
-                        {sum && <>
-                          {pill((sum.sub||0)+" subs", KIND.sub.fg)}
-                          {pill((sum.missing||0)+" missing", KIND.missing.fg)}
-                          {sum.needsAI>0 && pill(sum.needsAI+" ?", "#7a5ea0")}
-                        </>}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-              );
-            })()}
-
-            {/* ============ REVIEW VIEW (one chapter) ============ */}
-            {ttSel && ttChapter!=null && (() => {
-              var ci = ttChapter;
-              var scan = ttScans[ttSel.fb2Path+"|"+ci];
-              var discs = (scan && scan.discrepancies) ? scan.discrepancies.filter(shouldShow) : [];
-              var acc = ttAcceptedForBook(ttSel);
-              return (
-              <>
-              <div style={{padding:"10px 28px 0",display:"flex",alignItems:"center",gap:8,flexWrap:"wrap"}}>
-                <button className="adm-refresh" onClick={function(){ setTtChapter(null); }}>‹ Chapters</button>
-                {["sub","missing","omitted"].map(function(kd){
-                  return <label key={kd} style={{fontSize:12,display:"flex",alignItems:"center",gap:4,cursor:"pointer",color:KIND[kd].fg}}>
-                    <input type="checkbox" checked={!!ttFilter[kd]} onChange={function(e){ setTtFilter(Object.assign({},ttFilter,{[kd]:e.target.checked})); }}/>{KIND[kd].label}
-                  </label>;
-                })}
-                <label style={{fontSize:12,display:"flex",alignItems:"center",gap:4,cursor:"pointer",opacity:.75}}>
-                  <input type="checkbox" checked={!!ttFilter.actionable} onChange={function(e){ setTtFilter(Object.assign({},ttFilter,{actionable:e.target.checked})); }}/>hide noise
-                </label>
-                <div style={{flex:1}}/>
-                <button className="adm-refresh" disabled={ttAiBusy} onClick={function(){ ttAskAI(ttSel,ci); }}>{ttAiBusy?"AI…":"✨ Ask AI on ambiguous"}</button>
-              </div>
-              <div className="adm-body" style={{maxHeight:"58vh"}}>
-                {discs.length===0 && <div className="adm-empty">No discrepancies match the current filters.</div>}
-                {discs.map(function(d){
-                  var k = ttKey(ttSel.fb2Path, ci, d.id);
-                  var dec = ttDecisions[k] || {};
-                  var v = ttVerdicts[k];
-                  var accepted = dec.action==="accept", rejected = dec.action==="reject";
-                  return (
-                    <div key={d.id} style={{border:"1px solid "+(accepted?"rgba(90,133,86,.5)":rejected?"rgba(157,70,48,.3)":"rgba(42,31,20,.12)"),borderRadius:10,padding:"10px 12px",background:accepted?"rgba(90,133,86,.06)":rejected?"rgba(157,70,48,.04)":"#fff",opacity:rejected?.6:1}}>
-                      <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:6,flexWrap:"wrap"}}>
-                        <span style={{fontSize:11,padding:"2px 8px",borderRadius:10,background:KIND[d.kind].bg,color:KIND[d.kind].fg,border:"1px solid "+KIND[d.kind].bd}}>{KIND[d.kind].label}</span>
-                        <span style={{display:"flex",alignItems:"center",gap:4,fontSize:11,color:confColor[d.confidence]}}><span style={{width:7,height:7,borderRadius:4,background:confColor[d.confidence],display:"inline-block"}}/>{d.confidence}</span>
-                        {v && pill("AI: "+v.verdict, "#7a5ea0")}
-                        {v && v.reason && <span style={{fontSize:11,opacity:.6,fontStyle:"italic"}}>{v.reason}</span>}
-                      </div>
-
-                      {/* context */}
-                      <div style={{fontSize:12,color:"#2a1f14",opacity:.55,marginBottom:6,fontFamily:"'Crimson Pro',serif"}}>
-                        …{d.trContextBefore} <b style={{opacity:1,color:"#8a5a1a"}}>⟦{d.trText}⟧</b> {d.trContextAfter}…
-                      </div>
-
-                      {/* sides */}
-                      {d.kind!=="missing" && (
-                        <div style={{display:"flex",gap:14,fontSize:13,flexWrap:"wrap",marginBottom:6}}>
-                          <div><span style={{opacity:.5,fontSize:11}}>Audio heard</span><div style={{color:"#9d4630"}}>{d.trText||"—"}</div></div>
-                          <div><span style={{opacity:.5,fontSize:11}}>FB2 text</span><div style={{color:"#3a6a35"}}>{d.fbText||"—"}</div></div>
-                        </div>
-                      )}
-
-                      {/* actions */}
-                      {d.kind==="omitted" ? (
-                        <div style={{fontSize:12,opacity:.6,fontStyle:"italic"}}>The recording skips this text (abridged). No action — informational.</div>
-                      ) : d.kind==="sub" ? (
-                        <div style={{display:"flex",gap:8,alignItems:"center",flexWrap:"wrap"}}>
-                          <span style={{fontSize:11,opacity:.6}}>Set transcript →</span>
-                          <input value={dec.text!=null?dec.text:ttTargetText(d)} onChange={function(e){ ttSetDecision(k,{text:e.target.value}); }}
-                            style={{flex:"1 1 200px",minWidth:120,padding:"6px 9px",border:"1px solid rgba(42,31,20,.2)",borderRadius:6,fontSize:13,color:"#000",background:"#fbf8f2",fontFamily:"'Crimson Pro',serif"}}/>
-                          <button onClick={function(){ ttSetDecision(k,{action:"accept"}); }} style={{padding:"6px 12px",borderRadius:6,border:"none",cursor:"pointer",fontWeight:600,fontSize:12,background:accepted?"#5a8556":"rgba(90,133,86,.15)",color:accepted?"#fff":"#3a6a35"}}>Fix JSON</button>
-                          <button onClick={function(){ ttSetDecision(k,{action:rejected?"":"reject"}); }} style={{padding:"6px 12px",borderRadius:6,border:"1px solid rgba(157,70,48,.4)",cursor:"pointer",fontSize:12,background:"transparent",color:"#9d4630"}}>Skip</button>
-                          {v && v.verdict && <button onClick={function(){ ttApplyAiSuggestion(ttSel,ci,d); }} style={{padding:"6px 10px",borderRadius:6,border:"1px solid #7a5ea0",cursor:"pointer",fontSize:12,background:"transparent",color:"#7a5ea0"}}>Use AI</button>}
-                        </div>
-                      ) : (
-                        <div>
-                          <div style={{fontSize:11,opacity:.6,marginBottom:4}}>Insert into FB2 after ¶ ending: <i>“…{d.afterParaPreview}”</i></div>
-                          <div style={{display:"flex",gap:8,alignItems:"flex-start",flexWrap:"wrap"}}>
-                            <textarea value={dec.text!=null?dec.text:d.trText} onChange={function(e){ ttSetDecision(k,{text:e.target.value}); }} rows={2}
-                              style={{flex:"1 1 260px",minWidth:160,padding:"6px 9px",border:"1px solid rgba(42,31,20,.2)",borderRadius:6,fontSize:13,color:"#000",background:"#fbf8f2",fontFamily:"'Crimson Pro',serif",resize:"vertical"}}/>
-                            <div style={{display:"flex",flexDirection:"column",gap:6}}>
-                              <button onClick={function(){ ttSetDecision(k,{action:"accept"}); }} style={{padding:"6px 12px",borderRadius:6,border:"none",cursor:"pointer",fontWeight:600,fontSize:12,background:accepted?"#5a8556":"rgba(90,133,86,.15)",color:accepted?"#fff":"#3a6a35"}}>Insert</button>
-                              <button onClick={function(){ ttSetDecision(k,{action:rejected?"":"reject"}); }} style={{padding:"6px 12px",borderRadius:6,border:"1px solid rgba(157,70,48,.4)",cursor:"pointer",fontSize:12,background:"transparent",color:"#9d4630"}}>Skip</button>
-                              {v && v.verdict && <button onClick={function(){ ttApplyAiSuggestion(ttSel,ci,d); }} style={{padding:"6px 10px",borderRadius:6,border:"1px solid #7a5ea0",cursor:"pointer",fontSize:12,background:"transparent",color:"#7a5ea0"}}>Use AI</button>}
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="adm-foot">
-                <span style={{fontSize:12,color:"rgba(0,0,0,.6)"}}>{discs.length} shown · {acc.total} approved for {ttSel.title}</span>
-                <button className="adm-refresh" disabled={ttApplying||acc.total===0} onClick={function(){ ttApply(ttSel); }} style={{background:acc.total>0?"linear-gradient(135deg,#5a8556,#3a6a35)":undefined,color:acc.total>0?"#fff":undefined,border:acc.total>0?"none":undefined}}>{ttApplying?"Committing…":("Commit "+acc.subs+" + "+acc.inserts)}</button>
-              </div>
-              </>
-              );
-            })()}
-
+            </div>
           </div>
-        </div>
         );
       })()}
 
