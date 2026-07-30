@@ -382,23 +382,55 @@ function classifyRegion(region, fbToks, trToks, spanStart) {
     kind: "sub", confidence: confidence, needsAI: needsAI, suggest: suggest,
     similarity: Math.round(sim * 100) / 100,
     target: target, // null when counts differ → UI offers manual/whole-run replace
-    // fallback whole-run replace info (single fragment only)
-    run: singleFragmentRun(tr),
+    // whole-run replace info (spans fragment boundaries when needed)
+    run: buildRun(tr),
     fbWords: fb.map(function (t) { return splitAffix(t.raw).core; }),
   });
 }
 
-// If a transcript run sits inside one fragment, return {fragIdx,wStart,wEnd}.
-function singleFragmentRun(tr) {
+// Build a replace-run descriptor for a contiguous transcript token run.
+// The run is grouped into per-fragment "cells" (a contiguous flat run visits
+// each fragment at most once, in order), so a wording fix can span a fragment
+// boundary — e.g. "…баю!" ending one fragment and "бурлычет" starting the next.
+// For the common single-fragment case we also expose {fragIdx,wStart,wEnd} for
+// backward compatibility. Returns null for an empty run.
+function buildRun(tr) {
   if (!tr.length) return null;
-  const fi = tr[0].fragIdx;
-  for (let i = 1; i < tr.length; i++) if (tr[i].fragIdx !== fi) return null;
-  let wStart = tr[0].wIdx, wEnd = tr[0].wIdx;
+  const cells = [];
+  let cur = null;
   for (let i = 0; i < tr.length; i++) {
-    if (tr[i].wIdx < wStart) wStart = tr[i].wIdx;
-    if (tr[i].wIdx > wEnd) wEnd = tr[i].wIdx;
+    const t = tr[i];
+    if (!cur || t.fragIdx !== cur.fragIdx) {
+      cur = { fragIdx: t.fragIdx, wStart: t.wIdx, wEnd: t.wIdx };
+      cells.push(cur);
+    } else {
+      if (t.wIdx < cur.wStart) cur.wStart = t.wIdx;
+      if (t.wIdx > cur.wEnd) cur.wEnd = t.wIdx;
+    }
   }
-  return { fragIdx: fi, wStart: wStart, wEnd: wEnd };
+  if (cells.length === 1) {
+    return { fragIdx: cells[0].fragIdx, wStart: cells[0].wStart, wEnd: cells[0].wEnd, cells: cells };
+  }
+  return { cells: cells };
+}
+
+// Split `nwLen` new words across `cells` so every word lands in a fragment,
+// each cell gets at least one word while words remain, and the remainder is
+// spread by each cell's original word count. Sum of the result === nwLen.
+function distributeWords(nwLen, cells) {
+  const shares = cells.map(function () { return 0; });
+  let left = nwLen;
+  for (let i = 0; i < cells.length && left > 0; i++) { shares[i] = 1; left--; }
+  if (left > 0) {
+    const counts = cells.map(function (c) { return c.wEnd - c.wStart + 1; });
+    const total = counts.reduce(function (a, b) { return a + b; }, 0) || 1;
+    for (let i = 0; i < cells.length && left > 0; i++) {
+      const add = Math.min(left, Math.round(nwLen * counts[i] / total));
+      shares[i] += add; left -= add;
+    }
+    if (left > 0) { shares[0] += left; left = 0; }
+  }
+  return shares;
 }
 
 // Detect whether a transcript run's words already appear (even in ASR-garbled
@@ -615,21 +647,47 @@ function applyTranscriptEdits(js, edits) {
   for (let e = 0; e < edits.length; e++) {
     const ed = edits[e];
     if (ed.run) {
-      const f = frags[ed.run.fragIdx];
-      if (!f || !Array.isArray(f.words)) continue;
-      const a = ed.run.wStart, b = ed.run.wEnd;
-      const oldSlice = f.words.slice(a, b + 1);
-      if (!oldSlice.length) continue;
-      const begin = oldSlice[0].begin, end = oldSlice[oldSlice.length - 1].end;
-      const nw = ed.newWords && ed.newWords.length ? ed.newWords : [smartJoin(oldSlice)];
-      const step = (end - begin) / nw.length;
-      const inserted = [];
-      for (let n = 0; n < nw.length; n++) {
-        inserted.push({ word: nw[n], begin: +(begin + step * n).toFixed(3), end: +(begin + step * (n + 1)).toFixed(3) });
+      // Normalize to the per-fragment "cells" form (older single-fragment runs
+      // carry {fragIdx,wStart,wEnd} directly).
+      const cells = (ed.run.cells && ed.run.cells.length)
+        ? ed.run.cells
+        : [{ fragIdx: ed.run.fragIdx, wStart: ed.run.wStart, wEnd: ed.run.wEnd }];
+
+      // Validate every touched fragment/slice exists before mutating anything.
+      let bad = false;
+      const oldAll = [];
+      for (let ci = 0; ci < cells.length; ci++) {
+        const cl = cells[ci];
+        const f = frags[cl.fragIdx];
+        if (!f || !Array.isArray(f.words) || !f.words[cl.wStart] || !f.words[cl.wEnd]) { bad = true; break; }
+        oldAll.push.apply(oldAll, f.words.slice(cl.wStart, cl.wEnd + 1));
       }
-      f.words = f.words.slice(0, a).concat(inserted, f.words.slice(b + 1));
-      f.text = smartJoin(f.words);
-      editedSet[ed.run.fragIdx] = true;
+      if (bad || !oldAll.length) continue;
+
+      // New words: caller-supplied, else re-join the old run text into one token.
+      const nw = ed.newWords && ed.newWords.length ? ed.newWords : [smartJoin(oldAll)];
+      // Spread the new words across the cells; each cell keeps its OWN original
+      // time envelope so no word can drift outside the fragment it belongs to.
+      const shares = distributeWords(nw.length, cells);
+      let cursor = 0;
+      for (let ci = 0; ci < cells.length; ci++) {
+        const cl = cells[ci];
+        const f = frags[cl.fragIdx];
+        const take = shares[ci];
+        const chunk = nw.slice(cursor, cursor + take);
+        cursor += take;
+        let inserted = [];
+        if (chunk.length) {
+          const begin = f.words[cl.wStart].begin, end = f.words[cl.wEnd].end;
+          const step = (end - begin) / chunk.length;
+          for (let n = 0; n < chunk.length; n++) {
+            inserted.push({ word: chunk[n], begin: +(begin + step * n).toFixed(3), end: +(begin + step * (n + 1)).toFixed(3) });
+          }
+        }
+        f.words = f.words.slice(0, cl.wStart).concat(inserted, f.words.slice(cl.wEnd + 1));
+        f.text = smartJoin(f.words);
+        editedSet[cl.fragIdx] = true;
+      }
       changed++;
     } else {
       const f = frags[ed.fragIdx];

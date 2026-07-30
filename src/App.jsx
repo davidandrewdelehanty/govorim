@@ -5104,12 +5104,12 @@ export default function App() {
           if (!text) return;
           if (d.kind === "sub") {
             var words = text.split(/\s+/);
-            if (d.run) edits.push({ run: d.run, newWords: words });
-            else if (d.target) {
-              // per-word fallback (counts must match)
-              if (d.target.length === words.length) {
-                for (var t = 0; t < d.target.length; t++) edits.push({ fragIdx: d.target[t].fragIdx, wIdx: d.target[t].wIdx, newWord: words[t] });
-              }
+            if (d.target && d.target.length === words.length) {
+              // counts match → precise per-word fix (keeps each word's own timing)
+              for (var t = 0; t < d.target.length; t++) edits.push({ fragIdx: d.target[t].fragIdx, wIdx: d.target[t].wIdx, newWord: words[t] });
+            } else if (d.run) {
+              // counts differ or span a fragment boundary → whole-run replace
+              edits.push({ run: d.run, newWords: words });
             }
           } else if (d.kind === "missing") {
             fb2Inserts.push({ afterParaIdx: d.afterParaIdx, text: text });
