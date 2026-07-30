@@ -1,6 +1,7 @@
 // THEME_VERSION=2
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { SignIn, UserButton, useAuth, useUser } from "@clerk/clerk-react";
+import { isCommonWord, dropCommonWords, COMMON_WORDS_PROMPT_RULE } from "./commonWords.js";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
@@ -4537,7 +4538,8 @@ export default function App() {
     try {
       var text = String((curChapter && curChapter.text) || "").replace(/\s+/g, " ").trim().slice(0, 6000);
       if (!text) throw new Error("No chapter text to draw vocabulary from.");
-      var prompt = 'From the Russian passage below, choose the 10-14 most useful VERBS and NOUNS for a learner to know. '
+      var prompt = 'From the Russian passage below, choose the 14-18 most useful VERBS and NOUNS for a learner to know. '
+        + COMMON_WORDS_PROMPT_RULE + ' '
         + 'For each, return: the dictionary form ("ru" — infinitive for verbs, nominative singular for nouns), the part of speech ("pos": "noun" or "verb"), the correct English meaning ("en"; for verbs use "to ..."), '
         + 'exactly 3 plausible-but-WRONG English meanings of the SAME part of speech ("distractors"), and "context": one short sentence copied VERBATIM from the passage where the word appears, with the word (in whatever form it appears) wrapped in **double asterisks**. '
         + 'Only nouns and verbs that actually occur in the passage. Distractors must be real English words of the same type but clearly incorrect for this word. Return JSON only:\n'
@@ -4556,7 +4558,16 @@ export default function App() {
         return w && w.ru && w.en && (w.pos === "noun" || w.pos === "verb")
           && Array.isArray(w.distractors) && w.distractors.length >= 3;
       }).filter(function(w){ if (seen[w.ru]) return false; seen[w.ru] = 1; return true; });
-      if (!words.length) throw new Error("Couldn't find quizzable vocabulary in this chapter.");
+      // Known-words stoplist: never quiz the ~500 most common words. The prompt
+      // asks the AI to skip them, but the AI slips — this is the real guarantee.
+      var beforeCommon = words.length;
+      words = dropCommonWords(words);
+      var droppedCommon = beforeCommon - words.length;
+      if (!words.length) {
+        throw new Error(droppedCommon
+          ? "Every quizzable word in this chapter is one you already know. Try a denser chapter."
+          : "Couldn't find quizzable vocabulary in this chapter.");
+      }
       setVqWords(words);
       var counts = {};
       setVqCount(counts);
@@ -6983,10 +6994,16 @@ export default function App() {
   };
 
   var startQuiz = function(posFilter) {
+    // Known-words stoplist first: saved words that are among the ~500 most
+    // common are never quizzed. They stay in the vocab list (still visible,
+    // still usable in chat practice) — they just aren't tested.
+    var quizVocab = dropCommonWords(vocab, function(v){ return v && v.ru; });
+    var commonSkipped = vocab.length - quizVocab.length;
+
     // Group vocab by normalized pos. A word needs `en` (the English meaning to
     // quiz on) and `pos` (so we can find same-category distractors) to qualify.
     var groups = {};
-    vocab.forEach(function(v){
+    quizVocab.forEach(function(v){
       var p = (v.pos || "").toLowerCase().trim();
       if (!p) return;          // no pos → skipped entirely
       if (!v.en) return;       // no English meaning → can't quiz
@@ -7003,7 +7020,8 @@ export default function App() {
     });
     if (biggest < QUIZ_MIN) {
       var near = biggest > 0 ? (" Your largest group is " + biggestType + " with " + biggest + ".") : "";
-      alert("A quiz needs at least 10 saved words of the same part of speech (for example, 10 nouns or 10 verbs), each with an English meaning." + near + " Keep adding words!");
+      var common = commonSkipped > 0 ? (" (" + commonSkipped + " saved word(s) were skipped because they're on your known-words list.)") : "";
+      alert("A quiz needs at least 10 saved words of the same part of speech (for example, 10 nouns or 10 verbs), each with an English meaning." + near + common + " Keep adding words!");
       return;
     }
 
@@ -7018,7 +7036,7 @@ export default function App() {
 
     var questions = [];
     var skipped = 0;
-    vocab.forEach(function(v){
+    quizVocab.forEach(function(v){
       var p = (v.pos || "").toLowerCase().trim();
       if (!p || !v.en) { skipped++; return; }
       var filterPos = (typeof posFilter === "string" && posFilter) ? posFilter.toLowerCase().trim() : null;
@@ -7040,7 +7058,9 @@ export default function App() {
       return;
     }
 
-    setQuizSkipNote(skipped > 0 ? skipped + " word(s) skipped (no part-of-speech tag or too few same-pos siblings)." : "");
+    var skipNote = skipped > 0 ? skipped + " word(s) skipped (no part-of-speech tag or too few same-pos siblings)." : "";
+    if (commonSkipped > 0) skipNote += (skipNote ? " " : "") + commonSkipped + " word(s) skipped — already on your known-words list.";
+    setQuizSkipNote(skipNote);
     setQuizQuestions(shuffle(questions));
     setQuizIdx(0);
     setQuizSelected(null);
@@ -7071,7 +7091,11 @@ export default function App() {
     try {
       // Pass the system prompt explicitly because setTopic hasn't propagated
       // to `act` yet on this render — api() would otherwise use the stale topic.
-      var sys = vocabPracticePrompt(vocab, level);
+      // Drill only the words the learner hasn't already declared known. If that
+      // leaves nothing, fall back to the full list rather than dead-ending.
+      var practiceVocab = dropCommonWords(vocab, function(v){ return v && v.ru; });
+      if (!practiceVocab.length) practiceVocab = vocab;
+      var sys = vocabPracticePrompt(practiceVocab, level);
       var t = await api([{role:"user",content:"Start please."}], sys);
       setMsgs([{role:"assistant",content:t}]);
     } catch(err) {
