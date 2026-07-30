@@ -1,0 +1,134 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Это, возлюбленные, уже мое второе ___ к вам.",
+      "lemma": "послание",
+      "options": ["послание", "послания", "посланию", "посланием"],
+      "correct": "послание",
+      "case": "Именительный (Nominative)",
+      "translation": "This, beloved, is now the second letter to you.",
+      "explain": "Послание is the predicate nominative after the verb быть (to be, implied), so it takes the nominative case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Я написал эти ___ для того, чтобы напоминанием призвать вас.",
+      "lemma": "послание",
+      "options": ["послание", "послания", "посланию", "посланием"],
+      "correct": "послания",
+      "case": "Родительный (Genitive)",
+      "translation": "I wrote these letters so that by reminding you.",
+      "explain": "Multiple direct objects governed by the verb написал take the accusative plural, but here the sentence structure requires genitive."
+    },
+    {
+      "id": "c3",
+      "sentence": "Вы должны помнить повеление Господа и Спасителя, переданное вашими ___.",
+      "lemma": "апостол",
+      "options": ["апостол", "апостола", "апостолом", "апостоле"],
+      "correct": "апостолом",
+      "case": "Творительный (Instrumental)",
+      "translation": "You should remember the commandment of the Lord and Savior, passed on by your apostles.",
+      "explain": "The instrumental case follows the preposition/prefix пере- indicating agency: the commandment was passed on by (апостолом) the apostles."
+    },
+    {
+      "id": "c4",
+      "sentence": "Не забывайте одного, возлюбленные: для Господа один ___ — что тысяча лет.",
+      "lemma": "день",
+      "options": ["день", "дня", "дню", "днем"],
+      "correct": "день",
+      "case": "Именительный (Nominative)",
+      "translation": "Don't forget this one thing, beloved: for the Lord one day is like a thousand years.",
+      "explain": "День is the subject of the predicate phrase 'one day is like a thousand years,' so it stands in the nominative case."
+    },
+    {
+      "id": "c5",
+      "sentence": "День Господа придет, как вор в ___.",
+      "lemma": "ночь",
+      "options": ["ночь", "ночи", "ночью", "ночей"],
+      "correct": "ночи",
+      "case": "Родительный (Genitive)",
+      "translation": "The day of the Lord will come like a thief in the night.",
+      "explain": "The temporal preposition в meaning 'in' (with time expressions) governs the genitive case."
+    },
+    {
+      "id": "c6",
+      "sentence": "Тогда небосвод с громким шумом исчезнет, и небесные тела растворятся в ___.",
+      "lemma": "огонь",
+      "options": ["огонь", "огня", "огне", "огнем"],
+      "correct": "огне",
+      "case": "Предложный (Prepositional)",
+      "translation": "Then the heavens will pass away with a loud noise, and the heavenly bodies will dissolve in fire.",
+      "explain": "The preposition в indicating location governs the prepositional case."
+    },
+    {
+      "id": "c7",
+      "sentence": "Мы, по его обещанию, ожидаем нового ___ и новой земли.",
+      "lemma": "небо",
+      "options": ["небо", "неба", "небе", "небом"],
+      "correct": "небо",
+      "case": "Винительный (Accusative)",
+      "translation": "According to his promise, we await new heavens and a new earth.",
+      "explain": "Небо is the direct object of the transitive verb ожидаем (we await), which governs the accusative case."
+    },
+    {
+      "id": "c8",
+      "sentence": "Если мы говорим, что имеем общение с Ним, но сами ходим во ___, то мы лжем.",
+      "lemma": "тьма",
+      "options": ["тьма", "тьмы", "тьму", "тьмой"],
+      "correct": "тьму",
+      "case": "Винительный (Accusative)",
+      "translation": "If we say that we have fellowship with Him, but ourselves walk in darkness, then we lie.",
+      "explain": "The preposition во before a vowel) meaning 'in' with motion/condition (walking in darkness) governs the accusative case."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Это, возлюбленные, уже мое второе послание к вам.",
+      "question": "How many letters had the writer already sent to the recipients?",
+      "options": ["Two", "One", "Three", "Four"],
+      "correct": "Two",
+      "explain": "The text states это уже мое второе послание (this is now my second letter)."
+    },
+    {
+      "id": "r2",
+      "ru": "Я написал эти послания для того, чтобы напоминанием призвать вас рассуждать здраво.",
+      "question": "Why did the author write these letters?",
+      "options": ["To remind the readers to think soberly", "To announce new laws", "To condemn false prophets", "To invite them to a gathering"],
+      "correct": "To remind the readers to think soberly",
+      "explain": "The text states 'чтобы напоминанием призвать вас рассуждать здраво' (to remind you to think soberly)."
+    },
+    {
+      "id": "r3",
+      "ru": "Не забывайте одного, возлюбленные: для Господа один день, что тысяча лет, и тысяча лет, что один день.",
+      "question": "According to this verse, how does God experience time?",
+      "options": ["Time is relative to God; one day and a thousand years are equivalent to Him", "God experiences time the same way humans do", "God lives outside of time entirely", "A day is more important to God than a thousand years"],
+      "correct": "Time is relative to God; one day and a thousand years are equivalent to Him",
+      "explain": "The passage compares one day to a thousand years and vice versa, demonstrating God's different relationship with time."
+    },
+    {
+      "id": "r4",
+      "ru": "Господь не откладывает исполнение того, что Он обещал, хоть некоторые и называют это промедлением.",
+      "question": "What do some people claim about God's promises?",
+      "options": ["That He is slow in fulfilling them", "That He never made any promises", "That He is too quick to act", "That He has forgotten His promises"],
+      "correct": "That He is slow in fulfilling them",
+      "explain": "The text says some 'называют это промедлением' (call it slowness), meaning they wrongly perceive God as slow."
+    },
+    {
+      "id": "r5",
+      "ru": "Если мы ходим во свете, как и Он во свете, то мы имеем общение друг с другом, и кровь Его Сына Иисуса очищает нас от всякого греха.",
+      "question": "What does walking in the light result in?",
+      "options": ["Fellowship with one another and cleansing from sin through Christ's blood", "Perfect knowledge of all things", "Freedom from physical illness", "Authority over demons"],
+      "correct": "Fellowship with one another and cleansing from sin through Christ's blood",
+      "explain": "The verse directly states that walking in light produces fellowship and cleansing through the blood of Jesus."
+    },
+    {
+      "id": "r6",
+      "ru": "Мы, по его обещанию, ожидаем нового неба и новой земли, где обитает праведность.",
+      "question": "What do believers await according to this verse?",
+      "options": ["New heavens and a new earth where righteousness dwells", "A physical return to Eden", "Eternal rest without any activity", "A kingdom ruled by apostles on earth"],
+      "correct": "New heavens and a new earth where righteousness dwells",
+      "explain": "The text explicitly states 'ожидаем нового неба и новой земли, где обитает праведность' (we await new heavens and new earth where righteousness dwells)."
+    }
+  ]
+}

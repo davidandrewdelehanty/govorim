@@ -1,0 +1,134 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Фест требовал суда ___, настаивая на судебном процессе в Риме.",
+      "lemma": "Павел",
+      "options": ["Павел", "Павла", "Павлу", "Павлом"],
+      "correct": "Павла",
+      "case": "Родительный (Genitive)",
+      "translation": "Festus demanded the trial of Paul, insisting on the judicial process in Rome.",
+      "explain": "The genitive case is used to indicate possession—'the trial of Paul.'"
+    },
+    {
+      "id": "c2",
+      "sentence": "___ встал и потребовал суда Кесарева перед судом.",
+      "lemma": "Павел",
+      "options": ["Павел", "Павла", "Павлу", "Павлом"],
+      "correct": "Павел",
+      "case": "Именительный (Nominative)",
+      "translation": "Paul stood up and demanded a trial before Caesar's court.",
+      "explain": "Павел is the grammatical subject of the sentence, requiring nominative case."
+    },
+    {
+      "id": "c3",
+      "sentence": "Несколько дней спустя в Кесарию прибыл ___ Агриппа с Вереникой.",
+      "lemma": "царь",
+      "options": ["царь", "царя", "царю", "царем"],
+      "correct": "царь",
+      "case": "Именительный (Nominative)",
+      "translation": "Several days later, King Agrippa arrived in Caesarea with Bernice.",
+      "explain": "Царь is the grammatical subject of the verb прибыл (arrived), requiring nominative case."
+    },
+    {
+      "id": "c4",
+      "sentence": "Фест говорил со ___ о деле Павла.",
+      "lemma": "царь",
+      "options": ["царь", "царя", "царю", "царем"],
+      "correct": "царем",
+      "case": "Творительный (Instrumental)",
+      "translation": "Festus spoke with the king about Paul's case.",
+      "explain": "The preposition со (with) governs the instrumental case."
+    },
+    {
+      "id": "c5",
+      "sentence": "На следующий день они входили в зал и видели перед собой ___.",
+      "lemma": "Павел",
+      "options": ["Павел", "Павла", "Павлу", "Павлом"],
+      "correct": "Павла",
+      "case": "Винительный (Accusative)",
+      "translation": "The next day they entered the hall and saw Paul before them.",
+      "explain": "Павла is the direct object of видели (saw), requiring accusative case."
+    },
+    {
+      "id": "c6",
+      "sentence": "Павел потребовал суда, и Фест приказал держать его под стражей вплоть до отправления к ___.",
+      "lemma": "кесарь",
+      "options": ["кесарь", "кесаря", "кесарю", "кесарем"],
+      "correct": "кесарю",
+      "case": "Дательный (Dative)",
+      "translation": "Paul demanded a trial, and Festus ordered him kept in custody until he could be sent to Caesar.",
+      "explain": "The preposition к (to) governs the dative case."
+    },
+    {
+      "id": "c7",
+      "sentence": "Евреи жаловались против ___ как в Иерусалиме, так и в Кесарии.",
+      "lemma": "Павел",
+      "options": ["Павел", "Павла", "Павлу", "Павлом"],
+      "correct": "Павла",
+      "case": "Родительный (Genitive)",
+      "translation": "The Jews complained against Paul both in Jerusalem and in Caesarea.",
+      "explain": "The preposition против (against) governs the genitive case."
+    },
+    {
+      "id": "c8",
+      "sentence": "У них был спор по вопросам, касающимся их ___ и некоего Иисуса.",
+      "lemma": "религия",
+      "options": ["религия", "религии", "религию", "религией"],
+      "correct": "религии",
+      "case": "Родительный (Genitive)",
+      "translation": "They had a dispute about questions concerning their religion and a certain Jesus.",
+      "explain": "The preposition по (about/concerning) with questions takes the genitive case in this context."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Через три дня после прибытия в провинцию, Фест отправился из Кесарии в Иерусалим, где первосвященники и иудейские начальники представили ему обвинение против Павла.",
+      "question": "What did the high priests and Jewish leaders do when Festus arrived in Jerusalem?",
+      "options": ["They presented charges against Paul to him", "They welcomed Festus to the city", "They asked for more time to prepare their case", "They released Paul from custody"],
+      "correct": "They presented charges against Paul to him",
+      "explain": "The text states: первосвященники и иудейские начальники представили ему обвинение против Павла — the high priests and Jewish leaders presented charges against Paul to Festus."
+    },
+    {
+      "id": "r2",
+      "ru": "Павел же, защищаясь, сказал, «Я ни в чем не повинен, ни против иудейского закона, ни против храма, ни против Кесаря».",
+      "question": "What did Paul claim in his defense?",
+      "options": ["He was innocent against the Jewish law, the temple, and Caesar", "He was innocent but willing to confess", "He was guilty but deserved mercy", "He was innocent only of charges against Caesar"],
+      "correct": "He was innocent against the Jewish law, the temple, and Caesar",
+      "explain": "Павел сказал: я ни в чем не повинен, ни против иудейского закона, ни против храма, ни против Кесаря — Paul said he was innocent of charges against the law, temple, and Caesar."
+    },
+    {
+      "id": "r3",
+      "ru": "Павел ответил, «Я стою перед судом Кесаревым, и им я и должен быть судим».",
+      "question": "Before what court did Paul insist on being tried?",
+      "options": ["Caesar's court", "The Jewish council", "The governor's court in Caesarea", "The Roman military tribunal"],
+      "correct": "Caesar's court",
+      "explain": "Павел said: я стою перед судом Кесаревым — I stand before Caesar's judgment seat."
+    },
+    {
+      "id": "r4",
+      "ru": "Несколько дней спустя в Кесарию навестить Феста прибыл царь Агриппа с Вереникой.",
+      "question": "Who arrived in Caesarea to visit Festus?",
+      "options": ["King Agrippa and Bernice", "The Jewish high priests and elders", "Paul's family members", "Roman military commanders"],
+      "correct": "King Agrippa and Bernice",
+      "explain": "The text says: в Кесарию прибыл царь Агриппа с Вереникой — King Agrippa arrived at Caesarea with Bernice."
+    },
+    {
+      "id": "r5",
+      "ru": "Они просили осудить его, но Фест им сказал, что не в обычае у римлян выдавать человека до того, как ему будет дана возможность встретиться с обвинителями лицом к лицу.",
+      "question": "What did Festus say about Roman custom regarding prisoners?",
+      "options": ["It is not the Roman custom to give up a man without facing his accusers", "Romans always execute prisoners without trial", "Romans release prisoners if the accusers are absent", "Romans allow the high priests to judge prisoners"],
+      "correct": "It is not the Roman custom to give up a man without facing his accusers",
+      "explain": "Фест объяснил: не в обычае у римлян выдавать человека до того, как ему будет дана возможность встретиться с обвинителями — it is not the Roman custom to surrender a man without meeting his accusers face to face."
+    },
+    {
+      "id": "r6",
+      "ru": "Агриппа сказал Фесту. «Я бы сам хотел послушать этого человека». «Завтра же услышишь», — ответил Фест.",
+      "question": "What did Agrippa request and when was it granted?",
+      "options": ["To hear Paul speak, and Festus said tomorrow", "To see Paul executed, and Festus refused", "To question the high priests, and Festus agreed", "To review the court records, and Festus delayed"],
+      "correct": "To hear Paul speak, and Festus said tomorrow",
+      "explain": "Агриппа expressed his desire to hear Paul, and Фест agreed he would hear him tomorrow — Я бы сам хотел послушать этого человека. Завтра же услышишь."
+    }
+  ]
+}
