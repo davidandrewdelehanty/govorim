@@ -1,0 +1,134 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Плеть для ___, узда для осла.",
+      "lemma": "конь",
+      "options": ["конь", "коня", "коню", "конем"],
+      "correct": "коня",
+      "case": "Родительный (Genitive)",
+      "translation": "A whip for a horse, a bridle for a donkey.",
+      "explain": "The preposition для (for) governs the genitive case."
+    },
+    {
+      "id": "c2",
+      "sentence": "Розга для спин ___.",
+      "lemma": "глупец",
+      "options": ["глупец", "глупцы", "глупцов", "глупцами"],
+      "correct": "глупцов",
+      "case": "Родительный (Genitive)",
+      "translation": "A rod for the backs of fools.",
+      "explain": "The preposition для (for) requires the genitive case."
+    },
+    {
+      "id": "c3",
+      "sentence": "Не отвечай ___ по его глупости.",
+      "lemma": "глупец",
+      "options": ["глупец", "глупца", "глупцу", "глупцом"],
+      "correct": "глупцу",
+      "case": "Дательный (Dative)",
+      "translation": "Don't answer a fool according to his folly.",
+      "explain": "The preposition к (answering to) requires the dative case, though 'отвечать' can also take the dative directly."
+    },
+    {
+      "id": "c4",
+      "sentence": "Как пословица в устах ___.",
+      "lemma": "глупец",
+      "options": ["глупец", "глупца", "глупцу", "глупцом"],
+      "correct": "глупца",
+      "case": "Родительный (Genitive)",
+      "translation": "Like a parable in the mouth of a fool.",
+      "explain": "The preposition у (with/at) governing possession requires the genitive case."
+    },
+    {
+      "id": "c5",
+      "sentence": "Лентяй ворочается на ___.",
+      "lemma": "постель",
+      "options": ["постель", "постели", "постелю", "постелью"],
+      "correct": "постели",
+      "case": "Предложный (Prepositional)",
+      "translation": "The sluggard turns over on his bed.",
+      "explain": "The preposition на (on) indicating location requires the prepositional case."
+    },
+    {
+      "id": "c6",
+      "sentence": "Без дров угасает ___.",
+      "lemma": "огонь",
+      "options": ["огонь", "огня", "огню", "огнем"],
+      "correct": "огня",
+      "case": "Родительный (Genitive)",
+      "translation": "Without wood a fire goes out.",
+      "explain": "The preposition без (without) governs the genitive case."
+    },
+    {
+      "id": "c7",
+      "sentence": "Враг лицемерит в ___, а в сердце таит коварство.",
+      "lemma": "слово",
+      "options": ["слова", "слов", "словам", "словах"],
+      "correct": "словах",
+      "case": "Предложный (Prepositional)",
+      "translation": "An enemy dissembles in his words, but harbors deceit in his heart.",
+      "explain": "The preposition в (in) indicating location requires the prepositional case (словах)."
+    },
+    {
+      "id": "c8",
+      "sentence": "Роющий ___ сам в нее упадет.",
+      "lemma": "яма",
+      "options": ["яма", "ямы", "яму", "ямой"],
+      "correct": "яму",
+      "case": "Винительный (Accusative)",
+      "translation": "Whoever digs a pit shall fall into it.",
+      "explain": "The verb рыть (dig) is transitive and takes the accusative case (яму) as its direct object."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Словно летом снег, словно в жатву дождь, так и слава не подобает глупцу.",
+      "question": "To what is honor being compared for a fool in this verse?",
+      "options": ["To sun and heat", "To snow in summer and rain at harvest", "To wind and storm", "To flowers and fruits"],
+      "correct": "To snow in summer and rain at harvest",
+      "explain": "The text states: Словно летом снег, словно в жатву дождь, так и слава не подобает глупцу."
+    },
+    {
+      "id": "r2",
+      "ru": "Как упорхнувший воробей, как улетевшая ласточка, так и незаслуженное проклятие уйдет в пустоту.",
+      "question": "To what are flying birds being compared?",
+      "options": ["To the glory of a fool", "To an undeserved curse that will not rest", "To a wise man's blessing", "To the works of the sluggard"],
+      "correct": "To an undeserved curse that will not rest",
+      "explain": "The passage compares the flight of a sparrow and swallow to: незаслуженное проклятие уйдет в пустоту (an undeserved curse that goes into emptiness)."
+    },
+    {
+      "id": "r3",
+      "ru": "Видишь человека, который мнит себя мудрым? На глупца больше надежды, чем на него.",
+      "question": "Who is worse than a fool according to this verse?",
+      "options": ["A lazy man", "A man who thinks himself wise", "A liar", "A greedy person"],
+      "correct": "A man who thinks himself wise",
+      "explain": "The text asks: Видишь человека, который мнит себя мудрым? На глупца больше надежды, чем на него."
+    },
+    {
+      "id": "r4",
+      "ru": "Лентяй говорит, на дороге лев, лев бродит на улицах.",
+      "question": "What excuse does the sluggard use to avoid work?",
+      "options": ["It is raining", "There is a lion in the road", "It is too dark", "He is too tired"],
+      "correct": "There is a lion in the road",
+      "explain": "The text states: Лентяй говорит, на дороге лев, лев бродит на улицах."
+    },
+    {
+      "id": "r5",
+      "ru": "Без дров угасает огонь, без сплетен гаснет раздор.",
+      "question": "What happens to fire without wood and to quarrels without gossip?",
+      "options": ["They grow stronger", "They go out and die down", "They multiply", "They last forever"],
+      "correct": "They go out and die down",
+      "explain": "The text says: Без дров угасает огонь, без сплетен гаснет раздор."
+    },
+    {
+      "id": "r6",
+      "ru": "Враг лицемерит в словах, а в сердце таит коварство.",
+      "question": "What contrast is shown between an enemy's words and heart?",
+      "options": ["He speaks wisdom but thinks foolishly", "He dissembles with his lips but harbors deceit in his heart", "He promises money but gives nothing", "He seems kind but is truly kind"],
+      "correct": "He dissembles with his lips but harbors deceit in his heart",
+      "explain": "The passage describes: Враг лицемерит в словах, а в сердце таит коварство (An enemy dissembles in words but harbors deceit in his heart)."
+    }
+  ]
+}
