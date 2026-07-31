@@ -4073,7 +4073,21 @@ export default function App() {
         // If the audio element exists and is just paused mid-stream, resume.
         // Otherwise start fresh from the current sentence's begin time.
         var existing = audiobookAudioRef.current;
-        if (existing && existing.src && existing.paused && existing.currentTime > 0) {
+        // "Paused with currentTime > 0" does NOT prove the playhead is inside
+        // this chapter: books transcribed as one mp3 (Москва — Петушки, Дядя
+        // Ваня, Чайка's cast list + Act I) share one audio_url across every
+        // chapter, so after a chapter change the element is still parked where
+        // the previous chapter stopped. Only resume when the playhead actually
+        // lies within this chapter's fragment span; otherwise start fresh.
+        var abD = audiobookDataRef.current;
+        var inThisChapter = false;
+        if (existing && abD && abD.fragments && abD.fragments.length) {
+          var _lo = abD.fragments[0].begin;
+          var _hi = abD.fragments[abD.fragments.length - 1].end;
+          var _t = existing.currentTime;
+          inThisChapter = (_t >= _lo - 0.5 && _t <= _hi + 0.5);
+        }
+        if (existing && existing.src && existing.paused && existing.currentTime > 0 && inThisChapter) {
           setAudioPlaying(true); audioPlayingRef.current = true;
           existing.play().then(function() { startAudiobookRaf(); }).catch(function(){});
         } else {
@@ -4251,6 +4265,9 @@ export default function App() {
   // 'auto' = page change caused by RAF auto-flip during playback;
   // 'manual' = user navigated pages (forward, back, or jumped).
   var pageFlipModeRef = useRef('manual');
+  // cidx the page-change seek effect last ran for, so a chapter change (which
+  // also resets pidx) can be told apart from a real page flip.
+  var pageSeekCidxRef = useRef(-1);
   // Tracks the last cidx so the page/chapter-change effect can distinguish
   // a chapter change (full audio reset) from a within-chapter page change
   // (during audiobook playback we want to keep the stream rolling).
@@ -4263,6 +4280,15 @@ export default function App() {
   useEffect(function() {
     if (pageFlipModeRef.current === 'auto') {
       pageFlipModeRef.current = 'manual';  // reset for next change
+      return;
+    }
+    // A chapter change also resets pidx to 0, which lands here. Do NOT seek in
+    // that case: sentenceTimingsRef still holds the OUTGOING chapter's timings
+    // for a few more frames, so seeking to their earliest begin drags the
+    // playhead back into the previous chapter. The chapter-change effect below
+    // owns the seek when cidx moves.
+    if (pageSeekCidxRef.current !== cidx) {
+      pageSeekCidxRef.current = cidx;
       return;
     }
     // Manual nav (forward, back, jump): wait for buildSentenceTimings to
@@ -4281,7 +4307,7 @@ export default function App() {
       }
     }, 80);
     return function() { clearTimeout(t); };
-  }, [pidx]);
+  }, [pidx, cidx]);
   var currentPage = pages[Math.min(pidx, totalPages - 1)] || pages[0];
   // Keep the ref read by highlightSentence() in lockstep with the rendered page,
   // so the audiobook RAF loop highlights the right page after a flip.
