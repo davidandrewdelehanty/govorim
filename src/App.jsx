@@ -3049,6 +3049,7 @@ export default function App() {
   var [audiobookData, setAudiobookData] = useState(null);    // {audio_url, fragments[], narrator?, year?}
   var [audiobookMode, setAudiobookMode] = useState(false);   // user-toggleable; defaults true when audiobookData arrives
   var audiobookAudioRef = useRef(null);                      // persistent <audio> streaming the recording
+  var lastAbDataRef = useRef(null);                          // previous chapter's audiobook JSON, to detect chapter changes
   var audiobookRafRef = useRef(null);                        // RAF handle for the highlight loop
   var [abCur, setAbCur] = useState(0);                       // audiobook playhead position (s), for the counter/scrubber
   var [abDur, setAbDur] = useState(0);                       // audiobook total duration (s)
@@ -4758,6 +4759,9 @@ export default function App() {
     var data = audiobookData;
     var audio = audiobookAudioRef.current;
     if (!data || !data.audio_url || !audio) return;
+    var prevData = lastAbDataRef.current;
+    lastAbDataRef.current = data;
+    if (prevData === data) return;
     var want = data.audio_url;
     try { want = new URL(data.audio_url, window.location.href).href; } catch(e) {}
     if (audio.src !== want) {
@@ -4769,6 +4773,18 @@ export default function App() {
         var t = setTimeout(function(){ playAudiobookFromSentence(0); }, 150);
         return function(){ clearTimeout(t); };
       }
+    } else if (prevData) {
+      // Same recording, new chapter. Books transcribed as one mp3 (Москва —
+      // Петушки, Дядя Ваня, Чайка acts I + cast list) give every chapter the
+      // same audio_url, so the branch above never fires and playback simply
+      // rolls on from the previous chapter's position. Seek to this chapter's
+      // first spoken word instead.
+      var startAt = (data.word_timings && data.word_timings.length &&
+                     isFinite(data.word_timings[0].begin)) ? data.word_timings[0].begin
+                  : (data.fragments && data.fragments.length &&
+                     isFinite(data.fragments[0].begin)) ? data.fragments[0].begin : 0;
+      try { audio.currentTime = startAt; } catch(e) {}
+      setAbCur(startAt);
     }
   }, [audiobookData]);
 
