@@ -1,0 +1,611 @@
+{
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "За здоровье тайного ___ Иоганна фон Гёте.",
+   "lemma": "советник",
+   "options": [
+    "советник",
+    "советника",
+    "советнику",
+    "советником"
+   ],
+   "correct": "советника",
+   "case": "Родительный (Genitive)",
+   "translation": "To the health of the privy councillor Johann von Goethe.",
+   "explain": "«За здоровье» is «за» plus the genitive of the noun здоровье, and the person whose health it is follows in the genitive too: здоровье (кого?) советника."
+  },
+  {
+   "id": "c2",
+   "sentence": "Разрешите вам задать один пустяшный ___.",
+   "lemma": "вопрос",
+   "options": [
+    "вопрос",
+    "вопроса",
+    "вопросу",
+    "вопросом"
+   ],
+   "correct": "вопрос",
+   "case": "Винительный (Accusative)",
+   "translation": "Allow me to ask you one trifling question.",
+   "explain": "«Вопрос» is the direct object of «задать», so it stands in the accusative; the noun is inanimate, so the accusative looks like the nominative."
+  },
+  {
+   "id": "c3",
+   "sentence": "Отчего это в ___ у вас столько грусти?",
+   "lemma": "глаза",
+   "options": [
+    "глаза",
+    "глаз",
+    "глазах",
+    "глазами"
+   ],
+   "correct": "глазах",
+   "case": "Предложный (Prepositional)",
+   "translation": "Why is there so much sadness in your eyes?",
+   "explain": "«В» answering «где?» (a location, not a direction) takes the prepositional case: в глазах."
+  },
+  {
+   "id": "c4",
+   "sentence": "Отчего это в глазах у вас столько ___?",
+   "lemma": "грусть",
+   "options": [
+    "грусть",
+    "грусти",
+    "грустью",
+    "грустям"
+   ],
+   "correct": "грусти",
+   "case": "Родительный (Genitive)",
+   "translation": "Why is there so much sadness in your eyes?",
+   "explain": "Quantity words like «столько» govern the genitive, so грусть becomes грусти."
+  },
+  {
+   "id": "c5",
+   "sentence": "А ___ – от бабы.",
+   "lemma": "грусть",
+   "options": [
+    "грусть",
+    "грусти",
+    "грустью",
+    "грустям"
+   ],
+   "correct": "грусть",
+   "case": "Именительный (Nominative)",
+   "translation": "And the sadness comes from a woman.",
+   "explain": "Here грусть is the subject of the clause (what comes from a woman), so it stands in the nominative."
+  },
+  {
+   "id": "c6",
+   "sentence": "Утром – переоценка всех этих ___.",
+   "lemma": "ценность",
+   "options": [
+    "ценности",
+    "ценностей",
+    "ценностям",
+    "ценностями"
+   ],
+   "correct": "ценностей",
+   "case": "Родительный (Genitive)",
+   "translation": "In the morning — a revaluation of all these values.",
+   "explain": "The verbal noun «переоценка» takes its object in the genitive, exactly as «переоценка ценностей»."
+  },
+  {
+   "id": "c7",
+   "sentence": "Ни о чем она не заботится так рьяно, как о ___.",
+   "lemma": "равновесие",
+   "options": [
+    "равновесие",
+    "равновесия",
+    "равновесию",
+    "равновесии"
+   ],
+   "correct": "равновесии",
+   "case": "Предложный (Prepositional)",
+   "translation": "There is nothing she cares about so zealously as balance.",
+   "explain": "«Заботиться о ком/чём» uses the preposition «о» with the prepositional case: о равновесии."
+  },
+  {
+   "id": "c8",
+   "sentence": "Потому что в расчет не принимает ___!",
+   "lemma": "баба",
+   "options": [
+    "баба",
+    "бабы",
+    "бабу",
+    "бабой"
+   ],
+   "correct": "бабу",
+   "case": "Винительный (Accusative)",
+   "translation": "Because it does not take a woman into account!",
+   "explain": "«Принимать в расчёт» is transitive and its object is accusative; here the speaker keeps the accusative бабу even after «не»."
+  },
+  {
+   "id": "c9",
+   "sentence": "Если б баба не была ___, лемма не была бы леммой.",
+   "lemma": "баба",
+   "options": [
+    "баба",
+    "бабы",
+    "бабу",
+    "бабой"
+   ],
+   "correct": "бабой",
+   "case": "Творительный (Instrumental)",
+   "translation": "If a woman were not a woman, the lemma would not be a lemma.",
+   "explain": "A predicate noun after быть in the past or conditional goes into the instrumental — compare «лемма не была бы леммой» in the same sentence."
+  },
+  {
+   "id": "c10",
+   "sentence": "Нельзя же ехать к ___ и не пить!",
+   "lemma": "баба",
+   "options": [
+    "баба",
+    "бабы",
+    "бабе",
+    "бабой"
+   ],
+   "correct": "бабе",
+   "case": "Дательный (Dative)",
+   "translation": "You can't travel to a woman and not drink!",
+   "explain": "The preposition «к» (motion towards a person) always governs the dative: к бабе."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "За здоровье тайного советника Иоганна фон Гёте.",
+   "question": "Whose health is the toast drunk to at the start of the chapter?",
+   "options": [
+    "The privy councillor Johann von Goethe",
+    "Maxim Gorky",
+    "Turgenev",
+    "The Decembrist"
+   ],
+   "correct": "The privy councillor Johann von Goethe",
+   "explain": "The company raises the drink to Goethe, given his official title of privy councillor."
+  },
+  {
+   "id": "r2",
+   "ru": "Разве можно грустить, имея такие познания!",
+   "question": "Why does the black-moustached man find Venichka's sadness surprising?",
+   "options": [
+    "Because a man with such learning ought not to be sad",
+    "Because Venichka is going to Petushki",
+    "Because everyone else on the train is sad",
+    "Because Venichka has just been paid"
+   ],
+   "correct": "Because a man with such learning ought not to be sad",
+   "explain": "He argues that someone with such knowledge has no business being sad."
+  },
+  {
+   "id": "r3",
+   "ru": "Можно подумать – вы с утра ничего не пили!",
+   "question": "What does the black-moustached man say Venichka looks like?",
+   "options": [
+    "Like someone who has not drunk anything since morning",
+    "Like someone who has drunk far too much",
+    "Like someone who has just woken up",
+    "Like someone who has lost his ticket"
+   ],
+   "correct": "Like someone who has not drunk anything since morning",
+   "explain": "He says one might think Venichka had drunk nothing all morning."
+  },
+  {
+   "id": "r4",
+   "ru": "Это просто замутненность глаз…",
+   "question": "How does Venichka himself explain the look in his eyes?",
+   "options": [
+    "As a mere cloudiness of the eyes",
+    "As grief over a woman",
+    "As tiredness from the journey",
+    "As the effect of the diagram"
+   ],
+   "correct": "As a mere cloudiness of the eyes",
+   "explain": "He denies it is sadness and calls it simply a cloudiness of the eyes, adding that he has had a little to drink."
+  },
+  {
+   "id": "r5",
+   "ru": "Вы как Гёте!",
+   "question": "Whom does the black-moustached man compare Venichka to?",
+   "options": [
+    "Goethe",
+    "Pushkin",
+    "Gorky",
+    "Turgenev"
+   ],
+   "correct": "Goethe",
+   "explain": "He says Venichka, like Goethe, refutes everything — including his lemma."
+  },
+  {
+   "id": "r6",
+   "ru": "И черноусый изобразил на бумажке такую вот хреновину.",
+   "question": "How does the black-moustached man present his lemma to the others?",
+   "options": [
+    "He draws a diagram on a scrap of paper",
+    "He recites it from memory in verse",
+    "He reads it out of a notebook",
+    "He acts it out with the suitcase"
+   ],
+   "correct": "He draws a diagram on a scrap of paper",
+   "explain": "He sketches a curve on a bit of paper and then explains what its lines mean."
+  },
+  {
+   "id": "r7",
+   "ru": "Наивысшая точка кривой – момент засыпания, наинизшая – пробуждения с похмелья…",
+   "question": "What does the highest point of the curve stand for?",
+   "options": [
+    "The moment of falling asleep",
+    "The moment of waking up with a hangover",
+    "The line of ordinary sobriety",
+    "The moment the shops open"
+   ],
+   "correct": "The moment of falling asleep",
+   "explain": "The peak is the moment of falling asleep and the lowest point is waking up hung over."
+  },
+  {
+   "id": "r8",
+   "ru": "Это же голая зеркальность!",
+   "question": "What does the black-moustached man call the pattern his curve shows?",
+   "options": [
+    "Naked mirror symmetry",
+    "Pure coincidence",
+    "A moral law",
+    "An optical illusion"
+   ],
+   "correct": "Naked mirror symmetry",
+   "explain": "He insists the evening and the morning mirror each other exactly."
+  },
+  {
+   "id": "r9",
+   "ru": "Не знаю, нравственна ли это забота, но она строго геометрична!",
+   "question": "How does he describe nature's concern for balance?",
+   "options": [
+    "He is unsure whether it is moral, but it is strictly geometrical",
+    "He calls it both moral and merciful",
+    "He calls it entirely random",
+    "He says it applies only to drinkers"
+   ],
+   "correct": "He is unsure whether it is moral, but it is strictly geometrical",
+   "explain": "He says nature cares for nothing so zealously as balance, and that this care is strictly geometrical."
+  },
+  {
+   "id": "r10",
+   "ru": "Вечером – бесстрашие, даже если и есть причина бояться, бесстрашие и недооценка всех ценностей.",
+   "question": "According to the lemma, what characterises the evening?",
+   "options": [
+    "Fearlessness and an undervaluing of all values",
+    "Fear and a revaluation of all values",
+    "Indifference to everything",
+    "A longing for the ideal only"
+   ],
+   "correct": "Fearlessness and an undervaluing of all values",
+   "explain": "The evening brings fearlessness; the morning brings the opposite, a revaluation turning into groundless fear."
+  },
+  {
+   "id": "r11",
+   "ru": "Она – всеобща и к каждому применима.",
+   "question": "What does the black-moustached man claim about his cherished lemma?",
+   "options": [
+    "That it is universal and applies to everyone",
+    "That it applies only to men with moustaches",
+    "That it applies only to Goethe",
+    "That it is impossible to prove"
+   ],
+   "correct": "That it is universal and applies to everyone",
+   "explain": "He presents it as universal — which is exactly why Venichka and the Decembrist ask why it is called a lemma at all."
+  },
+  {
+   "id": "r12",
+   "ru": "Потому что в расчет не принимает бабу!",
+   "question": "Why, in his own words, is it still only a lemma?",
+   "options": [
+    "Because it does not take women into account",
+    "Because it has never been written down",
+    "Because Goethe disproved it",
+    "Because it only works on trains"
+   ],
+   "correct": "Because it does not take women into account",
+   "explain": "It accounts for a person in the pure state, but not for a woman."
+  },
+  {
+   "id": "r13",
+   "ru": "С появлением бабы нарушается всякая зеркальность.",
+   "question": "What destroys the mirror symmetry of the lemma?",
+   "options": [
+    "The appearance of a woman",
+    "A second glass in the morning",
+    "The arrival of the ticket inspector",
+    "The absence of moustaches"
+   ],
+   "correct": "The appearance of a woman",
+   "explain": "As soon as a woman appears, the neat symmetry between evening and morning breaks down."
+  },
+  {
+   "id": "r14",
+   "ru": "«Плохих баб нет, только леммы одни бывают плохие…»",
+   "question": "What does one of the voices in the general uproar claim?",
+   "options": [
+    "That there are no bad women, only bad lemmas",
+    "That there are no good lemmas at all",
+    "That all women are lemmas",
+    "That bad women are the most useful ones"
+   ],
+   "correct": "That there are no bad women, only bad lemmas",
+   "explain": "In the burst of shouting someone turns the question round and blames the lemmas instead of the women."
+  },
+  {
+   "id": "r15",
+   "ru": "Все-таки, я считаю: тридцать самых плохих баб лучше, чем одна, хоть и самая хорошая…",
+   "question": "What is the Decembrist's own view of the matter?",
+   "options": [
+    "Thirty of the worst women are better than one, even the very best",
+    "One good woman is worth all thirty",
+    "Women matter less than moustaches",
+    "Neither good nor bad women are needed"
+   ],
+   "correct": "Thirty of the worst women are better than one, even the very best",
+   "explain": "He boasts of having thirty women and prefers quantity to quality."
+  },
+  {
+   "id": "r16",
+   "ru": "Разговор о бабе идет, а не об усах!",
+   "question": "What does the black-moustached man object to in the Decembrist's argument?",
+   "options": [
+    "That the conversation is about women, not about moustaches",
+    "That thirty is too small a number",
+    "That the Decembrist has no moustache",
+    "That nobody has mentioned Goethe"
+   ],
+   "correct": "That the conversation is about women, not about moustaches",
+   "explain": "He protests at the moustaches being dragged in, and the Decembrist answers that without moustaches there would be no conversation at all."
+  },
+  {
+   "id": "r17",
+   "ru": "А зверобой стоит 2.62.",
+   "question": "How much does a bottle of zveroboy cost, by Venichka's reckoning?",
+   "options": [
+    "2.62",
+    "3.60",
+    "12 kopecks",
+    "30 roubles"
+   ],
+   "correct": "2.62",
+   "explain": "Thirty empties at twelve kopecks make 3.60, while the bottle itself costs 2.62."
+  },
+  {
+   "id": "r18",
+   "ru": "Отчего Пушкин умер, они еще не знают, а это – уже знают.",
+   "question": "What does Venichka say children already know?",
+   "options": [
+    "The prices, though not yet why Pushkin died",
+    "Why Pushkin died, though not the prices",
+    "How to swap empties for a bottle",
+    "Nothing about drink at all"
+   ],
+   "correct": "The prices, though not yet why Pushkin died",
+   "explain": "He offers it as proof that the arithmetic of empties and bottles is common knowledge."
+  },
+  {
+   "id": "r19",
+   "ru": "А хорошая баба – берет у вас плохую посуду, а взамен дает хорошую.",
+   "question": "What, according to Venichka, makes the woman behind the shop counter a good one?",
+   "options": [
+    "She takes your bad empties and gives good bottles in return",
+    "She always gives the change back",
+    "She never charges for the bottle",
+    "She keeps the shop open at dawn"
+   ],
+   "correct": "She takes your bad empties and gives good bottles in return",
+   "explain": "A bad woman would not take the empties at all; a good one accepts them and gives a full bottle back, so she must be honoured."
+  },
+  {
+   "id": "r20",
+   "ru": "«Мерило всякой цивилизации – способ отношения к женщине».",
+   "question": "What saying of Maxim Gorky does Venichka quote?",
+   "options": [
+    "That the measure of any civilisation is the way it treats women",
+    "That work ennobles a person",
+    "That a man must not drink before evening",
+    "That Capri is the finest place on earth"
+   ],
+   "correct": "That the measure of any civilisation is the way it treats women",
+   "explain": "He quotes it as his justification for leaving the change with the shop woman."
+  },
+  {
+   "id": "r21",
+   "ru": "Так и ухожу, без всякой сдачи.",
+   "question": "What does Venichka do about the change in his vision of the shop?",
+   "options": [
+    "He leaves without taking any change",
+    "He demands every kopeck back",
+    "He buys a second bottle with it",
+    "He gives it to the Decembrist"
+   ],
+   "correct": "He leaves without taking any change",
+   "explain": "The imagined Gorky on Capri wags a finger at him not to take the change, and he obeys, grumbling."
+  },
+  {
+   "id": "r22",
+   "ru": "Хорошему человеку плохая баба иногда прямо необходима бывает.",
+   "question": "How does Venichka answer the Decembrist's question about bad women?",
+   "options": [
+    "A good man sometimes absolutely needs a bad woman",
+    "Bad women should always be avoided",
+    "Only thirty bad women are of any use",
+    "Bad women exist only in lemmas"
+   ],
+   "correct": "A good man sometimes absolutely needs a bad woman",
+   "explain": "He then tells how such a woman raised him from the coffin he had lain in for four years."
+  },
+  {
+   "id": "r23",
+   "ru": "Подошла ко гробу и говорит: «Талифа куми».",
+   "question": "What did the woman say when she came up to Venichka's coffin?",
+   "options": [
+    "«Talitha koum»",
+    "«Don't take the change»",
+    "«Thirty for one»",
+    "«Davayte, like in Turgenev»"
+   ],
+   "correct": "«Talitha koum»",
+   "explain": "He glosses the words as 'I say to you, arise and walk' — and says he got up and went."
+  },
+  {
+   "id": "r24",
+   "ru": "И вот уж три месяца хожу замутненный…",
+   "question": "How long has Venichka been walking about in his clouded state?",
+   "options": [
+    "Three months",
+    "Four years",
+    "Twelve weeks of sleep",
+    "Since the previous evening"
+   ],
+   "correct": "Three months",
+   "explain": "He dates his cloudiness from the moment the woman raised him twelve weeks earlier."
+  },
+  {
+   "id": "r25",
+   "ru": "У нас тут прямо как у Тургенева: все сидят и спорят про любовь…",
+   "question": "What comparison does the Decembrist make about the company in the carriage?",
+   "options": [
+    "That they are like characters in Turgenev, sitting and arguing about love",
+    "That they are like Goethe's readers",
+    "That they are like children in a shop",
+    "That they are like Gorky on Capri"
+   ],
+   "correct": "That they are like characters in Turgenev, sitting and arguing about love",
+   "explain": "Delighted at how cultivated they all are, he proposes that everyone tell a story, as in Turgenev."
+  },
+  {
+   "id": "r26",
+   "ru": "Даже старый Митрич – и тот сказал: «Давайте!..»",
+   "question": "How does the chapter end?",
+   "options": [
+    "Even old Mitrich agrees to the storytelling",
+    "Mitrich alone refuses to join in",
+    "The Decembrist falls asleep",
+    "The train arrives at Petushki"
+   ],
+   "correct": "Even old Mitrich agrees to the storytelling",
+   "explain": "The whole company takes up the Decembrist's proposal, old Mitrich included."
+  }
+ ],
+ "highlight": [
+  {
+   "id": "h1",
+   "question": "Which sentence says that Venichka looks as though he has not had anything to drink all morning?",
+   "sentences": [
+    "– А… разрешите вам задать один пустяшный вопрос, – сказал черноусый сквозь усы и сквозь бутерброд в усах: он опять обращался только ко мне.",
+    "– Разрешите спросить: отчего это в глазах у вас столько грусти?..",
+    "Разве можно грустить, имея такие познания!",
+    "Можно подумать – вы с утра ничего не пили!"
+   ],
+   "correct": [
+    3
+   ],
+   "explain": "Only the last sentence draws the conclusion that Venichka has drunk nothing since morning."
+  },
+  {
+   "id": "h2",
+   "question": "Which sentence is Venichka's admission that he has had a little to drink?",
+   "sentences": [
+    "– Как, то есть, ничего!",
+    "И разве это грусть?",
+    "Это просто замутненность глаз…",
+    "Я просто немного поддал…"
+   ],
+   "correct": [
+    3
+   ],
+   "explain": "The final sentence is where he concedes he has drunk a bit, after denying that his look is sadness."
+  },
+  {
+   "id": "h3",
+   "question": "Which sentence explains what the highest and lowest points of the drawn curve mean?",
+   "sentences": [
+    "И черноусый изобразил на бумажке такую вот хреновину.",
+    "И объяснил: горизонтальная линия – это линия обычной трезвости, повседневная линия.",
+    "Наивысшая точка кривой – момент засыпания, наинизшая – пробуждения с похмелья…"
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "The last sentence names the peak as falling asleep and the trough as waking with a hangover, while the previous one describes only the horizontal line."
+  },
+  {
+   "id": "h4",
+   "question": "Which sentence claims that it is the lemmas, not the women, that can be bad?",
+   "sentences": [
+    "Враз заговорили все.",
+    "«Да что такое вообще лемма?»",
+    "«И что такое – плохая баба?»",
+    "«Плохих баб нет, только леммы одни бывают плохие…»"
+   ],
+   "correct": [
+    3
+   ],
+   "explain": "The last shouted remark turns the question round and blames the lemmas."
+  },
+  {
+   "id": "h5",
+   "question": "Which sentence states the Decembrist's conclusion about thirty bad women against one good one?",
+   "sentences": [
+    "– У меня, например, – сказал декабрист, – у меня тридцать баб, и одна чище другой, хоть и усов у меня нет.",
+    "А у вас, допустим, усы и одна хорошая баба.",
+    "Все-таки, я считаю: тридцать самых плохих баб лучше, чем одна, хоть и самая хорошая…"
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "The first two sentences only set out the two situations; the third gives his verdict."
+  },
+  {
+   "id": "h6",
+   "question": "Which sentence says that children do not yet know why Pushkin died but do already know this?",
+   "sentences": [
+    "– Да иначе кто ж вам обменяет!",
+    "Тридцать на двенадцать – это 3.60.",
+    "А зверобой стоит 2.62.",
+    "Это и дети знают.",
+    "Отчего Пушкин умер, они еще не знают, а это – уже знают.",
+    "А все-таки никакой сдачи.",
+    "3.60, конечно, хорошо, это лучше, чем 2.62, но все-таки сдачи не берешь, потому что за витриной стоит хорошая баба, а хорошую бабу надо уважить…"
+   ],
+   "correct": [
+    4
+   ],
+   "explain": "Pushkin's death is mentioned in only one sentence, the one contrasting what children do and do not know."
+  },
+  {
+   "id": "h7",
+   "question": "Which sentence describes what a good woman does with the bad empties you bring her?",
+   "sentences": [
+    "– Да тем и хороша, что плохая вообще бы посуду у вас не взяла.",
+    "А хорошая баба – берет у вас плохую посуду, а взамен дает хорошую.",
+    "И поэтому надо уважить…",
+    "Для чего вообще на свете баба?"
+   ],
+   "correct": [
+    1
+   ],
+   "explain": "The second sentence is the one that says she takes the bad empties and gives good ones in exchange."
+  },
+  {
+   "id": "h8",
+   "question": "Which sentence gives the translation of the words spoken over the coffin?",
+   "sentences": [
+    "– Вот-вот!",
+    "Подошла ко гробу и говорит: «Талифа куми».",
+    "Это значит в переводе с древнежидовского: «Тебе говорю – встань и ходи».",
+    "И что ж вы думаете?",
+    "Встал – и пошел.",
+    "И вот уж три месяца хожу замутненный…"
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "The third sentence renders «Талифа куми» into Russian, while the second only quotes it."
+  }
+ ]
+}

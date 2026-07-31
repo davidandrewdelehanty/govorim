@@ -1,0 +1,418 @@
+{
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Странно высокие дома понастроили в ___!",
+   "lemma": "Петушки",
+   "options": [
+    "Петушки",
+    "Петушков",
+    "Петушкам",
+    "Петушках"
+   ],
+   "correct": "Петушках",
+   "case": "Предложный (Prepositional)",
+   "translation": "What strangely tall houses they have put up in Petushki!",
+   "explain": "«В» answering «где?» (location, not direction) takes the prepositional; Петушки is a plural place name, so the ending is -ах."
+  },
+  {
+   "id": "c2",
+   "sentence": "Я отошел от ___ и переводил свой тяжелый взгляд с дома на дом.",
+   "lemma": "дверь",
+   "options": [
+    "двери",
+    "дверей",
+    "дверям",
+    "дверями"
+   ],
+   "correct": "дверей",
+   "case": "Родительный (Genitive)",
+   "translation": "I stepped away from the doors and moved my heavy gaze from house to house.",
+   "explain": "The preposition «от» (away from) always governs the genitive; here the noun is plural, giving дверей."
+  },
+  {
+   "id": "c3",
+   "sentence": "Я свернул в ___, и снова задрожал и заплакал.",
+   "lemma": "переулок",
+   "options": [
+    "переулок",
+    "переулка",
+    "переулке",
+    "переулком"
+   ],
+   "correct": "переулок",
+   "case": "Винительный (Accusative)",
+   "translation": "I turned into a side street, and started shivering and crying again.",
+   "explain": "«В» with motion (turning INTO somewhere) takes the accusative; переулок is inanimate, so its accusative matches the nominative."
+  },
+  {
+   "id": "c4",
+   "sentence": "Орехов двести грамм, я ___ их вез.",
+   "lemma": "младенец",
+   "options": [
+    "младенец",
+    "младенца",
+    "младенцу",
+    "младенцем"
+   ],
+   "correct": "младенцу",
+   "case": "Дательный (Dative)",
+   "translation": "Two hundred grams of nuts — I was bringing them to the little child.",
+   "explain": "The recipient of the verb «везти» (to bring something to someone) is the indirect object and stands in the dative: младенцу."
+  },
+  {
+   "id": "c5",
+   "sentence": "И апостол предал Христа, покуда третий ___ не пропел.",
+   "lemma": "петух",
+   "options": [
+    "петух",
+    "петуха",
+    "петуху",
+    "петухом"
+   ],
+   "correct": "петух",
+   "case": "Именительный (Nominative)",
+   "translation": "And the apostle betrayed Christ before the third cock had crowed.",
+   "explain": "The word is the subject of the verb «не пропел», and subjects stand in the nominative even when the verb is negated."
+  },
+  {
+   "id": "c6",
+   "sentence": "Он еще грелся у ___, вместе с этими.",
+   "lemma": "костёр",
+   "options": [
+    "костёр",
+    "костра",
+    "костру",
+    "костром"
+   ],
+   "correct": "костра",
+   "case": "Родительный (Genitive)",
+   "translation": "He was still warming himself by the fire, together with that lot.",
+   "explain": "«У» meaning 'beside / at' governs the genitive; the ё of костёр drops out in the oblique forms, giving костра."
+  },
+  {
+   "id": "c7",
+   "sentence": "Я задрожал сильнее прежнего, я весь превратился в сплошную ___.",
+   "lemma": "судорога",
+   "options": [
+    "судорога",
+    "судороги",
+    "судорогу",
+    "судорогой"
+   ],
+   "correct": "судорогу",
+   "case": "Винительный (Accusative)",
+   "translation": "I shook harder than before, I turned into one continuous convulsion.",
+   "explain": "«Превратиться в» (to turn into) takes «в» + accusative, so судорога becomes судорогу after the accusative adjective сплошную."
+  },
+  {
+   "id": "c8",
+   "sentence": "Один ударил меня по щеке, другой – ___ в лицо.",
+   "lemma": "кулак",
+   "options": [
+    "кулак",
+    "кулака",
+    "кулаку",
+    "кулаком"
+   ],
+   "correct": "кулаком",
+   "case": "Творительный (Instrumental)",
+   "translation": "One hit me on the cheek, another with his fist in the face.",
+   "explain": "The instrument used to perform an action stands in the instrumental case with no preposition: ударить кулаком."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Постучался – и, вздрагивая от холода, стал ждать, пока мне отворят…",
+   "question": "How does the chapter open?",
+   "options": [
+    "He knocks and waits, shivering with cold, for someone to open the door",
+    "He is already sitting inside a warm room",
+    "He is buying vodka at a kiosk",
+    "He is asleep on a train to Petushki"
+   ],
+   "correct": "He knocks and waits, shivering with cold, for someone to open the door",
+   "explain": "The first line has Venichka knocking and waiting in the cold for the door to be opened."
+  },
+  {
+   "id": "r2",
+   "ru": "Странно высокие дома понастроили в Петушках!..",
+   "question": "What does Venichka say about the houses in Petushki?",
+   "options": [
+    "That strangely tall houses have been built there",
+    "That they are all low wooden huts",
+    "That they have all been pulled down",
+    "That they are exactly like the ones in Moscow"
+   ],
+   "correct": "That strangely tall houses have been built there",
+   "explain": "He is puzzled by the strangely tall houses, and blames it on his heavy hangover — everything looks bigger."
+  },
+  {
+   "id": "r3",
+   "ru": "Они, серьезные, это понимают, а я, легковесный, никогда не пойму…",
+   "question": "How does Venichka contrast himself with other people here?",
+   "options": [
+    "They are serious and understand, while he is lightweight and never will",
+    "They are lightweight while he alone is serious",
+    "Neither he nor they understand anything",
+    "He understands everything and they understand nothing"
+   ],
+   "correct": "They are serious and understand, while he is lightweight and never will",
+   "explain": "He calls the others «серьезные» and himself «легковесный», picking up the Belshazzar phrase about being weighed and found wanting."
+  },
+  {
+   "id": "r4",
+   "ru": "Я много прожил, много перепил и продумал – и знаю, что говорю.",
+   "question": "What does Venichka offer as his authority for what he is saying?",
+   "options": [
+    "That he has lived much, drunk much and thought much",
+    "That he has read it in the newspapers",
+    "That a black-moustached man taught him",
+    "That the four strangers told him so"
+   ],
+   "correct": "That he has lived much, drunk much and thought much",
+   "explain": "He backs his claim about the scales with his own experience of living, drinking and thinking things through."
+  },
+  {
+   "id": "r5",
+   "ru": "Все ваши путеводные звезды катятся к закату, а если и не катятся, то едва мерцают.",
+   "question": "What does Venichka say about other people's guiding stars?",
+   "options": [
+    "They are rolling towards sunset, or at best barely flickering",
+    "They shine brighter every year",
+    "They have already gone out completely",
+    "They are all the star of Bethlehem"
+   ],
+   "correct": "They are rolling towards sunset, or at best barely flickering",
+   "explain": "He says every guiding star but one is setting or barely glimmering, which is why he cares only whether the star of Bethlehem is flaring up again."
+  },
+  {
+   "id": "r6",
+   "ru": "Есть там весы, нет там весов – там мы, легковесные, перевесим и одолеем.",
+   "question": "What does Venichka predict about the 'lightweight' people like himself?",
+   "options": [
+    "Scales or no scales, they will outweigh and prevail",
+    "They will be weighed and thrown away",
+    "They will never be weighed at all",
+    "They will become serious in the end"
+   ],
+   "correct": "Scales or no scales, they will outweigh and prevail",
+   "explain": "Whether or not the scales exist, he insists the lightweight ones will tip the balance and win."
+  },
+  {
+   "id": "r7",
+   "ru": "Но почему же так странно расширили улицы в Петушках?..",
+   "question": "What question does Venichka keep coming back to during his speech?",
+   "options": [
+    "Why the streets in Petushki have been made so strangely wide",
+    "Why the shops in Petushki are shut",
+    "Why nobody in Petushki knows his name",
+    "Why the train to Petushki was late"
+   ],
+   "correct": "Why the streets in Petushki have been made so strangely wide",
+   "explain": "His prophetic speech breaks off twice with bewilderment at the size of the buildings and the width of the streets."
+  },
+  {
+   "id": "r8",
+   "ru": "Если б у меня было хоть двадцать глотков кубанской!",
+   "question": "What does Venichka wish he had at this moment?",
+   "options": [
+    "At least twenty swallows of Kubanskaya vodka",
+    "A glass of coriander vodka",
+    "A mug of Zhiguli beer",
+    "A cup of hot tea"
+   ],
+   "correct": "At least twenty swallows of Kubanskaya vodka",
+   "explain": "He believes twenty gulps of Kubanskaya would reach his heart, and his heart would then convince his reason that he really is in Petushki."
+  },
+  {
+   "id": "r9",
+   "ru": "Но кубанской не было: я свернул в переулок, и снова задрожал и заплакал…",
+   "question": "What does Venichka do when it turns out there is no Kubanskaya?",
+   "options": [
+    "He turns into a side street and starts shivering and crying again",
+    "He goes back and knocks at the door once more",
+    "He lies down on the pavement and falls asleep",
+    "He runs straight to the station"
+   ],
+   "correct": "He turns into a side street and starts shivering and crying again",
+   "explain": "With no vodka to steady him he turns off into a lane, trembling and in tears — and that is where the four are waiting."
+  },
+  {
+   "id": "r10",
+   "ru": "Я сразу их узнал, я не буду вам объяснять, кто эти четверо…",
+   "question": "What does Venichka say about the four men who come towards him?",
+   "options": [
+    "He recognised them at once and will not explain to us who they are",
+    "He had never seen anyone like them before",
+    "They were old drinking companions of his",
+    "They were railway workers from Petushki"
+   ],
+   "correct": "He recognised them at once and will not explain to us who they are",
+   "explain": "He refuses to name them, saying only that he knew them immediately."
+  },
+  {
+   "id": "r11",
+   "ru": "А они подошли и меня обступили.",
+   "question": "What do the four do when they reach Venichka?",
+   "options": [
+    "They come up and surround him",
+    "They walk straight past him",
+    "They ask him for money",
+    "They run away from him"
+   ],
+   "correct": "They come up and surround him",
+   "explain": "They close in around him, and he then tries to describe their faces and their eyes."
+  },
+  {
+   "id": "r12",
+   "ru": "Ну, вот ты и попался, – сказал один.",
+   "question": "What is the first thing one of the four says to Venichka?",
+   "options": [
+    "That he has finally been caught",
+    "That he must pay them six roubles",
+    "That the train to Petushki has left",
+    "That they will show him the way to the Kremlin"
+   ],
+   "correct": "That he has finally been caught",
+   "explain": "The exchange opens with «Ну, вот ты и попался» and the flat announcement that he will not be going anywhere else."
+  },
+  {
+   "id": "r13",
+   "ru": "Я знаю, почему он предал, – потому что дрожал от холода, да.",
+   "question": "Why, according to Venichka, did the apostle betray Christ?",
+   "options": [
+    "Because he was shivering with cold",
+    "Because he had been paid to do it",
+    "Because he did not recognise him",
+    "Because he had been drinking all night"
+   ],
+   "correct": "Because he was shivering with cold",
+   "explain": "Venichka argues nobody can be sure of himself on a cold night, and adds that the apostle at least had a fire to warm himself at."
+  },
+  {
+   "id": "r14",
+   "ru": "Какой еще василек? – со злобою спросил один.",
+   "question": "How does one of the four react when Venichka mentions «Василек»?",
+   "options": [
+    "He asks spitefully what sort of cornflower that is supposed to be",
+    "He laughs and offers Venichka a sweet",
+    "He says he knows the shop where they are sold",
+    "He says nothing at all"
+   ],
+   "correct": "He asks spitefully what sort of cornflower that is supposed to be",
+   "explain": "Venichka has to explain that «Василек» is the name of the sweets he was carrying in the stolen suitcase."
+  },
+  {
+   "id": "r15",
+   "ru": "Не поедешь ты ни в какие Петушки!",
+   "question": "What do the four tell Venichka when he says he wants to go to Petushki again?",
+   "options": [
+    "That he is not going to any Petushki",
+    "That the last train has already gone",
+    "That they will take him there themselves",
+    "That he should go to the Kremlin instead"
+   ],
+   "correct": "That he is not going to any Petushki",
+   "explain": "They refuse him Petushki, and then refuse him the Kursk station as well."
+  },
+  {
+   "id": "r16",
+   "ru": "Я схватился за голову – и побежал.",
+   "question": "How does the chapter end?",
+   "options": [
+    "He clutches his head and runs, with the four right behind him",
+    "He falls down and loses consciousness",
+    "He drives the four men off",
+    "He walks calmly away and boards a train"
+   ],
+   "correct": "He clutches his head and runs, with the four right behind him",
+   "explain": "After being struck he takes his own advice to run anywhere at all, and the four set off after him."
+  }
+ ],
+ "highlight": [
+  {
+   "id": "h1",
+   "question": "Which sentence quotes the words of the writing on the wall and translates them?",
+   "sentences": [
+    "Я еще раз постучался, чуть громче прежнего: «Неужели так трудно отворить человеку дверь и впустить его на три минуты погреться?",
+    "Я этого не понимаю…",
+    "Они, серьезные, это понимают, а я, легковесный, никогда не пойму…",
+    "Мене, текел, фарес – то есть „ты взвешен на весах и найден легковесным“, то есть „текел“…",
+    "Ну и пусть, пусть…"
+   ],
+   "correct": [
+    3
+   ],
+   "explain": "The fourth sentence gives the Belshazzar formula and glosses it as being weighed and found wanting."
+  },
+  {
+   "id": "h2",
+   "question": "Which sentence says what will outweigh calculation and design on those scales?",
+   "sentences": [
+    "Но есть ли там весы или нет – все равно – на тех весах вздох и слеза перевесят расчет и умысел.",
+    "Я это знаю тверже, чем вы что-нибудь знаете.",
+    "Я много прожил, много перепил и продумал – и знаю, что говорю.",
+    "Все ваши путеводные звезды катятся к закату, а если и не катятся, то едва мерцают."
+   ],
+   "correct": [
+    0
+   ],
+   "explain": "The first sentence names the sigh and the tear as what tips the balance against calculation and intent."
+  },
+  {
+   "id": "h3",
+   "question": "Which sentence breaks off the prophecy with a question about the streets of Petushki?",
+   "sentences": [
+    "Есть там весы, нет там весов – там мы, легковесные, перевесим и одолеем.",
+    "Я прочнее в это верю, чем вы во что-нибудь верите.",
+    "Верю, и знаю, и свидетельствую миру.",
+    "Но почему же так странно расширили улицы в Петушках?.."
+   ],
+   "correct": [
+    3
+   ],
+   "explain": "The paragraph of prophecy ends abruptly with his bewilderment at the widened streets."
+  },
+  {
+   "id": "h4",
+   "question": "Which sentence says what Venichka actually did once there turned out to be no vodka?",
+   "sentences": [
+    "Если б у меня было хоть двадцать глотков кубанской!",
+    "Они подошли бы к сердцу, и сердце всегда сумело бы убедить рассудок, что я в Петушках!",
+    "Но кубанской не было: я свернул в переулок, и снова задрожал и заплакал…"
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "The first two sentences are a wish and its imagined effect; only the third reports what he did."
+  },
+  {
+   "id": "h5",
+   "question": "Which sentence says that Venichka knew the four men immediately but refuses to say who they are?",
+   "sentences": [
+    "И тут – началась история, страшнее всех, виденных во сне: в этом самом переулке навстречу мне шли четверо…",
+    "Я сразу их узнал, я не буду вам объяснять, кто эти четверо…",
+    "Я задрожал сильнее прежнего, я весь превратился в сплошную судорогу…"
+   ],
+   "correct": [
+    1
+   ],
+   "explain": "The second sentence combines instant recognition with his refusal to explain."
+  },
+  {
+   "id": "h6",
+   "question": "Which sentence shows Venichka trying to remember where he had seen those faces before?",
+   "sentences": [
+    "Все четверо смотрели на меня в упор, и все четверо, наверно, думали: «Как этот подонок труслив и элементарен!»",
+    "О, пусть, пусть себе думают, только бы отпустили!..",
+    "Где, в каких газетах я видел эти рожи?.."
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "The last sentence asks in which newspapers he had seen those mugs before."
+  }
+ ]
+}

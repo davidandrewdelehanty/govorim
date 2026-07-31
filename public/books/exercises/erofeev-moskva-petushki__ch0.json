@@ -1,0 +1,282 @@
+{
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Первое ___ «Москва—Петушки» быстро разошлось.",
+   "lemma": "издание",
+   "options": [
+    "издание",
+    "издания",
+    "изданию",
+    "изданием"
+   ],
+   "correct": "издание",
+   "case": "Именительный (Nominative)",
+   "translation": "The first edition of «Moscow–Petushki» sold out quickly.",
+   "explain": "The word is the subject of «разошлось» (what sold out), and the subject of a sentence stands in the nominative."
+  },
+  {
+   "id": "c2",
+   "sentence": "Я получал с тех пор много ___ за главу «Серп и Молот – Карачарово».",
+   "lemma": "нарекание",
+   "options": [
+    "нарекания",
+    "нареканий",
+    "нареканиям",
+    "нареканиями"
+   ],
+   "correct": "нареканий",
+   "case": "Родительный (Genitive)",
+   "translation": "Since then I have received many complaints about the chapter «Serp i Molot – Karacharovo».",
+   "explain": "The quantity word «много» governs the genitive; with a countable noun it takes the genitive plural, нареканий."
+  },
+  {
+   "id": "c3",
+   "sentence": "Я предупреждал всех ___, что главу следует пропустить.",
+   "lemma": "девушка",
+   "options": [
+    "девушки",
+    "девушек",
+    "девушкам",
+    "девушками"
+   ],
+   "correct": "девушек",
+   "case": "Винительный (Accusative)",
+   "translation": "I warned all the girls that the chapter should be skipped.",
+   "explain": "They are the direct object of «предупреждал», so the accusative is needed; for animate plurals the accusative copies the genitive form, девушек."
+  },
+  {
+   "id": "c4",
+   "sentence": "Во вступлении к первому ___ я предупреждал всех девушек.",
+   "lemma": "издание",
+   "options": [
+    "издание",
+    "издания",
+    "изданию",
+    "изданием"
+   ],
+   "correct": "изданию",
+   "case": "Дательный (Dative)",
+   "translation": "In the introduction to the first edition I warned all the girls.",
+   "explain": "The preposition «к» ('to, towards') always takes the dative: к изданию."
+  },
+  {
+   "id": "c5",
+   "sentence": "За ___ «И немедленно выпил» следуют полторы страницы чистейшего мата.",
+   "lemma": "фраза",
+   "options": [
+    "фраза",
+    "фразы",
+    "фразе",
+    "фразой"
+   ],
+   "correct": "фразой",
+   "case": "Творительный (Instrumental)",
+   "translation": "After the phrase «And he immediately drank» there follow a page and a half of the purest obscenity.",
+   "explain": "«За» in the sense of 'behind / after' with the verb следовать governs the instrumental: за фразой."
+  },
+  {
+   "id": "c6",
+   "sentence": "Во всей этой ___ нет ни единого цензурного слова.",
+   "lemma": "глава",
+   "options": [
+    "глава",
+    "главы",
+    "главе",
+    "главой"
+   ],
+   "correct": "главе",
+   "case": "Предложный (Prepositional)",
+   "translation": "In this whole chapter there is not a single printable word.",
+   "explain": "«В/во» answering «где?» (a location, here inside a text) requires the prepositional case: в главе."
+  },
+  {
+   "id": "c7",
+   "sentence": "Я счел необходимым выкинуть из главы всю бывшую там ___.",
+   "lemma": "матерщина",
+   "options": [
+    "матерщина",
+    "матерщины",
+    "матерщину",
+    "матерщиной"
+   ],
+   "correct": "матерщину",
+   "case": "Винительный (Accusative)",
+   "translation": "I considered it necessary to throw out of the chapter all the swearing that had been there.",
+   "explain": "It is the direct object of the verb «выкинуть», and a feminine noun in -а takes -у in the accusative: матерщину."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Первое издание «Москва—Петушки», благо было в одном экземпляре, быстро разошлось.",
+   "question": "What happened to the first edition of «Moscow–Petushki»?",
+   "options": [
+    "It sold out quickly",
+    "It was banned by the censors",
+    "It was never finished",
+    "It was translated at once"
+   ],
+   "correct": "It sold out quickly",
+   "explain": "The author reports that the first edition sold out fast — helped by the fact that it existed in only one copy."
+  },
+  {
+   "id": "r2",
+   "ru": "Первое издание «Москва—Петушки», благо было в одном экземпляре, быстро разошлось.",
+   "question": "How many copies did that first edition consist of?",
+   "options": [
+    "One",
+    "Two",
+    "A hundred",
+    "A thousand"
+   ],
+   "correct": "One",
+   "explain": "The joke is «благо было в одном экземпляре» — it was a single copy, so of course it went fast."
+  },
+  {
+   "id": "r3",
+   "ru": "Я получал с тех пор много нареканий за главу «Серп и Молот – Карачарово», и совершенно напрасно.",
+   "question": "What has the author been getting ever since the first edition?",
+   "options": [
+    "Complaints about the chapter «Serp i Molot – Karacharovo»",
+    "Requests for a sequel",
+    "Money from his publisher",
+    "Letters of praise from censors"
+   ],
+   "correct": "Complaints about the chapter «Serp i Molot – Karacharovo»",
+   "explain": "He says he received many reproaches over that particular chapter."
+  },
+  {
+   "id": "r4",
+   "ru": "Я получал с тех пор много нареканий за главу «Серп и Молот – Карачарово», и совершенно напрасно.",
+   "question": "What is the author's own verdict on those complaints?",
+   "options": [
+    "They were completely unjustified",
+    "They were entirely fair",
+    "They came too late",
+    "They made him rich"
+   ],
+   "correct": "They were completely unjustified",
+   "explain": "He adds «и совершенно напрасно» — the complaints were quite pointless."
+  },
+  {
+   "id": "r5",
+   "ru": "«И немедленно выпил»",
+   "question": "According to the author, which is the only printable phrase in the chapter «Serp i Molot – Karacharovo»?",
+   "options": [
+    "«And he immediately drank»",
+    "«Moscow–Petushki»",
+    "«Author's notice»",
+    "«Serp i Molot – Karacharovo»"
+   ],
+   "correct": "«And he immediately drank»",
+   "explain": "He says there is not one censorable word in the whole chapter apart from that phrase."
+  },
+  {
+   "id": "r6",
+   "ru": "«И немедленно выпил»",
+   "question": "What did the author say follows immediately after that phrase?",
+   "options": [
+    "A page and a half of pure obscenity",
+    "A long description of Petushki",
+    "A list of the characters",
+    "A page of poetry"
+   ],
+   "correct": "A page and a half of pure obscenity",
+   "explain": "That is exactly what he warned the girls about in the introduction to the first edition."
+  },
+  {
+   "id": "r7",
+   "ru": "Добросовестным уведомлением этим я добился только того, что все читатели, в особенности девушки, сразу хватались за главу «Серп и Молот – Карачарово», даже не читая предыдущих глав, даже не прочитав фразы «И немедленно выпил».",
+   "question": "What effect did the author's conscientious warning actually have?",
+   "options": [
+    "Readers, especially girls, grabbed that chapter first",
+    "Readers skipped the chapter as asked",
+    "Readers stopped buying the book",
+    "Readers wrote to thank him"
+   ],
+   "correct": "Readers, especially girls, grabbed that chapter first",
+   "explain": "The warning backfired: everyone went straight to that chapter without even reading the previous ones."
+  },
+  {
+   "id": "r8",
+   "ru": "По этой причине я счел необходимым во втором издании выкинуть из главы «Серп и Молот – Карачарово» всю бывшую там матерщину.",
+   "question": "What did the author decide to do because of that?",
+   "options": [
+    "Cut all the swearing out of that chapter",
+    "Delete the chapter completely",
+    "Add even more swearing",
+    "Rename the chapter"
+   ],
+   "correct": "Cut all the swearing out of that chapter",
+   "explain": "He judged it necessary to remove all the obscenity that had been in «Serp i Molot – Karacharovo»."
+  },
+  {
+   "id": "r9",
+   "ru": "По этой причине я счел необходимым во втором издании выкинуть из главы «Серп и Молот – Карачарово» всю бывшую там матерщину.",
+   "question": "In which edition was the swearing removed?",
+   "options": [
+    "The second",
+    "The first",
+    "The third",
+    "A foreign one"
+   ],
+   "correct": "The second",
+   "explain": "The change is announced for the second edition of the book."
+  },
+  {
+   "id": "r10",
+   "ru": "Так будет лучше, потому что, во-первых, меня станут читать подряд, а во-вторых, не будут оскорблены.",
+   "question": "What two advantages does the author expect from the change?",
+   "options": [
+    "People will read the book straight through, and will not be offended",
+    "The book will be shorter and cheaper",
+    "Girls will read only that chapter, and critics will praise him",
+    "It will be printed abroad and win a prize"
+   ],
+   "correct": "People will read the book straight through, and will not be offended",
+   "explain": "He gives exactly these two reasons — «во-первых» reading in order, «во-вторых» nobody being offended."
+  }
+ ],
+ "highlight": [
+  {
+   "id": "h1",
+   "question": "Which sentence explains that the first edition sold out fast because there was only one copy of it?",
+   "sentences": [
+    "Первое издание «Москва—Петушки», благо было в одном экземпляре, быстро разошлось.",
+    "Я получал с тех пор много нареканий за главу «Серп и Молот – Карачарово», и совершенно напрасно.",
+    "Во вступлении к первому изданию я предупреждал всех девушек, что главу «Серп и Молот – Карачарово» следует пропустить, не читая, поскольку за фразой «И немедленно выпил» следуют полторы страницы чистейшего мата, что во всей этой главе нет ни единого цензурного слова, за исключением фразы «И немедленно выпил»."
+   ],
+   "correct": [
+    0
+   ],
+   "explain": "The opening sentence is the one that reports the quick sell-out and the single copy."
+  },
+  {
+   "id": "h2",
+   "question": "Which sentence describes what readers actually did once they had read the author's warning?",
+   "sentences": [
+    "Я получал с тех пор много нареканий за главу «Серп и Молот – Карачарово», и совершенно напрасно.",
+    "Во вступлении к первому изданию я предупреждал всех девушек, что главу «Серп и Молот – Карачарово» следует пропустить, не читая, поскольку за фразой «И немедленно выпил» следуют полторы страницы чистейшего мата, что во всей этой главе нет ни единого цензурного слова, за исключением фразы «И немедленно выпил».",
+    "Добросовестным уведомлением этим я добился только того, что все читатели, в особенности девушки, сразу хватались за главу «Серп и Молот – Карачарово», даже не читая предыдущих глав, даже не прочитав фразы «И немедленно выпил»."
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "The last of the three sentences says that everyone, girls above all, grabbed that chapter straight away."
+  },
+  {
+   "id": "h3",
+   "question": "Which sentence says what the author decided to do for the second edition?",
+   "sentences": [
+    "Добросовестным уведомлением этим я добился только того, что все читатели, в особенности девушки, сразу хватались за главу «Серп и Молот – Карачарово», даже не читая предыдущих глав, даже не прочитав фразы «И немедленно выпил».",
+    "По этой причине я счел необходимым во втором издании выкинуть из главы «Серп и Молот – Карачарово» всю бывшую там матерщину.",
+    "Так будет лучше, потому что, во-первых, меня станут читать подряд, а во-вторых, не будут оскорблены."
+   ],
+   "correct": [
+    1
+   ],
+   "explain": "The middle sentence announces that he threw all the swearing out of the chapter."
+  }
+ ]
+}

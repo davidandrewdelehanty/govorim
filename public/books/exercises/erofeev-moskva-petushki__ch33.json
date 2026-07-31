@@ -1,0 +1,423 @@
+{
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "А с утра, еще до открытия магазинов, состоялся ___.",
+   "lemma": "Пленум",
+   "options": [
+    "Пленум",
+    "Пленума",
+    "Пленуму",
+    "Пленумом"
+   ],
+   "correct": "Пленум",
+   "case": "Именительный (Nominative)",
+   "translation": "And in the morning, before the shops even opened, a Plenum was held.",
+   "explain": "Пленум is the subject of «состоялся» (it is the thing that took place), and subjects stand in the nominative."
+  },
+  {
+   "id": "c2",
+   "sentence": "Весь 1-й Пленум был посвящен избранию ___.",
+   "lemma": "президент",
+   "options": [
+    "президент",
+    "президента",
+    "президенту",
+    "президентом"
+   ],
+   "correct": "президента",
+   "case": "Родительный (Genitive)",
+   "translation": "The whole 1st Plenum was devoted to the election of a president.",
+   "explain": "The verbal noun «избрание» takes its object in the genitive, just as «избрать кого» becomes «избрание кого»."
+  },
+  {
+   "id": "c3",
+   "sentence": "Это отняло у нас полторы-две ___, не больше.",
+   "lemma": "минута",
+   "options": [
+    "минута",
+    "минуты",
+    "минуте",
+    "минутой"
+   ],
+   "correct": "минуты",
+   "case": "Родительный (Genitive)",
+   "translation": "That took us a minute and a half or two, no more.",
+   "explain": "After полторы and the numerals 2, 3, 4 a noun stands in the genitive singular: полторы-две минуты."
+  },
+  {
+   "id": "c4",
+   "sentence": "Кто раньше откроет ___, тетя Маша или тетя Шура?",
+   "lemma": "магазин",
+   "options": [
+    "магазин",
+    "магазина",
+    "магазину",
+    "магазином"
+   ],
+   "correct": "магазин",
+   "case": "Винительный (Accusative)",
+   "translation": "Who will open the shop earlier, Aunt Masha or Aunt Shura?",
+   "explain": "Магазин is the direct object of «откроет», so it takes the accusative; being inanimate masculine, that form looks like the nominative."
+  },
+  {
+   "id": "c5",
+   "sentence": "Он был расширенным и ___.",
+   "lemma": "октябрьский",
+   "options": [
+    "октябрьский",
+    "октябрьского",
+    "октябрьскому",
+    "октябрьским"
+   ],
+   "correct": "октябрьским",
+   "case": "Творительный (Instrumental)",
+   "translation": "It was an enlarged and October one.",
+   "explain": "A predicate adjective after past-tense «был» normally goes into the instrumental: был расширенным и октябрьским."
+  },
+  {
+   "id": "c6",
+   "sentence": "Передать ___ всю землю уезда.",
+   "lemma": "народ",
+   "options": [
+    "народ",
+    "народа",
+    "народу",
+    "народом"
+   ],
+   "correct": "народу",
+   "case": "Дательный (Dative)",
+   "translation": "To hand over to the people all the land of the district.",
+   "explain": "«Передать» takes the recipient in the dative (передать кому что), so народ becomes народу."
+  },
+  {
+   "id": "c7",
+   "sentence": "Тетя Шура в ___ уже магазин открыла.",
+   "lemma": "Поломы",
+   "options": [
+    "Поломы",
+    "Полом",
+    "Поломам",
+    "Поломах"
+   ],
+   "correct": "Поломах",
+   "case": "Предложный (Prepositional)",
+   "translation": "Aunt Shura in Polomy has already opened her shop.",
+   "explain": "«В» answering «где?» (a location, not a direction) requires the prepositional case: в Поломах."
+  },
+  {
+   "id": "c8",
+   "sentence": "Я тихо отвел в сторону ___.",
+   "lemma": "канцлер",
+   "options": [
+    "канцлер",
+    "канцлера",
+    "канцлеру",
+    "канцлером"
+   ],
+   "correct": "канцлера",
+   "case": "Винительный (Accusative)",
+   "translation": "I quietly took the chancellor aside.",
+   "explain": "Канцлер is the direct object of «отвел», so it is accusative; as an animate masculine noun its accusative copies the genitive form."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "А с утра, еще до открытия магазинов, состоялся Пленум.",
+   "question": "What happened in the morning, before the shops opened?",
+   "options": [
+    "A Plenum was held",
+    "The shops were robbed",
+    "A train left for Petushki",
+    "The narrator was arrested"
+   ],
+   "correct": "A Plenum was held",
+   "explain": "The chapter opens with a Plenum convened in the hours before the shops open."
+  },
+  {
+   "id": "r2",
+   "ru": "Он был расширенным и октябрьским.",
+   "question": "How is this Plenum described?",
+   "options": [
+    "Enlarged and October",
+    "Secret and emergency",
+    "Short and final",
+    "Closed and November"
+   ],
+   "correct": "Enlarged and October",
+   "explain": "All four of their Plenums were 'October' and 'enlarged', which is why they had to be numbered."
+  },
+  {
+   "id": "r3",
+   "ru": "Это отняло у нас полторы-две минуты, не больше.",
+   "question": "How long did electing the president take?",
+   "options": [
+    "A minute and a half or two",
+    "The whole morning",
+    "Three days",
+    "Half an hour"
+   ],
+   "correct": "A minute and a half or two",
+   "explain": "Electing Venichka president was over in a couple of minutes; the rest of the time went on debates."
+  },
+  {
+   "id": "r4",
+   "ru": "Например, такой декрет: обязать тетю Шуру в Поломах открывать магазин в шесть утра.",
+   "question": "What would Venichka's first proposed decree oblige Aunt Shura to do?",
+   "options": [
+    "Open her shop at six in the morning",
+    "Close her shop at nine thirty",
+    "Sell only Rossiyskaya vodka",
+    "Move her shop to Cherkasovo"
+   ],
+   "correct": "Open her shop at six in the morning",
+   "explain": "He wants to use his power to force her opening time from nine thirty back to six."
+  },
+  {
+   "id": "r5",
+   "ru": "Говенный ты канцлер, вот чего.",
+   "question": "What does Venichka tell Tikhonov in the lobby?",
+   "options": [
+    "That he is a lousy chancellor",
+    "That he is the best chancellor",
+    "That he must go to Polomy",
+    "That he should become president"
+   ],
+   "correct": "That he is a lousy chancellor",
+   "explain": "After they drink together, Venichka bluntly informs his chancellor that he is a rotten one."
+  },
+  {
+   "id": "r6",
+   "ru": "– Найди другого, – обиделся Тихонов.",
+   "question": "How does Tikhonov react to being called a lousy chancellor?",
+   "options": [
+    "He takes offence and says to find another one",
+    "He laughs and pours another drink",
+    "He resigns on the spot",
+    "He agrees and starts writing decrees"
+   ],
+   "correct": "He takes offence and says to find another one",
+   "explain": "Tikhonov is offended and tells Venichka to go and find himself a different chancellor."
+  },
+  {
+   "id": "r7",
+   "ru": "Я слышал, ты все-таки не удержался, ты ущипнул за ляжку Анатоль Иваныча?",
+   "question": "What does Venichka accuse Tikhonov of having done?",
+   "options": [
+    "Pinching Anatol Ivanych on the thigh",
+    "Stealing the ink and paper",
+    "Drinking the whole bottle alone",
+    "Losing the decree he wrote"
+   ],
+   "correct": "Pinching Anatol Ivanych on the thigh",
+   "explain": "Venichka treats the pinch as the opening of a terror — a White one, as Tikhonov admits."
+  },
+  {
+   "id": "r8",
+   "ru": "Да-а-а… сплоховал я с этим террором…",
+   "question": "What does Tikhonov admit after writing two words and having a drink?",
+   "options": [
+    "That he messed up with the terror",
+    "That he cannot write at all",
+    "That he wants to be president",
+    "That there is no ink left"
+   ],
+   "correct": "That he messed up with the terror",
+   "explain": "He concedes he blundered, but excuses it because their cause is unheard-of and has almost no precedents."
+  },
+  {
+   "id": "r9",
+   "ru": "Летоисчисление – как думаешь? – сменим или оставим как есть?",
+   "question": "What does Venichka ask Tikhonov's opinion about?",
+   "options": [
+    "Whether to change the system of reckoning years",
+    "Whether to move the capital",
+    "Whether to declare war on Norway",
+    "Whether to abolish the presidency"
+   ],
+   "correct": "Whether to change the system of reckoning years",
+   "explain": "Tikhonov advises leaving the calendar alone, quoting the saying about not touching muck so it will not smell."
+  },
+  {
+   "id": "r10",
+   "ru": "Тетя Шура в Поломах уже магазин открыла.",
+   "question": "What news makes Venichka ready to close the Plenum?",
+   "options": [
+    "Aunt Shura in Polomy has opened her shop",
+    "The punitive forces are coming",
+    "Norway has declared war",
+    "Tikhonov has finished the decree"
+   ],
+   "correct": "Aunt Shura in Polomy has opened her shop",
+   "explain": "The shop is open and rumoured to have Rossiyskaya, so the Plenum can be wound up."
+  },
+  {
+   "id": "r11",
+   "ru": "У тети Шуры в Поломах в самом деле оказалась российская.",
+   "question": "What did they find at Aunt Shura's shop in Polomy?",
+   "options": [
+    "Rossiyskaya vodka really was in stock",
+    "Nothing but beer",
+    "The shop still shut",
+    "A detachment from the district centre"
+   ],
+   "correct": "Rossiyskaya vodka really was in stock",
+   "explain": "The rumour proved true, and this is one of the reasons the capital is moved to Polomy."
+  },
+  {
+   "id": "r12",
+   "ru": "И там, на другое утро, открыть 2-й Пленум, весь посвященный моей отставке с поста президента.",
+   "question": "What was the 2nd Plenum entirely devoted to?",
+   "options": [
+    "Venichka's resignation from the presidency",
+    "The decree on land",
+    "The war with Norway",
+    "Tikhonov's White terror"
+   ],
+   "correct": "Venichka's resignation from the presidency",
+   "explain": "Having moved the capital to Polomy, they open the next Plenum to deal with his stepping down."
+  },
+  {
+   "id": "r13",
+   "ru": "– Нет таких, – хором отвечали делегаты.",
+   "question": "How do the delegates answer when Venichka asks whether anyone among them has a face that cannot be sorted out in three days?",
+   "options": [
+    "In chorus, that there is nobody like that",
+    "That every one of them qualifies",
+    "That only Tikhonov qualifies",
+    "They say nothing at all"
+   ],
+   "correct": "In chorus, that there is nobody like that",
+   "explain": "They answer in chorus that no such person exists, and then agree his own face can be sorted out too."
+  },
+  {
+   "id": "r14",
+   "ru": "Лучше сделаем вот как: все пойдем в луга готовить пунш, а Борю закроем на замок.",
+   "question": "What does Venichka propose instead of electing a new president?",
+   "options": [
+    "Everyone goes to the meadows to make punch while Borya is locked up",
+    "Everyone votes again the next morning",
+    "Tikhonov takes the presidency",
+    "They march on the district centre"
+   ],
+   "correct": "Everyone goes to the meadows to make punch while Borya is locked up",
+   "explain": "Borya, a man of high qualities, is to be shut in and left to form the cabinet."
+  },
+  {
+   "id": "r15",
+   "ru": "Куда смотрит король Улаф?",
+   "question": "Which foreign ruler does Venichka complain about amid the fires in the meadows?",
+   "options": [
+    "King Olav",
+    "The King of Sweden",
+    "The Queen of England",
+    "The President of France"
+   ],
+   "correct": "King Olav",
+   "explain": "Norway's King Olav is one of the powers Venichka expects to react to their revolution, and does not."
+  },
+  {
+   "id": "r16",
+   "ru": "Да, – ответил Вадя, – она лихорадочна, но она прекрасна.",
+   "question": "What does Vadya say about their revolution?",
+   "options": [
+    "That it is feverish but beautiful",
+    "That it is already lost",
+    "That it smells of punch",
+    "That it needs a new chancellor"
+   ],
+   "correct": "That it is feverish but beautiful",
+   "explain": "Asked whether he likes the revolution, Vadya — reeking of punch — calls it feverish yet beautiful."
+  }
+ ],
+ "highlight": [
+  {
+   "id": "h1",
+   "question": "Which sentence explains why the Plenums had to be given numbers?",
+   "sentences": [
+    "А с утра, еще до открытия магазинов, состоялся Пленум.",
+    "Он был расширенным и октябрьским.",
+    "Но поскольку все четыре наших Пленума были октябрьскими и расширенными, то мы, чтоб их не перепутать, решили пронумеровать их: 1-й Пленум, 2-й Пленум, 3-й Пленум и 4-й Пленум…"
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "The third sentence says all four Plenums shared the same description, so they were numbered to keep them apart."
+  },
+  {
+   "id": "h2",
+   "question": "Which sentence says what the rest of the Plenum's time was spent on?",
+   "sentences": [
+    "Весь 1-й Пленум был посвящен избранию президента, то есть избранию меня в президенты.",
+    "Это отняло у нас полторы-две минуты, не больше.",
+    "А все оставшееся время поглощено было прениями на тему чисто умозрительную: кто раньше откроет магазин, тетя Маша в Андреевском или тетя Шура в Поломах?"
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "The last sentence names the debate about whose shop opens first as what consumed the remaining time."
+  },
+  {
+   "id": "h3",
+   "question": "Which sentence gives the actual wording of Venichka's first example of a decree?",
+   "sentences": [
+    "А я, сидя в своем президиуме, слушал эти прения и мыслил так: прения совершенно необходимы, но гораздо необходимее декреты.",
+    "Почему мы забываем то, чем должна увенчиваться всякая революция, то есть «декреты»?",
+    "Например, такой декрет: обязать тетю Шуру в Поломах открывать магазин в шесть утра.",
+    "Кажется, чего бы проще? – нам, облеченным властью, взять и заставить тетю Шуру открывать свой магазин в шесть утра, а не в девять тридцать!",
+    "Как это раньше не пришло мне в голову!.."
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "The third sentence is the one introduced by «Например, такой декрет» and states the decree itself."
+  },
+  {
+   "id": "h4",
+   "question": "Which sentence proposes changing the clocks?",
+   "sentences": [
+    "Или, например, декрет о земле: передать народу всю землю уезда, со всеми угодьями и со всякой движимостью, со всеми спиртными напитками и без всякого выкупа.",
+    "Или так: передвинуть стрелку часов на два часа вперед или на полтора часа назад, все равно, только бы куда передвинуть.",
+    "Потом: слово «черт» надо принудить снова писать через «о», а какую-нибудь букву вообще упразднить, только надо подумать какую.",
+    "И, наконец, заставить тетю Машу в Андреевском открывать магазин в пять тридцать утра, а не в девять…"
+   ],
+   "correct": [
+    1
+   ],
+   "explain": "The second sentence is the one about moving the hands of the clock, in either direction."
+  },
+  {
+   "id": "h5",
+   "question": "Which sentence accuses Tikhonov of pinching Anatol Ivanych?",
+   "sentences": [
+    "– Не об этом речь, Вадя.",
+    "А речь вот о чем: если ты хороший канцлер, садись и пиши декреты.",
+    "Выпей еще немножко, садись и пиши.",
+    "Я слышал, ты все-таки не удержался, ты ущипнул за ляжку Анатоль Иваныча?",
+    "Ты что же это? – открываешь террор?"
+   ],
+   "correct": [
+    3
+   ],
+   "explain": "The fourth sentence reports the pinch that Venichka then calls the opening of a terror."
+  },
+  {
+   "id": "h6",
+   "question": "Which sentence asks why nobody in the world takes any notice of them?",
+   "sentences": [
+    "Мою речь прервали овации, и Пленум прикрылся: окрестные луга озарились синим огнем.",
+    "Один только я не разделял всеобщего оживления и веры в успех, я ходил меж огней с одною тревожною мыслью: почему это никому в мире нет до нас ни малейшего дела?",
+    "Почему такое молчание в мире?",
+    "Уезд охвачен пламенем, и мир молчит оттого, что затаил дыхание, – допустим.",
+    "Но почему никто не подает нам руки ни с Востока, ни с Запада?",
+    "Куда смотрит король Улаф?",
+    "Почему нас не давят с юга регулярные части?.."
+   ],
+   "correct": [
+    1
+   ],
+   "explain": "The second sentence carries the anxious thought that not a soul in the world cares about them."
+  }
+ ]
+}
