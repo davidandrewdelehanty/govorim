@@ -2,22 +2,22 @@
  "cases": [
   {
    "id": "c1",
-   "sentence": "На вокзальном перроне меня встречает эта ___ с глазами белого цвета.",
-   "lemma": "девушка",
+   "sentence": "Мне издали кивают ___ – и отлетают от меня, как обещали.",
+   "lemma": "ангел",
    "options": [
-    "девушка",
-    "девушки",
-    "девушке",
-    "девушкой"
+    "ангелы",
+    "ангелов",
+    "ангелам",
+    "ангелами"
    ],
-   "correct": "девушка",
+   "correct": "ангелы",
    "case": "Именительный (Nominative)",
-   "translation": "On the station platform that girl with white-coloured eyes meets me.",
-   "explain": "The girl is the one doing the meeting — the subject of «встречает» — and a subject stands in the nominative."
+   "translation": "The angels are nodding to me from a distance — and flying away from me, as they promised.",
+   "explain": "The angels are the subject doing the nodding and flying, so the plural stands in the nominative."
   },
   {
    "id": "c2",
-   "sentence": "Поезжай, поезжай в ___!",
+   "sentence": "Во всей земле, от самой Москвы и до самых ___ – нет ничего такого, что было бы для меня слишком многим.",
    "lemma": "Петушки",
    "options": [
     "Петушки",
@@ -25,289 +25,397 @@
     "Петушкам",
     "Петушками"
    ],
-   "correct": "Петушки",
-   "case": "Винительный (Accusative)",
-   "translation": "Go, go to Petushki!",
-   "explain": "«В» with a verb of motion (answering «куда?») takes the accusative; Петушки is an inanimate plural, so its accusative looks like the nominative."
+   "correct": "Петушков",
+   "case": "Родительный (Genitive)",
+   "translation": "In all the earth, from Moscow itself all the way to Petushki, there is nothing that would be too much for me.",
+   "explain": "The preposition «до» ('as far as, up to') always governs the genitive: до Петушков."
   },
   {
    "id": "c3",
-   "sentence": "В ___ – твое спасение и радость твоя.",
-   "lemma": "Петушки",
+   "sentence": "Я выпил три ___ лимонной, прежде чем он проснулся.",
+   "lemma": "стакан",
    "options": [
-    "Петушки",
-    "Петушков",
-    "Петушках",
-    "Петушками"
+    "стакан",
+    "стакана",
+    "стаканов",
+    "стаканам"
    ],
-   "correct": "Петушках",
-   "case": "Предложный (Prepositional)",
-   "translation": "In Petushki is your salvation and your joy.",
-   "explain": "Here «в» answers «где?» — location, not direction — and location with «в» requires the prepositional case."
+   "correct": "стакана",
+   "case": "Родительный (Genitive)",
+   "translation": "I drank three glasses of lemon vodka before he woke up.",
+   "explain": "The numerals два, три and четыре take the genitive singular of the counted noun, so три стакана, not три стаканов."
   },
   {
    "id": "c4",
-   "sentence": "Исчезла грань между рассудком и ___.",
-   "lemma": "сердце",
+   "sentence": "Там есть слова, не идущие к ___.",
+   "lemma": "дело",
    "options": [
-    "сердце",
-    "сердца",
-    "сердцу",
-    "сердцем"
+    "дело",
+    "дела",
+    "делу",
+    "делом"
    ],
-   "correct": "сердцем",
-   "case": "Творительный (Instrumental)",
-   "translation": "The borderline between reason and the heart disappeared.",
-   "explain": "The preposition «между» ('between') governs the instrumental, so both nouns appear as рассудком and сердцем."
+   "correct": "делу",
+   "case": "Дательный (Dative)",
+   "translation": "There are words in it that are not to the point.",
+   "explain": "The preposition «к» always takes the dative; the fixed phrase «к делу» ('to the point') follows the same rule."
   },
   {
    "id": "c5",
-   "sentence": "Там даже у тех, кто не просыхает по ___, взгляд бездонен и ясен.",
-   "lemma": "неделя",
+   "sentence": "Ты любишь ___, мальчик?",
+   "lemma": "отец",
    "options": [
-    "недели",
-    "недель",
-    "неделям",
-    "неделями"
+    "отец",
+    "отца",
+    "отцу",
+    "отцом"
    ],
-   "correct": "неделям",
-   "case": "Дательный (Dative)",
-   "translation": "There even those who stay drunk for weeks on end have a bottomless, clear gaze.",
-   "explain": "«По» with a plural noun meaning a repeated or drawn-out stretch of time takes the dative: по неделям, 'for weeks on end'."
+   "correct": "отца",
+   "case": "Винительный (Accusative)",
+   "translation": "Do you love your father, boy?",
+   "explain": "«Любишь» takes a direct object in the accusative, and for animate masculine nouns the accusative copies the genitive form: отца."
   },
   {
    "id": "c6",
-   "sentence": "Он знает букву „ю“ и за это ждет от меня ___.",
-   "lemma": "орех",
+   "sentence": "Если мать его затопит ___, оттащи его в сторону.",
+   "lemma": "печка",
    "options": [
-    "орехи",
-    "орехов",
-    "орехам",
-    "орехами"
+    "печка",
+    "печки",
+    "печке",
+    "печку"
    ],
-   "correct": "орехов",
-   "case": "Родительный (Genitive)",
-   "translation": "He knows the letter «ю» and for that he expects nuts from me.",
-   "explain": "«Ждать» takes the genitive when what is awaited is an indefinite quantity, and «от меня» also requires the genitive form after it."
+   "correct": "печку",
+   "case": "Винительный (Accusative)",
+   "translation": "If his mother lights the stove, drag him aside.",
+   "explain": "«Печка» is the direct object of «затопит», and feminine nouns in -а/-я take -у/-ю in the accusative: печку."
   },
   {
    "id": "c7",
-   "sentence": "Я на десять ___ отлучусь.",
-   "lemma": "минута",
+   "sentence": "Я буду до утра пастись между ___.",
+   "lemma": "лилия",
    "options": [
-    "минута",
-    "минуты",
-    "минут",
-    "минутам"
+    "лилии",
+    "лилий",
+    "лилиям",
+    "лилиями"
    ],
-   "correct": "минут",
-   "case": "Родительный (Genitive)",
-   "translation": "I will step away for ten minutes.",
-   "explain": "Numerals from five upwards (десять) are followed by the genitive plural: десять минут."
+   "correct": "лилиями",
+   "case": "Творительный (Instrumental)",
+   "translation": "I shall graze among the lilies until morning.",
+   "explain": "«Между» in the sense of 'among, between' governs the instrumental: между лилиями."
+  },
+  {
+   "id": "c8",
+   "sentence": "И там, на ___, встретите меня, да?",
+   "lemma": "перрон",
+   "options": [
+    "перрон",
+    "перрона",
+    "перроне",
+    "перроном"
+   ],
+   "correct": "перроне",
+   "case": "Предложный (Prepositional)",
+   "translation": "And there, on the platform, you'll meet me, yes?",
+   "explain": "«На» answering «где?» (a place, not a direction) requires the prepositional case: на перроне."
   }
  ],
  "reading": [
   {
    "id": "r1",
-   "ru": "Я выпил сто пятьдесят и усидел дома?",
-   "question": "Did Venichka manage to stay at home after drinking the hundred and fifty his reason allowed him?",
+   "ru": "Зачем ты все допил, Веня?",
+   "question": "What do the voices from heaven reproach Venichka for at the start of the chapter?",
    "options": [
-    "No — he mocks the very idea with a 'ha-ha'",
-    "Yes, he stayed in for six days",
-    "Yes, but only for one evening",
-    "Yes, until Friday morning"
+    "For finishing off all of his drink",
+    "For forgetting to buy the nuts",
+    "For missing the train to Petushki",
+    "For falling asleep on the platform"
    ],
-   "correct": "No — he mocks the very idea with a 'ha-ha'",
-   "explain": "He asks the question rhetorically and answers it himself with «Ха-ха» — of course he did not stay at home."
+   "correct": "For finishing off all of his drink",
+   "explain": "The angels ask why he drank it all, saying it is too much for him."
   },
   {
    "id": "r2",
-   "ru": "Я с этого дня пил по тысяче пятьсот каждый день, чтобы усидеть дома, и все-таки не усидел.",
-   "question": "How much did Venichka drink every day in his effort to make himself stay at home?",
+   "ru": "Нет, мы не глупые, мы просто боимся, что ты опять не доедешь…",
+   "question": "What do the angels say they are afraid of?",
    "options": [
-    "Fifteen hundred",
-    "A hundred and fifty",
-    "Half a glass",
-    "Nothing at all"
+    "That he will once again fail to get there",
+    "That he will start swearing at them",
+    "That he will forget their names",
+    "That he will never smile again"
    ],
-   "correct": "Fifteen hundred",
-   "explain": "He raised the dose from a hundred and fifty to fifteen hundred a day, and still failed to stay put."
+   "correct": "That he will once again fail to get there",
+   "explain": "They deny being stupid and explain that their fear is that he will not complete the journey again."
   },
   {
    "id": "r3",
-   "ru": "В Петушках – твое спасение и радость твоя, поезжай».",
-   "question": "What did Venichka's reason and heart tell him in one voice once the line between them had vanished?",
+   "ru": "Нет, мы не смешные, мы боимся, что ты до него не доедешь, и он останется без орехов…",
+   "question": "What will the child be left without if Venichka does not arrive?",
    "options": [
-    "That his salvation and joy are in Petushki, so he should go there",
-    "That he should stop drinking at once",
-    "That he should stay at home for another six days",
-    "That he should look for work"
+    "Without his nuts",
+    "Without his medicine",
+    "Without his toys",
+    "Without his supper"
    ],
-   "correct": "That his salvation and joy are in Petushki, so he should go there",
-   "explain": "On the sixth day reason and heart merged and both urged him to travel to Petushki."
+   "correct": "Without his nuts",
+   "explain": "The angels' worry is that the boy will be left without the nuts Venichka is bringing him."
   },
   {
    "id": "r4",
-   "ru": "Первородный грех – может, он и был – там никого не тяготит.",
-   "question": "What does Venichka say about original sin in Petushki?",
+   "ru": "Я покажу вам радугу!",
+   "question": "What does Venichka offer as an example of the harmless kind of swearing found in German poets?",
    "options": [
-    "It weighs on nobody there",
-    "It is punished severely there",
-    "It is unknown there",
-    "It troubles only the newcomers"
+    "\"I'll show you a rainbow!\"",
+    "\"I'll show you the door!\"",
+    "\"I'll show you the Kremlin!\"",
+    "\"I'll show you Petushki!\""
    ],
-   "correct": "It weighs on nobody there",
-   "explain": "He allows that original sin may well have happened, but insists it burdens no one in Petushki."
+   "correct": "\"I'll show you a rainbow!\"",
+   "explain": "He promises that if he swears at all it will be happily, in the manner of the German poets — a rainbow, or pearls."
   },
   {
    "id": "r5",
-   "ru": "Там даже у тех, кто не просыхает по неделям, взгляд бездонен и ясен…",
-   "question": "According to Venichka, what are the eyes like of the people in Petushki who stay drunk for weeks on end?",
+   "ru": "Мы отлетим, как только ты улыбнешься…",
+   "question": "According to the angels, what will make them fly away?",
    "options": [
-    "Bottomless and clear",
-    "Red and swollen",
-    "Empty and dull",
-    "Always turned away"
+    "Venichka smiling for the first time",
+    "Venichka finishing his drink",
+    "The train reaching Petushki",
+    "Venichka falling asleep"
    ],
-   "correct": "Bottomless and clear",
-   "explain": "Even permanent drunkenness does not spoil the gaze of the people in his imagined Petushki."
+   "correct": "Venichka smiling for the first time",
+   "explain": "They cannot stay all the way to Petushki: they will leave the moment he smiles, and then they will be at peace about him."
   },
   {
    "id": "r6",
-   "ru": "Пару дохлых портянок и казенные брюки, плоскогубцы и рашпиль, аванс и накладные расходы, – вот что оставил!",
-   "question": "What does Venichka list as everything he has left behind him?",
+   "ru": "Да, там мы тебя встретим…",
+   "question": "Where do the angels promise to meet Venichka?",
    "options": [
-    "Foot-cloths, work trousers, pliers, a rasp, an advance and overheads",
-    "A flat, a wife and two children",
-    "A suitcase full of books",
-    "His job at the station buffet"
+    "On the platform",
+    "In the carriage",
+    "At the child's bedside",
+    "In the buffet"
    ],
-   "correct": "Foot-cloths, work trousers, pliers, a rasp, an advance and overheads",
-   "explain": "He runs through a deliberately worthless inventory of work things to show he is losing nothing by leaving."
+   "correct": "On the platform",
+   "explain": "He asks whether they will meet him there on the platform, and they confirm it."
   },
   {
    "id": "r7",
-   "ru": "А после перрона – зверобой и портвейн, блаженства и корчи, восторги и судороги.",
-   "question": "What does Venichka expect to come after the platform in Petushki?",
+   "ru": "Прелестные существа, эти ангелы!",
+   "question": "How does Venichka sum up the angels after they finish speaking?",
    "options": [
-    "St John's wort liqueur and port, bliss and convulsions",
-    "A quiet supper and sleep",
-    "A long walk to the river",
-    "A meeting with his workmates"
+    "As charming creatures",
+    "As tiresome nags",
+    "As cold and distant judges",
+    "As a figment of the vodka"
    ],
-   "correct": "St John's wort liqueur and port, bliss and convulsions",
-   "explain": "He pairs the drinks with their consequences — raptures and spasms — as one single prospect."
+   "correct": "As charming creatures",
+   "explain": "He calls them charming creatures, objecting only to their phrase about the 'poor boy'."
   },
   {
    "id": "r8",
-   "ru": "Он знает букву „ю“ и за это ждет от меня орехов.",
-   "question": "What does Venichka's little son know, and what does he want for it?",
+   "ru": "Он нисколько не бедный!",
+   "question": "How does Venichka react to the angels calling the child a \"poor boy\"?",
    "options": [
-    "He knows the letter «ю» and waits for nuts",
-    "He knows the whole alphabet and wants a book",
-    "He knows a song and wants sweets",
-    "He knows nothing yet and wants nothing"
+    "He objects that the boy is not poor at all",
+    "He agrees sadly with them",
+    "He says the boy is poor but happy",
+    "He says the boy is poorer than they think"
    ],
-   "correct": "He knows the letter «ю» and waits for nuts",
-   "explain": "The child's single accomplishment is the letter «ю», and his whole reward is a glass of nuts."
+   "correct": "He objects that the boy is not poor at all",
+   "explain": "He argues that a baby who knows the letter «ю» and loves his father does not need anyone's pity."
   },
   {
    "id": "r9",
-   "ru": "Никому; вы и теперь-то ее толком не знаете.",
-   "question": "What does Venichka say to his listeners about the letter «ю»?",
+   "ru": "Мне сказали: он болен и лежит в жару.",
+   "question": "What was Venichka told about the boy when he arrived last time?",
    "options": [
-    "That none of them knew it at three, and they hardly know it even now",
-    "That all children learn it first",
-    "That it is the hardest letter to pronounce",
-    "That his son taught it to them"
+    "That he was ill and lying in a fever",
+    "That he had gone out to play in the forest",
+    "That he had learned a new letter",
+    "That he had already recovered"
    ],
-   "correct": "That none of them knew it at three, and they hardly know it even now",
-   "explain": "He answers his own question — nobody knew it at three — and then needles the listeners about the present."
+   "correct": "That he was ill and lying in a fever",
+   "explain": "He was told the boy was asleep, ill and feverish, and was left alone with him."
   },
   {
    "id": "r10",
-   "ru": "А пока – вы уж простите меня – пока присмотрите за моим чемоданчиком, я на десять минут отлучусь.",
-   "question": "What does Venichka ask the angels to do while he is away?",
+   "ru": "Я пил лимонную у его кроватки, и меня оставили с ним одного.",
+   "question": "What was Venichka doing beside the sick boy's cot?",
    "options": [
-    "Keep an eye on his little suitcase for ten minutes",
-    "Hold his place on the bench",
-    "Wake him at eleven o'clock",
-    "Buy him a ticket to Petushki"
+    "Drinking lemon vodka",
+    "Reading him a story",
+    "Writing down his words in italics",
+    "Sleeping in a chair"
    ],
-   "correct": "Keep an eye on his little suitcase for ten minutes",
-   "explain": "Along with their prayers he asks them for the very practical favour of watching his suitcase."
+   "correct": "Drinking lemon vodka",
+   "explain": "He drank three glasses of lemon vodka at the bedside before the boy woke up."
   },
   {
    "id": "r11",
-   "ru": "И вот – я снова встал и через половину вагона прошел на площадку.",
-   "question": "Where does Venichka go when he gets up again?",
+   "ru": "Понимаю, отец…",
+   "question": "How does the boy answer when told that dying while knowing only the letter «ю» would be stupid?",
    "options": [
-    "Through half the carriage to the vestibule",
-    "Out onto the station platform",
-    "To the buffet in the next station",
-    "Back to his old seat by the window"
+    "\"I understand, father\"",
+    "\"I love you very much\"",
+    "\"Disgusting\"",
+    "\"Green\""
    ],
-   "correct": "Through half the carriage to the vestibule",
-   "explain": "He walks through half of the carriage to the end platform of the coach in order to drink there."
+   "correct": "\"I understand, father\"",
+   "explain": "The boy's reply is 'I understand, father', which Venichka treats as one of those weighty sayings deserving long italics."
+  },
+  {
+   "id": "r12",
+   "ru": "Когда тебе было два года, ты под нее плясал.",
+   "question": "At what age did the boy dance to the \"piggy farandole\"?",
+   "options": [
+    "At two years old",
+    "At four years old",
+    "Last summer",
+    "The previous Friday"
+   ],
+   "correct": "At two years old",
+   "explain": "Venichka reminds him that he danced to it when he was two, waving a handkerchief."
+  },
+  {
+   "id": "r13",
+   "ru": "Музыка отца и слова его же.",
+   "question": "Who composed the \"piggy farandole\" the boy used to dance to?",
+   "options": [
+    "Venichka himself, both music and words",
+    "The boy's mother",
+    "The German poets",
+    "The angels"
+   ],
+   "correct": "Venichka himself, both music and words",
+   "explain": "He notes that both the music and the words are the father's own."
+  },
+  {
+   "id": "r14",
+   "ru": "Только нет, мы фарандолу плясать не будем.",
+   "question": "Why does Venichka decide they will not dance the farandole next time?",
+   "options": [
+    "Because it contains words about stretching out one's legs that do not suit",
+    "Because the boy is too old for it now",
+    "Because he has forgotten the tune",
+    "Because the angels disapprove of it"
+   ],
+   "correct": "Because it contains words about stretching out one's legs that do not suit",
+   "explain": "He rejects the line about the legs being stretched out at the end of August as unfitting for a sick child, and offers another rhyme instead."
+  },
+  {
+   "id": "r15",
+   "ru": "Вот и я, как сосна…",
+   "question": "What does Venichka compare himself to when he tells the boy how lonely he is?",
+   "options": [
+    "A pine tree",
+    "A railway carriage",
+    "An angel",
+    "A stove"
+   ],
+   "correct": "A pine tree",
+   "explain": "He says he is like a pine: long and lonely, looking only at the sky and green until it falls."
+  },
+  {
+   "id": "r16",
+   "ru": "Противно, – повторил за мной младенец и блаженно заулыбался…",
+   "question": "What word does the child repeat after Venichka at the end of their talk?",
+   "options": [
+    "\"Disgusting\"",
+    "\"Green\"",
+    "\"Father\"",
+    "\"Rainbow\""
+   ],
+   "correct": "\"Disgusting\"",
+   "explain": "After the dandelion comparison the boy repeats 'disgusting' and smiles blissfully, and it is this memory that finally makes Venichka smile."
   }
  ],
  "highlight": [
   {
    "id": "h1",
-   "question": "Which sentence explains what happened inside Venichka on the sixth day, so that he set off after all?",
+   "question": "Which sentence says that she would not let him go and visit the child last Friday?",
    "sentences": [
-    "Что же вы думаете?",
-    "Я выпил сто пятьдесят и усидел дома?",
-    "Ха-ха.",
-    "Я с этого дня пил по тысяче пятьсот каждый день, чтобы усидеть дома, и все-таки не усидел.",
-    "Потому что на шестой день размок уже настолько, что исчезла грань между рассудком и сердцем, и оба в голос мне затвердили: «Поезжай, поезжай в Петушки! В Петушках – твое спасение и радость твоя, поезжай»."
-   ],
-   "correct": [
-    4
-   ],
-   "explain": "The last sentence gives the cause — the line between reason and heart disappeared and both sent him to Petushki."
-  },
-  {
-   "id": "h2",
-   "question": "Which sentence says that even people who stay drunk for weeks have a clear gaze in Petushki?",
-   "sentences": [
-    "«Петушки – это место, где не умолкают птицы ни днем ни ночью, где ни зимой, ни летом не отцветает жасмин.",
-    "Первородный грех – может, он и был – там никого не тяготит.",
-    "Там даже у тех, кто не просыхает по неделям, взгляд бездонен и ясен…»"
+    "Ну что вы, что вы!",
+    "Пока я жив… что вы!",
+    "В прошлую пятницу – верно, в прошлую пятницу она не пустила меня к нему поехать…",
+    "Я раскис, ангелы, в прошлую пятницу, я на белый живот ее загляделся, круглый, как небо и земля…",
+    "Но сегодня – доеду, если только не подохну, убитый роком…",
+    "Вернее – нет, сегодня я не доеду, сегодня я буду у ней, я буду до утра пастись между лилиями, а вот уж завтра!.."
    ],
    "correct": [
     2
    ],
-   "explain": "The third sentence is the one about the gaze of those who never sober up."
+   "explain": "Only the third sentence states that she did not let him make the trip to the boy."
+  },
+  {
+   "id": "h2",
+   "question": "Which sentence points out that Venichka has not smiled once so far today?",
+   "sentences": [
+    "О нет, до самых Петушков мы не можем…",
+    "Мы отлетим, как только ты улыбнешься…",
+    "Ты еще ни разу сегодня не улыбнулся, как только улыбнешься в первый раз – мы отлетим… и уже будем покойны за тебя…"
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "The third sentence is the one that remarks he has not yet smiled today."
   },
   {
    "id": "h3",
-   "question": "Which sentence tells the listeners that they themselves still do not really know the letter «ю»?",
+   "question": "Which sentence asks whether a baby who knows the letter «ю» and loves his father needs pity?",
    "sentences": [
-    "«А там, за Петушками, где сливаются небо и земля, и волчица воет на звезды, – там совсем другое, но то же самое: там в дымных и вшивых хоромах, неизвестный этой белесой, распускается мой младенец, самый пухлый и самый кроткий из всех младенцев.",
-    "Он знает букву „ю“ и за это ждет от меня орехов.",
-    "Кому из вас в три года была знакома буква „ю“?",
-    "Никому; вы и теперь-то ее толком не знаете.",
-    "А вот он – знает, и никакой за это награды не ждет, кроме стакана орехов»."
+    "Прелестные существа, эти ангелы!",
+    "Только почему это «бедный мальчик»?",
+    "Он нисколько не бедный!",
+    "Младенец, знающий букву «ю», как свои пять пальцев, младенец, любящий отца, как самого себя, – разве нуждается в жалости?"
    ],
    "correct": [
     3
    ],
-   "explain": "The fourth sentence answers his own question and then turns the mockery on the listeners' present-day knowledge."
+   "explain": "The last sentence is the rhetorical question about whether such a child needs pity."
   },
   {
    "id": "h4",
-   "question": "Which sentence gives the reason for Venichka's ten-minute absence?",
+   "question": "Which sentence asks God to pull the boy aside when his mother lights the stove?",
    "sentences": [
-    "«Помолитесь, ангелы, за меня.",
-    "Да будет светел мой путь, да не преткнусь о камень, да увижу город, по которому столько томился.",
-    "А пока – вы уж простите меня – пока присмотрите за моим чемоданчиком, я на десять минут отлучусь.",
-    "Мне нужно выпить кубанской, чтобы не угасить порыва»."
+    "Сделай так, Господь, чтобы он, если даже и упал бы с крыльца или печки, не сломал бы ни руки своей, ни ноги.",
+    "Если нож или бритва попадутся ему на глаза – пусть он ими не играет, найди ему другие игрушки, Господь.",
+    "Если мать его затопит печку – он очень любит, когда его мать затопляет печку, – оттащи его в сторону, если сможешь.",
+    "Мне больно подумать, что он обожжется…",
+    "А если и заболеет, – пусть как только меня увидит, пусть сразу идет на поправку…"
    ],
    "correct": [
-    3
+    2
    ],
-   "explain": "The final sentence states the purpose: he must drink kubanskaya so as not to let the impulse die down."
+   "explain": "The third sentence is the request about the stove and dragging the boy out of the way."
+  },
+  {
+   "id": "h5",
+   "question": "Which sentence says what Venichka was drinking beside the boy's cot?",
+   "sentences": [
+    "Да, да, когда я в прошлый раз приехал, мне сказали: он спит.",
+    "Мне сказали: он болен и лежит в жару.",
+    "Я пил лимонную у его кроватки, и меня оставили с ним одного.",
+    "Он и в самом деле был в жару, и даже ямка на щеке вся была в жару, и было диковинно, что вот у такого ничтожества еще может быть жар…"
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "The third sentence names the lemon vodka he drank at the bedside."
+  },
+  {
+   "id": "h6",
+   "question": "Which sentence explains why Venichka writes the words of angels and children in long italics?",
+   "sentences": [
+    "И как он это сказал!",
+    "И все, что они говорят – вечно живущие ангелы и умирающие дети, – все так значительно, что я слова их пишу длинными курсивами, а все, что мы говорим, – махонькими буковками, потому что это более или менее чепуха.",
+    "«Понимаю, отец!»…"
+   ],
+   "correct": [
+    1
+   ],
+   "explain": "The second sentence gives the reason: what they say is so significant, while what we say is more or less nonsense."
   }
  ]
 }

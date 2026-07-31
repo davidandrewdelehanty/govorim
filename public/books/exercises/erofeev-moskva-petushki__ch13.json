@@ -2,37 +2,7 @@
  "cases": [
   {
    "id": "c1",
-   "sentence": "Не в радость обратятся тебе эти тринадцать ___.",
-   "lemma": "глоток",
-   "options": [
-    "глоток",
-    "глотка",
-    "глотки",
-    "глотков"
-   ],
-   "correct": "глотков",
-   "case": "Родительный (Genitive)",
-   "translation": "These thirteen swallows will bring you no joy.",
-   "explain": "Numerals from five upwards (here тринадцать) take the genitive plural of the counted noun: тринадцать глотков."
-  },
-  {
-   "id": "c2",
-   "sentence": "Не в радость обратятся ___ эти тринадцать глотков.",
-   "lemma": "ты",
-   "options": [
-    "ты",
-    "тебя",
-    "тебе",
-    "тобой"
-   ],
-   "correct": "тебе",
-   "case": "Дательный (Dative)",
-   "translation": "These thirteen swallows will bring you no joy.",
-   "explain": "The person to whom something turns out well or badly is the indirect object, and indirect objects stand in the dative: обратятся тебе."
-  },
-  {
-   "id": "c3",
-   "sentence": "Пусть светел твой сегодняшний ___.",
+   "sentence": "А еще был ___ рождения непонятно у кого.",
    "lemma": "день",
    "options": [
     "день",
@@ -42,380 +12,305 @@
    ],
    "correct": "день",
    "case": "Именительный (Nominative)",
-   "translation": "May your day today be bright.",
-   "explain": "День is the subject of the clause (the thing said to be светел), and subjects stand in the nominative."
+   "translation": "And besides that, it was somebody's birthday — nobody knew whose.",
+   "explain": "«День рождения» is the subject of «был», and a subject stands in the nominative."
+  },
+  {
+   "id": "c2",
+   "sentence": "Увидеть ее на ___, с косой от попы до затылка.",
+   "lemma": "перрон",
+   "options": [
+    "перрон",
+    "перрона",
+    "перроне",
+    "перроном"
+   ],
+   "correct": "перроне",
+   "case": "Предложный (Prepositional)",
+   "translation": "To see her on the platform, with her braid running from her backside to the back of her head.",
+   "explain": "«На» answering «где?» (a place, not a direction) requires the prepositional: на перроне."
+  },
+  {
+   "id": "c3",
+   "sentence": "Увидеть ее на перроне и от ___ зардеться.",
+   "lemma": "волнение",
+   "options": [
+    "волнение",
+    "волнения",
+    "волнению",
+    "волнением"
+   ],
+   "correct": "волнения",
+   "case": "Родительный (Genitive)",
+   "translation": "To see her on the platform and blush from excitement.",
+   "explain": "The preposition «от», giving the cause of a state, always governs the genitive: от волнения."
   },
   {
    "id": "c4",
-   "sentence": "Или зарежут, как ___?",
-   "lemma": "девочка",
+   "sentence": "Я разбавлял российскую жигулевским ___.",
+   "lemma": "пиво",
    "options": [
-    "девочка",
-    "девочки",
-    "девочку",
-    "девочкой"
+    "пиво",
+    "пива",
+    "пиве",
+    "пивом"
    ],
-   "correct": "девочку",
-   "case": "Винительный (Accusative)",
-   "translation": "Or will they knife me like a little girl?",
-   "explain": "The comparison «как…» copies the role of the direct object of зарежут, so девочка goes into the accusative; feminine nouns in -а take -у in the accusative: девочку."
+   "correct": "пивом",
+   "case": "Творительный (Instrumental)",
+   "translation": "I was diluting the Rossiyskaya vodka with Zhiguli beer.",
+   "explain": "The means or substance used to do something («разбавлять чем?») goes into the instrumental, and the adjective жигулевским agrees with it."
   },
   {
    "id": "c5",
-   "sentence": "Я услышал сразу два полярных упрека: и в скучности, и в ___.",
-   "lemma": "легкомыслие",
+   "sentence": "Стоя выпила, откинув ___, как пианистка.",
+   "lemma": "голова",
    "options": [
-    "легкомыслие",
-    "легкомыслия",
-    "легкомыслию",
-    "легкомыслии"
+    "голова",
+    "головы",
+    "голову",
+    "головой"
    ],
-   "correct": "легкомыслии",
-   "case": "Предложный (Prepositional)",
-   "translation": "I heard two opposite reproaches at once: of being boring and of being frivolous.",
-   "explain": "«В» after a word like упрёк names the sphere of the accusation and requires the prepositional: упрёк в легкомыслии."
+   "correct": "голову",
+   "case": "Винительный (Accusative)",
+   "translation": "She drank it standing, throwing her head back like a pianist.",
+   "explain": "Голова is the direct object of the transitive verbal adverb «откинув», and a direct object without negation takes the accusative."
   },
   {
    "id": "c6",
-   "sentence": "Потому что я болен ___, но не подаю и вида.",
-   "lemma": "душа",
+   "sentence": "Она ___ прямо сказала: «Я хочу, чтобы ты меня властно обнял правою рукою!»",
+   "lemma": "я",
    "options": [
-    "душа",
-    "души",
-    "душу",
-    "душой"
+    "я",
+    "меня",
+    "мне",
+    "мной"
    ],
-   "correct": "душой",
-   "case": "Творительный (Instrumental)",
-   "translation": "Because I am sick in my soul, but I never let it show.",
-   "explain": "With болен the part of you that is affected goes into the instrumental (болен душой, болен ногами), naming the respect in which one is ill."
+   "correct": "мне",
+   "case": "Дательный (Dative)",
+   "translation": "She told me straight out: \"I want you to put your right arm around me masterfully!\"",
+   "explain": "«Сказать» takes the addressee (the person told) in the dative, so я becomes мне."
   },
   {
    "id": "c7",
-   "sentence": "Смирись, Веничка, хотя бы на том, что твоя душа вместительнее ___ твоего.",
-   "lemma": "ум",
+   "sentence": "Я сижу за ___, разбавляю и пью.",
+   "lemma": "стол",
    "options": [
-    "ум",
-    "ума",
-    "уму",
-    "умом"
+    "стол",
+    "стола",
+    "столу",
+    "столом"
    ],
-   "correct": "ума",
-   "case": "Родительный (Genitive)",
-   "translation": "Be content, Venichka, at least with the fact that your soul is more capacious than your mind.",
-   "explain": "A simple comparative like вместительнее is followed by the genitive of what is being compared: вместительнее ума."
-  },
-  {
-   "id": "c8",
-   "sentence": "Выпьем за ___ – весь этот остаток кубанской.",
-   "lemma": "понимание",
-   "options": [
-    "понимание",
-    "понимания",
-    "пониманию",
-    "пониманием"
-   ],
-   "correct": "понимание",
-   "case": "Винительный (Accusative)",
-   "translation": "Let's drink to understanding — all this last of the kubanskaya.",
-   "explain": "In a toast «выпить за…» the preposition за governs the accusative; понимание is inanimate and neuter, so its accusative looks like the nominative."
+   "correct": "столом",
+   "case": "Творительный (Instrumental)",
+   "translation": "I am sitting at the table, diluting and drinking.",
+   "explain": "«За» meaning 'at / behind' with a static location (сидеть где?) governs the instrumental: за столом."
   }
  ],
  "reading": [
   {
    "id": "r1",
-   "ru": "«Не в радость обратятся тебе эти тринадцать глотков», – подумал я, делая тринадцатый глоток.",
-   "question": "What does Venichka think to himself as he takes his thirteenth swallow?",
+   "ru": "Эта девушка вовсе не девушка!",
+   "question": "What does Venichka insist about the red-haired girl from Petushki?",
    "options": [
-    "That these thirteen swallows will bring him no joy",
-    "That he will stop drinking after this one",
-    "That the bottle is already empty",
-    "That the thirteenth swallow is the sweetest"
+    "That she is not a girl at all, but something else entirely",
+    "That she is only a girl in his imagination",
+    "That she is the youngest of the three women",
+    "That she is not from Petushki at all"
    ],
-   "correct": "That these thirteen swallows will bring him no joy",
-   "explain": "The chapter opens with him swallowing and simultaneously warning himself that the swallows will bring no joy."
+   "correct": "That she is not a girl at all, but something else entirely",
+   "explain": "He piles up denials — she is not a girl but a ballad, not a woman but sorcery."
   },
   {
    "id": "r2",
-   "ru": "Тебе ли этого не знать?",
-   "question": "What does the inner voice say the second morning dose does if it is drunk straight from the bottle?",
+   "ru": "В Петушках, как я вам уже говорил, жасмин не отцветает и птичье пение не молкнет.",
+   "question": "How does Venichka describe Petushki?",
    "options": [
-    "It clouds the soul, at least until the third dose",
-    "It cures the hangover completely",
-    "It has no effect whatsoever",
-    "It makes the angels sing"
+    "The jasmine never stops blooming and the birdsong never falls silent",
+    "It is grey and empty all year round",
+    "It is louder and busier than Moscow",
+    "It smells of beer and cheap wine"
    ],
-   "correct": "It clouds the soul, at least until the third dose",
-   "explain": "The voice insists that the second dose from the bottle darkens the soul until the third one is drunk from a glass — and that Venichka knows this perfectly well."
+   "correct": "The jasmine never stops blooming and the birdsong never falls silent",
+   "explain": "He repeats his earlier claim that in Petushki jasmine and birdsong never cease."
   },
   {
    "id": "r3",
-   "ru": "Мое завтра светло.",
-   "question": "What does Venichka assert about his own tomorrow?",
+   "ru": "Вот и в этот день, ровно двенадцать недель тому назад, были птички и был жасмин.",
+   "question": "How long ago was the day Venichka starts to remember?",
    "options": [
-    "That it is bright",
-    "That it is hopeless",
-    "That it will never come",
-    "That it belongs to the angels"
+    "Exactly twelve weeks ago",
+    "Exactly twelve days ago",
+    "About a year ago",
+    "The day before yesterday"
    ],
-   "correct": "That it is bright",
-   "explain": "He declares his tomorrow bright, and adds that our tomorrow is brighter than our yesterday and our today."
+   "correct": "Exactly twelve weeks ago",
+   "explain": "He dates the day of their meeting as exactly twelve weeks before the journey he is on."
   },
   {
    "id": "r4",
-   "ru": "Но кто поручится, что наше послезавтра не будет хуже нашего позавчера?",
-   "question": "What doubt does Venichka raise straight after saying that tomorrow is brighter than yesterday?",
+   "ru": "А еще был день рождения непонятно у кого.",
+   "question": "What was the occasion of the gathering that day?",
    "options": [
-    "Who can guarantee that the day after tomorrow will not be worse than the day before yesterday",
-    "Who will pay for the next bottle",
-    "Who will meet him on the platform",
-    "Who told the angels to keep quiet"
+    "A birthday, though it was unclear whose",
+    "A wedding in Petushki",
+    "A farewell party for Venichka",
+    "A holiday at the cable-laying office"
    ],
-   "correct": "Who can guarantee that the day after tomorrow will not be worse than the day before yesterday",
-   "explain": "The bright-tomorrow formula is immediately undercut by this question about the day after tomorrow."
+   "correct": "A birthday, though it was unclear whose",
+   "explain": "It was somebody's birthday, but whose exactly was not clear to him."
   },
   {
    "id": "r5",
-   "ru": "Что меня там никто не встретит?",
-   "question": "Which of these is one of the misfortunes Venichka imagines the angels are silently fearing for him?",
+   "ru": "И я разбавлял и пил, разбавлял российскую жигулевским пивом и глядел на этих «троих» и что-то в них прозревал.",
+   "question": "What did Venichka mix his Rossiyskaya vodka with while he watched the women?",
    "options": [
-    "That nobody will meet him at Petushki",
-    "That he will lose his ticket",
-    "That the shops will not open",
-    "That he will forget the way to the Kremlin"
+    "Zhiguli beer",
+    "Coriander vodka",
+    "Dessert wine",
+    "Lemonade"
    ],
-   "correct": "That nobody will meet him at Petushki",
-   "explain": "He lists the possible disasters — nobody meeting him, the train going off the embankment, inspectors, being strangled asleep — and asks why the angels say nothing."
+   "correct": "Zhiguli beer",
+   "explain": "He says plainly that he diluted the Rossiyskaya with Zhiguli beer."
   },
   {
    "id": "r6",
-   "ru": "Почему же ангелы смущаются и молчат?",
-   "question": "How do the angels behave when Venichka starts talking about the joys awaiting him in Petushki?",
+   "ru": "Но вот ответное прозрение – я только в одной из них ощутил, только в одной!",
+   "question": "In how many of the tipsy women did Venichka feel an answering insight?",
    "options": [
-    "They become embarrassed and fall silent",
-    "They laugh loudly at him",
-    "They congratulate him warmly",
-    "They tell him plainly what will happen"
+    "In only one of them",
+    "In all three of them",
+    "In two of them",
+    "In none of them"
    ],
-   "correct": "They become embarrassed and fall silent",
-   "explain": "Their embarrassed silence is exactly what puzzles and worries him."
+   "correct": "In only one of them",
+   "explain": "He stresses twice that the response came from only one of the three."
   },
   {
    "id": "r7",
-   "ru": "И вообще, мозгов в тебе не очень много.",
-   "question": "What does the voice tell Venichka about his brains?",
+   "ru": "Я одну вашу вещицу – читала.",
+   "question": "What does the red-haired woman tell Venichka once she recognises him?",
    "options": [
-    "That he does not have very many of them",
-    "That they are sharper than anyone's",
-    "That drink has ruined them",
-    "That they are his only asset"
+    "That she has read one of his pieces",
+    "That she has never heard of him",
+    "That she once saw him in Petushki",
+    "That she writes poems herself"
    ],
-   "correct": "That he does not have very many of them",
-   "explain": "The voice bluntly informs him that there are not very many brains in him — and asks whether he really did not know that."
+   "correct": "That she has read one of his pieces",
+   "explain": "She opens by saying she has read one little work of his."
   },
   {
    "id": "r8",
-   "ru": "Смирись, Веничка, хотя бы на том, что твоя душа вместительнее ума твоего.",
-   "question": "What consolation is Venichka told to settle for?",
+   "ru": "Это выше человеческих сил!",
+   "question": "What is her verdict on the amount of nonsense he packed into fifty pages?",
    "options": [
-    "That his soul is more capacious than his mind",
-    "That his mind is quicker than other people's",
-    "That his memory is excellent",
-    "That his journey will be short"
+    "That it is beyond human powers",
+    "That it is not nearly enough",
+    "That it made her cry",
+    "That it should be published at once"
    ],
-   "correct": "That his soul is more capacious than his mind",
-   "explain": "He is told to be content at least with the fact that his soul holds more than his mind does."
+   "correct": "That it is beyond human powers",
+   "explain": "She marvels that so much drivel on half a hundred pages is more than a human being could manage — and he offers to write even more."
   },
   {
    "id": "r9",
-   "ru": "Совесть и вкус – это уже так много, что мозги делаются прямо излишними.",
-   "question": "Why, according to the voice, does Venichka have no need of a mind?",
+   "ru": "То есть началось беспамятство: три часа провала.",
+   "question": "What happened right after that exchange with her?",
    "options": [
-    "Because conscience and taste are already so much that brains become superfluous",
-    "Because a mind only leads to more drinking",
-    "Because the angels think for him",
-    "Because nobody around him uses one either"
+    "A three-hour blackout he cannot remember",
+    "He left the party and went home",
+    "He fell asleep on the platform",
+    "He sobered up completely"
    ],
-   "correct": "Because conscience and taste are already so much that brains become superfluous",
-   "explain": "Having conscience and taste on top of it is presented as making brains outright unnecessary."
+   "correct": "A three-hour blackout he cannot remember",
+   "explain": "Everything began with a gap of three hours he cannot account for — what he drank, what he said, in what proportion he diluted."
   },
   {
    "id": "r10",
-   "ru": "Когда я услышал одновременно сразу два полярных упрека: и в скучности, и в легкомыслии.",
-   "question": "When does Venichka say he first realised he was a fool?",
+   "ru": "И кроме нас двоих – никого.",
+   "question": "What did Venichka find when he came round three hours later?",
    "options": [
-    "When he heard two opposite reproaches at once — of being boring and of being frivolous",
-    "When he first drank kubanskaya from the bottle",
-    "When the angels refused to answer him",
-    "When he saw Kramskoy's painting for the first time"
+    "Nobody was left but the two of them",
+    "The whole company was still drinking",
+    "He was alone in the room",
+    "He was already on the train"
    ],
-   "correct": "When he heard two opposite reproaches at once — of being boring and of being frivolous",
-   "explain": "A clever man would not sink to frivolity and a frivolous one would not allow himself to be dull, yet he somehow managed to combine both."
+   "correct": "Nobody was left but the two of them",
+   "explain": "He wakes at the table to find only himself and her, still laughing at him."
   },
   {
    "id": "r11",
-   "ru": "Потому что я болен душой, но не подаю и вида.",
-   "question": "How does Venichka explain why he comes across as boring?",
+   "ru": "Стоя выпила, откинув голову, как пианистка.",
+   "question": "How does Venichka describe the way she drank her extra hundred grams?",
    "options": [
-    "He is sick in his soul and spends all his strength simulating good health",
-    "He deliberately hides how clever he is",
-    "He has nothing at all on his mind",
-    "He is always too drunk to speak"
+    "Standing up, head thrown back, like a pianist",
+    "Slowly, in small sips",
+    "Sitting down, without looking at him",
+    "Straight from the bottle"
    ],
-   "correct": "He is sick in his soul and spends all his strength simulating good health",
-   "explain": "All his mental and physical strength goes into pretending to be spiritually healthy, which is why he is dull company."
-  },
-  {
-   "id": "r12",
-   "ru": "Вовсе нет.",
-   "question": "What does Venichka claim about his relationship to the truth?",
-   "options": [
-    "Not that he knows it, only that he has come close enough to see it best",
-    "That he has known it since childhood",
-    "That there is no truth at all",
-    "That only the angels can reach it"
-   ],
-   "correct": "Not that he knows it, only that he has come close enough to see it best",
-   "explain": "He denies knowing the truth or even standing right next to it, but says he is at the distance from which it is most convenient to look at it."
-  },
-  {
-   "id": "r13",
-   "ru": "Как же не быть мне скушным и как же не пить кубанскую?",
-   "question": "What does Venichka say about his right to be boring and to drink kubanskaya?",
-   "options": [
-    "That he has earned that right",
-    "That he is ashamed of it",
-    "That a doctor prescribed it",
-    "That he will give it up in Petushki"
-   ],
-   "correct": "That he has earned that right",
-   "explain": "Carrying the world's sorrow inside him, he says, is what has earned him the right."
-  },
-  {
-   "id": "r14",
-   "ru": "К примеру: вы видели „Неутешное горе“ Крамского?",
-   "question": "Which painting does Venichka use as his example?",
-   "options": [
-    "Kramskoy's 'Inconsolable Grief'",
-    "Repin's 'Barge Haulers on the Volga'",
-    "Vasnetsov's 'Three Bogatyrs'",
-    "Bryullov's 'The Last Day of Pompeii'"
-   ],
-   "correct": "Kramskoy's 'Inconsolable Grief'",
-   "explain": "He asks whether the reader has seen Kramskoy's picture and then imagines the frozen woman in it ignoring a cat smashing porcelain."
-  },
-  {
-   "id": "r15",
-   "ru": "Она невозможно скушна и еще бы не была скушна!",
-   "question": "How does Venichka answer his own question about the grieving noblewoman in the painting?",
-   "options": [
-    "That she is impossibly boring and frivolous in the highest degree at the same time",
-    "That she is neither boring nor frivolous",
-    "That she is simply tired after a long day",
-    "That she would rush about wringing her hands"
-   ],
-   "correct": "That she is impossibly boring and frivolous in the highest degree at the same time",
-   "explain": "She is both, which is the point: he says the same combination applies to himself."
-  },
-  {
-   "id": "r16",
-   "ru": "Смотрите, как это делается!..",
-   "question": "How does the chapter end?",
-   "options": [
-    "With Venichka inviting everyone to watch how it is done",
-    "With Venichka falling asleep",
-    "With the train arriving at Petushki",
-    "With the angels finally answering him"
-   ],
-   "correct": "With Venichka inviting everyone to watch how it is done",
-   "explain": "After proposing a toast to understanding he tells the reader to watch how the rest of the kubanskaya is drunk."
+   "correct": "Standing up, head thrown back, like a pianist",
+   "explain": "The comparison he uses for her posture as she drinks is a pianist."
   }
  ],
  "highlight": [
   {
    "id": "h1",
-   "question": "Which sentence asks why the angels grow embarrassed as soon as Venichka mentions the joys waiting for him in Petushki?",
+   "question": "Which sentence describes what he wants to do when he first sees her on the platform?",
    "sentences": [
-    "Ну пусть.",
-    "Пусть светел твой сегодняшний день.",
-    "Пусть твое завтра будет еще светлее.",
-    "Но почему же смущаются ангелы, чуть только ты заговоришь о радостях на петушинском перроне и после?"
-   ],
-   "correct": [
-    3
-   ],
-   "explain": "The last sentence turns the bright wishes into a question about the angels' embarrassment."
-  },
-  {
-   "id": "h2",
-   "question": "Which sentence says that Venichka only rarely speaks as neatly and cleverly as he just did?",
-   "sentences": [
-    "«Вот-вот!",
-    "Ты хорошо это, Веничка, сказал.",
-    "Наше завтра и так далее.",
-    "Очень складно и умно ты это сказал, ты редко говоришь так складно и умно."
-   ],
-   "correct": [
-    3
-   ],
-   "explain": "The praise in the fourth sentence carries the sting that such neat, clever speech is rare for him."
-  },
-  {
-   "id": "h3",
-   "question": "Which sentence tells Venichka to be content that his soul holds more than his mind does?",
-   "sentences": [
-    "И вообще, мозгов в тебе не очень много.",
-    "Тебе ли, опять же, этого не знать?",
-    "Смирись, Веничка, хотя бы на том, что твоя душа вместительнее ума твоего.",
-    "Да и зачем тебе ум, коли у тебя есть совесть и сверх того еще вкус?",
-    "Совесть и вкус – это уже так много, что мозги делаются прямо излишними."
+    "Но сначала все-таки к ней.",
+    "Сначала – к ней!",
+    "Увидеть ее на перроне, с косой от попы до затылка, и от волнения зардеться, и вспыхнуть, и напиться влежку, и пастись, пастись между лилиями – ровно столько, чтобы до смерти изнемочь!"
    ],
    "correct": [
     2
    ],
-   "explain": "Only the third sentence contains the instruction to resign himself to his soul being more capacious than his mind."
+   "explain": "Only the third sentence goes beyond 'to her first' and spells out the meeting on the platform."
+  },
+  {
+   "id": "h2",
+   "question": "Which sentence says how much drink there was at the party?",
+   "sentences": [
+    "В Петушках, как я вам уже говорил, жасмин не отцветает и птичье пение не молкнет.",
+    "Вот и в этот день, ровно двенадцать недель тому назад, были птички и был жасмин.",
+    "А еще был день рождения непонятно у кого.",
+    "И еще – была бездна всякого спиртного: не то десять бутылок, не то двенадцать, не то двадцать пять.",
+    "И было все, что может пожелать человек, выпивший столько спиртного: то есть решительно все, от разливного пива до бутылочного.",
+    "«А еще? – спросите вы. – А еще что было?»"
+   ],
+   "correct": [
+    3
+   ],
+   "explain": "The fourth sentence counts the bottles — ten, or twelve, or twenty-five."
+  },
+  {
+   "id": "h3",
+   "question": "Which sentence says what position he found himself in when he came to?",
+   "sentences": [
+    "Вот – с этого все началось.",
+    "То есть началось беспамятство: три часа провала.",
+    "Что я пил?",
+    "О чем говорил?",
+    "В какой пропорции разбавлял?",
+    "Может, этого провала и не было бы, если б я пил, не разбавляя.",
+    "Но – как бы то ни было – я очнулся часа через три, и вот в каком положении я очнулся: я сижу за столом, разбавляю и пью."
+   ],
+   "correct": [
+    6
+   ],
+   "explain": "The last sentence answers it: he came round at the table, still diluting and drinking."
   },
   {
    "id": "h4",
-   "question": "Which sentence names the two opposite reproaches that Venichka heard about himself at the same time?",
+   "question": "Which sentence describes the way she stood as she drank?",
    "sentences": [
-    "«А вот когда.",
-    "Когда я услышал одновременно сразу два полярных упрека: и в скучности, и в легкомыслии.",
-    "Потому что если человек умен и скучен, он не опустится до легкомыслия.",
-    "А если он легкомыслен да умен – он скучным быть себе не позволит.",
-    "А вот я, рохля, как-то сумел сочетать."
+    "А она взяла – и выпила еще сто грамм.",
+    "Стоя выпила, откинув голову, как пианистка.",
+    "А выпив, все из себя выдохнула, все, что в ней было святого, – все выдохнула.",
+    "А потом изогнулась, как падла, и начала волнообразные движения бедрами, – и все это с такою пластикою, что я не мог глядеть на нее без содрогания…"
    ],
    "correct": [
     1
    ],
-   "explain": "The second sentence names both reproaches — dullness and frivolity — while the rest only comment on them."
-  },
-  {
-   "id": "h5",
-   "question": "Which sentence says that Venichka has come near enough to the truth to view it most conveniently?",
-   "sentences": [
-    "Я не утверждаю, что мне – теперь – истина уже известна или что я вплотную к ней подошел.",
-    "Вовсе нет.",
-    "Но я уже на такое расстояние к ней подошел, с которого ее удобнее всего рассмотреть."
-   ],
-   "correct": [
-    2
-   ],
-   "explain": "The first two sentences deny knowing the truth; the third states the distance from which it is best seen."
-  },
-  {
-   "id": "h6",
-   "question": "Which sentence asks why Venichka is a fool, a demon and an idle babbler all at once?",
-   "sentences": [
-    "Вот так и я.",
-    "Теперь вы поняли, отчего я грустнее всех забулдыг?",
-    "Отчего я легковеснее всех идиотов, но и мрачнее всякого дерьма?",
-    "Отчего я и дурак, и демон, и пустомеля разом?"
-   ],
-   "correct": [
-    3
-   ],
-   "explain": "The final question is the one that lists fool, demon and babbler together."
+   "explain": "The second sentence gives her posture — standing, head thrown back like a pianist."
   }
  ]
 }

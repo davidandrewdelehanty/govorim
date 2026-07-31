@@ -2,419 +2,421 @@
  "cases": [
   {
    "id": "c1",
-   "sentence": "У меня в ___ есть кубанская.",
-   "lemma": "чемоданчик",
+   "sentence": "Я прочитал у Ивана ___, что рыжие люди, если выпьют, – обязательно покраснеют…",
+   "lemma": "Бунин",
    "options": [
-    "чемоданчик",
-    "чемоданчика",
-    "чемоданчике",
-    "чемоданчиком"
+    "Бунин",
+    "Бунина",
+    "Бунину",
+    "Буниным"
    ],
-   "correct": "чемоданчике",
-   "case": "Предложный (Prepositional)",
-   "translation": "I have Kubanskaya vodka in my little suitcase.",
-   "explain": "«В» answering «где?» (location, not direction) requires the prepositional case: в чемоданчике."
+   "correct": "Бунина",
+   "case": "Родительный (Genitive)",
+   "translation": "I read in Ivan Bunin that red-haired people, if they drink, are bound to go red.",
+   "explain": "The preposition «у» always governs the genitive, so Иван Бунин becomes Ивана Бунина."
   },
   {
    "id": "c2",
-   "sentence": "Но нет сухого виноградного ___.",
-   "lemma": "вино",
+   "sentence": "Опустит ноги в ледяную ___, нальет шампанского – и пишет.",
+   "lemma": "ванна",
    "options": [
-    "вино",
-    "вина",
-    "вину",
-    "вином"
+    "ванна",
+    "ванны",
+    "ванне",
+    "ванну"
    ],
-   "correct": "вина",
-   "case": "Родительный (Genitive)",
-   "translation": "But there is no dry grape wine.",
-   "explain": "The negative existential «нет» ('there isn't any') puts the thing that is missing into the genitive."
+   "correct": "ванну",
+   "case": "Винительный (Accusative)",
+   "translation": "He would lower his feet into an icy bath, pour himself champagne — and write.",
+   "explain": "«В» answering «куда?» (motion into something) takes the accusative; the feminine ванна becomes ванну."
   },
   {
    "id": "c3",
-   "sentence": "Я пошел в ___, чтобы слить мое дерьмо в «Поцелуй».",
-   "lemma": "вагон",
+   "sentence": "И пил из розового ___.",
+   "lemma": "бокал",
    "options": [
-    "вагон",
-    "вагона",
-    "вагону",
-    "вагоне"
+    "бокал",
+    "бокала",
+    "бокалу",
+    "бокалом"
    ],
-   "correct": "вагон",
-   "case": "Винительный (Accusative)",
-   "translation": "I went into the carriage to pour my rubbish into a «Kiss».",
-   "explain": "«В» with motion towards a place (куда?) takes the accusative; вагон is inanimate, so its accusative looks like the nominative."
+   "correct": "бокала",
+   "case": "Родительный (Genitive)",
+   "translation": "And he drank out of the pink glass.",
+   "explain": "The preposition «из» ('out of') is always followed by the genitive: из бокала."
   },
   {
    "id": "c4",
-   "sentence": "А умный в коверкотовом пальто сидит напротив ___ и будит его.",
-   "lemma": "тупой",
+   "sentence": "Модест Мусоргский лежит в ___ с перепою.",
+   "lemma": "канава",
    "options": [
-    "тупой",
-    "тупого",
-    "тупому",
-    "тупым"
+    "канава",
+    "канавы",
+    "канаве",
+    "канавой"
    ],
-   "correct": "тупого",
-   "case": "Родительный (Genitive)",
-   "translation": "And the clever one in the gabardine coat sits opposite the dull one and keeps waking him.",
-   "explain": "The preposition «напротив» ('opposite') always governs the genitive."
+   "correct": "канаве",
+   "case": "Предложный (Prepositional)",
+   "translation": "Modest Mussorgsky is lying in a ditch after a heavy drinking bout.",
+   "explain": "«В» answering «где?» (position, not direction) requires the prepositional case: в канаве."
   },
   {
    "id": "c5",
-   "sentence": "Берет его за ___ и до отказа подтаскивает к себе.",
-   "lemma": "пуговица",
+   "sentence": "Пощекочет Модеста своей ___ и говорит.",
+   "lemma": "трость",
    "options": [
-    "пуговица",
-    "пуговицы",
-    "пуговицу",
-    "пуговицей"
+    "трость",
+    "трости",
+    "тростью",
+    "тростей"
    ],
-   "correct": "пуговицу",
-   "case": "Винительный (Accusative)",
-   "translation": "He takes him by the button and drags him right up to himself.",
-   "explain": "«За» in the sense of grabbing hold of something takes the accusative: взять за пуговицу."
+   "correct": "тростью",
+   "case": "Творительный (Instrumental)",
+   "translation": "He gives Modest a tickle with his cane and says...",
+   "explain": "The bare instrumental names the tool an action is performed with ('with his cane'), so no preposition is needed."
   },
   {
    "id": "c6",
-   "sentence": "Значит, украли между Кучино и 43-м ___.",
-   "lemma": "километр",
+   "sentence": "Для чего это нужно было тайному ___ Гёте?",
+   "lemma": "советник",
    "options": [
-    "километр",
-    "километра",
-    "километру",
-    "километром"
+    "советник",
+    "советника",
+    "советнику",
+    "советником"
    ],
-   "correct": "километром",
-   "case": "Творительный (Instrumental)",
-   "translation": "So it was stolen between Kuchino and the 43rd kilometre.",
-   "explain": "The preposition «между» ('between') governs the instrumental case."
+   "correct": "советнику",
+   "case": "Дательный (Dative)",
+   "translation": "What did Privy Councillor Goethe need that for?",
+   "explain": "«Нужно» is impersonal: the person who needs something goes into the dative — тайному советнику."
   },
   {
    "id": "c7",
-   "sentence": "Нет, внучек – совершенный ___.",
-   "lemma": "кретин",
+   "sentence": "Стройная ___ была восстановлена.",
+   "lemma": "система",
    "options": [
-    "кретин",
-    "кретина",
-    "кретину",
-    "кретином"
+    "система",
+    "системы",
+    "системе",
+    "системой"
    ],
-   "correct": "кретин",
+   "correct": "система",
    "case": "Именительный (Nominative)",
-   "translation": "No, the grandson is a complete cretin.",
-   "explain": "With a zero copula in the present tense (the dash stands for 'is'), the predicate noun stays in the nominative."
+   "translation": "The well-built system was restored.",
+   "explain": "It is the subject of the passive «была восстановлена», and subjects stand in the nominative."
   },
   {
    "id": "c8",
-   "sentence": "Оба вскочили немедленно и бросились ко ___.",
-   "lemma": "я",
+   "sentence": "Просил ставить ему на ___ особый, розовый бокал.",
+   "lemma": "стол",
    "options": [
-    "я",
-    "меня",
-    "мне",
-    "мной"
+    "стол",
+    "стола",
+    "столу",
+    "столом"
    ],
-   "correct": "мне",
-   "case": "Дательный (Dative)",
-   "translation": "Both of them jumped up at once and rushed over to me.",
-   "explain": "The preposition «к» / «ко» ('towards, up to') requires the dative, giving ко мне."
+   "correct": "стол",
+   "case": "Винительный (Accusative)",
+   "translation": "He would ask for a special pink glass to be put on the table for him.",
+   "explain": "«На» with motion (putting something onto a surface) takes the accusative; стол is inanimate, so its accusative looks like the nominative."
   }
  ],
  "reading": [
   {
    "id": "r1",
-   "ru": "А теперь давайте подумаем с вами вместе: что бы мне сейчас выпить?",
-   "question": "What does Venichka invite the reader to think about with him?",
+   "ru": "Первым заговорил черноусый в жакетке.",
+   "question": "Who starts the conversation in the carriage?",
    "options": [
-    "What he should drink now",
-    "Where the train is going",
-    "How to find the Kremlin",
-    "Who is sitting behind him"
+    "The black-moustached man in the jacket",
+    "Old Mitrich",
+    "The young Mitrich",
+    "Venichka himself"
    ],
-   "correct": "What he should drink now",
-   "explain": "He asks what combination he can still make out of the leftovers in his little suitcase."
+   "correct": "The black-moustached man in the jacket",
+   "explain": "The man with the black moustache in a jacket speaks first, and addresses himself only to Venichka."
   },
   {
    "id": "r2",
-   "ru": "Чтобы не так тошнило от всех этих «Поцелуев», к ним надо привыкнуть с детства.",
-   "question": "According to Venichka, how does one avoid being nauseated by all these «Kisses»?",
+   "ru": "Я прочитал у Ивана Бунина, что рыжие люди, если выпьют, – обязательно покраснеют…",
+   "question": "What does the black-moustached man say he read in Ivan Bunin?",
    "options": [
-    "You have to get used to them from childhood",
-    "You have to drink them warm",
-    "You have to mix them with beer",
-    "You have to drink them very slowly"
+    "That red-haired people always go red when they drink",
+    "That red-haired people never drink",
+    "That drinking makes people go pale",
+    "That Bunin himself drank nothing but champagne"
    ],
-   "correct": "You have to get used to them from childhood",
-   "explain": "He jokes that a childhood habit is the only defence against the taste of his cocktails."
+   "correct": "That red-haired people always go red when they drink",
+   "explain": "This is the first of his literary 'facts', and it opens the whole chain of writers-and-drink anecdotes."
   },
   {
    "id": "r3",
-   "ru": "Но нет сухого виноградного вина.",
-   "question": "Why can Venichka only dream about the «Первый поцелуй»?",
+   "ru": "А потом добавил: «Налейте мне шампанского».",
+   "question": "According to the storyteller, what did Chekhov add after saying 'Ich sterbe'?",
    "options": [
-    "He has no dry grape wine",
-    "He has no vodka left",
-    "He has no bottle to mix it in",
-    "He gave the recipe away"
+    "'Pour me some champagne'",
+    "'Wake up Herzen'",
+    "'Bring me a pink glass'",
+    "'I want nothing more'"
    ],
-   "correct": "He has no dry grape wine",
-   "explain": "The cocktail needs dry wine plus vodka, and he has the Kubanskaya but not the wine."
+   "correct": "'Pour me some champagne'",
+   "explain": "In his telling, Chekhov said 'Ich sterbe', asked for champagne, and only then died."
   },
   {
    "id": "r4",
-   "ru": "Приходится пить «Поцелуй тети Клавы».",
-   "question": "Which drink does Venichka finally settle on?",
+   "ru": "Опустит ноги в ледяную ванну, нальет шампанского – и пишет.",
+   "question": "How is Friedrich Schiller said to have written?",
    "options": [
-    "«Поцелуй тети Клавы»",
-    "«Первый поцелуй»",
-    "«Инесса Арманд»",
-    "«Иорданские струи»"
+    "With his feet in an icy bath and champagne poured out",
+    "Lying in a ditch",
+    "Standing at a tall desk with beer",
+    "Only in the early morning, before drinking"
    ],
-   "correct": "«Поцелуй тети Клавы»",
-   "explain": "It is the only mixture his remaining Rossiyskaya and pink fortified wine will make."
+   "correct": "With his feet in an icy bath and champagne poured out",
+   "explain": "The anecdote has Schiller writing with his feet in cold water and a glass of champagne at hand."
   },
   {
    "id": "r5",
-   "ru": "Где моя четвертинка российской?",
-   "question": "What does Venichka find is missing when he comes back to his seat?",
+   "ru": "Пропустит пять бокалов – готова целая трагедия в пяти актах.",
+   "question": "What does five glasses of champagne produce, in the storyteller's arithmetic?",
    "options": [
-    "His quarter-bottle of Rossiyskaya",
-    "His little suitcase",
-    "His bottle of pink fortified wine",
-    "His ticket to Petushki"
+    "A whole tragedy in five acts",
+    "A single act of a tragedy",
+    "Five poems",
+    "A hangover and nothing written"
    ],
-   "correct": "His quarter-bottle of Rossiyskaya",
-   "explain": "The quarter-bottle he had only half finished at Serp i Molot has vanished from beside the suitcase."
+   "correct": "A whole tragedy in five acts",
+   "explain": "One glass gives one act, so five glasses give a complete five-act tragedy."
   },
   {
    "id": "r6",
-   "ru": "Там все было на месте.",
-   "question": "What did Venichka discover when he looked inside the little suitcase?",
+   "ru": "И пил из розового бокала.",
+   "question": "What did Gogol supposedly do with the special glass he asked for at the Aksakovs'?",
    "options": [
-    "Everything in it was still there",
-    "It had been emptied completely",
-    "Someone had left money in it",
-    "Only the Kubanskaya was gone"
+    "He drank out of the pink glass",
+    "He kept it empty on the table",
+    "He gave it to his host",
+    "He smashed it after dinner"
    ],
-   "correct": "Everything in it was still there",
-   "explain": "Only the open quarter-bottle standing outside the suitcase had disappeared."
+   "correct": "He drank out of the pink glass",
+   "explain": "Gogol asked for a special pink glass and drank from it — vodka, the storyteller assumes."
   },
   {
    "id": "r7",
-   "ru": "Значит, украли между Кучино и 43-м километром.",
-   "question": "When does Venichka work out that the theft must have taken place?",
+   "ru": "Модест на лавочке похмелиться хочет: что ему ноты!",
+   "question": "What is Mussorgsky thinking about while he sits writing his notes?",
    "options": [
-    "Between Kuchino and the 43rd kilometre",
-    "Between Moscow and Serp i Molot",
-    "While he was asleep at Nikolskoye",
-    "Just after Khrapunovo"
+    "Getting a hair of the dog rather than the music",
+    "Finishing the opera as fast as he can",
+    "Rimsky-Korsakov's top hat",
+    "Going home to sleep"
    ],
-   "correct": "Between Kuchino and the 43rd kilometre",
-   "explain": "He reckons the angels stopped watching the suitcase around Kuchino, so the bottle went after that."
+   "correct": "Getting a hair of the dog rather than the music",
+   "explain": "He wants a drink to cure his hangover, and the notes mean nothing to him — but Rimsky-Korsakov will not let him."
   },
   {
    "id": "r8",
-   "ru": "Я обвел глазами всех – ни один не сморгнул.",
-   "question": "How did the other passengers react when Venichka looked round at them all?",
+   "ru": "Я очень люблю читать!",
+   "question": "What does the black-moustached man say about books and his own drinking?",
    "options": [
-    "Not one of them so much as blinked",
-    "They all looked away guiltily",
-    "They started laughing at him",
-    "They pointed at the thief"
+    "He loves reading, but a good book depresses him and sends him back to drink",
+    "He never reads anything at all",
+    "He only reads when he is sober for a whole year",
+    "He reads instead of drinking and is proud of it"
    ],
-   "correct": "Not one of them so much as blinked",
-   "explain": "Their unblinking stare only confirms his sense that he is in love and out of his mind."
+   "correct": "He loves reading, but a good book depresses him and sends him back to drink",
+   "explain": "He drinks for a month or two, reads a book, finds himself vile beside it, throws the book away and starts drinking again."
   },
   {
    "id": "r9",
-   "ru": "Теперь начинается детективная повесть…",
-   "question": "What genre does Venichka say his journey is turning into now?",
+   "ru": "Все ценные люди России, все нужные ей люди – все пили, как свиньи.",
+   "question": "What is his claim about Russia's valuable and necessary people?",
    "options": [
-    "A detective story",
-    "A philosophical essay",
-    "A poem in prose",
-    "A set of memoirs"
+    "They all drank like pigs, while the useless ones did not drink",
+    "They all abstained on principle",
+    "Only the useless ones drank",
+    "They drank only champagne, never vodka"
    ],
-   "correct": "A detective story",
-   "explain": "Up to now it had been essays, memoirs and poems in prose; the theft turns it into detective fiction."
+   "correct": "They all drank like pigs, while the useless ones did not drink",
+   "explain": "He divides Russians into the valuable drinkers and the superfluous, muddle-headed non-drinkers."
   },
   {
    "id": "r10",
-   "ru": "Тупой в телогрейке уже давно закосел и спит.",
-   "question": "What is the dull one in the quilted jacket doing?",
+   "ru": "Ему еще в Храпунове надо было выходить, этому Герцену, а он все едет, собака…",
+   "question": "What does the man in the covercoat coat shout about Herzen?",
    "options": [
-    "He has long been drunk and is asleep",
-    "He is arguing with the clever one",
-    "He is staring at Venichka's suitcase",
-    "He is standing by the window"
+    "That Herzen should have got off at Khrapunovo but is still riding along",
+    "That Herzen never drank a drop",
+    "That Herzen is asleep in the next carriage",
+    "That Herzen is going all the way to Petushki with them"
    ],
-   "correct": "He has long been drunk and is asleep",
-   "explain": "The clever one in the gabardine coat keeps pulling him by the button to wake him."
+   "correct": "That Herzen should have got off at Khrapunovo but is still riding along",
+   "explain": "He takes the phrase about 'waking Herzen' literally and treats Herzen as a passenger who has missed his stop."
   },
   {
    "id": "r11",
-   "ru": "Нет, эти двое украсть не могли.",
-   "question": "What does Venichka conclude about the dull one and the clever one?",
+   "ru": "Вот тайный советник Гёте, например, совсем не пил.",
+   "question": "What counter-example does the decembrist offer against all this drinking?",
    "options": [
-    "Neither of them could have stolen it",
-    "Both of them stole it together",
-    "The sleeping one stole it",
-    "The one in the gabardine coat stole it"
+    "Privy Councillor Goethe, who did not drink at all",
+    "Dmitry Pisarev",
+    "Nikolai Rimsky-Korsakov",
+    "Anton Chekhov"
    ],
-   "correct": "Neither of them could have stolen it",
-   "explain": "By his mock-logic one of them is asleep and the other wears a gabardine coat, so neither is capable of theft."
+   "correct": "Privy Councillor Goethe, who did not drink at all",
+   "explain": "He interrupts to ask whether one cannot simply pull oneself together, and names Goethe as proof that one can."
   },
   {
    "id": "r12",
-   "ru": "Очень странные люди эти двое: он и она.",
-   "question": "What is odd about the man and the woman sitting behind Venichka?",
+   "ru": "Так он, чтобы самому не скопытиться, вместо себя заставлял пить всех своих персонажей.",
+   "question": "How does Venichka explain Goethe's sobriety?",
    "options": [
-    "They are strangers to each other yet look exactly alike",
-    "They are asleep on each other's shoulders",
-    "They are quarrelling loudly about a ticket",
-    "They are dressed as railway staff"
+    "Goethe made his characters drink in his place so as not to go under himself",
+    "Goethe drank secretly at night",
+    "Goethe was simply never offered anything",
+    "Goethe replaced wine with icy baths"
    ],
-   "correct": "They are strangers to each other yet look exactly alike",
-   "explain": "Both wear a jacket, a brown beret and a moustache, though they sit at opposite windows and clearly do not know each other."
+   "correct": "Goethe made his characters drink in his place so as not to go under himself",
+   "explain": "Venichka's rescue of the argument: in Faust everybody drinks, because Goethe delegated his drinking to his characters."
   },
   {
    "id": "r13",
-   "ru": "Внучек на две головы длиннее дедушки и от рождения слабоумен.",
-   "question": "How does Venichka describe the grandson sitting ahead of him?",
+   "ru": "Он остался жить, но как бы покончил с собой.",
+   "question": "What does Venichka say Goethe achieved by having Werther shoot himself?",
    "options": [
-    "Two heads taller than the grandfather and feeble-minded from birth",
-    "Two heads shorter than the grandfather but very clever",
-    "Exactly the same height as the grandfather",
-    "A small boy asleep on the grandfather's knees"
+    "He stayed alive while in effect committing suicide",
+    "He cured himself of drinking",
+    "He made his readers kill themselves instead",
+    "He proved that he was braver than his characters"
    ],
-   "correct": "Two heads taller than the grandfather and feeble-minded from birth",
-   "explain": "The grandfather is two heads shorter, and Venichka adds that he is feeble-minded as well."
+   "correct": "He stayed alive while in effect committing suicide",
+   "explain": "Venichka calls this worse than a real suicide — more cowardice, egoism and creative baseness."
   },
   {
    "id": "r14",
-   "ru": "Отчего бы это им облизываться?",
-   "question": "What behaviour makes Venichka suspect the grandfather and the grandson?",
+   "ru": "А все потому, что в Есино нет пассажиров, они все садятся или в Храпунове, или во Фрязеве.",
+   "question": "In Venichka's parable, why does the train never stop at Yesino?",
    "options": [
-    "They keep licking their lips while staring at him",
-    "They keep whispering to each other",
-    "They keep changing seats",
-    "They keep hiding their hands"
+    "Because there are no passengers there — they all board at Khrapunovo or Fryazevo",
+    "Because the station has been closed",
+    "Because the driver has been drinking",
+    "Because everyone in Yesino is going the other way"
    ],
-   "correct": "They keep licking their lips while staring at him",
-   "explain": "Everyone stares at him, but only these two lick their lips, which he finds very suspicious."
+   "correct": "Because there are no passengers there — they all board at Khrapunovo or Fryazevo",
+   "explain": "People walk from Yesino to the next stations because they know the train will race through Yesino anyway — the same circular logic Venichka applies to Goethe."
   },
   {
    "id": "r15",
-   "ru": "Оба сели, в упор рассматривая мой чемоданчик.",
-   "question": "What did the pair do once Venichka invited them to sit opposite him?",
+   "ru": "Черноусый вынул свою столичную.",
+   "question": "What happens once Venichka has rebuilt the black-moustached man's theory?",
    "options": [
-    "They sat down and stared point-blank at his little suitcase",
-    "They refused and went back to their seats",
-    "They immediately asked him for a drink",
-    "They fell asleep at once"
+    "The bottles come out and the drinking starts again",
+    "Everyone falls asleep",
+    "The decembrist gets off the train",
+    "They begin arguing about Herzen once more"
    ],
-   "correct": "They sat down and stared point-blank at his little suitcase",
-   "explain": "The suitcase is what interests them, and the grandson even sits sideways on his left rib."
+   "correct": "The bottles come out and the drinking starts again",
+   "explain": "The decembrist produces a bottle of pepper vodka and the black-moustached man his Stolichnaya, and they all rub their hands."
   },
   {
    "id": "r16",
-   "ru": "Как звать тебя, папаша, и куда ты едешь?",
-   "question": "What does Venichka ask the grandfather at the end of the chapter?",
+   "ru": "Итак, за здоровье тайного советника Иоганна фон Гёте?",
+   "question": "What toast does the chapter end on?",
    "options": [
-    "His name and where he is travelling to",
-    "Whether he has seen the missing bottle",
-    "Whether he has anything to drink",
-    "How he is related to the grandson"
+    "To the health of Privy Councillor Johann von Goethe",
+    "To the health of Anton Chekhov",
+    "To Herzen, who is still riding",
+    "To the passengers of Yesino"
    ],
-   "correct": "His name and where he is travelling to",
-   "explain": "The chapter closes on this first question of his interrogation of the two suspects."
+   "correct": "To the health of Privy Councillor Johann von Goethe",
+   "explain": "Having just been proved a secret drunkard, Goethe becomes the subject of the company's toast."
   }
  ],
  "highlight": [
   {
    "id": "h1",
-   "question": "Which sentence says how much vodka was still left in the missing quarter-bottle?",
+   "question": "Which sentence reports what Chekhov asked for after saying 'Ich sterbe'?",
    "sentences": [
-    "Подошел – и остолбенел.",
-    "Где моя четвертинка российской?",
-    "Та самая четвертинка, которую я у Серпа и Молота только ополовинил?",
-    "От самого Серпа и Молота она стояла у чемоданчика, в ней оставалось почти сто грамм – где же она теперь?"
+    "– Как, то есть «ну, а дальше»?",
+    "Последние, предсмертные слова Антона Чехова какие были?",
+    "Он сказал: «Ихь штербе», то есть «я умираю».",
+    "А потом добавил: «Налейте мне шампанского».",
+    "И уж тогда только – умер."
    ],
    "correct": [
     3
    ],
-   "explain": "The last sentence says that almost a hundred grams were left in it when it stood by the suitcase."
+   "explain": "The fourth sentence is the request for champagne that follows the German words."
   },
   {
    "id": "h2",
-   "question": "Which sentence describes how the clever one wakes the sleeping man up?",
+   "question": "Which sentence describes the posture Schiller supposedly wrote in?",
    "sentences": [
-    "Я взглянул вправо: там все до сих пор сидят эти двое, тупой-тупой и умный-умный.",
-    "Тупой в телогрейке уже давно закосел и спит.",
-    "А умный в коверкотовом пальто сидит напротив тупого и будит его.",
-    "И как-то по-живодерски будит: берет его за пуговицу и до отказа подтаскивает к себе, как бы натягивая тетиву, – а потом отпускает: и тупой-тупой в телогрейке летит на прежнее место, вонзаясь в спинку лавочки, как в сердце тупая стрела Амура…"
+    "– А Фридрих Шиллер – тот не только умереть, тот даже жить не мог без шампанского.",
+    "Он знаете как писал?",
+    "Опустит ноги в ледяную ванну, нальет шампанского – и пишет.",
+    "Пропустит один бокал – готов целый акт трагедии.",
+    "Пропустит пять бокалов – готова целая трагедия в пяти актах."
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "Only the third sentence describes the icy bath and the poured champagne."
+  },
+  {
+   "id": "h3",
+   "question": "Which sentence says that Rimsky-Korsakov would not let Mussorgsky have a drink?",
+   "sentences": [
+    "И вот они сидят – Николай Римский-Корсаков в креслах сидит, закинув ногу за ногу, с цилиндром на отлете.",
+    "А напротив него – Модест Мусоргский, весь томный, весь небритый – пригнувшись на лавочке, потеет и пишет ноты.",
+    "Модест на лавочке похмелиться хочет: что ему ноты!",
+    "А Николай Римский-Корсаков с цилиндром на отлете похмелиться не дает…"
    ],
    "correct": [
     3
    ],
-   "explain": "The fourth sentence gives the method: pulling him by the button like a bowstring and letting go."
-  },
-  {
-   "id": "h3",
-   "question": "Which sentence lists the clothes that make the man and the woman look alike?",
-   "sentences": [
-    "Я глянул назад – нет, там тоже нет ничего такого, что могло бы натолкнуть на мысль.",
-    "Двое, правда, наталкивают на мысль, но совсем не на ту.",
-    "Очень странные люди эти двое: он и она.",
-    "Они сидят по разным сторонам вагона, у противоположных окон, и явно незнакомы друг с другом.",
-    "Но при всем том – до странности похожи: он в жакетке, и она – в жакетке; он в коричневом берете и при усах, и она – при усах и в коричневом берете…"
-   ],
-   "correct": [
-    4
-   ],
-   "explain": "The final sentence itemises the jackets, the moustaches and the brown berets."
+   "explain": "The last sentence is the refusal; the one before it only says that Modest wants a drink."
   },
   {
    "id": "h4",
-   "question": "Which sentence tells us that the grandfather is feeble-minded too?",
+   "question": "Which sentence names the man the decembrist puts forward as someone who did not drink at all?",
    "sentences": [
-    "И впереди то же самое, странных только двое: дедушка и внучек.",
-    "Внучек на две головы длиннее дедушки и от рождения слабоумен.",
-    "Дедушка – на две головы короче, но слабоумен тоже.",
-    "Оба глядят мне прямо в глаза и облизываются…"
+    "– Стоп! – прервал его декабрист.",
+    "– А разве нельзя не пить?",
+    "Взять себя в руки – и не пить?",
+    "Вот тайный советник Гёте, например, совсем не пил."
    ],
    "correct": [
-    2
+    3
    ],
-   "explain": "The third sentence adds that the shorter grandfather shares the grandson's condition."
+   "explain": "Goethe is named only in the final sentence of the interruption."
   },
   {
    "id": "h5",
-   "question": "Which sentence describes the grandson's back-to-front way of breathing?",
+   "question": "Which sentence says what the decembrist pulled out of his covercoat coat?",
    "sentences": [
-    "Нет, внучек – совершенный кретин.",
-    "У него и шея-то не как у всех, у него шея не врастает в торс, а как-то вырастает из него, вздымаясь к затылку вместе с ключицами.",
-    "И дышит он как-то идиотически: вначале у него выдох, а потом вдох, тогда как у всех людей наоборот: сначала вдох, а уж потом выдох.",
-    "И смотрит на меня, смотрит, разинув глаза и сощурив рот…"
+    "– Вот это да-а-а… – восторженно разглядывали меня и декабрист, и черноусый.",
+    "Стройная система была восстановлена, и вместе с ней восстановилось веселье.",
+    "Декабрист – широким жестом – вытащил из коверкотового пальто бутылку перцовой и поставил ее у ног черноусого.",
+    "Черноусый вынул свою столичную.",
+    "Все потирали руки – до странности возбужденно…"
    ],
    "correct": [
     2
    ],
-   "explain": "The third sentence explains that he breathes out first and only then breathes in."
+   "explain": "The third sentence is the one about the bottle of pepper vodka taken from the coat."
   },
   {
    "id": "h6",
-   "question": "Which sentence explains exactly how the grandson's way of sitting differs from everyone else's?",
+   "question": "Which sentence describes what the young Mitrich did when he was handed a glass?",
    "sentences": [
-    "Оба сели, в упор рассматривая мой чемоданчик.",
-    "Внучек сел как-то странно.",
-    "Мы все садимся на задницу, а этот сел как-то странно: избоченясь, на левое ребро, и как бы предлагая одну свою ногу мне, а другую – дедушке."
+    "Мне налили – больше всех.",
+    "Старому Митричу – тоже налили.",
+    "Молодому тоже подали стакан – он радостно прижал его к левому соску правым бедром, и из обеих ноздрей его хлынули слезы…"
    ],
    "correct": [
     2
    ],
-   "explain": "Only the third sentence spells out that he sits sideways on his left rib instead of on his backside."
+   "explain": "The last sentence describes him pressing the glass to his left nipple with his right thigh and weeping from both nostrils."
   }
  ]
 }

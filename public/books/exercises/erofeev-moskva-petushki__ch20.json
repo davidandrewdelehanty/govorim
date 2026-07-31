@@ -2,67 +2,82 @@
  "cases": [
   {
    "id": "c1",
-   "sentence": "Пахуч и странен этот ___.",
-   "lemma": "коктейль",
+   "sentence": "Едем в Орехово, в ___…",
+   "lemma": "парк",
    "options": [
-    "коктейль",
-    "коктейля",
-    "коктейлю",
-    "коктейлем"
+    "парк",
+    "парка",
+    "парке",
+    "парком"
    ],
-   "correct": "коктейль",
-   "case": "Именительный (Nominative)",
-   "translation": "This cocktail is fragrant and strange.",
-   "explain": "The word is the subject of the short-form predicates «пахуч и странен», and a subject stands in the nominative."
+   "correct": "парк",
+   "case": "Винительный (Accusative)",
+   "translation": "We are going to Orekhovo, to the park…",
+   "explain": "«В» expressing motion towards a destination takes the accusative; парк is inanimate, so its accusative looks like the nominative."
   },
   {
    "id": "c2",
-   "sentence": "В нем нет ни капли ___, но есть букет.",
-   "lemma": "благородство",
+   "sentence": "Я просто хотел ___ покушать…",
+   "lemma": "компот",
    "options": [
-    "благородство",
-    "благородства",
-    "благородству",
-    "благородством"
+    "компот",
+    "компоту",
+    "компотом",
+    "компоте"
    ],
-   "correct": "благородства",
+   "correct": "компоту",
    "case": "Родительный (Genitive)",
-   "translation": "There is not a drop of nobility in it, but there is a bouquet.",
-   "explain": "«Нет» expressing absence puts the missing thing in the genitive, and the measure phrase «ни капли» reinforces it."
+   "translation": "I just wanted to eat a bit of stewed fruit…",
+   "explain": "Eating or drinking only part of a substance puts it in the partitive genitive; a few masculine nouns like компот take the colloquial partitive ending -у instead of -а."
   },
   {
    "id": "c3",
-   "sentence": "Он ведет меня от страданий – к ___.",
-   "lemma": "свет",
+   "sentence": "Компоту с белым ___.",
+   "lemma": "хлеб",
    "options": [
-    "свет",
-    "света",
-    "свету",
-    "светом"
+    "хлеб",
+    "хлеба",
+    "хлебу",
+    "хлебом"
    ],
-   "correct": "свету",
-   "case": "Дательный (Dative)",
-   "translation": "He leads me from suffering to the light.",
-   "explain": "The preposition «к» meaning 'towards' always governs the dative: к свету."
+   "correct": "хлебом",
+   "case": "Творительный (Instrumental)",
+   "translation": "Stewed fruit with white bread.",
+   "explain": "«С» in the sense of 'together with, accompanied by' governs the instrumental: с белым хлебом."
   },
   {
    "id": "c4",
-   "sentence": "Взгляните на икающего ___.",
-   "lemma": "безбожник",
+   "sentence": "Я стою на ___ и весь погружен в мысли о чувстве.",
+   "lemma": "площадка",
    "options": [
-    "безбожник",
-    "безбожника",
-    "безбожнику",
-    "безбожником"
+    "площадка",
+    "площадки",
+    "площадке",
+    "площадкой"
    ],
-   "correct": "безбожника",
-   "case": "Винительный (Accusative)",
-   "translation": "Take a look at a hiccuping godless man.",
-   "explain": "«Взглянуть на» takes the accusative; because безбожник is animate masculine, its accusative copies the genitive form."
+   "correct": "площадке",
+   "case": "Предложный (Prepositional)",
+   "translation": "I am standing on the platform, entirely absorbed in thoughts about my feeling.",
+   "explain": "«На» answering «где?» (a static location, not direction) requires the prepositional case: на площадке."
   },
   {
    "id": "c5",
-   "sentence": "Смешать водку с ___ – в этом есть известный каприз.",
+   "sentence": "Они покаянно раскачивались на лавке, в такт моим ___.",
+   "lemma": "обвинение",
+   "options": [
+    "обвинения",
+    "обвинений",
+    "обвинениям",
+    "обвинениями"
+   ],
+   "correct": "обвинениям",
+   "case": "Дательный (Dative)",
+   "translation": "They rocked penitently on the bench, in time with my accusations.",
+   "explain": "The phrase «в такт» ('in time with') governs the dative, so обвинения appears as обвинениям."
+  },
+  {
+   "id": "c6",
+   "sentence": "Утащит, например, в аптеке флакон тройного ___.",
    "lemma": "одеколон",
    "options": [
     "одеколон",
@@ -70,342 +85,229 @@
     "одеколону",
     "одеколоном"
    ],
-   "correct": "одеколоном",
-   "case": "Творительный (Instrumental)",
-   "translation": "To mix vodka with eau de cologne — there is a certain caprice in that.",
-   "explain": "«С» in the sense of 'together with' requires the instrumental: с одеколоном."
-  },
-  {
-   "id": "c6",
-   "sentence": "Почему-то никто в ___ не знает, отчего умер Пушкин.",
-   "lemma": "Россия",
-   "options": [
-    "Россия",
-    "России",
-    "Россию",
-    "Россией"
-   ],
-   "correct": "России",
-   "case": "Предложный (Prepositional)",
-   "translation": "For some reason nobody in Russia knows what Pushkin died of.",
-   "explain": "«В» answering «где?» (location, not direction) takes the prepositional case: в России."
+   "correct": "одеколона",
+   "case": "Родительный (Genitive)",
+   "translation": "He would swipe, say, a bottle of triple eau-de-cologne from the chemist's.",
+   "explain": "After a container word («флакон») the substance it holds stands in the genitive: флакон одеколона."
   },
   {
    "id": "c7",
-   "sentence": "Это лучшее средство от ___ и поверхностного атеизма.",
-   "lemma": "самомнение",
+   "sentence": "Необычен был этот ___.",
+   "lemma": "звук",
    "options": [
-    "самомнение",
-    "самомнения",
-    "самомнению",
-    "самомнением"
+    "звук",
+    "звука",
+    "звуку",
+    "звуком"
    ],
-   "correct": "самомнения",
-   "case": "Родительный (Genitive)",
-   "translation": "This is the best remedy against conceit and shallow atheism.",
-   "explain": "The preposition «от» meaning 'against / away from' governs the genitive: средство от самомнения."
-  },
-  {
-   "id": "c8",
-   "sentence": "Я буду помешивать ее ___.",
-   "lemma": "жимолость",
-   "options": [
-    "жимолость",
-    "жимолости",
-    "жимолостью",
-    "жимолостей"
-   ],
-   "correct": "жимолостью",
-   "case": "Творительный (Instrumental)",
-   "translation": "I will stir it with honeysuckle.",
-   "explain": "The instrument or means of an action stands in the instrumental case with no preposition: помешивать жимолостью."
+   "correct": "звук",
+   "case": "Именительный (Nominative)",
+   "translation": "That sound was unusual.",
+   "explain": "With the linking verb «был» the subject stays in the nominative — этот звук is what the sentence is about."
   }
  ],
  "reading": [
   {
    "id": "r1",
-   "ru": "Больше пейте, меньше закусывайте.",
-   "question": "What advice does Venichka give at the very start of the chapter?",
+   "ru": "Едем в Орехово, в парк… в карусели покататься…",
+   "question": "Where does Mitrich say he and his grandson are travelling, and what for?",
    "options": [
-    "Drink more and eat less with it",
-    "Drink less and eat more",
-    "Never drink before dawn",
-    "Drink only once you reach Petushki"
+    "To Orekhovo, to the park, to ride the carousels",
+    "To Petushki, to visit relatives",
+    "To Moscow, to buy white bread",
+    "To Yesino, to see a friend"
    ],
-   "correct": "Drink more and eat less with it",
-   "explain": "He opens by recommending more drink and less food, calling it the best remedy for conceit."
+   "correct": "To Orekhovo, to the park, to ride the carousels",
+   "explain": "Mitrich introduces himself and says they are going to the park in Orekhovo to ride the carousels."
   },
   {
    "id": "r2",
-   "ru": "Это лучшее средство от самомнения и поверхностного атеизма.",
-   "question": "What does Venichka say that advice is the best remedy against?",
+   "ru": "Митричем меня звать.",
+   "question": "What name does the old man give, and what does he say about his grandson?",
    "options": [
-    "Conceit and shallow atheism",
-    "Hiccups and hunger",
-    "Boredom on the train",
-    "The morning hangover"
+    "Mitrich — and the grandson is also called Mitrich",
+    "Mitrich — and the grandson has no name",
+    "Venichka — and the grandson is called Mitrich",
+    "Mitrich — and the boy is his son, not his grandson"
    ],
-   "correct": "Conceit and shallow atheism",
-   "explain": "He presents drinking more and eating less as a cure for self-importance and superficial unbelief."
+   "correct": "Mitrich — and the grandson is also called Mitrich",
+   "explain": "He says he is called Mitrich and that his little grandson is a Mitrich too."
   },
   {
    "id": "r3",
-   "ru": "Отвернитесь от него, сплюньте и взгляните на меня, когда я стану икать.",
-   "question": "What does Venichka tell the reader to do about the hiccuping unbeliever?",
+   "ru": "Он не говорил, а верещал.",
+   "question": "How does the narrator describe the way the young Mitrich made sounds?",
    "options": [
-    "Turn away from him, spit, and look at Venichka instead",
-    "Give him something to drink",
-    "Pray for him",
-    "Argue with him about predestination"
+    "He did not speak but squealed, and through his left nostril",
+    "He spoke very quietly through his teeth",
+    "He sang instead of speaking",
+    "He spoke normally but too fast"
    ],
-   "correct": "Turn away from him, spit, and look at Venichka instead",
-   "explain": "He contrasts the wretched hiccuping atheist with himself, who is good and full of light because he believes."
+   "correct": "He did not speak but squealed, and through his left nostril",
+   "explain": "The narrator says the boy squealed rather than spoke, producing the sound with his left nostril rather than his mouth."
   },
   {
    "id": "r4",
-   "ru": "Он ведет меня от страданий – к свету.",
-   "question": "Where does Venichka say He is leading him?",
+   "ru": "Я просто хотел компоту покушать…",
+   "question": "What excuse does Mitrich give for rummaging around the narrator's bench?",
    "options": [
-    "From suffering to the light",
-    "From the light into darkness",
-    "From Petushki back to Moscow",
-    "From the shop to the station"
+    "That he only wanted some stewed fruit with white bread",
+    "That he was looking for his grandson's ladle",
+    "That he wanted to sit down",
+    "That he was searching for his ticket"
    ],
-   "correct": "From suffering to the light",
-   "explain": "He glosses this journey as going from Moscow to Petushki and sums it up in German: through suffering — light."
+   "correct": "That he only wanted some stewed fruit with white bread",
+   "explain": "Mitrich insists twice that all he wanted was компот with white bread."
   },
   {
    "id": "r5",
-   "ru": "Что мне выпить во Имя Твое?..",
-   "question": "What question strikes Venichka like lightning as he paces the carriage platform?",
+   "ru": "Дедушка – первый не вынес, и весь расплакался.",
+   "question": "Who breaks down in tears first under the narrator's questioning?",
    "options": [
-    "What he could drink in God's name",
-    "Where he has left his little suitcase",
-    "Which station comes next",
-    "How much money he has left"
+    "The grandfather, and then the grandson",
+    "The grandson, and then the grandfather",
+    "The man in the brown beret",
+    "Nobody cries at all"
    ],
-   "correct": "What he could drink in God's name",
-   "explain": "Smoking in agitation, he suddenly wonders what drink would be worthy of being drunk in God's name."
+   "correct": "The grandfather, and then the grandson",
+   "explain": "The grandfather cannot bear it and bursts into tears first, and the grandson follows."
   },
   {
    "id": "r6",
-   "ru": "Кубанская – это такое дерьмо!",
-   "question": "How does Venichka rate the ordinary vodkas he could offer?",
+   "ru": "У меня душа, как у троянского коня пузо, многое вместит.",
+   "question": "What does Venichka compare his own soul to?",
    "options": [
-    "He dismisses them as unworthy — Kubanskaya is filth",
-    "He calls Kubanskaya the finest of them all",
-    "He says they are all equally sacred",
-    "He says he cannot afford any of them"
+    "The belly of the Trojan horse",
+    "A railway carriage",
+    "An empty bottle",
+    "A carousel"
    ],
-   "correct": "He dismisses them as unworthy — Kubanskaya is filth",
-   "explain": "He complains that he has nothing worthy of God: not Kubanskaya, not Rossiyskaya, not the pink fortified wine at a rouble thirty-seven."
+   "correct": "The belly of the Trojan horse",
+   "explain": "He says his soul, like the belly of the Trojan horse, can hold a great deal — which is why he can forgive them."
   },
   {
    "id": "r7",
-   "ru": "Я назову его «Иорданские струи» или «Звезда Вифлеема».",
-   "question": "What does Venichka plan to name the cocktail he will invent if he reaches Petushki unharmed?",
+   "ru": "Вы мне напоминаете одного старичка в Петушках.",
+   "question": "Who does Venichka say the two of them remind him of?",
    "options": [
-    "Jordan Streams or Star of Bethlehem",
-    "Canaan Balsam or Silver Fox",
-    "Spirit of Geneva",
-    "Komsomol Girl's Tear"
+    "An old man in Petushki who drank only what he had stolen",
+    "A pianist he once knew",
+    "The man in the brown beret",
+    "A conductor from the Kursk station"
    ],
-   "correct": "Jordan Streams or Star of Bethlehem",
-   "explain": "He wants a drink that could be taken without shame in the presence of God and of people, and asks to be reminded of the plan."
+   "correct": "An old man in Petushki who drank only what he had stolen",
+   "explain": "He recalls an old man in Petushki who would steal a bottle of eau-de-cologne and drink it quietly in the station toilet."
   },
   {
    "id": "r8",
-   "ru": "Мы не можем ждать милостей от природы.",
-   "question": "What does Venichka say just before he starts giving out his recipes?",
+   "ru": "Я тоже хочу с вами выпить.",
+   "question": "What does the newcomer say when he walks up behind the group?",
    "options": [
-    "That we cannot wait for favours from nature",
-    "That nature always provides for the drinker",
-    "That the recipes are a state secret",
-    "That every cocktail must be drunk alone"
+    "That he also wants to drink with them",
+    "That they should be ashamed of themselves",
+    "That the train does not stop at Yesino",
+    "That he has lost his ticket"
    ],
-   "correct": "That we cannot wait for favours from nature",
-   "explain": "He parodies the famous slogan: since we cannot wait for nature's favours, we need to know the exact recipes for taking them."
+   "correct": "That he also wants to drink with them",
+   "explain": "The stranger comes up from behind and asks to join them in a drink."
   },
   {
    "id": "r9",
-   "ru": "Ну конечно, денатурат.",
-   "question": "Which component of Canaan Balsam does Venichka prize above all?",
+   "ru": "То был черноусый, в жакетке и в коричневом берете.",
+   "question": "How is the newcomer described?",
    "options": [
-    "Denatured alcohol",
-    "Velvet beer",
-    "Purified furniture polish",
-    "White lilac"
+    "A black-moustached man in a jacket and a brown beret",
+    "A tall man in a railway uniform",
+    "A woman in a brown coat",
+    "An old man with a ladle"
    ],
-   "correct": "Denatured alcohol",
-   "explain": "He values it for its bare taste sensation and above all for the miasma it gives off."
+   "correct": "A black-moustached man in a jacket and a brown beret",
+   "explain": "He is introduced as черноусый, wearing a jacket and a brown beret."
   },
   {
    "id": "r10",
-   "ru": "Это всякий младенец знает.",
-   "question": "What does Venichka claim absolutely everyone in Russia knows?",
+   "ru": "И он поставил мне на лавочку бутылку столичной.",
+   "question": "How does the black-moustached man prove he is not a thief?",
    "options": [
-    "How furniture polish is purified",
-    "What Pushkin died of",
-    "The recipe for Komsomol Girl's Tear",
-    "The way to the Kursk station"
+    "He puts down his own bottle of Stolichnaya on the bench",
+    "He shows his empty pockets",
+    "He pays the others for their drink",
+    "He calls the conductor over"
    ],
-   "correct": "How furniture polish is purified",
-   "explain": "He jokes that nobody knows what Pushkin died of, yet every last person knows how to purify polish."
+   "correct": "He puts down his own bottle of Stolichnaya on the bench",
+   "explain": "He says he does not steal from strangers and has come with his own — a bottle of Stolichnaya, which he sets on the bench."
   },
   {
    "id": "r11",
-   "ru": "Гимн демократической молодежи.",
-   "question": "What does Venichka call the lasting smell of Canaan Balsam?",
+   "ru": "Все пили, запрокинув головы, как пианисты…",
+   "question": "How does the chapter describe the way they all drank at the end?",
    "options": [
-    "A hymn of democratic youth",
-    "The scent of a Moscow morning",
-    "A dark force",
-    "The breath of nature"
+    "With their heads thrown back, like pianists",
+    "Slowly, in small sips",
+    "Standing up in the vestibule",
+    "In silence, without looking at each other"
    ],
-   "correct": "A hymn of democratic youth",
-   "explain": "He says it is not an aroma but a hymn, because vulgarity and dark forces ripen in whoever drinks the cocktail."
-  },
-  {
-   "id": "r12",
-   "ru": "Взял флакон «Сирени» – и выпил.",
-   "question": "What did Venichka do after weeping over his mother on a whole bottle of Silvery Lily of the Valley?",
-   "options": [
-    "He drank a bottle of White Lilac",
-    "He went straight to sleep",
-    "He wrote his mother a letter",
-    "He poured the rest away"
-   ],
-   "correct": "He drank a bottle of White Lilac",
-   "explain": "White Lilac calms the conscience: his tears dried, silly laughter took over, and he even forgot his mother's name and patronymic."
-  },
-  {
-   "id": "r13",
-   "ru": "Это неверно и преступно.",
-   "question": "What is Venichka's verdict on stirring Komsomol Girl's Tear with dodder instead of honeysuckle?",
-   "options": [
-    "It is wrong and criminal",
-    "It is acceptable in an emergency",
-    "It improves the smell",
-    "It is the only correct method"
-   ],
-   "correct": "It is wrong and criminal",
-   "explain": "He says he would sooner be cut to pieces than stir the drink with dodder, and he laughs himself to bits when others do it."
-  },
-  {
-   "id": "r14",
-   "ru": "Это уже не напиток – это музыка сфер.",
-   "question": "How does Venichka describe his last and best cocktail, «Сучий потрох»?",
-   "options": [
-    "No longer a drink but the music of the spheres",
-    "A modest everyday drink",
-    "A remedy for hiccups",
-    "A hymn of democratic youth"
-   ],
-   "correct": "No longer a drink but the music of the spheres",
-   "explain": "He offers it as the crown of his labours, a drink that eclipses everything else."
-  },
-  {
-   "id": "r15",
-   "ru": "Пейте его с появлением первой звезды, большими глотками.",
-   "question": "How does Venichka say «Сучий потрох» should be drunk?",
-   "options": [
-    "At the appearance of the first star, in big gulps",
-    "Slowly through a straw at dawn",
-    "Only after it has been poured through a colander",
-    "Warm, together with the morning beer"
-   ],
-   "correct": "At the appearance of the first star, in big gulps",
-   "explain": "After two glasses of it a man becomes so spiritual that you can spit in his face for half an hour and he will say nothing."
+   "correct": "With their heads thrown back, like pianists",
+   "explain": "The closing lines have them drinking with heads thrown back like pianists, just as the announcement says the train will not stop at Yesino."
   }
  ],
  "highlight": [
   {
    "id": "h1",
-   "question": "Which sentence tells the reader what to do about the hiccuping unbeliever?",
+   "question": "Which sentence says which part of his face the boy actually used to produce his speech?",
    "sentences": [
-    "Да.",
-    "Больше пейте, меньше закусывайте.",
-    "Это лучшее средство от самомнения и поверхностного атеизма.",
-    "Взгляните на икающего безбожника: он рассредоточен и темнолик, он мучается и он безобразен.",
-    "Отвернитесь от него, сплюньте и взгляните на меня, когда я стану икать.",
-    "Верящий в предопределение и ни о каком противоборстве не помышляющий, я верю в то, что Он благ, и сам я поэтому благ и светел."
+    "Необычен был этот звук, и чертовски обидно, что я не могу его как следует передать.",
+    "Он не говорил, а верещал.",
+    "И говорил не ртом, потому что рот его был вечно сощурен и начинался откуда-то сзади.",
+    "А говорил он левой ноздрей, и то с таким усилием, как будто левую ноздрю приподымал правой: «И-и-и-и, как мы быстро едем в Петушки, славные Петушки»… «И-и-и, какой пьяный дедушка, хороший дедушка»…"
    ],
    "correct": [
-    4
+    3
    ],
-   "explain": "Only this sentence gives instructions about the unbeliever — turn away, spit, and look at Venichka instead."
+   "explain": "Only the last sentence names the organ he spoke with — his left nostril, raised with the right one."
   },
   {
    "id": "h2",
-   "question": "Which sentence lists the stations of the journey — the torments, the purification and the reveries?",
+   "question": "Which sentence describes how the old man in Petushki obtained and drank his eau-de-cologne?",
    "sentences": [
-    "Он благ.",
-    "Он ведет меня от страданий – к свету.",
-    "От Москвы – к Петушкам.",
-    "Через муки на Курском вокзале, через очищение в Кучине, через грезы в Купавне – к свету и Петушкам.",
-    "Durch Leiden – Licht!"
+    "Вы мне напоминаете одного старичка в Петушках.",
+    "Он – тоже, он пил на чужбинку, он пил только краденое: утащит, например, в аптеке флакон тройного одеколона, пойдет в туалет у вокзала и там тихонько выпьет.",
+    "Он называл это «пить на брудершафт», он был серьезно убежден, что это и есть «пить на брудершафт», он так и умер в своем заблуждении…",
+    "Так что же?",
+    "Значит, и вы решили – на брудершафт?.."
    ],
    "correct": [
-    3
+    1
    ],
-   "explain": "The fourth sentence names the three stages and the places where they happen."
+   "explain": "The second sentence sets out the whole routine: stealing the bottle from the chemist's and drinking it quietly in the station toilet."
   },
   {
    "id": "h3",
-   "question": "Which sentence states that Venichka owns nothing worthy of God?",
+   "question": "Which sentence shows that the man in the beret has brought a drink of his own?",
    "sentences": [
-    "Беда!",
-    "Нет у меня ничего такого, что было бы Тебя достойно.",
-    "Кубанская – это такое дерьмо!",
-    "А российская – смешно при Тебе и говорить о российской.",
-    "И розовое крепкое за рупь тридцать семь!",
-    "Боже!.."
-   ],
-   "correct": [
-    1
-   ],
-   "explain": "The second sentence makes the general claim; the ones after it merely list the unworthy drinks."
-  },
-  {
-   "id": "h4",
-   "question": "Which sentence says that a drink has a certain caprice about it but no pathos?",
-   "sentences": [
-    "Пить просто водку, даже из горлышка, – в этом нет ничего, кроме томления духа и суеты.",
-    "Смешать водку с одеколоном – в этом есть известный каприз, но нет никакого пафоса.",
-    "А вот выпить стакан «Ханаанского бальзама» – в этом есть и каприз, и идея, и пафос, и сверх того еще метафизический намек."
-   ],
-   "correct": [
-    1
-   ],
-   "explain": "Mixing vodka with eau de cologne is the case that has caprice but lacks pathos."
-  },
-  {
-   "id": "h5",
-   "question": "Which sentence contrasts what Russians do not know about Pushkin with what they all do know?",
-   "sentences": [
-    "Не буду вам напоминать, как очищается политура.",
-    "Это всякий младенец знает.",
-    "Почему-то никто в России не знает, отчего умер Пушкин, а как очищается политура – это всякий знает."
-   ],
-   "correct": [
-    2
-   ],
-   "explain": "The last sentence sets the unknown cause of Pushkin's death against the universally known method of purifying polish."
-  },
-  {
-   "id": "h6",
-   "question": "Which sentence explains why the smell of Canaan Balsam deserves to be called a hymn?",
-   "sentences": [
-    "Итак, перед вами «Ханаанский бальзам» (его в просторечье называют «чернобуркой») – жидкость в самом деле черно-бурого цвета, с умеренной крепостью и стойким ароматом.",
-    "Это даже не аромат, а гимн.",
-    "Гимн демократической молодежи.",
-    "Именно так, потому что в выпившем этот коктейль вызревают вульгарность и темные силы.",
-    "Я сколько раз наблюдал!.."
+    "Я никакой не хитрый.",
+    "Я не ворую, как некоторые.",
+    "Я не ворую у незнакомых людей предметов первой необходимости.",
+    "Я пришел со своей – вот…"
    ],
    "correct": [
     3
    ],
-   "explain": "The reason is given in the sentence about vulgarity and dark forces ripening in whoever drinks it."
+   "explain": "The last sentence is where he announces that he has come with his own bottle."
+  },
+  {
+   "id": "h4",
+   "question": "Which sentence reveals that the grandfather and grandson had their vessels ready long before they were offered a drink?",
+   "sentences": [
+    "Мы налили себе, каждый свое.",
+    "Дед и внук протянули мне свою посуду: они, оказывается, давно держали ее наготове, задолго до того, как я их поманил.",
+    "Дед вынул пустую четвертинку, я сразу ее признал.",
+    "А внучек – тот вынул даже целый ковш, и вынул откуда-то из-под лобка и диафрагмы…"
+   ],
+   "correct": [
+    1
+   ],
+   "explain": "The second sentence notes that they had been holding their vessels ready long before he beckoned them."
   }
  ]
 }
