@@ -100,7 +100,9 @@ def fetch(url, dst):
         return dst
     os.makedirs(os.path.dirname(dst), exist_ok=True)
     tmp = dst + ".part"
-    with urllib.request.urlopen(url) as r, open(tmp, "wb") as f:
+    # r2.dev rejects the default "Python-urllib/3.x" user-agent with 403.
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    with urllib.request.urlopen(req) as r, open(tmp, "wb") as f:
         while True:
             chunk = r.read(1 << 20)
             if not chunk:
