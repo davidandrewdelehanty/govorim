@@ -17,6 +17,18 @@ var DMITRY_CLOUD = {
   voiceURI: "azure:ru-RU-DmitryNeural",
 };
 
+// Every book in the library is labelled the same way: Russian title, em dash,
+// author. index.json keeps title and author as separate fields (the exercise
+// and lit-analysis prompts feed them to the model independently), so the joined
+// form lives here and every surface that names a book calls this.
+function bookLabel(book) {
+  if (!book) return "";
+  var title = book.title || book.filename || "";
+  var author = book.author || "";
+  if (!author || author === title) return title;
+  return title + " — " + author;
+}
+
 var storage = {
   get: function(key) {
     return Promise.resolve().then(function() {
@@ -7718,7 +7730,7 @@ export default function App() {
         .lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
         .lib-card{padding:14px;border-radius:10px;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.1);cursor:pointer;transition:all .15s;position:relative;display:flex;flex-direction:column;gap:4px}
         .lib-card:hover{background:rgba(42,31,20,.08);border-color:rgba(196,149,90,.3);transform:translateY(-1px)}
-        .lib-card-title{font-family:'Playfair Display',serif;font-size:15px;color:#c4955a;line-height:1.3;margin-bottom:2px}
+        .lib-card-title{font-family:'Playfair Display',serif;font-size:15px;color:#c4955a;line-height:1.3;margin-bottom:8px}
         .lib-card-author{font-size:12px;color:rgba(42,31,20,.6);font-style:italic;margin-bottom:6px}
         .lib-card-meta{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:rgba(42,31,20,.4);margin-top:auto;padding-top:4px}
         .lib-card-cat{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#c4955a;padding:2px 8px;border-radius:10px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600}
@@ -8881,8 +8893,8 @@ export default function App() {
                             var c=bookCounts(book);
                             return (
                               <div key={book.fb2Path} className={"ts-wcard"+(book.supported?"":" dis")} onClick={function(){ if(book.supported){ setTtSel(book); setTtExpanded(function(p){ var n=Object.assign({},p); n[book.fb2Path]=true; return n; }); } }}>
-                                <div className="ts-wtitle">{book.title}</div>
-                                <div className="ts-wmeta">{book.author?book.author+" · ":""}{book.nChapters} ch{book.supported?"":" · no fb2"}</div>
+                                <div className="ts-wtitle">{bookLabel(book)}</div>
+                                <div className="ts-wmeta">{book.nChapters} ch{book.supported?"":" · no fb2"}</div>
                                 <div className="ts-wcounts">
                                   {c.scanned>0 ? <>
                                     <span className="ts-tag" style={{color:KIND.sub.fg,background:KIND.sub.bg,borderColor:KIND.sub.bd}}>{c.sub} subs</span>
@@ -9302,8 +9314,7 @@ export default function App() {
                                     else loadPresetBook(match.book);
                                   }}>
                                     <div className="lcn" style={{color:"rgba(0,0,0,.5)"}}>↻ {humanLast}</div>
-                                    <div className="lchead">{rec.title}</div>
-                                    {rec.author && <div className="lcp" style={{fontSize:12,opacity:.75}}>{rec.author}</div>}
+                                    <div className="lchead">{bookLabel(rec)}</div>
                                     <div style={{marginTop:8,fontSize:11,color:"rgba(0,0,0,.55)"}}>
                                       Ch. {(rec.cidx || 0) + 1}{total > 1 ? "/" + total : ""}
                                       {(rec.pidx || 0) > 0 && " · Page " + ((rec.pidx || 0) + 1)}
@@ -9362,8 +9373,7 @@ export default function App() {
                                 var textOnly  = entries.filter(function(e){ return !e.book.audiobook; });
                                 var makeOption = function(entry) {
                                   var book = entry.book;
-                                  var label = (book.title || book.filename) + (book.author && book.author !== book.title ? " — " + book.author : "");
-                                  return <option key={entry.idx} value={entry.idx}>{label}</option>;
+                                  return <option key={entry.idx} value={entry.idx}>{bookLabel(book)}</option>;
                                 };
                                 var groups = [];
                                 if (withAudio.length) groups.push(
@@ -9439,8 +9449,7 @@ export default function App() {
                                           if (bookLoading !== null) return;
                                           openUploadedBook(book);
                                         }}>
-                                        <div className="lib-card-title">{book.title || book.filename}</div>
-                                        {book.author && <div className="lib-card-author">{book.author}</div>}
+                                        <div className="lib-card-title">{bookLabel(book)}</div>
                                         <div className="lib-card-meta">
                                           <span className="lib-card-cat">Upload</span>
                                           <button
@@ -9482,8 +9491,7 @@ export default function App() {
                                         loadPresetBook(book);
                                       }
                                     }}>
-                                    <div className="lib-card-title">{book.title || book.filename}</div>
-                                    {book.author && book.author !== book.title && <div className="lib-card-author">{book.author}</div>}
+                                    <div className="lib-card-title">{bookLabel(book)}</div>
                                     <div className="lib-card-meta">
                                       {cat !== "Other" && <span className="lib-card-cat">{cat}</span>}
                                       {book.audiobook && <span style={{fontSize:11,color:"#c4955a"}}>🎧 Audiobook</span>}
@@ -9866,7 +9874,7 @@ export default function App() {
                             which book they're in, even after navigating mid-chapter. */}
                         {bookMeta.title && (
                           <div style={{fontFamily:"'Crimson Pro',serif",fontStyle:"italic",fontSize:13,color:"rgba(0,0,0,.45)",marginBottom:4,letterSpacing:.3}}>
-                            {bookMeta.title}{bookMeta.author ? " — " + bookMeta.author : ""}
+                            {bookLabel(bookMeta)}
                           </div>
                         )}
                         <div className="lhdr">
