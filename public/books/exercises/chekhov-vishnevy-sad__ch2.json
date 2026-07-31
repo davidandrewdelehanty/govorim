@@ -1,0 +1,619 @@
+{
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Приятно выкурить сигару на чистом ___.",
+   "lemma": "воздух",
+   "options": [
+    "воздух",
+    "воздуха",
+    "воздухе",
+    "воздухом"
+   ],
+   "correct": "воздухе",
+   "case": "Предложный (Prepositional)",
+   "translation": "It's pleasant to smoke a cigar in the fresh air.",
+   "explain": "«На» meaning location (not motion) takes the prepositional; воздух has the special locative ending -е here."
+  },
+  {
+   "id": "c2",
+   "sentence": "Достает из кармана ___ и ест.",
+   "lemma": "огурец",
+   "options": [
+    "огурец",
+    "огурца",
+    "огурцу",
+    "огурцом"
+   ],
+   "correct": "огурец",
+   "case": "Винительный (Accusative)",
+   "translation": "She takes a cucumber out of her pocket and eats it.",
+   "explain": "Огурец is the direct object of достаёт, so it is accusative; being inanimate masculine, its accusative is identical to the nominative."
+  },
+  {
+   "id": "c3",
+   "sentence": "У меня нет настоящего ___, я не знаю, сколько мне лет.",
+   "lemma": "паспорт",
+   "options": [
+    "паспорт",
+    "паспорта",
+    "паспорту",
+    "паспортом"
+   ],
+   "correct": "паспорта",
+   "case": "Родительный (Genitive)",
+   "translation": "I have no real passport, I don't know how old I am.",
+   "explain": "The negative existential «нет» always takes the genitive of the thing that is missing."
+  },
+  {
+   "id": "c4",
+   "sentence": "Судьба относится ко мне без сожаления, как буря к небольшому ___.",
+   "lemma": "корабль",
+   "options": [
+    "корабль",
+    "корабля",
+    "кораблю",
+    "кораблем"
+   ],
+   "correct": "кораблю",
+   "case": "Дательный (Dative)",
+   "translation": "Fate treats me without pity, like a storm treats a small ship.",
+   "explain": "The preposition «к» (towards, in relation to) governs the dative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "А воля вышла, я уже старшим ___ был.",
+   "lemma": "камердинер",
+   "options": [
+    "камердинер",
+    "камердинера",
+    "камердинеру",
+    "камердинером"
+   ],
+   "correct": "камердинером",
+   "case": "Творительный (Instrumental)",
+   "translation": "When the emancipation came, I was already head valet.",
+   "explain": "A predicate noun after the past tense of быть stands in the instrumental, showing a role held at that time."
+  },
+  {
+   "id": "c6",
+   "sentence": "Мне предлагают место в ___.",
+   "lemma": "банк",
+   "options": [
+    "банк",
+    "банка",
+    "банку",
+    "банке"
+   ],
+   "correct": "банке",
+   "case": "Предложный (Prepositional)",
+   "translation": "They are offering me a position in a bank.",
+   "explain": "«В» with the meaning of location (where the job is) requires the prepositional case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Я уехала в ___, и там он обобрал меня, бросил, сошелся с другой.",
+   "lemma": "Париж",
+   "options": [
+    "Париж",
+    "Парижа",
+    "Парижу",
+    "Париже"
+   ],
+   "correct": "Париж",
+   "case": "Винительный (Accusative)",
+   "translation": "I went away to Paris, and there he robbed me, abandoned me and took up with another woman.",
+   "explain": "«В» with a verb of motion (уехала) takes the accusative of destination; Париж is inanimate, so the accusative looks like the nominative."
+  },
+  {
+   "id": "c8",
+   "sentence": "Это ___, а не мандолина.",
+   "lemma": "гитара",
+   "options": [
+    "гитара",
+    "гитары",
+    "гитаре",
+    "гитарой"
+   ],
+   "correct": "гитара",
+   "case": "Именительный (Nominative)",
+   "translation": "That's a guitar, not a mandolin.",
+   "explain": "In an «это + noun» identifying sentence the noun is the predicate nominative, so it stays in the dictionary form."
+  },
+  {
+   "id": "c9",
+   "sentence": "Бедная моя Варя из экономии кормит всех молочным ___.",
+   "lemma": "суп",
+   "options": [
+    "суп",
+    "супа",
+    "супу",
+    "супом"
+   ],
+   "correct": "супом",
+   "case": "Творительный (Instrumental)",
+   "translation": "My poor Varya, to economise, feeds everybody milk soup.",
+   "explain": "Кормить takes the person in the accusative and the food in the instrumental: кормить кого-то чем-то."
+  },
+  {
+   "id": "c10",
+   "sentence": "Мадемуазель, позвольте голодному россиянину ___ тридцать.",
+   "lemma": "копейка",
+   "options": [
+    "копейки",
+    "копеек",
+    "копейкам",
+    "копейках"
+   ],
+   "correct": "копеек",
+   "case": "Родительный (Genitive)",
+   "translation": "Mademoiselle, allow a hungry Russian some thirty kopecks.",
+   "explain": "After a numeral like тридцать the counted noun goes into the genitive plural; the inverted order «копеек тридцать» adds the sense of «about thirty»."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "У меня нет настоящего паспорта, я не знаю, сколько мне лет, и мне все кажется, что я молоденькая.",
+   "question": "What does Charlotta say about her own documents and age?",
+   "options": [
+    "She has no real passport and does not know how old she is",
+    "She lost her passport on the way from Paris",
+    "She is exactly forty years old and proud of it",
+    "Her passport was taken away by a German lady"
+   ],
+   "correct": "She has no real passport and does not know how old she is",
+   "explain": "Charlotta opens the act by saying she has no genuine passport and no idea of her age."
+  },
+  {
+   "id": "r2",
+   "ru": "Это гитара, а не мандолина.",
+   "question": "How does Dunyasha correct Epikhodov about his instrument?",
+   "options": [
+    "She tells him it is a guitar, not a mandolin",
+    "She tells him it is a mandolin, not a guitar",
+    "She tells him it is out of tune",
+    "She tells him it belongs to Yasha"
+   ],
+   "correct": "She tells him it is a guitar, not a mandolin",
+   "explain": "Epikhodov calls it a mandolin and Dunyasha points out that it is a guitar."
+  },
+  {
+   "id": "r3",
+   "ru": "Я развитой человек, читаю разные замечательные книги, но никак не могу понять направления, чего мне собственно хочется, жить мне или застрелиться, собственно говоря, но тем не менее я всегда ношу при себе револьвер.",
+   "question": "What does Epikhodov say he always carries with him?",
+   "options": [
+    "A revolver",
+    "A guitar string",
+    "A book by Buckle",
+    "A bottle of kvass"
+   ],
+   "correct": "A revolver",
+   "explain": "Epikhodov says he cannot decide whether to live or shoot himself, and that he always carries a revolver."
+  },
+  {
+   "id": "r4",
+   "ru": "Если, допустим, я ошибаюсь, тогда зачем же сегодня утром я просыпаюсь, к примеру сказать, гляжу, а у меня на груди страшной величины паук…",
+   "question": "What did Epikhodov claim to find on his chest that morning?",
+   "options": [
+    "A spider of terrifying size",
+    "A cockroach",
+    "A dead beetle",
+    "A telegram"
+   ],
+   "correct": "A spider of terrifying size",
+   "explain": "He offers the huge spider on his chest as proof that fate treats him without pity."
+  },
+  {
+   "id": "r5",
+   "ru": "Двадцать два несчастья!",
+   "question": "What nickname does Yasha use for Epikhodov after he leaves?",
+   "options": [
+    "Twenty-two misfortunes",
+    "The eternal student",
+    "Ophelia",
+    "The proud man"
+   ],
+   "correct": "Twenty-two misfortunes",
+   "explain": "Yasha calls him «двадцать два несчастья» and adds that he is a stupid man."
+  },
+  {
+   "id": "r6",
+   "ru": "Меня еще девочкой взяли к господам, я теперь отвыкла от простой жизни, и вот руки белые-белые, как у барышни.",
+   "question": "Why does Dunyasha say she has grown unused to simple life?",
+   "options": [
+    "She was taken into the masters' house while still a little girl",
+    "She spent three years abroad with the family",
+    "She was educated at a school in the town",
+    "She was brought up by a German governess"
+   ],
+   "correct": "She was taken into the masters' house while still a little girl",
+   "explain": "Dunyasha explains that she was taken to serve the gentry as a child, so her hands are now white like a young lady's."
+  },
+  {
+   "id": "r7",
+   "ru": "Идите домой, будто ходили на реку купаться, идите этой дорожкой, а то встретятся и подумают про меня, будто я с вами на свидании.",
+   "question": "What does Yasha tell Dunyasha to do when he hears the masters coming?",
+   "options": [
+    "Go home by another path and pretend she had been swimming in the river",
+    "Hide behind the chapel until they pass",
+    "Go and fetch Epikhodov's guitar",
+    "Wait for him by the well"
+   ],
+   "correct": "Go home by another path and pretend she had been swimming in the river",
+   "explain": "Yasha does not want to be seen with her, so he sends her off by a side path with a cover story."
+  },
+  {
+   "id": "r8",
+   "ru": "Согласны вы отдать землю под дачи или нет?",
+   "question": "What single question does Lopakhin keep pressing Ranevskaya and Gaev to answer?",
+   "options": [
+    "Whether they will give the land over for summer cottages",
+    "Whether they will sell the house to Deriganov",
+    "Whether they will borrow money from the Yaroslavl aunt",
+    "Whether they will move to Paris"
+   ],
+   "correct": "Whether they will give the land over for summer cottages",
+   "explain": "Lopakhin demands one word, yes or no, about leasing the land for dachas."
+  },
+  {
+   "id": "r9",
+   "ru": "Бедная моя Варя из экономии кормит всех молочным супом, на кухне старикам дают один горох, а я трачу как-то бессмысленно…",
+   "question": "How does Ranevskaya contrast Varya's housekeeping with her own behaviour?",
+   "options": [
+    "Varya economises with milk soup and peas while Ranevskaya spends senselessly",
+    "Varya spends freely while Ranevskaya saves every kopeck",
+    "Varya refuses to feed the old servants at all",
+    "Varya has taken over paying the estate's debts"
+   ],
+   "correct": "Varya economises with milk soup and peas while Ranevskaya spends senselessly",
+   "explain": "Varya feeds everyone milk soup and gives the old people peas, while Ranevskaya admits she wastes money."
+  },
+  {
+   "id": "r10",
+   "ru": "Ваше имение собирается купить богач Дериганов.",
+   "question": "Who does Lopakhin say is planning to buy the estate?",
+   "options": [
+    "The rich man Deriganov",
+    "The Yaroslavl aunt",
+    "A general from the town",
+    "Trofimov's family"
+   ],
+   "correct": "The rich man Deriganov",
+   "explain": "Lopakhin reports the town rumour that Deriganov will come to the auction in person."
+  },
+  {
+   "id": "r11",
+   "ru": "Ярославская тетушка обещала прислать, а когда и сколько пришлет, неизвестно…",
+   "question": "What is uncertain about the Yaroslavl aunt's promise?",
+   "options": [
+    "When she will send money and how much",
+    "Whether she is still alive",
+    "Whether she will come to the auction",
+    "Whether she will buy the orchard herself"
+   ],
+   "correct": "When she will send money and how much",
+   "explain": "Gaev says she promised to send money, but neither the date nor the sum is known; Ranevskaya guesses ten to fifteen thousand."
+  },
+  {
+   "id": "r12",
+   "ru": "Дачи и дачники — это так пошло, простите.",
+   "question": "What is Ranevskaya's reaction to the idea of summer cottages?",
+   "options": [
+    "She finds cottages and summer visitors vulgar",
+    "She thinks they will save the family",
+    "She wants to build them herself",
+    "She says the land is unsuitable for them"
+   ],
+   "correct": "She finds cottages and summer visitors vulgar",
+   "explain": "She dismisses dachas as vulgar, and Gaev immediately agrees with her."
+  },
+  {
+   "id": "r13",
+   "ru": "А в прошлом году, когда дачу продали за долги, я уехала в Париж, и там он обобрал меня, бросил, сошелся с другой, я пробовала отравиться…",
+   "question": "What happened to Ranevskaya in Paris the previous year?",
+   "options": [
+    "Her lover robbed and abandoned her and she tried to poison herself",
+    "She married again and lost her fortune at cards",
+    "She bought a villa and lived comfortably",
+    "She nursed her son back to health"
+   ],
+   "correct": "Her lover robbed and abandoned her and she tried to poison herself",
+   "explain": "After the villa near Menton was sold for debts, she went to Paris, where her lover robbed her, left her for another woman, and she attempted suicide."
+  },
+  {
+   "id": "r14",
+   "ru": "Мой папаша был мужик, идиот, ничего не понимал, меня не учил, а только бил спьяна, и все палкой.",
+   "question": "How does Lopakhin describe his own father?",
+   "options": [
+    "A peasant who taught him nothing and beat him drunk with a stick",
+    "A merchant who sent him abroad to study",
+    "A serf who was freed and became a valet",
+    "A gentleman who lost everything at billiards"
+   ],
+   "correct": "A peasant who taught him nothing and beat him drunk with a stick",
+   "explain": "Lopakhin says his father was an ignorant peasant, and that he himself never learned anything and writes like a pig."
+  },
+  {
+   "id": "r15",
+   "ru": "Мне предлагают место в банке.",
+   "question": "What piece of news does Gaev announce about himself?",
+   "options": [
+    "He has been offered a place in a bank at six thousand a year",
+    "He has been offered the post of head valet",
+    "He has been invited to play billiards in the town",
+    "He has been promised a loan by his aunt"
+   ],
+   "correct": "He has been offered a place in a bank at six thousand a year",
+   "explain": "Gaev mentions the bank post and six thousand a year; his sister tells him to sit still."
+  },
+  {
+   "id": "r16",
+   "ru": "Тогда я не согласился на волю, остался при господах…",
+   "question": "What did Firs do when the serfs were emancipated?",
+   "options": [
+    "He refused freedom and stayed with his masters",
+    "He took his freedom and left for the town",
+    "He married and set up his own household",
+    "He was sold to another family"
+   ],
+   "correct": "He refused freedom and stayed with his masters",
+   "explain": "Firs says he was already head valet by then and did not agree to freedom."
+  },
+  {
+   "id": "r17",
+   "ru": "Перед несчастьем то же было: и сова кричала, и самовар гудел бесперечь.",
+   "question": "What omens does Firs remember from before the earlier misfortune?",
+   "options": [
+    "An owl screeching and the samovar humming without stopping",
+    "A breaking string and a falling star",
+    "Dogs howling all night in the orchard",
+    "A stranger begging on the road"
+   ],
+   "correct": "An owl screeching and the samovar humming without stopping",
+   "explain": "Firs compares the strange sound to the signs that came before the emancipation, which he calls the misfortune."
+  },
+  {
+   "id": "r18",
+   "ru": "Ему пятьдесят лет скоро, а он все еще студент.",
+   "question": "How does Lopakhin mock Trofimov?",
+   "options": [
+    "By saying he will soon be fifty and is still a student",
+    "By saying he never reads any books",
+    "By calling him a rich future millionaire",
+    "By saying he is afraid of Varya"
+   ],
+   "correct": "By saying he will soon be fifty and is still a student",
+   "explain": "Lopakhin calls him the eternal student and jokes about his age."
+  },
+  {
+   "id": "r19",
+   "ru": "Быть может, у человека сто чувств и со смертью погибают только пять, известных нам, а остальные девяносто пять остаются живы.",
+   "question": "What does Trofimov suggest about death when Gaev says everyone dies anyway?",
+   "options": [
+    "That a person may have a hundred senses and only the five we know die",
+    "That death is simply the end of everything",
+    "That only proud people fear death",
+    "That the soul returns to the cherry orchard"
+   ],
+   "correct": "That a person may have a hundred senses and only the five we know die",
+   "explain": "Trofimov answers that perhaps ninety-five of a person's hundred senses stay alive after death."
+  },
+  {
+   "id": "r20",
+   "ru": "Знаете, я встаю в пятом часу утра, работаю с утра до вечера, ну, у меня постоянно деньги свои и чужие, и я вижу, какие кругом люди.",
+   "question": "What does Lopakhin say about his own working life?",
+   "options": [
+    "He gets up before five and works from morning to night, handling his own and other people's money",
+    "He has never had to work for his living",
+    "He works only during the summer season",
+    "He spends his mornings reading and his evenings at the theatre"
+   ],
+   "correct": "He gets up before five and works from morning to night, handling his own and other people's money",
+   "explain": "From this daily experience he concludes how few honest, decent people there are."
+  },
+  {
+   "id": "r21",
+   "ru": "Где-нибудь далеко в шахтах сорвалась бадья.",
+   "question": "How does Lopakhin explain the strange distant sound?",
+   "options": [
+    "A bucket broke loose far away in the mines",
+    "A heron cried somewhere in the marsh",
+    "An owl called from the orchard",
+    "The Jewish orchestra was playing in the town"
+   ],
+   "correct": "A bucket broke loose far away in the mines",
+   "explain": "Lopakhin guesses at a mine bucket, while Gaev suggests a bird and Trofimov an owl."
+  },
+  {
+   "id": "r22",
+   "ru": "Позвольте вас спросить, могу ли я пройти здесь прямо на станцию?",
+   "question": "What does the passer-by first ask the company?",
+   "options": [
+    "Whether he can go straight to the station this way",
+    "Whether they will give him something to eat",
+    "Whether the estate is for sale",
+    "Whether he may rest on the bench"
+   ],
+   "correct": "Whether he can go straight to the station this way",
+   "explain": "He asks the way to the station, and only afterwards begs money from Varya."
+  },
+  {
+   "id": "r23",
+   "ru": "Ах, мамочка, дома людям есть нечего, а вы ему отдали золотой.",
+   "question": "Why is Varya upset about the gold coin?",
+   "options": [
+    "Because at home people have nothing to eat and her mother gave the money away",
+    "Because the passer-by frightened her",
+    "Because Lopakhin refused to lend any more money",
+    "Because the coin was the last silver in the purse"
+   ],
+   "correct": "Because at home people have nothing to eat and her mother gave the money away",
+   "explain": "Varya reproaches Ranevskaya for giving a gold piece to a stranger while the household goes hungry."
+  },
+  {
+   "id": "r24",
+   "ru": "Напоминаю вам, господа: двадцать второго августа будет продаваться вишневый сад.",
+   "question": "What date does Lopakhin remind everyone of as they leave?",
+   "options": [
+    "The twenty-second of August, when the cherry orchard will be sold",
+    "The first of September, when the lease begins",
+    "The twenty-second of July, when the aunt's money arrives",
+    "The end of the month, when the auction is postponed"
+   ],
+   "correct": "The twenty-second of August, when the cherry orchard will be sold",
+   "explain": "Lopakhin repeats the sale date and urges them to think about it."
+  },
+  {
+   "id": "r25",
+   "ru": "Вся Россия наш сад.",
+   "question": "How does Trofimov answer Anya when she says she no longer loves the cherry orchard?",
+   "options": [
+    "He tells her that all of Russia is their orchard",
+    "He tells her the orchard must be sold quickly",
+    "He tells her she will love it again in time",
+    "He tells her the orchard belongs to the peasants"
+   ],
+   "correct": "He tells her that all of Russia is their orchard",
+   "explain": "Trofimov widens her loss into a vision of the whole country as a garden full of wonderful places."
+  },
+  {
+   "id": "r26",
+   "ru": "Если у вас есть ключи от хозяйства, то бросьте их в колодец и уходите.",
+   "question": "What does Trofimov tell Anya to do with the household keys?",
+   "options": [
+    "Throw them into the well and walk away",
+    "Give them to Varya before leaving",
+    "Hide them until the auction is over",
+    "Hand them to her mother in Paris"
+   ],
+   "correct": "Throw them into the well and walk away",
+   "explain": "He tells her to throw the keys into the well and be free as the wind."
+  }
+ ],
+ "highlight": [
+  {
+   "id": "h1",
+   "question": "Which sentence tells you where the cherry orchard begins?",
+   "sentences": [
+    "Поле.",
+    "Старая, покривившаяся, давно заброшенная часовенка, возле нее колодец, большие камни, когда-то бывшие, по-видимому, могильными плитами, и старая скамья.",
+    "Видна дорога в усадьбу Гаева.",
+    "В стороне, возвышаясь, темнеют тополи: там начинается вишневый сад.",
+    "Вдали ряд телеграфных столбов, и далеко-далеко на горизонте неясно обозначается большой город, который бывает виден только в очень хорошую, ясную погоду.",
+    "Скоро сядет солнце.",
+    "Шарлотта, Яша и Дуняша сидят на скамье; Епиходов стоит возле и играет на гитаре; все сидят задумавшись."
+   ],
+   "correct": [
+    3
+   ],
+   "explain": "The orchard is said to start where the poplars darken to one side."
+  },
+  {
+   "id": "h2",
+   "question": "Which sentence says what Charlotta's father and mother did when she was a little girl?",
+   "sentences": [
+    "У меня нет настоящего паспорта, я не знаю, сколько мне лет, и мне все кажется, что я молоденькая.",
+    "Когда я была маленькой девочкой, то мой отец и мамаша ездили по ярмаркам и давали представления, очень хорошие.",
+    "А я прыгала salto mortale и разные штучки.",
+    "И когда папаша и мамаша умерли, меня взяла к себе одна немецкая госпожа и стала меня учить.",
+    "Хорошо.",
+    "Я выросла, потом пошла в гувернантки.",
+    "А откуда я и кто я — не знаю…"
+   ],
+   "correct": [
+    1
+   ],
+   "explain": "Her parents travelled round the fairs giving performances."
+  },
+  {
+   "id": "h3",
+   "question": "Which sentence compares Epikhodov's fate to a storm hitting a small ship?",
+   "sentences": [
+    "Собственно говоря, не касаясь других предметов, я должен выразиться о себе, между прочим, что судьба относится ко мне без сожаления, как буря к небольшому кораблю.",
+    "Если, допустим, я ошибаюсь, тогда зачем же сегодня утром я просыпаюсь, к примеру сказать, гляжу, а у меня на груди страшной величины паук…",
+    "Вот такой. (Показывает обеими руками.)",
+    "И тоже квасу возьмешь, чтобы напиться, а там, глядишь, что-нибудь в высшей степени неприличное, вроде таракана."
+   ],
+   "correct": [
+    0
+   ],
+   "explain": "Epikhodov opens his speech with the image of fate as a storm and himself as a small boat."
+  },
+  {
+   "id": "h4",
+   "question": "Which sentence complains about what the restaurant's tablecloths smelled of?",
+   "sentences": [
+    "И зачем я поехала завтракать…",
+    "Дрянной ваш ресторан с музыкой, скатерти пахнут мылом…",
+    "Зачем так много пить, Леня?",
+    "Зачем так много есть?",
+    "Сегодня в ресторане ты говорил опять много и все некстати.",
+    "Половым говорить о декадентах!"
+   ],
+   "correct": [
+    1
+   ],
+   "explain": "Ranevskaya says the wretched restaurant's tablecloths smelled of soap."
+  },
+  {
+   "id": "h5",
+   "question": "Which sentence says what will happen once they finally decide to have summer cottages?",
+   "sentences": [
+    "Я вас каждый день учу.",
+    "Каждый день я говорю все одно и то же.",
+    "И вишневый сад и землю необходимо отдать в аренду под дачи, сделать это теперь же, поскорее — аукцион на носу!",
+    "Поймите!",
+    "Раз окончательно решите, чтобы были дачи, так денег вам дадут сколько угодно, и вы тогда спасены."
+   ],
+   "correct": [
+    4
+   ],
+   "explain": "Lopakhin promises that as much money as they like will be given them and they will be saved."
+  },
+  {
+   "id": "h6",
+   "question": "Which sentence says what post Firs already held when the emancipation came?",
+   "sentences": [
+    "Живу давно.",
+    "Меня женить собирались, а вашего папаши еще на свете не было… (Смеется.)",
+    "А воля вышла, я уже старшим камердинером был.",
+    "Тогда я не согласился на волю, остался при господах…"
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "Firs says that by the time freedom came he was already the head valet."
+  },
+  {
+   "id": "h7",
+   "question": "Which sentence says how yesterday's conversation about the proud man ended?",
+   "sentences": [
+    "Мы вчера говорили долго, но ни к чему не пришли.",
+    "В гордом человеке, в вашем смысле, есть что-то мистическое.",
+    "Быть может, вы и правы по-своему, но если рассуждать попросту, без затей, то какая там гордость, есть ли в ней смысл, если человек физиологически устроен неважно, если в своем громадном большинстве он груб, неумен, глубоко несчастлив.",
+    "Надо перестать восхищаться собой.",
+    "Надо бы только работать."
+   ],
+   "correct": [
+    0
+   ],
+   "explain": "Trofimov says they talked for a long time yesterday and reached no conclusion."
+  },
+  {
+   "id": "h8",
+   "question": "Which sentence explains why Varya never leaves Anya and Trofimov on their own?",
+   "sentences": [
+    "Варя боится, а вдруг мы полюбим друг друга, и целые дни не отходит от нас.",
+    "Она своей узкой головой не может понять, что мы выше любви.",
+    "Обойти то мелкое и призрачное, что мешает быть свободным и счастливым, — вот цель и смысл нашей жизни.",
+    "Мы идем неудержимо к яркой звезде, которая горит там вдали!",
+    "Не отставай, друзья!"
+   ],
+   "correct": [
+    0
+   ],
+   "explain": "Trofimov says Varya is afraid they may fall in love, so she stays near them all day."
+  }
+ ]
+}

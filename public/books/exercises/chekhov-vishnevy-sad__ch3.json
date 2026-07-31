@@ -1,0 +1,421 @@
+{
+  "cases": [
+    {
+      "id": "c1",
+      "sentence": "Гостиная, отделенная аркой от ___.",
+      "lemma": "зала",
+      "options": ["зала", "залы", "зале", "залу"],
+      "correct": "залы",
+      "case": "Родительный (Genitive)",
+      "translation": "A drawing room separated from the ballroom by an arch.",
+      "explain": "The preposition «от» (from, away from) always governs the genitive, so зала becomes залы."
+    },
+    {
+      "id": "c2",
+      "sentence": "А у вас в ___ в самом деле есть что-то лошадиное.",
+      "lemma": "фигура",
+      "options": ["фигура", "фигуры", "фигуре", "фигурой"],
+      "correct": "фигуре",
+      "case": "Предложный (Prepositional)",
+      "translation": "And there really is something horsey about your figure.",
+      "explain": "«В» meaning location (in, about — no motion) takes the prepositional, giving фигуре."
+    },
+    {
+      "id": "c3",
+      "sentence": "Вот вам ___ карт, задумайте какую-нибудь одну карту.",
+      "lemma": "колода",
+      "options": ["колода", "колоды", "колоду", "колодой"],
+      "correct": "колода",
+      "case": "Именительный (Nominative)",
+      "translation": "Here is a deck of cards for you, think of some one card.",
+      "explain": "In the presentative construction «вот вам …» the thing presented is the grammatical subject, so it stands in the nominative."
+    },
+    {
+      "id": "c4",
+      "sentence": "Вот наняли ___, а чем платить?",
+      "lemma": "музыкант",
+      "options": ["музыканты", "музыкантов", "музыкантам", "музыкантами"],
+      "correct": "музыкантов",
+      "case": "Винительный (Accusative)",
+      "translation": "So they hired musicians, but what are we going to pay with?",
+      "explain": "Нанять takes a direct object in the accusative; музыкант is animate, so its plural accusative copies the genitive form музыкантов."
+    },
+    {
+      "id": "c5",
+      "sentence": "Теперь поищите, она у вас в боковом ___…",
+      "lemma": "карман",
+      "options": ["карман", "кармана", "карману", "кармане"],
+      "correct": "кармане",
+      "case": "Предложный (Prepositional)",
+      "translation": "Now have a look, it is in your side pocket.",
+      "explain": "«В» indicating the place where something is (not motion into) requires the prepositional case: в кармане."
+    },
+    {
+      "id": "c6",
+      "sentence": "Ярославская бабушка прислала пятнадцать ___, чтобы купить имение на ее имя.",
+      "lemma": "тысяча",
+      "options": ["тысяча", "тысячи", "тысяч", "тысячам"],
+      "correct": "тысяч",
+      "case": "Родительный (Genitive)",
+      "translation": "The grandmother in Yaroslavl sent fifteen thousand to buy the estate in her name.",
+      "explain": "Numerals from five upwards (here пятнадцать) are followed by the genitive plural, so тысяча becomes тысяч."
+    },
+    {
+      "id": "c7",
+      "sentence": "Он дразнит тебя ___, ну что ж?",
+      "lemma": "Лопахин",
+      "options": ["Лопахин", "Лопахина", "Лопахину", "Лопахиным"],
+      "correct": "Лопахиным",
+      "case": "Творительный (Instrumental)",
+      "translation": "He teases you with Lopakhin's name, so what of it?",
+      "explain": "The verb дразнить кого-то кем-то (to tease someone by calling him something) puts the name used as a taunt in the instrumental."
+    },
+    {
+      "id": "c8",
+      "sentence": "В ___ бы ушла.",
+      "lemma": "монастырь",
+      "options": ["монастырь", "монастыря", "монастырю", "монастыре"],
+      "correct": "монастырь",
+      "case": "Винительный (Accusative)",
+      "translation": "I would go off into a convent.",
+      "explain": "«В» with a verb of motion (уйти) takes the accusative; монастырь is inanimate, so the accusative looks like the nominative."
+    },
+    {
+      "id": "c9",
+      "sentence": "Торги кончились к четырем ___…",
+      "lemma": "час",
+      "options": ["часы", "часов", "часам", "часами"],
+      "correct": "часам",
+      "case": "Дательный (Dative)",
+      "translation": "The auction was over by four o'clock.",
+      "explain": "The preposition «к» in the sense 'by (a time)' governs the dative, so четырем часам."
+    },
+    {
+      "id": "c10",
+      "sentence": "Я купил имение, где дед и отец были ___.",
+      "lemma": "раб",
+      "options": ["рабы", "рабов", "рабам", "рабами"],
+      "correct": "рабами",
+      "case": "Творительный (Instrumental)",
+      "translation": "I have bought the estate where my grandfather and my father were slaves.",
+      "explain": "The past tense of быть takes a predicate noun in the instrumental, so рабы becomes рабами."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "ru": "Я полнокровный, со мной уже два раза удар был, танцевать трудно, но, как говорится, попал в стаю, лай не лай, а хвостом виляй.",
+      "question": "Why does Pishchik say dancing is hard for him?",
+      "options": ["He is full-blooded and has already had two strokes", "He has hurt his leg on the stairs", "He is too old to remember the steps", "The musicians play too fast for him"],
+      "correct": "He is full-blooded and has already had two strokes",
+      "explain": "Pishchik explains that he is plethoric and has twice had a stroke, but joins in anyway."
+    },
+    {
+      "id": "r2",
+      "ru": "А у вас в фигуре в самом деле есть что-то лошадиное.",
+      "question": "What does Trofimov tell Pishchik after his story about his ancestors?",
+      "options": ["That there really is something horsey about his figure", "That his family history is invented", "That he should sell his horses", "That Caligula was a tyrant"],
+      "correct": "That there really is something horsey about his figure",
+      "explain": "Pishchik traces his family to Caligula's horse, and Trofimov jokes that his build does look equine."
+    },
+    {
+      "id": "r3",
+      "ru": "Вот наняли музыкантов, а чем платить?",
+      "question": "What does Varya worry about as the ball goes on?",
+      "options": ["That musicians have been hired with no money to pay them", "That the guests will stay too late", "That Anya is dancing with a stranger", "That Firs is too ill to serve"],
+      "correct": "That musicians have been hired with no money to pay them",
+      "explain": "Varya bitterly asks how the hired musicians are to be paid."
+    },
+    {
+      "id": "r4",
+      "ru": "Ницше… философ… величайший, знаменитейший… громадного ума человек, говорит в своих сочинениях, будто фальшивые бумажки делать можно.",
+      "question": "What does Pishchik claim Nietzsche wrote?",
+      "options": ["That it is permissible to make counterfeit banknotes", "That debts should never be repaid", "That estates should belong to peasants", "That love is above money"],
+      "correct": "That it is permissible to make counterfeit banknotes",
+      "explain": "Pishchik attributes to Nietzsche the idea that forging notes is allowed — and admits he only heard it from Dashenka."
+    },
+    {
+      "id": "r5",
+      "ru": "Послезавтра триста десять рублей платить…",
+      "question": "How much does Pishchik have to pay the day after tomorrow?",
+      "options": ["Three hundred and ten roubles", "One hundred and thirty roubles", "One hundred and eighty roubles", "Fifteen thousand roubles"],
+      "correct": "Three hundred and ten roubles",
+      "explain": "He owes 310 roubles and has so far scraped together only 130."
+    },
+    {
+      "id": "r6",
+      "ru": "Восьмерка пик, совершенно верно!",
+      "question": "Which card does Pishchik pull out of his side pocket during Charlotta's trick?",
+      "options": ["The eight of spades", "The queen of spades", "The ace of hearts", "The king of clubs"],
+      "correct": "The eight of spades",
+      "explain": "The card he had thought of turns out to be the eight of spades, exactly right."
+    },
+    {
+      "id": "r7",
+      "ru": "Госпожа чревовещательница, браво!",
+      "question": "What does the stationmaster call Charlotta after the voice answers her from under the floor?",
+      "options": ["A ventriloquist", "A fortune-teller", "A German governess", "A circus rider"],
+      "correct": "A ventriloquist",
+      "explain": "He applauds and greets her as 'Madame Ventriloquist'."
+    },
+    {
+      "id": "r8",
+      "ru": "Дядечка купил, я в этом уверена.",
+      "question": "What does Varya believe has happened at the auction?",
+      "options": ["That her uncle Gaev has bought the estate", "That the auction was cancelled", "That Lopakhin has bought the estate", "That the grandmother came herself"],
+      "correct": "That her uncle Gaev has bought the estate",
+      "explain": "Varya tries to comfort her mother by insisting that uncle Gaev bought it with the grandmother's power of attorney."
+    },
+    {
+      "id": "r9",
+      "ru": "Ярославская бабушка прислала пятнадцать тысяч, чтобы купить имение на ее имя, — нам она не верит, — а этих денег не хватило бы даже проценты заплатить.",
+      "question": "Why does Lyubov Andreyevna say the grandmother's money is useless?",
+      "options": ["Fifteen thousand would not even cover the interest", "The money arrived after the auction", "The grandmother sent it to Paris instead", "Gaev had already spent it in town"],
+      "correct": "Fifteen thousand would not even cover the interest",
+      "explain": "She notes that the fifteen thousand sent from Yaroslavl would not be enough even to pay the interest."
+    },
+    {
+      "id": "r10",
+      "ru": "Уже два раза увольняли из университета.",
+      "question": "What does Varya throw in Trofimov's face when he teases her?",
+      "options": ["That he has twice been expelled from the university", "That he never pays for anything", "That he is in love with Anya", "That he laughed at her mother"],
+      "correct": "That he has twice been expelled from the university",
+      "explain": "She calls him an eternal student and reminds him he has been thrown out of the university twice."
+    },
+    {
+      "id": "r11",
+      "ru": "Если бы были деньги, хоть немного, хоть бы сто рублей, бросила бы я все, ушла бы подальше.",
+      "question": "What does Varya say she would do if she had even a hundred roubles?",
+      "options": ["Drop everything and go far away, into a convent", "Buy the estate herself", "Travel to Paris with her mother", "Pay off the musicians and the clerk"],
+      "correct": "Drop everything and go far away, into a convent",
+      "explain": "She says she would leave it all and go away — into a monastery."
+    },
+    {
+      "id": "r12",
+      "ru": "Епиходов бильярдный кий сломал!..",
+      "question": "What news does Yasha bring in, barely able to keep from laughing?",
+      "options": ["Epikhodov has broken a billiard cue", "Petya has fallen down the stairs", "The musicians have left", "Gaev has come back from town"],
+      "correct": "Epikhodov has broken a billiard cue",
+      "explain": "Yasha announces the broken cue, which sends Varya off to find out who let Epikhodov play."
+    },
+    {
+      "id": "r13",
+      "ru": "Мы выше любви!",
+      "question": "How does Trofimov describe himself and Anya when he complains about Varya's watchfulness?",
+      "options": ["As being above love", "As being too poor to marry", "As being old friends only", "As secretly engaged"],
+      "correct": "As being above love",
+      "explain": "He insists Varya's fears were pointless because he and Anya are 'above love'."
+    },
+    {
+      "id": "r14",
+      "ru": "Ведь мой сын утонул здесь…",
+      "question": "What personal loss does Lyubov Andreyevna recall to explain her attachment to the estate?",
+      "options": ["Her son drowned there", "Her husband died in the house", "Her mother is buried in the orchard", "Her daughter was born there"],
+      "correct": "Her son drowned there",
+      "explain": "Embracing Trofimov, she reminds him that her son drowned on the estate."
+    },
+    {
+      "id": "r15",
+      "ru": "Это из Парижа телеграмма.",
+      "question": "What is the paper that falls from Lyubov Andreyevna's handkerchief?",
+      "options": ["A telegram from Paris", "A letter from the Yaroslavl grandmother", "A notice about the auction", "A bill from the musicians"],
+      "correct": "A telegram from Paris",
+      "explain": "She says telegrams come from Paris every day, begging her to return."
+    },
+    {
+      "id": "r16",
+      "ru": "Простите за откровенность, бога ради: ведь он обобрал вас!",
+      "question": "What does Trofimov say about the man who is calling Lyubov Andreyevna back to Paris?",
+      "options": ["That he robbed her", "That he has already died", "That he is married to someone else", "That he is a famous philosopher"],
+      "correct": "That he robbed her",
+      "explain": "Trofimov bluntly tells her the man fleeced her and calls him a petty scoundrel."
+    },
+    {
+      "id": "r17",
+      "ru": "Петя с лестницы упал!",
+      "question": "What makes Anya run in laughing right after Trofimov storms out?",
+      "options": ["Petya has fallen down the stairs", "Charlotta has done another trick", "Epikhodov has been thrown out", "Gaev has returned with parcels"],
+      "correct": "Petya has fallen down the stairs",
+      "explain": "The crash heard in the hall was Petya falling down the staircase."
+    },
+    {
+      "id": "r18",
+      "ru": "Прежде у нас на балах танцевали генералы, бароны, адмиралы, а теперь посылаем за почтовым чиновником и начальником станции, да и те не в охотку идут.",
+      "question": "How does Firs compare this ball with the balls of the past?",
+      "options": ["Generals, barons and admirals used to dance here; now they send for a post-office clerk and a stationmaster", "There used to be no music, only cards", "The old balls were smaller but merrier", "There used to be far more servants than guests"],
+      "correct": "Generals, barons and admirals used to dance here; now they send for a post-office clerk and a stationmaster",
+      "explain": "Firs contrasts the grand guests of former days with the reluctant minor officials of today."
+    },
+    {
+      "id": "r19",
+      "ru": "А сейчас на кухне какой-то человек говорил, что вишневый сад уже продан сегодня.",
+      "question": "What news does Anya bring in from the kitchen?",
+      "options": ["A man said the cherry orchard had already been sold that day", "The musicians are refusing to play", "Leonid has come back from town", "Firs has fallen ill"],
+      "correct": "A man said the cherry orchard had already been sold that day",
+      "explain": "Anya reports the stranger's words but says he left without saying who bought it."
+    },
+    {
+      "id": "r20",
+      "ru": "Если опять поедете в Париж, то возьмите меня с собой, сделайте милость.",
+      "question": "What favour does Yasha ask of Lyubov Andreyevna?",
+      "options": ["To take him with her if she goes to Paris again", "To lend him money for the journey", "To let him serve at table instead of Firs", "To speak to Dunyasha on his behalf"],
+      "correct": "To take him with her if she goes to Paris again",
+      "explain": "Yasha begs to be taken along, saying it is positively impossible for him to stay here."
+    },
+    {
+      "id": "r21",
+      "ru": "Вы, говорит, как цветок.",
+      "question": "What did the clerk from the post office say to Dunyasha?",
+      "options": ["That she is like a flower", "That she dances better than the young lady", "That she should powder less", "That he would take her to town"],
+      "correct": "That she is like a flower",
+      "explain": "Dunyasha repeats the compliment that took her breath away."
+    },
+    {
+      "id": "r22",
+      "ru": "Шишка, однако, вскочит огромадная.",
+      "question": "What does Lopakhin say after Varya, aiming at Epikhodov, hits him with the stick?",
+      "options": ["That a huge bump will come up", "That she has broken his hat", "That she should apologise to Epikhodov", "That he did not feel anything at all"],
+      "correct": "That a huge bump will come up",
+      "explain": "He says he is not hurt, though an enormous lump will swell up."
+    },
+    {
+      "id": "r23",
+      "ru": "Я купил.",
+      "question": "Who bought the cherry orchard?",
+      "options": ["Lopakhin", "Gaev", "Deriganov", "The Yaroslavl grandmother"],
+      "correct": "Lopakhin",
+      "explain": "Asked who bought it, Lopakhin answers simply: 'I bought it.'"
+    },
+    {
+      "id": "r24",
+      "ru": "У Леонида Андреича было только пятнадцать тысяч, а Дериганов сверх долга сразу надавал тридцать.",
+      "question": "Who was bidding against Lopakhin at the auction?",
+      "options": ["Deriganov", "Simeonov-Pishchik", "The stationmaster", "Epikhodov"],
+      "correct": "Deriganov",
+      "explain": "Deriganov immediately offered thirty above the debt, while Gaev had only fifteen thousand."
+    },
+    {
+      "id": "r25",
+      "ru": "Приходите все смотреть, как Ермолай Лопахин хватит топором по вишневому саду, как упадут на землю деревья!",
+      "question": "What does Lopakhin invite everyone to come and watch?",
+      "options": ["Yermolai Lopakhin taking an axe to the cherry orchard", "The signing of the deed of sale", "His wedding to Varya", "The building of the railway station"],
+      "correct": "Yermolai Lopakhin taking an axe to the cherry orchard",
+      "explain": "In his triumph he calls everyone to see him cut down the orchard and put up summer cottages."
+    }
+  ],
+  "highlight": [
+    {
+      "id": "h1",
+      "question": "Which sentence tells the joke about where Pishchik's family is supposed to have come from?",
+      "sentences": [
+        "Я полнокровный, со мной уже два раза удар был, танцевать трудно, но, как говорится, попал в стаю, лай не лай, а хвостом виляй.",
+        "Здоровье-то у меня лошадиное.",
+        "Мой покойный родитель, шутник, царство небесное, насчет нашего происхождения говорил так, будто древний род наш Симеоновых-Пищиков происходит будто бы от той самой лошади, которую Калигула посадил в сенате…",
+        "Но вот беда: денег нет!",
+        "Голодная собака верует только в мясо…"
+      ],
+      "correct": [2],
+      "explain": "His late father joked that the Simeonov-Pishchiks descend from the horse Caligula put in the senate."
+    },
+    {
+      "id": "h2",
+      "question": "Which sentence names the sum Pishchik must pay the day after tomorrow?",
+      "sentences": [
+        "Ну… Мне Дашенька говорила.",
+        "А я теперь в таком положении, что хоть фальшивые бумажки делай…",
+        "Послезавтра триста десять рублей платить…",
+        "Сто тридцать уже достал…",
+        "Деньги пропали!",
+        "Потерял деньги!",
+        "Где деньги?",
+        "Вот они, за подкладкой…"
+      ],
+      "correct": [2],
+      "explain": "The debt due the day after tomorrow is three hundred and ten roubles."
+    },
+    {
+      "id": "h3",
+      "question": "Which sentence gives Varya's reason for thinking Lopakhin has no time for her?",
+      "sentences": [
+        "Мамочка, не могу же я сама делать ему предложение.",
+        "Вот уже два года все мне говорят про него, все говорят, а он или молчит, или шутит.",
+        "Я понимаю.",
+        "Он богатеет, занят делом, ему не до меня.",
+        "Если бы были деньги, хоть немного, хоть бы сто рублей, бросила бы я все, ушла бы подальше.",
+        "В монастырь бы ушла."
+      ],
+      "correct": [3],
+      "explain": "She says he is growing rich and busy with business, so he cannot be bothered with her."
+    },
+    {
+      "id": "h4",
+      "question": "Which sentence says the single thing Lyubov Andreyevna wants to know?",
+      "sentences": [
+        "А я вот, должно быть, ниже любви.",
+        "Отчего нет Леонида?",
+        "Только бы знать: продано имение или нет?",
+        "Несчастье представляется мне до такой степени невероятным, что даже как-то не знаю, что думать, теряюсь…",
+        "Я могу сейчас крикнуть… могу глупость сделать.",
+        "Спасите меня, Петя.",
+        "Говорите же что-нибудь, говорите…"
+      ],
+      "correct": [2],
+      "explain": "All she asks is to know whether the estate has been sold or not."
+    },
+    {
+      "id": "h5",
+      "question": "Which sentence contains Trofimov's advice about looking at the truth?",
+      "sentences": [
+        "Продано ли сегодня имение или не продано — не все ли равно?",
+        "С ним давно уже покончено, нет поворота назад, заросла дорожка.",
+        "Успокойтесь, дорогая.",
+        "Не надо обманывать себя, надо хоть раз в жизни взглянуть правде прямо в глаза."
+      ],
+      "correct": [3],
+      "explain": "He tells her not to deceive herself but to look truth straight in the eye at least once in her life."
+    },
+    {
+      "id": "h6",
+      "question": "Which sentence says how long Firs has been dosing himself with sealing wax?",
+      "sentences": [
+        "Нездоровится.",
+        "Прежде у нас на балах танцевали генералы, бароны, адмиралы, а теперь посылаем за почтовым чиновником и начальником станции, да и те не в охотку идут.",
+        "Что-то ослабел я.",
+        "Барин покойный, дедушка, всех сургучом пользовал, от всех болезней.",
+        "Я сургуч принимаю каждый день уже лет двадцать, а то и больше; может, я от него и жив."
+      ],
+      "correct": [4],
+      "explain": "Firs says he has taken sealing wax every day for twenty years or more."
+    },
+    {
+      "id": "h7",
+      "question": "Which sentence lists Yasha's complaints about the country and the household?",
+      "sentences": [
+        "Любовь Андреевна!",
+        "Позвольте обратиться к вам с просьбой, будьте так добры!",
+        "Если опять поедете в Париж, то возьмите меня с собой, сделайте милость.",
+        "Здесь мне оставаться положительно невозможно.",
+        "Что ж там говорить, вы сами видите, страна необразованная, народ безнравственный, притом скука, на кухне кормят безобразно, а тут еще Фирс этот ходит, бормочет разные неподходящие слова.",
+        "Возьмите меня с собой, будьте так добры!"
+      ],
+      "correct": [4],
+      "explain": "In one breath he calls the country uneducated, the people immoral, the food disgraceful and Firs a nuisance."
+    },
+    {
+      "id": "h8",
+      "question": "Which sentence gives the final amount Lopakhin bid above the debt?",
+      "sentences": [
+        "Пришли мы на торги, там уже Дериганов.",
+        "У Леонида Андреича было только пятнадцать тысяч, а Дериганов сверх долга сразу надавал тридцать.",
+        "Вижу, дело такое, я схватился с ним, надавал сорок.",
+        "Он сорок пять.",
+        "Я пятьдесят пять.",
+        "Он, значит, по пяти надбавляет, я по десяти…",
+        "Ну, кончилось.",
+        "Сверх долга я надавал девяносто, осталось за мной."
+      ],
+      "correct": [7],
+      "explain": "Lopakhin ended by bidding ninety above the debt, and the estate stayed with him."
+    }
+  ]
+}

@@ -2855,6 +2855,13 @@ export default function App() {
   var [exIdx, setExIdx]           = useState(0);
   var [exSelected, setExSelected] = useState(null);
   var [exScore, setExScore]       = useState(0);
+  // ── Highlight quiz ────────────────────────────────────────────────────────
+  // A paragraph is shown split into its sentences; the learner clicks the one
+  // that answers an English question. exHlSel is an index->true map of the
+  // sentences currently lit up; exHlDone flips once Submit is pressed (which
+  // freezes the selection and reveals the answer).
+  var [exHlSel, setExHlSel]       = useState({});
+  var [exHlDone, setExHlDone]     = useState(false);
   // ── Live AI vocabulary quiz (verbs & nouns from the current chapter) ───────
   // vqWords: [{ru,pos,en,distractors[]}]; vqCount: ru->times-correct (mastered
   // at 2, then dropped from rotation); vqCur: {w, options[]} the active question.
@@ -4445,6 +4452,7 @@ export default function App() {
   // Resets the exercise view whenever the chapter changes.
   useEffect(function() {
     setExData(null); setExCat("menu"); setExSelected(null); setExIdx(0); setExScore(0);
+    setExHlSel({}); setExHlDone(false);
     setVqWords(null); setVqCount({}); setVqCur(null); setVqSel(null); setVqErr(""); setVqLoading(false);
     stopExClip();
     // Exercises are keyed to the READING chapter (from the FB2), not the audio —
@@ -4521,6 +4529,21 @@ export default function App() {
       return Object.assign({}, q, { options: exShuffle(q.options || []) });
     });
     setExQuestions(qs); setExIdx(0); setExSelected(null); setExScore(0); setExCat("reading");
+  };
+
+  // Start (or restart) the highlight quiz: an English question over one real
+  // paragraph, answered by clicking the sentence that contains the answer.
+  // The paragraphs are shuffled, but the SENTENCES INSIDE ONE ARE NOT — their
+  // order is the paragraph, and `correct` indexes into it.
+  var startHighlightQuiz = function() {
+    if (!exData || !exData.highlight || !exData.highlight.length) return;
+    var a = exData.highlight.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    setExQuestions(a); setExIdx(0); setExSelected(null); setExScore(0);
+    setExHlSel({}); setExHlDone(false); setExCat("highlight");
   };
 
   // ── Live AI vocabulary quiz ────────────────────────────────────────────────
@@ -4682,6 +4705,48 @@ export default function App() {
           color:"#2a1f14", width:30, height:30, minWidth:30, borderRadius:"50%", cursor:"pointer", fontSize:13,
           display:"inline-flex", alignItems:"center", justifyContent:"center", verticalAlign:"middle", flexShrink:0, padding:0, lineHeight:1}}>
         {playing ? "⏸" : "🔊"}
+      </button>
+    );
+  };
+
+  // Read a whole passage aloud. Prefers the real narration — locate the run of
+  // words in the chapter's word_timings and play that stretch — and falls back
+  // to the browser's Russian TTS voice when the chapter has no recording, or
+  // the passage can't be found in it. Used by the highlight quiz, where the
+  // learner needs to hear the paragraph before picking a sentence out of it.
+  var exSpeak = function(id, text) {
+    var stopAll = function() {
+      stopExClip();
+      try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch(e) {}
+      setExPlaying(null);
+    };
+    if (exPlaying === id) { stopAll(); return; }
+    stopAll();
+    if (exFindClip(text)) { playExClip(id, text); return; }
+    if (!window.speechSynthesis) return;
+    try { if (audiobookAudioRef.current) audiobookAudioRef.current.pause(); } catch(e) {}
+    var u = new SpeechSynthesisUtterance(String(text || "").replace(/\s+/g, " ").trim());
+    u.lang = "ru-RU";
+    var rv = pickRussianVoice(); if (rv) u.voice = rv;
+    u.rate = 0.95;
+    u.onend   = function(){ setExPlaying(null); };
+    u.onerror = function(){ setExPlaying(null); };
+    setExPlaying(id);
+    try { window.speechSynthesis.speak(u); } catch(e) { setExPlaying(null); }
+  };
+
+  // Speaker button for a whole paragraph. Unlike exClipBtn this ALWAYS renders,
+  // because exSpeak has a TTS fallback when there's nothing to play from.
+  var exParaBtn = function(id, text) {
+    var playing = exPlaying === id;
+    return (
+      <button onClick={function(e){ e.stopPropagation(); exSpeak(id, text); }}
+        title="Read this paragraph aloud"
+        style={{background: playing ? "rgba(196,149,90,.25)" : "rgba(42,31,20,.06)", border:"1px solid rgba(42,31,20,.18)",
+          color:"#2a1f14", borderRadius:20, cursor:"pointer", fontSize:13, padding:"6px 14px",
+          display:"inline-flex", alignItems:"center", gap:7, fontFamily:"'Inter',sans-serif"}}>
+        <span style={{fontSize:14}}>{playing ? "⏸" : "🔊"}</span>
+        {playing ? "Stop" : "Listen to the passage"}
       </button>
     );
   };
@@ -10161,6 +10226,19 @@ export default function App() {
                           </button>
                             );
                           })()}
+                          {/* Highlight — find the sentence that answers the question */}
+                          {exData.highlight && exData.highlight.length ? (
+                          <button onClick={startHighlightQuiz}
+                            style={{background:"rgba(140,96,150,.1)",border:"1px solid rgba(140,96,150,.4)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
+                            onMouseOver={function(e){ e.currentTarget.style.background = "rgba(140,96,150,.17)"; }}
+                            onMouseOut={function(e){ e.currentTarget.style.background = "rgba(140,96,150,.1)"; }}>
+                            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
+                              <span style={{fontSize:24}}>🖍️</span>
+                              <span style={{fontSize:18,fontWeight:600,color:"#6b4276",fontFamily:"'Playfair Display',serif"}}>Find the Answer</span>
+                            </div>
+                            <p style={{fontSize:13,color:"rgba(42,31,20,.55)",margin:0,lineHeight:1.5}}>{exData.highlight.length} passages. Read a paragraph — or listen to it — and highlight the sentence that answers the question.</p>
+                          </button>
+                          ) : null}
                           </>)}
                         </div>
                       </div>
@@ -10270,6 +10348,107 @@ export default function App() {
                         <div style={{fontSize:40,marginBottom:12}}>📖</div>
                         <p style={{color:"rgba(42,31,20,.7)",fontSize:15,lineHeight:1.6,maxWidth:440,margin:"0 auto 24px"}}>Reading-comprehension exercises for this passage are coming soon.</p>
                         <button className="btn-g" style={{maxWidth:240}} onClick={function(){ setExCat("menu"); }}>← Back</button>
+                      </div>
+                    )}
+
+                    {/* ── Highlight quiz: click the sentence that answers it ── */}
+                    {exCat === "highlight" && (
+                      <div style={{padding:"14px 4px"}}>
+                        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
+                          <button className="ab" onClick={function(){ stopExClip(); try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch(e) {} setExCat("menu"); }}>← Back</button>
+                          <span style={{fontSize:13,color:"rgba(42,31,20,.5)"}}>Score: {exScore} / {exIdx + (exHlDone ? 1 : 0)}</span>
+                        </div>
+
+                        {exIdx >= exQuestions.length ? (
+                          <div style={{padding:"30px 20px",textAlign:"center"}}>
+                            <div style={{fontSize:48,marginBottom:12}}>{exScore === exQuestions.length ? "🎉" : exScore >= exQuestions.length * 0.7 ? "👏" : "📚"}</div>
+                            <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,color:"#000",marginBottom:8}}>Done!</h2>
+                            <p style={{fontSize:20,color:"#000",marginBottom:6}}>You found <strong style={{color:"#c4955a"}}>{exScore}</strong> of <strong>{exQuestions.length}</strong>.</p>
+                            <p style={{fontSize:14,color:"rgba(42,31,20,.5)",marginBottom:28}}>{Math.round(exScore / exQuestions.length * 100)}%</p>
+                            <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
+                              <button className="btn-p" style={{maxWidth:200}} onClick={startHighlightQuiz}>Try again</button>
+                              <button className="btn-g" style={{maxWidth:200}} onClick={function(){ setExCat("menu"); }}>Back to exercises</button>
+                            </div>
+                          </div>
+                        ) : (function(){
+                          var q = exQuestions[exIdx] || {};
+                          var sents = q.sentences || [];
+                          var corr = {};
+                          (q.correct || []).forEach(function(n){ corr[n] = true; });
+                          var nSel = 0;
+                          for (var si = 0; si < sents.length; si++) if (exHlSel[si]) nSel++;
+                          var allRight = true;
+                          for (var ci = 0; ci < sents.length; ci++) if (!!exHlSel[ci] !== !!corr[ci]) allRight = false;
+                          var para = sents.join(" ");
+                          return (
+                            <div>
+                              <div style={{fontSize:13,color:"rgba(42,31,20,.5)",marginBottom:14}}>Passage {exIdx + 1} of {exQuestions.length}</div>
+
+                              <div style={{fontSize:16,fontFamily:"'Inter',sans-serif",color:"rgba(42,31,20,.75)",textAlign:"center",lineHeight:1.5,fontWeight:600,maxWidth:600,margin:"0 auto 16px"}}>{q.question}</div>
+
+                              <div style={{textAlign:"center",marginBottom:18}}>{exParaBtn("h" + exIdx, para)}</div>
+
+                              {/* The paragraph, one clickable block per sentence. */}
+                              <div style={{maxWidth:640,margin:"0 auto",fontSize:21,fontFamily:"'Crimson Pro',serif",lineHeight:1.8,color:"#000",background:"rgba(42,31,20,.03)",border:"1px solid rgba(42,31,20,.12)",borderRadius:12,padding:"18px 20px"}}>
+                                {sents.map(function(s, i) {
+                                  var picked = !!exHlSel[i];
+                                  var bg = "transparent", col = "#000";
+                                  if (exHlDone) {
+                                    if (corr[i])     { bg = "rgba(90,133,86,.32)"; col = "#24461f"; }
+                                    else if (picked) { bg = "rgba(157,70,48,.26)"; col = "#7d3626"; }
+                                  } else if (picked) { bg = "rgba(196,149,90,.38)"; }
+                                  return (
+                                    <span key={i}
+                                      onClick={exHlDone ? undefined : function(){
+                                        setExHlSel(function(m){
+                                          var n = {};
+                                          for (var k in m) if (m[k]) n[k] = true;
+                                          if (n[i]) delete n[i]; else n[i] = true;
+                                          return n;
+                                        });
+                                      }}
+                                      style={{background:bg,color:col,cursor: exHlDone ? "default" : "pointer",borderRadius:5,padding:"2px 3px",transition:"background .12s",WebkitBoxDecorationBreak:"clone",boxDecorationBreak:"clone"}}>
+                                      {s}{i < sents.length - 1 ? " " : ""}
+                                    </span>
+                                  );
+                                })}
+                              </div>
+
+                              {!exHlDone && (
+                                <div style={{marginTop:24,textAlign:"center"}}>
+                                  <button className="btn-p" style={{maxWidth:260,opacity: nSel ? 1 : .45}} disabled={!nSel}
+                                    onClick={function(){
+                                      setExHlDone(true);
+                                      var ok = true;
+                                      for (var k = 0; k < sents.length; k++) if (!!exHlSel[k] !== !!corr[k]) ok = false;
+                                      if (ok) setExScore(function(s){ return s + 1; });
+                                    }}>Submit</button>
+                                  <div style={{fontSize:13,color:"rgba(42,31,20,.45)",marginTop:10}}>{nSel ? "Tap a sentence again to unselect it." : "Tap the sentence that answers the question."}</div>
+                                </div>
+                              )}
+
+                              {exHlDone && (
+                                <div style={{maxWidth:640,margin:"20px auto 0",background:"rgba(42,31,20,.05)",border:"1px solid rgba(42,31,20,.14)",borderRadius:10,padding:"14px 16px"}}>
+                                  <div style={{fontSize:15,fontWeight:600,color: allRight ? "#2f5a2a" : "#9d4630",marginBottom:6}}>{allRight ? "✓ Correct" : "✗ Not quite — the answer is shown in green"}</div>
+                                  <div style={{fontSize:14,color:"rgba(42,31,20,.7)",lineHeight:1.55}}>{q.explain}</div>
+                                </div>
+                              )}
+
+                              {exHlDone && (
+                                <div style={{marginTop:22,textAlign:"center"}}>
+                                  <button className="btn-p" style={{maxWidth:260}} onClick={function(){
+                                    stopExClip();
+                                    try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch(e) {}
+                                    setExIdx(function(i){ return i + 1; });
+                                    setExHlSel({}); setExHlDone(false);
+                                  }}>
+                                    {exIdx + 1 < exQuestions.length ? "Next →" : "See results"}
+                                  </button>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })()}
                       </div>
                     )}
 
