@@ -187,6 +187,67 @@ function ruOrdinalFeminine(n) {
   return String(n);
 }
 
+// ── RULE: exercises never show a sentence fragment ─────────────────────────
+// Every clickable item in a highlight exercise must be a WHOLE sentence. The
+// generated sets occasionally break one sentence across two entries (usually
+// at a colon, semicolon or dash before direct speech), which makes the learner
+// click half a thought and reads as a bug. This runs over every exercise set
+// as it loads and welds fragments back together, so the rule holds for all
+// books, including any set generated in the future.
+//
+// A fragment is an entry that does not close a sentence (no terminal ., !, ?,
+// …, », ", ) ) or one that opens in the middle of a thought (starts with a
+// lowercase letter, a comma or a closing bracket). Either way it belongs to
+// the entry before it. `correct` is re-indexed onto the welded sentences.
+var EX_SENT_END   = /[.!?…»"”)]\s*$/;
+var EX_SENT_OPENS = /^[…]?\s*[«"“(\[]?\s*[-–—]?\s*[A-ZА-ЯЁ0-9]/;
+
+function exSentenceIsClosed(s) { return EX_SENT_END.test(String(s || "").trim()); }
+function exSentenceOpens(s) {
+  var t = String(s || "").trim();
+  return !t || EX_SENT_OPENS.test(t);
+}
+
+function unfragmentSentences(sentences, correct) {
+  var src = (sentences || []).map(function(s) { return String(s == null ? "" : s).trim(); })
+                             .filter(function(s) { return s.length > 0; });
+  if (src.length < 2) return { sentences: src, correct: (correct || []).slice() };
+  var out = [], map = [];                 // map[i] = index in `out` holding src[i]
+  for (var i = 0; i < src.length; i++) {
+    var joinBack = out.length > 0 &&
+                   (!exSentenceIsClosed(out[out.length - 1]) || !exSentenceOpens(src[i]));
+    if (joinBack) {
+      out[out.length - 1] = out[out.length - 1] + " " + src[i];
+      map.push(out.length - 1);
+    } else {
+      out.push(src[i]);
+      map.push(out.length - 1);
+    }
+  }
+  var seen = {}, nc = [];
+  (correct || []).forEach(function(k) {
+    var m = map[k];
+    if (m == null || seen[m]) return;
+    seen[m] = 1; nc.push(m);
+  });
+  nc.sort(function(a, b) { return a - b; });
+  return { sentences: out, correct: nc };
+}
+
+// Apply the whole-sentence rule to a freshly fetched exercise file.
+function normaliseExerciseData(data) {
+  if (!data || !data.highlight || !data.highlight.length) return data;
+  var changed = false;
+  var hl = data.highlight.map(function(item) {
+    if (!item || !item.sentences || item.sentences.length < 2) return item;
+    var f = unfragmentSentences(item.sentences, item.correct);
+    if (f.sentences.length === item.sentences.length) return item;
+    changed = true;
+    return Object.assign({}, item, { sentences: f.sentences, correct: f.correct });
+  });
+  return changed ? Object.assign({}, data, { highlight: hl }) : data;
+}
+
 // Detect whether a book is a Bible / scripture — verse numbers should not be
 // pronounced in these. Matches the book title against common Russian and
 // English forms, including individual book names ("Бытие", "Деяния", etc),
@@ -4510,7 +4571,8 @@ export default function App() {
         .then(function(r) { return r.ok ? r.json() : null; })
         .then(function(j) {
           if (cancelled) return;
-          if (j) setExData(j); else tryLoad(i + 1);
+          // Whole-sentence rule: never hand the quiz a sentence fragment.
+          if (j) setExData(normaliseExerciseData(j)); else tryLoad(i + 1);
         })
         .catch(function() { if (!cancelled) tryLoad(i + 1); });
     };
