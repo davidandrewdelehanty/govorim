@@ -3710,30 +3710,77 @@ export default function App() {
     }
   };
 
+  // Grace period after a chapter's last aligned word before playback is
+  // stopped. Covers the natural decay of the final syllable and any small
+  // drift in the alignment.
+  var CHAPTER_END_PAD = 0.6;
   var startAudiobookRaf = function() {
     stopAudiobookRaf();
     var lastHit = -1;
+    // Guard for the stop-at-chapter-end check below: only arm it once the
+    // playhead has actually been inside this chapter's time range. Without
+    // it, the first frames after switching from a LATER chapter (where
+    // currentTime is still the old, larger value because the seek hasn't
+    // landed yet) would look like "past the end" and pause instantly.
+    var enteredChapterRange = false;
     var tick = function() {
       var audio = audiobookAudioRef.current;
       if (!audio || audio.paused || audio.ended) {
         audiobookRafRef.current = null;
         return;
       }
-      // Skip highlighting for books that disable it (e.g. Bible)
-      if (audiobookDataRef.current && audiobookDataRef.current.noHighlight) return;
 
-      // Chapters that are a time-slice of a larger shared recording (e.g. the
-      // per-section Палата № 6 files) carry stopAtEnd: pause when the playhead
-      // passes this section's last word so the audio never bleeds into the next.
+      // ── Stop at the end of the chapter ───────────────────────────────
+      // Many books share ONE recording across several chapters (the Chekhov
+      // plays, Палата № 6, Вишнёвый сад, Москва — Петушки): each chapter's
+      // JSON holds ABSOLUTE times into that shared file. Left alone, the
+      // reader sails straight on into the next chapter's text. Pause as soon
+      // as the playhead passes this chapter's last aligned word. Books with
+      // one file per chapter are unaffected in practice — there the last
+      // aligned word already sits at the end of the file.
       var _abd = audiobookDataRef.current;
-      if (_abd && _abd.stopAtEnd && _abd.word_timings && _abd.word_timings.length) {
-        var _endT = _abd.word_timings[_abd.word_timings.length - 1].end;
-        if (audio.currentTime > _endT + 0.4) {
-          try { audio.pause(); } catch(e) {}
-          stopAudiobookRaf();
-          setAudioPlaying(false); audioPlayingRef.current = false;
-          return;
+      if (_abd && _abd.stopAtEnd !== false) {
+        // Last spoken moment of this chapter. Memoized on the data object so
+        // the scan runs once per chapter, not once per animation frame. Takes
+        // the max of the word timings and the WhisperX fragments so a word the
+        // aligner dropped at the very end can't cut the audio short.
+        var _endT = _abd.__chapterEndT;
+        if (_endT === undefined) {
+          _endT = 0;
+          var _wt = _abd.word_timings || [];
+          for (var _wi = _wt.length - 1; _wi >= 0 && _wi > _wt.length - 40; _wi--) {
+            if (_wt[_wi] && _wt[_wi].end > _endT) _endT = _wt[_wi].end;
+          }
+          var _fr = _abd.fragments || [];
+          for (var _fi = _fr.length - 1; _fi >= 0 && _fi > _fr.length - 40; _fi--) {
+            if (_fr[_fi] && _fr[_fi].end > _endT) _endT = _fr[_fi].end;
+          }
+          _abd.__chapterEndT = _endT;
         }
+        if (_endT > 0) {
+          if (audio.currentTime <= _endT + CHAPTER_END_PAD) {
+            enteredChapterRange = true;
+          } else if (enteredChapterRange) {
+            try { audio.pause(); } catch(e) {}
+            stopAudiobookRaf();
+            setAudioPlaying(false); audioPlayingRef.current = false;
+            // Drop the trailing word highlight so the page doesn't sit there
+            // with a word lit up after the voice has stopped.
+            try {
+              var _pw = document.querySelector(".lit-body .word-active");
+              if (_pw) _pw.classList.remove("word-active");
+            } catch(e) {}
+            activeWordRef.current = -1;
+            return;
+          }
+        }
+      }
+
+      // Skip highlighting for books that disable it (e.g. Bible). The loop
+      // keeps ticking so the stop-at-chapter-end check above still runs.
+      if (_abd && _abd.noHighlight) {
+        audiobookRafRef.current = requestAnimationFrame(tick);
+        return;
       }
 
       // ── Word-level highlighting (precomputed alignment; see buildWordTimeline) ──
