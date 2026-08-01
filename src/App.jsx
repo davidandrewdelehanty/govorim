@@ -21,12 +21,19 @@ var DMITRY_CLOUD = {
 // author. index.json keeps title and author as separate fields (the exercise
 // and lit-analysis prompts feed them to the model independently), so the joined
 // form lives here and every surface that names a book calls this.
-function bookLabel(book) {
+function bookLabel(book, omitEdition) {
   if (!book) return "";
   var title = book.title || book.filename || "";
   var author = book.author || "";
-  if (!author || author === title) return title;
-  return title + " — " + author;
+  var base = (!author || author === title) ? title : (title + " — " + author);
+  // An "edition" marks a second copy of the same work that follows a different
+  // performance -- e.g. a радиоспектакль, whose text is cut and padded to match
+  // what the actors actually say. The library card prints it on its own italic
+  // line above the title, so it passes omitEdition; every other surface
+  // (pickers, reader header, transcript scanner) appends it so the two copies
+  // never look like duplicates.
+  if (book.edition && !omitEdition) base = base + " · " + book.edition;
+  return base;
 }
 
 var storage = {
@@ -7900,6 +7907,7 @@ export default function App() {
         .lib-card{padding:14px;border-radius:10px;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.1);cursor:pointer;transition:all .15s;position:relative;display:flex;flex-direction:column;gap:4px}
         .lib-card:hover{background:rgba(42,31,20,.08);border-color:rgba(196,149,90,.3);transform:translateY(-1px)}
         .lib-card-title{font-family:'Playfair Display',serif;font-size:15px;color:#c4955a;line-height:1.3;margin-bottom:8px}
+        .lib-card-edition{font-style:italic;font-size:11px;color:rgba(42,31,20,.5);letter-spacing:.3px;margin-bottom:2px}
         .lib-card-author{font-size:12px;color:rgba(42,31,20,.6);font-style:italic;margin-bottom:6px}
         .lib-card-meta{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:rgba(42,31,20,.4);margin-top:auto;padding-top:4px}
         .lib-card-cat{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#c4955a;padding:2px 8px;border-radius:10px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600}
@@ -9660,7 +9668,8 @@ export default function App() {
                                         loadPresetBook(book);
                                       }
                                     }}>
-                                    <div className="lib-card-title">{bookLabel(book)}</div>
+                                    {book.edition && <div className="lib-card-edition">{book.edition}</div>}
+                                    <div className="lib-card-title">{bookLabel(book, true)}</div>
                                     <div className="lib-card-meta">
                                       {cat !== "Other" && <span className="lib-card-cat">{cat}</span>}
                                       {book.audiobook && <span style={{fontSize:11,color:"#c4955a"}}>🎧 Audiobook</span>}
