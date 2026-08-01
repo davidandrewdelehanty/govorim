@@ -10092,6 +10092,21 @@ export default function App() {
                           <button className="lnb-inline ch" style={{fontSize:15,padding:"8px 14px"}} onClick={function(){ if (cidx < chapters.length - 1) navLit(cidx+1); }} disabled={loading || cidx >= chapters.length - 1} title={singlePageMode ? "Next song" : "Next chapter"}>{singlePageMode ? "Next Song" : "Next Chapter"} ›</button>
                         </>
                       )}
+                      {chapters.length > 1 && (
+                        <select
+                          value={cidx}
+                          disabled={loading}
+                          onChange={function(e){ var n = parseInt(e.target.value, 10); if (!isNaN(n) && n !== cidx) navLit(n); }}
+                          title={singlePageMode ? "Jump to a song" : "Jump to a chapter"}
+                          style={{maxWidth:260,fontSize:13,padding:"7px 10px",borderRadius:4,border:"1px solid rgba(210,197,175,.45)",background:"rgba(0,0,0,.18)",color:"inherit",fontFamily:"'Inter',sans-serif"}}>
+                          {chapters.map(function(ch, i){
+                            var h = String((ch && ch.heading) || "").replace(/\s+/g, " ").trim();
+                            if (!h) h = (singlePageMode ? "Song " : "Chapter ") + (i+1);
+                            if (h.length > 60) h = h.slice(0, 58) + "…";
+                            return <option key={i} value={i}>{(i+1) + ". " + h}</option>;
+                          })}
+                        </select>
+                      )}
                       <button className="lnb-inline lbm-inline" onClick={function(){ setCbm(cidx); }} title="Bookmark this chapter">📌</button>
                     </div>
                   )}
