@@ -9590,7 +9590,7 @@ export default function App() {
                             }}>
                             <option value="" disabled>📖 Choose a book from the library…</option>
                             {(function() {
-                              var CATEGORIES = ["Works", "Song Lyrics", "Poetry"];
+                              var CATEGORIES = ["Works", "Радиоспектакли", "Речи", "Song Lyrics", "Poetry"];
                               // Normalize legacy "Novel", "Short Stories", and "Plays" entries into "Works".
                               var normalize = function(cat) {
                                 if (cat === "Novel" || cat === "Short Stories" || cat === "Plays") return "Works";
@@ -9611,7 +9611,7 @@ export default function App() {
                                 var textOnly  = entries.filter(function(e){ return !e.book.audiobook; });
                                 var makeOption = function(entry) {
                                   var book = entry.book;
-                                  var label = (book.title || book.filename) + (book.author && book.author !== book.title ? " — " + book.author : "");
+                                  var label = (book.edition ? book.edition + " · " : "") + (book.title || book.filename) + (book.author && book.author !== book.title ? " — " + book.author : "");
                                   return <option key={entry.idx} value={entry.idx}>{label}</option>;
                                 };
                                 var groups = [];
@@ -9651,7 +9651,7 @@ export default function App() {
                         // Group preset books by category, preserving original index for lookup.
                         // Normalize legacy "Novel"/"Short Stories"/"Plays" → "Works" so older
                         // entries in index.json fall into the right bucket without an admin edit.
-                        var CATEGORIES = ["Works", "Song Lyrics", "Poetry"];
+                        var CATEGORIES = ["Works", "Радиоспектакли", "Речи", "Song Lyrics", "Poetry"];
                         var normalize = function(cat) {
                           if (cat === "Novel" || cat === "Short Stories" || cat === "Plays") return "Works";
                           return cat;
@@ -9731,7 +9731,7 @@ export default function App() {
                                         loadPresetBook(book);
                                       }
                                     }}>
-                                    <div className="lib-card-title">{book.title || book.filename}</div>
+                                    <div className="lib-card-title">{book.edition ? <span style={{fontStyle:"italic",opacity:.75}}>{book.edition} </span> : null}{book.title || book.filename}</div>
                                     {book.author && book.author !== book.title && <div className="lib-card-author">{book.author}</div>}
                                     <div className="lib-card-meta">
                                       {cat !== "Other" && <span className="lib-card-cat">{cat}</span>}
