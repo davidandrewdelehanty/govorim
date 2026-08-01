@@ -2392,6 +2392,15 @@ async function parseFb2(buffer, options) {
       chapters[0].text = ded + "\n\n" + chapters[0].text;
     }
   }
+  // Война и мир: an earlier build prepended Tolstoy's 1868 preface essay
+  // («Несколько слов по поводу книги "Война и мир"») as chapter 1. The
+  // audiobook manifest has no recording for it, so every chapter's audio ran
+  // one behind the text. Drop it if an old copy of the FB2 is still cached or
+  // deployed — the novel must open on "ТОМ ПЕРВЫЙ — ЧАСТЬ ПЕРВАЯ — I".
+  if (/Война и мир/i.test(bookTitle) && chapters.length > 1 &&
+      /ПРЕДИСЛОВИЕ|НЕСКОЛЬКО СЛОВ ПО ПОВОДУ/i.test((chapters[0].heading || "") + " " + (chapters[0].text || "").slice(0, 200))) {
+    chapters.shift();
+  }
   // Anna Karenina's FB2 source has a spurious chapter break in the middle
   // of Part 4 Chapter 5 (the lawyer office scene). The narrator reads it as
   // one continuous chapter; the book actually has 239 chapters, not 240.
@@ -3387,11 +3396,77 @@ export default function App() {
   var normWordForAlign = function(s) {
     return String(s || "").toLowerCase().replace(/ё/g, "е").replace(/[^а-яa-z0-9]/g, "");
   };
+  // ── Foreign-language (Latin-script) zones ──────────────────────────────
+  // Tolstoy writes whole passages in French, and the narrator does NOT read
+  // them — he goes straight to Tolstoy's Russian rendering. Worse, the French
+  // is macaronic: Russian words sit INSIDE the French clauses ("des поместья",
+  // "vous n'êtes plus мой верный раб"). Those stray Cyrillic words are the ones
+  // that wreck the alignment, because the aligner matches them against the
+  // narrator's reading of the Russian translation further down the paragraph
+  // and the highlight leaps back up into the untouched French.
+  //
+  // So: find every substantial Latin-script run, expand it to the sentence it
+  // sits in, and return those char ranges. Everything inside them is treated as
+  // display-only — it still renders, it just takes no part in the alignment and
+  // never lights up. The right edge stops at a "[" so a footnote marker and the
+  // Russian translation that follows it stay alignable.
+  var latinZonesFor = function(text) {
+    if (!text) return [];
+    // ≥2 Latin letters, but never a bare Roman numeral — chapter headings like
+    // "ТОМ ПЕРВЫЙ — ЧАСТЬ ПЕРВАЯ — XII" are Russian and must stay alignable.
+    var re = /[A-Za-zÀ-ɏ]{2,}/g, m, zones = [];
+    var isTerm = function(c) { return c === "." || c === "!" || c === "?" || c === "…" || c === ";"; };
+    while ((m = re.exec(text)) !== null) {
+      if (/^[IVXLCDM]+$/.test(m[0])) continue;
+      var i = m.index, j = m.index + m[0].length;
+      while (i > 0) {                       // expand left to the sentence start
+        var cl = text.charAt(i - 1);
+        if (cl === "\n" || cl === "]") break;
+        if (isTerm(cl) && /\s/.test(text.charAt(i) || " ")) break;
+        i--;
+      }
+      while (j < text.length) {             // expand right to the sentence end
+        var cr = text.charAt(j);
+        if (cr === "\n" || cr === "[") break;
+        j++;
+        if (isTerm(cr)) { var nx = text.charAt(j); if (!nx || /\s/.test(nx)) break; }
+      }
+      // Require real foreign prose, not one stray Latin token in a Russian
+      // sentence — otherwise a single brand name would mute a whole sentence.
+      var span = text.slice(i, j);
+      var lat = span.match(/[A-Za-zÀ-ɏ]{2,}/g) || [];
+      var real = 0;
+      for (var li = 0; li < lat.length; li++) if (!/^[IVXLCDM]+$/.test(lat[li])) real++;
+      if (real < 2) { re.lastIndex = Math.max(re.lastIndex, m.index + m[0].length); continue; }
+      var last = zones.length ? zones[zones.length - 1] : null;
+      if (last && i <= last[1]) { if (j > last[1]) last[1] = j; }
+      else zones.push([i, j]);
+      re.lastIndex = Math.max(re.lastIndex, j);
+    }
+    return zones;
+  };
+  // True when char offset `pos` falls inside one of `zones` (ascending, merged).
+  var inLatinZone = function(zones, pos) {
+    var lo = 0, hi = zones.length - 1;
+    while (lo <= hi) {
+      var mid = (lo + hi) >> 1;
+      if (pos < zones[mid][0]) hi = mid - 1;
+      else if (pos >= zones[mid][1]) lo = mid + 1;
+      else return true;
+    }
+    return false;
+  };
   var buildWordTimeline = function(chapterText, wordTimings) {
     if (!chapterText || !wordTimings || !wordTimings.length) { wordTimelineRef.current = []; return; }
     // Book words: Russian letter runs, keyed by absolute char offset (== data-rw-start).
+    // Cyrillic sitting inside a French passage is skipped — the narrator never
+    // reads those, and leaving them in makes the highlight jump into the French.
+    var _zones = latinZonesFor(chapterText);
     var B = [], re = /[а-яёА-ЯЁ]+/g, m;
-    while ((m = re.exec(chapterText)) !== null) B.push({ start: m.index, norm: normWordForAlign(m[0]) });
+    while ((m = re.exec(chapterText)) !== null) {
+      if (_zones.length && inLatinZone(_zones, m.index)) continue;
+      B.push({ start: m.index, norm: normWordForAlign(m[0]) });
+    }
     // Transcript words with their times.
     var T = [];
     for (var wi = 0; wi < wordTimings.length; wi++) {
