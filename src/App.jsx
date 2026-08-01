@@ -17,25 +17,6 @@ var DMITRY_CLOUD = {
   voiceURI: "azure:ru-RU-DmitryNeural",
 };
 
-// Every book in the library is labelled the same way: Russian title, em dash,
-// author. index.json keeps title and author as separate fields (the exercise
-// and lit-analysis prompts feed them to the model independently), so the joined
-// form lives here and every surface that names a book calls this.
-function bookLabel(book, omitEdition) {
-  if (!book) return "";
-  var title = book.title || book.filename || "";
-  var author = book.author || "";
-  var base = (!author || author === title) ? title : (title + " — " + author);
-  // An "edition" marks a second copy of the same work that follows a different
-  // performance -- e.g. a радиоспектакль, whose text is cut and padded to match
-  // what the actors actually say. The library card prints it on its own italic
-  // line above the title, so it passes omitEdition; every other surface
-  // (pickers, reader header, transcript scanner) appends it so the two copies
-  // never look like duplicates.
-  if (book.edition && !omitEdition) base = base + " · " + book.edition;
-  return base;
-}
-
 var storage = {
   get: function(key) {
     return Promise.resolve().then(function() {
@@ -192,67 +173,6 @@ function ruOrdinalFeminine(n) {
   // table. Just spell "Глава 105" by passing the number; Azure pronounces
   // it acceptably for these rare cases.
   return String(n);
-}
-
-// ── RULE: exercises never show a sentence fragment ─────────────────────────
-// Every clickable item in a highlight exercise must be a WHOLE sentence. The
-// generated sets occasionally break one sentence across two entries (usually
-// at a colon, semicolon or dash before direct speech), which makes the learner
-// click half a thought and reads as a bug. This runs over every exercise set
-// as it loads and welds fragments back together, so the rule holds for all
-// books, including any set generated in the future.
-//
-// A fragment is an entry that does not close a sentence (no terminal ., !, ?,
-// …, », ", ) ) or one that opens in the middle of a thought (starts with a
-// lowercase letter, a comma or a closing bracket). Either way it belongs to
-// the entry before it. `correct` is re-indexed onto the welded sentences.
-var EX_SENT_END   = /[.!?…»"”)]\s*$/;
-var EX_SENT_OPENS = /^[…]?\s*[«"“(\[]?\s*[-–—]?\s*[A-ZА-ЯЁ0-9]/;
-
-function exSentenceIsClosed(s) { return EX_SENT_END.test(String(s || "").trim()); }
-function exSentenceOpens(s) {
-  var t = String(s || "").trim();
-  return !t || EX_SENT_OPENS.test(t);
-}
-
-function unfragmentSentences(sentences, correct) {
-  var src = (sentences || []).map(function(s) { return String(s == null ? "" : s).trim(); })
-                             .filter(function(s) { return s.length > 0; });
-  if (src.length < 2) return { sentences: src, correct: (correct || []).slice() };
-  var out = [], map = [];                 // map[i] = index in `out` holding src[i]
-  for (var i = 0; i < src.length; i++) {
-    var joinBack = out.length > 0 &&
-                   (!exSentenceIsClosed(out[out.length - 1]) || !exSentenceOpens(src[i]));
-    if (joinBack) {
-      out[out.length - 1] = out[out.length - 1] + " " + src[i];
-      map.push(out.length - 1);
-    } else {
-      out.push(src[i]);
-      map.push(out.length - 1);
-    }
-  }
-  var seen = {}, nc = [];
-  (correct || []).forEach(function(k) {
-    var m = map[k];
-    if (m == null || seen[m]) return;
-    seen[m] = 1; nc.push(m);
-  });
-  nc.sort(function(a, b) { return a - b; });
-  return { sentences: out, correct: nc };
-}
-
-// Apply the whole-sentence rule to a freshly fetched exercise file.
-function normaliseExerciseData(data) {
-  if (!data || !data.highlight || !data.highlight.length) return data;
-  var changed = false;
-  var hl = data.highlight.map(function(item) {
-    if (!item || !item.sentences || item.sentences.length < 2) return item;
-    var f = unfragmentSentences(item.sentences, item.correct);
-    if (f.sentences.length === item.sentences.length) return item;
-    changed = true;
-    return Object.assign({}, item, { sentences: f.sentences, correct: f.correct });
-  });
-  return changed ? Object.assign({}, data, { highlight: hl }) : data;
 }
 
 // Detect whether a book is a Bible / scripture — verse numbers should not be
@@ -2923,13 +2843,6 @@ export default function App() {
   var [exIdx, setExIdx]           = useState(0);
   var [exSelected, setExSelected] = useState(null);
   var [exScore, setExScore]       = useState(0);
-  // ── Highlight quiz ────────────────────────────────────────────────────────
-  // A paragraph is shown split into its sentences; the learner clicks the one
-  // that answers an English question. exHlSel is an index->true map of the
-  // sentences currently lit up; exHlDone flips once Submit is pressed (which
-  // freezes the selection and reveals the answer).
-  var [exHlSel, setExHlSel]       = useState({});
-  var [exHlDone, setExHlDone]     = useState(false);
   // ── Live AI vocabulary quiz (verbs & nouns from the current chapter) ───────
   // vqWords: [{ru,pos,en,distractors[]}]; vqCount: ru->times-correct (mastered
   // at 2, then dropped from rotation); vqCur: {w, options[]} the active question.
@@ -3117,7 +3030,6 @@ export default function App() {
   var [audiobookData, setAudiobookData] = useState(null);    // {audio_url, fragments[], narrator?, year?}
   var [audiobookMode, setAudiobookMode] = useState(false);   // user-toggleable; defaults true when audiobookData arrives
   var audiobookAudioRef = useRef(null);                      // persistent <audio> streaming the recording
-  var lastAbDataRef = useRef(null);                          // previous chapter's audiobook JSON, to detect chapter changes
   var audiobookRafRef = useRef(null);                        // RAF handle for the highlight loop
   var [abCur, setAbCur] = useState(0);                       // audiobook playhead position (s), for the counter/scrubber
   var [abDur, setAbDur] = useState(0);                       // audiobook total duration (s)
@@ -3128,6 +3040,10 @@ export default function App() {
   // Bible section-heading translations ({russianHeading: englishHeading}), one
   // global file shared by every chapter. Loaded lazily on first Bible chapter.
   var [bibleHeadings, setBibleHeadings] = useState(null);
+  // Война и мир: English translations of the French passages, keyed by the
+  // FB2 footnote number that follows them in the body ("[1]", "[2]" …).
+  // One global file for the whole novel; loaded lazily on first W&P chapter.
+  var [frEn, setFrEn] = useState(null);
   var wordTimingMapRef = useRef([]);   // (legacy) raw word_timings list — no longer read
   var activeWordRef = useRef(-1);      // char-offset of the currently highlighted word (-1 = none)
   var wordTimelineRef = useRef([]);    // precomputed alignment: [{begin,end,start,holdToNext,nextBegin}]
@@ -4141,21 +4057,7 @@ export default function App() {
         // If the audio element exists and is just paused mid-stream, resume.
         // Otherwise start fresh from the current sentence's begin time.
         var existing = audiobookAudioRef.current;
-        // "Paused with currentTime > 0" does NOT prove the playhead is inside
-        // this chapter: books transcribed as one mp3 (Москва — Петушки, Дядя
-        // Ваня, Чайка's cast list + Act I) share one audio_url across every
-        // chapter, so after a chapter change the element is still parked where
-        // the previous chapter stopped. Only resume when the playhead actually
-        // lies within this chapter's fragment span; otherwise start fresh.
-        var abD = audiobookDataRef.current;
-        var inThisChapter = false;
-        if (existing && abD && abD.fragments && abD.fragments.length) {
-          var _lo = abD.fragments[0].begin;
-          var _hi = abD.fragments[abD.fragments.length - 1].end;
-          var _t = existing.currentTime;
-          inThisChapter = (_t >= _lo - 0.5 && _t <= _hi + 0.5);
-        }
-        if (existing && existing.src && existing.paused && existing.currentTime > 0 && inThisChapter) {
+        if (existing && existing.src && existing.paused && existing.currentTime > 0) {
           setAudioPlaying(true); audioPlayingRef.current = true;
           existing.play().then(function() { startAudiobookRaf(); }).catch(function(){});
         } else {
@@ -4333,9 +4235,6 @@ export default function App() {
   // 'auto' = page change caused by RAF auto-flip during playback;
   // 'manual' = user navigated pages (forward, back, or jumped).
   var pageFlipModeRef = useRef('manual');
-  // cidx the page-change seek effect last ran for, so a chapter change (which
-  // also resets pidx) can be told apart from a real page flip.
-  var pageSeekCidxRef = useRef(-1);
   // Tracks the last cidx so the page/chapter-change effect can distinguish
   // a chapter change (full audio reset) from a within-chapter page change
   // (during audiobook playback we want to keep the stream rolling).
@@ -4348,15 +4247,6 @@ export default function App() {
   useEffect(function() {
     if (pageFlipModeRef.current === 'auto') {
       pageFlipModeRef.current = 'manual';  // reset for next change
-      return;
-    }
-    // A chapter change also resets pidx to 0, which lands here. Do NOT seek in
-    // that case: sentenceTimingsRef still holds the OUTGOING chapter's timings
-    // for a few more frames, so seeking to their earliest begin drags the
-    // playhead back into the previous chapter. The chapter-change effect below
-    // owns the seek when cidx moves.
-    if (pageSeekCidxRef.current !== cidx) {
-      pageSeekCidxRef.current = cidx;
       return;
     }
     // Manual nav (forward, back, jump): wait for buildSentenceTimings to
@@ -4375,7 +4265,7 @@ export default function App() {
       }
     }, 80);
     return function() { clearTimeout(t); };
-  }, [pidx, cidx]);
+  }, [pidx]);
   var currentPage = pages[Math.min(pidx, totalPages - 1)] || pages[0];
   // Keep the ref read by highlightSentence() in lockstep with the rendered page,
   // so the audiobook RAF loop highlights the right page after a flip.
@@ -4542,12 +4432,25 @@ export default function App() {
     return function() { cancelled = true; };
   }, [bookMeta && bookMeta.filename, cidx, bibleHeadings]);
 
+  // Load the Война и мир French→English footnote translations once (one map
+  // for the whole book). Fetched the first time a W&P chapter is opened.
+  useEffect(function() {
+    if (frEn) return;
+    var chs = bookMeta && bookMeta.audiobook && bookMeta.audiobook.chapters;
+    if (!(chs && chs[cidx] && String(chs[cidx]).indexOf("audio/vim/") === 0)) return;
+    var cancelled = false;
+    fetch("/books/vim-fr-en.json")
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .then(function(j) { if (!cancelled && j) setFrEn(j); })
+      .catch(function() {});
+    return function() { cancelled = true; };
+  }, [bookMeta && bookMeta.filename, cidx, frEn]);
+
   // Exercises: load the drill set for the current chapter (if one exists),
   // keyed by the same book-chapter as the audio (e.g. "01-01" = Genesis 1).
   // Resets the exercise view whenever the chapter changes.
   useEffect(function() {
     setExData(null); setExCat("menu"); setExSelected(null); setExIdx(0); setExScore(0);
-    setExHlSel({}); setExHlDone(false);
     setVqWords(null); setVqCount({}); setVqCur(null); setVqSel(null); setVqErr(""); setVqLoading(false);
     stopExClip();
     // Exercises are keyed to the READING chapter (from the FB2), not the audio —
@@ -4578,8 +4481,7 @@ export default function App() {
         .then(function(r) { return r.ok ? r.json() : null; })
         .then(function(j) {
           if (cancelled) return;
-          // Whole-sentence rule: never hand the quiz a sentence fragment.
-          if (j) setExData(normaliseExerciseData(j)); else tryLoad(i + 1);
+          if (j) setExData(j); else tryLoad(i + 1);
         })
         .catch(function() { if (!cancelled) tryLoad(i + 1); });
     };
@@ -4625,21 +4527,6 @@ export default function App() {
       return Object.assign({}, q, { options: exShuffle(q.options || []) });
     });
     setExQuestions(qs); setExIdx(0); setExSelected(null); setExScore(0); setExCat("reading");
-  };
-
-  // Start (or restart) the highlight quiz: an English question over one real
-  // paragraph, answered by clicking the sentence that contains the answer.
-  // The paragraphs are shuffled, but the SENTENCES INSIDE ONE ARE NOT — their
-  // order is the paragraph, and `correct` indexes into it.
-  var startHighlightQuiz = function() {
-    if (!exData || !exData.highlight || !exData.highlight.length) return;
-    var a = exData.highlight.slice();
-    for (var i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
-    }
-    setExQuestions(a); setExIdx(0); setExSelected(null); setExScore(0);
-    setExHlSel({}); setExHlDone(false); setExCat("highlight");
   };
 
   // ── Live AI vocabulary quiz ────────────────────────────────────────────────
@@ -4805,48 +4692,6 @@ export default function App() {
     );
   };
 
-  // Read a whole passage aloud. Prefers the real narration — locate the run of
-  // words in the chapter's word_timings and play that stretch — and falls back
-  // to the browser's Russian TTS voice when the chapter has no recording, or
-  // the passage can't be found in it. Used by the highlight quiz, where the
-  // learner needs to hear the paragraph before picking a sentence out of it.
-  var exSpeak = function(id, text) {
-    var stopAll = function() {
-      stopExClip();
-      try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch(e) {}
-      setExPlaying(null);
-    };
-    if (exPlaying === id) { stopAll(); return; }
-    stopAll();
-    if (exFindClip(text)) { playExClip(id, text); return; }
-    if (!window.speechSynthesis) return;
-    try { if (audiobookAudioRef.current) audiobookAudioRef.current.pause(); } catch(e) {}
-    var u = new SpeechSynthesisUtterance(String(text || "").replace(/\s+/g, " ").trim());
-    u.lang = "ru-RU";
-    var rv = pickRussianVoice(); if (rv) u.voice = rv;
-    u.rate = 0.95;
-    u.onend   = function(){ setExPlaying(null); };
-    u.onerror = function(){ setExPlaying(null); };
-    setExPlaying(id);
-    try { window.speechSynthesis.speak(u); } catch(e) { setExPlaying(null); }
-  };
-
-  // Speaker button for a whole paragraph. Unlike exClipBtn this ALWAYS renders,
-  // because exSpeak has a TTS fallback when there's nothing to play from.
-  var exParaBtn = function(id, text) {
-    var playing = exPlaying === id;
-    return (
-      <button onClick={function(e){ e.stopPropagation(); exSpeak(id, text); }}
-        title="Read this paragraph aloud"
-        style={{background: playing ? "rgba(196,149,90,.25)" : "rgba(42,31,20,.06)", border:"1px solid rgba(42,31,20,.18)",
-          color:"#2a1f14", borderRadius:20, cursor:"pointer", fontSize:13, padding:"6px 14px",
-          display:"inline-flex", alignItems:"center", gap:7, fontFamily:"'Inter',sans-serif"}}>
-        <span style={{fontSize:14}}>{playing ? "⏸" : "🔊"}</span>
-        {playing ? "Stop" : "Listen to the passage"}
-      </button>
-    );
-  };
-
   // When the loaded chapter changes, re-point the audio element at the new
   // chapter's file. Without this, switching chapters leaves the previous
   // chapter's audio playing under the new chapter's text and highlight.
@@ -4854,9 +4699,6 @@ export default function App() {
     var data = audiobookData;
     var audio = audiobookAudioRef.current;
     if (!data || !data.audio_url || !audio) return;
-    var prevData = lastAbDataRef.current;
-    lastAbDataRef.current = data;
-    if (prevData === data) return;
     var want = data.audio_url;
     try { want = new URL(data.audio_url, window.location.href).href; } catch(e) {}
     if (audio.src !== want) {
@@ -4868,18 +4710,6 @@ export default function App() {
         var t = setTimeout(function(){ playAudiobookFromSentence(0); }, 150);
         return function(){ clearTimeout(t); };
       }
-    } else if (prevData) {
-      // Same recording, new chapter. Books transcribed as one mp3 (Москва —
-      // Петушки, Дядя Ваня, Чайка acts I + cast list) give every chapter the
-      // same audio_url, so the branch above never fires and playback simply
-      // rolls on from the previous chapter's position. Seek to this chapter's
-      // first spoken word instead.
-      var startAt = (data.word_timings && data.word_timings.length &&
-                     isFinite(data.word_timings[0].begin)) ? data.word_timings[0].begin
-                  : (data.fragments && data.fragments.length &&
-                     isFinite(data.fragments[0].begin)) ? data.fragments[0].begin : 0;
-      try { audio.currentTime = startAt; } catch(e) {}
-      setAbCur(startAt);
     }
   }, [audiobookData]);
 
@@ -7483,6 +7313,19 @@ export default function App() {
           attribEnd     = (para[0] ? para[0].start : 0) + speakerMatch[0].length;
         }
 
+        // Dual-language Война и мир: every French passage in the body is
+        // followed by a "[N]" footnote marker. Collect the English rendering
+        // of each marker found in this paragraph and show them underneath,
+        // exactly like the Bible's English verse lines.
+        var frEnLines = [];
+        if (frEn) {
+          var frRe = /\[(\d+)\]/g, frM;
+          while ((frM = frRe.exec(paraText)) !== null) {
+            var frTxt = frEn[frM[1]];
+            if (frTxt) frEnLines.push({ n: frM[1], t: frTxt });
+          }
+        }
+
         // Dual-language Bible: the English line for this verse (if loaded and
         // this paragraph is a numbered verse). Display-only; the audio and word
         // highlighting stay Russian, since the aligner only tokenizes Cyrillic.
@@ -7599,6 +7442,13 @@ export default function App() {
             })()}
             {bibleHeadingLine ? <span className="bible-en bible-heading-en">{bibleHeadingLine}</span>
               : (bibleEnLine ? <span className="bible-en">{bibleEnLine}</span> : null)}
+            {frEnLines.map(function(fe) {
+              return (
+                <span className="bible-en" key={"fren" + fe.n}>
+                  <span className="fr-en-num">[{fe.n}]</span>{fe.t}
+                </span>
+              );
+            })}
           </p>
         );
       });
@@ -7906,8 +7756,7 @@ export default function App() {
         .lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
         .lib-card{padding:14px;border-radius:10px;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.1);cursor:pointer;transition:all .15s;position:relative;display:flex;flex-direction:column;gap:4px}
         .lib-card:hover{background:rgba(42,31,20,.08);border-color:rgba(196,149,90,.3);transform:translateY(-1px)}
-        .lib-card-title{font-family:'Playfair Display',serif;font-size:15px;color:#c4955a;line-height:1.3;margin-bottom:8px}
-        .lib-card-edition{font-style:italic;font-size:11px;color:rgba(42,31,20,.5);letter-spacing:.3px;margin-bottom:2px}
+        .lib-card-title{font-family:'Playfair Display',serif;font-size:15px;color:#c4955a;line-height:1.3;margin-bottom:2px}
         .lib-card-author{font-size:12px;color:rgba(42,31,20,.6);font-style:italic;margin-bottom:6px}
         .lib-card-meta{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:rgba(42,31,20,.4);margin-top:auto;padding-top:4px}
         .lib-card-cat{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#c4955a;padding:2px 8px;border-radius:10px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600}
@@ -7971,6 +7820,8 @@ export default function App() {
         /* Dual-language Bible: English translation shown under each Russian verse */
         .bible-en{display:block;margin-top:3px;color:rgba(42,31,20,.5);font-size:0.9em;font-style:italic;line-height:1.5;letter-spacing:.005em}
         .bible-heading-en{font-style:normal;font-weight:600;color:rgba(42,31,20,.62);font-size:0.95em;letter-spacing:.01em}
+        /* Война и мир: the "[N]" marker prefixed to each English footnote line */
+        .fr-en-num{font-style:normal;font-weight:700;color:#c4955a;font-size:0.85em;margin-right:5px;font-family:sans-serif;letter-spacing:.02em}
         /* Words inside the sentence currently being read aloud. Applied at
            the start of each sentence's playback via direct DOM manipulation
            (no React re-render). Uses a soft warm tint so a whole sentence's
@@ -9070,8 +8921,8 @@ export default function App() {
                             var c=bookCounts(book);
                             return (
                               <div key={book.fb2Path} className={"ts-wcard"+(book.supported?"":" dis")} onClick={function(){ if(book.supported){ setTtSel(book); setTtExpanded(function(p){ var n=Object.assign({},p); n[book.fb2Path]=true; return n; }); } }}>
-                                <div className="ts-wtitle">{bookLabel(book)}</div>
-                                <div className="ts-wmeta">{book.nChapters} ch{book.supported?"":" · no fb2"}</div>
+                                <div className="ts-wtitle">{book.title}</div>
+                                <div className="ts-wmeta">{book.author?book.author+" · ":""}{book.nChapters} ch{book.supported?"":" · no fb2"}</div>
                                 <div className="ts-wcounts">
                                   {c.scanned>0 ? <>
                                     <span className="ts-tag" style={{color:KIND.sub.fg,background:KIND.sub.bg,borderColor:KIND.sub.bd}}>{c.sub} subs</span>
@@ -9491,7 +9342,8 @@ export default function App() {
                                     else loadPresetBook(match.book);
                                   }}>
                                     <div className="lcn" style={{color:"rgba(0,0,0,.5)"}}>↻ {humanLast}</div>
-                                    <div className="lchead">{bookLabel(rec)}</div>
+                                    <div className="lchead">{rec.title}</div>
+                                    {rec.author && <div className="lcp" style={{fontSize:12,opacity:.75}}>{rec.author}</div>}
                                     <div style={{marginTop:8,fontSize:11,color:"rgba(0,0,0,.55)"}}>
                                       Ch. {(rec.cidx || 0) + 1}{total > 1 ? "/" + total : ""}
                                       {(rec.pidx || 0) > 0 && " · Page " + ((rec.pidx || 0) + 1)}
@@ -9550,7 +9402,8 @@ export default function App() {
                                 var textOnly  = entries.filter(function(e){ return !e.book.audiobook; });
                                 var makeOption = function(entry) {
                                   var book = entry.book;
-                                  return <option key={entry.idx} value={entry.idx}>{bookLabel(book)}</option>;
+                                  var label = (book.title || book.filename) + (book.author && book.author !== book.title ? " — " + book.author : "");
+                                  return <option key={entry.idx} value={entry.idx}>{label}</option>;
                                 };
                                 var groups = [];
                                 if (withAudio.length) groups.push(
@@ -9626,7 +9479,8 @@ export default function App() {
                                           if (bookLoading !== null) return;
                                           openUploadedBook(book);
                                         }}>
-                                        <div className="lib-card-title">{bookLabel(book)}</div>
+                                        <div className="lib-card-title">{book.title || book.filename}</div>
+                                        {book.author && <div className="lib-card-author">{book.author}</div>}
                                         <div className="lib-card-meta">
                                           <span className="lib-card-cat">Upload</span>
                                           <button
@@ -9668,8 +9522,8 @@ export default function App() {
                                         loadPresetBook(book);
                                       }
                                     }}>
-                                    {book.edition && <div className="lib-card-edition">{book.edition}</div>}
-                                    <div className="lib-card-title">{bookLabel(book, true)}</div>
+                                    <div className="lib-card-title">{book.title || book.filename}</div>
+                                    {book.author && book.author !== book.title && <div className="lib-card-author">{book.author}</div>}
                                     <div className="lib-card-meta">
                                       {cat !== "Other" && <span className="lib-card-cat">{cat}</span>}
                                       {book.audiobook && <span style={{fontSize:11,color:"#c4955a"}}>🎧 Audiobook</span>}
@@ -10052,7 +9906,7 @@ export default function App() {
                             which book they're in, even after navigating mid-chapter. */}
                         {bookMeta.title && (
                           <div style={{fontFamily:"'Crimson Pro',serif",fontStyle:"italic",fontSize:13,color:"rgba(0,0,0,.45)",marginBottom:4,letterSpacing:.3}}>
-                            {bookLabel(bookMeta)}
+                            {bookMeta.title}{bookMeta.author ? " — " + bookMeta.author : ""}
                           </div>
                         )}
                         <div className="lhdr">
@@ -10339,19 +10193,6 @@ export default function App() {
                           </button>
                             );
                           })()}
-                          {/* Highlight — find the sentence that answers the question */}
-                          {exData.highlight && exData.highlight.length ? (
-                          <button onClick={startHighlightQuiz}
-                            style={{background:"rgba(140,96,150,.1)",border:"1px solid rgba(140,96,150,.4)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
-                            onMouseOver={function(e){ e.currentTarget.style.background = "rgba(140,96,150,.17)"; }}
-                            onMouseOut={function(e){ e.currentTarget.style.background = "rgba(140,96,150,.1)"; }}>
-                            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
-                              <span style={{fontSize:24}}>🖍️</span>
-                              <span style={{fontSize:18,fontWeight:600,color:"#6b4276",fontFamily:"'Playfair Display',serif"}}>Find the Answer</span>
-                            </div>
-                            <p style={{fontSize:13,color:"rgba(42,31,20,.55)",margin:0,lineHeight:1.5}}>{exData.highlight.length} passages. Read a paragraph — or listen to it — and highlight the sentence that answers the question.</p>
-                          </button>
-                          ) : null}
                           </>)}
                         </div>
                       </div>
@@ -10461,107 +10302,6 @@ export default function App() {
                         <div style={{fontSize:40,marginBottom:12}}>📖</div>
                         <p style={{color:"rgba(42,31,20,.7)",fontSize:15,lineHeight:1.6,maxWidth:440,margin:"0 auto 24px"}}>Reading-comprehension exercises for this passage are coming soon.</p>
                         <button className="btn-g" style={{maxWidth:240}} onClick={function(){ setExCat("menu"); }}>← Back</button>
-                      </div>
-                    )}
-
-                    {/* ── Highlight quiz: click the sentence that answers it ── */}
-                    {exCat === "highlight" && (
-                      <div style={{padding:"14px 4px"}}>
-                        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
-                          <button className="ab" onClick={function(){ stopExClip(); try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch(e) {} setExCat("menu"); }}>← Back</button>
-                          <span style={{fontSize:13,color:"rgba(42,31,20,.5)"}}>Score: {exScore} / {exIdx + (exHlDone ? 1 : 0)}</span>
-                        </div>
-
-                        {exIdx >= exQuestions.length ? (
-                          <div style={{padding:"30px 20px",textAlign:"center"}}>
-                            <div style={{fontSize:48,marginBottom:12}}>{exScore === exQuestions.length ? "🎉" : exScore >= exQuestions.length * 0.7 ? "👏" : "📚"}</div>
-                            <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,color:"#000",marginBottom:8}}>Done!</h2>
-                            <p style={{fontSize:20,color:"#000",marginBottom:6}}>You found <strong style={{color:"#c4955a"}}>{exScore}</strong> of <strong>{exQuestions.length}</strong>.</p>
-                            <p style={{fontSize:14,color:"rgba(42,31,20,.5)",marginBottom:28}}>{Math.round(exScore / exQuestions.length * 100)}%</p>
-                            <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
-                              <button className="btn-p" style={{maxWidth:200}} onClick={startHighlightQuiz}>Try again</button>
-                              <button className="btn-g" style={{maxWidth:200}} onClick={function(){ setExCat("menu"); }}>Back to exercises</button>
-                            </div>
-                          </div>
-                        ) : (function(){
-                          var q = exQuestions[exIdx] || {};
-                          var sents = q.sentences || [];
-                          var corr = {};
-                          (q.correct || []).forEach(function(n){ corr[n] = true; });
-                          var nSel = 0;
-                          for (var si = 0; si < sents.length; si++) if (exHlSel[si]) nSel++;
-                          var allRight = true;
-                          for (var ci = 0; ci < sents.length; ci++) if (!!exHlSel[ci] !== !!corr[ci]) allRight = false;
-                          var para = sents.join(" ");
-                          return (
-                            <div>
-                              <div style={{fontSize:13,color:"rgba(42,31,20,.5)",marginBottom:14}}>Passage {exIdx + 1} of {exQuestions.length}</div>
-
-                              <div style={{fontSize:16,fontFamily:"'Inter',sans-serif",color:"rgba(42,31,20,.75)",textAlign:"center",lineHeight:1.5,fontWeight:600,maxWidth:600,margin:"0 auto 16px"}}>{q.question}</div>
-
-                              <div style={{textAlign:"center",marginBottom:18}}>{exParaBtn("h" + exIdx, para)}</div>
-
-                              {/* The paragraph, one clickable block per sentence. */}
-                              <div style={{maxWidth:640,margin:"0 auto",fontSize:21,fontFamily:"'Crimson Pro',serif",lineHeight:1.8,color:"#000",background:"rgba(42,31,20,.03)",border:"1px solid rgba(42,31,20,.12)",borderRadius:12,padding:"18px 20px"}}>
-                                {sents.map(function(s, i) {
-                                  var picked = !!exHlSel[i];
-                                  var bg = "transparent", col = "#000";
-                                  if (exHlDone) {
-                                    if (corr[i])     { bg = "rgba(90,133,86,.32)"; col = "#24461f"; }
-                                    else if (picked) { bg = "rgba(157,70,48,.26)"; col = "#7d3626"; }
-                                  } else if (picked) { bg = "rgba(196,149,90,.38)"; }
-                                  return (
-                                    <span key={i}
-                                      onClick={exHlDone ? undefined : function(){
-                                        setExHlSel(function(m){
-                                          var n = {};
-                                          for (var k in m) if (m[k]) n[k] = true;
-                                          if (n[i]) delete n[i]; else n[i] = true;
-                                          return n;
-                                        });
-                                      }}
-                                      style={{background:bg,color:col,cursor: exHlDone ? "default" : "pointer",borderRadius:5,padding:"2px 3px",transition:"background .12s",WebkitBoxDecorationBreak:"clone",boxDecorationBreak:"clone"}}>
-                                      {s}{i < sents.length - 1 ? " " : ""}
-                                    </span>
-                                  );
-                                })}
-                              </div>
-
-                              {!exHlDone && (
-                                <div style={{marginTop:24,textAlign:"center"}}>
-                                  <button className="btn-p" style={{maxWidth:260,opacity: nSel ? 1 : .45}} disabled={!nSel}
-                                    onClick={function(){
-                                      setExHlDone(true);
-                                      var ok = true;
-                                      for (var k = 0; k < sents.length; k++) if (!!exHlSel[k] !== !!corr[k]) ok = false;
-                                      if (ok) setExScore(function(s){ return s + 1; });
-                                    }}>Submit</button>
-                                  <div style={{fontSize:13,color:"rgba(42,31,20,.45)",marginTop:10}}>{nSel ? "Tap a sentence again to unselect it." : "Tap the sentence that answers the question."}</div>
-                                </div>
-                              )}
-
-                              {exHlDone && (
-                                <div style={{maxWidth:640,margin:"20px auto 0",background:"rgba(42,31,20,.05)",border:"1px solid rgba(42,31,20,.14)",borderRadius:10,padding:"14px 16px"}}>
-                                  <div style={{fontSize:15,fontWeight:600,color: allRight ? "#2f5a2a" : "#9d4630",marginBottom:6}}>{allRight ? "✓ Correct" : "✗ Not quite — the answer is shown in green"}</div>
-                                  <div style={{fontSize:14,color:"rgba(42,31,20,.7)",lineHeight:1.55}}>{q.explain}</div>
-                                </div>
-                              )}
-
-                              {exHlDone && (
-                                <div style={{marginTop:22,textAlign:"center"}}>
-                                  <button className="btn-p" style={{maxWidth:260}} onClick={function(){
-                                    stopExClip();
-                                    try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch(e) {}
-                                    setExIdx(function(i){ return i + 1; });
-                                    setExHlSel({}); setExHlDone(false);
-                                  }}>
-                                    {exIdx + 1 < exQuestions.length ? "Next →" : "See results"}
-                                  </button>
-                                </div>
-                              )}
-                            </div>
-                          );
-                        })()}
                       </div>
                     )}
 
