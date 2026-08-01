@@ -17,6 +17,18 @@ var DMITRY_CLOUD = {
   voiceURI: "azure:ru-RU-DmitryNeural",
 };
 
+// Every book in the library is labelled the same way: Russian title, em dash,
+// author. index.json keeps title and author as separate fields (the exercise
+// and lit-analysis prompts feed them to the model independently), so the joined
+// form lives here and every surface that names a book calls this.
+function bookLabel(book) {
+  if (!book) return "";
+  var title = book.title || book.filename || "";
+  var author = book.author || "";
+  if (!author || author === title) return title;
+  return title + " — " + author;
+}
+
 var storage = {
   get: function(key) {
     return Promise.resolve().then(function() {
@@ -2392,15 +2404,6 @@ async function parseFb2(buffer, options) {
       chapters[0].text = ded + "\n\n" + chapters[0].text;
     }
   }
-  // Война и мир: an earlier build prepended Tolstoy's 1868 preface essay
-  // («Несколько слов по поводу книги "Война и мир"») as chapter 1. The
-  // audiobook manifest has no recording for it, so every chapter's audio ran
-  // one behind the text. Drop it if an old copy of the FB2 is still cached or
-  // deployed — the novel must open on "ТОМ ПЕРВЫЙ — ЧАСТЬ ПЕРВАЯ — I".
-  if (/Война и мир/i.test(bookTitle) && chapters.length > 1 &&
-      /ПРЕДИСЛОВИЕ|НЕСКОЛЬКО СЛОВ ПО ПОВОДУ/i.test((chapters[0].heading || "") + " " + (chapters[0].text || "").slice(0, 200))) {
-    chapters.shift();
-  }
   // Anna Karenina's FB2 source has a spurious chapter break in the middle
   // of Part 4 Chapter 5 (the lawyer office scene). The narrator reads it as
   // one continuous chapter; the book actually has 239 chapters, not 240.
@@ -2868,6 +2871,31 @@ export default function App() {
   var exClipAudioRef              = useRef(null);
   var exClipRafRef                = useRef(null);
 
+  // ── Frequency Vocab Bank ("🗂️ Vocab" mode) ──────────────────────────────
+  // A static, AI-free vocabulary trainer built from public/vocab/blocks/*.json
+  // (a global word-frequency list, imperfective/perfective verb pairs already
+  // merged into single cards at data-build time — see /home/claude/vocab on
+  // the build machine, not shipped). No live AI calls at runtime.
+  // wbIndex: blocks/index.json (block list + rank ranges), loaded once.
+  // wbDistractors: blocks/distractors.json, pos -> pool of English glosses
+  //   (pooled across the WHOLE bank, not just one block, so every block has
+  //   enough same-part-of-speech distractors for a 4-option question).
+  // wbProgress: persisted map cardId -> {streak, mastered}. A card needs 10
+  //   CONSECUTIVE correct answers to be mastered (a miss resets the streak to
+  //   0); "I already know this word" masters it instantly. wbBlockNum is the
+  //   1-based block the user is currently working through; the next block
+  //   unlocks once every card in the current one is mastered.
+  var [wbIndex, setWbIndex]             = useState(null);
+  var [wbDistractors, setWbDistractors] = useState(null);
+  var [wbBlockNum, setWbBlockNum]       = useState(1);
+  var [wbCards, setWbCards]             = useState(null);
+  var [wbProgress, setWbProgress]       = useState({});
+  var [wbScreen, setWbScreen]           = useState("landing"); // "landing" | "quiz"
+  var [wbCur, setWbCur]                 = useState(null);      // {card, correct, options}
+  var [wbSel, setWbSel]                 = useState(null);
+  var [wbJustMastered, setWbJustMastered] = useState(null);    // card id, brief toast
+  var [wbLoading, setWbLoading]         = useState(false);
+
   var [popup, setPopup]   = useState(null);
   var [popXY, setPopXY]   = useState({top:100,left:16});
   var popRef = useRef(null);
@@ -3049,16 +3077,6 @@ export default function App() {
   // Bible section-heading translations ({russianHeading: englishHeading}), one
   // global file shared by every chapter. Loaded lazily on first Bible chapter.
   var [bibleHeadings, setBibleHeadings] = useState(null);
-  // Война и мир: English translations of the French passages, keyed by the
-  // FB2 footnote number that follows them in the body ("[1]", "[2]" …).
-  // One global file for the whole novel; loaded lazily on first W&P chapter.
-  var [frEn, setFrEn] = useState(null);
-  // Words the narrator speaks BEFORE the chapter text begins — author name,
-  // book title, "Том первый", "Часть первая", "Глава первая". None of that is
-  // in the FB2 body, so it is rendered as its own little block above the
-  // chapter with negative data-rw-start offsets (-2, -3, …) which can never
-  // collide with a real character offset. Filled by buildWordTimeline.
-  var [audioIntro, setAudioIntro] = useState(null);
   var wordTimingMapRef = useRef([]);   // (legacy) raw word_timings list — no longer read
   var activeWordRef = useRef(-1);      // char-offset of the currently highlighted word (-1 = none)
   var wordTimelineRef = useRef([]);    // precomputed alignment: [{begin,end,start,holdToNext,nextBegin}]
@@ -3402,84 +3420,18 @@ export default function App() {
   var normWordForAlign = function(s) {
     return String(s || "").toLowerCase().replace(/ё/g, "е").replace(/[^а-яa-z0-9]/g, "");
   };
-  // ── Foreign-language (Latin-script) zones ──────────────────────────────
-  // Tolstoy writes whole passages in French, and the narrator does NOT read
-  // them — he goes straight to Tolstoy's Russian rendering. Worse, the French
-  // is macaronic: Russian words sit INSIDE the French clauses ("des поместья",
-  // "vous n'êtes plus мой верный раб"). Those stray Cyrillic words are the ones
-  // that wreck the alignment, because the aligner matches them against the
-  // narrator's reading of the Russian translation further down the paragraph
-  // and the highlight leaps back up into the untouched French.
-  //
-  // So: find every substantial Latin-script run, expand it to the sentence it
-  // sits in, and return those char ranges. Everything inside them is treated as
-  // display-only — it still renders, it just takes no part in the alignment and
-  // never lights up. The right edge stops at a "[" so a footnote marker and the
-  // Russian translation that follows it stay alignable.
-  var latinZonesFor = function(text) {
-    if (!text) return [];
-    // ≥2 Latin letters, but never a bare Roman numeral — chapter headings like
-    // "ТОМ ПЕРВЫЙ — ЧАСТЬ ПЕРВАЯ — XII" are Russian and must stay alignable.
-    var re = /[A-Za-zÀ-ɏ]{2,}/g, m, zones = [];
-    var isTerm = function(c) { return c === "." || c === "!" || c === "?" || c === "…" || c === ";"; };
-    while ((m = re.exec(text)) !== null) {
-      if (/^[IVXLCDM]+$/.test(m[0])) continue;
-      var i = m.index, j = m.index + m[0].length;
-      while (i > 0) {                       // expand left to the sentence start
-        var cl = text.charAt(i - 1);
-        if (cl === "\n" || cl === "]") break;
-        if (isTerm(cl) && /\s/.test(text.charAt(i) || " ")) break;
-        i--;
-      }
-      while (j < text.length) {             // expand right to the sentence end
-        var cr = text.charAt(j);
-        if (cr === "\n" || cr === "[") break;
-        j++;
-        if (isTerm(cr)) { var nx = text.charAt(j); if (!nx || /\s/.test(nx)) break; }
-      }
-      // Require real foreign prose, not one stray Latin token in a Russian
-      // sentence — otherwise a single brand name would mute a whole sentence.
-      var span = text.slice(i, j);
-      var lat = span.match(/[A-Za-zÀ-ɏ]{2,}/g) || [];
-      var real = 0;
-      for (var li = 0; li < lat.length; li++) if (!/^[IVXLCDM]+$/.test(lat[li])) real++;
-      if (real < 2) { re.lastIndex = Math.max(re.lastIndex, m.index + m[0].length); continue; }
-      var last = zones.length ? zones[zones.length - 1] : null;
-      if (last && i <= last[1]) { if (j > last[1]) last[1] = j; }
-      else zones.push([i, j]);
-      re.lastIndex = Math.max(re.lastIndex, j);
-    }
-    return zones;
-  };
-  // True when char offset `pos` falls inside one of `zones` (ascending, merged).
-  var inLatinZone = function(zones, pos) {
-    var lo = 0, hi = zones.length - 1;
-    while (lo <= hi) {
-      var mid = (lo + hi) >> 1;
-      if (pos < zones[mid][0]) hi = mid - 1;
-      else if (pos >= zones[mid][1]) lo = mid + 1;
-      else return true;
-    }
-    return false;
-  };
   var buildWordTimeline = function(chapterText, wordTimings) {
-    if (!chapterText || !wordTimings || !wordTimings.length) { wordTimelineRef.current = []; setAudioIntro(null); return; }
+    if (!chapterText || !wordTimings || !wordTimings.length) { wordTimelineRef.current = []; return; }
     // Book words: Russian letter runs, keyed by absolute char offset (== data-rw-start).
-    // Cyrillic sitting inside a French passage is skipped — the narrator never
-    // reads those, and leaving them in makes the highlight jump into the French.
-    var _zones = latinZonesFor(chapterText);
     var B = [], re = /[а-яёА-ЯЁ]+/g, m;
-    while ((m = re.exec(chapterText)) !== null) {
-      if (_zones.length && inLatinZone(_zones, m.index)) continue;
-      B.push({ start: m.index, norm: normWordForAlign(m[0]) });
-    }
+    while ((m = re.exec(chapterText)) !== null) B.push({ start: m.index, norm: normWordForAlign(m[0]) });
     // Transcript words with their times.
     var T = [];
     for (var wi = 0; wi < wordTimings.length; wi++) {
       var n = normWordForAlign(wordTimings[wi].word);
-      if (n) T.push({ begin: wordTimings[wi].begin, end: wordTimings[wi].end, norm: n, raw: String(wordTimings[wi].word || "") });
+      if (n) T.push({ begin: wordTimings[wi].begin, end: wordTimings[wi].end, norm: n });
     }
-    if (!B.length || !T.length) { wordTimelineRef.current = []; setAudioIntro(null); return; }
+    if (!B.length || !T.length) { wordTimelineRef.current = []; return; }
 
     // ── Index every transcript word up front (the "value" per word the reader
     //    asked for): norm -> ascending list of the positions where it occurs.
@@ -3563,68 +3515,7 @@ export default function App() {
       return null;
     };
 
-    // ── Spoken heading ───────────────────────────────────────────────────
-    // Every recording opens with words that exist nowhere in the FB2 body:
-    // "Лев Николаевич Толстой. Война и мир. Том первый. Часть первая. Глава
-    // первая." (the FB2 keeps that in <title>, which the parser strips), and
-    // each later chapter opens with its own "Глава такая-то". They could never
-    // light up, because there is nothing on screen to light.
-    //
-    // Find where the announcement ends by walking the transcript from the top
-    // and stopping at the first word that already appears among the chapter's
-    // opening words — that word is the narrator arriving at the text. Words of
-    // 1-2 letters ("и", "в", "ну") are ignored by that test: they are far too
-    // common to prove anything, so a trailing run of them is trimmed instead.
-    //
-    // The aligner then STARTS at that boundary. Left to itself it would never
-    // find the chapter's first words, because the announcement pushes them
-    // further ahead than the resync window can look — which is exactly why
-    // "Ну, князь" stayed dark at the top of Война и мир.
-    var introWords = [];
-    var headWords = [];
-    for (var hb = 0; hb < B.length && hb < 15; hb++) {
-      if (B[hb].norm.length > 2) headWords.push(B[hb].norm);
-    }
-    // Near-miss: one substitution/insertion/deletion apart, on words long
-    // enough for that to mean something. The narrator mishears names all the
-    // time ("Працинской" for "Праценской") and without this the misheard word
-    // gets swallowed into the announcement instead of ending it.
-    var nearWord = function(a, b) {
-      if (a === b) return true;
-      var la = a.length, lb = b.length;
-      if (la < 5 || Math.abs(la - lb) > 1) return false;
-      var x = 0, y = 0, diff = 0;
-      while (x < la && y < lb) {
-        if (a.charAt(x) === b.charAt(y)) { x++; y++; continue; }
-        if (++diff > 1) return false;
-        if (la > lb) x++; else if (lb > la) y++; else { x++; y++; }
-      }
-      if (x < la || y < lb) diff++;
-      return diff <= 1;
-    };
-    var isHeadWord = function(w) {
-      for (var hz = 0; hz < headWords.length; hz++) if (nearWord(w, headWords[hz])) return true;
-      return false;
-    };
-    var stop = 0;
-    var LIMIT = Math.min(T.length, 30);
-    while (stop < LIMIT) {
-      var tn = T[stop].norm;
-      if (tn.length > 2 && isHeadWord(tn)) break;
-      stop++;
-    }
-    if (stop < LIMIT) {                       // we found where the text begins
-      while (stop > 0 && T[stop - 1].norm.length <= 2) stop--;   // trim "и", "ну", "в"
-      for (var q = 0; q < stop; q++) {
-        var qraw = (T[q].raw || "").trim();
-        if (qraw) introWords.push({ text: qraw, start: -2 - q, begin: T[q].begin, end: T[q].end });
-      }
-    } else {
-      stop = 0;                               // no boundary found — align normally
-    }
-    setAudioIntro(introWords.length ? introWords : null);
-
-    var out = [], i = 0, j = stop;
+    var out = [], i = 0, j = 0;
     while (i < B.length && j < T.length) {
       if (B[i].norm === T[j].norm) {
         out.push({ begin: T[j].begin, end: T[j].end, start: B[i].start, bi: i, tj: j });
@@ -3639,22 +3530,6 @@ export default function App() {
       if (g) { i = g.bi; j = g.tj; continue; }   // leap to the next whole-text landmark
       i++; j++;   // no landmark left — step past and keep scanning
     }
-    if (introWords.length) {
-      // Put the announcement at the head of the timeline; the RAF loop lights
-      // it up through exactly the same code path as the body text.
-      var introOut = [];
-      for (var q2 = 0; q2 < introWords.length; q2++) {
-        introOut.push({
-          begin: introWords[q2].begin,
-          end: introWords[q2].end,
-          start: introWords[q2].start,
-          bi: -1000000 + q2,
-          tj: q2
-        });
-      }
-      out = introOut.concat(out);
-    }
-
     // Mark clean consecutive runs so the highlight holds across the tiny gap
     // between two matched words, but blanks out across a real divergence.
     for (var k = 0; k < out.length; k++) {
@@ -3868,77 +3743,30 @@ export default function App() {
     }
   };
 
-  // Grace period after a chapter's last aligned word before playback is
-  // stopped. Covers the natural decay of the final syllable and any small
-  // drift in the alignment.
-  var CHAPTER_END_PAD = 0.6;
   var startAudiobookRaf = function() {
     stopAudiobookRaf();
     var lastHit = -1;
-    // Guard for the stop-at-chapter-end check below: only arm it once the
-    // playhead has actually been inside this chapter's time range. Without
-    // it, the first frames after switching from a LATER chapter (where
-    // currentTime is still the old, larger value because the seek hasn't
-    // landed yet) would look like "past the end" and pause instantly.
-    var enteredChapterRange = false;
     var tick = function() {
       var audio = audiobookAudioRef.current;
       if (!audio || audio.paused || audio.ended) {
         audiobookRafRef.current = null;
         return;
       }
+      // Skip highlighting for books that disable it (e.g. Bible)
+      if (audiobookDataRef.current && audiobookDataRef.current.noHighlight) return;
 
-      // ── Stop at the end of the chapter ───────────────────────────────
-      // Many books share ONE recording across several chapters (the Chekhov
-      // plays, Палата № 6, Вишнёвый сад, Москва — Петушки): each chapter's
-      // JSON holds ABSOLUTE times into that shared file. Left alone, the
-      // reader sails straight on into the next chapter's text. Pause as soon
-      // as the playhead passes this chapter's last aligned word. Books with
-      // one file per chapter are unaffected in practice — there the last
-      // aligned word already sits at the end of the file.
+      // Chapters that are a time-slice of a larger shared recording (e.g. the
+      // per-section Палата № 6 files) carry stopAtEnd: pause when the playhead
+      // passes this section's last word so the audio never bleeds into the next.
       var _abd = audiobookDataRef.current;
-      if (_abd && _abd.stopAtEnd !== false) {
-        // Last spoken moment of this chapter. Memoized on the data object so
-        // the scan runs once per chapter, not once per animation frame. Takes
-        // the max of the word timings and the WhisperX fragments so a word the
-        // aligner dropped at the very end can't cut the audio short.
-        var _endT = _abd.__chapterEndT;
-        if (_endT === undefined) {
-          _endT = 0;
-          var _wt = _abd.word_timings || [];
-          for (var _wi = _wt.length - 1; _wi >= 0 && _wi > _wt.length - 40; _wi--) {
-            if (_wt[_wi] && _wt[_wi].end > _endT) _endT = _wt[_wi].end;
-          }
-          var _fr = _abd.fragments || [];
-          for (var _fi = _fr.length - 1; _fi >= 0 && _fi > _fr.length - 40; _fi--) {
-            if (_fr[_fi] && _fr[_fi].end > _endT) _endT = _fr[_fi].end;
-          }
-          _abd.__chapterEndT = _endT;
+      if (_abd && _abd.stopAtEnd && _abd.word_timings && _abd.word_timings.length) {
+        var _endT = _abd.word_timings[_abd.word_timings.length - 1].end;
+        if (audio.currentTime > _endT + 0.4) {
+          try { audio.pause(); } catch(e) {}
+          stopAudiobookRaf();
+          setAudioPlaying(false); audioPlayingRef.current = false;
+          return;
         }
-        if (_endT > 0) {
-          if (audio.currentTime <= _endT + CHAPTER_END_PAD) {
-            enteredChapterRange = true;
-          } else if (enteredChapterRange) {
-            try { audio.pause(); } catch(e) {}
-            stopAudiobookRaf();
-            setAudioPlaying(false); audioPlayingRef.current = false;
-            // Drop the trailing word highlight so the page doesn't sit there
-            // with a word lit up after the voice has stopped.
-            try {
-              var _pw = document.querySelector(".lit-body .word-active");
-              if (_pw) _pw.classList.remove("word-active");
-            } catch(e) {}
-            activeWordRef.current = -1;
-            return;
-          }
-        }
-      }
-
-      // Skip highlighting for books that disable it (e.g. Bible). The loop
-      // keeps ticking so the stop-at-chapter-end check above still runs.
-      if (_abd && _abd.noHighlight) {
-        audiobookRafRef.current = requestAnimationFrame(tick);
-        return;
       }
 
       // ── Word-level highlighting (precomputed alignment; see buildWordTimeline) ──
@@ -3966,7 +3794,7 @@ export default function App() {
             var prevW = document.querySelector(".lit-body .word-active");
             if (prevW) prevW.classList.remove("word-active");
           } catch(e) {}
-          if (targetStart !== -1) {
+          if (targetStart >= 0) {
             try {
               var wEl = document.querySelector('.lit-body [data-rw-start="' + targetStart + '"]');
               if (wEl) {
@@ -4637,20 +4465,6 @@ export default function App() {
     return function() { cancelled = true; };
   }, [bookMeta && bookMeta.filename, cidx, bibleHeadings]);
 
-  // Load the Война и мир French→English footnote translations once (one map
-  // for the whole book). Fetched the first time a W&P chapter is opened.
-  useEffect(function() {
-    if (frEn) return;
-    var chs = bookMeta && bookMeta.audiobook && bookMeta.audiobook.chapters;
-    if (!(chs && chs[cidx] && String(chs[cidx]).indexOf("audio/vim/") === 0)) return;
-    var cancelled = false;
-    fetch("/books/vim-fr-en.json")
-      .then(function(r) { return r.ok ? r.json() : null; })
-      .then(function(j) { if (!cancelled && j) setFrEn(j); })
-      .catch(function() {});
-    return function() { cancelled = true; };
-  }, [bookMeta && bookMeta.filename, cidx, frEn]);
-
   // Exercises: load the drill set for the current chapter (if one exists),
   // keyed by the same book-chapter as the audio (e.g. "01-01" = Genesis 1).
   // Resets the exercise view whenever the chapter changes.
@@ -4732,6 +4546,100 @@ export default function App() {
       return Object.assign({}, q, { options: exShuffle(q.options || []) });
     });
     setExQuestions(qs); setExIdx(0); setExSelected(null); setExScore(0); setExCat("reading");
+  };
+
+  // ── Frequency Vocab Bank quiz logic ─────────────────────────────────────
+  var wbShuffle = function(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  };
+
+  // 3 distractor English glosses come from the whole-bank pool for this part
+  // of speech (not just the current block), so even a small last block or a
+  // rare pos (e.g. interjection) always has enough options.
+  var wbBuildQuestion = function(card) {
+    var pool = (wbDistractors && wbDistractors[card.pos]) || [];
+    var correct = card.en.split(";")[0].trim();
+    var others = pool.filter(function(g){ return g.toLowerCase() !== correct.toLowerCase(); });
+    var distractors = wbShuffle(others).slice(0, 3);
+    return { card: card, correct: correct, options: wbShuffle(distractors.concat([correct])) };
+  };
+
+  var wbPickNext = function(cards, progress, excludeId) {
+    var remaining = (cards || []).filter(function(c){
+      var st = progress[c.id];
+      return !(st && st.mastered);
+    });
+    if (!remaining.length) return null;
+    var pickFrom = remaining.length > 1 ? remaining.filter(function(c){ return c.id !== excludeId; }) : remaining;
+    var pick = pickFrom[Math.floor(Math.random() * pickFrom.length)];
+    return wbBuildQuestion(pick);
+  };
+
+  var wbBlockStats = function() {
+    if (!wbCards) return { done: 0, total: 0 };
+    var done = wbCards.filter(function(c){ var st = wbProgress[c.id]; return st && st.mastered; }).length;
+    return { done: done, total: wbCards.length };
+  };
+
+  var wbStart = function() {
+    if (!wbCards || !wbCards.length) return;
+    setWbSel(null);
+    setWbJustMastered(null);
+    setWbCur(wbPickNext(wbCards, wbProgress, null));
+    setWbScreen("quiz");
+  };
+
+  // A wrong answer resets the streak to 0; a card needs 10 CONSECUTIVE right
+  // answers to be mastered and drop out of rotation (Dave's rule, confirmed).
+  var wbAnswer = function(opt) {
+    if (!wbCur || wbSel) return;
+    setWbSel(opt);
+    var card = wbCur.card;
+    var right = opt === wbCur.correct;
+    var st = wbProgress[card.id] || { streak: 0, mastered: false };
+    var streak = right ? st.streak + 1 : 0;
+    var mastered = streak >= 10;
+    var newProgress = Object.assign({}, wbProgress);
+    newProgress[card.id] = { streak: streak, mastered: mastered };
+    setWbProgress(newProgress);
+    if (mastered) setWbJustMastered(card.id);
+    setTimeout(function() {
+      setWbSel(null);
+      setWbJustMastered(null);
+      var next = wbPickNext(wbCards, newProgress, card.id);
+      setWbCur(next);
+      if (!next) setWbScreen("landing"); // block finished
+    }, right ? 900 : 1600);
+  };
+
+  // "I already know this word" — instant mastery, skips the 10-in-a-row grind.
+  var wbKnowIt = function() {
+    if (!wbCur) return;
+    var card = wbCur.card;
+    var newProgress = Object.assign({}, wbProgress);
+    newProgress[card.id] = { streak: 10, mastered: true };
+    setWbProgress(newProgress);
+    setWbSel(null);
+    setWbJustMastered(null);
+    var next = wbPickNext(wbCards, newProgress, card.id);
+    setWbCur(next);
+    if (!next) setWbScreen("landing");
+  };
+
+  var wbNextBlock = function() {
+    if (!wbIndex) return;
+    setWbBlockNum(function(n){ return Math.min(n + 1, wbIndex.blocks.length); });
+    setWbCur(null); setWbSel(null); setWbScreen("landing");
+  };
+
+  var wbPrevBlock = function() {
+    setWbBlockNum(function(n){ return Math.max(1, n - 1); });
+    setWbCur(null); setWbSel(null); setWbScreen("landing");
   };
 
   // ── Live AI vocabulary quiz ────────────────────────────────────────────────
@@ -4933,7 +4841,6 @@ export default function App() {
       buildWordTimeline(curChapter.text, audiobookData.word_timings);
     } else {
       wordTimelineRef.current = [];
-      setAudioIntro(null);
     }
     activeWordRef.current = -1;
   }, [audiobookData, audioSentences]);
@@ -4949,6 +4856,48 @@ export default function App() {
   useEffect(function() { storage && storage.set("vocab", JSON.stringify(vocab)).catch(function(){}); }, [vocab]);
   useEffect(function() { storage && storage.set("grammar", JSON.stringify(tips)).catch(function(){}); }, [tips]);
   useEffect(function() { storage && storage.set("grammar-topics", JSON.stringify(savedTopics)).catch(function(){}); }, [savedTopics]);
+
+  // ── Frequency Vocab Bank persistence ────────────────────────────────────
+  var wbLoadedRef = useRef(false);
+  useEffect(function() {
+    (async function() {
+      try {
+        var wp = await storage.get("wordbank-progress");
+        if (wp) {
+          var d = JSON.parse(wp.value);
+          if (d.progress) setWbProgress(d.progress);
+          if (d.block) setWbBlockNum(d.block);
+        }
+      } catch(e) {}
+      wbLoadedRef.current = true;
+    })();
+  }, []);
+  useEffect(function() {
+    if (!wbLoadedRef.current) return; // don't stomp saved progress with the initial empty state
+    storage && storage.set("wordbank-progress", JSON.stringify({ progress: wbProgress, block: wbBlockNum })).catch(function(){});
+  }, [wbProgress, wbBlockNum]);
+  useEffect(function() {
+    fetch("/vocab/blocks/index.json")
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){ if (j) setWbIndex(j); })
+      .catch(function(){});
+    fetch("/vocab/blocks/distractors.json")
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){ if (j) setWbDistractors(j); })
+      .catch(function(){});
+  }, []);
+  useEffect(function() {
+    if (!wbIndex) return;
+    var meta = wbIndex.blocks[wbBlockNum - 1];
+    if (!meta) { setWbCards([]); return; }
+    var cancelled = false;
+    setWbLoading(true);
+    fetch("/vocab/blocks/" + meta.file)
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .then(function(j){ if (!cancelled) { setWbCards(j); setWbLoading(false); } })
+      .catch(function(){ if (!cancelled) { setWbCards([]); setWbLoading(false); } });
+    return function(){ cancelled = true; };
+  }, [wbIndex, wbBlockNum]);
 
   // ── speechSynthesis warmup ─────────────────────────────────────────────────
   // Chrome (and sometimes Edge) silently drops the FIRST speak() call after a
@@ -7519,19 +7468,6 @@ export default function App() {
           attribEnd     = (para[0] ? para[0].start : 0) + speakerMatch[0].length;
         }
 
-        // Dual-language Война и мир: every French passage in the body is
-        // followed by a "[N]" footnote marker. Collect the English rendering
-        // of each marker found in this paragraph and show them underneath,
-        // exactly like the Bible's English verse lines.
-        var frEnLines = [];
-        if (frEn) {
-          var frRe = /\[(\d+)\]/g, frM;
-          while ((frM = frRe.exec(paraText)) !== null) {
-            var frTxt = frEn[frM[1]];
-            if (frTxt) frEnLines.push({ n: frM[1], t: frTxt });
-          }
-        }
-
         // Dual-language Bible: the English line for this verse (if loaded and
         // this paragraph is a numbered verse). Display-only; the audio and word
         // highlighting stay Russian, since the aligner only tokenizes Cyrillic.
@@ -7648,13 +7584,6 @@ export default function App() {
             })()}
             {bibleHeadingLine ? <span className="bible-en bible-heading-en">{bibleHeadingLine}</span>
               : (bibleEnLine ? <span className="bible-en">{bibleEnLine}</span> : null)}
-            {frEnLines.map(function(fe) {
-              return (
-                <span className="bible-en" key={"fren" + fe.n}>
-                  <span className="fr-en-num">[{fe.n}]</span>{fe.t}
-                </span>
-              );
-            })}
           </p>
         );
       });
@@ -7962,7 +7891,7 @@ export default function App() {
         .lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
         .lib-card{padding:14px;border-radius:10px;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.1);cursor:pointer;transition:all .15s;position:relative;display:flex;flex-direction:column;gap:4px}
         .lib-card:hover{background:rgba(42,31,20,.08);border-color:rgba(196,149,90,.3);transform:translateY(-1px)}
-        .lib-card-title{font-family:'Playfair Display',serif;font-size:15px;color:#c4955a;line-height:1.3;margin-bottom:2px}
+        .lib-card-title{font-family:'Playfair Display',serif;font-size:15px;color:#c4955a;line-height:1.3;margin-bottom:8px}
         .lib-card-author{font-size:12px;color:rgba(42,31,20,.6);font-style:italic;margin-bottom:6px}
         .lib-card-meta{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:rgba(42,31,20,.4);margin-top:auto;padding-top:4px}
         .lib-card-cat{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#c4955a;padding:2px 8px;border-radius:10px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600}
@@ -8022,15 +7951,10 @@ export default function App() {
         .rw{cursor:pointer;border-bottom:1px dotted rgba(42,31,20,.18);transition:color .15s,background .12s}
         .rw:hover{color:#c4955a;border-bottom-color:#c4955a}
         .rwhl{background:rgba(196,149,90,.18);color:#000;border-bottom-color:#c4955a;border-radius:3px;padding:1px 2px}
-        .lch-spoken{font-family:'Crimson Pro',serif;font-size:15px;font-style:italic;color:rgba(0,0,0,.5);margin:-4px 0 14px;line-height:1.5;letter-spacing:.2px}
-        .lch-spoken .rw{cursor:default;border-bottom:none}
-        .lch-spoken .rw:hover{color:inherit}
         .word-active{background:rgba(196,149,90,.34);color:#fff;border-radius:3px;padding:1px 2px;box-shadow:0 0 0 1px rgba(196,149,90,.55);transition:background .08s ease}
         /* Dual-language Bible: English translation shown under each Russian verse */
         .bible-en{display:block;margin-top:3px;color:rgba(42,31,20,.5);font-size:0.9em;font-style:italic;line-height:1.5;letter-spacing:.005em}
         .bible-heading-en{font-style:normal;font-weight:600;color:rgba(42,31,20,.62);font-size:0.95em;letter-spacing:.01em}
-        /* Война и мир: the "[N]" marker prefixed to each English footnote line */
-        .fr-en-num{font-style:normal;font-weight:700;color:#c4955a;font-size:0.85em;margin-right:5px;font-family:sans-serif;letter-spacing:.02em}
         /* Words inside the sentence currently being read aloud. Applied at
            the start of each sentence's playback via direct DOM manipulation
            (no React re-render). Uses a soft warm tint so a whole sentence's
@@ -9130,8 +9054,8 @@ export default function App() {
                             var c=bookCounts(book);
                             return (
                               <div key={book.fb2Path} className={"ts-wcard"+(book.supported?"":" dis")} onClick={function(){ if(book.supported){ setTtSel(book); setTtExpanded(function(p){ var n=Object.assign({},p); n[book.fb2Path]=true; return n; }); } }}>
-                                <div className="ts-wtitle">{book.title}</div>
-                                <div className="ts-wmeta">{book.author?book.author+" · ":""}{book.nChapters} ch{book.supported?"":" · no fb2"}</div>
+                                <div className="ts-wtitle">{bookLabel(book)}</div>
+                                <div className="ts-wmeta">{book.nChapters} ch{book.supported?"":" · no fb2"}</div>
                                 <div className="ts-wcounts">
                                   {c.scanned>0 ? <>
                                     <span className="ts-tag" style={{color:KIND.sub.fg,background:KIND.sub.bg,borderColor:KIND.sub.bd}}>{c.sub} subs</span>
@@ -9455,6 +9379,10 @@ export default function App() {
                     <div style={{fontSize:22,marginBottom:4}}>📚 Grammar</div>
                     <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Pick your level and a topic. Quick reference pages with rules and examples.</div>
                   </button>
+                  <button className="btn-p" onClick={function(){ setMode("wordbank"); }} style={{textAlign:"left",padding:"18px 22px"}}>
+                    <div style={{fontSize:22,marginBottom:4}}>🗂️ Vocab</div>
+                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Drill the most common Russian words, ranked by real-world frequency, in blocks of 30.</div>
+                  </button>
                 </div>
               </div>
             )}
@@ -9551,8 +9479,7 @@ export default function App() {
                                     else loadPresetBook(match.book);
                                   }}>
                                     <div className="lcn" style={{color:"rgba(0,0,0,.5)"}}>↻ {humanLast}</div>
-                                    <div className="lchead">{rec.title}</div>
-                                    {rec.author && <div className="lcp" style={{fontSize:12,opacity:.75}}>{rec.author}</div>}
+                                    <div className="lchead">{bookLabel(rec)}</div>
                                     <div style={{marginTop:8,fontSize:11,color:"rgba(0,0,0,.55)"}}>
                                       Ch. {(rec.cidx || 0) + 1}{total > 1 ? "/" + total : ""}
                                       {(rec.pidx || 0) > 0 && " · Page " + ((rec.pidx || 0) + 1)}
@@ -9590,7 +9517,7 @@ export default function App() {
                             }}>
                             <option value="" disabled>📖 Choose a book from the library…</option>
                             {(function() {
-                              var CATEGORIES = ["Works", "Радиоспектакли", "Речи", "Song Lyrics", "Poetry"];
+                              var CATEGORIES = ["Works", "Song Lyrics", "Poetry"];
                               // Normalize legacy "Novel", "Short Stories", and "Plays" entries into "Works".
                               var normalize = function(cat) {
                                 if (cat === "Novel" || cat === "Short Stories" || cat === "Plays") return "Works";
@@ -9611,8 +9538,7 @@ export default function App() {
                                 var textOnly  = entries.filter(function(e){ return !e.book.audiobook; });
                                 var makeOption = function(entry) {
                                   var book = entry.book;
-                                  var label = (book.edition ? book.edition + " · " : "") + (book.title || book.filename) + (book.author && book.author !== book.title ? " — " + book.author : "");
-                                  return <option key={entry.idx} value={entry.idx}>{label}</option>;
+                                  return <option key={entry.idx} value={entry.idx}>{bookLabel(book)}</option>;
                                 };
                                 var groups = [];
                                 if (withAudio.length) groups.push(
@@ -9651,7 +9577,7 @@ export default function App() {
                         // Group preset books by category, preserving original index for lookup.
                         // Normalize legacy "Novel"/"Short Stories"/"Plays" → "Works" so older
                         // entries in index.json fall into the right bucket without an admin edit.
-                        var CATEGORIES = ["Works", "Радиоспектакли", "Речи", "Song Lyrics", "Poetry"];
+                        var CATEGORIES = ["Works", "Song Lyrics", "Poetry"];
                         var normalize = function(cat) {
                           if (cat === "Novel" || cat === "Short Stories" || cat === "Plays") return "Works";
                           return cat;
@@ -9688,8 +9614,7 @@ export default function App() {
                                           if (bookLoading !== null) return;
                                           openUploadedBook(book);
                                         }}>
-                                        <div className="lib-card-title">{book.title || book.filename}</div>
-                                        {book.author && <div className="lib-card-author">{book.author}</div>}
+                                        <div className="lib-card-title">{bookLabel(book)}</div>
                                         <div className="lib-card-meta">
                                           <span className="lib-card-cat">Upload</span>
                                           <button
@@ -9731,8 +9656,7 @@ export default function App() {
                                         loadPresetBook(book);
                                       }
                                     }}>
-                                    <div className="lib-card-title">{book.edition ? <span style={{fontStyle:"italic",opacity:.75}}>{book.edition} </span> : null}{book.title || book.filename}</div>
-                                    {book.author && book.author !== book.title && <div className="lib-card-author">{book.author}</div>}
+                                    <div className="lib-card-title">{bookLabel(book)}</div>
                                     <div className="lib-card-meta">
                                       {cat !== "Other" && <span className="lib-card-cat">{cat}</span>}
                                       {book.audiobook && <span style={{fontSize:11,color:"#c4955a"}}>🎧 Audiobook</span>}
@@ -9818,6 +9742,93 @@ export default function App() {
                   {fErr && <p style={{color:"#9d4630",fontSize:13,lineHeight:1.5}}>{fErr}</p>}
                   <button className="btn-g" onClick={function(){ setMode(""); }}>← Back</button>
                 </div>
+              </div>
+            )}
+
+            {/* ── Frequency Vocab Bank (🗂️ Vocab) ───────────────────────────
+                Gated entirely by local state — no `started`, same pattern as
+                Grammar below. No AI at runtime: every word, gloss, aspect
+                pair, and example sentence was baked into the static JSON
+                files under /vocab/blocks/ ahead of time. */}
+            {mode === "wordbank" && (
+              <div className="ss">
+                <div className="sico" style={{color:"#c4955a"}}>🗂️</div>
+                <h1 className="sti">Vocab</h1>
+
+                {!wbIndex && <p className="sde">Loading word bank…</p>}
+
+                {wbIndex && wbScreen === "landing" && (function() {
+                  var meta = wbIndex.blocks[wbBlockNum - 1];
+                  var stats = wbBlockStats();
+                  var allDone = wbCards && stats.total > 0 && stats.done === stats.total;
+                  var totalMastered = Object.keys(wbProgress).filter(function(k){ return wbProgress[k].mastered; }).length;
+                  var isLastBlock = wbBlockNum >= wbIndex.blocks.length;
+                  return (
+                    <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:14,alignItems:"center"}}>
+                      <p className="sde">
+                        {wbIndex.totalCards} words total, ranked by real-world frequency — imperfective/perfective
+                        verb pairs count as one word. {totalMastered} mastered so far.
+                      </p>
+                      <div style={{width:"100%",background:"rgba(210,197,175,.08)",border:"1px solid rgba(210,197,175,.18)",borderRadius:10,padding:"16px 20px"}}>
+                        <div style={{fontSize:16,fontWeight:600,marginBottom:4}}>Block {wbBlockNum} of {wbIndex.blocks.length}</div>
+                        <div style={{fontSize:13,opacity:.7,marginBottom:10}}>words ranked #{meta ? meta.rankMin : "?"}–#{meta ? meta.rankMax : "?"}</div>
+                        <div style={{fontSize:14}}>{stats.done} / {stats.total} mastered in this block</div>
+                      </div>
+                      {allDone ? (
+                        <button className="btn-p" disabled={isLastBlock} onClick={wbNextBlock}>
+                          {isLastBlock ? "All blocks complete! 🎉" : "Block complete! Continue to Block " + (wbBlockNum + 1) + " →"}
+                        </button>
+                      ) : (
+                        <button className="btn-p" disabled={wbLoading || !wbCards || !wbCards.length} onClick={wbStart}>
+                          {wbLoading ? "Loading…" : "Start Block " + wbBlockNum}
+                        </button>
+                      )}
+                      <div style={{display:"flex",gap:8,width:"100%"}}>
+                        <button className="btn-g" style={{flex:1}} disabled={wbBlockNum<=1} onClick={wbPrevBlock}>← Prev block</button>
+                        <button className="btn-g" style={{flex:1}} disabled={isLastBlock} onClick={wbNextBlock}>Next block →</button>
+                      </div>
+                    </div>
+                  );
+                })()}
+
+                {wbIndex && wbScreen === "quiz" && wbCur && (function() {
+                  var curStreak = (wbProgress[wbCur.card.id] && wbProgress[wbCur.card.id].streak) || 0;
+                  var speakText = wbCur.card.aspectPair ? (wbCur.card.impf + ", " + wbCur.card.pf) : wbCur.card.ru;
+                  return (
+                    <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:16,alignItems:"center"}}>
+                      <div style={{fontSize:12,opacity:.6}}>Block {wbBlockNum} · {wbBlockStats().done}/{wbBlockStats().total} mastered</div>
+                      <div style={{display:"flex",alignItems:"center",gap:10}}>
+                        <span style={{fontSize:28,fontFamily:"'Playfair Display',serif"}}>{wbCur.card.ru}</span>
+                        <button className="ttsbtn" onClick={function(){ speakMsg(speakText, "wb-" + wbCur.card.id); }} title="Listen">🔊</button>
+                      </div>
+                      <div style={{fontSize:11,opacity:.55,textTransform:"uppercase",letterSpacing:.5}}>
+                        {wbCur.card.pos}{wbCur.card.aspectPair ? " · aspect pair" : ""} · {curStreak}/10 correct in a row
+                      </div>
+                      <div style={{width:"100%",display:"flex",flexDirection:"column",gap:8}}>
+                        {wbCur.options.map(function(opt, oi) {
+                          var isCorrect = opt === wbCur.correct;
+                          var showState = wbSel !== null;
+                          var style = { textAlign: "left" };
+                          if (showState && isCorrect) { style.background = "rgba(90,150,90,.25)"; style.borderColor = "rgba(90,150,90,.6)"; }
+                          if (showState && wbSel === opt && !isCorrect) { style.background = "rgba(157,70,48,.2)"; style.borderColor = "rgba(157,70,48,.6)"; }
+                          return (
+                            <button key={oi} className="btn-g" style={style} disabled={showState} onClick={function(){ wbAnswer(opt); }}>{opt}</button>
+                          );
+                        })}
+                      </div>
+                      {wbSel && (
+                        <div style={{fontSize:13,fontStyle:"italic",color:"rgba(0,0,0,.6)",textAlign:"center"}}>
+                          {wbCur.card.example_ru} <span style={{opacity:.7}}>— {wbCur.card.example_en}</span>
+                          {wbJustMastered === wbCur.card.id && <div style={{color:"#5a965a",fontWeight:600,marginTop:6,fontStyle:"normal"}}>✓ Mastered — moved out of rotation!</div>}
+                        </div>
+                      )}
+                      <button className="ab" onClick={wbKnowIt} title="Skip straight to mastered">I already know this word →</button>
+                      <button className="btn-g" onClick={function(){ setWbScreen("landing"); setWbCur(null); setWbSel(null); }}>← Back to block overview</button>
+                    </div>
+                  );
+                })()}
+
+                <button className="btn-g" onClick={function(){ setMode(""); }}>← Back</button>
               </div>
             )}
 
@@ -10092,21 +10103,6 @@ export default function App() {
                           <button className="lnb-inline ch" style={{fontSize:15,padding:"8px 14px"}} onClick={function(){ if (cidx < chapters.length - 1) navLit(cidx+1); }} disabled={loading || cidx >= chapters.length - 1} title={singlePageMode ? "Next song" : "Next chapter"}>{singlePageMode ? "Next Song" : "Next Chapter"} ›</button>
                         </>
                       )}
-                      {chapters.length > 1 && (
-                        <select
-                          value={cidx}
-                          disabled={loading}
-                          onChange={function(e){ var n = parseInt(e.target.value, 10); if (!isNaN(n) && n !== cidx) navLit(n); }}
-                          title={singlePageMode ? "Jump to a song" : "Jump to a chapter"}
-                          style={{maxWidth:260,fontSize:13,padding:"7px 10px",borderRadius:4,border:"1px solid rgba(210,197,175,.45)",background:"rgba(0,0,0,.18)",color:"inherit",fontFamily:"'Inter',sans-serif"}}>
-                          {chapters.map(function(ch, i){
-                            var h = String((ch && ch.heading) || "").replace(/\s+/g, " ").trim();
-                            if (!h) h = (singlePageMode ? "Song " : "Chapter ") + (i+1);
-                            if (h.length > 60) h = h.slice(0, 58) + "…";
-                            return <option key={i} value={i}>{(i+1) + ". " + h}</option>;
-                          })}
-                        </select>
-                      )}
                       <button className="lnb-inline lbm-inline" onClick={function(){ setCbm(cidx); }} title="Bookmark this chapter">📌</button>
                     </div>
                   )}
@@ -10130,7 +10126,7 @@ export default function App() {
                             which book they're in, even after navigating mid-chapter. */}
                         {bookMeta.title && (
                           <div style={{fontFamily:"'Crimson Pro',serif",fontStyle:"italic",fontSize:13,color:"rgba(0,0,0,.45)",marginBottom:4,letterSpacing:.3}}>
-                            {bookMeta.title}{bookMeta.author ? " — " + bookMeta.author : ""}
+                            {bookLabel(bookMeta)}
                           </div>
                         )}
                         <div className="lhdr">
@@ -10148,18 +10144,6 @@ export default function App() {
                                 🎵 Listen on YouTube ↗
                               </a>
                             )}
-                          </div>
-                        )}
-                        {audioIntro && audioIntro.length > 0 && (
-                          <div className="lch-spoken">
-                            {audioIntro.map(function(iw, ii) {
-                              return (
-                                <span key={ii}>
-                                  <span className="rw" data-rw-start={iw.start}>{iw.text}</span>
-                                  {ii < audioIntro.length - 1 ? " " : ""}
-                                </span>
-                              );
-                            })}
                           </div>
                         )}
                         <div className="ltxt">{renderLit(curChapter.text)}</div>
