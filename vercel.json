@@ -9,13 +9,16 @@
     "api/chat.js": {
       "maxDuration": 30
     },
-    "api/admin/transcript-scan.js": {
-      "maxDuration": 60
-    },
-    "api/admin/transcript-apply.js": {
+    "api/admin.js": {
       "maxDuration": 60
     }
   },
+  "rewrites": [
+    {
+      "source": "/api/admin/:action*",
+      "destination": "/api/admin?action=:action*"
+    }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
