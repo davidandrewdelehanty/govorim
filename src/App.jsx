@@ -3053,6 +3053,12 @@ export default function App() {
   // FB2 footnote number that follows them in the body ("[1]", "[2]" …).
   // One global file for the whole novel; loaded lazily on first W&P chapter.
   var [frEn, setFrEn] = useState(null);
+  // Words the narrator speaks BEFORE the chapter text begins — author name,
+  // book title, "Том первый", "Часть первая", "Глава первая". None of that is
+  // in the FB2 body, so it is rendered as its own little block above the
+  // chapter with negative data-rw-start offsets (-2, -3, …) which can never
+  // collide with a real character offset. Filled by buildWordTimeline.
+  var [audioIntro, setAudioIntro] = useState(null);
   var wordTimingMapRef = useRef([]);   // (legacy) raw word_timings list — no longer read
   var activeWordRef = useRef(-1);      // char-offset of the currently highlighted word (-1 = none)
   var wordTimelineRef = useRef([]);    // precomputed alignment: [{begin,end,start,holdToNext,nextBegin}]
@@ -3457,7 +3463,7 @@ export default function App() {
     return false;
   };
   var buildWordTimeline = function(chapterText, wordTimings) {
-    if (!chapterText || !wordTimings || !wordTimings.length) { wordTimelineRef.current = []; return; }
+    if (!chapterText || !wordTimings || !wordTimings.length) { wordTimelineRef.current = []; setAudioIntro(null); return; }
     // Book words: Russian letter runs, keyed by absolute char offset (== data-rw-start).
     // Cyrillic sitting inside a French passage is skipped — the narrator never
     // reads those, and leaving them in makes the highlight jump into the French.
@@ -3471,9 +3477,9 @@ export default function App() {
     var T = [];
     for (var wi = 0; wi < wordTimings.length; wi++) {
       var n = normWordForAlign(wordTimings[wi].word);
-      if (n) T.push({ begin: wordTimings[wi].begin, end: wordTimings[wi].end, norm: n });
+      if (n) T.push({ begin: wordTimings[wi].begin, end: wordTimings[wi].end, norm: n, raw: String(wordTimings[wi].word || "") });
     }
-    if (!B.length || !T.length) { wordTimelineRef.current = []; return; }
+    if (!B.length || !T.length) { wordTimelineRef.current = []; setAudioIntro(null); return; }
 
     // ── Index every transcript word up front (the "value" per word the reader
     //    asked for): norm -> ascending list of the positions where it occurs.
@@ -3572,6 +3578,58 @@ export default function App() {
       if (g) { i = g.bi; j = g.tj; continue; }   // leap to the next whole-text landmark
       i++; j++;   // no landmark left — step past and keep scanning
     }
+    // ── Spoken heading ───────────────────────────────────────────────────
+    // Every recording opens with words that exist nowhere in the FB2 body:
+    // "Лев Николаевич Толстой. Война и мир. Том первый. Часть первая. Глава
+    // первая." (the FB2 keeps that in <title>, which the parser strips), and
+    // each later chapter opens with its own "Глава такая-то". They could never
+    // light up, because there is nothing on screen to light.
+    //
+    // Find where the announcement ends by walking the transcript from the top
+    // and stopping at the first word that already appears among the chapter's
+    // opening words — that word is the narrator arriving at the text. Words of
+    // 1-2 letters ("и", "в", "ну") are ignored by that test: they are far too
+    // common to prove anything, so a trailing run of them is trimmed instead.
+    var introWords = [];
+    if (out.length) {
+      var headSet = {};
+      for (var hb = 0; hb < B.length && hb < 15; hb++) {
+        if (B[hb].norm.length > 2) headSet[B[hb].norm] = 1;
+      }
+      var stop = 0;
+      var LIMIT = Math.min(T.length, 30);
+      while (stop < LIMIT) {
+        var tn = T[stop].norm;
+        if (tn.length > 2 && headSet[tn]) break;
+        stop++;
+      }
+      if (stop < LIMIT) {                       // we found the start of the text
+        while (stop > 0 && T[stop - 1].norm.length <= 2) stop--;   // trim "и", "ну", "в"
+        for (var q = 0; q < stop; q++) {
+          var qraw = (T[q].raw || "").trim();
+          if (qraw) introWords.push({ text: qraw, start: -2 - q, begin: T[q].begin, end: T[q].end });
+        }
+      }
+    }
+    if (introWords.length) {
+      // Anything the aligner "matched" inside the announcement is a coincidence
+      // (a stray "и"), so drop those entries and put the announcement in front.
+      var cut = introWords.length;
+      out = out.filter(function(e) { return e.tj >= cut; });
+      var introOut = [];
+      for (var q2 = 0; q2 < introWords.length; q2++) {
+        introOut.push({
+          begin: introWords[q2].begin,
+          end: introWords[q2].end,
+          start: introWords[q2].start,
+          bi: -1000000 + q2,
+          tj: q2
+        });
+      }
+      out = introOut.concat(out);
+    }
+    setAudioIntro(introWords.length ? introWords : null);
+
     // Mark clean consecutive runs so the highlight holds across the tiny gap
     // between two matched words, but blanks out across a real divergence.
     for (var k = 0; k < out.length; k++) {
@@ -3883,7 +3941,7 @@ export default function App() {
             var prevW = document.querySelector(".lit-body .word-active");
             if (prevW) prevW.classList.remove("word-active");
           } catch(e) {}
-          if (targetStart >= 0) {
+          if (targetStart !== -1) {
             try {
               var wEl = document.querySelector('.lit-body [data-rw-start="' + targetStart + '"]');
               if (wEl) {
@@ -4850,6 +4908,7 @@ export default function App() {
       buildWordTimeline(curChapter.text, audiobookData.word_timings);
     } else {
       wordTimelineRef.current = [];
+      setAudioIntro(null);
     }
     activeWordRef.current = -1;
   }, [audiobookData, audioSentences]);
@@ -7938,6 +7997,9 @@ export default function App() {
         .rw{cursor:pointer;border-bottom:1px dotted rgba(42,31,20,.18);transition:color .15s,background .12s}
         .rw:hover{color:#c4955a;border-bottom-color:#c4955a}
         .rwhl{background:rgba(196,149,90,.18);color:#000;border-bottom-color:#c4955a;border-radius:3px;padding:1px 2px}
+        .lch-spoken{font-family:'Crimson Pro',serif;font-size:15px;font-style:italic;color:rgba(0,0,0,.5);margin:-4px 0 14px;line-height:1.5;letter-spacing:.2px}
+        .lch-spoken .rw{cursor:default;border-bottom:none}
+        .lch-spoken .rw:hover{color:inherit}
         .word-active{background:rgba(196,149,90,.34);color:#fff;border-radius:3px;padding:1px 2px;box-shadow:0 0 0 1px rgba(196,149,90,.55);transition:background .08s ease}
         /* Dual-language Bible: English translation shown under each Russian verse */
         .bible-en{display:block;margin-top:3px;color:rgba(42,31,20,.5);font-size:0.9em;font-style:italic;line-height:1.5;letter-spacing:.005em}
@@ -10046,6 +10108,18 @@ export default function App() {
                                 🎵 Listen on YouTube ↗
                               </a>
                             )}
+                          </div>
+                        )}
+                        {audioIntro && audioIntro.length > 0 && (
+                          <div className="lch-spoken">
+                            {audioIntro.map(function(iw, ii) {
+                              return (
+                                <span key={ii}>
+                                  <span className="rw" data-rw-start={iw.start}>{iw.text}</span>
+                                  {ii < audioIntro.length - 1 ? " " : ""}
+                                </span>
+                              );
+                            })}
                           </div>
                         )}
                         <div className="ltxt">{renderLit(curChapter.text)}</div>
