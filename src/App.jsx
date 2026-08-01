@@ -3563,7 +3563,68 @@ export default function App() {
       return null;
     };
 
-    var out = [], i = 0, j = 0;
+    // ── Spoken heading ───────────────────────────────────────────────────
+    // Every recording opens with words that exist nowhere in the FB2 body:
+    // "Лев Николаевич Толстой. Война и мир. Том первый. Часть первая. Глава
+    // первая." (the FB2 keeps that in <title>, which the parser strips), and
+    // each later chapter opens with its own "Глава такая-то". They could never
+    // light up, because there is nothing on screen to light.
+    //
+    // Find where the announcement ends by walking the transcript from the top
+    // and stopping at the first word that already appears among the chapter's
+    // opening words — that word is the narrator arriving at the text. Words of
+    // 1-2 letters ("и", "в", "ну") are ignored by that test: they are far too
+    // common to prove anything, so a trailing run of them is trimmed instead.
+    //
+    // The aligner then STARTS at that boundary. Left to itself it would never
+    // find the chapter's first words, because the announcement pushes them
+    // further ahead than the resync window can look — which is exactly why
+    // "Ну, князь" stayed dark at the top of Война и мир.
+    var introWords = [];
+    var headWords = [];
+    for (var hb = 0; hb < B.length && hb < 15; hb++) {
+      if (B[hb].norm.length > 2) headWords.push(B[hb].norm);
+    }
+    // Near-miss: one substitution/insertion/deletion apart, on words long
+    // enough for that to mean something. The narrator mishears names all the
+    // time ("Працинской" for "Праценской") and without this the misheard word
+    // gets swallowed into the announcement instead of ending it.
+    var nearWord = function(a, b) {
+      if (a === b) return true;
+      var la = a.length, lb = b.length;
+      if (la < 5 || Math.abs(la - lb) > 1) return false;
+      var x = 0, y = 0, diff = 0;
+      while (x < la && y < lb) {
+        if (a.charAt(x) === b.charAt(y)) { x++; y++; continue; }
+        if (++diff > 1) return false;
+        if (la > lb) x++; else if (lb > la) y++; else { x++; y++; }
+      }
+      if (x < la || y < lb) diff++;
+      return diff <= 1;
+    };
+    var isHeadWord = function(w) {
+      for (var hz = 0; hz < headWords.length; hz++) if (nearWord(w, headWords[hz])) return true;
+      return false;
+    };
+    var stop = 0;
+    var LIMIT = Math.min(T.length, 30);
+    while (stop < LIMIT) {
+      var tn = T[stop].norm;
+      if (tn.length > 2 && isHeadWord(tn)) break;
+      stop++;
+    }
+    if (stop < LIMIT) {                       // we found where the text begins
+      while (stop > 0 && T[stop - 1].norm.length <= 2) stop--;   // trim "и", "ну", "в"
+      for (var q = 0; q < stop; q++) {
+        var qraw = (T[q].raw || "").trim();
+        if (qraw) introWords.push({ text: qraw, start: -2 - q, begin: T[q].begin, end: T[q].end });
+      }
+    } else {
+      stop = 0;                               // no boundary found — align normally
+    }
+    setAudioIntro(introWords.length ? introWords : null);
+
+    var out = [], i = 0, j = stop;
     while (i < B.length && j < T.length) {
       if (B[i].norm === T[j].norm) {
         out.push({ begin: T[j].begin, end: T[j].end, start: B[i].start, bi: i, tj: j });
@@ -3578,44 +3639,9 @@ export default function App() {
       if (g) { i = g.bi; j = g.tj; continue; }   // leap to the next whole-text landmark
       i++; j++;   // no landmark left — step past and keep scanning
     }
-    // ── Spoken heading ───────────────────────────────────────────────────
-    // Every recording opens with words that exist nowhere in the FB2 body:
-    // "Лев Николаевич Толстой. Война и мир. Том первый. Часть первая. Глава
-    // первая." (the FB2 keeps that in <title>, which the parser strips), and
-    // each later chapter opens with its own "Глава такая-то". They could never
-    // light up, because there is nothing on screen to light.
-    //
-    // Find where the announcement ends by walking the transcript from the top
-    // and stopping at the first word that already appears among the chapter's
-    // opening words — that word is the narrator arriving at the text. Words of
-    // 1-2 letters ("и", "в", "ну") are ignored by that test: they are far too
-    // common to prove anything, so a trailing run of them is trimmed instead.
-    var introWords = [];
-    if (out.length) {
-      var headSet = {};
-      for (var hb = 0; hb < B.length && hb < 15; hb++) {
-        if (B[hb].norm.length > 2) headSet[B[hb].norm] = 1;
-      }
-      var stop = 0;
-      var LIMIT = Math.min(T.length, 30);
-      while (stop < LIMIT) {
-        var tn = T[stop].norm;
-        if (tn.length > 2 && headSet[tn]) break;
-        stop++;
-      }
-      if (stop < LIMIT) {                       // we found the start of the text
-        while (stop > 0 && T[stop - 1].norm.length <= 2) stop--;   // trim "и", "ну", "в"
-        for (var q = 0; q < stop; q++) {
-          var qraw = (T[q].raw || "").trim();
-          if (qraw) introWords.push({ text: qraw, start: -2 - q, begin: T[q].begin, end: T[q].end });
-        }
-      }
-    }
     if (introWords.length) {
-      // Anything the aligner "matched" inside the announcement is a coincidence
-      // (a stray "и"), so drop those entries and put the announcement in front.
-      var cut = introWords.length;
-      out = out.filter(function(e) { return e.tj >= cut; });
+      // Put the announcement at the head of the timeline; the RAF loop lights
+      // it up through exactly the same code path as the body text.
       var introOut = [];
       for (var q2 = 0; q2 < introWords.length; q2++) {
         introOut.push({
@@ -3628,7 +3654,6 @@ export default function App() {
       }
       out = introOut.concat(out);
     }
-    setAudioIntro(introWords.length ? introWords : null);
 
     // Mark clean consecutive runs so the highlight holds across the tiny gap
     // between two matched words, but blanks out across a real divergence.
