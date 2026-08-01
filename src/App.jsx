@@ -5,17 +5,8 @@ import { isCommonWord, dropCommonWords, COMMON_WORDS_PROMPT_RULE } from "./commo
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
-// Sole TTS voice for the entire app — Azure Dmitry Neural. No picker, no
-// alternatives. ALL spoken Russian (chat 🔊 Listen, book reading) routes
-// through /api/tts using this single voice.
-var DMITRY_CLOUD = {
-  name: "Dmitry",
-  lang: "ru-RU",
-  localService: false,
-  _cloud: true,
-  _azureVoice: "ru-RU-DmitryNeural",
-  voiceURI: "azure:ru-RU-DmitryNeural",
-};
+// All spoken Russian (chat 🔊 Listen, book reading) uses the browser's built-in
+// speechSynthesis voices — no paid cloud TTS, no server round-trip, no API key.
 
 // Every book in the library is labelled the same way: Russian title, em dash,
 // author. index.json keeps title and author as separate fields (the exercise
@@ -3008,9 +2999,8 @@ export default function App() {
   // cloud-first default became active. Old keys are intentionally orphaned.
   var GVT_VOICE_KEY = "gv_voice_v2";  // localStorage: persist voice pick across sessions
   // ── Floating audio bar state (reading mode) ─────────────────────────────
-  // Sentence-by-sentence cloud TTS playback. Parses the current page into
-  // sentences, fetches each from /api/tts on demand, plays them sequentially.
-  // Always Azure Dmitry — no other voices supported.
+  // Sentence-by-sentence playback via the browser's native speechSynthesis.
+  // Parses the current page into sentences and speaks them sequentially.
   //
   // Gapless playback: while one sentence plays, we prefetch the next sentence
   // in the background. When the current audio ends, the next sentence's blob
@@ -3098,7 +3088,7 @@ export default function App() {
   useEffect(function() { audioSentencesRef.current = audioSentences; }, [audioSentences]);
 
   // Parse a page of text into sentence-like fragments. Each fragment becomes
-  // one /api/tts call. Rules for what counts as a sentence boundary:
+  // one speechSynthesis utterance. Rules for what counts as a sentence boundary:
   //   1. End of line is always a boundary.
   //   2. A terminator (. ! ? …) is a boundary ONLY when followed by whitespace
   //      AND the next non-whitespace character is uppercase or an opening
@@ -3281,42 +3271,10 @@ export default function App() {
     return best;
   };
 
-  // Fetch (or return cached) the audio blob for sentence at `idx`. If
-  // `overrideText` is given, fetches that text instead of the full sentence
-  // and returns the promise WITHOUT caching — used for "play from clicked
-  // word" jumps so subsequent navigation still hears the full sentence.
-  var prefetchSentence = function(idx, overrideText) {
-    var sentences = audioSentencesRef.current;
-    if (idx < 0 || idx >= sentences.length) return null;
-    // overrideText may be a plain string (legacy) or an object {text, ...}.
-    var actualText = (overrideText && typeof overrideText === "object") ? overrideText.text : overrideText;
-    if (actualText) {
-      return fetch("/api/tts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: actualText, voice: "ru-RU-DmitryNeural", rate: audioSpeedRef.current }),
-      }).then(function(r) {
-        if (!r.ok) return r.json().then(function(j) { throw new Error(j.error || ("HTTP " + r.status)); });
-        return r.blob();
-      });
-    }
-    if (audioCacheRef.current[idx]) return audioCacheRef.current[idx];
-    var sentence = sentences[idx] && sentences[idx].text;
-    if (!sentence) return null;
-    var promise = fetch("/api/tts", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: sentence, voice: "ru-RU-DmitryNeural", rate: audioSpeedRef.current }),
-    }).then(function(r) {
-      if (!r.ok) return r.json().then(function(j) { throw new Error(j.error || ("HTTP " + r.status)); });
-      return r.blob();
-    }).catch(function(err) {
-      delete audioCacheRef.current[idx];
-      throw err;
-    });
-    audioCacheRef.current[idx] = promise;
-    return promise;
-  };
+  // NOTE: prefetchSentence (Azure /api/tts blob fetcher) was removed — it was
+  // already dead code, unused since playAudioSentence switched to native
+  // browser speechSynthesis. audioCacheRef is kept (harmlessly reset
+  // elsewhere) in case a future feature wants a blob cache again.
 
   // ── Sentence-highlight helpers ─────────────────────────────────────────────
   // Apply the .rw-reading class to every word in the playing sentence's range.
@@ -5038,10 +4996,11 @@ export default function App() {
     return function() { document.removeEventListener("mousedown", h); };
   }, []);
 
-  // (Voice auto-selector removed — Dmitry Azure is the only voice. The
-  // useEffect that previously scanned getVoices() and called setVoice was
-  // the source of bugs where browser-native voices kept overriding the user's
-  // pick on Chrome PC. Without it, the voice state is fixed at DMITRY_CLOUD.)
+  // (Voice auto-selector removed — the useEffect that previously scanned
+  // getVoices() and called setVoice was the source of bugs where
+  // browser-native voices kept overriding the user's pick on Chrome PC.
+  // Without it, `voice` starts null and pickRussianVoice() resolves a
+  // sensible native default on demand.)
 
   // Launch screen always shows a fresh "no book loaded" state. We deliberately
   // do NOT auto-restore the previous book from EPUB_CACHE on mode entry —
@@ -5947,12 +5906,7 @@ export default function App() {
       var chunk = ttsQueue.current.shift();
       var u = new SpeechSynthesisUtterance(chunk.text);
       u.lang = "ru-RU"; u.rate = 0.84;
-      // Cloud voices aren't real SpeechSynthesisVoice objects — assigning one
-      // to u.voice throws. For chunked book-reading mode we currently fall back
-      // to the system default Russian voice. (TODO: route playText through
-      // /api/tts when a cloud voice is selected, but that requires sequencing
-      // multiple Audio elements gaplessly.)
-      if (voice && !voice._cloud) u.voice = voice;
+      if (voice) u.voice = voice;
       u.onstart = function() { startKeepalive(); };
       u.onboundary = function(e) {
         if (e.name === "word") {
@@ -6004,20 +5958,9 @@ export default function App() {
     // Read voice from the ref so we always see the most recent pick — never a
     // value captured by useCallback at an earlier render.
     var currentVoice = voiceRef.current;
-    console.log("[speak] speakMsg called. idx:", idx, "currentVoice:", currentVoice ? {
-      name: currentVoice.name,
-      _cloud: !!currentVoice._cloud,
-      _azureVoice: currentVoice._azureVoice || "(n/a)",
-      voiceURI: currentVoice.voiceURI,
-    } : "null");
     setTtsErr("");
     stopKeepalive();
-    // Cancel any in-flight TTS (speechSynthesis OR cloud audio) before starting.
     if (window.speechSynthesis) window.speechSynthesis.cancel();
-    if (cloudAudioRef.current) {
-      try { cloudAudioRef.current.pause(); cloudAudioRef.current.src = ""; } catch(e) {}
-      cloudAudioRef.current = null;
-    }
     if (spkIdx === idx) { setSpkIdx(null); return; }
 
     var ru = text.split("\n")
@@ -6029,76 +5972,12 @@ export default function App() {
     if (!ru) return;
     setSpkIdx(idx);
 
-    // Cloud voice branch — bypass speechSynthesis entirely. Fetch MP3 from
-    // /api/tts and play via <audio>. Works on iOS, where the WebSpeech API
-    // is limited to compact Milena.
-    if (currentVoice && currentVoice._cloud) {
-      console.log("[cloud-tts] speakMsg start. voice:", currentVoice._azureVoice, "textLen:", ru.length, "preview:", ru.slice(0, 60));
-      fetch("/api/tts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: ru, voice: currentVoice._azureVoice, rate: -8 }),
-      }).then(function(r) {
-        console.log("[cloud-tts] fetch responded. status:", r.status, "ok:", r.ok);
-        if (!r.ok) {
-          return r.json().then(function(j) {
-            var msg = j.error || ("HTTP " + r.status);
-            if (j.azureStatus) msg += " (Azure " + j.azureStatus + ")";
-            if (j.hint) msg += " — " + j.hint;
-            else if (j.azureDetail) msg += " — detail: " + j.azureDetail;
-            throw new Error(msg);
-          }, function() {
-            throw new Error("HTTP " + r.status);
-          });
-        }
-        return r.blob();
-      }).then(function(blob) {
-        console.log("[cloud-tts] blob received. size:", blob.size, "type:", blob.type);
-        if (!blob.size) throw new Error("Received empty audio blob from server");
-        var audio = new Audio(URL.createObjectURL(blob));
-        cloudAudioRef.current = audio;
-        audio.onloadeddata = function() { console.log("[cloud-tts] audio.onloadeddata fired"); };
-        audio.oncanplay = function() { console.log("[cloud-tts] audio.oncanplay fired"); };
-        audio.onplay = function() { console.log("[cloud-tts] audio.onplay fired"); };
-        audio.onended = function() {
-          console.log("[cloud-tts] audio.onended fired");
-          if (cloudAudioRef.current === audio) {
-            try { URL.revokeObjectURL(audio.src); } catch(e) {}
-            cloudAudioRef.current = null;
-          }
-          setSpkIdx(null);
-        };
-        audio.onerror = function(e) {
-          console.log("[cloud-tts] audio.onerror fired. error code:", audio.error && audio.error.code, "message:", audio.error && audio.error.message);
-          if (cloudAudioRef.current === audio) cloudAudioRef.current = null;
-          setSpkIdx(null);
-          setTtsErr("Cloud audio playback failed (code " + (audio.error && audio.error.code) + ").");
-        };
-        var p = audio.play();
-        console.log("[cloud-tts] audio.play() called. returned:", typeof p);
-        if (p && typeof p.catch === "function") {
-          p.then(function() {
-            console.log("[cloud-tts] audio.play() promise resolved");
-          }).catch(function(e) {
-            console.log("[cloud-tts] audio.play() promise REJECTED:", e.name, e.message);
-            setSpkIdx(null);
-            setTtsErr("Audio play() blocked: " + (e.name || "Error") + " — " + (e.message || e) + ". On iOS, tap somewhere first.");
-          });
-        }
-      }).catch(function(err) {
-        console.log("[cloud-tts] error in chain:", err && err.message);
-        setSpkIdx(null);
-        setTtsErr("Cloud TTS error: " + (err.message || err));
-      });
-      return;
-    }
-
-    // Local voice branch — original speechSynthesis path.
+    // Browser speechSynthesis — free, no server call. Azure cloud TTS removed.
     if (!checkTTSAvailable()) { setSpkIdx(null); return; }
     setTimeout(function() {
       var u = new SpeechSynthesisUtterance(ru);
       u.lang="ru-RU"; u.rate=0.84;
-      var _rv = (currentVoice && !currentVoice._cloud) ? currentVoice : pickRussianVoice();
+      var _rv = currentVoice || pickRussianVoice();
       if (_rv) u.voice=_rv;
       u.onstart = function(){ startKeepalive(); };
       u.onend = function(){ stopKeepalive(); setSpkIdx(null); };
@@ -6175,44 +6054,33 @@ export default function App() {
   };
 
   var fetchDef = async function(word) {
-    // Hybrid: AI (Gemini) provides the full dictionary entry (translation, POS,
-    // aspect, grammar, example). Wiktionary provides the Russian-language
-    // definition that goes in the "definitionRu" slot. Both run in parallel;
-    // Wiktionary failures fall back silently to the AI-generated Russian def.
+    // AI-free: ru.wiktionary.org is the sole dictionary source. No paid API
+    // calls, no key, no billing. wiktTryFetch/wiktParse (defined near the top
+    // of this file) already return the exact field shape the popup and
+    // formatVocabEntry() expect (translation, definitionRu, partOfSpeech,
+    // aspect, aspectPair, grammar, example, exampleTranslation, lemma).
     var clean = (word || "").trim();
     if (!clean) throw new Error("Empty word");
 
-    // Kick off Wiktionary in parallel; never let it reject the outer promise.
-    var wiktPromise = wiktGetDefinition(clean).catch(function(){ return ""; });
-
-    // ── AI fetch (Gemini) — same prompt + parse as the original ────────────
-    var raw = await api(
-      [{role:"user",content:defprompt(clean)}],
-      "You are a Russian-English dictionary. Return a single JSON object only. No markdown. No commentary.",
-      { json: true }
-    );
-    var c = (raw || "").replace(/```[a-z]*\n?/gi,"").replace(/```/g,"").trim();
-    var s = c.indexOf("{"), e2 = c.lastIndexOf("}");
-    if (s === -1 || e2 === -1) throw new Error("Gemini returned no JSON object. Reply was: " + (c.slice(0, 80) || "(empty)"));
-    var parsed;
-    try { parsed = JSON.parse(c.slice(s, e2+1)); }
-    catch (jerr) { throw new Error("Gemini returned malformed JSON: " + jerr.message); }
-    if (!parsed || typeof parsed.translation !== "string" || !parsed.translation.trim()) {
-      throw new Error("Gemini did not provide a translation for this word");
+    var data = await wiktTryFetch(clean);
+    if (!data && clean.toLowerCase() !== clean) {
+      data = await wiktTryFetch(clean.toLowerCase());
     }
-
-    // Overlay Wiktionary's Russian definition if we got one
-    var wiktDef = await wiktPromise;
-    if (wiktDef) {
-      parsed.definitionRu = wiktDef;
-      parsed.definitionSource = "wiktionary";
+    // If we landed on an inflected form, resolve to the lemma for a cleaner entry.
+    if (data && data.isForm && data.lemma && data.lemma.toLowerCase() !== clean.toLowerCase()) {
+      var lemmaData = await wiktTryFetch(data.lemma);
+      if (lemmaData) data = lemmaData;
     }
+    if (!data || (!data.translation && !data.definitionRu)) {
+      throw new Error("No dictionary entry found for \"" + clean + "\" on Wiktionary.");
+    }
+    data.definitionSource = "wiktionary";
 
     if (typeof window !== "undefined" && window.WIKT_DEBUG) {
-      console.log("[def]", clean, "→", parsed);
+      console.log("[def]", clean, "→", data);
     }
 
-    return parsed;
+    return data;
   };
 
   // In Read-without-AI mode, clicking a Russian word jumps TTS to that word and reads onward.
@@ -6293,16 +6161,14 @@ export default function App() {
       // Try the е↔ё variants automatically before giving up — but only on errors
       // that suggest the word itself was the problem (not rate limits / auth).
       var rawMsg = (err && err.message) || "Unknown error";
-      var likelyRateLimit = /Too many|rate.?limit|quota|429|HTTP 429|exhausted/i.test(rawMsg);
-      var likelyAuth      = /session|sign|approval|401|403/i.test(rawMsg);
-      if (vars.length && !likelyRateLimit && !likelyAuth) {
+      var likelyRateLimit = /Too many|rate.?limit|429|HTTP 429/i.test(rawMsg);
+      if (vars.length && !likelyRateLimit) {
         setPopup(function(p){ return p ? Object.assign({},p,{loading:false,yo:{orig:clean,vars:vars}}) : null; });
       } else {
         // Show a SHORT user-friendly message but the underlying cause too, so we
-        // can tell rate-limit issues from JSON-parse issues from bad-word issues.
+        // can tell rate-limit issues from "not in Wiktionary" from bad-word issues.
         var msg;
-        if (likelyRateLimit)      msg = 'Daily AI limit reached — try again later, or raise the GEMINI_MODEL quota.';
-        else if (likelyAuth)      msg = 'Sign-in required. Sign out and back in, then retry.';
+        if (likelyRateLimit)      msg = 'Wiktionary is temporarily rate-limiting lookups — try again in a moment.';
         else                       msg = 'Could not define "' + clean + '" — ' + rawMsg;
         setPopup(function(p){ return p ? Object.assign({},p,{loading:false,error:msg}) : null; });
       }
@@ -7802,43 +7668,6 @@ export default function App() {
                     setVoice(v); stopTTS(); setTtsErr("");
                     // Speak a short test phrase so the user immediately knows if the voice works.
                     setTimeout(function() {
-                      // Cloud voice — fetch from /api/tts and play as audio.
-                      if (v._cloud) {
-                        fetch("/api/tts", {
-                          method: "POST",
-                          headers: { "Content-Type": "application/json" },
-                          body: JSON.stringify({ text: "Привет! Я твой голос.", voice: v._azureVoice, rate: 0 }),
-                        }).then(function(r) {
-                          if (!r.ok) {
-                            return r.json().then(function(j) {
-                              var msg = j.error || ("HTTP " + r.status);
-                              if (j.azureStatus) msg += " (Azure " + j.azureStatus + ")";
-                              if (j.hint) msg += " — " + j.hint;
-                              else if (j.azureDetail) msg += " — detail: " + j.azureDetail;
-                              throw new Error(msg);
-                            }, function() {
-                              throw new Error("HTTP " + r.status);
-                            });
-                          }
-                          return r.blob();
-                        }).then(function(blob) {
-                          var audio = new Audio(URL.createObjectURL(blob));
-                          cloudAudioRef.current = audio;
-                          audio.onended = function(){
-                            if (cloudAudioRef.current === audio) {
-                              try { URL.revokeObjectURL(audio.src); } catch(e) {}
-                              cloudAudioRef.current = null;
-                            }
-                          };
-                          var p = audio.play();
-                          if (p && typeof p.catch === "function") {
-                            p.catch(function(e){ setTtsErr("Audio blocked: " + (e.message || e)); });
-                          }
-                        }).catch(function(err) {
-                          setTtsErr("Cloud voice test failed: " + (err.message || err));
-                        });
-                        return;
-                      }
                       // Local voice path — original speechSynthesis test
                       var u = new SpeechSynthesisUtterance("Привет! Я твой голос.");
                       u.lang = "ru-RU"; u.voice = v; u.rate = 0.9;
@@ -10371,8 +10200,9 @@ export default function App() {
                           {exData && exData.source && <div style={{fontSize:13,color:"rgba(42,31,20,.5)",marginTop:4}}>{exData.source}</div>}
                         </div>
                         <div style={{display:"flex",flexDirection:"column",gap:14}}>
-                          {/* Vocabulary — live AI quiz on this chapter's verbs & nouns */}
-                          {!noAIMode && (
+                          {/* Vocabulary — live AI quiz on this chapter's verbs & nouns.
+                              Disabled: this called Gemini/Anthropic live, which cost money. */}
+                          {false && (
                           <button onClick={startVocabQuiz}
                             style={{background:"rgba(90,120,150,.1)",border:"1px solid rgba(90,120,150,.4)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
                             onMouseOver={function(e){ e.currentTarget.style.background = "rgba(90,120,150,.16)"; }}
@@ -10761,17 +10591,9 @@ export default function App() {
                     </div>
                     <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>Quick recall test. Each question shows a Russian word with 4 English meaning options (from same-pos vocabulary).</p>
                   </button>
-                  {/* Chat Practice option */}
-                  <button onClick={startVocabChat}
-                    style={{background:"rgba(90,133,86,.08)",border:"1px solid rgba(90,133,86,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
-                    onMouseOver={function(e){ e.currentTarget.style.background = "rgba(90,133,86,.14)"; }}
-                    onMouseOut={function(e){ e.currentTarget.style.background = "rgba(90,133,86,.08)"; }}>
-                    <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
-                      <span style={{fontSize:24}}>💬</span>
-                      <span style={{fontSize:18,fontWeight:600,color:"#2f5a2a",fontFamily:"'Playfair Display',serif"}}>Chat Practice</span>
-                    </div>
-                    <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>Open-ended conversation. The AI uses each saved word in a Russian sentence and asks a question about it — you reply naturally.</p>
-                  </button>
+                  {/* Chat Practice (live AI conversation) removed — it called
+                      Gemini/Anthropic and cost money. Multiple Choice Quiz above
+                      is the free, static replacement. */}
                 </div>
               </>
             ) : (
