@@ -9822,7 +9822,7 @@ export default function App() {
                       </div>
                       {wbSel && (
                         <div style={{fontSize:13,fontStyle:"italic",color:"rgba(0,0,0,.6)",textAlign:"center"}}>
-                          {wbCur.card.example_ru} <span style={{opacity:.7}}>— {wbCur.card.example_en}</span>
+                          {wbCur.card.example_ru && <span>{wbCur.card.example_ru} <span style={{opacity:.7}}>— {wbCur.card.example_en}</span></span>}
                           {wbJustMastered === wbCur.card.id && <div style={{color:"#5a965a",fontWeight:600,marginTop:6,fontStyle:"normal"}}>✓ Mastered — moved out of rotation!</div>}
                         </div>
                       )}
