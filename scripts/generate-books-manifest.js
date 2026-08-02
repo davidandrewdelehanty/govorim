@@ -53,7 +53,7 @@ const FOLDER_TO_CATEGORY = {
 };
 
 // Render order in the picker (must match the App.jsx CATEGORIES list).
-const CATEGORY_ORDER = ["Works", "Song Lyrics", "Poetry"];
+const CATEGORY_ORDER = ["Works", "Song Lyrics", "Poetry", "Spectacle", "Speeches"];
 
 // 1. Load any existing manifest so we keep manual metadata edits.
 let existing = [];
