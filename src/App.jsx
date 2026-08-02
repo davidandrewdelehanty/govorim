@@ -2907,7 +2907,7 @@ export default function App() {
   // wbDistractors: blocks/distractors.json, pos -> pool of English glosses
   //   (pooled across the WHOLE bank, not just one block, so every block has
   //   enough same-part-of-speech distractors for a 4-option question).
-  // wbProgress: persisted map cardId -> {streak, mastered}. A card needs 10
+  // wbProgress: persisted map cardId -> {streak, mastered}. A card needs 3
   //   CONSECUTIVE correct answers to be mastered (a miss resets the streak to
   //   0); "I already know this word" masters it instantly. wbBlockNum is the
   //   1-based block the user is currently working through; the next block
@@ -4725,8 +4725,8 @@ export default function App() {
     setWbScreen("quiz");
   };
 
-  // A wrong answer resets the streak to 0; a card needs 10 CONSECUTIVE right
-  // answers to be mastered and drop out of rotation (Dave's rule, confirmed).
+  // A wrong answer resets the streak to 0; a card needs 3 CONSECUTIVE right
+  // answers (no mistakes in between) to be mastered and drop out of rotation.
   var wbAnswer = function(opt) {
     if (!wbCur || wbSel) return;
     setWbSel(opt);
@@ -4734,7 +4734,7 @@ export default function App() {
     var right = opt === wbCur.correct;
     var st = wbProgress[card.id] || { streak: 0, mastered: false };
     var streak = right ? st.streak + 1 : 0;
-    var mastered = streak >= 10;
+    var mastered = streak >= 3;
     var newProgress = Object.assign({}, wbProgress);
     newProgress[card.id] = { streak: streak, mastered: mastered };
     setWbProgress(newProgress);
@@ -4748,12 +4748,12 @@ export default function App() {
     }, right ? 900 : 1600);
   };
 
-  // "I already know this word" — instant mastery, skips the 10-in-a-row grind.
+  // "I already know this word" — instant mastery, skips the 3-in-a-row grind.
   var wbKnowIt = function() {
     if (!wbCur) return;
     var card = wbCur.card;
     var newProgress = Object.assign({}, wbProgress);
-    newProgress[card.id] = { streak: 10, mastered: true };
+    newProgress[card.id] = { streak: 3, mastered: true };
     setWbProgress(newProgress);
     setWbSel(null);
     setWbJustMastered(null);
@@ -9806,7 +9806,7 @@ export default function App() {
                         <button className="ttsbtn" onClick={function(){ speakMsg(speakText, "wb-" + wbCur.card.id); }} title="Listen">🔊</button>
                       </div>
                       <div style={{fontSize:11,opacity:.55,textTransform:"uppercase",letterSpacing:.5}}>
-                        {wbCur.card.pos}{wbCur.card.aspectPair ? " · aspect pair" : ""} · {curStreak}/10 correct in a row
+                        {wbCur.card.pos}{wbCur.card.aspectPair ? " · aspect pair" : ""} · {curStreak}/3 correct in a row
                       </div>
                       <div style={{width:"100%",display:"flex",flexDirection:"column",gap:8}}>
                         {wbCur.options.map(function(opt, oi) {
