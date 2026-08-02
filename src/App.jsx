@@ -2414,6 +2414,18 @@ async function parseFb2(buffer, options) {
       chapters[0].text = vimIntro + "\n\n" + chapters[0].text;
     }
   }
+  // The narrator reads a short French line ("Eh bien, mon prince.") then
+  // jumps straight to the Russian translation — but the French sentence has
+  // several stray Russian words embedded in it (поместья, мой, верный, раб)
+  // that are not actually spoken as separate words, so the aligner was
+  // latching onto them as false early anchors. Mark the real highlight
+  // start at "Ну, князь" (the start of the spoken Russian) so nothing
+  // before it is even a tokenization candidate. The French text itself is
+  // left untouched for display — it simply never highlights or is clickable.
+  if (/Война и мир/i.test(bookTitle) && chapters.length > 0) {
+    var vimHlAnchor = chapters[0].text.indexOf("Ну, князь");
+    if (vimHlAnchor !== -1) chapters[0].highlightStartOffset = vimHlAnchor;
+  }
   // Anna Karenina's FB2 source has a spurious chapter break in the middle
   // of Part 4 Chapter 5 (the lawyer office scene). The narrator reads it as
   // one continuous chapter; the book actually has 239 chapters, not 240.
@@ -3397,11 +3409,15 @@ export default function App() {
   var normWordForAlign = function(s) {
     return String(s || "").toLowerCase().replace(/ё/g, "е").replace(/[^а-яa-z0-9]/g, "");
   };
-  var buildWordTimeline = function(chapterText, wordTimings) {
+  var buildWordTimeline = function(chapterText, wordTimings, highlightStartOffset) {
     if (!chapterText || !wordTimings || !wordTimings.length) { wordTimelineRef.current = []; return; }
     // Book words: Russian letter runs, keyed by absolute char offset (== data-rw-start).
-    var B = [], re = /[а-яёА-ЯЁ]+/g, m;
-    while ((m = re.exec(chapterText)) !== null) B.push({ start: m.index, norm: normWordForAlign(m[0]) });
+    var B = [], re = /[а-яёА-ЯЁ]+|\d+/g, m;
+    re.lastIndex = highlightStartOffset > 0 ? highlightStartOffset : 0;
+    while ((m = re.exec(chapterText)) !== null) {
+      if (/\d/.test(m[0])) B.push({ start: m.index, norm: m[0], isNumeral: true });
+      else B.push({ start: m.index, norm: normWordForAlign(m[0]) });
+    }
     // Transcript words with their times.
     var T = [];
     for (var wi = 0; wi < wordTimings.length; wi++) {
@@ -3429,6 +3445,89 @@ export default function App() {
       return res;
     };
 
+    // ── Russian number-word recognizer ────────────────────────────────────
+    // A digit run in the book text (e.g. "1805") has no direct transcript
+    // counterpart — the narrator speaks it as a run of declined number words
+    // ("тысяча восемьсот пятого"), so plain word-for-word matching can never
+    // align it. These tables map the common cardinal AND ordinal declined
+    // forms of Russian number words to their numeric value. Not exhaustive of
+    // every possible declension, but covers the forms that actually occur in
+    // narrated prose (years, ages, counts, dates).
+    var NUM_UNITS = {
+      "один":1,"одна":1,"одно":1,"одного":1,"одной":1,"одному":1,"одним":1,"одном":1,"одну":1,
+      "первый":1,"первого":1,"первому":1,"первым":1,"первом":1,"первая":1,"первой":1,"первую":1,"первое":1,
+      "два":2,"две":2,"двух":2,"двум":2,"двумя":2,
+      "второй":2,"второго":2,"второму":2,"вторым":2,"втором":2,"вторая":2,"вторую":2,"второе":2,
+      "три":3,"трех":3,"трёх":3,"трем":3,"трём":3,"тремя":3,
+      "третий":3,"третьего":3,"третьему":3,"третьим":3,"третьем":3,"третья":3,"третьей":3,"третью":3,"третье":3,
+      "четыре":4,"четырех":4,"четырёх":4,"четырем":4,"четырём":4,"четырьмя":4,
+      "четвертый":4,"четвёртый":4,"четвертого":4,"четвёртого":4,"четвертому":4,"четвёртому":4,"четвертым":4,"четвёртым":4,"четвертом":4,"четвёртом":4,"четвертая":4,"четвёртая":4,"четвертой":4,"четвёртой":4,"четвертое":4,"четвёртое":4,
+      "пять":5,"пяти":5,"пятью":5,
+      "пятый":5,"пятого":5,"пятому":5,"пятым":5,"пятом":5,"пятая":5,"пятой":5,"пятую":5,"пятое":5,
+      "шесть":6,"шести":6,"шестью":6,
+      "шестой":6,"шестого":6,"шестому":6,"шестым":6,"шестом":6,"шестая":6,"шестую":6,"шестое":6,
+      "семь":7,"семи":7,
+      "седьмой":7,"седьмого":7,"седьмому":7,"седьмым":7,"седьмом":7,"седьмая":7,"седьмую":7,"седьмое":7,
+      "восемь":8,"восьми":8,"восемью":8,"восьмью":8,
+      "восьмой":8,"восьмого":8,"восьмому":8,"восьмым":8,"восьмом":8,"восьмая":8,"восьмую":8,"восьмое":8,
+      "девять":9,"девяти":9,"девятью":9,
+      "девятый":9,"девятого":9,"девятому":9,"девятым":9,"девятом":9,"девятая":9,"девятой":9,"девятую":9,"девятое":9
+    };
+    var NUM_TEENS = {
+      "десять":10,"десяти":10,"десятью":10,
+      "десятый":10,"десятого":10,"десятому":10,"десятым":10,"десятом":10,"десятая":10,"десятой":10,"десятую":10,"десятое":10,
+      "одиннадцать":11,"одиннадцати":11,"одиннадцатый":11,"одиннадцатого":11,"одиннадцатой":11,
+      "двенадцать":12,"двенадцати":12,"двенадцатый":12,"двенадцатого":12,"двенадцатой":12,
+      "тринадцать":13,"тринадцати":13,"тринадцатый":13,"тринадцатого":13,"тринадцатой":13,
+      "четырнадцать":14,"четырнадцати":14,"четырнадцатый":14,"четырнадцатого":14,"четырнадцатой":14,
+      "пятнадцать":15,"пятнадцати":15,"пятнадцатый":15,"пятнадцатого":15,"пятнадцатой":15,
+      "шестнадцать":16,"шестнадцати":16,"шестнадцатый":16,"шестнадцатого":16,"шестнадцатой":16,
+      "семнадцать":17,"семнадцати":17,"семнадцатый":17,"семнадцатого":17,"семнадцатой":17,
+      "восемнадцать":18,"восемнадцати":18,"восемнадцатый":18,"восемнадцатого":18,"восемнадцатой":18,
+      "девятнадцать":19,"девятнадцати":19,"девятнадцатый":19,"девятнадцатого":19,"девятнадцатой":19
+    };
+    var NUM_TENS = {
+      "двадцать":20,"двадцати":20,"двадцатый":20,"двадцатого":20,"двадцатой":20,
+      "тридцать":30,"тридцати":30,"тридцатый":30,"тридцатого":30,"тридцатой":30,
+      "сорок":40,"сорока":40,"сороковой":40,"сорокового":40,"сороковому":40,
+      "пятьдесят":50,"пятидесяти":50,"пятидесятый":50,"пятидесятого":50,"пятидесятой":50,
+      "шестьдесят":60,"шестидесяти":60,"шестидесятый":60,"шестидесятого":60,"шестидесятой":60,
+      "семьдесят":70,"семидесяти":70,"семидесятый":70,"семидесятого":70,"семидесятой":70,
+      "восемьдесят":80,"восьмидесяти":80,"восьмидесятый":80,"восьмидесятого":80,"восьмидесятой":80,
+      "девяносто":90,"девяноста":90,"девяностый":90,"девяностого":90,"девяностой":90
+    };
+    var NUM_HUNDREDS = {
+      "сто":100,"ста":100,"сотый":100,"сотого":100,"сотой":100,
+      "двести":200,"двухсот":200,"двухсотый":200,"двухсотого":200,
+      "триста":300,"трехсот":300,"трёхсот":300,"трехсотый":300,"трёхсотый":300,"трехсотого":300,"трёхсотого":300,
+      "четыреста":400,"четырехсот":400,"четырёхсот":400,"четырехсотый":400,"четырёхсотый":400,
+      "пятьсот":500,"пятисот":500,"пятисотый":500,"пятисотого":500,
+      "шестьсот":600,"шестисот":600,"шестисотый":600,"шестисотого":600,
+      "семьсот":700,"семисот":700,"семисотый":700,"семисотого":700,
+      "восемьсот":800,"восьмисот":800,"восьмисотый":800,"восьмисотого":800,
+      "девятьсот":900,"девятисот":900,"девятисотый":900,"девятисотого":900
+    };
+    var NUM_THOUSAND = { "тысяча":1,"тысячи":1,"тысяч":1,"тысячу":1,"тысячей":1 };
+    // Try to consume a maximal run of number-words starting at T[j] and check
+    // whether the value they spell out equals `target` (a digit string from
+    // the book text). Returns the word count consumed on an exact match, else 0.
+    var tryMatchNumeral = function(target, j) {
+      var targetNum = parseInt(target, 10);
+      if (!isFinite(targetNum)) return 0;
+      var total = 0, group = 0, consumed = 0, sawAny = false;
+      for (var w = j; w < T.length && consumed < 8; w++) {
+        var word = T[w].norm;
+        if (NUM_THOUSAND[word]) { total += (group || 1) * 1000; group = 0; sawAny = true; consumed++; continue; }
+        if (NUM_HUNDREDS[word] !== undefined) { group += NUM_HUNDREDS[word]; sawAny = true; consumed++; continue; }
+        if (NUM_TENS[word] !== undefined) { group += NUM_TENS[word]; sawAny = true; consumed++; continue; }
+        if (NUM_TEENS[word] !== undefined) { group += NUM_TEENS[word]; sawAny = true; consumed++; continue; }
+        if (NUM_UNITS[word] !== undefined) { group += NUM_UNITS[word]; sawAny = true; consumed++; continue; }
+        break;
+      }
+      if (!sawAny) return 0;
+      var finalTotal = total + group;
+      return finalTotal === targetNum ? consumed : 0;
+    };
     var SMALL = 14;        // cheap local diamond: ordinary word-to-word drift.
     var BOOK_SCAN = 600;   // how far ahead in the book we hunt for an anchor.
     var MAX_ANCHOR_OCC = 8;// only anchor on reasonably rare words (avoid "и" etc).
@@ -3498,6 +3597,14 @@ export default function App() {
         out.push({ begin: T[j].begin, end: T[j].end, start: B[i].start, bi: i, tj: j });
         i++; j++;
         continue;
+      }
+      if (B[i].isNumeral) {
+        var numConsumed = tryMatchNumeral(B[i].norm, j);
+        if (numConsumed > 0) {
+          out.push({ begin: T[j].begin, end: T[j + numConsumed - 1].end, start: B[i].start, bi: i, tj: j });
+          i++; j += numConsumed;
+          continue;
+        }
       }
       var r = localResync(i, j);
       if (r) { i += r.a; j += r.b; continue; }
@@ -4815,7 +4922,7 @@ export default function App() {
     // Precompute the whole-chapter word alignment (chapters render single-page,
     // so data-rw-start offsets are chapter-absolute and match this timeline).
     if (audiobookData && audiobookData.word_timings && curChapter.text) {
-      buildWordTimeline(curChapter.text, audiobookData.word_timings);
+      buildWordTimeline(curChapter.text, audiobookData.word_timings, curChapter.highlightStartOffset || 0);
     } else {
       wordTimelineRef.current = [];
     }
