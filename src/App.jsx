@@ -2926,10 +2926,6 @@ export default function App() {
   var [popup, setPopup]   = useState(null);
   var [popXY, setPopXY]   = useState({top:100,left:16});
   var popRef = useRef(null);
-  // Word tap menu: clicking a word selects it (block highlight) and opens a
-  // small bubble menu ("Define" / "Start audio here") anchored to the word.
-  var [wordMenu, setWordMenu] = useState(null);  // {word,clean,charPosition,start,rect,top,left}
-  var wmRef = useRef(null);
   // After the popup renders, clamp it so it never extends below the viewport.
   // The initial position is an estimate; this corrects it using actual height.
   useEffect(function() {
@@ -4683,6 +4679,21 @@ export default function App() {
     setExQuestions(qs); setExIdx(0); setExSelected(null); setExScore(0); setExCat("reading");
   };
 
+  // Start (or restart) the sentence-highlight quiz: read an English prompt, pick
+  // the sentence in the passage that answers it. correct[] holds the 0-based
+  // index/indices of the answer sentence(s); we shuffle question order only (not
+  // the sentences, so those indices stay valid).
+  var startHighlightQuiz = function() {
+    if (!exData || !exData.highlight || !exData.highlight.length) return;
+    var shuffle = function(arr) {
+      var a = arr.slice();
+      for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
+      return a;
+    };
+    var qs = shuffle(exData.highlight).map(function(q){ return Object.assign({}, q); });
+    setExQuestions(qs); setExIdx(0); setExSelected(null); setExScore(0); setExCat("highlight");
+  };
+
   // ── Frequency Vocab Bank quiz logic ─────────────────────────────────────
   var wbShuffle = function(arr) {
     var a = arr.slice();
@@ -4804,7 +4815,7 @@ export default function App() {
     try {
       var text = String((curChapter && curChapter.text) || "").replace(/\s+/g, " ").trim().slice(0, 6000);
       if (!text) throw new Error("No chapter text to draw vocabulary from.");
-      var prompt = 'From the Russian passage below, choose the 14-18 most useful VERBS and NOUNS for a learner to know. '
+      var prompt = 'From the Russian passage below, choose 14-18 of the more DIFFICULT, less-common VERBS and NOUNS — advanced (B2-C2) vocabulary an intermediate learner would most likely NOT already know and would need to look up. Deliberately skip everyday/basic words; favour rarer, more sophisticated words that actually occur in the passage. '
         + COMMON_WORDS_PROMPT_RULE + ' '
         + 'For each, return: the dictionary form ("ru" — infinitive for verbs, nominative singular for nouns), the part of speech ("pos": "noun" or "verb"), the correct English meaning ("en"; for verbs use "to ..."), '
         + 'exactly 3 plausible-but-WRONG English meanings of the SAME part of speech ("distractors"), and "context": one short sentence copied VERBATIM from the passage where the word appears, with the word (in whatever form it appears) wrapped in **double asterisks**. '
@@ -5168,13 +5179,7 @@ export default function App() {
   }, [vocab, tips, auth.isSignedIn, syncedFromServer]);
 
   useEffect(function() {
-    var h = function(e) {
-      if (popRef.current && !popRef.current.contains(e.target)) setPopup(null);
-      // Dismiss the word menu when clicking anywhere that isn't the menu itself
-      // or a reading word (clicking another word should re-open it there).
-      if (wmRef.current && !wmRef.current.contains(e.target) &&
-          !(e.target.closest && e.target.closest(".rw"))) setWordMenu(null);
-    };
+    var h = function(e) { if (popRef.current && !popRef.current.contains(e.target)) setPopup(null); };
     document.addEventListener("mousedown", h);
     return function() { document.removeEventListener("mousedown", h); };
   }, []);
@@ -6365,56 +6370,6 @@ export default function App() {
       setPopup(function(p){ return p ? Object.assign({},p,{data:data,loading:false}) : null; });
     } catch(err) {
       setPopup(function(p){ return p ? Object.assign({},p,{loading:false,error:'Could not define "'+word+'"'}) : null; });
-    }
-  };
-
-  // Clicking a reading word: highlight just that word and open the bubble menu
-  // ("Define" / "Start audio here") anchored under it. Replaces the old
-  // click-to-define / click-to-read behaviour with an explicit choice.
-  var selectWord = function(word, e, charPosition) {
-    e.stopPropagation();
-    var clean = word.replace(/[^а-яёА-ЯЁ]/g, "");
-    if (!clean || clean.length < 2) return;
-    var rect = e.currentTarget.getBoundingClientRect();
-    var MW = 250;
-    var left = rect.left;
-    if (left + MW > window.innerWidth - 12) left = window.innerWidth - MW - 12;
-    if (left < 12) left = 12;
-    setPopup(null);
-    setWordMenu({
-      word: word, clean: clean,
-      charPosition: (typeof charPosition === "number" ? charPosition : null),
-      start: charPosition,
-      rect: { top: rect.top, bottom: rect.bottom, left: rect.left, right: rect.right, width: rect.width, height: rect.height },
-      top: Math.max(8, rect.bottom + 6), left: left
-    });
-  };
-
-  // Menu action → run the normal definition popup for the selected word,
-  // reusing defWord by handing it a synthetic event that reports the word's rect.
-  var wmDefine = function() {
-    var m = wordMenu; if (!m) return;
-    setWordMenu(null);
-    var fakeE = { stopPropagation: function(){}, currentTarget: { getBoundingClientRect: function(){ return m.rect; } } };
-    defWord(m.word, fakeE, m.charPosition);
-  };
-
-  // Menu action → start playback from the clicked word. In audiobook mode we
-  // jump the narrator to that word's sentence; otherwise the TTS voice reads on.
-  var wmPlayHere = function() {
-    var m = wordMenu; if (!m) return;
-    setWordMenu(null);
-    var cp = m.charPosition;
-    if (typeof cp !== "number") return;
-    if (audiobookModeRef.current && audiobookDataRef.current) {
-      var pageOffset = currentPage ? cp - currentPage.startChar : cp;
-      var sIdx = findSentenceIdxForPageOffset(pageOffset);
-      if (sIdx < 0) sIdx = 0;
-      sentenceOverrideRef.current = null;
-      setAudioIdx(sIdx); audioIdxRef.current = sIdx;
-      playAudiobookFromSentence(sIdx);
-    } else {
-      jumpTTS(cp);
     }
   };
 
@@ -7617,15 +7572,17 @@ export default function App() {
                     var clickPlay;
                     if (inName) {
                       clickPlay = undefined;
+                    } else if (noAIMode) {
+                      clickPlay = (function(pos){ return function(e){ e.stopPropagation(); jumpTTS(pos); }; })(tk.start);
                     } else {
-                      clickPlay = (function(w, pos){ return function(e){ selectWord(w, e, pos); }; })(tk.text, tk.start);
+                      clickPlay = (function(w, pos){ return function(e){ defWord(w, e, pos); }; })(tk.text, tk.start);
                     }
                     elems.push(
                       <span key={i}
-                        className={"rw" + (hl ? " rwhl" : "") + (wordMenu && wordMenu.start === tk.start ? " rwsel" : "") + (inName ? " play-speaker" : "")}
+                        className={"rw" + (hl ? " rwhl" : "") + (inName ? " play-speaker" : "")}
                         data-rw-start={tk.start}
                         onClick={clickPlay}
-                        title={inName ? "" : "Click for options"}>{tk.text}</span>
+                        title={inName ? "" : (noAIMode ? "Click to read from here" : "Click to define")}>{tk.text}</span>
                     );
                     // Just after the speaker name finishes, insert the em-dash separator.
                     if (inName && (i+1 >= para.length || para[i+1].end > speakerNameEnd)) {
@@ -7646,13 +7603,15 @@ export default function App() {
               return para.map(function(tk, i) {
                 var hl = tk.isRu && tk.start === activeStart;
                 if (tk.isRu) {
-                  var clickReg = (function(w, pos){ return function(e){ selectWord(w, e, pos); }; })(tk.text, tk.start);
+                  var clickReg = noAIMode
+                    ? (function(pos){ return function(e){ e.stopPropagation(); jumpTTS(pos); }; })(tk.start)
+                    : (function(w, pos){ return function(e){ defWord(w, e, pos); }; })(tk.text, tk.start);
                   return (
                     <span key={i}
-                      className={"rw" + (hl ? " rwhl" : "") + (wordMenu && wordMenu.start === tk.start ? " rwsel" : "")}
+                      className={"rw" + (hl ? " rwhl" : "")}
                       data-rw-start={tk.start}
                       onClick={clickReg}
-                      title="Click for options">{tk.text}</span>
+                      title={noAIMode ? "Click to read from here" : "Click to define"}>{tk.text}</span>
                   );
                 }
                 // Bible verse numbers: token is just a number (e.g. "1", "23")
@@ -8009,12 +7968,6 @@ export default function App() {
         .rw{cursor:pointer;border-bottom:1px dotted rgba(42,31,20,.18);transition:color .15s,background .12s}
         .rw:hover{color:#c4955a;border-bottom-color:#c4955a}
         .rwhl{background:rgba(196,149,90,.18);color:#000;border-bottom-color:#c4955a;border-radius:3px;padding:1px 2px}
-        /* Selected word (tap menu open): solid block highlight, like the highlight exercise. */
-        .rwsel{background:#c4955a!important;color:#fff!important;border-bottom-color:transparent!important;border-radius:3px;padding:1px 3px}
-        /* Word tap menu — bubbles anchored under the tapped word. */
-        .wmenu{position:fixed;z-index:70;display:flex;gap:8px}
-        .wmbub{padding:8px 15px;border-radius:22px;font-size:14px;font-family:'Crimson Pro',serif;cursor:pointer;background:#fffdf8;border:1px solid rgba(196,149,90,.55);color:#7a4a1e;box-shadow:0 4px 14px rgba(42,31,20,.22);white-space:nowrap;transition:background .12s,transform .06s;line-height:1}
-        .wmbub:hover{background:rgba(196,149,90,.16)} .wmbub:active{transform:translateY(1px)}
         .word-active{background:rgba(196,149,90,.34);color:#fff;border-radius:3px;padding:1px 2px;box-shadow:0 0 0 1px rgba(196,149,90,.55);transition:background .08s ease}
         /* Dual-language Bible: English translation shown under each Russian verse */
         .bible-en{display:block;margin-top:3px;color:rgba(42,31,20,.5);font-size:0.9em;font-style:italic;line-height:1.5;letter-spacing:.005em}
@@ -10437,9 +10390,8 @@ export default function App() {
                           {exData && exData.source && <div style={{fontSize:13,color:"rgba(42,31,20,.5)",marginTop:4}}>{exData.source}</div>}
                         </div>
                         <div style={{display:"flex",flexDirection:"column",gap:14}}>
-                          {/* Vocabulary — live AI quiz on this chapter's verbs & nouns.
-                              Disabled: this called Gemini/Anthropic live, which cost money. */}
-                          {false && (
+                          {/* Vocabulary — live AI quiz on this chapter's harder verbs & nouns. */}
+                          {curChapter && curChapter.text && (
                           <button onClick={startVocabQuiz}
                             style={{background:"rgba(90,120,150,.1)",border:"1px solid rgba(90,120,150,.4)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
                             onMouseOver={function(e){ e.currentTarget.style.background = "rgba(90,120,150,.16)"; }}
@@ -10448,7 +10400,7 @@ export default function App() {
                               <span style={{fontSize:24}}>🗂️</span>
                               <span style={{fontSize:18,fontWeight:600,color:"#33507a",fontFamily:"'Playfair Display',serif"}}>Vocabulary</span>
                             </div>
-                            <p style={{fontSize:13,color:"rgba(42,31,20,.55)",margin:0,lineHeight:1.5}}>Key verbs and nouns from this chapter, shown in a sentence for context. Get each right twice to clear it.</p>
+                            <p style={{fontSize:13,color:"rgba(42,31,20,.55)",margin:0,lineHeight:1.5}}>The harder, less-common verbs and nouns from this chapter, each shown in a sentence for context. Get each right twice to clear it.</p>
                           </button>
                           )}
                           {/* Grammar (only when a prebuilt exercise set exists) */}
@@ -10480,6 +10432,19 @@ export default function App() {
                           </button>
                             );
                           })()}
+                          {/* Sentence highlight — pick the sentence that answers an English prompt */}
+                          {exData.highlight && exData.highlight.length ? (
+                          <button onClick={startHighlightQuiz}
+                            style={{background:"rgba(120,110,170,.1)",border:"1px solid rgba(120,110,170,.4)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
+                            onMouseOver={function(e){ e.currentTarget.style.background = "rgba(120,110,170,.16)"; }}
+                            onMouseOut={function(e){ e.currentTarget.style.background = "rgba(120,110,170,.1)"; }}>
+                            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
+                              <span style={{fontSize:24}}>🖍️</span>
+                              <span style={{fontSize:18,fontWeight:600,color:"#4a3f7a",fontFamily:"'Playfair Display',serif"}}>Highlight — Find the sentence</span>
+                            </div>
+                            <p style={{fontSize:13,color:"rgba(42,31,20,.55)",margin:0,lineHeight:1.5}}>{exData.highlight.length} questions. Pick the sentence in the passage that answers each prompt.</p>
+                          </button>
+                          ) : null}
                           </>)}
                         </div>
                       </div>
@@ -10589,6 +10554,70 @@ export default function App() {
                         <div style={{fontSize:40,marginBottom:12}}>📖</div>
                         <p style={{color:"rgba(42,31,20,.7)",fontSize:15,lineHeight:1.6,maxWidth:440,margin:"0 auto 24px"}}>Reading-comprehension exercises for this passage are coming soon.</p>
                         <button className="btn-g" style={{maxWidth:240}} onClick={function(){ setExCat("menu"); }}>← Back</button>
+                      </div>
+                    )}
+
+                    {/* ── Sentence-highlight quiz ── */}
+                    {exCat === "highlight" && (
+                      <div style={{padding:"14px 4px"}}>
+                        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
+                          <button className="ab" onClick={function(){ setExCat("menu"); }}>← Back</button>
+                          <span style={{fontSize:13,color:"rgba(42,31,20,.5)"}}>Score: {exScore} / {exIdx + (exSelected !== null ? 1 : 0)}</span>
+                        </div>
+                        {exIdx >= exQuestions.length ? (
+                          <div style={{padding:"30px 20px",textAlign:"center"}}>
+                            <div style={{fontSize:48,marginBottom:12}}>{exScore === exQuestions.length ? "🎉" : exScore >= exQuestions.length * 0.7 ? "👏" : "📚"}</div>
+                            <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,color:"#000",marginBottom:8}}>Done!</h2>
+                            <p style={{fontSize:20,color:"#000",marginBottom:6}}>You got <strong style={{color:"#c4955a"}}>{exScore}</strong> of <strong>{exQuestions.length}</strong> correct.</p>
+                            <p style={{fontSize:14,color:"rgba(42,31,20,.5)",marginBottom:28}}>{Math.round(exScore / Math.max(1,exQuestions.length) * 100)}%</p>
+                            <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
+                              <button className="btn-p" style={{maxWidth:200}} onClick={startHighlightQuiz}>Try again</button>
+                              <button className="btn-g" style={{maxWidth:200}} onClick={function(){ setExCat("menu"); }}>Back to exercises</button>
+                            </div>
+                          </div>
+                        ) : (function(){
+                          var q = exQuestions[exIdx];
+                          var answered = exSelected !== null;
+                          var correctSet = q.correct || [];
+                          var pickedRight = answered && correctSet.indexOf(exSelected) !== -1;
+                          return (
+                            <div>
+                              <div style={{fontSize:13,color:"rgba(42,31,20,.5)",marginBottom:14}}>Question {exIdx + 1} of {exQuestions.length}</div>
+                              <div style={{fontSize:16,fontFamily:"'Inter',sans-serif",color:"rgba(42,31,20,.75)",textAlign:"center",lineHeight:1.5,fontWeight:600,maxWidth:560,margin:"0 auto 20px"}}>{q.question}</div>
+                              <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:600,margin:"0 auto"}}>
+                                {(q.sentences || []).map(function(s, i){
+                                  var isCorrect = correctSet.indexOf(i) !== -1;
+                                  var isPicked = exSelected === i;
+                                  var bg = "rgba(42,31,20,.04)", brd = "rgba(42,31,20,.16)", col = "#2a1f14";
+                                  if (answered) {
+                                    if (isCorrect)     { bg = "rgba(90,133,86,.22)"; brd = "rgba(90,133,86,.65)"; col = "#2f5a2a"; }
+                                    else if (isPicked) { bg = "rgba(157,70,48,.16)"; brd = "rgba(157,70,48,.6)"; col = "#9d4630"; }
+                                    else               { col = "rgba(42,31,20,.4)"; }
+                                  }
+                                  return (
+                                    <button key={i} disabled={answered} onClick={function(){
+                                      setExSelected(i);
+                                      if (correctSet.indexOf(i) !== -1) setExScore(function(sc){ return sc + 1; });
+                                    }} style={{background:bg,border:"1px solid "+brd,color:col,padding:"13px 16px",borderRadius:10,fontSize:18,fontFamily:"'Crimson Pro',serif",cursor: answered ? "default" : "pointer",textAlign:"left",lineHeight:1.5,transition:"all .15s"}}>{s}</button>
+                                  );
+                                })}
+                              </div>
+                              {answered && (
+                                <div style={{maxWidth:600,margin:"18px auto 0",background:"rgba(42,31,20,.05)",border:"1px solid rgba(42,31,20,.14)",borderRadius:10,padding:"14px 16px"}}>
+                                  <div style={{fontSize:15,fontWeight:600,color: pickedRight ? "#2f5a2a" : "#9d4630",marginBottom:6}}>{pickedRight ? "✓ Correct" : "✗ Not quite"}</div>
+                                  <div style={{fontSize:14,color:"rgba(42,31,20,.7)",lineHeight:1.55}}>{q.explain}</div>
+                                </div>
+                              )}
+                              {answered && (
+                                <div style={{marginTop:22,textAlign:"center"}}>
+                                  <button className="btn-p" style={{maxWidth:260}} onClick={function(){ setExIdx(function(i){ return i + 1; }); setExSelected(null); }}>
+                                    {exIdx + 1 < exQuestions.length ? "Next →" : "See results"}
+                                  </button>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })()}
                       </div>
                     )}
 
@@ -10997,13 +11026,6 @@ export default function App() {
                 <button className="mconf" onClick={function(){ if(nRu.trim()) addV(nRu.trim(),nEn.trim()); setShowWord(false); }}>Save</button>
               </div>
             </div>
-          </div>
-        )}
-
-        {wordMenu && (
-          <div ref={wmRef} className="wmenu" style={{top:wordMenu.top, left:wordMenu.left}}>
-            {!noAIMode && <button className="wmbub" onClick={wmDefine}>📖 Define</button>}
-            <button className="wmbub" onClick={wmPlayHere}>▶ Start audio here</button>
           </div>
         )}
 
