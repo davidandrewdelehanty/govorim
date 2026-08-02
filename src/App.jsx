@@ -6073,33 +6073,33 @@ export default function App() {
   };
 
   var fetchDef = async function(word) {
-    // AI-free: ru.wiktionary.org is the sole dictionary source. No paid API
-    // calls, no key, no billing. wiktTryFetch/wiktParse (defined near the top
-    // of this file) already return the exact field shape the popup and
-    // formatVocabEntry() expect (translation, definitionRu, partOfSpeech,
-    // aspect, aspectPair, grammar, example, exampleTranslation, lemma).
+    // AI-only: one Gemini call returns translation, a brief Russian
+    // definition, grammar, and an example sentence in a single shot.
+    // No Wiktionary dependency — that was the flaky, unnecessary layer.
     var clean = (word || "").trim();
     if (!clean) throw new Error("Empty word");
 
-    var data = await wiktTryFetch(clean);
-    if (!data && clean.toLowerCase() !== clean) {
-      data = await wiktTryFetch(clean.toLowerCase());
+    var raw = await api(
+      [{role:"user",content:defprompt(clean)}],
+      "You are a Russian-English dictionary. Return a single JSON object only. No markdown. No commentary.",
+      { json: true }
+    );
+    var c = (raw || "").replace(/```[a-z]*\n?/gi,"").replace(/```/g,"").trim();
+    var s = c.indexOf("{"), e2 = c.lastIndexOf("}");
+    if (s === -1 || e2 === -1) throw new Error("Gemini returned no JSON object. Reply was: " + (c.slice(0, 80) || "(empty)"));
+    var parsed;
+    try { parsed = JSON.parse(c.slice(s, e2+1)); }
+    catch (jerr) { throw new Error("Gemini returned malformed JSON: " + jerr.message); }
+    if (!parsed || typeof parsed.translation !== "string" || !parsed.translation.trim()) {
+      throw new Error("Gemini did not provide a translation for this word");
     }
-    // If we landed on an inflected form, resolve to the lemma for a cleaner entry.
-    if (data && data.isForm && data.lemma && data.lemma.toLowerCase() !== clean.toLowerCase()) {
-      var lemmaData = await wiktTryFetch(data.lemma);
-      if (lemmaData) data = lemmaData;
-    }
-    if (!data || (!data.translation && !data.definitionRu)) {
-      throw new Error("No dictionary entry found for \"" + clean + "\" on Wiktionary.");
-    }
-    data.definitionSource = "wiktionary";
+    parsed.definitionSource = "ai";
 
     if (typeof window !== "undefined" && window.WIKT_DEBUG) {
-      console.log("[def]", clean, "→", data);
+      console.log("[def]", clean, "→", parsed);
     }
 
-    return data;
+    return parsed;
   };
 
   // In Read-without-AI mode, clicking a Russian word jumps TTS to that word and reads onward.
