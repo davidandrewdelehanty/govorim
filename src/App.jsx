@@ -2411,9 +2411,7 @@ async function parseFb2(buffer, options) {
   if (/Война и мир/i.test(bookTitle) && chapters.length > 0) {
     var vimIntro = "Лев Николаевич Толстой. Война и мир. Том первый. Часть первая. Глава первая.";
     if (chapters[0].text.indexOf(vimIntro) === -1) {
-      chapters[0].text = vimIntro + "
-
-" + chapters[0].text;
+      chapters[0].text = vimIntro + "\n\n" + chapters[0].text;
     }
   }
   // Anna Karenina's FB2 source has a spurious chapter break in the middle
