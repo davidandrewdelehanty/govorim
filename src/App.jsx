@@ -2414,18 +2414,23 @@ async function parseFb2(buffer, options) {
       chapters[0].text = vimIntro + "\n\n" + chapters[0].text;
     }
   }
-  // The narrator reads a short French line ("Eh bien, mon prince.") then
-  // jumps straight to the Russian translation — but the French sentence has
-  // several stray Russian words embedded in it (поместья, мой, верный, раб)
-  // that are not actually spoken as separate words, so the aligner was
-  // latching onto them as false early anchors. Mark the real highlight
-  // start at "Ну, князь" (the start of the spoken Russian) so nothing
-  // before it is even a tokenization candidate. The French text itself is
-  // left untouched for display — it simply never highlights or is clickable.
-  if (/Война и мир/i.test(bookTitle) && chapters.length > 0) {
-    var vimHlAnchor = chapters[0].text.indexOf("Ну, князь");
-    if (vimHlAnchor !== -1) chapters[0].highlightStartOffset = vimHlAnchor;
-  }
+  // Highlighting for Война и мир intentionally starts at offset 0 — the top of
+  // the injected announcement above — NOT at "Ну, князь". Two reasons:
+  //   1. The narrator SPEAKS the "Лев Николаевич Толстой… Глава первая."
+  //      announcement, so it belongs inside the highlightable region and must
+  //      light up in sync with the audio (the title/chapter info the reader
+  //      expects to follow along).
+  //   2. That announcement matches the transcript word-for-word from position
+  //      zero, giving the aligner a rock-solid anchor chain before it ever
+  //      reaches the tricky French line. An earlier attempt set the start at
+  //      "Ну, князь" to dodge the French sentence's stray Russian words
+  //      (поместья, мой, верный, раб) — but that discarded the position-zero
+  //      anchor, so the cold aligner false-latched onto the common word "и"
+  //      (Война И мир ↔ Генуя И Лукка) and highlighting never landed on
+  //      "Ну, князь". Starting from the announcement, the aligner is already
+  //      synced by the time it reaches the French line, so those stray words
+  //      are simply skipped mid-stream instead of derailing the start.
+  // => leave highlightStartOffset unset (defaults to 0 at the call site).
   // Anna Karenina's FB2 source has a spurious chapter break in the middle
   // of Part 4 Chapter 5 (the lawyer office scene). The narrator reads it as
   // one continuous chapter; the book actually has 239 chapters, not 240.
