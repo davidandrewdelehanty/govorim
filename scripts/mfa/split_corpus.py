@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-split_corpus.py — cut each chapter WAV into short, fragment-aligned segments.
+split_corpus.py — cut each chapter into short, fragment-aligned segments for MFA.
 
 WHY THIS EXISTS
 ---------------
@@ -14,13 +14,15 @@ Cutting each chapter into ~30 s pieces at EXISTING fragment boundaries makes
 every utterance small, so peak RAM drops by orders of magnitude and alignment
 also gets more accurate (no long-range drift).
 
-This is safe because the app's vim/NNN.json files already carry per-fragment
-begin/end times. We only cut in the silence BETWEEN fragments (at the midpoint
-of the gap, with padding), never inside speech.
+This is safe because the app's audio JSONs already carry per-fragment begin/end
+times. We only cut in the silence BETWEEN fragments (at the midpoint of the gap,
+with padding), never inside speech.
 
-INPUTS
-  $WP/corpus/NNN.wav          16 kHz mono WAV, produced by build_corpus.py
-  <json-dir>/NNN.json         app transcript: fragments[].begin/.end/.text/.words
+TWO SOURCE MODES (auto-detected)
+  MP3   read $AUDIO_DIR/**/*.mp3 directly, decoding one chapter at a time.
+        No 8.8 GB intermediate corpus. This is the default when $WP/corpus is
+        empty. Requires ffmpeg. Force with --from-mp3.
+  WAV   read an existing $WP/corpus/NNN.wav built by build_corpus.py.
 
 OUTPUTS
   $WP/seg/bNNN/NNN_pMMM.wav   short audio segments, grouped into align batches
@@ -30,19 +32,20 @@ OUTPUTS
 USAGE
   python split_corpus.py                            # dry run — prints the plan
   python split_corpus.py --build                    # actually cut
-  python split_corpus.py --build --drop-source      # delete each chapter wav
-                                                    #   right after cutting it,
-                                                    #   so disk stays flat
+  python split_corpus.py --build --drop-source      # WAV mode: delete each
+                                                    #   chapter wav after cutting
   python split_corpus.py --build --target=20 --max=30   # even smaller pieces
 
-ENV: REPO, WP   (optional: AUDIO_JSON_DIR)
+ENV: REPO, WP, AUDIO_DIR (for MP3 mode)   optional: AUDIO_JSON_DIR
 """
 import json
 import glob
 import os
 import re
 import shutil
+import subprocess
 import sys
+import tempfile
 import wave
 
 REPO = os.environ.get("REPO", "")
@@ -51,6 +54,7 @@ if not REPO or not WP:
     sys.exit("ERROR: export REPO and WP first (see docs/mfa_alignment_guide.md)")
 
 JSON_DIR = os.environ.get("AUDIO_JSON_DIR", f"{REPO}/public/books/audio/vim")
+AUDIO_DIR = os.environ.get("AUDIO_DIR", "")
 CORPUS = f"{WP}/corpus"
 SEGROOT = f"{WP}/seg"
 SEGMAP = f"{WP}/segmap.json"
@@ -59,6 +63,7 @@ SEGMAP = f"{WP}/segmap.json"
 BUILD = "--build" in sys.argv
 DROP_SOURCE = "--drop-source" in sys.argv
 FORCE = "--force" in sys.argv
+FROM_MP3 = "--from-mp3" in sys.argv
 
 
 def opt(name, default):
@@ -75,18 +80,51 @@ PAD = float(opt("pad", 0.25))              # padding added around each cut
 ONLY = opt("only", "")                     # e.g. --only=001,002,003
 
 only_set = {x.strip() for x in ONLY.split(",") if x.strip()} if ONLY else None
+SR = 16000
 
 
-# ---- helpers ---------------------------------------------------------------
+# ---- source pairing --------------------------------------------------------
+def sortkey(path):
+    """War & Peace deti-online naming -> reading order. Mirrors build_corpus.py."""
+    b = os.path.basename(path).lower()
+    if "avtora" in b or "neskolko-slov" in b:            # author's note = first
+        return (0, 0, 0)
+    m = re.search(r"epilog-chast-(\d+)-glava-(\d+)", b)   # epilogue = after toms
+    if m:
+        return (5, int(m.group(1)), int(m.group(2)))
+    m = re.search(r"tom-(\d+)-chast-(\d+)-glava-(\d+)", b)
+    if m:
+        return (int(m.group(1)), int(m.group(2)), int(m.group(3)))
+    return (99, 99, 99)                                   # unknown -> sorts last
+
+
+def transcripts():
+    return sorted(glob.glob(f"{JSON_DIR}/*.json"),
+                  key=lambda p: int(re.sub(r"\D", "", os.path.basename(p)) or 0))
+
+
+def first_words(jp, n=9):
+    d = json.load(open(jp, encoding="utf-8"))
+    for fr in d.get("fragments", []):
+        t = (fr.get("text") or "").strip()
+        if t:
+            return " ".join(t.split()[:n])
+    return "(empty transcript)"
+
+
+def decode_mp3(mp3, dest):
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", mp3,
+                    "-ac", "1", "-ar", str(SR), dest], check=True)
+
+
+# ---- windowing -------------------------------------------------------------
 def windows_for(fragments):
     """Group consecutive fragments into windows of <= MAX_SEC, aiming at TARGET_SEC.
 
     Never splits a fragment. A single fragment longer than MAX_SEC becomes its
-    own window (nothing we can do without word-level cutting, and those are rare).
+    own window (rare; nothing to do without cutting inside speech).
     """
-    out = []
-    cur = []
-    cur_start = None
+    out, cur, cur_start = [], [], None
     for i, f in enumerate(fragments):
         b, e = f.get("begin"), f.get("end")
         if b is None or e is None:
@@ -95,7 +133,7 @@ def windows_for(fragments):
             cur, cur_start = [i], b
             continue
         span = e - cur_start
-        if span > MAX_SEC or (span >= TARGET_SEC):
+        if span > MAX_SEC or span >= TARGET_SEC:
             out.append(cur)
             cur, cur_start = [i], b
         else:
@@ -108,15 +146,11 @@ def windows_for(fragments):
 def cut_points(fragments, idxs, duration):
     """Start/end seconds for a window, cut at the midpoint of the surrounding gaps."""
     first, last = idxs[0], idxs[-1]
-    b = fragments[first]["begin"]
-    e = fragments[last]["end"]
-
+    b, e = fragments[first]["begin"], fragments[last]["end"]
     prev_end = fragments[first - 1].get("end") if first > 0 else None
     next_beg = fragments[last + 1].get("begin") if last + 1 < len(fragments) else None
-
     start = (prev_end + b) / 2.0 if prev_end is not None and prev_end < b else b - PAD
     end = (e + next_beg) / 2.0 if next_beg is not None and next_beg > e else e + PAD
-
     return max(0.0, start), min(duration, end)
 
 
@@ -128,49 +162,80 @@ def nwords(fragments, idxs):
     return sum(len(fragments[i].get("words") or []) for i in idxs)
 
 
-# ---- main ------------------------------------------------------------------
-wavs = sorted(glob.glob(f"{CORPUS}/*.wav"))
-if not wavs:
-    sys.exit(f"ERROR: no WAVs in {CORPUS} — run build_corpus.py --build first")
+# ---- decide source mode ----------------------------------------------------
+corpus_wavs = sorted(glob.glob(f"{CORPUS}/*.wav"))
+mp3_mode = FROM_MP3 or not corpus_wavs
+
+if mp3_mode:
+    if not AUDIO_DIR:
+        sys.exit("ERROR: no WAVs in %s and AUDIO_DIR is not set.\n"
+                 "  Either export AUDIO_DIR=\"/mnt/c/.../audiobooks/<book>\" to read\n"
+                 "  the MP3s directly (recommended — skips the 8.8 GB intermediate),\n"
+                 "  or run build_corpus.py --build first." % CORPUS)
+    if not shutil.which("ffmpeg"):
+        sys.exit("ERROR: ffmpeg not found — sudo apt-get install -y ffmpeg")
+    mp3s = sorted(glob.glob(f"{AUDIO_DIR}/**/*.mp3", recursive=True), key=sortkey)
+    jsons = transcripts()
+    unknown = [os.path.basename(m) for m in mp3s if sortkey(m) == (99, 99, 99)]
+    print(f"source: MP3 ({len(mp3s)} files in {AUDIO_DIR})")
+    print(f"transcripts: {len(jsons)} in {JSON_DIR}")
+    if unknown:
+        print(f"!! filenames I couldn't parse ({len(unknown)}): {unknown[:6]}")
+    if len(mp3s) != len(jsons) or unknown:
+        sys.exit("Counts don't match (or unparsed names) — fix before building.\n"
+                 "  This pairing is positional; a mismatch means silently wrong timings.")
+    pairs = list(zip(mp3s, jsons))
+    print("\n--- spot-check pairing: first 3, middle 2, last 3 ---")
+    mid = len(pairs) // 2
+    for mp3, jp in pairs[:3] + pairs[mid:mid + 2] + pairs[-3:]:
+        print(f"{os.path.basename(mp3)[:46]:46} -> {os.path.basename(jp):9} : {first_words(jp)}")
+    print("  ^ chapter numbers in the filename should match the paired text.\n")
+    sources = [(os.path.splitext(os.path.basename(jp))[0], mp3, jp) for mp3, jp in pairs]
+else:
+    print(f"source: WAV corpus ({len(corpus_wavs)} files in {CORPUS})")
+    print(f"transcripts: {JSON_DIR}")
+    sources = [(os.path.splitext(os.path.basename(w))[0], w,
+                f"{JSON_DIR}/{os.path.splitext(os.path.basename(w))[0]}.json")
+               for w in corpus_wavs]
 
 if only_set:
-    wavs = [w for w in wavs if os.path.splitext(os.path.basename(w))[0] in only_set]
+    sources = [s for s in sources if s[0] in only_set]
 
-print(f"corpus: {len(wavs)} chapter WAVs in {CORPUS}")
-print(f"transcripts: {JSON_DIR}")
 print(f"target={TARGET_SEC}s  max={MAX_SEC}s  pad={PAD}s  batch-chapters={BATCH_CHAPTERS}")
 print()
 
-plan = []       # (base, wav_path, duration, windows, fragments)
+# ---- plan ------------------------------------------------------------------
+plan, skipped = [], []
 total_segs = 0
 total_secs = 0.0
-skipped = []
 
-for w in wavs:
-    base = os.path.splitext(os.path.basename(w))[0]
-    jp = f"{JSON_DIR}/{base}.json"
+for base, src, jp in sources:
     if not os.path.exists(jp):
         skipped.append((base, "no transcript json"))
         continue
-    try:
-        with wave.open(w, "rb") as wf:
-            if wf.getnchannels() != 1 or wf.getsampwidth() != 2:
-                skipped.append((base, f"not 16-bit mono ({wf.getnchannels()}ch/{wf.getsampwidth()*8}bit)"))
-                continue
-            sr = wf.getframerate()
-            duration = wf.getnframes() / float(sr)
-    except Exception as ex:
-        skipped.append((base, f"unreadable wav: {ex}"))
-        continue
-
     d = json.load(open(jp, encoding="utf-8"))
     frs = [f for f in d.get("fragments", []) if (f.get("text") or "").strip()]
     if not frs:
         skipped.append((base, "empty transcript"))
         continue
 
+    if mp3_mode:
+        # real duration comes at cut time; for planning, the transcript's own end
+        # is enough (it only affects the clamp on the final segment)
+        duration = (frs[-1].get("end") or 0.0) + 2.0
+    else:
+        try:
+            with wave.open(src, "rb") as wf:
+                if wf.getnchannels() != 1 or wf.getsampwidth() != 2:
+                    skipped.append((base, f"not 16-bit mono ({wf.getnchannels()}ch)"))
+                    continue
+                duration = wf.getnframes() / float(wf.getframerate())
+        except Exception as ex:
+            skipped.append((base, f"unreadable wav: {ex}"))
+            continue
+
     wins = windows_for(frs)
-    plan.append((base, w, duration, sr, wins, frs))
+    plan.append((base, src, duration, wins, frs))
     total_segs += len(wins)
     total_secs += duration
 
@@ -184,36 +249,36 @@ if skipped:
     if len(skipped) > 10:
         print(f"  ... and {len(skipped)-10} more")
 
-# longest surviving utterance is what decides peak memory — report it
-longest = 0.0
-longest_where = ""
-for base, w, duration, sr, wins, frs in plan:
-    for idxs in wins:
+longest, longest_where = 0.0, ""
+for base, src, duration, wins, frs in plan:
+    for k, idxs in enumerate(wins):
         s, e = cut_points(frs, idxs, duration)
         if e - s > longest:
-            longest, longest_where = e - s, f"{base}_p{wins.index(idxs)+1:03d}"
+            longest, longest_where = e - s, f"{base}_p{k+1:03d}"
 print(f"\nlongest single utterance after splitting: {longest:.1f}s ({longest_where})")
 print("  (this is the number that drives MFA's peak RAM — before splitting it was ~700s)")
 
 nbatches = (len(plan) + BATCH_CHAPTERS - 1) // max(1, BATCH_CHAPTERS)
 print(f"align batches: {nbatches} (~{BATCH_CHAPTERS} chapters each)")
 
-# disk guard
-need = sum(os.path.getsize(w) for _, w, _, _, _, _ in plan)
+need = int(total_secs * SR * 2)
 free = shutil.disk_usage(WP).free
-print(f"\ndisk: segments need ~{need/1e9:.1f} GB, free {free/1e9:.1f} GB"
-      f"{'  (--drop-source keeps this flat)' if not DROP_SOURCE else '  (--drop-source ON)'}")
-if not DROP_SOURCE and free < need * 1.1 and not FORCE:
-    print("  !! not enough headroom. Re-run with --drop-source (recommended) or --force.")
+print(f"\ndisk: segments need ~{need/1e9:.1f} GB, free {free/1e9:.1f} GB")
+if mp3_mode:
+    print("  (MP3 mode decodes one chapter at a time — no full-corpus intermediate)")
+elif DROP_SOURCE:
+    print("  (--drop-source ON — source wavs deleted as we go, so disk stays flat)")
+if free < need * 1.1 and not FORCE:
+    print("  !! not enough headroom. Free space, or use --target=20, or --force.")
     if BUILD:
         sys.exit(1)
 
 if not BUILD:
     print("\nDry run only. If the plan looks right:")
-    print("  python split_corpus.py --build --drop-source")
+    print("  python split_corpus.py --build" + ("" if mp3_mode else " --drop-source"))
     sys.exit(0)
 
-# ---- do the cutting --------------------------------------------------------
+# ---- cut -------------------------------------------------------------------
 if os.path.exists(SEGROOT):
     shutil.rmtree(SEGROOT)
 os.makedirs(SEGROOT, exist_ok=True)
@@ -221,57 +286,72 @@ os.makedirs(SEGROOT, exist_ok=True)
 segmap = {"chapters": {}, "params": {
     "target": TARGET_SEC, "max": MAX_SEC, "pad": PAD,
     "batch_chapters": BATCH_CHAPTERS, "json_dir": JSON_DIR,
+    "source": "mp3" if mp3_mode else "wav",
 }}
 
+tmpdir = tempfile.mkdtemp(prefix="split_", dir=WP)
 print("\ncutting...")
 made = 0
-for ci, (base, w, duration, sr, wins, frs) in enumerate(plan):
-    batch = f"b{ci // BATCH_CHAPTERS + 1:03d}"
-    bdir = f"{SEGROOT}/{batch}"
-    os.makedirs(bdir, exist_ok=True)
+try:
+    for ci, (base, src, duration, wins, frs) in enumerate(plan):
+        batch = f"b{ci // BATCH_CHAPTERS + 1:03d}"
+        bdir = f"{SEGROOT}/{batch}"
+        os.makedirs(bdir, exist_ok=True)
 
-    with wave.open(w, "rb") as wf:
-        frames = wf.readframes(wf.getnframes())
-    sw = 2  # verified 16-bit above
+        if mp3_mode:
+            wav_path = f"{tmpdir}/{base}.wav"
+            try:
+                decode_mp3(src, wav_path)
+            except subprocess.CalledProcessError as ex:
+                print(f"  !! ffmpeg failed on {base}: {ex}")
+                continue
+        else:
+            wav_path = src
 
-    entries = []
-    for si, idxs in enumerate(wins, start=1):
-        s, e = cut_points(frs, idxs, duration)
-        a = int(round(s * sr)) * sw
-        b_ = int(round(e * sr)) * sw
-        chunk = frames[a:b_]
-        if not chunk:
-            continue
-        sid = f"{base}_p{si:03d}"
-        with wave.open(f"{bdir}/{sid}.wav", "wb") as out:
-            out.setnchannels(1)
-            out.setsampwidth(sw)
-            out.setframerate(sr)
-            out.writeframes(chunk)
-        with open(f"{bdir}/{sid}.lab", "w", encoding="utf-8") as fh:
-            fh.write(seg_text(frs, idxs))
-        entries.append({
-            "id": sid,
-            "batch": batch,
-            "offset": round(s, 3),
-            "frag_start": idxs[0],
-            "frag_end": idxs[-1],
-            "app_words": nwords(frs, idxs),
-        })
-        made += 1
+        with wave.open(wav_path, "rb") as wf:
+            sr = wf.getframerate()
+            duration = wf.getnframes() / float(sr)      # real duration now
+            frames = wf.readframes(wf.getnframes())
+        sw = 2
 
-    segmap["chapters"][base] = {"batch": batch, "duration": round(duration, 3),
-                                "segments": entries}
+        entries = []
+        for si, idxs in enumerate(wins, start=1):
+            s, e = cut_points(frs, idxs, duration)
+            chunk = frames[int(round(s * sr)) * sw:int(round(e * sr)) * sw]
+            if not chunk:
+                continue
+            sid = f"{base}_p{si:03d}"
+            with wave.open(f"{bdir}/{sid}.wav", "wb") as out:
+                out.setnchannels(1)
+                out.setsampwidth(sw)
+                out.setframerate(sr)
+                out.writeframes(chunk)
+            with open(f"{bdir}/{sid}.lab", "w", encoding="utf-8") as fh:
+                fh.write(seg_text(frs, idxs))
+            entries.append({
+                "id": sid, "batch": batch, "offset": round(s, 3),
+                "frag_start": idxs[0], "frag_end": idxs[-1],
+                "app_words": nwords(frs, idxs),
+            })
+            made += 1
 
-    if DROP_SOURCE:
-        os.remove(w)
+        segmap["chapters"][base] = {"batch": batch, "duration": round(duration, 3),
+                                    "segments": entries}
+        del frames
 
-    if (ci + 1) % 20 == 0:
-        print(f"  ...{ci+1}/{len(plan)} chapters, {made} segments")
+        if mp3_mode:
+            os.remove(wav_path)
+        elif DROP_SOURCE:
+            os.remove(src)
+
+        if (ci + 1) % 20 == 0:
+            print(f"  ...{ci+1}/{len(plan)} chapters, {made} segments")
+finally:
+    shutil.rmtree(tmpdir, ignore_errors=True)
 
 with open(SEGMAP, "w", encoding="utf-8") as fh:
     json.dump(segmap, fh, ensure_ascii=False)
 
 print(f"\nbuilt {made} segments across {nbatches} batches -> {SEGROOT}")
 print(f"manifest -> {SEGMAP}")
-print("\nNext:  python align_segments.py")
+print("\nNext:  python \"$REPO/scripts/mfa/align_segments.py\"")

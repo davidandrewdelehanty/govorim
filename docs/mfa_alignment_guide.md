@@ -93,7 +93,14 @@ ffmpeg -version | head -1
 
 ---
 
-## 4. Build the corpus (per book)
+## 4. Build the corpus (per book) — OPTIONAL now
+
+> **You can skip this whole step.** `split_corpus.py` reads the MP3s directly and
+> decodes one chapter at a time, so the full-book WAV corpus (~8.8 GB for War &
+> Peace) is no longer needed as an intermediate. Jump to §6 and let it pair the
+> files — it prints the same spot-check table shown below, and its pairing logic
+> is identical. Build the corpus here only if you specifically want the
+> intermediate WAVs on disk.
 
 MFA reads a folder of **matched pairs with the same basename** — `NNN.wav` (16 kHz
 mono) + `NNN.lab` (the transcript for that audio). Set your paths:
@@ -128,6 +135,11 @@ produces silently wrong timings, so it's the one thing to verify by eye.
 ---
 
 ## 5. Handle out-of-vocabulary (OOV) words — don't skip for real books
+
+> **Order note:** this step needs a corpus on disk to harvest OOVs from. If you
+> skipped §4 (MP3 mode), do **§6 split first**, then come back here and point g2p
+> at the segment folder — `mfa g2p "$WP/seg" russian_mfa "$WP/oov.dict" --dictionary_path russian_mfa`.
+> Check whether you already have one from a previous run: `ls -la "$WP"/wp.dict`.
 
 Any book with proper names or foreign passages will have OOV words the base
 dictionary doesn't cover. War & Peace had **85 OOV types / 204k tokens**: character
@@ -177,9 +189,21 @@ gap, with padding), never inside speech.
 Peak RAM drops by more than an order of magnitude, and alignment gets *more*
 accurate too — no long-range drift within a chapter.
 
+It reads from whichever source you have, auto-detected:
+
+- **MP3 mode** (default when `$WP/corpus` is empty): decodes each chapter from
+  `$AUDIO_DIR` one at a time into a temp file, slices it, deletes the temp. No
+  full-book intermediate ever exists. Needs `AUDIO_DIR` exported and ffmpeg.
+  It prints the same positional pairing spot-check as `build_corpus.py` — **check
+  that table**, because a mis-pairing means silently wrong timings.
+- **WAV mode**: uses an existing `$WP/corpus/NNN.wav` from §4. Add `--drop-source`
+  to delete each chapter WAV as it's consumed so disk stays flat.
+
 ```bash
-python "$REPO/scripts/mfa/split_corpus.py"                       # dry run — shows the plan
-python "$REPO/scripts/mfa/split_corpus.py" --build --drop-source # cut for real
+export AUDIO_DIR="/mnt/c/Users/david/Downloads/audiobooks/war and peace"
+
+python "$REPO/scripts/mfa/split_corpus.py"           # dry run — shows the plan
+python "$REPO/scripts/mfa/split_corpus.py" --build   # cut for real
 ```
 
 The dry run reports the number that actually matters:
@@ -189,9 +213,8 @@ longest single utterance after splitting: 34.3s
   (this is the number that drives MFA's peak RAM — before splitting it was ~700s)
 ```
 
-- `--drop-source` deletes each chapter WAV right after cutting it, so disk stays
-  flat instead of holding both copies (76 h of 16 kHz mono is ~8.8 GB *per copy*).
-  The dry run prints a disk estimate and refuses to build without headroom.
+- The dry run prints a disk estimate and refuses to build without headroom. The
+  segments themselves are ~8.8 GB for the full 76 h.
 - Still tight on memory? Make the pieces smaller: `--target=20 --max=30`.
 - Output: `$WP/seg/bNNN/<chapter>_pMMM.wav|.lab`, plus a manifest at
   `$WP/segmap.json` that records each segment's time offset and which fragments it
@@ -277,14 +300,14 @@ export AUDIO_DIR="/mnt/c/Users/david/Downloads/audiobooks/war and peace"
 export WP=~/wp_align
 mkdir -p "$WP"
 
-python "$REPO/scripts/mfa/build_corpus.py"            # check pairing
-python "$REPO/scripts/mfa/build_corpus.py" --build    # build corpus
+python "$REPO/scripts/mfa/split_corpus.py"            # check the pairing + plan
+python "$REPO/scripts/mfa/split_corpus.py" --build    # ~30s segments, straight from MP3
 
-mfa g2p ~/Documents/MFA/corpus/oovs_found_russian_mfa.txt russian_mfa "$WP/oov.dict"
-cat ~/Documents/MFA/pretrained_models/dictionary/russian_mfa.dict "$WP/oov.dict" > "$WP/wp.dict"
-
-python "$REPO/scripts/mfa/split_corpus.py"                        # check the plan
-python "$REPO/scripts/mfa/split_corpus.py" --build --drop-source  # ~30s segments
+# dictionary: reuse it if a previous run left one, otherwise build from the segments
+ls "$WP/wp.dict" 2>/dev/null || {
+  mfa g2p "$WP/seg" russian_mfa "$WP/oov.dict" --dictionary_path russian_mfa
+  cat ~/Documents/MFA/pretrained_models/dictionary/russian_mfa.dict "$WP/oov.dict" > "$WP/wp.dict"
+}
 
 python "$REPO/scripts/mfa/align_segments.py"          # resumable; run under screen
 python "$REPO/scripts/mfa/align_segments.py" --status # check progress anytime
