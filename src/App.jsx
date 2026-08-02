@@ -4327,7 +4327,49 @@ export default function App() {
     // use the fragment texts as the chapter content instead of the FB2 text.
     if (audiobookData && audiobookData.transcript &&
         Array.isArray(audiobookData.fragments) && audiobookData.fragments.length > 0) {
-      var transcriptText = audiobookData.fragments.map(function(f){ return f.text; }).join(" ");
+      var _frags = audiobookData.fragments;
+      // Radio spectacles (category "Spectacle": Чайка, Дядя Ваня, …) carry a
+      // `speaker` on every spoken fragment. Render them as a real play script —
+      // one paragraph per run of consecutive lines by the same speaker, prefixed
+      // "Имя. ", with consecutive stage directions grouped into a parenthetical
+      // block — instead of gluing all fragment texts into one continuous
+      // paragraph. IMPORTANT: the speaker labels, parentheses and blank lines
+      // exist ONLY in this display string; each fragment's `.text` (what the
+      // audio aligner matches against in buildSentenceTimings) is left intact,
+      // so sentence↔fragment highlighting is unchanged — parseSentences splits
+      // a bare "Имя." into its own harmless unmatched mini-sentence and every
+      // dialogue sentence still matches its fragment exactly as before.
+      var _hasSpeakers = _frags.some(function(f){ return f && f.speaker && !f.isDirection; });
+      var transcriptText;
+      if (_hasSpeakers) {
+        var _capFirst = function(s){
+          for (var i = 0; i < s.length; i++) {
+            if (/[A-Za-zА-Яа-яЁё]/.test(s[i])) return s.slice(0, i) + s[i].toUpperCase() + s.slice(i + 1);
+          }
+          return s;
+        };
+        var _out = [], _mode = null, _buf = [];
+        var _flush = function(){
+          if (_buf.length) {
+            var body = _capFirst(_buf.join(" ").replace(/\s+/g, " ").trim());
+            if (_mode === "__dir__") _out.push("(" + body.replace(/^\(+|\)+$/g, "").trim() + ")");
+            else _out.push(_mode + ". " + body);
+          }
+          _mode = null; _buf = [];
+        };
+        for (var _i = 0; _i < _frags.length; _i++) {
+          var _f = _frags[_i];
+          var _t = (_f && _f.text != null ? String(_f.text) : "").trim();
+          if (!_t) continue;
+          var _key = (_f.isDirection || !_f.speaker) ? "__dir__" : _f.speaker;
+          if (_key !== _mode) { _flush(); _mode = _key; _buf = [_t]; }
+          else _buf.push(_t);
+        }
+        _flush();
+        transcriptText = _out.join("\n\n");
+      } else {
+        transcriptText = _frags.map(function(f){ return f.text; }).join(" ");
+      }
       return Object.assign({}, ch, { text: transcriptText });
     }
     // Bible: split on verse numbers so each verse is its own paragraph
