@@ -2395,6 +2395,27 @@ async function parseFb2(buffer, options) {
       chapters[0].text = ded + "\n\n" + chapters[0].text;
     }
   }
+  // War and Peace: the narrator opens chapter 1 with a spoken announcement —
+  // "Лев Николаевич Толстой. Война и мир. Том первый. Часть первая. Глава
+  // первая." — that has no counterpart anywhere in the FB2 body (the <title>
+  // element carrying "ТОМ ПЕРВЫЙ — ЧАСТЬ ПЕРВАЯ — I" is stripped out above).
+  // Without it, the word-level aligner has to bridge ~8 unmatched transcript
+  // words before it even reaches the chapter's real text — and because the
+  // very next words are a heavily-abbreviated French quote, the small local
+  // resync window latches onto a coincidental common word ("и") instead of
+  // the real re-sync point, swallowing "Ну, князь, Генуя" into the skipped
+  // stretch and breaking highlighting right at the start. Injecting the
+  // announcement as visible chapter-1 text (same pattern as the Anna
+  // Karenina epigraph above) gives the aligner a real word-for-word match
+  // from position zero, so it never needs to guess.
+  if (/Война и мир/i.test(bookTitle) && chapters.length > 0) {
+    var vimIntro = "Лев Николаевич Толстой. Война и мир. Том первый. Часть первая. Глава первая.";
+    if (chapters[0].text.indexOf(vimIntro) === -1) {
+      chapters[0].text = vimIntro + "
+
+" + chapters[0].text;
+    }
+  }
   // Anna Karenina's FB2 source has a spurious chapter break in the middle
   // of Part 4 Chapter 5 (the lawyer office scene). The narrator reads it as
   // one continuous chapter; the book actually has 239 chapters, not 240.
