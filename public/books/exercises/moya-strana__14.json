@@ -1,0 +1,320 @@
+{
+ "title": "Новая и я (мы были сектой)",
+ "source": "«Моя любимая страна» — Елена Костюченко",
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Это ___ здание типографии, теплый серый цвет.",
+   "lemma": "старый",
+   "options": [
+    "старого",
+    "старому",
+    "старым",
+    "старое"
+   ],
+   "correct": "старое",
+   "case": "Nominative",
+   "translation": "This is an old printing house building, a warm gray color.",
+   "explain": "Nominative case is used for the predicate when describing what something is."
+  },
+  {
+   "id": "c2",
+   "sentence": "От метро идешь прямо, прямо, вдоль ___ бульвара, потом сворачиваешь в Архангельский переулок, мимо розовой церкви (говорят, там водятся привидения), потом налево, на Потаповский.",
+   "lemma": "кудрявый",
+   "options": [
+    "кудрявый",
+    "кудрявого",
+    "кудрявому",
+    "кудрявым"
+   ],
+   "correct": "кудрявого",
+   "case": "Genitive",
+   "translation": "From the metro you go straight, straight, along a curly boulevard, then turn into Arkhangelsk alley, past a pink church (they say ghosts live there), then to the left, onto Potapov street.",
+   "explain": "The preposition 'вдоль' (along) requires the genitive case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Я помню, как Р. принес траву и мы пошли в ___ курить, а потом нам показалось, что нас кто-то ищет, и мы выбирались медленно, держались за стену, шипели.",
+   "lemma": "подвал",
+   "options": [
+    "подвала",
+    "подвалу",
+    "подвалом",
+    "подвал"
+   ],
+   "correct": "подвал",
+   "case": "Accusative",
+   "translation": "I remember how R. brought grass and we went to the basement to smoke, and then we thought someone was looking for us, and we climbed back slowly, holding the wall, whispering.",
+   "explain": "The preposition 'в' with motion verbs requires the accusative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "К ___ приносят головы убитых баранов (это типа угроза), живых овец (это типа смешно), у нее митингуют («вы — предатели Родины»), однажды опрыскали вход в редакцию жидкостью с едким запахом.",
+   "lemma": "редакция",
+   "options": [
+    "редакция",
+    "редакцию",
+    "редакции",
+    "редакцией"
+   ],
+   "correct": "редакции",
+   "case": "Dative",
+   "translation": "Heads of slaughtered rams are brought to the editorial office (kind of a threat), live sheep (kind of funny), people protest there ('you are traitors to the Motherland'), once the entrance was sprayed with a pungent-smelling liquid.",
+   "explain": "The preposition 'к' (toward) requires the dative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "На этой ___ летом мы ели клубнику и пили розовое вино. А зимой там снег, и можно стоять в снегу, лежать в снегу, оставлять следы.",
+   "lemma": "крыша",
+   "options": [
+    "крыша",
+    "крыши",
+    "крышу",
+    "крыше"
+   ],
+   "correct": "крыше",
+   "case": "Prepositional",
+   "translation": "In summer on this roof we ate strawberries and drank rose wine. And in winter there is snow, and you can stand in the snow, lie in the snow, leave traces.",
+   "explain": "The preposition 'на' with locative meaning requires the prepositional case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Мы сами владели ___ пакетом акций нашего издания, сами выбирали себе главного редактора, членов редколлегии и редсовета.",
+   "lemma": "основной",
+   "options": [
+    "основной",
+    "основного",
+    "основному",
+    "основным"
+   ],
+   "correct": "основным",
+   "case": "Instrumental",
+   "translation": "We ourselves owned the controlling stake in our publication, we ourselves chose the editor-in-chief, members of the editorial board and editorial council.",
+   "explain": "The verb 'владеть' (to own) requires the instrumental case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "От метро идешь прямо, прямо, вдоль кудрявого бульвара, потом сворачиваешь в Архангельский переулок, мимо розовой церкви (говорят, там водятся привидения), потом налево, на Потаповский.",
+   "question": "What landmark does one pass when walking from the metro to the Novaya Gazeta office?",
+   "options": [
+    "A green church",
+    "A pink church with rumors of ghosts",
+    "A white hospital",
+    "A train station"
+   ],
+   "correct": "A pink church with rumors of ghosts",
+   "explain": "The text explicitly mentions 'мимо розовой церкви (говорят, там водятся привидения)' (past a pink church where they say ghosts live)."
+  },
+  {
+   "id": "r2",
+   "ru": "Это старое здание типографии, теплый серый цвет.",
+   "question": "What was the Novaya Gazeta office building formerly used for?",
+   "options": [
+    "A military barracks",
+    "A royal palace",
+    "A printing house",
+    "A bank"
+   ],
+   "correct": "A printing house",
+   "explain": "The text describes it as 'старое здание типографии' (an old printing house building)."
+  },
+  {
+   "id": "r3",
+   "ru": "Я помню, как Р. принес траву и мы пошли в подвал курить, а потом нам показалось, что нас кто-то ищет, и мы выбирались медленно, держались за стену, шипели.",
+   "question": "Why did the author and R. feel scared in the basement?",
+   "options": [
+    "They saw a ghost",
+    "The lights went out",
+    "They thought someone was searching for them",
+    "They heard strange noises"
+   ],
+   "correct": "They thought someone was searching for them",
+   "explain": "The text says 'потом нам показалось, что нас кто-то ищет' (then we thought someone was looking for us)."
+  },
+  {
+   "id": "r4",
+   "ru": "Однажды мы праздновали день рождения газеты на крыше. Это было 1 апреля 2006 года, солнечно, холодно. Я быстро напилась и ничего не слышала. А меня звал главный редактор, Муратов. Он дал мне удостоверение Новой газеты. Меня взяли в штат.",
+   "question": "When was the author hired at Novaya Gazeta?",
+   "options": [
+    "On her first day of work",
+    "During an office party in winter",
+    "On the newspaper's birthday, April 1, 2006, during a rooftop celebration",
+    "In the summer of 2005"
+   ],
+   "correct": "On the newspaper's birthday, April 1, 2006, during a rooftop celebration",
+   "explain": "The text states the author received her press ID and was hired during the newspaper's birthday celebration on April 1, 2006."
+  },
+  {
+   "id": "r5",
+   "ru": "К редакции приносят головы убитых баранов (это типа угроза), живых овец (это типа смешно), у нее митингуют («вы — предатели Родины»), однажды опрыскали вход в редакцию жидкостью с едким запахом, и пришлось вызывать специалистов-химиков, а потом срезать асфальт и заливать новый.",
+   "question": "What disturbing items were brought to the editorial office entrance?",
+   "options": [
+    "Threatening letters and bombs",
+    "Dead ram heads as threats and live sheep as a joke",
+    "Angry protesters",
+    "Broken windows and graffiti"
+   ],
+   "correct": "Dead ram heads as threats and live sheep as a joke",
+   "explain": "The text says 'К редакции приносят головы убитых баранов (это типа угроза), живых овец (это типа смешно)' (heads of slaughtered rams brought as a threat, and live sheep as a joke)."
+  },
+  {
+   "id": "r6",
+   "ru": "Справа от доски — туалеты. Однажды я зашла в женский, а напротив окна висит мужик, красит стену, и лицо такое непроницаемое.",
+   "question": "What unexpected scene did the author witness in the women's bathroom?",
+   "options": [
+    "The door was broken by a journalist",
+    "A man was hanging by the window painting the wall with an impassive face",
+    "Water flooded the entire bathroom",
+    "Graffiti covered the walls"
+   ],
+   "correct": "A man was hanging by the window painting the wall with an impassive face",
+   "explain": "The text describes 'напротив окна висит мужик, красит стену, и лицо такое непроницаемое' (a man hanging by the window, painting the wall, with an impassive face)."
+  },
+  {
+   "id": "r7",
+   "ru": "Здесь я вычитывала полосы — их распечатывают на больших белых листах, водишь пальцем по строчкам, рисуешь ручкой специальные знаки.",
+   "question": "How did proofreaders check newspaper pages for errors?",
+   "options": [
+    "Using a computer program",
+    "Scanning pages electronically",
+    "Running a finger along printed lines and marking corrections by hand",
+    "Reading pages aloud"
+   ],
+   "correct": "Running a finger along printed lines and marking corrections by hand",
+   "explain": "The author describes running your finger along the lines of printed pages and drawing special correction marks with a pen."
+  },
+  {
+   "id": "r8",
+   "ru": "Снаружи наступал фашизм. Мы описывали его как могли. Наша газета выходила три раза в неделю, по всей стране, сайт обновлялся круглосуточно. Мы делали свою работу хорошо, мы очень старались. Снаружи было страшно, мерзко, горестно. Здесь было тепло.",
+   "question": "How did the author contrast the outside world with the newspaper office?",
+   "options": [
+    "Outside was cold; inside was warm",
+    "Outside was descending fascism, frightening and miserable; inside was warmth and safety",
+    "Outside was noisy; inside was quiet",
+    "Outside was dark; inside was bright"
+   ],
+   "correct": "Outside was descending fascism, frightening and miserable; inside was warmth and safety",
+   "explain": "The author writes 'Снаружи было страшно, мерзко, горестно. Здесь было тепло' (outside was scary, vile, sorrowful; here it was warm)."
+  },
+  {
+   "id": "r9",
+   "ru": "Другие журналисты не очень уважали Новую — говорили, что мы слишком активисты, что нам позволяют быть, потому что мы не пишем ничего стоящего, что у нас мизерные зарплаты (про зарплаты правда).",
+   "question": "What criticisms did other journalists make about Novaya Gazeta?",
+   "options": [
+    "It was too conservative and government-aligned",
+    "It was too activist, didn't write important content, and had low salaries",
+    "It was not professional enough",
+    "It plagiarized other newspapers"
+   ],
+   "correct": "It was too activist, didn't write important content, and had low salaries",
+   "explain": "The text says other journalists claimed Novaya was 'слишком активисты, что нам позволяют быть, потому что мы не пишем ничего стоящего, что у нас мизерные зарплаты' (too activist, tolerated because they didn't write anything worthwhile, and had miserable salaries)."
+  },
+  {
+   "id": "r10",
+   "ru": "Мы сами владели основным пакетом акций нашего издания, сами выбирали себе главного редактора, членов редколлегии и редсовета. Выборы проводились раз в два года.",
+   "question": "How was Novaya Gazeta different from other Russian media organizations?",
+   "options": [
+    "It had government financing",
+    "Its staff owned the main shareholding and elected leadership through periodic elections",
+    "It was owned by a wealthy businessman",
+    "It was part of an international media conglomerate"
+   ],
+   "correct": "Its staff owned the main shareholding and elected leadership through periodic elections",
+   "explain": "The author describes how the staff owned the controlling stake and held elections every two years for the editor-in-chief and editorial board."
+  },
+  {
+   "id": "r11",
+   "ru": "Главным редактором чаще всего выбирали Муратова. Он большой, бородатый, голубоглазый, похож на Хемингуэя. Ходит в растянутых майках. У него есть странный дар: он всегда придумывает тему, которая выстрелит, — даже если она вначале кажется безумием.",
+   "question": "What special quality made Muratov an effective editor-in-chief?",
+   "options": [
+    "He was ruthless and authoritarian",
+    "He had talent for identifying compelling stories that would resonate with readers",
+    "He was the most experienced journalist in Russia",
+    "He had government connections"
+   ],
+   "correct": "He had talent for identifying compelling stories that would resonate with readers",
+   "explain": "The text describes Muratov as having 'странный дар: он всегда придумывает тему, которая выстрелит' (a strange gift: he always came up with a topic that would hit home)."
+  }
+ ],
+ "highlight": [
+  {
+   "id": "h1",
+   "question": "Which sentence best shows the author's deep emotional attachment to working in the office?",
+   "sentences": [
+    "От метро идешь прямо, прямо, вдоль кудрявого бульвара",
+    "Это старое здание типографии, теплый серый цвет",
+    "Я люблю работать по ночам в редакции. Везде темно и тихо, и это живая тишина.",
+    "Лестница, лестница",
+    "На этой крыше летом мы ели клубнику и пили розовое вино"
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "This sentence directly expresses the author's love for working at night in the office and demonstrates her emotional connection to the space."
+  },
+  {
+   "id": "h2",
+   "question": "Which sentences express the author's feelings about her relationship with coworkers?",
+   "sentences": [
+    "Охранники нас не очень любят",
+    "Только уже совсем взрослой я научилась немного отстраняться от них. До этого я точно знала, что они поймут меня — всегда",
+    "На системном блоке компьютера лежали три пули и два осколка",
+    "Мне никогда не было одиноко.",
+    "Я часто оставалась, каждый раз упрашивала"
+   ],
+   "correct": [
+    1,
+    3
+   ],
+   "explain": "Both sentences express the author's deep connection to her colleagues: she was never lonely because she felt understood by them, though she eventually learned some emotional distance."
+  },
+  {
+   "id": "h3",
+   "question": "Which sentences convey the newspaper's independence and difficulty to shut down?",
+   "sentences": [
+    "Новая жила. Нас непросто было закрыть.",
+    "Когда Муратову вручают Нобелевскую премию мира, я очень радуюсь",
+    "Мы сами владели основным пакетом акций нашего издания",
+    "Суп и хлеб можно получить бесплатно, почти коммунизм",
+    "Лицензию отобрали все равно"
+   ],
+   "correct": [
+    0,
+    2
+   ],
+   "explain": "Both sentences demonstrate the newspaper's independence: the first asserts it was difficult to close, and the second explains why—because the staff owned the controlling stake themselves."
+  },
+  {
+   "id": "h4",
+   "question": "Which sentence shows the author's awareness of the newspaper's ultimate fate?",
+   "sentences": [
+    "Я быстро напилась и ничего не слышала",
+    "Теперь, когда нас больше нет. Когда нет ни планерок, ни летучек, ни ебаного подписания номеров, нет репортерского бега, мата, слез, маленьких побед, гигантских страшных событий, которые надо уместить в тексты.",
+    "Однажды мы праздновали день рождения газеты на крыше",
+    "Мне никогда не было одиноко",
+    "Он дал мне удостоверение Новой газеты"
+   ],
+   "correct": [
+    1
+   ],
+   "explain": "This sentence explicitly reflects on the newspaper's closure and its absence from the author's life."
+  },
+  {
+   "id": "h5",
+   "question": "Which sentence best reveals Muratov's character and values?",
+   "sentences": [
+    "Когда он читал мои тексты, у него поднималась бровь в плохих местах",
+    "Он большой, бородатый, голубоглазый, похож на Хемингуэя",
+    "Он распределяет деньги премии между благотворительными фондами, не оставляет себе ничего",
+    "Ходит в растянутых майках",
+    "Несколько раз мы ссоримся, и я долго плачу"
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "This sentence best reveals Muratov's values—his generosity and commitment to charitable causes rather than personal wealth."
+  }
+ ]
+}
