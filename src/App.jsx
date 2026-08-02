@@ -2907,7 +2907,7 @@ export default function App() {
   // wbDistractors: blocks/distractors.json, pos -> pool of English glosses
   //   (pooled across the WHOLE bank, not just one block, so every block has
   //   enough same-part-of-speech distractors for a 4-option question).
-  // wbProgress: persisted map cardId -> {streak, mastered}. A card needs 3
+  // wbProgress: persisted map cardId -> {streak, mastered}. A card needs 10
   //   CONSECUTIVE correct answers to be mastered (a miss resets the streak to
   //   0); "I already know this word" masters it instantly. wbBlockNum is the
   //   1-based block the user is currently working through; the next block
@@ -2926,6 +2926,10 @@ export default function App() {
   var [popup, setPopup]   = useState(null);
   var [popXY, setPopXY]   = useState({top:100,left:16});
   var popRef = useRef(null);
+  // Word tap menu: clicking a word selects it (block highlight) and opens a
+  // small bubble menu ("Define" / "Start audio here") anchored to the word.
+  var [wordMenu, setWordMenu] = useState(null);  // {word,clean,charPosition,start,rect,top,left}
+  var wmRef = useRef(null);
   // After the popup renders, clamp it so it never extends below the viewport.
   // The initial position is an estimate; this corrects it using actual height.
   useEffect(function() {
@@ -4725,8 +4729,8 @@ export default function App() {
     setWbScreen("quiz");
   };
 
-  // A wrong answer resets the streak to 0; a card needs 3 CONSECUTIVE right
-  // answers (no mistakes in between) to be mastered and drop out of rotation.
+  // A wrong answer resets the streak to 0; a card needs 10 CONSECUTIVE right
+  // answers to be mastered and drop out of rotation (Dave's rule, confirmed).
   var wbAnswer = function(opt) {
     if (!wbCur || wbSel) return;
     setWbSel(opt);
@@ -4734,7 +4738,7 @@ export default function App() {
     var right = opt === wbCur.correct;
     var st = wbProgress[card.id] || { streak: 0, mastered: false };
     var streak = right ? st.streak + 1 : 0;
-    var mastered = streak >= 3;
+    var mastered = streak >= 10;
     var newProgress = Object.assign({}, wbProgress);
     newProgress[card.id] = { streak: streak, mastered: mastered };
     setWbProgress(newProgress);
@@ -4748,12 +4752,12 @@ export default function App() {
     }, right ? 900 : 1600);
   };
 
-  // "I already know this word" — instant mastery, skips the 3-in-a-row grind.
+  // "I already know this word" — instant mastery, skips the 10-in-a-row grind.
   var wbKnowIt = function() {
     if (!wbCur) return;
     var card = wbCur.card;
     var newProgress = Object.assign({}, wbProgress);
-    newProgress[card.id] = { streak: 3, mastered: true };
+    newProgress[card.id] = { streak: 10, mastered: true };
     setWbProgress(newProgress);
     setWbSel(null);
     setWbJustMastered(null);
@@ -5164,7 +5168,13 @@ export default function App() {
   }, [vocab, tips, auth.isSignedIn, syncedFromServer]);
 
   useEffect(function() {
-    var h = function(e) { if (popRef.current && !popRef.current.contains(e.target)) setPopup(null); };
+    var h = function(e) {
+      if (popRef.current && !popRef.current.contains(e.target)) setPopup(null);
+      // Dismiss the word menu when clicking anywhere that isn't the menu itself
+      // or a reading word (clicking another word should re-open it there).
+      if (wmRef.current && !wmRef.current.contains(e.target) &&
+          !(e.target.closest && e.target.closest(".rw"))) setWordMenu(null);
+    };
     document.addEventListener("mousedown", h);
     return function() { document.removeEventListener("mousedown", h); };
   }, []);
@@ -6355,6 +6365,56 @@ export default function App() {
       setPopup(function(p){ return p ? Object.assign({},p,{data:data,loading:false}) : null; });
     } catch(err) {
       setPopup(function(p){ return p ? Object.assign({},p,{loading:false,error:'Could not define "'+word+'"'}) : null; });
+    }
+  };
+
+  // Clicking a reading word: highlight just that word and open the bubble menu
+  // ("Define" / "Start audio here") anchored under it. Replaces the old
+  // click-to-define / click-to-read behaviour with an explicit choice.
+  var selectWord = function(word, e, charPosition) {
+    e.stopPropagation();
+    var clean = word.replace(/[^а-яёА-ЯЁ]/g, "");
+    if (!clean || clean.length < 2) return;
+    var rect = e.currentTarget.getBoundingClientRect();
+    var MW = 250;
+    var left = rect.left;
+    if (left + MW > window.innerWidth - 12) left = window.innerWidth - MW - 12;
+    if (left < 12) left = 12;
+    setPopup(null);
+    setWordMenu({
+      word: word, clean: clean,
+      charPosition: (typeof charPosition === "number" ? charPosition : null),
+      start: charPosition,
+      rect: { top: rect.top, bottom: rect.bottom, left: rect.left, right: rect.right, width: rect.width, height: rect.height },
+      top: Math.max(8, rect.bottom + 6), left: left
+    });
+  };
+
+  // Menu action → run the normal definition popup for the selected word,
+  // reusing defWord by handing it a synthetic event that reports the word's rect.
+  var wmDefine = function() {
+    var m = wordMenu; if (!m) return;
+    setWordMenu(null);
+    var fakeE = { stopPropagation: function(){}, currentTarget: { getBoundingClientRect: function(){ return m.rect; } } };
+    defWord(m.word, fakeE, m.charPosition);
+  };
+
+  // Menu action → start playback from the clicked word. In audiobook mode we
+  // jump the narrator to that word's sentence; otherwise the TTS voice reads on.
+  var wmPlayHere = function() {
+    var m = wordMenu; if (!m) return;
+    setWordMenu(null);
+    var cp = m.charPosition;
+    if (typeof cp !== "number") return;
+    if (audiobookModeRef.current && audiobookDataRef.current) {
+      var pageOffset = currentPage ? cp - currentPage.startChar : cp;
+      var sIdx = findSentenceIdxForPageOffset(pageOffset);
+      if (sIdx < 0) sIdx = 0;
+      sentenceOverrideRef.current = null;
+      setAudioIdx(sIdx); audioIdxRef.current = sIdx;
+      playAudiobookFromSentence(sIdx);
+    } else {
+      jumpTTS(cp);
     }
   };
 
@@ -7557,17 +7617,15 @@ export default function App() {
                     var clickPlay;
                     if (inName) {
                       clickPlay = undefined;
-                    } else if (noAIMode) {
-                      clickPlay = (function(pos){ return function(e){ e.stopPropagation(); jumpTTS(pos); }; })(tk.start);
                     } else {
-                      clickPlay = (function(w, pos){ return function(e){ defWord(w, e, pos); }; })(tk.text, tk.start);
+                      clickPlay = (function(w, pos){ return function(e){ selectWord(w, e, pos); }; })(tk.text, tk.start);
                     }
                     elems.push(
                       <span key={i}
-                        className={"rw" + (hl ? " rwhl" : "") + (inName ? " play-speaker" : "")}
+                        className={"rw" + (hl ? " rwhl" : "") + (wordMenu && wordMenu.start === tk.start ? " rwsel" : "") + (inName ? " play-speaker" : "")}
                         data-rw-start={tk.start}
                         onClick={clickPlay}
-                        title={inName ? "" : (noAIMode ? "Click to read from here" : "Click to define")}>{tk.text}</span>
+                        title={inName ? "" : "Click for options"}>{tk.text}</span>
                     );
                     // Just after the speaker name finishes, insert the em-dash separator.
                     if (inName && (i+1 >= para.length || para[i+1].end > speakerNameEnd)) {
@@ -7588,15 +7646,13 @@ export default function App() {
               return para.map(function(tk, i) {
                 var hl = tk.isRu && tk.start === activeStart;
                 if (tk.isRu) {
-                  var clickReg = noAIMode
-                    ? (function(pos){ return function(e){ e.stopPropagation(); jumpTTS(pos); }; })(tk.start)
-                    : (function(w, pos){ return function(e){ defWord(w, e, pos); }; })(tk.text, tk.start);
+                  var clickReg = (function(w, pos){ return function(e){ selectWord(w, e, pos); }; })(tk.text, tk.start);
                   return (
                     <span key={i}
-                      className={"rw" + (hl ? " rwhl" : "")}
+                      className={"rw" + (hl ? " rwhl" : "") + (wordMenu && wordMenu.start === tk.start ? " rwsel" : "")}
                       data-rw-start={tk.start}
                       onClick={clickReg}
-                      title={noAIMode ? "Click to read from here" : "Click to define"}>{tk.text}</span>
+                      title="Click for options">{tk.text}</span>
                   );
                 }
                 // Bible verse numbers: token is just a number (e.g. "1", "23")
@@ -7953,6 +8009,12 @@ export default function App() {
         .rw{cursor:pointer;border-bottom:1px dotted rgba(42,31,20,.18);transition:color .15s,background .12s}
         .rw:hover{color:#c4955a;border-bottom-color:#c4955a}
         .rwhl{background:rgba(196,149,90,.18);color:#000;border-bottom-color:#c4955a;border-radius:3px;padding:1px 2px}
+        /* Selected word (tap menu open): solid block highlight, like the highlight exercise. */
+        .rwsel{background:#c4955a!important;color:#fff!important;border-bottom-color:transparent!important;border-radius:3px;padding:1px 3px}
+        /* Word tap menu — bubbles anchored under the tapped word. */
+        .wmenu{position:fixed;z-index:70;display:flex;gap:8px}
+        .wmbub{padding:8px 15px;border-radius:22px;font-size:14px;font-family:'Crimson Pro',serif;cursor:pointer;background:#fffdf8;border:1px solid rgba(196,149,90,.55);color:#7a4a1e;box-shadow:0 4px 14px rgba(42,31,20,.22);white-space:nowrap;transition:background .12s,transform .06s;line-height:1}
+        .wmbub:hover{background:rgba(196,149,90,.16)} .wmbub:active{transform:translateY(1px)}
         .word-active{background:rgba(196,149,90,.34);color:#fff;border-radius:3px;padding:1px 2px;box-shadow:0 0 0 1px rgba(196,149,90,.55);transition:background .08s ease}
         /* Dual-language Bible: English translation shown under each Russian verse */
         .bible-en{display:block;margin-top:3px;color:rgba(42,31,20,.5);font-size:0.9em;font-style:italic;line-height:1.5;letter-spacing:.005em}
@@ -9806,7 +9868,7 @@ export default function App() {
                         <button className="ttsbtn" onClick={function(){ speakMsg(speakText, "wb-" + wbCur.card.id); }} title="Listen">🔊</button>
                       </div>
                       <div style={{fontSize:11,opacity:.55,textTransform:"uppercase",letterSpacing:.5}}>
-                        {wbCur.card.pos}{wbCur.card.aspectPair ? " · aspect pair" : ""} · {curStreak}/3 correct in a row
+                        {wbCur.card.pos}{wbCur.card.aspectPair ? " · aspect pair" : ""} · {curStreak}/10 correct in a row
                       </div>
                       <div style={{width:"100%",display:"flex",flexDirection:"column",gap:8}}>
                         {wbCur.options.map(function(opt, oi) {
@@ -9822,7 +9884,7 @@ export default function App() {
                       </div>
                       {wbSel && (
                         <div style={{fontSize:13,fontStyle:"italic",color:"rgba(0,0,0,.6)",textAlign:"center"}}>
-                          {wbCur.card.example_ru && <span>{wbCur.card.example_ru} <span style={{opacity:.7}}>— {wbCur.card.example_en}</span></span>}
+                          {wbCur.card.example_ru} <span style={{opacity:.7}}>— {wbCur.card.example_en}</span>
                           {wbJustMastered === wbCur.card.id && <div style={{color:"#5a965a",fontWeight:600,marginTop:6,fontStyle:"normal"}}>✓ Mastered — moved out of rotation!</div>}
                         </div>
                       )}
@@ -10935,6 +10997,13 @@ export default function App() {
                 <button className="mconf" onClick={function(){ if(nRu.trim()) addV(nRu.trim(),nEn.trim()); setShowWord(false); }}>Save</button>
               </div>
             </div>
+          </div>
+        )}
+
+        {wordMenu && (
+          <div ref={wmRef} className="wmenu" style={{top:wordMenu.top, left:wordMenu.left}}>
+            {!noAIMode && <button className="wmbub" onClick={wmDefine}>📖 Define</button>}
+            <button className="wmbub" onClick={wmPlayHere}>▶ Start audio here</button>
           </div>
         )}
 
