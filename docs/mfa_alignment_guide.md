@@ -238,11 +238,23 @@ It runs `mfa align` one batch (~25 chapters' worth of segments) at a time and is
 you Ctrl-C it, just run it again. A crash costs one batch, not the run. Logs land in
 `$WP/logs/<batch>.log`.
 
+Expect roughly 6–8 minutes per batch (~100 minutes for the full 362 chapters).
+
+**A batch finishing a few segments short is normal.** MFA leaves ~0.5% unaligned —
+beam failures where the audio and transcript don't match well enough. A batch counts
+as done once 98% of it aligned (`--complete-at=`), because re-running a whole batch
+to chase four files that will fail again isn't worth it, and `apply_timings.py`
+interpolates and flags them. The unaligned IDs are written to
+`$WP/logs/<batch>.missing.txt`.
+
 Watch-outs:
 
 - **Still out-of-memory:** `--jobs=1` (default is 3).
 - **A batch fails with beam errors:** re-run just that one —
   `--only=b003 --jobs=1 --beam=100 --retry-beam=400`.
+- **Force a retry of the partials anyway:** `--retry-partial`.
+- **Aligned by an older run and it wants to redo everything:** `--mark-done`
+  backfills the completion markers and the missing-segment lists without aligning.
 - Run it under `screen` / `tmux` — the full book takes hours.
 
 ---
