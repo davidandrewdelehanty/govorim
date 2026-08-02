@@ -76,6 +76,111 @@
    "case": "Предложный (Prepositional)",
    "translation": "We meet in his office.",
    "explain": "The preposition в (in) requires the prepositional case when expressing location or place."
+  },
+  {
+   "id": "c6",
+   "sentence": "Добрый ___ скрадывает жесткую мысль, делает описанное выносимее.",
+   "lemma": "юмор",
+   "options": [
+    "юмор",
+    "юмора",
+    "юмору",
+    "юмором"
+   ],
+   "correct": "юмор",
+   "case": "Nominative (Именительный)",
+   "translation": "Good humor conceals harsh thought, makes what is described more bearable.",
+   "explain": "The subject of the sentence performing the action requires nominative case."
+  },
+  {
+   "id": "c7",
+   "sentence": "он переехал в ___",
+   "lemma": "Москва",
+   "options": [
+    "Москва",
+    "Москвы",
+    "Москву",
+    "Москвой"
+   ],
+   "correct": "Москву",
+   "case": "Accusative (Винительный)",
+   "translation": "He moved to Moscow.",
+   "explain": "Preposition 'в' with motion verbs requires accusative case to show destination."
+  },
+  {
+   "id": "c8",
+   "sentence": "когда он шел к лифту в своем ___",
+   "lemma": "подъезд",
+   "options": [
+    "подъезд",
+    "подъезда",
+    "подъезде",
+    "подъездом"
+   ],
+   "correct": "подъезде",
+   "case": "Prepositional (Предложный)",
+   "translation": "when he was walking to the elevator in his own entrance",
+   "explain": "Preposition 'в' indicating location requires prepositional case."
+  },
+  {
+   "id": "c9",
+   "sentence": "они измолотили молотком его ___",
+   "lemma": "голова",
+   "options": [
+    "голова",
+    "головы",
+    "голову",
+    "головой"
+   ],
+   "correct": "голову",
+   "case": "Accusative (Винительный)",
+   "translation": "They struck his head with a hammer.",
+   "explain": "The direct object of the verb 'struck' requires accusative case."
+  },
+  {
+   "id": "c10",
+   "sentence": "Ими оказались ___",
+   "lemma": "бандит",
+   "options": [
+    "бандиты",
+    "бандитов",
+    "бандитам",
+    "бандитами"
+   ],
+   "correct": "бандиты",
+   "case": "Nominative (Именительный)",
+   "translation": "They turned out to be gangsters.",
+   "explain": "The predicate nominative after 'быть' requires nominative case."
+  },
+  {
+   "id": "c11",
+   "sentence": "он баллотировался в Государственную ___",
+   "lemma": "дума",
+   "options": [
+    "дума",
+    "думы",
+    "думу",
+    "думой"
+   ],
+   "correct": "думу",
+   "case": "Accusative (Винительный)",
+   "translation": "He ran for the State Duma.",
+   "explain": "Preposition 'в' with motion/direction verbs requires accusative case."
+  },
+  {
+   "id": "c12",
+   "sentence": "Вывезла из разбомбленного Грозного забытый там ___ престарелых",
+   "lemma": "дом",
+   "options": [
+    "дом",
+    "дома",
+    "дому",
+    "домом"
+   ],
+   "correct": "дом",
+   "case": "Accusative (Винительный)",
+   "translation": "She evacuated an old people's home forgotten there.",
+   "explain": "The direct object of 'evacuated' requires accusative; for inanimate nouns it resembles nominative."
   }
  ],
  "reading": [
@@ -234,6 +339,136 @@
    ],
    "correct": "She was abducted into a white vehicle and was heard crying out that she was being kidnapped",
    "explain": "Witnesses saw Estemirova forcibly put into a white car and heard her call out that she was being kidnapped on the morning of July 15, 2009."
+  },
+  {
+   "id": "r13",
+   "ru": "Что такое Норильск? Это почти самый северный город России. Сюда нельзя добраться иначе как самолетом или по воде, дорог нет, единственная железнодорожная ветка идет до Дудинки.",
+   "question": "How can people reach Norilsk?",
+   "options": [
+    "By plane or boat",
+    "By car or train",
+    "By plane or train",
+    "By helicopter or plane"
+   ],
+   "correct": "By plane or boat",
+   "explain": "The text explicitly states Norilsk can only be reached by plane or water, as there are no roads."
+  },
+  {
+   "id": "r14",
+   "ru": "«Норникель» производит [30] 40 % мирового палладия, 10 % платины, 8 % никеля, 20 % родия, 10 % кобальта, 2 % меди.",
+   "question": "What percentage of world nickel does Nornickel produce?",
+   "options": [
+    "40%",
+    "20%",
+    "8%",
+    "10%"
+   ],
+   "correct": "8%",
+   "explain": "The text states that Nornickel produces 8% of world nickel, which represents almost all of Russia's nickel supply."
+  },
+  {
+   "id": "r15",
+   "ru": "Комбинат был построен силами заключенных. Город был построен силами заключенных. Комбинат начали в 1935 году.",
+   "question": "Who built the Norilsk Kombinat and city?",
+   "options": [
+    "Free workers",
+    "Prisoners (GULAG inmates)",
+    "Political exiles",
+    "Siberian settlers"
+   ],
+   "correct": "Prisoners (GULAG inmates)",
+   "explain": "The text explicitly states that both the Kombinat and the city were built by prisoners."
+  },
+  {
+   "id": "r16",
+   "ru": "Когда случился разлив топлива? 29 мая. «Материк» — Москва и Россия узнали об этом на двое суток позже.",
+   "question": "When did the fuel spill occur?",
+   "options": [
+    "May 12",
+    "May 27",
+    "May 29",
+    "June 1"
+   ],
+   "correct": "May 29",
+   "explain": "The text explicitly states the spill happened on May 29, though Moscow didn't learn about it for two days."
+  },
+  {
+   "id": "r17",
+   "ru": "Топливо ручьем потекло в речку Далдыкан, оттуда в Амбарную. Оттуда — в озеро Пясино. Из озера вытекает река Пясина — и впадает в Карское море.",
+   "question": "What was the ultimate destination of the spilled fuel?",
+   "options": [
+    "Lake Pyasino only",
+    "The Kara Sea",
+    "The Yenisei River",
+    "Arctic permafrost"
+   ],
+   "correct": "The Kara Sea",
+   "explain": "The fuel flowed through the Daldykan and Ambarnaya rivers into Lake Pyasino, which drains via the Pyasina River into the Kara Sea."
+  },
+  {
+   "id": "r18",
+   "ru": "Официальные лица ссылаются на прижимной ветер, не пустивший солярку в озеро. Ветер дул два дня и остановил 21 тысячу тонн, 350 вагонов топлива, плывущих по реке.",
+   "question": "According to officials, what prevented the fuel from reaching Lake Pyasino?",
+   "options": [
+    "Booms and barriers",
+    "Rapid evaporation",
+    "A favorable offshore wind",
+    "Water pumping stations"
+   ],
+   "correct": "A favorable offshore wind",
+   "explain": "Officials claim a favorable offshore wind kept 21 thousand tons of fuel from entering the lake during its two-day duration."
+  },
+  {
+   "id": "r19",
+   "ru": "Пока арестованы четверо — директор ТЭЦ-3, главный инженер, его зам и начальник цеха. За начальника котлотурбинного цеха Вячеслава Старостина, вышедшего на работу лишь в январе, город собирает подписи.",
+   "question": "How many officials were arrested related to the spill?",
+   "options": [
+    "Two",
+    "Three",
+    "Four",
+    "Seven"
+   ],
+   "correct": "Four",
+   "explain": "The text states four people were arrested: the director, chief engineer, his deputy, and the shop chief."
+  },
+  {
+   "id": "r20",
+   "ru": "Норильск — это заповедник коррупции. То, что происходит тут, — ни в одном другом регионе, наверное, таким изощренным способом не происходит.",
+   "question": "How does Abdullaev describe Norilsk's level of corruption?",
+   "options": [
+    "Minimal and improving",
+    "A preserve or refuge of corruption",
+    "Similar to other Russian cities",
+    "Declining with reform efforts"
+   ],
+   "correct": "A preserve or refuge of corruption",
+   "explain": "Abdullaev characterizes Norilsk as a 'заповедник коррупции' (preserve of corruption), suggesting it's exceptionally and sophisticatedly corrupt."
+  },
+  {
+   "id": "r21",
+   "ru": "До прошлой зимы здесь дороги посыпали гранулированным шлаком, который администрация выкупала у «Норникеля». После многолетней битвы Руслана шлак признали тем, чем он является, — опасными отходами.",
+   "question": "What was used on Norilsk's roads before Abdullaev's campaign?",
+   "options": [
+    "Concrete",
+    "Gravel",
+    "Granulated slag purchased from Nornickel",
+    "Permafrost chips"
+   ],
+   "correct": "Granulated slag purchased from Nornickel",
+   "explain": "The administration spread granulated slag from Nornickel on roads; only after Abdullaev's years of fighting was it recognized as hazardous waste."
+  },
+  {
+   "id": "r22",
+   "ru": "Здесь живут 180 тысяч человек, треть из них работают на Комбинате. Остальные обслуживают Комбинат или тех, кто работает на Комбинат.",
+   "question": "What is true about Norilsk's economic dependence on the Kombinat?",
+   "options": [
+    "Most people work in oil and gas",
+    "Most work directly or indirectly for the Kombinat",
+    "The city is diversifying away from Kombinat",
+    "The Kombinat is relocating"
+   ],
+   "correct": "Most work directly or indirectly for the Kombinat",
+   "explain": "The text shows one-third work directly for the Kombinat and the rest serve either the company or its employees, creating total economic dependence."
   }
  ],
  "highlight": [
@@ -304,6 +539,133 @@
     3
    ],
    "explain": "These sentences describe the tank rupture itself, its deteriorated condition, the path of contamination through waterways, and the lack of protective infrastructure."
+  },
+  {
+   "id": "h5",
+   "question": "Which sentences describe warning messages and intimidation against activists?",
+   "sentences": [
+    "Были эсэмэски «будь аккуратнее», «с собой ничего не носи», какая-то такая фигня, короче, типа, могут подкинуть, в таком духе.",
+    "Она подрабатывала — дежурила в классе информатики.",
+    "Через два месяца он умер в реанимации.",
+    "Передают приветы, но встречаться отказываются.",
+    "Я помню, что он начинал свою работу в журналистике с текстов о подростках."
+   ],
+   "correct": [
+    0,
+    3
+   ],
+   "explain": "The first sentence describes SMS warnings and threats of planted evidence, while the fourth shows local journalists refusing to meet due to fear."
+  },
+  {
+   "id": "h6",
+   "question": "Which sentences show authorities actively obstructing the journalists' investigation?",
+   "sentences": [
+    "Мы звоним людям, договариваемся о встречах — и они пропадают.",
+    "Ему было 53 года.",
+    "и на лодку приходит ФСБ и говорит капитану",
+    "Комбинат был построен силами заключенных.",
+    "Свет кажется сценическим."
+   ],
+   "correct": [
+    0,
+    2
+   ],
+   "explain": "These sentences illustrate systematic obstruction: sources disappearing and FSB confronting the boat captain to prevent investigation."
+  },
+  {
+   "id": "h7",
+   "question": "Which sentences reveal specific instances of systemic corruption?",
+   "sentences": [
+    "Норильск — это заповедник коррупции.",
+    "У Рамиля есть видеокамера Sony и машина.",
+    "Нагло умудряются отходы, те, которые должны утилизировать, продавать и из бюджета еще платить деньги?",
+    "Ему не жалко задержанных ни сотрудников ТЭЦ, ни Старостина.",
+    "Чтобы получить больше возможностей добиваться правды, он баллотировался в Государственную думу."
+   ],
+   "correct": [
+    0,
+    2
+   ],
+   "explain": "The first sentence broadly names Norilsk as a 'preserve of corruption'; the third describes the specific corrupt practice of selling hazardous waste while being paid."
+  },
+  {
+   "id": "h8",
+   "question": "Which sentences show Domnikov's important journalistic investigation?",
+   "sentences": [
+    "Мой самый любимый текст — «Липецк проснулся: весь в экономическом чуде».",
+    "В нем он рассказывает, как губернатор и его друзья разворовали Липецкую область, а потом объявили о невероятном экономическом росте.",
+    "Это приграничная зона, и, прилетая, заполняешь анкету.",
+    "Его друг Игорь желает ему разориться.",
+    "Он любит город, но сам не может объяснить почему."
+   ],
+   "correct": [
+    0,
+    1
+   ],
+   "explain": "These sentences describe Domnikov's investigation into how regional officials stole from Lipetsk while claiming economic success."
+  },
+  {
+   "id": "h9",
+   "question": "Which sentences show Politkovskaya's courageous reporting despite personal danger?",
+   "sentences": [
+    "Она никогда не отказывалась от действия, потому что журналист.",
+    "Она вывезла из разбомбленного Грозного забытый там дом престарелых — 91 человек.",
+    "Говорят, в его квартире никогда не закрывались двери.",
+    "Дело тянулось, прекращалось семь раз, семь раз заводилось заново.",
+    "Топливо ручьем потекло в речку Далдыкан."
+   ],
+   "correct": [
+    0,
+    1
+   ],
+   "explain": "Both sentences exemplify Politkovskaya's commitment: never refusing assignment and evacuating an entire elderly care facility under fire."
+  },
+  {
+   "id": "h10",
+   "question": "Which sentences show officials minimizing responsibility for murder?",
+   "sentences": [
+    "Позже выяснится, что Сопот не заказчик, а лишь посредник.",
+    "Заказчиком оказался вице-губернатор Липецкой области Сергей Доровский.",
+    "Сказал, правда, что не просил убивать журналиста — только «помочь с журналистом», а что бандиты его убьют, не знал.",
+    "Мы встречаемся в его офисе.",
+    "В его организации нет членства, но есть костяк — восемь адвокатов."
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "Dorovskly's claim of only asking to 'deal with' rather than kill the journalist shows how officials evade responsibility for clearly murderous orders."
+  },
+  {
+   "id": "h11",
+   "question": "Which sentences describe the physical destruction and environmental degradation of Norilsk?",
+   "sentences": [
+    "Трубы, трубы, поселки — разрушенные и еще живые, шахты и рудники (здесь это слово ударяют на первый слог), дым, редкие лиственницы, как призраки.",
+    "Город окружен Комбинатом, слит с ним.",
+    "Только что возбуждено уголовное дело на мэра города Рината Ахметчина.",
+    "Двое мужчин окликнули Домникова, когда он шел к лифту в своем подъезде.",
+    "Небо исполосовано дымами."
+   ],
+   "correct": [
+    0,
+    4
+   ],
+   "explain": "These sentences paint a picture of environmental devastation: decaying infrastructure, ghost-like trees, and a smoke-filled sky."
+  },
+  {
+   "id": "h12",
+   "question": "Which sentences show how media outlets became controlled by powerful interests?",
+   "sentences": [
+    "Местные журналисты — в городе две газеты, одна принадлежит Комбинату, другая — администрации — тоже знают, что мы приехали.",
+    "Здесь помнят и любят Игоря Домникова, который до прихода в «Новую» издавал в Норильске единственную независимую газету «69 градусов».",
+    "В каждом номере выходила ее статья, часто не одна.",
+    "Мы договариваемся с капитаном лодки — и на лодку приходит ФСБ.",
+    "Ему не жалко задержанных ни сотрудников ТЭЦ, ни Старостина."
+   ],
+   "correct": [
+    0,
+    1
+   ],
+   "explain": "These sentences show both local newspapers controlled by Kombinat or administration, contrasting with Domnikov's earlier independent paper."
   }
  ]
 }
