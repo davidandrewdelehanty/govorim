@@ -11,6 +11,10 @@ returns precise per-word timestamps using a pretrained Russian acoustic model +
 pronunciation dictionary. It does **not** transcribe, and it can't fix a transcript
 that doesn't match the audio.
 
+> **If you only read one thing:** do not feed MFA whole chapters. Split them into
+> ~30-second segments first (`split_corpus.py`). Whole-chapter alignment is what
+> kept getting OOM-killed. See §6.
+
 ---
 
 ## 0. Which shell — read this first
@@ -30,6 +34,9 @@ Gotchas that cost us time:
 - **Env vars don't survive a new shell.** Every new terminal, re-run the `export`
   lines in Step 4. If a path echoes back empty (`echo "$REPO"` prints nothing), they
   aren't set — re-export.
+- **The scripts live in the repo,** so always call them by full path:
+  `python "$REPO/scripts/mfa/split_corpus.py"`. Running `python split_corpus.py`
+  from your home directory gives `can't open file '/home/david/split_corpus.py'`.
 - **Stuck at a `>` prompt** = the shell is waiting for a closing quote from a bad
   paste and is swallowing everything you type. Press **Ctrl+C** to bail out, then
   re-paste one line at a time.
@@ -95,7 +102,7 @@ mono) + `NNN.lab` (the transcript for that audio). Set your paths:
 export REPO=/mnt/c/Users/david/projects/govorim-app
 export AUDIO_DIR="/mnt/c/Users/david/Downloads/audiobooks/<book folder>"
 export WP=~/<book>_align
-mkdir -p "$WP"/{corpus,out}
+mkdir -p "$WP"
 ```
 
 Use the repo script `scripts/mfa/build_corpus.py`. It pairs each local MP3 with the
@@ -148,60 +155,115 @@ French word / year in this book.
 
 ---
 
-## 6. Align — and DO NOT run `mfa validate`
+## 6. Split into segments — this is the step that fixes the crashes
+
+### Why the first attempts died
+
+MFA's peak memory is driven by the **length of the longest single utterance**, not
+by how many files are in the corpus. Each chapter here is one ~12-minute utterance,
+which is the worst case MFA has: the alignment lattice for it is enormous.
+
+The first run aligned all 362 chapters and then got OOM-killed by the kernel during
+"Analyzing alignment quality". Batching the chapters into 4 groups **did not help**,
+because each group still contained 12-minute utterances. Batching the corpus was
+fixing the wrong axis.
+
+The fix is to make the utterances themselves short. `split_corpus.py` cuts every
+chapter into ~30-second pieces **at existing fragment boundaries**, which is safe
+because the app's `vim/NNN.json` files already carry per-fragment `begin`/`end`
+times. It only ever cuts in the silence *between* fragments (at the midpoint of the
+gap, with padding), never inside speech.
+
+Peak RAM drops by more than an order of magnitude, and alignment gets *more*
+accurate too — no long-range drift within a chapter.
+
+```bash
+python "$REPO/scripts/mfa/split_corpus.py"                       # dry run — shows the plan
+python "$REPO/scripts/mfa/split_corpus.py" --build --drop-source # cut for real
+```
+
+The dry run reports the number that actually matters:
+
+```
+longest single utterance after splitting: 34.3s
+  (this is the number that drives MFA's peak RAM — before splitting it was ~700s)
+```
+
+- `--drop-source` deletes each chapter WAV right after cutting it, so disk stays
+  flat instead of holding both copies (76 h of 16 kHz mono is ~8.8 GB *per copy*).
+  The dry run prints a disk estimate and refuses to build without headroom.
+- Still tight on memory? Make the pieces smaller: `--target=20 --max=30`.
+- Output: `$WP/seg/bNNN/<chapter>_pMMM.wav|.lab`, plus a manifest at
+  `$WP/segmap.json` that records each segment's time offset and which fragments it
+  covers. **Don't delete `segmap.json`** — step 7 needs it to put the timings back.
+
+### 6b. Align the segments
 
 **Skip `mfa validate`.** It trains a fresh monophone model *from scratch* on the
 whole corpus as a "check" (26 minutes per iteration on 76 hours) and on this build it
-crashes with `ZeroDivisionError: division by zero` in the training accumulator. It is
-optional and unrelated to real alignment.
-
-Alignment itself uses the **pretrained** acoustic model — a single pass, no training,
-a completely different code path that doesn't hit that bug:
+crashes with `ZeroDivisionError` in the training accumulator. It is optional and
+unrelated to real alignment. Alignment uses the **pretrained** model — a single
+pass, no training, a completely different code path.
 
 ```bash
-mfa align "$WP/corpus" "$WP/wp.dict" russian_mfa "$WP/out" \
-    --single_speaker \
-    --output_format json \
-    --num_jobs 4 \
-    --clean
+python "$REPO/scripts/mfa/align_segments.py"           # aligns everything not yet done
+python "$REPO/scripts/mfa/align_segments.py" --status  # progress only, aligns nothing
 ```
 
-- `--single_speaker` — an audiobook is one narrator; faster and more accurate.
-- `--output_format json` — writes `$WP/out/NNN.json` with word intervals (easier to
-  parse than TextGrids).
-- Output lands per-file keyed by the same `NNN` basename as the corpus, so it maps
-  straight back to `audio/<book>/NNN.json`.
+It runs `mfa align` one batch (~25 chapters' worth of segments) at a time and is
+**resumable**: a batch whose outputs are already complete is skipped. If it dies or
+you Ctrl-C it, just run it again. A crash costs one batch, not the run. Logs land in
+`$WP/logs/<batch>.log`.
 
 Watch-outs:
 
-- **Out-of-memory:** drop to `--num_jobs 2` (or `1`).
-- **Long utterances:** each chapter is one ~12-minute utterance — the heaviest case
-  for MFA. It handles it, but if it specifically chokes on long files, add a
-  segmentation pass (`mfa segment`) before aligning.
-- A few chapters failing with `beam` errors → re-run just those with
-  `--beam 100 --retry_beam 400`.
+- **Still out-of-memory:** `--jobs=1` (default is 3).
+- **A batch fails with beam errors:** re-run just that one —
+  `--only=b003 --jobs=1 --beam=100 --retry-beam=400`.
+- Run it under `screen` / `tmux` — the full book takes hours.
 
 ---
 
-## 7. Fold the timings back into the app JSONs (per book)
-
-MFA's JSON gives word start/end times in order. `scripts/mfa/apply_timings.py` maps
-them positionally onto each chapter's existing `fragments[].words[]`:
+## 7. Fold the timings back into the app JSONs
 
 ```bash
-# BACK UP FIRST — this rewrites files in place
-cp -r "$REPO/public/books/audio/<book>"{,.bak}
-
-python "$REPO/scripts/mfa/apply_timings.py"          # dry run: per-chapter word counts + DRIFT flags
+python "$REPO/scripts/mfa/apply_timings.py"          # dry run: per-chapter match rate
 python "$REPO/scripts/mfa/apply_timings.py" --write  # apply
 ```
 
-The dry run flags any chapter where MFA's word count and the app's word-slot count
-differ by more than a few (`DRIFT`) — spot-check those before trusting them. Then
-open a chapter in the reader, play the narrator, and confirm the highlight tracks.
+`--write` copies `audio/vim` to `audio/vim.bak` first if no backup exists yet, so
+you can always get back.
 
-> `apply_timings.py` is written for the War & Peace `vim` folder — change the output
-> path glob for another book.
+The script auto-detects which mode to use: **segment mode** when `$WP/segmap.json`
+exists (the flow above), **flat mode** when you only have `$WP/out/NNN.json`.
+
+Two things it does that the old positional version didn't:
+
+1. **Per-segment anchoring.** Each segment's words are mapped onto that segment's
+   own fragment range, with the segment's offset added back. A bad 30-second piece
+   can't drift the rest of the chapter.
+2. **Text-aware matching.** App tokens and MFA tokens are normalised (lowercase,
+   ё→е, punctuation stripped) and lined up with `difflib.SequenceMatcher`. MFA emits
+   nothing for punctuation "words" like a leading `—`; those get interpolated from
+   their neighbours instead of shifting everything after them by one slot.
+
+Read the report before trusting it:
+
+```
+chapter     segs  gaps  matched   words    rate  flag
+002           76     1     3041    3118  97.5%  1 SEGMENT(S) NOT ALIGNED
+362           17     0      676     677  99.9%
+```
+
+- `gaps` > 0 means some segment produced no alignment — re-run that batch.
+- `rate` below 90% is flagged `LOW MATCH`, usually a transcript/audio mismatch.
+
+Then open a flagged chapter in the reader, play the narrator, and confirm the
+highlight tracks.
+
+> `build_corpus.py` and the default transcript folder are written for the War & Peace
+> `vim` layout. For another book, set `AUDIO_JSON_DIR` (the split/apply scripts read
+> it) and adjust `build_corpus.py`'s `sortkey()` / glob.
 
 ---
 
@@ -213,7 +275,7 @@ conda activate aligner
 export REPO=/mnt/c/Users/david/projects/govorim-app
 export AUDIO_DIR="/mnt/c/Users/david/Downloads/audiobooks/war and peace"
 export WP=~/wp_align
-mkdir -p "$WP"/{corpus,out}
+mkdir -p "$WP"
 
 python "$REPO/scripts/mfa/build_corpus.py"            # check pairing
 python "$REPO/scripts/mfa/build_corpus.py" --build    # build corpus
@@ -221,14 +283,18 @@ python "$REPO/scripts/mfa/build_corpus.py" --build    # build corpus
 mfa g2p ~/Documents/MFA/corpus/oovs_found_russian_mfa.txt russian_mfa "$WP/oov.dict"
 cat ~/Documents/MFA/pretrained_models/dictionary/russian_mfa.dict "$WP/oov.dict" > "$WP/wp.dict"
 
-mfa align "$WP/corpus" "$WP/wp.dict" russian_mfa "$WP/out" \
-    --single_speaker --output_format json --num_jobs 4 --clean
+python "$REPO/scripts/mfa/split_corpus.py"                        # check the plan
+python "$REPO/scripts/mfa/split_corpus.py" --build --drop-source  # ~30s segments
 
-cp -r "$REPO/public/books/audio/vim"{,.bak}
+python "$REPO/scripts/mfa/align_segments.py"          # resumable; run under screen
+python "$REPO/scripts/mfa/align_segments.py" --status # check progress anytime
+
 python "$REPO/scripts/mfa/apply_timings.py"           # dry run
-python "$REPO/scripts/mfa/apply_timings.py" --write   # apply
+python "$REPO/scripts/mfa/apply_timings.py" --write   # apply (backs up first)
 ```
 
 Key rules learned the hard way: run in WSL not PowerShell, re-export env vars in every
-new shell, verify the build-corpus pairing by eye, g2p the OOV names/French, and never
-run `mfa validate` — go straight to `mfa align`.
+new shell, call the scripts by `$REPO` path, verify the build-corpus pairing by eye,
+g2p the OOV names/French, never run `mfa validate` — and **never hand MFA a whole
+chapter**; split it first, because utterance length, not corpus size, is what
+exhausts memory.
