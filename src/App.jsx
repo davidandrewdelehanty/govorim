@@ -4642,7 +4642,7 @@ export default function App() {
   // If the current chapter has no exercises but the Exercises tab is somehow
   // still selected (e.g. after navigating), fall back to the reading view.
   useEffect(function() {
-    if (lview === "exercises" && !exData && noAIMode) setLview("read");
+    if (lview === "exercises" && !(exData && (exData.cases || []).length)) setLview("read");
   }, [exData, lview]);
 
   // Start (or restart) the grammar case quiz: shuffle questions & options.
@@ -4663,6 +4663,8 @@ export default function App() {
   };
 
   // Start (or restart) the reading-comprehension quiz (English questions).
+  // DISABLED 2026-08 — no UI path reaches this; kept so that re-enabling is a
+  // one-line edit in the category menu above.
   var startReadingQuiz = function() {
     if (!exData || !exData.reading || !exData.reading.length) return;
     var exShuffle = function(arr) {
@@ -4677,21 +4679,6 @@ export default function App() {
       return Object.assign({}, q, { options: exShuffle(q.options || []) });
     });
     setExQuestions(qs); setExIdx(0); setExSelected(null); setExScore(0); setExCat("reading");
-  };
-
-  // Start (or restart) the sentence-highlight quiz: read an English prompt, pick
-  // the sentence in the passage that answers it. correct[] holds the 0-based
-  // index/indices of the answer sentence(s); we shuffle question order only (not
-  // the sentences, so those indices stay valid).
-  var startHighlightQuiz = function() {
-    if (!exData || !exData.highlight || !exData.highlight.length) return;
-    var shuffle = function(arr) {
-      var a = arr.slice();
-      for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
-      return a;
-    };
-    var qs = shuffle(exData.highlight).map(function(q){ return Object.assign({}, q); });
-    setExQuestions(qs); setExIdx(0); setExSelected(null); setExScore(0); setExCat("highlight");
   };
 
   // ── Frequency Vocab Bank quiz logic ─────────────────────────────────────
@@ -4815,7 +4802,7 @@ export default function App() {
     try {
       var text = String((curChapter && curChapter.text) || "").replace(/\s+/g, " ").trim().slice(0, 6000);
       if (!text) throw new Error("No chapter text to draw vocabulary from.");
-      var prompt = 'From the Russian passage below, choose 14-18 of the more DIFFICULT, less-common VERBS and NOUNS — advanced (B2-C2) vocabulary an intermediate learner would most likely NOT already know and would need to look up. Deliberately skip everyday/basic words; favour rarer, more sophisticated words that actually occur in the passage. '
+      var prompt = 'From the Russian passage below, choose the 14-18 most useful VERBS and NOUNS for a learner to know. '
         + COMMON_WORDS_PROMPT_RULE + ' '
         + 'For each, return: the dictionary form ("ru" — infinitive for verbs, nominative singular for nouns), the part of speech ("pos": "noun" or "verb"), the correct English meaning ("en"; for verbs use "to ..."), '
         + 'exactly 3 plausible-but-WRONG English meanings of the SAME part of speech ("distractors"), and "context": one short sentence copied VERBATIM from the passage where the word appears, with the word (in whatever form it appears) wrapped in **double asterisks**. '
@@ -10107,7 +10094,7 @@ export default function App() {
                   <button className={"ltab"+(lview==="read"?" on":"")} onClick={function(){ setLview("read"); }}>📖 Read</button>
                   <button className={"ltab"+(lview==="nav"?" on":"")} onClick={function(){ setLview("nav"); }}>🗂 Chapters</button>
                   <button className={"ltab"+(lview==="search"?" on":"")} onClick={function(){ setLview("search"); }}>🔍 Search</button>
-                  {(exData || !noAIMode) && <button className={"ltab"+(lview==="exercises"?" on":"")} onClick={function(){ setLview("exercises"); }}>📝 Exercises</button>}
+                  {exData && (exData.cases||[]).length > 0 && <button className={"ltab"+(lview==="exercises"?" on":"")} onClick={function(){ setLview("exercises"); }}>📝 Exercises</button>}
                   {/* Page + chapter nav moved up here so they stay visible
                       while the floating audio bar covers the bottom of the page. */}
                   {lview === "read" && (
@@ -10380,7 +10367,7 @@ export default function App() {
                   </>
                 )}
 
-                {lview==="exercises" && (exData || !noAIMode) && (
+                {lview==="exercises" && exData && (exData.cases||[]).length > 0 && (
                   <div className="navpanel" style={{maxWidth:640,margin:"0 auto"}}>
                     {/* ── Category menu: Vocabulary / Grammar / Reading ──────── */}
                     {exCat === "menu" && (
@@ -10390,8 +10377,12 @@ export default function App() {
                           {exData && exData.source && <div style={{fontSize:13,color:"rgba(42,31,20,.5)",marginTop:4}}>{exData.source}</div>}
                         </div>
                         <div style={{display:"flex",flexDirection:"column",gap:14}}>
-                          {/* Vocabulary — live AI quiz on this chapter's harder verbs & nouns. */}
-                          {curChapter && curChapter.text && (
+                          {/* Vocabulary — live AI quiz on this chapter's verbs & nouns.
+                              DISABLED: called the model live (cost), and we are deliberately
+                              reducing AI-generated exercise content. Remove the `false &&`
+                              below to re-enable — startVocabQuiz and the exCat==="vocab"
+                              panel further down are still intact. */}
+                          {false && (
                           <button onClick={startVocabQuiz}
                             style={{background:"rgba(90,120,150,.1)",border:"1px solid rgba(90,120,150,.4)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
                             onMouseOver={function(e){ e.currentTarget.style.background = "rgba(90,120,150,.16)"; }}
@@ -10400,7 +10391,7 @@ export default function App() {
                               <span style={{fontSize:24}}>🗂️</span>
                               <span style={{fontSize:18,fontWeight:600,color:"#33507a",fontFamily:"'Playfair Display',serif"}}>Vocabulary</span>
                             </div>
-                            <p style={{fontSize:13,color:"rgba(42,31,20,.55)",margin:0,lineHeight:1.5}}>The harder, less-common verbs and nouns from this chapter, each shown in a sentence for context. Get each right twice to clear it.</p>
+                            <p style={{fontSize:13,color:"rgba(42,31,20,.55)",margin:0,lineHeight:1.5}}>Key verbs and nouns from this chapter, shown in a sentence for context. Get each right twice to clear it.</p>
                           </button>
                           )}
                           {/* Grammar (only when a prebuilt exercise set exists) */}
@@ -10415,8 +10406,11 @@ export default function App() {
                             </div>
                             <p style={{fontSize:13,color:"rgba(42,31,20,.55)",margin:0,lineHeight:1.5}}>{(exData.cases||[]).length} questions. Pick the correct case form to fill each blank, with the English line for context.</p>
                           </button>
-                          {/* Reading comprehension */}
-                          {(function(){
+                          {/* Reading comprehension — DISABLED 2026-08. Generated comprehension
+                              questions were unreliable, and the focus is synced audio+text reading.
+                              Remove the `false &&` below to re-enable: startReadingQuiz, the
+                              "reading-soon" panel and the shared quiz runner are all still intact. */}
+                          {false && (function(){
                             var hasReading = exData.reading && exData.reading.length;
                             return (
                           <button onClick={hasReading ? startReadingQuiz : function(){ setExCat("reading-soon"); }}
@@ -10432,19 +10426,6 @@ export default function App() {
                           </button>
                             );
                           })()}
-                          {/* Sentence highlight — pick the sentence that answers an English prompt */}
-                          {exData.highlight && exData.highlight.length ? (
-                          <button onClick={startHighlightQuiz}
-                            style={{background:"rgba(120,110,170,.1)",border:"1px solid rgba(120,110,170,.4)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
-                            onMouseOver={function(e){ e.currentTarget.style.background = "rgba(120,110,170,.16)"; }}
-                            onMouseOut={function(e){ e.currentTarget.style.background = "rgba(120,110,170,.1)"; }}>
-                            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
-                              <span style={{fontSize:24}}>🖍️</span>
-                              <span style={{fontSize:18,fontWeight:600,color:"#4a3f7a",fontFamily:"'Playfair Display',serif"}}>Highlight — Find the sentence</span>
-                            </div>
-                            <p style={{fontSize:13,color:"rgba(42,31,20,.55)",margin:0,lineHeight:1.5}}>{exData.highlight.length} questions. Pick the sentence in the passage that answers each prompt.</p>
-                          </button>
-                          ) : null}
                           </>)}
                         </div>
                       </div>
@@ -10554,70 +10535,6 @@ export default function App() {
                         <div style={{fontSize:40,marginBottom:12}}>📖</div>
                         <p style={{color:"rgba(42,31,20,.7)",fontSize:15,lineHeight:1.6,maxWidth:440,margin:"0 auto 24px"}}>Reading-comprehension exercises for this passage are coming soon.</p>
                         <button className="btn-g" style={{maxWidth:240}} onClick={function(){ setExCat("menu"); }}>← Back</button>
-                      </div>
-                    )}
-
-                    {/* ── Sentence-highlight quiz ── */}
-                    {exCat === "highlight" && (
-                      <div style={{padding:"14px 4px"}}>
-                        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
-                          <button className="ab" onClick={function(){ setExCat("menu"); }}>← Back</button>
-                          <span style={{fontSize:13,color:"rgba(42,31,20,.5)"}}>Score: {exScore} / {exIdx + (exSelected !== null ? 1 : 0)}</span>
-                        </div>
-                        {exIdx >= exQuestions.length ? (
-                          <div style={{padding:"30px 20px",textAlign:"center"}}>
-                            <div style={{fontSize:48,marginBottom:12}}>{exScore === exQuestions.length ? "🎉" : exScore >= exQuestions.length * 0.7 ? "👏" : "📚"}</div>
-                            <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,color:"#000",marginBottom:8}}>Done!</h2>
-                            <p style={{fontSize:20,color:"#000",marginBottom:6}}>You got <strong style={{color:"#c4955a"}}>{exScore}</strong> of <strong>{exQuestions.length}</strong> correct.</p>
-                            <p style={{fontSize:14,color:"rgba(42,31,20,.5)",marginBottom:28}}>{Math.round(exScore / Math.max(1,exQuestions.length) * 100)}%</p>
-                            <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
-                              <button className="btn-p" style={{maxWidth:200}} onClick={startHighlightQuiz}>Try again</button>
-                              <button className="btn-g" style={{maxWidth:200}} onClick={function(){ setExCat("menu"); }}>Back to exercises</button>
-                            </div>
-                          </div>
-                        ) : (function(){
-                          var q = exQuestions[exIdx];
-                          var answered = exSelected !== null;
-                          var correctSet = q.correct || [];
-                          var pickedRight = answered && correctSet.indexOf(exSelected) !== -1;
-                          return (
-                            <div>
-                              <div style={{fontSize:13,color:"rgba(42,31,20,.5)",marginBottom:14}}>Question {exIdx + 1} of {exQuestions.length}</div>
-                              <div style={{fontSize:16,fontFamily:"'Inter',sans-serif",color:"rgba(42,31,20,.75)",textAlign:"center",lineHeight:1.5,fontWeight:600,maxWidth:560,margin:"0 auto 20px"}}>{q.question}</div>
-                              <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:600,margin:"0 auto"}}>
-                                {(q.sentences || []).map(function(s, i){
-                                  var isCorrect = correctSet.indexOf(i) !== -1;
-                                  var isPicked = exSelected === i;
-                                  var bg = "rgba(42,31,20,.04)", brd = "rgba(42,31,20,.16)", col = "#2a1f14";
-                                  if (answered) {
-                                    if (isCorrect)     { bg = "rgba(90,133,86,.22)"; brd = "rgba(90,133,86,.65)"; col = "#2f5a2a"; }
-                                    else if (isPicked) { bg = "rgba(157,70,48,.16)"; brd = "rgba(157,70,48,.6)"; col = "#9d4630"; }
-                                    else               { col = "rgba(42,31,20,.4)"; }
-                                  }
-                                  return (
-                                    <button key={i} disabled={answered} onClick={function(){
-                                      setExSelected(i);
-                                      if (correctSet.indexOf(i) !== -1) setExScore(function(sc){ return sc + 1; });
-                                    }} style={{background:bg,border:"1px solid "+brd,color:col,padding:"13px 16px",borderRadius:10,fontSize:18,fontFamily:"'Crimson Pro',serif",cursor: answered ? "default" : "pointer",textAlign:"left",lineHeight:1.5,transition:"all .15s"}}>{s}</button>
-                                  );
-                                })}
-                              </div>
-                              {answered && (
-                                <div style={{maxWidth:600,margin:"18px auto 0",background:"rgba(42,31,20,.05)",border:"1px solid rgba(42,31,20,.14)",borderRadius:10,padding:"14px 16px"}}>
-                                  <div style={{fontSize:15,fontWeight:600,color: pickedRight ? "#2f5a2a" : "#9d4630",marginBottom:6}}>{pickedRight ? "✓ Correct" : "✗ Not quite"}</div>
-                                  <div style={{fontSize:14,color:"rgba(42,31,20,.7)",lineHeight:1.55}}>{q.explain}</div>
-                                </div>
-                              )}
-                              {answered && (
-                                <div style={{marginTop:22,textAlign:"center"}}>
-                                  <button className="btn-p" style={{maxWidth:260}} onClick={function(){ setExIdx(function(i){ return i + 1; }); setExSelected(null); }}>
-                                    {exIdx + 1 < exQuestions.length ? "Next →" : "See results"}
-                                  </button>
-                                </div>
-                              )}
-                            </div>
-                          );
-                        })()}
                       </div>
                     )}
 
