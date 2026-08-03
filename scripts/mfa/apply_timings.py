@@ -44,6 +44,7 @@ SEGOUT = f"{WP}/segout"
 FLATOUT = f"{WP}/out"
 
 WRITE = "--write" in sys.argv
+DEBUG = "--debug" in sys.argv
 
 
 def opt(name, default):
@@ -64,25 +65,125 @@ def norm(tok):
     return PUNCT.sub("", (tok or "").lower().replace("ё", "е"))
 
 
+PARSE_ERRORS = []
+SKIP_LABELS = {"sil", "sp", "spn", "<eps>", "<unk>", "<sil>", ""}
+
+
+def _entries(d):
+    """Find the word-interval list in an MFA json, across output shapes."""
+    tiers = d.get("tiers") or d.get("Tiers") or {}
+    if isinstance(tiers, dict):
+        for k in ("words", "Words", "word", "utterances"):
+            t = tiers.get(k)
+            if isinstance(t, dict) and t.get("entries"):
+                return t["entries"]
+            if isinstance(t, list) and t:
+                return t
+    for k in ("words", "Words"):                 # flat {"words":[...]}
+        if isinstance(d.get(k), list) and d[k]:
+            return d[k]
+    return []
+
+
 def mfa_words(path):
-    """-> [(start, end, label)] from an MFA json, tolerant of tier naming."""
+    """-> [(start, end, label)] from an MFA json. Records why it failed."""
     try:
         d = json.load(open(path, encoding="utf-8"))
-    except Exception:
+    except Exception as ex:
+        PARSE_ERRORS.append(f"{os.path.basename(path)}: unreadable ({ex})")
         return []
-    tiers = d.get("tiers", {}) or {}
-    w = tiers.get("words") or tiers.get("Words") or {}
     out = []
-    for e in w.get("entries", []) or []:
-        if isinstance(e, dict):
-            s, t, lab = e.get("begin"), e.get("end"), e.get("label")
-        else:
-            s, t, lab = e[0], e[1], e[2]
-        lab = str(lab or "").strip()
-        if not lab or lab in {"sil", "sp", "spn", "<eps>", "<unk>"}:
-            continue
-        out.append((float(s), float(t), lab))
+    for e in _entries(d) or []:
+        try:
+            if isinstance(e, dict):
+                st = e.get("begin", e.get("start"))
+                en = e.get("end", e.get("stop"))
+                lab = e.get("label", e.get("word", e.get("text")))
+            else:
+                st, en, lab = e[0], e[1], e[2]
+            lab = str(lab if lab is not None else "").strip()
+            if not lab or lab in SKIP_LABELS:
+                continue
+            out.append((float(st), float(en), lab))
+        except Exception as ex:
+            PARSE_ERRORS.append(f"{os.path.basename(path)}: bad entry {e!r} ({ex})")
+            return []
+    if not out:
+        PARSE_ERRORS.append(f"{os.path.basename(path)}: no word intervals found")
     return out
+
+
+def debug_dump():
+    """Show what the aligner actually produced, so a format mismatch is obvious."""
+    print(f"\nsegmap: {SEGMAP} {'OK' if os.path.exists(SEGMAP) else 'MISSING'}")
+    print(f"segout: {SEGOUT} {'OK' if os.path.isdir(SEGOUT) else 'MISSING'}")
+    if not os.path.isdir(SEGOUT):
+        print("\nNothing to inspect. Did align_segments.py finish and write here?")
+        return
+    batches = sorted(d for d in os.listdir(SEGOUT) if os.path.isdir(f"{SEGOUT}/{d}"))
+    files = []
+    for b in batches:
+        fs = sorted(glob.glob(f"{SEGOUT}/{b}/*.json"))
+        print(f"  {b}: {len(fs)} json")
+        files += fs
+    print(f"total aligned json files: {len(files)}")
+    if not files:
+        print("\n*** segout has no .json files — alignment produced nothing here.")
+        return
+    p = files[0]
+    print(f"\n--- structure of {p} ---")
+    try:
+        d = json.load(open(p, encoding="utf-8"))
+    except Exception as ex:
+        print(f"UNREADABLE: {ex}")
+        return
+    print("top-level keys:", list(d.keys()))
+    t = d.get("tiers")
+    if isinstance(t, dict):
+        print("tiers keys:", list(t.keys()))
+        for k, v in t.items():
+            if isinstance(v, dict):
+                ents = v.get("entries") or []
+                print(f"  tiers[{k!r}]: keys={list(v.keys())} entries={len(ents)}")
+                for e in ents[:3]:
+                    print(f"    {e!r}")
+    got = mfa_words(p)
+    print(f"\nparsed {len(got)} word intervals; first 3: {got[:3]}")
+    if not got:
+        print("*** parser found nothing — paste this output and I will fix the parser.")
+
+
+def sync_word_timings(d):
+    """Mirror fragment word times into the top-level word_timings list.
+
+    THIS MATTERS: App.jsx builds its highlight timeline from data.word_timings
+    (buildWordTimeline), NOT from fragments[].words[]. Updating only the fragments
+    leaves the reader playing against the OLD timings, which looks exactly like
+    "alignment ran fine but highlighting is still broken".
+    Returns (status, n_updated).
+    """
+    wt = d.get("word_timings")
+    if not isinstance(wt, list) or not wt:
+        return "none", 0
+    flat = [w for f in d.get("fragments", []) for w in (f.get("words") or [])]
+    if len(flat) == len(wt):
+        n = 0
+        for src, dst in zip(flat, wt):
+            if src.get("begin") is not None:
+                dst["begin"], dst["end"] = src["begin"], src["end"]
+                n += 1
+        return "ok", n
+    # lengths diverge -> match on normalised text instead of position
+    a = [norm(w.get("word")) for w in flat]
+    b = [norm(w.get("word")) for w in wt]
+    n = 0
+    for i, j, k in difflib.SequenceMatcher(a=a, b=b, autojunk=False).get_matching_blocks():
+        for x in range(k):
+            src = flat[i + x]
+            if src.get("begin") is not None:
+                wt[j + x]["begin"], wt[j + x]["end"] = src["begin"], src["end"]
+                n += 1
+    return ("matched" if n else "FAILED"), n
 
 
 def assign(app_words, mfa, lo_time, hi_time):
@@ -145,6 +246,10 @@ def assign(app_words, mfa, lo_time, hi_time):
 
 
 # ---------------------------------------------------------------------------
+if DEBUG:
+    debug_dump()
+    sys.exit(0)
+
 segmented = os.path.exists(SEGMAP) and os.path.isdir(SEGOUT)
 print(f"mode: {'SEGMENT' if segmented else 'FLAT'}")
 print(f"transcripts: {JSON_DIR}")
@@ -201,8 +306,10 @@ if segmented:
             if ws:
                 f["begin"], f["end"] = ws[0]["begin"], ws[-1]["end"]
 
+        wt_status, wt_n = sync_word_timings(d) if tot_m else ("skip", 0)
         rate = tot_m / tot_w if tot_w else 0.0
-        rows.append((base, len(chapters[base]["segments"]), missing_segs, tot_m, tot_w, rate))
+        rows.append((base, len(chapters[base]["segments"]), missing_segs, tot_m, tot_w,
+                     rate, wt_status, wt_n))
 
         if WRITE and tot_m:
             json.dump(d, open(tgt, "w", encoding="utf-8"), ensure_ascii=False)
@@ -228,23 +335,28 @@ else:
             ws = f.get("words") or []
             if ws:
                 f["begin"], f["end"] = ws[0]["begin"], ws[-1]["end"]
-        rows.append((base, 1, 0 if words else 1, m, t, (m / t) if t else 0.0))
+        wt_status, wt_n = sync_word_timings(d) if m else ("skip", 0)
+        rows.append((base, 1, 0 if words else 1, m, t, (m / t) if t else 0.0,
+                     wt_status, wt_n))
         if WRITE and m:
             json.dump(d, open(tgt, "w", encoding="utf-8"), ensure_ascii=False)
             changed += 1
 
 # ---- report ---------------------------------------------------------------
-print(f"\n{'chapter':10} {'segs':>5} {'gaps':>5} {'matched':>8} {'words':>7} {'rate':>7}  flag")
+print(f"\n{'chapter':10} {'segs':>5} {'gaps':>5} {'matched':>8} {'words':>7} {'rate':>7} {'word_timings':>13}  flag")
 bad = []
-for base, nseg, miss, m, t, rate in rows:
+for base, nseg, miss, m, t, rate, wts, wtn in rows:
     flag = ""
     if miss:
         flag = f"{miss} SEGMENT(S) NOT ALIGNED"
     elif rate < DRIFT_AT:
         flag = "LOW MATCH"
+    if wts == "FAILED":
+        flag = (flag + " " if flag else "") + "WORD_TIMINGS NOT SYNCED"
     if flag:
         bad.append(base)
-    print(f"{base:10} {nseg:5} {miss:5} {m:8} {t:7} {rate:6.1%}  {flag}")
+    wtcol = f"{wts}:{wtn}" if wts not in ("none",) else "none"
+    print(f"{base:10} {nseg:5} {miss:5} {m:8} {t:7} {rate:6.1%} {wtcol:>13}  {flag}")
 
 tm = sum(r[3] for r in rows)
 tw = sum(r[4] for r in rows)
@@ -255,5 +367,26 @@ if bad:
     print("For a chapter with unaligned segments, re-run that batch:")
     print("  python align_segments.py --only=<batch> --jobs=1 --beam=100 --retry-beam=400")
 
-print(f"\nrewrote {changed} files" if WRITE
-      else "\nDry run only. Re-run with --write to apply.")
+if PARSE_ERRORS:
+    uniq = []
+    for e in PARSE_ERRORS:
+        tag = e.split(":", 1)[1].strip()
+        if tag not in uniq:
+            uniq.append(tag)
+    print(f"\n{len(PARSE_ERRORS)} aligned file(s) yielded no usable words. Distinct reasons:")
+    for u in uniq[:5]:
+        print(f"  - {u}")
+
+if tm == 0:
+    print("\n" + "=" * 68)
+    print("NOTHING WAS APPLIED — every chapter matched 0 words.")
+    print("The app JSONs are untouched; this is not a partial write.")
+    print("Diagnose with:   python apply_timings.py --debug")
+    print("That prints what the aligner actually wrote, so a format or path")
+    print("mismatch is obvious. Nothing is changed until this reads > 0.")
+    print("=" * 68)
+elif WRITE:
+    print(f"\nrewrote {changed} files "
+          f"(fragments[].words[] AND word_timings — the reader uses the latter)")
+else:
+    print("\nDry run only. Re-run with --write to apply.")
