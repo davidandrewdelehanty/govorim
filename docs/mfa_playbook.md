@@ -150,6 +150,57 @@ Individually trivial, collectively hours:
   `~/Documents/MFA`, and each batch runs with `--clean`. `--status` is read-only and
   safe in a second window.
 
+### 2.11 Writing timings the reader doesn't read
+
+The alignment was correct — 96.8% match across 362 chapters — and highlighting in
+the app was still broken, because `apply_timings.py` wrote only
+`fragments[].words[]`.
+
+**The reader builds its highlight timeline from the top-level `word_timings`
+array** (`App.jsx` → `buildWordTimeline(curChapter.text, audiobookData.word_timings,
+...)`). `fragments[].words[]` and `word_timings` are two parallel copies of the same
+token stream, and the app syncs audio against the *second* one. Updating only the
+first leaves the reader playing the old timings, which looks exactly like "the
+alignment didn't work".
+
+`apply_timings.py` now writes both and reports a `word_timings` column per chapter.
+Any future consumer of these files should check which key it actually reads.
+
+### 2.12 A dry run that looks like success
+
+`apply_timings.py` with no `--write` prints 362 rows of healthy-looking match rates
+and ends with one quiet line: *"Dry run only. Re-run with --write to apply."* It is
+very easy to read the table, conclude it worked, and push unchanged files — which is
+what happened here, costing a full debugging cycle.
+
+Two guards now exist, and the lesson generalises to any dry-run tool:
+
+- If every chapter matches 0 words, it prints a loud `NOTHING WAS APPLIED` block
+  instead of a mild "rewrote 0 files".
+- Parse failures are reported with their real reason (missing file, unknown format)
+  rather than being swallowed by a bare `except` that made "couldn't read it" and
+  "nothing to read" indistinguishable.
+
+**Verify the artifact, not the log.** The check that settles it in seconds:
+
+```bash
+python - <<'EOF'
+import json
+r="/mnt/c/Users/david/projects/govorim-app/public/books/audio/"
+d=json.load(open(r+"vim/002.json",encoding="utf-8"))
+b=json.load(open(r+"vim.bak/002.json",encoding="utf-8"))
+print(sum(1 for x,y in zip(d["word_timings"],b["word_timings"]) if x["begin"]!=y["begin"]),
+      "/", len(d["word_timings"]), "word timings changed")
+EOF
+```
+
+Zero means nothing was applied, no matter what the report said.
+
+### 2.13 Browser cache hiding the fix
+
+After writing correct JSONs, hard-refresh (Ctrl+Shift+R). The old chapter JSONs sit
+in the browser cache and will keep demonstrating the bug you just fixed.
+
 ---
 
 ## 3. Why cutting on fragment boundaries is safe
@@ -242,6 +293,8 @@ interpolation bug, which no amount of reading the diff would have shown.
 | Time per batch | 6–8 min → ~100 min total |
 | Unaligned segments | ~0.5% per batch (normal) |
 | Disk for segments | ~8.8 GB |
+| Match rate applied | 96.8% (482,587 / 498,733 words) |
+| Segments MFA could not align | 45 of 10,614 (0.4%) — interpolated |
 | OOV before g2p | 85 types / 204k tokens — character names in every case, French, years |
 
 OOV matters more than it looks: character names recur constantly, so leaving them
