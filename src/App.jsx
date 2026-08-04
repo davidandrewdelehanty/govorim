@@ -2926,6 +2926,14 @@ export default function App() {
   var [popup, setPopup]   = useState(null);
   var [popXY, setPopXY]   = useState({top:100,left:16});
   var popRef = useRef(null);
+  // Two-choice bubble shown when a Russian word is clicked: define it, or
+  // start the audio from that word. Clicking a word used to go straight to
+  // the definition, which left no way to move around inside a recording
+  // except the player's skip buttons — and those jumped by *sentence*, which
+  // is why they kept knocking the word-level highlighter back into
+  // sentence mode. Seeking from the word itself replaces them.
+  var [wordMenu, setWordMenu] = useState(null);   // {word, start, top, left}
+  var wordMenuRef = useRef(null);
   // After the popup renders, clamp it so it never extends below the viewport.
   // The initial position is an estimate; this corrects it using actual height.
   useEffect(function() {
@@ -3324,6 +3332,20 @@ export default function App() {
   };
 
   var highlightSentence = function(sentence, override) {
+    // Sentence highlighting is the fallback for chapters with no word-level
+    // alignment. When an audiobook chapter HAS one, the RAF loop is driving
+    // per-word highlighting and any sentence highlight painted on top is a
+    // leftover from the pre-alignment design: it sticks (nothing clears it),
+    // and it reads as the highlighter silently downgrading itself mid-play.
+    // Guarded here rather than at each call site so no future caller can
+    // reintroduce it. Deliberately scoped to audiobook mode — TTS playback
+    // is sentence-based and still wants this, even on a chapter that also
+    // has an alignment.
+    if (audiobookModeRef.current &&
+        wordTimelineRef.current && wordTimelineRef.current.length) {
+      clearSentenceHighlight();
+      return;
+    }
     clearSentenceHighlight();
     if (!sentence || sentence.start < 0) return;       // synthetic chapter announcement — nothing on screen to highlight
     // Read the page from the ref, not the closed-over value: the audiobook RAF
@@ -4205,91 +4227,71 @@ export default function App() {
       }
     }
   };
-  var audioSkipBack = function() {
-    if (audioSentencesRef.current.length === 0) return;
-    sentenceOverrideRef.current = null;
-    if (audiobookModeRef.current && audiobookDataRef.current) {
-      // Skip by fragment: find previous fragment boundary relative to current time
-      var frags = audiobookDataRef.current.fragments || [];
-      var curTime = audiobookAudioRef.current ? audiobookAudioRef.current.currentTime : 0;
-      // Find the fragment we're currently in or just passed
-      var curFrag = 0;
-      for (var fi = 0; fi < frags.length; fi++) {
-        if (frags[fi].begin <= curTime) curFrag = fi;
-        else break;
-      }
-      // Go back one fragment (or stay at 0)
-      var targetFrag = Math.max(0, curFrag - 1);
-      var targetTime = frags[targetFrag] ? frags[targetFrag].begin : 0;
-      if (audiobookAudioRef.current) {
-        try { audiobookAudioRef.current.currentTime = targetTime; } catch(e) {}
-      }
-      setTimeout(function(){
-        if (audiobookAudioRef.current) {
-          var t = audiobookAudioRef.current.currentTime;
-          var timings = sentenceTimingsRef.current;
-          var best = -1;
-          for (var ti = 0; ti < timings.length; ti++) {
-            if (timings[ti] && timings[ti].begin <= t + 0.5) best = ti;
-          }
-          if (best >= 0 && audioSentencesRef.current[best]) {
-            console.log("[SKIP POST] t="+t.toFixed(2)+" best="+best+" text="+(audioSentencesRef.current[best]?audioSentencesRef.current[best].text.slice(0,40):"?"));
-            setAudioIdx(best); audioIdxRef.current = best;
-            highlightSentence(audioSentencesRef.current[best], null);
-          }
-        }
-        if (audioPlayingRef.current) startAudiobookRaf();
-      }, 120);
-      return;
+  // Seek the audiobook to a precise moment and play from there.
+  //
+  // Replaces the old skip-back / skip-forward buttons. Those moved by
+  // FRAGMENT (i.e. by sentence) and, worse, painted a sentence highlight
+  // afterwards, so using them on a chapter with word-level alignment
+  // visibly knocked the highlighter back to sentence mode. Navigation now
+  // happens by clicking the word you want to hear, which is both more
+  // precise and can't disagree with the highlighter about granularity.
+  var startAudiobookAtTime = function(t) {
+    var data = audiobookDataRef.current;
+    if (!data || !data.audio_url) return false;
+    var audio = audiobookAudioRef.current;
+    if (!audio) {
+      // Element not built yet: let the normal start path create it (it also
+      // handles the user-activation dance), then seek once it can play.
+      if (!playAudiobookFromSentence(0)) return false;
+      audio = audiobookAudioRef.current;
+      if (!audio) return false;
+      var seekOnce = function() {
+        try { audio.currentTime = t; } catch(e) {}
+        audio.removeEventListener("canplay", seekOnce);
+      };
+      audio.addEventListener("canplay", seekOnce);
+      return true;
     }
-    var newIdx = Math.max(0, audioIdxRef.current - 1);
-    setAudioIdx(newIdx); audioIdxRef.current = newIdx;
-    if (audioPlayingRef.current) playAudioSentence(newIdx);
-    else resetAudioBar();
-  };
-  var audioSkipForward = function() {
-    if (audioSentencesRef.current.length === 0) return;
-    sentenceOverrideRef.current = null;
-    if (audiobookModeRef.current && audiobookDataRef.current) {
-      // Skip by fragment: find next fragment boundary relative to current time
-      var frags = audiobookDataRef.current.fragments || [];
-      var curTime = audiobookAudioRef.current ? audiobookAudioRef.current.currentTime : 0;
-      // Find the next fragment after current time
-      var targetFrag = frags.length - 1;
-      for (var fi = 0; fi < frags.length; fi++) {
-        if (frags[fi].begin > curTime + 0.5) { targetFrag = fi; break; }
-      }
-      console.log("[SKIP FWD] curTime="+curTime.toFixed(2)+" targetFrag="+targetFrag+" targetTime="+(frags[targetFrag]?frags[targetFrag].begin:"?"));
-      var targetTime = frags[targetFrag] ? frags[targetFrag].begin : curTime;
-      if (audiobookAudioRef.current) {
-        try { audiobookAudioRef.current.currentTime = targetTime; } catch(e) {}
-      }
-      // Immediately highlight the target fragment's sentence
-      var targetFragIdx = targetFrag;
-      setTimeout(function(){
-        if (audiobookAudioRef.current) {
-          var t = audiobookAudioRef.current.currentTime;
-          // Find sentence index that matches this exact time
-          var timings = sentenceTimingsRef.current;
-          var best = -1;
-          for (var ti = 0; ti < timings.length; ti++) {
-            if (timings[ti] && timings[ti].begin <= t + 0.5) best = ti;
-          }
-          if (best >= 0 && audioSentencesRef.current[best]) {
-            console.log("[SKIP POST] t="+t.toFixed(2)+" best="+best+" text="+(audioSentencesRef.current[best]?audioSentencesRef.current[best].text.slice(0,40):"?"));
-            setAudioIdx(best); audioIdxRef.current = best;
-            highlightSentence(audioSentencesRef.current[best], null);
-          }
-        }
-        if (audioPlayingRef.current) startAudiobookRaf();
-      }, 120);
-      return;
+    clearSentenceHighlight();
+    try { audio.currentTime = t; } catch(e) {}
+    // Keep the "Sentence N / M" readout honest after an arbitrary jump.
+    try {
+      var si = findSentenceIdxForTime(t);
+      if (si >= 0) { setAudioIdx(si); audioIdxRef.current = si; }
+    } catch(e) {}
+    if (audio.paused) {
+      var pr = audio.play();
+      if (pr && typeof pr.catch === "function") pr.catch(function(){});
     }
-    var newIdx = Math.min(audioSentencesRef.current.length - 1, audioIdxRef.current + 1);
-    setAudioIdx(newIdx); audioIdxRef.current = newIdx;
-    if (audioPlayingRef.current) playAudioSentence(newIdx);
-    else resetAudioBar();
+    setAudioPlaying(true); audioPlayingRef.current = true;
+    startAudiobookRaf();
+    return true;
   };
+
+  // Play from a specific word, identified by its absolute character offset
+  // in the chapter (the same value carried in each word span's
+  // data-rw-start, and in every word-timeline entry's `start`).
+  var playFromWordOffset = function(charStart) {
+    var tl = wordTimelineRef.current;
+    if (audiobookModeRef.current && audiobookDataRef.current && tl && tl.length) {
+      // Exact match if this word was aligned; otherwise the next aligned
+      // word after it. A word can be missing from the timeline when the
+      // aligner failed on that stretch, and landing slightly late is much
+      // better than refusing to move.
+      var lo = 0, hi = tl.length - 1, pick = -1;
+      while (lo <= hi) {
+        var mid = (lo + hi) >> 1;
+        if (tl[mid].start >= charStart) { pick = mid; hi = mid - 1; }
+        else lo = mid + 1;
+      }
+      if (pick >= 0) return startAudiobookAtTime(tl[pick].begin);
+      return false;
+    }
+    // No alignment (or TTS mode): fall back to reading aloud from here.
+    jumpTTS(charStart);
+    return true;
+  };
+
 
   var [playing, setPlaying]     = useState(false);
   var [showVP, setShowVP]       = useState(false);
@@ -5166,7 +5168,10 @@ export default function App() {
   }, [vocab, tips, auth.isSignedIn, syncedFromServer]);
 
   useEffect(function() {
-    var h = function(e) { if (popRef.current && !popRef.current.contains(e.target)) setPopup(null); };
+    var h = function(e) {
+      if (popRef.current && !popRef.current.contains(e.target)) setPopup(null);
+      if (wordMenuRef.current && !wordMenuRef.current.contains(e.target)) setWordMenu(null);
+    };
     document.addEventListener("mousedown", h);
     return function() { document.removeEventListener("mousedown", h); };
   }, []);
@@ -6263,6 +6268,53 @@ export default function App() {
     var txt = (curChapter && curChapter.text) || "";
     if (!txt) return;
     playText(txt, charPosition);
+  };
+
+  // Open the two-choice bubble over a clicked word. Positioned the same way
+  // as the definition popup, but much shorter, so it can usually sit right
+  // under the word.
+  var openWordMenu = function(word, e, charPosition) {
+    try { e.stopPropagation(); } catch(_e) {}
+    var clean = String(word || "").replace(/[^а-яёА-ЯЁ]/g, "");
+    if (!clean) return;
+    var rect = e.currentTarget.getBoundingClientRect();
+    var MENU_W = 210, MENU_EST = 92;
+    var left = rect.left;
+    if (left + MENU_W > window.innerWidth - 16) left = window.innerWidth - MENU_W - 16;
+    if (left < 16) left = 16;
+    // The floating player occupies the bottom 68px whenever a chapter has
+    // audio, so treat that strip as unavailable — otherwise a word in the
+    // last line opens its menu behind the transport controls.
+    var usableBottom = window.innerHeight - 76;
+    var top = (usableBottom - rect.bottom >= MENU_EST + 8)
+      ? rect.bottom + 6
+      : Math.max(8, rect.top - MENU_EST - 6);
+    setPopup(null);
+    setWordMenu({ word: word, clean: clean, start: charPosition,
+                  top: top, left: left,
+                  // Keep the word's own geometry: if "Define" is chosen, the
+                  // definition popup should anchor to the WORD, not to the
+                  // button that was pressed.
+                  rect: { left: rect.left, right: rect.right, top: rect.top,
+                          bottom: rect.bottom, width: rect.width,
+                          height: rect.height } });
+  };
+
+  var defineFromWordMenu = function() {
+    var m = wordMenu;
+    if (!m) return;
+    setWordMenu(null);
+    defWord(m.word, {
+      stopPropagation: function(){},
+      currentTarget: { getBoundingClientRect: function(){ return m.rect; } },
+    }, m.start);
+  };
+
+  var playFromWordMenu = function() {
+    var m = wordMenu;
+    if (!m) return;
+    setWordMenu(null);
+    playFromWordOffset(m.start);
   };
 
   var defWord = async function(word, e, charPosition) {
@@ -7560,16 +7612,17 @@ export default function App() {
                     if (inName) {
                       clickPlay = undefined;
                     } else if (noAIMode) {
+                      // No AI: nothing to define, so keep the direct jump.
                       clickPlay = (function(pos){ return function(e){ e.stopPropagation(); jumpTTS(pos); }; })(tk.start);
                     } else {
-                      clickPlay = (function(w, pos){ return function(e){ defWord(w, e, pos); }; })(tk.text, tk.start);
+                      clickPlay = (function(w, pos){ return function(e){ openWordMenu(w, e, pos); }; })(tk.text, tk.start);
                     }
                     elems.push(
                       <span key={i}
                         className={"rw" + (hl ? " rwhl" : "") + (inName ? " play-speaker" : "")}
                         data-rw-start={tk.start}
                         onClick={clickPlay}
-                        title={inName ? "" : (noAIMode ? "Click to read from here" : "Click to define")}>{tk.text}</span>
+                        title={inName ? "" : (noAIMode ? "Click to read from here" : "Click for options")}>{tk.text}</span>
                     );
                     // Just after the speaker name finishes, insert the em-dash separator.
                     if (inName && (i+1 >= para.length || para[i+1].end > speakerNameEnd)) {
@@ -7592,13 +7645,13 @@ export default function App() {
                 if (tk.isRu) {
                   var clickReg = noAIMode
                     ? (function(pos){ return function(e){ e.stopPropagation(); jumpTTS(pos); }; })(tk.start)
-                    : (function(w, pos){ return function(e){ defWord(w, e, pos); }; })(tk.text, tk.start);
+                    : (function(w, pos){ return function(e){ openWordMenu(w, e, pos); }; })(tk.text, tk.start);
                   return (
                     <span key={i}
                       className={"rw" + (hl ? " rwhl" : "")}
                       data-rw-start={tk.start}
                       onClick={clickReg}
-                      title={noAIMode ? "Click to read from here" : "Click to define"}>{tk.text}</span>
+                      title={noAIMode ? "Click to read from here" : "Click for options"}>{tk.text}</span>
                   );
                 }
                 // Bible verse numbers: token is just a number (e.g. "1", "23")
@@ -7956,6 +8009,16 @@ export default function App() {
         .rw:hover{color:#c4955a;border-bottom-color:#c4955a}
         .rwhl{background:rgba(196,149,90,.18);color:#000;border-bottom-color:#c4955a;border-radius:3px;padding:1px 2px}
         .word-active{background:rgba(196,149,90,.34);color:#fff;border-radius:3px;padding:1px 2px;box-shadow:0 0 0 1px rgba(196,149,90,.55);transition:background .08s ease}
+        /* Two-choice bubble on a clicked word: define it, or play from it. */
+        /* Above the floating audio bar (z-index 100) so a word near the
+           bottom of the page doesn't open its menu underneath the player,
+           and below the definition popup (200/201) it hands off to. */
+        .wmover{position:fixed;inset:0;z-index:198}
+        .wmenu{position:fixed;width:210px;background:#fffaf3;border:1px solid rgba(42,31,20,.14);border-radius:12px;box-shadow:0 10px 30px rgba(42,31,20,.18);padding:6px;z-index:199;animation:pf .12s ease}
+        .wmword{font-size:13px;color:rgba(42,31,20,.55);padding:4px 8px 6px;border-bottom:1px solid rgba(42,31,20,.08);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .wmbtn{display:flex;align-items:center;gap:8px;width:100%;background:none;border:0;text-align:left;font-size:15px;color:#2a1f14;padding:9px 10px;border-radius:8px;cursor:pointer;font-family:inherit}
+        .wmbtn:hover{background:rgba(196,149,90,.14)}
+        .wmico{width:18px;display:inline-block;text-align:center;opacity:.8}
         /* Dual-language Bible: English translation shown under each Russian verse */
         .bible-en{display:block;margin-top:3px;color:rgba(42,31,20,.5);font-size:0.9em;font-style:italic;line-height:1.5;letter-spacing:.005em}
         .bible-heading-en{font-style:normal;font-weight:600;color:rgba(42,31,20,.62);font-size:0.95em;letter-spacing:.01em}
@@ -10212,17 +10275,14 @@ export default function App() {
                         sync. */}
                     {audioSentences.length > 0 && (
                       <div className="faudio">
-                        <button className="faudio-btn" onClick={audioSkipBack}
-                          disabled={audioIdx <= 0 || audioFetching}
-                          title="Previous sentence">⏮</button>
+                        {/* No skip buttons: they moved by sentence, which
+                            fought the word-level highlighter. Click any word
+                            in the text and choose "Play from here" instead. */}
                         <button className={"faudio-btn faudio-play"} onClick={audioPlayPause}
                           disabled={audioFetching}
                           title={audioPlaying ? "Pause" : "Play"}>
                           {audioFetching ? "…" : (audioPlaying ? "⏸" : "▶")}
                         </button>
-                        <button className="faudio-btn" onClick={audioSkipForward}
-                          disabled={audioIdx >= audioSentences.length - 1 || audioFetching}
-                          title="Next sentence">⏭</button>
                         <span className="faudio-status">
                           {audiobookMode && audiobookData ?
                             <><span className="faudio-narrator">🎧 {audiobookData.narrator || "Audiobook"}</span> · </>
@@ -10955,6 +11015,22 @@ export default function App() {
                 <button className="mcanc" onClick={function(){ setShowTip(false); }}>Cancel</button>
                 <button className="mconf g" onClick={function(){ if(nTip.trim()) addT(nTip.trim()); setShowTip(false); }}>Save</button>
               </div>
+            </div>
+          </div>
+        )}
+
+        {wordMenu && (
+          <div className="wmover" onClick={function(){ setWordMenu(null); }}>
+            <div className="wmenu" ref={wordMenuRef}
+                 style={{top:wordMenu.top,left:wordMenu.left}}
+                 onClick={function(e){ e.stopPropagation(); }}>
+              <div className="wmword">{wordMenu.word}</div>
+              <button className="wmbtn" onClick={defineFromWordMenu}>
+                <span className="wmico">📖</span> Define
+              </button>
+              <button className="wmbtn" onClick={playFromWordMenu}>
+                <span className="wmico">▶</span> Play from here
+              </button>
             </div>
           </div>
         )}
