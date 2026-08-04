@@ -3784,64 +3784,12 @@ export default function App() {
       wordTimingMapRef.current = [];
     }
 
-    // For transcript mode: match each parsed sentence to the fragment whose
-    // text starts with the same words. Since both come from Whisper, they share
-    // vocabulary but may differ in sentence boundaries (Whisper sometimes splits
-    // long sentences across multiple fragments).
-    if (data.transcript) {
-      function normTr(s) {
-        return s.toLowerCase().replace(/[^а-яёa-z0-9\s]/g,'').replace(/\s+/g,' ').trim();
-      }
-      var fi = 0; // fragment pointer
-      var transcriptMapping = sents.map(function(sent) {
-        if (!sent || sent.start < 0) return null;
-        var sentNorm = normTr(sent.text || '');
-        if (sentNorm.length < 3) return null;
-        var probe = sentNorm.slice(0, Math.min(25, sentNorm.length));
-        // Search forward through fragments for best match
-        var bestFi = fi;
-        var bestScore = 0;
-        var searchEnd = Math.min(fi + 15, frags.length);
-        for (var fj = fi; fj < searchEnd; fj++) {
-          var fragNorm = normTr(frags[fj].text || '');
-          // Check if fragment starts with probe or probe starts with fragment
-          var score = 0;
-          if (fragNorm.indexOf(probe.slice(0,15)) !== -1) score = 2;
-          if (fragNorm.slice(0,15) === probe.slice(0,15)) score = 3;
-          if (score === 0 && fuzzyMatch(probe, fragNorm)) score = 1;
-          if (score > bestScore) { bestScore = score; bestFi = fj; }
-        }
-        if (bestScore > 0) {
-          fi = bestFi + 1;
-          // Span multiple fragments if sentence is longer than one fragment
-          var spanEnd = frags[bestFi].end;
-          var sentWords = sentNorm.split(' ').length;
-          var fragWords = normTr(frags[bestFi].text||'').split(' ').length;
-          if (sentWords > fragWords * 1.5 && bestFi + 1 < frags.length) {
-            spanEnd = frags[bestFi + 1].end;
-            fi = bestFi + 2;
-          }
-          return { begin: frags[bestFi].begin, end: spanEnd };
-        }
-        return null;
-      });
-      // Safety net: fill nulls from neighbors
-      for (var bi = 0; bi < transcriptMapping.length; bi++) {
-        if (transcriptMapping[bi]) continue;
-        var pe = null, nb = null;
-        for (var pa = bi-1; pa >= 0; pa--) { if(transcriptMapping[pa]){pe=transcriptMapping[pa].end;break;} }
-        for (var nx = bi+1; nx < transcriptMapping.length; nx++) { if(transcriptMapping[nx]){nb=transcriptMapping[nx].begin;break;} }
-        if (pe!=null&&nb!=null) transcriptMapping[bi]={begin:pe,end:nb};
-        else if (pe!=null) transcriptMapping[bi]={begin:pe,end:pe+2};
-        else if (nb!=null) transcriptMapping[bi]={begin:Math.max(0,nb-2),end:nb};
-      }
-      sentenceTimingsRef.current = transcriptMapping;
-      try {
-        var matched = transcriptMapping.filter(function(m){ return m; }).length;
-        console.log('[buildSentenceTimings] transcript text-match', matched, '/', transcriptMapping.length, 'sentences');
-      } catch(e) {}
-      return;
-    }
+    // Chapter JSONs from the old Whisper-transcription pass used to get a
+    // separate path here that matched each sentence to the fragment whose
+    // text it resembled -- sound when both sides came from the same
+    // transcript, but the reader now always renders the book's own text, so
+    // the two sides no longer share a transcriber's wording. They go through
+    // the same fragment matching as every other book.
 
     var fragIdx = 0;
     var firstSent = true;
@@ -4442,55 +4390,20 @@ export default function App() {
   var pct  = chapters.length > 0 ? Math.round((cidx / chapters.length) * 100) : 0;
   var curChapter = (function(){
     var ch = chapters[cidx] || { heading: "", text: "" };
-    // If the audiobook JSON was built from Whisper transcription (transcript:true),
-    // use the fragment texts as the chapter content instead of the FB2 text.
-    if (audiobookData && audiobookData.transcript &&
-        Array.isArray(audiobookData.fragments) && audiobookData.fragments.length > 0) {
-      var _frags = audiobookData.fragments;
-      // Radio spectacles (category "Spectacle": Чайка, Дядя Ваня, …) carry a
-      // `speaker` on every spoken fragment. Render them as a real play script —
-      // one paragraph per run of consecutive lines by the same speaker, prefixed
-      // "Имя. ", with consecutive stage directions grouped into a parenthetical
-      // block — instead of gluing all fragment texts into one continuous
-      // paragraph. IMPORTANT: the speaker labels, parentheses and blank lines
-      // exist ONLY in this display string; each fragment's `.text` (what the
-      // audio aligner matches against in buildSentenceTimings) is left intact,
-      // so sentence↔fragment highlighting is unchanged — parseSentences splits
-      // a bare "Имя." into its own harmless unmatched mini-sentence and every
-      // dialogue sentence still matches its fragment exactly as before.
-      var _hasSpeakers = _frags.some(function(f){ return f && f.speaker && !f.isDirection; });
-      var transcriptText;
-      if (_hasSpeakers) {
-        var _capFirst = function(s){
-          for (var i = 0; i < s.length; i++) {
-            if (/[A-Za-zА-Яа-яЁё]/.test(s[i])) return s.slice(0, i) + s[i].toUpperCase() + s.slice(i + 1);
-          }
-          return s;
-        };
-        var _out = [], _mode = null, _buf = [];
-        var _flush = function(){
-          if (_buf.length) {
-            var body = _capFirst(_buf.join(" ").replace(/\s+/g, " ").trim());
-            if (_mode === "__dir__") _out.push("(" + body.replace(/^\(+|\)+$/g, "").trim() + ")");
-            else _out.push(_mode + ". " + body);
-          }
-          _mode = null; _buf = [];
-        };
-        for (var _i = 0; _i < _frags.length; _i++) {
-          var _f = _frags[_i];
-          var _t = (_f && _f.text != null ? String(_f.text) : "").trim();
-          if (!_t) continue;
-          var _key = (_f.isDirection || !_f.speaker) ? "__dir__" : _f.speaker;
-          if (_key !== _mode) { _flush(); _mode = _key; _buf = [_t]; }
-          else _buf.push(_t);
-        }
-        _flush();
-        transcriptText = _out.join("\n\n");
-      } else {
-        transcriptText = _frags.map(function(f){ return f.text; }).join(" ");
-      }
-      return Object.assign({}, ch, { text: transcriptText });
-    }
+    // The chapter text ALWAYS comes from the book. Chapter JSONs built by
+    // an earlier Whisper-transcription pass carry `transcript: true`, and
+    // this used to render their fragment texts as the chapter instead of
+    // the FB2 -- which showed the reader whatever the recording happened to
+    // say: the narrator's spoken title card glued into sentence one
+    // ("Фёдор Михайлович Достоевский Идиот Роман в четырёх частях Часть
+    // первая В конце ноября..."), the transcriber's mishearings, and no
+    // paragraph breaks at all, since fragments concatenate into one block.
+    // The flag is now ignored: every book renders its own text, and the
+    // alignment JSON supplies timings and nothing else. (The radio
+    // spectacles lost nothing by this -- their FB2s are already proper play
+    // scripts, with speaker names and stage directions the transcript
+    // rendering had to reconstruct.)
+
     // Bible: split on verse numbers so each verse is its own paragraph
     if (bookMeta && bookMeta.filename && bookMeta.filename.indexOf("Библии") !== -1) {
       var bibleText = (ch.text || "")
