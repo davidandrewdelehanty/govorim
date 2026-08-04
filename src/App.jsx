@@ -2676,6 +2676,16 @@ function isLocalMsVoice(v) {
   return /^microsoft\b/i.test(v.name) && v.localService === true;
 }
 
+// ── Frequency word bank ("🗂️ Vocab" drill) — DISABLED ────────────────────
+// Turned off and removed from the main menu. The implementation below is
+// left intact: flip this to true and the card, its screen, its saved
+// progress and its data loading all come back exactly as they were.
+//
+// While false, nothing about it runs — in particular the three
+// /vocab/blocks/*.json fetches that used to fire on every page load are
+// skipped, so a disabled feature costs nothing.
+var WORDBANK_ENABLED = false;
+
 export default function App() {
   // Clerk auth — getToken() returns a JWT we attach to API calls so the
   // backend can verify the user is signed in.
@@ -4993,8 +5003,13 @@ export default function App() {
   useEffect(function() { storage && storage.set("grammar-topics", JSON.stringify(savedTopics)).catch(function(){}); }, [savedTopics]);
 
   // ── Frequency Vocab Bank persistence ────────────────────────────────────
+  // All four effects below no-op while WORDBANK_ENABLED is false: no stored
+  // progress is read or written (so existing progress is preserved untouched
+  // for whenever it comes back), and none of the /vocab/blocks JSON is
+  // fetched.
   var wbLoadedRef = useRef(false);
   useEffect(function() {
+    if (!WORDBANK_ENABLED) return;
     (async function() {
       try {
         var wp = await storage.get("wordbank-progress");
@@ -5008,10 +5023,12 @@ export default function App() {
     })();
   }, []);
   useEffect(function() {
+    if (!WORDBANK_ENABLED) return;
     if (!wbLoadedRef.current) return; // don't stomp saved progress with the initial empty state
     storage && storage.set("wordbank-progress", JSON.stringify({ progress: wbProgress, block: wbBlockNum })).catch(function(){});
   }, [wbProgress, wbBlockNum]);
   useEffect(function() {
+    if (!WORDBANK_ENABLED) return;
     fetch("/vocab/blocks/index.json")
       .then(function(r){ return r.ok ? r.json() : null; })
       .then(function(j){ if (j) setWbIndex(j); })
@@ -5022,6 +5039,7 @@ export default function App() {
       .catch(function(){});
   }, []);
   useEffect(function() {
+    if (!WORDBANK_ENABLED) return;
     if (!wbIndex) return;
     var meta = wbIndex.blocks[wbBlockNum - 1];
     if (!meta) { setWbCards([]); return; }
@@ -9448,10 +9466,12 @@ export default function App() {
                     <div style={{fontSize:22,marginBottom:4}}>📚 Grammar</div>
                     <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Pick your level and a topic. Quick reference pages with rules and examples.</div>
                   </button>
-                  <button className="btn-p" onClick={function(){ setMode("wordbank"); }} style={{textAlign:"left",padding:"18px 22px"}}>
-                    <div style={{fontSize:22,marginBottom:4}}>🗂️ Vocab</div>
-                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Drill the most common Russian words, ranked by real-world frequency, in blocks of 30.</div>
-                  </button>
+                  {WORDBANK_ENABLED && (
+                    <button className="btn-p" onClick={function(){ setMode("wordbank"); }} style={{textAlign:"left",padding:"18px 22px"}}>
+                      <div style={{fontSize:22,marginBottom:4}}>🗂️ Vocab</div>
+                      <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Drill the most common Russian words, ranked by real-world frequency, in blocks of 30.</div>
+                    </button>
+                  )}
                 </div>
               </div>
             )}
@@ -9819,7 +9839,9 @@ export default function App() {
                 Grammar below. No AI at runtime: every word, gloss, aspect
                 pair, and example sentence was baked into the static JSON
                 files under /vocab/blocks/ ahead of time. */}
-            {mode === "wordbank" && (
+            {/* Unreachable while WORDBANK_ENABLED is false — the menu card
+                that set this mode is gone. Kept so re-enabling is one flag. */}
+            {WORDBANK_ENABLED && mode === "wordbank" && (
               <div className="ss">
                 <div className="sico" style={{color:"#c4955a"}}>🗂️</div>
                 <h1 className="sti">Vocab</h1>
