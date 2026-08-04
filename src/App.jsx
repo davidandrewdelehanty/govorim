@@ -2171,6 +2171,41 @@ function splitTextIntoChapters(text) {
 }
 
 // ── FB2 (FictionBook) — XML-based, very common for Russian ebooks ───────────
+
+// Cyrillic look-alikes for the Latin letters used in roman numerals. Russian
+// FB2s mix them freely — "ХІV" is often Cyrillic Х + Ukrainian І + Latin V —
+// and a numeral read literally would not match anything.
+var FB2_ROMAN_HOMOGLYPHS = { "Х": "X", "І": "I", "Ѵ": "V", "С": "C", "М": "M", "Д": "D" };
+// A chapter marker is a roman numeral, optionally followed by that chapter's
+// own name — Anna Karenina has both bare "XX" and "XX СМЕРТЬ".
+var FB2_CHAPTER_MARK_RE = /^(?:глава\s+)?([ivxlcdm]+)\.?(?:\s+\S[\s\S]*)?$/i;
+// A split is only believable if the pieces are chapter-sized. Verse works
+// number their STANZAS with roman numerals exactly the way prose works number
+// their chapters, and some sections carry dozens of one-line subtitles that
+// aren't chapters at all. Real chapters are far bigger (median 1149 words in
+// Anna Karenina, 4172 in Crime and Punishment), so a median below this means
+// the markers were numbering something else.
+var FB2_MIN_MEDIAN_CHAPTER_WORDS = 150;
+
+// Returns the roman numeral if `txt` opens like a chapter heading, else "".
+// Deliberately ROMAN ONLY: many Russian FB2s mark real chapters this way
+// inside a part-level section, but they also use <subtitle> for things that
+// are NOT chapters — scene breaks ("* * *"), stage directions ("Занавес"), an
+// end marker ("Конец."), and, the case that makes arabic numbers unsafe,
+// numbered endnotes. Crime and Punishment's ПРИМЕЧАНИЯ section carries 273
+// subtitles numbered 1, 2, 3…; treating those as chapters buried the novel's
+// 41 real ones under them.
+// Kept deliberately identical to _chapter_marker() in Auto-MFA's app/fb2.py —
+// the aligner splits the same FB2 into the chapters this reader displays, so
+// the two must agree or the audio lines up with the wrong text.
+function fb2ChapterMarker(txt) {
+  var s = (txt || "").trim();
+  if (!s) return "";
+  s = s.replace(/[ХІѴСМД]/g, function (c) { return FB2_ROMAN_HOMOGLYPHS[c]; });
+  var m = FB2_CHAPTER_MARK_RE.exec(s);
+  return m ? m[1].toUpperCase() : "";
+}
+
 async function parseFb2(buffer, options) {
   options = options || {};
   // FB2 files declare their own encoding in the XML header.
@@ -2286,23 +2321,89 @@ async function parseFb2(buffer, options) {
     Array.from(sections).forEach(function(s){ emitScripture(s, "", ""); });
   }
   if (!isScripture) {
-  for (var i = 0; i < sections.length; i++) {
-    var sec = sections[i];
+  // Paragraph text of a section. ownOnly=true stops at nested <section>
+  // children (used for a part's preamble — an epigraph before its first
+  // chapter — which would otherwise be swallowed or duplicated).
+  var paragraphsOf = function(sec, ownOnly) {
+    var out = [];
+    var walk = function(el) {
+      for (var wi = 0; wi < el.children.length; wi++) {
+        var c = el.children[wi];
+        var tag = c.tagName.toLowerCase();
+        if (tag === "section") { if (!ownOnly) walk(c); continue; }
+        if (tag === "title") continue;   // headings live in chapter.heading
+        if (tag === "p" || tag === "v" || tag === "subtitle") {
+          var t = c.textContent.replace(/\s+/g, " ").trim();
+          if (!t) continue;
+          // Verse splitting: one <p> can hold several numbered verses
+          // ("1 В начале… 2 Земля же…"); give each its own paragraph so the
+          // reader highlights verse by verse.
+          if (/^\d+\s/.test(t)) {
+            var verseParts = t.split(/(?<=[.!?»а-яёА-ЯЁa-zA-Z])\s+(\d+)\s+(?=[А-ЯЁ«—])/);
+            if (verseParts.length > 1) {
+              out.push(verseParts[0].trim());
+              for (var vi = 1; vi < verseParts.length - 1; vi += 2) {
+                out.push((verseParts[vi] + " " + verseParts[vi + 1]).trim());
+              }
+              continue;
+            }
+          }
+          out.push(t);
+          continue;
+        }
+        walk(c);   // wrapper containers: epigraph, poem, cite, …
+      }
+    };
+    walk(sec);
+    return out;
+  };
+
+  var wordsIn = function(ch) { return (ch.text.match(/\S+/g) || []).length; };
+  var medianWords = function(list) {
+    var sizes = list.map(wordsIn).sort(function(a, b) { return a - b; });
+    return sizes.length ? sizes[Math.floor(sizes.length / 2)] : 0;
+  };
+  var pushChapter = function(out, heading, paras) {
+    var body = paras.join("\n\n");
+    if ((body.match(/[а-яёА-ЯЁ]/g) || []).length < 5) return;   // no Russian text
+    out.push({ heading: heading || ("Глава " + (out.length + 1)), text: body });
+  };
+
+  // Depth-first: one chapter per LEAF <section>, in document order. FB2s vary
+  // in how deep they nest — some carry one chapter per top-level section,
+  // many "raw" library downloads wrap each chapter's section inside a Part
+  // section. Only reading top-level sections turns The Brothers Karamazov's
+  // 97 chapters into 5 giant blobs that can't be paired against one audio
+  // file per chapter. This mirrors _walk_sections() in Auto-MFA's
+  // app/fb2.py: the aligner and this reader must cut the same FB2 into the
+  // same chapters, or the audio plays against the wrong text.
+  var walkSection = function(sec, out) {
+    var nested = Array.prototype.filter.call(sec.children, function(c) {
+      return c.tagName && c.tagName.toLowerCase() === "section";
+    });
     var titleEl = sec.querySelector(":scope > title");
     var partTitle = titleEl ? titleEl.textContent.replace(/\s+/g, " ").trim() : "";
-    var allSubtitleEls = sec.querySelectorAll(":scope > subtitle");
-    // A subtitle only marks a real chapter break if it has actual textual
-    // content. Decorative scene-breaks like "* * *", "***", "…", or dingbats
-    // must NOT split the section (they divide scenes WITHIN a chapter). We
-    // test for at least one letter or digit; punctuation/symbols-only = scene break.
-    var isMeaningfulSubtitle = function(el) {
-      var txt = (el.textContent || "").trim();
-      return /[\p{L}\p{N}]/u.test(txt);
-    };
-    var subtitleEls = Array.prototype.filter.call(allSubtitleEls, isMeaningfulSubtitle);
+    // A <subtitle> only marks a chapter break if it carries a roman-numeral
+    // chapter marker (see fb2ChapterMarker). Everything else a book puts in a
+    // <subtitle> — decorative scene-breaks like "* * *", stage directions,
+    // numbered endnotes — stays in-chapter content and must NOT split.
+    // Requiring at least two DISTINCT numerals stops a lone "Занавес", or a
+    // run of lines that merely begin with a roman-numeral letter (the Russian
+    // preposition "С ", which transliterates to a valid "C"), from
+    // fragmenting a section that was already correct.
+    var markerSubs = Array.prototype.filter.call(
+      sec.querySelectorAll(":scope > subtitle"),
+      function(el) { return !!fb2ChapterMarker(el.textContent || ""); }
+    );
+    var distinctMarkers = {};
+    for (var mi = 0; mi < markerSubs.length; mi++) {
+      distinctMarkers[fb2ChapterMarker(markerSubs[mi].textContent || "")] = true;
+    }
 
-    if (subtitleEls.length >= 2) {
-      // Split section content by subtitle markers.
+    var split = null;
+    if (!nested.length && Object.keys(distinctMarkers).length >= 2) {
+      split = [];
+      var markerSet = new Set(markerSubs);
       var directChildren = Array.from(sec.children);
       var currentSubtitle = null;
       var currentParas = [];
@@ -2311,7 +2412,7 @@ async function parseFb2(buffer, options) {
         var body = currentParas.join("\n\n");
         var cyrCount = (body.match(/[а-яёА-ЯЁ]/g) || []).length;
         if (cyrCount >= 5) {
-          chapters.push({
+          split.push({
             heading: (partTitle ? partTitle + " — " : "") + currentSubtitle,
             text: body,
           });
@@ -2320,53 +2421,59 @@ async function parseFb2(buffer, options) {
       for (var ci = 0; ci < directChildren.length; ci++) {
         var child = directChildren[ci];
         var tag = child.tagName.toLowerCase();
-        if (tag === "subtitle") {
-          var subTxt = child.textContent.replace(/\s+/g, " ").trim();
-          if (!/[\p{L}\p{N}]/u.test(subTxt)) {
-            // decorative scene-break — keep it as in-chapter content, not a split
-            if (currentSubtitle !== null) currentParas.push(subTxt);
-            continue;
-          }
+        if (tag === "title") continue;   // the part name, captured separately
+        var childTxt = child.textContent.replace(/\s+/g, " ").trim();
+        if (tag === "subtitle" && markerSet.has(child)) {
+          // The marker names the chapter; it isn't part of what's read aloud,
+          // so it becomes the heading rather than the first line of the text.
           flush();
-          currentSubtitle = subTxt;
+          currentSubtitle = childTxt;
           currentParas = [];
-        } else if (tag === "title") {
           continue;
-        } else {
-          var t = child.textContent.replace(/\s+/g, " ").trim();
-          if (t && currentSubtitle !== null) currentParas.push(t);
         }
+        if (childTxt && currentSubtitle !== null) currentParas.push(childTxt);
       }
       flush();
-    } else {
-      var heading = partTitle || ("Глава " + (chapters.length + 1));
-      if (titleEl) titleEl.remove();
-      var paras = [];
-      var ps = sec.querySelectorAll("p, v, subtitle");
-      for (var p = 0; p < ps.length; p++) {
-        var t = ps[p].textContent.replace(/\s+/g, " ").trim();
-        if (!t) continue;
-        // Bible verse splitting: split paragraphs containing multiple verses
-        // into individual verse paragraphs (e.g. "1 In the beginning... 2 And the earth")
-        if (isScripture || /^\d+\s/.test(t)) {
-          var verseParts = t.split(/(?<=[.!?»а-яёА-ЯЁa-zA-Z])\s+(\d+)\s+(?=[А-ЯЁ«\u2014])/);
-          if (verseParts.length > 1) {
-            // Reassemble: split returns [text, num, text, num, text...]
-            paras.push(verseParts[0].trim());
-            for (var vi = 1; vi < verseParts.length - 1; vi += 2) {
-              paras.push((verseParts[vi] + " " + verseParts[vi+1]).trim());
-            }
-            continue;
-          }
-        }
-        paras.push(t);
+
+      // Size guard — see FB2_MIN_MEDIAN_CHAPTER_WORDS.
+      var sizes = split
+        .map(function(c) { return (c.text.match(/\S+/g) || []).length; })
+        .sort(function(a, b) { return a - b; });
+      if (split.length < 2 || sizes[Math.floor(sizes.length / 2)] < FB2_MIN_MEDIAN_CHAPTER_WORDS) {
+        split = null;   // stanzas, endnotes or similar — not chapters
       }
-      var body = paras.join("\n\n");
-      var cyrCount = (body.match(/[а-яёА-ЯЁ]/g) || []).length;
-      if (cyrCount < 5) continue;
-      chapters.push({ heading: heading, text: body });
     }
-  }
+
+    if (split) {
+      for (var pi = 0; pi < split.length; pi++) out.push(split[pi]);
+      return;
+    }
+    if (!nested.length) {
+      pushChapter(out, partTitle, paragraphsOf(sec, false));
+      return;
+    }
+
+    // Walk the subsections into a scratch list first, so their combined size
+    // can be sanity-checked before they're accepted as chapters.
+    var sub = [];
+    pushChapter(sub, partTitle, paragraphsOf(sec, true));   // the part's preamble
+    for (var ni = 0; ni < nested.length; ni++) walkSection(nested[ni], sub);
+
+    // Same size guard as the subtitle split, for the same reason: nesting a
+    // <section> per unit is how one book marks its chapters and how another
+    // marks something much smaller. Eugene Onegin wraps each of its 357
+    // STANZAS in its own section inside the eight "Глава" sections, so
+    // recursing to leaves would turn an 8-chapter book into 357 fragments
+    // with a median of 60 words. When the pieces come out that small the
+    // nesting wasn't chapter structure, so the section is kept whole.
+    if (sub.length && medianWords(sub) < FB2_MIN_MEDIAN_CHAPTER_WORDS) {
+      pushChapter(out, partTitle, paragraphsOf(sec, false));
+      return;
+    }
+    for (var si = 0; si < sub.length; si++) out.push(sub[si]);
+  };
+
+  for (var i = 0; i < sections.length; i++) walkSection(sections[i], chapters);
   } // end if (!isScripture)
 
   // Fallback: if no <section>s, treat entire body as one chapter
