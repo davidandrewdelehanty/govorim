@@ -2198,6 +2198,16 @@ var FB2_MIN_MEDIAN_CHAPTER_WORDS = 150;
 // Kept deliberately identical to _chapter_marker() in Auto-MFA's app/fb2.py —
 // the aligner splits the same FB2 into the chapters this reader displays, so
 // the two must agree or the audio lines up with the wrong text.
+// Endnote sections. FB2 normally puts these in <body name="notes">, which is
+// skipped outright, but plenty of files leave them as an ordinary section of
+// the main body — Crime and Punishment ships 273 numbered notes that way.
+// They're never recorded, so counting one as a chapter shifts every later
+// chapter's audio pairing by one.
+var FB2_NOTES_TITLE_RE = /^(сноски?|примечани[ея]|комментари[ий]|notes?|footnotes?|endnotes?)\W*$/i;
+function fb2IsNotesTitle(title) {
+  return FB2_NOTES_TITLE_RE.test((title || "").trim());
+}
+
 function fb2ChapterMarker(txt) {
   var s = (txt || "").trim();
   if (!s) return "";
@@ -2383,6 +2393,35 @@ async function parseFb2(buffer, options) {
     });
     var titleEl = sec.querySelector(":scope > title");
     var partTitle = titleEl ? titleEl.textContent.replace(/\s+/g, " ").trim() : "";
+    if (fb2IsNotesTitle(partTitle)) return;   // endnotes left in the main body
+
+    // Nesting only counts as chapter structure when the subsections are
+    // chapters in their own right, which in practice means they're titled.
+    // Where a large share of them aren't, the nesting is internal division:
+    // "Моя любимая страна" builds each of its 14 essays from an untitled
+    // first-person opening plus the titled reportage piece it introduces,
+    // and splitting there gives 28 half-chapters against 14 audio files. A
+    // stray untitled section among many titled ones is just an untitled
+    // chapter (Тихий Дон has three among 248), hence a share rather than a
+    // flat "every one of them".
+    //
+    // The test only applies where the subsections are leaves. A subsection
+    // holding subsections of its own is structural whatever its title says —
+    // Тихий Дон's "КНИГА ТРЕТЬЯ" wraps two untitled parts holding 63
+    // chapters between them, and judging it by this rule would swallow all 63.
+    var titleOf = function(s2) {
+      var t = s2.querySelector(":scope > title");
+      return t ? t.textContent.replace(/\s+/g, " ").trim() : "";
+    };
+    var hasGrandchildSections = nested.some(function(c) {
+      return Array.prototype.some.call(c.children, function(g) {
+        return g.tagName && g.tagName.toLowerCase() === "section";
+      });
+    });
+    if (nested.length && !hasGrandchildSections) {
+      var untitled = nested.filter(function(c) { return !titleOf(c); }).length;
+      if (untitled * 3 > nested.length) nested = [];
+    }
     // A <subtitle> only marks a chapter break if it carries a roman-numeral
     // chapter marker (see fb2ChapterMarker). Everything else a book puts in a
     // <subtitle> — decorative scene-breaks like "* * *", stage directions,
@@ -2449,7 +2488,14 @@ async function parseFb2(buffer, options) {
       return;
     }
     if (!nested.length) {
-      pushChapter(out, partTitle, paragraphsOf(sec, false));
+      var leafParas = paragraphsOf(sec, false);
+      // An untitled scrap this short is front matter — a dedication, an
+      // epigraph, a colophon — not a chapter anyone recorded.
+      if (!partTitle &&
+          (leafParas.join(" ").match(/\S+/g) || []).length < FB2_MIN_MEDIAN_CHAPTER_WORDS) {
+        return;
+      }
+      pushChapter(out, partTitle, leafParas);
       return;
     }
 
