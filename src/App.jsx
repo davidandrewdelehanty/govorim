@@ -3553,12 +3553,36 @@ export default function App() {
   var normWordForAlign = function(s) {
     return String(s || "").toLowerCase().replace(/ё/g, "е").replace(/[^а-яa-z0-9]/g, "");
   };
-  var buildWordTimeline = function(chapterText, wordTimings, highlightStartOffset) {
+  var buildWordTimeline = function(chapterText, wordTimings, highlightStartOffset, unspokenRanges) {
     if (!chapterText || !wordTimings || !wordTimings.length) { wordTimelineRef.current = []; return; }
+    // Words the aligner was deliberately never given: a play's stage
+    // directions and speaker labels, an abridgement's missing passages. They
+    // render on the page as normal — they are the author's text — but they
+    // are not in word_timings, and without being told so this matcher has to
+    // skip them blind. Skipping blind is what made Чайка highlight the
+    // SECOND "Отчего" while the first was being spoken: 67 words of unread
+    // scene-setting stood in front, a couple of common words in it bound to
+    // real timings, and the resync overshot. Auto-MFA now says which words
+    // those are, counted as ordinals in this same scan (not char offsets —
+    // it joins paragraphs with a space where we join with a blank line, so
+    // offsets disagree while the word sequence is identical).
+    var skip = null;
+    if (unspokenRanges && unspokenRanges.length) {
+      skip = Object.create(null);
+      for (var si = 0; si < unspokenRanges.length; si++) {
+        var lo = unspokenRanges[si][0], hi = unspokenRanges[si][1];
+        for (var sj = lo; sj < hi; sj++) skip[sj] = true;
+      }
+    }
     // Book words: Russian letter runs, keyed by absolute char offset (== data-rw-start).
-    var B = [], re = /[а-яёА-ЯЁ]+|\d+/g, m;
-    re.lastIndex = highlightStartOffset > 0 ? highlightStartOffset : 0;
+    // The scan always starts at 0 so the ordinal matches what Auto-MFA counted;
+    // highlightStartOffset only decides what gets kept.
+    var B = [], re = /[а-яёА-ЯЁ]+|\d+/g, m, ord = -1;
+    var from = highlightStartOffset > 0 ? highlightStartOffset : 0;
     while ((m = re.exec(chapterText)) !== null) {
+      ord++;
+      if (m.index < from) continue;
+      if (skip && skip[ord]) continue;
       if (/\d/.test(m[0])) B.push({ start: m.index, norm: m[0], isNumeral: true });
       else B.push({ start: m.index, norm: normWordForAlign(m[0]) });
     }
@@ -5003,7 +5027,7 @@ export default function App() {
     // Precompute the whole-chapter word alignment (chapters render single-page,
     // so data-rw-start offsets are chapter-absolute and match this timeline).
     if (audiobookData && audiobookData.word_timings && curChapter.text) {
-      buildWordTimeline(curChapter.text, audiobookData.word_timings, curChapter.highlightStartOffset || 0);
+      buildWordTimeline(curChapter.text, audiobookData.word_timings, curChapter.highlightStartOffset || 0, audiobookData.unspoken || null);
     } else {
       wordTimelineRef.current = [];
     }
