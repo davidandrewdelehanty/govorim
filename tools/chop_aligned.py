@@ -188,6 +188,30 @@ def rebase(doc, start, new_url):
     return out
 
 
+def push(workdir, remote):
+    """Upload every folder of cut MP3s under `workdir` to the bucket.
+
+    Split out from the cut step on purpose. Once the chapter JSONs have been
+    rewritten they no longer share an audio_url, so a second --apply run finds
+    nothing to do and would silently skip the upload — leaving the JSONs
+    pointing at files that are not on the bucket yet.
+    """
+    if not os.path.isdir(workdir):
+        raise SystemExit("no such work dir: %s" % workdir)
+    folders = sorted(d for d in os.listdir(workdir)
+                     if os.path.isdir(os.path.join(workdir, d))
+                     and any(f.endswith(".mp3") for f in os.listdir(os.path.join(workdir, d))))
+    if not folders:
+        raise SystemExit("no folders of MP3s under %s" % workdir)
+    for d in folders:
+        src = os.path.join(workdir, d)
+        n = len([f for f in os.listdir(src) if f.endswith(".mp3")])
+        print("uploading %d files: %s -> %s/%s/" % (n, src, remote, d))
+        run(["rclone", "copy", src, "%s/%s/" % (remote, d),
+             "--transfers", "8", "--progress"])
+    print("\nUploaded %d folder(s). Hard-refresh the reader to clear the old audio." % len(folders))
+
+
 # ── main ─────────────────────────────────────────────────────────────────────
 def main():
     ap = argparse.ArgumentParser()
@@ -201,17 +225,25 @@ def main():
     ap.add_argument("--dest-suffix", default="-split",
                     help="new bucket folder = <source folder><suffix>")
     ap.add_argument("--work", help="work dir (default: a temp dir)")
+    ap.add_argument("--push", metavar="WORKDIR",
+                    help="upload an already-cut work dir and exit. Use this when you "
+                         "cut in one run and upload in another: by then the JSONs no "
+                         "longer share an audio_url, so the normal scan finds nothing.")
     ap.add_argument("--quality", default="3", help="libmp3lame -q:a value")
     ap.add_argument("--copy", action="store_true",
                     help="stream-copy instead of re-encoding (faster, ~26ms granularity)")
     args = ap.parse_args()
 
-    if not args.title and not args.all:
-        ap.error("pass --title or --all")
-
     for tool in ("ffmpeg", "ffprobe"):
         if not shutil.which(tool):
             raise SystemExit("%s not found on PATH" % tool)
+
+    if args.push:
+        push(args.push, args.remote)
+        return
+
+    if not args.title and not args.all:
+        ap.error("pass --title, --all, or --push")
 
     jobs = find_jobs(args.repo, args.title)
     if not jobs:
@@ -274,7 +306,10 @@ def main():
             run(["rclone", "copy", outdir, "%s/%s/" % (args.remote, dest_folder),
                  "--transfers", "8", "--progress"])
         else:
-            print("  (not uploaded — rerun with --upload, or rclone %s manually)" % outdir)
+            print("")
+            print("  !! NOT UPLOADED. The JSONs now point at %s/ on the bucket," % dest_folder)
+            print("  !! and until these files are there, this book has no audio. Run:")
+            print("  !!     python3 %s --push %s" % (os.path.basename(__file__), work))
         print()
 
     if args.apply:

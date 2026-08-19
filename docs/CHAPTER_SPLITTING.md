@@ -93,8 +93,15 @@ python3 tools/chop_aligned.py --repo . --title "Дядя Ваня"
 python3 tools/chop_aligned.py --repo . --title "Дядя Ваня" --apply --work ~/chop
 
 # 3. listen to the first and last 10 seconds of each piece, then upload
-python3 tools/chop_aligned.py --repo . --title "Дядя Ваня" --apply --upload --work ~/chop
+python3 tools/chop_aligned.py --push ~/chop
 ```
+
+**Cut and upload are separate steps for a reason.** Once `--apply` has rewritten
+the chapter JSONs they no longer share an `audio_url`, so a second `--apply`
+run finds nothing to do — and would skip the upload without saying so. Between
+the cut and the push, the book's JSONs point at files that are not on the bucket
+yet, so its audio is dead. Use `--push`, or pass `--upload` on the same run as
+`--apply` if you don't want to listen first.
 
 `--all` does every book that still shares a file. Do them one at a time the
 first couple of times so you can hear the seams.
