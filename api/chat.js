@@ -2,13 +2,12 @@
 // AI provider (Google Gemini or Anthropic Claude). Only authenticated users
 // can call this endpoint.
 //
-// AUTOMATIC FALLBACK:
-// The primary provider is chosen by the PROVIDER env var (default: gemini).
-// If the primary returns a quota / rate-limit error (HTTP 429 or quota-flavored
-// 403), the request is automatically retried against the OTHER provider — as
-// long as that provider's API key is also configured. Net effect: use free
-// Gemini until you exhaust the daily cap, then transparently fall back to
-// Claude for the rest of the day.
+// FREE BY DEFAULT:
+// Only the free provider (Gemini) is used. The paid Anthropic path still exists
+// but is OFF unless ALLOW_PAID_FALLBACK is set to a truthy value — otherwise a
+// quota-exhausted Gemini would silently start spending money, which is exactly
+// what we do not want for something as high-volume as word definitions. With
+// the fallback off, an exhausted quota surfaces to the user as a clear message.
 //
 // Required env vars on Vercel:
 //   CLERK_SECRET_KEY          — your Clerk secret key (server-side)
@@ -16,9 +15,12 @@
 //   ANTHROPIC_API_KEY         — Anthropic API key (required for Claude path)
 //   At minimum one of GEMINI_API_KEY / ANTHROPIC_API_KEY must be set.
 // Optional env vars:
-//   PROVIDER                  — "gemini" (default) or "anthropic". The other
-//                               provider is used automatically as fallback if
-//                               its key is configured.
+//   PROVIDER                  — "gemini" (default) or "anthropic".
+//   ALLOW_PAID_FALLBACK       — unset/false (default): free provider only. Set
+//                               to 1/true to re-enable falling back to the paid
+//                               provider when the free quota is exhausted.
+//   GEMINI_THINKING           — unset (default): thinking disabled on Gemini 2.5
+//                               models. Set to a token budget to re-enable.
 //   GEMINI_MODEL              — defaults to gemini-2.5-flash
 //   ANTHROPIC_MODEL           — defaults to claude-haiku-4-5-20251001
 //   ALLOWED_EMAILS            — comma-separated emails; if set, ONLY
@@ -231,13 +233,16 @@ function quotaBackoffMs(err) {
 function providerChain(primary) {
   const hasGemini    = !!process.env.GEMINI_API_KEY;
   const hasAnthropic = !!process.env.ANTHROPIC_API_KEY;
+  // The paid provider is opt-in. Without this guard, exhausting the free daily
+  // quota quietly moves every definition lookup onto a billed API.
+  const allowPaid = /^(1|true|yes|on)$/i.test(process.env.ALLOW_PAID_FALLBACK || "");
   const order = [];
   if (primary === "anthropic" || primary === "claude") {
     if (hasAnthropic) order.push("anthropic");
     if (hasGemini)    order.push("gemini");
   } else {
     if (hasGemini)    order.push("gemini");
-    if (hasAnthropic) order.push("anthropic");
+    if (hasAnthropic && allowPaid) order.push("anthropic");
   }
   return order;
 }
@@ -269,6 +274,16 @@ async function callGemini({ messages, system, max_tokens, wantJson, callType, ip
   const generationConfig = wantJson
     ? { maxOutputTokens: max_tokens, temperature: 0.2, responseMimeType: "application/json" }
     : { maxOutputTokens: max_tokens, temperature: 1.0 };
+  // Gemini 2.5 models think before answering, and those thinking tokens are
+  // billed against maxOutputTokens. A small JSON reply can therefore come back
+  // completely EMPTY with finishReason MAX_TOKENS — the model spent the whole
+  // budget reasoning and had nothing left to emit. Word definitions do not need
+  // deliberation, so thinking is off by default; set GEMINI_THINKING to a token
+  // budget to turn it back on.
+  if (/^gemini-2\.[5-9]/.test(model) || /-thinking/.test(model)) {
+    const budget = parseInt(process.env.GEMINI_THINKING || "0", 10);
+    generationConfig.thinkingConfig = { thinkingBudget: isNaN(budget) ? 0 : budget };
+  }
   const payload = { contents, generationConfig };
   if (system && system.trim()) {
     payload.systemInstruction = { parts: [{ text: system }] };
@@ -291,10 +306,30 @@ async function callGemini({ messages, system, max_tokens, wantJson, callType, ip
     const msg = (data && data.error && data.error.message) || text.slice(0, 300) || ("HTTP " + r.status);
     const e = new Error("Gemini: " + msg); e.status = r.status; throw e;
   }
-  return (data && data.candidates && data.candidates[0] && data.candidates[0].content
-    && data.candidates[0].content.parts && data.candidates[0].content.parts[0]
-    ? data.candidates[0].content.parts[0].text || ""
-    : "");
+  // Read EVERY part, not just the first — a reply split across parts would
+  // otherwise be silently truncated.
+  const cand = data && data.candidates && data.candidates[0];
+  const parts = (cand && cand.content && cand.content.parts) || [];
+  const out = parts.map(function(p){ return (p && p.text) || ""; }).join("");
+  if (out.trim()) return out;
+
+  // Empty reply. Returning "" here is what used to surface downstream as the
+  // baffling "returned no JSON object / (empty)" — say what actually happened.
+  const finish = (cand && cand.finishReason) || "";
+  const blocked = data && data.promptFeedback && data.promptFeedback.blockReason;
+  const usage = (data && data.usageMetadata) || {};
+  console.log("[ai] gemini empty reply finishReason=" + finish + " block=" + (blocked || "-") +
+              " thoughts=" + (usage.thoughtsTokenCount || 0) +
+              " out=" + (usage.candidatesTokenCount || 0));
+  let why;
+  if (blocked)                   why = "the prompt was blocked (" + blocked + ")";
+  else if (finish === "MAX_TOKENS") why = "it hit the output limit before writing anything — raise max_tokens or lower GEMINI_THINKING";
+  else if (finish === "SAFETY")  why = "the response was filtered for safety";
+  else if (finish)               why = "it stopped early (" + finish + ")";
+  else                           why = "no candidates were returned";
+  const e = new Error("Gemini returned an empty response: " + why);
+  e.status = 502;
+  throw e;
 }
 
 // ── Anthropic / Claude call ──────────────────────────────────────────────────
