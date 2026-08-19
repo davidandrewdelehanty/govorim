@@ -3197,7 +3197,7 @@ export default function App() {
   // sentence is playing, because we're driving each fetch ourselves. No RAF
   // loop, no per-millisecond calculation — toggle a class once per sentence.
   var highlightedElementsRef = useRef([]);  // DOM nodes currently lit up
-  // Live mirror of `currentPage`. highlightSentence() runs from the long-lived
+  // Live mirror of `currentPage`, read by the vocab source-link jump, which runs
   // audiobook RAF loop, which captures its closure once at play time and is NOT
   // restarted on a within-chapter page flip. Reading currentPage directly would
   // therefore use the page that was current when playback started, so after a
@@ -3228,8 +3228,6 @@ export default function App() {
   // Bible section-heading translations ({russianHeading: englishHeading}), one
   // global file shared by every chapter. Loaded lazily on first Bible chapter.
   var [bibleHeadings, setBibleHeadings] = useState(null);
-  var wordTimingMapRef = useRef([]);   // (legacy) raw word_timings list — no longer read
-  var activeWordRef = useRef(-1);      // char-offset of the currently highlighted word (-1 = none)
   var wordTimelineRef = useRef([]);    // precomputed alignment: [{begin,end,start,holdToNext,nextBegin}]
   // Per-sentence timing for the CURRENT page only. Built when audiobookData
   // and audioSentences are both available. timings[i] = {begin, end} if the
@@ -3446,46 +3444,6 @@ export default function App() {
       try { el.classList.remove("rw-reading"); } catch(e) {}
     });
     highlightedElementsRef.current = [];
-  };
-
-  var highlightSentence = function(sentence, override) {
-    // Sentence highlighting is the fallback for chapters with no word-level
-    // alignment. When an audiobook chapter HAS one, the RAF loop is driving
-    // per-word highlighting and any sentence highlight painted on top is a
-    // leftover from the pre-alignment design: it sticks (nothing clears it),
-    // and it reads as the highlighter silently downgrading itself mid-play.
-    // Guarded here rather than at each call site so no future caller can
-    // reintroduce it. Deliberately scoped to audiobook mode — TTS playback
-    // is sentence-based and still wants this, even on a chapter that also
-    // has an alignment.
-    if (audiobookModeRef.current &&
-        wordTimelineRef.current && wordTimelineRef.current.length) {
-      clearSentenceHighlight();
-      return;
-    }
-    clearSentenceHighlight();
-    if (!sentence || sentence.start < 0) return;       // synthetic chapter announcement — nothing on screen to highlight
-    // Read the page from the ref, not the closed-over value: the audiobook RAF
-    // loop may call this with a closure captured before a page flip.
-    var page = currentPageRef.current || currentPage;
-    if (!page) return;
-    var startInPage = sentence.start;
-    if (override && typeof override.wordOffsetInSentence === "number") {
-      startInPage += override.wordOffsetInSentence;
-    }
-    var endInPage = sentence.end;
-    var chapterStart = startInPage + page.startChar;
-    var chapterEnd = endInPage + page.startChar;
-    var nodes = document.querySelectorAll('.lit-body [data-rw-start]');
-    var hits = [];
-    for (var i = 0; i < nodes.length; i++) {
-      var pos = parseInt(nodes[i].dataset.rwStart, 10);
-      if (!isNaN(pos) && pos >= chapterStart && pos < chapterEnd) {
-        try { nodes[i].classList.add("rw-reading"); } catch(e) {}
-        hits.push(nodes[i]);
-      }
-    }
-    highlightedElementsRef.current = hits;
   };
 
   // ── Audiobook helpers ──────────────────────────────────────────────────────
@@ -3801,13 +3759,6 @@ export default function App() {
     }
     var frags = data.fragments;
 
-    // Build word-level timing map — simple sequential list of word timestamps
-    if (data.word_timings && data.word_timings.length) {
-      wordTimingMapRef.current = data.word_timings;
-    } else {
-      wordTimingMapRef.current = [];
-    }
-
     // Chapter JSONs from the old Whisper-transcription pass used to get a
     // separate path here that matched each sentence to the fragment whose
     // text it resembled -- sound when both sides came from the same
@@ -3952,9 +3903,6 @@ export default function App() {
         audiobookRafRef.current = null;
         return;
       }
-      // Skip highlighting for books that disable it (e.g. Bible)
-      if (audiobookDataRef.current && audiobookDataRef.current.noHighlight) return;
-
       // Chapters that are a time-slice of a larger shared recording (e.g. the
       // per-section Палата № 6 files) carry stopAtEnd: pause when the playhead
       // passes this section's last word so the audio never bleeds into the next.
@@ -3969,83 +3917,20 @@ export default function App() {
         }
       }
 
-      // ── Word-level highlighting (precomputed alignment; see buildWordTimeline) ──
-      var timeline = wordTimelineRef.current;
-      var hasWordTimings = timeline && timeline.length > 0;
-      if (hasWordTimings) {
-        var ct = audio.currentTime;
-        // Last timeline entry whose word has already begun.
-        var lo = 0, hi = timeline.length - 1, k = -1;
-        while (lo <= hi) {
-          var mid = (lo + hi) >> 1;
-          if (timeline[mid].begin <= ct) { k = mid; lo = mid + 1; }
-          else hi = mid - 1;
-        }
-        var targetStart = -1;
-        if (k >= 0) {
-          var e = timeline[k];
-          if (ct <= e.end) targetStart = e.start;                          // inside the spoken word
-          else if (e.holdToNext && ct < e.nextBegin) targetStart = e.start; // clean gap to next word — hold
-          // else: a real divergence (skipped words) or trailing silence — highlight nothing
-        }
-        if (targetStart !== activeWordRef.current) {
-          activeWordRef.current = targetStart;
-          try {
-            var prevW = document.querySelector(".lit-body .word-active");
-            if (prevW) prevW.classList.remove("word-active");
-          } catch(e) {}
-          if (targetStart >= 0) {
-            try {
-              var wEl = document.querySelector('.lit-body [data-rw-start="' + targetStart + '"]');
-              if (wEl) {
-                wEl.classList.add("word-active");
-                var wr = wEl.getBoundingClientRect();
-                var wvh = window.innerHeight || 800;
-                if (wr.top < wvh * 0.15 || wr.bottom > wvh * 0.85) wEl.scrollIntoView({ block: "center", behavior: "smooth" });
-              }
-            } catch(e) {}
-          }
-        }
-      }
-
-      // Sentence highlighting only when there is no word-level alignment.
-      var hit = hasWordTimings ? -2 : findSentenceIdxForTime(audio.currentTime);
-      if (hit !== -1 && hit !== -2 && hit !== lastHit) {
+      // Read-along highlighting was removed: audio is chunked per chapter/act
+      // instead, so the reader follows along by chapter rather than by word.
+      // The tick still maps playhead → sentence index purely to keep the
+      // "Sentence N / M" readout honest. It paints nothing and never flips
+      // the page — page turns are manual now.
+      var hit = findSentenceIdxForTime(audio.currentTime);
+      if (hit >= 0 && hit !== lastHit) {
         lastHit = hit;
-        var sent = audioSentencesRef.current[hit];
-        if (sent) {
-          highlightSentence(sent, null);
-          try {
-            var _els = highlightedElementsRef.current;
-            var _el = _els && _els.length ? _els[0] : null;
-            if (_el && _el.getBoundingClientRect) {
-              var _r = _el.getBoundingClientRect();
-              var _vh = window.innerHeight || (document.documentElement && document.documentElement.clientHeight) || 800;
-              if (_r.top < _vh * 0.18 || _r.bottom > _vh * 0.82) {
-                _el.scrollIntoView({ behavior: "smooth", block: "center" });
-              }
-            }
-          } catch(e) {}
-        }
         if (audioIdxRef.current !== hit) {
           audioIdxRef.current = hit;
           setAudioIdx(hit);
         }
-      } else if (hit === -1) {
-        // Audio has played past the last mapped sentence on this page.
-        // Auto-flip to the next page so highlighting can continue.
-        var timings = sentenceTimingsRef.current;
-        var lastEnd = 0;
-        for (var ti = 0; ti < timings.length; ti++) {
-          if (timings[ti] && timings[ti].end > lastEnd) lastEnd = timings[ti].end;
-        }
-        if (lastEnd > 0 && audio.currentTime > lastEnd + 0.1 &&
-            pidxAbRef.current < (totalPagesAbRef.current || 1) - 1) {
-          pageFlipModeRef.current = 'auto';
-          setPidx(pidxAbRef.current + 1);
-          lastHit = -1;
-        }
       }
+
       audiobookRafRef.current = requestAnimationFrame(tick);
     };
     audiobookRafRef.current = requestAnimationFrame(tick);
@@ -4256,7 +4141,7 @@ export default function App() {
     var rate = 1 + (pct/100); if (rate<0.5) rate=0.5; if (rate>1.5) rate=1.5;
     u.rate = rate;
     var rv = pickRussianVoice(); if (rv) u.voice = rv;
-    u.onstart = function(){ if (audioGenRef.current!==myGen) return; highlightSentence(audioSentencesRef.current[idx], override); };
+    u.onstart = function(){ /* read-along tint removed */ };
     u.onend = function(){
       if (audioGenRef.current!==myGen) return;
       clearSentenceHighlight();
@@ -4487,7 +4372,7 @@ export default function App() {
     return function() { clearTimeout(t); };
   }, [pidx]);
   var currentPage = pages[Math.min(pidx, totalPages - 1)] || pages[0];
-  // Keep the ref read by highlightSentence() in lockstep with the rendered page,
+  // Keep the page ref in lockstep with the rendered page,
   // so the audiobook RAF loop highlights the right page after a flip.
   useEffect(function() { currentPageRef.current = currentPage; }, [currentPage]);
 
@@ -4564,7 +4449,7 @@ export default function App() {
                   // Highlight directly by the sentence's page-relative range,
                   // matched against data-rw-start (which are page-relative here
                   // because startChar offsetting already happened upstream).
-                  // Bypasses highlightSentence's stale page-ref problem.
+                  // Painted directly rather than via any shared helper.
                   clearSentenceHighlight();
                   var cs = currentPage.startChar || 0;
                   var lo = cs + sent.start, hi = cs + sent.end;
@@ -5031,7 +4916,6 @@ export default function App() {
     } else {
       wordTimelineRef.current = [];
     }
-    activeWordRef.current = -1;
   }, [audiobookData, audioSentences]);
 
   useEffect(function() {
@@ -7641,7 +7525,6 @@ export default function App() {
         .rw{cursor:pointer;border-bottom:1px dotted rgba(42,31,20,.18);transition:color .15s,background .12s}
         .rw:hover{color:#c4955a;border-bottom-color:#c4955a}
         .rwhl{background:rgba(196,149,90,.18);color:#000;border-bottom-color:#c4955a;border-radius:3px;padding:1px 2px}
-        .word-active{background:rgba(196,149,90,.34);color:#fff;border-radius:3px;padding:1px 2px;box-shadow:0 0 0 1px rgba(196,149,90,.55);transition:background .08s ease}
         /* Two-choice bubble on a clicked word: define it, or play from it. */
         /* Above the floating audio bar (z-index 100) so a word near the
            bottom of the page doesn't open its menu underneath the player,
@@ -8337,20 +8220,20 @@ export default function App() {
               <div className="land-sub">Russian Practice</div>
             </div>
             <div className="land-tagline">
-              A reader for Russian-language texts — read books from the built-in library with narrated audiobooks and text that highlights as it’s read, tap any word for an instant definition, and test your comprehension with an AI tutor tuned to your level.
+              A reader for Russian-language texts — read books from the built-in library with narrated audiobooks split chapter by chapter so you can follow along, tap any word for an instant definition, and test your comprehension with an AI tutor tuned to your level.
             </div>
 
             <div className="land-features">
               <div className="land-features-title">What you can do</div>
               <div className="land-feat"><span className="land-feat-icon">📖</span><div><strong>Read</strong> — Choose from the preloaded library of Russian books and stories.</div></div>
-              <div className="land-feat"><span className="land-feat-icon">🔊</span><div><strong>Listen</strong> — Most books come with a narrated audiobook, and the text highlights line by line as it’s read so you can follow along.</div></div>
+              <div className="land-feat"><span className="land-feat-icon">🔊</span><div><strong>Listen</strong> — Most books come with a narrated audiobook, split by chapter (or by act, for plays) so the recording lines up with what’s on the page.</div></div>
               <div className="land-feat"><span className="land-feat-icon">✏️</span><div><strong>Define</strong> — Tap any Russian word for translation, lemma, aspect pairs, and example sentences.</div></div>
               <div className="land-feat"><span className="land-feat-icon">🎯</span><div><strong>Pick your level</strong> — Set your proficiency (A1–C2) and the AI tutor calibrates the difficulty of its reading-comprehension questions to match.</div></div>
               <div className="land-feat"><span className="land-feat-icon">📚</span><div><strong>Build a library</strong> — Save vocab and grammar tips; they sync across all your devices.</div></div>
             </div>
 
             <div style={{margin:"2px 0 0",padding:"12px 14px",borderRadius:10,background:"rgba(200,162,118,.10)",border:"1px solid rgba(200,162,118,.28)",fontSize:14,lineHeight:1.55,color:"rgba(0,0,0,.92)"}}>
-              <strong style={{color:"#c4955a"}}>About the audio:</strong> Most books in the library — Патриот, Тёмные аллеи, Анна Каренина and others — come with real human narration, synced to the text sentence by sentence and highlighted as it’s read. A few are still text-only while we add their audio.
+              <strong style={{color:"#c4955a"}}>About the audio:</strong> Most books in the library — Патриот, Тёмные аллеи, Анна Каренина and others — come with real human narration, split chapter by chapter so each recording matches the chapter you’re reading. A few are still text-only while we add their audio.
             </div>
             <div className="land-tips">
               <div className="land-tips-title">For the best experience</div>
@@ -9281,14 +9164,12 @@ export default function App() {
                     {/* Floating audio player — always visible at bottom of viewport
                         while reading. In TTS mode plays sentence-by-sentence via
                         Azure Dmitry. In Audiobook mode (when the book has an
-                        aligned audiobook for the current chapter) streams a real
-                        recording from archive.org with sentence-precise highlight
-                        sync. */}
+                        audiobook for the current chapter) streams a real
+                        recording, one file per chapter or act. */}
                     {audioSentences.length > 0 && (
                       <div className="faudio">
-                        {/* No skip buttons: they moved by sentence, which
-                            fought the word-level highlighter. Click any word
-                            in the text and choose "Play from here" instead. */}
+                        {/* No skip buttons: scrub with the seek bar, or click
+                            any word in the text and choose "Play from here". */}
                         <button className={"faudio-btn faudio-play"} onClick={audioPlayPause}
                           disabled={audioFetching}
                           title={audioPlaying ? "Pause" : "Play"}>
