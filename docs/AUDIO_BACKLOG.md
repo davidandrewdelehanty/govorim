@@ -45,50 +45,68 @@ Two notes on that set:
 
 ## Next
 
-**Alignment is no longer required.** A chapter JSON needs only `audio_url`; the
-reader stopped using `fragments`/`word_timings` when read-along highlighting was
-removed. `tools/add_plain_book.py` puts a book in the catalogue in one command —
-no MFA, no GPU, no WSL.
+**Alignment is no longer required.** A chapter JSON needs only `audio_url`.
+`tools/add_plain_book.py` puts a book in the catalogue in one command — no MFA,
+no GPU. It verifies the audio file count against the FB2 chapter count using
+Auto-MFA's `app/fb2.py`, which is the splitter `src/App.jsx` mirrors; counting
+with anything else checks the wrong thing (the two disagree on Горе от ума by
+more than twofold).
 
-### Live now (added 19 Aug)
+### Live (8 books added 19 Aug)
 
-| Book | Chapters |
-|---|---|
-| Отцы и дети — Тургенев | 28 |
-| Смерть Ивана Ильича — Толстой | 12 |
-| Мёртвые души — Гоголь | 11 |
+| Book | Chapters | Notes |
+|---|---|---|
+| Тихий Дон — Шолохов | 232 | |
+| Братья Карамазовы — Достоевский | — | *pending: audio merge, see below* |
+| Доктор Живаго — Пастернак | 17 | FB2 flattened to части; the 1988 `К ЧИТАТЕЛЮ` foreword dropped |
+| Отцы и дети — Тургенев | 28 | |
+| Капитанская дочка — Пушкин | 15 | ch15 `ПРОПУЩЕННАЯ ГЛАВА` is text-only — audio wanted |
+| Смерть Ивана Ильича — Толстой | 12 | |
+| Мёртвые души — Гоголь | 11 | |
+| Горе от ума — Грибоедов | 5 | ch1 `Действующие лица` text-only by choice; acts 1–4 carry the audio |
 
-### Blocked on audio↔FB2 pairing
+Живаго's 17 pairings were checked by title, not just by count — the audio
+filenames carry часть names (`kniga-2-chast-9-varykino` ↔ `ЧАСТЬ девятая.
+ВАРЫКИНО`) and all 17 line up.
 
-`add_plain_book.py` refuses to write when the audio file count and the FB2
-chapter count disagree, because that mismatch silently pairs every chapter with
-the wrong recording. Five books are in that state:
+### Still to do
 
-| Book | Audio | FB2 | Why | Fix |
-|---|---|---|---|---|
-| Капитанская дочка | 14 | 15 | FB2's 15th is `ПРИЛОЖЕНИЕ. ПРОПУЩЕННАЯ ГЛАВА`, not in the recording | Pair the first 14 and leave the appendix text-only (a `null` chapter entry, as Вишнёвый сад already has) |
-| Доктор Живаго | 17 | 232 | Audio is by **часть**; the FB2 splitter descends to leaf chapters. The two книги have 7 + 10 части = **17** | Count at nesting depth 2 instead of leaves |
-| Горе от ума | 4 | 62 | Audio is by act; the FB2 splits by явление. Top level has 4 `ДЕЙСТВИЕ` sections plus an untitled preamble and `Действующие лица` | Take the 4 `ДЕЙСТВИЕ` top-level sections |
-| Братья Карамазовы | 104 | 97 | Book 6 ch. 2–3 are read as 9 lettered files (а/б/в/г, д/е/ж/з/и); the FB2 has them as 2 chapters. 97 − 2 + 9 = 104 | Concat those 9 MP3s into 2, giving 97 |
-| Тихий Дон | 232 | 235 | 3 chapters have no audio. Audio per часть: 23/21/24/21/31/65/29/18 | Compare against the FB2's per-часть counts to find the gaps |
+1. **Братья Карамазовы** — 104 audio vs 97 chapters. Book 6 ch. 2–3 are read as
+   9 lettered files (а/б/в/г, д/е/ж/з/и) that the FB2 keeps whole. Concat them
+   into 2, re-run `stage_audio_upload.py --book karamazovy`, then
+   `add_plain_book.py`.
+2. **Капитанская дочка ch15** — `ПРИЛОЖЕНИЕ. ПРОПУЩЕННАЯ ГЛАВА`, ~19k chars
+   (20–25 min read). Real Pushkin, opens "Мы приближались к берегам Волги…".
+   Text-only until a recording turns up.
+3. **Лошадиная фамилия** — already aligned, audio not uploaded. Quickest win left.
+4. **Eight single-file recordings** need cutting before they can be added:
+   Ревизор, Три сестры, Женитьба, Гроза, Горе от ума (radio), Лес,
+   Бесприданница, Дети подземелья. `chop_aligned.py` can't help — they have no
+   alignment JSONs to read boundaries from.
+5. **Blocked.** `finist` — audio, no FB2. `cement gadkov` — three files that
+   don't add up; needs a listen.
+6. **Optional upgrades**: Онегин has a 33-file reading against the 8 chapters in
+   use; Война и мир 723 against 361; Чайка a 10-file version against 5.
 
-The real shape of the remaining work is **pairing audio to chapters**, not
-alignment. Only Карамазовы needs the audio itself touched.
+### Fixed along the way
 
-### Then
+- **Notes sections misparsed as chapters.** `_NOTES_TITLE_RE` was anchored at the
+  start of the title, so Тихий Дон's `*\u00a0ПРИМЕЧАНИЯ\u00a0*` (77 editorial
+  footnotes) became chapter 233 and looked like a chapter with missing audio.
+  Leading/trailing decoration is now matched explicitly — not with `\W`, which in
+  JS also matches Cyrillic and would have let "ЛОЖНЫЕ ПРИМЕЧАНИЯ" through. Fixed
+  in `src/App.jsx` and Auto-MFA `app/fb2.py`, which are meant to stay identical.
+  Across every FB2 in the library it changes exactly that one title.
+- **Definitions were calling a retired Gemini model.** `GEMINI_MODEL` was pinned
+  to `gemini-2.0-flash`. Default is now `gemini-3.6-flash`, the thinking-disabled
+  guard covers 2.5–2.9 and any major version from 3 up, and a 404 about a model
+  now names the env var to change.
 
-1. **Лошадиная фамилия** — single story, audio not yet uploaded. One
-   `stage_audio_upload.py` entry plus `add_plain_book.py` and it is live.
-2. **Eight single-file recordings** still need cutting into chapters/acts before
-   they can be added: Ревизор, Три сестры, Женитьба, Гроза, Горе от ума (radio),
-   Лес, Бесприданница, Дети подземелья. `chop_aligned.py` cannot help — it reads
-   boundaries out of alignment JSONs and these have none, so it is
-   `chop_by_transcript.py` (Whisper) or cut points by ear.
-3. **Blocked.** `finist` — audio, no FB2. `cement gadkov` — three files that do
-   not add up; needs a listen.
-4. **Optional upgrades** to books already live: Онегин has a 33-file reading
-   against the 8 chapters in use; Война и мир 723 files against 361; Чайка a
-   10-file version against the 5-chapter cut.
+### Pre-existing pairing gaps (not from this work)
+
+`Анна на шее` (FB2 2 chapters / 1 audio), `Записки из подполья` (68 / 18) and
+`Библия` (1952 / 1189) have more FB2 chapters than audio entries, so their later
+chapters silently have no audio. Longstanding; untouched here.
 
 ## Loose ends in the repo
 

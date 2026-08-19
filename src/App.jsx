@@ -1859,7 +1859,13 @@ var FB2_MIN_MEDIAN_CHAPTER_WORDS = 150;
 // the main body — Crime and Punishment ships 273 numbered notes that way.
 // They're never recorded, so counting one as a chapter shifts every later
 // chapter's audio pairing by one.
-var FB2_NOTES_TITLE_RE = /^(сноски?|примечани[ея]|комментари[ий]|notes?|footnotes?|endnotes?)\W*$/i;
+// Leading/trailing decoration is explicit rather than \W, for two reasons:
+// a heading can arrive as "*\u00a0ПРИМЕЧАНИЯ\u00a0*" (Тихий Дон), and JS's \W
+// matches Cyrillic letters — so \W* would also swallow "ЛОЖНЫЕ " and call that
+// a notes section. Keep this identical to _NOTES_TITLE_RE in Auto-MFA app/fb2.py.
+var FB2_NOTES_DECO = '[\\s*_\u00b7\u2022\u2014\u2013\\-.,:;!?()"\'\u00ab\u00bb\\[\\]]*';
+var FB2_NOTES_TITLE_RE = new RegExp("^" + FB2_NOTES_DECO +
+  "(сноски?|примечани[ея]|комментари[ий]|notes?|footnotes?|endnotes?)" + FB2_NOTES_DECO + "$", "i");
 function fb2IsNotesTitle(title) {
   return FB2_NOTES_TITLE_RE.test((title || "").trim());
 }

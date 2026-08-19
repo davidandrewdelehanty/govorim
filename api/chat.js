@@ -21,7 +21,9 @@
 //                               provider when the free quota is exhausted.
 //   GEMINI_THINKING           — unset (default): thinking disabled on Gemini 2.5
 //                               models. Set to a token budget to re-enable.
-//   GEMINI_MODEL              — defaults to gemini-2.5-flash
+//   GEMINI_MODEL              — defaults to gemini-3.6-flash. Google retires
+//                               older aliases; if definitions start failing with
+//                               a 404 about "models/...", this is what to change.
 //   ANTHROPIC_MODEL           — defaults to claude-haiku-4-5-20251001
 //   ALLOWED_EMAILS            — comma-separated emails; if set, ONLY
 //                               these users can call the API. Lock the
@@ -265,7 +267,11 @@ async function callGemini({ messages, system, max_tokens, wantJson, callType, ip
     };
   });
 
-  const model = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+  // Google retires model aliases, and the failure is a 404 that reads like a
+  // bug in our code rather than an expired name. GEMINI_MODEL overrides this,
+  // so when a model is retired the env var has to be updated or removed too —
+  // a stale env var will keep pinning a dead model no matter what this says.
+  const model = process.env.GEMINI_MODEL || "gemini-3.6-flash";
   console.log("[ai] provider=gemini call type=" + callType + " ip=" + ip + " user=" + (userId || "?") + " model=" + model + " msgs=" + messages.length);
 
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${process.env.GEMINI_API_KEY}`;
@@ -280,7 +286,10 @@ async function callGemini({ messages, system, max_tokens, wantJson, callType, ip
   // budget reasoning and had nothing left to emit. Word definitions do not need
   // deliberation, so thinking is off by default; set GEMINI_THINKING to a token
   // budget to turn it back on.
-  if (/^gemini-2\.[5-9]/.test(model) || /-thinking/.test(model)) {
+  // Every Gemini from 2.5 on thinks by default. Match 2.5–2.9 and any major
+  // version from 3 up, so a future model doesn't silently reintroduce the
+  // empty-response problem the moment the default is bumped.
+  if (/^gemini-(2\.[5-9]|[3-9]|\d{2,})/.test(model) || /-thinking/.test(model)) {
     const budget = parseInt(process.env.GEMINI_THINKING || "0", 10);
     generationConfig.thinkingConfig = { thinkingBudget: isNaN(budget) ? 0 : budget };
   }
@@ -303,7 +312,13 @@ async function callGemini({ messages, system, max_tokens, wantJson, callType, ip
   let data;
   try { data = JSON.parse(text); } catch { data = null; }
   if (!r.ok) {
-    const msg = (data && data.error && data.error.message) || text.slice(0, 300) || ("HTTP " + r.status);
+    let msg = (data && data.error && data.error.message) || text.slice(0, 300) || ("HTTP " + r.status);
+    // A retired or misspelled model comes back as a 404 whose text is about
+    // "models/<name>". Name the env var, because that is what has to change.
+    if (r.status === 404 && /model/i.test(msg)) {
+      msg += " — the model name is set by GEMINI_MODEL (currently \"" + model +
+             "\"); update or delete that env var.";
+    }
     const e = new Error("Gemini: " + msg); e.status = r.status; throw e;
   }
   // Read EVERY part, not just the first — a reply split across parts would
