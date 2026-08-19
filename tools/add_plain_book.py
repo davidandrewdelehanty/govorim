@@ -71,20 +71,37 @@ def audio_names(args):
                      "make sure the staging manifest or the rclone remote is reachable.")
 
 
-def fb2_chapter_count(repo, rel):
-    """Reuse the FB2 splitter from chop_by_transcript.py rather than a second copy."""
+def fb2_chapter_count(repo, rel, automfa):
+    """Count chapters the way the READER will split this FB2.
+
+    src/App.jsx carries its own FB2 splitter, kept deliberately identical to
+    Auto-MFA's app/fb2.py (subtitle-based chapter markers, endnote sections
+    dropped, and so on). A naive leaf-<section> walk disagrees with it — on
+    Горе от ума by more than twofold — so counting with anything else would
+    check the wrong thing. Use the canonical implementation when it is on disk;
+    fall back to the rough one only to have some signal at all.
+    """
     import importlib.util
+    from pathlib import Path
+    fb2py = os.path.expanduser(os.path.join(automfa, "app", "fb2.py")) if automfa else ""
+    if fb2py and os.path.exists(fb2py):
+        spec = importlib.util.spec_from_file_location("automfa_fb2", fb2py)
+        m = importlib.util.module_from_spec(spec)
+        try:
+            spec.loader.exec_module(m)
+            return len(m.extract_chapters(Path(os.path.join(repo, "public/books", rel)))), "Auto-MFA app/fb2.py"
+        except Exception as e:
+            print("  (Auto-MFA fb2.py could not parse this FB2: %s)" % e)
     tool = os.path.join(repo, "tools", "chop_by_transcript.py")
-    if not os.path.exists(tool):
-        return None
-    spec = importlib.util.spec_from_file_location("cbt", tool)
-    m = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(m)
-    try:
-        return len(m.fb2_chapters(os.path.join(repo, "public/books", rel)))
-    except Exception as e:
-        print("  (couldn't parse the FB2 for a chapter count: %s)" % e)
-        return None
+    if os.path.exists(tool):
+        spec = importlib.util.spec_from_file_location("cbt", tool)
+        m = importlib.util.module_from_spec(spec)
+        try:
+            spec.loader.exec_module(m)
+            return len(m.fb2_chapters(os.path.join(repo, "public/books", rel))), "rough fallback splitter"
+        except Exception as e:
+            print("  (couldn't parse the FB2 for a chapter count: %s)" % e)
+    return None, None
 
 
 def main():
@@ -101,25 +118,49 @@ def main():
     ap.add_argument("--remote", default="r2:govorim-audio")
     ap.add_argument("--staging", default="~/upload-staging")
     ap.add_argument("--count", type=int, help="number of chapters, if the filenames can't be listed")
+    ap.add_argument("--automfa", default=None,
+                    help="Auto-MFA checkout — its app/fb2.py is the canonical chapter splitter. "
+                         "Defaults to a sibling of the repo, then ~/projects/Auto-MFA.")
+    ap.add_argument("--chapters-without-audio", default="",
+                    help="1-based chapter numbers that have no recording (e.g. a foreword or "
+                         "an appendix). They get a null entry and stay text-only. "
+                         "Example: --chapters-without-audio 1,233")
     ap.add_argument("--force", action="store_true", help="write even if the counts disagree")
     ap.add_argument("--apply", action="store_true")
     args = ap.parse_args()
 
     repo = os.path.abspath(args.repo)
     books_dir = os.path.join(repo, "public/books")
+    if not args.automfa:
+        # Auto-MFA normally sits beside govorim-app. Falling back to a rough
+        # splitter is worse than it sounds: on Тихий Дон the two disagree by 2
+        # chapters, which is exactly the kind of off-by-N this check exists to
+        # catch — so say plainly which one is being used.
+        for cand in (os.path.join(os.path.dirname(repo), "Auto-MFA"),
+                     os.path.expanduser("~/projects/Auto-MFA")):
+            if os.path.exists(os.path.join(cand, "app", "fb2.py")):
+                args.automfa = cand
+                break
+        else:
+            args.automfa = ""
     fb2_path = os.path.join(books_dir, args.fb2)
     if not os.path.exists(fb2_path):
         raise SystemExit("FB2 not found: %s" % fb2_path)
 
     names = audio_names(args)
-    n_ch = fb2_chapter_count(repo, args.fb2)
-    print("\n%s — %d audio files, FB2 has %s chapters"
-          % (args.title, len(names), n_ch if n_ch is not None else "?"))
-    if n_ch is not None and n_ch != len(names):
-        print("  !! MISMATCH: %d audio files vs %d FB2 chapters." % (len(names), n_ch))
+    n_ch, how = fb2_chapter_count(repo, args.fb2, args.automfa)
+    silent = sorted({int(x) for x in re.findall(r"\d+", args.chapters_without_audio)})
+    print("\n%s — %d audio files, FB2 has %s chapters (%s)"
+          % (args.title, len(names), n_ch if n_ch is not None else "?", how or "no splitter available"))
+    if silent:
+        print("  chapters with no recording: %s" % ", ".join(str(x) for x in silent))
+    if n_ch is not None and n_ch != len(names) + len(silent):
+        gap = n_ch - len(names) - len(silent)
+        print("  !! MISMATCH: %d audio + %d silent != %d FB2 chapters (off by %+d)."
+              % (len(names), len(silent), n_ch, -gap))
         print("     Pairing would be off and nothing in the reader would show it.")
         if not args.force:
-            raise SystemExit("     Refusing to write. Fix the split, or pass --force if you know why.")
+            raise SystemExit("     Refusing to write. Fix the pairing, or pass --force if you know why.")
         print("     --force given; writing anyway.")
 
     index_path = os.path.join(books_dir, "index.json")
@@ -128,13 +169,27 @@ def main():
         raise SystemExit('"%s" is already in index.json.' % args.title)
 
     out_dir = os.path.join(books_dir, "audio", args.slug)
-    rel_chapters, pad = [], max(2, len(str(len(names))))
-    for i, fname in enumerate(names, 1):
-        stem = "%s-ch%0*d" % (args.slug, pad, i)
+    total = (n_ch if n_ch is not None else len(names) + len(silent))
+    pad = max(2, len(str(len(names))))
+    rel_chapters, plan, ai = [], [], 0
+    for ch_no in range(1, total + 1):
+        if ch_no in silent:
+            rel_chapters.append(None)          # text-only chapter, no recording
+            plan.append((ch_no, None, None))
+            continue
+        if ai >= len(names):
+            rel_chapters.append(None)
+            plan.append((ch_no, None, None))
+            continue
+        stem = "%s-ch%0*d" % (args.slug, pad, ai + 1)
         rel_chapters.append("audio/%s/%s.json" % (args.slug, stem))
-        if i <= 2 or i == len(names):
-            print("  %-30s -> %s/%s/%s" % (stem + ".json", args.base.rsplit("/", 1)[-1], args.slug, fname))
-        elif i == 3:
+        plan.append((ch_no, stem, names[ai]))
+        ai += 1
+    for ch_no, stem, fname in plan:
+        if ch_no <= 3 or ch_no >= total - 1 or fname is None:
+            print("  ch%-4d %-30s -> %s" % (ch_no, (stem or "") + (".json" if stem else "(text only)"),
+                                            ("%s/%s" % (args.slug, fname)) if fname else "—"))
+        elif ch_no == 4:
             print("  …")
     entry = {
         "filename": args.fb2,
@@ -149,8 +204,9 @@ def main():
         return
 
     os.makedirs(out_dir, exist_ok=True)
-    for i, fname in enumerate(names, 1):
-        stem = "%s-ch%0*d" % (args.slug, pad, i)
+    for ch_no, stem, fname in plan:
+        if not stem:
+            continue
         doc = {
             "audio_url": "%s/%s/%s" % (args.base.rstrip("/"), args.slug, fname),
             "narrator": args.narrator,
@@ -163,8 +219,10 @@ def main():
     with open(index_path, "w", encoding="utf-8") as fh:
         json.dump(index, fh, ensure_ascii=False, indent=2)
         fh.write("\n")
-    print("\nWrote %d chapter JSONs to public/books/audio/%s/ and added \"%s\" to index.json."
-          % (len(names), args.slug, args.title))
+    n_silent = sum(1 for c in rel_chapters if c is None)
+    print("\nWrote %d chapter JSONs to public/books/audio/%s/ and added \"%s\" to index.json%s."
+          % (len(names), args.slug, args.title,
+             " (%d chapter(s) left text-only)" % n_silent if n_silent else ""))
 
 
 if __name__ == "__main__":
