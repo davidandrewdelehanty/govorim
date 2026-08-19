@@ -1930,7 +1930,7 @@ async function parseFb2(buffer, options) {
       for (var qi = 0; qi < nodes.length; qi++) {
         if (nodes[qi] === dt) continue;
         // Skip ALL title/subtitle elements — headings are in chapter.heading,
-        // not in chapter.text, so they don't confuse buildSentenceTimings
+        // not in chapter.text, so they don't confuse sentence parsing
         var qTag = nodes[qi].tagName.toLowerCase();
         if (qTag === "title" || qTag === "subtitle") continue;
         var t = nodes[qi].textContent.replace(/\s+/g, " ").trim();
@@ -2705,8 +2705,6 @@ export default function App() {
   // except the player's skip buttons — and those jumped by *sentence*, which
   // is why they kept knocking the word-level highlighter back into
   // sentence mode. Seeking from the word itself replaces them.
-  var [wordMenu, setWordMenu] = useState(null);   // {word, start, top, left}
-  var wordMenuRef = useRef(null);
   // After the popup renders, clamp it so it never extends below the viewport.
   // The initial position is an estimate; this corrects it using actual height.
   useEffect(function() {
@@ -2874,7 +2872,6 @@ export default function App() {
   var [audiobookData, setAudiobookData] = useState(null);    // {audio_url, fragments[], narrator?, year?}
   var [audiobookMode, setAudiobookMode] = useState(false);   // user-toggleable; defaults true when audiobookData arrives
   var audiobookAudioRef = useRef(null);                      // persistent <audio> streaming the recording
-  var audiobookRafRef = useRef(null);                        // RAF handle for the highlight loop
   var [abCur, setAbCur] = useState(0);                       // audiobook playhead position (s), for the counter/scrubber
   var [abDur, setAbDur] = useState(0);                       // audiobook total duration (s)
   var fmtClock = function(s){ s = Math.max(0, Math.floor(s || 0)); var mm = Math.floor(s / 60), ss = s % 60; return mm + ":" + (ss < 10 ? "0" : "") + ss; };
@@ -2884,11 +2881,6 @@ export default function App() {
   // Bible section-heading translations ({russianHeading: englishHeading}), one
   // global file shared by every chapter. Loaded lazily on first Bible chapter.
   var [bibleHeadings, setBibleHeadings] = useState(null);
-  var wordTimelineRef = useRef([]);    // precomputed alignment: [{begin,end,start,holdToNext,nextBegin}]
-  // Per-sentence timing for the CURRENT page only. Built when audiobookData
-  // and audioSentences are both available. timings[i] = {begin, end} if the
-  // i-th parsed sentence has a matched fragment, else null (no highlight).
-  var sentenceTimingsRef = useRef([]);
   var audiobookDataRef = useRef(null);
   useEffect(function() { audiobookDataRef.current = audiobookData; }, [audiobookData]);
   var audiobookModeRef = useRef(false);
@@ -3102,496 +3094,6 @@ export default function App() {
     highlightedElementsRef.current = [];
   };
 
-  // ── Audiobook helpers ──────────────────────────────────────────────────────
-  // Normalise sentence text for fuzzy fragment-matching. The alignment JSON
-  // came from `extract-sentences.js` which mirrors parseSentences, but punc /
-  // whitespace differences can still slip in — normalise both sides.
-  var normalizeForMatch = function(s) {
-    return String(s || "")
-      .toLowerCase()
-      .replace(/^\d+\s+/gm, "")      // strip leading verse numbers
-      .replace(/\s\d+\s+/g, " ")    // strip inline verse numbers
-      .replace(/[^а-яёa-z0-9\s]/g, "")
-      .replace(/\s+/g, "")            // collapse ALL spaces for matching
-      .trim();
-  };
-
-  // Levenshtein distance for fuzzy matching when substring fails
-  var levenshtein = function(a, b) {
-    var m = a.length, n = b.length;
-    var dp = [];
-    for (var i = 0; i <= m; i++) {
-      dp[i] = [i];
-      for (var j = 1; j <= n; j++) {
-        dp[i][j] = i === 0 ? j :
-          a[i-1] === b[j-1] ? dp[i-1][j-1] :
-          1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
-      }
-    }
-    return dp[m][n];
-  };
-
-  // Check if two normalized strings are a fuzzy match
-  // Uses: exact substring → Levenshtein on first 20 chars → consonant skeleton
-  var fuzzyMatch = function(probe, target) {
-    if (!probe || !target) return false;
-    // Level 1: exact substring
-    if (target.indexOf(probe.slice(0, 15)) !== -1) return true;
-    if (probe.length >= 12 && target.indexOf(probe.slice(0, 12)) === 0) return true;
-    // Level 2: Levenshtein on first 20 chars (tolerates 2 char differences)
-    var p20 = probe.slice(0, 20);
-    var t20 = target.slice(0, 20);
-    if (p20.length >= 8 && levenshtein(p20, t20) <= 2) return true;
-    // Level 3: consonant skeleton match (strip vowels, compare first 10 chars)
-    var vowels = /[аеёиоуыьъэюяaeiou]/g;
-    var pCons = probe.replace(vowels, "").slice(0, 10);
-    var tCons = target.replace(vowels, "").slice(0, 10);
-    if (pCons.length >= 6 && pCons === tCons) return true;
-    return false;
-  };
-
-  // Build the mapping `sentenceIdx → {begin, end}` for the page that's
-  // currently rendered. Greedy linear walk: for each parsed sentence in
-  // order, scan forward from the previous match to find the next alignment
-  // fragment whose normalised text starts the same way. This is robust to
-  // synthetic announcement insertion (Bible / chapter ordinals) and to
-  // narrator-only audio (skipped author footnotes).
-  // ── Word-level alignment (transcript ↔ book text) ─────────────────────────
-  // WhisperX gives per-word timings for what it HEARD, which drifts from the
-  // book text (inserted / dropped / misheard words). We align the two sequences
-  // once per chapter with a greedy re-sync: match word-for-word; on a mismatch,
-  // look ahead a small window in both streams for the next agreement, skip the
-  // divergent stretch (highlight nothing there), and resume. The result is a
-  // timeline mapping audio time → the character offset of the book word to
-  // highlight — the same value rendered as each word span's data-rw-start.
-  var normWordForAlign = function(s) {
-    return String(s || "").toLowerCase().replace(/ё/g, "е").replace(/[^а-яa-z0-9]/g, "");
-  };
-  var buildWordTimeline = function(chapterText, wordTimings, highlightStartOffset, unspokenRanges) {
-    if (!chapterText || !wordTimings || !wordTimings.length) { wordTimelineRef.current = []; return; }
-    // Words the aligner was deliberately never given: a play's stage
-    // directions and speaker labels, an abridgement's missing passages. They
-    // render on the page as normal — they are the author's text — but they
-    // are not in word_timings, and without being told so this matcher has to
-    // skip them blind. Skipping blind is what made Чайка highlight the
-    // SECOND "Отчего" while the first was being spoken: 67 words of unread
-    // scene-setting stood in front, a couple of common words in it bound to
-    // real timings, and the resync overshot. Auto-MFA now says which words
-    // those are, counted as ordinals in this same scan (not char offsets —
-    // it joins paragraphs with a space where we join with a blank line, so
-    // offsets disagree while the word sequence is identical).
-    var skip = null;
-    if (unspokenRanges && unspokenRanges.length) {
-      skip = Object.create(null);
-      for (var si = 0; si < unspokenRanges.length; si++) {
-        var lo = unspokenRanges[si][0], hi = unspokenRanges[si][1];
-        for (var sj = lo; sj < hi; sj++) skip[sj] = true;
-      }
-    }
-    // Book words: Russian letter runs, keyed by absolute char offset (== data-rw-start).
-    // The scan always starts at 0 so the ordinal matches what Auto-MFA counted;
-    // highlightStartOffset only decides what gets kept.
-    var B = [], re = /[а-яёА-ЯЁ]+|\d+/g, m, ord = -1;
-    var from = highlightStartOffset > 0 ? highlightStartOffset : 0;
-    while ((m = re.exec(chapterText)) !== null) {
-      ord++;
-      if (m.index < from) continue;
-      if (skip && skip[ord]) continue;
-      if (/\d/.test(m[0])) B.push({ start: m.index, norm: m[0], isNumeral: true });
-      else B.push({ start: m.index, norm: normWordForAlign(m[0]) });
-    }
-    // Transcript words with their times.
-    var T = [];
-    for (var wi = 0; wi < wordTimings.length; wi++) {
-      var n = normWordForAlign(wordTimings[wi].word);
-      if (n) T.push({ begin: wordTimings[wi].begin, end: wordTimings[wi].end, norm: n });
-    }
-    if (!B.length || !T.length) { wordTimelineRef.current = []; return; }
-
-    // ── Index every transcript word up front (the "value" per word the reader
-    //    asked for): norm -> ascending list of the positions where it occurs.
-    //    This lets the aligner resync by jumping straight to a distant
-    //    occurrence when the audio deviates, instead of giving up once a fixed
-    //    look-ahead window is exhausted.
-    var tIndex = Object.create(null);
-    for (var t = 0; t < T.length; t++) {
-      var key = T[t].norm;
-      (tIndex[key] || (tIndex[key] = [])).push(t);
-    }
-    var occ = function(norm) { var a = tIndex[norm]; return a ? a.length : 0; };
-    // First transcript position of `norm` at or after `from` (binary search).
-    var nextPos = function(norm, from) {
-      var a = tIndex[norm]; if (!a) return -1;
-      var lo = 0, hi = a.length - 1, res = -1;
-      while (lo <= hi) { var mid = (lo + hi) >> 1; if (a[mid] >= from) { res = a[mid]; hi = mid - 1; } else lo = mid + 1; }
-      return res;
-    };
-
-    // ── Russian number-word recognizer ────────────────────────────────────
-    // A digit run in the book text (e.g. "1805") has no direct transcript
-    // counterpart — the narrator speaks it as a run of declined number words
-    // ("тысяча восемьсот пятого"), so plain word-for-word matching can never
-    // align it. These tables map the common cardinal AND ordinal declined
-    // forms of Russian number words to their numeric value. Not exhaustive of
-    // every possible declension, but covers the forms that actually occur in
-    // narrated prose (years, ages, counts, dates).
-    var NUM_UNITS = {
-      "один":1,"одна":1,"одно":1,"одного":1,"одной":1,"одному":1,"одним":1,"одном":1,"одну":1,
-      "первый":1,"первого":1,"первому":1,"первым":1,"первом":1,"первая":1,"первой":1,"первую":1,"первое":1,
-      "два":2,"две":2,"двух":2,"двум":2,"двумя":2,
-      "второй":2,"второго":2,"второму":2,"вторым":2,"втором":2,"вторая":2,"вторую":2,"второе":2,
-      "три":3,"трех":3,"трёх":3,"трем":3,"трём":3,"тремя":3,
-      "третий":3,"третьего":3,"третьему":3,"третьим":3,"третьем":3,"третья":3,"третьей":3,"третью":3,"третье":3,
-      "четыре":4,"четырех":4,"четырёх":4,"четырем":4,"четырём":4,"четырьмя":4,
-      "четвертый":4,"четвёртый":4,"четвертого":4,"четвёртого":4,"четвертому":4,"четвёртому":4,"четвертым":4,"четвёртым":4,"четвертом":4,"четвёртом":4,"четвертая":4,"четвёртая":4,"четвертой":4,"четвёртой":4,"четвертое":4,"четвёртое":4,
-      "пять":5,"пяти":5,"пятью":5,
-      "пятый":5,"пятого":5,"пятому":5,"пятым":5,"пятом":5,"пятая":5,"пятой":5,"пятую":5,"пятое":5,
-      "шесть":6,"шести":6,"шестью":6,
-      "шестой":6,"шестого":6,"шестому":6,"шестым":6,"шестом":6,"шестая":6,"шестую":6,"шестое":6,
-      "семь":7,"семи":7,
-      "седьмой":7,"седьмого":7,"седьмому":7,"седьмым":7,"седьмом":7,"седьмая":7,"седьмую":7,"седьмое":7,
-      "восемь":8,"восьми":8,"восемью":8,"восьмью":8,
-      "восьмой":8,"восьмого":8,"восьмому":8,"восьмым":8,"восьмом":8,"восьмая":8,"восьмую":8,"восьмое":8,
-      "девять":9,"девяти":9,"девятью":9,
-      "девятый":9,"девятого":9,"девятому":9,"девятым":9,"девятом":9,"девятая":9,"девятой":9,"девятую":9,"девятое":9
-    };
-    var NUM_TEENS = {
-      "десять":10,"десяти":10,"десятью":10,
-      "десятый":10,"десятого":10,"десятому":10,"десятым":10,"десятом":10,"десятая":10,"десятой":10,"десятую":10,"десятое":10,
-      "одиннадцать":11,"одиннадцати":11,"одиннадцатый":11,"одиннадцатого":11,"одиннадцатой":11,
-      "двенадцать":12,"двенадцати":12,"двенадцатый":12,"двенадцатого":12,"двенадцатой":12,
-      "тринадцать":13,"тринадцати":13,"тринадцатый":13,"тринадцатого":13,"тринадцатой":13,
-      "четырнадцать":14,"четырнадцати":14,"четырнадцатый":14,"четырнадцатого":14,"четырнадцатой":14,
-      "пятнадцать":15,"пятнадцати":15,"пятнадцатый":15,"пятнадцатого":15,"пятнадцатой":15,
-      "шестнадцать":16,"шестнадцати":16,"шестнадцатый":16,"шестнадцатого":16,"шестнадцатой":16,
-      "семнадцать":17,"семнадцати":17,"семнадцатый":17,"семнадцатого":17,"семнадцатой":17,
-      "восемнадцать":18,"восемнадцати":18,"восемнадцатый":18,"восемнадцатого":18,"восемнадцатой":18,
-      "девятнадцать":19,"девятнадцати":19,"девятнадцатый":19,"девятнадцатого":19,"девятнадцатой":19
-    };
-    var NUM_TENS = {
-      "двадцать":20,"двадцати":20,"двадцатый":20,"двадцатого":20,"двадцатой":20,
-      "тридцать":30,"тридцати":30,"тридцатый":30,"тридцатого":30,"тридцатой":30,
-      "сорок":40,"сорока":40,"сороковой":40,"сорокового":40,"сороковому":40,
-      "пятьдесят":50,"пятидесяти":50,"пятидесятый":50,"пятидесятого":50,"пятидесятой":50,
-      "шестьдесят":60,"шестидесяти":60,"шестидесятый":60,"шестидесятого":60,"шестидесятой":60,
-      "семьдесят":70,"семидесяти":70,"семидесятый":70,"семидесятого":70,"семидесятой":70,
-      "восемьдесят":80,"восьмидесяти":80,"восьмидесятый":80,"восьмидесятого":80,"восьмидесятой":80,
-      "девяносто":90,"девяноста":90,"девяностый":90,"девяностого":90,"девяностой":90
-    };
-    var NUM_HUNDREDS = {
-      "сто":100,"ста":100,"сотый":100,"сотого":100,"сотой":100,
-      "двести":200,"двухсот":200,"двухсотый":200,"двухсотого":200,
-      "триста":300,"трехсот":300,"трёхсот":300,"трехсотый":300,"трёхсотый":300,"трехсотого":300,"трёхсотого":300,
-      "четыреста":400,"четырехсот":400,"четырёхсот":400,"четырехсотый":400,"четырёхсотый":400,
-      "пятьсот":500,"пятисот":500,"пятисотый":500,"пятисотого":500,
-      "шестьсот":600,"шестисот":600,"шестисотый":600,"шестисотого":600,
-      "семьсот":700,"семисот":700,"семисотый":700,"семисотого":700,
-      "восемьсот":800,"восьмисот":800,"восьмисотый":800,"восьмисотого":800,
-      "девятьсот":900,"девятисот":900,"девятисотый":900,"девятисотого":900
-    };
-    var NUM_THOUSAND = { "тысяча":1,"тысячи":1,"тысяч":1,"тысячу":1,"тысячей":1 };
-    // Try to consume a maximal run of number-words starting at T[j] and check
-    // whether the value they spell out equals `target` (a digit string from
-    // the book text). Returns the word count consumed on an exact match, else 0.
-    var tryMatchNumeral = function(target, j) {
-      var targetNum = parseInt(target, 10);
-      if (!isFinite(targetNum)) return 0;
-      var total = 0, group = 0, consumed = 0, sawAny = false;
-      for (var w = j; w < T.length && consumed < 8; w++) {
-        var word = T[w].norm;
-        if (NUM_THOUSAND[word]) { total += (group || 1) * 1000; group = 0; sawAny = true; consumed++; continue; }
-        if (NUM_HUNDREDS[word] !== undefined) { group += NUM_HUNDREDS[word]; sawAny = true; consumed++; continue; }
-        if (NUM_TENS[word] !== undefined) { group += NUM_TENS[word]; sawAny = true; consumed++; continue; }
-        if (NUM_TEENS[word] !== undefined) { group += NUM_TEENS[word]; sawAny = true; consumed++; continue; }
-        if (NUM_UNITS[word] !== undefined) { group += NUM_UNITS[word]; sawAny = true; consumed++; continue; }
-        break;
-      }
-      if (!sawAny) return 0;
-      var finalTotal = total + group;
-      return finalTotal === targetNum ? consumed : 0;
-    };
-    var SMALL = 14;        // cheap local diamond: ordinary word-to-word drift.
-    var BOOK_SCAN = 600;   // how far ahead in the book we hunt for an anchor.
-    var MAX_ANCHOR_OCC = 8;// only anchor on reasonably rare words (avoid "и" etc).
-
-    // Small symmetric diamond around (i,j); returns {a,b} to advance, or null.
-    var localResync = function(i, j) {
-      for (var d = 1; d <= SMALL; d++) {
-        for (var a = 0; a <= d; a++) {
-          var b = d - a;
-          if (i + a < B.length && j + b < T.length && B[i + a].norm === T[j + b].norm) return { a: a, b: b };
-        }
-      }
-      return null;
-    };
-    // Long-range resync: scan ahead in the book for the word that gives the
-    // nearest joint re-sync, measured as (book words skipped) + (transcript
-    // words skipped). Searching transcript positions at/after j lets this
-    // bridge BOTH kinds of deviation: the audio running ahead of the text
-    // (p > j) and the audio skipping text that's still on the page (p === j,
-    // so we advance the book pointer instead). Unique words are trusted
-    // outright; a merely-rare word must be confirmed by its neighbour so we
-    // don't latch onto a spurious repeat.
-    var anchorResync = function(i, j) {
-      var best = null, bestCost = Infinity;
-      for (var a = 0; a < BOOK_SCAN && i + a < B.length; a++) {
-        if (a > bestCost) break;   // cost >= a, so no farther word can beat best
-        var w = B[i + a].norm, c = occ(w);
-        if (c === 0 || c > MAX_ANCHOR_OCC) continue;
-        var p = nextPos(w, j);
-        if (p < 0) continue;
-        var ok = (c === 1);
-        if (!ok && i + a + 1 < B.length && T[p + 1] && T[p + 1].norm === B[i + a + 1].norm) ok = true;
-        if (!ok) continue;
-        var cost = a + (p - j);
-        if (cost < bestCost) { bestCost = cost; best = { a: a, p: p }; }
-      }
-      return best;
-    };
-
-    // ── Global re-sync over the WHOLE text ─────────────────────────────────
-    // Anchor words that occur exactly once in BOTH the page text and the
-    // transcript are unambiguous landmarks. When the local (14-word) and
-    // medium-range (600-word) searches both fail — i.e. a large chunk of text
-    // has no counterpart in the audio, or vice-versa — jump straight to the
-    // next such landmark anywhere ahead. This lets the highlight go dark across
-    // an arbitrarily long mismatched stretch and pick back up the instant the
-    // text and narration agree again, no matter how far apart that is.
-    var bCount = Object.create(null);
-    for (var bc = 0; bc < B.length; bc++) bCount[B[bc].norm] = (bCount[B[bc].norm] || 0) + 1;
-    var uniq = [];   // {bi, tj} for words unique in both, in book order
-    for (var ub = 0; ub < B.length; ub++) {
-      var uw = B[ub].norm;
-      if (bCount[uw] === 1 && occ(uw) === 1) uniq.push({ bi: ub, tj: tIndex[uw][0] });
-    }
-    var uap = 0;     // pointer into uniq; only advances (i never decreases)
-    var globalResync = function(i, j) {
-      while (uap < uniq.length && uniq[uap].bi < i) uap++;
-      for (var k = uap; k < uniq.length; k++) {
-        if (uniq[k].tj > j) return uniq[k];   // next landmark ahead in both streams
-      }
-      return null;
-    };
-
-    var out = [], i = 0, j = 0;
-    while (i < B.length && j < T.length) {
-      if (B[i].norm === T[j].norm) {
-        out.push({ begin: T[j].begin, end: T[j].end, start: B[i].start, bi: i, tj: j });
-        i++; j++;
-        continue;
-      }
-      if (B[i].isNumeral) {
-        var numConsumed = tryMatchNumeral(B[i].norm, j);
-        if (numConsumed > 0) {
-          out.push({ begin: T[j].begin, end: T[j + numConsumed - 1].end, start: B[i].start, bi: i, tj: j });
-          i++; j += numConsumed;
-          continue;
-        }
-      }
-      var r = localResync(i, j);
-      if (r) { i += r.a; j += r.b; continue; }
-      var anc = anchorResync(i, j);
-      if (anc) { i += anc.a; j = anc.p; continue; }
-      var g = globalResync(i, j);
-      if (g) { i = g.bi; j = g.tj; continue; }   // leap to the next whole-text landmark
-      i++; j++;   // no landmark left — step past and keep scanning
-    }
-    // Mark clean consecutive runs so the highlight holds across the tiny gap
-    // between two matched words, but blanks out across a real divergence.
-    for (var k = 0; k < out.length; k++) {
-      var nx = out[k + 1];
-      out[k].holdToNext = !!(nx && nx.bi === out[k].bi + 1 && nx.tj === out[k].tj + 1);
-      out[k].nextBegin = nx ? nx.begin : Infinity;
-    }
-    wordTimelineRef.current = out;
-  };
-
-  var buildSentenceTimings = function() {
-    var data = audiobookDataRef.current;
-    var sents = audioSentencesRef.current;
-    if (!data || !data.fragments || !sents || !sents.length) {
-      sentenceTimingsRef.current = [];
-      return;
-    }
-    var frags = data.fragments;
-
-    // Chapter JSONs from the old Whisper-transcription pass used to get a
-    // separate path here that matched each sentence to the fragment whose
-    // text it resembled -- sound when both sides came from the same
-    // transcript, but the reader now always renders the book's own text, so
-    // the two sides no longer share a transcriber's wording. They go through
-    // the same fragment matching as every other book.
-
-    var fragIdx = 0;
-    var firstSent = true;
-    var mapping = sents.map(function(sent) {
-      if (!sent || sent.start < 0) return null;  // synthetic chapter announcement
-      var normSent = normalizeForMatch(sent.text);
-      if (normSent.length < 3) return null;
-      var probe = normSent.slice(0, Math.min(40, normSent.length));
-      // For the first sentence on the page, search ALL fragments (the page
-      // may start anywhere in the chapter audio). For subsequent sentences,
-      // use a local 12-fragment window from the last match.
-      var maxStep = firstSent ? (frags.length - fragIdx) : 12;
-      for (var step = 0; step < maxStep && fragIdx + step < frags.length; step++) {
-        var fragNorm = normalizeForMatch(frags[fragIdx + step].text);
-        // Primary match: sentence starts the fragment (sentence-per-fragment alignment)
-        if (fuzzyMatch(probe, fragNorm)) {
-          fragIdx += step + 1;
-          firstSent = false;
-          return { begin: frags[fragIdx - 1].begin, end: frags[fragIdx - 1].end };
-        }
-        // Secondary match: sentence appears INSIDE the current fragment's text
-        // (paragraph-per-fragment alignment — distribute time proportionally).
-        // Only check the CURRENT fragment (step=0) to avoid jumping ahead.
-        if (step === 0 && fragIdx < frags.length) {
-          var curFragNorm = normalizeForMatch(frags[fragIdx].text);
-          if (curFragNorm.indexOf(probe.slice(0, Math.min(20, probe.length))) !== -1) {
-            // Sentence is inside this fragment — estimate its position proportionally
-            // by where it appears in the fragment's text.
-            var frag = frags[fragIdx];
-            var fragDur = frag.end - frag.begin;
-            var posInFrag = curFragNorm.indexOf(probe.slice(0, Math.min(20, probe.length)));
-            var ratio = fragDur > 0 ? posInFrag / Math.max(1, curFragNorm.length) : 0;
-            var estBegin = frag.begin + ratio * fragDur;
-            var estEnd   = frag.end;   // hold to end of fragment
-            firstSent = false;
-            return { begin: Math.round(estBegin * 1000) / 1000, end: Math.round(estEnd * 1000) / 1000 };
-          }
-        }
-      }
-      return null;
-    });
-    // Safety net: never leave a sentence un-timed. Short dialogue lines
-    // (e.g. "— Эй, кто там!") sometimes slip the prefix matcher's window;
-    // with no timing the highlighter skips them and drifts. Give any unmatched
-    // sentence the gap between its nearest timed neighbors so it still lights up.
-    (function(){
-      var n = mapping.length;
-      for (var bi = 0; bi < n; bi++) {
-        if (mapping[bi] || !sents[bi] || sents[bi].start < 0) continue;
-        var pe = null, nb = null;
-        for (var pa = bi - 1; pa >= 0; pa--) { if (mapping[pa]) { pe = mapping[pa].end; break; } }
-        for (var nx = bi + 1; nx < n; nx++) { if (mapping[nx]) { nb = mapping[nx].begin; break; } }
-        // Hold at previous sentence end until next sentence begins
-        // This keeps the highlight on the last known sentence through gaps
-        if (pe != null && nb != null) mapping[bi] = { begin: pe, end: nb };
-        else if (pe != null) mapping[bi] = { begin: pe, end: pe + 5.0 };
-        else if (nb != null) mapping[bi] = { begin: Math.max(0, nb - 0.5), end: nb };
-      }
-    })();
-    sentenceTimingsRef.current = mapping;
-    try {
-      var matched = mapping.filter(function(m){ return m; }).length;
-      console.log('[buildSentenceTimings] mapped', matched, '/', mapping.length, 'sentences for page', (typeof pidx !== 'undefined' ? pidx : '?'));
-    } catch(e) {}
-  };
-
-  // Find which sentence (by index in audioSentencesRef.current) the given
-  // playback time falls into. Binary search would be possible but linear
-  // is plenty fast — one page's worth of sentences (≤30 typical).
-  var findSentenceIdxForTime = function(t) {
-    var timings = sentenceTimingsRef.current;
-    // Highlight the sentence currently being SPOKEN: the last one whose begin
-    // has arrived, held through any silent gap until the next actually begins.
-    // (The old logic snapped to the upcoming sentence the instant the previous
-    // ended, so inter-sentence pauses made the highlight run ahead of the voice
-    // — very visible with tight word-timed alignment that leaves real gaps.)
-    // Build an array of valid timings with their indices
-    var firstIdx = -1, maxEnd = 0;
-    var valid = [];
-    for (var i = 0; i < timings.length; i++) {
-      var tm = timings[i];
-      if (!tm) continue;
-      if (firstIdx === -1) firstIdx = i;
-      if (tm.end > maxEnd) maxEnd = tm.end;
-      valid.push({ idx: i, begin: tm.begin, end: tm.end });
-    }
-    if (firstIdx === -1) return -1;   // nothing mapped on this page
-    if (t >= maxEnd) return -1;       // past the page → RAF triggers auto-flip
-    // If t is before any mapped sentence, return first
-    if (valid.length > 0 && t < valid[0].begin) return firstIdx;
-
-    // Find which sentence t falls inside, or which gap it's in.
-    // Strategy: hold the previous sentence through a gap until t reaches
-    // the midpoint between prev.end and next.begin, then snap to next.
-    var best = -1;
-    for (var vi = 0; vi < valid.length; vi++) {
-      var cur = valid[vi];
-      if (t < cur.begin) {
-        // t is before this sentence — check if we're in the gap before it
-        if (vi === 0) {
-          // Before first sentence — return first if close enough
-          best = (t >= cur.begin - 2.0) ? cur.idx : -1;
-        } else {
-          var prev = valid[vi - 1];
-          // In gap between prev and cur: hold prev until midpoint
-          var mid = prev.end + (cur.begin - prev.end) * 0.5;
-          best = (t < mid) ? prev.idx : cur.idx;
-        }
-        break;
-      }
-      if (t >= cur.begin && t < cur.end) {
-        // t is inside this sentence — exact match
-        best = cur.idx;
-        break;
-      }
-      // t is past this sentence's end — keep going
-      best = cur.idx;
-    }
-    if (best === -1) best = firstIdx;
-    return best;
-  };
-
-  var stopAudiobookRaf = function() {
-    if (audiobookRafRef.current) {
-      cancelAnimationFrame(audiobookRafRef.current);
-      audiobookRafRef.current = null;
-    }
-  };
-
-  var startAudiobookRaf = function() {
-    stopAudiobookRaf();
-    var lastHit = -1;
-    var tick = function() {
-      var audio = audiobookAudioRef.current;
-      if (!audio || audio.paused || audio.ended) {
-        audiobookRafRef.current = null;
-        return;
-      }
-      // Chapters that are a time-slice of a larger shared recording (e.g. the
-      // per-section Палата № 6 files) carry stopAtEnd: pause when the playhead
-      // passes this section's last word so the audio never bleeds into the next.
-      var _abd = audiobookDataRef.current;
-      if (_abd && _abd.stopAtEnd && _abd.word_timings && _abd.word_timings.length) {
-        var _endT = _abd.word_timings[_abd.word_timings.length - 1].end;
-        if (audio.currentTime > _endT + 0.4) {
-          try { audio.pause(); } catch(e) {}
-          stopAudiobookRaf();
-          setAudioPlaying(false); audioPlayingRef.current = false;
-          return;
-        }
-      }
-
-      // Read-along highlighting was removed: audio is chunked per chapter/act
-      // instead, so the reader follows along by chapter rather than by word.
-      // The tick still maps playhead → sentence index purely to keep the
-      // "Sentence N / M" readout honest. It paints nothing and never flips
-      // the page — page turns are manual now.
-      var hit = findSentenceIdxForTime(audio.currentTime);
-      if (hit >= 0 && hit !== lastHit) {
-        lastHit = hit;
-        if (audioIdxRef.current !== hit) {
-          audioIdxRef.current = hit;
-          setAudioIdx(hit);
-        }
-      }
-
-      audiobookRafRef.current = requestAnimationFrame(tick);
-    };
-    audiobookRafRef.current = requestAnimationFrame(tick);
-  };
-
   // Start audiobook playback. Reuses a single Audio element so user-activation
   // sticks across pause/resume cycles, just like the TTS path.
   var playAudiobookFromSentence = function(startIdx) {
@@ -3631,18 +3133,12 @@ export default function App() {
       srcChanged = true;
     }
 
-    // Seek to the chosen sentence's start time, if its timing is known.
-    var timing = sentenceTimingsRef.current[startIdx];
-    var seekTo = (timing && timing.begin >= 0) ? timing.begin : 0;
-    // Starting the chapter from the top (the play button passes startIdx 0):
-    // go straight to the timestamp of the chapter's first spoken word — that
-    // is the first word of the text (e.g. Onegin ch1 "Мой" @ 45.73s), so the
-    // audio and the highlight both begin there and the spoken preamble is
-    // skipped entirely. For a mid-chapter start, only jump forward if the
-    // chosen sentence would otherwise land inside the preamble.
+    // Every chapter now has its own file, so playback starts at the top of it.
+    // The one exception worth keeping: where a recording opens with a spoken
+    // preamble and we happen to know when the text actually starts, skip to it.
+    var seekTo = 0;
     if (data.word_timings && data.word_timings.length) {
-      var contentStart = data.word_timings[0].begin;
-      if (!startIdx || seekTo < contentStart) seekTo = contentStart;
+      seekTo = data.word_timings[0].begin;
     }
     // Apply the seek now AND once the media is ready — a fresh src won't accept
     // currentTime until it has loaded metadata, so the deferred one is what
@@ -3654,21 +3150,10 @@ export default function App() {
     }
     doSeek();
 
-    audio.onplay = function() {
-      if (audiobookAudioRef.current !== audio) return;
-      startAudiobookRaf();
-    };
-    audio.onpause = function() {
-      // Leave the highlight in place so the reader can see where they paused.
-      stopAudiobookRaf();
-    };
     audio.onended = function() {
-      stopAudiobookRaf();
-      clearSentenceHighlight();
       setAudioPlaying(false); audioPlayingRef.current = false;
     };
     audio.onerror = function() {
-      stopAudiobookRaf();
       clearSentenceHighlight();
       setAudioPlaying(false); audioPlayingRef.current = false;
       setTtsErr("Audiobook stream error — the audio URL may be unreachable.");
@@ -3678,7 +3163,6 @@ export default function App() {
     var p = audio.play();
     if (p && typeof p.catch === "function") {
       p.catch(function(e) {
-        stopAudiobookRaf();
         clearSentenceHighlight();
         setAudioPlaying(false); audioPlayingRef.current = false;
         var msg = e && e.message ? e.message : String(e);
@@ -3692,7 +3176,6 @@ export default function App() {
     if (audiobookAudioRef.current) {
       try { audiobookAudioRef.current.pause(); } catch(e) {}
     }
-    stopAudiobookRaf();
     setAudioPlaying(false); audioPlayingRef.current = false;
   };
 
@@ -3833,7 +3316,7 @@ export default function App() {
         var existing = audiobookAudioRef.current;
         if (existing && existing.src && existing.paused && existing.currentTime > 0) {
           setAudioPlaying(true); audioPlayingRef.current = true;
-          existing.play().then(function() { startAudiobookRaf(); }).catch(function(){});
+          existing.play().catch(function(){});
         } else {
           // Fresh playback always starts from the top of the current page,
           // not from a stale audioIdx that may belong to a different page.
@@ -3857,72 +3340,6 @@ export default function App() {
       }
     }
   };
-  // Seek the audiobook to a precise moment and play from there.
-  //
-  // Replaces the old skip-back / skip-forward buttons. Those moved by
-  // FRAGMENT (i.e. by sentence) and, worse, painted a sentence highlight
-  // afterwards, so using them on a chapter with word-level alignment
-  // visibly knocked the highlighter back to sentence mode. Navigation now
-  // happens by clicking the word you want to hear, which is both more
-  // precise and can't disagree with the highlighter about granularity.
-  var startAudiobookAtTime = function(t) {
-    var data = audiobookDataRef.current;
-    if (!data || !data.audio_url) return false;
-    var audio = audiobookAudioRef.current;
-    if (!audio) {
-      // Element not built yet: let the normal start path create it (it also
-      // handles the user-activation dance), then seek once it can play.
-      if (!playAudiobookFromSentence(0)) return false;
-      audio = audiobookAudioRef.current;
-      if (!audio) return false;
-      var seekOnce = function() {
-        try { audio.currentTime = t; } catch(e) {}
-        audio.removeEventListener("canplay", seekOnce);
-      };
-      audio.addEventListener("canplay", seekOnce);
-      return true;
-    }
-    clearSentenceHighlight();
-    try { audio.currentTime = t; } catch(e) {}
-    // Keep the "Sentence N / M" readout honest after an arbitrary jump.
-    try {
-      var si = findSentenceIdxForTime(t);
-      if (si >= 0) { setAudioIdx(si); audioIdxRef.current = si; }
-    } catch(e) {}
-    if (audio.paused) {
-      var pr = audio.play();
-      if (pr && typeof pr.catch === "function") pr.catch(function(){});
-    }
-    setAudioPlaying(true); audioPlayingRef.current = true;
-    startAudiobookRaf();
-    return true;
-  };
-
-  // Play from a specific word, identified by its absolute character offset
-  // in the chapter (the same value carried in each word span's
-  // data-rw-start, and in every word-timeline entry's `start`).
-  var playFromWordOffset = function(charStart) {
-    var tl = wordTimelineRef.current;
-    if (audiobookModeRef.current && audiobookDataRef.current && tl && tl.length) {
-      // Exact match if this word was aligned; otherwise the next aligned
-      // word after it. A word can be missing from the timeline when the
-      // aligner failed on that stretch, and landing slightly late is much
-      // better than refusing to move.
-      var lo = 0, hi = tl.length - 1, pick = -1;
-      while (lo <= hi) {
-        var mid = (lo + hi) >> 1;
-        if (tl[mid].start >= charStart) { pick = mid; hi = mid - 1; }
-        else lo = mid + 1;
-      }
-      if (pick >= 0) return startAudiobookAtTime(tl[pick].begin);
-      return false;
-    }
-    // No alignment (or TTS mode): fall back to reading aloud from here.
-    jumpTTS(charStart);
-    return true;
-  };
-
-
   var [playing, setPlaying]     = useState(false);
   var [showVP, setShowVP]       = useState(false);
   var [spkIdx, setSpkIdx]       = useState(null);
@@ -3986,47 +3403,14 @@ export default function App() {
   // `splitByNumberedSections` flag also enables this for backward compatibility
   // with books that were configured before the category-based rule existed.
   var singlePageMode = bookMeta.category === "Song Lyrics" || !!bookMeta.splitByNumberedSections;
+  // Always one page: a chapter is displayed in its entirety and the reader
+  // scrolls. Pagination was only ever there to give the highlighter a bounded
+  // region to paint.
   var pages = useMemo(function() {
     return computePages(curChapter.text || "", { singlePage: true });
   }, [curChapter.text, singlePageMode]);
   var totalPages = pages.length;
-  // Refs synced for audiobook auto-page-flip in the RAF tick
-  var pidxAbRef = useRef(0);
-  var totalPagesAbRef = useRef(1);
-  // 'auto' = page change caused by RAF auto-flip during playback;
-  // 'manual' = user navigated pages (forward, back, or jumped).
-  var pageFlipModeRef = useRef('manual');
-  // Tracks the last cidx so the page/chapter-change effect can distinguish
-  // a chapter change (full audio reset) from a within-chapter page change
-  // (during audiobook playback we want to keep the stream rolling).
   var lastCidxRef = useRef(-1);
-  useEffect(function() { pidxAbRef.current = pidx; }, [pidx]);
-  useEffect(function() { totalPagesAbRef.current = totalPages; }, [totalPages]);
-  // On page change, seek audio to that page's first sentence — but only
-  // for manual nav. Auto-flip during playback should NOT reseek (audio
-  // is already in the right place when the flip happens).
-  useEffect(function() {
-    if (pageFlipModeRef.current === 'auto') {
-      pageFlipModeRef.current = 'manual';  // reset for next change
-      return;
-    }
-    // Manual nav (forward, back, jump): wait for buildSentenceTimings to
-    // rebuild on the new page (it runs in a useEffect on [audiobookData,
-    // audioSentences]), then seek audio to the first sentence's begin time.
-    var t = setTimeout(function() {
-      var audio = audiobookAudioRef.current;
-      var timings = sentenceTimingsRef.current;
-      if (!audio || !timings || !timings.length) return;
-      var firstBegin = Infinity;
-      for (var i = 0; i < timings.length; i++) {
-        if (timings[i] && timings[i].begin < firstBegin) firstBegin = timings[i].begin;
-      }
-      if (firstBegin !== Infinity && isFinite(firstBegin)) {
-        try { audio.currentTime = firstBegin; } catch(e) {}
-      }
-    }, 80);
-    return function() { clearTimeout(t); };
-  }, [pidx]);
   var currentPage = pages[Math.min(pidx, totalPages - 1)] || pages[0];
   // Keep the page ref in lockstep with the rendered page,
   // so the audiobook RAF loop highlights the right page after a flip.
@@ -4048,27 +3432,13 @@ export default function App() {
     audioGenRef.current++;
     sentenceOverrideRef.current = null;
     setAudioFetching(false);
-    // During audiobook playback, a within-chapter page change should NOT
-    // pause the stream — the same audio file spans every page of the
-    // chapter, and the new page's sentence timings are about to be rebuilt
-    // by the buildSentenceTimings useEffect. The RAF tick will then re-anchor
-    // the highlight on the next frame.
-    var keepAudiobookStream =
-      audiobookModeRef.current && audiobookDataRef.current && audiobookAudioRef.current && !chapterChanged;
-    if (keepAudiobookStream) {
-      clearSentenceHighlight();
-      // Invalidate timings until buildSentenceTimings rebuilds for the new
-      // page. Otherwise the RAF tick sees stale page-1 timings, decides
-      // audio is past the page, and auto-flips AGAIN before the new page's
-      // timings come online — making the flip skip a page.
-      sentenceTimingsRef.current = [];
-      // Leave audioIdx alone — the RAF tick will set it to the correct
-      // sentence on the new page within one frame.
-    } else {
+    // A chapter is one page, so this only ever fires on a real chapter change:
+    // stop the previous chapter's recording rather than letting it run under
+    // the new text.
+    if (chapterChanged || !audiobookModeRef.current) {
       if (audiobookAudioRef.current) {
         try { audiobookAudioRef.current.pause(); } catch(e) {}
       }
-      stopAudiobookRaf();
       clearSentenceHighlight();
       setAudioPlaying(false); audioPlayingRef.current = false;
       setAudioIdx(0); audioIdxRef.current = 0;
@@ -4137,7 +3507,6 @@ export default function App() {
   // chapter, audiobookData stays null and the UI falls back to TTS.
   useEffect(function() {
     setAudiobookData(null);
-    sentenceTimingsRef.current = [];
     var audiobook = bookMeta && bookMeta.audiobook;
     if (!audiobook) return;
     var chapters = audiobook.chapters;
@@ -4150,7 +3519,9 @@ export default function App() {
       .then(function(r) { return r.ok ? r.json() : null; })
       .then(function(json) {
         if (cancelled || !json) return;
-        if (!json.audio_url || !Array.isArray(json.fragments)) return;
+        // Only audio_url is required. A plain chapter JSON with no fragments
+        // is a complete, valid audiobook chapter now.
+        if (!json.audio_url) return;
         setAudiobookData(json);
         // Default to audiobook mode when one becomes available. User can
         // still flip to TTS via the toggle in the audio bar.
@@ -4451,6 +3822,12 @@ export default function App() {
     setVqSel(null);
   };
 
+  // Normalise a word for matching book text against a recording's word_timings.
+  // The only surviving consumer is the exercise-clip finder below.
+  var normWordForAlign = function(s) {
+    return String(s || "").toLowerCase().replace(/ё/g, "е").replace(/[^а-яa-z0-9]/g, "");
+  };
+
   // ── Exercise audio clips ───────────────────────────────────────────────────
   // Locate a question's sentence inside the current chapter's recording (via the
   // word_timings) and play just that snippet, so the learner hears the exact
@@ -4555,24 +3932,6 @@ export default function App() {
       }
     }
   }, [audiobookData]);
-
-  // Once both audiobookData and audioSentences exist for the current page,
-  // build the runtime sentence-to-fragment mapping. Re-run when either side
-  // changes.
-  useEffect(function() {
-    if (audiobookData && audioSentences && audioSentences.length > 0) {
-      buildSentenceTimings();
-    } else {
-      sentenceTimingsRef.current = [];
-    }
-    // Precompute the whole-chapter word alignment (chapters render single-page,
-    // so data-rw-start offsets are chapter-absolute and match this timeline).
-    if (audiobookData && audiobookData.word_timings && curChapter.text) {
-      buildWordTimeline(curChapter.text, audiobookData.word_timings, curChapter.highlightStartOffset || 0, audiobookData.unspoken || null);
-    } else {
-      wordTimelineRef.current = [];
-    }
-  }, [audiobookData, audioSentences]);
 
   useEffect(function() {
     (async function() {
@@ -4772,7 +4131,6 @@ export default function App() {
   useEffect(function() {
     var h = function(e) {
       if (popRef.current && !popRef.current.contains(e.target)) setPopup(null);
-      if (wordMenuRef.current && !wordMenuRef.current.contains(e.target)) setWordMenu(null);
     };
     document.addEventListener("mousedown", h);
     return function() { document.removeEventListener("mousedown", h); };
@@ -5467,50 +4825,6 @@ export default function App() {
   // Open the two-choice bubble over a clicked word. Positioned the same way
   // as the definition popup, but much shorter, so it can usually sit right
   // under the word.
-  var openWordMenu = function(word, e, charPosition) {
-    try { e.stopPropagation(); } catch(_e) {}
-    var clean = String(word || "").replace(/[^а-яёА-ЯЁ]/g, "");
-    if (!clean) return;
-    var rect = e.currentTarget.getBoundingClientRect();
-    var MENU_W = 210, MENU_EST = 92;
-    var left = rect.left;
-    if (left + MENU_W > window.innerWidth - 16) left = window.innerWidth - MENU_W - 16;
-    if (left < 16) left = 16;
-    // The floating player occupies the bottom 68px whenever a chapter has
-    // audio, so treat that strip as unavailable — otherwise a word in the
-    // last line opens its menu behind the transport controls.
-    var usableBottom = window.innerHeight - 76;
-    var top = (usableBottom - rect.bottom >= MENU_EST + 8)
-      ? rect.bottom + 6
-      : Math.max(8, rect.top - MENU_EST - 6);
-    setPopup(null);
-    setWordMenu({ word: word, clean: clean, start: charPosition,
-                  top: top, left: left,
-                  // Keep the word's own geometry: if "Define" is chosen, the
-                  // definition popup should anchor to the WORD, not to the
-                  // button that was pressed.
-                  rect: { left: rect.left, right: rect.right, top: rect.top,
-                          bottom: rect.bottom, width: rect.width,
-                          height: rect.height } });
-  };
-
-  var defineFromWordMenu = function() {
-    var m = wordMenu;
-    if (!m) return;
-    setWordMenu(null);
-    defWord(m.word, {
-      stopPropagation: function(){},
-      currentTarget: { getBoundingClientRect: function(){ return m.rect; } },
-    }, m.start);
-  };
-
-  var playFromWordMenu = function() {
-    var m = wordMenu;
-    if (!m) return;
-    setWordMenu(null);
-    playFromWordOffset(m.start);
-  };
-
   var defWord = async function(word, e, charPosition) {
     e.stopPropagation();
     if (noAIMode) return;  // No API calls in read-without-AI mode.
@@ -6811,14 +6125,14 @@ export default function App() {
                       // No AI: nothing to define, so keep the direct jump.
                       clickPlay = (function(pos){ return function(e){ e.stopPropagation(); jumpTTS(pos); }; })(tk.start);
                     } else {
-                      clickPlay = (function(w, pos){ return function(e){ openWordMenu(w, e, pos); }; })(tk.text, tk.start);
+                      clickPlay = (function(w, pos){ return function(e){ defWord(w, e, pos); }; })(tk.text, tk.start);
                     }
                     elems.push(
                       <span key={i}
                         className={"rw" + (hl ? " rwhl" : "") + (inName ? " play-speaker" : "")}
                         data-rw-start={tk.start}
                         onClick={clickPlay}
-                        title={inName ? "" : (noAIMode ? "Click to read from here" : "Click for options")}>{tk.text}</span>
+                        title={inName ? "" : (noAIMode ? "Click to read from here" : "Click for a definition")}>{tk.text}</span>
                     );
                     // Just after the speaker name finishes, insert the em-dash separator.
                     if (inName && (i+1 >= para.length || para[i+1].end > speakerNameEnd)) {
@@ -6841,13 +6155,13 @@ export default function App() {
                 if (tk.isRu) {
                   var clickReg = noAIMode
                     ? (function(pos){ return function(e){ e.stopPropagation(); jumpTTS(pos); }; })(tk.start)
-                    : (function(w, pos){ return function(e){ openWordMenu(w, e, pos); }; })(tk.text, tk.start);
+                    : (function(w, pos){ return function(e){ defWord(w, e, pos); }; })(tk.text, tk.start);
                   return (
                     <span key={i}
                       className={"rw" + (hl ? " rwhl" : "")}
                       data-rw-start={tk.start}
                       onClick={clickReg}
-                      title={noAIMode ? "Click to read from here" : "Click for options"}>{tk.text}</span>
+                      title={noAIMode ? "Click to read from here" : "Click for a definition"}>{tk.text}</span>
                   );
                 }
                 // Bible verse numbers: token is just a number (e.g. "1", "23")
@@ -7208,12 +6522,6 @@ export default function App() {
         /* Above the floating audio bar (z-index 100) so a word near the
            bottom of the page doesn't open its menu underneath the player,
            and below the definition popup (200/201) it hands off to. */
-        .wmover{position:fixed;inset:0;z-index:198}
-        .wmenu{position:fixed;width:210px;background:#fffaf3;border:1px solid rgba(42,31,20,.14);border-radius:12px;box-shadow:0 10px 30px rgba(42,31,20,.18);padding:6px;z-index:199;animation:pf .12s ease}
-        .wmword{font-size:13px;color:rgba(42,31,20,.55);padding:4px 8px 6px;border-bottom:1px solid rgba(42,31,20,.08);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-        .wmbtn{display:flex;align-items:center;gap:8px;width:100%;background:none;border:0;text-align:left;font-size:15px;color:#2a1f14;padding:9px 10px;border-radius:8px;cursor:pointer;font-family:inherit}
-        .wmbtn:hover{background:rgba(196,149,90,.14)}
-        .wmico{width:18px;display:inline-block;text-align:center;opacity:.8}
         /* Dual-language Bible: English translation shown under each Russian verse */
         .bible-en{display:block;margin-top:3px;color:rgba(42,31,20,.5);font-size:0.9em;font-style:italic;line-height:1.5;letter-spacing:.005em}
         .bible-heading-en{font-style:normal;font-weight:600;color:rgba(42,31,20,.62);font-size:0.95em;letter-spacing:.01em}
@@ -8855,10 +8163,13 @@ export default function App() {
                           {audioFetching ? "…" : (audioPlaying ? "⏸" : "▶")}
                         </button>
                         <span className="faudio-status">
-                          {audiobookMode && audiobookData ?
-                            <><span className="faudio-narrator">🎧 {audiobookData.narrator || "Audiobook"}</span> · </>
-                            : null}
-                          Sentence {audioIdx + 1} / {audioSentences.length}
+                          {/* Audiobook mode has a scrubber and a clock, so the
+                              sentence counter would just be a number that no
+                              longer tracks anything. TTS mode still plays
+                              sentence by sentence, so it keeps the counter. */}
+                          {audiobookMode && audiobookData
+                            ? <span className="faudio-narrator">🎧 {audiobookData.narrator || "Audiobook"}</span>
+                            : <>Sentence {audioIdx + 1} / {audioSentences.length}</>}
                         </span>
                         {audiobookMode && audiobookData && (
                           <>
@@ -9586,22 +8897,6 @@ export default function App() {
                 <button className="mcanc" onClick={function(){ setShowTip(false); }}>Cancel</button>
                 <button className="mconf g" onClick={function(){ if(nTip.trim()) addT(nTip.trim()); setShowTip(false); }}>Save</button>
               </div>
-            </div>
-          </div>
-        )}
-
-        {wordMenu && (
-          <div className="wmover" onClick={function(){ setWordMenu(null); }}>
-            <div className="wmenu" ref={wordMenuRef}
-                 style={{top:wordMenu.top,left:wordMenu.left}}
-                 onClick={function(e){ e.stopPropagation(); }}>
-              <div className="wmword">{wordMenu.word}</div>
-              <button className="wmbtn" onClick={defineFromWordMenu}>
-                <span className="wmico">📖</span> Define
-              </button>
-              <button className="wmbtn" onClick={playFromWordMenu}>
-                <span className="wmico">▶</span> Play from here
-              </button>
             </div>
           </div>
         )}
