@@ -126,22 +126,30 @@ went from ~100 MB to 1.5 MB. `362.json` is now an unreferenced orphan.
 ### Library-wide pairing audit
 
 Every book's stored transcript was fuzzy-matched against the FB2 chapter it is
-paired with. Clean: Анна Каренина, Денискины рассказы, Москва — Петушки,
-Преступление и наказание, Идиот, Мастер и Маргарита, Патриот, Палата № 6,
-Собачье сердце, Моя любимая страна, Лето, Герой нашего времени, Дама с
-собачкой, Вишнёвый сад, Дядя Ваня, Чайка and the short stories.
+paired with. All clean except the cases below, which are now fixed:
 
-Flagged, all pre-existing:
-
-- **Записки из подполья** — 68 FB2 chapters against 18 audio entries. Chapter 1
-  matches; after that the audio is announcing "Глава 5" where the text shows III.
-  Genuinely mispaired.
-- **Библия** — 1952 FB2 chapters against 1189 audio entries; diverges from
-  chapter 5 on.
+- **Записки из подполья** — 68 FB2 chapters against 18 recordings. The FB2 is a
+  *collection*: chapters 1–22 are the novel, 23–68 are Петербургские сновидения,
+  Крокодил and others. And the recording is a LibriVox reading split by session,
+  not by chapter — one file covers I+II, the next III+IV, and Part II chapter 1
+  runs across two files ("Глава 1. Продолжение"). Decoded from the "End of
+  chapter N" markers in the transcripts, then rebuilt with `tools/regroup_fb2.py`
+  into `underground-grouped.fb2`: 18 chapters, exactly matching the 18
+  recordings. Verified by content — 16 of 18 recordings open on their chapter's
+  first words, and the other two are Whisper mis-hearings ("накончалась" for
+  "но кончалась") that a second method placed correctly.
+- **Анна на шее** — FB2 split into 2 chapters against 1 recording; regrouped into
+  one.
 - **Евгений Онегин** — a false alarm. Pairing is correct; the recordings just
   open a couple of lines into each chapter, from the LibriVox preamble trims.
 - **Студент**, **Братья и сёстры!**, **Радиоспектакль «Чайка»** — low scores from
   spoken intros and dramatised dialogue, not mispairing.
+
+**Библия is the last one left**: the FB2 splits into 1952 chapters against 1189
+recordings (1189 being the real chapter count, so the FB2 over-splits — most
+likely on section headings inside chapters). Everything from chapter 5 on is
+mispaired. Needs the same regroup treatment, but the groupings have to be
+derived rather than read off a handful of markers.
 
 ### Pre-existing pairing gaps (not from this work)
 
