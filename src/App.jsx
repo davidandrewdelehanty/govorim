@@ -1,6 +1,5 @@
 // THEME_VERSION=2
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
-import { SignIn, UserButton, useAuth, useUser } from "@clerk/clerk-react";
 import { isCommonWord, dropCommonWords, COMMON_WORDS_PROMPT_RULE } from "./commonWords.js";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
@@ -2502,57 +2501,75 @@ function isLocalMsVoice(v) {
 var WORDBANK_ENABLED = false;
 
 export default function App() {
-  // Clerk auth — getToken() returns a JWT we attach to API calls so the
-  // backend can verify the user is signed in.
-  var auth = useAuth();
-  var { user } = useUser();
+  // ── Account (optional) ────────────────────────────────────────────────────
+  // The site is public: everything readable works signed out. An account only
+  // adds cross-device vocabulary/tips/progress, and admin rights for the
+  // ADMIN_EMAIL account. The session is an HttpOnly cookie set by
+  // /api/auth/login, so there is no token for this code to hold or refresh --
+  // same-origin fetches carry it automatically.
+  var [me, setMe]             = useState(null);   // { id, email, isAdmin } | null
+  var [authReady, setAuthReady] = useState(false); // false until /api/auth/me answers
+  var [authOpen, setAuthOpen] = useState(false);  // sign-in panel visible
+  var [authMode, setAuthMode] = useState("login");// "login" | "signup"
+  var [authEmail, setAuthEmail]       = useState("");
+  var [authPassword, setAuthPassword] = useState("");
+  var [authBusy, setAuthBusy] = useState(false);
+  var [authErr, setAuthErr]   = useState("");
 
-  // authFetch — wraps fetch() with the Clerk JWT and an automatic retry with
-  // skipCache:true on a 401. This handles the common case where Clerk's cached
-  // session token has gone stale (e.g. the tab was backgrounded long enough
-  // that the short-lived JWT expired before Clerk auto-refreshed it). When
-  // skipCache succeeds we silently recover; if it still 401s the session is
-  // genuinely dead and we surface the "please sign in" error to the caller.
-  var authFetch = async function(url, options) {
+  // credentials:"same-origin" is the default for same-origin requests, but it
+  // is stated here because every call that needs the session goes through
+  // this wrapper and the intent should be obvious at the call site.
+  var authFetch = function(url, options) {
     options = options || {};
-    var attempt = async function(forceRefresh) {
-      var token = "";
-      try {
-        token = await auth.getToken(forceRefresh ? { skipCache: true } : undefined);
-      } catch(_) {}
-      var h = Object.assign({}, options.headers || {});
-      if (token) h.Authorization = "Bearer " + token;
-      return await fetch(url, Object.assign({}, options, { headers: h }));
-    };
-    var r = await attempt(false);
-    if (r.status === 401) r = await attempt(true);
-    return r;
+    return fetch(url, Object.assign({}, options, { credentials: "same-origin" }));
   };
 
-  // Approval state — set when an /api/chat call returns 403 PENDING_APPROVAL.
-  // While pending, the main app is hidden and a "waiting for approval" screen shows.
-  var [pendingApproval, setPendingApproval] = useState(false);
+  useEffect(function() {
+    var cancelled = false;
+    fetch("/api/auth/me", { credentials: "same-origin" })
+      .then(function(r) { return r.ok ? r.json() : { user: null }; })
+      .then(function(d) { if (!cancelled) setMe(d && d.user ? d.user : null); })
+      .catch(function() { if (!cancelled) setMe(null); })
+      .finally(function() { if (!cancelled) setAuthReady(true); });
+    return function() { cancelled = true; };
+  }, []);
 
-  // ── Forum state ──────────────────────────────────────────────────────────
-  var [forumOpen,      setForumOpen]      = useState(false);
-  var [forumThreads,   setForumThreads]   = useState([]);   // {tid, title, author, ts, lastTs, replyCount}
-  var [forumLoading,   setForumLoading]   = useState(false);
-  var [forumThread,    setForumThread]    = useState(null); // currently-viewed thread (with posts)
-  var [forumComposing, setForumComposing] = useState(false); // "new thread" form open
-  var [newTitle,       setNewTitle]       = useState("");
-  var [newBody,        setNewBody]        = useState("");
-  var [replyBody,      setReplyBody]      = useState("");
-  var [forumBusy,      setForumBusy]      = useState(false);
-  var [forumErr,       setForumErr]       = useState("");
-  var forumListRef = useRef(null);
+  var submitAuth = async function(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (authBusy) return;
+    setAuthBusy(true); setAuthErr("");
+    try {
+      var r = await fetch("/api/auth/" + authMode, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: authEmail.trim(), password: authPassword }),
+      });
+      var d = await r.json().catch(function() { return {}; });
+      if (!r.ok) throw new Error(d.error || "Sign-in failed");
+      setMe(d.user || null);
+      setAuthOpen(false);
+      setAuthPassword("");
+    } catch (err) {
+      setAuthErr(err.message || "Sign-in failed");
+    } finally {
+      setAuthBusy(false);
+    }
+  };
 
-  // Admin panel state — opened from the user menu. Only visible/usable
-  // for the admin email (configured via VITE_ADMIN_EMAIL).
+  var signOut = async function() {
+    try { await fetch("/api/auth/logout", { credentials: "same-origin" }); } catch(_) {}
+    setMe(null);
+    setShowAdmin(false);
+  };
+
+  // Admin panel state — opened from the header. Only shown for the admin
+  // account; ADMIN_EMAIL now lives only on the server (lib/auth.js), so the
+  // client learns about it from /api/auth/me rather than from a build-time var.
   var [showAdmin, setShowAdmin]   = useState(false);
   var [adminUsers, setAdminUsers] = useState([]);
   var [adminLoad, setAdminLoad]   = useState(false);
   var [adminErr, setAdminErr]     = useState("");
-  var [adminBusy, setAdminBusy]   = useState({}); // { userId: "approving" | "rejecting" }
   // Upload-song panel state — admin-only, accessed via "📤 Upload" trigger.
   // Pasted song goes to a per-artist .txt in public/books/lyrics/ via the
   // /api/admin/upload-song endpoint (commits to GitHub → Vercel redeploys).
@@ -2593,9 +2610,37 @@ export default function App() {
       });
     }
   }, [songPickerBook]);
-  var ADMIN_EMAIL = (import.meta.env.VITE_ADMIN_EMAIL || "").toLowerCase();
-  var currentEmail = (user && user.primaryEmailAddress && user.primaryEmailAddress.emailAddress || "").toLowerCase();
-  var isAdmin = !!ADMIN_EMAIL && currentEmail === ADMIN_EMAIL;
+  // Admin is decided by the server (ADMIN_EMAIL, checked in lib/auth.js);
+  // this flag only decides what the UI offers. Every admin route re-checks.
+  var isAdmin = !!(me && me.isAdmin);
+
+  // ── Where a book's files live ─────────────────────────────────────────────
+  // Ordinary books are static assets under /books/. Restricted ones are not
+  // published at all: /api/catalogue returns them (to the admin only) with
+  // fileUrl / audiobook.chapterUrls pointing at /api/media, which checks the
+  // session before returning anything. Everything below goes through these
+  // two helpers so a restricted book never falls back to a public path.
+  var bookFileUrl = function(book) {
+    if (book && book.fileUrl) return book.fileUrl;
+    return "/books/" + (book && book.filename);
+  };
+  var chapterJsonUrl = function(audiobook, index) {
+    if (audiobook && Array.isArray(audiobook.chapterUrls) && audiobook.chapterUrls[index]) {
+      return audiobook.chapterUrls[index];
+    }
+    var path = audiobook && Array.isArray(audiobook.chapters) ? audiobook.chapters[index] : null;
+    if (!path) return null;
+    return path.indexOf("/") === 0 ? path : ("/books/" + path);
+  };
+  // A restricted book's audio lives in a private bucket, so its JSON carries
+  // a key rather than a public URL; /api/media signs a short-lived URL for it.
+  var audioSrcFor = function(json, restricted) {
+    if (!json || !json.audio_url) return null;
+    if (!restricted) return json.audio_url;
+    var key = json.audio_url;
+    try { key = new URL(json.audio_url, window.location.href).pathname; } catch (e) {}
+    return "/api/media?audio=" + encodeURIComponent(String(key).replace(/^\/+/, ""));
+  };
 
   var [msgs, setMsgs]         = useState([]);
   var [input, setInput]       = useState("");
@@ -3515,19 +3560,19 @@ export default function App() {
     setAudiobookData(null);
     var audiobook = bookMeta && bookMeta.audiobook;
     if (!audiobook) return;
-    var chapters = audiobook.chapters;
-    if (!Array.isArray(chapters)) return;
-    var path = chapters[cidx];
-    if (!path) return;
-    var url = path.indexOf("/") === 0 ? path : ("/books/" + path);
+    var url = chapterJsonUrl(audiobook, cidx);
+    if (!url) return;
+    var restricted = !!(bookMeta && bookMeta.restricted);
     var cancelled = false;
-    fetch(url)
+    fetch(url, { credentials: "same-origin" })
       .then(function(r) { return r.ok ? r.json() : null; })
       .then(function(json) {
         if (cancelled || !json) return;
         // Only audio_url is required. A plain chapter JSON with no fragments
         // is a complete, valid audiobook chapter now.
         if (!json.audio_url) return;
+        var src = audioSrcFor(json, restricted);
+        if (src !== json.audio_url) json = Object.assign({}, json, { audio_url: src });
         setAudiobookData(json);
         // Default to audiobook mode when one becomes available. User can
         // still flip to TTS via the toggle in the audio bar.
@@ -4064,16 +4109,17 @@ export default function App() {
     }
   }, [spokenChar, pidx, playing]);
 
-  // ── CROSS-DEVICE SYNC via Clerk metadata ──────────────────────────────────
+  // ── CROSS-DEVICE SYNC via /api/user-data (R2) ─────────────────────────────
   // On sign-in, fetch the server copy. If server has data, replace local state.
   // If server is empty but local has data, upload local as initial state.
   // After this initial sync, debounce any further changes and POST them.
   var [syncedFromServer, setSyncedFromServer] = useState(false);
-  var [syncErr, setSyncErr] = useState("");  // Shown as a banner when sync fails (e.g. 8KB Clerk metadata limit hit)
+  var [syncErr, setSyncErr] = useState("");  // Shown as a banner when sync fails
 
   useEffect(function() {
-    // Only sync for signed-in users (skip noAIMode unauthenticated users).
-    if (!auth.isSignedIn || syncedFromServer) return;
+    // Only sync for signed-in users. Signed out, vocabulary still saves —
+    // it just stays in this browser.
+    if (!me || syncedFromServer) return;
     (async function() {
       try {
         var r = await authFetch("/api/user-data");
@@ -4106,11 +4152,11 @@ export default function App() {
         setSyncedFromServer(true);
       } catch(e) {}
     })();
-  }, [auth.isSignedIn]);
+  }, [me]);
 
   // After initial sync, push subsequent changes (debounced 1.5s).
   useEffect(function() {
-    if (!auth.isSignedIn || !syncedFromServer) return;
+    if (!me || !syncedFromServer) return;
     var t = setTimeout(async function() {
       try {
         // SAFETY: never let an empty vocab+tips state overwrite the server.
@@ -4123,8 +4169,9 @@ export default function App() {
           body: JSON.stringify({ vocab: vocab, tips: tips }),
         });
         if (r.status === 413) {
-          // 8KB Clerk metadata limit reached — show a visible banner.
-          setSyncErr("Too many vocab words! Storage limit reached!");
+          // Payload rejected as too large. R2 has no size limit of its own, so
+          // this now means the request body exceeded the function's own cap.
+          setSyncErr("Vocabulary list too large to sync in one go.");
         } else if (r.ok) {
           // Save succeeded — clear any previous error (user removed entries to get under the limit).
           if (syncErr) setSyncErr("");
@@ -4132,7 +4179,7 @@ export default function App() {
       } catch(e) {}
     }, 1500);
     return function(){ clearTimeout(t); };
-  }, [vocab, tips, auth.isSignedIn, syncedFromServer]);
+  }, [vocab, tips, me, syncedFromServer]);
 
   useEffect(function() {
     var h = function(e) {
@@ -4215,7 +4262,7 @@ export default function App() {
       var ctrl = new AbortController();
       var tid = setTimeout(function() { ctrl.abort(); }, 30000);
       try {
-        // authFetch handles JWT injection and one auto-refresh on 401.
+        // /api/chat is public — no token, no sign-in required.
         var bodyObj = {
           messages: messages,
           system: sys || sysprompt(act, vocab, tips, level),
@@ -4231,21 +4278,18 @@ export default function App() {
         });
         clearTimeout(tid);
         var d = await r.json().catch(function(){ return {}; });
-        if (r.status === 403 && d.error === "PENDING_APPROVAL") {
-          setPendingApproval(true);
-          throw new Error(d.message || "Your account is pending approval.");
-        }
-        if (r.status === 401) {
-          // Both the cached AND fresh JWT got rejected — session is genuinely dead.
-          throw new Error("Your session expired. Please sign out and sign back in.");
+        if (r.status === 429) {
+          // The per-IP rate limit. Signed-in visitors get a larger allowance,
+          // so say so rather than leaving a dead end.
+          throw new Error(d.error || "Too many requests just now. Wait a moment and try again.");
         }
         if (!r.ok) throw new Error(d.error || ("HTTP " + r.status));
         return d.text || "";
       } catch(e) { clearTimeout(tid); throw (e.name === "AbortError" ? new Error("Timeout") : e); }
     };
     try { return await run(); } catch(e) {
-      // Don't retry on PENDING_APPROVAL — it's not a transient error.
-      if (e.message && /pending approval/i.test(e.message)) throw e;
+      // Don't retry a rate-limit rejection — retrying is what tripped it.
+      if (e.message && /too many requests|daily limit/i.test(e.message)) throw e;
       // Don't retry on rate-limit / quota errors either — retrying just doubles
       // the load against an already-exhausted quota.
       if (e.message && /429|rate.?limit|quota|exhausted|Too many/i.test(e.message)) throw e;
@@ -4254,97 +4298,8 @@ export default function App() {
     }
   };
 
-  // Admin actions — fetch users + approve/reject. Only meaningful when isAdmin.
-  // ── Forum handlers ───────────────────────────────────────────────────────
-  var loadForumThreads = async function() {
-    setForumLoading(true); setForumErr("");
-    try {
-      var r = await authFetch("/api/forum");
-      var d = await r.json();
-      if (!r.ok) throw new Error(d.error || "Failed to load forum");
-      setForumThreads(d.threads || []);
-    } catch(e) { setForumErr(e.message || "Failed to load forum"); }
-    finally { setForumLoading(false); }
-  };
-
-  var loadForumThread = async function(tid) {
-    setForumLoading(true); setForumErr("");
-    try {
-      var r = await authFetch("/api/forum?thread=" + encodeURIComponent(tid));
-      var d = await r.json();
-      if (!r.ok) throw new Error(d.error || "Failed to load thread");
-      setForumThread(d.thread || null);
-    } catch(e) { setForumErr(e.message || "Failed to load thread"); }
-    finally { setForumLoading(false); }
-  };
-
-  var openForum = function() {
-    setForumOpen(true); setForumThread(null); setForumComposing(false);
-    loadForumThreads();
-  };
-
-  var submitNewThread = async function() {
-    if (forumBusy) return;
-    var title = newTitle.trim();
-    var bodyText = newBody.trim();
-    if (!title || !bodyText) { setForumErr("Title and body required"); return; }
-    setForumBusy(true); setForumErr("");
-    try {
-      var r = await authFetch("/api/forum", {
-        method: "POST", headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({ title: title, body: bodyText }),
-      });
-      var d = await r.json();
-      if (!r.ok) throw new Error(d.error || "Failed to post");
-      setNewTitle(""); setNewBody(""); setForumComposing(false);
-      await loadForumThread(d.post.tid);   // jump into the newly created thread
-      loadForumThreads();                  // refresh list in background
-    } catch(e) { setForumErr(e.message || "Failed to post"); }
-    finally { setForumBusy(false); }
-  };
-
-  var submitReply = async function() {
-    if (forumBusy || !forumThread) return;
-    var bodyText = replyBody.trim();
-    if (!bodyText) return;
-    setForumBusy(true); setForumErr("");
-    try {
-      var r = await authFetch("/api/forum", {
-        method: "POST", headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({ threadId: forumThread.tid, body: bodyText }),
-      });
-      var d = await r.json();
-      if (!r.ok) throw new Error(d.error || "Failed to reply");
-      setReplyBody("");
-      // Optimistically append the new reply to the open thread.
-      setForumThread(function(t) {
-        if (!t) return t;
-        return Object.assign({}, t, { posts: (t.posts || []).concat([d.post]) });
-      });
-      // Scroll to bottom of thread to show the new reply.
-      requestAnimationFrame(function() {
-        if (forumListRef.current) forumListRef.current.scrollTop = forumListRef.current.scrollHeight;
-      });
-    } catch(e) { setForumErr(e.message || "Failed to reply"); }
-    finally { setForumBusy(false); }
-  };
-
-  var formatForumTs = function(ts) {
-    if (!ts) return "";
-    var d = new Date(ts), now = new Date();
-    var sameDay = d.toDateString() === now.toDateString();
-    if (sameDay) {
-      var diffMin = Math.floor((now - d) / 60000);
-      if (diffMin < 1) return "just now";
-      if (diffMin < 60) return diffMin + " min ago";
-      return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-    }
-    var diffDays = Math.floor((now - d) / 86400000);
-    if (diffDays === 1) return "yesterday";
-    if (diffDays < 7) return diffDays + " days ago";
-    return d.toLocaleDateString();
-  };
-
+  // Admin actions — list accounts. Only meaningful when isAdmin, and the
+  // route re-checks the session regardless of what the UI decided to show.
   var loadAdminUsers = async function() {
     setAdminLoad(true); setAdminErr("");
     try {
@@ -4355,32 +4310,6 @@ export default function App() {
     } catch(e) {
       setAdminErr(e.message || "Failed to load users");
     } finally { setAdminLoad(false); }
-  };
-
-  var actOnUser = async function(userId, action) {
-    setAdminBusy(function(b){ var n = Object.assign({}, b); n[userId] = action; return n; });
-    try {
-      var r = await authFetch("/api/admin/approve", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId: userId, action: action }),
-      });
-      var d = await r.json();
-      if (!r.ok) throw new Error(d.error || "Failed");
-      // Refresh the user list and surface email-status hint.
-      await loadAdminUsers();
-      if (action === "approve") {
-        if (!d.emailSent) {
-          setAdminErr("User approved, but email was NOT sent: " + (d.emailError || "Resend not configured. See AUTH_SETUP.md."));
-        } else {
-          setAdminErr(""); // success — clear any prior error
-        }
-      }
-    } catch(e) {
-      setAdminErr(e.message || "Failed");
-    } finally {
-      setAdminBusy(function(b){ var n = Object.assign({}, b); delete n[userId]; return n; });
-    }
   };
 
   // Auto-load users when admin panel opens.
@@ -4501,7 +4430,7 @@ export default function App() {
     // Slow path: fetch + parse the file to extract titles
     setSongPickerLoad(true);
     try {
-      var r = await fetch("/books/" + book.filename);
+      var r = await fetch(bookFileUrl(book), { credentials: "same-origin" });
       if (!r.ok) throw new Error("HTTP " + r.status);
       var buf = await r.arrayBuffer();
       var result = await parseBook(buf, book.filename);
@@ -4967,7 +4896,7 @@ export default function App() {
   // ── Per-page tutor-response cache ─────────────────────────────────────────
   // Save the AI's full reply so that flipping back to an already-visited page
   // shows the same questions without firing a new Gemini call. Saved/loaded via
-  // the same storage shim as other state (works in browsers and Clerk metadata).
+  // the same storage shim as the rest of the local state.
   // Cache key is "<title>|<author>|<chapterIdx>:<pageIdx>" with the book's
   // total chapter count appended as a soft fingerprint so two different books
   // that happen to share a title/author don't collide.
@@ -5526,17 +5455,29 @@ export default function App() {
         category: opts.category || "",
         splitByNumberedSections: !!opts.splitByNumberedSections,
         audiobook: opts.audiobook || null,
+        // Carried so the audiobook loader knows to fetch this book's chapter
+        // JSON and audio through /api/media rather than from /books/.
+        restricted: !!opts.restricted,
       };
       setChapters(chs);
       setBookMeta(meta);
       setCbm(0);
       try {
-        await storage.set(EPUB_CACHE, JSON.stringify({
-          chapters: chs, title: title, author: author,
-          category: opts.category || "",
-          splitByNumberedSections: !!opts.splitByNumberedSections
-        }));
-        await storage.set(EPUB_BM, "0");
+        if (opts.restricted) {
+          // A restricted book is never cached locally: the cache outlives the
+          // session, and the whole point of the gate is that the text does
+          // not. Clear whatever was cached before rather than leaving the
+          // previous book to be restored on the next launch.
+          await storage.delete(EPUB_CACHE);
+          await storage.delete(EPUB_BM);
+        } else {
+          await storage.set(EPUB_CACHE, JSON.stringify({
+            chapters: chs, title: title, author: author,
+            category: opts.category || "",
+            splitByNumberedSections: !!opts.splitByNumberedSections
+          }));
+          await storage.set(EPUB_BM, "0");
+        }
         await storage.delete(QHIST_KEY);
       } catch(e) {}
       // Track user uploads (not preset book downloads) in the multi-upload list
@@ -5586,7 +5527,7 @@ export default function App() {
     setFErr("");
     setBookLoading(book.filename);
     try {
-      var r = await fetch("/books/" + book.filename);
+      var r = await fetch(bookFileUrl(book), { credentials: "same-origin" });
       if (!r.ok) throw new Error("Could not load « " + book.filename + " »: HTTP " + r.status);
       var buf = await r.arrayBuffer();
       await loadFile(buf, book.filename, {
@@ -5599,6 +5540,7 @@ export default function App() {
         // indexed 0..N where each entry is a URL or null/missing.
         songs: Array.isArray(book.songs) ? book.songs : null,
         audiobook: book.audiobook || null,
+        restricted: !!book.restricted,
       });
     } catch(err) {
       setFErr(err.message || "Failed to load preset book");
@@ -5661,11 +5603,13 @@ export default function App() {
 
   // Fetch the library manifest once on mount. Silent if missing — pre-loaded books are optional.
   useEffect(function() {
-    fetch("/books/index.json")
+    fetch("/api/catalogue", { credentials: "same-origin" })
       .then(function(r){ return r.ok ? r.json() : null; })
       .then(function(list){ if (Array.isArray(list)) setPresetBooks(list); })
       .catch(function(){ /* no library, that's fine */ });
-  }, []);
+    // Re-fetch when the session changes: signing in as the admin adds the
+    // restricted books, signing out has to take them away again.
+  }, [me]);
 
   // Fetch the grammar curriculum once on mount. The file lives in /public/grammar/
   // so it's served as a static asset; edits to the JSON take effect immediately
@@ -6833,34 +6777,20 @@ export default function App() {
         .adm-over{position:fixed;inset:0;background:rgba(26,22,17,.92);z-index:200;display:flex;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto}
         .adm-modal{background:#fbf8f2;border:1px solid rgba(42,31,20,.14);border-radius:16px;width:100%;max-width:760px;display:flex;flex-direction:column;gap:0;margin:32px 0}
 
-        /* Forum styles */
-        .forum-modal{max-width:680px;max-height:88vh}
-        .forum-back{background:none;border:none;color:#c4955a;font-size:22px;cursor:pointer;padding:0 8px 0 0;line-height:1}
-        .forum-thr-title{font-size:16px;color:#000;font-weight:normal}
-        .forum-list{display:flex;flex-direction:column;gap:8px;padding:14px 18px}
-        .forum-thread-card{padding:12px 14px;border:1px solid rgba(42,31,20,.1);border-radius:10px;background:rgba(42,31,20,.04);cursor:pointer;transition:all .15s}
-        .forum-thread-card:hover{background:rgba(42,31,20,.08);border-color:rgba(196,149,90,.3)}
-        .forum-thread-title{font-family:'Crimson Pro',serif;color:#000;font-size:16px;margin-bottom:4px}
-        .forum-thread-meta{font-family:'Crimson Pro',serif;color:rgba(42,31,20,.5);font-size:12px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-        .forum-compose{padding:18px;display:flex;flex-direction:column;gap:10px}
-        .forum-compose input,.forum-compose textarea{background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.16);border-radius:8px;padding:10px 12px;font-family:'Crimson Pro',serif;color:#000;font-size:14px;outline:none}
-        .forum-compose input:focus,.forum-compose textarea:focus{border-color:rgba(196,149,90,.5);background:rgba(42,31,20,.08)}
-        .forum-compose textarea{resize:vertical;min-height:120px;line-height:1.5}
-        .forum-compose-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:4px}
-        .forum-thread-body{display:flex;flex-direction:column;gap:10px;padding:14px 18px;overflow-y:auto}
-        .forum-post{background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.1);border-radius:10px;padding:10px 14px;max-width:85%;align-self:flex-start}
-        .forum-post.mine{align-self:flex-end;background:rgba(196,149,90,.1);border-color:rgba(196,149,90,.28)}
-        .forum-post-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:4px}
-        .forum-post-author{font-family:'Crimson Pro',serif;font-size:12px;color:#c4955a;letter-spacing:.5px}
-        .forum-post-ts{font-family:'Crimson Pro',serif;font-size:11px;color:rgba(42,31,20,.4);font-style:italic}
-        .forum-post-body{font-family:'Crimson Pro',serif;color:#000;font-size:14px;line-height:1.5;white-space:pre-wrap;word-break:break-word}
-        .forum-reply{display:flex;gap:8px;padding:10px 14px;border-top:1px solid rgba(42,31,20,.08);align-items:flex-end}
-        .forum-reply textarea{flex:1;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.14);border-radius:8px;padding:8px 12px;font-family:'Crimson Pro',serif;color:#000;font-size:14px;resize:none;min-height:36px;max-height:120px;outline:none;line-height:1.4}
-        .forum-reply textarea:focus{border-color:rgba(196,149,90,.4)}
+        /* Account panel */
+        .auth-modal{max-width:420px}
+        .auth-form{display:flex;flex-direction:column;gap:12px;padding:18px}
+        .auth-why{font-family:'Crimson Pro',serif;font-size:13px;line-height:1.5;color:rgba(42,31,20,.65)}
+        .auth-lbl{display:flex;flex-direction:column;gap:6px;font-family:'Crimson Pro',serif;font-size:13px;color:#000}
+        .auth-in{background:#fff;border:1px solid rgba(42,31,20,.18);border-radius:8px;padding:10px 12px;font-family:'Crimson Pro',serif;font-size:15px;color:#000;outline:none}
+        .auth-in:focus{border-color:rgba(196,149,90,.55)}
+        .auth-hint{font-family:'Crimson Pro',serif;font-size:12px;color:rgba(42,31,20,.5)}
+        .auth-err{font-family:'Crimson Pro',serif;font-size:13px;color:#9d4630;background:rgba(157,70,48,.08);border:1px solid rgba(157,70,48,.25);border-radius:8px;padding:8px 10px}
+        .auth-switch{background:none;border:none;color:#c4955a;font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;text-decoration:underline;padding:0}
+        .acct-email{font-family:'Crimson Pro',serif;font-size:12px;color:rgba(42,31,20,.6);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
         @media (max-width:560px){
-          .forum-modal{max-width:100%;height:100vh;max-height:100vh;border-radius:0;margin:0}
-          .forum-post{max-width:100%}
+          .auth-modal{max-width:100%;margin:16px 0}
         }
         .adm-head{padding:22px 28px 18px;border-bottom:1px solid rgba(42,31,20,.1);display:flex;align-items:center;justify-content:space-between;gap:16px}
         .adm-title{font-family:'Playfair Display',serif;font-size:24px;color:#c4955a}
@@ -6915,156 +6845,48 @@ export default function App() {
         }
       `}</style>
 
-      {/* Sign-in screen: shown to anyone not signed in. AI features require login,
-          so there's no "Read without AI" bypass here anymore — everyone signs in. */}
-      {!auth.isSignedIn && (
-        <div className="auth-page">
-          <div className="auth-card">
-            <div className="auth-brand">
-              <div className="auth-brand-icon" style={{color:"#c4955a"}}><Pushkin size={56}/></div>
-              <div className="auth-brand-title">Говорим</div>
-              <div className="auth-brand-sub">Russian Practice</div>
-            </div>
-            <SignIn routing="hash" appearance={{
-              variables: {
-                colorBackground: "#f5f0e8",
-                colorText: "#000",
-                colorTextSecondary: "rgba(42,31,20,.6)",
-                colorInputBackground: "#ffffff",
-                colorInputText: "#000",
-                colorPrimary: "#c4955a",
-                colorDanger: "#c4955a",
-              },
-              elements: {
-                card: "background:#f5f0e8;box-shadow:none;border:1px solid rgba(196,149,90,.2)",
-                formFieldInput: "background:#ffffff;color:#000;border-color:rgba(196,149,90,.3)",
-                formFieldLabel: "color:#000",
-                headerTitle: "color:#000",
-                headerSubtitle: "color:rgba(42,31,20,.6)",
-                socialButtonsBlockButton: "border-color:rgba(196,149,90,.3);color:#000",
-                dividerLine: "background:rgba(196,149,90,.2)",
-                dividerText: "color:rgba(42,31,20,.5)",
-                footerActionLink: "color:#c4955a",
-              }
-            }} />
-            <div style={{fontSize:12,color:"rgba(42,31,20,.4)",textAlign:"center",maxWidth:400,lineHeight:1.5,marginTop:8}}>
-              Russian reading + AI tutor. Approval required after sign-up.
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Main app: shown only when signed in. */}
-      {auth.isSignedIn && (
-        <>
-      {pendingApproval ? (
-        <div className="pending">
-          <div className="pending-card">
-            <div className="pending-icon">⏳</div>
-            <div className="pending-title">Waiting for approval</div>
-            <div className="pending-msg">
-              Thanks for signing up! Your account is pending approval. You'll receive an email at the address below once you've been approved — usually within a day.
-            </div>
-            <div className="pending-email">{currentEmail}</div>
-            <div className="pending-userbtn"><UserButton afterSignOutUrl="/" /></div>
-          </div>
-        </div>
-      ) : (
-      <>
-      {/* ── Forum overlay ─────────────────────────────────────────────── */}
-      {forumOpen && (
-        <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setForumOpen(false); }}>
-          <div className="adm-modal forum-modal">
+      {/* The app itself. No sign-in gate: reading, audio, definitions and
+          exercises all work signed out. The account panel below is optional
+          and only affects whether vocabulary syncs across devices. */}
+      {authOpen && (
+        <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setAuthOpen(false); }}>
+          <div className="adm-modal auth-modal">
             <div className="adm-head">
-              <div className="adm-title">
-                {forumThread ? (
-                  <button className="forum-back" onClick={function(){ setForumThread(null); loadForumThreads(); }}>←</button>
-                ) : (
-                  <span>📝 Forum</span>
-                )}
-                {forumThread && <span className="forum-thr-title">{forumThread.title}</span>}
-              </div>
-              <button className="adm-x" onClick={function(){ setForumOpen(false); setForumThread(null); setForumComposing(false); }}>×</button>
+              <div className="adm-title">{authMode === "login" ? "Sign in" : "Create an account"}</div>
+              <button className="adm-x" onClick={function(){ setAuthOpen(false); }}>×</button>
             </div>
-            {forumErr && <div className="adm-err">{forumErr}</div>}
-
-            {/* New-thread compose form */}
-            {forumComposing && !forumThread && (
-              <div className="forum-compose">
-                <input type="text" placeholder="Title" maxLength={80} value={newTitle}
-                  onChange={function(e){ setNewTitle(e.target.value); }} />
-                <textarea placeholder="What's on your mind?" maxLength={1000} value={newBody}
-                  onChange={function(e){ setNewBody(e.target.value); }} />
-                <div className="forum-compose-actions">
-                  <button className="adm-btn" onClick={function(){ setForumComposing(false); setNewTitle(""); setNewBody(""); }}>Cancel</button>
-                  <button className="adm-btn approve" onClick={submitNewThread} disabled={forumBusy || !newTitle.trim() || !newBody.trim()}>
-                    {forumBusy ? "Posting…" : "Post thread"}
-                  </button>
-                </div>
+            <form className="auth-form" onSubmit={submitAuth}>
+              <div className="auth-why">
+                Saving vocabulary works without an account — signing in just keeps
+                it in step across your devices.
               </div>
-            )}
-
-            {/* Thread list */}
-            {!forumThread && !forumComposing && (
-              <div className="adm-body forum-list">
-                {forumLoading && <div className="adm-empty">Loading…</div>}
-                {!forumLoading && forumThreads.length === 0 && <div className="adm-empty">No threads yet. Start one!</div>}
-                {!forumLoading && forumThreads.map(function(t){
-                  return (
-                    <div key={t.tid} className="forum-thread-card" onClick={function(){ loadForumThread(t.tid); }}>
-                      <div className="forum-thread-title">{t.title}</div>
-                      <div className="forum-thread-meta">
-                        <span>{t.author.name}</span>
-                        <span>·</span>
-                        <span>{formatForumTs(t.lastTs || t.ts)}</span>
-                        <span>·</span>
-                        <span>{t.replies === 0 ? "no replies" : (t.replies + " " + (t.replies === 1 ? "reply" : "replies"))}</span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-
-            {/* Single thread view */}
-            {forumThread && (
-              <>
-                <div className="adm-body forum-thread-body" ref={forumListRef}>
-                  {(forumThread.posts || []).map(function(p, i){
-                    var isMine = p.author && p.author.id === user.id;
-                    return (
-                      <div key={i} className={"forum-post" + (isMine ? " mine" : "")}>
-                        <div className="forum-post-head">
-                          <span className="forum-post-author">{p.author && p.author.name}</span>
-                          <span className="forum-post-ts">{formatForumTs(p.ts)}</span>
-                        </div>
-                        <div className="forum-post-body">{p.body}</div>
-                      </div>
-                    );
-                  })}
-                </div>
-                <div className="forum-reply">
-                  <textarea placeholder="Write a reply…" maxLength={1000} value={replyBody}
-                    onChange={function(e){ setReplyBody(e.target.value); }}
-                    onKeyDown={function(e){ if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) { e.preventDefault(); submitReply(); } }} />
-                  <button className="adm-btn approve" onClick={submitReply} disabled={forumBusy || !replyBody.trim()}>
-                    {forumBusy ? "…" : "Reply"}
-                  </button>
-                </div>
-              </>
-            )}
-
-            {/* Footer: "New thread" CTA when on the list */}
-            {!forumThread && !forumComposing && (
-              <div className="adm-foot">
-                <button className="adm-btn approve" onClick={function(){ setForumComposing(true); setForumErr(""); }}>+ New thread</button>
-              </div>
-            )}
+              <label className="auth-lbl">Email
+                <input className="auth-in" type="email" autoComplete="username"
+                  value={authEmail} onChange={function(e){ setAuthEmail(e.target.value); }} required />
+              </label>
+              <label className="auth-lbl">Password
+                <input className="auth-in" type="password"
+                  autoComplete={authMode === "login" ? "current-password" : "new-password"}
+                  value={authPassword} onChange={function(e){ setAuthPassword(e.target.value); }} required />
+              </label>
+              {authMode === "signup" && (
+                <div className="auth-hint">At least 10 characters. Longer is better than fancier.</div>
+              )}
+              {authErr && <div className="auth-err">{authErr}</div>}
+              <button className="adm-btn approve" type="submit" disabled={authBusy}>
+                {authBusy ? "…" : (authMode === "login" ? "Sign in" : "Create account")}
+              </button>
+              <button className="auth-switch" type="button" onClick={function(){
+                setAuthMode(authMode === "login" ? "signup" : "login"); setAuthErr("");
+              }}>
+                {authMode === "login" ? "No account yet? Create one" : "Already have an account? Sign in"}
+              </button>
+            </form>
           </div>
         </div>
       )}
 
-      {false && showAdmin && isAdmin && (
+      {showAdmin && isAdmin && (
         <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setShowAdmin(false); }}>
           <div className="adm-modal">
             <div className="adm-head">
@@ -7076,37 +6898,16 @@ export default function App() {
               {adminLoad && <div className="adm-empty">Loading users…</div>}
               {!adminLoad && adminUsers.length === 0 && <div className="adm-empty">No users yet.</div>}
               {!adminLoad && adminUsers.map(function(u){
-                var status = u.isAdmin ? "admin" : (u.approved ? "approved" : (u.rejected ? "rejected" : "pending"));
-                var label  = u.isAdmin ? "Admin" : (u.approved ? "Approved" : (u.rejected ? "Rejected" : "Pending"));
-                var name   = (u.firstName + " " + u.lastName).trim() || u.email || "(no name)";
-                var busy   = adminBusy[u.id];
+                var when = function(t){ return t ? new Date(t).toLocaleDateString() : "—"; };
                 return (
                   <div key={u.id} className="adm-row">
-                    <div className="adm-avatar" style={{backgroundImage:u.imageUrl?'url("'+u.imageUrl+'")':'none'}}/>
                     <div className="adm-info">
-                      <div className="adm-name">{name}</div>
-                      <div className="adm-email">{u.email}</div>
-                    </div>
-                    <div className={"adm-status "+status}>{label}</div>
-                    {!u.isAdmin && (
-                      <div className="adm-actions">
-                        {!u.approved && (
-                          <button className="adm-btn approve" disabled={!!busy} onClick={function(){ actOnUser(u.id, "approve"); }}>
-                            {busy === "approve" ? "…" : "Approve"}
-                          </button>
-                        )}
-                        {!u.rejected && u.approved && (
-                          <button className="adm-btn reject" disabled={!!busy} onClick={function(){ actOnUser(u.id, "reject"); }}>
-                            {busy === "reject" ? "…" : "Revoke"}
-                          </button>
-                        )}
-                        {!u.approved && !u.rejected && (
-                          <button className="adm-btn reject" disabled={!!busy} onClick={function(){ actOnUser(u.id, "reject"); }}>
-                            {busy === "reject" ? "…" : "Reject"}
-                          </button>
-                        )}
+                      <div className="adm-name">{u.email}</div>
+                      <div className="adm-email">
+                        joined {when(u.createdAt)} · last signed in {when(u.lastLoginAt)}
                       </div>
-                    )}
+                    </div>
+                    {u.isAdmin && <div className="adm-status admin">Admin</div>}
                   </div>
                 );
               })}
@@ -7118,7 +6919,7 @@ export default function App() {
           </div>
         </div>
       )}
-      {false && showUpload && isAdmin && (
+      {showUpload && isAdmin && (
         <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setShowUpload(false); }}>
           <div className="adm-modal" style={{maxWidth:640}}>
             <div className="adm-head">
@@ -7283,10 +7084,17 @@ export default function App() {
               </select>
             </div>}
             {started && <button className="tbadge" onClick={function(){ setShowTopic(true); }}>{isLit ? ("📖 " + (bookMeta.title || "Book")) : ("💬 "+act)}</button>}
-            {false && auth.isSignedIn && <button className="adm-trigger" onClick={openForum} title="Community forum">📝 Forum</button>}
-            {false && <button className="adm-trigger" onClick={function(){ setShowAdmin(true); }} title="Manage user approvals">👥 Users</button>}
-            {false && <button className="adm-trigger" onClick={function(){ setShowUpload(true); setUpErr(""); setUpMsg(""); }} title="Upload a song to the library">📤 Upload</button>}
-            {auth.isSignedIn && <div className="userbtn-wrap"><UserButton afterSignOutUrl="/" /></div>}
+
+            {isAdmin && <button className="adm-trigger" onClick={function(){ setShowAdmin(true); }} title="Accounts">👥 Users</button>}
+            {isAdmin && <button className="adm-trigger" onClick={function(){ setShowUpload(true); setUpErr(""); setUpMsg(""); }} title="Upload a song or book to the library">📤 Upload</button>}
+            {authReady && (me ? (
+              <div className="userbtn-wrap">
+                <span className="acct-email" title={me.email}>{me.email}</span>
+                <button className="adm-trigger" onClick={signOut} title="Sign out">Sign out</button>
+              </div>
+            ) : (
+              <button className="adm-trigger" onClick={function(){ setAuthMode("login"); setAuthErr(""); setAuthOpen(true); }} title="Sign in to sync vocabulary">Sign in</button>
+            ))}
           </div>
         </header>
 
@@ -8971,10 +8779,6 @@ export default function App() {
           </div>
         )}
       </div>
-      </>
-      )}
-      </>
-      )}
     </>
   );
 }

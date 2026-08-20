@@ -3,30 +3,43 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "functions": {
-    "api/books-list.js": {
-      "excludeFiles": "public/books/audio/**"
-    },
     "api/admin.js": {
       "maxDuration": 60
+    },
+    "api/media.js": {
+      "includeFiles": "private/books/**"
+    },
+    "api/catalogue.js": {
+      "includeFiles": "private/books/index.json"
     }
   },
   "rewrites": [
     {
       "source": "/api/admin/:action*",
       "destination": "/api/admin?action=:action*"
+    },
+    {
+      "source": "/api/auth/:action*",
+      "destination": "/api/auth?action=:action*"
     }
   ],
   "headers": [
     {
       "source": "/assets/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/((?!assets/).*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
       ]
     }
   ]

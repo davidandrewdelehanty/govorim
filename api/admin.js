@@ -12,13 +12,13 @@
 // rewrites those to this function with req.query.action set to the action
 // name, and this dispatcher calls the matching handler.
 
-import { handleApprove }          from "../lib/admin/approve.js";
 import { handleUsers }            from "../lib/admin/users.js";
+import { handleImportUserdata }  from "../lib/admin/import-userdata.js";
 import { handleUploadBook }       from "../lib/admin/upload-book.js";
 import { handleUploadSong }       from "../lib/admin/upload-song.js";
 
 const ROUTES = {
-  "approve":            handleApprove,
+  "import-userdata":    handleImportUserdata,
   "users":              handleUsers,
   "upload-book":        handleUploadBook,
   "upload-song":        handleUploadSong,

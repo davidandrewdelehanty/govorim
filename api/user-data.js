@@ -1,15 +1,18 @@
 // /api/user-data.js
-// Stores per-user data in Cloudflare R2 (S3-compatible), keyed by Clerk userId.
-// Auth: Clerk bearer token (unchanged from previous version).
+// Stores per-user data in Cloudflare R2 (S3-compatible), keyed by user id.
+// Auth: the site's own session cookie (see lib/auth.js).
 // Storage: r2:govorim-audio/userdata/{userId}/{type}.json
 // Separate files per data type: vocab, tips, progress, settings.
-// No size limit (R2 has none). Migration: on first GET, seeds from Clerk metadata.
-import { verifyToken, createClerkClient } from "@clerk/backend";
+// No size limit (R2 has none).
+//
+// The user id is derived from the email rather than random (lib/auth.js
+// userIdFor), so a rebuilt account lands back on its own vocabulary.
+// Accounts made under the old Clerk setup have their data under the old
+// Clerk user id; /api/admin/import-userdata copies such a prefix across.
 import {
   S3Client, GetObjectCommand, PutObjectCommand
 } from "@aws-sdk/client-s3";
-
-const clerk = createClerkClient({ secretKey: process.env.CLERK_SECRET_KEY });
+import { requireUser } from "../lib/auth.js";
 
 const s3 = new S3Client({
   region: "auto",
@@ -49,58 +52,17 @@ async function r2Put(userId, type, data) {
   await s3.send(cmd);
 }
 
-// ── Migration: seed R2 from Clerk metadata on first use ───────────────────────
-async function migrateFromClerk(userId) {
-  try {
-    const user = await clerk.users.getUser(userId);
-    const meta = user.privateMetadata || {};
-    const vocab = Array.isArray(meta.vocab) ? meta.vocab : [];
-    const tips  = Array.isArray(meta.tips)  ? meta.tips  : [];
-    if (vocab.length > 0 || tips.length > 0) {
-      console.log(`[user-data] migrating ${vocab.length} vocab + ${tips.length} tips from Clerk for ${userId}`);
-      await r2Put(userId, "vocab", vocab);
-      await r2Put(userId, "tips",  tips);
-      // Clear from Clerk to free up the 8KB slot
-      await clerk.users.updateUser(userId, {
-        privateMetadata: { vocab: [], tips: [], _migratedToR2: true },
-      });
-      console.log(`[user-data] migration complete for ${userId}`);
-    }
-    return { vocab, tips };
-  } catch (e) {
-    console.error("[user-data] migration error:", e.message);
-    return { vocab: [], tips: [] };
-  }
-}
-
 // ── Main handler ──────────────────────────────────────────────────────────────
 export default async function handler(req, res) {
-  // Auth
-  const authHeader = req.headers.authorization || "";
-  const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : "";
-  if (!token) return res.status(401).json({ error: "Missing auth token" });
-
-  let userId;
-  try {
-    const payload = await verifyToken(token, { secretKey: process.env.CLERK_SECRET_KEY });
-    userId = payload.sub;
-  } catch (e) {
-    return res.status(401).json({ error: "Invalid auth token" });
-  }
-  if (!userId) return res.status(401).json({ error: "No user in token" });
+  const user = requireUser(req, res);
+  if (!user) return;
+  const userId = user.id;
 
   try {
     if (req.method === "GET") {
       // Read vocab + tips from R2
-      let vocab = await r2Get(userId, "vocab");
-      let tips  = await r2Get(userId, "tips");
-
-      // First time — migrate from Clerk if data exists there
-      if (vocab === null && tips === null) {
-        const migrated = await migrateFromClerk(userId);
-        vocab = migrated.vocab;
-        tips  = migrated.tips;
-      }
+      const vocab = await r2Get(userId, "vocab");
+      const tips  = await r2Get(userId, "tips");
 
       return res.status(200).json({
         vocab: Array.isArray(vocab) ? vocab : [],

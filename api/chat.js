@@ -1,6 +1,7 @@
-// Serverless function: verifies Clerk auth, then proxies the request to an
-// AI provider (Google Gemini or Anthropic Claude). Only authenticated users
-// can call this endpoint.
+// Serverless function: proxies a request to an AI provider (Google Gemini or
+// Anthropic Claude). The site is public, so this endpoint is public too --
+// definitions and comprehension questions work signed out. What protects it
+// is the per-IP rate limit below, not a login.
 //
 // FREE BY DEFAULT:
 // Only the free provider (Gemini) is used. The paid Anthropic path still exists
@@ -10,7 +11,6 @@
 // the fallback off, an exhausted quota surfaces to the user as a clear message.
 //
 // Required env vars on Vercel:
-//   CLERK_SECRET_KEY          — your Clerk secret key (server-side)
 //   GEMINI_API_KEY            — Google AI Studio key (required for Gemini path)
 //   ANTHROPIC_API_KEY         — Anthropic API key (required for Claude path)
 //   At minimum one of GEMINI_API_KEY / ANTHROPIC_API_KEY must be set.
@@ -25,17 +25,20 @@
 //                               older aliases; if definitions start failing with
 //                               a 404 about "models/...", this is what to change.
 //   ANTHROPIC_MODEL           — defaults to claude-haiku-4-5-20251001
-//   ALLOWED_EMAILS            — comma-separated emails; if set, ONLY
-//                               these users can call the API. Lock the
-//                               app to yourself + a few people this way.
 
-import { verifyToken, createClerkClient } from "@clerk/backend";
+import { currentUser } from "../lib/auth.js";
 
 // Simple in-memory rate limiter — best-effort, resets on cold start.
 const rateLimitMap = new Map();
 const RATE_WINDOW_MS = 60 * 1000;
+// Signed-out visitors get a smaller allowance than account holders. The app
+// asks for a definition on every word tap, so the per-minute number has to
+// stay usable for real reading while still capping what one IP can burn of
+// the shared free Gemini quota.
 const RATE_MAX_PER_WINDOW = 15;
 const RATE_DAILY_PER_IP = 200;
+const RATE_MAX_PER_WINDOW_ANON = 10;
+const RATE_DAILY_PER_IP_ANON = 100;
 
 function getClientIp(req) {
   const fwd = req.headers["x-forwarded-for"];
@@ -43,31 +46,24 @@ function getClientIp(req) {
   return req.headers["x-real-ip"] || "unknown";
 }
 
-function checkRateLimit(ip) {
+function checkRateLimit(ip, signedIn) {
+  const perWindow = signedIn ? RATE_MAX_PER_WINDOW : RATE_MAX_PER_WINDOW_ANON;
+  const perDay = signedIn ? RATE_DAILY_PER_IP : RATE_DAILY_PER_IP_ANON;
   const now = Date.now();
   const day = Math.floor(now / (24 * 60 * 60 * 1000));
   const rec = rateLimitMap.get(ip) || { hits: [], dailyKey: day, dailyCount: 0 };
   if (rec.dailyKey !== day) { rec.dailyKey = day; rec.dailyCount = 0; }
   rec.hits = rec.hits.filter(function(t){ return now - t < RATE_WINDOW_MS; });
-  if (rec.hits.length >= RATE_MAX_PER_WINDOW) {
+  if (rec.hits.length >= perWindow) {
     return { ok: false, reason: "Too many requests this minute. Wait a bit." };
   }
-  if (rec.dailyCount >= RATE_DAILY_PER_IP) {
+  if (rec.dailyCount >= perDay) {
     return { ok: false, reason: "Daily limit reached for your IP. Try tomorrow." };
   }
   rec.hits.push(now);
   rec.dailyCount += 1;
   rateLimitMap.set(ip, rec);
   return { ok: true };
-}
-
-// Cache the Clerk client across invocations (warm starts reuse it).
-let clerkClient = null;
-function getClerk() {
-  if (!clerkClient) {
-    clerkClient = createClerkClient({ secretKey: process.env.CLERK_SECRET_KEY });
-  }
-  return clerkClient;
 }
 
 export default async function handler(req, res) {
@@ -78,53 +74,9 @@ export default async function handler(req, res) {
   if (!process.env.GEMINI_API_KEY) {
     return res.status(500).json({ error: "GEMINI_API_KEY not configured on the server" });
   }
-  if (!process.env.CLERK_SECRET_KEY) {
-    return res.status(500).json({ error: "CLERK_SECRET_KEY not configured on the server" });
-  }
-
-  // ---- Auth: require a valid Clerk JWT ----
-  const authHeader = req.headers.authorization || "";
-  if (!authHeader.startsWith("Bearer ")) {
-    return res.status(401).json({ error: "Not signed in" });
-  }
-  const token = authHeader.slice(7).trim();
-  let userId;
-  try {
-    const payload = await verifyToken(token, {
-      secretKey: process.env.CLERK_SECRET_KEY,
-    });
-    userId = payload && payload.sub;
-    if (!userId) throw new Error("No user id in token");
-  } catch (err) {
-    return res.status(401).json({ error: "Invalid or expired session" });
-  }
-
-  // ---- Approval gate: user must be approved by an admin to use the app ----
-  // The first user (matching ADMIN_EMAIL) is auto-approved; everyone else
-  // sits in pending status until the admin approves them via the admin UI.
-  try {
-    const user = await getClerk().users.getUser(userId);
-    const email = user && user.primaryEmailAddress
-      ? (user.primaryEmailAddress.emailAddress || "").toLowerCase()
-      : "";
-    const adminEmail = (process.env.ADMIN_EMAIL || "").toLowerCase();
-    const meta = (user && user.publicMetadata) || {};
-    const isAdmin = !!adminEmail && email === adminEmail;
-    const isApproved = true; // approval gate removed — any signed-in user is allowed
-
-    if (!isApproved) {
-      return res.status(403).json({
-        error: "PENDING_APPROVAL",
-        message: "Your account is pending approval. You'll receive an email once you're approved."
-      });
-    }
-  } catch (err) {
-    return res.status(500).json({ error: "Could not verify user: " + (err.message || err) });
-  }
-
   // ---- Per-IP rate limit (cheap layer of abuse protection) ----
   const ip = getClientIp(req);
-  const rl = checkRateLimit(ip);
+  const rl = checkRateLimit(ip, !!currentUser(req));
   if (!rl.ok) return res.status(429).json({ error: rl.reason });
 
   // ---- Parse body ----

@@ -8,8 +8,15 @@ human-facing setup guide; this file is orientation for an assistant picking up w
 - `src/App.jsx` — the entire app in one large file. Features are added by editing
   shared code paths here, not per-book branches: anything that works for one book
   with word timings should work for every book with word timings.
-- `public/books/index.json` — the book catalogue.
+- `private/books/index.json` — the book catalogue. It lives outside `public/`
+  because `/api/catalogue` serves it and strips `restricted: true` entries for
+  everyone except `ADMIN_EMAIL`; a manifest published as a static asset would
+  list every restricted title and chapter to anyone.
 - `public/books/novel/*.fb2` — source texts.
+- `private/books/**` — the same shapes, for restricted books. Nothing here is
+  published; `/api/media` serves it after an admin session check, and the
+  audio for these books lives in a private R2 bucket reached by presigned URL.
+  `scripts/gate-books.sh` moves a book from one tree to the other.
 - `public/books/audio/<book>/*.json` — per-chapter transcripts **with word-level
   timings**. Schema: `{audio_url, narrator, word_timings, fragments: [{text, begin,
   end, words: [{word, begin, end}]}]}`. Note that punctuation such as a leading `—`
@@ -37,6 +44,20 @@ we burned real time proving that twice.
 
 Also: never run `mfa validate` (trains from scratch, crashes), and never run two
 aligners concurrently.
+
+## Auth
+
+The site is public: reading, audio, definitions and exercises all work signed
+out. An optional account (email + password) exists so vocabulary, tips and
+progress sync across devices, and so the admin account can see restricted
+books and the dashboard. There is no third-party auth service — `lib/auth.js`
+hashes passwords with scrypt, keeps accounts as JSON in R2 alongside the other
+user data, and signs an HttpOnly session cookie. Server env vars:
+`AUTH_SECRET` (signs cookies; changing it signs everyone out), `ADMIN_EMAIL`,
+`R2_*`, `R2_PRIVATE_BUCKET`.
+
+Client code must never decide access on its own: `isAdmin` in `App.jsx` only
+chooses what to render, and every gated route re-checks the session server-side.
 
 ## Working agreements
 
