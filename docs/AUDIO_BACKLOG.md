@@ -145,11 +145,30 @@ paired with. All clean except the cases below, which are now fixed:
 - **Студент**, **Братья и сёстры!**, **Радиоспектакль «Чайка»** — low scores from
   spoken intros and dramatised dialogue, not mispairing.
 
-**Библия is the last one left**: the FB2 splits into 1952 chapters against 1189
-recordings (1189 being the real chapter count, so the FB2 over-splits — most
-likely on section headings inside chapters). Everything from chapter 5 on is
-mispaired. Needs the same regroup treatment, but the groupings have to be
-derived rather than read off a handful of markers.
+- **Библия** — 1952 FB2 chapters against 1189 recordings; everything after
+  Genesis 3 was mispaired. The FB2 nests as Testament > group > book > chapter >
+  heading-section, and the reader's splitter descends to the heading sections, so
+  "Каин и Авель" and "Потомки Каина" became two chapters when both are Genesis 4.
+  The book level carries the truth: each book section has exactly as many child
+  sections as the book has chapters. `tools/regroup_bible.py` rebuilds at that
+  level, giving 1189 — with two structural exceptions, Псалмы (subdivided into
+  the Psalter's five books, so its chapters sit one level deeper) and Откровение
+  (whose chapters are promoted to the book level). Verified against the
+  recordings: 95% of chapters open on the same words, and every straggler is the
+  same chapter with the reading announcing "Псалтырь, книга первая, псалом
+  первый" first. Chapters are now titled "Бытие 1", "От Луки 13" and so on.
+
+  This also repairs the **dual-language English text**, which is keyed off the
+  audio path — with 1952 chapters against 1189 audio entries, most chapters were
+  showing the wrong English verses or none.
+
+**Orphan FB2s.** `scripts/generate-books-manifest.js` runs on every Vercel build
+and auto-adds any book file under `public/books/` (it skips only dot-prefixed
+names). Every FB2 replaced by a regrouped version would therefore have come back
+as a duplicate book. Superseded originals now live in `_superseded-fb2/` outside
+`public/`, and `_pending-fb2/` holds the Karamazov FB2 until its audio is merged.
+That also cleared a pre-existing duplicate: `Ф Достоевский - Идиот.fb2` sat
+beside the `idiot.fb2` actually in use.
 
 ### Pre-existing pairing gaps (not from this work)
 
