@@ -45,6 +45,8 @@ BOOKS = [
     dict(slug="kapitanskaya-dochka", folder="mertviye dushi", pad=2,
          only=r"glava-\d+-[a-z]",
          title="Капитанская дочка — Пушкин (split out of a mixed folder)"),
+    dict(slug="loshadinaya-familiya", folder="a horsey name", pad=2,
+         title="Лошадиная фамилия — Чехов (single story)"),
 ]
 
 AUDIO_EXT = (".mp3", ".m4a", ".wav", ".ogg", ".opus", ".flac")
