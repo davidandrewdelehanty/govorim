@@ -71,10 +71,12 @@ filenames carry часть names (`kniga-2-chast-9-varykino` ↔ `ЧАСТЬ д�
 
 ### Still to do
 
-1. **Братья Карамазовы** — 104 audio vs 97 chapters. Book 6 ch. 2–3 are read as
-   9 lettered files (а/б/в/г, д/е/ж/з/и) that the FB2 keeps whole. Concat them
-   into 2, re-run `stage_audio_upload.py --book karamazovy`, then
-   `add_plain_book.py`.
+1. ~~**Братья Карамазовы**~~ — done, and it needed no audio work. The recording
+   is *finer* than the markup: Book 6 chapters 2–3 are read as 9 lettered files,
+   and those sections are in the FB2 as ordinary paragraphs ("а) О юноше брате
+   старца Зосимы"). `regroup_fb2.py --split` promotes them to chapter breaks,
+   giving 104 to match the 104 recordings. Chapters take their lettered heading
+   as their title.
 2. **Капитанская дочка ch15** — `ПРИЛОЖЕНИЕ. ПРОПУЩЕННАЯ ГЛАВА`, ~19k chars
    (20–25 min read). Real Pushkin, opens "Мы приближались к берегам Волги…".
    Text-only until a recording turns up.
@@ -161,6 +163,15 @@ paired with. All clean except the cases below, which are now fixed:
   This also repairs the **dual-language English text**, which is keyed off the
   audio path — with 1952 chapters against 1189 audio entries, most chapters were
   showing the wrong English verses or none.
+
+**Paragraphs.** The first `regroup_fb2.py` rebuilt chapters from
+Auto-MFA's `extract_chapters`, whose text has paragraph breaks already collapsed
+— fine for aligning audio, destructive for rebuilding a document. It turned each
+chapter into one giant paragraph. The tool now copies the original XML elements,
+like `flatten_fb2.py` and `regroup_bible.py` always did, and refuses to run when
+the leaf-section count and the reader's chapter count disagree (the case where
+group numbers would not mean what you think). Подполье, Анна на шее and
+Карамазовы were regenerated: 490, 73 and 5041 paragraphs respectively.
 
 **Orphan FB2s.** `scripts/generate-books-manifest.js` runs on every Vercel build
 and auto-adds any book file under `public/books/` (it skips only dot-prefixed
