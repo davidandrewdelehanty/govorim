@@ -102,6 +102,47 @@ filenames carry часть names (`kniga-2-chast-9-varykino` ↔ `ЧАСТЬ д�
   guard covers 2.5–2.9 and any major version from 3 up, and a 404 about a model
   now names the env var to change.
 
+### Война и мир was paired against the wrong recording (fixed)
+
+Chapter 1 played "Глава вторая". Two rips of the book exist in
+`Downloads/audiobooks/war and peace/`: a 361-file set at the top level, and
+`old with narrator comments/` with 362. The alignment JSONs were transcribed
+from the **old** set (spoken title cards, chapter announcements, translator's
+footnotes read aloud); the **new** set is what sits on R2, where `NNN.mp3` is
+simply chapter NNN. The index had been built for the old numbering, so every
+chapter played the next one's audio.
+
+Confirmed by duration, not guesswork: new `002.mp3` is 510.59s — the 8:30 that
+was heard — and new *N* tracks old *N+1* across the whole book (sampled at
+chapters 1–12, 180, 300, 361), with the old always longer by the narrator
+comments.
+
+Fix: chapter list is now `001.json`–`361.json`, and those JSONs were rewritten
+as plain `audio_url` records. Stripping the old transcripts mattered beyond
+tidiness — `word_timings` still feed the exercise-clip 🔊 button, and timings
+from a different recording would have sought to the wrong passage. The folder
+went from ~100 MB to 1.5 MB. `362.json` is now an unreferenced orphan.
+
+### Library-wide pairing audit
+
+Every book's stored transcript was fuzzy-matched against the FB2 chapter it is
+paired with. Clean: Анна Каренина, Денискины рассказы, Москва — Петушки,
+Преступление и наказание, Идиот, Мастер и Маргарита, Патриот, Палата № 6,
+Собачье сердце, Моя любимая страна, Лето, Герой нашего времени, Дама с
+собачкой, Вишнёвый сад, Дядя Ваня, Чайка and the short stories.
+
+Flagged, all pre-existing:
+
+- **Записки из подполья** — 68 FB2 chapters against 18 audio entries. Chapter 1
+  matches; after that the audio is announcing "Глава 5" where the text shows III.
+  Genuinely mispaired.
+- **Библия** — 1952 FB2 chapters against 1189 audio entries; diverges from
+  chapter 5 on.
+- **Евгений Онегин** — a false alarm. Pairing is correct; the recordings just
+  open a couple of lines into each chapter, from the LibriVox preamble trims.
+- **Студент**, **Братья и сёстры!**, **Радиоспектакль «Чайка»** — low scores from
+  spoken intros and dramatised dialogue, not mispairing.
+
 ### Pre-existing pairing gaps (not from this work)
 
 `Анна на шее` (FB2 2 chapters / 1 audio), `Записки из подполья` (68 / 18) and
