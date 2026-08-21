@@ -76,7 +76,14 @@ export default async function handler(req, res) {
   }
   // ---- Per-IP rate limit (cheap layer of abuse protection) ----
   const ip = getClientIp(req);
-  const rl = checkRateLimit(ip, !!currentUser(req));
+  // Resolve the signed-in user once: the rate limiter needs to know whether
+  // there is one, and callProvider() logs the id. Calling currentUser() only
+  // inline in the rate-limit check left `userId` undeclared further down, and
+  // because ES modules are strict mode that threw a ReferenceError on EVERY
+  // request rather than logging a blank user.
+  const user = currentUser(req);
+  const userId = user ? user.id : null;
+  const rl = checkRateLimit(ip, !!user);
   if (!rl.ok) return res.status(429).json({ error: rl.reason });
 
   // ---- Parse body ----
