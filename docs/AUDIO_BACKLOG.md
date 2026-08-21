@@ -43,6 +43,22 @@ Two notes on that set:
 - Доктор Живаго's audio is by **часть**, not chapter — 17 files against a book
   with far more chapters. The FB2 has to be split to match before aligning.
 
+## Library audit — 20 Aug 2026
+
+`tools/audit_chapter_audio.py` walks every catalogue entry and reads each
+chapter JSON's `audio_url`. Result: **43 entries, zero SHARED, zero
+`stopAtEnd`** — every book in the catalogue really is one recording per
+chapter. The only flags are deliberate or cosmetic:
+
+- three chapters with a `null` entry, all text-only on purpose: Вишнёвый сад
+  (cast list), Горе от ума (Действующие лица), Капитанская дочка (ПРОПУЩЕННАЯ
+  ГЛАВА, no recording exists).
+- three JSONs still carrying `word_timings` (2 Bible chapters, 1 Петушки).
+  Harmless — they only make the files fat.
+
+So the per-chapter work left is entirely outside the catalogue: the eight
+single-file radio plays below.
+
 ## Next
 
 **Alignment is no longer required.** A chapter JSON needs only `audio_url`.
@@ -80,8 +96,12 @@ filenames carry часть names (`kniga-2-chast-9-varykino` ↔ `ЧАСТЬ д�
 2. **Капитанская дочка ch15** — `ПРИЛОЖЕНИЕ. ПРОПУЩЕННАЯ ГЛАВА`, ~19k chars
    (20–25 min read). Real Pushkin, opens "Мы приближались к берегам Волги…".
    Text-only until a recording turns up.
-3. **Лошадиная фамилия** — already aligned, audio not uploaded. Quickest win left.
-4. **Eight single-file recordings** need cutting before they can be added:
+3. ~~**Лошадиная фамилия**~~ — done, live in the catalogue (1 chapter, 1 recording).
+4. **Eight single-file recordings** need cutting before they can be added.
+   `tools/split_recordings.py` was written for exactly these and has not been
+   run yet — silence detection proposes boundaries, only ~20 s after each
+   candidate pause is transcribed, and whatever the announcer says there
+   ("Действие второе") becomes the cut. Unattended; the books are:
    Ревизор, Три сестры, Женитьба, Гроза, Горе от ума (radio), Лес,
    Бесприданница, Дети подземелья. `chop_aligned.py` can't help — they have no
    alignment JSONs to read boundaries from.
