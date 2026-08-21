@@ -165,11 +165,19 @@ for book in "${BOOKS[@]}"; do
             # Only ever delete the public copy after confirming the private
             # one is really there -- a failed copy plus an eager delete is how
             # an audiobook disappears.
-            if [ -n "$(object_size "$PRIVATE_BUCKET" "$key")" ]; then
-                rclone deletefile "$REMOTE:$PUBLIC_BUCKET/$key" --s3-no-check-bucket
+            if [ -z "$(object_size "$PRIVATE_BUCKET" "$key")" ]; then
+                echo "    NOT deleting public copy — private copy missing: $key" >&2
+            elif [ -z "$(object_size "$PUBLIC_BUCKET" "$key")" ]; then
+                # Already purged by an earlier run. rclone deletefile exits
+                # non-zero on a missing object, and under `set -e` that ends the
+                # whole script -- so a re-run used to abort on the first book
+                # that was already done, before touching the ones that weren't.
+                echo "    public copy already gone: $key"
+            elif rclone deletefile "$REMOTE:$PUBLIC_BUCKET/$key" --s3-no-check-bucket; then
                 echo "    removed from public bucket: $key"
             else
-                echo "    NOT deleting public copy — private copy missing: $key" >&2
+                echo "    delete failed, public copy still there: $key" >&2
+                FAILED=1
             fi
         fi
     done <<< "$KEYS"
