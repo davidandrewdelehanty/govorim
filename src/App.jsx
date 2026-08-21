@@ -4821,9 +4821,15 @@ export default function App() {
   // When Yandex has no entry for a word (rare/literary forms), fall back to
   // the old AI define. Flip to false for a pure-dictionary app with no AI
   // define calls at all.
-  var AI_DEFINE_FALLBACK = true;
-
-  var fetchDef = async function(word) {
+  // The AI define is no longer automatic. Yandex answers the overwhelming
+  // majority of taps instantly and for free; the words it lacks are mostly
+  // proper names and 19th-century vocabulary, and silently sending each of
+  // those to Gemini is what drained the daily quota — badly unevenly, since
+  // a Lermontov chapter misses far more often than a modern text. Now a miss
+  // says so and offers an "Ask AI" button, so the quota is spent only when
+  // the reader actually asks for it.
+  var fetchDef = async function(word, opts) {
+    var allowAI = !!(opts && opts.allowAI);
     // Yandex Dictionary first: instant, deterministic, free (10k/day), and
     // MORPHO search resolves inflected forms to the lemma server-side. The
     // AI define survives only as a fallback for words the dictionary lacks.
@@ -4856,11 +4862,16 @@ export default function App() {
       console.warn("[def] Yandex lookup unreachable:", yandexDown);
     }
 
-    if (!AI_DEFINE_FALLBACK) {
-      throw new Error(yandexDown || ('No dictionary entry found for "' + clean + '"'));
+    if (!allowAI) {
+      // Tagged so the popup can tell "no entry, want the AI?" apart from a
+      // genuinely broken lookup.
+      var miss = new Error(yandexDown || ('No dictionary entry for "' + clean + '"'));
+      miss.noEntry = !yandexDown;
+      miss.serviceDown = yandexDown || null;
+      throw miss;
     }
 
-    // -- 2. AI fallback (the old path, verbatim) --
+    // -- 2. AI define, only when the reader asked for it --
     var raw = await api(
       [{role:"user",content:defprompt(clean)}],
       "You are a Russian-English dictionary. Return a single JSON object only. No markdown. No commentary.",
@@ -4968,16 +4979,35 @@ export default function App() {
       // It used to fire on any failure for any word containing "е", which hid
       // real API errors behind a spelling suggestion — the reason a broken
       // backend looked like a dictionary miss.
+      if (err && err.noEntry) {
+        // Not in the dictionary — offer the AI rather than spending on it.
+        setPopup(function(p){ return p ? Object.assign({},p,{loading:false,noEntry:clean}) : null; });
+        return;
+      }
       var wordMightBeWrong = /not.?found|no entry|unknown word|missing/i.test(rawMsg);
       var vars = wordMightBeWrong ? yoVariants(clean) : [];
       if (vars.length) {
         setPopup(function(p){ return p ? Object.assign({},p,{loading:false,yo:{orig:clean,vars:vars}}) : null; });
       } else {
         var msg = likelyRateLimit
-          ? "Today's free definition quota is used up — it resets tomorrow."
+          ? "Today's free AI quota is used up — it resets tomorrow."
           : 'Could not define "' + clean + '" — ' + rawMsg;
         setPopup(function(p){ return p ? Object.assign({},p,{loading:false,error:msg}) : null; });
       }
+    }
+  };
+
+  // Explicit AI lookup, from the "Ask AI" button on a dictionary miss.
+  var defWithAI = async function(word) {
+    setPopup(function(p){ return p ? Object.assign({},p,{loading:true,noEntry:null,error:null}) : null; });
+    try {
+      var data = await fetchDef(word, { allowAI: true });
+      setPopup(function(p){ return p ? Object.assign({},p,{data:data,loading:false}) : null; });
+    } catch(err) {
+      var m = (err && err.message) || "Unknown error";
+      var quota = /Too many|rate.?limit|429|quota|exhaust/i.test(m);
+      setPopup(function(p){ return p ? Object.assign({},p,{loading:false,
+        error: quota ? "Today's free AI quota is used up — it resets tomorrow." : ('Could not define "' + word + '" — ' + m)}) : null; });
     }
   };
 
@@ -9140,6 +9170,13 @@ export default function App() {
               {popup.loading && <div className="pload">Looking up…</div>}
               {popup.error && <div className="perr">{popup.error}</div>}
 
+              {popup.noEntry && (
+                <div style={{display:"flex",flexDirection:"column",gap:8,marginTop:6}}>
+                  <div className="ppos">Not in the dictionary — likely a name or an older word.</div>
+                  <button className="yobtn" onClick={function(){ defWithAI(popup.noEntry); }}>Ask AI for a definition</button>
+                </div>
+              )}
+
               {popup.yo && (
                 <div style={{display:"flex",flexDirection:"column",gap:4,marginTop:8}}>
                   <div className="ppos" style={{marginBottom:8}}>е or ё? Tap the right spelling:</div>
@@ -9148,7 +9185,7 @@ export default function App() {
                 </div>
               )}
 
-              {!popup.loading && !popup.error && !popup.yo && popup.data && (
+              {!popup.loading && !popup.error && !popup.yo && !popup.noEntry && popup.data && (
                 <>
                   <div className="ppos">{popup.data.partOfSpeech}{popup.data.aspect ? " · " + popup.data.aspect : ""}</div>
                   {popup.data.definitionRu && <div className="pdru">{popup.data.definitionRu}</div>}

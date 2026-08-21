@@ -203,11 +203,17 @@ export default async function handler(req, res) {
   const timer = setTimeout(function () { ctrl.abort(); }, 8000);
 
   try {
-    // Try the word as clicked, then lowercase, then ё-variants of the
-    // lowercase form. MORPHO handles inflection; this loop only handles
-    // casing and the е/ё mess.
+    // Try the word as clicked, then lowercase, then BOTH directions of the
+    // е/ё mess. MORPHO handles inflection; this loop only handles casing and
+    // spelling. The ё→е direction matters most: Russian dictionaries index
+    // the е-form of most words, so a text that prints "её", "всё" or "живёт"
+    // misses on the literal spelling and only resolves once ё is folded away.
+    // Missing that direction sent every ё-carrying word to the AI fallback,
+    // which is why some books burned the quota and others did not.
     const lower = word.toLowerCase();
-    const candidates = [word, lower].concat(yoVariants(lower).slice(0, 3))
+    const deyo = lower.replace(/ё/g, "е");
+    const candidates = [word, lower, deyo]
+      .concat(yoVariants(deyo).slice(0, 3))
       .filter(function (w, i, arr) { return arr.indexOf(w) === i; });
 
     let defs = [], matchedForm = "";
