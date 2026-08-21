@@ -82,7 +82,10 @@ export default async function handler(req, res) {
   // because ES modules are strict mode that threw a ReferenceError on EVERY
   // request rather than logging a blank user.
   const user = currentUser(req);
-  const userId = user ? user.id : null;
+  if (!user) {
+    return res.status(401).json({ error: "An account is required. Create one — it is instant and free." });
+  }
+  const userId = user.id;
   const rl = checkRateLimit(ip, !!user);
   if (!rl.ok) return res.status(429).json({ error: rl.reason });
 

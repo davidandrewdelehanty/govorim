@@ -46,6 +46,13 @@ export default function handler(req, res) {
   if (!Array.isArray(list)) return res.status(500).json({ error: "Catalogue is malformed" });
 
   const user = currentUser(req);
+  // The library is gated: no account, no catalogue. Registration is instant
+  // (api/auth.js signup issues a session straight away), so this is a door,
+  // not a waiting room.
+  if (!user) {
+    res.setHeader("Cache-Control", "private, no-store");
+    return res.status(401).json({ error: "An account is required to browse the library." });
+  }
   const isAdmin = !!(user && user.isAdmin);
 
   const books = [];

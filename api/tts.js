@@ -13,6 +13,8 @@
 // Cost: ~$16 per 1M characters for neural voices on Azure's Pay-As-You-Go tier.
 // Free tier: 500k characters/month neural.
 
+import { currentUser } from "../lib/auth.js";
+
 const ALLOWED_VOICES = {
   "ru-RU-DariyaNeural": true,
   "ru-RU-DmitryNeural": true,
@@ -238,6 +240,11 @@ export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ error: "Method not allowed" });
+  }
+
+  // Account-gated, same as the rest of the site.
+  if (!currentUser(req)) {
+    return res.status(401).json({ error: "An account is required." });
   }
 
   // Read env vars and validate. Trim in case the user pasted with whitespace.

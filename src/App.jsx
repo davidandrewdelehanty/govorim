@@ -2510,7 +2510,7 @@ export default function App() {
   var [me, setMe]             = useState(null);   // { id, email, isAdmin } | null
   var [authReady, setAuthReady] = useState(false); // false until /api/auth/me answers
   var [authOpen, setAuthOpen] = useState(false);  // sign-in panel visible
-  var [authMode, setAuthMode] = useState("login");// "login" | "signup"
+  var [authMode, setAuthMode] = useState("signup"); // "login" | "signup" — the gate leads with registration
   var [authEmail, setAuthEmail]       = useState("");
   var [authPassword, setAuthPassword] = useState("");
   var [authBusy, setAuthBusy] = useState(false);
@@ -6896,6 +6896,20 @@ export default function App() {
         .auth-brand-icon{font-size:44px}
         .auth-brand-title{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:#c4955a;line-height:1;margin-top:8px}
         .auth-brand-sub{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(42,31,20,.45);margin-top:6px}
+        /* Account gate. html/body are overflow:hidden for the app shell, so the
+           gate has to own its own scrolling or a short viewport clips the form. */
+        .auth-page{height:100vh;height:100dvh;overflow-y:auto;align-items:flex-start;padding:44px 32px}
+        .gate-card{position:relative;background:#fbf8f2;border:1px solid rgba(42,31,20,.14);border-radius:16px;width:100%;padding:6px 4px 14px}
+        .gate-blurb{font-family:'Crimson Pro',serif;font-size:15px;line-height:1.6;color:rgba(42,31,20,.75);text-align:center;max-width:400px;margin:0 auto}
+        .gate-feats{display:flex;flex-direction:column;gap:9px;padding:16px 22px 4px;max-width:420px;margin:0 auto}
+        .gate-feat{display:flex;gap:10px;align-items:flex-start;font-family:'Crimson Pro',serif;font-size:14px;line-height:1.45;color:rgba(42,31,20,.8)}
+        .gate-feat span{flex-shrink:0;width:22px;text-align:center}
+        .gate-note{font-family:'Crimson Pro',serif;font-style:italic;font-size:13px;color:rgba(42,31,20,.5);text-align:center;max-width:400px;margin:0 auto}
+        @media (max-width:560px){
+          .auth-page{padding:26px 16px}
+          .auth-brand-title{font-size:34px}
+          .gate-feats{padding:14px 8px 4px}
+        }
         .userbtn-wrap{display:flex;align-items:center}
 
         /* Pending-approval screen */
@@ -7199,6 +7213,80 @@ export default function App() {
         </div>
       )}
 
+      {/* ── Account gate ──────────────────────────────────────────────────
+          The site is for account holders. Sign-up is instant — api/auth.js
+          issues the session on signup, there is no approval step — but the app
+          shell does not mount until /api/auth/me confirms who you are. The API
+          routes enforce the same rule independently (catalogue, define, chat
+          and tts all 401 without a session), so this screen is the front door,
+          not the lock. */}
+      {!authReady && (
+        <div className="auth-page">
+          <div className="auth-card">
+            <div className="auth-brand">
+              <div style={{color:"#c4955a"}}><Pushkin size={64}/></div>
+              <div className="auth-brand-title">Говорим</div>
+              <div className="auth-brand-sub">Russian Practice</div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {authReady && !me && (
+        <div className="auth-page">
+          <div className="auth-card">
+            <div className="auth-brand">
+              <div style={{color:"#c4955a"}}><Pushkin size={64}/></div>
+              <div className="auth-brand-title">Говорим</div>
+              <div className="auth-brand-sub">Russian Practice</div>
+            </div>
+
+            <div className="gate-blurb">
+              A reader for Russian literature — with narrated audiobooks, instant
+              word definitions, and a tutor that matches your level.
+            </div>
+
+            <div className="gate-card">
+              <div className="gate-feats">
+                <div className="gate-feat"><span>📖</span><div>Read from a library of Russian books and stories.</div></div>
+                <div className="gate-feat"><span>🔊</span><div>Listen along — most books have a narrated recording, split by chapter.</div></div>
+                <div className="gate-feat"><span>✏️</span><div>Tap any word for its dictionary entry, and save it to your vocabulary.</div></div>
+              </div>
+
+              <form className="auth-form" onSubmit={submitAuth}>
+                <label className="auth-lbl">Email
+                  <input className="auth-in" type="email" autoComplete="username" autoFocus
+                    value={authEmail} onChange={function(e){ setAuthEmail(e.target.value); }} required />
+                </label>
+                <label className="auth-lbl">Password
+                  <input className="auth-in" type="password"
+                    autoComplete={authMode === "login" ? "current-password" : "new-password"}
+                    value={authPassword} onChange={function(e){ setAuthPassword(e.target.value); }} required />
+                </label>
+                {authMode === "signup" && (
+                  <div className="auth-hint">At least 10 characters. Longer is better than fancier.</div>
+                )}
+                {authErr && <div className="auth-err">{authErr}</div>}
+                <button className="btn-p" type="submit" disabled={authBusy}>
+                  {authBusy ? "…" : (authMode === "login" ? "Sign in" : "Create account")}
+                </button>
+                <button className="auth-switch" type="button" onClick={function(){
+                  setAuthMode(authMode === "login" ? "signup" : "login"); setAuthErr("");
+                }}>
+                  {authMode === "login" ? "No account yet? Create one" : "Already have an account? Sign in"}
+                </button>
+              </form>
+            </div>
+
+            <div className="gate-note">
+              Accounts are created instantly — no approval, no waiting. Your
+              vocabulary and reading progress follow you between devices.
+            </div>
+          </div>
+        </div>
+      )}
+
+      {authReady && me && (
       <div className="app">
         <header className="hdr">
           <div
@@ -9089,6 +9177,7 @@ export default function App() {
           </div>
         )}
       </div>
+      )}
     </>
   );
 }

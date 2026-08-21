@@ -190,6 +190,11 @@ export default async function handler(req, res) {
 
   const ip = getClientIp(req);
   const user = currentUser(req);
+  // Site is account-gated; the anonymous tier below is retained only so the
+  // limiter's shape matches api/chat.js.
+  if (!user) {
+    return res.status(401).json({ error: "An account is required. Create one — it is instant and free." });
+  }
   const rl = checkRateLimit(ip, !!user);
   if (!rl.ok) return res.status(429).json({ error: rl.reason });
 
