@@ -108,6 +108,9 @@ function bookKey(meta) {
 // Multi-upload tracking — keeps the last MAX_UPLOADS uploaded books browsable
 // in the library view. List of metadata stored at UPLOADS_LIST_KEY; each
 // book's full parsed content stored at UPLOAD_BOOK_PREFIX + id.
+// Question-history storage from the removed AI tutor. The constant survives
+// only so stale blobs keep getting cleaned out of users' storage.
+var QHIST_KEY  = "epub_qhist_v1";
 var UPLOADS_LIST_KEY  = "epub_uploads_v1";
 var UPLOAD_BOOK_PREFIX = "epub_upload_";
 var MAX_UPLOADS = 5;
@@ -2860,7 +2863,6 @@ export default function App() {
   // Resets the exercise view whenever the chapter changes.
   useEffect(function() {
     setExData(null); setExCat("menu"); setExSelected(null); setExIdx(0); setExScore(0);
-    setVqWords(null); setVqCount({}); setVqCur(null); setVqSel(null); setVqErr(""); setVqLoading(false);
     stopExClip();
     // Exercises are keyed to the READING chapter (from the FB2), not the audio —
     // audio is only for listening. PREFERRED key: "<bookslug>__ch<cidx>" derived
