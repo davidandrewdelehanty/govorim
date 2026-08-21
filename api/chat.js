@@ -239,16 +239,23 @@ async function callGemini({ messages, system, max_tokens, wantJson, callType, ip
   const generationConfig = wantJson
     ? { maxOutputTokens: max_tokens, temperature: 0.2, responseMimeType: "application/json" }
     : { maxOutputTokens: max_tokens, temperature: 1.0 };
-  // Gemini 2.5 models think before answering, and those thinking tokens are
-  // billed against maxOutputTokens. A small JSON reply can therefore come back
-  // completely EMPTY with finishReason MAX_TOKENS — the model spent the whole
-  // budget reasoning and had nothing left to emit. Word definitions do not need
-  // deliberation, so thinking is off by default; set GEMINI_THINKING to a token
-  // budget to turn it back on.
-  // Every Gemini from 2.5 on thinks by default. Match 2.5–2.9 and any major
-  // version from 3 up, so a future model doesn't silently reintroduce the
-  // empty-response problem the moment the default is bumped.
-  if (/^gemini-(2\.[5-9]|[3-9]|\d{2,})/.test(model) || /-thinking/.test(model)) {
+  // Gemini models from 2.5 on think before answering, and those thinking tokens
+  // are billed against maxOutputTokens. A small JSON reply can therefore come
+  // back completely EMPTY with finishReason MAX_TOKENS — the model spent the
+  // whole budget reasoning and had nothing left to emit. Word definitions do not
+  // need deliberation, so thinking is held as low as each family allows.
+  //
+  // The two families are configured DIFFERENTLY, and mixing them up is a 400:
+  //   2.5–2.9  thinkingConfig.thinkingBudget — a token count, 0 disables.
+  //   3.x+     thinkingConfig.thinkingLevel  — "minimal" | "low" | "high".
+  //            Flash and Flash-Lite cannot turn thinking off at all, so
+  //            thinkingBudget: 0 here is rejected outright with
+  //            INVALID_ARGUMENT ("request contains an invalid argument").
+  //            "minimal" is the floor; it does not guarantee zero thinking.
+  if (/^gemini-([3-9]|\d{2,})/.test(model)) {
+    const level = (process.env.GEMINI_THINKING_LEVEL || "minimal").toLowerCase();
+    generationConfig.thinkingConfig = { thinkingLevel: level };
+  } else if (/^gemini-2\.[5-9]/.test(model) || /-thinking/.test(model)) {
     const budget = parseInt(process.env.GEMINI_THINKING || "0", 10);
     generationConfig.thinkingConfig = { thinkingBudget: isNaN(budget) ? 0 : budget };
   }
@@ -277,6 +284,21 @@ async function callGemini({ messages, system, max_tokens, wantJson, callType, ip
     if (r.status === 404 && /model/i.test(msg)) {
       msg += " — the model name is set by GEMINI_MODEL (currently \"" + model +
              "\"); update or delete that env var.";
+    }
+    // INVALID_ARGUMENT's top-level message is generic ("request contains an
+    // invalid argument") and never names the offending field; the detail that
+    // does is buried in error.details. Without this the only way to find out
+    // which key Google rejected is to bisect the payload by hand.
+    if (r.status === 400) {
+      const details = (data && data.error && data.error.details) || [];
+      const notes = details
+        .map(function(d){ return d && (d.fieldViolations || d.field_violations); })
+        .filter(Boolean)
+        .reduce(function(a, b){ return a.concat(b); }, [])
+        .map(function(v){ return (v.field || "?") + ": " + (v.description || ""); });
+      if (notes.length) msg += " — " + notes.join("; ");
+      msg += " [model=" + model + ", generationConfig keys: " +
+             Object.keys(generationConfig).join(",") + "]";
     }
     const e = new Error("Gemini: " + msg); e.status = r.status; throw e;
   }
