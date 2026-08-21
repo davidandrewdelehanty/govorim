@@ -1862,7 +1862,7 @@ var FB2_MIN_MEDIAN_CHAPTER_WORDS = 150;
 // a heading can arrive as "*\u00a0ПРИМЕЧАНИЯ\u00a0*" (Тихий Дон), and JS's \W
 // matches Cyrillic letters — so \W* would also swallow "ЛОЖНЫЕ " and call that
 // a notes section. Keep this identical to _NOTES_TITLE_RE in Auto-MFA app/fb2.py.
-var FB2_NOTES_DECO = '[\\s*_\u00b7\u2022\u2014\u2013\\-.,:;!?()"\'\u00ab\u00bb\\[\\]]*';
+var FB2_NOTES_DECO = '[\\s*_·\u2022—\u2013\\-.,:;!?()"\'\u00ab\u00bb\\[\\]]*';
 var FB2_NOTES_TITLE_RE = new RegExp("^" + FB2_NOTES_DECO +
   "(сноски?|примечани[ея]|комментари[ий]|notes?|footnotes?|endnotes?)" + FB2_NOTES_DECO + "$", "i");
 function fb2IsNotesTitle(title) {
@@ -2742,6 +2742,101 @@ export default function App() {
   var [wbCards, setWbCards]             = useState(null);
   var [wbProgress, setWbProgress]       = useState({});
   var [wbScreen, setWbScreen]           = useState("landing"); // "landing" | "quiz"
+
+  // ── Forum (book requests / bugs / general) ──────────────────────────────
+  // Backed by /api/forum/* rewrites into user-data.js — see that file.
+  var FORUM_CATS = [
+    { id: "requests", label: "📚 Book requests" },
+    { id: "bugs",     label: "🐞 Bugs" },
+    { id: "general",  label: "💬 General" },
+  ];
+  var [forumCat, setForumCat]         = useState("requests");
+  var [forumPosts, setForumPosts]     = useState(null);   // null = loading
+  var [forumThread, setForumThread]   = useState(null);   // open post, or null = list view
+  var [forumErr, setForumErr]         = useState("");
+  var [forumBusy, setForumBusy]       = useState(false);
+  var [forumCompose, setForumCompose] = useState(false);
+  var [forumTitle, setForumTitle]     = useState("");
+  var [forumBody, setForumBody]       = useState("");
+  var [forumReply, setForumReply]     = useState("");
+
+  var forumApi = async function(action, opts) {
+    opts = opts || {};
+    var r = await authFetch("/api/forum/" + action + (opts.qs || ""), opts.post ? {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(opts.post),
+    } : undefined);
+    var d = await r.json().catch(function(){ return {}; });
+    if (!r.ok) throw new Error(d.error || ("HTTP " + r.status));
+    return d;
+  };
+  var loadForumBoard = async function(cat) {
+    setForumErr(""); setForumPosts(null); setForumThread(null);
+    try {
+      var d = await forumApi("board", { qs: "?cat=" + cat });
+      setForumPosts(d.posts || []);
+    } catch (e) { setForumErr(e.message || "Could not load the forum"); setForumPosts([]); }
+  };
+  var openForumThread = async function(id) {
+    setForumErr(""); setForumBusy(true);
+    try {
+      var d = await forumApi("thread", { qs: "?cat=" + forumCat + "&id=" + encodeURIComponent(id) });
+      setForumThread(d);
+    } catch (e) { setForumErr(e.message || "Could not open the post"); }
+    setForumBusy(false);
+  };
+  var submitForumPost = async function() {
+    if (forumBusy) return;
+    setForumErr(""); setForumBusy(true);
+    try {
+      await forumApi("new", { post: { cat: forumCat, title: forumTitle, body: forumBody } });
+      setForumTitle(""); setForumBody(""); setForumCompose(false);
+      await loadForumBoard(forumCat);
+    } catch (e) { setForumErr(e.message || "Could not post"); }
+    setForumBusy(false);
+  };
+  var submitForumReply = async function() {
+    if (forumBusy || !forumThread) return;
+    setForumErr(""); setForumBusy(true);
+    var tid = forumThread.id;
+    try {
+      await forumApi("reply", { post: { cat: forumCat, id: tid, body: forumReply } });
+      setForumReply("");
+      var d = await forumApi("thread", { qs: "?cat=" + forumCat + "&id=" + encodeURIComponent(tid) });
+      setForumThread(d);
+    } catch (e) { setForumErr(e.message || "Could not reply"); }
+    setForumBusy(false);
+  };
+  var toggleForumVote = async function(id) {
+    try {
+      var d = await forumApi("vote", { post: { cat: forumCat, id: id } });
+      setForumThread(function(t){ return (t && t.id === id) ? Object.assign({}, t, { voteCount: d.voteCount, youVoted: d.youVoted }) : t; });
+      setForumPosts(function(list){
+        if (!list) return list;
+        return list.map(function(pp){ return pp.id === id ? Object.assign({}, pp, { voteCount: d.voteCount }) : pp; });
+      });
+    } catch (e) { setForumErr(e.message || "Vote failed"); }
+  };
+  var forumMod = async function(op) {
+    if (!forumThread) return;
+    var tid = forumThread.id;
+    setForumErr("");
+    try {
+      await forumApi("mod", { post: { cat: forumCat, id: tid, op: op } });
+      if (op === "delete") { await loadForumBoard(forumCat); return; }
+      var d = await forumApi("thread", { qs: "?cat=" + forumCat + "&id=" + encodeURIComponent(tid) });
+      setForumThread(d);
+    } catch (e) { setForumErr(e.message || "Action failed"); }
+  };
+  var forumWhen = function(ts) {
+    if (!ts) return "";
+    var d = new Date(ts);
+    return d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+  };
+  useEffect(function() {
+    if (mode === "forum" && me) loadForumBoard(forumCat);
+  }, [mode, forumCat, me && me.id]);
   var [wbCur, setWbCur]                 = useState(null);      // {card, correct, options}
   var [wbSel, setWbSel]                 = useState(null);
   var [wbJustMastered, setWbJustMastered] = useState(null);    // card id, brief toast
@@ -5435,13 +5530,13 @@ export default function App() {
         // treats bare numbers / "Глава N" as boundaries) would flatten it to bare "Глава N"
         // and destroy the Testament/Book tiers - so skip the re-split when 3-tier headings exist.
         var alreadyScripture = chs.length > 1 && chs.some(function(c){
-          return c.heading && c.heading.split(/\s+[\u2013\u2014]\s+/).length >= 3;
+          return c.heading && c.heading.split(/\s+[\u2013—]\s+/).length >= 3;
         });
         // Don't re-split by in-text markers when the source already gave us two
         // or more real, distinct chapter headings (e.g. an FB2 with a
         // <title>\u0413\u043b\u0430\u0432\u0430 \u043f\u0435\u0440\u0432\u0430\u044f</title> per chapter). The marker re-split exists for
         // blob / heading-less imports; run on a properly-structured book it shreds
-        // poems on their stanza numerals \u2014 \u041e\u043d\u0435\u0433\u0438\u043d's "I, II, III \u2026" each became a
+        // poems on their stanza numerals — \u041e\u043d\u0435\u0433\u0438\u043d's "I, II, III …" each became a
         // "chapter", so a whole \u0413\u043b\u0430\u0432\u0430's audio played against a single stanza of
         // text. Placeholder headings ("\u0413\u043b\u0430\u0432\u0430 1", "Chapter 1") don't count as real.
         var realHeadings = chs.filter(function(c){
@@ -7185,7 +7280,166 @@ export default function App() {
                       <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Drill the most common Russian words, ranked by real-world frequency, in blocks of 30.</div>
                     </button>
                   )}
+                  <button className="btn-p" onClick={function(){ setMode("forum"); }} style={{textAlign:"left",padding:"18px 22px"}}>
+                    <div style={{fontSize:22,marginBottom:4}}>💬 Forum</div>
+                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Request books, report bugs, and talk with other readers.</div>
+                  </button>
                 </div>
+              </div>
+            )}
+
+            {!started && mode === "forum" && (
+              <div className="ss" style={{alignItems:"stretch",maxWidth:680,width:"100%"}}>
+                <div style={{textAlign:"center"}}>
+                  <div className="sico">💬</div>
+                  <h1 className="sti">Forum</h1>
+                  <p className="sde">Request books, report bugs, talk with other readers.</p>
+                </div>
+
+                {!me && (
+                  <div style={{textAlign:"center",display:"flex",flexDirection:"column",gap:10,alignItems:"center"}}>
+                    <p className="sde">The forum is for signed-in readers.</p>
+                    <button className="btn-p" onClick={function(){ setAuthMode("login"); setAuthErr(""); setAuthOpen(true); }}>Sign in</button>
+                    <button className="btn-g" onClick={function(){ setMode(""); }}>← Back</button>
+                  </div>
+                )}
+
+                {me && (
+                  <div style={{display:"flex",flexDirection:"column",gap:12}}>
+                    {forumErr && (
+                      <div style={{padding:"8px 12px",borderRadius:8,background:"rgba(157,70,48,.14)",color:"#9d4630",fontSize:13}}>
+                        {forumErr}
+                      </div>
+                    )}
+
+                    {/* Category tabs */}
+                    {!forumThread && (
+                      <div style={{display:"flex",gap:8,justifyContent:"center",flexWrap:"wrap"}}>
+                        {FORUM_CATS.map(function(c){
+                          var active = c.id === forumCat;
+                          return (
+                            <button key={c.id} onClick={function(){ setForumCat(c.id); setForumCompose(false); }}
+                              style={{padding:"7px 14px",borderRadius:18,cursor:"pointer",fontSize:14,
+                                border:"1px solid rgba(196,149,90,.5)",
+                                background:active?"#c4955a":"transparent",
+                                color:active?"#fff":"#c4955a",fontWeight:active?600:400}}>
+                              {c.label}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* ── List view ── */}
+                    {!forumThread && (
+                      <div style={{display:"flex",flexDirection:"column",gap:8}}>
+                        {!forumCompose && (
+                          <button className="btn-g" style={{alignSelf:"flex-end",padding:"6px 14px",fontSize:13}}
+                            onClick={function(){ setForumCompose(true); }}>＋ New post</button>
+                        )}
+                        {forumCompose && (
+                          <div style={{display:"flex",flexDirection:"column",gap:8,padding:14,borderRadius:10,
+                            border:"1px solid rgba(196,149,90,.4)",background:"rgba(196,149,90,.07)"}}>
+                            <input value={forumTitle} maxLength={120} placeholder={forumCat==="requests"?"Book title and author…":forumCat==="bugs"?"What broke?":"Title…"}
+                              onChange={function(e){ setForumTitle(e.target.value); }}
+                              style={{padding:"9px 12px",borderRadius:8,border:"1px solid rgba(0,0,0,.2)",fontSize:15,fontFamily:"inherit"}}/>
+                            <textarea value={forumBody} maxLength={4000} rows={4}
+                              placeholder={forumCat==="requests"?"Why this book? A link to the audiobook recording helps a lot.":forumCat==="bugs"?"What happened, what did you expect, which book/chapter, which browser?":"Write your post…"}
+                              onChange={function(e){ setForumBody(e.target.value); }}
+                              style={{padding:"9px 12px",borderRadius:8,border:"1px solid rgba(0,0,0,.2)",fontSize:14,fontFamily:"inherit",resize:"vertical"}}/>
+                            <div style={{display:"flex",gap:8,justifyContent:"flex-end"}}>
+                              <button className="btn-g" style={{padding:"6px 14px",fontSize:13}} onClick={function(){ setForumCompose(false); }}>Cancel</button>
+                              <button className="btn-p" style={{padding:"6px 16px",fontSize:13}} disabled={forumBusy} onClick={submitForumPost}>Post</button>
+                            </div>
+                          </div>
+                        )}
+
+                        {forumPosts === null && <p className="sde" style={{textAlign:"center"}}>Loading…</p>}
+                        {forumPosts !== null && forumPosts.length === 0 && !forumCompose && (
+                          <p className="sde" style={{textAlign:"center"}}>Nothing here yet — be the first to post.</p>
+                        )}
+                        {(forumPosts || []).map(function(p2){
+                          return (
+                            <div key={p2.id} style={{display:"flex",gap:10,alignItems:"flex-start",padding:"10px 12px",
+                              borderRadius:10,border:"1px solid rgba(0,0,0,.1)",background:"rgba(255,255,255,.5)",cursor:"pointer"}}
+                              onClick={function(){ openForumThread(p2.id); }}>
+                              {forumCat === "requests" && (
+                                <button title="Upvote" onClick={function(e){ e.stopPropagation(); toggleForumVote(p2.id); }}
+                                  style={{border:"1px solid rgba(196,149,90,.5)",background:"transparent",color:"#c4955a",
+                                    borderRadius:8,padding:"4px 9px",cursor:"pointer",fontSize:13,lineHeight:1.2,minWidth:38}}>
+                                  ▲<br/>{p2.voteCount || 0}
+                                </button>
+                              )}
+                              <div style={{flex:1,minWidth:0}}>
+                                <div style={{fontSize:15,fontWeight:600,color:"#222"}}>
+                                  {p2.pinned ? "📌 " : ""}{p2.title}{p2.closed ? " · 🔒" : ""}
+                                </div>
+                                <div style={{fontSize:12,opacity:.65,marginTop:2}}>
+                                  {p2.authorName} · {forumWhen(p2.createdAt)} · {p2.replyCount || 0} {(p2.replyCount||0) === 1 ? "reply" : "replies"}
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* ── Thread view ── */}
+                    {forumThread && (
+                      <div style={{display:"flex",flexDirection:"column",gap:10}}>
+                        <button className="btn-g" style={{alignSelf:"flex-start",padding:"5px 12px",fontSize:13}}
+                          onClick={function(){ setForumThread(null); loadForumBoard(forumCat); }}>← All posts</button>
+                        <div style={{padding:"12px 14px",borderRadius:10,border:"1px solid rgba(196,149,90,.4)",background:"rgba(196,149,90,.07)"}}>
+                          <div style={{display:"flex",gap:10,alignItems:"flex-start"}}>
+                            {forumCat === "requests" && (
+                              <button title="Upvote" onClick={function(){ toggleForumVote(forumThread.id); }}
+                                style={{border:"1px solid rgba(196,149,90,.6)",borderRadius:8,padding:"4px 9px",cursor:"pointer",fontSize:13,lineHeight:1.2,minWidth:38,
+                                  background:forumThread.youVoted?"#c4955a":"transparent",color:forumThread.youVoted?"#fff":"#c4955a"}}>
+                                ▲<br/>{forumThread.voteCount || 0}
+                              </button>
+                            )}
+                            <div style={{flex:1,minWidth:0}}>
+                              <div style={{fontSize:17,fontWeight:700,color:"#222"}}>
+                                {forumThread.pinned ? "📌 " : ""}{forumThread.title}{forumThread.closed ? " · 🔒 closed" : ""}
+                              </div>
+                              <div style={{fontSize:12,opacity:.65,margin:"2px 0 8px"}}>{forumThread.authorName} · {forumWhen(forumThread.createdAt)}</div>
+                              <div style={{fontSize:14,whiteSpace:"pre-wrap",color:"#333"}}>{forumThread.body}</div>
+                            </div>
+                          </div>
+                          {me.isAdmin && (
+                            <div style={{display:"flex",gap:6,marginTop:10,flexWrap:"wrap"}}>
+                              <button className="btn-g" style={{padding:"4px 10px",fontSize:12}} onClick={function(){ forumMod(forumThread.pinned ? "unpin" : "pin"); }}>{forumThread.pinned ? "Unpin" : "Pin"}</button>
+                              <button className="btn-g" style={{padding:"4px 10px",fontSize:12}} onClick={function(){ forumMod(forumThread.closed ? "open" : "close"); }}>{forumThread.closed ? "Reopen" : "Close"}</button>
+                              <button className="btn-g" style={{padding:"4px 10px",fontSize:12,color:"#9d4630"}} onClick={function(){ if (window.confirm("Delete this post?")) forumMod("delete"); }}>Delete</button>
+                            </div>
+                          )}
+                        </div>
+
+                        {(forumThread.replies || []).map(function(r2){
+                          return (
+                            <div key={r2.id} style={{padding:"9px 12px",borderRadius:10,border:"1px solid rgba(0,0,0,.08)",background:"rgba(255,255,255,.5)",marginLeft:18}}>
+                              <div style={{fontSize:12,opacity:.65,marginBottom:3}}>
+                                {r2.authorName}{r2.isAdmin ? " · ★ admin" : ""} · {forumWhen(r2.createdAt)}
+                              </div>
+                              <div style={{fontSize:14,whiteSpace:"pre-wrap",color:"#333"}}>{r2.body}</div>
+                            </div>
+                          );
+                        })}
+
+                        {(!forumThread.closed || me.isAdmin) && (
+                          <div style={{display:"flex",flexDirection:"column",gap:6,marginLeft:18}}>
+                            <textarea value={forumReply} maxLength={2000} rows={3} placeholder="Write a reply…"
+                              onChange={function(e){ setForumReply(e.target.value); }}
+                              style={{padding:"9px 12px",borderRadius:8,border:"1px solid rgba(0,0,0,.2)",fontSize:14,fontFamily:"inherit",resize:"vertical"}}/>
+                            <button className="btn-p" style={{alignSelf:"flex-end",padding:"6px 16px",fontSize:13}} disabled={forumBusy || forumReply.trim().length < 2} onClick={submitForumReply}>Reply</button>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    <button className="btn-g" style={{alignSelf:"center",marginTop:6}} onClick={function(){ setMode(""); setForumThread(null); setForumCompose(false); }}>← Back</button>
+                  </div>
+                )}
               </div>
             )}
 
@@ -8078,7 +8332,7 @@ export default function App() {
                       var SEP = " — ";
                       var maxDepth = 1;
                       var navItems = chapters.map(function(ch, i){
-                        var segs = (ch.heading || "").split(/\s+[\u2013\u2014]\s+/);
+                        var segs = (ch.heading || "").split(/\s+[\u2013—]\s+/);
                         if (segs.length > maxDepth) maxDepth = segs.length;
                         return { idx: i, segs: segs, ch: ch };
                       });
@@ -8105,7 +8359,7 @@ export default function App() {
                         }
                         node.chapters.push({ idx: it.idx, name: it.segs[it.segs.length - 1], ch: it.ch });
                       });
-                      var curSegs = ((chapters[cidx] && chapters[cidx].heading) || "").split(/\s+[\u2013\u2014]\s+/);
+                      var curSegs = ((chapters[cidx] && chapters[cidx].heading) || "").split(/\s+[\u2013—]\s+/);
                       var curKeys = {}; var ckp = "";
                       for (var cki = 0; cki < curSegs.length - 1; cki++){ ckp = ckp ? ckp + SEP + curSegs[cki] : curSegs[cki]; curKeys[ckp] = true; }
                       var navOpen = function(key){ return (expandedNav && (key in expandedNav)) ? expandedNav[key] : !!curKeys[key]; };
@@ -8622,7 +8876,7 @@ export default function App() {
                                   <button onClick={function(){ goToSource(v); }}
                                     title={"Open " + (v.srcTitle||"source") + (typeof v.srcChapter==="number" ? " — chapter " + (v.srcChapter+1) : "")}
                                     style={{fontSize:11,background:"none",border:"none",color:"#c4955a",cursor:"pointer",fontFamily:"'Inter',sans-serif",padding:0,textDecoration:"underline"}}>
-                                    ↗ {v.srcTitle ? (v.srcTitle.length>22 ? v.srcTitle.slice(0,22)+"\u2026" : v.srcTitle) : "source"}
+                                    ↗ {v.srcTitle ? (v.srcTitle.length>22 ? v.srcTitle.slice(0,22)+"…" : v.srcTitle) : "source"}
                                   </button>
                                 )}
                               </div>

@@ -15,6 +15,10 @@
   },
   "rewrites": [
     {
+      "source": "/api/forum/:action*",
+      "destination": "/api/user-data?forum=:action*"
+    },
+    {
       "source": "/api/admin/:action*",
       "destination": "/api/admin?action=:action*"
     },

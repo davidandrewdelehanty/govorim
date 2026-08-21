@@ -5,6 +5,18 @@
 // Separate files per data type: vocab, tips, progress, settings.
 // No size limit (R2 has none).
 //
+// ── FORUM ────────────────────────────────────────────────────────────────────
+// This function also serves the site forum (book requests / bug reports /
+// general), folded in here rather than shipped as its own function so the
+// deployment's serverless-function count stays put. vercel.json rewrites
+//     /api/forum/:action  →  /api/user-data?forum=:action
+// Storage, same bucket:
+//     forum/<cat>/index.json   summary list, one CDN-cacheable read per board
+//     forum/<cat>/<postId>.json  full post: body, votes, replies
+// R2 has no transactions; every mutation is read-merge-write. Two writes in
+// the same second can drop one of them — acceptable at this community's
+// scale, and the index is always rebuilt from the post file it points at.
+//
 // The user id is derived from the email rather than random (lib/auth.js
 // userIdFor), so a rebuilt account lands back on its own vocabulary.
 // Accounts made under the old Clerk setup have their data under the old
@@ -13,6 +25,7 @@ import {
   S3Client, GetObjectCommand, PutObjectCommand
 } from "@aws-sdk/client-s3";
 import { requireUser } from "../lib/auth.js";
+import { sendEmail } from "../lib/admin/helpers.js";
 
 const s3 = new S3Client({
   region: "auto",
@@ -57,6 +70,10 @@ export default async function handler(req, res) {
   const user = requireUser(req, res);
   if (!user) return;
   const userId = user.id;
+
+  // ── Forum routes (rewritten from /api/forum/<action>) ──
+  const forumAction = req.query && req.query.forum;
+  if (forumAction) return handleForum(req, res, user, String(forumAction));
 
   try {
     if (req.method === "GET") {
@@ -126,6 +143,245 @@ export default async function handler(req, res) {
   } catch (e) {
     const msg = e && e.message ? e.message : "Server error";
     console.error("[user-data] error:", msg);
+    return res.status(500).json({ error: msg });
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// FORUM
+// ═════════════════════════════════════════════════════════════════════════════
+
+const FORUM_PREFIX = "forum";
+const FORUM_CATS = ["requests", "bugs", "general"];
+const MAX_TITLE = 120;
+const MAX_BODY = 4000;
+const MAX_REPLY = 2000;
+const MAX_POSTS_PER_CAT = 500;    // index cap; oldest unpinned fall off
+
+// Light per-user write limiter (in-memory, resets on cold start — a speed
+// bump against accidental double-posts and scripts, not a security wall).
+const forumWriteMap = new Map();
+function forumWriteAllowed(userId) {
+  const now = Date.now();
+  const hits = (forumWriteMap.get(userId) || []).filter(function (t) { return now - t < 60000; });
+  if (hits.length >= 10) return false;
+  hits.push(now);
+  forumWriteMap.set(userId, hits);
+  return true;
+}
+
+async function forumGet(key) {
+  try {
+    const resp = await s3.send(new GetObjectCommand({ Bucket: BUCKET, Key: key }));
+    return JSON.parse(await resp.Body.transformToString());
+  } catch (e) {
+    if (e.name === "NoSuchKey" || e.$metadata?.httpStatusCode === 404) return null;
+    throw e;
+  }
+}
+
+async function forumPut(key, data) {
+  await s3.send(new PutObjectCommand({
+    Bucket: BUCKET,
+    Key: key,
+    Body: JSON.stringify(data),
+    ContentType: "application/json",
+  }));
+}
+
+function catKey(cat)      { return `${FORUM_PREFIX}/${cat}/index.json`; }
+function postKey(cat, id) { return `${FORUM_PREFIX}/${cat}/${id}.json`; }
+
+// Display name: the part of the email before @. No profile system to consult.
+function displayName(user) {
+  const email = String(user.email || "");
+  const at = email.indexOf("@");
+  return at > 0 ? email.slice(0, at) : "reader";
+}
+
+function cleanText(t, max) {
+  return String(t || "")
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "")
+    .trim()
+    .slice(0, max);
+}
+
+function newId() {
+  return Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8);
+}
+
+// The index entry is always derived from the post file, so a dropped index
+// write heals on the next mutation of the same post.
+function indexEntryOf(post) {
+  return {
+    id: post.id,
+    title: post.title,
+    authorName: post.authorName,
+    createdAt: post.createdAt,
+    replyCount: (post.replies || []).length,
+    voteCount: (post.votes || []).length,
+    pinned: !!post.pinned,
+    closed: !!post.closed,
+    lastActivity: post.lastActivity || post.createdAt,
+  };
+}
+
+function sortIndex(posts) {
+  posts.sort(function (a, b) {
+    if (!!b.pinned - !!a.pinned) return (!!b.pinned) - (!!a.pinned);
+    return (b.lastActivity || 0) - (a.lastActivity || 0);
+  });
+  return posts;
+}
+
+async function updateIndex(cat, post, remove) {
+  const idx = (await forumGet(catKey(cat))) || { posts: [] };
+  idx.posts = (idx.posts || []).filter(function (p) { return p.id !== post.id; });
+  if (!remove) idx.posts.push(indexEntryOf(post));
+  sortIndex(idx.posts);
+  if (idx.posts.length > MAX_POSTS_PER_CAT) idx.posts.length = MAX_POSTS_PER_CAT;
+  await forumPut(catKey(cat), idx);
+  return idx;
+}
+
+// ── Email notifications ──────────────────────────────────────────────────────
+// Every new post and reply mails the admin (FORUM_NOTIFY_EMAIL, falling back
+// to ADMIN_EMAIL). Best-effort: a Resend hiccup never fails the request. The
+// admin's own posts are skipped — no point mailing yourself about yourself.
+const CAT_LABELS = { requests: "Book requests", bugs: "Bugs", general: "General" };
+
+function escapeHtml(t) {
+  return String(t || "").replace(/[&<>"]/g, function (ch) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch];
+  });
+}
+
+async function notifyAdmin(user, subject, html) {
+  const to = process.env.FORUM_NOTIFY_EMAIL || process.env.ADMIN_EMAIL;
+  if (!to) return;
+  if (user && String(user.email || "").toLowerCase() === String(to).toLowerCase()) return;
+  try { await sendEmail({ to, subject, html }); } catch (_) { /* never blocks the post */ }
+}
+
+function postEmailHtml(post, cat) {
+  return (
+    "<p><strong>" + escapeHtml(post.authorName) + "</strong> in <strong>" +
+    escapeHtml(CAT_LABELS[cat] || cat) + "</strong>:</p>" +
+    "<h3 style=\"margin:6px 0\">" + escapeHtml(post.title) + "</h3>" +
+    "<p style=\"white-space:pre-wrap\">" + escapeHtml(post.body) + "</p>" +
+    "<p><a href=\"https://govorim.dev\">Open the forum</a></p>"
+  );
+}
+
+async function handleForum(req, res, user, action) {
+  try {
+    // ---- reads ----
+    if (action === "board") {
+      if (req.method !== "GET") return res.status(405).json({ error: "Method not allowed" });
+      const cat = String(req.query.cat || "");
+      if (FORUM_CATS.indexOf(cat) === -1) return res.status(400).json({ error: "Unknown category" });
+      const idx = (await forumGet(catKey(cat))) || { posts: [] };
+      return res.status(200).json({ cat: cat, posts: sortIndex(idx.posts || []) });
+    }
+
+    if (action === "thread") {
+      if (req.method !== "GET") return res.status(405).json({ error: "Method not allowed" });
+      const cat = String(req.query.cat || "");
+      const id = String(req.query.id || "");
+      if (FORUM_CATS.indexOf(cat) === -1 || !id) return res.status(400).json({ error: "Bad request" });
+      const post = await forumGet(postKey(cat, id));
+      if (!post || post.deleted) return res.status(404).json({ error: "Post not found" });
+      // The caller needs to know whether THEY voted; nobody needs the roster.
+      const out = Object.assign({}, post, {
+        voteCount: (post.votes || []).length,
+        youVoted: (post.votes || []).indexOf(user.id) !== -1,
+      });
+      delete out.votes;
+      return res.status(200).json(out);
+    }
+
+    // ---- writes ----
+    if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
+    if (!forumWriteAllowed(user.id)) {
+      return res.status(429).json({ error: "Slow down a little — try again in a minute." });
+    }
+    let body = req.body;
+    if (typeof body === "string") { try { body = JSON.parse(body); } catch { body = {}; } }
+    body = body || {};
+    const cat = String(body.cat || "");
+    if (FORUM_CATS.indexOf(cat) === -1) return res.status(400).json({ error: "Unknown category" });
+
+    if (action === "new") {
+      const title = cleanText(body.title, MAX_TITLE);
+      const text = cleanText(body.body, MAX_BODY);
+      if (title.length < 3) return res.status(400).json({ error: "Title is too short" });
+      if (text.length < 3) return res.status(400).json({ error: "Post body is too short" });
+      const now = Date.now();
+      const post = {
+        id: newId(), cat: cat, title: title, body: text,
+        authorId: user.id, authorName: displayName(user),
+        createdAt: now, lastActivity: now,
+        pinned: false, closed: false, votes: [], replies: [],
+      };
+      await forumPut(postKey(cat, post.id), post);
+      await updateIndex(cat, post);
+      await notifyAdmin(user, "[Govorim forum] " + (CAT_LABELS[cat] || cat) + ": " + post.title, postEmailHtml(post, cat));
+      return res.status(200).json({ ok: true, id: post.id });
+    }
+
+    const id = String(body.id || "");
+    if (!id) return res.status(400).json({ error: "Missing post id" });
+    const post = await forumGet(postKey(cat, id));
+    if (!post || post.deleted) return res.status(404).json({ error: "Post not found" });
+
+    if (action === "reply") {
+      if (post.closed && !user.isAdmin) return res.status(403).json({ error: "This thread is closed" });
+      const text = cleanText(body.body, MAX_REPLY);
+      if (text.length < 2) return res.status(400).json({ error: "Reply is too short" });
+      post.replies = post.replies || [];
+      post.replies.push({
+        id: newId(), body: text,
+        authorId: user.id, authorName: displayName(user),
+        isAdmin: !!user.isAdmin, createdAt: Date.now(),
+      });
+      post.lastActivity = Date.now();
+      await forumPut(postKey(cat, id), post);
+      await updateIndex(cat, post);
+      await notifyAdmin(user, "[Govorim forum] Reply on: " + post.title,
+        "<p><strong>" + escapeHtml(user.email ? displayName(user) : "reader") + "</strong> replied in <strong>" +
+        escapeHtml(CAT_LABELS[cat] || cat) + "</strong> to \u201c" + escapeHtml(post.title) + "\u201d:</p>" +
+        "<p style=\"white-space:pre-wrap\">" + escapeHtml(text) + "</p>" +
+        "<p><a href=\"https://govorim.dev\">Open the forum</a></p>");
+      return res.status(200).json({ ok: true });
+    }
+
+    if (action === "vote") {
+      post.votes = post.votes || [];
+      const at = post.votes.indexOf(user.id);
+      if (at === -1) post.votes.push(user.id); else post.votes.splice(at, 1);
+      await forumPut(postKey(cat, id), post);
+      await updateIndex(cat, post);
+      return res.status(200).json({ ok: true, voteCount: post.votes.length, youVoted: at === -1 });
+    }
+
+    if (action === "mod") {
+      if (!user.isAdmin) return res.status(403).json({ error: "Admin only" });
+      const op = String(body.op || "");
+      if (op === "pin")        post.pinned = true;
+      else if (op === "unpin") post.pinned = false;
+      else if (op === "close") post.closed = true;
+      else if (op === "open")  post.closed = false;
+      else if (op === "delete") post.deleted = true;
+      else return res.status(400).json({ error: "Unknown mod op" });
+      await forumPut(postKey(cat, id), post);
+      await updateIndex(cat, post, op === "delete");
+      return res.status(200).json({ ok: true });
+    }
+
+    return res.status(404).json({ error: "Unknown forum action" });
+  } catch (e) {
+    const msg = e && e.message ? e.message : "Server error";
+    console.error("[forum] error:", msg);
     return res.status(500).json({ error: msg });
   }
 }

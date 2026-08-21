@@ -20,6 +20,7 @@ import {
   findAccount, createAccount, verifyPassword, touchLogin,
   signSession, setSessionCookie, clearSessionCookie, currentUser,
 } from "../lib/auth.js";
+import { sendEmail } from "../lib/admin/helpers.js";
 
 // Best-effort brute-force damper. In-memory, so it resets on a cold start
 // and is not shared between instances -- it raises the cost of guessing
@@ -104,6 +105,18 @@ export default async function handler(req, res) {
       if (badPassword) return res.status(400).json({ error: badPassword });
       const { account, error } = await createAccount(email, password);
       if (error) return res.status(409).json({ error });
+      // Tell the admin someone joined. Best-effort — a Resend hiccup must
+      // never break the signup itself.
+      const notifyTo = process.env.FORUM_NOTIFY_EMAIL || process.env.ADMIN_EMAIL;
+      if (notifyTo && normalizeEmail(notifyTo) !== email) {
+        try {
+          await sendEmail({
+            to: notifyTo,
+            subject: "[Govorim] New account: " + email,
+            html: "<p>A new reader signed up: <strong>" + email.replace(/[&<>\"]/g, "") + "</strong></p>",
+          });
+        } catch (_) {}
+      }
       setSessionCookie(res, signSession(account));
       return res.status(200).json({ user: publicUser(account) });
     }
