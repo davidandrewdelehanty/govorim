@@ -3165,7 +3165,14 @@ export default function App() {
     if (!audio) {
       audio = new Audio();
       audio.preload = "auto";
-      audio.crossOrigin = "anonymous";  // archive.org allows CORS streaming
+      // No crossOrigin. Setting it turns every load into a CORS request, and
+      // nothing here needs one: the app never reads the audio's samples (no
+      // AudioContext, no createMediaElementSource, no canvas capture), it just
+      // plays the file. The attribute was harmless while every recording came
+      // from a host that sends Access-Control-Allow-Origin — archive.org and
+      // the public r2.dev domain both do — but a presigned URL on R2's S3
+      // endpoint does not, so a gated book failed with ERR_FAILED before a
+      // byte was fetched. Plain media loads have never needed CORS.
       audiobookAudioRef.current = audio;
       // Drive the on-screen time counter / scrubber.
       audio.addEventListener("timeupdate", function(){ setAbCur(audio.currentTime || 0); });
