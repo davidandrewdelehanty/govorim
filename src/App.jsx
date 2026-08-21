@@ -1,6 +1,7 @@
 // THEME_VERSION=2
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { isCommonWord, dropCommonWords, COMMON_WORDS_PROMPT_RULE } from "./commonWords.js";
+import { Analytics } from "@vercel/analytics/react";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
@@ -8786,6 +8787,7 @@ export default function App() {
           </div>
         )}
       </div>
+      <Analytics />
     </>
   );
 }
