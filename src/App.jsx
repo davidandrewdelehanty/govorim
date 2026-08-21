@@ -2835,8 +2835,8 @@ export default function App() {
     return d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
   };
   useEffect(function() {
-    if (mode === "forum" && me) loadForumBoard(forumCat);
-  }, [mode, forumCat, me && me.id]);
+    if (tab === "forum" && me) loadForumBoard(forumCat);
+  }, [tab, forumCat, me && me.id]);
   var [wbCur, setWbCur]                 = useState(null);      // {card, correct, options}
   var [wbSel, setWbSel]                 = useState(null);
   var [wbJustMastered, setWbJustMastered] = useState(null);    // card id, brief toast
@@ -6922,7 +6922,21 @@ export default function App() {
         .auth-hint{font-family:'Crimson Pro',serif;font-size:12px;color:rgba(42,31,20,.5)}
         .auth-err{font-family:'Crimson Pro',serif;font-size:13px;color:#9d4630;background:rgba(157,70,48,.08);border:1px solid rgba(157,70,48,.25);border-radius:8px;padding:8px 10px}
         .auth-switch{background:none;border:none;color:#c4955a;font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;text-decoration:underline;padding:0}
-        .acct-email{font-family:'Crimson Pro',serif;font-size:12px;color:rgba(42,31,20,.6);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .acct-email{font-family:'Crimson Pro',serif;font-size:12px;color:rgba(42,31,20,.6);max-width:340px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        /* Small screens: let the header wrap instead of clipping, hide the
+           email (Sign out still shows who you are on tap), and make the tab
+           row horizontally scrollable so all four tabs stay reachable. */
+        @media (max-width:640px){
+          .hdr{flex-wrap:wrap;padding:10px 14px;row-gap:8px}
+          .hdr>div:last-child{flex-wrap:wrap;row-gap:6px;justify-content:flex-end}
+          .lsub{display:none}
+          .acct-email{display:none}
+          .tabs{padding:0 10px;overflow-x:auto;scrollbar-width:none}
+          .tabs::-webkit-scrollbar{display:none}
+          .tab{white-space:nowrap;flex-shrink:0}
+          .tbadge{max-width:38vw}
+          .ss{padding:28px 14px}
+        }
 
         @media (max-width:560px){
           .auth-modal{max-width:100%;margin:16px 0}
@@ -7221,7 +7235,6 @@ export default function App() {
             {started && <button className="tbadge" onClick={function(){ setShowTopic(true); }}>{isLit ? ("📖 " + (bookMeta.title || "Book")) : ("💬 "+act)}</button>}
 
             {isAdmin && <button className="adm-trigger" onClick={function(){ setShowAdmin(true); }} title="Accounts">👥 Users</button>}
-            {isAdmin && <button className="adm-trigger" onClick={function(){ setShowUpload(true); setUpErr(""); setUpMsg(""); }} title="Upload a song or book to the library">📤 Upload</button>}
             {authReady && (me ? (
               <div className="userbtn-wrap">
                 <span className="acct-email" title={me.email}>{me.email}</span>
@@ -7234,10 +7247,10 @@ export default function App() {
         </header>
 
         <div className="tabs">
-          {["chat","vocab","grammar"].map(function(t){
+          {["chat","vocab","grammar","forum"].map(function(t){
             return (
               <button key={t} className={"tab"+(tab===t?" on":"")} onClick={function(){ setTab(t); }}>
-                {t==="chat"?"Reading":t==="vocab"?"Vocabulary":"Grammar"}
+                {t==="chat"?"Reading":t==="vocab"?"Vocabulary":t==="grammar"?"Grammar":"Forum"}
                 {t==="vocab"&&vocab.length>0&&<span className="bdg">{vocab.length}</span>}
                 {t==="grammar"&&tips.length>0&&<span className="bdg g">{tips.length}</span>}
               </button>
@@ -7258,37 +7271,8 @@ export default function App() {
           </div>
         )}
 
-        {tab==="chat" && (
+        {tab==="forum" && (
           <div className="main">
-            {!started && !mode && (
-              <div className="ss">
-                <div className="sico" style={{color:"#c4955a"}}><Pushkin size={64}/></div>
-                <h1 className="sti">Говорим</h1>
-                <p className="sde">Choose how you want to practice today.</p>
-                <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:14}}>
-                  <button className="btn-p" onClick={function(){ setMode("read"); }} style={{textAlign:"left",padding:"18px 22px"}}>
-                    <div style={{fontSize:22,marginBottom:4}}>📖 Read</div>
-                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Load any Russian book file, then practice with comprehension questions.</div>
-                  </button>
-                  <button className="btn-p" onClick={function(){ setMode("grammar"); }} style={{textAlign:"left",padding:"18px 22px"}}>
-                    <div style={{fontSize:22,marginBottom:4}}>📚 Grammar</div>
-                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Pick your level and a topic. Quick reference pages with rules and examples.</div>
-                  </button>
-                  {WORDBANK_ENABLED && (
-                    <button className="btn-p" onClick={function(){ setMode("wordbank"); }} style={{textAlign:"left",padding:"18px 22px"}}>
-                      <div style={{fontSize:22,marginBottom:4}}>🗂️ Vocab</div>
-                      <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Drill the most common Russian words, ranked by real-world frequency, in blocks of 30.</div>
-                    </button>
-                  )}
-                  <button className="btn-p" onClick={function(){ setMode("forum"); }} style={{textAlign:"left",padding:"18px 22px"}}>
-                    <div style={{fontSize:22,marginBottom:4}}>💬 Forum</div>
-                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Request books, report bugs, and talk with other readers.</div>
-                  </button>
-                </div>
-              </div>
-            )}
-
-            {!started && mode === "forum" && (
               <div className="ss" style={{alignItems:"stretch",maxWidth:680,width:"100%"}}>
                 <div style={{textAlign:"center"}}>
                   <div className="sico">💬</div>
@@ -7300,7 +7284,7 @@ export default function App() {
                   <div style={{textAlign:"center",display:"flex",flexDirection:"column",gap:10,alignItems:"center"}}>
                     <p className="sde">The forum is for signed-in readers.</p>
                     <button className="btn-p" onClick={function(){ setAuthMode("login"); setAuthErr(""); setAuthOpen(true); }}>Sign in</button>
-                    <button className="btn-g" onClick={function(){ setMode(""); }}>← Back</button>
+                    <button className="btn-g" onClick={function(){ setTab("chat"); }}>← Back</button>
                   </div>
                 )}
 
@@ -7437,9 +7421,40 @@ export default function App() {
                       </div>
                     )}
 
-                    <button className="btn-g" style={{alignSelf:"center",marginTop:6}} onClick={function(){ setMode(""); setForumThread(null); setForumCompose(false); }}>← Back</button>
+                    <button className="btn-g" style={{alignSelf:"center",marginTop:6}} onClick={function(){ setTab("chat"); setForumThread(null); setForumCompose(false); }}>← Back</button>
                   </div>
                 )}
+              </div>
+          </div>
+        )}
+
+        {tab==="chat" && (
+          <div className="main">
+            {!started && !mode && (
+              <div className="ss">
+                <div className="sico" style={{color:"#c4955a"}}><Pushkin size={64}/></div>
+                <h1 className="sti">Говорим</h1>
+                <p className="sde">Choose how you want to practice today.</p>
+                <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:14}}>
+                  <button className="btn-p" onClick={function(){ setMode("read"); }} style={{textAlign:"left",padding:"18px 22px"}}>
+                    <div style={{fontSize:22,marginBottom:4}}>📖 Read</div>
+                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Load any Russian book file, then practice with comprehension questions.</div>
+                  </button>
+                  <button className="btn-p" onClick={function(){ setMode("grammar"); }} style={{textAlign:"left",padding:"18px 22px"}}>
+                    <div style={{fontSize:22,marginBottom:4}}>📚 Grammar</div>
+                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Pick your level and a topic. Quick reference pages with rules and examples.</div>
+                  </button>
+                  {WORDBANK_ENABLED && (
+                    <button className="btn-p" onClick={function(){ setMode("wordbank"); }} style={{textAlign:"left",padding:"18px 22px"}}>
+                      <div style={{fontSize:22,marginBottom:4}}>🗂️ Vocab</div>
+                      <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Drill the most common Russian words, ranked by real-world frequency, in blocks of 30.</div>
+                    </button>
+                  )}
+                  <button className="btn-p" onClick={function(){ setTab("forum"); }} style={{textAlign:"left",padding:"18px 22px"}}>
+                    <div style={{fontSize:22,marginBottom:4}}>💬 Forum</div>
+                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Request books, report bugs, and talk with other readers.</div>
+                  </button>
+                </div>
               </div>
             )}
 
