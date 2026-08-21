@@ -1,0 +1,254 @@
+// Serverless function: word definitions from the Yandex Dictionary API.
+//
+// The old path sent every word tap through Gemini (/api/chat). This endpoint
+// replaces that with a real dictionary: instant, deterministic, and free
+// (10,000 lookups/day on the free key). The frontend still falls back to the
+// AI define for words Yandex doesn't know — rare or literary forms.
+//
+// Required env var on Vercel:
+//   YANDEX_DICT_KEY — free key from https://yandex.com/dev/dictionary/keys/get/
+//
+// Notes:
+// - MORPHO flag (0x0004) makes Yandex accept inflected forms: looking up
+//   "столе" returns the entry for "стол", which is exactly what a reader
+//   clicking mid-sentence needs. The entry's own text IS the lemma.
+// - Yandex is picky about е/ё in some entries, so on a miss we retry the
+//   lowercase form and up to three ё-variants server-side before giving up.
+// - A second lookup in ru-ru supplies Russian synonyms for the popup's
+//   "Russian definition" line. Its failure is never fatal.
+// - Responses carry s-maxage so Vercel's CDN caches each word; repeat lookups
+//   of "который" cost neither quota nor a function invocation.
+// - Yandex's terms require the visible text "Powered by Yandex.Dictionary" —
+//   the popup renders it whenever definitionSource === "yandex".
+
+import { currentUser } from "../lib/auth.js";
+
+const YANDEX_URL = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup";
+const FLAG_MORPHO = 0x0004;
+
+// ---- Per-IP rate limit (same shape as api/chat.js) -------------------------
+// Generous compared to the AI path — a lookup costs nothing — but still a cap
+// so one IP can't drain the shared 10k/day Yandex quota.
+const rateLimitMap = new Map();
+const RATE_WINDOW_MS = 60 * 1000;
+const RATE_MAX_PER_WINDOW = 40;
+const RATE_DAILY_PER_IP = 1200;
+const RATE_MAX_PER_WINDOW_ANON = 20;
+const RATE_DAILY_PER_IP_ANON = 400;
+
+function getClientIp(req) {
+  const fwd = req.headers["x-forwarded-for"];
+  if (typeof fwd === "string" && fwd.length) return fwd.split(",")[0].trim();
+  return req.headers["x-real-ip"] || "unknown";
+}
+
+function checkRateLimit(ip, signedIn) {
+  const perWindow = signedIn ? RATE_MAX_PER_WINDOW : RATE_MAX_PER_WINDOW_ANON;
+  const perDay = signedIn ? RATE_DAILY_PER_IP : RATE_DAILY_PER_IP_ANON;
+  const now = Date.now();
+  const day = Math.floor(now / (24 * 60 * 60 * 1000));
+  const rec = rateLimitMap.get(ip) || { hits: [], dailyKey: day, dailyCount: 0 };
+  if (rec.dailyKey !== day) { rec.dailyKey = day; rec.dailyCount = 0; }
+  rec.hits = rec.hits.filter(function (t) { return now - t < RATE_WINDOW_MS; });
+  if (rec.hits.length >= perWindow) return { ok: false, reason: "Too many lookups this minute. Wait a bit." };
+  if (rec.dailyCount >= perDay) return { ok: false, reason: "Daily lookup limit reached for your IP. Try tomorrow." };
+  rec.hits.push(now);
+  rec.dailyCount += 1;
+  rateLimitMap.set(ip, rec);
+  return { ok: true };
+}
+
+// ---- Yandex plumbing -------------------------------------------------------
+
+async function yandexLookup(text, lang, signal) {
+  const url =
+    YANDEX_URL +
+    "?key=" + encodeURIComponent(process.env.YANDEX_DICT_KEY) +
+    "&lang=" + lang +
+    "&ui=en" +
+    "&flags=" + FLAG_MORPHO +
+    "&text=" + encodeURIComponent(text);
+  const resp = await fetch(url, { signal });
+  if (!resp.ok) {
+    const err = new Error("Yandex returned HTTP " + resp.status);
+    err.yandexStatus = resp.status;
+    throw err;
+  }
+  const data = await resp.json();
+  return Array.isArray(data && data.def) ? data.def : [];
+}
+
+function yoVariants(word) {
+  const out = [];
+  for (let i = 0; i < word.length; i++) {
+    if (word[i] === "е") out.push(word.slice(0, i) + "ё" + word.slice(i + 1));
+  }
+  return out;
+}
+
+// Yandex grammatical tags arrive in whatever language `ui` selects, and have
+// varied historically — normalize defensively.
+function normalizeAspect(asp) {
+  const a = (asp || "").toLowerCase();
+  if (!a) return "";
+  if (/несов|impf|imperf/.test(a)) return "imperfective";
+  if (/сов|pf|perf/.test(a)) return "perfective";
+  return "";
+}
+
+function genderWord(gen) {
+  const g = (gen || "").toLowerCase();
+  if (/^м|^m/.test(g) && !/ср|neut/.test(g)) return "masculine";
+  if (/^ж|^f/.test(g)) return "feminine";
+  if (/^с|^n/.test(g)) return "neuter";
+  return "";
+}
+
+// One translation line, enriched with the Russian sense marker when Yandex
+// supplies one — polysemy like лук → "onion (растение), bow (оружие)".
+function translationLine(tr, isVerb) {
+  let t = (tr.text || "").trim();
+  if (!t) return "";
+  if (isVerb && !/^to\s/i.test(t)) t = "to " + t;
+  const mean = Array.isArray(tr.mean) && tr.mean.length ? tr.mean[0].text : "";
+  return mean ? t + " (" + mean + ")" : t;
+}
+
+// Map Yandex's def[] onto the exact shape the popup and the vocab list
+// already consume (same fields the old AI prompt produced).
+function buildEntry(defs, clickedWord, matchedForm) {
+  const primary = defs[0];
+  const lemma = (primary.text || matchedForm || clickedWord).trim();
+  const pos = (primary.pos || "").toLowerCase();
+  const isVerb = pos.indexOf("verb") !== -1 || pos.indexOf("глагол") !== -1;
+
+  const trs = Array.isArray(primary.tr) ? primary.tr : [];
+  const translation = trs.slice(0, 4)
+    .map(function (t) { return translationLine(t, isVerb); })
+    .filter(Boolean)
+    .join(", ");
+
+  const aspect = normalizeAspect(primary.asp);
+  const gender = genderWord(primary.gen);
+
+  const grammarBits = [];
+  if (gender) grammarBits.push(gender + " noun");
+  else if (isVerb && aspect) grammarBits.push(aspect + " verb");
+  if (primary.ts) grammarBits.push("[" + primary.ts + "]");
+  // A word that is also a different part of speech (стекло: noun AND verb
+  // form) gets a compact mention instead of being silently dropped.
+  for (let i = 1; i < Math.min(defs.length, 3); i++) {
+    const d = defs[i];
+    const firstTr = d.tr && d.tr[0] ? d.tr[0].text : "";
+    if (firstTr) grammarBits.push("also " + (d.pos || "?") + ": " + (d.text || lemma) + " — " + firstTr);
+  }
+
+  // First example that comes with its own translation.
+  let example = "", exampleTranslation = "";
+  for (const t of trs) {
+    const exs = Array.isArray(t.ex) ? t.ex : [];
+    for (const ex of exs) {
+      if (ex.text && ex.tr && ex.tr[0] && ex.tr[0].text) {
+        example = ex.text;
+        exampleTranslation = ex.tr[0].text;
+        break;
+      }
+    }
+    if (example) break;
+  }
+
+  return {
+    word: clickedWord,
+    lemma: lemma,
+    matchedForm: matchedForm,
+    partOfSpeech: pos || "",
+    aspect: aspect,
+    aspectPair: "",           // Yandex doesn't state aspect partners reliably
+    translation: translation,
+    definitionRu: "",         // filled from the ru-ru lookup below when it works
+    grammar: grammarBits.join(" · "),
+    example: example,
+    exampleTranslation: exampleTranslation,
+    definitionSource: "yandex",
+  };
+}
+
+// ---- Handler ---------------------------------------------------------------
+
+export default async function handler(req, res) {
+  if (req.method !== "GET") return res.status(405).json({ error: "Method not allowed" });
+
+  if (!process.env.YANDEX_DICT_KEY) {
+    return res.status(500).json({ error: "YANDEX_DICT_KEY not configured on the server" });
+  }
+
+  const raw = (req.query && req.query.word ? String(req.query.word) : "").trim();
+  const word = raw.replace(/[^а-яёА-ЯЁ-]/g, "");
+  if (!word || word.length < 2 || word.length > 50) {
+    return res.status(400).json({ error: "Missing or invalid ?word=" });
+  }
+
+  const ip = getClientIp(req);
+  const user = currentUser(req);
+  const rl = checkRateLimit(ip, !!user);
+  if (!rl.ok) return res.status(429).json({ error: rl.reason });
+
+  // The whole request — every variant plus the ru-ru pass — shares one budget.
+  const ctrl = new AbortController();
+  const timer = setTimeout(function () { ctrl.abort(); }, 8000);
+
+  try {
+    // Try the word as clicked, then lowercase, then ё-variants of the
+    // lowercase form. MORPHO handles inflection; this loop only handles
+    // casing and the е/ё mess.
+    const lower = word.toLowerCase();
+    const candidates = [word, lower].concat(yoVariants(lower).slice(0, 3))
+      .filter(function (w, i, arr) { return arr.indexOf(w) === i; });
+
+    let defs = [], matchedForm = "";
+    for (const cand of candidates) {
+      defs = await yandexLookup(cand, "ru-en", ctrl.signal);
+      if (defs.length) { matchedForm = cand; break; }
+    }
+
+    if (!defs.length) {
+      // Cache misses too — the dictionary's coverage doesn't change hour to
+      // hour, and repeat misses on the same rare word shouldn't spend quota.
+      res.setHeader("Cache-Control", "public, s-maxage=86400");
+      return res.status(404).json({ error: 'No dictionary entry found for "' + word + '"' });
+    }
+
+    const entry = buildEntry(defs, word, matchedForm);
+
+    // Russian synonyms for the monolingual line. Strictly best-effort.
+    try {
+      const ruDefs = await yandexLookup(entry.lemma, "ru-ru", ctrl.signal);
+      if (ruDefs.length && Array.isArray(ruDefs[0].tr)) {
+        const syns = ruDefs[0].tr.map(function (t) { return t.text; })
+          .filter(function (t) { return t && t.toLowerCase() !== entry.lemma.toLowerCase(); })
+          .slice(0, 5);
+        if (syns.length) entry.definitionRu = "≈ " + syns.join(", ");
+      }
+    } catch (_) { /* synonyms are a garnish */ }
+
+    // A week at the CDN: dictionary entries do not change. The browser also
+    // caches in localStorage, so this mostly serves other users of the word.
+    res.setHeader("Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
+    return res.status(200).json(entry);
+  } catch (err) {
+    const ys = err && err.yandexStatus;
+    if (ys === 401 || ys === 402) {
+      return res.status(500).json({ error: "Yandex API key invalid or blocked — check YANDEX_DICT_KEY" });
+    }
+    if (ys === 403) {
+      // Yandex's daily quota, not ours. Client falls back to the AI define.
+      return res.status(429).json({ error: "Yandex daily lookup quota exhausted — resets at midnight UTC" });
+    }
+    if (err && err.name === "AbortError") {
+      return res.status(504).json({ error: "Dictionary service timed out" });
+    }
+    return res.status(502).json({ error: "Dictionary lookup failed: " + ((err && err.message) || "unknown error") });
+  } finally {
+    clearTimeout(timer);
+  }
+}

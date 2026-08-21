@@ -4723,9 +4723,15 @@ export default function App() {
     catch (_) {}   // quota full — the cache is an optimisation, not a requirement
   };
 
+  // When Yandex has no entry for a word (rare/literary forms), fall back to
+  // the old AI define. Flip to false for a pure-dictionary app with no AI
+  // define calls at all.
+  var AI_DEFINE_FALLBACK = true;
+
   var fetchDef = async function(word) {
-    // AI-only: one Gemini call returns translation, a brief Russian
-    // definition, grammar, and an example sentence in a single shot.
+    // Yandex Dictionary first: instant, deterministic, free (10k/day), and
+    // MORPHO search resolves inflected forms to the lemma server-side. The
+    // AI define survives only as a fallback for words the dictionary lacks.
     var clean = (word || "").trim();
     if (!clean) throw new Error("Empty word");
 
@@ -4733,6 +4739,33 @@ export default function App() {
     var cached = readDefCache(cacheKey);
     if (cached) return cached;
 
+    // -- 1. Yandex Dictionary (via our /api/define proxy) --
+    var yandexDown = null;
+    try {
+      var r = await authFetch("/api/define?word=" + encodeURIComponent(clean));
+      if (r.ok) {
+        var data = await r.json();
+        if (data && data.translation) {
+          writeDefCache(cacheKey, data);
+          if (typeof window !== "undefined" && window.DEF_DEBUG) console.log("[def:yandex]", clean, "\u2192", data);
+          return data;
+        }
+      } else if (r.status !== 404) {
+        var errBody = await r.json().catch(function(){ return {}; });
+        yandexDown = errBody.error || ("HTTP " + r.status);
+        console.warn("[def] Yandex lookup failed:", r.status, yandexDown);
+      }
+      // 404 = the word simply isn't in the dictionary -> try the AI below.
+    } catch (netErr) {
+      yandexDown = (netErr && netErr.message) || "network error";
+      console.warn("[def] Yandex lookup unreachable:", yandexDown);
+    }
+
+    if (!AI_DEFINE_FALLBACK) {
+      throw new Error(yandexDown || ('No dictionary entry found for "' + clean + '"'));
+    }
+
+    // -- 2. AI fallback (the old path, verbatim) --
     var raw = await api(
       [{role:"user",content:defprompt(clean)}],
       "You are a Russian-English dictionary. Return a single JSON object only. No markdown. No commentary.",
@@ -4751,7 +4784,7 @@ export default function App() {
     writeDefCache(cacheKey, parsed);
 
     if (typeof window !== "undefined" && window.DEF_DEBUG) {
-      console.log("[def]", clean, "→", parsed);
+      console.log("[def]", clean, "\u2192", parsed);
     }
 
     return parsed;
@@ -8765,6 +8798,7 @@ export default function App() {
                   <div className="ptr">{popup.data.translation}</div>
                   {popup.data.grammar && <div className="pgr">{popup.data.grammar}</div>}
                   {popup.data.example && <div className="pex">{popup.data.example}{popup.data.exampleTranslation&&<div className="pext">{popup.data.exampleTranslation}</div>}</div>}
+                  {popup.data.definitionSource === "yandex" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href="https://yandex.com/dev/dictionary/" target="_blank" rel="noreferrer" style={{color:"inherit"}}>Powered by Yandex.Dictionary</a></div>}
                 </>
               )}
 
