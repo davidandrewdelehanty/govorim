@@ -61,6 +61,13 @@ chooses what to render, and every gated route re-checks the session server-side.
 
 ## Working agreements
 
+- **Dave does not test locally.** Do not hand him `npm run dev` or `npm run build`
+  as a verification step — he pushes and tests on govorim.dev. Vercel runs
+  `prebuild` (the books manifest) and `vite build` itself, so a local build only
+  duplicates that. A build error therefore surfaces as a *failed deployment*, not
+  a failed command: when the live site looks stale, check the Vercel deploy log
+  before suspecting the code.
+
 - **Scripts the user runs must be committed into the repo**, and commands should
   reference them as `"$REPO/scripts/..."`. A script that only exists as a chat
   attachment produces `can't open file`.

@@ -60,6 +60,23 @@ if [ ! -f "$MANIFEST" ]; then
     exit 1
 fi
 
+# Size of one object, or empty if it isn't there.
+#
+# NOT `rclone lsf <path> >/dev/null`: that exits 0 with empty output for a key
+# that does not exist, so it reports every object as already present. This
+# script skipped every copy because of it, and the same test guarded --purge,
+# which would have deleted the public originals against an empty private
+# bucket. Compare sizes instead of asking a yes/no question.
+object_size() {   # object_size <bucket> <key>
+    rclone lsjson "$REMOTE:$1/$2" 2>/dev/null | python3 -c \
+        'import sys,json
+try:
+    d = json.load(sys.stdin)
+except Exception:
+    d = []
+print(d[0]["Size"] if d and not d[0].get("IsDir") else "")' 2>/dev/null
+}
+
 move_file() {   # move_file <relative path under books/>
     local rel="$1"
     local src="$REPO/public/books/$rel"
@@ -126,18 +143,29 @@ for book in "${BOOKS[@]}"; do
 
     while IFS= read -r key; do
         [ -n "$key" ] || continue
-        if rclone lsf "$REMOTE:$PRIVATE_BUCKET/$key" >/dev/null 2>&1; then
-            echo "    already private: $key"
+        pub_size="$(object_size "$PUBLIC_BUCKET" "$key")"
+        priv_size="$(object_size "$PRIVATE_BUCKET" "$key")"
+        if [ -n "$priv_size" ] && [ "$priv_size" = "$pub_size" ]; then
+            echo "    already private: $key ($priv_size bytes)"
+        elif [ -n "$priv_size" ] && [ -z "$pub_size" ]; then
+            echo "    already private: $key ($priv_size bytes, public copy gone)"
         else
             rclone copyto "$REMOTE:$PUBLIC_BUCKET/$key" "$REMOTE:$PRIVATE_BUCKET/$key" \
                 --s3-no-check-bucket --progress
-            echo "    copied: $key"
+            priv_size="$(object_size "$PRIVATE_BUCKET" "$key")"
+            if [ -n "$priv_size" ] && { [ -z "$pub_size" ] || [ "$priv_size" = "$pub_size" ]; }; then
+                echo "    copied: $key ($priv_size bytes)"
+            else
+                echo "    COPY FAILED: $key (public $pub_size, private ${priv_size:-none})" >&2
+                FAILED=1
+                continue
+            fi
         fi
         if [ "$PURGE" = "1" ]; then
             # Only ever delete the public copy after confirming the private
             # one is really there -- a failed copy plus an eager delete is how
             # an audiobook disappears.
-            if rclone lsf "$REMOTE:$PRIVATE_BUCKET/$key" >/dev/null 2>&1; then
+            if [ -n "$(object_size "$PRIVATE_BUCKET" "$key")" ]; then
                 rclone deletefile "$REMOTE:$PUBLIC_BUCKET/$key" --s3-no-check-bucket
                 echo "    removed from public bucket: $key"
             else
@@ -148,11 +176,18 @@ for book in "${BOOKS[@]}"; do
 done
 
 echo
+if [ "${FAILED:-0}" = "1" ]; then
+    echo
+    echo "Some objects did not copy. Fix those before going further -- and do" >&2
+    echo "NOT run --purge, which deletes the public original." >&2
+    exit 1
+fi
+
+echo
 echo "Done. Next:"
 echo "  1. npm run books      # regenerate private/books/index.json"
-echo "  2. npm run build      # confirm the app still builds"
-echo "  3. commit and push from the desktop app, then check the gated book"
-echo "     is absent for a signed-out browser and present when you sign in."
+echo "  2. commit and push, then check on the live site that the gated book is"
+echo "     absent signed out, and plays signed in as the admin."
 if [ "$PURGE" != "1" ]; then
-    echo "  4. re-run with --purge to remove the public audio copies once verified."
+    echo "  3. re-run with --purge to remove the public audio copies once verified."
 fi
