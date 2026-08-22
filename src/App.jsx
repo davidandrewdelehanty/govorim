@@ -6121,24 +6121,22 @@ export default function App() {
                       <div style={{maxWidth:640,margin:"0 auto"}}>
                         <button className="btn-g" style={{padding:"5px 12px",fontSize:13,marginBottom:14}}
                           onClick={function(){ setMusicSong(null); setPopup(null); }}>← {artist.artist}</button>
+                        <div style={{maxWidth:560,margin:"0 0 20px"}}>
+                          <div style={{position:"relative",width:"100%",paddingBottom:"56.25%",height:0}}>
+                            <iframe
+                              src={"https://www.youtube.com/embed/" + song.youtube}
+                              title={song.title}
+                              style={{position:"absolute",inset:0,width:"100%",height:"100%",border:"none",borderRadius:10}}
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen />
+                          </div>
+                        </div>
                         <div style={{fontFamily:"'Crimson Pro',serif",fontSize:15,color:"rgba(42,31,20,.55)",letterSpacing:.5}}>{artist.artist}</div>
                         <h1 style={{fontFamily:"'Playfair Display',serif",fontSize:34,color:"#000",fontWeight:700,margin:"2px 0 18px",lineHeight:1.15}}>{song.title}</h1>
                         <div style={{fontFamily:"'Crimson Pro',serif",fontSize:19,color:"#1c1610"}}>
                           {renderLyrics(song.lyrics)}
                         </div>
                         <div style={{height:16}}/>
-                      </div>
-                    </div>
-                    <div style={{flexShrink:0,background:"#1a1611",padding:"10px 0 14px",borderTop:"1px solid rgba(42,31,20,.25)"}}>
-                      <div style={{maxWidth:560,margin:"0 auto",padding:"0 16px"}}>
-                        <div style={{position:"relative",width:"100%",paddingBottom:"46%",height:0}}>
-                          <iframe
-                            src={"https://www.youtube.com/embed/" + song.youtube}
-                            title={song.title}
-                            style={{position:"absolute",inset:0,width:"100%",height:"100%",border:"none",borderRadius:10}}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen />
-                        </div>
                       </div>
                     </div>
                   </div>
