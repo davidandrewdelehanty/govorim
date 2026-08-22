@@ -5,11 +5,10 @@ Run from WSL:  python3 tools/add_song_gui.py
 Opens a form in your browser; each submit adds a song to public/music/music.json,
 with an optional commit + push. Ctrl+C in the terminal (or the Quit link) stops it.
 """
-import json, re, os, sys, html, subprocess, threading, warnings
-from http.server import HTTPServer, BaseHTTPRequestHandler
-
-warnings.filterwarnings("ignore")  # cgi deprecation noise on newer pythons
-import cgi
+import json, re, os, sys, html, subprocess, threading
+from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
+from email.parser import BytesParser
+from email.policy import default as email_default
 
 REPO = "/mnt/c/Users/david/projects/govorim-app"
 MUSIC = os.path.join(REPO, "public", "music", "music.json")
@@ -98,18 +97,30 @@ class H(BaseHTTPRequestHandler):
         self._send(form_page())
 
     def do_POST(self):
-        fs = cgi.FieldStorage(fp=self.rfile, headers=self.headers,
-                              environ={"REQUEST_METHOD": "POST",
-                                       "CONTENT_TYPE": self.headers.get("Content-Type", "")})
-        artist = (fs.getfirst("artist") or "").strip()
-        title = (fs.getfirst("title") or "").strip()
-        yt = (fs.getfirst("youtube") or "").strip()
-        lyrics = (fs.getfirst("lyrics") or "").strip()
-        push = fs.getfirst("push") is not None
+        body = self.rfile.read(int(self.headers.get("Content-Length", 0)))
+        ctype = self.headers.get("Content-Type", "")
+        msg = BytesParser(policy=email_default).parsebytes(
+            b"Content-Type: " + ctype.encode() + b"\r\n\r\n" + body)
+        fields, filebytes = {}, None
+        for part in (msg.iter_parts() if msg.is_multipart() else []):
+            name = part.get_param("name", header="content-disposition")
+            if not name:
+                continue
+            if part.get_filename():
+                if name == "lyricsfile":
+                    filebytes = part.get_payload(decode=True)
+            else:
+                payload = part.get_payload(decode=True) or b""
+                fields[name] = payload.decode("utf-8", errors="replace")
 
-        if not lyrics and "lyricsfile" in fs and fs["lyricsfile"].filename:
-            raw = fs["lyricsfile"].file.read()
-            lyrics = raw.decode("utf-8-sig", errors="replace").strip()
+        artist = fields.get("artist", "").strip()
+        title = fields.get("title", "").strip()
+        yt = fields.get("youtube", "").strip()
+        lyrics = fields.get("lyrics", "").strip()
+        push = "push" in fields
+
+        if not lyrics and filebytes:
+            lyrics = filebytes.decode("utf-8-sig", errors="replace").strip()
         lyrics = lyrics.replace("\r\n", "\n")
 
         def fail(m):
@@ -176,7 +187,8 @@ if __name__ == "__main__":
     if not os.path.isfile(MUSIC):
         sys.exit("music.json not found at %s" % MUSIC)
     url = "http://127.0.0.1:%d/" % PORT
-    srv = HTTPServer(("127.0.0.1", PORT), H)
+    srv = ThreadingHTTPServer(("127.0.0.1", PORT), H)
+    srv.daemon_threads = True
     print("Govorim song uploader — %s  (Ctrl+C to stop)" % url)
     open_browser(url)
     try:
