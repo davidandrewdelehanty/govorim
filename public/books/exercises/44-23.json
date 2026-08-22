@@ -1,204 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ посмотрел на членов высшего совета и сказал.",
-      "lemma": "Павел",
-      "options": [
-        "Павел",
-        "Павла",
-        "Павлу",
-        "Павлом"
-      ],
-      "correct": "Павел",
-      "case": "Именительный (Nominative)",
-      "translation": "Paul looked at the members of the high council and spoke.",
-      "explain": "Павел is the grammatical subject of посмотрел (looked), requiring nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Первосвященник приказал ударить ___.",
-      "lemma": "Павел",
-      "options": [
-        "Павел",
-        "Павла",
-        "Павлу",
-        "Павлом"
-      ],
-      "correct": "Павла",
-      "case": "Винительный (Accusative)",
-      "translation": "The high priest ordered to strike Paul.",
-      "explain": "Павла is the direct object of ударить (strike), requiring accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Павел сказал первосвященнику, стоявшему перед ___.",
-      "lemma": "совет",
-      "options": [
-        "совет",
-        "совета",
-        "совету",
-        "советом"
-      ],
-      "correct": "советом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Paul spoke to the high priest standing before the council.",
-      "explain": "The preposition перед (before) governs the instrumental case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Мы не находим в этом человеке ничего плохого, говорили учители ___.",
-      "lemma": "закон",
-      "options": [
-        "закон",
-        "закона",
-        "закону",
-        "законом"
-      ],
-      "correct": "закона",
-      "case": "Родительный (Genitive)",
-      "translation": "We find no evil in this man, the teachers of the law said.",
-      "explain": "The genitive case is used to show possession or affiliation—'teachers of the law.'"
-    },
-    {
-      "id": "c5",
-      "sentence": "Павел громко сказал членам высшего ___.",
-      "lemma": "совет",
-      "options": [
-        "совет",
-        "совета",
-        "совету",
-        "советом"
-      ],
-      "correct": "совету",
-      "case": "Дательный (Dative)",
-      "translation": "Paul spoke loudly to the members of the high council.",
-      "explain": "Говорил (said to) takes the dative case for the recipient."
-    },
-    {
-      "id": "c6",
-      "sentence": "Командир римского полка, опасаясь за ___.",
-      "lemma": "Павел",
-      "options": [
-        "Павел",
-        "Павла",
-        "Павлу",
-        "Павлом"
-      ],
-      "correct": "Павла",
-      "case": "Винительный (Accusative)",
-      "translation": "The Roman commander, fearing for Paul.",
-      "explain": "The preposition за (for) with accusative expresses concern for someone."
-    },
-    {
-      "id": "c7",
-      "sentence": "Некоторые иудеи собрались и поклялись ничего не есть до тех пор, пока не убьют ___.",
-      "lemma": "Павел",
-      "options": [
-        "Павел",
-        "Павла",
-        "Павлу",
-        "Павлом"
-      ],
-      "correct": "Павла",
-      "case": "Винительный (Accusative)",
-      "translation": "Some Jews gathered and swore an oath to eat nothing until they killed Paul.",
-      "explain": "Убить (to kill) is a transitive verb requiring the accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Спор разгорелся перед ___, который опасался за жизнь Павла.",
-      "lemma": "командир",
-      "options": [
-        "командир",
-        "командира",
-        "командиру",
-        "командиром"
-      ],
-      "correct": "командиром",
-      "case": "Творительный (Instrumental)",
-      "translation": "The argument escalated before the commander, who feared for Paul's life.",
-      "explain": "The preposition перед (before) governs the instrumental case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Павел посмотрел на членов высшего совета и сказал, «Братья, вплоть до сегодняшнего дня я жил с чистой совестью перед Богом».",
-      "question": "What did Paul claim about how he had lived until that day?",
-      "options": [
-        "He lived with a clear conscience before God",
-        "He lived in great fear and anxiety",
-        "He lived in ignorance of the law",
-        "He lived among the Romans"
-      ],
-      "correct": "He lived with a clear conscience before God",
-      "explain": "Павел сказал о том, что он жил с чистой совестью перед Богом — Paul declared he had lived with a clear conscience before God."
-    },
-    {
-      "id": "r2",
-      "ru": "Первосвященник Анания приказал стоявшим рядом с Павлом ударить его по губам.",
-      "question": "What did the high priest Ananias command the men standing near Paul to do?",
-      "options": [
-        "Strike him on the mouth",
-        "Take him away",
-        "Bind him",
-        "Question him"
-      ],
-      "correct": "Strike him on the mouth",
-      "explain": "Анания приказал ударить его по губам — Ananias commanded them to strike him on the mouth."
-    },
-    {
-      "id": "r3",
-      "ru": "Павел знал, что одни из них были саддукеями, а другие — фарисеями, поэтому он громко сказал членам высшего совета.",
-      "question": "Why did Paul speak aloud to the council?",
-      "options": [
-        "Because he recognized there were both Sadducees and Pharisees present",
-        "Because he was angry at the high priest",
-        "Because he wanted to escape",
-        "Because the soldiers forced him to speak"
-      ],
-      "correct": "Because he recognized there were both Sadducees and Pharisees present",
-      "explain": "Павел знал, что одни были саддукеями, а другие — фарисеями — Paul knew some were Sadducees and others were Pharisees, which prompted him to speak."
-    },
-    {
-      "id": "r4",
-      "ru": "Когда он это сказал, между фарисеями и саддукеями разгорелся спор, и собрание разделилось.",
-      "question": "What was the result of Paul's statement to the council?",
-      "options": [
-        "An argument broke out between Pharisees and Sadducees and the assembly was divided",
-        "Everyone agreed with Paul",
-        "The high priest apologized",
-        "The soldiers arrested Paul"
-      ],
-      "correct": "An argument broke out between Pharisees and Sadducees and the assembly was divided",
-      "explain": "между фарисеями и саддукеями разгорелся спор, и собрание разделилось — an argument arose between them and the assembly divided."
-    },
-    {
-      "id": "r5",
-      "ru": "Командир римского полка, опасаясь, как бы Павла не разорвали на части, приказал солдатам забрать его от них силой и увезти в казарму.",
-      "question": "What did the Roman commander order the soldiers to do?",
-      "options": [
-        "Take Paul by force and bring him to the barracks",
-        "Execute Paul immediately",
-        "Allow the Jews to take Paul",
-        "Release Paul to the high priest"
-      ],
-      "correct": "Take Paul by force and bring him to the barracks",
-      "explain": "Командир приказал солдатам забрать его от них силой и увезти в казарму — The commander ordered soldiers to take him by force and bring him to the barracks."
-    },
-    {
-      "id": "r6",
-      "ru": "Наутро некоторые иудеи собрались и поклялись ничего не есть и не пить до тех пор, пока не убьют Павла.",
-      "question": "What oath did some of the Jews take?",
-      "options": [
-        "To eat and drink nothing until they killed Paul",
-        "To never speak to Paul again",
-        "To inform the Roman authorities",
-        "To convert to Christianity"
-      ],
-      "correct": "To eat and drink nothing until they killed Paul",
-      "explain": "Иудеи поклялись ничего не есть и не пить до тех пор, пока не убьют Павла — The Jews swore an oath not to eat or drink until they had killed Paul."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Поднялся ___, некоторые учители Закона из фарисеев встали и решительно заявили:",
+   "lemma": "крик",
+   "options": [
+    "громкому крику",
+    "громкий крик",
+    "громкого крика",
+    "громким криком"
+   ],
+   "correct": "громкий крик",
+   "case": "Именительный (Nominative)",
+   "explain": "«громкий крик» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "A great clamor arose, and some of the scribes of the Pharisees’ part stood up, and contended, saying, “We find no evil in this man. But if a spirit or angel has spoken to him, let’s not fight against God!”"
+  },
+  {
+   "sentence": "Этот человек был схвачен иудеями, и они собирались уже убить его, но я подоспел с воинами и спас его, так как узнал, что он ___.",
+   "lemma": "гражданин",
+   "options": [
+    "римский гражданин",
+    "римском гражданине",
+    "римского гражданина",
+    "римским гражданином"
+   ],
+   "correct": "римский гражданин",
+   "case": "Именительный (Nominative)",
+   "explain": "«римский гражданин» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "“This man was seized by the Jews, and was about to be killed by them, when I came with the soldiers and rescued him, having learned that he was a Roman."
+  },
+  {
+   "sentence": "Я понял, что обвинение связано со ___ их Закона и что он не виновен ни в чем, заслуживающем смерти или тюремного заключения.",
+   "lemma": "вопрос",
+   "options": [
+    "спорных вопросах",
+    "спорные вопросы",
+    "спорных вопросов",
+    "спорными вопросами"
+   ],
+   "correct": "спорными вопросами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«спорными вопросами» — after the preposition «со», the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "I found him to be accused about questions of their law, but not to be charged with anything worthy of death or of imprisonment."
+  },
+  {
+   "sentence": "Я понял, что обвинение связано со спорными вопросами их Закона и что он не виновен ни в чем, заслуживающем смерти или ___.",
+   "lemma": "заключение",
+   "options": [
+    "тюремным заключением",
+    "тюремное заключение",
+    "тюремному заключению",
+    "тюремного заключения"
+   ],
+   "correct": "тюремного заключения",
+   "case": "Родительный (Genitive)",
+   "explain": "«тюремного заключения» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "I found him to be accused about questions of their law, but not to be charged with anything worthy of death or of imprisonment."
+  },
+  {
+   "sentence": "На ___ они отправили его с всадниками дальше, а сами возвратились в казарму.",
+   "lemma": "день",
+   "options": [
+    "следующем дне",
+    "следующему дню",
+    "следующий день",
+    "следующим днём"
+   ],
+   "correct": "следующий день",
+   "case": "Винительный (Accusative)",
+   "explain": "«следующий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c5",
+   "translation": "But on the next day they left the horsemen to go with him, and returned to the barracks."
+  }
+ ]
 }

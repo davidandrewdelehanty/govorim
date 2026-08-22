@@ -1,134 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "После этого царь Аманитян умер, и вместо него царем стал его ___.",
-      "lemma": "сын",
-      "options": ["сын", "сына", "сыну", "сыне"],
-      "correct": "сын",
-      "case": "Именительный (Nominative)",
-      "translation": "After this the king of the Ammonites died, and his son became king in his place.",
-      "explain": "The nominative case is used for the predicate nominative after the verb стал."
-    },
-    {
-      "id": "c2",
-      "sentence": "Давид подумал, «Я окажу ___,  сыну Нахаша, милость».",
-      "lemma": "Ханун",
-      "options": ["Ханун", "Хануна", "Хануну", "Хануне"],
-      "correct": "Хануну",
-      "case": "Дательный (Dative)",
-      "translation": "David thought, 'I will show kindness to Hanun, son of Nahash.'",
-      "explain": "The dative case marks the recipient or beneficiary of an action."
-    },
-    {
-      "id": "c3",
-      "sentence": "Давид отправил к ___  своих слуг, чтобы выразить соболезнование о его отце.",
-      "lemma": "Ханун",
-      "options": ["Ханун", "Хануна", "Хануну", "Хануне"],
-      "correct": "Хануну",
-      "case": "Дательный (Dative)",
-      "translation": "David sent his servants to Hanun to express condolences about his father.",
-      "explain": "The preposition к (to) governs the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Когда люди Давида пришли в ___ Аманитян.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землю"],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "When David's men came to the land of the Ammonites.",
-      "explain": "The preposition в (into) indicating direction of movement takes the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Ханун сбрил им половину бороды и отрезав их одежды наполовину и отослал их из ___.",
-      "lemma": "город",
-      "options": ["город", "города", "городу", "городе"],
-      "correct": "города",
-      "case": "Родительный (Genitive)",
-      "translation": "Hanun shaved off half their beards and cut off their garments and sent them away from the city.",
-      "explain": "The preposition из (from) governs the genitive case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Когда об этом рассказали Давиду, он послал им навстречу ___ из Иерихона.",
-      "lemma": "люди",
-      "options": ["люди", "людей", "людям", "людях"],
-      "correct": "людей",
-      "case": "Винительный (Accusative)",
-      "translation": "When David heard this, he sent people to meet them from Jericho.",
-      "explain": "The accusative case marks the direct object of the verb послал."
-    },
-    {
-      "id": "c7",
-      "sentence": "Ханун сказал вождям, «Давид хочет избежать войны с ___».",
-      "lemma": "Ханун",
-      "options": ["Ханун", "Хануна", "Хануну", "Хануном"],
-      "correct": "Хануном",
-      "case": "Творительный (Instrumental)",
-      "translation": "Hanun said to his leaders, 'David wants to avoid war with Hanun.'",
-      "explain": "The instrumental case follows the preposition с (with)."
-    },
-    {
-      "id": "c8",
-      "sentence": "После этого Иоав со своими воинами вступил в сражение с ___.",
-      "lemma": "арамеи",
-      "options": ["арамеи", "арамеев", "арамеями", "арамеях"],
-      "correct": "арамеями",
-      "case": "Творительный (Instrumental)",
-      "translation": "After this Joab and his men engaged the Syrians in battle.",
-      "explain": "The instrumental case marks the entity one fights with (the preposition с meaning 'with')."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "После этого царь Аманитян умер, и вместо него царем стал его сын Ханун.",
-      "question": "Who became king after the king of the Ammonites died?",
-      "options": ["His son Hanun", "His brother", "A general", "A chosen council"],
-      "correct": "His son Hanun",
-      "explain": "The text states that when the Ammonite king died, his son Hanun became king in his place."
-    },
-    {
-      "id": "r2",
-      "ru": "Давид подумал, «Я окажу Хануну, сыну Нахаша, милость, как его отец оказал милость мне».",
-      "question": "Why did David decide to show kindness to Hanun?",
-      "options": ["Because Hanun's father had shown him kindness", "Because he wanted to conquer Ammon", "To gain allies against other enemies", "Because Hanun was his relative"],
-      "correct": "Because Hanun's father had shown him kindness",
-      "explain": "David explicitly says he will show kindness to Hanun as his father (Nahash) had shown kindness to David."
-    },
-    {
-      "id": "r3",
-      "ru": "Ханун схватил людей Давида, сбрил им половину бороды и отрезав их одежды наполовину до ягодиц, и отослал их обратно.",
-      "question": "How did Hanun treat David's messengers?",
-      "options": ["He shaved half their beards and cut their garments in half, then sent them back", "He treated them with great honor", "He imprisoned them", "He sent them back with gifts"],
-      "correct": "He shaved half their beards and cut their garments in half, then sent them back",
-      "explain": "The text explicitly describes Hanun's disrespectful treatment of David's messengers in this manner."
-    },
-    {
-      "id": "r4",
-      "ru": "Царь сказал, «Оставайтесь в Иерихоне, пока не отрастут ваши бороды, а потом возвращайтесь».",
-      "question": "What did David tell his embarrassed messengers to do?",
-      "options": ["Stay in Jericho until their beards grow back, then return", "Go home immediately", "Go fight the Ammonites", "Stay in hiding forever"],
-      "correct": "Stay in Jericho until their beards grow back, then return",
-      "explain": "David instructed his messengers to remain in Jericho until their beards had regrown before returning to him."
-    },
-    {
-      "id": "r5",
-      "ru": "Когда аммонитяне поняли, что сделали с ненавистными Давиду, они наняли двадцать тысяч пеших воинов из Арам-Бетрехова и Арам-Цовы.",
-      "question": "What did the Ammonites do after realizing their insult?",
-      "options": ["Hired twenty thousand foot soldiers from various Syrian regions", "Made peace with David", "Sent more insults", "Fled to neighboring kingdoms"],
-      "correct": "Hired twenty thousand foot soldiers from various Syrian regions",
-      "explain": "After seeing what they had done to David's messengers, the Ammonites hired Syrian mercenaries to prepare for war."
-    },
-    {
-      "id": "r6",
-      "ru": "Иав сказал, «Если арамеи станут одолевать меня, то ты придешь ко мне на помощь, а если аманитяне станут одолевать тебя, то я приду к тебе на помощь».",
-      "question": "What battle plan did Joab propose to Abishai?",
-      "options": ["They would help each other if either was being overwhelmed in battle", "They would attack from opposite sides", "They would retreat together if threatened", "They would send for reinforcements"],
-      "correct": "They would help each other if either was being overwhelmed in battle",
-      "explain": "Joab's plan was that if the Syrians overpowered him, Abishai would come to help, and vice versa if the Ammonites overpowered Abishai."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Аммонитяне поняли, что они стали ненавистны Давиду, они наняли двадцать тысяч ___ из Арам-Бет-Рехова и Арам-Цовы, а также царя Маахи с тысячью человек и еще двенадцать тысяч человек из Това.",
+   "lemma": "воин",
+   "options": [
+    "пешими воинами",
+    "пешие воины",
+    "пеших воинов",
+    "пеших воинах"
+   ],
+   "correct": "пеших воинов",
+   "case": "Родительный (Genitive)",
+   "explain": "«пеших воинов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "When the children of Ammon saw that they had become odious to David, the children of Ammon sent and hired the Syrians of Beth Rehob, and the Syrians of Zobah, twenty thousand footmen, and the king of Maacah with one thousand men, and the men of Tob twelve thousand men."
+  },
+  {
+   "sentence": "Аммонитяне вышли и построились для сражения у входа в ___, а арамеи из Цовы и Рехова и люди из Това и Маахи стояли отдельно в открытом поле.",
+   "lemma": "ворота",
+   "options": [
+    "городские ворота",
+    "городских воротах",
+    "городским воротам",
+    "городских ворот"
+   ],
+   "correct": "городские ворота",
+   "case": "Винительный (Accusative)",
+   "explain": "«городские ворота» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c2",
+   "translation": "The children of Ammon came out, and put the battle in array at the entrance of the gate. The Syrians of Zobah and of Rehob, and the men of Tob and Maacah, were by themselves in the field."
+  },
+  {
+   "sentence": "Аммонитяне вышли и построились для сражения у входа в городские ворота, а арамеи из Цовы и Рехова и люди из Това и Маахи стояли отдельно в ___.",
+   "lemma": "поле",
+   "options": [
+    "открытом поле",
+    "открытое поле",
+    "открытого поля",
+    "открытым полем"
+   ],
+   "correct": "открытом поле",
+   "case": "Предложный (Prepositional)",
+   "explain": "«открытом поле» — after the preposition «в», for location or topic.",
+   "id": "c3",
+   "translation": "The children of Ammon came out, and put the battle in array at the entrance of the gate. The Syrians of Zobah and of Rehob, and the men of Tob and Maacah, were by themselves in the field."
+  },
+  {
+   "sentence": "___ он отдал под начало своего брата Авишая, и тот выстроил их против аммонитян.",
+   "lemma": "человек",
+   "options": [
+    "остальными людьми",
+    "остальных людей",
+    "остальным людям",
+    "остальные люди"
+   ],
+   "correct": "остальных людей",
+   "case": "Винительный (Accusative)",
+   "explain": "«Остальных людей» — the accusative marks the direct object of the verb.",
+   "id": "c4",
+   "translation": "The rest of the people he committed into the hand of Abishai his brother; and he put them in array against the children of Ammon."
+  },
+  {
+   "sentence": "Арамеи расположились ___, чтобы встретить Давида и сразиться с ним.",
+   "lemma": "порядок",
+   "options": [
+    "боевому порядку",
+    "боевой порядок",
+    "боевым порядком",
+    "боевом порядке"
+   ],
+   "correct": "боевым порядком",
+   "case": "Творительный (Instrumental)",
+   "explain": "«боевым порядком» — the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "David was told that; and he gathered all Israel together, passed over the Jordan, and came to Helam. The Syrians set themselves in array against David, and fought with him."
+  },
+  {
+   "sentence": "Но они побежали перед Израилем, и Давид перебил из них семьсот колесничих и сорок тысяч ___ .",
+   "lemma": "воин",
+   "options": [
+    "пешими воинами",
+    "пешие воины",
+    "пеших воинов",
+    "пеших воинах"
+   ],
+   "correct": "пеших воинов",
+   "case": "Родительный (Genitive)",
+   "explain": "«пеших воинов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "The Syrians fled before Israel; and David killed seven hundred charioteers of the Syrians, and forty thousand horsemen, and struck Shobach the captain of their army, so that he died there."
+  }
+ ]
 }

@@ -1,204 +1,364 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Царица Шева услышала о славе ___.",
-      "lemma": "царь",
-      "options": [
-        "царь",
-        "царя",
-        "царю",
-        "царём"
-      ],
-      "correct": "царя",
-      "case": "Родительный (Genitive)",
-      "translation": "The queen of Sheba heard of the fame of the king.",
-      "explain": "The genitive case is used after 'о' (about/concerning) to show possession."
-    },
-    {
-      "id": "c2",
-      "sentence": "Она пришла в ___.",
-      "lemma": "Иерусалим",
-      "options": [
-        "Иерусалим",
-        "Иерусалима",
-        "Иерусалиму",
-        "Иерусалимом"
-      ],
-      "correct": "Иерусалим",
-      "case": "Винительный (Accusative)",
-      "translation": "She came to Jerusalem.",
-      "explain": "The preposition 'в' (to) with motion governs the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Она пришла к ___.",
-      "lemma": "Соломон",
-      "options": [
-        "Соломон",
-        "Соломона",
-        "Соломону",
-        "Соломоном"
-      ],
-      "correct": "Соломону",
-      "case": "Дательный (Dative)",
-      "translation": "She came to Solomon.",
-      "explain": "The preposition 'к' (to/toward) governs the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Соломон ответил на все ее ___.",
-      "lemma": "вопрос",
-      "options": [
-        "вопрос",
-        "вопроса",
-        "вопросы",
-        "вопросов"
-      ],
-      "correct": "вопросы",
-      "case": "Винительный (Accusative)",
-      "translation": "Solomon answered all her questions.",
-      "explain": "The direct object of the verb 'ответил' (answered) takes the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Для него не было ничего слишком трудного, чего он не смог бы ей объяснить в ___.",
-      "lemma": "слово",
-      "options": [
-        "слово",
-        "слова",
-        "слову",
-        "словом"
-      ],
-      "correct": "словом",
-      "case": "Творительный (Instrumental)",
-      "translation": "There was nothing too hard for him that he could not explain to her in word.",
-      "explain": "The instrumental case shows the means by which something is done."
-    },
-    {
-      "id": "c6",
-      "sentence": "Она сказала царю: «Молва, которую я слышала в своей ___, правдива.»",
-      "lemma": "страна",
-      "options": [
-        "страна",
-        "страны",
-        "стране",
-        "страной"
-      ],
-      "correct": "стране",
-      "case": "Предложный (Prepositional)",
-      "translation": "She said to the king: 'The rumor that I heard in my own country is true.'",
-      "explain": "The preposition 'в' (in) indicating location governs the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Золото, которое Соломон получал ежегодно, было по весу 666 талантов, не считая того дохода, что поступал от купцов и ___.",
-      "lemma": "торговец",
-      "options": [
-        "торговец",
-        "торговца",
-        "торговцы",
-        "торговцев"
-      ],
-      "correct": "торговцев",
-      "case": "Родительный (Genitive)",
-      "translation": "The gold that Solomon received annually was six hundred and sixty-six talents by weight, not counting the income that came from merchants and traders.",
-      "explain": "The preposition 'от' (from) governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Царь сделал 200 больших щитов из кованого ___.",
-      "lemma": "золото",
-      "options": [
-        "золото",
-        "золота",
-        "золоту",
-        "золотом"
-      ],
-      "correct": "золота",
-      "case": "Родительный (Genitive)",
-      "translation": "The king made 200 large shields of beaten gold.",
-      "explain": "Material composition uses the genitive case after 'из' (of/from)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Когда царица Шева услышала о славе Соломона, она пришла в Иерусалим, чтобы испытать его трудными вопросами.",
-      "question": "Why did the queen of Sheba come to see Solomon?",
-      "options": [
-        "To test him with difficult questions",
-        "To offer him gifts",
-        "To become his wife",
-        "To establish trade agreements"
-      ],
-      "correct": "To test him with difficult questions",
-      "explain": "The text states she came 'чтобы испытать его трудными вопросами' — to test him with difficult questions."
-    },
-    {
-      "id": "r2",
-      "ru": "Прибыв с очень большой свитой, с верблюдами, везущими пряности и великое множество золота и драгоценных камней, она пришла к Соломону.",
-      "question": "What gifts did the queen of Sheba bring to Solomon?",
-      "options": [
-        "Spices, gold, and precious stones",
-        "Only spices",
-        "Only gold and silver",
-        "Camels and servants"
-      ],
-      "correct": "Spices, gold, and precious stones",
-      "explain": "The passage lists 'пряности и великое множество золота и драгоценных камней' — spices and great quantities of gold and precious stones."
-    },
-    {
-      "id": "r3",
-      "ru": "Соломон ответил на все ее вопросы. Для него не было ничего слишком трудного, чего он не смог бы ей объяснить.",
-      "question": "Was Solomon able to answer the queen's difficult questions?",
-      "options": [
-        "Yes, he answered all her questions without difficulty",
-        "No, he found some questions too hard",
-        "Partially, he answered some questions",
-        "He refused to answer her"
-      ],
-      "correct": "Yes, he answered all her questions without difficulty",
-      "explain": "The text says 'ответил на все ее вопросы' and 'не было ничего слишком трудного' — he answered all her questions and nothing was too difficult."
-    },
-    {
-      "id": "r4",
-      "ru": "Когда царица Шева увидела мудрость Соломона и дворец, который он построил, еду у него на столе, жилища его приближенных, у нее захватило дух.",
-      "question": "What was the queen's reaction when she saw all these things about Solomon's kingdom?",
-      "options": [
-        "She was overwhelmed and astonished",
-        "She was disappointed",
-        "She was angry",
-        "She was unimpressed"
-      ],
-      "correct": "She was overwhelmed and astonished",
-      "explain": "The text says 'у нее захватило дух' — she was breathless with amazement."
-    },
-    {
-      "id": "r5",
-      "ru": "Она сказала царю: «Молва, которую я слышала в своей стране о твоих делах и мудрости, правдива, но я не верила слухам, пока не пришла и не увидела это своими глазами.»",
-      "question": "Did the queen believe the reports about Solomon before seeing his kingdom?",
-      "options": [
-        "No, she didn't believe the rumors until she saw everything herself",
-        "Yes, she believed everything she heard",
-        "She partially believed some of it",
-        "She didn't care about the reports"
-      ],
-      "correct": "No, she didn't believe the rumors until she saw everything herself",
-      "explain": "She says 'я не верила слухам, пока не пришла и не увидела это своими глазами' — I didn't believe the rumors until I saw it myself."
-    },
-    {
-      "id": "r6",
-      "ru": "Блаженны твои люди. Блаженны твои приближенные, которые всегда стоят перед тобой и внимают твоей мудрости.",
-      "question": "What did the queen praise about Solomon's people and officials?",
-      "options": [
-        "That they are blessed to serve such a wise king",
-        "That they are wealthy and powerful",
-        "That they are fearless warriors",
-        "That they are well-educated"
-      ],
-      "correct": "That they are blessed to serve such a wise king",
-      "explain": "She calls them 'Блаженны твои люди' (blessed are your people) because they constantly hear his wisdom."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Когда царица Шевы услышала о славе Соломона, она пришла в Иерусалим, чтобы испытать его ___.",
+   "lemma": "вопрос",
+   "options": [
+    "трудные вопросы",
+    "трудных вопросах",
+    "трудными вопросами",
+    "трудным вопросам"
+   ],
+   "correct": "трудными вопросами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«трудными вопросами» — the instrumental marks the means, company, or complement.",
+   "id": "c1",
+   "translation": "When the queen of Sheba heard of the fame of Solomon, she came to test Solomon with hard questions at Jerusalem, with a very great caravan, including camels that bore spices, gold in abundance, and precious stones. When she had come to Solomon, she talked with him about all that was in her heart."
+  },
+  {
+   "sentence": "Прибыв с очень ___, с верблюдами, везущими пряности, великим множеством золота и драгоценных камней, она пришла к Соломону и говорила с ним обо всем, что было у нее на сердце.",
+   "lemma": "свита",
+   "options": [
+    "большой свитой",
+    "большой свите",
+    "большая свита",
+    "большой свиты"
+   ],
+   "correct": "большой свитой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«большой свитой» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c2",
+   "translation": "When the queen of Sheba heard of the fame of Solomon, she came to test Solomon with hard questions at Jerusalem, with a very great caravan, including camels that bore spices, gold in abundance, and precious stones. When she had come to Solomon, she talked with him about all that was in her heart."
+  },
+  {
+   "sentence": "Прибыв с очень большой свитой, с верблюдами, везущими пряности, ___ золота и драгоценных камней, она пришла к Соломону и говорила с ним обо всем, что было у нее на сердце.",
+   "lemma": "множество",
+   "options": [
+    "великого множества",
+    "великом множестве",
+    "великим множеством",
+    "великому множеству"
+   ],
+   "correct": "великим множеством",
+   "case": "Творительный (Instrumental)",
+   "explain": "«великим множеством» — the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "When the queen of Sheba heard of the fame of Solomon, she came to test Solomon with hard questions at Jerusalem, with a very great caravan, including camels that bore spices, gold in abundance, and precious stones. When she had come to Solomon, she talked with him about all that was in her heart."
+  },
+  {
+   "sentence": "Прибыв с очень большой свитой, с верблюдами, везущими пряности, великим множеством золота и ___, она пришла к Соломону и говорила с ним обо всем, что было у нее на сердце.",
+   "lemma": "камень",
+   "options": [
+    "драгоценными камнями",
+    "драгоценных камнях",
+    "драгоценным камням",
+    "драгоценных камней"
+   ],
+   "correct": "драгоценных камней",
+   "case": "Родительный (Genitive)",
+   "explain": "«драгоценных камней» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "When the queen of Sheba heard of the fame of Solomon, she came to test Solomon with hard questions at Jerusalem, with a very great caravan, including camels that bore spices, gold in abundance, and precious stones. When she had come to Solomon, she talked with him about all that was in her heart."
+  },
+  {
+   "sentence": "Она подарила царю сто двадцать талантов золота, великое множество пряностей и ___.",
+   "lemma": "камень",
+   "options": [
+    "драгоценными камнями",
+    "драгоценных камнях",
+    "драгоценным камням",
+    "драгоценных камней"
+   ],
+   "correct": "драгоценных камней",
+   "case": "Родительный (Genitive)",
+   "explain": "«драгоценных камней» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "She gave the king one hundred and twenty talents of gold, spices in great abundance, and precious stones. There was never before such spice as the queen of Sheba gave to king Solomon."
+  },
+  {
+   "sentence": "Еще они привезли красное дерево и ___.",
+   "lemma": "камень",
+   "options": [
+    "драгоценные камни",
+    "драгоценных камнях",
+    "драгоценных камней",
+    "драгоценными камнями"
+   ],
+   "correct": "драгоценные камни",
+   "case": "Винительный (Accusative)",
+   "explain": "«драгоценные камни» — the accusative marks the direct object of the verb.",
+   "id": "c6",
+   "translation": "The servants of Huram and the servants of Solomon, who brought gold from Ophir, also brought algum trees and precious stones."
+  },
+  {
+   "sentence": "Царь сделал из ___ лестницы для Господнего дома и для царского дворца, а также арфы и лиры для музыкантов.",
+   "lemma": "дерево",
+   "options": [
+    "красное дерево",
+    "красного дерева",
+    "красному дереву",
+    "красном дереве"
+   ],
+   "correct": "красного дерева",
+   "case": "Родительный (Genitive)",
+   "explain": "«красного дерева» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "The king used algum tree wood to make terraces for Yahweh’s house and for the king’s house, and harps and stringed instruments for the singers. There were none like these seen before in the land of Judah."
+  },
+  {
+   "sentence": "Царь сделал из красного дерева лестницы для Господнего дома и для ___, а также арфы и лиры для музыкантов.",
+   "lemma": "дворец",
+   "options": [
+    "царского дворца",
+    "царский дворец",
+    "царскому дворцу",
+    "царским дворцом"
+   ],
+   "correct": "царского дворца",
+   "case": "Родительный (Genitive)",
+   "explain": "«царского дворца» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "The king used algum tree wood to make terraces for Yahweh’s house and for the king’s house, and harps and stringed instruments for the singers. There were none like these seen before in the land of Judah."
+  },
+  {
+   "sentence": "Царь Соломон сделал двести ___ из кованого золота, на каждый из которых пошло по шестисот бека золота.",
+   "lemma": "щит",
+   "options": [
+    "большими щитами",
+    "больших щитах",
+    "большим щитам",
+    "больших щитов"
+   ],
+   "correct": "больших щитов",
+   "case": "Родительный (Genitive)",
+   "explain": "«больших щитов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "King Solomon made two hundred bucklers of beaten gold. Six hundred shekels of beaten gold went to one buckler."
+  },
+  {
+   "sentence": "Царь Соломон сделал двести больших щитов из ___, на каждый из которых пошло по шестисот бека золота.",
+   "lemma": "золото",
+   "options": [
+    "кованым золотом",
+    "кованому золоту",
+    "кованого золота",
+    "кованое золото"
+   ],
+   "correct": "кованого золота",
+   "case": "Родительный (Genitive)",
+   "explain": "«кованого золота» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c10",
+   "translation": "King Solomon made two hundred bucklers of beaten gold. Six hundred shekels of beaten gold went to one buckler."
+  },
+  {
+   "sentence": "Еще он сделал триста ___ из кованого золота, на каждый из которых ушло по триста бека золота.",
+   "lemma": "щит",
+   "options": [
+    "маленькими щитами",
+    "маленьких щитов",
+    "маленьких щитах",
+    "маленькие щиты"
+   ],
+   "correct": "маленьких щитов",
+   "case": "Родительный (Genitive)",
+   "explain": "«маленьких щитов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
+   "translation": "He made three hundred shields of beaten gold. Three hundred shekels of gold went to one shield. The king put them in the House of the Forest of Lebanon."
+  },
+  {
+   "sentence": "Еще он сделал триста маленьких щитов из ___, на каждый из которых ушло по триста бека золота.",
+   "lemma": "золото",
+   "options": [
+    "кованым золотом",
+    "кованому золоту",
+    "кованого золота",
+    "кованое золото"
+   ],
+   "correct": "кованого золота",
+   "case": "Родительный (Genitive)",
+   "explain": "«кованого золота» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c12",
+   "translation": "He made three hundred shields of beaten gold. Three hundred shekels of gold went to one shield. The king put them in the House of the Forest of Lebanon."
+  },
+  {
+   "sentence": "Царь поместил их во дворце ___.",
+   "lemma": "лес",
+   "options": [
+    "ливанского леса",
+    "ливанском лесе",
+    "ливанский лес",
+    "ливанскому лесу"
+   ],
+   "correct": "ливанского леса",
+   "case": "Родительный (Genitive)",
+   "explain": "«Ливанского леса» — the genitive here marks possession, absence, or quantity.",
+   "id": "c13",
+   "translation": "He made three hundred shields of beaten gold. Three hundred shekels of gold went to one shield. The king put them in the House of the Forest of Lebanon."
+  },
+  {
+   "sentence": "Еще царь сделал ___, выложенный слоновой костью и покрытый чистым золотом.",
+   "lemma": "трон",
+   "options": [
+    "огромного трона",
+    "огромный трон",
+    "огромному трону",
+    "огромном троне"
+   ],
+   "correct": "огромный трон",
+   "case": "Винительный (Accusative)",
+   "explain": "«огромный трон» — the accusative marks the direct object of the verb.",
+   "id": "c14",
+   "translation": "Moreover the king made a great throne of ivory, and overlaid it with pure gold."
+  },
+  {
+   "sentence": "Еще царь сделал огромный трон, выложенный слоновой костью и покрытый ___.",
+   "lemma": "золото",
+   "options": [
+    "чистом золоте",
+    "чистым золотом",
+    "чистому золоту",
+    "чистое золото"
+   ],
+   "correct": "чистым золотом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«чистым золотом» — the instrumental marks the means, company, or complement.",
+   "id": "c15",
+   "translation": "Moreover the king made a great throne of ivory, and overlaid it with pure gold."
+  },
+  {
+   "sentence": "Никогда ничего подобного не делалось ни в каком ___.",
+   "lemma": "царство",
+   "options": [
+    "другое царство",
+    "другим царством",
+    "другом царстве",
+    "другого царства"
+   ],
+   "correct": "другом царстве",
+   "case": "Предложный (Prepositional)",
+   "explain": "«другом царстве» — after the preposition «в», for location or topic.",
+   "id": "c16",
+   "translation": "Twelve lions stood there on the one side and on the other on the six steps. There was nothing like it made in any other kingdom."
+  },
+  {
+   "sentence": "Все чаши царя Соломона были золотыми, и вся домашняя утварь во дворце ___ была из чистого золота.",
+   "lemma": "лес",
+   "options": [
+    "ливанского леса",
+    "ливанском лесе",
+    "ливанский лес",
+    "ливанскому лесу"
+   ],
+   "correct": "ливанского леса",
+   "case": "Родительный (Genitive)",
+   "explain": "«Ливанского леса» — the genitive here marks possession, absence, or quantity.",
+   "id": "c17",
+   "translation": "All king Solomon’s drinking vessels were of gold, and all the vessels of the House of the Forest of Lebanon were of pure gold. Silver was not considered valuable in the days of Solomon."
+  },
+  {
+   "sentence": "Все чаши царя Соломона были золотыми, и вся домашняя утварь во дворце Ливанского леса была из ___.",
+   "lemma": "золото",
+   "options": [
+    "чистом золоте",
+    "чистому золоту",
+    "чистого золота",
+    "чистое золото"
+   ],
+   "correct": "чистого золота",
+   "case": "Родительный (Genitive)",
+   "explain": "«чистого золота» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c18",
+   "translation": "All king Solomon’s drinking vessels were of gold, and all the vessels of the House of the Forest of Lebanon were of pure gold. Silver was not considered valuable in the days of Solomon."
+  },
+  {
+   "sentence": "На море у царя был флот из ___, с командой из слуг Хирама.",
+   "lemma": "корабль",
+   "options": [
+    "таршишских кораблях",
+    "таршишскими кораблями",
+    "таршишских кораблей",
+    "таршишские корабли"
+   ],
+   "correct": "таршишских кораблей",
+   "case": "Родительный (Genitive)",
+   "explain": "«таршишских кораблей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c19",
+   "translation": "For the king had ships that went to Tarshish with Huram’s servants. Once every three years, the ships of Tarshish came bringing gold, silver, ivory, apes, and peacocks."
+  },
+  {
+   "sentence": "У Соломона было четыре тысячи стойл для коней и колесниц и двенадцать тысяч коней , которых он держал в ___ и у себя, в Иерусалиме.",
+   "lemma": "город",
+   "options": [
+    "колесничные города",
+    "колесничных городов",
+    "колесничных городах",
+    "колесничными городами"
+   ],
+   "correct": "колесничных городах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«колесничных городах» — after the preposition «в», for location or topic.",
+   "id": "c20",
+   "translation": "Solomon had four thousand stalls for horses and chariots, and twelve thousand horsemen, that he stationed in the chariot cities, and with the king at Jerusalem."
+  },
+  {
+   "sentence": "Он правил всеми царями от Реки до земли филистимлян, до ___ Египта.",
+   "lemma": "граница",
+   "options": [
+    "самой границы",
+    "самой границе",
+    "сама граница",
+    "самой границей"
+   ],
+   "correct": "самой границы",
+   "case": "Родительный (Genitive)",
+   "explain": "«самой границы» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c21",
+   "translation": "He ruled over all the kings from the River even to the land of the Philistines, and to the border of Egypt."
+  },
+  {
+   "sentence": "В его правление серебро в Иерусалиме ценилось не выше ___, а кедра было так же много, как тутовых деревьев в предгорьях Иудеи.",
+   "lemma": "камень",
+   "options": [
+    "простым камням",
+    "простых камней",
+    "простыми камнями",
+    "простых камнях"
+   ],
+   "correct": "простых камней",
+   "case": "Родительный (Genitive)",
+   "explain": "«простых камней» — the genitive here marks possession, absence, or quantity.",
+   "id": "c22",
+   "translation": "The king made silver as common in Jerusalem as stones, and he made cedars to be as abundant as the sycamore trees that are in the lowland."
+  },
+  {
+   "sentence": "Кони Соломона поставлялись из Египта и из ___.",
+   "lemma": "страна",
+   "options": [
+    "другим странам",
+    "других стран",
+    "другими странами",
+    "других странах"
+   ],
+   "correct": "других стран",
+   "case": "Родительный (Genitive)",
+   "explain": "«других стран» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c23",
+   "translation": "They brought horses for Solomon out of Egypt and out of all lands."
+  },
+  {
+   "sentence": "А ___ правления Соломона, от первых до последних, то разве не описаны они в записях пророка Нафана, в пророчестве Ахии из Шило и в видениях провидца Иддо о Иеровоаме, сыне Навата?",
+   "lemma": "событие",
+   "options": [
+    "прочие события",
+    "прочих событий",
+    "прочих событиях",
+    "прочими событиями"
+   ],
+   "correct": "прочие события",
+   "case": "Именительный (Nominative)",
+   "explain": "«прочие события» — the subject of the sentence stands in the nominative.",
+   "id": "c24",
+   "translation": "Now the rest of the acts of Solomon, first and last, aren’t they written in the history of Nathan the prophet, and in the prophecy of Ahijah the Shilonite, and in the visions of Iddo the seer concerning Jeroboam the son of Nebat?"
+  }
+ ]
 }

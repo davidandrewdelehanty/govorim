@@ -1,134 +1,109 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "…пусть приведет человека к ___, чтобы тот оценил его.",
-      "lemma": "священник",
-      "options": ["священник", "священника", "священнику", "священником"],
-      "correct": "священнику",
-      "case": "Дательный (Dative)",
-      "translation": "…let him bring the person to the priest, so that he may value him.",
-      "explain": "The preposition к (to/toward) always governs the dative → священнику."
-    },
-    {
-      "id": "c2",
-      "sentence": "…если кто-нибудь даст особый обет, чтобы посвятить Господу ___.",
-      "lemma": "человек",
-      "options": ["человек", "человека", "человеку", "человеком"],
-      "correct": "человека",
-      "case": "Винительный (Accusative)",
-      "translation": "…if anyone makes a special vow to consecrate a person to the Lord.",
-      "explain": "Человек is the direct object of посвятить (to consecrate) → accusative; an animate masculine noun takes the genitive-like form человека."
-    },
-    {
-      "id": "c3",
-      "sentence": "…то животное, отданное Господу, становится ___.",
-      "lemma": "святыня",
-      "options": ["святыня", "святыню", "святыни", "святыней"],
-      "correct": "святыней",
-      "case": "Творительный (Instrumental)",
-      "translation": "…then the animal given to the Lord becomes holy.",
-      "explain": "The predicate noun after становится (becomes) takes the instrumental → святыней."
-    },
-    {
-      "id": "c4",
-      "sentence": "…потому что ___ и так принадлежат Господу.",
-      "lemma": "первенец",
-      "options": ["первенцы", "первенцев", "первенцам", "первенцами"],
-      "correct": "первенцы",
-      "case": "Именительный (Nominative)",
-      "translation": "…because the firstborn already belong to the Lord.",
-      "explain": "Первенцы is the subject performing принадлежат (belong) → nominative (plural)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Все оценки нужно устанавливать по шекелю святилища, в одном ___ 20 гер.",
-      "lemma": "шекель",
-      "options": ["шекель", "шекеля", "шекелю", "шекеле"],
-      "correct": "шекеле",
-      "case": "Предложный (Prepositional)",
-      "translation": "All valuations shall be by the sanctuary shekel; in one shekel there are twenty gerahs.",
-      "explain": "The preposition в marking place within takes the prepositional → шекеле."
-    },
-    {
-      "id": "c6",
-      "sentence": "…каждое десятое животное, которое проходит под ___ щитовода.",
-      "lemma": "жезл",
-      "options": ["жезл", "жезла", "жезлу", "жезлом"],
-      "correct": "жезлом",
-      "case": "Творительный (Instrumental)",
-      "translation": "…every tenth animal that passes under the shepherd's rod.",
-      "explain": "The preposition под marking location takes the instrumental → жезлом."
-    },
-    {
-      "id": "c7",
-      "sentence": "Таковы повеления, которые Господь дал Моисею для израилетян на ___ Синай.",
-      "lemma": "гора",
-      "options": ["гора", "гору", "горы", "горе"],
-      "correct": "горе",
-      "case": "Предложный (Prepositional)",
-      "translation": "These are the commandments the Lord gave Moses for the Israelites on Mount Sinai.",
-      "explain": "The preposition на marking location takes the prepositional → горе."
-    },
-    {
-      "id": "c8",
-      "sentence": "Если человек посвящает Господу участок ___, которое отошло к нему по наследству.",
-      "lemma": "поле",
-      "options": ["поле", "поля", "полю", "полем"],
-      "correct": "поля",
-      "case": "Родительный (Genitive)",
-      "translation": "If a man dedicates to the Lord a part of the field that came to him by inheritance.",
-      "explain": "Участок (a part) governs the genitive of the whole → поля."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Если это женщина, оцени ее в тридцать шекелей.",
-      "question": "How many shekels is a woman (aged 20 to 60) valued at?",
-      "options": ["Thirty", "Fifty", "Ten", "Fifteen"],
-      "correct": "Thirty",
-      "explain": "The text sets a woman's valuation at thirty shekels."
-    },
-    {
-      "id": "r2",
-      "ru": "Все оценки нужно устанавливать по шекелю святилища, в одном шекеле 20 гер.",
-      "question": "How many gerahs are in one shekel?",
-      "options": ["Twenty", "Ten", "Fifty", "Five"],
-      "correct": "Twenty",
-      "explain": "The text states there are twenty gerahs in one shekel."
-    },
-    {
-      "id": "r3",
-      "ru": "Человека, который был посвящен по обету, выкупить нельзя, его нужно предать смерти.",
-      "question": "Can a person devoted (to destruction) by a vow be redeemed?",
-      "options": ["No, he must be put to death", "Yes, for fifty shekels", "Yes, by the priest", "Yes, in the Jubilee"],
-      "correct": "No, he must be put to death",
-      "explain": "The text says such a devoted person cannot be redeemed but must be put to death."
-    },
-    {
-      "id": "r4",
-      "ru": "Если хозяин захочет выкупить животное, пусть добавит к его стоимости пятую часть.",
-      "question": "If an owner wants to redeem the animal, what must he add?",
-      "options": ["A fifth part of its value", "Double the value", "Nothing", "Ten shekels"],
-      "correct": "A fifth part of its value",
-      "explain": "The text says he must add a fifth part to the animal's value."
-    },
-    {
-      "id": "r5",
-      "ru": "Таковы повеления, которые Господь дал Моисею для израилетян на горе Синай.",
-      "question": "Where did the Lord give these commandments to Moses?",
-      "options": ["On Mount Sinai", "In Egypt", "In the wilderness of Paran", "In Canaan"],
-      "correct": "On Mount Sinai",
-      "explain": "The text says the commandments were given on Mount Sinai."
-    },
-    {
-      "id": "r6",
-      "ru": "Если возраст 60 лет и больше, оцени мужчину в 15 шекелей, а женщину в 10 шекелей.",
-      "question": "How is a man aged 60 or older valued?",
-      "options": ["Fifteen shekels", "Fifty shekels", "Twenty shekels", "Thirty shekels"],
-      "correct": "Fifteen shekels",
-      "explain": "The text values a man of sixty years and older at fifteen shekels."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Если он посвящает поле в ___, эта оценка останется неизменной.",
+   "lemma": "год",
+   "options": [
+    "юбилейному году",
+    "юбилейным годом",
+    "юбилейный год",
+    "юбилейного года"
+   ],
+   "correct": "юбилейный год",
+   "case": "Винительный (Accusative)",
+   "explain": "«юбилейный год» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "If he dedicates his field from the Year of Jubilee, according to your valuation it shall stand."
+  },
+  {
+   "sentence": "А если он посвящает свое поле после юбилея, пусть священник оценит его, взяв в расчет количество лет, которые остались до следующего ___, и соответственно снизит оценку.",
+   "lemma": "год",
+   "options": [
+    "юбилейному году",
+    "юбилейный год",
+    "юбилейным годом",
+    "юбилейного года"
+   ],
+   "correct": "юбилейного года",
+   "case": "Родительный (Genitive)",
+   "explain": "«юбилейного года» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "But if he dedicates his field after the Jubilee, then the priest shall reckon to him the money according to the years that remain to the Year of Jubilee; and an abatement shall be made from your valuation."
+  },
+  {
+   "sentence": "Но если поле не было выкуплено или было продано ___, выкупить его уже нельзя.",
+   "lemma": "человек",
+   "options": [
+    "другому человеку",
+    "другой человек",
+    "другого человека",
+    "другим человеком"
+   ],
+   "correct": "другому человеку",
+   "case": "Дательный (Dative)",
+   "explain": "«другому человеку» — the dative marks the indirect object or recipient.",
+   "id": "c3",
+   "translation": "If he will not redeem the field, or if he has sold the field to another man, it shall not be redeemed any more;"
+  },
+  {
+   "sentence": "Это ___ Господу.",
+   "lemma": "пожертвование",
+   "options": [
+    "священным пожертвованием",
+    "священное пожертвование",
+    "священному пожертвованию",
+    "священного пожертвования"
+   ],
+   "correct": "священное пожертвование",
+   "case": "Именительный (Nominative)",
+   "explain": "«священное пожертвование» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "“ ‘If he dedicates a field to Yahweh which he has bought, which is not of the field of his possession,"
+  },
+  {
+   "sentence": "В ___ поле вернется к человеку, у которого его купили, к тому, чьей наследной землей оно было.",
+   "lemma": "год",
+   "options": [
+    "юбилейному году",
+    "юбилейным годом",
+    "юбилейный год",
+    "юбилейного года"
+   ],
+   "correct": "юбилейный год",
+   "case": "Винительный (Accusative)",
+   "explain": "«юбилейный год» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c5",
+   "translation": "In the Year of Jubilee the field shall return to him from whom it was bought, even to him to whom the possession of the land belongs."
+  },
+  {
+   "sentence": "Все, что было посвящено по обету, — это ___ Господа.",
+   "lemma": "святыня",
+   "options": [
+    "великой святыней",
+    "великой святыни",
+    "великой святыне",
+    "великая святыня"
+   ],
+   "correct": "великая святыня",
+   "case": "Именительный (Nominative)",
+   "explain": "«великая святыня» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "“ ‘Notwithstanding, no devoted thing that a man devotes to Yahweh of all that he has, whether of man or animal, or of the field of his possession, shall be sold or redeemed. Everything that is permanently devoted is most holy to Yahweh."
+  },
+  {
+   "sentence": "Все десятины из крупного и мелкого скота — каждое ___, которое проходит под жезлом счетовода — будут святыней Господа.",
+   "lemma": "животное",
+   "options": [
+    "десятого животного",
+    "десятым животным",
+    "десятое животное",
+    "десятом животном"
+   ],
+   "correct": "десятое животное",
+   "case": "Именительный (Nominative)",
+   "explain": "«десятое животное» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "All the tithe of the herds or the flocks, whatever passes under the rod, the tenth shall be holy to Yahweh."
+  }
+ ]
 }

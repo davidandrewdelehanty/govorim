@@ -1,138 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "За это вас ждет самое суровое ___.",
-      "lemma": "наказание",
-      "options": ["наказание", "наказания", "наказанию", "наказанием"],
-      "correct": "наказание",
-      "case": "Именительный (Nominative)",
-      "translation": "For this you will receive the harshest punishment.",
-      "explain": "Наказание is the subject of the verb ждет (awaits), so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Учители закона и фарисеи заняли место ___.",
-      "lemma": "Моисей",
-      "options": ["Моисей", "Моисея", "Моисею", "Моисеем"],
-      "correct": "Моисея",
-      "case": "Родительный (Genitive)",
-      "translation": "The teachers of the law and the Pharisees have taken the seat of Moses.",
-      "explain": "The noun место (seat) takes a genitive complement — the seat OF Moses."
-    },
-    {
-      "id": "c3",
-      "sentence": "Поэтому вы должны делать все, что они говорят, но их ___ не подражайте.",
-      "lemma": "дело",
-      "options": ["дело", "дела", "делу", "делом"],
-      "correct": "делу",
-      "case": "Дательный (Dative)",
-      "translation": "Therefore you must do everything they say, but do not imitate their deed.",
-      "explain": "The verb подражать (to imitate) governs the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Они взваливают на плечи людей непомерно тяжелую ___.",
-      "lemma": "ноша",
-      "options": ["ноша", "ноши", "ноше", "ношу"],
-      "correct": "ношу",
-      "case": "Винительный (Accusative)",
-      "translation": "They load an unbearably heavy burden onto people's shoulders.",
-      "explain": "The transitive verb взваливать (to load, to pile onto) takes its direct object in the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "И кто клянется ___, клянется и тем, кто обитает в храме.",
-      "lemma": "храм",
-      "options": ["храм", "храма", "храму", "храмом"],
-      "correct": "храмом",
-      "case": "Творительный (Instrumental)",
-      "translation": "And whoever swears by the temple swears also by the one who dwells in it.",
-      "explain": "The verb клясться (to swear) governs the instrumental case for the thing sworn by."
-    },
-    {
-      "id": "c6",
-      "sentence": "Тот, кто поклялся жертвенником, поклялся и всем, что на ___.",
-      "lemma": "жертвенник",
-      "options": ["жертвенник", "жертвенника", "жертвеннику", "жертвеннике"],
-      "correct": "жертвеннике",
-      "case": "Предложный (Prepositional)",
-      "translation": "The one who swore by the altar swore also by everything on it.",
-      "explain": "The preposition на indicating location (on the altar) governs the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Учители закона и фарисеи заняли место Моисея.",
-      "question": "What does Jesus say about the teachers of the law and the Pharisees?",
-      "options": ["They have taken the seat of Moses", "They have abandoned the temple", "They have replaced the prophets", "They no longer teach the law"],
-      "correct": "They have taken the seat of Moses",
-      "explain": "Jesus says 'Учители закона и фарисеи заняли место Моисея' (the teachers of the law and Pharisees have taken Moses' seat)."
-    },
-    {
-      "id": "r2",
-      "ru": "Они взваливают на плечи людей непомерно тяжелые ноши, а сами и пальцем не пошевельнут, чтобы хоть чуть-чуть сдвинуть этот груз.",
-      "question": "How does Jesus describe the burdens the religious leaders place on people?",
-      "options": ["Heavy burdens that they themselves will not lift a finger to help carry", "Light burdens that anyone can carry easily", "Burdens they carry themselves without complaint", "Financial debts owed to the temple"],
-      "correct": "Heavy burdens that they themselves will not lift a finger to help carry",
-      "explain": "The text says they load 'непомерно тяжелые ноши' on people but 'сами и пальцем не пошевельнут' (will not lift a finger themselves)."
-    },
-    {
-      "id": "r3",
-      "ru": "Вас же пусть не называют раби, потому что у вас один раби, а вы все братья.",
-      "question": "What does Jesus tell his disciples about being called 'Rabbi'?",
-      "options": ["They should not be called Rabbi, since they have only one teacher and are all brothers", "They should demand to be called Rabbi as a sign of respect", "Only the Pharisees may be called Rabbi", "Rabbi is a title reserved for Moses alone"],
-      "correct": "They should not be called Rabbi, since they have only one teacher and are all brothers",
-      "explain": "Jesus says 'пусть не называют раби, потому что у вас один раби, а вы все братья' (let them not be called Rabbi, for you have one Rabbi and are all brothers)."
-    },
-    {
-      "id": "r4",
-      "ru": "Самый великий из вас будет вам слугой, потому что кто возвышает себя будет унижен, а кто принижает себя будет возвышен.",
-      "question": "According to Jesus, what happens to those who exalt themselves?",
-      "options": ["They will be humbled", "They will be rewarded with high office", "They will become teachers of the law", "They will be praised by the crowds"],
-      "correct": "They will be humbled",
-      "explain": "Jesus says 'кто возвышает себя будет унижен' (whoever exalts himself will be humbled)."
-    },
-    {
-      "id": "r5",
-      "ru": "Вы разоряете дома вдов и напоказ долго молитесь.",
-      "question": "What accusation does Jesus make against the scribes and Pharisees regarding widows?",
-      "options": ["They devour widows' houses while making a show of long prayers", "They give widows their inheritance early", "They forbid widows from entering the temple", "They teach widows to pray in secret"],
-      "correct": "They devour widows' houses while making a show of long prayers",
-      "explain": "Jesus says 'Вы разоряете дома вдов и напоказ долго молитесь' (you devour widows' houses and for a show make long prayers)."
-    },
-    {
-      "id": "r6",
-      "ru": "Слепые поводыри, вы отсаживаете комара из вашего питья, а верблюда проглатываете.",
-      "question": "What image does Jesus use to describe the Pharisees' misplaced priorities?",
-      "options": ["Straining out a gnat while swallowing a camel", "Cleaning the outside of a cup but not the inside", "Building tombs for the prophets", "Wearing broad phylacteries"],
-      "correct": "Straining out a gnat while swallowing a camel",
-      "explain": "Jesus says they 'отсаживаете комара из вашего питья, а верблюда проглатываете' (strain out a gnat but swallow a camel)."
-    },
-    {
-      "id": "r7",
-      "ru": "Вы, как побеленные гробницы, которые снаружи выглядят красиво, а внутри полны костей мертвецов и всякой нечистоты.",
-      "question": "What comparison does Jesus make about the scribes and Pharisees?",
-      "options": ["They are like whitewashed tombs, beautiful outside but full of dead men's bones inside", "They are like fruitful trees planted by streams", "They are like shepherds who protect their sheep", "They are like lamps that give light to a house"],
-      "correct": "They are like whitewashed tombs, beautiful outside but full of dead men's bones inside",
-      "explain": "Jesus compares them to 'побеленные гробницы, которые снаружи выглядят красиво, а внутри полны костей мертвецов' (whitewashed tombs that look beautiful outside but are full of dead men's bones inside)."
-    },
-    {
-      "id": "r8",
-      "ru": "Змеи, отроди змеины! Вы еще надеетесь избежать осуждения и не попасть в ад?",
-      "question": "What does Jesus call the scribes and Pharisees near the end of his condemnation?",
-      "options": ["Serpents, brood of vipers", "Faithful shepherds", "Blessed teachers", "Sons of Abraham"],
-      "correct": "Serpents, brood of vipers",
-      "explain": "Jesus calls them 'Змеи, отроди змеины' (serpents, brood of vipers) and asks how they will escape judgment."
-    },
-    {
-      "id": "r9",
-      "ru": "Сколько раз я хотел собрать твоих детей, как птица собирает своих птенцов под крылья, но вы не захотели».",
-      "question": "How does Jesus describe his desire to gather the people of Jerusalem?",
-      "options": ["Like a bird gathering her chicks under her wings", "Like a shepherd calling scattered sheep", "Like a farmer gathering a harvest", "Like a fisherman gathering fish into a net"],
-      "correct": "Like a bird gathering her chicks under her wings",
-      "explain": "Jesus laments, 'как птица собирает своих птенцов под крылья, но вы не захотели' (as a bird gathers her chicks under her wings, but you were not willing)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "За это вас ждет самое ___.",
+   "lemma": "наказание",
+   "options": [
+    "сурового наказания",
+    "суровому наказанию",
+    "суровое наказание",
+    "суровым наказанием"
+   ],
+   "correct": "суровое наказание",
+   "case": "Именительный (Nominative)",
+   "explain": "«суровое наказание» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "“But woe to you, scribes and Pharisees, hypocrites! Because you shut up the Kingdom of Heaven against men; for you don’t enter in yourselves, neither do you allow those who are entering in to enter."
+  },
+  {
+   "sentence": "Горе вам, ___!",
+   "lemma": "поводырь",
+   "options": [
+    "слепыми поводырями",
+    "слепых поводырей",
+    "слепые поводыри",
+    "слепым поводырям"
+   ],
+   "correct": "слепые поводыри",
+   "case": "Именительный (Nominative)",
+   "explain": "«слепые поводыри» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "“Woe to you, you blind guides, who say, ‘Whoever swears by the temple, it is nothing; but whoever swears by the gold of the temple, he is obligated.’"
+  },
+  {
+   "sentence": "Вы строите гробницы пророкам, украшаете ___ праведникам 30 и говорите: «Если бы мы жили во времена наших отцов, то мы бы не проливали вместе с ними крови пророков».",
+   "lemma": "памятник",
+   "options": [
+    "надгробными памятниками",
+    "надгробных памятников",
+    "надгробные памятники",
+    "надгробных памятниках"
+   ],
+   "correct": "надгробные памятники",
+   "case": "Винительный (Accusative)",
+   "explain": "«надгробные памятники» — the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "“Woe to you, scribes and Pharisees, hypocrites! For you build the tombs of the prophets, and decorate the tombs of the righteous,"
+  }
+ ]
 }

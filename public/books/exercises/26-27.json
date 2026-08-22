@@ -1,134 +1,184 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Было ко мне слово ___. Сын человеческий, подними плач Атири.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "The word of the Lord came to me. Son of man, take up a lamentation for Tyre.",
-      "explain": "The phrase 'слово Господа' (the word of the Lord) uses the genitive to show possession."
-    },
-    {
-      "id": "c2",
-      "sentence": "Скажи Тиру, расположенному у морских ворот, купцу народов на многих ___.",
-      "lemma": "берег",
-      "options": ["берег", "берега", "берегам", "берегах"],
-      "correct": "берегах",
-      "case": "Предложный (Prepositional)",
-      "translation": "Tell Tyre, situated at the gateway of the sea, merchant of peoples on many coasts.",
-      "explain": "The preposition 'на' (on) with location requires the prepositional case: 'на многих берегах' (on many coasts)."
-    },
-    {
-      "id": "c3",
-      "sentence": "Доски твои они изготовили из сосен синира, для мачты твоей они взяли ливанский ___.",
-      "lemma": "кедр",
-      "options": ["кедр", "кедра", "кедру", "кедром"],
-      "correct": "кедр",
-      "case": "Винительный (Accusative)",
-      "translation": "Your planks they made of pine from Senir; your mast they took from Lebanon cedar.",
-      "explain": "The verb 'взяли' (they took) with direct object 'cedar' requires the accusative case (which for this noun is the same as nominative)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Из полотен льняных были твои паруса, из расшитого льна Египта были они твоим флагом, из голубых и пурпурных тканей с берегов Элиши были сделаны твои ___.",
-      "lemma": "шатер",
-      "options": ["шатер", "шатра", "шатры", "шатрах"],
-      "correct": "шатры",
-      "case": "Винительный (Accusative)",
-      "translation": "Your sails were of fine linen from Egypt, your banner was of embroidered linen, your canopies were made of blue and purple fabrics from the coasts of Elishah.",
-      "explain": "The verb 'были сделаны' (were made) requires the accusative with plural direct object."
-    },
-    {
-      "id": "c5",
-      "sentence": "Опытные ремесленники из Гевала были твоими плотниками, конопатели — швы твоей ___.",
-      "lemma": "обшивка",
-      "options": ["обшивка", "обшивки", "обшивке", "обшивкой"],
-      "correct": "обшивки",
-      "case": "Родительный (Genitive)",
-      "translation": "Skilled craftsmen from Gebal were your shipwrights; your seals were the calkers of your hull.",
-      "explain": "The phrase 'швы твоей обшивки' uses the genitive 'обшивки' to show possession: seams of your hull/sides."
-    },
-    {
-      "id": "c6",
-      "sentence": "Мужчины из Персии, Луды и Ливии были воинами в твоем ___.",
-      "lemma": "войско",
-      "options": ["войско", "войска", "войску", "войске"],
-      "correct": "войске",
-      "case": "Предложный (Prepositional)",
-      "translation": "Men of Persia, Lud, and Put were in your army as men of war.",
-      "explain": "The preposition 'в' (in) with the noun 'войско' requires the prepositional case: 'в твоем войске' (in your army)."
-    },
-    {
-      "id": "c7",
-      "sentence": "Торшиш торговал с тобой, потому что ты был несметно богат, он давал в обмен на твои товары серебро, железо, олово и ___.",
-      "lemma": "свинец",
-      "options": ["свинец", "свинца", "свинцу", "свинцом"],
-      "correct": "свинец",
-      "case": "Винительный (Accusative)",
-      "translation": "Tarshish was your merchant because of your abundant wealth; they gave you silver, iron, tin, and lead in exchange for your wares.",
-      "explain": "The verb 'давал' (gave) with direct object 'lead' requires the accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Греция, Тувал и Мешех вели с тобой торговлю, они давали в обмен на твои товары рабов и бронзовую ___.",
-      "lemma": "утварь",
-      "options": ["утварь", "утвари", "утваре", "утварью"],
-      "correct": "утварь",
-      "case": "Винительный (Accusative)",
-      "translation": "Javan, Tubal, and Meshech traded with you; they exchanged slaves and bronze vessels for your wares.",
-      "explain": "The verb 'давали' (gave) with direct object 'vessels' requires the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Так говорит владыка Господь. Тир, ты говоришь, моя красота совершенна.",
-      "question": "What does Tyre claim about itself?",
-      "options": ["My beauty is perfect", "I am the mightiest city", "I have the greatest merchants", "I worship the true God"],
-      "correct": "My beauty is perfect",
-      "explain": "Tyre boasts: 'моя красота совершенна' — my beauty is perfect."
-    },
-    {
-      "id": "r2",
-      "ru": "Домом твоим было открытое море, твои зодчие довели красоту твою до совершенства.",
-      "question": "What was Tyre's domain and what did her builders accomplish?",
-      "options": ["Your domain was the open sea, and your builders perfected your beauty", "Your kingdom was on the land", "Your sailors protected the coastlines", "Your architects built temples for the gods"],
-      "correct": "Your domain was the open sea, and your builders perfected your beauty",
-      "explain": "The text states: 'Домом твоим было открытое море, твои зодчие довели красоту твою до совершенства' — your domain was the open sea, your builders perfected your beauty."
-    },
-    {
-      "id": "r3",
-      "ru": "Сидоняне и Арвадяне были твоими грибцами, а твои ловкие юноши Отир были твоими кормчами».",
-      "question": "Who served as rowers and pilots for Tyre?",
-      "options": ["Sidonians and Arvadites were your rowers, and your skilled young men were your pilots", "Egyptians rowed the ships", "Babylonians commanded the fleet", "Phoenician slaves operated the vessels"],
-      "correct": "Sidonians and Arvadites were your rowers, and your skilled young men were your pilots",
-      "explain": "The verse identifies Tyre's crew: 'Сидоняне и Арвадяне были твоими грибцами' and 'ловкие юноши... были твоими кормчами' — Sidonians and Arvadites were your rowers and skilled young men were your pilots."
-    },
-    {
-      "id": "r4",
-      "ru": "Мужчины из Персии, Луды и Ливии были воинами в твоем войске.",
-      "question": "Who were the warriors in Tyre's forces?",
-      "options": ["Men from Persia, Lud, and Put were men of war in your army", "Babylonians served as soldiers", "Egyptians protected the city", "Greeks commanded the troops"],
-      "correct": "Men from Persia, Lud, and Put were men of war in your army",
-      "explain": "The text names Tyre's military: 'Мужчины из Персии, Луды и Ливии были воинами в твоем войске' — men from Persia, Lud, and Put were warriors in your army."
-    },
-    {
-      "id": "r5",
-      "ru": "В открытое море грибцы тебя вывели, восточный ветер разбил тебя над бездной морскою.",
-      "question": "What caused Tyre's destruction according to this description?",
-      "options": ["The east wind broke it in the heart of the sea", "A storm flooded the city", "The people rebelled", "An earthquake destroyed the walls"],
-      "correct": "The east wind broke it in the heart of the sea",
-      "explain": "The prophecy states: 'восточный ветер разбил тебя над бездной морскою' — the east wind broke you in the heart of the seas."
-    },
-    {
-      "id": "r6",
-      "ru": "Все живущие на побережье ужаснулись твоей судьбе, их цари от страха дрожат, лица ужасом исказились.",
-      "question": "How did the inhabitants of the coasts react to Tyre's fall?",
-      "options": ["They were terrified, their kings trembled with fear, and their faces were distorted by horror", "They came to Tyre's aid", "They celebrated Tyre's destruction", "They ignored what happened"],
-      "correct": "They were terrified, their kings trembled with fear, and their faces were distorted by horror",
-      "explain": "The reaction is described: 'ужаснулись... их цари от страха дрожат, лица ужасом исказились' — they were appalled, their kings trembled with fear, faces twisted with horror."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Скажи Тиру, расположенному у ___, купцу народов на многих берегах: Так говорит Владыка Господь:",
+   "lemma": "ворота",
+   "options": [
+    "морские ворота",
+    "морских воротах",
+    "морских ворот",
+    "морскими воротами"
+   ],
+   "correct": "морских ворот",
+   "case": "Родительный (Genitive)",
+   "explain": "«морских ворот» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "and tell Tyre, ‘You who dwell at the entry of the sea, who are the merchant of the peoples to many islands, the Lord Yahweh says: “You, Tyre, have said, ‘I am perfect in beauty.’"
+  },
+  {
+   "sentence": "Домом твоим было ___;",
+   "lemma": "море",
+   "options": [
+    "открытым морем",
+    "открытое море",
+    "открытого моря",
+    "открытом море"
+   ],
+   "correct": "открытое море",
+   "case": "Именительный (Nominative)",
+   "explain": "«открытое море» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "Your borders are in the heart of the seas. Your builders have perfected your beauty."
+  },
+  {
+   "sentence": "Из Гевала ___",
+   "lemma": "ремесленник",
+   "options": [
+    "опытными ремесленниками",
+    "опытным ремесленникам",
+    "опытные ремесленники",
+    "опытных ремесленниках"
+   ],
+   "correct": "опытные ремесленники",
+   "case": "Именительный (Nominative)",
+   "explain": "«опытные ремесленники» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "The old men of Gebal and its wise men were your repairers of ship seams in you. All the ships of the sea with their mariners were in you to deal in your merchandise."
+  },
+  {
+   "sentence": "Жители Бет-Тогармы давали в обмен на твои товары тягловых и ___ и мулов.",
+   "lemma": "конь",
+   "options": [
+    "боевые кони",
+    "боевыми конями",
+    "боевых коней",
+    "боевых конях"
+   ],
+   "correct": "боевых коней",
+   "case": "Родительный (Genitive)",
+   "explain": "«боевых коней» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "“ ‘ “They of the house of Togarmah traded for your wares with horses, war horses, and mules."
+  },
+  {
+   "sentence": "Роданитяне вели с тобой торговлю; ___ были твоими базарами.",
+   "lemma": "побережье",
+   "options": [
+    "многих побережьях",
+    "многим побережьям",
+    "многих побережий",
+    "многие побережья"
+   ],
+   "correct": "многие побережья",
+   "case": "Именительный (Nominative)",
+   "explain": "«многие побережья» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "“ ‘ “The men of Dedan traded with you. Many islands were the market of your hand. They brought you horns of ivory and ebony in exchange."
+  },
+  {
+   "sentence": "Он давал в обмен на твои товары бирюзу, пурпурные ткани, вышитые изделия, ___, кораллы и рубины.",
+   "lemma": "лен",
+   "options": [
+    "тонкого лена",
+    "тонкий лен",
+    "тонком лене",
+    "тонким леном"
+   ],
+   "correct": "тонкий лен",
+   "case": "Именительный (Nominative)",
+   "explain": "«тонкий лен» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "“ ‘ “Syria was your merchant by reason of the multitude of your handiworks. They traded for your wares with emeralds, purple, embroidered work, fine linen, coral, and rubies."
+  },
+  {
+   "sentence": "Дамаск торговал с тобой вином из Хелбона и шерстью из Цахара, потому что у тебя было много добра и ___.",
+   "lemma": "богатство",
+   "options": [
+    "несметных богатствах",
+    "несметных богатств",
+    "несметные богатства",
+    "несметным богатствам"
+   ],
+   "correct": "несметных богатств",
+   "case": "Родительный (Genitive)",
+   "explain": "«несметных богатств» — the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "“ ‘ “Damascus was your merchant for the multitude of your handiworks, by reason of the multitude of all kinds of riches, with the wine of Helbon, and white wool."
+  },
+  {
+   "sentence": "Дедан торговал с тобой попонами для ___.",
+   "lemma": "езда",
+   "options": [
+    "верховой езде",
+    "верховой езды",
+    "верховая езда",
+    "верховой ездой"
+   ],
+   "correct": "верховой езды",
+   "case": "Родительный (Genitive)",
+   "explain": "«верховой езды» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "“ ‘ “Dedan was your trafficker in precious cloths for riding."
+  },
+  {
+   "sentence": "На твоем рынке они вели с тобой торговлю ___, голубыми тканями, шитьем и разноцветными коврами, которые были надежно связаны веревками.",
+   "lemma": "одежда",
+   "options": [
+    "дорогой одеждой",
+    "дорогой одежды",
+    "дорогой одежде",
+    "дорогая одежда"
+   ],
+   "correct": "дорогой одеждой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«дорогой одеждой» — the instrumental marks the means, company, or complement.",
+   "id": "c10",
+   "translation": "These were your traders in choice wares, in wrappings of blue and embroidered work, and in chests of rich clothing, bound with cords and made of cedar, among your merchandise."
+  },
+  {
+   "sentence": "На твоем рынке они вели с тобой торговлю дорогой одеждой, ___, шитьем и разноцветными коврами, которые были надежно связаны веревками.",
+   "lemma": "ткань",
+   "options": [
+    "голубых тканей",
+    "голубые ткани",
+    "голубыми тканями",
+    "голубым тканям"
+   ],
+   "correct": "голубыми тканями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«голубыми тканями» — the instrumental marks the means, company, or complement.",
+   "id": "c11",
+   "translation": "These were your traders in choice wares, in wrappings of blue and embroidered work, and in chests of rich clothing, bound with cords and made of cedar, among your merchandise."
+  },
+  {
+   "sentence": "На твоем рынке они вели с тобой торговлю дорогой одеждой, голубыми тканями, шитьем и ___, которые были надежно связаны веревками.",
+   "lemma": "ковёр",
+   "options": [
+    "разноцветными коврами",
+    "разноцветных коврах",
+    "разноцветные ковры",
+    "разноцветным коврам"
+   ],
+   "correct": "разноцветными коврами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«разноцветными коврами» — the instrumental marks the means, company, or complement.",
+   "id": "c12",
+   "translation": "These were your traders in choice wares, in wrappings of blue and embroidered work, and in chests of rich clothing, bound with cords and made of cedar, among your merchandise."
+  },
+  {
+   "sentence": "— ___ перевозили твои товары.",
+   "lemma": "корабль",
+   "options": [
+    "таршишскими кораблями",
+    "таршишским кораблям",
+    "таршишских кораблей",
+    "таршишские корабли"
+   ],
+   "correct": "таршишские корабли",
+   "case": "Именительный (Nominative)",
+   "explain": "«Таршишские корабли» — the subject of the sentence stands in the nominative.",
+   "id": "c13",
+   "translation": "“ ‘ “The ships of Tarshish were your caravans for your merchandise. You were replenished and made very glorious in the heart of the seas."
+  }
+ ]
 }

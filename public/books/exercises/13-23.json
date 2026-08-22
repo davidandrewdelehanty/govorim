@@ -1,204 +1,109 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Когда Давид состарился и был в преклонных годах, он сделал своего сына Соломона царем ___.",
-      "lemma": "Израиль",
-      "options": [
-        "Израиль",
-        "Израиля",
-        "Израиле",
-        "Израилем"
-      ],
-      "correct": "Израиля",
-      "case": "Родительный (Genitive)",
-      "translation": "When David was old and full of years, he made Solomon his son king over Israel.",
-      "explain": "царем Израиля (king of Israel) uses genitive to show what the king rules over."
-    },
-    {
-      "id": "c2",
-      "sentence": "Еще он собрал всех вождей Израиля, а также священников и ___.",
-      "lemma": "левит",
-      "options": [
-        "левиты",
-        "левитов",
-        "левитами",
-        "левитах"
-      ],
-      "correct": "левитов",
-      "case": "Винительный (Accusative)",
-      "translation": "He gathered together all the princes of Israel, with the priests and the Levites.",
-      "explain": "собрал (gathered) is a transitive verb requiring the accusative case for the plural direct object."
-    },
-    {
-      "id": "c3",
-      "sentence": "Левиты в ___ от 30 лет были пересчитаны.",
-      "lemma": "возраст",
-      "options": [
-        "возраст",
-        "возраста",
-        "возрасте",
-        "возрастом"
-      ],
-      "correct": "возрасте",
-      "case": "Предложный (Prepositional)",
-      "translation": "The Levites from thirty years old and upward were counted.",
-      "explain": "в возрасте (at the age of) — preposition в with prepositional case indicates position/location in time."
-    },
-    {
-      "id": "c4",
-      "sentence": "Давид разделил левитов на три ___ по сыновьям Левия.",
-      "lemma": "группа",
-      "options": [
-        "группа",
-        "группы",
-        "группе",
-        "группой"
-      ],
-      "correct": "группы",
-      "case": "Винительный (Accusative)",
-      "translation": "David divided them into divisions according to the sons of Levi.",
-      "explain": "разделил (divided) is a transitive verb requiring the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Они были главами кланов семейств от ___.",
-      "lemma": "Лайдан",
-      "options": [
-        "Лайдан",
-        "Лайдана",
-        "Лайдане",
-        "Лайданом"
-      ],
-      "correct": "Лайдана",
-      "case": "Родительный (Genitive)",
-      "translation": "These were the heads of the fathers' households of Ladan.",
-      "explain": "семейств от Лайдана (families of Ladan) uses genitive to show possession/descent."
-    },
-    {
-      "id": "c6",
-      "sentence": "Теперь левиты должны были помогать потомкам Аарона в служениях дома ___.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господе",
-        "Богом"
-      ],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "The Levites were to help the descendants of Aaron in the service of the house of the Lord.",
-      "explain": "дома Господа (the house of the Lord) uses genitive for possession."
-    },
-    {
-      "id": "c7",
-      "sentence": "Мужчины о двадцати лет и старше, которые несли ___ в доме Господа.",
-      "lemma": "служба",
-      "options": [
-        "служба",
-        "службы",
-        "службе",
-        "службу"
-      ],
-      "correct": "службу",
-      "case": "Винительный (Accusative)",
-      "translation": "Men who were twenty years old and upward, who did the work for the service of Yahweh's house.",
-      "explain": "носили службу (carried out service) — the transitive verb requires accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Так они исполняли свои обязанности при шатре собрания и при ___ , помогая своим собратьям, потомкам Аарона.",
-      "lemma": "дом",
-      "options": [
-        "дом",
-        "дома",
-        "доме",
-        "домом"
-      ],
-      "correct": "доме",
-      "case": "Предложный (Prepositional)",
-      "translation": "Thus they fulfilled their obligations at the tent of meeting and in the house, assisting their brothers, the descendants of Aaron.",
-      "explain": "при доме (at/in the house) — preposition при with prepositional case indicates presence/proximity."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Давид распределяет левитов. Когда Давид состарился и был в преклонных годах, он сделал своего сына Соломона царем Израиля.",
-      "question": "What did David do when he became old?",
-      "options": [
-        "Made Solomon king of Israel",
-        "Retired to Jerusalem",
-        "Gave his throne to his generals",
-        "Divided his kingdom among his sons"
-      ],
-      "correct": "Made Solomon king of Israel",
-      "explain": "Давид... сделал своего сына Соломона царем Израиля — David made his son Solomon king of Israel."
-    },
-    {
-      "id": "r2",
-      "ru": "Еще он собрал всех вождей Израиля, а также священников и левитов. Левиты возрасте от 30 лет были пересчитаны. Их оказалось 38 тысяч человек.",
-      "question": "How many Levites aged 30 and above were counted?",
-      "options": [
-        "38 thousand",
-        "24 thousand",
-        "6 thousand",
-        "4 thousand"
-      ],
-      "correct": "38 thousand",
-      "explain": "Левиты в возрасте от 30 лет... Их оказалось 38 тысяч человек — 38 thousand Levites."
-    },
-    {
-      "id": "r3",
-      "ru": "Давид сказал... Пусть двадцать четыре тысячи из них следят за работой в доме Господа, а шесть тысяч будут сановниками и судьями. Четыре тысячи пусть будут привратниками, и четыре тысячи пусть славят Господа, играя на музыкальных инструментах.",
-      "question": "What different roles did David assign to the Levites?",
-      "options": [
-        "Overseers, officials, judges, doorkeepers, and musicians",
-        "Priests, soldiers, builders, and farmers",
-        "Scribes, merchants, guards, and servants",
-        "Teachers, physicians, judges, and counselors"
-      ],
-      "correct": "Overseers, officials, judges, doorkeepers, and musicians",
-      "explain": "David divided them into roles: следят за работой, сановниками и судьями, привратниками, and славят Господа."
-    },
-    {
-      "id": "r4",
-      "ru": "Давид разделил левитов на три группы по сыновьям Левия — Гершону, Каафу и Мирари.",
-      "question": "Into how many groups did David divide the Levites?",
-      "options": [
-        "Three groups by the sons of Levi",
-        "Twelve groups by tribe",
-        "Two groups by function",
-        "Six groups by family"
-      ],
-      "correct": "Three groups by the sons of Levi",
-      "explain": "Давид разделил левитов на три группы по сыновьям Левия — David divided them into three groups."
-    },
-    {
-      "id": "r5",
-      "ru": "Они заботились о священном хлебе, о лучшей муке для хлебных приношений, о пресных коржах, о выпечке для приношения, о приношении, которое смешивается с маслом, и обо всех мерах объема и веса.",
-      "question": "What responsibilities did the Levites have regarding temple offerings?",
-      "options": [
-        "Care of the sacred bread, flour, unleavened wafers, baked offerings, and oil mixtures",
-        "Preparation of incense and myrrh",
-        "Care of sacrificial animals",
-        "Guarding the temple treasury"
-      ],
-      "correct": "Care of the sacred bread, flour, unleavened wafers, baked offerings, and oil mixtures",
-      "explain": "They cared for священного хлеба, муки, пресных коржах, выпечки, приношений."
-    },
-    {
-      "id": "r6",
-      "ru": "Они должны были каждое утро благодарить и славить Господа, делать то же самое вечером и всякий раз, когда в субботы, праздники Новолуния и в установленные праздники Господу приносилась жертва всесожжения.",
-      "question": "When did the Levites have to give thanks and praise the Lord?",
-      "options": [
-        "Every morning, evening, and on Sabbaths, new moons, and set feasts",
-        "Only on Sabbaths",
-        "Only during festivals",
-        "Only on Passover"
-      ],
-      "correct": "Every morning, evening, and on Sabbaths, new moons, and set feasts",
-      "explain": "каждое утро и вечером и всякий раз на субботы, праздники Новолуния и установленные праздники."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Когда Давид состарился и был в ___, он сделал своего сына Соломона царем Израиля.",
+   "lemma": "год",
+   "options": [
+    "преклонными годами",
+    "преклонных годах",
+    "преклонным годам",
+    "преклонные годы"
+   ],
+   "correct": "преклонных годах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«преклонных годах» — after the preposition «в», for location or topic.",
+   "id": "c1",
+   "translation": "Now David was old and full of days; and he made Solomon his son king over Israel."
+  },
+  {
+   "sentence": "Четыре тысячи пусть будут служащими у ворот, и четыре тысячи пусть славят Господа, играя на ___, которые я для этого приготовил.",
+   "lemma": "инструмент",
+   "options": [
+    "музыкальных инструментов",
+    "музыкальных инструментах",
+    "музыкальными инструментами",
+    "музыкальным инструментам"
+   ],
+   "correct": "музыкальных инструментах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«музыкальных инструментах» — after the preposition «на», for location or topic.",
+   "id": "c2",
+   "translation": "four thousand were doorkeepers, and four thousand praised Yahweh with the instruments which I made for giving praise.”"
+  },
+  {
+   "sentence": "Их ___, сыновья Киша, взяли их себе в жены.",
+   "lemma": "брат",
+   "options": [
+    "двоюродным братьям",
+    "двоюродных братьев",
+    "двоюродными братьями",
+    "двоюродные братья"
+   ],
+   "correct": "двоюродные братья",
+   "case": "Именительный (Nominative)",
+   "explain": "«двоюродные братья» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "Eleazar died, and had no sons, but daughters only: and their brothers the sons of Kish took them as wives."
+  },
+  {
+   "sentence": "По ___ Давида перечислялись те из левитов, кому было от двадцати лет и выше.",
+   "lemma": "указание",
+   "options": [
+    "последних указаниях",
+    "последним указаниям",
+    "последними указаниями",
+    "последние указания"
+   ],
+   "correct": "последним указаниям",
+   "case": "Дательный (Dative)",
+   "explain": "«последним указаниям» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c4",
+   "translation": "For by the last words of David the sons of Levi were counted, from twenty years old and upward."
+  },
+  {
+   "sentence": "Теперь левиты должны были помогать потомкам Аарона в службах Господнего дома: следить за дворами и комнатами, очищением всей священной утвари и исполнять другие обязанности при ___.",
+   "lemma": "дом",
+   "options": [
+    "божьего дома",
+    "божий дом",
+    "божьему дому",
+    "божьем доме"
+   ],
+   "correct": "божьем доме",
+   "case": "Предложный (Prepositional)",
+   "explain": "«Божьем доме» — after the preposition «при», for location or topic.",
+   "id": "c6",
+   "translation": "For their office was to wait on the sons of Aaron for the service of Yahweh’s house, in the courts, and in the rooms, and in the purifying of all holy things, even the work of the service of God’s house;"
+  },
+  {
+   "sentence": "Они заботились о ___, о лучшей муке для хлебных приношений, о пресных коржах, о выпечке для приношения, о приношении, которое смешивается с маслом, и обо всех мерах объема и веса.",
+   "lemma": "хлеб",
+   "options": [
+    "священному хлебу",
+    "священный хлеб",
+    "священным хлебом",
+    "священном хлебе"
+   ],
+   "correct": "священном хлебе",
+   "case": "Предложный (Prepositional)",
+   "explain": "«священном хлебе» — after the preposition «о», for location or topic.",
+   "id": "c7",
+   "translation": "for the show bread also, and for the fine flour for a meal offering, whether of unleavened wafers, or of that which is baked in the pan, or of that which is soaked, and for all measurements of quantity and size;"
+  },
+  {
+   "sentence": "Они должны были служить Господу постоянно в ___ и так, как для них предписано.",
+   "lemma": "количество",
+   "options": [
+    "надлежащим количеством",
+    "надлежащем количестве",
+    "надлежащему количеству",
+    "надлежащее количество"
+   ],
+   "correct": "надлежащем количестве",
+   "case": "Предложный (Prepositional)",
+   "explain": "«надлежащем количестве» — after the preposition «в», for location or topic.",
+   "id": "c8",
+   "translation": "and to stand every morning to thank and praise Yahweh, and likewise in the evening;"
+  }
+ ]
 }

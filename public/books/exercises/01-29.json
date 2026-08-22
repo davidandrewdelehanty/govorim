@@ -1,150 +1,34 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ продолжил путешествие и пришел в землю восточных народов.",
-      "lemma": "Иаков",
-      "options": ["Иаков", "Иакова", "Иакову", "Иаковом"],
-      "correct": "Иаков",
-      "case": "Именительный (Nominative)",
-      "translation": "Jacob continued his journey and came to the land of the eastern peoples.",
-      "explain": "Иаков is the subject of 'пришел', so it is in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Он сказал им, «Знаете ли вы Лавана, внука ___?»",
-      "lemma": "Нахор",
-      "options": ["Нахор", "Нахора", "Нахору", "Нахором"],
-      "correct": "Нахора",
-      "case": "Родительный (Genitive)",
-      "translation": "He said to them, 'Do you know Laban, the grandson of Nahor?'",
-      "explain": "внук кого (grandson of whom) requires the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Потом Иаков сказал ___, «Дай мне мою жену, чтобы мне жить с ней, как с женой».",
-      "lemma": "Лаван",
-      "options": ["Лаван", "Лавана", "Лавану", "Лаваном"],
-      "correct": "Лавану",
-      "case": "Дательный (Dative)",
-      "translation": "Then Jacob said to Laban, 'Give me my wife, that I may live with her.'",
-      "explain": "The verb сказать (to say to someone) takes its indirect object in the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Когда Иаков увидел Рахиль, дочь своего дяди Лавана, он подошел, отвалил ___ от колодца и напоил лавановых овец.",
-      "lemma": "камень",
-      "options": ["камень", "камня", "камню", "камнем"],
-      "correct": "камень",
-      "case": "Винительный (Accusative)",
-      "translation": "He went up, rolled the stone away from the well, and watered Laban's sheep.",
-      "explain": "The transitive verb отвалить (to roll away) takes its direct object in the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "«А вот и Рахиль, его дочь, идет с ___».",
-      "lemma": "овца",
-      "options": ["овцы", "овец", "овцам", "овцами"],
-      "correct": "овцами",
-      "case": "Творительный (Instrumental)",
-      "translation": "'And here is Rachel, his daughter, coming with the sheep.'",
-      "explain": "The preposition с (with) governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Там он увидел колодец в ___, и возле него три отары овец.",
-      "lemma": "поле",
-      "options": ["поле", "поля", "полю", "полем"],
-      "correct": "поле",
-      "case": "Предложный (Prepositional)",
-      "translation": "There he saw a well in the field, and near it three flocks of sheep.",
-      "explain": "The preposition в indicating location governs the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Там он увидел колодец в поле, и возле него три отары ___.",
-      "lemma": "овца",
-      "options": ["овцы", "овец", "овцам", "овцами"],
-      "correct": "овец",
-      "case": "Родительный (Genitive)",
-      "translation": "There he saw a well in the field, and near it three flocks of sheep.",
-      "explain": "овец names what the flocks consist of — a genitive of the whole/contents."
-    },
-    {
-      "id": "c8",
-      "sentence": "Иаков спросил ___. «Братья, откуда вы?»",
-      "lemma": "пастух",
-      "options": ["пастухи", "пастухов", "пастухам", "пастухами"],
-      "correct": "пастухов",
-      "case": "Винительный (Accusative)",
-      "translation": "Jacob asked the shepherds, 'Brothers, where are you from?'",
-      "explain": "The animate plural direct object of 'спросил' takes the accusative, which for animate nouns matches the genitive."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Там он увидел колодец в поле, и возле него три отары овец, потому что из того колодца поили скот.",
-      "question": "What did Jacob see when he arrived in the land of the eastern peoples?",
-      "options": ["A well in a field with three flocks of sheep near it", "A city with a great temple", "A river full of fish", "An empty desert"],
-      "correct": "A well in a field with three flocks of sheep near it",
-      "explain": "The text describes a well in a field with three flocks of sheep gathered by it."
-    },
-    {
-      "id": "r2",
-      "ru": "«А вот и Рахиль, его дочь, идет с овцами».",
-      "question": "Who did the shepherds point out to Jacob as she approached with the sheep?",
-      "options": ["Rachel, Laban's daughter", "Leah, Laban's daughter", "Rebekah, Laban's sister", "Zilpah, the servant"],
-      "correct": "Rachel, Laban's daughter",
-      "explain": "The shepherds said, 'А вот и Рахиль, его дочь, идет с овцами' (Here is Rachel, his daughter, coming with the sheep)."
-    },
-    {
-      "id": "r3",
-      "ru": "Потом Иаков поцеловал Рахиль и, громко заплакав, сказал Рахиле, что он — родственник ее отца и сына Ревекки.",
-      "question": "What did Jacob do when he met Rachel at the well?",
-      "options": ["He kissed her and wept, telling her he was her father's relative", "He gave her a ring", "He immediately asked to marry her", "He ignored her and spoke only to the shepherds"],
-      "correct": "He kissed her and wept, telling her he was her father's relative",
-      "explain": "Jacob kissed Rachel, wept aloud, and told her he was a relative of her father."
-    },
-    {
-      "id": "r4",
-      "ru": "Услышав о приходе своего племянника Иакова, Лаван выбежал навстречу, обнял его, поцеловал и привел к себе в дом.",
-      "question": "How did Laban react to news of Jacob's arrival?",
-      "options": ["He ran to meet him, embraced and kissed him, and brought him home", "He sent servants to turn Jacob away", "He ignored the news for several days", "He demanded payment before meeting him"],
-      "correct": "He ran to meet him, embraced and kissed him, and brought him home",
-      "explain": "Laban ran out to meet Jacob, embraced and kissed him, and brought him to his house."
-    },
-    {
-      "id": "r5",
-      "ru": "Я буду работать на тебя семь лет за твою младшую дочь Рахиль",
-      "question": "What did Jacob offer to do in exchange for marrying Rachel?",
-      "options": ["Work for Laban for seven years", "Pay Laban a large sum of gold", "Give Laban his flocks", "Build Laban a house"],
-      "correct": "Work for Laban for seven years",
-      "explain": "Jacob said, 'Я буду работать на тебя семь лет за твою младшую дочь Рахиль' (I will work for you seven years for Rachel)."
-    },
-    {
-      "id": "r6",
-      "ru": "Когда настало утро, оказалось, что это Лия, Иаков сказал Лавану.",
-      "question": "What did Jacob discover the morning after his wedding night?",
-      "options": ["That he had married Leah instead of Rachel", "That Rachel had run away", "That Laban had died", "That his wages had been stolen"],
-      "correct": "That he had married Leah instead of Rachel",
-      "explain": "In the morning it turned out to be Leah, and Jacob confronted Laban about it."
-    },
-    {
-      "id": "r7",
-      "ru": "У нас здесь нет обычая выдавать замуж младшую дочь раньше старшей",
-      "question": "How did Laban justify giving Jacob Leah instead of Rachel?",
-      "options": ["He said their custom forbade marrying off the younger daughter before the elder", "He said Rachel was too young to marry", "He said Rachel refused to marry Jacob", "He said he had already promised Rachel to someone else"],
-      "correct": "He said their custom forbade marrying off the younger daughter before the elder",
-      "explain": "Laban answered that there was no custom of giving the younger daughter in marriage before the elder."
-    },
-    {
-      "id": "r8",
-      "ru": "И снова она забеременела, и когда родила сына, сказала, «На этот раз я возблагодарю Господа»",
-      "question": "Why did Leah name her fourth son Judah?",
-      "options": ["Because she said she would praise the Lord this time", "Because he was born during a famine", "Because Rachel asked her to", "Because Laban chose the name"],
-      "correct": "Because she said she would praise the Lord this time",
-      "explain": "Leah said, 'На этот раз я возблагодарю Господа' (This time I will praise the Lord), and named him Judah."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Иаков продолжил путешествие и пришел в землю ___.",
+   "lemma": "народ",
+   "options": [
+    "восточными народами",
+    "восточных народов",
+    "восточных народах",
+    "восточным народам"
+   ],
+   "correct": "восточных народов",
+   "case": "Родительный (Genitive)",
+   "explain": "«восточных народов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "Then Jacob went on his journey, and came to the land of the children of the east."
+  },
+  {
+   "sentence": "Колодец был закрыт ___.",
+   "lemma": "камень",
+   "options": [
+    "большим камнем",
+    "большем камне",
+    "большему камню",
+    "больший камень"
+   ],
+   "correct": "большим камнем",
+   "case": "Творительный (Instrumental)",
+   "explain": "«большим камнем» — the instrumental marks the means, company, or complement.",
+   "id": "c2",
+   "translation": "He looked, and behold, a well in the field, and saw three flocks of sheep lying there by it. For out of that well they watered the flocks. The stone on the well’s mouth was large."
+  }
+ ]
 }

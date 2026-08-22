@@ -1,204 +1,124 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "В восемнадцатый год царствования Иераваама началась война между ___.",
-      "lemma": "Абия",
-      "options": [
-        "Абия",
-        "Абии",
-        "Абию",
-        "Абией"
-      ],
-      "correct": "Абией",
-      "case": "Творительный (Instrumental)",
-      "translation": "In the eighteenth year of Jeroboam's reign, war began between Abijah and him.",
-      "explain": "The preposition 'между' (between) governs the instrumental case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Абия собрал четыреста тысяч избранных воинов для ___.",
-      "lemma": "война",
-      "options": [
-        "война",
-        "войны",
-        "войну",
-        "войной"
-      ],
-      "correct": "войны",
-      "case": "Родительный (Genitive)",
-      "translation": "Abijah gathered four hundred thousand chosen soldiers for war.",
-      "explain": "The preposition 'для' (for) governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Иеравам собрал восемьсот тысяч избранных воинов против ___.",
-      "lemma": "Абия",
-      "options": [
-        "Абия",
-        "Абии",
-        "Абию",
-        "Абией"
-      ],
-      "correct": "Абии",
-      "case": "Родительный (Genitive)",
-      "translation": "Jeroboam gathered eight hundred thousand chosen soldiers against Abijah.",
-      "explain": "The preposition 'против' (against) governs the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Абия взошел на гору Семараим и сказал: «Слушайте ___!»",
-      "lemma": "Иеравам",
-      "options": [
-        "Иеравам",
-        "Иеравама",
-        "Иераваму",
-        "Иеравамом"
-      ],
-      "correct": "Иеравама",
-      "case": "Винительный (Accusative)",
-      "translation": "Abijah went up to Mount Zemaraim and said: 'Listen to me, Jeroboam!'",
-      "explain": "The direct object of the verb command 'слушайте' (listen to) takes the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Неужели вы не знаете, что Господь Бог Израиля дал царство Израиля дому ___?",
-      "lemma": "Давид",
-      "options": [
-        "Давид",
-        "Давида",
-        "Давиду",
-        "Давидом"
-      ],
-      "correct": "Давида",
-      "case": "Родительный (Genitive)",
-      "translation": "Don't you know that the Lord God of Israel gave the kingdom of Israel to the house of David?",
-      "explain": "The genitive 'дому Давида' (house of David) shows possession."
-    },
-    {
-      "id": "c6",
-      "sentence": "Когда войска сошлись в ___.",
-      "lemma": "сражение",
-      "options": [
-        "сражение",
-        "сражения",
-        "сражению",
-        "сражением"
-      ],
-      "correct": "сражение",
-      "case": "Винительный (Accusative)",
-      "translation": "When the armies joined in battle.",
-      "explain": "The verb 'сошлись' (joined) takes the accusative case with 'в' (in)."
-    },
-    {
-      "id": "c7",
-      "sentence": "Господь поразил Иеравама перед ___.",
-      "lemma": "Абия",
-      "options": [
-        "Абия",
-        "Абии",
-        "Абию",
-        "Абией"
-      ],
-      "correct": "Абией",
-      "case": "Творительный (Instrumental)",
-      "translation": "The Lord struck down Jeroboam before Abijah.",
-      "explain": "The preposition 'перед' (before/in front of) governs the instrumental case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Израилетяне были разбиты перед Иудеей, потому что они положились на Господа, Бога ___.",
-      "lemma": "отцы",
-      "options": [
-        "отцы",
-        "отцов",
-        "отцами",
-        "отцах"
-      ],
-      "correct": "отцов",
-      "case": "Родительный (Genitive)",
-      "translation": "The Israelites were defeated before Judah, because they trusted in the Lord, the God of their fathers.",
-      "explain": "The genitive 'Бога отцов' (God of the fathers) shows possession."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "В восемнадцатый год царствования Иераваама началась война между Абией и Иеравамом.",
-      "question": "When did the war between Abijah and Jeroboam begin?",
-      "options": [
-        "In the eighteenth year of Jeroboam's reign",
-        "In the first year",
-        "In the tenth year",
-        "In the thirtieth year"
-      ],
-      "correct": "In the eighteenth year of Jeroboam's reign",
-      "explain": "The text states 'В восемнадцатый год царствования Иераваама началась война' — in the eighteenth year of Jeroboam's reign war began."
-    },
-    {
-      "id": "r2",
-      "ru": "Абия собрал четыреста тысяч избранных воинов для войны, а Иеравам собрал восемьсот тысяч избранных воинов против него.",
-      "question": "How many soldiers did each king gather?",
-      "options": [
-        "Abijah had 400,000 soldiers and Jeroboam had 800,000",
-        "Abijah had 800,000 and Jeroboam had 400,000",
-        "Both had 600,000 soldiers",
-        "Abijah had more soldiers than Jeroboam"
-      ],
-      "correct": "Abijah had 400,000 soldiers and Jeroboam had 800,000",
-      "explain": "The text clearly states 'Абия собрал четыреста тысяч' and 'Иеравам собрал восемьсот тысяч' — Abijah gathered 400,000 and Jeroboam 800,000."
-    },
-    {
-      "id": "r3",
-      "ru": "Абия взошел на гору Семараим и сказал: «Слушайте меня, Иеравам и весь Израиль!»",
-      "question": "Where did Abijah stand to speak to Jeroboam and Israel?",
-      "options": [
-        "On Mount Zemaraim",
-        "In the temple",
-        "On a hill in Jerusalem",
-        "By the Jordan River"
-      ],
-      "correct": "On Mount Zemaraim",
-      "explain": "The text says 'Абия взошел на гору Семараим' — Abijah went up to Mount Zemaraim."
-    },
-    {
-      "id": "r4",
-      "ru": "Неужели вы не знаете, что Господь Бог Израиля дал царство Израиля дому Давида по завету соли?",
-      "question": "What did Abijah remind Jeroboam about God's covenant?",
-      "options": [
-        "That God had given the kingdom of Israel to the house of David by a covenant of salt",
-        "That the kingdom should be divided equally",
-        "That Jeroboam had a right to the throne",
-        "That the covenant had been broken"
-      ],
-      "correct": "That God had given the kingdom of Israel to the house of David by a covenant of salt",
-      "explain": "Abijah said 'Господь Бог Израиля дал царство Израиля дому Давида по завету соли' — the Lord gave the kingdom to David's house by a covenant of salt."
-    },
-    {
-      "id": "r5",
-      "ru": "Когда войска сошлись в сражение, Господь поразил Иеравама перед Абией и Иудеей.",
-      "question": "What happened when the armies met in battle?",
-      "options": [
-        "The Lord struck down Jeroboam before Abijah and Judah",
-        "Jeroboam defeated Abijah",
-        "Both armies retreated",
-        "A stalemate was reached"
-      ],
-      "correct": "The Lord struck down Jeroboam before Abijah and Judah",
-      "explain": "The text states 'Господь поразил Иеравама перед Абией и Иудеей' — the Lord struck down Jeroboam."
-    },
-    {
-      "id": "r6",
-      "ru": "Израилетяне были разбиты перед Иудеей, потому что они положились на Господа, Бога отцов своих.",
-      "question": "Why were the Israelites defeated?",
-      "options": [
-        "Because Judah trusted in the Lord, the God of their fathers",
-        "Because they had fewer soldiers",
-        "Because they were unprepared for battle",
-        "Because their weapons were inferior"
-      ],
-      "correct": "Because Judah trusted in the Lord, the God of their fathers",
-      "explain": "The reason Judah won was that 'они положились на Господа, Бога отцов своих' — they trusted in the Lord, the God of their fathers."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Авия вступил в сражение с войском из четырехсот тысяч ___, а Иеровоам выстроил против него восемьсот тысяч человек — отборных храбрецов.",
+   "lemma": "воин",
+   "options": [
+    "отборных воинах",
+    "отборных воинов",
+    "отборными воинами",
+    "отборным воинам"
+   ],
+   "correct": "отборных воинов",
+   "case": "Родительный (Genitive)",
+   "explain": "«отборных воинов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "Abijah joined battle with an army of valiant men of war, even four hundred thousand chosen men; and Jeroboam set the battle in array against him with eight hundred thousand chosen men, who were mighty men of valor."
+  },
+  {
+   "sentence": "Авия вступил в сражение с войском из четырехсот тысяч отборных воинов, а Иеровоам выстроил против него восемьсот тысяч человек — ___.",
+   "lemma": "храбрец",
+   "options": [
+    "отборных храбрецах",
+    "отборным храбрецам",
+    "отборных храбрецов",
+    "отборными храбрецами"
+   ],
+   "correct": "отборных храбрецов",
+   "case": "Родительный (Genitive)",
+   "explain": "«отборных храбрецов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "Abijah joined battle with an army of valiant men of war, even four hundred thousand chosen men; and Jeroboam set the battle in array against him with eight hundred thousand chosen men, who were mighty men of valor."
+  },
+  {
+   "sentence": "Но разве вы не изгнали священников Господа — потомков Аарона, а также левитов, и не поставили своих священников по примеру народов ___?",
+   "lemma": "земля",
+   "options": [
+    "других земель",
+    "другим землям",
+    "другими землями",
+    "другие земли"
+   ],
+   "correct": "других земель",
+   "case": "Родительный (Genitive)",
+   "explain": "«других земель» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Haven’t you driven out the priests of Yahweh, the sons of Aaron, and the Levites, and made priests for yourselves according to the ways of the peoples of other lands? Whoever comes to consecrate himself with a young bull and seven rams may be a priest of those who are no gods."
+  },
+  {
+   "sentence": "Они кладут хлеб на ___ и каждый вечер зажигают светильники на золотых подсвечниках.",
+   "lemma": "стол",
+   "options": [
+    "чистым столом",
+    "чистого стола",
+    "чистый стол",
+    "чистом столе"
+   ],
+   "correct": "чистый стол",
+   "case": "Винительный (Accusative)",
+   "explain": "«чистый стол» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c4",
+   "translation": "and they burn to Yahweh every morning and every evening burnt offerings and sweet incense. They also set the show bread in order on the pure table; and the lamp stand of gold with its lamps, to burn every evening; for we keep the instruction of Yahweh our God, but you have forsaken him."
+  },
+  {
+   "sentence": "Они кладут хлеб на чистый стол и каждый вечер зажигают светильники на ___.",
+   "lemma": "подсвечник",
+   "options": [
+    "золотых подсвечников",
+    "золотые подсвечники",
+    "золотых подсвечниках",
+    "золотым подсвечникам"
+   ],
+   "correct": "золотых подсвечниках",
+   "case": "Предложный (Prepositional)",
+   "explain": "«золотых подсвечниках» — after the preposition «на», for location or topic.",
+   "id": "c5",
+   "translation": "and they burn to Yahweh every morning and every evening burnt offerings and sweet incense. They also set the show bread in order on the pure table; and the lamp stand of gold with its lamps, to burn every evening; for we keep the instruction of Yahweh our God, but you have forsaken him."
+  },
+  {
+   "sentence": "Авия и его люди нанесли им тяжелые потери, так что у израильтян пало пятьсот тысяч ___.",
+   "lemma": "воин",
+   "options": [
+    "отборных воинах",
+    "отборных воинов",
+    "отборными воинами",
+    "отборным воинам"
+   ],
+   "correct": "отборных воинов",
+   "case": "Родительный (Genitive)",
+   "explain": "«отборных воинов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "Abijah and his people killed them with a great slaughter, so five hundred thousand chosen men of Israel fell down slain."
+  },
+  {
+   "sentence": "Авия преследовал Иеровоама и взял у него города Вефиль, Иешану и Эфрон с их ___.",
+   "lemma": "поселение",
+   "options": [
+    "окрестных поселений",
+    "окрестные поселения",
+    "окрестных поселениях",
+    "окрестными поселениями"
+   ],
+   "correct": "окрестными поселениями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«окрестными поселениями» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c8",
+   "translation": "Abijah pursued Jeroboam, and took cities from him, Bethel with its villages, Jeshanah with its villages, and Ephron with its villages."
+  },
+  {
+   "sentence": "___ правления Авии, сделанное и сказанное им, записаны в истории пророка Иддо.",
+   "lemma": "событие",
+   "options": [
+    "прочим событиям",
+    "прочими событиями",
+    "прочих событиях",
+    "прочие события"
+   ],
+   "correct": "прочие события",
+   "case": "Именительный (Nominative)",
+   "explain": "«Прочие события» — the subject of the sentence stands in the nominative.",
+   "id": "c9",
+   "translation": "The rest of the acts of Abijah, his ways, and his sayings are written in the commentary of the prophet Iddo."
+  }
+ ]
 }

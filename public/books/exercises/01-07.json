@@ -1,174 +1,124 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ сказал Ною, «Войди в ковчег со всей семьей».",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господом"
-      ],
-      "correct": "Господь",
-      "case": "Именительный (Nominative)",
-      "translation": "The Lord said to Noah, 'Come into the ark with all your family.'",
-      "explain": "Господь is the subject of сказал, so it takes the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Ной, его сыновья, его жена и жены его сыновей вошли в ковчег, чтобы спастись от ___.",
-      "lemma": "потоп",
-      "options": [
-        "потоп",
-        "потопа",
-        "потопу",
-        "потопом"
-      ],
-      "correct": "потопа",
-      "case": "Родительный (Genitive)",
-      "translation": "Noah, his sons, his wife, and his sons' wives entered the ark to be saved from the flood.",
-      "explain": "The preposition от (from) always governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Чистые и нечистые животные, птицы и все присмыкающиеся пришли к ___ и вошли в ковчег парами.",
-      "lemma": "Ной",
-      "options": [
-        "Ной",
-        "Ноя",
-        "Ною",
-        "Ноем"
-      ],
-      "correct": "Ною",
-      "case": "Дательный (Dative)",
-      "translation": "Clean and unclean animals, birds, and all creeping things came to Noah and entered the ark in pairs.",
-      "explain": "The preposition к (toward/to) governs the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Господь сказал Ною, «Войди в ___ со всей семьей».",
-      "lemma": "ковчег",
-      "options": [
-        "ковчег",
-        "ковчега",
-        "ковчегу",
-        "ковчегом"
-      ],
-      "correct": "ковчег",
-      "case": "Винительный (Accusative)",
-      "translation": "The Lord said to Noah, 'Come into the ark with all your family.'",
-      "explain": "The preposition в with the verb of motion войди takes the accusative to show direction into a place; for this inanimate masculine noun the accusative matches the nominative form."
-    },
-    {
-      "id": "c5",
-      "sentence": "Воды, пребывая, подняли ковчег высоко над ___.",
-      "lemma": "земля",
-      "options": [
-        "земля",
-        "земли",
-        "землю",
-        "землёй"
-      ],
-      "correct": "землёй",
-      "case": "Творительный (Instrumental)",
-      "translation": "The waters increased and lifted the ark high above the earth.",
-      "explain": "The preposition над (above) governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Остался только Ной и те, кто были с ним в ___.",
-      "lemma": "ковчег",
-      "options": [
-        "ковчег",
-        "ковчега",
-        "ковчегу",
-        "ковчеге"
-      ],
-      "correct": "ковчеге",
-      "case": "Предложный (Prepositional)",
-      "translation": "Only Noah was left, and those who were with him in the ark.",
-      "explain": "The preposition в expressing location (not motion) governs the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Возьми с собой по семь пар каждого вида чистых животных и по паре от каждого вида нечистых, и по семь пар каждого вида птиц, самцов и самок, чтобы сохранить их виды на земле».",
-      "question": "How many pairs of clean animals did God tell Noah to take into the ark?",
-      "options": [
-        "Seven pairs of each kind",
-        "Two of each kind",
-        "One pair of each kind",
-        "Seven of each kind, males only"
-      ],
-      "correct": "Seven pairs of each kind",
-      "explain": "God told Noah to take 'по семь пар каждого вида чистых животных' (seven pairs of every kind of clean animal)."
-    },
-    {
-      "id": "r2",
-      "ru": "Когда воды потопа пришли на землю, Ною было 600 лет.",
-      "question": "How old was Noah when the floodwaters came on the earth?",
-      "options": [
-        "600 years old",
-        "500 years old",
-        "700 years old",
-        "950 years old"
-      ],
-      "correct": "600 years old",
-      "explain": "The text says 'Ною было 600 лет' (Noah was 600 years old)."
-    },
-    {
-      "id": "r3",
-      "ru": "На шестисотый год жизни Ноя, в семнадцатый день второго месяца, прорвались все источники великой бездны.",
-      "question": "When did the fountains of the great deep burst open?",
-      "options": [
-        "On the seventeenth day of the second month of Noah's 600th year",
-        "On the first day of the first month",
-        "Ten days after Noah entered the ark",
-        "On Noah's 500th birthday"
-      ],
-      "correct": "On the seventeenth day of the second month of Noah's 600th year",
-      "explain": "The text places this 'на шестисотый год жизни Ноя, в семнадцатый день второго месяца' (in the 600th year of Noah's life, on the 17th day of the 2nd month)."
-    },
-    {
-      "id": "r4",
-      "ru": "И тогда Господь затворил за ним дверь.",
-      "question": "What did the Lord do after Noah and the animals entered the ark?",
-      "options": [
-        "He shut the door behind Noah",
-        "He sent a rainbow",
-        "He opened the windows of heaven",
-        "He made the ark float away at once"
-      ],
-      "correct": "He shut the door behind Noah",
-      "explain": "The text says 'Господь затворил за ним дверь' (the Lord shut the door behind him)."
-    },
-    {
-      "id": "r5",
-      "ru": "Воды поднялись и покрыли все горы выше, чем на 15 локтей.",
-      "question": "By how much did the waters rise above the mountains?",
-      "options": [
-        "More than 15 cubits",
-        "Exactly 40 cubits",
-        "Less than 5 cubits",
-        "150 cubits"
-      ],
-      "correct": "More than 15 cubits",
-      "explain": "The text says the waters covered the mountains 'выше, чем на 15 локтей' (more than 15 cubits deep)."
-    },
-    {
-      "id": "r6",
-      "ru": "Остался только Ной и те, кто были с ним в ковчеге.",
-      "question": "Who survived the flood?",
-      "options": [
-        "Only Noah and those with him in the ark",
-        "All the animals but none of the people",
-        "Only Noah's sons",
-        "Everyone who lived on the mountains"
-      ],
-      "correct": "Only Noah and those with him in the ark",
-      "explain": "The text says 'Остался только Ной и те, кто были с ним в ковчеге' (only Noah was left, and those with him in the ark)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Возьми с собой по семь пар каждого вида ___ и по паре от каждого вида нечистых, 3 и по семь пар каждого вида птиц, самцов и самок, чтобы сохранить их виды на земле.",
+   "lemma": "животное",
+   "options": [
+    "чистым животным",
+    "чистых животных",
+    "чистыми животными",
+    "чистые животные"
+   ],
+   "correct": "чистых животных",
+   "case": "Родительный (Genitive)",
+   "explain": "«чистых животных» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "You shall take seven pairs of every clean animal with you, the male and his female. Of the animals that are not clean, take two, the male and his female."
+  },
+  {
+   "sentence": "На шестисотый год жизни Ноя, в семнадцатый день ___, прорвались все источники великой бездны, раскрылись окна неба, 12 и дождь лил на землю сорок дней и сорок ночей.",
+   "lemma": "месяц",
+   "options": [
+    "второй месяц",
+    "вторым месяцем",
+    "второго месяца",
+    "втором месяце"
+   ],
+   "correct": "второго месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«второго месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "In the six hundredth year of Noah’s life, in the second month, on the seventeenth day of the month, on that day all the fountains of the great deep burst open, and the sky’s windows opened."
+  },
+  {
+   "sentence": "На шестисотый год жизни Ноя, в семнадцатый день второго месяца, прорвались все источники ___, раскрылись окна неба, 12 и дождь лил на землю сорок дней и сорок ночей.",
+   "lemma": "бездна",
+   "options": [
+    "великой бездной",
+    "великой бездны",
+    "великой бездне",
+    "великая бездна"
+   ],
+   "correct": "великой бездны",
+   "case": "Родительный (Genitive)",
+   "explain": "«великой бездны» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "In the six hundredth year of Noah’s life, in the second month, on the seventeenth day of the month, on that day all the fountains of the great deep burst open, and the sky’s windows opened."
+  },
+  {
+   "sentence": "С ними вошли все виды животных: ___, домашний скот, все пресмыкающиеся, все птицы, все крылатые существа.",
+   "lemma": "зверь",
+   "options": [
+    "дикие звери",
+    "диким зверям",
+    "дикими зверями",
+    "диких зверях"
+   ],
+   "correct": "дикие звери",
+   "case": "Именительный (Nominative)",
+   "explain": "«дикие звери» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "they, and every animal after its kind, all the livestock after their kind, every creeping thing that creeps on the earth after its kind, and every bird after its kind, every bird of every sort."
+  },
+  {
+   "sentence": "С ними вошли все виды животных: дикие звери, ___, все пресмыкающиеся, все птицы, все крылатые существа.",
+   "lemma": "скот",
+   "options": [
+    "домашний скот",
+    "домашним скотом",
+    "домашнему скоту",
+    "домашнего скота"
+   ],
+   "correct": "домашний скот",
+   "case": "Именительный (Nominative)",
+   "explain": "«домашний скот» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "they, and every animal after its kind, all the livestock after their kind, every creeping thing that creeps on the earth after its kind, and every bird after its kind, every bird of every sort."
+  },
+  {
+   "sentence": "С ними вошли все виды животных: дикие звери, домашний скот, все пресмыкающиеся, все птицы, все ___.",
+   "lemma": "существо",
+   "options": [
+    "крылатых существ",
+    "крылатых существах",
+    "крылатым существам",
+    "крылатые существа"
+   ],
+   "correct": "крылатые существа",
+   "case": "Именительный (Nominative)",
+   "explain": "«крылатые существа» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "they, and every animal after its kind, all the livestock after their kind, every creeping thing that creeps on the earth after its kind, and every bird after its kind, every bird of every sort."
+  },
+  {
+   "sentence": "Все живое, что двигалось по земле, погибло — птицы, скот, ___, все пресмыкающиеся, и все люди.",
+   "lemma": "зверь",
+   "options": [
+    "дикие звери",
+    "диким зверям",
+    "дикими зверями",
+    "диких зверях"
+   ],
+   "correct": "дикие звери",
+   "case": "Именительный (Nominative)",
+   "explain": "«дикие звери» — the subject of the sentence stands in the nominative.",
+   "id": "c9",
+   "translation": "All flesh died that moved on the earth, including birds, livestock, animals, every creeping thing that creeps on the earth, and every man."
+  },
+  {
+   "sentence": "Все на суше, в чьих ноздрях было дыхание жизни, умерло; 23 всякое ___ на земле было уничтожено: люди и звери, пресмыкающиеся и птицы небесные.",
+   "lemma": "существо",
+   "options": [
+    "живое существо",
+    "живого существа",
+    "живым существом",
+    "живом существе"
+   ],
+   "correct": "живое существо",
+   "case": "Именительный (Nominative)",
+   "explain": "«живое существо» — the subject of the sentence stands in the nominative.",
+   "id": "c10",
+   "translation": "All on the dry land, in whose nostrils was the breath of the spirit of life, died."
+  }
+ ]
 }

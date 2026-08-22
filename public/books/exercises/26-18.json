@@ -1,134 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Было ко мне ___ Господа.",
-      "lemma": "слово",
-      "options": ["слово", "слова", "слову", "словом"],
-      "correct": "слово",
-      "case": "Именительный (Nominative)",
-      "translation": "The word of the Lord came to me.",
-      "explain": "Слово is the nominative subject of the sentence, functioning as the grammatical subject of the predicate."
-    },
-    {
-      "id": "c2",
-      "sentence": "в ___ Израиля поговорку",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землю"],
-      "correct": "земле",
-      "case": "Предложный (Prepositional)",
-      "translation": "in the land of Israel, the proverb",
-      "explain": "The preposition в (in) with locative meaning governs the prepositional case."
-    },
-    {
-      "id": "c3",
-      "sentence": "не ест в горных ___.",
-      "lemma": "святилище",
-      "options": ["святилище", "святилища", "святилищу", "святилищах"],
-      "correct": "святилищах",
-      "case": "Предложный (Prepositional)",
-      "translation": "does not eat in the high places.",
-      "explain": "The preposition в (in) governing location takes the prepositional case."
-    },
-    {
-      "id": "c4",
-      "sentence": "не соблазняет ___ другого.",
-      "lemma": "жена",
-      "options": ["жена", "жены", "жене", "жену"],
-      "correct": "жену",
-      "case": "Винительный (Accusative)",
-      "translation": "does not seduce the wife of another.",
-      "explain": "The verb соблазнять is transitive and takes the direct object in the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "не спит с ___ во время ее месячных.",
-      "lemma": "женщина",
-      "options": ["женщина", "женщины", "женщине", "женщиной"],
-      "correct": "женщиной",
-      "case": "Творительный (Instrumental)",
-      "translation": "does not lie with a woman during her menstrual period.",
-      "explain": "The preposition с (with) indicating accompaniment governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "не грабит, не возвращая должнику взятое у того в ___.",
-      "lemma": "залог",
-      "options": ["залог", "залога", "залогу", "залоге"],
-      "correct": "залоге",
-      "case": "Предложный (Prepositional)",
-      "translation": "does not rob, returning to the debtor what was taken from him as pledge.",
-      "explain": "The preposition в (in) indicating location with a pledge takes the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Праведность будет засчитана ___, и злодеяние будет засчитано злодею.",
-      "lemma": "праведник",
-      "options": ["праведник", "праведника", "праведнику", "праведником"],
-      "correct": "праведнику",
-      "case": "Дательный (Dative)",
-      "translation": "Righteousness will be credited to the righteous, and the wickedness to the wicked.",
-      "explain": "The verb засчитать (to credit) takes the dative case indicating the recipient."
-    },
-    {
-      "id": "c8",
-      "sentence": "сын не будет причастен к вине ___.",
-      "lemma": "отец",
-      "options": ["отец", "отца", "отцу", "отцом"],
-      "correct": "отца",
-      "case": "Родительный (Genitive)",
-      "translation": "the son shall not bear the iniquity of the father.",
-      "explain": "The preposition к governing toward/to takes the dative, but 'вина отца' uses genitive to show possession."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Было ко мне слово Господа.",
-      "question": "What came to the prophet at the beginning of the passage?",
-      "options": ["The word of the Lord", "A vision from God", "A command to the people", "A prophecy about the future"],
-      "correct": "The word of the Lord",
-      "explain": "Было ко мне слово Господа literally means 'The word of the Lord came to me.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Что вы имеете в виду, повторяя о земле Израиля поговорку: Отцы ели кислый виноград, а у детей на зубах оскомина?",
-      "question": "What proverb were the Israelites repeating?",
-      "options": ["Fathers eat sour grapes, and children's teeth are set on edge", "The lord is gracious and merciful", "Do not steal or lie", "Follow the statutes and live"],
-      "correct": "Fathers eat sour grapes, and children's teeth are set on edge",
-      "explain": "The text directly quotes this proverb: 'Отцы ели кислый виноград, а у детей на зубах оскомина.'"
-    },
-    {
-      "id": "r3",
-      "ru": "Верно, как и то, что я живу, вы больше не будете произносить эту поговорку в земле Израиля.",
-      "question": "What did God say would no longer be repeated in Israel?",
-      "options": ["The proverb about sour grapes", "Complaints about the law", "Prayers to idols", "Songs of praise"],
-      "correct": "The proverb about sour grapes",
-      "explain": "God declares that the proverb about fathers eating sour grapes will no longer be spoken in Israel."
-    },
-    {
-      "id": "r4",
-      "ru": "Кто согрешит, тот и умрет.",
-      "question": "What is the consequence of sin according to this verse?",
-      "options": ["Death", "Exile", "Punishment from rulers", "Shame among the people"],
-      "correct": "Death",
-      "explain": "'Кто согрешит, тот и умрет' means 'Whoever sins, he shall surely die.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Сын не будет причастен к вине отца, и отец не будет причастен к вине сына.",
-      "question": "What does God say about the responsibility for sin?",
-      "options": ["Each person is responsible only for their own sins", "Children inherit their fathers' guilt", "Fathers must answer for their children", "Families share collective responsibility"],
-      "correct": "Each person is responsible only for their own sins",
-      "explain": "The verse clearly states that son shall not bear the iniquity of the father, and father shall not bear the iniquity of the son."
-    },
-    {
-      "id": "r6",
-      "ru": "Покайтесь, оставьте свои преступления, чтобы грех не погубил вас.",
-      "question": "What does God urge the people to do?",
-      "options": ["Repent and abandon their transgressions", "Build new sanctuaries", "Offer more sacrifices", "Study the law more carefully"],
-      "correct": "Repent and abandon their transgressions",
-      "explain": "Покайтесь, оставьте свои преступления means 'Repent, abandon your transgressions.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "не ест в ___,",
+   "lemma": "святилище",
+   "options": [
+    "горным святилищам",
+    "горных святилищ",
+    "горные святилища",
+    "горных святилищах"
+   ],
+   "correct": "горных святилищах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«горных святилищах» — after the preposition «в», for location or topic.",
+   "id": "c1",
+   "translation": "and has not eaten on the mountains, hasn’t lifted up his eyes to the idols of the house of Israel, hasn’t defiled his neighbor’s wife, hasn’t come near a woman in her impurity,"
+  },
+  {
+   "sentence": "не ест в ___,",
+   "lemma": "святилище",
+   "options": [
+    "горным святилищам",
+    "горных святилищ",
+    "горные святилища",
+    "горных святилищах"
+   ],
+   "correct": "горных святилищах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«горных святилищах» — after the preposition «в», for location or topic.",
+   "id": "c2",
+   "translation": "who hasn’t eaten on the mountains, hasn’t lifted up his eyes to the idols of the house of Israel, hasn’t defiled his neighbor’s wife,"
+  },
+  {
+   "sentence": "Слушайте, дом Израиля: это ___ несправедлив?",
+   "lemma": "путь",
+   "options": [
+    "моём-то пути",
+    "мой-то путь",
+    "моего-то пути",
+    "моим-то путём"
+   ],
+   "correct": "мой-то путь",
+   "case": "Именительный (Nominative)",
+   "explain": "«Мой-то путь» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "“Yet you say, ‘The way of the Lord is not equal.’ Hear now, house of Israel: Is my way not equal? Aren’t your ways unequal?"
+  }
+ ]
 }

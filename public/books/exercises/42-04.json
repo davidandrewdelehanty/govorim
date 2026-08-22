@@ -1,204 +1,34 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ об Иисусе распространялся по всей округе.",
-      "lemma": "слух",
-      "options": ["слух", "слуха", "слуху", "слухом"],
-      "correct": "слух",
-      "case": "Именительный (Nominative)",
-      "translation": "News about Jesus spread through the whole region.",
-      "explain": "Слух is the subject of распространялся (was spreading) → nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "А-а-а, что ты хочешь от нас, Иисус из ___?",
-      "lemma": "Назарет",
-      "options": ["Назарет", "Назарета", "Назарету", "Назаретом"],
-      "correct": "Назарета",
-      "case": "Родительный (Genitive)",
-      "translation": "Ah! What do you want with us, Jesus of Nazareth?",
-      "explain": "The preposition из (from/of) takes the genitive → Назарета."
-    },
-    {
-      "id": "c3",
-      "sentence": "Иисус приказал ___ покинуть женщину, и та оставила ее.",
-      "lemma": "горячка",
-      "options": ["горячка", "горячки", "горячку", "горячке"],
-      "correct": "горячке",
-      "case": "Дательный (Dative)",
-      "translation": "Jesus commanded the fever to leave the woman, and it left her.",
-      "explain": "Приказать кому-то (to command someone) puts the one commanded in the dative → горячке."
-    },
-    {
-      "id": "c4",
-      "sentence": "Иисус приказал горячке покинуть ___, и та оставила ее.",
-      "lemma": "женщина",
-      "options": ["женщина", "женщины", "женщину", "женщине"],
-      "correct": "женщину",
-      "case": "Винительный (Accusative)",
-      "translation": "Jesus commanded the fever to leave the woman, and it left her.",
-      "explain": "Женщину is the direct object of покинуть (to leave) → accusative."
-    },
-    {
-      "id": "c5",
-      "sentence": "Если ты сын Божий, то прикажи этому камню стать ___.",
-      "lemma": "хлеб",
-      "options": ["хлеб", "хлеба", "хлебу", "хлебом"],
-      "correct": "хлебом",
-      "case": "Творительный (Instrumental)",
-      "translation": "If you are the Son of God, command this stone to become bread.",
-      "explain": "The verb стать (to become) governs the instrumental → хлебом."
-    },
-    {
-      "id": "c6",
-      "sentence": "В ___ был человек, одержимый демоном, нечистым духом.",
-      "lemma": "синагога",
-      "options": ["синагога", "синагоги", "синагогу", "синагоге"],
-      "correct": "синагоге",
-      "case": "Предложный (Prepositional)",
-      "translation": "In the synagogue there was a man possessed by a demon, an unclean spirit.",
-      "explain": "В (in), marking location, takes the prepositional → синагоге."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Там его сорок дней искушал дьявол.",
-      "question": "How long was Jesus tempted by the devil in the wilderness?",
-      "options": ["Forty days", "Seven days", "Three days", "One year"],
-      "correct": "Forty days",
-      "explain": "The devil tempted Jesus in the wilderness for forty days."
-    },
-    {
-      "id": "r2",
-      "ru": "Тогда дьявол сказал ему, «Если ты сын Божий, то прикажи этому камню стать хлебом».",
-      "question": "What was the devil's first temptation of Jesus?",
-      "options": [
-        "To command a stone to become bread",
-        "To turn water into wine",
-        "To multiply loaves for the crowd",
-        "To ask angels for food"
-      ],
-      "correct": "To command a stone to become bread",
-      "explain": "The devil told Jesus, if he was the Son of God, to command a stone to become bread."
-    },
-    {
-      "id": "r3",
-      "ru": "«Я передам тебе всю их власть и славу, потому что они отданы мне, и я отдаю их кому захочу. Итак, если ты поклонишься мне, все это будет твоим».",
-      "question": "What did the devil offer Jesus in exchange for worship?",
-      "options": [
-        "Authority and glory over all the kingdoms of the world",
-        "Eternal life",
-        "A kingdom in Rome",
-        "Freedom from suffering"
-      ],
-      "correct": "Authority and glory over all the kingdoms of the world",
-      "explain": "The devil offered Jesus all the authority and glory of the kingdoms of the world if he would worship him."
-    },
-    {
-      "id": "r4",
-      "ru": "«Если ты сын Божий, — сказал он, — то бросься отсюда вниз, ведь написано же, своим ангелам повелит о тебе охранять тебя,",
-      "question": "What was the devil's third temptation, at the pinnacle of the temple?",
-      "options": [
-        "To throw himself down from the temple",
-        "To turn the temple to gold",
-        "To call down fire from heaven",
-        "To command the priests to bow"
-      ],
-      "correct": "To throw himself down from the temple",
-      "explain": "At the temple, the devil told Jesus, if he was the Son of God, to throw himself down."
-    },
-    {
-      "id": "r5",
-      "ru": "Он развернул его и нашел место, где было написано «Дух Господа на мне, потому что он помазал меня возвещать бедным радостную весть».",
-      "question": "What passage did Jesus read from the scroll of Isaiah in the synagogue at Nazareth?",
-      "options": [
-        "\"The Spirit of the Lord is on me, because he has anointed me to proclaim good news to the poor\"",
-        "\"In the beginning God created the heavens and the earth\"",
-        "\"The Lord is my shepherd\"",
-        "\"Blessed are the poor in spirit\""
-      ],
-      "correct": "\"The Spirit of the Lord is on me, because he has anointed me to proclaim good news to the poor\"",
-      "explain": "Jesus unrolled the scroll and read, \"The Spirit of the Lord is on me, because he has anointed me to proclaim good news to the poor.\""
-    },
-    {
-      "id": "r6",
-      "ru": "«Но разве он не сын Иосифа?» — спрашивали они.",
-      "question": "What question did the people of Nazareth ask about Jesus?",
-      "options": [
-        "Whether he was not just Joseph's son",
-        "Whether he had come from Jerusalem",
-        "Whether he was a Roman citizen",
-        "Whether he had studied under a rabbi"
-      ],
-      "correct": "Whether he was not just Joseph's son",
-      "explain": "The people asked, \"Isn't this Joseph's son?\""
-    },
-    {
-      "id": "r7",
-      "ru": "Но говорю вам истину, ни одного пророка не принимают на его родине.",
-      "question": "What did Jesus say about prophets in their hometowns?",
-      "options": [
-        "No prophet is accepted in his hometown",
-        "Every prophet is honored at home",
-        "Prophets should avoid their hometowns entirely",
-        "Prophets are only accepted by foreigners"
-      ],
-      "correct": "No prophet is accepted in his hometown",
-      "explain": "Jesus said that truly, no prophet is accepted in his own hometown."
-    },
-    {
-      "id": "r8",
-      "ru": "Они вскочили, вытащили Иисуса за пределы города и привели к обрыву горы, на которой был построен город, чтобы сбросить его вниз. Но Иисус прошел сквозь толпу и ушел.",
-      "question": "How did the people of Nazareth react to Jesus's words, and what happened next?",
-      "options": [
-        "They tried to throw him off a cliff, but he passed through the crowd and left",
-        "They welcomed him as their king",
-        "They asked him to perform more miracles",
-        "They stoned him to death"
-      ],
-      "correct": "They tried to throw him off a cliff, but he passed through the crowd and left",
-      "explain": "The enraged crowd dragged Jesus to a cliff to throw him down, but he passed through their midst and went away."
-    },
-    {
-      "id": "r9",
-      "ru": "«Замолчи», — строго приказал Иисус, — «выйди из него».",
-      "question": "What did Jesus say to the unclean spirit in the synagogue at Capernaum?",
-      "options": [
-        "\"Be silent, come out of him\"",
-        "\"Go and sin no more\"",
-        "\"Your faith has healed you\"",
-        "\"Follow me\""
-      ],
-      "correct": "\"Be silent, come out of him\"",
-      "explain": "Jesus sternly rebuked the unclean spirit, saying, \"Be silent, and come out of him.\""
-    },
-    {
-      "id": "r10",
-      "ru": "Наклонившись над ней, Иисус приказал горячке покинуть женщину, и та оставила ее.",
-      "question": "How did Jesus heal Simon's mother-in-law?",
-      "options": [
-        "He bent over her and rebuked the fever, and it left her",
-        "He gave her medicine",
-        "He sent her to the temple priests",
-        "He prayed over her for seven days"
-      ],
-      "correct": "He bent over her and rebuked the fever, and it left her",
-      "explain": "Jesus bent over Simon's mother-in-law, rebuked the fever, and it left her."
-    },
-    {
-      "id": "r11",
-      "ru": "«Я должен возвещать радостную весть о Царстве Божьем и в других городах, ведь для этого Я и послан».",
-      "question": "Why did Jesus leave the crowd that wanted him to stay?",
-      "options": [
-        "He had to preach the good news of God's Kingdom in other towns too, since that was why he was sent",
-        "He needed rest",
-        "He was avoiding Herod's soldiers",
-        "He wanted to visit his mother"
-      ],
-      "correct": "He had to preach the good news of God's Kingdom in other towns too, since that was why he was sent",
-      "explain": "Jesus told them he had to preach the good news of God's Kingdom in other towns too, since that was his purpose."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "У тещи же Симона в это время был ___, и Иисуса попросили помочь ей.",
+   "lemma": "жар",
+   "options": [
+    "сильный жар",
+    "сильном жаре",
+    "сильному жару",
+    "сильным жаром"
+   ],
+   "correct": "сильный жар",
+   "case": "Именительный (Nominative)",
+   "explain": "«сильный жар» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "He rose up from the synagogue, and entered into Simon’s house. Simon’s mother-in-law was afflicted with a great fever, and they begged him for her."
+  },
+  {
+   "sentence": "Когда же солнце стало клониться к закату, все, у кого были больные ___, начали приносить их к Иисусу, и Он возлагал на каждого руки и исцелял их.",
+   "lemma": "болезнь",
+   "options": [
+    "различные болезни",
+    "различным болезням",
+    "различными болезнями",
+    "различных болезнях"
+   ],
+   "correct": "различными болезнями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«различными болезнями» — the instrumental marks the means, company, or complement.",
+   "id": "c4",
+   "translation": "When the sun was setting, all those who had any sick with various diseases brought them to him; and he laid his hands on every one of them, and healed them."
+  }
+ ]
 }

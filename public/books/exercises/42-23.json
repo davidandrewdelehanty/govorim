@@ -1,252 +1,34 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ спросил Иисуса: «Ты царь Иудеев?»",
-      "lemma": "Пилат",
-      "options": [
-        "Пилат",
-        "Пилата",
-        "Пилату",
-        "Пилатом"
-      ],
-      "correct": "Пилат",
-      "case": "Именительный (Nominative)",
-      "translation": "Pilate asked Jesus: 'Are you the King of the Jews?'",
-      "explain": "Пилат is the subject of the verb спросил, so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "И это продолжалось до девятого ___.",
-      "lemma": "час",
-      "options": [
-        "час",
-        "часа",
-        "часу",
-        "часом"
-      ],
-      "correct": "часа",
-      "case": "Родительный (Genitive)",
-      "translation": "And this continued until the ninth hour.",
-      "explain": "The preposition до (until) governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Пилат сказал первосвященникам и ___.",
-      "lemma": "толпа",
-      "options": [
-        "толпа",
-        "толпы",
-        "толпе",
-        "толпой"
-      ],
-      "correct": "толпе",
-      "case": "Дательный (Dative)",
-      "translation": "Pilate said to the chief priests and to the crowd.",
-      "explain": "Толпе is the indirect object of сказал (said to), which takes the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Солдаты разделили между собой ___ Иисуса, бросив жеребий.",
-      "lemma": "одежда",
-      "options": [
-        "одежда",
-        "одежды",
-        "одежде",
-        "одежду"
-      ],
-      "correct": "одежду",
-      "case": "Винительный (Accusative)",
-      "translation": "The soldiers divided Jesus's clothing among themselves, casting lots.",
-      "explain": "Одежду is the direct object of разделили (to divide something), so it takes the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Ведь если с молодым и зеленым ___ делают такое, то что же будет с сухим?",
-      "lemma": "дерево",
-      "options": [
-        "дерево",
-        "дерева",
-        "дереву",
-        "деревом"
-      ],
-      "correct": "деревом",
-      "case": "Творительный (Instrumental)",
-      "translation": "For if they do this with the green tree, what will happen with the dry one?",
-      "explain": "The preposition с (with) governs the instrumental case here."
-    },
-    {
-      "id": "c6",
-      "sentence": "Солнце померкло, и завеса в ___ разорвалась на две части.",
-      "lemma": "храм",
-      "options": [
-        "храм",
-        "храма",
-        "храму",
-        "храме"
-      ],
-      "correct": "храме",
-      "case": "Предложный (Prepositional)",
-      "translation": "The sun was darkened, and the curtain in the temple tore into two pieces.",
-      "explain": "The preposition в (in) governs the prepositional case for location."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Там они начали обвинять его.",
-      "question": "What did the crowd do after bringing Jesus before Pilate?",
-      "options": [
-        "They began to accuse him",
-        "They released him at once",
-        "They crowned him king",
-        "They fed him a meal"
-      ],
-      "correct": "They began to accuse him",
-      "explain": "The text says they began to accuse him before Pilate."
-    },
-    {
-      "id": "r2",
-      "ru": "И узнав, что Иисус был из области подвластной Ироду, который тоже был в это время в Иерусалиме, он послал Иисуса к нему.",
-      "question": "Why did Pilate send Jesus to Herod?",
-      "options": [
-        "Because Jesus was from a region under Herod's jurisdiction",
-        "Because Herod personally requested Jesus",
-        "Because Pilate was leaving the city",
-        "Because Jesus asked to see Herod"
-      ],
-      "correct": "Because Jesus was from a region under Herod's jurisdiction",
-      "explain": "Pilate learned Jesus was from Herod's jurisdiction and sent him there."
-    },
-    {
-      "id": "r3",
-      "ru": "Ирод, увидев Иисуса, очень обрадовался, потому что уже давно хотел его увидеть.",
-      "question": "How did Herod react upon seeing Jesus?",
-      "options": [
-        "He was very glad, having long wanted to see him",
-        "He was furious",
-        "He fled the room",
-        "He fell asleep"
-      ],
-      "correct": "He was very glad, having long wanted to see him",
-      "explain": "The text states Herod was very glad because he had long wanted to see Jesus."
-    },
-    {
-      "id": "r4",
-      "ru": "В этот день Ирод и Пилат стали друзьями, а прежде они враждовали.",
-      "question": "What happened between Herod and Pilate that day?",
-      "options": [
-        "They became friends, though they had been enemies before",
-        "They fought publicly",
-        "They both resigned their posts",
-        "They exchanged prisoners"
-      ],
-      "correct": "They became friends, though they had been enemies before",
-      "explain": "The text says Herod and Pilate became friends that day, having been enemies before."
-    },
-    {
-      "id": "r5",
-      "ru": "Тогда все в один голос закричали «Смерть ему! Отпусти нам Варавву!»",
-      "question": "What did the crowd shout to Pilate?",
-      "options": [
-        "\"Death to him! Release Barabbas to us!\"",
-        "\"Save him!\"",
-        "\"Crown him king!\"",
-        "\"Let him go free!\""
-      ],
-      "correct": "\"Death to him! Release Barabbas to us!\"",
-      "explain": "The crowd shouted together demanding Jesus's death and Barabbas's release."
-    },
-    {
-      "id": "r6",
-      "ru": "Конвоиры схватили некоего Симона из Керены, шедшего с поля.",
-      "question": "Who was seized to carry Jesus's cross?",
-      "options": [
-        "Simon of Cyrene",
-        "Peter",
-        "Barabbas",
-        "A Roman centurion"
-      ],
-      "correct": "Simon of Cyrene",
-      "explain": "The guards seized Simon of Cyrene, who was coming from the field."
-    },
-    {
-      "id": "r7",
-      "ru": "Дочери Иерусалима, не плачьте обо мне, плачьте лучше о себе и о своих детях.",
-      "question": "What did Jesus tell the women of Jerusalem who were mourning him?",
-      "options": [
-        "Not to weep for him but for themselves and their children",
-        "To go home immediately",
-        "To pray for Pilate instead",
-        "To follow him all the way to Galilee"
-      ],
-      "correct": "Not to weep for him but for themselves and their children",
-      "explain": "Jesus told the daughters of Jerusalem to weep for themselves and their children, not for him."
-    },
-    {
-      "id": "r8",
-      "ru": "Иисус говорил, «Отец, прости им, ведь они не знают, что делают».",
-      "question": "What did Jesus say about those crucifying him?",
-      "options": [
-        "\"Father, forgive them, for they do not know what they are doing\"",
-        "\"Father, punish them severely\"",
-        "\"I will never forgive this\"",
-        "He said nothing at all"
-      ],
-      "correct": "\"Father, forgive them, for they do not know what they are doing\"",
-      "explain": "On the cross Jesus asked the Father to forgive those who did not know what they were doing."
-    },
-    {
-      "id": "r9",
-      "ru": "Сегодня ты будешь со мной в раю», — ответил ему Иисус.",
-      "question": "What did Jesus promise the repentant criminal on the cross?",
-      "options": [
-        "That he would be with Jesus in paradise that very day",
-        "That he would soon be released",
-        "That his sins were not forgiven",
-        "That he would see his family again"
-      ],
-      "correct": "That he would be with Jesus in paradise that very day",
-      "explain": "Jesus told the repentant criminal he would be with him in paradise that day."
-    },
-    {
-      "id": "r10",
-      "ru": "Солнце померкло, и завеса в храме разорвалась на две части.",
-      "question": "What happened at the moment of Jesus's death?",
-      "options": [
-        "The sun was darkened and the temple curtain tore in two",
-        "An earthquake destroyed the temple",
-        "The soldiers fled the scene",
-        "The sky turned bright blue"
-      ],
-      "correct": "The sun was darkened and the temple curtain tore in two",
-      "explain": "The text describes darkness and the tearing of the temple curtain at that moment."
-    },
-    {
-      "id": "r11",
-      "ru": "Когда сотник все это увидел, он прославил Бога и сказал, «Этот человек действительно был праведником».",
-      "question": "What did the centurion say after witnessing Jesus's death?",
-      "options": [
-        "\"Certainly this man was righteous\"",
-        "\"This man was a criminal\"",
-        "\"Nothing unusual happened\"",
-        "\"Release him immediately\""
-      ],
-      "correct": "\"Certainly this man was righteous\"",
-      "explain": "The centurion glorified God and declared that Jesus was truly a righteous man."
-    },
-    {
-      "id": "r12",
-      "ru": "Этот человек пошел к Пилату и попросил тело Иисуса.",
-      "question": "What did Joseph of Arimathea do after Jesus's death?",
-      "options": [
-        "He went to Pilate and asked for Jesus's body",
-        "He denied knowing Jesus",
-        "He fled the city in fear",
-        "He joined the soldiers guarding the tomb"
-      ],
-      "correct": "He went to Pilate and asked for Jesus's body",
-      "explain": "Joseph of Arimathea went to Pilate and asked for the body of Jesus."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Было около ___ дня , и по всей земле стало темно, и это продолжалось до часа девятого .",
+   "lemma": "час",
+   "options": [
+    "шестому часу",
+    "шестого часа",
+    "шестой час",
+    "шестым часом"
+   ],
+   "correct": "шестого часа",
+   "case": "Родительный (Genitive)",
+   "explain": "«шестого часа» — after the preposition «около», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "It was now about the sixth hour, and darkness came over the whole land until the ninth hour."
+  },
+  {
+   "sentence": "Будучи членом Совета, 51 он, однако, не был согласен с решением и делом ___.",
+   "lemma": "вождь",
+   "options": [
+    "иудейскими вождями",
+    "иудейских вождей",
+    "иудейских вождях",
+    "иудейские вожди"
+   ],
+   "correct": "иудейских вождей",
+   "case": "Родительный (Genitive)",
+   "explain": "«иудейских вождей» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Behold, a man named Joseph, who was a member of the council, a good and righteous man"
+  }
+ ]
 }

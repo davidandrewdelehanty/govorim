@@ -1,308 +1,109 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ одного богатого человека принесла ему хороший урожай.",
-      "lemma": "земля",
-      "options": [
-        "земля",
-        "земли",
-        "землю",
-        "землёй"
-      ],
-      "correct": "земля",
-      "case": "Именительный (Nominative)",
-      "translation": "The land of a certain rich man produced a good harvest.",
-      "explain": "Земля is the subject of принесла (produced) — subjects take the nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Земля одного богатого ___ принесла ему хороший урожай.",
-      "lemma": "человек",
-      "options": [
-        "человек",
-        "человека",
-        "человеку",
-        "человеком"
-      ],
-      "correct": "человека",
-      "case": "Родительный (Genitive)",
-      "translation": "The land of a certain rich man produced a good harvest.",
-      "explain": "Человека shows possession ('of a man') — the possessive modifier takes the genitive."
-    },
-    {
-      "id": "c3",
-      "sentence": "...как у тех слуг, что ждут возвращения своего хозяина со свадебного ___.",
-      "lemma": "пир",
-      "options": [
-        "пир",
-        "пира",
-        "пиру",
-        "пиром"
-      ],
-      "correct": "пира",
-      "case": "Родительный (Genitive)",
-      "translation": "...like those servants waiting for their master's return from the wedding feast.",
-      "explain": "Со (a form of с, meaning 'from') takes the genitive → пира, 'from the feast'."
-    },
-    {
-      "id": "c4",
-      "sentence": "Кто-то в толпе сказал ___, «Учитель, скажи моему брату, чтобы он разделил со мной наследство».",
-      "lemma": "Иисус",
-      "options": [
-        "Иисус",
-        "Иисуса",
-        "Иисусу",
-        "Иисусом"
-      ],
-      "correct": "Иисусу",
-      "case": "Дательный (Dative)",
-      "translation": "Someone in the crowd said to Jesus, \"Teacher, tell my brother to divide the inheritance with me.\"",
-      "explain": "Иисусу is the indirect object of сказал (said to) → dative."
-    },
-    {
-      "id": "c5",
-      "sentence": "Продавайте ваше имущество и давайте ___.",
-      "lemma": "милостыня",
-      "options": [
-        "милостыня",
-        "милостыни",
-        "милостыню",
-        "милостыней"
-      ],
-      "correct": "милостыню",
-      "case": "Винительный (Accusative)",
-      "translation": "Sell your possessions and give to the poor.",
-      "explain": "Милостыню is the direct object of the transitive verb давайте (give) → accusative; feminine -я nouns take -ю in the accusative."
-    },
-    {
-      "id": "c6",
-      "sentence": "И он рассказал им ___.",
-      "lemma": "притча",
-      "options": [
-        "притча",
-        "притчи",
-        "притчу",
-        "притчей"
-      ],
-      "correct": "притчу",
-      "case": "Винительный (Accusative)",
-      "translation": "And he told them a parable.",
-      "explain": "Притчу is the direct object of рассказал (told) → accusative; feminine -а nouns take -у in the accusative."
-    },
-    {
-      "id": "c7",
-      "sentence": "Кто тогда окажется верным и разумным управляющим, которого хозяин поставил над другими ___?",
-      "lemma": "слуга",
-      "options": [
-        "слуги",
-        "слуг",
-        "слугам",
-        "слугами"
-      ],
-      "correct": "слугами",
-      "case": "Творительный (Instrumental)",
-      "translation": "Who then is the faithful and wise manager whom the master put in charge of his other servants?",
-      "explain": "Над (over) always takes the instrumental; слугами is instrumental plural — 'over the other servants'."
-    },
-    {
-      "id": "c8",
-      "sentence": "Когда вас приведут на суд в ___, к правителям и властьимущим, не беспокойтесь о том, как вам защитить себя.",
-      "lemma": "синагога",
-      "options": [
-        "синагога",
-        "синагоги",
-        "синагогу",
-        "синагоге"
-      ],
-      "correct": "синагоге",
-      "case": "Предложный (Prepositional)",
-      "translation": "When they bring you to trial in the synagogue, before the rulers and authorities, do not worry about how you will defend yourselves.",
-      "explain": "В marking a stationary location takes the prepositional → синагоге, 'in the synagogue'."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "«Берегитесь фарисейской закваски, то есть лицемерия.",
-      "question": "What does Jesus warn his disciples to beware of?",
-      "options": [
-        "The yeast of the Pharisees, that is, hypocrisy",
-        "The tax collectors",
-        "The Roman soldiers",
-        "False prophets from Egypt"
-      ],
-      "correct": "The yeast of the Pharisees, that is, hypocrisy",
-      "explain": "Jesus says, \"Beware of the yeast of the Pharisees, which is hypocrisy.\""
-    },
-    {
-      "id": "r2",
-      "ru": "Однако ни один из них не забыт Богом.",
-      "question": "What does Jesus say about the sparrows sold for small coins?",
-      "options": [
-        "Not one of them is forgotten by God",
-        "They are worthless to God",
-        "They are more valuable than people",
-        "They never die"
-      ],
-      "correct": "Not one of them is forgotten by God",
-      "explain": "Even lowly sparrows, sold cheaply, are not forgotten by God — so people, worth more than sparrows, need not fear."
-    },
-    {
-      "id": "r3",
-      "ru": "Всякий, кто скажет что-либо против Сына Человеческого, будет прощен, но тот, кто кощунствует над Святым Духом, не будет прощен.",
-      "question": "According to Jesus, which sin will not be forgiven?",
-      "options": [
-        "Blasphemy against the Holy Spirit",
-        "Speaking against the Son of Man",
-        "Denying Jesus in public",
-        "Failing to give alms"
-      ],
-      "correct": "Blasphemy against the Holy Spirit",
-      "explain": "Speaking against the Son of Man can be forgiven, but blaspheming the Holy Spirit will not be forgiven."
-    },
-    {
-      "id": "r4",
-      "ru": "потому что Святой Дух в тот самый час научит вас, что вам говорить.",
-      "question": "What will happen when the disciples are brought to trial before rulers?",
-      "options": [
-        "The Holy Spirit will teach them what to say",
-        "They will be executed immediately",
-        "They will be freed without a trial",
-        "They must remain silent"
-      ],
-      "correct": "The Holy Spirit will teach them what to say",
-      "explain": "Jesus tells them not to worry, because the Holy Spirit will teach them in that hour what they must say."
-    },
-    {
-      "id": "r5",
-      "ru": "Земля одного богатого человека принесла ему хороший урожай.",
-      "question": "What happens at the start of the parable of the rich fool?",
-      "options": [
-        "A rich man's land produces an abundant harvest",
-        "A rich man loses all his land",
-        "A poor man finds treasure",
-        "A famine strikes the land"
-      ],
-      "correct": "A rich man's land produces an abundant harvest",
-      "explain": "The parable begins with the land of a rich man producing a good harvest."
-    },
-    {
-      "id": "r6",
-      "ru": "Но Бог сказал ему, «Глупец, сегодня же ночью твою жизнь возьмут у тебя, кому достанется все, что ты приготовил».",
-      "question": "What does God say to the rich man who plans to store his abundant harvest?",
-      "options": [
-        "His life will be demanded of him that very night",
-        "He should build even bigger barns",
-        "He will live a hundred more years",
-        "He should give everything away immediately"
-      ],
-      "correct": "His life will be demanded of him that very night",
-      "explain": "God calls him a fool and tells him his life will be taken from him that very night."
-    },
-    {
-      "id": "r7",
-      "ru": "Так будет с каждым, кто копит богатство для себя, но не приобретает богатство для Бога.",
-      "question": "What is the lesson of the parable of the rich fool?",
-      "options": [
-        "It is foolish to store up wealth for yourself but not be rich toward God",
-        "Wealth always leads to happiness",
-        "Farmers should build bigger barns",
-        "Only the poor can enter God's Kingdom"
-      ],
-      "correct": "It is foolish to store up wealth for yourself but not be rich toward God",
-      "explain": "The parable warns against hoarding riches for oneself instead of being rich toward God."
-    },
-    {
-      "id": "r8",
-      "ru": "Посмотрите на воронов, они не сеют и не жнут, у них нет ни хранилищ, ни амбаров, однако Бог питает их.",
-      "question": "What example does Jesus give to teach against worrying?",
-      "options": [
-        "The ravens, which God feeds though they neither sow nor reap",
-        "The lilies of the field only",
-        "The rich fool's barns",
-        "The sparrows sold in the market"
-      ],
-      "correct": "The ravens, which God feeds though they neither sow nor reap",
-      "explain": "Jesus points to the ravens, which have no storehouse or barn, yet God feeds them."
-    },
-    {
-      "id": "r9",
-      "ru": "Но если Бог так одевает траву на поле, которая сегодня есть, а завтра будет брошена в печь, то не оденет ли он и вас, маловеры?",
-      "question": "What does Jesus say about God's care for the grass of the field?",
-      "options": [
-        "If God clothes short-lived grass so beautifully, he will surely clothe people too",
-        "The grass never dies",
-        "Grass is more valuable than people",
-        "God does not care about plants"
-      ],
-      "correct": "If God clothes short-lived grass so beautifully, he will surely clothe people too",
-      "explain": "If God so clothes grass that lives only a day, he will much more clothe those of little faith."
-    },
-    {
-      "id": "r10",
-      "ru": "Блаженны те слуги, которых хозяин, возвратившись, найдет бодрствующими.",
-      "question": "Who are called blessed in the parable of the watchful servants?",
-      "options": [
-        "The servants the master finds watching when he returns",
-        "The servants who sleep all night",
-        "The servants who leave the house",
-        "The master's neighbors"
-      ],
-      "correct": "The servants the master finds watching when he returns",
-      "explain": "Blessed are the servants whom the master finds awake and watching when he returns."
-    },
-    {
-      "id": "r11",
-      "ru": "Кому было много дано, с того много и потребуют, и кому было много доверено, с того много и спросится.",
-      "question": "What principle does Jesus state about those given much responsibility?",
-      "options": [
-        "More will be required of those to whom much was given",
-        "Everyone will be judged equally regardless of what they were given",
-        "Those given much are exempt from judgment",
-        "Only servants, not masters, will be judged"
-      ],
-      "correct": "More will be required of those to whom much was given",
-      "explain": "\"To whomever much is given, of him will much be required.\""
-    },
-    {
-      "id": "r12",
-      "ru": "Я пришел принести огонь на землю, и как я хочу, чтобы он уже разгорелся.",
-      "question": "What does Jesus say he came to bring, using the image of fire?",
-      "options": [
-        "Fire on the earth, which he wishes were already kindled",
-        "Rain for the crops",
-        "Peace among all nations",
-        "Wealth for his followers"
-      ],
-      "correct": "Fire on the earth, which he wishes were already kindled",
-      "explain": "Jesus says he came to bring fire to the earth and wishes it were already burning."
-    },
-    {
-      "id": "r13",
-      "ru": "Семья из пяти человек разделится, трое против двоих и двое против троих.",
-      "question": "What does Jesus say his coming will cause within families?",
-      "options": [
-        "Division, with family members set against one another",
-        "Immediate peace and unity",
-        "Everyone will agree with him",
-        "Families will grow larger"
-      ],
-      "correct": "Division, with family members set against one another",
-      "explain": "Jesus says a household of five will be divided, three against two and two against three."
-    },
-    {
-      "id": "r14",
-      "ru": "Говорю тебе, что ты не выйдешь оттуда, пока не выплатишь все до самого последнего гроша.",
-      "question": "What warning does Jesus give about settling with an accuser on the way to court?",
-      "options": [
-        "You will not get out of prison until you have paid the very last penny",
-        "The judge will always show mercy",
-        "You should never settle out of court",
-        "The accuser will forgive the debt"
-      ],
-      "correct": "You will not get out of prison until you have paid the very last penny",
-      "explain": "Jesus warns that if you end up in prison, you will not leave until you have paid the very last penny."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Тем временем собрались ___, и люди теснили друг друга.",
+   "lemma": "толпа",
+   "options": [
+    "огромными толпами",
+    "огромных толп",
+    "огромным толпам",
+    "огромные толпы"
+   ],
+   "correct": "огромные толпы",
+   "case": "Именительный (Nominative)",
+   "explain": "«огромные толпы» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Meanwhile, when a multitude of many thousands had gathered together, so much so that they trampled on each other, he began to tell his disciples first of all, “Beware of the yeast of the Pharisees, which is hypocrisy."
+  },
+  {
+   "sentence": "Поэтому то, что вы говорите в темноте, будет услышано при свете, и что вы прошептали на ухо во ___, будет провозглашено с крыш.",
+   "lemma": "комната",
+   "options": [
+    "внутренней комнате",
+    "внутренней комнаты",
+    "внутренней комнатой",
+    "внутренняя комната"
+   ],
+   "correct": "внутренней комнате",
+   "case": "Предложный (Prepositional)",
+   "explain": "«внутренней комнате» — after the preposition «во», for location or topic.",
+   "id": "c2",
+   "translation": "Therefore whatever you have said in the darkness will be heard in the light. What you have spoken in the ear in the inner rooms will be proclaimed on the housetops."
+  },
+  {
+   "sentence": "— Вот что я сделаю, — решил он тогда, — я снесу мои хранилища и построю большие, в них будет достаточно места для моего зерна и ___.",
+   "lemma": "имущество",
+   "options": [
+    "другого имущества",
+    "другом имуществе",
+    "другому имуществу",
+    "другим имуществом"
+   ],
+   "correct": "другого имущества",
+   "case": "Родительный (Genitive)",
+   "explain": "«другого имущества» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "He said, ‘This is what I will do. I will pull down my barns, build bigger ones, and there I will store all my grain and my goods."
+  },
+  {
+   "sentence": "Не бойся, ___, ведь вашему Отцу было угодно дать вам Царство!",
+   "lemma": "стадо",
+   "options": [
+    "малым стадом",
+    "малому стаду",
+    "малое стадо",
+    "малого стада"
+   ],
+   "correct": "малое стадо",
+   "case": "Именительный (Nominative)",
+   "explain": "«малое стадо» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "Don’t be afraid, little flock, for it is your Father’s good pleasure to give you the Kingdom."
+  },
+  {
+   "sentence": "Будьте всегда наготове: одежды подпоясаны, а светильники горящие, 36 как у тех слуг, что ждут возвращения своего хозяина со ___.",
+   "lemma": "пир",
+   "options": [
+    "свадебным пиром",
+    "свадебного пира",
+    "свадебному пиру",
+    "свадебном пире"
+   ],
+   "correct": "свадебного пира",
+   "case": "Родительный (Genitive)",
+   "explain": "«свадебного пира» — after the preposition «со», the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "“Let your waist be dressed and your lamps burning."
+  },
+  {
+   "sentence": "И когда дует ___, вы говорите: будет жарко, и так и бывает.",
+   "lemma": "ветер",
+   "options": [
+    "южном ветре",
+    "южным ветром",
+    "южного ветра",
+    "южный ветер"
+   ],
+   "correct": "южный ветер",
+   "case": "Именительный (Nominative)",
+   "explain": "«южный ветер» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "When a south wind blows, you say, ‘There will be a scorching heat,’ and it happens."
+  },
+  {
+   "sentence": "Говорю тебе, что ты не выйдешь оттуда, пока не выплатишь все до самого ___.",
+   "lemma": "грош",
+   "options": [
+    "последним грошом",
+    "последнему грошу",
+    "последнем гроше",
+    "последнего гроша"
+   ],
+   "correct": "последнего гроша",
+   "case": "Родительный (Genitive)",
+   "explain": "«последнего гроша» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "I tell you, you will by no means get out of there, until you have paid the very last penny.”"
+  }
+ ]
 }

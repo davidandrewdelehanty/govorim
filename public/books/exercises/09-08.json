@@ -1,134 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Поставь же над нами ___.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царём"],
-      "correct": "царя",
-      "case": "Винительный (Accusative)",
-      "translation": "Set a king over us.",
-      "explain": "The transitive verb поставь governs the accusative case for its direct object."
-    },
-    {
-      "id": "c2",
-      "sentence": "Дай нам ___, чтобы он вел нас.",
-      "lemma": "царь",
-      "options": ["царя", "царе", "царю", "царём"],
-      "correct": "царя",
-      "case": "Винительный (Accusative)",
-      "translation": "Give us a king to lead us.",
-      "explain": "The verb дай requires the accusative case for its direct object."
-    },
-    {
-      "id": "c3",
-      "sentence": "Как это есть у всех других ___.",
-      "lemma": "народ",
-      "options": ["народ", "народа", "народу", "народом"],
-      "correct": "народа",
-      "case": "Родительный (Genitive)",
-      "translation": "Like with all other nations.",
-      "explain": "The preposition у (among, with) requires the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Его первенца звали Иаиль, а второго ___ — Ави.",
-      "lemma": "сын",
-      "options": ["сын", "сына", "сыну", "сыном"],
-      "correct": "сына",
-      "case": "Винительный (Accusative)",
-      "translation": "His firstborn was named Joel, and his second son was named Abijah.",
-      "explain": "The verb звали (was named) takes the accusative case for the person being named."
-    },
-    {
-      "id": "c5",
-      "sentence": "Брали ___ и извращали правосудие.",
-      "lemma": "взятка",
-      "options": ["взятка", "взятки", "взятку", "взяткой"],
-      "correct": "взятки",
-      "case": "Винительный (Accusative)",
-      "translation": "They took bribes and perverted justice.",
-      "explain": "The transitive verb брали (took) requires the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Над ___.",
-      "lemma": "суд",
-      "options": ["суд", "суда", "суду", "судом"],
-      "correct": "судом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Over justice.",
-      "explain": "The preposition над (over) governs the instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Один повелит пахать его ___.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землю"],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "He will command one to plow his land.",
-      "explain": "The transitive verb пахать requires the accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Возьмет ваших ___.",
-      "lemma": "дочь",
-      "options": ["дочь", "дочери", "дочеря", "дочерей"],
-      "correct": "дочерей",
-      "case": "Винительный (Accusative)",
-      "translation": "He will take your daughters.",
-      "explain": "The transitive verb возьмет requires the accusative case for its direct object."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Народ требует себе царя.",
-      "question": "What did the people request from Samuel?",
-      "options": ["A king to rule over them", "The return of the judges", "A new law to be written", "Permission to leave Israel"],
-      "correct": "A king to rule over them",
-      "explain": "The opening sentence states that the people require/demand a king for themselves."
-    },
-    {
-      "id": "r2",
-      "ru": "Его первенца звали Иаиль, а второго сына — Ави.",
-      "question": "What were the names of Samuel's sons?",
-      "options": ["Joel and Abijah", "Saul and Jonathan", "Kish and Abiel", "Moses and Aaron"],
-      "correct": "Joel and Abijah",
-      "explain": "The text explicitly states his firstborn was named Joel (Иаиль) and his second son was named Abijah (Ави)."
-    },
-    {
-      "id": "r3",
-      "ru": "Они гонялись за нечестной наживой, брали взятки и извращали правосудие.",
-      "question": "What wrongdoing did Samuel's sons engage in?",
-      "options": ["They pursued dishonest gain, took bribes, and perverted justice", "They refused to judge fairly", "They fled to another country", "They made improper sacrifices"],
-      "correct": "They pursued dishonest gain, took bribes, and perverted justice",
-      "explain": "The text describes the sons as pursuing dishonest gain, taking bribes, and perverting justice."
-    },
-    {
-      "id": "r4",
-      "ru": "Все старейшины Израиля собрались вместе и пришли к Самуилу в раму.",
-      "question": "Where did the elders of Israel come to meet Samuel?",
-      "options": ["Ramah", "Bethel", "Gilgal", "Jerusalem"],
-      "correct": "Ramah",
-      "explain": "The text says all the elders came to Samuel в раму (to Ramah)."
-    },
-    {
-      "id": "r5",
-      "ru": "Вот что станет делать царь, который будет вами править.",
-      "question": "What does Samuel do next in this section?",
-      "options": ["Describes what a king would do to them", "Appoints new judges", "Leads them to battle", "Writes a new covenant"],
-      "correct": "Describes what a king would do to them",
-      "explain": "Samuel announces that he will tell them what the king who will rule them will do."
-    },
-    {
-      "id": "r6",
-      "ru": "Но народ отказался слушать Самуила.",
-      "question": "How did the people respond to Samuel's warning?",
-      "options": ["They refused to listen to Samuel", "They accepted his advice", "They asked for more information", "They changed their minds"],
-      "correct": "They refused to listen to Samuel",
-      "explain": "The text explicitly states 'But the people refused to listen to Samuel.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Но его сыновья не следовали по ___.",
+   "lemma": "стопа",
+   "options": [
+    "отцовским стопам",
+    "отцовские стопы",
+    "отцовскими стопами",
+    "отцовских стопах"
+   ],
+   "correct": "отцовским стопам",
+   "case": "Дательный (Dative)",
+   "explain": "«отцовским стопам» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c2",
+   "translation": "His sons didn’t walk in his ways, but turned away after dishonest gain, took bribes, and perverted justice."
+  },
+  {
+   "sentence": "Они гонялись за ___, брали взятки и извращали правосудие.",
+   "lemma": "нажива",
+   "options": [
+    "нечестной наживой",
+    "нечестной наживы",
+    "нечестной наживе",
+    "нечестная нажива"
+   ],
+   "correct": "нечестной наживой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«нечестной наживой» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "His sons didn’t walk in his ways, but turned away after dishonest gain, took bribes, and perverted justice."
+  },
+  {
+   "sentence": "Как они поступали с того дня, как Я вывел их из Египта, и до ___, оставляя Меня и служа другим богам, так они поступают и с тобой.",
+   "lemma": "день",
+   "options": [
+    "сегодняшнему дню",
+    "сегодняшнего дня",
+    "сегодняшним днём",
+    "сегодняшнем дне"
+   ],
+   "correct": "сегодняшнего дня",
+   "case": "Родительный (Genitive)",
+   "explain": "«сегодняшнего дня» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "According to all the works which they have done since the day that I brought them up out of Egypt even to this day, in that they have forsaken me, and served other gods, so they also do to you."
+  },
+  {
+   "sentence": "Как они поступали с того дня, как Я вывел их из Египта, и до сегодняшнего дня, оставляя Меня и служа ___, так они поступают и с тобой.",
+   "lemma": "бог",
+   "options": [
+    "другим богам",
+    "другие боги",
+    "других богов",
+    "других богах"
+   ],
+   "correct": "другим богам",
+   "case": "Дательный (Dative)",
+   "explain": "«другим богам» — the dative marks the indirect object or recipient.",
+   "id": "c5",
+   "translation": "According to all the works which they have done since the day that I brought them up out of Egypt even to this day, in that they have forsaken me, and served other gods, so they also do to you."
+  },
+  {
+   "sentence": "Он возьмет десятую часть вашего ___, а сами вы станете у него рабами.",
+   "lemma": "скот",
+   "options": [
+    "мелкий скот",
+    "мелкого скота",
+    "мелком скоте",
+    "мелкому скоту"
+   ],
+   "correct": "мелкого скота",
+   "case": "Родительный (Genitive)",
+   "explain": "«мелкого скота» — the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "He will take one tenth of your flocks; and you will be his servants."
+  },
+  {
+   "sentence": "Тогда мы будем, как все ___: царь будет править нами, выходить перед нами и вести наши войны.",
+   "lemma": "народ",
+   "options": [
+    "других народах",
+    "других народов",
+    "другим народам",
+    "другие народы"
+   ],
+   "correct": "другие народы",
+   "case": "Именительный (Nominative)",
+   "explain": "«другие народы» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "that we also may be like all the nations, and that our king may judge us, and go out before us, and fight our battles.”"
+  }
+ ]
 }

@@ -1,204 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Язык ___ ведет его к ссоре.",
-      "lemma": "глупец",
-      "options": [
-        "глупца",
-        "глупцу",
-        "глупцом",
-        "глупце"
-      ],
-      "correct": "глупца",
-      "case": "Родительный (Genitive)",
-      "translation": "A fool's tongue leads him to quarrel.",
-      "explain": "Possessive genitive - the tongue belongs to the fool."
-    },
-    {
-      "id": "c2",
-      "sentence": "Слова человеческих ___ — глубокие воды, источник мудрости — текущий поток.",
-      "lemma": "уста",
-      "options": [
-        "уста",
-        "уст",
-        "устам",
-        "устах"
-      ],
-      "correct": "уст",
-      "case": "Родительный (Genitive)",
-      "translation": "The words from a man's lips are deep waters.",
-      "explain": "Possessive genitive after the noun слова."
-    },
-    {
-      "id": "c3",
-      "sentence": "Перед падением человеческое ___ заносится.",
-      "lemma": "сердце",
-      "options": [
-        "сердце",
-        "сердца",
-        "сердцу",
-        "сердцем"
-      ],
-      "correct": "сердце",
-      "case": "Именительный (Nominative)",
-      "translation": "Before destruction, the human heart becomes proud.",
-      "explain": "Subject of the verb заносится."
-    },
-    {
-      "id": "c4",
-      "sentence": "Нашедший жену нашел ___.",
-      "lemma": "благо",
-      "options": [
-        "благо",
-        "блага",
-        "благу",
-        "благом"
-      ],
-      "correct": "благо",
-      "case": "Винительный (Accusative)",
-      "translation": "He who finds a wife finds good.",
-      "explain": "Direct object of the verb нашел."
-    },
-    {
-      "id": "c5",
-      "sentence": "Ссоры разделяют подобно засовам ___.",
-      "lemma": "ворота",
-      "options": [
-        "ворота",
-        "ворот",
-        "воротам",
-        "воротами"
-      ],
-      "correct": "ворот",
-      "case": "Родительный (Genitive)",
-      "translation": "Disputes divide like the bars of a gate.",
-      "explain": "Genitive after the noun засовам."
-    },
-    {
-      "id": "c6",
-      "sentence": "Нехорошо быть пристрастным к ___ и лишать правосудия невиновного.",
-      "lemma": "злодей",
-      "options": [
-        "злодей",
-        "злодея",
-        "злодею",
-        "злодеем"
-      ],
-      "correct": "злодею",
-      "case": "Дательный (Dative)",
-      "translation": "It is not good to show partiality to the wicked.",
-      "explain": "Dative after the preposition к."
-    },
-    {
-      "id": "c7",
-      "sentence": "Состояние богатого — укрепленный ___.",
-      "lemma": "город",
-      "options": [
-        "город",
-        "города",
-        "городу",
-        "городом"
-      ],
-      "correct": "город",
-      "case": "Именительный (Nominative)",
-      "translation": "A rich man's wealth is a fortified city.",
-      "explain": "Predicate nominative after the dash."
-    },
-    {
-      "id": "c8",
-      "sentence": "У языка сила жизни и смерти. Те, кто любит его, будут вкушать его ___.",
-      "lemma": "плод",
-      "options": [
-        "плоды",
-        "плода",
-        "плодов",
-        "плодами"
-      ],
-      "correct": "плоды",
-      "case": "Винительный (Accusative) Plural",
-      "translation": "Those who love it will enjoy its fruits.",
-      "explain": "Accusative plural of плод used as direct object."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Живущий обособленно потакает себе во всем, а на всякое здравое слово бронится.",
-      "question": "What happens to a man who isolates himself?",
-      "options": [
-        "He learns wisdom",
-        "He indulges himself and resists good advice",
-        "He becomes humble",
-        "He helps others"
-      ],
-      "correct": "He indulges himself and resists good advice",
-      "explain": "The verse states that he pursues selfishness and defies sound judgment."
-    },
-    {
-      "id": "r2",
-      "ru": "Язык глупца ведет его к ссоре, его уста навлекают побои.",
-      "question": "What does a fool's tongue lead to?",
-      "options": [
-        "Wealth and honor",
-        "Strife and beatings",
-        "Wisdom and understanding",
-        "Friends and companions"
-      ],
-      "correct": "Strife and beatings",
-      "explain": "The text explicitly states that the fool's lips come into strife and invite beatings."
-    },
-    {
-      "id": "r3",
-      "ru": "Состояние богатого — укрепленный город, высокой стеной представляется ему оно.",
-      "question": "How does a rich man view his wealth?",
-      "options": [
-        "As a temporary thing",
-        "As a burden",
-        "As a strong city with high walls",
-        "As worthless"
-      ],
-      "correct": "As a strong city with high walls",
-      "explain": "The verse compares the rich man's wealth to a fortified city."
-    },
-    {
-      "id": "r4",
-      "ru": "Нашедший жену нашел благо и приобрел от Господа расположение.",
-      "question": "What does finding a wife result in?",
-      "options": [
-        "Trouble and sorrow",
-        "Good fortune and favor from the Lord",
-        "Loss of freedom",
-        "Hardship"
-      ],
-      "correct": "Good fortune and favor from the Lord",
-      "explain": "The verse states that finding a wife results in good fortune."
-    },
-    {
-      "id": "r5",
-      "ru": "Есть друзья, с которыми лучше не знаться, но истинный друг ближе иного брата.",
-      "question": "What is unique about a true friend?",
-      "options": [
-        "They never disagree",
-        "They are closer than some brothers",
-        "They are easy to find",
-        "They always agree"
-      ],
-      "correct": "They are closer than some brothers",
-      "explain": "The verse states that a true friend is closer than a brother."
-    },
-    {
-      "id": "r6",
-      "ru": "Слова сплетен, как лакомые куски, что проходят вовнутрь чрева.",
-      "question": "To what are the words of a gossip compared?",
-      "options": [
-        "Bitter poison",
-        "Dainty morsels that go deep within",
-        "Sweet honey",
-        "Sharp weapons"
-      ],
-      "correct": "Dainty morsels that go deep within",
-      "explain": "The verse compares gossip to tasty morsels that go into the innermost parts."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Слова ___ — глубокие воды ;",
+   "lemma": "уста",
+   "options": [
+    "человеческими устами",
+    "человеческие уста",
+    "человеческих уст",
+    "человеческих устах"
+   ],
+   "correct": "человеческих уст",
+   "case": "Родительный (Genitive)",
+   "explain": "«человеческих уст» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "The words of a man’s mouth are like deep waters. The fountain of wisdom is like a flowing brook."
+  },
+  {
+   "sentence": "Слова человеческих уст — ___ ;",
+   "lemma": "вода",
+   "options": [
+    "глубоких водах",
+    "глубоким водам",
+    "глубокими водами",
+    "глубокие воды"
+   ],
+   "correct": "глубокие воды",
+   "case": "Именительный (Nominative)",
+   "explain": "«глубокие воды» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "The words of a man’s mouth are like deep waters. The fountain of wisdom is like a flowing brook."
+  },
+  {
+   "sentence": "Слова сплетен — как ___,",
+   "lemma": "кусок",
+   "options": [
+    "лакомые куски",
+    "лакомыми кусками",
+    "лакомых кусков",
+    "лакомых кусках"
+   ],
+   "correct": "лакомые куски",
+   "case": "Именительный (Nominative)",
+   "explain": "«лакомые куски» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "The words of a gossip are like dainty morsels: they go down into a person’s innermost parts."
+  },
+  {
+   "sentence": "Имя Господне — ___;",
+   "lemma": "башня",
+   "options": [
+    "крепкой башней",
+    "крепкая башня",
+    "крепкой башне",
+    "крепкой башни"
+   ],
+   "correct": "крепкая башня",
+   "case": "Именительный (Nominative)",
+   "explain": "«крепкая башня» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "Yahweh’s name is a strong tower: the righteous run to him, and are safe."
+  },
+  {
+   "sentence": "Перед падением ___ заносится,",
+   "lemma": "сердце",
+   "options": [
+    "человеческого сердца",
+    "человеческому сердцу",
+    "человеческом сердце",
+    "человеческое сердце"
+   ],
+   "correct": "человеческое сердце",
+   "case": "Именительный (Nominative)",
+   "explain": "«человеческое сердце» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "Before destruction the heart of man is proud, but before honor is humility."
+  },
+  {
+   "sentence": "___ неприступнее крепости;",
+   "lemma": "брат",
+   "options": [
+    "обиженный брат",
+    "обиженном брате",
+    "обиженного брата",
+    "обиженным братом"
+   ],
+   "correct": "обиженный брат",
+   "case": "Именительный (Nominative)",
+   "explain": "«Обиженный брат» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "A brother offended is more difficult than a fortified city. Disputes are like the bars of a fortress."
+  }
+ ]
 }

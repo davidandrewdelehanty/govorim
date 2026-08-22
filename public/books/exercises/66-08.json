@@ -1,204 +1,109 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Когда ___ снял седьмую печать, на небесах наступило молчание.",
-      "lemma": "ягненок",
-      "options": [
-        "ягненок",
-        "ягненка",
-        "ягненку",
-        "ягненком"
-      ],
-      "correct": "ягненок",
-      "case": "Именительный (Nominative)",
-      "translation": "When the lamb opened the seventh seal, there was silence in heaven.",
-      "explain": "Ягненок is the subject of the verb снял (opened), so it takes the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Я увидел семь ___, стоящих перед Богом.",
-      "lemma": "ангел",
-      "options": [
-        "ангел",
-        "ангела",
-        "ангелов",
-        "ангелом"
-      ],
-      "correct": "ангелов",
-      "case": "Родительный (Genitive)",
-      "translation": "I saw seven angels standing before God.",
-      "explain": "The numeral семь (seven) in Russian requires the genitive plural of the noun."
-    },
-    {
-      "id": "c3",
-      "sentence": "Ангел встал рядом с ___.",
-      "lemma": "жертвенник",
-      "options": [
-        "жертвенник",
-        "жертвенника",
-        "жертвеннику",
-        "жертвенником"
-      ],
-      "correct": "жертвенником",
-      "case": "Творительный (Instrumental)",
-      "translation": "The angel stood beside the altar.",
-      "explain": "The preposition с (with/beside) takes the instrumental case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Дым поднялся от ___ к Богу.",
-      "lemma": "жертвенник",
-      "options": [
-        "жертвенник",
-        "жертвенника",
-        "жертвеннику",
-        "жертвеннике"
-      ],
-      "correct": "жертвенника",
-      "case": "Родительный (Genitive)",
-      "translation": "The smoke rose from the altar to God.",
-      "explain": "The preposition от (from) always governs the genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "На ___ пролились град и огонь.",
-      "lemma": "земля",
-      "options": [
-        "земля",
-        "земли",
-        "земле",
-        "землю"
-      ],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "Hail and fire fell upon the earth.",
-      "explain": "The preposition на with direction takes the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Третья часть ___ превратилась в кровь.",
-      "lemma": "море",
-      "options": [
-        "море",
-        "моря",
-        "морю",
-        "морем"
-      ],
-      "correct": "моря",
-      "case": "Родительный (Genitive)",
-      "translation": "One third of the sea became blood.",
-      "explain": "After часть (part), the noun is in the genitive case expressing 'part of something'."
-    },
-    {
-      "id": "c7",
-      "sentence": "Нечто наподобие огромной горы упало в ___.",
-      "lemma": "море",
-      "options": [
-        "море",
-        "моря",
-        "морю",
-        "морем"
-      ],
-      "correct": "море",
-      "case": "Винительный (Accusative)",
-      "translation": "Something like a great burning mountain fell into the sea.",
-      "explain": "The preposition в with destination takes the accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "На ___ были поражены солнце, луна и звезды.",
-      "lemma": "земля",
-      "options": [
-        "земля",
-        "земли",
-        "земле",
-        "земном"
-      ],
-      "correct": "земле",
-      "case": "Предложный (Prepositional)",
-      "translation": "The sun, moon, and stars were struck on the earth.",
-      "explain": "The preposition на with location takes the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Когда ягненок снял седьмую печать, на небесах примерно на полчаса наступило молчание.",
-      "question": "What happened in heaven when the seventh seal was opened?",
-      "options": [
-        "There was silence for about half an hour",
-        "The angels began to sound their trumpets",
-        "A great earthquake occurred",
-        "Stars fell from the sky"
-      ],
-      "correct": "There was silence for about half an hour",
-      "explain": "The text states 'на небесах примерно на полчаса наступило молчание' — there was silence in heaven for about half an hour."
-    },
-    {
-      "id": "r2",
-      "ru": "Я увидел семь ангелов, стоящих перед Богом, им были даны семь труб.",
-      "question": "What were the seven angels given?",
-      "options": [
-        "Seven trumpets",
-        "Seven seals",
-        "Seven crowns",
-        "Seven books"
-      ],
-      "correct": "Seven trumpets",
-      "explain": "The text says 'им были даны семь труб' — seven trumpets were given to them."
-    },
-    {
-      "id": "r3",
-      "ru": "Первый ангел затрубил, и на землю пролились град и огонь, смешанные с кровью.",
-      "question": "What fell to earth when the first angel sounded?",
-      "options": [
-        "Hail and fire mixed with blood",
-        "Water and fire from the sky",
-        "Lightning and thunder",
-        "Stars and darkness"
-      ],
-      "correct": "Hail and fire mixed with blood",
-      "explain": "The text explicitly states 'на землю пролились град и огонь, смешанные с кровью' — hail and fire mixed with blood fell to the earth."
-    },
-    {
-      "id": "r4",
-      "ru": "Затрубил второй ангел, и нечто наподобие огромной горящей горы упало в море.",
-      "question": "What did the second angel's trumpet bring?",
-      "options": [
-        "Something like a great burning mountain fell into the sea",
-        "A star fell on the rivers",
-        "The sun was darkened",
-        "A swarm of locusts appeared"
-      ],
-      "correct": "Something like a great burning mountain fell into the sea",
-      "explain": "The text states 'нечто наподобие огромной горящей горы упало в море' — something like a great burning mountain fell into the sea."
-    },
-    {
-      "id": "r5",
-      "ru": "Эта звезда называется полынь.",
-      "question": "What is the name of the star that fell on the rivers and water sources?",
-      "options": [
-        "Wormwood",
-        "Darkness",
-        "Death",
-        "Destruction"
-      ],
-      "correct": "Wormwood",
-      "explain": "The text says 'Эта звезда называется полынь' — this star is called Wormwood."
-    },
-    {
-      "id": "r6",
-      "ru": "Потом я увидел и услышал орла, летящего посреди неба.",
-      "question": "What did John see and hear flying in mid-heaven?",
-      "options": [
-        "An eagle",
-        "Seven angels",
-        "A great dragon",
-        "A lion"
-      ],
-      "correct": "An eagle",
-      "explain": "The text says 'я увидел и услышал орла, летящего посреди неба' — he saw and heard an eagle flying in mid-heaven."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Потом подошел еще один ангел, державший ___ для возжигания благовоний, и встал рядом с жертвенником.",
+   "lemma": "сосуд",
+   "options": [
+    "золотого сосуда",
+    "золотой сосуд",
+    "золотом сосуде",
+    "золотым сосудом"
+   ],
+   "correct": "золотой сосуд",
+   "case": "Винительный (Accusative)",
+   "explain": "«золотой сосуд» — the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "Another angel came and stood over the altar, having a golden censer. Much incense was given to him, that he should add it to the prayers of all the saints on the golden altar which was before the throne."
+  },
+  {
+   "sentence": "___ затрубил, и на землю пролились град и огонь, смешанные с кровью ; третья часть земли сгорела, и третья часть деревьев сгорела, и вся зеленая трава сгорела.",
+   "lemma": "ангел",
+   "options": [
+    "первого ангела",
+    "первом ангеле",
+    "первым ангелом",
+    "первый ангел"
+   ],
+   "correct": "первый ангел",
+   "case": "Именительный (Nominative)",
+   "explain": "«Первый ангел» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "The first sounded, and there followed hail and fire, mixed with blood, and they were thrown to the earth. One third of the earth was burned up,  and one third of the trees were burned up, and all green grass was burned up."
+  },
+  {
+   "sentence": "Затрубил ___, и нечто наподобие огромной горящей горы упало в море, и третья часть моря превратилась в кровь.",
+   "lemma": "ангел",
+   "options": [
+    "второму ангелу",
+    "второго ангела",
+    "второй ангел",
+    "вторым ангелом"
+   ],
+   "correct": "второй ангел",
+   "case": "Именительный (Nominative)",
+   "explain": "«второй ангел» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "The second angel sounded, and something like a great burning mountain was thrown into the sea. One third of the sea became blood,"
+  },
+  {
+   "sentence": "Затрубил ___, и с неба на третью часть рек и водных источников упала горящая, как факел, огромная звезда.",
+   "lemma": "ангел",
+   "options": [
+    "третьим ангелом",
+    "третьего ангела",
+    "третьем ангеле",
+    "третий ангел"
+   ],
+   "correct": "третий ангел",
+   "case": "Именительный (Nominative)",
+   "explain": "«третий ангел» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "The third angel sounded, and a great star fell from the sky, burning like a torch, and it fell on one third of the rivers, and on the springs of the waters."
+  },
+  {
+   "sentence": "Затрубил третий ангел, и с неба на третью часть рек и ___ упала горящая, как факел, огромная звезда.",
+   "lemma": "источник",
+   "options": [
+    "водные источники",
+    "водными источниками",
+    "водных источников",
+    "водных источниках"
+   ],
+   "correct": "водных источников",
+   "case": "Родительный (Genitive)",
+   "explain": "«водных источников» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "The third angel sounded, and a great star fell from the sky, burning like a torch, and it fell on one third of the rivers, and on the springs of the waters."
+  },
+  {
+   "sentence": "Затрубил третий ангел, и с неба на третью часть рек и водных источников упала горящая, как факел, ___.",
+   "lemma": "звезда",
+   "options": [
+    "огромной звезде",
+    "огромной звездой",
+    "огромной звезды",
+    "огромная звезда"
+   ],
+   "correct": "огромная звезда",
+   "case": "Именительный (Nominative)",
+   "explain": "«огромная звезда» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "The third angel sounded, and a great star fell from the sky, burning like a torch, and it fell on one third of the rivers, and on the springs of the waters."
+  },
+  {
+   "sentence": "Третья часть воды стала горькой, как полынь, и от этой ___ погибло много людей.",
+   "lemma": "вода",
+   "options": [
+    "горькой воде",
+    "горькая вода",
+    "горькой водой",
+    "горькой воды"
+   ],
+   "correct": "горькой воды",
+   "case": "Родительный (Genitive)",
+   "explain": "«горькой воды» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "The name of the star is called “Wormwood.” One third of the waters became wormwood. Many people died from the waters, because they were made bitter."
+  }
+ ]
 }

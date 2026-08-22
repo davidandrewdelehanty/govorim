@@ -1,204 +1,124 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Господь наш Бог говорил нам в ___",
-      "lemma": "Харив",
-      "options": [
-        "Харива",
-        "Харивом",
-        "Хариве",
-        "Харив"
-      ],
-      "correct": "Хариве",
-      "case": "Предложный (Prepositional)",
-      "translation": "Our Lord God spoke to us at Horeb",
-      "explain": "The preposition 'в' (in) governs the prepositional case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Мы вышли из ___ и пошли к Амарийским нагорьям",
-      "lemma": "Харив",
-      "options": [
-        "Харива",
-        "Харивом",
-        "Хариве",
-        "Харив"
-      ],
-      "correct": "Харива",
-      "case": "Родительный (Genitive)",
-      "translation": "We departed from Horeb and went to the Amorite highlands",
-      "explain": "The preposition 'из' (from) governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Идите в ___ Хананеев",
-      "lemma": "земля",
-      "options": [
-        "земля",
-        "земли",
-        "землю",
-        "земле"
-      ],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "Go into the land of the Canaanites",
-      "explain": "The transitive verb 'идти' (to go) with accusative means direction of motion."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я дал вам эту ___",
-      "lemma": "земля",
-      "options": [
-        "земля",
-        "земли",
-        "землю",
-        "земле"
-      ],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "I have given you this land",
-      "explain": "The transitive verb 'дать' (to give) requires the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Я стоял между Господом и вашим ___",
-      "lemma": "народ",
-      "options": [
-        "народ",
-        "народа",
-        "народу",
-        "народом"
-      ],
-      "correct": "народом",
-      "case": "Творительный (Instrumental)",
-      "translation": "I stood between the Lord and your people",
-      "explain": "The preposition 'между' (between) governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "На расстоянии одиннадцати дней от Харива по ___ от горы Сеир",
-      "lemma": "дорога",
-      "options": [
-        "дорога",
-        "дороги",
-        "дороге",
-        "дорогой"
-      ],
-      "correct": "дороге",
-      "case": "Предложный (Prepositional)",
-      "translation": "At a distance of eleven days from Horeb along the route from Mount Seir",
-      "explain": "The preposition 'по' (along) can govern the dative or prepositional case here with prepositional sense."
-    },
-    {
-      "id": "c7",
-      "sentence": "Они преследовали вас, как пчелиный рой, и били вас от Сеира до самого города ___",
-      "lemma": "город",
-      "options": [
-        "город",
-        "города",
-        "городу",
-        "городом"
-      ],
-      "correct": "города",
-      "case": "Родительный (Genitive)",
-      "translation": "They chased you like bees and defeated you from Seir to the city of Hormah",
-      "explain": "The preposition 'до' (up to, until) governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Господь наш Бог носил вас, словно отец своего сына, на всем вашем ___ вплоть до этого места",
-      "lemma": "путешествие",
-      "options": [
-        "путешествие",
-        "путешествия",
-        "путешествии",
-        "путешествием"
-      ],
-      "correct": "путешествии",
-      "case": "Предложный (Prepositional)",
-      "translation": "The Lord your God carried you like a father carries his son, throughout your entire journey to this place",
-      "explain": "The preposition 'на' (on) with the sense of duration governs the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Воспоминания Моисея Вот слова, которые Моисей сказал всему Израилю в пустыне, что к востоку от Иордана, то есть в Иорданской долине, напротив Суфа, между Параном и Тафелом, Лаваном, Кацеротом и Дизагавом.",
-      "question": "Where did Moses speak these words?",
-      "options": [
-        "In Egypt",
-        "In the wilderness east of the Jordan",
-        "In the promised land",
-        "At Mount Horeb"
-      ],
-      "correct": "In the wilderness east of the Jordan",
-      "explain": "Moses explicitly spoke 'в пустыне, что к востоку от Иордана' (in the wilderness that is to the east of the Jordan)."
-    },
-    {
-      "id": "r2",
-      "ru": "В сороковой год после выхода из Египта, в первый день одиннадцатого месяца, Моисей объявил израилетянам все, что повелел ему о них Господь.",
-      "question": "When did Moses declare God's commandments to Israel?",
-      "options": [
-        "In the first year after leaving Egypt",
-        "In the fortieth year after leaving Egypt",
-        "At Mount Sinai",
-        "In the land of Moab"
-      ],
-      "correct": "In the fortieth year after leaving Egypt",
-      "explain": "The text states 'В сороковой год после выхода из Египта' (In the fortieth year after the departure from Egypt)."
-    },
-    {
-      "id": "r3",
-      "ru": "Господь наш Бог говорил нам в Хариве, «Довольно вам жить у этой горы.\"",
-      "question": "What did God tell the people regarding Mount Horeb?",
-      "options": [
-        "They should build an altar there",
-        "They should camp there permanently",
-        "They had lived there long enough and should move on",
-        "They should ascend the mountain"
-      ],
-      "correct": "They had lived there long enough and should move on",
-      "explain": "God said 'Довольно вам жить у этой горы' (You have lived long enough at this mountain), commanding them to turn and journey onward."
-    },
-    {
-      "id": "r4",
-      "ru": "Я стоял между Господом и вами в то время, чтобы объявить вам слово Господа, потому что вы боялись огня и не поднимались на гору.",
-      "question": "Why did Moses stand between God and the people?",
-      "options": [
-        "To protect them from danger",
-        "To mediate God's words because the people feared the fire",
-        "To teach them how to worship",
-        "To lead them to safety"
-      ],
-      "correct": "To mediate God's words because the people feared the fire",
-      "explain": "The text explains Moses stood between God and the people 'чтобы объявить вам слово Господа, потому что вы боялись огня' (to declare God's words to you because you feared the fire)."
-    },
-    {
-      "id": "r5",
-      "ru": "Но вы не доверились Господу вашему Богу, который шел перед вами во время путешествия ночью в огне, а днем в облаке, чтобы найти вам места для остановки и показать путь, которым вы должны идти.",
-      "question": "How did God guide the people during their journey?",
-      "options": [
-        "With Moses as their only guide",
-        "In fire by night and in a cloud by day",
-        "Through prophets and dreams",
-        "With written instructions on stone tablets"
-      ],
-      "correct": "In fire by night and in a cloud by day",
-      "explain": "The passage states God went before them 'ночью в огне, а днем в облаке' (in fire by night and in cloud by day) to show them the way."
-    },
-    {
-      "id": "r6",
-      "ru": "Ни один человек из этого злого поколения не увидит благодатной земли, которую я клялся отдать вашим отцам, кроме Халева, сына Иефонии.",
-      "question": "Who among that generation was allowed to see the good land?",
-      "options": [
-        "All who repented",
-        "Joshua and Caleb",
-        "Only Caleb son of Jephunneh",
-        "The priests and judges"
-      ],
-      "correct": "Only Caleb son of Jephunneh",
-      "explain": "God declared that no one of that evil generation would see the good land 'кроме Халева, сына Иефонии' (except Caleb son of Jephunneh)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "В сороковой год после выхода из Египта, в первый день ___ Моисей объявил израильтянам все, что повелел ему о них Господь.",
+   "lemma": "месяц",
+   "options": [
+    "одиннадцатом месяце",
+    "одиннадцатому месяцу",
+    "одиннадцатого месяца",
+    "одиннадцатым месяцем"
+   ],
+   "correct": "одиннадцатого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«одиннадцатого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "In the fortieth year, in the eleventh month, on the first day of the month, Moses spoke to the children of Israel according to all that Yahweh had given him in commandment to them,"
+  },
+  {
+   "sentence": "Сверните лагерь и идите в аморрейские нагорья и ко всем ___, живущим в иорданской долине, в горах, в западных предгорьях, в Негеве, вдоль побережья, в землю хананеев и на Ливан до великой реки Евфрата.",
+   "lemma": "народ",
+   "options": [
+    "соседние народы",
+    "соседними народами",
+    "соседних народов",
+    "соседним народам"
+   ],
+   "correct": "соседним народам",
+   "case": "Дательный (Dative)",
+   "explain": "«соседним народам» — after the preposition «ко», the dative marks the indirect object or recipient.",
+   "id": "c5",
+   "translation": "Turn, and take your journey, and go to the hill country of the Amorites and to all the places near there: in the Arabah, in the hill country, in the lowland, in the South, by the seashore, in the land of the Canaanites, and in Lebanon as far as the great river, the river Euphrates."
+  },
+  {
+   "sentence": "Сверните лагерь и идите в аморрейские нагорья и ко всем соседним народам, живущим в иорданской долине, в горах, в западных предгорьях, в Негеве, вдоль побережья, в землю хананеев и на Ливан до ___ Евфрата.",
+   "lemma": "река",
+   "options": [
+    "великой рекой",
+    "великая река",
+    "великой реки",
+    "великой реке"
+   ],
+   "correct": "великой реки",
+   "case": "Родительный (Genitive)",
+   "explain": "«великой реки» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "Turn, and take your journey, and go to the hill country of the Amorites and to all the places near there: in the Arabah, in the hill country, in the lowland, in the South, by the seashore, in the land of the Canaanites, and in Lebanon as far as the great river, the river Euphrates."
+  },
+  {
+   "sentence": "Когда Господь услышал ваши речи, Он разгневался и поклялся: 35 «Ни один человек из этого ___ не увидит благодатной земли, которую Я клялся отдать вашим отцам, 36 кроме Халева, сына Иефоннии.",
+   "lemma": "поколение",
+   "options": [
+    "злым поколением",
+    "злое поколение",
+    "злом поколении",
+    "злого поколения"
+   ],
+   "correct": "злого поколения",
+   "case": "Родительный (Genitive)",
+   "explain": "«злого поколения» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "Yahweh heard the voice of your words and was angry, and swore, saying,"
+  },
+  {
+   "sentence": "Когда Господь услышал ваши речи, Он разгневался и поклялся: 35 «Ни один человек из этого злого поколения не увидит ___, которую Я клялся отдать вашим отцам, 36 кроме Халева, сына Иефоннии.",
+   "lemma": "земля",
+   "options": [
+    "благодатной землёй",
+    "благодатной земли",
+    "благодатной земле",
+    "благодатная земля"
+   ],
+   "correct": "благодатной земли",
+   "case": "Родительный (Genitive)",
+   "explain": "«благодатной земли» — the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "Yahweh heard the voice of your words and was angry, and swore, saying,"
+  },
+  {
+   "sentence": "А вы повернитесь и отправляйтесь в пустыню на пути к ___».",
+   "lemma": "море",
+   "options": [
+    "красным морем",
+    "красном море",
+    "красному морю",
+    "красного моря"
+   ],
+   "correct": "красному морю",
+   "case": "Дательный (Dative)",
+   "explain": "«Красному морю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c10",
+   "translation": "But as for you, turn, and take your journey into the wilderness by the way to the Red Sea.”"
+  },
+  {
+   "sentence": "Они преследовали вас, как ___, и били вас от Сеира до самого города Хормы.",
+   "lemma": "рой",
+   "options": [
+    "пчелином рое",
+    "пчелиным роем",
+    "пчелиному рою",
+    "пчелиный рой"
+   ],
+   "correct": "пчелиный рой",
+   "case": "Именительный (Nominative)",
+   "explain": "«пчелиный рой» — the subject of the sentence stands in the nominative.",
+   "id": "c11",
+   "translation": "The Amorites, who lived in that hill country, came out against you and chased you as bees do, and beat you down in Seir, even to Hormah."
+  },
+  {
+   "sentence": "Они преследовали вас, как пчелиный рой, и били вас от Сеира до ___ Хормы.",
+   "lemma": "город",
+   "options": [
+    "самим городом",
+    "сам город",
+    "самому городу",
+    "самого города"
+   ],
+   "correct": "самого города",
+   "case": "Родительный (Genitive)",
+   "explain": "«самого города» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c12",
+   "translation": "The Amorites, who lived in that hill country, came out against you and chased you as bees do, and beat you down in Seir, even to Hormah."
+  }
+ ]
 }

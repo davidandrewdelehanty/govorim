@@ -1,204 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "lemma": "сад",
-      "sentence": "Я вошел в ___ мой.",
-      "options": [
-        "сад",
-        "сада",
-        "саду",
-        "саде"
-      ],
-      "correct": "сад",
-      "case": "Винительный (Accusative)",
-      "translation": "I have come into my garden.",
-      "explain": "The verb вошел в (entered) governs the accusative case."
-    },
-    {
-      "id": "c2",
-      "lemma": "роса",
-      "sentence": "Голова моя промокла от ___.",
-      "options": [
-        "роса",
-        "росы",
-        "росе",
-        "росой"
-      ],
-      "correct": "росы",
-      "case": "Родительный (Genitive)",
-      "translation": "My head is filled with dew.",
-      "explain": "The preposition от (from) always governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "lemma": "сердце",
-      "sentence": "___ мое опечалилось.",
-      "options": [
-        "Сердце",
-        "Сердца",
-        "Сердцу",
-        "Сердцем"
-      ],
-      "correct": "Сердце",
-      "case": "Именительный (Nominative)",
-      "translation": "My heart became sorrowful.",
-      "explain": "Сердце is the grammatical subject, so it takes the nominative case."
-    },
-    {
-      "id": "c4",
-      "lemma": "палец",
-      "sentence": "С пальцев моих капала мира на ручке ___.",
-      "options": [
-        "замок",
-        "замка",
-        "замку",
-        "замком"
-      ],
-      "correct": "замка",
-      "case": "Родительный (Genitive)",
-      "translation": "My fingers dripped with myrrh on the handle of the lock.",
-      "explain": "Possession is expressed with the genitive; 'handle of the lock' requires the genitive form замка."
-    },
-    {
-      "id": "c5",
-      "lemma": "рука",
-      "sentence": "С ___ моих капала мира.",
-      "options": [
-        "рук",
-        "руки",
-        "рукам",
-        "руками"
-      ],
-      "correct": "рук",
-      "case": "Родительный (Genitive)",
-      "translation": "My hands dripped with myrrh.",
-      "explain": "The preposition с (with/from) governs the genitive case; in plural it is рук."
-    },
-    {
-      "id": "c6",
-      "lemma": "возлюбленный",
-      "sentence": "Открыла ___ моему.",
-      "options": [
-        "возлюбленный",
-        "возлюбленного",
-        "возлюбленному",
-        "возлюбленным"
-      ],
-      "correct": "возлюбленному",
-      "case": "Дательный (Dative)",
-      "translation": "I opened to my beloved.",
-      "explain": "The verb отпереть (to open to) with a dative object shows that the preposition 'to' requires the dative case."
-    },
-    {
-      "id": "c7",
-      "lemma": "город",
-      "sentence": "Нашли меня стражи, обходящие ___.",
-      "options": [
-        "город",
-        "города",
-        "городу",
-        "городе"
-      ],
-      "correct": "город",
-      "case": "Винительный (Accusative)",
-      "translation": "The watchmen who go about the city found me.",
-      "explain": "The transitive verb обходящие (going about) requires the accusative case for its direct object."
-    },
-    {
-      "id": "c8",
-      "lemma": "золото",
-      "sentence": "Голова его — чистое ___.",
-      "options": [
-        "золото",
-        "золота",
-        "золоту",
-        "золотом"
-      ],
-      "correct": "золото",
-      "case": "Именительный (Nominative)",
-      "translation": "His head is like the purest gold.",
-      "explain": "As a predicate nominative, золото stands in the nominative case after the linking verb 'to be'."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Я вошел в сад мой, сестра моя, невеста моя.",
-      "question": "According to the text, what does the speaker say he has entered?",
-      "options": [
-        "His garden",
-        "A city",
-        "A temple",
-        "The house of his beloved"
-      ],
-      "correct": "His garden",
-      "explain": "The speaker says 'Я вошел в сад мой' - 'I have come into my garden.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Я спала, но сердце мое бодрствовало.",
-      "question": "What was the speaker's state of mind while physically asleep?",
-      "options": [
-        "Her heart was awake and alert",
-        "Her heart was troubled",
-        "Her heart was at peace",
-        "Her heart was weak"
-      ],
-      "correct": "Her heart was awake and alert",
-      "explain": "The text states: 'Я спала, но сердце мое бодрствовало' - 'I was asleep, but my heart was awake.'"
-    },
-    {
-      "id": "r3",
-      "ru": "Голова моя промокла от росы, волосы мои от ночной влаги.",
-      "question": "What made the speaker's head and hair wet?",
-      "options": [
-        "Dew and nighttime moisture",
-        "Rain from a storm",
-        "Water from bathing",
-        "Tears and sweat"
-      ],
-      "correct": "Dew and nighttime moisture",
-      "explain": "The text says the head is filled with dew (роса) and hair with the dampness of the night (ночной влаги)."
-    },
-    {
-      "id": "r4",
-      "ru": "Возлюбленный мой просунул руку свою в скважину двери, и сердце мое затрепетало.",
-      "question": "How did the speaker's body respond when her beloved reached through the door?",
-      "options": [
-        "Her heart pounded with excitement",
-        "She felt afraid",
-        "She remained calm",
-        "She ran away immediately"
-      ],
-      "correct": "Her heart pounded with excitement",
-      "explain": "The text states: 'сердце мое затрепетало' - 'My heart pounded.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Я открыла возлюбленному моему, но его уже не было.",
-      "question": "What happened after the speaker opened the door for her beloved?",
-      "options": [
-        "He had already gone away",
-        "He embraced her",
-        "He told her to let him in",
-        "He went into the garden"
-      ],
-      "correct": "He had already gone away",
-      "explain": "The text says: 'Я открыла возлюбленному моему, но его уже не было. Он ушел' - 'I opened to my beloved; but my beloved left.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Вот каков мой возлюбленный, вот каков мой друг, о дочери Иерусалима.",
-      "question": "How does the speaker describe the relationship between herself and her beloved?",
-      "options": [
-        "He is both her beloved and her friend",
-        "He is her guide and teacher",
-        "He is her protector",
-        "He is a stranger to her"
-      ],
-      "correct": "He is both her beloved and her friend",
-      "explain": "The speaker says: 'Вот каков мой возлюбленный, вот каков мой друг' - 'This is my beloved, and this is my friend.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Голова его — ___;",
+   "lemma": "золото",
+   "options": [
+    "чистого золота",
+    "чистому золоту",
+    "чистое золото",
+    "чистом золоте"
+   ],
+   "correct": "чистое золото",
+   "case": "Именительный (Nominative)",
+   "explain": "«чистое золото» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "His head is like the purest gold. His hair is bushy, black as a raven."
+  },
+  {
+   "sentence": "Руки его — ___,",
+   "lemma": "жезл",
+   "options": [
+    "золотые жезлы",
+    "золотых жезлов",
+    "золотыми жезлами",
+    "золотых жезлах"
+   ],
+   "correct": "золотые жезлы",
+   "case": "Именительный (Nominative)",
+   "explain": "«золотые жезлы» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "His hands are like rings of gold set with beryl. His body is like ivory work overlaid with sapphires."
+  },
+  {
+   "sentence": "Ноги его — ___,",
+   "lemma": "столб",
+   "options": [
+    "мраморных столбов",
+    "мраморным столбам",
+    "мраморными столбами",
+    "мраморные столбы"
+   ],
+   "correct": "мраморные столбы",
+   "case": "Именительный (Nominative)",
+   "explain": "«мраморные столбы» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "His legs are like pillars of marble set on sockets of fine gold. His appearance is like Lebanon, excellent as the cedars."
+  }
+ ]
 }

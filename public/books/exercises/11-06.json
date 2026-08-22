@@ -1,204 +1,484 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "В 480 году после выхода израилетян из ___, Соломон начал строить дом Господу.",
-      "lemma": "Египет",
-      "options": [
-        "Египет",
-        "Египта",
-        "Египту",
-        "Египтом"
-      ],
-      "correct": "Египта",
-      "case": "Родительный (Genitive)",
-      "translation": "In the 480th year after the Israelites came out of Egypt, Solomon began to build the Lord's house.",
-      "explain": "The preposition из (from) governs the genitive case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Дом был 60 локтей в ___.",
-      "lemma": "длина",
-      "options": [
-        "длина",
-        "длины",
-        "длину",
-        "длиной"
-      ],
-      "correct": "длину",
-      "case": "Винительный (Accusative)",
-      "translation": "The house was 60 cubits in length.",
-      "explain": "The preposition в with measurement requires the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "В строительстве дома использовали только те ___.",
-      "lemma": "камень",
-      "options": [
-        "камень",
-        "камни",
-        "камня",
-        "камнем"
-      ],
-      "correct": "камни",
-      "case": "Винительный (Accusative)",
-      "translation": "In building the house, only those stones were used.",
-      "explain": "The verb использовали (used) requires the accusative plural case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Ни молотка, ни Тесла, никакого железного орудия не было слышно на месте ___.",
-      "lemma": "строительство",
-      "options": [
-        "строительство",
-        "строительства",
-        "строительству",
-        "строительством"
-      ],
-      "correct": "строительства",
-      "case": "Родительный (Genitive)",
-      "translation": "No hammer, axe, or any iron tool was heard at the place of construction.",
-      "explain": "The phrase на месте (at the place) with genitive indicates location/possession."
-    },
-    {
-      "id": "c5",
-      "sentence": "Он обшил стены кедровыми досками, забрав их от пола ___ до стропил потолка.",
-      "lemma": "дом",
-      "options": [
-        "дом",
-        "дома",
-        "дому",
-        "домом"
-      ],
-      "correct": "дома",
-      "case": "Родительный (Genitive)",
-      "translation": "He covered the walls with cedar boards, taking them from the floor of the house to the ceiling beams.",
-      "explain": "The preposition от (from) governs the genitive case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Он приготовил внутреннее святилище в ___.",
-      "lemma": "дом",
-      "options": [
-        "дом",
-        "дома",
-        "дому",
-        "доме"
-      ],
-      "correct": "доме",
-      "case": "Предложный (Prepositional)",
-      "translation": "He prepared an inner sanctuary in the house.",
-      "explain": "The preposition в (in) governs the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Внутреннее святилище было 20 локтей в ___ .",
-      "lemma": "длина",
-      "options": [
-        "длина",
-        "длины",
-        "длину",
-        "длиной"
-      ],
-      "correct": "длину",
-      "case": "Винительный (Accusative)",
-      "translation": "The inner sanctuary was twenty cubits in length.",
-      "explain": "The preposition в with measurement requires the accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Во внутреннем святилище он сделал двух ___ из масличного дерева.",
-      "lemma": "херувим",
-      "options": [
-        "херувим",
-        "херувима",
-        "херувимов",
-        "херувимом"
-      ],
-      "correct": "херувимов",
-      "case": "Винительный (Accusative)",
-      "translation": "In the inner sanctuary he made two cherubim of olive wood.",
-      "explain": "The verb сделал (made) requires the accusative case for the direct object."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "В 480 году после выхода израилетян из Египта, в четвертый год своего правления Израилем, Соломон начал строить дом Господу.",
-      "question": "When did Solomon begin to build the Lord's house?",
-      "options": [
-        "In the first year of his reign",
-        "In the 480th year after the Israelites left Egypt, in his fourth regnal year",
-        "In the seventh year of his reign",
-        "After thirty years"
-      ],
-      "correct": "In the 480th year after the Israelites left Egypt, in his fourth regnal year",
-      "explain": "The text states В 480 году после выхода израилетян из Египта, в четвертый год своего правления (In the 480th year after the Israelites came out of Egypt, in the fourth year of his reign)."
-    },
-    {
-      "id": "r2",
-      "ru": "Дом, который Соломон построил Господу, был 60 локтей в длину, 20 в ширину и 30 в высоту.",
-      "question": "What were the dimensions of the temple?",
-      "options": [
-        "50 cubits by 20 by 25",
-        "60 cubits by 20 by 30",
-        "100 cubits by 30 by 40",
-        "40 cubits by 15 by 25"
-      ],
-      "correct": "60 cubits by 20 by 30",
-      "explain": "The text specifies был 60 локтей в длину, 20 в ширину и 30 в высоту (60 cubits in length, 20 in width, and 30 in height)."
-    },
-    {
-      "id": "r3",
-      "ru": "В строительстве дома использовали только те камни, что были обтесаны в каменоломне.",
-      "question": "What kind of stones were used in building the temple?",
-      "options": [
-        "Stones from the river",
-        "Only stones that were dressed/cut at the quarry",
-        "Stones collected from the ground",
-        "Broken stones that needed shaping"
-      ],
-      "correct": "Only stones that were dressed/cut at the quarry",
-      "explain": "The text says использовали только те камни, что были обтесаны в каменоломне (used only stones that were dressed at the quarry)."
-    },
-    {
-      "id": "r4",
-      "ru": "Ни молотка, ни Тесла, никакого другого железного орудия не было слышно на месте строительства дома.",
-      "question": "What was notable about the construction of the temple?",
-      "options": [
-        "Many tools were used",
-        "No hammer, ax, or iron tool was heard at the building site",
-        "It was very loud",
-        "Workers made much noise"
-      ],
-      "correct": "No hammer, ax, or iron tool was heard at the building site",
-      "explain": "The text states ни молотка, ни Тесла, никакого другого железного орудия не было слышно на месте строительства (no hammer, ax, or iron tool was heard at the place of construction)."
-    },
-    {
-      "id": "r5",
-      "ru": "Он обшил стены с внутренней стороны кедровыми досками, забрав их от пола дома до стропил потолка.",
-      "question": "What did Solomon use to cover the interior walls?",
-      "options": [
-        "Stone blocks",
-        "Cedar boards",
-        "Gold leaf",
-        "Painted plaster"
-      ],
-      "correct": "Cedar boards",
-      "explain": "The text says обшил стены с внутренней стороны кедровыми досками (covered the interior walls with cedar boards)."
-    },
-    {
-      "id": "r6",
-      "ru": "В глубине дома он отгородил кедровыми досками 20 локтей, чтобы сделать в доме внутреннее святилище святое святых.",
-      "question": "What did Solomon create in the innermost part of the temple?",
-      "options": [
-        "A storage room",
-        "A library of scrolls",
-        "An inner sanctuary, the Holy of Holies",
-        "A school for priests"
-      ],
-      "correct": "An inner sanctuary, the Holy of Holies",
-      "explain": "The text says он отгородил ... чтобы сделать в доме внутреннее святилище святое святых (he partitioned off to create an inner sanctuary, the Most Holy Place)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "В четыреста восьмидесятом году после выхода израильтян из Египта, в четвертый год своего правления Израилем, в месяце зив, ___ , Соломон начал строить дом Господу.",
+   "lemma": "месяц",
+   "options": [
+    "вторым месяцем",
+    "втором месяце",
+    "второго месяца",
+    "второй месяц"
+   ],
+   "correct": "втором месяце",
+   "case": "Предложный (Prepositional)",
+   "explain": "«втором месяце» — the prepositional is used only after a preposition, for location or topic.",
+   "id": "c1",
+   "translation": "In the four hundred and eightieth year after the children of Israel had come out of the land of Egypt, in the fourth year of Solomon’s reign over Israel, in the month Ziv, which is the second month, he began to build Yahweh’s house."
+  },
+  {
+   "sentence": "Притвор перед ___ дома был двадцать локтей в ширину, соответственно ширине дома, и отходил от дома на десять локтей .",
+   "lemma": "помещение",
+   "options": [
+    "главном помещении",
+    "главным помещением",
+    "главного помещения",
+    "главному помещению"
+   ],
+   "correct": "главным помещением",
+   "case": "Творительный (Instrumental)",
+   "explain": "«главным помещением» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "id": "c2",
+   "translation": "The porch in front of the temple of the house had a length of twenty cubits, which was along the width of the house. Ten cubits was its width in front of the house."
+  },
+  {
+   "sentence": "Он сделал пристройку вокруг стен дома и ___.",
+   "lemma": "святилище",
+   "options": [
+    "внутреннего святилища",
+    "внутреннем святилище",
+    "внутреннее святилище",
+    "внутреннему святилищу"
+   ],
+   "correct": "внутреннего святилища",
+   "case": "Родительный (Genitive)",
+   "explain": "«внутреннего святилища» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Against the wall of the house, he built floors all around, against the walls of the house all around, both of the temple and of the inner sanctuary; and he made side rooms all around."
+  },
+  {
+   "sentence": "___ был пять локтей в ширину, второй — шесть локтей , и третий — семь локтей .",
+   "lemma": "этаж",
+   "options": [
+    "первого этажа",
+    "первым этажом",
+    "первый этаж",
+    "первом этаже"
+   ],
+   "correct": "первый этаж",
+   "case": "Именительный (Nominative)",
+   "explain": "«Первый этаж» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "The lowest floor was five cubits wide, and the middle was six cubits wide, and the third was seven cubits wide; for on the outside he made offsets in the wall of the house all around, that the beams should not be inserted into the walls of the house."
+  },
+  {
+   "sentence": "В строительстве дома использовали только те камни, что были обтесаны в каменоломне, и ни молотка, ни тесла, ни какого другого ___ не было слышно на месте строительства дома.",
+   "lemma": "орудие",
+   "options": [
+    "железном орудии",
+    "железное орудие",
+    "железного орудия",
+    "железному орудию"
+   ],
+   "correct": "железного орудия",
+   "case": "Родительный (Genitive)",
+   "explain": "«железного орудия» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "The house, when it was under construction, was built of stone prepared at the quarry; and no hammer or ax or any tool of iron was heard in the house while it was under construction."
+  },
+  {
+   "sentence": "Вход на первый этаж находился на ___ дома.",
+   "lemma": "сторона",
+   "options": [
+    "южной стороны",
+    "южной стороне",
+    "южной стороной",
+    "южная сторона"
+   ],
+   "correct": "южной стороне",
+   "case": "Предложный (Prepositional)",
+   "explain": "«южной стороне» — after the preposition «на», for location or topic.",
+   "id": "c7",
+   "translation": "The door for the middle side rooms was in the right side of the house. They went up by winding stairs into the middle floor, and out of the middle into the third."
+  },
+  {
+   "sentence": "Вдоль всего дома он построил ___.",
+   "lemma": "комната",
+   "options": [
+    "боковые комнаты",
+    "боковым комнатам",
+    "боковых комнат",
+    "боковых комнатах"
+   ],
+   "correct": "боковые комнаты",
+   "case": "Винительный (Accusative)",
+   "explain": "«боковые комнаты» — the accusative marks the direct object of the verb.",
+   "id": "c9",
+   "translation": "He built the floors all along the house, each five cubits high; and they rested on the house with timber of cedar."
+  },
+  {
+   "sentence": "Соломон обшил стены с ___ кедровыми досками, забрав их от пола дома до стропил потолка, и покрыл пол дома кипарисовыми досками.",
+   "lemma": "сторона",
+   "options": [
+    "внутренней стороны",
+    "внутренняя сторона",
+    "внутренней стороне",
+    "внутренней стороной"
+   ],
+   "correct": "внутренней стороны",
+   "case": "Родительный (Genitive)",
+   "explain": "«внутренней стороны» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c10",
+   "translation": "He built the walls of the house within with boards of cedar: from the floor of the house to the walls of the ceiling, he covered them on the inside with wood; and he covered the floor of the house with cypress boards."
+  },
+  {
+   "sentence": "Соломон обшил стены с внутренней стороны кедровыми досками, забрав их от пола дома до стропил потолка, и покрыл пол дома ___.",
+   "lemma": "доска",
+   "options": [
+    "кипарисовым доскам",
+    "кипарисовых досках",
+    "кипарисовые доски",
+    "кипарисовыми досками"
+   ],
+   "correct": "кипарисовыми досками",
+   "case": "Творительный (Instrumental)",
+   "explain": "«кипарисовыми досками» — the instrumental marks the means, company, or complement.",
+   "id": "c11",
+   "translation": "He built the walls of the house within with boards of cedar: from the floor of the house to the walls of the ceiling, he covered them on the inside with wood; and he covered the floor of the house with cypress boards."
+  },
+  {
+   "sentence": "В глубине дома он отгородил ___ от пола до стропил двадцать локтей , чтобы сделать в доме внутреннее святилище, Святое Святых.",
+   "lemma": "доска",
+   "options": [
+    "кедровых досках",
+    "кедровых досок",
+    "кедровые доски",
+    "кедровыми досками"
+   ],
+   "correct": "кедровыми досками",
+   "case": "Творительный (Instrumental)",
+   "explain": "«кедровыми досками» — the instrumental marks the means, company, or complement.",
+   "id": "c12",
+   "translation": "He built twenty cubits on the back part of the house with boards of cedar from the floor to the ceiling. He built them for it within, for an inner sanctuary, even for the most holy place."
+  },
+  {
+   "sentence": "Внутри дом был обшит ___, на котором были вырезаны подобия тыкв и распустившиеся цветы.",
+   "lemma": "дерево",
+   "options": [
+    "кедровым деревом",
+    "кедрового дерева",
+    "кедровому дереву",
+    "кедровое дерево"
+   ],
+   "correct": "кедровым деревом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«кедровым деревом» — the instrumental marks the means, company, or complement.",
+   "id": "c13",
+   "translation": "There was cedar on the house within, carved with buds and open flowers. All was cedar. No stone was visible."
+  },
+  {
+   "sentence": "Он приготовил внутреннее святилище в доме, чтобы поместить там ковчег ___.",
+   "lemma": "завет",
+   "options": [
+    "господний завет",
+    "господнем завете",
+    "господнего завета",
+    "господнему завету"
+   ],
+   "correct": "господнего завета",
+   "case": "Родительный (Genitive)",
+   "explain": "«Господнего завета» — the genitive here marks possession, absence, or quantity.",
+   "id": "c14",
+   "translation": "He prepared an inner sanctuary in the middle of the house within, to set the ark of Yahweh’s covenant there."
+  },
+  {
+   "sentence": "___ было двадцать локтей в длину, двадцать в ширину и двадцать в высоту .",
+   "lemma": "святилище",
+   "options": [
+    "внутреннему святилищу",
+    "внутреннего святилища",
+    "внутренним святилищем",
+    "внутреннее святилище"
+   ],
+   "correct": "внутреннее святилище",
+   "case": "Именительный (Nominative)",
+   "explain": "«Внутреннее святилище» — the subject of the sentence stands in the nominative.",
+   "id": "c15",
+   "translation": "Within the inner sanctuary was twenty cubits in length, and twenty cubits in width, and twenty cubits in its height; and he overlaid it with pure gold; and he covered the altar with cedar."
+  },
+  {
+   "sentence": "Он покрыл ___ чистым золотом и обшил жертвенник, находящийся перед Святым Святых, кедром.",
+   "lemma": "поверхность",
+   "options": [
+    "внутренним поверхностям",
+    "внутренними поверхностями",
+    "внутренние поверхности",
+    "внутренних поверхностях"
+   ],
+   "correct": "внутренние поверхности",
+   "case": "Винительный (Accusative)",
+   "explain": "«внутренние поверхности» — the accusative marks the direct object of the verb.",
+   "id": "c16",
+   "translation": "Within the inner sanctuary was twenty cubits in length, and twenty cubits in width, and twenty cubits in its height; and he overlaid it with pure gold; and he covered the altar with cedar."
+  },
+  {
+   "sentence": "Он покрыл внутренние поверхности ___ и обшил жертвенник, находящийся перед Святым Святых, кедром.",
+   "lemma": "золото",
+   "options": [
+    "чистого золота",
+    "чистое золото",
+    "чистому золоту",
+    "чистым золотом"
+   ],
+   "correct": "чистым золотом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«чистым золотом» — the instrumental marks the means, company, or complement.",
+   "id": "c17",
+   "translation": "Within the inner sanctuary was twenty cubits in length, and twenty cubits in width, and twenty cubits in its height; and he overlaid it with pure gold; and he covered the altar with cedar."
+  },
+  {
+   "sentence": "Соломон покрыл ___ дома чистым золотом и перетянул золотыми цепями вход во внутреннее святилище, которое было покрыто золотом.",
+   "lemma": "поверхность",
+   "options": [
+    "внутренним поверхностям",
+    "внутренними поверхностями",
+    "внутренние поверхности",
+    "внутренних поверхностях"
+   ],
+   "correct": "внутренние поверхности",
+   "case": "Винительный (Accusative)",
+   "explain": "«внутренние поверхности» — the accusative marks the direct object of the verb.",
+   "id": "c18",
+   "translation": "So Solomon overlaid the house within with pure gold. He drew chains of gold across before the inner sanctuary, and he overlaid it with gold."
+  },
+  {
+   "sentence": "Соломон покрыл внутренние поверхности дома ___ и перетянул золотыми цепями вход во внутреннее святилище, которое было покрыто золотом.",
+   "lemma": "золото",
+   "options": [
+    "чистого золота",
+    "чистое золото",
+    "чистому золоту",
+    "чистым золотом"
+   ],
+   "correct": "чистым золотом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«чистым золотом» — the instrumental marks the means, company, or complement.",
+   "id": "c19",
+   "translation": "So Solomon overlaid the house within with pure gold. He drew chains of gold across before the inner sanctuary, and he overlaid it with gold."
+  },
+  {
+   "sentence": "Соломон покрыл внутренние поверхности дома чистым золотом и перетянул ___ вход во внутреннее святилище, которое было покрыто золотом.",
+   "lemma": "цепь",
+   "options": [
+    "золотым цепям",
+    "золотыми цепями",
+    "золотых цепях",
+    "золотых цепей"
+   ],
+   "correct": "золотыми цепями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«золотыми цепями» — the instrumental marks the means, company, or complement.",
+   "id": "c20",
+   "translation": "So Solomon overlaid the house within with pure gold. He drew chains of gold across before the inner sanctuary, and he overlaid it with gold."
+  },
+  {
+   "sentence": "Еще он покрыл золотом жертвенник, который принадлежал к ___.",
+   "lemma": "святилище",
+   "options": [
+    "внутреннего святилища",
+    "внутреннему святилищу",
+    "внутреннем святилище",
+    "внутренним святилищем"
+   ],
+   "correct": "внутреннему святилищу",
+   "case": "Дательный (Dative)",
+   "explain": "«внутреннему святилищу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c21",
+   "translation": "He overlaid the whole house with gold, until all the house was finished. He also overlaid the whole altar that belonged to the inner sanctuary with gold."
+  },
+  {
+   "sentence": "Во ___ он сделал двух херувимов из масличного дерева, каждого в десять локтей высотой.",
+   "lemma": "святилище",
+   "options": [
+    "внутреннем святилище",
+    "внутреннее святилище",
+    "внутренним святилищем",
+    "внутреннего святилища"
+   ],
+   "correct": "внутреннем святилище",
+   "case": "Предложный (Prepositional)",
+   "explain": "«внутреннем святилище» — after the preposition «во», for location or topic.",
+   "id": "c22",
+   "translation": "In the inner sanctuary he made two cherubim of olive wood, each ten cubits high."
+  },
+  {
+   "sentence": "Во внутреннем святилище он сделал двух херувимов из ___, каждого в десять локтей высотой.",
+   "lemma": "дерево",
+   "options": [
+    "масличному дереву",
+    "масличным деревом",
+    "масличном дереве",
+    "масличного дерева"
+   ],
+   "correct": "масличного дерева",
+   "case": "Родительный (Genitive)",
+   "explain": "«масличного дерева» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c23",
+   "translation": "In the inner sanctuary he made two cherubim of olive wood, each ten cubits high."
+  },
+  {
+   "sentence": "Крыло ___ было пять локтей в длину, и другое крыло пять локтей в длину — десять локтей от конца одного крыла до конца другого.",
+   "lemma": "херувим",
+   "options": [
+    "первом херувиме",
+    "первого херувима",
+    "первым херувимом",
+    "первому херувиму"
+   ],
+   "correct": "первого херувима",
+   "case": "Родительный (Genitive)",
+   "explain": "«первого херувима» — the genitive here marks possession, absence, or quantity.",
+   "id": "c24",
+   "translation": "Five cubits was the one wing of the cherub, and five cubits the other wing of the cherub. From the tip of one wing to the tip of the other was ten cubits."
+  },
+  {
+   "sentence": "___ также был десяти локтей, так как оба херувима были одного размера и вида.",
+   "lemma": "херувим",
+   "options": [
+    "второй херувим",
+    "второму херувиму",
+    "втором херувиме",
+    "вторым херувимом"
+   ],
+   "correct": "второй херувим",
+   "case": "Именительный (Nominative)",
+   "explain": "«Второй херувим» — the subject of the sentence stands in the nominative.",
+   "id": "c25",
+   "translation": "The other cherub was ten cubits. Both the cherubim were of one measure and one form."
+  },
+  {
+   "sentence": "Крыло одного херувима касалось одной стены, крыло второго — противоположной стены, а ___ херувимов соприкасались посередине комнаты.",
+   "lemma": "крыло",
+   "options": [
+    "другие крылья",
+    "других крыльев",
+    "другими крыльями",
+    "другим крыльям"
+   ],
+   "correct": "другие крылья",
+   "case": "Именительный (Nominative)",
+   "explain": "«другие крылья» — the subject of the sentence stands in the nominative.",
+   "id": "c26",
+   "translation": "He set the cherubim within the inner house. The wings of the cherubim were stretched out, so that the wing of the one touched the one wall, and the wing of the other cherub touched the other wall; and their wings touched one another in the middle of the house."
+  },
+  {
+   "sentence": "Для входа во внутреннее святилище он сделал двери из ___ с пятиугольными косяками.",
+   "lemma": "дерево",
+   "options": [
+    "масличному дереву",
+    "масличным деревом",
+    "масличном дереве",
+    "масличного дерева"
+   ],
+   "correct": "масличного дерева",
+   "case": "Родительный (Genitive)",
+   "explain": "«масличного дерева» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c27",
+   "translation": "For the entrance of the inner sanctuary, he made doors of olive wood. The lintel and door posts were a fifth part of the wall."
+  },
+  {
+   "sentence": "Для входа во внутреннее святилище он сделал двери из масличного дерева с ___.",
+   "lemma": "косяк",
+   "options": [
+    "пятиугольных косяков",
+    "пятиугольные косяки",
+    "пятиугольными косяками",
+    "пятиугольных косяках"
+   ],
+   "correct": "пятиугольными косяками",
+   "case": "Творительный (Instrumental)",
+   "explain": "«пятиугольными косяками» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c28",
+   "translation": "For the entrance of the inner sanctuary, he made doors of olive wood. The lintel and door posts were a fifth part of the wall."
+  },
+  {
+   "sentence": "А на двух дверях из ___ он вырезал херувимов, пальмы и распустившиеся цветы и покрыл херувимов и пальмы золотом.",
+   "lemma": "дерево",
+   "options": [
+    "масличному дереву",
+    "масличным деревом",
+    "масличном дереве",
+    "масличного дерева"
+   ],
+   "correct": "масличного дерева",
+   "case": "Родительный (Genitive)",
+   "explain": "«масличного дерева» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c29",
+   "translation": "So he made two doors of olive wood; and he carved on them carvings of cherubim, palm trees, and open flowers, and overlaid them with gold. He spread the gold on the cherubim and on the palm trees."
+  },
+  {
+   "sentence": "Точно так же он сделал из ___ четырехугольные косяки для входа в главное помещение.",
+   "lemma": "дерево",
+   "options": [
+    "масличному дереву",
+    "масличным деревом",
+    "масличном дереве",
+    "масличного дерева"
+   ],
+   "correct": "масличного дерева",
+   "case": "Родительный (Genitive)",
+   "explain": "«масличного дерева» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c30",
+   "translation": "He also did so for the entrance of the temple door posts of olive wood, out of a fourth part of the wall;"
+  },
+  {
+   "sentence": "Еще он сделал две двери из ___, каждую с двумя подвижными створками.",
+   "lemma": "дерево",
+   "options": [
+    "кипарисовое дерево",
+    "кипарисовому дереву",
+    "кипарисовым деревом",
+    "кипарисового дерева"
+   ],
+   "correct": "кипарисового дерева",
+   "case": "Родительный (Genitive)",
+   "explain": "«кипарисового дерева» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c31",
+   "translation": "and two doors of cypress wood. The two leaves of the one door were folding, and the two leaves of the other door were folding."
+  },
+  {
+   "sentence": "Еще он сделал две двери из кипарисового дерева, каждую с двумя ___.",
+   "lemma": "створка",
+   "options": [
+    "подвижными створками",
+    "подвижным створкам",
+    "подвижных створках",
+    "подвижных створок"
+   ],
+   "correct": "подвижными створками",
+   "case": "Творительный (Instrumental)",
+   "explain": "«подвижными створками» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c32",
+   "translation": "and two doors of cypress wood. The two leaves of the one door were folding, and the two leaves of the other door were folding."
+  },
+  {
+   "sentence": "Он построил ___ из трех рядов обтесанного камня и ряда кедровых балок.",
+   "lemma": "двор",
+   "options": [
+    "внутреннего двора",
+    "внутренний двор",
+    "внутреннем дворе",
+    "внутреннему двору"
+   ],
+   "correct": "внутренний двор",
+   "case": "Винительный (Accusative)",
+   "explain": "«внутренний двор» — the accusative marks the direct object of the verb.",
+   "id": "c33",
+   "translation": "He built the inner court with three courses of cut stone and a course of cedar beams."
+  },
+  {
+   "sentence": "Он построил внутренний двор из трех рядов обтесанного камня и ряда ___.",
+   "lemma": "балка",
+   "options": [
+    "кедровых балок",
+    "кедровыми балками",
+    "кедровым балкам",
+    "кедровых балках"
+   ],
+   "correct": "кедровых балок",
+   "case": "Родительный (Genitive)",
+   "explain": "«кедровых балок» — the genitive here marks possession, absence, or quantity.",
+   "id": "c34",
+   "translation": "He built the inner court with three courses of cut stone and a course of cedar beams."
+  }
+ ]
 }

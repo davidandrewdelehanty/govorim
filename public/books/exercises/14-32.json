@@ -1,204 +1,289 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Милостивый ___ восстановил святое.",
-      "lemma": "царь",
-      "options": [
-        "царём",
-        "царю",
-        "царь",
-        "царя"
-      ],
-      "correct": "царь",
-      "case": "Именительный (Nominative)",
-      "translation": "The merciful king restored the holy.",
-      "explain": "The noun is the subject, so nominative is used."
-    },
-    {
-      "id": "c2",
-      "sentence": "Деяния ___ были великими.",
-      "lemma": "царь",
-      "options": [
-        "царю",
-        "царём",
-        "царя",
-        "царь"
-      ],
-      "correct": "царя",
-      "case": "Родительный (Genitive)",
-      "translation": "The king's deeds were great.",
-      "explain": "Genitive shows possession - whose deeds?"
-    },
-    {
-      "id": "c3",
-      "sentence": "Всё написано в ___.",
-      "lemma": "книга",
-      "options": [
-        "книга",
-        "книги",
-        "книге",
-        "книгу"
-      ],
-      "correct": "книге",
-      "case": "Предложный (Prepositional)",
-      "translation": "Everything is written in the book.",
-      "explain": "The preposition в (in) with location governs prepositional case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Восстановленный ___ стал центром.",
-      "lemma": "город",
-      "options": [
-        "города",
-        "городом",
-        "город",
-        "городу"
-      ],
-      "correct": "город",
-      "case": "Именительный (Nominative)",
-      "translation": "The restored city became a center.",
-      "explain": "The noun is the subject, so nominative is used."
-    },
-    {
-      "id": "c5",
-      "sentence": "В те ___ произошли чудеса.",
-      "lemma": "день",
-      "options": [
-        "день",
-        "дня",
-        "днём",
-        "дню"
-      ],
-      "correct": "день",
-      "case": "Винительный (Accusative)",
-      "translation": "In those days miracles occurred.",
-      "explain": "After в (in, during), accusative is used for time."
-    },
-    {
-      "id": "c6",
-      "sentence": "Они повиновались верующему ___.",
-      "lemma": "Бог",
-      "options": [
-        "Бог",
-        "Бога",
-        "Богу",
-        "Богом"
-      ],
-      "correct": "Богу",
-      "case": "Дательный (Dative)",
-      "translation": "They obeyed the believing God.",
-      "explain": "The indirect object after the verb shows dative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Святая ___ была спасена.",
-      "lemma": "земля",
-      "options": [
-        "земле",
-        "земля",
-        "землю",
-        "земли"
-      ],
-      "correct": "земля",
-      "case": "Именительный (Nominative)",
-      "translation": "The holy land was saved.",
-      "explain": "The noun is the subject, so nominative is used."
-    },
-    {
-      "id": "c8",
-      "sentence": "Весь ___ радовался спасению.",
-      "lemma": "народ",
-      "options": [
-        "народу",
-        "народа",
-        "народом",
-        "народ"
-      ],
-      "correct": "народ",
-      "case": "Именительный (Nominative)",
-      "translation": "All the people rejoiced in salvation.",
-      "explain": "The noun is the subject, so nominative is used."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Езекия болел и был при смерти.",
-      "question": "What happened to Hezekiah?",
-      "options": [
-        "He became ill and was near death",
-        "He was victorious in war",
-        "He was crowned king",
-        "He built the temple"
-      ],
-      "correct": "He became ill and was near death",
-      "explain": "The text states: Езекия болел и был при смерти."
-    },
-    {
-      "id": "r2",
-      "ru": "Он молился Господу.",
-      "question": "To whom did Hezekiah pray?",
-      "options": [
-        "To the Lord",
-        "To the priests",
-        "To idols",
-        "To the people"
-      ],
-      "correct": "To the Lord",
-      "explain": "The text states: Он молился Господу."
-    },
-    {
-      "id": "r3",
-      "ru": "Бог услышал его молитву.",
-      "question": "Did God respond to Hezekiah's prayer?",
-      "options": [
-        "Yes, God heard his prayer",
-        "No, God ignored him",
-        "God sent a prophet",
-        "God sent enemies"
-      ],
-      "correct": "Yes, God heard his prayer",
-      "explain": "The text states: Бог услышал его молитву."
-    },
-    {
-      "id": "r4",
-      "ru": "Он выздоровел от болезни.",
-      "question": "What happened to Hezekiah after his recovery?",
-      "options": [
-        "He recovered from his illness",
-        "He died from it",
-        "He became blind",
-        "He became deaf"
-      ],
-      "correct": "He recovered from his illness",
-      "explain": "The text states: Он выздоровел от болезни."
-    },
-    {
-      "id": "r5",
-      "ru": "Его сокровища были доступны иноземцам.",
-      "question": "What happened to Hezekiah's treasures?",
-      "options": [
-        "Foreigners had access to them",
-        "He hid them",
-        "He burned them",
-        "He gave them away"
-      ],
-      "correct": "Foreigners had access to them",
-      "explain": "The text states: Его сокровища были доступны иноземцам."
-    },
-    {
-      "id": "r6",
-      "ru": "После того он смирился.",
-      "question": "What did Hezekiah do after these events?",
-      "options": [
-        "He humbled himself",
-        "He became proud",
-        "He rebelled",
-        "He fled"
-      ],
-      "correct": "He humbled himself",
-      "explain": "The text states: После того он смирился."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Он поставил над народом военачальников, собрал их к себе на площади у ___ и ободрил их, сказав:",
+   "lemma": "ворота",
+   "options": [
+    "городские ворота",
+    "городским воротам",
+    "городских воротах",
+    "городских ворот"
+   ],
+   "correct": "городских ворот",
+   "case": "Родительный (Genitive)",
+   "explain": "«городских ворот» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "He set captains of war over the people, and gathered them together to him in the wide place at the gate of the city, and spoke encouragingly to them, saying,"
+  },
+  {
+   "sentence": "Не бойтесь, не падайте духом из-за царя Ассирии и ___ с ним, потому что с нами большая сила, чем с ним.",
+   "lemma": "войско",
+   "options": [
+    "огромное войско",
+    "огромным войском",
+    "огромному войску",
+    "огромного войска"
+   ],
+   "correct": "огромного войска",
+   "case": "Родительный (Genitive)",
+   "explain": "«огромного войска» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "“Be strong and courageous. Don’t be afraid or dismayed because of the king of Assyria, nor for all the multitude who is with him; for there is a greater one with us than with him."
+  },
+  {
+   "sentence": "Не бойтесь, не падайте духом из-за царя Ассирии и огромного войска с ним, потому что с нами ___, чем с ним.",
+   "lemma": "сила",
+   "options": [
+    "большей силе",
+    "большей силы",
+    "большая сила",
+    "большей силой"
+   ],
+   "correct": "большая сила",
+   "case": "Именительный (Nominative)",
+   "explain": "«большая сила» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "“Be strong and courageous. Don’t be afraid or dismayed because of the king of Assyria, nor for all the multitude who is with him; for there is a greater one with us than with him."
+  },
+  {
+   "sentence": "Разве вы не знаете, что я и мои предки сделали со всеми народами ___?",
+   "lemma": "земля",
+   "options": [
+    "других земель",
+    "другим землям",
+    "других землях",
+    "другими землями"
+   ],
+   "correct": "других земель",
+   "case": "Родительный (Genitive)",
+   "explain": "«других земель» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "Don’t you know what I and my fathers have done to all the peoples of the lands? Were the gods of the nations of the lands in any way able to deliver their land out of my hand?"
+  },
+  {
+   "sentence": "Синаххериб также написал письма, осыпая бранью Господа, Бога Израиля, и говоря против Него: «Как боги народов ___ не избавили своих народов от моей руки, так и Бог Езекии не избавит Своего народа от моей руки».",
+   "lemma": "земля",
+   "options": [
+    "других земель",
+    "другим землям",
+    "других землях",
+    "другими землями"
+   ],
+   "correct": "других земель",
+   "case": "Родительный (Genitive)",
+   "explain": "«других земель» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "He also wrote letters insulting Yahweh, the God of Israel, and speaking against him, saying, “As the gods of the nations of the lands, which have not delivered their people out of my hand, so shall the God of Hezekiah not deliver his people out of my hand.”"
+  },
+  {
+   "sentence": "Они говорили о Боге Иерусалима, как о богах ___ земли — творениях человеческих рук.",
+   "lemma": "народ",
+   "options": [
+    "других народов",
+    "другие народы",
+    "другим народам",
+    "других народах"
+   ],
+   "correct": "других народов",
+   "case": "Родительный (Genitive)",
+   "explain": "«других народов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "They spoke of the God of Jerusalem as of the gods of the peoples of the earth, which are the work of men’s hands."
+  },
+  {
+   "sentence": "Они говорили о Боге Иерусалима, как о богах других народов земли — творениях ___.",
+   "lemma": "рука",
+   "options": [
+    "человеческих руках",
+    "человеческих рук",
+    "человеческими руками",
+    "человеческим рукам"
+   ],
+   "correct": "человеческих рук",
+   "case": "Родительный (Genitive)",
+   "explain": "«человеческих рук» — the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "They spoke of the God of Jerusalem as of the gods of the peoples of the earth, which are the work of men’s hands."
+  },
+  {
+   "sentence": "За это на нем и на Иудее с Иерусалимом был ___.",
+   "lemma": "гнев",
+   "options": [
+    "господень гнев",
+    "господню гневу",
+    "господнем гневе",
+    "господня гнева"
+   ],
+   "correct": "господень гнев",
+   "case": "Именительный (Nominative)",
+   "explain": "«Господень гнев» — the subject of the sentence stands in the nominative.",
+   "id": "c9",
+   "translation": "But Hezekiah didn’t reciprocate appropriate to the benefit done for him, because his heart was lifted up. Therefore there was wrath on him, and on Judah and Jerusalem."
+  },
+  {
+   "sentence": "За это ___ не обрушился на них в дни Езекии.",
+   "lemma": "гнев",
+   "options": [
+    "господень гнев",
+    "господню гневу",
+    "господнем гневе",
+    "господня гнева"
+   ],
+   "correct": "господень гнев",
+   "case": "Именительный (Nominative)",
+   "explain": "«Господень гнев» — the subject of the sentence stands in the nominative.",
+   "id": "c10",
+   "translation": "Notwithstanding Hezekiah humbled himself for the pride of his heart, both he and the inhabitants of Jerusalem, so that Yahweh’s wrath didn’t come on them in the days of Hezekiah."
+  },
+  {
+   "sentence": "Он сделал сокровищницы для своего серебра и золота, для своих ___, благовоний, щитов и всякого рода дорогих вещей.",
+   "lemma": "камень",
+   "options": [
+    "драгоценных камней",
+    "драгоценные камни",
+    "драгоценными камнями",
+    "драгоценных камнях"
+   ],
+   "correct": "драгоценных камней",
+   "case": "Родительный (Genitive)",
+   "explain": "«драгоценных камней» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
+   "translation": "Hezekiah had exceedingly much riches and honor. He provided himself with treasuries for silver, for gold, for precious stones, for spices, for shields, and for all kinds of valuable vessels;"
+  },
+  {
+   "sentence": "Он сделал сокровищницы для своего серебра и золота, для своих драгоценных камней, благовоний, щитов и всякого рода ___.",
+   "lemma": "вещь",
+   "options": [
+    "дорогими вещами",
+    "дорогим вещам",
+    "дорогих вещей",
+    "дорогие вещи"
+   ],
+   "correct": "дорогих вещей",
+   "case": "Родительный (Genitive)",
+   "explain": "«дорогих вещей» — the genitive here marks possession, absence, or quantity.",
+   "id": "c12",
+   "translation": "Hezekiah had exceedingly much riches and honor. He provided himself with treasuries for silver, for gold, for precious stones, for spices, for shields, and for all kinds of valuable vessels;"
+  },
+  {
+   "sentence": "Еще он построил кладовые для урожаев зерна, для ___ и оливкового масла и сделал стойла и загоны для различного скота.",
+   "lemma": "вино",
+   "options": [
+    "молодое вино",
+    "молодым вином",
+    "молодому вину",
+    "молодого вина"
+   ],
+   "correct": "молодого вина",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодого вина» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c13",
+   "translation": "also storehouses for the increase of grain, new wine, and oil; and stalls for all kinds of animals, and flocks in folds."
+  },
+  {
+   "sentence": "Еще он построил кладовые для урожаев зерна, для молодого вина и ___ и сделал стойла и загоны для различного скота.",
+   "lemma": "масло",
+   "options": [
+    "оливковым маслом",
+    "оливковое масло",
+    "оливкового масла",
+    "оливковом масле"
+   ],
+   "correct": "оливкового масла",
+   "case": "Родительный (Genitive)",
+   "explain": "«оливкового масла» — the genitive here marks possession, absence, or quantity.",
+   "id": "c14",
+   "translation": "also storehouses for the increase of grain, new wine, and oil; and stalls for all kinds of animals, and flocks in folds."
+  },
+  {
+   "sentence": "Еще он построил кладовые для урожаев зерна, для молодого вина и оливкового масла и сделал стойла и загоны для ___.",
+   "lemma": "скот",
+   "options": [
+    "различного скота",
+    "различному скоту",
+    "различный скот",
+    "различном скоте"
+   ],
+   "correct": "различного скота",
+   "case": "Родительный (Genitive)",
+   "explain": "«различного скота» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c15",
+   "translation": "also storehouses for the increase of grain, new wine, and oil; and stalls for all kinds of animals, and flocks in folds."
+  },
+  {
+   "sentence": "Он строил поселения и приобретал ___ и стада, потому что Бог даровал ему огромное богатство.",
+   "lemma": "отара",
+   "options": [
+    "многочисленных отарах",
+    "многочисленные отары",
+    "многочисленным отарам",
+    "многочисленных отар"
+   ],
+   "correct": "многочисленные отары",
+   "case": "Винительный (Accusative)",
+   "explain": "«многочисленные отары» — the accusative marks the direct object of the verb.",
+   "id": "c16",
+   "translation": "Moreover he provided for himself cities, and possessions of flocks and herds in abundance; for God had given him abundant possessions."
+  },
+  {
+   "sentence": "Это Езекия засыпал ___ источника Гихон и отвел воду вниз к западной стороне Города Давида.",
+   "lemma": "проток",
+   "options": [
+    "верхний проток",
+    "верхнего протока",
+    "верхнему протоку",
+    "верхним протоком"
+   ],
+   "correct": "верхний проток",
+   "case": "Винительный (Accusative)",
+   "explain": "«верхний проток» — the accusative marks the direct object of the verb.",
+   "id": "c17",
+   "translation": "This same Hezekiah also stopped the upper spring of the waters of Gihon, and brought them straight down on the west side of David’s city. Hezekiah prospered in all his works."
+  },
+  {
+   "sentence": "Это Езекия засыпал верхний проток источника Гихон и отвел воду вниз к ___ Города Давида.",
+   "lemma": "сторона",
+   "options": [
+    "западной стороны",
+    "западной стороне",
+    "западная сторона",
+    "западной стороной"
+   ],
+   "correct": "западной стороне",
+   "case": "Дательный (Dative)",
+   "explain": "«западной стороне» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c18",
+   "translation": "This same Hezekiah also stopped the upper spring of the waters of Gihon, and brought them straight down on the west side of David’s city. Hezekiah prospered in all his works."
+  },
+  {
+   "sentence": "___ правления Езекии и его добрые дела записаны в видении пророка Исаии, сына Амоца, которые включены в «Книге царей Иудеи и Израиля».",
+   "lemma": "событие",
+   "options": [
+    "прочих событий",
+    "прочие события",
+    "прочих событиях",
+    "прочими событиями"
+   ],
+   "correct": "прочие события",
+   "case": "Именительный (Nominative)",
+   "explain": "«Прочие события» — the subject of the sentence stands in the nominative.",
+   "id": "c19",
+   "translation": "Now the rest of the acts of Hezekiah, and his good deeds, behold, they are written in the vision of Isaiah the prophet the son of Amoz, in the book of the kings of Judah and Israel."
+  },
+  {
+   "sentence": "Прочие события правления Езекии и его ___ записаны в видении пророка Исаии, сына Амоца, которые включены в «Книге царей Иудеи и Израиля».",
+   "lemma": "дело",
+   "options": [
+    "добрых делах",
+    "добрых дел",
+    "добрые дела",
+    "добрым делам"
+   ],
+   "correct": "добрые дела",
+   "case": "Именительный (Nominative)",
+   "explain": "«добрые дела» — the subject of the sentence stands in the nominative.",
+   "id": "c20",
+   "translation": "Now the rest of the acts of Hezekiah, and his good deeds, behold, they are written in the vision of Isaiah the prophet the son of Amoz, in the book of the kings of Judah and Israel."
+  }
+ ]
 }

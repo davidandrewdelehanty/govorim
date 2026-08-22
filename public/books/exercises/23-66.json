@@ -1,204 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Так говорит Господь. Небеса — престол мой, и земля — подножие ног моих. Какой вы можете построить мне _____?",
-      "lemma": "дом",
-      "options": [
-        "дом",
-        "дома",
-        "дому",
-        "домом"
-      ],
-      "correct": "дом",
-      "case": "Винительный (Accusative)",
-      "translation": "What kind of house will you build for me?",
-      "explain": "The verb 'построить' (to build) requires the accusative case for its direct object."
-    },
-    {
-      "id": "c2",
-      "sentence": "Вот кем я дорожу, тем, кто кроток и сокрушен ________, и трепещет перед словом моим.",
-      "lemma": "дух",
-      "options": [
-        "дух",
-        "духа",
-        "духу",
-        "духом"
-      ],
-      "correct": "духом",
-      "case": "Творительный (Instrumental)",
-      "translation": "I value those who are humble and contrite in spirit and who tremble at my word.",
-      "explain": "The word 'сокрушен' (contrite) takes the instrumental case to indicate the state or condition."
-    },
-    {
-      "id": "c3",
-      "sentence": "Он, режущий в жертву быка, как убивающий _____. Приносящий в жертву ягненка, как ломающий шею псу.",
-      "lemma": "человек",
-      "options": [
-        "человек",
-        "человека",
-        "человеку",
-        "человеком"
-      ],
-      "correct": "человека",
-      "case": "Винительный (Accusative)",
-      "translation": "He who kills an ox is as he who kills a man; he who sacrifices a lamb, as he who breaks a dog's neck.",
-      "explain": "The verb 'убивающий' (killing) takes the accusative case for its direct object."
-    },
-    {
-      "id": "c4",
-      "sentence": "Режущий в жертву быка, как убивающий человека. Приносящий в жертву ягненка, как ломающий шею _____.",
-      "lemma": "пес",
-      "options": [
-        "пес",
-        "пса",
-        "псу",
-        "псом"
-      ],
-      "correct": "пса",
-      "case": "Винительный (Accusative)",
-      "translation": "He who sacrifices a lamb, as he who breaks a dog's neck.",
-      "explain": "The verb 'ломающий' (breaking) takes the accusative case for its direct object, and for animate nouns this matches the genitive form."
-    },
-    {
-      "id": "c5",
-      "sentence": "Что ж, и я изберу суровое наказание для них, и наведу на них то, чего они боятся. Когда я звал, никто не ответил. Когда я говорил, никто не слушал. Они делали злое в моих глазах и избрали неугодное мне. Слушайте ______ Господне.",
-      "lemma": "слово",
-      "options": [
-        "слово",
-        "слова",
-        "слову",
-        "слове"
-      ],
-      "correct": "слово",
-      "case": "Винительный (Accusative)",
-      "translation": "Hear the word of the Lord.",
-      "explain": "The verb 'слушайте' (hear/listen to) requires the accusative case for its direct object."
-    },
-    {
-      "id": "c6",
-      "sentence": "Они сами избрали свои ______, и мерзости их им приятны.",
-      "lemma": "путь",
-      "options": [
-        "путь",
-        "пути",
-        "путём",
-        "путей"
-      ],
-      "correct": "пути",
-      "case": "Винительный (Accusative)",
-      "translation": "They have chosen their own ways, and their soul delights in their abominations.",
-      "explain": "The verb 'избрали' (chose) requires the accusative case for the direct object."
-    },
-    {
-      "id": "c7",
-      "sentence": "Вот Господь придет в ______, колесницы его подобны урагану, в ярости он обрушит свой гнев.",
-      "lemma": "огонь",
-      "options": [
-        "огонь",
-        "огня",
-        "огне",
-        "огнем"
-      ],
-      "correct": "огне",
-      "case": "Предложный (Prepositional)",
-      "translation": "Behold, Yahweh will come with fire, and his chariots will be like the whirlwind.",
-      "explain": "The preposition 'в' (in) when indicating presence or state requires the prepositional case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Огнем и своим _______ Господь исполнит приговор над всеми людьми.",
-      "lemma": "меч",
-      "options": [
-        "меч",
-        "меча",
-        "мечу",
-        "мечом"
-      ],
-      "correct": "мечом",
-      "case": "Творительный (Instrumental)",
-      "translation": "By fire and by his sword Yahweh will execute judgment on all flesh.",
-      "explain": "The preposition 'своим' (with his) indicates instrumentality, which requires the instrumental case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Так говорит Господь. Небеса — престол мой, и земля — подножие ног моих.",
-      "question": "According to this verse, what are the heavens and earth to God?",
-      "options": [
-        "Heaven is his throne and earth is his footstool",
-        "Heaven is his dwelling and earth is his kingdom",
-        "Heaven is his fortress and earth is his treasure",
-        "Heaven is his temple and earth is his altar"
-      ],
-      "correct": "Heaven is his throne and earth is his footstool",
-      "explain": "The verse states 'Небеса — престол мой, и земля — подножие ног моих' — The heavens are my throne and the earth is my footstool."
-    },
-    {
-      "id": "r2",
-      "ru": "Вот кем я дорожу, тем, кто кроток и сокрушен духом, и трепещет перед словом моим.",
-      "question": "Who does God value and cherish?",
-      "options": [
-        "Those who are humble and contrite in spirit and who tremble at his word",
-        "Those who are wealthy and powerful in their nations",
-        "Those who build great temples and offer many sacrifices",
-        "Those who are strong and fearless in battle"
-      ],
-      "correct": "Those who are humble and contrite in spirit and who tremble at his word",
-      "explain": "The text says God values 'тем, кто кроток и сокрушен духом, и трепещет перед словом моим' — those who are humble and contrite in spirit and tremble at his word."
-    },
-    {
-      "id": "r3",
-      "ru": "Когда я звал, никто не ответил. Когда я говорил, никто не слушал. Они делали злое в моих глазах и избрали неугодное мне.",
-      "question": "How did the people respond when God called and spoke to them?",
-      "options": [
-        "They didn't answer when he called and didn't listen when he spoke; they did what was evil in his eyes",
-        "They immediately obeyed all his commands",
-        "They gathered to hear his words with great reverence",
-        "They built temples and offered him many sacrifices"
-      ],
-      "correct": "They didn't answer when he called and didn't listen when he spoke; they did what was evil in his eyes",
-      "explain": "The passage states 'Когда я звал, никто не ответил. Когда я говорил, никто не слушал. Они делали злое в моих глазах' — when I called, no one answered; when I spoke, no one listened; they did evil in my eyes."
-    },
-    {
-      "id": "r4",
-      "ru": "Как одна, которую утешает мать, так утешу вас я. Вы будете утешены в Иерусалиме.",
-      "question": "How will God comfort his people?",
-      "options": [
-        "As a mother comforts her child, so God will comfort them; they will be comforted in Jerusalem",
-        "God will give them riches and power",
-        "God will protect them from all enemies forever",
-        "God will make them the rulers of all nations"
-      ],
-      "correct": "As a mother comforts her child, so God will comfort them; they will be comforted in Jerusalem",
-      "explain": "The text uses the metaphor 'Как одна, которую утешает мать, так утешу вас я' — As one whom his mother comforts, so I will comfort you."
-    },
-    {
-      "id": "r5",
-      "ru": "Вот Господь придет в огне, колесницы его подобны урагану, в ярости он обрушит свой гнев и в пылающем пламени свой укор.",
-      "question": "How will the Lord come to execute judgment?",
-      "options": [
-        "In fire, like a whirlwind, with fierce anger and burning flames of rebuke",
-        "In peace and gentleness to all people",
-        "With an army of angels singing praises",
-        "To rebuild the temple and restore worship"
-      ],
-      "correct": "In fire, like a whirlwind, with fierce anger and burning flames of rebuke",
-      "explain": "The verse describes 'Господь придет в огне, колесницы его подобны урагану, в ярости он обрушит свой гнев' — the Lord will come in fire, his chariots like a whirlwind, with fierce anger."
-    },
-    {
-      "id": "r6",
-      "ru": "Они выйдут и посмотрят на трупы тех, кто отступил от меня. Их червь не умрет, и огонь их не угаснет, и они будут внушать отвращение всем людям.",
-      "question": "What will be the fate of those who turn away from God?",
-      "options": [
-        "They will see the corpses of those who rebelled, whose worm will not die and whose fire will not be quenched",
-        "They will be welcomed into heaven with rejoicing",
-        "They will receive great rewards and blessings",
-        "They will live in peace and prosperity forever"
-      ],
-      "correct": "They will see the corpses of those who rebelled, whose worm will not die and whose fire will not be quenched",
-      "explain": "The text describes the fate: 'Их червь не умрет, и огонь их не угаснет' — their worm will not die and their fire will not be quenched."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Я пошлю некоторых из уцелевших к народам — в Таршиш, Пул и Луд (знаменитый стрелками из лука), в Тувал и Грецию , к ___, которые не слышали обо Мне и не видели Моей славы.",
+   "lemma": "остров",
+   "options": [
+    "дальних островах",
+    "дальними островами",
+    "дальние острова",
+    "дальним островам"
+   ],
+   "correct": "дальним островам",
+   "case": "Дательный (Dative)",
+   "explain": "«дальним островам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c1",
+   "translation": "“For I know their works and their thoughts. The time comes that I will gather all nations and languages, and they will come, and will see my glory."
+  },
+  {
+   "sentence": "Они доставят всех ваших братьев из всех народов к Моей ___, в Иерусалим, как приношение Господу — на конях, в колесницах и повозках, на мулах и на верблюдах, — говорит Господь.",
+   "lemma": "гора",
+   "options": [
+    "святой горы",
+    "святой горой",
+    "святой горе",
+    "святая гора"
+   ],
+   "correct": "святой горе",
+   "case": "Дательный (Dative)",
+   "explain": "«святой горе» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c2",
+   "translation": "They shall bring all your brothers out of all the nations for an offering to Yahweh, on horses, in chariots, in litters, on mules, and on camels, to my holy mountain Jerusalem, says Yahweh, as the children of Israel bring their offering in a clean vessel into Yahweh’s house."
+  },
+  {
+   "sentence": "Потому что, как ___ и новая земля, которые Я создам, устоят и останутся предо Мной, — возвещает Господь, — так останется ваше потомство и ваше имя.",
+   "lemma": "небо",
+   "options": [
+    "нового неба",
+    "новом небе",
+    "новое небо",
+    "новому небу"
+   ],
+   "correct": "новое небо",
+   "case": "Именительный (Nominative)",
+   "explain": "«новое небо» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "“For as the new heavens and the new earth, which I will make, shall remain before me,” says Yahweh, “so your offspring and your name shall remain."
+  },
+  {
+   "sentence": "Потому что, как новое небо и ___, которые Я создам, устоят и останутся предо Мной, — возвещает Господь, — так останется ваше потомство и ваше имя.",
+   "lemma": "земля",
+   "options": [
+    "новой земле",
+    "новой землёй",
+    "новая земля",
+    "новой земли"
+   ],
+   "correct": "новая земля",
+   "case": "Именительный (Nominative)",
+   "explain": "«новая земля» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "“For as the new heavens and the new earth, which I will make, shall remain before me,” says Yahweh, “so your offspring and your name shall remain."
+  }
+ ]
 }

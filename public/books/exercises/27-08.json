@@ -1,204 +1,244 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Я поднял взгляд и увидел ___, который стоял рядом с каналом",
-      "lemma": "баран",
-      "options": [
-        "баран",
-        "барана",
-        "барану",
-        "бараном"
-      ],
-      "correct": "барана",
-      "case": "Винительный (Accusative)",
-      "translation": "I saw a ram standing by the river",
-      "explain": "This case is required by the structure of the sentence."
-    },
-    {
-      "id": "c2",
-      "sentence": "У него было два ___",
-      "lemma": "рог",
-      "options": [
-        "рог",
-        "рога",
-        "рогу",
-        "рогом"
-      ],
-      "correct": "рог",
-      "case": "Винительный (Accusative)",
-      "translation": "It had two horns",
-      "explain": "This case is required by the structure of the sentence."
-    },
-    {
-      "id": "c3",
-      "sentence": "Я видел, как ___ бодался к западу и северу",
-      "lemma": "баран",
-      "options": [
-        "баран",
-        "барана",
-        "барану",
-        "бараном"
-      ],
-      "correct": "барана",
-      "case": "Винительный (Accusative)",
-      "translation": "The ram pushed westward and northward",
-      "explain": "This case is required by the structure of the sentence."
-    },
-    {
-      "id": "c4",
-      "sentence": "С запада явился ___, который шел по лицу земли",
-      "lemma": "козел",
-      "options": [
-        "козел",
-        "козла",
-        "козлу",
-        "козлом"
-      ],
-      "correct": "козла",
-      "case": "Винительный (Accusative)",
-      "translation": "A goat came from the west",
-      "explain": "This case is required by the structure of the sentence."
-    },
-    {
-      "id": "c5",
-      "sentence": "У козла между глазами был большой ___",
-      "lemma": "рог",
-      "options": [
-        "рог",
-        "рога",
-        "рогу",
-        "рогом"
-      ],
-      "correct": "рог",
-      "case": "Винительный (Accusative)",
-      "translation": "The goat had a notable horn",
-      "explain": "This case is required by the structure of the sentence."
-    },
-    {
-      "id": "c6",
-      "sentence": "Козел швырнул его на ___ и растоптал его",
-      "lemma": "земля",
-      "options": [
-        "земля",
-        "земли",
-        "землю",
-        "землей"
-      ],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "The goat cast him to the ground and trampled",
-      "explain": "This case is required by the structure of the sentence."
-    },
-    {
-      "id": "c7",
-      "sentence": "Из одного из них вышел другой ___, который сперва был мал",
-      "lemma": "рог",
-      "options": [
-        "рог",
-        "рога",
-        "рогу",
-        "рогом"
-      ],
-      "correct": "рог",
-      "case": "Винительный (Accusative)",
-      "translation": "From one came a little horn",
-      "explain": "This case is required by the structure of the sentence."
-    },
-    {
-      "id": "c8",
-      "sentence": "Я услышал говорящего о ___",
-      "lemma": "видение",
-      "options": [
-        "видение",
-        "видения",
-        "видению",
-        "видением"
-      ],
-      "correct": "видением",
-      "case": "Творительный (Instrumental)",
-      "translation": "I heard one speaking about the vision",
-      "explain": "This case is required by the structure of the sentence."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Я поднял взгляд и увидел барана, который стоял рядом с каналом.",
-      "question": "What did Daniel see by the river?",
-      "options": [
-        "A ram standing by the canal",
-        "A goat eating grass",
-        "A lion resting",
-        "A serpent in the water"
-      ],
-      "correct": "A ram standing by the canal",
-      "explain": "The text directly states this."
-    },
-    {
-      "id": "r2",
-      "ru": "У него было два рога.",
-      "question": "How many horns did the ram have?",
-      "options": [
-        "Two",
-        "One",
-        "Four",
-        "Eight"
-      ],
-      "correct": "Two",
-      "explain": "The text directly states this."
-    },
-    {
-      "id": "r3",
-      "ru": "Я видел, как баран бодался к западу, к северу и к югу.",
-      "question": "In which directions did the ram push?",
-      "options": [
-        "West, north, and south",
-        "All directions",
-        "Only east",
-        "Only south"
-      ],
-      "correct": "West, north, and south",
-      "explain": "The text directly states this."
-    },
-    {
-      "id": "r4",
-      "ru": "Пока я размышлял об этом, внезапно с запада явился козел, который шел по лицу всей земли.",
-      "question": "What appeared from the west?",
-      "options": [
-        "A goat that walked on the earth",
-        "A flying serpent",
-        "An angel",
-        "A great army"
-      ],
-      "correct": "A goat that walked on the earth",
-      "explain": "The text directly states this."
-    },
-    {
-      "id": "r5",
-      "ru": "Он пошел к двурогому барану, которого я видел стоящим у канала, и в страшной ярости бросился на него.",
-      "question": "What did the goat do?",
-      "options": [
-        "Rushed at the ram in anger",
-        "Bowed before the ram",
-        "Made a covenant with it",
-        "Fled from it"
-      ],
-      "correct": "Rushed at the ram in anger",
-      "explain": "The text directly states this."
-    },
-    {
-      "id": "r6",
-      "ru": "Козел швырнул его на землю и растоптал его.",
-      "question": "What happened to the ram?",
-      "options": [
-        "It was cast down and trampled",
-        "It defeated the goat",
-        "It flew to heaven",
-        "It became king"
-      ],
-      "correct": "It was cast down and trampled",
-      "explain": "The text directly states this."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "В ___ правления царя Валтасара мне, Даниилу, было видение, после того, которое уже являлось мне.",
+   "lemma": "год",
+   "options": [
+    "третьим годом",
+    "третьем годе",
+    "третий год",
+    "третьему году"
+   ],
+   "correct": "третий год",
+   "case": "Винительный (Accusative)",
+   "explain": "«третий год» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "In the third year of the reign of king Belshazzar a vision appeared to me, even to me, Daniel, after that which appeared to me at the first."
+  },
+  {
+   "sentence": "У козла между глазами был ___.",
+   "lemma": "рог",
+   "options": [
+    "большому рогу",
+    "большом роге",
+    "большой рог",
+    "большого рога"
+   ],
+   "correct": "большой рог",
+   "case": "Именительный (Nominative)",
+   "explain": "«большой рог» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "As I was considering, behold, a male goat came from the west over the surface of the whole earth, and didn’t touch the ground. The goat had a notable horn between his eyes."
+  },
+  {
+   "sentence": "Он пошел к ___, которого я видел стоящим у канала, и в страшной ярости бросился на него.",
+   "lemma": "баран",
+   "options": [
+    "двурогому барану",
+    "двурогом баране",
+    "двурогого барана",
+    "двурогим бараном"
+   ],
+   "correct": "двурогому барану",
+   "case": "Дательный (Dative)",
+   "explain": "«двурогому барану» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c3",
+   "translation": "He came to the ram that had the two horns, which I saw standing before the river, and ran on him in the fury of his power."
+  },
+  {
+   "sentence": "Козел сильно возвеличился, но на вершине его силы ___ его был сломан, и на его месте выросли четыре видных рога, обращенные к четырем сторонам света .",
+   "lemma": "рог",
+   "options": [
+    "большому рогу",
+    "большом роге",
+    "большой рог",
+    "большого рога"
+   ],
+   "correct": "большой рог",
+   "case": "Именительный (Nominative)",
+   "explain": "«большой рог» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "The male goat magnified himself exceedingly. When he was strong, the great horn was broken; and instead of it there came up four notable horns toward the four winds of the sky."
+  },
+  {
+   "sentence": "Из одного из них вышел ___, который сперва был мал, но потом очень сильно вырос к югу, и к востоку, и к Прекрасной стране .",
+   "lemma": "рог",
+   "options": [
+    "другого рога",
+    "другом роге",
+    "другому рогу",
+    "другой рог"
+   ],
+   "correct": "другой рог",
+   "case": "Именительный (Nominative)",
+   "explain": "«другой рог» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "Out of one of them came out a little horn, which grew exceedingly great, toward the south, and toward the east, and toward the glorious land."
+  },
+  {
+   "sentence": "Из одного из них вышел другой рог, который сперва был мал, но потом очень сильно вырос к югу, и к востоку, и к ___ .",
+   "lemma": "страна",
+   "options": [
+    "прекрасной стране",
+    "прекрасная страна",
+    "прекрасной страны",
+    "прекрасной страной"
+   ],
+   "correct": "прекрасной стране",
+   "case": "Дательный (Dative)",
+   "explain": "«Прекрасной стране» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c7",
+   "translation": "Out of one of them came out a little horn, which grew exceedingly great, toward the south, and toward the east, and toward the glorious land."
+  },
+  {
+   "sentence": "Он вознесся до ___, поверг на землю часть его и часть звезд, и растоптал их.",
+   "lemma": "воинство",
+   "options": [
+    "небесном воинстве",
+    "небесным воинством",
+    "небесного воинства",
+    "небесному воинству"
+   ],
+   "correct": "небесного воинства",
+   "case": "Родительный (Genitive)",
+   "explain": "«небесного воинства» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "It grew great, even to the army of the sky; and it cast down some of the army and of the stars to the ground, and trampled on them."
+  },
+  {
+   "sentence": "Из-за мятежа воинство было отдано ему вместе с ___.",
+   "lemma": "жертва",
+   "options": [
+    "ежедневной жертвы",
+    "ежедневной жертве",
+    "ежедневная жертва",
+    "ежедневной жертвой"
+   ],
+   "correct": "ежедневной жертвой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«ежедневной жертвой» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c9",
+   "translation": "The army was given over to it together with the continual burnt offering through disobedience. It cast down truth to the ground, and it did its pleasure and prospered."
+  },
+  {
+   "sentence": "И я услышал над каналом Улай ___, зовущий:",
+   "lemma": "голос",
+   "options": [
+    "человеческому голосу",
+    "человеческий голос",
+    "человеческим голосом",
+    "человеческого голоса"
+   ],
+   "correct": "человеческий голос",
+   "case": "Именительный (Nominative)",
+   "explain": "«человеческий голос» — the subject of the sentence stands in the nominative.",
+   "id": "c10",
+   "translation": "I heard a man’s voice between the banks of the Ulai, which called, and said, “Gabriel, make this man understand the vision.”"
+  },
+  {
+   "sentence": "___, которого ты видел, — это цари Мидии и Персии.",
+   "lemma": "баран",
+   "options": [
+    "двурогому барану",
+    "двурогом баране",
+    "двурогим бараном",
+    "двурогий баран"
+   ],
+   "correct": "двурогий баран",
+   "case": "Именительный (Nominative)",
+   "explain": "«Двурогий баран» — the subject of the sentence stands in the nominative.",
+   "id": "c12",
+   "translation": "The ram which you saw, that had the two horns, they are the kings of Media and Persia."
+  },
+  {
+   "sentence": "Косматый козел — это царь Греции, а ___ у него между глаз — это первый царь .",
+   "lemma": "рог",
+   "options": [
+    "большому рогу",
+    "большом роге",
+    "большой рог",
+    "большого рога"
+   ],
+   "correct": "большой рог",
+   "case": "Именительный (Nominative)",
+   "explain": "«большой рог» — the subject of the sentence stands in the nominative.",
+   "id": "c13",
+   "translation": "The rough male goat is the king of Greece. The great horn that is between his eyes is the first king."
+  },
+  {
+   "sentence": "Косматый козел — это царь Греции, а большой рог у него между глаз — это ___ .",
+   "lemma": "царь",
+   "options": [
+    "первого царя",
+    "первом царе",
+    "первому царю",
+    "первый царь"
+   ],
+   "correct": "первый царь",
+   "case": "Именительный (Nominative)",
+   "explain": "«первый царь» — the subject of the sentence stands in the nominative.",
+   "id": "c14",
+   "translation": "The rough male goat is the king of Greece. The great horn that is between his eyes is the first king."
+  },
+  {
+   "sentence": "В конце их царствования, когда мятежники достигнут предела беззаконий, явится ___, искусный в кознях.",
+   "lemma": "царь",
+   "options": [
+    "жестокосердным царём",
+    "жестокосердному царю",
+    "жестокосердный царь",
+    "жестокосердном царе"
+   ],
+   "correct": "жестокосердный царь",
+   "case": "Именительный (Nominative)",
+   "explain": "«жестокосердный царь» — the subject of the sentence stands in the nominative.",
+   "id": "c15",
+   "translation": "“In the latter time of their kingdom, when the transgressors have come to the full, a king of fierce face, and understanding dark sentences, will stand up."
+  },
+  {
+   "sentence": "Он станет очень силен, хотя и не своей ___.",
+   "lemma": "сила",
+   "options": [
+    "собственной силой",
+    "собственной силы",
+    "собственной силе",
+    "собственная сила"
+   ],
+   "correct": "собственной силой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«собственной силой» — the instrumental marks the means, company, or complement.",
+   "id": "c16",
+   "translation": "His power will be mighty, but not by his own power. He will destroy awesomely, and will prosper in what he does. He will destroy the mighty ones and the holy people."
+  },
+  {
+   "sentence": "Его хитрость даст его ___ успех, и он сочтет себя великим.",
+   "lemma": "план",
+   "options": [
+    "коварных планах",
+    "коварным планам",
+    "коварные планы",
+    "коварных планов"
+   ],
+   "correct": "коварным планам",
+   "case": "Дательный (Dative)",
+   "explain": "«коварным планам» — the dative marks the indirect object or recipient.",
+   "id": "c17",
+   "translation": "Through his policy he will cause deceit to prosper in his hand. He will magnify himself in his heart, and he will destroy many in their security. He will also stand up against the prince of princes; but he will be broken without hand."
+  },
+  {
+   "sentence": "Потом я встал и начал заниматься ___.",
+   "lemma": "дело",
+   "options": [
+    "царские дела",
+    "царскими делами",
+    "царских делах",
+    "царским делам"
+   ],
+   "correct": "царскими делами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«царскими делами» — the instrumental marks the means, company, or complement.",
+   "id": "c18",
+   "translation": "I, Daniel, fainted, and was sick for some days. Then I rose up, and did the king’s business. I wondered at the vision, but no one understood it."
+  }
+ ]
 }

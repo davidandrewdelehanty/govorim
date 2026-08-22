@@ -1,204 +1,109 @@
 {
-  "cases": [
-    {
-      "sentence": "И тараны его будут бить в ___ твои.",
-      "lemma": "стена",
-      "correct": "стены",
-      "case": "Винительный (Accusative)",
-      "translation": "And his battering rams will beat against your walls.",
-      "explain": "Стены is the direct object of the verb бить (to strike).",
-      "id": "c1",
-      "options": [
-        "стена",
-        "стены",
-        "стену",
-        "стеной"
-      ]
-    },
-    {
-      "sentence": "И ___ его разрушат башни твои.",
-      "lemma": "орудие",
-      "correct": "орудия",
-      "case": "Именительный (Nominative)",
-      "translation": "And his siege weapons will destroy your towers.",
-      "explain": "Орудия is the subject of the verb разрушат.",
-      "id": "c2",
-      "options": [
-        "орудие",
-        "орудия",
-        "орудию",
-        "орудием"
-      ]
-    },
-    {
-      "sentence": "Тараны его будут бить в стены и орудия разрушат ___.",
-      "lemma": "башня",
-      "correct": "башни",
-      "case": "Винительный (Accusative)",
-      "translation": "His battering rams will strike the walls and weapons will destroy your towers.",
-      "explain": "Башни is the direct object of разрушат.",
-      "id": "c3",
-      "options": [
-        "башня",
-        "башни",
-        "башню",
-        "башней"
-      ]
-    },
-    {
-      "sentence": "Орудия разрушат ___ твои и разобьют стены.",
-      "lemma": "башня",
-      "correct": "башни",
-      "case": "Винительный (Accusative)",
-      "translation": "Siege weapons will destroy your towers and break down your walls.",
-      "explain": "Башни is the direct object of разрушат.",
-      "id": "c4",
-      "options": [
-        "башня",
-        "башни",
-        "башню",
-        "башней"
-      ]
-    },
-    {
-      "sentence": "Тараны будут бить в стены твои ___.",
-      "lemma": "он",
-      "correct": "его",
-      "case": "Родительный (Genitive)",
-      "translation": "His battering rams will strike your walls.",
-      "explain": "Его is the genitive possessive pronoun.",
-      "id": "c5",
-      "options": [
-        "он",
-        "его",
-        "ему",
-        "им"
-      ]
-    },
-    {
-      "sentence": "И тараны ___ будут бить в стены твои.",
-      "lemma": "он",
-      "correct": "его",
-      "case": "Родительный (Genitive)",
-      "translation": "And his battering rams will beat against your walls.",
-      "explain": "Его is the genitive possessive pronoun.",
-      "id": "c6",
-      "options": [
-        "он",
-        "его",
-        "ему",
-        "им"
-      ]
-    },
-    {
-      "sentence": "Разрушат ___ твои и разобьют стены.",
-      "lemma": "башня",
-      "correct": "башни",
-      "case": "Винительный (Accusative)",
-      "translation": "They will destroy your towers and break down your walls.",
-      "explain": "Башни is the direct object of разрушат.",
-      "id": "c7",
-      "options": [
-        "башня",
-        "башни",
-        "башню",
-        "башней"
-      ]
-    },
-    {
-      "sentence": "Орудия его разрушат ___ твои.",
-      "lemma": "башня",
-      "correct": "башни",
-      "case": "Винительный (Accusative)",
-      "translation": "His siege weapons will destroy your towers.",
-      "explain": "Башни is the direct object of разрушат.",
-      "id": "c8",
-      "options": [
-        "башня",
-        "башни",
-        "башню",
-        "башней"
-      ]
-    }
-  ],
-  "reading": [
-    {
-      "ru": "И тараны его будут бить в стены твои, и орудия его разрушат башни твои.",
-      "question": "What weapons and tactics will be used to attack Tyre's fortifications?",
-      "options": [
-        "Battering rams will strike the walls and siege weapons will destroy the towers",
-        "Fire will be set to the buildings and arrows will rain down",
-        "The walls will be undermined and the gates will be breached",
-        "Naval forces will bombard from the sea"
-      ],
-      "correct": "Battering rams will strike the walls and siege weapons will destroy the towers",
-      "explain": "The text explicitly mentions тараны (battering rams) striking the walls and орудия (weapons) destroying the towers.",
-      "id": "r1"
-    },
-    {
-      "ru": "Тараны его будут бить в стены твои.",
-      "question": "What will the battering rams target?",
-      "options": [
-        "The city walls",
-        "The towers",
-        "The gates",
-        "The harbor fortifications"
-      ],
-      "correct": "The city walls",
-      "explain": "The text specifies that the battering rams будут бить в стены (will strike the walls).",
-      "id": "r2"
-    },
-    {
-      "ru": "И орудия его разрушат башни твои.",
-      "question": "What will the siege weapons destroy?",
-      "options": [
-        "Your towers",
-        "Your ships",
-        "Your palaces",
-        "Your temples"
-      ],
-      "correct": "Your towers",
-      "explain": "The passage states that орудия разрушат башни (the weapons will destroy the towers).",
-      "id": "r3"
-    },
-    {
-      "ru": "Тараны его будут бить в стены твои, и орудия его разрушат башни твои.",
-      "question": "What is the sequence of destruction described?",
-      "options": [
-        "Walls are attacked first, then towers are destroyed",
-        "Towers fall first, then walls collapse",
-        "Everything is destroyed simultaneously",
-        "The harbor is attacked before the walls"
-      ],
-      "correct": "Walls are attacked first, then towers are destroyed",
-      "explain": "The verse lists the battering rams striking the walls first, followed by the siege weapons destroying the towers.",
-      "id": "r4"
-    },
-    {
-      "ru": "Орудия его разрушат башни твои.",
-      "question": "What does this statement emphasize about Tyre's defenses?",
-      "options": [
-        "Even the towers (the highest fortifications) will be destroyed",
-        "The city will negotiate peace",
-        "The towers will be reinforced",
-        "The defenders will retreat"
-      ],
-      "correct": "Even the towers (the highest fortifications) will be destroyed",
-      "explain": "The destruction of towers emphasizes the totality of the devastation to come.",
-      "id": "r5"
-    },
-    {
-      "ru": "И тараны его будут бить в стены твои.",
-      "question": "What is the role of battering rams in the siege?",
-      "options": [
-        "To break down the walls by repeated strikes",
-        "To scale the walls",
-        "To dig tunnels under the city",
-        "To launch projectiles"
-      ],
-      "correct": "To break down the walls by repeated strikes",
-      "explain": "Battering rams were siege weapons designed to break walls by repeated impacts.",
-      "id": "r6"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Потом я услышал, как Он взывает ___:",
+   "lemma": "голос",
+   "options": [
+    "громким голосом",
+    "громком голосе",
+    "громкий голос",
+    "громкому голосу"
+   ],
+   "correct": "громким голосом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«громким голосом» — the instrumental marks the means, company, or complement.",
+   "id": "c1",
+   "translation": "Then he cried in my ears with a loud voice, saying, “Cause those who are in charge of the city to draw near, each man with his destroying weapon in his hand.”"
+  },
+  {
+   "sentence": "Я увидел шестерых мужчин, идущих со стороны ___, что смотрят на север, каждый был со смертоносным оружием в руке.",
+   "lemma": "ворота",
+   "options": [
+    "верхних воротах",
+    "верхние ворота",
+    "верхних ворот",
+    "верхним воротам"
+   ],
+   "correct": "верхних ворот",
+   "case": "Родительный (Genitive)",
+   "explain": "«верхних ворот» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "Behold, six men came from the way of the upper gate, which lies toward the north, every man with his slaughter weapon in his hand. One man in the middle of them was clothed in linen, with a writer’s inkhorn by his side. They went in, and stood beside the bronze altar."
+  },
+  {
+   "sentence": "Я увидел шестерых мужчин, идущих со стороны верхних ворот, что смотрят на север, каждый был со ___ в руке.",
+   "lemma": "оружие",
+   "options": [
+    "смертоносного оружия",
+    "смертоносным оружием",
+    "смертоносном оружии",
+    "смертоносному оружию"
+   ],
+   "correct": "смертоносным оружием",
+   "case": "Творительный (Instrumental)",
+   "explain": "«смертоносным оружием» — after the preposition «со», the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "Behold, six men came from the way of the upper gate, which lies toward the north, every man with his slaughter weapon in his hand. One man in the middle of them was clothed in linen, with a writer’s inkhorn by his side. They went in, and stood beside the bronze altar."
+  },
+  {
+   "sentence": "С ними был некто, одетый в льняную одежду, с ___ на поясе.",
+   "lemma": "принадлежность",
+   "options": [
+    "письменных принадлежностях",
+    "письменными принадлежностями",
+    "письменным принадлежностям",
+    "письменных принадлежностей"
+   ],
+   "correct": "письменными принадлежностями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«письменными принадлежностями» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c4",
+   "translation": "Behold, six men came from the way of the upper gate, which lies toward the north, every man with his slaughter weapon in his hand. One man in the middle of them was clothed in linen, with a writer’s inkhorn by his side. They went in, and stood beside the bronze altar."
+  },
+  {
+   "sentence": "Они вошли и встали возле ___.",
+   "lemma": "жертвенник",
+   "options": [
+    "бронзовому жертвеннику",
+    "бронзового жертвенника",
+    "бронзовым жертвенником",
+    "бронзовый жертвенник"
+   ],
+   "correct": "бронзового жертвенника",
+   "case": "Родительный (Genitive)",
+   "explain": "«бронзового жертвенника» — after the preposition «возле», the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "Behold, six men came from the way of the upper gate, which lies toward the north, every man with his slaughter weapon in his hand. One man in the middle of them was clothed in linen, with a writer’s inkhorn by his side. They went in, and stood beside the bronze altar."
+  },
+  {
+   "sentence": "Господь позвал человека, одетого в льняную одежду, у которого на поясе были ___, 4 и сказал ему:",
+   "lemma": "принадлежность",
+   "options": [
+    "письменных принадлежностях",
+    "письменным принадлежностям",
+    "письменные принадлежности",
+    "письменными принадлежностями"
+   ],
+   "correct": "письменные принадлежности",
+   "case": "Именительный (Nominative)",
+   "explain": "«письменные принадлежности» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "The glory of the God of Israel went up from the cherub, whereupon it was, to the threshold of the house; and he called to the man clothed in linen, who had the writer’s inkhorn by his side."
+  },
+  {
+   "sentence": "Тут человек, одетый в льняную одежду, у которого на поясе были ___, вернулся и доложил:",
+   "lemma": "принадлежность",
+   "options": [
+    "письменных принадлежностях",
+    "письменным принадлежностям",
+    "письменные принадлежности",
+    "письменными принадлежностями"
+   ],
+   "correct": "письменные принадлежности",
+   "case": "Именительный (Nominative)",
+   "explain": "«письменные принадлежности» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "Behold, the man clothed in linen, who had the inkhorn by his side, reported the matter, saying, “I have done as you have commanded me.”"
+  }
+ ]
 }

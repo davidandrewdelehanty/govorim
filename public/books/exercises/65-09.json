@@ -1,134 +1,199 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ имел предписание относительно поклонения Богу и святилища на земле.",
-      "lemma": "завет",
-      "options": ["завет", "завета", "заветом", "завете"],
-      "correct": "завет",
-      "case": "Именительный (Nominative)",
-      "translation": "The covenant had ordinances concerning worship and an earthly sanctuary.",
-      "explain": "Завет is the grammatical subject of the sentence, requiring nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Была поставлена скиния, и в ее первом отделении находились светильник и стол со священными хлебами. Это отделение называлось ___.",
-      "lemma": "святилище",
-      "options": ["святилище", "святилища", "святилищу", "святилищем"],
-      "correct": "святилище",
-      "case": "Именительный (Nominative)",
-      "translation": "This chamber was called the Holy Place.",
-      "explain": "As a predicate nominative after называлось, the nominative case is used."
-    },
-    {
-      "id": "c3",
-      "sentence": "К нему принадлежали золотой жертвенник для возжигания благовоний и покрытый со всех сторон золотом ___.",
-      "lemma": "ковчег",
-      "options": ["ковчег", "ковчега", "ковчегом", "ковчеге"],
-      "correct": "ковчег",
-      "case": "Именительный (Nominative)",
-      "translation": "To it belonged the golden altar and the ark overlaid with gold.",
-      "explain": "Ковчег is the grammatical subject of the phrase."
-    },
-    {
-      "id": "c4",
-      "sentence": "Над ___ находились изваяния херувимов, символ славы.",
-      "lemma": "ковчег",
-      "options": ["ковчег", "ковчега", "ковчегом", "ковчеге"],
-      "correct": "ковчегом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Above the ark were the cherubim of glory.",
-      "explain": "The preposition над (above) governs the instrumental case."
-    },
-    {
-      "id": "c5",
-      "sentence": "В ковчеге находились золотой сосуд с манной, расцветший жезл Аарона и каменные плитки ___.",
-      "lemma": "завет",
-      "options": ["завета", "завету", "заветом", "завете"],
-      "correct": "завета",
-      "case": "Родительный (Genitive)",
-      "translation": "In the ark were the golden pot of manna, Aaron's rod that budded, and the tablets of the covenant.",
-      "explain": "The genitive case indicates possession or relationship (tablets of the covenant)."
-    },
-    {
-      "id": "c6",
-      "sentence": "С тех пор, как все было устроено таким образом, священники регулярно входят в первое отделение скинии для того, чтобы совершать свое служение. Но во второе имеет право входить только первосвященник, и только один раз в год с ___.",
-      "lemma": "жертва",
-      "options": ["жертва", "жертвы", "жертвой", "жертве"],
-      "correct": "жертвой",
-      "case": "Творительный (Instrumental)",
-      "translation": "But into the second only the high priest, and only once a year with a sacrifice.",
-      "explain": "The preposition с (with) indicating accompaniment governs the instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Святой Дух показывает, что пока действительно прежнее скиние, путь в святое святых еще не открыт. В этом заключен пример и для ___ дня.",
-      "lemma": "день",
-      "options": ["день", "дня", "дню", "днем"],
-      "correct": "дня",
-      "case": "Родительный (Genitive)",
-      "translation": "This is a symbol for the present day.",
-      "explain": "The genitive case is used after the preposition для (for) to indicate purpose or relation."
-    },
-    {
-      "id": "c8",
-      "sentence": "Он вошел туда не с кровью козлов и телят, нет, Он вошел в святое святых, раз и навсегда со своей собственной ___.",
-      "lemma": "сила",
-      "options": ["сила", "силы", "силой", "силе"],
-      "correct": "силой",
-      "case": "Творительный (Instrumental)",
-      "translation": "He entered once for all with his own strength.",
-      "explain": "The preposition со (with) governing accompaniment requires the instrumental case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Первый Завет имел предписание относительно поклонения Богу и святилища на земле.",
-      "question": "What did the first covenant contain according to this passage?",
-      "options": ["Ordinances for worshiping God and an earthly sanctuary", "Laws about animal sacrifices only", "Instructions for priesthood only", "Rules about Jewish festivals"],
-      "correct": "Ordinances for worshiping God and an earthly sanctuary",
-      "explain": "The text explicitly states that the first covenant had ordinances concerning worship and an earthly sanctuary."
-    },
-    {
-      "id": "r2",
-      "ru": "Была поставлена скиния, и в ее первом отделении находились светильник и стол со священными хлебами.",
-      "question": "What items were in the first part of the tabernacle?",
-      "options": ["The lampstand and table with showbread", "The altar of incense and ark of covenant", "The mercy seat and cherubim", "The veil and curtains"],
-      "correct": "The lampstand and table with showbread",
-      "explain": "The text says светильник (lampstand) and стол со священными хлебами (table with showbread) were in the first chamber."
-    },
-    {
-      "id": "r3",
-      "ru": "К нему принадлежали золотой жертвенник для возжигания благовоний и покрытый со всех сторон золотом ковчег завета.",
-      "question": "What were in the Holy of Holies?",
-      "options": ["The golden altar of incense and the ark of the covenant", "The lampstand and table", "The veil and mercy seat", "The twelve loaves of bread"],
-      "correct": "The golden altar of incense and the ark of the covenant",
-      "explain": "The text mentions золотой жертвенник (golden altar) and ковчег завета (ark of covenant) as belonging to the inner chamber."
-    },
-    {
-      "id": "r4",
-      "ru": "Но во второе имеет право входить только первосвященник, и только один раз в год с кровью.",
-      "question": "How often could the high priest enter the Holy of Holies?",
-      "options": ["Once a year", "Multiple times a day", "Daily", "Monthly"],
-      "correct": "Once a year",
-      "explain": "The text explicitly states только один раз в год (only once a year)."
-    },
-    {
-      "id": "r5",
-      "ru": "Он вошел туда не с кровью козлов и телят, нет, Он вошел в святое святых, раз и навсегда со своей собственной кровью.",
-      "question": "What made Christ's entry into the Holy Place unique?",
-      "options": ["He used His own blood and entered once for all", "He used animal blood like the high priest", "He entered many times", "He avoided using blood entirely"],
-      "correct": "He used His own blood and entered once for all",
-      "explain": "The text contrasts Christ's entry со своей собственной кровью (with his own blood) раз и навсегда (once for all) with the repeated animal sacrifices."
-    },
-    {
-      "id": "r6",
-      "ru": "Кровь Христа, который в силе вечного духа принес самого себя как беспорочную жертву Богу, очистит нашу совесть.",
-      "question": "How does Christ's blood cleanse us?",
-      "options": ["By offering Himself as an unblemished sacrifice through the eternal Spirit", "By replacing animal sacrifices completely", "By making physical ritual impossible", "By removing the need for any offerings"],
-      "correct": "By offering Himself as an unblemished sacrifice through the eternal Spirit",
-      "explain": "The text describes Christ принес самого себя как беспорочную жертву (offered himself as a spotless sacrifice) through the eternal Spirit."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "___ имел предписания относительно поклонения Богу и святилище на земле .",
+   "lemma": "завет",
+   "options": [
+    "первый завет",
+    "первого завета",
+    "первому завету",
+    "первым заветом"
+   ],
+   "correct": "первый завет",
+   "case": "Именительный (Nominative)",
+   "explain": "«Первый завет» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Now indeed even the first covenant had ordinances of divine service and an earthly sanctuary."
+  },
+  {
+   "sentence": "Была поставлена скиния, и в ее ___ находились светильник и стол со священными хлебами ; это отделение называлось «Святое» .",
+   "lemma": "отделение",
+   "options": [
+    "первого отделения",
+    "первым отделением",
+    "первом отделении",
+    "первому отделению"
+   ],
+   "correct": "первом отделении",
+   "case": "Предложный (Prepositional)",
+   "explain": "«первом отделении» — after the preposition «в», for location or topic.",
+   "id": "c2",
+   "translation": "For a tabernacle was prepared. In the first part were the lamp stand, the table, and the show bread; which is called the Holy Place."
+  },
+  {
+   "sentence": "Была поставлена скиния, и в ее первом отделении находились светильник и стол со ___ ; это отделение называлось «Святое» .",
+   "lemma": "хлеб",
+   "options": [
+    "священных хлебах",
+    "священные хлеба",
+    "священным хлебам",
+    "священными хлебами"
+   ],
+   "correct": "священными хлебами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«священными хлебами» — after the preposition «со», the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "For a tabernacle was prepared. In the first part were the lamp stand, the table, and the show bread; which is called the Holy Place."
+  },
+  {
+   "sentence": "___ называлось «Святое Святых» и было отделено от первого завесой , 4 к нему принадлежали золотой жертвенник для возжигания благовоний и покрытый со всех сторон золотом ковчег завета .",
+   "lemma": "отделение",
+   "options": [
+    "вторым отделением",
+    "втором отделении",
+    "второму отделению",
+    "второе отделение"
+   ],
+   "correct": "второе отделение",
+   "case": "Именительный (Nominative)",
+   "explain": "«Второе отделение» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "After the second veil was the tabernacle which is called the Holy of Holies,"
+  },
+  {
+   "sentence": "В ковчеге находились ___ с манной , расцветший жезл Аарона и каменные плитки завета.",
+   "lemma": "сосуд",
+   "options": [
+    "золотого сосуда",
+    "золотому сосуду",
+    "золотой сосуд",
+    "золотым сосудом"
+   ],
+   "correct": "золотой сосуд",
+   "case": "Именительный (Nominative)",
+   "explain": "«золотой сосуд» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "After the second veil was the tabernacle which is called the Holy of Holies,"
+  },
+  {
+   "sentence": "В ковчеге находились золотой сосуд с манной , расцветший жезл Аарона и ___ завета.",
+   "lemma": "плитка",
+   "options": [
+    "каменным плиткам",
+    "каменные плитки",
+    "каменных плитках",
+    "каменными плитками"
+   ],
+   "correct": "каменные плитки",
+   "case": "Именительный (Nominative)",
+   "explain": "«каменные плитки» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "After the second veil was the tabernacle which is called the Holy of Holies,"
+  },
+  {
+   "sentence": "В этом заключен пример и для ___: дары и жертвы не в состоянии очистить совесть поклоняющегося Богу.",
+   "lemma": "время",
+   "options": [
+    "настоящем времени",
+    "настоящим временем",
+    "настоящего времени",
+    "настоящему времени"
+   ],
+   "correct": "настоящего времени",
+   "case": "Родительный (Genitive)",
+   "explain": "«настоящего времени» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "This is a symbol of the present age, where gifts and sacrifices are offered that are incapable, concerning the conscience, of making the worshiper perfect,"
+  },
+  {
+   "sentence": "Эти предписания имеют отношение только к пище и питью и к различным ___ .",
+   "lemma": "омовение",
+   "options": [
+    "ритуальных омовений",
+    "ритуальные омовения",
+    "ритуальных омовениях",
+    "ритуальным омовениям"
+   ],
+   "correct": "ритуальным омовениям",
+   "case": "Дательный (Dative)",
+   "explain": "«ритуальным омовениям» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c8",
+   "translation": "being only (with meats and drinks and various washings) fleshly ordinances, imposed until a time of reformation."
+  },
+  {
+   "sentence": "Все это носит лишь внешний характер и имеет силу только до времени установления ___.",
+   "lemma": "порядок",
+   "options": [
+    "новым порядком",
+    "новый порядок",
+    "нового порядка",
+    "новому порядку"
+   ],
+   "correct": "нового порядка",
+   "case": "Родительный (Genitive)",
+   "explain": "«нового порядка» — the genitive here marks possession, absence, or quantity.",
+   "id": "c10",
+   "translation": "being only (with meats and drinks and various washings) fleshly ordinances, imposed until a time of reformation."
+  },
+  {
+   "sentence": "И поэтому Христос стал посредником ___, чтобы призванные получили обещанное вечное наследие.",
+   "lemma": "завет",
+   "options": [
+    "новом завете",
+    "новому завету",
+    "новый завет",
+    "нового завета"
+   ],
+   "correct": "нового завета",
+   "case": "Родительный (Genitive)",
+   "explain": "«нового завета» — the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
+   "translation": "For this reason he is the mediator of a new covenant, since a death has occurred for the redemption of the transgressions that were under the first covenant, that those who have been called may receive the promise of the eternal inheritance."
+  },
+  {
+   "sentence": "Это стало возможным благодаря тому, что Его смерть искупила их от грехов, совершенных еще в условиях ___.",
+   "lemma": "завет",
+   "options": [
+    "первым заветом",
+    "первого завета",
+    "первом завете",
+    "первый завет"
+   ],
+   "correct": "первого завета",
+   "case": "Родительный (Genitive)",
+   "explain": "«первого завета» — the genitive here marks possession, absence, or quantity.",
+   "id": "c12",
+   "translation": "For this reason he is the mediator of a new covenant, since a death has occurred for the redemption of the transgressions that were under the first covenant, that those who have been called may receive the promise of the eternal inheritance."
+  },
+  {
+   "sentence": "Вот почему ___ был утвержден не без крови.",
+   "lemma": "завет",
+   "options": [
+    "первый завет",
+    "первому завету",
+    "первом завете",
+    "первым заветом"
+   ],
+   "correct": "первый завет",
+   "case": "Именительный (Nominative)",
+   "explain": "«первый завет» — the subject of the sentence stands in the nominative.",
+   "id": "c13",
+   "translation": "Therefore even the first covenant has not been dedicated without blood."
+  },
+  {
+   "sentence": "Поэтому Христос вошел не в земное святилище, сделанное ___ и являющееся всего лишь отражением настоящего; нет, Он вошел в сами небеса, чтобы предстать перед Богом за нас.",
+   "lemma": "рука",
+   "options": [
+    "человеческим рукам",
+    "человеческими руками",
+    "человеческие руки",
+    "человеческих руках"
+   ],
+   "correct": "человеческими руками",
+   "case": "Творительный (Instrumental)",
+   "explain": "«человеческими руками» — the instrumental marks the means, company, or complement.",
+   "id": "c14",
+   "translation": "For Christ hasn’t entered into holy places made with hands, which are representations of the true, but into heaven itself, now to appear in the presence of God for us;"
+  }
+ ]
 }

@@ -1,134 +1,229 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Все общество израилетян собралось в ___ и поставило шатер.",
-      "lemma": "Шило",
-      "options": ["Шило", "Шила", "Шилу", "Шилом"],
-      "correct": "Шилу",
-      "case": "Винительный (Accusative)",
-      "translation": "All the congregation of Israel assembled at Shiloh and set up a tent.",
-      "explain": "The preposition в (into) indicating direction takes the accusative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Они жили в уделе ___.",
-      "lemma": "Вениамин",
-      "options": ["Вениамин", "Вениамина", "Вениамину", "Вениамином"],
-      "correct": "Вениамина",
-      "case": "Родительный (Genitive)",
-      "translation": "They lived in the territory of Benjamin.",
-      "explain": "The possessive construction 'the territory of Benjamin' uses the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Граница начиналась от залива в ___ при устье Иордана.",
-      "lemma": "море",
-      "options": ["море", "моря", "морю", "морем"],
-      "correct": "морю",
-      "case": "Дательный (Dative)",
-      "translation": "The boundary began from the bay into the sea at the mouth of the Jordan.",
-      "explain": "The preposition в (into) indicating direction takes the accusative case when expressing motion."
-    },
-    {
-      "id": "c4",
-      "sentence": "Она поднималась к ___.",
-      "lemma": "город",
-      "options": ["город", "города", "городу", "городом"],
-      "correct": "городу",
-      "case": "Дательный (Dative)",
-      "translation": "It went up to the city.",
-      "explain": "The preposition к (to) governs the dative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Люди прошли по ___ и описали ее.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "землю", "земле"],
-      "correct": "земле",
-      "case": "Предложный (Prepositional)",
-      "translation": "The people went through the land and described it.",
-      "explain": "The preposition по (through) governs the prepositional case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Иисус велел им пройти по ___ и описать ее.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "землю", "землей"],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "Joshua commanded them to go through the land and survey it.",
-      "explain": "The transitive verb описать (to describe) takes the accusative case for the direct object."
-    },
-    {
-      "id": "c7",
-      "sentence": "Удел был распределен среди рода ___.",
-      "lemma": "Вениамин",
-      "options": ["Вениамин", "Вениамина", "Вениамину", "Вениамином"],
-      "correct": "Вениамина",
-      "case": "Родительный (Genitive)",
-      "translation": "The inheritance was distributed among the tribe of Benjamin.",
-      "explain": "The preposition среди (among) governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Они остались в уделе перед ___.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господом",
-      "case": "Творительный (Instrumental)",
-      "translation": "They remained in their inheritance before the Lord.",
-      "explain": "The preposition перед (before) governs the instrumental case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Все общество израилетян собралось в Шила и поставило там шатер собрания.",
-      "question": "Where did the entire congregation of Israel assemble?",
-      "options": ["At Shiloh where they set up the Tent of Meeting", "At Mount Sinai in the wilderness", "At Jericho by the Jordan River", "At Jerusalem in the hill country"],
-      "correct": "At Shiloh where they set up the Tent of Meeting",
-      "explain": "The text states все общество израилетян собралось в Шила и поставило там шатер собрания (all the congregation of Israel assembled at Shiloh and set up the Tent of Meeting there)."
-    },
-    {
-      "id": "r2",
-      "ru": "Страна была покорена ими, но семь израильских родов еще не получили своего удела.",
-      "question": "How many Israelite tribes had not yet received their inheritance?",
-      "options": ["Seven tribes", "Two tribes", "Five tribes", "Three tribes"],
-      "correct": "Seven tribes",
-      "explain": "The text directly states семь израильских родов еще не получили своего удела (seven Israelite tribes had not yet received their inheritance)."
-    },
-    {
-      "id": "r3",
-      "ru": "Иисус сказал израилетянам. Сколько вы еще будете ждать, прежде чем пойдете и возьмете в удел землю, которую дал вам Господь, Бог ваших отцов?",
-      "question": "What did Joshua ask the Israelites about their inheritance?",
-      "options": ["How long would they wait before taking possession of the land?", "When would they build the temple?", "Which territory should they conquer first?", "How many soldiers should they send?"],
-      "correct": "How long would they wait before taking possession of the land?",
-      "explain": "Joshua asked Сколько вы еще будете ждать, прежде чем пойдете и возьмете в удел землю? (How long will you wait before you go in to possess the land?)."
-    },
-    {
-      "id": "r4",
-      "ru": "Надел Вениамина. Выпал жребий рода Вениамина по их кланам.",
-      "question": "What is the main subject being discussed about Benjamin?",
-      "options": ["The inheritance lot for Benjamin's tribe", "The military victories of Benjamin", "The population of Benjamin's cities", "The priesthood of Benjamin's tribe"],
-      "correct": "The inheritance lot for Benjamin's tribe",
-      "explain": "The heading states Надел Вениамина. Выпал жребий рода Вениамина (Benjamin's inheritance. The lot came out for Benjamin's tribe)."
-    },
-    {
-      "id": "r5",
-      "ru": "Доставшаяся им земля лежала между наделами родов Иуды и Иосифа.",
-      "question": "Where was Benjamin's territory located?",
-      "options": ["Between the inheritances of Judah and Joseph", "North of Joseph's territory", "South of Judah's territory", "East of the Jordan River"],
-      "correct": "Between the inheritances of Judah and Joseph",
-      "explain": "The text states доставшаяся им земля лежала между наделами родов Иуды и Иосифа (the land given to them lay between the inheritances of Judah and Joseph)."
-    },
-    {
-      "id": "r6",
-      "ru": "На севере их граница шла от Иордана по склону к северу от Ерихона и поднималась в Нагорье, доходя до пустыни Бет-Авен.",
-      "question": "What was the northern boundary of Benjamin's territory?",
-      "options": ["From the Jordan north of Jericho, rising to the hill country and reaching the wilderness of Beth Aven", "Along the Mediterranean coast", "At Mount Carmel in the north", "Along the Dead Sea"],
-      "correct": "From the Jordan north of Jericho, rising to the hill country and reaching the wilderness of Beth Aven",
-      "explain": "The text describes граница шла от Иордана по склону к северу от Ерихона и поднималась в Нагорье, доходя до пустыни Бет-Авен (the boundary went from the Jordan north of Jericho, rising to the hill country, reaching the wilderness of Beth Aven)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Страна была покорена ими, 2 но семь ___ еще не получили своего удела.",
+   "lemma": "роды",
+   "options": [
+    "израильскими родами",
+    "израильских родах",
+    "израильским родам",
+    "израильских родов"
+   ],
+   "correct": "израильских родов",
+   "case": "Родительный (Genitive)",
+   "explain": "«израильских родов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "The whole congregation of the children of Israel assembled themselves together at Shiloh, and set up the Tent of Meeting there. The land was subdued before them."
+  },
+  {
+   "sentence": "Но левиты не получат надела между вами, потому что их удел — ___ Господа.",
+   "lemma": "служба",
+   "options": [
+    "священнической службе",
+    "священнической службы",
+    "священнической службой",
+    "священническая служба"
+   ],
+   "correct": "священническая служба",
+   "case": "Именительный (Nominative)",
+   "explain": "«священническая служба» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "However, the Levites have no portion among you; for the priesthood of Yahweh is their inheritance. Gad, Reuben, and the half-tribe of Manasseh have received their inheritance east of the Jordan, which Moses the servant of Yahweh gave them.”"
+  },
+  {
+   "sentence": "А Гад, Рувим и половина рода Манассии уже получили свои наделы на ___ Иордана.",
+   "lemma": "сторона",
+   "options": [
+    "восточной стороны",
+    "восточной стороне",
+    "восточной стороной",
+    "восточная сторона"
+   ],
+   "correct": "восточной стороне",
+   "case": "Предложный (Prepositional)",
+   "explain": "«восточной стороне» — after the preposition «на», for location or topic.",
+   "id": "c3",
+   "translation": "However, the Levites have no portion among you; for the priesthood of Yahweh is their inheritance. Gad, Reuben, and the half-tribe of Manasseh have received their inheritance east of the Jordan, which Moses the servant of Yahweh gave them.”"
+  },
+  {
+   "sentence": "И Иисус бросил о них жребий в Шило перед Господом и распределил израильтянам землю по их ___.",
+   "lemma": "разделение",
+   "options": [
+    "родовых разделений",
+    "родовые разделения",
+    "родовыми разделениями",
+    "родовым разделениям"
+   ],
+   "correct": "родовым разделениям",
+   "case": "Дательный (Dative)",
+   "explain": "«родовым разделениям» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c4",
+   "translation": "Joshua cast lots for them in Shiloh before Yahweh. There Joshua divided the land to the children of Israel according to their divisions."
+  },
+  {
+   "sentence": "От холма, что напротив Бет-Хорона, на юге граница поворачивала к югу по ___ надела и заканчивалась у Кирьят-Баала (то есть Кирьят-Иеарима), города народа Иуды.",
+   "lemma": "сторона",
+   "options": [
+    "западной стороной",
+    "западной стороны",
+    "западной стороне",
+    "западная сторона"
+   ],
+   "correct": "западной стороне",
+   "case": "Дательный (Dative)",
+   "explain": "«западной стороне» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c5",
+   "translation": "The border extended, and turned around on the west quarter southward, from the mountain that lies before Beth Horon southward; and ended at Kiriath Baal (also called Kiriath Jearim), a city of the children of Judah. This was the west quarter."
+  },
+  {
+   "sentence": "Это была ___.",
+   "lemma": "граница",
+   "options": [
+    "западной границе",
+    "западная граница",
+    "западной границей",
+    "западной границы"
+   ],
+   "correct": "западная граница",
+   "case": "Именительный (Nominative)",
+   "explain": "«западная граница» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "The border extended, and turned around on the west quarter southward, from the mountain that lies before Beth Horon southward; and ended at Kiriath Baal (also called Kiriath Jearim), a city of the children of Judah. This was the west quarter."
+  },
+  {
+   "sentence": "___ шла от предместий Кирьят-Иеарима на западе и оттуда к источнику вод Нефтоах.",
+   "lemma": "граница",
+   "options": [
+    "южной границы",
+    "южная граница",
+    "южной границе",
+    "южной границей"
+   ],
+   "correct": "южная граница",
+   "case": "Именительный (Nominative)",
+   "explain": "«Южная граница» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "The south quarter was from the farthest part of Kiriath Jearim. The border went out westward, and went out to the spring of the waters of Nephtoah."
+  },
+  {
+   "sentence": "Она нисходила долиной Гинном по ___ города иевусеев к Эн-Рогелу.",
+   "lemma": "склон",
+   "options": [
+    "южному склону",
+    "южный склон",
+    "южным склоном",
+    "южном склоне"
+   ],
+   "correct": "южному склону",
+   "case": "Дательный (Dative)",
+   "explain": "«южному склону» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c8",
+   "translation": "The border went down to the farthest part of the mountain that lies before the valley of the son of Hinnom, which is in the valley of Rephaim northward. It went down to the valley of Hinnom, to the side of the Jebusite southward, and went down to En Rogel."
+  },
+  {
+   "sentence": "Она тянулась к ___ Бет-Аравы и спускалась в саму иорданскую долину.",
+   "lemma": "склон",
+   "options": [
+    "северного склона",
+    "северный склон",
+    "северном склоне",
+    "северному склону"
+   ],
+   "correct": "северному склону",
+   "case": "Дательный (Dative)",
+   "explain": "«северному склону» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c9",
+   "translation": "It passed along to the side opposite the Arabah northward, and went down to the Arabah."
+  },
+  {
+   "sentence": "Затем она шла к ___ Бет-Хоглы и доходила до северного залива Соленого моря, у устья Иордана.",
+   "lemma": "склон",
+   "options": [
+    "северного склона",
+    "северный склон",
+    "северном склоне",
+    "северному склону"
+   ],
+   "correct": "северному склону",
+   "case": "Дательный (Dative)",
+   "explain": "«северному склону» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c10",
+   "translation": "The border passed along to the side of Beth Hoglah northward; and the border ended at the north bay of the Salt Sea, at the south end of the Jordan. This was the south border."
+  },
+  {
+   "sentence": "Затем она шла к северному склону Бет-Хоглы и доходила до ___ Соленого моря, у устья Иордана.",
+   "lemma": "залив",
+   "options": [
+    "северном заливе",
+    "северного залива",
+    "северный залив",
+    "северным заливом"
+   ],
+   "correct": "северного залива",
+   "case": "Родительный (Genitive)",
+   "explain": "«северного залива» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
+   "translation": "The border passed along to the side of Beth Hoglah northward; and the border ended at the north bay of the Salt Sea, at the south end of the Jordan. This was the south border."
+  },
+  {
+   "sentence": "Такова была ___.",
+   "lemma": "граница",
+   "options": [
+    "северной границей",
+    "северной границы",
+    "северной границе",
+    "северная граница"
+   ],
+   "correct": "северная граница",
+   "case": "Именительный (Nominative)",
+   "explain": "«северная граница» — the subject of the sentence stands in the nominative.",
+   "id": "c12",
+   "translation": "The border passed along to the side of Beth Hoglah northward; and the border ended at the north bay of the Salt Sea, at the south end of the Jordan. This was the south border."
+  },
+  {
+   "sentence": "Границей на ___ был Иордан.",
+   "lemma": "сторона",
+   "options": [
+    "восточной стороны",
+    "восточной стороне",
+    "восточной стороной",
+    "восточная сторона"
+   ],
+   "correct": "восточной стороне",
+   "case": "Предложный (Prepositional)",
+   "explain": "«восточной стороне» — after the preposition «на», for location or topic.",
+   "id": "c13",
+   "translation": "The Jordan was its border on the east quarter. This was the inheritance of the children of Benjamin, by the borders around it, according to their families."
+  },
+  {
+   "sentence": "Род Вениамина по их кланам владел ___:",
+   "lemma": "город",
+   "options": [
+    "следующим городам",
+    "следующих городов",
+    "следующими городами",
+    "следующих городах"
+   ],
+   "correct": "следующими городами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«следующими городами» — the instrumental marks the means, company, or complement.",
+   "id": "c14",
+   "translation": "Now the cities of the tribe of the children of Benjamin according to their families were Jericho, Beth Hoglah, Emek Keziz,"
+  },
+  {
+   "sentence": "Гаваон, Рама, Беэрот, 26 Мицпе, Кефира, Моца, 27 Рекем, Ирфеил, Фарала, 28 Цела, Елеф, иевусейский город (то есть Иерусалим), Гива и Кирьят-Иеарим − четырнадцать городов с ___.",
+   "lemma": "поселение",
+   "options": [
+    "окрестные поселения",
+    "окрестными поселениями",
+    "окрестных поселений",
+    "окрестных поселениях"
+   ],
+   "correct": "окрестными поселениями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«окрестными поселениями» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c15",
+   "translation": "Gibeon, Ramah, Beeroth,"
+  }
+ ]
 }

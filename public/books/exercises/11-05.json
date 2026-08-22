@@ -1,204 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Когда Херам, царь Тира, услышал о том, что Соломон помазан в преемнике своему отцу ___.",
-      "lemma": "Давид",
-      "options": [
-        "Давид",
-        "Давида",
-        "Давиду",
-        "Давидом"
-      ],
-      "correct": "Давида",
-      "case": "Родительный (Genitive)",
-      "translation": "When Hiram, king of Tyre, heard that Solomon was anointed successor to his father David.",
-      "explain": "The genitive case indicates possession (father of David)."
-    },
-    {
-      "id": "c2",
-      "sentence": "Соломон послал сказать ___.",
-      "lemma": "Херам",
-      "options": [
-        "Херам",
-        "Херама",
-        "Хераму",
-        "Хераме"
-      ],
-      "correct": "Хераму",
-      "case": "Дательный (Dative)",
-      "translation": "Solomon sent word to Hiram.",
-      "explain": "The verb послал (sent) with сказать requires the dative case for the recipient."
-    },
-    {
-      "id": "c3",
-      "sentence": "Он не смог построить дом для имени Господа из-за ___.",
-      "lemma": "война",
-      "options": [
-        "война",
-        "войны",
-        "войн",
-        "войной"
-      ],
-      "correct": "войн",
-      "case": "Родительный (Genitive)",
-      "translation": "He could not build a house for the name of God because of wars.",
-      "explain": "The preposition из-за (because of) governs the genitive plural case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Теперь Господь дал мне покой со всех ___ .",
-      "lemma": "сторона",
-      "options": [
-        "сторона",
-        "стороны",
-        "сторон",
-        "стороной"
-      ],
-      "correct": "сторон",
-      "case": "Родительный (Genitive)",
-      "translation": "Now God has given me rest on every side.",
-      "explain": "The phrase со всех сторон (from all sides) uses the genitive plural."
-    },
-    {
-      "id": "c5",
-      "sentence": "Так повели рубить для меня ливанские ___.",
-      "lemma": "кедр",
-      "options": [
-        "кедр",
-        "кедра",
-        "кедры",
-        "кедром"
-      ],
-      "correct": "кедры",
-      "case": "Винительный (Accusative)",
-      "translation": "Therefore command that cedar trees be cut for me out of Lebanon.",
-      "explain": "The verb повели рубить (command to cut) requires the accusative plural case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Я буду платить тебе за твоих ___ .",
-      "lemma": "человек",
-      "options": [
-        "человек",
-        "человека",
-        "людей",
-        "человеком"
-      ],
-      "correct": "людей",
-      "case": "Винительный (Accusative)",
-      "translation": "I will pay you for your men.",
-      "explain": "The verb платить (to pay) with за requires the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Они заключили между собой ___.",
-      "lemma": "союз",
-      "options": [
-        "союз",
-        "союза",
-        "союзу",
-        "союзом"
-      ],
-      "correct": "союз",
-      "case": "Винительный (Accusative)",
-      "translation": "They made a covenant together.",
-      "explain": "The verb заключили (made) requires the accusative case for the direct object."
-    },
-    {
-      "id": "c8",
-      "sentence": "Соломон поставил Адонирама надсмотрщиком за подневольными ___.",
-      "lemma": "рабочий",
-      "options": [
-        "рабочий",
-        "рабочего",
-        "рабочему",
-        "рабочими"
-      ],
-      "correct": "рабочими",
-      "case": "Творительный (Instrumental)",
-      "translation": "Solomon appointed Adoniram as overseer of the forced workers.",
-      "explain": "The preposition за (over) with надсмотрщик requires the instrumental case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Когда Херам, царь Тира, услышал о том, что Соломон помазан в преемнике своему отцу Давиду, он отправил к Соломону послов.",
-      "question": "Why did Hiram, king of Tyre, send messengers to Solomon?",
-      "options": [
-        "To demand tribute",
-        "Because he heard Solomon was anointed as successor to his father David",
-        "To declare war",
-        "To ask for protection"
-      ],
-      "correct": "Because he heard Solomon was anointed as successor to his father David",
-      "explain": "The text says he отправил к Соломону послов because Соломон помазан в преемнике своему отцу Давиду."
-    },
-    {
-      "id": "r2",
-      "ru": "Ты знаешь, что из-за войн, что велись против моего отца Давида, он не смог построить дом для имени Господа.",
-      "question": "Why could David not build a house for God?",
-      "options": [
-        "He was too poor",
-        "Because of the wars waged against him",
-        "He did not want to",
-        "He was too old"
-      ],
-      "correct": "Because of the wars waged against him",
-      "explain": "The text states из-за войн, что велись против моего отца Давида (because of the wars waged against my father David)."
-    },
-    {
-      "id": "r3",
-      "ru": "Но теперь Господь, мой Бог, дал мне покой со всех сторон.",
-      "question": "What had God given Solomon?",
-      "options": [
-        "Great wealth",
-        "Rest on every side",
-        "Many children",
-        "A powerful army"
-      ],
-      "correct": "Rest on every side",
-      "explain": "Solomon says Господь ... дал мне покой со всех сторон (God has given me rest on all sides)."
-    },
-    {
-      "id": "r4",
-      "ru": "Так повели рубить для меня ливанские кедры.",
-      "question": "What did Solomon request from Hiram?",
-      "options": [
-        "Gold and silver",
-        "Cypress wood",
-        "Cedar trees from Lebanon",
-        "Precious stones"
-      ],
-      "correct": "Cedar trees from Lebanon",
-      "explain": "The text says Так повели рубить для меня ливанские кедры (Command that cedar trees from Lebanon be cut for me)."
-    },
-    {
-      "id": "r5",
-      "ru": "Между Соломоном и Хераме был мир, и они заключили между собой союз.",
-      "question": "What relationship developed between Solomon and Hiram?",
-      "options": [
-        "They became enemies",
-        "There was peace and they made a treaty together",
-        "They went to war",
-        "They never communicated"
-      ],
-      "correct": "There was peace and they made a treaty together",
-      "explain": "The text states Между Соломоном и Хераме был мир, и они заключили между собой союз (There was peace between Solomon and Hiram, and they made a treaty together)."
-    },
-    {
-      "id": "r6",
-      "ru": "А Соломон давал Хераму двадцать тысяч коров пшеницы для его дома.",
-      "question": "What did Solomon provide to Hiram each year?",
-      "options": [
-        "Only gold",
-        "Twenty thousand cors of wheat for his household",
-        "Only land",
-        "Only timber"
-      ],
-      "correct": "Twenty thousand cors of wheat for his household",
-      "explain": "The text says Соломон давал Хераму двадцать тысяч коров пшеницы для его дома (Solomon gave Hiram twenty thousand cors of wheat for his household)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Так повели рубить для меня ___.",
+   "lemma": "кедр",
+   "options": [
+    "ливанским кедрам",
+    "ливанские кедры",
+    "ливанских кедрах",
+    "ливанскими кедрами"
+   ],
+   "correct": "ливанские кедры",
+   "case": "Именительный (Nominative)",
+   "explain": "«ливанские кедры» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Now therefore command that cedar trees be cut for me out of Lebanon. My servants will be with your servants; and I will give you wages for your servants according to all that you say. For you know that there is nobody among us who knows how to cut timber like the Sidonians.”"
+  },
+  {
+   "sentence": "А ты исполнишь мое желание, поставляя продовольствие для моего ___».",
+   "lemma": "дом",
+   "options": [
+    "царском доме",
+    "царский дом",
+    "царского дома",
+    "царским домом"
+   ],
+   "correct": "царского дома",
+   "case": "Родительный (Genitive)",
+   "explain": "«царского дома» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "My servants will bring them down from Lebanon to the sea. I will make them into rafts to go by sea to the place that you specify to me, and will cause them to be broken up there, and you will receive them. You will accomplish my desire, in giving food for my household.”"
+  },
+  {
+   "sentence": "Так Хирам поставлял Соломону кедровое и кипарисовое дерево, сколько тот хотел, 11 а Соломон давал Хираму двадцать тысяч коров пшеницы для его дома, не считая двадцати тысяч батов ___.",
+   "lemma": "масло",
+   "options": [
+    "оливковое масло",
+    "оливкового масла",
+    "оливковым маслом",
+    "оливковом масле"
+   ],
+   "correct": "оливкового масла",
+   "case": "Родительный (Genitive)",
+   "explain": "«оливкового масла» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "So Hiram gave Solomon cedar timber and cypress timber according to all his desire."
+  },
+  {
+   "sentence": "Надсмотрщиком за ___ был Адонирам.",
+   "lemma": "рабочий",
+   "options": [
+    "подневольные рабочие",
+    "подневольными рабочими",
+    "подневольных рабочих",
+    "подневольным рабочим"
+   ],
+   "correct": "подневольными рабочими",
+   "case": "Творительный (Instrumental)",
+   "explain": "«подневольными рабочими» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "id": "c4",
+   "translation": "He sent them to Lebanon, ten thousand a month by courses; for a month they were in Lebanon, and two months at home; and Adoniram was over the men subject to forced labor."
+  },
+  {
+   "sentence": "По повелению царя они добывали большие ___, чтобы заложить основание дома из тесаного камня.",
+   "lemma": "камень",
+   "options": [
+    "дорогих камней",
+    "дорогих камнях",
+    "дорогие камни",
+    "дорогим камням"
+   ],
+   "correct": "дорогие камни",
+   "case": "Винительный (Accusative)",
+   "explain": "«дорогие камни» — the accusative marks the direct object of the verb.",
+   "id": "c5",
+   "translation": "The king commanded, and they cut out large stones, costly stones, to lay the foundation of the house with worked stone."
+  }
+ ]
 }

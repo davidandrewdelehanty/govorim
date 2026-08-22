@@ -1,134 +1,19 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Один человек из ___ Левия взял себе жену.",
-      "lemma": "род",
-      "options": ["род", "рода", "роду", "родом"],
-      "correct": "рода",
-      "case": "Родительный (Genitive)",
-      "translation": "A man from the house of Levi took a wife.",
-      "explain": "The preposition из governs the genitive case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Она забеременела и родила ___.",
-      "lemma": "сын",
-      "options": ["сын", "сына", "сыну", "сыном"],
-      "correct": "сына",
-      "case": "Винительный (Accusative)",
-      "translation": "She conceived and bore a son.",
-      "explain": "The verb родить takes an animate direct object, whose accusative equals the genitive form."
-    },
-    {
-      "id": "c3",
-      "sentence": "Она назвала его ___, говоря: «Я вытащила его из воды».",
-      "lemma": "Моисей",
-      "options": ["Моисей", "Моисея", "Моисею", "Моисеем"],
-      "correct": "Моисеем",
-      "case": "Творительный (Instrumental)",
-      "translation": "She named him Moses, saying, 'Because I drew him out of the water.'",
-      "explain": "The verb назвать (to name someone something) governs the instrumental case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Она поставила её среди тростника на ___ Нила.",
-      "lemma": "берег",
-      "options": ["берег", "берега", "берегу", "берегом"],
-      "correct": "берегу",
-      "case": "Предложный (Prepositional)",
-      "translation": "She set it among the reeds on the bank of the Nile.",
-      "explain": "The preposition на indicating location takes the prepositional case (the locative -у form)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Дочь фараона спустилась к ___ купаться.",
-      "lemma": "Нил",
-      "options": ["Нил", "Нила", "Нилу", "Нилом"],
-      "correct": "Нилу",
-      "case": "Дательный (Dative)",
-      "translation": "Pharaoh's daughter came down to the Nile to bathe.",
-      "explain": "The preposition к governs the dative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Он увидел, как египтянин бьёт ___, его соплеменника.",
-      "lemma": "еврей",
-      "options": ["еврей", "еврея", "еврею", "евреем"],
-      "correct": "еврея",
-      "case": "Винительный (Accusative)",
-      "translation": "He saw an Egyptian striking a Hebrew, one of his own people.",
-      "explain": "The transitive verb бить takes an animate direct object, whose accusative equals the genitive form."
-    },
-    {
-      "id": "c7",
-      "sentence": "Моисей убил египтянина и спрятал его тело в ___.",
-      "lemma": "песок",
-      "options": ["песок", "песка", "песку", "песке"],
-      "correct": "песке",
-      "case": "Предложный (Prepositional)",
-      "translation": "Moses killed the Egyptian and hid his body in the sand.",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Однажды он сидел у ___.",
-      "lemma": "колодец",
-      "options": ["колодец", "колодца", "колодцу", "колодцем"],
-      "correct": "колодца",
-      "case": "Родительный (Genitive)",
-      "translation": "One day he sat by a well.",
-      "explain": "The preposition у governs the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Увидев, что ребенок очень хорош, она прятала его три месяца, а когда не смогла больше прятать, взяла тростниковую корзину и покрыла ее смолой и дегтем.",
-      "question": "How long did the mother hide her son?",
-      "options": ["Three months", "Seven days", "One year", "Forty days"],
-      "correct": "Three months",
-      "explain": "The text says 'она прятала его три месяца' (she hid him three months)."
-    },
-    {
-      "id": "r2",
-      "ru": "Дочь фараона спустилась к Нилу купаться, а ее служанки ходили по берегу.",
-      "question": "Why did Pharaoh's daughter come down to the Nile?",
-      "options": ["To bathe", "To fetch water", "To wash clothes", "To pray"],
-      "correct": "To bathe",
-      "explain": "The text says she came down 'купаться' (to bathe)."
-    },
-    {
-      "id": "r3",
-      "ru": "Она назвала его Моисеем, говоря «Я вытащила его из воды».",
-      "question": "Why did she name him Moses?",
-      "options": ["Because she drew him out of the water", "Because he was a prince", "Because he was a fine child", "Because of a dream"],
-      "correct": "Because she drew him out of the water",
-      "explain": "She explains 'Я вытащила его из воды' (I drew him out of the water)."
-    },
-    {
-      "id": "r4",
-      "ru": "Оглянувшись вокруг и увидев, что никого нет, Моисей убил египтянина и спрятал его тело в песке.",
-      "question": "What did Moses do to the Egyptian?",
-      "options": ["He killed him and hid the body in the sand", "He rebuked him", "He reported him to Pharaoh", "He drove him away"],
-      "correct": "He killed him and hid the body in the sand",
-      "explain": "The text says Moses 'убил египтянина и спрятал его тело в песке' (killed the Egyptian and hid his body in the sand)."
-    },
-    {
-      "id": "r5",
-      "ru": "Тогда Моисей встал, защитил дочерей жреца и напоил их овец.",
-      "question": "What did Moses do for the priest's daughters at the well?",
-      "options": ["He defended them and watered their flock", "He drove them away", "He gave them money", "He led them home"],
-      "correct": "He defended them and watered their flock",
-      "explain": "The text says Moses 'защитил дочерей жреца и напоил их овец' (defended the daughters and watered their sheep)."
-    },
-    {
-      "id": "r6",
-      "ru": "Бог посмотрел на израилетян и обратил внимание на их участь.",
-      "question": "What did God do at the end of the chapter?",
-      "options": ["He looked on the Israelites and took notice of their plight", "He punished Egypt", "He sent Moses back", "He forgot them"],
-      "correct": "He looked on the Israelites and took notice of their plight",
-      "explain": "The text says God 'посмотрел на израилетян и обратил внимание на их участь' (looked on the Israelites and noticed their plight)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Вопль об их ___ дошел до Бога, 24 и Бог, услышав их стоны, вспомнил Свой завет с Авраамом, Исааком и Иаковом.",
+   "lemma": "доля",
+   "options": [
+    "рабская доля",
+    "рабской долей",
+    "рабской доли",
+    "рабской доле"
+   ],
+   "correct": "рабской доле",
+   "case": "Предложный (Prepositional)",
+   "explain": "«рабской доле» — after the preposition «об», for location or topic.",
+   "id": "c3",
+   "translation": "In the course of those many days, the king of Egypt died, and the children of Israel sighed because of the bondage, and they cried, and their cry came up to God because of the bondage."
+  }
+ ]
 }

@@ -1,49 +1,34 @@
 {
  "cases": [
   {
-   "sentence": "Ну, это очень просто: на ___, черной тушью, рисуются две оси – одна ось горизонтальная, другая вертикальная.",
-   "lemma": "бумага",
+   "sentence": "На горизонтальной откладываются последовательно все рабочие дни ___, а на вертикальной – количество выпитых граммов, в пересчете на чистый алкоголь.",
+   "lemma": "месяц",
    "options": [
-    "веленевой бумаге",
-    "веленевой бумаге",
-    "веленевой бумагой",
-    "веленевая бумага"
+    "истекшему месяцу",
+    "истекшим месяцем",
+    "истекший месяц",
+    "истекшего месяца"
    ],
-   "correct": "веленевой бумаге",
-   "case": "Предложный (Prepositional)",
-   "explain": "«веленевой бумаге» — after the preposition «на», for location or topic.",
-   "id": "c1",
-   "translation": "Shall I tell you what kind of individualized charts they were? Now, that’s simple: on white vellum in black India ink I drew two axes, one horizontal, the other vertical. All the workdays of the previous month were indicated sequentially on the horizontal axis, the amount of alcohol consumed—<calculated on the basis of degree of proof—on the vertical axis. Of course, only whatever was consumed on the job or before was tabulated, since the amount consumed in the evening remained relatively constant, and was, therefore, of little interest to a serious re- searcher."
-  },
-  {
-   "sentence": "На горизонтальной откладываются последовательно все ___ истекшего месяца, а на вертикальной – количество выпитых граммов, в пересчете на чистый алкоголь.",
-   "lemma": "день",
-   "options": [
-    "рабочие дни",
-    "рабочими днями",
-    "рабочим дням",
-    "рабочие дни"
-   ],
-   "correct": "рабочие дни",
-   "case": "Винительный (Accusative)",
-   "explain": "«рабочие дни» — the accusative marks the direct object of the verb.",
-   "id": "c2",
-   "translation": "Shall I tell you what kind of individualized charts they were? Now, that’s simple: on white vellum in black India ink I drew two axes, one horizontal, the other vertical. All the workdays of the previous month were indicated sequentially on the horizontal axis, the amount of alcohol consumed—<calculated on the basis of degree of proof—on the vertical axis. Of course, only whatever was consumed on the job or before was tabulated, since the amount consumed in the evening remained relatively constant, and was, therefore, of little interest to a serious re- searcher."
-  },
-  {
-   "sentence": "А я, черной тушью и на ___, изображаю все это красивою диаграммою.",
-   "lemma": "бумага",
-   "options": [
-    "веленевой бумаге",
-    "веленевой бумаге",
-    "веленевой бумагой",
-    "веленевая бумага"
-   ],
-   "correct": "веленевой бумаге",
-   "case": "Предложный (Prepositional)",
-   "explain": "«веленевой бумаге» — after the preposition «на», for location or topic.",
+   "correct": "истекшего месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«истекшего месяца» — the genitive here marks possession, absence, or quantity.",
    "id": "c3",
-   "translation": "Thus at the end of the month the worker came to me with his report: on such and such a day, such and such an amount of such and such consumed, on another day so much of whatever. While I would illustrate all of that with a beautiful graph in black India ink on white vellum. Here, for you to admire, for instance, is the chart for Viktor Totoshkin, member of the Komosomol: 100 26th"
+   "translation": "Shall I tell you what kind of individualized charts they were? Now, that’s simple: on white vellum in black India ink I drew two axes, one horizontal, the other vertical. All the workdays of the previous month were indicated sequentially on the horizontal axis, the amount of alcohol consumed—<calculated on the basis of degree of proof—on the vertical axis. Of course, only whatever was consumed on the job or before was tabulated, since the amount consumed in the evening remained relatively constant, and was, therefore, of little interest to a serious re- searcher."
+  },
+  {
+   "sentence": "На горизонтальной откладываются последовательно все рабочие дни истекшего месяца, а на вертикальной – количество выпитых граммов, в пересчете на ___.",
+   "lemma": "алкоголь",
+   "options": [
+    "чистом алкоголе",
+    "чистого алкоголя",
+    "чистому алкоголю",
+    "чистый алкоголь"
+   ],
+   "correct": "чистый алкоголь",
+   "case": "Винительный (Accusative)",
+   "explain": "«чистый алкоголь» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c4",
+   "translation": "Shall I tell you what kind of individualized charts they were? Now, that’s simple: on white vellum in black India ink I drew two axes, one horizontal, the other vertical. All the workdays of the previous month were indicated sequentially on the horizontal axis, the amount of alcohol consumed—<calculated on the basis of degree of proof—on the vertical axis. Of course, only whatever was consumed on the job or before was tabulated, since the amount consumed in the evening remained relatively constant, and was, therefore, of little interest to a serious re- searcher."
   },
   {
    "sentence": "А вот уж это – ваш ___, экс-бригадир монтажников ПТУСа, автор поэмы «Москва – Петушки»:",
@@ -57,7 +42,7 @@
    "correct": "покорный слуга",
    "case": "Именительный (Nominative)",
    "explain": "«покорный слуга» — the subject of the sentence stands in the nominative.",
-   "id": "c4",
+   "id": "c6",
    "translation": "And here we have your faithful servant, ex-head cable- fitter and author of the poem Moscow to the End of the Line: 100 10th 26th"
   },
   {
@@ -72,7 +57,7 @@
    "correct": "интересные линии",
    "case": "Именительный (Nominative)",
    "explain": "«интересные линии» — the subject of the sentence stands in the nominative.",
-   "id": "c5",
+   "id": "c7",
    "translation": "Aren’t these truly interesting graphs? Interesting even to the most superficial eye? They looked variously like the Himalayas, the Tyrol, oil derricks, or even the Kremlin wall, which, admittedly, I have never seen. Another one looked like a morning breeze on the Kama River, a gentle splash with rippling beads of lantern light. Still someone else’s was like the beating ofa proud heart, the song of the stormy petrel—in other words, pure Gorky—or like Aivazovsky’s trashy painting of the ninth wave. And all this, only looking at the external form of the line."
   },
   {
@@ -87,7 +72,7 @@
    "correct": "поверхностного взгляда",
    "case": "Родительный (Genitive)",
    "explain": "«поверхностного взгляда» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
-   "id": "c6",
+   "id": "c8",
    "translation": "Aren’t these truly interesting graphs? Interesting even to the most superficial eye? They looked variously like the Himalayas, the Tyrol, oil derricks, or even the Kremlin wall, which, admittedly, I have never seen. Another one looked like a morning breeze on the Kama River, a gentle splash with rippling beads of lantern light. Still someone else’s was like the beating ofa proud heart, the song of the stormy petrel—in other words, pure Gorky—or like Aivazovsky’s trashy painting of the ninth wave. And all this, only looking at the external form of the line."
   },
   {
@@ -102,7 +87,7 @@
    "correct": "тихий всплеск",
    "case": "Именительный (Nominative)",
    "explain": "«тихий всплеск» — the subject of the sentence stands in the nominative.",
-   "id": "c7",
+   "id": "c9",
    "translation": "Aren’t these truly interesting graphs? Interesting even to the most superficial eye? They looked variously like the Himalayas, the Tyrol, oil derricks, or even the Kremlin wall, which, admittedly, I have never seen. Another one looked like a morning breeze on the Kama River, a gentle splash with rippling beads of lantern light. Still someone else’s was like the beating ofa proud heart, the song of the stormy petrel—in other words, pure Gorky—or like Aivazovsky’s trashy painting of the ninth wave. And all this, only looking at the external form of the line."
   },
   {
@@ -117,7 +102,7 @@
    "correct": "гордого сердца",
    "case": "Родительный (Genitive)",
    "explain": "«гордого сердца» — the genitive here marks possession, absence, or quantity.",
-   "id": "c8",
+   "id": "c10",
    "translation": "Aren’t these truly interesting graphs? Interesting even to the most superficial eye? They looked variously like the Himalayas, the Tyrol, oil derricks, or even the Kremlin wall, which, admittedly, I have never seen. Another one looked like a morning breeze on the Kama River, a gentle splash with rippling beads of lantern light. Still someone else’s was like the beating ofa proud heart, the song of the stormy petrel—in other words, pure Gorky—or like Aivazovsky’s trashy painting of the ninth wave. And all this, only looking at the external form of the line."
   },
   {
@@ -132,23 +117,173 @@
    "correct": "человеческом сердце",
    "case": "Предложный (Prepositional)",
    "explain": "«человеческом сердце» — after the preposition «о», for location or topic.",
-   "id": "c9",
+   "id": "c11",
    "translation": "But, for anyone inquisitive (me, for instance), the lines blurted out everything that was possible to blurt out about the man and the heart of the man—all his qualities, from sexuality to practical matters as well as all his faults, both sexual and practical. Also, the degree of steadiness of temperament and of the tendency to treachery plus all his unconscious secrets, if he had any unconscious secrets."
   },
   {
-   "sentence": "Но не очень долго рассматривал: в один ___ у меня со стола исчезли все мои диаграммы.",
+   "sentence": "Короче, они меня разжаловали, а на место мое назначили Алексея Блиндяева, этого ___, члена КПСС с 1936 года.",
+   "lemma": "придурок",
+   "options": [
+    "дряхлым придурком",
+    "дряхлому придурку",
+    "дряхлом придурке",
+    "дряхлого придурка"
+   ],
+   "correct": "дряхлого придурка",
+   "case": "Родительный (Genitive)",
+   "explain": "«дряхлого придурка» — the genitive here marks possession, absence, or quantity.",
+   "id": "c13",
+   "translation": "As soon as I noticed them missing, I had a drink and grabbed my head. At the Administrative Section, also, they got the package, grabbed their heads, had drinks, and, the same day, drove into our district in their Moskvich. What did they uncover, bursting into our office? They uncovered nothing, except Lekha and Stasik—Lekha was dozing on the floor rolled up in a ball, and Stasik was puking. In a quarter of an hour everything was decided. My star, which had blazed forth for four weeks, passed from view. The crucifixion took place exactly thirty days after the ascension. There was but one month separating my Toulon from my Héléne. To put it bluntly, they canned me as foreman and in my place put that broken-down old dolt Aleksei Blindiaev, member CPSU, 1936. And, immediately after his designation, he got up from the floor and asked for a one-ruble note, which they did not give him. Stasik left off puking and also asked them for a rub’, which they also didn’t give him. They drank some red wine, got back in their Moskvich, and went back where they came from."
+  },
+  {
+   "sentence": "Попили ___, сели в свой «москвич» и уехали обратно.",
+   "lemma": "вино",
+   "options": [
+    "красным вином",
+    "красном вине",
+    "красному вину",
+    "красного вина"
+   ],
+   "correct": "красного вина",
+   "case": "Родительный (Genitive)",
+   "explain": "«красного вина» — the genitive here marks possession, absence, or quantity.",
+   "id": "c14",
+   "translation": "As soon as I noticed them missing, I had a drink and grabbed my head. At the Administrative Section, also, they got the package, grabbed their heads, had drinks, and, the same day, drove into our district in their Moskvich. What did they uncover, bursting into our office? They uncovered nothing, except Lekha and Stasik—Lekha was dozing on the floor rolled up in a ball, and Stasik was puking. In a quarter of an hour everything was decided. My star, which had blazed forth for four weeks, passed from view. The crucifixion took place exactly thirty days after the ascension. There was but one month separating my Toulon from my Héléne. To put it bluntly, they canned me as foreman and in my place put that broken-down old dolt Aleksei Blindiaev, member CPSU, 1936. And, immediately after his designation, he got up from the floor and asked for a one-ruble note, which they did not give him. Stasik left off puking and also asked them for a rub’, which they also didn’t give him. They drank some red wine, got back in their Moskvich, and went back where they came from."
+  },
+  {
+   "sentence": "Меня, ___, любовно перебиравшего души своих людей, меня – снизу – сочли штрейкбрехером и коллаборационистом, а сверху – лоботрясом с неуравновешенной психикой.",
+   "lemma": "принц-аналитик",
+   "options": [
+    "вдумчивого принца-аналитика",
+    "вдумчивом принце-аналитике",
+    "вдумчивый принц-аналитик",
+    "вдумчивым принцем-аналитиком"
+   ],
+   "correct": "вдумчивого принца-аналитика",
+   "case": "Родительный (Genitive)",
+   "explain": "«вдумчивого принца-аналитика» — the genitive here marks possession, absence, or quantity.",
+   "id": "c15",
+   "translation": "Anyway, they fired me. Me, the thoughtful prince, the analyst lovingly inspecting the souls of his people—me, who was considered, at the bottom, a fink and a col- laborator and, at the top, a good-for-nothing with an unstable mind. The lower strata did not wish to see me, and the higher-ups couldn’t speak of me without laughing. \"The top strata could not and the lower did not want to,\" as Lenin might have put it. What does this betoken, connois- seurs of the philosophy of history? Absolutely right—next payday, I’ll get the shit beaten out of me, according to the laws of good and beauty, next payday being the day after tomorrow, which means that by the day after tomorrow they’ll be kicking my ass around."
+  },
+  {
+   "sentence": "Меня, вдумчивого принца-аналитика, любовно перебиравшего души своих людей, меня – снизу – сочли штрейкбрехером и коллаборационистом, а сверху – лоботрясом с ___.",
+   "lemma": "психика",
+   "options": [
+    "неуравновешенной психики",
+    "неуравновешенная психика",
+    "неуравновешенной психикой",
+    "неуравновешенной психике"
+   ],
+   "correct": "неуравновешенной психикой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«неуравновешенной психикой» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c16",
+   "translation": "Anyway, they fired me. Me, the thoughtful prince, the analyst lovingly inspecting the souls of his people—me, who was considered, at the bottom, a fink and a col- laborator and, at the top, a good-for-nothing with an unstable mind. The lower strata did not wish to see me, and the higher-ups couldn’t speak of me without laughing. \"The top strata could not and the lower did not want to,\" as Lenin might have put it. What does this betoken, connois- seurs of the philosophy of history? Absolutely right—next payday, I’ll get the shit beaten out of me, according to the laws of good and beauty, next payday being the day after tomorrow, which means that by the day after tomorrow they’ll be kicking my ass around."
+  },
+  {
+   "sentence": "Весь этот ___ так надломил меня, что я с того самого дня не просыхаю.",
+   "lemma": "вздор",
+   "options": [
+    "житейскому вздору",
+    "житейским вздором",
+    "житейском вздоре",
+    "житейский вздор"
+   ],
+   "correct": "житейский вздор",
+   "case": "Именительный (Nominative)",
+   "explain": "«житейский вздор» — the subject of the sentence stands in the nominative.",
+   "id": "c17",
+   "translation": "\"So judge for yourselves, how could I help it? This whole mundane nonsense has gotten me so broken up that, since that very day, I haven’t dried out. Before that I can’t say I was especially dried out, but at least I used to remember what I drank and in what order. Now I can’t even recollect that. Everything is ups and downs, every- thing in life is somehow up and down. First I don’t drink for a week straight, then I drink for forty days, then again I don’t drink for four days, and then I drink again for six months without a breather. Take now...\""
+  },
+  {
+   "sentence": "Весь этот житейский вздор так надломил меня, что я с того ___ не просыхаю.",
    "lemma": "день",
    "options": [
-    "злосчастный день",
-    "злосчастный день",
-    "злосчастном дне",
-    "злосчастным днём"
+    "самого дня",
+    "самим днём",
+    "самому дню",
+    "сам день"
    ],
-   "correct": "злосчастный день",
-   "case": "Винительный (Accusative)",
-   "explain": "«злосчастный день» — after the preposition «в», the accusative marks the direct object of the verb.",
-   "id": "c10",
-   "translation": "I then examined with care, intently and close up, the soul of every shitass. But I didn’t examine them for long—one fateful day all the charts disappeared from my desk. It seems that, on the same day, the old fogy Aleksei Blindiaev, member of the CPSU since 1936, sent off to the Administrative Section our obligatory holiday projec- tion, in which we all swore, on the occasion of the upcoming Centennial, to be the same in our everyday life as at work. And, perhaps out of foolishness or perhaps drunkenness, he put my individualized charts into the same envelope."
+   "correct": "самого дня",
+   "case": "Родительный (Genitive)",
+   "explain": "«самого дня» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c18",
+   "translation": "\"So judge for yourselves, how could I help it? This whole mundane nonsense has gotten me so broken up that, since that very day, I haven’t dried out. Before that I can’t say I was especially dried out, but at least I used to remember what I drank and in what order. Now I can’t even recollect that. Everything is ups and downs, every- thing in life is somehow up and down. First I don’t drink for a week straight, then I drink for forty days, then again I don’t drink for four days, and then I drink again for six months without a breather. Take now...\""
+  },
+  {
+   "sentence": "У меня все полосами, все в жизни как-то полосами: то не пью неделю подряд, то пью потом сорок дней, потом опять четыре дня не пью, а потом опять шесть месяцев пью без ___…",
+   "lemma": "роздых",
+   "options": [
+    "единого роздыха",
+    "едином роздыхе",
+    "единый роздых",
+    "единому роздыху"
+   ],
+   "correct": "единого роздыха",
+   "case": "Родительный (Genitive)",
+   "explain": "«единого роздыха» — after the preposition «без», the genitive here marks possession, absence, or quantity.",
+   "id": "c19",
+   "translation": "\"So judge for yourselves, how could I help it? This whole mundane nonsense has gotten me so broken up that, since that very day, I haven’t dried out. Before that I can’t say I was especially dried out, but at least I used to remember what I drank and in what order. Now I can’t even recollect that. Everything is ups and downs, every- thing in life is somehow up and down. First I don’t drink for a week straight, then I drink for forty days, then again I don’t drink for four days, and then I drink again for six months without a breather. Take now...\""
+  },
+  {
+   "sentence": "Тебя оскорбили, и твое ___…",
+   "lemma": "сердце",
+   "options": [
+    "прекрасным сердцем",
+    "прекрасное сердце",
+    "прекрасному сердцу",
+    "прекрасного сердца"
+   ],
+   "correct": "прекрасное сердце",
+   "case": "Именительный (Nominative)",
+   "explain": "«прекрасное сердце» — the subject of the sentence stands in the nominative.",
+   "id": "c20",
+   "translation": "We understand, we understand everything. They in- sulted you, you and your beautiful heart."
+  },
+  {
+   "sentence": "Как в трагедиях Пьера Корнеля, поэта-лауреата: долг борется с ___.",
+   "lemma": "влечение",
+   "options": [
+    "сердечному влечению",
+    "сердечным влечением",
+    "сердечном влечении",
+    "сердечного влечения"
+   ],
+   "correct": "сердечным влечением",
+   "case": "Творительный (Instrumental)",
+   "explain": "«сердечным влечением» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c21",
+   "translation": "Yes, yes, on that day my beautiful heart struggled for a whole half hour with reason. As in the tragedies of the poet laureate Pierre Corneille, duty struggles with the heart’s desire. But with me it was the reverse—the heart’s desire struggled with reason and duty. The heart said to me, ‘They’ ve insulted you, they’ ve dragged you through shit. Go on and get drunk, Venichka, go on and get drunk as a skunk.\" This is what my beautiful heart said. But my reason? It grumbled and insisted, \"You won't get up, Erofeev, you won’t go anywhere and you won’t drink a drop.\" While my heart responded, \"Well, OK, Venichka, OK. You don’t have to drink a lot. You don’t have to get drunk as a skunk—drink 400 grams and let it go at that.\" \"No grams at all,\" reason enunciated. \"‘If you can’t get along without anything, go on and drink three mugs of beer, Erofeev, and forget about the hard stuff.\" But my heart whimpered, \"‘Maybe just 200 grams. Maybe . ."
+  },
+  {
+   "sentence": "Только у меня наоборот: ___ боролось с рассудком и долгом.",
+   "lemma": "влечение",
+   "options": [
+    "сердечном влечении",
+    "сердечным влечением",
+    "сердечного влечения",
+    "сердечное влечение"
+   ],
+   "correct": "сердечное влечение",
+   "case": "Именительный (Nominative)",
+   "explain": "«сердечное влечение» — the subject of the sentence stands in the nominative.",
+   "id": "c22",
+   "translation": "Yes, yes, on that day my beautiful heart struggled for a whole half hour with reason. As in the tragedies of the poet laureate Pierre Corneille, duty struggles with the heart’s desire. But with me it was the reverse—the heart’s desire struggled with reason and duty. The heart said to me, ‘They’ ve insulted you, they’ ve dragged you through shit. Go on and get drunk, Venichka, go on and get drunk as a skunk.\" This is what my beautiful heart said. But my reason? It grumbled and insisted, \"You won't get up, Erofeev, you won’t go anywhere and you won’t drink a drop.\" While my heart responded, \"Well, OK, Venichka, OK. You don’t have to drink a lot. You don’t have to get drunk as a skunk—drink 400 grams and let it go at that.\" \"No grams at all,\" reason enunciated. \"‘If you can’t get along without anything, go on and drink three mugs of beer, Erofeev, and forget about the hard stuff.\" But my heart whimpered, \"‘Maybe just 200 grams. Maybe . ."
+  },
+  {
+   "sentence": "Так говорило мое ___.",
+   "lemma": "сердце",
+   "options": [
+    "прекрасным сердцем",
+    "прекрасное сердце",
+    "прекрасному сердцу",
+    "прекрасного сердца"
+   ],
+   "correct": "прекрасное сердце",
+   "case": "Именительный (Nominative)",
+   "explain": "«прекрасное сердце» — the subject of the sentence stands in the nominative.",
+   "id": "c23",
+   "translation": "Yes, yes, on that day my beautiful heart struggled for a whole half hour with reason. As in the tragedies of the poet laureate Pierre Corneille, duty struggles with the heart’s desire. But with me it was the reverse—the heart’s desire struggled with reason and duty. The heart said to me, ‘They’ ve insulted you, they’ ve dragged you through shit. Go on and get drunk, Venichka, go on and get drunk as a skunk.\" This is what my beautiful heart said. But my reason? It grumbled and insisted, \"You won't get up, Erofeev, you won’t go anywhere and you won’t drink a drop.\" While my heart responded, \"Well, OK, Venichka, OK. You don’t have to drink a lot. You don’t have to get drunk as a skunk—drink 400 grams and let it go at that.\" \"No grams at all,\" reason enunciated. \"‘If you can’t get along without anything, go on and drink three mugs of beer, Erofeev, and forget about the hard stuff.\" But my heart whimpered, \"‘Maybe just 200 grams. Maybe . ."
   }
  ]
 }

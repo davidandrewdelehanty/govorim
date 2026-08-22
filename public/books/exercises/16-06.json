@@ -1,134 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Когда Санбалату, Тови, Арабу Гешему и прочим нашим врагам донесли, что я отстроил ___, и в ней не осталось ни одного незаделанного пролома.",
-      "lemma": "стена",
-      "options": ["стену", "стены", "стене", "стеной"],
-      "correct": "стену",
-      "case": "Винительный (Accusative)",
-      "translation": "When it was reported to Sanballat, Tobiah, Geshem the Arabian, and the rest of our enemies that I had built the wall.",
-      "explain": "The transitive verb 'отстроил' (built) requires the accusative case for its direct object."
-    },
-    {
-      "id": "c2",
-      "sentence": "Санбалат и Гешем послали сказать мне. Давай встретимся в одном исцелении на равнине ___.",
-      "lemma": "Она",
-      "options": ["Она", "Оны", "Оне", "Оной"],
-      "correct": "Оны",
-      "case": "Родительный (Genitive)",
-      "translation": "Sanballat and Geshem sent to say to me. Come! Let's meet together in the plain of Ono.",
-      "explain": "The preposition 'на' with the plain requires genitive for the proper noun location marker."
-    },
-    {
-      "id": "c3",
-      "sentence": "В руке у него было незапечатанное ___.",
-      "lemma": "письмо",
-      "options": ["письмо", "письма", "письму", "письмом"],
-      "correct": "письмо",
-      "case": "Именительный (Nominative)",
-      "translation": "In his hand was an open letter.",
-      "explain": "The predicate nominative after 'было' (was) requires the nominative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "В руке у него было незапечатанное письмо, в котором было написано... Среди народов ходит слух, и Гешем говорит, что ты и иудеи замышляете восстать, и поэтому ты строишь ___.",
-      "lemma": "стена",
-      "options": ["стена", "стены", "стену", "стеной"],
-      "correct": "стену",
-      "case": "Винительный (Accusative)",
-      "translation": "In his hand was an open letter in which was written... It is reported among the nations, and Geshem says it, that you and the Jews intend to rebel. Because of that, you are building the wall.",
-      "explain": "The transitive verb 'строишь' (are building) takes the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "По этим слухам ты собираешься стать их ___, и даже назначил пророков.",
-      "lemma": "царь",
-      "options": ["царя", "царем", "царе", "царю"],
-      "correct": "царем",
-      "case": "Творительный (Instrumental)",
-      "translation": "According to these words, you would be their king, and you have even appointed prophets.",
-      "explain": "The predicate nominative after стать (become) uses the instrumental case: 'стать царем' (to become king)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Однажды я пришел в ___ Шимаи, сына Дилайи.",
-      "lemma": "дом",
-      "options": ["доме", "дом", "дома", "домом"],
-      "correct": "дом",
-      "case": "Винительный (Accusative)",
-      "translation": "I went to the house of Shemaiah the son of Delaiah.",
-      "explain": "The verb 'пришел' requires the accusative case for the destination (в + acc. = into/to)."
-    },
-    {
-      "id": "c7",
-      "sentence": "Давай встретимся в Доме Божьем, внутри ___, и запрем храмовые двери.",
-      "lemma": "храм",
-      "options": ["храм", "храма", "храме", "храмом"],
-      "correct": "храме",
-      "case": "Предложный (Prepositional)",
-      "translation": "Let us meet together in God's house, within the temple.",
-      "explain": "The preposition 'в' with location (внутри храма) requires the prepositional case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Вспомни, Боже мой, Товию и Санбалата по их делам и по их ___ против меня.",
-      "lemma": "враг",
-      "options": ["враги", "врага", "врагам", "врагом"],
-      "correct": "враги",
-      "case": "Винительный (Accusative)",
-      "translation": "Remember, my God, Tobiah and Sanballat according to these their works and their hostile acts against me.",
-      "explain": "The transitive verb 'вспомни' requires the accusative case for the direct object."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Когда Санбалату, Тови, Арабу Гешему и прочим нашим врагам донесли, что я отстроил стену, и в ней не осталось ни одного незаделанного пролома, Санбалат и Гешем послали сказать мне.",
-      "question": "What news did Sanballat and Geshem learn about Nehemiah's work?",
-      "options": ["That the wall had been rebuilt and there was no breach left in it", "That the wall was still incomplete", "That Nehemiah had abandoned the project", "That enemies had destroyed the wall"],
-      "correct": "That the wall had been rebuilt and there was no breach left in it",
-      "explain": "The text reports that when they heard 'я отстроил стену, и в ней не осталось ни одного незаделанного пролома' — I had built the wall and there was no breach left in it."
-    },
-    {
-      "id": "r2",
-      "ru": "Четыре раза они присылали ко мне с этим посланием, и четыре раза я давал им этот ответ.",
-      "question": "How many times did Nehemiah's enemies try to meet with him?",
-      "options": ["Four times", "Three times", "Five times", "Two times"],
-      "correct": "Four times",
-      "explain": "The text explicitly states 'Четыре раза они присылали ко мне с этим посланием, и четыре раза я давал им этот ответ' — Four times they sent to me with this message, and four times I answered them the same way."
-    },
-    {
-      "id": "r3",
-      "ru": "Нет никакой правды в том, что ты говоришь, все это ты выдумываешь сам.",
-      "question": "How did Nehemiah respond to the accusations in the letter?",
-      "options": ["There is no truth in what you say; you are making it all up", "He agreed to meet and discuss", "He admitted to the charges", "He forwarded the letter to the king"],
-      "correct": "There is no truth in what you say; you are making it all up",
-      "explain": "Nehemiah's reply was 'Нет никакой правды в том, что ты говоришь, все это ты выдумываешь сам' — There are no such things done as you say, but you imagine them out of your own heart."
-    },
-    {
-      "id": "r4",
-      "ru": "Все они старались запугать нас, думая, их руки очень ослабнут, чтобы делать эту работу, и она не будет завершена.",
-      "question": "What was the enemies' strategy according to Nehemiah?",
-      "options": ["To frighten the workers so their hands would weaken and the work not be completed", "To bribe the builders", "To steal the building materials", "To report them to the king"],
-      "correct": "To frighten the workers so their hands would weaken and the work not be completed",
-      "explain": "The text states they tried 'запугать нас, думая, их руки очень ослабнут, чтобы делать эту работу' — make us afraid saying their hands would weaken from the work."
-    },
-    {
-      "id": "r5",
-      "ru": "Но я молился, Укрепи мои руки.",
-      "question": "What did Nehemiah pray for in response to the intimidation?",
-      "options": ["That God would strengthen his hands", "That God would destroy his enemies", "That the work would be faster", "That the king would send soldiers"],
-      "correct": "That God would strengthen his hands",
-      "explain": "Nehemiah's prayer was 'Укрепи мои руки' — Strengthen my hands."
-    },
-    {
-      "id": "r6",
-      "ru": "Стена была завершена в 25-й день месяца Элула, за 52 дня.",
-      "question": "How long did it take to complete the wall?",
-      "options": ["52 days", "25 days", "6 weeks", "3 months"],
-      "correct": "52 days",
-      "explain": "The text says 'Стена была завершена в 25-й день месяца Элула, за 52 дня' — The wall was finished in the twenty-fifth day of Elul, in fifty-two days."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Тогда в ___ Санбаллат отправил ко мне с этим же посланием своего слугу.",
+   "lemma": "раз",
+   "options": [
+    "пятому разу",
+    "пятом разе",
+    "пятый раз",
+    "пятого раза"
+   ],
+   "correct": "пятый раз",
+   "case": "Винительный (Accusative)",
+   "explain": "«пятый раз» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "Then Sanballat sent his servant to me the same way the fifth time with an open letter in his hand,"
+  },
+  {
+   "sentence": "Его наняли запугать меня, чтобы я согрешил, сделав так, а они бы лишили меня ___ и упрекали бы меня.",
+   "lemma": "имя",
+   "options": [
+    "добрым именем",
+    "доброе имя",
+    "доброго имени",
+    "доброму имени"
+   ],
+   "correct": "доброго имени",
+   "case": "Родительный (Genitive)",
+   "explain": "«доброго имени» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "He hired so that I would be afraid, do so, and sin, and that they might have material for an evil report, that they might reproach me."
+  },
+  {
+   "sentence": "Вспомни, Боже мой, Товию и Санбаллата, по их делам; вспомни еще и пророчицу Ноадию и ___, которые пытались меня запугать.",
+   "lemma": "пророк",
+   "options": [
+    "прочие пророки",
+    "прочих пророков",
+    "прочими пророками",
+    "прочих пророках"
+   ],
+   "correct": "прочих пророков",
+   "case": "Родительный (Genitive)",
+   "explain": "«прочих пророков» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "“Remember, my God, Tobiah and Sanballat according to these their works, and also the prophetess Noadiah, and the rest of the prophets, that would have put me in fear.”"
+  },
+  {
+   "sentence": "Стена была завершена в двадцать ___ месяца элула , за пятьдесят два дня.",
+   "lemma": "день",
+   "options": [
+    "пятый день",
+    "пятому дню",
+    "пятого дня",
+    "пятом дне"
+   ],
+   "correct": "пятый день",
+   "case": "Винительный (Accusative)",
+   "explain": "«пятый день» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "id": "c4",
+   "translation": "So the wall was finished in the twenty-fifth day of Elul, in fifty-two days."
+  },
+  {
+   "sentence": "Когда об этом услышали все наши враги, все ___ испугались и потеряли свою самоуверенность, потому что поняли, что эта работа была сделана с помощью нашего Бога.",
+   "lemma": "народ",
+   "options": [
+    "окрестных народах",
+    "окрестным народам",
+    "окрестных народов",
+    "окрестные народы"
+   ],
+   "correct": "окрестные народы",
+   "case": "Именительный (Nominative)",
+   "explain": "«окрестные народы» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "When all our enemies heard of it, all the nations that were around us were afraid, and they lost their confidence; for they perceived that this work was done by our God."
+  },
+  {
+   "sentence": "Они даже говорили при мне о его ___, а после пересказывали ему то, что я сказал.",
+   "lemma": "дело",
+   "options": [
+    "добрые дела",
+    "добрыми делами",
+    "добрым делам",
+    "добрых делах"
+   ],
+   "correct": "добрых делах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«добрых делах» — after the preposition «о», for location or topic.",
+   "id": "c6",
+   "translation": "Also they spoke of his good deeds before me, and reported my words to him. Tobiah sent letters to put me in fear."
+  }
+ ]
 }

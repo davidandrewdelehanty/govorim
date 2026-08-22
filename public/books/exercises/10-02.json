@@ -1,164 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Давид спросил Господа о ___.",
-      "lemma": "воля",
-      "options": ["воля", "воли", "волю", "воле"],
-      "correct": "воле",
-      "case": "Предложный (Locative)",
-      "translation": "David asked the Lord about His will.",
-      "explain": "Preposition 'о' with locative (prepositional) case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Давид поднялся в ___ со своими двумя женами.",
-      "lemma": "Хеврон",
-      "options": ["Хеврон", "Хеврона", "Хеброну", "Хевроне"],
-      "correct": "Хеврон",
-      "case": "Винительный (Accusative)",
-      "translation": "David went up to Hebron with his two wives.",
-      "explain": "Preposition 'в' with accusative case indicates movement toward a place."
-    },
-    {
-      "id": "c3",
-      "sentence": "Они поселились в ___ Хеврона.",
-      "lemma": "город",
-      "options": ["города", "городов", "городах", "городами"],
-      "correct": "городах",
-      "case": "Предложный (Locative)",
-      "translation": "They lived in the cities of Hebron.",
-      "explain": "Preposition 'в' with locative (prepositional) case indicates location."
-    },
-    {
-      "id": "c4",
-      "sentence": "Жители Иудеи помазали Давида ___ над домом Иуды.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царем",
-      "case": "Творительный (Instrumental)",
-      "translation": "The people of Judah anointed David as king over the house of Judah.",
-      "explain": "The verb 'помазать' with instrumental case means 'to anoint as'."
-    },
-    {
-      "id": "c5",
-      "sentence": "Авнер был ___ войска Саула.",
-      "lemma": "начальник",
-      "options": ["начальник", "начальника", "начальнику", "начальником"],
-      "correct": "начальником",
-      "case": "Творительный (Instrumental)",
-      "translation": "Abner was the captain of Saul's army.",
-      "explain": "Predicative noun after 'был' in instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Он послал к царю ___.",
-      "lemma": "вестник",
-      "options": ["вестник", "вестника", "вестников", "вестниками"],
-      "correct": "вестников",
-      "case": "Винительный (Accusative)",
-      "translation": "He sent messengers to the king.",
-      "explain": "Direct object of the verb 'послал' requires accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Давид правил семь лет и шесть ___ в Хевроне.",
-      "lemma": "месяц",
-      "options": ["месяц", "месяца", "месяцев", "месяцем"],
-      "correct": "месяцев",
-      "case": "Родительный (Genitive)",
-      "translation": "David reigned seven years and six months in Hebron.",
-      "explain": "Numbers 5-20 govern genitive plural."
-    },
-    {
-      "id": "c8",
-      "sentence": "Авнер сказал Иаву, 'Пусть юноши встанут и сразятся перед ___.'",
-      "lemma": "я",
-      "options": ["я", "меня", "мне", "мной"],
-      "correct": "мной",
-      "case": "Творительный (Instrumental)",
-      "translation": "Abner said to Joab, 'Let the young men rise and play before me.'",
-      "explain": "Preposition 'перед' governs instrumental case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "После этого Давид спросил Господа, 'Идти ли мне в какой-нибудь из городов Иудеи?'",
-      "question": "What did David ask the Lord?",
-      "options": [
-        "Whether to go to one of the cities of Judah",
-        "Whether to go to battle with the Philistines",
-        "Whether to build a new altar",
-        "Whether to return to Ziklag"
-      ],
-      "correct": "Whether to go to one of the cities of Judah",
-      "explain": "David asked the Lord if he should go to one of the cities of Judah."
-    },
-    {
-      "id": "r2",
-      "ru": "Жители Иудеи пришли в Хеврон и помазали там Давида царем над домом Иуды.",
-      "question": "What did the people of Judah do in Hebron?",
-      "options": [
-        "They built a new temple for the ark",
-        "They anointed David as king over the house of Judah",
-        "They defeated the Philistines in battle",
-        "They established a new trade route"
-      ],
-      "correct": "They anointed David as king over the house of Judah",
-      "explain": "The text states they 'помазали там Давида царем над домом Иуды'."
-    },
-    {
-      "id": "r3",
-      "ru": "Авнер, сын Нира, начальник войска Саула, взял Ишбашета, сына Саула, и привел его в Маханаим.",
-      "question": "Where did Abner take Ishbosheth?",
-      "options": [
-        "To Gibeon",
-        "To Hebron",
-        "To Mahanaim",
-        "To Jerusalem"
-      ],
-      "correct": "To Mahanaim",
-      "explain": "The text explicitly states 'привел его в Маханаим' (brought him to Mahanaim)."
-    },
-    {
-      "id": "r4",
-      "ru": "Ишбашету, сыну Саула, было сорок лет, когда он стал царем Израиля, и правил он два года.",
-      "question": "How long did Ishbosheth reign over Israel?",
-      "options": [
-        "Seven years and six months",
-        "Two years",
-        "Forty years",
-        "Three years and six months"
-      ],
-      "correct": "Two years",
-      "explain": "The text states 'правил он два года' (he reigned two years)."
-    },
-    {
-      "id": "r5",
-      "ru": "Асаил был быстроног, как дикая серна.",
-      "question": "To what was Asahel compared in terms of speed?",
-      "options": [
-        "A wild ox",
-        "A wild lion",
-        "A wild gazelle",
-        "An eagle"
-      ],
-      "correct": "A wild gazelle",
-      "explain": "The text says 'Асаил был быстроног, как дикая серна' (Asahel was swift of foot as a wild gazelle)."
-    },
-    {
-      "id": "r6",
-      "ru": "Авнер с обратным концом своего копья пронзил его в живот, так что оно вышло наружу у него через спину.",
-      "question": "How was Asahel killed?",
-      "options": [
-        "With a sword through the heart",
-        "With the back end of a spear thrust through his body",
-        "In hand-to-hand combat",
-        "With an arrow to the chest"
-      ],
-      "correct": "With the back end of a spear thrust through his body",
-      "explain": "The text states Abner 'пронзил ему в живот обратным концом своего копья' (struck him in the body with the back end of his spear)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Иоав, сын Саруи, и люди Давида вышли и встретили их у ___.",
+   "lemma": "пруд",
+   "options": [
+    "гаваонский пруд",
+    "гаваонскому пруду",
+    "гаваонским прудом",
+    "гаваонского пруда"
+   ],
+   "correct": "гаваонского пруда",
+   "case": "Родительный (Genitive)",
+   "explain": "«гаваонского пруда» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "Joab the son of Zeruiah and David’s servants went out, and met them by the pool of Gibeon; and they sat down, the one on the one side of the pool, and the other on the other side of the pool."
+  },
+  {
+   "sentence": "Асаил был быстроног, как ___.",
+   "lemma": "серна",
+   "options": [
+    "дикая серна",
+    "дикой серной",
+    "дикой серны",
+    "дикой серне"
+   ],
+   "correct": "дикая серна",
+   "case": "Именительный (Nominative)",
+   "explain": "«дикая серна» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "The three sons of Zeruiah were there, Joab, and Abishai, and Asahel: and Asahel was as light of foot as a wild gazelle."
+  },
+  {
+   "sentence": "Тогда Авнер пронзил ему в живот ___ своего копья, так, что оно вышло наружу у него через спину.",
+   "lemma": "конец",
+   "options": [
+    "обратным концом",
+    "обратный конец",
+    "обратному концу",
+    "обратном конце"
+   ],
+   "correct": "обратным концом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«обратным концом» — the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "However he refused to turn away. Therefore Abner with the back end of the spear struck him in the body, so that the spear came out behind him; and he fell down there, and died in the same place. As many as came to the place where Asahel fell down and died stood still."
+  }
+ ]
 }

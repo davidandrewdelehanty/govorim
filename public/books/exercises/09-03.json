@@ -1,204 +1,34 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Мальчик Самуил служил перед ___.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господом"
-      ],
-      "correct": "Господом",
-      "case": "Творительный (Instrumental)",
-      "translation": "The boy Samuel served before the Lord.",
-      "explain": "The preposition перед (before) governs the instrumental case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Светильник Бога еще не догорел, и Самуил лежал в храме ___.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господе"
-      ],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "God's lamp had not yet gone out, and Samuel lay in the temple of the Lord.",
-      "explain": "The genitive case marks possession: 'the temple of the Lord'."
-    },
-    {
-      "id": "c3",
-      "sentence": "Господь позвал Самуила, и Самуил ответил, «Вот я» - и подбежал к ___.",
-      "lemma": "Илий",
-      "options": [
-        "Илий",
-        "Илия",
-        "Илию",
-        "Илией"
-      ],
-      "correct": "Илию",
-      "case": "Винительный (Accusative)",
-      "translation": "The Lord called Samuel, who ran to Eli.",
-      "explain": "Motion toward a person (к) takes the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Тогда Илий понял, что мальчика зовет ___.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господе"
-      ],
-      "correct": "Господь",
-      "case": "Именительный (Nominative)",
-      "translation": "Then Eli understood that the Lord was calling the child.",
-      "explain": "The Lord is the subject of the verb зовет (is calling), requiring nominative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Самуил не знал еще ___.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господем"
-      ],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "Samuel did not yet know the Lord.",
-      "explain": "The verb знать (to know) takes the accusative in modern Russian, but genitive is used here in this biblical translation."
-    },
-    {
-      "id": "c6",
-      "sentence": "Говори, твой слуга слушает ___.",
-      "lemma": "ты",
-      "options": [
-        "ты",
-        "тебя",
-        "тебе",
-        "тобой"
-      ],
-      "correct": "тебя",
-      "case": "Винительный (Accusative)",
-      "translation": "Speak, your servant hears you.",
-      "explain": "The verb слушает (hears/listens to) takes the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Я собираюсь совершить в Израиле такое, отчего у каждого, кто услышит об этом, зазвенит в ___.",
-      "lemma": "ухо",
-      "options": [
-        "ухо",
-        "уха",
-        "уху",
-        "ушах"
-      ],
-      "correct": "ушах",
-      "case": "Предложный (Prepositional)",
-      "translation": "I am about to do something in Israel that will make the ears of everyone who hears it tingle.",
-      "explain": "The preposition в (in) takes the prepositional case for location."
-    },
-    {
-      "id": "c8",
-      "sentence": "Весь Израиль от Дана до Версавии признал, что Самуил — истинный пророк ___.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господе"
-      ],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "All Israel from Dan to Beersheba recognized that Samuel was a true prophet of the Lord.",
-      "explain": "The genitive case marks possession or relationship: 'prophet of the Lord'."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "В те дни слово Господа было редким, нечасты были и видения.",
-      "question": "What was rare during the time Samuel was a boy?",
-      "options": [
-        "God's word and visions",
-        "Priests and sacrifices",
-        "Wars and battles",
-        "Food and water"
-      ],
-      "correct": "God's word and visions",
-      "explain": "The text states that God's word was rare and visions were uncommon in those days."
-    },
-    {
-      "id": "r2",
-      "ru": "Как-то ночью Илий, чьи глаза ослабели настолько, что он едва мог видеть, лежал на своем обычном месте.",
-      "question": "What condition did Eli suffer from?",
-      "options": [
-        "His eyes had grown weak",
-        "He was deaf",
-        "He had broken his leg",
-        "He suffered from fever"
-      ],
-      "correct": "His eyes had grown weak",
-      "explain": "The text says his eyes had become so dim that he could barely see."
-    },
-    {
-      "id": "r3",
-      "ru": "Самуил не знал еще Господа, слово Господа еще не открывалось ему.",
-      "question": "What did the text reveal about Samuel's knowledge at this time?",
-      "options": [
-        "He did not yet know the Lord; God's word had not been revealed to him",
-        "He knew God but had never heard His voice",
-        "He was afraid of God's word",
-        "He refused to listen to God"
-      ],
-      "correct": "He did not yet know the Lord; God's word had not been revealed to him",
-      "explain": "The passage explicitly states Samuel did not know the Lord and God's word had not been revealed to him."
-    },
-    {
-      "id": "r4",
-      "ru": "Иди и ложись, и если он позовет тебя, скажи, «Говори, Господи, твой слуга слушает тебя».",
-      "question": "What did Eli instruct Samuel to say if called again?",
-      "options": [
-        "Speak, Lord; your servant is listening",
-        "What do you want from me, Lord?",
-        "I am here, who calls?",
-        "I am afraid to respond"
-      ],
-      "correct": "Speak, Lord; your servant is listening",
-      "explain": "Eli told Samuel to say 'Speak, Lord; your servant hears you.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Господь был Самуилом, когда тот вырос, и не оставил несбывшимся ни одного из его слов.",
-      "question": "What happened to Samuel's words as he grew?",
-      "options": [
-        "None of his words failed",
-        "All his words came true",
-        "The Lord was with him and did not let any of his words fail",
-        "Everyone believed what he said"
-      ],
-      "correct": "The Lord was with him and did not let any of his words fail",
-      "explain": "The text states God was with Samuel and did not let any of his words fall to the ground."
-    },
-    {
-      "id": "r6",
-      "ru": "Весь Израиль от Дана до Версавии признал, что Самуил — истинный пророк Господа.",
-      "question": "How widely was Samuel recognized as a prophet?",
-      "options": [
-        "Throughout all Israel from Dan to Beersheba",
-        "Only in his hometown",
-        "Only by the priests",
-        "Among foreign nations"
-      ],
-      "correct": "Throughout all Israel from Dan to Beersheba",
-      "explain": "All Israel from Dan to Beersheba recognized Samuel as a true prophet of the Lord."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Как-то ночью Илий, чьи глаза ослабели настолько, что он едва мог видеть, лежал на своем ___.",
+   "lemma": "место",
+   "options": [
+    "обычным местом",
+    "обычному месту",
+    "обычное место",
+    "обычном месте"
+   ],
+   "correct": "обычном месте",
+   "case": "Предложный (Prepositional)",
+   "explain": "«обычном месте» — after the preposition «на», for location or topic.",
+   "id": "c1",
+   "translation": "At that time, when Eli was laid down in his place (now his eyes had begun to grow dim, so that he could not see),"
+  },
+  {
+   "sentence": "Весь Израиль от Дана до Вирсавии признал, что Самуил − ___ Господа.",
+   "lemma": "пророк",
+   "options": [
+    "истинным пророком",
+    "истинного пророка",
+    "истинный пророк",
+    "истинному пророку"
+   ],
+   "correct": "истинный пророк",
+   "case": "Именительный (Nominative)",
+   "explain": "«истинный пророк» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "All Israel from Dan even to Beersheba knew that Samuel was established to be a prophet of Yahweh."
+  }
+ ]
 }

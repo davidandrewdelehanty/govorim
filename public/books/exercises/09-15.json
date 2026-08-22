@@ -1,134 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Самуил сказал Саулу о мести ___ Господом.",
-      "lemma": "амаликитянин",
-      "options": ["амаликитяне", "амаликитян", "амаликитянам", "амаликитянами"],
-      "correct": "амаликитян",
-      "case": "Родительный (Genitive)",
-      "translation": "Samuel told Saul about vengeance against the Amalekites by the Lord.",
-      "explain": "The preposition против (against) or the sense of vengeance 'upon' requires the genitive case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Саул разбил ___ на всем пути от Хавилы до Шура.",
-      "lemma": "амаликитянин",
-      "options": ["амаликитяне", "амаликитян", "амаликитянам", "амаликитянами"],
-      "correct": "амаликитян",
-      "case": "Винительный (Accusative)",
-      "translation": "Saul defeated the Amalekites along the entire route from Havilah to Shur.",
-      "explain": "The transitive verb разбил (defeated) governs the accusative case for its direct object."
-    },
-    {
-      "id": "c3",
-      "sentence": "Он взял Агага, ___ амаликитян, живым.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царя",
-      "case": "Винительный (Accusative)",
-      "translation": "He took Agag, the king of the Amalekites, alive.",
-      "explain": "The direct object of the verb взял (took) is in the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Саул и его войско пощадили Агага, ___ амаликитян.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царя",
-      "case": "Винительный (Accusative)",
-      "translation": "Saul and his army spared Agag, king of the Amalekites.",
-      "explain": "Agag as the direct object of the verb пощадили (spared) is in the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Но Саул и его войско пощадили лучших овец и валов, как добычу ___.",
-      "lemma": "война",
-      "options": ["война", "войны", "войне", "войну"],
-      "correct": "войны",
-      "case": "Родительный (Genitive)",
-      "translation": "But Saul and his army spared the best sheep and cattle as spoils of war.",
-      "explain": "The genitive case with добычу (spoils) shows possession or relation."
-    },
-    {
-      "id": "c6",
-      "sentence": "Слово Господа пришло к ___, говоря я жалею о Сауле.",
-      "lemma": "Самуил",
-      "options": ["Самуил", "Самуила", "Самуилу", "Самуилом"],
-      "correct": "Самуилу",
-      "case": "Дательный (Dative)",
-      "translation": "The word of the Lord came to Samuel, saying I regret Saul.",
-      "explain": "The preposition к (to) with a person governs the dative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Самуил разгневался и всю ночь взывал к ___ в слезах.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господу",
-      "case": "Дательный (Dative)",
-      "translation": "Samuel was angry and cried out to the Lord all night.",
-      "explain": "The verb взывал (cried out) with the preposition к requires the dative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Тогда Самуил сказал, «Разве всесожжение и жертвы столь же приятны ___, как послушание?»",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господу",
-      "case": "Дательный (Dative)",
-      "translation": "Then Samuel said, 'Are burnt offerings and sacrifices as pleasing to the Lord as obedience?'",
-      "explain": "The adjective приятны (pleasing) with a person requires the dative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Саул разбил амаликитян на всем пути от Хавилы до самого Шура, что в Восточном Египте.",
-      "question": "How far did Saul's victory over the Amalekites extend?",
-      "options": ["From Havilah to Shur in Eastern Egypt", "From Jerusalem to Gath", "From Carmel to the sea", "Along the entire Jordan valley"],
-      "correct": "From Havilah to Shur in Eastern Egypt",
-      "explain": "The text states that Saul defeated the Amalekites 'на всем пути от Хавилы до самого Шура, что в Восточном Египте.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Но Саул и его войско пощадили Агага. Они также оставили лучших овец и валов, жирных телят и игнят, все, что было ценно.",
-      "question": "What did Saul and his army refuse to destroy?",
-      "options": ["Agag and the best of the livestock", "All of the soldiers", "The captured women and children", "The tents and baggage"],
-      "correct": "Agag and the best of the livestock",
-      "explain": "Saul and his army spared Agag and the finest sheep, cattle, calves, and lambs—everything of value."
-    },
-    {
-      "id": "r3",
-      "ru": "Самуил разгневался и всю ночь взывал Господу.",
-      "question": "How did Samuel respond to news that Saul had disobeyed?",
-      "options": ["He became angry and cried out to the Lord all night", "He accepted Saul's explanation", "He went back to sleep", "He immediately forgave Saul"],
-      "correct": "He became angry and cried out to the Lord all night",
-      "explain": "The text says 'Самуил разгневался и всю ночь взывал Господу' — Samuel was angry and called out to the Lord all night."
-    },
-    {
-      "id": "r4",
-      "ru": "Самуил сказал. «Не стал ли ты главой родов Израиля, хотя сам когда-то невысоко себя ставил?»",
-      "question": "What did Samuel remind Saul about his former status?",
-      "options": ["That Saul was made head of the tribes of Israel though he was humble", "That Saul was the bravest of all soldiers", "That Saul was born a king", "That Saul had always been powerful"],
-      "correct": "That Saul was made head of the tribes of Israel though he was humble",
-      "explain": "Samuel told Saul 'Не стал ли ты главой родов Израиля, хотя сам когда-то невысоко себя ставил?' — Were you not made head of the tribes of Israel, though you were humble of heart?"
-    },
-    {
-      "id": "r5",
-      "ru": "Разве всесожжение и жертвы столь же приятны Господу, сколь послушание голосу Господа? Послушание лучше жертвы, и повиновение лучше жира баранов.",
-      "question": "What did Samuel say was better than sacrifices?",
-      "options": ["Obedience to the Lord's voice", "Building a temple", "Gathering riches", "Making a treaty"],
-      "correct": "Obedience to the Lord's voice",
-      "explain": "Samuel declared 'Послушание лучше жертвы, и повиновение лучше жира баранов' — Obedience is better than sacrifice, and submission better than the fat of rams."
-    },
-    {
-      "id": "r6",
-      "ru": "Саул сказал, сегодня я нарушил наставления Господа и твои слова, потому что я боялся народа и уступил им.",
-      "question": "Why did Saul say he disobeyed God's command?",
-      "options": ["He feared the people and obeyed their voice", "He did not understand the command", "He wanted to keep the treasure", "He forgot what God had said"],
-      "correct": "He feared the people and obeyed their voice",
-      "explain": "Saul admitted 'я боялся народа и уступил им' — I feared the people and obeyed their voice."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Не щади их; предай смерти мужчин и женщин, детей и ___, волов и овец, верблюдов и ослов».",
+   "lemma": "младенец",
+   "options": [
+    "грудным младенцам",
+    "грудных младенцев",
+    "грудных младенцах",
+    "грудными младенцами"
+   ],
+   "correct": "грудных младенцев",
+   "case": "Родительный (Genitive)",
+   "explain": "«грудных младенцев» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "Now go and strike Amalek, and utterly destroy all that they have, and don’t spare them; but kill both man and woman, infant and nursing baby, ox and sheep, camel and donkey.’ ”"
+  },
+  {
+   "sentence": "Саул призвал народ и собрал их в Телаиме − двести тысяч ___ и десять тысяч воинов из рода Иуды.",
+   "lemma": "воин",
+   "options": [
+    "пеших воинах",
+    "пешими воинами",
+    "пеших воинов",
+    "пешие воины"
+   ],
+   "correct": "пеших воинов",
+   "case": "Родительный (Genitive)",
+   "explain": "«пеших воинов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "Saul summoned the people, and counted them in Telaim, two hundred thousand footmen, and ten thousand men of Judah."
+  },
+  {
+   "sentence": "Они также оставили лучших овец и волов, ___ и ягнят − все, что было ценно; они не хотели все это уничтожать.",
+   "lemma": "телёнок",
+   "options": [
+    "жирные телята",
+    "жирным телятам",
+    "жирными телятами",
+    "жирных телят"
+   ],
+   "correct": "жирных телят",
+   "case": "Родительный (Genitive)",
+   "explain": "«жирных телят» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "But Saul and the people spared Agag, and the best of the sheep, of the cattle, and of the fat calves, and the lambs, and all that was good, and were not willing to utterly destroy them; but everything that was vile and refuse, that they destroyed utterly."
+  },
+  {
+   "sentence": "Господь послал тебя с поручением, говоря: «Пойди и полностью истреби этот ___ — амаликитян.",
+   "lemma": "народ",
+   "options": [
+    "нечестивый народ",
+    "нечестивому народу",
+    "нечестивого народа",
+    "нечестивом народе"
+   ],
+   "correct": "нечестивый народ",
+   "case": "Именительный (Nominative)",
+   "explain": "«нечестивый народ» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "and Yahweh sent you on a journey, and said, ‘Go, and utterly destroy the sinners the Amalekites, and fight against them until they are consumed.’"
+  },
+  {
+   "sentence": "Когда Самуил повернулся, чтобы уйти, Саул схватил его за край ___, и она порвалась.",
+   "lemma": "одежда",
+   "options": [
+    "верхней одеждой",
+    "верхней одежды",
+    "верхняя одежда",
+    "верхней одежде"
+   ],
+   "correct": "верхней одежды",
+   "case": "Родительный (Genitive)",
+   "explain": "«верхней одежды» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "As Samuel turned around to go away, Saul grabbed the skirt of his robe, and it tore."
+  }
+ ]
 }

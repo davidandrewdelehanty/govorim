@@ -1,204 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "После того, как Давид поселился в своем ___, он сказал пророку Нафану.",
-      "lemma": "дворец",
-      "options": [
-        "дворец",
-        "дворца",
-        "дворцу",
-        "дворце"
-      ],
-      "correct": "дворце",
-      "case": "Предложный (Prepositional)",
-      "translation": "After David settled in his palace, he said to the prophet Nathan.",
-      "explain": "The preposition в (in) with a location governs the prepositional case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Смотри, я живу во ___ из кедра, а ковчег Господнего Завета стоит под шатром.",
-      "lemma": "дворец",
-      "options": [
-        "дворец",
-        "дворца",
-        "дворцу",
-        "дворце"
-      ],
-      "correct": "дворце",
-      "case": "Предложный (Prepositional)",
-      "translation": "Behold, I dwell in a house of cedar, but the ark of the Lord's covenant is in a tent.",
-      "explain": "The preposition во (in) with a location governs the prepositional case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Я не жил в ___ с того дня, как вывел израилетян из Египта и до сегодняшнего дня.",
-      "lemma": "дом",
-      "options": [
-        "дом",
-        "дома",
-        "дому",
-        "доме"
-      ],
-      "correct": "доме",
-      "case": "Предложный (Prepositional)",
-      "translation": "I have not lived in a house since the day I brought Israel out of Egypt until this day.",
-      "explain": "The preposition в (in) with a location governs the prepositional case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я взял тебя, когда ты смотрел и ухаживал на пастбище за ___, чтобы ты стал правителем моего народа Израиля.",
-      "lemma": "овца",
-      "options": [
-        "овца",
-        "овцы",
-        "овце",
-        "овцой"
-      ],
-      "correct": "овцой",
-      "case": "Творительный (Instrumental)",
-      "translation": "I took you from the pasture, from following the sheep, to be prince over my people Israel.",
-      "explain": "The preposition за (following/after) governs the instrumental case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Я был с тобой, куда бы ты ни ходил, и сокрушил перед тобой твоего ___.",
-      "lemma": "враг",
-      "options": [
-        "враг",
-        "врага",
-        "врагу",
-        "врагом"
-      ],
-      "correct": "врага",
-      "case": "Винительный (Accusative)",
-      "translation": "I have been with you wherever you have gone, and have cut off your enemy from before you.",
-      "explain": "The direct object of the verb сокрушил (cut off) stands in the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Я упрочу его ___ навеки.",
-      "lemma": "престол",
-      "options": [
-        "престол",
-        "престола",
-        "престолу",
-        "престоле"
-      ],
-      "correct": "престол",
-      "case": "Винительный (Accusative)",
-      "translation": "I will establish his throne forever.",
-      "explain": "The direct object of the verb упрочу (establish) stands in the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Я не отниму от него своей милости, как отнял ее от твоего ___.",
-      "lemma": "предшественник",
-      "options": [
-        "предшественник",
-        "предшественника",
-        "предшественнику",
-        "предшественнике"
-      ],
-      "correct": "предшественника",
-      "case": "Родительный (Genitive)",
-      "translation": "I will not take my loving kindness away from him, as I took it from the one who was before you.",
-      "explain": "The preposition от (from) governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Тогда царь Давид вошел, сел перед Господом и сказал, «Кто я, Господи Боже, и что такое моя ___, что ты так возвеличил меня?»",
-      "lemma": "семья",
-      "options": [
-        "семья",
-        "семьи",
-        "семье",
-        "семью"
-      ],
-      "correct": "семья",
-      "case": "Именительный (Nominative)",
-      "translation": "Then King David went in and sat before Yahweh, and said, 'Who am I, Yahweh God, and what is my house, that you have brought me this far?'",
-      "explain": "The subject of the understood verb stands in the nominative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "После того, как Давид поселился в своем дворце, он сказал пророку Нафану, «Смотри, я живу во дворце из кедра, а ковчег Господнего Завета стоит под шатром».",
-      "question": "What did David point out to the prophet Nathan?",
-      "options": [
-        "That he lived in a cedar palace while the ark of the covenant was under a tent",
-        "That he wanted to build a new palace",
-        "That he needed the prophet's blessing",
-        "That the tent was too old"
-      ],
-      "correct": "That he lived in a cedar palace while the ark of the covenant was under a tent",
-      "explain": "я живу во дворце из кедра, а ковчег Господнего Завета стоит под шатром."
-    },
-    {
-      "id": "r2",
-      "ru": "Я взял тебя, когда ты смотрел и ухаживал на пастбище за овцами, чтобы ты стал правителем моего народа Израиля.",
-      "question": "How did God describe taking David from his former occupation?",
-      "options": [
-        "From following sheep in the pasture to be prince over Israel",
-        "From the city to be a judge",
-        "From the temple to be a priest",
-        "From the army to be a general"
-      ],
-      "correct": "From following sheep in the pasture to be prince over Israel",
-      "explain": "Я взял тебя, когда ты смотрел и ухаживал на пастбище за овцами, чтобы ты стал правителем."
-    },
-    {
-      "id": "r3",
-      "ru": "Я устрою место для своего народа Израиля и укореню его, чтобы ему иметь свой дом и никто его больше не тревожил.",
-      "question": "What did God promise to do for Israel?",
-      "options": [
-        "Appoint a place for Israel, plant them so they could have their own home and no one would bother them",
-        "Give them riches and gold",
-        "Make them rulers over other nations",
-        "Provide them with chariots and weapons"
-      ],
-      "correct": "Appoint a place for Israel, plant them so they could have their own home and no one would bother them",
-      "explain": "Я устрою место для своего народа Израиля и укореню его, чтобы ему иметь свой дом."
-    },
-    {
-      "id": "r4",
-      "ru": "Он построит мне дом, и я упрочу его престол навеки.",
-      "question": "What did God promise David's son would do?",
-      "options": [
-        "Build a house for God and have his throne established forever",
-        "Make great conquests in battle",
-        "Lead a rebellion against foreign powers",
-        "Write the laws of Israel"
-      ],
-      "correct": "Build a house for God and have his throne established forever",
-      "explain": "Он построит мне дом, и я упрочу его престол навеки."
-    },
-    {
-      "id": "r5",
-      "ru": "Кто я, Господи Боже, и что такое моя семья, что ты так возвеличил меня?",
-      "question": "What does David ask the Lord about himself after receiving these promises?",
-      "options": [
-        "Who he is and what his house is that God has exalted him so greatly",
-        "Whether he should build a temple",
-        "How many enemies he would defeat",
-        "What offerings he should make"
-      ],
-      "correct": "Who he is and what his house is that God has exalted him so greatly",
-      "explain": "Кто я, Господи Боже, и что такое моя семья, что ты так возвеличил меня?"
-    },
-    {
-      "id": "r6",
-      "ru": "Господи, нет подобного Тебе, и нет Бога, кроме Тебя, как слышали мы своими ушами.",
-      "question": "What does David affirm about God in his prayer?",
-      "options": [
-        "That there is no one like the Lord and no God besides Him, as they have heard",
-        "That God should be feared above all things",
-        "That God demands sacrifices",
-        "That God is remote and distant"
-      ],
-      "correct": "That there is no one like the Lord and no God besides Him, as they have heard",
-      "explain": "Господи, нет подобного Тебе, и нет Бога, кроме Тебя."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "В ту ночь к Нафану было ___:",
+   "lemma": "слово",
+   "options": [
+    "божьим словом",
+    "божье слово",
+    "божьему слову",
+    "божьего слова"
+   ],
+   "correct": "божье слово",
+   "case": "Именительный (Nominative)",
+   "explain": "«Божье слово» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "That same night, the word of God came to Nathan, saying,"
+  },
+  {
+   "sentence": "Я не жил в доме с того дня, как вывел израильтян из Египта и до ___, но ходил из шатра в шатер, из одного места в другое.",
+   "lemma": "день",
+   "options": [
+    "сегодняшний день",
+    "сегодняшнему дню",
+    "сегодняшнего дня",
+    "сегодняшнем дне"
+   ],
+   "correct": "сегодняшнего дня",
+   "case": "Родительный (Genitive)",
+   "explain": "«сегодняшнего дня» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "for I have not lived in a house since the day that I brought up Israel to this day, but have gone from tent to tent, and from one tent to another."
+  },
+  {
+   "sentence": "Я уподоблю твое имя именам ___ земли.",
+   "lemma": "человек",
+   "options": [
+    "великими людьми",
+    "великие люди",
+    "великих людях",
+    "великих людей"
+   ],
+   "correct": "великих людей",
+   "case": "Родительный (Genitive)",
+   "explain": "«великих людей» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "I have been with you wherever you have gone, and have cut off all your enemies from before you. I will make you a name like the name of the great ones who are in the earth."
+  },
+  {
+   "sentence": "Ради Твоего слуги и по Твоей воле Ты совершил это великое дело и дал все эти ___.",
+   "lemma": "обещание",
+   "options": [
+    "великих обещаний",
+    "великим обещаниям",
+    "великих обещаниях",
+    "великие обещания"
+   ],
+   "correct": "великие обещания",
+   "case": "Винительный (Accusative)",
+   "explain": "«великие обещания» — the accusative marks the direct object of the verb.",
+   "id": "c4",
+   "translation": "What can David say yet more to you concerning the honor which is done to your servant? For you know your servant."
+  }
+ ]
 }

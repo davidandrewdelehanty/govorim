@@ -1,174 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Есфирь встала во ___ дворца",
-      "lemma": "царица",
-      "options": [
-        "царица",
-        "царицы",
-        "царице",
-        "царицу"
-      ],
-      "correct": "царице",
-      "case": "Предложный (Prepositional)",
-      "translation": "Есфирь встала во царице дворца",
-      "explain": "The preposition во indicates location, governing the prepositional case."
-    },
-    {
-      "id": "c2",
-      "sentence": "протянул к ней золотой ___",
-      "lemma": "скипетр",
-      "options": [
-        "скипетр",
-        "скипетра",
-        "скипетру",
-        "скипетром"
-      ],
-      "correct": "скипетр",
-      "case": "Винительный (Accusative)",
-      "translation": "протянул к ней золотой скипетр",
-      "explain": "The direct object of протянул takes the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "на ___ , который я устроила",
-      "lemma": "пир",
-      "options": [
-        "пир",
-        "пира",
-        "пиру",
-        "пиром"
-      ],
-      "correct": "пир",
-      "case": "Винительный (Accusative)",
-      "translation": "на пир , который я устроила",
-      "explain": "The preposition на with motion governs the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Когда они пили ___",
-      "lemma": "вино",
-      "options": [
-        "вино",
-        "вина",
-        "вину",
-        "вином"
-      ],
-      "correct": "вино",
-      "case": "Винительный (Accusative)",
-      "translation": "Когда они пили вино",
-      "explain": "The direct object of пили takes the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Какова твоя ___?",
-      "lemma": "просьба",
-      "options": [
-        "просьба",
-        "просьбы",
-        "просьбе",
-        "просьбу"
-      ],
-      "correct": "просьба",
-      "case": "Именительный (Nominative)",
-      "translation": "Какова твоя просьба?",
-      "explain": "Просьба is the nominative predicate."
-    },
-    {
-      "id": "c7",
-      "sentence": "Вели построить ___ , пятидесяти локтей высотой",
-      "lemma": "виселица",
-      "options": [
-        "виселица",
-        "виселицы",
-        "виселице",
-        "виселицу"
-      ],
-      "correct": "виселицу",
-      "case": "Винительный (Accusative)",
-      "translation": "Вели построить виселицу , пятидесяти локтей высотой",
-      "explain": "The direct object of построить takes the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "И вот на третий день Исфирь надела свои царские одежды",
-      "question": "When did Esther put on her royal clothes?",
-      "options": [
-        "On the third day",
-        "The first day",
-        "The seventh day",
-        "The tenth day"
-      ],
-      "correct": "On the third day",
-      "explain": "The text states: И вот на третий день Исфирь надела свои царские одежды..."
-    },
-    {
-      "id": "r2",
-      "ru": "Царь сидел на своем троне в зале, лицом ко входу",
-      "question": "How was the king positioned?",
-      "options": [
-        "Sitting on his throne facing the entrance",
-        "Standing",
-        "Walking",
-        "Lying down"
-      ],
-      "correct": "Sitting on his throne facing the entrance",
-      "explain": "The text states: Царь сидел на своем троне в зале, лицом ко входу..."
-    },
-    {
-      "id": "r3",
-      "ru": "он протянул к ней золотой скипетр, который был у него в руке",
-      "question": "What did the king extend to Esther?",
-      "options": [
-        "His golden scepter",
-        "His hand",
-        "A crown",
-        "A robe"
-      ],
-      "correct": "His golden scepter",
-      "explain": "The text states: он протянул к ней золотой скипетр, который был у него в руке..."
-    },
-    {
-      "id": "r4",
-      "ru": "Аман вышел в тот день веселый и в прекрасном настроении",
-      "question": "How was Haman feeling?",
-      "options": [
-        "Happy and in good spirits",
-        "Angry",
-        "Afraid",
-        "Tired"
-      ],
-      "correct": "Happy and in good spirits",
-      "explain": "The text states: Аман вышел в тот день веселый и в прекрасном настроении..."
-    },
-    {
-      "id": "r5",
-      "ru": "Но, увидев у царских ворот Мордахея и заметив, что тот не встал и не выказал страха, он разозлился",
-      "question": "Why was Haman angry?",
-      "options": [
-        "Because Mordecai did not show respect",
-        "Because Esther was late",
-        "Because the king was rude",
-        "Because his wife was unhappy"
-      ],
-      "correct": "Because Mordecai did not show respect",
-      "explain": "The text states: Но, увидев у царских ворот Мордахея и заметив, что тот не вс..."
-    },
-    {
-      "id": "r6",
-      "ru": "Вели построить виселицу, пятидесяти локтей высотой",
-      "question": "What did Haman's wife and friends suggest?",
-      "options": [
-        "Build a gallows to hang Mordecai",
-        "Kill Mordecai secretly",
-        "Ignore Mordecai",
-        "Leave the city"
-      ],
-      "correct": "Build a gallows to hang Mordecai",
-      "explain": "The text states: Вели построить виселицу, пятидесяти локтей высотой..."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "И вот, на третий день Есфирь надела свои ___ и встала во внутреннем дворе дворца, напротив царского тронного зала.",
+   "lemma": "одежда",
+   "options": [
+    "царских одежд",
+    "царских одеждах",
+    "царские одежды",
+    "царским одеждам"
+   ],
+   "correct": "царские одежды",
+   "case": "Винительный (Accusative)",
+   "explain": "«царские одежды» — the accusative marks the direct object of the verb.",
+   "id": "c2",
+   "translation": "Now on the third day, Esther put on her royal clothing, and stood in the inner court of the king’s house, next to the king’s house. The king sat on his royal throne in the royal house, next to the entrance of the house."
+  },
+  {
+   "sentence": "И вот, на третий день Есфирь надела свои царские одежды и встала во ___ дворца, напротив царского тронного зала.",
+   "lemma": "двор",
+   "options": [
+    "внутреннего двора",
+    "внутреннему двору",
+    "внутреннем дворе",
+    "внутренний двор"
+   ],
+   "correct": "внутреннем дворе",
+   "case": "Предложный (Prepositional)",
+   "explain": "«внутреннем дворе» — after the preposition «во», for location or topic.",
+   "id": "c3",
+   "translation": "Now on the third day, Esther put on her royal clothing, and stood in the inner court of the king’s house, next to the king’s house. The king sat on his royal throne in the royal house, next to the entrance of the house."
+  },
+  {
+   "sentence": "И вот, на третий день Есфирь надела свои царские одежды и встала во внутреннем дворе дворца, напротив царского ___.",
+   "lemma": "зал",
+   "options": [
+    "тронного зала",
+    "тронном зале",
+    "тронным залом",
+    "тронному залу"
+   ],
+   "correct": "тронного зала",
+   "case": "Родительный (Genitive)",
+   "explain": "«тронного зала» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "Now on the third day, Esther put on her royal clothing, and stood in the inner court of the king’s house, next to the king’s house. The king sat on his royal throne in the royal house, next to the entrance of the house."
+  },
+  {
+   "sentence": "Аман вышел в тот день веселый и в ___.",
+   "lemma": "настроение",
+   "options": [
+    "прекрасном настроении",
+    "прекрасным настроением",
+    "прекрасному настроению",
+    "прекрасного настроения"
+   ],
+   "correct": "прекрасном настроении",
+   "case": "Предложный (Prepositional)",
+   "explain": "«прекрасном настроении» — after the preposition «в», for location or topic.",
+   "id": "c6",
+   "translation": "Then Haman went out that day joyful and glad of heart, but when Haman saw Mordecai in the king’s gate, that he didn’t stand up nor move for him, he was filled with wrath against Mordecai."
+  }
+ ]
 }

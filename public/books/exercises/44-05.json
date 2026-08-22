@@ -1,204 +1,124 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Анания вместе со своей женой Сапфирой продал свое имение и часть вырученной суммы оставил себе. Остальное же он принес и положил к ногам ___.",
-      "lemma": "апостол",
-      "options": [
-        "апостолов",
-        "апостолом",
-        "апостолу",
-        "апостола"
-      ],
-      "correct": "апостолов",
-      "case": "Родительный (Genitive)",
-      "translation": "The rest he brought and laid at the feet of the apostles.",
-      "explain": "The preposition к (to) governs the dative case in motion contexts, but к ногам апостолов uses genitive after negated 'положить' or in this context as part of an idiomatic prepositional phrase к ногам + genitive."
-    },
-    {
-      "id": "c2",
-      "sentence": "Анания, как это сатана мог завладеть твоим ___?",
-      "lemma": "сердце",
-      "options": [
-        "сердцем",
-        "сердца",
-        "сердцу",
-        "сердце"
-      ],
-      "correct": "сердцем",
-      "case": "Творительный (Instrumental)",
-      "translation": "Ananias, how has Satan filled your heart?",
-      "explain": "The verb завладеть (to seize/fill) governs the instrumental case when expressing what something is filled with."
-    },
-    {
-      "id": "c3",
-      "sentence": "Ты солгал не людям, а ___.",
-      "lemma": "Бог",
-      "options": [
-        "Богу",
-        "Бога",
-        "Богом",
-        "Боге"
-      ],
-      "correct": "Богу",
-      "case": "Дательный (Dative)",
-      "translation": "You lied not to men, but to God.",
-      "explain": "The dative case is used to indicate the indirect object or recipient, especially with the verb солгать (to lie to)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Как только Анания услышал эти слова, он упал ___.",
-      "lemma": "мертвый",
-      "options": [
-        "мертвый",
-        "мертвого",
-        "мертвому",
-        "мертвым"
-      ],
-      "correct": "мертвый",
-      "case": "Именительный (Nominative)",
-      "translation": "As soon as Ananias heard these words, he fell dead.",
-      "explain": "The nominative case is used as a predicate adjective describing the subject after the verb упасть (to fall)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Подошли молодые люди, завернули его тело, вынесли и похоронили. Часа три спустя пришла его ___.",
-      "lemma": "жена",
-      "options": [
-        "жена",
-        "жены",
-        "жене",
-        "жену"
-      ],
-      "correct": "жена",
-      "case": "Именительный (Nominative)",
-      "translation": "Some young men came, wrapped up his body, carried it out and buried it. About three hours later his wife came.",
-      "explain": "The nominative case is used for the grammatical subject of the verb пришла (came)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Скажи мне, вы с мужем за такую-то сумму продали ___?",
-      "lemma": "земля",
-      "options": [
-        "земли",
-        "землю",
-        "земле",
-        "землёй"
-      ],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "Tell me, did you and your husband sell the land for this amount?",
-      "explain": "The direct object of the transitive verb продали (sold) takes the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Что это вы сговорились испытывать ___ Господа?",
-      "lemma": "дух",
-      "options": [
-        "духа",
-        "духу",
-        "духом",
-        "духе"
-      ],
-      "correct": "духа",
-      "case": "Родительный (Genitive)",
-      "translation": "Why have you agreed together to tempt the Spirit of the Lord?",
-      "explain": "The verb испытывать (to tempt) with a direct object can take either accusative or genitive in this context; genitive is used here."
-    },
-    {
-      "id": "c8",
-      "sentence": "Через апостолов в народе совершалось много знамений и чудес. Все верующие собирались вместе в колоннаде ___.",
-      "lemma": "Соломон",
-      "options": [
-        "Соломона",
-        "Соломону",
-        "Соломоном",
-        "Соломоне"
-      ],
-      "correct": "Соломона",
-      "case": "Родительный (Genitive)",
-      "translation": "Through the apostles many signs and wonders were performed among the people. All believers gathered together in Solomon's portico.",
-      "explain": "The possessive genitive case indicates whose portico it is (Solomon's)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Анания и Сапфира Один же человек по имени Анания вместе со своей женой Сапфирой продал свое имение и часть вырученной суммы оставил себе.",
-      "question": "What did Ananias and Sapphira do with the money from selling their property?",
-      "options": [
-        "They gave all of it to the apostles",
-        "They kept part of the money for themselves",
-        "They spent it all immediately",
-        "They hid it in the temple"
-      ],
-      "correct": "They kept part of the money for themselves",
-      "explain": "The text explicitly states 'часть вырученной суммы оставил себе' — he kept part of the proceeds for himself."
-    },
-    {
-      "id": "r2",
-      "ru": "Петр сказал ему. Анания, как это сатана мог завладеть твоим сердцем настолько, что ты солгал Святому Духу и оставил себе часть денег, которые ты получил за проданную землю?",
-      "question": "According to Peter, who caused Ananias to lie?",
-      "options": [
-        "Ananias lied on his own",
-        "Satan filled his heart",
-        "The other apostles pressured him",
-        "His wife convinced him"
-      ],
-      "correct": "Satan filled his heart",
-      "explain": "Peter says 'сатана мог завладеть твоим сердцем' — Satan filled/seized his heart."
-    },
-    {
-      "id": "r3",
-      "ru": "Как только Анания услышал эти слова, он упал мертвым. Все присутствующие сильно испугались.",
-      "question": "What happened to Ananias when he heard Peter's words?",
-      "options": [
-        "He repented and asked for forgiveness",
-        "He fell down dead",
-        "He ran away from the apostles",
-        "He confessed his sin"
-      ],
-      "correct": "He fell down dead",
-      "explain": "The text directly states 'он упал мертвым' — he fell down dead."
-    },
-    {
-      "id": "r4",
-      "ru": "Через апостолов в народе совершалось много знамений и чудес. Все верующие собирались вместе в колоннаде Соломона.",
-      "question": "Where did the believers gather?",
-      "options": [
-        "In the temple treasury",
-        "In the outer courts",
-        "In Solomon's portico",
-        "In the apostles' homes"
-      ],
-      "correct": "In Solomon's portico",
-      "explain": "The text states 'Все верующие собирались вместе в колоннаде Соломона' — believers gathered in Solomon's portico."
-    },
-    {
-      "id": "r5",
-      "ru": "Люди выносили на улицы больных, клали их на носилках и циновках, чтобы хоть тень Петра упала на них, когда он будет проходить мимо.",
-      "question": "Why did people put sick people in the streets?",
-      "options": [
-        "To get them fresh air",
-        "So that Peter's shadow might fall on them as he passed",
-        "To separate them from the well",
-        "To prepare them for the temple"
-      ],
-      "correct": "So that Peter's shadow might fall on them as he passed",
-      "explain": "The text says 'чтобы хоть тень Петра упала на них, когда он будет проходить мимо' — so that even Peter's shadow might fall on them."
-    },
-    {
-      "id": "r6",
-      "ru": "Мы должны больше подчиняться Богу, чем людям. Бог наших отцов воскресил Иисуса, которого вы убили, повесив на дереве.",
-      "question": "What is Peter saying the apostles must do?",
-      "options": [
-        "Obey the council completely",
-        "Obey God rather than men",
-        "Abandon their faith",
-        "Hide from persecution"
-      ],
-      "correct": "Obey God rather than men",
-      "explain": "Peter explicitly states 'Мы должны больше подчиняться Богу, чем людям' — we must obey God rather than men."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Подошли ___, завернули его тело, вынесли и похоронили.",
+   "lemma": "человек",
+   "options": [
+    "молодым людям",
+    "молодые люди",
+    "молодых людей",
+    "молодыми людьми"
+   ],
+   "correct": "молодые люди",
+   "case": "Именительный (Nominative)",
+   "explain": "«молодые люди» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "The young men arose and wrapped him up, and they carried him out and buried him."
+  },
+  {
+   "sentence": "___ вошли и, найдя ее мертвой, вынесли и похоронили ее рядом с мужем.",
+   "lemma": "человек",
+   "options": [
+    "молодыми людьми",
+    "молодые люди",
+    "молодых людях",
+    "молодых людей"
+   ],
+   "correct": "молодые люди",
+   "case": "Именительный (Nominative)",
+   "explain": "«Молодые люди» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "She fell down immediately at his feet and died. The young men came in and found her dead, and they carried her out and buried her by her husband."
+  },
+  {
+   "sentence": "Всей церковью и всеми, кто об этом слышал, овладел ___.",
+   "lemma": "страх",
+   "options": [
+    "великом страхе",
+    "великий страх",
+    "великого страха",
+    "великому страху"
+   ],
+   "correct": "великий страх",
+   "case": "Именительный (Nominative)",
+   "explain": "«великий страх» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "Great fear came on the whole assembly, and on all who heard these things."
+  },
+  {
+   "sentence": "И никто из ___ не решался к ним присоединяться, хотя народ их очень уважал.",
+   "lemma": "человек",
+   "options": [
+    "случайные люди",
+    "случайных людях",
+    "случайных людей",
+    "случайными людьми"
+   ],
+   "correct": "случайных людей",
+   "case": "Родительный (Genitive)",
+   "explain": "«случайных людей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "None of the rest dared to join them, however the people honored them."
+  },
+  {
+   "sentence": "Они приносили больных и одержимых ___, и все исцелялись.",
+   "lemma": "дух",
+   "options": [
+    "нечистыми духами",
+    "нечистых духов",
+    "нечистых духах",
+    "нечистые духи"
+   ],
+   "correct": "нечистыми духами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«нечистыми духами» — the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "The multitude also came together from the cities around Jerusalem, bringing sick people and those who were tormented by unclean spirits: and they were all healed."
+  },
+  {
+   "sentence": "— ___ надежно закрыты, у ворот стоит охрана, но когда мы вошли внутрь, мы никого там не нашли.",
+   "lemma": "ворота",
+   "options": [
+    "тюремным воротам",
+    "тюремные ворота",
+    "тюремных воротах",
+    "тюремных ворот"
+   ],
+   "correct": "тюремные ворота",
+   "case": "Именительный (Nominative)",
+   "explain": "«Тюремные ворота» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "“We found the prison shut and locked, and the guards standing before the doors, but when we opened them, we found no one inside!”"
+  },
+  {
+   "sentence": "Петр и ___ ответили:",
+   "lemma": "апостол",
+   "options": [
+    "другие апостолы",
+    "другими апостолами",
+    "другим апостолам",
+    "других апостолов"
+   ],
+   "correct": "другие апостолы",
+   "case": "Именительный (Nominative)",
+   "explain": "«другие апостолы» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "But Peter and the apostles answered, “We must obey God rather than men."
+  },
+  {
+   "sentence": "Поэтому в ___ вот вам мой совет: оставьте этих людей.",
+   "lemma": "случай",
+   "options": [
+    "данным случаем",
+    "данный случай",
+    "данного случая",
+    "данном случае"
+   ],
+   "correct": "данном случае",
+   "case": "Предложный (Prepositional)",
+   "explain": "«данном случае» — after the preposition «в», for location or topic.",
+   "id": "c9",
+   "translation": "Now I tell you, withdraw from these men, and leave them alone. For if this counsel or this work is of men, it will be overthrown."
+  }
+ ]
 }

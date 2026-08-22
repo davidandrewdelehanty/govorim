@@ -1,134 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Если человек согрешит, промолчав, когда его приведут к ___.",
-      "lemma": "присяга",
-      "options": ["присяга", "присяги", "присяге", "присягой"],
-      "correct": "присяге",
-      "case": "Предложный (Prepositional)",
-      "translation": "If anyone sins by remaining silent when brought to swear an oath.",
-      "explain": "The preposition к (to) can take prepositional case when referring to bringing someone to take an oath."
-    },
-    {
-      "id": "c2",
-      "sentence": "Если человек произносит опрометчивую клятву, сделать что-либо хорошее или злое, о чем только можно безрассудно поклясться, то даже если он не осознает этого, когда поймет, он ___.",
-      "lemma": "виновен",
-      "options": ["виновен", "виновна", "виновно", "виновны"],
-      "correct": "виновен",
-      "case": "Именительный (Nominative)",
-      "translation": "If anyone swears rashly with his lips, and it is hidden from him, when he knows of it, then he will be guilty.",
-      "explain": "After the verb 'будет' (will be), the predicate adjective takes nominative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Если кто-то виновен в этом, пусть открыто признает, в чем согрешил, и в расплату за свой грех приведет Господу для жертвы за грех самку ___.",
-      "lemma": "овца",
-      "options": ["овца", "овцы", "овцу", "овцой"],
-      "correct": "овцу",
-      "case": "Винительный (Accusative)",
-      "translation": "If anyone is guilty, they shall confess their sin and bring a female lamb as a sin offering.",
-      "explain": "The transitive verb приведет (bring) takes the accusative case for its direct object."
-    },
-    {
-      "id": "c4",
-      "sentence": "Если ему непосредством принести овцу, пусть принесет Господу двух горлец или двух молодых голубей как расплату за свой ___.",
-      "lemma": "грех",
-      "options": ["грех", "греха", "греху", "грехом"],
-      "correct": "грех",
-      "case": "Винительный (Accusative)",
-      "translation": "If he cannot afford a lamb, he shall bring two turtledoves or two young pigeons as payment for his sin.",
-      "explain": "After the preposition за (for), accusative is used when referring to the sin being atoned for."
-    },
-    {
-      "id": "c5",
-      "sentence": "Пусть он отдаст их ___, который сначала принесет жертву за грех.",
-      "lemma": "священник",
-      "options": ["священник", "священника", "священнику", "священником"],
-      "correct": "священнику",
-      "case": "Дательный (Dative)",
-      "translation": "He shall give them to the priest, who shall first offer the sin offering.",
-      "explain": "The verb отдаст (give to) takes the dative case for the indirect object."
-    },
-    {
-      "id": "c6",
-      "sentence": "Остаток ___ принадлежит священнику, как в случае с хлебным приношением.",
-      "lemma": "жертва",
-      "options": ["жертва", "жертвы", "жертву", "жертвой"],
-      "correct": "жертвы",
-      "case": "Родительный (Genitive)",
-      "translation": "The remainder of the offering belongs to the priest, as with the meal offering.",
-      "explain": "The possessive construction 'remainder of the offering' uses the genitive case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Если человек совершит проступок, согрешив по неведению против какой-либо из Господних святынь, он должен привести Господу в расплату ___.",
-      "lemma": "баран",
-      "options": ["баран", "барана", "барану", "бараном"],
-      "correct": "барана",
-      "case": "Винительный (Accusative)",
-      "translation": "If anyone commits a trespass by sinning unwittingly concerning Yahweh's holy things, he must bring a ram as restitution.",
-      "explain": "The transitive verb привести (bring) takes the accusative case for the direct object."
-    },
-    {
-      "id": "c8",
-      "sentence": "Это жертва повинности. Он провинился перед ___ и должен возместить нарушение.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господом",
-      "case": "Творительный (Instrumental)",
-      "translation": "It is a trespass offering. The person has sinned against the Lord and must make restitution.",
-      "explain": "The preposition перед (before) takes the instrumental case for indicating guilt before someone."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Если человек согрешит, промолчав, когда его приведут к присяге, чтобы свидетельствовать о том, что он видел или знал, он подлежит наказанию.",
-      "question": "What type of sin was committed if a person remained silent when brought to swear an oath as a witness?",
-      "options": ["They sinned by lying under oath", "They sinned by touching something unclean", "They sinned by remaining silent when required to testify", "They sinned by making a false promise"],
-      "correct": "They sinned by remaining silent when required to testify",
-      "explain": "The text states that remaining silent when brought to testify by oath constitutes a sin."
-    },
-    {
-      "id": "r2",
-      "ru": "Или если человек прикоснется к нечистому, к трупам нечистых диких зверей, или нечистого скота, или нечистых присмыкающихся, даже если не заметит этого, он станет нечистым и будет виновен.",
-      "question": "What makes a person unclean according to this verse?",
-      "options": ["Eating forbidden food", "Touching unclean animals or carcasses, even unknowingly", "Speaking certain words", "Being near a holy place without permission"],
-      "correct": "Touching unclean animals or carcasses, even unknowingly",
-      "explain": "The text lists touching various unclean things, including carcasses of unclean animals, as making a person unclean."
-    },
-    {
-      "id": "r3",
-      "ru": "Если кто-то виновен в этом, пусть открыто признает, в чем согрешил, и в расплату за свой грех приведет Господу для жертвы за грех самку изотары, овцу или козу.",
-      "question": "What was required of someone who was guilty of these sins?",
-      "options": ["Public repentance and fasting for forty days", "Confession of sin and bringing a female animal as an offering", "Isolation from the community for seven days", "Payment of money to the temple treasury"],
-      "correct": "Confession of sin and bringing a female animal as an offering",
-      "explain": "The text explicitly states the guilty person must confess and bring a female animal for a sin offering."
-    },
-    {
-      "id": "r4",
-      "ru": "Если ему непосредством принести овцу, пусть принесет Господу двух горлец или двух молодых голубей как расплату за свой грех.",
-      "question": "What was an alternative offering if someone could not afford a lamb?",
-      "options": ["A tenth of an ephah of fine flour", "Two turtledoves or two young pigeons", "Three birds of any kind", "A monetary payment"],
-      "correct": "Two turtledoves or two young pigeons",
-      "explain": "The verse provides alternatives for poorer individuals: two turtledoves or two young pigeons."
-    },
-    {
-      "id": "r5",
-      "ru": "Он свернет птице голову, не отрывая ее до конца, и окропит кровью жертвы за грех в сторону жертвенника.",
-      "question": "How was the bird offering processed for the sin offering?",
-      "options": ["The bird was completely separated from its head and the blood was poured into a vessel", "The bird's head was wrung off but not completely severed, and blood was sprinkled on the side of the altar", "The bird was burned whole on the altar", "The bird's feathers were removed and the meat was cooked"],
-      "correct": "The bird's head was wrung off but not completely severed, and blood was sprinkled on the side of the altar",
-      "explain": "The text describes wringing the bird's head from its neck without severing it completely and sprinkling its blood on the altar."
-    },
-    {
-      "id": "r6",
-      "ru": "Это жертва повинности. Он провинился перед Господом.",
-      "question": "What is significant about calling this a trespass offering?",
-      "options": ["It applies only to wealthy people", "It is a guilt offering before the Lord for transgressing His holy things", "It must be offered only on specific festivals", "It requires the person to fast for a week"],
-      "correct": "It is a guilt offering before the Lord for transgressing His holy things",
-      "explain": "The text identifies this as a trespass offering showing guilt before the Lord for sins committed."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Или если человек прикоснется к нечистому: к трупам нечистых ___, или нечистого скота, или нечистых пресмыкающихся — даже если не заметит этого, — он станет нечистым и будет виновен.",
+   "lemma": "зверь",
+   "options": [
+    "диких зверей",
+    "дикими зверями",
+    "диких зверях",
+    "дикие звери"
+   ],
+   "correct": "диких зверей",
+   "case": "Родительный (Genitive)",
+   "explain": "«диких зверей» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "“ ‘Or if anyone touches any unclean thing, whether it is the carcass of an unclean animal, or the carcass of unclean livestock, or the carcass of unclean creeping things, and it is hidden from him, and he is unclean, then he shall be guilty."
+  },
+  {
+   "sentence": "Или если человек прикоснется к нечистому: к трупам нечистых диких зверей, или ___, или нечистых пресмыкающихся — даже если не заметит этого, — он станет нечистым и будет виновен.",
+   "lemma": "скот",
+   "options": [
+    "нечистом скоте",
+    "нечистым скотом",
+    "нечистого скота",
+    "нечистый скот"
+   ],
+   "correct": "нечистого скота",
+   "case": "Родительный (Genitive)",
+   "explain": "«нечистого скота» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "“ ‘Or if anyone touches any unclean thing, whether it is the carcass of an unclean animal, or the carcass of unclean livestock, or the carcass of unclean creeping things, and it is hidden from him, and he is unclean, then he shall be guilty."
+  },
+  {
+   "sentence": "Или если он прикоснется к ___ — любой нечистоте, которая его осквернит — даже если не заметит этого, то когда поймет, он будет виновен.",
+   "lemma": "нечистота",
+   "options": [
+    "человеческой нечистотой",
+    "человеческой нечистоты",
+    "человеческой нечистоте",
+    "человеческая нечистота"
+   ],
+   "correct": "человеческой нечистоте",
+   "case": "Дательный (Dative)",
+   "explain": "«человеческой нечистоте» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c3",
+   "translation": "“ ‘Or if he touches the uncleanness of man, whatever his uncleanness is with which he is unclean, and it is hidden from him; when he knows of it, then he shall be guilty."
+  },
+  {
+   "sentence": "Если ему не по средствам принести овцу, пусть принесет Господу двух горлиц или двух ___ как расплату за свой грех: одного в жертву за грех, а другого в жертву всесожжения.",
+   "lemma": "голубь",
+   "options": [
+    "молодыми голубями",
+    "молодым голубям",
+    "молодых голубей",
+    "молодых голубях"
+   ],
+   "correct": "молодых голубей",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодых голубей» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "“ ‘If he can’t afford a lamb, then he shall bring his trespass offering for that in which he has sinned, two turtledoves, or two young pigeons, to Yahweh; one for a sin offering, and the other for a burnt offering."
+  },
+  {
+   "sentence": "Если ему не по средствам принести двух горлиц или двух ___, он должен принести за свой проступок десятую часть ефы лучшей муки в жертву за грех.",
+   "lemma": "голубь",
+   "options": [
+    "молодыми голубями",
+    "молодым голубям",
+    "молодых голубей",
+    "молодых голубях"
+   ],
+   "correct": "молодых голубей",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодых голубей» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "“ ‘But if he can’t afford two turtledoves or two young pigeons, then he shall bring as his offering for that in which he has sinned, one tenth of an ephah of fine flour for a sin offering. He shall put no oil on it, and he shall not put any frankincense on it, for it is a sin offering."
+  },
+  {
+   "sentence": "Пусть он принесет ее к священнику, который возьмет из нее пригоршню как памятную часть и сожжет на жертвеннике вместе с ___ Господу.",
+   "lemma": "жертва",
+   "options": [
+    "огненных жертвах",
+    "огненным жертвам",
+    "огненных жертв",
+    "огненными жертвами"
+   ],
+   "correct": "огненными жертвами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«огненными жертвами» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c6",
+   "translation": "He shall bring it to the priest, and the priest shall take his handful of it as the memorial portion, and burn it on the altar, on the offerings of Yahweh made by fire. It is a sin offering."
+  }
+ ]
 }

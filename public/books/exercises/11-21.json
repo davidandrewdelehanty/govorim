@@ -1,204 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Отдай мне твой ___ под огород.",
-      "lemma": "виноградник",
-      "options": [
-        "виноградник",
-        "виноградника",
-        "винограднику",
-        "виноградником"
-      ],
-      "correct": "виноградник",
-      "case": "Винительный (Accusative)",
-      "translation": "Give me your vineyard for a vegetable garden.",
-      "explain": "The verb \"отдай\" (give) governs the accusative case for the direct object."
-    },
-    {
-      "id": "c2",
-      "sentence": "Не приведи ___, чтобы я отдал наследие отцов.",
-      "lemma": "Бог",
-      "options": [
-        "бог",
-        "бога",
-        "богу",
-        "богом"
-      ],
-      "correct": "бога",
-      "case": "Родительный (Genitive)",
-      "translation": "May God forbid that I give the inheritance of my fathers.",
-      "explain": "The formula \"не приведи Бога\" uses the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Ахав пошел домой мрачный и разгневанный по ___.",
-      "lemma": "слово",
-      "options": [
-        "слово",
-        "слова",
-        "слову",
-        "словом"
-      ],
-      "correct": "слову",
-      "case": "Дательный (Dative)",
-      "translation": "Ahab went home angry because of the word.",
-      "explain": "The preposition \"по\" uses the dative case in \"по слову\" (according to the word)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Он лег в ___, отвернулся и отказывался есть.",
-      "lemma": "постель",
-      "options": [
-        "постель",
-        "постели",
-        "постелю",
-        "постелью"
-      ],
-      "correct": "постель",
-      "case": "Винительный (Accusative)",
-      "translation": "He lay down on his bed and refused to eat.",
-      "explain": "The verb \"лег\" (lay down) governs the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Почему ты не ешь ___?",
-      "lemma": "хлеб",
-      "options": [
-        "хлеб",
-        "хлеба",
-        "хлебу",
-        "хлебом"
-      ],
-      "correct": "хлеб",
-      "case": "Винительный (Accusative)",
-      "translation": "Why are you not eating bread?",
-      "explain": "The verb \"ешь\" (eat) governs the accusative case for the object."
-    },
-    {
-      "id": "c6",
-      "sentence": "Я дам тебе вместо него другой ___.",
-      "lemma": "виноградник",
-      "options": [
-        "виноградник",
-        "виноградника",
-        "винограднику",
-        "виноградником"
-      ],
-      "correct": "виноградник",
-      "case": "Винительный (Accusative)",
-      "translation": "I will give you another vineyard.",
-      "explain": "The verb \"дам\" (I will give) governs the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Она написала письма от лица ___ и разослала старейшинам.",
-      "lemma": "Ахав",
-      "options": [
-        "Ахав",
-        "Ахава",
-        "Ахаву",
-        "Ахавом"
-      ],
-      "correct": "Ахава",
-      "case": "Родительный (Genitive)",
-      "translation": "She wrote letters in Ahab's name and sent them to the elders.",
-      "explain": "The phrase \"от лица\" (in the name of) uses the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Усадите Навота на почетное место среди ___.",
-      "lemma": "народ",
-      "options": [
-        "народ",
-        "народа",
-        "народу",
-        "народе"
-      ],
-      "correct": "народа",
-      "case": "Родительный (Genitive)",
-      "translation": "Seat Naboth in an honored place among the people.",
-      "explain": "The preposition \"среди\" (among) governs the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Навот ответил Ахаву, «Не приведи Господь, чтобы я отдал наследие моих отцов».",
-      "question": "Why did Naboth refuse?",
-      "options": [
-        "It was his family inheritance which he would not give up",
-        "He wanted a higher price",
-        "He planned to build a palace there",
-        "He was already selling it to someone else"
-      ],
-      "correct": "It was his family inheritance which he would not give up",
-      "explain": "Naboth explicitly stated he would not give up the inheritance of his fathers."
-    },
-    {
-      "id": "r2",
-      "ru": "Его жена Изавель сказала, «Разве ты поступаешь, как царь Израиля?»",
-      "question": "What did Jezebel imply?",
-      "options": [
-        "That as king Ahab should be able to get what he wants",
-        "That Ahab was not really king",
-        "That the king should go to war",
-        "That the king should rule with kindness"
-      ],
-      "correct": "That as king Ahab should be able to get what he wants",
-      "explain": "Jezebel's rhetorical question implied that Ahab should act like a king and take what he wanted."
-    },
-    {
-      "id": "r3",
-      "ru": "Она написала письма от лица Ахава, скрепила их его печатью и разослала старейшинам.",
-      "question": "How did Jezebel deceive the elders?",
-      "options": [
-        "She wrote letters in Ahab's name, sealed them with his seal, and sent them",
-        "She told Ahab to write letters himself",
-        "She went personally to speak to the elders",
-        "She bribed the judges to condemn Naboth"
-      ],
-      "correct": "She wrote letters in Ahab's name, sealed them with his seal, and sent them",
-      "explain": "Jezebel forged letters in Ahab's name to deceive the elders into executing Naboth."
-    },
-    {
-      "id": "r4",
-      "ru": "Навот оскорбил и бога, и царя.",
-      "question": "What false accusation was made?",
-      "options": [
-        "He was accused of cursing both God and the king",
-        "He was accused of stealing from the temple",
-        "He was accused of leading a rebellion",
-        "He was accused of witchcraft"
-      ],
-      "correct": "He was accused of cursing both God and the king",
-      "explain": "Two wicked men testified that Naboth had cursed God and the king."
-    },
-    {
-      "id": "r5",
-      "ru": "Вставай и бери себе виноградник Навота из Израиля, который он отказался продать.",
-      "question": "What did Jezebel tell Ahab to do?",
-      "options": [
-        "To go and take possession of Naboth's vineyard",
-        "To offer sacrifices to God",
-        "To punish those who killed Naboth",
-        "To make peace with the people"
-      ],
-      "correct": "To go and take possession of Naboth's vineyard",
-      "explain": "Jezebel told Ahab to get up and take possession of the vineyard."
-    },
-    {
-      "id": "r6",
-      "ru": "Там, где псы лизали кровь Навота, псы будут лизать и твою кровь.",
-      "question": "What was prophesied about Ahab's fate?",
-      "options": [
-        "Dogs would lick his blood where they licked Naboth's",
-        "He would die in battle against the Arameans",
-        "His house would be destroyed by fire",
-        "His family would be exiled"
-      ],
-      "correct": "Dogs would lick his blood where they licked Naboth's",
-      "explain": "Elijah prophesied that dogs would lick Ahab's blood in the same place where they had licked Naboth's blood."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Через некоторое время произошли ___.",
+   "lemma": "событие",
+   "options": [
+    "следующими событиями",
+    "следующих событиях",
+    "следующим событиям",
+    "следующие события"
+   ],
+   "correct": "следующие события",
+   "case": "Именительный (Nominative)",
+   "explain": "«следующие события» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "After these things, Naboth the Jezreelite had a vineyard, which was in Jezreel, next to the palace of Ahab king of Samaria."
+  },
+  {
+   "sentence": "Старейшины со ___, которые жили в городе Навота, сделали так, как приказала им в письмах Иезавель.",
+   "lemma": "человек",
+   "options": [
+    "знатными людьми",
+    "знатным людям",
+    "знатные люди",
+    "знатных людях"
+   ],
+   "correct": "знатными людьми",
+   "case": "Творительный (Instrumental)",
+   "explain": "«знатными людьми» — after the preposition «со», the instrumental marks the means, company, or complement.",
+   "id": "c2",
+   "translation": "The men of his city, even the elders and the nobles who lived in his city, did as Jezebel had instructed them in the letters which she had written and sent to them."
+  },
+  {
+   "sentence": "Я истреблю твоих потомков и искореню у Ахава всякого человека ___ — и раба, и свободного.",
+   "lemma": "пол",
+   "options": [
+    "мужскому полу",
+    "мужской пол",
+    "мужского пола",
+    "мужским полом"
+   ],
+   "correct": "мужского пола",
+   "case": "Родительный (Genitive)",
+   "explain": "«мужского пола» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Behold, I will bring evil on you, and will utterly sweep you away and will cut off from Ahab everyone who urinates against a wall, and him who is shut up and him who is left at large in Israel."
+  }
+ ]
 }

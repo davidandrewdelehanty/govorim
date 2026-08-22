@@ -1,230 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "У Ревекки был ___ по имени Лаван.",
-      "lemma": "брат",
-      "options": ["брат", "брата", "брату", "братом"],
-      "correct": "брат",
-      "case": "Именительный (Nominative)",
-      "translation": "Rebekah had a brother named Laban.",
-      "explain": "Брат is the subject of the existential был, so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Господь, Бог неба, который вывел меня из ___ отца моего...",
-      "lemma": "дом",
-      "options": ["дом", "дома", "дому", "домом"],
-      "correct": "дома",
-      "case": "Родительный (Genitive)",
-      "translation": "The Lord, the God of heaven, who brought me out of my father's house...",
-      "explain": "The preposition из governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Авраам сказал старшему ___ в своем доме, который распоряжался всем, что у него было.",
-      "lemma": "слуга",
-      "options": ["слуга", "слуги", "слуге", "слугу"],
-      "correct": "слуге",
-      "case": "Дательный (Dative)",
-      "translation": "Abraham said to the eldest servant in his house, who managed all that he had.",
-      "explain": "The verb сказать takes its addressee in the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Он опустил ___ на колени у источника за пределами города.",
-      "lemma": "верблюд",
-      "options": ["верблюд", "верблюда", "верблюду", "верблюдом"],
-      "correct": "верблюда",
-      "case": "Винительный (Accusative)",
-      "translation": "He made the camel kneel down by the well outside the city.",
-      "explain": "The verb опустить takes its direct object in the accusative case; being animate, it matches the genitive form."
-    },
-    {
-      "id": "c5",
-      "sentence": "Ревекка вышла к источнику с ___ на плече.",
-      "lemma": "кувшин",
-      "options": ["кувшин", "кувшина", "кувшину", "кувшином"],
-      "correct": "кувшином",
-      "case": "Творительный (Instrumental)",
-      "translation": "Rebekah came out to the spring with a jar on her shoulder.",
-      "explain": "The preposition с ('with') governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Ревекка вышла к источнику с кувшином на ___.",
-      "lemma": "плечо",
-      "options": ["плечо", "плеча", "плечу", "плече"],
-      "correct": "плече",
-      "case": "Предложный (Prepositional)",
-      "translation": "Rebekah came out to the spring with a jar on her shoulder.",
-      "explain": "The preposition на indicating location takes the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Слуга взял десять верблюдов своего ___ и, нагрузив их лучшими подарками, отправился в путь.",
-      "lemma": "господин",
-      "options": ["господин", "господина", "господину", "господином"],
-      "correct": "господина",
-      "case": "Родительный (Genitive)",
-      "translation": "The servant took ten of his master's camels, and loading them with the best gifts, set out on the way.",
-      "explain": "The genitive господина shows possession — 'his master's camels'."
-    },
-    {
-      "id": "c8",
-      "sentence": "Он склонился и восславил ___, сказав, «Хвала Господу, Богу моего господина Авраама».",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господа",
-      "case": "Винительный (Accusative)",
-      "translation": "He bowed down and praised the Lord, saying, 'Praise be to the Lord, the God of my master Abraham.'",
-      "explain": "The verb восславить takes its direct object in the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Авраам был уже стар в преклонных годах, и Господь благословил его во всем.",
-      "question": "What is said about Abraham at the start of the chapter?",
-      "options": ["He was old and the Lord had blessed him in everything", "He was young and childless", "He had just arrived in Canaan", "He was ill and near death"],
-      "correct": "He was old and the Lord had blessed him in everything",
-      "explain": "The text opens saying Abraham was old and the Lord had blessed him in all things."
-    },
-    {
-      "id": "r2",
-      "ru": "Авраам сказал старшему слуге в своем доме, который распоряжался всем, что у него было.",
-      "question": "To whom did Abraham give his instructions?",
-      "options": ["To the eldest servant who managed all he had", "To his son Isaac", "To a Hittite neighbor", "To Abimelech"],
-      "correct": "To the eldest servant who managed all he had",
-      "explain": "Abraham spoke to his eldest servant, who ruled over everything he owned."
-    },
-    {
-      "id": "r3",
-      "ru": "Положи руку мне под бедро и поклянись мне, Господом, Богом неба и Богом земли, что ты не возьмешь моему сыну жены из дочерей хананеев, среди которых я живу",
-      "question": "What did Abraham make the servant swear?",
-      "options": ["Not to take a wife for Isaac from the Canaanites", "To bring Isaac back to Mesopotamia", "To give all his wealth to Isaac immediately", "To never return to Canaan himself"],
-      "correct": "Not to take a wife for Isaac from the Canaanites",
-      "explain": "Abraham made the servant swear not to take a wife for his son from the daughters of the Canaanites."
-    },
-    {
-      "id": "r4",
-      "ru": "Слуга положил руку под бедро своего господина Авраама и поклялся ему.",
-      "question": "How did the servant confirm his oath?",
-      "options": ["He put his hand under Abraham's thigh and swore", "He signed a written contract", "He offered a sacrifice", "He shook Abraham's hand"],
-      "correct": "He put his hand under Abraham's thigh and swore",
-      "explain": "The text says the servant put his hand under his master's thigh and swore to him."
-    },
-    {
-      "id": "r5",
-      "ru": "Потом слуга взял десять верблюдов своего господина и, нагрузив их лучшими подарками, от него отправился в путь.",
-      "question": "What did the servant take with him on the journey?",
-      "options": ["Ten camels loaded with the best gifts", "A chariot and soldiers", "Only a walking staff", "Sheep and goats to trade"],
-      "correct": "Ten camels loaded with the best gifts",
-      "explain": "The text says the servant took ten of his master's camels, loaded with the best gifts."
-    },
-    {
-      "id": "r6",
-      "ru": "Он опустил верблюдов на колени у источника за пределами города. Это было под вечер, когда женщины приходят за водой.",
-      "question": "When did the servant arrive at the well?",
-      "options": ["In the evening, when women come to draw water", "At dawn, before anyone was awake", "At noon, during the hottest hour", "At midnight"],
-      "correct": "In the evening, when women come to draw water",
-      "explain": "The text says it was evening, the time when women come out to draw water."
-    },
-    {
-      "id": "r7",
-      "ru": "Если я скажу девушке, «Пожалуйста, опусти кувшин с плеча, чтобы мне напиться», а она ответит, «Пей, а я напою и твоих верблюдов», то ее ты и назначил для слуги твоего Исаака",
-      "question": "What sign did the servant ask God for to identify the right wife for Isaac?",
-      "options": ["A girl who would offer water to him and his camels", "A girl wearing a specific color", "A girl who would sing a song", "A girl who would be alone at the well"],
-      "correct": "A girl who would offer water to him and his camels",
-      "explain": "The servant prayed that the girl who offered to water him and his camels would be the one appointed for Isaac."
-    },
-    {
-      "id": "r8",
-      "ru": "Она была очень красивая девушка, девственница, которая еще не была с мужчиной.",
-      "question": "How is Rebekah described when she came to the well?",
-      "options": ["Very beautiful and a virgin", "Old and tired", "Wealthy and proud", "Timid and silent"],
-      "correct": "Very beautiful and a virgin",
-      "explain": "The text describes Rebekah as very beautiful, a virgin who had not known a man."
-    },
-    {
-      "id": "r9",
-      "ru": "Она быстро вылила воду из кувшина в поилку, побежала обратно к источнику зачерпнуть еще воды и начерпала для всех его верблюдов.",
-      "question": "What did Rebekah do for the servant's camels?",
-      "options": ["She drew water for all of them", "She fed them straw", "She led them to a stable", "She refused to help him"],
-      "correct": "She drew water for all of them",
-      "explain": "The text says she poured water and ran back to draw more until all the camels had water."
-    },
-    {
-      "id": "r10",
-      "ru": "Когда верблюды напились, тот человек вынул золотую серьгу для носа весом в беку и два золотых браслета весом в десять шекелей",
-      "question": "What gifts did the servant give Rebekah at the well?",
-      "options": ["A gold nose ring and two gold bracelets", "A silver necklace", "A woven robe", "A flock of sheep"],
-      "correct": "A gold nose ring and two gold bracelets",
-      "explain": "The text says the servant took out a gold nose ring and two gold bracelets."
-    },
-    {
-      "id": "r11",
-      "ru": "У Ревекки был брат по имени Лаван.",
-      "question": "Who was Rebekah's brother?",
-      "options": ["Laban", "Nahor", "Bethuel", "Ishmael"],
-      "correct": "Laban",
-      "explain": "The text states Rebekah had a brother named Laban."
-    },
-    {
-      "id": "r12",
-      "ru": "«Пойдем к нам, благословенный Господом», — сказал Лаван.",
-      "question": "How did Laban greet the servant?",
-      "options": ["He invited him in, calling him blessed of the Lord", "He turned him away", "He demanded payment first", "He questioned him harshly"],
-      "correct": "He invited him in, calling him blessed of the Lord",
-      "explain": "Laban said, 'Come in, you blessed of the Lord.'"
-    },
-    {
-      "id": "r13",
-      "ru": "Я не стану есть, пока не расскажу о моем поручении",
-      "question": "What did the servant insist on doing before eating?",
-      "options": ["Telling them his mission", "Washing his feet first", "Praying alone", "Resting from the journey"],
-      "correct": "Telling them his mission",
-      "explain": "The servant said he would not eat until he had told them his errand."
-    },
-    {
-      "id": "r14",
-      "ru": "Жена моего господина Сара родила ему сына в старости, и он завещал ему все, что у него есть",
-      "question": "What did the servant say Abraham had done regarding his inheritance?",
-      "options": ["He willed everything he had to Isaac", "He divided his wealth between his sons", "He gave everything to his servants", "He left nothing to anyone"],
-      "correct": "He willed everything he had to Isaac",
-      "explain": "The servant said Abraham had willed all he had to the son Sarah bore him in her old age."
-    },
-    {
-      "id": "r15",
-      "ru": "Лаван и Битуил ответили, «Это дело от Господа, не нам говорить тебе, да или нет.",
-      "question": "How did Laban and Bethuel respond to the servant's request?",
-      "options": ["They said the matter was from the Lord", "They refused outright", "They asked for a delay of a year", "They demanded a higher price"],
-      "correct": "They said the matter was from the Lord",
-      "explain": "Laban and Bethuel answered that the matter came from the Lord, so they could not say yes or no themselves."
-    },
-    {
-      "id": "r16",
-      "ru": "Они позвали Ревекку и спросили, «Пойдешь с этим человеком?» «Пойду», — ответила она.",
-      "question": "What did Rebekah answer when asked if she would go with the servant?",
-      "options": ["\"I will go.\"", "\"I need more time to decide.\"", "\"No, I want to stay.\"", "She said nothing."],
-      "correct": "\"I will go.\"",
-      "explain": "When asked if she would go with the man, Rebekah answered, 'I will go.'"
-    },
-    {
-      "id": "r17",
-      "ru": "Исаак вернулся из Бер-Лахай-Рои, он жил в Нигеве. И вот вечером он вышел в поле и поднял взгляд и увидел, что идут верблюды.",
-      "question": "What was Isaac doing when he first saw the camels approaching?",
-      "options": ["He went out into the field in the evening", "He was sleeping in his tent", "He was tending sheep", "He was traveling to Beersheba"],
-      "correct": "He went out into the field in the evening",
-      "explain": "The text says Isaac went out into the field in the evening and saw the camels coming."
-    },
-    {
-      "id": "r18",
-      "ru": "Исаак ввел Ревекку в шатер своей матери Сары и взял ее в жены. Она стала его женой, и он полюбил ее. И так Исаак утешился после смерти матери.",
-      "question": "How does the chapter conclude?",
-      "options": ["Isaac married Rebekah, loved her, and was comforted after his mother's death", "Isaac rejected Rebekah at the last moment", "Sarah returned to bless the marriage", "Isaac moved to Egypt with Rebekah"],
-      "correct": "Isaac married Rebekah, loved her, and was comforted after his mother's death",
-      "explain": "The text says Isaac took Rebekah as his wife, loved her, and was comforted after his mother's death."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Авраам был уже стар, в ___, и Господь благословил его во всем.",
+   "lemma": "год",
+   "options": [
+    "преклонные годы",
+    "преклонными годами",
+    "преклонных годах",
+    "преклонным годам"
+   ],
+   "correct": "преклонных годах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«преклонных годах» — after the preposition «в», for location or topic.",
+   "id": "c1",
+   "translation": "Abraham was old, and well advanced in age. Yahweh had blessed Abraham in all things."
+  },
+  {
+   "sentence": "Авраам сказал ___ в своем доме, который распоряжался всем, что у него было:",
+   "lemma": "слуга",
+   "options": [
+    "старшему слуге",
+    "старшего слугу",
+    "старшим слугой",
+    "старшего слуги"
+   ],
+   "correct": "старшему слуге",
+   "case": "Дательный (Dative)",
+   "explain": "«старшему слуге» — the dative marks the indirect object or recipient.",
+   "id": "c2",
+   "translation": "Abraham said to his servant, the elder of his house, who ruled over all that he had, “Please put your hand under my thigh."
+  },
+  {
+   "sentence": "Она была очень ___, девственница, которая еще не была с мужчиной.",
+   "lemma": "девушка",
+   "options": [
+    "красивой девушкой",
+    "красивой девушке",
+    "красивой девушки",
+    "красивая девушка"
+   ],
+   "correct": "красивая девушка",
+   "case": "Именительный (Nominative)",
+   "explain": "«красивая девушка» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "The young lady was very beautiful to look at, a virgin. No man had known her. She went down to the spring, filled her pitcher, and came up."
+  },
+  {
+   "sentence": "Я восхвалил Господа, Бога моего господина Авраама, Который ___ привел меня, чтобы взять внучку брата моего господина в жены его сыну.",
+   "lemma": "дорога",
+   "options": [
+    "верная дорога",
+    "верной дороги",
+    "верной дороге",
+    "верной дорогой"
+   ],
+   "correct": "верной дорогой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«верной дорогой» — the instrumental marks the means, company, or complement.",
+   "id": "c4",
+   "translation": "I asked her, and said, ‘Whose daughter are you?’ She said, ‘The daughter of Bethuel, Nahor’s son, whom Milcah bore to him.’ I put the ring on her nose, and the bracelets on her hands."
+  }
+ ]
 }

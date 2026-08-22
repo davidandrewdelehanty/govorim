@@ -1,204 +1,109 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Затрубил пятый ___.",
-      "lemma": "ангел",
-      "options": [
-        "ангел",
-        "ангела",
-        "ангелу",
-        "ангелом"
-      ],
-      "correct": "ангел",
-      "case": "Именительный (Nominative)",
-      "translation": "The fifth angel sounded.",
-      "explain": "Ангел is the subject of the sentence, requiring the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Звезде был дан ключ от колодца ___.",
-      "lemma": "бездна",
-      "options": [
-        "бездна",
-        "бездны",
-        "бездне",
-        "бездной"
-      ],
-      "correct": "бездны",
-      "case": "Родительный (Genitive)",
-      "translation": "The key to the pit of the abyss was given to the star.",
-      "explain": "After the preposition от (from/of), the genitive case is required."
-    },
-    {
-      "id": "c3",
-      "sentence": "От дыма потемнели солнце и ___.",
-      "lemma": "небо",
-      "options": [
-        "небо",
-        "неба",
-        "небу",
-        "небом"
-      ],
-      "correct": "небо",
-      "case": "Именительный (Nominative)",
-      "translation": "The sun and sky darkened from the smoke.",
-      "explain": "Небо is part of a compound subject with солнце (sun), so it takes the nominative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Саранче была дана власть, какую имеют на земле ___.",
-      "lemma": "скорпион",
-      "options": [
-        "скорпион",
-        "скорпиона",
-        "скорпионы",
-        "скорпионом"
-      ],
-      "correct": "скорпионы",
-      "case": "Именительный (Nominative)",
-      "translation": "The locusts were given power like that of scorpions.",
-      "explain": "After the verb имеют (have), the nominative case is used for the direct object."
-    },
-    {
-      "id": "c5",
-      "sentence": "Ей было запрещено причинять вред земной траве и любому ___.",
-      "lemma": "дерево",
-      "options": [
-        "дерево",
-        "дерева",
-        "дереву",
-        "деревом"
-      ],
-      "correct": "дереву",
-      "case": "Дательный (Dative)",
-      "translation": "It was forbidden to harm the grass and any tree.",
-      "explain": "The verb вредить takes the dative case for the thing being harmed."
-    },
-    {
-      "id": "c6",
-      "sentence": "И люди мучились от боли, которая была как от укусов ___.",
-      "lemma": "скорпион",
-      "options": [
-        "скорпион",
-        "скорпиона",
-        "скорпионов",
-        "скорпионом"
-      ],
-      "correct": "скорпиона",
-      "case": "Родительный (Genitive)",
-      "translation": "People suffered torment like from the sting of a scorpion.",
-      "explain": "After the preposition от (from), the genitive case is required."
-    },
-    {
-      "id": "c7",
-      "sentence": "Саранча была похожа на боевых коней, готовых к ___.",
-      "lemma": "сражение",
-      "options": [
-        "сражение",
-        "сражения",
-        "сражению",
-        "сражением"
-      ],
-      "correct": "сражению",
-      "case": "Дательный (Dative)",
-      "translation": "The locusts looked like war horses prepared for battle.",
-      "explain": "The preposition к (toward) always takes the dative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Царем над ней был ___ бездны.",
-      "lemma": "ангел",
-      "options": [
-        "ангел",
-        "ангела",
-        "ангелу",
-        "ангелом"
-      ],
-      "correct": "ангел",
-      "case": "Именительный (Nominative)",
-      "translation": "Over them was the angel of the abyss as king.",
-      "explain": "Ангел is the subject of the predicate, taking the nominative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Я увидел звезду, упавшую с неба на землю.",
-      "question": "What did John see fall from heaven to earth?",
-      "options": [
-        "A star",
-        "An angel",
-        "A seal",
-        "A trumpet"
-      ],
-      "correct": "A star",
-      "explain": "The text says 'Я увидел звезду, упавшую с неба на землю' — he saw a star that had fallen from heaven to earth."
-    },
-    {
-      "id": "r2",
-      "ru": "Из дыма вышла на землю саранча, которой дана была власть, какую имеют на земле скорпионы.",
-      "question": "What came out of the smoke onto the earth, and what power was given to it?",
-      "options": [
-        "Locusts with power like scorpions",
-        "Demons with power over water",
-        "Angels with power over fire",
-        "Serpents with power over people"
-      ],
-      "correct": "Locusts with power like scorpions",
-      "explain": "The text states 'саранча... дана была власть, какую имеют на земле скорпионы' — locusts were given power like that of scorpions."
-    },
-    {
-      "id": "r3",
-      "ru": "В те дни люди будут искать смерти и не смогут ее найти.",
-      "question": "What will people seek but not find in those days?",
-      "options": [
-        "Death",
-        "Water",
-        "Light",
-        "Hope"
-      ],
-      "correct": "Death",
-      "explain": "The text says 'люди будут искать смерти и не смогут ее найти' — people will seek death but will not be able to find it."
-    },
-    {
-      "id": "r4",
-      "ru": "Саранча была похожа на боевых коней, готовых к сражению.",
-      "question": "What did the locusts look like?",
-      "options": [
-        "War horses prepared for battle",
-        "Dark clouds moving fast",
-        "Fire and smoke",
-        "Angry men"
-      ],
-      "correct": "War horses prepared for battle",
-      "explain": "The text states 'Саранча была похожа на боевых коней, готовых к сражению' — the locusts looked like war horses prepared for battle."
-    },
-    {
-      "id": "r5",
-      "ru": "Его звали по-еврейски Авадон, а по-гречески Аполеон, Губитель.",
-      "question": "What was the name of the king of the abyss in Hebrew and Greek?",
-      "options": [
-        "Abaddon in Hebrew and Apollyon in Greek",
-        "Michael in Hebrew and Gabriel in Greek",
-        "Satan in Hebrew and Lucifer in Greek",
-        "Belial in Hebrew and Abyss in Greek"
-      ],
-      "correct": "Abaddon in Hebrew and Apollyon in Greek",
-      "explain": "The text says 'его звали по-еврейски Авадон, а по-гречески Аполеон' — his name in Hebrew was Abaddon and in Greek was Apollyon."
-    },
-    {
-      "id": "r6",
-      "ru": "Затрубил шестой ангел, и я услышал голос, раздававшийся от четырех рогов золотого жертвенника.",
-      "question": "What did the sixth angel do and what did John hear?",
-      "options": [
-        "The sixth angel sounded and he heard a voice from the four horns of the golden altar",
-        "The sixth angel wept and shadows covered the earth",
-        "The sixth angel flew high and thunder echoed",
-        "The sixth angel descended and the stars fell"
-      ],
-      "correct": "The sixth angel sounded and he heard a voice from the four horns of the golden altar",
-      "explain": "The text states 'Затрубил шестой ангел, и я услышал голос, раздававшийся от четырех рогов золотого жертвенника' — the sixth angel sounded and a voice came from the altar."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Затрубил ___, и я увидел звезду, упавшую с неба на землю.",
+   "lemma": "ангел",
+   "options": [
+    "пятому ангелу",
+    "пятый ангел",
+    "пятого ангела",
+    "пятым ангелом"
+   ],
+   "correct": "пятый ангел",
+   "case": "Именительный (Nominative)",
+   "explain": "«пятый ангел» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "The fifth angel sounded, and I saw a star from the sky which had fallen to the earth. The key to the pit of the abyss was given to him."
+  },
+  {
+   "sentence": "Ей было запрещено причинять вред ___, любым зеленым растениям и любому дереву, но она могла вредить тем людям, у которых на лбу не было печати Бога.",
+   "lemma": "трава",
+   "options": [
+    "земной травы",
+    "земная трава",
+    "земной траве",
+    "земной травой"
+   ],
+   "correct": "земной траве",
+   "case": "Дательный (Dative)",
+   "explain": "«земной траве» — the dative marks the indirect object or recipient.",
+   "id": "c2",
+   "translation": "They were told that they should not hurt the grass of the earth, neither any green thing, neither any tree, but only those people who don’t have God’s seal on their foreheads."
+  },
+  {
+   "sentence": "На саранче была твердая, как железо, броня, и шум ее крыльев напоминал шум коней и ___, мчащихся на сражение .",
+   "lemma": "колесница",
+   "options": [
+    "боевым колесницам",
+    "боевых колесниц",
+    "боевых колесницах",
+    "боевыми колесницами"
+   ],
+   "correct": "боевых колесниц",
+   "case": "Родительный (Genitive)",
+   "explain": "«боевых колесниц» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "They had breastplates, like breastplates of iron. The sound of their wings was like the sound of chariots, or of many horses rushing to war."
+  },
+  {
+   "sentence": "Затрубил ___, и я услышал голос, раздававшийся от четырех рогов золотого жертвенника, находящегося перед Богом .",
+   "lemma": "ангел",
+   "options": [
+    "шестого ангела",
+    "шестой ангел",
+    "шестому ангелу",
+    "шестом ангеле"
+   ],
+   "correct": "шестой ангел",
+   "case": "Именительный (Nominative)",
+   "explain": "«шестой ангел» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "The sixth angel sounded. I heard a voice from the horns of the golden altar which is before God,"
+  },
+  {
+   "sentence": "Затрубил шестой ангел, и я услышал голос, раздававшийся от четырех рогов ___, находящегося перед Богом .",
+   "lemma": "жертвенник",
+   "options": [
+    "золотым жертвенником",
+    "золотому жертвеннику",
+    "золотом жертвеннике",
+    "золотого жертвенника"
+   ],
+   "correct": "золотого жертвенника",
+   "case": "Родительный (Genitive)",
+   "explain": "«золотого жертвенника» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "The sixth angel sounded. I heard a voice from the horns of the golden altar which is before God,"
+  },
+  {
+   "sentence": "___ насчитывало двести миллионов всадников: я слышал их число.",
+   "lemma": "войско",
+   "options": [
+    "конном войске",
+    "конное войско",
+    "конного войска",
+    "конному войску"
+   ],
+   "correct": "конное войско",
+   "case": "Именительный (Nominative)",
+   "explain": "«Конное войско» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "The number of the armies of the horsemen was two hundred million. I heard the number of them."
+  },
+  {
+   "sentence": "Этими тремя ___ — огнем, дымом и серой, выходившими из их пастей, была погублена третья часть людей.",
+   "lemma": "сила",
+   "options": [
+    "губительные силы",
+    "губительных сил",
+    "губительными силами",
+    "губительным силам"
+   ],
+   "correct": "губительными силами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«губительными силами» — the instrumental marks the means, company, or complement.",
+   "id": "c8",
+   "translation": "By these three plagues were one third of mankind killed: by the fire, the smoke, and the sulfur, which proceeded out of their mouths."
+  }
+ ]
 }

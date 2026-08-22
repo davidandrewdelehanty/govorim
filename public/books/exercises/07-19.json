@@ -1,204 +1,109 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Однажды Левит, который жил в Нагорях Ефрема, взял себе наложницу из Вифлеема в ___.",
-      "lemma": "Иудея",
-      "options": [
-        "Иудея",
-        "Иудеи",
-        "Иудее",
-        "Иудеей"
-      ],
-      "correct": "Иудее",
-      "case": "Предложный (Prepositional)",
-      "translation": "Once a Levite living in the hill country of Ephraim took for himself a concubine from Bethlehem in Judah.",
-      "explain": "The preposition в (in) governing location takes the prepositional case Иудее."
-    },
-    {
-      "id": "c2",
-      "sentence": "Она поссорилась с ним и ушла в дом своего ___ в Вифлееме.",
-      "lemma": "отец",
-      "options": [
-        "отец",
-        "отца",
-        "отцу",
-        "отцом"
-      ],
-      "correct": "отца",
-      "case": "Родительный (Genitive)",
-      "translation": "His concubine played the prostitute against him and went away to her father's house in Bethlehem.",
-      "explain": "The possessive 'своего' (his) takes the genitive case отца (father)."
-    },
-    {
-      "id": "c3",
-      "sentence": "С ним был слуга и два ___.",
-      "lemma": "осел",
-      "options": [
-        "осел",
-        "осла",
-        "ослу",
-        "ослом"
-      ],
-      "correct": "осла",
-      "case": "Родительный (Genitive)",
-      "translation": "With him were a servant and a couple of donkeys.",
-      "explain": "The cardinal number два (two) with an inanimate noun takes the genitive case осла."
-    },
-    {
-      "id": "c4",
-      "sentence": "Тесть, отец молодой женщины, убедил его остаться, и он остался у него на три ___.",
-      "lemma": "день",
-      "options": [
-        "день",
-        "дня",
-        "дню",
-        "днем"
-      ],
-      "correct": "дня",
-      "case": "Родительный (Genitive)",
-      "translation": "His father-in-law, the young lady's father, urged him to stay, and he stayed with him three days.",
-      "explain": "After the number три (three) with days, the genitive case дня is used."
-    },
-    {
-      "id": "c5",
-      "sentence": "Слуга сказал своему господину: «Свернем-ка в этот город и заночуем в ___».",
-      "lemma": "город",
-      "options": [
-        "город",
-        "города",
-        "городу",
-        "городе"
-      ],
-      "correct": "городе",
-      "case": "Предложный (Prepositional)",
-      "translation": "The servant said to his master: 'Let's turn aside to this city and stay in it.'",
-      "explain": "The preposition в (in) governing location takes the prepositional case городе."
-    },
-    {
-      "id": "c6",
-      "sentence": "Но, не желая оставаться еще на ночь, этот человек ушел и направился к Иевусу, то есть к ___, с двумя навьюченными ослами и наложницей.",
-      "lemma": "Иерусалим",
-      "options": [
-        "Иерусалим",
-        "Иерусалима",
-        "Иерусалиму",
-        "Иерусалимом"
-      ],
-      "correct": "Иерусалиму",
-      "case": "Дательный (Dative)",
-      "translation": "But not wanting to stay another night, the man rose up and went toward Jebus, that is, Jerusalem, with a couple of saddled donkeys and his concubine.",
-      "explain": "The preposition к (toward) takes the dative case Иерусалиму."
-    },
-    {
-      "id": "c7",
-      "sentence": "Когда они были рядом с Иевусом, и день уже почти прошел, слуга сказал своему ___, «Свернем-ка в этот город».",
-      "lemma": "господин",
-      "options": [
-        "господин",
-        "господина",
-        "господину",
-        "господином"
-      ],
-      "correct": "господину",
-      "case": "Дательный (Dative)",
-      "translation": "When they were near Jebus and the day was far spent, the servant said to his master, 'Let's turn aside to this city.'",
-      "explain": "The verb сказал (said to) governing an indirect object takes the dative case господину."
-    },
-    {
-      "id": "c8",
-      "sentence": "На рассвете женщина вернулась к дому, где был ее ___, упала у двери и лежала там.",
-      "lemma": "господин",
-      "options": [
-        "господин",
-        "господина",
-        "господину",
-        "господином"
-      ],
-      "correct": "господин",
-      "case": "Именительный (Nominative)",
-      "translation": "At dawn the woman returned to the house where her lord was, fell at the door, and lay there.",
-      "explain": "Господин is the subject of the implied verb 'был' (was), standing in nominative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Однажды Левит, который жил в Нагорях Ефрема, взял себе наложницу из Вифлеема в Иудее. Но она поссорилась с ним и ушла в дом своего отца в Вифлееме.",
-      "question": "What happened between the Levite and his concubine?",
-      "options": [
-        "She quarreled with him and left to her father's house in Bethlehem",
-        "She died in Bethlehem",
-        "She was captured by enemies",
-        "She ran away to another city"
-      ],
-      "correct": "She quarreled with him and left to her father's house in Bethlehem",
-      "explain": "The text states: она поссорилась с ним и ушла в дом своего отца в Вифлееме — she quarreled with him and went away to her father's house in Bethlehem."
-    },
-    {
-      "id": "r2",
-      "ru": "Она ввела его в дом своего отца, и тот, увидев его, принял с радостью. Тесть, отец молодой женщины, убедил его остаться, и он остался у него на три дня.",
-      "question": "How did the father receive the Levite when he came to retrieve his concubine?",
-      "options": [
-        "With joy and urged him to stay for three days",
-        "With suspicion and refused to let him take the woman",
-        "With indifference and turned him away",
-        "With anger and threatened to harm him"
-      ],
-      "correct": "With joy and urged him to stay for three days",
-      "explain": "The father-in-law: принял с радостью ... убедил его остаться, и он остался у него на три дня — received him with joy and urged him to stay three days."
-    },
-    {
-      "id": "r3",
-      "ru": "Но, не желая оставаться еще на ночь, этот человек ушел и направился к Иевусу, то есть Иерусалиму, с двумя навьюченными ослами и наложницей.",
-      "question": "Why did the Levite finally leave Bethlehem?",
-      "options": [
-        "He did not want to stay another night despite the father's urging",
-        "He ran out of money to stay longer",
-        "He received a command to leave",
-        "He was afraid of danger in Bethlehem"
-      ],
-      "correct": "He did not want to stay another night despite the father's urging",
-      "explain": "The text says: не желая оставаться еще на ночь, этот человек ушел — not wanting to stay another night, the man left."
-    },
-    {
-      "id": "r4",
-      "ru": "Они завернули туда на ночлег, вошли в город и сели на городской площади, но никто не позвал их в дом переночевать.",
-      "question": "What happened when they arrived in Gibeah?",
-      "options": [
-        "They entered the city, sat in the street, but no one invited them into a house to stay",
-        "They were immediately attacked by the townspeople",
-        "They found a good inn to lodge in",
-        "They were welcomed and given hospitality"
-      ],
-      "correct": "They entered the city, sat in the street, but no one invited them into a house to stay",
-      "explain": "The text states: вошли в город и сели на городской площади, но никто не позвал их в дом переночевать — they entered the city and sat in the street, but no one called them into his house to lodge."
-    },
-    {
-      "id": "r5",
-      "ru": "Но люди не хотели его слушать. Тогда гость вывел к ним свою наложницу. Они насиловали и бесчестили ее всю ночь, а когда начало светать, отпустили.",
-      "question": "What tragedy befell the Levite's concubine?",
-      "options": [
-        "The wicked men of the city raped and abused her all night and let her go at dawn",
-        "She was taken as a slave to another city",
-        "She was killed by the townspeople",
-        "She escaped and fled back to her father"
-      ],
-      "correct": "The wicked men of the city raped and abused her all night and let her go at dawn",
-      "explain": "The text describes: Они насиловали и бесчестили ее всю ночь, а когда начало светать, отпустили — They raped and abused her all night, and when dawn began to break, they let her go."
-    },
-    {
-      "id": "r6",
-      "ru": "Добравшись до дома, он взял нож, разрезал свою наложницу на 12 частей и разослал их по всем областям Израиля.",
-      "question": "How did the Levite respond to his concubine's death?",
-      "options": [
-        "He took a knife, cut her into twelve pieces, and sent them throughout all the borders of Israel",
-        "He buried her with great mourning and lamentation",
-        "He pursued the men of Gibeah to seek justice",
-        "He traveled to the temple to report what happened"
-      ],
-      "correct": "He took a knife, cut her into twelve pieces, and sent them throughout all the borders of Israel",
-      "explain": "The text states: он взял нож, разрезал свою наложницу на 12 частей и разослал их по всем областям Израиля — he took a knife and cut up his concubine, and sent the pieces throughout all the borders of Israel."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Тесть, отец ___, убедил его остаться, и он остался у него на три дня, ел, пил и спал там.",
+   "lemma": "женщина",
+   "options": [
+    "молодой женщине",
+    "молодой женщиной",
+    "молодая женщина",
+    "молодой женщины"
+   ],
+   "correct": "молодой женщины",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодой женщины» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "His father-in-law, the young lady’s father, kept him there; and he stayed with him three days. So they ate and drank, and stayed there."
+  },
+  {
+   "sentence": "На четвертый день они встали ___, и он собрался уходить, но отец молодой женщины сказал зятю:",
+   "lemma": "утро",
+   "options": [
+    "раннему утру",
+    "раннем утре",
+    "ранним утром",
+    "раннее утро"
+   ],
+   "correct": "ранним утром",
+   "case": "Творительный (Instrumental)",
+   "explain": "«ранним утром» — the instrumental marks the means, company, or complement.",
+   "id": "c2",
+   "translation": "On the fourth day, they got up early in the morning, and he rose up to depart. The young lady’s father said to his son-in-law, “Strengthen your heart with a morsel of bread, and afterward you shall go your way.”"
+  },
+  {
+   "sentence": "На четвертый день они встали ранним утром, и он собрался уходить, но отец ___ сказал зятю:",
+   "lemma": "женщина",
+   "options": [
+    "молодой женщине",
+    "молодой женщиной",
+    "молодая женщина",
+    "молодой женщины"
+   ],
+   "correct": "молодой женщины",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодой женщины» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "On the fourth day, they got up early in the morning, and he rose up to depart. The young lady’s father said to his son-in-law, “Strengthen your heart with a morsel of bread, and afterward you shall go your way.”"
+  },
+  {
+   "sentence": "После этого отец ___ сказал:",
+   "lemma": "женщина",
+   "options": [
+    "молодой женщине",
+    "молодой женщиной",
+    "молодая женщина",
+    "молодой женщины"
+   ],
+   "correct": "молодой женщины",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодой женщины» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "So they sat down, ate, and drank, both of them together. Then the young lady’s father said to the man, “Please be pleased to stay all night, and let your heart be merry.”"
+  },
+  {
+   "sentence": "Утром ___, когда он собрался уходить, отец молодой женщины сказал:",
+   "lemma": "день",
+   "options": [
+    "пятом дне",
+    "пятого дня",
+    "пятый день",
+    "пятым днём"
+   ],
+   "correct": "пятого дня",
+   "case": "Родительный (Genitive)",
+   "explain": "«пятого дня» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "He arose early in the morning on the fifth day to depart; and the young lady’s father said, “Please strengthen your heart and stay until the day declines;” and they both ate."
+  },
+  {
+   "sentence": "Утром пятого дня, когда он собрался уходить, отец ___ сказал:",
+   "lemma": "женщина",
+   "options": [
+    "молодой женщине",
+    "молодой женщиной",
+    "молодая женщина",
+    "молодой женщины"
+   ],
+   "correct": "молодой женщины",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодой женщины» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "He arose early in the morning on the fifth day to depart; and the young lady’s father said, “Please strengthen your heart and stay until the day declines;” and they both ate."
+  },
+  {
+   "sentence": "А когда этот человек вместе со своей наложницей и слугой встал, чтобы уйти, отец ___ сказал ему:",
+   "lemma": "женщина",
+   "options": [
+    "молодой женщине",
+    "молодой женщиной",
+    "молодая женщина",
+    "молодой женщины"
+   ],
+   "correct": "молодой женщины",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодой женщины» — the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "When the man rose up to depart, he, and his concubine, and his servant, his father-in-law, the young lady’s father, said to him, “Behold, now the day draws toward evening, please stay all night. Behold, the day is ending. Stay here, that your heart may be merry; and tomorrow go on your way early, that you may go home.”"
+  }
+ ]
 }

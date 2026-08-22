@@ -1,134 +1,169 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "На седьмом году правления Аталии ___ решился действовать.",
-      "lemma": "Адай",
-      "options": ["Адай", "Адая", "Адаю", "Адаем"],
-      "correct": "Адай",
-      "case": "Именительный (Nominative)",
-      "translation": "In the seventh year of Athaliah's reign, Jehoiada resolved to act.",
-      "explain": "The proper name Jehoiada is the subject of the sentence, taking the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Он заключил союз с сотниками, включая Азарию, сына ___.",
-      "lemma": "Иерахам",
-      "options": ["Иерахам", "Иерахама", "Иерахаму", "Иерахамом"],
-      "correct": "Иерахама",
-      "case": "Родительный (Genitive)",
-      "translation": "He made a covenant with the captains of hundreds, including Azariah, the son of Jeroham.",
-      "explain": "The possessive relationship 'son of' requires the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Они прошли по Иудее и собрали левитов и глав израильских семейств из всех ___.",
-      "lemma": "город",
-      "options": ["город", "города", "городе", "городов"],
-      "correct": "городов",
-      "case": "Родительный (Genitive)",
-      "translation": "They went through Judea and gathered the Levites and the heads of Israeli families from all cities.",
-      "explain": "The preposition из (from) governing the source requires the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Когда они пришли в Иерусалим, все собрание заключило в Божьем доме союз с ___.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царем",
-      "case": "Творительный (Instrumental)",
-      "translation": "When they came to Jerusalem, the whole assembly made a covenant with the king in God's house.",
-      "explain": "The verb заключило (made) with the preposition с (with) takes the instrumental case to express the party with whom the agreement is made."
-    },
-    {
-      "id": "c5",
-      "sentence": "Пусть никто не входит в Господень дом, кроме священников и левитов, которые на ___.",
-      "lemma": "служба",
-      "options": ["служба", "службе", "службу", "службой"],
-      "correct": "службе",
-      "case": "Предложный (Prepositional)",
-      "translation": "Let no one enter the Lord's house except the priests and Levites who are on duty.",
-      "explain": "The preposition на (on) meaning 'on duty' or 'on service' takes the prepositional case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Левиты должны встать вокруг ___, каждый с оружием в руках.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царя",
-      "case": "Родительный (Genitive)",
-      "translation": "The Levites must stand around the king, each with a weapon in his hand.",
-      "explain": "The preposition вокруг (around) governs the genitive case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Он поставил всех людей, каждого с оружием в руках, вокруг ___, от южной стороны дома до северной.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царя",
-      "case": "Родительный (Genitive)",
-      "translation": "He set all the people, each with a weapon in his hand, around the king, from the south side of the house to the north.",
-      "explain": "The preposition вокруг (around) requires the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Они вывели сына царя, возложили на него корону, дали ему копию свидетельства и провозгласили ___.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царем", "царю"],
-      "correct": "царем",
-      "case": "Творительный (Instrumental)",
-      "translation": "They brought out the king's son, put the crown on him, gave him the testimony, and proclaimed him king.",
-      "explain": "After the verb провозгласили (proclaimed), the title takes the instrumental case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "На седьмом году правления Аталии и Адай решился действовать.",
-      "question": "In which year of Athaliah's reign did Jehoiada decide to act?",
-      "options": ["The seventh year", "The first year", "The tenth year", "The third year"],
-      "correct": "The seventh year",
-      "explain": "The text states 'На седьмом году правления Аталии' — in the seventh year of Athaliah's reign."
-    },
-    {
-      "id": "r2",
-      "ru": "Он заключил союз с сотниками — Азарией, сыном Иерахама, Исмаилом, сыном Иоханана, Азарией, сыном Авида, Моасеей, сыном Адай, и Елишафатом, сыном Зихрия.",
-      "question": "What was the first action Jehoiada took to organize the resistance?",
-      "options": ["He made a covenant with military commanders", "He raised an army", "He appealed to the people", "He consulted with the high priest"],
-      "correct": "He made a covenant with military commanders",
-      "explain": "The text says 'Он заключил союз с сотниками' — He made a covenant with the captains of hundreds."
-    },
-    {
-      "id": "r3",
-      "ru": "И Адай сказал им, вот сын царя, он должен править, как и обещал о потомках Давида Господь.",
-      "question": "What did Jehoiada remind the assembly about regarding the king's son?",
-      "options": ["That the Lord promised David would have descendants who would rule", "That the son was old enough to be crowned", "That the people voted for his coronation", "That the priests anointed him"],
-      "correct": "That the Lord promised David would have descendants who would rule",
-      "explain": "Jehoiada said the son 'должен править, как и обещал о потомках Давида Господь' — must rule, as the Lord promised concerning David's descendants."
-    },
-    {
-      "id": "r4",
-      "ru": "Они вывели сына царя, возложили на него корону, дали ему копию свидетельства и провозгласили его царем.",
-      "question": "What were the ceremonial actions performed for the king's son?",
-      "options": ["They put a crown on him, gave him the testimony, and proclaimed him king", "They anointed him with oil and gave him a scepter", "They dressed him in royal garments and blessed him", "They took him to the temple and offered sacrifices"],
-      "correct": "They put a crown on him, gave him the testimony, and proclaimed him king",
-      "explain": "The text lists these specific actions: 'возложили на него корону, дали ему копию свидетельства и провозгласили его царем'."
-    },
-    {
-      "id": "r5",
-      "ru": "Услышав шум народа, бегущего и выкрикивающего приветствия царю, Аталия отправилась к ним в дом Господа.",
-      "question": "What caused Athaliah to come to the Lord's house?",
-      "options": ["She heard the noise and shouts of the people proclaiming the king", "She was summoned by the priests", "She wanted to offer a sacrifice", "She sought refuge from enemies"],
-      "correct": "She heard the noise and shouts of the people proclaiming the king",
-      "explain": "The text says 'Услышав шум народа, бегущего и выкрикивающего приветствия царю, Аталия отправилась к ним' — Hearing the noise of the people running and shouting greetings to the king, Athaliah went to them."
-    },
-    {
-      "id": "r6",
-      "ru": "Священник Иодай вызвал сотников, которые распоряжались войском, и сказал им «Выведите ее за пределы дома и убейте мечом всякого, кто за ней пойдет».",
-      "question": "What order did Jehoiada the priest give to the commanders?",
-      "options": ["To take Athaliah out and kill anyone who follows her", "To imprison Athaliah in the dungeon", "To exile her to another country", "To guard her in the temple"],
-      "correct": "To take Athaliah out and kill anyone who follows her",
-      "explain": "Jehoiada commanded 'Выведите ее за пределы дома и убейте мечом всякого, кто за ней пойдет' — Take her out of the house and kill with the sword anyone who follows her."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Они прошли по Иудее и собрали левитов и глав ___ из всех городов.",
+   "lemma": "семейство",
+   "options": [
+    "израильских семейств",
+    "израильских семействах",
+    "израильские семейства",
+    "израильским семействам"
+   ],
+   "correct": "израильских семейств",
+   "case": "Родительный (Genitive)",
+   "explain": "«израильских семейств» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "They went around in Judah, and gathered the Levites out of all the cities of Judah, and the heads of fathers’ households of Israel, and they came to Jerusalem."
+  },
+  {
+   "sentence": "Когда они пришли в Иерусалим, 3 все собрание заключило в ___ союз с царем.",
+   "lemma": "дом",
+   "options": [
+    "божьему дому",
+    "божий дом",
+    "божьем доме",
+    "божьим домом"
+   ],
+   "correct": "божьем доме",
+   "case": "Предложный (Prepositional)",
+   "explain": "«Божьем доме» — after the preposition «в», for location or topic.",
+   "id": "c2",
+   "translation": "They went around in Judah, and gathered the Levites out of all the cities of Judah, and the heads of fathers’ households of Israel, and they came to Jerusalem."
+  },
+  {
+   "sentence": "Пусть никто не входит в ___, кроме священников и левитов, которые на службе — они могут войти, потому что освятились, а весь остальной народ должен оставаться снаружи, как и повелел им Господь.",
+   "lemma": "дом",
+   "options": [
+    "господень дом",
+    "господним домом",
+    "господню дому",
+    "господнем доме"
+   ],
+   "correct": "господень дом",
+   "case": "Винительный (Accusative)",
+   "explain": "«Господень дом» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "But let no one come into Yahweh’s house, except the priests and those who minister of the Levites. They shall come in, for they are holy, but all the people shall follow Yahweh’s instructions."
+  },
+  {
+   "sentence": "Пусть никто не входит в Господень дом, кроме священников и левитов, которые на службе — они могут войти, потому что освятились, а весь ___ должен оставаться снаружи, как и повелел им Господь.",
+   "lemma": "народ",
+   "options": [
+    "остальном народе",
+    "остального народа",
+    "остальной народ",
+    "остальному народу"
+   ],
+   "correct": "остальной народ",
+   "case": "Именительный (Nominative)",
+   "explain": "«остальной народ» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "But let no one come into Yahweh’s house, except the priests and those who minister of the Levites. They shall come in, for they are holy, but all the people shall follow Yahweh’s instructions."
+  },
+  {
+   "sentence": "Каждый взял своих людей — и тех, кто заступал на службу в ту субботу, и тех, кто в ту субботу уходил со службы, потому что священник Иодай не отпустил ни одного из ___.",
+   "lemma": "отделение",
+   "options": [
+    "священническим отделениям",
+    "священнических отделениях",
+    "священнических отделений",
+    "священническими отделениями"
+   ],
+   "correct": "священнических отделений",
+   "case": "Родительный (Genitive)",
+   "explain": "«священнических отделений» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "So the Levites and all Judah did according to all that Jehoiada the priest commanded: and they each took his men, those who were to come in on the Sabbath; with those who were to go out on the Sabbath; for Jehoiada the priest didn’t dismiss the shift."
+  },
+  {
+   "sentence": "Он раздал сотникам копья с большими и маленькими щитами, которые некогда принадлежали царю Давиду и находились в ___.",
+   "lemma": "дом",
+   "options": [
+    "божьему дому",
+    "божий дом",
+    "божьем доме",
+    "божьим домом"
+   ],
+   "correct": "божьем доме",
+   "case": "Предложный (Prepositional)",
+   "explain": "«Божьем доме» — after the preposition «в», for location or topic.",
+   "id": "c6",
+   "translation": "Jehoiada the priest delivered to the captains of hundreds the spears, and bucklers, and shields, that had been king David’s, which were in God’s house."
+  },
+  {
+   "sentence": "Он поставил всех людей, каждого с оружием в руках, вокруг царя — от ___ дома до северной, вокруг жертвенника и дома.",
+   "lemma": "сторона",
+   "options": [
+    "южной стороне",
+    "южная сторона",
+    "южной стороны",
+    "южной стороной"
+   ],
+   "correct": "южной стороны",
+   "case": "Родительный (Genitive)",
+   "explain": "«южной стороны» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "He set all the people, every man with his weapon in his hand, from the right side of the house to the left side of the house, near the altar and the house, around the king."
+  },
+  {
+   "sentence": "Она посмотрела и увидела: у ___ при входе стоял царь!",
+   "lemma": "колонна",
+   "options": [
+    "царской колонной",
+    "царской колонне",
+    "царской колонны",
+    "царская колонна"
+   ],
+   "correct": "царской колонны",
+   "case": "Родительный (Genitive)",
+   "explain": "«царской колонны» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "Then she looked, and, behold, the king stood by his pillar at the entrance, and the captains and the trumpets by the king. All the people of the land rejoiced, and blew trumpets. The singers also played musical instruments, and led the singing of praise. Then Athaliah tore her clothes, and said, “Treason! treason!”"
+  },
+  {
+   "sentence": "Возле царя были начальники отрядов и трубачи, и весь народ страны ликовал и трубил в трубы, а певцы с ___ пели прославляющие песни.",
+   "lemma": "инструмент",
+   "options": [
+    "музыкальных инструментов",
+    "музыкальными инструментами",
+    "музыкальные инструменты",
+    "музыкальных инструментах"
+   ],
+   "correct": "музыкальными инструментами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«музыкальными инструментами» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c9",
+   "translation": "Then she looked, and, behold, the king stood by his pillar at the entrance, and the captains and the trumpets by the king. All the people of the land rejoiced, and blew trumpets. The singers also played musical instruments, and led the singing of praise. Then Athaliah tore her clothes, and said, “Treason! treason!”"
+  },
+  {
+   "sentence": "Ее схватили и привели ко входу Конских ворот ___, и там ее предали смерти.",
+   "lemma": "дворец",
+   "options": [
+    "царского дворца",
+    "царском дворце",
+    "царский дворец",
+    "царскому дворцу"
+   ],
+   "correct": "царского дворца",
+   "case": "Родительный (Genitive)",
+   "explain": "«царского дворца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c10",
+   "translation": "So they made way for her. She went to the entrance of the horse gate to the king’s house; and they killed her there."
+  },
+  {
+   "sentence": "Он взял с собой сотников, приближенных царя, и весь народ страны, они вместе вывели царя из Господнего дома и вошли в царский дворец через ___.",
+   "lemma": "ворота",
+   "options": [
+    "верхними воротами",
+    "верхним воротам",
+    "верхние ворота",
+    "верхних ворот"
+   ],
+   "correct": "верхние ворота",
+   "case": "Винительный (Accusative)",
+   "explain": "«Верхние ворота» — after the preposition «через», the accusative marks the direct object of the verb.",
+   "id": "c12",
+   "translation": "He took the captains of hundreds, the nobles, the governors of the people, and all the people of the land, and brought the king down from Yahweh’s house. They came through the upper gate to the king’s house, and set the king on the throne of the kingdom."
+  }
+ ]
 }

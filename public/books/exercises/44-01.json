@@ -1,134 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Я написал обо всем, что Иисус делал и чему Он учил с ___.",
-      "lemma": "начало",
-      "options": ["начала", "начале", "началом", "начало"],
-      "correct": "начала",
-      "case": "Родительный (Genitive)",
-      "translation": "I wrote about all that Jesus began to do and teach from the beginning.",
-      "explain": "The preposition с (since, from) with temporal meaning governs the genitive case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Дав через Святого Духа повеление избранным им ___, он вознесся на небеса.",
-      "lemma": "апостол",
-      "options": ["апостолам", "апостола", "апостолы", "апостолов"],
-      "correct": "апостолам",
-      "case": "Дательный (Dative)",
-      "translation": "Having given commandments through the Holy Spirit to the apostles whom He had chosen, He ascended to heaven.",
-      "explain": "The preposition to (expressed by the indirect object construction) shows the dative case recipients."
-    },
-    {
-      "id": "c3",
-      "sentence": "После своего страдания он представал перед этими людьми ___, со многими доказательствами.",
-      "lemma": "живой",
-      "options": ["живой", "живого", "живому", "живым"],
-      "correct": "живой",
-      "case": "Именительный (Nominative)",
-      "translation": "After his suffering he showed himself alive to these people with many convincing proofs.",
-      "explain": "The predicate adjective живой agrees with the subject он in nominative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Иисус являлся им в течение сорока ___.",
-      "lemma": "день",
-      "options": ["дня", "днями", "дней", "днем"],
-      "correct": "дней",
-      "case": "Родительный (Genitive)",
-      "translation": "Jesus appeared to them over a period of forty days.",
-      "explain": "The noun после a numeral governing time takes the genitive plural form."
-    },
-    {
-      "id": "c5",
-      "sentence": "Однажды, обедая вместе с ними, он велел им не покидать ___ Иерусалима.",
-      "lemma": "город",
-      "options": ["город", "города", "городом", "городе"],
-      "correct": "город",
-      "case": "Винительный (Accusative)",
-      "translation": "Being assembled together with them, he commanded them not to depart from Jerusalem.",
-      "explain": "The verb покидать (to leave) is transitive and takes the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Вы будете крещены Святым ___.",
-      "lemma": "дух",
-      "options": ["духа", "духе", "духом", "духу"],
-      "correct": "духом",
-      "case": "Творительный (Instrumental)",
-      "translation": "You will be baptized with the Holy Spirit.",
-      "explain": "The preposition with (expressed by the instrumental) indicates the means or agent of baptism."
-    },
-    {
-      "id": "c7",
-      "sentence": "Они спросили его, «Господи, не настало ли время тебе восстановить Царство ___?»",
-      "lemma": "Израиль",
-      "options": ["Израиля", "Израиле", "Израилем", "Израилю"],
-      "correct": "Израиля",
-      "case": "Родительный (Genitive)",
-      "translation": "They asked him, 'Lord, is it now the time for you to restore the kingdom to Israel?'",
-      "explain": "The noun governing Царство uses the genitive case in the possessive construction 'kingdom of Israel.'"
-    },
-    {
-      "id": "c8",
-      "sentence": "Сказав это, он на их глазах был поднят ввысь, и облако скрыло его от их ___.",
-      "lemma": "взгляд",
-      "options": ["взглядов", "взгляду", "взглядом", "взгляде"],
-      "correct": "взглядов",
-      "case": "Родительный (Genitive)",
-      "translation": "When he had said this, he was taken up before their very eyes, and a cloud hid him from their sight.",
-      "explain": "The preposition от (from) always governs the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "В моем первом повествовании, Феофил, я написал обо всем, что Иисус делал и чему Он учил от начала.",
-      "question": "To whom is Luke addressing his account?",
-      "options": ["To Theophilus", "To all believers", "To the apostles", "To the Roman governor"],
-      "correct": "To Theophilus",
-      "explain": "The text explicitly addresses: В моем первом повествовании, Феофил (In my first account, Theophilus)."
-    },
-    {
-      "id": "r2",
-      "ru": "Иисус являлся им в течение сорока дней и говорил о Божьем Царстве.",
-      "question": "For how long did Jesus appear to the disciples after His resurrection?",
-      "options": ["Forty days", "Fifty days", "Ten days", "Three days"],
-      "correct": "Forty days",
-      "explain": "The passage states: в течение сорока дней (over a period of forty days)."
-    },
-    {
-      "id": "r3",
-      "ru": "Однажды, обедая вместе с ними, он велел им не покидать Иерусалима, но ждать обещанного Отцом.",
-      "question": "What did Jesus command the disciples to do in Jerusalem?",
-      "options": ["Wait for the promise of the Father", "Preach to all nations", "Build a new temple", "Establish a government"],
-      "correct": "Wait for the promise of the Father",
-      "explain": "The text says: велел им не покидать Иерусалима, но ждать обещанного Отцом (He commanded them to wait in Jerusalem for the promise of the Father)."
-    },
-    {
-      "id": "r4",
-      "ru": "«Это то, о чем вы и слышали от меня, потому что Иоанн крестил водой, а вы через несколько дней будете крещены Святым Духом».",
-      "question": "What difference does Jesus explain between John's baptism and what the disciples will receive?",
-      "options": ["John baptized with water, but they will be baptized with the Holy Spirit", "John baptized with fire, but they will be baptized with water", "John baptized in the river, but they will be baptized in the temple", "John baptized quickly, but they will be baptized slowly"],
-      "correct": "John baptized with water, but they will be baptized with the Holy Spirit",
-      "explain": "The verse explicitly contrasts: Иоанн крестил водой, а вы через несколько дней будете крещены Святым Духом (John baptized with water, but you will be baptized with the Holy Spirit in a few days)."
-    },
-    {
-      "id": "r5",
-      "ru": "Когда на вас сойдет Святой Дух, вы получите силу и будете моими свидетелями в Иерусалиме, по всей Иудее, в Самарии и до края земли.",
-      "question": "What will the disciples receive when the Holy Spirit comes upon them?",
-      "options": ["Power to be His witnesses everywhere from Jerusalem to the ends of the earth", "Wealth and possessions", "Authority to judge others", "The ability to perform magic"],
-      "correct": "Power to be His witnesses everywhere from Jerusalem to the ends of the earth",
-      "explain": "The text states: вы получите силу и будете моими свидетелями в Иерусалиме, по всей Иудее, в Самарии и до края земли (you will receive power and will be my witnesses in Jerusalem, throughout Judea and Samaria, and to the ends of the earth)."
-    },
-    {
-      "id": "r6",
-      "ru": "«Галилеяне», — сказали они, — «что вы стоите и смотрите в небо? Этот Иисус, который был взят от вас в небеса, придет точно таким же образом, каким вы видели его возносящимся».",
-      "question": "How will Jesus return according to the angels' message?",
-      "options": ["In the same way you saw Him ascend into heaven", "Suddenly in the night", "With great fanfare and armies", "Invisibly and secretly"],
-      "correct": "In the same way you saw Him ascend into heaven",
-      "explain": "The angels say: Этот Иисус, который был взят от вас в небеса, придет точно таким же образом, каким вы видели его возносящимся (This Jesus, who has been taken from you into heaven, will come back in the same way you have seen him go into heaven)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "В моем ___, Феофил, я написал обо всем, что Иисус делал и чему Он учил от начала 2 до того дня, когда, дав через Святого Духа повеления избранным Им апостолам, Он вознесся на небеса.",
+   "lemma": "повествование",
+   "options": [
+    "первого повествования",
+    "первом повествовании",
+    "первое повествование",
+    "первым повествованием"
+   ],
+   "correct": "первом повествовании",
+   "case": "Предложный (Prepositional)",
+   "explain": "«первом повествовании» — after the preposition «в», for location or topic.",
+   "id": "c1",
+   "translation": "The first book I wrote, Theophilus, concerned all that Jesus began both to do and to teach,"
+  },
+  {
+   "sentence": "Они пристально смотрели в небо, пока Он поднимался, как вдруг рядом с ними оказались два человека в ___.",
+   "lemma": "одежда",
+   "options": [
+    "белыми одеждами",
+    "белым одеждам",
+    "белых одеждах",
+    "белые одежды"
+   ],
+   "correct": "белых одеждах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«белых одеждах» — after the preposition «в», for location or topic.",
+   "id": "c2",
+   "translation": "While they were looking steadfastly into the sky as he went, behold, two men stood by them in white clothing,"
+  },
+  {
+   "sentence": "После этого они возвратились в Иерусалим с горы, называемой Масличной, которая находится на расстоянии ___ от Иерусалима.",
+   "lemma": "путь",
+   "options": [
+    "субботнего пути",
+    "субботнем пути",
+    "субботний путь",
+    "субботнему пути"
+   ],
+   "correct": "субботнего пути",
+   "case": "Родительный (Genitive)",
+   "explain": "«субботнего пути» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Then they returned to Jerusalem from the mountain called Olivet, which is near Jerusalem, a Sabbath day’s journey away."
+  },
+  {
+   "sentence": "Об этом узнали все жители Иерусалима и прозвали поле, на своем языке Акелдама , то есть «___».) 20 Ведь в книге Псалмов написано:",
+   "lemma": "поле",
+   "options": [
+    "кровавому полю",
+    "кровавым полем",
+    "кровавого поля",
+    "кровавое поле"
+   ],
+   "correct": "кровавое поле",
+   "case": "Именительный (Nominative)",
+   "explain": "«Кровавое поле» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "It became known to everyone who lived in Jerusalem that in their language that field was called ‘Akeldama,’ that is, ‘The field of blood.’"
+  }
+ ]
 }

@@ -1,138 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Господь сказал, «___ против Содома и Гаморы так велик».",
-      "lemma": "вопль",
-      "options": ["вопль", "вопля", "воплю", "воплем"],
-      "correct": "вопль",
-      "case": "Именительный (Nominative)",
-      "translation": "The Lord said, 'The outcry against Sodom and Gomorrah is so great.'",
-      "explain": "Вопль is the subject of так велик, so it stands in the nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Владыка, не пройди мимо твоего ___, пусть принесут немного воды.",
-      "lemma": "слуга",
-      "options": ["слуга", "слуги", "слуге", "слугой"],
-      "correct": "слуги",
-      "case": "Родительный (Genitive)",
-      "translation": "My lord, do not pass by your servant, let a little water be brought.",
-      "explain": "The preposition мимо governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Тогда Господь сказал ___, «Почему Сара смеется и говорит?»",
-      "lemma": "Авраам",
-      "options": ["Авраам", "Авраама", "Аврааму", "Авраамом"],
-      "correct": "Аврааму",
-      "case": "Дательный (Dative)",
-      "translation": "Then the Lord said to Abraham, 'Why does Sarah laugh and say?'",
-      "explain": "The verb сказал assigns its indirect object, Авраам, the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Авраам поспешил в ___ к Саре и сказал, «Скорее достань три саты лучшей муки».",
-      "lemma": "шатёр",
-      "options": ["шатёр", "шатра", "шатру", "шатром"],
-      "correct": "шатёр",
-      "case": "Винительный (Accusative)",
-      "translation": "Abraham hurried into the tent to Sarah and said, 'Quickly prepare three seahs of fine flour.'",
-      "explain": "The preposition в indicating motion into a place takes the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Пусть принесут немного воды, чтобы вам вымыть ноги и отдохнуть под этим ___.",
-      "lemma": "дерево",
-      "options": ["дерево", "дерева", "дереву", "деревом"],
-      "correct": "деревом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Let a little water be brought, so that you may wash your feet and rest under this tree.",
-      "explain": "The preposition под indicating location underneath takes the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Что если в ___ есть пятьдесят праведников?",
-      "lemma": "город",
-      "options": ["город", "города", "городу", "городе"],
-      "correct": "городе",
-      "case": "Предложный (Prepositional)",
-      "translation": "What if there are fifty righteous people in the city?",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Господь явился Аврааму у великих деревьев Мамре, когда он сидел у входа в свой шатер во время дневного зноя.",
-      "question": "Where was Abraham sitting when the Lord appeared to him?",
-      "options": ["At the entrance of his tent by the oaks of Mamre", "Inside his tent in Hebron", "By the well near Beersheba", "On a mountain near Sodom"],
-      "correct": "At the entrance of his tent by the oaks of Mamre",
-      "explain": "The text says he sat 'у входа в свой шатер' by the oaks of Mamre 'во время дневного зноя' (in the heat of the day)."
-    },
-    {
-      "id": "r2",
-      "ru": "Авраам поспешил в шатер к Саре и сказал, «Скорее достань три саты лучшей муки, замеси тесто и испеки хлеба».",
-      "question": "What did Abraham ask Sarah to prepare?",
-      "options": ["Bread from fine flour", "Wine and cheese", "A whole roasted lamb", "Fruit and honey"],
-      "correct": "Bread from fine flour",
-      "explain": "Abraham tells Sarah to 'достань три саты лучшей муки, замеси тесто и испеки хлеба' (get fine flour, knead it, and bake bread)."
-    },
-    {
-      "id": "r3",
-      "ru": "Тогда Господь сказал, «Я непременно вернусь к тебе в следующем году, примерно в это же время, и у Сары твоей жены будет сын».",
-      "question": "What did the Lord promise would happen by next year?",
-      "options": ["Sarah would have a son", "Abraham would move to Egypt", "Lot would return from Sodom", "Abraham would build an altar"],
-      "correct": "Sarah would have a son",
-      "explain": "The Lord says 'у Сары твоей жены будет сын' (Sarah your wife will have a son)."
-    },
-    {
-      "id": "r4",
-      "ru": "Сара рассмеялась про себя, подумав, «Я уже состарилась, и господин мой стар, мне ли иметь еще такую радость?»",
-      "question": "Why did Sarah laugh to herself?",
-      "options": ["Because she and Abraham were old", "Because she did not believe in God", "Because Abraham had lied to her", "Because the visitors looked strange"],
-      "correct": "Because she and Abraham were old",
-      "explain": "Sarah thinks 'Я уже состарилась, и господин мой стар' (I have grown old, and my lord is old)."
-    },
-    {
-      "id": "r5",
-      "ru": "Сара испугалась и солгала, сказав, «Я не смеялась».",
-      "question": "What did Sarah do out of fear?",
-      "options": ["She denied that she had laughed", "She ran away from the tent", "She hid the bread", "She refused to speak"],
-      "correct": "She denied that she had laughed",
-      "explain": "The text says Sarah, being afraid, lied and said 'Я не смеялась' (I did not laugh)."
-    },
-    {
-      "id": "r6",
-      "ru": "От Авраама непременно произойдет великий и сильный народ, и все народы на земле получат благословение через него».",
-      "question": "What did the Lord say would come from Abraham?",
-      "options": ["A great and mighty nation that would bless all nations", "A line of kings only", "A city named after him", "Nothing, since he was old"],
-      "correct": "A great and mighty nation that would bless all nations",
-      "explain": "The Lord says a 'великий и сильный народ' will come from Abraham and 'все народы на земле получат благословение через него' (all nations will be blessed through him)."
-    },
-    {
-      "id": "r7",
-      "ru": "Господь сказал, «Вопль против Содома и Гаморы так велик».",
-      "question": "What reason did the Lord give for going down to inspect Sodom?",
-      "options": ["The outcry against Sodom and Gomorrah was very great", "Abraham asked him to inspect it", "Lot requested help", "The kings had rebelled"],
-      "correct": "The outcry against Sodom and Gomorrah was very great",
-      "explain": "The Lord says 'Вопль против Содома и Гаморы так велик' (The outcry against Sodom and Gomorrah is so great)."
-    },
-    {
-      "id": "r8",
-      "ru": "Если я найду в Содоме пятьдесят праведников, то пощажу ради них все это место».",
-      "question": "How many righteous people did the Lord first agree would be enough to spare Sodom?",
-      "options": ["Fifty", "Ten", "Thirty", "One hundred"],
-      "correct": "Fifty",
-      "explain": "The Lord first agrees to spare the place 'если я найду в Содоме пятьдесят праведников' (if he finds fifty righteous in Sodom)."
-    },
-    {
-      "id": "r9",
-      "ru": "Он ответил, «Ради десяти я не уничтожу его».",
-      "question": "What was the final number of righteous people the Lord agreed to for sparing the city?",
-      "options": ["Ten", "Twenty", "Five", "Forty-five"],
-      "correct": "Ten",
-      "explain": "The final answer the Lord gives Abraham is 'Ради десяти я не уничтожу его' (For the sake of ten I will not destroy it)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Господь явился Аврааму у ___ Мамре, когда он сидел у входа в свой шатер во время дневного зноя.",
+   "lemma": "дерево",
+   "options": [
+    "великих деревьях",
+    "великих деревьев",
+    "великими деревьями",
+    "великим деревьям"
+   ],
+   "correct": "великих деревьев",
+   "case": "Родительный (Genitive)",
+   "explain": "«великих деревьев» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "Yahweh appeared to him by the oaks of Mamre, as he sat in the tent door in the heat of the day."
+  },
+  {
+   "sentence": "Господь явился Аврааму у великих деревьев Мамре, когда он сидел у входа в свой шатер во время ___.",
+   "lemma": "зной",
+   "options": [
+    "дневного зноя",
+    "дневным зноем",
+    "дневный зной",
+    "дневном зное"
+   ],
+   "correct": "дневного зноя",
+   "case": "Родительный (Genitive)",
+   "explain": "«дневного зноя» — after the preposition «во», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "Yahweh appeared to him by the oaks of Mamre, as he sat in the tent door in the heat of the day."
+  },
+  {
+   "sentence": "Авраам и Сарра были уже стары и в ___, и то, что обычно бывает у женщин, у Сарры прекратилось.",
+   "lemma": "год",
+   "options": [
+    "преклонным годам",
+    "преклонные годы",
+    "преклонными годами",
+    "преклонных годах"
+   ],
+   "correct": "преклонных годах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«преклонных годах» — after the preposition «в», for location or topic.",
+   "id": "c3",
+   "translation": "Now Abraham and Sarah were old, well advanced in age. Sarah had passed the age of childbearing."
+  }
+ ]
 }

@@ -1,191 +1,154 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ была в центре.",
-      "lemma": "день",
-      "options": [
-        "дня",
-        "дню",
-        "день",
-        "днём"
-      ],
-      "correct": "день",
-      "case": "Именительный (Nominative)",
-      "translation": "A/The день was central.",
-      "explain": "Governed by the context requiring the именительный (nominative)."
-    },
-    {
-      "id": "c2",
-      "sentence": "Это достояние ___.",
-      "lemma": "день",
-      "options": [
-        "день",
-        "дню",
-        "днём",
-        "дня"
-      ],
-      "correct": "дня",
-      "case": "Родительный (Genitive)",
-      "translation": "A/The день was central.",
-      "explain": "Governed by the context requiring the родительный (genitive)."
-    },
-    {
-      "id": "c3",
-      "sentence": "Подойди к ___.",
-      "lemma": "день",
-      "options": [
-        "день",
-        "дня",
-        "днём",
-        "дню"
-      ],
-      "correct": "дню",
-      "case": "Дательный (Dative)",
-      "translation": "A/The день was central.",
-      "explain": "Governed by the context requiring the дательный (dative)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я видел ___.",
-      "lemma": "день",
-      "options": [
-        "день",
-        "дня",
-        "дню",
-        "днём"
-      ],
-      "correct": "день",
-      "case": "Винительный (Accusative)",
-      "translation": "A/The день was central.",
-      "explain": "Governed by the context requiring the винительный (accusative)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Это сделано ___.",
-      "lemma": "день",
-      "options": [
-        "день",
-        "дня",
-        "дню",
-        "днём"
-      ],
-      "correct": "днём",
-      "case": "Творительный (Instrumental)",
-      "translation": "A/The день was central.",
-      "explain": "Governed by the context requiring the творительный (instrumental)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Речь идёт о ___.",
-      "lemma": "день",
-      "options": [
-        "день",
-        "дня",
-        "дню",
-        "дне"
-      ],
-      "correct": "дне",
-      "case": "Предложный (Prepositional)",
-      "translation": "A/The день was central.",
-      "explain": "Governed by the context requiring the предложный (prepositional)."
-    },
-    {
-      "id": "c7",
-      "sentence": "___ была в центре.",
-      "lemma": "гог",
-      "options": [
-        "гога",
-        "гогу",
-        "гогом",
-        "гог"
-      ],
-      "correct": "гог",
-      "case": "Именительный (Nominative)",
-      "translation": "A/The гог was central.",
-      "explain": "Governed by the context requiring the именительный (nominative)."
-    },
-    {
-      "id": "c8",
-      "sentence": "Это достояние ___.",
-      "lemma": "гог",
-      "options": [
-        "гог",
-        "гогу",
-        "гога",
-        "гогом"
-      ],
-      "correct": "гога",
-      "case": "Родительный (Genitive)",
-      "translation": "A/The гог was central.",
-      "explain": "Governed by the context requiring the родительный (genitive)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Пророчество против Гога Было ко мне слово Господа",
-      "question": "What is the main action in this sentence?",
-      "options": [
-        "A main action occurs.",
-        "No action takes place.",
-        "Actions are prevented.",
-        "All actions cease."
-      ],
-      "correct": "A main action occurs.",
-      "explain": "From the text provided."
-    },
-    {
-      "id": "r2",
-      "ru": "Ты со своими воинами и многими народами поднимешься и придешь словно смерч",
-      "question": "Who or what is the subject?",
-      "options": [
-        "The subject is identified.",
-        "The subject is unclear.",
-        "No subject exists.",
-        "The subject is missing."
-      ],
-      "correct": "The subject is identified.",
-      "explain": "From the text provided."
-    },
-    {
-      "id": "r3",
-      "ru": "Ты собрал полчища, чтобы расхищать, уносить золото и серебро, отнимать скот и добро и взять богатую добычу",
-      "question": "What does the text say about this subject?",
-      "options": [
-        "The text describes this subject.",
-        "The text rejects this.",
-        "The text ignores this.",
-        "The text opposes this."
-      ],
-      "correct": "The text describes this subject.",
-      "explain": "From the text provided."
-    },
-    {
-      "id": "r4",
-      "ru": "«В ревности и пылающем гневе своем я возвещаю, в это время в земле Израиля произойдет страшное землетрясение",
-      "question": "What is the main action in this sentence?",
-      "options": [
-        "A main action occurs.",
-        "No action takes place.",
-        "Actions are prevented.",
-        "All actions cease."
-      ],
-      "correct": "A main action occurs.",
-      "explain": "From the text provided."
-    },
-    {
-      "id": "r5",
-      "ru": "Тогда они узнают, что я Господь",
-      "question": "Who or what is the subject?",
-      "options": [
-        "The subject is identified.",
-        "The subject is unclear.",
-        "No subject exists.",
-        "The subject is missing."
-      ],
-      "correct": "The subject is identified.",
-      "explain": "From the text provided."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "— Сын человеческий, обрати лицо к Гогу в земле Магог, ___ Мешеха и Тувала.",
+   "lemma": "правитель",
+   "options": [
+    "верховным правителем",
+    "верховном правителе",
+    "верховный правитель",
+    "верховному правителю"
+   ],
+   "correct": "верховному правителю",
+   "case": "Дательный (Dative)",
+   "explain": "«верховному правителю» — the dative marks the indirect object or recipient.",
+   "id": "c1",
+   "translation": "“Son of man, set your face toward Gog, of the land of Magog, the prince of Rosh, Meshech, and Tubal, and prophesy against him,"
+  },
+  {
+   "sentence": "Пророчествуй против него 3 и скажи: «Так говорит Владыка Господь: Я — твой враг, о Гог, ___ Мешеха и Тувала.",
+   "lemma": "правитель",
+   "options": [
+    "верховном правителе",
+    "верховным правителем",
+    "верховному правителю",
+    "верховный правитель"
+   ],
+   "correct": "верховный правитель",
+   "case": "Именительный (Nominative)",
+   "explain": "«верховный правитель» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "“Son of man, set your face toward Gog, of the land of Magog, the prince of Rosh, Meshech, and Tubal, and prophesy against him,"
+  },
+  {
+   "sentence": "Ее обитатели были уведены от ___ и теперь живут в безопасности.",
+   "lemma": "народ",
+   "options": [
+    "других народах",
+    "других народов",
+    "другим народам",
+    "другие народы"
+   ],
+   "correct": "других народов",
+   "case": "Родительный (Genitive)",
+   "explain": "«других народов» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "After many days you will be visited. In the latter years you will come into the land that is brought back from the sword, that is gathered out of many peoples, on the mountains of Israel, which have been a continual waste; but it is brought out of the peoples, and they will dwell securely, all of them."
+  },
+  {
+   "sentence": "Так говорит Владыка Господь: «В тот день к тебе придут ___, и ты задумаешь коварный план.",
+   "lemma": "мысль",
+   "options": [
+    "плохих мыслей",
+    "плохие мысли",
+    "плохими мыслями",
+    "плохих мыслях"
+   ],
+   "correct": "плохие мысли",
+   "case": "Именительный (Nominative)",
+   "explain": "«плохие мысли» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "“ ‘The Lord Yahweh says: “It will happen in that day that things will come into your mind, and you will devise an evil plan."
+  },
+  {
+   "sentence": "Так говорит Владыка Господь: «В тот день к тебе придут плохие мысли, и ты задумаешь ___.",
+   "lemma": "план",
+   "options": [
+    "коварного плана",
+    "коварный план",
+    "коварному плану",
+    "коварным планом"
+   ],
+   "correct": "коварный план",
+   "case": "Винительный (Accusative)",
+   "explain": "«коварный план» — the accusative marks the direct object of the verb.",
+   "id": "c6",
+   "translation": "“ ‘The Lord Yahweh says: “It will happen in that day that things will come into your mind, and you will devise an evil plan."
+  },
+  {
+   "sentence": "Буду грабить и расхищать; обращу руку против заселенных развалин и против людей, собранных из ___, что богаты скотом и добром и живут посреди земли”.",
+   "lemma": "народ",
+   "options": [
+    "чужие народы",
+    "чужих народов",
+    "чужих народах",
+    "чужими народами"
+   ],
+   "correct": "чужих народов",
+   "case": "Родительный (Genitive)",
+   "explain": "«чужих народов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "to take the plunder and to take prey; to turn your hand against the waste places that are inhabited, and against the people who are gathered out of the nations, who have gotten livestock and goods, who dwell in the middle of the earth.’"
+  },
+  {
+   "sentence": "Ты выйдешь из своих мест, что на окраине севера, ты сам и ___ с тобой, все они ездят на конях, огромное полчище, могучая рать.",
+   "lemma": "народ",
+   "options": [
+    "многие народы",
+    "многим народам",
+    "многих народов",
+    "многих народах"
+   ],
+   "correct": "многие народы",
+   "case": "Именительный (Nominative)",
+   "explain": "«многие народы» — the subject of the sentence stands in the nominative.",
+   "id": "c9",
+   "translation": "You will come from your place out of the uttermost parts of the north, you, and many peoples with you, all of them riding on horses, a great company and a mighty army."
+  },
+  {
+   "sentence": "— 19 В ревности и пылающем гневе Своем Я возвещаю: в это время в земле Израиля произойдет ___.",
+   "lemma": "землетрясение",
+   "options": [
+    "страшному землетрясению",
+    "страшным землетрясением",
+    "страшного землетрясения",
+    "страшное землетрясение"
+   ],
+   "correct": "страшное землетрясение",
+   "case": "Именительный (Nominative)",
+   "explain": "«страшное землетрясение» — the subject of the sentence stands in the nominative.",
+   "id": "c11",
+   "translation": "It will happen in that day, when Gog comes against the land of Israel,” says the Lord Yahweh, “that my wrath will come up into my nostrils."
+  },
+  {
+   "sentence": "Я обрушу на него, на его воинства и ___ неистовый ливень, град и горящую серу.",
+   "lemma": "народ",
+   "options": [
+    "многие народы",
+    "многим народам",
+    "многих народов",
+    "многих народах"
+   ],
+   "correct": "многие народы",
+   "case": "Именительный (Nominative)",
+   "explain": "«многие народы» — the subject of the sentence stands in the nominative.",
+   "id": "c12",
+   "translation": "I will enter into judgment with him with pestilence and with blood. I will rain on him, and on his hordes, and on the many peoples who are with him, an overflowing shower, with great hailstones, fire, and sulfur."
+  },
+  {
+   "sentence": "Я обрушу на него, на его воинства и многие народы ___, град и горящую серу.",
+   "lemma": "ливень",
+   "options": [
+    "неистового ливня",
+    "неистовом ливне",
+    "неистовый ливень",
+    "неистовому ливню"
+   ],
+   "correct": "неистовый ливень",
+   "case": "Именительный (Nominative)",
+   "explain": "«неистовый ливень» — the subject of the sentence stands in the nominative.",
+   "id": "c13",
+   "translation": "I will enter into judgment with him with pestilence and with blood. I will rain on him, and on his hordes, and on the many peoples who are with him, an overflowing shower, with great hailstones, fire, and sulfur."
+  }
+ ]
 }

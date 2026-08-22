@@ -1,204 +1,139 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Павел созвал учеников, ободрил их, попрощался и отправился в ___.",
-      "lemma": "Македония",
-      "options": [
-        "Македония",
-        "Македонии",
-        "Македонию",
-        "Македонией"
-      ],
-      "correct": "Македонию",
-      "case": "Винительный (Accusative)",
-      "translation": "Paul summoned the disciples, encouraged them, said goodbye, and left for Macedonia.",
-      "explain": "The preposition в (into) with motion requires the accusative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Проходя через разные области, Павел многими словами ободрял ___.",
-      "lemma": "верующий",
-      "options": [
-        "верующий",
-        "верующего",
-        "верующих",
-        "верующим"
-      ],
-      "correct": "верующих",
-      "case": "Родительный (Genitive)",
-      "translation": "Passing through various regions, Paul encouraged the believers with many words.",
-      "explain": "After the quantifier 'многими' the genitive plural is used with the transitive verb ободрял."
-    },
-    {
-      "id": "c3",
-      "sentence": "В верхней комнате, где мы собрались, горело много ___.",
-      "lemma": "лампа",
-      "options": [
-        "лампа",
-        "лампы",
-        "ламп",
-        "лампам"
-      ],
-      "correct": "ламп",
-      "case": "Родительный (Genitive)",
-      "translation": "In the upper room where we gathered, there were many lamps.",
-      "explain": "After 'много' (many), the genitive plural form is required."
-    },
-    {
-      "id": "c4",
-      "sentence": "На окне сидел молодой человек по имени ___.",
-      "lemma": "Евтих",
-      "options": [
-        "Евтих",
-        "Евтиха",
-        "Евтихе",
-        "Евтихом"
-      ],
-      "correct": "Евтих",
-      "case": "Именительный (Nominative)",
-      "translation": "A young man named Eutychus sat in the window.",
-      "explain": "The nominative case is used for the subject of сидел (sat)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Евтих упал на землю с третьего ___.",
-      "lemma": "этаж",
-      "options": [
-        "этаж",
-        "этажа",
-        "этаже",
-        "этажом"
-      ],
-      "correct": "этажа",
-      "case": "Родительный (Genitive)",
-      "translation": "Eutychus fell to the ground from the third floor.",
-      "explain": "The preposition с (from) requires the genitive case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Павел спустился, лег сверху на молодого человека и обнял ___.",
-      "lemma": "он",
-      "options": [
-        "он",
-        "ему",
-        "его",
-        "им"
-      ],
-      "correct": "его",
-      "case": "Винительный (Accusative)",
-      "translation": "Paul went down, lay on top of the young man and embraced him.",
-      "explain": "The transitive verb обнял (embraced) requires the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Я со смирением и слезами служил ___, несмотря на все испытания.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господом"
-      ],
-      "correct": "Господу",
-      "case": "Дательный (Dative)",
-      "translation": "I served the Lord with humility and with tears, despite all the trials.",
-      "explain": "The verb служил (served) requires the dative case for its indirect object."
-    },
-    {
-      "id": "c8",
-      "sentence": "Я не упускал ничего из того, что было бы полезно вам, уча вас по ___.",
-      "lemma": "дом",
-      "options": [
-        "дом",
-        "дома",
-        "домам",
-        "домах"
-      ],
-      "correct": "домам",
-      "case": "Дательный (Dative)",
-      "translation": "I didn't shrink from declaring anything that was profitable, teaching you from house to house.",
-      "explain": "The preposition по (through/according to) with 'по домам' (from house to house) requires the dative."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Когда беспорядки утихли, Павел созвал учеников, ободрил их, попрощался и отправился в Македонию.",
-      "question": "What did Paul do after the uproar in Ephesus had ceased?",
-      "options": [
-        "He called the disciples, encouraged them, said goodbye, and left for Macedonia",
-        "He stayed in Ephesus and continued preaching",
-        "He went immediately to Rome",
-        "He sent others ahead while he stayed behind"
-      ],
-      "correct": "He called the disciples, encouraged them, said goodbye, and left for Macedonia",
-      "explain": "The text states 'Павел созвал учеников, ободрил их, попрощался и отправился в Македонию' — Paul summoned disciples, encouraged them, took leave and went to Macedonia."
-    },
-    {
-      "id": "r2",
-      "ru": "На окне сидел молодой человек по имени Евтих. Поскольку Павел долго говорил, Евтих погрузился в глубокий сон и упал на землю с третьего этажа.",
-      "question": "What happened to Eutychus while Paul was speaking?",
-      "options": [
-        "He fell asleep and fell from the third floor to the ground",
-        "He listened attentively and took notes",
-        "He became angry and left the room",
-        "He was healed by Paul's touch"
-      ],
-      "correct": "He fell asleep and fell from the third floor to the ground",
-      "explain": "The text says 'Евтих погрузился в глубокий сон и упал на землю с третьего этажа' — Eutychus was overwhelmed with sleep and fell from the third floor."
-    },
-    {
-      "id": "r3",
-      "ru": "Павел спустился, лег сверху на молодого человека и обнял его. «Не волнуйтесь», — сказал он, — «он жив».",
-      "question": "How did Paul respond after Eutychus fell?",
-      "options": [
-        "He went down, lay on the young man, embraced him, and said 'Don't be troubled, for his life is in him'",
-        "He called for a doctor immediately",
-        "He told the people to continue the meeting",
-        "He left the room in shock"
-      ],
-      "correct": "He went down, lay on the young man, embraced him, and said 'Don't be troubled, for his life is in him'",
-      "explain": "The text describes Paul's action: 'спустился, лег сверху на молодого человека и обнял его' and his words 'он жив' — he is alive."
-    },
-    {
-      "id": "r4",
-      "ru": "Я со смирением и слезами служил Господу, несмотря на все испытания, через которые мне пришлось пройти из-за заговоров иудеев.",
-      "question": "How did Paul describe his service to the Lord in Asia?",
-      "options": [
-        "With humility and tears, despite trials and Jewish plots",
-        "With great pride and confidence",
-        "With anger toward his enemies",
-        "With reluctance and fear"
-      ],
-      "correct": "With humility and tears, despite trials and Jewish plots",
-      "explain": "Paul said 'Я со смирением и слезами служил Господу, несмотря на все испытания' — I served the Lord with humility and tears despite all trials."
-    },
-    {
-      "id": "r5",
-      "ru": "Сейчас же я, понуждаемый духом, иду в Иерусалим, не зная, что там со мной будет.",
-      "question": "What did Paul say about going to Jerusalem?",
-      "options": [
-        "He was compelled by the Spirit to go, not knowing what would happen to him",
-        "He wanted to visit the Temple with his friends",
-        "He was ordered by the Roman authorities",
-        "He was going to rest and vacation"
-      ],
-      "correct": "He was compelled by the Spirit to go, not knowing what would happen to him",
-      "explain": "The text states 'я, понуждаемый духом, иду в Иерусалим, не зная, что там со мной будет' — I am going to Jerusalem, compelled by the Spirit, not knowing what will happen."
-    },
-    {
-      "id": "r6",
-      "ru": "Помня слова Господа Иисуса, «блажение давать, чем принимать».",
-      "question": "What teaching of Jesus did Paul recall for the Ephesian elders?",
-      "options": [
-        "It is more blessed to give than to receive",
-        "Blessed are the poor in spirit",
-        "Love your enemies",
-        "Forgive those who wrong you"
-      ],
-      "correct": "It is more blessed to give than to receive",
-      "explain": "Paul quoted the Lord's words: 'блажение давать, чем принимать' — 'It is more blessed to give than to receive.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Мы же после праздника ___ отплыли из Филипп и через пять дней присоединились к ним в Троаде.",
+   "lemma": "хлеб",
+   "options": [
+    "пресным хлебам",
+    "пресных хлебов",
+    "пресными хлебами",
+    "пресных хлебах"
+   ],
+   "correct": "пресных хлебов",
+   "case": "Родительный (Genitive)",
+   "explain": "«Пресных хлебов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "We sailed away from Philippi after the days of Unleavened Bread, and came to them at Troas in five days, where we stayed seven days."
+  },
+  {
+   "sentence": "В ___ недели мы собрались вместе для преломления хлеба.",
+   "lemma": "день",
+   "options": [
+    "первому дню",
+    "первый день",
+    "первом дне",
+    "первого дня"
+   ],
+   "correct": "первый день",
+   "case": "Винительный (Accusative)",
+   "explain": "«первый день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "On the first day of the week, when the disciples were gathered together to break bread, Paul talked with them, intending to depart on the next day, and continued his speech until midnight."
+  },
+  {
+   "sentence": "На окне сидел ___ по имени Евтих.",
+   "lemma": "человек",
+   "options": [
+    "молодым человеком",
+    "молодому человеку",
+    "молодого человека",
+    "молодой человек"
+   ],
+   "correct": "молодой человек",
+   "case": "Именительный (Nominative)",
+   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "A certain young man named Eutychus sat in the window, weighed down with deep sleep. As Paul spoke still longer, being weighed down by his sleep, he fell down from the third floor and was taken up dead."
+  },
+  {
+   "sentence": "Поскольку Павел долго говорил, Евтих погрузился в ___ и упал на землю с третьего этажа.",
+   "lemma": "сон",
+   "options": [
+    "глубокий сон",
+    "глубокого сна",
+    "глубоком сне",
+    "глубоким сном"
+   ],
+   "correct": "глубокий сон",
+   "case": "Винительный (Accusative)",
+   "explain": "«глубокий сон» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c7",
+   "translation": "A certain young man named Eutychus sat in the window, weighed down with deep sleep. As Paul spoke still longer, being weighed down by his sleep, he fell down from the third floor and was taken up dead."
+  },
+  {
+   "sentence": "Поскольку Павел долго говорил, Евтих погрузился в глубокий сон и упал на землю с ___.",
+   "lemma": "этаж",
+   "options": [
+    "третьем этаже",
+    "третий этаж",
+    "третьим этажом",
+    "третьего этажа"
+   ],
+   "correct": "третьего этажа",
+   "case": "Родительный (Genitive)",
+   "explain": "«третьего этажа» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "A certain young man named Eutychus sat in the window, weighed down with deep sleep. As Paul spoke still longer, being weighed down by his sleep, he fell down from the third floor and was taken up dead."
+  },
+  {
+   "sentence": "Павел спустился, лег сверху на ___ и обнял его.",
+   "lemma": "человек",
+   "options": [
+    "молодого человека",
+    "молодым человеком",
+    "молодому человеку",
+    "молодой человек"
+   ],
+   "correct": "молодого человека",
+   "case": "Винительный (Accusative)",
+   "explain": "«молодого человека» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c9",
+   "translation": "Paul went down and fell upon him, and embracing him said, “Don’t be troubled, for his life is in him.”"
+  },
+  {
+   "sentence": "На рассвете, закончив говорить, Павел отправился в путь, 12 а ___ отвели домой живым, и всех это очень обрадовало.",
+   "lemma": "человек",
+   "options": [
+    "молодого человека",
+    "молодым человеком",
+    "молодому человеку",
+    "молодой человек"
+   ],
+   "correct": "молодого человека",
+   "case": "Винительный (Accusative)",
+   "explain": "«молодого человека» — the accusative marks the direct object of the verb.",
+   "id": "c10",
+   "translation": "When he had gone up, and had broken bread and eaten, and had talked with them a long while, even until break of day, he departed."
+  },
+  {
+   "sentence": "Я знаю, что когда я уйду, к вам придут ___, а они стада не пощадят.",
+   "lemma": "волк",
+   "options": [
+    "лютые волки",
+    "лютых волках",
+    "лютых волков",
+    "лютым волкам"
+   ],
+   "correct": "лютые волки",
+   "case": "Именительный (Nominative)",
+   "explain": "«лютые волки» — the subject of the sentence stands in the nominative.",
+   "id": "c12",
+   "translation": "For I know that after my departure, vicious wolves will enter in among you, not sparing the flock."
+  },
+  {
+   "sentence": "Сейчас я вверяю вас Богу и слову Его благодати, которое может назидать вас и дать вам наследие среди Его ___.",
+   "lemma": "народ",
+   "options": [
+    "святому народу",
+    "святого народа",
+    "святой народ",
+    "святым народом"
+   ],
+   "correct": "святого народа",
+   "case": "Родительный (Genitive)",
+   "explain": "«святого народа» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "id": "c13",
+   "translation": "Now, brothers, I entrust you to God and to the word of his grace, which is able to build up, and to give you the inheritance among all those who are sanctified."
+  }
+ ]
 }

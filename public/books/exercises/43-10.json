@@ -1,146 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Тот, кто входит в овечий загон не через ворота, а проникает другим путем, тот ___ и разбойник.",
-      "lemma": "вор",
-      "options": ["вор", "вора", "вору", "вором"],
-      "correct": "вор",
-      "case": "Именительный (Nominative)",
-      "translation": "Whoever does not enter the sheepfold through the gate, but climbs in another way, is a thief and a robber.",
-      "explain": "Вор is a predicate noun describing the subject тот, so it takes the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "У меня есть и другие овцы, не из этого ___.",
-      "lemma": "загон",
-      "options": ["загон", "загона", "загону", "загоном"],
-      "correct": "загона",
-      "case": "Родительный (Genitive)",
-      "translation": "I have other sheep that are not of this fold.",
-      "explain": "The preposition из governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Наемному ___ овцы не принадлежат.",
-      "lemma": "пастух",
-      "options": ["пастух", "пастуха", "пастуху", "пастухом"],
-      "correct": "пастуху",
-      "case": "Дательный (Dative)",
-      "translation": "The sheep do not belong to the hired shepherd.",
-      "explain": "The verb принадлежать (to belong to) governs the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Иисус использовал эту ___.",
-      "lemma": "притча",
-      "options": ["притча", "притчи", "притчу", "притчей"],
-      "correct": "притчу",
-      "case": "Винительный (Accusative)",
-      "translation": "Jesus used this parable.",
-      "explain": "The transitive verb использовать takes a direct object in the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Так было мне определено моим ___.",
-      "lemma": "отец",
-      "options": ["отец", "отца", "отцу", "отцом"],
-      "correct": "отцом",
-      "case": "Творительный (Instrumental)",
-      "translation": "So it was determined for me by my Father.",
-      "explain": "The agent of a passive construction is expressed in the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "В ___ наступил праздник обновления храма.",
-      "lemma": "Иерусалим",
-      "options": ["Иерусалим", "Иерусалима", "Иерусалиму", "Иерусалиме"],
-      "correct": "Иерусалиме",
-      "case": "Предложный (Prepositional)",
-      "translation": "In Jerusalem the Feast of Dedication took place.",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Тот, кто входит в овечий загон не через ворота, а проникает другим путем, тот вор и разбойник.",
-      "question": "How does Jesus describe someone who climbs into the sheepfold instead of entering through the gate?",
-      "options": ["A thief and a robber", "A hired hand", "A true shepherd", "A gatekeeper"],
-      "correct": "A thief and a robber",
-      "explain": "The text calls one who climbs in another way instead of through the gate a thief and a robber."
-    },
-    {
-      "id": "r2",
-      "ru": "Он зовет своих овец по именам и выводит их.",
-      "question": "How does the shepherd call his own sheep?",
-      "options": ["By name", "By whistling", "By ringing a bell", "By clapping his hands"],
-      "correct": "By name",
-      "explain": "The shepherd calls his own sheep by name and leads them out."
-    },
-    {
-      "id": "r3",
-      "ru": "«Говорю вам истину, я дверь для овец.",
-      "question": "What does Jesus call himself in relation to the sheep?",
-      "options": ["The door for the sheep", "The shepherd's staff", "The fence of the sheepfold", "The watchtower"],
-      "correct": "The door for the sheep",
-      "explain": "Jesus says, 'I am the door for the sheep.'"
-    },
-    {
-      "id": "r4",
-      "ru": "Наемному пастуху овцы не принадлежат, и когда он видит, что пришел волк, он бросает овец и убегает.",
-      "question": "What does the hired hand do when he sees the wolf coming?",
-      "options": ["He abandons the sheep and runs away", "He fights the wolf", "He calls the shepherd for help", "He hides the sheep in a cave"],
-      "correct": "He abandons the sheep and runs away",
-      "explain": "The hired hand abandons the sheep and flees when he sees the wolf coming."
-    },
-    {
-      "id": "r5",
-      "ru": "У меня есть и другие овцы, не из этого загона",
-      "question": "What does Jesus say about sheep that are not of this fold?",
-      "options": ["He must also bring them", "He will ignore them", "They belong to someone else forever", "They are dangerous"],
-      "correct": "He must also bring them",
-      "explain": "Jesus says he has other sheep not of this fold that he must also bring."
-    },
-    {
-      "id": "r6",
-      "ru": "Никто ее у меня не может отнять, я отдаю ее добровольно.",
-      "question": "What does Jesus say about his own life?",
-      "options": ["No one can take it from him; he lays it down voluntarily", "Someone forces him to give it up", "He will never actually die", "It belongs to the Romans"],
-      "correct": "No one can take it from him; he lays it down voluntarily",
-      "explain": "Jesus says no one can take his life from him; he lays it down voluntarily."
-    },
-    {
-      "id": "r7",
-      "ru": "«Сколько ты еще будешь держать нас в недоумении?» — говорили они. «Если ты Христос, то так и скажи нам!»",
-      "question": "What did the Jews ask Jesus at the Feast of Dedication?",
-      "options": ["To plainly tell them if he was the Christ", "To perform a new miracle", "To leave Jerusalem at once", "To pay the temple tax"],
-      "correct": "To plainly tell them if he was the Christ",
-      "explain": "The Jews asked Jesus how long he would keep them in suspense and to tell them plainly if he was the Christ."
-    },
-    {
-      "id": "r8",
-      "ru": "Я даю им жизнь вечную, и они никогда не погибнут.",
-      "question": "What does Jesus give his sheep?",
-      "options": ["Eternal life, so they will never perish", "Wealth and land", "A new name", "Protection from the Romans"],
-      "correct": "Eternal life, so they will never perish",
-      "explain": "Jesus says he gives his sheep eternal life and they will never perish."
-    },
-    {
-      "id": "r9",
-      "ru": "Тогда иудеи опять схватили камни, чтобы побить его",
-      "question": "How did the Jews react after Jesus said, 'I and the Father are one'?",
-      "options": ["They picked up stones to stone him", "They applauded him", "They asked him more questions", "They left quietly"],
-      "correct": "They picked up stones to stone him",
-      "explain": "After Jesus said 'I and the Father are one,' the Jews picked up stones to stone him."
-    },
-    {
-      "id": "r10",
-      "ru": "Затем Иисус отправился на другую сторону Иордана, туда, где Иоанн раньше крестил, и там оставался.",
-      "question": "Where did Jesus go after escaping from the Jews?",
-      "options": ["Across the Jordan, where John used to baptize", "Back to Nazareth", "To Rome", "Into the wilderness alone"],
-      "correct": "Across the Jordan, where John used to baptize",
-      "explain": "After escaping, Jesus went across the Jordan to where John used to baptize."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Но кто входит через ворота, тот ___ этих овец.",
+   "lemma": "пастух",
+   "options": [
+    "настоящему пастуху",
+    "настоящим пастухом",
+    "настоящий пастух",
+    "настоящего пастуха"
+   ],
+   "correct": "настоящий пастух",
+   "case": "Именительный (Nominative)",
+   "explain": "«настоящий пастух» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "But one who enters in by the door is the shepherd of the sheep."
+  },
+  {
+   "sentence": "___ отдает жизнь свою за овец.",
+   "lemma": "пастух",
+   "options": [
+    "хорошим пастухом",
+    "хорошего пастуха",
+    "хорошему пастуху",
+    "хороший пастух"
+   ],
+   "correct": "хороший пастух",
+   "case": "Именительный (Nominative)",
+   "explain": "«Хороший пастух» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "I am the good shepherd. The good shepherd lays down his life for the sheep."
+  },
+  {
+   "sentence": "У Меня есть и ___, не из этого загона , их Я тоже должен привести.",
+   "lemma": "овца",
+   "options": [
+    "других овец",
+    "других овцах",
+    "другие овцы",
+    "другим овцам"
+   ],
+   "correct": "другие овцы",
+   "case": "Именительный (Nominative)",
+   "explain": "«другие овцы» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "I have other sheep, which are not of this fold. I must bring them also, and they will hear my voice. They will become one flock with one shepherd."
+  }
+ ]
 }

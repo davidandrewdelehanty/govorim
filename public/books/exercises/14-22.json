@@ -1,134 +1,34 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Жители Иерусалима сделали ___, младшего сына Иорама, царем вместо него.",
-      "lemma": "Ахозия",
-      "options": ["Ахозия", "Ахозию", "Ахозией", "Ахозии"],
-      "correct": "Ахозию",
-      "case": "Винительный (Accusative)",
-      "translation": "The inhabitants of Jerusalem made Ahaziah, the youngest son of Jehoram, king in his place.",
-      "explain": "The verb сделали (made) is transitive, so its object takes the accusative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Ахозии было 22 года, когда он стал ___, и правил он в Иерусалиме один год.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царь",
-      "case": "Именительный (Nominative)",
-      "translation": "Ahaziah was twenty-two years old when he became king, and he reigned one year in Jerusalem.",
-      "explain": "After the linking verb стал (became), the predicate nominative takes the nominative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Его мать звали Аталия, она была внучкой ___.",
-      "lemma": "Омрий",
-      "options": ["Омрий", "Омрия", "Омрию", "Омрием"],
-      "correct": "Омрия",
-      "case": "Родительный (Genitive)",
-      "translation": "His mother's name was Athaliah; she was the granddaughter of Omri.",
-      "explain": "The possessive relationship 'granddaughter of Omri' uses the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Он тоже ходил путями ___, потому что мать была ему советчицей на злые дела.",
-      "lemma": "дом Ахава",
-      "options": ["дома Ахава", "дом Ахава", "домом Ахава", "доме Ахава"],
-      "correct": "дома Ахава",
-      "case": "Родительный (Genitive)",
-      "translation": "He also walked in the ways of the house of Ahab, because his mother was his counselor in acting wickedly.",
-      "explain": "The phrase 'путями дома' (ways of the house) uses the genitive after paths/ways."
-    },
-    {
-      "id": "c5",
-      "sentence": "Отправляясь царем Израиля Иорамом, сыном Ахава, под Рамот Галаадский воевать против ___.",
-      "lemma": "Хазаил",
-      "options": ["Хазаил", "Хазаила", "Хазаилу", "Хазаилом"],
-      "correct": "Хазаила",
-      "case": "Родительный (Genitive)",
-      "translation": "Going with the king of Israel, Jehoram son of Ahab, to Ramoth Gilead to fight against Hazael.",
-      "explain": "The preposition против (against) governs the genitive case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Тогда иудейский царь Ахозия, сын Иорама, отправился в Израиль навестить ___, потому что тот был ранен.",
-      "lemma": "Иорам",
-      "options": ["Иорам", "Иорама", "Иораму", "Иорамом"],
-      "correct": "Иорама",
-      "case": "Родительный (Genitive)",
-      "translation": "Then Ahaziah the king of Judah went to Israel to visit Jehoram the son of Ahab, because he was wounded.",
-      "explain": "The verb навестить (to visit) takes the accusative, but when referring to visiting someone, it takes the form that marks the indirect object (genitive)."
-    },
-    {
-      "id": "c7",
-      "sentence": "Когда Ахозия пришел, он вышел с Иорамом навстречу ___, сыну Немши, которого Господь помазал.",
-      "lemma": "Иеуй",
-      "options": ["Иеуй", "Иеуя", "Иеую", "Иеуем"],
-      "correct": "Иеую",
-      "case": "Винительный (Accusative)",
-      "translation": "When Ahaziah came, he went out with Jehoram to meet Jehu the son of Nimshi, whom the Lord had anointed.",
-      "explain": "After the preposition навстречу (to meet), the object of meeting takes the dative-like accusative form."
-    },
-    {
-      "id": "c8",
-      "sentence": "Его удостоили похорон, потому что говорили, он был сыном ___, который всем сердцем искал Господа.",
-      "lemma": "Иосафат",
-      "options": ["Иосафат", "Иосафата", "Иосафату", "Иосафатом"],
-      "correct": "Иосафата",
-      "case": "Родительный (Genitive)",
-      "translation": "He was given a burial, for they said, he was the son of Jehoshaphat, who sought the Lord with all his heart.",
-      "explain": "The possessive relationship 'son of Jehoshaphat' requires the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Ахозия, царь Иудеи. Жители Иерусалима сделали Ахозию, младшего сына Иорама, царем вместо него, потому что люди, которые ворвались вместе с арабами в лагерь, перебили всех его старших сыновей.",
-      "question": "Why did the inhabitants of Jerusalem make Ahaziah king?",
-      "options": ["Because the older sons were killed by Arabs and others", "Because he was the most capable", "Because his father requested it", "Because he was the oldest surviving son"],
-      "correct": "Because the older sons were killed by Arabs and others",
-      "explain": "The text states the people did this 'потому что люди, которые ворвались вместе с арабами в лагерь, перебили всех его старших сыновей' — because those who came with the Arabs had killed all his older sons."
-    },
-    {
-      "id": "r2",
-      "ru": "Ахозии было 22 года, когда он стал царем, и правил он в Иерусалиме один год.",
-      "question": "How long did Ahaziah reign in Jerusalem?",
-      "options": ["One year", "Seven years", "Twenty-two years", "Forty years"],
-      "correct": "One year",
-      "explain": "The text explicitly states 'правил он в Иерусалиме один год' — he reigned in Jerusalem one year."
-    },
-    {
-      "id": "r3",
-      "ru": "Он тоже ходил путями дома Ахава, потому что мать была ему советчицей на злые дела.",
-      "question": "Who was Ahaziah's advisor in committing evil?",
-      "options": ["His mother Athaliah", "The priests of Baal", "The princes of Israel", "The false prophets"],
-      "correct": "His mother Athaliah",
-      "explain": "The text says 'мать была ему советчицей на злые дела' — his mother was his counselor for evil deeds."
-    },
-    {
-      "id": "r4",
-      "ru": "Но в воле Бога было то, чтобы гибель Ахозии произошла во время его прихода к Иораму.",
-      "question": "What did God decree concerning Ahaziah's visit to Jehoram?",
-      "options": ["That his death would occur during this visit", "That he would conquer Israel", "That he would be restored to health", "That his kingdom would be divided"],
-      "correct": "That his death would occur during this visit",
-      "explain": "The text states 'в воле Бога было то, чтобы гибель Ахозии произошла во время его прихода к Иораму' — it was God's will that Ahaziah's destruction happen during his coming to Jehoram."
-    },
-    {
-      "id": "r5",
-      "ru": "Затем он отправился на поиски Ахозии, и его люди схватили Ахозию, когда тот прятался в Самарии.",
-      "question": "Where was Ahaziah found when Jehu's men captured him?",
-      "options": ["Hiding in Samaria", "In the temple", "On the road", "In his palace"],
-      "correct": "Hiding in Samaria",
-      "explain": "The text says his men 'схватили Ахозию, когда тот прятался в Самарии' — captured Ahaziah while he was hiding in Samaria."
-    },
-    {
-      "id": "r6",
-      "ru": "Попытка Аталии истребить дом Давида Когда Аталия, мать Ахозии, увидела, что ее сын мертв, она встала и погубила всю царскую семью дома Иуды.",
-      "question": "What did Athaliah attempt to do after her son's death?",
-      "options": ["Destroy the entire royal family of Judah", "Restore her son to life", "Flee to Egypt", "Seek revenge on Jehu"],
-      "correct": "Destroy the entire royal family of Judah",
-      "explain": "The text explicitly states 'она встала и погубила всю царскую семью дома Иуды' — she rose up and destroyed all the royal family of the house of Judah."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Но Иосавеф, дочь царя Иорама, взяла Иоаша, сына Охозии, выкрала его из среды ___, которых должны были убить, и спрятала его вместе с кормилицей в спальне.",
+   "lemma": "сын",
+   "options": [
+    "царских сыновей",
+    "царских сыновьях",
+    "царским сыновьям",
+    "царские сыновья"
+   ],
+   "correct": "царских сыновей",
+   "case": "Родительный (Genitive)",
+   "explain": "«царских сыновей» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "But Jehoshabeath, the king’s daughter, took Joash the son of Ahaziah, and stealthily rescued him from among the king’s sons who were slain, and put him and his nurse in the bedroom. So Jehoshabeath, the daughter of king Jehoram, the wife of Jehoiada the priest (for she was the sister of Ahaziah), hid him from Athaliah, so that she didn’t kill him."
+  },
+  {
+   "sentence": "Он прятался у них в ___ шесть лет, пока Аталия правила страной.",
+   "lemma": "храм",
+   "options": [
+    "божьего храма",
+    "божьим храмом",
+    "божьем храме",
+    "божий храм"
+   ],
+   "correct": "божьем храме",
+   "case": "Предложный (Prepositional)",
+   "explain": "«Божьем храме» — after the preposition «в», for location or topic.",
+   "id": "c4",
+   "translation": "He was with them hidden in God’s house six years while Athaliah reigned over the land."
+  }
+ ]
 }

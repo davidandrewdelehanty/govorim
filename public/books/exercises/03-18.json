@@ -1,134 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Не поступайте, как поступают в ___.",
-      "lemma": "Египет",
-      "options": ["Египет", "Египта", "Египту", "Египте"],
-      "correct": "Египте",
-      "case": "Предложный (Prepositional)",
-      "translation": "Do not act as they do in Egypt.",
-      "explain": "The preposition в (in) governing location takes the prepositional case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Не позорь ___, вступив в половые отношения с матерью.",
-      "lemma": "отец",
-      "options": ["отец", "отца", "отцу", "отцом"],
-      "correct": "отца",
-      "case": "Родительный (Genitive)",
-      "translation": "Do not dishonor your father by having sexual relations with your mother.",
-      "explain": "The verb позорить (to dishonor) takes the genitive case for the object being dishonored."
-    },
-    {
-      "id": "c3",
-      "sentence": "Исполняйте мои установления и прилежно соблюдайте мои ___.",
-      "lemma": "закон",
-      "options": ["закон", "закона", "закону", "законы"],
-      "correct": "законы",
-      "case": "Винительный (Accusative)",
-      "translation": "Keep my ordinances and carefully observe my laws.",
-      "explain": "The verb соблюдать (to observe) takes the accusative case for its direct object."
-    },
-    {
-      "id": "c4",
-      "sentence": "Пусть никто не приближается ни к какой из близких ___.",
-      "lemma": "родственница",
-      "options": ["родственница", "родственницы", "родственнице", "родственницей"],
-      "correct": "родственницы",
-      "case": "Родительный (Genitive)",
-      "translation": "Let no one approach any close relative.",
-      "explain": "The preposition 'из' (from among) requires the genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Она твоя ___, не вступай в половые отношения с ней.",
-      "lemma": "мать",
-      "options": ["мать", "матери", "матерью", "матер"],
-      "correct": "мать",
-      "case": "Именительный (Nominative)",
-      "translation": "She is your mother; do not have sexual relations with her.",
-      "explain": "Мать is a predicate nominative following the verb 'быть' (to be), so it takes nominative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Не имей половые отношения с женой своего ___, это бесчестие для него.",
-      "lemma": "отец",
-      "options": ["отец", "отца", "отцу", "отцом"],
-      "correct": "отца",
-      "case": "Родительный (Genitive)",
-      "translation": "Do not have sexual relations with your father's wife; it is a dishonor to him.",
-      "explain": "The possessive construction 'жена ... отца' uses genitive to show possession."
-    },
-    {
-      "id": "c7",
-      "sentence": "Не вступай в половые отношения со своей ___, дочерью твоих отца или матери.",
-      "lemma": "сестра",
-      "options": ["сестра", "сестры", "сестре", "сестрой"],
-      "correct": "сестрой",
-      "case": "Творительный (Instrumental)",
-      "translation": "Do not have sexual relations with your sister, the daughter of your father or mother.",
-      "explain": "The preposition 'со' (with) requires the instrumental case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Исполняющий их будет жив благодаря ___.",
-      "lemma": "они",
-      "options": ["они", "их", "им", "ими"],
-      "correct": "им",
-      "case": "Дательный (Dative)",
-      "translation": "Whoever keeps them will live by them.",
-      "explain": "The preposition 'благодаря' (thanks to, by means of) governs the dative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Я Господь ваш Бог.",
-      "question": "Who is speaking in this passage?",
-      "options": ["The Lord", "Moses", "The Israelites", "The Egyptians"],
-      "correct": "The Lord",
-      "explain": "The passage begins with 'Я Господь ваш Бог' — 'I am the Lord your God.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Не поступайте, как поступают в Египте, где вы жили, и в земле Ханаана, куда я вас веду.",
-      "question": "Which two lands are mentioned?",
-      "options": ["Egypt and Canaan", "Egypt and Israel", "Canaan and Sinai", "Sinai and Egypt"],
-      "correct": "Egypt and Canaan",
-      "explain": "The text explicitly mentions 'Египте' (Egypt) and 'земле Ханаана' (land of Canaan)."
-    },
-    {
-      "id": "r3",
-      "ru": "Пусть никто не приближается ни к какой из близких родственниц, чтобы иметь с ней половые отношения.",
-      "question": "What is prohibited?",
-      "options": ["Having sexual relations with relatives", "Speaking to relatives", "Eating with relatives", "Working with relatives"],
-      "correct": "Having sexual relations with relatives",
-      "explain": "The text explicitly forbids sexual relations with close female relatives."
-    },
-    {
-      "id": "r4",
-      "ru": "Она твоя мать, не вступай в половые отношения с ней.",
-      "question": "To whom is this command addressed?",
-      "options": ["A man regarding his mother", "A man regarding his sister", "A woman regarding her father", "A woman regarding her mother"],
-      "correct": "A man regarding his mother",
-      "explain": "The text directly addresses 'Она твоя мать' — 'She is your mother.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Не имей половые отношения с женой своего отца, это бесчестие для него.",
-      "question": "Why is this forbidden?",
-      "options": ["It is a dishonor to him", "It violates the law", "It causes illness", "It is impure"],
-      "correct": "It is a dishonor to him",
-      "explain": "The text states 'это бесчестие для него' — 'it is a dishonor to him.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Исполняйте мои установления и прилежно соблюдайте мои законы.",
-      "question": "What is commanded?",
-      "options": ["Keep God's ordinances and laws", "Worship idols", "Make offerings", "Build altars"],
-      "correct": "Keep God's ordinances and laws",
-      "explain": "The text commands to keep God's ordinances and laws."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Пусть никто не приближается ни к какой из ___, чтобы иметь с ней половые отношения .",
+   "lemma": "родственница",
+   "options": [
+    "близкими родственницами",
+    "близким родственницам",
+    "близкие родственницы",
+    "близких родственниц"
+   ],
+   "correct": "близких родственниц",
+   "case": "Родительный (Genitive)",
+   "explain": "«близких родственниц» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "“ ‘None of you shall approach any close relatives, to uncover their nakedness: I am Yahweh."
+  },
+  {
+   "sentence": "Не вступай в половые отношения с сестрой отца: она его ___.",
+   "lemma": "родственница",
+   "options": [
+    "близкой родственницей",
+    "близкой родственнице",
+    "близкая родственница",
+    "близкой родственницы"
+   ],
+   "correct": "близкая родственница",
+   "case": "Именительный (Nominative)",
+   "explain": "«близкая родственница» — the subject of the sentence stands in the nominative.",
+   "id": "c9",
+   "translation": "“ ‘You shall not uncover the nakedness of your father’s sister. She is your father’s near kinswoman."
+  },
+  {
+   "sentence": "Не вступай в половые отношения с сестрой матери, ведь она ее ___.",
+   "lemma": "родственница",
+   "options": [
+    "близкой родственницей",
+    "близкой родственнице",
+    "близкая родственница",
+    "близкой родственницы"
+   ],
+   "correct": "близкая родственница",
+   "case": "Именительный (Nominative)",
+   "explain": "«близкая родственница» — the subject of the sentence stands in the nominative.",
+   "id": "c11",
+   "translation": "“ ‘You shall not uncover the nakedness of your mother’s sister, for she is your mother’s near kinswoman."
+  },
+  {
+   "sentence": "Не совокупляйся с дочерью ее сына или дочери: они твои ___.",
+   "lemma": "родственник",
+   "options": [
+    "близких родственников",
+    "близким родственникам",
+    "близкие родственники",
+    "близких родственниках"
+   ],
+   "correct": "близкие родственники",
+   "case": "Именительный (Nominative)",
+   "explain": "«близкие родственники» — the subject of the sentence stands in the nominative.",
+   "id": "c16",
+   "translation": "“ ‘You shall not uncover the nakedness of a woman and her daughter. You shall not take her son’s daughter, or her daughter’s daughter, to uncover her nakedness. They are near kinswomen. It is wickedness."
+  },
+  {
+   "sentence": "Соблюдайте Мои повеления и не следуйте ___, которые были до вас, не оскверняйтесь ими.",
+   "lemma": "обычай",
+   "options": [
+    "отвратительными обычаями",
+    "отвратительных обычаев",
+    "отвратительным обычаям",
+    "отвратительных обычаях"
+   ],
+   "correct": "отвратительным обычаям",
+   "case": "Дательный (Dative)",
+   "explain": "«отвратительным обычаям» — the dative marks the indirect object or recipient.",
+   "id": "c19",
+   "translation": "Therefore you shall keep my requirements, that you do not practice any of these abominable customs which were practiced before you, and that you do not defile yourselves with them. I am Yahweh your God.’ ”"
+  }
+ ]
 }

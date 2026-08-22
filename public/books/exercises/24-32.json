@@ -1,134 +1,184 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Купи мое ___ в Анатоте, потому что ты ближайший родственник.",
-      "lemma": "поле",
-      "options": ["поле", "поля", "полю", "полем"],
-      "correct": "поле",
-      "case": "Винительный (Accusative)",
-      "translation": "Buy my field in Anathoth, because you are the nearest kinsman.",
-      "explain": "Поле is the direct object of the verb купи (buy), taking the accusative, which for neuter nouns is the same as the nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Отдав купчую Баруху, сыну Нирии, я помолился Господу о восстановлении этого ___.",
-      "lemma": "город",
-      "options": ["город", "города", "городу", "городом"],
-      "correct": "города",
-      "case": "Родительный (Genitive)",
-      "translation": "After delivering the deed to Baruch, I prayed to the Lord about the restoration of this city.",
-      "explain": "The phrase 'восстановлении города' (restoration of the city) uses the genitive case: восстановлении + genitive."
-    },
-    {
-      "id": "c3",
-      "sentence": "Я купил поле в Анатоте у моего двоюродного брата Ханамела, отвесив ему семнадцать шекелей ___.",
-      "lemma": "серебро",
-      "options": ["серебро", "серебра", "серебру", "серебром"],
-      "correct": "серебра",
-      "case": "Родительный (Genitive)",
-      "translation": "I bought the field in Anathoth from my cousin Hanamel, weighing out to him seventeen shekels of silver.",
-      "explain": "The phrase 'шекелей серебра' (shekels of silver) uses the genitive case: шекелей + genitive."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я подписал купчую, приложил к ней свою печать, пригласил свидетелей и отвесил ___ на весах.",
-      "lemma": "серебро",
-      "options": ["серебро", "серебра", "серебру", "серебром"],
-      "correct": "серебро",
-      "case": "Винительный (Accusative)",
-      "translation": "I signed the deed, affixed my seal to it, called witnesses, and weighed the money on the scales.",
-      "explain": "Серебро is the direct object of отвесил (weighed), taking the accusative, which for neuter nouns is the same as the nominative."
-    },
-    {
-      "id": "c5",
-      "sentence": "Возьми эти грамоты, запечатанную копию купчи и не запечатанную, и положи их в глиняный кувшин, чтобы они могли храниться очень ___.",
-      "lemma": "долго",
-      "options": ["долго", "долга", "долгу", "долгом"],
-      "correct": "долго",
-      "case": "Именительный (Nominative)",
-      "translation": "Take these deeds, the sealed deed of purchase and the open one, and put them in an earthen vessel, that they may last for a long time.",
-      "explain": "Долго functions as an adverb/predicate, modifying how long the documents will be preserved."
-    },
-    {
-      "id": "c6",
-      "sentence": "Нет ничего невозможного для ___.",
-      "lemma": "ты",
-      "options": ["ты", "тебя", "тебе", "тобой"],
-      "correct": "тебя",
-      "case": "Родительный (Genitive)",
-      "translation": "There is nothing impossible for you.",
-      "explain": "The word невозможное (impossible) after нет takes the genitive case: нет + genitive."
-    },
-    {
-      "id": "c7",
-      "sentence": "Я приведу их обратно в этот край и дам им жить в безопасности. Они будут моим народом, а я буду их ___.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Богом",
-      "case": "Творительный (Instrumental)",
-      "translation": "I will bring them back to this land and give them safety. They will be my people, and I will be their God.",
-      "explain": "The copula буду (will be) with the instrumental case indicates the state or role: буду их Богом (will be their God)."
-    },
-    {
-      "id": "c8",
-      "sentence": "Ведь так говорит Господь, как я навел на этот народ всю эту страшную беду, так я пошлю им и все благоденствие, которое я им обещал, и снова будут покупать поля в этой ___.",
-      "lemma": "страна",
-      "options": ["страна", "страны", "стране", "страной"],
-      "correct": "стране",
-      "case": "Предложный (Prepositional)",
-      "translation": "For just as I have brought all this great evil on this people, so I will send them all the good that I have promised them, and again they will buy fields in this land.",
-      "explain": "The preposition в (in/at) governs the prepositional case: в этой стране (in this land)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Войско Вавилонского царя осаждало Иерусалим, а пророк Иеремия был заключен в темницу при дворце царя Иудеи.",
-      "question": "What was happening to Jeremiah and Jerusalem at this time?",
-      "options": ["The Babylonian army was besieging Jerusalem while Jeremiah was imprisoned in the courtyard of the king's house", "Jeremiah was leading the defense of Jerusalem", "The city was at peace", "Jeremiah was free to preach openly"],
-      "correct": "The Babylonian army was besieging Jerusalem while Jeremiah was imprisoned in the courtyard of the king's house",
-      "explain": "The text states: Войско Вавилонского царя осаждало Иерусалим, а пророк Иеремия был заключен в темницу — The Babylonian army was besieging Jerusalem while Jeremiah was imprisoned."
-    },
-    {
-      "id": "r2",
-      "ru": "Я знал, что таково было слово Господне, и купил поле в Анатоте у моего двоюродного брата Ханамела, отвесив ему семнадцать шекелей серебра.",
-      "question": "What did Jeremiah do after his cousin came to him?",
-      "options": ["He bought the field in Anathoth from Hanamel for seventeen shekels of silver", "He refused to buy the field", "He asked the king's permission", "He waited until after the siege"],
-      "correct": "He bought the field in Anathoth from Hanamel for seventeen shekels of silver",
-      "explain": "The text says: купил поле в Анатоте у моего двоюродного брата Ханамела, отвесив ему семнадцать шекелей серебра — He bought the field in Anathoth from his cousin Hanamel for seventeen shekels of silver."
-    },
-    {
-      "id": "r3",
-      "ru": "Я подписал купчую, приложил к ней свою печать, пригласил свидетелей и отвесил серебро на весах.",
-      "question": "What legal procedures did Jeremiah follow for the land purchase?",
-      "options": ["He signed the deed, sealed it, called witnesses, and weighed the silver on the scales", "He just gave verbal consent", "He had the king witness the transaction", "He waited for a priest to approve"],
-      "correct": "He signed the deed, sealed it, called witnesses, and weighed the silver on the scales",
-      "explain": "The passage lists: Я подписал купчую, приложил к ней свою печать, пригласил свидетелей и отвесил серебро на весах — He signed, sealed, called witnesses, and weighed the silver."
-    },
-    {
-      "id": "r4",
-      "ru": "О, Владыка Господь, Ты создал небеса и землю Своей великой силой и простертой рукой. Нет ничего невозможного для Тебя.",
-      "question": "What does Jeremiah acknowledge about God in his prayer?",
-      "options": ["God created heaven and earth with great power and an outstretched arm, and nothing is impossible for Him", "God created only the earth", "God needs human help", "God is limited in power"],
-      "correct": "God created heaven and earth with great power and an outstretched arm, and nothing is impossible for Him",
-      "explain": "Jeremiah prays: Ты создал небеса и землю Своей великой силой и простертой рукой. Нет ничего невозможного для Тебя — You created the heavens and earth with great power; nothing is impossible for You."
-    },
-    {
-      "id": "r5",
-      "ru": "Я непременно соберу их из всех земель, в которые я изгнал их в гневе, ярости и страшном негодовании.",
-      "question": "What does God promise concerning the scattered people of Israel?",
-      "options": ["He will surely gather them from all the lands where He drove them in anger and wrath", "He will leave them scattered forever", "He will abandon them", "He will drive them further away"],
-      "correct": "He will surely gather them from all the lands where He drove them in anger and wrath",
-      "explain": "God says: Я непременно соберу их из всех земель, в которые я изгнал их в гневе, ярости — I will surely gather them from all the lands where I drove them in my anger and wrath."
-    },
-    {
-      "id": "r6",
-      "ru": "Я заключу с ними вечный завет, по которому я не перестану делать для них добро и вдохновлять их, чтобы они чтили меня.",
-      "question": "What kind of covenant will God make with Israel?",
-      "options": ["An everlasting covenant by which He will not cease to do good for them and cause them to fear Him", "A temporary agreement", "A covenant that can be broken", "A covenant of punishment"],
-      "correct": "An everlasting covenant by which He will not cease to do good for them and cause them to fear Him",
-      "explain": "God promises: Я заключу с ними вечный завет, по которому я не перестану делать для них добро — I will make an everlasting covenant by which I will not cease doing good for them."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Вот слово Господне, которое было к Иеремии в десятом году правления Цедекии , царя Иудеи — это был ___ правления Навуходоносора.",
+   "lemma": "год",
+   "options": [
+    "восемнадцатому году",
+    "восемнадцатом годе",
+    "восемнадцатого года",
+    "восемнадцатый год"
+   ],
+   "correct": "восемнадцатый год",
+   "case": "Именительный (Nominative)",
+   "explain": "«восемнадцатый год» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "The word that came to Jeremiah from Yahweh in the tenth year of Zedekiah king of Judah, which was the eighteenth year of Nebuchadnezzar."
+  },
+  {
+   "sentence": "Цедекия, царь Иудеи, не спасется от рук халдеев; его непременно отдадут ___, и он увидит его собственными глазами и будет разговаривать с ним лицом к лицу.",
+   "lemma": "царь",
+   "options": [
+    "вавилонском царе",
+    "вавилонским царём",
+    "вавилонский царь",
+    "вавилонскому царю"
+   ],
+   "correct": "вавилонскому царю",
+   "case": "Дательный (Dative)",
+   "explain": "«вавилонскому царю» — the dative marks the indirect object or recipient.",
+   "id": "c2",
+   "translation": "and Zedekiah king of Judah won’t escape out of the hand of the Chaldeans, but will surely be delivered into the hand of the king of Babylon, and will speak with him mouth to mouth, and his eyes will see his eyes;"
+  },
+  {
+   "sentence": "Цедекия, царь Иудеи, не спасется от рук халдеев; его непременно отдадут вавилонскому царю, и он увидит его ___ и будет разговаривать с ним лицом к лицу.",
+   "lemma": "глаз",
+   "options": [
+    "собственным глазам",
+    "собственных глаз",
+    "собственных глазах",
+    "собственными глазами"
+   ],
+   "correct": "собственными глазами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«собственными глазами» — the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "and Zedekiah king of Judah won’t escape out of the hand of the Chaldeans, but will surely be delivered into the hand of the king of Babylon, and will speak with him mouth to mouth, and his eyes will see his eyes;"
+  },
+  {
+   "sentence": "Потом, как и сказал Господь, мой ___ Ханамел пришел ко мне в темницу и сказал:",
+   "lemma": "брат",
+   "options": [
+    "двоюродный брат",
+    "двоюродным братом",
+    "двоюродному брату",
+    "двоюродном брате"
+   ],
+   "correct": "двоюродный брат",
+   "case": "Именительный (Nominative)",
+   "explain": "«двоюродный брат» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "“So Hanamel my uncle’s son came to me in the court of the guard according to Yahweh’s word, and said to me, ‘Please buy my field that is in Anathoth, which is in the land of Benjamin; for the right of inheritance is yours, and the redemption is yours. Buy it for yourself.’ “Then I knew that this was Yahweh’s word."
+  },
+  {
+   "sentence": "В их присутствии Я велел Баруху: 14 «Так говорит Господь Сил, Бог Израиля: “Возьми эти грамоты — запечатанную копию купчей и незапечатанную — и положи их в ___, чтобы они могли храниться долго.",
+   "lemma": "кувшин",
+   "options": [
+    "глиняном кувшине",
+    "глиняному кувшину",
+    "глиняного кувшина",
+    "глиняный кувшин"
+   ],
+   "correct": "глиняный кувшин",
+   "case": "Винительный (Accusative)",
+   "explain": "«глиняный кувшин» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c5",
+   "translation": "“I commanded Baruch before them, saying,"
+  },
+  {
+   "sentence": "Ты создал небеса и землю Своей ___ и простертой рукой.",
+   "lemma": "сила",
+   "options": [
+    "великой силой",
+    "великая сила",
+    "великой силе",
+    "великой силы"
+   ],
+   "correct": "великой силой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«великой силой» — the instrumental marks the means, company, or complement.",
+   "id": "c6",
+   "translation": "“Ah Lord Yahweh! Behold, you have made the heavens and the earth by your great power and by your outstretched arm. There is nothing too hard for you."
+  },
+  {
+   "sentence": "Ты совершил знамения и чудеса в Египте и творил их доныне и в Израиле, и среди всего ___, и приобретал Себе славу, которая принадлежит Тебе и сегодня.",
+   "lemma": "род",
+   "options": [
+    "человеческим родом",
+    "человеческий род",
+    "человеческому роду",
+    "человеческого рода"
+   ],
+   "correct": "человеческого рода",
+   "case": "Родительный (Genitive)",
+   "explain": "«человеческого рода» — the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "who performed signs and wonders in the land of Egypt, even to this day, both in Israel and among other men; and made yourself a name, as it is today;"
+  },
+  {
+   "sentence": "Знамениями и чудесами, могучей дланью, простертой рукой и ___ Ты вывел Свой народ Израиль из египетской земли.",
+   "lemma": "страх",
+   "options": [
+    "великий страх",
+    "великим страхом",
+    "великом страхе",
+    "великому страху"
+   ],
+   "correct": "великим страхом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«великим страхом» — the instrumental marks the means, company, or complement.",
+   "id": "c8",
+   "translation": "and brought your people Israel out of the land of Egypt with signs, with wonders, with a strong hand, with an outstretched arm, and with great terror;"
+  },
+  {
+   "sentence": "Знамениями и чудесами, могучей дланью, простертой рукой и великим страхом Ты вывел Свой народ Израиль из ___.",
+   "lemma": "земля",
+   "options": [
+    "египетской земле",
+    "египетской землёй",
+    "египетской земли",
+    "египетская земля"
+   ],
+   "correct": "египетской земли",
+   "case": "Родительный (Genitive)",
+   "explain": "«египетской земли» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "and brought your people Israel out of the land of Egypt with signs, with wonders, with a strong hand, with an outstretched arm, and with great terror;"
+  },
+  {
+   "sentence": "Видишь, как насыпают ___, чтобы взять город.",
+   "lemma": "вал",
+   "options": [
+    "осадные валы",
+    "осадными валами",
+    "осадных валах",
+    "осадным валам"
+   ],
+   "correct": "осадные валы",
+   "case": "Винительный (Accusative)",
+   "explain": "«осадные валы» — the accusative marks the direct object of the verb.",
+   "id": "c10",
+   "translation": "“Behold, siege ramps have come to the city to take it. The city is given into the hand of the Chaldeans who fight against it, because of the sword, of the famine, and of the pestilence. What you have spoken has happened. Behold, you see it."
+  },
+  {
+   "sentence": "Халдеи, которые воюют с этим городом, придут и предадут его огню; они сожгут его дотла с домами, на крышах которых народ возжигал благовония Баалу и совершал жертвенные возлияния ___, вызывая Мой гнев.",
+   "lemma": "бог",
+   "options": [
+    "чужие боги",
+    "чужими богами",
+    "чужих богах",
+    "чужим богам"
+   ],
+   "correct": "чужим богам",
+   "case": "Дательный (Dative)",
+   "explain": "«чужим богам» — the dative marks the indirect object or recipient.",
+   "id": "c11",
+   "translation": "The Chaldeans, who fight against this city, will come and set this city on fire, and burn it with the houses on whose roofs they have offered incense to Baal, and poured out drink offerings to other gods, to provoke me to anger."
+  },
+  {
+   "sentence": "— 31 Со дня его основания до ___ этот город вызвал у Меня такой гнев и негодование, что Я отвергну его от Себя.",
+   "lemma": "день",
+   "options": [
+    "сегодняшний день",
+    "сегодняшнем дне",
+    "сегодняшнего дня",
+    "сегодняшним днём"
+   ],
+   "correct": "сегодняшнего дня",
+   "case": "Родительный (Genitive)",
+   "explain": "«сегодняшнего дня» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c12",
+   "translation": "“For the children of Israel and the children of Judah have done only that which was evil in my sight from their youth; for the children of Israel have only provoked me to anger with the work of their hands, says Yahweh."
+  }
+ ]
 }

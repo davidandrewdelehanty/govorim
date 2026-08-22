@@ -1,134 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Монассия, ___ Иудеи.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царь",
-      "case": "Именительный (Nominative)",
-      "translation": "Manasseh, king of Judah.",
-      "explain": "Монассия is in apposition to the nominative subject, so the title царь also stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Он делал зло в глазах ___.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "He did evil in the eyes of the Lord.",
-      "explain": "The preposition в (in) with the meaning 'in the eyes/sight of' governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Он поклонялся всему небесному воинству и служил ___.",
-      "lemma": "оно",
-      "options": ["оно", "его", "ему", "им"],
-      "correct": "ему",
-      "case": "Дательный (Dative)",
-      "translation": "He worshipped all the army of heaven and served it.",
-      "explain": "The verb служить (to serve) governs the dative case when indicating the object of service."
-    },
-    {
-      "id": "c4",
-      "sentence": "Он приносил своего ___ в огненную жертву.",
-      "lemma": "сын",
-      "options": ["сын", "сына", "сыну", "сыном"],
-      "correct": "сына",
-      "case": "Винительный (Accusative)",
-      "translation": "He offered his son as a burnt offering.",
-      "explain": "The accusative case is used for the direct object of the verb приносил (offered)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Он общался с вызывателем умерших и ___.",
-      "lemma": "чародей",
-      "options": ["чародей", "чародея", "чародею", "чародеем"],
-      "correct": "чародеем",
-      "case": "Творительный (Instrumental)",
-      "translation": "He communed with a medium and a wizard.",
-      "explain": "The preposition с (with) governs the instrumental case when indicating accompaniment or association."
-    },
-    {
-      "id": "c6",
-      "sentence": "Он взял резного идола и поставил его в Божьем ___.",
-      "lemma": "дом",
-      "options": ["дом", "дома", "дому", "доме"],
-      "correct": "доме",
-      "case": "Предложный (Prepositional)",
-      "translation": "He took the carved idol and put it in God's house.",
-      "explain": "The preposition в (in) with the meaning of location governs the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Попав в беду, он искал милости у ___ своего Бога.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господе"],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "In his distress, he sought mercy from the Lord his God.",
-      "explain": "The preposition у (with, from someone) governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Когда он молился, ___ смилостивился над ним.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господь",
-      "case": "Именительный (Nominative)",
-      "translation": "When he prayed, the Lord had compassion on him.",
-      "explain": "The subject of the verb смилостивился (had compassion) stands in the nominative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Монассия, царь Иудеи, было двенадцать лет, когда он стал царем, и правил он в Иерусалиме пятьдесят пять лет.",
-      "question": "How old was Manasseh when he became king, and how long did he reign?",
-      "options": ["Twelve years old and reigned fifty-five years", "Twenty-two years old and reigned thirty years", "Eight years old and reigned forty years", "Fifteen years old and reigned twenty years"],
-      "correct": "Twelve years old and reigned fifty-five years",
-      "explain": "The verse states Монассия было двенадцать лет, когда он стал царем, и правил он в Иерусалиме пятьдесят пять лет."
-    },
-    {
-      "id": "r2",
-      "ru": "Он отстроил святилище на возвышенностях, которое разрушил его отец Езекия.",
-      "question": "What did Manasseh rebuild that his father Hezekiah had destroyed?",
-      "options": ["High places and altars", "The city walls", "The northern kingdom", "The Temple treasure"],
-      "correct": "High places and altars",
-      "explain": "The text states Он отстроил святилище на возвышенностях — he rebuilt the high places that Hezekiah had destroyed."
-    },
-    {
-      "id": "r3",
-      "ru": "Попав в беду, он искал милости у Господа своего Бога и глубоко смирился перед Богом своих отцов.",
-      "question": "What did Manasseh do when he faced distress?",
-      "options": ["He sought mercy and humbled himself before God", "He fled to Egypt", "He built more altars to false gods", "He asked the prophets for help"],
-      "correct": "He sought mercy and humbled himself before God",
-      "explain": "The verse says Попав в беду, он искал милости у Господа своего Бога и глубоко смирился перед Богом своих отцов."
-    },
-    {
-      "id": "r4",
-      "ru": "После этого он отстроил внешнюю стену города Давида к западу от источника Гихон.",
-      "question": "What did Manasseh rebuild after his repentance?",
-      "options": ["The outer wall of David's city on the west side of Gihon", "The Temple of Jerusalem", "The altars for foreign gods", "The palace walls"],
-      "correct": "The outer wall of David's city on the west side of Gihon",
-      "explain": "The text explicitly says Он отстроил внешнюю стену города Давида к западу от источника Гихон."
-    },
-    {
-      "id": "r5",
-      "ru": "Амон, его сын, стал царем вместо него.",
-      "question": "Who became king after Manasseh?",
-      "options": ["Amon, his son", "Josiah", "Hezekiah", "A foreign king"],
-      "correct": "Amon, his son",
-      "explain": "The text states Амон, его сын, стал царем вместо него — Amon, his son, became king in his place."
-    },
-    {
-      "id": "r6",
-      "ru": "Ломон делал зло в глазах Господа, как и его отец Монассия.",
-      "question": "What was Amon's behavior like compared to his father Manasseh?",
-      "options": ["He did evil like his father Manasseh", "He was righteous and godly", "He sought to reform the kingdom", "He was forced to abdicate"],
-      "correct": "He did evil like his father Manasseh",
-      "explain": "The text says ОМОН делал зло в глазах Господа, как и его отец Монассия — Amon did evil in the eyes of the Lord, just as his father Manasseh did."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Он делал зло в глазах Господа, следуя ___ народов, которых Господь прогнал от израильтян.",
+   "lemma": "обычай",
+   "options": [
+    "омерзительные обычаи",
+    "омерзительных обычаях",
+    "омерзительными обычаями",
+    "омерзительным обычаям"
+   ],
+   "correct": "омерзительным обычаям",
+   "case": "Дательный (Dative)",
+   "explain": "«омерзительным обычаям» — the dative marks the indirect object or recipient.",
+   "id": "c1",
+   "translation": "He did that which was evil in Yahweh’s sight, after the abominations of the nations whom Yahweh cast out before the children of Israel."
+  },
+  {
+   "sentence": "В обоих дворах дома Господа он построил жертвенники всему ___.",
+   "lemma": "воинство",
+   "options": [
+    "небесном воинстве",
+    "небесным воинством",
+    "небесному воинству",
+    "небесного воинства"
+   ],
+   "correct": "небесному воинству",
+   "case": "Дательный (Dative)",
+   "explain": "«небесному воинству» — the dative marks the indirect object or recipient.",
+   "id": "c2",
+   "translation": "He built altars for all the army of the sky in the two courts of Yahweh’s house."
+  },
+  {
+   "sentence": "Он взял резного идола, которого он сделал, и поставил его в ___, о котором Бог сказал Давиду и его сыну Соломону: «В этом доме и в Иерусалиме, который Я избрал среди всех родов Израиля, Я положу Мое Имя вовеки.",
+   "lemma": "дом",
+   "options": [
+    "божьим домом",
+    "божьему дому",
+    "божьем доме",
+    "божий дом"
+   ],
+   "correct": "божьем доме",
+   "case": "Предложный (Prepositional)",
+   "explain": "«Божьем доме» — after the preposition «в», for location or topic.",
+   "id": "c3",
+   "translation": "He set the engraved image of the idol, which he had made, in God’s house, of which God said to David and to Solomon his son, “In this house, and in Jerusalem, which I have chosen out of all the tribes of Israel, I will put my name forever."
+  },
+  {
+   "sentence": "После этого он отстроил внешнюю стену Города Давида к западу от источника Гихон в долине до ___ Рыбных ворот и вокруг холма Офел, притом он сделал ее гораздо выше.",
+   "lemma": "проход",
+   "options": [
+    "самого прохода",
+    "самим проходом",
+    "самому проходу",
+    "сам проход"
+   ],
+   "correct": "самого прохода",
+   "case": "Родительный (Genitive)",
+   "explain": "«самого прохода» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "Now after this, he built an outer wall to David’s city, on the west side of Gihon, in the valley, even to the entrance at the fish gate. He encircled Ophel with it, and raised it up to a very great height; and he put valiant captains in all the fortified cities of Judah."
+  },
+  {
+   "sentence": "После этого он отстроил внешнюю стену Города Давида к западу от источника Гихон в долине до самого прохода ___ и вокруг холма Офел, притом он сделал ее гораздо выше.",
+   "lemma": "ворота",
+   "options": [
+    "рыбных ворот",
+    "рыбных воротах",
+    "рыбные ворота",
+    "рыбными воротами"
+   ],
+   "correct": "рыбных ворот",
+   "case": "Родительный (Genitive)",
+   "explain": "«Рыбных ворот» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "Now after this, he built an outer wall to David’s city, on the west side of Gihon, in the valley, even to the entrance at the fish gate. He encircled Ophel with it, and raised it up to a very great height; and he put valiant captains in all the fortified cities of Judah."
+  },
+  {
+   "sentence": "___ правления Манассии, его молитва своему Богу и слова провидцев, сказанные ему во Имя Господа, Бога Израиля, записаны в летописях царей Израиля.",
+   "lemma": "событие",
+   "options": [
+    "прочих событиях",
+    "прочим событиям",
+    "прочие события",
+    "прочих событий"
+   ],
+   "correct": "прочие события",
+   "case": "Именительный (Nominative)",
+   "explain": "«Прочие события» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "Now the rest of the acts of Manasseh, and his prayer to his God, and the words of the seers who spoke to him in the name of Yahweh, the God of Israel, behold, they are written among the acts of the kings of Israel."
+  }
+ ]
 }

@@ -1,204 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Господь сказал Моисею, «Скажи ___, женщина, которая забеременела и родила сына, будет нечиста семь дней».",
-      "lemma": "израилетянин",
-      "options": [
-        "израилетянин",
-        "израилетяне",
-        "израилетянам",
-        "израилетянами"
-      ],
-      "correct": "израилетянам",
-      "case": "Дательный (Dative)",
-      "translation": "The Lord said to Moses, \"Tell the children of Israel that a woman who conceives and gives birth to a male child will be unclean for seven days.\"",
-      "explain": "The verb скажи (tell) takes the dative case for the indirect object (to whom you tell)."
-    },
-    {
-      "id": "c2",
-      "sentence": "Скажи израилетянам, женщина, которая забеременела и родила ___, будет нечиста семь дней, как во время месячных.",
-      "lemma": "сын",
-      "options": [
-        "сын",
-        "сыны",
-        "сыну",
-        "сына"
-      ],
-      "correct": "сына",
-      "case": "Винительный (Accusative)",
-      "translation": "A woman who conceives and gives birth to a male child will be unclean for seven days.",
-      "explain": "Сына (son) is the direct object of родила (gave birth to), taking the accusative case, which equals genitive for animate masculine nouns."
-    },
-    {
-      "id": "c3",
-      "sentence": "На восьмой день мальчику должно быть сделано ___.",
-      "lemma": "обрезание",
-      "options": [
-        "обрезание",
-        "обрезания",
-        "обрезанию",
-        "обрезанием"
-      ],
-      "correct": "обрезание",
-      "case": "Именительный (Nominative)",
-      "translation": "On the eighth day the boy shall have his foreskin circumcised.",
-      "explain": "Обрезание (circumcision) is the subject of the passive construction должно быть сделано (should be done), taking the nominative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Затем женщина должна ждать 33 дня, чтобы очиститься от ___.",
-      "lemma": "кровотечение",
-      "options": [
-        "кровотечение",
-        "кровотечения",
-        "кровотечению",
-        "кровотечением"
-      ],
-      "correct": "кровотечения",
-      "case": "Родительный (Genitive)",
-      "translation": "Then she shall continue for thirty-three days in purification from her flowing blood.",
-      "explain": "The preposition от (from) governs the genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Пусть она не прикасается к священным предметам и не ходит в ___ , пока не пройдут дни очищения.",
-      "lemma": "святилище",
-      "options": [
-        "святилище",
-        "святилища",
-        "святилищу",
-        "святилищем"
-      ],
-      "correct": "святилище",
-      "case": "Винительный (Accusative)",
-      "translation": "She shall not touch any holy thing, nor come into the sanctuary, until the days of her purifying are completed.",
-      "explain": "Святилище (sanctuary) is the direct object of ходит (come into), taking the accusative case after the preposition в."
-    },
-    {
-      "id": "c6",
-      "sentence": "Когда дни очищения за ___ или дочь пройдут, пусть она принесет священнику ко входу в шатер собрания ягненка.",
-      "lemma": "сын",
-      "options": [
-        "сыны",
-        "сыну",
-        "сына",
-        "сыном"
-      ],
-      "correct": "сына",
-      "case": "Винительный (Accusative)",
-      "translation": "When the days of her purification are completed for a son or for a daughter, she shall bring to the priest a lamb.",
-      "explain": "Сына (son) is the object of the preposition за (for), taking the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Пусть она принесет священнику ко входу в шатер собрания годовалого ___ для всесожжения.",
-      "lemma": "ягненок",
-      "options": [
-        "ягненок",
-        "ягнёнка",
-        "ягнёнку",
-        "ягнёнком"
-      ],
-      "correct": "ягнёнка",
-      "case": "Винительный (Accusative)",
-      "translation": "She shall bring a year-old lamb for a burnt offering.",
-      "explain": "Ягнёнка (lamb) is the direct object of принесет (shall bring), taking the accusative case, which equals genitive for animate masculine nouns."
-    },
-    {
-      "id": "c8",
-      "sentence": "Если ей непосредством принести ягненка, пусть принесет пару горлиц или двух молодых голубей, одного для всесожжения, а другого в жертву за ___.",
-      "lemma": "грех",
-      "options": [
-        "грех",
-        "греха",
-        "грехе",
-        "грехом"
-      ],
-      "correct": "грех",
-      "case": "Винительный (Accusative)",
-      "translation": "If she cannot afford a lamb, then she shall take two turtledoves or two young pigeons: the one for a burnt offering, and the other for a sin offering.",
-      "explain": "Грех (sin) is the direct object of the preposition за (for), taking the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Господь сказал Моисею, «Скажи израилетянам, женщина, которая забеременела и родила сына, будет нечиста семь дней, как во время месячных».",
-      "question": "For how many days after giving birth to a male child would a woman be considered unclean?",
-      "options": [
-        "Seven days",
-        "Ten days",
-        "Fourteen days",
-        "One month"
-      ],
-      "correct": "Seven days",
-      "explain": "The text explicitly states будет нечиста семь дней — will be unclean seven days."
-    },
-    {
-      "id": "r2",
-      "ru": "На восьмой день мальчику должно быть сделано обрезание.",
-      "question": "On what day should circumcision be performed on a male child?",
-      "options": [
-        "The eighth day",
-        "The first day",
-        "The tenth day",
-        "The sixteenth day"
-      ],
-      "correct": "The eighth day",
-      "explain": "The text states На восьмой день — On the eighth day."
-    },
-    {
-      "id": "r3",
-      "ru": "Затем женщина должна ждать 33 дня, чтобы очиститься от кровотечения.",
-      "question": "How long must a mother wait after giving birth to a male child before completing her purification?",
-      "options": [
-        "33 additional days",
-        "Ten days",
-        "Twenty days",
-        "Forty days"
-      ],
-      "correct": "33 additional days",
-      "explain": "The text says затем женщина должна ждать 33 дня — then the woman shall wait 33 days."
-    },
-    {
-      "id": "r4",
-      "ru": "Если она родит дочь, то будет нечиста две недели, как во время месячных, затем она должна ждать 66 дней, чтобы очиститься от кровотечения.",
-      "question": "What is the period of impurity and purification if a woman gives birth to a female child?",
-      "options": [
-        "Two weeks unclean, then 66 days more purification",
-        "Seven days unclean, then 33 days more",
-        "One week unclean, then 66 days more",
-        "Two weeks unclean, then 33 days more"
-      ],
-      "correct": "Two weeks unclean, then 66 days more purification",
-      "explain": "The text states будет нечиста две недели ... затем она должна ждать 66 дней — will be unclean two weeks, then she shall wait 66 days."
-    },
-    {
-      "id": "r5",
-      "ru": "Когда дни очищения за сына или дочь пройдут, пусть она принесет священнику ко входу в шатер собрания годовалого ягненка для всесожжения и молодого голубя или горлицу в жертву за грех.",
-      "question": "What offerings did a mother need to bring to complete her purification?",
-      "options": [
-        "A year-old lamb and a young pigeon or turtledove",
-        "Two lambs and a goat",
-        "Only grain and oil",
-        "Five doves and a ram"
-      ],
-      "correct": "A year-old lamb and a young pigeon or turtledove",
-      "explain": "The text specifies годовалого ягненка для всесожжения и молодого голубя или горлицу в жертву за грех — a year-old lamb for a burnt offering and a young pigeon or turtledove for a sin offering."
-    },
-    {
-      "id": "r6",
-      "ru": "Если ей непосредством принести ягненка, пусть принесет пару горлиц или двух молодых голубей.",
-      "question": "What alternative offering was allowed for a woman who could not afford a lamb?",
-      "options": [
-        "A pair of turtledoves or two young pigeons",
-        "A goat or sheep",
-        "Oil and grain",
-        "Money for the priest"
-      ],
-      "correct": "A pair of turtledoves or two young pigeons",
-      "explain": "The text says пусть принесет пару горлиц или двух молодых голубей — let her bring a pair of turtledoves or two young pigeons."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "На ___ мальчику должно быть сделано обрезание.",
+   "lemma": "день",
+   "options": [
+    "восьмой день",
+    "восьмым днём",
+    "восьмому дню",
+    "восьмого дня"
+   ],
+   "correct": "восьмой день",
+   "case": "Винительный (Accusative)",
+   "explain": "«восьмой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "In the eighth day the flesh of his foreskin shall be circumcised."
+  },
+  {
+   "sentence": "Пусть она не прикасается к ___ и не ходит в святилище, пока не пройдут дни очищения.",
+   "lemma": "предмет",
+   "options": [
+    "священных предметах",
+    "священными предметами",
+    "священным предметам",
+    "священные предметы"
+   ],
+   "correct": "священным предметам",
+   "case": "Дательный (Dative)",
+   "explain": "«священным предметам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c2",
+   "translation": "She shall continue in the blood of purification thirty-three days. She shall not touch any holy thing, nor come into the sanctuary, until the days of her purifying are completed."
+  },
+  {
+   "sentence": "Если ей не по средствам принести ягненка, пусть принесет пару горлиц или двух ___, одного для всесожжения, а другого в жертву за грех.",
+   "lemma": "голубь",
+   "options": [
+    "молодые голуби",
+    "молодых голубей",
+    "молодым голубям",
+    "молодыми голубями"
+   ],
+   "correct": "молодых голубей",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодых голубей» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "If she cannot afford a lamb, then she shall take two turtledoves or two young pigeons: the one for a burnt offering, and the other for a sin offering. The priest shall make atonement for her, and she shall be clean.’ ”"
+  }
+ ]
 }

@@ -1,134 +1,499 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Цедекии был 21 год, когда он стал ___.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царем",
-      "case": "Творительный (Instrumental)",
-      "translation": "Zedekiah was twenty-one years old when he became king.",
-      "explain": "The verb стал (became) takes the instrumental case for the predicate nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Его мать звали Хамуталь, она была дочерью Иеремии из ___.",
-      "lemma": "Ливна",
-      "options": ["Ливна", "Ливны", "Ливне", "Ливной"],
-      "correct": "Ливны",
-      "case": "Родительный (Genitive)",
-      "translation": "His mother's name was Hamutal, daughter of Jeremiah of Libnah.",
-      "explain": "The preposition из (from) governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Цедекия делал зло в глазах ___.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "Zedekiah did evil in the sight of the Lord.",
-      "explain": "The phrase в глазах (in the sight) with genitive case indicates the observer's perspective."
-    },
-    {
-      "id": "c4",
-      "sentence": "На девятом году правления Цедекии царь Вавилона двинулся на ___ со всем своим войском.",
-      "lemma": "Иерусалим",
-      "options": ["Иерусалим", "Иерусалима", "Иерусалиму", "Иерусалиме"],
-      "correct": "Иерусалим",
-      "case": "Винительный (Accusative)",
-      "translation": "In the ninth year of Zedekiah's reign, the king of Babylon marched against Jerusalem with all his army.",
-      "explain": "The preposition на (against) with accusative case indicates direction or motion toward."
-    },
-    {
-      "id": "c5",
-      "sentence": "Город был в осаде до одиннадцатого года правления ___.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царя",
-      "case": "Родительный (Genitive)",
-      "translation": "The city was under siege until the eleventh year of the king's reign.",
-      "explain": "The genitive case with the possessive construction 'правления царя' (the king's reign) indicates possession."
-    },
-    {
-      "id": "c6",
-      "sentence": "В четвертый день четвертого месяца голод в городе усилился, и у народа не осталось ___.",
-      "lemma": "пища",
-      "options": ["пища", "пищи", "пище", "пищей"],
-      "correct": "пищи",
-      "case": "Родительный (Genitive)",
-      "translation": "In the fourth month, in the ninth day of the month, the famine was severe in the city, so that there was no bread.",
-      "explain": "After the word не осталось (there remained), the genitive case is used."
-    },
-    {
-      "id": "c7",
-      "sentence": "Его привели к царю Вавилона в Ривлу, что в земле ___.",
-      "lemma": "Хамат",
-      "options": ["Хамат", "Хамата", "Хамате", "Хаматом"],
-      "correct": "Хамата",
-      "case": "Родительный (Genitive)",
-      "translation": "They brought him to the king of Babylon at Riblah in the land of Hamath.",
-      "explain": "The preposition в (in) with genitive case земле (land) indicates location."
-    },
-    {
-      "id": "c8",
-      "sentence": "Невузардан, начальник царской охраны, взял в плен первосвященника ___ и второго священника Сафонию.",
-      "lemma": "Сирая",
-      "options": ["Сирая", "Сираю", "Сирае", "Сираей"],
-      "correct": "Сираю",
-      "case": "Винительный (Accusative)",
-      "translation": "Nebuzaradan the captain of the guard took captive Seraiah the chief priest.",
-      "explain": "The verb взял (took) with в плен (captive) governs the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Цедекии был 21 год, когда он стал царем, и правил он в Иерусалиме 11 лет.",
-      "question": "How long did Zedekiah reign in Jerusalem?",
-      "options": ["11 years", "21 years", "9 years", "19 years"],
-      "correct": "11 years",
-      "explain": "The text states: правил он в Иерусалиме 11 лет (he reigned 11 years in Jerusalem)."
-    },
-    {
-      "id": "r2",
-      "ru": "На девятом году правления Цедекии, в десятый день десятого месяца, царь Вавилона двинулся на Иерусалим со всем своим войском.",
-      "question": "When did the king of Babylon march against Jerusalem?",
-      "options": ["In the 9th year of Zedekiah's reign", "After 11 years", "In the 5th year", "At the beginning of his reign"],
-      "correct": "In the 9th year of Zedekiah's reign",
-      "explain": "The verse says: На девятом году правления Цедекии... царь Вавилона двинулся на Иерусалим (In the ninth year of Zedekiah's reign... the king of Babylon marched against Jerusalem)."
-    },
-    {
-      "id": "r3",
-      "ru": "В Ривле царь Вавилона заколол сыновей Цедекии у него на глазах.",
-      "question": "What did the king of Babylon do to Zedekiah's sons?",
-      "options": ["He killed them before Zedekiah's eyes", "He put them in prison", "He took them into exile", "He enslaved them"],
-      "correct": "He killed them before Zedekiah's eyes",
-      "explain": "The text states: царь Вавилона заколол сыновей Цедекии у него на глазах (the king of Babylon killed the sons of Zedekiah before his eyes)."
-    },
-    {
-      "id": "r4",
-      "ru": "После этого он выколол Цедекии глаза, заковал в бронзовые кандалы и увел в Вавилон.",
-      "question": "What happened to Zedekiah after his sons were killed?",
-      "options": ["His eyes were put out and he was taken to Babylon in chains", "He was imprisoned in Jerusalem", "He was killed", "He was allowed to return home"],
-      "correct": "His eyes were put out and he was taken to Babylon in chains",
-      "explain": "The verse says: он выколол Цедекии глаза, заковал в бронзовые кандалы и увел в Вавилон (he put out Zedekiah's eyes, bound him in fetters, and took him to Babylon)."
-    },
-    {
-      "id": "r5",
-      "ru": "Он сжег дом Господа, царский дворец и все дома Иерусалима.",
-      "question": "What did Nebuzaradan burn in Jerusalem?",
-      "options": ["The temple, the palace, and all the houses", "Only the temple", "Only the palace", "The city walls"],
-      "correct": "The temple, the palace, and all the houses",
-      "explain": "The text says: Он сжег дом Господа, царский дворец и все дома Иерусалима (He burned the Lord's house, the king's palace and all the houses of Jerusalem)."
-    },
-    {
-      "id": "r6",
-      "ru": "Но некоторых из бедного люда страны оставил Невузардан, начальник царской охраны, чтобы они трудились на виноградниках и полях.",
-      "question": "Why did Nebuzaradan leave some of the poorest people behind?",
-      "options": ["To work on vineyards and fields", "To guard the city", "To help rebuild", "To pay tribute"],
-      "correct": "To work on vineyards and fields",
-      "explain": "The verse states: оставил... чтобы они трудились на виноградниках и полях (left them to work on vineyards and fields)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "И тогда на девятом году правления Цедекии, в десятый день ___ , царь Вавилона, двинулся на Иерусалим со всем своим войском.",
+   "lemma": "месяц",
+   "options": [
+    "десятого месяца",
+    "десятому месяцу",
+    "десятый месяц",
+    "десятым месяцем"
+   ],
+   "correct": "десятого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«десятого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "In the ninth year of his reign, in the tenth month, in the tenth day of the month, Nebuchadnezzar king of Babylon came, he and all his army, against Jerusalem, and encamped against it; and they built forts against it round about."
+  },
+  {
+   "sentence": "Они разбили лагерь под городом и окружили его ___.",
+   "lemma": "сооружение",
+   "options": [
+    "осадные сооружения",
+    "осадными сооружениями",
+    "осадных сооружениях",
+    "осадных сооружений"
+   ],
+   "correct": "осадными сооружениями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«осадными сооружениями» — the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "In the ninth year of his reign, in the tenth month, in the tenth day of the month, Nebuchadnezzar king of Babylon came, he and all his army, against Jerusalem, and encamped against it; and they built forts against it round about."
+  },
+  {
+   "sentence": "Осада города продолжалась до ___ правления царя Цедекии.",
+   "lemma": "год",
+   "options": [
+    "одиннадцатому году",
+    "одиннадцатый год",
+    "одиннадцатого года",
+    "одиннадцатым годом"
+   ],
+   "correct": "одиннадцатого года",
+   "case": "Родительный (Genitive)",
+   "explain": "«одиннадцатого года» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "So the city was besieged to the eleventh year of king Zedekiah."
+  },
+  {
+   "sentence": "К ___ четвертого месяца голод в городе усилился, и у народа не осталось пищи.",
+   "lemma": "день",
+   "options": [
+    "девятый день",
+    "девятому дню",
+    "девятого дня",
+    "девятом дне"
+   ],
+   "correct": "девятому дню",
+   "case": "Дательный (Dative)",
+   "explain": "«девятому дню» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c5",
+   "translation": "In the fourth month, in the ninth day of the month, the famine was severe in the city, so that there was no bread for the people of the land."
+  },
+  {
+   "sentence": "Они покинули город ночью, хотя халдеи окружали город, пройдя через ворота между двумя стенами, что рядом с ___, и направились к иорданской долине.",
+   "lemma": "сад",
+   "options": [
+    "царским садом",
+    "царского сада",
+    "царскому саду",
+    "царском саде"
+   ],
+   "correct": "царским садом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«царским садом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c7",
+   "translation": "Then a breach was made in the city, and all the men of war fled, and went out of the city by night by the way of the gate between the two walls, which was by the king’s garden. Now the Chaldeans were against the city all around. The men of war went toward the Arabah,"
+  },
+  {
+   "sentence": "Они покинули город ночью, хотя халдеи окружали город, пройдя через ворота между двумя стенами, что рядом с царским садом, и направились к ___.",
+   "lemma": "долина",
+   "options": [
+    "иорданской долины",
+    "иорданская долина",
+    "иорданской долине",
+    "иорданской долиной"
+   ],
+   "correct": "иорданской долине",
+   "case": "Дательный (Dative)",
+   "explain": "«иорданской долине» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c8",
+   "translation": "Then a breach was made in the city, and all the men of war fled, and went out of the city by night by the way of the gate between the two walls, which was by the king’s garden. Now the Chaldeans were against the city all around. The men of war went toward the Arabah,"
+  },
+  {
+   "sentence": "После этого он выколол Цедекии глаза, заковал в бронзовые кандалы и увел в Вавилон, где держал его в темнице до ___ его смерти.",
+   "lemma": "день",
+   "options": [
+    "самом дне",
+    "сам день",
+    "самого дня",
+    "самим днём"
+   ],
+   "correct": "самого дня",
+   "case": "Родительный (Genitive)",
+   "explain": "«самого дня» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c10",
+   "translation": "He put out the eyes of Zedekiah; and the king of Babylon bound him in fetters, and carried him to Babylon, and put him in prison until the day of his death."
+  },
+  {
+   "sentence": "В десятый день ___ , на девятнадцатом году правления Навуходоносора, царя Вавилона, начальник царской охраны Невузарадан, слуга царя Вавилона, прибыл в Иерусалим.",
+   "lemma": "месяц",
+   "options": [
+    "пятом месяце",
+    "пятого месяца",
+    "пятому месяцу",
+    "пятым месяцем"
+   ],
+   "correct": "пятого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«пятого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c12",
+   "translation": "Now in the fifth month, in the tenth day of the month, which was the nineteenth year of king Nebuchadnezzar, king of Babylon, Nebuzaradan the captain of the guard, who stood before the king of Babylon, came into Jerusalem."
+  },
+  {
+   "sentence": "В десятый день пятого месяца , на девятнадцатом году правления Навуходоносора, царя Вавилона, начальник ___ Невузарадан, слуга царя Вавилона, прибыл в Иерусалим.",
+   "lemma": "охрана",
+   "options": [
+    "царская охрана",
+    "царской охраной",
+    "царской охране",
+    "царской охраны"
+   ],
+   "correct": "царской охраны",
+   "case": "Родительный (Genitive)",
+   "explain": "«царской охраны» — the genitive here marks possession, absence, or quantity.",
+   "id": "c13",
+   "translation": "Now in the fifth month, in the tenth day of the month, which was the nineteenth year of king Nebuchadnezzar, king of Babylon, Nebuzaradan the captain of the guard, who stood before the king of Babylon, came into Jerusalem."
+  },
+  {
+   "sentence": "Он сжег дом Господа, ___ и все дома Иерусалима.",
+   "lemma": "дворец",
+   "options": [
+    "царским дворцом",
+    "царскому дворцу",
+    "царский дворец",
+    "царского дворца"
+   ],
+   "correct": "царский дворец",
+   "case": "Именительный (Nominative)",
+   "explain": "«царский дворец» — the subject of the sentence stands in the nominative.",
+   "id": "c14",
+   "translation": "He burned Yahweh’s house, and the king’s house; and all the houses of Jerusalem, even every great house, he burned with fire."
+  },
+  {
+   "sentence": "Он сжег все ___.",
+   "lemma": "здание",
+   "options": [
+    "важными зданиями",
+    "важных зданий",
+    "важные здания",
+    "важных зданиях"
+   ],
+   "correct": "важные здания",
+   "case": "Винительный (Accusative)",
+   "explain": "«важные здания» — the accusative marks the direct object of the verb.",
+   "id": "c15",
+   "translation": "He burned Yahweh’s house, and the king’s house; and all the houses of Jerusalem, even every great house, he burned with fire."
+  },
+  {
+   "sentence": "А халдейское войско под командованием начальника ___ разрушило все стены, окружавшие Иерусалим.",
+   "lemma": "охрана",
+   "options": [
+    "царская охрана",
+    "царской охраной",
+    "царской охране",
+    "царской охраны"
+   ],
+   "correct": "царской охраны",
+   "case": "Родительный (Genitive)",
+   "explain": "«царской охраны» — the genitive here marks possession, absence, or quantity.",
+   "id": "c16",
+   "translation": "All the army of the Chaldeans, who were with the captain of the guard, broke down all the walls of Jerusalem all around."
+  },
+  {
+   "sentence": "Невузарадан, начальник охраны, увел в плен часть ___ и тех, кто оставался в городе, вместе с оставшейся частью ремесленников и перебежчиков, которые переметнулись к царю Вавилона.",
+   "lemma": "люд",
+   "options": [
+    "бедном люде",
+    "бедный люд",
+    "бедного люда",
+    "бедному люду"
+   ],
+   "correct": "бедного люда",
+   "case": "Родительный (Genitive)",
+   "explain": "«бедного люда» — the genitive here marks possession, absence, or quantity.",
+   "id": "c17",
+   "translation": "Then Nebuzaradan the captain of the guard carried away captive of the poorest of the people, and the residue of the people who were left in the city, and those who fell away, who fell to the king of Babylon, and the residue of the multitude."
+  },
+  {
+   "sentence": "Но Невузарадан оставил некоторых из ___ той страны, чтобы они трудились на виноградниках и полях.",
+   "lemma": "люд",
+   "options": [
+    "бедном люде",
+    "бедный люд",
+    "бедного люда",
+    "бедному люду"
+   ],
+   "correct": "бедного люда",
+   "case": "Родительный (Genitive)",
+   "explain": "«бедного люда» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c18",
+   "translation": "But Nebuzaradan the captain of the guard left of the poorest of the land to be vineyard keepers and farmers."
+  },
+  {
+   "sentence": "Еще они забрали горшки, лопатки, ножницы для фитилей, кропильные чаши, блюда и всю бронзовую утварь, которая использовалась во время ___.",
+   "lemma": "служение",
+   "options": [
+    "храмовом служении",
+    "храмовое служение",
+    "храмовому служению",
+    "храмового служения"
+   ],
+   "correct": "храмового служения",
+   "case": "Родительный (Genitive)",
+   "explain": "«храмового служения» — after the preposition «во», the genitive here marks possession, absence, or quantity.",
+   "id": "c20",
+   "translation": "They also took away the pots, the shovels, the snuffers, the basins, the spoons, and all the vessels of bronze with which they ministered."
+  },
+  {
+   "sentence": "Начальник ___ также забрал все, сделанное из чистого золота и серебра: кубки, сосуды для возжигания благовоний, кропильные чаши, горшки, подсвечники, блюда и чаши для жертвенных возлияний.",
+   "lemma": "охрана",
+   "options": [
+    "царская охрана",
+    "царской охраной",
+    "царской охране",
+    "царской охраны"
+   ],
+   "correct": "царской охраны",
+   "case": "Родительный (Genitive)",
+   "explain": "«царской охраны» — the genitive here marks possession, absence, or quantity.",
+   "id": "c21",
+   "translation": "The captain of the guard took away the cups, the fire pans, the basins, the pots, the lamp stands, the spoons, and the bowls; that which was of gold, in gold, and that which was of silver, in silver."
+  },
+  {
+   "sentence": "Начальник царской охраны также забрал все, сделанное из ___ и серебра: кубки, сосуды для возжигания благовоний, кропильные чаши, горшки, подсвечники, блюда и чаши для жертвенных возлияний.",
+   "lemma": "золото",
+   "options": [
+    "чистому золоту",
+    "чистого золота",
+    "чистым золотом",
+    "чистое золото"
+   ],
+   "correct": "чистого золота",
+   "case": "Родительный (Genitive)",
+   "explain": "«чистого золота» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c22",
+   "translation": "The captain of the guard took away the cups, the fire pans, the basins, the pots, the lamp stands, the spoons, and the bowls; that which was of gold, in gold, and that which was of silver, in silver."
+  },
+  {
+   "sentence": "Бронзы от двух колонн, от моря с двенадцатью быками под ним и от ___ , сделанных царем Соломоном для дома Господа, оказалось больше, чем можно было взвесить.",
+   "lemma": "подставка",
+   "options": [
+    "передвижные подставки",
+    "передвижных подставок",
+    "передвижными подставками",
+    "передвижным подставкам"
+   ],
+   "correct": "передвижных подставок",
+   "case": "Родительный (Genitive)",
+   "explain": "«передвижных подставок» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "id": "c23",
+   "translation": "They took the two pillars, the one sea, and the twelve bronze bulls that were under the bases, which king Solomon had made for Yahweh’s house. The bronze of all these vessels was without weight."
+  },
+  {
+   "sentence": "Бронзовая капитель колонны имела пять локтей в высоту и была украшена по кругу ___ и плодами гранатового дерева из бронзы.",
+   "lemma": "сетка",
+   "options": [
+    "бронзовой сеткой",
+    "бронзовой сетки",
+    "бронзовая сетка",
+    "бронзовой сетке"
+   ],
+   "correct": "бронзовой сеткой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«бронзовой сеткой» — the instrumental marks the means, company, or complement.",
+   "id": "c24",
+   "translation": "A capital of bronze was on it; and the height of the one capital was five cubits, with network and pomegranates on the capital all around, all of bronze: and the second pillar also had like these, and pomegranates."
+  },
+  {
+   "sentence": "Бронзовая капитель колонны имела пять локтей в высоту и была украшена по кругу бронзовой сеткой и плодами ___ из бронзы.",
+   "lemma": "дерево",
+   "options": [
+    "гранатового дерева",
+    "гранатовое дерево",
+    "гранатовому дереву",
+    "гранатовом дереве"
+   ],
+   "correct": "гранатового дерева",
+   "case": "Родительный (Genitive)",
+   "explain": "«гранатового дерева» — the genitive here marks possession, absence, or quantity.",
+   "id": "c25",
+   "translation": "A capital of bronze was on it; and the height of the one capital was five cubits, with network and pomegranates on the capital all around, all of bronze: and the second pillar also had like these, and pomegranates."
+  },
+  {
+   "sentence": "Такой же была и ___ с ее гранатовыми яблоками.",
+   "lemma": "колонна",
+   "options": [
+    "другой колонны",
+    "другой колонне",
+    "другая колонна",
+    "другой колонной"
+   ],
+   "correct": "другая колонна",
+   "case": "Именительный (Nominative)",
+   "explain": "«другая колонна» — the subject of the sentence stands in the nominative.",
+   "id": "c26",
+   "translation": "A capital of bronze was on it; and the height of the one capital was five cubits, with network and pomegranates on the capital all around, all of bronze: and the second pillar also had like these, and pomegranates."
+  },
+  {
+   "sentence": "Такой же была и другая колонна с ее ___.",
+   "lemma": "яблоко",
+   "options": [
+    "гранатовым яблокам",
+    "гранатовыми яблоками",
+    "гранатовых яблок",
+    "гранатовые яблоки"
+   ],
+   "correct": "гранатовыми яблоками",
+   "case": "Творительный (Instrumental)",
+   "explain": "«гранатовыми яблоками» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c27",
+   "translation": "A capital of bronze was on it; and the height of the one capital was five cubits, with network and pomegranates on the capital all around, all of bronze: and the second pillar also had like these, and pomegranates."
+  },
+  {
+   "sentence": "По сторонам было девяносто шесть ___; всего гранатовых яблок, окружавших сетку, было сто.",
+   "lemma": "яблоко",
+   "options": [
+    "гранатовыми яблоками",
+    "гранатовых яблок",
+    "гранатовые яблоки",
+    "гранатовым яблокам"
+   ],
+   "correct": "гранатовых яблок",
+   "case": "Родительный (Genitive)",
+   "explain": "«гранатовых яблок» — the genitive here marks possession, absence, or quantity.",
+   "id": "c28",
+   "translation": "There were ninety-six pomegranates on the sides; all the pomegranates were one hundred on the network all around."
+  },
+  {
+   "sentence": "По сторонам было девяносто шесть ___; всего гранатовых яблок, окружавших сетку, было сто.",
+   "lemma": "яблоко",
+   "options": [
+    "гранатовыми яблоками",
+    "гранатовых яблок",
+    "гранатовые яблоки",
+    "гранатовым яблокам"
+   ],
+   "correct": "гранатовых яблок",
+   "case": "Родительный (Genitive)",
+   "explain": "«гранатовых яблок» — the genitive here marks possession, absence, or quantity.",
+   "id": "c29",
+   "translation": "There were ninety-six pomegranates on the sides; all the pomegranates were one hundred on the network all around."
+  },
+  {
+   "sentence": "Начальник ___ взял в плен первосвященника Сераю, второго после него священника Софонию и трех привратников.",
+   "lemma": "охрана",
+   "options": [
+    "царская охрана",
+    "царской охраной",
+    "царской охране",
+    "царской охраны"
+   ],
+   "correct": "царской охраны",
+   "case": "Родительный (Genitive)",
+   "explain": "«царской охраны» — the genitive here marks possession, absence, or quantity.",
+   "id": "c30",
+   "translation": "The captain of the guard took Seraiah the chief priest, and Zephaniah the second priest, and the three keepers of the threshold:"
+  },
+  {
+   "sentence": "Из тех, кто еще оставался в городе, он взял одного сановника, который распоряжался воинами, и семерых ___.",
+   "lemma": "советник",
+   "options": [
+    "царских советников",
+    "царскими советниками",
+    "царским советникам",
+    "царские советники"
+   ],
+   "correct": "царских советников",
+   "case": "Родительный (Genitive)",
+   "explain": "«царских советников» — the genitive here marks possession, absence, or quantity.",
+   "id": "c31",
+   "translation": "and out of the city he took an officer who was set over the men of war; and seven men of those who saw the king’s face, who were found in the city; and the scribe of the captain of the army, who mustered the people of the land; and sixty men of the people of the land, who were found in the middle of the city."
+  },
+  {
+   "sentence": "Невузарадан, начальник ___, взял их всех и отвел к царю Вавилона в Ривлу.",
+   "lemma": "охрана",
+   "options": [
+    "царская охрана",
+    "царской охраной",
+    "царской охране",
+    "царской охраны"
+   ],
+   "correct": "царской охраны",
+   "case": "Родительный (Genitive)",
+   "explain": "«царской охраны» — the genitive here marks possession, absence, or quantity.",
+   "id": "c32",
+   "translation": "Nebuzaradan the captain of the guard took them, and brought them to the king of Babylon to Riblah."
+  },
+  {
+   "sentence": "в двадцать третьем году его правления — Невузарадан, начальник ___, угнал в плен 745 иудеев.",
+   "lemma": "охрана",
+   "options": [
+    "царская охрана",
+    "царской охраной",
+    "царской охране",
+    "царской охраны"
+   ],
+   "correct": "царской охраны",
+   "case": "Родительный (Genitive)",
+   "explain": "«царской охраны» — the genitive here marks possession, absence, or quantity.",
+   "id": "c33",
+   "translation": "in the twenty-third year of Nebuchadnezzar Nebuzaradan the captain of the guard carried away captive of the Jews seven hundred forty-five people: all the people were four thousand six hundred."
+  },
+  {
+   "sentence": "В тридцать седьмом году пленения Иехонии, царя Иудеи, в том году, когда Эвил-Меродах стал царем Вавилона, он освободил Иехонию, царя Иудеи, из темницы на двадцать ___ двенадцатого месяца .",
+   "lemma": "день",
+   "options": [
+    "пятом дне",
+    "пятому дню",
+    "пятый день",
+    "пятым днём"
+   ],
+   "correct": "пятый день",
+   "case": "Винительный (Accusative)",
+   "explain": "«пятый день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c34",
+   "translation": "In the thirty-seventh year of the captivity of Jehoiachin king of Judah, in the twelfth month, in the twenty-fifth day of the month, Evilmerodach king of Babylon, in the first year of his reign, lifted up the head of Jehoiachin king of Judah, and released him from prison."
+  },
+  {
+   "sentence": "В тридцать седьмом году пленения Иехонии, царя Иудеи, в том году, когда Эвил-Меродах стал царем Вавилона, он освободил Иехонию, царя Иудеи, из темницы на двадцать пятый день ___ .",
+   "lemma": "месяц",
+   "options": [
+    "двенадцатым месяцем",
+    "двенадцатый месяц",
+    "двенадцатого месяца",
+    "двенадцатом месяце"
+   ],
+   "correct": "двенадцатого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«двенадцатого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c35",
+   "translation": "In the thirty-seventh year of the captivity of Jehoiachin king of Judah, in the twelfth month, in the twenty-fifth day of the month, Evilmerodach king of Babylon, in the first year of his reign, lifted up the head of Jehoiachin king of Judah, and released him from prison."
+  },
+  {
+   "sentence": "Иехония сменил свои тюремные одежды и остаток своих дней всегда ел за ___.",
+   "lemma": "стол",
+   "options": [
+    "царский стол",
+    "царским столом",
+    "царскому столу",
+    "царском столе"
+   ],
+   "correct": "царским столом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«царским столом» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "id": "c37",
+   "translation": "and changed his prison garments. Jehoiachin ate bread before him continually all the days of his life."
+  },
+  {
+   "sentence": "Изо дня в день ___ выдавал ему постоянное содержание всю жизнь, до самого дня его смерти.",
+   "lemma": "царь",
+   "options": [
+    "вавилонским царём",
+    "вавилонский царь",
+    "вавилонском царе",
+    "вавилонскому царю"
+   ],
+   "correct": "вавилонский царь",
+   "case": "Именительный (Nominative)",
+   "explain": "«вавилонский царь» — the subject of the sentence stands in the nominative.",
+   "id": "c38",
+   "translation": "For his allowance, there was a continual allowance given him by the king of Babylon, every day a portion until the day of his death, all the days of his life."
+  },
+  {
+   "sentence": "Изо дня в день вавилонский царь выдавал ему постоянное содержание всю жизнь, до ___ его смерти.",
+   "lemma": "день",
+   "options": [
+    "самом дне",
+    "сам день",
+    "самого дня",
+    "самим днём"
+   ],
+   "correct": "самого дня",
+   "case": "Родительный (Genitive)",
+   "explain": "«самого дня» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c39",
+   "translation": "For his allowance, there was a continual allowance given him by the king of Babylon, every day a portion until the day of his death, all the days of his life."
+  }
+ ]
 }

@@ -1,134 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Главное из того, о чем мы вам говорим, это то, что у нас есть такой ___, который находится на небесах по правую сторону от престола Всемогущего.",
-      "lemma": "первосвященник",
-      "options": ["первосвященник", "первосвященника", "первосвященнику", "первосвященником"],
-      "correct": "первосвященник",
-      "case": "Винительный (Accusative)",
-      "translation": "The main point is that we have such a high priest who sits at the right hand of the throne of God in the heavens.",
-      "explain": "The direct object of the verb 'есть' (have) requires the accusative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "служитель в святилище, в истинной скинии, воздвигнутой не ___, а Господом.",
-      "lemma": "люди",
-      "options": ["люди", "людей", "людям", "людьми"],
-      "correct": "людьми",
-      "case": "Творительный (Instrumental)",
-      "translation": "A servant in the sanctuary, in the true tabernacle, which the Lord set up, not man.",
-      "explain": "The instrumental case is used after the preposition indicating the agent in passive constructions."
-    },
-    {
-      "id": "c3",
-      "sentence": "Каждый первосвященник определен на то, чтобы приносить приношения и жертвы, поэтому и наш первосвященник должен был иметь что-то, что можно было бы принести в ___.",
-      "lemma": "жертва",
-      "options": ["жертва", "жертвы", "жертву", "жертвой"],
-      "correct": "жертву",
-      "case": "Винительный (Accusative)",
-      "translation": "Every high priest is appointed to offer both gifts and sacrifices; so this high priest also needed to have something to offer.",
-      "explain": "The transitive verb 'принести' (offer) requires the accusative case for the object."
-    },
-    {
-      "id": "c4",
-      "sentence": "Если бы он был сейчас на земле, он не был бы даже священником, потому что уже существует ___, приносящий жертвы в соответствии с законом.",
-      "lemma": "священник",
-      "options": ["священник", "священника", "священнику", "священником"],
-      "correct": "священник",
-      "case": "Винительный (Accusative)",
-      "translation": "If he were now on earth, he would not be a priest at all, since there is a priest who offers the gifts according to the law.",
-      "explain": "The nominative form is used after the verb 'существует' (exists/is)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Они совершают служение в святилище, которое служит лишь подобием и тенью ___.",
-      "lemma": "небесный",
-      "options": ["небесный", "небесного", "небесному", "небесным"],
-      "correct": "небесного",
-      "case": "Родительный (Genitive)",
-      "translation": "They serve in a sanctuary that is a copy and shadow of the heavenly one.",
-      "explain": "The genitive case follows prepositions indicating comparison or relationship."
-    },
-    {
-      "id": "c6",
-      "sentence": "Поэтому Моисей, перед тем, как строить Скинию, был предупрежден об этом ___ на горе.",
-      "lemma": "образец",
-      "options": ["образец", "образца", "образцу", "образце"],
-      "correct": "образце",
-      "case": "Предложный (Prepositional)",
-      "translation": "Therefore, when Moses was about to build the tabernacle, he was instructed to make everything according to the pattern shown to him on the mountain.",
-      "explain": "The preposition о (about) requires the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Но сейчас Христу поручено служение, которое намного превосходит служение земного ___, потому что он посредник лучшего завета.",
-      "lemma": "священник",
-      "options": ["священник", "священника", "священнику", "священником"],
-      "correct": "священника",
-      "case": "Родительный (Genitive)",
-      "translation": "But now Christ has obtained a ministry much more excellent than that of the earthly priest, inasmuch as he is the mediator of a better covenant.",
-      "explain": "The genitive case is used for comparison after adjectives like 'превосходит' (exceeds)."
-    },
-    {
-      "id": "c8",
-      "sentence": "Если бы первый завет был без недостатков, то не было бы нужды во ___.",
-      "lemma": "второй",
-      "options": ["второй", "второго", "второму", "втором"],
-      "correct": "втором",
-      "case": "Предложный (Prepositional)",
-      "translation": "For if that first covenant had been faultless, there would have been no need for a second one.",
-      "explain": "The preposition в (in) requires the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Главное из того, о чем мы вам говорим, это то, что у нас есть такой первосвященник, который находится на небесах по правую сторону от престола Всемогущего.",
-      "question": "Where is the high priest mentioned in this passage seated?",
-      "options": ["At the right hand of the throne of God in the heavens", "In the temple in Jerusalem", "In the wilderness", "On the Mount of Olives"],
-      "correct": "At the right hand of the throne of God in the heavens",
-      "explain": "The text states he 'sits at the right hand of the throne of the Majesty in the heavens.'"
-    },
-    {
-      "id": "r2",
-      "ru": "служитель в святилище, в истинной скинии, воздвигнутой не людьми, а Господом.",
-      "question": "Who built the true tabernacle according to this passage?",
-      "options": ["The Lord built it, not man", "Moses and the Israelites", "The angels", "Solomon"],
-      "correct": "The Lord built it, not man",
-      "explain": "The text says the tabernacle was 'set up, not by man, but by the Lord.'"
-    },
-    {
-      "id": "r3",
-      "ru": "Каждый первосвященник определен на то, чтобы приносить приношения и жертвы, поэтому и наш первосвященник должен был иметь что-то, что можно было бы принести в жертву.",
-      "question": "Why did this high priest need to have something to offer?",
-      "options": ["Because every high priest is appointed to offer gifts and sacrifices", "Because the law required constant offerings", "Because the people demanded sacrifices", "Because God wanted to test him"],
-      "correct": "Because every high priest is appointed to offer gifts and sacrifices",
-      "explain": "The passage explains that 'every high priest is appointed to offer both gifts and sacrifices.'"
-    },
-    {
-      "id": "r4",
-      "ru": "Они совершают служение в святилище, которое служит лишь подобием и тенью небесного.",
-      "question": "What is the relationship between the earthly and heavenly sanctuaries?",
-      "options": ["The earthly sanctuary is a copy and shadow of the heavenly", "They are identical", "The earthly is superior", "There is no heavenly sanctuary"],
-      "correct": "The earthly sanctuary is a copy and shadow of the heavenly",
-      "explain": "The passage states they 'serve in a copy and shadow of the heavenly things.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Поэтому Моисей, перед тем, как строить Скинию, был предупрежден: смотри, сделай все точно по образцу, который был тебе показан на горе.",
-      "question": "What instruction did Moses receive before building the tabernacle?",
-      "options": ["To make everything according to the pattern shown to him on the mountain", "To build it according to his own design", "To gather materials from Egypt", "To involve the entire congregation"],
-      "correct": "To make everything according to the pattern shown to him on the mountain",
-      "explain": "God warned Moses: 'See that you make everything according to the pattern that was shown to you on the mountain.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Если бы первый завет был без недостатков, то не было бы нужды во втором.",
-      "question": "Why was a new covenant necessary?",
-      "options": ["The first covenant had faults", "People wanted a new one", "Times changed", "God changed His mind"],
-      "correct": "The first covenant had faults",
-      "explain": "The passage says 'If that first covenant had been faultless, there would have been no need for a second.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Но сейчас Христу поручено служение, которое намного превосходит служение ___, потому что Он — посредник лучшего завета Бога с человеком, основанного на лучших обещаниях.",
+   "lemma": "священник",
+   "options": [
+    "земных священников",
+    "земные священники",
+    "земным священникам",
+    "земными священниками"
+   ],
+   "correct": "земных священников",
+   "case": "Родительный (Genitive)",
+   "explain": "«земных священников» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "But now he has obtained a more excellent ministry, by so much as he is also the mediator of a better covenant, which on better promises has been given as law."
+  },
+  {
+   "sentence": "Если бы ___ был без недостатков, то не было бы нужды во втором.",
+   "lemma": "завет",
+   "options": [
+    "первый завет",
+    "первому завету",
+    "первым заветом",
+    "первом завете"
+   ],
+   "correct": "первый завет",
+   "case": "Именительный (Nominative)",
+   "explain": "«первый завет» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "For if that first covenant had been faultless, then no place would have been sought for a second."
+  },
+  {
+   "sentence": "Он назвал этот завет «новым» и тем самым показал, что ___ устарел.",
+   "lemma": "завет",
+   "options": [
+    "первый завет",
+    "первому завету",
+    "первым заветом",
+    "первом завете"
+   ],
+   "correct": "первый завет",
+   "case": "Именительный (Nominative)",
+   "explain": "«первый завет» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "In that he says, “A new covenant”, he has made the first old. But that which is becoming old and grows aged is near to vanishing away."
+  }
+ ]
 }

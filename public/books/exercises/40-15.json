@@ -1,230 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ подошла и поклонилась ему. «Господи, помоги мне!»",
-      "lemma": "женщина",
-      "options": [
-        "женщина",
-        "женщины",
-        "женщине",
-        "женщину"
-      ],
-      "correct": "женщина",
-      "case": "Именительный (Nominative)",
-      "translation": "The woman came and knelt before him. 'Lord, help me!'",
-      "explain": "Женщина is the subject of the intransitive verb подошла, so it stands in the nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Почему твои ученики нарушают обычаи наших предков? Они не омывают ___ перед едой.",
-      "lemma": "рука",
-      "options": [
-        "руки",
-        "рук",
-        "рукам",
-        "руками"
-      ],
-      "correct": "рук",
-      "case": "Родительный (Genitive)",
-      "translation": "Why do your disciples break the tradition of our ancestors? They do not wash their hands before eating.",
-      "explain": "A direct object of a negated transitive verb (не омывают) goes into the genitive → рук."
-    },
-    {
-      "id": "c3",
-      "sentence": "Но ведь и собачки едят крошки, которые падают со ___ хозяев.",
-      "lemma": "стол",
-      "options": [
-        "стол",
-        "стола",
-        "столу",
-        "столе"
-      ],
-      "correct": "стола",
-      "case": "Родительный (Genitive)",
-      "translation": "But even the little dogs eat the crumbs that fall from their masters' table.",
-      "explain": "The preposition со (=с, off of) takes the genitive → стола."
-    },
-    {
-      "id": "c4",
-      "sentence": "Этих несчастных клали к ___ Иисуса, и Он исцелял их.",
-      "lemma": "нога",
-      "options": [
-        "ноги",
-        "ног",
-        "ногам",
-        "ногами"
-      ],
-      "correct": "ногам",
-      "case": "Дательный (Dative)",
-      "translation": "These unfortunate people were laid at Jesus's feet, and he healed them.",
-      "explain": "The preposition к (to, at) takes the dative → ногам."
-    },
-    {
-      "id": "c5",
-      "sentence": "Нехорошо будет забрать хлеб у детей и бросить ___?",
-      "lemma": "собачка",
-      "options": [
-        "собачки",
-        "собачек",
-        "собачкам",
-        "собачками"
-      ],
-      "correct": "собачкам",
-      "case": "Дательный (Dative)",
-      "translation": "Is it not right to take the children's bread and throw it to the little dogs?",
-      "explain": "бросить (to throw to someone) takes its indirect object in the dative → собачкам."
-    },
-    {
-      "id": "c6",
-      "sentence": "Иисус велел людям возлечь на ___.",
-      "lemma": "земля",
-      "options": [
-        "земля",
-        "земли",
-        "земле",
-        "землю"
-      ],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "Jesus told the people to sit down on the ground.",
-      "explain": "на with a verb of motion (возлечь на — to lie down onto) takes the accusative → землю."
-    },
-    {
-      "id": "c7",
-      "sentence": "Они не омывают рук перед ___.",
-      "lemma": "еда",
-      "options": [
-        "еда",
-        "еды",
-        "еде",
-        "едой"
-      ],
-      "correct": "едой",
-      "case": "Творительный (Instrumental)",
-      "translation": "They do not wash their hands before eating.",
-      "explain": "The preposition перед (before) takes the instrumental → едой."
-    },
-    {
-      "id": "c8",
-      "sentence": "Местные жители издавна селились в этих ___, недалеко от Тира и Сидона.",
-      "lemma": "окрестность",
-      "options": [
-        "окрестности",
-        "окрестностей",
-        "окрестностям",
-        "окрестностях"
-      ],
-      "correct": "окрестностях",
-      "case": "Предложный (Prepositional)",
-      "translation": "Local residents had long settled in these surroundings, not far from Tyre and Sidon.",
-      "explain": "в indicating location, not motion, takes the prepositional plural → окрестностях."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Почему твои ученики нарушают обычаи наших предков? Они не омывают рук перед едой».",
-      "question": "What did the Pharisees and teachers of the law criticize the disciples for?",
-      "options": [
-        "Not washing their hands before eating",
-        "Working on the Sabbath",
-        "Eating with tax collectors",
-        "Failing to fast"
-      ],
-      "correct": "Not washing their hands before eating",
-      "explain": "They accused the disciples of breaking tradition by not washing their hands before eating."
-    },
-    {
-      "id": "r2",
-      "ru": "Этот народ чтит меня губами, но сердца их далеки от меня.",
-      "question": "What did Isaiah's prophecy, quoted by Jesus, say about the people?",
-      "options": [
-        "They honor God with their lips, but their hearts are far from him",
-        "They never speak of God at all",
-        "They worship idols openly",
-        "They have forgotten God's name"
-      ],
-      "correct": "They honor God with their lips, but their hearts are far from him",
-      "explain": "Jesus quotes Isaiah saying the people honor him with their lips while their hearts are far from him."
-    },
-    {
-      "id": "r3",
-      "ru": "Нечистым человека делает то, что исходит из его уст.",
-      "question": "According to Jesus, what makes a person unclean?",
-      "options": [
-        "What comes out of a person's mouth",
-        "What a person eats",
-        "Not washing before meals",
-        "Touching a sick person"
-      ],
-      "correct": "What comes out of a person's mouth",
-      "explain": "Jesus teaches that what comes out of a person's mouth, not unwashed hands, makes him unclean."
-    },
-    {
-      "id": "r4",
-      "ru": "Там к нему с плачем подошла местная женщина-хананиянка и стала кричать, «Господи, сын Давидов, сжалься надо мной, моя дочь одержима демоном и ужасно мучается».",
-      "question": "Who approached Jesus near Tyre and Sidon, crying out for help?",
-      "options": [
-        "A Canaanite woman whose daughter was demon-possessed",
-        "A Roman centurion whose servant was sick",
-        "A blind beggar from Jericho",
-        "A synagogue leader whose daughter had died"
-      ],
-      "correct": "A Canaanite woman whose daughter was demon-possessed",
-      "explain": "A Canaanite woman came crying out that her daughter was severely possessed by a demon."
-    },
-    {
-      "id": "r5",
-      "ru": "Я послан только к заблудшим овцам Израиля».",
-      "question": "How did Jesus initially answer the Canaanite woman's request?",
-      "options": [
-        "He said he was sent only to the lost sheep of Israel",
-        "He immediately healed her daughter",
-        "He rebuked her for approaching him",
-        "He sent his disciples to heal her daughter"
-      ],
-      "correct": "He said he was sent only to the lost sheep of Israel",
-      "explain": "Jesus first replied that he was sent only to the lost sheep of Israel."
-    },
-    {
-      "id": "r6",
-      "ru": "Женщина, у тебя великая вера, пусть будет так, как ты хочешь». И в тот же час ее дочь исцелилась.",
-      "question": "What happened after Jesus praised the Canaanite woman's faith?",
-      "options": [
-        "Her daughter was healed at that very hour",
-        "She was told to come back the next day",
-        "Her daughter's condition worsened",
-        "The disciples refused to believe it"
-      ],
-      "correct": "Her daughter was healed at that very hour",
-      "explain": "Jesus told the woman her faith was great, and her daughter was healed that same hour."
-    },
-    {
-      "id": "r7",
-      "ru": "Люди удивлялись и славили Бога Израиля, когда видели немых говорящими, калек здоровыми, хромых ходящими и слепых зрячими.",
-      "question": "How did the crowd react to seeing Jesus heal the mute, crippled, lame, and blind?",
-      "options": [
-        "They were amazed and praised the God of Israel",
-        "They demanded he stop",
-        "They accused him of trickery",
-        "They ignored the healings"
-      ],
-      "correct": "They were amazed and praised the God of Israel",
-      "explain": "The people were astonished and glorified the God of Israel at these healings."
-    },
-    {
-      "id": "r8",
-      "ru": "Все ели и насытились, и еще набралось семь полных корзин остатков. Всего ело четыре тысячи одних только мужчин, не считая женщин и детей.",
-      "question": "What was the result of the feeding of the four thousand?",
-      "options": [
-        "Everyone ate and was filled, with seven baskets of leftovers, four thousand men in all",
-        "The food ran out before everyone was fed",
-        "Only the disciples had enough to eat",
-        "There were no leftovers at all"
-      ],
-      "correct": "Everyone ate and was filled, with seven baskets of leftovers, four thousand men in all",
-      "explain": "The text says all ate and were filled, seven baskets of leftovers were gathered, and four thousand men ate, not counting women and children."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Потому что из сердца исходят ___, убийства, супружеская неверность, разврат, воровство, лжесвидетельство, клевета.",
+   "lemma": "мысль",
+   "options": [
+    "злых мыслей",
+    "злые мысли",
+    "злыми мыслями",
+    "злым мыслям"
+   ],
+   "correct": "злые мысли",
+   "case": "Именительный (Nominative)",
+   "explain": "«злые мысли» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "For out of the heart come evil thoughts, murders, adulteries, sexual sins, thefts, false testimony, and blasphemies."
+  },
+  {
+   "sentence": "Там к Нему с плачем подошла ___ и стала кричать:",
+   "lemma": "женщина-хананеянка",
+   "options": [
+    "местной женщиной-хананеянкой",
+    "местная женщина-хананеянка",
+    "местной женщины-хананеянки",
+    "местной женщине-хананеянке"
+   ],
+   "correct": "местная женщина-хананеянка",
+   "case": "Именительный (Nominative)",
+   "explain": "«местная женщина-хананеянка» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "Behold, a Canaanite woman came out from those borders, and cried, saying, “Have mercy on me, Lord, you son of David! My daughter is severely possessed by a demon!”"
+  },
+  {
+   "sentence": "Иисус ушел оттуда и пошел вдоль ___.",
+   "lemma": "озеро",
+   "options": [
+    "галилейское озеро",
+    "галилейского озера",
+    "галилейским озером",
+    "галилейскому озеру"
+   ],
+   "correct": "галилейского озера",
+   "case": "Родительный (Genitive)",
+   "explain": "«Галилейского озера» — after the preposition «вдоль», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Jesus departed from there, and came near to the sea of Galilee; and he went up into the mountain, and sat there."
+  }
+ ]
 }

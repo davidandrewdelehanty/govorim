@@ -1,204 +1,139 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Посмотри на Ассирию, этот ливанский ___ , с ветвями красивыми.",
-      "lemma": "кедр",
-      "case": "Винительный (Accusative)",
-      "options": [
-        "кедр",
-        "кедра",
-        "кедру",
-        "кедром"
-      ],
-      "correct": "кедр",
-      "translation": "Behold the Assyrian cedar of Lebanon with beautiful branches.",
-      "explain": "The noun following этот (this) in descriptive predicate position takes accusative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Был он высоким, в облака уходила его ___.",
-      "lemma": "вершина",
-      "case": "Именительный (Nominative)",
-      "options": [
-        "вершина",
-        "вершины",
-        "вершину",
-        "вершиной"
-      ],
-      "correct": "вершина",
-      "translation": "It was tall; its top reached into the clouds.",
-      "explain": "Вершина is the subject of уходила (went up), requiring nominative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "И вырос он выше всех деревьев в ___ , ветви его разрослись.",
-      "lemma": "лес",
-      "case": "Предложный (Prepositional)",
-      "options": [
-        "лесу",
-        "леса",
-        "лесом",
-        "леси"
-      ],
-      "correct": "лесу",
-      "translation": "It grew taller than all the trees in the forest.",
-      "explain": "The preposition в (in) with location requires prepositional case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Все птицы небесные в ветвях его гнездились, все дикие звери под ветками его ___.",
-      "lemma": "плодиться",
-      "case": "Именительный (Nominative)",
-      "options": [
-        "плодились",
-        "плодится",
-        "плодиться",
-        "плодилась"
-      ],
-      "correct": "плодились",
-      "translation": "All the birds of the sky made their nests in its branches; wild animals reproduced under its boughs.",
-      "explain": "Verb agrees with plural subject звери (animals) in nominative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Все великие народы жили в его ___.",
-      "lemma": "тень",
-      "case": "Предложный (Prepositional)",
-      "options": [
-        "тени",
-        "тень",
-        "теню",
-        "тенью"
-      ],
-      "correct": "тени",
-      "translation": "All great nations lived in its shadow.",
-      "explain": "The preposition в (in) with location requires prepositional case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Кедры из Божьего сада не могли с ним соперничать. Не равнялись с ним ветвями сосны или побегами ___.",
-      "lemma": "чинара",
-      "case": "Именительный (Nominative)",
-      "options": [
-        "чинара",
-        "чинары",
-        "чинару",
-        "чинарой"
-      ],
-      "correct": "чинара",
-      "translation": "The cypress was not like it in branches; the pine not like its boughs.",
-      "explain": "Чинара as the subject of равнялись uses nominative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Я сделал его прекрасным, с ветвями густыми, на зависть эдемским деревьям, которые в Божьем ___.",
-      "lemma": "сад",
-      "case": "Предложный (Prepositional)",
-      "options": [
-        "саду",
-        "сада",
-        "сад",
-        "садом"
-      ],
-      "correct": "саду",
-      "translation": "I made it beautiful with abundant branches, the envy of the trees in God's garden.",
-      "explain": "The preposition в (in) with location requires prepositional case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Так как он был высоким, вознося вершину к облакам, и возгордился высотой, я отдал его в распоряжение властелина ___.",
-      "lemma": "народ",
-      "case": "Родительный (Genitive)",
-      "options": [
-        "народов",
-        "народ",
-        "народам",
-        "народами"
-      ],
-      "correct": "народов",
-      "translation": "Because it was high and proud, I gave it into the hand of the mightiest of nations.",
-      "explain": "The genitive case expresses possession and relationship; властелина народов means ruler of nations."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Что сравнится с тобой величием? Посмотри на Ассирию, этот ливанский кедр, с ветвями красивыми, с кроной тенистой.",
-      "question": "What tree is used to compare with Pharaoh's greatness?",
-      "options": [
-        "The cedar of Lebanon with beautiful branches and shadowy crown",
-        "A palm tree in Egypt",
-        "An olive tree in Judea",
-        "A cypress from the sea"
-      ],
-      "correct": "The cedar of Lebanon with beautiful branches and shadowy crown",
-      "explain": "Pharaoh is directly compared to an Assyrian cedar of Lebanon with beautiful branches and a shady crown."
-    },
-    {
-      "id": "r2",
-      "ru": "Был он высоким, в облака уходила его вершина. Питала его вода, подземные источники растили, текли их потоки вокруг того места, где он рос.",
-      "question": "How did the tree grow so tall and prosperous?",
-      "options": [
-        "Water and underground springs nourished it with streams flowing around its location",
-        "It was blessed by the gods",
-        "It grew through human effort",
-        "It fed itself without help"
-      ],
-      "correct": "Water and underground springs nourished it with streams flowing around its location",
-      "explain": "The text explicitly describes how water and underground springs sustained the tree's growth."
-    },
-    {
-      "id": "r3",
-      "ru": "Все птицы небесные в ветвях его гнездились, все дикие звери под ветками его плодились. Все великие народы жили в его тени.",
-      "question": "What lived within or around the cedar?",
-      "options": [
-        "Birds nested in it, wild animals reproduced under it, and great nations lived in its shadow",
-        "Only small creatures lived there",
-        "No one could approach it",
-        "Only gods dwelt there"
-      ],
-      "correct": "Birds nested in it, wild animals reproduced under it, and great nations lived in its shadow",
-      "explain": "The passage lists the birds, animals, and nations that depended on the cedar for shelter and survival."
-    },
-    {
-      "id": "r4",
-      "ru": "Я сделал его прекрасным, с ветвями густыми, на зависть эдемским деревьям, которые в Божьем саду.",
-      "question": "How did God regard this cedar?",
-      "options": [
-        "He made it beautiful with abundant branches, the envy of the trees in Eden",
-        "He destroyed it immediately",
-        "He ignored it",
-        "He made it weak and fragile"
-      ],
-      "correct": "He made it beautiful with abundant branches, the envy of the trees in Eden",
-      "explain": "God explicitly states He made the cedar beautiful and abundant, causing even Eden's trees to envy it."
-    },
-    {
-      "id": "r5",
-      "ru": "Так как он был высоким, вознося вершину к облакам, и возгордился высотой, я отдал его в распоряжение властелина народов.",
-      "question": "Why does God give the cedar to the mighty ruler of nations?",
-      "options": [
-        "Because its pride reached toward the clouds and it deserved judgment for its lawlessness",
-        "Because God wanted to reward it",
-        "Because it asked to be given away",
-        "Because other trees were jealous"
-      ],
-      "correct": "Because its pride reached toward the clouds and it deserved judgment for its lawlessness",
-      "explain": "God judges the cedar for its arrogance and wickedness, giving it to the mightiest ruler as appropriate punishment."
-    },
-    {
-      "id": "r6",
-      "ru": "Его ветви упали на горы и долины. Его ветки рухнули сломанными в ущелье земли. Все народы земли вышли из-под его тени и оставили его.",
-      "question": "What happened to the cedar after it was given to the mighty ruler?",
-      "options": [
-        "Its branches fell on mountains, its boughs were broken in valleys, and all nations abandoned it",
-        "It grew even stronger",
-        "It was rebuilt by humans",
-        "It flourished in a new place"
-      ],
-      "correct": "Its branches fell on mountains, its boughs were broken in valleys, and all nations abandoned it",
-      "explain": "The passage describes the cedar's complete destruction—branches falling, boughs breaking, and all nations forsaking its shadow."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "В одиннадцатом году, в первый день ___ было ко мне слово Господа:",
+   "lemma": "месяц",
+   "options": [
+    "третьим месяцем",
+    "третьем месяце",
+    "третьего месяца",
+    "третий месяц"
+   ],
+   "correct": "третьего месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«третьего месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "In the eleventh year, in the third month, in the first day of the month, Yahweh’s word came to me, saying,"
+  },
+  {
+   "sentence": "Посмотри на Ассирию, этот ___ ,",
+   "lemma": "кедр",
+   "options": [
+    "ливанского кедра",
+    "ливанским кедром",
+    "ливанский кедр",
+    "ливанскому кедру"
+   ],
+   "correct": "ливанский кедр",
+   "case": "Именительный (Nominative)",
+   "explain": "«ливанский кедр» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "Behold, the Assyrian was a cedar in Lebanon with beautiful branches, and with a forest-like shade, of high stature; and its top was among the thick boughs."
+  },
+  {
+   "sentence": "Все ___ разместились на мертвом стволе; все дикие звери расселились среди его веток.",
+   "lemma": "птица",
+   "options": [
+    "небесными птицами",
+    "небесным птицам",
+    "небесных птиц",
+    "небесные птицы"
+   ],
+   "correct": "небесные птицы",
+   "case": "Именительный (Nominative)",
+   "explain": "«небесные птицы» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "All the birds of the sky will dwell on his ruin, and all the animals of the field will be on his branches;"
+  },
+  {
+   "sentence": "Все небесные птицы разместились на мертвом стволе; все ___ расселились среди его веток.",
+   "lemma": "зверь",
+   "options": [
+    "дикими зверями",
+    "диким зверям",
+    "диких зверей",
+    "дикие звери"
+   ],
+   "correct": "дикие звери",
+   "case": "Именительный (Nominative)",
+   "explain": "«дикие звери» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "All the birds of the sky will dwell on his ruin, and all the animals of the field will be on his branches;"
+  },
+  {
+   "sentence": "Все это было для того, чтобы ___ у воды впредь не поднимались так высоко и не возносили вершину к облакам; чтобы другие деревья, которые пьют воду, не достигали такой высоты.",
+   "lemma": "дерево",
+   "options": [
+    "другими деревьями",
+    "другие деревья",
+    "другим деревьям",
+    "других деревьях"
+   ],
+   "correct": "другие деревья",
+   "case": "Именительный (Nominative)",
+   "explain": "«другие деревья» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "to the end that none of all the trees by the waters exalt themselves in their stature, and don’t set their top among the thick boughs. Their mighty ones don’t stand up on their height, even all who drink water; for they are all delivered to death, to the lower parts of the earth, among the children of men, with those who go down to the pit.’"
+  },
+  {
+   "sentence": "Все это было для того, чтобы ___ у воды впредь не поднимались так высоко и не возносили вершину к облакам; чтобы другие деревья, которые пьют воду, не достигали такой высоты.",
+   "lemma": "дерево",
+   "options": [
+    "другими деревьями",
+    "другие деревья",
+    "другим деревьям",
+    "других деревьях"
+   ],
+   "correct": "другие деревья",
+   "case": "Именительный (Nominative)",
+   "explain": "«другие деревья» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "to the end that none of all the trees by the waters exalt themselves in their stature, and don’t set their top among the thick boughs. Their mighty ones don’t stand up on their height, even all who drink water; for they are all delivered to death, to the lower parts of the earth, among the children of men, with those who go down to the pit.’"
+  },
+  {
+   "sentence": "Всем им суждена смерть, ___, — вместе со смертными, с теми, кто спускается в пропасть.",
+   "lemma": "мир",
+   "options": [
+    "нижним миром",
+    "нижнему миру",
+    "нижний мир",
+    "нижнем мире"
+   ],
+   "correct": "нижний мир",
+   "case": "Именительный (Nominative)",
+   "explain": "«нижний мир» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "to the end that none of all the trees by the waters exalt themselves in their stature, and don’t set their top among the thick boughs. Their mighty ones don’t stand up on their height, even all who drink water; for they are all delivered to death, to the lower parts of the earth, among the children of men, with those who go down to the pit.’"
+  },
+  {
+   "sentence": "Какое из ___ могло сравниться с тобой славой и величием?",
+   "lemma": "дерево",
+   "options": [
+    "эдемским деревьям",
+    "эдемскими деревьями",
+    "эдемских деревьев",
+    "эдемские деревья"
+   ],
+   "correct": "эдемских деревьев",
+   "case": "Родительный (Genitive)",
+   "explain": "«эдемских деревьев» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "“ ‘To whom are you thus like in glory and in greatness among the trees of Eden? Yet you will be brought down with the trees of Eden to the lower parts of the earth. You will lie in the middle of the uncircumcised, with those who are slain by the sword. “ ‘This is Pharaoh and all his multitude,’ says the Lord Yahweh.”"
+  },
+  {
+   "sentence": "Но и тебя вслед за ___ сведут в мир мертвых; ты будешь лежать среди необрезанных, рядом с теми, кто пал от меча.",
+   "lemma": "дерево",
+   "options": [
+    "эдемским деревьям",
+    "эдемских деревьях",
+    "эдемскими деревьями",
+    "эдемские деревья"
+   ],
+   "correct": "эдемскими деревьями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«эдемскими деревьями» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "id": "c10",
+   "translation": "“ ‘To whom are you thus like in glory and in greatness among the trees of Eden? Yet you will be brought down with the trees of Eden to the lower parts of the earth. You will lie in the middle of the uncircumcised, with those who are slain by the sword. “ ‘This is Pharaoh and all his multitude,’ says the Lord Yahweh.”"
+  }
+ ]
 }

@@ -1,204 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Весной, когда цари идут на ___.",
-      "lemma": "война",
-      "options": [
-        "война",
-        "войны",
-        "войне",
-        "войну"
-      ],
-      "correct": "войну",
-      "case": "Винительный (Accusative)",
-      "translation": "In the spring, when kings go out to war.",
-      "explain": "идти на войну (go to war) — the preposition на with the accusative denotes direction/destination."
-    },
-    {
-      "id": "c2",
-      "sentence": "Иав напал на Равву и разрушил ___.",
-      "lemma": "город",
-      "options": [
-        "город",
-        "города",
-        "городе",
-        "городом"
-      ],
-      "correct": "город",
-      "case": "Винительный (Accusative)",
-      "translation": "Joab attacked Rabbah and destroyed the city.",
-      "explain": "разрушил (destroyed) is a transitive verb that takes a direct object in the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Давид снял золотую ___ с головы их царя.",
-      "lemma": "корона",
-      "options": [
-        "корона",
-        "короны",
-        "короне",
-        "корону"
-      ],
-      "correct": "корону",
-      "case": "Винительный (Accusative)",
-      "translation": "David took the gold crown from the head of their king.",
-      "explain": "снял (took off) is a transitive verb requiring the accusative case for the direct object."
-    },
-    {
-      "id": "c4",
-      "sentence": "Еще он взял в городе огромную ___.",
-      "lemma": "добыча",
-      "options": [
-        "добыча",
-        "добычи",
-        "добыче",
-        "добычу"
-      ],
-      "correct": "добычу",
-      "case": "Винительный (Accusative)",
-      "translation": "He also took much plunder from the city.",
-      "explain": "взял (took) is a transitive verb requiring an accusative direct object."
-    },
-    {
-      "id": "c5",
-      "sentence": "Давид снял золотую корону с головы их ___.",
-      "lemma": "царь",
-      "options": [
-        "царь",
-        "царя",
-        "царю",
-        "царём"
-      ],
-      "correct": "царя",
-      "case": "Родительный (Genitive)",
-      "translation": "David took the gold crown from the head of their king.",
-      "explain": "The genitive with possession: 'the head of their king' uses the genitive to show that the head belongs to the king."
-    },
-    {
-      "id": "c6",
-      "sentence": "Он возложил ее на свою ___.",
-      "lemma": "рука",
-      "options": [
-        "рука",
-        "руки",
-        "руке",
-        "руку"
-      ],
-      "correct": "руку",
-      "case": "Винительный (Accusative)",
-      "translation": "He put it on his own head.",
-      "explain": "The preposition на (on) with accusative indicates destination/placement."
-    },
-    {
-      "id": "c7",
-      "sentence": "Это были потомки Рефаимов в Гате и пали от ___ Давида.",
-      "lemma": "меч",
-      "options": [
-        "меч",
-        "меча",
-        "мече",
-        "мечом"
-      ],
-      "correct": "меча",
-      "case": "Родительный (Genitive)",
-      "translation": "These were the descendants of the giants in Gath, and they fell by the sword of David.",
-      "explain": "The phrase пали от меча (fell by the sword) uses genitive after the preposition от."
-    },
-    {
-      "id": "c8",
-      "sentence": "После этого Давид со всем своим войском вернулся в ___.",
-      "lemma": "город",
-      "options": [
-        "город",
-        "города",
-        "городе",
-        "городом"
-      ],
-      "correct": "город",
-      "case": "Винительный (Accusative)",
-      "translation": "After this David and all his army returned to the city.",
-      "explain": "The preposition в (to/into) with accusative indicates destination or direction of movement."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Взятие города Раввы Давидом Весной, когда цари идут на войну, Иав отправился с войском в страну Аманитян, разорил ее, а затем пришел к Равве и осадил ее.",
-      "question": "Who led the army to the land of the Ammonites in spring?",
-      "options": [
-        "Joab",
-        "David",
-        "The king of Ammon",
-        "Thirty mighty men"
-      ],
-      "correct": "Joab",
-      "explain": "The text states: 'Иав отправился с войском в страну Аманитян' — Joab went out with the army to the land of the Ammonites."
-    },
-    {
-      "id": "r2",
-      "ru": "Давид снял золотую корону с головы их царя, она весила талант и была украшена драгоценным камнем, и возложил ее на свою голову.",
-      "question": "What did David do with the crown he took from the king?",
-      "options": [
-        "Put it on his own head",
-        "Melted it into gold",
-        "Gave it to his treasurers",
-        "Placed it in the temple"
-      ],
-      "correct": "Put it on his own head",
-      "explain": "The text says: 'и возложил ее на свою голову' — and he put it on his own head."
-    },
-    {
-      "id": "r3",
-      "ru": "Он вывел жителей, которые были в нем, заставив их работать с пилами, железными кирками и топорами.",
-      "question": "What did David force the people of the city to do?",
-      "options": [
-        "Work with saws, iron picks, and axes",
-        "Pay tribute to Israel",
-        "Serve as soldiers",
-        "Become slaves in Jerusalem"
-      ],
-      "correct": "Work with saws, iron picks, and axes",
-      "explain": "заставив их работать с пилами, железными кирками и топорами — forcing them to work with saws, iron picks, and axes."
-    },
-    {
-      "id": "r4",
-      "ru": "В то время хушатянин Севхай убил Сафа, одного из потомков Рефаимов, и филистимляне были усмирены.",
-      "question": "Who was killed by Sibbecai the Hushathite?",
-      "options": [
-        "Sippai, a descendant of the giants",
-        "A Philistine warrior",
-        "The king of the Philistines",
-        "A commander of David"
-      ],
-      "correct": "Sippai, a descendant of the giants",
-      "explain": "The text identifies: 'Севхай убил Сафа, одного из потомков Рефаимов' — Sibbecai killed Sippai, one of the descendants of the giants."
-    },
-    {
-      "id": "r5",
-      "ru": "Во время еще одной битвы, которая произошла в Гате, был некий человек огромного роста, у которого было по шесть пальцев на каждой руке и на каждой ноге, всего 24.",
-      "question": "How many fingers and toes did the giant in Gath have in total?",
-      "options": [
-        "24",
-        "12",
-        "18",
-        "30"
-      ],
-      "correct": "24",
-      "explain": "The text specifies: 'всего 24' — 24 in total."
-    },
-    {
-      "id": "r6",
-      "ru": "Когда он насмехался над Израилем, Иоаннафан, сын Шимы, брата Давида, убил его.",
-      "question": "Who killed the giant when he defied Israel?",
-      "options": [
-        "Jonathan, son of Shimea, David's brother",
-        "David himself",
-        "Joab",
-        "Sibbecai"
-      ],
-      "correct": "Jonathan, son of Shimea, David's brother",
-      "explain": "Иоаннафан, сын Шимы, брата Давида, убил его — Jonathan, son of Shimea, David's brother, killed him."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Давид взял золотую корону с головы их царя — она весила талант и была украшена ___, — и возложил ее на свою голову .",
+   "lemma": "камень",
+   "options": [
+    "драгоценным камнем",
+    "драгоценного камня",
+    "драгоценном камне",
+    "драгоценный камень"
+   ],
+   "correct": "драгоценным камнем",
+   "case": "Творительный (Instrumental)",
+   "explain": "«драгоценным камнем» — the instrumental marks the means, company, or complement.",
+   "id": "c1",
+   "translation": "David took the crown of their king from off his head, and found it to weigh a talent of gold, and there were precious stones in it. It was set on David’s head, and he brought very much plunder out of the city."
+  },
+  {
+   "sentence": "Он вывел жителей, которые были в нем, заставив их работать пилами, ___ и топорами .",
+   "lemma": "кирка",
+   "options": [
+    "железных кирках",
+    "железными кирками",
+    "железные кирки",
+    "железным киркам"
+   ],
+   "correct": "железными кирками",
+   "case": "Творительный (Instrumental)",
+   "explain": "«железными кирками» — the instrumental marks the means, company, or complement.",
+   "id": "c2",
+   "translation": "He brought out the people who were in it, and had them cut with saws, with iron picks, and with axes. David did so to all the cities of the children of Ammon. Then David and all the people returned to Jerusalem."
+  },
+  {
+   "sentence": "Давид поступил так со всеми ___.",
+   "lemma": "город",
+   "options": [
+    "аммонитские города",
+    "аммонитскими городами",
+    "аммонитских городах",
+    "аммонитских городов"
+   ],
+   "correct": "аммонитскими городами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«аммонитскими городами» — after the preposition «со», the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "He brought out the people who were in it, and had them cut with saws, with iron picks, and with axes. David did so to all the cities of the children of Ammon. Then David and all the people returned to Jerusalem."
+  },
+  {
+   "sentence": "Некоторое время спустя произошло ___ с филистимлянами в Гезере.",
+   "lemma": "сражение",
+   "options": [
+    "нового сражения",
+    "новому сражению",
+    "новом сражении",
+    "новое сражение"
+   ],
+   "correct": "новое сражение",
+   "case": "Именительный (Nominative)",
+   "explain": "«новое сражение» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "After this, war arose at Gezer with the Philistines. Then Sibbecai the Hushathite killed Sippai, of the sons of the giant; and they were subdued."
+  },
+  {
+   "sentence": "В ___ с филистимлянами Элханан, сын Иаира, убил Лахмия, брата гатянина Голиафа, у которого древко копья было большое, как ткацкий навой.",
+   "lemma": "сражение",
+   "options": [
+    "другое сражение",
+    "другому сражению",
+    "другим сражением",
+    "другом сражении"
+   ],
+   "correct": "другом сражении",
+   "case": "Предложный (Prepositional)",
+   "explain": "«другом сражении» — after the preposition «в», for location or topic.",
+   "id": "c5",
+   "translation": "Again there was war with the Philistines; and Elhanan the son of Jair killed Lahmi the brother of Goliath the Gittite, the staff of whose spear was like a weaver’s beam."
+  },
+  {
+   "sentence": "Во время еще одной битвы, которая произошла в Гате, был некий человек ___, у которого было по шесть пальцев на каждой руке и на каждой ноге — всего двадцать четыре.",
+   "lemma": "рост",
+   "options": [
+    "огромным ростом",
+    "огромного роста",
+    "огромный рост",
+    "огромному росту"
+   ],
+   "correct": "огромного роста",
+   "case": "Родительный (Genitive)",
+   "explain": "«огромного роста» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "There was again war at Gath, where there was a man of great stature, who had twenty-four fingers and toes, six on each hand, and six on each foot; and he also was born to the giant."
+  }
+ ]
 }

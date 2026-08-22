@@ -1,134 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ взял себе другую жену, которую звали Хитура.",
-      "lemma": "Авраам",
-      "options": ["Авраам", "Авраама", "Аврааму", "Авраамом"],
-      "correct": "Авраам",
-      "case": "Именительный (Nominative)",
-      "translation": "Abraham took another wife, whom they called Keturah.",
-      "explain": "Авраам is the grammatical subject of the sentence, so it takes the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Все они потомки ___.",
-      "lemma": "Хитура",
-      "options": ["Хитура", "Хитуры", "Хитуре", "Хитуру"],
-      "correct": "Хитуры",
-      "case": "Родительный (Genitive)",
-      "translation": "They are all descendants of Keturah.",
-      "explain": "The noun following 'потомки' (descendants of) requires the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Авраам оставил все, что у него было, ___.",
-      "lemma": "Исаак",
-      "options": ["Исаак", "Исаака", "Исааку", "Исааком"],
-      "correct": "Исааку",
-      "case": "Дательный (Dative)",
-      "translation": "Abraham left everything he had to Isaac.",
-      "explain": "The indirect object of оставить (to leave something to someone) takes the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Господь ответил на его ___, и его жена Ревекка забеременела.",
-      "lemma": "молитва",
-      "options": ["молитва", "молитвы", "молитве", "молитву"],
-      "correct": "молитву",
-      "case": "Винительный (Accusative)",
-      "translation": "The Lord answered his prayer, and his wife Rebekah conceived.",
-      "explain": "The preposition на after ответить (to respond to something) governs the accusative case here."
-    },
-    {
-      "id": "c5",
-      "sentence": "Там Авраам был погребен рядом со своей ___ Сарой.",
-      "lemma": "жена",
-      "options": ["жена", "жены", "жене", "женой"],
-      "correct": "женой",
-      "case": "Творительный (Instrumental)",
-      "translation": "There Abraham was buried beside his wife Sarah.",
-      "explain": "The preposition с/со (with) governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Два племени в ___ твоем, два народа произойдут из тебя и разделятся.",
-      "lemma": "чрево",
-      "options": ["чрево", "чрева", "чреву", "чреве"],
-      "correct": "чреве",
-      "case": "Предложный (Prepositional)",
-      "translation": "Two nations are in your womb, two peoples will come from you and be divided.",
-      "explain": "The preposition в indicating location governs the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "...которое Авраам купил у ___.",
-      "lemma": "Хетты",
-      "options": ["Хетты", "Хеттов", "Хеттам", "Хеттами"],
-      "correct": "Хеттов",
-      "case": "Родительный (Genitive)",
-      "translation": "...which Abraham bought from the Hittites.",
-      "explain": "The preposition у (from/at) governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Исаак молил ___ за жену, потому что она была бесплодна.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господа",
-      "case": "Винительный (Accusative)",
-      "translation": "Isaac prayed to the Lord for his wife, because she was barren.",
-      "explain": "The transitive verb молить (to entreat) takes its direct object in the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Авраам взял себе другую жену, которую звали Хитура.",
-      "question": "What was the name of the wife Abraham took after Sarah's death?",
-      "options": ["Keturah", "Hagar", "Rebekah", "Rachel"],
-      "correct": "Keturah",
-      "explain": "The text says Abraham took a wife 'которую звали Хитура' (whose name was Keturah)."
-    },
-    {
-      "id": "r2",
-      "ru": "Авраам оставил все, что у него было, Исааку.",
-      "question": "To whom did Abraham leave all that he had?",
-      "options": ["Isaac", "Ishmael", "Esau", "Keturah's sons"],
-      "correct": "Isaac",
-      "explain": "The text states Abraham left everything he had to Isaac."
-    },
-    {
-      "id": "r3",
-      "ru": "Всего Авраам прожил 175 лет.",
-      "question": "How many years did Abraham live in total?",
-      "options": ["175 years", "137 years", "180 years", "120 years"],
-      "correct": "175 years",
-      "explain": "The text says Abraham lived a total of 175 years."
-    },
-    {
-      "id": "r4",
-      "ru": "Всего Измаил жил 137 лет.",
-      "question": "How many years did Ishmael live?",
-      "options": ["137 years", "175 years", "147 years", "100 years"],
-      "correct": "137 years",
-      "explain": "The text says Ishmael lived a total of 137 years."
-    },
-    {
-      "id": "r5",
-      "ru": "Исааку было сорок лет, когда он женился на Ревекке, дочери Арамея Битуила и Спадан Арама, и сестре Арамея Лавана.",
-      "question": "How old was Isaac when he married Rebekah?",
-      "options": ["Forty years old", "Thirty years old", "Sixty years old", "Twenty years old"],
-      "correct": "Forty years old",
-      "explain": "The text says Isaac was forty years old when he married Rebekah."
-    },
-    {
-      "id": "r6",
-      "ru": "Он поклялся и так продал свое первородство Иакову.",
-      "question": "What did Esau sell to Jacob after swearing an oath?",
-      "options": ["His birthright", "His inheritance land", "His flock", "His tent"],
-      "correct": "His birthright",
-      "explain": "The text says Esau swore an oath and sold his birthright to Jacob."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Он испустил ___ и умер в глубокой старости, насытившись жизнью, и отошел к своим предкам.",
+   "lemma": "вздох",
+   "options": [
+    "последним вздохом",
+    "последнему вздоху",
+    "последнем вздохе",
+    "последний вздох"
+   ],
+   "correct": "последний вздох",
+   "case": "Винительный (Accusative)",
+   "explain": "«последний вздох» — the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "Abraham gave up his spirit, and died at a good old age, an old man, and full of years, and was gathered to his people."
+  },
+  {
+   "sentence": "Он испустил ___ и умер, и отошел к своим предкам.",
+   "lemma": "вздох",
+   "options": [
+    "последним вздохом",
+    "последнему вздоху",
+    "последнем вздохе",
+    "последний вздох"
+   ],
+   "correct": "последний вздох",
+   "case": "Винительный (Accusative)",
+   "explain": "«последний вздох» — the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "These are the years of the life of Ishmael: one hundred thirty-seven years. He gave up his spirit and died, and was gathered to his people."
+  },
+  {
+   "sentence": "Первый родился красный, и все его тело было покрыто волосами как ___; поэтому его назвали Исав .",
+   "lemma": "одежда",
+   "options": [
+    "ворсистой одежды",
+    "ворсистой одеждой",
+    "ворсистая одежда",
+    "ворсистой одежде"
+   ],
+   "correct": "ворсистой одеждой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«ворсистой одеждой» — the instrumental marks the means, company, or complement.",
+   "id": "c4",
+   "translation": "The first came out red all over, like a hairy garment. They named him Esau."
+  },
+  {
+   "sentence": "Мальчики выросли: Исав был ___, человек полей, а Иаков был человек тихий, живущий среди шатров.",
+   "lemma": "охотник",
+   "options": [
+    "искусный охотник",
+    "искусным охотником",
+    "искусного охотника",
+    "искусному охотнику"
+   ],
+   "correct": "искусный охотник",
+   "case": "Именительный (Nominative)",
+   "explain": "«искусный охотник» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "The boys grew. Esau was a skillful hunter, a man of the field. Jacob was a quiet man, living in tents."
+  }
+ ]
 }

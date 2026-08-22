@@ -1,235 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Разве он не ___, не сын Марии, не брат Иакова, Иосии, Иуды и Симона?",
-      "lemma": "плотник",
-      "options": ["плотник", "плотника", "плотнику", "плотником"],
-      "correct": "плотник",
-      "case": "Именительный (Nominative)",
-      "translation": "Isn't he the carpenter, the son of Mary, and brother of James, Joses, Judas and Simon?",
-      "explain": "Плотник is the predicate noun identifying him → nominative, the dictionary form."
-    },
-    {
-      "id": "c2",
-      "sentence": "Ирод приказал арестовать Иоанна и бросить его в темницу из-за ___, жены своего брата Филиппа.",
-      "lemma": "Иродиада",
-      "options": ["Иродиада", "Иродиады", "Иродиаде", "Иродиадой"],
-      "correct": "Иродиады",
-      "case": "Родительный (Genitive)",
-      "translation": "Herod had ordered John arrested and thrown into prison because of Herodias, his brother Philip's wife.",
-      "explain": "The preposition из-за (because of) governs the genitive → Иродиады."
-    },
-    {
-      "id": "c3",
-      "sentence": "Иисус ходил по окрестным ___ и учил.",
-      "lemma": "селение",
-      "options": ["селения", "селений", "селениям", "селениями"],
-      "correct": "селениям",
-      "case": "Дательный (Dative)",
-      "translation": "Jesus went around the surrounding villages, teaching.",
-      "explain": "The preposition по (around/through) governs the dative → селениям, dative plural."
-    },
-    {
-      "id": "c4",
-      "sentence": "Он созвал двенадцать ___ и начал посылать их подвое.",
-      "lemma": "ученик",
-      "options": ["ученики", "учеников", "ученикам", "учениками"],
-      "correct": "учеников",
-      "case": "Винительный (Accusative)",
-      "translation": "He called the twelve disciples together and began to send them out two by two.",
-      "explain": "Ученик is the direct object of созвал (called together); being animate, its accusative equals the genitive → учеников."
-    },
-    {
-      "id": "c5",
-      "sentence": "...и многих больных помазали оливковым ___ и исцелили.",
-      "lemma": "масло",
-      "options": ["масло", "масла", "маслу", "маслом"],
-      "correct": "маслом",
-      "case": "Творительный (Instrumental)",
-      "translation": "...and they anointed many of the sick with olive oil and healed them.",
-      "explain": "The verb помазать (to anoint with) governs the instrumental → маслом."
-    },
-    {
-      "id": "c6",
-      "sentence": "Когда наступила суббота, он начал учить в ___.",
-      "lemma": "синагога",
-      "options": ["синагога", "синагоги", "синагоге", "синагогой"],
-      "correct": "синагоге",
-      "case": "Предложный (Prepositional)",
-      "translation": "When the Sabbath came, he began to teach in the synagogue.",
-      "explain": "В marking location (no motion) takes the prepositional → синагоге."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Разве он не плотник, не сын Марии, не брат Иакова, Иосии, Иуды и Симона?",
-      "question": "How did the people of his hometown react to Jesus, based on what they knew about him?",
-      "options": [
-        "They took offense, seeing him only as the local carpenter",
-        "They welcomed him as a great prophet",
-        "They asked him to become their king",
-        "They ignored him completely"
-      ],
-      "correct": "They took offense, seeing him only as the local carpenter",
-      "explain": "The people questioned how the carpenter, Mary's son, could do such things, and they took offense at him."
-    },
-    {
-      "id": "r2",
-      "ru": "Он повелел им ничего не брать с собой в дорогу, кроме посоха.",
-      "question": "What did Jesus instruct the twelve to take with them on their mission?",
-      "options": [
-        "Nothing except a staff",
-        "Money and extra clothes",
-        "A boat",
-        "Weapons for protection"
-      ],
-      "correct": "Nothing except a staff",
-      "explain": "Jesus commanded them to take nothing for the journey except a staff."
-    },
-    {
-      "id": "r3",
-      "ru": "некоторые говорили, «Это Иоанн Креститель воскрес из мертвых, и поэтому в нем такая чудодейственная сила».",
-      "question": "What did some people say to explain Jesus' miraculous powers?",
-      "options": [
-        "That John the Baptist had risen from the dead",
-        "That he was Elijah returned",
-        "That he was a Roman general",
-        "That he had learned magic in Egypt"
-      ],
-      "correct": "That John the Baptist had risen from the dead",
-      "explain": "Some said John the Baptist had risen from the dead and that was why miraculous powers were at work in him."
-    },
-    {
-      "id": "r4",
-      "ru": "В свое время Ирод приказал арестовать Иоанна и бросить его в темницу из-за Иродиады, жены своего брата Филиппа.",
-      "question": "Why did Herod have John the Baptist arrested and imprisoned?",
-      "options": [
-        "Because of Herodias, his brother Philip's wife",
-        "Because John insulted the emperor",
-        "Because John led a rebellion",
-        "Because John refused to pay taxes"
-      ],
-      "correct": "Because of Herodias, his brother Philip's wife",
-      "explain": "Herod arrested John and put him in prison because of Herodias, his brother Philip's wife."
-    },
-    {
-      "id": "r5",
-      "ru": "Иродиада затаила злобу на Иоанна и хотела убить его.",
-      "question": "How did Herodias feel about John the Baptist?",
-      "options": [
-        "She held a grudge against him and wanted him dead",
-        "She admired his teaching",
-        "She wanted to marry him",
-        "She was indifferent to him"
-      ],
-      "correct": "She held a grudge against him and wanted him dead",
-      "explain": "Herodias nursed a grudge against John and wanted to kill him."
-    },
-    {
-      "id": "r6",
-      "ru": "И поклялся ей, «Чего не попросишь, все дам тебе, хоть половину моего царства».",
-      "question": "What did Herod promise the girl who danced for him?",
-      "options": [
-        "Whatever she asked, up to half his kingdom",
-        "A place in his court",
-        "Gold and jewels only",
-        "Nothing, since dancing was not impressive"
-      ],
-      "correct": "Whatever she asked, up to half his kingdom",
-      "explain": "Herod swore to her that he would give her whatever she asked, up to half his kingdom."
-    },
-    {
-      "id": "r7",
-      "ru": "«Хочу, чтобы ты сейчас же подал мне на блюде голову Иоанна Крестителя».",
-      "question": "What did the girl ask for, at her mother's suggestion?",
-      "options": [
-        "The head of John the Baptist on a platter",
-        "Half of Herod's kingdom",
-        "A wedding to Herod's son",
-        "Freedom for John the Baptist"
-      ],
-      "correct": "The head of John the Baptist on a platter",
-      "explain": "At her mother's urging, she asked for John the Baptist's head on a platter."
-    },
-    {
-      "id": "r8",
-      "ru": "Когда об этом услышали ученики Иоанна, они пришли, забрали тело и похоронили его в гробнице.",
-      "question": "What did John's disciples do after he was beheaded?",
-      "options": [
-        "They came, took his body, and buried it in a tomb",
-        "They demanded revenge from Herod",
-        "They abandoned his teachings",
-        "They asked Jesus to raise him"
-      ],
-      "correct": "They came, took his body, and buried it in a tomb",
-      "explain": "When John's disciples heard about it, they came and took his body and laid it in a tomb."
-    },
-    {
-      "id": "r9",
-      "ru": "Иисус сказал им, «Отправляйтесь в безлюдное место и немного отдохните",
-      "question": "What did Jesus tell the apostles to do when they returned from their mission?",
-      "options": [
-        "Come away to a quiet place and rest",
-        "Go straight back out to preach more",
-        "Return to Jerusalem",
-        "Fast for seven days"
-      ],
-      "correct": "Come away to a quiet place and rest",
-      "explain": "Jesus told the returning apostles to go to a quiet place and rest a while."
-    },
-    {
-      "id": "r10",
-      "ru": "Он сжалился над людьми, потому что они были как овцы без пастуха, и начал их учить многим вещам.",
-      "question": "Why did Jesus have compassion on the crowd that found him?",
-      "options": [
-        "Because they were like sheep without a shepherd",
-        "Because they were starving to death",
-        "Because they were lost travelers",
-        "Because they had no boats"
-      ],
-      "correct": "Because they were like sheep without a shepherd",
-      "explain": "Jesus had compassion on the crowd because they were like sheep without a shepherd, and he began to teach them."
-    },
-    {
-      "id": "r11",
-      "ru": "Все ели и насытились, и собрали еще двенадцать полных корзин остатков хлеба и рыбы.",
-      "question": "How much food was left over after everyone ate at the feeding of the multitude?",
-      "options": [
-        "Twelve full baskets",
-        "Nothing was left over",
-        "Two baskets",
-        "A hundred baskets"
-      ],
-      "correct": "Twelve full baskets",
-      "explain": "Everyone ate and was satisfied, and twelve baskets full of leftover bread and fish were gathered."
-    },
-    {
-      "id": "r12",
-      "ru": "Но Иисус сразу же заговорил с ними. «Успокойтесь, это Я, не бойтесь».",
-      "question": "What did Jesus say to reassure the disciples when they saw him walking on the water?",
-      "options": [
-        "\"Take courage, it is I, don't be afraid\"",
-        "\"Row faster, the storm is coming\"",
-        "\"Wake up and pray\"",
-        "\"Throw your nets on the other side\""
-      ],
-      "correct": "\"Take courage, it is I, don't be afraid\"",
-      "explain": "Jesus immediately spoke to them, saying, 'Take courage! It is I. Don't be afraid.'"
-    },
-    {
-      "id": "r13",
-      "ru": "И все, кто прикасался, выздоравливали.",
-      "question": "What happened to everyone who touched Jesus' garment at Gennesaret?",
-      "options": [
-        "They were healed",
-        "They fell ill",
-        "They were forgiven their debts",
-        "Nothing happened"
-      ],
-      "correct": "They were healed",
-      "explain": "All who touched him, even the fringe of his garment, were healed."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Он созвал двенадцать учеников и начал посылать их по двое, дав им власть над ___.",
+   "lemma": "дух",
+   "options": [
+    "нечистыми духами",
+    "нечистых духах",
+    "нечистых духов",
+    "нечистые духи"
+   ],
+   "correct": "нечистыми духами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«нечистыми духами» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "id": "c1",
+   "translation": "He called to himself the twelve, and began to send them out two by two; and he gave them authority over the unclean spirits."
+  },
+  {
+   "sentence": "Он повелел им ничего не брать с собой в дорогу, кроме посоха: ни хлеба, ни сумки, ни денег в поясе, 9 но обуваться в сандалии и не брать ___.",
+   "lemma": "одежда",
+   "options": [
+    "запасной одежды",
+    "запасной одежде",
+    "запасная одежда",
+    "запасной одеждой"
+   ],
+   "correct": "запасной одежды",
+   "case": "Родительный (Genitive)",
+   "explain": "«запасной одежды» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "He commanded them that they should take nothing for their journey, except a staff only: no bread, no wallet, no money in their purse,"
+  },
+  {
+   "sentence": "Они изгнали много демонов, и многих больных помазали ___ и исцелили.",
+   "lemma": "масло",
+   "options": [
+    "оливковому маслу",
+    "оливковым маслом",
+    "оливковое масло",
+    "оливкового масла"
+   ],
+   "correct": "оливковым маслом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«оливковым маслом» — the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "They cast out many demons, and anointed many with oil who were sick, and healed them."
+  },
+  {
+   "sentence": "Наконец Иродиаде представился ___.",
+   "lemma": "случай",
+   "options": [
+    "подходящим случаем",
+    "подходящему случаю",
+    "подходящий случай",
+    "подходящего случая"
+   ],
+   "correct": "подходящий случай",
+   "case": "Именительный (Nominative)",
+   "explain": "«подходящий случай» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "Then a convenient day came, that Herod on his birthday made a supper for his nobles, the high officers, and the chief men of Galilee."
+  },
+  {
+   "sentence": "Ирод в день своего рождения устроил пир для своих приближенных, военачальников и самых ___ Галилеи.",
+   "lemma": "человек",
+   "options": [
+    "уважаемых людей",
+    "уважаемых людях",
+    "уважаемым людям",
+    "уважаемыми людьми"
+   ],
+   "correct": "уважаемых людей",
+   "case": "Родительный (Genitive)",
+   "explain": "«уважаемых людей» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "Then a convenient day came, that Herod on his birthday made a supper for his nobles, the high officers, and the chief men of Galilee."
+  }
+ ]
 }

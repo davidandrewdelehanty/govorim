@@ -1,134 +1,319 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Филистимляне собрали войска для ___ и выступили в поход.",
-      "lemma": "война",
-      "options": ["война", "войны", "войне", "войну"],
-      "correct": "войну",
-      "case": "Винительный (Accusative)",
-      "translation": "The Philistines gathered their armies for war and marched out.",
-      "explain": "The preposition для (for) with the accusative case indicates purpose or destination."
-    },
-    {
-      "id": "c2",
-      "sentence": "Саул и израилетяне собрались и расположились лагерем в ___ Эла.",
-      "lemma": "долина",
-      "options": ["долина", "долины", "долине", "долину"],
-      "correct": "долине",
-      "case": "Предложный (Prepositional)",
-      "translation": "Saul and the Israelites gathered and encamped in the valley of Elah.",
-      "explain": "The preposition в (in) with the prepositional case indicates location."
-    },
-    {
-      "id": "c3",
-      "sentence": "Из филистимского лагеря вышел борец по имени ___, родом из Гата.",
-      "lemma": "Голиаф",
-      "options": ["Голиаф", "Голиафа", "Голиафу", "Голиафом"],
-      "correct": "Голиаф",
-      "case": "Именительный (Nominative)",
-      "translation": "A champion named Goliath came out of the Philistine camp, from Gath.",
-      "explain": "The noun is the subject of the verb вышел (came out), requiring the nominative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Древко его копья было большое, как ___ ткацкий.",
-      "lemma": "навой",
-      "options": ["навой", "навоя", "навою", "навоем"],
-      "correct": "навой",
-      "case": "Именительный (Nominative)",
-      "translation": "The shaft of his spear was like a weaver's beam.",
-      "explain": "The noun is the predicate nominative after быть (was), requiring the nominative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "На голове у него был бронзовый шлем, а сам он был одет в бронзовую кольчугу, весом в пять тысяч ___.",
-      "lemma": "шекель",
-      "options": ["шекель", "шекеля", "шекелей", "шекелем"],
-      "correct": "шекелей",
-      "case": "Родительный (Genitive)",
-      "translation": "He had a bronze helmet on his head, and he was wearing a bronze coat of mail, weighing five thousand shekels.",
-      "explain": "After the numeral пять тысяч (five thousand), the genitive plural case is required."
-    },
-    {
-      "id": "c6",
-      "sentence": "Голиаф остановился и закричал выстроившимся ___ о битве.",
-      "lemma": "израилетянин",
-      "options": ["израилетяне", "израилетян", "израилетянам", "израилетянами"],
-      "correct": "израилетянам",
-      "case": "Дательный (Dative)",
-      "translation": "Goliath stopped and shouted to the assembled Israelites about the battle.",
-      "explain": "The preposition к (to) with the verb закричал (shouted) implies the dative case for the recipient."
-    },
-    {
-      "id": "c7",
-      "sentence": "Услышав слова филистимлянина, Саул и все израилетяне испугались этого ___.",
-      "lemma": "боец",
-      "options": ["боец", "бойца", "бойцу", "бойцом"],
-      "correct": "бойца",
-      "case": "Родительный (Genitive)",
-      "translation": "When Saul and all Israel heard the words of the Philistine warrior, they were afraid of him.",
-      "explain": "The verb испугались (were afraid) with the genitive of the person feared governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Давид был сыном Ефрофянина по имени ___ из Вифлеема, что в Иудее.",
-      "lemma": "Иесей",
-      "options": ["Иесей", "Иессея", "Иессею", "Иессеем"],
-      "correct": "Иессея",
-      "case": "Родительный (Genitive)",
-      "translation": "David was the son of an Ephrathite named Jesse from Bethlehem in Judah.",
-      "explain": "The genitive case expresses familial relationship with сыном (son)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Вызов Голиафа Филистимляне собрали войска для войны и пришли в поселение Соха, что в Иудее.",
-      "question": "Where did the Philistines gather for battle?",
-      "options": ["At the settlement of Socoh in Judah", "At the gates of Jerusalem", "In the wilderness", "In Egypt"],
-      "correct": "At the settlement of Socoh in Judah",
-      "explain": "The text states that the Philistines came to Socoh, which is in Judah."
-    },
-    {
-      "id": "r2",
-      "ru": "Из филистимского лагеря вышел борец по имени Голиаф, родом из Гата. Ростом он был шесть локтей и пять.",
-      "question": "What was Goliath's height?",
-      "options": ["Six cubits and five spans", "Five cubits", "Seven cubits", "Four cubits and ten spans"],
-      "correct": "Six cubits and five spans",
-      "explain": "The text explicitly states 'Ростом он был шесть локтей и пять' — his height was six cubits and five spans."
-    },
-    {
-      "id": "r3",
-      "ru": "На голове у него был бронзовый шлем, а сам он был одет в бронзовую кольчугу, весом в пять тысяч шекелей. На ногах у него были бронзовые наколенники, а за спиной висел бронзовый дротик.",
-      "question": "What protective armor did Goliath wear?",
-      "options": ["A bronze helmet, bronze coat of mail, bronze shin guards, and a bronze javelin", "Only a helmet and shield", "A robe and turban", "No armor at all"],
-      "correct": "A bronze helmet, bronze coat of mail, bronze shin guards, and a bronze javelin",
-      "explain": "The passage describes his bronze helmet, coat of mail weighing five thousand shekels, shin guards, and a javelin."
-    },
-    {
-      "id": "r4",
-      "ru": "Услышав слова филистимлянина, Саул и все израилетяне пришли в смятение и сильно испугались.",
-      "question": "How did Saul and the Israelites react to Goliath's challenge?",
-      "options": ["They were dismayed and greatly afraid", "They prepared to fight immediately", "They called for weapons", "They felt confident"],
-      "correct": "They were dismayed and greatly afraid",
-      "explain": "The text states 'Саул и все израилетяне пришли в смятение и сильно испугались' — they were dismayed and greatly afraid."
-    },
-    {
-      "id": "r5",
-      "ru": "Давид был сыном Ефрофянина по имени Иесей из Вифлеема, что в Иудее. У Иесея было восемь сыновей, и во времена Саула он достиг преклонных лет и был старший между мужчинами.",
-      "question": "How many sons did Jesse have?",
-      "options": ["Eight", "Six", "Seven", "Ten"],
-      "correct": "Eight",
-      "explain": "The text says 'У Иесея было восемь сыновей' — Jesse had eight sons."
-    },
-    {
-      "id": "r6",
-      "ru": "Три старших сына пошли за Саулом на войну. Первенца звали Елеав, второго сына Авинодав, а третьего Шамма.",
-      "question": "What were the names of Jesse's three oldest sons?",
-      "options": ["Eliab, Abinadab, and Shammah", "David, Eliab, and Jonathan", "Saul, Samuel, and Jesse", "Goliath, Dagon, and Agag"],
-      "correct": "Eliab, Abinadab, and Shammah",
-      "explain": "The names are listed: 'Первенца звали Елеав, второго сына Авинодав, а третьего Шамма.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Из ___ вышел борец по имени Голиаф из Гата.",
+   "lemma": "лагерь",
+   "options": [
+    "филистимским лагерем",
+    "филистимском лагере",
+    "филистимского лагеря",
+    "филистимский лагерь"
+   ],
+   "correct": "филистимского лагеря",
+   "case": "Родительный (Genitive)",
+   "explain": "«филистимского лагеря» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "A champion out of the camp of the Philistines named Goliath, of Gath, whose height was six cubits and a span went out."
+  },
+  {
+   "sentence": "На голове у него был ___, а сам он был одет в бронзовую кольчугу весом в пять тысяч шекелей .",
+   "lemma": "шлем",
+   "options": [
+    "бронзовому шлему",
+    "бронзовым шлемом",
+    "бронзовом шлеме",
+    "бронзовый шлем"
+   ],
+   "correct": "бронзовый шлем",
+   "case": "Именительный (Nominative)",
+   "explain": "«бронзовый шлем» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "He had a helmet of bronze on his head, and he wore a coat of mail; and the weight of the coat was five thousand shekels of bronze."
+  },
+  {
+   "sentence": "На ногах у него были ___, а за спиной висел бронзовый дротик.",
+   "lemma": "наколенник",
+   "options": [
+    "бронзовым наколенникам",
+    "бронзовых наколенников",
+    "бронзовыми наколенниками",
+    "бронзовые наколенники"
+   ],
+   "correct": "бронзовые наколенники",
+   "case": "Именительный (Nominative)",
+   "explain": "«бронзовые наколенники» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "He had bronze shin armor on his legs, and a bronze javelin between his shoulders."
+  },
+  {
+   "sentence": "На ногах у него были бронзовые наколенники, а за спиной висел ___.",
+   "lemma": "дротик",
+   "options": [
+    "бронзового дротика",
+    "бронзовый дротик",
+    "бронзовым дротиком",
+    "бронзовом дротике"
+   ],
+   "correct": "бронзовый дротик",
+   "case": "Именительный (Nominative)",
+   "explain": "«бронзовый дротик» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "He had bronze shin armor on his legs, and a bronze javelin between his shoulders."
+  },
+  {
+   "sentence": "Древко его копья было большое, как ткацкий навой, а ___ весил шестьсот шекелей .",
+   "lemma": "наконечник",
+   "options": [
+    "железным наконечником",
+    "железном наконечнике",
+    "железному наконечнику",
+    "железный наконечник"
+   ],
+   "correct": "железный наконечник",
+   "case": "Именительный (Nominative)",
+   "explain": "«железный наконечник» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "The staff of his spear was like a weaver’s beam; and his spear’s head weighed six hundred shekels of iron. His shield bearer went before him."
+  },
+  {
+   "sentence": "Три старших сына Иессея пошли за Саулом на войну: первенца звали Елиав, ___ — Авинадав, а третьего — Шамма.",
+   "lemma": "сын",
+   "options": [
+    "втором сыне",
+    "второму сыну",
+    "второй сын",
+    "второго сына"
+   ],
+   "correct": "второго сына",
+   "case": "Винительный (Accusative)",
+   "explain": "«второго сына» — the accusative marks the direct object of the verb.",
+   "id": "c6",
+   "translation": "The three oldest sons of Jesse had gone after Saul to the battle: and the names of his three sons who went to the battle were Eliab the firstborn, and next to him Abinadab, and the third Shammah."
+  },
+  {
+   "sentence": "Рано утром Давид оставил стадо ___, взял ношу и отправился в путь, как велел Иессей.",
+   "lemma": "пастух",
+   "options": [
+    "другому пастуху",
+    "другом пастухе",
+    "другой пастух",
+    "другого пастуха"
+   ],
+   "correct": "другому пастуху",
+   "case": "Дательный (Dative)",
+   "explain": "«другому пастуху» — the dative marks the indirect object or recipient.",
+   "id": "c7",
+   "translation": "David rose up early in the morning, and left the sheep with a keeper, and took and went, as Jesse had commanded him. He came to the place of the wagons, as the army which was going out to the fight shouted for the battle."
+  },
+  {
+   "sentence": "Он добрался до лагеря, когда войско с ___ выходило на свои места.",
+   "lemma": "клич",
+   "options": [
+    "боевому кличу",
+    "боевым кличем",
+    "боевого клича",
+    "боевой клич"
+   ],
+   "correct": "боевым кличем",
+   "case": "Творительный (Instrumental)",
+   "explain": "«боевым кличем» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c8",
+   "translation": "David rose up early in the morning, and left the sheep with a keeper, and took and went, as Jesse had commanded him. He came to the place of the wagons, as the army which was going out to the fight shouted for the battle."
+  },
+  {
+   "sentence": "Давид оставил свою ношу ___ и побежал в ряды, поприветствовать братьев.",
+   "lemma": "сторож",
+   "options": [
+    "обозному сторожу",
+    "обозным сторожем",
+    "обозном стороже",
+    "обозный сторож"
+   ],
+   "correct": "обозному сторожу",
+   "case": "Дательный (Dative)",
+   "explain": "«обозному сторожу» — the dative marks the indirect object or recipient.",
+   "id": "c9",
+   "translation": "David left his baggage in the hand of the keeper of the baggage, and ran to the army, and came and greeted his brothers."
+  },
+  {
+   "sentence": "Когда он говорил с ними, Голиаф, ___, выступил из рядов и прокричал свой обычный вызов на бой, и Давид услышал его.",
+   "lemma": "воин",
+   "options": [
+    "филистимский воин",
+    "филистимскому воину",
+    "филистимского воина",
+    "филистимским воином"
+   ],
+   "correct": "филистимский воин",
+   "case": "Именительный (Nominative)",
+   "explain": "«филистимский воин» — the subject of the sentence stands in the nominative.",
+   "id": "c10",
+   "translation": "As he talked with them, behold, the champion, the Philistine of Gath, Goliath by name, came up out of the ranks of the Philistines, and said the same words; and David heard them."
+  },
+  {
+   "sentence": "Когда он говорил с ними, Голиаф, филистимский воин, выступил из рядов и прокричал свой ___ на бой, и Давид услышал его.",
+   "lemma": "вызов",
+   "options": [
+    "обычный вызов",
+    "обычного вызова",
+    "обычному вызову",
+    "обычным вызовом"
+   ],
+   "correct": "обычный вызов",
+   "case": "Винительный (Accusative)",
+   "explain": "«обычный вызов» — the accusative marks the direct object of the verb.",
+   "id": "c11",
+   "translation": "As he talked with them, behold, the champion, the Philistine of Gath, Goliath by name, came up out of the ranks of the Philistines, and said the same words; and David heard them."
+  },
+  {
+   "sentence": "Увидев этого человека, израильтяне убегали от него в ___.",
+   "lemma": "страх",
+   "options": [
+    "великим страхом",
+    "великому страху",
+    "великий страх",
+    "великом страхе"
+   ],
+   "correct": "великом страхе",
+   "case": "Предложный (Prepositional)",
+   "explain": "«великом страхе» — after the preposition «в», for location or topic.",
+   "id": "c12",
+   "translation": "All the men of Israel, when they saw the man, fled from him, and were terrified."
+  },
+  {
+   "sentence": "Когда Елиав, ___ Давида, услышал, как тот говорит с людьми, он разгневался на него и спросил:",
+   "lemma": "брат",
+   "options": [
+    "старшем брате",
+    "старший брат",
+    "старшего брата",
+    "старшим братом"
+   ],
+   "correct": "старший брат",
+   "case": "Именительный (Nominative)",
+   "explain": "«старший брат» — the subject of the sentence stands in the nominative.",
+   "id": "c13",
+   "translation": "Eliab his oldest brother heard when he spoke to the men; and Eliab’s anger burned against David, and he said, “Why have you come down? With whom have you left those few sheep in the wilderness? I know your pride, and the naughtiness of your heart; for you have come down that you might see the battle.”"
+  },
+  {
+   "sentence": "Саул одел Давида в свои ___.",
+   "lemma": "доспех",
+   "options": [
+    "собственным доспехам",
+    "собственных доспехах",
+    "собственные доспехи",
+    "собственными доспехами"
+   ],
+   "correct": "собственные доспехи",
+   "case": "Винительный (Accusative)",
+   "explain": "«собственные доспехи» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c14",
+   "translation": "Saul dressed David with his clothing. He put a helmet of bronze on his head, and he clad him with a coat of mail."
+  },
+  {
+   "sentence": "Он надел на него кольчугу и возложил ему на голову ___.",
+   "lemma": "шлем",
+   "options": [
+    "бронзового шлема",
+    "бронзовом шлеме",
+    "бронзовому шлему",
+    "бронзовый шлем"
+   ],
+   "correct": "бронзовый шлем",
+   "case": "Винительный (Accusative)",
+   "explain": "«бронзовый шлем» — the accusative marks the direct object of the verb.",
+   "id": "c15",
+   "translation": "Saul dressed David with his clothing. He put a helmet of bronze on his head, and he clad him with a coat of mail."
+  },
+  {
+   "sentence": "Взяв в руку посох, он выбрал себе в ручье пять ___, положил их в свою пастушью сумку и с пращей в руке приблизился к филистимлянину.",
+   "lemma": "камень",
+   "options": [
+    "гладких камней",
+    "гладких камнях",
+    "гладкими камнями",
+    "гладкие камни"
+   ],
+   "correct": "гладких камней",
+   "case": "Родительный (Genitive)",
+   "explain": "«гладких камней» — the genitive here marks possession, absence, or quantity.",
+   "id": "c16",
+   "translation": "He took his staff in his hand, and chose for himself five smooth stones out of the brook, and put them in the pouch of his shepherd’s bag which he had. His sling was in his hand; and he came near to the Philistine."
+  },
+  {
+   "sentence": "− Иди сюда, − сказал он, − и я отдам твою плоть ___ и земным зверям!",
+   "lemma": "птица",
+   "options": [
+    "небесных птиц",
+    "небесным птицам",
+    "небесными птицами",
+    "небесные птицы"
+   ],
+   "correct": "небесным птицам",
+   "case": "Дательный (Dative)",
+   "explain": "«небесным птицам» — the dative marks the indirect object or recipient.",
+   "id": "c17",
+   "translation": "The Philistine said to David, “Come to me, and I will give your flesh to the birds of the sky, and to the animals of the field.”"
+  },
+  {
+   "sentence": "− Иди сюда, − сказал он, − и я отдам твою плоть небесным птицам и ___!",
+   "lemma": "зверь",
+   "options": [
+    "земных зверей",
+    "земным зверям",
+    "земными зверями",
+    "земные звери"
+   ],
+   "correct": "земным зверям",
+   "case": "Дательный (Dative)",
+   "explain": "«земным зверям» — the dative marks the indirect object or recipient.",
+   "id": "c18",
+   "translation": "The Philistine said to David, “Come to me, and I will give your flesh to the birds of the sky, and to the animals of the field.”"
+  },
+  {
+   "sentence": "Сегодня я отдам трупы филистимского войска ___ и земным зверям, и весь мир узнает, что есть Бог в Израиле!",
+   "lemma": "птица",
+   "options": [
+    "небесных птиц",
+    "небесным птицам",
+    "небесными птицами",
+    "небесные птицы"
+   ],
+   "correct": "небесным птицам",
+   "case": "Дательный (Dative)",
+   "explain": "«небесным птицам» — the dative marks the indirect object or recipient.",
+   "id": "c19",
+   "translation": "Today, Yahweh will deliver you into my hand. I will strike you, and take your head from off you. I will give the dead bodies of the army of the Philistines today to the birds of the sky, and to the wild animals of the earth; that all the earth may know that there is a God in Israel,"
+  },
+  {
+   "sentence": "Сегодня я отдам трупы филистимского войска небесным птицам и ___, и весь мир узнает, что есть Бог в Израиле!",
+   "lemma": "зверь",
+   "options": [
+    "земных зверей",
+    "земным зверям",
+    "земными зверями",
+    "земные звери"
+   ],
+   "correct": "земным зверям",
+   "case": "Дательный (Dative)",
+   "explain": "«земным зверям» — the dative marks the indirect object or recipient.",
+   "id": "c20",
+   "translation": "Today, Yahweh will deliver you into my hand. I will strike you, and take your head from off you. I will give the dead bodies of the army of the Philistines today to the birds of the sky, and to the wild animals of the earth; that all the earth may know that there is a God in Israel,"
+  },
+  {
+   "sentence": "Тела убитых филистимлян были разбросаны вдоль ___, которая вела в Гат и Экрон.",
+   "lemma": "дорога",
+   "options": [
+    "шаараимской дорогой",
+    "шаараимской дороги",
+    "шаараимской дороге",
+    "шаараимская дорога"
+   ],
+   "correct": "шаараимской дороги",
+   "case": "Родительный (Genitive)",
+   "explain": "«шаараимской дороги» — after the preposition «вдоль», the genitive here marks possession, absence, or quantity.",
+   "id": "c21",
+   "translation": "The men of Israel and of Judah arose and shouted, and pursued the Philistines as far as Gai and to the gates of Ekron. The wounded of the Philistines fell down by the way to Shaaraim, even to Gath and to Ekron."
+  }
+ ]
 }

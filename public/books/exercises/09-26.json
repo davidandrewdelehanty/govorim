@@ -1,134 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Саул спустился в пустыню Зив с тремя тысячами ___.",
-      "lemma": "человек",
-      "options": ["человек", "человека", "людей", "мужчин"],
-      "correct": "человек",
-      "case": "Родительный (Genitive)",
-      "translation": "Saul went down to the wilderness of Ziph with three thousand men.",
-      "explain": "After a number in oblique cases, masculine nouns take genitive plural."
-    },
-    {
-      "id": "c2",
-      "sentence": "Он увидел, где Саул и начальник войска ___, сын Нира, легли спать.",
-      "lemma": "Авнер",
-      "options": ["Авнер", "Авнера", "Авнеру", "Авнеров"],
-      "correct": "Авнер",
-      "case": "Именительный (Nominative)",
-      "translation": "He saw where Saul and Abner, the captain, lay down to sleep.",
-      "explain": "Авнер is the subject of the verb легли, requiring nominative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Давид и Авишай пришли к ___ ночью.",
-      "lemma": "войско",
-      "options": ["войско", "войска", "войску", "войском"],
-      "correct": "войску",
-      "case": "Дательный (Dative)",
-      "translation": "David and Abishai came to the army at night.",
-      "explain": "The preposition к (to) governs the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Сегодня Бог отдал ___ в твои руки.",
-      "lemma": "враг",
-      "options": ["враг", "врага", "враге", "врагов"],
-      "correct": "врага",
-      "case": "Винительный (Accusative)",
-      "translation": "Today God delivered the enemy into your hands.",
-      "explain": "A transitive verb takes the accusative case for an animate object."
-    },
-    {
-      "id": "c5",
-      "sentence": "Позволь же мне пригвоздить его к ___ одним ударом копья.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "землю", "земле"],
-      "correct": "земле",
-      "case": "Предложный (Prepositional)",
-      "translation": "Let me pin him to the ground with one thrust of the spear.",
-      "explain": "The preposition в indicates location and takes the prepositional case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Кто может поднять ___ на Господнего помазанника?",
-      "lemma": "рука",
-      "options": ["рука", "руки", "руку", "рукой"],
-      "correct": "руку",
-      "case": "Винительный (Accusative)",
-      "translation": "Who can raise a hand against the Lord anointed?",
-      "explain": "The verb поднять (raise) is transitive and takes the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Возьми-ка копье и кувшин для ___ у его изголовья.",
-      "lemma": "вода",
-      "options": ["вода", "воды", "воду", "водой"],
-      "correct": "воды",
-      "case": "Родительный (Genitive)",
-      "translation": "Take the spear and water jug by his head.",
-      "explain": "The preposition для (for) governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Между ними было большое ___.",
-      "lemma": "расстояние",
-      "options": ["расстояние", "расстояния", "расстоянию", "расстояниями"],
-      "correct": "расстояние",
-      "case": "Именительный (Nominative)",
-      "translation": "There was a great distance between them.",
-      "explain": "The predicate noun after было (was) stands in nominative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Зефиты пришли к Саулу в Гиву и сказали, «Разве Давид не прячется на холме Хахила, что напротив Иешимона?»",
-      "question": "What did the Ziphites tell Saul about David location?",
-      "options": ["David was hiding on the hill of Hachilah", "David had escaped to the land of the Philistines", "David was in the wilderness of Ziph", "David was in Ramah"],
-      "correct": "David was hiding on the hill of Hachilah",
-      "explain": "The Ziphites asked if David wasn not hiding on the hill of Hachilah."
-    },
-    {
-      "id": "r2",
-      "ru": "Давид спросил Хетта Ахимелеха и Авишая, брата Иава, сына Саруи, «Кто спустится вместе со мной в лагерь к Саулу?»",
-      "question": "Whom did David ask to go with him to Saul camp?",
-      "options": ["Ahimelech and Abishai", "Abner and Abishai", "Abishai alone", "Three thousand men"],
-      "correct": "Ahimelech and Abishai",
-      "explain": "David asked Ahimelech the Hittite and Abishai to go with him."
-    },
-    {
-      "id": "r3",
-      "ru": "Авишай сказал Давиду, «Сегодня Бог отдал врага в твои руки, позволь же мне пригвоздить его к земле одним ударом копья.»",
-      "question": "What did Abishai ask permission to do?",
-      "options": ["Strike Saul to the ground with the spear", "Take Saul spear and water jug", "Wake Saul up", "Cut off Saul head"],
-      "correct": "Strike Saul to the ground with the spear",
-      "explain": "Abishai asked to pin Saul to the ground with one spear thrust."
-    },
-    {
-      "id": "r4",
-      "ru": "Но Давид сказал Авишаю, «Не губи его. Кто может поднять руку на Господнего помазанника и остаться невиновным?»",
-      "question": "Why did David refuse to let Abishai kill Saul?",
-      "options": ["Because Saul was the Lord anointed", "Because he feared Saul army", "Because the Lord had commanded him", "Because Abishai was afraid"],
-      "correct": "Because Saul was the Lord anointed",
-      "explain": "David said no one could raise a hand against the Lord anointed and be guiltless."
-    },
-    {
-      "id": "r5",
-      "ru": "Давид перешел на другую сторону и встал на вершине горы вдали, между ними было большое расстояние.",
-      "question": "Where did David go after leaving Saul camp?",
-      "options": ["To the top of a mountain at a distance", "Back to Ramah", "To the land of the Philistines", "To Gibeah"],
-      "correct": "To the top of a mountain at a distance",
-      "explain": "David went to the other side and stood on the mountain top afar off."
-    },
-    {
-      "id": "r6",
-      "ru": "Саул сказал, Я согрешил. «Вернись, Давид, сын мой! Сегодня моя жизнь была для тебя драгоценной, и я не буду больше пытаться причинить тебе вред.»",
-      "question": "What did Saul say after realizing it was David?",
-      "options": ["He asked David to return and promised not to harm him", "He tried to kill David again", "He cursed David", "He ordered David arrested"],
-      "correct": "He asked David to return and promised not to harm him",
-      "explain": "Saul asked David to return, saying his life was precious to him."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Давид перешел на другую сторону и встал на вершине горы вдали, между ними было ___.",
+   "lemma": "расстояние",
+   "options": [
+    "большое расстояние",
+    "большом расстоянии",
+    "большим расстоянием",
+    "большого расстояния"
+   ],
+   "correct": "большое расстояние",
+   "case": "Именительный (Nominative)",
+   "explain": "«большое расстояние» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "Then David went over to the other side, and stood on the top of the mountain afar off; a great space being between them;"
+  },
+  {
+   "sentence": "Они прогнали меня от моей доли в ___ и сказали: «Ступай, служи другим богам!»",
+   "lemma": "наследие",
+   "options": [
+    "господнем наследии",
+    "господнего наследия",
+    "господнее наследие",
+    "господнему наследию"
+   ],
+   "correct": "господнем наследии",
+   "case": "Предложный (Prepositional)",
+   "explain": "«Господнем наследии» — after the preposition «в», for location or topic.",
+   "id": "c3",
+   "translation": "Now therefore, please let my lord the king hear the words of his servant. If it is so that Yahweh has stirred you up against me, let him accept an offering. But if it is the children of men, they are cursed before Yahweh; for they have driven me out today that I shouldn’t cling to Yahweh’s inheritance, saying, ‘Go, serve other gods!’"
+  },
+  {
+   "sentence": "Они прогнали меня от моей доли в Господнем наследии и сказали: «Ступай, служи ___!»",
+   "lemma": "бог",
+   "options": [
+    "другими богами",
+    "других богов",
+    "другим богам",
+    "других богах"
+   ],
+   "correct": "другим богам",
+   "case": "Дательный (Dative)",
+   "explain": "«другим богам» — the dative marks the indirect object or recipient.",
+   "id": "c4",
+   "translation": "Now therefore, please let my lord the king hear the words of his servant. If it is so that Yahweh has stirred you up against me, let him accept an offering. But if it is the children of men, they are cursed before Yahweh; for they have driven me out today that I shouldn’t cling to Yahweh’s inheritance, saying, ‘Go, serve other gods!’"
+  },
+  {
+   "sentence": "− Вот копье царя, − ответил Давид. − Пусть кто-нибудь из твоих ___ перейдет сюда и возьмет его.",
+   "lemma": "слуга",
+   "options": [
+    "молодыми слугами",
+    "молодых слугах",
+    "молодых слуг",
+    "молодые слуги"
+   ],
+   "correct": "молодых слуг",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодых слуг» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "David answered, “Behold the spear, O king! Then let one of the young men come over and get it."
+  }
+ ]
 }

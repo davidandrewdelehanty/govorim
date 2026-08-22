@@ -1,134 +1,244 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Вот правила о жертве повинности о Великой Святыне. Ее нужно закалывать там же, где и жертву ___.",
-      "lemma": "всесожжение",
-      "options": ["всесожжение", "всесожжения", "всесожжению", "всесожжением"],
-      "correct": "всесожжения",
-      "case": "Родительный (Genitive)",
-      "translation": "This is the law of the trespass offering. It is to be slaughtered in the same place where the burnt offering is killed.",
-      "explain": "The phrase 'place of the burnt offering' uses the genitive case for possession."
-    },
-    {
-      "id": "c2",
-      "sentence": "Весь жир из нее пусть будет принесен в жертву. Курдюк и жир, покрывающий внутренности, обе почки с жиром, которые на них. Все это надо вынуть вместе с ___.",
-      "lemma": "почка",
-      "options": ["почка", "почки", "почкой", "почками"],
-      "correct": "почками",
-      "case": "Творительный (Instrumental)",
-      "translation": "All its fat shall be offered. The fat tail and all the fat that covers the inner organs, both kidneys with their fat, all of this must be removed together with the kidneys.",
-      "explain": "The preposition 'with' (вместе с) takes the instrumental case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Священник сожжет это на ___.",
-      "lemma": "жертвенник",
-      "options": ["жертвенник", "жертвенника", "жертвеннику", "жертвеннике"],
-      "correct": "жертвеннике",
-      "case": "Предложный (Prepositional)",
-      "translation": "The priest shall burn it on the altar.",
-      "explain": "The preposition на (on) with location uses the prepositional case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Все мужчины в семье священников могут ее есть, но только в святом месте эта великая ___.",
-      "lemma": "святыня",
-      "options": ["святыня", "святыни", "святыню", "святыней"],
-      "correct": "святыня",
-      "case": "Именительный (Nominative)",
-      "translation": "Every male among the priests may eat it in a holy place. It is most holy.",
-      "explain": "Святыня is the predicate nominative after the verb 'to be'."
-    },
-    {
-      "id": "c5",
-      "sentence": "Любое хлебное приношение, испеченное в печи или приготовленное на сковороде или на противне — принадлежит ___, который его приносит.",
-      "lemma": "священник",
-      "options": ["священник", "священника", "священнику", "священником"],
-      "correct": "священнику",
-      "case": "Дательный (Dative)",
-      "translation": "Every meal offering baked in the oven, prepared on the griddle or on the pan shall be the priest's who offers it.",
-      "explain": "The verb принадлежит (belongs to) takes the dative case for the person to whom something belongs."
-    },
-    {
-      "id": "c6",
-      "sentence": "Пусть он своими руками совершит Господу огненную жертву. Он должен принести жир вместе с грудиной и потрясти грудину перед ___, как приношение потрясания.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господом",
-      "case": "Творительный (Instrumental)",
-      "translation": "He shall bring the fat with the breast, and the priest shall wave the breast for a wave offering before the Lord.",
-      "explain": "The preposition перед (before) takes the instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Мясо этой благодарственной жертвы примирения нужно съесть в тот же день, когда ее принесли. Его нельзя оставлять до ___.",
-      "lemma": "утро",
-      "options": ["утро", "утра", "утру", "утром"],
-      "correct": "утра",
-      "case": "Родительный (Genitive)",
-      "translation": "The flesh of the thank offering shall be eaten on the day it is offered. It shall not be left until morning.",
-      "explain": "After prepositions indicating time like 'до' (until), the genitive case is used."
-    },
-    {
-      "id": "c8",
-      "sentence": "Жиром животного, которое пало или было растерзано дикими зверями, можно пользоваться, но есть его нельзя. Не ешьте жир волов, овец или ___.",
-      "lemma": "коза",
-      "options": ["коза", "козы", "козу", "козой"],
-      "correct": "козы",
-      "case": "Родительный (Genitive)",
-      "translation": "The fat of an animal that dies or is torn by wild beasts may be used for other purposes, but you shall not eat it. You shall not eat any fat of oxen, sheep, or goats.",
-      "explain": "In the construction 'волов, овец или козы', the genitive case is used after numerals."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Вот правила о жертве повинности о Великой Святыне. Ее нужно закалывать там же, где и жертву всесожжения.",
-      "question": "Where was the trespass offering to be slaughtered?",
-      "options": ["At the entrance to the tent", "In the same place as the burnt offering", "Outside the camp", "At the altar of incense"],
-      "correct": "In the same place as the burnt offering",
-      "explain": "The text states the trespass offering should be slaughtered in the same place as the burnt offering."
-    },
-    {
-      "id": "r2",
-      "ru": "Все мужчины в семье священников могут ее есть, но только в святом месте эта великая святыня.",
-      "question": "Who was permitted to eat the trespass offering and where?",
-      "options": ["Only the high priest anywhere", "All males of the priestly families in a holy place", "Anyone who brought an offering", "All Israelites in the temple"],
-      "correct": "All males of the priestly families in a holy place",
-      "explain": "The text states all males among the priests may eat it in a holy place."
-    },
-    {
-      "id": "r3",
-      "ru": "Любое хлебное приношение, испеченное в печи или приготовленное на сковороде или на противне — принадлежит священнику, который его приносит, а любое хлебное приношение, смешанное с маслом или сухое, принадлежит в равных долях всем сыновьям Аарона.",
-      "question": "To whom did the meal offerings belong?",
-      "options": ["All offerings belonged entirely to the high priest", "Baked offerings belonged to the priest who offered them, while mixed offerings belonged to all Aaron's sons", "All offerings were eaten by the people", "All offerings were burned on the altar"],
-      "correct": "Baked offerings belonged to the priest who offered them, while mixed offerings belonged to all Aaron's sons",
-      "explain": "The text distinguishes between baked meal offerings belonging to the offering priest and mixed offerings shared among Aaron's sons."
-    },
-    {
-      "id": "r4",
-      "ru": "Если кто-то приносит ее в знак благодарности, то вместе с этой благодарственной жертвой пусть принесет пресные хлебы, замешанные на масле, пресные коржи, помазанные маслом, и хлебы из лучшей муки, хорошо замешанные на масле.",
-      "question": "What bread offerings accompanied a thanksgiving sacrifice?",
-      "options": ["Leavened bread with no oil", "Unleavened cakes mixed with oil, unleavened wafers anointed with oil, and fine flour cakes well mixed with oil", "Toasted barley cakes", "No bread was required"],
-      "correct": "Unleavened cakes mixed with oil, unleavened wafers anointed with oil, and fine flour cakes well mixed with oil",
-      "explain": "The text describes the specific types of bread to be offered with a thanksgiving sacrifice."
-    },
-    {
-      "id": "r5",
-      "ru": "Мясо этой благодарственной жертвы примирения нужно съесть в тот же день, когда ее принесли. Его нельзя оставлять до утра.",
-      "question": "When was the meat of a thanksgiving offering to be eaten?",
-      "options": ["Anytime within seven days", "On the same day it was offered; it could not be left until morning", "Only the priests could eat it after three days", "It had to be burned immediately"],
-      "correct": "On the same day it was offered; it could not be left until morning",
-      "explain": "The text explicitly states the flesh must be eaten on the day of offering and cannot be left until morning."
-    },
-    {
-      "id": "r6",
-      "ru": "Говори израилетянам, не ешьте жир волов, овец или коз. Жиром животного, которое пало или было растерзано дикими зверями, можно пользоваться, но есть его нельзя.",
-      "question": "What was forbidden regarding the consumption of fat?",
-      "options": ["All fat was forbidden", "The fat of bulls, sheep, or goats could not be eaten", "Only priests could eat fat", "Fat could be eaten only during festivals"],
-      "correct": "The fat of bulls, sheep, or goats could not be eaten",
-      "explain": "The text prohibits eating the fat of oxen, sheep, or goats, though fat from dead animals could be used for other purposes."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Это ___ Господу.",
+   "lemma": "жертва",
+   "options": [
+    "огненной жертвой",
+    "огненная жертва",
+    "огненной жертвы",
+    "огненной жертве"
+   ],
+   "correct": "огненная жертва",
+   "case": "Именительный (Nominative)",
+   "explain": "«огненная жертва» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "and the priest shall burn them on the altar for an offering made by fire to Yahweh: it is a trespass offering."
+  },
+  {
+   "sentence": "Все мужчины в семье священников могут ее есть, но только в ___: это — великая святыня.",
+   "lemma": "место",
+   "options": [
+    "святом месте",
+    "святому месту",
+    "святое место",
+    "святым местом"
+   ],
+   "correct": "святом месте",
+   "case": "Предложный (Prepositional)",
+   "explain": "«святом месте» — after the preposition «в», for location or topic.",
+   "id": "c3",
+   "translation": "Every male among the priests may eat of it. It shall be eaten in a holy place. It is most holy."
+  },
+  {
+   "sentence": "Все мужчины в семье священников могут ее есть, но только в святом месте: это — ___.",
+   "lemma": "святыня",
+   "options": [
+    "великой святыней",
+    "великая святыня",
+    "великой святыне",
+    "великой святыни"
+   ],
+   "correct": "великая святыня",
+   "case": "Именительный (Nominative)",
+   "explain": "«великая святыня» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "Every male among the priests may eat of it. It shall be eaten in a holy place. It is most holy."
+  },
+  {
+   "sentence": "Пусть вместе с ___ примирения он принесет и хлебы, приготовленные на закваске.",
+   "lemma": "жертва",
+   "options": [
+    "благодарственной жертве",
+    "благодарственной жертвы",
+    "благодарственная жертва",
+    "благодарственной жертвой"
+   ],
+   "correct": "благодарственной жертвой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«благодарственной жертвой» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "He shall offer his offering with the sacrifice of his peace offerings for thanksgiving with cakes of leavened bread."
+  },
+  {
+   "sentence": "Мясо этой ___ примирения нужно съесть в тот же день, когда ее принесли.",
+   "lemma": "жертва",
+   "options": [
+    "благодарственной жертвой",
+    "благодарственная жертва",
+    "благодарственной жертве",
+    "благодарственной жертвы"
+   ],
+   "correct": "благодарственной жертвы",
+   "case": "Родительный (Genitive)",
+   "explain": "«благодарственной жертвы» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "The flesh of the sacrifice of his peace offerings for thanksgiving shall be eaten on the day of his offering. He shall not leave any of it until the morning."
+  },
+  {
+   "sentence": "Однако, мясо жертвы, которое останется к ___, нужно сжечь.",
+   "lemma": "день",
+   "options": [
+    "третьему дню",
+    "третьем дне",
+    "третьим днём",
+    "третий день"
+   ],
+   "correct": "третьему дню",
+   "case": "Дательный (Dative)",
+   "explain": "«третьему дню» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c7",
+   "translation": "but what remains of the meat of the sacrifice on the third day shall be burned with fire."
+  },
+  {
+   "sentence": "Если мясо жертвы примирения будут есть на ___, она не будет принята.",
+   "lemma": "день",
+   "options": [
+    "третьему дню",
+    "третьим днём",
+    "третьего дня",
+    "третий день"
+   ],
+   "correct": "третий день",
+   "case": "Винительный (Accusative)",
+   "explain": "«третий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c8",
+   "translation": "If any of the meat of the sacrifice of his peace offerings is eaten on the third day, it will not be accepted, and it shall not be credited to him who offers it. It will be an abomination, and the soul who eats any of it will bear his iniquity."
+  },
+  {
+   "sentence": "___ может есть любой, кто чист.",
+   "lemma": "мясо",
+   "options": [
+    "чистым мясом",
+    "чистое мясо",
+    "чистого мяса",
+    "чистом мясе"
+   ],
+   "correct": "чистое мясо",
+   "case": "Именительный (Nominative)",
+   "explain": "«Чистое мясо» — the subject of the sentence stands in the nominative.",
+   "id": "c9",
+   "translation": "“ ‘The meat that touches any unclean thing shall not be eaten. It shall be burned with fire. As for the meat, everyone who is clean may eat it;"
+  },
+  {
+   "sentence": "Но если мясо ___ примирения будет есть тот, кто нечист, он должен быть исторгнут из своего народа.",
+   "lemma": "жертва",
+   "options": [
+    "господней жертве",
+    "господняя жертва",
+    "господней жертвой",
+    "господней жертвы"
+   ],
+   "correct": "господней жертвы",
+   "case": "Родительный (Genitive)",
+   "explain": "«Господней жертвы» — the genitive here marks possession, absence, or quantity.",
+   "id": "c10",
+   "translation": "but the soul who eats of the meat of the sacrifice of peace offerings that belongs to Yahweh, having his uncleanness on him, that soul shall be cut off from his people."
+  },
+  {
+   "sentence": "Если кто-нибудь прикоснется к нечистому — к ___, к нечистому животному или любой нечистой твари, а потом станет есть мясо Господней жертвы примирения, он должен быть исторгнут из своего народа».",
+   "lemma": "нечистота",
+   "options": [
+    "человеческой нечистотой",
+    "человеческой нечистоте",
+    "человеческая нечистота",
+    "человеческой нечистоты"
+   ],
+   "correct": "человеческой нечистоте",
+   "case": "Дательный (Dative)",
+   "explain": "«человеческой нечистоте» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c11",
+   "translation": "When anyone touches any unclean thing, the uncleanness of man, or an unclean animal, or any unclean abomination, and eats some of the meat of the sacrifice of peace offerings which belong to Yahweh, that soul shall be cut off from his people.’ ”"
+  },
+  {
+   "sentence": "Если кто-нибудь прикоснется к нечистому — к человеческой нечистоте, к ___ или любой нечистой твари, а потом станет есть мясо Господней жертвы примирения, он должен быть исторгнут из своего народа».",
+   "lemma": "животное",
+   "options": [
+    "нечистое животное",
+    "нечистого животного",
+    "нечистом животном",
+    "нечистому животному"
+   ],
+   "correct": "нечистому животному",
+   "case": "Дательный (Dative)",
+   "explain": "«нечистому животному» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c12",
+   "translation": "When anyone touches any unclean thing, the uncleanness of man, or an unclean animal, or any unclean abomination, and eats some of the meat of the sacrifice of peace offerings which belong to Yahweh, that soul shall be cut off from his people.’ ”"
+  },
+  {
+   "sentence": "Если кто-нибудь прикоснется к нечистому — к человеческой нечистоте, к нечистому животному или любой нечистой твари, а потом станет есть мясо ___ примирения, он должен быть исторгнут из своего народа».",
+   "lemma": "жертва",
+   "options": [
+    "господней жертве",
+    "господняя жертва",
+    "господней жертвой",
+    "господней жертвы"
+   ],
+   "correct": "господней жертвы",
+   "case": "Родительный (Genitive)",
+   "explain": "«Господней жертвы» — the genitive here marks possession, absence, or quantity.",
+   "id": "c13",
+   "translation": "When anyone touches any unclean thing, the uncleanness of man, or an unclean animal, or any unclean abomination, and eats some of the meat of the sacrifice of peace offerings which belong to Yahweh, that soul shall be cut off from his people.’ ”"
+  },
+  {
+   "sentence": "Жиром животного, которое пало или было растерзано ___, можно пользоваться, но есть его нельзя.",
+   "lemma": "зверь",
+   "options": [
+    "дикими зверями",
+    "диких зверях",
+    "диким зверям",
+    "диких зверей"
+   ],
+   "correct": "дикими зверями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«дикими зверями» — the instrumental marks the means, company, or complement.",
+   "id": "c14",
+   "translation": "The fat of that which dies of itself, and the fat of that which is torn of animals, may be used for any other service, but you shall in no way eat of it."
+  },
+  {
+   "sentence": "Долей сына Аарона, который приносит кровь и жир жертвы примирения, будет ___.",
+   "lemma": "бедро",
+   "options": [
+    "правому бедру",
+    "правым бедром",
+    "правого бедра",
+    "правое бедро"
+   ],
+   "correct": "правое бедро",
+   "case": "Именительный (Nominative)",
+   "explain": "«правое бедро» — the subject of the sentence stands in the nominative.",
+   "id": "c15",
+   "translation": "He among the sons of Aaron who offers the blood of the peace offerings, and the fat, shall have the right thigh for a portion."
+  },
+  {
+   "sentence": "Такова часть Аарона и его сыновей в ___ Господу, отведенная им, когда они предстали, чтобы служить Господу как священники.",
+   "lemma": "жертва",
+   "options": [
+    "огненными жертвами",
+    "огненные жертвы",
+    "огненных жертвах",
+    "огненных жертв"
+   ],
+   "correct": "огненных жертвах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«огненных жертвах» — after the preposition «в», for location or topic.",
+   "id": "c16",
+   "translation": "This is the consecrated portion of Aaron, and the consecrated portion of his sons, out of the offerings of Yahweh made by fire, in the day when he presented them to minister to Yahweh in the priest’s office;"
+  },
+  {
+   "sentence": "Когда они были помазаны, Господь повелел, чтобы израильтяне отдавали им часть приношений как постоянную долю для ___.",
+   "lemma": "поколение",
+   "options": [
+    "грядущим поколениям",
+    "грядущими поколениями",
+    "грядущих поколениях",
+    "грядущих поколений"
+   ],
+   "correct": "грядущих поколений",
+   "case": "Родительный (Genitive)",
+   "explain": "«грядущих поколений» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c17",
+   "translation": "which Yahweh commanded to be given them of the children of Israel, in the day that he anointed them. It is their portion forever throughout their generations."
+  }
+ ]
 }

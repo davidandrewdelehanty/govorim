@@ -1,269 +1,169 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Во время правления Ирода, царя Иудеи, был ___ по имени Захария, из смены Авия.",
-      "lemma": "священник",
-      "options": ["священник", "священника", "священнику", "священником"],
-      "correct": "священник",
-      "case": "Именительный (Nominative)",
-      "translation": "In the days of Herod, king of Judea, there was a priest named Zechariah, of the division of Abijah.",
-      "explain": "Священник is the subject complement of был (there was) → nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Был священник по имени Захария, из ___ Авия.",
-      "lemma": "смена",
-      "options": ["смена", "смены", "смене", "смену"],
-      "correct": "смены",
-      "case": "Родительный (Genitive)",
-      "translation": "There was a priest named Zechariah, of the division of Abijah.",
-      "explain": "The preposition из (from/of) takes the genitive → смены."
-    },
-    {
-      "id": "c3",
-      "sentence": "Бог послал ангела Гавриила в галилейский город Назарет к ___ по имени Мария.",
-      "lemma": "дева",
-      "options": ["дева", "девы", "деву", "деве"],
-      "correct": "деве",
-      "case": "Дательный (Dative)",
-      "translation": "God sent the angel Gabriel to a Galilean town called Nazareth, to a virgin named Mary.",
-      "explain": "The preposition к (toward) governs the dative → деве."
-    },
-    {
-      "id": "c4",
-      "sentence": "Ты забеременеешь и родишь ___ и назовешь его Иисусом.",
-      "lemma": "сын",
-      "options": ["сын", "сына", "сыну", "сыном"],
-      "correct": "сына",
-      "case": "Винительный (Accusative)",
-      "translation": "You will conceive and give birth to a son, and you will name him Jesus.",
-      "explain": "Сына is the direct object of родишь (will bear) → accusative. Сын is animate, so its accusative matches the genitive form."
-    },
-    {
-      "id": "c5",
-      "sentence": "От самого рождения он будет исполнен Святым ___.",
-      "lemma": "Дух",
-      "options": ["Дух", "Духа", "Духу", "Духом"],
-      "correct": "Духом",
-      "case": "Творительный (Instrumental)",
-      "translation": "From his mother's womb he will be filled with the Holy Spirit.",
-      "explain": "Исполнен (filled) governs the instrumental of the thing one is filled with → Духом."
-    },
-    {
-      "id": "c6",
-      "sentence": "Они оба были уже в преклонном ___.",
-      "lemma": "возраст",
-      "options": ["возраст", "возраста", "возрасту", "возрасте"],
-      "correct": "возрасте",
-      "case": "Предложный (Prepositional)",
-      "translation": "They were both already well advanced in years.",
-      "explain": "В (in), marking a state with no motion, takes the prepositional → возрасте."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Во время правления Ирода, царя Иудеи, был священник по имени Захария, из смены Авия.",
-      "question": "Who was Zechariah?",
-      "options": [
-        "A priest from the division of Abijah during Herod's reign",
-        "A king of Judea",
-        "A shepherd from Bethlehem",
-        "A tax collector in Jerusalem"
-      ],
-      "correct": "A priest from the division of Abijah during Herod's reign",
-      "explain": "Zechariah was a priest of the division of Abijah during the reign of Herod, king of Judea."
-    },
-    {
-      "id": "r2",
-      "ru": "Но у них не было детей, потому что Елизавета была бесплодна.",
-      "question": "Why did Zechariah and Elizabeth have no children?",
-      "options": [
-        "Elizabeth was barren",
-        "Zechariah refused to marry",
-        "They were too poor",
-        "They had not yet been married long"
-      ],
-      "correct": "Elizabeth was barren",
-      "explain": "The text says they had no children because Elizabeth was barren."
-    },
-    {
-      "id": "r3",
-      "ru": "Ангел сказал ему, «Не бойся, Захария, твоя молитва услышана. Твоя жена Елизавета родит тебе сына, и ты назовешь его Иоанном».",
-      "question": "What did the angel tell Zechariah in the temple?",
-      "options": [
-        "That his wife Elizabeth would bear a son named John",
-        "That he would become high priest",
-        "That Herod would soon die",
-        "That the temple would be rebuilt"
-      ],
-      "correct": "That his wife Elizabeth would bear a son named John",
-      "explain": "The angel told Zechariah his prayer was heard and Elizabeth would bear a son named John."
-    },
-    {
-      "id": "r4",
-      "ru": "ты лишишься дара речи и не будешь говорить до того дня, пока это не сбудется",
-      "question": "What happened to Zechariah because he did not believe the angel?",
-      "options": [
-        "He became unable to speak until the prophecy was fulfilled",
-        "He was struck blind",
-        "He was banished from the temple",
-        "He lost his position as priest"
-      ],
-      "correct": "He became unable to speak until the prophecy was fulfilled",
-      "explain": "Because Zechariah doubted, the angel said he would lose the power of speech until the day these things happened."
-    },
-    {
-      "id": "r5",
-      "ru": "Когда Захария вышел, он не мог говорить и вынужден был общаться с ними жестами.",
-      "question": "What happened when Zechariah came out of the temple?",
-      "options": [
-        "He could not speak and had to communicate by gestures",
-        "He announced the angel's message loudly",
-        "He collapsed from exhaustion",
-        "He immediately went home to Elizabeth"
-      ],
-      "correct": "He could not speak and had to communicate by gestures",
-      "explain": "When Zechariah came out, he could not speak and had to make signs to the people."
-    },
-    {
-      "id": "r6",
-      "ru": "Вскоре его жена Елизавета забеременела и пять месяцев не выходила из дома.",
-      "question": "What did Elizabeth do after she conceived?",
-      "options": [
-        "She stayed home for five months",
-        "She traveled to Jerusalem",
-        "She told all her neighbors immediately",
-        "She went to live with Mary"
-      ],
-      "correct": "She stayed home for five months",
-      "explain": "After conceiving, Elizabeth remained in seclusion at home for five months."
-    },
-    {
-      "id": "r7",
-      "ru": "Ангел пришел к ней и сказал «Приветствую тебя, получившая милость, с тобой Господь».",
-      "question": "What did the angel Gabriel say when he came to Mary?",
-      "options": [
-        "\"Greetings, favored one, the Lord is with you\"",
-        "\"Rejoice, for your son will be a priest\"",
-        "\"Do not weep for Elizabeth\"",
-        "\"Prepare a room for the coming king\""
-      ],
-      "correct": "\"Greetings, favored one, the Lord is with you\"",
-      "explain": "The angel greeted Mary, saying she had found favor and that the Lord was with her."
-    },
-    {
-      "id": "r8",
-      "ru": "Ты забеременеешь и родишь сына и назовешь его Иисусом.",
-      "question": "What did the angel tell Mary to name her son?",
-      "options": ["Jesus", "John", "Immanuel", "David"],
-      "correct": "Jesus",
-      "explain": "The angel told Mary she would conceive and bear a son and name him Jesus."
-    },
-    {
-      "id": "r9",
-      "ru": "«Как это может быть?» — спросила Мария. «Ведь я еще не была с мужчиной».",
-      "question": "Why was Mary confused by the angel's message?",
-      "options": [
-        "She had not yet been with a man",
-        "She was already married to someone else",
-        "She thought the angel meant Elizabeth's child",
-        "She did not believe angels existed"
-      ],
-      "correct": "She had not yet been with a man",
-      "explain": "Mary asked how this could be, since she had not yet been with a man."
-    },
-    {
-      "id": "r10",
-      "ru": "Когда Елизавета услышала приветствие Марии, ребенок внутри у нее встрепенулся.",
-      "question": "What happened when Elizabeth heard Mary's greeting?",
-      "options": [
-        "The baby leaped inside her",
-        "She fainted with joy",
-        "She wept uncontrollably",
-        "She ran to embrace Mary"
-      ],
-      "correct": "The baby leaped inside her",
-      "explain": "When Elizabeth heard Mary's greeting, the baby inside her leaped."
-    },
-    {
-      "id": "r11",
-      "ru": "«Благословенно ты среди женщин, и благословен ребенок, которого ты носишь! Чем я заслужила такую милость, что ко мне пришла мать моего Господа?»",
-      "question": "What did Elizabeth exclaim to Mary?",
-      "options": [
-        "\"Blessed are you among women, and blessed is the child you carry\"",
-        "\"You must return home immediately\"",
-        "\"Why have you come to me now\"",
-        "\"Zechariah will be overjoyed\""
-      ],
-      "correct": "\"Blessed are you among women, and blessed is the child you carry\"",
-      "explain": "Filled with the Holy Spirit, Elizabeth exclaimed that Mary and her child were blessed."
-    },
-    {
-      "id": "r12",
-      "ru": "«Душа моя славит Господа, и дух мой радуется о Боге, Спасителе моем, потому что он увидел смирение своей служанки.",
-      "question": "How did Mary respond in her song of praise?",
-      "options": [
-        "\"My soul glorifies the Lord, and my spirit rejoices in God my Savior\"",
-        "\"I am afraid of what will happen to me\"",
-        "\"Let this cup pass from me\"",
-        "\"I will return to Nazareth immediately\""
-      ],
-      "correct": "\"My soul glorifies the Lord, and my spirit rejoices in God my Savior\"",
-      "explain": "Mary's song of praise begins, \"My soul magnifies the Lord, and my spirit rejoices in God my Savior.\""
-    },
-    {
-      "id": "r13",
-      "ru": "Но мать ребенка возразила. Нет, его будут звать Иоанном.",
-      "question": "What did Elizabeth say when neighbors wanted to name the baby after his father?",
-      "options": [
-        "He would be called John instead",
-        "He would be called Zechariah after all",
-        "He would be named after Abraham",
-        "She refused to give him a name"
-      ],
-      "correct": "He would be called John instead",
-      "explain": "The child's mother objected, saying, \"No; he will be called John.\""
-    },
-    {
-      "id": "r14",
-      "ru": "Захария попросил табличку для письма и, к удивлению всех, написал его имя Иоанн. В тот же миг к нему вернулась речь, и он начал говорить, прославляя Бога.",
-      "question": "What happened immediately after Zechariah wrote 'His name is John'?",
-      "options": [
-        "His speech was restored and he began to praise God",
-        "He fell asleep",
-        "The angel appeared again",
-        "Elizabeth became ill"
-      ],
-      "correct": "His speech was restored and he began to praise God",
-      "explain": "The moment Zechariah wrote John's name, his speech returned and he began praising God."
-    },
-    {
-      "id": "r15",
-      "ru": "«Благословен Господь, Бог Израиля, который посетил свой народ и искупил его.",
-      "question": "How did Zechariah's prophecy begin?",
-      "options": [
-        "\"Blessed be the Lord, God of Israel, who has visited and redeemed his people\"",
-        "\"Cursed be the day I doubted\"",
-        "\"Woe to the priests of Israel\"",
-        "\"Rejoice, for the Messiah is born\""
-      ],
-      "correct": "\"Blessed be the Lord, God of Israel, who has visited and redeemed his people\"",
-      "explain": "Filled with the Holy Spirit, Zechariah prophesied, beginning, \"Blessed be the Lord, the God of Israel, because he has visited and redeemed his people.\""
-    },
-    {
-      "id": "r16",
-      "ru": "Ребенок рос и укреплялся в духе. Он жил в пустыне до того времени, когда открыто явился Израиль.",
-      "question": "What happened to John as he grew up?",
-      "options": [
-        "He grew and became strong in spirit, living in the wilderness until his public appearance to Israel",
-        "He was raised in the temple by priests",
-        "He moved to Rome with his parents",
-        "He became a fisherman in Galilee"
-      ],
-      "correct": "He grew and became strong in spirit, living in the wilderness until his public appearance to Israel",
-      "explain": "The child grew and became strong in spirit, living in the wilderness until he appeared publicly to Israel."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Они оба были уже в ___.",
+   "lemma": "возраст",
+   "options": [
+    "преклонному возрасту",
+    "преклонным возрастом",
+    "преклонном возрасте",
+    "преклонного возраста"
+   ],
+   "correct": "преклонном возрасте",
+   "case": "Предложный (Prepositional)",
+   "explain": "«преклонном возрасте» — after the preposition «в», for location or topic.",
+   "id": "c1",
+   "translation": "But they had no child, because Elizabeth was barren, and they both were well advanced in years."
+  },
+  {
+   "sentence": "Он никогда не будет пить вина и других ___.",
+   "lemma": "напиток",
+   "options": [
+    "хмельным напиткам",
+    "хмельных напитков",
+    "хмельных напитках",
+    "хмельными напитками"
+   ],
+   "correct": "хмельных напитков",
+   "case": "Родительный (Genitive)",
+   "explain": "«хмельных напитков» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "You will have joy and gladness, and many will rejoice at his birth."
+  },
+  {
+   "sentence": "От ___ он будет исполнен Святым Духом.",
+   "lemma": "рождение",
+   "options": [
+    "самому рождению",
+    "самом рождении",
+    "само рождение",
+    "самого рождения"
+   ],
+   "correct": "самого рождения",
+   "case": "Родительный (Genitive)",
+   "explain": "«самого рождения» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "You will have joy and gladness, and many will rejoice at his birth."
+  },
+  {
+   "sentence": "Когда Елисавета была на ___ беременности, Бог послал ангела Гавриила в галилейский город Назарет, 27 к деве по имени Мария .",
+   "lemma": "месяц",
+   "options": [
+    "шестому месяцу",
+    "шестой месяц",
+    "шестом месяце",
+    "шестым месяцем"
+   ],
+   "correct": "шестом месяце",
+   "case": "Предложный (Prepositional)",
+   "explain": "«шестом месяце» — after the preposition «на», for location or topic.",
+   "id": "c4",
+   "translation": "Now in the sixth month, the angel Gabriel was sent from God to a city of Galilee named Nazareth,"
+  },
+  {
+   "sentence": "Когда Елисавета была на шестом месяце беременности, Бог послал ангела Гавриила в ___ Назарет, 27 к деве по имени Мария .",
+   "lemma": "город",
+   "options": [
+    "галилейском городе",
+    "галилейский город",
+    "галилейского города",
+    "галилейскому городу"
+   ],
+   "correct": "галилейский город",
+   "case": "Винительный (Accusative)",
+   "explain": "«галилейский город» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c5",
+   "translation": "Now in the sixth month, the angel Gabriel was sent from God to a city of Galilee named Nazareth,"
+  },
+  {
+   "sentence": "Вот и твоя родственница Елисавета тоже родит сына в ее ___.",
+   "lemma": "год",
+   "options": [
+    "преклонные годы",
+    "преклонных годов",
+    "преклонными годами",
+    "преклонным годам"
+   ],
+   "correct": "преклонные годы",
+   "case": "Винительный (Accusative)",
+   "explain": "«преклонные годы» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c6",
+   "translation": "Behold, Elizabeth your relative also has conceived a son in her old age; and this is the sixth month with her who was called barren."
+  },
+  {
+   "sentence": "О ней говорили, что она бесплодна, но она уже на ___ беременности.",
+   "lemma": "месяц",
+   "options": [
+    "шестому месяцу",
+    "шестой месяц",
+    "шестом месяце",
+    "шестым месяцем"
+   ],
+   "correct": "шестом месяце",
+   "case": "Предложный (Prepositional)",
+   "explain": "«шестом месяце» — after the preposition «на», for location or topic.",
+   "id": "c7",
+   "translation": "Behold, Elizabeth your relative also has conceived a son in her old age; and this is the sixth month with her who was called barren."
+  },
+  {
+   "sentence": "Когда Елисавета услышала приветствие Марии, ребенок внутри у нее встрепенулся; Елисавету наполнил Святой Дух, 42 и она ___ воскликнула:",
+   "lemma": "голос",
+   "options": [
+    "громком голосе",
+    "громкий голос",
+    "громким голосом",
+    "громкому голосу"
+   ],
+   "correct": "громким голосом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«громким голосом» — the instrumental marks the means, company, or complement.",
+   "id": "c8",
+   "translation": "When Elizabeth heard Mary’s greeting, the baby leaped in her womb; and Elizabeth was filled with the Holy Spirit."
+  },
+  {
+   "sentence": "Его рукой совершены ___:",
+   "lemma": "дело",
+   "options": [
+    "великие дела",
+    "великих дел",
+    "великих делах",
+    "великими делами"
+   ],
+   "correct": "великие дела",
+   "case": "Именительный (Nominative)",
+   "explain": "«великие дела» — the subject of the sentence stands in the nominative.",
+   "id": "c9",
+   "translation": "He has shown strength with his arm. He has scattered the proud in the imagination of their hearts."
+  },
+  {
+   "sentence": "На ___ они пришли, чтобы совершить над ребенком обряд обрезания, и хотели назвать его в честь отца Захарией.",
+   "lemma": "день",
+   "options": [
+    "восьмому дню",
+    "восьмым днём",
+    "восьмом дне",
+    "восьмой день"
+   ],
+   "correct": "восьмой день",
+   "case": "Винительный (Accusative)",
+   "explain": "«восьмой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c10",
+   "translation": "On the eighth day, they came to circumcise the child; and they would have called him Zacharias, after the name of his father."
+  },
+  {
+   "sentence": "как Он издавна обещал через Своих ___,",
+   "lemma": "пророк",
+   "options": [
+    "святым пророкам",
+    "святыми пророками",
+    "святых пророков",
+    "святые пророки"
+   ],
+   "correct": "святых пророков",
+   "case": "Винительный (Accusative)",
+   "explain": "«святых пророков» — after the preposition «через», the accusative marks the direct object of the verb.",
+   "id": "c11",
+   "translation": "(as he spoke by the mouth of his holy prophets who have been from of old),"
+  }
+ ]
 }

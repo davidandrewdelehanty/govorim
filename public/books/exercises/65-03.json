@@ -1,134 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Иисус выше ___.",
-      "lemma": "Моисей",
-      "options": ["Моисей", "Моисея", "Моисею", "Моисеем"],
-      "correct": "Моисея",
-      "case": "Родительный (Genitive)",
-      "translation": "Jesus is above Moses.",
-      "explain": "The comparative construction 'выше' (higher/above) governs the genitive case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Он был верен поручившему ему ___.",
-      "lemma": "служение",
-      "options": ["служение", "служения", "служению", "служением"],
-      "correct": "служение",
-      "case": "Винительный (Accusative)",
-      "translation": "He was faithful to the service entrusted to him.",
-      "explain": "The transitive verb поручить (entrust) with accusative of the thing entrusted governs accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "строителю дома оказывается больше чести, чем самому ___.",
-      "lemma": "дом",
-      "options": ["дом", "дома", "дому", "домом"],
-      "correct": "дому",
-      "case": "Дательный (Dative)",
-      "translation": "The builder of the house is given more honor than the house itself.",
-      "explain": "The preposition 'чем' with comparative structures uses dative case for the compared object."
-    },
-    {
-      "id": "c4",
-      "sentence": "у каждого ___ есть свой строитель.",
-      "lemma": "дом",
-      "options": ["дом", "дома", "дому", "доме"],
-      "correct": "дома",
-      "case": "Родительный (Genitive)",
-      "translation": "Every house has its own builder.",
-      "explain": "The preposition у (at/at the place of) governs the genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Моисей был верным служителем во всем ___ Божьем.",
-      "lemma": "дом",
-      "options": ["дом", "дома", "дому", "доме"],
-      "correct": "доме",
-      "case": "Предложный (Prepositional)",
-      "translation": "Moses was a faithful servant in all of God's house.",
-      "explain": "The preposition в (in) indicating location governs the prepositional case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Дом Его — мы, если сохраним до конца смелость и ___.",
-      "lemma": "надежда",
-      "options": ["надежда", "надежды", "надежду", "надеждой"],
-      "correct": "надежду",
-      "case": "Винительный (Accusative)",
-      "translation": "His house is us, if we hold fast boldness and hope to the end.",
-      "explain": "The transitive verb сохранить (keep/hold) governs the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "если услышите Его ___, то не ожесточайте ваших сердец.",
-      "lemma": "голос",
-      "options": ["голос", "голоса", "голосу", "голосом"],
-      "correct": "голос",
-      "case": "Винительный (Accusative)",
-      "translation": "If you hear His voice, do not harden your hearts.",
-      "explain": "The transitive verb услышать (hear) with a direct object governs the accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "берегитесь, чтобы ни у кого из вас ___ не стало злым и неверным.",
-      "lemma": "сердце",
-      "options": ["сердце", "сердца", "сердцу", "сердцем"],
-      "correct": "сердце",
-      "case": "Винительный (Accusative)",
-      "translation": "Take care that no one among you has an evil and unbelieving heart.",
-      "explain": "The transitive verb стать (become) with an object in accusative case requires the accusative form of the noun."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Иисус выше Моисея.",
-      "question": "Who is presented as higher in authority than Moses?",
-      "options": ["Jesus", "God the Father", "Aaron", "The High Priest"],
-      "correct": "Jesus",
-      "explain": "The text explicitly states 'Иисус выше Моисея' (Jesus is above Moses)."
-    },
-    {
-      "id": "r2",
-      "ru": "Он был верен поручившему ему служение так же, как и Моисей был верен во всем Доме Божьем.",
-      "question": "In what way were both Jesus and Moses alike?",
-      "options": ["Both were faithful in their respective duties", "Both were high priests", "Both led the people out of Egypt", "Both wrote sacred texts"],
-      "correct": "Both were faithful in their respective duties",
-      "explain": "The passage compares their faithfulness: both were faithful in what was entrusted to them."
-    },
-    {
-      "id": "r3",
-      "ru": "Мы стали сотоварищами Христа, если только мы до конца сохраним нашу твердую веру, которую мы имели вначале.",
-      "question": "On what condition do we become partakers of Christ?",
-      "options": ["If we keep our firm faith to the end", "If we build a house", "If we offer sacrifices", "If we follow Moses"],
-      "correct": "If we keep our firm faith to the end",
-      "explain": "The text states we become partakers of Christ 'if only we do hold firm the assurance and the glorying of the hope firm to the end.'"
-    },
-    {
-      "id": "r4",
-      "ru": "Поэтому я поклялся в гневе моем, они не войдут в мой покой.",
-      "question": "What did God swear in His wrath?",
-      "options": ["That they would not enter His rest", "That they would build temples", "That they would have many children", "That they would worship idols"],
-      "correct": "That they would not enter His rest",
-      "explain": "God swore 'They will not enter into my rest' as a statement of judgment."
-    },
-    {
-      "id": "r5",
-      "ru": "Кто же были эти мятежники?",
-      "question": "What is the text asking about when it mentions 'these rebels'?",
-      "options": ["Those who rebelled against God in the wilderness", "Those who opposed the Romans", "Those who rejected the prophets", "Those who built the tower of Babel"],
-      "correct": "Those who rebelled against God in the wilderness",
-      "explain": "The context indicates these were the generation that came out of Egypt under Moses and rebelled."
-    },
-    {
-      "id": "r6",
-      "ru": "Не все ли те, кто вышел из Египта под руководством Моисея?",
-      "question": "Who is being referred to as the rebels?",
-      "options": ["Those who came out of Egypt under Moses", "The Egyptians themselves", "The Canaanites", "The Roman soldiers"],
-      "correct": "Those who came out of Egypt under Moses",
-      "explain": "The rhetorical question clarifies that the rebels were those who were led out of Egypt by Moses."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Поэтому вы, ___, призванные Небом, смотрите на Иисуса, Посланника и Первосвященника, Которого мы исповедуем.",
+   "lemma": "брат",
+   "options": [
+    "святые братья",
+    "святым братьям",
+    "святых братьях",
+    "святых братьев"
+   ],
+   "correct": "святые братья",
+   "case": "Именительный (Nominative)",
+   "explain": "«святые братья» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Therefore, holy brothers, partakers of a heavenly calling, consider the Apostle and High Priest of our confession: Jesus,"
+  },
+  {
+   "sentence": "Иисус, однако, удостоен ___, чем Моисей, так же, как и строителю дома оказывается больше чести, чем самому дому.",
+   "lemma": "слава",
+   "options": [
+    "большей славе",
+    "большей славой",
+    "большей славы",
+    "большая слава"
+   ],
+   "correct": "большей славы",
+   "case": "Родительный (Genitive)",
+   "explain": "«большей славы» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "For he has been counted worthy of more glory than Moses, because he who built the house has more honor than the house."
+  },
+  {
+   "sentence": "Иисус, однако, удостоен большей славы, чем Моисей, так же, как и строителю дома оказывается больше чести, чем ___.",
+   "lemma": "дом",
+   "options": [
+    "самому дому",
+    "самим домом",
+    "самого дома",
+    "сам дом"
+   ],
+   "correct": "самому дому",
+   "case": "Дательный (Dative)",
+   "explain": "«самому дому» — the dative marks the indirect object or recipient.",
+   "id": "c3",
+   "translation": "For he has been counted worthy of more glory than Moses, because he who built the house has more honor than the house."
+  }
+ ]
 }

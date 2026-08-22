@@ -1,308 +1,124 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "«___ вышел сеять», — говорил он.",
-      "lemma": "сеятель",
-      "options": [
-        "сеятель",
-        "сеятеля",
-        "сеятелю",
-        "сеятелем"
-      ],
-      "correct": "сеятель",
-      "case": "Именительный (Nominative)",
-      "translation": "‘A sower went out to sow,’ he said.",
-      "explain": "Сеятель is the subject of the intransitive verb вышел, so it stands in the nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Иисус, выйдя из ___, сидел у озера.",
-      "lemma": "дом",
-      "options": [
-        "дом",
-        "дома",
-        "дому",
-        "домом"
-      ],
-      "correct": "дома",
-      "case": "Родительный (Genitive)",
-      "translation": "Jesus, having gone out of the house, sat by the lake.",
-      "explain": "The preposition из (out of) always takes the genitive → дома."
-    },
-    {
-      "id": "c3",
-      "sentence": "Слуги пришли к ___ и говорят...",
-      "lemma": "хозяин",
-      "options": [
-        "хозяин",
-        "хозяина",
-        "хозяину",
-        "хозяином"
-      ],
-      "correct": "хозяину",
-      "case": "Дательный (Dative)",
-      "translation": "The servants came to the master and said...",
-      "explain": "The preposition к (to/toward) always takes the dative → хозяину."
-    },
-    {
-      "id": "c4",
-      "sentence": "Иисус рассказал им другую ___.",
-      "lemma": "притча",
-      "options": [
-        "притча",
-        "притчи",
-        "притче",
-        "притчу"
-      ],
-      "correct": "притчу",
-      "case": "Винительный (Accusative)",
-      "translation": "Jesus told them another parable.",
-      "explain": "рассказал (told) is transitive and takes its direct object in the accusative → притчу."
-    },
-    {
-      "id": "c5",
-      "sentence": "Царство небесное можно сравнить с горчичным ___.",
-      "lemma": "зерно",
-      "options": [
-        "зерно",
-        "зерна",
-        "зерну",
-        "зерном"
-      ],
-      "correct": "зерном",
-      "case": "Творительный (Instrumental)",
-      "translation": "The Kingdom of Heaven can be compared to a mustard seed.",
-      "explain": "сравнить с (compare with) uses the preposition с, which takes the instrumental → зерном."
-    },
-    {
-      "id": "c6",
-      "sentence": "И он о многом говорил им в ___.",
-      "lemma": "притча",
-      "options": [
-        "притчи",
-        "притч",
-        "притчам",
-        "притчах"
-      ],
-      "correct": "притчах",
-      "case": "Предложный (Prepositional)",
-      "translation": "And he spoke to them about many things in parables.",
-      "explain": "В marking location, not motion, takes the prepositional → притчах (plural)."
-    },
-    {
-      "id": "c7",
-      "sentence": "Некоторые из них упали у ___.",
-      "lemma": "дорога",
-      "options": [
-        "дорога",
-        "дороги",
-        "дороге",
-        "дорогой"
-      ],
-      "correct": "дороги",
-      "case": "Родительный (Genitive)",
-      "translation": "Some of them fell by the road.",
-      "explain": "The preposition у (by, next to) takes the genitive → дороги."
-    },
-    {
-      "id": "c8",
-      "sentence": "Найдя драгоценную ___, он продает все, что имеет.",
-      "lemma": "жемчужина",
-      "options": [
-        "жемчужина",
-        "жемчужины",
-        "жемчужине",
-        "жемчужину"
-      ],
-      "correct": "жемчужину",
-      "case": "Винительный (Accusative)",
-      "translation": "Having found a precious pearl, he sells all that he has.",
-      "explain": "Найдя (having found) is transitive and takes its direct object in the accusative → жемчужину."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "В тот же день Иисус, выйдя из дома, сидел у озера.",
-      "question": "What did Jesus do on that day?",
-      "options": [
-        "He went out of the house and sat by the lake",
-        "He went into the temple to teach",
-        "He traveled to Jerusalem",
-        "He stayed home to rest"
-      ],
-      "correct": "He went out of the house and sat by the lake",
-      "explain": "The text says Jesus went out of the house and sat by the lake."
-    },
-    {
-      "id": "r2",
-      "ru": "Другие упали в каменистые места, где было мало плодородной почвы.",
-      "question": "Where did some of the seeds fall, according to the parable?",
-      "options": [
-        "On rocky ground with little soil",
-        "Into the sea",
-        "On the road",
-        "In a garden with rich soil"
-      ],
-      "correct": "On rocky ground with little soil",
-      "explain": "The text says other seeds fell on rocky places where there was little fertile soil."
-    },
-    {
-      "id": "r3",
-      "ru": "Семена же, которые упали на хорошую почву, принесли урожай, одни во сто, другие в шестьдесят, третьи в тридцать раз больше того, что было посеяно.",
-      "question": "What happened to the seed that fell on good soil?",
-      "options": [
-        "It produced a crop, some a hundred, some sixty, some thirty times what was sown",
-        "It was eaten by birds",
-        "It withered in the sun",
-        "It was choked by thorns"
-      ],
-      "correct": "It produced a crop, some a hundred, some sixty, some thirty times what was sown",
-      "explain": "The text says the seed on good soil produced a crop, a hundred, sixty, or thirty times what was sown."
-    },
-    {
-      "id": "r4",
-      "ru": "Вам дано знать тайны небесного царства, а им не дано.",
-      "question": "According to Jesus, who has been given to know the mysteries of the kingdom of heaven?",
-      "options": [
-        "The disciples",
-        "The Pharisees",
-        "The crowds",
-        "The teachers of the law"
-      ],
-      "correct": "The disciples",
-      "explain": "Jesus tells the disciples that it has been given to them to know the mysteries of the kingdom, but not to the crowds."
-    },
-    {
-      "id": "r5",
-      "ru": "Блаженны ваши глаза, потому что они видят, и ваши уши, потому что они слышат.",
-      "question": "Why does Jesus call the disciples' eyes and ears blessed?",
-      "options": [
-        "Because they see and hear (understand)",
-        "Because they are beautiful",
-        "Because they never sinned",
-        "Because they healed the sick"
-      ],
-      "correct": "Because they see and hear (understand)",
-      "explain": "Jesus blesses their eyes and ears because they see and hear."
-    },
-    {
-      "id": "r6",
-      "ru": "Это семя, упавшее у дороги.",
-      "question": "In Jesus's explanation, what does the seed that fell by the road represent?",
-      "options": [
-        "The word snatched away by the devil before it is understood",
-        "A person who bears much fruit",
-        "A person choked by riches",
-        "The teaching of the Pharisees"
-      ],
-      "correct": "The word snatched away by the devil before it is understood",
-      "explain": "Jesus explains that the seed by the road is the word the devil snatches from the heart before it is understood."
-    },
-    {
-      "id": "r7",
-      "ru": "И вот когда все спали, пришел его враг, посеял среди пшеницы сорняки и ушел.",
-      "question": "What did the enemy do while everyone was sleeping, in the parable of the wheat and weeds?",
-      "options": [
-        "He sowed weeds among the wheat and left",
-        "He stole the harvest",
-        "He burned the field",
-        "He woke the servants"
-      ],
-      "correct": "He sowed weeds among the wheat and left",
-      "explain": "The text says the enemy came while everyone slept, sowed weeds among the wheat, and went away."
-    },
-    {
-      "id": "r8",
-      "ru": "Хотя горчичное зерно и самое маленькое из всех семян, но когда оно вырастает, то становится больше огородных растений и превращается в настоящее дерево, так что даже птицы небесные прилетают и вьют гнезда в его ветвях.",
-      "question": "What happens to the mustard seed once it grows, per the parable?",
-      "options": [
-        "It becomes a tree larger than the garden plants",
-        "It stays the smallest of all plants",
-        "It is eaten by birds while still small",
-        "It turns into thorns"
-      ],
-      "correct": "It becomes a tree larger than the garden plants",
-      "explain": "Though the mustard seed is the smallest of seeds, it grows into a tree larger than the garden plants."
-    },
-    {
-      "id": "r9",
-      "ru": "«Царство небесное, как закваска, которую женщина смешала с тремя мерами муки, чтобы вскисло все тесто».",
-      "question": "In the parable of the yeast, what does the woman do?",
-      "options": [
-        "She mixes yeast into three measures of flour until it leavens all the dough",
-        "She bakes bread for the disciples",
-        "She plants yeast in a field",
-        "She sells yeast at the market"
-      ],
-      "correct": "She mixes yeast into three measures of flour until it leavens all the dough",
-      "explain": "The parable says a woman mixed yeast into three measures of flour until it worked through all the dough."
-    },
-    {
-      "id": "r10",
-      "ru": "Враг, посеявший их, — это дьявол.",
-      "question": "In Jesus's explanation of the parable of the weeds, who is the enemy that sowed them?",
-      "options": [
-        "The devil",
-        "The Pharisees",
-        "A rival farmer",
-        "The Roman governor"
-      ],
-      "correct": "The devil",
-      "explain": "Jesus explains that the enemy who sowed the weeds is the devil."
-    },
-    {
-      "id": "r11",
-      "ru": "Царство небесное можно сравнить со спрятанным в поле кладом.",
-      "question": "What is the Kingdom of Heaven compared to in the parable of the hidden treasure?",
-      "options": [
-        "Treasure hidden in a field",
-        "A net cast into the sea",
-        "A tiny mustard seed",
-        "A wise builder"
-      ],
-      "correct": "Treasure hidden in a field",
-      "explain": "The parable compares the Kingdom of Heaven to treasure hidden in a field."
-    },
-    {
-      "id": "r12",
-      "ru": "Еще царство небесное подобно сети, опущенной в озеро, в которую попало много разной рыбы.",
-      "question": "What is the Kingdom of Heaven compared to in the parable of the net?",
-      "options": [
-        "A net let down into the lake that caught all kinds of fish",
-        "A merchant seeking pearls",
-        "A woman baking bread",
-        "A king settling accounts"
-      ],
-      "correct": "A net let down into the lake that caught all kinds of fish",
-      "explain": "The parable compares the Kingdom of Heaven to a net let down into the lake that caught fish of every kind."
-    },
-    {
-      "id": "r13",
-      "ru": "Не бывает пророк без чести, разве только в городе своем и в своем доме.",
-      "question": "According to Jesus's saying, where does a prophet lack honor?",
-      "options": [
-        "In his own town and in his own home",
-        "In foreign lands",
-        "Among strangers",
-        "Nowhere; he is honored everywhere"
-      ],
-      "correct": "In his own town and in his own home",
-      "explain": "Jesus says a prophet is without honor only in his own town and in his own house."
-    },
-    {
-      "id": "r14",
-      "ru": "Он пришел в свой родной город и начал учить людей в синагоге.",
-      "question": "What did Jesus do when he came to his hometown?",
-      "options": [
-        "He began teaching people in the synagogue",
-        "He healed every sick person there",
-        "He avoided speaking to anyone",
-        "He performed many miracles"
-      ],
-      "correct": "He began teaching people in the synagogue",
-      "explain": "The text says Jesus came to his hometown and began to teach the people in the synagogue."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Вокруг Него собрались ___, так что Он вынужден был сесть в лодку, а весь народ стоял на берегу.",
+   "lemma": "толпа",
+   "options": [
+    "больших толп",
+    "большие толпы",
+    "большими толпами",
+    "большим толпам"
+   ],
+   "correct": "большие толпы",
+   "case": "Именительный (Nominative)",
+   "explain": "«большие толпы» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Great multitudes gathered to him, so that he entered into a boat, and sat, and all the multitude stood on the beach."
+  },
+  {
+   "sentence": "Другие упали в каменистые места, где было мало ___.",
+   "lemma": "почва",
+   "options": [
+    "плодородная почва",
+    "плодородной почвой",
+    "плодородной почве",
+    "плодородной почвы"
+   ],
+   "correct": "плодородной почвы",
+   "case": "Родительный (Genitive)",
+   "explain": "«плодородной почвы» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "Others fell on rocky ground, where they didn’t have much soil, and immediately they sprang up, because they had no depth of earth."
+  },
+  {
+   "sentence": "Но когда взошло солнце, оно опалило ростки, и те засохли, так как у них не было ___.",
+   "lemma": "корень",
+   "options": [
+    "глубоких корнях",
+    "глубоким корням",
+    "глубокие корни",
+    "глубоких корней"
+   ],
+   "correct": "глубоких корней",
+   "case": "Родительный (Genitive)",
+   "explain": "«глубоких корней» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "When the sun had risen, they were scorched. Because they had no root, they withered away."
+  },
+  {
+   "sentence": "___ попали в терновник, который разросся так, что заглушил ростки.",
+   "lemma": "семя",
+   "options": [
+    "другие семена",
+    "других семенах",
+    "другим семенам",
+    "другими семенами"
+   ],
+   "correct": "другие семена",
+   "case": "Именительный (Nominative)",
+   "explain": "«Другие семена» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "Others fell among thorns. The thorns grew up and choked them."
+  },
+  {
+   "sentence": "Хотя горчичное зерно и самое маленькое из всех семян, но когда оно вырастает, то становится больше ___ и превращается в настоящее дерево, так что даже птицы небесные прилетают и вьют гнезда в его ветвях .",
+   "lemma": "растение",
+   "options": [
+    "огородные растения",
+    "огородным растениям",
+    "огородных растений",
+    "огородных растениях"
+   ],
+   "correct": "огородных растений",
+   "case": "Родительный (Genitive)",
+   "explain": "«огородных растений» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "which indeed is smaller than all seeds. But when it is grown, it is greater than the herbs, and becomes a tree, so that the birds of the air come and lodge in its branches.”"
+  },
+  {
+   "sentence": "Поле — это мир, а ___ — это дети Царства.",
+   "lemma": "семя",
+   "options": [
+    "хороших семенах",
+    "хорошими семенами",
+    "хороших семян",
+    "хорошие семена"
+   ],
+   "correct": "хорошие семена",
+   "case": "Именительный (Nominative)",
+   "explain": "«хорошие семена» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "the field is the world; and the good seed, these are the children of the Kingdom; and the darnel weeds are the children of the evil one."
+  },
+  {
+   "sentence": "Еще Царство Небесное подобно купцу, который ищет ___.",
+   "lemma": "жемчуг",
+   "options": [
+    "прекрасном жемчуге",
+    "прекрасным жемчугом",
+    "прекрасный жемчуг",
+    "прекрасного жемчуга"
+   ],
+   "correct": "прекрасный жемчуг",
+   "case": "Винительный (Accusative)",
+   "explain": "«прекрасный жемчуг» — the accusative marks the direct object of the verb.",
+   "id": "c7",
+   "translation": "“Again, the Kingdom of Heaven is like a man who is a merchant seeking fine pearls,"
+  },
+  {
+   "sentence": "Еще Царство Небесное подобно сети, опущенной в озеро, в которую попало много ___.",
+   "lemma": "рыба",
+   "options": [
+    "разной рыбой",
+    "разной рыбы",
+    "разной рыбе",
+    "разная рыба"
+   ],
+   "correct": "разной рыбы",
+   "case": "Родительный (Genitive)",
+   "explain": "«разной рыбы» — the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "“Again, the Kingdom of Heaven is like a dragnet, that was cast into the sea, and gathered some fish of every kind,"
+  }
+ ]
 }

@@ -1,204 +1,139 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Он сделал бронзовый жертвенник двадцати локтей в длину, двадцати локтей в ширину и десяти локтей в ___.",
-      "lemma": "высота",
-      "options": [
-        "высота",
-        "высоты",
-        "высоте",
-        "высотой"
-      ],
-      "correct": "высотой",
-      "case": "Творительный (Instrumental)",
-      "translation": "He made a bronze altar twenty cubits long, twenty cubits wide, and ten cubits high.",
-      "explain": "Measurements use the instrumental case: в высотой (in height)."
-    },
-    {
-      "id": "c2",
-      "sentence": "Он вылил из бронзы круглый бассейн, названный морем, размером в десять локтей от края до ___ дома.",
-      "lemma": "край",
-      "options": [
-        "край",
-        "края",
-        "краю",
-        "краем"
-      ],
-      "correct": "края",
-      "case": "Родительный (Genitive)",
-      "translation": "He cast a round basin from bronze, called the sea, measuring ten cubits from edge to edge.",
-      "explain": "The preposition от (from) and до (to) govern genitive case: от края до края."
-    },
-    {
-      "id": "c3",
-      "sentence": "Снизу его окружали два ряда подобия быков, по 10 на локоть, быки были отлиты с морем одним ___ литьём.",
-      "lemma": "литьё",
-      "options": [
-        "литьё",
-        "литья",
-        "литью",
-        "литьём"
-      ],
-      "correct": "литьём",
-      "case": "Творительный (Instrumental)",
-      "translation": "Below it encircled oxen images, ten to a cubit, the oxen were cast with the sea in one casting.",
-      "explain": "Одним (one) modifies литьём (casting) in instrumental: одним литьём (in one casting)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Море стояло на двенадцати быках, три из которых смотрели на север, три на запад, три на юг и три на восток, а их зады были обращены к центру ___.",
-      "lemma": "море",
-      "options": [
-        "море",
-        "моря",
-        "морю",
-        "морем"
-      ],
-      "correct": "моря",
-      "case": "Родительный (Genitive)",
-      "translation": "The sea stood on twelve oxen, three facing north, three facing west, three facing south, and three facing east, and their hind parts were turned toward the center of the sea.",
-      "explain": "к центру чего? к центру моря - genitive after the noun center."
-    },
-    {
-      "id": "c5",
-      "sentence": "Он сделал десять умывальниц и поставил пять из них на южной стороне и пять на северной ___.",
-      "lemma": "сторона",
-      "options": [
-        "сторона",
-        "стороны",
-        "стороне",
-        "стороной"
-      ],
-      "correct": "стороне",
-      "case": "Предложный (Prepositional)",
-      "translation": "He made ten basins and placed five of them on the south side and five on the north side.",
-      "explain": "The preposition на (on) with location takes prepositional case: на стороне."
-    },
-    {
-      "id": "c6",
-      "sentence": "Он сделал десять столов и поставил их в храме, пять на южной стороне и пять на северной, еще он сделал сто золотых ___ из чистого золота.",
-      "lemma": "чаша",
-      "options": [
-        "чаша",
-        "чаши",
-        "чаше",
-        "чашу"
-      ],
-      "correct": "чаши",
-      "case": "Родительный (Genitive)",
-      "translation": "He made ten tables and placed them in the temple, five on the south side and five on the north; also he made one hundred golden basins of pure gold.",
-      "explain": "сто (hundred) governs plural genitive: сто чаш."
-    },
-    {
-      "id": "c7",
-      "sentence": "Он сделал двор для священников, большой двор и двери для двора и покрыл двери ___.",
-      "lemma": "золото",
-      "options": [
-        "золото",
-        "золота",
-        "золоту",
-        "золотом"
-      ],
-      "correct": "золотом",
-      "case": "Творительный (Instrumental)",
-      "translation": "He made a court for the priests, the great court, and doors for the court, and he covered the doors with gold.",
-      "explain": "Покрыл (covered) takes instrumental case for the material: покрыл золотом."
-    },
-    {
-      "id": "c8",
-      "sentence": "Затем он поставил море на южной стороне в юго-восточном углу ___.",
-      "lemma": "дом",
-      "options": [
-        "дом",
-        "дома",
-        "дому",
-        "домом"
-      ],
-      "correct": "дома",
-      "case": "Родительный (Genitive)",
-      "translation": "Then he set the sea on the south side, in the southeast corner of the house.",
-      "explain": "The genitive shows possession: the corner of which house? дома (of the house)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Он сделал бронзовый жертвенник двадцати локтей в длину, двадцати локтей в ширину и десяти локтей в высоту.",
-      "question": "What were the dimensions of the bronze altar?",
-      "options": [
-        "Fifteen cubits long and wide, eight cubits high",
-        "Twenty cubits long and wide, ten cubits high",
-        "Twenty-five cubits long and wide, twelve cubits high",
-        "Thirty cubits long and wide, fifteen cubits high"
-      ],
-      "correct": "Twenty cubits long and wide, ten cubits high",
-      "explain": "The text states the altar was 'двадцати локтей в длину, двадцати локтей в ширину и десяти локтей в высоту' (twenty cubits long and wide, and ten cubits high)."
-    },
-    {
-      "id": "r2",
-      "ru": "Он вылил из бронзы круглый бассейн, названный морем, размером в десять локтей от края до края и пять локтей в высоту.",
-      "question": "What was the molten sea made of and how large was it?",
-      "options": [
-        "Silver, eight cubits wide and three cubits high",
-        "Bronze, ten cubits from edge to edge and five cubits high",
-        "Gold, twelve cubits wide and six cubits high",
-        "Copper, fifteen cubits wide and seven cubits high"
-      ],
-      "correct": "Bronze, ten cubits from edge to edge and five cubits high",
-      "explain": "The text says 'вылил из бронзы круглый бассейн...размером в десять локтей от края до края и пять локтей в высоту' (cast from bronze a round basin...measuring ten cubits from edge to edge and five cubits high)."
-    },
-    {
-      "id": "r3",
-      "ru": "Море стояло на двенадцати быках, три из которых смотрели на север, три на запад, три на юг и три на восток.",
-      "question": "On what did the sea stand and how were they positioned?",
-      "options": [
-        "On eight pillars pointing in four directions",
-        "On twelve oxen, three facing each direction (north, south, west, east)",
-        "On sixteen columns in two rows",
-        "On ten bases without any specific orientation"
-      ],
-      "correct": "On twelve oxen, three facing each direction (north, south, west, east)",
-      "explain": "The text describes 'двенадцати быках' with 'три...на север, три на запад, три на юг и три на восток' (twelve oxen with three facing north, west, south, and east)."
-    },
-    {
-      "id": "r4",
-      "ru": "Он сделал десять умывальниц и поставил пять из них на южной стороне и пять на северной.",
-      "question": "How many basins did he make and where were they placed?",
-      "options": [
-        "Eight basins on the east and west sides",
-        "Ten basins, five on the south side and five on the north",
-        "Twelve basins in a circle",
-        "Six basins, three on each side"
-      ],
-      "correct": "Ten basins, five on the south side and five on the north",
-      "explain": "The text explicitly states 'десять умывальниц' with 'пять...на южной стороне и пять на северной' (ten basins with five on the south side and five on the north)."
-    },
-    {
-      "id": "r5",
-      "ru": "Еще он сделал сто золотых крапельных чаш.",
-      "question": "What golden vessels did he make?",
-      "options": [
-        "Fifty small bowls",
-        "One hundred golden basins",
-        "Seventy golden dishes",
-        "Eighty golden plates"
-      ],
-      "correct": "One hundred golden basins",
-      "explain": "The text clearly states 'сто золотых крапельных чаш' (one hundred golden sprinkling bowls)."
-    },
-    {
-      "id": "r6",
-      "ru": "Вся утварь, которую Хирам сделал царю Соломону для дома Господа, была из полированной бронзы.",
-      "question": "What material was all the temple furnishings made from?",
-      "options": [
-        "Pure silver and gold",
-        "Polished bronze",
-        "Wood and bronze",
-        "Stone and copper"
-      ],
-      "correct": "Polished bronze",
-      "explain": "The text states 'была из полированной бронзы' (was made from polished bronze)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Еще он сделал сто золотых ___.",
+   "lemma": "чаша",
+   "options": [
+    "кропильным чашам",
+    "кропильные чаши",
+    "кропильных чаш",
+    "кропильных чашах"
+   ],
+   "correct": "кропильных чаш",
+   "case": "Родительный (Genitive)",
+   "explain": "«кропильных чаш» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "He made also ten tables, and placed them in the temple, five on the right side, and five on the left. He made one hundred basins of gold."
+  },
+  {
+   "sentence": "Он сделал двор для священников, ___ и двери для двора, и покрыл двери бронзой.",
+   "lemma": "двор",
+   "options": [
+    "большого двора",
+    "большой двор",
+    "большом дворе",
+    "большим двором"
+   ],
+   "correct": "большой двор",
+   "case": "Именительный (Nominative)",
+   "explain": "«большой двор» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "Furthermore he made the court of the priests, the great court, and doors for the court, and overlaid their doors with bronze."
+  },
+  {
+   "sentence": "четыреста ___ для двух сеток (два ряда гранатов для каждой сетки, украшавшей чашеобразные капители),",
+   "lemma": "плод",
+   "options": [
+    "гранатовые плоды",
+    "гранатовыми плодами",
+    "гранатовым плодам",
+    "гранатовых плодов"
+   ],
+   "correct": "гранатовых плодов",
+   "case": "Родительный (Genitive)",
+   "explain": "«гранатовых плодов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "and the four hundred pomegranates for the two networks; two rows of pomegranates for each network, to cover the two bowls of the capitals that were on the pillars."
+  },
+  {
+   "sentence": "Царь велел отлить ее в ___ в долине Иордана между Суккотом и Цередатой .",
+   "lemma": "форма",
+   "options": [
+    "глиняным формам",
+    "глиняные формы",
+    "глиняных формах",
+    "глиняных форм"
+   ],
+   "correct": "глиняных формах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«глиняных формах» — after the preposition «в», for location or topic.",
+   "id": "c8",
+   "translation": "The king cast them in the plain of the Jordan, in the clay ground between Succoth and Zeredah."
+  },
+  {
+   "sentence": "Еще Соломон сделал всю утварь для ___:",
+   "lemma": "дом",
+   "options": [
+    "божьим домом",
+    "божьего дома",
+    "божьем доме",
+    "божий дом"
+   ],
+   "correct": "божьего дома",
+   "case": "Родительный (Genitive)",
+   "explain": "«Божьего дома» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "Solomon made all the vessels that were in God’s house, the golden altar also, and the tables with the show bread on them;"
+  },
+  {
+   "sentence": "подсвечники из ___ со светильниками, чтобы они горели перед внутренним святилищем, как предписано,",
+   "lemma": "золото",
+   "options": [
+    "чистом золоте",
+    "чистым золотом",
+    "чистому золоту",
+    "чистого золота"
+   ],
+   "correct": "чистого золота",
+   "case": "Родительный (Genitive)",
+   "explain": "«чистого золота» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c10",
+   "translation": "and the lamp stands with their lamps, to burn according to the ordinance before the inner sanctuary, of pure gold;"
+  },
+  {
+   "sentence": "подсвечники из чистого золота со светильниками, чтобы они горели перед ___, как предписано,",
+   "lemma": "святилище",
+   "options": [
+    "внутреннему святилищу",
+    "внутренним святилищем",
+    "внутреннем святилище",
+    "внутреннего святилища"
+   ],
+   "correct": "внутренним святилищем",
+   "case": "Творительный (Instrumental)",
+   "explain": "«внутренним святилищем» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "id": "c11",
+   "translation": "and the lamp stands with their lamps, to burn according to the ordinance before the inner sanctuary, of pure gold;"
+  },
+  {
+   "sentence": "золотые цветы, светильники и щипцы (они были из ___),",
+   "lemma": "золото",
+   "options": [
+    "чистом золоте",
+    "чистым золотом",
+    "чистому золоту",
+    "чистого золота"
+   ],
+   "correct": "чистого золота",
+   "case": "Родительный (Genitive)",
+   "explain": "«чистого золота» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c12",
+   "translation": "and the flowers, the lamps, and the tongs of gold that was perfect gold;"
+  },
+  {
+   "sentence": "ножницы для фитилей, кропильные чаши, блюда и сосуды для возжигания благовоний — все из ___,",
+   "lemma": "золото",
+   "options": [
+    "чистом золоте",
+    "чистым золотом",
+    "чистому золоту",
+    "чистого золота"
+   ],
+   "correct": "чистого золота",
+   "case": "Родительный (Genitive)",
+   "explain": "«чистого золота» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c13",
+   "translation": "and the snuffers, the basins, the spoons, and the fire pans of pure gold. As for the entry of the house, its inner doors for the most holy place and the doors of the main hall of the temple were of gold."
+  }
+ ]
 }

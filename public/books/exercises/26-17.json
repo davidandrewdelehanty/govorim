@@ -1,134 +1,229 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Было ко мне ___ Господа.",
-      "lemma": "слово",
-      "options": ["слово", "слова", "слову", "словом"],
-      "correct": "слово",
-      "case": "Именительный (Nominative)",
-      "translation": "The word of the Lord came to me.",
-      "explain": "Слово is the grammatical subject, requiring the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Сын человеческий, предложи дому Израиля загадку и расскажи ___.",
-      "lemma": "притча",
-      "options": ["притча", "притчи", "притчу", "притчей"],
-      "correct": "притчу",
-      "case": "Винительный (Accusative)",
-      "translation": "Son of man, tell a riddle and speak a parable to the house of Israel.",
-      "explain": "The verb расскажи (tell) requires the accusative case притчу for its direct object."
-    },
-    {
-      "id": "c3",
-      "sentence": "Большой орел с сильными крыльями, с длинными перьями, с богатым разноцветным оперением прилетел на ___.",
-      "lemma": "Ливан",
-      "options": ["Ливан", "Ливана", "Ливану", "Ливаном"],
-      "correct": "Ливан",
-      "case": "Винительный (Accusative)",
-      "translation": "A great eagle with great wings and long feathers, full of feathers, which had various colors, came to Lebanon.",
-      "explain": "The verb прилетел (came) requires the accusative case with the preposition на."
-    },
-    {
-      "id": "c4",
-      "sentence": "Он схватился за верхушку кедра, отломил ее верхний побег и унес в купеческую страну и посадил там в городе ___.",
-      "lemma": "торговец",
-      "options": ["торговец", "торговцев", "торговцам", "торговцами"],
-      "correct": "торговцев",
-      "case": "Родительный (Genitive)",
-      "translation": "He took the top of the cedar and carried it to a land of merchants and planted it in a city of merchants.",
-      "explain": "The possessive construction города requires the genitive form торговцев."
-    },
-    {
-      "id": "c5",
-      "sentence": "Он взял немного из семян этой земли и посадил в плодородную почву. Он посадил семя, которое выросло подобно иве у больших ___.",
-      "lemma": "вода",
-      "options": ["вода", "воды", "водам", "водой"],
-      "correct": "водам",
-      "case": "Дательный (Dative)",
-      "translation": "He took seed and planted it in fertile ground, by many waters.",
-      "explain": "The preposition у (near/by) with большие (great) requires the dative case водам."
-    },
-    {
-      "id": "c6",
-      "sentence": "Оно выросло и стало виноградной лозой, раскидистой, но низкой. Ветви ее клонились к ___, а корни остались там, где были.",
-      "lemma": "орел",
-      "options": ["орел", "орла", "орлу", "орлом"],
-      "correct": "орлу",
-      "case": "Дательный (Dative)",
-      "translation": "It grew and became a spreading vine of low stature, whose branches turned toward him, and its roots were under him.",
-      "explain": "The verb клонились (turned) requires the dative case with the preposition к."
-    },
-    {
-      "id": "c7",
-      "sentence": "Но был еще один большой орел с сильными крыльями и пышным оперением. И вот эта лоза простерла к нему корни и протянула к нему ветви, чтобы он ее напоил, после того, как она была пересажена на хорошую почву у больших ___.",
-      "lemma": "вода",
-      "options": ["вода", "вод", "водам", "водой"],
-      "correct": "вод",
-      "case": "Родительный (Genitive)",
-      "translation": "There was another great eagle with great wings and many feathers. The vine bent its roots toward him and shot out its branches toward him, when it was planted by many waters.",
-      "explain": "The preposition у (by/near) with большие (big) requires the genitive plural вод."
-    },
-    {
-      "id": "c8",
-      "sentence": "Скажи этому мятежному дому, разве вы не знаете, что это значит? Вот царь Вавилона пришел в Иерусалим, взял его царя с приближенными и увел к себе в ___.",
-      "lemma": "Вавилон",
-      "options": ["Вавилон", "Вавилона", "Вавилону", "Вавилоном"],
-      "correct": "Вавилон",
-      "case": "Винительный (Accusative)",
-      "translation": "Tell the rebellious house: the king of Babylon came to Jerusalem and took its king and brought him to Babylon.",
-      "explain": "The verb увел (carried away) requires the accusative case with the preposition в."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Было ко мне слово Господа.",
-      "question": "What comes to the prophet?",
-      "options": ["The word of the Lord", "A vision of the temple", "A summons to judgment", "A command from the priests"],
-      "correct": "The word of the Lord",
-      "explain": "The chapter opens with 'Было ко мне слово Господа' — 'Yahweh's word came to me.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Сын человеческий, предложи дому Израиля загадку и расскажи притчу.",
-      "question": "What does God ask the prophet to do?",
-      "options": ["Tell a riddle and speak a parable to Israel", "Pronounce judgment on the people", "Explain the law to the priests", "Build an altar in the temple"],
-      "correct": "Tell a riddle and speak a parable to Israel",
-      "explain": "God commands 'предложи дому Израиля загадку и расскажи притчу' — 'tell a riddle and speak a parable to Israel.'"
-    },
-    {
-      "id": "r3",
-      "ru": "Большой орел с сильными крыльями, с длинными перьями, с богатым разноцветным оперением прилетел на Ливан.",
-      "question": "Where does the great eagle with strong wings come to?",
-      "options": ["To Lebanon", "To Egypt", "To Babylon", "To Jerusalem"],
-      "correct": "To Lebanon",
-      "explain": "The parable begins 'Большой орел... прилетел на Ливан' — 'A great eagle... came to Lebanon.'"
-    },
-    {
-      "id": "r4",
-      "ru": "Он схватился за верхушку кедра, отломил ее верхний побег и унес в купеческую страну и посадил там в городе торговцев.",
-      "question": "What did the eagle take from the cedar and where did he plant it?",
-      "options": ["The top of the cedar, planted in a merchant city", "A seed from the cedar, planted in fertile soil", "Leaves from the cedar, scattered them in the wind", "Roots from the cedar, replanted in the desert"],
-      "correct": "The top of the cedar, planted in a merchant city",
-      "explain": "The text states 'отломил ее верхний побег и унес в купеческую страну и посадил там в городе торговцев' — 'took the top of the cedar and carried it to a land of merchants and planted it in a city of merchants.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Оно выросло и стало виноградной лозой, раскидистой, но низкой.",
-      "question": "What did the seed grow into?",
-      "options": ["A spreading but low vine", "A tall cedar tree", "A strong oak", "A flowering shrub"],
-      "correct": "A spreading but low vine",
-      "explain": "The vine 'выросло и стало виноградной лозой, раскидистой, но низкой' — 'grew and became a spreading vine of low stature.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Вот царь Вавилона пришел в Иерусалим, взял его царя с приближенными и увел к себе в Вавилон.",
-      "question": "What did the king of Babylon do?",
-      "options": ["Came to Jerusalem and took its king and nobility to Babylon", "Made peace with Jerusalem", "Built a temple in Jerusalem", "Appointed a new king over Israel"],
-      "correct": "Came to Jerusalem and took its king and nobility to Babylon",
-      "explain": "The explanation states 'царь Вавилона пришел в Иерусалим, взял его царя... и увел к себе в Вавилон' — 'the king of Babylon came to Jerusalem and took its king and brought him to Babylon.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Скажи им: «Так говорит Владыка Господь: Большой орел с ___, с длинными перьями, с богатым, разноцветным оперением прилетел на Ливан.",
+   "lemma": "крыло",
+   "options": [
+    "сильным крыльям",
+    "сильные крылья",
+    "сильными крыльями",
+    "сильных крыльев"
+   ],
+   "correct": "сильными крыльями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«сильными крыльями» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c1",
+   "translation": "and say, ‘The Lord Yahweh says: “A great eagle with great wings and long feathers, full of feathers, which had various colors, came to Lebanon, and took the top of the cedar."
+  },
+  {
+   "sentence": "Скажи им: «Так говорит Владыка Господь: Большой орел с сильными крыльями, с ___, с богатым, разноцветным оперением прилетел на Ливан.",
+   "lemma": "перо",
+   "options": [
+    "длинных перьях",
+    "длинные перья",
+    "длинными перьями",
+    "длинным перьям"
+   ],
+   "correct": "длинными перьями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«длинными перьями» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c2",
+   "translation": "and say, ‘The Lord Yahweh says: “A great eagle with great wings and long feathers, full of feathers, which had various colors, came to Lebanon, and took the top of the cedar."
+  },
+  {
+   "sentence": "Он посадил семя , которое выросло подобно иве у ___, 6 оно выросло и стало виноградной лозой, раскидистой, но низкой.",
+   "lemma": "вода",
+   "options": [
+    "большими водами",
+    "больших водах",
+    "большим водам",
+    "больших вод"
+   ],
+   "correct": "больших вод",
+   "case": "Родительный (Genitive)",
+   "explain": "«больших вод» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "“ ‘ “He also took some of the seed of the land, and planted it in fruitful soil. He placed it beside many waters. He set it as a willow tree."
+  },
+  {
+   "sentence": "Но был еще один большой орел с ___ и пышным оперением.",
+   "lemma": "крыло",
+   "options": [
+    "сильным крыльям",
+    "сильные крылья",
+    "сильными крыльями",
+    "сильных крыльев"
+   ],
+   "correct": "сильными крыльями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«сильными крыльями» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "“ ‘ “There was also another great eagle with great wings and many feathers. Behold, this vine bent its roots toward him, and shot out its branches toward him, from the beds of its plantation, that he might water it."
+  },
+  {
+   "sentence": "Она была пересажена на хорошую почву у ___, чтобы пускать побеги, приносить плоды и быть великолепной лозой!»",
+   "lemma": "вода",
+   "options": [
+    "большими водами",
+    "больших водах",
+    "большим водам",
+    "больших вод"
+   ],
+   "correct": "больших вод",
+   "case": "Родительный (Genitive)",
+   "explain": "«больших вод» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "It was planted in a good soil by many waters, that it might produce branches, and that it might bear fruit, that it might be a good vine.” ’"
+  },
+  {
+   "sentence": "Не нужна будет ___ сильного войска, чтобы выдернуть ее с корнем.",
+   "lemma": "рука",
+   "options": [
+    "крепкая рука",
+    "крепкой руки",
+    "крепкой руке",
+    "крепкой рукой"
+   ],
+   "correct": "крепкая рука",
+   "case": "Именительный (Nominative)",
+   "explain": "«крепкая рука» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "“Say, ‘The Lord Yahweh says: “Will it prosper? Won’t he pull up its roots, and cut off its fruit, that it may wither; that all its fresh springing leaves may wither? It can’t be raised from its roots by a strong arm or many people."
+  },
+  {
+   "sentence": "Не нужна будет крепкая рука ___, чтобы выдернуть ее с корнем.",
+   "lemma": "войско",
+   "options": [
+    "сильном войске",
+    "сильным войском",
+    "сильному войску",
+    "сильного войска"
+   ],
+   "correct": "сильного войска",
+   "case": "Родительный (Genitive)",
+   "explain": "«сильного войска» — the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "“Say, ‘The Lord Yahweh says: “Will it prosper? Won’t he pull up its roots, and cut off its fruit, that it may wither; that all its fresh springing leaves may wither? It can’t be raised from its roots by a strong arm or many people."
+  },
+  {
+   "sentence": "Разве она не засохнет окончательно, когда подует на нее ___, разве не засохнет там, где растет?»",
+   "lemma": "ветер",
+   "options": [
+    "восточный ветер",
+    "восточному ветру",
+    "восточного ветра",
+    "восточным ветром"
+   ],
+   "correct": "восточный ветер",
+   "case": "Именительный (Nominative)",
+   "explain": "«восточный ветер» — the subject of the sentence stands in the nominative.",
+   "id": "c9",
+   "translation": "Yes, behold, being planted, will it prosper? Won’t it utterly wither when the east wind touches it? It will wither in the beds where it grew.” ’ ”"
+  },
+  {
+   "sentence": "— Скажи этому ___: «Разве вы не знаете, что это значит?» Скажи им: «Вот, царь Вавилона пришел в Иерусалим, взял его царя с приближенными и увел к себе в Вавилон.",
+   "lemma": "дом",
+   "options": [
+    "мятежный дом",
+    "мятежному дому",
+    "мятежном доме",
+    "мятежного дома"
+   ],
+   "correct": "мятежному дому",
+   "case": "Дательный (Dative)",
+   "explain": "«мятежному дому» — the dative marks the indirect object or recipient.",
+   "id": "c10",
+   "translation": "“Say now to the rebellious house, ‘Don’t you know what these things mean?’ Tell them, ‘Behold, the king of Babylon came to Jerusalem, and took its king, and its princes, and brought them to him to Babylon."
+  },
+  {
+   "sentence": "Он взял одного из членов ___ и заключил с ним союз, связав его клятвой.",
+   "lemma": "род",
+   "options": [
+    "царский род",
+    "царскому роду",
+    "царского рода",
+    "царском роде"
+   ],
+   "correct": "царского рода",
+   "case": "Родительный (Genitive)",
+   "explain": "«царского рода» — the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
+   "translation": "He took some of the royal offspring, and made a covenant with him. He also brought him under an oath, and took away the mighty of the land;"
+  },
+  {
+   "sentence": "Фараон с ___, огромной ордой, не поможет ему на войне, когда станут делать насыпи и возводить осадные валы, чтобы погубить множество жизней.",
+   "lemma": "войско",
+   "options": [
+    "сильного войска",
+    "сильное войско",
+    "сильным войском",
+    "сильном войске"
+   ],
+   "correct": "сильным войском",
+   "case": "Творительный (Instrumental)",
+   "explain": "«сильным войском» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c12",
+   "translation": "Pharaoh with his mighty army and great company won’t help him in the war, when they cast up mounds and build forts, to cut off many persons."
+  },
+  {
+   "sentence": "Фараон с сильным войском, ___, не поможет ему на войне, когда станут делать насыпи и возводить осадные валы, чтобы погубить множество жизней.",
+   "lemma": "орда",
+   "options": [
+    "огромной орде",
+    "огромной орды",
+    "огромной ордой",
+    "огромная орда"
+   ],
+   "correct": "огромной ордой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«огромной ордой» — the instrumental marks the means, company, or complement.",
+   "id": "c13",
+   "translation": "Pharaoh with his mighty army and great company won’t help him in the war, when they cast up mounds and build forts, to cut off many persons."
+  },
+  {
+   "sentence": "На ___ Израиля Я посажу его; он пустит ветви и принесет плод, и станет благородным кедром.",
+   "lemma": "высота",
+   "options": [
+    "горные высоты",
+    "горных высотах",
+    "горными высотами",
+    "горных высот"
+   ],
+   "correct": "горных высотах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«горных высотах» — after the preposition «на», for location or topic.",
+   "id": "c15",
+   "translation": "I will plant it in the mountain of the height of Israel; and it will produce boughs, and bear fruit, and be a good cedar. Birds of every kind will dwell in the shade of its branches."
+  },
+  {
+   "sentence": "На горных высотах Израиля Я посажу его; он пустит ветви и принесет плод, и станет ___.",
+   "lemma": "кедр",
+   "options": [
+    "благородный кедр",
+    "благородным кедром",
+    "благородного кедра",
+    "благородному кедру"
+   ],
+   "correct": "благородным кедром",
+   "case": "Творительный (Instrumental)",
+   "explain": "«благородным кедром» — the instrumental marks the means, company, or complement.",
+   "id": "c16",
+   "translation": "I will plant it in the mountain of the height of Israel; and it will produce boughs, and bear fruit, and be a good cedar. Birds of every kind will dwell in the shade of its branches."
+  },
+  {
+   "sentence": "___ станут вить на нем гнезда; в тени его ветвей они найдут приют.",
+   "lemma": "птица",
+   "options": [
+    "разные птицы",
+    "разных птицах",
+    "разных птиц",
+    "разным птицам"
+   ],
+   "correct": "разные птицы",
+   "case": "Именительный (Nominative)",
+   "explain": "«Разные птицы» — the subject of the sentence stands in the nominative.",
+   "id": "c17",
+   "translation": "I will plant it in the mountain of the height of Israel; and it will produce boughs, and bear fruit, and be a good cedar. Birds of every kind will dwell in the shade of its branches."
+  }
+ ]
 }

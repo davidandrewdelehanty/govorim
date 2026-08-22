@@ -1,114 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ Господень возвал к нему с неба.",
-      "lemma": "ангел",
-      "options": ["ангел", "ангела", "ангелу", "ангелом"],
-      "correct": "ангел",
-      "case": "Именительный (Nominative)",
-      "translation": "The angel of the Lord called to him from heaven.",
-      "explain": "Ангел is the subject of возвал, so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Авраам взял дрова для ___ и положил их на спину Исааку.",
-      "lemma": "всесожжение",
-      "options": ["всесожжение", "всесожжения", "всесожжению", "всесожжением"],
-      "correct": "всесожжения",
-      "case": "Родительный (Genitive)",
-      "translation": "Abraham took the wood for the burnt offering and laid it on Isaac's back.",
-      "explain": "The preposition для governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Исаак сказал своему отцу ___, «Отец?»",
-      "lemma": "Авраам",
-      "options": ["Авраам", "Авраама", "Аврааму", "Авраамом"],
-      "correct": "Аврааму",
-      "case": "Дательный (Dative)",
-      "translation": "Isaac said to his father Abraham, 'Father?'",
-      "explain": "The verb сказать takes its addressee in the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Бог сказал, «Возьми ___, своего единственного сына Исаака, которого ты любишь».",
-      "lemma": "сын",
-      "options": ["сын", "сына", "сыну", "сыном"],
-      "correct": "сына",
-      "case": "Винительный (Accusative)",
-      "translation": "God said, 'Take your son, your only son Isaac, whom you love.'",
-      "explain": "The verb взять takes its direct object in the accusative case; being animate, the accusative matches the genitive form."
-    },
-    {
-      "id": "c5",
-      "sentence": "Твое потомство овладеет ___ своих врагов.",
-      "lemma": "город",
-      "options": ["город", "города", "городам", "городами"],
-      "correct": "городами",
-      "case": "Творительный (Instrumental)",
-      "translation": "Your offspring will possess the cities of their enemies.",
-      "explain": "The verb овладеть (to take possession of) governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Иди в землю Мория и принеси его там в жертву всесожжения на ___, на которую я укажу тебе.",
-      "lemma": "гора",
-      "options": ["гора", "горы", "гору", "горе"],
-      "correct": "горе",
-      "case": "Предложный (Prepositional)",
-      "translation": "Go to the land of Moriah and offer him there as a burnt offering on the mountain that I will show you.",
-      "explain": "The preposition на indicating location takes the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Спустя какое-то время Бог подверг Авраама испытанию.",
-      "question": "What did God do to Abraham at the start of this chapter?",
-      "options": ["He tested him", "He blessed him with more children", "He sent him to Egypt", "He punished him for a sin"],
-      "correct": "He tested him",
-      "explain": "The text opens by saying God 'подверг Авраама испытанию' — tested Abraham."
-    },
-    {
-      "id": "r2",
-      "ru": "На другой день рано утром Авраам встал, оседлал осла, взял с собой двух слуг и сына Исаака, нарубил дров для всесожжения и отправился в путь к тому месту, о котором сказал ему Бог.",
-      "question": "What did Abraham prepare before setting out?",
-      "options": ["A donkey, two servants, his son Isaac, and wood for a burnt offering", "A tent and food for many days", "An army to defend himself", "Gold to trade along the way"],
-      "correct": "A donkey, two servants, his son Isaac, and wood for a burnt offering",
-      "explain": "The text lists the donkey, two servants, Isaac, and the wood he cut for the offering."
-    },
-    {
-      "id": "r3",
-      "ru": "Бог сам усмотрит ягненка для всесожжения, сын мой.",
-      "question": "How did Abraham answer Isaac's question about the lamb?",
-      "options": ["God himself would provide the lamb", "They would buy one on the way", "Isaac himself was to be the offering", "They would return home without one"],
-      "correct": "God himself would provide the lamb",
-      "explain": "Abraham told Isaac that God himself would provide the lamb for the burnt offering."
-    },
-    {
-      "id": "r4",
-      "ru": "Но ангел Господень возвал к нему с неба.",
-      "question": "What stopped Abraham from killing his son?",
-      "options": ["The angel of the Lord called to him from heaven", "Isaac ran away from the altar", "A ram appeared before he raised the knife", "Sarah arrived and stopped him"],
-      "correct": "The angel of the Lord called to him from heaven",
-      "explain": "The text says the angel of the Lord called to Abraham from heaven, stopping him."
-    },
-    {
-      "id": "r5",
-      "ru": "Авраам поднял взгляд и увидел барана, который запутался рогами в зарослях.",
-      "question": "What did Abraham see caught in the thicket?",
-      "options": ["A ram caught by its horns", "A lamb tied to a tree", "A goat drinking water", "An eagle in a nest"],
-      "correct": "A ram caught by its horns",
-      "explain": "The text says Abraham saw a ram caught by its horns in the thicket."
-    },
-    {
-      "id": "r6",
-      "ru": "Прошло время, и Аврааму сказали, «Милка тоже стала матерью, родила сыновей твоему брату Нахору.",
-      "question": "What news did Abraham receive at the end of the chapter?",
-      "options": ["That Milcah had borne sons to his brother Nahor", "That Sarah had died", "That Lot had returned to him", "That Ishmael had married"],
-      "correct": "That Milcah had borne sons to his brother Nahor",
-      "explain": "The text says Abraham was told that Milcah had borne sons to his brother Nahor."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "На ___ Авраам поднял взгляд и увидел вдали то место.",
+   "lemma": "день",
+   "options": [
+    "третьим днём",
+    "третьего дня",
+    "третьему дню",
+    "третий день"
+   ],
+   "correct": "третий день",
+   "case": "Винительный (Accusative)",
+   "explain": "«третий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c2",
+   "translation": "On the third day Abraham lifted up his eyes, and saw the place far off."
+  },
+  {
+   "sentence": "Теперь Я знаю, что ты боишься Бога, потому что ты не пожалел для Меня сына, своего ___.",
+   "lemma": "сын",
+   "options": [
+    "единственный сын",
+    "единственного сына",
+    "единственном сыне",
+    "единственным сыном"
+   ],
+   "correct": "единственного сына",
+   "case": "Винительный (Accusative)",
+   "explain": "«единственного сына» — the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "He said, “Don’t lay your hand on the boy or do anything to him. For now I know that you fear God, since you have not withheld your son, your only son, from me.”"
+  },
+  {
+   "sentence": "Ангел Господень воззвал к Аврааму с неба во ___ 16 и сказал:",
+   "lemma": "раз",
+   "options": [
+    "втором разе",
+    "второй раз",
+    "второму разу",
+    "второго раза"
+   ],
+   "correct": "второй раз",
+   "case": "Винительный (Accusative)",
+   "explain": "«второй раз» — after the preposition «во», the accusative marks the direct object of the verb.",
+   "id": "c4",
+   "translation": "Yahweh’s angel called to Abraham a second time out of the sky,"
+  }
+ ]
 }

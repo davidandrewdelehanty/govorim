@@ -1,134 +1,124 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Вот главы семейств и родословия тех, кто вышел со мной из ___ во время правления царя Артаксеркса.",
-      "lemma": "Вавилон",
-      "options": ["Вавилон", "Вавилона", "Вавилоне", "Вавилоном"],
-      "correct": "Вавилона",
-      "case": "Родительный (Genitive)",
-      "translation": "Here are the heads of families and the genealogy of those who returned with me from Babylon in the reign of King Artaxerxes.",
-      "explain": "The preposition из (from) requires the genitive case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Я собрал их у ___, которая течет в сторону Агавы.",
-      "lemma": "река",
-      "options": ["река", "реки", "реке", "рекой"],
-      "correct": "реки",
-      "case": "Родительный (Genitive)",
-      "translation": "I gathered them at the river which runs toward Ahava.",
-      "explain": "The preposition у (near/at) requires the genitive case; у чего? (at what?) needs genitive."
-    },
-    {
-      "id": "c3",
-      "sentence": "Когда я осмотрел народ и священников, то не нашел среди них ни одного ___.",
-      "lemma": "левит",
-      "options": ["левит", "левита", "левиту", "левитом"],
-      "correct": "левита",
-      "case": "Родительный (Genitive)",
-      "translation": "When I looked at the people and priests, I found not one Levite among them.",
-      "explain": "The genitive follows ни одного (not one); ни одного кого? requires genitive for animate nouns."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я велел им передать Иддо и его родственникам, храмовым слугам в Кассифии, чтобы они привели к нам служителей для дома нашего ___.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Бога",
-      "case": "Родительный (Genitive)",
-      "translation": "I instructed them to tell Iddo and his relatives, the temple servants in Casiphia, to bring us servants for the house of our God.",
-      "explain": "The genitive case marks possession; дом кого? (house of whom?) requires genitive."
-    },
-    {
-      "id": "c5",
-      "sentence": "Там, у ___ Агавы, я объявил пост.",
-      "lemma": "река",
-      "options": ["река", "реки", "реке", "рекой"],
-      "correct": "реке",
-      "case": "Предложный (Prepositional)",
-      "translation": "There, by the river Ahava, I proclaimed a fast.",
-      "explain": "The preposition у (at) with the prepositional case is used for location near a place."
-    },
-    {
-      "id": "c6",
-      "sentence": "Мне было стыдно просить у царя войска и всадников для нашей защиты от врагов дороги, потому что мы уже сказали ___ о своей вере.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царю",
-      "case": "Дательный (Dative)",
-      "translation": "I was ashamed to ask the king for soldiers and horsemen to protect us against enemies on the way, because we had told the king about our faith.",
-      "explain": "The verb сказали требует дополнения в дательном падеже for the indirect object; сказали кому? (told whom?) requires dative."
-    },
-    {
-      "id": "c7",
-      "sentence": "Затем я отделил двенадцать главных священников, Шеравию вместе с Хашавией, и еще одного ___.",
-      "lemma": "священник",
-      "options": ["священник", "священника", "священнику", "священником"],
-      "correct": "священника",
-      "case": "Родительный (Genitive)",
-      "translation": "Then I set apart twelve chief priests, Sherebiah, Hashabiah, and one other priest.",
-      "explain": "The partitive genitive follows a cardinal number; еще одного (one more) requires genitive for animate nouns."
-    },
-    {
-      "id": "c8",
-      "sentence": "В двенадцатый день первого месяца мы отправились в путь от реки Агавы, чтобы дойти до ___.",
-      "lemma": "Иерусалим",
-      "options": ["Иерусалим", "Иерусалима", "Иерусалиме", "Иерусалимом"],
-      "correct": "Иерусалима",
-      "case": "Родительный (Genitive)",
-      "translation": "On the twelfth day of the first month we set out from the river Ahava to go to Jerusalem.",
-      "explain": "The preposition до (to/until) requires the genitive case; до чего? (to where?) needs genitive."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Вот главы семейств и родословия тех, кто вышел со мной из Вавилона во время правления царя Артаксеркса.",
-      "question": "Who accompanied Ezra when he left Babylon?",
-      "options": ["The heads of families listed by genealogy", "All the priests and Levites", "Only the temple servants", "The king's appointed officials"],
-      "correct": "The heads of families listed by genealogy",
-      "explain": "Главы семейств и родословия тех кто вышел со мной — heads of families and genealogy of those who went with me."
-    },
-    {
-      "id": "r2",
-      "ru": "Я собрал их у реки, которая течет в сторону Агавы, где мы разбили лагерь и провели там три дня.",
-      "question": "Where did Ezra gather the people and for how long did they camp there?",
-      "options": ["At the river near Ahava for three days", "At Jerusalem for seven days", "At Babylon for one day", "At Casiphia for three weeks"],
-      "correct": "At the river near Ahava for three days",
-      "explain": "Я собрал их у реки и разбили лагерь и провели там три дня — gathered at the river and camped for three days."
-    },
-    {
-      "id": "r3",
-      "ru": "Когда я осмотрел народ и священников, то не нашел среди них ни одного левита.",
-      "question": "What did Ezra discover when he examined the people and priests?",
-      "options": ["There were no Levites among them", "There were no priests among them", "There were too many people to count", "There were no temple servants"],
-      "correct": "There were no Levites among them",
-      "explain": "не нашел среди них ни одного левита — found not one Levite among them."
-    },
-    {
-      "id": "r4",
-      "ru": "Мне было стыдно просить у царя войска и всадников для нашей защиты от врагов пути, потому что мы уже сказали царю, «Милостивая рука нашего Бога на каждом, кто ищет Его».",
-      "question": "Why was Ezra ashamed to ask the king for soldiers and horsemen?",
-      "options": ["Because they had told the king that God's hand is on all who seek Him", "Because the king refused to give them soldiers", "Because they did not need protection", "Because soldiers were too expensive"],
-      "correct": "Because they had told the king that God's hand is on all who seek Him",
-      "explain": "мне было стыдно просить потому что мы уже сказали царю милостивая рука Бога на каждом кто ищет Его — ashamed because they had told the king of God's protection."
-    },
-    {
-      "id": "r5",
-      "ru": "Затем я отделил двенадцать главных священников, Шеравию вместе с Хашавией, и десять других из их братьев, и, взвесив, я отдал им пожертвованное серебро и золото, и предметы, которые царь отдал для дома нашего Бога.",
-      "question": "What did Ezra do with the silver, gold, and vessels after weighing them?",
-      "options": ["He entrusted them to twelve chief priests, including Sherebiah and Hashabiah", "He gave them to the Levites", "He kept them for himself", "He sent them back to the king"],
-      "correct": "He entrusted them to twelve chief priests, including Sherebiah and Hashabiah",
-      "explain": "я отделил двенадцать главных священников и отдал им пожертвованное серебро и золото — set apart twelve priests and gave them the offerings."
-    },
-    {
-      "id": "r6",
-      "ru": "В двенадцатый день первого месяца мы отправились в путь от реки Агавы, чтобы дойти до Иерусалима. Рука нашего Бога была над нами, и Он защитил нас от врагов и разбойников пути.",
-      "question": "How did God protect the travelers on their journey to Jerusalem?",
-      "options": ["God's hand was upon them and He protected them from enemies and bandits on the way", "They hired soldiers from the king", "They took a different, safer route", "They traveled at night to avoid enemies"],
-      "correct": "God's hand was upon them and He protected them from enemies and bandits on the way",
-      "explain": "Рука нашего Бога была над нами и Он защитил нас от врагов — God's hand was upon us and He protected us from enemies."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Там, у реки Агавы, я объявил пост, чтобы мы могли смирить себя перед нашим Богом и попросить Его о ___ для нас и наших детей со всем нашим имуществом.",
+   "lemma": "путешествие",
+   "options": [
+    "безопасное путешествие",
+    "безопасном путешествии",
+    "безопасному путешествию",
+    "безопасного путешествия"
+   ],
+   "correct": "безопасном путешествии",
+   "case": "Предложный (Prepositional)",
+   "explain": "«безопасном путешествии» — after the preposition «о», for location or topic.",
+   "id": "c1",
+   "translation": "Then I proclaimed a fast there, at the river Ahava, that we might humble ourselves before our God, to seek from him a straight way for us, and for our little ones, and for all our possessions."
+  },
+  {
+   "sentence": "Мне было стыдно просить у царя войска и всадников для нашей защиты от врагов в пути, потому что мы уже сказали царю: «___ нашего Бога на каждом, кто ищет Его, но Его великий гнев на всех, кто покидает Его».",
+   "lemma": "рука",
+   "options": [
+    "милостивой рукой",
+    "милостивая рука",
+    "милостивой руки",
+    "милостивой руке"
+   ],
+   "correct": "милостивая рука",
+   "case": "Именительный (Nominative)",
+   "explain": "«Милостивая рука» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "For I was ashamed to ask of the king a band of soldiers and horsemen to help us against the enemy on the way, because we had spoken to the king, saying, “The hand of our God is on all those who seek him, for good; but his power and his wrath is against all those who forsake him.”"
+  },
+  {
+   "sentence": "Мне было стыдно просить у царя войска и всадников для нашей защиты от врагов в пути, потому что мы уже сказали царю: «Милостивая рука нашего Бога на каждом, кто ищет Его, но Его ___ на всех, кто покидает Его».",
+   "lemma": "гнев",
+   "options": [
+    "великого гнева",
+    "великом гневе",
+    "великий гнев",
+    "великим гневом"
+   ],
+   "correct": "великий гнев",
+   "case": "Именительный (Nominative)",
+   "explain": "«великий гнев» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "For I was ashamed to ask of the king a band of soldiers and horsemen to help us against the enemy on the way, because we had spoken to the king, saying, “The hand of our God is on all those who seek him, for good; but his power and his wrath is against all those who forsake him.”"
+  },
+  {
+   "sentence": "Бережно храните все это до тех пор, пока не передадите в хранилище дома Господа в Иерусалиме, взвесив все на глазах у ___, левитов, и глав семейств Израиля.",
+   "lemma": "священник",
+   "options": [
+    "главным священникам",
+    "главных священников",
+    "главные священники",
+    "главными священниками"
+   ],
+   "correct": "главных священников",
+   "case": "Родительный (Genitive)",
+   "explain": "«главных священников» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "Watch and keep them, until you weigh them before the chiefs of the priests and the Levites, and the princes of the fathers’ households of Israel, at Jerusalem, in the rooms of Yahweh’s house.”"
+  },
+  {
+   "sentence": "В двенадцатый день ___ мы отправились в путь от реки Агавы, чтобы дойти до Иерусалима.",
+   "lemma": "месяц",
+   "options": [
+    "первого месяца",
+    "первому месяцу",
+    "первый месяц",
+    "первым месяцем"
+   ],
+   "correct": "первого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«первого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "Then we departed from the river Ahava on the twelfth day of the first month, to go to Jerusalem. The hand of our God was on us, and he delivered us from the hand of the enemy and the bandit by the way."
+  },
+  {
+   "sentence": "Все было сосчитано по количеству и весу, и в то же время был записан ___.",
+   "lemma": "вес",
+   "options": [
+    "общий вес",
+    "общим весом",
+    "общем весе",
+    "общего веса"
+   ],
+   "correct": "общий вес",
+   "case": "Именительный (Nominative)",
+   "explain": "«общий вес» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "everything by number and by weight; and all the weight was written at that time."
+  },
+  {
+   "sentence": "Затем пришедшие из плена переселенцы принесли жертвы всесожжения Богу Израилеву — двенадцать быков за весь Израиль, девяносто шесть овец, семьдесят семь ягнят ___ и двенадцать козлов в жертву за грех.",
+   "lemma": "пол",
+   "options": [
+    "мужскому полу",
+    "мужском поле",
+    "мужским полом",
+    "мужского пола"
+   ],
+   "correct": "мужского пола",
+   "case": "Родительный (Genitive)",
+   "explain": "«мужского пола» — the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "The children of the captivity, who had come out of exile, offered burnt offerings to the God of Israel, twelve bulls for all Israel, ninety-six rams, seventy-seven lambs, and twelve male goats for a sin offering. All this was a burnt offering to Yahweh."
+  },
+  {
+   "sentence": "Они также отдали царские приказы ___ и наместникам провинции за Евфратом, которые потом оказали поддержку народу и дому Божию.",
+   "lemma": "сатрап",
+   "options": [
+    "царских сатрапов",
+    "царские сатрапы",
+    "царским сатрапам",
+    "царскими сатрапами"
+   ],
+   "correct": "царским сатрапам",
+   "case": "Дательный (Dative)",
+   "explain": "«царским сатрапам» — the dative marks the indirect object or recipient.",
+   "id": "c11",
+   "translation": "They delivered the king’s commissions to the king’s local governors, and to the governors beyond the River. So they supported the people and God’s house."
+  }
+ ]
 }

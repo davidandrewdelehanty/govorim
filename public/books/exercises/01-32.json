@@ -1,140 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Он сказал, «Это Божий ___», и назвал то место Маханаим.",
-      "lemma": "стан",
-      "options": ["стан", "стана", "стану", "стане"],
-      "correct": "стан",
-      "case": "Именительный (Nominative)",
-      "translation": "He said, \"This is God's camp,\" and called that place Mahanaim.",
-      "explain": "Стан is the predicate noun after the copular «это» ('this is'), so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Мы были у твоего ___ Исава, и теперь он сам идет тебе навстречу.",
-      "lemma": "брат",
-      "options": ["брат", "брата", "брату", "братом"],
-      "correct": "брата",
-      "case": "Родительный (Genitive)",
-      "translation": "We were with your brother Esau, and now he himself is coming to meet you.",
-      "explain": "The preposition у ('at/with') requires the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Молю тебя, спаси меня от ___ моего брата Исава.",
-      "lemma": "рука",
-      "options": ["рука", "руки", "руке", "руку"],
-      "correct": "руки",
-      "case": "Родительный (Genitive)",
-      "translation": "I pray you, save me from the hand of my brother Esau.",
-      "explain": "The preposition от ('from') requires the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Скажите моему ___ Исаву так.",
-      "lemma": "господин",
-      "options": ["господин", "господина", "господину", "господином"],
-      "correct": "господину",
-      "case": "Дательный (Dative)",
-      "translation": "Tell my lord Esau this.",
-      "explain": "Господину is the indirect object of the verb скажите ('tell'), which requires the dative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Это потому, что я видел ___ лицом к лицу и остался жив.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Бога",
-      "case": "Винительный (Accusative)",
-      "translation": "This is because I saw God face to face and remained alive.",
-      "explain": "Бога is the direct object of the transitive verb видел ('saw'); for an animate masculine noun the accusative has the same form as the genitive."
-    },
-    {
-      "id": "c6",
-      "sentence": "Твое имя будет не Иаков, а Израиль, потому что ты боролся с ___ и людьми и победил.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Богом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Your name will no longer be Jacob, but Israel, because you struggled with God and with men and prevailed.",
-      "explain": "The preposition с ('with') in the sense of struggling together requires the instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "В великом ___ и смятении Иаков разделил людей, которые были с ним.",
-      "lemma": "страх",
-      "options": ["страх", "страха", "страху", "страхе"],
-      "correct": "страхе",
-      "case": "Предложный (Prepositional)",
-      "translation": "In great fear and confusion, Jacob divided the people who were with him.",
-      "explain": "The preposition в ('in'), indicating a state or condition, requires the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Когда Иаков увидел их, он сказал, «Это Божий стан», и назвал то место Маханаим.",
-      "question": "Why did Jacob call that place Mahanaim?",
-      "options": ["Because he saw the angels of God and called it \"God's camp\"", "Because he saw his brother Esau there", "Because he found water there", "Because he had a dream there"],
-      "correct": "Because he saw the angels of God and called it \"God's camp\"",
-      "explain": "The text says Jacob saw the angels of God, called the place \"God's camp,\" and named it Mahanaim."
-    },
-    {
-      "id": "r2",
-      "ru": "Иаков послал впереди себя вестников к своему брату Исаву в землю Сеир, страну Эдом.",
-      "question": "Where did Jacob send messengers to reach Esau?",
-      "options": ["To the land of Seir, the country of Edom", "To the land of Canaan", "To the city of Haran", "To Egypt"],
-      "correct": "To the land of Seir, the country of Edom",
-      "explain": "The text says Jacob sent messengers ahead of him to his brother Esau in the land of Seir, the country of Edom."
-    },
-    {
-      "id": "r3",
-      "ru": "Посланцы вернулись и сказали Иакову, «Мы были у твоего брата Исава, и теперь он сам идет тебе навстречу, и с ним четыреста человек».",
-      "question": "What did the messengers report about Esau?",
-      "options": ["That he was coming to meet Jacob with four hundred men", "That he refused to meet Jacob", "That he had died", "That he had already forgiven Jacob"],
-      "correct": "That he was coming to meet Jacob with four hundred men",
-      "explain": "The messengers reported that Esau himself was coming to meet Jacob, with four hundred men."
-    },
-    {
-      "id": "r4",
-      "ru": "В великом страхе и смятении Иаков разделил людей, которые были с ним, а также стада крупного и мелкого скота и верблюдов.",
-      "question": "Why did Jacob divide his people and animals into two groups?",
-      "options": ["Because he was greatly afraid and hoped that if Esau attacked one group, the other would escape", "Because he wanted to sell some of the animals", "Because the animals were sick", "Because Esau had ordered him to"],
-      "correct": "Because he was greatly afraid and hoped that if Esau attacked one group, the other would escape",
-      "explain": "The text says Jacob was in great fear and confusion and divided his people and livestock, thinking that if Esau attacked one half, the other would escape."
-    },
-    {
-      "id": "r5",
-      "ru": "Молю тебя, спаси меня от руки моего брата Исава, потому что я боюсь, что он придет и нападет на меня и на матерей с детьми.",
-      "question": "What did Jacob ask God for in his prayer?",
-      "options": ["To be saved from the hand of his brother Esau", "To be given more livestock", "To be shown the way to Canaan", "To find a wife"],
-      "correct": "To be saved from the hand of his brother Esau",
-      "explain": "In his prayer, Jacob begged God to save him from the hand of his brother Esau, whom he feared would attack him and the mothers with the children."
-    },
-    {
-      "id": "r6",
-      "ru": "И вот Иаков остался один, и некто боролся с ним до самой зари.",
-      "question": "What happened after Jacob sent his family and possessions across the Jabbok?",
-      "options": ["He was left alone, and a man wrestled with him until daybreak", "He fell asleep immediately", "Esau arrived and attacked him", "He crossed back to see Laban"],
-      "correct": "He was left alone, and a man wrestled with him until daybreak",
-      "explain": "The text says Jacob was left alone, and someone wrestled with him until the break of day."
-    },
-    {
-      "id": "r7",
-      "ru": "Тогда он сказал, отныне твое имя будет не Иаков, а Израиль, потому что ты боролся с Богом и людьми и победил.",
-      "question": "Why was Jacob's name changed to Israel?",
-      "options": ["Because he struggled with God and with men and prevailed", "Because he defeated Esau in battle", "Because he built an altar", "Because his father blessed him"],
-      "correct": "Because he struggled with God and with men and prevailed",
-      "explain": "The man told Jacob his name would now be Israel because he had struggled with God and with men and had prevailed."
-    },
-    {
-      "id": "r8",
-      "ru": "Вот почему до сего дня израилетяне не едят сухожилие на суставе бедра.",
-      "question": "What lasting custom is explained at the end of the chapter?",
-      "options": ["The Israelites do not eat the sinew on the hip joint, because that is where Jacob was touched during the struggle", "The Israelites fast once a year in memory of this night", "The Israelites do not eat pork", "The Israelites avoid crossing rivers at night"],
-      "correct": "The Israelites do not eat the sinew on the hip joint, because that is where Jacob was touched during the struggle",
-      "explain": "The text says that to this day the Israelites do not eat the sinew on the hip joint, because Jacob's hip was touched there during the struggle."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "В ___ и смятении Иаков разделил людей, которые были с ним, а также стада крупного и мелкого скота и верблюдов.",
+   "lemma": "страх",
+   "options": [
+    "великим страхом",
+    "великому страху",
+    "великого страха",
+    "великом страхе"
+   ],
+   "correct": "великом страхе",
+   "case": "Предложный (Prepositional)",
+   "explain": "«великом страхе» — after the preposition «в», for location or topic.",
+   "id": "c1",
+   "translation": "Then Jacob was greatly afraid and was distressed. He divided the people who were with him, and the flocks, and the herds, and the camels, into two companies;"
+  },
+  {
+   "sentence": "Ведь Ты сказал: «Я непременно дам тебе процветание и сделаю потомство твое многочисленным, как ___, который не сосчитать».",
+   "lemma": "песок",
+   "options": [
+    "морским песком",
+    "морской песок",
+    "морском песке",
+    "морского песка"
+   ],
+   "correct": "морской песок",
+   "case": "Именительный (Nominative)",
+   "explain": "«морской песок» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "You said, ‘I will surely do you good, and make your offspring as the sand of the sea, which can’t be counted because there are so many.’ ”"
+  },
+  {
+   "sentence": "И вот Иаков остался один, и Некто боролся с ним до ___.",
+   "lemma": "заря",
+   "options": [
+    "самой зарёй",
+    "самой зари",
+    "сама заря",
+    "самой заре"
+   ],
+   "correct": "самой зари",
+   "case": "Родительный (Genitive)",
+   "explain": "«самой зари» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Jacob was left alone, and wrestled with a man there until the breaking of the day."
+  }
+ ]
 }

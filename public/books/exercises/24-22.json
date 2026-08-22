@@ -1,204 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Иди ко дворцу царя Иудеи и слушай слово Господне, царь Иудеи, сидящий на престоле ___.",
-      "lemma": "Давид",
-      "options": [
-        "Давида",
-        "Давидом",
-        "Давиде",
-        "Давид"
-      ],
-      "correct": "Давида",
-      "case": "Родительный (Genitive)",
-      "translation": "Go to the palace of the king of Judah, king of Judah who sits on David's throne.",
-      "explain": "The possessive construction престол Давида (David's throne) requires genitive case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Помогайте обездоленному спастись от ___ притеснителя.",
-      "lemma": "рука",
-      "options": [
-        "рук",
-        "рукой",
-        "рукам",
-        "руках"
-      ],
-      "correct": "рук",
-      "case": "Родительный (Genitive)",
-      "translation": "Deliver the oppressed from the hands of the oppressor.",
-      "explain": "The preposition от (from) always requires the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Если вы будете исполнять эти повеления, цари будут сидеть на престоле ___.",
-      "lemma": "Давид",
-      "options": [
-        "Давид",
-        "Давида",
-        "Давидом",
-        "Давиде"
-      ],
-      "correct": "Давида",
-      "case": "Родительный (Genitive)",
-      "translation": "If you obey, kings will sit on the throne of David.",
-      "explain": "The same possessive construction престол Давида requires genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Если вы не будете исполнять эти повеления, то дворец превратится в ___.",
-      "lemma": "руина",
-      "options": [
-        "руину",
-        "руины",
-        "руиной",
-        "руинах"
-      ],
-      "correct": "руину",
-      "case": "Винительный (Accusative)",
-      "translation": "If you disobey, this house will become a desolation.",
-      "explain": "The verb превратится (will become) requires the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Я пошлю к тебе разорителей, каждого с ___.",
-      "lemma": "оружие",
-      "options": [
-        "оружие",
-        "оружия",
-        "оружием",
-        "оружию"
-      ],
-      "correct": "оружием",
-      "case": "Творительный (Instrumental)",
-      "translation": "I will send destroyers against you, everyone with his weapons.",
-      "explain": "The preposition с (with) indicating accompaniment requires the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Люди будут проходить мимо этого города и спрашивать друг ___, за что Господь поступил так?",
-      "lemma": "друг",
-      "options": [
-        "друга",
-        "друг",
-        "другом",
-        "другу"
-      ],
-      "correct": "друга",
-      "case": "Винительный (Accusative)",
-      "translation": "Many nations will pass by and ask each other, 'Why has Yahweh done this?'",
-      "explain": "The verb спрашивать (ask) with друг друга (each other) requires the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Не плачьте об умершем и не скорбите о ___.",
-      "lemma": "он",
-      "options": [
-        "нем",
-        "его",
-        "ним",
-        "него"
-      ],
-      "correct": "нем",
-      "case": "Предложный (Prepositional)",
-      "translation": "Don't weep for the dead, don't bemoan him.",
-      "explain": "The preposition о (about) requires the prepositional case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Горе тому, кто не дает работникам ___ за их работу.",
-      "lemma": "плата",
-      "options": [
-        "плата",
-        "платы",
-        "плату",
-        "платой"
-      ],
-      "correct": "плату",
-      "case": "Винительный (Accusative)",
-      "translation": "Woe to him who does not give workers payment for their work.",
-      "explain": "The verb дает (gives) is transitive and requires the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Иди ко дворцу царя Иудеи и возвести там, слушай слово Господне, царь Иудеи, сидящий на престоле Давида.",
-      "question": "Where is Jeremiah commanded to go and deliver God's message?",
-      "options": [
-        "To the palace of the king of Judah",
-        "To the temple in Jerusalem",
-        "To the city gates",
-        "To the border with Babylon"
-      ],
-      "correct": "To the palace of the king of Judah",
-      "explain": "God tells Jeremiah: 'Go down to the house of the king of Judah, and speak this word there.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Делайте то, что справедливо и праведно, помогайте обездоленному спастись от рук притеснителя, не обижайте и не притесняйте чужеземцев, сирот и вдов, и не проливайте в этом краю невинной крови.",
-      "question": "What is God's command regarding justice and treatment of vulnerable people?",
-      "options": [
-        "Execute justice, rescue the oppressed, protect foreigners, orphans, and widows, and don't shed innocent blood",
-        "Gather wealth and build fortifications",
-        "Prepare for war",
-        "Establish trade agreements"
-      ],
-      "correct": "Execute justice, rescue the oppressed, protect foreigners, orphans, and widows, and don't shed innocent blood",
-      "explain": "The text explicitly commands: 'Execute justice and righteousness, and deliver him who is robbed...Do no wrong. Do no violence to the foreigner, the fatherless, or the widow.'"
-    },
-    {
-      "id": "r3",
-      "ru": "Если вы будете точно исполнять эти повеления, то через ворота этого дворца на колесницах и на конях будут въезжать цари, которые сидят на престоле Давида.",
-      "question": "What blessing does God promise if the people obey His commands?",
-      "options": [
-        "Kings will enter the palace on chariots and horses, sitting on David's throne",
-        "The kingdom will expand to all nations",
-        "Peace will last forever",
-        "They will become wealthy beyond measure"
-      ],
-      "correct": "Kings will enter the palace on chariots and horses, sitting on David's throne",
-      "explain": "God says: 'For if you do this thing indeed, then kings sitting on David's throne will enter in by the gates of this house, riding in chariots and on horses.'"
-    },
-    {
-      "id": "r4",
-      "ru": "Но если вы не будете исполнять эти повеления, возвещает Господь, то, клянусь собой, этот дворец превратится в руины.",
-      "question": "What consequence awaits if the people do not obey?",
-      "options": [
-        "The palace will become a desolation",
-        "They will serve the king well",
-        "They will gain great power",
-        "The city will prosper"
-      ],
-      "correct": "The palace will become a desolation",
-      "explain": "God says: 'But if you will not hear these words, I swear by myself, that this house will become a desolation.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Вспомни своего отца. Он и ел, и пил, но делал то, что правильно и справедливо, и поэтому жил в благополучии.",
-      "question": "What example does God give from the previous king's reign?",
-      "options": [
-        "He ate and drank but did what was right and just, and therefore prospered",
-        "He built great fortifications",
-        "He conquered neighboring lands",
-        "He made alliances with Egypt"
-      ],
-      "correct": "He ate and drank but did what was right and just, and therefore prospered",
-      "explain": "God recalls: 'Your father ate and drank, and did justice and righteousness. Then it was well with him.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Но твои глаза и твое сердце хотят лишь наживы, хотят проливать невинную кровь, угнетать, вымогать.",
-      "question": "What are the accusations against the current king's character?",
-      "options": [
-        "His eyes and heart desire only gain, innocent blood, oppression, and extortion",
-        "His desire is to serve justly",
-        "His intention is to honor his father",
-        "His goal is to protect the kingdom"
-      ],
-      "correct": "His eyes and heart desire only gain, innocent blood, oppression, and extortion",
-      "explain": "The text states: 'But your eyes and your heart are only for your covetousness, for shedding innocent blood, for oppression, and for doing violence.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Люди ___ будут проходить мимо этого города и спрашивать друг друга: «За что Господь поступил так с этим великим городом?»",
+   "lemma": "народ",
+   "options": [
+    "разными народами",
+    "разных народов",
+    "разным народам",
+    "разных народах"
+   ],
+   "correct": "разных народов",
+   "case": "Родительный (Genitive)",
+   "explain": "«разных народов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "“Many nations will pass by this city, and they will each ask his neighbor, ‘Why has Yahweh done this to this great city?’"
+  },
+  {
+   "sentence": "Люди разных народов будут проходить мимо этого города и спрашивать друг друга: «За что Господь поступил так с этим ___?»",
+   "lemma": "город",
+   "options": [
+    "великому городу",
+    "великий город",
+    "великим городом",
+    "великого города"
+   ],
+   "correct": "великим городом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«великим городом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c2",
+   "translation": "“Many nations will pass by this city, and they will each ask his neighbor, ‘Why has Yahweh done this to this great city?’"
+  },
+  {
+   "sentence": "И будут отвечать: «За то, что они нарушили завет Господа, их Бога, и поклонялись ___, и служили им».",
+   "lemma": "бог",
+   "options": [
+    "чужих богов",
+    "чужими богами",
+    "чужим богам",
+    "чужих богах"
+   ],
+   "correct": "чужим богам",
+   "case": "Дательный (Dative)",
+   "explain": "«чужим богам» — the dative marks the indirect object or recipient.",
+   "id": "c3",
+   "translation": "Then they will answer, ‘Because they abandoned the covenant of Yahweh their God, worshiped other gods, and served them.’ ”"
+  }
+ ]
 }

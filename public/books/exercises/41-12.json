@@ -1,154 +1,109 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "«___, который отвергли строители, стал краеугольным».",
-      "lemma": "камень",
-      "options": ["камень", "камня", "камню", "камнем"],
-      "correct": "камень",
-      "case": "Именительный (Nominative)",
-      "translation": "\"The stone which the builders rejected has become the cornerstone.\"",
-      "explain": "Камень is the subject of стал (became), so it stands in the nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Они хотели арестовать его, но побоялись ___.",
-      "lemma": "народ",
-      "options": ["народ", "народа", "народу", "народом"],
-      "correct": "народа",
-      "case": "Родительный (Genitive)",
-      "translation": "They wanted to arrest him, but they feared the crowd.",
-      "explain": "The verb бояться (to fear) governs the genitive → народа."
-    },
-    {
-      "id": "c3",
-      "sentence": "Он послал слугу к ___, чтобы тот забрал у них причитающуюся ему часть урожая.",
-      "lemma": "виноградари",
-      "options": ["виноградари", "виноградарей", "виноградарям", "виноградарями"],
-      "correct": "виноградарям",
-      "case": "Дательный (Dative)",
-      "translation": "He sent a servant to the tenants to collect his share of the harvest from them.",
-      "explain": "К (to) always takes the dative → виноградарям."
-    },
-    {
-      "id": "c4",
-      "sentence": "Один человек посадил ___, обнес его забором, выкопал яму для давильни и построил сторожевую башню.",
-      "lemma": "виноградник",
-      "options": ["виноградник", "виноградника", "винограднику", "виноградником"],
-      "correct": "виноградник",
-      "case": "Винительный (Accusative)",
-      "translation": "A man planted a vineyard, put a hedge around it, dug a pit for the winepress and built a watchtower.",
-      "explain": "Виноградник is the direct object of посадил (planted); it is inanimate, so the accusative matches the nominative."
-    },
-    {
-      "id": "c5",
-      "sentence": "И он стал говорить с ними ___.",
-      "lemma": "притчи",
-      "options": ["притчи", "притч", "притчам", "притчами"],
-      "correct": "притчами",
-      "case": "Творительный (Instrumental)",
-      "translation": "And he began to speak to them in parables.",
-      "explain": "Говорить притчами (to speak in parables) uses the instrumental of means → притчами."
-    },
-    {
-      "id": "c6",
-      "sentence": "А о том, что мертвые воскресают, разве вы не читали в ___ Моисея, в том месте, где говорится о кусте?",
-      "lemma": "книга",
-      "options": ["книга", "книги", "книге", "книгой"],
-      "correct": "книге",
-      "case": "Предложный (Prepositional)",
-      "translation": "But about the dead being raised, haven't you read in the book of Moses, in the passage about the bush?",
-      "explain": "В (in) marking a static location takes the prepositional → книге."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Один человек посадил виноградник, обнес его забором, выкопал яму для давильни и построил сторожевую башню.",
-      "question": "What did the man do to prepare his vineyard, according to the parable?",
-      "options": ["He fenced it, dug a winepress pit, and built a watchtower", "He sold it immediately to strangers", "He burned it down", "He gave it to the poor"],
-      "correct": "He fenced it, dug a winepress pit, and built a watchtower",
-      "explain": "The man planted the vineyard, put a hedge around it, dug a winepress pit, and built a watchtower."
-    },
-    {
-      "id": "r2",
-      "ru": "Но виноградари сказали друг другу. «Это наследник. Давайте убьем его, и наследство будет нашим».",
-      "question": "What did the tenants plan to do when the owner's son arrived?",
-      "options": ["Kill him to seize the inheritance", "Welcome him as their new master", "Pay him the full harvest", "Flee the vineyard"],
-      "correct": "Kill him to seize the inheritance",
-      "explain": "The tenants agreed to kill the heir so the inheritance would be theirs."
-    },
-    {
-      "id": "r3",
-      "ru": "Камень, который отвергли строители, стал краеугольным.",
-      "question": "What does Jesus say happened to the stone the builders rejected?",
-      "options": ["It became the cornerstone", "It was thrown into the sea", "It was used to build a tower", "It was ground into dust"],
-      "correct": "It became the cornerstone",
-      "explain": "Quoting Scripture, Jesus says the rejected stone became the cornerstone."
-    },
-    {
-      "id": "r4",
-      "ru": "Следует ли платить налог кесарю или нет? Платить нам или не платить?»",
-      "question": "What trick question did the Pharisees and Herodians ask Jesus about taxes?",
-      "options": ["Whether it is right to pay taxes to Caesar", "Whether Caesar should pay taxes to the temple", "Whether taxes should be abolished", "Whether the poor should be exempt from taxes"],
-      "correct": "Whether it is right to pay taxes to Caesar",
-      "explain": "They asked Jesus whether it is lawful to pay taxes to Caesar, hoping to trap him."
-    },
-    {
-      "id": "r5",
-      "ru": "«Отдавайте Кесарева Кесарю, а Божие — Богу», — сказал Иисус.",
-      "question": "How did Jesus answer the question about paying taxes?",
-      "options": ["Give to Caesar what is Caesar's, and to God what is God's", "No one should pay any taxes", "All money belongs to the temple", "Taxes should be paid only in grain"],
-      "correct": "Give to Caesar what is Caesar's, and to God what is God's",
-      "explain": "Jesus answered, \"Give back to Caesar what is Caesar's, and to God what is God's.\""
-    },
-    {
-      "id": "r6",
-      "ru": "Воскресшие из мертвых не будут ни жениться, ни выходить замуж, а будут как ангелы на небесах.",
-      "question": "What does Jesus say about those raised from the dead?",
-      "options": ["They will be like the angels in heaven and not marry", "They will marry the same spouse again", "They will become children again", "They will remain exactly as they were"],
-      "correct": "They will be like the angels in heaven and not marry",
-      "explain": "Jesus told the Sadducees that the risen dead will neither marry nor be given in marriage, but will be like the angels in heaven."
-    },
-    {
-      "id": "r7",
-      "ru": "«Люби Господа Бога твоего всем сердцем твоим и всей душой твоей, всем разумом твоим и всеми силами твоими».",
-      "question": "What did Jesus name as the most important commandment?",
-      "options": ["To love the Lord your God with all your heart, soul, mind and strength", "To honor your father and mother", "To keep the Sabbath holy", "To give generously to the poor"],
-      "correct": "To love the Lord your God with all your heart, soul, mind and strength",
-      "explain": "Jesus named loving God with all one's heart, soul, mind and strength as the greatest commandment."
-    },
-    {
-      "id": "r8",
-      "ru": "Вторая заповедь «Люби ближнего твоего, как самого себя».",
-      "question": "What is the second greatest commandment, according to Jesus?",
-      "options": ["Love your neighbor as yourself", "Do not steal from your neighbor", "Honor the priests", "Fast twice a week"],
-      "correct": "Love your neighbor as yourself",
-      "explain": "The second commandment Jesus names is to love your neighbor as yourself."
-    },
-    {
-      "id": "r9",
-      "ru": "Ведь сам Давид сказал, вдохновляемый Святым Духом, «Сказал Господь Господу моему, сядь по правую руку от меня, пока я не повергну врагов твоих к ногам твоим».",
-      "question": "What point does Jesus make by quoting David's words about the Lord?",
-      "options": ["David himself called the Christ \"Lord\", raising the question of how he can be David's son", "David predicted the destruction of the temple", "David wrote all of the Psalms about Solomon", "David refused to acknowledge any messiah"],
-      "correct": "David himself called the Christ \"Lord\", raising the question of how he can be David's son",
-      "explain": "Since David himself calls him Lord, Jesus asks how the Christ can also be David's son."
-    },
-    {
-      "id": "r10",
-      "ru": "Они разоряют дома вдов и на показ долго молятся. Таких ждет очень суровое наказание.",
-      "question": "What does Jesus warn about the teachers of the law who devour widows' houses?",
-      "options": ["They will receive a very severe punishment", "They will be rewarded for their piety", "They will be made high priests", "They will be forgiven immediately"],
-      "correct": "They will receive a very severe punishment",
-      "explain": "Jesus warns that such men, who devour widows' houses and make a show of long prayers, will receive very severe punishment."
-    },
-    {
-      "id": "r11",
-      "ru": "Но вот подошла бедная вдова и бросила две медные монетки.",
-      "question": "What did the poor widow put into the temple treasury?",
-      "options": ["Two small copper coins", "A gold ring", "A large sum of silver", "Nothing at all"],
-      "correct": "Two small copper coins",
-      "explain": "The poor widow came and put in two small copper coins."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Тогда хозяин послал к ним ___; но они разбили ему голову и издевались над ним.",
+   "lemma": "слуга",
+   "options": [
+    "другого слугу",
+    "другом слуге",
+    "другому слуге",
+    "другого слуги"
+   ],
+   "correct": "другого слугу",
+   "case": "Винительный (Accusative)",
+   "explain": "«другого слугу» — the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "Again, he sent another servant to them; and they threw stones at him, wounded him in the head, and sent him away shamefully treated."
+  },
+  {
+   "sentence": "В конце концов у хозяина остался только его единственный ___.",
+   "lemma": "сын",
+   "options": [
+    "любимого сына",
+    "любимый сын",
+    "любимом сыне",
+    "любимому сыну"
+   ],
+   "correct": "любимый сын",
+   "case": "Именительный (Nominative)",
+   "explain": "«любимый сын» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "Therefore still having one, his beloved son, he sent him last to them, saying, ‘They will respect my son.’"
+  },
+  {
+   "sentence": "Моисей написал, что если ___ умрет, не оставив детей, то его брат должен жениться на вдове и восстановить сына своему брату .",
+   "lemma": "мужчина",
+   "options": [
+    "женатого мужчину",
+    "женатый мужчина",
+    "женатым мужчиной",
+    "женатом мужчине"
+   ],
+   "correct": "женатый мужчина",
+   "case": "Именительный (Nominative)",
+   "explain": "«женатый мужчина» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "“Teacher, Moses wrote to us, ‘If a man’s brother dies, and leaves a wife behind him, and leaves no children, that his brother should take his wife, and raise up offspring for his brother.’"
+  },
+  {
+   "sentence": "Они сидят на самых почетных местах в синагогах и на ___.",
+   "lemma": "обед",
+   "options": [
+    "зваными обедами",
+    "званых обедов",
+    "званые обеды",
+    "званых обедах"
+   ],
+   "correct": "званых обедах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«званых обедах» — after the preposition «на», for location or topic.",
+   "id": "c4",
+   "translation": "and the best seats in the synagogues, and the best places at feasts:"
+  },
+  {
+   "sentence": "Таких ждет очень ___.",
+   "lemma": "наказание",
+   "options": [
+    "суровому наказанию",
+    "суровым наказанием",
+    "сурового наказания",
+    "суровое наказание"
+   ],
+   "correct": "суровое наказание",
+   "case": "Именительный (Nominative)",
+   "explain": "«суровое наказание» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "those who devour widows’ houses, and for a pretense make long prayers. These will receive greater condemnation.”"
+  },
+  {
+   "sentence": "___ бросали помногу.",
+   "lemma": "богач",
+   "options": [
+    "многих богачах",
+    "многим богачам",
+    "многие богачи",
+    "многих богачей"
+   ],
+   "correct": "многие богачи",
+   "case": "Именительный (Nominative)",
+   "explain": "«Многие богачи» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "Jesus sat down opposite the treasury, and saw how the multitude cast money into the treasury. Many who were rich cast in much."
+  },
+  {
+   "sentence": "Но вот подошла ___ и бросила всего две мелкие монеты .",
+   "lemma": "вдова",
+   "options": [
+    "бедной вдовой",
+    "бедной вдовы",
+    "бедной вдове",
+    "бедная вдова"
+   ],
+   "correct": "бедная вдова",
+   "case": "Именительный (Nominative)",
+   "explain": "«бедная вдова» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "A poor widow came, and she cast in two small brass coins, which equal a quadrans coin."
+  }
+ ]
 }

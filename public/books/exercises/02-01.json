@@ -1,134 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Он сказал своему ___.",
-      "lemma": "народ",
-      "options": ["народ", "народа", "народу", "народом"],
-      "correct": "народу",
-      "case": "Дательный (Dative)",
-      "translation": "He said to his people.",
-      "explain": "The verb сказать takes an indirect object in the dative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Они выступят против нас и покинут ___.",
-      "lemma": "страна",
-      "options": ["страна", "страны", "стране", "страну"],
-      "correct": "страну",
-      "case": "Винительный (Accusative)",
-      "translation": "They will fight against us and leave the country.",
-      "explain": "The transitive verb покинуть takes a direct object in the accusative."
-    },
-    {
-      "id": "c3",
-      "sentence": "Надсмотрщиков поставили, чтобы изнурять их под невольным ___.",
-      "lemma": "труд",
-      "options": ["труд", "труда", "труду", "трудом"],
-      "correct": "трудом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Taskmasters were set to afflict them with forced labor.",
-      "explain": "The preposition под indicating a condition takes the instrumental case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Они построили Питом и Рамсес, города для ___ припасов.",
-      "lemma": "хранение",
-      "options": ["хранение", "хранения", "хранению", "хранением"],
-      "correct": "хранения",
-      "case": "Родительный (Genitive)",
-      "translation": "They built Pithom and Raamses, cities for the storage of supplies.",
-      "explain": "The preposition для governs the genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Они пришли в Египет каждый со своей ___.",
-      "lemma": "семья",
-      "options": ["семья", "семьи", "семье", "семьёй"],
-      "correct": "семьёй",
-      "case": "Творительный (Instrumental)",
-      "translation": "They came into Egypt, each with his family.",
-      "explain": "The preposition с in the sense of 'together with' governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Следите за ними на родильном ___.",
-      "lemma": "стул",
-      "options": ["стул", "стула", "стулу", "стуле"],
-      "correct": "стуле",
-      "case": "Предложный (Prepositional)",
-      "translation": "Watch them on the birth stool.",
-      "explain": "The preposition на indicating location takes the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Но повитухи боялись ___ и не исполняли приказ.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Бога",
-      "case": "Родительный (Genitive)",
-      "translation": "But the midwives feared God and did not carry out the order.",
-      "explain": "The verb бояться (to fear) governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Каждого мальчика бросайте в ___ Нил.",
-      "lemma": "река",
-      "options": ["река", "реки", "реке", "реку"],
-      "correct": "реку",
-      "case": "Винительный (Accusative)",
-      "translation": "Throw every boy into the river Nile.",
-      "explain": "The preposition в indicating direction takes the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Прошло время, и к власти в Египте пришел новый царь, который не знал про Иосифа.",
-      "question": "What was notable about the new king of Egypt?",
-      "options": ["He did not know Joseph", "He was a brother of Joseph", "He freed the Israelites", "He was very old"],
-      "correct": "He did not know Joseph",
-      "explain": "The text describes the new king as one 'который не знал про Иосифа' (who did not know Joseph)."
-    },
-    {
-      "id": "r2",
-      "ru": "Египтяне поставили над израилетянами надсмотрщиков, чтобы изнурять их под невольным трудом, и те построили фараону Питом и Рамсес, города для хранения припасов.",
-      "question": "What did the Israelites build for Pharaoh?",
-      "options": ["The storage cities Pithom and Raamses", "A great temple", "The pyramids", "A palace in Goshen"],
-      "correct": "The storage cities Pithom and Raamses",
-      "explain": "The text says they built 'Питом и Рамсес, города для хранения припасов' (Pithom and Raamses, storage cities)."
-    },
-    {
-      "id": "r3",
-      "ru": "Царь Египта сказал еврейским повитухам, которых звали Шифра и Пуа.",
-      "question": "What were the names of the two Hebrew midwives?",
-      "options": ["Shiphrah and Puah", "Sarah and Rebekah", "Leah and Rachel", "Miriam and Zipporah"],
-      "correct": "Shiphrah and Puah",
-      "explain": "The text names the midwives 'Шифра и Пуа' (Shiphrah and Puah)."
-    },
-    {
-      "id": "r4",
-      "ru": "Но повитухи боялись Бога и не исполняли приказ египетского царя.",
-      "question": "Why did the midwives not carry out the king's order?",
-      "options": ["Because they feared God", "Because they were lazy", "Because they loved Pharaoh", "Because they were afraid of the mothers"],
-      "correct": "Because they feared God",
-      "explain": "The text says 'повитухи боялись Бога' (the midwives feared God) and did not obey."
-    },
-    {
-      "id": "r5",
-      "ru": "За то, что поветухи боялись Бога, он даровал им в награду семьи и детей.",
-      "question": "What did God give the midwives as a reward?",
-      "options": ["Families and children", "Gold and silver", "Land in Goshen", "Their freedom"],
-      "correct": "Families and children",
-      "explain": "The text says God gave them 'в награду семьи и детей' (families and children as a reward)."
-    },
-    {
-      "id": "r6",
-      "ru": "Каждого мальчика, который рождается у евреев, бросайте в реку Нил, а девочек оставляйте в живых.",
-      "question": "What did Pharaoh command concerning newborn boys?",
-      "options": ["To throw them into the Nile River", "To raise them in the palace", "To send them to Goshen", "To make them slaves"],
-      "correct": "To throw them into the Nile River",
-      "explain": "Pharaoh commands that every boy be thrown 'в реку Нил' (into the river Nile) while girls are kept alive."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Египтяне поставили над израильтянами надсмотрщиков, чтобы изнурять их ___, и те построили фараону Питом и Раамсес, города для хранения припасов.",
+   "lemma": "труд",
+   "options": [
+    "подневольному труду",
+    "подневольным трудом",
+    "подневольного труда",
+    "подневольный труд"
+   ],
+   "correct": "подневольным трудом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«подневольным трудом» — the instrumental marks the means, company, or complement.",
+   "id": "c1",
+   "translation": "Therefore they set taskmasters over them to afflict them with their burdens. They built storage cities for Pharaoh: Pithom and Raamses."
+  },
+  {
+   "sentence": "Царь Египта сказал ___, которых звали Шифра и Пуа:",
+   "lemma": "повитуха",
+   "options": [
+    "еврейские повитухи",
+    "еврейским повитухам",
+    "еврейских повитухах",
+    "еврейскими повитухами"
+   ],
+   "correct": "еврейским повитухам",
+   "case": "Дательный (Dative)",
+   "explain": "«еврейским повитухам» — the dative marks the indirect object or recipient.",
+   "id": "c2",
+   "translation": "The king of Egypt spoke to the Hebrew midwives, of whom the name of the one was Shiphrah, and the name of the other Puah,"
+  },
+  {
+   "sentence": "— Когда вы будете принимать роды у ___, то следите за ними на родильном стуле: если родится мальчик — убивайте его, а если девочка — оставляйте в живых.",
+   "lemma": "женщина",
+   "options": [
+    "еврейскими женщинами",
+    "еврейских женщинах",
+    "еврейским женщинам",
+    "еврейских женщин"
+   ],
+   "correct": "еврейских женщин",
+   "case": "Родительный (Genitive)",
+   "explain": "«еврейских женщин» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "and he said, “When you perform the duty of a midwife to the Hebrew women, and see them on the birth stool, if it is a son, then you shall kill him; but if it is a daughter, then she shall live.”"
+  },
+  {
+   "sentence": "— Когда вы будете принимать роды у еврейских женщин, то следите за ними на ___: если родится мальчик — убивайте его, а если девочка — оставляйте в живых.",
+   "lemma": "стул",
+   "options": [
+    "родильного стула",
+    "родильный стул",
+    "родильном стуле",
+    "родильному стулу"
+   ],
+   "correct": "родильном стуле",
+   "case": "Предложный (Prepositional)",
+   "explain": "«родильном стуле» — after the preposition «на», for location or topic.",
+   "id": "c4",
+   "translation": "and he said, “When you perform the duty of a midwife to the Hebrew women, and see them on the birth stool, if it is a son, then you shall kill him; but if it is a daughter, then she shall live.”"
+  },
+  {
+   "sentence": "Но повитухи боялись Бога и не исполняли приказ ___.",
+   "lemma": "царь",
+   "options": [
+    "египетском царе",
+    "египетскому царю",
+    "египетского царя",
+    "египетским царём"
+   ],
+   "correct": "египетского царя",
+   "case": "Родительный (Genitive)",
+   "explain": "«египетского царя» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "But the midwives feared God, and didn’t do what the king of Egypt commanded them, but saved the baby boys alive."
+  }
+ ]
 }

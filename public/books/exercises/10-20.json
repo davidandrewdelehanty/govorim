@@ -1,204 +1,109 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Один смутьян по имени Шева поднял ___.",
-      "lemma": "рог",
-      "options": [
-        "рог",
-        "рога",
-        "рогу",
-        "рогом"
-      ],
-      "correct": "рог",
-      "case": "Винительный (Accusative)",
-      "translation": "A troublemaker named Sheba blew the trumpet.",
-      "explain": "The transitive verb затрубил takes the accusative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Все израилетяне оставили Давида, чтобы последовать за ___.",
-      "lemma": "Шева",
-      "options": [
-        "Шева",
-        "Шевы",
-        "Шеве",
-        "Шевой"
-      ],
-      "correct": "Шевой",
-      "case": "Творительный (Instrumental)",
-      "translation": "All the men of Israel left David to follow Sheba.",
-      "explain": "The preposition за (after) governs the instrumental case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Иудеи остались верны своему ___.",
-      "lemma": "царь",
-      "options": [
-        "царь",
-        "царя",
-        "царю",
-        "царём"
-      ],
-      "correct": "царю",
-      "case": "Дательный (Dative)",
-      "translation": "The men of Judah remained loyal to their king.",
-      "explain": "The adjective верны (loyal) takes the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Давид поместил их в доме под ___.",
-      "lemma": "стража",
-      "options": [
-        "стража",
-        "стражи",
-        "страже",
-        "стражей"
-      ],
-      "correct": "стражей",
-      "case": "Родительный (Genitive)",
-      "translation": "David put them in custody.",
-      "explain": "The preposition под (under) with straza (guard) takes genitive."
-    },
-    {
-      "id": "c5",
-      "sentence": "Амаса вышел им навстречу у большой скалы в ___.",
-      "lemma": "Гаваон",
-      "options": [
-        "Гаваон",
-        "Гаваона",
-        "Гаваону",
-        "Гаваоне"
-      ],
-      "correct": "Гаваоне",
-      "case": "Предложный (Prepositional)",
-      "translation": "Amasa came to meet them at the great stone in Gibeon.",
-      "explain": "The preposition в (in) with location takes prepositional case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Иаав вонзил меч ему в ___.",
-      "lemma": "живот",
-      "options": [
-        "живот",
-        "живота",
-        "животу",
-        "животом"
-      ],
-      "correct": "живот",
-      "case": "Винительный (Accusative)",
-      "translation": "Joab stabbed him in the belly.",
-      "explain": "The preposition в (into) with motion takes the accusative."
-    },
-    {
-      "id": "c7",
-      "sentence": "Мудрая женщина крикнула со стены ___.",
-      "lemma": "город",
-      "options": [
-        "город",
-        "города",
-        "городу",
-        "городе"
-      ],
-      "correct": "города",
-      "case": "Родительный (Genitive)",
-      "translation": "A wise woman cried out from the wall of the city.",
-      "explain": "The preposition со (from) governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Его голова будет брошена тебе со ___.",
-      "lemma": "стена",
-      "options": [
-        "стена",
-        "стены",
-        "стене",
-        "стеной"
-      ],
-      "correct": "стены",
-      "case": "Родительный (Genitive)",
-      "translation": "His head will be thrown to you from the wall.",
-      "explain": "The preposition со (from) governs the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Случайно там оказался один смутьян по имени Шева, сын Бихри.",
-      "question": "Who was Sheba?",
-      "options": [
-        "A troublemaker, son of Bichri",
-        "A loyal commander",
-        "A priest from Judah",
-        "A servant of David"
-      ],
-      "correct": "A troublemaker, son of Bichri",
-      "explain": "The text identifies him as: 'один смутьян по имени Шева, сын Бихри.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Но иудеи остались верны своему царю и последовали за ним от Иордана в Иерусалим.",
-      "question": "What did the men of Judah do?",
-      "options": [
-        "Remained loyal to their king",
-        "Followed Sheba",
-        "Returned to their homes",
-        "Fought against David"
-      ],
-      "correct": "Remained loyal to their king",
-      "explain": "The text states: 'иудеи остались верны своему царю и последовали за ним.'"
-    },
-    {
-      "id": "r3",
-      "ru": "Когда Амаса был оттащен с дороги, весь народ пошел за Иавом.",
-      "question": "What happened after Amasa was moved?",
-      "options": [
-        "All the people went after Joab",
-        "They stopped to mourn",
-        "They fled the area",
-        "They attacked Joab"
-      ],
-      "correct": "All the people went after Joab",
-      "explain": "The text: 'весь народ пошел за Иавом.'"
-    },
-    {
-      "id": "r4",
-      "ru": "Тогда одна мудрая женщина крикнула со стены города.",
-      "question": "Who came to Joab's aid?",
-      "options": [
-        "A wise woman from the city wall",
-        "The king's soldiers",
-        "Priests from Jerusalem",
-        "Servants of Sheba"
-      ],
-      "correct": "A wise woman from the city wall",
-      "explain": "The text: 'одна мудрая женщина крикнула со стены города.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Женщина пошла ко всему народу со своим мудрым советом.",
-      "question": "How did the woman help resolve the conflict?",
-      "options": [
-        "With her wise advice to the people",
-        "By fighting the soldiers",
-        "By hiding Sheba",
-        "By sending a message"
-      ],
-      "correct": "With her wise advice to the people",
-      "explain": "The text: 'Женщина пошла ко всему народу со своим мудрым советом.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Тогда он затрубил в рог, и его люди разошлись от города.",
-      "question": "What did Joab do after the problem was resolved?",
-      "options": [
-        "Blew the trumpet and departed",
-        "Set the city on fire",
-        "Took captives",
-        "Built a monument"
-      ],
-      "correct": "Blew the trumpet and departed",
-      "explain": "The text: 'он затрубил в рог, и его люди разошлись от города.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "И люди Иоава, вместе с керетитами и пелетитами и всеми ___, выступили под началом Авишая.",
+   "lemma": "воин",
+   "options": [
+    "могучие воины",
+    "могучими воинами",
+    "могучих воинах",
+    "могучим воинам"
+   ],
+   "correct": "могучими воинами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«могучими воинами» — the instrumental marks the means, company, or complement.",
+   "id": "c1",
+   "translation": "Joab’s men went out after him, and the Cherethites and the Pelethites, and all the mighty men; and they went out of Jerusalem, to pursue Sheba the son of Bichri."
+  },
+  {
+   "sentence": "Когда они находились у ___ в Гаваоне, Амаса вышел им навстречу.",
+   "lemma": "скала",
+   "options": [
+    "большой скалы",
+    "большая скала",
+    "большой скалой",
+    "большой скале"
+   ],
+   "correct": "большой скалы",
+   "case": "Родительный (Genitive)",
+   "explain": "«большой скалы» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "When they were at the great stone which is in Gibeon, Amasa came to meet them. Joab was clothed in his apparel of war that he had put on, and on it was a sash with a sword fastened on his waist in its sheath; and as he went along it fell out."
+  },
+  {
+   "sentence": "На Иоаве была ___, и он был опоясан ремнем, на котором висел меч в ножнах.",
+   "lemma": "одежда",
+   "options": [
+    "воинской одежды",
+    "воинской одеждой",
+    "воинская одежда",
+    "воинской одежде"
+   ],
+   "correct": "воинская одежда",
+   "case": "Именительный (Nominative)",
+   "explain": "«воинская одежда» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "When they were at the great stone which is in Gibeon, Amasa came to meet them. Joab was clothed in his apparel of war that he had put on, and on it was a sash with a sword fastened on his waist in its sheath; and as he went along it fell out."
+  },
+  {
+   "sentence": "Они насыпали ___ у внешних укреплений города.",
+   "lemma": "вал",
+   "options": [
+    "осадному валу",
+    "осадным валом",
+    "осадный вал",
+    "осадном вале"
+   ],
+   "correct": "осадный вал",
+   "case": "Винительный (Accusative)",
+   "explain": "«осадный вал» — the accusative marks the direct object of the verb.",
+   "id": "c4",
+   "translation": "They came and besieged him in Abel of Beth Maacah, and they cast up a mound against the city, and it stood against the rampart; and all the people who were with Joab battered the wall, to throw it down."
+  },
+  {
+   "sentence": "Они насыпали осадный вал у ___ города.",
+   "lemma": "укрепление",
+   "options": [
+    "внешними укреплениями",
+    "внешним укреплениям",
+    "внешние укрепления",
+    "внешних укреплений"
+   ],
+   "correct": "внешних укреплений",
+   "case": "Родительный (Genitive)",
+   "explain": "«внешних укреплений» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "They came and besieged him in Abel of Beth Maacah, and they cast up a mound against the city, and it stood against the rampart; and all the people who were with Joab battered the wall, to throw it down."
+  },
+  {
+   "sentence": "Когда они старались разрушить стену, 16 одна ___ крикнула со стены города:",
+   "lemma": "женщина",
+   "options": [
+    "мудрой женщиной",
+    "мудрой женщине",
+    "мудрая женщина",
+    "мудрой женщины"
+   ],
+   "correct": "мудрая женщина",
+   "case": "Именительный (Nominative)",
+   "explain": "«мудрая женщина» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "They came and besieged him in Abel of Beth Maacah, and they cast up a mound against the city, and it stood against the rampart; and all the people who were with Joab battered the wall, to throw it down."
+  },
+  {
+   "sentence": "Женщина пошла ко всему народу со своим ___, и Шеве, сыну Бихри, отрубили голову и бросили ее Иоаву.",
+   "lemma": "совет",
+   "options": [
+    "мудрого совета",
+    "мудрый совет",
+    "мудрым советом",
+    "мудрому совету"
+   ],
+   "correct": "мудрым советом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«мудрым советом» — after the preposition «со», the instrumental marks the means, company, or complement.",
+   "id": "c7",
+   "translation": "Then the woman went to all the people in her wisdom. They cut off the head of Sheba the son of Bichri, and threw it out to Joab. He blew the trumpet, and they were dispersed from the city, every man to his tent. Then Joab returned to Jerusalem to the king."
+  }
+ ]
 }

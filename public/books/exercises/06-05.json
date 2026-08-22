@@ -1,204 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Господь осушил перед израилетянами ___.",
-      "lemma": "Иордан",
-      "options": [
-        "Иордан",
-        "Иордана",
-        "Иордану",
-        "Иордане"
-      ],
-      "correct": "Иордан",
-      "case": "Винительный (Accusative)",
-      "translation": "The Lord dried up the Jordan before the Israelites.",
-      "explain": "The transitive verb осушил takes the accusative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Сопротивляться ___.",
-      "lemma": "израилетянин",
-      "options": [
-        "израилетяне",
-        "израилетян",
-        "израилетянам",
-        "израилетянами"
-      ],
-      "correct": "израилетянам",
-      "case": "Дательный (Dative)",
-      "translation": "To resist the Israelites.",
-      "explain": "The verb сопротивляться (to resist) takes the dative."
-    },
-    {
-      "id": "c3",
-      "sentence": "Сделай каменные ножи и вновь обрезай ___.",
-      "lemma": "израилетянин",
-      "options": [
-        "израилетяне",
-        "израилетян",
-        "израилетянам",
-        "израилетянами"
-      ],
-      "correct": "израилетян",
-      "case": "Винительный (Accusative)",
-      "translation": "Make flint knives and circumcise the Israelites again.",
-      "explain": "The transitive verb обрезай takes the accusative of animate nouns (= genitive form)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Умерли в пустыне после выхода из ___.",
-      "lemma": "Египет",
-      "options": [
-        "Египет",
-        "Египета",
-        "Египту",
-        "Египте"
-      ],
-      "correct": "Египета",
-      "case": "Родительный (Genitive)",
-      "translation": "Died in the wilderness after leaving Egypt.",
-      "explain": "The preposition из (from) governs the genitive."
-    },
-    {
-      "id": "c5",
-      "sentence": "Они не послушались ___.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господом"
-      ],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "They did not obey the Lord.",
-      "explain": "The verb послушались (obeyed) governs the genitive."
-    },
-    {
-      "id": "c6",
-      "sentence": "Они не были обрезаны в ___.",
-      "lemma": "дорога",
-      "options": [
-        "дорога",
-        "дороги",
-        "дорогу",
-        "дороге"
-      ],
-      "correct": "дороге",
-      "case": "Предложный (Prepositional)",
-      "translation": "They had not been circumcised on the journey.",
-      "explain": "The preposition в (in) with location governs the prepositional."
-    },
-    {
-      "id": "c7",
-      "sentence": "Я снял с вас позор ___.",
-      "lemma": "Египет",
-      "options": [
-        "Египет",
-        "Египета",
-        "Египту",
-        "Египте"
-      ],
-      "correct": "Египета",
-      "case": "Родительный (Genitive)",
-      "translation": "I have removed the shame of Egypt from you.",
-      "explain": "The genitive shows possession: 'the shame of Egypt.'"
-    },
-    {
-      "id": "c8",
-      "sentence": "Израилетяне отпраздновали ___.",
-      "lemma": "Пасха",
-      "options": [
-        "Пасха",
-        "Пасхи",
-        "Пасху",
-        "Пасхой"
-      ],
-      "correct": "Пасху",
-      "case": "Винительный (Accusative)",
-      "translation": "The Israelites celebrated Passover.",
-      "explain": "The transitive verb отпраздновали takes the accusative."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Когда аморейские цари и ханаанские цари услышали, что Господь осушил Иордан, их сердца ослабели.",
-      "question": "How did enemy kings react to the Jordan being dried?",
-      "options": [
-        "Their hearts melted and were discouraged",
-        "They prepared to attack",
-        "They retreated to mountains",
-        "They made peace"
-      ],
-      "correct": "Their hearts melted and were discouraged",
-      "explain": "The text: 'их сердца ослабели.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Иисус сделал каменные ножи и обрезал израилетян.",
-      "question": "What did Joshua do with flint knives?",
-      "options": [
-        "Circumcised the Israelites",
-        "Defended the camp",
-        "Cut down trees",
-        "Prepared sacrifices"
-      ],
-      "correct": "Circumcised the Israelites",
-      "explain": "The text: 'Иисус сделал каменные ножи и обрезал израилетян.'"
-    },
-    {
-      "id": "r3",
-      "ru": "Те, кто родился в пустыне, не были обрезаны.",
-      "question": "Who was not circumcised?",
-      "options": [
-        "Those born in the wilderness",
-        "Those who left Egypt",
-        "The priests",
-        "The older generation"
-      ],
-      "correct": "Those born in the wilderness",
-      "explain": "The text: 'Те, кто родился в пустыне, не были обрезаны.'"
-    },
-    {
-      "id": "r4",
-      "ru": "Господь сказал Иисусу, 'Сегодня я снял с вас позор Египта.'",
-      "question": "What did the Lord remove from Israel?",
-      "options": [
-        "The reproach of Egypt",
-        "Their fear of enemies",
-        "Their hunger",
-        "Their sin"
-      ],
-      "correct": "The reproach of Egypt",
-      "explain": "The Lord's words: 'Сегодня я снял с вас позор Египта.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Манна перестала падать когда они ели плоды той земли.",
-      "question": "When did the manna stop falling?",
-      "options": [
-        "When they began eating the fruit of the land",
-        "Forty days after crossing",
-        "At the end of the month",
-        "At Jericho"
-      ],
-      "correct": "When they began eating the fruit of the land",
-      "explain": "The text: 'Манна перестала падать на другой день после того, как они стали есть плоды.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Иисус увидел мужчину, стоящего с обнаженным мечом в руке.",
-      "question": "What did Joshua see near Jericho?",
-      "options": [
-        "A man with a drawn sword",
-        "Enemy soldiers",
-        "Walls falling",
-        "An angel"
-      ],
-      "correct": "A man with a drawn sword",
-      "explain": "The text: 'он увидел перед собой мужчину, стоящего с обнаженным мечом в руке.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Вот почему он сделал это: все, кто вышел из Египта — все мужчины, годные к ___, — умерли в пустыне по пути, после выхода из Египта.",
+   "lemma": "служба",
+   "options": [
+    "воинской службой",
+    "воинская служба",
+    "воинской службы",
+    "воинской службе"
+   ],
+   "correct": "воинской службе",
+   "case": "Дательный (Dative)",
+   "explain": "«воинской службе» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c2",
+   "translation": "This is the reason Joshua circumcised them: all the people who came out of Egypt, who were males, even all the men of war, died in the wilderness along the way, after they came out of Egypt."
+  },
+  {
+   "sentence": "Израильтяне скитались по пустыне сорок лет, пока все мужчины, которые были годны к ___, когда они вышли из Египта, не умерли, потому что они не послушались Господа.",
+   "lemma": "служба",
+   "options": [
+    "воинской службой",
+    "воинская служба",
+    "воинской службы",
+    "воинской службе"
+   ],
+   "correct": "воинской службе",
+   "case": "Дательный (Dative)",
+   "explain": "«воинской службе» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c3",
+   "translation": "For the children of Israel walked forty years in the wilderness until all the nation, even the men of war who came out of Egypt, were consumed, because they didn’t listen to Yahweh’s voice. Yahweh swore to them that he wouldn’t let them see the land which Yahweh swore to their fathers that he would give us, a land flowing with milk and honey."
+  },
+  {
+   "sentence": "Вечером ___ того месяца израильтяне, стоявшие лагерем в Гилгале на равнинах Иерихона, отпраздновали Пасху.",
+   "lemma": "день",
+   "options": [
+    "четырнадцатому дню",
+    "четырнадцатый день",
+    "четырнадцатого дня",
+    "четырнадцатым днём"
+   ],
+   "correct": "четырнадцатого дня",
+   "case": "Родительный (Genitive)",
+   "explain": "«четырнадцатого дня» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "The children of Israel encamped in Gilgal. They kept the Passover on the fourteenth day of the month at evening in the plains of Jericho."
+  },
+  {
+   "sentence": "В день после Пасхи, в тот ___, они ели плоды той земли: пресный хлеб и жареное зерно.",
+   "lemma": "день",
+   "options": [
+    "самым днём",
+    "самый день",
+    "самого дня",
+    "самом дне"
+   ],
+   "correct": "самый день",
+   "case": "Винительный (Accusative)",
+   "explain": "«самый день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c5",
+   "translation": "They ate unleavened cakes and parched grain of the produce of the land on the next day after the Passover, in the same day."
+  },
+  {
+   "sentence": "В день после Пасхи, в тот самый день, они ели плоды той земли: ___ и жареное зерно.",
+   "lemma": "хлеб",
+   "options": [
+    "пресным хлебом",
+    "пресный хлеб",
+    "пресного хлеба",
+    "пресному хлебу"
+   ],
+   "correct": "пресный хлеб",
+   "case": "Винительный (Accusative)",
+   "explain": "«пресный хлеб» — the accusative marks the direct object of the verb.",
+   "id": "c6",
+   "translation": "They ate unleavened cakes and parched grain of the produce of the land on the next day after the Passover, in the same day."
+  },
+  {
+   "sentence": "У израильтян больше не было манны, и в тот год они ели плоды ___.",
+   "lemma": "земля",
+   "options": [
+    "ханаанской землёй",
+    "ханаанской земли",
+    "ханаанская земля",
+    "ханаанской земле"
+   ],
+   "correct": "ханаанской земли",
+   "case": "Родительный (Genitive)",
+   "explain": "«ханаанской земли» — the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "The manna ceased on the next day, after they had eaten of the produce of the land. The children of Israel didn’t have manna any more, but they ate of the fruit of the land of Canaan that year."
+  }
+ ]
 }

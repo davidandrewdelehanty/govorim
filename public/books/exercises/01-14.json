@@ -1,114 +1,34 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Амрафел — ___ Шинара.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царём"],
-      "correct": "царь",
-      "case": "Именительный (Nominative)",
-      "translation": "Amraphel is king of Shinar.",
-      "explain": "Царь is a predicate noun standing in the nominative, matching the subject Амрафел."
-    },
-    {
-      "id": "c2",
-      "sentence": "Авраам преследовал их до Ховы, к северу от ___.",
-      "lemma": "Дамаск",
-      "options": ["Дамаск", "Дамаска", "Дамаску", "Дамаском"],
-      "correct": "Дамаска",
-      "case": "Родительный (Genitive)",
-      "translation": "Abram pursued them to Hobah, north of Damascus.",
-      "explain": "The preposition от governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Царь Содома сказал ___, «Отдай мне моих людей, а добро оставь себе».",
-      "lemma": "Аврам",
-      "options": ["Аврам", "Аврама", "Авраму", "Аврамом"],
-      "correct": "Авраму",
-      "case": "Дательный (Dative)",
-      "translation": "The king of Sodom said to Abram, 'Give me the people, and keep the goods for yourself.'",
-      "explain": "The verb сказал assigns its indirect object, Аврам, the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "В долине Сидим они вступили в ___ против Кедерла Амера, царя Елама.",
-      "lemma": "битва",
-      "options": ["битва", "битвы", "битве", "битву"],
-      "correct": "битву",
-      "case": "Винительный (Accusative)",
-      "translation": "In the valley of Siddim they entered into battle against Chedorlaomer, king of Elam.",
-      "explain": "The preposition в indicating entry into an action takes the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Цари вместе пошли ___ на царя Содома.",
-      "lemma": "война",
-      "options": ["война", "войны", "войне", "войной"],
-      "correct": "войной",
-      "case": "Творительный (Instrumental)",
-      "translation": "The kings together went to war against the king of Sodom.",
-      "explain": "The idiom пойти войной на ('to go to war against') puts война in the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Эти цари объединили силы в ___ Сидим, где теперь соленое море.",
-      "lemma": "долина",
-      "options": ["долина", "долины", "долине", "долину"],
-      "correct": "долине",
-      "case": "Предложный (Prepositional)",
-      "translation": "These kings joined forces in the valley of Siddim, where the Salt Sea now is.",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "В то время Амрафел — царь Шинара, Ариох — царь Еласара, Кедр-Ламер — царь Элама и Тидар — царь Гаима.",
-      "question": "Which four kings made war together?",
-      "options": ["Amraphel, Arioch, Chedorlaomer, and Tidal", "Bera, Birsha, Shinab, and Shemeber", "Melchizedek, Bera, Birsha, and Shinab", "Abram, Lot, Aner, and Eshcol"],
-      "correct": "Amraphel, Arioch, Chedorlaomer, and Tidal",
-      "explain": "The text names these four kings as allies who went to war together."
-    },
-    {
-      "id": "r2",
-      "ru": "Уже 12 лет они были под ластеки Дерлаамейра, но на 13-й год восстали.",
-      "question": "What happened in the thirteenth year?",
-      "options": ["The kings rebelled against Chedorlaomer", "The kings made a treaty", "Abram was born", "Lot separated from Abram"],
-      "correct": "The kings rebelled against Chedorlaomer",
-      "explain": "The text says that after twelve years of servitude, 'на 13-й год восстали' (in the thirteenth year they rebelled)."
-    },
-    {
-      "id": "r3",
-      "ru": "Они забрали также Аврамова племянника Лота, который жил в Содоме, и все его имущество.",
-      "question": "Whom did the four kings capture along with his possessions?",
-      "options": ["Abram's nephew Lot", "Abram's wife Sarai", "Melchizedek", "The king of Sodom"],
-      "correct": "Abram's nephew Lot",
-      "explain": "The text says they took 'Аврамова племянника Лота... и все его имущество' (Abram's nephew Lot and all his possessions)."
-    },
-    {
-      "id": "r4",
-      "ru": "Когда Авраам услышал, что его родственник в плену, он созвал 318 способных к бою мужчин, рожденных в его доме, погнался за четырьмя царями и преследовал их до Дана.",
-      "question": "How many trained men did Abram gather to rescue Lot?",
-      "options": ["318", "100", "50", "1000"],
-      "correct": "318",
-      "explain": "The text says Abram called out '318 способных к бою мужчин' (318 men trained for battle)."
-    },
-    {
-      "id": "r5",
-      "ru": "Мелхиседек, царь Салима, вынес хлеб и вино.",
-      "question": "What did Melchizedek bring out to Abram?",
-      "options": ["Bread and wine", "Gold and silver", "Sheep and goats", "Water and oil"],
-      "correct": "Bread and wine",
-      "explain": "The text says Melchizedek, king of Salem, 'вынес хлеб и вино' (brought out bread and wine)."
-    },
-    {
-      "id": "r6",
-      "ru": "Аврам дал ему от всего десятую часть.",
-      "question": "What did Abram give to Melchizedek?",
-      "options": ["A tenth of everything", "Half of the spoils", "His servants", "Nothing"],
-      "correct": "A tenth of everything",
-      "explain": "The text says Abram 'дал ему от всего десятую часть' (gave him a tenth of everything)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "В долине Сиддим было много ___; когда цари Содома и Гоморры обратились в бегство, многие упали в них, а остальные бежали в горы.",
+   "lemma": "яма",
+   "options": [
+    "смоляных ям",
+    "смоляными ямами",
+    "смоляные ямы",
+    "смоляным ямам"
+   ],
+   "correct": "смоляных ям",
+   "case": "Родительный (Genitive)",
+   "explain": "«смоляных ям» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Now the valley of Siddim was full of tar pits; and the kings of Sodom and Gomorrah fled, and some fell there. Those who remained fled to the hills."
+  },
+  {
+   "sentence": "Аврам жил неподалеку от ___, принадлежавших аморрею Мамре, брату Эшкола и Анера — все они были союзниками Аврама.",
+   "lemma": "дерево",
+   "options": [
+    "великими деревьями",
+    "великих деревьях",
+    "великих деревьев",
+    "великим деревьям"
+   ],
+   "correct": "великих деревьев",
+   "case": "Родительный (Genitive)",
+   "explain": "«великих деревьев» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "One who had escaped came and told Abram, the Hebrew. At that time, he lived by the oaks of Mamre, the Amorite, brother of Eshcol and brother of Aner. They were allies of Abram."
+  }
+ ]
 }

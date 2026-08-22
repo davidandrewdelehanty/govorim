@@ -1,18 +1,33 @@
 {
  "cases": [
   {
-   "sentence": "На ___, на том самом месте, где он упал с древком знамени в руках, лежал князь Андрей Болконский, истекая кровью, и, сам не зная того, стонал тихим, жалостным и детским стоном.",
-   "lemma": "гора",
+   "sentence": "На Праценской горе, на том ___, где он упал с древком знамени в руках, лежал князь Андрей Болконский, истекая кровью, и, сам не зная того, стонал тихим, жалостным и детским стоном.",
+   "lemma": "место",
    "options": [
-    "праценской горой",
-    "праценской горе",
-    "праценская гора",
-    "праценской горе"
+    "самим местом",
+    "самому месту",
+    "самом месте",
+    "само место"
    ],
-   "correct": "праценской горе",
+   "correct": "самом месте",
    "case": "Предложный (Prepositional)",
-   "explain": "«Праценской горе» — after the preposition «на», for location or topic.",
-   "id": "c1",
+   "explain": "«самом месте» — after the preposition «на», for location or topic.",
+   "id": "c2",
+   "translation": "On the Pratzen Heights, where he had fallen with the flagstaff in his hand, lay Prince Andréy Bolkónski bleeding profusely and unconsciously uttering a gentle, piteous, and childlike moan."
+  },
+  {
+   "sentence": "На Праценской горе, на том самом месте, где он упал с древком знамени в руках, лежал князь Андрей Болконский, истекая кровью, и, сам не зная того, стонал тихим, жалостным и ___.",
+   "lemma": "стон",
+   "options": [
+    "детскому стону",
+    "детским стоном",
+    "детского стона",
+    "детский стон"
+   ],
+   "correct": "детским стоном",
+   "case": "Творительный (Instrumental)",
+   "explain": "«детским стоном» — the instrumental marks the means, company, or complement.",
+   "id": "c3",
    "translation": "On the Pratzen Heights, where he had fallen with the flagstaff in his hand, lay Prince Andréy Bolkónski bleeding profusely and unconsciously uttering a gentle, piteous, and childlike moan."
   },
   {
@@ -27,23 +42,8 @@
    "correct": "высокое небо",
    "case": "Именительный (Nominative)",
    "explain": "«высокое небо» — the subject of the sentence stands in the nominative.",
-   "id": "c2",
+   "id": "c4",
    "translation": "“Where is it, that lofty sky that I did not know till now, but saw today?” was his first thought. “And I did not know this suffering either,” he thought. “Yes, I did not know anything, anything at all till now. But where am I?”"
-  },
-  {
-   "sentence": "Бонапарте, объезжая поле сражения, отдавал ___ об усилении батарей, стреляющих по плотине Аугеста, и рассматривал убитых и раненых, оставшихся на поле сражения.",
-   "lemma": "приказание",
-   "options": [
-    "последними приказаниями",
-    "последние приказания",
-    "последним приказаниям",
-    "последние приказания"
-   ],
-   "correct": "последние приказания",
-   "case": "Винительный (Accusative)",
-   "explain": "«последние приказания» — the accusative marks the direct object of the verb.",
-   "id": "c3",
-   "translation": "It was Napoleon accompanied by two aides-de-camp. Bonaparte riding over the battlefield had given final orders to strengthen the batteries firing at the Augesd Dam and was looking at the killed and wounded left on the field."
   },
   {
    "sentence": "— De beaux hommes![388] ___!",
@@ -57,7 +57,7 @@
    "correct": "славный народ",
    "case": "Именительный (Nominative)",
    "explain": "«Славный народ» — the subject of the sentence stands in the nominative.",
-   "id": "c4",
+   "id": "c6",
    "translation": "“Fine men!” remarked Napoleon, looking at a dead Russian grenadier, who, with his face buried in the ground and a blackened nape, lay on his stomach with an already stiffened arm flung wide."
   },
   {
@@ -72,7 +72,7 @@
    "correct": "русского гренадера",
    "case": "Винительный (Accusative)",
    "explain": "«русского гренадера» — the accusative marks the direct object of the verb.",
-   "id": "c5",
+   "id": "c7",
    "translation": "“Fine men!” remarked Napoleon, looking at a dead Russian grenadier, who, with his face buried in the ground and a blackened nape, lay on his stomach with an already stiffened arm flung wide."
   },
   {
@@ -87,22 +87,22 @@
    "correct": "батарейных зарядов",
    "case": "Родительный (Genitive)",
    "explain": "«Батарейных зарядов» — the genitive here marks possession, absence, or quantity.",
-   "id": "c6",
+   "id": "c8",
    "translation": "“The ammunition for the guns in position is exhausted, Your Majesty,” said an adjutant who had come from the batteries that were firing at Augesd."
   },
   {
-   "sentence": "— Поднять этого ___, ce jeune homme, и снести на перевязочный пункт!",
-   "lemma": "человек",
+   "sentence": "— Поднять этого молодого человека, ce jeune homme, и снести на ___!",
+   "lemma": "пункт",
    "options": [
-    "молодого человека",
-    "молодым человеком",
-    "молодого человека",
-    "молодому человеку"
+    "перевязочному пункту",
+    "перевязочным пунктом",
+    "перевязочный пункт",
+    "перевязочного пункта"
    ],
-   "correct": "молодого человека",
+   "correct": "перевязочный пункт",
    "case": "Винительный (Accusative)",
-   "explain": "«молодого человека» — the accusative marks the direct object of the verb.",
-   "id": "c7",
+   "explain": "«перевязочный пункт» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c10",
    "translation": "“Ah! He is alive,” said Napoleon. “Lift this young man up and carry him to the dressing station.”"
   },
   {
@@ -117,7 +117,7 @@
    "correct": "перевязочном пункте",
    "case": "Предложный (Prepositional)",
    "explain": "«перевязочном пункте» — after the preposition «на», for location or topic.",
-   "id": "c8",
+   "id": "c11",
    "translation": "Prince Andréy remembered nothing more: he lost consciousness from the terrible pain of being lifted onto the stretcher, the jolting while being moved, and the probing of his wound at the dressing station. He did not regain consciousness till late in the day, when with other wounded and captured Russian officers he was carried to the hospital. During this transfer he felt a little stronger and was able to look about him and even speak."
   },
   {
@@ -132,7 +132,7 @@
    "correct": "пленными офицерами",
    "case": "Творительный (Instrumental)",
    "explain": "«пленными офицерами» — the instrumental marks the means, company, or complement.",
-   "id": "c9",
+   "id": "c12",
    "translation": "Prince Andréy remembered nothing more: he lost consciousness from the terrible pain of being lifted onto the stretcher, the jolting while being moved, and the probing of his wound at the dressing station. He did not regain consciousness till late in the day, when with other wounded and captured Russian officers he was carried to the hospital. During this transfer he felt a little stronger and was able to look about him and even speak."
   },
   {
@@ -147,8 +147,203 @@
    "correct": "конвойного офицера",
    "case": "Родительный (Genitive)",
    "explain": "«конвойного офицера» — the genitive here marks possession, absence, or quantity.",
-   "id": "c10",
+   "id": "c13",
    "translation": "The first words he heard on coming to his senses were those of a French convoy officer, who said rapidly: “We must halt here: the Emperor will pass here immediately; it will please him to see these gentlemen prisoners.”"
+  },
+  {
+   "sentence": "— Нынче так много пленных, чуть не вся русская армия, что ему, вероятно, это наскучило, — сказал ___.",
+   "lemma": "офицер",
+   "options": [
+    "другой офицер",
+    "другого офицера",
+    "другом офицере",
+    "другим офицером"
+   ],
+   "correct": "другой офицер",
+   "case": "Именительный (Nominative)",
+   "explain": "«другой офицер» — the subject of the sentence stands in the nominative.",
+   "id": "c14",
+   "translation": "“There are so many prisoners today, nearly the whole Russian army, that he is probably tired of them,” said another officer."
+  },
+  {
+   "sentence": "Этот, говорят, командир всей гвардии императора Александра, — сказал первый, указывая на раненого русского офицера в белом ___.",
+   "lemma": "мундир",
+   "options": [
+    "кавалергардский мундир",
+    "кавалергардскому мундиру",
+    "кавалергардском мундире",
+    "кавалергардского мундира"
+   ],
+   "correct": "кавалергардском мундире",
+   "case": "Предложный (Prepositional)",
+   "explain": "«кавалергардском мундире» — after the preposition «в», for location or topic.",
+   "id": "c16",
+   "translation": "“All the same! They say this one is the commander of all the Emperor Alexander’s Guards,” said the first one, indicating a Russian officer in the white uniform of the Horse Guards."
+  },
+  {
+   "sentence": "Болконский узнал князя Репнина, которого он встречал в ___.",
+   "lemma": "свет",
+   "options": [
+    "петербургском свете",
+    "петербургским светом",
+    "петербургского света",
+    "петербургский свет"
+   ],
+   "correct": "петербургском свете",
+   "case": "Предложный (Prepositional)",
+   "explain": "«петербургском свете» — after the preposition «в», for location or topic.",
+   "id": "c17",
+   "translation": "Bolkónski recognized Prince Repnín whom he had met in Petersburg society. Beside him stood a lad of nineteen, also a wounded officer of the Horse Guards."
+  },
+  {
+   "sentence": "Рядом с ним стоял другой, ___, тоже раненый кавалергардский офицер.",
+   "lemma": "мальчик",
+   "options": [
+    "19-ти-летним мальчиком",
+    "19-ти-летнего мальчика",
+    "19-ти-летний мальчик",
+    "19-ти-летнем мальчике"
+   ],
+   "correct": "19-ти-летний мальчик",
+   "case": "Именительный (Nominative)",
+   "explain": "«19-ти-летний мальчик» — the subject of the sentence stands in the nominative.",
+   "id": "c18",
+   "translation": "Bolkónski recognized Prince Repnín whom he had met in Petersburg society. Beside him stood a lad of nineteen, also a wounded officer of the Horse Guards."
+  },
+  {
+   "sentence": "Рядом с ним стоял другой, 19-ти-летний мальчик, тоже раненый ___.",
+   "lemma": "офицер",
+   "options": [
+    "кавалергардскому офицеру",
+    "кавалергардский офицер",
+    "кавалергардском офицере",
+    "кавалергардским офицером"
+   ],
+   "correct": "кавалергардский офицер",
+   "case": "Именительный (Nominative)",
+   "explain": "«кавалергардский офицер» — the subject of the sentence stands in the nominative.",
+   "id": "c19",
+   "translation": "Bolkónski recognized Prince Repnín whom he had met in Petersburg society. Beside him stood a lad of nineteen, also a wounded officer of the Horse Guards."
+  },
+  {
+   "sentence": "— Похвала ___ есть лучшая награда солдату, — сказал Репнин.",
+   "lemma": "полководец",
+   "options": [
+    "великого полководца",
+    "великом полководце",
+    "великий полководец",
+    "великому полководцу"
+   ],
+   "correct": "великого полководца",
+   "case": "Родительный (Genitive)",
+   "explain": "«великого полководца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c20",
+   "translation": "“The praise of a great commander is a soldier’s highest reward,” said Repnín."
+  },
+  {
+   "sentence": "— Кто этот ___ подле вас?",
+   "lemma": "человек",
+   "options": [
+    "молодой человек",
+    "молодому человеку",
+    "молодом человеке",
+    "молодого человека"
+   ],
+   "correct": "молодой человек",
+   "case": "Именительный (Nominative)",
+   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
+   "id": "c21",
+   "translation": "“I bestow it with pleasure,” said Napoleon. “And who is that young man beside you?”"
+  },
+  {
+   "sentence": "— ___, — сказал Наполеон; молодой человек, вы далеко пойдете!",
+   "lemma": "ответ",
+   "options": [
+    "прекрасный ответ",
+    "прекрасного ответа",
+    "прекрасном ответе",
+    "прекрасному ответу"
+   ],
+   "correct": "прекрасный ответ",
+   "case": "Именительный (Nominative)",
+   "explain": "«Прекрасный ответ» — the subject of the sentence stands in the nominative.",
+   "id": "c22",
+   "translation": "“A splendid reply!” said Napoleon. “Young man, you will go far!”"
+  },
+  {
+   "sentence": "— Прекрасный ответ, — сказал Наполеон; ___, вы далеко пойдете!",
+   "lemma": "человек",
+   "options": [
+    "молодой человек",
+    "молодому человеку",
+    "молодом человеке",
+    "молодого человека"
+   ],
+   "correct": "молодой человек",
+   "case": "Именительный (Nominative)",
+   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
+   "id": "c23",
+   "translation": "“A splendid reply!” said Napoleon. “Young man, you will go far!”"
+  },
+  {
+   "sentence": "Наполеон, видимо, вспомнил, что он видел его на поле и, обращаясь к нему, употребил то самое наименование ___ — jeune homme, под которым Болконский в первый раз отразился в его памяти.",
+   "lemma": "человек",
+   "options": [
+    "молодой человек",
+    "молодым человеком",
+    "молодого человека",
+    "молодом человеке"
+   ],
+   "correct": "молодого человека",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодого человека» — the genitive here marks possession, absence, or quantity.",
+   "id": "c24",
+   "translation": "Prince Andréy, who had also been brought forward before the Emperor’s eyes to complete the show of prisoners, could not fail to attract his attention. Napoleon apparently remembered seeing him on the battlefield and, addressing him, again used the epithet “young man” that was connected in his memory with Prince Andréy."
+  },
+  {
+   "sentence": "Ну, a вы, ___?",
+   "lemma": "человек",
+   "options": [
+    "молодой человек",
+    "молодому человеку",
+    "молодом человеке",
+    "молодого человека"
+   ],
+   "correct": "молодой человек",
+   "case": "Именительный (Nominative)",
+   "explain": "«молодой человек» — the subject of the sentence stands in the nominative.",
+   "id": "c26",
+   "translation": "“Well, and you, young man,” said he. “How do you feel, mon brave?”"
+  },
+  {
+   "sentence": "Солдаты, принесшие князя Андрея и снявшие с него попавшийся им ___, навешенный на брата княжною Марьею, увидав ласковость, с которою обращался император с пленными, поспешили возвратить образок.",
+   "lemma": "образок",
+   "options": [
+    "золотому образку",
+    "золотой образок",
+    "золотого образка",
+    "золотом образке"
+   ],
+   "correct": "золотой образок",
+   "case": "Именительный (Nominative)",
+   "explain": "«золотой образок» — the subject of the sentence stands in the nominative.",
+   "id": "c27",
+   "translation": "The soldiers who had carried Prince Andréy had noticed and taken the little gold icon Princess Márya had hung round her brother’s neck, but seeing the favor the Emperor showed the prisoners, they now hastened to return the holy image."
+  },
+  {
+   "sentence": "При каждом толчке он опять чувствовал невыносимую боль; ___ усилилось, и он начинал бредить.",
+   "lemma": "состояние",
+   "options": [
+    "лихорадочным состоянием",
+    "лихорадочном состоянии",
+    "лихорадочного состояния",
+    "лихорадочное состояние"
+   ],
+   "correct": "лихорадочное состояние",
+   "case": "Именительный (Nominative)",
+   "explain": "«лихорадочное состояние» — the subject of the sentence stands in the nominative.",
+   "id": "c29",
+   "translation": "The stretchers moved on. At every jolt he again felt unendurable pain; his feverishness increased and he grew delirious. Visions of his father, wife, sister, and future son, and the tenderness he had felt the night before the battle, the figure of the insignificant little Napoleon, and above all this the lofty sky, formed the chief subjects of his delirious fancies."
   }
  ]
 }

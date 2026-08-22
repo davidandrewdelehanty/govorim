@@ -1,187 +1,229 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "...но ___ не нашел сухого места, чтобы опуститься, и вернулся к Ною в ковчег.",
-      "lemma": "голубь",
-      "options": [
-        "голубь",
-        "голубя",
-        "голубю",
-        "голубем"
-      ],
-      "correct": "голубь",
-      "case": "Именительный (Nominative)",
-      "translation": "...but the dove found no dry place to land, and returned to Noah in the ark.",
-      "explain": "Голубь is the subject of не нашел, so it stands in the nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Спустя семь дней он опять выпустил голубя из ___.",
-      "lemma": "ковчег",
-      "options": [
-        "ковчег",
-        "ковчега",
-        "ковчегу",
-        "ковчегом"
-      ],
-      "correct": "ковчега",
-      "case": "Родительный (Genitive)",
-      "translation": "Seven days later he again sent the dove out of the ark.",
-      "explain": "The preposition из (out of) governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "...но голубь не нашел сухого места, чтобы опуститься, и вернулся к ___ в ковчег.",
-      "lemma": "Ной",
-      "options": [
-        "Ной",
-        "Ноя",
-        "Ною",
-        "Ноем"
-      ],
-      "correct": "Ною",
-      "case": "Дательный (Dative)",
-      "translation": "...but the dove found no dry place to land, and returned to Noah in the ark.",
-      "explain": "The preposition к (to) governs the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Ной протянул руку и взял ___ обратно к себе в ковчег.",
-      "lemma": "голубь",
-      "options": [
-        "голубь",
-        "голубя",
-        "голубю",
-        "голубем"
-      ],
-      "correct": "голубя",
-      "case": "Винительный (Accusative)",
-      "translation": "Noah reached out his hand and took the dove back to himself into the ark.",
-      "explain": "Голубь is animate, so its accusative form (direct object of взял) matches the genitive: голубя."
-    },
-    {
-      "id": "c5",
-      "sentence": "Иной вышел из ковчега вместе со своими сыновьями, с ___ и женами своих сыновей.",
-      "lemma": "жена",
-      "options": [
-        "жена",
-        "жены",
-        "жену",
-        "женой"
-      ],
-      "correct": "женой",
-      "case": "Творительный (Instrumental)",
-      "translation": "Noah came out of the ark together with his sons, his wife, and his sons' wives.",
-      "explain": "The preposition с meaning 'together with' governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Когда вечером голубь вернулся, в ___ у него был свежесорванный масличный лист.",
-      "lemma": "клюв",
-      "options": [
-        "клюв",
-        "клюва",
-        "клюву",
-        "клюве"
-      ],
-      "correct": "клюве",
-      "case": "Предложный (Prepositional)",
-      "translation": "When the dove returned in the evening, there was a freshly plucked olive leaf in its beak.",
-      "explain": "The preposition в expressing location governs the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "И Он послал ветер на землю, и воды стали убывать.",
-      "question": "What did God do to make the floodwaters begin to recede?",
-      "options": [
-        "He sent a wind over the earth",
-        "He sent Noah out of the ark",
-        "He sent a raven to dry the land",
-        "He caused an earthquake"
-      ],
-      "correct": "He sent a wind over the earth",
-      "explain": "The text says 'Он послал ветер на землю, и воды стали убывать' (he sent a wind over the earth, and the waters began to recede)."
-    },
-    {
-      "id": "r2",
-      "ru": "На семнадцатый день седьмого месяца ковчег остановился на Араратских горах.",
-      "question": "Where did the ark come to rest?",
-      "options": [
-        "On the mountains of Ararat",
-        "On the plains of Shinar",
-        "On Mount Sinai",
-        "In the land of Egypt"
-      ],
-      "correct": "On the mountains of Ararat",
-      "explain": "The text says the ark 'остановился на Араратских горах' (came to rest on the mountains of Ararat)."
-    },
-    {
-      "id": "r3",
-      "ru": "Потом Ной выпустил голубя, чтобы увидеть, сошла ли вода с поверхности земли, но голубь не нашел сухого места, чтобы опуститься и вернулся к Ною в ковчег, потому что вода покрывала всю землю.",
-      "question": "Why did the dove return to Noah the first time it was sent out?",
-      "options": [
-        "It found no dry place to land",
-        "It was injured by the raven",
-        "It preferred to stay with Noah",
-        "It brought back an olive leaf"
-      ],
-      "correct": "It found no dry place to land",
-      "explain": "The text says the dove 'не нашел сухого места, чтобы опуститься' (found no dry place to land) because water still covered the earth."
-    },
-    {
-      "id": "r4",
-      "ru": "Когда вечером голубь вернулся, в клюве у него был свежесорванный масличный лист.",
-      "question": "What did the dove bring back in its beak on its second flight?",
-      "options": [
-        "A freshly plucked olive leaf",
-        "A piece of bread",
-        "A twig from the ark",
-        "Nothing at all"
-      ],
-      "correct": "A freshly plucked olive leaf",
-      "explain": "The text says the dove returned with 'свежесорванный масличный лист' (a freshly plucked olive leaf) in its beak."
-    },
-    {
-      "id": "r5",
-      "ru": "Выведи наружу все живые существа, которые с тобой, птиц, зверей и всех присмыкающихся, чтобы они могли расти числом и плодиться, и размножаться на земле».",
-      "question": "What did God command Noah to do with the living creatures in the ark?",
-      "options": [
-        "Bring them out so they could multiply on the earth",
-        "Keep them in the ark forever",
-        "Sacrifice them all at once",
-        "Release only the birds"
-      ],
-      "correct": "Bring them out so they could multiply on the earth",
-      "explain": "God told Noah to bring the creatures out 'чтобы они могли расти числом и плодиться, и размножаться на земле' (so they could increase and multiply on the earth)."
-    },
-    {
-      "id": "r6",
-      "ru": "Ной построил Господу жертвенник и принес на нем жертвы всесожжения из всех видов чистых животных и птиц.",
-      "question": "What was the first thing Noah did after leaving the ark?",
-      "options": [
-        "He built an altar and offered burnt offerings to the Lord",
-        "He planted a vineyard",
-        "He built a tower to the sky",
-        "He sent all the animals away forever"
-      ],
-      "correct": "He built an altar and offered burnt offerings to the Lord",
-      "explain": "The text says Noah 'построил Господу жертвенник и принес на нем жертвы всесожжения' (built an altar to the Lord and offered burnt offerings on it)."
-    },
-    {
-      "id": "r7",
-      "ru": "Пока существует земля, не прекратятся сев и жатва, холод и зной, лето и зима, день и ночь».",
-      "question": "What did God promise would never cease as long as the earth remains?",
-      "options": [
-        "Seedtime and harvest, cold and heat, summer and winter, day and night",
-        "Floods and famine",
-        "War and peace",
-        "Life and death"
-      ],
-      "correct": "Seedtime and harvest, cold and heat, summer and winter, day and night",
-      "explain": "God promises that 'сев и жатва, холод и зной, лето и зима, день и ночь' will never cease while the earth remains."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Вода медленно уходила с земли, и к сто ___ она сильно убыла.",
+   "lemma": "день",
+   "options": [
+    "пятидесятому дню",
+    "пятидесятым днём",
+    "пятидесятом дне",
+    "пятидесятого дня"
+   ],
+   "correct": "пятидесятому дню",
+   "case": "Дательный (Dative)",
+   "explain": "«пятидесятому дню» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c1",
+   "translation": "The waters continually receded from the earth. After the end of one hundred fifty days the waters receded."
+  },
+  {
+   "sentence": "На семнадцатый день ___ ковчег остановился на Араратских горах.",
+   "lemma": "месяц",
+   "options": [
+    "седьмой месяц",
+    "седьмым месяцем",
+    "седьмого месяца",
+    "седьмому месяцу"
+   ],
+   "correct": "седьмого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«седьмого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "The ship rested in the seventh month, on the seventeenth day of the month, on Ararat’s mountains."
+  },
+  {
+   "sentence": "На семнадцатый день седьмого месяца ковчег остановился на ___.",
+   "lemma": "гора",
+   "options": [
+    "араратских гор",
+    "араратскими горами",
+    "араратских горах",
+    "араратским горам"
+   ],
+   "correct": "араратских горах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«Араратских горах» — after the preposition «на», for location or topic.",
+   "id": "c4",
+   "translation": "The ship rested in the seventh month, on the seventeenth day of the month, on Ararat’s mountains."
+  },
+  {
+   "sentence": "Воды продолжали убывать до ___, и в первый день десятого месяца стали видны вершины гор.",
+   "lemma": "месяц",
+   "options": [
+    "десятым месяцем",
+    "десятому месяцу",
+    "десятый месяц",
+    "десятого месяца"
+   ],
+   "correct": "десятого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«десятого месяца» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "The waters receded continually until the tenth month. In the tenth month, on the first day of the month, the tops of the mountains were visible."
+  },
+  {
+   "sentence": "Воды продолжали убывать до ___, и в первый день десятого месяца стали видны вершины гор.",
+   "lemma": "месяц",
+   "options": [
+    "десятым месяцем",
+    "десятому месяцу",
+    "десятый месяц",
+    "десятого месяца"
+   ],
+   "correct": "десятого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«десятого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "The waters receded continually until the tenth month. In the tenth month, on the first day of the month, the tops of the mountains were visible."
+  },
+  {
+   "sentence": "Потом Ной выпустил голубя, чтобы увидеть, сошла ли вода с поверхности земли, 9 но голубь не нашел ___, чтобы опуститься, и вернулся к Ною в ковчег, потому что вода покрывала всю землю.",
+   "lemma": "место",
+   "options": [
+    "сухого места",
+    "сухое место",
+    "сухом месте",
+    "сухому месту"
+   ],
+   "correct": "сухого места",
+   "case": "Родительный (Genitive)",
+   "explain": "«сухого места» — the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "He himself sent out a dove to see if the waters were abated from the surface of the ground,"
+  },
+  {
+   "sentence": "Когда вечером голубь вернулся, в клюве у него был свежесорванный ___.",
+   "lemma": "лист",
+   "options": [
+    "масличного листа",
+    "масличный лист",
+    "масличному листу",
+    "масличным листом"
+   ],
+   "correct": "масличный лист",
+   "case": "Именительный (Nominative)",
+   "explain": "«масличный лист» — the subject of the sentence stands in the nominative.",
+   "id": "c9",
+   "translation": "The dove came back to him at evening and, behold, in her mouth was a freshly plucked olive leaf. So Noah knew that the waters were abated from the earth."
+  },
+  {
+   "sentence": "К ___ первого месяца шестьсот первого года жизни Ноя земля высохла от воды.",
+   "lemma": "день",
+   "options": [
+    "первым днём",
+    "первый день",
+    "первому дню",
+    "первого дня"
+   ],
+   "correct": "первому дню",
+   "case": "Дательный (Dative)",
+   "explain": "«первому дню» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c10",
+   "translation": "In the six hundred first year, in the first month, the first day of the month, the waters were dried up from the earth. Noah removed the covering of the ship, and looked. He saw that the surface of the ground was dry."
+  },
+  {
+   "sentence": "К первому дню первого месяца шестьсот ___ жизни Ноя земля высохла от воды.",
+   "lemma": "год",
+   "options": [
+    "первым годом",
+    "первого года",
+    "первому году",
+    "первом годе"
+   ],
+   "correct": "первого года",
+   "case": "Родительный (Genitive)",
+   "explain": "«первого года» — the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
+   "translation": "In the six hundred first year, in the first month, the first day of the month, the waters were dried up from the earth. Noah removed the covering of the ship, and looked. He saw that the surface of the ground was dry."
+  },
+  {
+   "sentence": "К первому дню первого месяца шестьсот ___ жизни Ноя земля высохла от воды.",
+   "lemma": "год",
+   "options": [
+    "первым годом",
+    "первого года",
+    "первому году",
+    "первом годе"
+   ],
+   "correct": "первого года",
+   "case": "Родительный (Genitive)",
+   "explain": "«первого года» — the genitive here marks possession, absence, or quantity.",
+   "id": "c12",
+   "translation": "In the six hundred first year, in the first month, the first day of the month, the waters were dried up from the earth. Noah removed the covering of the ship, and looked. He saw that the surface of the ground was dry."
+  },
+  {
+   "sentence": "К двадцать ___ второго месяца земля стала совершенно сухой.",
+   "lemma": "день",
+   "options": [
+    "седьмом дне",
+    "седьмой день",
+    "седьмому дню",
+    "седьмым днём"
+   ],
+   "correct": "седьмому дню",
+   "case": "Дательный (Dative)",
+   "explain": "«седьмому дню» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c13",
+   "translation": "In the second month, on the twenty-seventh day of the month, the earth was dry."
+  },
+  {
+   "sentence": "К двадцать седьмому дню ___ земля стала совершенно сухой.",
+   "lemma": "месяц",
+   "options": [
+    "второго месяца",
+    "второй месяц",
+    "втором месяце",
+    "второму месяцу"
+   ],
+   "correct": "второго месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«второго месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c14",
+   "translation": "In the second month, on the twenty-seventh day of the month, the earth was dry."
+  },
+  {
+   "sentence": "Выведи наружу все ___, которые с тобой — птиц, зверей и всех пресмыкающихся, чтобы они могли расти числом, и плодиться, и размножаться на земле.",
+   "lemma": "существо",
+   "options": [
+    "живыми существами",
+    "живых существах",
+    "живые существа",
+    "живым существам"
+   ],
+   "correct": "живые существа",
+   "case": "Именительный (Nominative)",
+   "explain": "«живые существа» — the subject of the sentence stands in the nominative.",
+   "id": "c15",
+   "translation": "Bring out with you every living thing that is with you of all flesh, including birds, livestock, and every creeping thing that creeps on the earth, that they may breed abundantly in the earth, and be fruitful, and multiply on the earth.”"
+  },
+  {
+   "sentence": "Ной построил Господу жертвенник и принес на нем жертву всесожжения из всех видов ___ и птиц.",
+   "lemma": "животное",
+   "options": [
+    "чистым животным",
+    "чистыми животными",
+    "чистых животных",
+    "чистые животные"
+   ],
+   "correct": "чистых животных",
+   "case": "Родительный (Genitive)",
+   "explain": "«чистых животных» — the genitive here marks possession, absence, or quantity.",
+   "id": "c16",
+   "translation": "Noah built an altar to Yahweh, and took of every clean animal, and of every clean bird, and offered burnt offerings on the altar."
+  },
+  {
+   "sentence": "Господь почувствовал ___ и сказал в сердце Своем: «Никогда впредь не стану Я проклинать землю из-за человека, хотя всякое помышление его сердца порочно с детства.",
+   "lemma": "запах",
+   "options": [
+    "приятным запахом",
+    "приятный запах",
+    "приятному запаху",
+    "приятном запахе"
+   ],
+   "correct": "приятный запах",
+   "case": "Винительный (Accusative)",
+   "explain": "«приятный запах» — the accusative marks the direct object of the verb.",
+   "id": "c17",
+   "translation": "Yahweh smelled the pleasant aroma. Yahweh said in his heart, “I will not again curse the ground any more for man’s sake because the imagination of man’s heart is evil from his youth. I will never again strike every living thing, as I have done."
+  }
+ ]
 }

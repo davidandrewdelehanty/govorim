@@ -1,134 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Говори со священниками, сыновьями ___, и скажи им.",
-      "lemma": "Аарон",
-      "options": ["Аарон", "Аарона", "Аарону", "Ааронам"],
-      "correct": "Аарона",
-      "case": "Родительный (Genitive)",
-      "translation": "Speak to the priests, the sons of Aaron, and say to them.",
-      "explain": "The possessive phrase 'sons of Aaron' uses the genitive case to show possession."
-    },
-    {
-      "id": "c2",
-      "sentence": "Священник не должен оскверниться прикосновением к ___.",
-      "lemma": "мертвец",
-      "options": ["мертвец", "мертвца", "мертвцу", "мертвцом"],
-      "correct": "мертвцу",
-      "case": "Дательный (Dative)",
-      "translation": "A priest shall not defile himself by touching a corpse.",
-      "explain": "The preposition к (to, toward) governing contact takes the dative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Священники не могут брить ___ и подстригать края бород.",
-      "lemma": "голова",
-      "options": ["голова", "голову", "головы", "головой"],
-      "correct": "голову",
-      "case": "Винительный (Accusative)",
-      "translation": "Priests shall not shave their heads.",
-      "explain": "The verb брить (to shave) takes the accusative case for its direct object."
-    },
-    {
-      "id": "c4",
-      "sentence": "Пусть они будут святы перед своим ___ и не бесчестят его имени.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Богом",
-      "case": "Творительный (Instrumental)",
-      "translation": "They shall be holy to their God and not profane his name.",
-      "explain": "The preposition перед (before) indicating position and reverence takes the instrumental case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Они приносят Господу огненные жертвы, пищу своему ___, они должны быть святы.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Богу",
-      "case": "Дательный (Dative)",
-      "translation": "They bring to the Lord burnt offerings, food for their God; they must be holy.",
-      "explain": "The possessive phrase 'food for their God' uses the dative case after the preposition для (for)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Первосвященнику, тому среди своих ___, кто был освящен, нельзя распускать волосы.",
-      "lemma": "брат",
-      "options": ["брат", "брата", "братья", "братьями"],
-      "correct": "братьями",
-      "case": "Творительный (Instrumental)",
-      "translation": "The high priest, among his brothers, who was consecrated, shall not let his hair hang loose.",
-      "explain": "The preposition среди (among) takes the instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Ему можно жениться только на ___ из своего народа.",
-      "lemma": "девственница",
-      "options": ["девственница", "девственницы", "девственнице", "девственницей"],
-      "correct": "девственнице",
-      "case": "Предложный (Prepositional)",
-      "translation": "He may marry only a virgin from his own people.",
-      "explain": "The preposition на (on) indicating marriage partner takes the prepositional case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Никому с телесным изъяном нельзя приближаться, чтобы принести пищу своего ___.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Бога",
-      "case": "Родительный (Genitive)",
-      "translation": "No one with a bodily defect shall approach to offer the bread of his God.",
-      "explain": "The possessive phrase 'bread of his God' uses the genitive case to show possession."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Говори со священниками, сыновьями Аарона, и скажи им, пусть священник не оскверняет себя прикосновением к умершему из своего народа.",
-      "question": "To whom should Moses speak?",
-      "options": ["To the priests, sons of Aaron", "To the Israelites", "To the elders", "To the Levites"],
-      "correct": "To the priests, sons of Aaron",
-      "explain": "Moses is told to 'Говори со священниками, сыновьями Аарона' — speak to the priests, sons of Aaron."
-    },
-    {
-      "id": "r2",
-      "ru": "Пусть священник не оскверняет себя ради тех, кто породнился с ним через брак.",
-      "question": "Regarding whom may a priest NOT defile himself?",
-      "options": ["Those related by marriage", "His close relatives", "His father and mother", "His children"],
-      "correct": "Those related by marriage",
-      "explain": "The text states the priest shall not defile himself for 'тех, кто породнился с ним через брак' — those related by marriage."
-    },
-    {
-      "id": "r3",
-      "ru": "Священникам нельзя брить головы, подстригать с края бород или делать на теле порезы.",
-      "question": "What three things are forbidden for priests?",
-      "options": ["Shaving heads, trimming beards, cutting the body", "Wearing fine clothes, eating meat, drinking wine", "Making loud noises, playing instruments, eating bread", "Planting gardens, raising animals, trading"],
-      "correct": "Shaving heads, trimming beards, cutting the body",
-      "explain": "The text lists three prohibitions: 'не могут брить головы, подстригать с края бород или делать на теле порезы.'"
-    },
-    {
-      "id": "r4",
-      "ru": "Если дочь священника осквернит себя, став блудницей, она бесчестит отца, ее нужно сжечь.",
-      "question": "What is the consequence if a priest's daughter becomes a prostitute?",
-      "options": ["She must be burned", "She must be banished", "She must pay a fine", "She must serve as a slave"],
-      "correct": "She must be burned",
-      "explain": "The text states 'ее нужно сжечь' — she must be burned."
-    },
-    {
-      "id": "r5",
-      "ru": "Он может жениться только на девственнице из своего народа, чтобы не осквернить свое потомство в своем народе.",
-      "question": "Why must the high priest marry only a virgin from his people?",
-      "options": ["To not defile his offspring among his people", "To maintain his strength", "To keep his wealth", "To preserve his honor"],
-      "correct": "To not defile his offspring among his people",
-      "explain": "The text explains 'чтобы не осквернить свое потомство в своем народе' — so he does not defile his offspring among his people."
-    },
-    {
-      "id": "r6",
-      "ru": "Никому с телесным изъяном нельзя приближаться, чтобы принести пищу своего Бога.",
-      "question": "Who is prohibited from offering food to God?",
-      "options": ["Anyone with a bodily defect", "Anyone who is poor", "Anyone who is foreign", "Anyone who is female"],
-      "correct": "Anyone with a bodily defect",
-      "explain": "The text states 'Никому с телесным изъяном нельзя приближаться' — no one with a bodily defect may approach."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "— Скажи Аарону: «В ___ никому из твоих потомков с телесным изъяном нельзя приближаться, чтобы принести пищу своего Бога.",
+   "lemma": "поколение",
+   "options": [
+    "грядущих поколений",
+    "грядущих поколениях",
+    "грядущими поколениями",
+    "грядущим поколениям"
+   ],
+   "correct": "грядущих поколениях",
+   "case": "Предложный (Prepositional)",
+   "explain": "«грядущих поколениях» — after the preposition «в», for location or topic.",
+   "id": "c2",
+   "translation": "“Say to Aaron, ‘None of your offspring throughout their generations who has a defect may approach to offer the bread of his God."
+  },
+  {
+   "sentence": "У него ___ — ему нельзя приближаться, чтобы принести пищу своего Бога.",
+   "lemma": "изъян",
+   "options": [
+    "телесном изъяне",
+    "телесному изъяну",
+    "телесного изъяна",
+    "телесный изъян"
+   ],
+   "correct": "телесный изъян",
+   "case": "Именительный (Nominative)",
+   "explain": "«телесный изъян» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "No man of the offspring of Aaron the priest who has a defect shall come near to offer the offerings of Yahweh made by fire. Since he has a defect, he shall not come near to offer the bread of his God."
+  },
+  {
+   "sentence": "Он может есть пищу своего Бога, самые святые и ___, 23 но из-за изъяна он не должен приближаться к завесе или подходить к жертвеннику, оскверняя Мое святилище.",
+   "lemma": "приношение",
+   "options": [
+    "святых приношений",
+    "святые приношения",
+    "святыми приношениями",
+    "святым приношениям"
+   ],
+   "correct": "святые приношения",
+   "case": "Именительный (Nominative)",
+   "explain": "«святые приношения» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "He shall eat the bread of his God, both of the most holy, and of the holy."
+  }
+ ]
 }

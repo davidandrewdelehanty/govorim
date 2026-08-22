@@ -1,134 +1,169 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Помните день, когда вы вышли из ___, из земли рабства.",
-      "lemma": "Египет",
-      "options": ["Египет", "Египта", "Египту", "Египтом"],
-      "correct": "Египта",
-      "case": "Родительный (Genitive)",
-      "translation": "Remember the day when you came out of Egypt, out of the land of bondage.",
-      "explain": "The preposition из governs the genitive case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Господь вывел вас оттуда крепкой ___.",
-      "lemma": "рука",
-      "options": ["рука", "руки", "руке", "рукой"],
-      "correct": "рукой",
-      "case": "Творительный (Instrumental)",
-      "translation": "The Lord brought you out from there by a strong hand.",
-      "explain": "The instrumental case expresses the means (by a strong hand)."
-    },
-    {
-      "id": "c3",
-      "sentence": "В тот день пусть каждый скажет своему ___.",
-      "lemma": "сын",
-      "options": ["сын", "сына", "сыну", "сыном"],
-      "correct": "сыну",
-      "case": "Дательный (Dative)",
-      "translation": "On that day let each one tell his son.",
-      "explain": "The verb сказать (to tell someone) takes its addressee in the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Этот обычай будет вам как памятка на ___.",
-      "lemma": "лоб",
-      "options": ["лоб", "лба", "лбу", "лбом"],
-      "correct": "лбу",
-      "case": "Предложный (Prepositional)",
-      "translation": "This custom will be to you as a reminder on the forehead.",
-      "explain": "The preposition на indicating location takes the prepositional case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Бог повел народ в обход пустынной дорогой к Красному ___.",
-      "lemma": "море",
-      "options": ["море", "моря", "морю", "морем"],
-      "correct": "морю",
-      "case": "Дательный (Dative)",
-      "translation": "God led the people around by the desert road toward the Red Sea.",
-      "explain": "The preposition к governs the dative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Израилетяне ушли из Египта вооруженные для ___.",
-      "lemma": "битва",
-      "options": ["битва", "битвы", "битве", "битву"],
-      "correct": "битвы",
-      "case": "Родительный (Genitive)",
-      "translation": "The Israelites left Egypt armed for battle.",
-      "explain": "The preposition для governs the genitive case."
-    },
-    {
-      "id": "c7",
-      "sentence": "За первородного ___ принесите выкуп, ягненка.",
-      "lemma": "ослик",
-      "options": ["ослик", "ослика", "ослику", "осликом"],
-      "correct": "ослика",
-      "case": "Винительный (Accusative)",
-      "translation": "For the firstborn of a donkey bring a redemption, a lamb.",
-      "explain": "The preposition за (in exchange for) governs the accusative; for an animate noun it equals the genitive form."
-    },
-    {
-      "id": "c8",
-      "sentence": "Днем Господь шел впереди них в облачном ___.",
-      "lemma": "столб",
-      "options": ["столб", "столба", "столбу", "столбе"],
-      "correct": "столбе",
-      "case": "Предложный (Prepositional)",
-      "translation": "By day the Lord went before them in a pillar of cloud.",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Сегодня в месяце Авив вы уходите.",
-      "question": "In which month were the people leaving?",
-      "options": ["Abib", "Nisan", "Tishri", "Sivan"],
-      "correct": "Abib",
-      "explain": "The text says 'Сегодня в месяце Авив вы уходите' (today, in the month Abib, you are leaving)."
-    },
-    {
-      "id": "r2",
-      "ru": "Когда фараон отпустил народ, Бог не повел их через землю филистимлян, хотя так было ближе.",
-      "question": "What is said about the route through the land of the Philistines?",
-      "options": ["It was the nearer way, but God did not lead them through it", "It was the longest way to Canaan", "It was free of any enemies", "It led straight back to Egypt"],
-      "correct": "It was the nearer way, but God did not lead them through it",
-      "explain": "The text says God did not lead them through Philistine land 'хотя так было ближе' (although it was nearer)."
-    },
-    {
-      "id": "r3",
-      "ru": "Бог повел народ в обход пустынной дорогой к Красному морю.",
-      "question": "Which way did God lead the people?",
-      "options": ["Around by the desert road toward the Red Sea", "Straight through Philistia", "Back into Egypt", "Along the river Nile"],
-      "correct": "Around by the desert road toward the Red Sea",
-      "explain": "The text says God led them 'в обход пустынной дорогой к Красному морю' (around by the desert road to the Red Sea)."
-    },
-    {
-      "id": "r4",
-      "ru": "Оставив Суккот, они расположились лагерем в Ятаме, на краю пустыни.",
-      "question": "Where did the people camp after leaving Succoth?",
-      "options": ["In Etham, at the edge of the wilderness", "By the Red Sea", "Inside Egypt", "On a high mountain"],
-      "correct": "In Etham, at the edge of the wilderness",
-      "explain": "The text says they camped 'в Ятаме, на краю пустыни' (in Etham, at the edge of the wilderness)."
-    },
-    {
-      "id": "r5",
-      "ru": "Ни облачный столб днем, ни огненный столб ночью ни разу не отошли от народа.",
-      "question": "What is said about the pillars of cloud and fire?",
-      "options": ["They never departed from the people", "They appeared only once", "They guided only at night", "They vanished at the sea"],
-      "correct": "They never departed from the people",
-      "explain": "The text says neither pillar 'ни разу не отошли от народа' (never departed from the people)."
-    },
-    {
-      "id": "r6",
-      "ru": "Каждый первенец мужского пола из вашего скота принадлежит Господу.",
-      "question": "To whom does every firstborn male of the livestock belong?",
-      "options": ["To the Lord", "To the firstborn son", "To the priests", "To Moses"],
-      "correct": "To the Lord",
-      "explain": "The text says every firstborn male of the livestock 'принадлежит Господу' (belongs to the Lord)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Когда Он приведет вас туда, соблюдайте в этом месяце такой обычай: 6 семь дней ешьте хлеб, приготовленный без закваски, а на ___ устраивайте праздник Господу.",
+   "lemma": "день",
+   "options": [
+    "седьмого дня",
+    "седьмому дню",
+    "седьмым днём",
+    "седьмой день"
+   ],
+   "correct": "седьмой день",
+   "case": "Винительный (Accusative)",
+   "explain": "«седьмой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "It shall be, when Yahweh brings you into the land of the Canaanite, and the Hittite, and the Amorite, and the Hivite, and the Jebusite, which he swore to your fathers to give you, a land flowing with milk and honey, that you shall keep this service in this month."
+  },
+  {
+   "sentence": "Ведь Господь вывел вас из Египта ___.",
+   "lemma": "рука",
+   "options": [
+    "могучей руке",
+    "могучая рука",
+    "могучей руки",
+    "могучей рукой"
+   ],
+   "correct": "могучей рукой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«могучей рукой» — the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "It shall be for a sign to you on your hand, and for a memorial between your eyes, that Yahweh’s law may be in your mouth; for with a strong hand Yahweh has brought you out of Egypt."
+  },
+  {
+   "sentence": "Все первенцы вашего скота ___ принадлежат Господу.",
+   "lemma": "пол",
+   "options": [
+    "мужском поле",
+    "мужским полом",
+    "мужского пола",
+    "мужскому полу"
+   ],
+   "correct": "мужского пола",
+   "case": "Родительный (Genitive)",
+   "explain": "«мужского пола» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "“It shall be, when Yahweh brings you into the land of the Canaanite, as he swore to you and to your fathers, and will give it you,"
+  },
+  {
+   "sentence": "В будущем, когда сын спросит у тебя: «Что это значит?», — скажи ему: «Господь ___ вывел нас из Египта, из земли рабства.",
+   "lemma": "рука",
+   "options": [
+    "могучей руке",
+    "могучая рука",
+    "могучей руки",
+    "могучей рукой"
+   ],
+   "correct": "могучей рукой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«могучей рукой» — the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "It shall be, when your son asks you in time to come, saying, ‘What is this?’ that you shall tell him, ‘By strength of hand Yahweh brought us out from Egypt, from the house of bondage."
+  },
+  {
+   "sentence": "Когда сердцем фараона завладело упрямство, и он не хотел отпускать нас, Господь погубил в Египте всех первенцев ___: и людей, и животных.",
+   "lemma": "пол",
+   "options": [
+    "мужском поле",
+    "мужским полом",
+    "мужского пола",
+    "мужскому полу"
+   ],
+   "correct": "мужского пола",
+   "case": "Родительный (Genitive)",
+   "explain": "«мужского пола» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "When Pharaoh stubbornly refused to let us go, Yahweh killed all the firstborn in the land of Egypt, both the firstborn of man, and the firstborn of livestock. Therefore I sacrifice to Yahweh all that opens the womb, being males; but all the firstborn of my sons I redeem.’"
+  },
+  {
+   "sentence": "Вот почему я приношу в жертву Господу всех первенцев ___, а за своих первенцев отдаю выкуп».",
+   "lemma": "пол",
+   "options": [
+    "мужском поле",
+    "мужским полом",
+    "мужского пола",
+    "мужскому полу"
+   ],
+   "correct": "мужского пола",
+   "case": "Родительный (Genitive)",
+   "explain": "«мужского пола» — the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "When Pharaoh stubbornly refused to let us go, Yahweh killed all the firstborn in the land of Egypt, both the firstborn of man, and the firstborn of livestock. Therefore I sacrifice to Yahweh all that opens the womb, being males; but all the firstborn of my sons I redeem.’"
+  },
+  {
+   "sentence": "Это будет как знак у тебя на руке, как свидетельство на лбу, что Господь ___ вывел нас из Египта.",
+   "lemma": "рука",
+   "options": [
+    "могучей руке",
+    "могучая рука",
+    "могучей руки",
+    "могучей рукой"
+   ],
+   "correct": "могучей рукой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«могучей рукой» — the instrumental marks the means, company, or complement.",
+   "id": "c8",
+   "translation": "It shall be for a sign on your hand, and for symbols between your eyes; for by strength of hand Yahweh brought us out of Egypt.”"
+  },
+  {
+   "sentence": "Бог повел народ в обход, пустынной дорогой к ___.",
+   "lemma": "море",
+   "options": [
+    "красного моря",
+    "красному морю",
+    "красном море",
+    "красное море"
+   ],
+   "correct": "красному морю",
+   "case": "Дательный (Dative)",
+   "explain": "«Красному морю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c9",
+   "translation": "but God led the people around by the way of the wilderness by the Red Sea; and the children of Israel went up armed out of the land of Egypt."
+  },
+  {
+   "sentence": "Днем Господь шел впереди них в ___, указывая им путь, а ночью — в огненном столбе, чтобы давать им свет, поэтому так они могли передвигаться и днем, и ночью.",
+   "lemma": "столб",
+   "options": [
+    "облачным столбом",
+    "облачный столб",
+    "облачного столба",
+    "облачном столбе"
+   ],
+   "correct": "облачном столбе",
+   "case": "Предложный (Prepositional)",
+   "explain": "«облачном столбе» — after the preposition «в», for location or topic.",
+   "id": "c10",
+   "translation": "Yahweh went before them by day in a pillar of cloud, to lead them on their way, and by night in a pillar of fire, to give them light, that they might go by day and by night:"
+  },
+  {
+   "sentence": "Ни ___ днем, ни огненный столб ночью ни разу не отошли от народа.",
+   "lemma": "столб",
+   "options": [
+    "облачном столбе",
+    "облачным столбом",
+    "облачный столб",
+    "облачному столбу"
+   ],
+   "correct": "облачный столб",
+   "case": "Именительный (Nominative)",
+   "explain": "«облачный столб» — the subject of the sentence stands in the nominative.",
+   "id": "c11",
+   "translation": "the pillar of cloud by day, and the pillar of fire by night, didn’t depart from before the people."
+  },
+  {
+   "sentence": "Ни облачный столб днем, ни ___ ночью ни разу не отошли от народа.",
+   "lemma": "столб",
+   "options": [
+    "огненном столбе",
+    "огненным столбом",
+    "огненного столба",
+    "огненный столб"
+   ],
+   "correct": "огненный столб",
+   "case": "Именительный (Nominative)",
+   "explain": "«огненный столб» — the subject of the sentence stands in the nominative.",
+   "id": "c12",
+   "translation": "the pillar of cloud by day, and the pillar of fire by night, didn’t depart from before the people."
+  }
+ ]
 }

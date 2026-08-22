@@ -1,186 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Один ___, которого звали Лазарь, был болен.",
-      "lemma": "человек",
-      "options": ["человек", "человека", "человеку", "человеком"],
-      "correct": "человек",
-      "case": "Именительный (Nominative)",
-      "translation": "A certain man named Lazarus was sick.",
-      "explain": "Человек is the grammatical subject of был болен, so it is nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Придя туда, Иисус узнал, что тело ___ уже четыре дня в могиле.",
-      "lemma": "Лазарь",
-      "options": ["Лазарь", "Лазаря", "Лазарю", "Лазарем"],
-      "correct": "Лазаря",
-      "case": "Родительный (Genitive)",
-      "translation": "Arriving there, Jesus learned that Lazarus's body had already been in the tomb four days.",
-      "explain": "The genitive expresses possession: the body of Lazarus."
-    },
-    {
-      "id": "c3",
-      "sentence": "И к ___ с Марией пришло много иудеев, чтобы выразить свое соболезнование.",
-      "lemma": "Марфа",
-      "options": ["Марфа", "Марфы", "Марфе", "Марфой"],
-      "correct": "Марфе",
-      "case": "Дательный (Dative)",
-      "translation": "And many Jews came to Martha and Mary to express their condolences.",
-      "explain": "The preposition к governs the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Пришло много иудеев, чтобы выразить свое ___.",
-      "lemma": "соболезнование",
-      "options": ["соболезнование", "соболезнования", "соболезнованию", "соболезнованием"],
-      "correct": "соболезнование",
-      "case": "Винительный (Accusative)",
-      "translation": "Many Jews came to express their condolences.",
-      "explain": "The transitive verb выразить takes a direct object in the accusative; neuter nouns have identical nominative and accusative forms."
-    },
-    {
-      "id": "c5",
-      "sentence": "И к Марфе с ___ пришло много иудеев.",
-      "lemma": "Мария",
-      "options": ["Мария", "Марии", "Марию", "Марией"],
-      "correct": "Марией",
-      "case": "Творительный (Instrumental)",
-      "translation": "And many Jews came to Martha and Mary.",
-      "explain": "The preposition с meaning 'together with' governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Это была пещера в ___.",
-      "lemma": "скала",
-      "options": ["скала", "скалы", "скале", "скалу"],
-      "correct": "скале",
-      "case": "Предложный (Prepositional)",
-      "translation": "It was a cave in a rock.",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Один человек, которого звали Лазарь, был болен.",
-      "question": "What do we learn about Lazarus at the beginning of the chapter?",
-      "options": ["He was sick", "He had already died", "He was a Pharisee", "He was traveling abroad"],
-      "correct": "He was sick",
-      "explain": "The chapter opens by saying a certain man named Lazarus was sick."
-    },
-    {
-      "id": "r2",
-      "ru": "Мария и была той женщиной, что помазала Господа ароматическим маслом и вытерла его ноги своими волосами.",
-      "question": "What had Mary previously done for the Lord?",
-      "options": ["Anointed him with perfumed oil and wiped his feet with her hair", "Given him a large sum of money", "Healed his eyes", "Washed his clothes"],
-      "correct": "Anointed him with perfumed oil and wiped his feet with her hair",
-      "explain": "The text identifies Mary as the woman who anointed the Lord and wiped his feet with her hair."
-    },
-    {
-      "id": "r3",
-      "ru": "Когда Иисус услышал об этом, он сказал, «Это болезнь не к смерти. Она для славы Божией, чтобы Сын Бога был прославлен через нее».",
-      "question": "What did Jesus say about the purpose of Lazarus's sickness?",
-      "options": ["It was for God's glory, so the Son might be glorified", "It was punishment for sin", "It would kill Lazarus immediately", "It was a test for the Pharisees"],
-      "correct": "It was for God's glory, so the Son might be glorified",
-      "explain": "Jesus said the sickness was for the glory of God, that the Son of God might be glorified through it."
-    },
-    {
-      "id": "r4",
-      "ru": "Раби, сказали они ему, иудеи ведь еще недавно хотели побить тебя камнями, а ты хочешь туда возвратиться?",
-      "question": "Why were the disciples hesitant about returning to Judea?",
-      "options": ["The Jews had recently tried to stone Jesus there", "It was too far to travel", "There was a famine there", "Herod was searching for Jesus there"],
-      "correct": "The Jews had recently tried to stone Jesus there",
-      "explain": "The disciples reminded Jesus that the Jews had recently tried to stone him there."
-    },
-    {
-      "id": "r5",
-      "ru": "Тогда он сказал им прямо, «Лазарь умер».",
-      "question": "What did Jesus finally tell his disciples plainly?",
-      "options": ["That Lazarus had died", "That he himself was leaving them", "That Lazarus had been healed", "That the Jews had repented"],
-      "correct": "That Lazarus had died",
-      "explain": "Jesus told them plainly that Lazarus was dead."
-    },
-    {
-      "id": "r6",
-      "ru": "Тогда Фома, которого еще называли Близнец, сказал остальным ученикам, «Пойдем и мы и умрем с ним».",
-      "question": "What did Thomas say to the other disciples?",
-      "options": ["Let us also go and die with him", "Let us stay here and wait", "Let us send a message to Lazarus", "Let us ask the Pharisees for permission"],
-      "correct": "Let us also go and die with him",
-      "explain": "Thomas, called the Twin, said, 'Let us also go, that we may die with him.'"
-    },
-    {
-      "id": "r7",
-      "ru": "Придя туда, Иисус узнал, что тело Лазаря уже четыре дня в могиле.",
-      "question": "How long had Lazarus been in the tomb when Jesus arrived?",
-      "options": ["Four days", "One day", "A week", "A month"],
-      "correct": "Four days",
-      "explain": "Jesus learned that Lazarus's body had already been in the tomb four days."
-    },
-    {
-      "id": "r8",
-      "ru": "«Господи, — сказала Марфа Иисусу, — если бы ты был здесь, то мой брат не умер бы».",
-      "question": "What did Martha say to Jesus when she met him?",
-      "options": ["That if he had been there, her brother would not have died", "That she no longer believed in him", "That Lazarus had asked for him before dying", "That the tomb was already empty"],
-      "correct": "That if he had been there, her brother would not have died",
-      "explain": "Martha told Jesus that if he had been there, her brother would not have died."
-    },
-    {
-      "id": "r9",
-      "ru": "Иисус сказал ей, «Я — воскресение и жизнь».",
-      "question": "How did Jesus describe himself to Martha?",
-      "options": ["As the resurrection and the life", "As the light of the world", "As the good shepherd", "As the bread of life"],
-      "correct": "As the resurrection and the life",
-      "explain": "Jesus told Martha, 'I am the resurrection and the life.'"
-    },
-    {
-      "id": "r10",
-      "ru": "Иисус, видя, что плачет и она, и иудеи, которые с ней, и сам сильно расстроился и опечалился.",
-      "question": "How did Jesus react when he saw Mary and the Jews weeping?",
-      "options": ["He was deeply moved and troubled", "He rebuked them for weeping", "He left the scene immediately", "He laughed at their sorrow"],
-      "correct": "He was deeply moved and troubled",
-      "explain": "Seeing Mary and the Jews weeping, Jesus was greatly troubled and distressed."
-    },
-    {
-      "id": "r11",
-      "ru": "Иисус заплакал.",
-      "question": "What is notable about Jesus's own reaction at the tomb?",
-      "options": ["Jesus wept", "Jesus sang a psalm", "Jesus prayed silently", "Jesus ran away"],
-      "correct": "Jesus wept",
-      "explain": "The text simply states, 'Jesus wept.'"
-    },
-    {
-      "id": "r12",
-      "ru": "Сказав это, Иисус громко позвал, «Лазарь, выходи!»",
-      "question": "What did Jesus cry out at the tomb?",
-      "options": ["Lazarus, come out!", "Rise and walk!", "Peace be with you!", "It is finished!"],
-      "correct": "Lazarus, come out!",
-      "explain": "Jesus cried out with a loud voice, 'Lazarus, come out!'"
-    },
-    {
-      "id": "r13",
-      "ru": "Развяжите его, пусть он идет, сказал Иисус.",
-      "question": "What did Jesus command after Lazarus emerged still wrapped in graveclothes?",
-      "options": ["Unbind him and let him go", "Wash him immediately", "Give him food at once", "Take him to the temple"],
-      "correct": "Unbind him and let him go",
-      "explain": "Jesus said, 'Unbind him, and let him go.'"
-    },
-    {
-      "id": "r14",
-      "ru": "Первосвященники и фарисеи тогда созвали совет.",
-      "question": "What did the chief priests and Pharisees do after hearing of the miracle?",
-      "options": ["They convened a council", "They praised Jesus openly", "They arrested Lazarus at once", "They left Jerusalem"],
-      "correct": "They convened a council",
-      "explain": "The chief priests and Pharisees gathered a council to decide what to do."
-    },
-    {
-      "id": "r15",
-      "ru": "С этого дня они стали думать, как убить Иисуса.",
-      "question": "What did the religious leaders decide after Caiaphas's prophecy?",
-      "options": ["To plot how to kill Jesus", "To make Jesus high priest", "To exile Lazarus permanently", "To close the temple"],
-      "correct": "To plot how to kill Jesus",
-      "explain": "From that day on they planned how to kill Jesus."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Иисус говорил им о том, что Лазарь умер, но ученики думали, что Он говорит об ___.",
+   "lemma": "сон",
+   "options": [
+    "обыкновенным сном",
+    "обыкновенном сне",
+    "обыкновенному сну",
+    "обыкновенный сон"
+   ],
+   "correct": "обыкновенном сне",
+   "case": "Предложный (Prepositional)",
+   "explain": "«обыкновенном сне» — after the preposition «об», for location or topic.",
+   "id": "c1",
+   "translation": "Now Jesus had spoken of his death, but they thought that he spoke of taking rest in sleep."
+  },
+  {
+   "sentence": "Тогда Фома, которого еще называли Близнец, сказал ___:",
+   "lemma": "ученик",
+   "options": [
+    "остальных учеников",
+    "остальные ученики",
+    "остальными учениками",
+    "остальным ученикам"
+   ],
+   "correct": "остальным ученикам",
+   "case": "Дательный (Dative)",
+   "explain": "«остальным ученикам» — the dative marks the indirect object or recipient.",
+   "id": "c2",
+   "translation": "Thomas therefore, who is called Didymus, said to his fellow disciples, “Let’s go also, that we may die with him.”"
+  },
+  {
+   "sentence": "Его руки и ноги были обвязаны ___, а лицо закрыто платком.",
+   "lemma": "полотно",
+   "options": [
+    "погребальных полотнах",
+    "погребальным полотнам",
+    "погребальные полотна",
+    "погребальными полотнами"
+   ],
+   "correct": "погребальными полотнами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«погребальными полотнами» — the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "He who was dead came out, bound hand and foot with wrappings, and his face was wrapped around with a cloth. Jesus said to them, “Free him, and let him go.”"
+  },
+  {
+   "sentence": "Приближался ___ Пасхи, и многие жители страны шли в Иерусалим для обрядового очищения перед Пасхой.",
+   "lemma": "праздник",
+   "options": [
+    "иудейского праздника",
+    "иудейским праздником",
+    "иудейском празднике",
+    "иудейский праздник"
+   ],
+   "correct": "иудейский праздник",
+   "case": "Именительный (Nominative)",
+   "explain": "«иудейский праздник» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "Now the Passover of the Jews was at hand. Many went up from the country to Jerusalem before the Passover, to purify themselves."
+  },
+  {
+   "sentence": "Приближался иудейский праздник Пасхи, и ___ страны шли в Иерусалим для обрядового очищения перед Пасхой.",
+   "lemma": "житель",
+   "options": [
+    "многих жителях",
+    "многим жителям",
+    "многих жителей",
+    "многие жители"
+   ],
+   "correct": "многие жители",
+   "case": "Именительный (Nominative)",
+   "explain": "«многие жители» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "Now the Passover of the Jews was at hand. Many went up from the country to Jerusalem before the Passover, to purify themselves."
+  },
+  {
+   "sentence": "Приближался иудейский праздник Пасхи, и многие жители страны шли в Иерусалим для ___ перед Пасхой.",
+   "lemma": "очищение",
+   "options": [
+    "обрядового очищения",
+    "обрядовому очищению",
+    "обрядовом очищении",
+    "обрядовым очищением"
+   ],
+   "correct": "обрядового очищения",
+   "case": "Родительный (Genitive)",
+   "explain": "«обрядового очищения» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "Now the Passover of the Jews was at hand. Many went up from the country to Jerusalem before the Passover, to purify themselves."
+  }
+ ]
 }

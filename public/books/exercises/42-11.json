@@ -1,336 +1,184 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "И ___, где есть распря, рушится.",
-      "lemma": "дом",
-      "options": [
-        "дом",
-        "дома",
-        "дому",
-        "домом"
-      ],
-      "correct": "дом",
-      "case": "Именительный (Nominative)",
-      "translation": "...and a house where there is strife falls.",
-      "explain": "Дом is the subject of рушится (falls) — subjects take the nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Один из ___ попросил Его: «Господи, научи нас молиться».",
-      "lemma": "ученик",
-      "options": [
-        "ученик",
-        "ученика",
-        "ученикам",
-        "учеников"
-      ],
-      "correct": "учеников",
-      "case": "Родительный (Genitive)",
-      "translation": "One of the disciples asked him, \"Lord, teach us to pray.\"",
-      "explain": "Из (from among) always takes the genitive; учеников is genitive plural — 'one of the disciples'."
-    },
-    {
-      "id": "c3",
-      "sentence": "Другие... попросили, чтобы Он показал им знамение с ___.",
-      "lemma": "небо",
-      "options": [
-        "небо",
-        "неба",
-        "небу",
-        "небом"
-      ],
-      "correct": "неба",
-      "case": "Родительный (Genitive)",
-      "translation": "Others asked him to show them a sign from heaven.",
-      "explain": "С meaning 'from' takes the genitive → неба, 'a sign from heaven'."
-    },
-    {
-      "id": "c4",
-      "sentence": "Даже если он не даст ему по ___, ему все-таки придется помочь.",
-      "lemma": "дружба",
-      "options": [
-        "дружба",
-        "дружбы",
-        "дружбе",
-        "дружбой"
-      ],
-      "correct": "дружбе",
-      "case": "Дательный (Dative)",
-      "translation": "Even if he won't give it to him out of friendship, he will still have to help.",
-      "explain": "По in the sense 'out of, by reason of' takes the dative → по дружбе, 'out of friendship'."
-    },
-    {
-      "id": "c5",
-      "sentence": "Если я изгоняю ___ силой Вельзевула, то чьей силой изгоняют их ваши последователи?",
-      "lemma": "демон",
-      "options": [
-        "демон",
-        "демона",
-        "демонов",
-        "демонами"
-      ],
-      "correct": "демонов",
-      "case": "Винительный (Accusative)",
-      "translation": "If I drive out demons by the power of Beelzebul, then by whose power do your followers drive them out?",
-      "explain": "Демонов is the direct object of the transitive verb изгонять (to cast out) → accusative; for animate nouns the plural accusative equals the genitive plural."
-    },
-    {
-      "id": "c6",
-      "sentence": "И прости нам наши ___, ведь и мы прощаем каждому, кто нам должен.",
-      "lemma": "грех",
-      "options": [
-        "грех",
-        "греха",
-        "грехи",
-        "грехами"
-      ],
-      "correct": "грехи",
-      "case": "Винительный (Accusative)",
-      "translation": "And forgive us our sins, for we also forgive everyone who is indebted to us.",
-      "explain": "Грехи is the direct object of the transitive verb прости (forgive) → accusative plural, which equals the nominative plural for this inanimate noun."
-    },
-    {
-      "id": "c7",
-      "sentence": "Но если я изгоняю демонов ___ Божьим, то это значит, что Царство Божие пришло к вам.",
-      "lemma": "перст",
-      "options": [
-        "перст",
-        "перста",
-        "персту",
-        "перстом"
-      ],
-      "correct": "перстом",
-      "case": "Творительный (Instrumental)",
-      "translation": "But if I drive out demons by the finger of God, then the Kingdom of God has come to you.",
-      "explain": "Перстом is an instrumental of means, used without a preposition — 'by/with the finger' of God."
-    },
-    {
-      "id": "c8",
-      "sentence": "Некоторые говорили, он изгоняет демонов ___ Вильзевула, повелителя демонов.",
-      "lemma": "сила",
-      "options": [
-        "сила",
-        "силы",
-        "силе",
-        "силой"
-      ],
-      "correct": "силой",
-      "case": "Творительный (Instrumental)",
-      "translation": "Some said, he casts out demons by the power of Beelzebul, the prince of demons.",
-      "explain": "Силой is another instrumental of means without a preposition — 'by the power' of Beelzebul."
-    },
-    {
-      "id": "c9",
-      "sentence": "Горе вам, фарисеи, потому что вы любите... когда вас приветствуют на ___.",
-      "lemma": "площадь",
-      "options": [
-        "площади",
-        "площадей",
-        "площадям",
-        "площадях"
-      ],
-      "correct": "площадях",
-      "case": "Предложный (Prepositional)",
-      "translation": "Woe to you, Pharisees, because you love... to be greeted in the marketplaces.",
-      "explain": "На marking a stationary location (no motion) takes the prepositional; площадях is prepositional plural — 'at the marketplaces'."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "«Господи, научи нас молиться, как и Иоанн научил своих учеников».",
-      "question": "What does one of the disciples ask Jesus to teach them?",
-      "options": [
-        "How to pray",
-        "How to heal the sick",
-        "How to read the Law",
-        "How to fast"
-      ],
-      "correct": "How to pray",
-      "explain": "A disciple asks Jesus, \"Lord, teach us to pray, just as John taught his disciples.\""
-    },
-    {
-      "id": "r2",
-      "ru": "«Друг, одолжи мне три лепешки, ко мне с дороги заехал гость, и мне нечего ему предложить».",
-      "question": "What does the man ask his friend for at midnight?",
-      "options": [
-        "Three loaves of bread",
-        "A cup of wine",
-        "A lamp",
-        "A donkey"
-      ],
-      "correct": "Three loaves of bread",
-      "explain": "He asks, \"Friend, lend me three loaves, because a guest has arrived and I have nothing to set before him.\""
-    },
-    {
-      "id": "r3",
-      "ru": "Поэтому я говорю вам, просите, и вам дадут, ищите и найдете, стучите, и вам откроют».",
-      "question": "According to Jesus, what happens to those who ask, seek, and knock?",
-      "options": [
-        "They receive, find, and have the door opened to them",
-        "They are turned away",
-        "They must wait a year",
-        "They are punished"
-      ],
-      "correct": "They receive, find, and have the door opened to them",
-      "explain": "\"Ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you.\""
-    },
-    {
-      "id": "r4",
-      "ru": "Если вы, будучи злы, умеете давать своим детям благие дары, то тем более небесный отец даст Святого Духа тем, кто просит у него».",
-      "question": "What will the heavenly Father give to those who ask him?",
-      "options": [
-        "The Holy Spirit",
-        "Money",
-        "A house",
-        "Political power"
-      ],
-      "correct": "The Holy Spirit",
-      "explain": "\"How much more will your heavenly Father give the Holy Spirit to those who ask him?\""
-    },
-    {
-      "id": "r5",
-      "ru": "Однажды Иисус изгнал демона немоты, и когда демон вышел, человек, который был нем, заговорил.",
-      "question": "What happened when Jesus cast out the demon of muteness?",
-      "options": [
-        "The formerly mute man began to speak",
-        "The demon killed the man",
-        "The man fell asleep",
-        "Nothing changed"
-      ],
-      "correct": "The formerly mute man began to speak",
-      "explain": "When the demon went out, the man who had been mute spoke, and the crowds marveled."
-    },
-    {
-      "id": "r6",
-      "ru": "Любое царство, разделившееся на враждующие части, приходит в запустение, и дом, где есть распря, рушится.",
-      "question": "What does Jesus say happens to a kingdom divided against itself?",
-      "options": [
-        "It falls into ruin",
-        "It grows stronger",
-        "It becomes peaceful",
-        "It multiplies"
-      ],
-      "correct": "It falls into ruin",
-      "explain": "\"Every kingdom divided against itself is brought to ruin, and a house divided falls.\""
-    },
-    {
-      "id": "r7",
-      "ru": "Но если я изгоняю демонов перстом Божьим, то это значит, что Царство Божие пришло к вам».",
-      "question": "What does Jesus say proves that God's Kingdom has come?",
-      "options": [
-        "Casting out demons by the finger of God",
-        "Building a new temple",
-        "Defeating the Romans",
-        "Fasting for forty days"
-      ],
-      "correct": "Casting out demons by the finger of God",
-      "explain": "\"If I drive out demons by the finger of God, then the Kingdom of God has come to you.\""
-    },
-    {
-      "id": "r8",
-      "ru": "Но если кто-то более сильный нападет и одолеет его, то он заберет оружие, на которое полагался хозяин, и разделит добычу.",
-      "question": "What happens when someone stronger attacks the armed man guarding his house?",
-      "options": [
-        "The stronger man takes his armor and divides his plunder",
-        "The armed man wins easily",
-        "They become friends",
-        "Nothing happens"
-      ],
-      "correct": "The stronger man takes his armor and divides his plunder",
-      "explain": "A stronger attacker overcomes him, takes the armor he trusted in, and divides his plunder."
-    },
-    {
-      "id": "r9",
-      "ru": "Тогда он идет и берет семь других духов, еще более злых, чем он сам, и они приходят и поселяются там.",
-      "question": "What does the unclean spirit do after finding its old house swept and put in order?",
-      "options": [
-        "It brings seven other spirits more evil than itself",
-        "It leaves forever",
-        "It repents",
-        "It falls asleep"
-      ],
-      "correct": "It brings seven other spirits more evil than itself",
-      "explain": "The spirit brings seven other spirits more evil than itself, and together they dwell there, making the man's state worse than before."
-    },
-    {
-      "id": "r10",
-      "ru": "Иисус ответил, Блаженнее те, кто слышит Слово Божие и исполняет его.",
-      "question": "How does Jesus respond to the woman who calls his mother blessed?",
-      "options": [
-        "He says blessed are those who hear God's word and keep it",
-        "He agrees completely",
-        "He rebukes her",
-        "He ignores her"
-      ],
-      "correct": "He says blessed are those who hear God's word and keep it",
-      "explain": "Jesus answers that blessed rather are those who hear the word of God and keep it."
-    },
-    {
-      "id": "r11",
-      "ru": "Оно ищет знамение, но ему не будет дано никакого знамения, кроме знамения пророка Ионы».",
-      "question": "What sign will this generation be given, according to Jesus?",
-      "options": [
-        "The sign of the prophet Jonah",
-        "A sign from heaven",
-        "No sign at all",
-        "A miracle of healing"
-      ],
-      "correct": "The sign of the prophet Jonah",
-      "explain": "\"No sign will be given to it except the sign of the prophet Jonah.\""
-    },
-    {
-      "id": "r12",
-      "ru": "Царица Юга встанет в день суда с людьми этого поколения и осудит их.",
-      "question": "Why will the Queen of the South condemn this generation?",
-      "options": [
-        "Because she came from afar to hear Solomon's wisdom, yet someone greater than Solomon is here",
-        "Because she conquered Israel",
-        "Because she was more righteous than Solomon",
-        "Because she refused to listen to Jonah"
-      ],
-      "correct": "Because she came from afar to hear Solomon's wisdom, yet someone greater than Solomon is here",
-      "explain": "She came from the ends of the earth to hear Solomon's wisdom, and one greater than Solomon is here now."
-    },
-    {
-      "id": "r13",
-      "ru": "Твой глаз — светильник твоего тела.",
-      "question": "What does Jesus compare to the lamp of the body?",
-      "options": [
-        "The eye",
-        "The heart",
-        "The hand",
-        "The mouth"
-      ],
-      "correct": "The eye",
-      "explain": "\"Your eye is the lamp of your body; when your eye is clear, your whole body is full of light.\""
-    },
-    {
-      "id": "r14",
-      "ru": "Фарисея удивило, что он не совершил перед едой ритуального омовения, но Господь сказал ему, Вот вы, фарисеи, очищаете чаши и тарелки снаружи, но внутри вы полны жадности и злобы.",
-      "question": "What surprised the Pharisee about Jesus at dinner?",
-      "options": [
-        "That Jesus did not perform the ritual washing before the meal",
-        "That Jesus arrived late",
-        "That Jesus brought his disciples",
-        "That Jesus refused to eat"
-      ],
-      "correct": "That Jesus did not perform the ritual washing before the meal",
-      "explain": "The Pharisee was surprised that Jesus had not washed ritually before the meal."
-    },
-    {
-      "id": "r15",
-      "ru": "«Горе вам, учители закона, потому что вы присвоили ключ знания, но и сами не вошли, и тем, кто хотел войти, воспрепятствовали».",
-      "question": "What woe does Jesus pronounce on the experts in the law regarding the 'key of knowledge'?",
-      "options": [
-        "They took away the key of knowledge, neither entering themselves nor letting others in",
-        "They lost the scrolls of the Law",
-        "They refused to teach anyone",
-        "They gave away all their knowledge freely"
-      ],
-      "correct": "They took away the key of knowledge, neither entering themselves nor letting others in",
-      "explain": "\"You have taken away the key of knowledge; you did not enter in yourselves, and you hindered those who were entering.\""
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Давай нам каждый день наш ___",
+   "lemma": "хлеб",
+   "options": [
+    "насущному хлебу",
+    "насущного хлеба",
+    "насущный хлеб",
+    "насущном хлебе"
+   ],
+   "correct": "насущный хлеб",
+   "case": "Именительный (Nominative)",
+   "explain": "«насущный хлеб» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Give us day by day our daily bread."
+  },
+  {
+   "sentence": "Если вы, будучи злы, умеете давать своим детям благие дары, то тем более ___ даст Святого Духа тем, кто просит у Него!",
+   "lemma": "отец",
+   "options": [
+    "небесного отца",
+    "небесном отце",
+    "небесным отцом",
+    "небесный отец"
+   ],
+   "correct": "небесный отец",
+   "case": "Именительный (Nominative)",
+   "explain": "«Небесный Отец» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "If you then, being evil, know how to give good gifts to your children, how much more will your heavenly Father give the Holy Spirit to those who ask him?”"
+  },
+  {
+   "sentence": "Когда ___ выходит из человека, то он скитается по безводным местам, ища место для отдыха, и не находит его.",
+   "lemma": "дух",
+   "options": [
+    "нечистым духом",
+    "нечистый дух",
+    "нечистого духа",
+    "нечистому духу"
+   ],
+   "correct": "нечистый дух",
+   "case": "Именительный (Nominative)",
+   "explain": "«нечистый дух» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "The unclean spirit, when he has gone out of the man, passes through dry places, seeking rest, and finding none, he says, ‘I will turn back to my house from which I came out.’"
+  },
+  {
+   "sentence": "Когда нечистый дух выходит из человека, то он скитается по ___, ища место для отдыха, и не находит его.",
+   "lemma": "место",
+   "options": [
+    "безводными местами",
+    "безводным местам",
+    "безводных местах",
+    "безводные места"
+   ],
+   "correct": "безводным местам",
+   "case": "Дательный (Dative)",
+   "explain": "«безводным местам» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c5",
+   "translation": "The unclean spirit, when he has gone out of the man, passes through dry places, seeking rest, and finding none, he says, ‘I will turn back to my house from which I came out.’"
+  },
+  {
+   "sentence": "Тогда он идет и берет семь ___, еще более злых, чем он сам, и они приходят и поселяются там.",
+   "lemma": "дух",
+   "options": [
+    "другими духами",
+    "других духов",
+    "другие духи",
+    "другим духам"
+   ],
+   "correct": "других духов",
+   "case": "Родительный (Genitive)",
+   "explain": "«других духов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "Then he goes, and takes seven other spirits more evil than himself, and they enter in and dwell there. The last state of that man becomes worse than the first.”"
+  },
+  {
+   "sentence": "Царица Юга встанет в День Суда и обвинит людей этого поколения и осудит их, потому что она приходила с ___ света послушать мудрость Соломона.",
+   "lemma": "конец",
+   "options": [
+    "другом конце",
+    "другого конца",
+    "другой конец",
+    "другому концу"
+   ],
+   "correct": "другого конца",
+   "case": "Родительный (Genitive)",
+   "explain": "«другого конца» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "The Queen of the South will rise up in the judgment with the men of this generation, and will condemn them: for she came from the ends of the earth to hear the wisdom of Solomon; and behold, one greater than Solomon is here."
+  },
+  {
+   "sentence": "Если же у тебя ___, то и все твое тело темно.",
+   "lemma": "глаз",
+   "options": [
+    "дурным глазом",
+    "дурного глаза",
+    "дурному глазу",
+    "дурной глаз"
+   ],
+   "correct": "дурной глаз",
+   "case": "Именительный (Nominative)",
+   "explain": "«дурной глаз» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "The lamp of the body is the eye. Therefore when your eye is good, your whole body is also full of light; but when it is evil, your body also is full of darkness."
+  },
+  {
+   "sentence": "Фарисея удивило, что Он не совершил перед едой ___.",
+   "lemma": "омовение",
+   "options": [
+    "ритуальное омовение",
+    "ритуального омовения",
+    "ритуальному омовению",
+    "ритуальном омовении"
+   ],
+   "correct": "ритуального омовения",
+   "case": "Родительный (Genitive)",
+   "explain": "«ритуального омовения» — the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "When the Pharisee saw it, he marveled that he had not first washed himself before dinner."
+  },
+  {
+   "sentence": "Но горе вам, фарисеи, потому что вы даете десятину с мяты, руты и с ___, а справедливостью и любовью Божьей вы пренебрегаете.",
+   "lemma": "трава",
+   "options": [
+    "других травах",
+    "другими травами",
+    "других трав",
+    "другие травы"
+   ],
+   "correct": "других трав",
+   "case": "Родительный (Genitive)",
+   "explain": "«других трав» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c10",
+   "translation": "But woe to you Pharisees! For you tithe mint and rue and every herb, but you bypass justice and God’s love. You ought to have done these, and not to have left the other undone."
+  },
+  {
+   "sentence": "Поэтому ___ понесет ответственность за кровь всех пророков, пролитую от создания мира, 51 от крови Авеля и до крови Захарии, убитого между жертвенником и храмом .",
+   "lemma": "поколение",
+   "options": [
+    "нынешним поколением",
+    "нынешнее поколение",
+    "нынешнему поколению",
+    "нынешнем поколении"
+   ],
+   "correct": "нынешнее поколение",
+   "case": "Именительный (Nominative)",
+   "explain": "«нынешнее поколение» — the subject of the sentence stands in the nominative.",
+   "id": "c13",
+   "translation": "that the blood of all the prophets, which was shed from the foundation of the world, may be required of this generation;"
+  },
+  {
+   "sentence": "Когда Иисус вышел из дома, учители Закона и фарисеи обрушились на Него с ___ и каверзными вопросами.",
+   "lemma": "обвинение",
+   "options": [
+    "яростным обвинениям",
+    "яростными обвинениями",
+    "яростных обвинений",
+    "яростных обвинениях"
+   ],
+   "correct": "яростными обвинениями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«яростными обвинениями» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c14",
+   "translation": "As he said these things to them, the scribes and the Pharisees began to be terribly angry, and to draw many things out of him;"
+  },
+  {
+   "sentence": "Когда Иисус вышел из дома, учители Закона и фарисеи обрушились на Него с яростными обвинениями и ___.",
+   "lemma": "вопрос",
+   "options": [
+    "каверзным вопросам",
+    "каверзными вопросами",
+    "каверзных вопросах",
+    "каверзных вопросов"
+   ],
+   "correct": "каверзными вопросами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«каверзными вопросами» — the instrumental marks the means, company, or complement.",
+   "id": "c15",
+   "translation": "As he said these things to them, the scribes and the Pharisees began to be terribly angry, and to draw many things out of him;"
+  }
+ ]
 }

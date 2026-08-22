@@ -1,134 +1,169 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Он сделал эфот из ___, из голубой, пурпурной и алой пряжи, и из крученого льна.",
-      "lemma": "золото",
-      "options": ["золото", "золота", "золоту", "золотом"],
-      "correct": "золота",
-      "case": "Родительный (Genitive)",
-      "translation": "He made the ephod of gold, blue, purple, and scarlet, and of fine twined linen.",
-      "explain": "The preposition из (of/from) always governs the genitive case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Они сделали для Эфода наплечники по двум углам, чтобы он застегивался к ___.",
-      "lemma": "эфот",
-      "options": ["эфота", "эфот", "эфоду", "эфоте"],
-      "correct": "эфоду",
-      "case": "Дательный (Dative)",
-      "translation": "They made shoulder straps for the ephod at both corners to fasten to it.",
-      "explain": "The preposition к (to) always governs the dative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Вставили ониксы в золотые филигранные оправы, вырезали на них имена сыновей ___.",
-      "lemma": "Израиль",
-      "options": ["Израиль", "Израиля", "Израилю", "Израилем"],
-      "correct": "Израиля",
-      "case": "Родительный (Genitive)",
-      "translation": "They set onyx stones in gold filigree settings and engraved the names of the sons of Israel.",
-      "explain": "The possessive construction 'sons of' uses the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Они сделали для нагрудника цепочки из чистого ___.",
-      "lemma": "золото",
-      "options": ["золото", "золота", "золоту", "золотом"],
-      "correct": "золота",
-      "case": "Родительный (Genitive)",
-      "translation": "They made chains for the breastplate of pure gold.",
-      "explain": "The preposition из (of/made of) always governs the genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Кольца нагрудника связали с кольцами эфода голубым ___.",
-      "lemma": "шнур",
-      "options": ["шнур", "шнура", "шнуром", "шнуре"],
-      "correct": "шнуром",
-      "case": "Творительный (Instrumental)",
-      "translation": "The rings of the breastplate were connected to the rings of the ephod with a blue cord.",
-      "explain": "The preposition с (with) takes the instrumental case to show the means of connection."
-    },
-    {
-      "id": "c6",
-      "sentence": "Все одеяние под эфот было голубым, тканным, с вырезом в ___.",
-      "lemma": "ряд",
-      "options": ["ряд", "ряда", "ряду", "ряде"],
-      "correct": "ряде",
-      "case": "Предложный (Prepositional)",
-      "translation": "The robe of the ephod was all of blue, woven, with an opening in a row.",
-      "explain": "The preposition в (in) with a location always governs the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Нашили гранатовые плоды по нижнему краю ___.",
-      "lemma": "одеяние",
-      "options": ["одеяние", "одеяния", "одеянию", "одеянием"],
-      "correct": "одеяния",
-      "case": "Родительный (Genitive)",
-      "translation": "They sewed pomegranates around the hem of the garment.",
-      "explain": "After 'edge' (край), the genitive case shows what the edge belongs to."
-    },
-    {
-      "id": "c8",
-      "sentence": "Из чистого золота сделали пластинку, священный ___.",
-      "lemma": "венец",
-      "options": ["венец", "венца", "венцу", "венцом"],
-      "correct": "венец",
-      "case": "Именительный (Nominative)",
-      "translation": "They made the plate of the holy crown of pure gold.",
-      "explain": "Венец is in apposition to пластинку, serving as a nominative predicate adjective."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Из голубой, пурпурной и алой пряжи они сделали тканное одеяние для служения в святилище и священное одеяние для Аарона, как повелел Моисею Господь.",
-      "question": "What materials were used to make the sacred garment for Aaron?",
-      "options": ["Gold and precious stones", "Blue, purple, and scarlet yarn", "Fine linen only", "Bronze and bronze wire"],
-      "correct": "Blue, purple, and scarlet yarn",
-      "explain": "The text explicitly states they made the garment from blue, purple, and scarlet yarn."
-    },
-    {
-      "id": "r2",
-      "ru": "Они сделали для Эфода наплечники по двум углам, чтобы он застегивался.",
-      "question": "What was the purpose of the shoulder straps on the ephod?",
-      "options": ["To hold the precious stones", "To fasten the ephod at both corners", "To attach the breastplate", "To support the chains"],
-      "correct": "To fasten the ephod at both corners",
-      "explain": "The text states the shoulder straps were made at both ends so the ephod could be fastened."
-    },
-    {
-      "id": "r3",
-      "ru": "Вставили ониксы в золотые филигранные оправы и вырезали на них, как на печати имена сыновей Израиля.",
-      "question": "What was engraved on the onyx stones in gold settings?",
-      "options": ["The names of the sons of Israel", "Sacred words and blessings", "Symbols of priestly authority", "The names of all the tribes"],
-      "correct": "The names of the sons of Israel",
-      "explain": "The text describes engraving on the stones like on a seal the names of the sons of Israel."
-    },
-    {
-      "id": "r4",
-      "ru": "Он был квадратным, когда сложен вдвое, пять в длину и пять в ширину, из сложенной вдвое ткани.",
-      "question": "What were the dimensions of the breastplate when folded?",
-      "options": ["Ten by five cubits", "Five by five cubits made of doubled fabric", "Six by six cubits", "Three by three cubits"],
-      "correct": "Five by five cubits made of doubled fabric",
-      "explain": "The text states the breastplate was square when folded double, five by five spans."
-    },
-    {
-      "id": "r5",
-      "ru": "Они сделали для нагрудника цепочки из чистого золота, свитые подобно веревке.",
-      "question": "What were the chains for the breastplate made of?",
-      "options": ["Silver twisted like rope", "Pure gold braided like a cord", "Bronze linked together", "Fine linen with gold"],
-      "correct": "Pure gold braided like a cord",
-      "explain": "The text describes chains made of pure gold twisted or braided like a rope."
-    },
-    {
-      "id": "r6",
-      "ru": "Так была завершена работа над Скинией, шатром собрания.",
-      "question": "What was completed according to this statement?",
-      "options": ["The ark of the covenant", "All the work on the Tabernacle, the Tent of Meeting", "The priestly garments alone", "The golden altar"],
-      "correct": "All the work on the Tabernacle, the Tent of Meeting",
-      "explain": "The verse states that all the work on the Tabernacle, the Tent of Meeting was completed."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Он сделали эфод из золота, из голубой, пурпурной и алой пряжи и из крученого льна: 3 расплющили золото в ___, разрезали на нити и искусно вплели их в голубую, пурпурную и алую пряжу и крученый лен.",
+   "lemma": "лист",
+   "options": [
+    "тонких листов",
+    "тонкими листами",
+    "тонких листах",
+    "тонкие листы"
+   ],
+   "correct": "тонкие листы",
+   "case": "Винительный (Accusative)",
+   "explain": "«тонкие листы» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c2",
+   "translation": "He made the ephod of gold, blue, purple, scarlet, and fine twined linen."
+  },
+  {
+   "sentence": "Он прикрепил их к наплечникам эфода как ___ для сыновей Израиля, как повелел Моисею Господь.",
+   "lemma": "камень",
+   "options": [
+    "памятных камнях",
+    "памятных камней",
+    "памятными камнями",
+    "памятные камни"
+   ],
+   "correct": "памятные камни",
+   "case": "Винительный (Accusative)",
+   "explain": "«памятные камни» — the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "He put them on the shoulder straps of the ephod, to be stones of memorial for the children of Israel, as Yahweh commanded Moses."
+  },
+  {
+   "sentence": "Вставили в него четыре ряда ___.",
+   "lemma": "камень",
+   "options": [
+    "драгоценным камням",
+    "драгоценных камней",
+    "драгоценные камни",
+    "драгоценных камнях"
+   ],
+   "correct": "драгоценных камней",
+   "case": "Родительный (Genitive)",
+   "explain": "«драгоценных камней» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "They set in it four rows of stones. A row of ruby, topaz, and beryl was the first row;"
+  },
+  {
+   "sentence": "Они были вставлены в золотые ___.",
+   "lemma": "оправа",
+   "options": [
+    "филигранным оправам",
+    "филигранные оправы",
+    "филигранных оправах",
+    "филигранными оправами"
+   ],
+   "correct": "филигранные оправы",
+   "case": "Винительный (Accusative)",
+   "explain": "«филигранные оправы» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c5",
+   "translation": "They set in it four rows of stones. A row of ruby, topaz, and beryl was the first row;"
+  },
+  {
+   "sentence": "Они сделали для нагрудника цепочки из ___, свитые подобно веревке.",
+   "lemma": "золото",
+   "options": [
+    "чистого золота",
+    "чистым золотом",
+    "чистое золото",
+    "чистому золоту"
+   ],
+   "correct": "чистого золота",
+   "case": "Родительный (Genitive)",
+   "explain": "«чистого золота» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "They made on the breastplate chains like cords, of braided work of pure gold."
+  },
+  {
+   "sentence": "Они прикрепили две золотые цепочки к кольцам на углах нагрудника, 18 а ___ цепочек — к двум оправам, присоединив их к наплечникам эфода спереди.",
+   "lemma": "конец",
+   "options": [
+    "других концов",
+    "другими концами",
+    "другие концы",
+    "других концах"
+   ],
+   "correct": "другие концы",
+   "case": "Именительный (Nominative)",
+   "explain": "«другие концы» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "They put the two braided chains of gold in the two rings at the ends of the breastplate."
+  },
+  {
+   "sentence": "Они сделали еще два золотых кольца и прикрепили их к двум ___ нагрудника с внутренней стороны эфода.",
+   "lemma": "угол",
+   "options": [
+    "другим углам",
+    "другими углами",
+    "других углах",
+    "другие углы"
+   ],
+   "correct": "другим углам",
+   "case": "Дательный (Dative)",
+   "explain": "«другим углам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c8",
+   "translation": "They made two rings of gold, and put them on the two ends of the breastplate, on its edge, which was toward the side of the ephod inward."
+  },
+  {
+   "sentence": "Они сделали еще два золотых кольца и прикрепили их к двум другим углам нагрудника с ___ эфода.",
+   "lemma": "сторона",
+   "options": [
+    "внутренней стороной",
+    "внутренней стороне",
+    "внутренняя сторона",
+    "внутренней стороны"
+   ],
+   "correct": "внутренней стороны",
+   "case": "Родительный (Genitive)",
+   "explain": "«внутренней стороны» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "They made two rings of gold, and put them on the two ends of the breastplate, on its edge, which was toward the side of the ephod inward."
+  },
+  {
+   "sentence": "Кольца нагрудника связали с кольцами эфода ___, соединяющим нагрудник с поясом так, чтобы нагрудник не спадал с эфода — все так, как повелел Моисею Господь.",
+   "lemma": "шнур",
+   "options": [
+    "голубого шнура",
+    "голубому шнуру",
+    "голубым шнуром",
+    "голубой шнур"
+   ],
+   "correct": "голубым шнуром",
+   "case": "Творительный (Instrumental)",
+   "explain": "«голубым шнуром» — the instrumental marks the means, company, or complement.",
+   "id": "c10",
+   "translation": "They bound the breastplate by its rings to the rings of the ephod with a lace of blue, that it might be on the skillfully woven band of the ephod, and that the breastplate might not come loose from the ephod, as Yahweh commanded Moses."
+  },
+  {
+   "sentence": "Из ___ сделали пластинку — священный венец — и вырезали на ней, как на печати: «СВЯТЫНЯ ГОСПОДНЯ».",
+   "lemma": "золото",
+   "options": [
+    "чистого золота",
+    "чистым золотом",
+    "чистое золото",
+    "чистому золоту"
+   ],
+   "correct": "чистого золота",
+   "case": "Родительный (Genitive)",
+   "explain": "«чистого золота» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c12",
+   "translation": "They made the plate of the holy crown of pure gold, and wrote on it an inscription, like the engravings of a signet: “HOLY TO YAHWEH”."
+  },
+  {
+   "sentence": "Из чистого золота сделали пластинку — ___ — и вырезали на ней, как на печати: «СВЯТЫНЯ ГОСПОДНЯ».",
+   "lemma": "венец",
+   "options": [
+    "священный венец",
+    "священном венце",
+    "священным венцом",
+    "священному венцу"
+   ],
+   "correct": "священный венец",
+   "case": "Именительный (Nominative)",
+   "explain": "«священный венец» — the subject of the sentence stands in the nominative.",
+   "id": "c13",
+   "translation": "They made the plate of the holy crown of pure gold, and wrote on it an inscription, like the engravings of a signet: “HOLY TO YAHWEH”."
+  }
+ ]
 }

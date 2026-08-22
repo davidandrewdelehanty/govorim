@@ -1,204 +1,34 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Соломон женился на дочери фараона, царя ___.",
-      "lemma": "Египет",
-      "options": [
-        "Египет",
-        "Египта",
-        "Египту",
-        "Египтом"
-      ],
-      "correct": "Египта",
-      "case": "Родительный (Genitive)",
-      "translation": "Solomon married the daughter of Pharaoh, king of Egypt.",
-      "explain": "The noun царь (king) of requires the genitive case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Соломон поселил ее в ___ Давида.",
-      "lemma": "город",
-      "options": [
-        "город",
-        "города",
-        "городу",
-        "городе"
-      ],
-      "correct": "городе",
-      "case": "Предложный (Prepositional)",
-      "translation": "He settled her in the city of David.",
-      "explain": "The preposition в (in) governs the prepositional case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Соломон любил ___ и следовал его наказам.",
-      "lemma": "Бог",
-      "options": [
-        "Бог",
-        "Бога",
-        "Богу",
-        "Богом"
-      ],
-      "correct": "Бога",
-      "case": "Винительный (Accusative)",
-      "translation": "Solomon loved God and followed his instructions.",
-      "explain": "The verb любил (loved) governs the accusative case for the direct object."
-    },
-    {
-      "id": "c4",
-      "sentence": "Царь отправился в ___ чтобы принести жертвы.",
-      "lemma": "Гибеон",
-      "options": [
-        "Гибеон",
-        "Гибеона",
-        "Гибеону",
-        "Гибеоном"
-      ],
-      "correct": "Гибеон",
-      "case": "Винительный (Accusative)",
-      "translation": "The king went to Gibeon to make sacrifices.",
-      "explain": "The verb отправился (went) with в requires the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "В Гибеоне Господь явился Соломону во ___.",
-      "lemma": "сон",
-      "options": [
-        "сон",
-        "сна",
-        "сну",
-        "сне"
-      ],
-      "correct": "сне",
-      "case": "Предложный (Prepositional)",
-      "translation": "In Gibeon, the Lord appeared to Solomon in a dream.",
-      "explain": "The preposition во (in) governs the prepositional case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Соломон просил у ___ разумное сердце.",
-      "lemma": "Бог",
-      "options": [
-        "Бог",
-        "Бога",
-        "Богу",
-        "Богом"
-      ],
-      "correct": "Бога",
-      "case": "Родительный (Genitive)",
-      "translation": "Solomon asked God for a wise heart.",
-      "explain": "The verb просил (asked) with у requires the genitive case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Две ___ пришли к царю и встали перед ним.",
-      "lemma": "женщина",
-      "options": [
-        "женщина",
-        "женщины",
-        "женщину",
-        "женщиной"
-      ],
-      "correct": "женщины",
-      "case": "Именительный (Nominative)",
-      "translation": "Two women came to the king and stood before him.",
-      "explain": "The subject of the verb пришли requires the nominative case plural."
-    },
-    {
-      "id": "c8",
-      "sentence": "Царь приказал разрубить живого ___ надвое.",
-      "lemma": "ребенок",
-      "options": [
-        "ребенок",
-        "ребенка",
-        "ребенку",
-        "ребенком"
-      ],
-      "correct": "ребенка",
-      "case": "Винительный (Accusative)",
-      "translation": "The king commanded to divide the living child in two.",
-      "explain": "The verb разрубить (to divide) governs the accusative case for the direct object."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Соломон женился на дочери фараона, царя Египта.",
-      "question": "Who did Solomon marry?",
-      "options": [
-        "A daughter of David",
-        "The daughter of Pharaoh, king of Egypt",
-        "A Shunammite woman",
-        "A priestess"
-      ],
-      "correct": "The daughter of Pharaoh, king of Egypt",
-      "explain": "The text says Solomon женился на дочери фараона, царя Египта (married the daughter of Pharaoh, king of Egypt)."
-    },
-    {
-      "id": "r2",
-      "ru": "Соломон любил Господа, следуя наказам своего отца Давида.",
-      "question": "How did Solomon show his faithfulness?",
-      "options": [
-        "By building many cities",
-        "By loving God and following David's instructions",
-        "By conquering new lands",
-        "By collecting tribute"
-      ],
-      "correct": "By loving God and following David's instructions",
-      "explain": "The text states Solomon любил Господа, следуя наказам своего отца Давида (loved God, following David's instructions)."
-    },
-    {
-      "id": "r3",
-      "ru": "В Гибеоне Господь явился Соломону во сне ночью, и Бог сказал, Проси у меня, чего хочешь.",
-      "question": "Where did the Lord appear to Solomon, and what did He say?",
-      "options": [
-        "In the temple, and He demanded worship",
-        "In Gibeon in a dream at night, saying 'Ask of me what you wish'",
-        "In Jerusalem during the day",
-        "In Egypt at an altar"
-      ],
-      "correct": "In Gibeon in a dream at night, saying 'Ask of me what you wish'",
-      "explain": "The text says В Гибеоне Господь явился Соломону во сне ... Проси у меня, чего хочешь (In Gibeon the Lord appeared to Solomon in a dream... Ask of me what you wish)."
-    },
-    {
-      "id": "r4",
-      "ru": "Соломон ответил, я совсем молод и не знаю, как исполнять свой долг.",
-      "question": "How did Solomon describe himself to God?",
-      "options": [
-        "As a great and powerful king",
-        "As very young and not knowing how to perform his duty",
-        "As wise beyond his years",
-        "As ready to conquer all nations"
-      ],
-      "correct": "As very young and not knowing how to perform his duty",
-      "explain": "Solomon said я совсем молод и не знаю, как исполнять свой долг (I am very young and do not know how to perform my duty)."
-    },
-    {
-      "id": "r5",
-      "ru": "Две женщины-блудницы пришли к царю и встали перед ним.",
-      "question": "Who came before the king in the second part of this chapter?",
-      "options": [
-        "Two priests",
-        "Two merchants",
-        "Two prostitute women",
-        "Two servant women"
-      ],
-      "correct": "Two prostitute women",
-      "explain": "The text says Две женщины-блудницы пришли к царю (Two prostitute women came to the king)."
-    },
-    {
-      "id": "r6",
-      "ru": "Царь сказал, Разрубите живого ребенка надвое и дайте половину одной и половину другой.",
-      "question": "What command did Solomon give to resolve the dispute?",
-      "options": [
-        "Give the child to one woman",
-        "Divide the living child in two and give half to each",
-        "Ask who has the real child",
-        "Send the child away"
-      ],
-      "correct": "Divide the living child in two and give half to each",
-      "explain": "The king said Разрубите живого ребенка надвое и дайте половину одной и половину другой (Divide the living child in two and give half to one and half to the other)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Твой слуга — среди Твоего народа, который Ты избрал, ___, слишком многочисленного, чтобы его пересчитать или исчислить.",
+   "lemma": "народ",
+   "options": [
+    "великий народ",
+    "великого народа",
+    "великом народе",
+    "великому народу"
+   ],
+   "correct": "великого народа",
+   "case": "Родительный (Genitive)",
+   "explain": "«великого народа» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "Your servant is among your people which you have chosen, a great people, that can’t be numbered or counted for multitude."
+  },
+  {
+   "sentence": "Ведь кто способен править Твоим ___?",
+   "lemma": "народ",
+   "options": [
+    "многочисленным народом",
+    "многочисленному народу",
+    "многочисленный народ",
+    "многочисленном народе"
+   ],
+   "correct": "многочисленным народом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«многочисленным народом» — the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "Give your servant therefore an understanding heart to judge your people, that I may discern between good and evil; for who is able to judge this great people of yours?”"
+  }
+ ]
 }

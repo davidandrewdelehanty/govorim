@@ -1,170 +1,124 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Этот ___ чтит меня губами, но сердца их далеки от меня.",
-      "lemma": "народ",
-      "options": ["народ", "народа", "народу", "народом"],
-      "correct": "народ",
-      "case": "Именительный (Nominative)",
-      "translation": "This people honors me with their lips, but their hearts are far from me.",
-      "explain": "Народ is the subject of чтит (honors) → nominative, the dictionary form."
-    },
-    {
-      "id": "c2",
-      "sentence": "...ведь нехорошо будет забрать хлеб у ___ и бросить собачкам.",
-      "lemma": "дети",
-      "options": ["дети", "детей", "детям", "детьми"],
-      "correct": "детей",
-      "case": "Родительный (Genitive)",
-      "translation": "...for it isn't good to take the children's bread and throw it to the dogs.",
-      "explain": "The preposition у (from/away from) governs the genitive → детей."
-    },
-    {
-      "id": "c3",
-      "sentence": "...ведь нехорошо будет забрать хлеб у детей и бросить ___.",
-      "lemma": "собачка",
-      "options": ["собачки", "собачек", "собачкам", "собачками"],
-      "correct": "собачкам",
-      "case": "Дательный (Dative)",
-      "translation": "...for it isn't good to take the children's bread and throw it to the dogs.",
-      "explain": "Собачкам is the indirect object (recipient) of бросить (to throw to) → dative."
-    },
-    {
-      "id": "c4",
-      "sentence": "И она попросила Иисуса, чтобы он изгнал ___ из ее дочери.",
-      "lemma": "демон",
-      "options": ["демон", "демона", "демону", "демоном"],
-      "correct": "демона",
-      "case": "Винительный (Accusative)",
-      "translation": "And she asked Jesus to drive the demon out of her daughter.",
-      "explain": "Демон is the direct object of изгнал (drove out); an animate masculine noun forms the accusative like the genitive → демона."
-    },
-    {
-      "id": "c5",
-      "sentence": "...но ведь и собачки едят под ___ крошки, которые роняют дети.",
-      "lemma": "стол",
-      "options": ["стол", "стола", "столу", "столом"],
-      "correct": "столом",
-      "case": "Творительный (Instrumental)",
-      "translation": "...but even the dogs eat the crumbs the children drop under the table.",
-      "explain": "The preposition под (under) marking location takes the instrumental → столом."
-    },
-    {
-      "id": "c6",
-      "sentence": "Он остановился в одном ___ и не хотел, чтобы кто-либо знал о его приходе.",
-      "lemma": "дом",
-      "options": ["дом", "дома", "дому", "доме"],
-      "correct": "доме",
-      "case": "Предложный (Prepositional)",
-      "translation": "He stayed in a house and did not want anyone to know he was there.",
-      "explain": "В marking location (no motion) takes the prepositional → доме."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Они обратили внимание, что некоторые ученики Иисуса принимали пищу ритуально нечистыми, то есть неомытыми руками.",
-      "question": "What did the Pharisees notice and criticize about some of Jesus' disciples?",
-      "options": [
-        "They ate with ceremonially unclean, unwashed hands",
-        "They ate food bought from Gentiles",
-        "They skipped the Sabbath meal",
-        "They ate in public"
-      ],
-      "correct": "They ate with ceremonially unclean, unwashed hands",
-      "explain": "The Pharisees noticed that some disciples ate with ritually unclean, unwashed hands."
-    },
-    {
-      "id": "r2",
-      "ru": "Этот народ чтит меня губами, но сердца их далеки от меня.",
-      "question": "What did Isaiah's prophecy, quoted by Jesus, say about the people's worship?",
-      "options": [
-        "They honor God with their lips, but their hearts are far from him",
-        "They worship idols instead of God",
-        "They no longer pray at all",
-        "They honor God fully in both word and heart"
-      ],
-      "correct": "They honor God with their lips, but their hearts are far from him",
-      "explain": "Jesus quotes Isaiah: this people honors me with their lips, but their hearts are far from me."
-    },
-    {
-      "id": "r3",
-      "ru": "Вы отменяете Божье Слово собственным преданием, которое вы установили, и многое подобное этому вы делаете.",
-      "question": "What does Jesus accuse the Pharisees of doing with their traditions?",
-      "options": [
-        "Nullifying God's word with their own tradition",
-        "Following God's word too strictly",
-        "Ignoring their ancestors' customs",
-        "Teaching only from the Torah"
-      ],
-      "correct": "Nullifying God's word with their own tradition",
-      "explain": "Jesus says they nullify God's word by their tradition that they have handed down."
-    },
-    {
-      "id": "r4",
-      "ru": "Ничто из того, что входит в человека извне, не может сделать его нечистым. Нечистым человека делает то, что исходит из него.",
-      "question": "According to Jesus, what actually makes a person unclean?",
-      "options": [
-        "What comes out of a person, not what goes in from outside",
-        "Eating with unwashed hands",
-        "Touching a dead body",
-        "Speaking to Gentiles"
-      ],
-      "correct": "What comes out of a person, not what goes in from outside",
-      "explain": "Jesus teaches that nothing entering a person from outside can defile him; what comes out of him defiles him."
-    },
-    {
-      "id": "r5",
-      "ru": "Потому что изнутри, из сердца человека, исходят злые мысли, разврат, воровство, убийство, супружеская неверность, жадность, злоба, коварство, распутство, зависть, клевета, надменность и безрассудство.",
-      "question": "Where does Jesus say evil actions like theft and murder come from?",
-      "options": [
-        "From within, out of a person's heart",
-        "From evil spirits in the air",
-        "From bad food",
-        "From foreign nations"
-      ],
-      "correct": "From within, out of a person's heart",
-      "explain": "Jesus lists evil thoughts, theft, murder, and more as things that come from within, out of the heart."
-    },
-    {
-      "id": "r6",
-      "ru": "И она попросила Иисуса, чтобы он изгнал демона из ее дочери.",
-      "question": "What did the Syrophoenician woman ask Jesus to do?",
-      "options": [
-        "Cast the demon out of her daughter",
-        "Heal her own blindness",
-        "Bless her household",
-        "Teach her the Jewish law"
-      ],
-      "correct": "Cast the demon out of her daughter",
-      "explain": "The woman asked Jesus to drive the demon out of her daughter."
-    },
-    {
-      "id": "r7",
-      "ru": "Она пошла домой и увидела, что ее дочь лежит в постели, а демон из нее вышел.",
-      "question": "What did the woman find when she returned home?",
-      "options": [
-        "Her daughter lying in bed with the demon gone",
-        "Her daughter still possessed",
-        "Her house destroyed",
-        "Her daughter had run away"
-      ],
-      "correct": "Her daughter lying in bed with the demon gone",
-      "explain": "She went home and found her daughter lying on the bed, with the demon gone."
-    },
-    {
-      "id": "r8",
-      "ru": "«Все, что он делает, хорошо», — говорили люди. «У него и глухие начинают слышать, и немые — говорить».",
-      "question": "What did the people say in amazement after Jesus healed the deaf and mute man?",
-      "options": [
-        "That he does everything well, making the deaf hear and the mute speak",
-        "That he was a fraud",
-        "That he should be arrested",
-        "That only the sick should be near him"
-      ],
-      "correct": "That he does everything well, making the deaf hear and the mute speak",
-      "explain": "The people said, 'He has done everything well; he even makes the deaf hear and the mute speak.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Они не едят ничего, принесенного с рынка, пока не совершат ___.",
+   "lemma": "омовение",
+   "options": [
+    "ритуальному омовению",
+    "ритуальном омовении",
+    "ритуальное омовение",
+    "ритуального омовения"
+   ],
+   "correct": "ритуального омовения",
+   "case": "Родительный (Genitive)",
+   "explain": "«ритуального омовения» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "They don’t eat when they come from the marketplace unless they bathe themselves, and there are many other things, which they have received to hold to: washings of cups, pitchers, bronze vessels, and couches.)"
+  },
+  {
+   "sentence": "Ими соблюдается также и множество ___, как, например, о мытье чаш, кувшинов и медной посуды.",
+   "lemma": "установление",
+   "options": [
+    "другим установлениям",
+    "других установлениях",
+    "других установлений",
+    "другие установления"
+   ],
+   "correct": "других установлений",
+   "case": "Родительный (Genitive)",
+   "explain": "«других установлений» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "They don’t eat when they come from the marketplace unless they bathe themselves, and there are many other things, which they have received to hold to: washings of cups, pitchers, bronze vessels, and couches.)"
+  },
+  {
+   "sentence": "Ими соблюдается также и множество других установлений, как, например, о мытье чаш, кувшинов и ___.",
+   "lemma": "посуда",
+   "options": [
+    "медной посуде",
+    "медной посуды",
+    "медная посуда",
+    "медной посудой"
+   ],
+   "correct": "медной посуды",
+   "case": "Родительный (Genitive)",
+   "explain": "«медной посуды» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "They don’t eat when they come from the marketplace unless they bathe themselves, and there are many other things, which they have received to hold to: washings of cups, pitchers, bronze vessels, and couches.)"
+  },
+  {
+   "sentence": "Вы ловко умеете подменять Божьи повеления вашими ___.",
+   "lemma": "традиция",
+   "options": [
+    "собственными традициями",
+    "собственным традициям",
+    "собственных традиций",
+    "собственные традиции"
+   ],
+   "correct": "собственными традициями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«собственными традициями» — the instrumental marks the means, company, or complement.",
+   "id": "c4",
+   "translation": "He said to them, “Full well do you reject the commandment of God, that you may keep your tradition."
+  },
+  {
+   "sentence": "Вы отменяете Божье слово ___, которое вы установили, и многое, подобное этому, вы делаете.",
+   "lemma": "предание",
+   "options": [
+    "собственное предание",
+    "собственного предания",
+    "собственному преданию",
+    "собственным преданием"
+   ],
+   "correct": "собственным преданием",
+   "case": "Творительный (Instrumental)",
+   "explain": "«собственным преданием» — the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "making void the word of God by your tradition, which you have handed down. You do many things like this.”"
+  },
+  {
+   "sentence": "Потому что изнутри, из сердца человека, исходят ___, разврат, воровство, убийство, 22 супружеская неверность, жадность, злоба, коварство, распутство, зависть , кощунство, надменность и безрассудство.",
+   "lemma": "мысль",
+   "options": [
+    "злым мыслям",
+    "злых мыслей",
+    "злых мыслях",
+    "злые мысли"
+   ],
+   "correct": "злые мысли",
+   "case": "Именительный (Nominative)",
+   "explain": "«злые мысли» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "For from within, out of the hearts of men, proceed evil thoughts, adulteries, sexual sins, murders, thefts,"
+  },
+  {
+   "sentence": "Возвращаясь из окрестностей Тира, Иисус через Сидон вышел к ___ в области Десятиградия.",
+   "lemma": "озеро",
+   "options": [
+    "галилейским озером",
+    "галилейскому озеру",
+    "галилейское озеро",
+    "галилейском озере"
+   ],
+   "correct": "галилейскому озеру",
+   "case": "Дательный (Dative)",
+   "explain": "«Галилейскому озеру» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c7",
+   "translation": "Again he departed from the borders of Tyre and Sidon, and came to the sea of Galilee, through the middle of the region of Decapolis."
+  },
+  {
+   "sentence": "К человеку тотчас же вернулся слух, ___ стал двигаться, и он начал говорить ясно.",
+   "lemma": "язык",
+   "options": [
+    "скованным языком",
+    "скованному языку",
+    "скованного языка",
+    "скованный язык"
+   ],
+   "correct": "скованный язык",
+   "case": "Именительный (Nominative)",
+   "explain": "«скованный язык» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "Immediately his ears were opened, and the impediment of his tongue was released, and he spoke clearly."
+  }
+ ]
 }

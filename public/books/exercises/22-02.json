@@ -1,204 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Я нарцисс Шаронский, лилия ___.",
-      "lemma": "долина",
-      "options": [
-        "долины",
-        "долинам",
-        "долине",
-        "долин"
-      ],
-      "correct": "долин",
-      "case": "Родительный (Genitive)",
-      "translation": "I am a rose of Sharon, a lily of the valleys.",
-      "explain": "Genitive plural in the possessive/partitive sense (lily of the valleys)."
-    },
-    {
-      "id": "c2",
-      "sentence": "Как лилия между тернами, так милая моя среди ___.",
-      "lemma": "девушка",
-      "options": [
-        "девушка",
-        "девушки",
-        "девушек",
-        "девушками"
-      ],
-      "correct": "девушек",
-      "case": "Родительный (Genitive)",
-      "translation": "As a lily among thorns, so is my love among the daughters.",
-      "explain": "Genitive plural after the preposition 'среди' (among)."
-    },
-    {
-      "id": "c3",
-      "sentence": "Сидеть в его тени — мне ___.",
-      "lemma": "наслаждение",
-      "options": [
-        "наслаждении",
-        "наслаждением",
-        "наслаждению",
-        "наслаждение"
-      ],
-      "correct": "наслаждение",
-      "case": "Именительный (Nominative)",
-      "translation": "I sat down under his shadow with great delight.",
-      "explain": "Nominative for predicate noun after 'быть' (to be, implied)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Превыше ___ вознесем мы любовь твою.",
-      "lemma": "вино",
-      "options": [
-        "вино",
-        "вина",
-        "вину",
-        "вином"
-      ],
-      "correct": "вина",
-      "case": "Родительный (Genitive)",
-      "translation": "We will praise your love more than wine.",
-      "explain": "Genitive after the comparative 'превыше' (above/more than)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Подкрепи меня ___, освежи меня яблоками, ведь я изнемогаю от любви.",
-      "lemma": "изюм",
-      "options": [
-        "изюма",
-        "изюму",
-        "изюме",
-        "изюмом"
-      ],
-      "correct": "изюмом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Strengthen me with raisins, refresh me with apples.",
-      "explain": "Instrumental after the verb 'подкрепи' (strengthen) indicating the means."
-    },
-    {
-      "id": "c6",
-      "sentence": "Голос возлюбленного моего. Вот идет он, перескакивая через горы, перепрыгивая через ___.",
-      "lemma": "холм",
-      "options": [
-        "холма",
-        "холмом",
-        "холме",
-        "холмы"
-      ],
-      "correct": "холмы",
-      "case": "Винительный (Accusative)",
-      "translation": "The voice of my beloved! Behold, he comes, leaping on the mountains, skipping on the hills.",
-      "explain": "Accusative after the preposition 'через' (through/over) indicating motion."
-    },
-    {
-      "id": "c7",
-      "sentence": "Возлюбленный мой, как газель или молодой ___.",
-      "lemma": "олень",
-      "options": [
-        "оленя",
-        "олену",
-        "олень",
-        "оленем"
-      ],
-      "correct": "олень",
-      "case": "Именительный (Nominative)",
-      "translation": "My beloved is like a roe or a young deer.",
-      "explain": "Nominative in comparative construction after 'как' (like)."
-    },
-    {
-      "id": "c8",
-      "sentence": "Пока не наступил день и не скрылись тени, возвратись, возлюбленный мой. Скачи, словно газель или молодой олень, на расселенных ___.",
-      "lemma": "гора",
-      "options": [
-        "горы",
-        "гор",
-        "горам",
-        "горах"
-      ],
-      "correct": "горах",
-      "case": "Предложный (Prepositional)",
-      "translation": "Return, my beloved. Run like a gazelle on the split mountains.",
-      "explain": "Prepositional after the preposition 'на' (on) for location."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Я нарцисс Шаронский, лилия долин.",
-      "question": "What does the speaker identify herself as?",
-      "options": [
-        "A merchant's daughter",
-        "A rose of Sharon, a lily of the valleys",
-        "A queen of Israel",
-        "A maiden from the city"
-      ],
-      "correct": "A rose of Sharon, a lily of the valleys",
-      "explain": "The speaker uses flowery language to describe herself as a rose and lily."
-    },
-    {
-      "id": "r2",
-      "ru": "Сидеть в его тени — мне наслаждение, и плод его сладок для меня.",
-      "question": "What brings the speaker joy and delight?",
-      "options": [
-        "Sitting in sunlight",
-        "Sitting in his shadow and enjoying his fruit",
-        "Reading poetry",
-        "Dancing at celebrations"
-      ],
-      "correct": "Sitting in his shadow and enjoying his fruit",
-      "explain": "The text explicitly states that sitting in his shadow is a delight and his fruit is sweet."
-    },
-    {
-      "id": "r3",
-      "ru": "Голос возлюбленного моего. Вот идет он, перескакивая через горы, перепрыгивая через холмы.",
-      "question": "How does the beloved approach in this passage?",
-      "options": [
-        "He walks slowly and carefully",
-        "He leaps over mountains and hills",
-        "He rides on a horse",
-        "He travels by water"
-      ],
-      "correct": "He leaps over mountains and hills",
-      "explain": "The passage describes him coming by leaping on mountains and skipping over hills."
-    },
-    {
-      "id": "r4",
-      "ru": "Возлюбленный мой сказал мне, вставай, любимая моя, прекрасная моя, пойдем со мной.",
-      "question": "What does the beloved ask the speaker to do?",
-      "options": [
-        "To prepare a meal",
-        "To get up and come with him",
-        "To hide from others",
-        "To wait for him to return"
-      ],
-      "correct": "To get up and come with him",
-      "explain": "The beloved directly tells her to arise and come away with him."
-    },
-    {
-      "id": "r5",
-      "ru": "Смотри, зима уже прошла, перестали лить дожди. Появились цветы на земле, настало время пения, и раздается голос горлицы в земле нашей.",
-      "question": "What season has arrived according to the text?",
-      "options": [
-        "Winter is coming",
-        "Spring has come: winter has passed, rains have ended, flowers appear, and birds sing",
-        "Autumn is here",
-        "It is still cold and snowing"
-      ],
-      "correct": "Spring has come: winter has passed, rains have ended, flowers appear, and birds sing",
-      "explain": "The passage lists the signs of spring: winter past, rain ended, flowers appearing, and singing birds."
-    },
-    {
-      "id": "r6",
-      "ru": "На инжире созревают плоды, и цветущие виноградные лозы источают свой аромат.",
-      "question": "What is happening with the plants mentioned in this verse?",
-      "options": [
-        "The crops have failed",
-        "Figs are ripening and flowering vines give off their fragrance",
-        "The harvest has passed",
-        "All plants are withering"
-      ],
-      "correct": "Figs are ripening and flowering vines give off their fragrance",
-      "explain": "The text describes figs ripening and blooming vines releasing their sweet scent."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "— Как яблоня среди ___,",
+   "lemma": "дерево",
+   "options": [
+    "лесных деревьях",
+    "лесные деревья",
+    "лесным деревьям",
+    "лесных деревьев"
+   ],
+   "correct": "лесных деревьев",
+   "case": "Родительный (Genitive)",
+   "explain": "«лесных деревьев» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "As the apple tree among the trees of the wood, so is my beloved among the sons. I sat down under his shadow with great delight, his fruit was sweet to my taste."
+  },
+  {
+   "sentence": "Его ___ под моей головой,",
+   "lemma": "рука",
+   "options": [
+    "левой рукой",
+    "левой руки",
+    "левая рука",
+    "левой руке"
+   ],
+   "correct": "левая рука",
+   "case": "Именительный (Nominative)",
+   "explain": "«левая рука» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "His left hand is under my head. His right hand embraces me."
+  },
+  {
+   "sentence": "Возлюбленный мой — как газель или ___.",
+   "lemma": "олень",
+   "options": [
+    "молодому оленю",
+    "молодой олень",
+    "молодом олене",
+    "молодым оленем"
+   ],
+   "correct": "молодой олень",
+   "case": "Именительный (Nominative)",
+   "explain": "«молодой олень» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "My beloved is like a roe or a young deer. Behold, he stands behind our wall! He looks in at the windows. He glances through the lattice."
+  }
+ ]
 }

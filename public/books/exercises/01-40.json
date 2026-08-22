@@ -1,114 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ разгневался на двух своих приближенных, главного виночерпия и главного пекаря.",
-      "lemma": "фараон",
-      "options": ["фараон", "фараона", "фараону", "фараоном"],
-      "correct": "фараон",
-      "case": "Именительный (Nominative)",
-      "translation": "Pharaoh became angry with two of his officials, the chief cupbearer and the chief baker.",
-      "explain": "Фараон is the subject of разгневался, so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Виночерпий и пекарь египетского ___ провинились перед своим господином.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царя",
-      "case": "Родительный (Genitive)",
-      "translation": "The cupbearer and baker of the king of Egypt offended their master.",
-      "explain": "The genitive case here expresses possession: 'the cupbearer and baker of the king.'"
-    },
-    {
-      "id": "c3",
-      "sentence": "Начальник стражи поручил их ___, и тот прислуживал им.",
-      "lemma": "Иосиф",
-      "options": ["Иосиф", "Иосифа", "Иосифу", "Иосифом"],
-      "correct": "Иосифу",
-      "case": "Дательный (Dative)",
-      "translation": "The captain of the guard assigned them to Joseph, and he attended them.",
-      "explain": "The verb поручить takes its indirect object (to whom) in the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я взял виноград, выжал сок в чашу и подал ___ в руку фараону.",
-      "lemma": "чаша",
-      "options": ["чаша", "чаши", "чаше", "чашу"],
-      "correct": "чашу",
-      "case": "Винительный (Accusative)",
-      "translation": "I took the grapes, pressed the juice into the cup, and gave the cup into Pharaoh's hand.",
-      "explain": "The transitive verb подать takes its direct object in the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Ты подашь фараону его чашу, как в прежние времена, когда ты был его ___.",
-      "lemma": "виночерпий",
-      "options": ["виночерпий", "виночерпия", "виночерпию", "виночерпием"],
-      "correct": "виночерпием",
-      "case": "Творительный (Instrumental)",
-      "translation": "You will give Pharaoh his cup, as in former times, when you were his cupbearer.",
-      "explain": "The verb быть in the past tense takes its predicate noun in the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Я держал на ___ три корзины с хлебом.",
-      "lemma": "голова",
-      "options": ["голова", "головы", "голове", "головой"],
-      "correct": "голове",
-      "case": "Предложный (Prepositional)",
-      "translation": "I was carrying three baskets of bread on my head.",
-      "explain": "The preposition на indicating location (on top of) takes the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Фараон разгневался на двух своих приближенных, главного Виночерпия и главного пекаря, и заключил их в темницу при доме начальника стражи, туда же, куда был заключен Иосиф.",
-      "question": "Why were the chief cupbearer and chief baker imprisoned?",
-      "options": ["Pharaoh was angry with them and had them put in the same prison as Joseph", "They tried to poison Pharaoh", "They stole from the palace", "They refused to serve Pharaoh"],
-      "correct": "Pharaoh was angry with them and had them put in the same prison as Joseph",
-      "explain": "The text says Pharaoh 'разгневался... и заключил их в темницу... куда был заключен Иосиф' (was angry and imprisoned them where Joseph was imprisoned)."
-    },
-    {
-      "id": "r2",
-      "ru": "Иосиф сказал им, «Разве толкование не от Бога? Расскажите мне ваши сны».",
-      "question": "According to Joseph, where do dream interpretations come from?",
-      "options": ["From God", "From the stars", "From the king", "From ancient books"],
-      "correct": "From God",
-      "explain": "Joseph asks 'Разве толкование не от Бога?' (Don't interpretations belong to God?)."
-    },
-    {
-      "id": "r3",
-      "ru": "Через три дня фараон возвысит тебя и возвратит на прежнее место.",
-      "question": "What did Joseph say would happen to the chief cupbearer in three days?",
-      "options": ["Pharaoh would restore him to his former position", "Pharaoh would execute him", "Pharaoh would exile him", "Pharaoh would make him a baker"],
-      "correct": "Pharaoh would restore him to his former position",
-      "explain": "Joseph says 'фараон возвысит тебя и возвратит на прежнее место' (Pharaoh will lift you up and restore you to your former place)."
-    },
-    {
-      "id": "r4",
-      "ru": "Тебе отрубят голову, а тело посадят на кол, и птицы будут клевать его.",
-      "question": "What did Joseph say would happen to the chief baker in three days?",
-      "options": ["He would be beheaded and his body impaled, and birds would eat his flesh", "He would be freed and promoted", "He would be sent to another country", "He would become Pharaoh's advisor"],
-      "correct": "He would be beheaded and his body impaled, and birds would eat his flesh",
-      "explain": "Joseph tells him 'Тебе отрубят голову, а тело посадят на кол, и птицы будут клевать его' (your head will be cut off, your body impaled, and birds will eat it)."
-    },
-    {
-      "id": "r5",
-      "ru": "На третий день в свой день рождения фараон устроил пир для всех своих придворных, и в их окружении он возвысил главного виночерпия и главного пекаря.",
-      "question": "What occasion did Pharaoh celebrate on the third day?",
-      "options": ["His own birthday, with a feast for all his officials", "The birth of his son", "The anniversary of his coronation", "A harvest festival"],
-      "correct": "His own birthday, with a feast for all his officials",
-      "explain": "The text says 'в свой день рождения фараон устроил пир для всех своих придворных' (on his birthday Pharaoh gave a feast for all his officials)."
-    },
-    {
-      "id": "r6",
-      "ru": "Но главный виночерпий не вспомнил об Иосифе, он забыл о нем.",
-      "question": "What did the chief cupbearer do after being restored to his position?",
-      "options": ["He forgot about Joseph", "He immediately told Pharaoh about Joseph", "He sent Joseph gifts", "He asked to visit Joseph in prison"],
-      "correct": "He forgot about Joseph",
-      "explain": "The text says the chief cupbearer 'не вспомнил об Иосифе, он забыл о нем' (did not remember Joseph, he forgot him)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Некоторое время спустя виночерпий и пекарь ___ провинились перед своим господином, царем Египта.",
+   "lemma": "царь",
+   "options": [
+    "египетский царь",
+    "египетского царя",
+    "египетском царе",
+    "египетским царём"
+   ],
+   "correct": "египетского царя",
+   "case": "Родительный (Genitive)",
+   "explain": "«египетского царя» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "After these things, the butler of the king of Egypt and his baker offended their lord, the king of Egypt."
+  },
+  {
+   "sentence": "Фараон разгневался на двух своих приближенных, главного виночерпия и ___, 3 и заключил их в темницу при доме начальника стражи, туда же, куда был заключен Иосиф.",
+   "lemma": "пекарь",
+   "options": [
+    "главным пекарем",
+    "главном пекаре",
+    "главного пекаря",
+    "главному пекарю"
+   ],
+   "correct": "главного пекаря",
+   "case": "Родительный (Genitive)",
+   "explain": "«главного пекаря» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "Pharaoh was angry with his two officers, the chief cup bearer and the chief baker."
+  },
+  {
+   "sentence": "___ рассказал Иосифу свой сон:",
+   "lemma": "виночерпий",
+   "options": [
+    "главного виночерпия",
+    "главный виночерпий",
+    "главным виночерпием",
+    "главном виночерпии"
+   ],
+   "correct": "главный виночерпий",
+   "case": "Именительный (Nominative)",
+   "explain": "«Главный виночерпий» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "The chief cup bearer told his dream to Joseph, and said to him, “In my dream, behold, a vine was in front of me,"
+  },
+  {
+   "sentence": "Увидев, что Иосиф дал благоприятное истолкование, ___ сказал Иосифу:",
+   "lemma": "пекарь",
+   "options": [
+    "главным пекарем",
+    "главный пекарь",
+    "главном пекаре",
+    "главному пекарю"
+   ],
+   "correct": "главный пекарь",
+   "case": "Именительный (Nominative)",
+   "explain": "«главный пекарь» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "When the chief baker saw that the interpretation was good, he said to Joseph, “I also was in my dream, and behold, three baskets of white bread were on my head."
+  },
+  {
+   "sentence": "Но ___ не вспомнил об Иосифе; он забыл о нем.",
+   "lemma": "виночерпий",
+   "options": [
+    "главном виночерпии",
+    "главному виночерпию",
+    "главным виночерпием",
+    "главный виночерпий"
+   ],
+   "correct": "главный виночерпий",
+   "case": "Именительный (Nominative)",
+   "explain": "«главный виночерпий» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "Yet the chief cup bearer didn’t remember Joseph, but forgot him."
+  }
+ ]
 }

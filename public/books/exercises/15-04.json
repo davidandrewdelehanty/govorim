@@ -1,134 +1,139 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Враги ___ и Вениамина услышали, что пленники строят дом Господу.",
-      "lemma": "Иуда",
-      "options": ["Иуда", "Иуды", "Иуде", "Иудой"],
-      "correct": "Иуды",
-      "case": "Родительный (Genitive)",
-      "translation": "The enemies of Judah and Benjamin heard that the captives were building a house for the Lord.",
-      "explain": "The genitive case marks possession; враги кого? (enemies of whom?) requires genitive."
-    },
-    {
-      "id": "c2",
-      "sentence": "Они пришли к ___ и главам семейств.",
-      "lemma": "Зарававель",
-      "options": ["Зарававель", "Зарававеля", "Зарававелю", "Зарававелем"],
-      "correct": "Зарававелю",
-      "case": "Дательный (Dative)",
-      "translation": "They came to Zerubbabel and the heads of the families.",
-      "explain": "The preposition к (to/toward) requires the dative case for the indirect object."
-    },
-    {
-      "id": "c3",
-      "sentence": "Позвольте нам строить вместе с ___.",
-      "lemma": "вы",
-      "options": ["вы", "вас", "вам", "вами"],
-      "correct": "вами",
-      "case": "Творительный (Instrumental)",
-      "translation": "Allow us to build together with you.",
-      "explain": "The preposition с (with) requires the instrumental case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Мы одни будем строить дом нашему ___ Израиля.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Богу",
-      "case": "Дательный (Dative)",
-      "translation": "We alone will build a house to our God of Israel.",
-      "explain": "The dative case marks the indirect object 'to whom' after the verb строить (to build)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Народы, бывшие вокруг них, начали отговаривать народ ___ от строительства.",
-      "lemma": "Иуда",
-      "options": ["Иуда", "Иуды", "Иуде", "Иудой"],
-      "correct": "Иуды",
-      "case": "Родительный (Genitive)",
-      "translation": "The peoples who were around them began to discourage the people of Judah from building.",
-      "explain": "The genitive case marks the type of people; народ кого? (people of whom?) requires genitive."
-    },
-    {
-      "id": "c6",
-      "sentence": "Враги подкупали советников, чтобы расстраивать планы народа во все время правления ___ персидского.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царя",
-      "case": "Родительный (Genitive)",
-      "translation": "The enemies bribed counselors to frustrate the plans of the people during the entire reign of the Persian king.",
-      "explain": "The genitive follows правления (reign); правления кого? requires genitive."
-    },
-    {
-      "id": "c7",
-      "sentence": "Письмо было написано на ___ языке.",
-      "lemma": "арамей",
-      "options": ["арамей", "арамея", "арамею", "арамеем"],
-      "correct": "арамеем",
-      "case": "Творительный (Instrumental)",
-      "translation": "The letter was written in the Aramaic language.",
-      "explain": "The instrumental case marks the tool or medium after the verb написано (was written); на каком языке? requires instrumental after на in this context."
-    },
-    {
-      "id": "c8",
-      "sentence": "В дни ___ были написаны письма против Иерусалима.",
-      "lemma": "Артаксеркс",
-      "options": ["Артаксеркс", "Артаксеркса", "Артаксерксом", "Артаксерксе"],
-      "correct": "Артаксеркса",
-      "case": "Родительный (Genitive)",
-      "translation": "In the days of Artaxerxes, letters were written against Jerusalem.",
-      "explain": "The genitive case follows 'в дни' (in the days of); в дни кого? requires genitive."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Когда враги Иуды и Вениамина услышали, что вчерашние пленники строят дом Господу, Богу Израиля, они пришли к Зарававелю и главам семейств.",
-      "question": "Who came to Zerubbabel and the heads of families when they heard about the reconstruction?",
-      "options": ["The enemies of Judah and Benjamin", "The priests", "The prophets", "The Persian officials"],
-      "correct": "The enemies of Judah and Benjamin",
-      "explain": "враги Иуды и Вениамина пришли к Зарававелю — the enemies of Judah and Benjamin came to Zerubbabel."
-    },
-    {
-      "id": "r2",
-      "ru": "Они пришли к Зарававелю и главам семейств и сказали, «Позвольте нам строить вместе с вами, ведь мы, как и вы, обращаемся за помощью к вашему Богу».",
-      "question": "What did the enemies claim about their relationship to God?",
-      "options": ["That they also sought God like the Jews did", "That they were stronger than God", "That they rejected God's help", "That they built their own temple"],
-      "correct": "That they also sought God like the Jews did",
-      "explain": "мы, как и вы, обращаемся за помощью к вашему Богу — we seek your God's help just as you do."
-    },
-    {
-      "id": "r3",
-      "ru": "Но Зарававель, Иисус и остальные главы семейств Израиля ответили, «Не строите вам вместе с нами дом нашему Богу. Мы одни будем строить его Господу Богу Израиля, как повелел нам персидский царь Кир».",
-      "question": "How did the Jewish leaders respond to the request to build together?",
-      "options": ["They refused and said they would build alone as commanded by King Cyrus", "They accepted and welcomed the help", "They suggested building in a different city", "They asked for permission from the king"],
-      "correct": "They refused and said they would build alone as commanded by King Cyrus",
-      "explain": "Зарававель и другие ответили: Не строите вам вместе с нами — Zerubbabel and others refused their offer."
-    },
-    {
-      "id": "r4",
-      "ru": "Враги подкупали советников, чтобы расстраивать планы народа во все время правления Кира, царя Персии, и до правления Дария, царя Персии.",
-      "question": "During whose reign did the enemies try to frustrate the plans of the people?",
-      "options": ["Throughout the reign of Cyrus and into the reign of Darius", "Only during Cyrus's reign", "Only during Darius's reign", "During the reign of Ahasuerus only"],
-      "correct": "Throughout the reign of Cyrus and into the reign of Darius",
-      "explain": "враги расстраивали планы во время правления Кира и Дария — during both kings' reigns."
-    },
-    {
-      "id": "r5",
-      "ru": "Рихум, царский наместник, и Шимшай, писарь, написали царю Артаксерксу письмо против Иерусалима.",
-      "question": "Who wrote a letter to King Artaxerxes against Jerusalem?",
-      "options": ["Rehum the chancellor and Shimshai the scribe", "Zerubbabel and Jeshua", "The priests and Levites", "The prophets Haggai and Zechariah"],
-      "correct": "Rehum the chancellor and Shimshai the scribe",
-      "explain": "Рихум, царский наместник, и Шимшай, писарь, написали письмо — Rehum and Shimshai wrote the letter."
-    },
-    {
-      "id": "r6",
-      "ru": "Как только копия письма царя Артаксеркса была прочитана Рихуму, писарю Шемшаю и их друзьям, они немедленно отправились к иудеям в Иерусалим и силой заставили их прекратить работу.",
-      "question": "What did the officials do after the king's letter was read to them?",
-      "options": ["They went to the Jews and forced them to stop the work", "They sent another letter to the king", "They helped the Jews build the temple", "They reported to the king that the work was finished"],
-      "correct": "They went to the Jews and forced them to stop the work",
-      "explain": "они немедленно отправились к иудеям и силой заставили их прекратить работу — they immediately went to the Jews and by force stopped their work."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Когда враги Иуды и Вениамина услышали, что ___ строят дом Господу, Богу Израиля, 2 они пришли к Зоровавелю и главам семейств и сказали:",
+   "lemma": "пленник",
+   "options": [
+    "вчерашние пленники",
+    "вчерашних пленниках",
+    "вчерашних пленников",
+    "вчерашним пленникам"
+   ],
+   "correct": "вчерашние пленники",
+   "case": "Именительный (Nominative)",
+   "explain": "«вчерашние пленники» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Now when the adversaries of Judah and Benjamin heard that the children of the captivity were building a temple to Yahweh, the God of Israel;"
+  },
+  {
+   "sentence": "Но Зоровавель, Иисус и ___ семейств Израиля ответили:",
+   "lemma": "глава",
+   "options": [
+    "остальных главах",
+    "остальным главам",
+    "остальные главы",
+    "остальными главами"
+   ],
+   "correct": "остальные главы",
+   "case": "Именительный (Nominative)",
+   "explain": "«остальные главы» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "But Zerubbabel, and Jeshua, and the rest of the heads of fathers’ households of Israel, said to them, “You have nothing to do with us in building a house to our God; but we ourselves together will build to Yahweh, the God of Israel, as king Cyrus the king of Persia has commanded us.”"
+  },
+  {
+   "sentence": "Письмо было написано ___ и на арамейском языке .",
+   "lemma": "шрифт",
+   "options": [
+    "арамейском шрифте",
+    "арамейский шрифт",
+    "арамейскому шрифту",
+    "арамейским шрифтом"
+   ],
+   "correct": "арамейским шрифтом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«арамейским шрифтом» — the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "In the days of Artaxerxes, Bishlam, Mithredath, Tabeel, and the rest of his companions, wrote to Artaxerxes king of Persia; and the writing of the letter was written in Syrian, and delivered in the Syrian language."
+  },
+  {
+   "sentence": "Письмо было написано арамейским шрифтом и на ___ .",
+   "lemma": "язык",
+   "options": [
+    "арамейском языке",
+    "арамейскому языку",
+    "арамейским языком",
+    "арамейский язык"
+   ],
+   "correct": "арамейском языке",
+   "case": "Предложный (Prepositional)",
+   "explain": "«арамейском языке» — after the preposition «на», for location or topic.",
+   "id": "c4",
+   "translation": "In the days of Artaxerxes, Bishlam, Mithredath, Tabeel, and the rest of his companions, wrote to Artaxerxes king of Persia; and the writing of the letter was written in Syrian, and delivered in the Syrian language."
+  },
+  {
+   "sentence": "___ Рехум и писарь Шимшай написали царю Артаксерксу против Иерусалима такое письмо:",
+   "lemma": "наместник",
+   "options": [
+    "царский наместник",
+    "царском наместнике",
+    "царского наместника",
+    "царским наместником"
+   ],
+   "correct": "царский наместник",
+   "case": "Именительный (Nominative)",
+   "explain": "«Царский наместник» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "Rehum the chancellor and Shimshai the scribe wrote a letter against Jerusalem to Artaxerxes the king as follows,"
+  },
+  {
+   "sentence": "Да будет известно царю и то, что если этот город будет отстроен и стены его будут укреплены, то ни налог, ни дань, ни пошлина платиться не будут, и ___ сократятся.",
+   "lemma": "доход",
+   "options": [
+    "царских доходах",
+    "царских доходов",
+    "царские доходы",
+    "царскими доходами"
+   ],
+   "correct": "царские доходы",
+   "case": "Именительный (Nominative)",
+   "explain": "«царские доходы» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "Be it known now to the king that if this city is built and the walls finished, they will not pay tribute, custom, or toll, and in the end it will be hurtful to the kings."
+  },
+  {
+   "sentence": "В Иерусалиме были ___, правившие всей провинцией, что находится за Евфратом, и им платились налоги, дань и пошлины.",
+   "lemma": "царь",
+   "options": [
+    "могучими царями",
+    "могучих царей",
+    "могучим царям",
+    "могучие цари"
+   ],
+   "correct": "могучие цари",
+   "case": "Именительный (Nominative)",
+   "explain": "«могучие цари» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "There have also been mighty kings over Jerusalem, who have ruled over all the country beyond the River; and tribute, custom, and toll, was paid to them."
+  },
+  {
+   "sentence": "Так работа над ___ в Иерусалиме остановилась и не возобновлялась до второго года правления Дария, царя Персии .",
+   "lemma": "дом",
+   "options": [
+    "божьем доме",
+    "божьим домом",
+    "божий дом",
+    "божьему дому"
+   ],
+   "correct": "божьим домом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«Божьим домом» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "id": "c8",
+   "translation": "Then work stopped on God’s house which is at Jerusalem. It stopped until the second year of the reign of Darius king of Persia."
+  },
+  {
+   "sentence": "Так работа над Божьим домом в Иерусалиме остановилась и не возобновлялась до ___ правления Дария, царя Персии .",
+   "lemma": "год",
+   "options": [
+    "второму году",
+    "вторым годом",
+    "втором годе",
+    "второго года"
+   ],
+   "correct": "второго года",
+   "case": "Родительный (Genitive)",
+   "explain": "«второго года» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "Then work stopped on God’s house which is at Jerusalem. It stopped until the second year of the reign of Darius king of Persia."
+  }
+ ]
 }

@@ -1,134 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Затем я увидел ___ , спускающегося с небес.",
-      "lemma": "ангел",
-      "options": ["ангел", "ангела", "ангелу", "ангелом"],
-      "correct": "ангела",
-      "case": "Винительный (Accusative)",
-      "translation": "Then I saw an angel coming down from heaven.",
-      "explain": "The transitive verb 'увидел' (saw) requires the accusative case for its direct object."
-    },
-    {
-      "id": "c2",
-      "sentence": "У него был ключ от ___.",
-      "lemma": "бездна",
-      "options": ["бездна", "бездны", "бездне", "бездной"],
-      "correct": "бездны",
-      "case": "Родительный (Genitive)",
-      "translation": "He had a key to the abyss.",
-      "explain": "The preposition 'от' (from) requires the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Он схватил ___ и древнего змея.",
-      "lemma": "дракон",
-      "options": ["дракон", "дракона", "дракону", "драконом"],
-      "correct": "дракона",
-      "case": "Винительный (Accusative)",
-      "translation": "He seized the dragon and the old serpent.",
-      "explain": "The transitive verb 'схватил' (seized) requires the accusative case for its direct object."
-    },
-    {
-      "id": "c4",
-      "sentence": "Он есть ___ и сатана.",
-      "lemma": "дьявол",
-      "options": ["дьявол", "дьявола", "дьяволу", "дьяволом"],
-      "correct": "дьявол",
-      "case": "Именительный (Nominative)",
-      "translation": "He is the devil and Satan.",
-      "explain": "The predicate complement after 'есть' (is) takes the nominative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Сковал его на ___  лет.",
-      "lemma": "тысяча",
-      "options": ["тысяча", "тысячи", "тысячу", "тысячей"],
-      "correct": "тысячу",
-      "case": "Винительный (Accusative)",
-      "translation": "He bound him for a thousand years.",
-      "explain": "The preposition 'на' with duration requires the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Они будут священниками Бога и ___.",
-      "lemma": "Христос",
-      "options": ["Христос", "Христа", "Христу", "Христом"],
-      "correct": "Христа",
-      "case": "Родительный (Genitive)",
-      "translation": "They will be priests of God and Christ.",
-      "explain": "In coordinate genitives, both nouns take the genitive case expressing possession: 'priests of God and of Christ'."
-    },
-    {
-      "id": "c7",
-      "sentence": "Они прошли маршем по всей ___.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землей"],
-      "correct": "земле",
-      "case": "Дательный (Dative)",
-      "translation": "They marched throughout the earth.",
-      "explain": "The preposition 'по' (throughout) requires the dative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Она не была найдена в ___.",
-      "lemma": "книга",
-      "options": ["книга", "книги", "книге", "книгой"],
-      "correct": "книге",
-      "case": "Предложный (Prepositional)",
-      "translation": "It was not found in the book.",
-      "explain": "The preposition 'в' with location requires the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Затем я увидел ангела, спускающегося с небес.",
-      "question": "What did the narrator see coming down from heaven?",
-      "options": ["A dragon", "An angel", "A book", "A light"],
-      "correct": "An angel",
-      "explain": "The text clearly states 'я увидел ангела, спускающегося с небес' (I saw an angel coming down from heaven)."
-    },
-    {
-      "id": "r2",
-      "ru": "Он схватил дракона, древнего змея, который и есть дьявол и сатана, сковал его на тысячу лет, бросил его в бездну, закрыл и опечатал.",
-      "question": "What did the angel do with the dragon and Satan?",
-      "options": ["Destroyed it immediately", "Cast it out of heaven", "Bound and imprisoned it for a thousand years", "Transformed it into a serpent"],
-      "correct": "Bound and imprisoned it for a thousand years",
-      "explain": "The passage states the angel 'сковал его на тысячу лет, бросил его в бездну, закрыл и опечатал' (bound him for a thousand years, cast him into the abyss, shut it, and sealed it)."
-    },
-    {
-      "id": "r3",
-      "ru": "чтобы тот уже не мог больше обманывать народы, пока не окончится тысяча лет.",
-      "question": "For how long would Satan be unable to deceive the nations?",
-      "options": ["Forever", "Until a thousand years pass", "For forty days", "Until the final judgment"],
-      "correct": "Until a thousand years pass",
-      "explain": "The text states that Satan would be imprisoned 'пока не окончится тысяча лет' (until a thousand years are completed)."
-    },
-    {
-      "id": "r4",
-      "ru": "И я увидел троны, на которых сидели те, кому дано было править, и души обезглавленных за свидетельство об Иисусе и за Слово Божье.",
-      "question": "Who or what did the narrator see sitting on thrones?",
-      "options": ["Angels and demons", "Those given authority to rule and the souls of the beheaded", "Kings and prophets", "The twelve apostles"],
-      "correct": "Those given authority to rule and the souls of the beheaded",
-      "explain": "The passage explicitly mentions 'те, кому дано было править' (those given authority to rule) and 'души обезглавленных' (the souls of the beheaded) sitting on the thrones."
-    },
-    {
-      "id": "r5",
-      "ru": "Они ожили и царствовали со Христом тысячу лет.",
-      "question": "With whom did the saints reign for a thousand years?",
-      "options": ["With God the Father alone", "With Christ", "With the angels", "With each other"],
-      "correct": "With Christ",
-      "explain": "The text explicitly states 'царствовали со Христом тысячу лет' (reigned with Christ a thousand years)."
-    },
-    {
-      "id": "r6",
-      "ru": "Дьявол, который их обманул, был брошен в озеро, наполненное горящей серой, туда, где уже были зверь и лже-пророк.",
-      "question": "Where was the devil cast after the thousand years?",
-      "options": ["Into the bottomless pit", "Into the outer darkness", "Into the lake of fire and sulfur with the beast and false prophet", "Into the sea"],
-      "correct": "Into the lake of fire and sulfur with the beast and false prophet",
-      "explain": "The passage states the devil 'был брошен в озеро, наполненное горящей серой, туда, где уже были зверь и лже-пророк' (was thrown into the lake of fire and sulfur where the beast and false prophet already were)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "(Другие мертвые не ожили, пока не окончилась тысяча лет.) Это ___ .",
+   "lemma": "воскресение",
+   "options": [
+    "первым воскресением",
+    "первом воскресении",
+    "первому воскресению",
+    "первое воскресение"
+   ],
+   "correct": "первое воскресение",
+   "case": "Именительный (Nominative)",
+   "explain": "«первое воскресение» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "The rest of the dead didn’t live until the thousand years were finished. This is the first resurrection."
+  },
+  {
+   "sentence": "Блажен и свят тот, кто участвует в ___.",
+   "lemma": "воскресение",
+   "options": [
+    "первому воскресению",
+    "первом воскресении",
+    "первым воскресением",
+    "первое воскресение"
+   ],
+   "correct": "первом воскресении",
+   "case": "Предложный (Prepositional)",
+   "explain": "«первом воскресении» — after the preposition «в», for location or topic.",
+   "id": "c2",
+   "translation": "Blessed and holy is he who has part in the first resurrection. Over these, the second death has no power, but they will be priests of God and of Christ, and will reign with him one thousand years."
+  },
+  {
+   "sentence": "Они прошли маршем по всей земле и окружили стан народа Божьего — Его ___ .",
+   "lemma": "город",
+   "options": [
+    "любимого города",
+    "любимом городе",
+    "любимому городу",
+    "любимый город"
+   ],
+   "correct": "любимый город",
+   "case": "Именительный (Nominative)",
+   "explain": "«любимый город» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "and he will come out to deceive the nations which are in the four corners of the earth, Gog and Magog, to gather them together to the war; the number of whom is as the sand of the sea."
+  },
+  {
+   "sentence": "Они стояли перед троном и перед ___.",
+   "lemma": "книга",
+   "options": [
+    "раскрытые книги",
+    "раскрытыми книгами",
+    "раскрытых книг",
+    "раскрытых книгах"
+   ],
+   "correct": "раскрытыми книгами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«раскрытыми книгами» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "I saw the dead, the great and the small, standing before the throne, and they opened books. Another book was opened, which is the book of life. The dead were judged out of the things which were written in the books, according to their works."
+  },
+  {
+   "sentence": "___ — это вторая смерть.",
+   "lemma": "озеро",
+   "options": [
+    "огненному озеру",
+    "огненного озера",
+    "огненном озере",
+    "огненное озеро"
+   ],
+   "correct": "огненное озеро",
+   "case": "Именительный (Nominative)",
+   "explain": "«Огненное озеро» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "Death and Hades were thrown into the lake of fire. This is the second death, the lake of fire."
+  }
+ ]
 }

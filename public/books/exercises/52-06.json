@@ -1,134 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Мы умерли для ___, как же мы можем продолжать жить в нем?",
-      "lemma": "грех",
-      "options": ["грех", "греха", "греху", "грехом"],
-      "correct": "греха",
-      "case": "Родительный (Genitive)",
-      "translation": "We died to sin; how can we live in it any longer?",
-      "explain": "The phrase 'умерли для греха' (died to sin) uses the genitive case to express the object of the action."
-    },
-    {
-      "id": "c2",
-      "sentence": "Все мы, крестившиеся в ___ Христа, были крещены в Его смерть.",
-      "lemma": "Иисус",
-      "options": ["Иисус", "Иисуса", "Иисусу", "Иисусом"],
-      "correct": "Иисуса",
-      "case": "Винительный (Accusative)",
-      "translation": "All of us who were baptized into Jesus Christ were baptized into his death.",
-      "explain": "The preposition в (into) with baptism takes the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Мы при ___ были погребены с Ним во Христе, чтобы жить новой жизнью.",
-      "lemma": "крещение",
-      "options": ["крещение", "крещения", "крещении", "крещением"],
-      "correct": "крещении",
-      "case": "Предложный (Prepositional)",
-      "translation": "We were buried with him through baptism into death, that we might walk in newness of life.",
-      "explain": "The preposition 'при' (at, during) takes the prepositional case to express the circumstance or means."
-    },
-    {
-      "id": "c4",
-      "sentence": "Как Христос был воскрешен из мертвых славой ___, так и мы должны жить новой жизнью.",
-      "lemma": "Отец",
-      "options": ["Отец", "Отца", "Отцу", "Отцом"],
-      "correct": "Отца",
-      "case": "Родительный (Genitive)",
-      "translation": "Just as Christ was raised from the dead through the glory of the Father, so we also should live in newness of life.",
-      "explain": "The preposition 'славой' (by the glory) modifying 'Отца' uses the genitive to show possession."
-    },
-    {
-      "id": "c5",
-      "sentence": "Не отдавайте членов вашего тела ___ в орудие неправедности.",
-      "lemma": "грех",
-      "options": ["грех", "греха", "греху", "грехом"],
-      "correct": "греху",
-      "case": "Дательный (Dative)",
-      "translation": "Do not present your members to sin as instruments of unrighteousness.",
-      "explain": "The verb 'отдавайте' (present/give) with indirect object takes the dative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Лучше отдайте себя ___, как оживших из мертвых.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Богу",
-      "case": "Дательный (Dative)",
-      "translation": "Rather present yourselves to God as alive from the dead.",
-      "explain": "The verb 'отдайте' (present) with indirect object requires the dative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Грех не должен господствовать над вами, потому что вы не под ___, а под благодатью.",
-      "lemma": "закон",
-      "options": ["закон", "закона", "законе", "законом"],
-      "correct": "законом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Sin will not have dominion over you, for you are not under law, but under grace.",
-      "explain": "The preposition 'под' (under) with the meaning of being governed by takes the instrumental case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Возмездие за ___ — смерть, а дар Божий — вечная жизнь в единении с Иисусом Христом.",
-      "lemma": "грех",
-      "options": ["грех", "греха", "греху", "грехом"],
-      "correct": "грех",
-      "case": "Винительный (Accusative)",
-      "translation": "For the wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord.",
-      "explain": "The preposition 'за' (for) taking a direct object uses the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Мы умерли для греха, как же мы можем продолжать жить в нем?",
-      "question": "How should we respond to the question of continuing to sin after baptism?",
-      "options": ["We died to sin, so we cannot continue living in it", "We can continue sinning because grace covers it", "We should embrace sin to show God's grace", "We have no choice but to keep sinning"],
-      "correct": "We died to sin, so we cannot continue living in it",
-      "explain": "The passage states that we died to sin and therefore cannot continue living in it (Мы умерли для греха, как же мы можем продолжать жить в нем?)."
-    },
-    {
-      "id": "r2",
-      "ru": "Все мы, крестившиеся в Иисуса Христа, были крещены в Его смерть.",
-      "question": "What does baptism into Christ mean according to this verse?",
-      "options": ["Baptism into his death", "Baptism into his glory", "Baptism into the law", "Baptism into righteousness"],
-      "correct": "Baptism into his death",
-      "explain": "The text explicitly states that those baptized into Jesus Christ were baptized into His death (крестившиеся в Иисуса Христа, были крещены в Его смерть)."
-    },
-    {
-      "id": "r3",
-      "ru": "Мы знаем, что Христос воскрес из мертвых и больше не умрет. Смерть уже не имеет власти над Ним.",
-      "question": "What is true about Christ and death?",
-      "options": ["Christ rose from the dead and death has no power over him anymore", "Christ might die again in the future", "Christ is still dead", "Death continues to have power over Christ"],
-      "correct": "Christ rose from the dead and death has no power over him anymore",
-      "explain": "The passage states that Christ rose from the dead and will not die again, and that death no longer has dominion over him (Христос воскрес из мертвых и больше не умрет. Смерть уже не имеет власти над Ним)."
-    },
-    {
-      "id": "r4",
-      "ru": "Не отдавайте членов вашего тела греху в орудие неправедности. Лучше отдайте себя Богу, как оживших из мертвых.",
-      "question": "What should we present to God instead of to sin?",
-      "options": ["Ourselves as alive from the dead", "Our weaknesses and failures", "Our earthly possessions", "Our doubts and fears"],
-      "correct": "Ourselves as alive from the dead",
-      "explain": "The passage instructs us to present ourselves to God as alive from the dead, rather than presenting our members to sin (отдайте себя Богу, как оживших из мертвых)."
-    },
-    {
-      "id": "r5",
-      "ru": "Вы ведь знаете, что если вы отдаете себя кому-то в рабство, то делаетесь его покорными рабами, рабами греха, что ведет к смерти, или рабами послушания, что ведет к праведности.",
-      "question": "What are the two possible outcomes of serving someone as described in this verse?",
-      "options": ["Slavery to sin leading to death, or slavery to obedience leading to righteousness", "Slavery to the law or slavery to grace", "Slavery to humanity or slavery to angels", "Slavery to righteousness or slavery to knowledge"],
-      "correct": "Slavery to sin leading to death, or slavery to obedience leading to righteousness",
-      "explain": "The text states that we become slaves to either sin (leading to death) or obedience (leading to righteousness) based on who we present ourselves to (рабами греха, что ведет к смерти, или рабами послушания, что ведет к праведности)."
-    },
-    {
-      "id": "r6",
-      "ru": "Возмездие за грех — смерть, а дар Божий — вечная жизнь в единении с Иисусом Христом, нашим Господом.",
-      "question": "What is the contrast presented in this verse?",
-      "options": ["The wages of sin is death, but God's gift is eternal life in Christ", "The law brings death, but grace brings sin", "Works bring righteousness, but faith brings condemnation", "Obedience brings judgment, but disobedience brings freedom"],
-      "correct": "The wages of sin is death, but God's gift is eternal life in Christ",
-      "explain": "The verse contrasts the consequence of sin (death) with God's gift (eternal life in Christ) (Возмездие за грех — смерть, а дар Божий — вечная жизнь в единении с Иисусом Христом)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Мы знаем, что наша прежняя ___ была распята с Ним для того, чтобы освободить нашу жизнь из-под власти греха, и чтобы мы не были более рабами греху, 7 ведь умерший освобожден от греха.",
+   "lemma": "природа",
+   "options": [
+    "греховная природа",
+    "греховной природе",
+    "греховной природы",
+    "греховной природой"
+   ],
+   "correct": "греховная природа",
+   "case": "Именительный (Nominative)",
+   "explain": "«греховная природа» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "knowing this, that our old man was crucified with him, that the body of sin might be done away with, so that we would no longer be in bondage to sin."
+  },
+  {
+   "sentence": "Поэтому не позволяйте греху царствовать в вашем ___ и не идите на поводу у его похотей.",
+   "lemma": "тело",
+   "options": [
+    "смертного тела",
+    "смертное тело",
+    "смертном теле",
+    "смертному телу"
+   ],
+   "correct": "смертном теле",
+   "case": "Предложный (Prepositional)",
+   "explain": "«смертном теле» — after the preposition «в», for location or topic.",
+   "id": "c2",
+   "translation": "Therefore don’t let sin reign in your mortal body, that you should obey it in its lusts."
+  },
+  {
+   "sentence": "Вы ведь знаете, что если вы отдаете себя кому-то в рабство, то делаетесь его ___: рабами греха, что ведет к смерти, или рабами послушания, что ведет к праведности.",
+   "lemma": "раб",
+   "options": [
+    "покорными рабами",
+    "покорных рабах",
+    "покорные рабы",
+    "покорным рабам"
+   ],
+   "correct": "покорными рабами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«покорными рабами» — the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "Don’t you know that when you present yourselves as servants and obey someone, you are the servants of whomever you obey; whether of sin to death, or of obedience to righteousness?"
+  },
+  {
+   "sentence": "Я говорю об этом ___, принимая в расчет ваше возможное недопонимание.",
+   "lemma": "язык",
+   "options": [
+    "простому языку",
+    "простого языка",
+    "простом языке",
+    "простым языком"
+   ],
+   "correct": "простым языком",
+   "case": "Творительный (Instrumental)",
+   "explain": "«простым языком» — the instrumental marks the means, company, or complement.",
+   "id": "c4",
+   "translation": "I speak in human terms because of the weakness of your flesh, for as you presented your members as servants to uncleanness and to wickedness upon wickedness, even so now present your members as servants to righteousness for sanctification."
+  }
+ ]
 }

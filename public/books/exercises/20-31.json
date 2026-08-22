@@ -1,204 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "О сын мой, сын моего чрева, о сын мой, ответ на молитвы ___!",
-      "lemma": "я",
-      "options": [
-        "мои",
-        "мне",
-        "мной",
-        "моим"
-      ],
-      "correct": "мои",
-      "case": "Именительный (Nominative)",
-      "translation": "O my son, son of my womb, O my son, answer to my prayers!",
-      "explain": "The possessive adjective agrees with 'молитвы' in Nominative plural."
-    },
-    {
-      "id": "c2",
-      "sentence": "Не давай своей силы ___, мощи своей, губительницам царей.",
-      "lemma": "женщина",
-      "options": [
-        "женщин",
-        "женщинам",
-        "женщинами",
-        "женщине"
-      ],
-      "correct": "женщин",
-      "case": "Винительный (Accusative)",
-      "translation": "Do not give your strength to women, your power to those who destroy kings.",
-      "explain": "The verb 'давай' (give) takes the Accusative case for the indirect object."
-    },
-    {
-      "id": "c3",
-      "sentence": "Не царям, Лемуил, не царям пить вино, не правителям жаждать хмельного питья, чтобы, напившись от ___, не забыли закона.",
-      "lemma": "оно",
-      "options": [
-        "него",
-        "ему",
-        "ним",
-        "нём"
-      ],
-      "correct": "него",
-      "case": "Родительный (Genitive)",
-      "translation": "It is not for kings, Lemuel, to forget the law from drinking.",
-      "explain": "The preposition 'от' (from) governs the Genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Добродетельная жена. Хорошая ___, кто ее найдет?",
-      "lemma": "жена",
-      "options": [
-        "жена",
-        "жены",
-        "жене",
-        "женой"
-      ],
-      "correct": "жена",
-      "case": "Именительный (Nominative)",
-      "translation": "A virtuous woman, who can find her?",
-      "explain": "The subject of the sentence is in Nominative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Камней драгоценных она дороже. Всем сердцем верит ей ___, с ним он не будет в убытке.",
-      "lemma": "муж",
-      "options": [
-        "муж",
-        "мужа",
-        "мужу",
-        "мужем"
-      ],
-      "correct": "муж",
-      "case": "Именительный (Nominative)",
-      "translation": "She is more precious than precious stones. Her husband trusts her.",
-      "explain": "The subject 'муж' is in Nominative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Она выбирает шерсть и лен и охотно трудится своими ___.",
-      "lemma": "рука",
-      "options": [
-        "руками",
-        "руки",
-        "рукам",
-        "рук"
-      ],
-      "correct": "руками",
-      "case": "Творительный (Instrumental)",
-      "translation": "She chooses wool and flax, and works willingly with her hands.",
-      "explain": "The preposition 'своими' (with) governs the Instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Для бедняка она открывает ладонь и протягивает руки ___.",
-      "lemma": "нуждающийся",
-      "options": [
-        "нуждающиеся",
-        "нуждающихся",
-        "нуждающимся",
-        "нуждающимися"
-      ],
-      "correct": "нуждающимся",
-      "case": "Дательный (Dative)",
-      "translation": "To the poor she opens her hands and extends her arms to the needy.",
-      "explain": "The verb 'протягивает' takes the Dative case for the recipient."
-    },
-    {
-      "id": "c8",
-      "sentence": "Мужа ее уважают у городских ворот, со старейшинами ___ вместо его.",
-      "lemma": "страна",
-      "options": [
-        "страна",
-        "страны",
-        "страной",
-        "странах"
-      ],
-      "correct": "страны",
-      "case": "Родительный (Genitive)",
-      "translation": "Her husband is respected at the gates, among the elders of the land.",
-      "explain": "The genitive case marks possession: 'старейшинами страны' = 'elders of the land'."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Высказывание Лемуила, царя. Изречение, которым научила его мать.",
-      "question": "Who taught King Lemuel?",
-      "options": [
-        "His father",
-        "His mother",
-        "The wise men",
-        "A prophet"
-      ],
-      "correct": "His mother",
-      "explain": "The text states 'Изречение, которым научила его мать' (the utterance his mother taught him)."
-    },
-    {
-      "id": "r2",
-      "ru": "Она, подобно купеческим кораблям, издалека добывает свой хлеб.",
-      "question": "What does the comparison to merchant ships show?",
-      "options": [
-        "The woman travels",
-        "The woman's commerce and industry",
-        "The woman's travels abroad",
-        "The woman's wealth from trade"
-      ],
-      "correct": "The woman's commerce and industry",
-      "explain": "The comparison to merchant ships shows her productive commerce and industry."
-    },
-    {
-      "id": "r3",
-      "ru": "Присматривает поле и покупает его, на заработанное ею насаждает виноградник.",
-      "question": "What does the virtuous woman do after seeing a field?",
-      "options": [
-        "Rents it",
-        "Buys it and plants a vineyard",
-        "Sells it immediately",
-        "Gives it away"
-      ],
-      "correct": "Buys it and plants a vineyard",
-      "explain": "The text says she considers, buys, and plants a vineyard with her earnings."
-    },
-    {
-      "id": "r4",
-      "ru": "Ее дети встают и благословенно ее зовут, так же муж и хвалит ее.",
-      "question": "Who shows appreciation for the virtuous woman?",
-      "options": [
-        "Strangers",
-        "The poor",
-        "Her children and her husband",
-        "The city elders"
-      ],
-      "correct": "Her children and her husband",
-      "explain": "The verse states her children rise and bless her, and her husband also praises her."
-    },
-    {
-      "id": "r5",
-      "ru": "Много есть хороших жен, но ты превзошла их всех.",
-      "question": "How does this woman compare to others?",
-      "options": [
-        "She is average",
-        "She is good but not exceptional",
-        "She excels them all",
-        "She is the poorest"
-      ],
-      "correct": "She excels them all",
-      "explain": "The text states 'ты превзошла их всех' (you have surpassed them all)."
-    },
-    {
-      "id": "r6",
-      "ru": "Дайте ей награду, которую она заслужила, пусть дела ее славят ее у городских ворот.",
-      "question": "Where should her works be praised?",
-      "options": [
-        "In the temple",
-        "At the city gates",
-        "At home only",
-        "In secret"
-      ],
-      "correct": "At the city gates",
-      "explain": "The text states 'дела ее славят ее у городских ворот' (her works praise her at the city gates)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "___ — кто ее найдет?",
+   "lemma": "жена",
+   "options": [
+    "хорошей жены",
+    "хорошей жене",
+    "хорошей женой",
+    "хорошая жена"
+   ],
+   "correct": "хорошая жена",
+   "case": "Именительный (Nominative)",
+   "explain": "«Хорошая жена» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Who can find a worthy woman? For her price is far above rubies."
+  },
+  {
+   "sentence": "Она подобна ___ –",
+   "lemma": "корабль",
+   "options": [
+    "купеческие корабли",
+    "купеческих кораблей",
+    "купеческих кораблях",
+    "купеческим кораблям"
+   ],
+   "correct": "купеческим кораблям",
+   "case": "Дательный (Dative)",
+   "explain": "«купеческим кораблям» — the dative marks the indirect object or recipient.",
+   "id": "c2",
+   "translation": "She is like the merchant ships. She brings her bread from afar."
+  },
+  {
+   "sentence": "Мужа ее уважают у ___ –",
+   "lemma": "ворота",
+   "options": [
+    "городских воротах",
+    "городские ворота",
+    "городскими воротами",
+    "городских ворот"
+   ],
+   "correct": "городских ворот",
+   "case": "Родительный (Genitive)",
+   "explain": "«городских ворот» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Her husband is respected in the gates, when he sits among the elders of the land."
+  }
+ ]
 }

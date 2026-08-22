@@ -1,134 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Господь послал к Давиду ___.",
-      "lemma": "Нафан",
-      "options": ["Нафан", "Нафана", "Нафану", "Нафане"],
-      "correct": "Нафана",
-      "case": "Винительный (Accusative)",
-      "translation": "The Lord sent Nathan to David.",
-      "explain": "The accusative case marks the direct object of the verb послал."
-    },
-    {
-      "id": "c2",
-      "sentence": "В одном городе было два ___, один богатый, а другой бедный.",
-      "lemma": "человек",
-      "options": ["человек", "человека", "человеку", "человеке"],
-      "correct": "человека",
-      "case": "Родительный (Genitive)",
-      "translation": "In one city there were two men, one rich and one poor.",
-      "explain": "After numerals 2-4, the genitive singular is used."
-    },
-    {
-      "id": "c3",
-      "sentence": "У богача было очень много мелкого и крупного ___.",
-      "lemma": "скот",
-      "options": ["скот", "скота", "скоту", "скоте"],
-      "correct": "скота",
-      "case": "Родительный (Genitive)",
-      "translation": "The rich man had a great many flocks and herds.",
-      "explain": "The preposition много (much) takes the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "У бедняка не было ничего, кроме одной маленькой овечки, которую он ___.",
-      "lemma": "купить",
-      "options": ["купил", "купила", "купило", "купили"],
-      "correct": "купил",
-      "case": "Прошедшее время (Past tense)",
-      "translation": "The poor man had nothing except one little ewe lamb, which he had bought.",
-      "explain": "Past tense masculine singular shows the action of buying."
-    },
-    {
-      "id": "c5",
-      "sentence": "К богачу пришел путник, чтобы попросить пищу, но богач проявил жадность к ___.",
-      "lemma": "путник",
-      "options": ["путник", "путника", "путнику", "путнике"],
-      "correct": "путнику",
-      "case": "Дательный (Dative)",
-      "translation": "A traveler came to the rich man to ask for food, but the rich man showed greed toward the traveler.",
-      "explain": "The dative case shows the recipient or beneficiary."
-    },
-    {
-      "id": "c6",
-      "sentence": "К богачу пришел путник, но богач пожалел взять что-либо из своего скота, чтобы приготовить пищу для пришедшего к нему ___.",
-      "lemma": "путник",
-      "options": ["путник", "путника", "путнику", "путнике"],
-      "correct": "путника",
-      "case": "Родительный (Genitive)",
-      "translation": "A traveler came to the rich man, but the rich man was unwilling to take any of his own flock or herd to prepare for the wayfaring man who had come to him.",
-      "explain": "The preposition для (for) governing the recipient takes the genitive case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Он должен заплатить за овечку ___,  потому что он сделал это и не имел сострадания.",
-      "lemma": "четырехкратно",
-      "options": ["четырехкратно", "четыре раза", "по четыре раза", "в четыре раза"],
-      "correct": "четырехкратно",
-      "case": "Наречие (Adverb)",
-      "translation": "He must restore the lamb fourfold, because he did this thing and had no pity.",
-      "explain": "Четырехкратно (fourfold) is an adverb modifying the verb заплатить."
-    },
-    {
-      "id": "c8",
-      "sentence": "Сильно разгневался Давид на этого ___ и сказал Нафану, «Верно, как и то, что жив Господь, человек, который сделал это, заслуживает смерти».",
-      "lemma": "человек",
-      "options": ["человек", "человека", "человеку", "человеке"],
-      "correct": "человека",
-      "case": "Винительный (Accusative)",
-      "translation": "David's anger was greatly kindled against the man, and he said to Nathan, 'As the Lord lives, the man who has done this thing deserves to die.'",
-      "explain": "The accusative case marks the direct object of the preposition на (against)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "В одном городе было два человека, один богатый, а другой бедный.",
-      "question": "What did Nathan's parable begin with?",
-      "options": ["Two men in one city, one rich and one poor", "A king and his servant", "A father and his son", "A master and his slave"],
-      "correct": "Two men in one city, one rich and one poor",
-      "explain": "Nathan begins his parable by describing two men in one city - one rich and one poor."
-    },
-    {
-      "id": "r2",
-      "ru": "У богача было очень много мелкого и крупного скота, а у бедняка не было ничего, кроме одной маленькой овечки, которую он купил.",
-      "question": "What did the rich man have compared to the poor man?",
-      "options": ["The rich man had many flocks while the poor man had only one small lamb", "Both had equal amounts", "The poor man had more", "Neither had any animals"],
-      "correct": "The rich man had many flocks while the poor man had only one small lamb",
-      "explain": "The contrast is clear: the rich man had many animals, but the poor man had only one ewe lamb."
-    },
-    {
-      "id": "r3",
-      "ru": "Она ела из его тарелки, пила из его чаши и даже спала у него на груди. Она была у него как дочь.",
-      "question": "How did the poor man treat the lamb?",
-      "options": ["As a daughter - it ate from his plate, drank from his cup, and slept on his chest", "As a servant", "As a sacrifice", "Poorly and with neglect"],
-      "correct": "As a daughter - it ate from his plate, drank from his cup, and slept on his chest",
-      "explain": "The text describes intimate care: the lamb ate from his plate, drank from his cup, and slept on his chest, like a daughter."
-    },
-    {
-      "id": "r4",
-      "ru": "К богачу пришел путник, но богач пожалел взять что-либо из своего мелкого или крупного скота, чтобы приготовить пищу для пришедшего к нему путника.",
-      "question": "What did the rich man do when a traveler came?",
-      "options": ["He was unwilling to take any of his animals to prepare food for the traveler", "He gave his best animals for a feast", "He welcomed the traveler warmly", "He shared his abundance generously"],
-      "correct": "He was unwilling to take any of his animals to prepare food for the traveler",
-      "explain": "Instead of providing for the traveler from his own flock, the rich man was stingy."
-    },
-    {
-      "id": "r5",
-      "ru": "Вместо этого он взял овечку бедняка и приготовил ее для того, кто пришел к нему.",
-      "question": "Whose lamb did the rich man take?",
-      "options": ["The poor man's lamb", "His own lamb", "A lamb from the market", "A borrowed lamb"],
-      "correct": "The poor man's lamb",
-      "explain": "Instead of taking from his own many animals, the rich man took the poor man's only lamb to feed the traveler."
-    },
-    {
-      "id": "r6",
-      "ru": "Тогда Нафан сказал Давиду, «Ты тот человек».",
-      "question": "What did Nathan reveal to David with this statement?",
-      "options": ["That David himself was like the rich man who had wronged the poor", "That David was a righteous judge", "That David needed to punish someone", "That Nathan was the poor man in the story"],
-      "correct": "That David himself was like the rich man who had wronged the poor",
-      "explain": "Nathan reveals that David's own actions in taking Bathsheba and arranging Uriah's death made him like the wicked rich man in the parable."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "У богача было очень много мелкого и крупного скота, 3 а у бедняка не было ничего, кроме одной ___, которую он купил.",
+   "lemma": "овечка",
+   "options": [
+    "маленькой овечкой",
+    "маленькой овечки",
+    "маленькой овечке",
+    "маленькая овечка"
+   ],
+   "correct": "маленькой овечки",
+   "case": "Родительный (Genitive)",
+   "explain": "«маленькой овечки» — after the preposition «кроме», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "The rich man had very many flocks and herds,"
+  },
+  {
+   "sentence": "Он снял золотую корону с головы их царя — корона весила талант и была украшена ___ — и возложил ее на свою голову .",
+   "lemma": "камень",
+   "options": [
+    "драгоценный камень",
+    "драгоценным камнем",
+    "драгоценном камне",
+    "драгоценному камню"
+   ],
+   "correct": "драгоценным камнем",
+   "case": "Творительный (Instrumental)",
+   "explain": "«драгоценным камнем» — the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "He took the crown of their king from off his head; and its weight was a talent of gold, and in it were precious stones; and it was set on David’s head. He brought a great quantity of plunder out of the city."
+  },
+  {
+   "sentence": "Он вывел жителей, которые были в нем, заставив их работать пилами, ___ и топорами, а также изготавливать кирпичи .",
+   "lemma": "мотыга",
+   "options": [
+    "железным мотыгам",
+    "железных мотыгах",
+    "железными мотыгами",
+    "железные мотыги"
+   ],
+   "correct": "железными мотыгами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«железными мотыгами» — the instrumental marks the means, company, or complement.",
+   "id": "c4",
+   "translation": "He brought out the people who were in it, and put them under saws, under iron picks, under axes of iron, and made them pass through the brick kiln; and he did so to all the cities of the children of Ammon. Then David and all the people returned to Jerusalem."
+  },
+  {
+   "sentence": "Он поступил так со всеми ___.",
+   "lemma": "город",
+   "options": [
+    "аммонитскими городами",
+    "аммонитским городам",
+    "аммонитских городах",
+    "аммонитских городов"
+   ],
+   "correct": "аммонитскими городами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«аммонитскими городами» — after the preposition «со», the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "He brought out the people who were in it, and put them under saws, under iron picks, under axes of iron, and made them pass through the brick kiln; and he did so to all the cities of the children of Ammon. Then David and all the people returned to Jerusalem."
+  }
+ ]
 }

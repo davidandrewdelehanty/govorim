@@ -1,134 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Примерно в это же время царь Ирод арестовал некоторых членов ___.",
-      "lemma": "церковь",
-      "options": ["церковь", "церкви", "церковью", "церквях"],
-      "correct": "церкви",
-      "case": "Родительный (Genitive)",
-      "translation": "About that time King Herod arrested some members of the church.",
-      "explain": "The noun phrase 'членов церкви' uses the genitive after 'членов' to express possession."
-    },
-    {
-      "id": "c2",
-      "sentence": "Он приказал убить мечом Иакова, брата ___.",
-      "lemma": "Иоанн",
-      "options": ["Иоанн", "Иоанна", "Иоанну", "Иоанном"],
-      "correct": "Иоанна",
-      "case": "Родительный (Genitive)",
-      "translation": "He had James, the brother of John, killed with the sword.",
-      "explain": "The phrase 'брата Иоанна' uses the genitive to express relationship after 'брат' (brother)."
-    },
-    {
-      "id": "c3",
-      "sentence": "Петра арестовали, заточили в темницу и выставили охрану из четырех смен ___.",
-      "lemma": "караул",
-      "options": ["караул", "караула", "караулу", "караулом"],
-      "correct": "караула",
-      "case": "Родительный (Genitive)",
-      "translation": "Peter was arrested, thrown into prison, and four squads of guards were posted.",
-      "explain": "The phrase 'смен караула' uses the genitive to show possession: 'squads of guards'."
-    },
-    {
-      "id": "c4",
-      "sentence": "Ирод намеревался после Пасхи вывести Петра к ___.",
-      "lemma": "народ",
-      "options": ["народ", "народа", "народу", "народом"],
-      "correct": "народу",
-      "case": "Дательный (Dative)",
-      "translation": "Herod intended after the Passover to bring Peter to the people.",
-      "explain": "The verb 'вывести к' (to bring to) requires the dative case after the preposition 'к'."
-    },
-    {
-      "id": "c5",
-      "sentence": "В ночь перед тем, как Ирод должен был вывести его на суд, Петр спал между двумя ___.",
-      "lemma": "солдат",
-      "options": ["солдат", "солдата", "солдату", "солдатом"],
-      "correct": "солдатом",
-      "case": "Творительный (Instrumental)",
-      "translation": "The night before Herod was to bring him to trial, Peter slept between two soldiers.",
-      "explain": "The preposition 'между' (between) governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Внезапно явился ангел Господа и камеру осиял ___.",
-      "lemma": "свет",
-      "options": ["свет", "света", "свету", "светом"],
-      "correct": "светом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Suddenly an angel of the Lord appeared and the cell was flooded with light.",
-      "explain": "The verb 'осиял' (illuminated) takes the instrumental case for the instrument or means of action."
-    },
-    {
-      "id": "c7",
-      "sentence": "Когда Петр пришел в себя, он сказал, что Господь избавил его от ___.",
-      "lemma": "рука",
-      "options": ["рука", "руки", "руку", "рукой"],
-      "correct": "руки",
-      "case": "Родительный (Genitive)",
-      "translation": "When Peter came to himself, he said that the Lord had delivered him from the hand of Herod.",
-      "explain": "The preposition 'от' (from) governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Петр постучал в ворота, и на стук вышла служанка по имени Рода, служившая семье ___.",
-      "lemma": "Мария",
-      "options": ["Мария", "Марии", "Марию", "Марией"],
-      "correct": "Марии",
-      "case": "Родительный (Genitive)",
-      "translation": "Peter knocked at the door, and a servant girl named Rhoda came to open it, who served Mary's family.",
-      "explain": "The possessive phrase 'семье Марии' uses the genitive case to express possession."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Примерно в это же время царь Ирод арестовал некоторых членов церкви, чтобы сделать им зло.",
-      "question": "What was King Herod's intention in arresting members of the church?",
-      "options": ["To do them harm", "To convert them to Judaism", "To force them into exile", "To take their property"],
-      "correct": "To do them harm",
-      "explain": "The text clearly states 'чтобы сделать им зло' — in order to do them harm."
-    },
-    {
-      "id": "r2",
-      "ru": "Петр был под стражей в темнице, а церковь горячо молилась о нем Богу.",
-      "question": "What was the church doing while Peter was imprisoned?",
-      "options": ["Earnestly praying for him to God", "Collecting money for his release", "Planning a rescue mission", "Fleeing the city"],
-      "correct": "Earnestly praying for him to God",
-      "explain": "The text states 'церковь горячо молилась о нем Богу' — the church was earnestly praying for him to God."
-    },
-    {
-      "id": "r3",
-      "ru": "Внезапно явился ангел Господа и камеру осиял свет.",
-      "question": "What happened when the angel of the Lord appeared to Peter in the prison cell?",
-      "options": ["Light flooded the cell", "The doors burst open", "Guards fell asleep", "A great wind blew through"],
-      "correct": "Light flooded the cell",
-      "explain": "The text says 'явился ангел Господа и камеру осиял свет' — the angel appeared and light illuminated the cell."
-    },
-    {
-      "id": "r4",
-      "ru": "Когда она узнала Петра по голосу и, забыв от радости открыть ворота, побежала обратно сказать, что Петр стоит у ворот.",
-      "question": "What did the servant girl do when she recognized Peter's voice at the gate?",
-      "options": ["Forgot to open the gate in her joy and ran back to tell the others", "Immediately opened the gate for him", "Called the guards to arrest him", "Asked him to prove his identity"],
-      "correct": "Forgot to open the gate in her joy and ran back to tell the others",
-      "explain": "The text states she 'узнала Петра по голосу и, забыв от радости открыть ворота, побежала обратно сказать' — recognized Peter's voice but forgot to open the gate in her joy and ran back to tell the others."
-    },
-    {
-      "id": "r5",
-      "ru": "Петр жестом попросил их молчать и рассказал, как Господь вывел его из темницы.",
-      "question": "What did Peter tell them after they opened the gate and saw him?",
-      "options": ["How the Lord led him out of prison", "To leave immediately for safety", "That Herod had killed James", "That he needed money for travel"],
-      "correct": "How the Lord led him out of prison",
-      "explain": "Peter 'рассказал, как Господь вывел его из темницы' — told them how the Lord had brought him out of the prison."
-    },
-    {
-      "id": "r6",
-      "ru": "Ирод был рассержен на жителей Тира и Сидона, и те, согласившись между собой, явились к нему и попросили мира.",
-      "question": "Why did the people of Tyre and Sidon come to see Herod?",
-      "options": ["To ask for peace because their region depended on his for food", "To offer him tribute and gifts", "To report a rebellion", "To request military protection"],
-      "correct": "To ask for peace because their region depended on his for food",
-      "explain": "The text indicates they came 'попросили мира, потому что их область зависела от области царя в поставке продовольствия' — asking for peace because their region depended on the king's for food supply."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Это произошло во время праздника ___ .",
+   "lemma": "хлеб",
+   "options": [
+    "пресных хлебов",
+    "пресным хлебам",
+    "пресными хлебами",
+    "пресных хлебах"
+   ],
+   "correct": "пресных хлебов",
+   "case": "Родительный (Genitive)",
+   "explain": "«Пресных хлебов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "When he saw that it pleased the Jews, he proceeded to seize Peter also. This was during the days of unleavened bread."
+  },
+  {
+   "sentence": "Они прошли мимо первой стражи, потом мимо второй и подошли к ___, ведущим в город.",
+   "lemma": "ворота",
+   "options": [
+    "железным воротам",
+    "железных воротах",
+    "железных ворот",
+    "железными воротами"
+   ],
+   "correct": "железным воротам",
+   "case": "Дательный (Dative)",
+   "explain": "«железным воротам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c2",
+   "translation": "When they were past the first and the second guard, they came to the iron gate that leads into the city, which opened to them by itself. They went out, and went down one street, and immediately the angel departed from him."
+  },
+  {
+   "sentence": "Наутро среди солдат произошло ___, никто не знал, что случилось с Петром.",
+   "lemma": "замешательство",
+   "options": [
+    "большое замешательство",
+    "большому замешательству",
+    "большого замешательства",
+    "большим замешательством"
+   ],
+   "correct": "большое замешательство",
+   "case": "Именительный (Nominative)",
+   "explain": "«большое замешательство» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "Now as soon as it was day, there was no small stir among the soldiers about what had become of Peter."
+  }
+ ]
 }

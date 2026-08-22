@@ -1,204 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Сердце мое прекрасной ___ полнится; исполняю я песнь для царя.",
-      "lemma": "слово",
-      "options": [
-        "слово",
-        "слова",
-        "слову",
-        "словом"
-      ],
-      "correct": "словом",
-      "case": "Творительный (Instrumental)",
-      "translation": "My heart is stirred by a noble word; I compose a song for the king.",
-      "explain": "The verb полнится (overflows) takes instrumental case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Мой ___ — перо искусного писаря.",
-      "lemma": "язык",
-      "options": [
-        "язык",
-        "языка",
-        "языку",
-        "языком"
-      ],
-      "correct": "язык",
-      "case": "Именительный (Nominative)",
-      "translation": "My tongue is the pen of a skillful writer.",
-      "explain": "Язык is the subject of the copula, taking nominative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Ты прекраснее всех ___, благодатная речь сходит с уст Твоих.",
-      "lemma": "люди",
-      "options": [
-        "люди",
-        "людей",
-        "людям",
-        "людьми"
-      ],
-      "correct": "людей",
-      "case": "Родительный (Genitive)",
-      "translation": "You are fairer than the sons of men; grace pours from your lips.",
-      "explain": "The comparative прекраснее requires genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Припояшься ___, облекись в славу и величие.",
-      "lemma": "меч",
-      "options": [
-        "меч",
-        "меча",
-        "мечу",
-        "мечом"
-      ],
-      "correct": "мечом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Gird yourself with your sword; clothe yourself in glory and majesty.",
-      "explain": "The verb припояшься takes instrumental case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Острые стрелы твои пронзают ___ врагов царя.",
-      "lemma": "сердце",
-      "options": [
-        "сердце",
-        "сердца",
-        "сердцу",
-        "сердцем"
-      ],
-      "correct": "сердца",
-      "case": "Винительный (Accusative)",
-      "translation": "Your arrows pierce the hearts of the king's enemies.",
-      "explain": "The verb пронзают requires accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Вечен ___ Твой, Боже, скипетр Твой скипетр правосудия.",
-      "lemma": "престол",
-      "options": [
-        "престол",
-        "престола",
-        "престолу",
-        "престоле"
-      ],
-      "correct": "престол",
-      "case": "Именительный (Nominative)",
-      "translation": "Your throne, O God, will last forever; your scepter is a scepter of justice.",
-      "explain": "Престол is the subject, taking nominative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Ты возлюбил это и мечом завоевал ___, против беззакония.",
-      "lemma": "землю",
-      "options": [
-        "земля",
-        "земли",
-        "земле",
-        "землю"
-      ],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "You love righteousness and have conquered the land by the sword, against wickedness.",
-      "explain": "The transitive verb завоевал requires accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Я сделаю памятным имя Твое на ___, и народы будут славить Тебя вовек.",
-      "lemma": "век",
-      "options": [
-        "век",
-        "века",
-        "веку",
-        "веком"
-      ],
-      "correct": "век",
-      "case": "Винительный (Accusative)",
-      "translation": "I will make your name remembered forever; nations will praise you forever.",
-      "explain": "Accusative marks duration (на век = forever)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Сердце мое прекрасной речью полнится, для царя исполняю я эту песнь, мой язык — перо искусного писаря.",
-      "question": "What is the psalmist's inspiration?",
-      "options": [
-        "His heart overflows with noble themes; he composes for the king",
-        "He is copying ancient documents",
-        "He is complaining about the king",
-        "He has no inspiration"
-      ],
-      "correct": "His heart overflows with noble themes; he composes for the king",
-      "explain": "The psalmist's heart overflows and the song is for the king."
-    },
-    {
-      "id": "r2",
-      "ru": "Ты прекраснее всех людей, благодатная речь сходит с твоих уст, ведь Бог навеки благословил тебя.",
-      "question": "What is celebrated?",
-      "options": [
-        "His beauty, graceful speech, and God's eternal blessing",
-        "His military conquests",
-        "His vast wealth",
-        "His harsh rule"
-      ],
-      "correct": "His beauty, graceful speech, and God's eternal blessing",
-      "explain": "The psalm praises the king's appearance, speech, and blessing."
-    },
-    {
-      "id": "r3",
-      "ru": "Могучий, припояшься мечом, облекись в славу и величие.",
-      "question": "What is the king commanded?",
-      "options": [
-        "Gird himself with his sword and clothe himself in glory and majesty",
-        "Lay down his weapons",
-        "Dress humbly",
-        "Hide from his people"
-      ],
-      "correct": "Gird himself with his sword and clothe himself in glory and majesty",
-      "explain": "Commands for readiness and splendor."
-    },
-    {
-      "id": "r4",
-      "ru": "Вечен престол твой Божий, твой царский скипетр, скипетр правосудия.",
-      "question": "What is declared about the king?",
-      "options": [
-        "His throne endures forever and his rule is based on justice",
-        "His reign is temporary",
-        "He has no real authority",
-        "His rule is unjust"
-      ],
-      "correct": "His throne endures forever and his rule is based on justice",
-      "explain": "Declaration of eternal throne and justice-based rule."
-    },
-    {
-      "id": "r5",
-      "ru": "Ты возлюбил праведность, а беззаконие возненавидел.",
-      "question": "What values does the king hold?",
-      "options": [
-        "He loves righteousness and hates wickedness",
-        "He loves injustice",
-        "He is morally indifferent",
-        "He hates the righteous"
-      ],
-      "correct": "He loves righteousness and hates wickedness",
-      "explain": "Statement of the king's moral values."
-    },
-    {
-      "id": "r6",
-      "ru": "Я сделаю памятным имя твое в поколениях, и народы будут славить тебя вовек.",
-      "question": "What does the psalmist promise?",
-      "options": [
-        "His name will be remembered in all generations and praised forever",
-        "His name will be forgotten",
-        "Future generations will despise him",
-        "Only his enemies will remember him"
-      ],
-      "correct": "His name will be remembered in all generations and praised forever",
-      "explain": "An eternal pledge of lasting fame and universal praise."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Пусть ___ Твои пронзают сердца врагов царя;",
+   "lemma": "стрела",
+   "options": [
+    "острым стрелам",
+    "острыми стрелами",
+    "острые стрелы",
+    "острых стрел"
+   ],
+   "correct": "острые стрелы",
+   "case": "Именительный (Nominative)",
+   "explain": "«острые стрелы» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "For I will not trust in my bow, neither shall my sword save me."
+  },
+  {
+   "sentence": "Среди Твоих придворных женщин — ___.",
+   "lemma": "дочь",
+   "options": [
+    "царским дочерям",
+    "царских дочерей",
+    "царскими дочерьми",
+    "царские дочери"
+   ],
+   "correct": "царские дочери",
+   "case": "Именительный (Nominative)",
+   "explain": "«царские дочери» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "You make us turn back from the adversary. Those who hate us take plunder for themselves."
+  },
+  {
+   "sentence": "В ___ выводят ее к Царю;",
+   "lemma": "одежда",
+   "options": [
+    "многоцветных одеждах",
+    "многоцветных одежд",
+    "многоцветными одеждами",
+    "многоцветные одежды"
+   ],
+   "correct": "многоцветных одеждах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«многоцветных одеждах» — after the preposition «в», for location or topic.",
+   "id": "c3",
+   "translation": "All day long my dishonor is before me, and shame covers my face,"
+  }
+ ]
 }

@@ -1,204 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "На восемнадцатом году правления Еровоама, сына Навата, Авия стал царем ___.",
-      "lemma": "Иудея",
-      "options": [
-        "Иудея",
-        "Иудеи",
-        "Иудее",
-        "Иудею"
-      ],
-      "correct": "Иудеи",
-      "case": "Родительный (Genitive)",
-      "translation": "In the eighteenth year of the reign of Jeroboam son of Nebat, Abijam became king of Judah",
-      "explain": "The phrase 'king of Judah' uses the genitive case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Его мать звали Мааха, она была внучкой ___.",
-      "lemma": "Ависалом",
-      "options": [
-        "Ависалом",
-        "Ависалома",
-        "Ависалому",
-        "Ависаломом"
-      ],
-      "correct": "Ависалома",
-      "case": "Родительный (Genitive)",
-      "translation": "His mother's name was Maacah, and she was the granddaughter of Abishalom",
-      "explain": "In the phrase 'granddaughter of Abishalom', the name takes genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Давид делал то, что было правильным в глазах Господа и во все дни жизни не отступал от его ___.",
-      "lemma": "повеление",
-      "options": [
-        "повеление",
-        "повелений",
-        "повелению",
-        "повелением"
-      ],
-      "correct": "повелений",
-      "case": "Родительный (Genitive)",
-      "translation": "David did what was right in the eyes of the Lord and did not turn away from his commandments all the days of his life",
-      "explain": "The preposition от (from) governs the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Асса делал то, что было правильным в глазах Господа, как и его предок ___.",
-      "lemma": "Давид",
-      "options": [
-        "Давид",
-        "Давида",
-        "Давиду",
-        "Давидом"
-      ],
-      "correct": "Давид",
-      "case": "Именительный (Nominative)",
-      "translation": "Asa did what was right in the eyes of the Lord, as his ancestor David had done",
-      "explain": "The noun is used in comparison and takes nominative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Он изгнал из страны мужчин-блудников и убрал всех идолов, которых сделали его ___.",
-      "lemma": "предок",
-      "options": [
-        "предок",
-        "предков",
-        "предкам",
-        "предками"
-      ],
-      "correct": "предков",
-      "case": "Родительный (Genitive)",
-      "translation": "He drove out the sodomites from the land and removed all the idols that his forefathers had made",
-      "explain": "The possessive relationship uses genitive case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Асса срубил ее столб и сжег его в долине ___.",
-      "lemma": "кедр",
-      "options": [
-        "кедр",
-        "кедра",
-        "кедру",
-        "кедром"
-      ],
-      "correct": "кедром",
-      "case": "Творительный (Instrumental)",
-      "translation": "Asa cut down her Asherah image and burned it in the Valley of Kidron",
-      "explain": "The preposition в with the instrumental case indicates location."
-    },
-    {
-      "id": "c7",
-      "sentence": "Между Ассой и Баашей, царем Израиля, во все дни их правления шла ___.",
-      "lemma": "война",
-      "options": [
-        "война",
-        "войны",
-        "войне",
-        "войной"
-      ],
-      "correct": "война",
-      "case": "Именительный (Nominative)",
-      "translation": "There was war between Asa and Baasha king of Israel all their days",
-      "explain": "The noun война (war) is the subject of the impersonal verb, taking nominative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Он внес в Господень ___ серебро, золото и различную утварь.",
-      "lemma": "дом",
-      "options": [
-        "дом",
-        "дома",
-        "дому",
-        "доме"
-      ],
-      "correct": "дом",
-      "case": "Винительный (Accusative)",
-      "translation": "He brought into the house of the Lord silver, gold, and various items",
-      "explain": "The preposition в (into) with direction uses accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Авия стал царем Иудеи. Он правил в Иерусалиме три года. Его мать звали Мааха, она была внучкой Ависалома.",
-      "question": "Who was Abijam's mother and what was her lineage?",
-      "options": [
-        "Maacah, daughter of Abishalom",
-        "Naamah, an Ammonitess",
-        "A woman from Judah",
-        "An unknown queen"
-      ],
-      "correct": "Maacah, daughter of Abishalom",
-      "explain": "The text identifies his mother as Maacah and states she was the daughter of Abishalom."
-    },
-    {
-      "id": "r2",
-      "ru": "Асса делал то, что было правильным в глазах Господа, как и его предок Давид.",
-      "question": "How was Asa's righteousness compared to other rulers?",
-      "options": [
-        "He did what was right like his ancestor David",
-        "He was more righteous than David",
-        "He was less righteous than David",
-        "He was not righteous at all"
-      ],
-      "correct": "He did what was right like his ancestor David",
-      "explain": "The text says Asa did right like his ancestor David."
-    },
-    {
-      "id": "r3",
-      "ru": "Он даже лишил Моаху, свою бабушку, положение царицы-матери, за то, что она сделала отвратительный столб Ашеры.",
-      "question": "Why did Asa remove his grandmother from her position as queen mother?",
-      "options": [
-        "Because she had made an idol to Asherah",
-        "Because she opposed him",
-        "Because she was too old",
-        "Because she helped the prophets of Baal"
-      ],
-      "correct": "Because she had made an idol to Asherah",
-      "explain": "Asa removed her because she had made an abominable Asherah pole."
-    },
-    {
-      "id": "r4",
-      "ru": "Он не упразднил святилищ на возвышенностях, но сердце его было все же полностью предано Господу во все дни его жизни.",
-      "question": "What did Asa fail to do, yet his heart remained devoted to God?",
-      "options": [
-        "He did not remove the high places, but his heart was still fully devoted to God",
-        "He did not defeat all his enemies",
-        "He did not build the temple",
-        "He did not marry a righteous woman"
-      ],
-      "correct": "He did not remove the high places, but his heart was still fully devoted to God",
-      "explain": "The text shows Asa's incomplete reform but affirms his devoted heart."
-    },
-    {
-      "id": "r5",
-      "ru": "Тогда Асса взял все серебро и золото, которое оставалось в сокровищницах дома Господа, и его собственного дворца.",
-      "question": "Where did Asa get the treasure he sent to Ben Hadad?",
-      "options": [
-        "From the treasuries of God's house and his own palace",
-        "From taxes on his subjects",
-        "From war spoils with Israel",
-        "From the gold mines"
-      ],
-      "correct": "From the treasuries of God's house and his own palace",
-      "explain": "The text explicitly states he took treasure from both God's house and his own palace."
-    },
-    {
-      "id": "r6",
-      "ru": "В старости он страдал от болезни ног. Асса упокоился со своими предками и был похоронен с ними в городе своего предка Давида.",
-      "question": "How did Asa's life end?",
-      "options": [
-        "He suffered from a foot disease and was buried in David's city",
-        "He was killed in battle",
-        "He was poisoned",
-        "He was captured by enemies"
-      ],
-      "correct": "He suffered from a foot disease and was buried in David's city",
-      "explain": "The text mentions his illness and describes his burial in David's city."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Что же до ___ правления Авии и всего, что он сделал, то разве они не записаны в «Книге летописей царей Иудеи»?",
+   "lemma": "событие",
+   "options": [
+    "прочими событиями",
+    "прочих событиях",
+    "прочих событий",
+    "прочим событиям"
+   ],
+   "correct": "прочих событий",
+   "case": "Родительный (Genitive)",
+   "explain": "«прочих событий» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "The rest of the acts of Abijam, and all that he did, aren’t they written in the book of the chronicles of the kings of Judah? There was war between Abijam and Jeroboam."
+  },
+  {
+   "sentence": "Тогда Аса взял все серебро и золото, которое оставалось в сокровищницах дома Господа и его ___.",
+   "lemma": "дворец",
+   "options": [
+    "собственного дворца",
+    "собственном дворце",
+    "собственным дворцом",
+    "собственному дворцу"
+   ],
+   "correct": "собственного дворца",
+   "case": "Родительный (Genitive)",
+   "explain": "«собственного дворца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "Then Asa took all the silver and the gold that was left in the treasures of Yahweh’s house, and the treasures of the king’s house, and delivered it into the hand of his servants. Then King Asa sent them to Ben Hadad, the son of Tabrimmon, the son of Hezion, king of Syria, who lived at Damascus, saying,"
+  },
+  {
+   "sentence": "Что же до всех ___ правления Асы, всех его свершений, всего, что он сделал, включая города, которые он построил, то разве не записаны они в «Книге летописей царей Иудеи»?",
+   "lemma": "событие",
+   "options": [
+    "прочими событиями",
+    "прочих событиях",
+    "прочих событий",
+    "прочим событиям"
+   ],
+   "correct": "прочих событий",
+   "case": "Родительный (Genitive)",
+   "explain": "«прочих событий» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "Now the rest of all the acts of Asa, and all his might, and all that he did, and the cities which he built, aren’t they written in the book of the chronicles of the kings of Judah? But in the time of his old age he was diseased in his feet."
+  },
+  {
+   "sentence": "Бааша, сын Ахии из дома Иссахара, составил против него заговор и сразил его при Гиббетоне, ___, когда Надав и весь Израиль осаждали его.",
+   "lemma": "город",
+   "options": [
+    "филистимский город",
+    "филистимском городе",
+    "филистимским городом",
+    "филистимскому городу"
+   ],
+   "correct": "филистимском городе",
+   "case": "Предложный (Prepositional)",
+   "explain": "«филистимском городе» — the prepositional is used only after a preposition, for location or topic.",
+   "id": "c6",
+   "translation": "Baasha the son of Ahijah, of the house of Issachar, conspired against him; and Baasha struck him at Gibbethon, which belonged to the Philistines; for Nadab and all Israel were besieging Gibbethon."
+  },
+  {
+   "sentence": "Что же до ___ правления Надава и всего, что он сделал, то разве не записаны они в «Книге летописей царей Израиля»?",
+   "lemma": "событие",
+   "options": [
+    "прочими событиями",
+    "прочих событиях",
+    "прочих событий",
+    "прочим событиям"
+   ],
+   "correct": "прочих событий",
+   "case": "Родительный (Genitive)",
+   "explain": "«прочих событий» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "Now the rest of the acts of Nadab, and all that he did, aren’t they written in the book of the chronicles of the kings of Israel?"
+  }
+ ]
 }

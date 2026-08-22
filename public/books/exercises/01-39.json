@@ -1,122 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ был с Иосифом, и он преуспевал.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господь",
-      "case": "Именительный (Nominative)",
-      "translation": "The Lord was with Joseph, and he prospered.",
-      "explain": "Господь is the subject of был, so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Он преуспевал, живя в доме у своего египетского ___.",
-      "lemma": "господин",
-      "options": ["господин", "господина", "господину", "господином"],
-      "correct": "господина",
-      "case": "Родительный (Genitive)",
-      "translation": "He prospered, living in the house of his Egyptian master.",
-      "explain": "The preposition у governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Поэтому он доверил ___ все, что у него было.",
-      "lemma": "Иосиф",
-      "options": ["Иосиф", "Иосифа", "Иосифу", "Иосифом"],
-      "correct": "Иосифу",
-      "case": "Дательный (Dative)",
-      "translation": "So he entrusted Joseph with everything he had.",
-      "explain": "The verb доверить takes its indirect object (to whom) in the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Она схватила его за ___ и сказала, «Ложись со мной».",
-      "lemma": "одежда",
-      "options": ["одежда", "одежды", "одежде", "одежду"],
-      "correct": "одежду",
-      "case": "Винительный (Accusative)",
-      "translation": "She caught him by his garment and said, 'Lie with me.'",
-      "explain": "The construction хватать за + accusative (to grab by/at something) requires the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Иосиф нашел расположение в его глазах и стал его личным ___.",
-      "lemma": "слуга",
-      "options": ["слуга", "слуги", "слуге", "слугой"],
-      "correct": "слугой",
-      "case": "Творительный (Instrumental)",
-      "translation": "Joseph found favor in his eyes and became his personal servant.",
-      "explain": "The verb стать (to become) takes its predicate noun in the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Он преуспевал, живя в ___ у своего египетского господина.",
-      "lemma": "дом",
-      "options": ["дом", "дома", "дому", "доме"],
-      "correct": "доме",
-      "case": "Предложный (Prepositional)",
-      "translation": "He prospered, living in the house of his Egyptian master.",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Иосифа привели в Египет, и египтянин Патифар, сановник фараона и начальник его стражи, купил Иосифа у измаильтян, которые его туда привели.",
-      "question": "Who bought Joseph in Egypt?",
-      "options": ["Potiphar, an Egyptian officer of Pharaoh", "Pharaoh himself", "A group of Midianite traders", "Joseph's own brothers"],
-      "correct": "Potiphar, an Egyptian officer of Pharaoh",
-      "explain": "The text says 'египтянин Патифар, сановник фараона... купил Иосифа' (the Egyptian Potiphar, an officer of Pharaoh, bought Joseph)."
-    },
-    {
-      "id": "r2",
-      "ru": "Патифар поставил его над своим домом и доверил ему все свои владения.",
-      "question": "What did Potiphar do after seeing the Lord's favor on Joseph?",
-      "options": ["He put Joseph in charge of his household and possessions", "He sold Joseph to another master", "He imprisoned Joseph immediately", "He sent Joseph back to Canaan"],
-      "correct": "He put Joseph in charge of his household and possessions",
-      "explain": "The text says Potiphar 'поставил его над своим домом и доверил ему все свои владения' (put him over his household and entrusted him with all his possessions)."
-    },
-    {
-      "id": "r3",
-      "ru": "Иосиф же был хорошо сложен и красив, и через некоторое время жена его господина стала заглядываться на него и сказала, «Ложись со мной».",
-      "question": "What did Potiphar's wife say to Joseph?",
-      "options": ["\"Lie with me\"", "\"Leave this house\"", "\"Marry me\"", "\"Tell no one\""],
-      "correct": "\"Lie with me\"",
-      "explain": "The text quotes her saying «Ложись со мной» ('Lie with me')."
-    },
-    {
-      "id": "r4",
-      "ru": "Как же я могу совершить такое великое зло и грех против Бога?»",
-      "question": "Why did Joseph refuse Potiphar's wife?",
-      "options": ["Because it would be a great wickedness and sin against God", "Because he did not find her attractive", "Because he feared only Potiphar's punishment", "Because he was already married"],
-      "correct": "Because it would be a great wickedness and sin against God",
-      "explain": "Joseph asks how he 'могу совершить такое великое зло и грех против Бога' (could do such great wickedness and sin against God)."
-    },
-    {
-      "id": "r5",
-      "ru": "Она схватила его за одежду и сказала, «Ложись со мной», но он вырвался и убежал, оставив верхнюю одежду у нее в руках.",
-      "question": "What happened when Potiphar's wife grabbed Joseph?",
-      "options": ["He fled, leaving his garment in her hand", "He struck her and fled", "He gave in to her demand", "He called for help from the servants"],
-      "correct": "He fled, leaving his garment in her hand",
-      "explain": "The text says he 'вырвался и убежал, оставив верхнюю одежду у нее в руках' (tore free and fled, leaving his outer garment in her hands)."
-    },
-    {
-      "id": "r6",
-      "ru": "Он взял Иосифа и посадил его в темницу, где были заключены царские узники.",
-      "question": "What did Potiphar do to Joseph after hearing his wife's accusation?",
-      "options": ["He put him in the prison where the king's prisoners were kept", "He sent him back to Canaan", "He had him executed", "He sold him to another Egyptian"],
-      "correct": "He put him in the prison where the king's prisoners were kept",
-      "explain": "The text says he 'посадил его в темницу, где были заключены царские узники' (put him in the prison where the king's prisoners were kept)."
-    },
-    {
-      "id": "r7",
-      "ru": "Главный страж поставил Иосифа над всеми узниками, и он отвечал за все дела в темнице.",
-      "question": "What responsibility did the chief jailer give Joseph in prison?",
-      "options": ["Authority over all the prisoners and matters in the prison", "Only cooking duties", "Guarding the main gate", "Sole responsibility over the prison's money"],
-      "correct": "Authority over all the prisoners and matters in the prison",
-      "explain": "The text says the chief jailer 'поставил Иосифа над всеми узниками, и он отвечал за все дела в темнице' (put Joseph over all the prisoners, and he was responsible for everything in the prison)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Господь был с Иосифом, и он преуспевал, живя в доме у своего ___.",
+   "lemma": "господин",
+   "options": [
+    "египетского господина",
+    "египетский господин",
+    "египетскому господину",
+    "египетским господином"
+   ],
+   "correct": "египетского господина",
+   "case": "Родительный (Genitive)",
+   "explain": "«египетского господина» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "Yahweh was with Joseph, and he was a prosperous man. He was in the house of his master the Egyptian."
+  },
+  {
+   "sentence": "Иосиф нашел расположение в его глазах и стал его ___.",
+   "lemma": "слуга",
+   "options": [
+    "личным слугой",
+    "личного слугу",
+    "личного слуги",
+    "личному слуге"
+   ],
+   "correct": "личным слугой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«личным слугой» — the instrumental marks the means, company, or complement.",
+   "id": "c2",
+   "translation": "Joseph found favor in his sight. He ministered to him, and Potiphar made him overseer over his house, and all that he had he put into his hand."
+  },
+  {
+   "sentence": "Но Господь был с ним; Он явил ему милость и даровал ему расположение в глазах ___.",
+   "lemma": "страж",
+   "options": [
+    "главному стражу",
+    "главным стражем",
+    "главного стража",
+    "главном страже"
+   ],
+   "correct": "главного стража",
+   "case": "Родительный (Genitive)",
+   "explain": "«главного стража» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "But Yahweh was with Joseph, and showed kindness to him, and gave him favor in the sight of the keeper of the prison."
+  },
+  {
+   "sentence": "___ поставил Иосифа над всеми узниками, и он отвечал за все дела в темнице.",
+   "lemma": "страж",
+   "options": [
+    "главного стража",
+    "главным стражем",
+    "главном страже",
+    "главный страж"
+   ],
+   "correct": "главный страж",
+   "case": "Именительный (Nominative)",
+   "explain": "«Главный страж» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "The keeper of the prison committed to Joseph’s hand all the prisoners who were in the prison. Whatever they did there, he was responsible for it."
+  },
+  {
+   "sentence": "___ мог не заботиться о том, что было вверено Иосифу, потому что Господь был с Иосифом и давал ему успех во всех делах.",
+   "lemma": "страж",
+   "options": [
+    "главного стража",
+    "главным стражем",
+    "главном страже",
+    "главный страж"
+   ],
+   "correct": "главный страж",
+   "case": "Именительный (Nominative)",
+   "explain": "«Главный страж» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "The keeper of the prison didn’t look after anything that was under his hand, because Yahweh was with him; and that which he did, Yahweh made it prosper."
+  }
+ ]
 }

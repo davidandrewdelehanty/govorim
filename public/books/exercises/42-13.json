@@ -1,269 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "«Господин, — ответил ___, — оставь его еще на один год».",
-      "lemma": "работник",
-      "options": [
-        "работник",
-        "работника",
-        "работнику",
-        "работником"
-      ],
-      "correct": "работник",
-      "case": "Именительный (Nominative)",
-      "translation": "\"Sir,\" the worker answered, \"leave it alone one more year.\"",
-      "explain": "Работник is the subject of ответил (answered) — subjects take the nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "У одного ___ в винограднике рос инжир.",
-      "lemma": "человек",
-      "options": [
-        "человек",
-        "человека",
-        "человеку",
-        "человеком"
-      ],
-      "correct": "человека",
-      "case": "Родительный (Genitive)",
-      "translation": "A certain man had a fig tree growing in his vineyard.",
-      "explain": "У (at, belonging to) takes the genitive → человека, 'a certain man had...'."
-    },
-    {
-      "id": "c3",
-      "sentence": "Придут люди с ___ и с запада, с севера и с юга.",
-      "lemma": "восток",
-      "options": [
-        "восток",
-        "востока",
-        "востоку",
-        "востоком"
-      ],
-      "correct": "востока",
-      "case": "Родительный (Genitive)",
-      "translation": "People will come from east and west, from north and south.",
-      "explain": "С meaning 'from' takes the genitive → востока, 'from the east'."
-    },
-    {
-      "id": "c4",
-      "sentence": "Тогда он сказал ___: «Вот уже три года я прихожу смотреть, нет ли на этом инжире плодов».",
-      "lemma": "виноградарь",
-      "options": [
-        "виноградарь",
-        "виноградаря",
-        "виноградарю",
-        "виноградарем"
-      ],
-      "correct": "виноградарю",
-      "case": "Дательный (Dative)",
-      "translation": "Then he said to the vine dresser, \"Behold, for three years I have come looking for fruit on this fig tree.\"",
-      "explain": "Виноградарю is the indirect object of сказал (said to) → dative."
-    },
-    {
-      "id": "c5",
-      "sentence": "Но ___ синагоги разозлило, что Иисус исцелил в субботу.",
-      "lemma": "начальник",
-      "options": [
-        "начальник",
-        "начальника",
-        "начальнику",
-        "начальником"
-      ],
-      "correct": "начальника",
-      "case": "Винительный (Accusative)",
-      "translation": "But the ruler of the synagogue was angered that Jesus had healed on the Sabbath.",
-      "explain": "Начальника is the direct object of разозлило (angered) → accusative; for animate masculine nouns the accusative equals the genitive."
-    },
-    {
-      "id": "c6",
-      "sentence": "...и она сразу выпрямилась и стала славить ___.",
-      "lemma": "Бог",
-      "options": [
-        "Бог",
-        "Бога",
-        "Богу",
-        "Богом"
-      ],
-      "correct": "Бога",
-      "case": "Винительный (Accusative)",
-      "translation": "...and she straightened up immediately and began to glorify God.",
-      "explain": "Бога is the direct object of славить (to glorify) → accusative; for animate masculine nouns the accusative equals the genitive."
-    },
-    {
-      "id": "c7",
-      "sentence": "Там была женщина, скорченная ___ болезни.",
-      "lemma": "дух",
-      "options": [
-        "дух",
-        "духа",
-        "духу",
-        "духом"
-      ],
-      "correct": "духом",
-      "case": "Творительный (Instrumental)",
-      "translation": "There was a woman bent over by a spirit of infirmity.",
-      "explain": "Духом is an instrumental of means/agent, used without a preposition — 'bent by a spirit'."
-    },
-    {
-      "id": "c8",
-      "sentence": "Оно, как горчичное зерно, которое человек взял и посеял в своем ___.",
-      "lemma": "сад",
-      "options": [
-        "сад",
-        "сада",
-        "саду",
-        "садом"
-      ],
-      "correct": "саду",
-      "case": "Предложный (Prepositional)",
-      "translation": "It is like a grain of mustard seed, which a man took and sowed in his garden.",
-      "explain": "В marking location takes the prepositional; сад belongs to a small group of masculine nouns with the special locative ending -у → в саду ('in the garden')."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Иисус ответил, «Вы думаете, что эти галилеяне так пострадали, потому что они были грешнее всех других галилеян? Нет».",
-      "question": "What does Jesus say about the Galileans killed by Pilate?",
-      "options": [
-        "They were not worse sinners than other Galileans",
-        "They deserved their fate for their sins",
-        "Pilate was righteous to kill them",
-        "They were foreigners, not true Galileans"
-      ],
-      "correct": "They were not worse sinners than other Galileans",
-      "explain": "Jesus asks if they think these Galileans suffered because they were worse sinners than others, and answers, \"No.\""
-    },
-    {
-      "id": "r2",
-      "ru": "Но говорю вам, если вы не раскаетесь, вы тоже погибнете, как они.",
-      "question": "What warning does Jesus repeat after mentioning the Galileans and the tower of Siloam?",
-      "options": [
-        "Unless you repent, you will all perish as they did",
-        "You must build stronger towers",
-        "Pilate will punish everyone equally",
-        "Only sinners die in disasters"
-      ],
-      "correct": "Unless you repent, you will all perish as they did",
-      "explain": "Jesus warns twice that unless his listeners repent, they too will perish."
-    },
-    {
-      "id": "r3",
-      "ru": "«Господин, — ответил работник, — оставь его еще на один год.",
-      "question": "What does the vineyard worker ask the owner to do with the barren fig tree?",
-      "options": [
-        "Leave it one more year so he can tend it",
-        "Cut it down immediately",
-        "Plant a new tree beside it",
-        "Sell the vineyard"
-      ],
-      "correct": "Leave it one more year so he can tend it",
-      "explain": "The worker asks the owner to leave the fig tree one more year while he digs around it and fertilizes it."
-    },
-    {
-      "id": "r4",
-      "ru": "Она не могла выпрямиться вот уже восемнадцать лет.",
-      "question": "How long had the bent woman been unable to straighten up?",
-      "options": [
-        "Eighteen years",
-        "Three years",
-        "Forty years",
-        "One year"
-      ],
-      "correct": "Eighteen years",
-      "explain": "The woman had been bent over, unable to straighten up, for eighteen years."
-    },
-    {
-      "id": "r5",
-      "ru": "Так не нужно ли было освободить в субботу и эту женщину, одну из дочерей Авраама, вот уже восемнадцать лет связанную сатаной?",
-      "question": "How does Jesus defend healing the woman on the Sabbath?",
-      "options": [
-        "He asks whether this daughter of Abraham should not be freed on the Sabbath too",
-        "He says the Sabbath law does not apply to him",
-        "He says healing is never permitted on the Sabbath",
-        "He apologizes for breaking the rule"
-      ],
-      "correct": "He asks whether this daughter of Abraham should not be freed on the Sabbath too",
-      "explain": "Jesus argues that if animals are freed to drink on the Sabbath, this woman, bound by Satan eighteen years, should surely be freed too."
-    },
-    {
-      "id": "r6",
-      "ru": "Оно, как горчичное зерно, которое человек взял и посеял в своем саду.",
-      "question": "What does Jesus compare God's Kingdom to in the first parable of this section?",
-      "options": [
-        "A mustard seed that grows into a large tree",
-        "A grain of wheat that never sprouts",
-        "A stone that never moves",
-        "A river that never dries"
-      ],
-      "correct": "A mustard seed that grows into a large tree",
-      "explain": "God's Kingdom is compared to a mustard seed which grows into a tree where birds nest in its branches."
-    },
-    {
-      "id": "r7",
-      "ru": "Оно как закваска, которую женщина смешала с тремя мерами муки, чтобы вскисло все тесто».",
-      "question": "What does Jesus compare God's Kingdom to in the second parable?",
-      "options": [
-        "Yeast that leavens the whole batch of dough",
-        "A seed that never grows",
-        "A treasure buried in a field",
-        "A lamp under a basket"
-      ],
-      "correct": "Yeast that leavens the whole batch of dough",
-      "explain": "God's Kingdom is like yeast a woman mixed into flour until it leavened the whole batch of dough."
-    },
-    {
-      "id": "r8",
-      "ru": "Старайтесь войти через узкую дверь, потому что многие будут пытаться войти, но не смогут.",
-      "question": "What does Jesus urge people to do regarding entering God's Kingdom?",
-      "options": [
-        "Strive to enter through the narrow door",
-        "Wait for someone else to open the door",
-        "Build their own door",
-        "Avoid the door altogether"
-      ],
-      "correct": "Strive to enter through the narrow door",
-      "explain": "Jesus tells people to strive to enter through the narrow door, since many will try and fail."
-    },
-    {
-      "id": "r9",
-      "ru": "и последние будут первыми, а первые последними.",
-      "question": "What reversal does Jesus describe regarding people entering God's Kingdom?",
-      "options": [
-        "The last will be first, and the first will be last",
-        "Only the rich will enter first",
-        "Everyone will enter at the same time",
-        "The first will remain first forever"
-      ],
-      "correct": "The last will be first, and the first will be last",
-      "explain": "Jesus says that the last will be first, and the first will be last."
-    },
-    {
-      "id": "r10",
-      "ru": "Пойдите и передайте этой лисице, я буду изгонять демонов и исцелять людей сегодня и завтра, а на третий день я закончу свое дело.",
-      "question": "How does Jesus respond to the warning that Herod wants to kill him?",
-      "options": [
-        "He tells them to call Herod a fox and says he will continue his work until the third day",
-        "He immediately flees to another country",
-        "He agrees to stop healing people",
-        "He asks to meet with Herod personally"
-      ],
-      "correct": "He tells them to call Herod a fox and says he will continue his work until the third day",
-      "explain": "Jesus tells them to tell \"that fox\" Herod that he will keep casting out demons and healing until his work is finished."
-    },
-    {
-      "id": "r11",
-      "ru": "О Иерусалим! Иерусалим, убивающий пророков и побивающий камнями посланных к тебе!",
-      "question": "What does Jesus lament about Jerusalem?",
-      "options": [
-        "That it kills the prophets and stones those sent to it",
-        "That it has no temple",
-        "That it welcomes all the prophets",
-        "That it will never be destroyed"
-      ],
-      "correct": "That it kills the prophets and stones those sent to it",
-      "explain": "Jesus laments over Jerusalem, which kills the prophets and stones those sent to her."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Или взять тех восемнадцать человек, которые погибли, когда на них упала ___.",
+   "lemma": "башня",
+   "options": [
+    "силоамской башней",
+    "силоамской башне",
+    "силоамской башни",
+    "силоамская башня"
+   ],
+   "correct": "силоамская башня",
+   "case": "Именительный (Nominative)",
+   "explain": "«Силоамская башня» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Or those eighteen, on whom the tower in Siloam fell and killed them; do you think that they were worse offenders than all the men who dwell in Jerusalem?"
+  },
+  {
+   "sentence": "Вы думаете, они были хуже всех ___ Иерусалима?",
+   "lemma": "житель",
+   "options": [
+    "других жителей",
+    "других жителях",
+    "другими жителями",
+    "другим жителям"
+   ],
+   "correct": "других жителей",
+   "case": "Родительный (Genitive)",
+   "explain": "«других жителей» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "Or those eighteen, on whom the tower in Siloam fell and killed them; do you think that they were worse offenders than all the men who dwell in Jerusalem?"
+  },
+  {
+   "sentence": "Когда Он это сказал, всем Его противникам стало стыдно, а весь народ радовался ___, которые Он совершал.",
+   "lemma": "дело",
+   "options": [
+    "чудесным делам",
+    "чудесных дел",
+    "чудесные дела",
+    "чудесных делах"
+   ],
+   "correct": "чудесным делам",
+   "case": "Дательный (Dative)",
+   "explain": "«чудесным делам» — the dative marks the indirect object or recipient.",
+   "id": "c3",
+   "translation": "As he said these things, all his adversaries were disappointed and all the multitude rejoiced for all the glorious things that were done by him."
+  },
+  {
+   "sentence": "Оно как ___, которое человек взял и посеял в своем саду.",
+   "lemma": "зерно",
+   "options": [
+    "горчичному зерну",
+    "горчичном зерне",
+    "горчичное зерно",
+    "горчичного зерна"
+   ],
+   "correct": "горчичное зерно",
+   "case": "Именительный (Nominative)",
+   "explain": "«горчичное зерно» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "It is like a grain of mustard seed which a man took and put in his own garden. It grew and became a large tree, and the birds of the sky live in its branches.”"
+  }
+ ]
 }

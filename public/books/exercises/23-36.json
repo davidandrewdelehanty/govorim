@@ -1,204 +1,109 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "На 14-м году правления царя Езекии, напал на все укрепленные города ___.",
-      "lemma": "Иудея",
-      "options": [
-        "Иудея",
-        "Иудеи",
-        "Иудее",
-        "Иудею"
-      ],
-      "correct": "Иудеи",
-      "case": "Родительный (Genitive)",
-      "translation": "In the fourteenth year of Hezekiah's reign, he attacked all the fortified cities of Judah.",
-      "explain": "The genitive case indicates possession - the cities OF Judah."
-    },
-    {
-      "id": "c2",
-      "sentence": "Когда полководец остановился у водопровода ___ пруда.",
-      "lemma": "верхний",
-      "options": [
-        "верхней",
-        "верхний",
-        "верхнего",
-        "верхним"
-      ],
-      "correct": "верхнего",
-      "case": "Родительный (Genitive)",
-      "translation": "When the commander stopped at the aqueduct of the upper pool.",
-      "explain": "The genitive indicates the relationship between the aqueduct and the upper pool."
-    },
-    {
-      "id": "c3",
-      "sentence": "Рапсак сказал им, скажите ___. так говорит великий царь.",
-      "lemma": "Езекия",
-      "options": [
-        "Езекия",
-        "Езекии",
-        "Езекией",
-        "Езекие"
-      ],
-      "correct": "Езекии",
-      "case": "Дательный (Dative)",
-      "translation": "Rabshakeh said to them, Tell Hezekiah...",
-      "explain": "The dative case indicates the recipient after the verb скажите (tell)."
-    },
-    {
-      "id": "c4",
-      "sentence": "На кого же ты надеешься, что восстал против ___?",
-      "lemma": "я",
-      "options": [
-        "меня",
-        "мня",
-        "мной",
-        "мне"
-      ],
-      "correct": "меня",
-      "case": "Родительный (Genitive)",
-      "translation": "In whom are you trusting, that you have rebelled against me?",
-      "explain": "The preposition против (against) takes the genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Вот, ты надеешься на Египет, это надломленную трость, которая пронзит руку всякому, кто на нее ___?",
-      "lemma": "опереться",
-      "options": [
-        "опираться",
-        "обопрется",
-        "опирается",
-        "опрется"
-      ],
-      "correct": "обопрется",
-      "case": "Будущее совершенное (Future Perfect)",
-      "translation": "If anyone leans on it, it will pierce his hand.",
-      "explain": "The reflexive verb обопрется takes the instrumental case for what it leans on."
-    },
-    {
-      "id": "c6",
-      "sentence": "Не давайте Езекии обманывать ___, не давайте Езекии убедить вас положиться на Господа.",
-      "lemma": "вы",
-      "options": [
-        "вас",
-        "вам",
-        "вами",
-        "вы"
-      ],
-      "correct": "вас",
-      "case": "Винительный (Accusative)",
-      "translation": "Don't let Hezekiah deceive you.",
-      "explain": "The transitive verb обманывать (deceive) takes the accusative case for its direct object."
-    },
-    {
-      "id": "c7",
-      "sentence": "Этот город не будет отдан в руки царя ___.",
-      "lemma": "Ассирия",
-      "options": [
-        "Ассирия",
-        "Ассирию",
-        "Ассирией",
-        "Ассирии"
-      ],
-      "correct": "Ассирии",
-      "case": "Родительный (Genitive)",
-      "translation": "This city will not be given into the hand of the king of Assyria.",
-      "explain": "The genitive indicates possession - the king OF Assyria."
-    },
-    {
-      "id": "c8",
-      "sentence": "Заключите со мной мир и выходите ко ___.",
-      "lemma": "я",
-      "options": [
-        "мне",
-        "меня",
-        "мной",
-        "мня"
-      ],
-      "correct": "мне",
-      "case": "Дательный (Dative)",
-      "translation": "Make peace with me and come out to me.",
-      "explain": "The preposition к (to) takes the dative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "На 14-м году правления царя Езекии Синахириб, царь Осирии, напал на все укрепленные города Иудеи и захватил их.",
-      "question": "What did Sennacherib do to Judah's cities?",
-      "options": [
-        "He made peace with them",
-        "He attacked and captured them",
-        "He offered them tribute",
-        "He sent them gifts"
-      ],
-      "correct": "He attacked and captured them",
-      "explain": "The text states 'He attacked all the fortified cities of Judah and captured them.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Рапсак сказал им, Скажите, Езекия, так говорит великий царь, царь Осирии.",
-      "question": "Who sent Rabshakeh to deliver this message?",
-      "options": [
-        "The king of Egypt",
-        "The king of Assyria",
-        "The elders of Jerusalem",
-        "The high priest"
-      ],
-      "correct": "The king of Assyria",
-      "explain": "The text identifies Rabshakeh as being sent by the king of Assyria."
-    },
-    {
-      "id": "r3",
-      "ru": "На кого же ты надеешься, что восстал против меня?",
-      "question": "What is Rabshakeh questioning Hezekiah about?",
-      "options": [
-        "His military strength",
-        "Who he trusts in rebelling",
-        "His wealth and treasures",
-        "His priests and prophets"
-      ],
-      "correct": "Who he trusts in rebelling",
-      "explain": "The text asks 'In whom do you trust, that you have rebelled against me?'"
-    },
-    {
-      "id": "r4",
-      "ru": "Вот, ты надеешься на Египет, это надломленную трость, которая пронзит руку всякому, кто на нее обопрется?",
-      "question": "How does Rabshakeh describe Egypt?",
-      "options": [
-        "As a strong ally",
-        "As a broken reed that pierces",
-        "As a powerful nation",
-        "As a trustworthy partner"
-      ],
-      "correct": "As a broken reed that pierces",
-      "explain": "The text compares Egypt to 'a bruised reed, which if a man leans on it, will go into his hand and pierce it.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Не давайте Эзекии избить себя с толку, говоря, Господь спасет нас.",
-      "question": "What does Rabshakeh tell the people not to believe?",
-      "options": [
-        "That the king is strong",
-        "That they should surrender",
-        "That the Lord will save them",
-        "That peace is possible"
-      ],
-      "correct": "That the Lord will save them",
-      "explain": "The text warns 'Don't let Hezekiah persuade you, saying The Lord will deliver us.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Тогда Элиаким, Шевна и Иоах сказали Рапсаку, Пожалуйста, говори с твоими слугами по-арамейски.",
-      "question": "What language do the officials ask Rabshakeh to use?",
-      "options": [
-        "Hebrew",
-        "Aramaic",
-        "Egyptian",
-        "Assyrian"
-      ],
-      "correct": "Aramaic",
-      "explain": "The officials explicitly request 'Speak to your servants in Aramaic.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Затем царь Ассирии послал из Лахиша к царю Езекии в Иерусалим Рабсака с ___.",
+   "lemma": "войско",
+   "options": [
+    "большему войску",
+    "большего войска",
+    "большим войском",
+    "большем войске"
+   ],
+   "correct": "большим войском",
+   "case": "Творительный (Instrumental)",
+   "explain": "«большим войском» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c1",
+   "translation": "The king of Assyria sent Rabshakeh from Lachish to Jerusalem to king Hezekiah with a large army. He stood by the aqueduct from the upper pool in the fuller’s field highway."
+  },
+  {
+   "sentence": "Когда полководец остановился у водопровода ___ на дороге к Сукновальному полю, 3 к нему вышли распорядитель дворца Элиаким, сын Хелкии, писарь Шевна и летописец Иоах, сын Асафа.",
+   "lemma": "пруд",
+   "options": [
+    "верхний пруд",
+    "верхнего пруда",
+    "верхнем пруде",
+    "верхнему пруду"
+   ],
+   "correct": "верхнего пруда",
+   "case": "Родительный (Genitive)",
+   "explain": "«Верхнего пруда» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "The king of Assyria sent Rabshakeh from Lachish to Jerusalem to king Hezekiah with a large army. He stood by the aqueduct from the upper pool in the fuller’s field highway."
+  },
+  {
+   "sentence": "Когда полководец остановился у водопровода Верхнего пруда на дороге к ___, 3 к нему вышли распорядитель дворца Элиаким, сын Хелкии, писарь Шевна и летописец Иоах, сын Асафа.",
+   "lemma": "поле",
+   "options": [
+    "сукновальным полем",
+    "сукновальному полю",
+    "сукновальное поле",
+    "сукновального поля"
+   ],
+   "correct": "сукновальному полю",
+   "case": "Дательный (Dative)",
+   "explain": "«Сукновальному полю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c3",
+   "translation": "The king of Assyria sent Rabshakeh from Lachish to Jerusalem to king Hezekiah with a large army. He stood by the aqueduct from the upper pool in the fuller’s field highway."
+  },
+  {
+   "sentence": "Ты думаешь, что ___ — то же самое, что военное искусство и сила?",
+   "lemma": "слово",
+   "options": [
+    "пустых словах",
+    "пустым словам",
+    "пустых слов",
+    "пустые слова"
+   ],
+   "correct": "пустые слова",
+   "case": "Именительный (Nominative)",
+   "explain": "«пустые слова» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "I say that your counsel and strength for the war are only vain words. Now in whom do you trust, that you have rebelled against me?"
+  },
+  {
+   "sentence": "Ты думаешь, что пустые слова — то же самое, что ___ и сила?",
+   "lemma": "искусство",
+   "options": [
+    "военное искусство",
+    "военным искусством",
+    "военном искусстве",
+    "военного искусства"
+   ],
+   "correct": "военное искусство",
+   "case": "Именительный (Nominative)",
+   "explain": "«военное искусство» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "I say that your counsel and strength for the war are only vain words. Now in whom do you trust, that you have rebelled against me?"
+  },
+  {
+   "sentence": "Как ты сможешь отразить хотя бы наименьшего военачальника у моего господина, даже надеясь на ___ и всадников?",
+   "lemma": "колесница",
+   "options": [
+    "египетским колесницам",
+    "египетских колесницах",
+    "египетские колесницы",
+    "египетских колесниц"
+   ],
+   "correct": "египетские колесницы",
+   "case": "Винительный (Accusative)",
+   "explain": "«египетские колесницы» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c6",
+   "translation": "How then can you turn away the face of one captain of the least of my master’s servants, and put your trust on Egypt for chariots and for horsemen?"
+  },
+  {
+   "sentence": "Разве какой-либо бог ___ избавил свою страну от руки царя Ассирии?",
+   "lemma": "народ",
+   "options": [
+    "другому народу",
+    "другого народа",
+    "другой народ",
+    "другим народом"
+   ],
+   "correct": "другого народа",
+   "case": "Родительный (Genitive)",
+   "explain": "«другого народа» — the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "Beware lest Hezekiah persuade you, saying, “Yahweh will deliver us.” Have any of the gods of the nations delivered their lands from the hand of the king of Assyria?"
+  }
+ ]
 }

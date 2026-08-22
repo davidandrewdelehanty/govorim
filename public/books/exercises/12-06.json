@@ -1,134 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Позволь нам пойти к ___, взять оттуда по бревну.",
-      "lemma": "Иордан",
-      "options": ["Иордан", "Иордана", "Иордану", "Иорданом"],
-      "correct": "Иордану",
-      "case": "Дательный (Dative)",
-      "translation": "Allow us to go to the Jordan, and take each a beam from there.",
-      "explain": "The preposition к (to) governs the dative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Они пришли к Иордану и начали рубить ___.",
-      "lemma": "дерево",
-      "options": ["дерево", "дерева", "деревом", "деревья"],
-      "correct": "деревья",
-      "case": "Винительный (Accusative)",
-      "translation": "They came to the Jordan and began to cut down trees.",
-      "explain": "The accusative case is used for the direct object of the verb 'рубить' (to cut)."
-    },
-    {
-      "id": "c3",
-      "sentence": "железное лезвие его топора упало в ___.",
-      "lemma": "вода",
-      "options": ["вода", "воды", "воде", "воду"],
-      "correct": "воду",
-      "case": "Винительный (Accusative)",
-      "translation": "The iron ax head fell into the water.",
-      "explain": "The preposition в (into) governs the accusative case when indicating motion toward."
-    },
-    {
-      "id": "c4",
-      "sentence": "Царь Арама воевал с ___.",
-      "lemma": "Израиль",
-      "options": ["Израиль", "Израиля", "Израилю", "Израилем"],
-      "correct": "Израилем",
-      "case": "Творительный (Instrumental)",
-      "translation": "The king of Syria was at war against Israel.",
-      "explain": "The preposition с (with) governs the instrumental case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Не скажете ли вы мне, кто из наших людей на стороне ___ Израиля?",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царя",
-      "case": "Родительный (Genitive)",
-      "translation": "Won't you show me which of us is for the king of Israel?",
-      "explain": "The genitive case shows possession or association."
-    },
-    {
-      "id": "c6",
-      "sentence": "Они пришли ночью и окружили ___.",
-      "lemma": "город",
-      "options": ["город", "города", "городу", "городом"],
-      "correct": "город",
-      "case": "Винительный (Accusative)",
-      "translation": "They came by night, and surrounded the city.",
-      "explain": "The accusative case is used for the direct object of the verb 'окружили' (surrounded)."
-    },
-    {
-      "id": "c7",
-      "sentence": "вокруг Елисея по всей горе были огненные кони и ___.",
-      "lemma": "колесница",
-      "options": ["колесница", "колесницы", "колеснице", "колесницей"],
-      "correct": "колесницы",
-      "case": "Именительный (Nominative)",
-      "translation": "The mountain was full of horses and chariots of fire around Elisha.",
-      "explain": "The noun is the subject of the verb 'были' (were) and stands in the nominative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Они вернулись к своему ___, и отряды из Арама перестали совершать набеги.",
-      "lemma": "господин",
-      "options": ["господин", "господина", "господину", "господином"],
-      "correct": "господину",
-      "case": "Дательный (Dative)",
-      "translation": "They returned to their master, and the bands of Syria stopped raiding.",
-      "explain": "The preposition к (to) governs the dative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Ученики пророков сказали Елисею, «Послушай, здесь, где мы живем, под твоим началом нам не хватает места».",
-      "question": "What problem did the sons of the prophets describe to Elisha?",
-      "options": ["There was not enough food to eat", "There was not enough space for them to live", "The building was falling apart", "They needed more money"],
-      "correct": "There was not enough space for them to live",
-      "explain": "They said 'нам не хватает места' — we don't have enough space."
-    },
-    {
-      "id": "r2",
-      "ru": "Когда один из них валил дерево, железное лезвие его топора упало в воду.",
-      "question": "What accident happened while the disciples were cutting down trees?",
-      "options": ["A man was injured by a falling tree", "The iron ax head fell into the water", "A tree fell on a child", "A fire broke out"],
-      "correct": "The iron ax head fell into the water",
-      "explain": "The text says 'железное лезвие его топора упало в воду' — the iron ax head fell into the water."
-    },
-    {
-      "id": "r3",
-      "ru": "Не раз и не два Елисей предостерегал царя, и тот бывал в таких местах на стороже.",
-      "question": "How often did Elisha warn the king of Israel about Syrian ambushes?",
-      "options": ["Once", "Twice", "Many times", "Only once or twice"],
-      "correct": "Many times",
-      "explain": "The text states 'Не раз и не два Елисей предостерегал царя' — more than once or twice did Elisha warn the king."
-    },
-    {
-      "id": "r4",
-      "ru": "Это Елисей, пророк, что в Израиле. Передает царю Израиля даже те слова, которые ты говоришь у себя в спальне.",
-      "question": "Why was the king of Syria troubled by Elisha's presence?",
-      "options": ["Because Elisha was leading an army against him", "Because Elisha knew and told the king of Israel even the words the Syrian king spoke in his bedroom", "Because Elisha had insulted him", "Because Elisha refused to help him"],
-      "correct": "Because Elisha knew and told the king of Israel even the words the Syrian king spoke in his bedroom",
-      "explain": "The servant said Elisha 'Передает царю Израиля даже те слова, которые ты говоришь у себя в спальне' — tells the king of Israel even your private words."
-    },
-    {
-      "id": "r5",
-      "ru": "Когда рано утром слуга Божьего человека поднялся и вышел, город был окружен войском с конями и колесницами.",
-      "question": "What did Elisha's servant see when he went outside early in the morning?",
-      "options": ["A peaceful sunrise", "The city surrounded by an army with horses and chariots", "A flock of birds", "An empty landscape"],
-      "correct": "The city surrounded by an army with horses and chariots",
-      "explain": "The text says 'город был окружен войском с конями и колесницами' — the city was surrounded by an army with horses and chariots."
-    },
-    {
-      "id": "r6",
-      "ru": "В городе начался страшный голод. Осада так затянулась, что ослиную голову продавали за 80 шекелей серебра.",
-      "question": "How severe was the famine during the siege of Samaria?",
-      "options": ["There was some food available", "Food was scarce but still affordable", "An ass's head was sold for eighty pieces of silver", "People had plenty of grain stored"],
-      "correct": "An ass's head was sold for eighty pieces of silver",
-      "explain": "The text states the famine was so severe that 'ослиную голову продавали за 80 шекелей серебра' — a donkey's head was sold for 80 pieces of silver."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Он послал туда лошадей, колесницы и ___.",
+   "lemma": "войско",
+   "options": [
+    "большим войском",
+    "большого войска",
+    "большом войске",
+    "большое войско"
+   ],
+   "correct": "большое войско",
+   "case": "Именительный (Nominative)",
+   "explain": "«большое войско» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Therefore he sent horses, chariots, and a great army there. They came by night, and surrounded the city."
+  },
+  {
+   "sentence": "Когда рано утром слуга ___ поднялся и вышел, город был окружен войском с конями и колесницами.",
+   "lemma": "человек",
+   "options": [
+    "божьего человека",
+    "божьим человеком",
+    "божьем человеке",
+    "божьему человеку"
+   ],
+   "correct": "божьего человека",
+   "case": "Родительный (Genitive)",
+   "explain": "«Божьего человека» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "When the servant of the man of God had risen early, and gone out, behold, an army with horses and chariots was around the city. His servant said to him, “Alas, my master! What shall we do?”"
+  },
+  {
+   "sentence": "В городе начался ___.",
+   "lemma": "голод",
+   "options": [
+    "страшному голоду",
+    "страшный голод",
+    "страшном голоде",
+    "страшным голодом"
+   ],
+   "correct": "страшный голод",
+   "case": "Именительный (Nominative)",
+   "explain": "«страшный голод» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "There was a great famine in Samaria. Behold, they besieged it, until a donkey’s head was sold for eighty pieces of silver, and the fourth part of a kab of dove’s dung for five pieces of silver."
+  },
+  {
+   "sentence": "Когда царь Израиля проходил по ___, одна женщина закричала ему:",
+   "lemma": "стена",
+   "options": [
+    "городской стене",
+    "городской стены",
+    "городская стена",
+    "городской стеной"
+   ],
+   "correct": "городской стене",
+   "case": "Дательный (Dative)",
+   "explain": "«городской стене» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c4",
+   "translation": "As the king of Israel was passing by on the wall, a woman cried to him, saying, “Help, my lord, O king!”"
+  }
+ ]
 }

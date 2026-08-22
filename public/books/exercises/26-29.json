@@ -1,134 +1,139 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "В десятом году, в двенадцатый день десятого ___, было ко мне слово Господа.",
-      "lemma": "месяц",
-      "options": ["месяц", "месяца", "месяцу", "месяце"],
-      "correct": "месяца",
-      "case": "Родительный (Genitive)",
-      "translation": "In the tenth year, on the twelfth day of the tenth month, the word of the Lord came to me.",
-      "explain": "The genitive case is used for the day within a month: 'день месяца' (day of the month)."
-    },
-    {
-      "id": "c2",
-      "sentence": "Сын человеческий, обрати лицо к фараону, царю ___, и пророчествуй против него.",
-      "lemma": "Египет",
-      "options": ["Египет", "Египта", "Египту", "Египте"],
-      "correct": "Египта",
-      "case": "Родительный (Genitive)",
-      "translation": "Son of man, set your face against Pharaoh king of Egypt and prophesy against him.",
-      "explain": "The phrase 'царю Египта' uses the genitive to show that Pharaoh is the king of Egypt."
-    },
-    {
-      "id": "c3",
-      "sentence": "Я твой враг, фараон, царь Египта, чудовищный ___, что в реках своих разлегся.",
-      "lemma": "крокодил",
-      "options": ["крокодил", "крокодила", "крокодилу", "крокодилом"],
-      "correct": "крокодил",
-      "case": "Именительный (Nominative)",
-      "translation": "I am against you, Pharaoh king of Egypt, the great monster that lies in the rivers.",
-      "explain": "The predicate nominative after the implied verb 'you are' requires the nominative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я продену крюк в твои челюсти и рыбу из рек твоих приклею к твоей ___.",
-      "lemma": "чешуя",
-      "options": ["чешуя", "чешуи", "чешуе", "чешуей"],
-      "correct": "чешуе",
-      "case": "Дательный (Dative)",
-      "translation": "I will put hooks in your jaws and make the fish of your rivers stick to your scales.",
-      "explain": "The verb 'приклею' (I will stick) with indirect object 'scales' takes the dative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Я брошу тебя в пустыню, тебя и рыбу из твоих ___.",
-      "lemma": "река",
-      "options": ["река", "реки", "рек", "реках"],
-      "correct": "рек",
-      "case": "Родительный (Genitive)",
-      "translation": "I will cast you out into the wilderness, you and all the fish from your rivers.",
-      "explain": "The preposition 'из' (from) requires the genitive case: 'из рек' (from rivers)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Я отдам тебя в пищу земному зверю и небесным ___.",
-      "lemma": "птица",
-      "options": ["птица", "птицы", "птицам", "птицах"],
-      "correct": "птицам",
-      "case": "Дательный (Dative)",
-      "translation": "I will give you as food to the beasts of the earth and the birds of the heavens.",
-      "explain": "The preposition 'в пищу' (as food) governing the dative 'птицам' shows the recipient of the action."
-    },
-    {
-      "id": "c7",
-      "sentence": "Ты был посохом и страстника для дома ___.",
-      "lemma": "Израиль",
-      "options": ["Израиля", "Израилю", "Израилем", "Израиле"],
-      "correct": "Израиля",
-      "case": "Родительный (Genitive)",
-      "translation": "You were a staff of reed to the house of Israel.",
-      "explain": "The phrase 'дома Израиля' uses the genitive to show possession: the house of Israel."
-    },
-    {
-      "id": "c8",
-      "sentence": "По прошествии сорока лет я соберу египтян из народов, среди которых они были рассеяны. Я восстановлю и возвращу их в Верхний Египет, землю их ___, они будут там слабым царством.",
-      "lemma": "предок",
-      "options": ["предки", "предков", "предкам", "предках"],
-      "correct": "предков",
-      "case": "Родительный (Genitive)",
-      "translation": "After forty years, I will gather the Egyptians from the nations where they were scattered and restore them to Upper Egypt, the land of their ancestors; they will be a lowly kingdom there.",
-      "explain": "The phrase 'землю их предков' uses the genitive plural 'предков' to show possession: land of their ancestors."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Я твой враг, фараон, царь Египта, чудовищный крокодил, что в реках своих разлегся.",
-      "question": "How does God describe himself in relation to the Pharaoh?",
-      "options": ["God says he is against Pharaoh and compares him to a great monster lying in his rivers", "God says he will help Pharaoh become stronger", "God says he will establish Pharaoh's kingdom", "God says he needs Pharaoh's advice"],
-      "correct": "God says he is against Pharaoh and compares him to a great monster lying in his rivers",
-      "explain": "God declares: 'Я твой враг, фараон... чудовищный крокодил, что в реках своих разлегся' — I am your enemy, Pharaoh... the great monster lying in your rivers."
-    },
-    {
-      "id": "r2",
-      "ru": "Нил мой, — говоришь ты, — я для себя его создал.",
-      "question": "What arrogant claim does Pharaoh make about the Nile?",
-      "options": ["He claims the Nile is his and that he created it for himself", "He claims he discovered the Nile", "He claims he can control the Nile's floods", "He claims he will dry up the Nile"],
-      "correct": "He claims the Nile is his and that he created it for himself",
-      "explain": "Pharaoh boasts: 'Нил мой... я для себя его создал' — The Nile is mine, I created it for myself."
-    },
-    {
-      "id": "r3",
-      "ru": "Ты был посохом и страстника для дома Израиля. Когда они брались за тебя, ты расщеплялся и ранил им плечи.",
-      "question": "What does God say Egypt was to Israel?",
-      "options": ["A staff that broke and wounded them when they relied on it", "A source of great strength and protection", "A faithful ally in times of trouble", "A provider of food and resources"],
-      "correct": "A staff that broke and wounded them when they relied on it",
-      "explain": "God describes Egypt as harmful: 'Ты был посохом и страстника для дома Израиля... ты расщеплялся и ранил им плечи' — when they grasped you, you broke and wounded their shoulders."
-    },
-    {
-      "id": "r4",
-      "ru": "Я сделаю землю Египта мертвой пустыней от Мегдола до Сиены, до самой границы с Кушем.",
-      "question": "What will God do to the land of Egypt?",
-      "options": ["Make it a desolate wilderness from Migdol to Aswan, to the border of Cush", "Restore it to prosperity", "Make it a center of worship", "Turn it into a great sea"],
-      "correct": "Make it a desolate wilderness from Migdol to Aswan, to the border of Cush",
-      "explain": "God's judgment: 'Я сделаю землю Египта мертвой пустыней от Мегдола до Сиены, до самой границы с Кушем' — I will make Egypt a desolate wilderness from Migdol to Aswan, to Cush's border."
-    },
-    {
-      "id": "r5",
-      "ru": "По прошествии сорока лет я соберу египтян из народов, среди которых они были рассеяны.",
-      "question": "What will God do for Egypt after forty years?",
-      "options": ["He will gather the Egyptians from the nations where they were scattered", "He will permanently destroy Egypt", "He will make Egypt more powerful than before", "He will hand Egypt over to Babylon"],
-      "correct": "He will gather the Egyptians from the nations where they were scattered",
-      "explain": "God promises restoration: 'По прошествии сорока лет я соберу египтян из народов, среди которых они были рассеяны' — After forty years I will gather the Egyptians from the nations where they were scattered."
-    },
-    {
-      "id": "r6",
-      "ru": "Я восстановлю и возвращу их в Верхний Египет, землю их предков, они будут там слабым царством, самым слабым из царств, и никогда впредь не возвысятся над другими народами.",
-      "question": "What kind of kingdom will Egypt be when it is restored?",
-      "options": ["A lowly kingdom, the weakest of kingdoms, and never again will it rise above other nations", "The greatest power in the world", "A united kingdom under one strong ruler", "A source of wisdom for all nations"],
-      "correct": "A lowly kingdom, the weakest of kingdoms, and never again will it rise above other nations",
-      "explain": "God's restoration includes humiliation: 'они будут там слабым царством, самым слабым из царств, и никогда впредь не возвысятся' — they will be a lowly kingdom, the weakest of kingdoms, never again to rise above other nations."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "В десятом году, в двенадцатый день ___ было ко мне слово Господа:",
+   "lemma": "месяц",
+   "options": [
+    "десятый месяц",
+    "десятого месяца",
+    "десятом месяце",
+    "десятому месяцу"
+   ],
+   "correct": "десятого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«десятого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "In the tenth year, in the tenth month, on the twelfth day of the month, Yahweh’s word came to me, saying,"
+  },
+  {
+   "sentence": "Египет станет ___.",
+   "lemma": "пустыня",
+   "options": [
+    "безлюдной пустыней",
+    "безлюдной пустыни",
+    "безлюдная пустыня",
+    "безлюдной пустыне"
+   ],
+   "correct": "безлюдной пустыней",
+   "case": "Творительный (Instrumental)",
+   "explain": "«безлюдной пустыней» — the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "The land of Egypt will be a desolation and a waste. Then they will know that I am Yahweh. “ ‘ “Because he has said, ‘The river is mine, and I have made it;’"
+  },
+  {
+   "sentence": "Я сделаю землю Египта мертвой пустыней от Мигдола до Сиены, до ___ с Кушем.",
+   "lemma": "граница",
+   "options": [
+    "самой границей",
+    "сама граница",
+    "самой границе",
+    "самой границы"
+   ],
+   "correct": "самой границы",
+   "case": "Родительный (Genitive)",
+   "explain": "«самой границы» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "The land of Egypt will be a desolation and a waste. Then they will know that I am Yahweh. “ ‘ “Because he has said, ‘The river is mine, and I have made it;’"
+  },
+  {
+   "sentence": "Я рассею египтян между ___ и развею их по чужим землям.",
+   "lemma": "народ",
+   "options": [
+    "других народах",
+    "другим народам",
+    "других народов",
+    "другими народами"
+   ],
+   "correct": "другими народами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«другими народами» — after the preposition «между», the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "I will make the land of Egypt a desolation in the middle of the countries that are desolate. Her cities among the cities that are laid waste will be a desolation forty years. I will scatter the Egyptians among the nations, and will disperse them through the countries.”"
+  },
+  {
+   "sentence": "Я рассею египтян между другими народами и развею их по ___.",
+   "lemma": "земля",
+   "options": [
+    "чужие земли",
+    "чужими землями",
+    "чужих землях",
+    "чужим землям"
+   ],
+   "correct": "чужим землям",
+   "case": "Дательный (Dative)",
+   "explain": "«чужим землям» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c6",
+   "translation": "I will make the land of Egypt a desolation in the middle of the countries that are desolate. Her cities among the cities that are laid waste will be a desolation forty years. I will scatter the Egyptians among the nations, and will disperse them through the countries.”"
+  },
+  {
+   "sentence": "Они будут там ___, 15 самым слабым из царств, и никогда впредь не возвысятся над другими народами.",
+   "lemma": "царство",
+   "options": [
+    "слабого царства",
+    "слабом царстве",
+    "слабым царством",
+    "слабое царство"
+   ],
+   "correct": "слабым царством",
+   "case": "Творительный (Instrumental)",
+   "explain": "«слабым царством» — the instrumental marks the means, company, or complement.",
+   "id": "c7",
+   "translation": "I will reverse the captivity of Egypt, and will cause them to return into the land of Pathros, into the land of their birth. They will be a lowly kingdom, there."
+  },
+  {
+   "sentence": "Они будут там слабым царством, 15 самым слабым из царств, и никогда впредь не возвысятся над ___.",
+   "lemma": "народ",
+   "options": [
+    "других народах",
+    "другим народам",
+    "других народов",
+    "другими народами"
+   ],
+   "correct": "другими народами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«другими народами» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "id": "c8",
+   "translation": "I will reverse the captivity of Egypt, and will cause them to return into the land of Pathros, into the land of their birth. They will be a lowly kingdom, there."
+  },
+  {
+   "sentence": "В двадцать седьмом году, в первый день ___ было ко мне слово Господне:",
+   "lemma": "месяц",
+   "options": [
+    "первым месяцем",
+    "первом месяце",
+    "первого месяца",
+    "первый месяц"
+   ],
+   "correct": "первого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«первого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c10",
+   "translation": "It came to pass in the twenty-seventh year, in the first month, in the first day of the month, Yahweh’s word came to me, saying,"
+  },
+  {
+   "sentence": "— Сын человеческий, Навуходоносор, царь Вавилона, заставил свое войско немало потрудиться под Тиром: все головы оплешивели, все плечи натерты от ___.",
+   "lemma": "труд",
+   "options": [
+    "непосильном труде",
+    "непосильного труда",
+    "непосильным трудом",
+    "непосильный труд"
+   ],
+   "correct": "непосильного труда",
+   "case": "Родительный (Genitive)",
+   "explain": "«непосильного труда» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
+   "translation": "“Son of man, Nebuchadnezzar king of Babylon caused his army to serve a great service against Tyre. Every head was made bald, and every shoulder was worn; yet he had no wages, nor did his army, from Tyre, for the service that he had served against it."
+  }
+ ]
 }

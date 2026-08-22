@@ -1,134 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Ерубаал, он же Гидеон, и все его люди встали рано утром и расположились лагерем у источника ___.",
-      "lemma": "Харот",
-      "options": ["Харот", "Харота", "Хароту", "Харотом"],
-      "correct": "Харота",
-      "case": "Родительный (Genitive)",
-      "translation": "Then Jerubbaal, who is Gideon, and all the people who were with him, rose up early and encamped beside the spring of Harod.",
-      "explain": "The preposition у (near/by) governs the genitive case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Господь сказал Гедеону, «Воинов с тобой слишком много, я не стану отдавать Мадианитян в их ___».",
-      "lemma": "рука",
-      "options": ["рука", "руки", "руке", "руку"],
-      "correct": "руки",
-      "case": "Родительный (Genitive)",
-      "translation": "Yahweh said to Gideon, 'The people who are with you are too many for me to give the Midianites into their hand.'",
-      "explain": "Possession after руки (hand) requires the genitive case to indicate ownership."
-    },
-    {
-      "id": "c3",
-      "sentence": "Чтобы Израиль не мог гордиться предо мной, будто его спасла его собственная ___, объяви воинам.",
-      "lemma": "сила",
-      "options": ["сила", "силы", "силе", "силу"],
-      "correct": "сила",
-      "case": "Именительный (Nominative)",
-      "translation": "Now therefore proclaim in the ears of the people, lest Israel brag against me, saying, 'My own hand has saved me.'",
-      "explain": "Сила is the subject of the phrase standing in the nominative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Двадцать две тысячи человек ушло, а десять тысяч осталось близ ___.",
-      "lemma": "гора",
-      "options": ["гора", "горы", "горе", "гору"],
-      "correct": "горы",
-      "case": "Родительный (Genitive)",
-      "translation": "So twenty-two thousand of the people returned, and ten thousand remained near the mountain.",
-      "explain": "Numerical expressions with complex numerals take the genitive form of the noun."
-    },
-    {
-      "id": "c5",
-      "sentence": "О ком я скажу тебе, этот пойдет с тобой, тот пойдет, а о ком скажу, этот с тобой не пойдет в ___.",
-      "lemma": "битва",
-      "options": ["битва", "битвы", "битве", "битву"],
-      "correct": "битву",
-      "case": "Винительный (Accusative)",
-      "translation": "It shall be, that those whom I tell you, 'This shall go with you,' shall go with you.",
-      "explain": "The preposition в (into) with motion governs the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Триста воинов лакали воду языком, поднося воду к корту ___.",
-      "lemma": "рот",
-      "options": ["рот", "рота", "роту", "ротом"],
-      "correct": "роту",
-      "case": "Винительный (Accusative)",
-      "translation": "The number of those who lapped, putting their hand to their mouth, was three hundred men.",
-      "explain": "The preposition к (to/toward) requires the dative, but here the accusative is used in the movement of water."
-    },
-    {
-      "id": "c7",
-      "sentence": "Гидеон отпустил всех остальных израилетян по шатрам, но оставил триста воинов, которым достались запасы пищи и боевые рога ушедших в ___.",
-      "lemma": "битва",
-      "options": ["битва", "битвы", "битве", "битву"],
-      "correct": "битве",
-      "case": "Предложный (Prepositional)",
-      "translation": "So the people took food in their hand, and their trumpets; and he sent all the rest of the men of Israel to their own tents.",
-      "explain": "The preposition в (in) with location requires the prepositional case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Держа в левой руке факелы, а в правой рога, которые они трубили, они закричали «Меч за Господа и за ___».",
-      "lemma": "Гидеон",
-      "options": ["Гидеон", "Гидеона", "Гидеону", "Гидеоном"],
-      "correct": "Гидеона",
-      "case": "Родительный (Genitive)",
-      "translation": "Holding the torches in their left hands and the trumpets in their right hands, they shouted, 'The sword of Yahweh and of Gideon!'",
-      "explain": "The preposition за (for) with a person's name takes the accusative, but genitive is used here for possession."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Lагерь Мадианитян находился к северу от них, в долине рядом с холмом Море.",
-      "question": "Where was the Midianite camp located in relation to Gideon's camp?",
-      "options": ["To the north of them in the valley by the hill of Moreh", "To the south in the mountains", "To the east near the river", "To the west in a fortified city"],
-      "correct": "To the north of them in the valley by the hill of Moreh",
-      "explain": "The text clearly states the Midianite camp was on the north side in the valley by the hill of Moreh."
-    },
-    {
-      "id": "r2",
-      "ru": "Чтобы Израиль не мог гордиться предо мной, будто его спасла его собственная сила, объяви воинам.",
-      "question": "Why did God say there were too many soldiers with Gideon?",
-      "options": ["So that Israel would not boast that their own hand saved them", "Because the soldiers were afraid to fight", "To test Gideon's leadership skills", "To punish Israel for their disobedience"],
-      "correct": "So that Israel would not boast that their own hand saved them",
-      "explain": "God explicitly states that with too many soldiers, Israel would brag that their own hand had saved them."
-    },
-    {
-      "id": "r3",
-      "ru": "Двадцать две тысячи человек ушло, а десять тысяч осталось.",
-      "question": "How many soldiers remained after the fearful left?",
-      "options": ["Ten thousand", "Twenty-two thousand", "Three hundred", "Thirty-two thousand"],
-      "correct": "Ten thousand",
-      "explain": "The text states that twenty-two thousand left and ten thousand remained."
-    },
-    {
-      "id": "r4",
-      "ru": "Мне снился, — говорил он, — круглый чменный хлеб, который катился в Мадианский лагерь.",
-      "question": "What did the Midianite soldier dream about?",
-      "options": ["A round loaf of barley bread rolling into the Midian camp", "A sword falling from the sky", "Gideon attacking the camp", "Fire destroying the tents"],
-      "correct": "A round loaf of barley bread rolling into the Midian camp",
-      "explain": "The soldier describes his dream of a round cake of barley bread tumbling into the camp of Midian."
-    },
-    {
-      "id": "r5",
-      "ru": "Его друг ответил, «Это не что иное, как меч израилетянина Гидеона, сына Иааша».",
-      "question": "How did the Midianite interpret the dream?",
-      "options": ["As the sword of Gideon the son of Joash, a man of Israel", "As a sign of their victory", "As a blessing from their gods", "As meaningless nonsense"],
-      "correct": "As the sword of Gideon the son of Joash, a man of Israel",
-      "explain": "The fellow interpreted the dream as nothing other than the sword of Gideon son of Joash."
-    },
-    {
-      "id": "r6",
-      "ru": "Разделив триста воинов на три отряда, он дал всем им в руки рога и пустые сосуды с факелами внутри.",
-      "question": "What weapons did Gideon give to his three hundred men?",
-      "options": ["Trumpets, empty pitchers with torches inside", "Swords and shields", "Bows and arrows", "Spears and slings"],
-      "correct": "Trumpets, empty pitchers with torches inside",
-      "explain": "The text states Gideon divided the men into three companies and gave them all trumpets and empty pitchers with torches within."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Гедеон отпустил всех ___ по шатрам, но оставил триста воинов, которым достались запасы пищи и боевые рога ушедших.",
+   "lemma": "израильтянин",
+   "options": [
+    "остальных израильтянах",
+    "остальными израильтянами",
+    "остальным израильтянам",
+    "остальных израильтян"
+   ],
+   "correct": "остальных израильтян",
+   "case": "Винительный (Accusative)",
+   "explain": "«остальных израильтян» — the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "So the people took food in their hand, and their trumpets; and he sent all the rest of the men of Israel to their own tents, but retained the three hundred men; and the camp of Midian was beneath him in the valley."
+  },
+  {
+   "sentence": "Мадианитяне, амаликитяне и другие ___ наводнили долину, словно саранча.",
+   "lemma": "народ",
+   "options": [
+    "восточных народов",
+    "восточных народах",
+    "восточным народам",
+    "восточные народы"
+   ],
+   "correct": "восточные народы",
+   "case": "Именительный (Nominative)",
+   "explain": "«восточные народы» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "The Midianites and the Amalekites and all the children of the east lay along in the valley like locusts for multitude; and their camels were without number, as the sand which is on the seashore for multitude."
+  },
+  {
+   "sentence": "Он возвратился в ___ и сказал:",
+   "lemma": "лагерь",
+   "options": [
+    "израильским лагерем",
+    "израильскому лагерю",
+    "израильском лагере",
+    "израильский лагерь"
+   ],
+   "correct": "израильский лагерь",
+   "case": "Винительный (Accusative)",
+   "explain": "«израильский лагерь» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "It was so, when Gideon heard the telling of the dream and its interpretation, that he worshiped. Then he returned into the camp of Israel and said, “Arise, for Yahweh has delivered the army of Midian into your hand!”"
+  },
+  {
+   "sentence": "Разделив триста воинов на три отряда, он дал всем им в руки рога и ___ с факелами внутри.",
+   "lemma": "сосуд",
+   "options": [
+    "пустые сосуды",
+    "пустых сосудах",
+    "пустыми сосудами",
+    "пустым сосудам"
+   ],
+   "correct": "пустые сосуды",
+   "case": "Винительный (Accusative)",
+   "explain": "«пустые сосуды» — the accusative marks the direct object of the verb.",
+   "id": "c4",
+   "translation": "He divided the three hundred men into three companies, and he put into the hands of all them trumpets and empty pitchers, with torches within the pitchers."
+  },
+  {
+   "sentence": "Войско бежало до самой Бет-Шитты к Церере, до ___ Авел-Мехолы близ Таббата.",
+   "lemma": "граница",
+   "options": [
+    "самой границы",
+    "сама граница",
+    "самой границе",
+    "самой границей"
+   ],
+   "correct": "самой границы",
+   "case": "Родительный (Genitive)",
+   "explain": "«самой границы» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "They blew the three hundred trumpets, and Yahweh set every man’s sword against his fellow and against all the army; and the army fled as far as Beth Shittah toward Zererah, as far as the border of Abel Meholah, by Tabbath."
+  },
+  {
+   "sentence": "Еще они пленили двух ___, Орива и Зива.",
+   "lemma": "вождь",
+   "options": [
+    "мадианских вождей",
+    "мадианскими вождями",
+    "мадианским вождям",
+    "мадианские вожди"
+   ],
+   "correct": "мадианских вождей",
+   "case": "Родительный (Genitive)",
+   "explain": "«мадианских вождей» — the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "They took the two princes of Midian, Oreb and Zeeb. They killed Oreb at Oreb’s rock, and Zeeb they killed at Zeeb’s wine press, as they pursued Midian. Then they brought the heads of Oreb and Zeeb to Gideon beyond the Jordan."
+  }
+ ]
 }

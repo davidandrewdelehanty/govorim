@@ -1,189 +1,184 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "В тринадцатый день двенадцатого ___ ",
-      "lemma": "месяц",
-      "options": [
-        "месяц",
-        "месяца",
-        "месяцу",
-        "месяцем"
-      ],
-      "correct": "месяца",
-      "case": "Родительный (Genitive)",
-      "translation": "В тринадцатый день двенадцатого месяца ",
-      "explain": "The genitive is used with ordinal numbers for dates."
-    },
-    {
-      "id": "c2",
-      "sentence": "враги иудеев надеялись взять верх над ___",
-      "lemma": "враг",
-      "options": [
-        "враг",
-        "врага",
-        "врагу",
-        "врагом"
-      ],
-      "correct": "врагом",
-      "case": "Творительный (Instrumental)",
-      "translation": "враги иудеев надеялись взять верх над врагом",
-      "explain": "The preposition над governs the instrumental case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Иудеи разили своих врагов ___ ",
-      "lemma": "меч",
-      "options": [
-        "меч",
-        "меча",
-        "мечу",
-        "мечом"
-      ],
-      "correct": "мечом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Иудеи разили своих врагов мечом ",
-      "explain": "The noun indicates the instrument, taking the instrumental case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Мордахей послал ___ ко всем иудеям",
-      "lemma": "письмо",
-      "options": [
-        "письмо",
-        "письма",
-        "письму",
-        "письмом"
-      ],
-      "correct": "письма",
-      "case": "Винительный (Accusative)",
-      "translation": "Мордахей послал письма ко всем иудеям",
-      "explain": "The direct object of послал takes the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "ежегодно праздновали как ___",
-      "lemma": "праздник",
-      "options": [
-        "праздник",
-        "праздника",
-        "празднику",
-        "праздником"
-      ],
-      "correct": "праздник",
-      "case": "Винительный (Accusative)",
-      "translation": "ежегодно праздновали как праздник",
-      "explain": "The direct object of праздновали takes the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "в каждой ___ , в каждом городе",
-      "lemma": "день",
-      "options": [
-        "день",
-        "дня",
-        "дню",
-        "днем"
-      ],
-      "correct": "день",
-      "case": "Винительный (Accusative)",
-      "translation": "в каждой день , в каждом городе",
-      "explain": "The preposition в governs the accusative case with motion."
-    },
-    {
-      "id": "c8",
-      "sentence": "Эти ___ следует помнить",
-      "lemma": "дни",
-      "options": [
-        "дни",
-        "дней",
-        "дням",
-        "днями"
-      ],
-      "correct": "дни",
-      "case": "Винительный (Accusative)",
-      "translation": "Эти дни следует помнить",
-      "explain": "The direct object of помнить takes the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "В тринадцатый день двенадцатого месяца, месяца Адара, должен был исполниться царский указ",
-      "question": "On what day was the decree carried out?",
-      "options": [
-        "The thirteenth of Adar",
-        "The first of Adar",
-        "The seventh of Adar",
-        "The tenth of Adar"
-      ],
-      "correct": "The thirteenth of Adar",
-      "explain": "The text states: В тринадцатый день двенадцатого месяца, месяца Адара, должен..."
-    },
-    {
-      "id": "r2",
-      "ru": "враги иудеев надеялись взять над ними верх, но вышло наоборот, и иудеи сами восторжествовали",
-      "question": "What happened opposite to enemy expectations?",
-      "options": [
-        "The Jews triumphed over their enemies",
-        "The enemies won",
-        "Nobody fought",
-        "It was a draw"
-      ],
-      "correct": "The Jews triumphed over their enemies",
-      "explain": "The text states: враги иудеев надеялись взять над ними верх, но вышло наоборо..."
-    },
-    {
-      "id": "r3",
-      "ru": "Никто не мог им противостоять, потому что люди боялись их",
-      "question": "Why could none resist the Jews?",
-      "options": [
-        "All peoples feared them",
-        "They had the strongest army",
-        "The king ordered it",
-        "They had magic"
-      ],
-      "correct": "All peoples feared them",
-      "explain": "The text states: Никто не мог им противостоять, потому что люди боялись их..."
-    },
-    {
-      "id": "r4",
-      "ru": "Мардахей возвысился при дворе, слава о нем шла по всем провинциям",
-      "question": "What happened to Mordecai?",
-      "options": [
-        "He became exalted and famous",
-        "He was punished",
-        "He lost his position",
-        "He left"
-      ],
-      "correct": "He became exalted and famous",
-      "explain": "The text states: Мардахей возвысился при дворе, слава о нем шла по всем прови..."
-    },
-    {
-      "id": "r5",
-      "ru": "Мардахей записал эти события и послал письма ко всем иудеям",
-      "question": "What did Mordecai do?",
-      "options": [
-        "Wrote and sent letters to all Jews",
-        "Made a public speech",
-        "Painted pictures",
-        "Commissioned a book"
-      ],
-      "correct": "Wrote and sent letters to all Jews",
-      "explain": "The text states: Мардахей записал эти события и послал письма ко всем иудеям..."
-    },
-    {
-      "id": "r6",
-      "ru": "чтобы они ежегодно праздновали 14 и 15 дни месяца Адара как время избавления от врагов",
-      "question": "What festival did Mordecai establish?",
-      "options": [
-        "Purim on the 14th and 15th of Adar",
-        "A day of mourning",
-        "A harvest festival",
-        "A day of fasting"
-      ],
-      "correct": "Purim on the 14th and 15th of Adar",
-      "explain": "The text states: чтобы они ежегодно праздновали 14 и 15 дни месяца Адара как ..."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "В тринадцатый день ___, месяца адара , должен был исполниться данный царем указ.",
+   "lemma": "месяц",
+   "options": [
+    "двенадцатого месяца",
+    "двенадцатый месяц",
+    "двенадцатым месяцем",
+    "двенадцатом месяце"
+   ],
+   "correct": "двенадцатого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«двенадцатого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "Now in the twelfth month, which is the month Adar, on the thirteenth day of the month, when the king’s commandment and his decree came near to be put in execution, on the day that the enemies of the Jews hoped to conquer them, (but it was turned out the opposite happened, that the Jews conquered those who hated them),"
+  },
+  {
+   "sentence": "Никто не мог им противостоять, потому что люди всех ___ боялись их.",
+   "lemma": "народ",
+   "options": [
+    "другим народам",
+    "других народах",
+    "других народов",
+    "другими народами"
+   ],
+   "correct": "других народов",
+   "case": "Родительный (Genitive)",
+   "explain": "«других народов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "the Jews gathered themselves together in their cities throughout all the provinces of the King Ahasuerus, to lay hands on those who wanted to harm them. No one could withstand them, because the fear of them had fallen on all the people."
+  },
+  {
+   "sentence": "А все князья провинций, наместники провинций, наместники областей и ___ помогали иудеям, потому что их объял страх перед Мардохеем.",
+   "lemma": "управитель",
+   "options": [
+    "царских управителях",
+    "царские управители",
+    "царскими управителями",
+    "царских управителей"
+   ],
+   "correct": "царские управители",
+   "case": "Именительный (Nominative)",
+   "explain": "«царские управители» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "All the princes of the provinces, the local governors, the governors, and those who did the king’s business helped the Jews, because the fear of Mordecai had fallen on them."
+  },
+  {
+   "sentence": "Сузские иудеи собрались вместе в ___ месяца адара и предали в Сузах смерти триста человек, но не протянули рук за добычей.",
+   "lemma": "день",
+   "options": [
+    "четырнадцатому дню",
+    "четырнадцатый день",
+    "четырнадцатого дня",
+    "четырнадцатым днём"
+   ],
+   "correct": "четырнадцатый день",
+   "case": "Винительный (Accusative)",
+   "explain": "«четырнадцатый день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c6",
+   "translation": "The Jews who were in Susa gathered themselves together on the fourteenth day also of the month Adar, and killed three hundred men in Susa; but they didn’t lay their hand on the plunder."
+  },
+  {
+   "sentence": "Тем временем ___, которые находились в царских провинциях, тоже собрались, чтобы защищаться и избавиться от своих врагов.",
+   "lemma": "иудей",
+   "options": [
+    "остальных иудеев",
+    "остальным иудеям",
+    "остальных иудеях",
+    "остальные иудеи"
+   ],
+   "correct": "остальные иудеи",
+   "case": "Именительный (Nominative)",
+   "explain": "«остальные иудеи» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "The other Jews who were in the king’s provinces gathered themselves together, defended their lives, had rest from their enemies, and killed seventy-five thousand of those who hated them; but they didn’t lay their hand on the plunder."
+  },
+  {
+   "sentence": "Тем временем остальные иудеи, которые находились в ___, тоже собрались, чтобы защищаться и избавиться от своих врагов.",
+   "lemma": "провинция",
+   "options": [
+    "царских провинций",
+    "царскими провинциями",
+    "царским провинциям",
+    "царских провинциях"
+   ],
+   "correct": "царских провинциях",
+   "case": "Предложный (Prepositional)",
+   "explain": "«царских провинциях» — after the preposition «в», for location or topic.",
+   "id": "c8",
+   "translation": "The other Jews who were in the king’s provinces gathered themselves together, defended their lives, had rest from their enemies, and killed seventy-five thousand of those who hated them; but they didn’t lay their hand on the plunder."
+  },
+  {
+   "sentence": "Это случилось в тринадцатый день месяца адара, а в ___ они отдыхали и сделали его днем пиршеств и радости.",
+   "lemma": "день",
+   "options": [
+    "четырнадцатому дню",
+    "четырнадцатый день",
+    "четырнадцатого дня",
+    "четырнадцатым днём"
+   ],
+   "correct": "четырнадцатый день",
+   "case": "Винительный (Accusative)",
+   "explain": "«четырнадцатый день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c10",
+   "translation": "This was done on the thirteenth day of the month Adar; and on the fourteenth day of that month they rested and made it a day of feasting and gladness."
+  },
+  {
+   "sentence": "Вот почему иудеи поселений — те, что живут в неукрепленных городах, — соблюдают ___ месяца адара как день радости и пиршеств, как праздник, когда они посылают друг другу съестные дары.",
+   "lemma": "день",
+   "options": [
+    "четырнадцатому дню",
+    "четырнадцатый день",
+    "четырнадцатого дня",
+    "четырнадцатым днём"
+   ],
+   "correct": "четырнадцатый день",
+   "case": "Винительный (Accusative)",
+   "explain": "«четырнадцатый день» — the accusative marks the direct object of the verb.",
+   "id": "c11",
+   "translation": "Therefore the Jews of the villages, who live in the unwalled towns, make the fourteenth day of the month Adar a day of gladness and feasting, a good day, and a day of sending presents of food to one another."
+  },
+  {
+   "sentence": "Вот почему иудеи поселений — те, что живут в неукрепленных городах, — соблюдают четырнадцатый день месяца адара как день радости и пиршеств, как праздник, когда они посылают друг другу ___.",
+   "lemma": "дар",
+   "options": [
+    "съестными дарами",
+    "съестных дарах",
+    "съестных даров",
+    "съестные дары"
+   ],
+   "correct": "съестные дары",
+   "case": "Винительный (Accusative)",
+   "explain": "«съестные дары» — the accusative marks the direct object of the verb.",
+   "id": "c12",
+   "translation": "Therefore the Jews of the villages, who live in the unwalled towns, make the fourteenth day of the month Adar a day of gladness and feasting, a good day, and a day of sending presents of food to one another."
+  },
+  {
+   "sentence": "Он написал им, чтобы они соблюдали эти дни как дни пиршеств и радости, и посылали друг другу ___ и подарки бедным.",
+   "lemma": "дар",
+   "options": [
+    "съестными дарами",
+    "съестных дарах",
+    "съестных даров",
+    "съестные дары"
+   ],
+   "correct": "съестные дары",
+   "case": "Винительный (Accusative)",
+   "explain": "«съестные дары» — the accusative marks the direct object of the verb.",
+   "id": "c13",
+   "translation": "Mordecai wrote these things, and sent letters to all the Jews who were in all the provinces of the king Ahasuerus, both near and far,"
+  },
+  {
+   "sentence": "Но когда Есфирь предстала перед царем, он отдал письменные повеления, чтобы ___, который Аман задумал против иудеев, обратился против него самого, и чтобы его и его сыновей повесили на виселице.",
+   "lemma": "замысел",
+   "options": [
+    "злой замысел",
+    "злым замыслом",
+    "злого замысла",
+    "злом замысле"
+   ],
+   "correct": "злой замысел",
+   "case": "Именительный (Nominative)",
+   "explain": "«злой замысел» — the subject of the sentence stands in the nominative.",
+   "id": "c15",
+   "translation": "but when this became known to the king, he commanded by letters that his wicked plan, which he had planned against the Jews, should return on his own head, and that he and his sons should be hanged on the gallows."
+  },
+  {
+   "sentence": "Царица Есфирь, дочь Авихаила, вместе с иудеем Мардохеем, со всей властью написали подтверждение этому ___ о Пуриме.",
+   "lemma": "письмо",
+   "options": [
+    "втором письме",
+    "вторым письмом",
+    "второму письму",
+    "второго письма"
+   ],
+   "correct": "второму письму",
+   "case": "Дательный (Dative)",
+   "explain": "«второму письму» — the dative marks the indirect object or recipient.",
+   "id": "c16",
+   "translation": "Then Esther the queen, the daughter of Abihail, and Mordecai the Jew, wrote with all authority to confirm this second letter of Purim."
+  }
+ ]
 }

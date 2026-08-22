@@ -1,134 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Моисей с израилетянами воспели ___ эту песню.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господу",
-      "case": "Дательный (Dative)",
-      "translation": "Moses and the Israelites sang this song to the Lord.",
-      "explain": "The verb воспеть (to sing to someone) takes its addressee in the dative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Коня и его всадника бросил он в ___.",
-      "lemma": "море",
-      "options": ["море", "моря", "морю", "морем"],
-      "correct": "море",
-      "case": "Винительный (Accusative)",
-      "translation": "The horse and its rider he threw into the sea.",
-      "explain": "The preposition в expressing motion into takes the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Ты приведешь и поселишь их на ___.",
-      "lemma": "гора",
-      "options": ["гора", "горы", "горе", "гору"],
-      "correct": "горе",
-      "case": "Предложный (Prepositional)",
-      "translation": "You will bring them in and settle them on the mountain.",
-      "explain": "The preposition на indicating location takes the prepositional case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Правая рука твоя, Господи, сокрушила ___.",
-      "lemma": "враг",
-      "options": ["враг", "врага", "врагу", "врагом"],
-      "correct": "врага",
-      "case": "Винительный (Accusative)",
-      "translation": "Your right hand, O Lord, has shattered the enemy.",
-      "explain": "The direct object of the transitive verb сокрушить takes the accusative; for an animate noun it equals the genitive form."
-    },
-    {
-      "id": "c5",
-      "sentence": "Кто из ___ подобен тебе, Господи?",
-      "lemma": "бог",
-      "options": ["боги", "богов", "богам", "богами"],
-      "correct": "богов",
-      "case": "Родительный множественного (Genitive plural)",
-      "translation": "Who among the gods is like you, O Lord?",
-      "explain": "The preposition из governs the genitive case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Своей силой ты его направишь к своему святому ___.",
-      "lemma": "жилище",
-      "options": ["жилище", "жилища", "жилищу", "жилищем"],
-      "correct": "жилищу",
-      "case": "Дательный (Dative)",
-      "translation": "By your strength you will guide him to your holy dwelling.",
-      "explain": "The preposition к governs the dative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Женщины с ___, танцуя, пошли за ней.",
-      "lemma": "бубен",
-      "options": ["бубны", "бубнов", "бубнам", "бубнами"],
-      "correct": "бубнами",
-      "case": "Творительный множественного (Instrumental plural)",
-      "translation": "The women, dancing with tambourines, went out after her.",
-      "explain": "The preposition с in the sense of 'together with' governs the instrumental case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Моисей повел израилетян от Красного ___.",
-      "lemma": "море",
-      "options": ["море", "моря", "морю", "морем"],
-      "correct": "моря",
-      "case": "Родительный (Genitive)",
-      "translation": "Moses led the Israelites on from the Red Sea.",
-      "explain": "The preposition от governs the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Три дня они шли по пустыне, не находя воды.",
-      "question": "How long did they travel in the wilderness without finding water?",
-      "options": ["Three days", "Seven days", "One day", "Forty days"],
-      "correct": "Three days",
-      "explain": "The text says 'Три дня они шли по пустыне, не находя воды' (three days they went in the wilderness finding no water)."
-    },
-    {
-      "id": "r2",
-      "ru": "Придя в Мару, они не могли пить воду, она была горькой.",
-      "question": "Why could they not drink the water at Marah?",
-      "options": ["It was bitter", "It was frozen", "It had dried up", "It was too far away"],
-      "correct": "It was bitter",
-      "explain": "The text says the water 'была горькой' (was bitter)."
-    },
-    {
-      "id": "r3",
-      "ru": "Моисей взмолился к Господу, и Господь показал ему кусок дерева.",
-      "question": "What did the Lord show Moses when he cried out?",
-      "options": ["A piece of wood", "A spring of water", "A staff", "A cloud"],
-      "correct": "A piece of wood",
-      "explain": "The text says the Lord 'показал ему кусок дерева' (showed him a piece of wood)."
-    },
-    {
-      "id": "r4",
-      "ru": "Моисей бросил его в воду, и вода стала пригодной для питья.",
-      "question": "What happened after Moses threw the wood into the water?",
-      "options": ["The water became fit to drink", "The water dried up", "The water turned to blood", "A storm arose"],
-      "correct": "The water became fit to drink",
-      "explain": "The text says 'вода стала пригодной для питья' (the water became fit to drink)."
-    },
-    {
-      "id": "r5",
-      "ru": "Они пришли в Ерим, где было двенадцать источников воды и семьдесят пальм, там они расположились лагерем у воды.",
-      "question": "What did they find at Elim?",
-      "options": ["Twelve springs of water and seventy palm trees", "A great walled city", "A dry desert with no water", "A mountain of fire"],
-      "correct": "Twelve springs of water and seventy palm trees",
-      "explain": "The text says at Elim there were 'двенадцать источников воды и семьдесят пальм' (twelve springs of water and seventy palm trees)."
-    },
-    {
-      "id": "r6",
-      "ru": "Господь будет царствовать навеки.",
-      "question": "What does the song declare about the Lord's reign?",
-      "options": ["The Lord will reign forever", "The Lord will reign for a season", "The Lord will rest from ruling", "The Lord will depart from the people"],
-      "correct": "The Lord will reign forever",
-      "explain": "The text says 'Господь будет царствовать навеки' (the Lord will reign forever)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "___ Твоя, Господи,",
+   "lemma": "рука",
+   "options": [
+    "правой рукой",
+    "правой руке",
+    "правая рука",
+    "правой руки"
+   ],
+   "correct": "правая рука",
+   "case": "Именительный (Nominative)",
+   "explain": "«Правая рука» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Your right hand, Yahweh, is glorious in power. Your right hand, Yahweh, dashes the enemy in pieces."
+  },
+  {
+   "sentence": "Когда лошади, колесницы и всадники фараона вошли в море, Господь обрушил на них ___.",
+   "lemma": "вода",
+   "options": [
+    "морские воды",
+    "морских водах",
+    "морским водам",
+    "морских вод"
+   ],
+   "correct": "морские воды",
+   "case": "Винительный (Accusative)",
+   "explain": "«морские воды» — the accusative marks the direct object of the verb.",
+   "id": "c2",
+   "translation": "For the horses of Pharaoh went in with his chariots and with his horsemen into the sea, and Yahweh brought back the waters of the sea on them; but the children of Israel walked on dry land in the middle of the sea."
+  },
+  {
+   "sentence": "Моисей повел израильтян от ___, и они вошли в пустыню Сур.",
+   "lemma": "море",
+   "options": [
+    "красным морем",
+    "красное море",
+    "красного моря",
+    "красному морю"
+   ],
+   "correct": "красного моря",
+   "case": "Родительный (Genitive)",
+   "explain": "«Красного моря» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Moses led Israel onward from the Red Sea, and they went out into the wilderness of Shur; and they went three days in the wilderness, and found no water."
+  }
+ ]
 }

@@ -1,204 +1,49 @@
 {
-  "cases": [
-    {
-      "sentence": "Приведу я против тебя Навуходоносара, ___ вавилонского.",
-      "lemma": "царь",
-      "correct": "царя",
-      "case": "Винительный (Accusative)",
-      "translation": "I will bring Nebuchadnezzar, king of Babylon, against you.",
-      "explain": "Царя is in apposition with the accusative object of приведу.",
-      "id": "c1",
-      "options": [
-        "царь",
-        "царя",
-        "царю",
-        "царём"
-      ]
-    },
-    {
-      "sentence": "С конницею и с пехотою и со станом ___.",
-      "lemma": "стан",
-      "correct": "станом",
-      "case": "Творительный (Instrumental)",
-      "translation": "With cavalry and with infantry and with a great army.",
-      "explain": "The preposition с (with) governs the instrumental case.",
-      "id": "c2",
-      "options": [
-        "стан",
-        "стана",
-        "стану",
-        "станом"
-      ]
-    },
-    {
-      "sentence": "Построит против ___ стены и сделает вал.",
-      "lemma": "ты",
-      "correct": "тебя",
-      "case": "Винительный (Accusative)",
-      "translation": "He will build siege walls against you and make a siege ramp.",
-      "explain": "Тебя as a pronoun is the direct object of the preposition против.",
-      "id": "c3",
-      "options": [
-        "ты",
-        "тебя",
-        "тебе",
-        "тобой"
-      ]
-    },
-    {
-      "sentence": "И построит против тебя ___ и сделает вал против тебя.",
-      "lemma": "стена",
-      "correct": "стены",
-      "case": "Винительный (Accusative)",
-      "translation": "And he will build siege walls against you and construct a siege ramp.",
-      "explain": "Стены is the direct object of построит.",
-      "id": "c4",
-      "options": [
-        "стена",
-        "стены",
-        "стену",
-        "стеной"
-      ]
-    },
-    {
-      "sentence": "Со стороны северной приведу я Навуходоносора с ___.",
-      "lemma": "конница",
-      "correct": "конницей",
-      "case": "Творительный (Instrumental)",
-      "translation": "From the north I will bring Nebuchadnezzar with cavalry.",
-      "explain": "The preposition с (with) governs the instrumental case.",
-      "id": "c5",
-      "options": [
-        "конница",
-        "конницы",
-        "конницей",
-        "конниц"
-      ]
-    },
-    {
-      "sentence": "Построит стены и сделает ___ против тебя.",
-      "lemma": "вал",
-      "correct": "вал",
-      "case": "Винительный (Accusative)",
-      "translation": "He will build walls and make a siege ramp against you.",
-      "explain": "Вал is the direct object of сделает.",
-      "id": "c6",
-      "options": [
-        "вал",
-        "вала",
-        "валу",
-        "валом"
-      ]
-    },
-    {
-      "sentence": "И поднимет против тебя ___ и сделает вал.",
-      "lemma": "щит",
-      "correct": "щит",
-      "case": "Винительный (Accusative)",
-      "translation": "And he will lift his shield against you and make a siege ramp.",
-      "explain": "Щит is the direct object of поднимет.",
-      "id": "c7",
-      "options": [
-        "щит",
-        "щита",
-        "щиту",
-        "щитом"
-      ]
-    },
-    {
-      "sentence": "С севера с конницею и с пехотою и со станом ___.",
-      "lemma": "войско",
-      "correct": "войском",
-      "case": "Творительный (Instrumental)",
-      "translation": "From the north with cavalry and infantry and with a great host.",
-      "explain": "The preposition со (with) governs the instrumental case.",
-      "id": "c8",
-      "options": [
-        "войско",
-        "войска",
-        "войску",
-        "войском"
-      ]
-    }
-  ],
-  "reading": [
-    {
-      "ru": "И приведу я против тебя Навуходоносора, царя вавилонского, с севера.",
-      "question": "From which direction will Nebuchadnezzar attack Tyre?",
-      "options": [
-        "From the north",
-        "From the south",
-        "From the east",
-        "From the west"
-      ],
-      "correct": "From the north",
-      "explain": "The text explicitly states that Nebuchadnezzar will come 'from the north.'",
-      "id": "r1"
-    },
-    {
-      "ru": "И построит против тебя стены и сделает вал против тебя и поднимет против тебя щит.",
-      "question": "What military tactics will be used against Tyre?",
-      "options": [
-        "Building siege walls, making siege ramps, and raising shields",
-        "Naval blockade and fire attack",
-        "Infiltration and guerrilla warfare",
-        "Psychological warfare and propaganda"
-      ],
-      "correct": "Building siege walls, making siege ramps, and raising shields",
-      "explain": "The passage describes the construction of siege works including walls, ramps, and the raising of shields.",
-      "id": "r2"
-    },
-    {
-      "ru": "С конницею и с пехотою и со станом великим.",
-      "question": "What forces will Nebuchadnezzar bring with him?",
-      "options": [
-        "Cavalry, infantry, and a great army",
-        "Navy ships and siege towers",
-        "Only infantry with siege weapons",
-        "Mercenary forces and allies"
-      ],
-      "correct": "Cavalry, infantry, and a great army",
-      "explain": "The text specifically mentions cavalry (конница), infantry (пехота), and a great army (стан великий).",
-      "id": "r3"
-    },
-    {
-      "ru": "Навуходоносора, царя вавилонского, с севера с конницею и с пехотою.",
-      "question": "Who is the military leader that God will send against Tyre?",
-      "options": [
-        "Nebuchadnezzar, king of Babylon",
-        "The king of Egypt",
-        "A local governor",
-        "A Persian general"
-      ],
-      "correct": "Nebuchadnezzar, king of Babylon",
-      "explain": "The text names Nebuchadnezzar specifically as the king of Babylon who will be sent by God.",
-      "id": "r4"
-    },
-    {
-      "ru": "И построит против тебя стены и сделает вал против тебя.",
-      "question": "What will be built and constructed against Tyre?",
-      "options": [
-        "Siege walls and siege ramps",
-        "Watch towers and fortifications",
-        "Supply lines and camps",
-        "Monument and altars"
-      ],
-      "correct": "Siege walls and siege ramps",
-      "explain": "The text describes the construction of стены (walls) and вал (siege ramp/embankment).",
-      "id": "r5"
-    },
-    {
-      "ru": "И поднимет против тебя щит и сделает вал против тебя.",
-      "question": "What defensive measures will be employed in the siege?",
-      "options": [
-        "Shields will be raised and a siege ramp will be made",
-        "Fortified positions and underground tunnels",
-        "Naval barricades and water defenses",
-        "Archer towers and catapults"
-      ],
-      "correct": "Shields will be raised and a siege ramp will be made",
-      "explain": "The verse explicitly mentions the raising of щит (shields) and construction of вал (ramp).",
-      "id": "r6"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Из ___, которыми они гордились, они сделали омерзительные истуканы, свои гнусности.",
+   "lemma": "украшение",
+   "options": [
+    "прекрасных украшений",
+    "прекрасных украшениях",
+    "прекрасным украшениям",
+    "прекрасными украшениями"
+   ],
+   "correct": "прекрасных украшений",
+   "case": "Родительный (Genitive)",
+   "explain": "«прекрасных украшений» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "As for the beauty of his ornament, he set it in majesty; but they made the images of their abominations and their detestable things therein. Therefore I have made it to them as an unclean thing."
+  },
+  {
+   "sentence": "Готовь цепи , потому что страна полна ___, а город объят насилием.",
+   "lemma": "преступление",
+   "options": [
+    "кровавых преступлениях",
+    "кровавые преступления",
+    "кровавых преступлений",
+    "кровавым преступлениям"
+   ],
+   "correct": "кровавых преступлений",
+   "case": "Родительный (Genitive)",
+   "explain": "«кровавых преступлений» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "“ ‘Make chains; for the land is full of bloody crimes, and the city is full of violence."
+  },
+  {
+   "sentence": "Беда последует за бедой, и за слухами — ___.",
+   "lemma": "слух",
+   "options": [
+    "новыми слухами",
+    "новые слухи",
+    "новых слухов",
+    "новых слухах"
+   ],
+   "correct": "новые слухи",
+   "case": "Именительный (Nominative)",
+   "explain": "«новые слухи» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "Mischief will come on mischief, and rumor will be on rumor. They will seek a vision of the prophet; but the law will perish from the priest, and counsel from the elders."
+  }
+ ]
 }

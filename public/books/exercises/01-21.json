@@ -1,140 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ вырос и был отнят от груди.",
-      "lemma": "ребёнок",
-      "options": ["ребёнок", "ребёнка", "ребёнку", "ребёнком"],
-      "correct": "ребёнок",
-      "case": "Именительный (Nominative)",
-      "translation": "The child grew and was weaned.",
-      "explain": "Ребёнок is the subject of вырос/был отнят, so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Сын этой ___ не разделит наследство с моим сыном Исааком.",
-      "lemma": "рабыня",
-      "options": ["рабыня", "рабыни", "рабыне", "рабыню"],
-      "correct": "рабыни",
-      "case": "Родительный (Genitive)",
-      "translation": "The son of this servant will not share the inheritance with my son Isaac.",
-      "explain": "The genitive рабыни shows possession — 'the son of this servant'."
-    },
-    {
-      "id": "c3",
-      "sentence": "Авимелех и Фихол, начальник его войска, сказали ___, «Бог с тобой во всем, что ты делаешь».",
-      "lemma": "Авраам",
-      "options": ["Авраам", "Авраама", "Аврааму", "Авраамом"],
-      "correct": "Аврааму",
-      "case": "Дательный (Dative)",
-      "translation": "Abimelech and Phicol, the commander of his army, said to Abraham, 'God is with you in all that you do.'",
-      "explain": "The verb сказать takes its addressee in the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "И мать взяла для него ___ из Египта.",
-      "lemma": "жена",
-      "options": ["жена", "жены", "жене", "жену"],
-      "correct": "жену",
-      "case": "Винительный (Accusative)",
-      "translation": "And his mother took a wife for him from Egypt.",
-      "explain": "The verb взять takes its direct object in the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Заключив союз с ___, Авимелех и Фихол вернулись в землю филистимлян.",
-      "lemma": "Версавия",
-      "options": ["Версавия", "Версавии", "Версавию", "Версавией"],
-      "correct": "Версавией",
-      "case": "Творительный (Instrumental)",
-      "translation": "Having made a covenant at Beersheba, Abimelech and Phicol returned to the land of the Philistines.",
-      "explain": "The preposition с governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Авраам жил на ___ филистимлян долгое время.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "землю", "земле"],
-      "correct": "земле",
-      "case": "Предложный (Prepositional)",
-      "translation": "Abraham lived in the land of the Philistines for a long time.",
-      "explain": "The preposition на indicating location takes the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Авраам призвал там имя ___, Бога Вечного.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "Abraham called there on the name of the Lord, the Everlasting God.",
-      "explain": "The genitive Господа shows possession — 'the name of the Lord'."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Сара забеременела и родила Аврааму сына, когда тот уже состарился, в то самое время, как обещал ему Бог.",
-      "question": "When did Sarah bear a son to Abraham?",
-      "options": ["At the very time God had promised, in his old age", "Before Abraham left Ur", "Right after arriving in Gerar", "Ten years after settling in Canaan"],
-      "correct": "At the very time God had promised, in his old age",
-      "explain": "The text says Sarah bore a son 'в то самое время, как обещал ему Бог' — at the very time God had promised."
-    },
-    {
-      "id": "r2",
-      "ru": "Бог заставил меня смеяться, каждый, кто услышит об этом, рассмеется вместе со мной.",
-      "question": "What did Sarah say God had done for her?",
-      "options": ["Made her laugh, so that all who hear will laugh with her", "Given her great wealth", "Healed her from illness", "Sent her a dream"],
-      "correct": "Made her laugh, so that all who hear will laugh with her",
-      "explain": "Sarah says God made her laugh and that everyone who hears will laugh with her."
-    },
-    {
-      "id": "r3",
-      "ru": "Сара увидела, что сын, которого египтянка Агарь родила Аврааму, насмехается над Исааком",
-      "question": "What did Sarah see Hagar's son doing?",
-      "options": ["Mocking Isaac", "Stealing food from the tent", "Praying together with Isaac", "Herding sheep alone"],
-      "correct": "Mocking Isaac",
-      "explain": "The text says Sarah saw the son of Hagar 'насмехается над Исааком' — mocking Isaac."
-    },
-    {
-      "id": "r4",
-      "ru": "Бог сказал ему, не огорчайся из-за мальчика и рабыни, послушайся Сары и сделай все, как она говорит, потому что через Исаака ты будешь иметь потомство, которое я тебе обещал.",
-      "question": "What did God tell Abraham to do about Sarah's demand?",
-      "options": ["Listen to Sarah and do as she says", "Refuse and keep Ishmael at home", "Send Sarah away instead", "Ignore Sarah's request completely"],
-      "correct": "Listen to Sarah and do as she says",
-      "explain": "God told Abraham not to be grieved, but to listen to Sarah's voice and do as she said."
-    },
-    {
-      "id": "r5",
-      "ru": "Бог услышал плач мальчика, и ангел Бога обратился к Агаре с небес и сказал ей",
-      "question": "How did God respond to the boy's crying in the wilderness?",
-      "options": ["His angel called to Hagar from heaven", "He sent rain to the desert", "He appeared to Ishmael directly", "He sent Abraham to find them"],
-      "correct": "His angel called to Hagar from heaven",
-      "explain": "The text says the angel of God called to Hagar from heaven after God heard the boy crying."
-    },
-    {
-      "id": "r6",
-      "ru": "Тут Бог открыл ей глаза, и она увидела колодец с водой.",
-      "question": "What did Hagar see after God opened her eyes?",
-      "options": ["A well of water", "An oasis with palm trees", "A caravan of travelers", "A city in the distance"],
-      "correct": "A well of water",
-      "explain": "The text says God opened her eyes and she saw a well of water."
-    },
-    {
-      "id": "r7",
-      "ru": "В то время Авимелех и Фихол, начальник его войска, сказали Аврааму, «Бог с тобой во всем, что ты делаешь.",
-      "question": "What did Abimelech and Phicol ask of Abraham?",
-      "options": ["To swear he would not deal falsely with him or his descendants", "To give him cattle immediately", "To leave the land at once", "To let his son marry Abimelech's daughter"],
-      "correct": "To swear he would not deal falsely with him or his descendants",
-      "explain": "Abimelech asked Abraham to swear by God not to deal falsely with him, his children, or his descendants."
-    },
-    {
-      "id": "r8",
-      "ru": "Авраам посадил в Версавии Тамариск и призвал там имя Господа, Бога Вечного.",
-      "question": "What did Abraham do at Beersheba after the covenant?",
-      "options": ["Planted a tamarisk tree and called on the name of the Lord", "Built an altar and offered a sacrifice", "Dug a brand-new well", "Left immediately for Egypt"],
-      "correct": "Planted a tamarisk tree and called on the name of the Lord",
-      "explain": "The text says Abraham planted a tamarisk tree in Beersheba and called on the name of the Lord, the Everlasting God."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "В тот день, когда Исаак был отнят от груди, Авраам устроил ___.",
+   "lemma": "пир",
+   "options": [
+    "большим пиром",
+    "большой пир",
+    "большому пиру",
+    "большом пире"
+   ],
+   "correct": "большой пир",
+   "case": "Винительный (Accusative)",
+   "explain": "«большой пир» — the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "The child grew and was weaned. Abraham made a great feast on the day that Isaac was weaned."
+  },
+  {
+   "sentence": "Вставай, подними мальчика, и возьми его за руку, потому что Я произведу от него ___.",
+   "lemma": "народ",
+   "options": [
+    "великом народе",
+    "великого народа",
+    "великий народ",
+    "великим народом"
+   ],
+   "correct": "великий народ",
+   "case": "Именительный (Nominative)",
+   "explain": "«великий народ» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "Get up, lift up the boy, and hold him with your hand. For I will make him a great nation.”"
+  },
+  {
+   "sentence": "Авраам отделил из стада семь ___, 29 и Авимелех спросил Авраама:",
+   "lemma": "овца",
+   "options": [
+    "молодым овцам",
+    "молодых овцах",
+    "молодые овцы",
+    "молодых овец"
+   ],
+   "correct": "молодых овец",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодых овец» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "Abraham set seven ewe lambs of the flock by themselves."
+  }
+ ]
 }

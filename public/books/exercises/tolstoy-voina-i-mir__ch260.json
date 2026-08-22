@@ -1,21 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "На ___, во время молебствия во дворце по случаю дня рождения государя, князь Волконский был вызван из церкви, и получил конверт от князя Кутузова.",
-   "lemma": "день",
-   "options": [
-    "другом дне",
-    "другой день",
-    "другой день",
-    "другому дню"
-   ],
-   "correct": "другой день",
-   "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
-   "id": "c1",
-   "translation": "Anna Pávlovna’s presentiment was in fact fulfilled. Next day during the service at the palace church in honor of the Emperor’s birthday, Prince Volkónski was called out of the church and received a dispatch from Prince Kutúzov. It was Kutúzov’s report, written from Tatárinova on the day of the battle. Kutúzov wrote that the Russians had not retreated a step, that the French losses were much heavier than ours, and that he was writing in haste from the field of battle before collecting full information. It followed that there must have been a victory. And at once, without leaving the church, thanks were rendered to the Creator for His help and for the victory."
-  },
-  {
    "sentence": "Кутузов писал, что русские не отступили ни на шаг, что французы потеряли гораздо более нашего, что он доносит второпях с поля сражения, не успев еще собрать ___.",
    "lemma": "сведение",
    "options": [
@@ -61,18 +46,33 @@
    "translation": "It is very difficult for events to be reflected in their real strength and completeness amid the conditions of court life and far from the scene of action. General events involuntarily group themselves around some particular incident. So now the courtiers’ pleasure was based as much on the fact that the news had arrived on the Emperor’s birthday as on the fact of the victory itself. It was like a successfully arranged surprise. Mention was made in Kutúzov’s report of the Russian losses, among which figured the names of Túchkov, Bagratión, and Kutáysov. In the Petersburg world this sad side of the affair again involuntarily centered round a single incident: Kutáysov’s death. Everybody knew him, the Emperor liked him, and he was young and interesting. That day everyone met with the words:"
   },
   {
-   "sentence": "Но на ___ не получалось известия из армии, и общий голос стал тревожен.",
-   "lemma": "день",
+   "sentence": "Тоже и печальная сторона события невольно в здешнем, ___, сгруппировалась около одного события — смерти Кутайсова.",
+   "lemma": "мир",
    "options": [
-    "другом дне",
-    "другой день",
-    "другой день",
-    "другому дню"
+    "петербургскому миру",
+    "петербургского мира",
+    "петербургским миром",
+    "петербургском мире"
    ],
-   "correct": "другой день",
-   "case": "Винительный (Accusative)",
-   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "correct": "петербургском мире",
+   "case": "Предложный (Prepositional)",
+   "explain": "«петербургском мире» — the prepositional is used only after a preposition, for location or topic.",
    "id": "c5",
+   "translation": "It is very difficult for events to be reflected in their real strength and completeness amid the conditions of court life and far from the scene of action. General events involuntarily group themselves around some particular incident. So now the courtiers’ pleasure was based as much on the fact that the news had arrived on the Emperor’s birthday as on the fact of the victory itself. It was like a successfully arranged surprise. Mention was made in Kutúzov’s report of the Russian losses, among which figured the names of Túchkov, Bagratión, and Kutáysov. In the Petersburg world this sad side of the affair again involuntarily centered round a single incident: Kutáysov’s death. Everybody knew him, the Emperor liked him, and he was young and interesting. That day everyone met with the words:"
+  },
+  {
+   "sentence": "Но на другой день не получалось известия из армии, и ___ стал тревожен.",
+   "lemma": "голос",
+   "options": [
+    "общему голосу",
+    "общий голос",
+    "общем голосе",
+    "общего голоса"
+   ],
+   "correct": "общий голос",
+   "case": "Именительный (Nominative)",
+   "explain": "«общий голос» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
    "translation": "But next day no news arrived from the army and the public mood grew anxious. The courtiers suffered because of the suffering the suspense occasioned the Emperor."
   },
   {
@@ -87,7 +87,22 @@
    "correct": "третьего дня",
    "case": "Родительный (Genitive)",
    "explain": "«третьего дня» — the genitive here marks possession, absence, or quantity.",
-   "id": "c6",
+   "id": "c8",
+   "translation": "“Fancy the Emperor’s position!” said they, and instead of extolling Kutúzov as they had done the day before, they condemned him as the cause of the Emperor’s anxiety. That day Prince Vasíli no longer boasted of his protégé Kutúzov, but remained silent when the commander in chief was mentioned. Moreover, toward evening, as if everything conspired to make Petersburg society anxious and uneasy, a terrible piece of news was added. Countess Elèna Bezúkhova had suddenly died of that terrible malady it had been so agreeable to mention. Officially, at large gatherings, everyone said that Countess Bezúkhova had died of a terrible attack of angina pectoris, but in intimate circles details were mentioned of how the private physician of the Queen of Spain had prescribed small doses of a certain drug to produce a certain effect; but Elèn, tortured by the fact that the old count suspected her and that her husband to whom she had written (that wretched, profligate Pierre) had not replied, had suddenly taken a very large dose of the drug, and had died in agony before assistance could be rendered her. It was said that Prince Vasíli and the old count had turned upon the Italian, but the latter had produced such letters from the unfortunate deceased that they had immediately let the matter drop."
+  },
+  {
+   "sentence": "Кроме того к вечеру этого дня как будто всё соединилось для того, чтобы повергнуть в тревогу и беспокойство ___: присоединилась еще одна страшная новость.",
+   "lemma": "житель",
+   "options": [
+    "петербургских жителей",
+    "петербургскими жителями",
+    "петербургские жители",
+    "петербургским жителям"
+   ],
+   "correct": "петербургских жителей",
+   "case": "Родительный (Genitive)",
+   "explain": "«петербургских жителей» — the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
    "translation": "“Fancy the Emperor’s position!” said they, and instead of extolling Kutúzov as they had done the day before, they condemned him as the cause of the Emperor’s anxiety. That day Prince Vasíli no longer boasted of his protégé Kutúzov, but remained silent when the commander in chief was mentioned. Moreover, toward evening, as if everything conspired to make Petersburg society anxious and uneasy, a terrible piece of news was added. Countess Elèna Bezúkhova had suddenly died of that terrible malady it had been so agreeable to mention. Officially, at large gatherings, everyone said that Countess Bezúkhova had died of a terrible attack of angina pectoris, but in intimate circles details were mentioned of how the private physician of the Queen of Spain had prescribed small doses of a certain drug to produce a certain effect; but Elèn, tortured by the fact that the old count suspected her and that her husband to whom she had written (that wretched, profligate Pierre) had not replied, had suddenly taken a very large dose of the drug, and had died in agony before assistance could be rendered her. It was said that Prince Vasíli and the old count had turned upon the Italian, but the latter had produced such letters from the unfortunate deceased that they had immediately let the matter drop."
   },
   {
@@ -102,7 +117,22 @@
    "correct": "старый граф",
    "case": "Именительный (Nominative)",
    "explain": "«старый граф» — the subject of the sentence stands in the nominative.",
-   "id": "c7",
+   "id": "c10",
+   "translation": "“Fancy the Emperor’s position!” said they, and instead of extolling Kutúzov as they had done the day before, they condemned him as the cause of the Emperor’s anxiety. That day Prince Vasíli no longer boasted of his protégé Kutúzov, but remained silent when the commander in chief was mentioned. Moreover, toward evening, as if everything conspired to make Petersburg society anxious and uneasy, a terrible piece of news was added. Countess Elèna Bezúkhova had suddenly died of that terrible malady it had been so agreeable to mention. Officially, at large gatherings, everyone said that Countess Bezúkhova had died of a terrible attack of angina pectoris, but in intimate circles details were mentioned of how the private physician of the Queen of Spain had prescribed small doses of a certain drug to produce a certain effect; but Elèn, tortured by the fact that the old count suspected her and that her husband to whom she had written (that wretched, profligate Pierre) had not replied, had suddenly taken a very large dose of the drug, and had died in agony before assistance could be rendered her. It was said that Prince Vasíli and the old count had turned upon the Italian, but the latter had produced such letters from the unfortunate deceased that they had immediately let the matter drop."
+  },
+  {
+   "sentence": "Рассказывали, что князь Василий и старый граф взялись было за итальянца; но итальянец показал такие записки от ___, что его тотчас же отпустили.",
+   "lemma": "покойница",
+   "options": [
+    "несчастной покойницей",
+    "несчастной покойницы",
+    "несчастной покойнице",
+    "несчастная покойница"
+   ],
+   "correct": "несчастной покойницы",
+   "case": "Родительный (Genitive)",
+   "explain": "«несчастной покойницы» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
    "translation": "“Fancy the Emperor’s position!” said they, and instead of extolling Kutúzov as they had done the day before, they condemned him as the cause of the Emperor’s anxiety. That day Prince Vasíli no longer boasted of his protégé Kutúzov, but remained silent when the commander in chief was mentioned. Moreover, toward evening, as if everything conspired to make Petersburg society anxious and uneasy, a terrible piece of news was added. Countess Elèna Bezúkhova had suddenly died of that terrible malady it had been so agreeable to mention. Officially, at large gatherings, everyone said that Countess Bezúkhova had died of a terrible attack of angina pectoris, but in intimate circles details were mentioned of how the private physician of the Queen of Spain had prescribed small doses of a certain drug to produce a certain effect; but Elèn, tortured by the fact that the old count suspected her and that her husband to whom she had written (that wretched, profligate Pierre) had not replied, had suddenly taken a very large dose of the drug, and had died in agony before assistance could be rendered her. It was said that Prince Vasíli and the old count had turned upon the Italian, but the latter had produced such letters from the unfortunate deceased that they had immediately let the matter drop."
   },
   {
@@ -117,23 +147,38 @@
    "correct": "общий разговор",
    "case": "Именительный (Nominative)",
    "explain": "«Общий разговор» — the subject of the sentence stands in the nominative.",
-   "id": "c8",
+   "id": "c12",
    "translation": "Talk in general centered round three melancholy facts: the Emperor’s lack of news, the loss of Kutáysov, and the death of Elèn."
   },
   {
-   "sentence": "На ___ после донесения Кутузова, в Петербург приехал помещик из Москвы и по всему городу распространилось известие о сдаче Москвы французам.",
-   "lemma": "день",
+   "sentence": "Общий разговор сосредоточился около трех ___: неизвестности государя, погибели Кутайсова и смерти Элен.",
+   "lemma": "событие",
    "options": [
-    "третьего дня",
-    "третьем дне",
-    "третий день",
-    "третий день"
+    "печальных событиях",
+    "печальным событиям",
+    "печальные события",
+    "печальных событий"
    ],
-   "correct": "третий день",
-   "case": "Винительный (Accusative)",
-   "explain": "«третий день» — after the preposition «на», the accusative marks the direct object of the verb.",
-   "id": "c9",
-   "translation": "On the third day after Kutúzov’s report a country gentleman arrived from Moscow, and news of the surrender of Moscow to the French spread through the whole town. This was terrible! What a position for the Emperor to be in! Kutúzov was a traitor, and Prince Vasíli during the visits of condolence paid to him on the occasion of his daughter’s death said of Kutúzov, whom he had formerly praised (it was excusable for him in his grief to forget what he had said), that it was impossible to expect anything else from a blind and depraved old man."
+   "correct": "печальных событий",
+   "case": "Родительный (Genitive)",
+   "explain": "«печальных событий» — after the preposition «около», the genitive here marks possession, absence, or quantity.",
+   "id": "c13",
+   "translation": "Talk in general centered round three melancholy facts: the Emperor’s lack of news, the loss of Kutáysov, and the death of Elèn."
+  },
+  {
+   "sentence": "Между тем от 1-го сентября получил я через Ярославль, от ___, печальное извещение, что вы решились с армиею оставить Москву.",
+   "lemma": "главнокомандующий",
+   "options": [
+    "московским главнокомандующим",
+    "московском главнокомандующем",
+    "московский главнокомандующий",
+    "московского главнокомандующего"
+   ],
+   "correct": "московского главнокомандующего",
+   "case": "Родительный (Genitive)",
+   "explain": "«Московского главнокомандующего» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "id": "c16",
+   "translation": "Prince Mikháil Ilariónovich! Since the twenty-ninth of August I have received no communication from you, yet on the first of September I received from the commander in chief of Moscow, via Yaroslávl, the sad news that you, with the army, have decided to abandon Moscow. You can yourself imagine the effect this news has had on me, and your silence increases my astonishment. I am sending this by Adjutant-General Prince Volkónski, to hear from you the situation of the army and the reasons that have induced you to take this melancholy decision."
   }
  ]
 }

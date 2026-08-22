@@ -1,256 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Тогда царь позвал слугу. «Ах ты негодный ___!»",
-      "lemma": "слуга",
-      "options": [
-        "слуга",
-        "слуги",
-        "слуге",
-        "слугу"
-      ],
-      "correct": "слуга",
-      "case": "Именительный (Nominative)",
-      "translation": "Then the king called the servant in. 'You wicked servant!'",
-      "explain": "Слуга is a predicate noun identifying who 'you' are, so it stands in the nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Их ангелы на небе всегда видят лицо моего небесного ___.",
-      "lemma": "Отец",
-      "options": [
-        "Отец",
-        "Отца",
-        "Отцу",
-        "Отцом"
-      ],
-      "correct": "Отца",
-      "case": "Родительный (Genitive)",
-      "translation": "Their angels in heaven always see the face of my heavenly Father.",
-      "explain": "лицо кого (the face of whom) is a possessive relationship, so the noun goes into the genitive → Отца."
-    },
-    {
-      "id": "c3",
-      "sentence": "Первым к царю привели того, кто был должен ему десять тысяч ___.",
-      "lemma": "талант",
-      "options": [
-        "таланты",
-        "талантов",
-        "талантам",
-        "талантами"
-      ],
-      "correct": "талантов",
-      "case": "Родительный (Genitive)",
-      "translation": "The first one brought to the king owed him ten thousand talents.",
-      "explain": "The numeral десять тысяч (ten thousand) requires the following noun in the genitive plural → талантов."
-    },
-    {
-      "id": "c4",
-      "sentence": "Тогда Петр подошел к ___ и спросил, «Господи, сколько раз я должен прощать своего брата?»",
-      "lemma": "Иисус",
-      "options": [
-        "Иисус",
-        "Иисуса",
-        "Иисусу",
-        "Иисусом"
-      ],
-      "correct": "Иисусу",
-      "case": "Дательный (Dative)",
-      "translation": "Then Peter came to Jesus and asked, 'Lord, how many times must I forgive my brother?'",
-      "explain": "The preposition к (to) takes the dative → Иисусу."
-    },
-    {
-      "id": "c5",
-      "sentence": "Иисус подозвал маленького ___ и поставил его посреди них.",
-      "lemma": "ребёнок",
-      "options": [
-        "ребёнок",
-        "ребёнка",
-        "ребёнку",
-        "ребёнком"
-      ],
-      "correct": "ребёнка",
-      "case": "Винительный (Accusative)",
-      "translation": "Jesus called a little child to himself and set him in the middle of them.",
-      "explain": "подозвал (called over) is transitive; for an animate masculine noun the accusative equals the genitive → ребёнка."
-    },
-    {
-      "id": "c6",
-      "sentence": "Для него было бы лучше, если бы ему повесили на ___ мельничный жернов и утопили в море.",
-      "lemma": "шея",
-      "options": [
-        "шея",
-        "шеи",
-        "шее",
-        "шею"
-      ],
-      "correct": "шею",
-      "case": "Винительный (Accusative)",
-      "translation": "It would be better for him if a millstone were hung around his neck and he were drowned in the sea.",
-      "explain": "на with a verb of motion (повесили на — hung around) takes the accusative → шею."
-    },
-    {
-      "id": "c7",
-      "sentence": "Лучше войти в жизнь калекой, чем с двумя ___ и двумя ногами быть брошенным в вечный огонь.",
-      "lemma": "рука",
-      "options": [
-        "руки",
-        "рук",
-        "рукам",
-        "руками"
-      ],
-      "correct": "руками",
-      "case": "Творительный (Instrumental)",
-      "translation": "It is better to enter life crippled than, having two hands and two feet, to be thrown into the eternal fire.",
-      "explain": "The preposition с (with) takes the instrumental → руками (instrumental plural)."
-    },
-    {
-      "id": "c8",
-      "sentence": "Тогда же ученики подошли к Иисусу и спросили, кто важнее всех в небесном ___?",
-      "lemma": "царство",
-      "options": [
-        "царство",
-        "царства",
-        "царству",
-        "царстве"
-      ],
-      "correct": "царстве",
-      "case": "Предложный (Prepositional)",
-      "translation": "Then the disciples came to Jesus and asked, who is greatest in the kingdom of heaven?",
-      "explain": "в marking a location/status, not motion, takes the prepositional → царстве."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Иисус подозвал маленького ребенка и поставил его посреди них.",
-      "question": "What did Jesus do when the disciples asked who was greatest in the kingdom of heaven?",
-      "options": [
-        "He called a little child and stood him among them",
-        "He named Peter as the greatest",
-        "He refused to answer",
-        "He pointed to himself"
-      ],
-      "correct": "He called a little child and stood him among them",
-      "explain": "Jesus called a little child to himself and set him among the disciples."
-    },
-    {
-      "id": "r2",
-      "ru": "то для него было бы лучше, если бы ему повесили на шею мельничный жернов и утопили в море.",
-      "question": "What did Jesus say would be better for someone who causes a little one to stumble?",
-      "options": [
-        "That a millstone be hung around his neck and he be drowned in the sea",
-        "That he be forgiven immediately",
-        "That he be sent away from the town",
-        "That he pay a fine to the temple"
-      ],
-      "correct": "That a millstone be hung around his neck and he be drowned in the sea",
-      "explain": "Jesus said it would be better for such a person to have a millstone hung on his neck and be drowned in the sea."
-    },
-    {
-      "id": "r3",
-      "ru": "Лучше войти в жизнь калекой, чем с двумя руками и двумя ногами быть брошенным в вечный огонь.",
-      "question": "What does Jesus say is better than keeping both hands but being cast into eternal fire?",
-      "options": [
-        "Entering life crippled",
-        "Living a long life",
-        "Gaining great wealth",
-        "Becoming a religious leader"
-      ],
-      "correct": "Entering life crippled",
-      "explain": "Jesus says it is better to enter life maimed than to be thrown into the eternal fire with both hands and feet."
-    },
-    {
-      "id": "r4",
-      "ru": "Как вы думаете, если у человека есть сто овец, и одна из них заблудится, то разве он не оставит девяносто девять на холмах и не пойдет искать пропавшую?",
-      "question": "In the parable of the lost sheep, what does the shepherd do when one sheep goes astray?",
-      "options": [
-        "He leaves the ninety-nine and goes to search for the lost one",
-        "He abandons the whole flock",
-        "He waits for the sheep to return on its own",
-        "He sells the flock and buys new sheep"
-      ],
-      "correct": "He leaves the ninety-nine and goes to search for the lost one",
-      "explain": "The parable says the shepherd leaves the ninety-nine on the hills and goes to look for the one that strayed."
-    },
-    {
-      "id": "r5",
-      "ru": "Если твой брат согрешил против тебя, то пойди и с глазу на глаз скажи ему, в чем он неправ.",
-      "question": "What is the first step Jesus recommends if a brother sins against you?",
-      "options": [
-        "Go and tell him privately what he did wrong",
-        "Tell the whole church immediately",
-        "Ignore the offense",
-        "Take him to court"
-      ],
-      "correct": "Go and tell him privately what he did wrong",
-      "explain": "Jesus says to go and show him his fault, just between the two of you."
-    },
-    {
-      "id": "r6",
-      "ru": "то тогда пусть он будет для тебя как язычник или как сборщик налогов.",
-      "question": "What should happen if the offending brother refuses to listen even to the church?",
-      "options": [
-        "He should be treated like a pagan or tax collector",
-        "He should be forgiven without any further steps",
-        "He should be given a second chance in private again",
-        "He should be made a leader of the church"
-      ],
-      "correct": "He should be treated like a pagan or tax collector",
-      "explain": "Jesus says if he refuses to listen to the church, he should be treated like a pagan or tax collector."
-    },
-    {
-      "id": "r7",
-      "ru": "«Не семь, а семьдесят раз по семь».",
-      "question": "How many times did Jesus say Peter should forgive his brother?",
-      "options": [
-        "Seventy times seven, not just seven",
-        "Exactly seven times",
-        "Only once",
-        "As many times as the brother apologizes in words"
-      ],
-      "correct": "Seventy times seven, not just seven",
-      "explain": "Jesus answered Peter's question about forgiving seven times with 'not seven, but seventy times seven.'"
-    },
-    {
-      "id": "r8",
-      "ru": "то первым к нему привели того, кто был должен ему десять тысяч талантов.",
-      "question": "In the parable of the unforgiving servant, how much did the first servant owe the king?",
-      "options": [
-        "Ten thousand talents",
-        "A hundred denarii",
-        "Five thousand talents",
-        "One thousand denarii"
-      ],
-      "correct": "Ten thousand talents",
-      "explain": "The parable says the first servant brought to the king owed him ten thousand talents."
-    },
-    {
-      "id": "r9",
-      "ru": "схватил его и начал душить. «Верни сейчас же все, что ты мне должен», — требовал он.",
-      "question": "What did the forgiven servant do to a fellow servant who owed him money?",
-      "options": [
-        "He grabbed him by the throat and demanded immediate payment",
-        "He forgave the debt as the king had forgiven him",
-        "He gave him more time to pay",
-        "He reported him to the king right away"
-      ],
-      "correct": "He grabbed him by the throat and demanded immediate payment",
-      "explain": "The forgiven servant seized his fellow servant by the throat and demanded he pay back what he owed."
-    },
-    {
-      "id": "r10",
-      "ru": "Так и мой небесный отец поступит с вами, если не простите брата от всего сердца».",
-      "question": "What warning does Jesus give at the end of the parable of the unforgiving servant?",
-      "options": [
-        "The heavenly Father will do the same to those who do not forgive their brother from the heart",
-        "The heavenly Father forgives everyone regardless",
-        "Servants who forgive will be punished",
-        "Only kings must forgive debts"
-      ],
-      "correct": "The heavenly Father will do the same to those who do not forgive their brother from the heart",
-      "explain": "Jesus warns that his heavenly Father will treat them the same way if they do not forgive their brother from the heart."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "— Говорю вам истину, — сказал Иисус, — если вы не изменитесь и не станете такими, как ___, вы никогда не войдете в Небесное Царство.",
+   "lemma": "ребёнок",
+   "options": [
+    "маленькие дети",
+    "маленьких детях",
+    "маленькими детьми",
+    "маленьким детям"
+   ],
+   "correct": "маленькие дети",
+   "case": "Именительный (Nominative)",
+   "explain": "«маленькие дети» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "and said, “Most certainly I tell you, unless you turn, and become as little children, you will in no way enter into the Kingdom of Heaven."
+  },
+  {
+   "sentence": "Лучше войти в жизнь калекой, чем с двумя руками и двумя ногами быть брошенным в ___.",
+   "lemma": "огонь",
+   "options": [
+    "вечным огнём",
+    "вечного огня",
+    "вечном огне",
+    "вечный огонь"
+   ],
+   "correct": "вечный огонь",
+   "case": "Винительный (Accusative)",
+   "explain": "«вечный огонь» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c2",
+   "translation": "If your hand or your foot causes you to stumble, cut it off, and cast it from you. It is better for you to enter into life maimed or crippled, rather than having two hands or two feet to be cast into the eternal fire."
+  },
+  {
+   "sentence": "Еще раз говорю вам, что если двое из вас здесь, на земле, согласятся вместе просить о чем-либо, то Мой ___ непременно сделает для вас все, о чем вы просите.",
+   "lemma": "отец",
+   "options": [
+    "небесным отцом",
+    "небесный отец",
+    "небесному отцу",
+    "небесного отца"
+   ],
+   "correct": "небесный отец",
+   "case": "Именительный (Nominative)",
+   "explain": "«Небесный Отец» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "Again, assuredly I tell you, that if two of you will agree on earth concerning anything that they will ask, it will be done for them by my Father who is in heaven."
+  },
+  {
+   "sentence": "Так как у должника не было чем расплатиться, то царь повелел продать для уплаты долга ___, его жену, детей и все их имущество.",
+   "lemma": "должник",
+   "options": [
+    "самого должника",
+    "сам должник",
+    "самим должником",
+    "самому должнику"
+   ],
+   "correct": "самого должника",
+   "case": "Родительный (Genitive)",
+   "explain": "«самого должника» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "But because he couldn’t pay, his lord commanded him to be sold, with his wife, his children, and all that he had, and payment to be made."
+  },
+  {
+   "sentence": "___ видели, что произошло, и это их возмутило.",
+   "lemma": "слуга",
+   "options": [
+    "других слугах",
+    "другим слугам",
+    "другие слуги",
+    "другими слугами"
+   ],
+   "correct": "другие слуги",
+   "case": "Именительный (Nominative)",
+   "explain": "«Другие слуги» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "So when his fellow servants saw what was done, they were exceedingly sorry, and came and told their lord all that was done."
+  }
+ ]
 }

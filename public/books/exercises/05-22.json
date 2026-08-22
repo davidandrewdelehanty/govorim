@@ -1,204 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Если ты встретишь потерянного ___ своего соседа или его осла, не закрывай глаза на это.",
-      "lemma": "бык",
-      "options": [
-        "бык",
-        "быка",
-        "быку",
-        "быком"
-      ],
-      "correct": "быка",
-      "case": "Винительный (Accusative)",
-      "translation": "If you see your neighbor's lost ox or donkey, do not ignore it.",
-      "explain": "The transitive verb встретишь (see) requires the accusative case for its direct object."
-    },
-    {
-      "id": "c2",
-      "sentence": "Ты должен возвратить его своему ___.",
-      "lemma": "сосед",
-      "options": [
-        "сосед",
-        "соседа",
-        "соседу",
-        "соседом"
-      ],
-      "correct": "соседу",
-      "case": "Дательный (Dative)",
-      "translation": "You must return it to your neighbor.",
-      "explain": "The verb возвратить (to return) with a recipient requires the dative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Если ты видишь, что ___ твоего соседа или его осел упал на дороге, то не проходи мимо.",
-      "lemma": "бык",
-      "options": [
-        "бык",
-        "быка",
-        "быку",
-        "быком"
-      ],
-      "correct": "бык",
-      "case": "Именительный (Nominative)",
-      "translation": "If you see your neighbor's ox or donkey fallen on the road, do not pass by.",
-      "explain": "The subject of видишь (see) takes the nominative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Ты должен помочь ему поднять его ___ или осла.",
-      "lemma": "бык",
-      "options": [
-        "бык",
-        "быка",
-        "быку",
-        "быком"
-      ],
-      "correct": "быка",
-      "case": "Винительный (Accusative)",
-      "translation": "You must help lift up his ox or donkey.",
-      "explain": "The verb поднять (to lift) requires the accusative case for the object being lifted."
-    },
-    {
-      "id": "c5",
-      "sentence": "Женщина не должна носить мужскую ___, и мужчина не должен надевать женскую одежду.",
-      "lemma": "одежда",
-      "options": [
-        "одежда",
-        "одежды",
-        "одежду",
-        "одеждой"
-      ],
-      "correct": "одежду",
-      "case": "Винительный (Accusative)",
-      "translation": "A woman shall not wear a man's garment, nor shall a man put on a woman's garment.",
-      "explain": "The verb носить (to wear) requires the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Если ты строишь новый ___, то сделай перила по краю крыши.",
-      "lemma": "дом",
-      "options": [
-        "дом",
-        "дома",
-        "дому",
-        "доме"
-      ],
-      "correct": "дом",
-      "case": "Винительный (Accusative)",
-      "translation": "If you build a new house, then make a railing on the edge of the roof.",
-      "explain": "The transitive verb строишь (build) requires the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Не сеи в своем ___ два разных вида семян.",
-      "lemma": "поле",
-      "options": [
-        "поле",
-        "поля",
-        "полю",
-        "полем"
-      ],
-      "correct": "поле",
-      "case": "Предложный (Prepositional)",
-      "translation": "Do not plant your field with two kinds of seeds.",
-      "explain": "The preposition в (in) with location governs the prepositional case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Не запрягай в один ярмо быка и ___ вместе.",
-      "lemma": "осел",
-      "options": [
-        "осел",
-        "осла",
-        "ослу",
-        "ослом"
-      ],
-      "correct": "осла",
-      "case": "Винительный (Accusative)",
-      "translation": "Do not yoke an ox and a donkey together.",
-      "explain": "The verb запрягай (yoke) requires the accusative case for the direct object."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Если ты встретишь потерянного быка своего соседа или его осла, не закрывай глаза на это.",
-      "question": "What should you do if you see your neighbor's lost ox or donkey?",
-      "options": [
-        "Do not ignore it",
-        "Take it as payment",
-        "Tell someone else",
-        "Report it to the elders"
-      ],
-      "correct": "Do not ignore it",
-      "explain": "The law states: 'не закрывай глаза на это' (do not close your eyes to it)."
-    },
-    {
-      "id": "r2",
-      "ru": "Ты должен возвратить его своему соседу.",
-      "question": "What must you do with your neighbor's lost animal?",
-      "options": [
-        "Return it to your neighbor",
-        "Keep it for yourself",
-        "Sell it",
-        "Give it to the poor"
-      ],
-      "correct": "Return it to your neighbor",
-      "explain": "The command is: 'Ты должен возвратить его своему соседу' (You must return it to your neighbor)."
-    },
-    {
-      "id": "r3",
-      "ru": "Если ты видишь, что бык твоего соседа или его осел упал на дороге, то не проходи мимо.",
-      "question": "What should you do if you see your neighbor's animal fallen on the road?",
-      "options": [
-        "Do not pass by",
-        "Inform the owner immediately",
-        "Help lift it up",
-        "Leave it for later"
-      ],
-      "correct": "Do not pass by",
-      "explain": "The law states: 'не проходи мимо' (do not pass by)."
-    },
-    {
-      "id": "r4",
-      "ru": "Ты должен помочь ему поднять его быка или осла.",
-      "question": "What is your responsibility toward your neighbor's fallen animal?",
-      "options": [
-        "Help him lift up his ox or donkey",
-        "Demand payment for help",
-        "Leave it to the owner",
-        "Report it to authorities"
-      ],
-      "correct": "Help him lift up his ox or donkey",
-      "explain": "The instruction is: 'Ты должен помочь ему поднять его быка или осла' (You must help him lift up his ox or donkey)."
-    },
-    {
-      "id": "r5",
-      "ru": "Женщина не должна носить мужскую одежду, и мужчина не должен надевать женскую одежду.",
-      "question": "What is forbidden regarding clothing in this law?",
-      "options": [
-        "Women wearing men's clothing and men wearing women's clothing",
-        "Wearing torn clothing",
-        "Wearing clothes of mixed fibers",
-        "Wearing clothing on the Sabbath"
-      ],
-      "correct": "Women wearing men's clothing and men wearing women's clothing",
-      "explain": "The law prohibits: 'Женщина не должна носить мужскую одежду, и мужчина не должен надевать женскую одежду' (women not wearing men's clothes and men not wearing women's clothes)."
-    },
-    {
-      "id": "r6",
-      "ru": "Если ты строишь новый дом, то сделай перила по краю крыши, чтобы не прибить крови кому-нибудь.",
-      "question": "What safety requirement is given for a new house?",
-      "options": [
-        "Make railings on the edge of the roof to prevent someone from falling",
-        "Whitewash the walls",
-        "Install locks on the doors",
-        "Paint the roof red"
-      ],
-      "correct": "Make railings on the edge of the roof to prevent someone from falling",
-      "explain": "The requirement is: 'сделай перила по краю крыши' (make railings on the edge of the roof)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Если увидишь, что вол или овца ___ заблудились, не оставляй их, но отведи к хозяину.",
+   "lemma": "человек",
+   "options": [
+    "другим человеком",
+    "другого человека",
+    "другому человеку",
+    "другом человеке"
+   ],
+   "correct": "другого человека",
+   "case": "Родительный (Genitive)",
+   "explain": "«другого человека» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "You shall not see your brother’s ox or his sheep go astray and hide yourself from them. You shall surely bring them again to your brother."
+  },
+  {
+   "sentence": "Если осел или вол ___ упадет на дороге, не оставляй их.",
+   "lemma": "человек",
+   "options": [
+    "другим человеком",
+    "другом человеке",
+    "другого человека",
+    "другой человек"
+   ],
+   "correct": "другого человека",
+   "case": "Винительный (Accusative)",
+   "explain": "«другого человека» — the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "You shall not see your brother’s donkey or his ox fallen down by the way, and hide yourself from them. You shall surely help him to lift them up again."
+  },
+  {
+   "sentence": "Женщина не должна надевать мужскую одежду, и мужчина не должен надевать женскую одежду, потому что Господу, твоему Богу, отвратителен любой, кто делает ___.",
+   "lemma": "вещь",
+   "options": [
+    "подобные вещи",
+    "подобным вещам",
+    "подобных вещах",
+    "подобными вещами"
+   ],
+   "correct": "подобные вещи",
+   "case": "Винительный (Accusative)",
+   "explain": "«подобные вещи» — the accusative marks the direct object of the verb.",
+   "id": "c4",
+   "translation": "A woman shall not wear men’s clothing, neither shall a man put on women’s clothing; for whoever does these things is an abomination to Yahweh your God."
+  },
+  {
+   "sentence": "Строя ___, сделай по краю крыши ограждение , и тогда ты не будешь виновен в смерти, если кто-нибудь упадет с крыши.",
+   "lemma": "дом",
+   "options": [
+    "новом доме",
+    "новый дом",
+    "нового дома",
+    "новым домом"
+   ],
+   "correct": "новый дом",
+   "case": "Именительный (Nominative)",
+   "explain": "«новый дом» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "When you build a new house, then you shall make a railing around your roof, so that you don’t bring blood on your house if anyone falls from there."
+  },
+  {
+   "sentence": "Если выяснится, что мужчина спал с ___, то они оба должны умереть.",
+   "lemma": "жена",
+   "options": [
+    "чужой жены",
+    "чужой жене",
+    "чужая жена",
+    "чужой женой"
+   ],
+   "correct": "чужой женой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«чужой женой» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c6",
+   "translation": "If a man is found lying with a woman married to a husband, then they shall both die, the man who lay with the woman and the woman. So you shall remove the evil from Israel."
+  }
+ ]
 }

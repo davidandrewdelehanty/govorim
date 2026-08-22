@@ -1,137 +1,34 @@
 {
-  "title": "Числа 16 — Numbers 16",
-  "source": "Numbers 16 · Новый Русский Перевод",
-  "instructions": "Choose the correct case form of the word in brackets to fill the blank. Every option is a real form of the same word — only the case differs.",
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "…сделали заговор и восстали против ___.",
-      "lemma": "Моисей",
-      "options": ["Моисей", "Моисея", "Моисею", "Моисеем"],
-      "correct": "Моисея",
-      "case": "Родительный (Genitive)",
-      "translation": "…they made a conspiracy and rose up against Moses.",
-      "explain": "The preposition против (against) always takes the genitive → Моисея."
-    },
-    {
-      "id": "c2",
-      "sentence": "Пусть каждый возьмёт свой ___, положит в него благовоние.",
-      "lemma": "сосуд",
-      "options": ["сосуд", "сосуда", "сосуду", "сосудом"],
-      "correct": "сосуд",
-      "case": "Винительный (Accusative)",
-      "translation": "Let each man take his censer and put incense in it.",
-      "explain": "Сосуд is the direct object of возьмёт (take); for this inanimate masculine noun the accusative equals the nominative → сосуд."
-    },
-    {
-      "id": "c3",
-      "sentence": "Пусть каждый… положит в него ___.",
-      "lemma": "благовоние",
-      "options": ["благовоние", "благовония", "благовонию", "благовонием"],
-      "correct": "благовоние",
-      "case": "Винительный (Accusative)",
-      "translation": "…let him put incense in it.",
-      "explain": "Благовоние is the direct object of положит (put); for this inanimate neuter noun the accusative equals the nominative → благовоние."
-    },
-    {
-      "id": "c4",
-      "sentence": "…встал с Моисеем и ___ у входа в шатёр собрания.",
-      "lemma": "Аарон",
-      "options": ["Аарон", "Аарона", "Аарону", "Аароном"],
-      "correct": "Аароном",
-      "case": "Творительный (Instrumental)",
-      "translation": "…and stood with Moses and Aaron at the entrance of the tent of meeting.",
-      "explain": "The preposition с (with) takes the instrumental → Аароном."
-    },
-    {
-      "id": "c5",
-      "sentence": "…встал с Моисеем и Аароном у ___ в шатёр собрания.",
-      "lemma": "вход",
-      "options": ["вход", "входа", "входу", "входом"],
-      "correct": "входа",
-      "case": "Родительный (Genitive)",
-      "translation": "…stood at the entrance of the tent of meeting.",
-      "explain": "The preposition у (at / by) takes the genitive → входа."
-    },
-    {
-      "id": "c6",
-      "sentence": "От Господа вышел ___ и сжёг 250 человек.",
-      "lemma": "огонь",
-      "options": ["огонь", "огня", "огню", "огнём"],
-      "correct": "огонь",
-      "case": "Именительный (Nominative)",
-      "translation": "Fire came out from the Lord and consumed 250 men.",
-      "explain": "Огонь is the subject that came out and consumed — the doer of the action takes the nominative → огонь."
-    },
-    {
-      "id": "c7",
-      "sentence": "…чтобы убить в ___.",
-      "lemma": "пустыня",
-      "options": ["пустыня", "пустыню", "пустыни", "пустыне"],
-      "correct": "пустыне",
-      "case": "Предложный (Prepositional)",
-      "translation": "…to kill us in the wilderness.",
-      "explain": "The preposition в meaning \"in\" a location (no motion) takes the prepositional → пустыне."
-    },
-    {
-      "id": "c8",
-      "sentence": "Скажи ___, отойдите от жилищ Караха, Датана и Авирама.",
-      "lemma": "народ",
-      "options": ["народ", "народа", "народу", "народом"],
-      "correct": "народу",
-      "case": "Дательный (Dative)",
-      "translation": "Tell the people: move away from the dwellings of Korah, Dathan and Abiram.",
-      "explain": "The dative marks the addressee of сказать (\"tell to the people\") → народу."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "С ними были 250 израилетян, вождей народа, прославленные среди народа знати.",
-      "question": "How many Israelites joined the rebellion?",
-      "options": ["250 leaders of the people", "12 elders", "70 priests", "600 warriors"],
-      "correct": "250 leaders of the people",
-      "explain": "The text says 250 Israelites, leaders of the people and renowned men, were with them."
-    },
-    {
-      "id": "r2",
-      "ru": "Земля разверзлась и поглотила их и их сородичей.",
-      "question": "What happened to the rebels and their households?",
-      "options": ["The earth opened and swallowed them", "They fled into the desert", "They were struck by lightning", "They drowned in the sea"],
-      "correct": "The earth opened and swallowed them",
-      "explain": "The ground split open and swallowed them together with their kin."
-    },
-    {
-      "id": "r3",
-      "ru": "От Господа вышел огонь и сжег 250 человек, которые приносили кадильные благовония.",
-      "question": "What consumed the 250 men who offered incense?",
-      "options": ["Fire from the Lord", "A flood", "A plague", "Wild animals"],
-      "correct": "Fire from the Lord",
-      "explain": "Fire came out from the Lord and burned the 250 men who were offering incense."
-    },
-    {
-      "id": "r4",
-      "ru": "Он встал между мертвыми и живыми, и мор прекратился.",
-      "question": "What did Aaron do that stopped the plague?",
-      "options": ["He stood between the dead and the living", "He prayed on the mountain", "He built an altar", "He fled from the camp"],
-      "correct": "He stood between the dead and the living",
-      "explain": "Aaron stood between the dead and the living, and the plague was stopped."
-    },
-    {
-      "id": "r5",
-      "ru": "Но четырнадцать тысяч семьсот человек умерло от мора, не считая тех, кто умер из-за караха.",
-      "question": "How many people died from the plague?",
-      "options": ["Fourteen thousand seven hundred", "Two hundred fifty", "Seven thousand", "One thousand"],
-      "correct": "Fourteen thousand seven hundred",
-      "explain": "The text states 14,700 people died from the plague, apart from those who died over Korah."
-    },
-    {
-      "id": "r6",
-      "ru": "Аарон вернулся к Моисею ко входу в шатер собрания, потому что мор прекратился.",
-      "question": "Why did Aaron return to Moses at the tent of meeting?",
-      "options": ["Because the plague had stopped", "Because it was evening", "Because the Lord called him", "Because the people had fled"],
-      "correct": "Because the plague had stopped",
-      "explain": "Aaron returned to Moses at the entrance of the tent because the plague had ceased."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Датан и Авирам вышли и стояли с женами, сыновьями и ___ у входов в свои шатры.",
+   "lemma": "ребёнок",
+   "options": [
+    "маленькими детьми",
+    "маленьких детях",
+    "маленьких детей",
+    "маленькие дети"
+   ],
+   "correct": "маленькими детьми",
+   "case": "Творительный (Instrumental)",
+   "explain": "«маленькими детьми» — the instrumental marks the means, company, or complement.",
+   "id": "c1",
+   "translation": "So they went away from the tent of Korah, Dathan, and Abiram, on every side. Dathan and Abiram came out, and stood at the door of their tents with their wives, their sons, and their little ones."
+  },
+  {
+   "sentence": "На ___ все общество израильтян роптало на Моисея и Аарона.",
+   "lemma": "день",
+   "options": [
+    "другой день",
+    "другим днём",
+    "другому дню",
+    "другом дне"
+   ],
+   "correct": "другой день",
+   "case": "Винительный (Accusative)",
+   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "But on the next day all the congregation of the children of Israel complained against Moses and against Aaron, saying, “You have killed Yahweh’s people!”"
+  }
+ ]
 }

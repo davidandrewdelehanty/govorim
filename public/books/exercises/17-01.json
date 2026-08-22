@@ -1,174 +1,184 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Царь ___ велел созвать пир.",
-      "lemma": "царь",
-      "options": [
-        "царь",
-        "царя",
-        "царю",
-        "царём"
-      ],
-      "correct": "царь",
-      "case": "Именительный (Nominative)",
-      "translation": "King Xerxes commanded a feast.",
-      "explain": "Subject of sentence uses nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Царица ___ была красива.",
-      "lemma": "царица",
-      "options": [
-        "царица",
-        "царицы",
-        "царице",
-        "царицу"
-      ],
-      "correct": "царица",
-      "case": "Именительный (Nominative)",
-      "translation": "The queen was beautiful.",
-      "explain": "Subject of sentence uses nominative."
-    },
-    {
-      "id": "c3",
-      "sentence": "Гнев ___ был велик.",
-      "lemma": "гнев",
-      "options": [
-        "гнев",
-        "гнева",
-        "гневу",
-        "гневом"
-      ],
-      "correct": "гнева",
-      "case": "Родительный (Genitive)",
-      "translation": "The king's anger was great.",
-      "explain": "Possessive genitive requires genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "___ царя было законом.",
-      "lemma": "слово",
-      "options": [
-        "слово",
-        "слова",
-        "слову",
-        "словом"
-      ],
-      "correct": "слово",
-      "case": "Именительный (Nominative)",
-      "translation": "The king's word was law.",
-      "explain": "Subject of sentence uses nominative."
-    },
-    {
-      "id": "c5",
-      "sentence": "На ___ присутствовали сановники.",
-      "lemma": "пир",
-      "options": [
-        "пире",
-        "пира",
-        "пиру",
-        "пиром"
-      ],
-      "correct": "пире",
-      "case": "Предложный (Prepositional)",
-      "translation": "At the banquet were the officials.",
-      "explain": "Preposition 'на' with location requires prepositional."
-    },
-    {
-      "id": "c6",
-      "sentence": "В каждый ___ происходили пиры.",
-      "lemma": "день",
-      "options": [
-        "день",
-        "дня",
-        "дню",
-        "днём"
-      ],
-      "correct": "день",
-      "case": "Винительный (Accusative)",
-      "translation": "Every day feasts took place.",
-      "explain": "Preposition 'в' with time uses accusative."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Это произошло во времена Ксеркса, того самого Ксеркса, который правил 127 провинциями, растирающимися от Индии до самого Куша",
-      "question": "Who was the king at this time?",
-      "options": [
-        "Xerxes of Persia",
-        "Alternative answer A",
-        "Alternative answer B",
-        "Alternative answer C"
-      ],
-      "correct": "Xerxes of Persia",
-      "explain": "According to the text: Xerxes of Persia"
-    },
-    {
-      "id": "r2",
-      "ru": "В те времена престол царя Ксеркса находился в крепости города Сузы",
-      "question": "What did King Xerxes command?",
-      "options": [
-        "He commanded a feast",
-        "Alternative answer A",
-        "Alternative answer B",
-        "Alternative answer C"
-      ],
-      "correct": "He commanded a feast",
-      "explain": "According to the text: He commanded a feast"
-    },
-    {
-      "id": "r3",
-      "ru": "На третий год царствования он устроил пир для всех своих сановников и знати",
-      "question": "Why did Queen Vashti refuse?",
-      "options": [
-        "She refused to obey the king's order",
-        "Alternative answer A",
-        "Alternative answer B",
-        "Alternative answer C"
-      ],
-      "correct": "She refused to obey the king's order",
-      "explain": "According to the text: She refused to obey the king's order"
-    },
-    {
-      "id": "r4",
-      "ru": "Там были военачальники Персии и Мидии, знатные люди и наместники провинций",
-      "question": "What was the king's reaction?",
-      "options": [
-        "His anger was aroused",
-        "Alternative answer A",
-        "Alternative answer B",
-        "Alternative answer C"
-      ],
-      "correct": "His anger was aroused",
-      "explain": "According to the text: His anger was aroused"
-    },
-    {
-      "id": "r5",
-      "ru": "Целых сто восемьдесят дней показывал он великое богатство своего царства, блеск и славу своего величия",
-      "question": "What did the king decide?",
-      "options": [
-        "To remove Vashti from being queen",
-        "Alternative answer A",
-        "Alternative answer B",
-        "Alternative answer C"
-      ],
-      "correct": "To remove Vashti from being queen",
-      "explain": "According to the text: To remove Vashti from being queen"
-    },
-    {
-      "id": "r6",
-      "ru": "Когда эти дни минули, царь устроил для всех от малого до великого, кто только был в крепости Сузы, семидневный пир в закрытом саду царского дворца",
-      "question": "Who advised the king?",
-      "options": [
-        "His counselors and wise men",
-        "Alternative answer A",
-        "Alternative answer B",
-        "Alternative answer C"
-      ],
-      "correct": "His counselors and wise men",
-      "explain": "According to the text: His counselors and wise men"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Там были военачальники Персии и Мидии, ___ и наместники провинций.",
+   "lemma": "человек",
+   "options": [
+    "знатными людьми",
+    "знатных людях",
+    "знатным людям",
+    "знатные люди"
+   ],
+   "correct": "знатные люди",
+   "case": "Именительный (Nominative)",
+   "explain": "«знатные люди» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "in the third year of his reign, he made a feast for all his princes and his servants; the power of Persia and Media, the nobles and princes of the provinces, being before him."
+  },
+  {
+   "sentence": "Когда эти дни минули, царь устроил для всех, от малого до великого, кто только был в крепости Сузы, ___ в закрытом саду царского дворца.",
+   "lemma": "пир",
+   "options": [
+    "семидневный пир",
+    "семидневном пире",
+    "семидневного пира",
+    "семидневному пиру"
+   ],
+   "correct": "семидневный пир",
+   "case": "Именительный (Nominative)",
+   "explain": "«семидневный пир» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "When these days were fulfilled, the king made a seven day feast for all the people who were present in Susa the palace, both great and small, in the court of the garden of the king’s palace."
+  },
+  {
+   "sentence": "Когда эти дни минули, царь устроил для всех, от малого до великого, кто только был в крепости Сузы, семидневный пир в закрытом саду ___.",
+   "lemma": "дворец",
+   "options": [
+    "царским дворцом",
+    "царского дворца",
+    "царском дворце",
+    "царскому дворцу"
+   ],
+   "correct": "царского дворца",
+   "case": "Родительный (Genitive)",
+   "explain": "«царского дворца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "When these days were fulfilled, the king made a seven day feast for all the people who were present in Susa the palace, both great and small, in the court of the garden of the king’s palace."
+  },
+  {
+   "sentence": "Сад был украшен завесами из белого и голубого льна, прикрепленными белыми льняными и пурпурными шнурами к ___ на мраморных столбах.",
+   "lemma": "кольцо",
+   "options": [
+    "серебряных колец",
+    "серебряным кольцам",
+    "серебряных кольцах",
+    "серебряные кольца"
+   ],
+   "correct": "серебряным кольцам",
+   "case": "Дательный (Dative)",
+   "explain": "«серебряным кольцам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c5",
+   "translation": "There were hangings of white and blue material, fastened with cords of fine linen and purple to silver rings and marble pillars. The couches were of gold and silver, on a pavement of red, white, yellow, and black marble."
+  },
+  {
+   "sentence": "Сад был украшен завесами из белого и голубого льна, прикрепленными белыми льняными и пурпурными шнурами к серебряным кольцам на ___.",
+   "lemma": "столб",
+   "options": [
+    "мраморных столбах",
+    "мраморными столбами",
+    "мраморные столбы",
+    "мраморным столбам"
+   ],
+   "correct": "мраморных столбах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«мраморных столбах» — after the preposition «на», for location or topic.",
+   "id": "c6",
+   "translation": "There were hangings of white and blue material, fastened with cords of fine linen and purple to silver rings and marble pillars. The couches were of gold and silver, on a pavement of red, white, yellow, and black marble."
+  },
+  {
+   "sentence": "Золотые и серебряные ложа стояли на помосте, выстланном порфиром, мрамором, перламутром и другими ___.",
+   "lemma": "камень",
+   "options": [
+    "дорогие камни",
+    "дорогих камнях",
+    "дорогими камнями",
+    "дорогих камней"
+   ],
+   "correct": "дорогими камнями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«дорогими камнями» — the instrumental marks the means, company, or complement.",
+   "id": "c7",
+   "translation": "There were hangings of white and blue material, fastened with cords of fine linen and purple to silver rings and marble pillars. The couches were of gold and silver, on a pavement of red, white, yellow, and black marble."
+  },
+  {
+   "sentence": "Вино подавалось в ___, среди которых не было двух одинаковых, и царского вина было по щедрости царя в изобилии.",
+   "lemma": "кубок",
+   "options": [
+    "золотых кубков",
+    "золотые кубки",
+    "золотых кубках",
+    "золотыми кубками"
+   ],
+   "correct": "золотых кубках",
+   "case": "Предложный (Prepositional)",
+   "explain": "«золотых кубках» — after the preposition «в», for location or topic.",
+   "id": "c8",
+   "translation": "They gave them drinks in golden vessels of various kinds, including royal wine in abundance, according to the bounty of the king."
+  },
+  {
+   "sentence": "Вино подавалось в золотых кубках, среди которых не было двух одинаковых, и ___ было по щедрости царя в изобилии.",
+   "lemma": "вино",
+   "options": [
+    "царским вином",
+    "царское вино",
+    "царского вина",
+    "царском вине"
+   ],
+   "correct": "царского вина",
+   "case": "Родительный (Genitive)",
+   "explain": "«царского вина» — the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "They gave them drinks in golden vessels of various kinds, including royal wine in abundance, according to the bounty of the king."
+  },
+  {
+   "sentence": "По ___ каждый гость мог пить столько, сколько хотел, потому что царь приказал виночерпиям служить всем, кто пожелает.",
+   "lemma": "повеление",
+   "options": [
+    "царское повеление",
+    "царском повелении",
+    "царскому повелению",
+    "царского повеления"
+   ],
+   "correct": "царскому повелению",
+   "case": "Дательный (Dative)",
+   "explain": "«царскому повелению» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c10",
+   "translation": "In accordance with the law, the drinking was not compulsory; for so the king had instructed all the officials of his house, that they should do according to every man’s pleasure."
+  },
+  {
+   "sentence": "Сегодня же ___ Персии и Мидии, услышав о поступке царицы, взбунтуются против своих мужей, и тогда презрению жен и гневу мужей не будет конца!",
+   "lemma": "женщина",
+   "options": [
+    "знатные женщины",
+    "знатным женщинам",
+    "знатных женщин",
+    "знатными женщинами"
+   ],
+   "correct": "знатные женщины",
+   "case": "Именительный (Nominative)",
+   "explain": "«знатные женщины» — the subject of the sentence stands in the nominative.",
+   "id": "c11",
+   "translation": "Today, the princesses of Persia and Media who have heard of the queen’s deed will tell all the king’s princes. This will cause much contempt and wrath."
+  },
+  {
+   "sentence": "И когда ___ будет провозглашен по всему огромному царству, все женщины будут чтить своих мужей, от малого до великого.",
+   "lemma": "указ",
+   "options": [
+    "царский указ",
+    "царскому указу",
+    "царского указа",
+    "царским указом"
+   ],
+   "correct": "царский указ",
+   "case": "Именительный (Nominative)",
+   "explain": "«царский указ» — the subject of the sentence stands in the nominative.",
+   "id": "c13",
+   "translation": "When the king’s decree which he shall make is published throughout all his kingdom (for it is great), all the wives will give their husbands honor, both great and small.”"
+  },
+  {
+   "sentence": "И когда царский указ будет провозглашен по всему ___, все женщины будут чтить своих мужей, от малого до великого.",
+   "lemma": "царство",
+   "options": [
+    "огромному царству",
+    "огромным царством",
+    "огромное царство",
+    "огромном царстве"
+   ],
+   "correct": "огромному царству",
+   "case": "Дательный (Dative)",
+   "explain": "«огромному царству» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c14",
+   "translation": "When the king’s decree which he shall make is published throughout all his kingdom (for it is great), all the wives will give their husbands honor, both great and small.”"
+  }
+ ]
 }

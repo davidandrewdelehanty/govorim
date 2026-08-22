@@ -1,204 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ был первенцем Иуды.",
-      "lemma": "сын",
-      "options": [
-        "сын",
-        "сына",
-        "сыну",
-        "сыном"
-      ],
-      "correct": "сын",
-      "case": "именительный (Nominative)",
-      "translation": "The son was the firstborn of Judah.",
-      "explain": "The noun is the subject of the sentence, so it takes nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Вот потомки ___.",
-      "lemma": "сын",
-      "options": [
-        "сын",
-        "сына",
-        "сыну",
-        "сыном"
-      ],
-      "correct": "сына",
-      "case": "родительный (Genitive)",
-      "translation": "Here are the descendants of the son.",
-      "explain": "After потомки (descendants), the genitive case shows possession."
-    },
-    {
-      "id": "c3",
-      "sentence": "Она родила ему ___.",
-      "lemma": "город",
-      "options": [
-        "город",
-        "города",
-        "городу",
-        "городом"
-      ],
-      "correct": "город",
-      "case": "винительный (Accusative)",
-      "translation": "She bore to him a city.",
-      "explain": "The direct object of родила (bore) takes accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Халев женился на ___.",
-      "lemma": "жена",
-      "options": [
-        "жена",
-        "жены",
-        "жене",
-        "женой"
-      ],
-      "correct": "женой",
-      "case": "творительный (Instrumental)",
-      "translation": "Caleb married the woman.",
-      "explain": "The preposition на (on/upon) in the context of marriage governs instrumental case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Арам захватили селения с ___.",
-      "lemma": "беда",
-      "options": [
-        "беда",
-        "беды",
-        "беде",
-        "бедой"
-      ],
-      "correct": "беды",
-      "case": "родительный (Genitive)",
-      "translation": "Aram captured villages with trouble.",
-      "explain": "After с (with), the genitive case expresses accompaniment."
-    },
-    {
-      "id": "c6",
-      "sentence": "Он делал зло в глазах ___.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господом"
-      ],
-      "correct": "Господа",
-      "case": "родительный (Genitive)",
-      "translation": "He did evil in the sight of the Lord.",
-      "explain": "The phrase в глазах (in the eyes/sight) with genitive expresses perspective."
-    },
-    {
-      "id": "c7",
-      "sentence": "Он был отцом ___.",
-      "lemma": "Иесей",
-      "options": [
-        "Иесей",
-        "Иесея",
-        "Иесею",
-        "Иесеем"
-      ],
-      "correct": "Иесея",
-      "case": "родительный (Genitive)",
-      "translation": "He was the father of Jesse.",
-      "explain": "After отцом (father), the genitive case shows the child relationship."
-    },
-    {
-      "id": "c8",
-      "sentence": "Это киньяне, которые произошли от ___.",
-      "lemma": "земля",
-      "options": [
-        "земля",
-        "земли",
-        "земле",
-        "землю"
-      ],
-      "correct": "земли",
-      "case": "родительный (Genitive)",
-      "translation": "These are the Kenites who came from the land.",
-      "explain": "The preposition от (from) always governs the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Вот сыновья Израиля.",
-      "question": "What is being listed at the beginning?",
-      "options": [
-        "The sons/tribes of Israel",
-        "The enemies of Israel",
-        "The cities of Israel",
-        "The prophets of Israel"
-      ],
-      "correct": "The sons/tribes of Israel",
-      "explain": "The text explicitly states Вот сыновья Израиля (Here are the sons of Israel)."
-    },
-    {
-      "id": "r2",
-      "ru": "Сыновья Иуды.",
-      "question": "Whose family line is being traced?",
-      "options": [
-        "The line of Judah",
-        "The line of Levi",
-        "The line of Benjamin",
-        "The line of Dan"
-      ],
-      "correct": "The line of Judah",
-      "explain": "The section header Сыновья Иуды (Sons of Judah) indicates the genealogy of Judah."
-    },
-    {
-      "id": "r3",
-      "ru": "Ир, первенец Иуды, делал зло в глазах Господа.",
-      "question": "What is said about Er, Judah's firstborn?",
-      "options": [
-        "He did evil in the sight of the Lord",
-        "He was righteous in the sight of the Lord",
-        "He was a king over Israel",
-        "He had many children"
-      ],
-      "correct": "He did evil in the sight of the Lord",
-      "explain": "The text states делал зло в глазах Господа (did evil in the sight of the Lord)."
-    },
-    {
-      "id": "r4",
-      "ru": "Фомар, невестка Иуды, родила ему Пареца и Зераха.",
-      "question": "Who bore Perez and Zerah?",
-      "options": [
-        "Tamar, the daughter-in-law of Judah",
-        "A Canaanite woman",
-        "Judah's sister",
-        "The wife of Perez"
-      ],
-      "correct": "Tamar, the daughter-in-law of Judah",
-      "explain": "The text names Фомар, невестка Иуды (Tamar, daughter-in-law of Judah) as the mother."
-    },
-    {
-      "id": "r5",
-      "ru": "Всего у Иуды было пятеро сыновей.",
-      "question": "How many sons did Judah have in total?",
-      "options": [
-        "Five sons",
-        "Seven sons",
-        "Three sons",
-        "Twelve sons"
-      ],
-      "correct": "Five sons",
-      "explain": "The text explicitly states пятеро сыновей (five sons)."
-    },
-    {
-      "id": "r6",
-      "ru": "Сыновья Зераха — Зимри, Етан, Ямал, Халкол и Дара.",
-      "question": "How many sons did Zerah have?",
-      "options": [
-        "Five sons listed",
-        "Three sons listed",
-        "Seven sons listed",
-        "Two sons listed"
-      ],
-      "correct": "Five sons listed",
-      "explain": "The text lists Зимри, Етан, Ямал, Халкол и Дара - five names."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "К востоку же они занимали земли до ___ пустыни, которая тянется к реке Евфрату, потому что их стада умножились в Галааде.",
+   "lemma": "край",
+   "options": [
+    "самим краем",
+    "самого края",
+    "сам край",
+    "самом крае"
+   ],
+   "correct": "самого края",
+   "case": "Родительный (Genitive)",
+   "explain": "«самого края» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "and he lived eastward even to the entrance of the wilderness from the river Euphrates, because their livestock were multiplied in the land of Gilead."
+  },
+  {
+   "sentence": "Они поселились в жилищах агарян по всем ___ Галаада.",
+   "lemma": "земля",
+   "options": [
+    "восточные земли",
+    "восточными землями",
+    "восточным землям",
+    "восточных землях"
+   ],
+   "correct": "восточным землям",
+   "case": "Дательный (Dative)",
+   "explain": "«восточным землям» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c2",
+   "translation": "In the days of Saul, they made war with the Hagrites, who fell by their hand; and they lived in their tents throughout all the land east of Gilead."
+  },
+  {
+   "sentence": "У родов Рувима, Гада и половины рода Манассии было сорок четыре тысячи семьсот шестьдесят мужчин, пригодных к ___, — крепких мужчин, которые умели обращаться с щитом и мечом, натягивать лук и сражаться.",
+   "lemma": "служба",
+   "options": [
+    "военной службы",
+    "военная служба",
+    "военной службе",
+    "военной службой"
+   ],
+   "correct": "военной службе",
+   "case": "Дательный (Dative)",
+   "explain": "«военной службе» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c4",
+   "translation": "The sons of Reuben, the Gadites, and the half-tribe of Manasseh, of valiant men, men able to bear buckler and sword, and to shoot with bow, and skillful in war, were forty-four thousand seven hundred sixty, that were able to go out to war."
+  },
+  {
+   "sentence": "Он увел их в Халах, Хавор, Ару и на реку Гозан, где они находятся и по ___.",
+   "lemma": "день",
+   "options": [
+    "сегодняшний день",
+    "сегодняшним днём",
+    "сегодняшнему дню",
+    "сегодняшнего дня"
+   ],
+   "correct": "сегодняшний день",
+   "case": "Винительный (Accusative)",
+   "explain": "«сегодняшний день» — after the preposition «по», the accusative marks the direct object of the verb.",
+   "id": "c6",
+   "translation": "So the God of Israel stirred up the spirit of Pul king of Assyria, and the spirit of Tilgath Pilneser king of Assyria, and he carried them away, even the Reubenites, and the Gadites, and the half-tribe of Manasseh, and brought them to Halah, Habor, Hara, and to the river of Gozan, to this day."
+  }
+ ]
 }

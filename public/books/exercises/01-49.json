@@ -1,122 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Ты, молодой ___ Иуда, ты возвращаешься с добычи, мой сын.",
-      "lemma": "лев",
-      "options": ["лев", "льва", "льву", "львом"],
-      "correct": "лев",
-      "case": "Именительный (Nominative)",
-      "translation": "You, young lion Judah, you return from the prey, my son.",
-      "explain": "Nominative because 'лев' stands in apposition to the subject 'ты', describing who Judah is, with no preposition or verb governing it."
-    },
-    {
-      "id": "c2",
-      "sentence": "Я разбросаю их среди ___ Иакова и рассею их в Израиле.",
-      "lemma": "потомок",
-      "options": ["потомки", "потомков", "потомкам", "потомками"],
-      "correct": "потомков",
-      "case": "Родительный (Genitive)",
-      "translation": "I will divide them among the descendants of Jacob and scatter them in Israel.",
-      "explain": "Genitive because the preposition 'среди' (among) always requires its object in the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Соберитесь и слушайте сыновья Иакова, внимайте своему ___ Израилю.",
-      "lemma": "отец",
-      "options": ["отец", "отца", "отцу", "отцом"],
-      "correct": "отцу",
-      "case": "Дательный (Dative)",
-      "translation": "Assemble and listen, sons of Jacob, heed your father Israel.",
-      "explain": "Dative because the verb 'внимать' (to heed, to attend to) governs its object in the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Иаков созвал своих ___ и сказал, «Соберитесь вокруг, и я поведаю, что станет с вами в грядущие дни».",
-      "lemma": "сын",
-      "options": ["сыновья", "сыновей", "сыновьям", "сыновьями"],
-      "correct": "сыновей",
-      "case": "Винительный (Accusative)",
-      "translation": "Jacob called his sons together and said, \"Gather around, and I will tell you what will happen to you in the days to come.\"",
-      "explain": "Accusative because 'сыновей' is the direct object of the transitive verb 'созвал' (called together); being animate, its accusative form matches the genitive."
-    },
-    {
-      "id": "c5",
-      "sentence": "С ожесточением лучники нападали на него, они стреляли в него со ___.",
-      "lemma": "вражда",
-      "options": ["вражда", "вражды", "вражде", "враждой"],
-      "correct": "враждой",
-      "case": "Творительный (Instrumental)",
-      "translation": "With fierceness the archers attacked him, they shot at him with hostility.",
-      "explain": "Instrumental because the preposition 'со' (a form of 'с' meaning 'with') requires its object in the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Потому что они убивали мужчин в своем ___ и подрезали жилы быкам по своей прихоти.",
-      "lemma": "гнев",
-      "options": ["гнев", "гнева", "гневу", "гневе"],
-      "correct": "гневе",
-      "case": "Предложный (Prepositional)",
-      "translation": "Because they killed men in their anger and hamstrung oxen at their own whim.",
-      "explain": "Prepositional because 'в' + 'гневе' describes a state ('in anger') rather than motion, which triggers the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Иаков созвал своих сыновей и сказал, «Соберитесь вокруг, и я поведаю, что станет с вами в грядущие дни.",
-      "question": "Why did Jacob call his sons together?",
-      "options": ["To tell them what would happen to them in the days to come", "To divide his inheritance among them", "To celebrate a festival", "To bless only Joseph"],
-      "correct": "To tell them what would happen to them in the days to come",
-      "explain": "Jacob gathers his sons to tell them what will happen to them in the days to come."
-    },
-    {
-      "id": "r2",
-      "ru": "Скипетр не покинет Иуду, и потомки его всегда будут держать жезл правителей, пока не придет тот, кому он принадлежит, тот, кому покорятся все народы.",
-      "question": "According to Jacob's blessing, what will not depart from Judah until the rightful ruler comes?",
-      "options": ["The scepter", "The sword", "The vineyard", "The crown"],
-      "correct": "The scepter",
-      "explain": "The text says the scepter will not depart from Judah until the one to whom it belongs comes."
-    },
-    {
-      "id": "r3",
-      "ru": "Завулон будет жить у морского побережья и будет гаванью для кораблей, его границы протянутся до Сидона.",
-      "question": "Where will Zebulun live, according to Jacob's blessing?",
-      "options": ["At the seashore, serving as a haven for ships", "In the desert", "On a mountaintop", "In a walled city"],
-      "correct": "At the seashore, serving as a haven for ships",
-      "explain": "Jacob says Zebulun will dwell at the seashore and be a haven for ships, with his border reaching Sidon."
-    },
-    {
-      "id": "r4",
-      "ru": "Дан будет змеем у дорожной обочины, гадюкой на тропе, которая кусает коня за ногу, так что всадник его падает навзничь.",
-      "question": "What image does Jacob use to describe Dan?",
-      "options": ["A serpent by the road that bites the horse's heel", "A lion crouching in the field", "A dove flying overhead", "A shepherd guarding sheep"],
-      "correct": "A serpent by the road that bites the horse's heel",
-      "explain": "Jacob compares Dan to a serpent and viper on the path that bites the horse's heel, making its rider fall backward."
-    },
-    {
-      "id": "r5",
-      "ru": "С ожесточением лучники нападали на него, они стреляли в него со враждой.",
-      "question": "How did the archers treat Joseph, according to the blessing?",
-      "options": ["They attacked him fiercely and shot at him with hostility", "They ignored him completely", "They praised him publicly", "They gave him gifts"],
-      "correct": "They attacked him fiercely and shot at him with hostility",
-      "explain": "The text describes archers attacking Joseph fiercely and shooting at him with hostility, though his bow remained strong."
-    },
-    {
-      "id": "r6",
-      "ru": "Вениамин, прожорливый волк, утром он пожирает добычу, вечером делит награбленное добро.",
-      "question": "What animal does Jacob compare Benjamin to?",
-      "options": ["A ravenous wolf", "A gentle lamb", "A soaring eagle", "A strong ox"],
-      "correct": "A ravenous wolf",
-      "explain": "Jacob calls Benjamin a ravenous wolf who devours prey in the morning and divides plunder in the evening."
-    },
-    {
-      "id": "r7",
-      "ru": "Закончив давать наставления сыновьям, Иаков поднял ноги на постель, испустил дух и отошел к своим предкам.",
-      "question": "What happened immediately after Jacob finished instructing his sons?",
-      "options": ["He drew his feet into the bed, breathed his last, and was gathered to his people", "He traveled to Egypt", "He built an altar", "He divided his land among his sons"],
-      "correct": "He drew his feet into the bed, breathed his last, and was gathered to his people",
-      "explain": "The text says that after finishing his instructions, Jacob drew his feet into the bed, breathed his last, and was gathered to his people."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Он привяжет своего осла к ___,",
+   "lemma": "лоза",
+   "options": [
+    "виноградной лозе",
+    "виноградной лозы",
+    "виноградной лозой",
+    "виноградная лоза"
+   ],
+   "correct": "виноградной лозе",
+   "case": "Дательный (Dative)",
+   "explain": "«виноградной лозе» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c1",
+   "translation": "Binding his foal to the vine, his donkey’s colt to the choice vine; he has washed his garments in wine, his robes in the blood of grapes."
+  },
+  {
+   "sentence": "Завулон будет жить у ___",
+   "lemma": "побережье",
+   "options": [
+    "морским побережьем",
+    "морское побережье",
+    "морского побережья",
+    "морскому побережью"
+   ],
+   "correct": "морского побережья",
+   "case": "Родительный (Genitive)",
+   "explain": "«морского побережья» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "“Zebulun will dwell at the haven of the sea. He will be for a haven of ships. His border will be on Sidon."
+  },
+  {
+   "sentence": "Дан будет змеем у ___,",
+   "lemma": "обочина",
+   "options": [
+    "дорожной обочиной",
+    "дорожная обочина",
+    "дорожной обочине",
+    "дорожной обочины"
+   ],
+   "correct": "дорожной обочины",
+   "case": "Родительный (Genitive)",
+   "explain": "«дорожной обочины» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Dan will be a serpent on the trail, an adder in the path, that bites the horse’s heels, so that his rider falls backward."
+  },
+  {
+   "sentence": "Вениамин — ___;",
+   "lemma": "волк",
+   "options": [
+    "прожорливого волка",
+    "прожорливом волке",
+    "прожорливый волк",
+    "прожорливому волку"
+   ],
+   "correct": "прожорливый волк",
+   "case": "Именительный (Nominative)",
+   "explain": "«прожорливый волк» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "“Benjamin is a ravenous wolf. In the morning he will devour the prey. At evening he will divide the plunder.”"
+  },
+  {
+   "sentence": "Вот каковы двенадцать родов Израиля, и вот что сказал им отец, благословляя их; каждого он наделил ___.",
+   "lemma": "благословение",
+   "options": [
+    "подобающем благословении",
+    "подобающим благословением",
+    "подобающего благословения",
+    "подобающее благословение"
+   ],
+   "correct": "подобающим благословением",
+   "case": "Творительный (Instrumental)",
+   "explain": "«подобающим благословением» — the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "All these are the twelve tribes of Israel, and this is what their father spoke to them, and blessed them. He blessed everyone according to his own blessing."
+  }
+ ]
 }

@@ -1,134 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Господи, Ты праведен, когда бы я не обратился к Тебе стяжбой. Но позволь говорить с Тобой о ___. Почему путь нечестивых успешен?",
-      "lemma": "правосудие",
-      "options": ["правосудие", "правосудия", "правосудии", "правосудием"],
-      "correct": "правосудии",
-      "case": "Предложный (Prepositional)",
-      "translation": "You are righteous, Yahweh, when I contend with you; yet let me speak to you about justice.",
-      "explain": "The preposition о (about, concerning) requires the prepositional case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Ты посадил их, и они пустили корни, выросли и приносят плод. Ты всегда у них на губах, но далек от ___.",
-      "lemma": "сердце",
-      "options": ["сердце", "сердца", "сердец", "сердцах"],
-      "correct": "сердец",
-      "case": "Родительный (Genitive)",
-      "translation": "You have planted them. Yes, they have taken root. They grow. Yes, they produce fruit. You are near in their mouth, and far from their heart.",
-      "explain": "The adjective далек (far) with the preposition от (from) requires the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "О, веди же их на бойню, как ___, отдели их на день заклания.",
-      "lemma": "овца",
-      "options": ["овца", "овец", "овцы", "овцами"],
-      "correct": "овец",
-      "case": "Родительный (Genitive)",
-      "translation": "Pull them out like sheep for the slaughter, and prepare them for the day of slaughter.",
-      "explain": "The comparative как (like) requires the accusative case, which for plural feminine nouns coincides with the genitive form."
-    },
-    {
-      "id": "c4",
-      "sentence": "Долго ли ___ быть пересохшей и траве вянуть на каждом поле?",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землей"],
-      "correct": "земле",
-      "case": "Предложный (Prepositional)",
-      "translation": "How long will the land mourn, and the grass of the whole country wither?",
-      "explain": "With the verb быть and infinitive, the nominative case is normally used, but here the dative is implied with долго (how long)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Если ты бежал с пешими, и они тебя утомили, как тебе состязаться с ___?",
-      "lemma": "конь",
-      "options": ["конь", "конями", "конем", "конях"],
-      "correct": "конями",
-      "case": "Творительный (Instrumental)",
-      "translation": "If you have run with the footmen, and they have wearied you, then how can you contend with horses?",
-      "explain": "The preposition с (with) requires the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Даже твои братья и все твои родственники, даже они тебя предали, провожают тебя громким криком. Не доверяй им, даже когда они говорят с тобою ___ ».",
-      "lemma": "слово",
-      "options": ["слово", "слова", "словом", "словами"],
-      "correct": "словами",
-      "case": "Творительный (Instrumental)",
-      "translation": "Even your brothers and the house of your father have dealt treacherously with you. Don't believe them, even though they speak beautiful words to you.",
-      "explain": "The verb говорят (speak) with an adverbial phrase uses the instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Покину свой дом, брошу свое владение, самое дорогое мне отдам в руки его ___.",
-      "lemma": "враг",
-      "options": ["враг", "врага", "врагу", "врагов"],
-      "correct": "врагов",
-      "case": "Родительный (Genitive)",
-      "translation": "I have forsaken my house. I have cast off my heritage. I have given the dearly beloved of my soul into the hand of her enemies.",
-      "explain": "The plural genitive is used after the preposition в (in the possession of)."
-    },
-    {
-      "id": "c8",
-      "sentence": "Множество пастухов погубило мой виноградник, вытоптало мой надел. Они превратили мой прекрасный надел в разоренный пустырь. Превратили его в ___.",
-      "lemma": "пустыня",
-      "options": ["пустыня", "пустыни", "пустыню", "пустыней"],
-      "correct": "пустыню",
-      "case": "Винительный (Accusative)",
-      "translation": "Many shepherds have destroyed my vineyard. They have trodden my portion under foot. They have made my pleasant portion a desolate wilderness.",
-      "explain": "The verb превратили (transformed into) requires the accusative case for its direct object."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Господи, Ты праведен, когда бы я не обратился к Тебе стяжбой. Но позволь говорить с Тобой о правосудии. Почему путь нечестивых успешен?",
-      "question": "What does Jeremiah ask God about the wicked?",
-      "options": ["Why do they live in poverty", "Why the way of the wicked prospers", "Why God created them", "Why they do not worship God"],
-      "correct": "Why the way of the wicked prospers",
-      "explain": "Jeremiah asks 'Почему путь нечестивых успешен?' — Why does the way of the wicked prosper?"
-    },
-    {
-      "id": "r2",
-      "ru": "Ты посадил их, и они пустили корни, выросли и приносят плод. Ты всегда у них на губах, но далек от сердец их.",
-      "question": "What is the complaint about God's presence?",
-      "options": ["God is always present in their hearts", "God is near in their mouths but far from their hearts", "God has abandoned them completely", "God never speaks to them"],
-      "correct": "God is near in their mouths but far from their hearts",
-      "explain": "The text says 'Ты всегда у них на губах, но далек от сердец их' — You are always on their lips, but far from their hearts."
-    },
-    {
-      "id": "r3",
-      "ru": "О, если ты бежал с пешими, и они тебя утомили, как тебе состязаться с конями? Если ты чувствуешь себя уверенно только на открытом поле, что же с тобой будет в зарослях у реки Иордана?",
-      "question": "What does God say about Jeremiah's weakness in comparison to greater challenges?",
-      "options": ["Jeremiah is strong enough to face any challenge", "If footmen have tired you, how will you compete with horses? If you stumble in open country, how will you do in the thickets?", "Jeremiah will never face any real trouble", "God promises to make Jeremiah stronger"],
-      "correct": "If footmen have tired you, how will you compete with horses? If you stumble in open country, how will you do in the thickets?",
-      "explain": "God uses escalating examples to show Jeremiah greater trials ahead: 'если ты бежал с пешими... как тебе состязаться с конями?' — If you have run with footmen... how can you compete with horses?"
-    },
-    {
-      "id": "r4",
-      "ru": "Даже твои братья и все твои родственники, даже они тебя предали, провожают тебя громким криком.",
-      "question": "Who has betrayed Jeremiah?",
-      "options": ["Only his enemies", "His brothers and relatives have betrayed him, pursuing him with loud cries", "Only the priests", "The people of Jerusalem alone"],
-      "correct": "His brothers and relatives have betrayed him, pursuing him with loud cries",
-      "explain": "The text explicitly states 'твои братья и все твои родственники, даже они тебя предали, провожают тебя громким криком' — your brothers and all your relatives have dealt treacherously with you and are pursuing you with loud cries."
-    },
-    {
-      "id": "r5",
-      "ru": "Покину свой дом, брошу свое владение, самое дорогое мне отдам в руки его врагов.",
-      "question": "What does God say He will do to His inheritance?",
-      "options": ["He will protect it from all enemies", "He will abandon His house and give His heritage into the hands of its enemies", "He will make it stronger than ever", "He will share it with His people"],
-      "correct": "He will abandon His house and give His heritage into the hands of its enemies",
-      "explain": "God says 'Покину свой дом, брошу свое владение... отдам в руки его врагов' — I have forsaken my house, I have cast off my inheritance, and given my beloved into the hands of her enemies."
-    },
-    {
-      "id": "r6",
-      "ru": "Множество пастухов погубило мой виноградник, вытоптало мой надел. Они превратили мой прекрасный надел в разоренный пустырь.",
-      "question": "What have the shepherds done to God's vineyard?",
-      "options": ["They have cared for it faithfully", "They have destroyed it, trampled it, and turned it into a desolate wilderness", "They have made it more fruitful", "They have planted new crops in it"],
-      "correct": "They have destroyed it, trampled it, and turned it into a desolate wilderness",
-      "explain": "The text says 'пастухов... погубило мой виноградник, вытоптало мой надел... превратили... в разоренный пустырь' — Shepherds have destroyed my vineyard, trampled my portion, turned it into a desolate wilderness."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Уподобилось Мое владение ___,",
+   "lemma": "птица",
+   "options": [
+    "хищной птице",
+    "хищной птицей",
+    "хищная птица",
+    "хищной птицы"
+   ],
+   "correct": "хищной птице",
+   "case": "Дательный (Dative)",
+   "explain": "«хищной птице» — the dative marks the indirect object or recipient.",
+   "id": "c1",
+   "translation": "Is my heritage to me as a speckled bird of prey? Are the birds of prey against her all around? Go, assemble all the animals of the field. Bring them to devour."
+  },
+  {
+   "sentence": "По ___ пустынных гор",
+   "lemma": "гребень",
+   "options": [
+    "голых гребней",
+    "голым гребням",
+    "голые гребни",
+    "голых гребнях"
+   ],
+   "correct": "голым гребням",
+   "case": "Дательный (Dative)",
+   "explain": "«голым гребням» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c2",
+   "translation": "Destroyers have come on all the bare heights in the wilderness; for the sword of Yahweh devours from the one end of the land even to the other end of the land. No flesh has peace."
+  },
+  {
+   "sentence": "По голым гребням ___",
+   "lemma": "гора",
+   "options": [
+    "пустынным горам",
+    "пустынных горах",
+    "пустынных гор",
+    "пустынными горами"
+   ],
+   "correct": "пустынных гор",
+   "case": "Родительный (Genitive)",
+   "explain": "«пустынных гор» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Destroyers have come on all the bare heights in the wilderness; for the sword of Yahweh devours from the one end of the land even to the other end of the land. No flesh has peace."
+  }
+ ]
 }

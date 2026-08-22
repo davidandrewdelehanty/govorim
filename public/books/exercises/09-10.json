@@ -1,134 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Самуил взял сосуд с оливковым маслом и полил им голову ___.",
-      "lemma": "Саул",
-      "options": ["Саула", "Саулу", "Саулом", "Сауле"],
-      "correct": "Саула",
-      "case": "Винительный (Accusative)",
-      "translation": "Samuel took a vial of olive oil and poured it on Saul's head.",
-      "explain": "The transitive verb полил requires the accusative case for the indirect object (whose head)."
-    },
-    {
-      "id": "c2",
-      "sentence": "Трое мужчин встретят тебя, поднимающихся к Богу в ___.",
-      "lemma": "Вифиль",
-      "options": ["Вифиль", "Вифиля", "Вифилю", "Вифилем"],
-      "correct": "Вифиль",
-      "case": "Именительный (Nominative)",
-      "translation": "Three men will meet you going up to God to Bethel.",
-      "explain": "The name Bethel functions as a predicate nominative or the object of the preposition в (to), which in this context uses the nominative."
-    },
-    {
-      "id": "c3",
-      "sentence": "Один из них будет нести трех ___.",
-      "lemma": "козел",
-      "options": ["козла", "козлы", "козлов", "козлу"],
-      "correct": "козлов",
-      "case": "Родительный (Genitive)",
-      "translation": "One of them will carry three goats.",
-      "explain": "After the numeral три (three) and other numbers, the genitive plural is required."
-    },
-    {
-      "id": "c4",
-      "sentence": "Они поприветствуют тебя и предложат два хлеба, которые ты возьмешь у ___.",
-      "lemma": "они",
-      "options": ["они", "их", "им", "них"],
-      "correct": "них",
-      "case": "Предложный (Prepositional)",
-      "translation": "They will greet you and offer you two loaves, which you will take from them.",
-      "explain": "The preposition у (from, at) requires the prepositional case for pronouns."
-    },
-    {
-      "id": "c5",
-      "sentence": "Перед ними будут идти играющие на лирах, бубнах, свирелях и ___.",
-      "lemma": "арфа",
-      "options": ["арфа", "арфы", "арфе", "арфах"],
-      "correct": "арфах",
-      "case": "Предложный (Prepositional)",
-      "translation": "Before them will be those playing lyres, tambourines, pipes, and harps.",
-      "explain": "The preposition на (on) governing the list of instruments requires the prepositional case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Дух Господа сойдет на тебя, и ты будешь пророчествовать вместе с ___.",
-      "lemma": "они",
-      "options": ["они", "их", "им", "ними"],
-      "correct": "ними",
-      "case": "Творительный (Instrumental)",
-      "translation": "The Spirit of the Lord will come upon you, and you will prophesy with them.",
-      "explain": "The preposition с (with) requires the instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Спускайся передо мной в ___.",
-      "lemma": "Гилгал",
-      "options": ["Гилгала", "Гилгал", "Гилгалу", "Гилгалом"],
-      "correct": "Гилгал",
-      "case": "Винительный (Accusative)",
-      "translation": "Go down before me to Gilgal.",
-      "explain": "The preposition в (to) requires the accusative case when indicating direction or destination."
-    },
-    {
-      "id": "c8",
-      "sentence": "Я непременно спущусь к тебе, чтобы принести жертвы и жертвы ___.",
-      "lemma": "примирение",
-      "options": ["примирение", "примирения", "примирению", "примирением"],
-      "correct": "примирения",
-      "case": "Родительный (Genitive)",
-      "translation": "I will surely come down to you to offer burnt offerings and peace offerings.",
-      "explain": "The noun in apposition requires the genitive case when expressing the type of offering."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Затем Самуил взял сосуд с оливковым маслом, полил им голову Саула, поцеловал его и сказал.",
-      "question": "What did Samuel do to anoint Saul as prince?",
-      "options": ["He poured olive oil on his head and kissed him", "He gave him a crown", "He presented him to the people", "He wrote his name in a scroll"],
-      "correct": "He poured olive oil on his head and kissed him",
-      "explain": "The text describes Samuel taking oil, pouring it on Saul's head, kissing him, and speaking to him."
-    },
-    {
-      "id": "r2",
-      "ru": "Когда ты уйдешь от меня сегодня, то неподалеку от могилы Рахили, в Целцахе, на границе Вениамина, ты встретишь двух мужчин.",
-      "question": "Where would Saul meet the two men mentioned by Samuel?",
-      "options": ["Near Rachel's tomb at Zelzah, on the border of Benjamin", "In the city of Gibeah", "By the great oak of Tabor", "At the high place in Bethel"],
-      "correct": "Near Rachel's tomb at Zelzah, on the border of Benjamin",
-      "explain": "Samuel told Saul he would meet two men near Rachel's tomb at Zelzah on the border of Benjamin."
-    },
-    {
-      "id": "r3",
-      "ru": "Оттуда ты пойдешь дальше, пока не доберешься до великого дерева в Фаворе.",
-      "question": "What landmark would Saul encounter after leaving Zelzah?",
-      "options": ["The great oak of Tabor", "The high place of Bethel", "The garrison of the Philistines", "The hill of God"],
-      "correct": "The great oak of Tabor",
-      "explain": "Samuel told him that from there he would go on until he reached the great oak of Tabor."
-    },
-    {
-      "id": "r4",
-      "ru": "Дух Бога сошел на Саула, и он начал пророчествовать вместе с ними.",
-      "question": "What happened to Saul when the Spirit of God came upon him?",
-      "options": ["He began to prophesy with the prophets", "He fell to the ground", "He spoke in a strange language", "He became afraid and ran away"],
-      "correct": "He began to prophesy with the prophets",
-      "explain": "The text states the Spirit of God came mightily on Saul, and he prophesied among the prophets."
-    },
-    {
-      "id": "r5",
-      "ru": "Видите человека, которого выбрал Господь? Нет ему подобного среди всего народа.",
-      "question": "What does Samuel say when presenting Saul to the people?",
-      "options": ["There is no one like him among all the people", "He is the wisest man in Israel", "He has the best warriors with him", "He comes from the noblest family"],
-      "correct": "There is no one like him among all the people",
-      "explain": "Samuel points out the man whom the Lord has chosen, stating there is no one like him among all the people."
-    },
-    {
-      "id": "r6",
-      "ru": "Саул тоже пошел к себе домой в Гиву в сопровождении храбрых людей, чьих сердец коснулся Бог.",
-      "question": "Who accompanied Saul when he went home to Gibeah?",
-      "options": ["Brave men whose hearts God had touched", "All the prophets", "Samuel and the elders", "His uncle and the judges"],
-      "correct": "Brave men whose hearts God had touched",
-      "explain": "The text says Saul went home to Gibeah with the brave men whose hearts the Lord had touched."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Затем Самуил взял сосуд с ___, полил им голову Саула, поцеловал его и сказал:",
+   "lemma": "масло",
+   "options": [
+    "оливковое масло",
+    "оливковом масле",
+    "оливкового масла",
+    "оливковым маслом"
+   ],
+   "correct": "оливковым маслом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«оливковым маслом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c1",
+   "translation": "Then Samuel took the vial of oil, and poured it on his head, and kissed him, and said, “Hasn’t Yahweh anointed you to be prince over his inheritance?"
+  },
+  {
+   "sentence": "Оттуда ты пойдешь дальше, пока не доберешься до ___ в Фаворе.",
+   "lemma": "дерево",
+   "options": [
+    "священного дерева",
+    "священном дереве",
+    "священное дерево",
+    "священному дереву"
+   ],
+   "correct": "священного дерева",
+   "case": "Родительный (Genitive)",
+   "explain": "«священного дерева» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "“Then you will go on forward from there, and you will come to the oak of Tabor. Three men will meet you there going up to God to Bethel, one carrying three young goats, and another carrying three loaves of bread, and another carrying a container of wine."
+  },
+  {
+   "sentence": "После этого ты пойдешь к ___ , где находится сторожевая застава филистимлян.",
+   "lemma": "холм",
+   "options": [
+    "божий холм",
+    "божьем холме",
+    "божьим холмом",
+    "божьему холму"
+   ],
+   "correct": "божьему холму",
+   "case": "Дательный (Dative)",
+   "explain": "«Божьему холму» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c3",
+   "translation": "“After that you will come to the hill of God, where the garrison of the Philistines is; and it will happen, when you have come there to the city, that you will meet a band of prophets coming down from the high place with a lute, a tambourine, a pipe, and a harp before them; and they will be prophesying."
+  },
+  {
+   "sentence": "После этого ты пойдешь к Божьему холму , где находится ___ филистимлян.",
+   "lemma": "застава",
+   "options": [
+    "сторожевой заставой",
+    "сторожевой заставе",
+    "сторожевой заставы",
+    "сторожевая застава"
+   ],
+   "correct": "сторожевая застава",
+   "case": "Именительный (Nominative)",
+   "explain": "«сторожевая застава» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "“After that you will come to the hill of God, where the garrison of the Philistines is; and it will happen, when you have come there to the city, that you will meet a band of prophets coming down from the high place with a lute, a tambourine, a pipe, and a harp before them; and they will be prophesying."
+  },
+  {
+   "sentence": "Дух Господа сойдет на тебя, и ты будешь пророчествовать вместе с ними и станешь ___.",
+   "lemma": "человек",
+   "options": [
+    "другому человеку",
+    "другим человеком",
+    "другой человек",
+    "другого человека"
+   ],
+   "correct": "другим человеком",
+   "case": "Творительный (Instrumental)",
+   "explain": "«другим человеком» — the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "Then Yahweh’s Spirit will come mightily on you, and you will prophesy with them, and will be turned into another man."
+  },
+  {
+   "sentence": "Саул тоже пошел к себе домой в Гиву в сопровождении ___, чьих сердец коснулся Бог.",
+   "lemma": "человек",
+   "options": [
+    "храбрых людях",
+    "храбрых людей",
+    "храбрые люди",
+    "храбрыми людьми"
+   ],
+   "correct": "храбрых людей",
+   "case": "Родительный (Genitive)",
+   "explain": "«храбрых людей» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "Saul also went to his house to Gibeah; and the army went with him, whose hearts God had touched."
+  }
+ ]
 }

@@ -1,164 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Господь позвал ___ и говорил с ним.",
-      "lemma": "Моисей",
-      "options": ["Моисей", "Моисея", "Моисею", "Моисеем"],
-      "correct": "Моисея",
-      "case": "Винительный (Accusative)",
-      "translation": "The Lord called Moses and spoke with him.",
-      "explain": "Моисей is the direct object of позвал (called); an animate masculine noun takes the accusative, which equals the genitive form Моисея."
-    },
-    {
-      "id": "c2",
-      "sentence": "Пусть он заколет молодого ___ перед Господом.",
-      "lemma": "бык",
-      "options": ["бык", "быка", "быку", "быком"],
-      "correct": "быка",
-      "case": "Винительный (Accusative)",
-      "translation": "Let him slaughter the young bull before the Lord.",
-      "explain": "Бык is the direct object of заколет (will kill); an animate masculine noun forms the accusative like the genitive → быка."
-    },
-    {
-      "id": "c3",
-      "sentence": "Пусть он заколет молодого быка перед ___.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Let him slaughter the young bull before the Lord.",
-      "explain": "The preposition перед (before/in front of) always governs the instrumental → Господом."
-    },
-    {
-      "id": "c4",
-      "sentence": "Сыновья Аарона разведут на жертвеннике огонь и разложат в ___ дрова.",
-      "lemma": "огонь",
-      "options": ["огонь", "огня", "огню", "огне"],
-      "correct": "огне",
-      "case": "Предложный (Prepositional)",
-      "translation": "Aaron's sons will kindle a fire on the altar and lay wood in the fire.",
-      "explain": "The preposition в indicating location (in the fire, no motion) takes the prepositional → огне."
-    },
-    {
-      "id": "c5",
-      "sentence": "Кровью окропят жертвенник, который находится у ___ в шатер собрания.",
-      "lemma": "вход",
-      "options": ["вход", "входа", "входу", "входом"],
-      "correct": "входа",
-      "case": "Родительный (Genitive)",
-      "translation": "They sprinkle blood on the altar that is at the entrance to the Tent of Meeting.",
-      "explain": "The preposition у (at/by) always governs the genitive → входа."
-    },
-    {
-      "id": "c6",
-      "sentence": "Если кто-то из вас приносит ___ в жертву скот.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господу",
-      "case": "Дательный (Dative)",
-      "translation": "If anyone of you offers livestock as a sacrifice to the Lord.",
-      "explain": "Господь is the recipient (indirect object) of приносит (brings/offers), so it takes the dative → Господу."
-    },
-    {
-      "id": "c7",
-      "sentence": "Пусть они разложат куски вместе с головой и жиром на ___ на горящих дровах.",
-      "lemma": "жертвенник",
-      "options": ["жертвенник", "жертвенника", "жертвеннику", "жертвеннике"],
-      "correct": "жертвеннике",
-      "case": "Предложный (Prepositional)",
-      "translation": "Let them arrange the pieces, with the head and the fat, on the altar on the burning wood.",
-      "explain": "The preposition на marking location (on the altar, no motion) takes the prepositional → жертвеннике."
-    },
-    {
-      "id": "c8",
-      "sentence": "Пусть он положит руки на ___ жертвы всесожжения.",
-      "lemma": "голова",
-      "options": ["голова", "голову", "головы", "головой"],
-      "correct": "голову",
-      "case": "Винительный (Accusative)",
-      "translation": "Let him lay his hands on the head of the burnt offering.",
-      "explain": "The preposition на with motion (onto the head) takes the accusative; for feminine -а nouns the ending is -у → голову."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Пусть он положит руки на голову жертвы всесожжения, и она будет принята от его лица, чтобы совершить для него отпущение грехов.",
-      "question": "Why does the worshiper lay his hands on the head of the burnt offering?",
-      "options": [
-        "So that it is accepted to make atonement for him",
-        "To count how many animals he owns",
-        "To mark the animal for sale",
-        "To feed the priests first"
-      ],
-      "correct": "So that it is accepted to make atonement for him",
-      "explain": "The text says the offering will be accepted on his behalf, to make atonement for him."
-    },
-    {
-      "id": "r2",
-      "ru": "Если приношение это всесожжение из крупного скота, пусть жертвующий принесет в жертву самца без изъяна.",
-      "question": "For a burnt offering from the herd, what kind of animal must be offered?",
-      "options": [
-        "A male without defect",
-        "Any young animal",
-        "A female goat",
-        "Two doves"
-      ],
-      "correct": "A male without defect",
-      "explain": "The passage requires a male (самца) without blemish (без изъяна) from the herd."
-    },
-    {
-      "id": "r3",
-      "ru": "Пусть он заколет молодого быка перед Господом, а сыновья Аарона, священники, принесут кровь и окропят со всех сторон жертвенник, который находится у входа в шатер собрания.",
-      "question": "Who presents the blood and sprinkles it around the altar?",
-      "options": [
-        "Aaron's sons, the priests",
-        "Moses by himself",
-        "The whole congregation",
-        "The person who brought the offering"
-      ],
-      "correct": "Aaron's sons, the priests",
-      "explain": "The text says Aaron's sons, the priests, bring the blood and sprinkle it on all sides of the altar."
-    },
-    {
-      "id": "r4",
-      "ru": "Пусть жертвующий снимет шкуру с туши жертвы всесожжения и разрежет на куски.",
-      "question": "After the burnt offering is killed, what is done with it next?",
-      "options": [
-        "Its skin is removed and it is cut into pieces",
-        "It is washed in a river",
-        "It is buried outside the camp",
-        "It is given away whole"
-      ],
-      "correct": "Its skin is removed and it is cut into pieces",
-      "explain": "The worshiper skins the carcass of the burnt offering and cuts it into pieces."
-    },
-    {
-      "id": "r5",
-      "ru": "Это будет всесожжение, огненная жертва, благоухание, приятное Господу.",
-      "question": "How is the burnt offering described in relation to the Lord?",
-      "options": [
-        "A pleasing aroma to the Lord",
-        "A punishment for the priests",
-        "An unclean thing",
-        "A payment of silver"
-      ],
-      "correct": "A pleasing aroma to the Lord",
-      "explain": "It is called an offering made by fire, a pleasing aroma (благоухание, приятное) to the Lord."
-    },
-    {
-      "id": "r6",
-      "ru": "Если приношение Господу — это всесожжение из птиц, пусть он принесет в жертву горлицу или молодого голубя.",
-      "question": "If the burnt offering is of birds, what may be offered?",
-      "options": [
-        "A turtledove or a young pigeon",
-        "A sheep or a goat",
-        "A young bull",
-        "A ram"
-      ],
-      "correct": "A turtledove or a young pigeon",
-      "explain": "The text allows a turtledove (горлицу) or a young pigeon (молодого голубя) for a burnt offering of birds."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Если приношение — это всесожжение из ___, пусть жертвующий принесет в жертву самца без изъяна.",
+   "lemma": "скот",
+   "options": [
+    "крупный скот",
+    "крупным скотом",
+    "крупном скоте",
+    "крупного скота"
+   ],
+   "correct": "крупного скота",
+   "case": "Родительный (Genitive)",
+   "explain": "«крупного скота» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "“ ‘If his offering is a burnt offering from the herd, he shall offer a male without defect. He shall offer it at the door of the Tent of Meeting, that he may be accepted before Yahweh."
+  },
+  {
+   "sentence": "Пусть он заколет ___ перед Господом, а сыновья Аарона, священники, принесут кровь и окропят со всех сторон жертвенник, который находится у входа в шатер собрания.",
+   "lemma": "бык",
+   "options": [
+    "молодому быку",
+    "молодым быком",
+    "молодом быке",
+    "молодого быка"
+   ],
+   "correct": "молодого быка",
+   "case": "Винительный (Accusative)",
+   "explain": "«молодого быка» — the accusative marks the direct object of the verb.",
+   "id": "c2",
+   "translation": "He shall kill the bull before Yahweh. Aaron’s sons, the priests, shall present the blood and sprinkle the blood around on the altar that is at the door of the Tent of Meeting."
+  },
+  {
+   "sentence": "Если приношение — это всесожжение из ___, из овец или из коз, пусть он принесет в жертву самца без изъяна.",
+   "lemma": "скот",
+   "options": [
+    "мелком скоте",
+    "мелкому скоту",
+    "мелкий скот",
+    "мелкого скота"
+   ],
+   "correct": "мелкого скота",
+   "case": "Родительный (Genitive)",
+   "explain": "«мелкого скота» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "“ ‘If his offering is from the flock, from the sheep or from the goats, for a burnt offering, he shall offer a male without defect."
+  },
+  {
+   "sentence": "Пусть он заколет его с ___ жертвенника перед Господом, а священники, сыновья Аарона, окропят кровью самца жертвенник со всех сторон.",
+   "lemma": "сторона",
+   "options": [
+    "северной стороны",
+    "северной стороне",
+    "северной стороной",
+    "северная сторона"
+   ],
+   "correct": "северной стороны",
+   "case": "Родительный (Genitive)",
+   "explain": "«северной стороны» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "He shall kill it on the north side of the altar before Yahweh. Aaron’s sons, the priests, shall sprinkle its blood around on the altar."
+  },
+  {
+   "sentence": "Пусть он вынет зоб и перья и бросит их к ___ жертвенника, туда, где пепел.",
+   "lemma": "сторона",
+   "options": [
+    "восточной стороны",
+    "восточной стороне",
+    "восточной стороной",
+    "восточная сторона"
+   ],
+   "correct": "восточной стороне",
+   "case": "Дательный (Dative)",
+   "explain": "«восточной стороне» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c5",
+   "translation": "and he shall take away its crop and its feathers, and cast it beside the altar on the east part, in the place of the ashes."
+  }
+ ]
 }

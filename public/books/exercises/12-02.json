@@ -1,204 +1,34 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Илия и Елисей шли из ___.",
-      "lemma": "место",
-      "options": [
-        "место",
-        "места",
-        "месту",
-        "местом"
-      ],
-      "correct": "места",
-      "case": "Родительный (Genitive)",
-      "translation": "Elijah and Elisha left Gilgal.",
-      "explain": "The preposition \"из\" (from) always governs the genitive."
-    },
-    {
-      "id": "c2",
-      "sentence": "Господь посылает меня в ___.",
-      "lemma": "Вифиль",
-      "options": [
-        "Вифиль",
-        "Вифиля",
-        "Вифилю",
-        "Вифиле"
-      ],
-      "correct": "Вифиль",
-      "case": "Винительный (Accusative)",
-      "translation": "The Lord is sending me to Bethel.",
-      "explain": "The preposition \"в\" with motion uses the accusative."
-    },
-    {
-      "id": "c3",
-      "sentence": "Я не оставлю ___.",
-      "lemma": "я",
-      "options": [
-        "я",
-        "меня",
-        "тебя",
-        "мною"
-      ],
-      "correct": "тебя",
-      "case": "Винительный (Accusative)",
-      "translation": "I will not leave you.",
-      "explain": "The verb \"оставлю\" (will leave) governs the accusative."
-    },
-    {
-      "id": "c4",
-      "sentence": "Они оба переправились по сухой ___ через Иордан.",
-      "lemma": "вода",
-      "options": [
-        "земля",
-        "земли",
-        "земле",
-        "землю"
-      ],
-      "correct": "земле",
-      "case": "Предложный (Prepositional)",
-      "translation": "They crossed on dry ground.",
-      "explain": "The preposition \"по\" (on) with location uses the prepositional."
-    },
-    {
-      "id": "c5",
-      "sentence": "Дай мне унаследовать твой дух в двойной ___.",
-      "lemma": "мара",
-      "options": [
-        "мара",
-        "мары",
-        "мере",
-        "марой"
-      ],
-      "correct": "мере",
-      "case": "Предложный (Prepositional)",
-      "translation": "Give me a double portion of your spirit.",
-      "explain": "The phrase \"в двойной мере\" uses the prepositional."
-    },
-    {
-      "id": "c6",
-      "sentence": "Если ты увидишь, то случится по-___.",
-      "lemma": "я",
-      "options": [
-        "я",
-        "меня",
-        "твому",
-        "мною"
-      ],
-      "correct": "твому",
-      "case": "Дательный (Dative)",
-      "translation": "If you see, it shall be so for you.",
-      "explain": "The phrase \"по-твому\" uses the dative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Огненная колесница разлучила их, и Илия вознесся на ___.",
-      "lemma": "небо",
-      "options": [
-        "небо",
-        "неба",
-        "небу",
-        "небе"
-      ],
-      "correct": "небо",
-      "case": "Винительный (Accusative)",
-      "translation": "Elijah was taken up to heaven.",
-      "explain": "The preposition \"на\" with motion uses the accusative."
-    },
-    {
-      "id": "c8",
-      "sentence": "Отец мой, отец мой, колесница и конница ___!",
-      "lemma": "земля",
-      "options": [
-        "земля",
-        "земли",
-        "земле",
-        "землю"
-      ],
-      "correct": "земли",
-      "case": "Родительный (Genitive)",
-      "translation": "My father, my father, the chariots and horsemen of Israel!",
-      "explain": "The genitive case shows possession: \"of the land\"."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Илия сказал Елисею, прошу, останься здесь, Господь посылает меня в Вифиль.",
-      "question": "What did Elijah ask Elisha to do?",
-      "options": [
-        "To stay while he went to Bethel",
-        "To follow him to Bethel",
-        "To return home",
-        "To prepare supplies"
-      ],
-      "correct": "To stay while he went to Bethel",
-      "explain": "Elijah asked Elisha to wait as the Lord was sending him to Bethel."
-    },
-    {
-      "id": "r2",
-      "ru": "Но Елисей сказал, верно, как и то, что жив Господь, я не оставлю тебя.",
-      "question": "How did Elisha respond?",
-      "options": [
-        "He refused to leave Elijah, swearing by the living Lord",
-        "He agreed to wait",
-        "He asked to go home first",
-        "He reluctantly followed"
-      ],
-      "correct": "He refused to leave Elijah, swearing by the living Lord",
-      "explain": "Elisha made a solemn oath that he would not leave Elijah."
-    },
-    {
-      "id": "r3",
-      "ru": "Пятьдесят человек из учеников пророческих пришли и встали поодаль напротив них.",
-      "question": "Who watched Elijah and Elisha?",
-      "options": [
-        "Fifty sons of the prophets watched from a distance",
-        "A large crowd of people",
-        "The Syrian army",
-        "The priests from Jericho"
-      ],
-      "correct": "Fifty sons of the prophets watched from a distance",
-      "explain": "Fifty of the sons of the prophets came and stood at a distance facing them."
-    },
-    {
-      "id": "r4",
-      "ru": "Внезапно явились огненная колесница и огненные кони, разлучили их, и Илия вознесся в вихре на небо.",
-      "question": "What happened to Elijah at the Jordan?",
-      "options": [
-        "A chariot of fire appeared and he was taken up to heaven in a whirlwind",
-        "He crossed the Jordan and disappeared",
-        "He was killed by the army",
-        "He was taken to Mount Sinai"
-      ],
-      "correct": "A chariot of fire appeared and he was taken up to heaven in a whirlwind",
-      "explain": "A chariot of fire and horses of fire appeared, separated them, and Elijah was taken up in a whirlwind."
-    },
-    {
-      "id": "r5",
-      "ru": "И Елисей смотрел на это и кричал, отец мой, отец мой, колесница и конница Израиля!",
-      "question": "What did Elisha cry out?",
-      "options": [
-        "My father, the chariots and horsemen of Israel!",
-        "Elijah, wait for me!",
-        "Glory to God!",
-        "May God preserve your memory!"
-      ],
-      "correct": "My father, the chariots and horsemen of Israel!",
-      "explain": "Elisha cried out \"My father, my father, the chariots of Israel and its horsemen!\""
-    },
-    {
-      "id": "r6",
-      "ru": "Жители города сказали Елисею, Господин, этот город расположен хорошо, но вода тут плохая, и земля бесплодна.",
-      "question": "What problem did the city have?",
-      "options": [
-        "The water was bad and the land was barren",
-        "Not enough houses for people",
-        "Enemies were attacking",
-        "There was no food"
-      ],
-      "correct": "The water was bad and the land was barren",
-      "explain": "The men of Jericho said the city was well-situated but the water was bad and the land unfruitful."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Вода разомкнулась вправо и влево, и они оба переправились по ___.",
+   "lemma": "земля",
+   "options": [
+    "сухой землёй",
+    "сухой земли",
+    "сухой земле",
+    "сухая земля"
+   ],
+   "correct": "сухой земле",
+   "case": "Дательный (Dative)",
+   "explain": "«сухой земле» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c1",
+   "translation": "Elijah took his mantle, and rolled it up, and struck the waters, and they were divided here and there, so that they both went over on dry ground."
+  },
+  {
+   "sentence": "— У твоих слуг есть пятьдесят ___, − сказали они. − Позволь, они пойдут и поищут твоего господина.",
+   "lemma": "мужчина",
+   "options": [
+    "крепкими мужчинами",
+    "крепким мужчинам",
+    "крепких мужчин",
+    "крепкие мужчины"
+   ],
+   "correct": "крепких мужчин",
+   "case": "Родительный (Genitive)",
+   "explain": "«крепких мужчин» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "They said to him, “See now, there are with your servants fifty strong men. Please let them go and seek your master. Perhaps Yahweh’s Spirit has taken him up, and put him on some mountain, or into some valley.” He said, “Don’t send them.”"
+  }
+ ]
 }

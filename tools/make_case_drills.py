@@ -36,6 +36,64 @@ def chapter_marker(t):
     m=MARK_RE.match(s)
     return m.group(1).upper() if m else ''
 def text_of(el): return ' '.join(''.join(el.itertext()).split())
+def bible_chapters(path):
+    """Scripture mode: one chapter per 'Глава N' section, verse-split paragraphs
+       exactly as the reader produces them (Testament > Book > Chapter)."""
+    raw=open(path,encoding='utf-8',errors='replace').read()
+    raw=re.sub(r'\sxmlns(:\w+)?="[^"]*"','',raw)
+    raw=re.sub(r'\s\w+:(\w+)="[^"]*"',r' \1="x"',raw)
+    root=ET.fromstring(raw)
+    bodies=[b for b in root if b.tag=='body']
+    main=next((b for b in bodies if not b.get('name')), bodies[0])
+    sections=[c for c in main if c.tag=='section']
+    def title_of(sec):
+        t=next((c for c in sec if c.tag=='title'),None)
+        return text_of(t) if t is not None else ''
+    chapters=[]
+    def gather(sec):
+        out=[]
+        dt=next((c for c in sec if c.tag=='title'),None)
+        for node in sec.iter():
+            if node.tag in ('title','subtitle'): continue
+            if node.tag in ('p','v'):
+                t=' '.join(''.join(node.itertext()).split())
+                if not t: continue
+                t=re.sub(r'([.!?…»"])\s+(?=\d{1,3}\s[«"„(\[—–А-ЯЁ])', '\\1\n\n', t)
+                out.append(t)
+        return '\n\n'.join(out)
+    def is_chap(t): return bool(re.match(r'^(глава|псалом|песнь)\s*\d+',t,re.I))
+    def emit(sec,testament,book):
+        te=title_of(sec)
+        childs=[c for c in sec if c.tag=='section']
+        if is_chap(te):
+            body=gather(sec)
+            if len(re.findall(r'[а-яёА-ЯЁ]',body))>=5:
+                chapters.append({'heading':' — '.join(x for x in (testament,book,te) if x),'text':body})
+            return
+        if childs:
+            anychap=any(is_chap(title_of(c)) for c in childs)
+            if anychap:
+                for c in childs: emit(c,testament,te)
+            else:
+                deeper=any(any(x.tag=='section' for x in c) for c in childs)
+                if deeper:
+                    if not testament:
+                        for c in childs: emit(c,te,'')
+                    else:
+                        for c in childs: emit(c,testament,book)
+                else:
+                    body=gather(sec)
+                    if len(re.findall(r'[а-яёА-ЯЁ]',body))>=5:
+                        chapters.append({'heading':' — '.join(x for x in (testament,book or te,'Глава 1') if x),'text':body})
+        else:
+            body=gather(sec)
+            if len(re.findall(r'[а-яёА-ЯЁ]',body))>=5:
+                chapters.append({'heading':' — '.join(x for x in (testament,book or te,'Глава 1') if x),'text':body})
+    for sec in sections: emit(sec,'','')
+    for c in chapters:
+        c['paras']=[p for p in re.split(r'\n{2,}',c['text']) if p.strip()]
+    return chapters
+
 def fb2_chapters(path):
     raw=open(path,encoding='utf-8',errors='replace').read()
     raw=re.sub(r'\sxmlns(:\w+)?="[^"]*"','',raw)
@@ -210,8 +268,11 @@ def drills_for_sentence(sent, seed):
         # against homonym parses); if not, drop the candidate entirely
         if opts.get(case,'').lower()!=correct.lower(): continue
         distinct={}
+        if case in opts:
+            distinct[case]=opts[case]
         for c,o in opts.items():
-            if o.lower() not in {v.lower() for v in distinct.values()} or c==case:
+            if c==case: continue
+            if o.lower() not in {v.lower() for v in distinct.values()}:
                 distinct[c]=o
         if len(distinct)<4 or case not in distinct: continue
         rnd=random.Random(seed+correct)
@@ -245,14 +306,19 @@ def main():
     ap.add_argument('--repo',default='/mnt/c/Users/david/projects/govorim-app')
     ap.add_argument('--book',help='FB2 filename as in the catalogue, e.g. moskva-petushki.fb2')
     ap.add_argument('--all-parallel',action='store_true')
-    ap.add_argument('--max-per-chapter',type=int,default=10)
+    ap.add_argument('--max-per-chapter',type=int,default=100000)
     ap.add_argument('--force',action='store_true')
+    ap.add_argument('--bible',action='store_true',help='Bible only')
+    ap.add_argument('--all',action='store_true',help='every parallelEn book AND the Bible')
     a=ap.parse_args()
     idx=json.load(open(os.path.join(a.repo,'private/books/index.json'),encoding='utf-8'))
+    if a.all: a.all_parallel=True
+    if a.bible:
+        run_bible(a, idx); return
     books=[b for b in idx if 'parallelEn' in b]
     if a.book: books=[b for b in books if b['filename'].endswith('/'+a.book) or b['filename']==a.book]
-    if not a.all_parallel and not a.book:
-        sys.exit('Pick --book <file.fb2> or --all-parallel. Tagged books:\n  '+
+    if not a.all_parallel and not a.book and not a.all:
+        sys.exit('Pick --book <file.fb2>, --all-parallel, --bible, or --all. Tagged books:\n  '+
                  '\n  '.join(b['filename'] for b in [x for x in idx if 'parallelEn' in x]))
     outdir=os.path.join(a.repo,'public/books/exercises')
     os.makedirs(outdir,exist_ok=True)
@@ -270,24 +336,68 @@ def main():
             nn=str(ci+1); nn='0'+nn if len(nn)<2 else nn
             try: enmap=json.load(open(os.path.join(endir,nn+'.json'),encoding='utf-8'))
             except Exception: enmap={}
-            drills=[]; used_cases={}
+            drills=[]
             for pi,par in enumerate(ch['paras']):
                 sents=sentences(par)
                 for si,s in enumerate(sents):
+                    tr=None
                     for d in drills_for_sentence(s, slug+str(ci)):
-                        ckey=d['case']
-                        if used_cases.get(ckey,0)>=max(2,a.max_per_chapter//3): continue
+                        if tr is None:
+                            tr=sentence_translation(enmap.get(str(pi),''),si,len(sents))
+                        if not tr: break
                         d['id']='c%d'%(len(drills)+1)
-                        d['translation']=sentence_translation(enmap.get(str(pi),''),si,len(sents))
-                        if not d['translation']: continue
-                        drills.append(d); used_cases[ckey]=used_cases.get(ckey,0)+1
-                        break   # max one drill per sentence
+                        d['translation']=tr
+                        drills.append(d)
                 if len(drills)>=a.max_per_chapter: break
             if len(drills)>=3:
                 json.dump({'cases':drills},open(fpath,'w',encoding='utf-8'),ensure_ascii=False,indent=1)
                 print('  ch%d: %d drills → %s'%(ci,len(drills),fkey))
             else:
                 print('  ch%d: only %d clean candidates, skipped'%(ci,len(drills)))
+    if a.all:
+        run_bible(a, idx)
+
+def run_bible(a, idx):
+    book=next(b for b in idx if b.get('isBible') or 'Библи' in (b.get('title') or ''))
+    fb2=os.path.join(a.repo,'public/books',book['filename'])
+    chs=book['audiobook']['chapters']
+    chapters=bible_chapters(fb2)
+    print('Bible: %d reading chapters, %d audio keys'%(len(chapters),len(chs)))
+    outdir=os.path.join(a.repo,'public/books/exercises')
+    os.makedirs(outdir,exist_ok=True)
+    made=skipped=0
+    for ci,ch in enumerate(chapters):
+        if ci>=len(chs) or not chs[ci]: continue
+        key=os.path.basename(str(chs[ci])).replace('.json','')     # e.g. 01-03
+        fpath=os.path.join(outdir,key+'.json')
+        if os.path.exists(fpath) and not a.force:
+            skipped+=1; continue
+        try:
+            enmap=json.load(open(os.path.join(a.repo,'public/books/bible-en',key+'.json'),encoding='utf-8'))
+        except Exception:
+            enmap={}
+        drills=[]
+        for par in ch['paras']:
+            vm=re.match(r'^\s*(\d{1,3})\s+(.*)$',par,re.S)
+            vno, body = (vm.group(1), vm.group(2)) if vm else (None, par)
+            en=enmap.get(vno or '','')
+            if not en: continue
+            for si,sent in enumerate(sentences(body)):
+                es=sentences(en)
+                tr=es[min(si,len(es)-1)] if es else en
+                if not tr: continue
+                for d in drills_for_sentence(sent, key):
+                    d['id']='c%d'%(len(drills)+1)
+                    d['translation']=tr
+                    drills.append(d)
+            if len(drills)>=a.max_per_chapter: break
+        if len(drills)>=3:
+            json.dump({'cases':drills},open(fpath,'w',encoding='utf-8'),ensure_ascii=False,indent=1)
+            made+=1
+            if made%50==0: print('  %d chapters written (latest %s, %d drills)'%(made,key,len(drills)),flush=True)
+        else:
+            skipped+=1
+    print('done: %d chapter files written, %d skipped (existing or <3 drills)'%(made,skipped))
 
 if __name__=='__main__':
     main()

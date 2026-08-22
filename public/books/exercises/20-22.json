@@ -1,204 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Доброе имя великих богатств желаннее. Добрая слава лучше ___ и золота.",
-      "lemma": "серебро",
-      "options": [
-        "серебра",
-        "серебро",
-        "серебру",
-        "серебром"
-      ],
-      "correct": "серебра",
-      "case": "Родительный (Genitive)",
-      "translation": "A good reputation is better than silver.",
-      "explain": "Comparative with genitive."
-    },
-    {
-      "id": "c2",
-      "sentence": "Богач и нищий — вот чем сродни. Их обоих создал ___.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господом"
-      ],
-      "correct": "Господь",
-      "case": "Именительный (Nominative)",
-      "translation": "The Lord is the maker of them all.",
-      "explain": "Subject of the verb создал."
-    },
-    {
-      "id": "c3",
-      "sentence": "Разумный увидит опасность и скроется, а простаки пойдут дальше и ___.",
-      "lemma": "пострадать",
-      "options": [
-        "пострадают",
-        "пострадали",
-        "пострадает",
-        "пострадаю"
-      ],
-      "correct": "пострадают",
-      "case": "Future Tense",
-      "translation": "The simple will suffer for it.",
-      "explain": "Future tense matching the context."
-    },
-    {
-      "id": "c4",
-      "sentence": "На пути коварных колючки да заподни, дорожащие ___, к ним и не подойдет.",
-      "lemma": "жизнь",
-      "options": [
-        "жизнь",
-        "жизни",
-        "жизнью",
-        "жизне"
-      ],
-      "correct": "жизнь",
-      "case": "Винительный (Accusative)",
-      "translation": "Whoever guards his soul avoids them.",
-      "explain": "Direct object of the verb дорожащие."
-    },
-    {
-      "id": "c5",
-      "sentence": "Кто любит чистоту сердца, чья речь любезна, тому царь будет ___.",
-      "lemma": "друг",
-      "options": [
-        "друг",
-        "друга",
-        "другу",
-        "другом"
-      ],
-      "correct": "друг",
-      "case": "Именительный (Nominative)",
-      "translation": "The king will be his friend.",
-      "explain": "Predicate nominative after the verb будет."
-    },
-    {
-      "id": "c6",
-      "sentence": "Сеющий беззаконие пожнет беду, и не станет же зла его ___.",
-      "lemma": "гнев",
-      "options": [
-        "гнева",
-        "гнев",
-        "гневу",
-        "гневом"
-      ],
-      "correct": "гнева",
-      "case": "Родительный (Genitive)",
-      "translation": "The rod of his fury will not endure.",
-      "explain": "Genitive in the negative construction."
-    },
-    {
-      "id": "c7",
-      "sentence": "Не дружи с гневливым, с раздражительным не ___, чтобы не научиться его путям.",
-      "lemma": "общаться",
-      "options": [
-        "общайся",
-        "общаешься",
-        "общается",
-        "общались"
-      ],
-      "correct": "общайся",
-      "case": "Imperative",
-      "translation": "Don't associate with one who harbors anger.",
-      "explain": "Negative imperative verb form."
-    },
-    {
-      "id": "c8",
-      "sentence": "Видишь искусного в деле своем, он будет служить ___.",
-      "lemma": "царь",
-      "options": [
-        "царям",
-        "царь",
-        "царями",
-        "царей"
-      ],
-      "correct": "царям",
-      "case": "Дательный (Dative)",
-      "translation": "A skilled worker will serve kings.",
-      "explain": "Dative after the verb служить."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Доброе имя великих богатств желаннее. Добрая слава лучше серебра и золота.",
-      "question": "What is more valuable than wealth?",
-      "options": [
-        "Power",
-        "A good name and reputation",
-        "Friends",
-        "Strength"
-      ],
-      "correct": "A good name and reputation",
-      "explain": "A good name is more desirable than great riches."
-    },
-    {
-      "id": "r2",
-      "ru": "Богач и нищий — вот чем сродни. Их обоих создал Господь.",
-      "question": "What do rich and poor have in common?",
-      "options": [
-        "Wealth",
-        "Both are created by the Lord",
-        "Power",
-        "Forever life"
-      ],
-      "correct": "Both are created by the Lord",
-      "explain": "The Lord is the maker of both rich and poor."
-    },
-    {
-      "id": "r3",
-      "ru": "Разумный увидит опасность и скроется, а простаки пойдут дальше и пострадают.",
-      "question": "What is the difference in wisdom?",
-      "options": [
-        "None",
-        "The prudent hides; the simple suffer",
-        "Both are the same",
-        "They both prosper"
-      ],
-      "correct": "The prudent hides; the simple suffer",
-      "explain": "A prudent man sees danger and hides; the simple pass on and suffer."
-    },
-    {
-      "id": "r4",
-      "ru": "Наставь ребенка на верный путь, он и в старости не собьется с него.",
-      "question": "What is the effect of training a child?",
-      "options": [
-        "They rebel later",
-        "They stay on the path",
-        "They forget it",
-        "They ignore it"
-      ],
-      "correct": "They stay on the path",
-      "explain": "A child trained right will not depart from it in old age."
-    },
-    {
-      "id": "r5",
-      "ru": "Богатые властвуют над бедными, и должник за имодавцу раб.",
-      "question": "What is the relationship between rich and poor?",
-      "options": [
-        "They are equals",
-        "The rich rule the poor; debtors become slaves",
-        "They are friends",
-        "The poor rule the rich"
-      ],
-      "correct": "The rich rule the poor; debtors become slaves",
-      "explain": "The verse states that the rich have power over the poor."
-    },
-    {
-      "id": "r6",
-      "ru": "Не передвигай древние межи, которую поставили твои предки.",
-      "question": "What should be respected?",
-      "options": [
-        "Your possessions",
-        "Ancient boundaries set by ancestors",
-        "Your houses",
-        "Your money"
-      ],
-      "correct": "Ancient boundaries set by ancestors",
-      "explain": "The verse warns against moving boundary stones set by fathers."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "___ великих богатств желаннее;",
+   "lemma": "имя",
+   "options": [
+    "добром имени",
+    "доброе имя",
+    "доброму имени",
+    "доброго имени"
+   ],
+   "correct": "доброе имя",
+   "case": "Именительный (Nominative)",
+   "explain": "«Доброе имя» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "A good name is more desirable than great riches, and loving favor is better than silver and gold."
+  },
+  {
+   "sentence": "Доброе имя ___ желаннее;",
+   "lemma": "богатство",
+   "options": [
+    "великих богатств",
+    "великих богатствах",
+    "великие богатства",
+    "великим богатствам"
+   ],
+   "correct": "великих богатств",
+   "case": "Родительный (Genitive)",
+   "explain": "«великих богатств» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "A good name is more desirable than great riches, and loving favor is better than silver and gold."
+  },
+  {
+   "sentence": "Уста ___ — глубокая яма,",
+   "lemma": "жена",
+   "options": [
+    "чужой жене",
+    "чужой женой",
+    "чужой жены",
+    "чужая жена"
+   ],
+   "correct": "чужой жены",
+   "case": "Родительный (Genitive)",
+   "explain": "«чужой жены» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "The mouth of an adulteress is a deep pit. He who is under Yahweh’s wrath will fall into it."
+  },
+  {
+   "sentence": "Уста чужой жены — ___,",
+   "lemma": "яма",
+   "options": [
+    "глубокой ямы",
+    "глубокая яма",
+    "глубокой яме",
+    "глубокой ямой"
+   ],
+   "correct": "глубокая яма",
+   "case": "Именительный (Nominative)",
+   "explain": "«глубокая яма» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "The mouth of an adulteress is a deep pit. He who is under Yahweh’s wrath will fall into it."
+  },
+  {
+   "sentence": "чтобы ты научился ___ истины",
+   "lemma": "слово",
+   "options": [
+    "верным словам",
+    "верных словах",
+    "верных слов",
+    "верные слова"
+   ],
+   "correct": "верным словам",
+   "case": "Дательный (Dative)",
+   "explain": "«верным словам» — the dative marks the indirect object or recipient.",
+   "id": "c6",
+   "translation": "To teach you truth, reliable words, to give sound answers to the ones who sent you?"
+  },
+  {
+   "sentence": "Не передвигай ___,",
+   "lemma": "межа",
+   "options": [
+    "древней межи",
+    "древней межой",
+    "древней меже",
+    "древняя межа"
+   ],
+   "correct": "древней межи",
+   "case": "Родительный (Genitive)",
+   "explain": "«древней межи» — the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "Don’t move the ancient boundary stone which your fathers have set up."
+  }
+ ]
 }

@@ -1,134 +1,109 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Если кто-то украдет вала или ___, он заплатит вдвое.",
-      "lemma": "овца",
-      "options": ["овца", "овцы", "овце", "овцу"],
-      "correct": "овцу",
-      "case": "Винительный (Accusative)",
-      "translation": "If someone steals an ox or a sheep, he will pay double.",
-      "explain": "The transitive verb украсть takes a direct object in the accusative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Но если ___ не найдут, поручившийся должен предстать перед судьями.",
-      "lemma": "вор",
-      "options": ["вор", "вора", "вору", "вором"],
-      "correct": "вора",
-      "case": "Винительный (Accusative)",
-      "translation": "But if the thief is not found, the bailee must appear before the judges.",
-      "explain": "The transitive verb найти takes a direct object; for an animate noun the accusative equals the genitive form вора."
-    },
-    {
-      "id": "c3",
-      "sentence": "Пусть возместит лучшим урожаем со своего поля или ___.",
-      "lemma": "виноградник",
-      "options": ["виноградник", "виноградника", "винограднику", "виноградником"],
-      "correct": "виноградника",
-      "case": "Родительный (Genitive)",
-      "translation": "Let him make restitution with the best produce of his field or vineyard.",
-      "explain": "The preposition с (со) in the sense of 'from' governs the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Их украдут из ___ поручившегося.",
-      "lemma": "дом",
-      "options": ["дом", "дома", "дому", "домом"],
-      "correct": "дома",
-      "case": "Родительный (Genitive)",
-      "translation": "They are stolen out of the bailee's house.",
-      "explain": "The preposition из governs the genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Его спор с ответчиком будет решен ___ перед Господом.",
-      "lemma": "клятва",
-      "options": ["клятва", "клятвы", "клятве", "клятвой"],
-      "correct": "клятвой",
-      "case": "Творительный (Instrumental)",
-      "translation": "His dispute with the defendant will be settled by an oath before the Lord.",
-      "explain": "The instrumental case expresses the means by which an action is accomplished."
-    },
-    {
-      "id": "c6",
-      "sentence": "Не ешьте это мясо, бросайте его ___.",
-      "lemma": "собака",
-      "options": ["собаки", "собак", "собакам", "собаками"],
-      "correct": "собакам",
-      "case": "Дательный (Dative)",
-      "translation": "Do not eat this meat, throw it to the dogs.",
-      "explain": "The recipient of the action (indirect object) with бросать stands in the dative (here plural собакам)."
-    },
-    {
-      "id": "c7",
-      "sentence": "Вы сами были поселенцами в ___.",
-      "lemma": "Египет",
-      "options": ["Египет", "Египта", "Египту", "Египте"],
-      "correct": "Египте",
-      "case": "Предложный (Prepositional)",
-      "translation": "You yourselves were settlers in Egypt.",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Если возьмешь у ближнего в залог ___, то верни ее к закату.",
-      "lemma": "одежда",
-      "options": ["одежда", "одежды", "одежде", "одежду"],
-      "correct": "одежду",
-      "case": "Винительный (Accusative)",
-      "translation": "If you take your neighbor's garment as a pledge, return it by sunset.",
-      "explain": "The transitive verb взять takes a direct object in the accusative."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Если кто-то украдет вала или овцу и зарежет их или продаст, то он заплатит пять валов за вала и четыре овцы за овцу.",
-      "question": "What must a man pay for stealing and slaughtering an ox?",
-      "options": ["Five oxen for the ox", "Two oxen for the ox", "Ten oxen for the ox", "One sheep for the ox"],
-      "correct": "Five oxen for the ox",
-      "explain": "The text says he 'заплатит пять валов за вала' (shall pay five oxen for an ox)."
-    },
-    {
-      "id": "r2",
-      "ru": "Вор должен возместить украденное.",
-      "question": "What must the thief do?",
-      "options": ["Make restitution for what was stolen", "Be put to death", "Flee the land", "Serve the judges"],
-      "correct": "Make restitution for what was stolen",
-      "explain": "The text says 'Вор должен возместить украденное' (the thief must make restitution for what was stolen)."
-    },
-    {
-      "id": "r3",
-      "ru": "Не оставляй в живых колдунью.",
-      "question": "What does the law command concerning a sorceress?",
-      "options": ["Do not let her live", "Send her away", "Bring her before the judges", "Take her property"],
-      "correct": "Do not let her live",
-      "explain": "The text commands 'Не оставляй в живых колдунью' (do not let a sorceress live)."
-    },
-    {
-      "id": "r4",
-      "ru": "Не притесняй вдов и сирот.",
-      "question": "Whom does the law say you must not oppress?",
-      "options": ["Widows and orphans", "Kings and rulers", "Priests and elders", "Merchants and travelers"],
-      "correct": "Widows and orphans",
-      "explain": "The text says 'Не притесняй вдов и сирот' (do not oppress widows and orphans)."
-    },
-    {
-      "id": "r5",
-      "ru": "Если даешь взаймы бедняку из моего народа, то не будь как ростовщик, не налагай процентов.",
-      "question": "How must you treat a poor person to whom you lend money?",
-      "options": ["Not as a moneylender, charging no interest", "Demand double repayment", "Take their house as security", "Refuse to lend at all"],
-      "correct": "Not as a moneylender, charging no interest",
-      "explain": "The text says 'не будь как ростовщик, не налагай процентов' (do not be like a moneylender, do not charge interest)."
-    },
-    {
-      "id": "r6",
-      "ru": "Если возьмешь у ближнего в залог одежду, то верни ее к закату.",
-      "question": "What must you do with a neighbor's garment taken as a pledge?",
-      "options": ["Return it by sunset", "Keep it for seven days", "Sell it at the gate", "Give it to the poor"],
-      "correct": "Return it by sunset",
-      "explain": "The text says 'верни ее к закату' (return it by sunset)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Если ___ будет найден у него живым, то все равно, вол это, осел или овца, он должен заплатить вдвое.",
+   "lemma": "скот",
+   "options": [
+    "краденым скотом",
+    "краденый скот",
+    "краденом скоте",
+    "краденому скоту"
+   ],
+   "correct": "краденый скот",
+   "case": "Именительный (Nominative)",
+   "explain": "«краденый скот» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "If the stolen property is found in his hand alive, whether it is ox, donkey, or sheep, he shall pay double."
+  },
+  {
+   "sentence": "Если загорится огонь и, охватив ___, спалит скирды или несжатое зерно в поле, то тот, кто пустил огонь, должен возместить сгоревшее.",
+   "lemma": "куст",
+   "options": [
+    "терновые кусты",
+    "терновых кустов",
+    "терновым кустам",
+    "терновыми кустами"
+   ],
+   "correct": "терновые кусты",
+   "case": "Винительный (Accusative)",
+   "explain": "«терновые кусты» — the accusative marks the direct object of the verb.",
+   "id": "c2",
+   "translation": "“If fire breaks out, and catches in thorns so that the shocks of grain, or the standing grain, or the field are consumed; he who kindled the fire shall surely make restitution."
+  },
+  {
+   "sentence": "Если скотину растерзали ___, пусть ответчик принесет труп животного для доказательства.",
+   "lemma": "зверь",
+   "options": [
+    "диким зверям",
+    "дикими зверями",
+    "диких зверях",
+    "дикие звери"
+   ],
+   "correct": "дикие звери",
+   "case": "Именительный (Nominative)",
+   "explain": "«дикие звери» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "If it is torn in pieces, let him bring it for evidence. He shall not make good that which was torn."
+  },
+  {
+   "sentence": "— Если человек соблазнит девушку, которая не давала обещания выйти замуж, и переспит с ней, он должен заплатить ___, и она станет его женой.",
+   "lemma": "выкуп",
+   "options": [
+    "свадебный выкуп",
+    "свадебном выкупе",
+    "свадебным выкупом",
+    "свадебному выкупу"
+   ],
+   "correct": "свадебный выкуп",
+   "case": "Винительный (Accusative)",
+   "explain": "«свадебный выкуп» — the accusative marks the direct object of the verb.",
+   "id": "c4",
+   "translation": "“If a man entices a virgin who isn’t pledged to be married, and lies with her, he shall surely pay a dowry for her to be his wife."
+  },
+  {
+   "sentence": "Всякого, приносящего жертвы ___, кроме Господа, следует истребить.",
+   "lemma": "бог",
+   "options": [
+    "ином боге",
+    "иной бог",
+    "иного бога",
+    "иному богу"
+   ],
+   "correct": "иному богу",
+   "case": "Дательный (Dative)",
+   "explain": "«иному богу» — the dative marks the indirect object or recipient.",
+   "id": "c5",
+   "translation": "“He who sacrifices to any god, except to Yahweh only, shall be utterly destroyed."
+  },
+  {
+   "sentence": "Будьте Моим ___: не ешьте мясо животного, растерзанного дикими зверями.",
+   "lemma": "народ",
+   "options": [
+    "святого народа",
+    "святым народом",
+    "святом народе",
+    "святому народу"
+   ],
+   "correct": "святым народом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«святым народом» — the instrumental marks the means, company, or complement.",
+   "id": "c7",
+   "translation": "“You shall be holy men to me, therefore you shall not eat any meat that is torn by animals in the field. You shall cast it to the dogs."
+  },
+  {
+   "sentence": "Будьте Моим святым народом: не ешьте мясо животного, растерзанного ___.",
+   "lemma": "зверь",
+   "options": [
+    "дикие звери",
+    "дикими зверями",
+    "диких зверях",
+    "диким зверям"
+   ],
+   "correct": "дикими зверями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«дикими зверями» — the instrumental marks the means, company, or complement.",
+   "id": "c8",
+   "translation": "“You shall be holy men to me, therefore you shall not eat any meat that is torn by animals in the field. You shall cast it to the dogs."
+  }
+ ]
 }

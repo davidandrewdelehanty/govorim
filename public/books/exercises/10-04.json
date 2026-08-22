@@ -1,164 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Когда ___ Саула Ишбашет услышал о том, что Авнер умер.",
-      "lemma": "сын",
-      "options": ["сын", "сына", "сыну", "сыне"],
-      "correct": "сын",
-      "case": "Именительный (Nominative)",
-      "translation": "When Saul's son Ishbosheth heard that Abner was dead.",
-      "explain": "Subject of the verb 'услышал' requires nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "У ___ Саула было два человека, которые водили воинов.",
-      "lemma": "сын",
-      "options": ["сын", "сына", "сыну", "сыне"],
-      "correct": "сына",
-      "case": "Родительный (Genitive)",
-      "translation": "Saul's son had two men who led the troops.",
-      "explain": "Possessive construction 'у + genitive' means 'have'."
-    },
-    {
-      "id": "c3",
-      "sentence": "Они были сыновьями Беаротянина ___, из рода Вениамина.",
-      "lemma": "Римон",
-      "options": ["Римон", "Римона", "Римону", "Римоне"],
-      "correct": "Римона",
-      "case": "Родительный (Genitive)",
-      "translation": "They were sons of Rimmon the Beerothite, from the tribe of Benjamin.",
-      "explain": "Possessive genitive: 'сыновьями Римона' means 'sons of Rimmon'."
-    },
-    {
-      "id": "c4",
-      "sentence": "У Иоаннафана, сына Саула, был ___, хромой на обе ноги.",
-      "lemma": "сын",
-      "options": ["сын", "сына", "сыну", "сыном"],
-      "correct": "сын",
-      "case": "Именительный (Nominative)",
-      "translation": "Jonathan, Saul's son, had a son who was lame in both feet.",
-      "explain": "Predicate nominative after 'был' indicates possession and identity."
-    },
-    {
-      "id": "c5",
-      "sentence": "Рихав и Баана пришли в ___ Ишбошета в жаркое время дня.",
-      "lemma": "дом",
-      "options": ["дом", "дома", "дому", "доме"],
-      "correct": "дом",
-      "case": "Винительный (Accusative)",
-      "translation": "Rechab and Baanah came to Ishbosheth's house at the heat of the day.",
-      "explain": "Preposition 'в' with accusative indicates movement toward a place."
-    },
-    {
-      "id": "c6",
-      "sentence": "Его нянька схватила его и побежала, потому что боялась потерять ___.",
-      "lemma": "мальчик",
-      "options": ["мальчик", "мальчика", "мальчику", "мальчиком"],
-      "correct": "мальчика",
-      "case": "Винительный (Accusative)",
-      "translation": "His nurse picked him up and fled because she was afraid of losing the boy.",
-      "explain": "Direct object of the verb 'потерять' (to lose) requires accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Они отрубили ему ___ и, взяв её с собой, шли по дороге.",
-      "lemma": "голова",
-      "options": ["голова", "головы", "голову", "голове"],
-      "correct": "голову",
-      "case": "Винительный (Accusative)",
-      "translation": "They beheaded him and, taking his head with them, went on the way.",
-      "explain": "Direct object of the verb 'отрубить' (to cut off) requires accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Они принесли ___  Ишбашета к Давиду в Хеврон.",
-      "lemma": "голова",
-      "options": ["голова", "головы", "голову", "голове"],
-      "correct": "голову",
-      "case": "Винительный (Accusative)",
-      "translation": "They brought the head of Ishbosheth to David in Hebron.",
-      "explain": "Direct object of the verb 'принести' (to bring) requires accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Когда сын Саула Ишбашет услышал о том, что Авнер умер в Хевроне, он пал духом, и весь Израиль охватила тревога.",
-      "question": "What happened when Ishbosheth heard about Abner's death?",
-      "options": [
-        "He immediately became king over all Israel",
-        "He lost courage and all Israel became alarmed",
-        "He declared war on David",
-        "He fled to Egypt for safety"
-      ],
-      "correct": "He lost courage and all Israel became alarmed",
-      "explain": "The text states 'он пал духом, и весь Израиль охватила тревога' (he lost courage and all Israel became alarmed)."
-    },
-    {
-      "id": "r2",
-      "ru": "У Иоаннафана, сына Саула, был сын, хромой на обе ноги.",
-      "question": "What was the condition of Jonathan's son?",
-      "options": [
-        "He was blind from birth",
-        "He was lame in both feet",
-        "He was deaf and dumb",
-        "He was leprous"
-      ],
-      "correct": "He was lame in both feet",
-      "explain": "The text explicitly states 'хромой на обе ноги' (lame in both feet)."
-    },
-    {
-      "id": "r3",
-      "ru": "Рихав и Баана пришли в дом Ишбошета и поразили его в живот, когда он спал во время полуденного отдыха.",
-      "question": "When did Rechab and Baanah strike Ishbosheth?",
-      "options": [
-        "During a feast",
-        "While he was at war",
-        "While he was sleeping during his midday rest",
-        "While he was speaking with his servants"
-      ],
-      "correct": "While he was sleeping during his midday rest",
-      "explain": "The text states they struck him 'когда он спал во время полуденного отдыха' (while he was sleeping during his midday rest)."
-    },
-    {
-      "id": "r4",
-      "ru": "Они принесли голову Ишбашета к Давиду в Хеврон и сказали царю, 'Вот голова Ишбошета, сына Саула, твоего врага.'",
-      "question": "What did they tell David about the head they brought?",
-      "options": [
-        "It was the head of Abner, the traitor",
-        "It was the head of Ishbosheth, Saul's son, his enemy",
-        "It was the head of a Philistine captain",
-        "It was the head of an Amalekite warrior"
-      ],
-      "correct": "It was the head of Ishbosheth, Saul's son, his enemy",
-      "explain": "They said 'Вот голова Ишбошета, сына Саула, твоего врага' (Behold the head of Ishbosheth, Saul's son, your enemy)."
-    },
-    {
-      "id": "r5",
-      "ru": "Давид ответил Рихаву и его брату Баане: 'Верно, как и то, что жив Господь, который избавил меня от всякой беды.'",
-      "question": "By what did David swear in his response?",
-      "options": [
-        "By the life of Saul",
-        "By the life of the Lord who delivered him from all trouble",
-        "By the strength of his armies",
-        "By the gates of Jerusalem"
-      ],
-      "correct": "By the life of the Lord who delivered him from all trouble",
-      "explain": "David swore 'как и то, что жив Господь, который избавил меня от всякой беды' (By the life of the Lord who delivered me from all trouble)."
-    },
-    {
-      "id": "r6",
-      "ru": "Давид отдал своим людям приказ, и они убили их, отрубили им руки и ноги и повесили тела у пруда в Хевроне.",
-      "question": "How did David punish Rechab and Baanah?",
-      "options": [
-        "He exiled them from Israel",
-        "He made them servants to David's house",
-        "He had them killed, cut off their hands and feet, and hanged their bodies by the pool in Hebron",
-        "He imprisoned them for life"
-      ],
-      "correct": "He had them killed, cut off their hands and feet, and hanged their bodies by the pool in Hebron",
-      "explain": "The text states David 'отдал приказ, и они убили их, отрубили им руки и ноги и повесили тела у пруда в Хевроне' (commanded, and they killed them, cut off their hands and feet, and hanged their bodies by the pool in Hebron)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Беэрот считается владением Вениамина, 3 потому что жители Беэрота бежали в Гиттаим и остались там чужеземцами по ___.",
+   "lemma": "день",
+   "options": [
+    "сегодняшним днём",
+    "сегодняшний день",
+    "сегодняшнему дню",
+    "сегодняшнего дня"
+   ],
+   "correct": "сегодняшний день",
+   "case": "Винительный (Accusative)",
+   "explain": "«сегодняшний день» — after the preposition «по», the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "Saul’s son had two men who were captains of raiding bands. The name of one was Baanah, and the name of the other Rechab, the sons of Rimmon the Beerothite, of the children of Benjamin (for Beeroth also is considered a part of Benjamin:"
+  },
+  {
+   "sentence": "Итак, Рехав и Баана, сыновья беэротянина Риммона, пошли к дому Иш-Бошета и пришли туда в жаркое время дня, когда он спал во время ___.",
+   "lemma": "отдых",
+   "options": [
+    "полуденного отдыха",
+    "полуденному отдыху",
+    "полуденный отдых",
+    "полуденным отдыхом"
+   ],
+   "correct": "полуденного отдыха",
+   "case": "Родительный (Genitive)",
+   "explain": "«полуденного отдыха» — after the preposition «во», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "The sons of Rimmon the Beerothite, Rechab and Baanah, went and came at about the heat of the day to the house of Ishbosheth, as he took his rest at noon."
+  },
+  {
+   "sentence": "Поразив и убив его, они отрубили ему голову и, взяв ее с собой, всю ночь шли по дороге ___.) 8 Они принесли голову Иш-Бошета к Давиду в Хеврон и сказали царю:",
+   "lemma": "долина",
+   "options": [
+    "иорданской долине",
+    "иорданской долины",
+    "иорданская долина",
+    "иорданской долиной"
+   ],
+   "correct": "иорданской долины",
+   "case": "Родительный (Genitive)",
+   "explain": "«иорданской долины» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Now when they came into the house, as he lay on his bed in his bedroom, they struck him, killed him, beheaded him, and took his head, and went by the way of the Arabah all night."
+  },
+  {
+   "sentence": "Что же теперь, когда разбойники убили невиновного человека в его ___ и на его собственной постели, неужели я не взыщу с вас за его кровь и не избавлю от вас землю!",
+   "lemma": "дом",
+   "options": [
+    "собственном доме",
+    "собственным домом",
+    "собственный дом",
+    "собственному дому"
+   ],
+   "correct": "собственном доме",
+   "case": "Предложный (Prepositional)",
+   "explain": "«собственном доме» — after the preposition «в», for location or topic.",
+   "id": "c4",
+   "translation": "How much more, when wicked men have slain a righteous person in his own house on his bed, should I not now require his blood from your hand, and rid the earth of you?”"
+  }
+ ]
 }

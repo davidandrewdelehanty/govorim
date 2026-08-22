@@ -1,204 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Мудрый сын принимает наставления своего ___.",
-      "lemma": "отец",
-      "options": [
-        "отец",
-        "отца",
-        "отцу",
-        "отцом"
-      ],
-      "correct": "отца",
-      "case": "Родительный (Genitive)",
-      "translation": "A wise son listens to his father's instruction.",
-      "explain": "The possessive construction requires the genitive case for 'father's.'"
-    },
-    {
-      "id": "c2",
-      "sentence": "От плода своих уст человек вкушает ___.",
-      "lemma": "благо",
-      "options": [
-        "благо",
-        "блага",
-        "благу",
-        "благом"
-      ],
-      "correct": "благо",
-      "case": "Винительный (Accusative)",
-      "translation": "By the fruit of his lips, a man enjoys good things.",
-      "explain": "Благо is the direct object of вкушает (enjoys), taking the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Лентяй желает и ничего не получает, а желания усердного исполняются до ___.",
-      "lemma": "конец",
-      "options": [
-        "конец",
-        "конца",
-        "концу",
-        "конце"
-      ],
-      "correct": "конца",
-      "case": "Родительный (Genitive)",
-      "translation": "The sluggard desires but has nothing, but the desire of the diligent shall be fully satisfied.",
-      "explain": "The phrase до конца (to the end/completely) uses the genitive case after до (until/to)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Праведник ненавидит ___, а неправедные приносят срам.",
-      "lemma": "ложь",
-      "options": [
-        "ложь",
-        "лжи",
-        "лжу",
-        "ложью"
-      ],
-      "correct": "ложь",
-      "case": "Винительный (Accusative)",
-      "translation": "A righteous man hates lies, but a wicked man brings shame and disgrace.",
-      "explain": "Ложь is the direct object of ненавидит (hates), taking the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Богатством можно выкупить жизнь ___, а бедняку не угрожает никто.",
-      "lemma": "человек",
-      "options": [
-        "человек",
-        "человека",
-        "человеку",
-        "человеком"
-      ],
-      "correct": "человека",
-      "case": "Родительный (Genitive)",
-      "translation": "The ransom of a man's life is his riches, but the poor hear no threats.",
-      "explain": "The genitive case shows possession: жизнь человека (a man's life)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Свет праведных светит весело, а светильник нечестивых ___.",
-      "lemma": "гаснуть",
-      "options": [
-        "гасит",
-        "гасят",
-        "гаснет",
-        "угасает"
-      ],
-      "correct": "гаснет",
-      "case": "Именительный (Nominative)",
-      "translation": "The light of the righteous shines brightly, but the lamp of the wicked is snuffed out.",
-      "explain": "Светильник (lamp, singular) as the subject requires the singular verb form гаснет (goes out)."
-    },
-    {
-      "id": "c7",
-      "sentence": "Презирающее наставление сам себя ___.",
-      "lemma": "гибель",
-      "options": [
-        "гибель",
-        "гибели",
-        "гибелью",
-        "гибелям"
-      ],
-      "correct": "гибель",
-      "case": "Винительный (Accusative)",
-      "translation": "Whoever despises instruction will pay for it.",
-      "explain": "The direct object гибель (ruin) takes the accusative case after the implied verb."
-    },
-    {
-      "id": "c8",
-      "sentence": "Кто общается с мудрыми, сам станет мудр, а спутник глупцов попадет в ___.",
-      "lemma": "беда",
-      "options": [
-        "беда",
-        "беды",
-        "беду",
-        "бедой"
-      ],
-      "correct": "беду",
-      "case": "Винительный (Accusative)",
-      "translation": "One who walks with wise men grows wise, but a companion of fools suffers harm.",
-      "explain": "The phrase попадет в (falls into) requires the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Мудрый сын принимает наставления своего отца, а глумливый упреков не слушает.",
-      "question": "How do wise sons and scoffers respond to correction differently?",
-      "options": [
-        "Wise sons accept instruction while scoffers refuse rebuke",
-        "Both accept correction willingly",
-        "Scoffers accept rebuke more readily than wise sons",
-        "Neither group pays attention to instruction"
-      ],
-      "correct": "Wise sons accept instruction while scoffers refuse rebuke",
-      "explain": "The verse contrasts: мудрый сын принимает наставления (a wise son accepts instruction) with глумливый упреков не слушает (a scoffer doesn't listen to rebuke)."
-    },
-    {
-      "id": "r2",
-      "ru": "Праведность хранит тех, чей путь прям, а нечестие губит грешника.",
-      "question": "What is the effect of righteousness versus wickedness?",
-      "options": [
-        "Righteousness protects the upright while wickedness destroys sinners",
-        "Both righteousness and wickedness lead to prosperity",
-        "Wickedness protects while righteousness destroys",
-        "Neither has any effect on people's lives"
-      ],
-      "correct": "Righteousness protects the upright while wickedness destroys sinners",
-      "explain": "The text states: Праведность хранит (righteousness guards/protects) while нечестие губит (wickedness destroys)."
-    },
-    {
-      "id": "r3",
-      "ru": "Свет праведных светит весело, а светильник нечестивых гаснет.",
-      "question": "What is the contrast between the light of the righteous and the wicked?",
-      "options": [
-        "The righteous shine brightly while the wicked's light is extinguished",
-        "Both shine with equal brightness",
-        "The wicked shine brighter than the righteous",
-        "Light has no connection to righteousness or wickedness"
-      ],
-      "correct": "The righteous shine brightly while the wicked's light is extinguished",
-      "explain": "Свет праведных светит весело (The light of the righteous shines brightly) versus светильник нечестивых гаснет (the lamp of the wicked goes out)."
-    },
-    {
-      "id": "r4",
-      "ru": "Богатством можно выкупить жизнь человека, а бедняку и не угрожает никто.",
-      "question": "What is the relationship between wealth and personal safety?",
-      "options": [
-        "The rich can ransom themselves while the poor are not threatened",
-        "Wealth brings more danger than poverty",
-        "Both rich and poor face equal threats",
-        "Poverty guarantees safety and prosperity"
-      ],
-      "correct": "The rich can ransom themselves while the poor are not threatened",
-      "explain": "The verse contrasts: богатством можно выкупить (wealth can ransom) with бедняку не угрожает никто (the poor hear no threats)."
-    },
-    {
-      "id": "r5",
-      "ru": "Презирающее наставление сам себя губит, а чтущий заповедь будет вознагражден.",
-      "question": "What happens to those who despise instruction versus those who respect commands?",
-      "options": [
-        "The former destroys himself while the latter will be rewarded",
-        "Both are punished equally",
-        "Both are rewarded generously",
-        "Despising instruction brings reward"
-      ],
-      "correct": "The former destroys himself while the latter will be rewarded",
-      "explain": "The text contrasts: Презирающее наставление губит (whoever despises instruction destroys himself) with чтущий заповедь будет вознагражден (he who respects a command will be rewarded)."
-    },
-    {
-      "id": "r6",
-      "ru": "Кто общается с мудрыми, сам станет мудр, а спутник глупцов попадет в беду.",
-      "question": "How do one's companions influence wisdom and fortune?",
-      "options": [
-        "Association with the wise brings wisdom; companionship with fools brings trouble",
-        "Companions have no influence on a person's wisdom or fate",
-        "Fools provide better guidance than the wise",
-        "All companions bring equal benefit"
-      ],
-      "correct": "Association with the wise brings wisdom; companionship with fools brings trouble",
-      "explain": "The verse shows: Кто общается с мудрыми, сам станет мудр (One who walks with wise men grows wise) versus спутник глупцов попадет в беду (a companion of fools suffers harm)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "___ принимает наставление своего отца,",
+   "lemma": "сын",
+   "options": [
+    "мудрого сына",
+    "мудрый сын",
+    "мудрому сыну",
+    "мудрым сыном"
+   ],
+   "correct": "мудрый сын",
+   "case": "Именительный (Nominative)",
+   "explain": "«Мудрый сын» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "A wise son listens to his father’s instruction, but a scoffer doesn’t listen to rebuke."
+  },
+  {
+   "sentence": "___ вызывает расположение,",
+   "lemma": "разум",
+   "options": [
+    "здравый разум",
+    "здравому разуму",
+    "здравого разума",
+    "здравым разумом"
+   ],
+   "correct": "здравый разум",
+   "case": "Именительный (Nominative)",
+   "explain": "«Здравый разум» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "Good understanding wins favor, but the way of the unfaithful is hard."
+  },
+  {
+   "sentence": "Жди от ___ беды,",
+   "lemma": "посол",
+   "options": [
+    "плохим послом",
+    "плохого посла",
+    "плохому послу",
+    "плохой посол"
+   ],
+   "correct": "плохого посла",
+   "case": "Родительный (Genitive)",
+   "explain": "«плохого посла» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "A wicked messenger falls into trouble, but a trustworthy envoy gains healing."
+  },
+  {
+   "sentence": "___ оставит наследство детям своих детей,",
+   "lemma": "человек",
+   "options": [
+    "добром человеке",
+    "доброму человеку",
+    "добрым человеком",
+    "добрый человек"
+   ],
+   "correct": "добрый человек",
+   "case": "Именительный (Nominative)",
+   "explain": "«Добрый человек» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "A good man leaves an inheritance to his children’s children, but the wealth of the sinner is stored for the righteous."
+  }
+ ]
 }

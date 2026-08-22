@@ -1,134 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Иорам, ___ Израиля.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царь",
-      "case": "Именительный (Nominative)",
-      "translation": "Joram, king of Israel.",
-      "explain": "Царь is the predicate nominative after the comma, so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Меша, ___ Моава, разводил овец.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царя",
-      "case": "Родительный (Genitive)",
-      "translation": "Mesha, king of Moab, raised sheep.",
-      "explain": "The genitive case is used in appositive phrases to show possession or identification."
-    },
-    {
-      "id": "c3",
-      "sentence": "Еще он послал сказать Иосафату, ___ Иудеи.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царю",
-      "case": "Дательный (Dative)",
-      "translation": "He also sent word to Jehoshaphat, king of Judah.",
-      "explain": "The dative case is used after the indirect object (to send word to someone)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Там собрали всех мужчин, молодых и старых, и поставили на границы как ___.",
-      "lemma": "войско",
-      "options": ["войско", "войска", "войску", "войском"],
-      "correct": "войско",
-      "case": "Винительный (Accusative)",
-      "translation": "They gathered all the men, young and old, and stationed them on the border as an army.",
-      "explain": "The accusative case is used as the direct object of the verb 'поставили' (stationed)."
-    },
-    {
-      "id": "c5",
-      "sentence": "тьма была над ___.",
-      "lemma": "бездна",
-      "options": ["бездна", "бездны", "бездне", "бездной"],
-      "correct": "бездной",
-      "case": "Творительный (Instrumental)",
-      "translation": "Darkness was over the deep.",
-      "explain": "The preposition над (over) always governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Он спросил о ___.",
-      "lemma": "вода",
-      "options": ["вода", "воды", "воде", "водой"],
-      "correct": "воде",
-      "case": "Предложный (Prepositional)",
-      "translation": "He asked about the water.",
-      "explain": "The preposition о (about) governs the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Царь повелел ___ расправляться с врагами.",
-      "lemma": "войска",
-      "options": ["войска", "войск", "войскам", "войсками"],
-      "correct": "войскам",
-      "case": "Дательный (Dative)",
-      "translation": "The king ordered the army to deal with the enemies.",
-      "explain": "The dative case is used after the preposition 'повелел' (ordered)."
-    },
-    {
-      "id": "c8",
-      "sentence": "Битва велась между израилетянами и ___.",
-      "lemma": "Моав",
-      "options": ["Моав", "Моава", "Моаву", "Моавом"],
-      "correct": "Моавом",
-      "case": "Творительный (Instrumental)",
-      "translation": "The battle was fought between the Israelites and Moab.",
-      "explain": "The preposition между (between) governs the instrumental case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Иорам, сын Ахава, стал царем Израиля на восемнадцатом году правления Иосафата, царя Иудеи, и правил в Самарии двенадцать лет.",
-      "question": "How long did Jehoram reign in Samaria?",
-      "options": ["Ten years", "Twelve years", "Fifteen years", "Twenty years"],
-      "correct": "Twelve years",
-      "explain": "The text states 'правил в Самарии двенадцать лет' — he reigned in Samaria twelve years."
-    },
-    {
-      "id": "r2",
-      "ru": "Меша, царь Моава, разводил овец и должен был поставлять царю Израиля сто тысяч ягнят и шерсть со ста тысяч баранов.",
-      "question": "What was Mesha's occupation?",
-      "options": ["Farmer", "Shepherd/sheep breeder", "Warrior", "Merchant"],
-      "correct": "Shepherd/sheep breeder",
-      "explain": "The text says 'разводил овец' — he raised sheep/was a shepherd."
-    },
-    {
-      "id": "r3",
-      "ru": "Тогда царь Иорам вышел из Самарии и собрал все израильское войско.",
-      "question": "What did King Joram do when he heard of the rebellion?",
-      "options": ["He fled the city", "He sent messengers", "He left Samaria and gathered all the Israeli army", "He prayed for guidance"],
-      "correct": "He left Samaria and gathered all the Israeli army",
-      "explain": "The text states 'царь Иорам вышел из Самарии и собрал все израильское войско'."
-    },
-    {
-      "id": "r4",
-      "ru": "После семи дней кружной дороги у войска не осталось воды ни для себя, ни для животных, которые были с ними.",
-      "question": "What problem did the army face after traveling for seven days?",
-      "options": ["They got lost", "They ran out of food", "They had no water", "They were attacked by enemies"],
-      "correct": "They had no water",
-      "explain": "The text says 'у войска не осталось воды' — the army had no water left."
-    },
-    {
-      "id": "r5",
-      "ru": "Один из приближенных царя Израиля ответил, «Здесь есть Елисей, сын Шафата, он поливал воду на руки Илии».",
-      "question": "Who did an official mention as being present with the army?",
-      "options": ["A prophet named Elisha", "A priest named Aaron", "A warrior named David", "A scribe named Moses"],
-      "correct": "A prophet named Elisha",
-      "explain": "The text mentions 'Елисей, сын Шафата' — Elisha son of Shaphat, who was a prophet."
-    },
-    {
-      "id": "r6",
-      "ru": "Они завалили источники и срубили хорошие деревья.",
-      "question": "What destructive actions did the Israelites take against Moab?",
-      "options": ["Burned the cities", "Blocked the springs and cut down good trees", "Destroyed the walls", "Captured the livestock"],
-      "correct": "Blocked the springs and cut down good trees",
-      "explain": "The text states 'Они завалили источники и срубили хорошие деревья'."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Но после смерти Ахава царь Моава восстал против ___.",
+   "lemma": "царь",
+   "options": [
+    "израильскому царю",
+    "израильским царём",
+    "израильского царя",
+    "израильском царе"
+   ],
+   "correct": "израильского царя",
+   "case": "Родительный (Genitive)",
+   "explain": "«израильского царя» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "But when Ahab was dead, the king of Moab rebelled against the king of Israel."
+  },
+  {
+   "sentence": "Вы срубите ___, завалите источники и забросаете камнями хорошие поля.",
+   "lemma": "дерево",
+   "options": [
+    "хорошими деревьями",
+    "хорошим деревьям",
+    "хорошие деревья",
+    "хороших деревьев"
+   ],
+   "correct": "хорошие деревья",
+   "case": "Винительный (Accusative)",
+   "explain": "«хорошие деревья» — the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "You shall strike every fortified city, and every choice city, and shall fell every good tree, and stop all springs of water, and mar every good piece of land with stones.’ ”"
+  },
+  {
+   "sentence": "Вы срубите хорошие деревья, завалите источники и забросаете камнями ___.",
+   "lemma": "поле",
+   "options": [
+    "хорошим полям",
+    "хороших полей",
+    "хорошие поля",
+    "хороших полях"
+   ],
+   "correct": "хорошие поля",
+   "case": "Винительный (Accusative)",
+   "explain": "«хорошие поля» — the accusative marks the direct object of the verb.",
+   "id": "c4",
+   "translation": "You shall strike every fortified city, and every choice city, and shall fell every good tree, and stop all springs of water, and mar every good piece of land with stones.’ ”"
+  },
+  {
+   "sentence": "Но когда моавитяне пришли к ___, израильтяне поднялись и стали разить их, и те побежали.",
+   "lemma": "лагерь",
+   "options": [
+    "израильскому лагерю",
+    "израильского лагеря",
+    "израильским лагерем",
+    "израильский лагерь"
+   ],
+   "correct": "израильскому лагерю",
+   "case": "Дательный (Dative)",
+   "explain": "«израильскому лагерю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c5",
+   "translation": "When they came to the camp of Israel, the Israelites rose up and struck the Moabites, so that they fled before them; and they went forward into the land attacking the Moabites."
+  },
+  {
+   "sentence": "Они завалили источники и срубили ___.",
+   "lemma": "дерево",
+   "options": [
+    "хорошими деревьями",
+    "хорошим деревьям",
+    "хорошие деревья",
+    "хороших деревьев"
+   ],
+   "correct": "хорошие деревья",
+   "case": "Винительный (Accusative)",
+   "explain": "«хорошие деревья» — the accusative marks the direct object of the verb.",
+   "id": "c6",
+   "translation": "They beat down the cities; and on every good piece of land each man cast his stone, and filled it. They also stopped all the springs of water, and cut down all the good trees, until in Kir Hareseth all they left was its stones; however the men armed with slings went around it, and attacked it."
+  },
+  {
+   "sentence": "Лишь в Кир-Харесете оставались ___, пока пращники не окружили его и не напали на него.",
+   "lemma": "стена",
+   "options": [
+    "каменными стенами",
+    "каменные стены",
+    "каменных стен",
+    "каменных стенах"
+   ],
+   "correct": "каменные стены",
+   "case": "Именительный (Nominative)",
+   "explain": "«каменные стены» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "They beat down the cities; and on every good piece of land each man cast his stone, and filled it. They also stopped all the springs of water, and cut down all the good trees, until in Kir Hareseth all they left was its stones; however the men armed with slings went around it, and attacked it."
+  }
+ ]
 }

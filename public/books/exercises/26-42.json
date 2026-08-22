@@ -1,204 +1,274 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Затем ___ повел меня на север во внешний двор.",
-      "lemma": "человек",
-      "options": [
-        "человек",
-        "человека",
-        "человеку",
-        "человеком"
-      ],
-      "correct": "человек",
-      "case": "Именительный (Nominative)",
-      "translation": "Then the man led me to the north outer court.",
-      "explain": "The subject of повел uses nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Комнаты расположены напротив храмового ___.",
-      "lemma": "двор",
-      "options": [
-        "двор",
-        "двора",
-        "двору",
-        "двором"
-      ],
-      "correct": "двора",
-      "case": "Родительный (Genitive)",
-      "translation": "The rooms are located opposite the temple court.",
-      "explain": "The preposition напротив (opposite) governs genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Перед комнатами был проход 10 локтей в ширину и 100 локтей в ___.",
-      "lemma": "длина",
-      "options": [
-        "длина",
-        "длины",
-        "длине",
-        "длину"
-      ],
-      "correct": "длину",
-      "case": "Винительный (Accusative)",
-      "translation": "Before the rooms was a passage 10 cubits wide and 100 cubits in length.",
-      "explain": "Accusative follows в when indicating dimension."
-    },
-    {
-      "id": "c4",
-      "sentence": "Верхние комнаты были уже, потому что галереи занимали больше места, чем у комнат на нижнем и среднем ___.",
-      "lemma": "этаж",
-      "options": [
-        "этажи",
-        "этажа",
-        "этажу",
-        "этаже"
-      ],
-      "correct": "этаже",
-      "case": "Предложный (Prepositional)",
-      "translation": "Upper rooms were smaller because galleries took more space than in lower and middle floors.",
-      "explain": "Prepositional case follows на (on/in) for location."
-    },
-    {
-      "id": "c5",
-      "sentence": "А внешняя стена шла параллельно комнатам и внешнему ___.",
-      "lemma": "двор",
-      "options": [
-        "двор",
-        "двора",
-        "двору",
-        "двором"
-      ],
-      "correct": "двору",
-      "case": "Дательный (Dative)",
-      "translation": "The outer wall ran parallel to the rooms and the outer court.",
-      "explain": "Dative follows к (toward) or indicates indirect object direction."
-    },
-    {
-      "id": "c6",
-      "sentence": "На южной стороне, вдоль стены, примыкая к храмовому двору и напротив внешней ___, расположились комнаты.",
-      "lemma": "стена",
-      "options": [
-        "стена",
-        "стены",
-        "стене",
-        "стеной"
-      ],
-      "correct": "стены",
-      "case": "Родительный (Genitive)",
-      "translation": "On the south side, along the wall, adjacent to the temple court and opposite the outer wall, rooms were arranged.",
-      "explain": "Genitive follows напротив (opposite)."
-    },
-    {
-      "id": "c7",
-      "sentence": "Когда священники будут входить в священные пределы, они не должны выходить во внешний ___, пока не снимут одежд.",
-      "lemma": "двор",
-      "options": [
-        "двор",
-        "двора",
-        "двору",
-        "двором"
-      ],
-      "correct": "двор",
-      "case": "Винительный (Accusative)",
-      "translation": "When priests enter the holy place, they must not go out to the outer court before removing their garments.",
-      "explain": "Accusative follows во (into) for direction/motion."
-    },
-    {
-      "id": "c8",
-      "sentence": "Он вымерил измерительной тростью восточную ___.",
-      "lemma": "сторона",
-      "options": [
-        "сторона",
-        "стороны",
-        "стороне",
-        "сторону"
-      ],
-      "correct": "сторону",
-      "case": "Винительный (Accusative)",
-      "translation": "He measured the east side with the measuring reed.",
-      "explain": "Transitive verb вымерил takes accusative for direct object."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Затем тот человек повел меня на север во внешний двор и привел комнатам напротив храмового двора и внешней стены на севере.",
-      "question": "Where did the man lead the speaker?",
-      "options": [
-        "To the north outer court",
-        "To the south",
-        "To the west gate",
-        "To the temple interior"
-      ],
-      "correct": "To the north outer court",
-      "explain": "The text states он повел меня на север во внешний двор."
-    },
-    {
-      "id": "r2",
-      "ru": "Здание, дверь которого выходила на север, было сто локтей в длину и пятьдесят в ширину.",
-      "question": "What were the dimensions of the building whose door faced north?",
-      "options": [
-        "100 cubits long and 50 cubits wide",
-        "50 cubits long and 100 cubits wide",
-        "100 cubits on all sides",
-        "200 cubits total"
-      ],
-      "correct": "100 cubits long and 50 cubits wide",
-      "explain": "The text gives exact dimensions: сто локтей в длину и пятьдесят в ширину."
-    },
-    {
-      "id": "r3",
-      "ru": "Галереи располагались напротив друг друга в три этажа каждая.",
-      "question": "How many stories did the galleries have?",
-      "options": [
-        "Three stories",
-        "Two stories",
-        "Four stories",
-        "One story"
-      ],
-      "correct": "Three stories",
-      "explain": "в три этажа каждая — three stories each."
-    },
-    {
-      "id": "r4",
-      "ru": "Перед комнатами был проход 10 локтей в ширину и 100 локтей в длину.",
-      "question": "What was the size of the passage before the rooms?",
-      "options": [
-        "10 cubits wide and 100 cubits long",
-        "100 cubits wide and 10 cubits long",
-        "50 cubits on all sides",
-        "200 cubits total"
-      ],
-      "correct": "10 cubits wide and 100 cubits long",
-      "explain": "The text specifies: проход 10 локтей в ширину и 100 локтей в длину."
-    },
-    {
-      "id": "r5",
-      "ru": "Верхние комнаты были уже, потому что галереи занимали там больше места, чем у комнат на нижнем и среднем этажах здания.",
-      "question": "Why were the upper rooms narrower?",
-      "options": [
-        "Because galleries took more space there",
-        "Because they had more windows",
-        "Because they were older",
-        "Because they faced north"
-      ],
-      "correct": "Because galleries took more space there",
-      "explain": "The text explains that галереи занимали там больше места."
-    },
-    {
-      "id": "r6",
-      "ru": "Вокруг нее была стена, 500 локтей в длину и 500 в ширину, чтобы отделять священное от несвященного.",
-      "question": "What was the purpose of the wall around the temple territory?",
-      "options": [
-        "To separate the holy from the unholy",
-        "To protect from enemies",
-        "To provide seating",
-        "To store offerings"
-      ],
-      "correct": "To separate the holy from the unholy",
-      "explain": "The wall was there чтобы отделять священное от несвященного."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Затем тот человек повел меня на север во ___ и привел к комнатам напротив храмового двора и внешней стены на севере.",
+   "lemma": "двор",
+   "options": [
+    "внешнем дворе",
+    "внешнему двору",
+    "внешнего двора",
+    "внешний двор"
+   ],
+   "correct": "внешний двор",
+   "case": "Винительный (Accusative)",
+   "explain": "«внешний двор» — after the preposition «во», the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "Then he brought me out into the outer court, the way toward the north. Then he brought me into the room that was opposite the separate place, and which was opposite the building toward the north."
+  },
+  {
+   "sentence": "Затем тот человек повел меня на север во внешний двор и привел к комнатам напротив ___ и внешней стены на севере.",
+   "lemma": "двор",
+   "options": [
+    "храмовом дворе",
+    "храмового двора",
+    "храмовым двором",
+    "храмовый двор"
+   ],
+   "correct": "храмового двора",
+   "case": "Родительный (Genitive)",
+   "explain": "«храмового двора» — after the preposition «напротив», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "Then he brought me out into the outer court, the way toward the north. Then he brought me into the room that was opposite the separate place, and which was opposite the building toward the north."
+  },
+  {
+   "sentence": "Затем тот человек повел меня на север во внешний двор и привел к комнатам напротив храмового двора и ___ на севере.",
+   "lemma": "стена",
+   "options": [
+    "внешней стене",
+    "внешняя стена",
+    "внешней стены",
+    "внешней стеной"
+   ],
+   "correct": "внешней стены",
+   "case": "Родительный (Genitive)",
+   "explain": "«внешней стены» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Then he brought me out into the outer court, the way toward the north. Then he brought me into the room that was opposite the separate place, and which was opposite the building toward the north."
+  },
+  {
+   "sentence": "Напротив ___ вокруг храма, шириной в двадцать локтей, находилась одна галерея, другая же — напротив помоста внешнего двора.",
+   "lemma": "пространство",
+   "options": [
+    "открытом пространстве",
+    "открытому пространству",
+    "открытого пространства",
+    "открытое пространство"
+   ],
+   "correct": "открытого пространства",
+   "case": "Родительный (Genitive)",
+   "explain": "«открытого пространства» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "Opposite the twenty cubits which belonged to the inner court, and opposite the pavement which belonged to the outer court, was gallery against gallery in the third floor."
+  },
+  {
+   "sentence": "Напротив открытого пространства вокруг храма, шириной в двадцать локтей, находилась одна галерея, другая же — напротив помоста ___.",
+   "lemma": "двор",
+   "options": [
+    "внешний двор",
+    "внешнего двора",
+    "внешним двором",
+    "внешнем дворе"
+   ],
+   "correct": "внешнего двора",
+   "case": "Родительный (Genitive)",
+   "explain": "«внешнего двора» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "Opposite the twenty cubits which belonged to the inner court, and opposite the pavement which belonged to the outer court, was gallery against gallery in the third floor."
+  },
+  {
+   "sentence": "___ были уже, потому что галереи занимали там больше места, чем у комнат на нижнем и среднем этажах здания.",
+   "lemma": "комната",
+   "options": [
+    "верхние комнаты",
+    "верхним комнатам",
+    "верхних комнатах",
+    "верхними комнатами"
+   ],
+   "correct": "верхние комнаты",
+   "case": "Именительный (Nominative)",
+   "explain": "«Верхние комнаты» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "Now the upper rooms were shorter; for the galleries took away from these, more than from the lower and the middle, in the building."
+  },
+  {
+   "sentence": "В комнатах, которые были на ___, не было таких столбов, как во дворах, поэтому пол у них был меньше, чем у тех, что на первом и втором этажах.",
+   "lemma": "этаж",
+   "options": [
+    "третий этаж",
+    "третьем этаже",
+    "третьему этажу",
+    "третьим этажом"
+   ],
+   "correct": "третьем этаже",
+   "case": "Предложный (Prepositional)",
+   "explain": "«третьем этаже» — after the preposition «на», for location or topic.",
+   "id": "c7",
+   "translation": "For they were in three stories, and they didn’t have pillars as the pillars of the courts. Therefore the uppermost was set back more than the lowest and the middle from the ground."
+  },
+  {
+   "sentence": "А ___ шла параллельно комнатам и внешнему двору; она протянулась перед комнатами на пятьдесят локтей.",
+   "lemma": "стена",
+   "options": [
+    "внешней стены",
+    "внешняя стена",
+    "внешней стене",
+    "внешней стеной"
+   ],
+   "correct": "внешняя стена",
+   "case": "Именительный (Nominative)",
+   "explain": "«внешняя стена» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "The wall that was outside by the side of the rooms, toward the outer court before the rooms, its length was fifty cubits."
+  },
+  {
+   "sentence": "А внешняя стена шла параллельно комнатам и ___; она протянулась перед комнатами на пятьдесят локтей.",
+   "lemma": "двор",
+   "options": [
+    "внешним двором",
+    "внешнему двору",
+    "внешнем дворе",
+    "внешний двор"
+   ],
+   "correct": "внешнему двору",
+   "case": "Дательный (Dative)",
+   "explain": "«внешнему двору» — the dative marks the indirect object or recipient.",
+   "id": "c9",
+   "translation": "The wall that was outside by the side of the rooms, toward the outer court before the rooms, its length was fifty cubits."
+  },
+  {
+   "sentence": "И если вереница комнат на стороне, прилегавшей ко ___, была пятидесяти локтей в длину, то вереница, что была на стороне у святилища, равнялась ста локтям.",
+   "lemma": "двор",
+   "options": [
+    "внешним двором",
+    "внешнему двору",
+    "внешнем дворе",
+    "внешний двор"
+   ],
+   "correct": "внешнему двору",
+   "case": "Дательный (Dative)",
+   "explain": "«внешнему двору» — after the preposition «ко», the dative marks the indirect object or recipient.",
+   "id": "c10",
+   "translation": "For the length of the rooms that were in the outer court was fifty cubits. Behold, before the temple were one hundred cubits."
+  },
+  {
+   "sentence": "В ___ выход был расположен к востоку, если входить в них из внешнего двора.",
+   "lemma": "комната",
+   "options": [
+    "нижних комнат",
+    "нижним комнатам",
+    "нижних комнатах",
+    "нижними комнатами"
+   ],
+   "correct": "нижних комнатах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«нижних комнатах» — after the preposition «в», for location or topic.",
+   "id": "c11",
+   "translation": "From under these rooms was the entry on the east side, as one goes into them from the outer court."
+  },
+  {
+   "sentence": "В нижних комнатах выход был расположен к востоку, если входить в них из ___.",
+   "lemma": "двор",
+   "options": [
+    "внешний двор",
+    "внешнего двора",
+    "внешним двором",
+    "внешнем дворе"
+   ],
+   "correct": "внешнего двора",
+   "case": "Родительный (Genitive)",
+   "explain": "«внешнего двора» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c12",
+   "translation": "From under these rooms was the entry on the east side, as one goes into them from the outer court."
+  },
+  {
+   "sentence": "На южной стороне вдоль стены, примыкая к ___ и напротив внешней стены, расположились комнаты 11 с проходом перед ними.",
+   "lemma": "двор",
+   "options": [
+    "храмовым двором",
+    "храмовому двору",
+    "храмовом дворе",
+    "храмовый двор"
+   ],
+   "correct": "храмовому двору",
+   "case": "Дательный (Dative)",
+   "explain": "«храмовому двору» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c14",
+   "translation": "In the thickness of the wall of the court toward the east, before the separate place, and before the building, there were rooms."
+  },
+  {
+   "sentence": "На южной стороне вдоль стены, примыкая к храмовому двору и напротив ___, расположились комнаты 11 с проходом перед ними.",
+   "lemma": "стена",
+   "options": [
+    "внешней стене",
+    "внешняя стена",
+    "внешней стены",
+    "внешней стеной"
+   ],
+   "correct": "внешней стены",
+   "case": "Родительный (Genitive)",
+   "explain": "«внешней стены» — after the preposition «напротив», the genitive here marks possession, absence, or quantity.",
+   "id": "c15",
+   "translation": "In the thickness of the wall of the court toward the east, before the separate place, and before the building, there were rooms."
+  },
+  {
+   "sentence": "Они были такими же, как и комнаты, что и на ___; у них были такие же длина и ширина, выходы и размеры.",
+   "lemma": "сторона",
+   "options": [
+    "северной стороной",
+    "северной стороны",
+    "северной стороне",
+    "северная сторона"
+   ],
+   "correct": "северной стороне",
+   "case": "Предложный (Prepositional)",
+   "explain": "«северной стороне» — after the preposition «на», for location or topic.",
+   "id": "c16",
+   "translation": "In the thickness of the wall of the court toward the east, before the separate place, and before the building, there were rooms."
+  },
+  {
+   "sentence": "Когда священники будут входить в священные пределы, они не должны выходить во ___, пока не снимут одежд, в которых они служат, потому что они святы.",
+   "lemma": "двор",
+   "options": [
+    "внешнем дворе",
+    "внешнему двору",
+    "внешнего двора",
+    "внешний двор"
+   ],
+   "correct": "внешний двор",
+   "case": "Винительный (Accusative)",
+   "explain": "«внешний двор» — after the preposition «во», the accusative marks the direct object of the verb.",
+   "id": "c18",
+   "translation": "When the priests enter in, then they shall not go out of the holy place into the outer court, but they shall lay their garments in which they minister there; for they are holy. Then they shall put on other garments, and shall approach that which is for the people.”"
+  },
+  {
+   "sentence": "Им следует переодеться в ___, прежде чем выйти к народу.",
+   "lemma": "одежда",
+   "options": [
+    "другими одеждами",
+    "другие одежды",
+    "других одежд",
+    "других одеждах"
+   ],
+   "correct": "другие одежды",
+   "case": "Винительный (Accusative)",
+   "explain": "«другие одежды» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c19",
+   "translation": "When the priests enter in, then they shall not go out of the holy place into the outer court, but they shall lay their garments in which they minister there; for they are holy. Then they shall put on other garments, and shall approach that which is for the people.”"
+  },
+  {
+   "sentence": "Потом он повернул к ___ и измерил ее; в ней было пятьсот локтей по измерительной трости.",
+   "lemma": "сторона",
+   "options": [
+    "западной стороны",
+    "западной стороной",
+    "западная сторона",
+    "западной стороне"
+   ],
+   "correct": "западной стороне",
+   "case": "Дательный (Dative)",
+   "explain": "«западной стороне» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c23",
+   "translation": "He turned about to the west side, and measured five hundred reeds with the measuring reed."
+  }
+ ]
 }

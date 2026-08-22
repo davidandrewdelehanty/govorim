@@ -1,204 +1,199 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Мы нарушили верность нашему ___ .",
-      "lemma": "Бог",
-      "options": [
-        "Богу",
-        "Богом",
-        "Боге",
-        "Бога"
-      ],
-      "correct": "Богу",
-      "case": "Дательный (Dative)",
-      "translation": "We have been unfaithful to our God.",
-      "explain": "The verb \"нарушили верность\" requires the dative to show to whom faithfulness is owed."
-    },
-    {
-      "id": "c2",
-      "sentence": "Давайте заключим завет с нашим ___ .",
-      "lemma": "Бог",
-      "options": [
-        "Богом",
-        "Богу",
-        "Боге",
-        "Бога"
-      ],
-      "correct": "Богом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Let us make a covenant with our God.",
-      "explain": "After the verb \"заключим\" (to make), we use instrumental with \"с\" (with)."
-    },
-    {
-      "id": "c3",
-      "sentence": "Ездра удалился от ___ дома.",
-      "lemma": "Бог",
-      "options": [
-        "Божья",
-        "Божий",
-        "Боже",
-        "Божьих"
-      ],
-      "correct": "Божий",
-      "case": "Именительный (Nominative)",
-      "translation": "Ezra withdrew from God's house.",
-      "explain": "The possessive adjective \"Божий\" is in nominative to agree with \"дом\"."
-    },
-    {
-      "id": "c4",
-      "sentence": "Все мужчины Иуды собрались в ___.",
-      "lemma": "Иерусалим",
-      "options": [
-        "Иерусалима",
-        "Иерусалиме",
-        "Иерусалимом",
-        "Иерусалим"
-      ],
-      "correct": "Иерусалиме",
-      "case": "Предложный (Prepositional)",
-      "translation": "All the men of Judah gathered in Jerusalem.",
-      "explain": "The preposition \"в\" with a city requires the prepositional case."
-    },
-    {
-      "id": "c5",
-      "sentence": "На двадцатый ___ девятого месяца народ сидел.",
-      "lemma": "день",
-      "options": [
-        "дни",
-        "дня",
-        "день",
-        "днём"
-      ],
-      "correct": "день",
-      "case": "Винительный (Accusative)",
-      "translation": "On the twentieth day of the ninth month the people sat.",
-      "explain": "Ordinal numbers with day expressions require the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "По решению вождей и старейшин ___.",
-      "lemma": "община",
-      "options": [
-        "общины",
-        "общину",
-        "общиной",
-        "общине"
-      ],
-      "correct": "общины",
-      "case": "Родительный (Genitive)",
-      "translation": "By the decree of the leaders and elders.",
-      "explain": "Possession is expressed in the genitive case after \"по решению\"."
-    },
-    {
-      "id": "c7",
-      "sentence": "Вы совершили предательство, женившись на чужеземках, увеличив вину ___.",
-      "lemma": "Израиль",
-      "options": [
-        "Израилю",
-        "Израилем",
-        "Израиле",
-        "Израиля"
-      ],
-      "correct": "Израиля",
-      "case": "Родительный (Genitive)",
-      "translation": "You have committed treason by marrying foreign women, increasing the guilt of Israel.",
-      "explain": "The genitive shows possession or attachment after \"вину\"."
-    },
-    {
-      "id": "c8",
-      "sentence": "Отделитесь от ___ , что вокруг вас.",
-      "lemma": "народ",
-      "options": [
-        "народов",
-        "народы",
-        "народам",
-        "народе"
-      ],
-      "correct": "народов",
-      "case": "Родительный (Genitive)",
-      "translation": "Separate yourselves from the peoples around you.",
-      "explain": "The preposition \"от\" (from) requires the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Пока Ездра молился и открыто признавался в грехах, плача и повергаясь перед Божьим домом, вокруг него собралась большая толпа израилетян, мужчин, женщин и детей.",
-      "question": "Who gathered around Ezra while he was praying?",
-      "options": [
-        "Only the priests",
-        "A large crowd of Israelites including men, women and children",
-        "The foreign peoples",
-        "The kings of Persia"
-      ],
-      "correct": "A large crowd of Israelites including men, women and children",
-      "explain": "The text explicitly states \"большая толпа израилетян, мужчин, женщин и детей\" gathered around him."
-    },
-    {
-      "id": "r2",
-      "ru": "Мы нарушили верность нашему Богу, женившись на чужеземках из народов, что вокруг нас.",
-      "question": "What does Shecaniah say was the sin?",
-      "options": [
-        "Worshiping idols",
-        "Breaking covenant with God by marrying foreign women",
-        "Refusing to pay taxes",
-        "Failing to celebrate holidays"
-      ],
-      "correct": "Breaking covenant with God by marrying foreign women",
-      "explain": "Shecaniah states that unfaithfulness came from marrying foreign women."
-    },
-    {
-      "id": "r3",
-      "ru": "Но даже теперь у Израиля еще есть надежда.",
-      "question": "What does Shecaniah say about Israel's situation?",
-      "options": [
-        "Israel is completely lost",
-        "Even now Israel still has hope",
-        "Israel will never recover",
-        "God has abandoned Israel"
-      ],
-      "correct": "Even now Israel still has hope",
-      "explain": "Despite the sin, Shecaniah declares that hope still remains for Israel."
-    },
-    {
-      "id": "r4",
-      "ru": "Ездра поднялся и заставил главных священников, левитов и весь Израиль поклясться сделать так, как было предложено.",
-      "question": "What did Ezra do in response to Shecaniah's proposal?",
-      "options": [
-        "He rejected the proposal",
-        "He made the priests, Levites, and all Israel swear to do as proposed",
-        "He delayed making a decision",
-        "He consulted the king"
-      ],
-      "correct": "He made the priests, Levites, and all Israel swear to do as proposed",
-      "explain": "Ezra had everyone swear to implement the proposal to separate from foreign wives."
-    },
-    {
-      "id": "r5",
-      "ru": "Ездра удалился от Божьего дома и пошел в комнату Иоханана, сына Илиашива.",
-      "question": "Where did Ezra go after the oath was taken?",
-      "options": [
-        "To his own house",
-        "To the king's palace",
-        "To the room of Jehohanan son of Eliashib",
-        "To the temple treasury"
-      ],
-      "correct": "To the room of Jehohanan son of Eliashib",
-      "explain": "The text states Ezra went to Jehohanan's room in the house of God."
-    },
-    {
-      "id": "r6",
-      "ru": "Все они были названы поименно.",
-      "question": "What happened to those who had married foreign women?",
-      "options": [
-        "They were executed",
-        "They were named individually (in the record)",
-        "They were banished",
-        "They were enslaved"
-      ],
-      "correct": "They were named individually (in the record)",
-      "explain": "The document records that all who married foreign women were listed by name."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Пока Ездра молился и открыто признавался в грехах, плача и повергаясь перед ___, вокруг него собралась большая толпа израильтян: мужчин, женщин и детей.",
+   "lemma": "дом",
+   "options": [
+    "божьем доме",
+    "божьему дому",
+    "божьим домом",
+    "божий дом"
+   ],
+   "correct": "божьим домом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«Божьим домом» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "id": "c1",
+   "translation": "Now while Ezra prayed and made confession, weeping and casting himself down before God’s house, there was gathered together to him out of Israel a very great assembly of men and women and children; for the people wept very bitterly."
+  },
+  {
+   "sentence": "Пока Ездра молился и открыто признавался в грехах, плача и повергаясь перед Божьим домом, вокруг него собралась ___ израильтян: мужчин, женщин и детей.",
+   "lemma": "толпа",
+   "options": [
+    "большая толпа",
+    "большей толпе",
+    "большей толпой",
+    "большей толпы"
+   ],
+   "correct": "большая толпа",
+   "case": "Именительный (Nominative)",
+   "explain": "«большая толпа» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "Now while Ezra prayed and made confession, weeping and casting himself down before God’s house, there was gathered together to him out of Israel a very great assembly of men and women and children; for the people wept very bitterly."
+  },
+  {
+   "sentence": "Ездра поднялся и заставил ___, левитов и весь Израиль поклясться сделать так, как было предложено.",
+   "lemma": "священник",
+   "options": [
+    "главным священникам",
+    "главными священниками",
+    "главные священники",
+    "главных священников"
+   ],
+   "correct": "главных священников",
+   "case": "Винительный (Accusative)",
+   "explain": "«главных священников» — the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "Then Ezra arose, and made the chiefs of the priests, the Levites, and all Israel, to swear that they would do according to this word. So they swore."
+  },
+  {
+   "sentence": "Ездра удалился от ___ и пошел в комнату Иоханана, сына Элиашива.",
+   "lemma": "дом",
+   "options": [
+    "божий дом",
+    "божьего дома",
+    "божьем доме",
+    "божьим домом"
+   ],
+   "correct": "божьего дома",
+   "case": "Родительный (Genitive)",
+   "explain": "«Божьего дома» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "Then Ezra rose up from before God’s house, and went into the room of Jehohanan the son of Eliashib. When he came there, he ate no bread, nor drank water; for he mourned because of their trespass of the captivity."
+  },
+  {
+   "sentence": "На ___ девятого месяца весь народ сидел на площади перед Божьим домом, дрожа из-за этого дела и из-за ливня.",
+   "lemma": "день",
+   "options": [
+    "двадцатый день",
+    "двадцатому дню",
+    "двадцатого дня",
+    "двадцатым днём"
+   ],
+   "correct": "двадцатый день",
+   "case": "Винительный (Accusative)",
+   "explain": "«двадцатый день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c5",
+   "translation": "Then all the men of Judah and Benjamin gathered themselves together to Jerusalem within the three days. It was the ninth month, on the twentieth day of the month; and all the people sat in the wide place in front of God’s house, trembling because of this matter, and because of the great rain."
+  },
+  {
+   "sentence": "На двадцатый день ___ весь народ сидел на площади перед Божьим домом, дрожа из-за этого дела и из-за ливня.",
+   "lemma": "месяц",
+   "options": [
+    "девятого месяца",
+    "девятом месяце",
+    "девятому месяцу",
+    "девятый месяц"
+   ],
+   "correct": "девятого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«девятого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "Then all the men of Judah and Benjamin gathered themselves together to Jerusalem within the three days. It was the ninth month, on the twentieth day of the month; and all the people sat in the wide place in front of God’s house, trembling because of this matter, and because of the great rain."
+  },
+  {
+   "sentence": "На двадцатый день девятого месяца весь народ сидел на площади перед ___, дрожа из-за этого дела и из-за ливня.",
+   "lemma": "дом",
+   "options": [
+    "божьем доме",
+    "божьему дому",
+    "божьим домом",
+    "божий дом"
+   ],
+   "correct": "божьим домом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«Божьим домом» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "id": "c7",
+   "translation": "Then all the men of Judah and Benjamin gathered themselves together to Jerusalem within the three days. It was the ninth month, on the twentieth day of the month; and all the people sat in the wide place in front of God’s house, trembling because of this matter, and because of the great rain."
+  },
+  {
+   "sentence": "Все собрание ответило ___:",
+   "lemma": "крик",
+   "options": [
+    "громким криком",
+    "громкий крик",
+    "громкого крика",
+    "громком крике"
+   ],
+   "correct": "громким криком",
+   "case": "Творительный (Instrumental)",
+   "explain": "«громким криком» — the instrumental marks the means, company, or complement.",
+   "id": "c8",
+   "translation": "Then all the assembly answered with a loud voice, “We must do as you have said concerning us."
+  },
+  {
+   "sentence": "В ___ десятого месяца они сели, чтобы разбирать это дело, 17 и к первому дню первого месяца закончили расследование относительно всех, кто женился на чужеземках.",
+   "lemma": "день",
+   "options": [
+    "первый день",
+    "первом дне",
+    "первым днём",
+    "первому дню"
+   ],
+   "correct": "первый день",
+   "case": "Винительный (Accusative)",
+   "explain": "«первый день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c9",
+   "translation": "The children of the captivity did so. Ezra the priest, with certain heads of fathers’ households, after their fathers’ houses, and all of them by their names, were set apart; and they sat down in the first day of the tenth month to examine the matter."
+  },
+  {
+   "sentence": "В первый день ___ они сели, чтобы разбирать это дело, 17 и к первому дню первого месяца закончили расследование относительно всех, кто женился на чужеземках.",
+   "lemma": "месяц",
+   "options": [
+    "десятому месяцу",
+    "десятом месяце",
+    "десятым месяцем",
+    "десятого месяца"
+   ],
+   "correct": "десятого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«десятого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c10",
+   "translation": "The children of the captivity did so. Ezra the priest, with certain heads of fathers’ households, after their fathers’ houses, and all of them by their names, were set apart; and they sat down in the first day of the tenth month to examine the matter."
+  },
+  {
+   "sentence": "В первый день десятого месяца они сели, чтобы разбирать это дело, 17 и к ___ первого месяца закончили расследование относительно всех, кто женился на чужеземках.",
+   "lemma": "день",
+   "options": [
+    "первом дне",
+    "первым днём",
+    "первому дню",
+    "первый день"
+   ],
+   "correct": "первому дню",
+   "case": "Дательный (Dative)",
+   "explain": "«первому дню» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c11",
+   "translation": "The children of the captivity did so. Ezra the priest, with certain heads of fathers’ households, after their fathers’ houses, and all of them by their names, were set apart; and they sat down in the first day of the tenth month to examine the matter."
+  },
+  {
+   "sentence": "В первый день десятого месяца они сели, чтобы разбирать это дело, 17 и к первому дню ___ закончили расследование относительно всех, кто женился на чужеземках.",
+   "lemma": "месяц",
+   "options": [
+    "первого месяца",
+    "первым месяцем",
+    "первом месяце",
+    "первый месяц"
+   ],
+   "correct": "первого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«первого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c12",
+   "translation": "The children of the captivity did so. Ezra the priest, with certain heads of fathers’ households, after their fathers’ houses, and all of them by their names, were set apart; and they sat down in the first day of the tenth month to examine the matter."
+  },
+  {
+   "sentence": "А среди ___:",
+   "lemma": "израильтянин",
+   "options": [
+    "прочих израильтян",
+    "прочих израильтянах",
+    "прочими израильтянами",
+    "прочие израильтяне"
+   ],
+   "correct": "прочих израильтян",
+   "case": "Родительный (Genitive)",
+   "explain": "«прочих израильтян» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "id": "c13",
+   "translation": "Of Israel: Of the sons of Parosh: Ramiah, and Izziah, and Malchijah, and Mijamin, and Eleazar, and Malchijah, and Benaiah."
+  }
+ ]
 }

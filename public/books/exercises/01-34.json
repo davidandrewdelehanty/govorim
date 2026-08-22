@@ -1,130 +1,34 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___, отец Шихема, пришел переговорить с Иаковом.",
-      "lemma": "Хамор",
-      "options": ["Хамор", "Хамора", "Хамору", "Хамором"],
-      "correct": "Хамор",
-      "case": "Именительный (Nominative)",
-      "translation": "Hamor, the father of Shechem, came to talk with Jacob.",
-      "explain": "Хамор is the subject of the verb пришёл ('came'), so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Молодой человек без ___ исполнил то, что они сказали.",
-      "lemma": "промедление",
-      "options": ["промедление", "промедления", "промедлению", "промедлением"],
-      "correct": "промедления",
-      "case": "Родительный (Genitive)",
-      "translation": "The young man did what they had said without delay.",
-      "explain": "The preposition без ('without') always takes the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Сердце его прилепилось к ___, дочери Иакова, он полюбил ее.",
-      "lemma": "Дина",
-      "options": ["Дина", "Дины", "Дине", "Дину"],
-      "correct": "Дине",
-      "case": "Дательный (Dative)",
-      "translation": "His heart was drawn to Dinah, Jacob's daughter, and he loved her.",
-      "explain": "The preposition к ('to/toward') requires the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Но если вы не согласитесь сделать обрезание, мы заберем ___ и уйдем.",
-      "lemma": "сестра",
-      "options": ["сестра", "сестры", "сестре", "сестру"],
-      "correct": "сестру",
-      "case": "Винительный (Accusative)",
-      "translation": "But if you do not agree to be circumcised, we will take our sister and go.",
-      "explain": "Сестру is the direct object of the transitive verb заберём ('we will take'), which requires the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Они убили ___ Хамора и его сына Шехема, забрали Дину из Шехемова дома и ушли.",
-      "lemma": "меч",
-      "options": ["меч", "меча", "мечу", "мечом"],
-      "correct": "мечом",
-      "case": "Творительный (Instrumental)",
-      "translation": "They killed Hamor and his son Shechem with the sword, took Dinah out of Shechem's house, and left.",
-      "explain": "Мечом is the instrumental of means ('with/by the sword'), used without a preposition to show the instrument of the action."
-    },
-    {
-      "id": "c6",
-      "sentence": "Они были полны горя и ярости, потому что Шихем сделал постыдное дело в ___, когда лег с дочерью Иакова, а такое недопустимо.",
-      "lemma": "Израиль",
-      "options": ["Израиль", "Израиля", "Израилю", "Израиле"],
-      "correct": "Израиле",
-      "case": "Предложный (Prepositional)",
-      "translation": "They were full of grief and fury, because Shechem had done a disgraceful thing in Israel by lying with Jacob's daughter, which ought not to be done.",
-      "explain": "The preposition в ('in'), indicating location, requires the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Дина, дочь Лии от Иакова, пошла навестить местных женщин.",
-      "question": "What did Dinah go out to do?",
-      "options": ["To see the women of the land", "To marry Shechem", "To visit her brothers in the field", "To fetch water from a well"],
-      "correct": "To see the women of the land",
-      "explain": "The text says Dinah went out to visit/see the local women of the land."
-    },
-    {
-      "id": "r2",
-      "ru": "Когда Шехем, сын Хевея, Хамора, правителя той области, увидел ее, то схватил, лег с ней и обесчестил ее.",
-      "question": "What did Shechem do to Dinah when he saw her?",
-      "options": ["He arranged a formal marriage first", "He seized her, lay with her, and violated her", "He gave her gifts and left", "He sent her back to Jacob"],
-      "correct": "He seized her, lay with her, and violated her",
-      "explain": "The text states that Shechem seized Dinah, lay with her, and dishonored (violated) her."
-    },
-    {
-      "id": "r3",
-      "ru": "Хамор, отец Шихема, пришел переговорить с Иаковом.",
-      "question": "Why did Hamor go to Jacob?",
-      "options": ["To buy land from him", "To negotiate/talk with him about the matter", "To declare war on him", "To ask for a loan"],
-      "correct": "To negotiate/talk with him about the matter",
-      "explain": "The text says Hamor came to talk with (negotiate with) Jacob."
-    },
-    {
-      "id": "r4",
-      "ru": "Тогда сыновья Иакова ответили Шехему и его отцу Хамору лживо, потому что он обесчестил их сестру Дину.",
-      "question": "How did Jacob's sons answer Shechem and Hamor?",
-      "options": ["Honestly and warmly", "Deceitfully, because Shechem had defiled their sister Dinah", "They refused to speak at all", "They immediately attacked them"],
-      "correct": "Deceitfully, because Shechem had defiled their sister Dinah",
-      "explain": "The text says Jacob's sons answered deceitfully because Shechem had defiled their sister Dinah."
-    },
-    {
-      "id": "r5",
-      "ru": "Мы дадим согласие лишь при одном условии, если вы станете как мы и сделаете всем вашим мужчинам обрезание.",
-      "question": "Under what one condition would Jacob's sons agree to the marriage?",
-      "options": ["That Shechem pay a huge dowry", "That every man of the city be circumcised", "That the city worship their God", "That Dinah return home immediately"],
-      "correct": "That every man of the city be circumcised",
-      "explain": "The sons of Jacob said they would only consent if all the men became circumcised like them."
-    },
-    {
-      "id": "r6",
-      "ru": "Все, кто собирались у городских ворот, согласились с Хамором и его сыном Шехемом, и все мужчины в городе были обрезаны.",
-      "question": "What happened after the men at the city gate agreed with Hamor and Shechem?",
-      "options": ["All the men of the city were circumcised", "The city was destroyed at once", "They drove Hamor out of the city", "They demanded more gifts first"],
-      "correct": "All the men of the city were circumcised",
-      "explain": "The text says the men agreed with Hamor and Shechem, and every man in the city was circumcised."
-    },
-    {
-      "id": "r7",
-      "ru": "Три дня спустя, когда они еще страдали от боли, двое сыновей Иакова, Симеон и Левий, братья Дины, взяли мечи, неожиданно напали на город и убили всех мужчин.",
-      "question": "What did Simeon and Levi do on the third day?",
-      "options": ["They forgave the men of the city", "They took their swords, attacked the city, and killed all the men", "They paid the agreed dowry", "They left the land quietly"],
-      "correct": "They took their swords, attacked the city, and killed all the men",
-      "explain": "The text says that while the men were still in pain, Simeon and Levi took their swords, attacked the city, and killed all the males."
-    },
-    {
-      "id": "r8",
-      "ru": "Тогда Иаков сказал Симеону и Левию, вы навлекли на меня беду, сделали меня ненавистным для жителей этой земли, хананеев и ферезеев.",
-      "question": "What was Jacob's reaction to what Simeon and Levi had done?",
-      "options": ["He praised them for defending their sister's honor", "He said they had brought trouble on him and made him odious to the land's inhabitants", "He ignored what had happened", "He rewarded them with land"],
-      "correct": "He said they had brought trouble on him and made him odious to the land's inhabitants",
-      "explain": "Jacob told Simeon and Levi that they had brought trouble on him, making him odious to the Canaanites and Perizzites who lived in the land."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "___ без промедления исполнил то, что они сказали, потому что очень любил дочь Иакова — а он, Шехем, был самым уважаемым в доме своего отца.",
+   "lemma": "человек",
+   "options": [
+    "молодым человеком",
+    "молодой человек",
+    "молодого человека",
+    "молодому человеку"
+   ],
+   "correct": "молодой человек",
+   "case": "Именительный (Nominative)",
+   "explain": "«Молодой человек» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "The young man didn’t wait to do this thing, because he had delight in Jacob’s daughter, and he was honored above all the house of his father."
+  },
+  {
+   "sentence": "Все, кто собирались у ___, согласились с Хамором и его сыном Шехемом, и все мужчины в городе были обрезаны.",
+   "lemma": "ворота",
+   "options": [
+    "городскими воротами",
+    "городским воротам",
+    "городских ворот",
+    "городские ворота"
+   ],
+   "correct": "городских ворот",
+   "case": "Родительный (Genitive)",
+   "explain": "«городских ворот» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "All who went out of the gate of his city listened to Hamor, and to Shechem his son; and every male was circumcised, all who went out of the gate of his city."
+  }
+ ]
 }

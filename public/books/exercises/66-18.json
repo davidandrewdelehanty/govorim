@@ -1,204 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "После этого я увидел еще одного ___, сходящего с небес.",
-      "lemma": "ангел",
-      "options": [
-        "ангел",
-        "ангела",
-        "ангелу",
-        "ангелом"
-      ],
-      "correct": "ангела",
-      "case": "Винительный (Accusative)",
-      "translation": "After this I saw another angel coming down out of the sky.",
-      "explain": "The verb увидел (saw) is transitive and takes the accusative case for its direct object."
-    },
-    {
-      "id": "c2",
-      "sentence": "Вся ___ была озарена его славой.",
-      "lemma": "земля",
-      "options": [
-        "земля",
-        "земли",
-        "земле",
-        "землю"
-      ],
-      "correct": "земля",
-      "case": "Именительный (Nominative)",
-      "translation": "The whole earth was illuminated by his glory.",
-      "explain": "The noun земля is the subject of the verb была (was), so it stands in nominative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Пала великая блудница ___.",
-      "lemma": "Вавилон",
-      "options": [
-        "Вавилон",
-        "Вавилона",
-        "Вавилону",
-        "Вавилоном"
-      ],
-      "correct": "Вавилон",
-      "case": "Именительный (Nominative)",
-      "translation": "Babylon the great prostitute has fallen.",
-      "explain": "The place name is in apposition to the subject and stands in nominative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Все народы пили доводящее до безумия ___ ее разврата.",
-      "lemma": "вино",
-      "options": [
-        "вино",
-        "вина",
-        "вину",
-        "вином"
-      ],
-      "correct": "вино",
-      "case": "Винительный (Accusative)",
-      "translation": "All the nations have drunk the wine of her sexual immorality.",
-      "explain": "The verb пить (to drink) is transitive and takes the accusative case for what is drunk."
-    },
-    {
-      "id": "c5",
-      "sentence": "В той самой ___, в которой она замешивала свое вино, замешайте ей напиток.",
-      "lemma": "чаша",
-      "options": [
-        "чаша",
-        "чаши",
-        "чаше",
-        "чашей"
-      ],
-      "correct": "чаше",
-      "case": "Предложный (Prepositional)",
-      "translation": "In the same cup in which she mixed her wine, mix her a drink.",
-      "explain": "The preposition в (in) with location meaning uses the prepositional case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Она будет сожжена ___.",
-      "lemma": "огонь",
-      "options": [
-        "огонь",
-        "огня",
-        "огню",
-        "огнём"
-      ],
-      "correct": "огнём",
-      "case": "Творительный (Instrumental)",
-      "translation": "She will be burned by fire.",
-      "explain": "The verb сожжена (burnt) in passive voice takes the instrumental case for the agent of the action."
-    },
-    {
-      "id": "c7",
-      "sentence": "Затем могучий ангел взял большой ___ размером с мельничный жернов.",
-      "lemma": "камень",
-      "options": [
-        "камень",
-        "камня",
-        "камню",
-        "камнем"
-      ],
-      "correct": "камень",
-      "case": "Винительный (Accusative)",
-      "translation": "Then a mighty angel took a great stone the size of a millstone.",
-      "explain": "The verb взял (took) is transitive and takes the accusative case for its direct object."
-    },
-    {
-      "id": "c8",
-      "sentence": "И бросил его в ___.",
-      "lemma": "море",
-      "options": [
-        "море",
-        "моря",
-        "морю",
-        "морем"
-      ],
-      "correct": "море",
-      "case": "Винительный (Accusative)",
-      "translation": "And threw it into the sea.",
-      "explain": "The preposition в with accusative indicates the destination where something is thrown."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "После этого я увидел еще одного ангела, сходящего с небес и обладающего великой властью.",
-      "question": "What was the angel descending from heaven like?",
-      "options": [
-        "He had great authority",
-        "He was wearing white robes",
-        "He was carrying a scroll",
-        "He was singing praises"
-      ],
-      "correct": "He had great authority",
-      "explain": "The text says ангел, сходящего с небес и обладающего великой властью (an angel coming down out of the sky and having great authority)."
-    },
-    {
-      "id": "r2",
-      "ru": "Вся земля была озарена его славой.",
-      "question": "What did the angel's glory do to the earth?",
-      "options": [
-        "Illuminated the whole earth",
-        "Shook the earth",
-        "Turned the earth to darkness",
-        "Divided the earth"
-      ],
-      "correct": "Illuminated the whole earth",
-      "explain": "The text states Вся земля была озарена его славой (The whole earth was illuminated by his glory)."
-    },
-    {
-      "id": "r3",
-      "ru": "Пала! Пала великая блудница Вавилон и стала жилищем демонов!",
-      "question": "What did Babylon become after falling?",
-      "options": [
-        "A habitation of demons",
-        "A place of worship",
-        "A center of learning",
-        "A fortress"
-      ],
-      "correct": "A habitation of demons",
-      "explain": "The text explicitly states Пала великая блудница Вавилон и стала жилищем демонов (Fallen, fallen is Babylon the great, and she became a habitation of demons)."
-    },
-    {
-      "id": "r4",
-      "ru": "Все народы пили доводящее до безумия вино ее разврата.",
-      "question": "What did all the nations drink?",
-      "options": [
-        "The maddening wine of her sexual immorality",
-        "Water from the sea",
-        "Milk and honey",
-        "Blood and tears"
-      ],
-      "correct": "The maddening wine of her sexual immorality",
-      "explain": "The text says Все народы пили доводящее до безумия вино ее разврата (All nations drank the maddening wine of her sexual immorality)."
-    },
-    {
-      "id": "r5",
-      "ru": "Выйди из нее, народ мой, чтобы тебе не участвовать в ее грехах и не подвергнуться ее наказанию.",
-      "question": "Why was God's people told to leave Babylon?",
-      "options": [
-        "So they would not share in her sins and plagues",
-        "So they could build a new city",
-        "So they could become rich",
-        "So they could fight her enemies"
-      ],
-      "correct": "So they would not share in her sins and plagues",
-      "explain": "The text says выйди из нее, чтобы не участвовать в ее грехах и не подвергнуться ее наказанию (come out of her, that you might not share in her sins and plagues)."
-    },
-    {
-      "id": "r6",
-      "ru": "Затем могучий ангел взял большой камень размером с мельничный жернов и бросил его в море, говоря, «Так будет брошена и великая столица Вавилон».",
-      "question": "What did the angel do with the stone?",
-      "options": [
-        "Threw it into the sea as a sign of Babylon's destruction",
-        "Placed it on the earth",
-        "Gave it to the saints",
-        "Held it up in the sky"
-      ],
-      "correct": "Threw it into the sea as a sign of Babylon's destruction",
-      "explain": "The text describes the angel taking a stone and бросил его в море (threw it into the sea) as a sign of how Babylon will be destroyed."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Он произнес ___:",
+   "lemma": "голос",
+   "options": [
+    "могучего голоса",
+    "могучем голосе",
+    "могучим голосом",
+    "могучий голос"
+   ],
+   "correct": "могучим голосом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«могучим голосом» — the instrumental marks the means, company, or complement.",
+   "id": "c1",
+   "translation": "He cried with a mighty voice, saying, “Fallen, fallen is Babylon the great, and she has become a habitation of demons, a prison of every unclean spirit, and a prison of every unclean and hateful bird!"
+  },
+  {
+   "sentence": "В один час было уничтожено такое ___!",
+   "lemma": "богатство",
+   "options": [
+    "огромным богатством",
+    "огромное богатство",
+    "огромном богатстве",
+    "огромному богатству"
+   ],
+   "correct": "огромное богатство",
+   "case": "Именительный (Nominative)",
+   "explain": "«огромное богатство» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "For in an hour such great riches are made desolate.’ Every ship master, and everyone who sails anywhere, and mariners, and as many as gain their living by sea, stood far away,"
+  },
+  {
+   "sentence": "Затем ___ взял большой камень размером в мельничный жернов и бросил его в море, говоря:.",
+   "lemma": "ангел",
+   "options": [
+    "могучему ангелу",
+    "могучим ангелом",
+    "могучий ангел",
+    "могучего ангела"
+   ],
+   "correct": "могучий ангел",
+   "case": "Именительный (Nominative)",
+   "explain": "«могучий ангел» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "A mighty angel took up a stone like a great millstone and cast it into the sea, saying, “Thus with violence will Babylon, the great city, be thrown down, and will be found no more at all."
+  }
+ ]
 }

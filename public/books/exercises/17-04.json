@@ -1,174 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Он просил помощи у ___.",
-      "lemma": "царь",
-      "options": [
-        "царь",
-        "царя",
-        "царю",
-        "царем"
-      ],
-      "correct": "царя",
-      "case": "Родительный (Genitive)",
-      "translation": "Он просил помощи у царя.",
-      "explain": "The preposition у governs the genitive case."
-    },
-    {
-      "id": "c2",
-      "sentence": "он вышел в ___",
-      "lemma": "город",
-      "options": [
-        "город",
-        "города",
-        "городу",
-        "городом"
-      ],
-      "correct": "город",
-      "case": "Винительный (Accusative)",
-      "translation": "он вышел в город",
-      "explain": "The preposition в with motion toward governs the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "ты и ___ твоего отца пропадете",
-      "lemma": "дом",
-      "options": [
-        "дом",
-        "дома",
-        "дому",
-        "домом"
-      ],
-      "correct": "дом",
-      "case": "Именительный (Nominative)",
-      "translation": "ты и дом твоего отца пропадете",
-      "explain": "Дом is the nominative subject of the sentence."
-    },
-    {
-      "id": "c4",
-      "sentence": "просить за свой ___",
-      "lemma": "народ",
-      "options": [
-        "народ",
-        "народа",
-        "народу",
-        "народом"
-      ],
-      "correct": "народ",
-      "case": "Винительный (Accusative)",
-      "translation": "просить за свой народ",
-      "explain": "The preposition за governs the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Такой ___ будет предан смерти",
-      "lemma": "человек",
-      "options": [
-        "человек",
-        "человека",
-        "человеку",
-        "человеком"
-      ],
-      "correct": "человек",
-      "case": "Именительный (Nominative)",
-      "translation": "Такой человек будет предан смерти",
-      "explain": "Человек is the nominative subject."
-    },
-    {
-      "id": "c8",
-      "sentence": "есть лишь один ___",
-      "lemma": "закон",
-      "options": [
-        "закон",
-        "закона",
-        "закону",
-        "законом"
-      ],
-      "correct": "закон",
-      "case": "Именительный (Nominative)",
-      "translation": "есть лишь один закон",
-      "explain": "Закон is the nominative predicate."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Когда Мордахей узнал обо всем, он разорвал на себе одежду и вышел в город",
-      "question": "What did Mordecai do?",
-      "options": [
-        "Tore his clothes and went out to the city",
-        "Went to the king",
-        "Wrote a letter",
-        "Hid in his house"
-      ],
-      "correct": "Tore his clothes and went out to the city",
-      "explain": "The text states: Когда Мордахей узнал обо всем, он разорвал на себе одежду и ..."
-    },
-    {
-      "id": "r2",
-      "ru": "никто, одетый в рубище, не мог в них войти",
-      "question": "Why could Mordecai not enter the gate?",
-      "options": [
-        "No one in sackcloth could enter",
-        "The gate was locked",
-        "It was nighttime",
-        "Guards were there"
-      ],
-      "correct": "No one in sackcloth could enter",
-      "explain": "The text states: никто, одетый в рубище, не мог в них войти..."
-    },
-    {
-      "id": "r3",
-      "ru": "у иудеев была великая скорбь и пост, плач и сетование",
-      "question": "How did the Jews respond to the decree?",
-      "options": [
-        "With great mourning, fasting, and weeping",
-        "By fighting back",
-        "By hiding",
-        "By leaving"
-      ],
-      "correct": "With great mourning, fasting, and weeping",
-      "explain": "The text states: у иудеев была великая скорбь и пост, плач и сетование..."
-    },
-    {
-      "id": "r4",
-      "ru": "Она послала ему одежду, чтобы он надел ее вместо своего рубища",
-      "question": "What did Esther send to Mordecai?",
-      "options": [
-        "Clothing to replace his sackcloth",
-        "Food",
-        "Money",
-        "A letter"
-      ],
-      "correct": "Clothing to replace his sackcloth",
-      "explain": "The text states: Она послала ему одежду, чтобы он надел ее вместо своего руби..."
-    },
-    {
-      "id": "r5",
-      "ru": "Не думай, что раз ты находишься в царском доме, ты одна из всех иудеев уцелеешь",
-      "question": "What did Mordecai warn Esther?",
-      "options": [
-        "She would not escape just because she was in the palace",
-        "The king was angry",
-        "She should flee",
-        "The decree was unchangeable"
-      ],
-      "correct": "She would not escape just because she was in the palace",
-      "explain": "The text states: Не думай, что раз ты находишься в царском доме, ты одна из в..."
-    },
-    {
-      "id": "r6",
-      "ru": "Если пропаду, то пропаду",
-      "question": "What was Esther's resolve?",
-      "options": [
-        "To go to the king even if it meant death",
-        "To hide",
-        "To run away",
-        "To ask others for help"
-      ],
-      "correct": "To go to the king even if it meant death",
-      "explain": "The text states: Если пропаду, то пропаду..."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Но дошел он лишь до ___, потому что никто, одетый в рубище, не мог в них войти.",
+   "lemma": "ворота",
+   "options": [
+    "царские ворота",
+    "царских воротах",
+    "царских ворот",
+    "царским воротам"
+   ],
+   "correct": "царских ворот",
+   "case": "Родительный (Genitive)",
+   "explain": "«царских ворот» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "He came even before the king’s gate, for no one is allowed inside the king’s gate clothed with sackcloth."
+  },
+  {
+   "sentence": "Тогда Есфирь призвала Хатаха, одного из ___, поставленного прислуживать ей, и приказала ему узнать, что тревожит Мардохея и почему.",
+   "lemma": "евнух",
+   "options": [
+    "царским евнухам",
+    "царских евнухах",
+    "царских евнухов",
+    "царские евнухи"
+   ],
+   "correct": "царских евнухов",
+   "case": "Родительный (Genitive)",
+   "explain": "«царских евнухов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "Then Esther called for Hathach, one of the king’s eunuchs, whom he had appointed to attend her, and commanded him to go to Mordecai, to find out what this was, and why it was."
+  },
+  {
+   "sentence": "Хатах вышел к Мардохею на городскую площадь, что перед ___.",
+   "lemma": "ворота",
+   "options": [
+    "царских ворот",
+    "царские ворота",
+    "царскими воротами",
+    "царских воротах"
+   ],
+   "correct": "царскими воротами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«царскими воротами» — after the preposition «перед», the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "So Hathach went out to Mordecai, to city square which was before the king’s gate."
+  },
+  {
+   "sentence": "— Все чиновники царя и народ ___ знают, что для любого мужчины или женщины, кто войдет к царю во внутренний двор незваным, есть лишь один закон — такой человек будет предан смерти.",
+   "lemma": "провинция",
+   "options": [
+    "царских провинциях",
+    "царским провинциям",
+    "царские провинции",
+    "царских провинций"
+   ],
+   "correct": "царских провинций",
+   "case": "Родительный (Genitive)",
+   "explain": "«царских провинций» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "“All the king’s servants, and the people of the king’s provinces, know, that whoever, whether man or woman, comes to the king into the inner court without being called, there is one law for him, that he be put to death, except those to whom the king might hold out the golden scepter, that he may live. I have not been called to come in to the king these thirty days.”"
+  },
+  {
+   "sentence": "В живых может остаться только тот, к кому царь протянет свой ___.",
+   "lemma": "скипетр",
+   "options": [
+    "золотому скипетру",
+    "золотой скипетр",
+    "золотого скипетра",
+    "золотым скипетром"
+   ],
+   "correct": "золотой скипетр",
+   "case": "Винительный (Accusative)",
+   "explain": "«золотой скипетр» — the accusative marks the direct object of the verb.",
+   "id": "c7",
+   "translation": "“All the king’s servants, and the people of the king’s provinces, know, that whoever, whether man or woman, comes to the king into the inner court without being called, there is one law for him, that he be put to death, except those to whom the king might hold out the golden scepter, that he may live. I have not been called to come in to the king these thirty days.”"
+  }
+ ]
 }

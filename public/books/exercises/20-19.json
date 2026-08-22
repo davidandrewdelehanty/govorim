@@ -1,204 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Лучше ___ , чей путь беспорочен, чем глупый с лукавой речью.",
-      "lemma": "бедняк",
-      "options": [
-        "бедняк",
-        "бедняка",
-        "бедняку",
-        "бедняком"
-      ],
-      "correct": "бедняк",
-      "case": "Именительный (Nominative)",
-      "translation": "Better is the poor man of integrity than a fool.",
-      "explain": "Subject of the implicit verb of comparison."
-    },
-    {
-      "id": "c2",
-      "sentence": "Богатство приводит много ___, а бедняка и его друг оставляет.",
-      "lemma": "друг",
-      "options": [
-        "друг",
-        "друга",
-        "другом",
-        "друзей"
-      ],
-      "correct": "друзей",
-      "case": "Родительный (Genitive) Plural",
-      "translation": "Wealth brings many friends.",
-      "explain": "Direct object plural genitive after 'много' (many)."
-    },
-    {
-      "id": "c3",
-      "sentence": "Приобретающий мудрость любит ___ свою.",
-      "lemma": "душа",
-      "options": [
-        "душу",
-        "душа",
-        "душой",
-        "душе"
-      ],
-      "correct": "душу",
-      "case": "Винительный (Accusative)",
-      "translation": "He who gets wisdom loves his own soul.",
-      "explain": "Direct object of the verb любит."
-    },
-    {
-      "id": "c4",
-      "sentence": "Дома и богатство — наследство от ___, а разумная жена — от Господа.",
-      "lemma": "родители",
-      "options": [
-        "родители",
-        "родителей",
-        "родителям",
-        "родителями"
-      ],
-      "correct": "родителей",
-      "case": "Родительный (Genitive)",
-      "translation": "House and riches are an inheritance from fathers.",
-      "explain": "Genitive after the preposition от."
-    },
-    {
-      "id": "c5",
-      "sentence": "Исполняющий повеление бережет свою жизнь, а небрежный к ___.",
-      "lemma": "жизнь",
-      "options": [
-        "жизни",
-        "жизнь",
-        "жизнью",
-        "жизне"
-      ],
-      "correct": "жизни",
-      "case": "Дательный (Dative)",
-      "translation": "He who is contemptuous in his ways shall die.",
-      "explain": "Dative after the preposition к (toward)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Наказывай ___, пока есть надежда.",
-      "lemma": "сын",
-      "options": [
-        "сына",
-        "сын",
-        "сыну",
-        "сыном"
-      ],
-      "correct": "сына",
-      "case": "Винительный (Accusative)",
-      "translation": "Discipline your son, for there is hope.",
-      "explain": "Direct object of the verb наказывай."
-    },
-    {
-      "id": "c7",
-      "sentence": "Разум рассудительного приобретает ___, и уши мудрых ищут его.",
-      "lemma": "знание",
-      "options": [
-        "знание",
-        "знания",
-        "знанию",
-        "знанием"
-      ],
-      "correct": "знание",
-      "case": "Винительный (Accusative)",
-      "translation": "The heart of the discerning gets knowledge.",
-      "explain": "Direct object of the verb приобретает."
-    },
-    {
-      "id": "c8",
-      "sentence": "Лживый свидетель не останется безнаказанным, и лгун ___.",
-      "lemma": "погибнуть",
-      "options": [
-        "погибнет",
-        "погибает",
-        "погибла",
-        "погибнут"
-      ],
-      "correct": "погибнет",
-      "case": "Future Tense",
-      "translation": "A false witness shall not be unpunished; he who utters lies shall perish.",
-      "explain": "Future tense verb in parallel structure."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Лучше бедняк, чей путь беспорочен, чем глупый с лукавой речью.",
-      "question": "Who is better according to this proverb?",
-      "options": [
-        "A wealthy fool",
-        "A poor person with integrity",
-        "A rich person with deceit",
-        "A person with many friends"
-      ],
-      "correct": "A poor person with integrity",
-      "explain": "The verse compares a poor man of integrity to a foolish man."
-    },
-    {
-      "id": "r2",
-      "ru": "Богатство приводит много друзей, а бедняка и его друг оставляет.",
-      "question": "What happens when someone becomes poor?",
-      "options": [
-        "They gain true friends",
-        "Wealth attracts friends, but poverty loses them",
-        "Their friends grow loyal",
-        "They attract honest people"
-      ],
-      "correct": "Wealth attracts friends, but poverty loses them",
-      "explain": "The verse contrasts wealth attracting friends with poverty losing them."
-    },
-    {
-      "id": "r3",
-      "ru": "Разум человека умеряет его гнев. Слава его оставить оскорбление без внимания.",
-      "question": "What brings glory to a person?",
-      "options": [
-        "Getting angry",
-        "Overlooking an offense",
-        "Seeking revenge",
-        "Complaining"
-      ],
-      "correct": "Overlooking an offense",
-      "explain": "The verse states that it is one's glory to overlook an offense."
-    },
-    {
-      "id": "r4",
-      "ru": "Приобретающий мудрость любит душу свою, хранящий разум преуспеет.",
-      "question": "What happens to those who value wisdom?",
-      "options": [
-        "They become poor",
-        "They lose friends",
-        "They prosper and love themselves",
-        "They become lonely"
-      ],
-      "correct": "They prosper and love themselves",
-      "explain": "The verse indicates those who gain wisdom prosper."
-    },
-    {
-      "id": "r5",
-      "ru": "Нехорошо усердие без знания, а тот, кто спешит, оступится.",
-      "question": "What is the problem with zeal without knowledge?",
-      "options": [
-        "It brings wealth",
-        "It leads to missing the way",
-        "It always works",
-        "It makes wisdom"
-      ],
-      "correct": "It leads to missing the way",
-      "explain": "The verse states that being hasty without knowledge leads to failure."
-    },
-    {
-      "id": "r6",
-      "ru": "Лживый свидетель не останется безнаказанным, и лгун не уйдет от расплаты.",
-      "question": "What happens to a false witness?",
-      "options": [
-        "They escape punishment",
-        "They face punishment",
-        "They gain rewards",
-        "They are forgotten"
-      ],
-      "correct": "They face punishment",
-      "explain": "The verse states that a false witness shall not go unpunished."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "___ не останется безнаказанным,",
+   "lemma": "свидетель",
+   "options": [
+    "лживого свидетеля",
+    "лживом свидетеле",
+    "лживый свидетель",
+    "лживым свидетелем"
+   ],
+   "correct": "лживый свидетель",
+   "case": "Именительный (Nominative)",
+   "explain": "«Лживый свидетель» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "A false witness shall not be unpunished. He who pours out lies shall not go free."
+  },
+  {
+   "sentence": "___ не останется безнаказанным,",
+   "lemma": "свидетель",
+   "options": [
+    "лживого свидетеля",
+    "лживом свидетеле",
+    "лживый свидетель",
+    "лживым свидетелем"
+   ],
+   "correct": "лживый свидетель",
+   "case": "Именительный (Nominative)",
+   "explain": "«Лживый свидетель» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "A false witness shall not be unpunished. He who utters lies shall perish."
+  },
+  {
+   "sentence": "___ львиному реву подобен,",
+   "lemma": "гнев",
+   "options": [
+    "царским гневом",
+    "царского гнева",
+    "царский гнев",
+    "царском гневе"
+   ],
+   "correct": "царский гнев",
+   "case": "Именительный (Nominative)",
+   "explain": "«Царский гнев» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "The king’s wrath is like the roaring of a lion, but his favor is like dew on the grass."
+  },
+  {
+   "sentence": "___ — гибель для отца,",
+   "lemma": "сын",
+   "options": [
+    "глупый сын",
+    "глупом сыне",
+    "глупому сыну",
+    "глупым сыном"
+   ],
+   "correct": "глупый сын",
+   "case": "Именительный (Nominative)",
+   "explain": "«Глупый сын» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "A foolish son is the calamity of his father. A wife’s quarrels are a continual dripping."
+  },
+  {
+   "sentence": "Леность наводит ___,",
+   "lemma": "сон",
+   "options": [
+    "глубокому сну",
+    "глубокого сна",
+    "глубокий сон",
+    "глубоким сном"
+   ],
+   "correct": "глубокий сон",
+   "case": "Именительный (Nominative)",
+   "explain": "«глубокий сон» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "Slothfulness casts into a deep sleep. The idle soul shall suffer hunger."
+  },
+  {
+   "sentence": "___ глумится над правосудием,",
+   "lemma": "свидетель",
+   "options": [
+    "негодном свидетеле",
+    "негодным свидетелем",
+    "негодный свидетель",
+    "негодного свидетеля"
+   ],
+   "correct": "негодный свидетель",
+   "case": "Именительный (Nominative)",
+   "explain": "«Негодный свидетель» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "A corrupt witness mocks justice, and the mouth of the wicked gulps down iniquity."
+  }
+ ]
 }

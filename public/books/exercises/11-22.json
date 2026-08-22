@@ -1,204 +1,109 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Разве вы не знаете, что ___ Галаадский принадлежит нам?",
-      "lemma": "Рамот",
-      "options": [
-        "Рамот",
-        "Рамота",
-        "Рамоту",
-        "Рамотом"
-      ],
-      "correct": "Рамот",
-      "case": "Именительный (Nominative)",
-      "translation": "Don't you know Ramoth Gilead belongs to us?",
-      "explain": "The subject of \"принадлежит\" (belongs) requires the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Пойдешь ли ты воевать за ___ Галаадский?",
-      "lemma": "Рамот",
-      "options": [
-        "Рамот",
-        "Рамота",
-        "Рамоту",
-        "Рамотом"
-      ],
-      "correct": "Рамот",
-      "case": "Винительный (Accusative)",
-      "translation": "Will you go to battle for Ramoth Gilead?",
-      "explain": "The preposition \"за\" (for) with the sense of purpose uses the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Мой народ твой народ, мои кони твои ___.",
-      "lemma": "конь",
-      "options": [
-        "кони",
-        "коней",
-        "конями",
-        "конях"
-      ],
-      "correct": "кони",
-      "case": "Именительный (Nominative)",
-      "translation": "My people are your people, my horses are your horses.",
-      "explain": "The predicate nominative requires the nominative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Спроси совета у ___.",
-      "lemma": "Бог",
-      "options": [
-        "бог",
-        "бога",
-        "богу",
-        "боге"
-      ],
-      "correct": "бога",
-      "case": "Родительный (Genitive)",
-      "translation": "Consult the Lord.",
-      "explain": "The preposition \"у\" (from, with) always governs the genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Собрал ___ около четырехсот человек.",
-      "lemma": "дух",
-      "options": [
-        "дух",
-        "духа",
-        "духов",
-        "духом"
-      ],
-      "correct": "духов",
-      "case": "Родительный (Genitive)",
-      "translation": "He gathered about four hundred prophets.",
-      "explain": "Numbers require the genitive case for counted nouns."
-    },
-    {
-      "id": "c6",
-      "sentence": "Все остальные ___ пророчествовали о том же.",
-      "lemma": "пророк",
-      "options": [
-        "пророки",
-        "пророков",
-        "пророкам",
-        "пророками"
-      ],
-      "correct": "пророки",
-      "case": "Именительный (Nominative)",
-      "translation": "All the other prophets prophesied the same thing.",
-      "explain": "The subject of \"пророчествовали\" requires the nominative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Я видел Господа, сидящим на своем ___, со всем небесным воинством.",
-      "lemma": "престол",
-      "options": [
-        "престол",
-        "престола",
-        "престоле",
-        "престолом"
-      ],
-      "correct": "престоле",
-      "case": "Предложный (Prepositional)",
-      "translation": "I saw the Lord sitting on His throne with all the heavenly host.",
-      "explain": "The preposition \"на\" with location (sitting on) uses the prepositional case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Один предлагал одно, другой ___ другое.",
-      "lemma": "дух",
-      "options": [
-        "дух",
-        "духа",
-        "духу",
-        "духом"
-      ],
-      "correct": "духа",
-      "case": "Родительный (Genitive)",
-      "translation": "One spirit suggested one thing, another suggested another.",
-      "explain": "The elliptical construction implies a partitive or comparative genitive."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Три года между Арамом и Израилем не было войны.",
-      "question": "How long was there peace?",
-      "options": [
-        "Three years",
-        "One year",
-        "Five years",
-        "Ten years"
-      ],
-      "correct": "Three years",
-      "explain": "The text explicitly states there was no war between Syria and Israel for three years."
-    },
-    {
-      "id": "r2",
-      "ru": "Разве вы не знаете, что Рамот Галаадский принадлежит нам, а мы и не пытаемся забрать его?",
-      "question": "What was Ahab's claim?",
-      "options": [
-        "Ramoth Gilead belonged to Israel but they had not tried to take it",
-        "It was a neutral city between kingdoms",
-        "It belonged to Syria and must be respected",
-        "It was worthless and not worth fighting for"
-      ],
-      "correct": "Ramoth Gilead belonged to Israel but they had not tried to take it",
-      "explain": "Ahab acknowledged that Ramoth Gilead was theirs but that they had not attempted to reclaim it."
-    },
-    {
-      "id": "r3",
-      "ru": "Но Иосафат спросил, «Разве нет здесь еще пророка Господа, которого мы могли бы спросить?»",
-      "question": "Why did Jehoshaphat want another prophet?",
-      "options": [
-        "He wanted to seek God's true counsel through His prophet",
-        "He doubted the first prophets",
-        "He wanted experienced advice",
-        "He was afraid of making mistakes"
-      ],
-      "correct": "He wanted to seek God's true counsel through His prophet",
-      "explain": "Jehoshaphat wanted to inquire of the Lord's prophet, showing desire for God's true guidance."
-    },
-    {
-      "id": "r4",
-      "ru": "Я видел весь Израиль рассеянным по горам, как овцы без пастуха.",
-      "question": "What was Micaiah's vision?",
-      "options": [
-        "Israel scattered like sheep without a shepherd",
-        "Israel united and strong",
-        "Israel building cities",
-        "Israel worshipping in the temple"
-      ],
-      "correct": "Israel scattered like sheep without a shepherd",
-      "explain": "Micaiah prophesied that he saw Israel scattered upon the mountains as sheep without a shepherd."
-    },
-    {
-      "id": "r5",
-      "ru": "Я видел Господа, сидящим на своем престоле, со всем небесным воинством, стоявшим справа и слева от него.",
-      "question": "What did Micaiah see in his vision?",
-      "options": [
-        "The Lord on His throne with the heavenly army standing beside Him",
-        "The Lord preparing for war",
-        "The Lord blessing the nations",
-        "The Lord judging humanity"
-      ],
-      "correct": "The Lord on His throne with the heavenly army standing beside Him",
-      "explain": "Micaiah saw the Lord sitting on His throne with all the host of heaven standing by Him."
-    },
-    {
-      "id": "r6",
-      "ru": "Как этот дух Господа перешел от меня к тебе, чтобы говорить с тобой?",
-      "question": "What was Zedekiah's reaction to Micaiah?",
-      "options": [
-        "He asked which way the Spirit of God had left him for Micaiah",
-        "He believed Micaiah's prophecy",
-        "He offered to surrender to Micaiah",
-        "He asked Micaiah to teach him"
-      ],
-      "correct": "He asked which way the Spirit of God had left him for Micaiah",
-      "explain": "Zedekiah struck Micaiah and sarcastically asked which way the Spirit of the Lord had gone from him to speak to Micaiah."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Облаченные в ___ царь Израиля и Иосафат, царь Иудеи, сидели на своих тронах на площади у ворот Самарии, а все пророки пророчествовали перед ними.",
+   "lemma": "одеяние",
+   "options": [
+    "царских одеяний",
+    "царские одеяния",
+    "царским одеяниям",
+    "царских одеяниях"
+   ],
+   "correct": "царские одеяния",
+   "case": "Винительный (Accusative)",
+   "explain": "«царские одеяния» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c2",
+   "translation": "Now the king of Israel and Jehoshaphat the king of Judah were sitting each on his throne, arrayed in their robes, in an open place at the entrance of the gate of Samaria; and all the prophets were prophesying before them."
+  },
+  {
+   "sentence": "Все ___ пророчествовали о том же, говоря:",
+   "lemma": "пророк",
+   "options": [
+    "остальным пророкам",
+    "остальными пророками",
+    "остальных пророков",
+    "остальные пророки"
+   ],
+   "correct": "остальные пророки",
+   "case": "Именительный (Nominative)",
+   "explain": "«остальные пророки» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "All the prophets prophesied so, saying, “Go up to Ramoth Gilead, and prosper; for Yahweh will deliver it into the hand of the king.”"
+  },
+  {
+   "sentence": "«Я пойду и стану ___ в устах всех его пророков», — сказал он.",
+   "lemma": "дух",
+   "options": [
+    "лживый дух",
+    "лживым духом",
+    "лживому духу",
+    "лживого духа"
+   ],
+   "correct": "лживым духом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«лживым духом» — the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "Yahweh said to him, ‘How?’ He said, ‘I will go out and will be a lying spirit in the mouth of all his prophets.’ He said, ‘You will entice him, and will also prevail. Go out and do so.’"
+  },
+  {
+   "sentence": "Что же до ___ правления Ахава и того, что он сделал, включая дворец, построенный им и выложенный слоновой костью, и города, которые он укрепил, то разве не записано об этом в «Книге летописей царей Израиля»?",
+   "lemma": "событие",
+   "options": [
+    "прочим событиям",
+    "прочими событиями",
+    "прочих событиях",
+    "прочих событий"
+   ],
+   "correct": "прочих событий",
+   "case": "Родительный (Genitive)",
+   "explain": "«прочих событий» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "Now the rest of the acts of Ahab, and all that he did, and the ivory house which he built, and all the cities that he built, aren’t they written in the book of the chronicles of the kings of Israel?"
+  },
+  {
+   "sentence": "___ правления Иосафата, то, чего он достиг, и его воинские подвиги, то разве не записаны они в «Книге летописей царей Иудеи»?",
+   "lemma": "событие",
+   "options": [
+    "прочих событий",
+    "прочие события",
+    "прочих событиях",
+    "прочими событиями"
+   ],
+   "correct": "прочие события",
+   "case": "Именительный (Nominative)",
+   "explain": "«Прочие события» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "Now the rest of the acts of Jehoshaphat, and his might that he showed, and how he fought, aren’t they written in the book of the chronicles of the kings of Judah?"
+  },
+  {
+   "sentence": "Прочие события правления Иосафата, то, чего он достиг, и его ___, то разве не записаны они в «Книге летописей царей Иудеи»?",
+   "lemma": "подвиг",
+   "options": [
+    "воинские подвиги",
+    "воинских подвигах",
+    "воинских подвигов",
+    "воинским подвигам"
+   ],
+   "correct": "воинские подвиги",
+   "case": "Именительный (Nominative)",
+   "explain": "«воинские подвиги» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "Now the rest of the acts of Jehoshaphat, and his might that he showed, and how he fought, aren’t they written in the book of the chronicles of the kings of Judah?"
+  },
+  {
+   "sentence": "Иосафат построил флотилию ___, чтобы плавать в Офир за золотом, но они так и не отплыли, потому что разбились в родном порту Эцион-Гевер.",
+   "lemma": "корабль",
+   "options": [
+    "таршишскими кораблями",
+    "таршишских кораблей",
+    "таршишские корабли",
+    "таршишским кораблям"
+   ],
+   "correct": "таршишских кораблей",
+   "case": "Родительный (Genitive)",
+   "explain": "«таршишских кораблей» — the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "Jehoshaphat made ships of Tarshish to go to Ophir for gold, but they didn’t go; for the ships wrecked at Ezion Geber."
+  }
+ ]
 }

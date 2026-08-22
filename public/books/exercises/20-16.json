@@ -1,204 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Человек строит планы, а ответ ___ от Господа.",
-      "lemma": "язык",
-      "options": [
-        "язык",
-        "языка",
-        "языку",
-        "языком"
-      ],
-      "correct": "языка",
-      "case": "Родительный (Genitive)",
-      "translation": "The plans of the heart belong to man, but the answer of the tongue is from Yahweh.",
-      "explain": "The genitive shows possession: ответ языка (the answer of the tongue)."
-    },
-    {
-      "id": "c2",
-      "sentence": "Веряй свое дело ___ и осуществится задуманное тобой.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господе"
-      ],
-      "correct": "Господу",
-      "case": "Дательный (Dative)",
-      "translation": "Commit your deeds to Yahweh, and your plans shall succeed.",
-      "explain": "The verb веряй (entrust/commit) with the preposition к governs the dative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Когда пути человека угодны ___, он даже врагов его с ним примиряет.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господе"
-      ],
-      "correct": "Господу",
-      "case": "Дательный (Dative)",
-      "translation": "When a man's ways please Yahweh, he makes even his enemies to be at peace with him.",
-      "explain": "The adjective угодны (pleasing) governs the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Лучше немногое с праведностью, чем большие доходы с ___.",
-      "lemma": "неправедность",
-      "options": [
-        "неправедность",
-        "неправедности",
-        "неправедностью",
-        "неправедностями"
-      ],
-      "correct": "неправедностью",
-      "case": "Творительный (Instrumental)",
-      "translation": "Better is a little with righteousness, than great revenues with injustice.",
-      "explain": "The preposition с (with) governs the instrumental case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Любовь и верность искупают ___, и страх перед Господом уводит от зла.",
-      "lemma": "грех",
-      "options": [
-        "грех",
-        "греха",
-        "греху",
-        "грехом"
-      ],
-      "correct": "грех",
-      "case": "Винительный (Accusative)",
-      "translation": "By mercy and truth iniquity is atoned for. By the fear of Yahweh men depart from evil.",
-      "explain": "Грех is the direct object of искупают (atone for), taking the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Лучше быть кротким духом и среди ___, чем делить добычу с надменными.",
-      "lemma": "бедняк",
-      "options": [
-        "бедняк",
-        "бедняка",
-        "бедняков",
-        "бедняком"
-      ],
-      "correct": "бедняков",
-      "case": "Родительный (Genitive)",
-      "translation": "It is better to be of a lowly spirit with the poor, than to divide the plunder with the proud.",
-      "explain": "The preposition среди (among) governs the genitive case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Седина — это славы ___, что достигается праведной жизнью.",
-      "lemma": "венец",
-      "options": [
-        "венец",
-        "венца",
-        "венцу",
-        "венцом"
-      ],
-      "correct": "венец",
-      "case": "Именительный (Nominative)",
-      "translation": "Gray hair is a crown of glory. It is attained by a life of righteousness.",
-      "explain": "Венец is a predicate nominative after the linking verb быть (is)."
-    },
-    {
-      "id": "c8",
-      "sentence": "Приносить мудрость гораздо лучше, чем ___.",
-      "lemma": "золото",
-      "options": [
-        "золото",
-        "золота",
-        "золотом",
-        "золоте"
-      ],
-      "correct": "золото",
-      "case": "Винительный (Accusative)",
-      "translation": "How much better it is to get wisdom than gold!",
-      "explain": "Золото as part of a comparison requires the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Человек строит планы, а ответ языка от Господа.",
-      "question": "Where do the answers to human plans come from?",
-      "options": [
-        "The answer of the tongue is from Yahweh",
-        "Humans control all their plans and answers",
-        "Plans are made in heaven",
-        "Answers come from other people"
-      ],
-      "correct": "The answer of the tongue is from Yahweh",
-      "explain": "The verse states: ответ языка от Господа — the answer of the tongue is from Yahweh."
-    },
-    {
-      "id": "r2",
-      "ru": "Когда пути человека угодны Господу, он даже врагов его с ним примиряет.",
-      "question": "What does the Lord do when a man's ways please Him?",
-      "options": [
-        "He makes even enemies at peace with him",
-        "He multiplies his enemies",
-        "He ignores his actions",
-        "He abandons him to his enemies"
-      ],
-      "correct": "He makes even enemies at peace with him",
-      "explain": "When пути человека угодны Господу (a man's ways please Yahweh), He врагов его с ним примиряет (makes his enemies at peace with him)."
-    },
-    {
-      "id": "r3",
-      "ru": "Лучше немногое с праведностью, чем большие доходы с неправедностью.",
-      "question": "What is preferable: little righteousness or great injustice?",
-      "options": [
-        "A little with righteousness rather than great revenues with injustice",
-        "Great revenues are always preferable",
-        "Righteousness and injustice are equally valuable",
-        "Injustice always brings more reward"
-      ],
-      "correct": "A little with righteousness rather than great revenues with injustice",
-      "explain": "The verse clearly states: Лучше немногое с праведностью, чем большие доходы с неправедностью — Better is little with righteousness than great revenues with injustice."
-    },
-    {
-      "id": "r4",
-      "ru": "Лучше приобретать мудрость гораздо лучше, чем золото.",
-      "question": "What is better to acquire than gold?",
-      "options": [
-        "Wisdom",
-        "Silver and jewels",
-        "Power and influence",
-        "Land and property"
-      ],
-      "correct": "Wisdom",
-      "explain": "The verse states: Приобретать мудрость гораздо лучше, чем золото — How much better it is to get wisdom than gold!"
-    },
-    {
-      "id": "r5",
-      "ru": "Гордость предшествует гибели. Надменность духа — падению.",
-      "question": "What comes before destruction and downfall?",
-      "options": [
-        "Pride and arrogant spirit",
-        "Humility and gentleness",
-        "Wisdom and understanding",
-        "Wealth and prosperity"
-      ],
-      "correct": "Pride and arrogant spirit",
-      "explain": "The verse clearly states: Гордость предшествует гибели (Pride goes before destruction) and Надменность духа — падению (an arrogant spirit — a fall)."
-    },
-    {
-      "id": "r6",
-      "ru": "Седина — это славы венец, что достигается праведной жизнью.",
-      "question": "What does gray hair represent according to this verse?",
-      "options": [
-        "A crown of glory achieved through a righteous life",
-        "A mark of shame",
-        "A sign of weakness",
-        "Proof of sinfulness"
-      ],
-      "correct": "A crown of glory achieved through a righteous life",
-      "explain": "The text states: Седина — это славы венец (Gray hair is a crown of glory) that достигается праведной жизнью (is attained by a righteous life)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "___ — медовые соты,",
+   "lemma": "слово",
+   "options": [
+    "приятных словах",
+    "приятные слова",
+    "приятными словами",
+    "приятным словам"
+   ],
+   "correct": "приятные слова",
+   "case": "Именительный (Nominative)",
+   "explain": "«Приятные слова» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Pleasant words are a honeycomb, sweet to the soul, and health to the bones."
+  },
+  {
+   "sentence": "Приятные слова — ___,",
+   "lemma": "соты",
+   "options": [
+    "медовых сотах",
+    "медовые соты",
+    "медовым сотам",
+    "медовых сотов"
+   ],
+   "correct": "медовые соты",
+   "case": "Именительный (Nominative)",
+   "explain": "«медовые соты» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "Pleasant words are a honeycomb, sweet to the soul, and health to the bones."
+  },
+  {
+   "sentence": "___ сеет раздор,",
+   "lemma": "человек",
+   "options": [
+    "лукавым человеком",
+    "лукавому человеку",
+    "лукавом человеке",
+    "лукавый человек"
+   ],
+   "correct": "лукавый человек",
+   "case": "Именительный (Nominative)",
+   "explain": "«Лукавый человек» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "A perverse man stirs up strife. A whisperer separates close friends."
+  }
+ ]
 }

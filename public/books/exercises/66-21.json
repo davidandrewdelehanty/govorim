@@ -1,134 +1,184 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Я увидел святой город, ___.",
-      "lemma": "Иерусалим",
-      "options": ["Иерусалим", "Иерусалима", "Иерусалиму", "Иерусалимом"],
-      "correct": "Иерусалим",
-      "case": "Именительный (Nominative)",
-      "translation": "I saw the holy city, New Jerusalem.",
-      "explain": "In apposition after the noun 'город', the name takes the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Спускался с ___.",
-      "lemma": "небо",
-      "options": ["небо", "неба", "небу", "небом"],
-      "correct": "неба",
-      "case": "Родительный (Genitive)",
-      "translation": "Coming down from heaven.",
-      "explain": "The preposition 'с' (from) requires the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Украшенная для своего ___.",
-      "lemma": "муж",
-      "options": ["муж", "мужа", "мужу", "мужом"],
-      "correct": "мужа",
-      "case": "Родительный (Genitive)",
-      "translation": "Adorned for her husband.",
-      "explain": "The preposition 'для' (for) requires the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Услышал громкий ___.",
-      "lemma": "голос",
-      "options": ["голос", "голоса", "голосу", "голосом"],
-      "correct": "голос",
-      "case": "Винительный (Accusative)",
-      "translation": "Heard a loud voice.",
-      "explain": "The transitive verb 'услышал' (heard) requires the accusative case for its direct object."
-    },
-    {
-      "id": "c5",
-      "sentence": "Это жилище ___ с людьми.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Бога",
-      "case": "Родительный (Genitive)",
-      "translation": "This is God's dwelling with people.",
-      "explain": "In the possessive construction 'жилище Бога' (God's dwelling), the genitive expresses ownership."
-    },
-    {
-      "id": "c6",
-      "sentence": "Отрет с их глаз каждую ___.",
-      "lemma": "слеза",
-      "options": ["слеза", "слезы", "слезу", "слезой"],
-      "correct": "слезу",
-      "case": "Винительный (Accusative)",
-      "translation": "He will wipe away every tear from their eyes.",
-      "explain": "The transitive verb 'отрет' (will wipe) requires the accusative case for its direct object."
-    },
-    {
-      "id": "c7",
-      "sentence": "Народы будут ходить в его ___.",
-      "lemma": "свет",
-      "options": ["свет", "света", "свету", "свете"],
-      "correct": "свете",
-      "case": "Предложный (Prepositional)",
-      "translation": "The nations will walk in his light.",
-      "explain": "The preposition 'в' with location requires the prepositional case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Построена из ___.",
-      "lemma": "яшма",
-      "options": ["яшма", "яшмы", "яшме", "яшмой"],
-      "correct": "яшмы",
-      "case": "Родительный (Genitive)",
-      "translation": "Built of jasper.",
-      "explain": "The preposition 'из' (of, made from) requires the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Я увидел святой город, Новый Иерусалим, спускающийся с небес от Бога, приготовленный как невеста, украшенная для своего мужа.",
-      "question": "How is the New Jerusalem described when it comes down from heaven?",
-      "options": ["As a fortress with walls", "As a bride adorned for her husband", "As a mountain of gold", "As a temple of light"],
-      "correct": "As a bride adorned for her husband",
-      "explain": "The text explicitly states it was 'приготовленный как невеста, украшенная для своего мужа' (prepared like a bride adorned for her husband)."
-    },
-    {
-      "id": "r2",
-      "ru": "Это жилище Бога с людьми. Здесь он будет жить с ними, и они будут его народом.",
-      "question": "What is God's dwelling, according to the passage?",
-      "options": ["A temple building", "His presence with people, who will be His people", "The throne room in heaven", "The sanctuary with the ark"],
-      "correct": "His presence with people, who will be His people",
-      "explain": "The text states 'Это жилище Бога с людьми' and 'он будет жить с ними, и они будут его народом' (This is God's dwelling with people; He will live with them and they will be His people)."
-    },
-    {
-      "id": "r3",
-      "ru": "Он отрет с их глаз каждую слезу. Больше не будет ни смерти, ни скорби, ни вопля, ни боли, потому что прежнее ушло.",
-      "question": "What will happen to suffering and death in the New Jerusalem?",
-      "options": ["They will be reduced but still present", "They will be transformed into joy", "They will no longer exist", "They will be kept outside the city"],
-      "correct": "They will no longer exist",
-      "explain": "The passage explicitly states that God 'отрет с их глаз каждую слезу' and 'Больше не будет ни смерти, ни скорби, ни вопля, ни боли' (will wipe away every tear, and there will be no more death, sorrow, crying, or pain)."
-    },
-    {
-      "id": "r4",
-      "ru": "У города большая и высокая стена, и двенадцать ворот, а у ворот двенадцать ангелов.",
-      "question": "How many gates does the city have, and what guards them?",
-      "options": ["Four gates with cherubim", "Twelve gates with twelve angels", "Seven gates with seraphim", "Twelve gates with soldiers"],
-      "correct": "Twelve gates with twelve angels",
-      "explain": "The text clearly states 'двенадцать ворот, а у ворот двенадцать ангелов' (twelve gates, and at the gates twelve angels)."
-    },
-    {
-      "id": "r5",
-      "ru": "На воротах написаны имена двенадцати родов Израиля. Трое ворот с востока, трое с севера, трое с юга и трое с запада.",
-      "question": "What names are written on the gates of the city?",
-      "options": ["The names of the twelve apostles", "The names of the twelve tribes of Israel", "The names of the prophets", "The names of the patriarchs"],
-      "correct": "The names of the twelve tribes of Israel",
-      "explain": "The passage states 'На воротах написаны имена двенадцати родов Израиля' (The names of the twelve tribes of Israel are written on the gates)."
-    },
-    {
-      "id": "r6",
-      "ru": "Храма в городе я не видел, потому что его храм — это сам Господь Бог Вседержитель и Ягненок.",
-      "question": "Why is there no temple in the New Jerusalem?",
-      "options": ["It was destroyed in the siege", "There was not enough space", "The Lord God Almighty and the Lamb themselves are its temple", "It is underground"],
-      "correct": "The Lord God Almighty and the Lamb themselves are its temple",
-      "explain": "The text explains 'его храм — это сам Господь Бог Вседержитель и Ягненок' (its temple is the Lord God Almighty and the Lamb themselves)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "___ и первой земли уже не было, моря тоже больше не было.",
+   "lemma": "небо",
+   "options": [
+    "первому небу",
+    "первым небом",
+    "первого неба",
+    "первом небе"
+   ],
+   "correct": "первого неба",
+   "case": "Родительный (Genitive)",
+   "explain": "«Первого неба» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "I saw a new heaven and a new earth: for the first heaven and the first earth have passed away, and the sea is no more."
+  },
+  {
+   "sentence": "Первого неба и ___ уже не было, моря тоже больше не было.",
+   "lemma": "земля",
+   "options": [
+    "первой земли",
+    "первой земле",
+    "первая земля",
+    "первой землёй"
+   ],
+   "correct": "первой земли",
+   "case": "Родительный (Genitive)",
+   "explain": "«первой земли» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "I saw a new heaven and a new earth: for the first heaven and the first earth have passed away, and the sea is no more."
+  },
+  {
+   "sentence": "Я увидел ___ — новый Иерусалим.",
+   "lemma": "город",
+   "options": [
+    "святой город",
+    "святому городу",
+    "святого города",
+    "святом городе"
+   ],
+   "correct": "святой город",
+   "case": "Винительный (Accusative)",
+   "explain": "«святой город» — the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "I saw the holy city, New Jerusalem, coming down out of heaven from God, prepared like a bride adorned for her husband."
+  },
+  {
+   "sentence": "И я услышал ___, прозвучавший от трона:",
+   "lemma": "голос",
+   "options": [
+    "громкого голоса",
+    "громкому голосу",
+    "громком голосе",
+    "громкий голос"
+   ],
+   "correct": "громкий голос",
+   "case": "Винительный (Accusative)",
+   "explain": "«громкий голос» — the accusative marks the direct object of the verb.",
+   "id": "c4",
+   "translation": "I heard a loud voice out of heaven saying, “Behold, God’s dwelling is with people, and he will dwell with them, and they will be his people, and God himself will be with them as their God."
+  },
+  {
+   "sentence": "Один из ангелов, имеющих семь чаш, наполненных семью ___, подошел и сказал мне:",
+   "lemma": "бедствие",
+   "options": [
+    "последние бедствия",
+    "последних бедствий",
+    "последними бедствиями",
+    "последних бедствиях"
+   ],
+   "correct": "последними бедствиями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«последними бедствиями» — the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "One of the seven angels who had the seven bowls, who were loaded with the seven last plagues came, and he spoke with me, saying, “Come here. I will show you the wife, the Lamb’s bride.”"
+  },
+  {
+   "sentence": "Оттуда он показал мне ___ Иерусалим, спускающийся с небес от Бога .",
+   "lemma": "город",
+   "options": [
+    "святой город",
+    "святому городу",
+    "святого города",
+    "святом городе"
+   ],
+   "correct": "святой город",
+   "case": "Винительный (Accusative)",
+   "explain": "«святой город» — the accusative marks the direct object of the verb.",
+   "id": "c6",
+   "translation": "He carried me away in the Spirit to a great and high mountain, and showed me the holy city, Jerusalem, coming down out of heaven from God,"
+  },
+  {
+   "sentence": "Ангел измерил стены, они были толщиной в сто сорок четыре локтя , согласно ___, которыми пользовался ангел.",
+   "lemma": "мерка",
+   "options": [
+    "человеческим меркам",
+    "человеческие мерки",
+    "человеческими мерками",
+    "человеческих мерках"
+   ],
+   "correct": "человеческим меркам",
+   "case": "Дательный (Dative)",
+   "explain": "«человеческим меркам» — after the preposition «согласно», the dative marks the indirect object or recipient.",
+   "id": "c7",
+   "translation": "Its wall is one hundred forty-four cubits, by the measure of a man, that is, of an angel."
+  },
+  {
+   "sentence": "Стена была построена из яшмы, а ___ — из чистого, как прозрачное стекло, золота.",
+   "lemma": "город",
+   "options": [
+    "сам город",
+    "самому городу",
+    "самом городе",
+    "самого города"
+   ],
+   "correct": "сам город",
+   "case": "Именительный (Nominative)",
+   "explain": "«сам город» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "The construction of its wall was jasper. The city was pure gold, like pure glass."
+  },
+  {
+   "sentence": "Стена была построена из яшмы, а сам город — из чистого, как ___, золота.",
+   "lemma": "стекло",
+   "options": [
+    "прозрачным стеклом",
+    "прозрачному стеклу",
+    "прозрачного стекла",
+    "прозрачное стекло"
+   ],
+   "correct": "прозрачное стекло",
+   "case": "Именительный (Nominative)",
+   "explain": "«прозрачное стекло» — the subject of the sentence stands in the nominative.",
+   "id": "c9",
+   "translation": "The construction of its wall was jasper. The city was pure gold, like pure glass."
+  },
+  {
+   "sentence": "Двенадцать ворот были двенадцатью жемчужинами: каждые ворота из ___ .",
+   "lemma": "жемчужина",
+   "options": [
+    "отдельной жемчужине",
+    "отдельной жемчужиной",
+    "отдельная жемчужина",
+    "отдельной жемчужины"
+   ],
+   "correct": "отдельной жемчужины",
+   "case": "Родительный (Genitive)",
+   "explain": "«отдельной жемчужины» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c10",
+   "translation": "The twelve gates were twelve pearls. Each one of the gates was made of one pearl. The street of the city was pure gold, like transparent glass."
+  },
+  {
+   "sentence": "А ___ города была из чистого, как прозрачное стекло, золота.",
+   "lemma": "улица",
+   "options": [
+    "центральной улицы",
+    "центральной улице",
+    "центральная улица",
+    "центральной улицей"
+   ],
+   "correct": "центральная улица",
+   "case": "Именительный (Nominative)",
+   "explain": "«центральная улица» — the subject of the sentence stands in the nominative.",
+   "id": "c11",
+   "translation": "The twelve gates were twelve pearls. Each one of the gates was made of one pearl. The street of the city was pure gold, like transparent glass."
+  },
+  {
+   "sentence": "А центральная улица города была из чистого, как ___, золота.",
+   "lemma": "стекло",
+   "options": [
+    "прозрачным стеклом",
+    "прозрачному стеклу",
+    "прозрачного стекла",
+    "прозрачное стекло"
+   ],
+   "correct": "прозрачное стекло",
+   "case": "Именительный (Nominative)",
+   "explain": "«прозрачное стекло» — the subject of the sentence stands in the nominative.",
+   "id": "c12",
+   "translation": "The twelve gates were twelve pearls. Each one of the gates was made of one pearl. The street of the city was pure gold, like transparent glass."
+  }
+ ]
 }

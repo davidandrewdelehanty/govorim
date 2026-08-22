@@ -1,204 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Царь Давид состарился и достиг преклонных ___.",
-      "lemma": "лет",
-      "options": [
-        "лет",
-        "лета",
-        "летам",
-        "летами"
-      ],
-      "correct": "лет",
-      "case": "Родительный (Genitive)",
-      "translation": "King David grew old and reached advanced years.",
-      "explain": "The numeral преклонных requires the genitive case for age (лет)."
-    },
-    {
-      "id": "c2",
-      "sentence": "Его укутывали одеждами, но он все равно не мог согреться в ___.",
-      "lemma": "одежда",
-      "options": [
-        "одежда",
-        "одежды",
-        "одежду",
-        "одеждой"
-      ],
-      "correct": "одеждой",
-      "case": "Творительный (Instrumental)",
-      "translation": "They wrapped him in clothes, but he still couldn't warm himself in them.",
-      "explain": "The preposition в with the instrumental case indicates being wrapped in."
-    },
-    {
-      "id": "c3",
-      "sentence": "Они искали красивую ___ по всему Израилю.",
-      "lemma": "девушка",
-      "options": [
-        "девушка",
-        "девушки",
-        "девушку",
-        "девушкой"
-      ],
-      "correct": "девушку",
-      "case": "Винительный (Accusative)",
-      "translation": "They sought a beautiful girl throughout all Israel.",
-      "explain": "The verb искали (sought) governs the accusative case for the direct object."
-    },
-    {
-      "id": "c4",
-      "sentence": "Авишак ухаживала за ___.",
-      "lemma": "царь",
-      "options": [
-        "царь",
-        "царя",
-        "царю",
-        "царем"
-      ],
-      "correct": "царем",
-      "case": "Творительный (Instrumental)",
-      "translation": "Abishag cared for the king.",
-      "explain": "The preposition за (for/after) followed by care requires the instrumental case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Адония говорил, что он будет ___.",
-      "lemma": "царь",
-      "options": [
-        "царь",
-        "царя",
-        "царю",
-        "царем"
-      ],
-      "correct": "царем",
-      "case": "Творительный (Instrumental)",
-      "translation": "Adonijah said he would be king.",
-      "explain": "The verb быть (to be) requires the instrumental case for the predicate."
-    },
-    {
-      "id": "c6",
-      "sentence": "Он завел колесницы и ___.",
-      "lemma": "конь",
-      "options": [
-        "конь",
-        "коня",
-        "коню",
-        "конем"
-      ],
-      "correct": "коня",
-      "case": "Винительный (Accusative)",
-      "translation": "He obtained chariots and horses.",
-      "explain": "The verb завел (obtained) requires the accusative case for direct objects."
-    },
-    {
-      "id": "c7",
-      "sentence": "Батшева говорила ___ о том, что произойдет.",
-      "lemma": "царь",
-      "options": [
-        "царь",
-        "царя",
-        "царю",
-        "царем"
-      ],
-      "correct": "царю",
-      "case": "Дательный (Dative)",
-      "translation": "Bathsheba spoke to the king about what would happen.",
-      "explain": "The verb говорила requires the dative case with indirect objects."
-    },
-    {
-      "id": "c8",
-      "sentence": "Пророк Нафан пришел к ___.",
-      "lemma": "царь",
-      "options": [
-        "царь",
-        "царя",
-        "царю",
-        "царем"
-      ],
-      "correct": "царю",
-      "case": "Дательный (Dative)",
-      "translation": "The prophet Nathan came to the king.",
-      "explain": "The preposition к (to) governs the dative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Давид в старости состарился и достиг преклонных лет.",
-      "question": "What happened to King David in his old age?",
-      "options": [
-        "He became even wealthier",
-        "He grew old and reached advanced years",
-        "He traveled throughout Israel",
-        "He built a great temple"
-      ],
-      "correct": "He grew old and reached advanced years",
-      "explain": "The text states that David aged and reached advanced years (состарился и достиг преклонных лет)."
-    },
-    {
-      "id": "r2",
-      "ru": "Его укутывали одеждами, но он все равно не мог согреться.",
-      "question": "Why couldn't King David stay warm despite being wrapped in clothes?",
-      "options": [
-        "Because the clothes were torn",
-        "Because he was too old and weak",
-        "Because it was the coldest winter",
-        "Because he refused to wear them"
-      ],
-      "correct": "Because he was too old and weak",
-      "explain": "The text implies David's advanced age made it impossible to keep warm even with coverings."
-    },
-    {
-      "id": "r3",
-      "ru": "Они нашли шунамитянку Авишак и привели ее к царю.",
-      "question": "What was done after finding Abishag the Shunammite?",
-      "options": [
-        "She was sent to another kingdom",
-        "She was brought to the king",
-        "She married one of David's sons",
-        "She became a priestess"
-      ],
-      "correct": "She was brought to the king",
-      "explain": "The text says they found Abishag and привели ее к царю (brought her to the king)."
-    },
-    {
-      "id": "r4",
-      "ru": "Адония кичливо говорил, что он будет царем.",
-      "question": "What did Adonijah proudly declare about himself?",
-      "options": [
-        "That he would be a great priest",
-        "That he would be king",
-        "That he would travel the world",
-        "That he would build great cities"
-      ],
-      "correct": "That he would be king",
-      "explain": "The text says Adonijah arrogantly declared 'Я буду царем' (I will be king)."
-    },
-    {
-      "id": "r5",
-      "ru": "Батшева пошла к царю и поклонилась перед ним.",
-      "question": "How did Bathsheba show respect to King David?",
-      "options": [
-        "She gave him gifts",
-        "She spoke loudly to him",
-        "She bowed down before him",
-        "She refused to see him"
-      ],
-      "correct": "She bowed down before him",
-      "explain": "The text states that Bathsheba поклонилась перед ним (bowed down before him)."
-    },
-    {
-      "id": "r6",
-      "ru": "Царь Давид поклялся, что Соломон будет царем после него.",
-      "question": "What oath did King David swear?",
-      "options": [
-        "That Adonijah would be punished",
-        "That Solomon would be king after him",
-        "That Jerusalem would stand forever",
-        "That the temple would be built"
-      ],
-      "correct": "That Solomon would be king after him",
-      "explain": "David swore that Соломон будет царем после него (Solomon would be king after him)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "И Вирсавия пошла к ___ в его комнату, где ему прислуживала шунамитянка Ависага.",
+   "lemma": "царь",
+   "options": [
+    "престарелым царём",
+    "престарелому царю",
+    "престарелого царя",
+    "престарелый царь"
+   ],
+   "correct": "престарелому царю",
+   "case": "Дательный (Dative)",
+   "explain": "«престарелому царю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c1",
+   "translation": "Bathsheba went in to the king in his room. The king was very old; and Abishag the Shunammite was serving the king."
+  },
+  {
+   "sentence": "Он принес в жертву множество волов, откормленных телят и овец, пригласил всех ___, священника Авиатара и Иоава, начальника войска, но не пригласил твоего слугу Соломона.",
+   "lemma": "сын",
+   "options": [
+    "царских сыновей",
+    "царскими сыновьями",
+    "царским сыновьям",
+    "царские сыновья"
+   ],
+   "correct": "царских сыновей",
+   "case": "Винительный (Accusative)",
+   "explain": "«царских сыновей» — the accusative marks the direct object of the verb.",
+   "id": "c2",
+   "translation": "He has slain cattle and fatlings and sheep in abundance, and has called all the sons of the king, Abiathar the priest, and Joab the captain of the army; but he hasn’t called Solomon your servant."
+  },
+  {
+   "sentence": "Он пригласил всех ___, военачальников и священника Авиатара.",
+   "lemma": "сын",
+   "options": [
+    "царских сыновей",
+    "царскими сыновьями",
+    "царским сыновьям",
+    "царские сыновья"
+   ],
+   "correct": "царских сыновей",
+   "case": "Винительный (Accusative)",
+   "explain": "«царских сыновей» — the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "For he has gone down today, and has slain cattle, fatlings, and sheep in abundance, and has called all the king’s sons, the captains of the army, and Abiathar the priest. Behold, they are eating and drinking before him, and saying, ‘Long live king Adonijah!’"
+  }
+ ]
 }

@@ -1,204 +1,334 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Во главе первого отделения для первого ___ стоял Иашавиам.",
-      "lemma": "месяц",
-      "options": [
-        "месяца",
-        "месяц",
-        "месяцу",
-        "месяцем"
-      ],
-      "correct": "месяца",
-      "case": "Родительный (Genitive)",
-      "translation": "Over the first division for the first month was Jashobeam.",
-      "explain": "The genitive case is used with ordinal numbers: 'for the first of the month'."
-    },
-    {
-      "id": "c2",
-      "sentence": "В его отделении было двадцать четыре тысячи ___.",
-      "lemma": "воин",
-      "options": [
-        "воинов",
-        "воин",
-        "воину",
-        "воином"
-      ],
-      "correct": "воинов",
-      "case": "Родительный (Genitive)",
-      "translation": "In his division were twenty-four thousand warriors.",
-      "explain": "After numerals, genitive plural is required: 'twenty-four thousand of warriors'."
-    },
-    {
-      "id": "c3",
-      "sentence": "Это вожди родов Израиля, служившие ___.",
-      "lemma": "царь",
-      "options": [
-        "царю",
-        "царя",
-        "царем",
-        "царе"
-      ],
-      "correct": "царю",
-      "case": "Дательный (Dative)",
-      "translation": "These were the rulers of the tribes of Israel, serving the king.",
-      "explain": "Dative case with the verb 'to serve' (служить): 'served the king'."
-    },
-    {
-      "id": "c4",
-      "sentence": "Вождями ___ Израиля были главные лица из каждого колена.",
-      "lemma": "род",
-      "options": [
-        "родов",
-        "род",
-        "роду",
-        "родом"
-      ],
-      "correct": "родов",
-      "case": "Родительный (Genitive)",
-      "translation": "Rulers of the tribes of Israel were chief persons from each tribe.",
-      "explain": "Genitive case for possession: 'rulers of the tribes'."
-    },
-    {
-      "id": "c5",
-      "sentence": "Его главным воеводой был Меклот, стоящий в ___ своего отделения.",
-      "lemma": "начало",
-      "options": [
-        "начале",
-        "начала",
-        "началу",
-        "началом"
-      ],
-      "correct": "начале",
-      "case": "Предложный (Prepositional)",
-      "translation": "His chief officer was Mikloth, who stood at the head of his division.",
-      "explain": "Prepositional case with в (in) indicating position: 'at the head'."
-    },
-    {
-      "id": "c6",
-      "sentence": "Давид не считал тех, кому было двадцать лет или меньше, потому что Господь обещал сделать Израиль многочисленным, как звезды на ___.",
-      "lemma": "небо",
-      "options": [
-        "небе",
-        "неба",
-        "небу",
-        "небом"
-      ],
-      "correct": "небе",
-      "case": "Предложный (Prepositional)",
-      "translation": "David did not count those twenty years old or younger, for the Lord promised to make Israel numerous as stars in the sky.",
-      "explain": "The preposition на (on, in) with location uses prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Иаав, сын Саруи, начал пересчитывать народ согласно указаниям ___, но не закончил.",
-      "lemma": "царь",
-      "options": [
-        "царя",
-        "царь",
-        "царю",
-        "царем"
-      ],
-      "correct": "царя",
-      "case": "Родительный (Genitive)",
-      "translation": "Joab, the son of Zeruiah, began counting the people according to the king's command.",
-      "explain": "Genitive case shows possession: 'according to the king's command'."
-    },
-    {
-      "id": "c8",
-      "sentence": "Азмавету, сыну Адеила, было поручено смотреть за царскими ___.",
-      "lemma": "кладовая",
-      "options": [
-        "кладовыми",
-        "кладовые",
-        "кладовой",
-        "кладовых"
-      ],
-      "correct": "кладовыми",
-      "case": "Творительный (Instrumental)",
-      "translation": "Azmaveth was assigned to oversee the royal storehouses.",
-      "explain": "Instrumental case used with preposition-less constructions of supervision."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "В каждом отделении было 24 тысячи воинов.",
-      "question": "How many soldiers were in each division?",
-      "options": [
-        "24,000",
-        "12,000",
-        "34,000",
-        "48,000"
-      ],
-      "correct": "24,000",
-      "explain": "The text states: В каждом отделении было 24 тысячи воинов — in each division there were 24,000."
-    },
-    {
-      "id": "r2",
-      "ru": "Это вожди родов Израиля.",
-      "question": "Who were being described in this passage?",
-      "options": [
-        "Rulers of the tribes of Israel",
-        "Captains of the army",
-        "The prophets",
-        "The priests"
-      ],
-      "correct": "Rulers of the tribes of Israel",
-      "explain": "The text identifies them as вожди родов Израиля — rulers of the tribes of Israel."
-    },
-    {
-      "id": "r3",
-      "ru": "Давид не считал тех, кому было двадцать лет или меньше.",
-      "question": "Who did David not count in the census?",
-      "options": [
-        "Those twenty years old or younger",
-        "Those over sixty",
-        "All the women",
-        "All the priests"
-      ],
-      "correct": "Those twenty years old or younger",
-      "explain": "David did not count тех, кому было двадцать лет или меньше — those who were twenty or younger."
-    },
-    {
-      "id": "r4",
-      "ru": "Иаав, сын Саруи, начал пересчитывать народ, но не закончил.",
-      "question": "What did Joab the son of Zeruiah start but not finish?",
-      "options": [
-        "Counting the people",
-        "Building the temple",
-        "Conquering territories",
-        "Organizing the priesthood"
-      ],
-      "correct": "Counting the people",
-      "explain": "Joab начал пересчитывать народ — began counting the people."
-    },
-    {
-      "id": "r5",
-      "ru": "Азмавету, сыну Адеила, было поручено смотреть за царскими кладовыми.",
-      "question": "What was Azmaveth assigned to oversee?",
-      "options": [
-        "The royal treasuries",
-        "The city gates",
-        "The priests",
-        "The sacrifices"
-      ],
-      "correct": "The royal treasuries",
-      "explain": "Azmaveth was поручено смотреть за царскими кладовыми — assigned to oversee royal storehouses."
-    },
-    {
-      "id": "r6",
-      "ru": "Ахитофел был царским советником.",
-      "question": "What position did Ahithophel hold?",
-      "options": [
-        "King's counselor",
-        "High priest",
-        "Captain of the army",
-        "Chief of the Levites"
-      ],
-      "correct": "King's counselor",
-      "explain": "Ахитофел был царским советником — Ahithophel was the king's counselor."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Вот перечень израильтян — глав семейств, тысячников и сотников, и их чиновников, которые служили царю во всем, что относилось к ___, несшим службу по месяцу в течение года.",
+   "lemma": "отделение",
+   "options": [
+    "войсковым отделениям",
+    "войсковыми отделениями",
+    "войсковых отделениях",
+    "войсковых отделений"
+   ],
+   "correct": "войсковым отделениям",
+   "case": "Дательный (Dative)",
+   "explain": "«войсковым отделениям» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c1",
+   "translation": "Now the children of Israel after their number, the heads of fathers’ households and the captains of thousands and of hundreds, and their officers who served the king, in any matter of the divisions which came in and went out month by month throughout all the months of the year—of every division were twenty-four thousand."
+  },
+  {
+   "sentence": "Во главе ___ для первого месяца стоял Иашовеам, сын Завдиила.",
+   "lemma": "отделение",
+   "options": [
+    "первом отделении",
+    "первому отделению",
+    "первого отделения",
+    "первым отделением"
+   ],
+   "correct": "первого отделения",
+   "case": "Родительный (Genitive)",
+   "explain": "«первого отделения» — after the preposition «во», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "Over the first division for the first month was Jashobeam the son of Zabdiel: and in his division were twenty-four thousand."
+  },
+  {
+   "sentence": "Во главе первого отделения для ___ стоял Иашовеам, сын Завдиила.",
+   "lemma": "месяц",
+   "options": [
+    "первым месяцем",
+    "первого месяца",
+    "первый месяц",
+    "первому месяцу"
+   ],
+   "correct": "первого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«первого месяца» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Over the first division for the first month was Jashobeam the son of Zabdiel: and in his division were twenty-four thousand."
+  },
+  {
+   "sentence": "Во главе отделения для ___ стоял ахохитянин Додай; его главным воеводой был Миклот.",
+   "lemma": "месяц",
+   "options": [
+    "втором месяце",
+    "второго месяца",
+    "второму месяцу",
+    "вторым месяцем"
+   ],
+   "correct": "второго месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«второго месяца» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "Over the division of the second month was Dodai the Ahohite, and his division; and Mikloth the ruler: and in his division were twenty-four thousand."
+  },
+  {
+   "sentence": "Во главе отделения для второго месяца стоял ахохитянин Додай; его ___ был Миклот.",
+   "lemma": "воевода",
+   "options": [
+    "главный воевода",
+    "главного воеводы",
+    "главном воеводе",
+    "главным воеводой"
+   ],
+   "correct": "главным воеводой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«главным воеводой» — the instrumental marks the means, company, or complement.",
+   "id": "c6",
+   "translation": "Over the division of the second month was Dodai the Ahohite, and his division; and Mikloth the ruler: and in his division were twenty-four thousand."
+  },
+  {
+   "sentence": "___ для третьего месяца был Ванея, сын священника Иодая.",
+   "lemma": "военачальник",
+   "options": [
+    "третьим военачальником",
+    "третьему военачальнику",
+    "третий военачальник",
+    "третьем военачальнике"
+   ],
+   "correct": "третьим военачальником",
+   "case": "Творительный (Instrumental)",
+   "explain": "«Третьим военачальником» — the instrumental marks the means, company, or complement.",
+   "id": "c7",
+   "translation": "The third captain of the army for the third month was Benaiah, the son of Jehoiada the chief priest. In his division were twenty-four thousand."
+  },
+  {
+   "sentence": "Третьим военачальником для ___ был Ванея, сын священника Иодая.",
+   "lemma": "месяц",
+   "options": [
+    "третьего месяца",
+    "третьем месяце",
+    "третий месяц",
+    "третьему месяцу"
+   ],
+   "correct": "третьего месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«третьего месяца» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "The third captain of the army for the third month was Benaiah, the son of Jehoiada the chief priest. In his division were twenty-four thousand."
+  },
+  {
+   "sentence": "Это тот Ванея, который был ___ среди тех тридцати и начальником над ними.",
+   "lemma": "воин",
+   "options": [
+    "могучему воину",
+    "могучим воином",
+    "могучего воина",
+    "могучем воине"
+   ],
+   "correct": "могучим воином",
+   "case": "Творительный (Instrumental)",
+   "explain": "«могучим воином» — after the preposition «среди», the instrumental marks the means, company, or complement.",
+   "id": "c9",
+   "translation": "This is that Benaiah who was the mighty man of the thirty, and over the thirty: and of his division was Ammizabad his son."
+  },
+  {
+   "sentence": "Пятым для ___ был военачальник Шамгуф израхитянин.",
+   "lemma": "месяц",
+   "options": [
+    "пятому месяцу",
+    "пятом месяце",
+    "пятого месяца",
+    "пятым месяцем"
+   ],
+   "correct": "пятого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«пятого месяца» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c10",
+   "translation": "The fifth captain for the fifth month was Shamhuth the Izrahite: and in his division were twenty-four thousand."
+  },
+  {
+   "sentence": "Шестым для ___ был Ира, сын текоитянина Иккеша.",
+   "lemma": "месяц",
+   "options": [
+    "шестому месяцу",
+    "шестом месяце",
+    "шестым месяцем",
+    "шестого месяца"
+   ],
+   "correct": "шестого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«шестого месяца» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
+   "translation": "The sixth captain for the sixth month was Ira the son of Ikkesh the Tekoite: and in his division were twenty-four thousand."
+  },
+  {
+   "sentence": "Седьмым для ___ был пелонитянин Хелец из потомков Ефрема.",
+   "lemma": "месяц",
+   "options": [
+    "седьмом месяце",
+    "седьмой месяц",
+    "седьмого месяца",
+    "седьмым месяцем"
+   ],
+   "correct": "седьмого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«седьмого месяца» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c12",
+   "translation": "The seventh captain for the seventh month was Helez the Pelonite, of the children of Ephraim. In his division were twenty-four thousand."
+  },
+  {
+   "sentence": "Восьмым для ___ был хушатянин Сивхай, потомок Зераха.",
+   "lemma": "месяц",
+   "options": [
+    "восьмом месяце",
+    "восьмого месяца",
+    "восьмой месяц",
+    "восьмому месяцу"
+   ],
+   "correct": "восьмого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«восьмого месяца» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c13",
+   "translation": "The eighth captain for the eighth month was Sibbecai the Hushathite, of the Zerahites. In his division were twenty-four thousand."
+  },
+  {
+   "sentence": "Девятым для ___ был анатотянин Авиезер из потомков Вениамина.",
+   "lemma": "месяц",
+   "options": [
+    "девятого месяца",
+    "девятому месяцу",
+    "девятом месяце",
+    "девятый месяц"
+   ],
+   "correct": "девятого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«девятого месяца» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c14",
+   "translation": "The ninth captain for the ninth month was Abiezer the Anathothite, of the Benjamites. In his division were twenty-four thousand."
+  },
+  {
+   "sentence": "Десятым для ___ был нетофитянин Магарай, потомок Зераха.",
+   "lemma": "месяц",
+   "options": [
+    "десятому месяцу",
+    "десятый месяц",
+    "десятом месяце",
+    "десятого месяца"
+   ],
+   "correct": "десятого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«десятого месяца» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c15",
+   "translation": "The tenth captain for the tenth month was Maharai the Netophathite, of the Zerahites. In his division were twenty-four thousand."
+  },
+  {
+   "sentence": "Одиннадцатым для ___ был пирафонянин Ванея из потомков Ефрема.",
+   "lemma": "месяц",
+   "options": [
+    "одиннадцатом месяце",
+    "одиннадцатому месяцу",
+    "одиннадцатым месяцем",
+    "одиннадцатого месяца"
+   ],
+   "correct": "одиннадцатого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«одиннадцатого месяца» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c16",
+   "translation": "The eleventh captain for the eleventh month was Benaiah the Pirathonite, of the children of Ephraim. In his division were twenty-four thousand."
+  },
+  {
+   "sentence": "Двенадцатым для ___ был нетофитянин Хелдай, потомок Отниила.",
+   "lemma": "месяц",
+   "options": [
+    "двенадцатого месяца",
+    "двенадцатый месяц",
+    "двенадцатом месяце",
+    "двенадцатым месяцем"
+   ],
+   "correct": "двенадцатого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«двенадцатого месяца» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c17",
+   "translation": "The twelfth captain for the twelfth month was Heldai the Netophathite, of Othniel. In his division were twenty-four thousand."
+  },
+  {
+   "sentence": "Азмавету, сыну Адиила, было поручено смотреть за ___.",
+   "lemma": "кладовая",
+   "options": [
+    "царскими кладовыми",
+    "царские кладовые",
+    "царским кладовым",
+    "царских кладовых"
+   ],
+   "correct": "царскими кладовыми",
+   "case": "Творительный (Instrumental)",
+   "explain": "«царскими кладовыми» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "id": "c18",
+   "translation": "Over the king’s treasures was Azmaveth the son of Adiel: and over the treasures in the fields, in the cities, and in the villages, and in the towers, was Jonathan the son of Uzziah;"
+  },
+  {
+   "sentence": "Шаронитянину Шитраю — за ___, пасущемся в районе Шарон, а Шафату, сыну Адлая, за крупным скотом в долинах.",
+   "lemma": "скот",
+   "options": [
+    "крупный скот",
+    "крупным скотом",
+    "крупном скоте",
+    "крупному скоту"
+   ],
+   "correct": "крупным скотом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«крупным скотом» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "id": "c19",
+   "translation": "and over the herds that fed in Sharon was Shitrai the Sharonite; and over the herds that were in the valleys was Shaphat the son of Adlai;"
+  },
+  {
+   "sentence": "Шаронитянину Шитраю — за ___, пасущемся в районе Шарон, а Шафату, сыну Адлая, за крупным скотом в долинах.",
+   "lemma": "скот",
+   "options": [
+    "крупный скот",
+    "крупным скотом",
+    "крупном скоте",
+    "крупному скоту"
+   ],
+   "correct": "крупным скотом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«крупным скотом» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "id": "c20",
+   "translation": "and over the herds that fed in Sharon was Shitrai the Sharonite; and over the herds that were in the valleys was Shaphat the son of Adlai;"
+  },
+  {
+   "sentence": "Агаритянину Иазизу — за ___.",
+   "lemma": "скот",
+   "options": [
+    "мелкому скоту",
+    "мелкий скот",
+    "мелким скотом",
+    "мелком скоте"
+   ],
+   "correct": "мелким скотом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«мелким скотом» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "id": "c21",
+   "translation": "All these were the rulers of the property which was king David’s."
+  },
+  {
+   "sentence": "Ионафан, дядя Давида, ___ и писарь, был советником.",
+   "lemma": "человек",
+   "options": [
+    "проницательным человеком",
+    "проницательном человеке",
+    "проницательного человека",
+    "проницательный человек"
+   ],
+   "correct": "проницательный человек",
+   "case": "Именительный (Nominative)",
+   "explain": "«проницательный человек» — the subject of the sentence stands in the nominative.",
+   "id": "c22",
+   "translation": "Also Jonathan, David’s uncle, was a counselor, a man of understanding, and a scribe. Jehiel the son of Hachmoni was with the king’s sons."
+  },
+  {
+   "sentence": "Ахитофел был ___.",
+   "lemma": "советник",
+   "options": [
+    "царский советник",
+    "царским советником",
+    "царскому советнику",
+    "царского советника"
+   ],
+   "correct": "царским советником",
+   "case": "Творительный (Instrumental)",
+   "explain": "«царским советником» — the instrumental marks the means, company, or complement.",
+   "id": "c23",
+   "translation": "Ahithophel was the king’s counselor. Hushai the Archite was the king’s friend."
+  }
+ ]
 }

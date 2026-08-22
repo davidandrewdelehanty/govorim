@@ -1,98 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "«Не бойся, Авраам, я твой щит, ___ твоя будет весьма велика».",
-      "lemma": "награда",
-      "options": ["награда", "награды", "награде", "наградой"],
-      "correct": "награда",
-      "case": "Именительный (Nominative)",
-      "translation": "Don't be afraid, Abram, I am your shield, your reward will be very great.",
-      "explain": "Награда is the subject of будет весьма велика, so it stands in the nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Мое имущество унаследует Елеазер из ___.",
-      "lemma": "Дамаск",
-      "options": ["Дамаск", "Дамаска", "Дамаску", "Дамаском"],
-      "correct": "Дамаска",
-      "case": "Родительный (Genitive)",
-      "translation": "My estate will be inherited by Eliezer of Damascus.",
-      "explain": "The preposition из governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Ты отойдешь к ___ своим в мире и будешь погребен в глубокой старости.",
-      "lemma": "отец",
-      "options": ["отцы", "отцов", "отцам", "отцами"],
-      "correct": "отцам",
-      "case": "Дательный (Dative)",
-      "translation": "You will go to your fathers in peace and be buried at a good old age.",
-      "explain": "The preposition к governs the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я отдаю твоим потомкам эту ___, от Египетской реки до Великой реки Ефрат.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землю"],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "I give this land to your offspring, from the river of Egypt to the great river Euphrates.",
-      "explain": "The transitive verb отдаю takes its direct object, земля, in the accusative."
-    },
-    {
-      "id": "c5",
-      "sentence": "И тогда они выйдут оттуда с большим ___.",
-      "lemma": "имущество",
-      "options": ["имущество", "имущества", "имуществу", "имуществом"],
-      "correct": "имуществом",
-      "case": "Творительный (Instrumental)",
-      "translation": "And then they will come out from there with great wealth.",
-      "explain": "The preposition с indicating accompaniment governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "В четвертом ___ твои потомки вернутся сюда, потому что грех Амореев еще не достиг полной меры.",
-      "lemma": "поколение",
-      "options": ["поколения", "поколений", "поколениям", "поколении"],
-      "correct": "поколении",
-      "case": "Предложный (Prepositional)",
-      "translation": "In the fourth generation your descendants will come back here, because the sin of the Amorites has not yet reached its full measure.",
-      "explain": "The preposition в indicating a point in time takes the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "«Не бойся, Авраам, я твой щит, награда твоя будет весьма велика».",
-      "question": "What did the Lord call himself to Abram?",
-      "options": ["His shield and very great reward", "His servant and friend", "His son and heir", "His enemy and judge"],
-      "correct": "His shield and very great reward",
-      "explain": "The Lord says 'я твой щит, награда твоя будет весьма велика' (I am your shield, your reward will be very great)."
-    },
-    {
-      "id": "r2",
-      "ru": "Авраам поверил Господу, и он вменил ему это в праведность.",
-      "question": "What happened when Abram believed the Lord?",
-      "options": ["It was credited to him as righteousness", "He received a son immediately", "He was made a king", "He was struck blind"],
-      "correct": "It was credited to him as righteousness",
-      "explain": "The text says the Lord 'вменил ему это в праведность' (credited it to him as righteousness)."
-    },
-    {
-      "id": "r3",
-      "ru": "«Приведи мне трехлетнюю телицу, трехлетнюю козу и трехлетнего барана, а также принеси горлицу и молодого голубя».",
-      "question": "What animals did the Lord tell Abram to bring?",
-      "options": ["A heifer, a goat, a ram, a turtledove, and a young pigeon", "Two doves and a lamb", "A bull and a lion", "Seven sheep and an ox"],
-      "correct": "A heifer, a goat, a ram, a turtledove, and a young pigeon",
-      "explain": "The Lord lists exactly these animals: a three-year heifer, goat, and ram, plus a turtledove and a young pigeon."
-    },
-    {
-      "id": "r4",
-      "ru": "«Знай же, что твои потомки будут странниками в чужой земле, они будут обращены в рабство и будут угнетаемы четыреста лет, но я накажу народ, поработивший их».",
-      "question": "How many years would Abram's descendants be enslaved?",
-      "options": ["Four hundred years", "One hundred years", "Forty years", "A thousand years"],
-      "correct": "Four hundred years",
-      "explain": "The text says his descendants 'будут угнетаемы четыреста лет' (will be oppressed for four hundred years)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "___ слетались на трупы, но Аврам отгонял их.",
+   "lemma": "птица",
+   "options": [
+    "хищными птицами",
+    "хищным птицам",
+    "хищные птицы",
+    "хищных птицах"
+   ],
+   "correct": "хищные птицы",
+   "case": "Именительный (Nominative)",
+   "explain": "«Хищные птицы» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "The birds of prey came down on the carcasses, and Abram drove them away."
+  },
+  {
+   "sentence": "При заходе солнца Аврама охватил глубокий сон; и тут ___ опустилась, и ужас объял его.",
+   "lemma": "тьма",
+   "options": [
+    "кромешной тьмой",
+    "кромешной тьмы",
+    "кромешной тьме",
+    "кромешная тьма"
+   ],
+   "correct": "кромешная тьма",
+   "case": "Именительный (Nominative)",
+   "explain": "«кромешная тьма» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "When the sun was going down, a deep sleep fell on Abram. Now terror and great darkness fell on him."
+  },
+  {
+   "sentence": "Но Я накажу народ, поработивший их, и тогда они выйдут оттуда с ___.",
+   "lemma": "имущество",
+   "options": [
+    "большем имуществе",
+    "большему имуществу",
+    "большего имущества",
+    "большим имуществом"
+   ],
+   "correct": "большим имуществом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«большим имуществом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c4",
+   "translation": "I will also judge that nation, whom they will serve. Afterward they will come out with great wealth;"
+  },
+  {
+   "sentence": "В четвертом поколении твои потомки вернутся сюда, потому что грех аморреев еще не достиг ___.",
+   "lemma": "мера",
+   "options": [
+    "полной мерой",
+    "полная мера",
+    "полной меры",
+    "полной мере"
+   ],
+   "correct": "полной меры",
+   "case": "Родительный (Genitive)",
+   "explain": "«полной меры» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "In the fourth generation they will come here again, for the iniquity of the Amorite is not yet full.”"
+  }
+ ]
 }

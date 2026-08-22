@@ -1,134 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "В первый год правления Кира, царя Персии, чтобы исполнилось слово Господа, которое возвестил Иеремия, Господь побудил Кира, царя Персии, объявить по всему своему ___.",
-      "lemma": "царство",
-      "options": ["царство", "царства", "царству", "царством"],
-      "correct": "царству",
-      "case": "Дательный (Dative)",
-      "translation": "In the first year of Cyrus king of Persia, to fulfill the word of the Lord by Jeremiah's mouth, the Lord stirred up the spirit of Cyrus king of Persia to make a proclamation throughout all his kingdom.",
-      "explain": "The preposition по with meaning of distribution governs the dative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Так говорит Кир, царь ___.",
-      "lemma": "Персия",
-      "options": ["Персия", "Персии", "Персию", "Персией"],
-      "correct": "Персии",
-      "case": "Родительный (Genitive)",
-      "translation": "Thus says Cyrus, king of Persia.",
-      "explain": "The genitive case expresses the relationship between the ruler and the territory: the king belonging to/of Persia."
-    },
-    {
-      "id": "c3",
-      "sentence": "Господь, Бог небес, отдал мне все царства земли и поручил мне построить ему ___ в Иерусалиме.",
-      "lemma": "дом",
-      "options": ["дом", "дома", "дому", "доме"],
-      "correct": "дом",
-      "case": "Винительный (Accusative)",
-      "translation": "The Lord, the God of heaven, has given me all the kingdoms of the earth, and he has commanded me to build him a house in Jerusalem.",
-      "explain": "The direct object of the verb построить (to build) takes the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Всякий из вас, кто принадлежит к его народу, да будет с ним его Бог, может отправляться в Иерусалим, в ___.",
-      "lemma": "Иудея",
-      "options": ["Иудея", "Иудеи", "Иудею", "Иудеей"],
-      "correct": "Иудею",
-      "case": "Винительный (Accusative)",
-      "translation": "Whoever there is among you of all his people, may his God be with him, and let him go up to Jerusalem, which is in Judah.",
-      "explain": "The preposition в with the meaning of destination governs the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "И пусть жители тех мест, где сейчас живут уцелевшие иудеи, снабдят их серебром и золотом, имуществом и скотом, и добровольными пожертвованиями для Божьего ___ в Иерусалиме.",
-      "lemma": "дом",
-      "options": ["дом", "дома", "дому", "доме"],
-      "correct": "дома",
-      "case": "Родительный (Genitive)",
-      "translation": "Let the people of any place where the survivors now live help them with silver, gold, goods, and animals, as well as freewill offerings for God's house in Jerusalem.",
-      "explain": "The genitive case expresses possession: the house belonging to God."
-    },
-    {
-      "id": "c6",
-      "sentence": "И главы семейств из родов Иуды и Вениамина, со священниками и левитами, всякий, кого побудил Бог, стали собираться, чтобы пойти и отстроить дом Господа в ___.",
-      "lemma": "Иерусалим",
-      "options": ["Иерусалим", "Иерусалима", "Иерусалиму", "Иерусалиме"],
-      "correct": "Иерусалиме",
-      "case": "Предложный (Prepositional)",
-      "translation": "The heads of the fathers' households of Judah and Benjamin, the priests, and the Levites—all whose spirit God had stirred—rose up to build the house of the Lord in Jerusalem.",
-      "explain": "The preposition в with meaning of location governs the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Сам царь Кир вынес утварь дома Господа, которую Навуходоносор забрал из Иерусалима, и положил в доме своего ___.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Бога",
-      "case": "Родительный (Genitive)",
-      "translation": "King Cyrus himself brought out the vessels of the Lord's house, which Nebuchadnezzar had taken from Jerusalem, and put them in the house of his god.",
-      "explain": "The genitive case expresses possession: the god belonging to/of Cyrus."
-    },
-    {
-      "id": "c8",
-      "sentence": "Когда переселенцы отправлялись из Вавилона в Иерусалим, Шешбацар взял все это с ___.",
-      "lemma": "себя",
-      "options": ["собой", "его", "ему", "ее"],
-      "correct": "собой",
-      "case": "Творительный (Instrumental)",
-      "translation": "When the captives went up from Babylon to Jerusalem, Sheshbazzar took all of this with him.",
-      "explain": "The preposition с (with) governs the instrumental case when indicating accompaniment."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "В первый год правления Кира, царя Персии, чтобы исполнилось слово Господа, которое возвестил Иеремия, Господь побудил Кира, царя Персии, объявить по всему своему царству и записать такой указ.",
-      "question": "Why did the Lord stir up the spirit of Cyrus?",
-      "options": ["To fulfill the word of the Lord which Jeremiah had prophesied", "To conquer Egypt", "To build a temple in Babylon", "To establish a new empire"],
-      "correct": "To fulfill the word of the Lord which Jeremiah had prophesied",
-      "explain": "The verse states чтобы исполнилось слово Господа, которое возвестил Иеремия — to fulfill the word of the Lord which Jeremiah had spoken."
-    },
-    {
-      "id": "r2",
-      "ru": "Господь, Бог небес, отдал мне все царства земли и поручил мне построить ему дом в Иерусалиме, в Иудее.",
-      "question": "What does Cyrus claim the Lord gave him and commanded him to do?",
-      "options": ["All the kingdoms of the earth and to build Him a house in Jerusalem, in Judah", "Power over all nations for military conquest", "Wealth to build a palace for himself", "Authority to judge all people"],
-      "correct": "All the kingdoms of the earth and to build Him a house in Jerusalem, in Judah",
-      "explain": "Cyrus states Господь, Бог небес, отдал мне все царства земли и поручил мне построить ему дом в Иерусалиме."
-    },
-    {
-      "id": "r3",
-      "ru": "Всякий из вас, кто принадлежит к его народу, да будет с ним его Бог, может отправляться в Иерусалим, в Иудею, и строить дом Господа Бога Израиля.",
-      "question": "Who was allowed to return to Jerusalem according to Cyrus's decree?",
-      "options": ["Anyone of God's people; God would be with them", "Only the priests", "Slaves and servants", "The armies of Persia"],
-      "correct": "Anyone of God's people; God would be with them",
-      "explain": "The proclamation states Всякий из вас, кто принадлежит к его народу, да будет с ним его Бог, может отправляться."
-    },
-    {
-      "id": "r4",
-      "ru": "И главы семейств из родов Иуды и Вениамина, со священниками и левитами, всякий, кого побудил Бог, стали собираться, чтобы пойти и отстроить дом Господа в Иерусалиме.",
-      "question": "Who were gathered to rebuild the house of the Lord?",
-      "options": ["Heads of families from Judah and Benjamin, priests, Levites, and all whose spirit God stirred", "Only the priests", "Military forces", "Foreign nations"],
-      "correct": "Heads of families from Judah and Benjamin, priests, Levites, and all whose spirit God stirred",
-      "explain": "The text lists главы семейств из родов Иуды и Вениамина, со священниками и левитами, всякий, кого побудил Бог."
-    },
-    {
-      "id": "r5",
-      "ru": "Все их соседи помогли им серебряными и золотыми вещами, имуществом и скотом, и дорогими дарами, не считая всех добровольных пожертвований.",
-      "question": "How did the neighbors help those returning from captivity?",
-      "options": ["With silver and gold items, possessions, animals, precious gifts, and voluntary offerings", "They refused to help them", "They opposed their return", "They demanded tribute from them"],
-      "correct": "With silver and gold items, possessions, animals, precious gifts, and voluntary offerings",
-      "explain": "The verse says Все их соседи помогли им серебряными и золотыми вещами, имуществом и скотом, и дорогими дарами."
-    },
-    {
-      "id": "r6",
-      "ru": "Сам царь Кир вынес утварь дома Господа, которую Навуходоносор забрал из Иерусалима, и положил в доме своего Бога.",
-      "question": "What did King Cyrus do with the vessels of the Lord's house?",
-      "options": ["He brought them out and put them in the house of his god", "He melted them down for gold", "He gave them to the priests", "He kept them for himself"],
-      "correct": "He brought them out and put them in the house of his god",
-      "explain": "The text states Сам царь Кир вынес утварь дома Господа и положил в доме своего Бога."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "И пусть жители тех мест, где сейчас живут уцелевшие иудеи, снабдят их серебром и золотом, имуществом и скотом и ___ для Божьего дома в Иерусалиме».",
+   "lemma": "пожертвование",
+   "options": [
+    "добровольным пожертвованиям",
+    "добровольных пожертвованиях",
+    "добровольными пожертвованиями",
+    "добровольных пожертвований"
+   ],
+   "correct": "добровольными пожертвованиями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«добровольными пожертвованиями» — the instrumental marks the means, company, or complement.",
+   "id": "c2",
+   "translation": "Whoever is left, in any place where he lives, let the men of his place help him with silver, with gold, with goods, and with animals, in addition to the free will offering for God’s house which is in Jerusalem.’ ”"
+  },
+  {
+   "sentence": "И пусть жители тех мест, где сейчас живут уцелевшие иудеи, снабдят их серебром и золотом, имуществом и скотом и добровольными пожертвованиями для ___ в Иерусалиме».",
+   "lemma": "дом",
+   "options": [
+    "божьем доме",
+    "божьему дому",
+    "божьим домом",
+    "божьего дома"
+   ],
+   "correct": "божьего дома",
+   "case": "Родительный (Genitive)",
+   "explain": "«Божьего дома» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Whoever is left, in any place where he lives, let the men of his place help him with silver, with gold, with goods, and with animals, in addition to the free will offering for God’s house which is in Jerusalem.’ ”"
+  },
+  {
+   "sentence": "Все их соседи помогли им серебряными и золотыми вещами, имуществом и скотом, и дорогими дарами, не считая всех ___.",
+   "lemma": "пожертвование",
+   "options": [
+    "добровольные пожертвования",
+    "добровольным пожертвованиям",
+    "добровольными пожертвованиями",
+    "добровольных пожертвований"
+   ],
+   "correct": "добровольных пожертвований",
+   "case": "Родительный (Genitive)",
+   "explain": "«добровольных пожертвований» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "All those who were around them strengthened their hands with vessels of silver, with gold, with goods, with animals, and with precious things, in addition to all that was willingly offered."
+  },
+  {
+   "sentence": "___ Кир вынес утварь дома Господа, которую Навуходоносор забрал из Иерусалима и положил в доме своего бога .",
+   "lemma": "царь",
+   "options": [
+    "самому царю",
+    "самом царе",
+    "самого царя",
+    "сам царь"
+   ],
+   "correct": "сам царь",
+   "case": "Именительный (Nominative)",
+   "explain": "«Сам царь» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "Also Cyrus the king brought out the vessels of Yahweh’s house, which Nebuchadnezzar had brought out of Jerusalem, and had put in the house of his gods;"
+  }
+ ]
 }

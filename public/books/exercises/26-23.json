@@ -1,134 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Было ко мне ___ Господа.",
-      "lemma": "слово",
-      "options": ["слово", "слова", "слову", "словом"],
-      "correct": "слово",
-      "case": "Именительный (Nominative)",
-      "translation": "The word of the Lord came to me.",
-      "explain": "Слово is the nominative subject of the sentence."
-    },
-    {
-      "id": "c2",
-      "sentence": "Были две женщины, дочери одной ___.",
-      "lemma": "мать",
-      "options": ["мать", "матери", "матерей", "матерью"],
-      "correct": "матери",
-      "case": "Родительный (Genitive)",
-      "translation": "There were two women, daughters of one mother.",
-      "explain": "The genitive case indicates the mother as the source or relationship of the daughters."
-    },
-    {
-      "id": "c3",
-      "sentence": "Старшую звали Агола, а ее сестру — ___.",
-      "lemma": "Аголива",
-      "options": ["Аголива", "Аголивой", "Аголиву", "Аголиве"],
-      "correct": "Аголива",
-      "case": "Именительный (Nominative)",
-      "translation": "The elder was called Oholah, and her sister was called Oholibah.",
-      "explain": "Аголива is the nominative predicate name in apposition."
-    },
-    {
-      "id": "c4",
-      "sentence": "Она воспылала похотью к своим любовникам-ассирийцам, к воинам, одетым в голубое, к наместникам и ___.",
-      "lemma": "военачальник",
-      "options": ["военачальник", "военачальника", "военачальников", "военачальниках"],
-      "correct": "военачальников",
-      "case": "Дательный (Dative)",
-      "translation": "She lusted after her lovers the Assyrians, the warriors clothed in blue, the governors and commanders.",
-      "explain": "The preposition к (toward) governing the verb воспылала takes the dative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Когда вы приносите дары и проводите детей через огонь, вы по-прежнему оскверняете себя своими ___.",
-      "lemma": "идол",
-      "options": ["идолом", "идолов", "идолами", "идоле"],
-      "correct": "идолами",
-      "case": "Творительный (Instrumental)",
-      "translation": "When you offer gifts and pass your children through fire, you still defile yourselves with your idols.",
-      "explain": "The verb оскверняете (to defile) takes the instrumental case to express the means of defilement."
-    },
-    {
-      "id": "c6",
-      "sentence": "Я выведу вас от народов и соберу из стран, где вы были рассеяны, могучей и простертой рукой и великим ___.",
-      "lemma": "гнев",
-      "options": ["гнев", "гнева", "гневу", "гневом"],
-      "correct": "гневом",
-      "case": "Творительный (Instrumental)",
-      "translation": "I will bring you out from the peoples and gather you from the countries where you were scattered with a mighty hand, outstretched arm, and great wrath.",
-      "explain": "The phrase с гневом (with wrath) uses the instrumental case after the preposition с."
-    },
-    {
-      "id": "c7",
-      "sentence": "Они будут жить в ___... и там я приму их с благоволением.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "землю", "земле"],
-      "correct": "земле",
-      "case": "Предложный (Prepositional)",
-      "translation": "They will live in the land... and there I will accept them with favor.",
-      "explain": "The preposition в (in) with locative meaning takes the prepositional case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Ты выпьешь чашу сестры, глубокую и широкую, ты станешь посмешищем и позором, чаша вмещает ___.",
-      "lemma": "много",
-      "options": ["много", "многого", "многому", "многом"],
-      "correct": "много",
-      "case": "Винительный (Accusative)",
-      "translation": "You will drink your sister's cup, deep and wide; you will be held in derision and contempt, the cup holds much.",
-      "explain": "Много (much) is an adverbial quantity modifier used in the nominative or accusative predicate form."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Были две женщины, дочери одной матери. Они с юных лет были блудницами в Египте.",
-      "question": "What were the two women, and where did they live as harlots?",
-      "options": ["Daughters of one mother who were harlots in Egypt from their youth", "Sisters who were priestesses in a temple", "Queens who ruled side by side", "Slaves who served in the palace"],
-      "correct": "Daughters of one mother who were harlots in Egypt from their youth",
-      "explain": "The text states: 'Были две женщины, дочери одной матери. Они с юных лет были блудницами в Египте.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Старшую звали Агола, а ее сестру — Аголива. Они были моими и рожали сыновей и дочерей. Агола — это Самария, а Аголива — это Иерусалим.",
-      "question": "What do these two women represent?",
-      "options": ["Samaria and Jerusalem", "Egypt and Babylon", "Judah and Israel", "Phoenicia and Sidon"],
-      "correct": "Samaria and Jerusalem",
-      "explain": "The text explicitly interprets the names: 'Агола — это Самария, а Аголива — это Иерусалим.'"
-    },
-    {
-      "id": "r3",
-      "ru": "Она воспылала похотью к своим любовникам-ассирийцам, к воинам, одетым в голубое, к наместникам и военачальникам.",
-      "question": "Whom did the first sister lust after?",
-      "options": ["Assyrians, warriors dressed in blue, governors and commanders", "Egyptian princes and nobles", "Babylonian kings and sages", "Foreign merchants and traders"],
-      "correct": "Assyrians, warriors dressed in blue, governors and commanders",
-      "explain": "The passage describes: 'Она воспылала похотью к своим любовникам-ассирийцам, к воинам, одетым в голубое.'"
-    },
-    {
-      "id": "r4",
-      "ru": "Ее сестра Аголива видела это, но в похоти и распутстве становилась развратнее сестры.",
-      "question": "How did the second sister respond to what happened to the first?",
-      "options": ["She became even more depraved than her sister in lust and lewdness", "She repented and turned to God", "She warned the people to flee", "She hid in the temple for safety"],
-      "correct": "She became even more depraved than her sister in lust and lewdness",
-      "explain": "The text says: 'но в похоти и распутстве становилась развратнее сестры.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Ты выпьешь чашу сестры, глубокую и широкую, ты станешь посмешищем и позором, чаша вмещает много.",
-      "question": "What did God say the second sister would experience?",
-      "options": ["She would drink her sister's deep and wide cup, become an object of ridicule and scorn", "She would be restored to honor and glory", "She would be protected from all harm", "She would rule over the nations"],
-      "correct": "She would drink her sister's deep and wide cup, become an object of ridicule and scorn",
-      "explain": "The passage clearly states: 'Ты выпьешь чашу сестры... ты станешь посмешищем и позором.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Поэтому так говорит владыка Господь, так как ты забыла меня и повернулась ко мне спиной, то терпи за свои похоть и распутство.",
-      "question": "Why does God say Jerusalem must suffer?",
-      "options": ["Because she forgot God and turned her back to Him, and must bear the consequences of her lust and lewdness", "Because she built too many houses", "Because she refused to pay taxes", "Because she killed the prophets"],
-      "correct": "Because she forgot God and turned her back to Him, and must bear the consequences of her lust and lewdness",
-      "explain": "God says: 'так как ты забыла меня и повернулась ко мне спиной, то терпи за свои похоть и распутство.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Она воспылала похотью к своим любовникам-ассирийцам: к воинам, 6 одетым в голубое, к наместникам и военачальникам — все они были ___, всадниками на конях.",
+   "lemma": "юноша",
+   "options": [
+    "красивых юношах",
+    "красивыми юношами",
+    "красивых юношей",
+    "красивые юноши"
+   ],
+   "correct": "красивыми юношами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«красивыми юношами» — the instrumental marks the means, company, or complement.",
+   "id": "c1",
+   "translation": "“Oholah played the prostitute when she was mine. She doted on her lovers, on the Assyrians her neighbors,"
+  },
+  {
+   "sentence": "Она тоже пылала похотью к ассирийцам — наместникам и военачальникам, воинам в ___ на конях, всем красивым юношам.",
+   "lemma": "вооружение",
+   "options": [
+    "полном вооружении",
+    "полное вооружение",
+    "полному вооружению",
+    "полным вооружением"
+   ],
+   "correct": "полном вооружении",
+   "case": "Предложный (Prepositional)",
+   "explain": "«полном вооружении» — after the preposition «в», for location or topic.",
+   "id": "c2",
+   "translation": "She lusted after the Assyrians, governors and rulers, her neighbors, clothed most gorgeously, horsemen riding on horses, all of them desirable young men."
+  },
+  {
+   "sentence": "Она тоже пылала похотью к ассирийцам — наместникам и военачальникам, воинам в полном вооружении на конях, всем ___.",
+   "lemma": "юноша",
+   "options": [
+    "красивым юношам",
+    "красивых юношах",
+    "красивыми юношами",
+    "красивые юноши"
+   ],
+   "correct": "красивым юношам",
+   "case": "Дательный (Dative)",
+   "explain": "«красивым юношам» — the dative marks the indirect object or recipient.",
+   "id": "c3",
+   "translation": "She lusted after the Assyrians, governors and rulers, her neighbors, clothed most gorgeously, horsemen riding on horses, all of them desirable young men."
+  },
+  {
+   "sentence": "Но она предалась еще ___.",
+   "lemma": "распутство",
+   "options": [
+    "большему распутству",
+    "большим распутством",
+    "большее распутство",
+    "большего распутства"
+   ],
+   "correct": "большему распутству",
+   "case": "Дательный (Dative)",
+   "explain": "«большему распутству» — the dative marks the indirect object or recipient.",
+   "id": "c4",
+   "translation": "“She increased her prostitution; for she saw men portrayed on the wall, the images of the Chaldeans portrayed with red,"
+  },
+  {
+   "sentence": "Она увидела мужчин, нарисованных на стене, изображения халдеев, запечатленных ___, 15 с поясами на бедрах и роскошными повязками на головах, все они были похожи на вавилонских полководцев, уроженцев Халдеи.",
+   "lemma": "краска",
+   "options": [
+    "красной краски",
+    "красная краска",
+    "красной краске",
+    "красной краской"
+   ],
+   "correct": "красной краской",
+   "case": "Творительный (Instrumental)",
+   "explain": "«красной краской» — the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "“She increased her prostitution; for she saw men portrayed on the wall, the images of the Chaldeans portrayed with red,"
+  },
+  {
+   "sentence": "Она увидела мужчин, нарисованных на стене, изображения халдеев, запечатленных красной краской, 15 с поясами на бедрах и ___ на головах, все они были похожи на вавилонских полководцев, уроженцев Халдеи.",
+   "lemma": "повязка",
+   "options": [
+    "роскошным повязкам",
+    "роскошными повязками",
+    "роскошные повязки",
+    "роскошных повязках"
+   ],
+   "correct": "роскошными повязками",
+   "case": "Творительный (Instrumental)",
+   "explain": "«роскошными повязками» — the instrumental marks the means, company, or complement.",
+   "id": "c6",
+   "translation": "“She increased her prostitution; for she saw men portrayed on the wall, the images of the Chaldeans portrayed with red,"
+  }
+ ]
 }

@@ -1,158 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "В земле был ___, не тот прежний голод, который был при Аврааме.",
-      "lemma": "голод",
-      "options": ["голод", "голода", "голоду", "голодом"],
-      "correct": "голод",
-      "case": "Именительный (Nominative)",
-      "translation": "There was a famine in the land, not the earlier famine that occurred in the days of Abraham.",
-      "explain": "голод is the grammatical subject of 'был', so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Не тот прежний голод, который был при ___.",
-      "lemma": "Авраам",
-      "options": ["Авраам", "Авраама", "Аврааму", "Аврааме"],
-      "correct": "Аврааме",
-      "case": "Предложный (Prepositional)",
-      "translation": "...not the earlier famine that was in the days of Abraham.",
-      "explain": "The preposition при (in the time of) governs the prepositional case."
-    },
-    {
-      "id": "c3",
-      "sentence": "И Исаак пошел к Авимелеху, царю ___.",
-      "lemma": "филистимляне",
-      "options": ["филистимляне", "филистимлян", "филистимлянам", "филистимлянами"],
-      "correct": "филистимлян",
-      "case": "Родительный (Genitive)",
-      "translation": "Isaac went to Abimelech, king of the Philistines, to Gerar.",
-      "explain": "The noun after 'царь' (king of) naming the ruled people takes the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "И Исаак пошел к ___, царю филистимлян, в Герар.",
-      "lemma": "Авимелех",
-      "options": ["Авимелех", "Авимелеха", "Авимелеху", "Авимелехом"],
-      "correct": "Авимелеху",
-      "case": "Дательный (Dative)",
-      "translation": "Isaac went to Abimelech, king of the Philistines, to Gerar.",
-      "explain": "The preposition к (to/toward) governs the dative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Исаак засеял поля в той земле и в тот же год собрал ___ стократно, и Господь благословил его.",
-      "lemma": "урожай",
-      "options": ["урожай", "урожая", "урожаю", "урожаем"],
-      "correct": "урожай",
-      "case": "Винительный (Accusative)",
-      "translation": "Isaac sowed fields in that land, and in the same year reaped a hundredfold harvest, and the Lord blessed him.",
-      "explain": "The transitive verb собрать (to gather/reap) takes its direct object in the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Один из мужчин мог лечь с твоей ___, и ты навлек бы на нас вину.",
-      "lemma": "жена",
-      "options": ["жена", "жены", "жене", "женой"],
-      "correct": "женой",
-      "case": "Творительный (Instrumental)",
-      "translation": "One of the men might have lain with your wife, and you would have brought guilt on us.",
-      "explain": "The preposition с (with) governs the instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "У него были такие большие стада мелкого и крупного ___.",
-      "lemma": "скот",
-      "options": ["скот", "скота", "скоту", "скотом"],
-      "correct": "скота",
-      "case": "Родительный (Genitive)",
-      "translation": "He had such great flocks of small and large livestock.",
-      "explain": "скот here is a genitive of composition — 'herds of livestock' — so the genitive is needed."
-    },
-    {
-      "id": "c8",
-      "sentence": "Авимелех сказал ___, «Уходи от нас, ты стал слишком силен для нас».",
-      "lemma": "Исаак",
-      "options": ["Исаак", "Исаака", "Исааку", "Исааком"],
-      "correct": "Исааку",
-      "case": "Дательный (Dative)",
-      "translation": "Abimelech said to Isaac, 'Go away from us, you have become too strong for us.'",
-      "explain": "The verb сказать (to say to someone) takes its indirect object in the dative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "И Исаак пошел к Авимелеху, царю филистимлян, в Герар.",
-      "question": "Where did Isaac go during the famine?",
-      "options": ["To Gerar, to Abimelech king of the Philistines", "To Egypt", "To Haran", "To Bethel"],
-      "correct": "To Gerar, to Abimelech king of the Philistines",
-      "explain": "The text says Isaac went 'к Авимелеху, царю филистимлян, в Герар' (to Abimelech, king of the Philistines, to Gerar)."
-    },
-    {
-      "id": "r2",
-      "ru": "«Это моя сестра», потому что боялся сказать, «Это моя жена».",
-      "question": "What did Isaac say about Rebekah, out of fear?",
-      "options": ["That she was his sister", "That she was a servant", "That she was a widow", "That she was his cousin"],
-      "correct": "That she was his sister",
-      "explain": "Isaac said 'Это моя сестра' (She is my sister) because he was afraid to admit she was his wife."
-    },
-    {
-      "id": "r3",
-      "ru": "А Вимилех приказал всему народу, «Всякий, кто тронет этого человека или его жену, непременно будет предан смерти».",
-      "question": "What did Abimelech command the people after learning the truth?",
-      "options": ["That anyone who touched Isaac or Rebekah would be put to death", "That Isaac must leave Gerar immediately", "That Isaac must pay a fine", "That Rebekah must return to her family"],
-      "correct": "That anyone who touched Isaac or Rebekah would be put to death",
-      "explain": "Abimelech commanded that anyone who touched Isaac or his wife 'непременно будет предан смерти' (would surely be put to death)."
-    },
-    {
-      "id": "r4",
-      "ru": "Исаак засеял поля в той земле и в тот же год собрал урожай стократно, и Господь благословил его.",
-      "question": "How much did Isaac's harvest yield the year he sowed in Gerar?",
-      "options": ["A hundredfold", "Tenfold", "Threefold", "Fifty times as much"],
-      "correct": "A hundredfold",
-      "explain": "The text says he reaped a harvest 'стократно' (a hundredfold)."
-    },
-    {
-      "id": "r5",
-      "ru": "Они засыпали землей все колодцы, которые еще во времена его отца выкопали слуги отца его Авраам.",
-      "question": "What did the Philistines do to Abraham's old wells?",
-      "options": ["They filled them with earth", "They poisoned them", "They deepened them", "They renamed them"],
-      "correct": "They filled them with earth",
-      "explain": "The text says the Philistines 'засыпали землей' (filled with earth) the wells dug in Abraham's time."
-    },
-    {
-      "id": "r6",
-      "ru": "Он назвал колодец Есек, потому что они спорили с ним.",
-      "question": "Why did Isaac name a well 'Esek'?",
-      "options": ["Because the herdsmen quarreled over it", "Because it had sweet water", "Because it was near Beersheba", "Because his father dug it"],
-      "correct": "Because the herdsmen quarreled over it",
-      "explain": "The text says the well was named Esek 'потому что они спорили с ним' (because they quarreled over it)."
-    },
-    {
-      "id": "r7",
-      "ru": "Он ушел оттуда и выкопал еще один колодец, из-за которого ссоры не было, и он назвал его Риховод",
-      "question": "What did Isaac name the well over which there was no quarrel?",
-      "options": ["Rehoboth", "Esek", "Sitnah", "Beersheba"],
-      "correct": "Rehoboth",
-      "explain": "The text says he named the well without quarrel 'Риховод' (Rehoboth)."
-    },
-    {
-      "id": "r8",
-      "ru": "Авимелех пришел к нему из Герара вместе с Ахузатом, своим личным советником, и Фихолом, начальником его войска.",
-      "question": "Who accompanied Abimelech when he came to see Isaac?",
-      "options": ["Ahuzzath his adviser and Phicol the army commander", "Isaac's sons", "Rebekah's brother Laban", "Two servants only"],
-      "correct": "Ahuzzath his adviser and Phicol the army commander",
-      "explain": "The text names 'Ахузатом, своим личным советником, и Фихолом, начальником его войска' (Ahuzzath his adviser and Phicol his army commander) as those with Abimelech."
-    },
-    {
-      "id": "r9",
-      "ru": "Когда Исаву было сорок лет, он женился на Иегудифе, дочери Хетта Беэра, и на Босимате, дочери Хетта Илона, и от них было много огорчения Исааку и Ревеке.",
-      "question": "What did Esau's Hittite wives cause for Isaac and Rebekah?",
-      "options": ["Much grief", "Great joy", "Wealth", "Nothing notable"],
-      "correct": "Much grief",
-      "explain": "The text says his wives brought 'много огорчения Исааку и Ревеке' (much grief to Isaac and Rebekah)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "У него были такие ___ мелкого и крупного скота и столько слуг, что филистимляне завидовали ему.",
+   "lemma": "стадо",
+   "options": [
+    "большими стадами",
+    "больших стадах",
+    "большим стадам",
+    "большие стада"
+   ],
+   "correct": "большие стада",
+   "case": "Именительный (Nominative)",
+   "explain": "«большие стада» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "He had possessions of flocks, possessions of herds, and a great household. The Philistines envied him."
+  },
+  {
+   "sentence": "Слуги Исаака стали копать в долине и открыли там колодец с ___, 20 но герарские пастухи затеяли ссору с пастухами Исаака, говоря: «Это наша вода!» Он назвал колодец Есек , потому что они спорили с ним.",
+   "lemma": "вода",
+   "options": [
+    "родниковой воды",
+    "родниковой водой",
+    "родниковая вода",
+    "родниковой воде"
+   ],
+   "correct": "родниковой водой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«родниковой водой» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "Isaac’s servants dug in the valley, and found there a well of springing water."
+  },
+  {
+   "sentence": "Авимелех пришел к нему из Герара вместе с Ахузатом, своим ___, и Фихолом, начальником его войска.",
+   "lemma": "советник",
+   "options": [
+    "личному советнику",
+    "личным советником",
+    "личном советнике",
+    "личный советник"
+   ],
+   "correct": "личным советником",
+   "case": "Творительный (Instrumental)",
+   "explain": "«личным советником» — the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "Then Abimelech went to him from Gerar, and Ahuzzath his friend, and Phicol the captain of his army."
+  },
+  {
+   "sentence": "На ___ рано утром они дали друг другу клятву; Исаак простился с ними, и они ушли от него с миром.",
+   "lemma": "день",
+   "options": [
+    "другого дня",
+    "другому дню",
+    "другим днём",
+    "другой день"
+   ],
+   "correct": "другой день",
+   "case": "Винительный (Accusative)",
+   "explain": "«другой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c6",
+   "translation": "They rose up some time in the morning, and swore an oath to one another. Isaac sent them away, and they departed from him in peace."
+  }
+ ]
 }

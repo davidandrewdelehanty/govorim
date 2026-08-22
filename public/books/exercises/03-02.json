@@ -1,164 +1,259 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Жертва хлебного приношения должна быть из лучшей ___.",
-      "lemma": "мука",
-      "options": ["мука", "муку", "муки", "мукой"],
-      "correct": "муки",
-      "case": "Родительный (Genitive)",
-      "translation": "The grain offering must be of the finest flour.",
-      "explain": "The preposition из (out of/made from) governs the genitive → муки."
-    },
-    {
-      "id": "c2",
-      "sentence": "Она должна быть из лучшей муки, смешанной с ___ и без закваски.",
-      "lemma": "масло",
-      "options": ["масло", "масла", "маслу", "маслом"],
-      "correct": "маслом",
-      "case": "Творительный (Instrumental)",
-      "translation": "It must be of the finest flour, mixed with oil and without yeast.",
-      "explain": "The preposition с meaning 'together with' takes the instrumental → маслом."
-    },
-    {
-      "id": "c3",
-      "sentence": "Священник сожжет их как памятную часть на ___.",
-      "lemma": "жертвенник",
-      "options": ["жертвенник", "жертвенника", "жертвеннику", "жертвеннике"],
-      "correct": "жертвеннике",
-      "case": "Предложный (Prepositional)",
-      "translation": "The priest will burn them as a memorial portion on the altar.",
-      "explain": "The preposition на marking location (on the altar, no motion) takes the prepositional → жертвеннике."
-    },
-    {
-      "id": "c4",
-      "sentence": "Отдай его ___, а он отнесет его к жертвеннику.",
-      "lemma": "священник",
-      "options": ["священник", "священника", "священнику", "священником"],
-      "correct": "священнику",
-      "case": "Дательный (Dative)",
-      "translation": "Give it to the priest, and he will carry it to the altar.",
-      "explain": "Священник is the recipient (indirect object) of отдай (give), so it takes the dative → священнику."
-    },
-    {
-      "id": "c5",
-      "sentence": "Налей на ___ масло и положи жертвенные благовония.",
-      "lemma": "зерно",
-      "options": ["зерно", "зерна", "зерну", "зерном"],
-      "correct": "зерно",
-      "case": "Винительный (Accusative)",
-      "translation": "Pour oil on the grain and lay frankincense on it.",
-      "explain": "The preposition на with motion (onto the grain) takes the accusative; for this neuter noun the accusative equals the nominative → зерно."
-    },
-    {
-      "id": "c6",
-      "sentence": "Не оставляй хлебные приношения без соли завета с твоим ___.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Богом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Do not leave your grain offerings without the salt of the covenant with your God.",
-      "explain": "The preposition с meaning 'with' governs the instrumental → Богом."
-    },
-    {
-      "id": "c7",
-      "sentence": "Добавляй соль при каждом твоем ___.",
-      "lemma": "приношение",
-      "options": ["приношение", "приношения", "приношению", "приношении"],
-      "correct": "приношении",
-      "case": "Предложный (Prepositional)",
-      "translation": "Add salt with every one of your offerings.",
-      "explain": "The preposition при (at/with) always governs the prepositional → приношении."
-    },
-    {
-      "id": "c8",
-      "sentence": "Пусть жертвующий нальет в ___ масло, положит сверху благовоние.",
-      "lemma": "мука",
-      "options": ["мука", "муку", "муки", "мукой"],
-      "correct": "муку",
-      "case": "Винительный (Accusative)",
-      "translation": "Let the worshiper pour oil into the flour and place frankincense on top.",
-      "explain": "The preposition в with motion (into the flour) takes the accusative; for feminine -а nouns the ending is -у → муку."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Если кто-нибудь приносит Господу жертву хлебного приношения, она должна быть из лучшей муки.",
-      "question": "What must a grain (meal) offering be made of?",
-      "options": [
-        "The finest flour",
-        "Fresh meat",
-        "Honey and yeast",
-        "Wine and oil"
-      ],
-      "correct": "The finest flour",
-      "explain": "The text says a grain offering must be made from the finest flour (из лучшей муки)."
-    },
-    {
-      "id": "r2",
-      "ru": "Пусть жертвующий нальет в муку масло, положит сверху благовоние и принесет к священникам сыновьям Аарона.",
-      "question": "What does the worshiper add to the flour before bringing it to the priests?",
-      "options": [
-        "Oil and frankincense",
-        "Salt and honey",
-        "Water and wine",
-        "Yeast and dough"
-      ],
-      "correct": "Oil and frankincense",
-      "explain": "He pours oil (масло) into the flour and places frankincense (благовоние) on top."
-    },
-    {
-      "id": "r3",
-      "ru": "Остаток хлебного приношения принадлежит Аарону и его сыновьям.",
-      "question": "Who receives what is left of the grain offering?",
-      "options": [
-        "Aaron and his sons",
-        "The one who brought it",
-        "It is all burned up",
-        "The poor of the city"
-      ],
-      "correct": "Aaron and his sons",
-      "explain": "The remainder of the grain offering belongs to Aaron and his sons."
-    },
-    {
-      "id": "r4",
-      "ru": "Любое хлебное приношение, которое ты приносишь Господу, должно быть пресным, потому что нельзя сжигать ни закваску, ни мед, как огненную жертву Господу.",
-      "question": "Why must a grain offering be unleavened?",
-      "options": [
-        "Because no yeast or honey may be burned as an offering",
-        "Because bread is cheaper that way",
-        "Because it must be eaten raw",
-        "Because it is offered only at night"
-      ],
-      "correct": "Because no yeast or honey may be burned as an offering",
-      "explain": "The text forbids burning either yeast (закваску) or honey (мед) as an offering by fire to the Lord."
-    },
-    {
-      "id": "r5",
-      "ru": "Приправь твои хлебные приношения солью.",
-      "question": "With what must the grain offerings be seasoned?",
-      "options": [
-        "Salt",
-        "Oil",
-        "Honey",
-        "Wine"
-      ],
-      "correct": "Salt",
-      "explain": "The command is to season the grain offerings with salt (солью)."
-    },
-    {
-      "id": "r6",
-      "ru": "Если приносишь Господу хлебное приношение из первых плодов, приноси перемолотое молодое зерно, выбитое из незрелых колосьев, подсушенных на огне.",
-      "question": "For a firstfruits grain offering, what form of grain is offered?",
-      "options": [
-        "Crushed new grain from fresh ears, roasted by fire",
-        "Whole loaves of baked bread",
-        "A basket of dried figs",
-        "Ground wheat mixed with honey"
-      ],
-      "correct": "Crushed new grain from fresh ears, roasted by fire",
-      "explain": "The offering is crushed young grain, beaten from unripe ears and dried (roasted) by fire."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "«Если кто-нибудь приносит Господу жертву ___, она должна быть из лучшей муки.",
+   "lemma": "приношение",
+   "options": [
+    "хлебное приношение",
+    "хлебном приношении",
+    "хлебного приношения",
+    "хлебному приношению"
+   ],
+   "correct": "хлебного приношения",
+   "case": "Родительный (Genitive)",
+   "explain": "«хлебного приношения» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "“ ‘When anyone offers an offering of a meal offering to Yahweh, his offering shall be of fine flour. He shall pour oil on it, and put frankincense on it."
+  },
+  {
+   "sentence": "Остаток ___ принадлежит Аарону и его сыновьям; это — великая святыня из огненных жертвоприношений Господу.",
+   "lemma": "приношение",
+   "options": [
+    "хлебное приношение",
+    "хлебном приношении",
+    "хлебного приношения",
+    "хлебному приношению"
+   ],
+   "correct": "хлебного приношения",
+   "case": "Родительный (Genitive)",
+   "explain": "«хлебного приношения» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "That which is left of the meal offering shall be Aaron’s and his sons’. It is a most holy part of the offerings of Yahweh made by fire."
+  },
+  {
+   "sentence": "Остаток хлебного приношения принадлежит Аарону и его сыновьям; это — ___ из огненных жертвоприношений Господу.",
+   "lemma": "святыня",
+   "options": [
+    "великой святыне",
+    "великой святыни",
+    "великая святыня",
+    "великой святыней"
+   ],
+   "correct": "великая святыня",
+   "case": "Именительный (Nominative)",
+   "explain": "«великая святыня» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "That which is left of the meal offering shall be Aaron’s and his sons’. It is a most holy part of the offerings of Yahweh made by fire."
+  },
+  {
+   "sentence": "Остаток хлебного приношения принадлежит Аарону и его сыновьям; это — великая святыня из ___ Господу.",
+   "lemma": "жертвоприношение",
+   "options": [
+    "огненными жертвоприношениями",
+    "огненные жертвоприношения",
+    "огненных жертвоприношений",
+    "огненным жертвоприношениям"
+   ],
+   "correct": "огненных жертвоприношений",
+   "case": "Родительный (Genitive)",
+   "explain": "«огненных жертвоприношений» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "That which is left of the meal offering shall be Aaron’s and his sons’. It is a most holy part of the offerings of Yahweh made by fire."
+  },
+  {
+   "sentence": "Если ты приносишь жертву ___, испеченную в печи, она должна быть из лучшей муки: пресные хлебы, замешенные на масле, или пресные коржи, помазанные маслом.",
+   "lemma": "приношение",
+   "options": [
+    "хлебное приношение",
+    "хлебном приношении",
+    "хлебного приношения",
+    "хлебному приношению"
+   ],
+   "correct": "хлебного приношения",
+   "case": "Родительный (Genitive)",
+   "explain": "«хлебного приношения» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "“ ‘When you offer an offering of a meal offering baked in the oven, it shall be unleavened cakes of fine flour mixed with oil, or unleavened wafers anointed with oil."
+  },
+  {
+   "sentence": "Если ты приносишь жертву хлебного приношения, испеченную в печи, она должна быть из лучшей муки: пресные хлебы, замешенные на масле, или ___, помазанные маслом.",
+   "lemma": "корж",
+   "options": [
+    "пресным коржам",
+    "пресные коржи",
+    "пресных коржах",
+    "пресных коржей"
+   ],
+   "correct": "пресные коржи",
+   "case": "Именительный (Nominative)",
+   "explain": "«пресные коржи» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "“ ‘When you offer an offering of a meal offering baked in the oven, it shall be unleavened cakes of fine flour mixed with oil, or unleavened wafers anointed with oil."
+  },
+  {
+   "sentence": "Если твоя жертва ___ приготовлена на противне, она должна быть из лучшей муки, смешанной с маслом, и без закваски.",
+   "lemma": "приношение",
+   "options": [
+    "хлебное приношение",
+    "хлебном приношении",
+    "хлебного приношения",
+    "хлебному приношению"
+   ],
+   "correct": "хлебного приношения",
+   "case": "Родительный (Genitive)",
+   "explain": "«хлебного приношения» — the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "If your offering is a meal offering made on a griddle, it shall be of unleavened fine flour, mixed with oil."
+  },
+  {
+   "sentence": "Раскроши ее и налей на нее масло; это ___.",
+   "lemma": "приношение",
+   "options": [
+    "хлебное приношение",
+    "хлебного приношения",
+    "хлебным приношением",
+    "хлебному приношению"
+   ],
+   "correct": "хлебное приношение",
+   "case": "Именительный (Nominative)",
+   "explain": "«хлебное приношение» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "You shall cut it in pieces, and pour oil on it. It is a meal offering."
+  },
+  {
+   "sentence": "Если твоя жертва ___ приготовлена на сковороде, она должна быть из лучшей муки и масла.",
+   "lemma": "приношение",
+   "options": [
+    "хлебное приношение",
+    "хлебном приношении",
+    "хлебного приношения",
+    "хлебному приношению"
+   ],
+   "correct": "хлебного приношения",
+   "case": "Родительный (Genitive)",
+   "explain": "«хлебного приношения» — the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "If your offering is a meal offering of the pan, it shall be made of fine flour with oil."
+  },
+  {
+   "sentence": "Остаток ___ принадлежит Аарону и его сыновьям; это самая святая часть от огненных жертв Господу.",
+   "lemma": "приношение",
+   "options": [
+    "хлебное приношение",
+    "хлебном приношении",
+    "хлебного приношения",
+    "хлебному приношению"
+   ],
+   "correct": "хлебного приношения",
+   "case": "Родительный (Genitive)",
+   "explain": "«хлебного приношения» — the genitive here marks possession, absence, or quantity.",
+   "id": "c10",
+   "translation": "That which is left of the meal offering shall be Aaron’s and his sons’. It is a most holy part of the offerings of Yahweh made by fire."
+  },
+  {
+   "sentence": "Остаток хлебного приношения принадлежит Аарону и его сыновьям; это самая святая часть от ___ Господу.",
+   "lemma": "жертва",
+   "options": [
+    "огненными жертвами",
+    "огненных жертвах",
+    "огненным жертвам",
+    "огненных жертв"
+   ],
+   "correct": "огненных жертв",
+   "case": "Родительный (Genitive)",
+   "explain": "«огненных жертв» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
+   "translation": "That which is left of the meal offering shall be Aaron’s and his sons’. It is a most holy part of the offerings of Yahweh made by fire."
+  },
+  {
+   "sentence": "Любое ___, которое ты приносишь Господу, должно быть пресным, потому что нельзя сжигать ни закваску, ни мед как огненную жертву Господу.",
+   "lemma": "приношение",
+   "options": [
+    "хлебное приношение",
+    "хлебного приношения",
+    "хлебным приношением",
+    "хлебному приношению"
+   ],
+   "correct": "хлебное приношение",
+   "case": "Именительный (Nominative)",
+   "explain": "«хлебное приношение» — the subject of the sentence stands in the nominative.",
+   "id": "c12",
+   "translation": "“ ‘No meal offering which you shall offer to Yahweh shall be made with yeast; for you shall burn no yeast, nor any honey, as an offering made by fire to Yahweh."
+  },
+  {
+   "sentence": "Ты можешь приносить их Господу как приношение ___, но их нельзя приносить на жертвенник как приятное благоухание.",
+   "lemma": "плод",
+   "options": [
+    "первыми плодами",
+    "первых плодах",
+    "первых плодов",
+    "первые плоды"
+   ],
+   "correct": "первых плодов",
+   "case": "Родительный (Genitive)",
+   "explain": "«первых плодов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c13",
+   "translation": "As an offering of first fruits you shall offer them to Yahweh, but they shall not rise up as a pleasant aroma on the altar."
+  },
+  {
+   "sentence": "Если приносишь Господу хлебное приношение из ___, приноси перемолотое молодое зерно, выбитое из незрелых колосьев, подсушенных на огне.",
+   "lemma": "плод",
+   "options": [
+    "первыми плодами",
+    "первых плодах",
+    "первых плодов",
+    "первые плоды"
+   ],
+   "correct": "первых плодов",
+   "case": "Родительный (Genitive)",
+   "explain": "«первых плодов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c15",
+   "translation": "“ ‘If you offer a meal offering of first fruits to Yahweh, you shall offer for the meal offering of your first fruits fresh heads of grain parched with fire and crushed."
+  },
+  {
+   "sentence": "Если приносишь Господу хлебное приношение из первых плодов, приноси перемолотое молодое зерно, выбитое из ___, подсушенных на огне.",
+   "lemma": "колос",
+   "options": [
+    "незрелым колосьям",
+    "незрелых колосьев",
+    "незрелые колосья",
+    "незрелыми колосьями"
+   ],
+   "correct": "незрелых колосьев",
+   "case": "Родительный (Genitive)",
+   "explain": "«незрелых колосьев» — the genitive here marks possession, absence, or quantity.",
+   "id": "c16",
+   "translation": "“ ‘If you offer a meal offering of first fruits to Yahweh, you shall offer for the meal offering of your first fruits fresh heads of grain parched with fire and crushed."
+  },
+  {
+   "sentence": "Это будет ___.",
+   "lemma": "приношение",
+   "options": [
+    "хлебное приношение",
+    "хлебного приношения",
+    "хлебным приношением",
+    "хлебному приношению"
+   ],
+   "correct": "хлебное приношение",
+   "case": "Именительный (Nominative)",
+   "explain": "«хлебное приношение» — the subject of the sentence stands in the nominative.",
+   "id": "c17",
+   "translation": "You shall put oil on it and lay frankincense on it. It is a meal offering."
+  },
+  {
+   "sentence": "Это ___ Господу».",
+   "lemma": "жертва",
+   "options": [
+    "огненной жертвы",
+    "огненной жертве",
+    "огненной жертвой",
+    "огненная жертва"
+   ],
+   "correct": "огненная жертва",
+   "case": "Именительный (Nominative)",
+   "explain": "«огненная жертва» — the subject of the sentence stands in the nominative.",
+   "id": "c18",
+   "translation": "The priest shall burn as its memorial part of its crushed grain and part of its oil, along with all its frankincense. It is an offering made by fire to Yahweh."
+  }
+ ]
 }

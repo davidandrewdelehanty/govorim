@@ -1,204 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Кроткий ответ отвращает ___, а резкое слово будет ярость.",
-      "lemma": "гнев",
-      "options": [
-        "гнев",
-        "гнева",
-        "гневу",
-        "гневом"
-      ],
-      "correct": "гнев",
-      "case": "Винительный (Accusative)",
-      "translation": "A gentle answer turns away wrath, but a harsh word stirs up anger.",
-      "explain": "Гнев is the direct object of отвращает (turns away), taking the accusative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Язык умиротворяющий ___ жизни.",
-      "lemma": "дерево",
-      "options": [
-        "дерево",
-        "дерева",
-        "деревом",
-        "деревьях"
-      ],
-      "correct": "дерево",
-      "case": "Именительный (Nominative)",
-      "translation": "A gentle tongue is a tree of life.",
-      "explain": "Дерево is a predicate nominative after the linking verb быть (is)."
-    },
-    {
-      "id": "c3",
-      "sentence": "Глупец презирает отцовский урок, а слушающий упреки ___.",
-      "lemma": "благоразумный",
-      "options": [
-        "благоразумен",
-        "благоразумная",
-        "благоразумный",
-        "благоразумные"
-      ],
-      "correct": "благоразумен",
-      "case": "Именительный (Nominative)",
-      "translation": "A fool despises his father's correction, but he who heeds reproof shows prudence.",
-      "explain": "Благоразумен is the predicate adjective describing the subject слушающий (one who listens)."
-    },
-    {
-      "id": "c4",
-      "sentence": "В доме праведника много ___.",
-      "lemma": "сокровище",
-      "options": [
-        "сокровище",
-        "сокровища",
-        "сокровищ",
-        "сокровищам"
-      ],
-      "correct": "сокровищ",
-      "case": "Родительный (Genitive)",
-      "translation": "In the house of the righteous is much treasure.",
-      "explain": "The genitive plural after много (much/many) is required."
-    },
-    {
-      "id": "c5",
-      "sentence": "Уста мудрых распространяют ___, сердца глупцов не таковы.",
-      "lemma": "знание",
-      "options": [
-        "знание",
-        "знания",
-        "знанию",
-        "знанием"
-      ],
-      "correct": "знания",
-      "case": "Винительный (Accusative)",
-      "translation": "The lips of the wise spread knowledge; not so with the heart of fools.",
-      "explain": "Знания is the direct object of распространяют (spread), taking the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Путь жизни ведет рассудительных вверх, чтобы спасти их от ___ мертвых внизу.",
-      "lemma": "мир",
-      "options": [
-        "мир",
-        "мира",
-        "миру",
-        "миром"
-      ],
-      "correct": "мира",
-      "case": "Родительный (Genitive)",
-      "translation": "The path of life leads upward for the wise, to keep him from going downward to Sheol.",
-      "explain": "The preposition от (from) governs the genitive case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Слушающий благотворный упрек будет как дома среди ___.",
-      "lemma": "мудрец",
-      "options": [
-        "мудрец",
-        "мудреца",
-        "мудрецов",
-        "мудрецом"
-      ],
-      "correct": "мудрецов",
-      "case": "Родительный (Genitive)",
-      "translation": "The ear that listens to reproof lives, and will be at home among the wise.",
-      "explain": "The preposition среди (among) governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Страх перед Господом учит ___, и смирение предшествует славе.",
-      "lemma": "мудрость",
-      "options": [
-        "мудрость",
-        "мудрости",
-        "мудростью",
-        "мудростями"
-      ],
-      "correct": "мудрости",
-      "case": "Винительный (Accusative)",
-      "translation": "The fear of Yahweh teaches wisdom. Before honor is humility.",
-      "explain": "Мудрости is the direct object of учит (teaches), taking the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Кроткий ответ отвращает гнев, а резкое слово будет ярость.",
-      "question": "What does a gentle answer accomplish versus a harsh word?",
-      "options": [
-        "A gentle answer turns away anger while harsh words stir up anger",
-        "Both gentle and harsh answers produce the same result",
-        "Harsh words turn away anger",
-        "Gentle answers increase anger"
-      ],
-      "correct": "A gentle answer turns away anger while harsh words stir up anger",
-      "explain": "The verse shows: кроткий ответ отвращает гнев (a gentle answer turns away wrath) versus резкое слово будет ярость (a harsh word stirs up anger)."
-    },
-    {
-      "id": "r2",
-      "ru": "Язык мудрых восхваляет знания, а уста глупых изрыгают глупость.",
-      "question": "What is the difference between what wise and foolish people speak?",
-      "options": [
-        "The wise praise knowledge while the foolish spout folly",
-        "Both wise and foolish people say the same things",
-        "Foolish people praise knowledge",
-        "Wise people speak foolishly"
-      ],
-      "correct": "The wise praise knowledge while the foolish spout folly",
-      "explain": "язык мудрых восхваляет знания (the tongue of the wise commends knowledge) contrasts with уста глупых изрыгают глупость (the mouth of fools gush out folly)."
-    },
-    {
-      "id": "r3",
-      "ru": "При счастливом сердце лицо сияет, а сердечная скорбь сокрушает дух.",
-      "question": "How does one's emotional state affect their appearance and spirit?",
-      "options": [
-        "A happy heart makes the face shine while sorrow crushes the spirit",
-        "Emotional state has no effect on appearance",
-        "Sorrow always makes people beautiful",
-        "Happiness makes people sad"
-      ],
-      "correct": "A happy heart makes the face shine while sorrow crushes the spirit",
-      "explain": "The verse contrasts: При счастливом сердце лицо сияет (when the heart is happy, the face shines) with сердечная скорбь сокрушает дух (heartfelt sorrow crushes the spirit)."
-    },
-    {
-      "id": "r4",
-      "ru": "Лучше немного, но со страхом перед Господом, чем большое богатство и с ним тревога.",
-      "question": "What is better: poverty with fear of the Lord or wealth with anxiety?",
-      "options": [
-        "Little with fear of the Lord is better than great wealth with anxiety",
-        "Great wealth is always preferable",
-        "Poverty is always worse than wealth",
-        "Fear of the Lord brings wealth"
-      ],
-      "correct": "Little with fear of the Lord is better than great wealth with anxiety",
-      "explain": "The verse states: Лучше немного, но со страхом перед Господом, чем большое богатство и с ним тревога — Better is little with the fear of the Lord than great treasure with trouble."
-    },
-    {
-      "id": "r5",
-      "ru": "Путь лентяя колючками зарос, а дорога праведных гладкая.",
-      "question": "What is the condition of the paths of the lazy versus the righteous?",
-      "options": [
-        "The path of the lazy is overgrown with thorns while the righteous walk a smooth path",
-        "Both paths are equally difficult",
-        "The lazy have smooth paths",
-        "The righteous walk through thorns"
-      ],
-      "correct": "The path of the lazy is overgrown with thorns while the righteous walk a smooth path",
-      "explain": "The verse shows: Путь лентяя колючками зарос (the way of the sluggard is like a thorn patch) versus дорога праведных гладкая (the path of the upright is a highway)."
-    },
-    {
-      "id": "r6",
-      "ru": "Страх перед Господом учит мудрости, и смирение предшествует славе.",
-      "question": "What does fear of the Lord teach, and what precedes glory?",
-      "options": [
-        "Fear of the Lord teaches wisdom and humility precedes glory",
-        "Fear teaches folly",
-        "Pride brings glory",
-        "Arrogance precedes honor"
-      ],
-      "correct": "Fear of the Lord teaches wisdom and humility precedes glory",
-      "explain": "The text states: Страх перед Господом учит мудрости (the fear of Yahweh teaches wisdom) and смирение предшествует славе (humility precedes glory)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Оставляющего путь ждет ___;",
+   "lemma": "урок",
+   "options": [
+    "жестокому уроку",
+    "жестокий урок",
+    "жестоком уроке",
+    "жестоким уроком"
+   ],
+   "correct": "жестокий урок",
+   "case": "Именительный (Nominative)",
+   "explain": "«жестокий урок» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "There is stern discipline for one who forsakes the way: whoever hates reproof shall die."
+  },
+  {
+   "sentence": "При ___ лицо сияет,",
+   "lemma": "сердце",
+   "options": [
+    "счастливое сердце",
+    "счастливом сердце",
+    "счастливым сердцем",
+    "счастливого сердца"
+   ],
+   "correct": "счастливом сердце",
+   "case": "Предложный (Prepositional)",
+   "explain": "«счастливом сердце» — after the preposition «при», for location or topic.",
+   "id": "c3",
+   "translation": "A glad heart makes a cheerful face, but an aching heart breaks the spirit."
+  },
+  {
+   "sentence": "Господь гнушается ___,",
+   "lemma": "мысль",
+   "options": [
+    "злыми мыслями",
+    "злые мысли",
+    "злым мыслям",
+    "злых мыслях"
+   ],
+   "correct": "злыми мыслями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«злыми мыслями» — the instrumental marks the means, company, or complement.",
+   "id": "c4",
+   "translation": "Yahweh detests the thoughts of the wicked, but the thoughts of the pure are pleasing."
+  },
+  {
+   "sentence": "___ веселит сердце,",
+   "lemma": "взгляд",
+   "options": [
+    "радостным взглядом",
+    "радостный взгляд",
+    "радостного взгляда",
+    "радостном взгляде"
+   ],
+   "correct": "радостный взгляд",
+   "case": "Именительный (Nominative)",
+   "explain": "«Радостный взгляд» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "The light of the eyes rejoices the heart. Good news gives health to the bones."
+  }
+ ]
 }

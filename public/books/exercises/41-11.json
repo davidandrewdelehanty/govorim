@@ -1,130 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Стоявшие там ___ спросили, «Что вы делаете? Зачем отвязываете осленка?»",
-      "lemma": "люди",
-      "options": ["люди", "людей", "людям", "людьми"],
-      "correct": "люди",
-      "case": "Именительный (Nominative)",
-      "translation": "Some of those standing there asked, \"What are you doing, untying the donkey?\"",
-      "explain": "Люди is the subject of спросили (asked), so it stands in the nominative plural."
-    },
-    {
-      "id": "c2",
-      "sentence": "На следующий день, когда они вышли из ___, Иисус почувствовал голод.",
-      "lemma": "Вифания",
-      "options": ["Вифания", "Вифании", "Вифанию", "Вифанией"],
-      "correct": "Вифании",
-      "case": "Родительный (Genitive)",
-      "translation": "The next day, when they had come out from Bethany, Jesus felt hungry.",
-      "explain": "The preposition из (out of) takes the genitive → Вифании."
-    },
-    {
-      "id": "c3",
-      "sentence": "Тогда Иисус сказал ___, «Пусть же никто никогда больше не ест твоих плодов».",
-      "lemma": "дерево",
-      "options": ["дерево", "дерева", "дереву", "деревом"],
-      "correct": "дереву",
-      "case": "Дательный (Dative)",
-      "translation": "Then Jesus said to the tree, \"May no one ever eat fruit from you again.\"",
-      "explain": "Сказать кому-то (to say to someone/something) takes the dative → дереву."
-    },
-    {
-      "id": "c4",
-      "sentence": "Иисус вошел в ___ и стал выгонять оттуда продающих и покупающих.",
-      "lemma": "храм",
-      "options": ["храм", "храма", "храму", "храмом"],
-      "correct": "храм",
-      "case": "Винительный (Accusative)",
-      "translation": "Jesus entered the temple and began to drive out those who were selling and buying.",
-      "explain": "В (into) marking motion takes the accusative; since храм is inanimate, the accusative matches the nominative → храм."
-    },
-    {
-      "id": "c5",
-      "sentence": "«Дом мой будет назван ___ молитвы для всех народов», — учил он их.",
-      "lemma": "дом",
-      "options": ["дом", "дома", "дому", "домом"],
-      "correct": "домом",
-      "case": "Творительный (Instrumental)",
-      "translation": "\"My house will be called a house of prayer for all nations,\" he taught them.",
-      "explain": "The predicate complement after назван (named/called) takes the instrumental → домом."
-    },
-    {
-      "id": "c6",
-      "sentence": "Они снова пришли в Иерусалим, и когда Иисус ходил в ___, к нему подошли первосвященники, учители закона и старейшины.",
-      "lemma": "храм",
-      "options": ["храм", "храма", "храму", "храме"],
-      "correct": "храме",
-      "case": "Предложный (Prepositional)",
-      "translation": "They came again to Jerusalem, and as Jesus was walking in the temple, the chief priests, teachers of the law and elders came to him.",
-      "explain": "В (in) marking a static location (no motion) takes the prepositional → храме."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Когда они приблизились к Вифагии и Вифании, селением, расположенным у Масличной горы, неподалеку от Иерусалима, Иисус послал вперед двух учеников.",
-      "question": "What did Jesus do as they approached Bethphage and Bethany?",
-      "options": ["He sent two disciples ahead", "He entered the temple immediately", "He cursed a fig tree", "He healed a blind beggar"],
-      "correct": "He sent two disciples ahead",
-      "explain": "As they neared Bethphage and Bethany, Jesus sent two of his disciples ahead."
-    },
-    {
-      "id": "r2",
-      "ru": "И сразу же, как только войдете, вы найдете привязанного осленка, на которого еще никто не садился.",
-      "question": "What did Jesus tell the disciples they would find in the village?",
-      "options": ["A young donkey that no one had ridden", "A boat by the shore", "An empty tomb", "A group of Pharisees"],
-      "correct": "A young donkey that no one had ridden",
-      "explain": "Jesus said they would find a tied young donkey that no one had yet sat on."
-    },
-    {
-      "id": "r3",
-      "ru": "И те, кто шел впереди, и те, кто шел позади, громко кричали, «Ассанна, благословен тот, кто приходит во имя Господа!»",
-      "question": "What did the crowd shout as Jesus entered Jerusalem?",
-      "options": ["\"Hosanna, blessed is he who comes in the name of the Lord\"", "\"Crucify him\"", "\"Hail the King of the Jews\"", "\"Prophesy to us\""],
-      "correct": "\"Hosanna, blessed is he who comes in the name of the Lord\"",
-      "explain": "Those going ahead and behind cried out, \"Hosanna, blessed is he who comes in the name of the Lord!\""
-    },
-    {
-      "id": "r4",
-      "ru": "Тогда Иисус сказал дереву, «Пусть же никто никогда больше не ест твоих плодов».",
-      "question": "What did Jesus say to the fig tree that had no fruit?",
-      "options": ["May no one ever eat your fruit again", "You will bear fruit again next year", "I will cut you down today", "Give your fruit to the poor"],
-      "correct": "May no one ever eat your fruit again",
-      "explain": "Finding no fruit on it, Jesus told the tree that no one would ever eat its fruit again."
-    },
-    {
-      "id": "r5",
-      "ru": "«Дом мой будет назван домом молитвы для всех народов», — учил он их. «А вы превратили его в разбойничье логово».",
-      "question": "What did Jesus say the temple should be, and what had it become?",
-      "options": ["A house of prayer, but it had become a den of robbers", "A marketplace, and it had become a school", "A courtroom, and it had become a palace", "A treasury, and it had become empty"],
-      "correct": "A house of prayer, but it had become a den of robbers",
-      "explain": "Jesus taught that his house should be a house of prayer, but they had turned it into a den of robbers."
-    },
-    {
-      "id": "r6",
-      "ru": "Петр вспомнил, что произошло накануне, и сказал, «Рабби, смотри, инжир, который ты проклял, засох».",
-      "question": "What did Peter point out to Jesus the next morning?",
-      "options": ["The fig tree Jesus had cursed had withered", "The temple had been rebuilt", "The donkey had run away", "The crowd had dispersed"],
-      "correct": "The fig tree Jesus had cursed had withered",
-      "explain": "Peter remembered the cursed fig tree and pointed out that it had withered away."
-    },
-    {
-      "id": "r7",
-      "ru": "И когда вы молитесь, то прощайте всем, на кого вы обижены, чтобы и ваш Небесный Отец простил вам ваши проступки.",
-      "question": "What does Jesus say you must do when you pray, so your Father will forgive you?",
-      "options": ["Forgive anyone you have something against", "Fast for three days", "Give money to the temple", "Confess to a priest"],
-      "correct": "Forgive anyone you have something against",
-      "explain": "Jesus teaches that when you pray, you must forgive those who have wronged you, so your Heavenly Father will forgive you."
-    },
-    {
-      "id": "r8",
-      "ru": "Иисус сказал, «тогда и я вам не скажу, чьей властью я все это делаю».",
-      "question": "How did Jesus respond when the religious leaders refused to answer about John's baptism?",
-      "options": ["He refused to tell them by what authority he acted", "He had them arrested", "He left Jerusalem immediately", "He performed a miracle to prove his authority"],
-      "correct": "He refused to tell them by what authority he acted",
-      "explain": "Since they would not answer about John, Jesus in turn refused to say by what authority he acted."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Когда они подошли к Виффагии и Вифании — селениям, расположенным у ___ неподалеку от Иерусалима, — Иисус послал вперед двух учеников.",
+   "lemma": "гора",
+   "options": [
+    "масличной горой",
+    "масличная гора",
+    "масличной горы",
+    "масличной горе"
+   ],
+   "correct": "масличной горы",
+   "case": "Родительный (Genitive)",
+   "explain": "«Масличной горы» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "When they came near to Jerusalem, to Bethsphage and Bethany, at the Mount of Olives, he sent two of his disciples,"
+  },
+  {
+   "sentence": "Ученики пошли и нашли осленка, привязанного на улице к ___ двери.",
+   "lemma": "сторона",
+   "options": [
+    "наружная сторона",
+    "наружной стороны",
+    "наружной стороной",
+    "наружной стороне"
+   ],
+   "correct": "наружной стороне",
+   "case": "Дательный (Dative)",
+   "explain": "«наружной стороне» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c2",
+   "translation": "They went away, and found a young donkey tied at the door outside in the open street, and they untied him."
+  },
+  {
+   "sentence": "На ___, когда они вышли из Вифании, Иисус почувствовал голод.",
+   "lemma": "день",
+   "options": [
+    "следующего дня",
+    "следующем дне",
+    "следующий день",
+    "следующим днём"
+   ],
+   "correct": "следующий день",
+   "case": "Винительный (Accusative)",
+   "explain": "«следующий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "The next day, when they had come out from Bethany, he was hungry."
+  }
+ ]
 }

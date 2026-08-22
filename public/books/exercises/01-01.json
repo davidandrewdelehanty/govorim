@@ -1,122 +1,154 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ была пуста и безлика, тьма была над бездной.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "землю", "землёй"],
-      "correct": "земля",
-      "case": "Именительный (Nominative)",
-      "translation": "The earth was formless and empty, darkness was over the deep.",
-      "explain": "Земля is the grammatical subject of была (was), so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Бог увидел, что свет хорош, и отделил его от ___.",
-      "lemma": "тьма",
-      "options": ["тьма", "тьмы", "тьму", "тьмой"],
-      "correct": "тьмы",
-      "case": "Родительный (Genitive)",
-      "translation": "God saw that the light was good, and separated it from the darkness.",
-      "explain": "The preposition от (from) always governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Так Бог сотворил человека по ___ своему, по образу Божьему Он сотворил его.",
-      "lemma": "образ",
-      "options": ["образ", "образа", "образу", "образом"],
-      "correct": "образу",
-      "case": "Дательный (Dative)",
-      "translation": "So God created man in his own image, in the image of God He created him.",
-      "explain": "The preposition по meaning 'according to' governs the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "___ и женщину Он сотворил их.",
-      "lemma": "мужчина",
-      "options": ["мужчина", "мужчины", "мужчину", "мужчиной"],
-      "correct": "мужчину",
-      "case": "Винительный (Accusative)",
-      "translation": "Male and female He created them.",
-      "explain": "Мужчину is the direct object of the transitive verb сотворил (created), so it takes the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "тьма была над ___.",
-      "lemma": "бездна",
-      "options": ["бездна", "бездны", "бездне", "бездной"],
-      "correct": "бездной",
-      "case": "Творительный (Instrumental)",
-      "translation": "Darkness was over the deep.",
-      "explain": "The preposition над (above/over) governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "И Бог сказал, да будут светила на небесном ___, чтобы отделять день от ночи.",
-      "lemma": "свод",
-      "options": ["свод", "свода", "своду", "своде"],
-      "correct": "своде",
-      "case": "Предложный (Prepositional)",
-      "translation": "God said, let there be lights in the expanse of the sky to separate day from night.",
-      "explain": "The preposition на indicating location governs the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Бог сказал «Да будет свет», и появился свет.",
-      "question": "What did God say to bring light into existence?",
-      "options": ["Let there be light", "Let the waters gather", "Let the earth bring forth plants", "Let there be lights in the sky"],
-      "correct": "Let there be light",
-      "explain": "The text quotes God's command «Да будет свет» — 'Let there be light.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Бог назвал свод небом.",
-      "question": "What name did God give to the expanse he made on the second day?",
-      "options": ["Sky (heaven)", "Earth", "Sea", "Light"],
-      "correct": "Sky (heaven)",
-      "explain": "Бог назвал свод небом — God called the expanse 'sky' (heaven)."
-    },
-    {
-      "id": "r3",
-      "ru": "Бог назвал сушу землей, а собранные воды назвал морями».",
-      "question": "What did God call the dry land and the gathered waters?",
-      "options": ["Land and seas", "Heaven and earth", "Day and night", "Light and darkness"],
-      "correct": "Land and seas",
-      "explain": "Бог назвал сушу землей ... назвал морями — God called the dry land 'land' and the gathered waters 'seas.'"
-    },
-    {
-      "id": "r4",
-      "ru": "Бог создал два великих светила.",
-      "question": "How many great lights did God make on the fourth day?",
-      "options": ["Two", "Three", "One", "Four"],
-      "correct": "Two",
-      "explain": "Бог создал два великих светила — God made two great lights."
-    },
-    {
-      "id": "r5",
-      "ru": "Бог создал огромных морских чудищ, разные виды движущейся живности, кишащие в воде, и разные виды крылатых птиц.",
-      "question": "What creatures did God create on the fifth day, according to this sentence?",
-      "options": ["Huge sea creatures, swarming water creatures, and winged birds", "Wild animals and livestock", "Man and woman", "The sun, moon, and stars"],
-      "correct": "Huge sea creatures, swarming water creatures, and winged birds",
-      "explain": "The sentence lists огромных морских чудищ ... и разные виды крылатых птиц — huge sea creatures ... and winged birds."
-    },
-    {
-      "id": "r6",
-      "ru": "Бог создал разные виды диких зверей и скота, и все виды присмыкающихся.",
-      "question": "What land creatures did God create in this verse?",
-      "options": ["Wild animals, livestock, and creeping things", "Fish and birds", "The sun and moon", "Man and woman"],
-      "correct": "Wild animals, livestock, and creeping things",
-      "explain": "Бог создал разные виды диких зверей и скота, и все виды присмыкающихся — God made wild animals, livestock, and creeping things."
-    },
-    {
-      "id": "r7",
-      "ru": "Так Бог сотворил человека по образу своему, по образу Божьему Он сотворил его.",
-      "question": "In whose image did God create man, according to this verse?",
-      "options": ["God's own image", "The angels' image", "No particular image", "The animals' image"],
-      "correct": "God's own image",
-      "explain": "по образу Божьему Он сотворил его — He created him in God's own image."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "«Да произведет земля растительность: растения с их семенами и ___ деревьев на земле, которые приносят плод с семенем внутри», — сказал Бог, и стало так.",
+   "lemma": "вид",
+   "options": [
+    "различные виды",
+    "различными видами",
+    "различных видов",
+    "различным видам"
+   ],
+   "correct": "различные виды",
+   "case": "Винительный (Accusative)",
+   "explain": "«различные виды» — the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "God said, “Let the earth yield grass, herbs yielding seeds, and fruit trees bearing fruit after their kind, with their seeds in it, on the earth;” and it was so."
+  },
+  {
+   "sentence": "Земля произвела растительность: ___ растений, приносящих семя, и все виды деревьев, приносящих плод с семенем внутри.",
+   "lemma": "вид",
+   "options": [
+    "разных видах",
+    "разные виды",
+    "разными видами",
+    "разных видов"
+   ],
+   "correct": "разные виды",
+   "case": "Именительный (Nominative)",
+   "explain": "«разные виды» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "The earth yielded grass, herbs yielding seed after their kind, and trees bearing fruit, with their seeds in it, after their kind; and God saw that it was good."
+  },
+  {
+   "sentence": "Бог создал два великих светила — ___, чтобы управлять днем, и малое светило, чтобы управлять ночью, а также Он создал звезды.",
+   "lemma": "светило",
+   "options": [
+    "большое светило",
+    "большим светилом",
+    "большом светиле",
+    "большого светила"
+   ],
+   "correct": "большое светило",
+   "case": "Именительный (Nominative)",
+   "explain": "«большое светило» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "God made the two great lights: the greater light to rule the day, and the lesser light to rule the night. He also made the stars."
+  },
+  {
+   "sentence": "Бог создал два великих светила — большое светило, чтобы управлять днем, и ___, чтобы управлять ночью, а также Он создал звезды.",
+   "lemma": "светило",
+   "options": [
+    "малое светило",
+    "малом светиле",
+    "малого светила",
+    "малому светилу"
+   ],
+   "correct": "малое светило",
+   "case": "Именительный (Nominative)",
+   "explain": "«малое светило» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "God made the two great lights: the greater light to rule the day, and the lesser light to rule the night. He also made the stars."
+  },
+  {
+   "sentence": "Бог поместил их на ___, чтобы они светили на землю, 18 управляли днем и ночью и отделяли свет от тьмы.",
+   "lemma": "свод",
+   "options": [
+    "небесном своде",
+    "небесному своду",
+    "небесный свод",
+    "небесного свода"
+   ],
+   "correct": "небесном своде",
+   "case": "Предложный (Prepositional)",
+   "explain": "«небесном своде» — after the preposition «на», for location or topic.",
+   "id": "c5",
+   "translation": "God set them in the expanse of the sky to give light to the earth,"
+  },
+  {
+   "sentence": "Бог создал огромных морских чудищ, ___ движущейся живности, кишащей в воде, и разные виды крылатых птиц.",
+   "lemma": "вид",
+   "options": [
+    "разных видах",
+    "разные виды",
+    "разными видами",
+    "разных видов"
+   ],
+   "correct": "разные виды",
+   "case": "Именительный (Nominative)",
+   "explain": "«разные виды» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "God created the large sea creatures and every living creature that moves, with which the waters swarmed, after their kind, and every winged bird after its kind. God saw that it was good."
+  },
+  {
+   "sentence": "Бог создал огромных морских чудищ, ___ движущейся живности, кишащей в воде, и разные виды крылатых птиц.",
+   "lemma": "вид",
+   "options": [
+    "разных видах",
+    "разные виды",
+    "разными видами",
+    "разных видов"
+   ],
+   "correct": "разные виды",
+   "case": "Именительный (Nominative)",
+   "explain": "«разные виды» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "God created the large sea creatures and every living creature that moves, with which the waters swarmed, after their kind, and every winged bird after its kind. God saw that it was good."
+  },
+  {
+   "sentence": "Бог создал огромных морских чудищ, разные виды движущейся живности, кишащей в воде, и разные виды ___.",
+   "lemma": "птица",
+   "options": [
+    "крылатых птиц",
+    "крылатым птицам",
+    "крылатых птицах",
+    "крылатые птицы"
+   ],
+   "correct": "крылатых птиц",
+   "case": "Родительный (Genitive)",
+   "explain": "«крылатых птиц» — the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "God created the large sea creatures and every living creature that moves, with which the waters swarmed, after their kind, and every winged bird after its kind. God saw that it was good."
+  },
+  {
+   "sentence": "И сказал Бог: «Да произведет земля разные виды живности: скот, пресмыкающихся и ___», и стало так.",
+   "lemma": "зверь",
+   "options": [
+    "диких зверей",
+    "диких зверях",
+    "дикими зверями",
+    "диким зверям"
+   ],
+   "correct": "диких зверей",
+   "case": "Винительный (Accusative)",
+   "explain": "«диких зверей» — the accusative marks the direct object of the verb.",
+   "id": "c9",
+   "translation": "God said, “Let the earth produce living creatures after their kind, livestock, creeping things, and animals of the earth after their kind;” and it was so."
+  },
+  {
+   "sentence": "Бог создал разные виды ___, и скота, и все виды пресмыкающихся.",
+   "lemma": "зверь",
+   "options": [
+    "диким зверям",
+    "диких зверей",
+    "диких зверях",
+    "дикими зверями"
+   ],
+   "correct": "диких зверей",
+   "case": "Родительный (Genitive)",
+   "explain": "«диких зверей» — the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
+   "translation": "God made the animals of the earth after their kind, and the livestock after their kind, and everything that creeps on the ground after its kind. God saw that it was good."
+  }
+ ]
 }

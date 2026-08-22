@@ -1,134 +1,139 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Этот Ездра пришел из ___.",
-      "lemma": "Вавилон",
-      "options": ["Вавилон", "Вавилона", "Вавилоне", "Вавилоном"],
-      "correct": "Вавилона",
-      "case": "Родительный (Genitive)",
-      "translation": "This Ezra came from Babylon.",
-      "explain": "The preposition из (from) requires the genitive case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Он был учителем, сведущим в ___ Моисея.",
-      "lemma": "закон",
-      "options": ["закон", "закона", "законом", "законе"],
-      "correct": "законе",
-      "case": "Предложный (Prepositional)",
-      "translation": "He was a skilled teacher in the law of Moses.",
-      "explain": "The preposition в (in) governing the object of knowledge requires the prepositional case; в чем? (in what?) requires prepositional."
-    },
-    {
-      "id": "c3",
-      "sentence": "Царь дал ему все, о чем он просил, потому что на нем была рука ___ его Бога.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "The king granted him all he asked for, because the hand of the Lord his God was upon him.",
-      "explain": "The genitive case marks possession; рука кого? (hand of whom?) requires genitive."
-    },
-    {
-      "id": "c4",
-      "sentence": "Некоторые пришли в ___ в 7 году правления царя.",
-      "lemma": "Иерусалим",
-      "options": ["Иерусалим", "Иерусалима", "Иерусалиме", "Иерусалимом"],
-      "correct": "Иерусалим",
-      "case": "Винительный (Accusative)",
-      "translation": "Some came to Jerusalem in the seventh year of the king's reign.",
-      "explain": "The preposition в (to) indicating motion toward requires the accusative case; в + accusative for destinations."
-    },
-    {
-      "id": "c5",
-      "sentence": "Он отправился в путь из Вавилона в первый день первого месяца и прибыл в ___ в пятый день пятого месяца.",
-      "lemma": "Иерусалим",
-      "options": ["Иерусалим", "Иерусалима", "Иерусалиме", "Иерусалимом"],
-      "correct": "Иерусалим",
-      "case": "Винительный (Accusative)",
-      "translation": "He started out from Babylon on the first day of the first month and arrived at Jerusalem on the fifth day of the fifth month.",
-      "explain": "The preposition в (to) with motion requires the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Ездра посвятил себя изучению и исполнению ___ закона.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "Ezra had set his heart to seek the Lord's law, to do it, and to teach the statutes and ordinances of Israel.",
-      "explain": "The genitive case marks possession; закон кого? (law of whom?) requires genitive."
-    },
-    {
-      "id": "c7",
-      "sentence": "От ____, царя царей.",
-      "lemma": "Артаксеркс",
-      "options": ["Артаксеркс", "Артаксеркса", "Артаксерксом", "Артаксерксе"],
-      "correct": "Артаксеркса",
-      "case": "Родительный (Genitive)",
-      "translation": "From Artaxerxes, king of kings.",
-      "explain": "The preposition от (from) requires the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Ты посылаешься ___ и семью его советниками.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царем",
-      "case": "Творительный (Instrumental)",
-      "translation": "You are sent by the king and his seven counselors.",
-      "explain": "The instrumental case marks the agent of an action after the passive verb; посылаешься кем? (are sent by whom?) requires instrumental."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "После этих событий, в правление царя Персии Артаксеркса, Ездра, сын Сераи, пришел из Вавилона.",
-      "question": "Who came from Babylon during the reign of King Artaxerxes?",
-      "options": ["Ezra, son of Seraiah", "Zerubbabel and Jeshua", "The priests and Levites", "The prophets Haggai and Zechariah"],
-      "correct": "Ezra, son of Seraiah",
-      "explain": "Ездра, сын Сераи пришел из Вавилона — Ezra, son of Seraiah came from Babylon."
-    },
-    {
-      "id": "r2",
-      "ru": "Он был учителем, сведущим в законе Моисея, который дал Господь Бог Израиле.",
-      "question": "What was Ezra's expertise?",
-      "options": ["He was a skilled scribe in the law of Moses given by the Lord", "He was a priest and judge", "He was a prophet", "He was a builder and architect"],
-      "correct": "He was a skilled scribe in the law of Moses given by the Lord",
-      "explain": "Он был учителем сведущим в законе Моисея — He was a skilled teacher in the law of Moses."
-    },
-    {
-      "id": "r3",
-      "ru": "Царь дал ему все, о чем он просил, потому что на нем была рука Господа его Бога.",
-      "question": "Why did the king grant Ezra all his requests?",
-      "options": ["Because the hand of the Lord his God was upon him", "Because he was related to the king", "Because he was a wealthy man", "Because he threatened the king"],
-      "correct": "Because the hand of the Lord his God was upon him",
-      "explain": "рука Господа его Бога была на нем — the hand of the Lord his God was upon him."
-    },
-    {
-      "id": "r4",
-      "ru": "Я повелеваю, всякий из израилетян в Моем Царстве, включая священников и левитов, кто желает идти в Иерусалим вместе с тобой, может идти.",
-      "question": "What did the king decree about Israelites, priests, and Levites?",
-      "options": ["That any of them who wished could go to Jerusalem with Ezra", "That they must all return to Babylon", "That they were forbidden to go", "That only priests could make the journey"],
-      "correct": "That any of them who wished could go to Jerusalem with Ezra",
-      "explain": "всякий из израилетян кто желает идти в Иерусалим может идти — any who wished could go to Jerusalem."
-    },
-    {
-      "id": "r5",
-      "ru": "Немедленно купи на эти деньги быков, баранов и ягнят, вместе с их хлебными приношениями и жертвенными возлияниями, и принеси их на жертвенник дома вашего Бога в Иерусалиме.",
-      "question": "What was Ezra commanded to buy and offer on the altar?",
-      "options": ["Bulls, rams, and lambs with their meal offerings and drink offerings", "Only wheat and barley", "Gold and silver vessels", "Fine linen and purple cloth"],
-      "correct": "Bulls, rams, and lambs with their meal offerings and drink offerings",
-      "explain": "купи быков баранов и ягнят и принеси их на жертвенник — buy bulls, rams, and lambs and offer them on the altar."
-    },
-    {
-      "id": "r6",
-      "ru": "Так как рука Господа моего Бога была на мне, я отважился и собрал вождей из Израиля, чтобы им идти со мной.",
-      "question": "What did Ezra do because the hand of his God was upon him?",
-      "options": ["He gathered together chief men of Israel to go up with him", "He refused to go to Jerusalem", "He returned to Babylon", "He appointed priests to rule in Jerusalem"],
-      "correct": "He gathered together chief men of Israel to go up with him",
-      "explain": "я собрал вождей из Израиля чтобы им идти со мной — I gathered chief men of Israel to go up with me."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Некоторые из израильтян и некоторые из священников и левитов, певцов и служащих у ворот и ___ также пришли в Иерусалим в седьмом году правления царя Артаксеркса.",
+   "lemma": "слуга",
+   "options": [
+    "храмовыми слугами",
+    "храмовых слугах",
+    "храмовых слуг",
+    "храмовые слуги"
+   ],
+   "correct": "храмовых слуг",
+   "case": "Родительный (Genitive)",
+   "explain": "«храмовых слуг» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "Some of the children of Israel, including some of the priests, the Levites, the singers, the gatekeepers, and the temple servants went up to Jerusalem in the seventh year of Artaxerxes the king."
+  },
+  {
+   "sentence": "Ездра прибыл в Иерусалим в ___ седьмого года царя .",
+   "lemma": "месяц",
+   "options": [
+    "пятый месяц",
+    "пятом месяце",
+    "пятым месяцем",
+    "пятому месяцу"
+   ],
+   "correct": "пятый месяц",
+   "case": "Винительный (Accusative)",
+   "explain": "«пятый месяц» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c2",
+   "translation": "He came to Jerusalem in the fifth month, which was in the seventh year of the king."
+  },
+  {
+   "sentence": "Ездра прибыл в Иерусалим в пятый месяц ___ царя .",
+   "lemma": "год",
+   "options": [
+    "седьмому году",
+    "седьмой год",
+    "седьмом годе",
+    "седьмого года"
+   ],
+   "correct": "седьмого года",
+   "case": "Родительный (Genitive)",
+   "explain": "«седьмого года» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "He came to Jerusalem in the fifth month, which was in the seventh year of the king."
+  },
+  {
+   "sentence": "Он отправился в путь из Вавилона в первый день ___ и прибыл в Иерусалим в пятый день пятого месяца , потому что на нем была милостивая рука его Бога.",
+   "lemma": "месяц",
+   "options": [
+    "первым месяцем",
+    "первом месяце",
+    "первого месяца",
+    "первый месяц"
+   ],
+   "correct": "первого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«первого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "For on the first day of the first month he began to go up from Babylon; and on the first day of the fifth month he came to Jerusalem, according to the good hand of his God on him."
+  },
+  {
+   "sentence": "Он отправился в путь из Вавилона в первый день первого месяца и прибыл в Иерусалим в ___ пятого месяца , потому что на нем была милостивая рука его Бога.",
+   "lemma": "день",
+   "options": [
+    "пятый день",
+    "пятому дню",
+    "пятом дне",
+    "пятого дня"
+   ],
+   "correct": "пятый день",
+   "case": "Винительный (Accusative)",
+   "explain": "«пятый день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c6",
+   "translation": "For on the first day of the first month he began to go up from Babylon; and on the first day of the fifth month he came to Jerusalem, according to the good hand of his God on him."
+  },
+  {
+   "sentence": "Он отправился в путь из Вавилона в первый день первого месяца и прибыл в Иерусалим в пятый день ___ , потому что на нем была милостивая рука его Бога.",
+   "lemma": "месяц",
+   "options": [
+    "пятому месяцу",
+    "пятом месяце",
+    "пятый месяц",
+    "пятого месяца"
+   ],
+   "correct": "пятого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«пятого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "For on the first day of the first month he began to go up from Babylon; and on the first day of the fifth month he came to Jerusalem, according to the good hand of his God on him."
+  },
+  {
+   "sentence": "И если еще будут расходы на дом твоего Бога, ты можешь покрыть их из ___.",
+   "lemma": "сокровищница",
+   "options": [
+    "царской сокровищницы",
+    "царской сокровищницей",
+    "царской сокровищнице",
+    "царская сокровищница"
+   ],
+   "correct": "царской сокровищницы",
+   "case": "Родительный (Genitive)",
+   "explain": "«царской сокровищницы» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "Whatever more will be needed for the house of your God, which you may have occasion to give, give it out of the king’s treasure house."
+  },
+  {
+   "sentence": "Знайте также, что у вас нет власти взимать налоги, дань или пошлины ни с кого из священников, левитов, певцов, служителей у ворот, храмовых слуг или ___ в этом Божьем доме.",
+   "lemma": "работник",
+   "options": [
+    "других работников",
+    "другими работниками",
+    "других работниках",
+    "другим работникам"
+   ],
+   "correct": "других работников",
+   "case": "Родительный (Genitive)",
+   "explain": "«других работников» — the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "Also we inform you that it shall not be lawful to impose tribute, custom, or toll, on any of the priests, Levites, singers, gatekeepers, temple servants, or laborers of this house of God."
+  },
+  {
+   "sentence": "Знайте также, что у вас нет власти взимать налоги, дань или пошлины ни с кого из священников, левитов, певцов, служителей у ворот, храмовых слуг или других работников в этом ___.",
+   "lemma": "дом",
+   "options": [
+    "божьем доме",
+    "божьим домом",
+    "божьего дома",
+    "божьему дому"
+   ],
+   "correct": "божьем доме",
+   "case": "Предложный (Prepositional)",
+   "explain": "«Божьем доме» — after the preposition «в», for location or topic.",
+   "id": "c10",
+   "translation": "Also we inform you that it shall not be lawful to impose tribute, custom, or toll, on any of the priests, Levites, singers, gatekeepers, temple servants, or laborers of this house of God."
+  }
+ ]
 }

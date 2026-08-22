@@ -1,191 +1,559 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ был важен.",
-      "lemma": "святилище",
-      "options": [
-        "святилище",
-        "святилища",
-        "святилищу",
-        "святилищем"
-      ],
-      "correct": "святилище",
-      "case": "Именительный (Nominative)",
-      "translation": "About святилище.",
-      "explain": "Using the именительный (nominative)."
-    },
-    {
-      "id": "c2",
-      "sentence": "Это достояние ___.",
-      "lemma": "святилище",
-      "options": [
-        "святилище",
-        "святилища",
-        "святилищу",
-        "святилищем"
-      ],
-      "correct": "святилища",
-      "case": "Родительный (Genitive)",
-      "translation": "About святилище.",
-      "explain": "Using the родительный (genitive)."
-    },
-    {
-      "id": "c3",
-      "sentence": "Подойди к ___.",
-      "lemma": "святилище",
-      "options": [
-        "святилище",
-        "святилища",
-        "святилищу",
-        "святилищем"
-      ],
-      "correct": "святилищу",
-      "case": "Дательный (Dative)",
-      "translation": "About святилище.",
-      "explain": "Using the дательный (dative)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я видел ___.",
-      "lemma": "святилище",
-      "options": [
-        "святилище",
-        "святилища",
-        "святилищу",
-        "святилищем"
-      ],
-      "correct": "святилище",
-      "case": "Винительный (Accusative)",
-      "translation": "About святилище.",
-      "explain": "Using the винительный (accusative)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Это сделано ___.",
-      "lemma": "святилище",
-      "options": [
-        "святилище",
-        "святилища",
-        "святилищу",
-        "святилищем"
-      ],
-      "correct": "святилищем",
-      "case": "Творительный (Instrumental)",
-      "translation": "About святилище.",
-      "explain": "Using the творительный (instrumental)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Речь идёт о ___.",
-      "lemma": "святилище",
-      "options": [
-        "святилище",
-        "святилища",
-        "святилищу",
-        "святилищем"
-      ],
-      "correct": "святилище",
-      "case": "Предложный (Prepositional)",
-      "translation": "About святилище.",
-      "explain": "Using the предложный (prepositional)."
-    },
-    {
-      "id": "c7",
-      "sentence": "___ был важен.",
-      "lemma": "алтарь",
-      "options": [
-        "алтарь",
-        "алтаря",
-        "алтарю",
-        "алтарём"
-      ],
-      "correct": "алтарь",
-      "case": "Именительный (Nominative)",
-      "translation": "About алтарь.",
-      "explain": "Using the именительный (nominative)."
-    },
-    {
-      "id": "c8",
-      "sentence": "Это достояние ___.",
-      "lemma": "алтарь",
-      "options": [
-        "алтарь",
-        "алтаря",
-        "алтарю",
-        "алтарём"
-      ],
-      "correct": "алтаря",
-      "case": "Родительный (Genitive)",
-      "translation": "About алтарь.",
-      "explain": "Using the родительный (genitive)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Видение нового храма",
-      "question": "What is described here?",
-      "options": [
-        "The subject is described",
-        "Nothing is clear",
-        "Events are narrated",
-        "Historical facts"
-      ],
-      "correct": "The subject is described",
-      "explain": "Based on the text."
-    },
-    {
-      "id": "r2",
-      "ru": "Притвор прилегал к воротам со стороны дома",
-      "question": "What is described here?",
-      "options": [
-        "The subject is described",
-        "Nothing is clear",
-        "Events are narrated",
-        "Historical facts"
-      ],
-      "correct": "The subject is described",
-      "explain": "Based on the text."
-    },
-    {
-      "id": "r3",
-      "ru": "Оно было 100 локтей к востоку и к северу",
-      "question": "What is described here?",
-      "options": [
-        "The subject is described",
-        "Nothing is clear",
-        "Events are narrated",
-        "Historical facts"
-      ],
-      "correct": "The subject is described",
-      "explain": "Based on the text."
-    },
-    {
-      "id": "r4",
-      "ru": "Их ниши для стражи, стены между ними и притвор были такими же, как и прочие",
-      "question": "What is described here?",
-      "options": [
-        "The subject is described",
-        "Nothing is clear",
-        "Events are narrated",
-        "Historical facts"
-      ],
-      "correct": "The subject is described",
-      "explain": "Based on the text."
-    },
-    {
-      "id": "r5",
-      "ru": "К нему вели восемь ступеней",
-      "question": "What is described here?",
-      "options": [
-        "The subject is described",
-        "Nothing is clear",
-        "Events are narrated",
-        "Historical facts"
-      ],
-      "correct": "The subject is described",
-      "explain": "Based on the text."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "В видениях Бог перенес меня в землю Израиля и поставил на очень ___, где на южном склоне были здания, похожие на город.",
+   "lemma": "гора",
+   "options": [
+    "высокой горе",
+    "высокая гора",
+    "высокой горы",
+    "высокой горой"
+   ],
+   "correct": "высокой горе",
+   "case": "Предложный (Prepositional)",
+   "explain": "«высокой горе» — after the preposition «на», for location or topic.",
+   "id": "c2",
+   "translation": "In the visions of God he brought me into the land of Israel, and set me down on a very high mountain, on which was something like the frame of a city to the south."
+  },
+  {
+   "sentence": "В видениях Бог перенес меня в землю Израиля и поставил на очень высокой горе, где на ___ были здания, похожие на город.",
+   "lemma": "склон",
+   "options": [
+    "южным склоном",
+    "южный склон",
+    "южного склона",
+    "южном склоне"
+   ],
+   "correct": "южном склоне",
+   "case": "Предложный (Prepositional)",
+   "explain": "«южном склоне» — after the preposition «на», for location or topic.",
+   "id": "c3",
+   "translation": "In the visions of God he brought me into the land of Israel, and set me down on a very high mountain, on which was something like the frame of a city to the south."
+  },
+  {
+   "sentence": "Измерительная трость в руках у того человека была в длину шесть долгих локтей (___ с ладонью в каждом).",
+   "lemma": "локоть",
+   "options": [
+    "простой локоть",
+    "простому локтю",
+    "простого локтя",
+    "простом локте"
+   ],
+   "correct": "простой локоть",
+   "case": "Именительный (Nominative)",
+   "explain": "«простой локоть» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "Behold, there was a wall on the outside of the house all around, and in the man’s hand a measuring reed six cubits long, of a cubit and a hand width each. So he measured the thickness of the building, one reed; and the height, one reed."
+  },
+  {
+   "sentence": "Порог с ___ пассажа, за которым начинался притвор, был одну трость в ширину.",
+   "lemma": "сторона",
+   "options": [
+    "внутренней стороной",
+    "внутренней стороне",
+    "внутренняя сторона",
+    "внутренней стороны"
+   ],
+   "correct": "внутренней стороны",
+   "case": "Родительный (Genitive)",
+   "explain": "«внутренней стороны» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "Every lodge was one reed long and one reed wide. Between the lodges was five cubits. The threshold of the gate by the porch of the gate toward the house was one reed."
+  },
+  {
+   "sentence": "В пассаже ___ с каждой стороны располагалось по три ниши для стражи; все три были одного размера, и расстояние между ними было одинаковым.",
+   "lemma": "ворота",
+   "options": [
+    "восточными воротами",
+    "восточных ворот",
+    "восточным воротам",
+    "восточные ворота"
+   ],
+   "correct": "восточных ворот",
+   "case": "Родительный (Genitive)",
+   "explain": "«восточных ворот» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "The lodges of the gate eastward were three on this side, and three on that side. The three of them were of one measure. The posts had one measure on this side and on that side."
+  },
+  {
+   "sentence": "Перед каждой нишей для стражи была загородка в локоть высотой, а ___ были по шести локтей с каждой стороны.",
+   "lemma": "ниша",
+   "options": [
+    "самих ниш",
+    "самими нишами",
+    "самим нишам",
+    "сами ниши"
+   ],
+   "correct": "сами ниши",
+   "case": "Именительный (Nominative)",
+   "explain": "«сами ниши» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "and a border before the lodges, one cubit on this side, and a border, one cubit on that side; and the lodges, six cubits on this side, and six cubits on that side."
+  },
+  {
+   "sentence": "Он измерил ширину пассажа от ___ одной ниши до задней стенки другой; ширина была двадцать пять локтей от стены до стены .",
+   "lemma": "стенка",
+   "options": [
+    "задней стенке",
+    "задней стенки",
+    "задней стенкой",
+    "задняя стенка"
+   ],
+   "correct": "задней стенки",
+   "case": "Родительный (Genitive)",
+   "explain": "«задней стенки» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "He measured the gate from the roof of the one lodge to the roof of the other, a width of twenty-five cubits, door against door."
+  },
+  {
+   "sentence": "Он измерил ширину пассажа от ___ одной ниши до задней стенки другой; ширина была двадцать пять локтей от стены до стены .",
+   "lemma": "стенка",
+   "options": [
+    "задней стенке",
+    "задней стенки",
+    "задней стенкой",
+    "задняя стенка"
+   ],
+   "correct": "задней стенки",
+   "case": "Родительный (Genitive)",
+   "explain": "«задней стенки» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "He measured the gate from the roof of the one lodge to the roof of the other, a width of twenty-five cubits, door against door."
+  },
+  {
+   "sentence": "Расстояние от проема ворот до ___ притвора было пятьдесят локтей.",
+   "lemma": "конец",
+   "options": [
+    "дальнему концу",
+    "дальнего конца",
+    "дальнем конце",
+    "дальним концом"
+   ],
+   "correct": "дальнего конца",
+   "case": "Родительный (Genitive)",
+   "explain": "«дальнего конца» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c10",
+   "translation": "From the forefront of the gate at the entrance to the forefront of the inner porch of the gate were fifty cubits."
+  },
+  {
+   "sentence": "Во ___ ниш для стражи, в стенах между ними и в самом притворе со всех сторон были окна со ставнями .",
+   "lemma": "стена",
+   "options": [
+    "внешних стенах",
+    "внешними стенами",
+    "внешние стены",
+    "внешним стенам"
+   ],
+   "correct": "внешних стенах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«внешних стенах» — after the preposition «во», for location or topic.",
+   "id": "c11",
+   "translation": "There were closed windows to the lodges, and to their posts within the gate all around, and likewise to the arches. Windows were around inward. Palm trees were on each post."
+  },
+  {
+   "sentence": "Во внешних стенах ниш для стражи, в стенах между ними и в ___ со всех сторон были окна со ставнями .",
+   "lemma": "притвор",
+   "options": [
+    "самом притворе",
+    "самому притвору",
+    "самим притвором",
+    "самого притвора"
+   ],
+   "correct": "самом притворе",
+   "case": "Предложный (Prepositional)",
+   "explain": "«самом притворе» — after the preposition «в», for location or topic.",
+   "id": "c12",
+   "translation": "There were closed windows to the lodges, and to their posts within the gate all around, and likewise to the arches. Windows were around inward. Palm trees were on each post."
+  },
+  {
+   "sentence": "Здесь были комнаты и ___, окружавший двор.",
+   "lemma": "помост",
+   "options": [
+    "каменном помосте",
+    "каменным помостом",
+    "каменного помоста",
+    "каменный помост"
+   ],
+   "correct": "каменный помост",
+   "case": "Именительный (Nominative)",
+   "explain": "«каменный помост» — the subject of the sentence stands in the nominative.",
+   "id": "c14",
+   "translation": "Then he brought me into the outer court. Behold, there were rooms and a pavement made for the court all around. Thirty rooms were on the pavement."
+  },
+  {
+   "sentence": "Весь ___ был ниже, чем внутренний.",
+   "lemma": "двор",
+   "options": [
+    "внешний двор",
+    "внешнему двору",
+    "внешнем дворе",
+    "внешнего двора"
+   ],
+   "correct": "внешний двор",
+   "case": "Именительный (Nominative)",
+   "explain": "«внешний двор» — the subject of the sentence stands in the nominative.",
+   "id": "c15",
+   "translation": "The pavement was by the side of the gates, corresponding to the length of the gates, even the lower pavement."
+  },
+  {
+   "sentence": "Их ниши для стражи, по три с каждой стороны, стены между ними и притвор были такими же, как у ___.",
+   "lemma": "ворота",
+   "options": [
+    "первых воротах",
+    "первых ворот",
+    "первыми воротами",
+    "первым воротам"
+   ],
+   "correct": "первых ворот",
+   "case": "Родительный (Genitive)",
+   "explain": "«первых ворот» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c19",
+   "translation": "The lodges of it were three on this side and three on that side. Its posts and its arches were the same as the measure of the first gate: its length was fifty cubits, and the width twenty-five cubits."
+  },
+  {
+   "sentence": "Их окна, притвор и изображения пальм были такими же, как у ворот на ___.",
+   "lemma": "сторона",
+   "options": [
+    "восточной стороне",
+    "восточная сторона",
+    "восточной стороной",
+    "восточной стороны"
+   ],
+   "correct": "восточной стороне",
+   "case": "Предложный (Prepositional)",
+   "explain": "«восточной стороне» — after the preposition «на», for location or topic.",
+   "id": "c20",
+   "translation": "Its windows, its arches, and its palm trees were the same as the measure of the gate which faces toward the east. They went up to it by seven steps. Its arches were before them."
+  },
+  {
+   "sentence": "Напротив ___, как и напротив восточных, находились ворота, которые вели во внутренний двор.",
+   "lemma": "ворота",
+   "options": [
+    "северных ворот",
+    "северными воротами",
+    "северные ворота",
+    "северных воротах"
+   ],
+   "correct": "северных ворот",
+   "case": "Родительный (Genitive)",
+   "explain": "«северных ворот» — after the preposition «напротив», the genitive here marks possession, absence, or quantity.",
+   "id": "c21",
+   "translation": "There was a gate to the inner court facing the other gate, on the north and on the east. He measured one hundred cubits from gate to gate."
+  },
+  {
+   "sentence": "Напротив северных ворот, как и напротив восточных, находились ворота, которые вели во ___.",
+   "lemma": "двор",
+   "options": [
+    "внутреннему двору",
+    "внутреннем дворе",
+    "внутренним двором",
+    "внутренний двор"
+   ],
+   "correct": "внутренний двор",
+   "case": "Винительный (Accusative)",
+   "explain": "«внутренний двор» — after the preposition «во», the accusative marks the direct object of the verb.",
+   "id": "c22",
+   "translation": "There was a gate to the inner court facing the other gate, on the north and on the east. He measured one hundred cubits from gate to gate."
+  },
+  {
+   "sentence": "Он повел меня к ___, и я увидел южные ворота.",
+   "lemma": "сторона",
+   "options": [
+    "южной стороной",
+    "южной стороны",
+    "южной стороне",
+    "южная сторона"
+   ],
+   "correct": "южной стороне",
+   "case": "Дательный (Dative)",
+   "explain": "«южной стороне» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c23",
+   "translation": "He led me toward the south; and behold, there was a gate toward the south. He measured its posts and its arches according to these measurements."
+  },
+  {
+   "sentence": "Он повел меня к южной стороне, и я увидел ___.",
+   "lemma": "ворота",
+   "options": [
+    "южными воротами",
+    "южных воротах",
+    "южные ворота",
+    "южных ворот"
+   ],
+   "correct": "южные ворота",
+   "case": "Винительный (Accusative)",
+   "explain": "«южные ворота» — the accusative marks the direct object of the verb.",
+   "id": "c24",
+   "translation": "He led me toward the south; and behold, there was a gate toward the south. He measured its posts and its arches according to these measurements."
+  },
+  {
+   "sentence": "В пассаже ворот и в притворе со всех сторон были такие же окна, как и в ___.",
+   "lemma": "ворота",
+   "options": [
+    "других воротах",
+    "другие ворота",
+    "другими воротами",
+    "другим воротам"
+   ],
+   "correct": "других воротах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«других воротах» — after the preposition «в», for location or topic.",
+   "id": "c25",
+   "translation": "There were windows in it and in its arches all around, like those windows: the length was fifty cubits, and the width twenty-five cubits."
+  },
+  {
+   "sentence": "С ___ внутреннего двора тоже были ворота, и он измерил расстояние от них до внешних ворот на южной стороне; оно было сто локтей.",
+   "lemma": "сторона",
+   "options": [
+    "южной стороны",
+    "южной стороной",
+    "южная сторона",
+    "южной стороне"
+   ],
+   "correct": "южной стороны",
+   "case": "Родительный (Genitive)",
+   "explain": "«южной стороны» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c26",
+   "translation": "There was a gate to the inner court toward the south. He measured one hundred cubits from gate to gate toward the south."
+  },
+  {
+   "sentence": "С южной стороны ___ тоже были ворота, и он измерил расстояние от них до внешних ворот на южной стороне; оно было сто локтей.",
+   "lemma": "двор",
+   "options": [
+    "внутреннего двора",
+    "внутреннем дворе",
+    "внутреннему двору",
+    "внутренний двор"
+   ],
+   "correct": "внутреннего двора",
+   "case": "Родительный (Genitive)",
+   "explain": "«внутреннего двора» — the genitive here marks possession, absence, or quantity.",
+   "id": "c27",
+   "translation": "There was a gate to the inner court toward the south. He measured one hundred cubits from gate to gate toward the south."
+  },
+  {
+   "sentence": "С южной стороны внутреннего двора тоже были ворота, и он измерил расстояние от них до ___ на южной стороне; оно было сто локтей.",
+   "lemma": "ворота",
+   "options": [
+    "внешних ворот",
+    "внешним воротам",
+    "внешние ворота",
+    "внешних воротах"
+   ],
+   "correct": "внешних ворот",
+   "case": "Родительный (Genitive)",
+   "explain": "«внешних ворот» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c28",
+   "translation": "There was a gate to the inner court toward the south. He measured one hundred cubits from gate to gate toward the south."
+  },
+  {
+   "sentence": "Он провел меня во ___ через южные ворота, и измерил их; они были такими же, как и прочие.",
+   "lemma": "двор",
+   "options": [
+    "внутреннему двору",
+    "внутреннем дворе",
+    "внутренним двором",
+    "внутренний двор"
+   ],
+   "correct": "внутренний двор",
+   "case": "Винительный (Accusative)",
+   "explain": "«внутренний двор» — after the preposition «во», the accusative marks the direct object of the verb.",
+   "id": "c30",
+   "translation": "Then he brought me to the inner court by the south gate. He measured the south gate according to these measurements;"
+  },
+  {
+   "sentence": "Он провел меня во внутренний двор через ___, и измерил их; они были такими же, как и прочие.",
+   "lemma": "ворота",
+   "options": [
+    "южными воротами",
+    "южных воротах",
+    "южные ворота",
+    "южных ворот"
+   ],
+   "correct": "южные ворота",
+   "case": "Винительный (Accusative)",
+   "explain": "«южные ворота» — after the preposition «через», the accusative marks the direct object of the verb.",
+   "id": "c31",
+   "translation": "Then he brought me to the inner court by the south gate. He measured the south gate according to these measurements;"
+  },
+  {
+   "sentence": "Притворы у пассажей ворот во ___ были двадцать пять локтей в ширину и пять в длину.",
+   "lemma": "двор",
+   "options": [
+    "внутреннему двору",
+    "внутреннем дворе",
+    "внутренним двором",
+    "внутренний двор"
+   ],
+   "correct": "внутренний двор",
+   "case": "Винительный (Accusative)",
+   "explain": "«внутренний двор» — after the preposition «во», the accusative marks the direct object of the verb.",
+   "id": "c32",
+   "translation": "There were arches all around, twenty-five cubits long, and five cubits wide."
+  },
+  {
+   "sentence": "Затем он провел меня во ___ через пассаж восточных ворот и измерил его; он был таким же, как и прочие.",
+   "lemma": "двор",
+   "options": [
+    "внутреннему двору",
+    "внутреннем дворе",
+    "внутренним двором",
+    "внутренний двор"
+   ],
+   "correct": "внутренний двор",
+   "case": "Винительный (Accusative)",
+   "explain": "«внутренний двор» — after the preposition «во», the accusative marks the direct object of the verb.",
+   "id": "c34",
+   "translation": "He brought me into the inner court toward the east. He measured the gate according to these measurements;"
+  },
+  {
+   "sentence": "Затем он провел меня во внутренний двор через пассаж ___ и измерил его; он был таким же, как и прочие.",
+   "lemma": "ворота",
+   "options": [
+    "восточными воротами",
+    "восточных ворот",
+    "восточным воротам",
+    "восточные ворота"
+   ],
+   "correct": "восточных ворот",
+   "case": "Родительный (Genitive)",
+   "explain": "«восточных ворот» — the genitive here marks possession, absence, or quantity.",
+   "id": "c35",
+   "translation": "He brought me into the inner court toward the east. He measured the gate according to these measurements;"
+  },
+  {
+   "sentence": "Потом он привел меня к ___ и измерил их.",
+   "lemma": "ворота",
+   "options": [
+    "северным воротам",
+    "северных ворот",
+    "северных воротах",
+    "северными воротами"
+   ],
+   "correct": "северным воротам",
+   "case": "Дательный (Dative)",
+   "explain": "«северным воротам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c37",
+   "translation": "He brought me to the north gate, and he measured it according to these measurements;"
+  },
+  {
+   "sentence": "У ___ в северные ворота , по бокам ступеней, было по два стола.",
+   "lemma": "вход",
+   "options": [
+    "внешний вход",
+    "внешнему входу",
+    "внешнего входа",
+    "внешнем входе"
+   ],
+   "correct": "внешнего входа",
+   "case": "Родительный (Genitive)",
+   "explain": "«внешнего входа» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c39",
+   "translation": "On the one side outside, as one goes up to the entry of the gate toward the north, were two tables; and on the other side, which belonged to the porch of the gate, were two tables."
+  },
+  {
+   "sentence": "На них клали орудия, чтобы закалывать жертвы для всесожжения и ___.",
+   "lemma": "жертва",
+   "options": [
+    "прочие жертвы",
+    "прочими жертвами",
+    "прочих жертвах",
+    "прочих жертв"
+   ],
+   "correct": "прочие жертвы",
+   "case": "Именительный (Nominative)",
+   "explain": "«прочие жертвы» — the subject of the sentence stands in the nominative.",
+   "id": "c42",
+   "translation": "There were four tables for the burnt offering, of cut stone, a cubit and a half long, and a cubit and a half wide, and one cubit high. They laid the instruments with which they killed the burnt offering and the sacrifice on them."
+  },
+  {
+   "sentence": "К стенам вокруг были приделаны ___, каждый в ладонь в длину, а на столы клали жертвенное мясо.",
+   "lemma": "крюк",
+   "options": [
+    "двузубых крюках",
+    "двузубым крюкам",
+    "двузубых крюков",
+    "двузубые крюки"
+   ],
+   "correct": "двузубые крюки",
+   "case": "Именительный (Nominative)",
+   "explain": "«двузубые крюки» — the subject of the sentence stands in the nominative.",
+   "id": "c43",
+   "translation": "The hooks, a hand width long, were fastened within all around. The meat of the offering was on the tables."
+  },
+  {
+   "sentence": "За ___, во внутреннем дворе были две комнаты : одна находилась у северных ворот и смотрела на юг, другая была у южных и смотрела на север.",
+   "lemma": "ворота",
+   "options": [
+    "внутренними воротами",
+    "внутренних воротах",
+    "внутренним воротам",
+    "внутренние ворота"
+   ],
+   "correct": "внутренними воротами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«внутренними воротами» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "id": "c44",
+   "translation": "Outside of the inner gate were rooms for the singers in the inner court, which was at the side of the north gate. They faced toward the south. One at the side of the east gate faced toward the north."
+  },
+  {
+   "sentence": "За внутренними воротами, во ___ были две комнаты : одна находилась у северных ворот и смотрела на юг, другая была у южных и смотрела на север.",
+   "lemma": "двор",
+   "options": [
+    "внутреннему двору",
+    "внутренний двор",
+    "внутреннем дворе",
+    "внутренним двором"
+   ],
+   "correct": "внутреннем дворе",
+   "case": "Предложный (Prepositional)",
+   "explain": "«внутреннем дворе» — after the preposition «во», for location or topic.",
+   "id": "c45",
+   "translation": "Outside of the inner gate were rooms for the singers in the inner court, which was at the side of the north gate. They faced toward the south. One at the side of the east gate faced toward the north."
+  },
+  {
+   "sentence": "За внутренними воротами, во внутреннем дворе были две комнаты : одна находилась у ___ и смотрела на юг, другая была у южных и смотрела на север.",
+   "lemma": "ворота",
+   "options": [
+    "северных ворот",
+    "северными воротами",
+    "северные ворота",
+    "северных воротах"
+   ],
+   "correct": "северных ворот",
+   "case": "Родительный (Genitive)",
+   "explain": "«северных ворот» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c46",
+   "translation": "Outside of the inner gate were rooms for the singers in the inner court, which was at the side of the north gate. They faced toward the south. One at the side of the east gate faced toward the north."
+  },
+  {
+   "sentence": "Он привел меня в ___ и измерил его опоры; они были в толщину по пять локтей со всех сторон.",
+   "lemma": "притвор",
+   "options": [
+    "храмовым притвором",
+    "храмовый притвор",
+    "храмовому притвору",
+    "храмовом притворе"
+   ],
+   "correct": "храмовый притвор",
+   "case": "Винительный (Accusative)",
+   "explain": "«храмовый притвор» — the accusative marks the direct object of the verb.",
+   "id": "c47",
+   "translation": "Then he brought me to the porch of the house, and measured each post of the porch, five cubits on this side, and five cubits on that side. The width of the gate was three cubits on this side and three cubits on that side."
+  },
+  {
+   "sentence": "Ширина входа была четырнадцать локтей, а ___ по три локтя с обеих сторон.",
+   "lemma": "стена",
+   "options": [
+    "боковые стены",
+    "боковых стенах",
+    "боковым стенам",
+    "боковых стен"
+   ],
+   "correct": "боковые стены",
+   "case": "Именительный (Nominative)",
+   "explain": "«боковые стены» — the subject of the sentence stands in the nominative.",
+   "id": "c48",
+   "translation": "Then he brought me to the porch of the house, and measured each post of the porch, five cubits on this side, and five cubits on that side. The width of the gate was three cubits on this side and three cubits on that side."
+  }
+ ]
 }

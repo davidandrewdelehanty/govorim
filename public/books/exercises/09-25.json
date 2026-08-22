@@ -1,134 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Один человек в городе Маони владел имуществом в ___.",
-      "lemma": "Кармель",
-      "options": ["Кармель", "Кармеля", "Кармелю", "Кармелью"],
-      "correct": "Кармелью",
-      "case": "Предложный (Prepositional)",
-      "translation": "A man in Maon had property in Carmel.",
-      "explain": "The preposition в (in) with location requires prepositional case."
-    },
-    {
-      "id": "c2",
-      "sentence": "У него была тысяча коз и три тысячи ___, которых он стриг.",
-      "lemma": "овца",
-      "options": ["овец", "овца", "овце", "овцей"],
-      "correct": "овец",
-      "case": "Родительный (Genitive)",
-      "translation": "He had a thousand goats and three thousand sheep, which he was shearing.",
-      "explain": "After numbers above 4, genitive plural is used."
-    },
-    {
-      "id": "c3",
-      "sentence": "Его звали ___, а его жену Авигаэль.",
-      "lemma": "Навал",
-      "options": ["Навала", "Навал", "Навалу", "Навалом"],
-      "correct": "Навал",
-      "case": "Именительный (Nominative)",
-      "translation": "His name was Nabal, and his wife was Abigail.",
-      "explain": "Навал is the subject of the verb звали, requiring nominative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Давид послал десять юношей и сказал им, поднимитесь к ___ в Кармель.",
-      "lemma": "Навал",
-      "options": ["Навала", "Навал", "Навалу", "Навалом"],
-      "correct": "Навалу",
-      "case": "Дательный (Dative)",
-      "translation": "David sent ten young men and said to them: Go up to Nabal in Carmel.",
-      "explain": "The preposition к (to, toward) governs the dative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Когда твои пастухи были с нами, мы не обижали ___ их.",
-      "lemma": "они",
-      "options": ["их", "им", "ими", "они"],
-      "correct": "их",
-      "case": "Винительный (Accusative)",
-      "translation": "When your shepherds were with us, we did not harm them.",
-      "explain": "The transitive verb обижали governs the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Пожалуйста, дай твоим слугам и твоему сыну Давиду все, что сможешь найти для ___.",
-      "lemma": "они",
-      "options": ["них", "им", "их", "ими"],
-      "correct": "них",
-      "case": "Родительный (Genitive)",
-      "translation": "Please give your servants and your son David all you can find for them.",
-      "explain": "The preposition для (for) governs the genitive case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Авигаль не стала терять времени. Она взяла две сотни лепешек, два бурдюка с вином и нагрузила все это на ___.",
-      "lemma": "осел",
-      "options": ["ослов", "осел", "ослу", "ослом"],
-      "correct": "ослов",
-      "case": "Винительный (Accusative)",
-      "translation": "Abigail didn't lose time. She took two hundred loaves, two containers of wine, and loaded it all on donkeys.",
-      "explain": "The transitive verb нагрузила governs the accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Она поклонилась лицом до ___ и сказала: вот твоя служанка.",
-      "lemma": "земля",
-      "options": ["земли", "земля", "земле", "землю"],
-      "correct": "земли",
-      "case": "Родительный (Genitive)",
-      "translation": "She bowed her face to the ground and said: behold, your servant.",
-      "explain": "The idiom 'поклониться до земли' (bow to the ground) requires genitive case after до."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Один человек в городе Маони, который владел имуществом в Кармиле, был очень богат.",
-      "question": "What was notable about the man named Nabal?",
-      "options": ["He was very wealthy and had property in Carmel", "He was a priest in the temple", "He was a military commander", "He was a wealthy merchant"],
-      "correct": "He was very wealthy and had property in Carmel",
-      "explain": "The text states: 'Один человек в городе Маони... был очень богат' — A man in Maon was very rich, with property in Carmel."
-    },
-    {
-      "id": "r2",
-      "ru": "Его звали Навал, а его жену Авигаэль. Она была умной и красивой женщиной, но ее муж был человек грубый и злонравный.",
-      "question": "How did the text describe Nabal compared to his wife Abigail?",
-      "options": ["Nabal was surly and evil, while Abigail was wise and beautiful", "Nabal was handsome and Abigail was ugly", "Both were kind and virtuous", "Abigail was foolish and Nabal was wise"],
-      "correct": "Nabal was surly and evil, while Abigail was wise and beautiful",
-      "explain": "The text says: 'Она была умной и красивой женщиной, но ее муж... был человек грубый и злонравный' — She was wise and beautiful, but her husband was surly and evil."
-    },
-    {
-      "id": "r3",
-      "ru": "Давид послал десять юношей и сказал им, «Поднимитесь к Навалу в Кармель и приветствуйте его от моего имени».",
-      "question": "What did David ask his young men to do?",
-      "options": ["Go to Nabal and greet him in David's name", "Steal sheep from Nabal", "Arrest Nabal", "Deliver a warning to Nabal"],
-      "correct": "Go to Nabal and greet him in David's name",
-      "explain": "David said: 'Поднимитесь к Навалу в Кармель и приветствуйте его от моего имени' — Go to Nabal in Carmel and greet him in my name."
-    },
-    {
-      "id": "r4",
-      "ru": "Но Навал ответил слугам Давида, «Кто такой этот Давид? Кто такой этот сын Исея?»",
-      "question": "How did Nabal respond to David's greeting?",
-      "options": ["He insulted David and rejected his request", "He welcomed David warmly", "He asked for more information", "He offered Nabal friendship"],
-      "correct": "He insulted David and rejected his request",
-      "explain": "Nabal rudely dismissed David's messengers, saying 'Кто такой этот Давид?' — Who is this David? — and refused to acknowledge David."
-    },
-    {
-      "id": "r5",
-      "ru": "Авигайль не стала терять времени. Она взяла 200 лепешек, 2 бурдюка с вином, 5 приготовленных овец, 5 мер жареного зерна, 100 связок изюма, 200 связок сушеного инжира и нагрузила все это на ослов.",
-      "question": "What did Abigail quickly prepare when she heard about David's anger?",
-      "options": ["A large gift of food and wine loaded on donkeys", "A letter to send to David", "Weapons for the servants", "An escort to follow Nabal"],
-      "correct": "A large gift of food and wine loaded on donkeys",
-      "explain": "The text describes in detail: 'Она взяла 200 лепешек, 2 бурдюка с вином... и нагрузила все это на ослов' — She took bread, wine, sheep, grain, raisins, and figs and loaded them on donkeys."
-    },
-    {
-      "id": "r6",
-      "ru": "Давид сказал Авигайль, «Благословен Господь, Бог Израиля, который послал тебя сегодня мне навстречу».",
-      "question": "How did David respond to Abigail's intervention?",
-      "options": ["He blessed God for sending her to meet him", "He rejected her gift", "He asked her to leave", "He ordered her arrest"],
-      "correct": "He blessed God for sending her to meet him",
-      "explain": "David said: 'Благословен Господь... который послал тебя сегодня мне навстречу' — Blessed is the Lord who sent you to meet me today."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Поэтому пусть мои ___ найдут у тебя расположение, ведь мы пришли в праздничный день.",
+   "lemma": "человек",
+   "options": [
+    "молодые люди",
+    "молодыми людьми",
+    "молодых людей",
+    "молодых людях"
+   ],
+   "correct": "молодые люди",
+   "case": "Именительный (Nominative)",
+   "explain": "«молодые люди» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Ask your young men, and they will tell you. Therefore let the young men find favor in your eyes; for we come on a good day. Please give whatever comes to your hand, to your servants, and to your son David.’ ”"
+  },
+  {
+   "sentence": "Он такой ___, что никто не может с ним говорить.",
+   "lemma": "человек",
+   "options": [
+    "злобным человеком",
+    "злобного человека",
+    "злобный человек",
+    "злобном человеке"
+   ],
+   "correct": "злобный человек",
+   "case": "Именительный (Nominative)",
+   "explain": "«злобный человек» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "Now therefore know and consider what you will do; for evil is determined against our master, and against all his house; for he is such a worthless fellow that one can’t speak to him.”"
+  },
+  {
+   "sentence": "Она взяла двести лепешек, два бурдюка с вином, пять приготовленных овец, пять мер ___, сто связок изюма, двести связок сушеного инжира и нагрузила все это на ослов.",
+   "lemma": "зерно",
+   "options": [
+    "жареного зерна",
+    "жареное зерно",
+    "жареному зерну",
+    "жареным зерном"
+   ],
+   "correct": "жареного зерна",
+   "case": "Родительный (Genitive)",
+   "explain": "«жареного зерна» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "Then Abigail hurried and took two hundred loaves of bread, two containers of wine, five sheep ready dressed, five seahs of parched grain, one hundred clusters of raisins, and two hundred cakes of figs, and laid them on donkeys."
+  }
+ ]
 }

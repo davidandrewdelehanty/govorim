@@ -1,174 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "От них после потопа произошли все ___ на земле».",
-      "lemma": "народ",
-      "options": [
-        "народы",
-        "народов",
-        "народам",
-        "народами"
-      ],
-      "correct": "народы",
-      "case": "Именительный (Nominative)",
-      "translation": "From them, after the flood, came all the nations on the earth.",
-      "explain": "Народы is the plural subject of произошли, so it stands in the nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Из той ___ он перешел в Асирию, где построил Ниневию.",
-      "lemma": "земля",
-      "options": [
-        "земля",
-        "земли",
-        "землю",
-        "землёй"
-      ],
-      "correct": "земли",
-      "case": "Родительный (Genitive)",
-      "translation": "From that land he crossed into Assyria, where he built Nineveh.",
-      "explain": "The preposition из (out of) governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "От них произошли приморские народы и распространились по своим ___, среди своих народов, у каждого свой язык.",
-      "lemma": "земля",
-      "options": [
-        "земли",
-        "земель",
-        "землям",
-        "землями"
-      ],
-      "correct": "землям",
-      "case": "Дательный (Dative)",
-      "translation": "From them came the coastal nations, spreading out over their lands, among their nations, each with its own language.",
-      "explain": "The preposition по (over/along) governs the dative case (here, dative plural)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Из той земли он перешел в Асирию, где построил Ниневию, Рихавод-Ир, Калах и Ресен, между Ниневией и Калахом, в Великий ___.",
-      "lemma": "город",
-      "options": [
-        "город",
-        "города",
-        "городу",
-        "городом"
-      ],
-      "correct": "город",
-      "case": "Винительный (Accusative)",
-      "translation": "From that land he crossed into Assyria, where he built Nineveh, Rehoboth Ir, Calah, and Resen, between Nineveh and Calah, the great city.",
-      "explain": "The preposition в with a verb of motion takes the accusative for direction into a place; for this inanimate noun the accusative matches the nominative form."
-    },
-    {
-      "id": "c5",
-      "sentence": "Первыми ___ в его царстве были Вавилон, Эрех, Акат и Халны в Шинаре.",
-      "lemma": "город",
-      "options": [
-        "города",
-        "городов",
-        "городам",
-        "городами"
-      ],
-      "correct": "городами",
-      "case": "Творительный (Instrumental)",
-      "translation": "The first cities in his kingdom were Babylon, Erech, Accad, and Calneh in Shinar.",
-      "explain": "The instrumental plural городами is used as the predicate complement of были (were) — 'were [as] cities'."
-    },
-    {
-      "id": "c6",
-      "sentence": "Первыми городами в его ___ были Вавилон, Эрех, Акат и Халны в Шинаре.",
-      "lemma": "царство",
-      "options": [
-        "царство",
-        "царства",
-        "царству",
-        "царстве"
-      ],
-      "correct": "царстве",
-      "case": "Предложный (Prepositional)",
-      "translation": "The first cities in his kingdom were Babylon, Erech, Accad, and Calneh in Shinar.",
-      "explain": "The preposition в expressing location governs the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Сыновья Иофета — Гомер, Магок, Мадай, Иован, Тувал, Мешех и Терас.",
-      "question": "Who were listed as the sons of Japheth?",
-      "options": [
-        "Gomer, Magog, Madai, Javan, Tubal, Meshech, and Tiras",
-        "Shem, Ham, and Japheth",
-        "Cush, Mizraim, Put, and Canaan",
-        "Elam, Asshur, Arpahshad, Lud, and Aram"
-      ],
-      "correct": "Gomer, Magog, Madai, Javan, Tubal, Meshech, and Tiras",
-      "explain": "The text lists Japheth's sons as 'Гомер, Магок, Мадай, Иован, Тувал, Мешех и Терас'."
-    },
-    {
-      "id": "r2",
-      "ru": "Куш был отцом и Немрода, который стал первым на земле могучим воином.",
-      "question": "What was Nimrod known for?",
-      "options": [
-        "He became the first mighty warrior on earth",
-        "He built the tower of Babel",
-        "He was the father of Canaan",
-        "He was the youngest son of Noah"
-      ],
-      "correct": "He became the first mighty warrior on earth",
-      "explain": "The text says Nimrod 'стал первым на земле могучим воином' (became the first mighty warrior on earth)."
-    },
-    {
-      "id": "r3",
-      "ru": "Первыми городами в его царстве были Вавилон, Эрех, Акат и Халны в Шинаре.",
-      "question": "What were the first cities of Nimrod's kingdom?",
-      "options": [
-        "Babylon, Erech, Accad, and Calneh in Shinar",
-        "Nineveh, Rehoboth Ir, Calah, and Resen",
-        "Sodom and Gomorrah",
-        "Ur and Haran"
-      ],
-      "correct": "Babylon, Erech, Accad, and Calneh in Shinar",
-      "explain": "The text names 'Вавилон, Эрех, Акат и Халны в Шинаре' as the first cities of his kingdom."
-    },
-    {
-      "id": "r4",
-      "ru": "Позже ханаанские племена рассеялись, и границы Ханаана простирались от Сидона к Герару до Газы, а оттуда к Содому, Гаморе, Адме и Цеваиму до Лаши.",
-      "question": "How far did the borders of Canaan extend?",
-      "options": [
-        "From Sidon toward Gerar as far as Gaza, and on toward Sodom, Gomorrah, Admah, and Zeboiim as far as Lasha",
-        "From Babylon to Nineveh",
-        "From Ur to Haran",
-        "From Egypt to Assyria"
-      ],
-      "correct": "From Sidon toward Gerar as far as Gaza, and on toward Sodom, Gomorrah, Admah, and Zeboiim as far as Lasha",
-      "explain": "The text traces the Canaanite border 'от Сидона к Герару до Газы... к Содому, Гаморе, Адме и Цеваиму до Лаши'."
-    },
-    {
-      "id": "r5",
-      "ru": "Сим был предком всех сыновей Евера.",
-      "question": "Whose ancestor was Shem, according to the text?",
-      "options": [
-        "All the sons of Eber",
-        "All the sons of Ham",
-        "Nimrod",
-        "The Canaanites"
-      ],
-      "correct": "All the sons of Eber",
-      "explain": "The text says 'Сим был предком всех сыновей Евера' (Shem was the ancestor of all the sons of Eber)."
-    },
-    {
-      "id": "r6",
-      "ru": "От них после потопа произошли все народы на земле».",
-      "question": "According to the chapter, where did all the nations of the earth come from?",
-      "options": [
-        "From the sons of Noah after the flood",
-        "From Nimrod alone",
-        "From the tower of Babel",
-        "From Abraham"
-      ],
-      "correct": "From the sons of Noah after the flood",
-      "explain": "The chapter concludes that 'от них после потопа произошли все народы на земле' (from them, after the flood, came all the nations of the earth)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "(От них произошли ___ распространились по своим землям, среди своих народов; у каждого свой язык, свое племя).",
+   "lemma": "народ",
+   "options": [
+    "приморским народам",
+    "приморских народов",
+    "приморских народах",
+    "приморские народы"
+   ],
+   "correct": "приморские народы",
+   "case": "Именительный (Nominative)",
+   "explain": "«приморские народы» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Of these were the islands of the nations divided in their lands, everyone after his language, after their families, in their nations."
+  },
+  {
+   "sentence": "Куш был также отцом Нимрода, который стал первым на земле ___.",
+   "lemma": "воин",
+   "options": [
+    "могучему воину",
+    "могучим воином",
+    "могучего воина",
+    "могучем воине"
+   ],
+   "correct": "могучим воином",
+   "case": "Творительный (Instrumental)",
+   "explain": "«могучим воином» — the instrumental marks the means, company, or complement.",
+   "id": "c2",
+   "translation": "Cush became the father of Nimrod. He began to be a mighty one in the earth."
+  },
+  {
+   "sentence": "___ в его царстве были Вавилон, Эрех, Аккад и Халне в Шинаре .",
+   "lemma": "город",
+   "options": [
+    "первых городах",
+    "первыми городами",
+    "первые города",
+    "первым городам"
+   ],
+   "correct": "первыми городами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«Первыми городами» — the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "The beginning of his kingdom was Babel, Erech, Accad, and Calneh, in the land of Shinar."
+  },
+  {
+   "sentence": "Из той земли он перешел в Ассирию, где построил Ниневию, Реховот-Ир , Калах 12 и Ресен, между Ниневией и Калахом — ___.",
+   "lemma": "город",
+   "options": [
+    "великом городе",
+    "великим городом",
+    "великому городу",
+    "великий город"
+   ],
+   "correct": "великий город",
+   "case": "Именительный (Nominative)",
+   "explain": "«великий город» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "Out of that land he went into Assyria, and built Nineveh, Rehoboth Ir, Calah,"
+  },
+  {
+   "sentence": "Родились сыновья и у Сима, ___ Иафета.",
+   "lemma": "брат",
+   "options": [
+    "старшего брата",
+    "старшем брате",
+    "старшим братом",
+    "старшему брату"
+   ],
+   "correct": "старшего брата",
+   "case": "Родительный (Genitive)",
+   "explain": "«старшего брата» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "Children were also born to Shem (the elder brother of Japheth), the father of all the children of Eber."
+  },
+  {
+   "sentence": "Область, где они жили, простиралась от Меши до Сефара, в ___.",
+   "lemma": "нагорье",
+   "options": [
+    "восточных нагорьях",
+    "восточных нагорий",
+    "восточным нагорьям",
+    "восточными нагорьями"
+   ],
+   "correct": "восточных нагорьях",
+   "case": "Предложный (Prepositional)",
+   "explain": "«восточных нагорьях» — after the preposition «в», for location or topic.",
+   "id": "c6",
+   "translation": "Their dwelling extended from Mesha, as you go toward Sephar, the mountain of the east."
+  }
+ ]
 }

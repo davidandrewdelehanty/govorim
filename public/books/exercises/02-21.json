@@ -1,134 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Если купишь ___-еврея, он прослужит у тебя шесть лет.",
-      "lemma": "раб",
-      "options": ["раб", "раба", "рабу", "рабом"],
-      "correct": "раба",
-      "case": "Винительный (Accusative)",
-      "translation": "If you buy a Hebrew slave, he will serve you six years.",
-      "explain": "The transitive verb купить takes a direct object; for an animate noun the accusative equals the genitive form раба."
-    },
-    {
-      "id": "c2",
-      "sentence": "Пусть господин приведет его к ___.",
-      "lemma": "судья",
-      "options": ["судьи", "судей", "судьям", "судьями"],
-      "correct": "судьям",
-      "case": "Дательный (Dative)",
-      "translation": "Let the master bring him to the judges.",
-      "explain": "The preposition к governs the dative case (here plural судьям)."
-    },
-    {
-      "id": "c3",
-      "sentence": "На седьмой год он должен стать свободным без ___.",
-      "lemma": "выкуп",
-      "options": ["выкуп", "выкупа", "выкупу", "выкупом"],
-      "correct": "выкупа",
-      "case": "Родительный (Genitive)",
-      "translation": "In the seventh year he must become free without a ransom.",
-      "explain": "The preposition без governs the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Пусть господин подведет его к дверному ___.",
-      "lemma": "косяк",
-      "options": ["косяк", "косяка", "косяку", "косяком"],
-      "correct": "косяку",
-      "case": "Дательный (Dative)",
-      "translation": "Let the master bring him to the doorpost.",
-      "explain": "The preposition к governs the dative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Господин проколет ему ухо ___.",
-      "lemma": "шило",
-      "options": ["шило", "шила", "шилом", "шиле"],
-      "correct": "шилом",
-      "case": "Творительный (Instrumental)",
-      "translation": "The master will pierce his ear with an awl.",
-      "explain": "The instrumental case expresses the means or instrument of an action."
-    },
-    {
-      "id": "c6",
-      "sentence": "Она не должна освобождаться из ___, как рабы мужчины.",
-      "lemma": "рабство",
-      "options": ["рабство", "рабства", "рабству", "рабством"],
-      "correct": "рабства",
-      "case": "Родительный (Genitive)",
-      "translation": "She must not be freed from slavery like the male slaves.",
-      "explain": "The preposition из governs the genitive case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Один ударит другого ___ или кулаком.",
-      "lemma": "камень",
-      "options": ["камень", "камня", "камнем", "камне"],
-      "correct": "камнем",
-      "case": "Творительный (Instrumental)",
-      "translation": "One strikes the other with a stone or with a fist.",
-      "explain": "The instrumental case expresses the means or instrument of an action."
-    },
-    {
-      "id": "c8",
-      "sentence": "Но хозяин ___ не будет в ответе.",
-      "lemma": "бык",
-      "options": ["бык", "быка", "быку", "быком"],
-      "correct": "быка",
-      "case": "Родительный (Genitive)",
-      "translation": "But the owner of the bull will not be held responsible.",
-      "explain": "The noun хозяин (owner) governs a following genitive of possession."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Если купишь раба-еврея, и он прослужит у тебя шесть лет, то на седьмой год он должен стать свободным без выкупа.",
-      "question": "When does a Hebrew servant go free?",
-      "options": ["In the seventh year, without payment", "After ten years of service", "Only if he buys his freedom", "When his master dies"],
-      "correct": "In the seventh year, without payment",
-      "explain": "The text says after six years 'на седьмой год он должен стать свободным без выкупа' (in the seventh year he must become free without ransom)."
-    },
-    {
-      "id": "r2",
-      "ru": "Любой, кто ударит человека и убьет его, будет предан смерти.",
-      "question": "What is the penalty for striking and killing a man?",
-      "options": ["He shall be put to death", "He shall pay a fine", "He shall be exiled", "He shall serve the family"],
-      "correct": "He shall be put to death",
-      "explain": "The text says such a person 'будет предан смерти' (shall be put to death)."
-    },
-    {
-      "id": "r3",
-      "ru": "Любой, кто ударит отца или мать, должен быть предан смерти.",
-      "question": "What happens to anyone who strikes his father or mother?",
-      "options": ["He must be put to death", "He must pay double", "He must leave the household", "He must be forgiven"],
-      "correct": "He must be put to death",
-      "explain": "The text says he 'должен быть предан смерти' (must be put to death)."
-    },
-    {
-      "id": "r4",
-      "ru": "Если хозяин ударит раба или рабыню палкой, и раб тотчас умрет, то хозяин должен быть наказан.",
-      "question": "What if a master strikes his servant with a rod and the servant dies at once?",
-      "options": ["The master must be punished", "Nothing happens to the master", "The master must free all his servants", "The master must pay the family"],
-      "correct": "The master must be punished",
-      "explain": "The text says in that case 'хозяин должен быть наказан' (the master must be punished)."
-    },
-    {
-      "id": "r5",
-      "ru": "Если будет причинен вред, то берите жизнь за жизнь, глаз за глаз, зуб за зуб, ногу за ногу, ожог за ожог, рану за рану, ушиб за ушиб.",
-      "question": "What principle applies if serious harm is done?",
-      "options": ["Life for life, eye for eye, tooth for tooth", "Forgiveness in every case", "A fine paid to the judges", "Banishment from the camp"],
-      "correct": "Life for life, eye for eye, tooth for tooth",
-      "explain": "The text lists 'жизнь за жизнь, глаз за глаз, зуб за зуб' (life for life, eye for eye, tooth for tooth)."
-    },
-    {
-      "id": "r6",
-      "ru": "Если бык забодает мужчину или женщину до смерти, то быка нужно забить камнями, а мясо его есть нельзя.",
-      "question": "What happens to a bull that gores a person to death?",
-      "options": ["It must be stoned and its meat not eaten", "It is given to the victim's family", "It is set free", "Its owner keeps it"],
-      "correct": "It must be stoned and its meat not eaten",
-      "explain": "The text says 'быка нужно забить камнями, а мясо его есть нельзя' (the bull must be stoned and its meat must not be eaten)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "— Если купишь раба-еврея, и он прослужит у тебя шесть лет, то на ___ он должен стать свободным без выкупа.",
+   "lemma": "год",
+   "options": [
+    "седьмом годе",
+    "седьмому году",
+    "седьмой год",
+    "седьмого года"
+   ],
+   "correct": "седьмой год",
+   "case": "Винительный (Accusative)",
+   "explain": "«седьмой год» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "“If you buy a Hebrew servant, he shall serve six years, and in the seventh he shall go out free without paying anything."
+  },
+  {
+   "sentence": "Если он женится на другой, пусть не лишает первую жену еды, одежды и ___ .",
+   "lemma": "право",
+   "options": [
+    "супружеских прав",
+    "супружеские права",
+    "супружеских правах",
+    "супружеским правам"
+   ],
+   "correct": "супружеских прав",
+   "case": "Родительный (Genitive)",
+   "explain": "«супружеских прав» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "If he takes another wife to himself, he shall not diminish her food, her clothing, and her marital rights."
+  },
+  {
+   "sentence": "Но если человек затаит зло и убьет ___ намеренно, заберите его от Моего жертвенника и предайте смерти.",
+   "lemma": "человек",
+   "options": [
+    "другом человеке",
+    "другого человека",
+    "другому человеку",
+    "другой человек"
+   ],
+   "correct": "другого человека",
+   "case": "Винительный (Accusative)",
+   "explain": "«другого человека» — the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "If a man schemes and comes presumptuously on his neighbor to kill him, you shall take him from my altar, that he may die."
+  },
+  {
+   "sentence": "Если дерущиеся мужчины ударят беременную женщину и она преждевременно родит , но ___ не будет, с обидчика нужно взыскать все, что потребует муж и позволит суд.",
+   "lemma": "вред",
+   "options": [
+    "другому вреду",
+    "другом вреде",
+    "другой вред",
+    "другого вреда"
+   ],
+   "correct": "другого вреда",
+   "case": "Родительный (Genitive)",
+   "explain": "«другого вреда» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "“If men fight and hurt a pregnant woman so that she gives birth prematurely, and yet no harm follows, he shall be surely fined as much as the woman’s husband demands and the judges allow."
+  }
+ ]
 }

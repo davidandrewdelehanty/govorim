@@ -1,204 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Сатана возбудил Давида нарушить ___ Господа и устроить перепись.",
-      "lemma": "приказ",
-      "options": [
-        "приказ",
-        "приказа",
-        "приказу",
-        "приказом"
-      ],
-      "correct": "приказ",
-      "case": "Винительный (Accusative)",
-      "translation": "Satan moved David to break God's command and take a census.",
-      "explain": "нарушить (to break) is a transitive verb requiring an accusative direct object."
-    },
-    {
-      "id": "c2",
-      "sentence": "Давид воспротивился ___ Иава по слову Господа.",
-      "lemma": "совет",
-      "options": [
-        "совет",
-        "совета",
-        "совету",
-        "советом"
-      ],
-      "correct": "совету",
-      "case": "Дательный (Dative)",
-      "translation": "David opposed Joab's counsel by God's word.",
-      "explain": "воспротивился (opposed) with the dative indicates opposition to something."
-    },
-    {
-      "id": "c3",
-      "sentence": "Пусть Господь умножит свой ___ стократно.",
-      "lemma": "народ",
-      "options": [
-        "народ",
-        "народа",
-        "народе",
-        "народом"
-      ],
-      "correct": "народ",
-      "case": "Винительный (Accusative)",
-      "translation": "May Yahweh make his people a hundred times as many.",
-      "explain": "умножит (make many) is a transitive verb requiring the accusative for its object."
-    },
-    {
-      "id": "c4",
-      "sentence": "Зачем мой Господин хочет наводить ___ на Израиль?",
-      "lemma": "грех",
-      "options": [
-        "грех",
-        "греха",
-        "грехе",
-        "грехом"
-      ],
-      "correct": "грех",
-      "case": "Винительный (Accusative)",
-      "translation": "Why does my lord want to bring guilt upon Israel?",
-      "explain": "The verb наводить (bring) takes the accusative case for its direct object."
-    },
-    {
-      "id": "c5",
-      "sentence": "Этот приказ был неугоден и ___ Богу.",
-      "lemma": "Бог",
-      "options": [
-        "Бог",
-        "Бога",
-        "Богу",
-        "Богом"
-      ],
-      "correct": "Богу",
-      "case": "Дательный (Dative)",
-      "translation": "This command was displeasing to God.",
-      "explain": "The adjective неугоден (displeasing) with the dative indicates what something displeases."
-    },
-    {
-      "id": "c6",
-      "sentence": "Мне очень тяжело, но пусть лучше я попаду в руки ___, ведь Его милость очень велика.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господе",
-        "Господом"
-      ],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "I am in great distress, but let me fall into the hands of the Lord, for his mercy is very great.",
-      "explain": "The genitive case is used after the preposition в when indicating to whom one will surrender: в руки Господа."
-    },
-    {
-      "id": "c7",
-      "sentence": "Когда он стал истреблять город, Господь увидел, пожалел о бедствии и сказал ___.",
-      "lemma": "ангел",
-      "options": [
-        "ангел",
-        "ангела",
-        "ангелу",
-        "ангелом"
-      ],
-      "correct": "ангелу",
-      "case": "Дательный (Dative)",
-      "translation": "When he was about to destroy the city, the Lord saw, relented of the disaster, and said to the angel.",
-      "explain": "The verb сказал (said) when meaning 'said to someone' takes the dative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "И Господь послал на Израиль мор, и погибло семьдесят тысяч ___.",
-      "lemma": "израилтянин",
-      "options": [
-        "израилтянин",
-        "израилтян",
-        "израилтянам",
-        "израилтянами"
-      ],
-      "correct": "израилтян",
-      "case": "Родительный (Genitive)",
-      "translation": "So Yahweh sent a plague on Israel; and seventy thousand men of Israel fell.",
-      "explain": "With numbers above 5, especially in nominative plural constructions with genitive, the genitive is used for the counted objects."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Сатана восстал на Израиль и возбудил Давида устроить перепись Израиля.",
-      "question": "Who moved David to take a census of Israel?",
-      "options": [
-        "Satan",
-        "His military leaders",
-        "The elders of Israel",
-        "God"
-      ],
-      "correct": "Satan",
-      "explain": "The text clearly states: 'Сатана восстал на Израиль и возбудил Давида' — Satan stood up against Israel and moved David."
-    },
-    {
-      "id": "r2",
-      "ru": "Но Иав ответил, Пусть Господь умножит свой народ стократно, разве не все они, Господин мой, царь твои слуги?",
-      "question": "What did Joab object to David's census?",
-      "options": [
-        "That the people already served the king",
-        "That it would offend God",
-        "That counting was too difficult",
-        "That it would cost too much"
-      ],
-      "correct": "That the people already served the king",
-      "explain": "Joab challenged David by saying the people already serve the king, so why count them?"
-    },
-    {
-      "id": "r3",
-      "ru": "Иав не включил в общее число роды Левия и Вениамина, потому что приказ царя ему не понравился.",
-      "question": "Which tribes did Joab not include in the census count?",
-      "options": [
-        "Levi and Benjamin",
-        "Judah and Simeon",
-        "Ephraim and Manasseh",
-        "Reuben and Gad"
-      ],
-      "correct": "Levi and Benjamin",
-      "explain": "The text states: 'Иав не включил в общее число роды Левия и Вениамина' — Joab did not count Levi and Benjamin."
-    },
-    {
-      "id": "r4",
-      "ru": "Тогда Давид сказал Богу, Сделав это, я совершил великий грех.",
-      "question": "What did David acknowledge after the census?",
-      "options": [
-        "That he had committed a great sin",
-        "That Joab was right to object",
-        "That the people should be freed",
-        "That Jerusalem should be protected"
-      ],
-      "correct": "That he had committed a great sin",
-      "explain": "Давид сказал ... Сделав это, я совершил великий грех — David said... I have sinned greatly in doing this."
-    },
-    {
-      "id": "r5",
-      "ru": "Господь сказал гаду провидцу Давида. «Иди и скажи Давиду, так говорит Господь, я предлагаю тебе три наказания, выбери одно из них, чтобы мне послать его тебе».",
-      "question": "How many punishments did God offer David to choose from?",
-      "options": [
-        "Three",
-        "Two",
-        "Four",
-        "One"
-      ],
-      "correct": "Three",
-      "explain": "The text says: 'я предлагаю тебе три наказания' — I offer you three punishments."
-    },
-    {
-      "id": "r6",
-      "ru": "Давид сказал Гаду, Мне очень тяжело, но пусть лучше я попаду в руки Господа, ведь Его милость очень велика, но не дай мне попасть в человеческие руки.",
-      "question": "Into whose hands did David prefer to fall?",
-      "options": [
-        "Into God's hands",
-        "Into Joab's hands",
-        "Into the hands of the Philistines",
-        "Into the hands of his generals"
-      ],
-      "correct": "Into God's hands",
-      "explain": "Давид выбрал пусть лучше я попаду в руки Господа — David said he would rather fall into the hands of the Lord."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Но ___ оказалось сильнее слова Иоава, и Иоав ушел, прошел по всему Израилю и вернулся в Иерусалим.",
+   "lemma": "слово",
+   "options": [
+    "царского слова",
+    "царском слове",
+    "царское слово",
+    "царским словом"
+   ],
+   "correct": "царское слово",
+   "case": "Именительный (Nominative)",
+   "explain": "«царское слово» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Nevertheless the king’s word prevailed against Joab. Therefore Joab departed, and went throughout all Israel, then came to Jerusalem."
+  },
+  {
+   "sentence": "Тогда Ангел Господень повелел Гаду сказать Давиду, чтобы тот пошел и построил жертвенник Господу на ___ иевусея Орны.",
+   "lemma": "площадка",
+   "options": [
+    "молотильной площадке",
+    "молотильной площадки",
+    "молотильной площадкой",
+    "молотильная площадка"
+   ],
+   "correct": "молотильной площадке",
+   "case": "Предложный (Prepositional)",
+   "explain": "«молотильной площадке» — after the preposition «на», for location or topic.",
+   "id": "c2",
+   "translation": "Then Yahweh’s angel commanded Gad to tell David that David should go up and raise an altar to Yahweh on the threshing floor of Ornan the Jebusite."
+  },
+  {
+   "sentence": "Тогда Давид пришел к Орне и когда Орна посмотрел и увидел Давида, он вышел из ___ и склонился перед Давидом лицом до земли.",
+   "lemma": "площадка",
+   "options": [
+    "молотильной площадки",
+    "молотильной площадке",
+    "молотильная площадка",
+    "молотильной площадкой"
+   ],
+   "correct": "молотильной площадки",
+   "case": "Родительный (Genitive)",
+   "explain": "«молотильной площадки» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "As David came to Ornan, Ornan looked and saw David, and went out of the threshing floor, and bowed himself to David with his face to the ground."
+  },
+  {
+   "sentence": "В то время, увидев, что Господь ответил ему на ___ иевусея Орны, Давид стал приносить Ему там жертвы.",
+   "lemma": "площадка",
+   "options": [
+    "молотильной площадке",
+    "молотильной площадки",
+    "молотильной площадкой",
+    "молотильная площадка"
+   ],
+   "correct": "молотильной площадке",
+   "case": "Предложный (Prepositional)",
+   "explain": "«молотильной площадке» — after the preposition «на», for location or topic.",
+   "id": "c4",
+   "translation": "At that time, when David saw that Yahweh had answered him in the threshing floor of Ornan the Jebusite, then he sacrificed there."
+  }
+ ]
 }

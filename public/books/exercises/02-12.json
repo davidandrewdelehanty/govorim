@@ -1,134 +1,259 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Пусть они поделятся с ближайшим ___.",
-      "lemma": "сосед",
-      "options": ["сосед", "соседа", "соседу", "соседом"],
-      "correct": "соседом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Let them share with the nearest neighbor.",
-      "explain": "The preposition с in the sense of 'together with' governs the instrumental case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Съешьте мясо, поджаренное над ___.",
-      "lemma": "огонь",
-      "options": ["огонь", "огня", "огню", "огнём"],
-      "correct": "огнём",
-      "case": "Творительный (Instrumental)",
-      "translation": "Eat the meat roasted over fire.",
-      "explain": "The preposition над governs the instrumental case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Ешьте с хлебом, приготовленным без ___.",
-      "lemma": "закваска",
-      "options": ["закваска", "закваски", "закваске", "закваску"],
-      "correct": "закваски",
-      "case": "Родительный (Genitive)",
-      "translation": "Eat it with bread made without leaven.",
-      "explain": "The preposition без governs the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "В эту ночь я пройду по ___.",
-      "lemma": "Египет",
-      "options": ["Египет", "Египта", "Египту", "Египтом"],
-      "correct": "Египту",
-      "case": "Дательный (Dative)",
-      "translation": "On that night I will pass through Egypt.",
-      "explain": "The preposition по governs the dative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Господь сказал ___ и Аарону в Египте.",
-      "lemma": "Моисей",
-      "options": ["Моисей", "Моисея", "Моисею", "Моисеем"],
-      "correct": "Моисею",
-      "case": "Дательный (Dative)",
-      "translation": "The Lord spoke to Moses and Aaron in Egypt.",
-      "explain": "The verb сказать (to speak to someone) takes its addressee in the dative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Макните его в кровь в ___.",
-      "lemma": "сосуд",
-      "options": ["сосуд", "сосуда", "сосуде", "сосудом"],
-      "correct": "сосуде",
-      "case": "Предложный (Prepositional)",
-      "translation": "Dip it in the blood that is in the basin.",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Моисей призвал ___ Израиля.",
-      "lemma": "старейшина",
-      "options": ["старейшины", "старейшин", "старейшинам", "старейшинами"],
-      "correct": "старейшин",
-      "case": "Винительный множественного (Accusative plural)",
-      "translation": "Moses called the elders of Israel.",
-      "explain": "The direct object of the transitive verb призвать takes the accusative; for an animate plural noun it equals the genitive plural form."
-    },
-    {
-      "id": "c8",
-      "sentence": "Идите, выберите ягня и заколите пасхальную ___.",
-      "lemma": "жертва",
-      "options": ["жертва", "жертвы", "жертве", "жертву"],
-      "correct": "жертву",
-      "case": "Винительный (Accusative)",
-      "translation": "Go, choose a lamb and kill the Passover sacrifice.",
-      "explain": "The direct object of the transitive verb заколоть takes the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Израилетяне прожили в Египте четыреста тридцать лет.",
-      "question": "How long did the Israelites live in Egypt?",
-      "options": ["Four hundred thirty years", "Forty years", "Four hundred years", "Seventy years"],
-      "correct": "Four hundred thirty years",
-      "explain": "The text says 'Израилетяне прожили в Египте четыреста тридцать лет' (the Israelites lived in Egypt four hundred thirty years)."
-    },
-    {
-      "id": "r2",
-      "ru": "Не ломайте ни одной из костей.",
-      "question": "What were they commanded regarding the bones of the sacrifice?",
-      "options": ["Do not break any of its bones", "Burn all of its bones", "Bury the bones outside", "Keep the bones until morning"],
-      "correct": "Do not break any of its bones",
-      "explain": "The text commands 'Не ломайте ни одной из костей' (do not break any of the bones)."
-    },
-    {
-      "id": "r3",
-      "ru": "Египтяне торопили народ покинуть страну, иначе, говорили они, мы все умрем.",
-      "question": "Why did the Egyptians hurry the people to leave?",
-      "options": ["They feared that otherwise they would all die", "They wanted their gold returned", "They needed the land for farming", "They were angry with Moses"],
-      "correct": "They feared that otherwise they would all die",
-      "explain": "The Egyptians said 'мы все умрем' (we will all die) if the people did not leave."
-    },
-    {
-      "id": "r4",
-      "ru": "Народ склонился и восславил Господа.",
-      "question": "How did the people respond?",
-      "options": ["They bowed down and worshiped the Lord", "They fled into the wilderness", "They complained against Moses", "They remained silent"],
-      "correct": "They bowed down and worshiped the Lord",
-      "explain": "The text says 'Народ склонился и восславил Господа' (the people bowed and worshiped the Lord)."
-    },
-    {
-      "id": "r5",
-      "ru": "Эту жертву следует есть в том доме, где ее приготовили.",
-      "question": "Where was the Passover sacrifice to be eaten?",
-      "options": ["In the same house where it was prepared", "In the temple only", "Outdoors in the open", "In any house they chose"],
-      "correct": "In the same house where it was prepared",
-      "explain": "The text says it must be eaten 'в том доме, где ее приготовили' (in the house where it was prepared)."
-    },
-    {
-      "id": "r6",
-      "ru": "Ее не может есть чужеземец.",
-      "question": "Who was not permitted to eat the Passover?",
-      "options": ["A foreigner", "A young child", "A married woman", "A hired priest"],
-      "correct": "A foreigner",
-      "explain": "The text says 'Ее не может есть чужеземец' (a foreigner may not eat of it)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "— Пусть этот месяц будет для вас ___, началом года.",
+   "lemma": "месяц",
+   "options": [
+    "первому месяцу",
+    "первым месяцем",
+    "первый месяц",
+    "первом месяце"
+   ],
+   "correct": "первым месяцем",
+   "case": "Творительный (Instrumental)",
+   "explain": "«первым месяцем» — the instrumental marks the means, company, or complement.",
+   "id": "c1",
+   "translation": "“This month shall be to you the beginning of months. It shall be the first month of the year to you."
+  },
+  {
+   "sentence": "Держите их до ___ этого месяца, и пусть в сумерки все общество израильтян заколет их.",
+   "lemma": "день",
+   "options": [
+    "четырнадцатому дню",
+    "четырнадцатым днём",
+    "четырнадцатый день",
+    "четырнадцатого дня"
+   ],
+   "correct": "четырнадцатого дня",
+   "case": "Родительный (Genitive)",
+   "explain": "«четырнадцатого дня» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "You shall keep it until the fourteenth day of the same month; and the whole assembly of the congregation of Israel shall kill it at evening."
+  },
+  {
+   "sentence": "Возьмите кровь ___ и помажьте оба косяка и перекладины дверей в домах, где вы их едите.",
+   "lemma": "животное",
+   "options": [
+    "жертвенных животных",
+    "жертвенными животными",
+    "жертвенным животным",
+    "жертвенные животные"
+   ],
+   "correct": "жертвенных животных",
+   "case": "Родительный (Genitive)",
+   "explain": "«жертвенных животных» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "They shall take some of the blood, and put it on the two door posts and on the lintel, on the houses in which they shall eat it."
+  },
+  {
+   "sentence": "В ту же ночь съешьте мясо, поджаренное над огнем, приправленное ___, с хлебом, приготовленным без закваски.",
+   "lemma": "трава",
+   "options": [
+    "горьких травах",
+    "горькими травами",
+    "горькие травы",
+    "горьких трав"
+   ],
+   "correct": "горькими травами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«горькими травами» — the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "They shall eat the meat in that night, roasted with fire, and unleavened bread. They shall eat it with bitter herbs."
+  },
+  {
+   "sentence": "Отмечайте его в ___ как праздник Господу — это вам установление на века.",
+   "lemma": "поколение",
+   "options": [
+    "грядущим поколениям",
+    "грядущих поколений",
+    "грядущими поколениями",
+    "грядущих поколениях"
+   ],
+   "correct": "грядущих поколениях",
+   "case": "Предложный (Prepositional)",
+   "explain": "«грядущих поколениях» — after the preposition «в», for location or topic.",
+   "id": "c6",
+   "translation": "This day shall be a memorial for you. You shall keep it as a feast to Yahweh. You shall keep it as a feast throughout your generations by an ordinance forever."
+  },
+  {
+   "sentence": "В первый же день уничтожьте закваску в своих домах, потому что каждый, кто станет есть ___ с первого дня до седьмого, будет исторгнут из Израиля.",
+   "lemma": "хлеб",
+   "options": [
+    "дрожжевом хлебе",
+    "дрожжевому хлебу",
+    "дрожжевой хлеб",
+    "дрожжевого хлеба"
+   ],
+   "correct": "дрожжевой хлеб",
+   "case": "Именительный (Nominative)",
+   "explain": "«дрожжевой хлеб» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "“ ‘Seven days you shall eat unleavened bread; even the first day you shall put away yeast out of your houses, for whoever eats leavened bread from the first day until the seventh day, that soul shall be cut off from Israel."
+  },
+  {
+   "sentence": "В первый же день уничтожьте закваску в своих домах, потому что каждый, кто станет есть дрожжевой хлеб с ___ до седьмого, будет исторгнут из Израиля.",
+   "lemma": "день",
+   "options": [
+    "первым днём",
+    "первого дня",
+    "первый день",
+    "первом дне"
+   ],
+   "correct": "первого дня",
+   "case": "Родительный (Genitive)",
+   "explain": "«первого дня» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "“ ‘Seven days you shall eat unleavened bread; even the first day you shall put away yeast out of your houses, for whoever eats leavened bread from the first day until the seventh day, that soul shall be cut off from Israel."
+  },
+  {
+   "sentence": "Отмечайте праздник ___, потому что в этот день Я вывел ваши воинства из Египта.",
+   "lemma": "хлеб",
+   "options": [
+    "пресные хлеба",
+    "пресных хлебах",
+    "пресными хлебами",
+    "пресных хлебов"
+   ],
+   "correct": "пресных хлебов",
+   "case": "Родительный (Genitive)",
+   "explain": "«Пресных хлебов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
+   "translation": "You shall observe the feast of unleavened bread; for in this same day I have brought your armies out of the land of Egypt. Therefore you shall observe this day throughout your generations by an ordinance forever."
+  },
+  {
+   "sentence": "Отмечайте этот день в ___, это вам установление на века.",
+   "lemma": "поколение",
+   "options": [
+    "грядущим поколениям",
+    "грядущих поколений",
+    "грядущими поколениями",
+    "грядущих поколениях"
+   ],
+   "correct": "грядущих поколениях",
+   "case": "Предложный (Prepositional)",
+   "explain": "«грядущих поколениях» — after the preposition «в», for location or topic.",
+   "id": "c12",
+   "translation": "You shall observe the feast of unleavened bread; for in this same day I have brought your armies out of the land of Egypt. Therefore you shall observe this day throughout your generations by an ordinance forever."
+  },
+  {
+   "sentence": "Ешьте хлеб, приготовленный без закваски, с вечера четырнадцатого дня до вечера двадцать ___ первого месяца.",
+   "lemma": "день",
+   "options": [
+    "первым днём",
+    "первого дня",
+    "первый день",
+    "первом дне"
+   ],
+   "correct": "первого дня",
+   "case": "Родительный (Genitive)",
+   "explain": "«первого дня» — the genitive here marks possession, absence, or quantity.",
+   "id": "c13",
+   "translation": "In the first month, on the fourteenth day of the month at evening, you shall eat unleavened bread, until the twenty first day of the month at evening."
+  },
+  {
+   "sentence": "Ешьте хлеб, приготовленный без закваски, с вечера четырнадцатого дня до вечера двадцать первого дня ___.",
+   "lemma": "месяц",
+   "options": [
+    "первому месяцу",
+    "первого месяца",
+    "первый месяц",
+    "первом месяце"
+   ],
+   "correct": "первого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«первого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c14",
+   "translation": "In the first month, on the fourteenth day of the month at evening, you shall eat unleavened bread, until the twenty first day of the month at evening."
+  },
+  {
+   "sentence": "Любой, кто станет есть ___, будет исторгнут из общества Израиля, будь он поселенец или уроженец той земли.",
+   "lemma": "хлеб",
+   "options": [
+    "дрожжевом хлебе",
+    "дрожжевому хлебу",
+    "дрожжевой хлеб",
+    "дрожжевого хлеба"
+   ],
+   "correct": "дрожжевой хлеб",
+   "case": "Именительный (Nominative)",
+   "explain": "«дрожжевой хлеб» — the subject of the sentence stands in the nominative.",
+   "id": "c15",
+   "translation": "There shall be no yeast found in your houses for seven days, for whoever eats that which is leavened, that soul shall be cut off from the congregation of Israel, whether he is a foreigner, or one who is born in the land."
+  },
+  {
+   "sentence": "Когда ваши дети спросят: «Что значит этот обряд?», 27 — скажите им: «Это — ___ Господу, Который прошел мимо домов израильтян в Египте и пощадил их, когда убивал египтян».",
+   "lemma": "жертва",
+   "options": [
+    "пасхальной жертве",
+    "пасхальная жертва",
+    "пасхальной жертвы",
+    "пасхальной жертвой"
+   ],
+   "correct": "пасхальная жертва",
+   "case": "Именительный (Nominative)",
+   "explain": "«пасхальная жертва» — the subject of the sentence stands in the nominative.",
+   "id": "c17",
+   "translation": "It will happen, when your children ask you, ‘What do you mean by this service?’"
+  },
+  {
+   "sentence": "Фараон, его приближенные и все египтяне поднялись среди ночи, и в Египте стоял ___, ведь не было дома, где бы хоть кто-нибудь не умер.",
+   "lemma": "плач",
+   "options": [
+    "громком плаче",
+    "громкий плач",
+    "громким плачем",
+    "громкому плачу"
+   ],
+   "correct": "громкий плач",
+   "case": "Именительный (Nominative)",
+   "explain": "«громкий плач» — the subject of the sentence stands in the nominative.",
+   "id": "c18",
+   "translation": "Pharaoh rose up in the night, he, and all his servants, and all the Egyptians; and there was a great cry in Egypt, for there was not a house where there was not one dead."
+  },
+  {
+   "sentence": "С ними ушло много ___ и огромное количество мелкого и крупного скота.",
+   "lemma": "народ",
+   "options": [
+    "разному народу",
+    "разном народе",
+    "разный народ",
+    "разного народа"
+   ],
+   "correct": "разного народа",
+   "case": "Родительный (Genitive)",
+   "explain": "«разного народа» — the genitive here marks possession, absence, or quantity.",
+   "id": "c19",
+   "translation": "A mixed multitude went up also with them, with flocks, herds, and even very much livestock."
+  },
+  {
+   "sentence": "С ними ушло много разного народа и ___ мелкого и крупного скота.",
+   "lemma": "количество",
+   "options": [
+    "огромным количеством",
+    "огромное количество",
+    "огромном количестве",
+    "огромного количества"
+   ],
+   "correct": "огромное количество",
+   "case": "Именительный (Nominative)",
+   "explain": "«огромное количество» — the subject of the sentence stands in the nominative.",
+   "id": "c20",
+   "translation": "A mixed multitude went up also with them, with flocks, herds, and even very much livestock."
+  },
+  {
+   "sentence": "Купленный тобой раб может есть ее после того, как ты ему сделаешь обрезание, 45 но ___ и наемный работник не могут ее есть.",
+   "lemma": "житель",
+   "options": [
+    "временном жителе",
+    "временный житель",
+    "временным жителем",
+    "временного жителя"
+   ],
+   "correct": "временный житель",
+   "case": "Именительный (Nominative)",
+   "explain": "«временный житель» — the subject of the sentence stands in the nominative.",
+   "id": "c21",
+   "translation": "but every man’s servant who is bought for money, when you have circumcised him, then shall he eat of it."
+  }
+ ]
 }

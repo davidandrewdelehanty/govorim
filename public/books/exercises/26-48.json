@@ -1,204 +1,469 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "На севере будет надел Удана, его граница протянется по Хитлонской дороге до Левохамата и далее до Хацар-Янана, что на границе с Дамаском, на ___ от Хамата.",
-      "lemma": "север",
-      "options": [
-        "севере",
-        "севера",
-        "северу",
-        "севером"
-      ],
-      "correct": "севере",
-      "case": "Предложный (Prepositional)",
-      "translation": "On the north side, the allotment of Dan shall be from the Hethlon way to the entrance of Hamar, and so on to the north side of Damask.",
-      "explain": "The preposition 'на' (on) followed by a location word requires the prepositional case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Надел Асира будет граничить с владениями Дана с востока на ___.",
-      "lemma": "запад",
-      "options": [
-        "запад",
-        "запада",
-        "западу",
-        "западе"
-      ],
-      "correct": "запад",
-      "case": "Винительный (Accusative)",
-      "translation": "By the border of Dan, from the east side to the west side, Asher, one portion.",
-      "explain": "The expression 'с востока на запад' (from east to west) uses accusative for the direction of motion."
-    },
-    {
-      "id": "c3",
-      "sentence": "Особый участок для ___ будет 25 тысяч локтей в длину и 10 тысяч в ширину.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господом"
-      ],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "The offering that you shall offer to Yahweh shall be twenty-five thousand reeds in length, and ten thousand in width.",
-      "explain": "The phrase 'участок для Господа' (an offering for the Lord) uses the genitive after the preposition 'для' (for)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Посреди него будет святилище ___.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господом"
-      ],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "And the sanctuary of Yahweh shall be in the middle of it.",
-      "explain": "The genitive case shows possession: 'святилище Господа' (sanctuary of the Lord)."
-    },
-    {
-      "id": "c5",
-      "sentence": "На дел будет принадлежать посвященным священникам из клана ___, которые верно служили мне.",
-      "lemma": "Цадок",
-      "options": [
-        "Цадок",
-        "Цадока",
-        "Цадоку",
-        "Цадоком"
-      ],
-      "correct": "Цадока",
-      "case": "Родительный (Genitive)",
-      "translation": "It shall be for the priests who are sanctified of the sons of Zadok, who have kept my instruction.",
-      "explain": "The phrase 'клана Цадока' (clan of Zadok) requires the genitive to show family lineage."
-    },
-    {
-      "id": "c6",
-      "sentence": "Рядом с ___ священников левиты получат надел в 25 тысяч локтей в длину.",
-      "lemma": "земля",
-      "options": [
-        "земля",
-        "земли",
-        "земле",
-        "землей"
-      ],
-      "correct": "землей",
-      "case": "Творительный (Instrumental)",
-      "translation": "Answerable to the border of the priests, the Levites shall have twenty-five thousand in length.",
-      "explain": "The preposition 'рядом с' (next to) requires the instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Остаток этого надела, который граничит со священным участком и прилегает к нему по длине, составит 10 000 локтей с восточной стороны и 10 000 с ___.",
-      "lemma": "западный",
-      "options": [
-        "западный",
-        "западного",
-        "западному",
-        "западной"
-      ],
-      "correct": "западной",
-      "case": "Творительный (Instrumental)",
-      "translation": "The remainder in the length, alongside the holy offering, shall be ten thousand eastward, and ten thousand westward.",
-      "explain": "The phrase 'с западной стороны' uses the instrumental case with the adjective 'западной'."
-    },
-    {
-      "id": "c8",
-      "sentence": "Ворота города называются Парадам ___.",
-      "lemma": "Израиль",
-      "options": [
-        "Израиль",
-        "Израиля",
-        "Израилю",
-        "Израилем"
-      ],
-      "correct": "Израиля",
-      "case": "Родительный (Genitive)",
-      "translation": "These are the exits of the city, and the name of the city from that day shall be, 'Yahweh is there.'",
-      "explain": "The phrase 'Парадам Израиля' (Gates of Israel) uses the genitive to show possession."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Вот имена родов. На севере будет надел Удана, его граница протянется по Хитлонской дороге до Левохамата и далее до Хацар-Янана, что на границе с Дамаском, на севере от Хамата.",
-      "question": "Whose allotment shall be on the north side?",
-      "options": [
-        "Dan's",
-        "Asher's",
-        "Naphtali's",
-        "Manasseh's"
-      ],
-      "correct": "Dan's",
-      "explain": "The text explicitly states 'На севере будет надел Удана' — On the north side, the allotment of Dan."
-    },
-    {
-      "id": "r2",
-      "ru": "Особый участок для Господа будет 25 тысяч локтей в длину и 10 тысяч в ширину.",
-      "question": "What are the dimensions of the special offering for the Lord?",
-      "options": [
-        "25,000 cubits long and 10,000 wide",
-        "20,000 cubits long and 8,000 wide",
-        "30,000 cubits long and 15,000 wide",
-        "25,000 cubits long and 25,000 wide"
-      ],
-      "correct": "25,000 cubits long and 10,000 wide",
-      "explain": "The text directly states 'будет 25 тысяч локтей в длину и 10 тысяч в ширину'."
-    },
-    {
-      "id": "r3",
-      "ru": "Они не должны ни продавать его, ни обменивать.",
-      "question": "What restrictions were placed on the Levites' land?",
-      "options": [
-        "They could not sell or exchange it",
-        "They could sell but not exchange it",
-        "They had to sell it after 50 years",
-        "They had to give half to the priests"
-      ],
-      "correct": "They could not sell or exchange it",
-      "explain": "The text says 'Они не должны ни продавать его, ни обменивать' — They shall not sell or exchange it."
-    },
-    {
-      "id": "r4",
-      "ru": "Остаток этого надела, который граничит со священным участком и прилегает к нему по длине, составит 10 000 локтей с восточной стороны и 10 000 с западной.",
-      "question": "How much land remained on the eastern and western sides?",
-      "options": [
-        "10,000 cubits on each side",
-        "15,000 cubits on each side",
-        "20,000 cubits on each side",
-        "5,000 cubits on each side"
-      ],
-      "correct": "10,000 cubits on each side",
-      "explain": "The text states 'составит 10 000 локтей с восточной стороны и 10 000 с западной' — 10,000 cubits on the east and 10,000 on the west."
-    },
-    {
-      "id": "r5",
-      "ru": "На северной стороне, которая 4500 локтей в длину, будет трое ворот.",
-      "question": "How many gates would be on the north side?",
-      "options": [
-        "Three",
-        "Four",
-        "Two",
-        "Six"
-      ],
-      "correct": "Three",
-      "explain": "The text clearly states 'На северной стороне... будет трое ворот' — On the north side there shall be three gates."
-    },
-    {
-      "id": "r6",
-      "ru": "Отныне этот город будет назван «Господь там».",
-      "question": "What would the city be called from that day forward?",
-      "options": [
-        "The Lord is there",
-        "Zion of the Lord",
-        "The Holy City",
-        "Jerusalem Forever"
-      ],
-      "correct": "The Lord is there",
-      "explain": "The text concludes with 'этот город будет назван «Господь там»' — the city shall be called 'The Lord is there.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "На севере будет надел у Дана; его граница протянется по ___ до Лево-Хамата, и далее до Гацар-Енана, что на границе с Дамаском, на севере от Хамата.",
+   "lemma": "дорога",
+   "options": [
+    "хетлонской дорогой",
+    "хетлонской дороге",
+    "хетлонской дороги",
+    "хетлонская дорога"
+   ],
+   "correct": "хетлонской дороге",
+   "case": "Дательный (Dative)",
+   "explain": "«Хетлонской дороге» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c1",
+   "translation": "“Now these are the names of the tribes: From the north end, beside the way of Hethlon to the entrance of Hamath, Hazar Enan at the border of Damascus, northward beside Hamath (and they shall have their sides east and west), Dan, one portion."
+  },
+  {
+   "sentence": "На границе с владениями Иуды с востока на запад будет ___ 25 000 локтей в ширину, равный по длине с востока на запад родовому наделу.",
+   "lemma": "участок",
+   "options": [
+    "особом участке",
+    "особым участком",
+    "особый участок",
+    "особого участка"
+   ],
+   "correct": "особый участок",
+   "case": "Именительный (Nominative)",
+   "explain": "«особый участок» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "“By the border of Judah, from the east side to the west side, shall be the offering which you shall offer, twenty-five thousand reeds in width, and in length as one of the portions, from the east side to the west side: and the sanctuary shall be in the middle of it."
+  },
+  {
+   "sentence": "___ для Господа будет 25 000 локтей в длину и 10 000 в ширину.",
+   "lemma": "участок",
+   "options": [
+    "особого участка",
+    "особый участок",
+    "особому участку",
+    "особым участком"
+   ],
+   "correct": "особый участок",
+   "case": "Именительный (Nominative)",
+   "explain": "«Особый участок» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "“The offering that you shall offer to Yahweh shall be twenty-five thousand reeds in length, and ten thousand in width."
+  },
+  {
+   "sentence": "Это будет ___ для священников.",
+   "lemma": "участок",
+   "options": [
+    "священном участке",
+    "священного участка",
+    "священный участок",
+    "священному участку"
+   ],
+   "correct": "священный участок",
+   "case": "Именительный (Nominative)",
+   "explain": "«священный участок» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "For these, even for the priests, shall be the holy offering: toward the north twenty-five thousand in length, and toward the west ten thousand in width, and toward the east ten thousand in width, and toward the south twenty-five thousand in length: and the sanctuary of Yahweh shall be in the middle of it."
+  },
+  {
+   "sentence": "Надел будет принадлежать посвященным священникам из клана Цадока, которые верно служили Мне и не отступили, как левиты, с ___.",
+   "lemma": "израильтянин",
+   "options": [
+    "прочих израильтян",
+    "прочие израильтяне",
+    "прочими израильтянами",
+    "прочим израильтянам"
+   ],
+   "correct": "прочими израильтянами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«прочими израильтянами» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c6",
+   "translation": "It shall be for the priests who are sanctified of the sons of Zadok, who have kept my instruction, who didn’t go astray when the children of Israel went astray, as the Levites went astray."
+  },
+  {
+   "sentence": "Он будет принадлежать им, как ___ из священного надела, великая святыня на границе с участком левитов.",
+   "lemma": "земля",
+   "options": [
+    "особой земли",
+    "особой землёй",
+    "особая земля",
+    "особой земле"
+   ],
+   "correct": "особая земля",
+   "case": "Именительный (Nominative)",
+   "explain": "«особая земля» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "It shall be to them an offering from the offering of the land, a most holy thing, by the border of the Levites."
+  },
+  {
+   "sentence": "Он будет принадлежать им, как особая земля из священного надела, ___ на границе с участком левитов.",
+   "lemma": "святыня",
+   "options": [
+    "великой святыней",
+    "великой святыни",
+    "великая святыня",
+    "великой святыне"
+   ],
+   "correct": "великая святыня",
+   "case": "Именительный (Nominative)",
+   "explain": "«великая святыня» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "It shall be to them an offering from the offering of the land, a most holy thing, by the border of the Levites."
+  },
+  {
+   "sentence": "Он не должен переходить в ___, ведь это святыня Господа.",
+   "lemma": "рука",
+   "options": [
+    "других руках",
+    "другими руками",
+    "других рук",
+    "другие руки"
+   ],
+   "correct": "другие руки",
+   "case": "Винительный (Accusative)",
+   "explain": "«другие руки» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c9",
+   "translation": "They shall sell none of it, nor exchange it, nor shall the first fruits of the land be alienated; for it is holy to Yahweh."
+  },
+  {
+   "sentence": "___, 5 000 локтей в ширину и 25 000 в длину будет для обычных нужд города, для домов и для пастбищ.",
+   "lemma": "земля",
+   "options": [
+    "остальной земле",
+    "остальной земли",
+    "остальной землёй",
+    "остальная земля"
+   ],
+   "correct": "остальная земля",
+   "case": "Именительный (Nominative)",
+   "explain": "«Остальная земля» — the subject of the sentence stands in the nominative.",
+   "id": "c10",
+   "translation": "“The five thousand that are left in the width, in front of the twenty-five thousand, shall be for common use, for the city, for dwelling and for pasture lands; and the city shall be in the middle of it."
+  },
+  {
+   "sentence": "Остальная земля, 5 000 локтей в ширину и 25 000 в длину будет для ___ города, для домов и для пастбищ.",
+   "lemma": "нужда",
+   "options": [
+    "обычных нуждах",
+    "обычные нужды",
+    "обычными нуждами",
+    "обычных нужд"
+   ],
+   "correct": "обычных нужд",
+   "case": "Родительный (Genitive)",
+   "explain": "«обычных нужд» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
+   "translation": "“The five thousand that are left in the width, in front of the twenty-five thousand, shall be for common use, for the city, for dwelling and for pasture lands; and the city shall be in the middle of it."
+  },
+  {
+   "sentence": "Посреди нее будет город, 16 ___ которого будет 4 500 локтей, южная сторона — 4 500 локтей, восточная сторона — 4 500 локтей и западная сторона — 4 500 локтей.",
+   "lemma": "сторона",
+   "options": [
+    "северная сторона",
+    "северной стороной",
+    "северной стороны",
+    "северной стороне"
+   ],
+   "correct": "северная сторона",
+   "case": "Именительный (Nominative)",
+   "explain": "«северная сторона» — the subject of the sentence stands in the nominative.",
+   "id": "c12",
+   "translation": "“The five thousand that are left in the width, in front of the twenty-five thousand, shall be for common use, for the city, for dwelling and for pasture lands; and the city shall be in the middle of it."
+  },
+  {
+   "sentence": "Посреди нее будет город, 16 северная сторона которого будет 4 500 локтей, ___ — 4 500 локтей, восточная сторона — 4 500 локтей и западная сторона — 4 500 локтей.",
+   "lemma": "сторона",
+   "options": [
+    "южная сторона",
+    "южной стороне",
+    "южной стороной",
+    "южной стороны"
+   ],
+   "correct": "южная сторона",
+   "case": "Именительный (Nominative)",
+   "explain": "«южная сторона» — the subject of the sentence stands in the nominative.",
+   "id": "c13",
+   "translation": "“The five thousand that are left in the width, in front of the twenty-five thousand, shall be for common use, for the city, for dwelling and for pasture lands; and the city shall be in the middle of it."
+  },
+  {
+   "sentence": "Посреди нее будет город, 16 северная сторона которого будет 4 500 локтей, южная сторона — 4 500 локтей, ___ — 4 500 локтей и западная сторона — 4 500 локтей.",
+   "lemma": "сторона",
+   "options": [
+    "восточная сторона",
+    "восточной стороны",
+    "восточной стороне",
+    "восточной стороной"
+   ],
+   "correct": "восточная сторона",
+   "case": "Именительный (Nominative)",
+   "explain": "«восточная сторона» — the subject of the sentence stands in the nominative.",
+   "id": "c14",
+   "translation": "“The five thousand that are left in the width, in front of the twenty-five thousand, shall be for common use, for the city, for dwelling and for pasture lands; and the city shall be in the middle of it."
+  },
+  {
+   "sentence": "Посреди нее будет город, 16 северная сторона которого будет 4 500 локтей, южная сторона — 4 500 локтей, восточная сторона — 4 500 локтей и ___ — 4 500 локтей.",
+   "lemma": "сторона",
+   "options": [
+    "западной стороной",
+    "западной стороны",
+    "западная сторона",
+    "западной стороне"
+   ],
+   "correct": "западная сторона",
+   "case": "Именительный (Nominative)",
+   "explain": "«западная сторона» — the subject of the sentence stands in the nominative.",
+   "id": "c15",
+   "translation": "“The five thousand that are left in the width, in front of the twenty-five thousand, shall be for common use, for the city, for dwelling and for pasture lands; and the city shall be in the middle of it."
+  },
+  {
+   "sentence": "___ будут 250 локтей на севере, 250 — на юге, 250 — на востоке и 250 — на западе.",
+   "lemma": "выпас",
+   "options": [
+    "городских выпасах",
+    "городских выпасов",
+    "городские выпасы",
+    "городскими выпасами"
+   ],
+   "correct": "городские выпасы",
+   "case": "Именительный (Nominative)",
+   "explain": "«Городские выпасы» — the subject of the sentence stands in the nominative.",
+   "id": "c16",
+   "translation": "The city shall have pasture lands: toward the north two hundred fifty, and toward the south two hundred fifty, and toward the east two hundred fifty, and toward the west two hundred fifty."
+  },
+  {
+   "sentence": "Остаток этого надела, который граничит со ___ и прилегает к нему по длине, составит 10 000 локтей с восточной стороны и 10 000 — с западной.",
+   "lemma": "участок",
+   "options": [
+    "священном участке",
+    "священный участок",
+    "священным участком",
+    "священному участку"
+   ],
+   "correct": "священным участком",
+   "case": "Творительный (Instrumental)",
+   "explain": "«священным участком» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c17",
+   "translation": "The remainder in the length, alongside the holy offering, shall be ten thousand eastward, and ten thousand westward; and it shall be alongside the holy offering. Its increase shall be for food to those who labor in the city."
+  },
+  {
+   "sentence": "Остаток этого надела, который граничит со священным участком и прилегает к нему по длине, составит 10 000 локтей с ___ и 10 000 — с западной.",
+   "lemma": "сторона",
+   "options": [
+    "восточной стороне",
+    "восточная сторона",
+    "восточной стороной",
+    "восточной стороны"
+   ],
+   "correct": "восточной стороны",
+   "case": "Родительный (Genitive)",
+   "explain": "«восточной стороны» — the genitive here marks possession, absence, or quantity.",
+   "id": "c18",
+   "translation": "The remainder in the length, alongside the holy offering, shall be ten thousand eastward, and ten thousand westward; and it shall be alongside the holy offering. Its increase shall be for food to those who labor in the city."
+  },
+  {
+   "sentence": "___, которые станут возделывать его, будут из всех родов Израиля.",
+   "lemma": "работник",
+   "options": [
+    "городские работники",
+    "городских работников",
+    "городскими работниками",
+    "городских работниках"
+   ],
+   "correct": "городские работники",
+   "case": "Именительный (Nominative)",
+   "explain": "«Городские работники» — the subject of the sentence stands in the nominative.",
+   "id": "c19",
+   "translation": "Those who labor in the city, out of all the tribes of Israel, shall cultivate it."
+  },
+  {
+   "sentence": "Он будет отделен для ___ вместе с городским владением.",
+   "lemma": "использование",
+   "options": [
+    "особого использования",
+    "особому использованию",
+    "особом использовании",
+    "особым использованием"
+   ],
+   "correct": "особого использования",
+   "case": "Родительный (Genitive)",
+   "explain": "«особого использования» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c20",
+   "translation": "All the offering shall be a square of twenty-five thousand by twenty-five thousand. You shall offer it as a holy offering, with the possession of the city."
+  },
+  {
+   "sentence": "Он будет отделен для особого использования вместе с ___.",
+   "lemma": "владение",
+   "options": [
+    "городского владения",
+    "городское владение",
+    "городском владении",
+    "городским владением"
+   ],
+   "correct": "городским владением",
+   "case": "Творительный (Instrumental)",
+   "explain": "«городским владением» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c21",
+   "translation": "All the offering shall be a square of twenty-five thousand by twenty-five thousand. You shall offer it as a holy offering, with the possession of the city."
+  },
+  {
+   "sentence": "То, что останется с обеих сторон области, составленной ___ и городским владением, будет принадлежать вождю.",
+   "lemma": "участок",
+   "options": [
+    "священном участке",
+    "священный участок",
+    "священным участком",
+    "священному участку"
+   ],
+   "correct": "священным участком",
+   "case": "Творительный (Instrumental)",
+   "explain": "«священным участком» — the instrumental marks the means, company, or complement.",
+   "id": "c22",
+   "translation": "“The remainder shall be for the prince, on the one side and on the other of the holy offering and of the possession of the city; in front of the twenty-five thousand of the offering toward the east border, and westward in front of the twenty-five thousand toward the west border, alongside the portions, it shall be for the prince. The holy offering and the sanctuary of the house shall be in the middle of it."
+  },
+  {
+   "sentence": "То, что останется с обеих сторон области, составленной священным участком и ___, будет принадлежать вождю.",
+   "lemma": "владение",
+   "options": [
+    "городского владения",
+    "городское владение",
+    "городском владении",
+    "городским владением"
+   ],
+   "correct": "городским владением",
+   "case": "Творительный (Instrumental)",
+   "explain": "«городским владением» — the instrumental marks the means, company, or complement.",
+   "id": "c23",
+   "translation": "“The remainder shall be for the prince, on the one side and on the other of the holy offering and of the possession of the city; in front of the twenty-five thousand of the offering toward the east border, and westward in front of the twenty-five thousand toward the west border, alongside the portions, it shall be for the prince. The holy offering and the sanctuary of the house shall be in the middle of it."
+  },
+  {
+   "sentence": "Его земля протянется на восток от 25 000 локтей ___ к восточной границе, и на запад от 25 000 локтей к западной.",
+   "lemma": "участок",
+   "options": [
+    "священного участка",
+    "священный участок",
+    "священным участком",
+    "священному участку"
+   ],
+   "correct": "священного участка",
+   "case": "Родительный (Genitive)",
+   "explain": "«священного участка» — the genitive here marks possession, absence, or quantity.",
+   "id": "c24",
+   "translation": "“The remainder shall be for the prince, on the one side and on the other of the holy offering and of the possession of the city; in front of the twenty-five thousand of the offering toward the east border, and westward in front of the twenty-five thousand toward the west border, alongside the portions, it shall be for the prince. The holy offering and the sanctuary of the house shall be in the middle of it."
+  },
+  {
+   "sentence": "Его земля протянется на восток от 25 000 локтей священного участка к ___, и на запад от 25 000 локтей к западной.",
+   "lemma": "граница",
+   "options": [
+    "восточная граница",
+    "восточной границе",
+    "восточной границей",
+    "восточной границы"
+   ],
+   "correct": "восточной границе",
+   "case": "Дательный (Dative)",
+   "explain": "«восточной границе» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c25",
+   "translation": "“The remainder shall be for the prince, on the one side and on the other of the holy offering and of the possession of the city; in front of the twenty-five thousand of the offering toward the east border, and westward in front of the twenty-five thousand toward the west border, alongside the portions, it shall be for the prince. The holy offering and the sanctuary of the house shall be in the middle of it."
+  },
+  {
+   "sentence": "Обе эти области, равные по длине ___, будут принадлежать вождю.",
+   "lemma": "надел",
+   "options": [
+    "родовых наделов",
+    "родовым наделам",
+    "родовые наделы",
+    "родовых наделах"
+   ],
+   "correct": "родовым наделам",
+   "case": "Дательный (Dative)",
+   "explain": "«родовым наделам» — the dative marks the indirect object or recipient.",
+   "id": "c26",
+   "translation": "“The remainder shall be for the prince, on the one side and on the other of the holy offering and of the possession of the city; in front of the twenty-five thousand of the offering toward the east border, and westward in front of the twenty-five thousand toward the west border, alongside the portions, it shall be for the prince. The holy offering and the sanctuary of the house shall be in the middle of it."
+  },
+  {
+   "sentence": "Посреди них будет ___ со святилищем дома.",
+   "lemma": "участок",
+   "options": [
+    "священном участке",
+    "священного участка",
+    "священный участок",
+    "священному участку"
+   ],
+   "correct": "священный участок",
+   "case": "Именительный (Nominative)",
+   "explain": "«священный участок» — the subject of the sentence stands in the nominative.",
+   "id": "c27",
+   "translation": "“The remainder shall be for the prince, on the one side and on the other of the holy offering and of the possession of the city; in front of the twenty-five thousand of the offering toward the east border, and westward in front of the twenty-five thousand toward the west border, alongside the portions, it shall be for the prince. The holy offering and the sanctuary of the house shall be in the middle of it."
+  },
+  {
+   "sentence": "Что до ___, то надел Вениамина будет простираться с востока на запад.",
+   "lemma": "роды",
+   "options": [
+    "прочими родами",
+    "прочим родам",
+    "прочие роды",
+    "прочих родов"
+   ],
+   "correct": "прочих родов",
+   "case": "Родительный (Genitive)",
+   "explain": "«прочих родов» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c28",
+   "translation": "“As for the rest of the tribes: from the east side to the west side, Benjamin, one portion."
+  },
+  {
+   "sentence": "___ надела Гада протянется от Тамара к водам Мериват-Кадеша, а оттуда по руслу речки на границе Египта к Великому морю.",
+   "lemma": "граница",
+   "options": [
+    "южной границе",
+    "южной границы",
+    "южная граница",
+    "южной границей"
+   ],
+   "correct": "южная граница",
+   "case": "Именительный (Nominative)",
+   "explain": "«Южная граница» — the subject of the sentence stands in the nominative.",
+   "id": "c29",
+   "translation": "“By the border of Gad, at the south side southward, the border shall be even from Tamar to the waters of Meribath Kadesh, to the brook, to the great sea."
+  },
+  {
+   "sentence": "Южная граница надела Гада протянется от Тамара к водам Мериват-Кадеша, а оттуда по руслу речки на границе Египта к ___.",
+   "lemma": "море",
+   "options": [
+    "великим морем",
+    "великому морю",
+    "великое море",
+    "великого моря"
+   ],
+   "correct": "великому морю",
+   "case": "Дательный (Dative)",
+   "explain": "«Великому морю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c30",
+   "translation": "“By the border of Gad, at the south side southward, the border shall be even from Tamar to the waters of Meribath Kadesh, to the brook, to the great sea."
+  },
+  {
+   "sentence": "На ___, которая 4 500 локтей, будет трое ворот: ворота Гада, Асира и Неффалима.",
+   "lemma": "сторона",
+   "options": [
+    "западной стороной",
+    "западной стороне",
+    "западная сторона",
+    "западной стороны"
+   ],
+   "correct": "западной стороне",
+   "case": "Предложный (Prepositional)",
+   "explain": "«западной стороне» — after the preposition «на», for location or topic.",
+   "id": "c34",
+   "translation": "“At the west side four thousand and five hundred reeds, with their three gates: the gate of Gad, one; the gate of Asher, one; the gate of Naphtali, one."
+  },
+  {
+   "sentence": "___ стены — 18 000 локтей.",
+   "lemma": "длина",
+   "options": [
+    "общей длине",
+    "общей длины",
+    "общая длина",
+    "общей длиной"
+   ],
+   "correct": "общая длина",
+   "case": "Именительный (Nominative)",
+   "explain": "«Общая длина» — the subject of the sentence stands in the nominative.",
+   "id": "c35",
+   "translation": "“It shall be eighteen thousand reeds around: and the name of the city from that day shall be, ‘Yahweh is there.’"
+  }
+ ]
 }

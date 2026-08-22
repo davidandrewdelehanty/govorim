@@ -1,222 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ рос и набирался сил и мудрости, и милость Божия была на нем.",
-      "lemma": "ребёнок",
-      "options": ["ребёнок", "ребёнка", "ребёнку", "ребёнком"],
-      "correct": "ребёнок",
-      "case": "Именительный (Nominative)",
-      "translation": "The child grew and became strong and wise, and the grace of God was upon him.",
-      "explain": "Ребёнок is the subject of рос (was growing) → nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "она родила своего первенца, запеленала его и положила в кормушку для ___.",
-      "lemma": "скот",
-      "options": ["скот", "скота", "скоту", "скотом"],
-      "correct": "скота",
-      "case": "Родительный (Genitive)",
-      "translation": "She gave birth to her firstborn, wrapped him, and laid him in a feeding trough for livestock.",
-      "explain": "The preposition для (for) takes the genitive → скота."
-    },
-    {
-      "id": "c3",
-      "sentence": "Мария и Иосиф понесли младенца в Иерусалим, чтобы посвятить его ___.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господу",
-      "case": "Дательный (Dative)",
-      "translation": "Mary and Joseph brought the child to Jerusalem to dedicate him to the Lord.",
-      "explain": "Посвятить X кому-то (to dedicate X to someone) puts the recipient in the dative → Господу."
-    },
-    {
-      "id": "c4",
-      "sentence": "она родила своего ___, запеленала его и положила в кормушку для скота.",
-      "lemma": "первенец",
-      "options": ["первенец", "первенца", "первенцу", "первенцем"],
-      "correct": "первенца",
-      "case": "Винительный (Accusative)",
-      "translation": "She gave birth to her firstborn, wrapped him, and laid him in a feeding trough for livestock.",
-      "explain": "Первенца is the direct object of родила (gave birth to) → accusative. Первенец is animate, so its accusative matches the genitive form."
-    },
-    {
-      "id": "c5",
-      "sentence": "Он был праведен и благочестив и с ___ ожидал того, кто принесет утешение для Израиля.",
-      "lemma": "надежда",
-      "options": ["надежда", "надежды", "надежде", "надеждой"],
-      "correct": "надеждой",
-      "case": "Творительный (Instrumental)",
-      "translation": "He was righteous and devout, and with hope he waited for the one who would bring consolation to Israel.",
-      "explain": "The preposition с (with, accompaniment) takes the instrumental → надеждой."
-    },
-    {
-      "id": "c6",
-      "sentence": "В ___ в это время был человек, которого звали Симеоном.",
-      "lemma": "Иерусалим",
-      "options": ["Иерусалим", "Иерусалима", "Иерусалиму", "Иерусалиме"],
-      "correct": "Иерусалиме",
-      "case": "Предложный (Prepositional)",
-      "translation": "There was a man in Jerusalem at that time whose name was Simeon.",
-      "explain": "В (in), marking location, takes the prepositional → Иерусалиме."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Иосиф тоже пошел из галилейского города Назарета в Иудею, в город Давида, называемый Вифлеем, потому что он был потомком Давида.",
-      "question": "Why did Joseph travel to Bethlehem?",
-      "options": [
-        "Because he was a descendant of David and had to register there",
-        "Because Herod ordered him to hide there",
-        "Because Mary was born there",
-        "Because there was a wedding to attend"
-      ],
-      "correct": "Because he was a descendant of David and had to register there",
-      "explain": "Joseph went to Bethlehem, the city of David, because he was descended from David and had to register for the census."
-    },
-    {
-      "id": "r2",
-      "ru": "В Вифлееме у Марии подошло время родов, и она родила своего первенца, запеленала его и положила в кормушку для скота, потому что для них не нашлось места в гостинице.",
-      "question": "Where did Mary lay her newborn son, and why?",
-      "options": [
-        "In a feeding trough, because there was no room at the inn",
-        "In a golden cradle at the temple",
-        "In a basket by the river",
-        "In a tent outside the city walls"
-      ],
-      "correct": "In a feeding trough, because there was no room at the inn",
-      "explain": "Mary laid her firstborn in a feeding trough for livestock because there was no room for them in the inn."
-    },
-    {
-      "id": "r3",
-      "ru": "Вдруг перед ними предстал ангел Господа, окруженный сиянием Господней славы. Пастухи очень испугались",
-      "question": "How did the shepherds react when the angel appeared to them?",
-      "options": [
-        "They were terrified",
-        "They laughed with disbelief",
-        "They ran away immediately",
-        "They fell asleep"
-      ],
-      "correct": "They were terrified",
-      "explain": "When the angel of the Lord appeared before them in glory, the shepherds were terrified."
-    },
-    {
-      "id": "r4",
-      "ru": "Сегодня в городе Давида родился ваш Спаситель, Христос, Господь.",
-      "question": "What news did the angel bring to the shepherds?",
-      "options": [
-        "A Savior, Christ the Lord, was born in the city of David",
-        "A new king had been crowned in Jerusalem",
-        "Herod had declared a holiday",
-        "The temple had been rebuilt"
-      ],
-      "correct": "A Savior, Christ the Lord, was born in the city of David",
-      "explain": "The angel announced that a Savior, Christ the Lord, had been born in the city of David."
-    },
-    {
-      "id": "r5",
-      "ru": "«Слава Богу, вышине небес! А на земле мир людям, которым он благоволит».",
-      "question": "What did the heavenly host proclaim?",
-      "options": [
-        "\"Glory to God in the highest, and on earth peace to those he favors\"",
-        "\"Woe to the people of Bethlehem\"",
-        "\"The Messiah will come in a thousand years\"",
-        "\"Rejoice, for Herod is dead\""
-      ],
-      "correct": "\"Glory to God in the highest, and on earth peace to those he favors\"",
-      "explain": "The heavenly host praised God, saying, \"Glory to God in the highest, and on earth peace to those he favors.\""
-    },
-    {
-      "id": "r6",
-      "ru": "Они поспешили туда и нашли Марию, Иосифа и младенца, лежащего в кормушке для скота.",
-      "question": "What did the shepherds find when they hurried to Bethlehem?",
-      "options": [
-        "Mary, Joseph, and the baby lying in the feeding trough",
-        "An empty stable",
-        "A crowd of angels",
-        "Only Joseph, since Mary had already left"
-      ],
-      "correct": "Mary, Joseph, and the baby lying in the feeding trough",
-      "explain": "The shepherds hurried and found Mary, Joseph, and the baby lying in the feeding trough."
-    },
-    {
-      "id": "r7",
-      "ru": "На восьмой день, когда пришло время совершить над ним обряд обрезания, его назвали Иисусом, именем, которое ангел дал ему еще до того, как он был зачат.",
-      "question": "What happened on the eighth day after Jesus's birth?",
-      "options": [
-        "He was circumcised and named Jesus",
-        "He was presented to King Herod",
-        "He was baptized by John",
-        "He was taken to Egypt"
-      ],
-      "correct": "He was circumcised and named Jesus",
-      "explain": "On the eighth day the child was circumcised and named Jesus, the name given by the angel before he was conceived."
-    },
-    {
-      "id": "r8",
-      "ru": "Симеон взял его на руки и благословил Бога, сказав, «Владыка, как ты и обещал, теперь ты отпускаешь своего слугу с миром, потому что мои глаза увидели спасение твое,",
-      "question": "What did Simeon do when he took the baby Jesus in his arms?",
-      "options": [
-        "He blessed God, saying he could now depart in peace",
-        "He wept and refused to let go",
-        "He demanded a sacrifice",
-        "He asked to speak with the priests"
-      ],
-      "correct": "He blessed God, saying he could now depart in peace",
-      "explain": "Simeon took the child in his arms and blessed God, saying he could now depart in peace as promised."
-    },
-    {
-      "id": "r9",
-      "ru": "Да и тебе самой меч пронзит душу.",
-      "question": "What did Simeon prophesy to Mary?",
-      "options": [
-        "A sword would pierce her own soul",
-        "She would become a prophetess",
-        "She would never see Jesus again",
-        "She would live to be very old"
-      ],
-      "correct": "A sword would pierce her own soul",
-      "explain": "Simeon told Mary that a sword would pierce her own soul as well."
-    },
-    {
-      "id": "r10",
-      "ru": "Она была в глубокой старости. Анна прожила семь лет со своим мужем, а всю остальную жизнь она жила вдовой.",
-      "question": "What do we learn about the prophetess Anna?",
-      "options": [
-        "She was very old, had been married seven years, then lived as a widow",
-        "She was a young virgin like Mary",
-        "She was the wife of Simeon",
-        "She had never married"
-      ],
-      "correct": "She was very old, had been married seven years, then lived as a widow",
-      "explain": "Anna was very old, having lived seven years with her husband and then as a widow the rest of her life."
-    },
-    {
-      "id": "r11",
-      "ru": "Через три дня они нашли мальчика в храме. Он сидел среди учителей, слушал их и задавал вопросы.",
-      "question": "Where did Mary and Joseph find the twelve-year-old Jesus after three days of searching?",
-      "options": [
-        "In the temple, sitting among the teachers, listening and asking questions",
-        "At the marketplace selling goods",
-        "Sleeping in the desert",
-        "Traveling back to Nazareth alone"
-      ],
-      "correct": "In the temple, sitting among the teachers, listening and asking questions",
-      "explain": "After three days they found Jesus in the temple, sitting among the teachers, listening to them and asking questions."
-    },
-    {
-      "id": "r12",
-      "ru": "Разве вы не знали, что я должен быть в том, что принадлежит отцу моему?",
-      "question": "How did Jesus answer his parents when they found him in the temple?",
-      "options": [
-        "He asked if they didn't know he must be in his Father's house",
-        "He apologized and promised never to wander off again",
-        "He said he was waiting for a teacher to arrive",
-        "He said he was hiding from Herod's soldiers"
-      ],
-      "correct": "He asked if they didn't know he must be in his Father's house",
-      "explain": "Jesus asked his parents whether they didn't know he had to be about his Father's business."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Иосиф тоже пошел из ___ Назарета в Иудею, в город Давида, называемый Вифлеем, потому что он был потомком Давида.",
+   "lemma": "город",
+   "options": [
+    "галилейским городом",
+    "галилейский город",
+    "галилейского города",
+    "галилейском городе"
+   ],
+   "correct": "галилейского города",
+   "case": "Родительный (Genitive)",
+   "explain": "«галилейского города» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "Joseph also went up from Galilee, out of the city of Nazareth, into Judea, to David’s city, which is called Bethlehem, because he was of the house and family of David;"
+  },
+  {
+   "sentence": "Вдруг перед ними предстал ангел Господа, окруженный сиянием ___.",
+   "lemma": "слава",
+   "options": [
+    "господняя слава",
+    "господней славы",
+    "господней славой",
+    "господней славе"
+   ],
+   "correct": "господней славы",
+   "case": "Родительный (Genitive)",
+   "explain": "«Господней славы» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Behold, an angel of the Lord stood by them, and the glory of the Lord shone around them, and they were terrified."
+  },
+  {
+   "sentence": "И вдруг к ангелу присоединилось многочисленное ___, славившее Бога и восклицавшее:",
+   "lemma": "воинство",
+   "options": [
+    "небесного воинства",
+    "небесное воинство",
+    "небесному воинству",
+    "небесным воинством"
+   ],
+   "correct": "небесное воинство",
+   "case": "Именительный (Nominative)",
+   "explain": "«небесное воинство» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "Suddenly, there was with the angel a multitude of the heavenly army praising God, and saying,"
+  },
+  {
+   "sentence": "Они должны были также по Закону Господа принести в жертву пару горлиц или двух ___ .",
+   "lemma": "голубь",
+   "options": [
+    "молодых голубях",
+    "молодыми голубями",
+    "молодые голуби",
+    "молодых голубей"
+   ],
+   "correct": "молодых голубей",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодых голубей» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "and to offer a sacrifice according to that which is said in the law of the Lord, “A pair of turtledoves, or two young pigeons.”"
+  },
+  {
+   "sentence": "Полагая, что Он идет среди ___, они после целого дня пути стали искать Его среди родственников и знакомых.",
+   "lemma": "путник",
+   "options": [
+    "других путников",
+    "других путниках",
+    "другим путникам",
+    "другие путники"
+   ],
+   "correct": "других путников",
+   "case": "Родительный (Genitive)",
+   "explain": "«других путников» — after the preposition «среди», the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "but supposing him to be in the company, they went a day’s journey, and they looked for him among their relatives and acquaintances."
+  },
+  {
+   "sentence": "Полагая, что Он идет среди других путников, они после ___ пути стали искать Его среди родственников и знакомых.",
+   "lemma": "день",
+   "options": [
+    "целому дню",
+    "целый день",
+    "целого дня",
+    "целым днём"
+   ],
+   "correct": "целого дня",
+   "case": "Родительный (Genitive)",
+   "explain": "«целого дня» — after the preposition «после», the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "but supposing him to be in the company, they went a day’s journey, and they looked for him among their relatives and acquaintances."
+  }
+ ]
 }

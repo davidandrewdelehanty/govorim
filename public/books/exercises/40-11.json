@@ -1,200 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Среди рожденных женами еще не было ___ более великого, чем Иоанн Креститель.",
-      "lemma": "человек",
-      "options": [
-        "человек",
-        "человека",
-        "человеку",
-        "человеком"
-      ],
-      "correct": "человека",
-      "case": "Родительный (Genitive)",
-      "translation": "Among those born of women there has not arisen anyone greater than John the Baptist.",
-      "explain": "The negated existential не было governs the genitive case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Ты, утаив от мудрецов и ученых, открыл это ___.",
-      "lemma": "младенец",
-      "options": [
-        "младенцы",
-        "младенцев",
-        "младенцам",
-        "младенцами"
-      ],
-      "correct": "младенцам",
-      "case": "Дательный (Dative)",
-      "translation": "You, hiding it from the wise and learned, revealed it to infants.",
-      "explain": "The verb открыл (revealed to) takes its recipient in the dative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Тогда что же вы ходили смотреть? ___.",
-      "lemma": "пророк",
-      "options": [
-        "пророк",
-        "пророка",
-        "пророку",
-        "пророком"
-      ],
-      "correct": "пророка",
-      "case": "Винительный (Accusative)",
-      "translation": "Then what did you go out to see? A prophet.",
-      "explain": "The verb смотреть (to go see) takes a direct object in the accusative case; пророк is animate, so its accusative matches the genitive form."
-    },
-    {
-      "id": "c4",
-      "sentence": "Говорю вам истину, среди рожденных ___ еще не было человека более великого, чем Иоанн Креститель.",
-      "lemma": "жена",
-      "options": [
-        "жёны",
-        "жён",
-        "жёнам",
-        "жёнами"
-      ],
-      "correct": "жёнами",
-      "case": "Творительный (Instrumental)",
-      "translation": "I tell you the truth, among those born of women there has not been anyone greater than John the Baptist.",
-      "explain": "Instrumental expresses the agent 'born of women' without a preposition."
-    },
-    {
-      "id": "c5",
-      "sentence": "Когда Иоанн, находясь в ___, услышал о том, что делает Христос, он послал своих учеников спросить его.",
-      "lemma": "темница",
-      "options": [
-        "темница",
-        "темницы",
-        "темнице",
-        "темницу"
-      ],
-      "correct": "темнице",
-      "case": "Предложный (Prepositional)",
-      "translation": "When John, being in prison, heard what Christ was doing, he sent his disciples to ask him.",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Со дней Иоанна Крестителя и до ныне ___ Божие стремительно продвигается вперед.",
-      "lemma": "царство",
-      "options": [
-        "царство",
-        "царства",
-        "царству",
-        "царством"
-      ],
-      "correct": "царство",
-      "case": "Именительный (Nominative)",
-      "translation": "From the days of John the Baptist until now, the kingdom of God has been advancing forcefully.",
-      "explain": "Царство is the grammatical subject of the verb продвигается, so it stands in the nominative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Ты ли тот, кто должен прийти? Или нам ожидать кого-то другого?",
-      "question": "What question did John's disciples ask Jesus?",
-      "options": [
-        "Whether he was the one who was to come, or should they wait for another",
-        "Whether he would forgive their sins",
-        "Whether he needed money",
-        "Whether he would free John from prison"
-      ],
-      "correct": "Whether he was the one who was to come, or should they wait for another",
-      "explain": "John sends disciples to ask Ты ли тот, кто должен прийти? Или нам ожидать кого-то другого?"
-    },
-    {
-      "id": "r2",
-      "ru": "Слепые прозревают, хромые ходят, прокаженные очищаются, глухие слышат, мертвые воскресают, и бедным возвещается радостная весть",
-      "question": "What evidence did Jesus give John's disciples of his identity?",
-      "options": [
-        "The blind see, the lame walk, the deaf hear, the dead are raised, and good news is preached to the poor",
-        "He recited the entire Law of Moses",
-        "He performed a public miracle before a crowd of priests",
-        "He showed them a written prophecy"
-      ],
-      "correct": "The blind see, the lame walk, the deaf hear, the dead are raised, and good news is preached to the poor",
-      "explain": "Jesus lists these signs as proof of who he is."
-    },
-    {
-      "id": "r3",
-      "ru": "Говорю вам истину, среди рожденных женами еще не было человека более великого, чем Иоанн Креститель, но наименьший в Царстве Небесном больше его",
-      "question": "What did Jesus say about John the Baptist's greatness?",
-      "options": [
-        "No one born of women was greater, yet the least in heaven's kingdom is greater than him",
-        "John was the greatest king in Israel's history",
-        "John was greater than the Son of Man",
-        "John would never be remembered"
-      ],
-      "correct": "No one born of women was greater, yet the least in heaven's kingdom is greater than him",
-      "explain": "Jesus says none born of women is greater than John, but наименьший в Царстве Небесном больше его."
-    },
-    {
-      "id": "r4",
-      "ru": "Мы играли вам на свирели, а вы не плясали. Мы пели вам похоронные песни, а вы не печалились.",
-      "question": "What complaint does Jesus attribute to 'this generation' about their reaction to others?",
-      "options": [
-        "They neither danced to the flute nor mourned at funeral songs",
-        "They danced too much at weddings",
-        "They refused to listen to any music",
-        "They complained about the price of food"
-      ],
-      "correct": "They neither danced to the flute nor mourned at funeral songs",
-      "explain": "The children's complaint describes people who would not dance to the flute or mourn at funeral songs."
-    },
-    {
-      "id": "r5",
-      "ru": "Горе тебе, Хоразин! Горе тебе, Вифсаида!",
-      "question": "Which cities did Jesus pronounce 'woe' upon for not repenting?",
-      "options": [
-        "Chorazin and Bethsaida",
-        "Jerusalem and Bethlehem",
-        "Nazareth and Cana",
-        "Tyre and Sidon"
-      ],
-      "correct": "Chorazin and Bethsaida",
-      "explain": "Jesus says Горе тебе, Хоразин! Горе тебе, Вифсаида!"
-    },
-    {
-      "id": "r6",
-      "ru": "Я славлю тебя, Отец, Господь неба и земли, за то, что ты, утаив от мудрецов и ученых, открыл это младенцам.",
-      "question": "To whom did the Father reveal these things, according to Jesus' prayer?",
-      "options": [
-        "To infants/little children, rather than the wise and learned",
-        "To the Pharisees and scribes",
-        "To kings and rulers",
-        "To no one at all"
-      ],
-      "correct": "To infants/little children, rather than the wise and learned",
-      "explain": "Jesus thanks the Father for hiding things from the wise and revealing them to младенцам (infants)."
-    },
-    {
-      "id": "r7",
-      "ru": "Придите ко мне, все уставшие и обремененные, и я успокою вас.",
-      "question": "Who does Jesus invite to come to him?",
-      "options": [
-        "All who are weary and burdened",
-        "Only the wealthy",
-        "Only religious leaders",
-        "Only children"
-      ],
-      "correct": "All who are weary and burdened",
-      "explain": "Jesus invites все уставшие и обремененные (all who are weary and burdened)."
-    },
-    {
-      "id": "r8",
-      "ru": "Возьмите на себя ермо мое и научитесь у меня, потому что я кроток и мягок сердцем, и вы найдете покой вашим душам",
-      "question": "What does Jesus say his followers will find if they learn from him?",
-      "options": [
-        "Rest for their souls",
-        "Great riches",
-        "A position of power",
-        "Freedom from all illness"
-      ],
-      "correct": "Rest for their souls",
-      "explain": "Jesus promises вы найдете покой вашим душам (you will find rest for your souls)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Человека, одетого в ___?",
+   "lemma": "одежда",
+   "options": [
+    "роскошные одежды",
+    "роскошным одеждам",
+    "роскошными одеждами",
+    "роскошных одежд"
+   ],
+   "correct": "роскошные одежды",
+   "case": "Винительный (Accusative)",
+   "explain": "«роскошные одежды» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "But what did you go out to see? A man in soft clothing? Behold, those who wear soft clothing are in kings’ houses."
+  },
+  {
+   "sentence": "Нет, те, кто одевается в ___, находятся в царских дворцах.",
+   "lemma": "одежда",
+   "options": [
+    "роскошные одежды",
+    "роскошным одеждам",
+    "роскошными одеждами",
+    "роскошных одежд"
+   ],
+   "correct": "роскошные одежды",
+   "case": "Винительный (Accusative)",
+   "explain": "«роскошные одежды» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c2",
+   "translation": "But what did you go out to see? A man in soft clothing? Behold, those who wear soft clothing are in kings’ houses."
+  },
+  {
+   "sentence": "Нет, те, кто одевается в роскошные одежды, находятся в ___.",
+   "lemma": "дворец",
+   "options": [
+    "царских дворцов",
+    "царских дворцах",
+    "царские дворцы",
+    "царскими дворцами"
+   ],
+   "correct": "царских дворцах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«царских дворцах» — after the preposition «в», for location or topic.",
+   "id": "c3",
+   "translation": "But what did you go out to see? A man in soft clothing? Behold, those who wear soft clothing are in kings’ houses."
+  }
+ ]
 }

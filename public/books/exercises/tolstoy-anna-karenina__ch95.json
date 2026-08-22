@@ -1,21 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Он указал на ___.",
-   "lemma": "помещик",
-   "options": [
-    "другого помещика",
-    "другого помещика",
-    "другой помещик",
-    "другом помещике"
-   ],
-   "correct": "другого помещика",
-   "case": "Винительный (Accusative)",
-   "explain": "«другого помещика» — after the preposition «на», the accusative marks the direct object of the verb.",
-   "id": "c1",
-   "translation": "He indicated the other landowner."
-  },
-  {
    "sentence": "Это разве ___? – сказал помещик, очевидно щеголяя словом «рациональное».",
    "lemma": "хозяйство",
    "options": [
@@ -91,6 +76,21 @@
    "translation": "“Why, manage like Mihail Petrovitch, or let the land for half the crop or for rent to the peasants; that one can do—only that’s just how the general prosperity of the country is being ruined. Where the land with serf-labor and good management gave a yield of nine to one, on the half-crop system it yields three to one. Russia has been ruined by the emancipation!”"
   },
   {
+   "sentence": "Где земля у меня при крепостном труде и ___ приносила сам-девять, она исполу принесет самтретей.",
+   "lemma": "хозяйство",
+   "options": [
+    "хорошим хозяйством",
+    "хорошему хозяйству",
+    "хорошем хозяйстве",
+    "хорошего хозяйства"
+   ],
+   "correct": "хорошем хозяйстве",
+   "case": "Предложный (Prepositional)",
+   "explain": "«хорошем хозяйстве» — the prepositional is used only after a preposition, for location or topic.",
+   "id": "c7",
+   "translation": "“Why, manage like Mihail Petrovitch, or let the land for half the crop or for rent to the peasants; that one can do—only that’s just how the general prosperity of the country is being ruined. Where the land with serf-labor and good management gave a yield of nine to one, on the half-crop system it yields three to one. Russia has been ruined by the emancipation!”"
+  },
+  {
    "sentence": "Теперь-с, при уничтожении ___, у нас отняли власть, и хозяйство наше, то, где оно поднято на высокий уровень, должно опуститься к самому дикому, первобытному состоянию.",
    "lemma": "право",
    "options": [
@@ -102,7 +102,22 @@
    "correct": "крепостного права",
    "case": "Родительный (Genitive)",
    "explain": "«крепостного права» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7",
+   "id": "c8",
+   "translation": "“The point is, don’t you see, that progress of every sort is only made by the use of authority,” he said, evidently wishing to show he was not without culture. “Take the reforms of Peter, of Catherine, of Alexander. Take European history. And progress in agriculture more than anything else—the potato, for instance, that was introduced among us by force. The wooden plough too wasn’t always used. It was introduced maybe in the days before the Empire, but it was probably brought in by force. Now, in our own day, we landowners in the serf times used various improvements in our husbandry: drying machines and thrashing machines, and carting manure and all the modern implements—all that we brought into use by our authority, and the peasants opposed it at first, and ended by imitating us. Now, by the abolition of serfdom we have been deprived of our authority; and so our husbandry, where it had been raised to a high level, is bound to sink to the most savage primitive condition. That’s how I see it.”"
+  },
+  {
+   "sentence": "Теперь-с, при уничтожении крепостного права, у нас отняли власть, и хозяйство наше, то, где оно поднято на ___, должно опуститься к самому дикому, первобытному состоянию.",
+   "lemma": "уровень",
+   "options": [
+    "высоком уровне",
+    "высокому уровню",
+    "высоким уровнем",
+    "высокий уровень"
+   ],
+   "correct": "высокий уровень",
+   "case": "Винительный (Accusative)",
+   "explain": "«высокий уровень» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c9",
    "translation": "“The point is, don’t you see, that progress of every sort is only made by the use of authority,” he said, evidently wishing to show he was not without culture. “Take the reforms of Peter, of Catherine, of Alexander. Take European history. And progress in agriculture more than anything else—the potato, for instance, that was introduced among us by force. The wooden plough too wasn’t always used. It was introduced maybe in the days before the Empire, but it was probably brought in by force. Now, in our own day, we landowners in the serf times used various improvements in our husbandry: drying machines and thrashing machines, and carting manure and all the modern implements—all that we brought into use by our authority, and the peasants opposed it at first, and ended by imitating us. Now, by the abolition of serfdom we have been deprived of our authority; and so our husbandry, where it had been raised to a high level, is bound to sink to the most savage primitive condition. That’s how I see it.”"
   },
   {
@@ -117,7 +132,22 @@
    "correct": "рабочая сила",
    "case": "Именительный (Nominative)",
    "explain": "«рабочая сила» — the subject of the sentence stands in the nominative.",
-   "id": "c8",
+   "id": "c10",
+   "translation": "“There it is—the labor force—the chief element in agriculture,” thought Levin."
+  },
+  {
+   "sentence": "«Вот она – рабочая сила, ___ хозяйства», – подумал Левин.",
+   "lemma": "элемент",
+   "options": [
+    "главном элементе",
+    "главного элемента",
+    "главный элемент",
+    "главным элементом"
+   ],
+   "correct": "главный элемент",
+   "case": "Именительный (Nominative)",
+   "explain": "«главный элемент» — the subject of the sentence stands in the nominative.",
+   "id": "c11",
    "translation": "“There it is—the labor force—the chief element in agriculture,” thought Levin."
   },
   {
@@ -132,7 +162,22 @@
    "correct": "хорошими орудиями",
    "case": "Творительный (Instrumental)",
    "explain": "«хорошими орудиями» — the instrumental marks the means, company, or complement.",
-   "id": "c9",
+   "id": "c12",
+   "translation": "“The laborers won’t work well, and won’t work with good implements. Our laborer can do nothing but get drunk like a pig, and when he’s drunk he ruins everything you give him. He makes the horses ill with too much water, cuts good harness, barters the tires of the wheels for drink, drops bits of iron into the thrashing machine, so as to break it. He loathes the sight of anything that’s not after his fashion. And that’s how it is the whole level of husbandry has fallen. Lands gone out of cultivation, overgrown with weeds, or divided among the peasants, and where millions of bushels were raised you get a hundred thousand; the wealth of the country has decreased. If the same thing had been done, but with care that. …”"
+  },
+  {
+   "sentence": "Земли заброшены, заросли полынями или розданы мужикам, и где производили миллион, производят сотни тысяч четвертей; ___ уменьшилось.",
+   "lemma": "богатство",
+   "options": [
+    "общем богатстве",
+    "общим богатством",
+    "общее богатство",
+    "общего богатства"
+   ],
+   "correct": "общее богатство",
+   "case": "Именительный (Nominative)",
+   "explain": "«общее богатство» — the subject of the sentence stands in the nominative.",
+   "id": "c13",
    "translation": "“The laborers won’t work well, and won’t work with good implements. Our laborer can do nothing but get drunk like a pig, and when he’s drunk he ruins everything you give him. He makes the horses ill with too much water, cuts good harness, barters the tires of the wheels for drink, drops bits of iron into the thrashing machine, so as to break it. He loathes the sight of anything that’s not after his fashion. And that’s how it is the whole level of husbandry has fallen. Lands gone out of cultivation, overgrown with weeds, or divided among the peasants, and where millions of bushels were raised you get a hundred thousand; the wealth of the country has decreased. If the same thing had been done, but with care that. …”"
   },
   {
@@ -147,8 +192,233 @@
    "correct": "крепостном праве",
    "case": "Предложный (Prepositional)",
    "explain": "«крепостном праве» — after the preposition «при», for location or topic.",
-   "id": "c10",
+   "id": "c14",
    "translation": "“I don’t believe it,” Sviazhsky replied quite seriously; “all I see is that we don’t know how to cultivate the land, and that our system of agriculture in the serf days was by no means too high, but too low. We have no machines, no good stock, no efficient supervision; we don’t even know how to keep accounts. Ask any landowner; he won’t be able to tell you what crop’s profitable, and what’s not.”"
+  },
+  {
+   "sentence": "Дрянную молотилку, ___ ваш, сломают, а мою паровую не сломают.",
+   "lemma": "топчачок",
+   "options": [
+    "российский топчачок",
+    "российскому топчачку",
+    "российского топчачка",
+    "российским топчачком"
+   ],
+   "correct": "российский топчачок",
+   "case": "Именительный (Nominative)",
+   "explain": "«российский топчачок» — the subject of the sentence stands in the nominative.",
+   "id": "c15",
+   "translation": "“Why do they spoil things? A poor thrashing machine, or your Russian presser, they will break, but my steam press they don’t break. A wretched Russian nag they’ll ruin, but keep good dray-horses—they won’t ruin them. And so it is all round. We must raise our farming to a higher level.”"
+  },
+  {
+   "sentence": "– Вот это верно, – засмеявшись даже от удовольствия, подтвердил помещик с ___.",
+   "lemma": "ус",
+   "options": [
+    "седым усам",
+    "седых усах",
+    "седыми усами",
+    "седых усов"
+   ],
+   "correct": "седыми усами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«седыми усами» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c16",
+   "translation": "“That’s true enough,” the gentleman with the gray whiskers chimed in, positively laughing with satisfaction."
+  },
+  {
+   "sentence": "– И я не один, – продолжал Левин, – я сошлюсь на всех хозяев, ведущих рационально дело; все, за ___, ведут дело в убыток.",
+   "lemma": "исключение",
+   "options": [
+    "редкими исключениями",
+    "редкие исключения",
+    "редких исключений",
+    "редким исключениям"
+   ],
+   "correct": "редкими исключениями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«редкими исключениями» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "id": "c17",
+   "translation": "“And I’m not the only one,” pursued Levin. “I mix with all the neighboring landowners, who are cultivating their land on a rational system; they all, with rare exceptions, are doing so at a loss. Come, tell us how does your land do—does it pay?” said Levin, and at once in Sviazhsky’s eyes he detected that fleeting expression of alarm which he had noticed whenever he had tried to penetrate beyond the outer chambers of Sviazhsky’s mind."
+  },
+  {
+   "sentence": "– Может быть, невыгодно, – отвечал Свияжский. – Это только доказывает, или что я ___, или что я затрачиваю капитал на увеличение ренты.",
+   "lemma": "хозяин",
+   "options": [
+    "плохом хозяине",
+    "плохим хозяином",
+    "плохой хозяин",
+    "плохому хозяину"
+   ],
+   "correct": "плохой хозяин",
+   "case": "Именительный (Nominative)",
+   "explain": "«плохой хозяин» — the subject of the sentence stands in the nominative.",
+   "id": "c18",
+   "translation": "“Possibly it does not pay,” answered Sviazhsky. “That merely proves either that I’m a bad manager, or that I’ve sunk my capital for the increase of my rents.”"
+  },
+  {
+   "sentence": "И в самом ___ духа Свияжский встал и отошел, видимо предполагая, что разговор окончен на том самом месте, где Левину казалось, что он только начинается.",
+   "lemma": "расположение",
+   "options": [
+    "приятному расположению",
+    "приятном расположении",
+    "приятное расположение",
+    "приятным расположением"
+   ],
+   "correct": "приятном расположении",
+   "case": "Предложный (Prepositional)",
+   "explain": "«приятном расположении» — after the preposition «в», for location or topic.",
+   "id": "c19",
+   "translation": "And in the happiest frame of mind Sviazhsky got up and walked off, apparently supposing the conversation to have ended at the very point when to Levin it seemed that it was only just beginning."
+  },
+  {
+   "sentence": "И в самом приятном расположении духа Свияжский встал и отошел, видимо предполагая, что разговор окончен на том ___, где Левину казалось, что он только начинается.",
+   "lemma": "место",
+   "options": [
+    "самом месте",
+    "самим местом",
+    "самого места",
+    "самому месту"
+   ],
+   "correct": "самом месте",
+   "case": "Предложный (Prepositional)",
+   "explain": "«самом месте» — after the preposition «на», for location or topic.",
+   "id": "c20",
+   "translation": "And in the happiest frame of mind Sviazhsky got up and walked off, apparently supposing the conversation to have ended at the very point when to Levin it seemed that it was only just beginning."
+  },
+  {
+   "sentence": "– Отчего вы думаете, – говорил Левин, стараясь вернуться к вопросу, – что нельзя найти такого отношения к ___, при которой работа была бы производительна?",
+   "lemma": "сила",
+   "options": [
+    "рабочая сила",
+    "рабочей силы",
+    "рабочей силе",
+    "рабочей силой"
+   ],
+   "correct": "рабочей силе",
+   "case": "Дательный (Dative)",
+   "explain": "«рабочей силе» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c21",
+   "translation": "“What makes you think,” said Levin, trying to get back to the question, “that it’s impossible to find some relation to the laborer in which the labor would become productive?”"
+  },
+  {
+   "sentence": "– Никогда этого с ___ не будет!",
+   "lemma": "народ",
+   "options": [
+    "русский народ",
+    "русским народом",
+    "русском народе",
+    "русского народа"
+   ],
+   "correct": "русским народом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«русским народом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c22",
+   "translation": "“That never could be so with the Russian peasantry; we’ve no power over them,” answered the landowner."
+  },
+  {
+   "sentence": "– Потому что это все равно, что придумывать вновь приемы для постройки ___.",
+   "lemma": "дорога",
+   "options": [
+    "железных дорог",
+    "железных дорогах",
+    "железными дорогами",
+    "железные дороги"
+   ],
+   "correct": "железных дорог",
+   "case": "Родительный (Genitive)",
+   "explain": "«железных дорог» — the genitive here marks possession, absence, or quantity.",
+   "id": "c23",
+   "translation": "“Because it would be just like inventing afresh the means for constructing railways. They are ready, invented.”"
+  },
+  {
+   "sentence": "Потом вся эта ___ рабочего вопроса, самого либерального лассалевского направления…",
+   "lemma": "литература",
+   "options": [
+    "громадной литературе",
+    "громадной литературой",
+    "громадная литература",
+    "громадной литературы"
+   ],
+   "correct": "громадная литература",
+   "case": "Именительный (Nominative)",
+   "explain": "«громадная литература» — the subject of the sentence stands in the nominative.",
+   "id": "c24",
+   "translation": "“That question is now absorbing the best minds in Europe. The Schulze-Delitsch movement. … And then all this enormous literature of the labor question, the most liberal Lassalle movement … the Mulhausen experiment? That’s a fact by now, as you’re probably aware.”"
+  },
+  {
+   "sentence": "Потом вся эта громадная литература ___, самого либерального лассалевского направления…",
+   "lemma": "вопрос",
+   "options": [
+    "рабочему вопросу",
+    "рабочего вопроса",
+    "рабочем вопросе",
+    "рабочим вопросом"
+   ],
+   "correct": "рабочего вопроса",
+   "case": "Родительный (Genitive)",
+   "explain": "«рабочего вопроса» — the genitive here marks possession, absence, or quantity.",
+   "id": "c25",
+   "translation": "“That question is now absorbing the best minds in Europe. The Schulze-Delitsch movement. … And then all this enormous literature of the labor question, the most liberal Lassalle movement … the Mulhausen experiment? That’s a fact by now, as you’re probably aware.”"
+  },
+  {
+   "sentence": "Потом вся эта громадная литература рабочего вопроса, самого либерального ___…",
+   "lemma": "направление",
+   "options": [
+    "лассалевское направление",
+    "лассалевском направлении",
+    "лассалевскому направлению",
+    "лассалевского направления"
+   ],
+   "correct": "лассалевского направления",
+   "case": "Родительный (Genitive)",
+   "explain": "«лассалевского направления» — the genitive here marks possession, absence, or quantity.",
+   "id": "c26",
+   "translation": "“That question is now absorbing the best minds in Europe. The Schulze-Delitsch movement. … And then all this enormous literature of the labor question, the most liberal Lassalle movement … the Mulhausen experiment? That’s a fact by now, as you’re probably aware.”"
+  },
+  {
+   "sentence": "___ – это уже факт, вы, верно, знаете.",
+   "lemma": "устройство",
+   "options": [
+    "мильгаузенским устройством",
+    "мильгаузенского устройства",
+    "мильгаузенскому устройству",
+    "мильгаузенское устройство"
+   ],
+   "correct": "мильгаузенское устройство",
+   "case": "Именительный (Nominative)",
+   "explain": "«Мильгаузенское устройство» — the subject of the sentence stands in the nominative.",
+   "id": "c27",
+   "translation": "“That question is now absorbing the best minds in Europe. The Schulze-Delitsch movement. … And then all this enormous literature of the labor question, the most liberal Lassalle movement … the Mulhausen experiment? That’s a fact by now, as you’re probably aware.”"
+  },
+  {
+   "sentence": "Я, разумеется, не ___, но меня это интересовало, и, право, если вас интересует, вы займитесь.",
+   "lemma": "профессор",
+   "options": [
+    "социальным профессором",
+    "социальный профессор",
+    "социальном профессоре",
+    "социальному профессору"
+   ],
+   "correct": "социальный профессор",
+   "case": "Именительный (Nominative)",
+   "explain": "«социальный профессор» — the subject of the sentence stands in the nominative.",
+   "id": "c28",
+   "translation": "“No, you only say that; no doubt you know all about it as well as I do. I’m not a professor of sociology, of course, but it interested me, and really, if it interests you, you ought to study it.”"
+  },
+  {
+   "sentence": "Помещики встали, и Свияжский, опять остановив Левина в его ___ заглядывать в то, что сзади приемных комнат его ума, пошел провожать своих гостей.",
+   "lemma": "привычка",
+   "options": [
+    "неприятной привычке",
+    "неприятной привычкой",
+    "неприятной привычки",
+    "неприятная привычка"
+   ],
+   "correct": "неприятной привычке",
+   "case": "Предложный (Prepositional)",
+   "explain": "«неприятной привычке» — after the preposition «в», for location or topic.",
+   "id": "c29",
+   "translation": "The two neighbors had risen, and Sviazhsky, once more checking Levin in his inconvenient habit of peeping into what was beyond the outer chambers of his mind, went to see his guests out."
   }
  ]
 }

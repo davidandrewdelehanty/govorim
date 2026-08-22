@@ -1,134 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Иорам, его сын, стал ___ вместо него.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царь",
-      "case": "Именительный (Nominative)",
-      "translation": "Jehoram, his son, became king in his place.",
-      "explain": "The noun is the predicate nominative after the linking verb 'стал', so it takes the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Их отец дал им в подарок много золота, серебра и дорогих вещей, вместе с укрепленными городами в ___.",
-      "lemma": "Иудея",
-      "options": ["Иудея", "Иудеи", "Иудее", "Иудею"],
-      "correct": "Иудее",
-      "case": "Предложный (Prepositional)",
-      "translation": "Their father gave them as a gift much gold, silver and precious things, together with fortified cities in Judea.",
-      "explain": "The preposition в (in) governing location takes the prepositional case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Когда Иорам прочно утвердился над ___, он предал мечу всех своих братьев.",
-      "lemma": "царство",
-      "options": ["царство", "царства", "царству", "царством"],
-      "correct": "царством",
-      "case": "Творительный (Instrumental)",
-      "translation": "When Jehoram firmly established himself over the kingdom, he killed all his brothers.",
-      "explain": "The preposition над (over/above) governs the instrumental case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Он женился на дочери ___.",
-      "lemma": "Ахав",
-      "options": ["Ахав", "Ахава", "Ахаву", "Ахавом"],
-      "correct": "Ахава",
-      "case": "Родительный (Genitive)",
-      "translation": "He married the daughter of Ahab.",
-      "explain": "The preposition на (on) with дочери (daughter) expressing possession takes the genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Во времена Иорама Эдом восстал против правления ___.",
-      "lemma": "Иудея",
-      "options": ["Иудея", "Иудеи", "Иудее", "Иудею"],
-      "correct": "Иудеи",
-      "case": "Родительный (Genitive)",
-      "translation": "In the days of Jehoram, Edom revolted from the rule of Judea.",
-      "explain": "The preposition против (against) governs the genitive case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Ливна восстала в то же время против власти ___, потому что он оставил Господа.",
-      "lemma": "Иорам",
-      "options": ["Иорам", "Иорама", "Иораму", "Иорамом"],
-      "correct": "Иорама",
-      "case": "Родительный (Genitive)",
-      "translation": "Libnah also revolted at that time from the rule of Jehoram, because he had forsaken the Lord.",
-      "explain": "The preposition против (against) governs the genitive case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Однажды к нему пришло ___ от пророка Илии.",
-      "lemma": "письмо",
-      "options": ["письмо", "письма", "письму", "письмом"],
-      "correct": "письмо",
-      "case": "Именительный (Nominative)",
-      "translation": "Once a letter came to him from the prophet Elijah.",
-      "explain": "The noun письмо is the subject of the sentence after пришло, taking the nominative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Господь возбудил против Иорама вражду филистимлян и ___.",
-      "lemma": "араб",
-      "options": ["араб", "аравия", "аравии", "аравией"],
-      "correct": "аравии",
-      "case": "Родительный (Genitive)",
-      "translation": "The Lord stirred up against Jehoram the spirit of the Philistines and the Arabians.",
-      "explain": "Coordinate noun phrase in genitive after возбудил (stirred up)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Иосафат упокоился со своими предками и был похоронен с ними в городе Давида.",
-      "question": "Where was Jehoshaphat buried?",
-      "options": ["In David's city", "In Jerusalem", "In the temple", "In the wilderness"],
-      "correct": "In David's city",
-      "explain": "The text explicitly states 'был похоронен с ними в городе Давида' — was buried with them in David's city."
-    },
-    {
-      "id": "r2",
-      "ru": "Иорам, царь Иудеи. Когда Иорам прочно утвердился над царством своего отца, он предал мечу всех своих братьев, вместе с некоторыми из вождей Израиля.",
-      "question": "What did Jehoram do when he became firmly established on the throne?",
-      "options": ["He killed all his brothers and some Israeli princes", "He made peace with his enemies", "He built fortifications", "He married a foreign princess"],
-      "correct": "He killed all his brothers and some Israeli princes",
-      "explain": "The text says he 'предал мечу всех своих братьев, вместе с некоторыми из вождей Израиля' — killed all his brothers along with some of the Israeli princes."
-    },
-    {
-      "id": "r3",
-      "ru": "Он делал зло в глазах Господа, но ради завета, который Господь заключил с Давидом, Господь не хотел погубить дом Давида.",
-      "question": "Why did God not destroy David's house despite Jehoram's evil acts?",
-      "options": ["Because of the covenant made with David", "Because of Jehoram's repentance", "Because of the people's prayers", "Because of the priests' intercession"],
-      "correct": "Because of the covenant made with David",
-      "explain": "The text states 'ради завета, который Господь заключил с Давидом, Господь не хотел погубить дом Давида' — because of the covenant with David, God did not want to destroy David's house."
-    },
-    {
-      "id": "r4",
-      "ru": "Во времена Иорама Эдом восстал против правления Иудеи и поставил себе царя.",
-      "question": "What did Edom do in Jehoram's time?",
-      "options": ["Revolted and set up their own king", "Sent tribute to Judea", "Joined alliance with Judea", "Attacked Jerusalem"],
-      "correct": "Revolted and set up their own king",
-      "explain": "The text says 'Эдом восстал против правления Иудеи и поставил себе царя' — Edom revolted from the rule of Judea and set up a king for themselves."
-    },
-    {
-      "id": "r5",
-      "ru": "Еще он построил святилище на холмах Иудеи, ввел в распутство жителей Иерусалима и сбил Иудею с пути.",
-      "question": "What evil actions did Jehoram perform regarding religion?",
-      "options": ["Built high places, led Jerusalem into immorality, and led Judea astray", "Destroyed the temple and killed the priests", "Enslaved the Levites", "Taxed the religious offerings"],
-      "correct": "Built high places, led Jerusalem into immorality, and led Judea astray",
-      "explain": "The text explicitly lists these three actions: 'построил святилище на холмах', 'ввел в распутство жителей Иерусалима', and 'сбил Иудею с пути'."
-    },
-    {
-      "id": "r6",
-      "ru": "После всего этого Господь поразил Иорама неисцелимой внутренней болезнью.",
-      "question": "How did God punish Jehoram after all these sins?",
-      "options": ["With an incurable disease of the bowels", "With military defeat", "With loss of his kingdom", "With the death of his children"],
-      "correct": "With an incurable disease of the bowels",
-      "explain": "The text states 'Господь поразил Иорама неисцелимой внутренней болезнью' — God struck Jehoram with an incurable internal disease."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Их отец дал им в подарок много золота, серебра и ___ вместе с укрепленными городами в Иудее, но царство он отдал Иораму, потому что тот был его первенцем.",
+   "lemma": "вещь",
+   "options": [
+    "дорогих вещей",
+    "дорогими вещами",
+    "дорогие вещи",
+    "дорогих вещах"
+   ],
+   "correct": "дорогих вещей",
+   "case": "Родительный (Genitive)",
+   "explain": "«дорогих вещей» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "Their father gave them great gifts of silver, of gold, and of precious things, with fortified cities in Judah; but he gave the kingdom to Jehoram, because he was the firstborn."
+  },
+  {
+   "sentence": "Со временем, на исходе ___, его внутренности выпали наружу из-за болезни, и он умер в страшных мучениях.",
+   "lemma": "год",
+   "options": [
+    "вторым годом",
+    "второго года",
+    "второму году",
+    "втором годе"
+   ],
+   "correct": "второго года",
+   "case": "Родительный (Genitive)",
+   "explain": "«второго года» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "In process of time, at the end of two years, his bowels fell out by reason of his sickness, and he died of severe diseases. His people made no burning for him, like the burning of his fathers."
+  },
+  {
+   "sentence": "Со временем, на исходе второго года, его внутренности выпали наружу из-за болезни, и он умер в ___.",
+   "lemma": "мучение",
+   "options": [
+    "страшных мучений",
+    "страшных мучениях",
+    "страшным мучениям",
+    "страшные мучения"
+   ],
+   "correct": "страшных мучениях",
+   "case": "Предложный (Prepositional)",
+   "explain": "«страшных мучениях» — after the preposition «в», for location or topic.",
+   "id": "c3",
+   "translation": "In process of time, at the end of two years, his bowels fell out by reason of his sickness, and he died of severe diseases. His people made no burning for him, like the burning of his fathers."
+  },
+  {
+   "sentence": "Народ не развел в его честь ___, как это делали в память его предков.",
+   "lemma": "костёр",
+   "options": [
+    "поминального костра",
+    "поминальному костру",
+    "поминальный костёр",
+    "поминальном костре"
+   ],
+   "correct": "поминального костра",
+   "case": "Родительный (Genitive)",
+   "explain": "«поминального костра» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "In process of time, at the end of two years, his bowels fell out by reason of his sickness, and he died of severe diseases. His people made no burning for him, like the burning of his fathers."
+  }
+ ]
 }

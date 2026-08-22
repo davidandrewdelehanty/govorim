@@ -1,174 +1,109 @@
 {
-  "cases": [
-    {
-      "id": "c2",
-      "sentence": "велел читать ему ___",
-      "lemma": "свиток",
-      "options": [
-        "свиток",
-        "свитка",
-        "свитку",
-        "свитком"
-      ],
-      "correct": "свиток",
-      "case": "Винительный (Accusative)",
-      "translation": "велел читать ему свиток",
-      "explain": "The direct object of читать takes the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "чтобы убить ___",
-      "lemma": "царь",
-      "options": [
-        "царь",
-        "царя",
-        "царю",
-        "царем"
-      ],
-      "correct": "царя",
-      "case": "Винительный (Accusative)",
-      "translation": "чтобы убить царя",
-      "explain": "The direct object of убить takes the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "вошел во внешний ___ дворца",
-      "lemma": "двор",
-      "options": [
-        "двор",
-        "двора",
-        "двору",
-        "двором"
-      ],
-      "correct": "двор",
-      "case": "Винительный (Accusative)",
-      "translation": "вошел во внешний двор дворца",
-      "explain": "The preposition во governs the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Пусть принесут ___ , что носит царь",
-      "lemma": "одежда",
-      "options": [
-        "одежда",
-        "одежды",
-        "одежде",
-        "одежду"
-      ],
-      "correct": "одежды",
-      "case": "Винительный (Accusative)",
-      "translation": "Пусть принесут одежды , что носит царь",
-      "explain": "The direct object of принесят takes the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "и приведут ___ , на котором ездит царь",
-      "lemma": "конь",
-      "options": [
-        "конь",
-        "коня",
-        "коню",
-        "конем"
-      ],
-      "correct": "коня",
-      "case": "Винительный (Accusative)",
-      "translation": "и приведут коня , на котором ездит царь",
-      "explain": "The direct object of приведут takes the accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "вел ответить то, что посоветовал ___",
-      "lemma": "слово",
-      "options": [
-        "слово",
-        "слова",
-        "слову",
-        "словом"
-      ],
-      "correct": "слово",
-      "case": "Винительный (Accusative)",
-      "translation": "вел ответить то, что посоветовал слово",
-      "explain": "The direct object takes the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Той ночью царь никак не мог уснуть",
-      "question": "What was the king doing that night?",
-      "options": [
-        "Unable to sleep",
-        "Reading",
-        "Eating",
-        "Walking"
-      ],
-      "correct": "Unable to sleep",
-      "explain": "The text states: Той ночью царь никак не мог уснуть..."
-    },
-    {
-      "id": "r2",
-      "ru": "велел принести и читать ему свиток памятных записей, летопись его царствования",
-      "question": "What did the king order to be read?",
-      "options": [
-        "The scroll of records of his reign",
-        "A letter",
-        "A poem",
-        "A list"
-      ],
-      "correct": "The scroll of records of his reign",
-      "explain": "The text states: велел принести и читать ему свиток памятных записей, летопис..."
-    },
-    {
-      "id": "r3",
-      "ru": "Там было найдено, как Мордахей разоблачил двух царских евнухов",
-      "question": "What was found in the records?",
-      "options": [
-        "That Mordecai had exposed two conspirators",
-        "That Mordecai was a traitor",
-        "That Esther was in danger",
-        "That the king was in danger"
-      ],
-      "correct": "That Mordecai had exposed two conspirators",
-      "explain": "The text states: Там было найдено, как Мордахей разоблачил двух царских евнух..."
-    },
-    {
-      "id": "r4",
-      "ru": "Что следует сделать для человека, которого царь желает почтить?",
-      "question": "What did the king ask Haman?",
-      "options": [
-        "What should be done for the man he wishes to honor",
-        "Who should be punished",
-        "When should the feast be",
-        "What gift should he give"
-      ],
-      "correct": "What should be done for the man he wishes to honor",
-      "explain": "The text states: Что следует сделать для человека, которого царь желает почти..."
-    },
-    {
-      "id": "r5",
-      "ru": "Пусть для человека принесят одежды, что носит царь",
-      "question": "What did Haman suggest?",
-      "options": [
-        "Bring the king's clothes and horse",
-        "Give gold and jewels",
-        "Crown and scepter",
-        "Food and wine"
-      ],
-      "correct": "Bring the king's clothes and horse",
-      "explain": "The text states: Пусть для человека принесят одежды, что носит царь..."
-    },
-    {
-      "id": "r6",
-      "ru": "Ступай тотчас же и сделай так для Иудея Мордахея",
-      "question": "What did the king command Haman?",
-      "options": [
-        "Do for Mordecai what you suggested",
-        "Leave immediately",
-        "Punish Mordecai",
-        "Leave the kingdom"
-      ],
-      "correct": "Do for Mordecai what you suggested",
-      "explain": "The text states: Ступай тотчас же и сделай так для Иудея Мордахея..."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Той ночью царь никак не мог уснуть и велел принести и читать ему свиток ___, летопись его царствования.",
+   "lemma": "запись",
+   "options": [
+    "памятные записи",
+    "памятным записям",
+    "памятных записях",
+    "памятных записей"
+   ],
+   "correct": "памятных записей",
+   "case": "Родительный (Genitive)",
+   "explain": "«памятных записей» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "On that night, the king couldn’t sleep. He commanded the book of records of the chronicles to be brought, and they were read to the king."
+  },
+  {
+   "sentence": "Там было найдено, как Мардохей разоблачил Бигтану и Тереша, двух ___, охранявших порог, которые составили заговор, чтобы убить царя Ксеркса.",
+   "lemma": "евнух",
+   "options": [
+    "царские евнухи",
+    "царских евнухов",
+    "царским евнухам",
+    "царскими евнухами"
+   ],
+   "correct": "царских евнухов",
+   "case": "Родительный (Genitive)",
+   "explain": "«царских евнухов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "It was found written that Mordecai had told of Bigthana and Teresh, two of the king’s eunuchs, who were doorkeepers, who had tried to lay hands on the King Ahasuerus."
+  },
+  {
+   "sentence": "Потом пусть одежды и коня дадут одному из самых высоких ___.",
+   "lemma": "сановник",
+   "options": [
+    "царским сановникам",
+    "царские сановники",
+    "царских сановниках",
+    "царских сановников"
+   ],
+   "correct": "царских сановников",
+   "case": "Родительный (Genitive)",
+   "explain": "«царских сановников» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Let the clothing and the horse be delivered to the hand of one of the king’s most noble princes, that they may array the man whom the king delights to honor with them, and have him ride on horseback through the city square, and proclaim before him, ‘Thus it shall be done to the man whom the king delights to honor!’ ”"
+  },
+  {
+   "sentence": "Пусть он оденет человека, которого царь желает почтить, и ведет его коня под уздцы по ___, возвещая перед ним во всеуслышание: «Вот что делается для человека, которого царь желает почтить!»",
+   "lemma": "улица",
+   "options": [
+    "городскими улицами",
+    "городским улицам",
+    "городские улицы",
+    "городских улицах"
+   ],
+   "correct": "городским улицам",
+   "case": "Дательный (Dative)",
+   "explain": "«городским улицам» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c4",
+   "translation": "Let the clothing and the horse be delivered to the hand of one of the king’s most noble princes, that they may array the man whom the king delights to honor with them, and have him ride on horseback through the city square, and proclaim before him, ‘Thus it shall be done to the man whom the king delights to honor!’ ”"
+  },
+  {
+   "sentence": "Он одел Мардохея и повел его коня под уздцы по ___, возвещая перед ним во всеуслышание:",
+   "lemma": "улица",
+   "options": [
+    "городскими улицами",
+    "городским улицам",
+    "городские улицы",
+    "городских улицах"
+   ],
+   "correct": "городским улицам",
+   "case": "Дательный (Dative)",
+   "explain": "«городским улицам» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c5",
+   "translation": "Then Haman took the clothing and the horse, and arrayed Mordecai, and had him ride through the city square, and proclaimed before him, “Thus it shall be done to the man whom the king delights to honor!”"
+  },
+  {
+   "sentence": "После этого Мардохей вернулся к ___.",
+   "lemma": "ворота",
+   "options": [
+    "царских ворот",
+    "царскими воротами",
+    "царским воротам",
+    "царских воротах"
+   ],
+   "correct": "царским воротам",
+   "case": "Дательный (Dative)",
+   "explain": "«царским воротам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c6",
+   "translation": "Mordecai came back to the king’s gate, but Haman hurried to his house, mourning and having his head covered."
+  },
+  {
+   "sentence": "Когда они еще говорили с ним, прибыли ___ и стали торопить его идти на пир, который приготовила Есфирь.",
+   "lemma": "евнух",
+   "options": [
+    "царские евнухи",
+    "царских евнухах",
+    "царскими евнухами",
+    "царским евнухам"
+   ],
+   "correct": "царские евнухи",
+   "case": "Именительный (Nominative)",
+   "explain": "«царские евнухи» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "While they were yet talking with him, the king’s eunuchs came, and hurried to bring Haman to the banquet that Esther had prepared."
+  }
+ ]
 }

@@ -1,134 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Он повёл её далеко в ___ и пришёл к Хариву.",
-      "lemma": "пустыня",
-      "options": ["пустыня", "пустыни", "пустыне", "пустыню"],
-      "correct": "пустыню",
-      "case": "Винительный (Accusative)",
-      "translation": "He led it far into the wilderness and came to Horeb.",
-      "explain": "The preposition в indicating direction takes the accusative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Ангел явился ему в пламени из среды горящего тернового ___.",
-      "lemma": "куст",
-      "options": ["куст", "куста", "кусту", "кустом"],
-      "correct": "куста",
-      "case": "Родительный (Genitive)",
-      "translation": "The angel appeared to him in a flame from the midst of a burning thornbush.",
-      "explain": "The preposition из (из среды) governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Моисей закрыл лицо, потому что боялся смотреть на ___.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Бога",
-      "case": "Винительный (Accusative)",
-      "translation": "Moses hid his face, because he was afraid to look at God.",
-      "explain": "The preposition на with смотреть takes the accusative; for animate nouns it equals the genitive form."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я увидел угнетение моего народа в ___.",
-      "lemma": "Египет",
-      "options": ["Египет", "Египта", "Египту", "Египте"],
-      "correct": "Египте",
-      "case": "Предложный (Prepositional)",
-      "translation": "I have seen the oppression of my people in Egypt.",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Я сошёл, чтобы вывести их из этой ___.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землёй"],
-      "correct": "земли",
-      "case": "Родительный (Genitive)",
-      "translation": "I have come down to bring them out of this land.",
-      "explain": "The preposition из governs the genitive case."
-    },
-    {
-      "id": "c6",
-      "sentence": "А теперь иди, я посылаю тебя к ___.",
-      "lemma": "фараон",
-      "options": ["фараон", "фараона", "фараону", "фараоном"],
-      "correct": "фараону",
-      "case": "Дательный (Dative)",
-      "translation": "Now go, I am sending you to Pharaoh.",
-      "explain": "The preposition к governs the dative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Вы будете служить Богу на этой ___.",
-      "lemma": "гора",
-      "options": ["гора", "горы", "горе", "гору"],
-      "correct": "горе",
-      "case": "Предложный (Prepositional)",
-      "translation": "You will serve God on this mountain.",
-      "explain": "The preposition на indicating location takes the prepositional case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Царь не отпустит вас, если не принудить его могучей ___.",
-      "lemma": "рука",
-      "options": ["рука", "руки", "руку", "рукой"],
-      "correct": "рукой",
-      "case": "Творительный (Instrumental)",
-      "translation": "The king will not let you go unless he is compelled by a mighty hand.",
-      "explain": "The instrumental case expresses the means by which the action is done."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Там ему явился ангел Господень в пламени из среды горящего тернового куста.",
-      "question": "How did the angel of the Lord appear to Moses?",
-      "options": ["In a flame from within a burning thornbush", "In a dream at night", "As a pillar of cloud", "As a man on the road"],
-      "correct": "In a flame from within a burning thornbush",
-      "explain": "The text says the angel appeared 'в пламени из среды горящего тернового куста' (in a flame from the midst of a burning thornbush)."
-    },
-    {
-      "id": "r2",
-      "ru": "Моисей увидел, что объятый огнем куст не сгорал, и подумал, «Пойду и посмотрю на это великое чудо, почему куст не сгорает».",
-      "question": "What did Moses find remarkable about the bush?",
-      "options": ["It burned but was not consumed", "It bore fruit", "It spoke to him", "It had golden leaves"],
-      "correct": "It burned but was not consumed",
-      "explain": "The text says the bush 'объятый огнем... не сгорал' (engulfed in fire, was not burning up)."
-    },
-    {
-      "id": "r3",
-      "ru": "Услышав это, Моисей закрыл лицо, потому что боялся смотреть на Бога.",
-      "question": "Why did Moses hide his face?",
-      "options": ["Because he was afraid to look at God", "Because of the smoke", "Because of the bright sun", "Because he was ashamed"],
-      "correct": "Because he was afraid to look at God",
-      "explain": "The text says 'боялся смотреть на Бога' (he was afraid to look at God)."
-    },
-    {
-      "id": "r4",
-      "ru": "Я сошел, чтобы освободить их от иго-египтян и вывести их из этой земли в добрую просторную землю, где течет молоко и мед, в край Хананеев, Хеттов, Амареев, Ферезеев, Хивеев и Иевусеев.",
-      "question": "The land God promises is described as flowing with what?",
-      "options": ["Milk and honey", "Wine and oil", "Gold and silver", "Water and grain"],
-      "correct": "Milk and honey",
-      "explain": "The text describes the land 'где течет молоко и мед' (where milk and honey flow)."
-    },
-    {
-      "id": "r5",
-      "ru": "А теперь иди, я посылаю тебя к фараону, чтобы ты вывел мой народ, израилетян, из Египта.",
-      "question": "To whom is God sending Moses?",
-      "options": ["To Pharaoh, to bring the Israelites out of Egypt", "To the elders of Midian", "To his brother Aaron", "To the king of Canaan"],
-      "correct": "To Pharaoh, to bring the Israelites out of Egypt",
-      "explain": "God says 'я посылаю тебя к фараону, чтобы ты вывел мой народ... из Египта' (I send you to Pharaoh to bring my people out of Egypt)."
-    },
-    {
-      "id": "r6",
-      "ru": "«Не подходи ближе», — сказал Бог, — «сними свою обувь, потому что место, на котором ты стоишь, — святая земля».",
-      "question": "Why did God tell Moses to take off his sandals?",
-      "options": ["Because the place he was standing on was holy ground", "Because they were dirty", "Because it was very hot", "Because he was entering a house"],
-      "correct": "Because the place he was standing on was holy ground",
-      "explain": "God says the place 'на котором ты стоишь, — святая земля' (on which you stand is holy ground)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "— Сними сандалии, потому что место, на котором ты стоишь — ___.",
+   "lemma": "земля",
+   "options": [
+    "святой земли",
+    "святая земля",
+    "святой земле",
+    "святой землёй"
+   ],
+   "correct": "святая земля",
+   "case": "Именительный (Nominative)",
+   "explain": "«святая земля» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "He said, “Don’t come close. Take off your sandals, for the place you are standing on is holy ground.”"
+  },
+  {
+   "sentence": "Я знаю, царь Египта не отпустит вас, если не принудить его ___ .",
+   "lemma": "рука",
+   "options": [
+    "могучей рукой",
+    "могучая рука",
+    "могучей руке",
+    "могучей руки"
+   ],
+   "correct": "могучей рукой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«могучей рукой» — the instrumental marks the means, company, or complement.",
+   "id": "c2",
+   "translation": "I know that the king of Egypt won’t give you permission to go, no, not by a mighty hand."
+  },
+  {
+   "sentence": "Я сделаю так, что египтяне хорошо отнесутся к вам и вы не уйдете с ___.",
+   "lemma": "рука",
+   "options": [
+    "пустых руках",
+    "пустых рук",
+    "пустым рукам",
+    "пустыми руками"
+   ],
+   "correct": "пустыми руками",
+   "case": "Творительный (Instrumental)",
+   "explain": "«пустыми руками» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "I will give this people favor in the sight of the Egyptians, and it will happen that when you go, you shall not go empty-handed."
+  },
+  {
+   "sentence": "Пусть каждая женщина попросит у соседки-египтянки и у любой ___, живущей в соседнем доме, серебряных и золотых вещей и одежды.",
+   "lemma": "женщина",
+   "options": [
+    "другой женщине",
+    "другой женщиной",
+    "другой женщины",
+    "другая женщина"
+   ],
+   "correct": "другой женщины",
+   "case": "Родительный (Genitive)",
+   "explain": "«другой женщины» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "But every woman shall ask of her neighbor, and of her who visits her house, jewels of silver, jewels of gold, and clothing. You shall put them on your sons, and on your daughters. You shall plunder the Egyptians.”"
+  },
+  {
+   "sentence": "Пусть каждая женщина попросит у соседки-египтянки и у любой другой женщины, живущей в ___, серебряных и золотых вещей и одежды.",
+   "lemma": "дом",
+   "options": [
+    "соседним домом",
+    "соседнем доме",
+    "соседнему дому",
+    "соседний дом"
+   ],
+   "correct": "соседнем доме",
+   "case": "Предложный (Prepositional)",
+   "explain": "«соседнем доме» — after the preposition «в», for location or topic.",
+   "id": "c5",
+   "translation": "But every woman shall ask of her neighbor, and of her who visits her house, jewels of silver, jewels of gold, and clothing. You shall put them on your sons, and on your daughters. You shall plunder the Egyptians.”"
+  }
+ ]
 }

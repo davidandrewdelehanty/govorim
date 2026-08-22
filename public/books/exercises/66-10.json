@@ -1,204 +1,34 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Я увидел другого могучего ___, спускающегося с небес.",
-      "lemma": "ангел",
-      "options": [
-        "ангел",
-        "ангела",
-        "ангелу",
-        "ангелом"
-      ],
-      "correct": "ангела",
-      "case": "Винительный (Accusative)",
-      "translation": "I saw another mighty angel descending from heaven.",
-      "explain": "Ангела is the direct object of the verb увидел (saw), taking the accusative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Его лицо было как ___, а ноги как огненные столбы.",
-      "lemma": "солнце",
-      "options": [
-        "солнце",
-        "солнца",
-        "солнцу",
-        "солнцем"
-      ],
-      "correct": "солнце",
-      "case": "Именительный (Nominative)",
-      "translation": "His face was like the sun, and his feet like pillars of fire.",
-      "explain": "After the comparative construction 'как', the nominative case is used."
-    },
-    {
-      "id": "c3",
-      "sentence": "Ангел поставил правую ногу на ___, а левую на сушу.",
-      "lemma": "море",
-      "options": [
-        "море",
-        "моря",
-        "морю",
-        "морем"
-      ],
-      "correct": "море",
-      "case": "Винительный (Accusative)",
-      "translation": "He set his right foot on the sea and his left on the land.",
-      "explain": "The preposition на with direction of movement takes the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Он закричал, его крик напоминал рев ___, и от этого крика заговорили семь громов.",
-      "lemma": "лев",
-      "options": [
-        "лев",
-        "льва",
-        "льву",
-        "львом"
-      ],
-      "correct": "льва",
-      "case": "Родительный (Genitive)",
-      "translation": "He cried out with a loud voice like the roar of a lion, and when he cried, the seven thunders sounded.",
-      "explain": "After the noun рев (roar), the genitive case indicates possession: 'the roar of a lion'."
-    },
-    {
-      "id": "c5",
-      "sentence": "Ангел держал в руке маленький развернутый ___.",
-      "lemma": "свиток",
-      "options": [
-        "свиток",
-        "свитка",
-        "свитку",
-        "свитком"
-      ],
-      "correct": "свиток",
-      "case": "Винительный (Accusative)",
-      "translation": "The angel held a little open scroll in his hand.",
-      "explain": "The direct object of the verb держал (held) takes the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Затем ___, которого я видел стоящим на море и суше, поднял правую руку к небу.",
-      "lemma": "ангел",
-      "options": [
-        "ангел",
-        "ангела",
-        "ангелу",
-        "ангелом"
-      ],
-      "correct": "ангел",
-      "case": "Именительный (Nominative)",
-      "translation": "Then the angel whom I saw standing on the sea and on the land lifted his right hand toward heaven.",
-      "explain": "Ангел is the subject of the main clause, requiring the nominative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Пойди и возьми открытый ___ из руки ангела.",
-      "lemma": "свиток",
-      "options": [
-        "свиток",
-        "свитка",
-        "свитку",
-        "свитком"
-      ],
-      "correct": "свиток",
-      "case": "Винительный (Accusative)",
-      "translation": "Go, and take the open scroll from the hand of the angel.",
-      "explain": "The direct object of возьми (take) takes the accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Я взял маленький ___ из руки ангела и съел его.",
-      "lemma": "свиток",
-      "options": [
-        "свиток",
-        "свитка",
-        "свитку",
-        "свитком"
-      ],
-      "correct": "свиток",
-      "case": "Винительный (Accusative)",
-      "translation": "I took the little scroll from the angel's hand and ate it.",
-      "explain": "The direct object of взял (took) requires the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Затем я увидел другого могучего ангела, спускающегося с небес.",
-      "question": "What did John see descending from heaven?",
-      "options": [
-        "Another mighty angel",
-        "Seven angels with trumpets",
-        "A great light",
-        "A door in heaven"
-      ],
-      "correct": "Another mighty angel",
-      "explain": "The text says 'я увидел другого могучего ангела, спускающегося с небес' — he saw another mighty angel descending from heaven."
-    },
-    {
-      "id": "r2",
-      "ru": "Его лицо было как солнце, а ноги как огненные столбы.",
-      "question": "What did the angel look like?",
-      "options": [
-        "His face like the sun and his feet like pillars of fire",
-        "His face shone with twelve stars",
-        "His body glowed with rainbow colors",
-        "His form was like a figure of light"
-      ],
-      "correct": "His face like the sun and his feet like pillars of fire",
-      "explain": "The text states 'Его лицо было как солнце, а ноги как огненные столбы' — his face was like the sun and his feet like pillars of fire."
-    },
-    {
-      "id": "r3",
-      "ru": "Ангел держал в руке маленький развернутый свиток.",
-      "question": "What did the angel hold in his hand?",
-      "options": [
-        "A little open scroll",
-        "Seven trumpets",
-        "A key to the abyss",
-        "A golden censer"
-      ],
-      "correct": "A little open scroll",
-      "explain": "The text says 'Ангел держал в руке маленький развернутый свиток' — the angel held a little open scroll in his hand."
-    },
-    {
-      "id": "r4",
-      "ru": "Когда проговорили семь громов, я приготовился писать, но голос с небес сказал мне, сохранив тайне то, что сказали семь громов, не записывай этого.",
-      "question": "What did John prepare to do when the seven thunders spoke, and what was he told?",
-      "options": [
-        "He prepared to write but was told not to record what the seven thunders said",
-        "He prepared to sound a trumpet but was told to wait",
-        "He prepared to kneel but was told to stand",
-        "He prepared to speak but was told to remain silent"
-      ],
-      "correct": "He prepared to write but was told not to record what the seven thunders said",
-      "explain": "The text says he 'приготовился писать, но голос с небес сказал мне... не записывай этого' — he prepared to write but was told not to record it."
-    },
-    {
-      "id": "r5",
-      "ru": "Возьми его и съешь. От него у тебя будет горько в желудке, но во рту он будет сладким, как мед.",
-      "question": "What was John told to do with the scroll and what would it taste like?",
-      "options": [
-        "Take and eat it; it would be sweet as honey in his mouth but bitter in his stomach",
-        "Take and read it carefully without eating it",
-        "Take it and give it to others to eat",
-        "Take it but do not consume it in any way"
-      ],
-      "correct": "Take and eat it; it would be sweet as honey in his mouth but bitter in his stomach",
-      "explain": "The text states 'Возьми его и съешь... во рту он будет сладким, как мед' and 'будет горько в желудке' — take and eat; sweet as honey in the mouth but bitter in the stomach."
-    },
-    {
-      "id": "r6",
-      "ru": "Тебе предстоит опять пророчествовать о судьбах многих народов, племен, языков и царей.",
-      "question": "What was John told to do again?",
-      "options": [
-        "Prophesy about many peoples, tribes, languages, and kings",
-        "Measure the temple and count those who worship there",
-        "Sound a trumpet and warn the nations",
-        "Write down the names of all the saints"
-      ],
-      "correct": "Prophesy about many peoples, tribes, languages, and kings",
-      "explain": "The text says 'Тебе предстоит опять пророчествовать о судьбах многих народов, племен, языков и царей' — he must prophesy again about many peoples, tribes, languages, and kings."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Его лицо было как солнце, а ноги — как ___ .",
+   "lemma": "столб",
+   "options": [
+    "огненными столбами",
+    "огненные столбы",
+    "огненным столбам",
+    "огненных столбах"
+   ],
+   "correct": "огненные столбы",
+   "case": "Именительный (Nominative)",
+   "explain": "«огненные столбы» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "I saw a mighty angel coming down out of the sky, clothed with a cloud. A rainbow was on his head. His face was like the sun, and his feet like pillars of fire."
+  },
+  {
+   "sentence": "Я взял ___ из руки ангела и съел его: во рту он был сладким, как мед, но в желудке потом была от него горечь .",
+   "lemma": "свиток",
+   "options": [
+    "маленький свиток",
+    "маленьком свитке",
+    "маленькому свитку",
+    "маленького свитка"
+   ],
+   "correct": "маленький свиток",
+   "case": "Винительный (Accusative)",
+   "explain": "«маленький свиток» — the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "I took the little book out of the angel’s hand, and ate it. It was as sweet as honey in my mouth. When I had eaten it, my stomach was made bitter."
+  }
+ ]
 }

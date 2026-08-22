@@ -1,134 +1,34 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Так мне сказал Господь. «Пойди, купи льняной ___ и опояшься им, но в воду его не клади».",
-      "lemma": "пояс",
-      "options": ["пояс", "пояса", "поясу", "поясом"],
-      "correct": "пояс",
-      "case": "Винительный (Accusative)",
-      "translation": "Yahweh said to me, 'Go and buy yourself a linen belt, and put it on your waist.'",
-      "explain": "The direct object of the transitive verb купи (buy) requires the accusative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Я купил пояс, как велел Господь, и опоясался им, и слово Господне было ко мне во второй раз. «Возьми пояс, который купил, и который на тебе, ступай на реку Фару и спрячь его там, в расщелине ___».",
-      "lemma": "скала",
-      "options": ["скала", "скалы", "скалу", "скале"],
-      "correct": "скалы",
-      "case": "Родительный (Genitive)",
-      "translation": "Take the belt that you have bought, and hide it at the river Euphrates in a cleft of the rock.",
-      "explain": "In the phrase расщелине скалы (cleft of the rock), the genitive case shows possession."
-    },
-    {
-      "id": "c3",
-      "sentence": "Я пошел и спрятал его у реки Фары, как велел мне Господь. Через много дней Господь сказал мне, ступай к фаре и забери пояс, который я велел тебе спрятать там. Я пошел к фаре, выкопал пояс и взял его из того места, где спрятал, но теперь пояс был испорченным и никуда не ___.",
-      "lemma": "годный",
-      "options": ["годный", "годен", "годна", "годно"],
-      "correct": "годен",
-      "case": "Именительный (Nominative)",
-      "translation": "He went to the Euphrates, dug up the belt, but it was ruined and profitable for nothing.",
-      "explain": "The short form of the predicate adjective after быть is used in spoken Russian."
-    },
-    {
-      "id": "c4",
-      "sentence": "Вот так я разрушу и гордыню Иудеи, и великую гордыню ___.",
-      "lemma": "Иерусалим",
-      "options": ["Иерусалим", "Иерусалима", "Иерусалиму", "Иерусалимом"],
-      "correct": "Иерусалима",
-      "case": "Родительный (Genitive)",
-      "translation": "Thus I will ruin the pride of Judah and the great pride of Jerusalem.",
-      "explain": "In a coordinate structure with 'Иудеи' (genitive), 'Иерусалима' must also be in the genitive."
-    },
-    {
-      "id": "c5",
-      "sentence": "Этот скверный народ, который отказывается слушать мои ___, упрямо поступает по своей воле и следует за чужими богами, чтобы служить им и поклоняться, будет, как этот пояс, никуда не годен.",
-      "lemma": "слово",
-      "options": ["слово", "слова", "слов", "словом"],
-      "correct": "слова",
-      "case": "Винительный (Accusative)",
-      "translation": "This evil people, who refuse to hear my words, who walk in the stubbornness of their heart, and have gone after other gods to serve them and worship them.",
-      "explain": "The direct object of the verb слушать (to hear) requires the accusative case in its plural form."
-    },
-    {
-      "id": "c6",
-      "sentence": "Ведь как близок к телу пояс, так я приблизил к себе весь дом Израиля и весь дом Иуды, возвещает Господь, чтобы они были моим народом, моей славой и хвалой, но они не послушались мои ___.",
-      "lemma": "голос",
-      "options": ["голос", "голоса", "голосу", "голосом"],
-      "correct": "голоса",
-      "case": "Родительный (Genitive)",
-      "translation": "For as the belt clings to the waist of a man, so I have caused all the house of Israel and all the house of Judah to cling to me, but they would not hear my voice.",
-      "explain": "The verb послушаться (to obey) governs the genitive case with the preposition of the object."
-    },
-    {
-      "id": "c7",
-      "sentence": "Любой винный кувшин наполняют вином. Если они скажут тебе, разве мы сами не знаем, что любой винный кувшин наполняют вином, то ответим. Так говорит Господь. Всех жителей этой страны и царей, что сидят на престоле Давида, и священников, и пророков, и всех жителей Иерусалима, я наполню вином до ___.",
-      "lemma": "пьянство",
-      "options": ["пьянство", "пьянства", "пьянству", "пьянством"],
-      "correct": "пьянства",
-      "case": "Родительный (Genitive)",
-      "translation": "I will fill all the inhabitants of this land with drunkenness.",
-      "explain": "The preposition до (until) requires the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Я разобью их друг от друга, и отцов, и сыновей вместе», — возвещает ___. «Не пощажу, не помилую, даже не пожалею о том, что погубил их».",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господе"],
-      "correct": "Господь",
-      "case": "Именительный (Nominative)",
-      "translation": "I will dash them one against another, says the Lord.",
-      "explain": "Господь is the subject of the verb возвещает, requiring the nominative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Так мне сказал Господь. «Пойди, купи льняной пояс и опояшься им, но в воду его не клади».",
-      "question": "What does God command Jeremiah to do with the belt?",
-      "options": ["Wash it in water", "Buy a linen belt, wear it, but do not put it in water", "Destroy it immediately", "Give it to someone else"],
-      "correct": "Buy a linen belt, wear it, but do not put it in water",
-      "explain": "God says 'Пойди, купи льняной пояс и опояшься им, но в воду его не клади' — Go and buy a linen belt, put it on your waist, but do not put it in water."
-    },
-    {
-      "id": "r2",
-      "ru": "Возьми пояс, который купил, и который на тебе, ступай на реку Фару и спрячь его там, в расщелине скалы.",
-      "question": "What does God command Jeremiah to do with the belt in the second instruction?",
-      "options": ["Throw it into the river", "Take it to the Euphrates and hide it in a cleft of a rock", "Give it to the priests", "Burn it publicly"],
-      "correct": "Take it to the Euphrates and hide it in a cleft of a rock",
-      "explain": "God commands 'ступай на реку Фару и спрячь его там, в расщелине скалы' — go to the Euphrates and hide it in a cleft of the rock."
-    },
-    {
-      "id": "r3",
-      "ru": "Через много дней Господь сказал мне, ступай к фаре и забери пояс, который я велел тебе спрятать там.",
-      "question": "What does God ask Jeremiah to do after many days?",
-      "options": ["Hide another belt", "Go retrieve the belt he hid at the Euphrates", "Build an altar by the river", "Prophesy to the people"],
-      "correct": "Go retrieve the belt he hid at the Euphrates",
-      "explain": "The text says 'ступай к фаре и забери пояс, который я велел тебе спрятать там' — Go to the Euphrates and retrieve the belt that I commanded you to hide there."
-    },
-    {
-      "id": "r4",
-      "ru": "Я пошел к фаре, выкопал пояс и взял его из того места, где спрятал, но теперь пояс был испорченным и никуда не годным.",
-      "question": "What was the condition of the belt when Jeremiah retrieved it?",
-      "options": ["It was as good as new", "It was ruined and profitable for nothing", "It had become stronger", "It was covered in gold"],
-      "correct": "It was ruined and profitable for nothing",
-      "explain": "The text says 'пояс был испорченным и никуда не годным' — the belt was ruined and profitable for nothing."
-    },
-    {
-      "id": "r5",
-      "ru": "Вот так я разрушу и гордыню Иудеи, и великую гордыню Иерусалима.",
-      "question": "What does God symbolize by the ruined belt?",
-      "options": ["The restoration of the nation", "The destruction of the pride of Judah and Jerusalem", "The blessing of the people", "The multiplication of their wealth"],
-      "correct": "The destruction of the pride of Judah and Jerusalem",
-      "explain": "God says 'Вот так я разрушу и гордыню Иудеи, и великую гордыню Иерусалима' — Thus I will ruin the pride of Judah and the great pride of Jerusalem."
-    },
-    {
-      "id": "r6",
-      "ru": "Ведь как близок к телу пояс, так я приблизил к себе весь дом Израиля и весь дом Иуды, возвещает Господь, чтобы они были моим народом, моей славой и хвалой.",
-      "question": "Why does God say He brought Israel and Judah close to Himself?",
-      "options": ["To punish them for their sins", "So they would be His people, His glory, and His praise", "To enslave them forever", "To teach them idolatry"],
-      "correct": "So they would be His people, His glory, and His praise",
-      "explain": "God says 'так я приблизил к себе... чтобы они были моим народом, моей славой и хвалой' — I have caused them to cling to me, that they might be my people, for my renown, praise, and glory."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Этот ___, который отказывается слушать Мои слова, упрямо поступает по своей воле и следует за чужими богами, чтобы служить им и поклоняться, будет как этот пояс, никуда не годен!",
+   "lemma": "народ",
+   "options": [
+    "скверному народу",
+    "скверном народе",
+    "скверный народ",
+    "скверным народом"
+   ],
+   "correct": "скверный народ",
+   "case": "Именительный (Nominative)",
+   "explain": "«скверный народ» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "This evil people, who refuse to hear my words, who walk in the stubbornness of their heart, and have gone after other gods to serve them, and to worship them, will even be as this belt, which is profitable for nothing."
+  },
+  {
+   "sentence": "Этот скверный народ, который отказывается слушать Мои слова, упрямо поступает по своей воле и следует за ___, чтобы служить им и поклоняться, будет как этот пояс, никуда не годен!",
+   "lemma": "бог",
+   "options": [
+    "чужим богам",
+    "чужих богов",
+    "чужих богах",
+    "чужими богами"
+   ],
+   "correct": "чужими богами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«чужими богами» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "This evil people, who refuse to hear my words, who walk in the stubbornness of their heart, and have gone after other gods to serve them, and to worship them, will even be as this belt, which is profitable for nothing."
+  }
+ ]
 }

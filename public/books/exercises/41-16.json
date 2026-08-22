@@ -1,131 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Но когда они пришли, то увидели, что ___ уже отвален, а он был очень большим.",
-      "lemma": "камень",
-      "options": ["камень", "камня", "камню", "камнем"],
-      "correct": "камень",
-      "case": "Именительный (Nominative)",
-      "translation": "But when they arrived, they saw that the stone had already been rolled away, and it was very large.",
-      "explain": "Камень is the subject of the passive predicate был отвален (had been rolled away), so it stands in the nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "«Кто же откатит нам камень от ___ в гробницу?»",
-      "lemma": "вход",
-      "options": ["вход", "входа", "входу", "входом"],
-      "correct": "входа",
-      "case": "Родительный (Genitive)",
-      "translation": "\"Who will roll away the stone for us from the entrance to the tomb?\"",
-      "explain": "The preposition от (from) takes the genitive → входа."
-    },
-    {
-      "id": "c3",
-      "sentence": "Рано утром, в первый день недели, едва лишь взошло солнце, они пришли к ___.",
-      "lemma": "гробница",
-      "options": ["гробница", "гробницы", "гробницу", "гробнице"],
-      "correct": "гробнице",
-      "case": "Дательный (Dative)",
-      "translation": "Early in the morning, on the first day of the week, just as the sun had risen, they came to the tomb.",
-      "explain": "The preposition к (toward) governs the dative → гробнице."
-    },
-    {
-      "id": "c4",
-      "sentence": "Они вошли в гробницу и увидели ___, одетого в белое.",
-      "lemma": "юноша",
-      "options": ["юноша", "юноши", "юношу", "юноше"],
-      "correct": "юношу",
-      "case": "Винительный (Accusative)",
-      "translation": "They entered the tomb and saw a young man dressed in white.",
-      "explain": "Юношу is the direct object of увидели (saw) → accusative. Юноша is animate and ends in -а, so it declines like a feminine noun."
-    },
-    {
-      "id": "c5",
-      "sentence": "И повсюду проповедовали, и Господь содействовал им, подтверждая их слово ___.",
-      "lemma": "знамение",
-      "options": ["знамения", "знамений", "знамениям", "знамениями"],
-      "correct": "знамениями",
-      "case": "Творительный (Instrumental)",
-      "translation": "And they preached everywhere, and the Lord worked with them, confirming their word with signs.",
-      "explain": "The instrumental marks the means by which the word was confirmed — \"by signs\" → знамениями (instrumental plural of знамение)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Потом Иисус явился в другом ___ двоим из них, когда они шли из города.",
-      "lemma": "облик",
-      "options": ["облик", "облика", "облику", "облике"],
-      "correct": "облике",
-      "case": "Предложный (Prepositional)",
-      "translation": "Afterward Jesus appeared in another form to two of them as they were walking from the city.",
-      "explain": "В (in) here marks the manner/state \"in another form\", which takes the prepositional → облике."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Не бойтесь, вы ищете распятого Иисуса из Назарета? Он воскрес.",
-      "question": "What did the young man in the tomb tell the frightened women?",
-      "options": [
-        "That Jesus had risen and was not there",
-        "That the tomb had been robbed",
-        "That they should wait for Peter",
-        "That Jesus had gone to Rome"
-      ],
-      "correct": "That Jesus had risen and was not there",
-      "explain": "The young man told them not to be afraid, that Jesus of Nazareth had risen and was not there."
-    },
-    {
-      "id": "r2",
-      "ru": "Женщины вышли и побежали от гробницы, испуганные и изумленные.",
-      "question": "How did the women react after hearing the news at the tomb?",
-      "options": [
-        "They fled in fear and amazement",
-        "They laughed with joy",
-        "They fainted",
-        "They argued with the young man"
-      ],
-      "correct": "They fled in fear and amazement",
-      "explain": "The women went out and fled from the tomb, frightened and amazed."
-    },
-    {
-      "id": "r3",
-      "ru": "Позже Иисус явился одиннадцати ученикам, когда те возлежали за столом. Он упрекнул их за неверие и упрямство",
-      "question": "What did Jesus do when he appeared to the eleven disciples at the table?",
-      "options": [
-        "He rebuked them for their unbelief and stubbornness",
-        "He asked them to prepare a meal",
-        "He sent them away in silence",
-        "He gave them new clothes"
-      ],
-      "correct": "He rebuked them for their unbelief and stubbornness",
-      "explain": "Jesus appeared to the eleven at the table and rebuked them for their unbelief and hardness of heart."
-    },
-    {
-      "id": "r4",
-      "ru": "Идите по всему миру и возвещайте радостную весть всем людям.",
-      "question": "What command did Jesus give the disciples?",
-      "options": [
-        "Go into all the world and preach the good news to everyone",
-        "Stay in Jerusalem and wait",
-        "Build a temple in Galilee",
-        "Return to their fishing boats"
-      ],
-      "correct": "Go into all the world and preach the good news to everyone",
-      "explain": "Jesus told them, \"Go into all the world and proclaim the good news to all people.\""
-    },
-    {
-      "id": "r5",
-      "ru": "Он вознесся на небеса и сел по правую руку от Бога.",
-      "question": "What happened to Jesus after he spoke to the disciples?",
-      "options": [
-        "He was taken up into heaven and sat at the right hand of God",
-        "He returned to Galilee to live",
-        "He remained with the disciples forty more days",
-        "He appeared to the Roman soldiers"
-      ],
-      "correct": "He was taken up into heaven and sat at the right hand of God",
-      "explain": "After speaking to them, Jesus was taken up into heaven and sat at the right hand of God."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Рано утром в ___ недели , едва лишь взошло солнце, они пришли к гробнице.",
+   "lemma": "день",
+   "options": [
+    "первый день",
+    "первому дню",
+    "первым днём",
+    "первом дне"
+   ],
+   "correct": "первый день",
+   "case": "Винительный (Accusative)",
+   "explain": "«первый день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "Very early on the first day of the week, they came to the tomb when the sun had risen."
+  },
+  {
+   "sentence": "Воскреснув рано утром в ___ недели, Иисус явился сначала Марии Магдалине, из которой Он когда-то изгнал семь демонов.",
+   "lemma": "день",
+   "options": [
+    "первый день",
+    "первому дню",
+    "первым днём",
+    "первом дне"
+   ],
+   "correct": "первый день",
+   "case": "Винительный (Accusative)",
+   "explain": "«первый день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c2",
+   "translation": "Now when he had risen early on the first day of the week, he appeared first to Mary Magdalene, from whom he had cast out seven demons."
+  },
+  {
+   "sentence": "Потом Иисус явился в ___ двоим из них, когда они шли из города.",
+   "lemma": "облик",
+   "options": [
+    "другой облик",
+    "другим обликом",
+    "другому облику",
+    "другом облике"
+   ],
+   "correct": "другом облике",
+   "case": "Предложный (Prepositional)",
+   "explain": "«другом облике» — after the preposition «в», for location or topic.",
+   "id": "c3",
+   "translation": "After these things he was revealed in another form to two of them, as they walked, on their way into the country."
+  }
+ ]
 }

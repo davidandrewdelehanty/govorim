@@ -1,204 +1,349 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Соломон начал строить дом Господа в Иерусалиме на горе Мария, где Господь явился его отцу ___.",
-      "lemma": "Давид",
-      "options": [
-        "Давид",
-        "Давида",
-        "Давиду",
-        "Давидом"
-      ],
-      "correct": "Давиду",
-      "case": "Дательный (Dative)",
-      "translation": "Solomon began to build the house of the Lord in Jerusalem on Mount Moriah, where the Lord appeared to his father David.",
-      "explain": "Явился (appeared to) is a transitive verb governing the dative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Это было на гумне Иевусея Орне, на месте, которое приготовил ___.",
-      "lemma": "Давид",
-      "options": [
-        "Давид",
-        "Давида",
-        "Давиду",
-        "Давидом"
-      ],
-      "correct": "Давид",
-      "case": "Именительный (Nominative)",
-      "translation": "This was on the threshing floor of the Jebusite Orna, in the place that David had prepared.",
-      "explain": "Давид is the grammatical subject of the verb приготовил (prepared), requiring nominative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Шестьдесят локтей длины и двадцать локтей ширины, по локтю старого образца, таковы были размеры основания ___.",
-      "lemma": "храм",
-      "options": [
-        "храм",
-        "храма",
-        "храму",
-        "храмом"
-      ],
-      "correct": "храма",
-      "case": "Родительный (Genitive)",
-      "translation": "Sixty cubits in length and twenty cubits in width, measured by the old cubit, were the dimensions of the foundation of the temple.",
-      "explain": "The genitive case shows possession: the foundation of what? The temple (генитив владения)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Притвор перед домом был длиной двадцать локтей, по ширине самого здания и двадцать локтей ___, покрыт чистым золотом.",
-      "lemma": "высота",
-      "options": [
-        "высота",
-        "высоты",
-        "высоте",
-        "высотой"
-      ],
-      "correct": "высотой",
-      "case": "Творительный (Instrumental)",
-      "translation": "The porch in front of the house was twenty cubits long, the width of the building, and twenty cubits in height, covered with pure gold.",
-      "explain": "Instrumental case expresses measurement or dimension: высотой (in height)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Затем он построил святое святых, длина которого совпадала с ___ дома.",
-      "lemma": "ширина",
-      "options": [
-        "ширина",
-        "ширины",
-        "ширине",
-        "шириной"
-      ],
-      "correct": "шириной",
-      "case": "Творительный (Instrumental)",
-      "translation": "Then he built the most holy place, whose length matched the width of the house.",
-      "explain": "The instrumental case совпадала (matched) with indicates corresponding or matching dimensions."
-    },
-    {
-      "id": "c6",
-      "sentence": "Золотые гвозди весили пятьдесят шекелей, золотом он покрыл также и верхние ___ дома.",
-      "lemma": "комната",
-      "options": [
-        "комната",
-        "комнаты",
-        "комнате",
-        "комнатами"
-      ],
-      "correct": "комнатами",
-      "case": "Творительный (Instrumental)",
-      "translation": "Golden nails weighed fifty shekels; he also covered the upper rooms of the house with gold.",
-      "explain": "The instrumental case is used after покрыл (covered): покрыл чем? золотом, комнатами."
-    },
-    {
-      "id": "c7",
-      "sentence": "В святом святых он сделал двух херувимов резной работы и покрыл их ___.",
-      "lemma": "золото",
-      "options": [
-        "золото",
-        "золота",
-        "золоту",
-        "золотом"
-      ],
-      "correct": "золотом",
-      "case": "Творительный (Instrumental)",
-      "translation": "In the most holy place he made two cherubim of carved work and covered them with gold.",
-      "explain": "Покрыл (covered) with: instrumental case shows the material used."
-    },
-    {
-      "id": "c8",
-      "sentence": "Крылья Херувимов были длиной в двадцать локтей, одно крыло первого Херувима было пяти локтей в длину и касалось ___.",
-      "lemma": "стена",
-      "options": [
-        "стена",
-        "стены",
-        "стене",
-        "стену"
-      ],
-      "correct": "стену",
-      "case": "Винительный (Accusative)",
-      "translation": "The wings of the cherubim were twenty cubits long; one wing of the first cherub was five cubits long and touched the wall.",
-      "explain": "Касалось (touched) is a transitive verb requiring accusative case for its object."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Соломон начал строить дом Господа в Иерусалиме на горе Мария, где Господь явился его отцу Давиду.",
-      "question": "Where did Solomon begin to build the house of the Lord?",
-      "options": [
-        "In Bethlehem on Mount Zion",
-        "In Jerusalem on Mount Moriah",
-        "In Jericho on Mount Carmel",
-        "In Egypt on the Nile"
-      ],
-      "correct": "In Jerusalem on Mount Moriah",
-      "explain": "The text states 'в Иерусалиме на горе Мария' (in Jerusalem on Mount Moriah)."
-    },
-    {
-      "id": "r2",
-      "ru": "Он начал строить во второй день второго месяца в четвертый год своего правления.",
-      "question": "When did Solomon begin to build the temple?",
-      "options": [
-        "In the fourth month of his second year of reign",
-        "In the second month of his fourth year of reign",
-        "In the fourth day of his second year",
-        "In the second year of his fourth month"
-      ],
-      "correct": "In the second month of his fourth year of reign",
-      "explain": "The text says 'во второй день второго месяца в четвертый год своего правления' (on the second day of the second month in the fourth year of his reign)."
-    },
-    {
-      "id": "r3",
-      "ru": "Шестьдесят локтей длины и двадцать локтей ширины, по локтю старого образца.",
-      "question": "What were the dimensions of the temple's foundation?",
-      "options": [
-        "Thirty cubits long and fifteen cubits wide",
-        "Forty cubits long and twenty cubits wide",
-        "Sixty cubits long and twenty cubits wide",
-        "Eighty cubits long and thirty cubits wide"
-      ],
-      "correct": "Sixty cubits long and twenty cubits wide",
-      "explain": "The text explicitly states 'Шестьдесят локтей длины и двадцать локтей ширины' (sixty cubits in length and twenty cubits in width)."
-    },
-    {
-      "id": "r4",
-      "ru": "Притвор перед домом был длиной двадцать локтей, по ширине самого здания и двадцать локтей высотой.",
-      "question": "What were the dimensions of the porch before the house?",
-      "options": [
-        "Twenty cubits long and ten cubits high",
-        "Twenty cubits long, width matching the building, and twenty cubits high",
-        "Forty cubits long and thirty cubits high",
-        "Fifteen cubits long and fifteen cubits high"
-      ],
-      "correct": "Twenty cubits long, width matching the building, and twenty cubits high",
-      "explain": "The text describes the porch: 'длиной двадцать локтей, по ширине самого здания и двадцать локтей высотой' (twenty cubits long, matching the width of the building, and twenty cubits high)."
-    },
-    {
-      "id": "r5",
-      "ru": "Затем он построил святое святых, длина которого совпадала шириной дома.",
-      "question": "What were the dimensions of the most holy place?",
-      "options": [
-        "Thirty cubits in each direction",
-        "Twenty cubits in each direction",
-        "Forty cubits in each direction",
-        "Fifty cubits in each direction"
-      ],
-      "correct": "Twenty cubits in each direction",
-      "explain": "The text states it was 20 cubits long and 20 cubits wide."
-    },
-    {
-      "id": "r6",
-      "ru": "Крылья Херувимов были длиной в двадцать локтей.",
-      "question": "How long were the wings of the cherubim in the most holy place?",
-      "options": [
-        "Fifteen cubits",
-        "Twenty cubits",
-        "Twenty-five cubits",
-        "Thirty cubits"
-      ],
-      "correct": "Twenty cubits",
-      "explain": "The text clearly states 'Крылья Херувимов были длиной в двадцать локтей' (the wings of the cherubim were twenty cubits long)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Это было на ___ иевусея Орны, на месте, которое приготовил Давид.",
+   "lemma": "площадка",
+   "options": [
+    "молотильной площадкой",
+    "молотильной площадки",
+    "молотильной площадке",
+    "молотильная площадка"
+   ],
+   "correct": "молотильной площадке",
+   "case": "Предложный (Prepositional)",
+   "explain": "«молотильной площадке» — after the preposition «на», for location or topic.",
+   "id": "c1",
+   "translation": "Then Solomon began to build Yahweh’s house at Jerusalem on Mount Moriah, where Yahweh appeared to David his father, which he prepared in the place that David had appointed, on the threshing floor of Ornan the Jebusite."
+  },
+  {
+   "sentence": "Он начал строить во второй день ___ в четвертый год своего правления .",
+   "lemma": "месяц",
+   "options": [
+    "второго месяца",
+    "втором месяце",
+    "второму месяцу",
+    "второй месяц"
+   ],
+   "correct": "второго месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«второго месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "He began to build in the second day of the second month, in the fourth year of his reign."
+  },
+  {
+   "sentence": "Вот размеры основания, на котором Соломон строил Божий дом: шестьдесят локтей длины и двадцать локтей ширины (по локтю ___).",
+   "lemma": "образец",
+   "options": [
+    "старом образце",
+    "старым образцом",
+    "старому образцу",
+    "старого образца"
+   ],
+   "correct": "старого образца",
+   "case": "Родительный (Genitive)",
+   "explain": "«старого образца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "Now these are the foundations which Solomon laid for the building of God’s house. The length by cubits after the first measure was sixty cubits, and the width twenty cubits."
+  },
+  {
+   "sentence": "Притвор перед домом был длиной двадцать локтей — по ширине ___ — и двадцать локтей высотой.",
+   "lemma": "здание",
+   "options": [
+    "самом здании",
+    "самим зданием",
+    "самого здания",
+    "само здание"
+   ],
+   "correct": "самого здания",
+   "case": "Родительный (Genitive)",
+   "explain": "«самого здания» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "The porch that was in front, its length, according to the width of the house, was twenty cubits, and the height one hundred twenty; and he overlaid it within with pure gold."
+  },
+  {
+   "sentence": "Изнутри он покрыл его ___.",
+   "lemma": "золото",
+   "options": [
+    "чистом золоте",
+    "чистому золоту",
+    "чистым золотом",
+    "чистого золота"
+   ],
+   "correct": "чистым золотом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«чистым золотом» — the instrumental marks the means, company, or complement.",
+   "id": "c6",
+   "translation": "The porch that was in front, its length, according to the width of the house, was twenty cubits, and the height one hundred twenty; and he overlaid it within with pure gold."
+  },
+  {
+   "sentence": "Он выложил дом ___ и золотом, доставленным из Парваима.",
+   "lemma": "камень",
+   "options": [
+    "драгоценными камнями",
+    "драгоценные камни",
+    "драгоценным камням",
+    "драгоценных камнях"
+   ],
+   "correct": "драгоценными камнями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«драгоценными камнями» — the instrumental marks the means, company, or complement.",
+   "id": "c8",
+   "translation": "He decorated the house with precious stones for beauty. The gold was gold from Parvaim."
+  },
+  {
+   "sentence": "Он покрыл золотом потолочные балки, ___, стены и двери дома и вырезал на стенах херувимов .",
+   "lemma": "рама",
+   "options": [
+    "дверных рамах",
+    "дверных рам",
+    "дверные рамы",
+    "дверным рамам"
+   ],
+   "correct": "дверные рамы",
+   "case": "Именительный (Nominative)",
+   "explain": "«дверные рамы» — the subject of the sentence stands in the nominative.",
+   "id": "c9",
+   "translation": "He also overlaid the house, the beams, the thresholds, its walls, and its doors with gold; and engraved cherubim on the walls."
+  },
+  {
+   "sentence": "___ весили пятьдесят шекелей .",
+   "lemma": "гвоздь",
+   "options": [
+    "золотым гвоздям",
+    "золотые гвозди",
+    "золотых гвоздях",
+    "золотых гвоздей"
+   ],
+   "correct": "золотые гвозди",
+   "case": "Именительный (Nominative)",
+   "explain": "«Золотые гвозди» — the subject of the sentence stands in the nominative.",
+   "id": "c10",
+   "translation": "The weight of the nails was fifty shekels of gold. He overlaid the upper rooms with gold."
+  },
+  {
+   "sentence": "Золотом он покрыл также и ___.",
+   "lemma": "комната",
+   "options": [
+    "верхних комнатах",
+    "верхних комнат",
+    "верхним комнатам",
+    "верхние комнаты"
+   ],
+   "correct": "верхние комнаты",
+   "case": "Винительный (Accusative)",
+   "explain": "«верхние комнаты» — the accusative marks the direct object of the verb.",
+   "id": "c11",
+   "translation": "The weight of the nails was fifty shekels of gold. He overlaid the upper rooms with gold."
+  },
+  {
+   "sentence": "В Святом Святых он сделал двух херувимов ___ и покрыл их золотом.",
+   "lemma": "работа",
+   "options": [
+    "резной работы",
+    "резной работе",
+    "резной работой",
+    "резная работа"
+   ],
+   "correct": "резной работы",
+   "case": "Родительный (Genitive)",
+   "explain": "«резной работы» — the genitive here marks possession, absence, or quantity.",
+   "id": "c12",
+   "translation": "In the most holy place he made two cherubim by carving; and they overlaid them with gold."
+  },
+  {
+   "sentence": "Одно крыло ___ было пяти локтей в длину и касалось стены дома, а второе крыло, тоже пяти локтей в длину, касалось крыла другого херувима.",
+   "lemma": "херувим",
+   "options": [
+    "первым херувимом",
+    "первому херувиму",
+    "первого херувима",
+    "первом херувиме"
+   ],
+   "correct": "первого херувима",
+   "case": "Родительный (Genitive)",
+   "explain": "«первого херувима» — the genitive here marks possession, absence, or quantity.",
+   "id": "c13",
+   "translation": "The wings of the cherubim were twenty cubits long: the wing of the one was five cubits, reaching to the wall of the house; and the other wing was five cubits, reaching to the wing of the other cherub."
+  },
+  {
+   "sentence": "Одно крыло первого херувима было пяти локтей в длину и касалось стены дома, а ___, тоже пяти локтей в длину, касалось крыла другого херувима.",
+   "lemma": "крыло",
+   "options": [
+    "второму крылу",
+    "второго крыла",
+    "вторым крылом",
+    "второе крыло"
+   ],
+   "correct": "второе крыло",
+   "case": "Именительный (Nominative)",
+   "explain": "«второе крыло» — the subject of the sentence stands in the nominative.",
+   "id": "c14",
+   "translation": "The wings of the cherubim were twenty cubits long: the wing of the one was five cubits, reaching to the wall of the house; and the other wing was five cubits, reaching to the wing of the other cherub."
+  },
+  {
+   "sentence": "Одно крыло первого херувима было пяти локтей в длину и касалось стены дома, а второе крыло, тоже пяти локтей в длину, касалось крыла ___.",
+   "lemma": "херувим",
+   "options": [
+    "другому херувиму",
+    "другом херувиме",
+    "другой херувим",
+    "другого херувима"
+   ],
+   "correct": "другого херувима",
+   "case": "Родительный (Genitive)",
+   "explain": "«другого херувима» — the genitive here marks possession, absence, or quantity.",
+   "id": "c15",
+   "translation": "The wings of the cherubim were twenty cubits long: the wing of the one was five cubits, reaching to the wall of the house; and the other wing was five cubits, reaching to the wing of the other cherub."
+  },
+  {
+   "sentence": "Точно так же одно крыло ___ было пяти локтей в длину и касалось противоположной стены дома, а другое крыло, тоже пяти локтей в длину, касалось крыла первого херувима.",
+   "lemma": "херувим",
+   "options": [
+    "вторым херувимом",
+    "второго херувима",
+    "втором херувиме",
+    "второй херувим"
+   ],
+   "correct": "второго херувима",
+   "case": "Родительный (Genitive)",
+   "explain": "«второго херувима» — the genitive here marks possession, absence, or quantity.",
+   "id": "c16",
+   "translation": "The wing of the other cherub was five cubits, reaching to the wall of the house; and the other wing was five cubits, joining to the wing of the other cherub."
+  },
+  {
+   "sentence": "Точно так же одно крыло второго херувима было пяти локтей в длину и касалось ___ дома, а другое крыло, тоже пяти локтей в длину, касалось крыла первого херувима.",
+   "lemma": "стена",
+   "options": [
+    "противоположной стеной",
+    "противоположной стены",
+    "противоположной стене",
+    "противоположная стена"
+   ],
+   "correct": "противоположной стены",
+   "case": "Родительный (Genitive)",
+   "explain": "«противоположной стены» — the genitive here marks possession, absence, or quantity.",
+   "id": "c17",
+   "translation": "The wing of the other cherub was five cubits, reaching to the wall of the house; and the other wing was five cubits, joining to the wing of the other cherub."
+  },
+  {
+   "sentence": "Точно так же одно крыло второго херувима было пяти локтей в длину и касалось противоположной стены дома, а ___, тоже пяти локтей в длину, касалось крыла первого херувима.",
+   "lemma": "крыло",
+   "options": [
+    "другое крыло",
+    "другому крылу",
+    "другим крылом",
+    "другого крыла"
+   ],
+   "correct": "другое крыло",
+   "case": "Именительный (Nominative)",
+   "explain": "«другое крыло» — the subject of the sentence stands in the nominative.",
+   "id": "c18",
+   "translation": "The wing of the other cherub was five cubits, reaching to the wall of the house; and the other wing was five cubits, joining to the wing of the other cherub."
+  },
+  {
+   "sentence": "Точно так же одно крыло второго херувима было пяти локтей в длину и касалось противоположной стены дома, а другое крыло, тоже пяти локтей в длину, касалось крыла ___.",
+   "lemma": "херувим",
+   "options": [
+    "первым херувимом",
+    "первому херувиму",
+    "первого херувима",
+    "первом херувиме"
+   ],
+   "correct": "первого херувима",
+   "case": "Родительный (Genitive)",
+   "explain": "«первого херувима» — the genitive here marks possession, absence, or quantity.",
+   "id": "c19",
+   "translation": "The wing of the other cherub was five cubits, reaching to the wall of the house; and the other wing was five cubits, joining to the wing of the other cherub."
+  },
+  {
+   "sentence": "Они стояли на ногах, лицами к ___ .",
+   "lemma": "зал",
+   "options": [
+    "главным залом",
+    "главный зал",
+    "главном зале",
+    "главному залу"
+   ],
+   "correct": "главному залу",
+   "case": "Дательный (Dative)",
+   "explain": "«главному залу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c20",
+   "translation": "The wings of these cherubim spread themselves out twenty cubits. They stood on their feet, and their faces were toward the house."
+  },
+  {
+   "sentence": "Он сделал круговые цепи и украсил ими ___ колонн.",
+   "lemma": "часть",
+   "options": [
+    "верхних частях",
+    "верхние части",
+    "верхних частей",
+    "верхними частями"
+   ],
+   "correct": "верхние части",
+   "case": "Винительный (Accusative)",
+   "explain": "«верхние части» — the accusative marks the direct object of the verb.",
+   "id": "c21",
+   "translation": "He made chains in the inner sanctuary, and put them on the tops of the pillars; and he made one hundred pomegranates, and put them on the chains."
+  },
+  {
+   "sentence": "Еще он сделал сто ___ и прикрепил их к цепям.",
+   "lemma": "плод",
+   "options": [
+    "гранатовым плодам",
+    "гранатовых плодов",
+    "гранатовые плоды",
+    "гранатовых плодах"
+   ],
+   "correct": "гранатовых плодов",
+   "case": "Родительный (Genitive)",
+   "explain": "«гранатовых плодов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c22",
+   "translation": "He made chains in the inner sanctuary, and put them on the tops of the pillars; and he made one hundred pomegranates, and put them on the chains."
+  },
+  {
+   "sentence": "Он установил колонны перед храмом: одну с ___ и одну с северной.",
+   "lemma": "сторона",
+   "options": [
+    "южной стороны",
+    "южная сторона",
+    "южной стороной",
+    "южной стороне"
+   ],
+   "correct": "южной стороны",
+   "case": "Родительный (Genitive)",
+   "explain": "«южной стороны» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c23",
+   "translation": "He set up the pillars before the temple, one on the right hand, and the other on the left; and called the name of that on the right hand Jachin, and the name of that on the left Boaz."
+  },
+  {
+   "sentence": "Ту, что с ___, он назвал Иахин , а ту, что с северной стороны, — Боаз .",
+   "lemma": "сторона",
+   "options": [
+    "южной стороны",
+    "южная сторона",
+    "южной стороной",
+    "южной стороне"
+   ],
+   "correct": "южной стороны",
+   "case": "Родительный (Genitive)",
+   "explain": "«южной стороны» — the genitive here marks possession, absence, or quantity.",
+   "id": "c24",
+   "translation": "He set up the pillars before the temple, one on the right hand, and the other on the left; and called the name of that on the right hand Jachin, and the name of that on the left Boaz."
+  },
+  {
+   "sentence": "Ту, что с южной стороны, он назвал Иахин , а ту, что с ___, — Боаз .",
+   "lemma": "сторона",
+   "options": [
+    "северной стороне",
+    "северной стороны",
+    "северная сторона",
+    "северной стороной"
+   ],
+   "correct": "северной стороны",
+   "case": "Родительный (Genitive)",
+   "explain": "«северной стороны» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c25",
+   "translation": "He set up the pillars before the temple, one on the right hand, and the other on the left; and called the name of that on the right hand Jachin, and the name of that on the left Boaz."
+  }
+ ]
 }

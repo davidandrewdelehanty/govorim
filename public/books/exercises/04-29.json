@@ -1,137 +1,574 @@
 {
-  "title": "Числа 29 — Numbers 29",
-  "source": "Numbers 29 · Новый Русский Перевод",
-  "instructions": "Choose the correct case form of the word in brackets to fill the blank. Every option is a real form of the same word — only the case differs.",
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "В первый день седьмого ___ созывайте священное собрание.",
-      "lemma": "месяц",
-      "options": ["месяц", "месяца", "месяцу", "месяцем"],
-      "correct": "месяца",
-      "case": "Родительный (Genitive)",
-      "translation": "On the first day of the seventh month convene a sacred assembly.",
-      "explain": "The ordinal phrase седьмого (of the seventh) requires the genitive of месяц → месяца."
-    },
-    {
-      "id": "c2",
-      "sentence": "В этот день вам следует трубить в ___.",
-      "lemma": "труба",
-      "options": ["трубы", "труб", "трубам", "трубами"],
-      "correct": "трубы",
-      "case": "Винительный (Accusative)",
-      "translation": "On that day you shall blow the trumpets.",
-      "explain": "Трубить в takes the accusative; for an inanimate plural the accusative equals the nominative → трубы."
-    },
-    {
-      "id": "c3",
-      "sentence": "…из лучшей муки, смешанной с ___.",
-      "lemma": "масло",
-      "options": ["масло", "масла", "маслу", "маслом"],
-      "correct": "маслом",
-      "case": "Творительный (Instrumental)",
-      "translation": "…of fine flour, mixed with oil.",
-      "explain": "The preposition с (with) takes the instrumental → маслом."
-    },
-    {
-      "id": "c4",
-      "sentence": "Прибавляйте одного ___ для жертвы за грех.",
-      "lemma": "козёл",
-      "options": ["козёл", "козла", "козлу", "козлом"],
-      "correct": "козла",
-      "case": "Винительный (Accusative)",
-      "translation": "Add one male goat for a sin offering.",
-      "explain": "Козёл is the direct object of прибавляйте; an animate masculine noun takes the genitive-form ending in the accusative → козла."
-    },
-    {
-      "id": "c5",
-      "sentence": "Прибавляйте одного козла для вашего ___.",
-      "lemma": "очищение",
-      "options": ["очищение", "очищения", "очищению", "очищением"],
-      "correct": "очищения",
-      "case": "Родительный (Genitive)",
-      "translation": "Add one male goat for your cleansing.",
-      "explain": "The preposition для (for) takes the genitive → очищения."
-    },
-    {
-      "id": "c6",
-      "sentence": "Приносите, как благоухание приятное ___, всесожжение.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господу",
-      "case": "Дательный (Dative)",
-      "translation": "Offer a burnt offering as a pleasing aroma to the LORD.",
-      "explain": "Приятный кому (pleasing to whom) governs the dative → Господу."
-    },
-    {
-      "id": "c7",
-      "sentence": "Созывайте священное собрание и не занимайтесь никакими ___.",
-      "lemma": "дело",
-      "options": ["дела", "дел", "делам", "делами"],
-      "correct": "делами",
-      "case": "Творительный (Instrumental)",
-      "translation": "Convene a sacred assembly and do no work.",
-      "explain": "The verb заниматься (to be occupied with) governs the instrumental → делами."
-    },
-    {
-      "id": "c8",
-      "sentence": "Это приятное ___, огненная жертва Господу.",
-      "lemma": "благоухание",
-      "options": ["благоухание", "благоухания", "благоуханию", "благоуханием"],
-      "correct": "благоухание",
-      "case": "Именительный (Nominative)",
-      "translation": "This is a pleasing aroma, an offering by fire to the LORD.",
-      "explain": "It is the predicate noun after это, so it stays in the nominative → благоухание."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "В этот день вам следует трубить в трубы.",
-      "question": "What are the people to do on the first day of the seventh month?",
-      "options": ["Blow trumpets", "Fast completely", "Light lamps", "Rest in silence"],
-      "correct": "Blow trumpets",
-      "explain": "The verse commands that on that day the trumpets are to be blown — the Feast of Trumpets."
-    },
-    {
-      "id": "r2",
-      "ru": "Приносите всесожжение из одного молодого быка, одного барана и семи годовалых ягнят без изъяна для благоухания приятного Господу.",
-      "question": "What makes up the burnt offering for this feast?",
-      "options": ["One bull, one ram, and seven year-old lambs", "Two bulls and two rams", "Seven goats", "Twelve lambs"],
-      "correct": "One bull, one ram, and seven year-old lambs",
-      "explain": "The offering is one young bull, one ram, and seven year-old lambs without defect."
-    },
-    {
-      "id": "r3",
-      "ru": "Семь дней отмечайте праздник в честь Господа.",
-      "question": "How long is the Feast of Booths to be kept?",
-      "options": ["Seven days", "One day", "Three days", "Forty days"],
-      "correct": "Seven days",
-      "explain": "The people are told to keep the festival in honor of the LORD for seven days."
-    },
-    {
-      "id": "r4",
-      "ru": "Пятнадцатый день седьмого месяца созывайте священное собрание и не занимайтесь ничем из обычных дел.",
-      "question": "On which day of the seventh month does the Feast of Booths begin?",
-      "options": ["The fifteenth", "The first", "The tenth", "The seventh"],
-      "correct": "The fifteenth",
-      "explain": "The sacred assembly for the feast is convened on the fifteenth day of the seventh month."
-    },
-    {
-      "id": "r5",
-      "ru": "В восьмой день созывайте священное собрание и не занимайтесь ничем из обычных дел.",
-      "question": "What is to happen on the eighth day?",
-      "options": ["A sacred assembly with no regular work", "A day of fasting", "The trumpets are blown again", "The camp moves on"],
-      "correct": "A sacred assembly with no regular work",
-      "explain": "On the eighth day a sacred assembly is held and no ordinary work is to be done."
-    },
-    {
-      "id": "r6",
-      "ru": "Прибавляйте одного козла для жертвы за грех, для вашего очищения.",
-      "question": "Why is the male goat added to the offerings?",
-      "options": ["As a sin offering for your cleansing", "As a peace offering", "For a thanksgiving meal", "As a firstfruits gift"],
-      "correct": "As a sin offering for your cleansing",
-      "explain": "One male goat is added as a sin offering to make atonement (cleansing) for the people."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "«В ___ седьмого месяца созывайте священное собрание и не занимайтесь ничем из обычных дел.",
+   "lemma": "день",
+   "options": [
+    "первым днём",
+    "первый день",
+    "первого дня",
+    "первом дне"
+   ],
+   "correct": "первый день",
+   "case": "Винительный (Accusative)",
+   "explain": "«первый день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "“ ‘In the seventh month, on the first day of the month, you shall have a holy convocation; you shall do no regular work. It is a day of blowing of trumpets to you."
+  },
+  {
+   "sentence": "«В первый день ___ созывайте священное собрание и не занимайтесь ничем из обычных дел.",
+   "lemma": "месяц",
+   "options": [
+    "седьмом месяце",
+    "седьмой месяц",
+    "седьмому месяцу",
+    "седьмого месяца"
+   ],
+   "correct": "седьмого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«седьмого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "“ ‘In the seventh month, on the first day of the month, you shall have a holy convocation; you shall do no regular work. It is a day of blowing of trumpets to you."
+  },
+  {
+   "sentence": "«В первый день седьмого месяца созывайте священное собрание и не занимайтесь ничем из ___.",
+   "lemma": "дело",
+   "options": [
+    "обычными делами",
+    "обычных делах",
+    "обычным делам",
+    "обычных дел"
+   ],
+   "correct": "обычных дел",
+   "case": "Родительный (Genitive)",
+   "explain": "«обычных дел» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "“ ‘In the seventh month, on the first day of the month, you shall have a holy convocation; you shall do no regular work. It is a day of blowing of trumpets to you."
+  },
+  {
+   "sentence": "Приносите всесожжение из одного ___, одного барана и семи годовалых ягнят без изъяна для благоухания, приятного Господу.",
+   "lemma": "бык",
+   "options": [
+    "молодому быку",
+    "молодой бык",
+    "молодого быка",
+    "молодым быком"
+   ],
+   "correct": "молодого быка",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодого быка» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "You shall offer a burnt offering for a pleasant aroma to Yahweh: one young bull, one ram, seven male lambs a year old without defect;"
+  },
+  {
+   "sentence": "Пусть ___ при быке будет из трех десятых ефы лучшей муки, смешанной с маслом; при баране — из двух десятых ; 4 а при каждом из семи ягнят — из одной десятой .",
+   "lemma": "приношение",
+   "options": [
+    "хлебному приношению",
+    "хлебным приношением",
+    "хлебном приношении",
+    "хлебное приношение"
+   ],
+   "correct": "хлебное приношение",
+   "case": "Именительный (Nominative)",
+   "explain": "«хлебное приношение» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "and their meal offering, fine flour mixed with oil: three tenths for the bull, two tenths for the ram,"
+  },
+  {
+   "sentence": "Это ___, огненная жертва Господу».",
+   "lemma": "благоухание",
+   "options": [
+    "приятном благоухании",
+    "приятное благоухание",
+    "приятному благоуханию",
+    "приятного благоухания"
+   ],
+   "correct": "приятное благоухание",
+   "case": "Именительный (Nominative)",
+   "explain": "«приятное благоухание» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "in addition to the burnt offering of the new moon with its meal offering, and the continual burnt offering with its meal offering, and their drink offerings, according to their ordinance, for a pleasant aroma, an offering made by fire to Yahweh."
+  },
+  {
+   "sentence": "«В ___ седьмого месяца созывайте священное собрание.",
+   "lemma": "день",
+   "options": [
+    "десятом дне",
+    "десятого дня",
+    "десятый день",
+    "десятым днём"
+   ],
+   "correct": "десятый день",
+   "case": "Винительный (Accusative)",
+   "explain": "«десятый день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c7",
+   "translation": "“ ‘On the tenth day of this seventh month you shall have a holy convocation. You shall afflict your souls. You shall do no kind of work;"
+  },
+  {
+   "sentence": "«В десятый день ___ созывайте священное собрание.",
+   "lemma": "месяц",
+   "options": [
+    "седьмом месяце",
+    "седьмой месяц",
+    "седьмому месяцу",
+    "седьмого месяца"
+   ],
+   "correct": "седьмого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«седьмого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "“ ‘On the tenth day of this seventh month you shall have a holy convocation. You shall afflict your souls. You shall do no kind of work;"
+  },
+  {
+   "sentence": "Приносите как благоухание, приятное Господу, всесожжение из одного ___, одного барана и семи годовалых ягнят без изъяна.",
+   "lemma": "бык",
+   "options": [
+    "молодому быку",
+    "молодой бык",
+    "молодого быка",
+    "молодым быком"
+   ],
+   "correct": "молодого быка",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодого быка» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "but you shall offer a burnt offering to Yahweh for a pleasant aroma: one young bull, one ram, seven male lambs a year old, all without defect;"
+  },
+  {
+   "sentence": "«В ___ седьмого месяца созывайте священное собрание и не занимайтесь ничем из обычных дел.",
+   "lemma": "день",
+   "options": [
+    "пятнадцатому дню",
+    "пятнадцатом дне",
+    "пятнадцатый день",
+    "пятнадцатым днём"
+   ],
+   "correct": "пятнадцатый день",
+   "case": "Винительный (Accusative)",
+   "explain": "«пятнадцатый день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c10",
+   "translation": "“ ‘On the fifteenth day of the seventh month you shall have a holy convocation. You shall do no regular work. You shall keep a feast to Yahweh seven days."
+  },
+  {
+   "sentence": "«В пятнадцатый день ___ созывайте священное собрание и не занимайтесь ничем из обычных дел.",
+   "lemma": "месяц",
+   "options": [
+    "седьмом месяце",
+    "седьмой месяц",
+    "седьмому месяцу",
+    "седьмого месяца"
+   ],
+   "correct": "седьмого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«седьмого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
+   "translation": "“ ‘On the fifteenth day of the seventh month you shall have a holy convocation. You shall do no regular work. You shall keep a feast to Yahweh seven days."
+  },
+  {
+   "sentence": "«В пятнадцатый день седьмого месяца созывайте священное собрание и не занимайтесь ничем из ___.",
+   "lemma": "дело",
+   "options": [
+    "обычными делами",
+    "обычных делах",
+    "обычным делам",
+    "обычных дел"
+   ],
+   "correct": "обычных дел",
+   "case": "Родительный (Genitive)",
+   "explain": "«обычных дел» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c12",
+   "translation": "“ ‘On the fifteenth day of the seventh month you shall have a holy convocation. You shall do no regular work. You shall keep a feast to Yahweh seven days."
+  },
+  {
+   "sentence": "Приносите всесожжение, огненную жертву, благоухание, приятное Господу: тринадцать ___, двух баранов и четырнадцать годовалых ягнят без изъяна.",
+   "lemma": "бык",
+   "options": [
+    "молодые быки",
+    "молодых быков",
+    "молодыми быками",
+    "молодым быкам"
+   ],
+   "correct": "молодых быков",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодых быков» — the genitive here marks possession, absence, or quantity.",
+   "id": "c13",
+   "translation": "You shall offer a burnt offering, an offering made by fire, of a pleasant aroma to Yahweh: thirteen young bulls, two rams, fourteen male lambs a year old, all without defect;"
+  },
+  {
+   "sentence": "Приносите всесожжение, огненную жертву, благоухание, приятное Господу: тринадцать молодых быков, двух баранов и четырнадцать ___ без изъяна.",
+   "lemma": "ягнёнок",
+   "options": [
+    "годовалых ягнятах",
+    "годовалые ягнята",
+    "годовалых ягнят",
+    "годовалыми ягнятами"
+   ],
+   "correct": "годовалых ягнят",
+   "case": "Родительный (Genitive)",
+   "explain": "«годовалых ягнят» — the genitive here marks possession, absence, or quantity.",
+   "id": "c14",
+   "translation": "You shall offer a burnt offering, an offering made by fire, of a pleasant aroma to Yahweh: thirteen young bulls, two rams, fourteen male lambs a year old, all without defect;"
+  },
+  {
+   "sentence": "Прибавляйте одного козла для жертвы за грех, сверх ___ с положенным хлебным приношением и жертвенным возлиянием.",
+   "lemma": "всесожжение",
+   "options": [
+    "постоянном всесожжении",
+    "постоянному всесожжению",
+    "постоянным всесожжением",
+    "постоянного всесожжения"
+   ],
+   "correct": "постоянного всесожжения",
+   "case": "Родительный (Genitive)",
+   "explain": "«постоянного всесожжения» — after the preposition «сверх», the genitive here marks possession, absence, or quantity.",
+   "id": "c15",
+   "translation": "and one male goat for a sin offering, in addition to the continual burnt offering, its meal offering, and its drink offering."
+  },
+  {
+   "sentence": "Во второй день приносите двенадцать ___, двух баранов и четырнадцать годовалых ягнят без изъяна.",
+   "lemma": "бык",
+   "options": [
+    "молодые быки",
+    "молодых быков",
+    "молодыми быками",
+    "молодым быкам"
+   ],
+   "correct": "молодых быков",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодых быков» — the genitive here marks possession, absence, or quantity.",
+   "id": "c17",
+   "translation": "“ ‘On the second day you shall offer twelve young bulls, two rams, and fourteen male lambs a year old without defect;"
+  },
+  {
+   "sentence": "Во второй день приносите двенадцать молодых быков, двух баранов и четырнадцать ___ без изъяна.",
+   "lemma": "ягнёнок",
+   "options": [
+    "годовалых ягнятах",
+    "годовалые ягнята",
+    "годовалых ягнят",
+    "годовалыми ягнятами"
+   ],
+   "correct": "годовалых ягнят",
+   "case": "Родительный (Genitive)",
+   "explain": "«годовалых ягнят» — the genitive here marks possession, absence, or quantity.",
+   "id": "c18",
+   "translation": "“ ‘On the second day you shall offer twelve young bulls, two rams, and fourteen male lambs a year old without defect;"
+  },
+  {
+   "sentence": "Прибавляйте одного козла для жертвы за грех, сверх ___ с положенным хлебным приношением и жертвенными возлияниями.",
+   "lemma": "всесожжение",
+   "options": [
+    "постоянном всесожжении",
+    "постоянному всесожжению",
+    "постоянным всесожжением",
+    "постоянного всесожжения"
+   ],
+   "correct": "постоянного всесожжения",
+   "case": "Родительный (Genitive)",
+   "explain": "«постоянного всесожжения» — after the preposition «сверх», the genitive here marks possession, absence, or quantity.",
+   "id": "c20",
+   "translation": "and one male goat for a sin offering, in addition to the continual burnt offering, with its meal offering and their drink offerings."
+  },
+  {
+   "sentence": "В ___ приносите одиннадцать молодых быков, двух баранов и четырнадцать годовалых ягнят без изъяна.",
+   "lemma": "день",
+   "options": [
+    "третий день",
+    "третьего дня",
+    "третьем дне",
+    "третьим днём"
+   ],
+   "correct": "третий день",
+   "case": "Винительный (Accusative)",
+   "explain": "«третий день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c21",
+   "translation": "“ ‘On the third day: eleven bulls, two rams, fourteen male lambs a year old without defect;"
+  },
+  {
+   "sentence": "В третий день приносите одиннадцать ___, двух баранов и четырнадцать годовалых ягнят без изъяна.",
+   "lemma": "бык",
+   "options": [
+    "молодые быки",
+    "молодых быков",
+    "молодыми быками",
+    "молодым быкам"
+   ],
+   "correct": "молодых быков",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодых быков» — the genitive here marks possession, absence, or quantity.",
+   "id": "c22",
+   "translation": "“ ‘On the third day: eleven bulls, two rams, fourteen male lambs a year old without defect;"
+  },
+  {
+   "sentence": "В третий день приносите одиннадцать молодых быков, двух баранов и четырнадцать ___ без изъяна.",
+   "lemma": "ягнёнок",
+   "options": [
+    "годовалых ягнятах",
+    "годовалые ягнята",
+    "годовалых ягнят",
+    "годовалыми ягнятами"
+   ],
+   "correct": "годовалых ягнят",
+   "case": "Родительный (Genitive)",
+   "explain": "«годовалых ягнят» — the genitive here marks possession, absence, or quantity.",
+   "id": "c23",
+   "translation": "“ ‘On the third day: eleven bulls, two rams, fourteen male lambs a year old without defect;"
+  },
+  {
+   "sentence": "Прибавляйте одного козла для жертвы за грех, сверх ___ с положенным хлебным приношением и жертвенным возлиянием.",
+   "lemma": "всесожжение",
+   "options": [
+    "постоянном всесожжении",
+    "постоянному всесожжению",
+    "постоянным всесожжением",
+    "постоянного всесожжения"
+   ],
+   "correct": "постоянного всесожжения",
+   "case": "Родительный (Genitive)",
+   "explain": "«постоянного всесожжения» — after the preposition «сверх», the genitive here marks possession, absence, or quantity.",
+   "id": "c25",
+   "translation": "and one male goat for a sin offering, in addition to the continual burnt offering, and its meal offering, and its drink offering."
+  },
+  {
+   "sentence": "В четвертый день приносите десять ___, двух баранов и четырнадцать годовалых ягнят без изъяна.",
+   "lemma": "бык",
+   "options": [
+    "молодые быки",
+    "молодых быков",
+    "молодыми быками",
+    "молодым быкам"
+   ],
+   "correct": "молодых быков",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодых быков» — the genitive here marks possession, absence, or quantity.",
+   "id": "c26",
+   "translation": "“ ‘On the fourth day ten bulls, two rams, fourteen male lambs a year old without defect;"
+  },
+  {
+   "sentence": "В четвертый день приносите десять молодых быков, двух баранов и четырнадцать ___ без изъяна.",
+   "lemma": "ягнёнок",
+   "options": [
+    "годовалых ягнятах",
+    "годовалые ягнята",
+    "годовалых ягнят",
+    "годовалыми ягнятами"
+   ],
+   "correct": "годовалых ягнят",
+   "case": "Родительный (Genitive)",
+   "explain": "«годовалых ягнят» — the genitive here marks possession, absence, or quantity.",
+   "id": "c27",
+   "translation": "“ ‘On the fourth day ten bulls, two rams, fourteen male lambs a year old without defect;"
+  },
+  {
+   "sentence": "Прибавляйте одного козла для жертвы за грех, сверх ___ с положенным хлебным приношением и жертвенным возлиянием.",
+   "lemma": "всесожжение",
+   "options": [
+    "постоянном всесожжении",
+    "постоянному всесожжению",
+    "постоянным всесожжением",
+    "постоянного всесожжения"
+   ],
+   "correct": "постоянного всесожжения",
+   "case": "Родительный (Genitive)",
+   "explain": "«постоянного всесожжения» — after the preposition «сверх», the genitive here marks possession, absence, or quantity.",
+   "id": "c29",
+   "translation": "and one male goat for a sin offering; in addition to the continual burnt offering, its meal offering, and its drink offering."
+  },
+  {
+   "sentence": "В ___ приносите девять молодых быков, двух баранов и четырнадцать годовалых ягнят без изъяна.",
+   "lemma": "день",
+   "options": [
+    "пятый день",
+    "пятого дня",
+    "пятому дню",
+    "пятым днём"
+   ],
+   "correct": "пятый день",
+   "case": "Винительный (Accusative)",
+   "explain": "«пятый день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c30",
+   "translation": "“ ‘On the fifth day: nine bulls, two rams, fourteen male lambs a year old without defect;"
+  },
+  {
+   "sentence": "В пятый день приносите девять ___, двух баранов и четырнадцать годовалых ягнят без изъяна.",
+   "lemma": "бык",
+   "options": [
+    "молодые быки",
+    "молодых быков",
+    "молодыми быками",
+    "молодым быкам"
+   ],
+   "correct": "молодых быков",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодых быков» — the genitive here marks possession, absence, or quantity.",
+   "id": "c31",
+   "translation": "“ ‘On the fifth day: nine bulls, two rams, fourteen male lambs a year old without defect;"
+  },
+  {
+   "sentence": "В пятый день приносите девять молодых быков, двух баранов и четырнадцать ___ без изъяна.",
+   "lemma": "ягнёнок",
+   "options": [
+    "годовалых ягнятах",
+    "годовалые ягнята",
+    "годовалых ягнят",
+    "годовалыми ягнятами"
+   ],
+   "correct": "годовалых ягнят",
+   "case": "Родительный (Genitive)",
+   "explain": "«годовалых ягнят» — the genitive here marks possession, absence, or quantity.",
+   "id": "c32",
+   "translation": "“ ‘On the fifth day: nine bulls, two rams, fourteen male lambs a year old without defect;"
+  },
+  {
+   "sentence": "Прибавляйте одного козла для жертвы за грех, сверх ___ с положенным хлебным приношением и жертвенным возлиянием.",
+   "lemma": "всесожжение",
+   "options": [
+    "постоянном всесожжении",
+    "постоянному всесожжению",
+    "постоянным всесожжением",
+    "постоянного всесожжения"
+   ],
+   "correct": "постоянного всесожжения",
+   "case": "Родительный (Genitive)",
+   "explain": "«постоянного всесожжения» — after the preposition «сверх», the genitive here marks possession, absence, or quantity.",
+   "id": "c34",
+   "translation": "and one male goat for a sin offering, in addition to the continual burnt offering, and its meal offering, and its drink offering."
+  },
+  {
+   "sentence": "В шестой день приносите восемь ___, двух баранов и четырнадцать годовалых ягнят без изъяна.",
+   "lemma": "бык",
+   "options": [
+    "молодые быки",
+    "молодых быков",
+    "молодыми быками",
+    "молодым быкам"
+   ],
+   "correct": "молодых быков",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодых быков» — the genitive here marks possession, absence, or quantity.",
+   "id": "c36",
+   "translation": "“ ‘On the sixth day: eight bulls, two rams, fourteen male lambs a year old without defect;"
+  },
+  {
+   "sentence": "В шестой день приносите восемь молодых быков, двух баранов и четырнадцать ___ без изъяна.",
+   "lemma": "ягнёнок",
+   "options": [
+    "годовалых ягнятах",
+    "годовалые ягнята",
+    "годовалых ягнят",
+    "годовалыми ягнятами"
+   ],
+   "correct": "годовалых ягнят",
+   "case": "Родительный (Genitive)",
+   "explain": "«годовалых ягнят» — the genitive here marks possession, absence, or quantity.",
+   "id": "c37",
+   "translation": "“ ‘On the sixth day: eight bulls, two rams, fourteen male lambs a year old without defect;"
+  },
+  {
+   "sentence": "Прибавляйте одного козла для жертвы за грех, сверх ___ с положенным хлебным приношением и жертвенным возлиянием.",
+   "lemma": "всесожжение",
+   "options": [
+    "постоянном всесожжении",
+    "постоянному всесожжению",
+    "постоянным всесожжением",
+    "постоянного всесожжения"
+   ],
+   "correct": "постоянного всесожжения",
+   "case": "Родительный (Genitive)",
+   "explain": "«постоянного всесожжения» — after the preposition «сверх», the genitive here marks possession, absence, or quantity.",
+   "id": "c39",
+   "translation": "and one male goat for a sin offering; in addition to the continual burnt offering, its meal offering, and the drink offerings of it."
+  },
+  {
+   "sentence": "В седьмой день приносите семь ___, двух баранов и четырнадцать годовалых ягнят без изъяна.",
+   "lemma": "бык",
+   "options": [
+    "молодые быки",
+    "молодых быков",
+    "молодыми быками",
+    "молодым быкам"
+   ],
+   "correct": "молодых быков",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодых быков» — the genitive here marks possession, absence, or quantity.",
+   "id": "c41",
+   "translation": "“ ‘On the seventh day: seven bulls, two rams, fourteen male lambs a year old without defect;"
+  },
+  {
+   "sentence": "В седьмой день приносите семь молодых быков, двух баранов и четырнадцать ___ без изъяна.",
+   "lemma": "ягнёнок",
+   "options": [
+    "годовалых ягнятах",
+    "годовалые ягнята",
+    "годовалых ягнят",
+    "годовалыми ягнятами"
+   ],
+   "correct": "годовалых ягнят",
+   "case": "Родительный (Genitive)",
+   "explain": "«годовалых ягнят» — the genitive here marks possession, absence, or quantity.",
+   "id": "c42",
+   "translation": "“ ‘On the seventh day: seven bulls, two rams, fourteen male lambs a year old without defect;"
+  },
+  {
+   "sentence": "Прибавляйте одного козла для жертвы за грех, сверх ___ с положенным хлебным приношением и жертвенным возлиянием.",
+   "lemma": "всесожжение",
+   "options": [
+    "постоянном всесожжении",
+    "постоянному всесожжению",
+    "постоянным всесожжением",
+    "постоянного всесожжения"
+   ],
+   "correct": "постоянного всесожжения",
+   "case": "Родительный (Genitive)",
+   "explain": "«постоянного всесожжения» — after the preposition «сверх», the genitive here marks possession, absence, or quantity.",
+   "id": "c44",
+   "translation": "and one male goat for a sin offering; in addition to the continual burnt offering, its meal offering, and its drink offering."
+  },
+  {
+   "sentence": "В восьмой день созывайте священное собрание и не занимайтесь ничем из ___.",
+   "lemma": "дело",
+   "options": [
+    "обычными делами",
+    "обычных делах",
+    "обычным делам",
+    "обычных дел"
+   ],
+   "correct": "обычных дел",
+   "case": "Родительный (Genitive)",
+   "explain": "«обычных дел» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c46",
+   "translation": "“ ‘On the eighth day you shall have a solemn assembly. You shall do no regular work;"
+  },
+  {
+   "sentence": "К ___ с положенным хлебным приношением и жертвенным возлиянием прибавляйте одного козла для жертвы за грех.",
+   "lemma": "всесожжение",
+   "options": [
+    "постоянном всесожжении",
+    "постоянное всесожжение",
+    "постоянного всесожжения",
+    "постоянному всесожжению"
+   ],
+   "correct": "постоянному всесожжению",
+   "case": "Дательный (Dative)",
+   "explain": "«постоянному всесожжению» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c49",
+   "translation": "and one male goat for a sin offering, in addition to the continual burnt offering, with its meal offering, and its drink offering."
+  },
+  {
+   "sentence": "К постоянному всесожжению с положенным ___ и жертвенным возлиянием прибавляйте одного козла для жертвы за грех.",
+   "lemma": "приношение",
+   "options": [
+    "хлебным приношением",
+    "хлебному приношению",
+    "хлебное приношение",
+    "хлебного приношения"
+   ],
+   "correct": "хлебным приношением",
+   "case": "Творительный (Instrumental)",
+   "explain": "«хлебным приношением» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c50",
+   "translation": "and one male goat for a sin offering, in addition to the continual burnt offering, with its meal offering, and its drink offering."
+  }
+ ]
 }

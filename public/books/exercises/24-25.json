@@ -1,204 +1,154 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Это был первый год правления Навуходоносора, царя ___.",
-      "lemma": "Вавилон",
-      "options": [
-        "Вавилон",
-        "Вавилона",
-        "Вавилоном",
-        "Вавилоне"
-      ],
-      "correct": "Вавилона",
-      "case": "Родительный (Genitive)",
-      "translation": "This was the first year of Nebuchadnezzar king of Babylon.",
-      "explain": "The possessive construction царь Вавилона (king of Babylon) requires genitive case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Мне открывалось слово Господне, и я говорил вам снова и снова, но вы не ___.",
-      "lemma": "слушать",
-      "options": [
-        "слушали",
-        "слышали",
-        "слушайте",
-        "слушаю"
-      ],
-      "correct": "слушали",
-      "case": "Прошедшее время (Past tense)",
-      "translation": "The word of Yahweh came to me and I spoke to you repeatedly, but you did not listen.",
-      "explain": "The past tense matches the description of repeated action over decades."
-    },
-    {
-      "id": "c3",
-      "sentence": "Живите на земле, которую Господь отдал вам и вашим отцам ___.",
-      "lemma": "навек",
-      "options": [
-        "навек",
-        "навеки",
-        "навеке",
-        "навека"
-      ],
-      "correct": "навеки",
-      "case": "Наречие (Adverb)",
-      "translation": "Dwell in the land that Yahweh gave to your fathers forever.",
-      "explain": "The adverbial form навеки (forever) is used with the verb дал (gave)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Не вызывайте мой гнев делами ваших ___.",
-      "lemma": "рука",
-      "options": [
-        "рук",
-        "рукой",
-        "рукам",
-        "руках"
-      ],
-      "correct": "рук",
-      "case": "Родительный (Genitive)",
-      "translation": "Don't provoke my anger with the work of your hands.",
-      "explain": "The construction делами ваших рук (works of your hands) uses genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Я нашлю войска на эту страну и всех ее ___.",
-      "lemma": "обитатель",
-      "options": [
-        "обитателей",
-        "обитателем",
-        "обитателям",
-        "обитателями"
-      ],
-      "correct": "обитателей",
-      "case": "Винительный (Accusative)",
-      "translation": "I will bring armies against this land and all its inhabitants.",
-      "explain": "The verb нашлю (I will send against) requires the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Я сделаю их и станут они ___ навеки.",
-      "lemma": "руина",
-      "options": [
-        "руины",
-        "руину",
-        "руинами",
-        "руинах"
-      ],
-      "correct": "руинами",
-      "case": "Творительный (Instrumental)",
-      "translation": "I will make them and they will become desolations forever.",
-      "explain": "The verb станут (will become) requires the instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Эти народы будут служить царю ___.",
-      "lemma": "Вавилон",
-      "options": [
-        "Вавилона",
-        "Вавилону",
-        "Вавилоном",
-        "Вавилоне"
-      ],
-      "correct": "Вавилона",
-      "case": "Родительный (Genitive)",
-      "translation": "These nations will serve the king of Babylon.",
-      "explain": "The possessive construction царь Вавилона requires genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Напои из нее все народы, которым я тебя ___.",
-      "lemma": "посылать",
-      "options": [
-        "посылаю",
-        "посылал",
-        "посылаешь",
-        "посылают"
-      ],
-      "correct": "посылаю",
-      "case": "Настоящее время (Present tense)",
-      "translation": "Make all nations drink it, to whom I send you.",
-      "explain": "The present tense describes Jeremiah's ongoing mission."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Двадцать три года, начиная с тринадцатого года правления иудейского царя Иосии, и до сегодняшнего дня, мне открывалось слово Господне, и я говорил вам снова и снова, но вы не слушали.",
-      "question": "For how long has Jeremiah been delivering God's message?",
-      "options": [
-        "For twenty-three years Jeremiah has spoken repeatedly, but the people have not listened",
-        "For forty years with success",
-        "For only a few months",
-        "For decades with obedience"
-      ],
-      "correct": "For twenty-three years Jeremiah has spoken repeatedly, but the people have not listened",
-      "explain": "The text states: 'These twenty-three years, Yahweh's word has come to me...but you have not listened.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Господь посылал к вам всех своих слуг-пророков снова и снова, но вы не слушали их и даже не обращали внимания.",
-      "question": "What efforts did God make to reach the people before judgment?",
-      "options": [
-        "He sent all His prophets repeatedly, but they did not listen",
-        "He sent only signs",
-        "He did not warn them",
-        "He sent only private messages"
-      ],
-      "correct": "He sent all His prophets repeatedly, but they did not listen",
-      "explain": "The text says: 'Yahweh has sent to you all his servants the prophets...but you have not listened.'"
-    },
-    {
-      "id": "r3",
-      "ru": "За то, что вы не слушали моих слов, я призову все северные народы и моего слугу, Навуходоносора, царя Вавилона, и нашлю их на эту страну и всех ее обитателей.",
-      "question": "What is God's judgment for disobedience?",
-      "options": [
-        "He will send northern peoples and Nebuchadnezzar against the land",
-        "He will grant prosperity",
-        "He will send pleasant prophets",
-        "He will ignore them"
-      ],
-      "correct": "He will send northern peoples and Nebuchadnezzar against the land",
-      "explain": "God says: 'I will send and take all the families of the north...and will bring them against this land.'"
-    },
-    {
-      "id": "r4",
-      "ru": "Вся страна будет опустошена и страшна, а эти народы будут семьдесят лет служить царю Вавилона.",
-      "question": "What is the duration of exile?",
-      "options": [
-        "The nations will serve Babylon for seventy years",
-        "Only a few years",
-        "Forever",
-        "They will return immediately"
-      ],
-      "correct": "The nations will serve Babylon for seventy years",
-      "explain": "The text states: 'This whole land will be a desolation...these nations will serve the king of Babylon seventy years.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Но по прошествии семидесяти лет я накажу царя Вавилона и его народ, страну халдеев, за их вину, и приведу ее в вечное запустение.",
-      "question": "What does God promise after seventy years?",
-      "options": [
-        "He will punish Babylon and make it an eternal desolation",
-        "Babylon will rule forever",
-        "The exiles will never return",
-        "God will forget His people"
-      ],
-      "correct": "He will punish Babylon and make it an eternal desolation",
-      "explain": "The text says: 'When seventy years are accomplished, I will punish the king of Babylon...I will make the land of the Chaldeans desolate forever.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Так сказал мне Господь Бог Израиля. «Прими из моей руки эту чашу, наполненную вином моей ярости, и напои из нее все народы, которым я тебя посылаю.»",
-      "question": "What symbolic action does God command?",
-      "options": [
-        "Take a cup filled with wine of wrath and make all nations drink from it",
-        "Offer sacrifices at the temple",
-        "Build an altar of stones",
-        "Write prophecies on tablets"
-      ],
-      "correct": "Take a cup filled with wine of wrath and make all nations drink from it",
-      "explain": "God tells Jeremiah: 'Take this cup of the wine of wrath from my hand, and cause all the nations to drink it.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Вот откровение обо всем народе Иудеи, которое было Иеремии в четвертом году правления ___ Иоакима , сына Иосии, это был первый год правления Навуходоносора, царя Вавилона.",
+   "lemma": "царь",
+   "options": [
+    "иудейского царя",
+    "иудейскому царю",
+    "иудейским царём",
+    "иудейском царе"
+   ],
+   "correct": "иудейского царя",
+   "case": "Родительный (Genitive)",
+   "explain": "«иудейского царя» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "The word that came to Jeremiah concerning all the people of Judah, in the fourth year of Jehoiakim the son of Josiah, king of Judah (this was the first year of Nebuchadnezzar king of Babylon),"
+  },
+  {
+   "sentence": "Вот откровение обо всем народе Иудеи, которое было Иеремии в четвертом году правления иудейского царя Иоакима , сына Иосии, это был ___ правления Навуходоносора, царя Вавилона.",
+   "lemma": "год",
+   "options": [
+    "первым годом",
+    "первом годе",
+    "первый год",
+    "первому году"
+   ],
+   "correct": "первый год",
+   "case": "Именительный (Nominative)",
+   "explain": "«первый год» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "The word that came to Jeremiah concerning all the people of Judah, in the fourth year of Jehoiakim the son of Josiah, king of Judah (this was the first year of Nebuchadnezzar king of Babylon),"
+  },
+  {
+   "sentence": "— Двадцать три года — начиная с ___ правления иудейского царя Иосии , сына Амона, и до сегодняшнего дня мне открывалось слово Господне, и я говорил вам снова и снова, но вы не слушали.",
+   "lemma": "год",
+   "options": [
+    "тринадцатым годом",
+    "тринадцатого года",
+    "тринадцатому году",
+    "тринадцатый год"
+   ],
+   "correct": "тринадцатого года",
+   "case": "Родительный (Genitive)",
+   "explain": "«тринадцатого года» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "From the thirteenth year of Josiah the son of Amon, king of Judah, even to this day, these twenty-three years, Yahweh’s word has come to me, and I have spoken to you, rising up early and speaking; but you have not listened."
+  },
+  {
+   "sentence": "— Двадцать три года — начиная с тринадцатого года правления ___ Иосии , сына Амона, и до сегодняшнего дня мне открывалось слово Господне, и я говорил вам снова и снова, но вы не слушали.",
+   "lemma": "царь",
+   "options": [
+    "иудейского царя",
+    "иудейскому царю",
+    "иудейским царём",
+    "иудейском царе"
+   ],
+   "correct": "иудейского царя",
+   "case": "Родительный (Genitive)",
+   "explain": "«иудейского царя» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "From the thirteenth year of Josiah the son of Amon, king of Judah, even to this day, these twenty-three years, Yahweh’s word has come to me, and I have spoken to you, rising up early and speaking; but you have not listened."
+  },
+  {
+   "sentence": "— Двадцать три года — начиная с тринадцатого года правления иудейского царя Иосии , сына Амона, и до ___ мне открывалось слово Господне, и я говорил вам снова и снова, но вы не слушали.",
+   "lemma": "день",
+   "options": [
+    "сегодняшним днём",
+    "сегодняшнему дню",
+    "сегодняшнего дня",
+    "сегодняшнем дне"
+   ],
+   "correct": "сегодняшнего дня",
+   "case": "Родительный (Genitive)",
+   "explain": "«сегодняшнего дня» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "From the thirteenth year of Josiah the son of Amon, king of Judah, even to this day, these twenty-three years, Yahweh’s word has come to me, and I have spoken to you, rising up early and speaking; but you have not listened."
+  },
+  {
+   "sentence": "Они говорили: «Откажитесь каждый от своего ___ и злых деяний, и живите на земле, которую Господь отдал вам и вашим отцам навеки.",
+   "lemma": "путь",
+   "options": [
+    "злом пути",
+    "злой путь",
+    "злым путём",
+    "злого пути"
+   ],
+   "correct": "злого пути",
+   "case": "Родительный (Genitive)",
+   "explain": "«злого пути» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "saying, “Return now everyone from his evil way, and from the evil of your doings, and dwell in the land that Yahweh has given to you and to your fathers, from of old and even forever more."
+  },
+  {
+   "sentence": "Они говорили: «Откажитесь каждый от своего злого пути и ___, и живите на земле, которую Господь отдал вам и вашим отцам навеки.",
+   "lemma": "деяние",
+   "options": [
+    "злые деяния",
+    "злых деяниях",
+    "злых деяний",
+    "злым деяниям"
+   ],
+   "correct": "злых деяний",
+   "case": "Родительный (Genitive)",
+   "explain": "«злых деяний» — the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "saying, “Return now everyone from his evil way, and from the evil of your doings, and dwell in the land that Yahweh has given to you and to your fathers, from of old and even forever more."
+  },
+  {
+   "sentence": "Не следуйте за ___, чтобы служить им и поклоняться им; не вызывайте Мой гнев делами ваших рук, и Я не пошлю вам беду».",
+   "lemma": "бог",
+   "options": [
+    "чужие боги",
+    "чужими богами",
+    "чужих богах",
+    "чужим богам"
+   ],
+   "correct": "чужими богами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«чужими богами» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "id": "c8",
+   "translation": "Don’t go after other gods to serve them or worship them, and don’t provoke me to anger with the work of your hands; then I will do you no harm.”"
+  },
+  {
+   "sentence": "Ведь их самих поработят ___ и великие цари; Я воздам им по их поступкам и по делам их рук.",
+   "lemma": "народ",
+   "options": [
+    "многочисленные народы",
+    "многочисленных народах",
+    "многочисленных народов",
+    "многочисленными народами"
+   ],
+   "correct": "многочисленные народы",
+   "case": "Именительный (Nominative)",
+   "explain": "«многочисленные народы» — the subject of the sentence stands in the nominative.",
+   "id": "c9",
+   "translation": "For many nations and great kings will make bondservants of them, even of them. I will recompense them according to their deeds, and according to the work of their hands.”"
+  },
+  {
+   "sentence": "Ведь их самих поработят многочисленные народы и ___; Я воздам им по их поступкам и по делам их рук.",
+   "lemma": "царь",
+   "options": [
+    "великими царями",
+    "великим царям",
+    "великих царей",
+    "великие цари"
+   ],
+   "correct": "великие цари",
+   "case": "Именительный (Nominative)",
+   "explain": "«великие цари» — the subject of the sentence stands in the nominative.",
+   "id": "c10",
+   "translation": "For many nations and great kings will make bondservants of them, even of them. I will recompense them according to their deeds, and according to the work of their hands.”"
+  }
+ ]
 }

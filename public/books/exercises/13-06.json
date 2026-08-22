@@ -1,204 +1,109 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ был первенцем Иуды.",
-      "lemma": "сын",
-      "options": [
-        "сын",
-        "сына",
-        "сыну",
-        "сыном"
-      ],
-      "correct": "сын",
-      "case": "именительный (Nominative)",
-      "translation": "The son was the firstborn of Judah.",
-      "explain": "The noun is the subject of the sentence, so it takes nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Вот потомки ___.",
-      "lemma": "сын",
-      "options": [
-        "сын",
-        "сына",
-        "сыну",
-        "сыном"
-      ],
-      "correct": "сына",
-      "case": "родительный (Genitive)",
-      "translation": "Here are the descendants of the son.",
-      "explain": "After потомки (descendants), the genitive case shows possession."
-    },
-    {
-      "id": "c3",
-      "sentence": "Она родила ему ___.",
-      "lemma": "город",
-      "options": [
-        "город",
-        "города",
-        "городу",
-        "городом"
-      ],
-      "correct": "город",
-      "case": "винительный (Accusative)",
-      "translation": "She bore to him a city.",
-      "explain": "The direct object of родила (bore) takes accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Халев женился на ___.",
-      "lemma": "жена",
-      "options": [
-        "жена",
-        "жены",
-        "жене",
-        "женой"
-      ],
-      "correct": "женой",
-      "case": "творительный (Instrumental)",
-      "translation": "Caleb married the woman.",
-      "explain": "The preposition на (on/upon) in the context of marriage governs instrumental case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Арам захватили селения с ___.",
-      "lemma": "беда",
-      "options": [
-        "беда",
-        "беды",
-        "беде",
-        "бедой"
-      ],
-      "correct": "беды",
-      "case": "родительный (Genitive)",
-      "translation": "Aram captured villages with trouble.",
-      "explain": "After с (with), the genitive case expresses accompaniment."
-    },
-    {
-      "id": "c6",
-      "sentence": "Он делал зло в глазах ___.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господом"
-      ],
-      "correct": "Господа",
-      "case": "родительный (Genitive)",
-      "translation": "He did evil in the sight of the Lord.",
-      "explain": "The phrase в глазах (in the eyes/sight) with genitive expresses perspective."
-    },
-    {
-      "id": "c7",
-      "sentence": "Он был отцом ___.",
-      "lemma": "Иесей",
-      "options": [
-        "Иесей",
-        "Иесея",
-        "Иесею",
-        "Иесеем"
-      ],
-      "correct": "Иесея",
-      "case": "родительный (Genitive)",
-      "translation": "He was the father of Jesse.",
-      "explain": "After отцом (father), the genitive case shows the child relationship."
-    },
-    {
-      "id": "c8",
-      "sentence": "Это киньяне, которые произошли от ___.",
-      "lemma": "земля",
-      "options": [
-        "земля",
-        "земли",
-        "земле",
-        "землю"
-      ],
-      "correct": "земли",
-      "case": "родительный (Genitive)",
-      "translation": "These are the Kenites who came from the land.",
-      "explain": "The preposition от (from) always governs the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Вот сыновья Израиля.",
-      "question": "What is being listed at the beginning?",
-      "options": [
-        "The sons/tribes of Israel",
-        "The enemies of Israel",
-        "The cities of Israel",
-        "The prophets of Israel"
-      ],
-      "correct": "The sons/tribes of Israel",
-      "explain": "The text explicitly states Вот сыновья Израиля (Here are the sons of Israel)."
-    },
-    {
-      "id": "r2",
-      "ru": "Сыновья Иуды.",
-      "question": "Whose family line is being traced?",
-      "options": [
-        "The line of Judah",
-        "The line of Levi",
-        "The line of Benjamin",
-        "The line of Dan"
-      ],
-      "correct": "The line of Judah",
-      "explain": "The section header Сыновья Иуды (Sons of Judah) indicates the genealogy of Judah."
-    },
-    {
-      "id": "r3",
-      "ru": "Ир, первенец Иуды, делал зло в глазах Господа.",
-      "question": "What is said about Er, Judah's firstborn?",
-      "options": [
-        "He did evil in the sight of the Lord",
-        "He was righteous in the sight of the Lord",
-        "He was a king over Israel",
-        "He had many children"
-      ],
-      "correct": "He did evil in the sight of the Lord",
-      "explain": "The text states делал зло в глазах Господа (did evil in the sight of the Lord)."
-    },
-    {
-      "id": "r4",
-      "ru": "Фомар, невестка Иуды, родила ему Пареца и Зераха.",
-      "question": "Who bore Perez and Zerah?",
-      "options": [
-        "Tamar, the daughter-in-law of Judah",
-        "A Canaanite woman",
-        "Judah's sister",
-        "The wife of Perez"
-      ],
-      "correct": "Tamar, the daughter-in-law of Judah",
-      "explain": "The text names Фомар, невестка Иуды (Tamar, daughter-in-law of Judah) as the mother."
-    },
-    {
-      "id": "r5",
-      "ru": "Всего у Иуды было пятеро сыновей.",
-      "question": "How many sons did Judah have in total?",
-      "options": [
-        "Five sons",
-        "Seven sons",
-        "Three sons",
-        "Twelve sons"
-      ],
-      "correct": "Five sons",
-      "explain": "The text explicitly states пятеро сыновей (five sons)."
-    },
-    {
-      "id": "r6",
-      "ru": "Сыновья Зераха — Зимри, Етан, Ямал, Халкол и Дара.",
-      "question": "How many sons did Zerah have?",
-      "options": [
-        "Five sons listed",
-        "Three sons listed",
-        "Seven sons listed",
-        "Two sons listed"
-      ],
-      "correct": "Five sons listed",
-      "explain": "The text lists Зимри, Етан, Ямал, Халкол и Дара - five names."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "А из их братьев, сыновей Мерари — с ___:",
+   "lemma": "сторона",
+   "options": [
+    "левой стороны",
+    "левая сторона",
+    "левой стороной",
+    "левой стороне"
+   ],
+   "correct": "левой стороны",
+   "case": "Родительный (Genitive)",
+   "explain": "«левой стороны» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "On the left hand their brothers the sons of Merari: Ethan the son of Kishi, the son of Abdi, the son of Malluch,"
+  },
+  {
+   "sentence": "Их братьям-левитам были поручены все ___ при доме Божьем.",
+   "lemma": "обязанность",
+   "options": [
+    "прочие обязанности",
+    "прочими обязанностями",
+    "прочих обязанностях",
+    "прочих обязанностей"
+   ],
+   "correct": "прочие обязанности",
+   "case": "Именительный (Nominative)",
+   "explain": "«прочие обязанности» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "Their brothers the Levites were appointed for all the service of the tabernacle of God’s house."
+  },
+  {
+   "sentence": "Вот места их поселений, выделенные им в надел (они достались потомкам Аарона из клана Каафа, потому что им выпал ___).",
+   "lemma": "жребий",
+   "options": [
+    "первом жребии",
+    "первому жребию",
+    "первым жребием",
+    "первый жребий"
+   ],
+   "correct": "первый жребий",
+   "case": "Именительный (Nominative)",
+   "explain": "«первый жребий» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "Now these are their dwelling places according to their encampments in their borders: to the sons of Aaron, of the families of the Kohathites (for theirs was the first lot),"
+  },
+  {
+   "sentence": "___ Каафа по жребию получили десять городов от половины рода Манассии.",
+   "lemma": "потомок",
+   "options": [
+    "остальных потомках",
+    "остальных потомков",
+    "остальные потомки",
+    "остальными потомками"
+   ],
+   "correct": "остальные потомки",
+   "case": "Именительный (Nominative)",
+   "explain": "«Остальные потомки» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "To the rest of the sons of Kohath were given by lot, out of the family of the tribe, out of the half-tribe, the half of Manasseh, ten cities."
+  },
+  {
+   "sentence": "Некоторые из ___ получили в надел города от рода Ефрема.",
+   "lemma": "клан",
+   "options": [
+    "каафитских кланах",
+    "каафитским кланам",
+    "каафитские кланы",
+    "каафитских кланов"
+   ],
+   "correct": "каафитских кланов",
+   "case": "Родительный (Genitive)",
+   "explain": "«каафитских кланов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "Some of the families of the sons of Kohath had cities of their borders out of the tribe of Ephraim."
+  },
+  {
+   "sentence": "А из надела половины рода Манассии израильтяне дали остальным ___ Анер и Билеам с их пастбищами.",
+   "lemma": "клан",
+   "options": [
+    "каафитскими кланами",
+    "каафитские кланы",
+    "каафитским кланам",
+    "каафитских кланов"
+   ],
+   "correct": "каафитским кланам",
+   "case": "Дательный (Dative)",
+   "explain": "«каафитским кланам» — the dative marks the indirect object or recipient.",
+   "id": "c6",
+   "translation": "and out of the half-tribe of Manasseh, Aner with its pasture lands, and Bileam with its pasture lands, for the rest of the family of the sons of Kohath."
+  },
+  {
+   "sentence": "___ получили:",
+   "lemma": "мерарит",
+   "options": [
+    "остальными мераритами",
+    "остальных мераритов",
+    "остальные мерариты",
+    "остальным мераритам"
+   ],
+   "correct": "остальные мерариты",
+   "case": "Именительный (Nominative)",
+   "explain": "«Остальные мерариты» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "To the rest of the Levites, the sons of Merari, were given, out of the tribe of Zebulun, Rimmono with its pasture lands, Tabor with its pasture lands;"
+  }
+ ]
 }

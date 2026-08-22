@@ -1,204 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Если у людей возникнет тяжба, они должны представить дело в ___.",
-      "lemma": "суд",
-      "options": [
-        "суд",
-        "суда",
-        "судом",
-        "суде"
-      ],
-      "correct": "суд",
-      "case": "Винительный (Accusative)",
-      "translation": "If there is a controversy between men, they come to judgment.",
-      "explain": "The verb представить (to present) governs the accusative case for its direct object."
-    },
-    {
-      "id": "c2",
-      "sentence": "Если виновный заслуживает побоев, то пусть судья велит положить его и бичевать в своем ___.",
-      "lemma": "присутствие",
-      "options": [
-        "присутствие",
-        "присутствия",
-        "присутствию",
-        "присутствии"
-      ],
-      "correct": "присутствии",
-      "case": "Предложный (Prepositional)",
-      "translation": "If the wicked man is worthy to be beaten, the judge shall cause him to be beaten in his presence.",
-      "explain": "The preposition в (in) with location governs the prepositional case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Не закрывай рта молотящему ___.",
-      "lemma": "вал",
-      "options": [
-        "вал",
-        "вала",
-        "валу",
-        "валом"
-      ],
-      "correct": "валу",
-      "case": "Дательный (Dative)",
-      "translation": "You shall not muzzle the ox when he treads out the grain.",
-      "explain": "The verb governs the dative case to show the indirect object."
-    },
-    {
-      "id": "c4",
-      "sentence": "Его вдова не должна выходить замуж за чужого ___.",
-      "lemma": "человек",
-      "options": [
-        "человек",
-        "человека",
-        "человеку",
-        "человеком"
-      ],
-      "correct": "человека",
-      "case": "Винительный (Accusative)",
-      "translation": "The wife shall not be married outside to a stranger.",
-      "explain": "The preposition за (to) governing the accusative case shows the object of marriage."
-    },
-    {
-      "id": "c5",
-      "sentence": "Первый сын, которого она родит, унаследует ___ умершего брата.",
-      "lemma": "имя",
-      "options": [
-        "имя",
-        "имени",
-        "имене",
-        "имением"
-      ],
-      "correct": "имя",
-      "case": "Винительный (Accusative)",
-      "translation": "The firstborn whom she bears shall succeed in the name of his brother who is dead.",
-      "explain": "The verb унаследует (shall inherit) takes the accusative case for its direct object."
-    },
-    {
-      "id": "c6",
-      "sentence": "Тогда старейшины города призовут его и поговорят с ___.",
-      "lemma": "он",
-      "options": [
-        "ним",
-        "его",
-        "ему",
-        "им"
-      ],
-      "correct": "ним",
-      "case": "Творительный (Instrumental)",
-      "translation": "Then the elders of his city shall call him and speak to him.",
-      "explain": "The preposition с (with) governs the instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Пусть вдова его брата подойдет к нему в присутствии старейшин, снимет одну из его ___.",
-      "lemma": "сандалия",
-      "options": [
-        "сандалия",
-        "сандалии",
-        "сандалий",
-        "сандалией"
-      ],
-      "correct": "сандалий",
-      "case": "Родительный (Genitive)",
-      "translation": "Then his brother's wife shall come to him in the presence of the elders, and loose his sandal from off his foot.",
-      "explain": "The preposition из (from) requires the genitive case in the phrase 'один из' (one of)."
-    },
-    {
-      "id": "c8",
-      "sentence": "Потомство этого человека будет известно в Израиле как дом ___.",
-      "lemma": "разутый",
-      "options": [
-        "разутого",
-        "разутых",
-        "разутым",
-        "разутыми"
-      ],
-      "correct": "разутого",
-      "case": "Родительный (Genitive)",
-      "translation": "His name shall be called in Israel, The house of him who had his sandal removed.",
-      "explain": "The genitive case показывает possession in the construction 'дом разутого' (house of the unshod one)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Если у людей возникнет тяжба, они должны представить дело в суд, и судьи будут рассматривать его.",
-      "question": "What should people do if there is a controversy between them?",
-      "options": [
-        "Bring it to court for judges to consider",
-        "Resolve it privately without witnesses",
-        "Ignore it and move on",
-        "Take it to the king's palace"
-      ],
-      "correct": "Bring it to court for judges to consider",
-      "explain": "The text states they должны представить дело в суд (must bring the matter to court for judges to consider)."
-    },
-    {
-      "id": "r2",
-      "ru": "Если виновный заслуживает побоев, то пусть судья велит положить его и бичевать.",
-      "question": "What authority does the judge have regarding a guilty person who deserves beating?",
-      "options": [
-        "The judge can order him to be beaten",
-        "The judge must execute him",
-        "The judge sets him free",
-        "The judge sells him into slavery"
-      ],
-      "correct": "The judge can order him to be beaten",
-      "explain": "The text says пусть судья велит положить его и бичевать (let the judge order him beaten)."
-    },
-    {
-      "id": "r3",
-      "ru": "За сорок лет, что я вел вас через пустыню, не ветшали ваши одежды, не изнашивали сандалии у вас на ногах.",
-      "question": "What happened to the Israelites' clothes and sandals during their forty years in the wilderness?",
-      "options": [
-        "They did not wear out or grow old",
-        "They wore out quickly in the desert heat",
-        "They were destroyed by insects",
-        "They were replaced every year"
-      ],
-      "correct": "They did not wear out or grow old",
-      "explain": "The passage states не ветшали ваши одежды, не изнашивали сандалии (your clothes did not grow old, your sandals did not wear out)."
-    },
-    {
-      "id": "r4",
-      "ru": "Когда вы добрались до этого места, Сигон царь Хешбона и Ок царь Башана вышли сразиться с нами.",
-      "question": "Who came out to fight against the Israelites when they reached this place?",
-      "options": [
-        "Sihon king of Heshbon and Og king of Bashan",
-        "The Egyptians under Pharaoh",
-        "The Canaanites from the coast",
-        "The Amalekites from the desert"
-      ],
-      "correct": "Sihon king of Heshbon and Og king of Bashan",
-      "explain": "The text names Сигон царь Хешбона и Ок царь Башана (Sihon king of Heshbon and Og king of Bashan)."
-    },
-    {
-      "id": "r5",
-      "ru": "Мы взяли их землю и дали ее в наследие Рувимитам, Гадитам и половине рода Монассии.",
-      "question": "To which tribes did Israel give the land they conquered from Sihon and Og?",
-      "options": [
-        "To the Reubenites, Gadites, and half-tribe of Manasseh",
-        "To all twelve tribes equally",
-        "To the Levites only",
-        "To the priests and their families"
-      ],
-      "correct": "To the Reubenites, Gadites, and half-tribe of Manasseh",
-      "explain": "The passage states дали ее в наследие Рувимитам, Гадитам и половине рода Монассии (gave it as an inheritance to the Reubenites, Gadites, and half-tribe of Manasseh)."
-    },
-    {
-      "id": "r6",
-      "ru": "Пусть не будет у тебя в сумке двух разных гирь, одной тяжелой для покупки, а другой легкой для продажи.",
-      "question": "What dishonest practice regarding weights does God forbid?",
-      "options": [
-        "Using one heavy weight for buying and a lighter one for selling",
-        "Selling merchandise without weights",
-        "Weighing goods on a balance beam",
-        "Trading with foreign merchants"
-      ],
-      "correct": "Using one heavy weight for buying and a lighter one for selling",
-      "explain": "The text forbids двух разных гирь, одной тяжелой для покупки, а другой легкой для продажи (two different weights, one heavy for buying, another light for selling)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Если братья живут вместе и один из них умрет, не оставив сына, его вдова не должна выходить замуж за ___.",
+   "lemma": "человек",
+   "options": [
+    "чужого человека",
+    "чужой человек",
+    "чужом человеке",
+    "чужим человеком"
+   ],
+   "correct": "чужого человека",
+   "case": "Винительный (Accusative)",
+   "explain": "«чужого человека» — after the preposition «за», the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "If brothers dwell together, and one of them dies and has no son, the wife of the dead shall not be married outside to a stranger. Her husband’s brother shall go in to her, and take her as his wife, and perform the duty of a husband’s brother to her."
+  },
+  {
+   "sentence": "___, которого она родит, унаследует имя умершего брата, чтобы его имя не исчезло в Израиле.",
+   "lemma": "сын",
+   "options": [
+    "первый сын",
+    "первом сыне",
+    "первому сыну",
+    "первого сына"
+   ],
+   "correct": "первый сын",
+   "case": "Именительный (Nominative)",
+   "explain": "«Первый сын» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "It shall be that the firstborn whom she bears shall succeed in the name of his brother who is dead, that his name not be blotted out of Israel."
+  },
+  {
+   "sentence": "Но если мужчина не захочет жениться на жене своего брата, пусть она пойдет к старейшинам у ___ и скажет: «Брат моего мужа отказывается восстановить имя своего брата в Израиле.",
+   "lemma": "ворота",
+   "options": [
+    "городских ворот",
+    "городским воротам",
+    "городские ворота",
+    "городских воротах"
+   ],
+   "correct": "городских ворот",
+   "case": "Родительный (Genitive)",
+   "explain": "«городских ворот» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "If the man doesn’t want to take his brother’s wife, then his brother’s wife shall go up to the gate to the elders, and say, “My husband’s brother refuses to raise up to his brother a name in Israel. He will not perform the duty of a husband’s brother to me.”"
+  },
+  {
+   "sentence": "Пусть не будет у тебя в доме ___ — одной большой, а другой маленькой.",
+   "lemma": "мерка",
+   "options": [
+    "разных мерках",
+    "разными мерками",
+    "разных мерок",
+    "разным меркам"
+   ],
+   "correct": "разных мерок",
+   "case": "Родительный (Genitive)",
+   "explain": "«разных мерок» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "You shall not have in your house diverse measures, one large and one small."
+  }
+ ]
 }

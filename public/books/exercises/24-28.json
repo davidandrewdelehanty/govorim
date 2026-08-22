@@ -1,134 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Я разобью ___ царя Вавилонского.",
-      "lemma": "ермо",
-      "options": ["ермо", "ермоо", "ермую", "ермом"],
-      "correct": "ермо",
-      "case": "Винительный (Accusative)",
-      "translation": "I will break the yoke of the king of Babylon.",
-      "explain": "Ермо is the direct object of the transitive verb разобью (I will break), taking the accusative case, which for neuter nouns is identical to the nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Я надену на шею всех этих ___ ермо из железа.",
-      "lemma": "народ",
-      "options": ["народ", "народа", "народу", "народе"],
-      "correct": "народ",
-      "case": "Винительный (Accusative)",
-      "translation": "I will put an iron yoke on the neck of all these peoples.",
-      "explain": "Народ is the direct object of надену (I will put), taking the accusative case, which for inanimate nouns is the same as the nominative."
-    },
-    {
-      "id": "c3",
-      "sentence": "Тогда ___ Ханания снял ермо с шеи пророка Иеремии.",
-      "lemma": "пророк",
-      "options": ["пророк", "пророка", "пророку", "пророке"],
-      "correct": "пророк",
-      "case": "Именительный (Nominative)",
-      "translation": "Then the prophet Hananiah took the yoke off the prophet Jeremiah's neck.",
-      "explain": "Пророк is the subject of the verb снял (took), so it stands in the nominative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я верну сюда иудейского царя Ихонию и всех остальных ___ из Иудеи.",
-      "lemma": "пленник",
-      "options": ["пленник", "пленника", "пленников", "пленниками"],
-      "correct": "пленников",
-      "case": "Родительный (Genitive)",
-      "translation": "I will bring back here the Judean king Jeconiah and all the other captives from Judea.",
-      "explain": "After the word 'всех' (all), the genitive plural пленников is required to indicate the complete set of captives."
-    },
-    {
-      "id": "c5",
-      "sentence": "Ты разбил деревянное ермо, но его сменит ермо из ___.",
-      "lemma": "железо",
-      "options": ["железо", "железа", "железу", "железе"],
-      "correct": "железа",
-      "case": "Родительный (Genitive)",
-      "translation": "You have broken the wooden yoke, but a yoke of iron will take its place.",
-      "explain": "The phrase 'ермо из' (yoke of) uses the genitive case: из железа (made of iron)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Я разобью ___ царя Вавилона.",
-      "lemma": "ярмо",
-      "options": ["ярмо", "ярма", "ярму", "ярме"],
-      "correct": "ярмо",
-      "case": "Винительный (Accusative)",
-      "translation": "I will break the yoke of the king of Babylon.",
-      "explain": "Ярмо as the direct object of разобью (will break) takes the accusative, which is the same as the nominative for neuter nouns."
-    },
-    {
-      "id": "c7",
-      "sentence": "Не пройдет двух ___ как я верну сюда всю утварь дома Господня.",
-      "lemma": "год",
-      "options": ["год", "года", "году", "годом"],
-      "correct": "года",
-      "case": "Родительный (Genitive)",
-      "translation": "Within two years I will bring back all the vessels of the Lord's house here.",
-      "explain": "After numbers 2-4, the genitive case is used: двух лет (two years) — числа 2-4 + родительный."
-    },
-    {
-      "id": "c8",
-      "sentence": "Господь сотрет тебя с лица ___.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "землю", "земле"],
-      "correct": "земли",
-      "case": "Родительный (Genitive)",
-      "translation": "The Lord will remove you from the surface of the earth.",
-      "explain": "The preposition с (from) governs the genitive case: с лица земли (from the face of the earth)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Пророк Ханания, сын Азура из Гаваона, сказал мне в Доме Господнем, при священниках и при всем народе.",
-      "question": "Where did the prophet Hananiah deliver his prophecy?",
-      "options": ["In the Lord's house, in the presence of priests and all the people", "In the marketplace of Jerusalem", "At the city gate", "In the king's palace"],
-      "correct": "In the Lord's house, in the presence of priests and all the people",
-      "explain": "The text states: сказал мне в Доме Господнем, при священниках и при всем народе — he spoke to me in the Lord's house, in the presence of priests and all the people."
-    },
-    {
-      "id": "r2",
-      "ru": "Я разобью ермо царя Вавилонского. Не пройдет двух лет, как я верну сюда всю утварь дома Господня.",
-      "question": "What did Hananiah prophesy would happen to the king of Babylon's yoke and the Lord's vessels?",
-      "options": ["The yoke would be broken and the Lord's vessels returned within two years", "The yoke would be strengthened for many years", "The vessels would be melted down", "The king would surrender to Judah"],
-      "correct": "The yoke would be broken and the Lord's vessels returned within two years",
-      "explain": "Hananiah prophesied: Я разобью ермо ... Не пройдет двух лет, как я верну сюда всю утварь дома Господня — I will break the yoke, and within two years I will return all the Lord's house vessels here."
-    },
-    {
-      "id": "r3",
-      "ru": "Пророки, что были до тебя и до меня, издревле пророчили многим странам и великим царствам войны, невзгоды и мор.",
-      "question": "What did the ancient prophets commonly prophesy to many nations and great kingdoms?",
-      "options": ["Wars, calamities, and pestilence", "Peace, prosperity, and abundance", "Alliance with Babylon", "Conversion to the true God"],
-      "correct": "Wars, calamities, and pestilence",
-      "explain": "The text says: пророки ... издревле пророчили многим странам и великим царствам войны, невзгоды и мор — the prophets long ago prophesied to many nations wars, calamities, and pestilence."
-    },
-    {
-      "id": "r4",
-      "ru": "Тогда пророк Ханания снял ермо с шеи пророка Иеремии и разбил его и сказал всему народу.",
-      "question": "What did Hananiah do to demonstrate his prophecy about breaking the yoke?",
-      "options": ["He took the yoke from Jeremiah's neck, broke it, and spoke to all the people", "He wrote the prophecy on a scroll", "He performed a ritual in the temple", "He went to Babylon to confirm it"],
-      "correct": "He took the yoke from Jeremiah's neck, broke it, and spoke to all the people",
-      "explain": "Hananiah пророк снял ермо с шеи пророка Иеремии, разбил его и сказал всему народу — took the yoke from Jeremiah's neck, broke it, and spoke to all the people."
-    },
-    {
-      "id": "r5",
-      "ru": "Ты разбил деревянное ермо, но его сменит ермо железное, так говорит Господь сил, Бог Израиля.",
-      "question": "What does God tell Jeremiah to say to Hananiah about the yoke?",
-      "options": ["You broke a wooden yoke, but an iron yoke will replace it", "You have proved the prophecy true", "The Lord has sent you to save Israel", "The wooden yoke was never real"],
-      "correct": "You broke a wooden yoke, but an iron yoke will replace it",
-      "explain": "God tells Jeremiah: Ты разбил деревянное ермо, но его сменит ермо железное — You broke a wooden yoke, but an iron yoke will replace it."
-    },
-    {
-      "id": "r6",
-      "ru": "Послушай, Ханания, Господь не посылал тебя, ты заставил этот народ поверить в лжи.",
-      "question": "What charge does Jeremiah make against Hananiah?",
-      "options": ["God did not send him, and he has caused the people to believe in lies", "He has aligned with Babylon", "He has violated the temple laws", "He has stolen from the treasury"],
-      "correct": "God did not send him, and he has caused the people to believe in lies",
-      "explain": "Jeremiah says: Господь не посылал тебя, ты заставил этот народ поверить в лжи — The Lord did not send you, you have made this people trust in lies."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "В ___ того же года, четвертого года , в начале правления Цедекии, царя Иудеи, пророк Ханания, сын Азура, из Гаваона сказал мне в доме Господнем при священниках и при всем народе:",
+   "lemma": "месяц",
+   "options": [
+    "пятом месяце",
+    "пятому месяцу",
+    "пятый месяц",
+    "пятого месяца"
+   ],
+   "correct": "пятом месяце",
+   "case": "Предложный (Prepositional)",
+   "explain": "«пятом месяце» — after the preposition «в», for location or topic.",
+   "id": "c1",
+   "translation": "That same year, in the beginning of the reign of Zedekiah king of Judah, in the fourth year, in the fifth month, Hananiah the son of Azzur, the prophet, who was of Gibeon, spoke to me in Yahweh’s house, in the presence of the priests and of all the people, saying,"
+  },
+  {
+   "sentence": "Я верну сюда и иудейского царя Иехонию, сына Иоакима, и всех ___ из Иудеи, которых увели в Вавилон, — возвещает Господь, — потому что Я разобью ярмо царя Вавилона».",
+   "lemma": "пленник",
+   "options": [
+    "остальных пленниках",
+    "остальными пленниками",
+    "остальных пленников",
+    "остальным пленникам"
+   ],
+   "correct": "остальных пленников",
+   "case": "Винительный (Accusative)",
+   "explain": "«остальных пленников» — the accusative marks the direct object of the verb.",
+   "id": "c2",
+   "translation": "I will bring again to this place Jeconiah the son of Jehoiakim, king of Judah, with all the captives of Judah, who went to Babylon,’ says Yahweh; ‘for I will break the yoke of the king of Babylon.’ ”"
+  },
+  {
+   "sentence": "Но послушай-ка, что я скажу тебе и всему этому народу: 8 пророки, что были до тебя и до меня, издревле пророчили многим странам и ___ войны, невзгоды и мор.",
+   "lemma": "царство",
+   "options": [
+    "великими царствами",
+    "великих царств",
+    "великим царствам",
+    "великих царствах"
+   ],
+   "correct": "великим царствам",
+   "case": "Дательный (Dative)",
+   "explain": "«великим царствам» — the dative marks the indirect object or recipient.",
+   "id": "c3",
+   "translation": "Nevertheless listen now to this word that I speak in your ears, and in the ears of all the people:"
+  },
+  {
+   "sentence": "Я дам ему власть даже над ___».",
+   "lemma": "зверь",
+   "options": [
+    "диких зверей",
+    "дикими зверями",
+    "диким зверям",
+    "диких зверях"
+   ],
+   "correct": "дикими зверями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«дикими зверями» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "id": "c4",
+   "translation": "For Yahweh of Armies, the God of Israel says, “I have put a yoke of iron on the neck of all these nations, that they may serve Nebuchadnezzar king of Babylon; and they will serve him. I have also given him the animals of the field.” ’ ”"
+  },
+  {
+   "sentence": "И в ___ того же года пророк Ханания умер.",
+   "lemma": "месяц",
+   "options": [
+    "седьмом месяце",
+    "седьмого месяца",
+    "седьмой месяц",
+    "седьмым месяцем"
+   ],
+   "correct": "седьмом месяце",
+   "case": "Предложный (Prepositional)",
+   "explain": "«седьмом месяце» — after the preposition «в», for location or topic.",
+   "id": "c5",
+   "translation": "So Hananiah the prophet died the same year in the seventh month."
+  }
+ ]
 }

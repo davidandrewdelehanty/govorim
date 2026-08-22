@@ -1,134 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Когда Иовин, ___ Хацора, услышал об этом, он послал сообщить другим царям.",
-      "lemma": "царь",
-      "options": ["царя", "царю", "царь", "царем"],
-      "correct": "царь",
-      "case": "Именительный (Nominative)",
-      "translation": "When Jabin king of Hazor heard of it, he sent to other kings.",
-      "explain": "Царь is the nominative predicate, identifying who Jabin was."
-    },
-    {
-      "id": "c2",
-      "sentence": "Они выступили со всеми своими ___.",
-      "lemma": "воин",
-      "options": ["воина", "воину", "воинов", "воинами"],
-      "correct": "воинами",
-      "case": "Творительный (Instrumental)",
-      "translation": "They went out with all their warriors.",
-      "explain": "The instrumental plural follows the preposition со (with) indicating the accompaniment."
-    },
-    {
-      "id": "c3",
-      "sentence": "Они выступили со всеми своими воинами и большим количеством ___.",
-      "lemma": "конь",
-      "options": ["коней", "конем", "коню", "коне"],
-      "correct": "коней",
-      "case": "Родительный (Genitive)",
-      "translation": "They went out with all their warriors and a great number of horses.",
-      "explain": "The genitive plural follows 'количеством' (quantity of) in the phrase 'большим количеством коней'."
-    },
-    {
-      "id": "c4",
-      "sentence": "Господь сказал Иисусу, «Перережь жилы их ___».",
-      "lemma": "конь",
-      "options": ["коней", "конем", "коню", "коням"],
-      "correct": "коням",
-      "case": "Дательный (Dative)",
-      "translation": "The Lord said to Joshua, 'Hamstring their horses.'",
-      "explain": "The dative plural is used with the verb перережь (hamstring) meaning 'to cut the tendons of the horses'."
-    },
-    {
-      "id": "c5",
-      "sentence": "Он перерезал жилы их коням и сжег их ___.",
-      "lemma": "колесница",
-      "options": ["колесницы", "колеснице", "колесницу", "колесницей"],
-      "correct": "колесницы",
-      "case": "Винительный (Accusative)",
-      "translation": "He hamstrung their horses and burned their chariots with fire.",
-      "explain": "The accusative plural follows the transitive verb сжег (burned)."
-    },
-    {
-      "id": "c6",
-      "sentence": "В то время Иисус повернул назад, взял Хацор и предал его ___ мичу.",
-      "lemma": "царь",
-      "options": ["царя", "царе", "царю", "царем"],
-      "correct": "царя",
-      "case": "Винительный (Accusative)",
-      "translation": "Joshua turned back and struck the king with the sword.",
-      "explain": "The accusative singular follows the verb предал (handed over) as the direct object."
-    },
-    {
-      "id": "c7",
-      "sentence": "Всех, кто в нем был, они предали мечу, уничтожив их полностью, никого не оставили в живых, а сам город он сжег ___.",
-      "lemma": "огонь",
-      "options": ["огню", "огне", "огнем", "огня"],
-      "correct": "огнем",
-      "case": "Творительный (Instrumental)",
-      "translation": "He burned the city with fire.",
-      "explain": "The instrumental singular follows the verb сжег (burned) indicating the instrument used for burning."
-    },
-    {
-      "id": "c8",
-      "sentence": "Кроме Хивеев, что в Гаваоне, ни один ___ не заключил мира с израилетянами.",
-      "lemma": "город",
-      "options": ["города", "городе", "город", "городом"],
-      "correct": "город",
-      "case": "Именительный (Nominative)",
-      "translation": "No city except the Hivites in Gibeon made peace with Israel.",
-      "explain": "The nominative singular serves as the subject of the verb 'заключил' (made)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Когда Иовин, царь Хацора, услышал об этом, он послал сообщить Иоваву, царю Мадон, царям Шемрона и Ахсафа и царям, которые жили в северных Нагорьях.",
-      "question": "What was Jabin's response to hearing about Joshua's victories?",
-      "options": ["He sent messages to other kings in the northern regions to unite against Israel", "He immediately surrendered his city to Joshua", "He gathered his people and fled to Egypt", "He sent ambassadors to make peace with Israel"],
-      "correct": "He sent messages to other kings in the northern regions to unite against Israel",
-      "explain": "The text says Иовин послал сообщить other kings, showing that he sent messages to unite them against Israel."
-    },
-    {
-      "id": "r2",
-      "ru": "Они выступили со всеми своими воинами и большим количеством коней и колесниц, огромным войском, многочисленным, как песок на морском берегу.",
-      "question": "How large was the army that assembled against Israel?",
-      "options": ["Enormous, as numerous as the sand on the seashore, with many horses and chariots", "A small group of a few thousand warriors", "Mainly infantry with very few chariots", "A force sent by Egypt to defend Canaan"],
-      "correct": "Enormous, as numerous as the sand on the seashore, with many horses and chariots",
-      "explain": "The text describes the army as огромным войском, многочисленным, как песок на морском берегу — enormous, numerous as sand on the shore."
-    },
-    {
-      "id": "r3",
-      "ru": "Господь сказал Иисусу, «Не бойся их, потому что завтра к этому времени я отдам всех их Израилю убитыми.»",
-      "question": "What did the Lord promise Joshua regarding the enemy army?",
-      "options": ["He would deliver them all slain to Israel by the next day", "Joshua should negotiate with them", "God would send angels to help him", "The enemy would retreat on their own"],
-      "correct": "He would deliver them all slain to Israel by the next day",
-      "explain": "The Lord promised завтра к этому времени я отдам всех их Израилю убитыми — by tomorrow I will deliver them all slain to Israel."
-    },
-    {
-      "id": "r4",
-      "ru": "Иисус и все его войско внезапно вышли на них возле реки Мирома и напали, а Господь отдал их в руки Израиле.",
-      "question": "How did Joshua achieve victory over the northern coalition?",
-      "options": ["He attacked suddenly by the waters of Merom, and the Lord delivered them into Israel's hands", "He used a trick with chariots to confuse the enemy", "He set fire to the enemy camps at night", "He made a secret alliance with some of the kings"],
-      "correct": "He attacked suddenly by the waters of Merom, and the Lord delivered them into Israel's hands",
-      "explain": "The text states Иисус и все его войско внезапно вышли на них возле реки Мирома и напали, а Господь отдал их в руки Израиле — Joshua attacked suddenly and the Lord delivered them."
-    },
-    {
-      "id": "r5",
-      "ru": "Так Иисус захватил всю эту землю, Нагорье, весь Негев, всю область Гошен, западные предгорья и Орданскую долину и горы Израиля с их предгорьями.",
-      "question": "What territory did Joshua conquer as a result of his northern campaign?",
-      "options": ["All the hill country, the South, Goshen, the lowlands, the Arabah, and the mountains of Israel with their foothills", "Only the region around Hazor and a few surrounding cities", "The coastal cities and the territories of the Philistines", "The territories east of the Jordan River"],
-      "correct": "All the hill country, the South, Goshen, the lowlands, the Arabah, and the mountains of Israel with their foothills",
-      "explain": "The text describes Иисус захватил всю эту землю, Нагорье, весь Негев, всю область Гошен, западные предгорья и Орданскую долину и горы Израиля — Joshua captured the hill country, South, Goshen, lowlands, and mountains."
-    },
-    {
-      "id": "r6",
-      "ru": "Кроме Хивеев, что в Гаваоне, ни один город не заключил мира с израилетянами.",
-      "question": "What was unique about Gibeon among the Canaanite cities?",
-      "options": ["Only Gibeon made peace with the Israelites", "Only Gibeon refused to fight against Israel", "Gibeon was the strongest fortress in Canaan", "Gibeon was already destroyed before Joshua arrived"],
-      "correct": "Only Gibeon made peace with the Israelites",
-      "explain": "The text states Кроме Хивеев, что в Гаваоне, ни один город не заключил мира с израилетянами — Except the Hivites in Gibeon, no city made peace with Israel."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Они выступили со всеми своими воинами и ___ коней и колесниц — огромным войском, многочисленным, как песок на морском берегу.",
+   "lemma": "количество",
+   "options": [
+    "большем количестве",
+    "большим количеством",
+    "большее количество",
+    "большего количества"
+   ],
+   "correct": "большим количеством",
+   "case": "Творительный (Instrumental)",
+   "explain": "«большим количеством» — the instrumental marks the means, company, or complement.",
+   "id": "c1",
+   "translation": "They went out, they and all their armies with them, many people, even as the sand that is on the seashore in multitude, with very many horses and chariots."
+  },
+  {
+   "sentence": "Они выступили со всеми своими воинами и большим количеством коней и колесниц — ___, многочисленным, как песок на морском берегу.",
+   "lemma": "войско",
+   "options": [
+    "огромном войске",
+    "огромному войску",
+    "огромное войско",
+    "огромным войском"
+   ],
+   "correct": "огромным войском",
+   "case": "Творительный (Instrumental)",
+   "explain": "«огромным войском» — the instrumental marks the means, company, or complement.",
+   "id": "c2",
+   "translation": "They went out, they and all their armies with them, many people, even as the sand that is on the seashore in multitude, with very many horses and chariots."
+  },
+  {
+   "sentence": "Так Иисус захватил всю ту землю, как говорил Моисею Господь, и отдал ее в наследие израильтянам по их ___.",
+   "lemma": "разделение",
+   "options": [
+    "родовыми разделениями",
+    "родовые разделения",
+    "родовых разделений",
+    "родовым разделениям"
+   ],
+   "correct": "родовым разделениям",
+   "case": "Дательный (Dative)",
+   "explain": "«родовым разделениям» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c3",
+   "translation": "So Joshua took the whole land, according to all that Yahweh spoke to Moses; and Joshua gave it for an inheritance to Israel according to their divisions by their tribes. Then the land had rest from war."
+  }
+ ]
 }

@@ -1,154 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Когда приближался иудейский ___ шалашей, братья Иисуса сказали ему",
-      "lemma": "праздник",
-      "options": ["праздник", "праздника", "празднику", "праздником"],
-      "correct": "праздник",
-      "case": "Именительный (Nominative)",
-      "translation": "When the Jewish Feast of Booths was approaching, the brothers of Jesus said to him",
-      "explain": "Праздник is the subject of the verb приближался ('was approaching'), so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Ты что, тоже из ___?",
-      "lemma": "Галилея",
-      "options": ["Галилея", "Галилеи", "Галилее", "Галилею"],
-      "correct": "Галилеи",
-      "case": "Родительный (Genitive)",
-      "translation": "Are you also from Galilee?",
-      "explain": "The preposition из ('from') always requires the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Никодим, один из фарисеев, который как-то раньше приходил к ___, спросил",
-      "lemma": "Иисус",
-      "options": ["Иисус", "Иисуса", "Иисусу", "Иисусом"],
-      "correct": "Иисусу",
-      "case": "Дательный (Dative)",
-      "translation": "Nicodemus, one of the Pharisees who had come to Jesus before, asked",
-      "explain": "The preposition к ('to, toward') governs the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Первая половина праздника уже прошла, когда Иисус пришел в ___ и стал учить.",
-      "lemma": "храм",
-      "options": ["храм", "храма", "храму", "храме"],
-      "correct": "храм",
-      "case": "Винительный (Accusative)",
-      "translation": "The first half of the feast had already passed when Jesus came into the temple and began to teach.",
-      "explain": "The preposition в ('into') with the verb of motion пришёл requires the accusative case; since храм is an inanimate masculine noun, its accusative form is identical to the nominative."
-    },
-    {
-      "id": "c5",
-      "sentence": "Вот же он открыто говорит перед ___, и ему не запрещают.",
-      "lemma": "народ",
-      "options": ["народ", "народа", "народу", "народом"],
-      "correct": "народом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Look, he is speaking openly before the people, and they say nothing to him.",
-      "explain": "The preposition перед ('before, in front of') governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Иисус открыто проповедует в ___.",
-      "lemma": "храм",
-      "options": ["храма", "храму", "храмом", "храме"],
-      "correct": "храме",
-      "case": "Предложный (Prepositional)",
-      "translation": "Jesus openly preaches in the temple.",
-      "explain": "The preposition в ('in'), showing location rather than motion, requires the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "После этого Иисус ходил по Галилее.",
-      "question": "Where did Jesus go about after these events?",
-      "options": ["Galilee", "Judea", "Jerusalem", "Samaria"],
-      "correct": "Galilee",
-      "explain": "The text says Jesus walked about in Galilee because the Jews in Judea wanted to kill him."
-    },
-    {
-      "id": "r2",
-      "ru": "Даже его братья не верили ему.",
-      "question": "What does this sentence tell us about Jesus' brothers?",
-      "options": ["They did not believe in him", "They believed in him completely", "They were his disciples", "They wanted him to hide"],
-      "correct": "They did not believe in him",
-      "explain": "The sentence states plainly that even his brothers did not believe in him."
-    },
-    {
-      "id": "r3",
-      "ru": "Но когда его братья пошли на праздник, он тоже пошел, только не открыто, а так, чтобы никто не знал.",
-      "question": "How did Jesus go up to the feast?",
-      "options": ["Secretly, so that no one would know", "Publicly, with his brothers", "He refused to go at all", "Riding on a donkey with a crowd"],
-      "correct": "Secretly, so that no one would know",
-      "explain": "The text says he went not openly but secretly, so no one would know."
-    },
-    {
-      "id": "r4",
-      "ru": "Иудеи удивлялись и спрашивали, «Откуда у него такая ученость, ведь он нигде не учился?»",
-      "question": "What amazed the Jews about Jesus when he taught in the temple?",
-      "options": ["His learning, since he had never studied anywhere", "His wealth", "His age", "His clothing"],
-      "correct": "His learning, since he had never studied anywhere",
-      "explain": "The Jews wondered where his learning came from, since he had never been educated."
-    },
-    {
-      "id": "r5",
-      "ru": "Зачем вы хотите убить меня? Да ты не одержим ли? Кто хочет тебя убить?» — отвечал народ.",
-      "question": "How did the crowd respond when Jesus said people wanted to kill him?",
-      "options": ["They denied it and said he must be demon-possessed", "They admitted the plot and apologized", "They fled in fear", "They asked Moses to judge"],
-      "correct": "They denied it and said he must be demon-possessed",
-      "explain": "The crowd answered by accusing Jesus of being possessed and denying anyone wanted to kill him."
-    },
-    {
-      "id": "r6",
-      "ru": "Они хотели схватить Иисуса, но никто не поднял на него руки, потому что его время еще не настало.",
-      "question": "Why did no one seize Jesus even though they wanted to?",
-      "options": ["Because his hour had not yet come", "Because the guards were absent", "Because his brothers protected him", "Because he had already left the city"],
-      "correct": "Because his hour had not yet come",
-      "explain": "The text explains that no one laid a hand on him because his time had not yet come."
-    },
-    {
-      "id": "r7",
-      "ru": "Фарисеи услышали, что говорят об Иисусе в толпе, и поэтому первосвященники и фарисеи послали храмовую стражу, чтобы арестовать его.",
-      "question": "Who did the chief priests and Pharisees send to arrest Jesus?",
-      "options": ["The temple guard", "Roman soldiers", "Nicodemus", "The crowd itself"],
-      "correct": "The temple guard",
-      "explain": "After hearing the murmuring in the crowd, the chief priests and Pharisees sent the temple guard to arrest him."
-    },
-    {
-      "id": "r8",
-      "ru": "Иудеи, бывшие там, стали спрашивать друг друга, Куда это он собирается идти, что мы не сможем прийти туда?",
-      "question": "What confused the Jews about Jesus' statement that they could not go where he was going?",
-      "options": ["They wondered where he intended to go", "They thought he was already dead", "They believed he meant the Temple courts", "They ignored his words entirely"],
-      "correct": "They wondered where he intended to go",
-      "explain": "The Jews asked one another where he planned to go that they would not be able to reach."
-    },
-    {
-      "id": "r9",
-      "ru": "Кто хочет пить, пусть приходит ко Мне и пьет.",
-      "question": "What invitation did Jesus give on the last, greatest day of the feast?",
-      "options": ["An invitation for anyone thirsty to come to him and drink", "An invitation to eat bread with him", "An invitation to be circumcised", "An invitation to leave the temple"],
-      "correct": "An invitation for anyone thirsty to come to him and drink",
-      "explain": "Jesus stood and cried out that anyone who is thirsty should come to him and drink."
-    },
-    {
-      "id": "r10",
-      "ru": "Третьи говорили, «Разве из Галилеи Христос придет? Разве не сказано в Писании, что Христос будет из рода Давида и из Вифлеема, того селения, откуда был Давид?»",
-      "question": "What objection did some in the crowd raise against Jesus being the Christ?",
-      "options": ["That the Christ could not come from Galilee but from David's line and Bethlehem", "That the Christ must be a Roman citizen", "That the Christ must be older than Jesus", "That the Christ must be a Pharisee"],
-      "correct": "That the Christ could not come from Galilee but from David's line and Bethlehem",
-      "explain": "Some argued that Scripture says the Christ comes from David's descendants and from Bethlehem, not Galilee."
-    },
-    {
-      "id": "r11",
-      "ru": "После этого все разошлись по домам.",
-      "question": "How does the chapter end?",
-      "options": ["Everyone went to their own homes", "Jesus was arrested", "Jesus was crowned king", "The Pharisees converted"],
-      "correct": "Everyone went to their own homes",
-      "explain": "The final sentence states that after this, everyone went to their own homes."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Когда приближался ___ Шалашей , 3 братья Иисуса сказали Ему:",
+   "lemma": "праздник",
+   "options": [
+    "иудейским праздником",
+    "иудейского праздника",
+    "иудейский праздник",
+    "иудейскому празднику"
+   ],
+   "correct": "иудейский праздник",
+   "case": "Именительный (Nominative)",
+   "explain": "«иудейский праздник» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Now the feast of the Jews, the Feast of Booths, was at hand."
+  },
+  {
+   "sentence": "___ праздника уже прошла, когда Иисус пришел в храм и стал учить.",
+   "lemma": "половина",
+   "options": [
+    "первой половины",
+    "первой половиной",
+    "первой половине",
+    "первая половина"
+   ],
+   "correct": "первая половина",
+   "case": "Именительный (Nominative)",
+   "explain": "«Первая половина» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "But when it was now the middle of the feast, Jesus went up into the temple and taught."
+  },
+  {
+   "sentence": "В последний и самый ___ праздника Иисус встал и громко возгласил:",
+   "lemma": "день",
+   "options": [
+    "торжественного дня",
+    "торжественном дне",
+    "торжественным днём",
+    "торжественный день"
+   ],
+   "correct": "торжественный день",
+   "case": "Именительный (Nominative)",
+   "explain": "«торжественный день» — after the preposition «в», the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "Now on the last and greatest day of the feast, Jesus stood and cried out, “If anyone is thirsty, let him come to me and drink!"
+  },
+  {
+   "sentence": "Кто верит в Меня, как говорит Писание, у того из сердца потекут реки ___.",
+   "lemma": "вода",
+   "options": [
+    "живой воды",
+    "живой воде",
+    "живой водой",
+    "живая вода"
+   ],
+   "correct": "живой воды",
+   "case": "Родительный (Genitive)",
+   "explain": "«живой воды» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "He who believes in me, as the Scripture has said, from within him will flow rivers of living water.”"
+  }
+ ]
 }

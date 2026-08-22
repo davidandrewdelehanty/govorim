@@ -1,204 +1,229 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Затем ___ человек повел меня на север.",
-      "lemma": "тот",
-      "options": [
-        "тот",
-        "того",
-        "тому",
-        "тем"
-      ],
-      "correct": "тот",
-      "case": "Именительный (Nominative)",
-      "translation": "Then that man led me north.",
-      "explain": "Nominative as demonstrative adjective subject."
-    },
-    {
-      "id": "c2",
-      "sentence": "Размер каждой комнаты был 50 локтей в длину и 25 в ___.",
-      "lemma": "ширина",
-      "options": [
-        "ширина",
-        "ширины",
-        "ширине",
-        "ширину"
-      ],
-      "correct": "ширину",
-      "case": "Винительный (Accusative)",
-      "translation": "Each room was 50 cubits long and 25 cubits wide.",
-      "explain": "Accusative follows в for measurements."
-    },
-    {
-      "id": "c3",
-      "sentence": "Территория ___ была квадратной.",
-      "lemma": "храм",
-      "options": [
-        "храм",
-        "храма",
-        "храму",
-        "храмом"
-      ],
-      "correct": "храма",
-      "case": "Родительный (Genitive)",
-      "translation": "The territory of the temple was square.",
-      "explain": "Genitive shows possession."
-    },
-    {
-      "id": "c4",
-      "sentence": "Вокруг ___ была стена для разделения.",
-      "lemma": "территория",
-      "options": [
-        "территория",
-        "территории",
-        "территориею",
-        "территорией"
-      ],
-      "correct": "территории",
-      "case": "Родительный (Genitive)",
-      "translation": "Around the territory was a wall for separation.",
-      "explain": "Genitive follows preposition вокруг."
-    },
-    {
-      "id": "c5",
-      "sentence": "Первый ___ имел восточный вход.",
-      "lemma": "этаж",
-      "options": [
-        "этажи",
-        "этажа",
-        "этаж",
-        "этаже"
-      ],
-      "correct": "этаж",
-      "case": "Именительный (Nominative)",
-      "translation": "The first floor had an east entrance.",
-      "explain": "Subject uses nominative."
-    },
-    {
-      "id": "c6",
-      "sentence": "На каждой ___ расположились помещения.",
-      "lemma": "сторона",
-      "options": [
-        "сторона",
-        "стороны",
-        "стороне",
-        "сторону"
-      ],
-      "correct": "стороне",
-      "case": "Предложный (Prepositional)",
-      "translation": "Chambers were arranged on each side.",
-      "explain": "Prepositional follows на for location."
-    },
-    {
-      "id": "c7",
-      "sentence": "Три ___ содержали комнаты для священников.",
-      "lemma": "этаж",
-      "options": [
-        "этажи",
-        "этажа",
-        "этажу",
-        "этаже"
-      ],
-      "correct": "этажа",
-      "case": "Винительный (Accusative)",
-      "translation": "Three floors contained chambers for the priests.",
-      "explain": "Accusative follows в (understood)."
-    },
-    {
-      "id": "c8",
-      "sentence": "В каждом ___ было по несколько помещений.",
-      "lemma": "этаж",
-      "options": [
-        "этажи",
-        "этажа",
-        "этажу",
-        "этаже"
-      ],
-      "correct": "этаже",
-      "case": "Предложный (Prepositional)",
-      "translation": "In each floor there were several chambers.",
-      "explain": "Prepositional follows в for location."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Тот человек показывал мне все детали храма и его комнат.",
-      "question": "What was the man showing?",
-      "options": [
-        "All details of the temple and its rooms",
-        "Only the gates",
-        "Only the walls",
-        "Only the courtyard"
-      ],
-      "correct": "All details of the temple and its rooms",
-      "explain": "The man showed all the temple details."
-    },
-    {
-      "id": "r2",
-      "ru": "Каждое измерение имело смысл в контексте служения священников.",
-      "question": "Why were the measurements important?",
-      "options": [
-        "They were related to priestly service",
-        "For decoration",
-        "For aesthetics",
-        "For tradition only"
-      ],
-      "correct": "They were related to priestly service",
-      "explain": "The dimensions related to priest service functions."
-    },
-    {
-      "id": "r3",
-      "ru": "Система галерей и комнат была организована в трех уровнях.",
-      "question": "How many levels did the room and gallery system have?",
-      "options": [
-        "Three levels",
-        "Two levels",
-        "Four levels",
-        "Five levels"
-      ],
-      "correct": "Three levels",
-      "explain": "в три этажа каждая — three floors each."
-    },
-    {
-      "id": "r4",
-      "ru": "Ширина проходов была тщательно рассчитана для облегчения передвижения.",
-      "question": "What was the purpose of the calculated passage widths?",
-      "options": [
-        "To facilitate movement",
-        "To block enemies",
-        "To store items",
-        "For mystery"
-      ],
-      "correct": "To facilitate movement",
-      "explain": "Passage widths allowed proper circulation."
-    },
-    {
-      "id": "r5",
-      "ru": "Каждая комната имела четкие размеры и назначение.",
-      "question": "Did each room have a specific purpose?",
-      "options": [
-        "Yes, each had clear dimensions and purpose",
-        "No, they were all the same",
-        "Some were empty",
-        "Purposes were unclear"
-      ],
-      "correct": "Yes, each had clear dimensions and purpose",
-      "explain": "All rooms had specific dimensions and purposes."
-    },
-    {
-      "id": "r6",
-      "ru": "Территория в целом образовала квадратную конструкцию.",
-      "question": "What was the overall shape of the temple territory?",
-      "options": [
-        "Square",
-        "Rectangular",
-        "Circular",
-        "Triangular"
-      ],
-      "correct": "Square",
-      "explain": "The territory was square in overall shape."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Он привел меня обратно ко входу в дом, и я увидел воду, текущую из-под ___ к востоку (фасад дома был обращен на восток).",
+   "lemma": "порог",
+   "options": [
+    "храмовом пороге",
+    "храмового порога",
+    "храмовому порогу",
+    "храмовый порог"
+   ],
+   "correct": "храмового порога",
+   "case": "Родительный (Genitive)",
+   "explain": "«храмового порога» — after the preposition «из-под», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "He brought me back to the door of the house; and behold, waters flowed out from under the threshold of the house eastward, for the front of the house faced toward the east. The waters came down from underneath, from the right side of the house, on the south of the altar."
+  },
+  {
+   "sentence": "Он вывел меня через ___ и провел меня снаружи к внешним воротам, что смотрят на восток, а вода текла с южной стороны.",
+   "lemma": "ворота",
+   "options": [
+    "северные ворота",
+    "северных воротах",
+    "северных ворот",
+    "северным воротам"
+   ],
+   "correct": "северные ворота",
+   "case": "Винительный (Accusative)",
+   "explain": "«северные ворота» — after the preposition «через», the accusative marks the direct object of the verb.",
+   "id": "c2",
+   "translation": "Then he brought me out by the way of the gate northward, and led me around by the way outside to the outer gate, by the way of the gate that looks toward the east. Behold, waters ran out on the right side."
+  },
+  {
+   "sentence": "Он вывел меня через северные ворота и провел меня снаружи к ___, что смотрят на восток, а вода текла с южной стороны.",
+   "lemma": "ворота",
+   "options": [
+    "внешних воротах",
+    "внешние ворота",
+    "внешними воротами",
+    "внешним воротам"
+   ],
+   "correct": "внешним воротам",
+   "case": "Дательный (Dative)",
+   "explain": "«внешним воротам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c3",
+   "translation": "Then he brought me out by the way of the gate northward, and led me around by the way outside to the outer gate, by the way of the gate that looks toward the east. Behold, waters ran out on the right side."
+  },
+  {
+   "sentence": "Он вывел меня через северные ворота и провел меня снаружи к внешним воротам, что смотрят на восток, а вода текла с ___.",
+   "lemma": "сторона",
+   "options": [
+    "южной стороне",
+    "южной стороны",
+    "южная сторона",
+    "южной стороной"
+   ],
+   "correct": "южной стороны",
+   "case": "Родительный (Genitive)",
+   "explain": "«южной стороны» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "Then he brought me out by the way of the gate northward, and led me around by the way outside to the outer gate, by the way of the gate that looks toward the east. Behold, waters ran out on the right side."
+  },
+  {
+   "sentence": "Там будет обитать ___ всевозможных видов рыб, как и в Великом море .",
+   "lemma": "множество",
+   "options": [
+    "великого множества",
+    "великим множеством",
+    "великое множество",
+    "великому множеству"
+   ],
+   "correct": "великое множество",
+   "case": "Именительный (Nominative)",
+   "explain": "«великое множество» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "It will happen, that fishermen will stand by it. From En Gedi even to En Eglaim will be a place for the spreading of nets. Their fish will be after their kinds, as the fish of the great sea, exceedingly many."
+  },
+  {
+   "sentence": "Там будет обитать великое множество ___ рыб, как и в Великом море .",
+   "lemma": "вид",
+   "options": [
+    "всевозможным видам",
+    "всевозможных видов",
+    "всевозможных видах",
+    "всевозможные виды"
+   ],
+   "correct": "всевозможных видов",
+   "case": "Родительный (Genitive)",
+   "explain": "«всевозможных видов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "It will happen, that fishermen will stand by it. From En Gedi even to En Eglaim will be a place for the spreading of nets. Their fish will be after their kinds, as the fish of the great sea, exceedingly many."
+  },
+  {
+   "sentence": "Там будет обитать великое множество всевозможных видов рыб, как и в ___ .",
+   "lemma": "море",
+   "options": [
+    "великому морю",
+    "великим морем",
+    "великого моря",
+    "великом море"
+   ],
+   "correct": "великом море",
+   "case": "Предложный (Prepositional)",
+   "explain": "«Великом море» — after the preposition «в», for location or topic.",
+   "id": "c7",
+   "translation": "It will happen, that fishermen will stand by it. From En Gedi even to En Eglaim will be a place for the spreading of nets. Their fish will be after their kinds, as the fish of the great sea, exceedingly many."
+  },
+  {
+   "sentence": "На обоих берегах реки будут расти ___ разных видов.",
+   "lemma": "дерево",
+   "options": [
+    "плодовых деревьев",
+    "плодовыми деревьями",
+    "плодовым деревьям",
+    "плодовые деревья"
+   ],
+   "correct": "плодовые деревья",
+   "case": "Именительный (Nominative)",
+   "explain": "«плодовые деревья» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "By the river on its bank, on this side and on that side, will grow every tree for food, whose leaf won’t wither, neither will its fruit fail. It will produce new fruit every month, because its waters issue out of the sanctuary. Its fruit will be for food, and its leaf for healing.”"
+  },
+  {
+   "sentence": "На обоих берегах реки будут расти плодовые деревья ___.",
+   "lemma": "вид",
+   "options": [
+    "разных видов",
+    "разные виды",
+    "разных видах",
+    "разным видам"
+   ],
+   "correct": "разных видов",
+   "case": "Родительный (Genitive)",
+   "explain": "«разных видов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "By the river on its bank, on this side and on that side, will grow every tree for food, whose leaf won’t wither, neither will its fruit fail. It will produce new fruit every month, because its waters issue out of the sanctuary. Its fruit will be for food, and its leaf for healing.”"
+  },
+  {
+   "sentence": "Граница протянется от моря к Гацар-Енану, по ___ Дамаска, с границей Хамата к северу.",
+   "lemma": "граница",
+   "options": [
+    "северной границе",
+    "северной границы",
+    "северной границей",
+    "северная граница"
+   ],
+   "correct": "северной границе",
+   "case": "Дательный (Dative)",
+   "explain": "«северной границе» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c10",
+   "translation": "The border from the sea, shall be Hazar Enon at the border of Damascus; and on the north northward is the border of Hamath. This is the north side."
+  },
+  {
+   "sentence": "Такова ___.",
+   "lemma": "граница",
+   "options": [
+    "восточной границы",
+    "восточной границей",
+    "восточная граница",
+    "восточной границе"
+   ],
+   "correct": "восточная граница",
+   "case": "Именительный (Nominative)",
+   "explain": "«восточная граница» — the subject of the sentence stands in the nominative.",
+   "id": "c11",
+   "translation": "“The east side, between Hauran and Damascus and Gilead, and the land of Israel, shall be the Jordan; from the north border to the east sea you shall measure. This is the east side."
+  },
+  {
+   "sentence": "На юге она протянется от Тамары до ___ Мериват-Кадеша, а оттуда по руслу египетского потока к Великому морю.",
+   "lemma": "вода",
+   "options": [
+    "самые воды",
+    "самым водам",
+    "самых водах",
+    "самых вод"
+   ],
+   "correct": "самых вод",
+   "case": "Родительный (Genitive)",
+   "explain": "«самых вод» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c12",
+   "translation": "“The south side southward shall be from Tamar as far as the waters of Meriboth Kadesh, to the brook, to the great sea. This is the south side southward."
+  },
+  {
+   "sentence": "На юге она протянется от Тамары до самых вод Мериват-Кадеша, а оттуда по руслу ___ к Великому морю.",
+   "lemma": "поток",
+   "options": [
+    "египетский поток",
+    "египетским потоком",
+    "египетскому потоку",
+    "египетского потока"
+   ],
+   "correct": "египетского потока",
+   "case": "Родительный (Genitive)",
+   "explain": "«египетского потока» — the genitive here marks possession, absence, or quantity.",
+   "id": "c13",
+   "translation": "“The south side southward shall be from Tamar as far as the waters of Meriboth Kadesh, to the brook, to the great sea. This is the south side southward."
+  },
+  {
+   "sentence": "На юге она протянется от Тамары до самых вод Мериват-Кадеша, а оттуда по руслу египетского потока к ___.",
+   "lemma": "море",
+   "options": [
+    "великому морю",
+    "великом море",
+    "великим морем",
+    "великое море"
+   ],
+   "correct": "великому морю",
+   "case": "Дательный (Dative)",
+   "explain": "«Великому морю» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c14",
+   "translation": "“The south side southward shall be from Tamar as far as the waters of Meriboth Kadesh, to the brook, to the great sea. This is the south side southward."
+  },
+  {
+   "sentence": "На западе ___ будет границей до места напротив Лево-Хамата.",
+   "lemma": "море",
+   "options": [
+    "великое море",
+    "великому морю",
+    "великом море",
+    "великого моря"
+   ],
+   "correct": "великое море",
+   "case": "Именительный (Nominative)",
+   "explain": "«Великое море» — the subject of the sentence stands in the nominative.",
+   "id": "c15",
+   "translation": "“The west side shall be the great sea, from the south border as far as opposite the entrance of Hamath. This is the west side."
+  }
+ ]
 }

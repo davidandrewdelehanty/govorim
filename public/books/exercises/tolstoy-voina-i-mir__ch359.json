@@ -1,18 +1,33 @@
 {
  "cases": [
   {
-   "sentence": "Для истории признание свободы людей как силы, могущей влиять на ___, т. е. не подчиненной законам, есть то же, чтó для астрономии признание свободной силы движения небесных сил.",
-   "lemma": "событие",
+   "sentence": "Для истории признание свободы людей как силы, могущей влиять на исторические события, т. е. не подчиненной законам, есть то же, чтó для астрономии признание ___ движения небесных сил.",
+   "lemma": "сила",
    "options": [
-    "исторических событий",
-    "исторические события",
-    "историческими событиями",
-    "исторические события"
+    "свободной силой",
+    "свободной силе",
+    "свободная сила",
+    "свободной силы"
    ],
-   "correct": "исторические события",
-   "case": "Винительный (Accusative)",
-   "explain": "«исторические события» — after the preposition «на», the accusative marks the direct object of the verb.",
-   "id": "c1",
+   "correct": "свободной силы",
+   "case": "Родительный (Genitive)",
+   "explain": "«свободной силы» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "The recognition of man’s free will as something capable of influencing historical events, that is, as not subject to laws, is the same for history as the recognition of a free force moving the heavenly bodies would be for astronomy."
+  },
+  {
+   "sentence": "Для истории признание свободы людей как силы, могущей влиять на исторические события, т. е. не подчиненной законам, есть то же, чтó для астрономии признание свободной силы движения ___.",
+   "lemma": "сила",
+   "options": [
+    "небесных сил",
+    "небесным силам",
+    "небесными силами",
+    "небесные силы"
+   ],
+   "correct": "небесных сил",
+   "case": "Родительный (Genitive)",
+   "explain": "«небесных сил» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
    "translation": "The recognition of man’s free will as something capable of influencing historical events, that is, as not subject to laws, is the same for history as the recognition of a free force moving the heavenly bodies would be for astronomy."
   },
   {
@@ -27,7 +42,7 @@
    "correct": "небесных тел",
    "case": "Родительный (Genitive)",
    "explain": "«небесных тел» — the genitive here marks possession, absence, or quantity.",
-   "id": "c2",
+   "id": "c4",
    "translation": "That assumption would destroy the possibility of the existence of laws, that is, of any science whatever. If there is even a single body moving freely, then the laws of Kepler and Newton are negatived and no conception of the movement of the heavenly bodies any longer exists. If any single action is due to free will, then not a single historical law can exist, nor any conception of historical events."
   },
   {
@@ -42,7 +57,37 @@
    "correct": "свободный поступок",
    "case": "Именительный (Nominative)",
    "explain": "«свободный поступок» — the subject of the sentence stands in the nominative.",
-   "id": "c3",
+   "id": "c5",
+   "translation": "That assumption would destroy the possibility of the existence of laws, that is, of any science whatever. If there is even a single body moving freely, then the laws of Kepler and Newton are negatived and no conception of the movement of the heavenly bodies any longer exists. If any single action is due to free will, then not a single historical law can exist, nor any conception of historical events."
+  },
+  {
+   "sentence": "Если существует один свободный поступок человека, то не существует ни одного ___ и никакого представления об исторических событиях.",
+   "lemma": "закон",
+   "options": [
+    "исторического закона",
+    "историческом законе",
+    "историческому закону",
+    "исторический закон"
+   ],
+   "correct": "исторического закона",
+   "case": "Родительный (Genitive)",
+   "explain": "«исторического закона» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "That assumption would destroy the possibility of the existence of laws, that is, of any science whatever. If there is even a single body moving freely, then the laws of Kepler and Newton are negatived and no conception of the movement of the heavenly bodies any longer exists. If any single action is due to free will, then not a single historical law can exist, nor any conception of historical events."
+  },
+  {
+   "sentence": "Если существует один свободный поступок человека, то не существует ни одного исторического закона и никакого представления об ___.",
+   "lemma": "событие",
+   "options": [
+    "историческими событиями",
+    "исторические события",
+    "исторических событиях",
+    "историческим событиям"
+   ],
+   "correct": "исторических событиях",
+   "case": "Предложный (Prepositional)",
+   "explain": "«исторических событиях» — after the preposition «об», for location or topic.",
+   "id": "c7",
    "translation": "That assumption would destroy the possibility of the existence of laws, that is, of any science whatever. If there is even a single body moving freely, then the laws of Kepler and Newton are negatived and no conception of the movement of the heavenly bodies any longer exists. If any single action is due to free will, then not a single historical law can exist, nor any conception of historical events."
   },
   {
@@ -57,7 +102,22 @@
    "correct": "новому процессу",
    "case": "Дательный (Dative)",
    "explain": "«новому процессу» — after the preposition «к», the dative marks the indirect object or recipient.",
-   "id": "c4",
+   "id": "c8",
+   "translation": "All human sciences have traveled along that path. Arriving at infinitesimals, mathematics, the most exact of sciences, abandons the process of analysis and enters on the new process of the integration of unknown, infinitely small, quantities. Abandoning the conception of cause, mathematics seeks law, that is, the property common to all unknown, infinitely small, elements."
+  },
+  {
+   "sentence": "Придя к бесконечно-малому, математика, точнейшая из наук, оставляет процесс дробления и приступает к новому процессу суммования ___.",
+   "lemma": "бесконечно-малое",
+   "options": [
+    "неизвестными бесконечно-малыми",
+    "неизвестных бесконечно-малых",
+    "неизвестные бесконечно-малые",
+    "неизвестным бесконечно-малым"
+   ],
+   "correct": "неизвестных бесконечно-малых",
+   "case": "Родительный (Genitive)",
+   "explain": "«неизвестных бесконечно-малых» — the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
    "translation": "All human sciences have traveled along that path. Arriving at infinitesimals, mathematics, the most exact of sciences, abandons the process of analysis and enters on the new process of the integration of unknown, infinitely small, quantities. Abandoning the conception of cause, mathematics seeks law, that is, the property common to all unknown, infinitely small, elements."
   },
   {
@@ -72,22 +132,22 @@
    "correct": "бесконечно-малым элементам",
    "case": "Дательный (Dative)",
    "explain": "«бесконечно-малым элементам» — the dative marks the indirect object or recipient.",
-   "id": "c5",
+   "id": "c10",
    "translation": "All human sciences have traveled along that path. Arriving at infinitesimals, mathematics, the most exact of sciences, abandons the process of analysis and enters on the new process of the integration of unknown, infinitely small, quantities. Abandoning the conception of cause, mathematics seeks law, that is, the property common to all unknown, infinitely small, elements."
   },
   {
-   "sentence": "Хотя и в ___, но по тому же пути мышления шли и другие науки.",
-   "lemma": "форма",
+   "sentence": "Хотя и в другой форме, но по тому же пути мышления шли и ___.",
+   "lemma": "наука",
    "options": [
-    "другой формы",
-    "другой форме",
-    "другой форме",
-    "другой формой"
+    "другим наукам",
+    "другие науки",
+    "другими науками",
+    "других наук"
    ],
-   "correct": "другой форме",
-   "case": "Предложный (Prepositional)",
-   "explain": "«другой форме» — after the preposition «в», for location or topic.",
-   "id": "c6",
+   "correct": "другие науки",
+   "case": "Именительный (Nominative)",
+   "explain": "«другие науки» — the subject of the sentence stands in the nominative.",
+   "id": "c12",
    "translation": "In another form but along the same path of reflection the other sciences have proceeded. When Newton enunciated the law of gravity he did not say that the sun or the earth had a property of attraction; he said that all bodies from the largest to the smallest have the property of attracting one another, that is, leaving aside the question of the cause of the movement of the bodies, he expressed the property common to all bodies from the infinitely large to the infinitely small. The same is done by the natural sciences: leaving aside the question of cause, they seek for laws. History stands on the same path. And if history has for its object the study of the movement of the nations and of humanity and not the narration of episodes in the lives of individuals, it too, setting aside the conception of cause, should seek the laws common to all the inseparably interconnected infinitesimal elements of free will."
   },
   {
@@ -102,7 +162,7 @@
    "correct": "естественные науки",
    "case": "Винительный (Accusative)",
    "explain": "«естественные науки» — the accusative marks the direct object of the verb.",
-   "id": "c7",
+   "id": "c13",
    "translation": "In another form but along the same path of reflection the other sciences have proceeded. When Newton enunciated the law of gravity he did not say that the sun or the earth had a property of attraction; he said that all bodies from the largest to the smallest have the property of attracting one another, that is, leaving aside the question of the cause of the movement of the bodies, he expressed the property common to all bodies from the infinitely large to the infinitely small. The same is done by the natural sciences: leaving aside the question of cause, they seek for laws. History stands on the same path. And if history has for its object the study of the movement of the nations and of humanity and not the narration of episodes in the lives of individuals, it too, setting aside the conception of cause, should seek the laws common to all the inseparably interconnected infinitesimal elements of free will."
   }
  ]

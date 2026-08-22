@@ -1,204 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Те, кто находится под игом ___, пусть относятся со всем уважением к своим хозяевам.",
-      "lemma": "рабство",
-      "options": [
-        "рабство",
-        "рабства",
-        "рабству",
-        "рабством"
-      ],
-      "correct": "рабства",
-      "case": "Родительный (Genitive)",
-      "translation": "Those who are under the yoke of slavery should show full respect to their masters.",
-      "explain": "The preposition под (under) in the phrase под игом (under the yoke) requires the genitive case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Рабы, у которых хозяева ___, не должны оказывать им меньше уважения.",
-      "lemma": "христианин",
-      "options": [
-        "христиане",
-        "христиан",
-        "христианам",
-        "христианами"
-      ],
-      "correct": "христиане",
-      "case": "Именительный (Nominative)",
-      "translation": "Slaves whose masters are Christians should not show them less respect.",
-      "explain": "Хозяева христиане — the masters (noun) are Christians (predicate nominative), requiring nominative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Этому ты должен учить ___ и к этому их призывать.",
-      "lemma": "люди",
-      "options": [
-        "люди",
-        "людей",
-        "людям",
-        "людьми"
-      ],
-      "correct": "людей",
-      "case": "Винительный (Accusative)",
-      "translation": "You must teach this to people and call them to it.",
-      "explain": "The verb учить (to teach) is transitive and takes the direct object in the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Кто учит чему-то другому и не согласен со здравыми наставлениями нашего ___ Иисуса Христа.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господом"
-      ],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "Whoever teaches something different and does not agree with the sound instruction of our Lord Jesus Christ.",
-      "explain": "The genitive case нашего Господа (our Lord) modifies the noun phrase and expresses possession."
-    },
-    {
-      "id": "c5",
-      "sentence": "Для них благочестие стало лишь способом ___.",
-      "lemma": "наживa",
-      "options": [
-        "наживa",
-        "наживы",
-        "наживе",
-        "наживой"
-      ],
-      "correct": "наживы",
-      "case": "Родительный (Genitive)",
-      "translation": "For them godliness became merely a means of gain.",
-      "explain": "The preposition средством нажив uses genitive after the instrumental; here способом наживы (means of gain) with genitive."
-    },
-    {
-      "id": "c6",
-      "sentence": "Ведь мы ничего не принесли с собой в этот ___, и ничего не можем взять с собой из него.",
-      "lemma": "мир",
-      "options": [
-        "мир",
-        "мира",
-        "мире",
-        "миром"
-      ],
-      "correct": "мир",
-      "case": "Винительный (Accusative)",
-      "translation": "For we brought nothing into this world, and we can take nothing out of it.",
-      "explain": "The verb принесли (brought) is transitive; в этот мир (into this world) uses accusative with в for direction."
-    },
-    {
-      "id": "c7",
-      "sentence": "Те же, кто стремится разбогатеть, впадают в искушение и попадают в ловушку множества глупых и опасных ___.",
-      "lemma": "желание",
-      "options": [
-        "желание",
-        "желания",
-        "желаний",
-        "желаниями"
-      ],
-      "correct": "желаний",
-      "case": "Родительный (Genitive)",
-      "translation": "Those who desire to become rich fall into temptation and a snare of many foolish and harmful desires.",
-      "explain": "The genitive множества глупых желаний (multitude of foolish desires) shows the genitive of quantity."
-    },
-    {
-      "id": "c8",
-      "sentence": "Тех, кто в этой земной жизни богат, предупреждай, чтобы не гордились и не надеялись на свое ___.",
-      "lemma": "богатство",
-      "options": [
-        "богатство",
-        "богатства",
-        "богатстве",
-        "богатством"
-      ],
-      "correct": "богатство",
-      "case": "Винительный (Accusative)",
-      "translation": "Warn those who are rich in this present world not to be arrogant or to set their hope on their wealth.",
-      "explain": "The verb надеялись (hoped) takes the preposition на with accusative: надеялись на богатство (hoped on/in wealth)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Рабы, у которых хозяева христиане, не должны оказывать им меньше уважения на том основании, что они братья.",
-      "question": "Should slaves show their Christian masters less respect?",
-      "options": [
-        "No, they should serve them even better",
-        "Yes, because they are brothers in faith",
-        "It depends on the master's character",
-        "Only if they ask permission"
-      ],
-      "correct": "No, they should serve them even better",
-      "explain": "The passage states that Christian slaves should not despise their believing masters but rather serve them better."
-    },
-    {
-      "id": "r2",
-      "ru": "Кто учит чему-то другому и не согласен со здравыми наставлениями нашего Господа Иисуса Христа и с учением, соответствующим истинному богопочитанию, тот заносчив, но не имеет знания.",
-      "question": "What is said about someone who teaches false doctrine?",
-      "options": [
-        "They are conceited but have no knowledge",
-        "They are wise and learned",
-        "They possess great spiritual insight",
-        "They are humble and knowledgeable"
-      ],
-      "correct": "They are conceited but have no knowledge",
-      "explain": "The text explicitly states: тот заносчив, но не имеет знания (he is conceited, but has no knowledge)."
-    },
-    {
-      "id": "r3",
-      "ru": "Но у нас есть пропитание и одежда. Мы должны быть довольны, если у нас есть пропитание и одежда.",
-      "question": "What should be sufficient for contentment according to this passage?",
-      "options": [
-        "Food and clothing",
-        "Wealth and possessions",
-        "Fame and honor",
-        "Power and influence"
-      ],
-      "correct": "Food and clothing",
-      "explain": "The passage states we brought nothing into the world and if we have food and clothing, we will be content with that."
-    },
-    {
-      "id": "r4",
-      "ru": "Те же, кто стремится разбогатеть, впадают в искушение и попадают в ловушку множества глупых и опасных желаний, которые погружают людей в пучину несчастья и гибели.",
-      "question": "What happens to those who are determined to become rich?",
-      "options": [
-        "They fall into temptation and harmful desires that destroy them",
-        "They become wise and respected",
-        "They find true happiness",
-        "They gain spiritual insight"
-      ],
-      "correct": "They fall into temptation and harmful desires that destroy them",
-      "explain": "The text says those who desire to be rich fall into temptation, a snare, and many harmful lusts which drown men in ruin and destruction."
-    },
-    {
-      "id": "r5",
-      "ru": "Ты же человек Божий, беги от этого. Стремись к праведности, благочестию, вере, любви, терпению, кротости.",
-      "question": "What virtues does Paul tell Timothy to pursue?",
-      "options": [
-        "Righteousness, godliness, faith, love, endurance, and gentleness",
-        "Wealth, power, and honor",
-        "Worldly wisdom and strength",
-        "Knowledge and sophistication"
-      ],
-      "correct": "Righteousness, godliness, faith, love, endurance, and gentleness",
-      "explain": "Paul commands Timothy to follow righteousness, godliness, faith, love, perseverance, and gentleness."
-    },
-    {
-      "id": "r6",
-      "ru": "Тех, кто в этой земной жизни богат, предупреждай, чтобы не гордились и не надеялись на свое богатство, оно ненадежно.",
-      "question": "What should wealthy people be warned about?",
-      "options": [
-        "Not to be arrogant or put hope in uncertain riches",
-        "To share all their wealth",
-        "To abandon their possessions",
-        "To become monks or nuns"
-      ],
-      "correct": "Not to be arrogant or put hope in uncertain riches",
-      "explain": "Paul says to charge the rich not to be arrogant nor to hope in the uncertainty of riches, but on the living God."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Кто учит чему-то другому и не согласен со здравыми наставлениями нашего Господа Иисуса Христа и с учением, соответствующим ___, 4 тот заносчив, но не имеет знания.",
+   "lemma": "богопочитание",
+   "options": [
+    "истинное богопочитание",
+    "истинного богопочитания",
+    "истинном богопочитании",
+    "истинному богопочитанию"
+   ],
+   "correct": "истинному богопочитанию",
+   "case": "Дательный (Dative)",
+   "explain": "«истинному богопочитанию» — the dative marks the indirect object or recipient.",
+   "id": "c1",
+   "translation": "If anyone teaches a different doctrine, and doesn’t consent to sound words, the words of our Lord Jesus Christ, and to the doctrine which is according to godliness,"
+  },
+  {
+   "sentence": "___ быть благочестивым и довольным.",
+   "lemma": "приобретение",
+   "options": [
+    "великое приобретение",
+    "великим приобретением",
+    "великом приобретении",
+    "великого приобретения"
+   ],
+   "correct": "великое приобретение",
+   "case": "Именительный (Nominative)",
+   "explain": "«Великое приобретение» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "But godliness with contentment is great gain."
+  },
+  {
+   "sentence": "В свое время явит блаженный и единый Повелитель, Царь царей и Господь господствующих , 16 единственный Бессмертный, обитающий в ___, Которого никто из людей не видел и не может видеть.",
+   "lemma": "свет",
+   "options": [
+    "неприступный свет",
+    "неприступным светом",
+    "неприступного света",
+    "неприступном свете"
+   ],
+   "correct": "неприступном свете",
+   "case": "Предложный (Prepositional)",
+   "explain": "«неприступном свете» — after the preposition «в», for location or topic.",
+   "id": "c3",
+   "translation": "which in its own times he will show, who is the blessed and only Ruler, the King of kings, and Lord of lords."
+  },
+  {
+   "sentence": "Требуй от них делать добро и обогащаться ___, быть щедрыми и охотно делиться с другими своим богатством.",
+   "lemma": "дело",
+   "options": [
+    "добрых делах",
+    "добрые дела",
+    "добрыми делами",
+    "добрых дел"
+   ],
+   "correct": "добрыми делами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«добрыми делами» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "that they do good, that they be rich in good works, that they be ready to distribute, willing to share;"
+  },
+  {
+   "sentence": "Таким образом, они соберут себе сокровища, которые станут ___ их будущего, и получат по-настоящему подлинную жизнь.",
+   "lemma": "основание",
+   "options": [
+    "добрым основанием",
+    "доброе основание",
+    "доброго основания",
+    "добром основании"
+   ],
+   "correct": "добрым основанием",
+   "case": "Творительный (Instrumental)",
+   "explain": "«добрым основанием» — the instrumental marks the means, company, or complement.",
+   "id": "c6",
+   "translation": "laying up in store for themselves a good foundation against the time to come, that they may lay hold of eternal life."
+  }
+ ]
 }

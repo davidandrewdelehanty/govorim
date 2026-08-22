@@ -1,204 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Повеление Господа о восстановлении ___",
-      "lemma": "храм",
-      "options": [
-        "храм",
-        "храма",
-        "храме",
-        "храму"
-      ],
-      "correct": "храма",
-      "case": "Родительный (Genitive)",
-      "translation": "The Lord's command about the restoration of the temple",
-      "explain": "The preposition 'о' governs the prepositional case, but this genitive shows possession of the restoration."
-    },
-    {
-      "id": "c2",
-      "sentence": "Зерававель, сын Шеалтеила, ___ Иудеи",
-      "lemma": "наместник",
-      "options": [
-        "наместник",
-        "наместника",
-        "наместнику",
-        "наместнике"
-      ],
-      "correct": "наместник",
-      "case": "Именительный (Nominative)",
-      "translation": "Zerubbabel, son of Shealtiel, governor of Judah",
-      "explain": "Nominative case in apposition to the subject Zerubbabel."
-    },
-    {
-      "id": "c3",
-      "sentence": "Слово Господа через ___ Агея",
-      "lemma": "пророк",
-      "options": [
-        "пророк",
-        "пророка",
-        "пророку",
-        "пророке"
-      ],
-      "correct": "пророка",
-      "case": "Родительный (Genitive)",
-      "translation": "The word of the Lord through the prophet Haggai",
-      "explain": "The preposition 'через' (through) governs the accusative, but genitive is used for 'word of'."
-    },
-    {
-      "id": "c4",
-      "sentence": "Вы посеяли много, но собрали мало в ___ этом",
-      "lemma": "год",
-      "options": [
-        "год",
-        "года",
-        "году",
-        "годе"
-      ],
-      "correct": "году",
-      "case": "Предложный (Prepositional)",
-      "translation": "You sowed much, but gathered little in this year",
-      "explain": "The preposition 'в' (in) governs the prepositional case for time expressions."
-    },
-    {
-      "id": "c5",
-      "sentence": "Поднимитесь в горы, принесите дерева и постройте ___",
-      "lemma": "дом",
-      "options": [
-        "дом",
-        "дома",
-        "дому",
-        "домом"
-      ],
-      "correct": "дом",
-      "case": "Именительный (Nominative)",
-      "translation": "Go up to the mountains, bring wood and build a house",
-      "explain": "The direct object of the imperative verb 'постройте' (build) takes the accusative case, which coincides with the nominative for masculine inanimate nouns."
-    },
-    {
-      "id": "c6",
-      "sentence": "Развалины ___ Господа лежали перед ним",
-      "lemma": "дом",
-      "options": [
-        "дом",
-        "дома",
-        "доме",
-        "дому"
-      ],
-      "correct": "дома",
-      "case": "Родительный (Genitive)",
-      "translation": "The ruins of the Lord's house lay before him",
-      "explain": "Possession is expressed with the genitive case: 'house of the Lord'."
-    },
-    {
-      "id": "c7",
-      "sentence": "Я наслал засуху на поля и на ___ этой",
-      "lemma": "земля",
-      "options": [
-        "земля",
-        "земли",
-        "земле",
-        "землю"
-      ],
-      "correct": "земли",
-      "case": "Родительный (Genitive)",
-      "translation": "I sent drought on the fields and on this land",
-      "explain": "The preposition 'на' (on) here takes the genitive in the sense of 'upon/over'."
-    },
-    {
-      "id": "c8",
-      "sentence": "И народ послушались голоса ___ их Бога",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господе",
-        "Господом"
-      ],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "And the people obeyed the voice of their God the Lord",
-      "explain": "The genitive case expresses possession: 'the voice of their God'."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "На втором году правления царя Дария, в первый день шестого месяца, было слово Господа через пророка Агея.",
-      "question": "During what period and through whom did God's word come?",
-      "options": [
-        "In the second year of Darius's reign through the prophet Haggai",
-        "In the first year of Darius's reign through Joshua",
-        "In the third year through Zechariah",
-        "In the fourth year through Jeremiah"
-      ],
-      "correct": "In the second year of Darius's reign through the prophet Haggai",
-      "explain": "The text explicitly states 'На втором году правления царя Дария... было слово Господа через пророка Агея' (In the second year of Darius's reign... the word of the Lord came through the prophet Haggai)."
-    },
-    {
-      "id": "r2",
-      "ru": "А вам разве время жить в хороших домах, когда этот дом лежит в развалинах?",
-      "question": "What criticism does God make about the people's priorities?",
-      "options": [
-        "They live in good houses while the Lord's house lies in ruins",
-        "They ignore the poor in the city",
-        "They refuse to work on rebuilding",
-        "They waste their money on idols"
-      ],
-      "correct": "They live in good houses while the Lord's house lies in ruins",
-      "explain": "God questions why they live in comfortable homes while His house remains desolate: 'А вам разве время жить в хороших домах, когда этот дом лежит в развалинах?'"
-    },
-    {
-      "id": "r3",
-      "ru": "Вы посеяли много, а собрали мало. Вы едите, но не наедаетесь. Вы пьете, но не напиваетесь.",
-      "question": "What pattern of futility does the Lord describe?",
-      "options": [
-        "Work yields little harvest; food doesn't satisfy hunger or thirst",
-        "The crops fail to grow at all",
-        "Animals eat the grain before harvest",
-        "The workers become ill"
-      ],
-      "correct": "Work yields little harvest; food doesn't satisfy hunger or thirst",
-      "explain": "The passage repeats the pattern: sowing much but harvesting little, eating but not being satisfied, drinking but not being filled."
-    },
-    {
-      "id": "r4",
-      "ru": "Подумайте о своих путях. Поднимитесь в горы, принесите дерева и построите дом.",
-      "question": "What action does God command the people to take?",
-      "options": [
-        "Go to the mountains, bring wood, and build the temple",
-        "Repent and return to God",
-        "Gather in the city and pray",
-        "Plant seeds for the next harvest"
-      ],
-      "correct": "Go to the mountains, bring wood, and build the temple",
-      "explain": "God explicitly commands: 'Поднимитесь в горы, принесите дерева и построите дом' (Go up to the mountains, bring wood and build the house)."
-    },
-    {
-      "id": "r5",
-      "ru": "И Зерававель, сын Шеалтеила, с первосвященником Иисусом, сыном Иосидека, и со всем остальным народом послушались голоса Господа их Бога.",
-      "question": "How did Zerubbabel and the high priest Joshua respond to God's message?",
-      "options": [
-        "They obeyed the voice of their God the Lord",
-        "They ignored the message and continued building their homes",
-        "They consulted with the king before responding",
-        "They sent word that they would obey later"
-      ],
-      "correct": "They obeyed the voice of their God the Lord",
-      "explain": "The text states they 'послушались голоса Господа их Бога' (obeyed the voice of their God the Lord)."
-    },
-    {
-      "id": "r6",
-      "ru": "Они пришли и начали трудиться в храме Господа сил, их Бога, в двадцать четвертый день шестого месяца второго года правления царя Дария.",
-      "question": "When did the people begin working on the temple?",
-      "options": [
-        "On the twenty-fourth day of the sixth month in the second year of Darius's reign",
-        "On the first day of the seventh month",
-        "On the fifteenth day of the ninth month",
-        "On the twenty-fifth day of the fifth month"
-      ],
-      "correct": "On the twenty-fourth day of the sixth month in the second year of Darius's reign",
-      "explain": "The text explicitly specifies the date: 'в двадцать четвертый день шестого месяца второго года правления царя Дария' (on the twenty-fourth day of the sixth month in the second year of Darius's reign)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "На втором году правления царя Дария , в первый день ___ , Зоровавелю, сыну Шеалтиила, наместнику Иудеи, и Иисусу, сыну Иоседека, первосвященнику, было слово Господа через пророка Аггея:",
+   "lemma": "месяц",
+   "options": [
+    "шестого месяца",
+    "шестым месяцем",
+    "шестому месяцу",
+    "шестом месяце"
+   ],
+   "correct": "шестого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«шестого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "In the second year of Darius the king, in the sixth month, in the first day of the month, Yahweh’s word came by Haggai, the prophet, to Zerubbabel, the son of Shealtiel, governor of Judah, and to Joshua, the son of Jehozadak, the high priest, saying,"
+  },
+  {
+   "sentence": "— А вам разве время жить в ___, когда этот дом лежит в развалинах?",
+   "lemma": "дом",
+   "options": [
+    "хорошим домам",
+    "хорошие дома",
+    "хорошими домами",
+    "хороших домах"
+   ],
+   "correct": "хороших домах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«хороших домах» — after the preposition «в», for location or topic.",
+   "id": "c3",
+   "translation": "“Is it a time for you yourselves to dwell in your paneled houses, while this house lies waste?"
+  },
+  {
+   "sentence": "И Зоровавель, сын Шеалтиила, с первосвященником Иисусом, сыном Иоседека, и со всем ___ послушались голоса Господа, их Бога, и слов пророка Аггея, потому что его послал Господь, их Бог.",
+   "lemma": "народ",
+   "options": [
+    "остальному народу",
+    "остальным народом",
+    "остальной народ",
+    "остальном народе"
+   ],
+   "correct": "остальным народом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«остальным народом» — after the preposition «со», the instrumental marks the means, company, or complement.",
+   "id": "c4",
+   "translation": "Then Zerubbabel, the son of Shealtiel, and Joshua, the son of Jehozadak, the high priest, with all the remnant of the people, obeyed Yahweh, their God’s voice, and the words of Haggai, the prophet, as Yahweh, their God, had sent him; and the people feared Yahweh."
+  },
+  {
+   "sentence": "И Господь пробудил дух наместника Иудеи Зоровавеля, сына Шеалтиила, дух первосвященника Иисуса, сына Иоседека, и дух всего ___.",
+   "lemma": "народ",
+   "options": [
+    "остального народа",
+    "остальной народ",
+    "остальным народом",
+    "остальному народу"
+   ],
+   "correct": "остального народа",
+   "case": "Родительный (Genitive)",
+   "explain": "«остального народа» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "Yahweh stirred up the spirit of Zerubbabel, the son of Shealtiel, governor of Judah, and the spirit of Joshua, the son of Jehozadak, the high priest, and the spirit of all the remnant of the people; and they came and worked on the house of Yahweh of Armies, their God,"
+  },
+  {
+   "sentence": "Они пришли и начали трудиться в храме Господа Сил, их Бога, 15 в двадцать четвертый день ___ второго года правления царя Дария .",
+   "lemma": "месяц",
+   "options": [
+    "шестого месяца",
+    "шестым месяцем",
+    "шестому месяцу",
+    "шестом месяце"
+   ],
+   "correct": "шестого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«шестого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "Yahweh stirred up the spirit of Zerubbabel, the son of Shealtiel, governor of Judah, and the spirit of Joshua, the son of Jehozadak, the high priest, and the spirit of all the remnant of the people; and they came and worked on the house of Yahweh of Armies, their God,"
+  },
+  {
+   "sentence": "Они пришли и начали трудиться в храме Господа Сил, их Бога, 15 в двадцать четвертый день шестого месяца ___ правления царя Дария .",
+   "lemma": "год",
+   "options": [
+    "второй год",
+    "второго года",
+    "втором годе",
+    "второму году"
+   ],
+   "correct": "второго года",
+   "case": "Родительный (Genitive)",
+   "explain": "«второго года» — the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "Yahweh stirred up the spirit of Zerubbabel, the son of Shealtiel, governor of Judah, and the spirit of Joshua, the son of Jehozadak, the high priest, and the spirit of all the remnant of the people; and they came and worked on the house of Yahweh of Armies, their God,"
+  }
+ ]
 }

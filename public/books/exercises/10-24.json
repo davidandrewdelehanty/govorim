@@ -1,204 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Гнев Господа опять воспылал против ___.",
-      "lemma": "Израиль",
-      "options": [
-        "Израиль",
-        "Израиля",
-        "Израилю",
-        "Израилем"
-      ],
-      "correct": "Израиля",
-      "case": "Родительный (Genitive)",
-      "translation": "The anger of the Lord burned against Israel.",
-      "explain": "The verb вспылал takes the genitive with против (against)."
-    },
-    {
-      "id": "c2",
-      "sentence": "Давид сказал Иоаву, начальнику ___.",
-      "lemma": "войско",
-      "options": [
-        "войско",
-        "войска",
-        "войску",
-        "войске"
-      ],
-      "correct": "войска",
-      "case": "Родительный (Genitive)",
-      "translation": "David said to Joab, the commander of the army.",
-      "explain": "The genitive shows possession: 'commander of the army.'"
-    },
-    {
-      "id": "c3",
-      "sentence": "Обойди все колена ___.",
-      "lemma": "Израиль",
-      "options": [
-        "Израиль",
-        "Израиля",
-        "Израилю",
-        "Израилем"
-      ],
-      "correct": "Израиля",
-      "case": "Родительный (Genitive)",
-      "translation": "Go around all the tribes of Israel.",
-      "explain": "The preposition around is implied; the genitive shows partition."
-    },
-    {
-      "id": "c4",
-      "sentence": "Давид совершил ___, который был зол в очах Господних.",
-      "lemma": "зло",
-      "options": [
-        "зло",
-        "зла",
-        "злу",
-        "злом"
-      ],
-      "correct": "зло",
-      "case": "Винительный (Accusative)",
-      "translation": "David had done evil in the sight of the Lord.",
-      "explain": "The verb совершил takes the accusative object."
-    },
-    {
-      "id": "c5",
-      "sentence": "Господь послал пророка Гада к ___ .",
-      "lemma": "Давид",
-      "options": [
-        "Давид",
-        "Давида",
-        "Давиду",
-        "Давидом"
-      ],
-      "correct": "Давиду",
-      "case": "Дательный (Dative)",
-      "translation": "The Lord sent the prophet Gad to David.",
-      "explain": "The preposition к (to) governs the dative."
-    },
-    {
-      "id": "c6",
-      "sentence": "Три вещи я предлагаю тебе; выбери одну из ___.",
-      "lemma": "они",
-      "options": [
-        "они",
-        "них",
-        "ним",
-        "ими"
-      ],
-      "correct": "них",
-      "case": "Родительный (Genitive)",
-      "translation": "I offer you three things; choose one of them.",
-      "explain": "The preposition из (from) governs the genitive."
-    },
-    {
-      "id": "c7",
-      "sentence": "Пусть упаду я в руку ___.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господом"
-      ],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "Let me fall into the hand of the Lord.",
-      "explain": "The preposition в with рука takes the genitive as an exception."
-    },
-    {
-      "id": "c8",
-      "sentence": "Давид купил гумно и волов у ___.",
-      "lemma": "арауна",
-      "options": [
-        "Арауна",
-        "Аравны",
-        "Арауне",
-        "Аравной"
-      ],
-      "correct": "Аравны",
-      "case": "Родительный (Genitive)",
-      "translation": "David bought the threshing floor and the oxen from Araunah.",
-      "explain": "The preposition у (from/at) governs the genitive."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Гнев Господа опять воспылал против Израиля, и возбудил он Давида против них.",
-      "question": "What provoked the Lord's anger?",
-      "options": [
-        "Israel's sin stirred David against them",
-        "A famine in the land",
-        "Enemies from without",
-        "The people's rebellion"
-      ],
-      "correct": "Israel's sin stirred David against them",
-      "explain": "The text: 'Гнев Господа опять воспылал против Израиля.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Давид сказал Иоаву, начальнику войска: 'Обойди все колена Израиля.'",
-      "question": "What did David order Joab to do?",
-      "options": [
-        "Go around all the tribes of Israel",
-        "Prepare for war",
-        "Count the people",
-        "Gather the soldiers"
-      ],
-      "correct": "Go around all the tribes of Israel",
-      "explain": "David commanded: 'Обойди все колена Израиля.'"
-    },
-    {
-      "id": "r3",
-      "ru": "Душа твоя ненавидела то, что ты делал.",
-      "question": "How did Joab feel about the census?",
-      "options": [
-        "His soul was troubled by what he was doing",
-        "He was eager to obey",
-        "He wanted more time",
-        "He disagreed with the order"
-      ],
-      "correct": "His soul was troubled by what he was doing",
-      "explain": "Joab was disturbed: 'Душа твоя ненавидела то, что ты делал.'"
-    },
-    {
-      "id": "r4",
-      "ru": "Господь послал пророка Гада к Давиду.",
-      "question": "Whom did the Lord send to David?",
-      "options": [
-        "The prophet Gad",
-        "The angel Michael",
-        "The priest Zadok",
-        "A messenger from Joab"
-      ],
-      "correct": "The prophet Gad",
-      "explain": "The text: 'Господь послал пророка Гада к Давиду.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Три вещи я предлагаю тебе; выбери одну из них, и я исполню ее для тебя.",
-      "question": "What did Gad say?",
-      "options": [
-        "He offered David three choices to pick from",
-        "He announced a punishment",
-        "He gave a prophecy",
-        "He offered forgiveness"
-      ],
-      "correct": "He offered David three choices to pick from",
-      "explain": "Gad said: 'Три вещи я предлагаю тебе; выбери одну.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Давид купил гумно и волов у Аравны за пятьдесят шекелей серебра.",
-      "question": "What did David buy from Araunah?",
-      "options": [
-        "A threshing floor and oxen for fifty shekels of silver",
-        "Land for a city",
-        "A house in Jerusalem",
-        "A temple"
-      ],
-      "correct": "A threshing floor and oxen for fifty shekels of silver",
-      "explain": "The text: 'Давид купил гумно и волов у Аравны за пятьдесят шекелей.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Но ___ оказалось сильнее слова Иоава и начальников войска, и они ушли от царя, чтобы пересчитать израильский народ.",
+   "lemma": "слово",
+   "options": [
+    "царское слово",
+    "царскому слову",
+    "царского слова",
+    "царском слове"
+   ],
+   "correct": "царское слово",
+   "case": "Именительный (Nominative)",
+   "explain": "«царское слово» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Notwithstanding, the king’s word prevailed against Joab, and against the captains of the army. Joab and the captains of the army went out from the presence of the king to count the people of Israel."
+  },
+  {
+   "sentence": "Иоав доложил царю о результатах переписи: восемьсот тысяч ___, способных владеть мечом, в Израиле, и пятьсот тысяч — в Иудее.",
+   "lemma": "мужчина",
+   "options": [
+    "сильные мужчины",
+    "сильными мужчинами",
+    "сильных мужчин",
+    "сильных мужчинах"
+   ],
+   "correct": "сильных мужчин",
+   "case": "Родительный (Genitive)",
+   "explain": "«сильных мужчин» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "Joab gave up the sum of the counting of the people to the king: and there were in Israel eight hundred thousand valiant men who drew the sword; and the men of Judah were five hundred thousand men."
+  },
+  {
+   "sentence": "Прежде чем Давид встал ___, к пророку Гаду, провидцу Давида, было слово Господа:",
+   "lemma": "утро",
+   "options": [
+    "следующим утром",
+    "следующему утру",
+    "следующего утра",
+    "следующем утре"
+   ],
+   "correct": "следующим утром",
+   "case": "Творительный (Instrumental)",
+   "explain": "«следующим утром» — the instrumental marks the means, company, or complement.",
+   "id": "c6",
+   "translation": "When David rose up in the morning, Yahweh’s word came to the prophet Gad, David’s seer, saying,"
+  }
+ ]
 }

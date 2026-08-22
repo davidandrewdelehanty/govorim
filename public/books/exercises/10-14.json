@@ -1,204 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Иааф знал, что сердце царя тоскует по ___.",
-      "lemma": "Ависсалом",
-      "options": [
-        "Ависсалом",
-        "Ависсалома",
-        "Ависсалому",
-        "Ависсаломе"
-      ],
-      "correct": "Ависсалома",
-      "case": "Винительный (Accusative)",
-      "translation": "Joab knew that the king's heart longed for Absalom.",
-      "explain": "The verb 'тосковать' (to yearn for) takes the accusative case for its direct object."
-    },
-    {
-      "id": "c2",
-      "sentence": "Иов послал в Текоа, чтобы привезти оттуда мудрую ___.",
-      "lemma": "женщина",
-      "options": [
-        "женщина",
-        "женщины",
-        "женщине",
-        "женщину"
-      ],
-      "correct": "женщину",
-      "case": "Винительный (Accusative)",
-      "translation": "Joab sent to Tekoa to bring a wise woman from there.",
-      "explain": "The verb 'привезти' (to bring) takes the accusative case for its direct object."
-    },
-    {
-      "id": "c3",
-      "sentence": "Он сказал ей, «Притворись плачущей, оденься в черное как ___».",
-      "lemma": "траур",
-      "options": [
-        "траур",
-        "траура",
-        "трауре",
-        "трауром"
-      ],
-      "correct": "траур",
-      "case": "Именительный (Nominative)",
-      "translation": "He said to her, 'Pretend to be mourning, dress as if in mourning.'",
-      "explain": "The nominative case is used in the predicate nominative construction."
-    },
-    {
-      "id": "c4",
-      "sentence": "Она пала на свое лицо и, поклонившись, сказала ему, «Помоги мне, о ___!»",
-      "lemma": "царь",
-      "options": [
-        "царь",
-        "царя",
-        "царю",
-        "царём"
-      ],
-      "correct": "царь",
-      "case": "Именительный (Nominative)",
-      "translation": "She fell on her face and, bowing, said to him, 'Help me, O king!'",
-      "explain": "Царь is the vocative nominative used when addressing the king directly."
-    },
-    {
-      "id": "c5",
-      "sentence": "У твоей служанки было два ___ пошли вместе в поле.",
-      "lemma": "сын",
-      "options": [
-        "сын",
-        "сына",
-        "сыну",
-        "сыном"
-      ],
-      "correct": "сына",
-      "case": "Родительный (Genitive)",
-      "translation": "Your servant had two sons who went together into the field.",
-      "explain": "The number два (two) governs the genitive singular of the noun."
-    },
-    {
-      "id": "c6",
-      "sentence": "И весь клан поднялся против твоей служанки и говорит, выдай того, кто поразил своего ___ и мы предадим его смерти.",
-      "lemma": "брат",
-      "options": [
-        "брат",
-        "брата",
-        "брату",
-        "братом"
-      ],
-      "correct": "брата",
-      "case": "Родительный (Genitive)",
-      "translation": "And the whole family rose against your servant, saying, 'Deliver the one who struck his brother, and we will put him to death.'",
-      "explain": "The verb 'поразить' (to strike) takes the accusative case, but the genitive is used after 'своего' (his own)."
-    },
-    {
-      "id": "c7",
-      "sentence": "Все мы должны умереть, мы подобны воде, пролитой на землю, которую нельзя собрать по ___.",
-      "lemma": "земля",
-      "options": [
-        "земля",
-        "земли",
-        "земле",
-        "землю"
-      ],
-      "correct": "земле",
-      "case": "Предложный (Prepositional)",
-      "translation": "We must all die, we are like water poured out on the ground, which cannot be gathered up again.",
-      "explain": "The preposition по (on) indicates location and takes the prepositional case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Царь сказал женщине, «Не утаи от меня того, о чем я спрошу ___».",
-      "lemma": "ты",
-      "options": [
-        "ты",
-        "тебя",
-        "тебе",
-        "тобой"
-      ],
-      "correct": "тебя",
-      "case": "Родительный (Genitive)",
-      "translation": "The king said to the woman, 'Do not hide from me anything that I ask you.'",
-      "explain": "The verb 'спросить' (to ask) with the preposition 'о' takes the prepositional or accusative depending on construction."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Иааф, сын Царуи, знал, что сердце царя тоскует по Ависсалому.",
-      "question": "What did Joab know about the king's feelings?",
-      "options": [
-        "That the king's heart yearned for Absalom",
-        "That the king was angry with Absalom",
-        "That the king wanted to kill Absalom",
-        "That the king had forgotten Absalom"
-      ],
-      "correct": "That the king's heart yearned for Absalom",
-      "explain": "The text states 'Иааф, сын Царуи, знал, что сердце царя тоскует по Ависсалому' — Joab knew that the king's heart yearned for Absalom."
-    },
-    {
-      "id": "r2",
-      "ru": "И Иав научил ее, что нужно сказать.",
-      "question": "What did Joab do for the wise woman from Tekoa?",
-      "options": [
-        "He taught her what she should say",
-        "He promised her money for her help",
-        "He went with her to the king",
-        "He gave her new clothes to wear"
-      ],
-      "correct": "He taught her what she should say",
-      "explain": "The text says: 'И Иав научил ее, что нужно сказать' — And Joab taught her what she should say."
-    },
-    {
-      "id": "r3",
-      "ru": "Они говорят, «Выдай того, кто поразил своего брата, и мы предадим его смерти за жизнь его брата, которого он убил.»",
-      "question": "What was the clan demanding according to the woman's story?",
-      "options": [
-        "They demanded that the one who killed his brother be put to death",
-        "They demanded that the woman leave the kingdom",
-        "They demanded that the king pay them money",
-        "They demanded that the woman's family be destroyed"
-      ],
-      "correct": "They demanded that the one who killed his brother be put to death",
-      "explain": "The woman said the family is saying: 'Выдай того, кто поразил своего брата, и мы предадим его смерти' — Deliver the one who struck his brother, and we will put him to death."
-    },
-    {
-      "id": "r4",
-      "ru": "Царь сказал женщине, «Иди домой, я распоряжусь о тебе».",
-      "question": "What did the king initially tell the woman to do?",
-      "options": [
-        "Go home and he would take care of her matter",
-        "Go tell her family to leave the city",
-        "Go and hide from the clan",
-        "Go find witnesses for her case"
-      ],
-      "correct": "Go home and he would take care of her matter",
-      "explain": "The king said: 'Иди домой, я распоряжусь о тебе' — Go home, I will take care of your matter."
-    },
-    {
-      "id": "r5",
-      "ru": "«Мудрость моего господина, как мудрость ангела Божьего. Он знает все, что происходит на земле.»",
-      "question": "What did the woman say about the king's wisdom?",
-      "options": [
-        "It was like the wisdom of an angel of God, and he knew all that happened on earth",
-        "It was greater than that of all the elders",
-        "It could not compare to the wisdom of priests",
-        "It was only good for making war"
-      ],
-      "correct": "It was like the wisdom of an angel of God, and he knew all that happened on earth",
-      "explain": "The woman stated: 'Мудрость моего господина, как мудрость ангела Божьего. Он знает все, что происходит на земле' — Your lord's wisdom is like the wisdom of an angel of God, and he knows all that happens on earth."
-    },
-    {
-      "id": "r6",
-      "ru": "Иов пал на землю, поклонился и благословил царя.",
-      "question": "How did Joab react when the king agreed to bring Absalom back?",
-      "options": [
-        "He fell to the ground, bowed, and blessed the king",
-        "He ran quickly to find Absalom",
-        "He wept with tears of joy",
-        "He went to prepare a feast"
-      ],
-      "correct": "He fell to the ground, bowed, and blessed the king",
-      "explain": "The text says: 'Иов пал на землю, поклонился и благословил царя' — Joab fell to the ground, bowed, and blessed the king."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Всякий раз, когда он стриг волосы на голове (он стриг волосы раз в год, когда они становились для него слишком тяжелы), он взвешивал их, и весили они двести шекелей по царской ___.",
+   "lemma": "мера",
+   "options": [
+    "весовой мере",
+    "весовой мерой",
+    "весовая мера",
+    "весовой меры"
+   ],
+   "correct": "весовой мере",
+   "case": "Дательный (Dative)",
+   "explain": "«весовой мере» — the dative marks the indirect object or recipient.",
+   "id": "c1",
+   "translation": "When he cut the hair of his head (now it was at every year’s end that he cut it; because it was heavy on him, therefore he cut it); he weighed the hair of his head at two hundred shekels, after the king’s weight."
+  },
+  {
+   "sentence": "Авессалом жил в Иерусалиме два года, не видя ___.",
+   "lemma": "лицо",
+   "options": [
+    "царскому лицу",
+    "царское лицо",
+    "царского лица",
+    "царским лицом"
+   ],
+   "correct": "царского лица",
+   "case": "Родительный (Genitive)",
+   "explain": "«царского лица» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "Absalom lived two full years in Jerusalem, and he didn’t see the king’s face."
+  },
+  {
+   "sentence": "Тогда он послал людей во ___, но тот и на этот раз отказался прийти.",
+   "lemma": "раз",
+   "options": [
+    "второго раза",
+    "вторым разом",
+    "втором разе",
+    "второй раз"
+   ],
+   "correct": "второй раз",
+   "case": "Винительный (Accusative)",
+   "explain": "«второй раз» — after the preposition «во», the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "Then Absalom sent for Joab, to send him to the king, but he would not come to him. Then he sent again a second time, but he would not come."
+  }
+ ]
 }

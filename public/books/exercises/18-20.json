@@ -1,204 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Мои тревожные мысли заставляют меня ответить, потому что я объят ___.",
-      "lemma": "смятение",
-      "options": [
-        "смятением",
-        "смятение",
-        "смятения",
-        "смятению"
-      ],
-      "correct": "смятением",
-      "case": "Творительный (Instrumental)",
-      "translation": "Therefore my thoughts answer me, even by reason of my haste.",
-      "explain": "The verb объят (seized) takes the instrumental case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Я слышу упрек, который позорит меня, и мой ум побуждает меня ___.",
-      "lemma": "ответить",
-      "options": [
-        "ответить",
-        "ответу",
-        "ответил",
-        "отвечаю"
-      ],
-      "correct": "ответить",
-      "case": "Винительный (Accusative)",
-      "translation": "I have heard the reproof which puts me to shame.",
-      "explain": "The verb побуждает (compels) takes an infinitive."
-    },
-    {
-      "id": "c3",
-      "sentence": "Разве ты не знаешь, как было издревле, с тех пор, как поставлен на ___ человек?",
-      "lemma": "земля",
-      "options": [
-        "земле",
-        "земля",
-        "земли",
-        "землю"
-      ],
-      "correct": "земле",
-      "case": "Предложный (Prepositional)",
-      "translation": "Don't you know this from old time, since man was placed on earth?",
-      "explain": "The preposition на (on) requires prepositional case for location."
-    },
-    {
-      "id": "c4",
-      "sentence": "Пусть гордыня его достигает небес, а голова касается облаков, он сгинет навек, как его же ___.",
-      "lemma": "нечистота",
-      "options": [
-        "нечистоты",
-        "нечистота",
-        "нечистоте",
-        "нечистотой"
-      ],
-      "correct": "нечистоты",
-      "case": "Родительный (Genitive)",
-      "translation": "Though his height mount up to the heavens, he will perish forever like his own dung.",
-      "explain": "The preposition как (like) in a comparison requires genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Его дети будут заискивать перед ___.",
-      "lemma": "нищий",
-      "options": [
-        "нищими",
-        "нищий",
-        "нищему",
-        "нищего"
-      ],
-      "correct": "нищими",
-      "case": "Творительный (Instrumental)",
-      "translation": "His children will seek the favor of the poor.",
-      "explain": "The preposition перед (before) requires instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Если его устам сладко ___, и он под языком его скрывает это.",
-      "lemma": "зло",
-      "options": [
-        "зло",
-        "зла",
-        "злу",
-        "злом"
-      ],
-      "correct": "зло",
-      "case": "Именительный (Nominative)",
-      "translation": "Though wickedness is sweet in his mouth.",
-      "explain": "Зло serves as the subject of the sentence in nominative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Он вернет нажитое, не отведав, доходом от труда своего не ___.",
-      "lemma": "радоваться",
-      "options": [
-        "порадуется",
-        "радоваться",
-        "радуется",
-        "радовался"
-      ],
-      "correct": "порадуется",
-      "case": "Будущее время (Future tense)",
-      "translation": "He will restore that for which he labored, and will not swallow it down.",
-      "explain": "The context requires future tense (не порадуется = will not rejoice)."
-    },
-    {
-      "id": "c8",
-      "sentence": "Богатство его ___ расточится, в день Божьего гнева расплещется, как вода.",
-      "lemma": "дом",
-      "options": [
-        "дома",
-        "дом",
-        "доме",
-        "домом"
-      ],
-      "correct": "дома",
-      "case": "Родительный (Genitive)",
-      "translation": "The increase of his house will depart.",
-      "explain": "The possessive genitive indicates 'of his house.'"
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Разве ты не знаешь, как было издревле, с тех пор, как поставлен на земле человек, что кратковеселье нечестивцев и радость безбожников лишь на миг?",
-      "question": "How long does Zophar say the happiness of the wicked lasts?",
-      "options": [
-        "Only for a moment",
-        "Forever",
-        "For many years",
-        "Until they die of old age"
-      ],
-      "correct": "Only for a moment",
-      "explain": "Zophar states радость безбожников лишь на миг (the joy of the godless is only for a moment)."
-    },
-    {
-      "id": "r2",
-      "ru": "Пусть гордыня его достигает небес, а голова касается облаков, он сгинет навек.",
-      "question": "What will happen to the wicked man despite his great pride and height?",
-      "options": [
-        "He will perish forever",
-        "He will be exalted",
-        "He will reach heaven",
-        "He will be rewarded"
-      ],
-      "correct": "He will perish forever",
-      "explain": "Despite гордыня его достигает небес (his pride reaching to heaven), он сгинет навек (he will perish forever)."
-    },
-    {
-      "id": "r3",
-      "ru": "Если его устам сладко зло, и он под языком его скрывает, если он бережет его, не бросает, то станет пища в его желудке ядом змеиным.",
-      "question": "What does wickedness become if held inside according to this verse?",
-      "options": [
-        "It becomes poison like cobra venom in his stomach",
-        "It nourishes him",
-        "It brings him joy",
-        "It makes him wealthy"
-      ],
-      "correct": "It becomes poison like cobra venom in his stomach",
-      "explain": "The text says пища в его желудке станет ядом змеиным (food in his stomach becomes cobra poison)."
-    },
-    {
-      "id": "r4",
-      "ru": "Он вернет нажитое, не отведав, доходом от труда своего не порадуется.",
-      "question": "What will the wicked man not be able to enjoy?",
-      "options": [
-        "The wealth he has gained",
-        "His family",
-        "His possessions in his youth",
-        "His honor"
-      ],
-      "correct": "The wealth he has gained",
-      "explain": "Zophar says он вернет нажитое не отведав (he will return what he gained untasted) and не порадуется (not enjoy)."
-    },
-    {
-      "id": "r5",
-      "ru": "Теснил он бедных и пренебрегал ими, захватывал дома, которые не строил.",
-      "question": "What crimes does Zophar accuse the wicked man of?",
-      "options": [
-        "Oppressing the poor and seizing houses he did not build",
-        "Helping the poor",
-        "Building houses",
-        "Being generous to others"
-      ],
-      "correct": "Oppressing the poor and seizing houses he did not build",
-      "explain": "The text describes теснил он бедных (he oppressed the poor) and захватывал дома которые не строил (seized houses he did not build)."
-    },
-    {
-      "id": "r6",
-      "ru": "Никем не зажженный огонь пожрет его и сожжет последнее, что осталось в его шатре.",
-      "question": "What will happen to the wicked man's tent and possessions?",
-      "options": [
-        "An unlit fire will devour everything in his tent",
-        "His tent will be saved",
-        "It will be given to the poor",
-        "It will remain intact"
-      ],
-      "correct": "An unlit fire will devour everything in his tent",
-      "explain": "Zophar says никем не зажженный огонь пожрет его (an unfanned fire will devour him) and сожжет последнее в его шатре (consume what remains in his tent)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "— Мои ___ заставляют меня ответить,",
+   "lemma": "мысль",
+   "options": [
+    "тревожными мыслями",
+    "тревожным мыслям",
+    "тревожных мыслях",
+    "тревожные мысли"
+   ],
+   "correct": "тревожные мысли",
+   "case": "Именительный (Nominative)",
+   "explain": "«тревожные мысли» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "“Therefore my thoughts answer me, even by reason of my haste that is in me."
+  },
+  {
+   "sentence": "Он убежит от ___,",
+   "lemma": "оружие",
+   "options": [
+    "железному оружию",
+    "железное оружие",
+    "железным оружием",
+    "железного оружия"
+   ],
+   "correct": "железного оружия",
+   "case": "Родительный (Genitive)",
+   "explain": "«железного оружия» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "He will flee from the iron weapon. The bronze arrow will strike him through."
+  },
+  {
+   "sentence": "___ ожидает его сокровища.",
+   "lemma": "тьма",
+   "options": [
+    "кромешная тьма",
+    "кромешной тьмы",
+    "кромешной тьмой",
+    "кромешной тьме"
+   ],
+   "correct": "кромешная тьма",
+   "case": "Именительный (Nominative)",
+   "explain": "«Кромешная тьма» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "All darkness is laid up for his treasures. An unfanned fire will devour him. It will consume that which is left in his tent."
+  }
+ ]
 }

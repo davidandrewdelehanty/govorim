@@ -1,134 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Я вновь поднял глаза и вижу, передо мной четыре ___, выезжающие из ущелья между двумя медными горами.",
-      "lemma": "колесница",
-      "options": ["колесница", "колесницы", "колесницу", "колесницей"],
-      "correct": "колесницы",
-      "case": "Именительный (Nominative)",
-      "translation": "I again lifted my eyes and see four chariots coming out from between two mountains of bronze.",
-      "explain": "Колесницы is the grammatical subject of выезжающие (coming out), so it takes the nominative plural case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Первую колесницу тащили рыжие ___, вторую вороны, третью белые, а четвертую пегии.",
-      "lemma": "конь",
-      "options": ["конь", "коней", "коня", "конем"],
-      "correct": "коней",
-      "case": "Винительный (Accusative)",
-      "translation": "Red horses pulled the first chariot, black ones the second, white ones the third, and dappled ones the fourth.",
-      "explain": "Коней is the direct object of the verb тащили (pulled), requiring the accusative plural case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Я спросил ___, который говорил со мной, что это значит, мой господин.",
-      "lemma": "ангел",
-      "options": ["ангел", "ангела", "ангелу", "ангелом"],
-      "correct": "ангела",
-      "case": "Винительный (Accusative)",
-      "translation": "I asked the angel who talked with me, What are these, my lord?",
-      "explain": "Ангела is the direct object of the verb спросил (asked), taking the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Ангел ответил мне. «Это четыре небесных духа, которые выходят от владыки всей ___».",
-      "lemma": "земля",
-      "options": ["земля", "земли", "землю", "земле"],
-      "correct": "земли",
-      "case": "Родительный (Genitive)",
-      "translation": "The angel answered me. These are the four winds of heaven that go out from the Lord of all the earth.",
-      "explain": "The preposition от (from) always governs the genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Тот, у которого вороны и ___, направляется в северный край.",
-      "lemma": "конь",
-      "options": ["конь", "коней", "коня", "конями"],
-      "correct": "коней",
-      "case": "Именительный (Nominative)",
-      "translation": "The one with black horses goes toward the north country.",
-      "explain": "Коней is part of a coordinate structure with вороны (crows), serving as the subject of направляется."
-    },
-    {
-      "id": "c6",
-      "sentence": "Сильные ___ вышли, и им не терпелось пройти по земле дозором.",
-      "lemma": "конь",
-      "options": ["конь", "коней", "кони", "конями"],
-      "correct": "кони",
-      "case": "Именительный (Nominative)",
-      "translation": "The strong horses went out, and they were eager to patrol the earth.",
-      "explain": "Кони is the grammatical subject of the verb вышли (went out), taking the nominative plural case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Тогда он сказал, ступайте, пройдите по ___ дозором.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землей"],
-      "correct": "земле",
-      "case": "Предложный (Prepositional)",
-      "translation": "Then he said, Go, patrol through the earth.",
-      "explain": "The preposition по (along, through) with the prepositional case indicates movement over a surface."
-    },
-    {
-      "id": "c8",
-      "sentence": "Венец для Иисуса Было ко мне слово Господне. «Собери серебро и золото у Хилдая, Тови и Иедаи, которые пришли из ___, и ступай в тот же день в дом Иосии, сына Сафонии.",
-      "lemma": "Вавилон",
-      "options": ["Вавилон", "Вавилона", "Вавилоне", "Вавилоном"],
-      "correct": "Вавилона",
-      "case": "Родительный (Genitive)",
-      "translation": "The crown for Jesus. The word of the Lord came to me. Take the silver and gold from Heldai, Tobijah, and Jedaiah, who have come from Babylon.",
-      "explain": "The preposition из (from) always governs the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Я вновь поднял глаза и вижу, передо мной четыре колесницы, выезжающие из ущелья между двумя медными горами.",
-      "question": "What comes out from between two bronze mountains?",
-      "options": ["Four angels", "Four chariots pulled by horses", "Four pillars of fire", "Four winds"],
-      "correct": "Four chariots pulled by horses",
-      "explain": "The text explicitly describes 'четыре колесницы, выезжающие из ущелья между двумя медными горами' (four chariots coming out from between two bronze mountains)."
-    },
-    {
-      "id": "r2",
-      "ru": "Первую колесницу тащили рыжие кони, вторую вороны, третью белые, а четвертую пегии.",
-      "question": "What color are the horses pulling each chariot?",
-      "options": ["All white", "Red, black, white, and dappled", "Brown, black, white, and gray", "Red, brown, white, and spotted"],
-      "correct": "Red, black, white, and dappled",
-      "explain": "The text specifies: 'Первую колесницу тащили рыжие кони, вторую вороны, третью белые, а четвертую пегии' (Red horses pull the first chariot, black the second, white the third, and dappled the fourth)."
-    },
-    {
-      "id": "r3",
-      "ru": "Это четыре небесных духа, которые выходят от владыки всей земли.",
-      "question": "According to the angel, what do the four chariots represent?",
-      "options": ["Four earthly kingdoms", "Four seasons of the year", "Four heavenly spirits that go out from the Lord of all the earth", "Four prophets"],
-      "correct": "Four heavenly spirits that go out from the Lord of all the earth",
-      "explain": "The angel explicitly says 'Это четыре небесных духа, которые выходят от владыки всей земли' (These are the four heavenly spirits that go out from the Lord of all the earth)."
-    },
-    {
-      "id": "r4",
-      "ru": "Тот, у которого вороны и кони, направляется в северный край, тот, у которого белые кони, на запад, а тот, у которого пегии, на юг.",
-      "question": "What directions do the chariots travel to?",
-      "options": ["East, west, north, and south", "North, west, and south", "North and south only", "East and west only"],
-      "correct": "North, west, and south",
-      "explain": "The text says 'направляется в северный край' (goes toward the north), 'на запад' (to the west), and 'на юг' (to the south)."
-    },
-    {
-      "id": "r5",
-      "ru": "Ангел ответил мне. «Это четыре небесных духа, которые выходят от владыки всей земли».",
-      "question": "Who does the angel say commands the four spirits?",
-      "options": ["The highest angel", "The Lord of all the earth", "The prophet Zechariah", "The people of Jerusalem"],
-      "correct": "The Lord of all the earth",
-      "explain": "The angel says they 'выходят от владыки всей земли' (go out from the Lord of all the earth)."
-    },
-    {
-      "id": "r6",
-      "ru": "Возьми серебро и золото, сделай венец и возложи его на голову первосвященника Иисуса, сына Иосидекова.",
-      "question": "What is to be made with the silver and gold?",
-      "options": ["A temple", "A crown to place on the high priest Jesus", "An altar", "A memorial stone"],
-      "correct": "A crown to place on the high priest Jesus",
-      "explain": "The text explicitly says 'Возьми серебро и золото, сделай венец и возложи его на голову первосвященника Иисуса' (Take silver and gold, make a crown and place it on the head of high priest Jesus)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Я вновь поднял глаза и вижу: предо мной четыре колесницы, выезжающие из ущелья между двумя ___.",
+   "lemma": "гора",
+   "options": [
+    "медных гор",
+    "медные горы",
+    "медным горам",
+    "медными горами"
+   ],
+   "correct": "медными горами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«медными горами» — after the preposition «между», the instrumental marks the means, company, or complement.",
+   "id": "c1",
+   "translation": "Again I lifted up my eyes, and saw, and behold, four chariots came out from between two mountains; and the mountains were mountains of bronze."
+  },
+  {
+   "sentence": "Тот, у которого вороные кони, направляется в северный край, тот, у которого ___, — на запад , а тот, у которого пегие, — на юг.",
+   "lemma": "конь",
+   "options": [
+    "белыми конями",
+    "белые кони",
+    "белых конях",
+    "белым коням"
+   ],
+   "correct": "белые кони",
+   "case": "Именительный (Nominative)",
+   "explain": "«белые кони» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "The one with the black horses goes out toward the north country; and the white went out after them; and the dappled went out toward the south country.”"
+  },
+  {
+   "sentence": "___ вышли, и им не терпелось пройти по земле дозором.",
+   "lemma": "конь",
+   "options": [
+    "сильные кони",
+    "сильными конями",
+    "сильных конях",
+    "сильным коням"
+   ],
+   "correct": "сильные кони",
+   "case": "Именительный (Nominative)",
+   "explain": "«Сильные кони» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "The strong went out, and sought to go that they might walk back and forth through the earth: and he said, “Go around and through the earth!” So they walked back and forth through the earth."
+  },
+  {
+   "sentence": "А венец будет вверен заботам Хелдая , Товии, Иедая и Иосии , сына Софонии, как ___ в храме Господа.",
+   "lemma": "знак",
+   "options": [
+    "памятному знаку",
+    "памятный знак",
+    "памятного знака",
+    "памятном знаке"
+   ],
+   "correct": "памятный знак",
+   "case": "Именительный (Nominative)",
+   "explain": "«памятный знак» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "The crowns shall be to Helem, and to Tobijah, and to Jedaiah, and to Hen the son of Zephaniah, for a memorial in Yahweh’s temple."
+  }
+ ]
 }

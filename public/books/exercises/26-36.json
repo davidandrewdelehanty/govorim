@@ -1,191 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ была в центре.",
-      "lemma": "гора",
-      "options": [
-        "горы",
-        "горе",
-        "гору",
-        "гора"
-      ],
-      "correct": "гора",
-      "case": "Именительный (Nominative)",
-      "translation": "A/The гора was central.",
-      "explain": "Governed by the context requiring the именительный (nominative)."
-    },
-    {
-      "id": "c2",
-      "sentence": "Это достояние ___.",
-      "lemma": "гора",
-      "options": [
-        "гора",
-        "горе",
-        "гору",
-        "горы"
-      ],
-      "correct": "горы",
-      "case": "Родительный (Genitive)",
-      "translation": "A/The гора was central.",
-      "explain": "Governed by the context requiring the родительный (genitive)."
-    },
-    {
-      "id": "c3",
-      "sentence": "Подойди к ___.",
-      "lemma": "гора",
-      "options": [
-        "гора",
-        "горы",
-        "гору",
-        "горе"
-      ],
-      "correct": "горе",
-      "case": "Дательный (Dative)",
-      "translation": "A/The гора was central.",
-      "explain": "Governed by the context requiring the дательный (dative)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я видел ___.",
-      "lemma": "гора",
-      "options": [
-        "гора",
-        "горы",
-        "горе",
-        "гору"
-      ],
-      "correct": "гору",
-      "case": "Винительный (Accusative)",
-      "translation": "A/The гора was central.",
-      "explain": "Governed by the context requiring the винительный (accusative)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Это сделано ___.",
-      "lemma": "гора",
-      "options": [
-        "гора",
-        "горы",
-        "горе",
-        "горой"
-      ],
-      "correct": "горой",
-      "case": "Творительный (Instrumental)",
-      "translation": "A/The гора was central.",
-      "explain": "Governed by the context requiring the творительный (instrumental)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Речь идёт о ___.",
-      "lemma": "гора",
-      "options": [
-        "гора",
-        "горы",
-        "горе",
-        "гору"
-      ],
-      "correct": "горе",
-      "case": "Предложный (Prepositional)",
-      "translation": "A/The гора was central.",
-      "explain": "Governed by the context requiring the предложный (prepositional)."
-    },
-    {
-      "id": "c7",
-      "sentence": "___ была в центре.",
-      "lemma": "народ",
-      "options": [
-        "народа",
-        "народу",
-        "народ",
-        "народом"
-      ],
-      "correct": "народ",
-      "case": "Именительный (Nominative)",
-      "translation": "A/The народ was central.",
-      "explain": "Governed by the context requiring the именительный (nominative)."
-    },
-    {
-      "id": "c8",
-      "sentence": "Это достояние ___.",
-      "lemma": "народ",
-      "options": [
-        "народ",
-        "народу",
-        "народом",
-        "народа"
-      ],
-      "correct": "народа",
-      "case": "Родительный (Genitive)",
-      "translation": "A/The народ was central.",
-      "explain": "Governed by the context requiring the родительный (genitive)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Суд и восстановление на горах Израиля Сын человеческий, пророчествуй горам Израиля и скажи, слушайте слово Господа горы Израиля",
-      "question": "What is the main action in this sentence?",
-      "options": [
-        "A main action occurs.",
-        "No action takes place.",
-        "Actions are prevented.",
-        "All actions cease."
-      ],
-      "correct": "A main action occurs.",
-      "explain": "From the text provided."
-    },
-    {
-      "id": "r2",
-      "ru": "Я поселю на вас людей, как в прошлом, и сделаю вам еще больше добра, чем прежде",
-      "question": "Who or what is the subject?",
-      "options": [
-        "The subject is identified.",
-        "The subject is unclear.",
-        "No subject exists.",
-        "The subject is missing."
-      ],
-      "correct": "The subject is identified.",
-      "explain": "From the text provided."
-    },
-    {
-      "id": "r3",
-      "ru": "«И я пожалел свое святое имя, которое дом Израиля обеславил среди народов, которым пришел",
-      "question": "What does the text say about this subject?",
-      "options": [
-        "The text describes this subject.",
-        "The text rejects this.",
-        "The text ignores this.",
-        "The text opposes this."
-      ],
-      "correct": "The text describes this subject.",
-      "explain": "From the text provided."
-    },
-    {
-      "id": "r4",
-      "ru": "Я не наведу на вас голод",
-      "question": "What is the main action in this sentence?",
-      "options": [
-        "A main action occurs.",
-        "No action takes place.",
-        "Actions are prevented.",
-        "All actions cease."
-      ],
-      "correct": "A main action occurs.",
-      "explain": "From the text provided."
-    },
-    {
-      "id": "r5",
-      "ru": "Тогда они узнают, что я Господь",
-      "question": "Who or what is the subject?",
-      "options": [
-        "The subject is identified.",
-        "The subject is unclear.",
-        "No subject exists.",
-        "The subject is missing."
-      ],
-      "correct": "The subject is identified.",
-      "explain": "From the text provided."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "— 15 Я больше не дам вам услышать оскорбления народов; вы больше не будете ни терпеть позор от ___, ни отнимать детей у своего народа, — возвещает Владыка Господь».",
+   "lemma": "народ",
+   "options": [
+    "другим народам",
+    "других народах",
+    "других народов",
+    "другие народы"
+   ],
+   "correct": "других народов",
+   "case": "Родительный (Genitive)",
+   "explain": "«других народов» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "“ ‘The Lord Yahweh says: “Because they say to you, ‘You are a devourer of men, and have been a bereaver of your nation;’"
+  },
+  {
+   "sentence": "Я окроплю вас ___, и вы очиститесь; Я очищу вас от всякой скверны и от всех ваших идолов.",
+   "lemma": "вода",
+   "options": [
+    "чистой воде",
+    "чистая вода",
+    "чистой водой",
+    "чистой воды"
+   ],
+   "correct": "чистой водой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«чистой водой» — the instrumental marks the means, company, or complement.",
+   "id": "c2",
+   "translation": "I will sprinkle clean water on you, and you will be clean. I will cleanse you from all your filthiness, and from all your idols."
+  },
+  {
+   "sentence": "Я дам вам новое сердце и вложу в вас ___.",
+   "lemma": "дух",
+   "options": [
+    "новым духом",
+    "новом духе",
+    "новому духу",
+    "новый дух"
+   ],
+   "correct": "новый дух",
+   "case": "Винительный (Accusative)",
+   "explain": "«новый дух» — the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "I will also give you a new heart, and I will put a new spirit within you. I will take away the stony heart out of your flesh, and I will give you a heart of flesh."
+  },
+  {
+   "sentence": "Они станут говорить: “Эта земля, бывшая в запустении, стала похожа на ___.",
+   "lemma": "сад",
+   "options": [
+    "эдемский сад",
+    "эдемским садом",
+    "эдемскому саду",
+    "эдемского сада"
+   ],
+   "correct": "эдемский сад",
+   "case": "Винительный (Accusative)",
+   "explain": "«Эдемский сад» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c5",
+   "translation": "They will say, ‘This land that was desolate has become like the garden of Eden. The waste, desolate, and ruined cities are fortified and inhabited.’"
+  }
+ ]
 }

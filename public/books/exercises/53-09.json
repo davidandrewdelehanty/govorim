@@ -1,204 +1,109 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Разве я не видел нашего ___ Иисуса? Разве вы не мое дело в Господе?",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господом"
-      ],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "Haven't I seen Jesus, our Lord? Aren't you my work in the Lord?",
-      "explain": "видел (saw) takes accusative, which for the divine noun Господь is genitive: видел Господа."
-    },
-    {
-      "id": "c2",
-      "sentence": "Разве мы не имеем ___ получать пищу и питье?",
-      "lemma": "право",
-      "options": [
-        "право",
-        "права",
-        "праву",
-        "правом"
-      ],
-      "correct": "право",
-      "case": "Винительный (Accusative)",
-      "translation": "Have we no right to eat and to drink?",
-      "explain": "The transitive verb иметь (to have) takes accusative case: имеем право."
-    },
-    {
-      "id": "c3",
-      "sentence": "Разве мы не имеем права брать верующую жену с собой, как другие апостолы, например, братья ___ и Кифа?",
-      "lemma": "Господь",
-      "options": [
-        "Господа",
-        "Господу",
-        "Господом",
-        "Господе"
-      ],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "Have we not the right to take a believing wife with us, like the other apostles and the brothers of the Lord and Cephas?",
-      "explain": "братья (brothers) followed by a genitive showing possession: братья Господа."
-    },
-    {
-      "id": "c4",
-      "sentence": "Кто, насадив ___, потом не ест виноград из него?",
-      "lemma": "виноградник",
-      "options": [
-        "виноградник",
-        "виноградника",
-        "виноградику",
-        "виноградником"
-      ],
-      "correct": "виноградник",
-      "case": "Винительный (Accusative)",
-      "translation": "Who plants a vineyard and doesn't eat of its fruit?",
-      "explain": "The transitive verb насадив (planted) takes accusative case: насадив виноградник."
-    },
-    {
-      "id": "c5",
-      "sentence": "Кто пасет стадо и не пьет молока от ___?",
-      "lemma": "он",
-      "options": [
-        "он",
-        "его",
-        "ему",
-        "него"
-      ],
-      "correct": "него",
-      "case": "Родительный (Genitive)",
-      "translation": "Who feeds a flock and doesn't drink of its milk?",
-      "explain": "After the preposition от (from), the genitive form of он becomes него: молока от него (milk from it)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Ведь в ___ Моисея написано 'Не закрывай рта молотящему валу'.",
-      "lemma": "закон",
-      "options": [
-        "закон",
-        "закона",
-        "законе",
-        "законом"
-      ],
-      "correct": "законе",
-      "case": "Предложный (Prepositional)",
-      "translation": "For it is written in the law of Moses, 'You shall not muzzle an ox while it treads out the grain.'",
-      "explain": "в (in) takes prepositional case: в законе (in the law)."
-    },
-    {
-      "id": "c7",
-      "sentence": "Хотя я и свободен от всех, я сам сделал себя рабом всех ради того, чтобы обратить к Богу как можно больше ___.",
-      "lemma": "люди",
-      "options": [
-        "люди",
-        "людей",
-        "людям",
-        "людьми"
-      ],
-      "correct": "людей",
-      "case": "Родительный (Genitive)",
-      "translation": "Though I am free from all, I have enslaved myself to all, that I might gain the more.",
-      "explain": "обратить (to win/convert) takes accusative: обратить людей (convert people)."
-    },
-    {
-      "id": "c8",
-      "sentence": "Вы ведь знаете, что в соревновании по бегу много участников, но только один становится ___.",
-      "lemma": "победитель",
-      "options": [
-        "победителем",
-        "победителя",
-        "победителю",
-        "победителе"
-      ],
-      "correct": "победителем",
-      "case": "Творительный (Instrumental)",
-      "translation": "Don't you know that in a race all the runners run, but only one gets the prize?",
-      "explain": "становится (becomes) takes instrumental case: становится победителем (becomes a winner)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Разве я не свободен? Разве я не апостол? Разве я не видел нашего Господа Иисуса?",
-      "question": "What credentials does Paul claim in this passage?",
-      "options": [
-        "He is bound by strict rules",
-        "He is free and has seen the Lord Jesus",
-        "He has no authority to speak",
-        "He is just an ordinary believer"
-      ],
-      "correct": "He is free and has seen the Lord Jesus",
-      "explain": "Paul asserts 'Разве я не свободен? Разве я не апостол? Разве я не видел нашего Господа Иисуса?' (Am I not free? Am I not an apostle? Haven't I seen Jesus, our Lord?)."
-    },
-    {
-      "id": "r2",
-      "ru": "Разве мы не имеем права получать пищу и питье? Разве мы не имеем права брать верующую жену с собой, как другие апостолы?",
-      "question": "What rights does Paul say the apostles should have?",
-      "options": [
-        "No rights at all",
-        "Only spiritual rights",
-        "The right to eat, drink, and take a believing wife with them",
-        "Only the right to teach"
-      ],
-      "correct": "The right to eat, drink, and take a believing wife with them",
-      "explain": "Paul asks 'Разве мы не имеем права получать пищу и питье? Разве мы не имеем права брать верующую жену с собой?' (Have we no right to eat and to drink? Have we no right to take a believing wife?)."
-    },
-    {
-      "id": "r3",
-      "ru": "Мы, однако, не пользовались этим правом. Мы готовы все переносить ради того, чтобы радостная весть Христа беспрепятственно распространялась.",
-      "question": "What did Paul and others do regarding their rights as apostles?",
-      "options": [
-        "They demanded all their rights",
-        "They didn't use their rights but endured everything so that Christ's message would spread unhindered",
-        "They abandoned their faith",
-        "They forced others to support them"
-      ],
-      "correct": "They didn't use their rights but endured everything so that Christ's message would spread unhindered",
-      "explain": "Paul states 'Мы не пользовались этим правом. Мы готовы все переносить ради того, чтобы радостная весть Христа беспрепятственно распространялась' (We didn't use this right, but we bear all things that the gospel of Christ may spread unhindered)."
-    },
-    {
-      "id": "r4",
-      "ru": "Разве закон говорит не о том же? Ведь в законе Моисея написано 'Не закрывай рта молотящему валу'.",
-      "question": "What Old Testament law does Paul cite in this passage?",
-      "options": [
-        "Laws about animal sacrifice",
-        "Laws about marriage",
-        "The law about not muzzling an ox that treads out grain",
-        "Laws about fasting"
-      ],
-      "correct": "The law about not muzzling an ox that treads out grain",
-      "explain": "Paul quotes from the law: 'в законе Моисея написано Не закрывай рта молотящему валу' (in the law of Moses it is written, You shall not muzzle an ox treading out grain)."
-    },
-    {
-      "id": "r5",
-      "ru": "Я сам сделал себя рабом всех ради того, чтобы обратить к Богу как можно больше людей.",
-      "question": "What did Paul do to win as many people as possible to God?",
-      "options": [
-        "He demanded special privileges",
-        "He enslaved himself to all so he might gain the more",
-        "He refused to speak to anyone",
-        "He forced others to convert"
-      ],
-      "correct": "He enslaved himself to all so he might gain the more",
-      "explain": "Paul explains 'я сам сделал себя рабом всех ради того, чтобы обратить к Богу как можно больше людей' (I have enslaved myself to all, that I might gain the more)."
-    },
-    {
-      "id": "r6",
-      "ru": "Каждый участник при подготовке к состязаниям отказывается от всего и делает это ради получения тленного венка. Мы же стремимся к венку нетленному.",
-      "question": "What is the difference between athletic contestants and believers according to this passage?",
-      "options": [
-        "Athletes train harder than believers",
-        "Athletes sacrifice for a perishable crown, but believers strive for an imperishable crown",
-        "Believers train more than athletes",
-        "There is no difference between them"
-      ],
-      "correct": "Athletes sacrifice for a perishable crown, but believers strive for an imperishable crown",
-      "explain": "Paul writes 'Каждый участник при подготовке к состязаниям отказывается от всего и делает это ради получения тленного венка. Мы же стремимся к венку нетленному' (Every athlete exercises self-control for a perishable crown, but we for an imperishable one)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Разве мы не имеем права брать верующую жену с собой, как ___, например, братья Господа и Кифа?",
+   "lemma": "апостол",
+   "options": [
+    "другими апостолами",
+    "других апостолов",
+    "другие апостолы",
+    "других апостолах"
+   ],
+   "correct": "другие апостолы",
+   "case": "Именительный (Nominative)",
+   "explain": "«другие апостолы» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Have we no right to take along a wife who is a believer, even as the rest of the apostles, and the brothers of the Lord, and Cephas?"
+  },
+  {
+   "sentence": "Какой солдат сам оплачивает связанные с ___ расходы?",
+   "lemma": "служба",
+   "options": [
+    "воинской службой",
+    "воинская служба",
+    "воинской службы",
+    "воинской службе"
+   ],
+   "correct": "воинской службой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«воинской службой» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c2",
+   "translation": "What soldier ever serves at his own expense? Who plants a vineyard, and doesn’t eat of its fruit? Or who feeds a flock, and doesn’t drink from the flock’s milk?"
+  },
+  {
+   "sentence": "Разве я говорю все это, смотря на вещи только с ___ зрения?",
+   "lemma": "точка",
+   "options": [
+    "человеческая точка",
+    "человеческой точке",
+    "человеческой точкой",
+    "человеческой точки"
+   ],
+   "correct": "человеческой точки",
+   "case": "Родительный (Genitive)",
+   "explain": "«человеческой точки» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Do I speak these things according to the ways of men? Or doesn’t the law also say the same thing?"
+  },
+  {
+   "sentence": "Если мы посеяли среди вас духовное семя, то разве это будет слишком, если мы пожнем у вас ___?",
+   "lemma": "урожай",
+   "options": [
+    "материальному урожаю",
+    "материальном урожае",
+    "материальный урожай",
+    "материального урожая"
+   ],
+   "correct": "материальный урожай",
+   "case": "Именительный (Nominative)",
+   "explain": "«материальный урожай» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "If we sowed to you spiritual things, is it a great thing if we reap your fleshly things?"
+  },
+  {
+   "sentence": "Если бы я возвещал Радостную Весть по ___, то я заслуживал бы вознаграждение, но я лишь исполняю свой долг, неся служение, доверенное мне.",
+   "lemma": "выбор",
+   "options": [
+    "собственный выбор",
+    "собственном выборе",
+    "собственным выбором",
+    "собственному выбору"
+   ],
+   "correct": "собственному выбору",
+   "case": "Дательный (Dative)",
+   "explain": "«собственному выбору» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c5",
+   "translation": "For if I do this of my own will, I have a reward. But if not of my own will, I have a stewardship entrusted to me."
+  },
+  {
+   "sentence": "Для находящихся под Законом я был как подчиняющийся Закону, хотя на ___ я не под Законом.",
+   "lemma": "дело",
+   "options": [
+    "самом деле",
+    "самим делом",
+    "самого дела",
+    "само дело"
+   ],
+   "correct": "самом деле",
+   "case": "Предложный (Prepositional)",
+   "explain": "«самом деле» — after the preposition «на», for location or topic.",
+   "id": "c6",
+   "translation": "To the Jews I became as a Jew, that I might gain Jews; to those who are under the law, as under the law, that I might gain those who are under the law;"
+  },
+  {
+   "sentence": "Я стал всем для всех ради того, чтобы ___ спасти хотя бы некоторых.",
+   "lemma": "путь",
+   "options": [
+    "различными путями",
+    "различных путей",
+    "различным путям",
+    "различных путях"
+   ],
+   "correct": "различными путями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«различными путями» — the instrumental marks the means, company, or complement.",
+   "id": "c7",
+   "translation": "To the weak I became as weak, that I might gain the weak. I have become all things to all men, that I may by all means save some."
+  }
+ ]
 }

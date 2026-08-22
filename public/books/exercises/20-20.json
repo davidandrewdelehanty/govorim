@@ -1,204 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Вино глумливо, хмельное питье неистово. Кто дает им себя обмануть, не ___.",
-      "lemma": "мудрый",
-      "options": [
-        "мудр",
-        "мудра",
-        "мудрое",
-        "мудрые"
-      ],
-      "correct": "мудр",
-      "case": "Именительный (Nominative)",
-      "translation": "Wine is a mocker; whoever is led astray is not wise.",
-      "explain": "Predicate adjective after the verb быть."
-    },
-    {
-      "id": "c2",
-      "sentence": "Ярость царя подобна львиному реву, досадивший ему ___ жизнью.",
-      "lemma": "поплатиться",
-      "options": [
-        "поплатится",
-        "поплатился",
-        "платит",
-        "платиться"
-      ],
-      "correct": "поплатится",
-      "case": "Future Tense",
-      "translation": "He who provokes him forfeits his life.",
-      "explain": "Future tense verb in the sentence."
-    },
-    {
-      "id": "c3",
-      "sentence": "Многие зовут себя преданными, но где найти ___?",
-      "lemma": "человек",
-      "options": [
-        "человека",
-        "человеку",
-        "человеком",
-        "человеке"
-      ],
-      "correct": "человека",
-      "case": "Винительный (Accusative)",
-      "translation": "But who can find a faithful man?",
-      "explain": "Direct object of the verb найти."
-    },
-    {
-      "id": "c4",
-      "sentence": "Неверные весы и неверные гири мерзко для ___.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господом"
-      ],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "Differing measures are an abomination to the Lord.",
-      "explain": "Genitive after the preposition для."
-    },
-    {
-      "id": "c5",
-      "sentence": "Забери одежду у поручившегося за незнакомца, удержи залог уручавшегося за чужую ___.",
-      "lemma": "жена",
-      "options": [
-        "жену",
-        "жена",
-        "женой",
-        "жене"
-      ],
-      "correct": "жену",
-      "case": "Винительный (Accusative)",
-      "translation": "Hold in pledge for a wayward woman.",
-      "explain": "Direct object after the preposition за."
-    },
-    {
-      "id": "c6",
-      "sentence": "Дух человека — светильник Господень, исследующий все глубины его ___.",
-      "lemma": "существо",
-      "options": [
-        "существо",
-        "существа",
-        "существу",
-        "существом"
-      ],
-      "correct": "существа",
-      "case": "Родительный (Genitive)",
-      "translation": "The spirit of man is the Lord's lamp, searching his innermost parts.",
-      "explain": "Genitive after the noun глубины."
-    },
-    {
-      "id": "c7",
-      "sentence": "Мудрый царь провеивает нечестивых, он гонит по ним молотильное ___.",
-      "lemma": "колесо",
-      "options": [
-        "колесо",
-        "колеса",
-        "колесу",
-        "колесом"
-      ],
-      "correct": "колесо",
-      "case": "Винительный (Accusative)",
-      "translation": "A wise king winnows out the wicked.",
-      "explain": "Direct object of the verb гонит."
-    },
-    {
-      "id": "c8",
-      "sentence": "Шаги человека направляет Господь. Как же может человек путь свой ___?",
-      "lemma": "постичь",
-      "options": [
-        "постичь",
-        "постигнешь",
-        "постигает",
-        "постигнут"
-      ],
-      "correct": "постичь",
-      "case": "Infinitive",
-      "translation": "A man's steps are from the Lord; how can man understand his way?",
-      "explain": "Infinitive after the modal verb может."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Вино глумливо, хмельное питье неистово.",
-      "question": "How are wine and strong drink described?",
-      "options": [
-        "As helpful",
-        "As mocking and brawling",
-        "As providing wisdom",
-        "As peaceful"
-      ],
-      "correct": "As mocking and brawling",
-      "explain": "Wine is a mocker and beer causes brawling."
-    },
-    {
-      "id": "r2",
-      "ru": "Ярость царя подобна львиному реву, досадивший ему поплатиться жизнью.",
-      "question": "What is the consequence of provoking a king?",
-      "options": [
-        "Wealth",
-        "Favor",
-        "Forfeiting one's life",
-        "Friendship"
-      ],
-      "correct": "Forfeiting one's life",
-      "explain": "The verse says that provoking the king causes death."
-    },
-    {
-      "id": "r3",
-      "ru": "Многие зовут себя преданными, но где найти человека, кому бы довериться?",
-      "question": "What is difficult to find?",
-      "options": [
-        "Money",
-        "A faithful person",
-        "Food",
-        "Friends"
-      ],
-      "correct": "A faithful person",
-      "explain": "The verse asks where to find a faithful, trustworthy man."
-    },
-    {
-      "id": "r4",
-      "ru": "Неверные весы и неверные гири, и то и другое мерзко для Господа.",
-      "question": "What does the Lord find abominable?",
-      "options": [
-        "Honest business",
-        "Differing weights and measures",
-        "Truth",
-        "Fairness"
-      ],
-      "correct": "Differing weights and measures",
-      "explain": "The verse states that dishonest scales are an abomination."
-    },
-    {
-      "id": "r5",
-      "ru": "Честь для человека удерживаться от раздоров, а всякий глупец скор на ссору.",
-      "question": "What brings honor?",
-      "options": [
-        "Starting fights",
-        "Keeping from quarrels",
-        "Arguing",
-        "Complaining"
-      ],
-      "correct": "Keeping from quarrels",
-      "explain": "The verse states that honor comes from keeping away from strife."
-    },
-    {
-      "id": "r6",
-      "ru": "Праведник живет беспорочной жизнью, блаженны после него его дети.",
-      "question": "What is the result of a righteous life?",
-      "options": [
-        "Poverty",
-        "Blessed children after him",
-        "Loneliness",
-        "Struggle"
-      ],
-      "correct": "Blessed children after him",
-      "explain": "A righteous man's children are blessed after him."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Замыслы в ___ — глубокие воды,",
+   "lemma": "сердце",
+   "options": [
+    "человеческого сердца",
+    "человеческом сердце",
+    "человеческому сердцу",
+    "человеческое сердце"
+   ],
+   "correct": "человеческом сердце",
+   "case": "Предложный (Prepositional)",
+   "explain": "«человеческом сердце» — after the preposition «в», for location or topic.",
+   "id": "c1",
+   "translation": "Counsel in the heart of man is like deep water, but a man of understanding will draw it out."
+  },
+  {
+   "sentence": "Неверные весы и ___ –",
+   "lemma": "гиря",
+   "options": [
+    "неверные гири",
+    "неверными гирями",
+    "неверных гирях",
+    "неверных гирь"
+   ],
+   "correct": "неверные гири",
+   "case": "Именительный (Nominative)",
+   "explain": "«неверные гири» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "Differing weights and differing measures, both of them alike are an abomination to Yahweh."
+  },
+  {
+   "sentence": "Есть золото и много ___,",
+   "lemma": "камень",
+   "options": [
+    "драгоценных камнях",
+    "драгоценные камни",
+    "драгоценными камнями",
+    "драгоценных камней"
+   ],
+   "correct": "драгоценных камней",
+   "case": "Родительный (Genitive)",
+   "explain": "«драгоценных камней» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "There is gold and abundance of rubies, but the lips of knowledge are a rare jewel."
+  },
+  {
+   "sentence": "___ провеивает нечестивых;",
+   "lemma": "царь",
+   "options": [
+    "мудрым царём",
+    "мудрый царь",
+    "мудрого царя",
+    "мудром царе"
+   ],
+   "correct": "мудрый царь",
+   "case": "Именительный (Nominative)",
+   "explain": "«Мудрый царь» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "A wise king winnows out the wicked, and drives the threshing wheel over them."
+  }
+ ]
 }

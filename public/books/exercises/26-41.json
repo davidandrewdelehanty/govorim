@@ -1,191 +1,379 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ была в центре.",
-      "lemma": "притвор",
-      "options": [
-        "притвора",
-        "притвору",
-        "притвор",
-        "притвором"
-      ],
-      "correct": "притвор",
-      "case": "Именительный (Nominative)",
-      "translation": "A/The притвор was central.",
-      "explain": "Governed by the context requiring the именительный (nominative)."
-    },
-    {
-      "id": "c2",
-      "sentence": "Это достояние ___.",
-      "lemma": "притвор",
-      "options": [
-        "притвор",
-        "притвору",
-        "притвором",
-        "притвора"
-      ],
-      "correct": "притвора",
-      "case": "Родительный (Genitive)",
-      "translation": "A/The притвор was central.",
-      "explain": "Governed by the context requiring the родительный (genitive)."
-    },
-    {
-      "id": "c3",
-      "sentence": "Подойди к ___.",
-      "lemma": "притвор",
-      "options": [
-        "притвор",
-        "притвора",
-        "притвором",
-        "притвору"
-      ],
-      "correct": "притвору",
-      "case": "Дательный (Dative)",
-      "translation": "A/The притвор was central.",
-      "explain": "Governed by the context requiring the дательный (dative)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я видел ___.",
-      "lemma": "притвор",
-      "options": [
-        "притвор",
-        "притвора",
-        "притвору",
-        "притвором"
-      ],
-      "correct": "притвор",
-      "case": "Винительный (Accusative)",
-      "translation": "A/The притвор was central.",
-      "explain": "Governed by the context requiring the винительный (accusative)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Это сделано ___.",
-      "lemma": "притвор",
-      "options": [
-        "притвор",
-        "притвора",
-        "притвору",
-        "притвором"
-      ],
-      "correct": "притвором",
-      "case": "Творительный (Instrumental)",
-      "translation": "A/The притвор was central.",
-      "explain": "Governed by the context requiring the творительный (instrumental)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Речь идёт о ___.",
-      "lemma": "притвор",
-      "options": [
-        "притвор",
-        "притвора",
-        "притвору",
-        "притворе"
-      ],
-      "correct": "притворе",
-      "case": "Предложный (Prepositional)",
-      "translation": "A/The притвор was central.",
-      "explain": "Governed by the context requiring the предложный (prepositional)."
-    },
-    {
-      "id": "c7",
-      "sentence": "___ была в центре.",
-      "lemma": "святилище",
-      "options": [
-        "святилища",
-        "святилищу",
-        "святилище",
-        "святилищем"
-      ],
-      "correct": "святилище",
-      "case": "Именительный (Nominative)",
-      "translation": "A/The святилище was central.",
-      "explain": "Governed by the context requiring the именительный (nominative)."
-    },
-    {
-      "id": "c8",
-      "sentence": "Это достояние ___.",
-      "lemma": "святилище",
-      "options": [
-        "святилище",
-        "святилищу",
-        "святилищем",
-        "святилища"
-      ],
-      "correct": "святилища",
-      "case": "Родительный (Genitive)",
-      "translation": "A/The святилище was central.",
-      "explain": "Governed by the context requiring the родительный (genitive)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Он привел меня в святилище и измерил опоры входа",
-      "question": "What is the main action in this sentence?",
-      "options": [
-        "A main action occurs.",
-        "No action takes place.",
-        "Actions are prevented.",
-        "All actions cease."
-      ],
-      "correct": "A main action occurs.",
-      "explain": "From the text provided."
-    },
-    {
-      "id": "r2",
-      "ru": "По всей стене дома были сделаны выступы, которые служили опорами боковым комнатам, чтобы они не опирались на стену дома",
-      "question": "Who or what is the subject?",
-      "options": [
-        "The subject is identified.",
-        "The subject is unclear.",
-        "No subject exists.",
-        "The subject is missing."
-      ],
-      "correct": "The subject is identified.",
-      "explain": "From the text provided."
-    },
-    {
-      "id": "r3",
-      "ru": "Провожатый измерил дом",
-      "question": "What does the text say about this subject?",
-      "options": [
-        "The text describes this subject.",
-        "The text rejects this.",
-        "The text ignores this.",
-        "The text opposes this."
-      ],
-      "correct": "The text describes this subject.",
-      "explain": "From the text provided."
-    },
-    {
-      "id": "r4",
-      "ru": "Человеческое лицо, обращенное к пальме, с одной стороны, и львиное лицо, обращенное к пальме, с другой",
-      "question": "What is the main action in this sentence?",
-      "options": [
-        "A main action occurs.",
-        "No action takes place.",
-        "Actions are prevented.",
-        "All actions cease."
-      ],
-      "correct": "A main action occurs.",
-      "explain": "From the text provided."
-    },
-    {
-      "id": "r5",
-      "ru": "Над боковыми комнатами дома тоже были деревянные навесы",
-      "question": "Who or what is the subject?",
-      "options": [
-        "The subject is identified.",
-        "The subject is unclear.",
-        "No subject exists.",
-        "The subject is missing."
-      ],
-      "correct": "The subject is identified.",
-      "explain": "From the text provided."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Он прошел святилище и измерил опоры входа у ___; они были в толщину по два локтя и в ширину по семь локтей.",
+   "lemma": "комната",
+   "options": [
+    "дальней комнаты",
+    "дальней комнатой",
+    "дальней комнате",
+    "дальняя комната"
+   ],
+   "correct": "дальней комнаты",
+   "case": "Родительный (Genitive)",
+   "explain": "«дальней комнаты» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "Then he went inward and measured each post of the entrance, two cubits; and the entrance, six cubits; and the width of the entrance, seven cubits."
+  },
+  {
+   "sentence": "Она была шесть локтей в толщину, и все ___ вокруг дома были по четыре локтя в ширину.",
+   "lemma": "комната",
+   "options": [
+    "боковыми комнатами",
+    "боковые комнаты",
+    "боковых комнатах",
+    "боковых комнат"
+   ],
+   "correct": "боковые комнаты",
+   "case": "Именительный (Nominative)",
+   "explain": "«боковые комнаты» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "Then he measured the wall of the house, six cubits; and the width of every side room, four cubits, all around the house on every side."
+  },
+  {
+   "sentence": "По всей стене дома были сделаны выступы, которые служили опорами ___, чтобы они не опирались на стену дома.",
+   "lemma": "комната",
+   "options": [
+    "боковым комнатам",
+    "боковых комнатах",
+    "боковых комнат",
+    "боковые комнаты"
+   ],
+   "correct": "боковым комнатам",
+   "case": "Дательный (Dative)",
+   "explain": "«боковым комнатам» — the dative marks the indirect object or recipient.",
+   "id": "c3",
+   "translation": "The side rooms were in three stories, one over another, and thirty in order. They entered into the wall which belonged to the house for the side rooms all around, that they might be supported, and not penetrate the wall of the house."
+  },
+  {
+   "sentence": "___ вокруг дома расширялись с каждым последующим этажом.",
+   "lemma": "комната",
+   "options": [
+    "боковым комнатам",
+    "боковые комнаты",
+    "боковых комнат",
+    "боковыми комнатами"
+   ],
+   "correct": "боковые комнаты",
+   "case": "Именительный (Nominative)",
+   "explain": "«Боковые комнаты» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "The side rooms were wider on the higher levels, because the walls were narrower at the higher levels. Therefore the width of the house increased upward; and so one went up from the lowest level to the highest through the middle level."
+  },
+  {
+   "sentence": "Боковые комнаты вокруг дома расширялись с каждым ___.",
+   "lemma": "этаж",
+   "options": [
+    "последующему этажу",
+    "последующего этажа",
+    "последующим этажом",
+    "последующем этаже"
+   ],
+   "correct": "последующим этажом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«последующим этажом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "The side rooms were wider on the higher levels, because the walls were narrower at the higher levels. Therefore the width of the house increased upward; and so one went up from the lowest level to the highest through the middle level."
+  },
+  {
+   "sentence": "С ___ через средний на верхний вела лестница.",
+   "lemma": "этаж",
+   "options": [
+    "нижнего этажа",
+    "нижним этажом",
+    "нижнему этажу",
+    "нижний этаж"
+   ],
+   "correct": "нижнего этажа",
+   "case": "Родительный (Genitive)",
+   "explain": "«нижнего этажа» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "The side rooms were wider on the higher levels, because the walls were narrower at the higher levels. Therefore the width of the house increased upward; and so one went up from the lowest level to the highest through the middle level."
+  },
+  {
+   "sentence": "Я видел, что дом стоит на приподнятой платформе, которая также служила основанием для ___.",
+   "lemma": "комната",
+   "options": [
+    "боковых комнатах",
+    "боковыми комнатами",
+    "боковые комнаты",
+    "боковых комнат"
+   ],
+   "correct": "боковых комнат",
+   "case": "Родительный (Genitive)",
+   "explain": "«боковых комнат» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "I saw also that the house had a raised base all around. The foundations of the side rooms were a full reed of six great cubits."
+  },
+  {
+   "sentence": "___ боковых комнат была толщиной в пять локтей.",
+   "lemma": "стена",
+   "options": [
+    "наружной стены",
+    "наружной стеной",
+    "наружная стена",
+    "наружной стене"
+   ],
+   "correct": "наружная стена",
+   "case": "Именительный (Nominative)",
+   "explain": "«Наружная стена» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "The thickness of the wall, which was for the side rooms, on the outside, was five cubits. That which was left was the place of the side rooms that belonged to the house."
+  },
+  {
+   "sentence": "Наружная стена ___ была толщиной в пять локтей.",
+   "lemma": "комната",
+   "options": [
+    "боковых комнатах",
+    "боковыми комнатами",
+    "боковые комнаты",
+    "боковых комнат"
+   ],
+   "correct": "боковых комнат",
+   "case": "Родительный (Genitive)",
+   "explain": "«боковых комнат» — the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "The thickness of the wall, which was for the side rooms, on the outside, was five cubits. That which was left was the place of the side rooms that belonged to the house."
+  },
+  {
+   "sentence": "___ между боковыми комнатами дома 10 и комнатами священников было двадцать локтей в ширину вокруг всего дома.",
+   "lemma": "пространство",
+   "options": [
+    "открытым пространством",
+    "открытого пространства",
+    "открытое пространство",
+    "открытом пространстве"
+   ],
+   "correct": "открытое пространство",
+   "case": "Именительный (Nominative)",
+   "explain": "«Открытое пространство» — the subject of the sentence stands in the nominative.",
+   "id": "c10",
+   "translation": "The thickness of the wall, which was for the side rooms, on the outside, was five cubits. That which was left was the place of the side rooms that belonged to the house."
+  },
+  {
+   "sentence": "Открытое пространство между ___ дома 10 и комнатами священников было двадцать локтей в ширину вокруг всего дома.",
+   "lemma": "комната",
+   "options": [
+    "боковых комнатах",
+    "боковыми комнатами",
+    "боковых комнат",
+    "боковые комнаты"
+   ],
+   "correct": "боковыми комнатами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«боковыми комнатами» — after the preposition «между», the instrumental marks the means, company, or complement.",
+   "id": "c11",
+   "translation": "The thickness of the wall, which was for the side rooms, on the outside, was five cubits. That which was left was the place of the side rooms that belonged to the house."
+  },
+  {
+   "sentence": "В боковые комнаты можно было попасть с ___ с севера и с юга.",
+   "lemma": "пространство",
+   "options": [
+    "открытому пространству",
+    "открытом пространстве",
+    "открытого пространства",
+    "открытое пространство"
+   ],
+   "correct": "открытого пространства",
+   "case": "Родительный (Genitive)",
+   "explain": "«открытого пространства» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c13",
+   "translation": "The doors of the side rooms were toward an open area that was left, one door toward the north, and another door toward the south. The width of the open area was five cubits all around."
+  },
+  {
+   "sentence": "Во двор храма с ___ выходило здание, которое было семьдесят локтей в длину и девяносто в ширину.",
+   "lemma": "сторона",
+   "options": [
+    "западной стороны",
+    "западной стороной",
+    "западной стороне",
+    "западная сторона"
+   ],
+   "correct": "западной стороны",
+   "case": "Родительный (Genitive)",
+   "explain": "«западной стороны» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c14",
+   "translation": "The building that was before the separate place at the side toward the west was seventy cubits wide; and the wall of the building was five cubits thick all around, and its length ninety cubits."
+  },
+  {
+   "sentence": "___ храма, включая западное здание со стенами, тоже был сто локтей в длину.",
+   "lemma": "двор",
+   "options": [
+    "задний двор",
+    "заднему двору",
+    "задним двором",
+    "заднего двора"
+   ],
+   "correct": "задний двор",
+   "case": "Именительный (Nominative)",
+   "explain": "«Задний двор» — the subject of the sentence stands in the nominative.",
+   "id": "c15",
+   "translation": "So he measured the house, one hundred cubits long; and the separate place, and the building, with its walls, one hundred cubits long;"
+  },
+  {
+   "sentence": "Ширина ___ на востоке, включая сам дом и пространства по бокам, была сто локтей.",
+   "lemma": "двор",
+   "options": [
+    "храмовому двору",
+    "храмового двора",
+    "храмовым двором",
+    "храмовом дворе"
+   ],
+   "correct": "храмового двора",
+   "case": "Родительный (Genitive)",
+   "explain": "«храмового двора» — the genitive here marks possession, absence, or quantity.",
+   "id": "c16",
+   "translation": "also the width of the face of the house, and of the separate place toward the east, one hundred cubits."
+  },
+  {
+   "sentence": "Ширина храмового двора на востоке, включая ___ и пространства по бокам, была сто локтей.",
+   "lemma": "дом",
+   "options": [
+    "самого дома",
+    "самим домом",
+    "самом доме",
+    "сам дом"
+   ],
+   "correct": "сам дом",
+   "case": "Винительный (Accusative)",
+   "explain": "«сам дом» — the accusative marks the direct object of the verb.",
+   "id": "c17",
+   "translation": "also the width of the face of the house, and of the separate place toward the east, one hundred cubits."
+  },
+  {
+   "sentence": "У каждого херувима было по два лица: 19 ___, обращенное к пальме, с одной стороны, и львиное лицо, обращенное к пальме — с другой.",
+   "lemma": "лицо",
+   "options": [
+    "человеческое лицо",
+    "человеческим лицом",
+    "человеческом лице",
+    "человеческому лицу"
+   ],
+   "correct": "человеческое лицо",
+   "case": "Именительный (Nominative)",
+   "explain": "«человеческое лицо» — the subject of the sentence stands in the nominative.",
+   "id": "c18",
+   "translation": "to the space above the door, even to the inner house, and outside, and by all the wall all around inside and outside, by measure."
+  },
+  {
+   "sentence": "У каждого херувима было по два лица: 19 человеческое лицо, обращенное к пальме, с одной стороны, и ___, обращенное к пальме — с другой.",
+   "lemma": "лицо",
+   "options": [
+    "львином лице",
+    "львиному лицу",
+    "львиное лицо",
+    "львиным лицом"
+   ],
+   "correct": "львиное лицо",
+   "case": "Именительный (Nominative)",
+   "explain": "«львиное лицо» — the subject of the sentence stands in the nominative.",
+   "id": "c19",
+   "translation": "to the space above the door, even to the inner house, and outside, and by all the wall all around inside and outside, by measure."
+  },
+  {
+   "sentence": "И был ___ длиной и шириной по два локтя, а высотой три локтя; его рога, основание и бока были из дерева.",
+   "lemma": "жертвенник",
+   "options": [
+    "деревянному жертвеннику",
+    "деревянном жертвеннике",
+    "деревянный жертвенник",
+    "деревянным жертвенником"
+   ],
+   "correct": "деревянный жертвенник",
+   "case": "Именительный (Nominative)",
+   "explain": "«деревянный жертвенник» — the subject of the sentence stands in the nominative.",
+   "id": "c20",
+   "translation": "The altar was of wood, three cubits high, and its length two cubits. Its corners, its length, and its walls were of wood. He said to me, “This is the table that is before Yahweh.”"
+  },
+  {
+   "sentence": "А на ___ храма были вырезаны херувимы и пальмы, как и на стенах, и перед притвором был деревянный навес.",
+   "lemma": "дверь",
+   "options": [
+    "внешних дверях",
+    "внешние двери",
+    "внешних дверей",
+    "внешним дверям"
+   ],
+   "correct": "внешних дверях",
+   "case": "Предложный (Prepositional)",
+   "explain": "«внешних дверях» — after the preposition «на», for location or topic.",
+   "id": "c21",
+   "translation": "There were made on them, on the doors of the temple, cherubim and palm trees, like those made on the walls. There was a threshold of wood on the face of the porch outside."
+  },
+  {
+   "sentence": "А на внешних дверях храма были вырезаны херувимы и пальмы, как и на стенах, и перед притвором был ___.",
+   "lemma": "навес",
+   "options": [
+    "деревянным навесом",
+    "деревянного навеса",
+    "деревянному навесу",
+    "деревянный навес"
+   ],
+   "correct": "деревянный навес",
+   "case": "Именительный (Nominative)",
+   "explain": "«деревянный навес» — the subject of the sentence stands in the nominative.",
+   "id": "c22",
+   "translation": "There were made on them, on the doors of the temple, cherubim and palm trees, like those made on the walls. There was a threshold of wood on the face of the porch outside."
+  },
+  {
+   "sentence": "В ___ притвора были узкие окна, и на обеих стенах были вырезаны пальмы.",
+   "lemma": "стена",
+   "options": [
+    "боковых стенах",
+    "боковые стены",
+    "боковых стен",
+    "боковым стенам"
+   ],
+   "correct": "боковых стенах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«боковых стенах» — after the preposition «в», for location or topic.",
+   "id": "c23",
+   "translation": "There were closed windows and palm trees on the one side and on the other side, on the sides of the porch. This is how the side rooms of the house and the thresholds were arranged."
+  },
+  {
+   "sentence": "В боковых стенах притвора были ___, и на обеих стенах были вырезаны пальмы.",
+   "lemma": "окно",
+   "options": [
+    "узкими окнами",
+    "узких окнах",
+    "узким окнам",
+    "узкие окна"
+   ],
+   "correct": "узкие окна",
+   "case": "Именительный (Nominative)",
+   "explain": "«узкие окна» — the subject of the sentence stands in the nominative.",
+   "id": "c24",
+   "translation": "There were closed windows and palm trees on the one side and on the other side, on the sides of the porch. This is how the side rooms of the house and the thresholds were arranged."
+  },
+  {
+   "sentence": "Над ___ дома тоже были деревянные навесы.",
+   "lemma": "комната",
+   "options": [
+    "боковых комнатах",
+    "боковыми комнатами",
+    "боковых комнат",
+    "боковые комнаты"
+   ],
+   "correct": "боковыми комнатами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«боковыми комнатами» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "id": "c25",
+   "translation": "There were closed windows and palm trees on the one side and on the other side, on the sides of the porch. This is how the side rooms of the house and the thresholds were arranged."
+  },
+  {
+   "sentence": "Над боковыми комнатами дома тоже были ___.",
+   "lemma": "навес",
+   "options": [
+    "деревянных навесов",
+    "деревянным навесам",
+    "деревянные навесы",
+    "деревянных навесах"
+   ],
+   "correct": "деревянные навесы",
+   "case": "Именительный (Nominative)",
+   "explain": "«деревянные навесы» — the subject of the sentence stands in the nominative.",
+   "id": "c26",
+   "translation": "There were closed windows and palm trees on the one side and on the other side, on the sides of the porch. This is how the side rooms of the house and the thresholds were arranged."
+  }
+ ]
 }

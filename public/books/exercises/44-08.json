@@ -1,204 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Савл же одобрял это ___.",
-      "lemma": "убийство",
-      "options": [
-        "убийство",
-        "убийства",
-        "убийству",
-        "убийством"
-      ],
-      "correct": "убийство",
-      "case": "Винительный (Accusative)",
-      "translation": "Saul was consenting to his death.",
-      "explain": "The transitive verb одобрял (approved/consented) takes a direct object in the accusative case, which for neuter nouns equals the nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "С того дня началось большое гонение на Иерусалимскую ___, и все, кроме апостолов, рассеялись.",
-      "lemma": "церковь",
-      "options": [
-        "церковь",
-        "церкви",
-        "церкву",
-        "церковью"
-      ],
-      "correct": "церковь",
-      "case": "Винительный (Accusative)",
-      "translation": "On that day a great persecution arose against the Jerusalem church, and all except the apostles were scattered.",
-      "explain": "The preposition на (against) with motion takes the accusative case. The verb гонение на takes accusative."
-    },
-    {
-      "id": "c3",
-      "sentence": "А Савл преследовал ___. Он ходил из дома в дом, хватал мужчин и женщин и бросал их в темницу.",
-      "lemma": "церковь",
-      "options": [
-        "церкви",
-        "церквь",
-        "церковь",
-        "церковью"
-      ],
-      "correct": "церковь",
-      "case": "Винительный (Accusative)",
-      "translation": "But Saul ravaged the church. He went from house to house, seizing both men and women and putting them in prison.",
-      "explain": "The transitive verb преследовал (ravaged/persecuted) takes a direct object in the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Филипп пришел в главный город Самарии и возвещал там о ___.",
-      "lemma": "Христос",
-      "options": [
-        "Христе",
-        "Христа",
-        "Христом",
-        "Христу"
-      ],
-      "correct": "Христе",
-      "case": "Предложный (Prepositional)",
-      "translation": "Philip came to the principal city of Samaria and proclaimed Christ there.",
-      "explain": "The preposition о (about) governs the prepositional case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Толпы народа внимательно слушали то, что он говорил, и видели знамения, которые он совершал, потому что из многих одержимых выходили с громким криком нечистые ___.",
-      "lemma": "дух",
-      "options": [
-        "духи",
-        "духом",
-        "духам",
-        "духе"
-      ],
-      "correct": "духи",
-      "case": "Именительный (Nominative)",
-      "translation": "The crowds paid close attention to what he said and saw signs he performed, because unclean spirits came out with loud cries from many who were possessed.",
-      "explain": "The nominative case is used for the grammatical subject of the verb выходили (came out)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Там был один человек по имени Симон, который раньше занимался в этом городе ___, изумляя жителей Самарии.",
-      "lemma": "колдовство",
-      "options": [
-        "колдовство",
-        "колдовства",
-        "колдовству",
-        "колдовством"
-      ],
-      "correct": "колдовством",
-      "case": "Творительный (Instrumental)",
-      "translation": "There was a man named Simon who had been practicing sorcery in the city and astonishing the people of Samaria.",
-      "explain": "The verb занимался (was engaged in) takes the instrumental case when indicating the activity being conducted."
-    },
-    {
-      "id": "c7",
-      "sentence": "Когда жители этого города поверили Филиппу, возвещающему Царство Божие и имя Иисуса ___, то многие приняли крещение.",
-      "lemma": "Христос",
-      "options": [
-        "Христа",
-        "Христе",
-        "Христом",
-        "Христу"
-      ],
-      "correct": "Христа",
-      "case": "Родительный (Genitive)",
-      "translation": "When the people of that city believed Philip as he proclaimed the kingdom of God and the name of Jesus Christ, they were baptized.",
-      "explain": "The name 'имя Иисуса Христа' uses the genitive case to show possession of the name."
-    },
-    {
-      "id": "c8",
-      "sentence": "Ангел Господа сказал Филиппу, Ступай на юг, на дорогу, что ведет через пустыню из Иерусалима в ___.",
-      "lemma": "Газа",
-      "options": [
-        "Газу",
-        "Газы",
-        "Газе",
-        "Газой"
-      ],
-      "correct": "Газу",
-      "case": "Винительный (Accusative)",
-      "translation": "An angel of the Lord said to Philip, Go south on the road that goes through the desert from Jerusalem to Gaza.",
-      "explain": "The preposition в (to) with motion takes the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Савл же одобрял это убийство. С того дня началось большое гонение на Иерусалимскую церковь, и все, кроме апостолов, рассеялись по Иудее и Самарии.",
-      "question": "What happened to the church in Jerusalem after Stephen's death?",
-      "options": [
-        "The church grew stronger",
-        "A great persecution arose and all except the apostles were scattered",
-        "The apostles were arrested",
-        "The church moved to Egypt"
-      ],
-      "correct": "A great persecution arose and all except the apostles were scattered",
-      "explain": "The text states that с того дня началось большое гонение (a great persecution arose) and все, кроме апостолов, рассеялись (all except the apostles were scattered)."
-    },
-    {
-      "id": "r2",
-      "ru": "Филипп пришел в главный город Самарии и возвещал там о Христе.",
-      "question": "What did Philip do in the main city of Samaria?",
-      "options": [
-        "He built a church building",
-        "He proclaimed Christ",
-        "He healed the sick",
-        "He collected money for the apostles"
-      ],
-      "correct": "He proclaimed Christ",
-      "explain": "The text says Филипп возвещал там о Христе (Philip proclaimed Christ there)."
-    },
-    {
-      "id": "r3",
-      "ru": "Там был один человек по имени Симон, который раньше занимался в этом городе колдовством, изумляя жителей Самарии.",
-      "question": "Who was Simon and what was he known for?",
-      "options": [
-        "A priest who performed miracles",
-        "A sorcerer who amazed the people of Samaria with his magic",
-        "A rich merchant who gave to the poor",
-        "A Roman governor"
-      ],
-      "correct": "A sorcerer who amazed the people of Samaria with his magic",
-      "explain": "Simon был тот, кто занимался колдовством (practiced sorcery) and был изумляя жителей Самарии (amazed the people of Samaria)."
-    },
-    {
-      "id": "r4",
-      "ru": "Дух сказал Филиппу, Подойди к этой колеснице и иди рядом.",
-      "question": "What did the Spirit tell Philip to do?",
-      "options": [
-        "Go back to Jerusalem",
-        "Approach the chariot and walk beside it",
-        "Wait in the city",
-        "Find a place to rest"
-      ],
-      "correct": "Approach the chariot and walk beside it",
-      "explain": "The Spirit told Philip подойди к этой колеснице и иди рядом (approach this chariot and walk beside it)."
-    },
-    {
-      "id": "r5",
-      "ru": "Евнух спросил Филиппа, Скажи мне, о ком здесь говорит пророк, о себе или о ком-то другом?",
-      "question": "What question did the eunuch ask Philip about the passage he was reading?",
-      "options": [
-        "Where is this place located?",
-        "What does this text mean?",
-        "Who is the prophet speaking about, himself or someone else?",
-        "When did this happen?"
-      ],
-      "correct": "Who is the prophet speaking about, himself or someone else?",
-      "explain": "The eunuch asked о ком здесь говорит пророк (who the prophet is speaking about), о себе или о ком-то другом (himself or someone else)."
-    },
-    {
-      "id": "r6",
-      "ru": "Смотри, вот вода, сказал Евнух, что мешает мне принять крещение?",
-      "question": "What did the eunuch see and ask about?",
-      "options": [
-        "He saw a river and asked about drinking",
-        "He saw water and asked what prevents him from being baptized",
-        "He saw the city and asked where the temple is",
-        "He saw a bridge and asked how to cross"
-      ],
-      "correct": "He saw water and asked what prevents him from being baptized",
-      "explain": "The eunuch said смотри, вот вода (Look, here is water) and asked что мешает мне принять крещение (what prevents me from being baptized)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "___ похоронили Стефана и горько оплакивали его.",
+   "lemma": "человек",
+   "options": [
+    "благочестивые люди",
+    "благочестивым людям",
+    "благочестивых людей",
+    "благочестивых людях"
+   ],
+   "correct": "благочестивые люди",
+   "case": "Именительный (Nominative)",
+   "explain": "«Благочестивые люди» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Devout men buried Stephen and lamented greatly over him."
+  },
+  {
+   "sentence": "Толпы народа внимательно слушали то, что он говорил, и видели знамения, которые он совершал, 7 потому что из многих одержимых выходили с ___ нечистые духи, и многие парализованные и хромые получали исцеление.",
+   "lemma": "крик",
+   "options": [
+    "громкий крик",
+    "громким криком",
+    "громкому крику",
+    "громкого крика"
+   ],
+   "correct": "громким криком",
+   "case": "Творительный (Instrumental)",
+   "explain": "«громким криком» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "The multitudes listened with one accord to the things that were spoken by Philip when they heard and saw the signs which he did."
+  },
+  {
+   "sentence": "Но когда жители этого города поверили Филиппу, возвещающему Царство Божье и Имя Иисуса Христа, то ___ и женщины приняли крещение.",
+   "lemma": "мужчина",
+   "options": [
+    "многим мужчинам",
+    "многие мужчины",
+    "многими мужчинами",
+    "многих мужчин"
+   ],
+   "correct": "многие мужчины",
+   "case": "Именительный (Nominative)",
+   "explain": "«многие мужчины» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "But when they believed Philip preaching good news concerning God’s Kingdom and the name of Jesus Christ, they were baptized, both men and women."
+  },
+  {
+   "sentence": "Потом они пошли обратно в Иерусалим и по дороге возвещали Радостную Весть во многих ___.",
+   "lemma": "селение",
+   "options": [
+    "самарийских селений",
+    "самарийским селениям",
+    "самарийских селениях",
+    "самарийские селения"
+   ],
+   "correct": "самарийских селениях",
+   "case": "Предложный (Prepositional)",
+   "explain": "«самарийских селениях» — after the preposition «во», for location or topic.",
+   "id": "c5",
+   "translation": "They therefore, when they had testified and spoken the word of the Lord, returned to Jerusalem, and preached the Good News to many villages of the Samaritans."
+  },
+  {
+   "sentence": "В это время там находился ___, придворный Кандакии , то есть царицы эфиопов, заведовавший всей ее казной.",
+   "lemma": "евнух",
+   "options": [
+    "эфиопскому евнуху",
+    "эфиопского евнуха",
+    "эфиопский евнух",
+    "эфиопским евнухом"
+   ],
+   "correct": "эфиопский евнух",
+   "case": "Именительный (Nominative)",
+   "explain": "«эфиопский евнух» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "He arose and went; and behold, there was a man of Ethiopia, a eunuch of great authority under Candace, queen of the Ethiopians, who was over all her treasure, who had come to Jerusalem to worship."
+  },
+  {
+   "sentence": "Он был унижен и лишен права на ___.",
+   "lemma": "суд",
+   "options": [
+    "справедливому суду",
+    "справедливом суде",
+    "справедливый суд",
+    "справедливого суда"
+   ],
+   "correct": "справедливый суд",
+   "case": "Винительный (Accusative)",
+   "explain": "«справедливый суд» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c7",
+   "translation": "In his humiliation, his judgment was taken away. Who will declare His generation? For his life is taken from the earth.”"
+  }
+ ]
 }

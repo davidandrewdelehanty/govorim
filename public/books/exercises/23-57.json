@@ -1,134 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Никто не принимает этого к ___.",
-      "lemma": "сердце",
-      "options": ["сердце", "сердца", "сердцу", "сердцем"],
-      "correct": "сердцу",
-      "case": "Дательный (Dative)",
-      "translation": "No one takes this to heart.",
-      "explain": "The preposition к (to) takes dative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Те, кто ходят в ___, вступают в покой.",
-      "lemma": "правда",
-      "options": ["правда", "правды", "правде", "правду"],
-      "correct": "правде",
-      "case": "Предложный (Prepositional)",
-      "translation": "Those who walk in truth enter into peace.",
-      "explain": "The preposition в (in) takes prepositional case with the meaning 'in'."
-    },
-    {
-      "id": "c3",
-      "sentence": "В смерти они находят ___.",
-      "lemma": "успокоение",
-      "options": ["успокоение", "успокоения", "успокоению", "успокоением"],
-      "correct": "успокоение",
-      "case": "Винительный (Accusative)",
-      "translation": "In death they find rest.",
-      "explain": "Direct object of the verb 'находят' takes accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Ты ставишь свою постель на ___.",
-      "lemma": "гора",
-      "options": ["гора", "горы", "горе", "гору"],
-      "correct": "гору",
-      "case": "Винительный (Accusative)",
-      "translation": "You set your bed on a mountain.",
-      "explain": "The preposition на with accusative means 'onto' or 'to'."
-    },
-    {
-      "id": "c5",
-      "sentence": "Он не слышит ___ моего народа.",
-      "lemma": "голос",
-      "options": ["голос", "голоса", "голосу", "голосом"],
-      "correct": "голоса",
-      "case": "Родительный (Genitive)",
-      "translation": "He does not hear the voice of my people.",
-      "explain": "The verb 'слышать' (to hear) can govern the genitive in this context."
-    },
-    {
-      "id": "c6",
-      "sentence": "Разве ты не ___ отступничества?",
-      "lemma": "дитя",
-      "options": ["дитя", "дитяти", "дитяте", "дитятей"],
-      "correct": "дитя",
-      "case": "Именительный (Nominative)",
-      "translation": "Are you not a child of apostasy?",
-      "explain": "Predicate nominative after the verb 'быть' (to be)."
-    },
-    {
-      "id": "c7",
-      "sentence": "Их жизнь была полна ___.",
-      "lemma": "грех",
-      "options": ["грех", "греха", "греху", "грехом"],
-      "correct": "греха",
-      "case": "Родительный (Genitive)",
-      "translation": "Their life was full of sin.",
-      "explain": "The adjective 'полна' (full) takes genitive case to express what fills something."
-    },
-    {
-      "id": "c8",
-      "sentence": "Но сделавший меня своим прибежищем унаследует ___.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землю"],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "But he who takes me as refuge will inherit the land.",
-      "explain": "Direct object of the verb 'унаследует' (will inherit) takes accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Праведные гибнут, и никто не принимает этого к сердцу.",
-      "question": "What is happening to the righteous?",
-      "options": ["They are prospering", "They are perishing", "They are being praised", "They are leaving the land"],
-      "correct": "They are perishing",
-      "explain": "The text states 'Праведные гибнут' (the righteous perish)."
-    },
-    {
-      "id": "r2",
-      "ru": "Те, кто ходят в правде, вступают в покой, в смерти они находят успокоение.",
-      "question": "What do those who walk in truth find?",
-      "options": ["Wealth and power", "Struggle and conflict", "Peace and rest", "Confusion and fear"],
-      "correct": "Peace and rest",
-      "explain": "The text says they 'вступают в покой' (enter into peace) and find 'успокоение' (rest)."
-    },
-    {
-      "id": "r3",
-      "ru": "Разве вы не дети отступничества, не порождения лжи?",
-      "question": "Who are being addressed as children of apostasy?",
-      "options": ["The righteous", "The believers", "Those who have turned away from God", "The priests"],
-      "correct": "Those who have turned away from God",
-      "explain": "The text calls them 'дети отступничества' (children of apostasy)."
-    },
-    {
-      "id": "r4",
-      "ru": "Я разоблачу твою праведность и твои дела, и они тебе не помогут.",
-      "question": "What will God reveal?",
-      "options": ["Great wisdom", "False righteousness and deeds", "Hidden treasures", "New commandments"],
-      "correct": "False righteousness and deeds",
-      "explain": "God says He will 'разоблачу' (expose/reveal) their 'праведность и твои дела' (righteousness and deeds)."
-    },
-    {
-      "id": "r5",
-      "ru": "Но сделавший меня своим прибежищем, унаследует землю и будет владеть моей святой горой.",
-      "question": "What will those who take refuge in God receive?",
-      "options": ["Wealth and slaves", "The land and God's holy mountain", "Power and armies", "Wisdom and knowledge"],
-      "correct": "The land and God's holy mountain",
-      "explain": "The text promises that those who make God their refuge will 'унаследует землю' (inherit the land) and possess 'моей святой горой' (my holy mountain)."
-    },
-    {
-      "id": "r6",
-      "ru": "Господь будет твоим вечным светом, и кончатся дни твоей скорби.",
-      "question": "What does the text promise about God's role?",
-      "options": ["God will judge you harshly", "God will be your eternal light", "God will abandon you", "God will demand sacrifice"],
-      "correct": "God will be your eternal light",
-      "explain": "The text states 'Господь будет твоим вечным светом' (The Lord will be your eternal light)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Ты ходила к Молоху с ___",
+   "lemma": "масло",
+   "options": [
+    "ароматному маслу",
+    "ароматного масла",
+    "ароматным маслом",
+    "ароматное масло"
+   ],
+   "correct": "ароматным маслом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«ароматным маслом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c1",
+   "translation": "You went to the king with oil, increased your perfumes, sent your ambassadors far off, and degraded yourself even to Sheol."
+  },
+  {
+   "sentence": "Ты уставала от ___ твоего,",
+   "lemma": "путь",
+   "options": [
+    "долгим путём",
+    "долгий путь",
+    "долгого пути",
+    "долгом пути"
+   ],
+   "correct": "долгого пути",
+   "case": "Родительный (Genitive)",
+   "explain": "«долгого пути» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "You were wearied with the length of your ways; yet you didn’t say, ‘It is in vain.’ You found a reviving of your strength; therefore you weren’t faint."
+  },
+  {
+   "sentence": "Но нечестивые подобны ___,",
+   "lemma": "море",
+   "options": [
+    "бурному морю",
+    "бурного моря",
+    "бурное море",
+    "бурном море"
+   ],
+   "correct": "бурному морю",
+   "case": "Дательный (Dative)",
+   "explain": "«бурному морю» — the dative marks the indirect object or recipient.",
+   "id": "c3",
+   "translation": "But the wicked are like the troubled sea; for it can’t rest and its waters cast up mire and mud."
+  }
+ ]
 }

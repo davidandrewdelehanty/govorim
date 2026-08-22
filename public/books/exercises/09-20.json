@@ -1,134 +1,124 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Мой ___ не делает ничего, не рассказав мне об этом.",
-      "lemma": "отец",
-      "options": ["отец", "отца", "отцу", "отцом"],
-      "correct": "отец",
-      "case": "Именительный (Nominative)",
-      "translation": "My father does nothing without telling me about it.",
-      "explain": "Отец is the grammatical subject of делает, so it takes nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Я видел любовь моего ___ ко мне, и теперь я вижу его замысел.",
-      "lemma": "отец",
-      "options": ["отца", "отец", "отцу", "отцом"],
-      "correct": "отца",
-      "case": "Родительный (Genitive)",
-      "translation": "I saw my father's love for me, and now I see his plot.",
-      "explain": "The genitive here shows possession - 'my father's love' requires the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Пожалуйста, окажи милость своему ___.",
-      "lemma": "сын",
-      "options": ["сын", "сына", "сыну", "сыном"],
-      "correct": "сыну",
-      "case": "Дательный (Dative)",
-      "translation": "Please show kindness to your son.",
-      "explain": "The dative case shows the indirect object after the verb показать (to show)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я видел ___ в городе и понял все.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царя",
-      "case": "Винительный (Accusative)",
-      "translation": "I saw the king in the city and understood everything.",
-      "explain": "The accusative case marks the direct object of the transitive verb видел."
-    },
-    {
-      "id": "c5",
-      "sentence": "Иоаннафан вышел в поле, чтобы встретиться со своим ___.",
-      "lemma": "друг",
-      "options": ["друг", "друга", "другу", "другом"],
-      "correct": "другом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Jonathan went to the field to meet with his friend.",
-      "explain": "The preposition со (with) governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "На полу лежало ___ из драгоценного камня.",
-      "lemma": "место",
-      "options": ["место", "места", "месту", "месте"],
-      "correct": "место",
-      "case": "Именительный (Nominative)",
-      "translation": "A precious stone lay on the floor.",
-      "explain": "Место is the subject of the verb лежало, requiring nominative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Давид спрашивал его о том, как дела его ___.",
-      "lemma": "семья",
-      "options": ["семья", "семьи", "семье", "семью"],
-      "correct": "семьи",
-      "case": "Родительный (Genitive)",
-      "translation": "David asked him how his family was.",
-      "explain": "The genitive case shows possession - 'his family' requires genitive after the possessive adjective."
-    },
-    {
-      "id": "c8",
-      "sentence": "Три стрелы пущены были около ___.",
-      "lemma": "груда",
-      "options": ["груда", "груды", "груде", "грудой"],
-      "correct": "груды",
-      "case": "Родительный (Genitive)",
-      "translation": "Three arrows were shot near the stone pile.",
-      "explain": "The genitive case after the preposition около (near) shows location."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Давид и Иоаннафан заключают союз.",
-      "question": "What happens between David and Jonathan in this chapter?",
-      "options": ["They make a covenant", "They fight a battle", "They flee from Saul", "They build a city"],
-      "correct": "They make a covenant",
-      "explain": "The passage opens with 'Давид и Иоаннафан заключают союз' — David and Jonathan make a covenant."
-    },
-    {
-      "id": "r2",
-      "ru": "Иоаннафан сказал Давиду, «Я сделаю для тебя все, что ты хочешь».",
-      "question": "What does Jonathan promise to do for David?",
-      "options": ["He will do anything David wants", "He will speak to his father", "He will protect David's family", "He will give David his sword"],
-      "correct": "He will do anything David wants",
-      "explain": "Jonathan says: 'Я сделаю для тебя все, что ты хочешь' — I will do for you anything you wish."
-    },
-    {
-      "id": "r3",
-      "ru": "Давид ответил, «Завтра праздник Новолуния, и я должен обедать вместе с царем».",
-      "question": "What event occurs tomorrow according to David?",
-      "options": ["The new moon feast", "A military battle", "A religious festival", "A royal wedding"],
-      "correct": "The new moon feast",
-      "explain": "David says: 'Завтра праздник Новолуния' — Tomorrow is the new moon feast."
-    },
-    {
-      "id": "r4",
-      "ru": "Мне остался один шаг до смерти.",
-      "question": "What does David mean by this statement?",
-      "options": ["He is in great danger", "He is sick and dying", "He needs to escape", "He is ready to fight"],
-      "correct": "He is in great danger",
-      "explain": "The statement 'Мне остался один шаг до смерти' — There is but a step between me and death — means he is in mortal danger from Saul."
-    },
-    {
-      "id": "r5",
-      "ru": "Иоаннафан пошлет мальчика, и если он скажет «Стрелы позади тебя», то приходи.",
-      "question": "What signal from Jonathan means David should come out of hiding?",
-      "options": ["The arrows are behind you", "The arrows are ahead of you", "Run quickly away", "Stay hidden"],
-      "correct": "The arrows are behind you",
-      "explain": "Jonathan sets up this signal: if he says 'Стрелы позади тебя' (arrows behind you), it means the coast is clear."
-    },
-    {
-      "id": "r6",
-      "ru": "Затем они поцеловали друг друга и вместе заплакали, но Давид плакал больше.",
-      "question": "How do David and Jonathan part?",
-      "options": ["They kiss and weep, with David weeping more", "They embrace silently", "They exchange weapons", "They part in anger"],
-      "correct": "They kiss and weep, with David weeping more",
-      "explain": "The text states: 'Затем они поцеловали друг друга и вместе заплакали, но Давид плакал больше' — They kissed and wept together, but David wept more."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Если твой отец заметит мое отсутствие, скажи ему: «Давид очень просил меня позволить ему спешно отлучиться к себе в Вифлеем, потому что там сейчас ___ за весь его клан».",
+   "lemma": "жертвоприношение",
+   "options": [
+    "ежегодным жертвоприношением",
+    "ежегодное жертвоприношение",
+    "ежегодного жертвоприношения",
+    "ежегодному жертвоприношению"
+   ],
+   "correct": "ежегодное жертвоприношение",
+   "case": "Именительный (Nominative)",
+   "explain": "«ежегодное жертвоприношение» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "If your father misses me at all, then say, ‘David earnestly asked leave of me that he might run to Bethlehem his city; for it is the yearly sacrifice there for all the family.’"
+  },
+  {
+   "sentence": "Послезавтра под вечер ступай к месту, где ты прятался прежде, и жди там у ___ .",
+   "lemma": "груда",
+   "options": [
+    "каменная груда",
+    "каменной груде",
+    "каменной груды",
+    "каменной грудой"
+   ],
+   "correct": "каменной груды",
+   "case": "Родительный (Genitive)",
+   "explain": "«каменной груды» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "When you have stayed three days, go down quickly, and come to the place where you hid yourself when this started, and remain by the stone Ezel."
+  },
+  {
+   "sentence": "Но на ___, второй день месяца, место Давида опять было пустым.",
+   "lemma": "день",
+   "options": [
+    "следующий день",
+    "следующем дне",
+    "следующего дня",
+    "следующему дню"
+   ],
+   "correct": "следующий день",
+   "case": "Винительный (Accusative)",
+   "explain": "«следующий день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "On the next day after the new moon, the second day, David’s place was empty. Saul said to Jonathan his son, “Why doesn’t the son of Jesse come to eat, either yesterday, or today?”"
+  },
+  {
+   "sentence": "Но на следующий день, ___ месяца, место Давида опять было пустым.",
+   "lemma": "день",
+   "options": [
+    "второй день",
+    "второму дню",
+    "второго дня",
+    "вторым днём"
+   ],
+   "correct": "второй день",
+   "case": "Винительный (Accusative)",
+   "explain": "«второй день» — the accusative marks the direct object of the verb.",
+   "id": "c4",
+   "translation": "On the next day after the new moon, the second day, David’s place was empty. Saul said to Jonathan his son, “Why doesn’t the son of Jesse come to eat, either yesterday, or today?”"
+  },
+  {
+   "sentence": "Вот почему он не явился к ___.",
+   "lemma": "стол",
+   "options": [
+    "царского стола",
+    "царскому столу",
+    "царским столом",
+    "царском столе"
+   ],
+   "correct": "царскому столу",
+   "case": "Дательный (Dative)",
+   "explain": "«царскому столу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c5",
+   "translation": "He said, ‘Please let me go, for our family has a sacrifice in the city. My brother has commanded me to be there. Now, if I have found favor in your eyes, please let me go away and see my brothers.’ Therefore he has not come to the king’s table.”"
+  },
+  {
+   "sentence": "Ионафан поднялся из-за стола, пылая гневом; во ___ месяца он не ел, потому что печалился о том, как постыдно его отец обходится с Давидом.",
+   "lemma": "день",
+   "options": [
+    "второй день",
+    "второму дню",
+    "второго дня",
+    "вторым днём"
+   ],
+   "correct": "второй день",
+   "case": "Винительный (Accusative)",
+   "explain": "«второй день» — after the preposition «во», the accusative marks the direct object of the verb.",
+   "id": "c6",
+   "translation": "So Jonathan arose from the table in fierce anger, and ate no food the second day of the month; for he was grieved for David, because his father had treated him shamefully."
+  },
+  {
+   "sentence": "После того как мальчик ушел, Давид встал с ___ каменной груды, опустился на колени и три раза поклонился Ионафану до земли.",
+   "lemma": "сторона",
+   "options": [
+    "южная сторона",
+    "южной стороне",
+    "южной стороной",
+    "южной стороны"
+   ],
+   "correct": "южной стороны",
+   "case": "Родительный (Genitive)",
+   "explain": "«южной стороны» — after the preposition «с», the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "As soon as the boy was gone, David arose out of the south, and fell on his face to the ground, and bowed himself three times. They kissed one another, and wept one with another, and David wept the most."
+  },
+  {
+   "sentence": "После того как мальчик ушел, Давид встал с южной стороны ___, опустился на колени и три раза поклонился Ионафану до земли.",
+   "lemma": "груда",
+   "options": [
+    "каменная груда",
+    "каменной груде",
+    "каменной груды",
+    "каменной грудой"
+   ],
+   "correct": "каменной груды",
+   "case": "Родительный (Genitive)",
+   "explain": "«каменной груды» — the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "As soon as the boy was gone, David arose out of the south, and fell on his face to the ground, and bowed himself three times. They kissed one another, and wept one with another, and David wept the most."
+  }
+ ]
 }

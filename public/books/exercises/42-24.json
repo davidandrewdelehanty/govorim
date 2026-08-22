@@ -1,239 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Здесь они обнаружили, что ___ от входа в гробницу отвален.",
-      "lemma": "камень",
-      "options": [
-        "камень",
-        "камня",
-        "камню",
-        "камнем"
-      ],
-      "correct": "камень",
-      "case": "Именительный (Nominative)",
-      "translation": "Here they discovered that the stone had been rolled away from the entrance to the tomb.",
-      "explain": "Камень is the grammatical subject of the clause, so it takes the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Здесь они обнаружили, что камень от ___ в гробницу отвален.",
-      "lemma": "вход",
-      "options": [
-        "вход",
-        "входа",
-        "входу",
-        "входом"
-      ],
-      "correct": "входа",
-      "case": "Родительный (Genitive)",
-      "translation": "Here they discovered that the stone had been rolled away from the entrance to the tomb.",
-      "explain": "The preposition от (from, away from) governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Те сказали им, что Господь действительно воскрес и явился ___.",
-      "lemma": "Симон",
-      "options": [
-        "Симон",
-        "Симона",
-        "Симону",
-        "Симоном"
-      ],
-      "correct": "Симону",
-      "case": "Дательный (Dative)",
-      "translation": "They told them that the Lord had indeed risen and appeared to Simon.",
-      "explain": "The verb явился (appeared to someone) takes its addressee in the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Они видели ___ и то, как тело Иисуса было положено в нее.",
-      "lemma": "гробница",
-      "options": [
-        "гробница",
-        "гробницы",
-        "гробнице",
-        "гробницу"
-      ],
-      "correct": "гробницу",
-      "case": "Винительный (Accusative)",
-      "translation": "They saw the tomb and how Jesus's body was laid in it.",
-      "explain": "Гробницу is the direct object of видели (to see), so it takes the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Они остановились с печальными ___.",
-      "lemma": "лицо",
-      "options": [
-        "лица",
-        "лиц",
-        "лицам",
-        "лицами"
-      ],
-      "correct": "лицами",
-      "case": "Творительный (Instrumental)",
-      "translation": "They stopped with sad faces.",
-      "explain": "The preposition с (with) governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Они увидели, что рядом с ними вдруг появились два человека в сияющих ___.",
-      "lemma": "одежда",
-      "options": [
-        "одежды",
-        "одежд",
-        "одеждам",
-        "одеждах"
-      ],
-      "correct": "одеждах",
-      "case": "Предложный (Prepositional)",
-      "translation": "They saw that two men in shining garments suddenly appeared beside them.",
-      "explain": "The preposition в (in) governs the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Войдя внутрь, они не нашли тело Господа Иисуса.",
-      "question": "What did the women find when they entered the tomb?",
-      "options": [
-        "They did not find the body of the Lord Jesus",
-        "They found Jesus sleeping",
-        "They found the disciples waiting inside",
-        "They found Roman soldiers guarding it"
-      ],
-      "correct": "They did not find the body of the Lord Jesus",
-      "explain": "Entering the tomb, the women did not find the Lord Jesus's body."
-    },
-    {
-      "id": "r2",
-      "ru": "Что вы ищете живого среди мертвых?",
-      "question": "What did the two men in shining clothes ask the women?",
-      "options": [
-        "\"Why do you seek the living among the dead?\"",
-        "\"Why are you crying?\"",
-        "\"Where is the guard?\"",
-        "\"Who moved the stone?\""
-      ],
-      "correct": "\"Why do you seek the living among the dead?\"",
-      "explain": "The two men asked the women why they sought the living among the dead."
-    },
-    {
-      "id": "r3",
-      "ru": "Петр, однако же, побежал к гробнице.",
-      "question": "Who ran to the tomb after hearing the women's report?",
-      "options": [
-        "Peter",
-        "John",
-        "Thomas",
-        "Cleopas"
-      ],
-      "correct": "Peter",
-      "explain": "The text says Peter ran to the tomb."
-    },
-    {
-      "id": "r4",
-      "ru": "В тот же день двое из учеников шли в селение Эмаус, что расположено в шестидесяти стадиях от Иерусалима, и говорили обо всем, что произошло.",
-      "question": "Where were the two disciples walking on the road?",
-      "options": [
-        "To the village of Emmaus, sixty stadia from Jerusalem",
-        "To Bethany",
-        "To Galilee",
-        "To Jericho"
-      ],
-      "correct": "To the village of Emmaus, sixty stadia from Jerusalem",
-      "explain": "The two disciples were walking to Emmaus, sixty stadia from Jerusalem."
-    },
-    {
-      "id": "r5",
-      "ru": "Один из них, которого звали Клеопа, ответил",
-      "question": "What was the name of one of the two disciples on the road to Emmaus?",
-      "options": [
-        "Cleopas",
-        "Simon",
-        "Andrew",
-        "Nathanael"
-      ],
-      "correct": "Cleopas",
-      "explain": "The text names one of the two disciples as Cleopas."
-    },
-    {
-      "id": "r6",
-      "ru": "Иисус сказал им, «Как же вы глупы, как медленно вы соображаете, чтобы верить всему, что предсказали пророки».",
-      "question": "How did Jesus describe the disciples' understanding?",
-      "options": [
-        "Foolish and slow to believe the prophets",
-        "Wise and full of faith",
-        "Angry and doubtful",
-        "Silent and afraid"
-      ],
-      "correct": "Foolish and slow to believe the prophets",
-      "explain": "Jesus called them foolish and slow of heart to believe the prophets."
-    },
-    {
-      "id": "r7",
-      "ru": "За столом Иисус взял хлеб, благословил его, разломил и дал им.",
-      "question": "What did Jesus do at the table in Emmaus that revealed his identity?",
-      "options": [
-        "He took bread, blessed it, broke it, and gave it to them",
-        "He healed a sick man",
-        "He read from the Torah aloud",
-        "He washed their feet"
-      ],
-      "correct": "He took bread, blessed it, broke it, and gave it to them",
-      "explain": "At the table Jesus took bread, blessed and broke it, and their eyes were opened."
-    },
-    {
-      "id": "r8",
-      "ru": "Они встали и сразу же пошли обратно в Иерусалим.",
-      "question": "What did the two disciples do immediately after recognizing Jesus?",
-      "options": [
-        "They got up and went back to Jerusalem at once",
-        "They stayed in Emmaus overnight",
-        "They went on to Galilee",
-        "They fell asleep"
-      ],
-      "correct": "They got up and went back to Jerusalem at once",
-      "explain": "They rose up that very hour and returned to Jerusalem."
-    },
-    {
-      "id": "r9",
-      "ru": "Они замерли в испуге, думая, что видят призрак.",
-      "question": "How did the disciples react when Jesus appeared among them in Jerusalem?",
-      "options": [
-        "They were terrified, thinking they saw a ghost",
-        "They cheered joyfully at once",
-        "They ran out of the room",
-        "They fell asleep"
-      ],
-      "correct": "They were terrified, thinking they saw a ghost",
-      "explain": "The disciples were frightened, supposing they saw a spirit."
-    },
-    {
-      "id": "r10",
-      "ru": "Он взял и ел перед ними.",
-      "question": "What did Jesus do to prove to the disciples that he was not a ghost?",
-      "options": [
-        "He ate broiled fish in front of them",
-        "He vanished and reappeared",
-        "He flew up into the sky",
-        "He spoke in a foreign tongue"
-      ],
-      "correct": "He ate broiled fish in front of them",
-      "explain": "Jesus took the piece of fish they gave him and ate it in front of them."
-    },
-    {
-      "id": "r11",
-      "ru": "И в то время, как он благословлял их, он стал отдаляться от них и поднялся на небеса.",
-      "question": "What happened as Jesus blessed the disciples near Bethany?",
-      "options": [
-        "He was taken up into heaven",
-        "He fell asleep among them",
-        "He returned to the tomb",
-        "He wept before them"
-      ],
-      "correct": "He was taken up into heaven",
-      "explain": "While blessing them, Jesus withdrew from them and was carried up into heaven."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Рано утром в ___ недели , женщины, взяв приготовленные душистые мази, пришли к гробнице.",
+   "lemma": "день",
+   "options": [
+    "первому дню",
+    "первом дне",
+    "первого дня",
+    "первый день"
+   ],
+   "correct": "первый день",
+   "case": "Винительный (Accusative)",
+   "explain": "«первый день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "But on the first day of the week, at early dawn, they and some others came to the tomb, bringing the spices which they had prepared."
+  },
+  {
+   "sentence": "Рано утром в первый день недели , женщины, взяв приготовленные ___, пришли к гробнице.",
+   "lemma": "мазь",
+   "options": [
+    "душистых мазях",
+    "душистыми мазями",
+    "душистые мази",
+    "душистым мазям"
+   ],
+   "correct": "душистые мази",
+   "case": "Винительный (Accusative)",
+   "explain": "«душистые мази» — the accusative marks the direct object of the verb.",
+   "id": "c2",
+   "translation": "But on the first day of the week, at early dawn, they and some others came to the tomb, bringing the spices which they had prepared."
+  },
+  {
+   "sentence": "Среди тех, кто рассказал это апостолам, были Мария Магдалина, Иоанна, Мария — мать Иакова и ___.",
+   "lemma": "женщина",
+   "options": [
+    "другим женщинам",
+    "другие женщины",
+    "других женщин",
+    "других женщинах"
+   ],
+   "correct": "другие женщины",
+   "case": "Именительный (Nominative)",
+   "explain": "«другие женщины» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "Now they were Mary Magdalene, Joanna, and Mary the mother of James. The other women with them told these things to the apostles."
+  },
+  {
+   "sentence": "Но они не поверили рассказу женщин, им казалось, что это лишь ___.",
+   "lemma": "слово",
+   "options": [
+    "пустым словам",
+    "пустые слова",
+    "пустых словах",
+    "пустыми словами"
+   ],
+   "correct": "пустые слова",
+   "case": "Именительный (Nominative)",
+   "explain": "«пустые слова» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "These words seemed to them to be nonsense, and they didn’t believe them."
+  }
+ ]
 }

@@ -1,134 +1,214 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "После этого весь народ Иудеи взял ___, которому было шестнадцать лет, и сделал его царем.",
-      "lemma": "Узия",
-      "options": ["Узия", "Узию", "Узией", "Узии"],
-      "correct": "Узию",
-      "case": "Винительный (Accusative)",
-      "translation": "All the people of Judah took Uzziah, who was sixteen years old, and made him king.",
-      "explain": "The verb взял (took) is transitive and takes its direct object in the accusative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Когда Узия стал царем, ему было шестнадцать лет, и правил он в Иерусалиме пятьдесят два ___ .",
-      "lemma": "год",
-      "options": ["год", "года", "годе", "лет"],
-      "correct": "года",
-      "case": "Родительный (Genitive)",
-      "translation": "Uzziah was sixteen years old when he became king, and he reigned fifty-two years in Jerusalem.",
-      "explain": "With numbers above 4, the noun takes the genitive plural form."
-    },
-    {
-      "id": "c3",
-      "sentence": "Его мать звали Иехолия, она была родом из ___.",
-      "lemma": "Иерусалим",
-      "options": ["Иерусалим", "Иерусалима", "Иерусалиму", "Иерусалимом"],
-      "correct": "Иерусалима",
-      "case": "Родительный (Genitive)",
-      "translation": "His mother's name was Jechiliah, of Jerusalem.",
-      "explain": "The phrase 'родом из' (native of) requires the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Он искал Бога при жизни Захарии, который наставлял его в страхе ___.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Бога",
-      "case": "Родительный (Genitive)",
-      "translation": "He set himself to seek God in the days of Zechariah, who had understanding in the vision of God.",
-      "explain": "The phrase 'в страхе Бога' (in the fear of God) uses the genitive after 'страх' (fear)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Он пошел войной на филистимлян и разрушил стены Гата и Авнеи и ___.",
-      "lemma": "Аждод",
-      "options": ["Аждод", "Аждода", "Аждоду", "Аждодом"],
-      "correct": "Аждода",
-      "case": "Родительный (Genitive)",
-      "translation": "He went out and fought against the Philistines, and broke down the walls of Gath, Jabneh, and Ashdod.",
-      "explain": "In a coordinate list of objects of the verb разрушил, the last item takes the genitive form to match the pattern."
-    },
-    {
-      "id": "c6",
-      "sentence": "Узия возвел башни в Иерусалиме, над угловыми воротами, над воротами долины и на углу стены, и укрепил ___.",
-      "lemma": "башня",
-      "options": ["башню", "башни", "башне", "башней"],
-      "correct": "башни",
-      "case": "Винительный (Accusative)",
-      "translation": "Uzziah built towers in Jerusalem at the corner gate, at the valley gate, and at the turning of the wall, and fortified them.",
-      "explain": "The pronoun их (them) replacing башни takes the accusative form as the direct object of укрепил (fortified)."
-    },
-    {
-      "id": "c7",
-      "sentence": "Узия возвел башни в пустыне и вытесал много хранилищ для воды, потому что у него было много скота в предгорьях и на ___.",
-      "lemma": "равнина",
-      "options": ["равнина", "равнины", "равнине", "равниной"],
-      "correct": "равнине",
-      "case": "Предложный (Prepositional)",
-      "translation": "He built towers in the wilderness, and dug out many cisterns, for he had much livestock in the lowland and in the plain.",
-      "explain": "The preposition на (on) with равнине (plain) governing location takes the prepositional case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Но когда Узия обрел могущество, гордыня привела его к ___.",
-      "lemma": "падение",
-      "options": ["падение", "падения", "падению", "паденье"],
-      "correct": "падению",
-      "case": "Дательный (Dative)",
-      "translation": "But when he was strong, his heart was lifted up to his destruction.",
-      "explain": "The preposition к (to) requires the dative case to express direction toward a state or condition."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Узия — царь Иудеи. После этого весь народ Иудеи взял Узию, которому было шестнадцать лет, и сделал его царем вместо его отца Амассии.",
-      "question": "How old was Uzziah when the people of Judah made him king?",
-      "options": ["Sixteen years old", "Seven years old", "Twenty-five years old", "Thirty-two years old"],
-      "correct": "Sixteen years old",
-      "explain": "The text states 'весь народ Иудеи взял Узию, которому было шестнадцать лет' — all the people of Judah took Uzziah, who was sixteen years old."
-    },
-    {
-      "id": "r2",
-      "ru": "Он делал то, что было правильным в глазах Господа, как и его отец Амассия.",
-      "question": "Whose example did Uzziah follow in doing what was right?",
-      "options": ["His father Amaziah", "His grandfather Joash", "The prophet Zechariah", "His mother Jechiliah"],
-      "correct": "His father Amaziah",
-      "explain": "The text says he 'делал то, что было правильным в глазах Господа, как и его отец Амассия' — did what was right, as did his father Amaziah."
-    },
-    {
-      "id": "r3",
-      "ru": "Он искал Бога при жизни Захарии, который наставлял его в страхе Божьем.",
-      "question": "Who guided Uzziah's spiritual development?",
-      "options": ["Zechariah, who instructed him in the fear of God", "The priests of the temple", "His father Amaziah", "The false prophets"],
-      "correct": "Zechariah, who instructed him in the fear of God",
-      "explain": "The text says 'Он искал Бога при жизни Захарии, который наставлял его в страхе Божьем' — He sought God in the days of Zechariah, who instructed him in the fear of God."
-    },
-    {
-      "id": "r4",
-      "ru": "Он пошел войной на филистимлян и разрушил стены Гата и Авнеи и Аждода.",
-      "question": "What enemy did Uzziah fight and what did he destroy?",
-      "options": ["The Philistines, and he broke down their city walls", "The Arameans in their fortresses", "The Edomites in their cities", "The Ammonites in their camps"],
-      "correct": "The Philistines, and he broke down their city walls",
-      "explain": "The text states 'Он пошел войной на филистимлян и разрушил стены Гата и Авнеи и Аждода' — He fought against the Philistines and broke down the walls of Gath, Jabneh, and Ashdod."
-    },
-    {
-      "id": "r5",
-      "ru": "Но когда Узия обрел могущество, гордыня привела его к падению.",
-      "question": "What happened to Uzziah when he became powerful?",
-      "options": ["His pride led to his downfall", "He wisely ruled the kingdom", "He built the temple", "He conquered all neighboring lands"],
-      "correct": "His pride led to his downfall",
-      "explain": "The text says 'когда Узия обрел могущество, гордыня привела его к падению' — when he became strong, pride led to his downfall."
-    },
-    {
-      "id": "r6",
-      "ru": "Священник Азария и с ним еще восемьдесят священников, мужественных людей, вошли вслед за ним, преградили ему путь и сказали, «Не подобает тебе, Узия, возжигать Господу благовония».",
-      "question": "What did the priests tell Uzziah when he entered the temple?",
-      "options": ["That it was not right for him to burn incense to the Lord", "That he should become a priest", "That the temple was forbidden to him", "That he had been called to ministry"],
-      "correct": "That it was not right for him to burn incense to the Lord",
-      "explain": "Azariah said 'Не подобает тебе, Узия, возжигать Господу благовония' — It is not right for you, Uzziah, to burn incense to the Lord."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "После этого он отстроил города рядом с Ашдодом и в ___ среди филистимлян.",
+   "lemma": "место",
+   "options": [
+    "других мест",
+    "других местах",
+    "другие места",
+    "другими местами"
+   ],
+   "correct": "других местах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«других местах» — after the preposition «в», for location or topic.",
+   "id": "c1",
+   "translation": "He went out and fought against the Philistines, and broke down the wall of Gath, the wall of Jabneh, and the wall of Ashdod; and he built cities in the country of Ashdod, and among the Philistines."
+  },
+  {
+   "sentence": "Уззия возвел башни в Иерусалиме над ___, над воротами Долины и на углу стены и укрепил их.",
+   "lemma": "ворота",
+   "options": [
+    "угловыми воротами",
+    "угловых ворот",
+    "угловым воротам",
+    "угловых воротах"
+   ],
+   "correct": "угловыми воротами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«Угловыми воротами» — after the preposition «над», the instrumental marks the means, company, or complement.",
+   "id": "c2",
+   "translation": "Moreover Uzziah built towers in Jerusalem at the corner gate, at the valley gate, and at the turning of the wall, and fortified them."
+  },
+  {
+   "sentence": "А в горах и на ___ у него трудились землепашцы и виноградари.",
+   "lemma": "земля",
+   "options": [
+    "плодородными землями",
+    "плодородных земель",
+    "плодородных землях",
+    "плодородным землям"
+   ],
+   "correct": "плодородных землях",
+   "case": "Предложный (Prepositional)",
+   "explain": "«плодородных землях» — after the preposition «на», for location or topic.",
+   "id": "c3",
+   "translation": "He built towers in the wilderness, and dug out many cisterns, for he had much livestock; in the lowland also, and in the plain. He had farmers and vineyard keepers in the mountains and in the fruitful fields, for he loved farming."
+  },
+  {
+   "sentence": "У Уззии было хорошо обученное войско, готовое выступить на войну по отделениям, по числу в списках, составленных писарем Иеиелом и чиновником Маасеей под руководством Ханании, одного из ___.",
+   "lemma": "сановник",
+   "options": [
+    "царских сановниках",
+    "царских сановников",
+    "царские сановники",
+    "царским сановникам"
+   ],
+   "correct": "царских сановников",
+   "case": "Родительный (Genitive)",
+   "explain": "«царских сановников» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "Moreover Uzziah had an army of fighting men, who went out to war by bands, according to the number of their reckoning made by Jeiel the scribe and Maaseiah the officer, under the hand of Hananiah, one of the king’s captains."
+  },
+  {
+   "sentence": "Общим счетом глав ___ было две тысячи шестьсот человек.",
+   "lemma": "воин",
+   "options": [
+    "храбрых воинах",
+    "храбрым воинам",
+    "храбрых воинов",
+    "храбрые воины"
+   ],
+   "correct": "храбрых воинов",
+   "case": "Родительный (Genitive)",
+   "explain": "«храбрых воинов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "The whole number of the heads of fathers’ households, even the mighty men of valor, was two thousand six hundred."
+  },
+  {
+   "sentence": "Под их началом было войско из трехсот семи тысяч пятисот воинов, обученных сражаться — ___, чтобы помогать царю в битве против врагов.",
+   "lemma": "сила",
+   "options": [
+    "огромной силой",
+    "огромной силы",
+    "огромная сила",
+    "огромной силе"
+   ],
+   "correct": "огромная сила",
+   "case": "Именительный (Nominative)",
+   "explain": "«огромная сила» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "Under their hand was an army, three hundred seven thousand five hundred, who made war with mighty power, to help the king against the enemy."
+  },
+  {
+   "sentence": "В Иерусалиме он соорудил машины, придуманные ___, чтобы с башен и с углов городских стен пускать стрелы и метать огромные камни.",
+   "lemma": "мастер",
+   "options": [
+    "искусными мастерами",
+    "искусным мастерам",
+    "искусные мастера",
+    "искусных мастерах"
+   ],
+   "correct": "искусными мастерами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«искусными мастерами» — the instrumental marks the means, company, or complement.",
+   "id": "c7",
+   "translation": "In Jerusalem, he made devices, invented by skillful men, to be on the towers and on the battlements, with which to shoot arrows and great stones. His name spread far abroad, because he was marvelously helped until he was strong."
+  },
+  {
+   "sentence": "В Иерусалиме он соорудил машины, придуманные искусными мастерами, чтобы с башен и с углов ___ пускать стрелы и метать огромные камни.",
+   "lemma": "стена",
+   "options": [
+    "городских стенах",
+    "городским стенам",
+    "городские стены",
+    "городских стен"
+   ],
+   "correct": "городских стен",
+   "case": "Родительный (Genitive)",
+   "explain": "«городских стен» — the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "In Jerusalem, he made devices, invented by skillful men, to be on the towers and on the battlements, with which to shoot arrows and great stones. His name spread far abroad, because he was marvelously helped until he was strong."
+  },
+  {
+   "sentence": "Он нарушил верность Господу, своему Богу, и вошел в Господень храм, чтобы возжечь жертвенные благовония на ___.",
+   "lemma": "жертвенник",
+   "options": [
+    "кадильный жертвенник",
+    "кадильного жертвенника",
+    "кадильном жертвеннике",
+    "кадильному жертвеннику"
+   ],
+   "correct": "кадильном жертвеннике",
+   "case": "Предложный (Prepositional)",
+   "explain": "«кадильном жертвеннике» — after the preposition «на», for location or topic.",
+   "id": "c11",
+   "translation": "But when he was strong, his heart was lifted up, so that he did corruptly, and he trespassed against Yahweh his God; for he went into Yahweh’s temple to burn incense on the altar of incense."
+  },
+  {
+   "sentence": "Когда первосвященник Азария и все ___ посмотрели на него, они увидели, что у него на лбу проказа, и поспешили вывести его оттуда.",
+   "lemma": "священник",
+   "options": [
+    "остальным священникам",
+    "остальными священниками",
+    "остальных священниках",
+    "остальные священники"
+   ],
+   "correct": "остальные священники",
+   "case": "Именительный (Nominative)",
+   "explain": "«остальные священники» — the subject of the sentence stands in the nominative.",
+   "id": "c12",
+   "translation": "Azariah the chief priest, and all the priests, looked at him, and behold, he was leprous in his forehead, and they thrust him out quickly from there. Yes, he himself also hurried to go out, because Yahweh had struck him."
+  },
+  {
+   "sentence": "Он жил в ___, прокаженный, отлученный от Господнего дома.",
+   "lemma": "дом",
+   "options": [
+    "отдельном доме",
+    "отдельным домом",
+    "отдельному дому",
+    "отдельного дома"
+   ],
+   "correct": "отдельном доме",
+   "case": "Предложный (Prepositional)",
+   "explain": "«отдельном доме» — after the preposition «в», for location or topic.",
+   "id": "c13",
+   "translation": "Uzziah the king was a leper to the day of his death, and lived in a separate house, being a leper; for he was cut off from Yahweh’s house. Jotham his son was over the king’s house, judging the people of the land."
+  },
+  {
+   "sentence": "Он жил в отдельном доме, прокаженный, отлученный от ___.",
+   "lemma": "дом",
+   "options": [
+    "господнему дому",
+    "господний дом",
+    "господним домом",
+    "господнего дома"
+   ],
+   "correct": "господнего дома",
+   "case": "Родительный (Genitive)",
+   "explain": "«Господнего дома» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "id": "c14",
+   "translation": "Uzziah the king was a leper to the day of his death, and lived in a separate house, being a leper; for he was cut off from Yahweh’s house. Jotham his son was over the king’s house, judging the people of the land."
+  },
+  {
+   "sentence": "Иотам, его сын, распоряжался в ___ и управлял народом страны.",
+   "lemma": "дворец",
+   "options": [
+    "царскому дворцу",
+    "царского дворца",
+    "царском дворце",
+    "царским дворцом"
+   ],
+   "correct": "царском дворце",
+   "case": "Предложный (Prepositional)",
+   "explain": "«царском дворце» — after the preposition «в», for location or topic.",
+   "id": "c15",
+   "translation": "Uzziah the king was a leper to the day of his death, and lived in a separate house, being a leper; for he was cut off from Yahweh’s house. Jotham his son was over the king’s house, judging the people of the land."
+  },
+  {
+   "sentence": "___ правления Уззии, от первых до последних, записал пророк Исаия, сын Амоца.",
+   "lemma": "событие",
+   "options": [
+    "прочие события",
+    "прочих событиях",
+    "прочим событиям",
+    "прочих событий"
+   ],
+   "correct": "прочие события",
+   "case": "Именительный (Nominative)",
+   "explain": "«Прочие события» — the subject of the sentence stands in the nominative.",
+   "id": "c16",
+   "translation": "Now the rest of the acts of Uzziah, first and last, Isaiah the prophet, the son of Amoz, wrote."
+  }
+ ]
 }

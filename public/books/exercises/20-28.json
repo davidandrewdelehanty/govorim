@@ -1,134 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Нечестивец бежит, хотя никто его не ___.",
-      "lemma": "преследование",
-      "options": ["преследует", "преследование", "преследования", "преследуемый"],
-      "correct": "преследует",
-      "case": "Именительный (Nominative)",
-      "translation": "The wicked flee when no one pursues.",
-      "explain": "The verb преследует (pursues) requires a nominative subject, though here it's expressed as a verb form."
-    },
-    {
-      "id": "c2",
-      "sentence": "А праведник смел, как ___, когда в стране беззакония.",
-      "lemma": "лев",
-      "options": ["лев", "льва", "льву", "львом"],
-      "correct": "лев",
-      "case": "Именительный (Nominative)",
-      "translation": "The righteous is bold as a lion.",
-      "explain": "Лев is a predicate nominative after the comparison 'как' (as), requiring nominative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Тот, кто хранит ___, сын рассудительный.",
-      "lemma": "закон",
-      "options": ["закон", "закона", "закону", "законом"],
-      "correct": "закон",
-      "case": "Винительный (Accusative)",
-      "translation": "He who keeps the law is a wise son.",
-      "explain": "Закон is the direct object of the transitive verb хранит (keeps), taking the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Забывающие ___ славят нечестивых.",
-      "lemma": "закон",
-      "options": ["закон", "закона", "закону", "законом"],
-      "correct": "закон",
-      "case": "Винительный (Accusative)",
-      "translation": "Those who forsake the law praise the wicked.",
-      "explain": "Закон is the direct object of the transitive verb забывают (forsake), taking the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Бедный человек, притесняющий ___, точно дождь с проливной.",
-      "lemma": "бедняк",
-      "options": ["бедняк", "бедняка", "бедняков", "бедняками"],
-      "correct": "бедняков",
-      "case": "Винительный (Accusative)",
-      "translation": "A needy man who oppresses the poor is like a driving rain.",
-      "explain": "Бедняков is the direct object of the transitive verb притесняющий (oppressing), taking the accusative case (plural)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Злодеи не понимают справедливости, а те, кто ищет ___, понимают ее.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господа",
-      "case": "Винительный (Accusative)",
-      "translation": "Evil men don't understand justice; but those who seek the Lord understand it fully.",
-      "explain": "Господа is the direct object of the transitive verb ищут (seek), taking the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Точно ревущий лев или рыщущий медведь — злой ___ над бедным людям.",
-      "lemma": "правитель",
-      "options": ["правитель", "правителя", "правителю", "правителем"],
-      "correct": "правитель",
-      "case": "Именительный (Nominative)",
-      "translation": "As a roaring lion or a charging bear, so is a wicked ruler over helpless people.",
-      "explain": "Правитель is the predicate nominative in the comparison 'точно...', requiring nominative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Возделывающий свою ___ будет есть досыта.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "землю", "землёй"],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "One who works his land will have an abundance of food.",
-      "explain": "Землю is the direct object of the transitive verb возделывает (works), taking the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Нечестивец бежит, хотя никто его не преследует.",
-      "question": "Why does the wicked person flee according to this verse?",
-      "options": ["Because someone is chasing him", "Out of fear, even though no one pursues", "Because he is running to escape punishment", "Because he saw danger"],
-      "correct": "Out of fear, even though no one pursues",
-      "explain": "The text states: Нечестивец бежит, хотя никто его не преследует — the wicked flee even when no one pursues them."
-    },
-    {
-      "id": "r2",
-      "ru": "А праведник смел, как лев, когда в стране беззакония у нее много правителей.",
-      "question": "What two contrasting situations are compared?",
-      "options": ["The righteous are bold and many rulers", "A country in rebellion has many rulers, but the righteous is bold as a lion", "Lions are bold and rebels are fearful", "Many rulers make the righteous afraid"],
-      "correct": "A country in rebellion has many rulers, but the righteous is bold as a lion",
-      "explain": "The text contrasts: праведник смел, как лев (the righteous is bold as a lion) with в стране беззакония у нее много правителей (in a lawless country there are many rulers)."
-    },
-    {
-      "id": "r3",
-      "ru": "Лучше бедняк, чей путь беспорочен, чем богач, чьи пути бесчестны.",
-      "question": "What is more important than wealth according to this verse?",
-      "options": ["Having many friends", "Walking in integrity", "Having a good reputation", "Being respected by others"],
-      "correct": "Walking in integrity",
-      "explain": "The text states: Лучше бедняк, чей путь беспорочен (Better is the poor who walks in his integrity) than a rich man with dishonest ways."
-    },
-    {
-      "id": "r4",
-      "ru": "Скрывающий свои грехи не преуспеет, а признающий и оставляющий их найдет милость.",
-      "question": "What happens to those who hide their sins versus those who confess them?",
-      "options": ["Those who hide prosper, those who confess fail", "Both hide and confess equally succeed", "Those who hide don't prosper, but those who confess find mercy", "Confession leads to punishment"],
-      "correct": "Those who hide don't prosper, but those who confess find mercy",
-      "explain": "The text contrasts: Скрывающий свои грехи не преуспеет (He who conceals his sins doesn't prosper) with признающий и оставляющий их найдет милость (whoever confesses and renounces them finds mercy)."
-    },
-    {
-      "id": "r5",
-      "ru": "Верный человек будет богат благословениями, а спешащий разбогатеть не останется безнаказанным.",
-      "question": "What is the reward for a faithful person and the consequence for one eager to be rich?",
-      "options": ["Both become wealthy", "A faithful man is rich with blessings, but one eager to be rich will be punished", "The eager become richer faster", "Faithfulness leads to poverty"],
-      "correct": "A faithful man is rich with blessings, but one eager to be rich will be punished",
-      "explain": "The text states: Верный человек будет богат благословениями (A faithful man is rich with blessings), а спешащий разбогатеть не останется безнаказанным (one who is eager to be rich will not go unpunished)."
-    },
-    {
-      "id": "r6",
-      "ru": "Упрекающий человека найдет потом больше приязни, чем тот, чей язык льстив.",
-      "question": "Who finds more favor - one who rebukes or one who flatters?",
-      "options": ["The flatterer finds more favor", "The one who rebukes finds more favor", "Both are equally disliked", "Neither finds favor"],
-      "correct": "The one who rebukes finds more favor",
-      "explain": "The text states: Упрекающий человека найдет потом больше приязни, чем тот, чей язык льстив (One who rebukes a man will afterward find more favor than one who flatters)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "___ , притесняющий бедняков,",
+   "lemma": "человек",
+   "options": [
+    "бедному человеку",
+    "бедный человек",
+    "бедного человека",
+    "бедном человеке"
+   ],
+   "correct": "бедный человек",
+   "case": "Именительный (Nominative)",
+   "explain": "«Бедный человек» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "A needy man who oppresses the poor is like a driving rain which leaves no crops."
+  },
+  {
+   "sentence": "Тот, кто множит богатство ___,",
+   "lemma": "процент",
+   "options": [
+    "непомерным процентам",
+    "непомерных процентов",
+    "непомерных процентах",
+    "непомерными процентами"
+   ],
+   "correct": "непомерными процентами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«непомерными процентами» — the instrumental marks the means, company, or complement.",
+   "id": "c2",
+   "translation": "He who increases his wealth by excessive interest gathers it for one who has pity on the poor."
+  },
+  {
+   "sentence": "Богач может быть мудр в ___,",
+   "lemma": "глаз",
+   "options": [
+    "собственных глаз",
+    "собственными глазами",
+    "собственным глазам",
+    "собственных глазах"
+   ],
+   "correct": "собственных глазах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«собственных глазах» — after the preposition «в», for location or topic.",
+   "id": "c3",
+   "translation": "The rich man is wise in his own eyes; but the poor who has understanding sees through him."
+  },
+  {
+   "sentence": "___ нерассудителен,",
+   "lemma": "правитель",
+   "options": [
+    "жестокий правитель",
+    "жестокому правителю",
+    "жестокого правителя",
+    "жестоким правителем"
+   ],
+   "correct": "жестокий правитель",
+   "case": "Именительный (Nominative)",
+   "explain": "«Жестокий правитель» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "A tyrannical ruler lacks judgment. One who hates ill-gotten gain will have long days."
+  },
+  {
+   "sentence": "___ будет богат благословениями,",
+   "lemma": "человек",
+   "options": [
+    "верный человек",
+    "верным человеком",
+    "верного человека",
+    "верном человеке"
+   ],
+   "correct": "верный человек",
+   "case": "Именительный (Nominative)",
+   "explain": "«Верный человек» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "A faithful man is rich with blessings; but one who is eager to be rich will not go unpunished."
+  },
+  {
+   "sentence": "___ разжигает ссоры,",
+   "lemma": "человек",
+   "options": [
+    "жадном человеке",
+    "жадного человека",
+    "жадный человек",
+    "жадному человеку"
+   ],
+   "correct": "жадный человек",
+   "case": "Именительный (Nominative)",
+   "explain": "«Жадный человек» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "One who is greedy stirs up strife; but one who trusts in Yahweh will prosper."
+  }
+ ]
 }

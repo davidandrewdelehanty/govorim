@@ -1,134 +1,19 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Не делай в этот день никакой ___.",
-      "lemma": "работа",
-      "options": ["работа", "работы", "работе", "работу"],
-      "correct": "работы",
-      "case": "Родительный (Genitive)",
-      "translation": "Do not do any work on this day.",
-      "explain": "Under negation with никакой the direct object stands in the genitive."
-    },
-    {
-      "id": "c2",
-      "sentence": "Чтобы тебе долго жить на ___, которую дает тебе Господь.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землю"],
-      "correct": "земле",
-      "case": "Предложный (Prepositional)",
-      "translation": "That you may live long in the land the Lord gives you.",
-      "explain": "The preposition на indicating location takes the prepositional case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Почитай своего ___ и мать.",
-      "lemma": "отец",
-      "options": ["отец", "отца", "отцу", "отцом"],
-      "correct": "отца",
-      "case": "Винительный (Accusative)",
-      "translation": "Honor your father and mother.",
-      "explain": "The transitive verb почитать takes a direct object; for an animate noun the accusative equals the genitive form отца."
-    },
-    {
-      "id": "c4",
-      "sentence": "Моисей приблизился к темному ___, где был Бог.",
-      "lemma": "облако",
-      "options": ["облако", "облака", "облаку", "облаком"],
-      "correct": "облаку",
-      "case": "Дательный (Dative)",
-      "translation": "Moses drew near to the thick cloud where God was.",
-      "explain": "The preposition к governs the dative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Они задрожали от ___.",
-      "lemma": "страх",
-      "options": ["страх", "страха", "страху", "страхом"],
-      "correct": "страха",
-      "case": "Родительный (Genitive)",
-      "translation": "They trembled with fear.",
-      "explain": "The preposition от governs the genitive case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Не используй имени ___ твоего Бога напрасно.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "Do not use the name of the Lord your God in vain.",
-      "explain": "The noun имя (name) governs a following genitive of possession."
-    },
-    {
-      "id": "c7",
-      "sentence": "Вы оскверните его, прикоснувшись к нему ___.",
-      "lemma": "резец",
-      "options": ["резец", "резца", "резцом", "резце"],
-      "correct": "резцом",
-      "case": "Творительный (Instrumental)",
-      "translation": "You will defile it by touching it with a tool.",
-      "explain": "The instrumental case expresses the means or instrument of an action."
-    },
-    {
-      "id": "c8",
-      "sentence": "Не поднимайтесь к моему жертвеннику по ___.",
-      "lemma": "ступень",
-      "options": ["ступени", "ступеней", "ступеням", "ступенями"],
-      "correct": "ступеням",
-      "case": "Дательный (Dative)",
-      "translation": "Do not go up to my altar by steps.",
-      "explain": "The preposition по governs the dative case (here plural ступеням)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Помни субботний день и храни его святым.",
-      "question": "What are the people commanded to do with the Sabbath day?",
-      "options": ["Remember it and keep it holy", "Work hard on it", "Fast on it", "Travel on it"],
-      "correct": "Remember it and keep it holy",
-      "explain": "The text says 'Помни субботний день и храни его святым' (remember the Sabbath day and keep it holy)."
-    },
-    {
-      "id": "r2",
-      "ru": "Шесть дней трудись и делай всю свою работу.",
-      "question": "How many days are appointed for labor?",
-      "options": ["Six days", "Seven days", "Five days", "Three days"],
-      "correct": "Six days",
-      "explain": "The text says 'Шесть дней трудись' (labor six days)."
-    },
-    {
-      "id": "r3",
-      "ru": "За шесть дней Господь сотворил небеса и землю, море и все, что в них, а на седьмой отдыхал, поэтому Господь благословил субботний день и осветил его.",
-      "question": "Why did the Lord bless the Sabbath day?",
-      "options": ["Because he rested on the seventh day after creating in six", "Because it was the first day of creation", "Because the people asked for rest", "Because it marked the exodus from Egypt"],
-      "correct": "Because he rested on the seventh day after creating in six",
-      "explain": "The text explains he made heaven and earth in six days 'а на седьмой отдыхал' (and rested on the seventh), therefore he blessed it."
-    },
-    {
-      "id": "r4",
-      "ru": "«Почитай своего отца и мать, чтобы тебе долго жить на земле, которую дает тебе Господь твой Бог».",
-      "question": "What is promised to those who honor their father and mother?",
-      "options": ["Long life in the land the Lord gives", "Great wealth", "Many children", "Victory over enemies"],
-      "correct": "Long life in the land the Lord gives",
-      "explain": "The text promises 'чтобы тебе долго жить на земле, которую дает тебе Господь' (that you may live long in the land the Lord gives you)."
-    },
-    {
-      "id": "r5",
-      "ru": "Когда люди увидели гром и молнию, услышали звук рога и увидели гору в дыму, они задрожали от страха, они встали поодаль и сказали Моисею.",
-      "question": "How did the people react to the thunder and the smoking mountain?",
-      "options": ["They trembled with fear and stood far off", "They rushed up the mountain", "They rejoiced and sang", "They fell asleep"],
-      "correct": "They trembled with fear and stood far off",
-      "explain": "The text says 'они задрожали от страха, они встали поодаль' (they trembled with fear and stood at a distance)."
-    },
-    {
-      "id": "r6",
-      "ru": "Не делайте себе серебряных или золотых богов и не поклоняйтесь им вместо меня.",
-      "question": "What did the Lord forbid the people to make?",
-      "options": ["Gods of silver or gold", "Altars of stone", "Images of animals", "Idols of wood"],
-      "correct": "Gods of silver or gold",
-      "explain": "The text says 'Не делайте себе серебряных или золотых богов' (do not make for yourselves gods of silver or gold)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Шесть дней трудись и делай всю свою работу, 10 но ___ — это суббота Господу, твоему Богу.",
+   "lemma": "день",
+   "options": [
+    "седьмом дне",
+    "седьмого дня",
+    "седьмой день",
+    "седьмым днём"
+   ],
+   "correct": "седьмой день",
+   "case": "Именительный (Nominative)",
+   "explain": "«седьмой день» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "You shall labor six days, and do all your work,"
+  }
+ ]
 }

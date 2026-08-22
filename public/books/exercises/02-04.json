@@ -1,134 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Господь спросил: «Что у тебя в ___?»",
-      "lemma": "рука",
-      "options": ["рука", "руки", "руке", "рукой"],
-      "correct": "руке",
-      "case": "Предложный (Prepositional)",
-      "translation": "The Lord asked, 'What is that in your hand?'",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Господь сказал: «Брось его на ___».",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землю"],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "The Lord said, 'Throw it on the ground.'",
-      "explain": "The preposition на indicating direction takes the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Когда он вытащил руку, она была белой от ___, как снег.",
-      "lemma": "проказа",
-      "options": ["проказа", "проказы", "проказе", "проказой"],
-      "correct": "проказы",
-      "case": "Родительный (Genitive)",
-      "translation": "When he took his hand out, it was white with leprosy, like snow.",
-      "explain": "The preposition от governs the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я говорю медленно с тех пор, как ты заговорил со своим ___.",
-      "lemma": "слуга",
-      "options": ["слуга", "слуги", "слуге", "слугой"],
-      "correct": "слугой",
-      "case": "Творительный (Instrumental)",
-      "translation": "I speak slowly, ever since you spoke with your servant.",
-      "explain": "The preposition с in the sense of 'with' governs the instrumental case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Кто дал ___ язык?",
-      "lemma": "человек",
-      "options": ["человек", "человека", "человеку", "человеком"],
-      "correct": "человеку",
-      "case": "Дательный (Dative)",
-      "translation": "Who gave man his tongue?",
-      "explain": "The verb дать takes an indirect object in the dative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Иофор сказал: «Иди с ___».",
-      "lemma": "мир",
-      "options": ["мир", "мира", "миру", "миром"],
-      "correct": "миром",
-      "case": "Творительный (Instrumental)",
-      "translation": "Jethro said, 'Go in peace.'",
-      "explain": "The preposition с in the sense of 'with' governs the instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Аарон встретил Моисея у Божьей ___ и поцеловал его.",
-      "lemma": "гора",
-      "options": ["гора", "горы", "горе", "горой"],
-      "correct": "горы",
-      "case": "Родительный (Genitive)",
-      "translation": "Aaron met Moses at God's mountain and kissed him.",
-      "explain": "The preposition у governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Когда Моисей бросил его на землю, тот превратился в ___.",
-      "lemma": "змея",
-      "options": ["змея", "змеи", "змею", "змеёй"],
-      "correct": "змею",
-      "case": "Винительный (Accusative)",
-      "translation": "When Moses threw it on the ground, it turned into a snake.",
-      "explain": "The preposition в with превратиться (to turn into) takes the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Когда Моисей бросил его на землю, тот превратился в змею, и Моисей отбежал от нее.",
-      "question": "What happened when Moses threw the rod on the ground?",
-      "options": ["It became a snake", "It caught fire", "It grew leaves", "It turned to stone"],
-      "correct": "It became a snake",
-      "explain": "The text says the rod 'превратился в змею' (turned into a snake)."
-    },
-    {
-      "id": "r2",
-      "ru": "Моисей положил руку за пазуху, а когда вытащил, она была белой от проказы, как снег.",
-      "question": "What happened to Moses's hand when he put it inside his cloak?",
-      "options": ["It became leprous, white as snow", "It turned to gold", "It became very strong", "It disappeared"],
-      "correct": "It became leprous, white as snow",
-      "explain": "The text says his hand 'была белой от проказы, как снег' (was white with leprosy, like snow)."
-    },
-    {
-      "id": "r3",
-      "ru": "Моисей сказал Господу, «О, владыка, я не был красноречивым раньше и не стал им теперь, когда ты заговорил со своим слугой.",
-      "question": "What complaint did Moses make to the Lord?",
-      "options": ["That he was not eloquent and slow of speech", "That he was too old", "That he had no rod", "That he feared Pharaoh"],
-      "correct": "That he was not eloquent and slow of speech",
-      "explain": "Moses says 'я не был красноречивым' and speaks 'медленно и невнятно' (not eloquent, and slow of speech)."
-    },
-    {
-      "id": "r4",
-      "ru": "Господь разгневался на Моисея и сказал, «А твой брат, Левит Аарон, я знаю, он говорит хорошо, он уже вышел, чтобы тебя встретить, и обрадуется, увидев тебя.",
-      "question": "Whom did the Lord appoint to help Moses speak?",
-      "options": ["His brother Aaron the Levite", "His sister Miriam", "His father-in-law Jethro", "The elders of Israel"],
-      "correct": "His brother Aaron the Levite",
-      "explain": "The Lord names 'твой брат, Левит Аарон' (your brother Aaron the Levite), who speaks well."
-    },
-    {
-      "id": "r5",
-      "ru": "Моисей взял жену и сыновей, посадил их на осла и пустился в обратный путь в Египет, неся с собой Божий посох.",
-      "question": "How did Moses set out on his return to Egypt?",
-      "options": ["He set his wife and sons on a donkey and carried God's rod", "He went alone on foot", "He traveled by chariot", "He sailed on the Nile"],
-      "correct": "He set his wife and sons on a donkey and carried God's rod",
-      "explain": "The text says Moses 'посадил их на осла' and set out 'неся с собой Божий посох' (carrying God's rod)."
-    },
-    {
-      "id": "r6",
-      "ru": "Моисей сотворил перед людьми знамения, и они поверили.",
-      "question": "How did the people respond when Moses performed the signs?",
-      "options": ["They believed", "They laughed", "They fled", "They grew angry"],
-      "correct": "They believed",
-      "explain": "The text says 'они поверили' (they believed)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Моисей взял жену и сыновей, посадил их на осла и пустился в ___ в Египет, неся с собой Божий посох.",
+   "lemma": "путь",
+   "options": [
+    "обратный путь",
+    "обратным путём",
+    "обратному пути",
+    "обратном пути"
+   ],
+   "correct": "обратный путь",
+   "case": "Винительный (Accusative)",
+   "explain": "«обратный путь» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "Moses took his wife and his sons, and set them on a donkey, and he returned to the land of Egypt. Moses took God’s rod in his hand."
+  },
+  {
+   "sentence": "Но Циппора взяла острый ___, обрезала крайнюю плоть сына и коснулась ею ног Моисея .",
+   "lemma": "нож",
+   "options": [
+    "каменного ножа",
+    "каменным ножом",
+    "каменному ножу",
+    "каменный нож"
+   ],
+   "correct": "каменный нож",
+   "case": "Винительный (Accusative)",
+   "explain": "«каменный нож» — the accusative marks the direct object of the verb.",
+   "id": "c2",
+   "translation": "Then Zipporah took a flint, and cut off the foreskin of her son, and cast it at his feet; and she said, “Surely you are a bridegroom of blood to me.”"
+  },
+  {
+   "sentence": "Моисей и Аарон собрали ___, 30 и Аарон пересказал им все, что сказал Моисею Господь.",
+   "lemma": "старейшина",
+   "options": [
+    "израильские старейшины",
+    "израильских старейшин",
+    "израильскими старейшинами",
+    "израильских старейшинах"
+   ],
+   "correct": "израильских старейшин",
+   "case": "Винительный (Accusative)",
+   "explain": "«израильских старейшин» — the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "Moses and Aaron went and gathered together all the elders of the children of Israel."
+  }
+ ]
 }

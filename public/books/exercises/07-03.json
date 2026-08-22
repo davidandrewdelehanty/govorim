@@ -1,134 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Вот ___ которые Господь оставил, чтобы испытывать израилетян.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землю"],
-      "correct": "земля",
-      "case": "Именительный (Nominative)",
-      "translation": "Now these are the nations which Yahweh left, to test Israel.",
-      "explain": "Земля is the grammatical subject of the clause, standing in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Господь оставил их, чтобы испытывать через ___.",
-      "lemma": "война",
-      "options": ["война", "войны", "войне", "войну"],
-      "correct": "войну",
-      "case": "Винительный (Accusative)",
-      "translation": "Yahweh left them to test Israel through wars.",
-      "explain": "The preposition через (through) governs the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Израилетяне жили среди ___.",
-      "lemma": "вода",
-      "options": ["вода", "воды", "воде", "воду"],
-      "correct": "воды",
-      "case": "Родительный (Genitive)",
-      "translation": "The children of Israel lived surrounded by waters.",
-      "explain": "The preposition среди (among) governs the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Они служили богам в ___.",
-      "lemma": "гора",
-      "options": ["гора", "горы", "горе", "гору"],
-      "correct": "горе",
-      "case": "Предложный (Prepositional)",
-      "translation": "They served gods on the mountains.",
-      "explain": "The preposition на (on) with location governs the prepositional case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Израилетяне совершили зло в глазах Господа, и он отдал их в руки ___.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царём"],
-      "correct": "царя",
-      "case": "Родительный (Genitive)",
-      "translation": "The Israelites did evil in Yahweh's sight, and he sold them into the hand of the king.",
-      "explain": "Possession after руки (hand) requires the genitive case."
-    },
-    {
-      "id": "c6",
-      "sentence": "И земля покоилась в мире пред ___.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господом",
-      "case": "Творительный (Instrumental)",
-      "translation": "And the land rested before the Lord.",
-      "explain": "The preposition пред (before) governs the instrumental case when used in this context."
-    },
-    {
-      "id": "c7",
-      "sentence": "Дух Господа пришел на ___, и он стал судьей Израиля.",
-      "lemma": "человек",
-      "options": ["человек", "человека", "человеку", "человеком"],
-      "correct": "человека",
-      "case": "Родительный (Genitive)",
-      "translation": "The Spirit of Yahweh came upon a man, and he judged Israel.",
-      "explain": "The verb пришел на (came upon) with a person takes the accusative case, but here the genitive matches."
-    },
-    {
-      "id": "c8",
-      "sentence": "Господь отдал врага в руки ___.",
-      "lemma": "ремесленник",
-      "options": ["ремесленник", "ремесленника", "ремесленнику", "ремесленником"],
-      "correct": "ремесленника",
-      "case": "Родительный (Genitive)",
-      "translation": "Yahweh delivered the enemy into the hands of a craftsman.",
-      "explain": "Possession after руки (hand) requires the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Израилетяне жили среди Хананеев, Хеттов, Амареев, Ферезеев, Хеввеев и Иевусеев.",
-      "question": "Among which peoples did the children of Israel live?",
-      "options": ["The Canaanites, Hittites, Amorites, Perizzites, Hivites, and Jebusites", "The Philistines and Syrians", "Only the Canaanites", "The Egyptians and Assyrians"],
-      "correct": "The Canaanites, Hittites, Amorites, Perizzites, Hivites, and Jebusites",
-      "explain": "The text explicitly lists all these peoples among whom Israel dwelt."
-    },
-    {
-      "id": "r2",
-      "ru": "Они брали в жены их дочерей, отдавали своих дочерей за их сыновей.",
-      "question": "What type of intermarriage took place between Israel and these nations?",
-      "options": ["They married their daughters and gave their own daughters to them", "They enslaved their daughters", "They avoided all marriage", "They fought against intermarriage"],
-      "correct": "They married their daughters and gave their own daughters to them",
-      "explain": "The text states they took their daughters as wives and gave their own daughters to their sons."
-    },
-    {
-      "id": "r3",
-      "ru": "Израилетяне совершили зло в глазах Господа и служили Баалом и Ашером.",
-      "question": "What evil did the Israelites commit according to this verse?",
-      "options": ["They forgot God and served Baals and Asheroth", "They refused to go to war", "They built new cities", "They rejected all laws"],
-      "correct": "They forgot God and served Baals and Asheroth",
-      "explain": "The text describes their evil as forgetting the Lord their God and serving Baals and Asheroth."
-    },
-    {
-      "id": "r4",
-      "ru": "Дух Господа сошел на него, он стал судьей Израиля и отправился воевать.",
-      "question": "What happened to Othniel when the Spirit of the Lord came upon him?",
-      "options": ["He judged Israel and went out to war", "He fled the country", "He built a temple", "He married a queen"],
-      "correct": "He judged Israel and went out to war",
-      "explain": "The text says the Spirit of Yahweh came on him, and he judged Israel, and went out to war."
-    },
-    {
-      "id": "r5",
-      "ru": "Ехуд сделал обоюдоострый меч длиной в локоть и укрепил его под одеждой у правого бедра.",
-      "question": "What kind of weapon did Ehud make and how did he conceal it?",
-      "options": ["A two-edged sword a cubit long, hidden under his clothing on his right thigh", "A bow and arrows hidden in his cart", "A long spear carried openly", "A dagger in his left shoe"],
-      "correct": "A two-edged sword a cubit long, hidden under his clothing on his right thigh",
-      "explain": "The text describes Ehud making a sword with two edges, a cubit in length, and wearing it under his clothing on his right thigh."
-    },
-    {
-      "id": "r6",
-      "ru": "Ехуд не вытащил меча, и нечистоты вышли из тела царя.",
-      "question": "What happened when Ehud struck the king with his sword?",
-      "options": ["He didn't draw the sword out, and the king's waste came out", "The sword broke inside the king", "The king called for help", "The guards saw the attack"],
-      "correct": "He didn't draw the sword out, and the king's waste came out",
-      "explain": "The text states Ehud did not draw the sword, and it came out behind as the king's waste came out."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Ехуд сделал обоюдоострый меч, длиной в локоть , и укрепил его под одеждой у ___.",
+   "lemma": "бедро",
+   "options": [
+    "правое бедро",
+    "правого бедра",
+    "правым бедром",
+    "правому бедру"
+   ],
+   "correct": "правого бедра",
+   "case": "Родительный (Genitive)",
+   "explain": "«правого бедра» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Ehud made himself a sword which had two edges, a cubit in length; and he wore it under his clothing on his right thigh."
+  },
+  {
+   "sentence": "Ехуд приблизился к нему (а тот сидел один в верхней комнате своего ___) и сказал:",
+   "lemma": "дворец",
+   "options": [
+    "летнего дворца",
+    "летнему дворцу",
+    "летний дворец",
+    "летним дворцом"
+   ],
+   "correct": "летнего дворца",
+   "case": "Родительный (Genitive)",
+   "explain": "«летнего дворца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "Ehud came to him; and he was sitting by himself alone in the cool upper room. Ehud said, “I have a message from God to you.” He arose out of his seat."
+  },
+  {
+   "sentence": "Выйдя в переднюю , Ехуд закрыл за собой двери ___ и запер их.",
+   "lemma": "комната",
+   "options": [
+    "верхней комнаты",
+    "верхняя комната",
+    "верхней комнатой",
+    "верхней комнате"
+   ],
+   "correct": "верхней комнаты",
+   "case": "Родительный (Genitive)",
+   "explain": "«верхней комнаты» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "Then Ehud went out onto the porch, and shut the doors of the upper room on him, and locked them."
+  },
+  {
+   "sentence": "Когда он ушел, слуги обнаружили двери ___ запертыми.",
+   "lemma": "комната",
+   "options": [
+    "верхней комнаты",
+    "верхняя комната",
+    "верхней комнатой",
+    "верхней комнате"
+   ],
+   "correct": "верхней комнаты",
+   "case": "Родительный (Genitive)",
+   "explain": "«верхней комнаты» — the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "After he had gone, his servants came and saw that the doors of the upper room were locked. They said, “Surely he is covering his feet in the upper room.”"
+  }
+ ]
 }

@@ -1,134 +1,34 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Мое учение польется, словно ___, пусть сойдут мои слова, как роса.",
-      "lemma": "дождь",
-      "options": ["дождь", "дождя", "дождю", "дождем"],
-      "correct": "дождь",
-      "case": "Винительный (Accusative)",
-      "translation": "My teaching will drop as the rain; let my words descend as dew.",
-      "explain": "The verb льется (falls/pours down) takes the accusative case for its object."
-    },
-    {
-      "id": "c2",
-      "sentence": "Я провозглашу имя ___.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "I will proclaim the name of the Lord.",
-      "explain": "The noun имя (name) in the construction 'the name of someone' takes the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Верен ___ не творящий неправды.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Бог",
-      "case": "Именительный (Nominative)",
-      "translation": "God is faithful, he who does no wrong.",
-      "explain": "Бог is the subject of the predicate верен (faithful), so it takes the nominative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Не бойтесь его, ибо вы его сыновья, как ваш ___ творец.",
-      "lemma": "отец",
-      "options": ["отец", "отца", "отцу", "отцом"],
-      "correct": "отца",
-      "case": "Родительный (Genitive)",
-      "translation": "Do not fear him, because you are his children, as your father, creator.",
-      "explain": "The possessive construction 'your father/creator' uses the genitive case in Russian apposition."
-    },
-    {
-      "id": "c5",
-      "sentence": "Вспомни древние дни, подумай об ушедших ___.",
-      "lemma": "поколение",
-      "options": ["поколение", "поколения", "поколению", "поколениях"],
-      "correct": "поколениях",
-      "case": "Предложный (Prepositional)",
-      "translation": "Remember the days of old, consider the generations of long ago.",
-      "explain": "The preposition о (about) governing a prepositional phrase takes the prepositional case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Он нашел его в пустынной ___.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "землю", "земле"],
-      "correct": "земле",
-      "case": "Предложный (Prepositional)",
-      "translation": "He found him in a desert land.",
-      "explain": "The preposition в (in) indicating location takes the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Как орел вызывает свое гнездо и парит над своими ___.",
-      "lemma": "птенец",
-      "options": ["птенец", "птенца", "птенцу", "птенцами"],
-      "correct": "птенцами",
-      "case": "Творительный (Instrumental)",
-      "translation": "As an eagle stirs up its nest and hovers over its young.",
-      "explain": "The preposition над (above/over) takes the instrumental case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Где же их боги, та ___, за которой они укрывались?",
-      "lemma": "скала",
-      "options": ["скала", "скалы", "скале", "скалу"],
-      "correct": "скала",
-      "case": "Именительный (Nominative)",
-      "translation": "Where are their gods, the rock in which they took refuge?",
-      "explain": "Скала is the subject of the implied verb to be, so it stands in the nominative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Внимайте, небеса, я буду говорить, слушай, земля, слова моих уст.",
-      "question": "Who is being addressed to listen and hear God's words?",
-      "options": ["The heavens and the earth", "The people of Israel only", "The priests and Levites", "The kings of the earth"],
-      "correct": "The heavens and the earth",
-      "explain": "The opening verse directly addresses 'Внимайте, небеса... слушай, земля' — Give ear, heavens... listen, earth."
-    },
-    {
-      "id": "r2",
-      "ru": "Он — скала, Его дела совершенны, все Его пути праведны.",
-      "question": "What characteristic of God's works and paths is emphasized?",
-      "options": ["They are perfect and just", "They are mysterious and hidden", "They are sometimes unjust", "They change over time"],
-      "correct": "They are perfect and just",
-      "explain": "The verse states 'Его дела совершенны, все Его пути праведны' — His works are perfect, all his ways are just."
-    },
-    {
-      "id": "r3",
-      "ru": "В пустынной земле он его нашел, в степи печальной и дикой, ограждал его, пекся о нем, хранил его, как зеницу своего ока.",
-      "question": "How did God care for his people in the wilderness?",
-      "options": ["He found them in a barren land and guarded them as the apple of his eye", "He abandoned them to fend for themselves", "He remained distant from them", "He tested them with hardship alone"],
-      "correct": "He found them in a barren land and guarded them as the apple of his eye",
-      "explain": "The text describes how God 'хранил его, как зеницу своего ока' — kept him as the apple of his eye."
-    },
-    {
-      "id": "r4",
-      "ru": "Ешурун растолстел и стал упрям, растолстел, обрюзг, разжирел, оставил Бога, который создал его.",
-      "question": "What did Jeshurun do after becoming fat and prosperous?",
-      "options": ["He abandoned God who made him", "He became more righteous", "He thanked God for his blessing", "He kept the covenant perfectly"],
-      "correct": "He abandoned God who made him",
-      "explain": "The verse explicitly states 'оставил Бога, который создал его' — He abandoned God who created him."
-    },
-    {
-      "id": "r5",
-      "ru": "Примите к сердцу все слова, которые я торжественно возвестил вам сегодня, чтобы вы велели своим детям прилежно слушаться всех слов этого закона.",
-      "question": "What does Moses urge the people to do with his words?",
-      "options": ["Take them to heart and instruct their children to obey the law", "Debate them among themselves", "Write them on scrolls", "Sing them as a song"],
-      "correct": "Take them to heart and instruct their children to obey the law",
-      "explain": "Moses commands 'Примите к сердцу все слова' and urges them to command their children to obey the law."
-    },
-    {
-      "id": "r6",
-      "ru": "Поднимись на горную цепь Аварим, на гору Нева в Мааве, напротив Иерихона, и осмотри Ханаан, землю, которую я отдаю во владение израилетянам.",
-      "question": "What is Moses commanded to do on Mount Nebo?",
-      "options": ["Ascend the mountain, view the land of Canaan that God is giving to the Israelites", "Lead the people across the Jordan River", "Build an altar for sacrifice", "Wait for Joshua to arrive"],
-      "correct": "Ascend the mountain, view the land of Canaan that God is giving to the Israelites",
-      "explain": "God commands Moses to 'Поднимись на горную цепь Аварим... и осмотри Ханаан, землю, которую я отдаю' — go up and view the land."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Они возбудили в Нем ревность ___",
+   "lemma": "бог",
+   "options": [
+    "чужими богами",
+    "чужие боги",
+    "чужих богах",
+    "чужим богам"
+   ],
+   "correct": "чужими богами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«чужими богами» — the instrumental marks the means, company, or complement.",
+   "id": "c2",
+   "translation": "They moved him to jealousy with strange gods. They provoked him to anger with abominations."
+  },
+  {
+   "sentence": "Для вас это не ___: в них — ваша жизнь.",
+   "lemma": "слово",
+   "options": [
+    "пустые слова",
+    "пустых словах",
+    "пустых слов",
+    "пустым словам"
+   ],
+   "correct": "пустые слова",
+   "case": "Именительный (Nominative)",
+   "explain": "«пустые слова» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "For it is no vain thing for you, because it is your life, and through this thing you shall prolong your days in the land, where you go over the Jordan to possess it.”"
+  }
+ ]
 }

@@ -1,213 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Когда Иисус спустился с ___, за Ним последовало множество людей.",
-      "lemma": "гора",
-      "options": [
-        "гора",
-        "горы",
-        "горе",
-        "горой"
-      ],
-      "correct": "горы",
-      "case": "Родительный (Genitive)",
-      "translation": "When Jesus came down from the mountain, great multitudes followed him.",
-      "explain": "The preposition с governs the genitive case here (motion down from)."
-    },
-    {
-      "id": "c2",
-      "sentence": "И Иисус сказал ___, иди, по твоей вере будет тебе.",
-      "lemma": "сотник",
-      "options": [
-        "сотник",
-        "сотника",
-        "сотнику",
-        "сотником"
-      ],
-      "correct": "сотнику",
-      "case": "Дательный (Dative)",
-      "translation": "And Jesus said to the centurion, go, it will be done for you as you believed.",
-      "explain": "The verb сказал takes its addressee in the dative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Иисус протянул ___ и прикоснулся к Нему.",
-      "lemma": "рука",
-      "options": [
-        "рука",
-        "руки",
-        "руке",
-        "руку"
-      ],
-      "correct": "руку",
-      "case": "Винительный (Accusative)",
-      "translation": "Jesus stretched out his hand and touched him.",
-      "explain": "The transitive verb протянул takes a direct object in the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Он изгнал духов ___ и исцелил всех больных.",
-      "lemma": "слово",
-      "options": [
-        "слово",
-        "слова",
-        "слову",
-        "словом"
-      ],
-      "correct": "словом",
-      "case": "Творительный (Instrumental)",
-      "translation": "He cast out the spirits with a word and healed all who were sick.",
-      "explain": "The instrumental case expresses the means used ('with a word') without a preposition."
-    },
-    {
-      "id": "c5",
-      "sentence": "Многие придут с востока и запада и возлягут с Авраамом, Исааком и Иаковом в небесном ___.",
-      "lemma": "царство",
-      "options": [
-        "царство",
-        "царства",
-        "царству",
-        "царстве"
-      ],
-      "correct": "царстве",
-      "case": "Предложный (Prepositional)",
-      "translation": "Many will come from the east and west and recline with Abraham, Isaac, and Jacob in the kingdom of heaven.",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Он прикоснулся к ее руке, и ___ оставил ее.",
-      "lemma": "жар",
-      "options": [
-        "жар",
-        "жара",
-        "жару",
-        "жаром"
-      ],
-      "correct": "жар",
-      "case": "Именительный (Nominative)",
-      "translation": "He touched her hand, and the fever left her.",
-      "explain": "Жар is the grammatical subject of the verb оставил, so it stands in the nominative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Тут к Нему подошел человек больной проказой, поклонился ему и сказал, «Господи, если Ты захочешь, Ты можешь меня очистить».",
-      "question": "What did the leper ask Jesus?",
-      "options": [
-        "To be made clean, if Jesus was willing",
-        "To be given money",
-        "To be healed of blindness",
-        "To be forgiven of his sins"
-      ],
-      "correct": "To be made clean, if Jesus was willing",
-      "explain": "The leper says если Ты захочешь, Ты можешь меня очистить (if you are willing, you can make me clean)."
-    },
-    {
-      "id": "r2",
-      "ru": "Сотник возразил Иисусу, «Господи, я недостоин, чтобы ты вошел под крышу моего дома. Скажи лишь слово, и мой слуга выздоровеет.",
-      "question": "Why did the centurion say Jesus did not need to enter his house?",
-      "options": [
-        "He believed Jesus could heal with just a word",
-        "He was ashamed of his house",
-        "He thought Jesus was too busy",
-        "He did not believe Jesus could heal"
-      ],
-      "correct": "He believed Jesus could heal with just a word",
-      "explain": "The centurion says Скажи лишь слово, и мой слуга выздоровеет (just say the word and my servant will be healed)."
-    },
-    {
-      "id": "r3",
-      "ru": "Говорю вам, что многие из других народов придут с востока и запада и возлягут на Перу с Авраамом, Исааком и Иаковом в небесном царстве.",
-      "question": "What did Jesus say about people from other nations?",
-      "options": [
-        "Many will come from east and west to feast in the kingdom of heaven",
-        "Only Israelites will enter the kingdom",
-        "They will be turned away at the gate",
-        "They will become servants of Israel"
-      ],
-      "correct": "Many will come from east and west to feast in the kingdom of heaven",
-      "explain": "Jesus says many will come с востока и запада and recline in the kingdom of heaven with Abraham, Isaac, and Jacob."
-    },
-    {
-      "id": "r4",
-      "ru": "Придя в дом Петра, Иисус увидел, что его теща лежит в горячке.",
-      "question": "What was wrong with Peter's mother-in-law when Jesus arrived?",
-      "options": [
-        "She was lying sick with a fever",
-        "She was blind",
-        "She had a demon",
-        "She had just died"
-      ],
-      "correct": "She was lying sick with a fever",
-      "explain": "The text says she лежит в горячке (lies sick with a fever)."
-    },
-    {
-      "id": "r5",
-      "ru": "Он изгнал духов словом и исцелил всех больных.",
-      "question": "How did Jesus cast out the evil spirits?",
-      "options": [
-        "With a word",
-        "With holy water",
-        "With a special herb",
-        "By touching each person twice"
-      ],
-      "correct": "With a word",
-      "explain": "The text says he изгнал духов словом (cast out the spirits with a word)."
-    },
-    {
-      "id": "r6",
-      "ru": "Иисус ответил, у лисиц есть норы и у птиц небесных гнезда, а сыну человеческому негде и голову преклонить.",
-      "question": "What did Jesus say about the Son of Man's living situation?",
-      "options": [
-        "He has nowhere to lay his head, unlike foxes and birds",
-        "He owns many houses",
-        "He lives in the temple",
-        "He lives with his disciples permanently"
-      ],
-      "correct": "He has nowhere to lay his head, unlike foxes and birds",
-      "explain": "Jesus contrasts foxes' dens and birds' nests with the Son of Man having negde голову преклонить."
-    },
-    {
-      "id": "r7",
-      "ru": "Он встал, запретил ветру и волнам, и наступил полный штиль.",
-      "question": "What happened after Jesus rebuked the wind and the waves?",
-      "options": [
-        "A complete calm followed",
-        "The storm grew stronger",
-        "The boat sank",
-        "The disciples jumped overboard"
-      ],
-      "correct": "A complete calm followed",
-      "explain": "The text says наступил полный штиль (a complete calm came) after Jesus rebuked the wind and waves."
-    },
-    {
-      "id": "r8",
-      "ru": "Выйдя из людей, демоны вошли в свиней, все стадо бросилось с обрыва в озеро и погибло в воде.",
-      "question": "What happened to the herd of pigs after the demons entered them?",
-      "options": [
-        "The whole herd rushed down the cliff into the lake and died",
-        "The pigs became calm and peaceful",
-        "The pigs ran away into the hills",
-        "The pigs were sold to another town"
-      ],
-      "correct": "The whole herd rushed down the cliff into the lake and died",
-      "explain": "The text says the herd бросилось с обрыва в озеро и погибло в воде."
-    },
-    {
-      "id": "r9",
-      "ru": "Тогда все жители города вышли навстречу Иисусу и, увидев Его, попросили покинуть их края.",
-      "question": "How did the townspeople react when they saw Jesus after the pigs died?",
-      "options": [
-        "They asked him to leave their region",
-        "They begged him to stay forever",
-        "They asked him to heal more people",
-        "They threw a feast in his honor"
-      ],
-      "correct": "They asked him to leave their region",
-      "explain": "The text says they попросили покинуть их края (asked him to leave their region)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Говорю вам, что многие из ___ придут с востока и запада, займут свои места на пиру с Авраамом, Исааком и Иаковом в Небесном Царстве.",
+   "lemma": "народ",
+   "options": [
+    "других народов",
+    "других народах",
+    "другим народам",
+    "другие народы"
+   ],
+   "correct": "других народов",
+   "case": "Родительный (Genitive)",
+   "explain": "«других народов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "I tell you that many will come from the east and the west, and will sit down with Abraham, Isaac, and Jacob in the Kingdom of Heaven,"
+  },
+  {
+   "sentence": "Когда Иисус увидел, что вокруг Него собралась ___, Он велел ученикам переправиться на другую сторону озера.",
+   "lemma": "толпа",
+   "options": [
+    "большая толпа",
+    "большей толпы",
+    "большей толпой",
+    "большей толпе"
+   ],
+   "correct": "большая толпа",
+   "case": "Именительный (Nominative)",
+   "explain": "«большая толпа» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "Now when Jesus saw great multitudes around him, he gave the order to depart to the other side."
+  },
+  {
+   "sentence": "А ___, из Его учеников, сказал:",
+   "lemma": "человек",
+   "options": [
+    "другому человеку",
+    "другой человек",
+    "другого человека",
+    "другом человеке"
+   ],
+   "correct": "другой человек",
+   "case": "Именительный (Nominative)",
+   "explain": "«другой человек» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "Another of his disciples said to him, “Lord, allow me first to go and bury my father.”"
+  },
+  {
+   "sentence": "Внезапно на озере поднялся такой ___, что лодку захлестывало волнами.",
+   "lemma": "шторм",
+   "options": [
+    "сильному шторму",
+    "сильном шторме",
+    "сильный шторм",
+    "сильного шторма"
+   ],
+   "correct": "сильный шторм",
+   "case": "Именительный (Nominative)",
+   "explain": "«сильный шторм» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "Behold, a violent storm came up on the sea, so much that the boat was covered with the waves, but he was asleep."
+  },
+  {
+   "sentence": "Когда Иисус прибыл на другую сторону озера, в Гадаринскую землю, навстречу Ему из ___ вышли два человека, одержимых демонами.",
+   "lemma": "пещера",
+   "options": [
+    "могильных пещер",
+    "могильным пещерам",
+    "могильных пещерах",
+    "могильными пещерами"
+   ],
+   "correct": "могильных пещер",
+   "case": "Родительный (Genitive)",
+   "explain": "«могильных пещер» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "When he came to the other side, into the country of the Gergesenes,  two people possessed by demons met him there, coming out of the tombs, exceedingly fierce, so that nobody could pass that way."
+  },
+  {
+   "sentence": "Неподалеку от них паслось ___ свиней.",
+   "lemma": "стадо",
+   "options": [
+    "большое стадо",
+    "большом стаде",
+    "большим стадом",
+    "большого стада"
+   ],
+   "correct": "большое стадо",
+   "case": "Именительный (Nominative)",
+   "explain": "«большое стадо» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "Now there was a herd of many pigs feeding far away from them."
+  }
+ ]
 }

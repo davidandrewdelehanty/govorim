@@ -1,204 +1,109 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Все разделяют одну ___ праведник и нечестивый.",
-      "lemma": "судьба",
-      "options": [
-        "судьба",
-        "судьбы",
-        "судьбе",
-        "судьбу"
-      ],
-      "correct": "судьбу",
-      "case": "Винительный (Accusative)",
-      "translation": "Both the righteous and the wicked share one fate.",
-      "explain": "Direct object of the transitive verb \"разделяют\" (share) requires the Accusative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Сердца ___ полны зла и безумия.",
-      "lemma": "люди",
-      "options": [
-        "люди",
-        "людей",
-        "людям",
-        "людьми"
-      ],
-      "correct": "людей",
-      "case": "Родительный (Genitive)",
-      "translation": "The hearts of people are full of evil and madness.",
-      "explain": "After the noun \"сердца\" (hearts), the possessor is in the Genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Любой, кто жив, имеет ___.",
-      "lemma": "надежда",
-      "options": [
-        "надежда",
-        "надежды",
-        "надежде",
-        "надежду"
-      ],
-      "correct": "надежду",
-      "case": "Винительный (Accusative)",
-      "translation": "Whoever is alive has hope.",
-      "explain": "Direct object of the transitive verb \"имеет\" (has) requires the Accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Даже живой ___ лучше, чем мертвому льву.",
-      "lemma": "собака",
-      "options": [
-        "собака",
-        "собаки",
-        "собаке",
-        "собаку"
-      ],
-      "correct": "собаке",
-      "case": "Дательный (Dative)",
-      "translation": "Even a living dog is better than a dead lion.",
-      "explain": "After the comparison, use the Dative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Мертвые не знают ничего и уже не будет им ___.",
-      "lemma": "награда",
-      "options": [
-        "награда",
-        "награды",
-        "награде",
-        "награду"
-      ],
-      "correct": "награды",
-      "case": "Родительный (Genitive)",
-      "translation": "The dead know nothing and will have no reward.",
-      "explain": "After the verb \"не будет\" (there will not be), use the Genitive case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Итак, иди и ешь со своей ___ с удовольствием.",
-      "lemma": "жена",
-      "options": [
-        "женой",
-        "жены",
-        "жене",
-        "жену"
-      ],
-      "correct": "женой",
-      "case": "Творительный (Instrumental)",
-      "translation": "Go eat with your wife with pleasure.",
-      "explain": "After the preposition \"со\" (with), use the Instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "В мире мертвых нет ни работы, ни ___.",
-      "lemma": "род",
-      "options": [
-        "род",
-        "рода",
-        "роду",
-        "родом"
-      ],
-      "correct": "рода",
-      "case": "Родительный (Genitive)",
-      "translation": "In the world of the dead, there is no work or kind.",
-      "explain": "After \"ни\" (nor) with negation, use the Genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Человек не знает, когда придет его ___.",
-      "lemma": "час",
-      "options": [
-        "час",
-        "часа",
-        "часу",
-        "часом"
-      ],
-      "correct": "час",
-      "case": "Именительный (Nominative)",
-      "translation": "A man does not know when his hour will come.",
-      "explain": "Subject of the verb \"придет\" (will come) is in the Nominative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Все разделяют одну участь, праведник и нечестивый, добрый и злой.",
-      "question": "What do both the righteous and wicked share?",
-      "options": [
-        "Only material possessions",
-        "One fate",
-        "The same rewards",
-        "Eternal life"
-      ],
-      "correct": "One fate",
-      "explain": "All share one fate, righteous and wicked, good and evil."
-    },
-    {
-      "id": "r2",
-      "ru": "Сердца людей полны зла и безумия, пока они живы, а после они отходят к умершим.",
-      "question": "What characterizes people's hearts while alive?",
-      "options": [
-        "They are pure and noble",
-        "They are full of wisdom",
-        "They are full of evil and madness",
-        "They are always peaceful"
-      ],
-      "correct": "They are full of evil and madness",
-      "explain": "The hearts of men are full of evil and madness while they live."
-    },
-    {
-      "id": "r3",
-      "ru": "Любой, кто жив, имеет надежду.",
-      "question": "What does anyone alive possess?",
-      "options": [
-        "Only sadness",
-        "Unlimited wealth",
-        "Hope",
-        "Fear and despair"
-      ],
-      "correct": "Hope",
-      "explain": "Whoever is alive has hope."
-    },
-    {
-      "id": "r4",
-      "ru": "Даже живой собаке лучше, чем мертвому льву.",
-      "question": "What comparison is made?",
-      "options": [
-        "A living lion is better than a dead dog",
-        "A dead dog is better than a living lion",
-        "A living dog is better than a dead lion",
-        "Dogs and lions are equal"
-      ],
-      "correct": "A living dog is better than a dead lion",
-      "explain": "A living dog is better than a dead lion."
-    },
-    {
-      "id": "r5",
-      "ru": "Живые знают, что умрут, а мертвые ничего не знают, и уже не будет им награды.",
-      "question": "What do the living know that the dead do not?",
-      "options": [
-        "How to make money",
-        "Where they will go",
-        "That they will die, and the dead know nothing and have no reward",
-        "How to be happy"
-      ],
-      "correct": "That they will die, and the dead know nothing and have no reward",
-      "explain": "The living know they will die, but the dead know nothing."
-    },
-    {
-      "id": "r6",
-      "ru": "Все, что ты в силах делать, делай, потому что в мире мертвых нет ни работы, ни размышления, ни знания, ни мудрости.",
-      "question": "Why should one do all that they can?",
-      "options": [
-        "To become wealthy",
-        "To gain fame",
-        "Because in the world of the dead there is no work or wisdom",
-        "To impress others"
-      ],
-      "correct": "Because in the world of the dead there is no work or wisdom",
-      "explain": "In the world of the dead there is no work or wisdom."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Всегда носи свою лучшую одежду и надуши волосы ___.",
+   "lemma": "масло",
+   "options": [
+    "благовонном масле",
+    "благовонное масло",
+    "благовонного масла",
+    "благовонным маслом"
+   ],
+   "correct": "благовонным маслом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«благовонным маслом» — the instrumental marks the means, company, or complement.",
+   "id": "c1",
+   "translation": "Let your garments be always white, and don’t let your head lack oil."
+  },
+  {
+   "sentence": "Я также видел под солнцем такой пример мудрости, который впечатлил меня: 14 был ___ с небольшим населением.",
+   "lemma": "город",
+   "options": [
+    "маленьком городе",
+    "маленькому городу",
+    "маленький город",
+    "маленького города"
+   ],
+   "correct": "маленький город",
+   "case": "Именительный (Nominative)",
+   "explain": "«маленький город» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "I have also seen wisdom under the sun in this way, and it seemed great to me."
+  },
+  {
+   "sentence": "Я также видел под солнцем такой пример мудрости, который впечатлил меня: 14 был маленький город с ___.",
+   "lemma": "население",
+   "options": [
+    "небольшим населением",
+    "небольшому населению",
+    "небольшом населении",
+    "небольшое население"
+   ],
+   "correct": "небольшим населением",
+   "case": "Творительный (Instrumental)",
+   "explain": "«небольшим населением» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "I have also seen wisdom under the sun in this way, and it seemed great to me."
+  },
+  {
+   "sentence": "И ___ пошел против него, окружил его и провел большие осадные работы против него.",
+   "lemma": "царь",
+   "options": [
+    "могучем царе",
+    "могучего царя",
+    "могучий царь",
+    "могучему царю"
+   ],
+   "correct": "могучий царь",
+   "case": "Именительный (Nominative)",
+   "explain": "«могучий царь» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "I have also seen wisdom under the sun in this way, and it seemed great to me."
+  },
+  {
+   "sentence": "И могучий царь пошел против него, окружил его и провел большие ___ против него.",
+   "lemma": "работа",
+   "options": [
+    "осадных работ",
+    "осадные работы",
+    "осадными работами",
+    "осадных работах"
+   ],
+   "correct": "осадные работы",
+   "case": "Винительный (Accusative)",
+   "explain": "«осадные работы» — the accusative marks the direct object of the verb.",
+   "id": "c5",
+   "translation": "I have also seen wisdom under the sun in this way, and it seemed great to me."
+  },
+  {
+   "sentence": "Но в том городе был ___, и он спас этот город своей мудростью.",
+   "lemma": "бедняк",
+   "options": [
+    "мудрый бедняк",
+    "мудрым бедняком",
+    "мудрого бедняка",
+    "мудром бедняке"
+   ],
+   "correct": "мудрый бедняк",
+   "case": "Именительный (Nominative)",
+   "explain": "«мудрый бедняк» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "Now a poor wise man was found in it, and he by his wisdom delivered the city; yet no man remembered that same poor man."
+  },
+  {
+   "sentence": "Однако после никто не вспомнил об этом ___.",
+   "lemma": "человек",
+   "options": [
+    "бедном человеке",
+    "бедного человека",
+    "бедный человек",
+    "бедному человеку"
+   ],
+   "correct": "бедном человеке",
+   "case": "Предложный (Prepositional)",
+   "explain": "«бедном человеке» — after the preposition «об», for location or topic.",
+   "id": "c7",
+   "translation": "Now a poor wise man was found in it, and he by his wisdom delivered the city; yet no man remembered that same poor man."
+  }
+ ]
 }

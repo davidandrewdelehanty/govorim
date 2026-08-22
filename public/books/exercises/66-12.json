@@ -1,204 +1,124 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "На небе появилось поразительное знамение. ___, одетая в солнце.",
-      "lemma": "женщина",
-      "options": [
-        "женщина",
-        "женщины",
-        "женщине",
-        "женщиной"
-      ],
-      "correct": "женщина",
-      "case": "Именительный (Nominative)",
-      "translation": "A great sign appeared in heaven: a woman clothed with the sun.",
-      "explain": "Женщина is the subject of the sentence, requiring the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Огромный красный ___ с семью головами и десятью рогами.",
-      "lemma": "дракон",
-      "options": [
-        "дракон",
-        "дракона",
-        "дракону",
-        "драконом"
-      ],
-      "correct": "дракон",
-      "case": "Именительный (Nominative)",
-      "translation": "A great red dragon with seven heads and ten horns.",
-      "explain": "Дракон is the subject of the predicate nominative, taking the nominative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Его хвост упал с небес на ___.",
-      "lemma": "земля",
-      "options": [
-        "земля",
-        "земли",
-        "земле",
-        "землю"
-      ],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "His tail fell from the sky to the earth.",
-      "explain": "The preposition на with direction takes the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Женщина родила ___, младенца мужского пола.",
-      "lemma": "сын",
-      "options": [
-        "сын",
-        "сына",
-        "сыну",
-        "сыном"
-      ],
-      "correct": "сына",
-      "case": "Винительный (Accusative)",
-      "translation": "She gave birth to a son, a male child.",
-      "explain": "The direct object of родила (gave birth to) takes the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "И ребенок был взят к Богу и его ___.",
-      "lemma": "трон",
-      "options": [
-        "трон",
-        "трона",
-        "трону",
-        "троном"
-      ],
-      "correct": "трону",
-      "case": "Дательный (Dative)",
-      "translation": "The child was caught up to God and to his throne.",
-      "explain": "The preposition к (to/toward) always takes the dative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "А ___ убежала в пустыню в место, приготовленное для нее Богом.",
-      "lemma": "женщина",
-      "options": [
-        "женщина",
-        "женщины",
-        "женщине",
-        "женщину"
-      ],
-      "correct": "женщина",
-      "case": "Именительный (Nominative)",
-      "translation": "The woman fled into the wilderness to a place prepared by God.",
-      "explain": "Женщина is the subject of убежала (fled), requiring the nominative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "На небе началась ___. На одной стороне сражались Михаил и его ангелы.",
-      "lemma": "война",
-      "options": [
-        "война",
-        "войны",
-        "войне",
-        "войной"
-      ],
-      "correct": "война",
-      "case": "Именительный (Nominative)",
-      "translation": "There was war in the sky. Michael and his angels made war.",
-      "explain": "Война is the subject of the predicate началась (began), taking the nominative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Этот великий ___, древний змей, был сброшен на землю.",
-      "lemma": "дракон",
-      "options": [
-        "дракон",
-        "дракона",
-        "дракону",
-        "драконом"
-      ],
-      "correct": "дракон",
-      "case": "Именительный (Nominative)",
-      "translation": "The great dragon, the old serpent, was thrown down to the earth.",
-      "explain": "Дракон is an appositive to the subject, requiring the nominative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "На небе появилось поразительное знамение. Женщина, одетая в солнце, у которой под ногами была луна, а на голове венец из 12 звезд.",
-      "question": "What sign appeared in heaven?",
-      "options": [
-        "A woman clothed with the sun, with the moon under her feet and a crown of twelve stars on her head",
-        "A red dragon with seven heads and ten horns",
-        "An angel descending from heaven with a scroll",
-        "A great light splitting the sky into four parts"
-      ],
-      "correct": "A woman clothed with the sun, with the moon under her feet and a crown of twelve stars on her head",
-      "explain": "The text describes 'Женщина, одетая в солнце, у которой под ногами была луна, а на голове венец из 12 звезд' — a woman clothed with the sun, moon under her feet, and crown of stars."
-    },
-    {
-      "id": "r2",
-      "ru": "Потом на небе появилось другое знамение. Огромный красный дракон с семью головами, десятью рогами и семью венцами на головах.",
-      "question": "What did the second sign in heaven show?",
-      "options": [
-        "A great red dragon with seven heads, ten horns, and seven crowns on his heads",
-        "Seven angels with trumpets sounding",
-        "A book sealed with seven seals",
-        "Four horsemen riding across the sky"
-      ],
-      "correct": "A great red dragon with seven heads, ten horns, and seven crowns on his heads",
-      "explain": "The text states 'Огромный красный дракон с семью головами, десятью рогами и семью венцами на головах' — a great red dragon with seven heads, ten horns, and seven crowns."
-    },
-    {
-      "id": "r3",
-      "ru": "Женщина родила сына, младенца мужского пола, которому предстоит править всеми народами железным скипетром.",
-      "question": "What kind of child did the woman give birth to?",
-      "options": [
-        "A son, a male child, who would rule all nations with a rod of iron",
-        "A girl child who would become a prophet",
-        "A child who would serve as a priest",
-        "A child who would lead a kingdom of peace"
-      ],
-      "correct": "A son, a male child, who would rule all nations with a rod of iron",
-      "explain": "The text says 'Женщина родила сына, младенца мужского пола, которому предстоит править всеми народами железным скипетром' — she bore a son who would rule all nations with an iron rod."
-    },
-    {
-      "id": "r4",
-      "ru": "На небе началась война. На одной стороне сражались Михаил и его ангелы, а на другой стороне воевал дракон со своими ангелами.",
-      "question": "What war started in heaven and who fought in it?",
-      "options": [
-        "Michael and his angels fought against the dragon and his angels",
-        "Satan and his demons fought against the archangels",
-        "The saints fought against the powers of darkness",
-        "Angels and men fought against the spirits of evil"
-      ],
-      "correct": "Michael and his angels fought against the dragon and his angels",
-      "explain": "The text states 'На одной стороне сражались Михаил и его ангелы, а на другой стороне воевал дракон' — Michael and his angels fought against the dragon."
-    },
-    {
-      "id": "r5",
-      "ru": "Этот великий дракон, древний змей, которого называют дьяволом и сатаной, он, обольщающий весь мир, был вместе со своими ангелами сброшен на землю.",
-      "question": "What happened to the great dragon and his angels?",
-      "options": [
-        "They were thrown down to the earth",
-        "They were locked in the abyss",
-        "They were burned with fire",
-        "They were transformed into demons"
-      ],
-      "correct": "They were thrown down to the earth",
-      "explain": "The text says 'был вместе со своими ангелами сброшен на землю' — he and his angels were thrown down to the earth."
-    },
-    {
-      "id": "r6",
-      "ru": "Когда дракон увидел, что он сброшен на землю, то стал преследовать женщину, родившую мальчика.",
-      "question": "What did the dragon do when he was cast down to the earth?",
-      "options": [
-        "He persecuted the woman who gave birth to the male child",
-        "He tried to destroy the throne of God",
-        "He gathered his demons for battle",
-        "He fled to hide in the abyss"
-      ],
-      "correct": "He persecuted the woman who gave birth to the male child",
-      "explain": "The text states 'стал преследовать женщину, родившую мальчика' — he persecuted the woman who had borne the male child."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "На небе появилось ___ — женщина, одетая в солнце, у которой под ногами была луна, а на голове — венец из двенадцати звезд .",
+   "lemma": "знамение",
+   "options": [
+    "поразительного знамения",
+    "поразительном знамении",
+    "поразительное знамение",
+    "поразительному знамению"
+   ],
+   "correct": "поразительное знамение",
+   "case": "Именительный (Nominative)",
+   "explain": "«поразительное знамение» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "A great sign was seen in heaven: a woman clothed with the sun, and the moon under her feet, and on her head a crown of twelve stars."
+  },
+  {
+   "sentence": "Она была беременна и кричала от боли, потому что у нее начались ___.",
+   "lemma": "схватка",
+   "options": [
+    "родовыми схватками",
+    "родовые схватки",
+    "родовым схваткам",
+    "родовых схваток"
+   ],
+   "correct": "родовые схватки",
+   "case": "Именительный (Nominative)",
+   "explain": "«родовые схватки» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "She was with child. She cried out in pain, laboring to give birth."
+  },
+  {
+   "sentence": "Потом на небе появилось ___ — огромный красный дракон с семью головами, десятью рогами и с семью венцами на головах .",
+   "lemma": "знамение",
+   "options": [
+    "другом знамении",
+    "другого знамения",
+    "другое знамение",
+    "другим знамением"
+   ],
+   "correct": "другое знамение",
+   "case": "Именительный (Nominative)",
+   "explain": "«другое знамение» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "Another sign was seen in heaven. Behold, a great red dragon, having seven heads and ten horns, and on his heads seven crowns."
+  },
+  {
+   "sentence": "Потом на небе появилось другое знамение — огромный ___ с семью головами, десятью рогами и с семью венцами на головах .",
+   "lemma": "дракон",
+   "options": [
+    "красный дракон",
+    "красного дракона",
+    "красным драконом",
+    "красном драконе"
+   ],
+   "correct": "красный дракон",
+   "case": "Именительный (Nominative)",
+   "explain": "«красный дракон» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "Another sign was seen in heaven. Behold, a great red dragon, having seven heads and ten horns, and on his heads seven crowns."
+  },
+  {
+   "sentence": "Женщина родила сына, младенца ___, которому предстоит править всеми народами железным скипетром, и ребенок был взят к Богу и Его трону.",
+   "lemma": "пол",
+   "options": [
+    "мужскому полу",
+    "мужским полом",
+    "мужского пола",
+    "мужском поле"
+   ],
+   "correct": "мужского пола",
+   "case": "Родительный (Genitive)",
+   "explain": "«мужского пола» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "She gave birth to a son, a male child, who is to rule all the nations with a rod of iron. Her child was caught up to God, and to his throne."
+  },
+  {
+   "sentence": "Женщина родила сына, младенца мужского пола, которому предстоит править всеми народами ___, и ребенок был взят к Богу и Его трону.",
+   "lemma": "скипетр",
+   "options": [
+    "железному скипетру",
+    "железным скипетром",
+    "железного скипетра",
+    "железный скипетр"
+   ],
+   "correct": "железным скипетром",
+   "case": "Творительный (Instrumental)",
+   "explain": "«железным скипетром» — the instrumental marks the means, company, or complement.",
+   "id": "c6",
+   "translation": "She gave birth to a son, a male child, who is to rule all the nations with a rod of iron. Her child was caught up to God, and to his throne."
+  },
+  {
+   "sentence": "Этот ___ — древний змей , которого называют дьяволом и сатаной; он, обольщающий весь мир, был вместе со своими ангелами сброшен на землю.",
+   "lemma": "дракон",
+   "options": [
+    "великого дракона",
+    "великом драконе",
+    "великому дракону",
+    "великий дракон"
+   ],
+   "correct": "великий дракон",
+   "case": "Именительный (Nominative)",
+   "explain": "«великий дракон» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "The great dragon was thrown down, the old serpent, he who is called the devil and Satan, the deceiver of the whole world. He was thrown down to the earth, and his angels were thrown down with him."
+  },
+  {
+   "sentence": "Я тогда услышал в небе ___, который произнес:",
+   "lemma": "голос",
+   "options": [
+    "громком голосе",
+    "громкий голос",
+    "громкого голоса",
+    "громким голосом"
+   ],
+   "correct": "громкий голос",
+   "case": "Винительный (Accusative)",
+   "explain": "«громкий голос» — the accusative marks the direct object of the verb.",
+   "id": "c9",
+   "translation": "I heard a loud voice in heaven, saying, “Now the salvation, the power, and the Kingdom of our God, and the authority of his Christ has come; for the accuser of our brothers has been thrown down, who accuses them before our God day and night."
+  }
+ ]
 }

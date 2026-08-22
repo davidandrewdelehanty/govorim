@@ -1,21 +1,6 @@
 {
  "cases": [
   {
-   "sentence": "Такого рода действия всегда проявляются в войне, принимающей ___.",
-   "lemma": "характер",
-   "options": [
-    "народный характер",
-    "народный характер",
-    "народном характере",
-    "народному характеру"
-   ],
-   "correct": "народный характер",
-   "case": "Винительный (Accusative)",
-   "explain": "«народный характер» — the accusative marks the direct object of the verb.",
-   "id": "c1",
-   "translation": "One of the most obvious and advantageous departures from the so-called laws of war is the action of scattered groups against men pressed together in a mass. Such action always occurs in wars that take on a national character. In such actions, instead of two crowds opposing each other, the men disperse, attack singly, run away when attacked by stronger forces, but again attack when opportunity offers. This was done by the guerrillas in Spain, by the mountain tribes in the Caucasus, and by the Russians in 1812."
-  },
-  {
    "sentence": "___ (всегда успешная как показывает история) прямо противуположна этому правилу.",
    "lemma": "война",
    "options": [
@@ -61,6 +46,21 @@
    "translation": "This contradiction arises from the fact that military science assumes the strength of an army to be identical with its numbers. Military science says that the more troops the greater the strength. Les gros bataillons ont toujours raison.115"
   },
   {
+   "sentence": "Военная наука говорит, что чем больше войска, тем больше силы. Les gros bataillons ont toujours raison.[968] Крупные ___ всегда одолевают.",
+   "lemma": "сила",
+   "options": [
+    "боевых сил",
+    "боевыми силами",
+    "боевые силы",
+    "боевых силах"
+   ],
+   "correct": "боевые силы",
+   "case": "Именительный (Nominative)",
+   "explain": "«боевые силы» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "This contradiction arises from the fact that military science assumes the strength of an army to be identical with its numbers. Military science says that the more troops the greater the strength. Les gros bataillons ont toujours raison.115"
+  },
+  {
    "sentence": "В ___ сила войск есть также произведение из массы на что-то другое, на какое-то неизвестное х.",
    "lemma": "дело",
    "options": [
@@ -72,7 +72,7 @@
    "correct": "военном деле",
    "case": "Предложный (Prepositional)",
    "explain": "«военном деле» — after the preposition «в», for location or topic.",
-   "id": "c5",
+   "id": "c6",
    "translation": "In military affairs the strength of an army is the product of its mass and some unknown x."
   },
   {
@@ -87,7 +87,7 @@
    "correct": "историческими фактами",
    "case": "Творительный (Instrumental)",
    "explain": "«историческими фактами» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c6",
+   "id": "c7",
    "translation": "Military science, seeing in history innumerable instances of the fact that the size of any army does not coincide with its strength and that small detachments defeat larger ones, obscurely admits the existence of this unknown factor and tries to discover it—now in a geometric formation, now in the equipment employed, now, and most usually, in the genius of the commanders. But the assignment of these various meanings to the factor does not yield results which accord with the historic facts."
   },
   {
@@ -102,7 +102,7 @@
    "correct": "ложного взгляда",
    "case": "Родительный (Genitive)",
    "explain": "«ложного взгляда» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7",
+   "id": "c8",
    "translation": "Yet it is only necessary to abandon the false view (adopted to gratify the “heroes”) of the efficacy of the directions issued in wartime by commanders, in order to find this unknown quantity."
   },
   {
@@ -117,23 +117,38 @@
    "correct": "неизвестного множителя",
    "case": "Родительный (Genitive)",
    "explain": "«неизвестного множителя» — the genitive here marks possession, absence, or quantity.",
-   "id": "c8",
+   "id": "c9",
    "translation": "The spirit of an army is the factor which multiplied by the mass gives the resulting force. To define and express the significance of this unknown factor—the spirit of an army—is a problem for science."
   },
   {
-   "sentence": "Тогда только, выражая уравнениями известные ___, можно из сравнения относительного значения этого неизвестного, надеяться на определение самого неизвестного.",
-   "lemma": "факт",
+   "sentence": "Тогда только, выражая уравнениями известные исторические факты, можно из сравнения ___ этого неизвестного, надеяться на определение самого неизвестного.",
+   "lemma": "значение",
    "options": [
-    "исторические факты",
-    "исторические факты",
-    "исторических фактах",
-    "исторических фактов"
+    "относительному значению",
+    "относительное значение",
+    "относительным значением",
+    "относительного значения"
    ],
-   "correct": "исторические факты",
-   "case": "Винительный (Accusative)",
-   "explain": "«исторические факты» — the accusative marks the direct object of the verb.",
-   "id": "c9",
+   "correct": "относительного значения",
+   "case": "Родительный (Genitive)",
+   "explain": "«относительного значения» — the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
    "translation": "This problem is only solvable if we cease arbitrarily to substitute for the unknown x itself the conditions under which that force becomes apparent—such as the commands of the general, the equipment employed, and so on—mistaking these for the real significance of the factor, and if we recognize this unknown quantity in its entirety as being the greater or lesser desire to fight and to face danger. Only then, expressing known historic facts by equations and comparing the relative significance of this factor, can we hope to define the unknown."
+  },
+  {
+   "sentence": "___ о том, что надо действовать массами при наступлении и разрозненно при отступлении, бессознательно подтверждает только ту истину, что сила войска зависит от его духа.",
+   "lemma": "правило",
+   "options": [
+    "тактического правила",
+    "тактическим правилом",
+    "тактическом правиле",
+    "тактическое правило"
+   ],
+   "correct": "тактическое правило",
+   "case": "Именительный (Nominative)",
+   "explain": "«Тактическое правило» — the subject of the sentence stands in the nominative.",
+   "id": "c12",
+   "translation": "The tactical rule that an army should act in masses when attacking, and in smaller groups in retreat, unconsciously confirms the truth that the strength of an army depends on its spirit. To lead men forward under fire more discipline (obtainable only by movement in masses) is needed than is needed to resist attacks. But this rule which leaves out of account the spirit of the army continually proves incorrect and is in particularly striking contrast to the facts when some strong rise or fall in the spirit of the troops occurs, as in all national wars."
   }
  ]
 }

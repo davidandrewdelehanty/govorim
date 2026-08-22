@@ -1,252 +1,139 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Там стоял ___ с кислым вином.",
-      "lemma": "кувшин",
-      "options": [
-        "кувшин",
-        "кувшина",
-        "кувшину",
-        "кувшином"
-      ],
-      "correct": "кувшин",
-      "case": "Именительный (Nominative)",
-      "translation": "A jar of sour wine stood there.",
-      "explain": "Кувшин is the subject of стоял ('stood'), so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Солдаты сплели венок из ___ и надели ему на голову.",
-      "lemma": "терновник",
-      "options": [
-        "терновник",
-        "терновника",
-        "терновнику",
-        "терновником"
-      ],
-      "correct": "терновника",
-      "case": "Родительный (Genitive)",
-      "translation": "The soldiers wove a crown out of thorns and put it on his head.",
-      "explain": "The preposition из ('out of, made from') governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Своему же ___ он сказал, «Вот твоя мать».",
-      "lemma": "ученик",
-      "options": [
-        "ученик",
-        "ученика",
-        "ученику",
-        "учеником"
-      ],
-      "correct": "ученику",
-      "case": "Дательный (Dative)",
-      "translation": "To his disciple he said, 'Here is your mother.'",
-      "explain": "The verb сказал ('said to someone') places the person addressed in the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Тогда Пилат приказал бичевать ___.",
-      "lemma": "Иисус",
-      "options": [
-        "Иисус",
-        "Иисуса",
-        "Иисусу",
-        "Иисусом"
-      ],
-      "correct": "Иисуса",
-      "case": "Винительный (Accusative)",
-      "translation": "Then Pilate ordered Jesus to be flogged.",
-      "explain": "Бичевать ('to flog') takes its object in the accusative case; for this animate proper noun the accusative equals the genitive form."
-    },
-    {
-      "id": "c5",
-      "sentence": "Вместо этого один из солдат пронзил ___ бок Иисуса, и из него сразу же потекли кровь и вода.",
-      "lemma": "копье",
-      "options": [
-        "копье",
-        "копья",
-        "копью",
-        "копьём"
-      ],
-      "correct": "копьём",
-      "case": "Творительный (Instrumental)",
-      "translation": "Instead, one of the soldiers pierced Jesus's side with a spear, and blood and water immediately flowed out.",
-      "explain": "The instrumental case here expresses the instrument used ('pierced with a spear') without a preposition."
-    },
-    {
-      "id": "c6",
-      "sentence": "Там, где Иисуса распяли, был сад, и в ___ новая гробница, где еще никого не хоронили.",
-      "lemma": "сад",
-      "options": [
-        "сад",
-        "сада",
-        "садом",
-        "саду"
-      ],
-      "correct": "саду",
-      "case": "Предложный (Prepositional)",
-      "translation": "In the place where Jesus was crucified there was a garden, and in the garden a new tomb where no one had yet been buried.",
-      "explain": "The preposition в ('in') governs the prepositional case; сад takes the special locative ending -у ('в саду')."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Солдаты сплели венок из терновника и надели ему на голову.",
-      "question": "What did the soldiers make and put on Jesus's head?",
-      "options": [
-        "A crown of thorns",
-        "A crown of gold",
-        "A crown of olive branches",
-        "A crown of thistles and roses"
-      ],
-      "correct": "A crown of thorns",
-      "explain": "The soldiers wove a crown of thorns and put it on Jesus's head."
-    },
-    {
-      "id": "r2",
-      "ru": "«У нас есть закон, и по нашему закону он должен умереть, потому что называет себя сыном Бога».",
-      "question": "What reason did the Jews give for demanding Jesus's death?",
-      "options": [
-        "He claimed to be the Son of God",
-        "He broke the Sabbath",
-        "He insulted Caesar",
-        "He stole from the temple"
-      ],
-      "correct": "He claimed to be the Son of God",
-      "explain": "The Jews said their law required his death because he called himself the Son of God."
-    },
-    {
-      "id": "r3",
-      "ru": "У тебя не было бы надо мной никакой власти, если бы она не была дана тебе свыше.",
-      "question": "What does Jesus tell Pilate about his authority?",
-      "options": [
-        "Pilate's authority was given to him from above",
-        "Pilate has no real authority at all",
-        "Pilate's authority came from Caesar alone",
-        "Jesus refuses to acknowledge Pilate's authority"
-      ],
-      "correct": "Pilate's authority was given to him from above",
-      "explain": "Jesus tells Pilate he would have no power over him unless it had been given from above."
-    },
-    {
-      "id": "r4",
-      "ru": "«У нас нет царя, кроме Кесаря», — отвечали первосвященники.",
-      "question": "What did the chief priests declare when Pilate asked if he should crucify their king?",
-      "options": [
-        "\"We have no king but Caesar\"",
-        "\"We have no king at all\"",
-        "\"Jesus is our true king\"",
-        "\"We demand Barabbas be crucified instead\""
-      ],
-      "correct": "\"We have no king but Caesar\"",
-      "explain": "The chief priests answered that they had no king but Caesar."
-    },
-    {
-      "id": "r5",
-      "ru": "Там Иисуса распяли, а с ним по обе стороны еще двоих.",
-      "question": "How many others were crucified along with Jesus?",
-      "options": [
-        "Two others, one on each side",
-        "Five others",
-        "No one else",
-        "Twelve others"
-      ],
-      "correct": "Two others, one on each side",
-      "explain": "Jesus was crucified with two others, one on each side."
-    },
-    {
-      "id": "r6",
-      "ru": "Пилат приказал прикрепить на кресте табличку с надписью «Иисус Назарянин, царь иудеев».",
-      "question": "What did the sign on Jesus's cross say?",
-      "options": [
-        "\"Jesus of Nazareth, King of the Jews\"",
-        "\"This man blasphemed against God\"",
-        "\"The false prophet\"",
-        "\"Son of Joseph the carpenter\""
-      ],
-      "correct": "\"Jesus of Nazareth, King of the Jews\"",
-      "explain": "Pilate had a sign placed on the cross reading 'Jesus of Nazareth, King of the Jews.'"
-    },
-    {
-      "id": "r7",
-      "ru": "«Что я написал, то написал», — ответил Пилат.",
-      "question": "How did Pilate respond when the chief priests objected to the inscription?",
-      "options": [
-        "\"What I have written, I have written\"",
-        "\"I will change it immediately\"",
-        "\"I never wrote such a thing\"",
-        "\"You may rewrite it yourselves\""
-      ],
-      "correct": "\"What I have written, I have written\"",
-      "explain": "Pilate refused to change the inscription, saying 'What I have written, I have written.'"
-    },
-    {
-      "id": "r8",
-      "ru": "«Бросим лучше жребий и посмотрим, кому она достанется».",
-      "question": "What did the soldiers decide to do with Jesus's seamless tunic instead of tearing it?",
-      "options": [
-        "Cast lots to see who would get it",
-        "Give it to Pilate",
-        "Burn it",
-        "Bury it with him"
-      ],
-      "correct": "Cast lots to see who would get it",
-      "explain": "The soldiers decided to cast lots for the seamless tunic instead of tearing it."
-    },
-    {
-      "id": "r9",
-      "ru": "«О, женщина, вот твой сын», — сказал Иисус матери.",
-      "question": "What did Jesus say to his mother from the cross?",
-      "options": [
-        "\"Woman, here is your son\"",
-        "\"Do not weep for me\"",
-        "\"Go home now\"",
-        "\"Remember me always\""
-      ],
-      "correct": "\"Woman, here is your son\"",
-      "explain": "Jesus told his mother, 'Woman, here is your son,' entrusting her to the beloved disciple."
-    },
-    {
-      "id": "r10",
-      "ru": "Иисус попробовал вино и сказал, «Совершилось».",
-      "question": "What did Jesus say just before he died?",
-      "options": [
-        "\"It is finished\"",
-        "\"Forgive them\"",
-        "\"I am thirsty\"",
-        "\"Father, why?\""
-      ],
-      "correct": "\"It is finished\"",
-      "explain": "After tasting the wine, Jesus said, 'It is finished,' and then died."
-    },
-    {
-      "id": "r11",
-      "ru": "Вместо этого один из солдат пронзил копьем бок Иисуса, и из него сразу же потекли кровь и вода.",
-      "question": "What did a soldier do when he found Jesus already dead?",
-      "options": [
-        "He pierced Jesus's side with a spear, and blood and water flowed out",
-        "He broke Jesus's legs like the others",
-        "He took Jesus's body away immediately",
-        "He tried to revive Jesus with water"
-      ],
-      "correct": "He pierced Jesus's side with a spear, and blood and water flowed out",
-      "explain": "Instead of breaking his legs, a soldier pierced Jesus's side, and blood and water flowed out."
-    },
-    {
-      "id": "r12",
-      "ru": "Никодим принес смесь из смирны и алоэ, литров около ста.",
-      "question": "What did Nicodemus bring for Jesus's burial?",
-      "options": [
-        "A mixture of myrrh and aloes, about a hundred liters",
-        "Fine linen only",
-        "Gold and frankincense",
-        "Nothing, he came empty-handed"
-      ],
-      "correct": "A mixture of myrrh and aloes, about a hundred liters",
-      "explain": "Nicodemus brought a mixture of myrrh and aloes, about a hundred liters, for the burial."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "— Вот Человек, — сказал Пилат, когда Иисус вышел в ___ и в пурпурной мантии.",
+   "lemma": "венка",
+   "options": [
+    "терновом венке",
+    "терновый венок",
+    "терновым венком",
+    "тернового венка"
+   ],
+   "correct": "терновом венке",
+   "case": "Предложный (Prepositional)",
+   "explain": "«терновом венке» — after the preposition «в», for location or topic.",
+   "id": "c1",
+   "translation": "Jesus therefore came out, wearing the crown of thorns and the purple garment. Pilate said to them, “Behold, the man!”"
+  },
+  {
+   "sentence": "Когда Пилат это услышал, он вывел Иисуса, сел в судейское кресло на месте, называемом Каменный Помост, а на ___ Габбата.",
+   "lemma": "язык",
+   "options": [
+    "еврейскому языку",
+    "еврейский язык",
+    "еврейским языком",
+    "еврейском языке"
+   ],
+   "correct": "еврейском языке",
+   "case": "Предложный (Prepositional)",
+   "explain": "«еврейском языке» — after the preposition «на», for location or topic.",
+   "id": "c2",
+   "translation": "When Pilate therefore heard these words, he brought Jesus out and sat down on the judgment seat at a place called “The Pavement”, but in Hebrew, “Gabbatha.”"
+  },
+  {
+   "sentence": "Неся Свой крест, Иисус пошел на место, называемое Лобным , а на ___ — Голгофа .",
+   "lemma": "язык",
+   "options": [
+    "еврейскому языку",
+    "еврейский язык",
+    "еврейским языком",
+    "еврейском языке"
+   ],
+   "correct": "еврейском языке",
+   "case": "Предложный (Prepositional)",
+   "explain": "«еврейском языке» — after the preposition «на», for location or topic.",
+   "id": "c3",
+   "translation": "He went out, bearing his cross, to the place called “The Place of a Skull”, which is called in Hebrew, “Golgotha”,"
+  },
+  {
+   "sentence": "Иисус увидел Свою мать и Своего ___, стоявшего рядом с ней.",
+   "lemma": "ученик",
+   "options": [
+    "любимому ученику",
+    "любимый ученик",
+    "любимом ученике",
+    "любимого ученика"
+   ],
+   "correct": "любимого ученика",
+   "case": "Родительный (Genitive)",
+   "explain": "«любимого ученика» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "Therefore when Jesus saw his mother, and the disciple whom he loved standing there, he said to his mother, “Woman, behold, your son!”"
+  },
+  {
+   "sentence": "Там стоял кувшин с ___, и солдаты, обмакнув в него губку, надели ее на стебель иссопа и подняли к губам Иисуса .",
+   "lemma": "вино",
+   "options": [
+    "кислым вином",
+    "кислому вину",
+    "кислое вино",
+    "кислом вине"
+   ],
+   "correct": "кислым вином",
+   "case": "Творительный (Instrumental)",
+   "explain": "«кислым вином» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "Now a vessel full of vinegar was set there; so they put a sponge full of the vinegar on hyssop, and held it at his mouth."
+  },
+  {
+   "sentence": "Была пятница, и иудеи не хотели, чтобы тела оставались на крестах в субботу, тем более, что эта суббота была днем ___.",
+   "lemma": "праздник",
+   "options": [
+    "великого праздника",
+    "великим праздником",
+    "великому празднику",
+    "великий праздник"
+   ],
+   "correct": "великого праздника",
+   "case": "Родительный (Genitive)",
+   "explain": "«великого праздника» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "Therefore the Jews, because it was the Preparation Day, so that the bodies wouldn’t remain on the cross on the Sabbath (for that Sabbath was a special one), asked of Pilate that their legs might be broken, and that they might be taken away."
+  },
+  {
+   "sentence": "И в ___ Писания говорится: «Они будут смотреть на Того, Которого пронзили» .",
+   "lemma": "место",
+   "options": [
+    "другом месте",
+    "другое место",
+    "другому месту",
+    "другим местом"
+   ],
+   "correct": "другом месте",
+   "case": "Предложный (Prepositional)",
+   "explain": "«другом месте» — after the preposition «в», for location or topic.",
+   "id": "c7",
+   "translation": "Again another Scripture says, “They will look on him whom they pierced.”"
+  },
+  {
+   "sentence": "Таков был иудейский ___.",
+   "lemma": "обычай",
+   "options": [
+    "погребальным обычаем",
+    "погребальный обычай",
+    "погребальном обычае",
+    "погребальному обычаю"
+   ],
+   "correct": "погребальный обычай",
+   "case": "Именительный (Nominative)",
+   "explain": "«погребальный обычай» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "So they took Jesus’ body, and bound it in linen cloths with the spices, as the custom of the Jews is to bury."
+  },
+  {
+   "sentence": "Там, где Иисуса распяли, был сад, и в саду — ___, где еще никого не хоронили.",
+   "lemma": "гробница",
+   "options": [
+    "новой гробницей",
+    "новой гробницы",
+    "новая гробница",
+    "новой гробнице"
+   ],
+   "correct": "новая гробница",
+   "case": "Именительный (Nominative)",
+   "explain": "«новая гробница» — the subject of the sentence stands in the nominative.",
+   "id": "c9",
+   "translation": "Now in the place where he was crucified there was a garden. In the garden was a new tomb in which no man had ever yet been laid."
+  }
+ ]
 }

@@ -1,213 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ нашлась в мешке у Вениамина.",
-      "lemma": "чаша",
-      "options": [
-        "чаша",
-        "чаши",
-        "чашу",
-        "чашей"
-      ],
-      "correct": "чаша",
-      "case": "Именительный (Nominative)",
-      "translation": "The cup was found in Benjamin's sack.",
-      "explain": "Чаша is the subject of the verb нашлась, so it is in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Зачем же нам воровать серебро или золото из ___ твоего господина?",
-      "lemma": "дом",
-      "options": [
-        "дом",
-        "дома",
-        "дому",
-        "домом"
-      ],
-      "correct": "дома",
-      "case": "Родительный (Genitive)",
-      "translation": "Why would we steal silver or gold out of your master's house?",
-      "explain": "The preposition из (out of) governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "А вы возвращайтесь к ___ с миром.",
-      "lemma": "отец",
-      "options": [
-        "отец",
-        "отца",
-        "отцу",
-        "отцом"
-      ],
-      "correct": "отцу",
-      "case": "Дательный (Dative)",
-      "translation": "But you, return to your father in peace.",
-      "explain": "The preposition к (toward) governs the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Бог открыл ___ твоих рабов.",
-      "lemma": "вина",
-      "options": [
-        "вина",
-        "вины",
-        "вине",
-        "вину"
-      ],
-      "correct": "вину",
-      "case": "Винительный (Accusative)",
-      "translation": "God has uncovered the guilt of your servants.",
-      "explain": "The transitive verb открыл (uncovered) takes its direct object in the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "А вы возвращайтесь к отцу с ___.",
-      "lemma": "мир",
-      "options": [
-        "мир",
-        "мира",
-        "миру",
-        "миром"
-      ],
-      "correct": "миром",
-      "case": "Творительный (Instrumental)",
-      "translation": "But you, return to your father in peace.",
-      "explain": "The preposition с (with) governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Иуда просит об ___ младшего брата Вениамина.",
-      "lemma": "освобождение",
-      "options": [
-        "освобождение",
-        "освобождения",
-        "освобождению",
-        "освобождении"
-      ],
-      "correct": "освобождении",
-      "case": "Предложный (Prepositional)",
-      "translation": "Judah pleads for the release of his younger brother Benjamin.",
-      "explain": "The preposition об (about/for) governs the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Иосиф приказал своему управляющему «Наполни мешки этих людей едой, сколько смогут унести, и положи серебро каждому обратно в мешок».",
-      "question": "What did Joseph order his steward to do with the men's sacks?",
-      "options": [
-        "Fill them with food and put each man's silver back in his sack",
-        "Fill them with gold",
-        "Leave them empty",
-        "Fill them with grain only, no silver"
-      ],
-      "correct": "Fill them with food and put each man's silver back in his sack",
-      "explain": "Joseph tells his steward to fill the sacks with food and return each man's silver to his sack."
-    },
-    {
-      "id": "r2",
-      "ru": "«Положи мою чашу, мою серебряную чашу, в мешок к младшему вместе с его серебром за зерно».",
-      "question": "Where did Joseph tell the steward to put his silver cup?",
-      "options": [
-        "In the youngest brother's sack",
-        "In Judah's sack",
-        "In the steward's own bag",
-        "In the wagon"
-      ],
-      "correct": "In the youngest brother's sack",
-      "explain": "Joseph orders his silver cup placed in the sack of the youngest brother, Benjamin."
-    },
-    {
-      "id": "r3",
-      "ru": "Иосиф сказал управляющему, «Немедленно отправляйся в погоню за этими людьми, и когда догонишь, скажи им».",
-      "question": "What did Joseph instruct the steward to do after the brothers left?",
-      "options": [
-        "Chase after the men and catch up with them",
-        "Let them go without pursuit",
-        "Send a letter to them",
-        "Wait for them to return on their own"
-      ],
-      "correct": "Chase after the men and catch up with them",
-      "explain": "Joseph tells the steward to pursue the men at once and catch up with them."
-    },
-    {
-      "id": "r4",
-      "ru": "«Почему вы заплатили злом за добро?",
-      "question": "What accusation did the steward bring against the brothers?",
-      "options": [
-        "That they repaid good with evil",
-        "That they stole grain",
-        "That they insulted Joseph",
-        "That they abandoned Benjamin"
-      ],
-      "correct": "That they repaid good with evil",
-      "explain": "The steward asks why they repaid good with evil ('заплатили злом за добро')."
-    },
-    {
-      "id": "r5",
-      "ru": "Если вещь найдется у одного из твоих рабов, пусть он умрет, а остальные станут рабами нашего господина».",
-      "question": "What did the brothers propose should happen if the cup were found with one of them?",
-      "options": [
-        "That man should die and the rest become slaves",
-        "They would all return home",
-        "They would pay double silver",
-        "They would give up Benjamin only"
-      ],
-      "correct": "That man should die and the rest become slaves",
-      "explain": "The brothers propose that whoever has the cup should die, and the rest become slaves."
-    },
-    {
-      "id": "r6",
-      "ru": "Чаша нашлась в мешке у Вениамина.",
-      "question": "In whose sack was the cup found?",
-      "options": [
-        "Benjamin's",
-        "Judah's",
-        "Reuben's",
-        "The steward's"
-      ],
-      "correct": "Benjamin's",
-      "explain": "The text states plainly that the cup was found in Benjamin's sack."
-    },
-    {
-      "id": "r7",
-      "ru": "«Что мы можем сказать моему господину?» — ответил Иуда.",
-      "question": "What did Judah exclaim when confronted about the cup?",
-      "options": [
-        "What can we say to my lord?",
-        "We are innocent, let us go!",
-        "Kill me instead!",
-        "Take all our silver!"
-      ],
-      "correct": "What can we say to my lord?",
-      "explain": "Judah responds, 'What can we say to my lord?'"
-    },
-    {
-      "id": "r8",
-      "ru": "Иосиф сказал, «Разве я стану делать такое? Только тот, у кого нашлась чаша, будет моим рабом, а вы возвращайтесь к Отцу с миром».",
-      "question": "What did Joseph say would happen to the other brothers?",
-      "options": [
-        "They could return to their father in peace",
-        "They would all become slaves",
-        "They would be executed",
-        "They would lose their silver"
-      ],
-      "correct": "They could return to their father in peace",
-      "explain": "Joseph says only the one with the cup will be his slave; the rest may return to their father in peace."
-    },
-    {
-      "id": "r9",
-      "ru": "Итак, молю тебя, позволь твоему рабу остаться здесь, рабом моего господина, вместо мальчика, и позволь мальчику вернуться с братьями».",
-      "question": "What did Judah offer to do in his final plea to Joseph?",
-      "options": [
-        "Stay as a slave in place of Benjamin",
-        "Return to Canaan alone",
-        "Give up all his possessions",
-        "Ask Joseph for mercy on his father"
-      ],
-      "correct": "Stay as a slave in place of Benjamin",
-      "explain": "Judah begs to remain as a slave in place of the boy, so that Benjamin may return with his brothers."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Вы совершили ___!»",
+   "lemma": "поступок",
+   "options": [
+    "недобрым поступком",
+    "недоброму поступку",
+    "недобрый поступок",
+    "недоброго поступка"
+   ],
+   "correct": "недобрый поступок",
+   "case": "Винительный (Accusative)",
+   "explain": "«недобрый поступок» — the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "Isn’t this that from which my lord drinks, and by which he indeed divines? You have done evil in so doing.’ ”"
+  },
+  {
+   "sentence": "И мы ответили: «У нас есть ___ и есть его юный сын, рожденный ему в его старости.",
+   "lemma": "отец",
+   "options": [
+    "престарелым отцом",
+    "престарелому отцу",
+    "престарелого отца",
+    "престарелый отец"
+   ],
+   "correct": "престарелый отец",
+   "case": "Именительный (Nominative)",
+   "explain": "«престарелый отец» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "We said to my lord, ‘We have a father, an old man, and a child of his old age, a little one; and his brother is dead, and he alone is left of his mother; and his father loves him.’"
+  },
+  {
+   "sentence": "И мы ответили: «У нас есть престарелый отец и есть его ___, рожденный ему в его старости.",
+   "lemma": "сын",
+   "options": [
+    "юным сыном",
+    "юного сына",
+    "юный сын",
+    "юному сыну"
+   ],
+   "correct": "юный сын",
+   "case": "Именительный (Nominative)",
+   "explain": "«юный сын» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "We said to my lord, ‘We have a father, an old man, and a child of his old age, a little one; and his brother is dead, and he alone is left of his mother; and his father loves him.’"
+  },
+  {
+   "sentence": "Но мы ответили: «Мы не можем пойти; только если ___ пойдет с нами, тогда мы пойдем.",
+   "lemma": "брат",
+   "options": [
+    "младшим братом",
+    "младшем брате",
+    "младшему брату",
+    "младший брат"
+   ],
+   "correct": "младший брат",
+   "case": "Именительный (Nominative)",
+   "explain": "«младший брат» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "We said, ‘We can’t go down. If our youngest brother is with us, then we will go down: for we may not see the man’s face, unless our youngest brother is with us.’"
+  },
+  {
+   "sentence": "Мы не можем и на глаза показаться тому человеку, если не будет с нами ___».",
+   "lemma": "брат",
+   "options": [
+    "младшим братом",
+    "младший брат",
+    "младшего брата",
+    "младшем брате"
+   ],
+   "correct": "младшего брата",
+   "case": "Родительный (Genitive)",
+   "explain": "«младшего брата» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "We said, ‘We can’t go down. If our youngest brother is with us, then we will go down: for we may not see the man’s face, unless our youngest brother is with us.’"
+  }
+ ]
 }

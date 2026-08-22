@@ -1,134 +1,34 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Не хвастайся завтрашним ___, ты ведь не знаешь, что день принесет.",
-      "lemma": "день",
-      "options": ["день", "дня", "дню", "днем"],
-      "correct": "днем",
-      "case": "Творительный (Instrumental)",
-      "translation": "Don't boast about tomorrow; for you don't know what a day may bring.",
-      "explain": "The preposition after 'хвастаться' (boast) in the meaning of 'about what' takes the instrumental case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Пусть другое тебя хвалит, а не твои ___, посторонний, а не твой язык.",
-      "lemma": "уста",
-      "options": ["уста", "уст", "устам", "устами"],
-      "correct": "уста",
-      "case": "Именительный (Nominative)",
-      "translation": "Let another man praise you, and not your own mouth.",
-      "explain": "Уста (mouth/lips) is the grammatical subject of the verb хвалит (praise), requiring nominative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Раздражение от ___ тяжелее обоих.",
-      "lemma": "глупец",
-      "options": ["глупец", "глупца", "глупцу", "глупцом"],
-      "correct": "глупца",
-      "case": "Родительный (Genitive)",
-      "translation": "A fool's provocation is heavier than both.",
-      "explain": "The preposition от (from) governs the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Приятно слышать душевный ___ от друга.",
-      "lemma": "совет",
-      "options": ["совет", "совета", "совету", "советом"],
-      "correct": "совет",
-      "case": "Винительный (Accusative)",
-      "translation": "It is pleasant to hear sincere counsel from a friend.",
-      "explain": "Совет is the direct object of the transitive verb слышать (hear), taking the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Ароматное масло и благовоние радуют ___.",
-      "lemma": "сердце",
-      "options": ["сердце", "сердца", "сердцу", "сердцем"],
-      "correct": "сердце",
-      "case": "Винительный (Accusative)",
-      "translation": "Perfume and incense bring joy to the heart.",
-      "explain": "Сердце is the direct object of the transitive verb радуют (bring joy), taking the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Не бросай своего ___ и друга своего отца.",
-      "lemma": "друг",
-      "options": ["друг", "друга", "другу", "другом"],
-      "correct": "друга",
-      "case": "Винительный (Accusative)",
-      "translation": "Don't forsake your friend and your father's friend.",
-      "explain": "Друга is the direct object of the transitive verb бросай (forsake), taking the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Лучше сосед поблизости, чем ___ вдали.",
-      "lemma": "брат",
-      "options": ["брат", "брата", "брату", "братом"],
-      "correct": "брат",
-      "case": "Именительный (Nominative)",
-      "translation": "A neighbor who is near is better than a distant brother.",
-      "explain": "Брат is the predicate nominative in the comparison, requiring nominative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Как вода отражает ___, так человеческое сердце отражает человека.",
-      "lemma": "лицо",
-      "options": ["лицо", "лица", "лицу", "лицом"],
-      "correct": "лицо",
-      "case": "Винительный (Accusative)",
-      "translation": "As water reflects a face, so a man's heart reflects the man.",
-      "explain": "Лицо is the direct object of the transitive verb отражает (reflect), taking the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Не хвастайся завтрашним днем, ты ведь не знаешь, что день принесет.",
-      "question": "Why should you not boast about tomorrow?",
-      "options": ["Because tomorrow might bring rain", "Because you don't know what a day may bring", "Because today is all we have", "Because your plans might change"],
-      "correct": "Because you don't know what a day may bring",
-      "explain": "The text states: Не хвастайся завтрашним днем, ты ведь не знаешь, что день принесет."
-    },
-    {
-      "id": "r2",
-      "ru": "Лучше открытый упрек, чем скрытая любовь.",
-      "question": "What is better than hidden love?",
-      "options": ["Open friendship", "Honest criticism", "Open rebuke", "Secret affection"],
-      "correct": "Open rebuke",
-      "explain": "The text explicitly states: Лучше открытый упрек, чем скрытая любовь."
-    },
-    {
-      "id": "r3",
-      "ru": "Как птица, отбившаяся от гнезда, — человек, который отбился от дома.",
-      "question": "What is compared to a bird that has wandered from its nest?",
-      "options": ["A man who left his family", "A homeless person", "A man who has wandered from his home", "A lost child"],
-      "correct": "A man who has wandered from his home",
-      "explain": "The text compares: Как птица, отбившаяся от гнезда, — человек, который отбился от дома."
-    },
-    {
-      "id": "r4",
-      "ru": "Разумный видит опасность и скроется, а простаки идут дальше и бывают наказаны.",
-      "question": "How do the prudent and the simple react to danger?",
-      "options": ["Both face danger boldly", "The prudent takes refuge, the simple pass on and suffer", "Both flee from danger", "Neither understands the danger"],
-      "correct": "The prudent takes refuge, the simple pass on and suffer",
-      "explain": "The text states: Разумный видит опасность и скроется, а простаки идут дальше и бывают наказаны."
-    },
-    {
-      "id": "r5",
-      "ru": "Как железо оттачивает железо, так и люди совершенствуют друг друга.",
-      "question": "What does the text compare to iron sharpening iron?",
-      "options": ["Steel sharpening tools", "People perfecting each other", "Swords in battle", "Diamonds cutting stone"],
-      "correct": "People perfecting each other",
-      "explain": "The text compares: Как железо оттачивает железо, так и люди совершенствуют друг друга."
-    },
-    {
-      "id": "r6",
-      "ru": "Глупца истолки хоть в ступе, как пестом пшеницу, не отделится от него его глупость.",
-      "question": "What does this verse say about a fool's folly?",
-      "options": ["It will be ground down like grain", "It will disappear with punishment", "It will not be removed from him", "It will make him wise"],
-      "correct": "It will not be removed from him",
-      "explain": "The text states: Глупца истолки хоть в ступе, как пестом пшеницу, не отделится от него его глупость."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Громогласно благословляющего ближнего ___,",
+   "lemma": "утро",
+   "options": [
+    "раннее утро",
+    "раннему утру",
+    "раннего утра",
+    "ранним утром"
+   ],
+   "correct": "ранним утром",
+   "case": "Творительный (Instrumental)",
+   "explain": "«ранним утром» — the instrumental marks the means, company, or complement.",
+   "id": "c1",
+   "translation": "He who blesses his neighbor with a loud voice early in the morning, it will be taken as a curse by him."
+  },
+  {
+   "sentence": "У тебя будет вдоволь ___,",
+   "lemma": "молоко",
+   "options": [
+    "козьему молоку",
+    "козьего молока",
+    "козье молоко",
+    "козьим молоком"
+   ],
+   "correct": "козьего молока",
+   "case": "Родительный (Genitive)",
+   "explain": "«козьего молока» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "There will be plenty of goats’ milk for your food, for your family’s food, and for the nourishment of your servant girls."
+  }
+ ]
 }

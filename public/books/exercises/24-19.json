@@ -1,204 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Пойди и купи у горшечника глиняный ___.",
-      "lemma": "кувшин",
-      "options": [
-        "кувшин",
-        "кувшина",
-        "кувшину",
-        "кувшином"
-      ],
-      "correct": "кувшин",
-      "case": "Винительный (Accusative)",
-      "translation": "Go and buy a clay jar from the potter.",
-      "explain": "Direct object of купи (buy) requires accusative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Возьми с собой кого-нибудь из старейшин народа и из старейшин ___, и выйди в долину.",
-      "lemma": "священник",
-      "options": [
-        "священник",
-        "священника",
-        "священников",
-        "священниками"
-      ],
-      "correct": "священников",
-      "case": "Родительный (Genitive)",
-      "translation": "Take some of the elders of the people and of the priests, and go out to the valley.",
-      "explain": "Genitive plural indicates 'elders of the priests' category."
-    },
-    {
-      "id": "c3",
-      "sentence": "Я нашлю беду, от которой у любого, кто слышит, зазвенит в ___.",
-      "lemma": "ухо",
-      "options": [
-        "ухо",
-        "уха",
-        "ухам",
-        "ушах"
-      ],
-      "correct": "ушах",
-      "case": "Предложный (Prepositional)",
-      "translation": "I will bring such a disaster that the ears of all who hear will tingle.",
-      "explain": "Preposition в (in) with location requires prepositional case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Люди осквернили эту землю и жгли благовония чужим богам, которых не знали ни цари ___.",
-      "lemma": "Иудея",
-      "options": [
-        "Иудея",
-        "Иудеи",
-        "Иудею",
-        "Иудеей"
-      ],
-      "correct": "Иудеи",
-      "case": "Родительный (Genitive)",
-      "translation": "Men defiled this land and burned incense to other gods unknown to the kings of Judah.",
-      "explain": "Possessive genitive цари Иудеи (kings of Judah)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Я отдам их трупы в пищу небесным птицам и земным ___.",
-      "lemma": "зверь",
-      "options": [
-        "зверь",
-        "зверя",
-        "зверям",
-        "зверей"
-      ],
-      "correct": "зверям",
-      "case": "Дательный (Dative)",
-      "translation": "I will give their corpses as food to the birds of the sky and beasts of the earth.",
-      "explain": "Dative indicates the recipients of food (в пищу)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Я разобью этот народ, как был разбит кувшин горшечника, который уже не ___.",
-      "lemma": "склеить",
-      "options": [
-        "склеиться",
-        "склеить",
-        "склеиваться",
-        "склеен"
-      ],
-      "correct": "склеить",
-      "case": "Инфинитив (Infinitive)",
-      "translation": "I will break this people like a potter's jar that cannot be repaired.",
-      "explain": "Infinitive in the phrase уже не склеить (can no longer be repaired)."
-    },
-    {
-      "id": "c7",
-      "sentence": "Я оскверню этот город, как осквернен ___, дома Иерусалима и дворцы царей.",
-      "lemma": "Тофет",
-      "options": [
-        "Тофет",
-        "Тофета",
-        "Тофету",
-        "Тофетом"
-      ],
-      "correct": "Тофет",
-      "case": "Именительный (Nominative)",
-      "translation": "I will make this city like Topheth, the houses of Jerusalem and palaces of the kings.",
-      "explain": "Predicate nominative in the comparison structure."
-    },
-    {
-      "id": "c8",
-      "sentence": "Иеремия встал во дворе Господнего дома и возвестил всему ___.",
-      "lemma": "народ",
-      "options": [
-        "народ",
-        "народа",
-        "народу",
-        "народом"
-      ],
-      "correct": "народу",
-      "case": "Дательный (Dative)",
-      "translation": "Jeremiah stood in the courtyard and announced to all the people.",
-      "explain": "Indirect object of возвестил (announced) requires dative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Так сказал Господь. «Пойди и купи у горшечника глиняный кувшин. Возьми с собой кого-нибудь из старейшин и выйди в долину Бенгеном.»",
-      "question": "What did the Lord command?",
-      "options": [
-        "Buy a clay jar and take elders to the Valley of Ben Hinnom",
-        "Build an altar in the marketplace",
-        "Gather all the people at the temple",
-        "Make an offering to the king"
-      ],
-      "correct": "Buy a clay jar and take elders to the Valley of Ben Hinnom",
-      "explain": "Clear divine instruction for symbolic prophetic action."
-    },
-    {
-      "id": "r2",
-      "ru": "Я нашлю на эту землю беду, от которой у любого, кто слышит, зазвенит в ушах.",
-      "question": "What will be the nature of the coming disaster?",
-      "options": [
-        "Such a disaster that hearing of it will shock people",
-        "A time of peace",
-        "A season of good harvests",
-        "A period of celebration"
-      ],
-      "correct": "Such a disaster that hearing of it will shock people",
-      "explain": "Disaster so great it causes physical shock to hear of it."
-    },
-    {
-      "id": "r3",
-      "ru": "Люди осквернили эту землю и жгли благовония чужим богам, которых не знали.",
-      "question": "What sins have the people committed?",
-      "options": [
-        "Defiled the land and burned incense to unknown gods",
-        "Kept the law faithfully",
-        "Honored the Lord's house",
-        "Made proper sacrifices"
-      ],
-      "correct": "Defiled the land and burned incense to unknown gods",
-      "explain": "Describes comprehensive spiritual pollution."
-    },
-    {
-      "id": "r4",
-      "ru": "Я разобью этот народ и этот город, как был разбит кувшин горшечника, который уже не склеить.",
-      "question": "What does this comparison illustrate?",
-      "options": [
-        "The destruction will be permanent and irreparable",
-        "They will be easily restored",
-        "The damage will be minor",
-        "They will be repaired quickly"
-      ],
-      "correct": "The destruction will be permanent and irreparable",
-      "explain": "The broken jar symbolizes permanent destruction."
-    },
-    {
-      "id": "r5",
-      "ru": "Я накормлю его жителей плотью их сыновей и дочерей в осаде и нужде.",
-      "question": "What horror will befall the people?",
-      "options": [
-        "During siege, they will eat their own children",
-        "They will receive abundant food",
-        "They will find safety",
-        "They will be blessed with plenty"
-      ],
-      "correct": "During siege, they will eat their own children",
-      "explain": "Describes the extremity of famine during siege."
-    },
-    {
-      "id": "r6",
-      "ru": "Все дома, где на крышах жгли благовония чужим богам, будут осквернены, как место Тофет.",
-      "question": "What will be the fate of idolatrous houses?",
-      "options": [
-        "They will become as unclean as Topheth",
-        "They will be preserved",
-        "They will be honored",
-        "They will be blessed"
-      ],
-      "correct": "They will become as unclean as Topheth",
-      "explain": "Topheth (place of Moloch worship) becomes their fate."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Ведь люди осквернили эту землю и жгли здесь благовония ___, которых не знали ни они сами, ни их отцы, ни цари Иудеи, и залили эту землю невинной кровью.",
+   "lemma": "бог",
+   "options": [
+    "чужих богов",
+    "чужим богам",
+    "чужих богах",
+    "чужими богами"
+   ],
+   "correct": "чужим богам",
+   "case": "Дательный (Dative)",
+   "explain": "«чужим богам» — the dative marks the indirect object or recipient.",
+   "id": "c1",
+   "translation": "Because they have forsaken me, and have defiled this place, and have burned incense in it to other gods that they didn’t know, they, their fathers, and the kings of Judah, and have filled this place with the blood of innocents,"
+  },
+  {
+   "sentence": "Я повергну их мечом перед врагами руками тех, кто хочет их смерти, и отдам их трупы в пищу ___ и земным зверям.",
+   "lemma": "птица",
+   "options": [
+    "небесных птицах",
+    "небесным птицам",
+    "небесными птицами",
+    "небесных птиц"
+   ],
+   "correct": "небесным птицам",
+   "case": "Дательный (Dative)",
+   "explain": "«небесным птицам» — the dative marks the indirect object or recipient.",
+   "id": "c2",
+   "translation": "“ ‘ “I will make the counsel of Judah and Jerusalem void in this place. I will cause them to fall by the sword before their enemies, and by the hand of those who seek their life. I will give their dead bodies to be food for the birds of the sky and for the animals of the earth."
+  },
+  {
+   "sentence": "Я повергну их мечом перед врагами руками тех, кто хочет их смерти, и отдам их трупы в пищу небесным птицам и ___.",
+   "lemma": "зверь",
+   "options": [
+    "земных зверях",
+    "земных зверей",
+    "земными зверями",
+    "земным зверям"
+   ],
+   "correct": "земным зверям",
+   "case": "Дательный (Dative)",
+   "explain": "«земным зверям» — the dative marks the indirect object or recipient.",
+   "id": "c3",
+   "translation": "“ ‘ “I will make the counsel of Judah and Jerusalem void in this place. I will cause them to fall by the sword before their enemies, and by the hand of those who seek their life. I will give their dead bodies to be food for the birds of the sky and for the animals of the earth."
+  },
+  {
+   "sentence": "Дома Иерусалима и дворцы царей Иудеи — все дома, где на крышах жгли благовония всему ___ и лили жертвенные возлияния чужим богам, будут осквернены, как место Тофет.",
+   "lemma": "воинство",
+   "options": [
+    "небесном воинстве",
+    "небесного воинства",
+    "небесному воинству",
+    "небесным воинством"
+   ],
+   "correct": "небесному воинству",
+   "case": "Дательный (Dative)",
+   "explain": "«небесному воинству» — the dative marks the indirect object or recipient.",
+   "id": "c4",
+   "translation": "The houses of Jerusalem, and the houses of the kings of Judah, which are defiled, will be as the place of Topheth, even all the houses on whose roofs they have burned incense to all the army of the sky and have poured out drink offerings to other gods.” ’ ”"
+  },
+  {
+   "sentence": "Дома Иерусалима и дворцы царей Иудеи — все дома, где на крышах жгли благовония всему небесному воинству и лили жертвенные возлияния ___, будут осквернены, как место Тофет.",
+   "lemma": "бог",
+   "options": [
+    "чужих богов",
+    "чужим богам",
+    "чужих богах",
+    "чужими богами"
+   ],
+   "correct": "чужим богам",
+   "case": "Дательный (Dative)",
+   "explain": "«чужим богам» — the dative marks the indirect object or recipient.",
+   "id": "c5",
+   "translation": "The houses of Jerusalem, and the houses of the kings of Judah, which are defiled, will be as the place of Topheth, even all the houses on whose roofs they have burned incense to all the army of the sky and have poured out drink offerings to other gods.” ’ ”"
+  }
+ ]
 }

@@ -1,190 +1,49 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ слышала, как Исаак говорил со своим сыном Исавом.",
-      "lemma": "Ревекка",
-      "options": ["Ревекка", "Ревекки", "Ревекке", "Ревекку"],
-      "correct": "Ревекка",
-      "case": "Именительный (Nominative)",
-      "translation": "Rebekah heard how Isaac spoke with his son Esau.",
-      "explain": "Ревекка is the subject of 'слышала', so it takes the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Ревекка взяла лучшую одежду своего старшего сына ___, какая была у нее в доме.",
-      "lemma": "Исав",
-      "options": ["Исав", "Исава", "Исаву", "Исавом"],
-      "correct": "Исава",
-      "case": "Родительный (Genitive)",
-      "translation": "Rebekah took the best clothes of her elder son Esau, which she had in the house.",
-      "explain": "The noun in apposition to 'сына' (son of Esau) takes the genitive case showing relation."
-    },
-    {
-      "id": "c3",
-      "sentence": "Иаков сказал ___ своей матери, «Но мой брат Исааф весь волосат, а у меня кожа гладкая».",
-      "lemma": "Ревекка",
-      "options": ["Ревекка", "Ревекки", "Ревекке", "Ревекку"],
-      "correct": "Ревекке",
-      "case": "Дательный (Dative)",
-      "translation": "Jacob said to Rebekah his mother, 'But my brother Esau is a hairy man, and my skin is smooth.'",
-      "explain": "The verb сказать (to say to someone) takes its indirect object in the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Затем она дала своему сыну Иакову вкусную ___ и хлеб, который приготовила.",
-      "lemma": "еда",
-      "options": ["еда", "еды", "еде", "еду"],
-      "correct": "еду",
-      "case": "Винительный (Accusative)",
-      "translation": "Then she gave her son Jacob the tasty food and bread that she had prepared.",
-      "explain": "The transitive verb дать (to give) takes its direct object in the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Ты будешь жить ___ и будешь служить своему брату.",
-      "lemma": "меч",
-      "options": ["меч", "меча", "мечу", "мечом"],
-      "correct": "мечом",
-      "case": "Творительный (Instrumental)",
-      "translation": "You will live by the sword and will serve your brother.",
-      "explain": "жить мечом (to live by the sword) uses the instrumental case to express the means of living."
-    },
-    {
-      "id": "c6",
-      "sentence": "Пусть даст тебе Бог от небесной росы и от плодородия земли, в ___ зерна и молодого вина.",
-      "lemma": "изобилие",
-      "options": ["изобилие", "изобилия", "изобилию", "изобилии"],
-      "correct": "изобилии",
-      "case": "Предложный (Prepositional)",
-      "translation": "May God give you of heaven's dew and of earth's richness, an abundance of grain and new wine.",
-      "explain": "The preposition в (in/with) governs the prepositional case here."
-    },
-    {
-      "id": "c7",
-      "sentence": "Будет обитание твое вдали от ___ земли, вдали от росы небесной свыше.",
-      "lemma": "плодородие",
-      "options": ["плодородие", "плодородия", "плодородию", "плодородием"],
-      "correct": "плодородия",
-      "case": "Родительный (Genitive)",
-      "translation": "Your dwelling will be far from the richness of the earth, far from the dew of heaven above.",
-      "explain": "The preposition от (away from) governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Мой сын, сделай, как я скажу, немедленно беги в Харан к моему ___ Лавану.",
-      "lemma": "брат",
-      "options": ["брат", "брата", "брату", "братом"],
-      "correct": "брату",
-      "case": "Дательный (Dative)",
-      "translation": "My son, do as I say, flee at once to Haran to my brother Laban.",
-      "explain": "The preposition к (to/toward) governs the dative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Возьми же свое оружие, колчан и лук, и выйди в поле добыть мне дичи.",
-      "question": "What did Isaac ask Esau to do before receiving his blessing?",
-      "options": ["Go hunt game in the field", "Bring water from the well", "Build an altar", "Fetch two young goats"],
-      "correct": "Go hunt game in the field",
-      "explain": "Isaac told Esau to take his weapons and 'выйди в поле добыть мне дичи' (go out to the field to get him game)."
-    },
-    {
-      "id": "r2",
-      "ru": "Пойди к стаду и принеси мне двух лучших козлят, чтобы мне приготовить вкусную еду для твоего отца, такую, как он любит.",
-      "question": "What did Rebekah tell Jacob to bring her?",
-      "options": ["Two of the best young goats", "A fresh fish", "Fresh bread only", "A lamb from the flock"],
-      "correct": "Two of the best young goats",
-      "explain": "Rebekah told Jacob to bring her 'двух лучших козлят' (two of the best young goats)."
-    },
-    {
-      "id": "r3",
-      "ru": "Но мой брат Исааф весь волосат, а у меня кожа гладкая.",
-      "question": "What worried Jacob about impersonating his brother?",
-      "options": ["That Esau was hairy while Jacob's skin was smooth", "That Esau was taller", "That Esau had a different voice only", "That their father was blind"],
-      "correct": "That Esau was hairy while Jacob's skin was smooth",
-      "explain": "Jacob said his brother was 'весь волосат' (all hairy) while his own skin was smooth."
-    },
-    {
-      "id": "r4",
-      "ru": "Потом Ревекка взяла лучшую одежду своего старшего сына Исава, какая была у нее в доме, и надела на младшего Иакова, а его руки и гладкую часть шеи покрыла шкурами козлят.",
-      "question": "How did Rebekah disguise Jacob as Esau?",
-      "options": ["She dressed him in Esau's clothes and covered his hands and neck with goat skins", "She cut his hair short", "She had him wear a mask", "She gave him Esau's sandals only"],
-      "correct": "She dressed him in Esau's clothes and covered his hands and neck with goat skins",
-      "explain": "Rebekah dressed Jacob in Esau's clothes and covered his hands and neck 'шкурами козлят' (with goat skins)."
-    },
-    {
-      "id": "r5",
-      "ru": "«Голос, как голос Иакова, но руки, как руки Исаава».",
-      "question": "What did Isaac notice when he felt Jacob's hands?",
-      "options": ["The voice sounded like Jacob but the hands felt like Esau", "The hands felt smooth like Jacob's own", "Nothing seemed unusual at all", "The smell was wrong"],
-      "correct": "The voice sounded like Jacob but the hands felt like Esau",
-      "explain": "Isaac said, 'Голос, как голос Иакова, но руки, как руки Исаава' (the voice is Jacob's, but the hands are Esau's)."
-    },
-    {
-      "id": "r6",
-      "ru": "Исаак почувствовал запах его одежды и благословил его, сказав, Ах, запах моего сына, как запах поля, которое благословил Господь!",
-      "question": "What convinced Isaac to bless Jacob believing he was Esau?",
-      "options": ["The smell of his clothing, like a field blessed by the Lord", "The taste of the food", "The color of his hands", "The sound of his footsteps"],
-      "correct": "The smell of his clothing, like a field blessed by the Lord",
-      "explain": "Isaac smelled Jacob's clothing and compared it to 'запах поля, которое благословил Господь' (the smell of a field the Lord had blessed)."
-    },
-    {
-      "id": "r7",
-      "ru": "Будь господином над твоими братьями, и да склонятся перед тобой сыновья твоей матери, да будет проклят проклинающий тебя, а благословляющий да будет благословен",
-      "question": "What did Isaac's blessing declare about Jacob's status over his brothers?",
-      "options": ["That he would be lord over his brothers", "That he would serve his brothers", "That he would be exiled from the family", "That he would inherit nothing"],
-      "correct": "That he would be lord over his brothers",
-      "explain": "The blessing says, 'Будь господином над твоими братьями' (Be lord over your brothers)."
-    },
-    {
-      "id": "r8",
-      "ru": "Его отец Исаак спросил, «Кто ты?»",
-      "question": "What did Isaac ask when Esau returned from hunting with food?",
-      "options": ["'Who are you?'", "'Where is your brother?'", "'Did you find water?'", "'Why are you late?'"],
-      "correct": "'Who are you?'",
-      "explain": "When Esau brought his food, Isaac asked, 'Кто ты?' (Who are you?)."
-    },
-    {
-      "id": "r9",
-      "ru": "Исаак весь задрожал и сказал, «Кто же был тот другой, который добыл дичи и принес мне?»",
-      "question": "How did Isaac react when he realized he had been deceived?",
-      "options": ["He trembled violently and asked who had really brought him the food", "He laughed it off", "He immediately blessed Esau instead", "He called for Rebekah to explain"],
-      "correct": "He trembled violently and asked who had really brought him the food",
-      "explain": "The text says Isaac 'весь задрожал' (trembled all over) and asked who had truly brought him the venison."
-    },
-    {
-      "id": "r10",
-      "ru": "Исав громко и горько закричал и сказал отцу, «Благослови меня, и меня тоже, отец!»",
-      "question": "How did Esau respond upon learning Jacob had taken his blessing?",
-      "options": ["He cried out bitterly, begging for a blessing too", "He calmly accepted the loss", "He blessed Jacob in return", "He left the house immediately"],
-      "correct": "He cried out bitterly, begging for a blessing too",
-      "explain": "Esau 'громко и горько закричал' (cried out loudly and bitterly) begging his father to bless him too."
-    },
-    {
-      "id": "r11",
-      "ru": "Ты будешь жить мечом и будешь служить своему брату, но когда ты восстанешь, ты сбросишь его ермо со своей шеи.",
-      "question": "What did Isaac's blessing for Esau say about his future?",
-      "options": ["He would live by the sword and serve his brother, but eventually break free", "He would rule over Jacob forever", "He would receive all the family's wealth", "He would inherit the birthright after all"],
-      "correct": "He would live by the sword and serve his brother, but eventually break free",
-      "explain": "Isaac told Esau he would live by the sword and serve his brother, but would eventually 'сбросишь его ермо со своей шеи' (throw off his yoke)."
-    },
-    {
-      "id": "r12",
-      "ru": "Исав затаил злобу на Иакова из-за благословения, которое дал ему отец, и сказал себе, «Не плачи по отцу близки, тогда я убью моего брата Иакова».",
-      "question": "What did Esau plan to do because of his anger at Jacob?",
-      "options": ["Kill Jacob after their father's death", "Forgive Jacob immediately", "Take back his birthright by force", "Leave for Haran himself"],
-      "correct": "Kill Jacob after their father's death",
-      "explain": "Esau said to himself he would kill his brother Jacob once the days of mourning for his father were near."
-    },
-    {
-      "id": "r13",
-      "ru": "Потом Ревекка сказала Исааку, «Я жизни не рада из этих дочерей хитейских. Если Иаков возьмет себе в жены местную женщину, такую вот хитиянку, как эти, то зачем мне и жить?»",
-      "question": "What worry did Rebekah express to Isaac at the end of the chapter?",
-      "options": ["That Jacob might marry a local Hittite woman like Esau's wives", "That Jacob would never return from Haran", "That Esau would kill Isaac", "That Laban would refuse Jacob"],
-      "correct": "That Jacob might marry a local Hittite woman like Esau's wives",
-      "explain": "Rebekah told Isaac she dreaded life if Jacob married 'такую вот хитиянку' (a Hittite woman) like Esau's wives."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Он тоже приготовил ___ и принес отцу.",
+   "lemma": "еда",
+   "options": [
+    "вкусная еда",
+    "вкусной еды",
+    "вкусной едой",
+    "вкусной еде"
+   ],
+   "correct": "вкусной еды",
+   "case": "Родительный (Genitive)",
+   "explain": "«вкусной еды» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "He also made savory food, and brought it to his father. He said to his father, “Let my father arise, and eat of his son’s venison, that your soul may bless me.”"
+  },
+  {
+   "sentence": "Ревекке передали, что сказал ее ___ Исав, и она послала за младшим сыном, Иаковом, и сказала ему:",
+   "lemma": "сын",
+   "options": [
+    "старший сын",
+    "старшим сыном",
+    "старшем сыне",
+    "старшего сына"
+   ],
+   "correct": "старший сын",
+   "case": "Именительный (Nominative)",
+   "explain": "«старший сын» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "The words of Esau, her elder son, were told to Rebekah. She sent and called Jacob, her younger son, and said to him, “Behold, your brother Esau comforts himself about you by planning to kill you."
+  },
+  {
+   "sentence": "Ревекке передали, что сказал ее старший сын Исав, и она послала за ___, Иаковом, и сказала ему:",
+   "lemma": "сын",
+   "options": [
+    "младшему сыну",
+    "младший сын",
+    "младшим сыном",
+    "младшем сыне"
+   ],
+   "correct": "младшим сыном",
+   "case": "Творительный (Instrumental)",
+   "explain": "«младшим сыном» — after the preposition «за», the instrumental marks the means, company, or complement.",
+   "id": "c4",
+   "translation": "The words of Esau, her elder son, were told to Rebekah. She sent and called Jacob, her younger son, and said to him, “Behold, your brother Esau comforts himself about you by planning to kill you."
+  }
+ ]
 }

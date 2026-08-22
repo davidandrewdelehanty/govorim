@@ -1,134 +1,214 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Иосия устроил Пасху Господу в Иерусалиме, и в четырнадцатый день первого месяца закололи пасхального ___.",
-      "lemma": "ягненок",
-      "options": ["ягненок", "ягненка", "ягненку", "ягненком"],
-      "correct": "ягненка",
-      "case": "Винительный (Accusative)",
-      "translation": "Josiah kept a Passover to the Lord in Jerusalem, and on the fourteenth day of the first month they killed the Passover lamb.",
-      "explain": "The direct object of the verb закололи (killed/slaughtered) takes the accusative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Он определил священникам их обязанности и ободрил их, чтобы им совершать служение в Господнем ___.",
-      "lemma": "Дом",
-      "options": ["Дом", "Дома", "Дому", "Доме"],
-      "correct": "Доме",
-      "case": "Предложный (Prepositional)",
-      "translation": "He set the priests in their offices and encouraged them to serve in the Lord's house.",
-      "explain": "The preposition в (in) with meaning of location governs the prepositional case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Он сказал левитам, наставникам всего Израиля, которые были посвящены Господу, поставьте священный ковчег в доме, который построил Соломон, ___.",
-      "lemma": "Давид",
-      "options": ["Давид", "Давида", "Давиду", "Давидом"],
-      "correct": "Давида",
-      "case": "Родительный (Genitive)",
-      "translation": "He told the Levites, teachers of all Israel, who were dedicated to the Lord, 'Put the holy ark in the house which Solomon the son of King David built.'",
-      "explain": "The genitive case expresses possession: the son belonging to David."
-    },
-    {
-      "id": "c4",
-      "sentence": "Вам больше не нужно переносить его на своих ___.",
-      "lemma": "плечо",
-      "options": ["плечо", "плеча", "плечах", "плечами"],
-      "correct": "плечах",
-      "case": "Предложный (Prepositional)",
-      "translation": "You will no longer need to carry it on your shoulders.",
-      "explain": "The preposition на (on) with meaning of location governs the prepositional case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Заколите пасхальных ягнят, осветитесь и приготовьте ягнят для ваших ___.",
-      "lemma": "соплеменник",
-      "options": ["соплеменник", "соплеменника", "соплеменнику", "соплеменников"],
-      "correct": "соплеменников",
-      "case": "Винительный (Accusative)",
-      "translation": "Kill the Passover lambs, sanctify yourselves, and prepare the lambs for your brothers.",
-      "explain": "The preposition для (for) governs the genitive case, but here the accusative is used with the distributive sense of 'for' (intended for)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Иосия дал всему народу, который был там, пасхальные приношения из имущества ___.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царя",
-      "case": "Родительный (Genitive)",
-      "translation": "Josiah gave to all the people who were there Passover offerings from the possessions of the king.",
-      "explain": "The genitive case expresses possession: the possessions belonging to the king."
-    },
-    {
-      "id": "c7",
-      "sentence": "Его приближенные тоже добровольно жертвовали народу, священникам и ___.",
-      "lemma": "левит",
-      "options": ["левит", "левита", "левиту", "левитам"],
-      "correct": "левитам",
-      "case": "Дательный (Dative)",
-      "translation": "His princes also willingly gave to the people, to the priests, and to the Levites.",
-      "explain": "The indirect object of the verb жертвовали (gave/offered) takes the dative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Так вся Господня служба была исполнена в тот день, чтобы отпраздновать Пасху и принести всесожжение на жертвенники ___.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господе"],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "So all the service of the Lord was carried out that day to keep the Passover and offer burnt offerings on the altars of the Lord.",
-      "explain": "The genitive case indicates possession or relationship: the altars belonging to the Lord."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Иосия устроил Пасху Господу в Иерусалиме, и в четырнадцатый день первого месяца закололи пасхального ягненка.",
-      "question": "When did Josiah celebrate the Passover, and what was done on that day?",
-      "options": ["On the fourteenth day of the first month, they killed the Passover lamb", "On the first day of the first month, they blessed the temple", "On the tenth day, they prepared bread", "On the twenty-first day, they held a feast"],
-      "correct": "On the fourteenth day of the first month, they killed the Passover lamb",
-      "explain": "The verse states в четырнадцатый день первого месяца закололи пасхального ягненка — on the fourteenth day of the first month they killed the Passover lamb."
-    },
-    {
-      "id": "r2",
-      "ru": "Он сказал левитам: поставьте священный ковчег в доме, который построил Соломон, сын царя Давида.",
-      "question": "What did Josiah tell the Levites to do with the holy ark?",
-      "options": ["Put it in the house which Solomon the son of King David built", "Take it out and display it to all people", "Move it to the wilderness", "Hide it in the mountains"],
-      "correct": "Put it in the house which Solomon the son of King David built",
-      "explain": "The text directly states Поставьте священный ковчег в доме, который построил Соломон, сын царя Давида."
-    },
-    {
-      "id": "r3",
-      "ru": "Иосия дал всему народу, который был там, общим счетом тридцать тысяч голов мелкого скота, ягнят и козлят для пасхальных приношений и три тысячи голов крупного скота.",
-      "question": "How many animals did Josiah give for the Passover offerings?",
-      "options": ["Thirty thousand small animals and three thousand cattle", "Five thousand small animals and five hundred cattle", "Ten thousand small animals and one thousand cattle", "Two hundred small animals and fifty cattle"],
-      "correct": "Thirty thousand small animals and three thousand cattle",
-      "explain": "The verse states тридцать тысяч голов мелкого скота and три тысячи голов крупного скота."
-    },
-    {
-      "id": "r4",
-      "ru": "Музыканты, потомки Асафа, находились на местах, определенных им Давидом, Асафом, Еманом и царским провидцем Идутуном.",
-      "question": "Who were the musicians, and who had determined their places?",
-      "options": ["Musicians descended from Asaph, with places determined by David, Asaph, Heman, and Jeduthun", "Musicians from Egypt, appointed by the king", "Priests serving in the temple", "Warriors from the army"],
-      "correct": "Musicians descended from Asaph, with places determined by David, Asaph, Heman, and Jeduthun",
-      "explain": "The text says Музыканты, потомки Асафа, находились на местах, определенных им Давидом, Асафом, Еманом и царским провидцем Идутуном."
-    },
-    {
-      "id": "r5",
-      "ru": "Израилетяне, которые были там, праздновали в то время Пасху и семь дней отмечали праздник пресных хлебов.",
-      "question": "What did the Israelites celebrate, and for how long?",
-      "options": ["They celebrated Passover and kept the feast of unleavened bread for seven days", "They celebrated for three days only", "They held a harvest festival", "They commemorated the conquest of Canaan"],
-      "correct": "They celebrated Passover and kept the feast of unleavened bread for seven days",
-      "explain": "The verse states Израилетяне праздновали в то время Пасху и семь дней отмечали праздник пресных хлебов."
-    },
-    {
-      "id": "r6",
-      "ru": "Такой Пасхи, как эта, не праздновали в Израиле со дней пророка Самуила, и никто из царей Израиля не праздновал такой Пасхи, как праздновал Иосия со священниками, левитами и всем народом.",
-      "question": "How exceptional was Josiah's Passover celebration?",
-      "options": ["No Passover like it had been kept in Israel since the days of Samuel, and no king had celebrated one like Josiah's", "It was the first Passover ever celebrated", "It was done secretly in the desert", "It was celebrated with foreign rulers"],
-      "correct": "No Passover like it had been kept in Israel since the days of Samuel, and no king had celebrated one like Josiah's",
-      "explain": "The text states Такой Пасхи, как эта, не праздновали в Израиле со дней пророка Самуила, и никто из царей Израиля не праздновал такой Пасхи."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Иосия устроил Пасху Господу в Иерусалиме, и в четырнадцатый день ___ закололи пасхального ягненка.",
+   "lemma": "месяц",
+   "options": [
+    "первому месяцу",
+    "первого месяца",
+    "первый месяц",
+    "первом месяце"
+   ],
+   "correct": "первого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«первого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "Josiah kept a Passover to Yahweh in Jerusalem. They killed the Passover on the fourteenth day of the first month."
+  },
+  {
+   "sentence": "Заколите ___, освятитесь и приготовьте ягнят для ваших соплеменников, исполняя все, что повелел через Моисея Господь.",
+   "lemma": "ягнёнок",
+   "options": [
+    "пасхальных ягнятах",
+    "пасхальных ягнят",
+    "пасхальным ягнятам",
+    "пасхальными ягнятами"
+   ],
+   "correct": "пасхальных ягнят",
+   "case": "Родительный (Genitive)",
+   "explain": "«пасхальных ягнят» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Kill the Passover, sanctify yourselves, and prepare for your brothers, to do according to Yahweh’s word by Moses.”"
+  },
+  {
+   "sentence": "Иосия дал всему народу, который был там, общим счетом тридцать тысяч голов ___, ягнят и козлят для пасхальных приношений и три тысячи голов крупного скота.",
+   "lemma": "скот",
+   "options": [
+    "мелкий скот",
+    "мелким скотом",
+    "мелкого скота",
+    "мелкому скоту"
+   ],
+   "correct": "мелкого скота",
+   "case": "Родительный (Genitive)",
+   "explain": "«мелкого скота» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "Josiah gave to the children of the people, of the flock, lambs and young goats, all of them for the Passover offerings, to all who were present, to the number of thirty thousand, and three thousand bulls. These were of the king’s substance."
+  },
+  {
+   "sentence": "Иосия дал всему народу, который был там, общим счетом тридцать тысяч голов мелкого скота, ягнят и козлят для ___ и три тысячи голов крупного скота.",
+   "lemma": "приношение",
+   "options": [
+    "пасхальных приношениях",
+    "пасхальным приношениям",
+    "пасхальные приношения",
+    "пасхальных приношений"
+   ],
+   "correct": "пасхальных приношений",
+   "case": "Родительный (Genitive)",
+   "explain": "«пасхальных приношений» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "Josiah gave to the children of the people, of the flock, lambs and young goats, all of them for the Passover offerings, to all who were present, to the number of thirty thousand, and three thousand bulls. These were of the king’s substance."
+  },
+  {
+   "sentence": "Иосия дал всему народу, который был там, общим счетом тридцать тысяч голов мелкого скота, ягнят и козлят для пасхальных приношений и три тысячи голов ___.",
+   "lemma": "скот",
+   "options": [
+    "крупным скотом",
+    "крупного скота",
+    "крупному скоту",
+    "крупном скоте"
+   ],
+   "correct": "крупного скота",
+   "case": "Родительный (Genitive)",
+   "explain": "«крупного скота» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "Josiah gave to the children of the people, of the flock, lambs and young goats, all of them for the Passover offerings, to all who were present, to the number of thirty thousand, and three thousand bulls. These were of the king’s substance."
+  },
+  {
+   "sentence": "Хелкия, Захария и Иехиил, ответственные за Божий дом, дали священникам для ___ две тысячи шестьсот голов мелкого скота и триста крупного.",
+   "lemma": "жертва",
+   "options": [
+    "пасхальной жертвы",
+    "пасхальной жертвой",
+    "пасхальной жертве",
+    "пасхальная жертва"
+   ],
+   "correct": "пасхальной жертвы",
+   "case": "Родительный (Genitive)",
+   "explain": "«пасхальной жертвы» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c7",
+   "translation": "His princes gave for a free will offering to the people, to the priests, and to the Levites. Hilkiah, Zechariah, and Jehiel, the rulers of God’s house, gave to the priests for the Passover offerings two thousand six hundred small livestock, and three hundred head of cattle."
+  },
+  {
+   "sentence": "Хелкия, Захария и Иехиил, ответственные за Божий дом, дали священникам для пасхальной жертвы две тысячи шестьсот голов ___ и триста крупного.",
+   "lemma": "скот",
+   "options": [
+    "мелкий скот",
+    "мелким скотом",
+    "мелкого скота",
+    "мелкому скоту"
+   ],
+   "correct": "мелкого скота",
+   "case": "Родительный (Genitive)",
+   "explain": "«мелкого скота» — the genitive here marks possession, absence, or quantity.",
+   "id": "c8",
+   "translation": "His princes gave for a free will offering to the people, to the priests, and to the Levites. Hilkiah, Zechariah, and Jehiel, the rulers of God’s house, gave to the priests for the Passover offerings two thousand six hundred small livestock, and three hundred head of cattle."
+  },
+  {
+   "sentence": "Хонания со своими братьями Шемаей и Нафанаилом и вождями левитов Хашавией, Иеиелом и Иозавадом дали левитам пять тысяч голов ___ и пятьсот голов крупного.",
+   "lemma": "скот",
+   "options": [
+    "мелкий скот",
+    "мелким скотом",
+    "мелкого скота",
+    "мелкому скоту"
+   ],
+   "correct": "мелкого скота",
+   "case": "Родительный (Genitive)",
+   "explain": "«мелкого скота» — the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "Conaniah also, and Shemaiah and Nethanel, his brothers, and Hashabiah, Jeiel, and Jozabad, the chiefs of the Levites, gave to the Levites for the Passover offerings five thousand small livestock and five hundred head of cattle."
+  },
+  {
+   "sentence": "___ были заколоты, и священники кропили переданной им кровью, пока левиты свежевали животных.",
+   "lemma": "ягнёнок",
+   "options": [
+    "пасхальных ягнятах",
+    "пасхальными ягнятами",
+    "пасхальные ягнята",
+    "пасхальных ягнят"
+   ],
+   "correct": "пасхальные ягнята",
+   "case": "Именительный (Nominative)",
+   "explain": "«Пасхальные ягнята» — the subject of the sentence stands in the nominative.",
+   "id": "c10",
+   "translation": "They killed the Passover, and the priests sprinkled the blood which they received of their hand, and the Levites skinned them."
+  },
+  {
+   "sentence": "То же они сделали и с ___.",
+   "lemma": "скот",
+   "options": [
+    "крупным скотом",
+    "крупный скот",
+    "крупному скоту",
+    "крупном скоте"
+   ],
+   "correct": "крупным скотом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«крупным скотом» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c11",
+   "translation": "They removed the burnt offerings, that they might give them according to the divisions of the fathers’ houses of the children of the people, to offer to Yahweh, as it is written in the book of Moses. They did the same with the cattle."
+  },
+  {
+   "sentence": "Израильтяне, которые были там, праздновали в то время Пасху и семь дней отмечали праздник ___.",
+   "lemma": "хлеб",
+   "options": [
+    "пресным хлебам",
+    "пресных хлебах",
+    "пресными хлебами",
+    "пресных хлебов"
+   ],
+   "correct": "пресных хлебов",
+   "case": "Родительный (Genitive)",
+   "explain": "«Пресных хлебов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c12",
+   "translation": "The children of Israel who were present kept the Passover at that time, and the feast of unleavened bread seven days."
+  },
+  {
+   "sentence": "Иеремия сложил плач по Иосии, и до ___ певцы и певицы вспоминают об Иосии в плачах.",
+   "lemma": "день",
+   "options": [
+    "сегодняшним днём",
+    "сегодняшний день",
+    "сегодняшнего дня",
+    "сегодняшнему дню"
+   ],
+   "correct": "сегодняшнего дня",
+   "case": "Родительный (Genitive)",
+   "explain": "«сегодняшнего дня» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c13",
+   "translation": "Jeremiah lamented for Josiah, and all the singing men and singing women spoke of Josiah in their lamentations to this day; and they made them an ordinance in Israel. Behold, they are written in the lamentations."
+  },
+  {
+   "sentence": "___ правления Иосии и его добрые дела, совершенные по написанному в Господнем Законе, — 27 все события от первых до последних записаны в «Книге царей Израиля и Иудеи».",
+   "lemma": "событие",
+   "options": [
+    "прочих событий",
+    "прочим событиям",
+    "прочими событиями",
+    "прочие события"
+   ],
+   "correct": "прочие события",
+   "case": "Именительный (Nominative)",
+   "explain": "«Прочие события» — the subject of the sentence stands in the nominative.",
+   "id": "c14",
+   "translation": "Now the rest of the acts of Josiah, and his good deeds, according to that which is written in Yahweh’s law,"
+  },
+  {
+   "sentence": "Прочие события правления Иосии и его ___, совершенные по написанному в Господнем Законе, — 27 все события от первых до последних записаны в «Книге царей Израиля и Иудеи».",
+   "lemma": "дело",
+   "options": [
+    "добрых дел",
+    "добрые дела",
+    "добрыми делами",
+    "добрым делам"
+   ],
+   "correct": "добрые дела",
+   "case": "Именительный (Nominative)",
+   "explain": "«добрые дела» — the subject of the sentence stands in the nominative.",
+   "id": "c15",
+   "translation": "Now the rest of the acts of Josiah, and his good deeds, according to that which is written in Yahweh’s law,"
+  }
+ ]
 }

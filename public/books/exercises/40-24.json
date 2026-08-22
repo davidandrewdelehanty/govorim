@@ -1,154 +1,109 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Радостная ___ о царстве будет возвещена по всему миру.",
-      "lemma": "весть",
-      "options": ["весть", "вести", "вестью", "вестей"],
-      "correct": "весть",
-      "case": "Именительный (Nominative)",
-      "translation": "This good news of the kingdom will be preached throughout the whole world.",
-      "explain": "Весть is the subject of the passive verb будет возвещена (will be proclaimed), so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "И от ___ зла во многих охладеет любовь, но тот, кто выстоит до конца, будет спасен.",
-      "lemma": "умножение",
-      "options": ["умножение", "умножения", "умножению", "умножением"],
-      "correct": "умножения",
-      "case": "Родительный (Genitive)",
-      "translation": "And because of the increase of wickedness, the love of many will grow cold, but he who endures to the end will be saved.",
-      "explain": "The preposition от (because of, from) governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Радостная весть о царстве будет возвещена по всему ___.",
-      "lemma": "мир",
-      "options": ["мир", "мира", "миру", "миром"],
-      "correct": "миру",
-      "case": "Дательный (Dative)",
-      "translation": "This good news of the kingdom will be preached throughout the whole world.",
-      "explain": "The preposition по meaning 'throughout' governs the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Кто окажется на крыше, пусть не спускается в ___ за вещами.",
-      "lemma": "дом",
-      "options": ["дом", "дома", "дому", "домом"],
-      "correct": "дом",
-      "case": "Винительный (Accusative)",
-      "translation": "Let him who is on the roof not go down into the house to get his belongings.",
-      "explain": "The preposition в expressing motion into takes the accusative; for the inanimate masculine дом the accusative equals the nominative."
-    },
-    {
-      "id": "c5",
-      "sentence": "Пусть для вас ___ будет инжир.",
-      "lemma": "пример",
-      "options": ["пример", "примера", "примеру", "примером"],
-      "correct": "примером",
-      "case": "Творительный (Instrumental)",
-      "translation": "Let the fig tree be an example for you.",
-      "explain": "The verb быть (to be) requires its predicate noun in the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Итак, когда вы увидите на святом ___ опустошающую мерзость, о которой говорил пророк Даниил, пусть читающий поймет.",
-      "lemma": "место",
-      "options": ["место", "места", "месту", "месте"],
-      "correct": "месте",
-      "case": "Предложный (Prepositional)",
-      "translation": "So when you see the abomination of desolation, spoken of through the prophet Daniel, standing in the holy place, let the reader understand.",
-      "explain": "The preposition на indicating location (in the holy place) governs the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "«Говорю вам истину, здесь не останется и камня на камне, все будет разрушено».",
-      "question": "What did Jesus predict about the temple buildings?",
-      "options": ["Not one stone would be left on another; all would be destroyed", "They would stand forever", "They would be rebuilt even grander", "They would be turned into a marketplace"],
-      "correct": "Not one stone would be left on another; all would be destroyed",
-      "explain": "Jesus said 'здесь не останется и камня на камне, все будет разрушено' (not one stone will be left on another; all will be thrown down)."
-    },
-    {
-      "id": "r2",
-      "ru": "Потому что многие будут приходить под Моим именем, говоря, «Я Христос», и многих обманут.",
-      "question": "What warning did Jesus give about people coming in his name?",
-      "options": ["Many would falsely claim to be the Christ and deceive many", "Many would come bearing gifts for the temple", "Many would come to defend Jerusalem", "Many would come seeking healing"],
-      "correct": "Many would falsely claim to be the Christ and deceive many",
-      "explain": "Jesus warned many would come saying '«Я Христос»' (I am the Christ) 'и многих обманут' (and deceive many)."
-    },
-    {
-      "id": "r3",
-      "ru": "Потому что народ поднимется на народ, и царство на царство.",
-      "question": "What sign of the coming end does Jesus mention regarding nations?",
-      "options": ["Nation will rise against nation, and kingdom against kingdom", "All nations will unite in peace", "One kingdom will rule the entire earth", "Nations will stop paying taxes"],
-      "correct": "Nation will rise against nation, and kingdom against kingdom",
-      "explain": "Jesus says 'народ поднимется на народ, и царство на царство' (nation will rise against nation, and kingdom against kingdom)."
-    },
-    {
-      "id": "r4",
-      "ru": "И от умножения зла во многих охладеет любовь, но тот, кто выстоит до конца, будет спасен.",
-      "question": "What does Jesus say will happen to love as wickedness increases?",
-      "options": ["The love of many will grow cold, but whoever endures to the end will be saved", "Love will grow stronger among believers", "Love will disappear entirely from the earth", "Love will be replaced by fear of God alone"],
-      "correct": "The love of many will grow cold, but whoever endures to the end will be saved",
-      "explain": "The text says 'от умножения зла во многих охладеет любовь, но тот, кто выстоит до конца, будет спасен' (because of the increase of wickedness the love of many will grow cold, but he who endures to the end will be saved)."
-    },
-    {
-      "id": "r5",
-      "ru": "Тогда те, кто находится в Иудее, пусть бегут в горы.",
-      "question": "What does Jesus tell those in Judea to do when they see the abomination of desolation?",
-      "options": ["Flee to the mountains", "Gather in the temple", "Stay in their houses", "Travel to Jerusalem for safety"],
-      "correct": "Flee to the mountains",
-      "explain": "Jesus says 'те, кто находится в Иудее, пусть бегут в горы' (those in Judea should flee to the mountains)."
-    },
-    {
-      "id": "r6",
-      "ru": "И если бы те дни не были сокращены, то не уцелело бы ни одно живое существо, но ради избранных они будут сокращены.",
-      "question": "Why will the days of great suffering be shortened, according to Jesus?",
-      "options": ["For the sake of the chosen ones", "Because the Romans will intervene", "Because the temple will be rebuilt", "Because the disciples asked for mercy"],
-      "correct": "For the sake of the chosen ones",
-      "explain": "The text says those days will be shortened 'ради избранных' (for the sake of the chosen ones)."
-    },
-    {
-      "id": "r7",
-      "ru": "потому что как молния, которая, сверкая с востока, бывает видна и на западе, так будет и возвращение Сына Человеческого.",
-      "question": "How does Jesus describe the coming of the Son of Man?",
-      "options": ["Like lightning that flashes from the east and is visible in the west", "Like a whisper heard only by a few", "Like a slow sunrise over the mountains", "Like a trumpet heard only in Jerusalem"],
-      "correct": "Like lightning that flashes from the east and is visible in the west",
-      "explain": "Jesus compares his coming to 'молния, которая, сверкая с востока, бывает видна и на западе' (lightning that flashes from the east and is seen even in the west)."
-    },
-    {
-      "id": "r8",
-      "ru": "Они увидят Сына Человеческого, идущего на небесных облаках, с силой и великой славой.",
-      "question": "How will people see the Son of Man arrive?",
-      "options": ["Coming on the clouds of heaven with power and great glory", "Walking quietly into Jerusalem", "Riding on a white horse alone", "Descending in complete silence"],
-      "correct": "Coming on the clouds of heaven with power and great glory",
-      "explain": "The text says they will see the Son of Man 'идущего на небесных облаках, с силой и великой славой' (coming on the clouds of heaven, with power and great glory)."
-    },
-    {
-      "id": "r9",
-      "ru": "Еще не исчезнет это поколение, как все это произойдет.",
-      "question": "What does Jesus say about when these things will occur?",
-      "options": ["This generation will not pass away before all these things happen", "It will take thousands of years to occur", "Only future generations will witness it", "No one will ever see it happen"],
-      "correct": "This generation will not pass away before all these things happen",
-      "explain": "Jesus says 'Еще не исчезнет это поколение, как все это произойдет' (this generation will not pass away before all these things happen)."
-    },
-    {
-      "id": "r10",
-      "ru": "Но о том дне и часе не знает никто, кроме Отца, ни ангела на небесах, ни Сын.",
-      "question": "Who, according to Jesus, knows the day and hour of his return?",
-      "options": ["No one except the Father", "The angels in heaven", "The Son himself", "The disciples who remain faithful"],
-      "correct": "No one except the Father",
-      "explain": "Jesus says 'о том дне и часе не знает никто, кроме Отца' (about that day and hour no one knows, except the Father)."
-    },
-    {
-      "id": "r11",
-      "ru": "Он рассечет его надвое и определит ему одну участь с лицемерами.",
-      "question": "What happens to the wicked servant in Jesus' parable?",
-      "options": ["He is cut in two and assigned a place with the hypocrites", "He is forgiven and given more responsibility", "He is sent away to another country", "He is imprisoned until his master returns"],
-      "correct": "He is cut in two and assigned a place with the hypocrites",
-      "explain": "The text says the master 'рассечет его надвое и определит ему одну участь с лицемерами' (will cut him in two and assign him a place with the hypocrites)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Потому что народ поднимется на народ и царство на царство, в ___ будет голод и землетрясения.",
+   "lemma": "место",
+   "options": [
+    "разными местами",
+    "разные места",
+    "разным местам",
+    "разных местах"
+   ],
+   "correct": "разных местах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«разных местах» — after the preposition «в», for location or topic.",
+   "id": "c2",
+   "translation": "For nation will rise against nation, and kingdom against kingdom; and there will be famines, plagues, and earthquakes in various places."
+  },
+  {
+   "sentence": "Но все это лишь начало ___ .",
+   "lemma": "схватка",
+   "options": [
+    "родовых схваток",
+    "родовые схватки",
+    "родовыми схватками",
+    "родовых схватках"
+   ],
+   "correct": "родовых схваток",
+   "case": "Родительный (Genitive)",
+   "explain": "«родовых схваток» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "But all these things are the beginning of birth pains."
+  },
+  {
+   "sentence": "Итак, когда вы увидите на ___ «опустошающую мерзость», о которой говорил пророк Даниил , — пусть читающий поймет, — 16 тогда те, кто находится в Иудее, пусть бегут в горы.",
+   "lemma": "место",
+   "options": [
+    "святому месту",
+    "святого места",
+    "святом месте",
+    "святое место"
+   ],
+   "correct": "святом месте",
+   "case": "Предложный (Prepositional)",
+   "explain": "«святом месте» — after the preposition «на», for location or topic.",
+   "id": "c4",
+   "translation": "“When, therefore, you see the abomination of desolation,  which was spoken of through Daniel the prophet, standing in the holy place (let the reader understand),"
+  },
+  {
+   "sentence": "Они увидят Сына Человеческого, идущего на ___ с силой и великой славой.",
+   "lemma": "облако",
+   "options": [
+    "небесных облаков",
+    "небесных облаках",
+    "небесными облаками",
+    "небесным облакам"
+   ],
+   "correct": "небесных облаках",
+   "case": "Предложный (Prepositional)",
+   "explain": "«небесных облаках» — after the preposition «на», for location or topic.",
+   "id": "c6",
+   "translation": "and then the sign of the Son of Man will appear in the sky. Then all the tribes of the earth will mourn, and they will see the Son of Man coming on the clouds of the sky with power and great glory."
+  },
+  {
+   "sentence": "Они увидят Сына Человеческого, идущего на небесных облаках с силой и ___.",
+   "lemma": "слава",
+   "options": [
+    "великой славой",
+    "великой славе",
+    "великая слава",
+    "великой славы"
+   ],
+   "correct": "великой славой",
+   "case": "Творительный (Instrumental)",
+   "explain": "«великой славой» — the instrumental marks the means, company, or complement.",
+   "id": "c7",
+   "translation": "and then the sign of the Son of Man will appear in the sky. Then all the tribes of the earth will mourn, and they will see the Son of Man coming on the clouds of the sky with power and great glory."
+  },
+  {
+   "sentence": "Так и здесь, когда вы увидите, что все это сбывается, знайте, что Он уже близко, у ___.",
+   "lemma": "дверь",
+   "options": [
+    "самым дверям",
+    "самых дверей",
+    "самых дверях",
+    "самые двери"
+   ],
+   "correct": "самых дверей",
+   "case": "Родительный (Genitive)",
+   "explain": "«самых дверей» — after the preposition «у», the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "Even so you also, when you see all these things, know that it is near, even at the doors."
+  },
+  {
+   "sentence": "Кто тогда окажется верным и разумным слугой, которого хозяин поставил над ___, чтобы вовремя раздавать им пищу?",
+   "lemma": "слуга",
+   "options": [
+    "другим слугам",
+    "другими слугами",
+    "других слугах",
+    "других слуг"
+   ],
+   "correct": "другими слугами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«другими слугами» — the instrumental marks the means, company, or complement.",
+   "id": "c10",
+   "translation": "“Who then is the faithful and wise servant, whom his lord has set over his household, to give them their food in due season?"
+  }
+ ]
 }

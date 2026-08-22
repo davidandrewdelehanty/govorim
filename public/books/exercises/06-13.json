@@ -1,134 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Когда Иисус состарился и достиг преклонных лет, Господь сказал ему, «Ты состарился и достиг преклонных лет, а незавоеванной ___ остается еще очень много.»",
-      "lemma": "земля",
-      "options": ["земли", "земле", "землю", "землей"],
-      "correct": "земли",
-      "case": "Родительный (Genitive)",
-      "translation": "Now Joshua was old and advanced in years. The Lord said to him, 'You are old and much land remains to be possessed.'",
-      "explain": "The genitive singular follows the adjective 'незавоеванной' (unconquered) and the word порядок (quantity remains)."
-    },
-    {
-      "id": "c2",
-      "sentence": "Вот ____ которая еще остается, все области филистимлян и гешуритов.",
-      "lemma": "земля",
-      "options": ["земли", "земле", "земля", "землей"],
-      "correct": "земля",
-      "case": "Именительный (Nominative)",
-      "translation": "This is the land that still remains.",
-      "explain": "The nominative is used as the subject of the sentence 'которая еще остается' (which still remains)."
-    },
-    {
-      "id": "c3",
-      "sentence": "Их удел простирается от Араэра на берегу реки Арнона и от города посредине долины и включает в себя все плоскогорья Медева до ___.",
-      "lemma": "Дивон",
-      "options": ["Дивона", "Дивону", "Дивон", "Дивоном"],
-      "correct": "Дивона",
-      "case": "Родительный (Genitive)",
-      "translation": "Their border was from Aroer... to Dibon.",
-      "explain": "The genitive singular follows the preposition до (until/up to)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Только роду ___ Моисей не дал удела.",
-      "lemma": "Левий",
-      "options": ["Левия", "Левию", "Левий", "Левием"],
-      "correct": "Левия",
-      "case": "Родительный (Genitive)",
-      "translation": "Only to the tribe of Levi he gave no inheritance.",
-      "explain": "The genitive singular follows the preposition 'роду' (to the tribe), showing possession."
-    },
-    {
-      "id": "c5",
-      "sentence": "Потому что огненные жертвоприношения Господу, Богу Израиля, и есть их ___, как он и сказал ему.",
-      "lemma": "наследие",
-      "options": ["наследия", "наследию", "наследие", "наследием"],
-      "correct": "наследие",
-      "case": "Именительный (Nominative)",
-      "translation": "The offerings of Yahweh made by fire are their inheritance.",
-      "explain": "The nominative singular serves as the predicate nominative after 'есть' (is)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Вот что Моисей дал роду Рувима по их ___.",
-      "lemma": "план",
-      "options": ["планов", "планам", "планами", "плана"],
-      "correct": "планам",
-      "case": "Дательный (Dative)",
-      "translation": "These are the inheritances which Moses distributed to the tribe of Reuben according to their families.",
-      "explain": "The dative plural is used with по (according to) meaning according to their family divisions."
-    },
-    {
-      "id": "c7",
-      "sentence": "Кроме тех, кто был убит в бою, израилетяне предали мечу прорицателя Валаама, сына ___.",
-      "lemma": "Беор",
-      "options": ["Беора", "Беору", "Беор", "Беором"],
-      "correct": "Беора",
-      "case": "Родительный (Genitive)",
-      "translation": "The children of Israel also killed Balaam the son of Beor with the sword.",
-      "explain": "The genitive singular follows the construction 'сына' (son of) indicating possession."
-    },
-    {
-      "id": "c8",
-      "sentence": "Таковы уделы, которые Моисей дал, когда был на равнинах Маава, за Иорданом к востоку от ___.",
-      "lemma": "Иерихон",
-      "options": ["Иерихона", "Иерихону", "Иерихон", "Иерихоном"],
-      "correct": "Иерихона",
-      "case": "Родительный (Genitive)",
-      "translation": "These are the inheritances which Moses distributed in the plains of Moab, beyond the Jordan at Jericho, eastward.",
-      "explain": "The genitive singular follows the preposition к (toward) in the phrase 'к востоку от' (to the east of)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Когда Иисус состарился и достиг преклонных лет, Господь сказал ему, «Ты состарился и достиг преклонных лет, а незавоеванной земли остается еще очень много.»",
-      "question": "What did the Lord tell Joshua at an advanced age?",
-      "options": ["Much land still remained to be possessed even though Joshua was old", "He should retire and pass leadership to someone younger", "All the land had been conquered and divided", "He should move the capital to Jericho"],
-      "correct": "Much land still remained to be possessed even though Joshua was old",
-      "explain": "The Lord told Joshua that despite his age, незавоеванной земли остается еще очень много — much unconquered land still remained."
-    },
-    {
-      "id": "r2",
-      "ru": "Только роду Левия Моисей не дал удела, потому что огненные жертвоприношения Господу, Богу Израиля, и есть их наследие, как он и сказал ему.",
-      "question": "Why did the Levites not receive land like the other tribes?",
-      "options": ["Because the offerings made by fire to the Lord were their inheritance", "Because they were not warriors and couldn't defend the land", "Because they had already received money from the other tribes", "Because they chose to live in the desert"],
-      "correct": "Because the offerings made by fire to the Lord were their inheritance",
-      "explain": "The text explains огненные жертвоприношения Господу, Богу Израиля, и есть их наследие — the fire offerings to the Lord were their inheritance."
-    },
-    {
-      "id": "r3",
-      "ru": "Их удел простирается от Араэра на берегу реки Арнона и от города посредине долины и включает в себя все плоскогорья Медева до Дивона.",
-      "question": "What were the boundaries of Reuben's territory?",
-      "options": ["From Aroer on the bank of the Arnon to include the plateau of Medeba to Dibon", "All the land from the Jordan to the Mediterranean", "The coastal regions near the sea", "The mountainous areas to the north"],
-      "correct": "From Aroer on the bank of the Arnon to include the plateau of Medeba to Dibon",
-      "explain": "The text specifies от Араэра на берегу реки Арнона и от города посредине долины и включает в себя все плоскогорья Медева до Дивона — from Aroer to the plateau of Medeba to Dibon."
-    },
-    {
-      "id": "r4",
-      "ru": "Моисей победил его и мадианских вождей Еве, Рекема, Цура, Хура и Реву, вождей союзных в Сигону, которые жили в той стране.",
-      "question": "Whom did Moses defeat in addition to the Amorite kings?",
-      "options": ["The Midianite chiefs Evi, Rekem, Zur, Hur, and Reba who were allies of Sihon", "The kings of Egypt", "The Philistine commanders", "The northern Hittite rulers"],
-      "correct": "The Midianite chiefs Evi, Rekem, Zur, Hur, and Reba who were allies of Sihon",
-      "explain": "The text lists мадианских вождей Еве, Рекема, Цура, Хура и Реву — the Midianite chiefs Evi, Rekem, Zur, Hur, and Reba."
-    },
-    {
-      "id": "r5",
-      "ru": "Но роду Левия Моисей не дал удела. Господь, Бог Израиля, вот их удел, как он сказал им.",
-      "question": "What was God's explanation for why the Levites received no land?",
-      "options": ["The Lord, the God of Israel, is their inheritance, as he spoke to them", "The Levites would receive payment from the other tribes", "Levites were not allowed to own property by law", "They would govern the cities but not own the land"],
-      "correct": "The Lord, the God of Israel, is their inheritance, as he spoke to them",
-      "explain": "God told them Господь, Бог Израиля, вот их удел — the Lord, God of Israel, is their inheritance."
-    },
-    {
-      "id": "r6",
-      "ru": "Таковы уделы, которые Моисей дал, когда был на равнинах Маава, за Иорданом к востоку от Ерихона.",
-      "question": "Where did Moses distribute the inheritances to the eastern tribes?",
-      "options": ["In the plains of Moab, beyond the Jordan, east of Jericho", "In the valley of Jericho", "On the western shore of the Dead Sea", "In the mountains of Gilead"],
-      "correct": "In the plains of Moab, beyond the Jordan, east of Jericho",
-      "explain": "The text states Таковы уделы, которые Моисей дал, когда был на равнинах Маава, за Иорданом к востоку от Ерихона — in the plains of Moab, beyond the Jordan, east of Jericho."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "___ рода Манассии , рувимиты и гадиты уже получили удел, который Моисей дал им к востоку от Иордана, как он, слуга Господа, им и назначил.",
+   "lemma": "половина",
+   "options": [
+    "другой половиной",
+    "другой половине",
+    "другая половина",
+    "другой половины"
+   ],
+   "correct": "другая половина",
+   "case": "Именительный (Nominative)",
+   "explain": "«Другая половина» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "With him the Reubenites and the Gadites received their inheritance, which Moses gave them, beyond the Jordan eastward, even as Moses the servant of Yahweh gave them:"
+  },
+  {
+   "sentence": "Но израильтяне не прогнали жителей Гешура и Мааха, и они живут среди израильтян до ___.",
+   "lemma": "день",
+   "options": [
+    "сегодняшнему дню",
+    "сегодняшнего дня",
+    "сегодняшнем дне",
+    "сегодняшний день"
+   ],
+   "correct": "сегодняшнего дня",
+   "case": "Родительный (Genitive)",
+   "explain": "«сегодняшнего дня» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "Nevertheless the children of Israel didn’t drive out the Geshurites, nor the Maacathites: but Geshur and Maacath live within Israel to this day."
+  },
+  {
+   "sentence": "Только роду Левия Моисей не дал удела, потому что ___ Господу, Богу Израиля, и есть их наследие, как Он и сказал ему.",
+   "lemma": "жертвоприношение",
+   "options": [
+    "огненных жертвоприношений",
+    "огненных жертвоприношениях",
+    "огненным жертвоприношениям",
+    "огненные жертвоприношения"
+   ],
+   "correct": "огненные жертвоприношения",
+   "case": "Именительный (Nominative)",
+   "explain": "«огненные жертвоприношения» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "Only he gave no inheritance to the tribe of Levi. The offerings of Yahweh, the God of Israel, made by fire are his inheritance, as he spoke to him."
+  },
+  {
+   "sentence": "Эти города с ___ были уделом рувимитов по их кланам.",
+   "lemma": "поселение",
+   "options": [
+    "окрестными поселениями",
+    "окрестные поселения",
+    "окрестным поселениям",
+    "окрестных поселений"
+   ],
+   "correct": "окрестными поселениями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«окрестными поселениями» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c4",
+   "translation": "The border of the children of Reuben was the bank of the Jordan. This was the inheritance of the children of Reuben according to their families, the cities and its villages."
+  },
+  {
+   "sentence": "Эти города с ___ были уделом гадитов по их кланам.",
+   "lemma": "поселение",
+   "options": [
+    "окрестными поселениями",
+    "окрестные поселения",
+    "окрестным поселениям",
+    "окрестных поселений"
+   ],
+   "correct": "окрестными поселениями",
+   "case": "Творительный (Instrumental)",
+   "explain": "«окрестными поселениями» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "This is the inheritance of the children of Gad according to their families, the cities and its villages."
+  },
+  {
+   "sentence": "землю, которая тянется от Маханаима и включает весь Башан, все царство Ога, царя Башана — все поселения Иаира в Башане, шестьдесят городов, 31 половину Галаада, и Аштарот и Эдреи (___ Ога в Башане).",
+   "lemma": "город",
+   "options": [
+    "царским городам",
+    "царскими городами",
+    "царских городов",
+    "царские города"
+   ],
+   "correct": "царские города",
+   "case": "Именительный (Nominative)",
+   "explain": "«царские города» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "Their border was from Mahanaim, all Bashan, all the kingdom of Og king of Bashan, and all the villages of Jair, which are in Bashan, sixty cities."
+  }
+ ]
 }

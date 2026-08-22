@@ -1,134 +1,154 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Было ко мне ___ Господа.",
-      "lemma": "слово",
-      "options": ["слово", "слова", "слову", "словом"],
-      "correct": "слово",
-      "case": "Именительный (Nominative)",
-      "translation": "The word of the Lord came to me.",
-      "explain": "Слово is the nominative subject of the sentence."
-    },
-    {
-      "id": "c2",
-      "sentence": "я с поднятой рукой поклялся потомкам дома ___.",
-      "lemma": "Иаков",
-      "options": ["Иакова", "Иакову", "Иаковом", "Иакове"],
-      "correct": "Иакова",
-      "case": "Родительный (Genitive)",
-      "translation": "I swore with lifted hand to the offspring of the house of Jacob.",
-      "explain": "The phrase 'дом Иакова' (house of Jacob) shows Jacob's name in genitive case indicating possession."
-    },
-    {
-      "id": "c3",
-      "sentence": "я отдам им в ___: Иерусалим и Самарию.",
-      "lemma": "наследство",
-      "options": ["наследство", "наследства", "наследству", "наследстве"],
-      "correct": "наследство",
-      "case": "Винительный (Accusative)",
-      "translation": "I will give them as an inheritance.",
-      "explain": "The preposition в (into) with the accusative case indicates the goal or result."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я дал им мои установления и объявил мои ___ потому что тот, кто исполняет их, будет жив ими.",
-      "lemma": "закон",
-      "options": ["закон", "закона", "законы", "законам"],
-      "correct": "законы",
-      "case": "Винительный (Accusative)",
-      "translation": "I gave them my statutes and proclaimed my laws, because whoever keeps them will live by them.",
-      "explain": "The verb объявить (to proclaim) is transitive and takes the accusative object."
-    },
-    {
-      "id": "c5",
-      "sentence": "Тогда я сказал, что и залью на них свою ярость и обращу на них свой ___ в земле Египта.",
-      "lemma": "гнев",
-      "options": ["гнев", "гнева", "гневу", "гневом"],
-      "correct": "гнев",
-      "case": "Винительный (Accusative)",
-      "translation": "Then I said I would pour out my wrath on them and turn my anger against them in the land of Egypt.",
-      "explain": "The verb обращу (I will turn) takes the direct object гнев (anger) in the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Народ Израиля восстал против меня в ___.",
-      "lemma": "пустыня",
-      "options": ["пустыня", "пустыни", "пустыне", "пустынею"],
-      "correct": "пустыне",
-      "case": "Предложный (Prepositional)",
-      "translation": "The house of Israel rebelled against me in the wilderness.",
-      "explain": "The preposition в (in) with locative meaning takes the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Они не соблюдали моих установлений и отвергли мои ___ хотя тот, кто исполняет их, будет жив ими.",
-      "lemma": "закон",
-      "options": ["закон", "закона", "законы", "законе"],
-      "correct": "законы",
-      "case": "Винительный (Accusative)",
-      "translation": "They did not keep my statutes and rejected my laws, although whoever observes them will live by them.",
-      "explain": "The verb отвергнуть (to reject) is transitive and takes the accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "В пустыне я сказал их детям, не исполняйте установлений и законов ваших ___ и не оскверняйте себя их идолами.",
-      "lemma": "отец",
-      "options": ["отцов", "отцам", "отцом", "отцах"],
-      "correct": "отцов",
-      "case": "Родительный (Genitive)",
-      "translation": "In the wilderness I said to their children, do not follow the statutes and laws of your fathers.",
-      "explain": "The phrase 'законов ваших отцов' shows the genitive case indicating possession and relationship."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "В день, когда я избрал Израиль, я с поднятой рукой поклялся потомкам дома Иакова и открылся им в Египте.",
-      "question": "What did God do when He chose Israel?",
-      "options": ["He swore to the descendants of Jacob and revealed Himself in Egypt", "He sent them plagues and signs", "He destroyed their enemies with fire", "He gave them the law on Mount Sinai"],
-      "correct": "He swore to the descendants of Jacob and revealed Himself in Egypt",
-      "explain": "The verse states: 'я с поднятой рукой поклялся потомкам дома Иакова и открылся им в Египте.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Я дал им мои установления и объявил мои законы, потому что тот, кто исполняет их, будет жив ими.",
-      "question": "Why did God give Israel His statutes and laws?",
-      "options": ["Because whoever keeps them will live by them", "To punish them for their disobedience", "To burden them with rules", "To prepare them for exile"],
-      "correct": "Because whoever keeps them will live by them",
-      "explain": "The text explicitly states the reason: 'потому что тот, кто исполняет их, будет жив ими.'"
-    },
-    {
-      "id": "r3",
-      "ru": "Еще я дал им мои субботы как знак между нами, чтобы они знали, что я, Господь, их освящаю.",
-      "question": "What purpose did the Sabbaths serve?",
-      "options": ["To be a sign between God and Israel that He sanctifies them", "To mark the passage of time for counting years", "To provide rest from labor only", "To commemorate the exodus from Egypt"],
-      "correct": "To be a sign between God and Israel that He sanctifies them",
-      "explain": "The verse explains: 'я дал им мои субботы как знак между нами, чтобы они знали, что я, Господь, их освящаю.'"
-    },
-    {
-      "id": "r4",
-      "ru": "Но народ Израиля восстал против меня в пустыне. Они не соблюдали моих установлений и отвергли мои законы.",
-      "question": "How did Israel respond to God's commands in the wilderness?",
-      "options": ["They rebelled, rejected His statutes and laws", "They obeyed perfectly and kept all His commands", "They asked for clearer instructions", "They returned to Egypt voluntarily"],
-      "correct": "They rebelled, rejected His statutes and laws",
-      "explain": "The passage states: 'Они не соблюдали моих установлений и отвергли мои законы.'"
-    },
-    {
-      "id": "r5",
-      "ru": "И с поднятой рукой я поклялся им в пустыне, что рассею их среди народов и разбросаю по странам.",
-      "question": "What did God swear in the wilderness regarding Israel's future?",
-      "options": ["He would scatter them among nations and disperse them throughout countries", "He would make them the greatest nation on earth", "He would double their possessions", "He would protect them forever"],
-      "correct": "He would scatter them among nations and disperse them throughout countries",
-      "explain": "The verse states: 'что рассею их среди народов и разбросаю по странам.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Я буду судить вас каждого по его делам, возвещает владыка Господь.",
-      "question": "On what basis will God judge the people?",
-      "options": ["According to each person's deeds", "According to their social status", "According to their family heritage", "According to their age and wisdom"],
-      "correct": "According to each person's deeds",
-      "explain": "God says clearly: 'я буду судить вас каждого по его делам.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "В седьмом году, в десятый день ___ некоторые из старейшин Израиля пришли спросить Господа и сели передо мной.",
+   "lemma": "месяц",
+   "options": [
+    "пятым месяцем",
+    "пятом месяце",
+    "пятого месяца",
+    "пятому месяцу"
+   ],
+   "correct": "пятого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«пятого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "In the seventh year, in the fifth month, the tenth day of the month, some of the elders of Israel came to inquire of Yahweh, and sat before me."
+  },
+  {
+   "sentence": "Но они восстали против Меня и не стали Меня слушать; они не отвергли ___, которыми любовались, и не отвергли идолов Египта.",
+   "lemma": "истукан",
+   "options": [
+    "гнусными истуканами",
+    "гнусных истуканах",
+    "гнусные истуканы",
+    "гнусных истуканов"
+   ],
+   "correct": "гнусные истуканы",
+   "case": "Винительный (Accusative)",
+   "explain": "«гнусные истуканы» — the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "“ ‘ “But they rebelled against me, and would not listen to me. They didn’t all throw away the abominations of their eyes. They also didn’t forsake the idols of Egypt. Then I said I would pour out my wrath on them, to accomplish my anger against them in the middle of the land of Egypt."
+  },
+  {
+   "sentence": "— Поэтому скажи дому Израиля: «Так говорит Владыка Господь: Вы хотите осквернять себя по примеру отцов и блудить с их ___?",
+   "lemma": "истукан",
+   "options": [
+    "гнусным истуканам",
+    "гнусные истуканы",
+    "гнусными истуканами",
+    "гнусных истуканов"
+   ],
+   "correct": "гнусными истуканами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«гнусными истуканами» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c4",
+   "translation": "“Therefore tell the house of Israel, ‘The Lord Yahweh says: “Do you pollute yourselves in the way of your fathers? Do you play the prostitute after their abominations?"
+  },
+  {
+   "sentence": "Там Я потребую ваших приношений и лучших даров со всеми ___.",
+   "lemma": "жертва",
+   "options": [
+    "священные жертвы",
+    "священных жертв",
+    "священных жертвах",
+    "священными жертвами"
+   ],
+   "correct": "священными жертвами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«священными жертвами» — after the preposition «со», the instrumental marks the means, company, or complement.",
+   "id": "c7",
+   "translation": "For in my holy mountain, in the mountain of the height of Israel,” says the Lord Yahweh, “there all the house of Israel, all of them, shall serve me in the land. There I will accept them, and there I will require your offerings and the first fruits of your offerings, with all your holy things."
+  },
+  {
+   "sentence": "Я приму вас, как ___ благовоний, когда выведу вас от народов и соберу из стран, где вы были рассеяны, и явлю среди вас Свою святость на глазах у народов.",
+   "lemma": "запах",
+   "options": [
+    "приятным запахом",
+    "приятному запаху",
+    "приятном запахе",
+    "приятный запах"
+   ],
+   "correct": "приятный запах",
+   "case": "Именительный (Nominative)",
+   "explain": "«приятный запах» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "I will accept you as a pleasant aroma when I bring you out from the peoples and gather you out of the countries in which you have been scattered. I will be sanctified in you in the sight of the nations."
+  },
+  {
+   "sentence": "Вы узнаете, что Я — Господь, когда Я поступлю с вами ради Моего Имени, а не по вашим ___ и скверным делам, о дом Израиля, — возвещает Владыка Господь».",
+   "lemma": "путь",
+   "options": [
+    "злым путям",
+    "злыми путями",
+    "злых путях",
+    "злых путей"
+   ],
+   "correct": "злым путям",
+   "case": "Дательный (Dative)",
+   "explain": "«злым путям» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c9",
+   "translation": "You will know that I am Yahweh, when I have dealt with you for my name’s sake, not according to your evil ways, nor according to your corrupt doings, you house of Israel,” says the Lord Yahweh.’ ”"
+  },
+  {
+   "sentence": "Вы узнаете, что Я — Господь, когда Я поступлю с вами ради Моего Имени, а не по вашим злым путям и ___, о дом Израиля, — возвещает Владыка Господь».",
+   "lemma": "дело",
+   "options": [
+    "скверных делах",
+    "скверным делам",
+    "скверных дел",
+    "скверными делами"
+   ],
+   "correct": "скверным делам",
+   "case": "Дательный (Dative)",
+   "explain": "«скверным делам» — the dative marks the indirect object or recipient.",
+   "id": "c10",
+   "translation": "You will know that I am Yahweh, when I have dealt with you for my name’s sake, not according to your evil ways, nor according to your corrupt doings, you house of Israel,” says the Lord Yahweh.’ ”"
+  },
+  {
+   "sentence": "— Сын человеческий, обрати лицо на юг; проповедуй против ___ и пророчествуй о лесах южного края.",
+   "lemma": "земля",
+   "options": [
+    "южными землями",
+    "южные земли",
+    "южных землях",
+    "южных земель"
+   ],
+   "correct": "южных земель",
+   "case": "Родительный (Genitive)",
+   "explain": "«южных земель» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
+   "translation": "“Son of man, set your face toward the south, and preach toward the south, and prophesy against the forest of the field in the South."
+  },
+  {
+   "sentence": "— Сын человеческий, обрати лицо на юг; проповедуй против южных земель и пророчествуй о лесах ___.",
+   "lemma": "край",
+   "options": [
+    "южному краю",
+    "южным краем",
+    "южного края",
+    "южный край"
+   ],
+   "correct": "южного края",
+   "case": "Родительный (Genitive)",
+   "explain": "«южного края» — the genitive here marks possession, absence, or quantity.",
+   "id": "c12",
+   "translation": "“Son of man, set your face toward the south, and preach toward the south, and prophesy against the forest of the field in the South."
+  },
+  {
+   "sentence": "Скажи лесу ___: Слушай слово Господа.",
+   "lemma": "край",
+   "options": [
+    "южному краю",
+    "южным краем",
+    "южного края",
+    "южный край"
+   ],
+   "correct": "южного края",
+   "case": "Родительный (Genitive)",
+   "explain": "«южного края» — the genitive here marks possession, absence, or quantity.",
+   "id": "c13",
+   "translation": "Tell the forest of the South, ‘Hear Yahweh’s word: The Lord Yahweh says, “Behold, I will kindle a fire in you, and it will devour every green tree in you, and every dry tree. The burning flame will not be quenched, and all faces from the south to the north will be burned by it."
+  }
+ ]
 }

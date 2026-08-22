@@ -1,134 +1,154 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Было ко мне ___ Господа.",
-      "lemma": "слово",
-      "options": ["слово", "слова", "слову", "словом"],
-      "correct": "слово",
-      "case": "Именительный (Nominative)",
-      "translation": "The word of the Lord came to me.",
-      "explain": "Слово is the grammatical subject of the sentence, requiring the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Пророчествуй против израильских ___.",
-      "lemma": "пророк",
-      "options": ["пророк", "пророков", "пророкам", "пророками"],
-      "correct": "пророков",
-      "case": "Родительный (Genitive)",
-      "translation": "Prophesy against the prophets of Israel.",
-      "explain": "The preposition против (against) requires the genitive case пророков."
-    },
-    {
-      "id": "c3",
-      "sentence": "Горе безумным пророкам, которые слушают самих себя и ничего не видят, ведь они точно шакалы в ___.",
-      "lemma": "дом",
-      "options": ["дом", "дома", "доме", "домом"],
-      "correct": "доме",
-      "case": "Предложный (Prepositional)",
-      "translation": "Woe to the foolish prophets who follow their own spirit; they are like foxes in ruins.",
-      "explain": "The preposition в (in) with location requires the prepositional case доме."
-    },
-    {
-      "id": "c4",
-      "sentence": "Вы не ходили к проломам в ___, чтобы починить ее.",
-      "lemma": "стена",
-      "options": ["стена", "стены", "стене", "стеной"],
-      "correct": "стене",
-      "case": "Предложный (Prepositional)",
-      "translation": "You did not go up to repair the breaches in the wall.",
-      "explain": "The preposition в (in) indicates location and requires the prepositional case стене."
-    },
-    {
-      "id": "c5",
-      "sentence": "Моя рука обратится против пророков, которые видят ложные ___ и говорят обманчивые прорицания.",
-      "lemma": "видение",
-      "options": ["видение", "видения", "видению", "видением"],
-      "correct": "видения",
-      "case": "Винительный (Accusative)",
-      "translation": "My hand will be against the prophets who see false visions and utter deceptive divinations.",
-      "explain": "The transitive verb видят (see) requires the accusative case видения for its object."
-    },
-    {
-      "id": "c6",
-      "sentence": "За ваши лживые ___ я иду против вас.",
-      "lemma": "слово",
-      "options": ["слово", "слова", "слову", "словом"],
-      "correct": "слова",
-      "case": "Винительный (Accusative)",
-      "translation": "Because of your false words I will come against you.",
-      "explain": "The preposition за (because of) requires the accusative case слова."
-    },
-    {
-      "id": "c7",
-      "sentence": "Их не будет в совете моего ___ и не войдут в землю Израиля.",
-      "lemma": "народ",
-      "options": ["народ", "народа", "народу", "народом"],
-      "correct": "народа",
-      "case": "Родительный (Genitive)",
-      "translation": "They will not be in the council of my people and will not enter the land of Israel.",
-      "explain": "The possessive construction требует генитива; мой народ uses народа in the genitive."
-    },
-    {
-      "id": "c8",
-      "sentence": "Когда они строят непрочную стену, люди покрывают её побелкой как ___ для лжи.",
-      "lemma": "орудие",
-      "options": ["орудие", "орудия", "орудию", "орудием"],
-      "correct": "орудием",
-      "case": "Творительный (Instrumental)",
-      "translation": "When people build a weak wall, they cover it with whitewash as an instrument of deception.",
-      "explain": "The preposition как (as) with the meaning of 'in the capacity of' requires the instrumental case орудием."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Было ко мне слово Господа.",
-      "question": "What came to the son of man at the beginning?",
-      "options": ["The word of the Lord", "A vision of the future", "A command from the priests", "Judgment against the prophets"],
-      "correct": "The word of the Lord",
-      "explain": "The opening of the chapter states 'Было ко мне слово Господа' — 'Yahweh's word came to me.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Сын человеческий, пророчествуй против израильских пророков, которые сейчас пророчествуют.",
-      "question": "What is the son of man commanded to do?",
-      "options": ["Prophesy against the Israeli prophets", "Teach the people the law", "Build a wall in Jerusalem", "Hide from false prophets"],
-      "correct": "Prophesy against the Israeli prophets",
-      "explain": "God commands 'пророчествуй против израильских пророков' — 'prophesy against the prophets of Israel.'"
-    },
-    {
-      "id": "r3",
-      "ru": "Твои пророки, Израиль, точно шакалы, что роют норы посреди руин.",
-      "question": "To what animals does the passage compare the prophets of Israel?",
-      "options": ["Jackals", "Foxes", "Wolves", "Lions"],
-      "correct": "Jackals",
-      "explain": "The text compares the prophets to 'шакалы' — jackals that dig holes in ruins."
-    },
-    {
-      "id": "r4",
-      "ru": "Их видения ложные, их ворожба обманчива.",
-      "question": "What is the quality of the prophets' visions and divination?",
-      "options": ["False and deceptive", "Accurate and true", "Confusing but helpful", "Mysterious but pure"],
-      "correct": "False and deceptive",
-      "explain": "The passage states 'Их видения ложные, их ворожба обманчива' — 'Their visions are false and their divination is deceptive.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Поэтому так говорит Владыка Господь, за ваши лживые слова и обманчивые видения я иду против вас.",
-      "question": "Why does God come against these prophets?",
-      "options": ["Because of their false words and deceptive visions", "Because they refuse to work", "Because they ignore the law", "Because they reject the priesthood"],
-      "correct": "Because of their false words and deceptive visions",
-      "explain": "God declares 'за ваши лживые слова и обманчивые видения я иду против вас' — 'because of your false words and deceptive visions I come against you.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Тогда вы узнаете, что я владыка Господь.",
-      "question": "What will the people recognize as a result of God's judgment?",
-      "options": ["That God is the Lord", "That the prophets were right", "That Jerusalem will be saved", "That the land is fertile"],
-      "correct": "That God is the Lord",
-      "explain": "The recurring refrain states 'Тогда вы узнаете, что я владыка Господь' — 'Then you will know that I am the Lord.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "— Сын человеческий, пророчествуй против ___, которые сейчас пророчествуют.",
+   "lemma": "пророк",
+   "options": [
+    "израильские пророки",
+    "израильских пророков",
+    "израильских пророках",
+    "израильскими пророками"
+   ],
+   "correct": "израильских пророков",
+   "case": "Родительный (Genitive)",
+   "explain": "«израильских пророков» — after the preposition «против», the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "“Son of man, prophesy against the prophets of Israel who prophesy, and say to those who prophesy out of their own heart, ‘Hear Yahweh’s word:"
+  },
+  {
+   "sentence": "Скажи тем, кто пророчествует по ___: «Слушайте слово Господа!",
+   "lemma": "воображение",
+   "options": [
+    "собственного воображения",
+    "собственному воображению",
+    "собственном воображении",
+    "собственное воображение"
+   ],
+   "correct": "собственному воображению",
+   "case": "Дательный (Dative)",
+   "explain": "«собственному воображению» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c2",
+   "translation": "“Son of man, prophesy against the prophets of Israel who prophesy, and say to those who prophesy out of their own heart, ‘Hear Yahweh’s word:"
+  },
+  {
+   "sentence": "Разве вы не видели ___?",
+   "lemma": "видение",
+   "options": [
+    "ложные видения",
+    "ложным видениям",
+    "ложными видениями",
+    "ложных видениях"
+   ],
+   "correct": "ложные видения",
+   "case": "Винительный (Accusative)",
+   "explain": "«ложные видения» — the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "Haven’t you seen a false vision, and haven’t you spoken a lying divination, in that you say, ‘Yahweh says;’ but I have not spoken?”"
+  },
+  {
+   "sentence": "Поэтому так говорит Владыка Господь: За ваши ___ и обманчивые видения Я иду против вас, — возвещает Владыка Господь.",
+   "lemma": "слово",
+   "options": [
+    "лживые слова",
+    "лживых словах",
+    "лживым словам",
+    "лживых слов"
+   ],
+   "correct": "лживые слова",
+   "case": "Винительный (Accusative)",
+   "explain": "«лживые слова» — the accusative marks the direct object of the verb.",
+   "id": "c4",
+   "translation": "“ ‘Therefore the Lord Yahweh says: “Because you have spoken falsehood and seen lies, therefore, behold, I am against you,” says the Lord Yahweh."
+  },
+  {
+   "sentence": "— 9 Моя рука обратится против пророков, которые видят ___ и говорят обманчивые прорицания.",
+   "lemma": "видение",
+   "options": [
+    "ложные видения",
+    "ложным видениям",
+    "ложными видениями",
+    "ложных видениях"
+   ],
+   "correct": "ложные видения",
+   "case": "Винительный (Accusative)",
+   "explain": "«ложные видения» — the accusative marks the direct object of the verb.",
+   "id": "c5",
+   "translation": "“ ‘Therefore the Lord Yahweh says: “Because you have spoken falsehood and seen lies, therefore, behold, I am against you,” says the Lord Yahweh."
+  },
+  {
+   "sentence": "Хлынет проливной дождь , будет падать ___, и поднимется неистовый вихрь, и стена рухнет.",
+   "lemma": "град",
+   "options": [
+    "крупный град",
+    "крупного града",
+    "крупном граде",
+    "крупным градом"
+   ],
+   "correct": "крупный град",
+   "case": "Именительный (Nominative)",
+   "explain": "«крупный град» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "“ ‘Because, even because they have seduced my people, saying, “Peace;” and there is no peace. When one builds up a wall, behold, they plaster it with whitewash."
+  },
+  {
+   "sentence": "Хлынет проливной дождь , будет падать крупный град, и поднимется ___, и стена рухнет.",
+   "lemma": "вихрь",
+   "options": [
+    "неистовым вихрем",
+    "неистовый вихрь",
+    "неистовом вихре",
+    "неистовому вихрю"
+   ],
+   "correct": "неистовый вихрь",
+   "case": "Именительный (Nominative)",
+   "explain": "«неистовый вихрь» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "“ ‘Because, even because they have seduced my people, saying, “Peace;” and there is no peace. When one builds up a wall, behold, they plaster it with whitewash."
+  },
+  {
+   "sentence": "А теперь, сын человеческий, обрати лицо к дочерям твоего народа, которые пророчествуют по ___.",
+   "lemma": "воображение",
+   "options": [
+    "собственного воображения",
+    "собственному воображению",
+    "собственном воображении",
+    "собственное воображение"
+   ],
+   "correct": "собственному воображению",
+   "case": "Дательный (Dative)",
+   "explain": "«собственному воображению» — after the preposition «по», the dative marks the indirect object or recipient.",
+   "id": "c8",
+   "translation": "You, son of man, set your face against the daughters of your people, who prophesy out of their own heart; and prophesy against them,"
+  },
+  {
+   "sentence": "Пророчествуй им 18 и скажи: «Так говорит Владыка Господь: Горе тем женщинам, которые шьют колдовские повязки всем на запястья и делают головные покрывала ___, чтобы уловлять людей.",
+   "lemma": "размер",
+   "options": [
+    "разными размерами",
+    "разные размеры",
+    "разным размерам",
+    "разных размеров"
+   ],
+   "correct": "разных размеров",
+   "case": "Родительный (Genitive)",
+   "explain": "«разных размеров» — the genitive here marks possession, absence, or quantity.",
+   "id": "c10",
+   "translation": "You, son of man, set your face against the daughters of your people, who prophesy out of their own heart; and prophesy against them,"
+  },
+  {
+   "sentence": "Поэтому так говорит Владыка Господь: Я — враг вашим колдовским повязкам, с помощью которых вы уловляете людей, как если бы они были птицами; Я сорву их с ваших рук и освобожу тех людей, как птиц из ___.",
+   "lemma": "силок",
+   "options": [
+    "охотничьих силков",
+    "охотничьим силкам",
+    "охотничьими силками",
+    "охотничьи силки"
+   ],
+   "correct": "охотничьих силков",
+   "case": "Родительный (Genitive)",
+   "explain": "«охотничьих силков» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
+   "translation": "“Therefore the Lord Yahweh says: ‘Behold, I am against your pillows, with which you hunt the souls to make them fly, and I will tear them from your arms. I will let the souls go, even the souls whom you hunt to make them fly."
+  }
+ ]
 }

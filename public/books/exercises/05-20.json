@@ -1,204 +1,94 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Когда ты выйдешь на войну с ___.",
-      "lemma": "враг",
-      "options": [
-        "враг",
-        "врага",
-        "врагам",
-        "врагов"
-      ],
-      "correct": "врагов",
-      "case": "Винительный (Accusative)",
-      "translation": "When you go out to war with enemies.",
-      "explain": "The preposition с (with) governs the instrumental, but враги (enemies) here is accusative plural."
-    },
-    {
-      "id": "c2",
-      "sentence": "Перед началом сражения пусть выйдет вперед ___.",
-      "lemma": "священник",
-      "options": [
-        "священник",
-        "священника",
-        "священнику",
-        "священнике"
-      ],
-      "correct": "священник",
-      "case": "Именительный (Nominative)",
-      "translation": "Before the battle begins, let a priest come forward.",
-      "explain": "The verb выйдет (will come) requires a nominative subject."
-    },
-    {
-      "id": "c3",
-      "sentence": "Есть ли здесь такой, кто построил новый ___, но не справил новоселье?",
-      "lemma": "дом",
-      "options": [
-        "дом",
-        "дома",
-        "дому",
-        "доме"
-      ],
-      "correct": "дом",
-      "case": "Винительный (Accusative)",
-      "translation": "Is there anyone here who has built a new house but has not dedicated it?",
-      "explain": "The transitive verb построил (built) takes the accusative case for its direct object."
-    },
-    {
-      "id": "c4",
-      "sentence": "Есть ли здесь такой, кто посадил виноградник, но не успел еще собрать его ___?",
-      "lemma": "урожай",
-      "options": [
-        "урожай",
-        "урожая",
-        "урожайном",
-        "урожаем"
-      ],
-      "correct": "урожай",
-      "case": "Винительный (Accusative)",
-      "translation": "Is there anyone here who has planted a vineyard but has not yet harvested its crop?",
-      "explain": "The transitive verb собрать (to harvest) requires the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Затем пусть добавит, есть ли здесь такой, кто боится или не имеет ___?",
-      "lemma": "мужество",
-      "options": [
-        "мужество",
-        "мужества",
-        "мужеству",
-        "мужеством"
-      ],
-      "correct": "мужества",
-      "case": "Родительный (Genitive)",
-      "translation": "Then say, is there anyone here who is afraid or lacks courage?",
-      "explain": "The verb не имеет (does not have) takes the genitive case for the object."
-    },
-    {
-      "id": "c6",
-      "sentence": "Закончив говорить с войском, они поставят над ним ___.",
-      "lemma": "командир",
-      "options": [
-        "командир",
-        "командира",
-        "командиров",
-        "командирами"
-      ],
-      "correct": "командиров",
-      "case": "Винительный (Accusative)",
-      "translation": "After finishing speaking to the army, they will appoint commanders over it.",
-      "explain": "The verb поставят (will appoint) takes the accusative case for its direct object."
-    },
-    {
-      "id": "c7",
-      "sentence": "Если жители города согласятся и откроют ___, то они будут трудиться на тебя.",
-      "lemma": "ворота",
-      "options": [
-        "ворота",
-        "ворот",
-        "воротам",
-        "воротах"
-      ],
-      "correct": "ворота",
-      "case": "Винительный (Accusative)",
-      "translation": "If the inhabitants of the city agree and open the gates, they will be forced laborers to you.",
-      "explain": "The verb откроют (will open) requires the accusative case for its direct object."
-    },
-    {
-      "id": "c8",
-      "sentence": "Разве деревья в поле люди, чтобы держать их в ___?",
-      "lemma": "осада",
-      "options": [
-        "осада",
-        "осады",
-        "осаду",
-        "осаде"
-      ],
-      "correct": "осаде",
-      "case": "Предложный (Prepositional)",
-      "translation": "Are the trees of the field men, that they should be besieged by you?",
-      "explain": "The preposition в (in) governs the prepositional case for location."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Когда ты выйдешь на войну с врагами и увидишь коней, колесницы и войска, которые больше твоего, то не бойся их.",
-      "question": "What should you do if the enemy's forces are larger than yours?",
-      "options": [
-        "Do not be afraid of them",
-        "Flee immediately",
-        "Surrender to them",
-        "Send for help"
-      ],
-      "correct": "Do not be afraid of them",
-      "explain": "The text explicitly states: 'то не бойся их' (then do not be afraid of them)."
-    },
-    {
-      "id": "r2",
-      "ru": "Перед началом сражения пусть выйдет вперед священник и обратится к войску.",
-      "question": "Who should address the troops before battle begins?",
-      "options": [
-        "A priest",
-        "A general",
-        "A king",
-        "A prophet"
-      ],
-      "correct": "A priest",
-      "explain": "The text states: 'пусть выйдет вперед священник и обратится к войску' (let a priest come forward and speak to the troops)."
-    },
-    {
-      "id": "r3",
-      "ru": "Слушай, Израиль, сегодня вы вступаете в сражение со своими врагами.",
-      "question": "How does the priest address the troops?",
-      "options": [
-        "Listen, Israel, today you are entering into battle with your enemies",
-        "Prepare your weapons for war",
-        "God will give you victory",
-        "March forward without fear"
-      ],
-      "correct": "Listen, Israel, today you are entering into battle with your enemies",
-      "explain": "The priest's words are: 'Слушай, Израиль, сегодня вы вступаете в сражение со своими врагами.'"
-    },
-    {
-      "id": "r4",
-      "ru": "Есть ли здесь такой, кто построил новый дом, но не справил новоселье? Пусть идет домой.",
-      "question": "Who is exempted from military service for building a new house?",
-      "options": [
-        "Anyone who has built a new house but hasn't dedicated it",
-        "Anyone who has a large family",
-        "Anyone who is wealthy",
-        "Anyone who is old"
-      ],
-      "correct": "Anyone who has built a new house but hasn't dedicated it",
-      "explain": "The law states: 'кто построил новый дом, но не справил новоселье? Пусть идет домой.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Когда ты подступишь к городу, чтобы напасть на него, предложи ему мир.",
-      "question": "What should you do when approaching a city to attack it?",
-      "options": [
-        "Offer it peace",
-        "Attack immediately",
-        "Surround it quietly",
-        "Send a messenger"
-      ],
-      "correct": "Offer it peace",
-      "explain": "The instruction is: 'предложи ему мир' (offer him peace)."
-    },
-    {
-      "id": "r6",
-      "ru": "Если ты будешь осаждать город долгое время, чтобы захватить его, то не вырубай топором деревья.",
-      "question": "What should not be done when besieging a city for a long time?",
-      "options": [
-        "Do not cut down the trees with an axe",
-        "Do not destroy the buildings",
-        "Do not harm the people",
-        "Do not take the crops"
-      ],
-      "correct": "Do not cut down the trees with an axe",
-      "explain": "The law explicitly states: 'то не вырубай топором деревья' (then do not cut down the trees with an axe)."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Начальники скажут войску: «Есть ли здесь такой, кто построил ___, но не справил новоселья?",
+   "lemma": "дом",
+   "options": [
+    "новым домом",
+    "новый дом",
+    "новому дому",
+    "нового дома"
+   ],
+   "correct": "новый дом",
+   "case": "Винительный (Accusative)",
+   "explain": "«новый дом» — the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "The officers shall speak to the people, saying, “What man is there who has built a new house, and has not dedicated it? Let him go and return to his house, lest he die in the battle, and another man dedicate it."
+  },
+  {
+   "sentence": "Так ты должен обходиться со всеми городами, которые далеки от тебя и не принадлежат ___.",
+   "lemma": "народ",
+   "options": [
+    "здешним народам",
+    "здешних народов",
+    "здешние народы",
+    "здешних народах"
+   ],
+   "correct": "здешним народам",
+   "case": "Дательный (Dative)",
+   "explain": "«здешним народам» — the dative marks the indirect object or recipient.",
+   "id": "c2",
+   "translation": "Thus you shall do to all the cities which are very far off from you, which are not of the cities of these nations."
+  },
+  {
+   "sentence": "Но в городах ___, которые Господь, твой Бог, отдает тебе в наследие, не оставляй в живых ни единой души.",
+   "lemma": "народ",
+   "options": [
+    "здешних народов",
+    "здешних народах",
+    "здешние народы",
+    "здешними народами"
+   ],
+   "correct": "здешних народов",
+   "case": "Родительный (Genitive)",
+   "explain": "«здешних народов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "But of the cities of these peoples that Yahweh your God gives you for an inheritance, you shall save alive nothing that breathes;"
+  },
+  {
+   "sentence": "Но в городах здешних народов, которые Господь, твой Бог, отдает тебе в наследие, не оставляй в живых ни ___.",
+   "lemma": "душа",
+   "options": [
+    "единой душе",
+    "единой душой",
+    "единой души",
+    "единая душа"
+   ],
+   "correct": "единой души",
+   "case": "Родительный (Genitive)",
+   "explain": "«единой души» — the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "But of the cities of these peoples that Yahweh your God gives you for an inheritance, you shall save alive nothing that breathes;"
+  },
+  {
+   "sentence": "Иначе они научат вас следовать ___, которые они совершают, служа своим богам, и вы станете грешить против Господа, вашего Бога.",
+   "lemma": "обряд",
+   "options": [
+    "мерзкими обрядами",
+    "мерзким обрядам",
+    "мерзкие обряды",
+    "мерзких обрядов"
+   ],
+   "correct": "мерзким обрядам",
+   "case": "Дательный (Dative)",
+   "explain": "«мерзким обрядам» — the dative marks the indirect object or recipient.",
+   "id": "c5",
+   "translation": "that they not teach you to follow all their abominations, which they have done for their gods; so would you sin against Yahweh your God."
+  },
+  {
+   "sentence": "Ты можешь рубить деревья, о которых знаешь, что они не приносят плодов, и использовать их для ___, пока город, который воюет с тобой, не падет.",
+   "lemma": "сооружение",
+   "options": [
+    "осадным сооружениям",
+    "осадные сооружения",
+    "осадных сооружениях",
+    "осадных сооружений"
+   ],
+   "correct": "осадных сооружений",
+   "case": "Родительный (Genitive)",
+   "explain": "«осадных сооружений» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "Only the trees that you know are not trees for food, you shall destroy and cut them down. You shall build bulwarks against the city that makes war with you, until it falls."
+  }
+ ]
 }

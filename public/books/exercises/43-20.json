@@ -1,213 +1,139 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Мария Магдалина пошла к гробнице и увидела, что ___, закрывавший вход в гробницу, убран.",
-      "lemma": "камень",
-      "options": [
-        "камень",
-        "камня",
-        "камню",
-        "камнем"
-      ],
-      "correct": "камень",
-      "case": "Именительный (Nominative)",
-      "translation": "Mary Magdalene went to the tomb and saw that the stone blocking the entrance to the tomb had been removed.",
-      "explain": "Камень is the subject of убран ('removed'), so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "«Они забрали Господа из ___, и мы не знаем, куда они его положили».",
-      "lemma": "гробница",
-      "options": [
-        "гробница",
-        "гробницы",
-        "гробнице",
-        "гробницу"
-      ],
-      "correct": "гробницы",
-      "case": "Родительный (Genitive)",
-      "translation": "'They have taken the Lord out of the tomb, and we don't know where they laid him.'",
-      "explain": "The preposition из ('out of') governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Мария Магдалина пошла к ___ и сказала, «Я видела Господа».",
-      "lemma": "ученик",
-      "options": [
-        "ученики",
-        "учеников",
-        "ученикам",
-        "учениками"
-      ],
-      "correct": "ученикам",
-      "case": "Дательный (Dative)",
-      "translation": "Mary Magdalene went to the disciples and said, 'I have seen the Lord.'",
-      "explain": "The preposition к ('to, toward') governs the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Кому вы простите ___, тем они будут прощены, а на ком оставите грехи, на тех они останутся.",
-      "lemma": "грех",
-      "options": [
-        "грехи",
-        "грехов",
-        "грехам",
-        "грехами"
-      ],
-      "correct": "грехи",
-      "case": "Винительный (Accusative)",
-      "translation": "If you forgive anyone's sins, they are forgiven them; if you retain the sins of any, they are retained.",
-      "explain": "Простите ('forgive') takes its object in the accusative case; for this inanimate plural noun the accusative equals the nominative."
-    },
-    {
-      "id": "c5",
-      "sentence": "Пока я не увижу следов от гвоздей на его руках, не коснусь их ___ и не потрогаю рану в его боку, я не поверю.",
-      "lemma": "палец",
-      "options": [
-        "палец",
-        "пальца",
-        "пальцу",
-        "пальцем"
-      ],
-      "correct": "пальцем",
-      "case": "Творительный (Instrumental)",
-      "translation": "Unless I see the mark of the nails in his hands, touch them with my finger, and put my hand into his side, I will not believe.",
-      "explain": "The instrumental case here expresses the instrument used ('touch with a finger') without a preposition."
-    },
-    {
-      "id": "c6",
-      "sentence": "Иисус совершил в присутствии своих учеников и много других знамений, о которых в этой ___ не написано.",
-      "lemma": "книга",
-      "options": [
-        "книга",
-        "книги",
-        "книгу",
-        "книге"
-      ],
-      "correct": "книге",
-      "case": "Предложный (Prepositional)",
-      "translation": "Jesus did many other signs in the presence of his disciples, which are not written in this book.",
-      "explain": "The preposition в ('in') governs the prepositional case here, indicating location within the book."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Мария Магдалина пошла к гробнице и увидела, что камень, закрывавший вход в гробницу, убран.",
-      "question": "What did Mary Magdalene discover at the tomb early in the morning?",
-      "options": [
-        "The stone had been removed from the entrance",
-        "The tomb was guarded by soldiers",
-        "The body was wrapped and untouched",
-        "Angels were singing outside"
-      ],
-      "correct": "The stone had been removed from the entrance",
-      "explain": "Mary Magdalene found that the stone blocking the entrance to the tomb had been removed."
-    },
-    {
-      "id": "r2",
-      "ru": "Он увидел и поверил.",
-      "question": "What did the other disciple do when he entered the tomb and saw the linen cloths?",
-      "options": [
-        "He saw and believed",
-        "He wept uncontrollably",
-        "He ran away in fear",
-        "He argued with Peter"
-      ],
-      "correct": "He saw and believed",
-      "explain": "The other disciple entered the tomb, saw the linen cloths, and believed."
-    },
-    {
-      "id": "r3",
-      "ru": "Плача, она заглянула в гробницу и увидела двух ангелов в белом.",
-      "question": "What did Mary see when she looked into the tomb while weeping?",
-      "options": [
-        "Two angels in white",
-        "An empty jar",
-        "A sleeping guard",
-        "Nothing at all"
-      ],
-      "correct": "Two angels in white",
-      "explain": "While weeping, Mary looked into the tomb and saw two angels dressed in white."
-    },
-    {
-      "id": "r4",
-      "ru": "— Мария, — сказал ей Иисус.",
-      "question": "How did Mary finally recognize that the man speaking to her was Jesus?",
-      "options": [
-        "He said her name, Mary",
-        "He showed her his wounds",
-        "He wore recognizable clothing",
-        "A disciple identified him for her"
-      ],
-      "correct": "He said her name, Mary",
-      "explain": "Mary recognized Jesus when he spoke her name."
-    },
-    {
-      "id": "r5",
-      "ru": "Мария Магдалина пошла к ученикам и сказала, «Я видела Господа»,",
-      "question": "What did Mary Magdalene tell the disciples after seeing Jesus?",
-      "options": [
-        "\"I have seen the Lord\"",
-        "\"The tomb is still sealed\"",
-        "\"I am afraid to return\"",
-        "\"The gardener spoke to me\""
-      ],
-      "correct": "\"I have seen the Lord\"",
-      "explain": "Mary Magdalene went to the disciples and told them, 'I have seen the Lord.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Он стал посреди них и сказал, «Мир вам!»",
-      "question": "What did Jesus say when he appeared to the disciples behind locked doors?",
-      "options": [
-        "\"Peace be with you!\"",
-        "\"Do not be afraid of the Jews\"",
-        "\"Follow me to Galilee\"",
-        "\"Why did you doubt me?\""
-      ],
-      "correct": "\"Peace be with you!\"",
-      "explain": "Jesus stood among them and said, 'Peace be with you!'"
-    },
-    {
-      "id": "r7",
-      "ru": "«Пока я не увижу следов от гвоздей на его руках, не коснусь их пальцем и не потрогаю рану в его боку, я не поверю».",
-      "question": "What did Thomas say he needed in order to believe Jesus had risen?",
-      "options": [
-        "To see and touch the wounds in Jesus's hands and side",
-        "To hear Jesus's voice",
-        "To see the empty tomb himself",
-        "To speak with the other disciples again"
-      ],
-      "correct": "To see and touch the wounds in Jesus's hands and side",
-      "explain": "Thomas said he would not believe unless he saw and touched the nail marks and the wound in Jesus's side."
-    },
-    {
-      "id": "r8",
-      "ru": "«Господь мой и Бог мой!» — сказал ему в ответ Фома.",
-      "question": "What did Thomas say when Jesus showed him his wounds?",
-      "options": [
-        "\"My Lord and my God!\"",
-        "\"I still do not believe\"",
-        "\"Forgive me, teacher\"",
-        "\"This cannot be real\""
-      ],
-      "correct": "\"My Lord and my God!\"",
-      "explain": "When Jesus showed him the wounds, Thomas responded, 'My Lord and my God!'"
-    },
-    {
-      "id": "r9",
-      "ru": "А то, что здесь написано, написано для того, чтобы вы поверили, что Иисус есть Христос, Сын Бога, и, веруя, имели бы жизнь во имя Его.",
-      "question": "Why does John say these things were written?",
-      "options": [
-        "So that readers may believe Jesus is the Christ, the Son of God, and have life in his name",
-        "To record Roman history",
-        "To honor Peter above the other disciples",
-        "To criticize Thomas's doubt"
-      ],
-      "correct": "So that readers may believe Jesus is the Christ, the Son of God, and have life in his name",
-      "explain": "John states that these things were written so readers would believe Jesus is the Christ, the Son of God, and have life in his name."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Рано утром, в ___ недели , когда было еще темно, Мария Магдалина пошла к гробнице и увидела, что камень, закрывавший вход в гробницу, убран.",
+   "lemma": "день",
+   "options": [
+    "первый день",
+    "первом дне",
+    "первого дня",
+    "первым днём"
+   ],
+   "correct": "первый день",
+   "case": "Винительный (Accusative)",
+   "explain": "«первый день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "Now on the first day of the week, Mary Magdalene went early, while it was still dark, to the tomb, and saw the stone taken away from the tomb."
+  },
+  {
+   "sentence": "Петр и ___ сразу же побежали к гробнице.",
+   "lemma": "ученик",
+   "options": [
+    "другой ученик",
+    "другого ученика",
+    "другим учеником",
+    "другом ученике"
+   ],
+   "correct": "другой ученик",
+   "case": "Именительный (Nominative)",
+   "explain": "«другой ученик» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "Therefore Peter and the other disciple went out, and they went toward the tomb."
+  },
+  {
+   "sentence": "Они оба бежали, но ___ обогнал Петра и прибежал к гробнице первым.",
+   "lemma": "ученик",
+   "options": [
+    "второму ученику",
+    "вторым учеником",
+    "втором ученике",
+    "второй ученик"
+   ],
+   "correct": "второй ученик",
+   "case": "Именительный (Nominative)",
+   "explain": "«второй ученик» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "They both ran together. The other disciple outran Peter, and came to the tomb first."
+  },
+  {
+   "sentence": "Платок лежал сложенным отдельно от ___.",
+   "lemma": "полотно",
+   "options": [
+    "льняных полотнах",
+    "льняные полотна",
+    "льняными полотнами",
+    "льняных полотен"
+   ],
+   "correct": "льняных полотен",
+   "case": "Родительный (Genitive)",
+   "explain": "«льняных полотен» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "Then Simon Peter came, following him, and entered into the tomb. He saw the linen cloths lying,"
+  },
+  {
+   "sentence": "Тогда и ___, прибежавший к гробнице первым, тоже вошел внутрь.",
+   "lemma": "ученик",
+   "options": [
+    "другой ученик",
+    "другого ученика",
+    "другим учеником",
+    "другом ученике"
+   ],
+   "correct": "другой ученик",
+   "case": "Именительный (Nominative)",
+   "explain": "«другой ученик» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "So then the other disciple who came first to the tomb also entered in, and he saw and believed."
+  },
+  {
+   "sentence": "Вечером в ___ недели, когда ученики собрались вместе и двери дома, где они находились, были заперты из боязни перед иудеями, пришел Иисус.",
+   "lemma": "день",
+   "options": [
+    "первый день",
+    "первом дне",
+    "первого дня",
+    "первым днём"
+   ],
+   "correct": "первый день",
+   "case": "Винительный (Accusative)",
+   "explain": "«первый день» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c6",
+   "translation": "When therefore it was evening on that day, the first day of the week, and when the doors were locked where the disciples were assembled, for fear of the Jews, Jesus came and stood in the middle, and said to them, “Peace be to you.”"
+  },
+  {
+   "sentence": "Фомы, которого еще называли Близнец, одного из двенадцати, не было с ___, когда приходил Иисус.",
+   "lemma": "ученик",
+   "options": [
+    "другими учениками",
+    "другие ученики",
+    "других учениках",
+    "другим ученикам"
+   ],
+   "correct": "другими учениками",
+   "case": "Творительный (Instrumental)",
+   "explain": "«другими учениками» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c7",
+   "translation": "But Thomas, one of the twelve, called Didymus, wasn’t with them when Jesus came."
+  },
+  {
+   "sentence": "И когда ___ сказали:",
+   "lemma": "ученик",
+   "options": [
+    "другими учениками",
+    "другим ученикам",
+    "других учениках",
+    "другие ученики"
+   ],
+   "correct": "другие ученики",
+   "case": "Именительный (Nominative)",
+   "explain": "«другие ученики» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "The other disciples therefore said to him, “We have seen the Lord!” But he said to them, “Unless I see in his hands the print of the nails, put my finger into the print of the nails, and put my hand into his side, I will not believe.”"
+  },
+  {
+   "sentence": "Иисус совершил в присутствии Своих учеников и много ___, о которых в этой книге не написано.",
+   "lemma": "знамение",
+   "options": [
+    "другими знамениями",
+    "других знамений",
+    "другим знамениям",
+    "другие знамения"
+   ],
+   "correct": "других знамений",
+   "case": "Родительный (Genitive)",
+   "explain": "«других знамений» — the genitive here marks possession, absence, or quantity.",
+   "id": "c9",
+   "translation": "Therefore Jesus did many other signs in the presence of his disciples, which are not written in this book;"
+  }
+ ]
 }

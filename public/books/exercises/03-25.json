@@ -1,134 +1,304 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Господь сказал ___ на горе Синай.",
-      "lemma": "Моисей",
-      "options": ["Моисей", "Моисея", "Моисею", "Моисеем"],
-      "correct": "Моисею",
-      "case": "Дательный (Dative)",
-      "translation": "The Lord spoke to Moses on Mount Sinai.",
-      "explain": "Моисей is the recipient of сказал (said to) — the indirect object → dative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Господь сказал Моисею на ___ Синай.",
-      "lemma": "гора",
-      "options": ["гора", "гору", "горы", "горе"],
-      "correct": "горе",
-      "case": "Предложный (Prepositional)",
-      "translation": "The Lord spoke to Moses on Mount Sinai.",
-      "explain": "The preposition на marking location takes the prepositional → горе."
-    },
-    {
-      "id": "c3",
-      "sentence": "…когда вы войдете в ___, которую я отдаю вам.",
-      "lemma": "земля",
-      "options": ["земля", "землю", "земли", "землёй"],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "…when you come into the land which I give you.",
-      "explain": "The preposition в with motion (войти в) governs the accusative → землю."
-    },
-    {
-      "id": "c4",
-      "sentence": "Пусть земля отдыхает каждый седьмой год, соблюдая ___ Господа.",
-      "lemma": "суббота",
-      "options": ["суббота", "субботу", "субботы", "субботой"],
-      "correct": "субботу",
-      "case": "Винительный (Accusative)",
-      "translation": "Let the land rest every seventh year, keeping a Sabbath to the Lord.",
-      "explain": "Суббота is the direct object of соблюдая (keeping) → accusative; feminine -а nouns take -у."
-    },
-    {
-      "id": "c5",
-      "sentence": "Не обманывайте друг друга, бойтесь вашего ___.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Бога",
-      "case": "Родительный (Genitive)",
-      "translation": "Do not wrong one another, but fear your God.",
-      "explain": "The verb бояться (to fear) governs the genitive → Бога."
-    },
-    {
-      "id": "c6",
-      "sentence": "Я Господь ваш Бог, который вывел вас из ___.",
-      "lemma": "Египет",
-      "options": ["Египет", "Египта", "Египту", "Египтом"],
-      "correct": "Египта",
-      "case": "Родительный (Genitive)",
-      "translation": "I am the Lord your God, who brought you out of Egypt.",
-      "explain": "The preposition из (out of) always governs the genitive → Египта."
-    },
-    {
-      "id": "c7",
-      "sentence": "Каждый из вас должен вернуться к своему ___.",
-      "lemma": "владение",
-      "options": ["владение", "владения", "владению", "владением"],
-      "correct": "владению",
-      "case": "Дательный (Dative)",
-      "translation": "Each of you shall return to his own property.",
-      "explain": "The preposition к (to/toward) always governs the dative → владению."
-    },
-    {
-      "id": "c8",
-      "sentence": "Все, что произрастит земля в субботний год, будет вам ___.",
-      "lemma": "пища",
-      "options": ["пища", "пищу", "пищи", "пищей"],
-      "correct": "пищей",
-      "case": "Творительный (Instrumental)",
-      "translation": "Whatever the land produces in the Sabbath year shall be food for you.",
-      "explain": "The predicate noun after будет (will be) takes the instrumental → пищей."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Не засевайте поле и не обрезайте виноградник.",
-      "question": "In the Sabbath year, what are the people commanded NOT to do?",
-      "options": ["Sow the field or prune the vineyard", "Eat any bread", "Build new houses", "Travel to other lands"],
-      "correct": "Sow the field or prune the vineyard",
-      "explain": "The text forbids sowing the field and pruning the vineyard in that year."
-    },
-    {
-      "id": "r2",
-      "ru": "Землю нельзя продавать навсегда, потому что земля моя, а вы у меня чужеземцы и поселенцы.",
-      "question": "Why may the land not be sold permanently?",
-      "options": ["Because the land belongs to God", "Because it is barren", "Because it is cursed", "Because the buyers are poor"],
-      "correct": "Because the land belongs to God",
-      "explain": "God says the land is His and the people are but strangers and sojourners with Him."
-    },
-    {
-      "id": "r3",
-      "ru": "Осветите пятидесятый год и возвестите свободу по всей земле всем ее обитателям.",
-      "question": "What must be proclaimed throughout the land in the fiftieth year?",
-      "options": ["Liberty to all its inhabitants", "A time of war", "A new king", "Higher taxes"],
-      "correct": "Liberty to all its inhabitants",
-      "explain": "The fiftieth year is hallowed and liberty is proclaimed to all the land's inhabitants."
-    },
-    {
-      "id": "r4",
-      "ru": "Не бери с него процентов, бойся своего Бога, чтобы твой соплеменник жил с тобой и дальше.",
-      "question": "What must you NOT take from an impoverished fellow countryman?",
-      "options": ["Interest", "His house", "His children", "His livestock"],
-      "correct": "Interest",
-      "explain": "The text says to take no interest from him, but to fear God."
-    },
-    {
-      "id": "r5",
-      "ru": "Израилетяне мои слуги, которых я вывел из Египта, их нельзя продавать в рабство.",
-      "question": "Why may the Israelites not be sold as slaves?",
-      "options": ["They are God's servants whom He brought out of Egypt", "They are too valuable", "They are foreigners", "They are all priests"],
-      "correct": "They are God's servants whom He brought out of Egypt",
-      "explain": "God calls them His servants whom He led out of Egypt, so they may not be sold into slavery."
-    },
-    {
-      "id": "r6",
-      "ru": "Пусть у земли будет год покоя.",
-      "question": "What shall the land have?",
-      "options": ["A year of rest", "A year of war", "A double harvest", "A drought"],
-      "correct": "A year of rest",
-      "explain": "The text declares a year of rest (solemn rest) for the land."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Все, что произрастит земля в ___, будет вам пищей — вам, вашим рабам и рабыням, наемным слугам, живущим у вас поселенцам, 7 вашему скоту и диким зверям вашей земли.",
+   "lemma": "год",
+   "options": [
+    "субботним годом",
+    "субботнему году",
+    "субботнего года",
+    "субботний год"
+   ],
+   "correct": "субботний год",
+   "case": "Винительный (Accusative)",
+   "explain": "«субботний год» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c3",
+   "translation": "The Sabbath of the land shall be for food for you; for yourself, for your servant, for your maid, for your hired servant, and for your stranger, who lives as a foreigner with you."
+  },
+  {
+   "sentence": "Все, что произрастит земля в субботний год, будет вам пищей — вам, вашим рабам и рабыням, наемным слугам, живущим у вас поселенцам, 7 вашему скоту и ___ вашей земли.",
+   "lemma": "зверь",
+   "options": [
+    "диким зверям",
+    "дикие звери",
+    "диких зверях",
+    "дикими зверями"
+   ],
+   "correct": "диким зверям",
+   "case": "Дательный (Dative)",
+   "explain": "«диким зверям» — the dative marks the indirect object or recipient.",
+   "id": "c4",
+   "translation": "The Sabbath of the land shall be for food for you; for yourself, for your servant, for your maid, for your hired servant, and for your stranger, who lives as a foreigner with you."
+  },
+  {
+   "sentence": "В десятый день ___ протрубите в рог; в День отпущения грехов протрубите в рог по всей вашей земле.",
+   "lemma": "месяц",
+   "options": [
+    "седьмым месяцем",
+    "седьмой месяц",
+    "седьмом месяце",
+    "седьмого месяца"
+   ],
+   "correct": "седьмого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«седьмого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "Then you shall sound the loud trumpet on the tenth day of the seventh month. On the Day of Atonement you shall sound the trumpet throughout all your land."
+  },
+  {
+   "sentence": "___ будет для вас юбилейным; не сейте и не жните то, что выросло само, и не собирайте ягоды с необрезанных лоз.",
+   "lemma": "год",
+   "options": [
+    "пятидесятому году",
+    "пятидесятого года",
+    "пятидесятом годе",
+    "пятидесятый год"
+   ],
+   "correct": "пятидесятый год",
+   "case": "Именительный (Nominative)",
+   "explain": "«Пятидесятый год» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "That fiftieth year shall be a jubilee to you. In it you shall not sow, neither reap that which grows of itself, nor gather from the undressed vines."
+  },
+  {
+   "sentence": "Это ___: пусть он будет свят для вас; ешьте лишь то, что вырастет в поле само по себе.",
+   "lemma": "год",
+   "options": [
+    "юбилейном годе",
+    "юбилейного года",
+    "юбилейным годом",
+    "юбилейный год"
+   ],
+   "correct": "юбилейный год",
+   "case": "Именительный (Nominative)",
+   "explain": "«юбилейный год» — the subject of the sentence stands in the nominative.",
+   "id": "c9",
+   "translation": "For it is a jubilee; it shall be holy to you. You shall eat of its increase out of the field."
+  },
+  {
+   "sentence": "В этот юбилейный год пусть каждый вернется к своему ___.",
+   "lemma": "надел",
+   "options": [
+    "земельный надел",
+    "земельному наделу",
+    "земельным наделом",
+    "земельном наделе"
+   ],
+   "correct": "земельному наделу",
+   "case": "Дательный (Dative)",
+   "explain": "«земельному наделу» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c11",
+   "translation": "“ ‘In this Year of Jubilee each of you shall return to his property."
+  },
+  {
+   "sentence": "Покупая, платите лишь за число лет, остающихся до следующего ___.",
+   "lemma": "год",
+   "options": [
+    "юбилейный год",
+    "юбилейному году",
+    "юбилейным годом",
+    "юбилейного года"
+   ],
+   "correct": "юбилейного года",
+   "case": "Родительный (Genitive)",
+   "explain": "«юбилейного года» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c12",
+   "translation": "According to the number of years after the Jubilee you shall buy from your neighbor. According to the number of years of the crops he shall sell to you."
+  },
+  {
+   "sentence": "Приступив к севу в восьмом году, вы еще будете есть ___.",
+   "lemma": "урожай",
+   "options": [
+    "прежним урожаем",
+    "прежний урожай",
+    "прежнем урожае",
+    "прежнего урожая"
+   ],
+   "correct": "прежний урожай",
+   "case": "Именительный (Nominative)",
+   "explain": "«прежний урожай» — the subject of the sentence stands in the nominative.",
+   "id": "c15",
+   "translation": "You shall sow the eighth year, and eat of the fruits from the old store until the ninth year. Until its fruits come in, you shall eat the old store."
+  },
+  {
+   "sentence": "Вы будете есть его, пока не подоспеет жатва ___».",
+   "lemma": "год",
+   "options": [
+    "девятым годом",
+    "девятого года",
+    "девятом годе",
+    "девятому году"
+   ],
+   "correct": "девятого года",
+   "case": "Родительный (Genitive)",
+   "explain": "«девятого года» — the genitive here marks possession, absence, or quantity.",
+   "id": "c16",
+   "translation": "You shall sow the eighth year, and eat of the fruits from the old store until the ninth year. Until its fruits come in, you shall eat the old store."
+  },
+  {
+   "sentence": "А если он не найдет средств, чтобы возвратить ему, то проданное им останется во владении у покупателя до ___, а потом земля будет возвращена тому, кто ее продал.",
+   "lemma": "год",
+   "options": [
+    "юбилейный год",
+    "юбилейному году",
+    "юбилейным годом",
+    "юбилейного года"
+   ],
+   "correct": "юбилейного года",
+   "case": "Родительный (Genitive)",
+   "explain": "«юбилейного года» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c17",
+   "translation": "But if he isn’t able to get it back for himself, then what he has sold shall remain in the hand of him who has bought it until the Year of Jubilee. In the Jubilee it shall be released, and he shall return to his property."
+  },
+  {
+   "sentence": "Если ___ в обнесенном стеной городе не выкуплен до того, как прошел полный год, он навеки отходит к покупателю и его потомкам.",
+   "lemma": "дом",
+   "options": [
+    "жилой дом",
+    "жилым домом",
+    "жилого дома",
+    "жилому дому"
+   ],
+   "correct": "жилой дом",
+   "case": "Именительный (Nominative)",
+   "explain": "«жилой дом» — the subject of the sentence stands in the nominative.",
+   "id": "c20",
+   "translation": "If it isn’t redeemed within the space of a full year, then the house that is in the walled city shall be made sure in perpetuity to him who bought it, throughout his generations. It shall not be released in the Jubilee."
+  },
+  {
+   "sentence": "Если жилой дом в обнесенном стеной городе не выкуплен до того, как прошел ___, он навеки отходит к покупателю и его потомкам.",
+   "lemma": "год",
+   "options": [
+    "полному году",
+    "полный год",
+    "полном годе",
+    "полного года"
+   ],
+   "correct": "полный год",
+   "case": "Винительный (Accusative)",
+   "explain": "«полный год» — the accusative marks the direct object of the verb.",
+   "id": "c21",
+   "translation": "If it isn’t redeemed within the space of a full year, then the house that is in the walled city shall be made sure in perpetuity to him who bought it, throughout his generations. It shall not be released in the Jubilee."
+  },
+  {
+   "sentence": "Но дома в селениях, не обнесенных стенами, считаются ___.",
+   "lemma": "поле",
+   "options": [
+    "открытого поля",
+    "открытым полем",
+    "открытое поле",
+    "открытом поле"
+   ],
+   "correct": "открытым полем",
+   "case": "Творительный (Instrumental)",
+   "explain": "«открытым полем» — the instrumental marks the means, company, or complement.",
+   "id": "c23",
+   "translation": "But the houses of the villages which have no wall around them shall be accounted for with the fields of the country: they may be redeemed, and they shall be released in the Jubilee."
+  },
+  {
+   "sentence": "Но пастбища при их городах продавать нельзя — это их ___».",
+   "lemma": "владение",
+   "options": [
+    "вечное владение",
+    "вечном владении",
+    "вечному владению",
+    "вечного владения"
+   ],
+   "correct": "вечное владение",
+   "case": "Именительный (Nominative)",
+   "explain": "«вечное владение» — the subject of the sentence stands in the nominative.",
+   "id": "c26",
+   "translation": "But the field of the pasture lands of their cities may not be sold, for it is their perpetual possession."
+  },
+  {
+   "sentence": "«Если твой соплеменник обеднеет и впадет в зависимость от тебя, помоги ему, как помог бы чужеземцу или ___, чтобы он жил с тобой и дальше.",
+   "lemma": "житель",
+   "options": [
+    "временному жителю",
+    "временного жителя",
+    "временном жителе",
+    "временной житель"
+   ],
+   "correct": "временному жителю",
+   "case": "Дательный (Dative)",
+   "explain": "«временному жителю» — the dative marks the indirect object or recipient.",
+   "id": "c27",
+   "translation": "“ ‘If your brother has become poor, and his hand can’t support himself among you, then you shall uphold him. He shall live with you like an alien and a temporary resident."
+  },
+  {
+   "sentence": "Он будет работать на тебя до ___.",
+   "lemma": "год",
+   "options": [
+    "юбилейный год",
+    "юбилейному году",
+    "юбилейным годом",
+    "юбилейного года"
+   ],
+   "correct": "юбилейного года",
+   "case": "Родительный (Genitive)",
+   "explain": "«юбилейного года» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c28",
+   "translation": "As a hired servant, and as a temporary resident, he shall be with you; he shall serve with you until the Year of Jubilee."
+  },
+  {
+   "sentence": "Его может выкупить родственник: 49 дядя, ___ или любой кровный родственник в его семье может его выкупить.",
+   "lemma": "брат",
+   "options": [
+    "двоюродный брат",
+    "двоюродном брате",
+    "двоюродного брата",
+    "двоюродным братом"
+   ],
+   "correct": "двоюродный брат",
+   "case": "Именительный (Nominative)",
+   "explain": "«двоюродный брат» — the subject of the sentence stands in the nominative.",
+   "id": "c29",
+   "translation": "“ ‘If an alien or temporary resident with you becomes rich, and your brother beside him has grown poor, and sells himself to the stranger or foreigner living among you, or to a member of the stranger’s family,"
+  },
+  {
+   "sentence": "Его может выкупить родственник: 49 дядя, двоюродный брат или любой ___ в его семье может его выкупить.",
+   "lemma": "родственник",
+   "options": [
+    "кровного родственника",
+    "кровном родственнике",
+    "кровный родственник",
+    "кровным родственником"
+   ],
+   "correct": "кровный родственник",
+   "case": "Именительный (Nominative)",
+   "explain": "«кровный родственник» — the subject of the sentence stands in the nominative.",
+   "id": "c30",
+   "translation": "“ ‘If an alien or temporary resident with you becomes rich, and your brother beside him has grown poor, and sells himself to the stranger or foreigner living among you, or to a member of the stranger’s family,"
+  },
+  {
+   "sentence": "Пусть он и его покупатель посчитают время с того года, в который он продал себя, до ___.",
+   "lemma": "год",
+   "options": [
+    "юбилейный год",
+    "юбилейному году",
+    "юбилейным годом",
+    "юбилейного года"
+   ],
+   "correct": "юбилейного года",
+   "case": "Родительный (Genitive)",
+   "explain": "«юбилейного года» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c31",
+   "translation": "He shall reckon with him who bought him from the year that he sold himself to him to the Year of Jubilee. The price of his sale shall be according to the number of years; he shall be with him according to the time of a hired servant."
+  },
+  {
+   "sentence": "Если же до ___ остается мало лет, пусть он подсчитает их и заплатит за свой выкуп в соответствии с ними.",
+   "lemma": "год",
+   "options": [
+    "юбилейный год",
+    "юбилейному году",
+    "юбилейным годом",
+    "юбилейного года"
+   ],
+   "correct": "юбилейного года",
+   "case": "Родительный (Genitive)",
+   "explain": "«юбилейного года» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c32",
+   "translation": "If there remain but a few years to the year of jubilee, then he shall reckon with him; according to his years of service he shall give back the price of his redemption."
+  }
+ ]
 }

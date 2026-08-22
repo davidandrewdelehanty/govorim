@@ -1,204 +1,169 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Не делай грубых замечаний ___.",
-      "lemma": "старец",
-      "options": [
-        "старец",
-        "старца",
-        "старцу",
-        "старцем"
-      ],
-      "correct": "старцу",
-      "case": "Дательный (Dative)",
-      "translation": "Do not rebuke an elder.",
-      "explain": "The negative infinitive without a preposition governs the dative case when addressing someone directly."
-    },
-    {
-      "id": "c2",
-      "sentence": "С молодыми ___ говори, как с братьями.",
-      "lemma": "люди",
-      "options": [
-        "люди",
-        "людей",
-        "людям",
-        "людьми"
-      ],
-      "correct": "людьми",
-      "case": "Творительный (Instrumental)",
-      "translation": "With young men speak as with brothers.",
-      "explain": "The preposition с (with) governing a manner or association takes the instrumental case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Заботься о тех ___, которым действительно некому помочь.",
-      "lemma": "вдова",
-      "options": [
-        "вдова",
-        "вдовы",
-        "вдов",
-        "вдовам"
-      ],
-      "correct": "вдов",
-      "case": "Родительный (Genitive)",
-      "translation": "Care for the widows who truly have no one to help them.",
-      "explain": "The preposition о (about) when combined with the partitive meaning uses genitive; here the plural genitive вдов."
-    },
-    {
-      "id": "c4",
-      "sentence": "Если же у ___ есть дети или внуки.",
-      "lemma": "вдова",
-      "options": [
-        "вдова",
-        "вдовы",
-        "вдов",
-        "вдовам"
-      ],
-      "correct": "вдовы",
-      "case": "Родительный (Genitive)",
-      "translation": "If a widow has children or grandchildren.",
-      "explain": "After the preposition у (with, at) showing possession, the genitive case is required."
-    },
-    {
-      "id": "c5",
-      "sentence": "Это приятно ___.",
-      "lemma": "Бог",
-      "options": [
-        "Бог",
-        "Бога",
-        "Богу",
-        "Богом"
-      ],
-      "correct": "Богу",
-      "case": "Дательный (Dative)",
-      "translation": "This is pleasing to God.",
-      "explain": "The impersonal predicate приятно (pleasing) takes the dative case to indicate the person pleased."
-    },
-    {
-      "id": "c6",
-      "sentence": "Требуй исполнение всего вышесказанного, чтобы не было никаких нареканий на ___.",
-      "lemma": "старейшина",
-      "options": [
-        "старейшина",
-        "старейшины",
-        "старейшин",
-        "старейшиной"
-      ],
-      "correct": "старейшин",
-      "case": "Родительный (Genitive)",
-      "translation": "Demand observance of all that has been said, that there be no reproach against the elders.",
-      "explain": "The preposition на (against) in negative expressions uses the genitive case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Старейшины, хорошо ведущие ___, заслуживают уважения.",
-      "lemma": "работа",
-      "options": [
-        "работа",
-        "работы",
-        "работу",
-        "работой"
-      ],
-      "correct": "работу",
-      "case": "Винительный (Accusative)",
-      "translation": "Elders who lead well deserve honor.",
-      "explain": "The verb вести (to lead/conduct) is transitive and takes the direct object in the accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Храни себя чистым от ___.",
-      "lemma": "грех",
-      "options": [
-        "грех",
-        "греха",
-        "греху",
-        "грехом"
-      ],
-      "correct": "греха",
-      "case": "Родительный (Genitive)",
-      "translation": "Keep yourself pure from sin.",
-      "explain": "The preposition от (from) always requires the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "С молодыми людьми говори, как с братьями, с пожилыми женщинами, как с матерями, а с молодыми, как с сестрами, со всякою чистотою.",
-      "question": "How should one address different groups mentioned in this verse?",
-      "options": [
-        "With respect appropriate to family relationships",
-        "With authority and sternness",
-        "Only with formal speech",
-        "With indifference and distance"
-      ],
-      "correct": "With respect appropriate to family relationships",
-      "explain": "The verse specifies speaking to younger men as brothers, older women as mothers, and younger women as sisters — all familial relationships."
-    },
-    {
-      "id": "r2",
-      "ru": "Истинная же вдова, то есть та, что осталась одинокой, надеется на Бога и день и ночь обращается к Нему с просьбами и молитвами.",
-      "question": "What characterizes a true widow according to this passage?",
-      "options": [
-        "She trusts in God and prays constantly",
-        "She has no family members left",
-        "She refuses help from others",
-        "She remains silent and withdrawn"
-      ],
-      "correct": "She trusts in God and prays constantly",
-      "explain": "The text defines a true widow as one who is desolate and sets her hope on God, continuing in petitions and prayers night and day."
-    },
-    {
-      "id": "r3",
-      "ru": "Если же кто не заботится о своих родственниках и прежде всего о своей семье, тот отрекся от веры и хуже неверующего.",
-      "question": "What does the passage say about someone who does not provide for their family?",
-      "options": [
-        "They have denied the faith and are worse than an unbeliever",
-        "They may still be considered faithful",
-        "They are only slightly neglectful",
-        "They will be forgiven their transgression"
-      ],
-      "correct": "They have denied the faith and are worse than an unbeliever",
-      "explain": "The text explicitly states that whoever does not care for their own family has denied the faith and is worse than an unbeliever."
-    },
-    {
-      "id": "r4",
-      "ru": "Молодых вдов в такой список не включай, потому что когда их чувственные желания становятся сильнее их преданности Христу, они хотят опять выйти замуж.",
-      "question": "Why should younger widows not be enrolled in the official list?",
-      "options": [
-        "Because their sensual desires may overcome their devotion to Christ and they wish to marry again",
-        "Because they are too young to pray effectively",
-        "Because they lack necessary skills",
-        "Because they prefer to work rather than pray"
-      ],
-      "correct": "Because their sensual desires may overcome their devotion to Christ and they wish to marry again",
-      "explain": "The passage explains that when the sensual desires of younger widows become stronger than their devotion to Christ, they desire to marry again."
-    },
-    {
-      "id": "r5",
-      "ru": "Поэтому я советую молодым вдовам лучше выходить замуж, рожать детей, вести домашнее хозяйство и не давать врагу повода к злословию.",
-      "question": "What does Paul advise younger widows to do?",
-      "options": [
-        "Marry, bear children, manage their households, and give the enemy no opportunity to malign them",
-        "Remain single and devote themselves to prayer",
-        "Leave their homes and travel",
-        "Pursue advanced learning and teaching"
-      ],
-      "correct": "Marry, bear children, manage their households, and give the enemy no opportunity to malign them",
-      "explain": "Paul explicitly advises younger widows to marry, bear children, rule their households, and give no occasion to the adversary for insulting."
-    },
-    {
-      "id": "r6",
-      "ru": "Старейшины, хорошо ведущие работу, заслуживают уважения и оплаты за их труд, особенно те, кто проповедует или учит.",
-      "question": "What compensation do elders who rule well deserve?",
-      "options": [
-        "Honor and payment for their work, especially those who preach or teach",
-        "Only spiritual rewards",
-        "Free housing only",
-        "Recognition but no payment"
-      ],
-      "correct": "Honor and payment for their work, especially those who preach or teach",
-      "explain": "The verse states that elders who rule well are worthy of double honor, especially those who labor in word and teaching."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Не делай ___ старцу , с уважением убеждай его так, как ты убеждал бы своего отца.",
+   "lemma": "замечание",
+   "options": [
+    "грубых замечаний",
+    "грубым замечаниям",
+    "грубые замечания",
+    "грубых замечаниях"
+   ],
+   "correct": "грубых замечаний",
+   "case": "Родительный (Genitive)",
+   "explain": "«грубых замечаний» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "Don’t rebuke an older man, but exhort him as a father; the younger men as brothers;"
+  },
+  {
+   "sentence": "С ___ говори как с братьями.",
+   "lemma": "человек",
+   "options": [
+    "молодыми людьми",
+    "молодых людей",
+    "молодых людях",
+    "молодым людям"
+   ],
+   "correct": "молодыми людьми",
+   "case": "Творительный (Instrumental)",
+   "explain": "«молодыми людьми» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c2",
+   "translation": "Don’t rebuke an older man, but exhort him as a father; the younger men as brothers;"
+  },
+  {
+   "sentence": "Должно быть известно, что она совершала хорошие дела: воспитала детей, проявляла гостеприимство, мыла ноги святым, помогала тем, кому трудно, и посвящала себя различным ___.",
+   "lemma": "дело",
+   "options": [
+    "добрые дела",
+    "добрыми делами",
+    "добрых делах",
+    "добрым делам"
+   ],
+   "correct": "добрым делам",
+   "case": "Дательный (Dative)",
+   "explain": "«добрым делам» — the dative marks the indirect object or recipient.",
+   "id": "c4",
+   "translation": "being approved by good works, if she has brought up children, if she has been hospitable to strangers, if she has washed the saints’ feet, if she has relieved the afflicted, and if she has diligently followed every good work."
+  },
+  {
+   "sentence": "Молодых вдов в такой список не включай, потому что, когда их ___ становятся сильнее их преданности Христу, они хотят опять выйти замуж.",
+   "lemma": "желание",
+   "options": [
+    "чувственным желаниям",
+    "чувственных желаниях",
+    "чувственные желания",
+    "чувственных желаний"
+   ],
+   "correct": "чувственные желания",
+   "case": "Именительный (Nominative)",
+   "explain": "«чувственные желания» — the subject of the sentence stands in the nominative.",
+   "id": "c5",
+   "translation": "But refuse younger widows, for when they have grown wanton against Christ, they desire to marry,"
+  },
+  {
+   "sentence": "Так они навлекают на себя осуждение за то, что нарушают свой ___ .",
+   "lemma": "обет",
+   "options": [
+    "первоначальному обету",
+    "первоначальный обет",
+    "первоначальном обете",
+    "первоначального обета"
+   ],
+   "correct": "первоначальный обет",
+   "case": "Винительный (Accusative)",
+   "explain": "«первоначальный обет» — the accusative marks the direct object of the verb.",
+   "id": "c6",
+   "translation": "having condemnation, because they have rejected their first pledge."
+  },
+  {
+   "sentence": "Кроме того, поскольку они приучаются бездельничать, у них появляется привычка бессмысленно проводить время, ходить из дома в дом, сплетничать, вмешиваться в ___ и говорить то, чего не следует.",
+   "lemma": "дело",
+   "options": [
+    "чужими делами",
+    "чужих делах",
+    "чужих дел",
+    "чужие дела"
+   ],
+   "correct": "чужие дела",
+   "case": "Винительный (Accusative)",
+   "explain": "«чужие дела» — after the preposition «в», the accusative marks the direct object of the verb.",
+   "id": "c7",
+   "translation": "Besides, they also learn to be idle, going about from house to house. Not only idle, but also gossips and busybodies, saying things which they ought not."
+  },
+  {
+   "sentence": "Поэтому я советую ___ лучше выходить замуж, рожать детей, вести домашнее хозяйство и не давать врагу повода к злословию, 15 потому что некоторые из них уже отвернулись и пошли за сатаной.",
+   "lemma": "вдова",
+   "options": [
+    "молодыми вдовами",
+    "молодым вдовам",
+    "молодых вдов",
+    "молодых вдовах"
+   ],
+   "correct": "молодым вдовам",
+   "case": "Дательный (Dative)",
+   "explain": "«молодым вдовам» — the dative marks the indirect object or recipient.",
+   "id": "c8",
+   "translation": "I desire therefore that the younger widows marry, bear children, rule the household, and give no occasion to the adversary for insulting."
+  },
+  {
+   "sentence": "Если же у кого-либо из верующих женщин есть родственницы-вдовы, они должны помогать им, чтобы те не были ___ для церкви.",
+   "lemma": "бремя",
+   "options": [
+    "дополнительному бремени",
+    "дополнительным бременем",
+    "дополнительном бремени",
+    "дополнительное бремя"
+   ],
+   "correct": "дополнительным бременем",
+   "case": "Творительный (Instrumental)",
+   "explain": "«дополнительным бременем» — the instrumental marks the means, company, or complement.",
+   "id": "c9",
+   "translation": "If any man or woman who believes has widows, let them relieve them, and don’t let the assembly be burdened, that it might relieve those who are widows indeed."
+  },
+  {
+   "sentence": "Советую тебе пить не одну только воду, но из-за желудка и твоих ___ пей немного вина.",
+   "lemma": "недомогание",
+   "options": [
+    "частые недомогания",
+    "частых недомоганий",
+    "частым недомоганиям",
+    "частых недомоганиях"
+   ],
+   "correct": "частых недомоганий",
+   "case": "Родительный (Genitive)",
+   "explain": "«частых недомоганий» — the genitive here marks possession, absence, or quantity.",
+   "id": "c10",
+   "translation": "Be no longer a drinker of water only, but use a little wine for your stomach’s sake and your frequent infirmities."
+  },
+  {
+   "sentence": "То же самое касается и ___: одни добрые дела видны сразу, а другие будут обнаружены позже.",
+   "lemma": "дело",
+   "options": [
+    "добрыми делами",
+    "добрых дел",
+    "добрым делам",
+    "добрые дела"
+   ],
+   "correct": "добрых дел",
+   "case": "Родительный (Genitive)",
+   "explain": "«добрых дел» — the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
+   "translation": "In the same way also there are good works that are obvious, and those that are otherwise can’t be hidden."
+  },
+  {
+   "sentence": "То же самое касается и добрых дел: одни ___ видны сразу, а другие будут обнаружены позже.",
+   "lemma": "дело",
+   "options": [
+    "добрых делах",
+    "добрых дел",
+    "добрые дела",
+    "добрыми делами"
+   ],
+   "correct": "добрые дела",
+   "case": "Именительный (Nominative)",
+   "explain": "«добрые дела» — the subject of the sentence stands in the nominative.",
+   "id": "c12",
+   "translation": "In the same way also there are good works that are obvious, and those that are otherwise can’t be hidden."
+  }
+ ]
 }

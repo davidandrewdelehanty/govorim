@@ -1,134 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "В народе среди мужчин и их жен поднялся сильный ропот на своих ___ иудеев.",
-      "lemma": "брат",
-      "options": ["братьев", "брата", "братьями", "брате"],
-      "correct": "братьев",
-      "case": "Родительный (Genitive)",
-      "translation": "A great cry rose among the men and their wives against their brothers the Jews.",
-      "explain": "The preposition на (against) here governs the accusative, but 'против своих братьев' uses genitive after 'сильный ропот на'; the verb requires genitive case for the object of the complaint."
-    },
-    {
-      "id": "c2",
-      "sentence": "Нам нужно зерно, чтобы кормиться и жить, нам нужно ___.",
-      "lemma": "зерно",
-      "options": ["зерно", "зерна", "зерну", "зерном"],
-      "correct": "зерно",
-      "case": "Именительный (Nominative)",
-      "translation": "We need grain to eat and live; we need grain.",
-      "explain": "The predicative nominative after the verb 'нужно' (need) takes the nominative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Нам приходится закладывать свои поля, виноградники и дома, чтобы достать зерна во время ___.",
-      "lemma": "голод",
-      "options": ["голода", "голод", "голоду", "голодом"],
-      "correct": "голода",
-      "case": "Родительный (Genitive)",
-      "translation": "We must pledge our fields, vineyards, and houses to get grain during the famine.",
-      "explain": "The preposition 'во время' (during) requires the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я очень рассердился, услышав ропот и жалобы. Я обвинил ___ и начальствующих.",
-      "lemma": "знать",
-      "options": ["знать", "знати", "знатью", "знатей"],
-      "correct": "знать",
-      "case": "Винительный (Accusative)",
-      "translation": "I was very angry when I heard their cry and complaints. I contended with the nobles and the rulers.",
-      "explain": "The transitive verb 'обвинил' (contended with/accused) takes the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Вы берете проценты со своих ___, — сказал я им.",
-      "lemma": "брат",
-      "options": ["братья", "братьев", "братьям", "братьях"],
-      "correct": "братьев",
-      "case": "Родительный (Genitive)",
-      "translation": "You exact usury from your brothers, I said to them.",
-      "explain": "The preposition 'со' (with/from) requires the genitive case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Вернули бы им их поля, виноградники, масличные рощи и дома, а также проценты, которые вы им назначили, в руках их ___.",
-      "lemma": "сокровище",
-      "options": ["сокровищ", "сокровище", "сокровищам", "сокровищах"],
-      "correct": "сокровищах",
-      "case": "Предложный (Prepositional)",
-      "translation": "Return to them their fields, their vineyards, their olive orchards, and their houses, as well as the interest that you have charged them in their treasury.",
-      "explain": "The preposition 'в' (in) with location requires the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Еще я вытряхнул свою одежду и сказал, Так пусть же Бог вытряхнет всякого ___, который не сдержит этого обещания.",
-      "lemma": "человек",
-      "options": ["человека", "человеку", "человеке", "человеком"],
-      "correct": "человека",
-      "case": "Винительный (Accusative)",
-      "translation": "Then I shook out my lap and said, Thus may God shake out every man from his house who does not keep this promise.",
-      "explain": "The transitive verb 'вытряхнет' (shall shake out) governs the accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "С двадцатого ___ правления царя, я был назначен наместником в земле иудейской.",
-      "lemma": "год",
-      "options": ["года", "году", "годом", "годе"],
-      "correct": "года",
-      "case": "Родительный (Genitive)",
-      "translation": "From the twentieth year of the reign of the king, I was appointed governor in the land of Judah.",
-      "explain": "The ordinal 'двадцатого' and temporal expressions with 'года' require the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Прощение долгов беднякам В народе среди мужчин и их жен поднялся сильный ропот на своих братьев-иудеев.",
-      "question": "What rose among the people in the beginning of this chapter?",
-      "options": ["A great cry against their brothers the Jews", "A celebration of prosperity", "A building project", "A gathering for worship"],
-      "correct": "A great cry against their brothers the Jews",
-      "explain": "The text states 'поднялся сильный ропот на своих братьев-иудеев' — a great cry rose against their brothers the Jews."
-    },
-    {
-      "id": "r2",
-      "ru": "Услышав их ропот и эти жалобы, я очень рассердился.",
-      "question": "How did Nehemiah react upon hearing the people's complaints?",
-      "options": ["He became very angry", "He felt sympathetic", "He ignored them", "He laughed"],
-      "correct": "He became very angry",
-      "explain": "The text says 'я очень рассердился' — I became very angry."
-    },
-    {
-      "id": "r3",
-      "ru": "Вы берете проценты со своих братьев.",
-      "question": "What accusation did Nehemiah make against the nobles?",
-      "options": ["That they charged interest on their brothers", "That they stole from the poor", "That they built illegally", "That they refused to pay taxes"],
-      "correct": "That they charged interest on their brothers",
-      "explain": "Nehemiah said 'Вы берете проценты со своих братьев' — You exact usury from your brothers."
-    },
-    {
-      "id": "r4",
-      "ru": "Я, мои братья и слуги, также даем в долг народу деньги и зерно.",
-      "question": "What does Nehemiah say about his own lending practices?",
-      "options": ["He and his brothers also lend money and grain to the people", "He refuses to lend anything", "He only lends to the wealthy", "He has stopped all lending"],
-      "correct": "He and his brothers also lend money and grain to the people",
-      "explain": "The text states 'Я, мои братья и слуги, также даем в долг народу деньги и зерно' — I, my brothers and servants, also lend money and grain to the people."
-    },
-    {
-      "id": "r5",
-      "ru": "Прежние наместники, которые были до меня, возложили на народ тяжкое бремя и брали у них сорок шекелей серебра, помимо пищи и вина.",
-      "question": "How did the former governors treat the people?",
-      "options": ["They imposed a heavy burden and took forty shekels of silver plus food and wine", "They ruled justly and fairly", "They refused to collect taxes", "They gave money to the people"],
-      "correct": "They imposed a heavy burden and took forty shekels of silver plus food and wine",
-      "explain": "The text says former governors 'возложили на народ тяжкое бремя и брали у них сорок шекелей серебра' — imposed a heavy burden and took forty shekels of silver from them."
-    },
-    {
-      "id": "r6",
-      "ru": "Вспомни мне во благо, Боже мой, все, что я сделал для этого народа.",
-      "question": "What does Nehemiah ask God to remember at the end?",
-      "options": ["All the good things he has done for the people", "The people's sins", "The former governors' cruelty", "The tribute owed to the king"],
-      "correct": "All the good things he has done for the people",
-      "explain": "Nehemiah prays 'Вспомни мне во благо, Боже мой, все, что я сделал для этого народа' — Remember me for good, my God, all that I have done for this people."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "В народе, среди мужчин и их жен, поднялся ___ на своих братьев-иудеев.",
+   "lemma": "ропот",
+   "options": [
+    "сильного ропота",
+    "сильному ропоту",
+    "сильным ропотом",
+    "сильный ропот"
+   ],
+   "correct": "сильный ропот",
+   "case": "Именительный (Nominative)",
+   "explain": "«сильный ропот» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Then there arose a great cry of the people and of their wives against their brothers the Jews."
+  },
+  {
+   "sentence": "Немедленно верните им их поля, виноградники, масличные рощи и дома, а также проценты, которые вы им назначили, — сотую часть денег, зерна, ___ и масла.",
+   "lemma": "вино",
+   "options": [
+    "молодому вину",
+    "молодым вином",
+    "молодого вина",
+    "молодом вине"
+   ],
+   "correct": "молодого вина",
+   "case": "Родительный (Genitive)",
+   "explain": "«молодого вина» — the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "Please restore to them, even today, their fields, their vineyards, their olive groves, and their houses, also the hundredth part of the money, and of the grain, the new wine, and the oil, that you are charging them.”"
+  },
+  {
+   "sentence": "___, которые были до меня, возложили на народ тяжкое бремя, и брали у них сорок шекелей серебра, помимо пищи и вина.",
+   "lemma": "наместник",
+   "options": [
+    "прежние наместники",
+    "прежних наместников",
+    "прежними наместниками",
+    "прежних наместниках"
+   ],
+   "correct": "прежние наместники",
+   "case": "Именительный (Nominative)",
+   "explain": "«Прежние наместники» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "But the former governors who were before me were supported by the people, and took bread and wine from them, plus forty shekels of silver; yes, even their servants ruled over the people; but I didn’t do so, because of the fear of God."
+  },
+  {
+   "sentence": "Более того, за моим столом ели сто пятьдесят иудеев и приближенных, не считая тех, кто приходил к нам из ___.",
+   "lemma": "народ",
+   "options": [
+    "окрестные народы",
+    "окрестных народах",
+    "окрестным народам",
+    "окрестных народов"
+   ],
+   "correct": "окрестных народов",
+   "case": "Родительный (Genitive)",
+   "explain": "«окрестных народов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "Moreover there were at my table, of the Jews and the rulers, one hundred fifty men, in addition to those who came to us from among the nations that were around us."
+  },
+  {
+   "sentence": "Каждый день у меня готовили одного быка, шесть ___ и птицу, а каждые десять дней — в изобилии всякого рода вино.",
+   "lemma": "овца",
+   "options": [
+    "отборных овцах",
+    "отборных овец",
+    "отборные овцы",
+    "отборным овцам"
+   ],
+   "correct": "отборных овец",
+   "case": "Родительный (Genitive)",
+   "explain": "«отборных овец» — the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "Now that which was prepared for one day was one ox and six choice sheep. Also fowls were prepared for me, and once in ten days a store of all sorts of wine. Yet for all this, I didn’t demand the governor’s pay, because the bondage was heavy on this people."
+  }
+ ]
 }

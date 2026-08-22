@@ -1,204 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Итак, священники, вот ___ для вас.",
-      "lemma": "повеление",
-      "options": [
-        "повеление",
-        "повеления",
-        "повелению",
-        "повелением"
-      ],
-      "correct": "повеление",
-      "case": "Именительный (Nominative)",
-      "translation": "Now, you priests, this commandment is for you.",
-      "explain": "Повеление is the predicate nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Если вы не послушаетесь и не положите себе на ___ славить мое имя.",
-      "lemma": "сердце",
-      "options": [
-        "сердце",
-        "сердца",
-        "сердцу",
-        "сердцем"
-      ],
-      "correct": "сердце",
-      "case": "Винительный (Accusative)",
-      "translation": "If you will not take it to heart.",
-      "explain": "Сердце is the direct object of положить (put)."
-    },
-    {
-      "id": "c3",
-      "sentence": "Я пошлю на вас ___ и прокляну ваши благословения.",
-      "lemma": "проклятие",
-      "options": [
-        "проклятие",
-        "проклятия",
-        "проклятию",
-        "проклятием"
-      ],
-      "correct": "проклятие",
-      "case": "Винительный (Accusative)",
-      "translation": "I will send the curse.",
-      "explain": "Проклятие is the direct object of пошлю (will send)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Из-за вас я накажу ваших ___.",
-      "lemma": "потомок",
-      "options": [
-        "потомок",
-        "потомка",
-        "потомку",
-        "потомков"
-      ],
-      "correct": "потомков",
-      "case": "Винительный (Accusative)",
-      "translation": "I will rebuke your offspring.",
-      "explain": "Потомков is the plural accusative form (direct object)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Мой завет с ним был заветом жизни и благоденствия, — возвещает Господь ___.",
-      "lemma": "сил",
-      "options": [
-        "сил",
-        "сили",
-        "силам",
-        "силами"
-      ],
-      "correct": "сил",
-      "case": "Родительный (Genitive)",
-      "translation": "Says Yahweh of Armies.",
-      "explain": "The phrase Господь сил uses the genitive case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Язык священника хранит ___, и в его речах люди ищут наставления.",
-      "lemma": "знание",
-      "options": [
-        "знание",
-        "знания",
-        "знанию",
-        "знанием"
-      ],
-      "correct": "знание",
-      "case": "Винительный (Accusative)",
-      "translation": "Knowledge.",
-      "explain": "Знание is the direct object of хранит (guards)."
-    },
-    {
-      "id": "c7",
-      "sentence": "Вы нарушили Левиев завет, и я сделал вас презренными перед всем ___.",
-      "lemma": "народ",
-      "options": [
-        "народ",
-        "народа",
-        "народу",
-        "народом"
-      ],
-      "correct": "народом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Before all the people.",
-      "explain": "The preposition перед (before) governs the instrumental."
-    },
-    {
-      "id": "c8",
-      "sentence": "Я ненавижу развод, — говорит Господь, Бог ___.",
-      "lemma": "израиль",
-      "options": [
-        "Израиль",
-        "Израиля",
-        "Израилю",
-        "Израилем"
-      ],
-      "correct": "Израиля",
-      "case": "Родительный (Genitive)",
-      "translation": "The God of Israel.",
-      "explain": "The phrase Бог Израиля uses the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Итак, священники, вот повеление для вас.",
-      "question": "Who is being addressed?",
-      "options": [
-        "Priests are given a commandment",
-        "The people get instruction",
-        "Prophets are called to repent",
-        "Kings receive authority"
-      ],
-      "correct": "Priests are given a commandment",
-      "explain": "The verse: Итак, священники, вот повеление для вас."
-    },
-    {
-      "id": "r2",
-      "ru": "Если вы не послушаетесь и не положите себе на сердце славить мое имя, я пошлю на вас проклятие.",
-      "question": "What will God send?",
-      "options": [
-        "A curse",
-        "Blessings",
-        "Prosperity",
-        "Honor"
-      ],
-      "correct": "A curse",
-      "explain": "The text: я пошлю на вас проклятие."
-    },
-    {
-      "id": "r3",
-      "ru": "Мой завет с ним был заветом жизни и благоденствия, и я даровал их ему.",
-      "question": "What did God grant?",
-      "options": [
-        "Life and peace",
-        "Power and wealth",
-        "Land and cattle",
-        "Fame and children"
-      ],
-      "correct": "Life and peace",
-      "explain": "The verse: заветом жизни и благоденствия."
-    },
-    {
-      "id": "r4",
-      "ru": "Язык священника хранит знание, и в его речах люди ищут наставления.",
-      "question": "What role does the priest play?",
-      "options": [
-        "Keeps knowledge and people seek instruction",
-        "Spreads lies and deception",
-        "Condemns people for sins",
-        "Praises the king"
-      ],
-      "correct": "Keeps knowledge and people seek instruction",
-      "explain": "The text: Язык священника хранит знание, и в его речах люди ищут наставления."
-    },
-    {
-      "id": "r5",
-      "ru": "Иуда нарушил верность, мерзость была совершена в Израиле и в Иерусалиме.",
-      "question": "What wrong has Judah done?",
-      "options": [
-        "Dealt treacherously and an abomination is committed",
-        "Honored foreign gods",
-        "Refused to pay taxes",
-        "Made war with nations"
-      ],
-      "correct": "Dealt treacherously and an abomination is committed",
-      "explain": "The text: Иуда нарушил верность, мерзость была совершена."
-    },
-    {
-      "id": "r6",
-      "ru": "Я ненавижу развод, — говорит Господь, Бог Израиля.",
-      "question": "What does God declare?",
-      "options": [
-        "'I hate divorce'",
-        "'Divorce is permitted'",
-        "'Divorce is a blessing'",
-        "'Everyone must divorce'"
-      ],
-      "correct": "'I hate divorce'",
-      "explain": "The verse: Я ненавижу развод, — говорит Господь."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Я забросаю ваши лица навозом ваших ___, и вас выбросят вместе с ним .",
+   "lemma": "жертва",
+   "options": [
+    "праздничных жертвах",
+    "праздничных жертв",
+    "праздничным жертвам",
+    "праздничные жертвы"
+   ],
+   "correct": "праздничных жертв",
+   "case": "Родительный (Genitive)",
+   "explain": "«праздничных жертв» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "Behold, I will rebuke your offspring, and will spread dung on your faces, even the dung of your feasts; and you will be taken away with it."
+  },
+  {
+   "sentence": "В его устах было ___, и с языка его не слетало лжи.",
+   "lemma": "учение",
+   "options": [
+    "истинное учение",
+    "истинном учении",
+    "истинного учения",
+    "истинному учению"
+   ],
+   "correct": "истинное учение",
+   "case": "Именительный (Nominative)",
+   "explain": "«истинное учение» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "The law of truth was in his mouth, and unrighteousness was not found in his lips. He walked with me in peace and uprightness, and turned many away from iniquity."
+  },
+  {
+   "sentence": "Мерзость была совершена в Израиле и в Иерусалиме: Иуда осквернил святилище Господа, которое Он любит, женившись на дочери ___.",
+   "lemma": "бог",
+   "options": [
+    "чужого бога",
+    "чужой бог",
+    "чужому богу",
+    "чужом боге"
+   ],
+   "correct": "чужого бога",
+   "case": "Родительный (Genitive)",
+   "explain": "«чужого бога» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Judah has dealt treacherously, and an abomination is committed in Israel and in Jerusalem; for Judah has profaned the holiness of Yahweh which he loves, and has married the daughter of a foreign god."
+  },
+  {
+   "sentence": "Ты был ей неверен, хотя она твоя супруга, твоя ___.",
+   "lemma": "жена",
+   "options": [
+    "законной жены",
+    "законная жена",
+    "законной жене",
+    "законной женой"
+   ],
+   "correct": "законная жена",
+   "case": "Именительный (Nominative)",
+   "explain": "«законная жена» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "Yet you say, ‘Why?’ Because Yahweh has been witness between you and the wife of your youth, against whom you have dealt treacherously, though she is your companion, and the wife of your covenant."
+  }
+ ]
 }

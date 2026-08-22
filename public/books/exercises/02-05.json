@@ -1,134 +1,34 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Моисей и Аарон пришли к ___.",
-      "lemma": "фараон",
-      "options": ["фараон", "фараона", "фараону", "фараоном"],
-      "correct": "фараону",
-      "case": "Дательный (Dative)",
-      "translation": "Moses and Aaron came to Pharaoh.",
-      "explain": "The preposition к (to/toward) always governs the dative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Я не знаю ___ и не отпущу Израиль.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господа",
-      "case": "Винительный (Accusative)",
-      "translation": "I do not know Yahweh and will not let Israel go.",
-      "explain": "Господь is the direct object of знать; for animate masculine nouns the accusative equals the genitive, Господа."
-    },
-    {
-      "id": "c3",
-      "sentence": "Чтобы он не наказал нас ___ или мечом.",
-      "lemma": "мор",
-      "options": ["мор", "мора", "мору", "мором"],
-      "correct": "мором",
-      "case": "Творительный (Instrumental)",
-      "translation": "…lest he punish us with pestilence or the sword.",
-      "explain": "The means of the action (наказать чем — punish with what) is expressed in the instrumental case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Зачем вы отвлекаете народ от ___?",
-      "lemma": "работа",
-      "options": ["работа", "работу", "работы", "работе"],
-      "correct": "работы",
-      "case": "Родительный (Genitive)",
-      "translation": "Why do you take the people away from their work?",
-      "explain": "The preposition от (from) always governs the genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "И народ рассеялся по ___ собирать жневье.",
-      "lemma": "Египет",
-      "options": ["Египет", "Египта", "Египту", "Египтом"],
-      "correct": "Египту",
-      "case": "Дательный (Dative)",
-      "translation": "And the people scattered throughout Egypt to gather stubble.",
-      "explain": "The preposition по (over/throughout) governs the dative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Вина лежит на твоем ___.",
-      "lemma": "народ",
-      "options": ["народ", "народа", "народу", "народе"],
-      "correct": "народе",
-      "case": "Предложный (Prepositional)",
-      "translation": "The fault lies on your own people.",
-      "explain": "The preposition на indicating location takes the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Чтобы он устроил мне ___ в пустыне.",
-      "lemma": "праздник",
-      "options": ["праздник", "праздника", "празднику", "праздником"],
-      "correct": "праздник",
-      "case": "Винительный (Accusative)",
-      "translation": "…that he may hold a feast to me in the wilderness.",
-      "explain": "праздник is the direct object of устроил; an inanimate masculine noun has accusative equal to nominative."
-    },
-    {
-      "id": "c8",
-      "sentence": "___ стал ныне многочисленным.",
-      "lemma": "народ",
-      "options": ["народ", "народа", "народу", "народом"],
-      "correct": "народ",
-      "case": "Именительный (Nominative)",
-      "translation": "The people have now become many.",
-      "explain": "народ is the subject of стал, so it takes the nominative, the dictionary form."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Я не знаю Господа и не отпущу Израиль",
-      "question": "What does Pharaoh say about Yahweh?",
-      "options": ["He does not know Yahweh and will not release Israel", "He knows Yahweh and fears him", "He will release Israel at once", "He wants to worship Yahweh"],
-      "correct": "He does not know Yahweh and will not release Israel",
-      "explain": "Pharaoh denies knowing Yahweh and refuses to let Israel go."
-    },
-    {
-      "id": "r2",
-      "ru": "В тот же день фараон приказал надсмотрщикам над народом и старостам.",
-      "question": "What did Pharaoh do that same day?",
-      "options": ["Commanded the taskmasters and officers", "Released the people", "Prayed to God", "Fled from Egypt"],
-      "correct": "Commanded the taskmasters and officers",
-      "explain": "The text says Pharaoh gave orders to the taskmasters over the people and the officers."
-    },
-    {
-      "id": "r3",
-      "ru": "Не давайте больше этому народу солому для изготовления кирпичей, пусть идут и собирают сами, но требуйте от них такое же количество кирпичей, как и прежде.",
-      "question": "What change did Pharaoh order regarding straw and bricks?",
-      "options": ["Stop giving straw but demand the same number of bricks", "Give the people more straw", "Reduce the daily brick quota", "Provide both straw and bricks"],
-      "correct": "Stop giving straw but demand the same number of bricks",
-      "explain": "The people must gather their own straw yet still make the same quota of bricks as before."
-    },
-    {
-      "id": "r4",
-      "ru": "И народ рассеялся по Египту собирать жневье, чтобы заменить им солому.",
-      "question": "Why did the people scatter throughout Egypt?",
-      "options": ["To gather stubble to replace the straw", "To escape from Pharaoh", "To search for water", "To offer sacrifices to God"],
-      "correct": "To gather stubble to replace the straw",
-      "explain": "They spread out to collect stubble as a substitute for the straw they were denied."
-    },
-    {
-      "id": "r5",
-      "ru": "Посмотри, как бьют твоих слуг.",
-      "question": "What do the officers point out to Pharaoh?",
-      "options": ["That his servants are being beaten", "That the people are happy", "That the bricks are finished", "That the wilderness is far"],
-      "correct": "That his servants are being beaten",
-      "explain": "The officers protest that Pharaoh's own servants are being beaten."
-    },
-    {
-      "id": "r6",
-      "ru": "С тех пор, как я ходил к фараону говорить от твоего имени, он стал обращаться с народом еще более жестоко.",
-      "question": "According to Moses, what happened since he spoke to Pharaoh in God's name?",
-      "options": ["Pharaoh treated the people even more cruelly", "Pharaoh released the people", "The people rejoiced", "God rescued the people"],
-      "correct": "Pharaoh treated the people even more cruelly",
-      "explain": "Moses complains that since he spoke in God's name Pharaoh has dealt more harshly with the people."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Солому вам давать не будут, но ___ кирпичей делайте.",
+   "lemma": "количество",
+   "options": [
+    "положенное количество",
+    "положенным количеством",
+    "положенном количестве",
+    "положенного количества"
+   ],
+   "correct": "положенное количество",
+   "case": "Именительный (Nominative)",
+   "explain": "«положенное количество» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "Go therefore now, and work; for no straw shall be given to you; yet you shall deliver the same number of bricks!”"
+  },
+  {
+   "sentence": "Старосты израильтян поняли, что попали в беду, услышав: «Не уменьшайте ___ кирпичей».",
+   "lemma": "норма",
+   "options": [
+    "ежедневной норме",
+    "ежедневная норма",
+    "ежедневной нормой",
+    "ежедневной нормы"
+   ],
+   "correct": "ежедневной нормы",
+   "case": "Родительный (Genitive)",
+   "explain": "«ежедневной нормы» — the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "The officers of the children of Israel saw that they were in trouble when it was said, “You shall not diminish anything from your daily quota of bricks!”"
+  }
+ ]
 }

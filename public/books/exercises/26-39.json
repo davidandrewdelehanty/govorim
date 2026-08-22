@@ -1,191 +1,244 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ была в центре.",
-      "lemma": "гор",
-      "options": [
-        "гора",
-        "гору",
-        "гором",
-        "гор"
-      ],
-      "correct": "гор",
-      "case": "Именительный (Nominative)",
-      "translation": "A/The гор was central.",
-      "explain": "Governed by the context requiring the именительный (nominative)."
-    },
-    {
-      "id": "c2",
-      "sentence": "Это достояние ___.",
-      "lemma": "гор",
-      "options": [
-        "гор",
-        "гору",
-        "гора",
-        "гором"
-      ],
-      "correct": "гора",
-      "case": "Родительный (Genitive)",
-      "translation": "A/The гор was central.",
-      "explain": "Governed by the context requiring the родительный (genitive)."
-    },
-    {
-      "id": "c3",
-      "sentence": "Подойди к ___.",
-      "lemma": "гор",
-      "options": [
-        "гор",
-        "гора",
-        "гором",
-        "гору"
-      ],
-      "correct": "гору",
-      "case": "Дательный (Dative)",
-      "translation": "A/The гор was central.",
-      "explain": "Governed by the context requiring the дательный (dative)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я видел ___.",
-      "lemma": "гор",
-      "options": [
-        "гор",
-        "гора",
-        "гору",
-        "гором"
-      ],
-      "correct": "гора",
-      "case": "Винительный (Accusative)",
-      "translation": "A/The гор was central.",
-      "explain": "Governed by the context requiring the винительный (accusative)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Это сделано ___.",
-      "lemma": "гор",
-      "options": [
-        "гор",
-        "гора",
-        "гору",
-        "гором"
-      ],
-      "correct": "гором",
-      "case": "Творительный (Instrumental)",
-      "translation": "A/The гор was central.",
-      "explain": "Governed by the context requiring the творительный (instrumental)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Речь идёт о ___.",
-      "lemma": "гор",
-      "options": [
-        "гор",
-        "гора",
-        "гору",
-        "горе"
-      ],
-      "correct": "горе",
-      "case": "Предложный (Prepositional)",
-      "translation": "A/The гор was central.",
-      "explain": "Governed by the context requiring the предложный (prepositional)."
-    },
-    {
-      "id": "c7",
-      "sentence": "___ была в центре.",
-      "lemma": "огонь",
-      "options": [
-        "огня",
-        "огню",
-        "огонь",
-        "огнём"
-      ],
-      "correct": "огонь",
-      "case": "Именительный (Nominative)",
-      "translation": "A/The огонь was central.",
-      "explain": "Governed by the context requiring the именительный (nominative)."
-    },
-    {
-      "id": "c8",
-      "sentence": "Это достояние ___.",
-      "lemma": "огонь",
-      "options": [
-        "огонь",
-        "огню",
-        "огнём",
-        "огня"
-      ],
-      "correct": "огня",
-      "case": "Родительный (Genitive)",
-      "translation": "A/The огонь was central.",
-      "explain": "Governed by the context requiring the родительный (genitive)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Сын человеческий, пророчествуй против Гога и скажи, «Так говорит Владыка Господь, я твой враг, Гог, верховный правитель Машеха и Тувала»",
-      "question": "What is the main action in this sentence?",
-      "options": [
-        "A main action occurs.",
-        "No action takes place.",
-        "Actions are prevented.",
-        "All actions cease."
-      ],
-      "correct": "A main action occurs.",
-      "explain": "From the text provided."
-    },
-    {
-      "id": "r2",
-      "ru": "Он идет, он непременно настанет, возвещает владыка Господь, день, о котором я говорил»",
-      "question": "Who or what is the subject?",
-      "options": [
-        "The subject is identified.",
-        "The subject is unclear.",
-        "No subject exists.",
-        "The subject is missing."
-      ],
-      "correct": "The subject is identified.",
-      "explain": "From the text provided."
-    },
-    {
-      "id": "r3",
-      "ru": "Будут назначены люди, чтобы все время обходить землю, хоронить оставшихся на поверхности земли и очищать ее",
-      "question": "What does the text say about this subject?",
-      "options": [
-        "The text describes this subject.",
-        "The text rejects this.",
-        "The text ignores this.",
-        "The text opposes this."
-      ],
-      "correct": "The text describes this subject.",
-      "explain": "From the text provided."
-    },
-    {
-      "id": "r4",
-      "ru": "С этого дня и впредь дом Израиля будет знать, что я Господь их Бог",
-      "question": "What is the main action in this sentence?",
-      "options": [
-        "A main action occurs.",
-        "No action takes place.",
-        "Actions are prevented.",
-        "All actions cease."
-      ],
-      "correct": "A main action occurs.",
-      "explain": "From the text provided."
-    },
-    {
-      "id": "r5",
-      "ru": "Я больше не стану скрывать от них свое лицо, когда изолью моего духа на дом Израиля», — возвещает владыка Господь",
-      "question": "Who or what is the subject?",
-      "options": [
-        "The subject is identified.",
-        "The subject is unclear.",
-        "No subject exists.",
-        "The subject is missing."
-      ],
-      "correct": "The subject is identified.",
-      "explain": "From the text provided."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "— Сын человеческий, пророчествуй против Гога и скажи: «Так говорит Владыка Господь: Я твой враг, Гог, ___ Мешеха и Тувала.",
+   "lemma": "правитель",
+   "options": [
+    "верховным правителем",
+    "верховный правитель",
+    "верховному правителю",
+    "верховном правителе"
+   ],
+   "correct": "верховный правитель",
+   "case": "Именительный (Nominative)",
+   "explain": "«верховный правитель» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "“You, son of man, prophesy against Gog, and say, ‘The Lord Yahweh says: “Behold, I am against you, Gog, prince of Rosh, Meshech, and Tubal."
+  },
+  {
+   "sentence": "Я выбью у тебя лук из ___ и рассыплю стрелы из правой.",
+   "lemma": "рука",
+   "options": [
+    "левой руке",
+    "левой рукой",
+    "левой руки",
+    "левая рука"
+   ],
+   "correct": "левой руки",
+   "case": "Родительный (Genitive)",
+   "explain": "«левой руки» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "I will strike your bow out of your left hand, and will cause your arrows to fall out of your right hand."
+  },
+  {
+   "sentence": "Я отдам тебя в пищу разным ___ и диким зверям.",
+   "lemma": "птица",
+   "options": [
+    "хищные птицы",
+    "хищным птицам",
+    "хищных птицах",
+    "хищными птицами"
+   ],
+   "correct": "хищным птицам",
+   "case": "Дательный (Dative)",
+   "explain": "«хищным птицам» — the dative marks the indirect object or recipient.",
+   "id": "c3",
+   "translation": "You will fall on the mountains of Israel, you, and all your hordes, and the peoples who are with you. I will give you to the ravenous birds of every sort, and to the animals of the field to be devoured."
+  },
+  {
+   "sentence": "Я отдам тебя в пищу разным хищным птицам и ___.",
+   "lemma": "зверь",
+   "options": [
+    "дикими зверями",
+    "диким зверям",
+    "диких зверях",
+    "дикие звери"
+   ],
+   "correct": "диким зверям",
+   "case": "Дательный (Dative)",
+   "explain": "«диким зверям» — the dative marks the indirect object or recipient.",
+   "id": "c4",
+   "translation": "You will fall on the mountains of Israel, you, and all your hordes, and the peoples who are with you. I will give you to the ravenous birds of every sort, and to the animals of the field to be devoured."
+  },
+  {
+   "sentence": "Ты падешь в ___, потому что Я так сказал, — возвещает Владыка Господь.",
+   "lemma": "поле",
+   "options": [
+    "открытое поле",
+    "открытому полю",
+    "открытого поля",
+    "открытом поле"
+   ],
+   "correct": "открытом поле",
+   "case": "Предложный (Prepositional)",
+   "explain": "«открытом поле» — after the preposition «в», for location or topic.",
+   "id": "c5",
+   "translation": "You will fall on the open field; for I have spoken it,” says the Lord Yahweh."
+  },
+  {
+   "sentence": "Жители ___ выйдут собирать брошенное оружие, чтобы отправить его на топливо.",
+   "lemma": "город",
+   "options": [
+    "израильские города",
+    "израильскими городами",
+    "израильских городах",
+    "израильских городов"
+   ],
+   "correct": "израильских городов",
+   "case": "Родительный (Genitive)",
+   "explain": "«израильских городов» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "“ ‘ “Those who dwell in the cities of Israel will go out, and will make fires of the weapons and burn them, both the shields and the bucklers, the bows and the arrows, and the war clubs and the spears, and they will make fires with them for seven years;"
+  },
+  {
+   "sentence": "— А тебе, сын человеческий, так говорит Владыка Господь: Скажи ___ и диким зверям: «Собирайтесь и отправляйтесь отовсюду на жертвенный пир, который Я готовлю для вас, на великий жертвенный пир в горах Израиля.",
+   "lemma": "птица",
+   "options": [
+    "разных птицах",
+    "разным птицам",
+    "разных птиц",
+    "разные птицы"
+   ],
+   "correct": "разным птицам",
+   "case": "Дательный (Dative)",
+   "explain": "«разным птицам» — the dative marks the indirect object or recipient.",
+   "id": "c7",
+   "translation": "“You, son of man, the Lord Yahweh says: ‘Speak to the birds of every sort, and to every animal of the field, “Assemble yourselves, and come; gather yourselves on every side to my sacrifice that I sacrifice for you, even a great sacrifice on the mountains of Israel, that you may eat meat and drink blood."
+  },
+  {
+   "sentence": "— А тебе, сын человеческий, так говорит Владыка Господь: Скажи разным птицам и ___: «Собирайтесь и отправляйтесь отовсюду на жертвенный пир, который Я готовлю для вас, на великий жертвенный пир в горах Израиля.",
+   "lemma": "зверь",
+   "options": [
+    "дикими зверями",
+    "диким зверям",
+    "диких зверях",
+    "дикие звери"
+   ],
+   "correct": "диким зверям",
+   "case": "Дательный (Dative)",
+   "explain": "«диким зверям» — the dative marks the indirect object or recipient.",
+   "id": "c8",
+   "translation": "“You, son of man, the Lord Yahweh says: ‘Speak to the birds of every sort, and to every animal of the field, “Assemble yourselves, and come; gather yourselves on every side to my sacrifice that I sacrifice for you, even a great sacrifice on the mountains of Israel, that you may eat meat and drink blood."
+  },
+  {
+   "sentence": "Вы будете есть мясо ___ и пить кровь правителей земли, словно бы они были баранами и ягнятами, козлами и молодыми быками, — упитанной скотиной с Башана.",
+   "lemma": "ратник",
+   "options": [
+    "могучими ратниками",
+    "могучих ратников",
+    "могучие ратники",
+    "могучих ратниках"
+   ],
+   "correct": "могучих ратников",
+   "case": "Родительный (Genitive)",
+   "explain": "«могучих ратников» — the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
+   "translation": "You shall eat the flesh of the mighty, and drink the blood of the princes of the earth, of rams, of lambs, and of goats, of bulls, all of them fatlings of Bashan."
+  },
+  {
+   "sentence": "Вы будете есть мясо могучих ратников и пить кровь правителей земли, словно бы они были баранами и ягнятами, козлами и ___, — упитанной скотиной с Башана.",
+   "lemma": "бык",
+   "options": [
+    "молодых быков",
+    "молодых быках",
+    "молодыми быками",
+    "молодые быки"
+   ],
+   "correct": "молодыми быками",
+   "case": "Творительный (Instrumental)",
+   "explain": "«молодыми быками» — the instrumental marks the means, company, or complement.",
+   "id": "c12",
+   "translation": "You shall eat the flesh of the mighty, and drink the blood of the princes of the earth, of rams, of lambs, and of goats, of bulls, all of them fatlings of Bashan."
+  },
+  {
+   "sentence": "На ___, который Я готовлю для вас, вы досыта наедитесь жира и напьетесь крови.",
+   "lemma": "пир",
+   "options": [
+    "жертвенный пир",
+    "жертвенного пира",
+    "жертвенным пиром",
+    "жертвенном пире"
+   ],
+   "correct": "жертвенном пире",
+   "case": "Предложный (Prepositional)",
+   "explain": "«жертвенном пире» — after the preposition «на», for location or topic.",
+   "id": "c13",
+   "translation": "You shall eat fat until you are full, and drink blood until you are drunk, of my sacrifice which I have sacrificed for you."
+  },
+  {
+   "sentence": "За Моим столом вы насытитесь мясом коней и колесничих, ___ и разных военных людей, — возвещает Владыка Господь».",
+   "lemma": "ратник",
+   "options": [
+    "могучими ратниками",
+    "могучих ратников",
+    "могучие ратники",
+    "могучих ратниках"
+   ],
+   "correct": "могучих ратников",
+   "case": "Родительный (Genitive)",
+   "explain": "«могучих ратников» — the genitive here marks possession, absence, or quantity.",
+   "id": "c14",
+   "translation": "You shall be filled at my table with horses and chariots, with mighty men, and with all men of war,” says the Lord Yahweh.’"
+  },
+  {
+   "sentence": "За Моим столом вы насытитесь мясом коней и колесничих, могучих ратников и разных ___, — возвещает Владыка Господь».",
+   "lemma": "человек",
+   "options": [
+    "военным людям",
+    "военных людей",
+    "военных людях",
+    "военные люди"
+   ],
+   "correct": "военных людей",
+   "case": "Родительный (Genitive)",
+   "explain": "«военных людей» — the genitive here marks possession, absence, or quantity.",
+   "id": "c15",
+   "translation": "You shall be filled at my table with horses and chariots, with mighty men, and with all men of war,” says the Lord Yahweh.’"
+  },
+  {
+   "sentence": "Вернув их из ___ и возвратив из вражеских стран, Я явлю через них Мою святость на глазах у многих народов.",
+   "lemma": "народ",
+   "options": [
+    "других народов",
+    "другим народам",
+    "других народах",
+    "другими народами"
+   ],
+   "correct": "других народов",
+   "case": "Родительный (Genitive)",
+   "explain": "«других народов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c16",
+   "translation": "when I have brought them back from the peoples, and gathered them out of their enemies’ lands, and am sanctified in them in the sight of many nations."
+  },
+  {
+   "sentence": "Вернув их из других народов и возвратив из ___, Я явлю через них Мою святость на глазах у многих народов.",
+   "lemma": "страна",
+   "options": [
+    "вражеских странах",
+    "вражеским странам",
+    "вражеские страны",
+    "вражеских стран"
+   ],
+   "correct": "вражеских стран",
+   "case": "Родительный (Genitive)",
+   "explain": "«вражеских стран» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c17",
+   "translation": "when I have brought them back from the peoples, and gathered them out of their enemies’ lands, and am sanctified in them in the sight of many nations."
+  },
+  {
+   "sentence": "Они узнают, что Я — Господь, их Бог, потому что, хотя Я и отправил их в плен к ___, Я соберу их в их страну, никого не забыв.",
+   "lemma": "народ",
+   "options": [
+    "чужих народов",
+    "чужих народах",
+    "чужие народы",
+    "чужим народам"
+   ],
+   "correct": "чужим народам",
+   "case": "Дательный (Dative)",
+   "explain": "«чужим народам» — after the preposition «к», the dative marks the indirect object or recipient.",
+   "id": "c18",
+   "translation": "They will know that I am Yahweh their God, in that I caused them to go into captivity among the nations, and have gathered them to their own land. Then I will leave none of them captive any more."
+  }
+ ]
 }

@@ -1,204 +1,64 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Когда они дочисто объели ___.",
-      "lemma": "земля",
-      "options": [
-        "земля",
-        "земли",
-        "землю",
-        "землёй"
-      ],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "When they had completely eaten the earth.",
-      "explain": "The transitive verb объели (ate) governs the accusative case for its direct object."
-    },
-    {
-      "id": "c2",
-      "sentence": "Вот что показал мне владыка ___.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господом"
-      ],
-      "correct": "Господь",
-      "case": "Именительный (Nominative)",
-      "translation": "This is what the Lord showed me.",
-      "explain": "Господь is the grammatical subject of the verb показал (showed), so it stands in the nominative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Голос Бога разносился от ___.",
-      "lemma": "небо",
-      "options": [
-        "небо",
-        "неба",
-        "небу",
-        "небом"
-      ],
-      "correct": "неба",
-      "case": "Родительный (Genitive)",
-      "translation": "God's voice resounded from the sky.",
-      "explain": "The preposition от (from) always governs the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я встану с мечом против дома ___.",
-      "lemma": "Иеровоам",
-      "options": [
-        "Иеровоама",
-        "Иеровоам",
-        "Иеровоаму",
-        "Иеровоамом"
-      ],
-      "correct": "Иеровоама",
-      "case": "Родительный (Genitive)",
-      "translation": "I will rise with a sword against the house of Jeroboam.",
-      "explain": "The preposition против (against) with the meaning of opposition governs the genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Я кладу отвес среди моего ___.",
-      "lemma": "народ",
-      "options": [
-        "народ",
-        "народа",
-        "народу",
-        "народом"
-      ],
-      "correct": "народа",
-      "case": "Родительный (Genitive)",
-      "translation": "I place a plumb line in the midst of my people.",
-      "explain": "The preposition среди (in the midst of, among) governs the genitive case."
-    },
-    {
-      "id": "c6",
-      "sentence": "В возвышенности ___ будут опустошены святилища.",
-      "lemma": "Исаак",
-      "options": [
-        "Исаак",
-        "Исаака",
-        "Исааку",
-        "Исааком"
-      ],
-      "correct": "Исаака",
-      "case": "Родительный (Genitive)",
-      "translation": "The sanctuaries in the heights of Isaac will be laid waste.",
-      "explain": "The noun phrase possessive construction uses the genitive case: 'the heights of Isaac.'"
-    },
-    {
-      "id": "c7",
-      "sentence": "Земля не в силах терпеть всех слов ___.",
-      "lemma": "он",
-      "options": [
-        "его",
-        "ему",
-        "он",
-        "им"
-      ],
-      "correct": "его",
-      "case": "Родительный (Genitive)",
-      "translation": "The land cannot bear all his words.",
-      "explain": "The genitive pronoun его functions as a possessive: 'his words.'"
-    },
-    {
-      "id": "c8",
-      "sentence": "Не пророчествуй больше в ___.",
-      "lemma": "Вефиль",
-      "options": [
-        "Вефиль",
-        "Вефиля",
-        "Вефилю",
-        "Вефиле"
-      ],
-      "correct": "Вефиле",
-      "case": "Предложный (Prepositional)",
-      "translation": "Do not prophesy anymore in Bethel.",
-      "explain": "The preposition в (in) with the meaning of location in proper names governs the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Вот что владыка Господь показал мне.",
-      "question": "What did the Lord Yahweh show to Amos?",
-      "options": [
-        "A plumb line",
-        "Locusts",
-        "Fire",
-        "A vision"
-      ],
-      "correct": "A vision",
-      "explain": "The text states that the Lord showed Amos visions of judgment, beginning with locusts, fire, and a plumb line."
-    },
-    {
-      "id": "r2",
-      "ru": "Когда они дочисто объели землю, я вскричал.",
-      "question": "What did Amos do when the locusts had eaten the earth?",
-      "options": [
-        "He ran away",
-        "He cried out",
-        "He prayed silently",
-        "He laughed"
-      ],
-      "correct": "He cried out",
-      "explain": "The text says: 'When they finished eating the grass of the land, then I said [cried out].'"
-    },
-    {
-      "id": "r3",
-      "ru": "«Как выжить Иакову? Он так мал!»",
-      "question": "Why did Amos plead for mercy for Jacob?",
-      "options": [
-        "Jacob was very rich",
-        "Jacob was very small and fragile",
-        "Jacob was his friend",
-        "Jacob was his brother"
-      ],
-      "correct": "Jacob was very small and fragile",
-      "explain": "Amos pleaded because Jacob is small (мал) and would not be able to survive the judgments."
-    },
-    {
-      "id": "r4",
-      "ru": "Я кладу отвес среди моего народа, Израиля.",
-      "question": "What did the Lord say He would place in the midst of Israel?",
-      "options": [
-        "A sword",
-        "A plumb line",
-        "Fire",
-        "Locusts"
-      ],
-      "correct": "A plumb line",
-      "explain": "The text states: 'I will set a plumb line in the middle of my people Israel.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Я был пастухом и ухаживал за тутовыми деревьями.",
-      "question": "What was Amos's occupation before becoming a prophet?",
-      "options": [
-        "He was a priest",
-        "He was a farmer of sycamore figs",
-        "He was a merchant",
-        "He was a king"
-      ],
-      "correct": "He was a farmer of sycamore figs",
-      "explain": "Amos said: 'I was a herdsman, and a farmer of sycamore figs.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Поэтому вот что говорит Господь: Городской блудницей станет твоя жена.",
-      "question": "What did the Lord say would happen to Amaziah's wife?",
-      "options": [
-        "She would become a priestess",
-        "She would become a prostitute in the city",
-        "She would escape to another land",
-        "She would become wealthy"
-      ],
-      "correct": "She would become a prostitute in the city",
-      "explain": "The Lord pronounced judgment: 'Your wife shall be a prostitute in the city.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Вот что Владыка Господь, показал мне: Он готовил рои саранчи, когда ___ была пожата, а поздняя трава начинала подниматься .",
+   "lemma": "доля",
+   "options": [
+    "царской доле",
+    "царская доля",
+    "царской доли",
+    "царской долей"
+   ],
+   "correct": "царская доля",
+   "case": "Именительный (Nominative)",
+   "explain": "«царская доля» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Thus the Lord Yahweh showed me: and behold, he formed locusts in the beginning of the shooting up of the latter growth; and behold, it was the latter growth after the king’s harvest."
+  },
+  {
+   "sentence": "Вот что Владыка Господь, показал мне: Он готовил рои саранчи, когда царская доля была пожата, а ___ начинала подниматься .",
+   "lemma": "трава",
+   "options": [
+    "поздней травы",
+    "поздней травой",
+    "поздней траве",
+    "поздняя трава"
+   ],
+   "correct": "поздняя трава",
+   "case": "Именительный (Nominative)",
+   "explain": "«поздняя трава» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "Thus the Lord Yahweh showed me: and behold, he formed locusts in the beginning of the shooting up of the latter growth; and behold, it was the latter growth after the king’s harvest."
+  },
+  {
+   "sentence": "Вот что Он показал мне: Владыка стоял у стены, построенной по отвесу, со ___ в руке.",
+   "lemma": "отвес",
+   "options": [
+    "свинцовом отвесе",
+    "свинцовым отвесом",
+    "свинцового отвеса",
+    "свинцовый отвес"
+   ],
+   "correct": "свинцовым отвесом",
+   "case": "Творительный (Instrumental)",
+   "explain": "«свинцовым отвесом» — after the preposition «со», the instrumental marks the means, company, or complement.",
+   "id": "c3",
+   "translation": "Thus he showed me and behold, the Lord stood beside a wall made by a plumb line, with a plumb line in his hand."
+  },
+  {
+   "sentence": "Амасия, священник из Вефиля, послал Иеровоаму, царю Израиля, весть: «Амос замышляет против тебя заговор в ___ Израиля.",
+   "lemma": "сердце",
+   "options": [
+    "самого сердца",
+    "само сердце",
+    "самому сердцу",
+    "самом сердце"
+   ],
+   "correct": "самом сердце",
+   "case": "Предложный (Prepositional)",
+   "explain": "«самом сердце» — after the preposition «в», for location or topic.",
+   "id": "c4",
+   "translation": "Then Amaziah the priest of Bethel sent to Jeroboam king of Israel, saying, “Amos has conspired against you in the middle of the house of Israel. The land is not able to bear all his words."
+  }
+ ]
 }

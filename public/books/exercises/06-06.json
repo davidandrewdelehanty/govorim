@@ -1,204 +1,124 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "'Ты за нас или за наших ___?'",
-      "lemma": "враг",
-      "options": [
-        "врага",
-        "врагов",
-        "врагам",
-        "врагами"
-      ],
-      "correct": "врагов",
-      "case": "Родительный (Genitive)",
-      "translation": "Are you for us or for our enemies?",
-      "explain": "The preposition за (for/against) governs the genitive with adversarial nouns."
-    },
-    {
-      "id": "c2",
-      "sentence": "'Я пришел как вождь ___ воинства.'",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господом"
-      ],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "I have come as commander of the Lord's army.",
-      "explain": "The genitive shows possession: 'the army of the Lord.'"
-    },
-    {
-      "id": "c3",
-      "sentence": "'Что Господин хочет сказать своему ___?'",
-      "lemma": "слуга",
-      "options": [
-        "слуга",
-        "слуги",
-        "слуге",
-        "слугой"
-      ],
-      "correct": "слуге",
-      "case": "Дательный (Dative)",
-      "translation": "What does my Lord want to say to His servant?",
-      "explain": "The indirect object takes the dative."
-    },
-    {
-      "id": "c4",
-      "sentence": "'Сними свои сандалии, потому что ___ свято.'",
-      "lemma": "место",
-      "options": [
-        "место",
-        "места",
-        "месту",
-        "местом"
-      ],
-      "correct": "место",
-      "case": "Именительный (Nominative)",
-      "translation": "Remove your sandals, for the place is holy.",
-      "explain": "The predicate nominative agrees with the subject."
-    },
-    {
-      "id": "c5",
-      "sentence": "Ворота были заперты из страха перед ___.",
-      "lemma": "израилетянин",
-      "options": [
-        "израилетяне",
-        "израилетян",
-        "израилетянам",
-        "израилетянами"
-      ],
-      "correct": "израилетянами",
-      "case": "Творительный (Instrumental)",
-      "translation": "The gates were shut out of fear of the Israelites.",
-      "explain": "The preposition перед (before) governs the instrumental."
-    },
-    {
-      "id": "c6",
-      "sentence": "Никто не выходил и никто не входил перед ___.",
-      "lemma": "израилетянин",
-      "options": [
-        "израилетяне",
-        "израилетян",
-        "израилетянам",
-        "израилетянами"
-      ],
-      "correct": "израилетянами",
-      "case": "Творительный (Instrumental)",
-      "translation": "No one went out and no one came in before the Israelites.",
-      "explain": "The preposition перед (before) governs the instrumental."
-    },
-    {
-      "id": "c7",
-      "sentence": "Иисус подошел к ___ и спросил.",
-      "lemma": "он",
-      "options": [
-        "он",
-        "него",
-        "нему",
-        "ним"
-      ],
-      "correct": "нему",
-      "case": "Дательный (Dative)",
-      "translation": "Joshua came near to him and asked.",
-      "explain": "The preposition к (to) governs the dative; with prepositions, он becomes нему."
-    },
-    {
-      "id": "c8",
-      "sentence": "Иисус сделал это перед ___.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господом"
-      ],
-      "correct": "Господом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Joshua did this before the Lord.",
-      "explain": "The preposition перед (before) governs the instrumental."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Иисус спросил, 'Ты за нас или за наших врагов?'",
-      "question": "What was Joshua's question?",
-      "options": [
-        "Are you for us or for our enemies",
-        "Who are you",
-        "Where are you from",
-        "What is your name"
-      ],
-      "correct": "Are you for us or for our enemies",
-      "explain": "Joshua's first words: 'Ты за нас или за наших врагов?'"
-    },
-    {
-      "id": "r2",
-      "ru": "'Я пришел как вождь Господнего воинства.'",
-      "question": "Who was the armed man?",
-      "options": [
-        "The commander of the Lord's army",
-        "An enemy scout",
-        "A human general",
-        "One of Joshua's captains"
-      ],
-      "correct": "The commander of the Lord's army",
-      "explain": "The man said: 'Я пришел как вождь Господнего воинства.'"
-    },
-    {
-      "id": "r3",
-      "ru": "Иисус поклонился лицом до земли и спросил, что Господин хочет сказать.",
-      "question": "How did Joshua respond?",
-      "options": [
-        "Bowed to the ground and asked what was needed",
-        "Drew his sword",
-        "Called his soldiers",
-        "Fell asleep"
-      ],
-      "correct": "Bowed to the ground and asked what was needed",
-      "explain": "Joshua: 'Иисус поклонился лицом до земли.'"
-    },
-    {
-      "id": "r4",
-      "ru": "'Сними свои сандалии, потому что место, на котором ты стоишь, свято.'",
-      "question": "What instruction was given?",
-      "options": [
-        "Remove your sandals because the place is holy",
-        "Prepare troops for battle",
-        "Go back to camp",
-        "Blow the trumpet"
-      ],
-      "correct": "Remove your sandals because the place is holy",
-      "explain": "The command: 'Сними свои сандалии, потому что место свято.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Ворота Иерихона были плотно заперты из страха перед израилетянами.",
-      "question": "Why were Jericho's gates shut?",
-      "options": [
-        "From fear of the Israelites",
-        "From enemy attacks",
-        "From the night",
-        "For military strategy"
-      ],
-      "correct": "From fear of the Israelites",
-      "explain": "The text: 'Ворота ... были плотно заперты из страха перед израилетянами.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Никто не выходил оттуда, и никто туда не входил перед израилетянами.",
-      "question": "What was Jericho's state?",
-      "options": [
-        "Completely shut off from outside",
-        "Preparing for battle",
-        "Preparing a feast",
-        "Waiting for a messenger"
-      ],
-      "correct": "Completely shut off from outside",
-      "explain": "The text: 'Никто не выходил оттуда, и никто туда не входил.'"
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "На ___ обойдите вокруг города семь раз со священниками, трубящими в рога.",
+   "lemma": "день",
+   "options": [
+    "седьмому дню",
+    "седьмого дня",
+    "седьмым днём",
+    "седьмой день"
+   ],
+   "correct": "седьмой день",
+   "case": "Винительный (Accusative)",
+   "explain": "«седьмой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "All of your men of war shall march around the city, going around the city once. You shall do this six days."
+  },
+  {
+   "sentence": "На ___ они поднялись на заре и обошли вокруг города семь раз таким же образом.",
+   "lemma": "день",
+   "options": [
+    "седьмому дню",
+    "седьмого дня",
+    "седьмым днём",
+    "седьмой день"
+   ],
+   "correct": "седьмой день",
+   "case": "Винительный (Accusative)",
+   "explain": "«седьмой день» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c5",
+   "translation": "The second day they marched around the city once, and returned into the camp. They did this six days."
+  },
+  {
+   "sentence": "И на ___, когда священники протрубили в рога, Иисус велел народу:",
+   "lemma": "раз",
+   "options": [
+    "седьмом разе",
+    "седьмому разу",
+    "седьмой раз",
+    "седьмого раза"
+   ],
+   "correct": "седьмой раз",
+   "case": "Винительный (Accusative)",
+   "explain": "«седьмой раз» — after the preposition «на», the accusative marks the direct object of the verb.",
+   "id": "c6",
+   "translation": "On the seventh day, they rose early at the dawning of the day, and marched around the city in the same way seven times. On this day only they marched around the city seven times."
+  },
+  {
+   "sentence": "Все серебро, золото и изделия из бронзы и железа — это ___, они поступят в Его сокровищницу.",
+   "lemma": "святыня",
+   "options": [
+    "господней святыней",
+    "господней святыни",
+    "господней святыне",
+    "господня святыня"
+   ],
+   "correct": "господня святыня",
+   "case": "Именительный (Nominative)",
+   "explain": "«Господня святыня» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "But as for you, only keep yourselves from what is devoted to destruction, lest when you have devoted it, you take of the devoted thing; so you would make the camp of Israel accursed and trouble it."
+  },
+  {
+   "sentence": "Когда рога протрубили, народ закричал, и при ___, когда народ издал громкий крик, стена рухнула до самого основания.",
+   "lemma": "звук",
+   "options": [
+    "трубном звуке",
+    "трубный звук",
+    "трубного звука",
+    "трубным звуком"
+   ],
+   "correct": "трубном звуке",
+   "case": "Предложный (Prepositional)",
+   "explain": "«трубном звуке» — after the preposition «при», for location or topic.",
+   "id": "c8",
+   "translation": "But all the silver, gold, and vessels of bronze and iron are holy to Yahweh. They shall come into Yahweh’s treasury.”"
+  },
+  {
+   "sentence": "Когда рога протрубили, народ закричал, и при трубном звуке, когда народ издал громкий крик, стена рухнула до ___.",
+   "lemma": "основание",
+   "options": [
+    "самом основании",
+    "самого основания",
+    "само основание",
+    "самим основанием"
+   ],
+   "correct": "самого основания",
+   "case": "Родительный (Genitive)",
+   "explain": "«самого основания» — after the preposition «до», the genitive here marks possession, absence, or quantity.",
+   "id": "c10",
+   "translation": "But all the silver, gold, and vessels of bronze and iron are holy to Yahweh. They shall come into Yahweh’s treasury.”"
+  },
+  {
+   "sentence": "Они посвятили город Господу и истребили в нем мечом всякое ___ — мужчин и женщин, молодых и стариков, волов, овец и ослов.",
+   "lemma": "существо",
+   "options": [
+    "живом существе",
+    "живым существом",
+    "живое существо",
+    "живого существа"
+   ],
+   "correct": "живое существо",
+   "case": "Именительный (Nominative)",
+   "explain": "«живое существо» — the subject of the sentence stands in the nominative.",
+   "id": "c11",
+   "translation": "So the people shouted and the priests blew the trumpets. When the people heard the sound of the trumpet, the people shouted with a great shout, and the wall fell down flat, so that the people went up into the city, every man straight in front of him, and they took the city."
+  },
+  {
+   "sentence": "Они вывели всю ее семью и оставили их за пределами ___.",
+   "lemma": "лагерь",
+   "options": [
+    "израильским лагерем",
+    "израильский лагерь",
+    "израильского лагеря",
+    "израильском лагере"
+   ],
+   "correct": "израильского лагеря",
+   "case": "Родительный (Genitive)",
+   "explain": "«израильского лагеря» — the genitive here marks possession, absence, or quantity.",
+   "id": "c12",
+   "translation": "Joshua said to the two men who had spied out the land, “Go into the prostitute’s house, and bring the woman and all that she has out from there, as you swore to her.”"
+  }
+ ]
 }

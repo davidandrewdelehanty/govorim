@@ -1,239 +1,34 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Только они ушли за маслом, пришел ___.",
-      "lemma": "жених",
-      "options": [
-        "жених",
-        "жениха",
-        "жениху",
-        "женихом"
-      ],
-      "correct": "жених",
-      "case": "Именительный (Nominative)",
-      "translation": "Only they went away to buy oil, the bridegroom came.",
-      "explain": "Жених is the subject of пришёл (came) — nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Тогда будет как у того ___, который, отправляясь в далекое путешествие, созвал своих слуг и поручил им свое имущество.",
-      "lemma": "человек",
-      "options": [
-        "человек",
-        "человека",
-        "человеку",
-        "человеком"
-      ],
-      "correct": "человека",
-      "case": "Родительный (Genitive)",
-      "translation": "It will be like that man who, going on a long journey, called his servants and entrusted them with his property.",
-      "explain": "The preposition у (at, belonging to) takes the genitive → человека."
-    },
-    {
-      "id": "c3",
-      "sentence": "«Смотри», — сказал он ___, — «ты доверил мне пять талантов, и я выручил еще пять».",
-      "lemma": "хозяин",
-      "options": [
-        "хозяин",
-        "хозяина",
-        "хозяину",
-        "хозяином"
-      ],
-      "correct": "хозяину",
-      "case": "Дательный (Dative)",
-      "translation": "“Look,” he said to the master, “you entrusted me with five talents, and I have gained five more.”",
-      "explain": "Сказал (кому?) takes an indirect object in the dative → хозяину."
-    },
-    {
-      "id": "c4",
-      "sentence": "Тогда небесное царство будет подобно десяти девушкам, которые, взяв свои лампы, вышли встречать ___.",
-      "lemma": "жених",
-      "options": [
-        "жених",
-        "жениха",
-        "женихом",
-        "женихе"
-      ],
-      "correct": "жениха",
-      "case": "Винительный (Accusative)",
-      "translation": "...who, taking their lamps, went out to meet the bridegroom.",
-      "explain": "Встречать (to meet) takes a direct object; жених is animate masculine, so its accusative form matches the genitive: жениха."
-    },
-    {
-      "id": "c5",
-      "sentence": "Девушки с зажженными ___ вошли с ним на свадебный пир, и дверь за ними закрылась.",
-      "lemma": "лампы",
-      "options": [
-        "лампы",
-        "ламп",
-        "лампам",
-        "лампами"
-      ],
-      "correct": "лампами",
-      "case": "Творительный (Instrumental)",
-      "translation": "The girls with their lamps lit went in with him to the wedding feast, and the door was shut behind them.",
-      "explain": "The preposition с (with) takes the instrumental → лампами."
-    },
-    {
-      "id": "c6",
-      "sentence": "Я был в ___, и вы пришли навестить меня.",
-      "lemma": "темница",
-      "options": [
-        "темница",
-        "темницу",
-        "темницей",
-        "темнице"
-      ],
-      "correct": "темнице",
-      "case": "Предложный (Prepositional)",
-      "translation": "I was in prison, and you came to visit me.",
-      "explain": "The preposition в showing location (not motion) takes the prepositional → темнице."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Тогда небесное царство будет подобно десяти девушкам, которые, взяв свои лампы, вышли встречать жениха.",
-      "question": "What did the ten virgins take with them to meet the bridegroom?",
-      "options": [
-        "Lamps",
-        "Water jars",
-        "Swords",
-        "Bread"
-      ],
-      "correct": "Lamps",
-      "explain": "The parable says they took their lamps and went out to meet the bridegroom."
-    },
-    {
-      "id": "r2",
-      "ru": "Глупые девушки взяли лампы, но не взяли для них масла, а умные вместе с лампами взяли и масло в кувшинах.",
-      "question": "What mistake did the foolish virgins make?",
-      "options": [
-        "They took no oil for their lamps",
-        "They forgot their lamps entirely",
-        "They fell asleep before leaving",
-        "They arrived too early"
-      ],
-      "correct": "They took no oil for their lamps",
-      "explain": "The foolish virgins took lamps but no oil, while the wise took oil in jars along with their lamps."
-    },
-    {
-      "id": "r3",
-      "ru": "Около полуночи раздался крик «Жених идет! Выходите встречать его!»",
-      "question": "When did the cry announcing the bridegroom's arrival come?",
-      "options": [
-        "At midnight",
-        "At dawn",
-        "At noon",
-        "At sunset"
-      ],
-      "correct": "At midnight",
-      "explain": "“About midnight there was a cry: ‘The bridegroom is coming! Come out to meet him!’”"
-    },
-    {
-      "id": "r4",
-      "ru": "Только они ушли за маслом, пришел жених.",
-      "question": "What happened while the foolish virgins were away buying oil?",
-      "options": [
-        "The bridegroom arrived",
-        "The oil sellers closed",
-        "The wise virgins fell asleep",
-        "The wedding was cancelled"
-      ],
-      "correct": "The bridegroom arrived",
-      "explain": "While they were gone to buy oil, the bridegroom came."
-    },
-    {
-      "id": "r5",
-      "ru": "Девушки с зажженными лампами вошли с ним на свадебный пир, и дверь за ними закрылась.",
-      "question": "What happened to the door after the ready virgins entered the feast?",
-      "options": [
-        "It was shut",
-        "It was left open",
-        "It was guarded by soldiers",
-        "It was decorated with flowers"
-      ],
-      "correct": "It was shut",
-      "explain": "They went in with him to the wedding feast, and the door was shut behind them."
-    },
-    {
-      "id": "r6",
-      "ru": "Одному он дал пять талантов, другому два, третьему один, каждому по его способностям, а сам уехал.",
-      "question": "How did the master decide how many talents to give each servant?",
-      "options": [
-        "According to each one's ability",
-        "Equally to everyone",
-        "By lottery",
-        "Based on their age"
-      ],
-      "correct": "According to each one's ability",
-      "explain": "He gave talents to each servant according to his own ability."
-    },
-    {
-      "id": "r7",
-      "ru": "А тот, который получил один талант, пошел, вырыл яму и закопал деньги, которые ему доверил хозяин.",
-      "question": "What did the servant with one talent do with it?",
-      "options": [
-        "He dug a hole and buried it",
-        "He invested it and doubled it",
-        "He gave it to the poor",
-        "He lost it gambling"
-      ],
-      "correct": "He dug a hole and buried it",
-      "explain": "The servant with one talent dug a hole in the ground and buried the money entrusted to him."
-    },
-    {
-      "id": "r8",
-      "ru": "«Смотри», — сказал он хозяину, — «ты доверил мне пять талантов, и я выручил еще пять».",
-      "question": "What did the servant who received five talents report to his master?",
-      "options": [
-        "He had gained five more talents",
-        "He had lost the money",
-        "He had buried the talents",
-        "He had given the money away"
-      ],
-      "correct": "He had gained five more talents",
-      "explain": "He told his master he had turned five talents into five more."
-    },
-    {
-      "id": "r9",
-      "ru": "Выбросьте этого негодного слугу вон, во тьму, где будет плач и скрежет зубов.",
-      "question": "What punishment did the master order for the worthless servant?",
-      "options": [
-        "To be thrown outside into the darkness",
-        "To be forgiven and rewarded",
-        "To be given more talents",
-        "To be sent to buy oil"
-      ],
-      "correct": "To be thrown outside into the darkness",
-      "explain": "The master ordered the worthless servant thrown outside into the darkness, where there would be weeping and gnashing of teeth."
-    },
-    {
-      "id": "r10",
-      "ru": "Овец он соберет по правую сторону от себя, а козлов по левую.",
-      "question": "How will the Son of Man separate the sheep and the goats?",
-      "options": [
-        "Sheep on his right, goats on his left",
-        "Goats on his right, sheep on his left",
-        "All together in the middle",
-        "Sheep in heaven, goats already punished"
-      ],
-      "correct": "Sheep on his right, goats on his left",
-      "explain": "He will gather the sheep to his right and the goats to his left."
-    },
-    {
-      "id": "r11",
-      "ru": "и они пойдут в вечное наказание, а праведники — в вечную жизнь.",
-      "question": "What is the final destiny described for the two groups?",
-      "options": [
-        "Eternal punishment for one group, eternal life for the righteous",
-        "Both groups receive eternal life",
-        "Both groups receive eternal punishment",
-        "They are given a second chance"
-      ],
-      "correct": "Eternal punishment for one group, eternal life for the righteous",
-      "explain": "The chapter ends: they will go away into eternal punishment, but the righteous into eternal life."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "___ взяли лампы, но не взяли для них масла.",
+   "lemma": "девушка",
+   "options": [
+    "глупыми девушками",
+    "глупым девушкам",
+    "глупых девушек",
+    "глупые девушки"
+   ],
+   "correct": "глупые девушки",
+   "case": "Именительный (Nominative)",
+   "explain": "«Глупые девушки» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Those who were foolish, when they took their lamps, took no oil with them,"
+  },
+  {
+   "sentence": "Позже вернулись и ___ и стали просить: «Господин!",
+   "lemma": "девушка",
+   "options": [
+    "остальные девушки",
+    "остальных девушках",
+    "остальными девушками",
+    "остальным девушкам"
+   ],
+   "correct": "остальные девушки",
+   "case": "Именительный (Nominative)",
+   "explain": "«остальные девушки» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "Afterward the other virgins also came, saying, ‘Lord, Lord, open to us.’"
+  }
+ ]
 }

@@ -1,204 +1,154 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "В двадцать шестом году, в первый ___ месяца.",
-      "lemma": "день",
-      "case": "Винительный (Accusative)",
-      "options": [
-        "день",
-        "дня",
-        "дню",
-        "днём"
-      ],
-      "correct": "день",
-      "translation": "In the twenty-sixth year, on the first day of the month.",
-      "explain": "Ordinal expressions with dates use accusative case for the day."
-    },
-    {
-      "id": "c2",
-      "sentence": "Сын человеческий, пролей слезы о ___ и всех его полчищах.",
-      "lemma": "Тир",
-      "case": "Предложный (Prepositional)",
-      "options": [
-        "Тире",
-        "Тира",
-        "Тиру",
-        "Тиром"
-      ],
-      "correct": "Тире",
-      "translation": "Weep for Tyre and all his multitudes.",
-      "explain": "The preposition о (about) governs prepositional case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Я соберу против тебя народ, и они обрушатся на тебя, как волны моря, рассеивая в ___ твои стены.",
-      "lemma": "прах",
-      "case": "Винительный (Accusative)",
-      "options": [
-        "прах",
-        "праха",
-        "праху",
-        "прахом"
-      ],
-      "correct": "прах",
-      "translation": "Scattering your walls to dust.",
-      "explain": "The transitive verb рассеивая requires accusative case for its object."
-    },
-    {
-      "id": "c4",
-      "sentence": "Берег твой поколеблется, когда станут жить на ___.",
-      "lemma": "остров",
-      "case": "Предложный (Prepositional)",
-      "options": [
-        "острове",
-        "острова",
-        "острову",
-        "островом"
-      ],
-      "correct": "острове",
-      "translation": "When they live on the island.",
-      "explain": "The preposition на (on) with location requires prepositional case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Восторгаетесь ли вы, жители морского побережья, вы, богатые ___?",
-      "lemma": "купец",
-      "case": "Именительный (Nominative)",
-      "options": [
-        "купцы",
-        "купца",
-        "купцам",
-        "купцами"
-      ],
-      "correct": "купцы",
-      "translation": "Rejoice, O inhabitants, you rich merchants!",
-      "explain": "Vocative address uses nominative plural form for the addressed group."
-    },
-    {
-      "id": "c6",
-      "sentence": "Восторгаетесь ли вы, жители морского побережья, вы, раньше знаменитые, вы, ___?",
-      "lemma": "ты",
-      "case": "Именительный (Nominative)",
-      "options": [
-        "вы",
-        "вас",
-        "вам",
-        "вами"
-      ],
-      "correct": "вы",
-      "translation": "You who were famous, you were great on the seas!",
-      "explain": "Nominative plural pronoun used for vocative address."
-    },
-    {
-      "id": "c7",
-      "sentence": "Я повергну тебя в ___ , и ты будешь лежать там в мертвых городах.",
-      "lemma": "пропасть",
-      "case": "Винительный (Accusative)",
-      "options": [
-        "пропасть",
-        "пропасти",
-        "пропасте",
-        "пропастью"
-      ],
-      "correct": "пропасть",
-      "translation": "I will cast you down into the pit.",
-      "explain": "The preposition в (into) with downward motion requires accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Все, кто знает тебя между народами, придут в ужас перед ___.",
-      "lemma": "ты",
-      "case": "Творительный (Instrumental)",
-      "options": [
-        "тобой",
-        "тебя",
-        "тебе",
-        "ты"
-      ],
-      "correct": "тобой",
-      "translation": "All who knew you will be appalled at you.",
-      "explain": "The preposition перед (before/in front of) governs instrumental case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "В двадцать шестом году, в первый день месяца, было ко мне слово Господа.",
-      "question": "When did God's word come to Ezekiel?",
-      "options": [
-        "In the twenty-sixth year, on the first day of the month",
-        "In the first year, on the twenty-sixth day",
-        "In the last day of the year",
-        "Without a specific date"
-      ],
-      "correct": "In the twenty-sixth year, on the first day of the month",
-      "explain": "The passage explicitly states the date: the twenty-sixth year, first day of the month."
-    },
-    {
-      "id": "r2",
-      "ru": "Я соберу против тебя народ, и они обрушатся на тебя, как волны моря.",
-      "question": "How will the nations come against Tyre?",
-      "options": [
-        "Like waves of the sea crashing against it",
-        "Peacefully and quietly",
-        "With gifts and tribute",
-        "As friends and allies"
-      ],
-      "correct": "Like waves of the sea crashing against it",
-      "explain": "God describes the assault on Tyre using the metaphor of waves breaking over it."
-    },
-    {
-      "id": "r3",
-      "ru": "Буду оскорблять величие твое, я буду оскорблять славу твою.",
-      "question": "What will God do to Tyre's greatness and glory?",
-      "options": [
-        "He will bring it low and demean it",
-        "He will exalt it further",
-        "He will ignore it",
-        "He will preserve it"
-      ],
-      "correct": "He will bring it low and demean it",
-      "explain": "God will humiliate and dishonor Tyre's pride and reputation."
-    },
-    {
-      "id": "r4",
-      "ru": "Восторгаетесь ли вы, жители морского побережья, вы, богатые купцы, вы, любимцы морей?",
-      "question": "Who is being addressed in this passage?",
-      "options": [
-        "Coastal inhabitants, wealthy merchants, and lovers of the sea",
-        "Desert dwellers",
-        "Mountain farmers",
-        "Shepherds in the valley"
-      ],
-      "correct": "Coastal inhabitants, wealthy merchants, and lovers of the sea",
-      "explain": "The passage directly addresses the people of the coast, the merchants, and those associated with the sea."
-    },
-    {
-      "id": "r5",
-      "ru": "Я повергну тебя в пропасть, и ты будешь лежать там в мертвых городах, подобный древним могилам.",
-      "question": "What will be Tyre's fate according to this passage?",
-      "options": [
-        "It will be cast down into the pit like ancient ruins",
-        "It will be rebuilt and prosperous",
-        "It will rule forever",
-        "It will escape judgment"
-      ],
-      "correct": "It will be cast down into the pit like ancient ruins",
-      "explain": "God declares Tyre will be overthrown and lie among the dead, like ancient tombs."
-    },
-    {
-      "id": "r6",
-      "ru": "Все, кто знает тебя между народами, придут в ужас перед тобой, ты будешь служить предостережением.",
-      "question": "What will Tyre become among the nations?",
-      "options": [
-        "A warning and object of horror for all nations",
-        "A model of success",
-        "A source of hope",
-        "A center of trade"
-      ],
-      "correct": "A warning and object of horror for all nations",
-      "explain": "All peoples who knew Tyre will be horrified at its destruction and it will serve as a warning."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Вы едите жир, одеваетесь в шерсть и режете ___, но об отаре не заботитесь.",
+   "lemma": "животное",
+   "options": [
+    "отборные животные",
+    "отборных животных",
+    "отборными животными",
+    "отборным животным"
+   ],
+   "correct": "отборных животных",
+   "case": "Родительный (Genitive)",
+   "explain": "«отборных животных» — the genitive here marks possession, absence, or quantity.",
+   "id": "c1",
+   "translation": "You eat the fat. You clothe yourself with the wool. You kill the fatlings, but you don’t feed the sheep."
+  },
+  {
+   "sentence": "И они рассеялись без пастуха, а рассеявшись, стали пищей для ___.",
+   "lemma": "зверь",
+   "options": [
+    "дикие звери",
+    "диким зверям",
+    "диких зверей",
+    "диких зверях"
+   ],
+   "correct": "диких зверей",
+   "case": "Родительный (Genitive)",
+   "explain": "«диких зверей» — after the preposition «для», the genitive here marks possession, absence, or quantity.",
+   "id": "c2",
+   "translation": "They were scattered, because there was no shepherd. They became food to all the animals of the field, and were scattered."
+  },
+  {
+   "sentence": "Мои овцы скитались по горам и ___.",
+   "lemma": "холм",
+   "options": [
+    "высоких холмов",
+    "высокие холмы",
+    "высоких холмах",
+    "высоким холмам"
+   ],
+   "correct": "высоким холмам",
+   "case": "Дательный (Dative)",
+   "explain": "«высоким холмам» — the dative marks the indirect object or recipient.",
+   "id": "c3",
+   "translation": "My sheep wandered through all the mountains, and on every high hill. Yes, my sheep were scattered on all the surface of the earth. There was no one who searched or sought.”"
+  },
+  {
+   "sentence": "Я спасу Мою отару из их ___.",
+   "lemma": "челюсть",
+   "options": [
+    "голодным челюстям",
+    "голодные челюсти",
+    "голодных челюстях",
+    "голодных челюстей"
+   ],
+   "correct": "голодных челюстей",
+   "case": "Родительный (Genitive)",
+   "explain": "«голодных челюстей» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c4",
+   "translation": "“ ‘Therefore, you shepherds, hear Yahweh’s word:"
+  },
+  {
+   "sentence": "Я буду водить их на хорошие пастбища; ___ Израиля будут их выгоном.",
+   "lemma": "вершина",
+   "options": [
+    "горным вершинам",
+    "горными вершинами",
+    "горные вершины",
+    "горных вершинах"
+   ],
+   "correct": "горные вершины",
+   "case": "Именительный (Nominative)",
+   "explain": "«горные вершины» — the subject of the sentence stands in the nominative.",
+   "id": "c6",
+   "translation": "I will feed them with good pasture; and their fold will be on the mountains of the height of Israel. There they will lie down in a good fold. They will feed on fat pasture on the mountains of Israel."
+  },
+  {
+   "sentence": "Они будут отдыхать там на ___, и пастись на богатых пастбищах в горах Израиля.",
+   "lemma": "выгон",
+   "options": [
+    "хорошего выгона",
+    "хорошему выгону",
+    "хорошем выгоне",
+    "хороший выгон"
+   ],
+   "correct": "хорошем выгоне",
+   "case": "Предложный (Prepositional)",
+   "explain": "«хорошем выгоне» — after the preposition «на», for location or topic.",
+   "id": "c7",
+   "translation": "I will feed them with good pasture; and their fold will be on the mountains of the height of Israel. There they will lie down in a good fold. They will feed on fat pasture on the mountains of Israel."
+  },
+  {
+   "sentence": "Они будут отдыхать там на хорошем выгоне, и пастись на ___ в горах Израиля.",
+   "lemma": "пастбище",
+   "options": [
+    "богатыми пастбищами",
+    "богатым пастбищам",
+    "богатых пастбищ",
+    "богатых пастбищах"
+   ],
+   "correct": "богатых пастбищах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«богатых пастбищах» — after the preposition «на», for location or topic.",
+   "id": "c8",
+   "translation": "I will feed them with good pasture; and their fold will be on the mountains of the height of Israel. There they will lie down in a good fold. They will feed on fat pasture on the mountains of Israel."
+  },
+  {
+   "sentence": "Разве мало вам, пастись на ___?",
+   "lemma": "пастбище",
+   "options": [
+    "хорошем пастбище",
+    "хорошего пастбища",
+    "хорошему пастбищу",
+    "хорошим пастбищем"
+   ],
+   "correct": "хорошем пастбище",
+   "case": "Предложный (Prepositional)",
+   "explain": "«хорошем пастбище» — after the preposition «на», for location or topic.",
+   "id": "c9",
+   "translation": "Does it seem a small thing to you to have fed on the good pasture, but you must tread down with your feet the residue of your pasture? And to have drunk of the clear waters, but must you foul the residue with your feet?"
+  },
+  {
+   "sentence": "Я заключу с ним завет мира и прогоню из этой земли диких зверей, чтобы овцы могли безопасно жить в ___ и спать в лесу.",
+   "lemma": "место",
+   "options": [
+    "диких мест",
+    "диких местах",
+    "диким местам",
+    "дикими местами"
+   ],
+   "correct": "диких местах",
+   "case": "Предложный (Prepositional)",
+   "explain": "«диких местах» — after the preposition «в», for location or topic.",
+   "id": "c12",
+   "translation": "“ ‘I will make with them a covenant of peace, and will cause evil animals to cease out of the land. They will dwell securely in the wilderness, and sleep in the woods."
+  },
+  {
+   "sentence": "Народы не будут впредь грабить их, а ___ не будут их пожирать.",
+   "lemma": "зверь",
+   "options": [
+    "дикими зверями",
+    "диким зверям",
+    "диких зверей",
+    "дикие звери"
+   ],
+   "correct": "дикие звери",
+   "case": "Именительный (Nominative)",
+   "explain": "«дикие звери» — the subject of the sentence stands in the nominative.",
+   "id": "c13",
+   "translation": "They will no more be a prey to the nations, neither will the animals of the earth devour them; but they will dwell securely, and no one will make them afraid."
+  }
+ ]
 }

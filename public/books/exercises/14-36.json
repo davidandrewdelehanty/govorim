@@ -1,134 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Народ страны взял сына Иосии Иохаза и сделал его ___ в Иерусалиме вместо его отца.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царем",
-      "case": "Творительный (Instrumental)",
-      "translation": "The people of the land took Jehoahaz, the son of Josiah, and made him king in Jerusalem in place of his father.",
-      "explain": "The verb сделал (made) with a change of role or state takes the instrumental case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Иоахазу было двадцать три года, когда он стал царем, и правил он в Иерусалиме три ___.",
-      "lemma": "месяц",
-      "options": ["месяц", "месяца", "месяцев", "месяцем"],
-      "correct": "месяца",
-      "case": "Винительный (Accusative)",
-      "translation": "Jehoahaz was twenty-three years old when he became king, and he reigned three months in Jerusalem.",
-      "explain": "Time expressions with numbers (два, три, четыре) take the genitive case (месяца)."
-    },
-    {
-      "id": "c3",
-      "sentence": "Царь Египта низложил его в Иерусалиме и обложил Иудею данью в сто талантов серебра и один талант ___.",
-      "lemma": "золото",
-      "options": ["золото", "золота", "золоту", "золотом"],
-      "correct": "золота",
-      "case": "Родительный (Genitive)",
-      "translation": "The king of Egypt removed him in Jerusalem and fined Judah one hundred talents of silver and one talent of gold.",
-      "explain": "Numbers (один, два, три, четыре) with nouns in genitive case follow the Russian grammatical pattern."
-    },
-    {
-      "id": "c4",
-      "sentence": "Навуходоносор, царь Вавилона, напал на него, заковал его в бронзовые кандалы и увел в ___.",
-      "lemma": "Вавилон",
-      "options": ["Вавилон", "Вавилона", "Вавилону", "Вавилоне"],
-      "correct": "Вавилон",
-      "case": "Винительный (Accusative)",
-      "translation": "Nebuchadnezzar, king of Babylon, attacked him, bound him with bronze shackles, and took him to Babylon.",
-      "explain": "The direct object of the verb увел (took/led) takes the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Еще Навуходоносор забрал в Вавилон часть утвари из дома Господа и положил ее там в своем ___.",
-      "lemma": "храм",
-      "options": ["храм", "храма", "храму", "храме"],
-      "correct": "храме",
-      "case": "Предложный (Prepositional)",
-      "translation": "Nebuchadnezzar also carried some of the vessels of the Lord's house to Babylon, and put them in his temple.",
-      "explain": "The preposition в (in) with meaning of location governs the prepositional case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Господь, Бог их отцов, снова и снова предупреждал их через своих посланников, потому что жалел свой народ и свое ___.",
-      "lemma": "жилище",
-      "options": ["жилище", "жилища", "жилищу", "жилищем"],
-      "correct": "жилище",
-      "case": "Винительный (Accusative)",
-      "translation": "The Lord, the God of their fathers, persistently sent his messengers to them, because he had compassion on his people and his dwelling.",
-      "explain": "The direct object of the verb жалел (had compassion on) takes the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Но они издевались над божьими посланниками, презирали его слова и глумились над его пророками, пока гнев Господа не вспыхнул на его ___.",
-      "lemma": "народ",
-      "options": ["народ", "народа", "народу", "народом"],
-      "correct": "народ",
-      "case": "Винительный (Accusative)",
-      "translation": "But they mocked the messengers of God, despised his words, and scoffed at his prophets, until the Lord's wrath arose against his people.",
-      "explain": "The verb вспыхнул (arose/flared up) with на takes the accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Он унес в Вавилон все вещи из Божьего дома, вместе с сокровищами дома Господа и сокровищами царя и его ___.",
-      "lemma": "приближенный",
-      "options": ["приближенный", "приближенного", "приближенному", "приближенных"],
-      "correct": "приближенных",
-      "case": "Родительный (Genitive)",
-      "translation": "He carried to Babylon all the vessels of God's house, together with the treasures of the house of the Lord, the treasures of the king, and his officials.",
-      "explain": "After a possessive construction, the genitive plural is used to show possession."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Иоахазу было двадцать три года, когда он стал царем, и правил он в Иерусалиме три месяца.",
-      "question": "How old was Jehoahaz when he became king, and how long did he reign?",
-      "options": ["Twenty-three years old and reigned three months", "Eight years old and reigned thirty-one years", "Twenty-five years old and reigned eleven years", "Eighteen years old and reigned three months and ten days"],
-      "correct": "Twenty-three years old and reigned three months",
-      "explain": "The verse states Иоахазу было двадцать три года, когда он стал царем, и правил он в Иерусалиме три месяца."
-    },
-    {
-      "id": "r2",
-      "ru": "Иоакиму было двадцать пять лет, когда он стал царем, и правил он в Иерусалиме одиннадцать лет.",
-      "question": "How old was Jehoiakim when he became king, and how long did he reign?",
-      "options": ["Twenty-five years old and reigned eleven years", "Eighteen years old and reigned three months", "Twenty-one years old and reigned eleven years", "Eight years old and reigned thirty-one years"],
-      "correct": "Twenty-five years old and reigned eleven years",
-      "explain": "The text states Иоакиму было двадцать пять лет, когда он стал царем, и правил он в Иерусалиме одиннадцать лет."
-    },
-    {
-      "id": "r3",
-      "ru": "Навуходоносор, царь Вавилона, напал на него, заковал его в бронзовые кандалы и увел в Вавилон.",
-      "question": "What happened to Jehoiakim at the hands of Nebuchadnezzar?",
-      "options": ["He was attacked, bound with bronze shackles, and taken to Babylon", "He was crowned as a co-regent", "He was released to rule freely", "He was made a wealthy official"],
-      "correct": "He was attacked, bound with bronze shackles, and taken to Babylon",
-      "explain": "The verse says Навуходоносор напал на него, заковал его в бронзовые кандалы и увел в Вавилон."
-    },
-    {
-      "id": "r4",
-      "ru": "Они сожгли Божий дом, разрушили стены Иерусалима, сожгли все его дворцы и уничтожили все ценное в нем.",
-      "question": "What happened to Jerusalem according to this verse?",
-      "options": ["God's house was burned, the walls were destroyed, the palaces were burned, and all valuables were destroyed", "The city was rebuilt and fortified", "It was given tribute and continued to prosper", "The inhabitants were peacefully relocated"],
-      "correct": "God's house was burned, the walls were destroyed, the palaces were burned, and all valuables were destroyed",
-      "explain": "The text lists Они сожгли Божий дом, разрушили стены Иерусалима, сожгли все его дворцы и уничтожили все ценное в нем."
-    },
-    {
-      "id": "r5",
-      "ru": "Господь побудил Кира, царя Персии, объявить по всему своему царству и записать такой указ.",
-      "question": "What did the Lord cause Cyrus, king of Persia, to do?",
-      "options": ["Make a proclamation throughout his kingdom and put it in writing", "Destroy Babylon", "Conquer Egypt", "Build a new temple in Babylon"],
-      "correct": "Make a proclamation throughout his kingdom and put it in writing",
-      "explain": "The verse says Господь побудил Кира, царя Персии, объявить по всему своему царству и записать такой указ."
-    },
-    {
-      "id": "r6",
-      "ru": "Господь, Бог небес, отдал мне все царства земли и поручил мне построить ему дом в Иерусалиме, в Иудее.",
-      "question": "What did Cyrus say the Lord had given him and commissioned him to do?",
-      "options": ["All kingdoms of the earth and to build Him a house in Jerusalem, in Judah", "Wealth and power", "Military authority", "The authority to judge all nations"],
-      "correct": "All kingdoms of the earth and to build Him a house in Jerusalem, in Judah",
-      "explain": "Cyrus's proclamation states Господь, Бог небес, отдал мне все царства земли и поручил мне построить ему дом в Иерусалиме, в Иудее."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "___ правления Иоакима, мерзости, которые он делал, и все, в чем он был виноват, записаны в «Книге царей Израиля и Иудеи».",
+   "lemma": "событие",
+   "options": [
+    "прочим событиям",
+    "прочие события",
+    "прочих событиях",
+    "прочих событий"
+   ],
+   "correct": "прочие события",
+   "case": "Именительный (Nominative)",
+   "explain": "«Прочие события» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "Now the rest of the acts of Jehoiakim, and his abominations which he did, and that which was found in him, behold, they are written in the book of the kings of Israel and Judah; and Jehoiachin his son reigned in his place."
+  },
+  {
+   "sentence": "Да и все вожди священников и народ все больше и больше уклонялись от верности, следуя ___ народов и оскверняя Господень дом, который Он освятил в Иерусалиме.",
+   "lemma": "обычай",
+   "options": [
+    "отвратительным обычаям",
+    "отвратительных обычаях",
+    "отвратительные обычаи",
+    "отвратительных обычаев"
+   ],
+   "correct": "отвратительным обычаям",
+   "case": "Дательный (Dative)",
+   "explain": "«отвратительным обычаям» — the dative marks the indirect object or recipient.",
+   "id": "c3",
+   "translation": "Moreover all the chiefs of the priests, and the people, trespassed very greatly after all the abominations of the nations; and they polluted Yahweh’s house which he had made holy in Jerusalem."
+  },
+  {
+   "sentence": "Он унес в Вавилон все вещи из ___, и большие, и маленькие, вместе с сокровищами дома Господа и сокровищами царя и его приближенных.",
+   "lemma": "дом",
+   "options": [
+    "божьему дому",
+    "божьим домом",
+    "божьего дома",
+    "божьем доме"
+   ],
+   "correct": "божьего дома",
+   "case": "Родительный (Genitive)",
+   "explain": "«Божьего дома» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c5",
+   "translation": "All the vessels of God’s house, great and small, and the treasures of Yahweh’s house, and the treasures of the king, and of his princes, all these he brought to Babylon."
+  },
+  {
+   "sentence": "А страна наслаждалась ___ .",
+   "lemma": "покой",
+   "options": [
+    "субботнем покое",
+    "субботний покой",
+    "субботнему покою",
+    "субботним покоем"
+   ],
+   "correct": "субботним покоем",
+   "case": "Творительный (Instrumental)",
+   "explain": "«субботним покоем» — the instrumental marks the means, company, or complement.",
+   "id": "c6",
+   "translation": "to fulfill Yahweh’s word by Jeremiah’s mouth, until the land had enjoyed its Sabbaths. As long as it lay desolate, it kept Sabbath, to fulfill seventy years."
+  },
+  {
+   "sentence": "В первый год правления Кира , царя Персии, чтобы исполнилось ___, которое возвестил Иеремия, Господь тронул сердце Кира, царя Персии, объявить по всему своему царству и записать такой указ:",
+   "lemma": "слово",
+   "options": [
+    "господним словом",
+    "господнем слове",
+    "господне слово",
+    "господня слова"
+   ],
+   "correct": "господне слово",
+   "case": "Именительный (Nominative)",
+   "explain": "«Господне слово» — the subject of the sentence stands in the nominative.",
+   "id": "c8",
+   "translation": "Now in the first year of Cyrus king of Persia, that Yahweh’s word by the mouth of Jeremiah might be accomplished, Yahweh stirred up the spirit of Cyrus king of Persia, so that he made a proclamation throughout all his kingdom, and put it also in writing, saying,"
+  }
+ ]
 }

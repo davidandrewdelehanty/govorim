@@ -1,174 +1,244 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "В тот же ___ царь отдал поместье",
-      "lemma": "день",
-      "options": [
-        "день",
-        "дня",
-        "дню",
-        "днем"
-      ],
-      "correct": "день",
-      "case": "Винительный (Accusative)",
-      "translation": "В тот же день царь отдал поместье",
-      "explain": "The preposition в governs the accusative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "отдал царице Исфире ___ Амана",
-      "lemma": "поместье",
-      "options": [
-        "поместье",
-        "поместья",
-        "поместью",
-        "поместьем"
-      ],
-      "correct": "поместье",
-      "case": "Винительный (Accusative)",
-      "translation": "отдал царице Исфире поместье Амана",
-      "explain": "The direct object of отдал takes the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Царь снял свой ___ и подарил его",
-      "lemma": "перстень",
-      "options": [
-        "перстень",
-        "перстня",
-        "перстню",
-        "перстнем"
-      ],
-      "correct": "перстень",
-      "case": "Винительный (Accusative)",
-      "translation": "Царь снял свой перстень и подарил его",
-      "explain": "The direct object of снял takes the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "разреши отозвать ___ , сочиненные Аманом",
-      "lemma": "письмо",
-      "options": [
-        "письмо",
-        "письма",
-        "письму",
-        "письмом"
-      ],
-      "correct": "письма",
-      "case": "Винительный (Accusative)",
-      "translation": "разреши отозвать письма , сочиненные Аманом",
-      "explain": "The direct object of отозвать takes the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "начался веселый ___",
-      "lemma": "праздник",
-      "options": [
-        "праздник",
-        "праздника",
-        "празднику",
-        "праздником"
-      ],
-      "correct": "праздник",
-      "case": "Именительный (Nominative)",
-      "translation": "начался веселый праздник",
-      "explain": "Праздник is the nominative subject."
-    },
-    {
-      "id": "c8",
-      "sentence": "исполниться данный царем ___",
-      "lemma": "указ",
-      "options": [
-        "указ",
-        "указа",
-        "указу",
-        "указом"
-      ],
-      "correct": "указ",
-      "case": "Винительный (Accusative)",
-      "translation": "исполниться данный царем указ",
-      "explain": "The direct object takes the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "В тот же день царь Ксеркс отдал царице Исфире поместье Амана",
-      "question": "What did the king give to Esther?",
-      "options": [
-        "The estate of Haman",
-        "A crown",
-        "Money",
-        "Authority"
-      ],
-      "correct": "The estate of Haman",
-      "explain": "The text states: В тот же день царь Ксеркс отдал царице Исфире поместье Амана..."
-    },
-    {
-      "id": "r2",
-      "ru": "Царь снял свой перстень, который он забрал у Амана, и подарил его Мордахею",
-      "question": "What did the king give to Mordecai?",
-      "options": [
-        "His ring taken from Haman",
-        "A horse",
-        "Gold",
-        "An estate"
-      ],
-      "correct": "His ring taken from Haman",
-      "explain": "The text states: Царь снял свой перстень, который он забрал у Амана, и подари..."
-    },
-    {
-      "id": "r3",
-      "ru": "Мордахей был назначен смотрителем над поместьем Амана",
-      "question": "What position was Mordecai given?",
-      "options": [
-        "Overseer of Haman's estate",
-        "King's advisor",
-        "Commander of army",
-        "Chief judge"
-      ],
-      "correct": "Overseer of Haman's estate",
-      "explain": "The text states: Мордахей был назначен смотрителем над поместьем Амана..."
-    },
-    {
-      "id": "r4",
-      "ru": "Царский указ давал иудеям право защищать себя",
-      "question": "What did the royal decree allow?",
-      "options": [
-        "The Jews to defend themselves",
-        "The king to forgive",
-        "Everyone to leave",
-        "The nobles to gain power"
-      ],
-      "correct": "The Jews to defend themselves",
-      "explain": "The text states: Царский указ давал иудеям право защищать себя..."
-    },
-    {
-      "id": "r5",
-      "ru": "в каждом городе было веселье и радость, пиршество и праздники",
-      "question": "What happened in the cities?",
-      "options": [
-        "Celebration, feasting, and festivals",
-        "Mourning",
-        "Silence",
-        "Confusion"
-      ],
-      "correct": "Celebration, feasting, and festivals",
-      "explain": "The text states: в каждом городе было веселье и радость, пиршество и праздник..."
-    },
-    {
-      "id": "r6",
-      "ru": "многие из других народов сделались иудеями, потому что их объял страх перед ними",
-      "question": "What did many others do?",
-      "options": [
-        "Became Jews from fear of them",
-        "Left the kingdom",
-        "Supported Haman",
-        "Opposed the Jews"
-      ],
-      "correct": "Became Jews from fear of them",
-      "explain": "The text states: многие из других народов сделались иудеями, потому что их об..."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Она молила его пресечь ___ агагитянина Амана, который тот замыслил против иудеев.",
+   "lemma": "план",
+   "options": [
+    "злом плане",
+    "злого плана",
+    "злой план",
+    "злому плану"
+   ],
+   "correct": "злой план",
+   "case": "Винительный (Accusative)",
+   "explain": "«злой план» — the accusative marks the direct object of the verb.",
+   "id": "c1",
+   "translation": "Esther spoke yet again before the king, and fell down at his feet, and begged him with tears to put away the mischief of Haman the Agagite, and his plan that he had planned against the Jews."
+  },
+  {
+   "sentence": "А вы напишите от ___ другой указ, в пользу иудеев, как вам будет угодно, и скрепите его царским перстнем, потому что никакого письма, написанного от лица царя и скрепленного его перстнем, отменить нельзя.",
+   "lemma": "имя",
+   "options": [
+    "царским именем",
+    "царскому имени",
+    "царское имя",
+    "царского имени"
+   ],
+   "correct": "царского имени",
+   "case": "Родительный (Genitive)",
+   "explain": "«царского имени» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
+   "id": "c3",
+   "translation": "Write also to the Jews, as it pleases you, in the king’s name, and seal it with the king’s ring; for the writing which is written in the king’s name, and sealed with the king’s ring, may not be reversed by any man.”"
+  },
+  {
+   "sentence": "А вы напишите от царского имени ___, в пользу иудеев, как вам будет угодно, и скрепите его царским перстнем, потому что никакого письма, написанного от лица царя и скрепленного его перстнем, отменить нельзя.",
+   "lemma": "указ",
+   "options": [
+    "другого указа",
+    "другой указ",
+    "другому указу",
+    "другом указе"
+   ],
+   "correct": "другой указ",
+   "case": "Именительный (Nominative)",
+   "explain": "«другой указ» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "Write also to the Jews, as it pleases you, in the king’s name, and seal it with the king’s ring; for the writing which is written in the king’s name, and sealed with the king’s ring, may not be reversed by any man.”"
+  },
+  {
+   "sentence": "И созваны были в то время — в двадцать ___ третьего месяца, месяца сивана — царские писари.",
+   "lemma": "день",
+   "options": [
+    "третий день",
+    "третьего дня",
+    "третьим днём",
+    "третьему дню"
+   ],
+   "correct": "третий день",
+   "case": "Винительный (Accusative)",
+   "explain": "«третий день» — the accusative marks the direct object of the verb.",
+   "id": "c5",
+   "translation": "Then the king’s scribes were called at that time, in the third month, which is the month Sivan, on the twenty-third day of the month; and it was written according to all that Mordecai commanded to the Jews, and to the local governors, and the governors and princes of the provinces which are from India to Ethiopia, one hundred twenty-seven provinces, to every province according to its writing, and to every people in their language, and to the Jews in their writing, and in their language."
+  },
+  {
+   "sentence": "И созваны были в то время — в двадцать третий день ___, месяца сивана — царские писари.",
+   "lemma": "месяц",
+   "options": [
+    "третьего месяца",
+    "третьем месяце",
+    "третьему месяцу",
+    "третьим месяцем"
+   ],
+   "correct": "третьего месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«третьего месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c6",
+   "translation": "Then the king’s scribes were called at that time, in the third month, which is the month Sivan, on the twenty-third day of the month; and it was written according to all that Mordecai commanded to the Jews, and to the local governors, and the governors and princes of the provinces which are from India to Ethiopia, one hundred twenty-seven provinces, to every province according to its writing, and to every people in their language, and to the Jews in their writing, and in their language."
+  },
+  {
+   "sentence": "И созваны были в то время — в двадцать третий день третьего месяца, месяца сивана — ___.",
+   "lemma": "писарь",
+   "options": [
+    "царских писарях",
+    "царских писарей",
+    "царские писари",
+    "царским писарям"
+   ],
+   "correct": "царские писари",
+   "case": "Именительный (Nominative)",
+   "explain": "«царские писари» — the subject of the sentence stands in the nominative.",
+   "id": "c7",
+   "translation": "Then the king’s scribes were called at that time, in the third month, which is the month Sivan, on the twenty-third day of the month; and it was written according to all that Mordecai commanded to the Jews, and to the local governors, and the governors and princes of the provinces which are from India to Ethiopia, one hundred twenty-seven provinces, to every province according to its writing, and to every people in their language, and to the Jews in their writing, and in their language."
+  },
+  {
+   "sentence": "Мардохей написал от имени царя Ксеркса, скрепил письма царским перстнем и разослал их через ___, которые ездили на быстрых конях, специально выведенных для царя.",
+   "lemma": "гонец",
+   "options": [
+    "конных гонцах",
+    "конных гонцов",
+    "конными гонцами",
+    "конным гонцам"
+   ],
+   "correct": "конных гонцов",
+   "case": "Винительный (Accusative)",
+   "explain": "«конных гонцов» — after the preposition «через», the accusative marks the direct object of the verb.",
+   "id": "c8",
+   "translation": "He wrote in the name of King Ahasuerus, and sealed it with the king’s ring, and sent letters by courier on horseback, riding on royal horses that were bred from swift steeds."
+  },
+  {
+   "sentence": "Мардохей написал от имени царя Ксеркса, скрепил письма царским перстнем и разослал их через конных гонцов, которые ездили на ___, специально выведенных для царя.",
+   "lemma": "конь",
+   "options": [
+    "быстрых коней",
+    "быстрых конях",
+    "быстрыми конями",
+    "быстрые кони"
+   ],
+   "correct": "быстрых конях",
+   "case": "Предложный (Prepositional)",
+   "explain": "«быстрых конях» — after the preposition «на», for location or topic.",
+   "id": "c9",
+   "translation": "He wrote in the name of King Ahasuerus, and sealed it with the king’s ring, and sent letters by courier on horseback, riding on royal horses that were bred from swift steeds."
+  },
+  {
+   "sentence": "Днем, назначенным для этого иудеям во всех провинциях царя Ксеркса, был ___ двенадцатого месяца, месяца адара .",
+   "lemma": "день",
+   "options": [
+    "тринадцатом дне",
+    "тринадцатый день",
+    "тринадцатого дня",
+    "тринадцатому дню"
+   ],
+   "correct": "тринадцатый день",
+   "case": "Именительный (Nominative)",
+   "explain": "«тринадцатый день» — the subject of the sentence stands in the nominative.",
+   "id": "c10",
+   "translation": "on one day in all the provinces of King Ahasuerus, on the thirteenth day of the twelfth month, which is the month Adar."
+  },
+  {
+   "sentence": "Днем, назначенным для этого иудеям во всех провинциях царя Ксеркса, был тринадцатый день ___, месяца адара .",
+   "lemma": "месяц",
+   "options": [
+    "двенадцатого месяца",
+    "двенадцатому месяцу",
+    "двенадцатом месяце",
+    "двенадцатым месяцем"
+   ],
+   "correct": "двенадцатого месяца",
+   "case": "Родительный (Genitive)",
+   "explain": "«двенадцатого месяца» — the genitive here marks possession, absence, or quantity.",
+   "id": "c11",
+   "translation": "on one day in all the provinces of King Ahasuerus, on the thirteenth day of the twelfth month, which is the month Adar."
+  },
+  {
+   "sentence": "Гонцы, ездившие на ___, поспешили тронуться в путь, подгоняемые царским повелением.",
+   "lemma": "конь",
+   "options": [
+    "царских конях",
+    "царским коням",
+    "царских коней",
+    "царскими конями"
+   ],
+   "correct": "царских конях",
+   "case": "Предложный (Prepositional)",
+   "explain": "«царских конях» — after the preposition «на», for location or topic.",
+   "id": "c12",
+   "translation": "So the couriers who rode on royal horses went out, hastened and pressed on by the king’s commandment. The decree was given out in the citadel of Susa."
+  },
+  {
+   "sentence": "Гонцы, ездившие на царских конях, поспешили тронуться в путь, подгоняемые ___.",
+   "lemma": "повеление",
+   "options": [
+    "царское повеление",
+    "царского повеления",
+    "царском повелении",
+    "царским повелением"
+   ],
+   "correct": "царским повелением",
+   "case": "Творительный (Instrumental)",
+   "explain": "«царским повелением» — the instrumental marks the means, company, or complement.",
+   "id": "c13",
+   "translation": "So the couriers who rode on royal horses went out, hastened and pressed on by the king’s commandment. The decree was given out in the citadel of Susa."
+  },
+  {
+   "sentence": "Мардохей ушел от царя, облаченный в голубые и белые царские одежды, большой ___ и пурпурную мантию из тонкого льна.",
+   "lemma": "венец",
+   "options": [
+    "золотом венце",
+    "золотому венцу",
+    "золотой венец",
+    "золотого венца"
+   ],
+   "correct": "золотой венец",
+   "case": "Именительный (Nominative)",
+   "explain": "«золотой венец» — the subject of the sentence stands in the nominative.",
+   "id": "c14",
+   "translation": "Mordecai went out of the presence of the king in royal clothing of blue and white, and with a great crown of gold, and with a robe of fine linen and purple; and the city of Susa shouted and was glad."
+  },
+  {
+   "sentence": "Мардохей ушел от царя, облаченный в голубые и белые царские одежды, большой золотой венец и пурпурную мантию из ___.",
+   "lemma": "лён",
+   "options": [
+    "тонкого льна",
+    "тонкому льну",
+    "тонким льном",
+    "тонком льне"
+   ],
+   "correct": "тонкого льна",
+   "case": "Родительный (Genitive)",
+   "explain": "«тонкого льна» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c15",
+   "translation": "Mordecai went out of the presence of the king in royal clothing of blue and white, and with a great crown of gold, and with a robe of fine linen and purple; and the city of Susa shouted and was glad."
+  },
+  {
+   "sentence": "В каждой провинции и в каждом городе, куда бы ни доходил ___, у иудеев было веселье и радость, пиршества и праздники.",
+   "lemma": "указ",
+   "options": [
+    "царского указа",
+    "царскому указу",
+    "царским указом",
+    "царский указ"
+   ],
+   "correct": "царский указ",
+   "case": "Именительный (Nominative)",
+   "explain": "«царский указ» — the subject of the sentence stands in the nominative.",
+   "id": "c16",
+   "translation": "In every province, and in every city, wherever the king’s commandment and his decree came, the Jews had gladness, joy, a feast, and a good day. Many from among the peoples of the land became Jews; for the fear of the Jews was fallen on them."
+  },
+  {
+   "sentence": "И многие из ___ сделались иудеями, потому что их объял страх перед ними.",
+   "lemma": "народ",
+   "options": [
+    "других народов",
+    "другим народам",
+    "другими народами",
+    "других народах"
+   ],
+   "correct": "других народов",
+   "case": "Родительный (Genitive)",
+   "explain": "«других народов» — after the preposition «из», the genitive here marks possession, absence, or quantity.",
+   "id": "c17",
+   "translation": "In every province, and in every city, wherever the king’s commandment and his decree came, the Jews had gladness, joy, a feast, and a good day. Many from among the peoples of the land became Jews; for the fear of the Jews was fallen on them."
+  }
+ ]
 }

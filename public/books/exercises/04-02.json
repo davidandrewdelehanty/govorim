@@ -1,134 +1,79 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "…пусть израилетяне разбивают лагерь вокруг ___ собрания.",
-      "lemma": "шатёр",
-      "options": ["шатёр", "шатра", "шатру", "шатром"],
-      "correct": "шатра",
-      "case": "Родительный (Genitive)",
-      "translation": "…let the Israelites pitch camp around the Tent of Meeting.",
-      "explain": "The preposition вокруг (around) always governs the genitive → шатра."
-    },
-    {
-      "id": "c2",
-      "sentence": "Пусть полковой лагерь Иуды будет под своим знаменем на востоке к ___.",
-      "lemma": "восход",
-      "options": ["восход", "восхода", "восходу", "восходом"],
-      "correct": "восходу",
-      "case": "Дательный (Dative)",
-      "translation": "Let the camp of Judah be under its standard on the east, toward the sunrise.",
-      "explain": "The preposition к (toward) always governs the dative → восходу."
-    },
-    {
-      "id": "c3",
-      "sentence": "В его ___ семьдесят четыре тысячи шестьсот мужчин.",
-      "lemma": "войско",
-      "options": ["войско", "войска", "войску", "войске"],
-      "correct": "войске",
-      "case": "Предложный (Prepositional)",
-      "translation": "In his division there are seventy-four thousand six hundred men.",
-      "explain": "The preposition в marking place takes the prepositional → войске."
-    },
-    {
-      "id": "c4",
-      "sentence": "Они будут отправляться в ___ с первыми.",
-      "lemma": "путь",
-      "options": ["путь", "пути", "путём", "путей"],
-      "correct": "путь",
-      "case": "Винительный (Accusative)",
-      "translation": "They shall set out first.",
-      "explain": "The preposition в with motion (отправляться в путь) governs the accusative → путь."
-    },
-    {
-      "id": "c5",
-      "sentence": "Пусть на ___ будет полковой лагерь Рувима под своим знаменем.",
-      "lemma": "юг",
-      "options": ["юг", "юга", "югу", "юге"],
-      "correct": "юге",
-      "case": "Предложный (Prepositional)",
-      "translation": "On the south side shall be the camp of Reuben under its standard.",
-      "explain": "The preposition на marking location takes the prepositional → юге."
-    },
-    {
-      "id": "c6",
-      "sentence": "Это израилетяне, исчисленные по их ___.",
-      "lemma": "семья",
-      "options": ["семьи", "семей", "семьям", "семьями"],
-      "correct": "семьям",
-      "case": "Дательный (Dative)",
-      "translation": "These are the Israelites, counted by their families.",
-      "explain": "The preposition по (by/according to) governs the dative → семьям (plural)."
-    },
-    {
-      "id": "c7",
-      "sentence": "Они вставали лагерем под своими ___ и также отправлялись в путь.",
-      "lemma": "знамя",
-      "options": ["знамёна", "знамён", "знамёнам", "знамёнами"],
-      "correct": "знамёнами",
-      "case": "Творительный (Instrumental)",
-      "translation": "They encamped under their standards and also set out.",
-      "explain": "The preposition под marking location takes the instrumental → знамёнами (plural)."
-    },
-    {
-      "id": "c8",
-      "sentence": "___ Иссахара пусть ставит лагерь рядом с ними.",
-      "lemma": "род",
-      "options": ["род", "рода", "роду", "родом"],
-      "correct": "род",
-      "case": "Именительный (Nominative)",
-      "translation": "Let the tribe of Issachar pitch camp next to them.",
-      "explain": "Род is the subject performing ставит (pitches) → nominative."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Пусть на юге будет полковой лагерь Рувима под своим знаменем.",
-      "question": "On which side shall the camp of Reuben be placed?",
-      "options": ["On the south", "On the north", "On the east", "On the west"],
-      "correct": "On the south",
-      "explain": "The text places the camp of Reuben on the south side."
-    },
-    {
-      "id": "r2",
-      "ru": "Они будут отправляться в путь с первыми.",
-      "question": "When does the camp of Judah set out?",
-      "options": ["First", "Second", "Third", "Last"],
-      "correct": "First",
-      "explain": "The camp of Judah is said to set out first."
-    },
-    {
-      "id": "r3",
-      "ru": "Пусть на севере будет полковой лагерь Дана под своим знаменем.",
-      "question": "On which side shall the camp of Dan be placed?",
-      "options": ["On the north", "On the south", "On the east", "On the west"],
-      "correct": "On the north",
-      "explain": "The text places the camp of Dan on the north side."
-    },
-    {
-      "id": "r4",
-      "ru": "Они будут отправляться в путь последними под своими знаменами.",
-      "question": "When does the camp of Dan set out?",
-      "options": ["Last", "First", "Second", "Third"],
-      "correct": "Last",
-      "explain": "The camp of Dan is said to set out last under their standards."
-    },
-    {
-      "id": "r5",
-      "ru": "Лишь левиты не были исчислены с остальными израилетянами, так повелел Моисею Господь.",
-      "question": "Who were NOT counted among the rest of the Israelites?",
-      "options": ["The Levites", "The Reubenites", "The firstborn", "The princes"],
-      "correct": "The Levites",
-      "explain": "The text says only the Levites were not counted with the other Israelites."
-    },
-    {
-      "id": "r6",
-      "ru": "Всех в лагерях по ополчениям шестьсот три тысячи пятьсот пятьдесят мужчин.",
-      "question": "What was the total number of men in the camps?",
-      "options": ["603,550", "157,600", "186,400", "22,000"],
-      "correct": "603,550",
-      "explain": "The text gives the total in the camps as six hundred three thousand five hundred fifty."
-    }
-  ]
+ "cases": [
+  {
+   "sentence": "Пусть ___ Иуды будет под своим знаменем на востоке, к восходу.",
+   "lemma": "лагерь",
+   "options": [
+    "полковому лагерю",
+    "полкового лагеря",
+    "полковом лагере",
+    "полковой лагерь"
+   ],
+   "correct": "полковой лагерь",
+   "case": "Именительный (Nominative)",
+   "explain": "«полковой лагерь» — the subject of the sentence stands in the nominative.",
+   "id": "c1",
+   "translation": "Those who encamp on the east side toward the sunrise shall be of the standard of the camp of Judah, according to their divisions. The prince of the children of Judah shall be Nahshon the son of Amminadab."
+  },
+  {
+   "sentence": "Пусть на юге будет ___ Рувима под своим знаменем.",
+   "lemma": "лагерь",
+   "options": [
+    "полковому лагерю",
+    "полкового лагеря",
+    "полковом лагере",
+    "полковой лагерь"
+   ],
+   "correct": "полковой лагерь",
+   "case": "Именительный (Nominative)",
+   "explain": "«полковой лагерь» — the subject of the sentence stands in the nominative.",
+   "id": "c2",
+   "translation": "“On the south side shall be the standard of the camp of Reuben according to their divisions. The prince of the children of Reuben shall be Elizur the son of Shedeur."
+  },
+  {
+   "sentence": "Пусть на западе будет ___ Ефрема под своим знаменем.",
+   "lemma": "лагерь",
+   "options": [
+    "полковому лагерю",
+    "полкового лагеря",
+    "полковом лагере",
+    "полковой лагерь"
+   ],
+   "correct": "полковой лагерь",
+   "case": "Именительный (Nominative)",
+   "explain": "«полковой лагерь» — the subject of the sentence stands in the nominative.",
+   "id": "c3",
+   "translation": "“On the west side shall be the standard of the camp of Ephraim according to their divisions. The prince of the children of Ephraim shall be Elishama the son of Ammihud."
+  },
+  {
+   "sentence": "Пусть на севере будет ___ Дана под своим знаменем.",
+   "lemma": "лагерь",
+   "options": [
+    "полковому лагерю",
+    "полкового лагеря",
+    "полковом лагере",
+    "полковой лагерь"
+   ],
+   "correct": "полковой лагерь",
+   "case": "Именительный (Nominative)",
+   "explain": "«полковой лагерь» — the subject of the sentence stands in the nominative.",
+   "id": "c4",
+   "translation": "“On the north side shall be the standard of the camp of Dan according to their divisions. The prince of the children of Dan shall be Ahiezer the son of Ammishaddai."
+  },
+  {
+   "sentence": "Лишь левиты не были исчислены с ___ — так повелел Моисею Господь.",
+   "lemma": "израильтянин",
+   "options": [
+    "остальных израильтян",
+    "остальные израильтяне",
+    "остальными израильтянами",
+    "остальным израильтянам"
+   ],
+   "correct": "остальными израильтянами",
+   "case": "Творительный (Instrumental)",
+   "explain": "«остальными израильтянами» — after the preposition «с», the instrumental marks the means, company, or complement.",
+   "id": "c5",
+   "translation": "But the Levites were not counted among the children of Israel, as Yahweh commanded Moses."
+  }
+ ]
 }
