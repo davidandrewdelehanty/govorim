@@ -7034,6 +7034,11 @@ export default function App() {
                             )}
                           </div>
                         )}
+                        {proseEn && proseEn._note && pidx === 0 && (
+                          <div className="bible-en" style={{margin:"0 0 18px",padding:"10px 14px",border:"1px solid rgba(196,149,90,.35)",borderRadius:10,background:"rgba(196,149,90,.06)",fontSize:"0.92em"}}>
+                            {proseEn._note}
+                          </div>
+                        )}
                         <div className="ltxt">{renderLit(curChapter.text)}</div>
                       </div>
                     </div>
