@@ -2168,6 +2168,8 @@ export default function App() {
   // Dual-language Bible: English (WEB, public domain) shown under each Russian
   // verse. Keyed {verseNumber: englishText} for the CURRENT chapter only.
   var [bibleEn, setBibleEn] = useState(null);
+  // Dual-language prose (bookMeta.parallelEn): chapter's paragraph-index → English map.
+  var [proseEn, setProseEn] = useState(null);
   // Bible section-heading translations ({russianHeading: englishHeading}), one
   // global file shared by every chapter. Loaded lazily on first Bible chapter.
   var [bibleHeadings, setBibleHeadings] = useState(null);
@@ -2842,6 +2844,23 @@ export default function App() {
       .catch(function() {});
     return function() { cancelled = true; };
   }, [bookMeta && bookMeta.filename, cidx]);
+
+  // Dual-language prose (Москва–Петушки): the catalogue entry names a folder
+  // in parallelEn; each chapter file maps paragraph index → English paragraph.
+  // Built offline from the printed translation, aligned per paragraph; gaps
+  // (OCR losses) simply show no English line. Display-only, like the Bible.
+  useEffect(function() {
+    setProseEn(null);
+    var dir = bookMeta && bookMeta.parallelEn;
+    if (!dir) return;
+    var cancelled = false;
+    var nn = String(cidx + 1); if (nn.length < 2) nn = "0" + nn;
+    fetch("/books/" + dir + "/" + nn + ".json")
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .then(function(j) { if (!cancelled && j) setProseEn(j); })
+      .catch(function() {});
+    return function() { cancelled = true; };
+  }, [bookMeta && bookMeta.parallelEn, cidx]);
 
   // Load the Bible section-heading translations once (same map for every
   // chapter). Fetched the first time a Bible chapter is opened, then reused.
@@ -4382,6 +4401,7 @@ export default function App() {
         // Carried so the audiobook loader knows to fetch this book's chapter
         // JSON and audio through /api/media rather than from /books/.
         restricted: !!opts.restricted,
+        parallelEn: opts.parallelEn || null,
       };
       setChapters(chs);
       setBookMeta(meta);
@@ -4465,6 +4485,7 @@ export default function App() {
         songs: Array.isArray(book.songs) ? book.songs : null,
         audiobook: book.audiobook || null,
         restricted: !!book.restricted,
+        parallelEn: book.parallelEn || null,
       });
     } catch(err) {
       setFErr(err.message || "Failed to load preset book");
@@ -4831,7 +4852,7 @@ export default function App() {
 
       // Single-page mode (e.g. song lyrics): show the whole chapter, no slicing.
       if (currentPage.isSinglePage || currentPage.paraIndices === null) {
-        return nonEmpty;
+        return nonEmpty.map(function(p2, i2){ return { para: p2, chIdx: i2 }; });
       }
 
       if (currentPage.isSplit) {
@@ -4842,12 +4863,14 @@ export default function App() {
         var sliced = giant.filter(function(tok) {
           return tok.start >= currentPage.startChar && tok.end <= currentPage.endChar;
         });
-        return sliced.length > 0 ? [sliced] : [];
+        return sliced.length > 0 ? [{ para: sliced, chIdx: 0 }] : [];
       }
-      // Normal case: render the whole paragraphs that belong to this page.
-      return currentPage.paraIndices.map(function(idx){ return nonEmpty[idx] || []; }).filter(function(p){ return p.length > 0; });
+      // Normal case: render the whole paragraphs that belong to this page,
+      // keeping each one's chapter-level paragraph index (parallel text keys on it).
+      return currentPage.paraIndices.map(function(idx){ return { para: nonEmpty[idx] || [], chIdx: idx }; }).filter(function(e2){ return e2.para.length > 0; });
     })()
-      .map(function(para, pi, paraArr) {
+      .map(function(entry, pi, paraArr) {
+        var para = entry.para;
         // Detect play-style speaker attribution at the start of a paragraph.
         // Russian plays commonly use Title Case names like "Маша. ..." or "Медведенко. ..."
         // (Chekhov, Ostrovsky, Tolstoy plays). Older drama uses ALL CAPS like "ЛУКА. ..." (Gorky).
@@ -4888,12 +4911,18 @@ export default function App() {
               // so only attach English to the LAST paragraph carrying that number.
               var isLastForNum = true;
               for (var pj = pi + 1; pj < paraArr.length; pj++) {
-                var pjt = paraArr[pj].map(function(t){ return t.text; }).join("");
+                var pjt = paraArr[pj].para.map(function(t){ return t.text; }).join("");
                 if ((pjt.match(/^\s*(\d+)/) || [])[1] === vno) { isLastForNum = false; break; }
               }
               if (isLastForNum) bibleEnLine = bibleEn[vno];
             }
           }
+        }
+
+        // Dual-language prose: English for this paragraph, by chapter index.
+        var proseEnLine = null;
+        if (proseEn && !bibleEnLine && !bibleHeadingLine) {
+          proseEnLine = proseEn[String(entry.chIdx)] || null;
         }
 
         return (
@@ -4981,7 +5010,8 @@ export default function App() {
               });
             })()}
             {bibleHeadingLine ? <span className="bible-en bible-heading-en">{bibleHeadingLine}</span>
-              : (bibleEnLine ? <span className="bible-en">{bibleEnLine}</span> : null)}
+              : (bibleEnLine ? <span className="bible-en">{bibleEnLine}</span>
+              : (proseEnLine ? <span className="bible-en">{proseEnLine}</span> : null))}
           </p>
         );
       });
