@@ -64,10 +64,10 @@
    "sentence": "— мягко повторил в ___ следователь.",
    "lemma": "раз",
    "options": [
-    "десятый раз",
-    "десятым разом",
     "десятом разе",
-    "десятому разу"
+    "десятому разу",
+    "десятый раз",
+    "десятым разом"
    ],
    "correct": "десятый раз",
    "case": "Винительный (Accusative)",
@@ -87,7 +87,7 @@
    "correct": "другого старика",
    "case": "Родительный (Genitive)",
    "explain": "«другого старика» — the genitive here marks possession, absence, or quantity.",
-   "id": "c7",
+   "id": "c6",
    "translation": "“I am not guilty. I am guilty of the blood of another old man but not of my father’s. And I weep for it! I killed, I killed the old man and knocked him down. … But it’s hard to have to answer for that murder with another, a terrible murder of which I am not guilty. … It’s a terrible accusation, gentlemen, a knockdown blow. But who has killed my father, who has killed him? Who can have killed him if I didn’t? It’s marvelous, extraordinary, impossible.”"
   },
   {
@@ -102,8 +102,38 @@
    "correct": "страшное обвинение",
    "case": "Именительный (Nominative)",
    "explain": "«Страшное обвинение» — the subject of the sentence stands in the nominative.",
-   "id": "c8",
+   "id": "c7",
    "translation": "“I am not guilty. I am guilty of the blood of another old man but not of my father’s. And I weep for it! I killed, I killed the old man and knocked him down. … But it’s hard to have to answer for that murder with another, a terrible murder of which I am not guilty. … It’s a terrible accusation, gentlemen, a knockdown blow. But who has killed my father, who has killed him? Who can have killed him if I didn’t? It’s marvelous, extraordinary, impossible.”"
+  },
+  {
+   "sentence": "Узнайте, что он жив, очнулся и, несмотря на ___, причиненные ему вами, по его и вашему теперь показанию, кажется, останется жив несомненно, по крайней мере по отзыву доктора.",
+   "lemma": "побои",
+   "options": [
+    "тяжких побоях",
+    "тяжкими побоями",
+    "тяжкие побои",
+    "тяжких побоев"
+   ],
+   "correct": "тяжкие побои",
+   "case": "Винительный (Accusative)",
+   "explain": "«тяжкие побои» — after the preposition «по», the accusative marks the direct object of the verb.",
+   "id": "c8",
+   "translation": "“You need not worry yourself about the old servant, Grigory Vassilyevitch. He is alive, he has recovered, and in spite of the terrible blows inflicted, according to his own and your evidence, by you, there seems no doubt that he will live, so the doctor says, at least.”"
+  },
+  {
+   "sentence": "— Так вот от этого-то самого Григория мы и получили столь ___ на ваш счет, что…",
+   "lemma": "показание",
+   "options": [
+    "значительными показаниями",
+    "значительных показаний",
+    "значительным показаниям",
+    "значительные показания"
+   ],
+   "correct": "значительные показания",
+   "case": "Винительный (Accusative)",
+   "explain": "«значительные показания» — the accusative marks the direct object of the verb.",
+   "id": "c9",
+   "translation": "“So from this Grigory we have received such important evidence concerning you, that—” The prosecutor would have continued, but Mitya suddenly jumped up from his chair."
   },
   {
    "sentence": "Со следователем же познакомиться еще не успел, но, однако, встречал и его и даже говорил с ним раз или два, оба раза о ___.",
@@ -117,7 +147,7 @@
    "correct": "женском поле",
    "case": "Предложный (Prepositional)",
    "explain": "«женском поле» — after the preposition «о», for location or topic.",
-   "id": "c11",
+   "id": "c10",
    "translation": "Mitya took his hands from his face and laughed. His eyes were confident. He seemed completely transformed in a moment. His whole bearing was changed; he was once more the equal of these men, with all of whom he was acquainted, as though they had all met the day before, when nothing had happened, at some social gathering. We may note in passing that, on his first arrival, Mitya had been made very welcome at the police captain’s, but later, during the last month especially, Mitya had hardly called at all, and when the police captain met him, in the street, for instance, Mitya noticed that he frowned and only bowed out of politeness. His acquaintance with the prosecutor was less intimate, though he sometimes paid his wife, a nervous and fanciful lady, visits of politeness, without quite knowing why, and she always received him graciously and had, for some reason, taken an interest in him up to the last. He had not had time to get to know the investigating lawyer, though he had met him and talked to him twice, each time about the fair sex."
   },
   {
@@ -132,7 +162,7 @@
    "correct": "тяжких побоях",
    "case": "Предложный (Prepositional)",
    "explain": "«тяжких побоях» — after the preposition «в», for location or topic.",
-   "id": "c12",
+   "id": "c11",
    "translation": "“Write it down? You want to write that down? Well, write it; I consent, I give my full consent, gentlemen, only … do you see? … Stay, stay, write this. Of disorderly conduct I am guilty, of violence on a poor old man I am guilty. And there is something else at the bottom of my heart, of which I am guilty, too—but that you need not write down” (he turned suddenly to the secretary); “that’s my personal life, gentlemen, that doesn’t concern you, the bottom of my heart, that’s to say. … But of the murder of my old father I’m not guilty. That’s a wild idea. It’s quite a wild idea! … I will prove you that and you’ll be convinced directly. … You will laugh, gentlemen. You’ll laugh yourselves at your suspicion! …”"
   },
   {
@@ -147,22 +177,22 @@
    "correct": "внутреннее дело",
    "case": "Именительный (Nominative)",
    "explain": "«внутреннее дело» — the subject of the sentence stands in the nominative.",
-   "id": "c13",
+   "id": "c12",
    "translation": "“What is there to explain, gentlemen?” Mitya shrugged his shoulders sullenly, looking down. “I have never concealed my feelings. All the town knows about it—everyone knows in the tavern. Only lately I declared them in Father Zossima’s cell. … And the very same day, in the evening I beat my father. I nearly killed him, and I swore I’d come again and kill him, before witnesses. … Oh, a thousand witnesses! I’ve been shouting it aloud for the last month, anyone can tell you that! … The fact stares you in the face, it speaks for itself, it cries aloud, but feelings, gentlemen, feelings are another matter. You see, gentlemen”—Mitya frowned—“it seems to me that about feelings you’ve no right to question me. I know that you are bound by your office, I quite understand that, but that’s my affair, my private, intimate affair, yet … since I haven’t concealed my feelings in the past … in the tavern, for instance, I’ve talked to everyone, so … so I won’t make a secret of it now. You see, I understand, gentlemen, that there are terrible facts against me in this business. I told everyone that I’d kill him, and now, all of a sudden, he’s been killed. So it must have been me! Ha ha! I can make allowances for you, gentlemen, I can quite make allowances. I’m struck all of a heap myself, for who can have murdered him, if not I? That’s what it comes to, isn’t it? If not I, who can it be, who? Gentlemen, I want to know, I insist on knowing!” he exclaimed suddenly. “Where was he murdered? How was he murdered? How, and with what? Tell me,” he asked quickly, looking at the two lawyers."
   },
   {
    "sentence": "Видите, господа, вы, кажется, принимаете меня совсем за ___, чем я есть, — прибавил он вдруг мрачно и грустно.",
    "lemma": "человек",
    "options": [
-    "ином человеке",
     "иного человека",
     "иному человеку",
-    "иным человеком"
+    "иной человек",
+    "ином человеке"
    ],
    "correct": "иного человека",
    "case": "Винительный (Accusative)",
    "explain": "«иного человека» — after the preposition «за», the accusative marks the direct object of the verb.",
-   "id": "c14",
+   "id": "c13",
    "translation": "“Write it down, by all means. I know that’s another fact that tells against me, but I’m not afraid of facts and I tell them against myself. Do you hear? Do you know, gentlemen, you take me for a different sort of man from what I am,” he added, suddenly gloomy and dejected. “You have to deal with a man of honor, a man of the highest honor; above all—don’t lose sight of it—a man who’s done a lot of nasty things, but has always been, and still is, honorable at bottom, in his inner being. I don’t know how to express it. That’s just what’s made me wretched all my life, that I yearned to be honorable, that I was, so to say, a martyr to a sense of honor, seeking for it with a lantern, with the lantern of Diogenes, and yet all my life I’ve been doing filthy things like all of us, gentlemen … that is like me alone. That was a mistake, like me alone, me alone! … Gentlemen, my head aches …” His brows contracted with pain. “You see, gentlemen, I couldn’t bear the look of him, there was something in him ignoble, impudent, trampling on everything sacred, something sneering and irreverent, loathsome, loathsome. But now that he’s dead, I feel differently.”"
   },
   {
@@ -177,7 +207,7 @@
    "correct": "неожиданная сцена",
    "case": "Именительный (Nominative)",
    "explain": "«неожиданная сцена» — the subject of the sentence stands in the nominative.",
-   "id": "c15",
+   "id": "c14",
    "translation": "Saying this Mitya became very mournful. He had grown more and more gloomy as the inquiry continued. At that moment another unexpected scene followed. Though Grushenka had been removed, she had not been taken far away, only into the room next but one from the blue room, in which the examination was proceeding. It was a little room with one window, next beyond the large room in which they had danced and feasted so lavishly. She was sitting there with no one by her but Maximov, who was terribly depressed, terribly scared, and clung to her side, as though for security. At their door stood one of the peasants with a metal plate on his breast. Grushenka was crying, and suddenly her grief was too much for her, she jumped up, flung up her arms and, with a loud wail of sorrow, rushed out of the room to him, to her Mitya, and so unexpectedly that they had not time to stop her. Mitya, hearing her cry, trembled, jumped up, and with a yell rushed impetuously to meet her, not knowing what he was doing. But they were not allowed to come together, though they saw one another. He was seized by the arms. He struggled, and tried to tear himself away. It took three or four men to hold him. She was seized too, and he saw her stretching out her arms to him, crying aloud as they carried her away. When the scene was over, he came to himself again, sitting in the same place as before, opposite the investigating lawyer, and crying out to them:"
   },
   {
@@ -192,7 +222,7 @@
    "correct": "голубой комнаты",
    "case": "Родительный (Genitive)",
    "explain": "«голубой комнаты» — after the preposition «от», the genitive here marks possession, absence, or quantity.",
-   "id": "c16",
+   "id": "c15",
    "translation": "Saying this Mitya became very mournful. He had grown more and more gloomy as the inquiry continued. At that moment another unexpected scene followed. Though Grushenka had been removed, she had not been taken far away, only into the room next but one from the blue room, in which the examination was proceeding. It was a little room with one window, next beyond the large room in which they had danced and feasted so lavishly. She was sitting there with no one by her but Maximov, who was terribly depressed, terribly scared, and clung to her side, as though for security. At their door stood one of the peasants with a metal plate on his breast. Grushenka was crying, and suddenly her grief was too much for her, she jumped up, flung up her arms and, with a loud wail of sorrow, rushed out of the room to him, to her Mitya, and so unexpectedly that they had not time to stop her. Mitya, hearing her cry, trembled, jumped up, and with a yell rushed impetuously to meet her, not knowing what he was doing. But they were not allowed to come together, though they saw one another. He was seized by the arms. He struggled, and tried to tear himself away. It took three or four men to hold him. She was seized too, and he saw her stretching out her arms to him, crying aloud as they carried her away. When the scene was over, he came to himself again, sitting in the same place as before, opposite the investigating lawyer, and crying out to them:"
   },
   {
@@ -207,7 +237,7 @@
    "correct": "маленькая комнатка",
    "case": "Именительный (Nominative)",
    "explain": "«маленькая комнатка» — the subject of the sentence stands in the nominative.",
-   "id": "c17",
+   "id": "c16",
    "translation": "Saying this Mitya became very mournful. He had grown more and more gloomy as the inquiry continued. At that moment another unexpected scene followed. Though Grushenka had been removed, she had not been taken far away, only into the room next but one from the blue room, in which the examination was proceeding. It was a little room with one window, next beyond the large room in which they had danced and feasted so lavishly. She was sitting there with no one by her but Maximov, who was terribly depressed, terribly scared, and clung to her side, as though for security. At their door stood one of the peasants with a metal plate on his breast. Grushenka was crying, and suddenly her grief was too much for her, she jumped up, flung up her arms and, with a loud wail of sorrow, rushed out of the room to him, to her Mitya, and so unexpectedly that they had not time to stop her. Mitya, hearing her cry, trembled, jumped up, and with a yell rushed impetuously to meet her, not knowing what he was doing. But they were not allowed to come together, though they saw one another. He was seized by the arms. He struggled, and tried to tear himself away. It took three or four men to hold him. She was seized too, and he saw her stretching out her arms to him, crying aloud as they carried her away. When the scene was over, he came to himself again, sitting in the same place as before, opposite the investigating lawyer, and crying out to them:"
   },
   {
@@ -222,7 +252,7 @@
    "correct": "прежнем месте",
    "case": "Предложный (Prepositional)",
    "explain": "«прежнем месте» — after the preposition «на», for location or topic.",
-   "id": "c18",
+   "id": "c17",
    "translation": "Saying this Mitya became very mournful. He had grown more and more gloomy as the inquiry continued. At that moment another unexpected scene followed. Though Grushenka had been removed, she had not been taken far away, only into the room next but one from the blue room, in which the examination was proceeding. It was a little room with one window, next beyond the large room in which they had danced and feasted so lavishly. She was sitting there with no one by her but Maximov, who was terribly depressed, terribly scared, and clung to her side, as though for security. At their door stood one of the peasants with a metal plate on his breast. Grushenka was crying, and suddenly her grief was too much for her, she jumped up, flung up her arms and, with a loud wail of sorrow, rushed out of the room to him, to her Mitya, and so unexpectedly that they had not time to stop her. Mitya, hearing her cry, trembled, jumped up, and with a yell rushed impetuously to meet her, not knowing what he was doing. But they were not allowed to come together, though they saw one another. He was seized by the arms. He struggled, and tried to tear himself away. It took three or four men to hold him. She was seized too, and he saw her stretching out her arms to him, crying aloud as they carried her away. When the scene was over, he came to himself again, sitting in the same place as before, opposite the investigating lawyer, and crying out to them:"
   },
   {
@@ -237,7 +267,7 @@
    "correct": "несчастному человеку",
    "case": "Дательный (Dative)",
    "explain": "«несчастному человеку» — the dative marks the indirect object or recipient.",
-   "id": "c19",
+   "id": "c18",
    "translation": "“She’s been removed, she’s downstairs. Will you allow me to say one word to this unhappy man, gentlemen? In your presence, gentlemen, in your presence.”"
   },
   {
@@ -252,7 +282,7 @@
    "correct": "настоящем случае",
    "case": "Предложный (Prepositional)",
    "explain": "«настоящем случае» — after the preposition «в», for location or topic.",
-   "id": "c20",
+   "id": "c19",
    "translation": "“By all means, Mihail Makarovitch,” answered the investigating lawyer. “In the present case we have nothing against it.”"
   },
   {
@@ -267,7 +297,7 @@
    "correct": "христианская душа",
    "case": "Именительный (Nominative)",
    "explain": "«христианская душа» — the subject of the sentence stands in the nominative.",
-   "id": "c21",
+   "id": "c20",
    "translation": "“Listen, Dmitri Fyodorovitch, my dear fellow,” began the police captain, and there was a look of warm, almost fatherly, feeling for the luckless prisoner on his excited face. “I took your Agrafena Alexandrovna downstairs myself, and confided her to the care of the landlord’s daughters, and that old fellow Maximov is with her all the time. And I soothed her, do you hear? I soothed and calmed her. I impressed on her that you have to clear yourself, so she mustn’t hinder you, must not depress you, or you may lose your head and say the wrong thing in your evidence. In fact, I talked to her and she understood. She’s a sensible girl, my boy, a good-hearted girl, she would have kissed my old hands, begging help for you. She sent me herself, to tell you not to worry about her. And I must go, my dear fellow, I must go and tell her that you are calm and comforted about her. And so you must be calm, do you understand? I was unfair to her; she is a Christian soul, gentlemen, yes, I tell you, she’s a gentle soul, and not to blame for anything. So what am I to tell her, Dmitri Fyodorovitch? Will you sit quiet or not?”"
   },
   {
@@ -282,7 +312,7 @@
    "correct": "безмерной доброте",
    "case": "Дательный (Dative)",
    "explain": "«безмерной доброте» — after the preposition «по», the dative marks the indirect object or recipient.",
-   "id": "c22",
+   "id": "c21",
    "translation": "“Forgive me, gentlemen, oh, allow me, allow me!” he cried. “You’ve the heart of an angel, an angel, Mihail Makarovitch, I thank you for her. I will, I will be calm, cheerful, in fact. Tell her, in the kindness of your heart, that I am cheerful, quite cheerful, that I shall be laughing in a minute, knowing that she has a guardian angel like you. I shall have done with all this directly, and as soon as I’m free, I’ll be with her, she’ll see, let her wait. Gentlemen,” he said, turning to the two lawyers, “now I’ll open my whole soul to you; I’ll pour out everything. We’ll finish this off directly, finish it off gayly. We shall laugh at it in the end, shan’t we? But, gentlemen, that woman is the queen of my heart. Oh, let me tell you that. That one thing I’ll tell you now. … I see I’m with honorable men. She is my light, she is my holy one, and if only you knew! Did you hear her cry, ‘I’ll go to death with you’? And what have I, a penniless beggar, done for her? Why such love for me? How can a clumsy, ugly brute like me, with my ugly face, deserve such love, that she is ready to go to exile with me? And how she fell down at your feet for my sake, just now! … and yet she’s proud and has done nothing! How can I help adoring her, how can I help crying out and rushing to her as I did just now? Gentlemen, forgive me! But now, now I am comforted.”"
   },
   {
@@ -297,22 +327,22 @@
    "correct": "позорным лицом",
    "case": "Творительный (Instrumental)",
    "explain": "«позорным лицом» — after the preposition «с», the instrumental marks the means, company, or complement.",
-   "id": "c23",
+   "id": "c22",
    "translation": "“Forgive me, gentlemen, oh, allow me, allow me!” he cried. “You’ve the heart of an angel, an angel, Mihail Makarovitch, I thank you for her. I will, I will be calm, cheerful, in fact. Tell her, in the kindness of your heart, that I am cheerful, quite cheerful, that I shall be laughing in a minute, knowing that she has a guardian angel like you. I shall have done with all this directly, and as soon as I’m free, I’ll be with her, she’ll see, let her wait. Gentlemen,” he said, turning to the two lawyers, “now I’ll open my whole soul to you; I’ll pour out everything. We’ll finish this off directly, finish it off gayly. We shall laugh at it in the end, shan’t we? But, gentlemen, that woman is the queen of my heart. Oh, let me tell you that. That one thing I’ll tell you now. … I see I’m with honorable men. She is my light, she is my holy one, and if only you knew! Did you hear her cry, ‘I’ll go to death with you’? And what have I, a penniless beggar, done for her? Why such love for me? How can a clumsy, ugly brute like me, with my ugly face, deserve such love, that she is ready to go to exile with me? And how she fell down at your feet for my sake, just now! … and yet she’s proud and has done nothing! How can I help adoring her, how can I help crying out and rushing to her as I did just now? Gentlemen, forgive me! But now, now I am comforted.”"
   },
   {
    "sentence": "Старик исправник был очень доволен, да, кажется, и юристы тоже: они почувствовали, что допрос вступит сейчас в ___.",
    "lemma": "фазис",
    "options": [
+    "новом фазисе",
     "новый фазис",
-    "нового фазиса",
     "новому фазису",
     "новым фазисом"
    ],
    "correct": "новый фазис",
    "case": "Винительный (Accusative)",
    "explain": "«новый фазис» — after the preposition «в», the accusative marks the direct object of the verb.",
-   "id": "c24",
+   "id": "c23",
    "translation": "And he sank back in his chair and, covering his face with his hands, burst into tears. But they were happy tears. He recovered himself instantly. The old police captain seemed much pleased, and the lawyers also. They felt that the examination was passing into a new phase. When the police captain went out, Mitya was positively gay."
   },
   {
@@ -327,7 +357,7 @@
    "correct": "взаимное доверие",
    "case": "Именительный (Nominative)",
    "explain": "«взаимное доверие» — the subject of the sentence stands in the nominative.",
-   "id": "c25",
+   "id": "c24",
    "translation": "“Now, gentlemen, I am at your disposal, entirely at your disposal. And if it were not for all these trivial details, we should understand one another in a minute. I’m at those details again. I’m at your disposal, gentlemen, but I declare that we must have mutual confidence, you in me and I in you, or there’ll be no end to it. I speak in your interests. To business, gentlemen, to business, and don’t rummage in my soul; don’t tease me with trifles, but only ask me about facts and what matters, and I will satisfy you at once. And damn the details!”"
   }
  ]
