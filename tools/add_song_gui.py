@@ -1,0 +1,185 @@
+#!/usr/bin/env python3
+"""Govorim — song upload GUI.
+
+Run from WSL:  python3 tools/add_song_gui.py
+Opens a form in your browser; each submit adds a song to public/music/music.json,
+with an optional commit + push. Ctrl+C in the terminal (or the Quit link) stops it.
+"""
+import json, re, os, sys, html, subprocess, threading, warnings
+from http.server import HTTPServer, BaseHTTPRequestHandler
+
+warnings.filterwarnings("ignore")  # cgi deprecation noise on newer pythons
+import cgi
+
+REPO = "/mnt/c/Users/david/projects/govorim-app"
+MUSIC = os.path.join(REPO, "public", "music", "music.json")
+PORT = 8765
+
+def load_music():
+    return json.load(open(MUSIC, encoding="utf-8"))
+
+def save_music(data):
+    json.dump(data, open(MUSIC, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+
+def yt_id(s):
+    m = re.search(r'(?:v=|youtu\.be/|embed/|shorts/)([A-Za-z0-9_-]{11})', s) \
+        or re.fullmatch(r'\s*([A-Za-z0-9_-]{11})\s*', s)
+    return m.group(1) if m else None
+
+STYLE = """
+<style>
+ body{background:#1a1611;color:#e8ddcb;font-family:Georgia,serif;max-width:640px;
+      margin:40px auto;padding:0 16px}
+ h1{color:#c4955a;font-size:1.5em;font-weight:600}
+ label{display:block;margin:14px 0 4px;color:#c4955a;font-size:.95em}
+ input[type=text],textarea{width:100%;box-sizing:border-box;background:#26211a;
+      color:#e8ddcb;border:1px solid #4a3f30;border-radius:6px;padding:9px;
+      font-family:inherit;font-size:1em}
+ textarea{min-height:220px;white-space:pre}
+ input[type=file]{margin-top:4px;color:#a89880}
+ .row{display:flex;gap:14px;align-items:center;margin-top:18px}
+ button{background:#c4955a;color:#1a1611;border:none;border-radius:6px;
+      padding:10px 22px;font-size:1em;font-family:inherit;font-weight:600;cursor:pointer}
+ button:hover{background:#d5a86b}
+ .chk{color:#a89880;font-size:.95em}
+ .ok{background:#20301e;border:1px solid #4a6b44;border-radius:6px;padding:12px 16px;margin:16px 0}
+ .err{background:#3a2020;border:1px solid #7a4444;border-radius:6px;padding:12px 16px;margin:16px 0}
+ pre{background:#26211a;border-radius:6px;padding:10px;overflow-x:auto;font-size:.85em;color:#a89880}
+ a{color:#c4955a}
+ .quit{float:right;font-size:.85em}
+ .hint{color:#7a6d58;font-size:.85em;margin-top:2px}
+</style>
+"""
+
+def form_page(msg=""):
+    artists = ""
+    try:
+        artists = "".join('<option value="%s">' % html.escape(a["artist"]) for a in load_music())
+    except Exception:
+        pass
+    return """<!doctype html><meta charset="utf-8"><title>Govorim — add song</title>%s
+<a class="quit" href="/quit">quit</a>
+<h1>Add a song</h1>%s
+<form method="post" action="/add" enctype="multipart/form-data">
+ <label>Artist</label>
+ <input type="text" name="artist" list="artists" required>
+ <datalist id="artists">%s</datalist>
+ <div class="hint">pick an existing artist or type a new one</div>
+ <label>Song title</label>
+ <input type="text" name="title" required>
+ <label>YouTube link (or bare video ID)</label>
+ <input type="text" name="youtube" required>
+ <label>Lyrics — paste here…</label>
+ <textarea name="lyrics" placeholder="Paste the lyrics…"></textarea>
+ <label>…or choose a .txt file instead</label>
+ <input type="file" name="lyricsfile" accept=".txt">
+ <div class="row">
+  <button type="submit">Add song</button>
+  <label class="chk"><input type="checkbox" name="push" checked> commit &amp; push after adding</label>
+ </div>
+</form>""" % (STYLE, msg, artists)
+
+class H(BaseHTTPRequestHandler):
+    def log_message(self, *a): pass
+
+    def _send(self, body, code=200):
+        b = body.encode("utf-8")
+        self.send_response(code)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(b)))
+        self.end_headers()
+        self.wfile.write(b)
+
+    def do_GET(self):
+        if self.path == "/quit":
+            self._send("%s<h1>Stopped.</h1><p>You can close this tab.</p>" % STYLE)
+            threading.Thread(target=self.server.shutdown, daemon=True).start()
+            return
+        self._send(form_page())
+
+    def do_POST(self):
+        fs = cgi.FieldStorage(fp=self.rfile, headers=self.headers,
+                              environ={"REQUEST_METHOD": "POST",
+                                       "CONTENT_TYPE": self.headers.get("Content-Type", "")})
+        artist = (fs.getfirst("artist") or "").strip()
+        title = (fs.getfirst("title") or "").strip()
+        yt = (fs.getfirst("youtube") or "").strip()
+        lyrics = (fs.getfirst("lyrics") or "").strip()
+        push = fs.getfirst("push") is not None
+
+        if not lyrics and "lyricsfile" in fs and fs["lyricsfile"].filename:
+            raw = fs["lyricsfile"].file.read()
+            lyrics = raw.decode("utf-8-sig", errors="replace").strip()
+        lyrics = lyrics.replace("\r\n", "\n")
+
+        def fail(m):
+            self._send(form_page('<div class="err">%s</div>' % html.escape(m)))
+
+        if not (artist and title and yt):
+            return fail("Artist, title, and YouTube link are all required.")
+        if not lyrics:
+            return fail("No lyrics — paste them in the box or choose a .txt file.")
+        vid = yt_id(yt)
+        if not vid:
+            return fail("Couldn't extract a YouTube video ID from: " + yt)
+
+        try:
+            data = load_music()
+        except Exception as e:
+            return fail("Couldn't read music.json: %s" % e)
+
+        entry = next((a for a in data if a["artist"].strip().lower() == artist.lower()), None)
+        if entry is None:
+            entry = {"artist": artist, "songs": []}
+            data.append(entry)
+        if any(s["title"].strip().lower() == title.lower() for s in entry["songs"]):
+            return fail("«%s» already exists for %s — not overwriting." % (title, entry["artist"]))
+
+        entry["songs"].append({"title": title, "youtube": vid, "lyrics": lyrics})
+        save_music(data)
+
+        msg = '<div class="ok">Added <b>%s — %s</b> (video %s).</div>' % (
+            html.escape(entry["artist"]), html.escape(title), vid)
+
+        if push:
+            cmds = [["git", "add", "public/music/music.json"],
+                    ["git", "commit", "-m", "Music: add %s — %s" % (artist, title)],
+                    ["git", "push"]]
+            out = []
+            for c in cmds:
+                r = subprocess.run(c, cwd=REPO, capture_output=True, text=True)
+                out.append("$ " + " ".join(c) + "\n" + r.stdout + r.stderr)
+                if r.returncode != 0:
+                    msg += ('<div class="err">git step failed — the song IS saved in '
+                            'music.json, but you\'ll need to push manually.</div>')
+                    break
+            else:
+                msg += '<div class="ok">Committed and pushed — live after Vercel redeploys.</div>'
+            msg += "<pre>%s</pre>" % html.escape("\n".join(out))
+        else:
+            msg += '<div class="ok">Saved to music.json (not committed).</div>'
+
+        self._send(form_page(msg))
+
+def open_browser(url):
+    for cmd in (["wslview", url],
+                ["powershell.exe", "-NoProfile", "-Command", "Start-Process '%s'" % url],
+                ["cmd.exe", "/c", "start", url]):
+        try:
+            subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            return
+        except FileNotFoundError:
+            continue
+    print("Open %s in your browser." % url)
+
+if __name__ == "__main__":
+    if not os.path.isfile(MUSIC):
+        sys.exit("music.json not found at %s" % MUSIC)
+    url = "http://127.0.0.1:%d/" % PORT
+    srv = HTTPServer(("127.0.0.1", PORT), H)
+    print("Govorim song uploader — %s  (Ctrl+C to stop)" % url)
+    open_browser(url)
+    try:
+        srv.serve_forever()
+    except KeyboardInterrupt:
+        pass
