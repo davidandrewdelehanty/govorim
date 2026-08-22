@@ -5282,9 +5282,9 @@ export default function App() {
         @media(max-width:600px){.level-lbl{display:none}.level-pill{padding:4px 8px;font-size:12px}}
         .tbadge:hover{background:rgba(196,149,90,.18)}
         .tabs{display:flex;border-bottom:1px solid rgba(42,31,20,.1);padding:0 28px;position:relative;z-index:10}
-        .tab{padding:11px 20px;background:none;border:none;color:rgba(42,31,20,.4);font-family:'Crimson Pro',serif;font-size:14px;cursor:pointer;border-bottom:2px solid transparent;position:relative;top:1px;transition:color .2s}
-        .tab.on{color:#c4955a;border-bottom-color:#c4955a}
-        .tab:hover:not(.on){color:rgba(42,31,20,.7)}
+        .tab{padding:11px 20px;background:none;border:none;color:#000;font-family:'Crimson Pro',serif;font-size:14px;cursor:pointer;border-bottom:2px solid transparent;position:relative;top:1px;transition:color .2s}
+        .tab.on{color:#000;border-bottom-color:#c4955a;font-weight:600}
+        .tab:hover:not(.on){color:#c4955a}
         .bdg{background:#c4955a;color:#fff;font-size:10px;border-radius:10px;padding:1px 5px;margin-left:4px;vertical-align:middle}
         .bdg.g{background:#5a8556}
         .main{flex:1;display:flex;flex-direction:column;position:relative;z-index:1;min-height:0}
@@ -6051,10 +6051,10 @@ export default function App() {
         </header>
 
         <div className="tabs">
-          {["chat","vocab","grammar","forum"].map(function(t){
+          {["chat","vocab","grammar","forum","music"].map(function(t){
             return (
               <button key={t} className={"tab"+(tab===t?" on":"")} onClick={function(){ setTab(t); }}>
-                {t==="chat"?"Reading":t==="vocab"?"Vocabulary":t==="grammar"?"Grammar":"Forum"}
+                {t==="chat"?"Reading":t==="vocab"?"Vocabulary":t==="grammar"?"Grammar":t==="forum"?"Forum":"Music"}
                 {t==="vocab"&&vocab.length>0&&<span className="bdg">{vocab.length}</span>}
                 {t==="grammar"&&tips.length>0&&<span className="bdg g">{tips.length}</span>}
               </button>
@@ -6072,6 +6072,35 @@ export default function App() {
           <div style={{padding:"8px 28px",background:"rgba(157,70,48,.18)",borderBottom:"1px solid rgba(157,70,48,.35)",color:"#9d4630",fontSize:13,display:"flex",alignItems:"center",gap:10}}>
             <span style={{flex:1}}>⚠️ {syncErr} <span style={{opacity:.75,fontStyle:"italic"}}>Remove a few entries from the Vocabulary tab to keep syncing.</span></span>
             <button onClick={function(){ setSyncErr(""); }} style={{background:"none",border:"none",color:"#9d4630",cursor:"pointer",fontSize:18,padding:0}}>×</button>
+          </div>
+        )}
+
+        {tab==="music" && (
+          <div className="main">
+            <div className="ss">
+              <div className="sico">🎵</div>
+              <h1 className="sti">Music</h1>
+              <p className="sde">Songs from the library — read the lyrics, follow the recording.</p>
+              <div style={{width:"100%",maxWidth:560,display:"flex",flexDirection:"column",gap:10}}>
+                {(function(){
+                  var music = (presetBooks || []).filter(function(b){
+                    return /song|music|lyric|музык|песн/i.test(String(b.category || ""));
+                  });
+                  if (!music.length) {
+                    return <p className="sde" style={{fontStyle:"italic"}}>No music in the library yet — song collections added under a “Song Lyrics” category will show up here.</p>;
+                  }
+                  return music.map(function(b){
+                    return (
+                      <button key={b.filename} className="btn-p" style={{textAlign:"left",padding:"14px 18px"}}
+                        onClick={function(){ loadPresetBook(b); setTab("chat"); setMode("read"); }}>
+                        <div style={{fontSize:17}}>{b.title}</div>
+                        {b.author && <div style={{fontSize:12,opacity:.8,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>{b.author}</div>}
+                      </button>
+                    );
+                  });
+                })()}
+              </div>
+            </div>
           </div>
         )}
 
