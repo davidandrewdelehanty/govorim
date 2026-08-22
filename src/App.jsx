@@ -1904,6 +1904,38 @@ export default function App() {
   var [forumBody, setForumBody]       = useState("");
   var [forumReply, setForumReply]     = useState("");
 
+  // ── Music tab: artists → songs → lyrics with definable words + video ──
+  var [musicData, setMusicData]     = useState(null);
+  var [musicArtist, setMusicArtist] = useState(null);   // index into musicData
+  var [musicSong, setMusicSong]     = useState(null);   // index into artist.songs
+  useEffect(function() {
+    if (tab !== "music" || musicData) return;
+    var cancelled = false;
+    fetch("/music/music.json")
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){ if (!cancelled && j) setMusicData(j); })
+      .catch(function(){});
+    return function(){ cancelled = true; };
+  }, [tab, musicData]);
+  // Lyrics rendering: every Russian word clickable for a definition, line
+  // breaks preserved, stanzas separated by wider gaps.
+  var renderLyrics = function(text) {
+    return String(text||"").split("\n").map(function(line, li) {
+      if (!line.trim()) return <div key={li} style={{height:14}}/>;
+      var parts = line.match(/[а-яёА-ЯЁ]+|[^а-яёА-ЯЁ]+/g) || [];
+      return (
+        <div key={li} style={{lineHeight:1.75}}>
+          {parts.map(function(pt, wi) {
+            if (/[а-яёА-ЯЁ]/.test(pt[0])) {
+              return <span key={wi} className="rw" onClick={function(e){ defWord(pt, e); }}>{pt}</span>;
+            }
+            return <span key={wi}>{pt}</span>;
+          })}
+        </div>
+      );
+    });
+  };
+
   var forumApi = async function(action, opts) {
     opts = opts || {};
     var r = await authFetch("/api/forum/" + action + (opts.qs || ""), opts.post ? {
@@ -6077,30 +6109,84 @@ export default function App() {
 
         {tab==="music" && (
           <div className="main">
-            <div className="ss">
-              <div className="sico">🎵</div>
-              <h1 className="sti">Music</h1>
-              <p className="sde">Songs from the library — read the lyrics, follow the recording.</p>
-              <div style={{width:"100%",maxWidth:560,display:"flex",flexDirection:"column",gap:10}}>
-                {(function(){
-                  var music = (presetBooks || []).filter(function(b){
-                    return /song|music|lyric|музык|песн/i.test(String(b.category || ""));
-                  });
-                  if (!music.length) {
-                    return <p className="sde" style={{fontStyle:"italic"}}>No music in the library yet — song collections added under a “Song Lyrics” category will show up here.</p>;
-                  }
-                  return music.map(function(b){
-                    return (
-                      <button key={b.filename} className="btn-p" style={{textAlign:"left",padding:"14px 18px"}}
-                        onClick={function(){ loadPresetBook(b); setTab("chat"); setMode("read"); }}>
-                        <div style={{fontSize:17}}>{b.title}</div>
-                        {b.author && <div style={{fontSize:12,opacity:.8,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>{b.author}</div>}
-                      </button>
-                    );
-                  });
-                })()}
-              </div>
-            </div>
+            {(function(){
+              var artist = (musicData && musicArtist != null) ? musicData[musicArtist] : null;
+              var song = (artist && musicSong != null) ? artist.songs[musicSong] : null;
+
+              /* ── Song view: title, definable lyrics, video pinned below ── */
+              if (song) {
+                return (
+                  <div style={{flex:1,display:"flex",flexDirection:"column",minHeight:0}}>
+                    <div style={{flex:1,overflowY:"auto",padding:"22px 20px 12px"}}>
+                      <div style={{maxWidth:640,margin:"0 auto"}}>
+                        <button className="btn-g" style={{padding:"5px 12px",fontSize:13,marginBottom:14}}
+                          onClick={function(){ setMusicSong(null); setPopup(null); }}>← {artist.artist}</button>
+                        <div style={{fontFamily:"'Crimson Pro',serif",fontSize:15,color:"rgba(42,31,20,.55)",letterSpacing:.5}}>{artist.artist}</div>
+                        <h1 style={{fontFamily:"'Playfair Display',serif",fontSize:34,color:"#000",fontWeight:700,margin:"2px 0 18px",lineHeight:1.15}}>{song.title}</h1>
+                        <div style={{fontFamily:"'Crimson Pro',serif",fontSize:19,color:"#1c1610"}}>
+                          {renderLyrics(song.lyrics)}
+                        </div>
+                        <div style={{height:16}}/>
+                      </div>
+                    </div>
+                    <div style={{flexShrink:0,background:"#1a1611",padding:"10px 0 14px",borderTop:"1px solid rgba(42,31,20,.25)"}}>
+                      <div style={{maxWidth:560,margin:"0 auto",padding:"0 16px"}}>
+                        <div style={{position:"relative",width:"100%",paddingBottom:"46%",height:0}}>
+                          <iframe
+                            src={"https://www.youtube.com/embed/" + song.youtube}
+                            title={song.title}
+                            style={{position:"absolute",inset:0,width:"100%",height:"100%",border:"none",borderRadius:10}}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
+              /* ── Song list for an artist ── */
+              if (artist) {
+                return (
+                  <div className="ss">
+                    <div className="sico">🎤</div>
+                    <h1 className="sti">{artist.artist}</h1>
+                    <div style={{width:"100%",maxWidth:520,display:"flex",flexDirection:"column",gap:10}}>
+                      {artist.songs.map(function(sg, i2){
+                        return (
+                          <button key={i2} className="btn-p" style={{textAlign:"left",padding:"14px 18px"}}
+                            onClick={function(){ setMusicSong(i2); }}>
+                            <div style={{fontSize:17}}>{sg.title}</div>
+                          </button>
+                        );
+                      })}
+                      <button className="btn-g" onClick={function(){ setMusicArtist(null); }}>← Артисты</button>
+                    </div>
+                  </div>
+                );
+              }
+
+              /* ── Artist list ── */
+              return (
+                <div className="ss">
+                  <div className="sico">🎵</div>
+                  <h1 className="sti">Music</h1>
+                  <p className="sde">Учите русский через песни — каждое слово можно нажать.</p>
+                  <div style={{width:"100%",maxWidth:520,display:"flex",flexDirection:"column",gap:10}}>
+                    {musicData === null && <p className="sde">Loading…</p>}
+                    {(musicData || []).map(function(ar, i2){
+                      return (
+                        <button key={i2} className="btn-p" style={{textAlign:"left",padding:"16px 20px"}}
+                          onClick={function(){ setMusicArtist(i2); setMusicSong(null); }}>
+                          <div style={{fontSize:19}}>🎤 {ar.artist}</div>
+                          <div style={{fontSize:12,opacity:.8,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>{ar.songs.length} {ar.songs.length===1?"песня":"песни"}</div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })()}
           </div>
         )}
 
