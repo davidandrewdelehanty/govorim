@@ -1152,11 +1152,18 @@ async function parseFb2(buffer, options) {
   // chapter — which would otherwise be swallowed or duplicated).
   var paragraphsOf = function(sec, ownOnly) {
     var out = [];
-    var walk = function(el) {
+    // Indices of paragraphs that came out of an <epigraph>. Pushkin gives every
+    // chapter a verse epigraph whose lines are separate <p>s, so at full
+    // paragraph spacing the chapter opens with five stranded lines. Recorded
+    // here (never in `text`, so char offsets and chapter splitting are
+    // untouched) and rendered tight. Deliberately NOT extended to <poem>:
+    // Горе от ума wraps every speech in one, and those want normal spacing.
+    out.tightIdx = [];
+    var walk = function(el, inVerse) {
       for (var wi = 0; wi < el.children.length; wi++) {
         var c = el.children[wi];
         var tag = c.tagName.toLowerCase();
-        if (tag === "section") { if (!ownOnly) walk(c); continue; }
+        if (tag === "section") { if (!ownOnly) walk(c, inVerse); continue; }
         if (tag === "title") continue;   // headings live in chapter.heading
         if (tag === "p" || tag === "v" || tag === "subtitle") {
           var t = c.textContent.replace(/\s+/g, " ").trim();
@@ -1167,20 +1174,23 @@ async function parseFb2(buffer, options) {
           if (/^\d+\s/.test(t)) {
             var verseParts = t.split(/(?<=[.!?»а-яёА-ЯЁa-zA-Z])\s+(\d+)\s+(?=[А-ЯЁ«—])/);
             if (verseParts.length > 1) {
+              if (inVerse) out.tightIdx.push(out.length);
               out.push(verseParts[0].trim());
               for (var vi = 1; vi < verseParts.length - 1; vi += 2) {
+                if (inVerse) out.tightIdx.push(out.length);
                 out.push((verseParts[vi] + " " + verseParts[vi + 1]).trim());
               }
               continue;
             }
           }
+          if (inVerse) out.tightIdx.push(out.length);
           out.push(t);
           continue;
         }
-        walk(c);   // wrapper containers: epigraph, poem, cite, …
+        walk(c, inVerse || tag === "epigraph");   // wrapper containers: epigraph, poem, cite, …
       }
     };
-    walk(sec);
+    walk(sec, false);
     return out;
   };
 
@@ -1192,7 +1202,8 @@ async function parseFb2(buffer, options) {
   var pushChapter = function(out, heading, paras) {
     var body = paras.join("\n\n");
     if ((body.match(/[а-яёА-ЯЁ]/g) || []).length < 5) return;   // no Russian text
-    out.push({ heading: heading || ("Глава " + (out.length + 1)), text: body });
+    out.push({ heading: heading || ("Глава " + (out.length + 1)), text: body,
+               tightIdx: (paras && paras.tightIdx) || [] });
   };
 
   // Depth-first: one chapter per LEAF <section>, in document order. FB2s vary
@@ -5004,7 +5015,10 @@ export default function App() {
           proseEnLine = proseEn[String(entry.chIdx)] || null;
         }
 
-        var pMargin = {marginBottom: singlePageMode ? "0.35em" : (bookMeta && bookMeta.filename && bookMeta.filename.indexOf("негин") !== -1 ? "0.1em" : "1.2em")};
+        var isTight = !!(curChapter && curChapter.tightIdx && curChapter.tightIdx.indexOf(entry.chIdx) !== -1);
+        var pMargin = {marginBottom: singlePageMode ? "0.35em"
+          : (bookMeta && bookMeta.filename && bookMeta.filename.indexOf("негин") !== -1 ? "0.1em"
+          : (isTight ? "0.15em" : "1.2em"))};
         var ruBody = (function(){
               // If this paragraph is a play line, replace the punctuation between name and dialogue with an em-dash.
               if (speakerNameEnd > -1) {
