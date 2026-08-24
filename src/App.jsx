@@ -4902,7 +4902,11 @@ export default function App() {
       }
     }
 
-    return (function() {
+    // Side-by-side dual language is on whenever this chapter has English
+    // loaded (Bible verses or parallelEn prose). RU column = full reader
+    // width; EN column slides in from the right.
+    var dualActive = !!(proseEn || bibleEn);
+    var litEntries = (function() {
       // Pull the non-empty paragraphs in the order they appear, matching how
       // computePages indexes them.
       var nonEmpty = paragraphs.filter(function(p){ return p.some(function(t){ return t.text.trim().length > 0; }); });
@@ -4926,8 +4930,8 @@ export default function App() {
       // Normal case: render the whole paragraphs that belong to this page,
       // keeping each one's chapter-level paragraph index (parallel text keys on it).
       return currentPage.paraIndices.map(function(idx){ return { para: nonEmpty[idx] || [], chIdx: idx }; }).filter(function(e2){ return e2.para.length > 0; });
-    })()
-      .map(function(entry, pi, paraArr) {
+    })();
+    var litRendered = litEntries.map(function(entry, pi, paraArr) {
         var para = entry.para;
         // Detect play-style speaker attribution at the start of a paragraph.
         // Russian plays commonly use Title Case names like "Маша. ..." or "Медведенко. ..."
@@ -4937,8 +4941,18 @@ export default function App() {
         // Play-line detection: NAME punct dialogue. Skip for song books since
         // lines like "Владимирский централ - ветер северный" would otherwise
         // false-match as a speaker named "Владимирский централ".
+        // Горе от ума: speaker names are merged into the first line of each
+        // speech in the FB2 (Chekhov print style, "Имя. Реплика"), but the
+        // generic Title-Case pattern below misses this play's odd labels
+        // ("1-я княжна", "Лиза и София", "Лакей его"), so the play matches
+        // against its exact cast list instead — zero false positives on verse
+        // lines that merely open with a capitalized word.
+        var isGorePlay = bookMeta && bookMeta.filename && bookMeta.filename.indexOf("gore-ot-uma") !== -1;
+        var goreSpeakerRe = /^(Графиня-бабушка|Графиня-внучка|Наталья Дмитриевна|Платон Михайлович|Голос Софии|Лиза и София|Все вместе|Лакей его|[1-6]-я княжна|Лизанька|Молчалин|Репетилов|Скалозуб|Загорецкий|Хлёстова|Княгиня|Фамусов|Чацкий|София|Князь|Лакей|Слуга|Лиза|Всё|Все)([.:])(\s+)/;
         var speakerMatch = singlePageMode ? null
-          : paraText.match(/^([А-ЯЁ][а-яёА-ЯЁ\-]+(?:\s+[А-ЯЁ][а-яёА-ЯЁ\-]+){0,2})\s*([.:—–\-])(\s+)/);
+          : (isGorePlay
+              ? paraText.match(goreSpeakerRe)
+              : paraText.match(/^([А-ЯЁ][а-яёА-ЯЁ\-]+(?:\s+[А-ЯЁ][а-яёА-ЯЁ\-]+){0,2})\s*([.:—–\-])(\s+)/));
         var speakerNameEnd = -1, attribEnd = -1;
         // Guard against false positives — name must look like a name (≤40 chars) and there must be dialogue after.
         if (speakerMatch && speakerMatch[1].length <= 40 && paraText.length > speakerMatch[0].length + 3) {
@@ -4983,9 +4997,8 @@ export default function App() {
           proseEnLine = proseEn[String(entry.chIdx)] || null;
         }
 
-        return (
-          <p key={pi} style={{marginBottom: singlePageMode ? "0.35em" : (bookMeta && bookMeta.filename && bookMeta.filename.indexOf("негин") !== -1 ? "0.1em" : "1.2em")}}>
-            {(function(){
+        var pMargin = {marginBottom: singlePageMode ? "0.35em" : (bookMeta && bookMeta.filename && bookMeta.filename.indexOf("негин") !== -1 ? "0.1em" : "1.2em")};
+        var ruBody = (function(){
               // If this paragraph is a play line, replace the punctuation between name and dialogue with an em-dash.
               if (speakerNameEnd > -1) {
                 var elems = [];
@@ -5066,13 +5079,37 @@ export default function App() {
                 }
                 return <span key={i}>{tk.text.replace(/\n/g, " ")}</span>;
               });
-            })()}
-            {bibleHeadingLine ? <span className="bible-en bible-heading-en">{bibleHeadingLine}</span>
-              : (bibleEnLine ? <span className="bible-en">{bibleEnLine}</span>
-              : (proseEnLine ? <span className="bible-en">{proseEnLine}</span> : null))}
+            })();
+        // Dual-language: one grid row per paragraph — RU cell in the left
+        // column, EN cell in the right — so the two columns stay vertically
+        // lined up however tall either side runs. The empty-EN cell keeps the
+        // grid's two-cells-per-row rhythm intact.
+        if (dualActive) {
+          var enLine = bibleHeadingLine || bibleEnLine || proseEnLine;
+          return [
+            <p key={"ru" + pi} className="dual-ru" style={pMargin}>{ruBody}</p>,
+            <p key={"en" + pi} className={"dual-en" + (bibleHeadingLine ? " dual-en-heading" : "")} style={pMargin}>{enLine || "\u00a0"}</p>
+          ];
+        }
+        return (
+          <p key={pi} style={pMargin}>
+            {ruBody}
           </p>
         );
       });
+    if (dualActive) {
+      // Horizontal slide viewport: full-width RU pane on screen, EN pane one
+      // swipe / shift-scroll to the right, snap points at each pane edge.
+      return (
+        <div className="dual-outer">
+          <div className="dual-hint">⇄ English</div>
+          <div className="dual-scroll">
+            <div className="dual-grid">{litRendered}</div>
+          </div>
+        </div>
+      );
+    }
+    return litRendered;
   };
 
   var renderBubble = function(text) {
@@ -5384,6 +5421,17 @@ export default function App() {
         /* Dual-language Bible: English translation shown under each Russian verse */
         .bible-en{display:block;margin-top:3px;color:rgba(42,31,20,.5);font-size:0.9em;font-style:italic;line-height:1.5;letter-spacing:.005em}
         .bible-heading-en{font-style:normal;font-weight:600;color:rgba(42,31,20,.62);font-size:0.95em;letter-spacing:.01em}
+        /* Side-by-side dual language: the Russian column takes the full reader
+           width; the English column sits just off-screen to the right. The
+           block scrolls horizontally — swipe on mobile, shift-wheel / drag /
+           thin scrollbar on desktop — with snap points at each column, and one
+           grid row per paragraph keeps RU and EN vertically lined up. */
+        .dual-hint{text-align:right;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(42,31,20,.38);margin:0 0 8px;user-select:none}
+        .dual-scroll{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin;padding-bottom:4px}
+        .dual-grid{display:grid;grid-template-columns:100% 100%;column-gap:36px;align-items:start}
+        .dual-grid > p{scroll-snap-align:start}
+        .dual-en{color:rgba(42,31,20,.72)}
+        .dual-en-heading{font-weight:600;color:rgba(42,31,20,.62)}
         /* Words inside the sentence currently being read aloud. Applied at
            the start of each sentence's playback via direct DOM manipulation
            (no React re-render). Uses a soft warm tint so a whole sentence's
