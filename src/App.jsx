@@ -5093,10 +5093,34 @@ export default function App() {
         // grid's two-cells-per-row rhythm intact.
         if (dualActive) {
           var enLine = bibleHeadingLine || bibleEnLine || proseEnLine;
-          return [
-            <p key={"ru" + pi} className="dual-ru" style={pMargin}>{ruBody}</p>,
-            <p key={"en" + pi} className={"dual-en" + (bibleHeadingLine ? " dual-en-heading" : "")} style={pMargin}>{enLine || "\u00a0"}</p>
+          // Verse books (Онегин) carry English per STANZA, keyed to the
+          // stanza's first line: that EN cell spans down to the next
+          // EN-bearing row so the Russian lines keep their own rhythm while
+          // the stanza translation sits beside the whole stanza. Prose books
+          // have EN on (nearly) every row, so spans collapse to 1. Rows are
+          // placed explicitly to keep the two columns deterministic.
+          var enSpan = 1, emitEn = true;
+          if (proseEn && !bibleEn) {
+            if (proseEnLine) {
+              for (var q2 = pi + 1; q2 < paraArr.length; q2++) {
+                if (proseEn[String(paraArr[q2].chIdx)]) break;
+                enSpan++;
+              }
+            } else {
+              emitEn = false;   // covered by a previous spanning EN cell
+            }
+          }
+          var dualCells = [
+            <p key={"ru" + pi} className="dual-ru"
+               style={Object.assign({gridColumn: 1, gridRow: String(pi + 1)}, pMargin)}>{ruBody}</p>
           ];
+          if (emitEn) {
+            dualCells.push(
+              <p key={"en" + pi} className={"dual-en" + (bibleHeadingLine ? " dual-en-heading" : "")}
+                 style={Object.assign({gridColumn: 2, gridRow: (pi + 1) + (enSpan > 1 ? " / span " + enSpan : "")}, pMargin)}>{enLine || "\u00a0"}</p>
+            );
+          }
+          return dualCells;
         }
         return (
           <p key={pi} style={pMargin}>
