@@ -4460,6 +4460,9 @@ export default function App() {
         // JSON and audio through /api/media rather than from /books/.
         restricted: !!opts.restricted,
         parallelEn: opts.parallelEn || null,
+        // Plays only: enables inline golden speaker-name formatting. Novels
+        // must never get it — "Москва. Тишина стояла..." is not a character.
+        play: !!opts.play,
       };
       setChapters(chs);
       setBookMeta(meta);
@@ -4544,6 +4547,7 @@ export default function App() {
         audiobook: book.audiobook || null,
         restricted: !!book.restricted,
         parallelEn: book.parallelEn || null,
+        play: !!book.play,
       });
     } catch(err) {
       setFErr(err.message || "Failed to load preset book");
@@ -4949,7 +4953,10 @@ export default function App() {
         // lines that merely open with a capitalized word.
         var isGorePlay = bookMeta && bookMeta.filename && bookMeta.filename.indexOf("gore-ot-uma") !== -1;
         var goreSpeakerRe = /^(Графиня-бабушка|Графиня-внучка|Наталья Дмитриевна|Платон Михайлович|Голос Софии|Лиза и София|Все вместе|Лакей его|[1-6]-я княжна|Лизанька|Молчалин|Репетилов|Скалозуб|Загорецкий|Хлёстова|Княгиня|Фамусов|Чацкий|София|Князь|Лакей|Слуга|Лиза|Всё|Все)([.:])(\s+)/;
-        var speakerMatch = singlePageMode ? null
+        // Speaker formatting is opt-in per book via the catalogue's
+        // "play": true flag — prose paragraphs that happen to open with a
+        // Title-Case word + period ("Москва. Тишина...") must stay plain.
+        var speakerMatch = (singlePageMode || !(bookMeta && bookMeta.play)) ? null
           : (isGorePlay
               ? paraText.match(goreSpeakerRe)
               : paraText.match(/^([А-ЯЁ][а-яёА-ЯЁ\-]+(?:\s+[А-ЯЁ][а-яёА-ЯЁ\-]+){0,2})\s*([.:—–\-])(\s+)/));
