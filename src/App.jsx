@@ -6627,7 +6627,11 @@ export default function App() {
                             }}>
                             <option value="" disabled>📖 Choose a book from the library…</option>
                             {(function() {
-                              var CATEGORIES = ["Works", "Song Lyrics", "Poetry", "Spectacle", "Speeches"];
+                              // "Texts Without English" is a normal category an admin sets on
+                              // a book; it renders LAST (after "Other") so the library ends with
+                              // the titles that have no parallel translation yet.
+                              var CATEGORIES = ["Works", "Song Lyrics", "Poetry", "Spectacle", "Speeches", "Texts Without English"];
+                              var ORDER = ["Works", "Song Lyrics", "Poetry", "Spectacle", "Speeches", "Other", "Texts Without English"];
                               // Normalize legacy "Novel", "Short Stories", and "Plays" entries into "Works".
                               var normalize = function(cat) {
                                 if (cat === "Novel" || cat === "Short Stories" || cat === "Plays") return "Works";
@@ -6641,7 +6645,7 @@ export default function App() {
                                 var bucket = CATEGORIES.indexOf(cat) !== -1 ? cat : "Other";
                                 buckets[bucket].push({ book: book, idx: idx });
                               });
-                              return CATEGORIES.concat(["Other"]).flatMap(function(cat) {
+                              return ORDER.flatMap(function(cat) {
                                 var entries = buckets[cat];
                                 if (!entries.length) return [];
                                 var withAudio = entries.filter(function(e){ return !!e.book.audiobook; });
@@ -6651,6 +6655,16 @@ export default function App() {
                                   return <option key={entry.idx} value={entry.idx}>{bookLabel(book)}</option>;
                                 };
                                 var groups = [];
+                                if (cat === "Texts Without English") {
+                                  // Defining trait is the missing translation, not the audio,
+                                  // so this one stays a single undivided group.
+                                  groups.push(
+                                    <optgroup key={cat} label={"📖 " + cat}>
+                                      {entries.map(makeOption)}
+                                    </optgroup>
+                                  );
+                                  return groups;
+                                }
                                 if (withAudio.length) groups.push(
                                   <optgroup key={cat+"-audio"} label={"🎧 " + cat + " — With Audiobook"}>
                                     {withAudio.map(makeOption)}
@@ -6687,7 +6701,10 @@ export default function App() {
                         // Group preset books by category, preserving original index for lookup.
                         // Normalize legacy "Novel"/"Short Stories"/"Plays" → "Works" so older
                         // entries in index.json fall into the right bucket without an admin edit.
-                        var CATEGORIES = ["Works", "Song Lyrics", "Poetry", "Spectacle", "Speeches"];
+                        var CATEGORIES = ["Works", "Song Lyrics", "Poetry", "Spectacle", "Speeches", "Texts Without English"];
+                        // Render order: "Texts Without English" sits at the very bottom,
+                        // after the catch-all "Other" bucket.
+                        var ORDER = ["Works", "Song Lyrics", "Poetry", "Spectacle", "Speeches", "Other", "Texts Without English"];
                         var normalize = function(cat) {
                           if (cat === "Novel" || cat === "Short Stories" || cat === "Plays") return "Works";
                           return cat;
@@ -6702,7 +6719,7 @@ export default function App() {
                           buckets[bucket].push({ book: book, idx: idx });
                         });
 
-                        var presetCount = CATEGORIES.concat(["Other"]).reduce(function(a, c){ return a + buckets[c].length; }, 0);
+                        var presetCount = ORDER.reduce(function(a, c){ return a + buckets[c].length; }, 0);
                         var totalResults = presetCount + filteredUploads.length;
                         if (q && totalResults === 0) {
                           return <div style={{padding:"40px 16px",textAlign:"center",color:"rgba(0,0,0,.5)",fontStyle:"italic"}}>No books match «{bookSearch}»</div>;
@@ -6746,7 +6763,7 @@ export default function App() {
                               </div>
                             )}
                             {/* Preset library, grouped by category, then by audiobook availability */}
-                            {CATEGORIES.concat(["Other"]).map(function(cat) {
+                            {ORDER.map(function(cat) {
                               var entries = buckets[cat];
                               if (!entries.length) return null;
                               var withAudio = entries.filter(function(e){ return !!(e.book.audiobook); });
@@ -6768,7 +6785,7 @@ export default function App() {
                                     }}>
                                     <div className="lib-card-title">{bookLabel(book)}</div>
                                     <div className="lib-card-meta">
-                                      {cat !== "Other" && <span className="lib-card-cat">{cat}</span>}
+                                      {cat !== "Other" && cat !== "Texts Without English" && <span className="lib-card-cat">{cat}</span>}
                                       {book.audiobook && <span style={{fontSize:11,color:"#c4955a"}}>🎧 Audiobook</span>}
                                       {cat === "Song Lyrics" && book.songs && book.songs.length > 0 && (
                                         <span style={{fontSize:11,color:"rgba(42,31,20,.45)"}}>{book.songs.length} song{book.songs.length === 1 ? "" : "s"}</span>
@@ -6783,6 +6800,17 @@ export default function App() {
                                   </div>
                                 );
                               };
+                              if (cat === "Texts Without English") {
+                                // One undivided group: what these share is the missing
+                                // translation, not whether they have a recording (the 🎧
+                                // badge on each card already says that).
+                                return (
+                                  <div key={cat} className="lib-section">
+                                    <div className="lib-section-hdr">📖 Texts Without English</div>
+                                    <div className="lib-grid">{entries.map(renderCard)}</div>
+                                  </div>
+                                );
+                              }
                               return (
                                 <div key={cat} className="lib-section">
                                   {withAudio.length > 0 && (
