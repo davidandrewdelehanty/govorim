@@ -4970,7 +4970,7 @@ export default function App() {
         // Dual-language Bible: the English line for this verse (if loaded and
         // this paragraph is a numbered verse). Display-only; the audio and word
         // highlighting stay Russian, since the aligner only tokenizes Cyrillic.
-        var bibleEnLine = null, bibleHeadingLine = null;
+        var bibleEnLine = null, bibleHeadingLine = null, bibleEnNum = null;
         if (bibleEn || bibleHeadings) {
           // Section headings ("Сотворение мира") and the chapter title
           // ("Глава 1") live inside <title>/<subtitle><p>..</p></title>; the
@@ -4993,7 +4993,7 @@ export default function App() {
                 var pjt = paraArr[pj].para.map(function(t){ return t.text; }).join("");
                 if ((pjt.match(/^\s*(\d+)/) || [])[1] === vno) { isLastForNum = false; break; }
               }
-              if (isLastForNum) bibleEnLine = bibleEn[vno];
+              if (isLastForNum) { bibleEnLine = bibleEn[vno]; bibleEnNum = vno; }
             }
           }
         }
@@ -5110,6 +5110,16 @@ export default function App() {
               emitEn = false;   // covered by a previous spanning EN cell
             }
           }
+          // Bible: repeat the verse number at the head of the English cell,
+          // styled exactly like the Russian column's, so a reader scanning
+          // across sees the same numeral on both sides of the split.
+          var enContent = enLine || "\u00a0";
+          if (bibleEnNum && enLine) {
+            enContent = [
+              <span key="vno" className="bible-en-vno">{bibleEnNum}</span>,
+              <span key="txt">{enLine}</span>
+            ];
+          }
           var dualCells = [
             <p key={"ru" + pi} className="dual-ru"
                style={Object.assign({gridColumn: 1, gridRow: String(pi + 1)}, pMargin)}>{ruBody}</p>
@@ -5117,7 +5127,7 @@ export default function App() {
           if (emitEn) {
             dualCells.push(
               <p key={"en" + pi} className={"dual-en" + (bibleHeadingLine ? " dual-en-heading" : "")}
-                 style={Object.assign({gridColumn: 2, gridRow: (pi + 1) + (enSpan > 1 ? " / span " + enSpan : "")}, pMargin)}>{enLine || "\u00a0"}</p>
+                 style={Object.assign({gridColumn: 2, gridRow: (pi + 1) + (enSpan > 1 ? " / span " + enSpan : "")}, pMargin)}>{enContent}</p>
             );
           }
           return dualCells;
@@ -5462,6 +5472,7 @@ export default function App() {
         .dual-grid{display:grid;grid-template-columns:100% 100%;column-gap:36px;align-items:start}
         .dual-grid > p{scroll-snap-align:start}
         .dual-en{color:rgba(42,31,20,.72)}
+        .bible-en-vno{font-size:0.7em;font-weight:700;color:#c4955a;vertical-align:super;line-height:1;margin-right:2px;font-family:'Inter',sans-serif;letter-spacing:.02em}
         .dual-en-heading{font-weight:600;color:rgba(42,31,20,.62)}
         /* Words inside the sentence currently being read aloud. Applied at
            the start of each sentence's playback via direct DOM manipulation
