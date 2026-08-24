@@ -13,6 +13,7 @@
 // name, and this dispatcher calls the matching handler.
 
 import { handleUsers }            from "../lib/admin/users.js";
+import { handleMailTest }         from "../lib/admin/mailtest.js";
 import { handleImportUserdata }  from "../lib/admin/import-userdata.js";
 import { handleUploadBook }       from "../lib/admin/upload-book.js";
 import { handleUploadSong }       from "../lib/admin/upload-song.js";
@@ -20,6 +21,7 @@ import { handleUploadSong }       from "../lib/admin/upload-song.js";
 const ROUTES = {
   "import-userdata":    handleImportUserdata,
   "users":              handleUsers,
+  "mailtest":           handleMailTest,
   "upload-book":        handleUploadBook,
   "upload-song":        handleUploadSong,
 };

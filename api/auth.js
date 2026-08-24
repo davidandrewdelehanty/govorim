@@ -16,9 +16,18 @@
 //   R2_ENDPOINT, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY — account storage.
 
 import {
-  normalizeEmail, emailProblem, passwordProblem,
-  findAccount, createAccount, verifyPassword, touchLogin,
-  signSession, setSessionCookie, clearSessionCookie, currentUser,
+  normalizeEmail,
+  emailProblem,
+  passwordProblem,
+  findAccount,
+  createAccount,
+  verifyPassword,
+  touchLogin,
+  signSession,
+  setSessionCookie,
+  clearSessionCookie,
+  currentUser,
+  isApproved,
 } from "../lib/auth.js";
 import { sendEmail } from "../lib/admin/helpers.js";
 
@@ -69,7 +78,21 @@ export default async function handler(req, res) {
   if (Array.isArray(action)) action = action[0];
 
   if (action === "me") {
-    return res.status(200).json({ user: currentUser(req) });
+    const who = currentUser(req);
+    if (!who) return res.status(200).json({ user: null });
+    // Re-read the account so revoking approval takes effect on the next page
+    // load rather than whenever the signed session happens to expire.
+    try {
+      const account = await findAccount(who.email);
+      if (!account || !isApproved(account)) {
+        clearSessionCookie(res);
+        return res.status(200).json({ user: null, pending: !!account });
+      }
+    } catch (_) {
+      // An R2 hiccup should not lock every reader out of the site, so fall
+      // through and trust the signed session.
+    }
+    return res.status(200).json({ user: who });
   }
 
   if (action === "logout") {
@@ -105,17 +128,38 @@ export default async function handler(req, res) {
       if (badPassword) return res.status(400).json({ error: badPassword });
       const { account, error } = await createAccount(email, password);
       if (error) return res.status(409).json({ error });
-      // Tell the admin someone joined. Best-effort — a Resend hiccup must
-      // never break the signup itself.
+      // Tell the admin someone joined. Best-effort — a mail failure must never
+      // break the signup — but log the reason, because a silent failure here is
+      // indistinguishable from "nobody signed up".
       const notifyTo = process.env.FORUM_NOTIFY_EMAIL || process.env.ADMIN_EMAIL;
-      if (notifyTo && normalizeEmail(notifyTo) !== email) {
+      if (notifyTo) {
+        const safe = email.replace(/[&<>"]/g, "");
         try {
-          await sendEmail({
+          const out = await sendEmail({
             to: notifyTo,
-            subject: "[Govorim] New account: " + email,
-            html: "<p>A new reader signed up: <strong>" + email.replace(/[&<>\"]/g, "") + "</strong></p>",
+            subject: "[Govorim] Account awaiting approval: " + safe,
+            html:
+              "<p>A new reader signed up and is waiting for approval:</p>" +
+              "<p><strong>" + safe + "</strong></p>" +
+              "<p>They cannot sign in until you approve them in Manage Users.</p>",
           });
-        } catch (_) {}
+          if (out && out.sent === false) {
+            console.error("[auth] signup notification not sent:", out.error);
+          }
+        } catch (err) {
+          console.error("[auth] signup notification threw:", err && err.message);
+        }
+      } else {
+        console.error("[auth] signup notification skipped: neither FORUM_NOTIFY_EMAIL nor ADMIN_EMAIL is set");
+      }
+
+      // New accounts wait for approval, so no session cookie is issued here.
+      if (!isApproved(account)) {
+        return res.status(200).json({
+          pending: true,
+          user: null,
+          message: "Your account has been created and is waiting for approval.",
+        });
       }
       setSessionCookie(res, signSession(account));
       return res.status(200).json({ user: publicUser(account) });
@@ -129,6 +173,12 @@ export default async function handler(req, res) {
     if (!ok) {
       noteAttempt(ip);
       return res.status(401).json({ error: "Email or password is incorrect." });
+    }
+    if (!isApproved(account)) {
+      return res.status(403).json({
+        pending: true,
+        error: "Your account is waiting for approval. You'll be able to sign in once it's approved.",
+      });
     }
     await touchLogin(account);
     setSessionCookie(res, signSession(account));

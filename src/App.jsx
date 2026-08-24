@@ -1670,6 +1670,7 @@ export default function App() {
   var [authPassword, setAuthPassword] = useState("");
   var [authBusy, setAuthBusy] = useState(false);
   var [authErr, setAuthErr]   = useState("");
+  var [authNotice, setAuthNotice] = useState("");   // "waiting for approval" and similar
 
   // credentials:"same-origin" is the default for same-origin requests, but it
   // is stated here because every call that needs the session goes through
@@ -1692,7 +1693,7 @@ export default function App() {
   var submitAuth = async function(e) {
     if (e && e.preventDefault) e.preventDefault();
     if (authBusy) return;
-    setAuthBusy(true); setAuthErr("");
+    setAuthBusy(true); setAuthErr(""); setAuthNotice("");
     try {
       var r = await fetch("/api/auth/" + authMode, {
         method: "POST",
@@ -1702,6 +1703,13 @@ export default function App() {
       });
       var d = await r.json().catch(function() { return {}; });
       if (!r.ok) throw new Error(d.error || "Sign-in failed");
+      // A new account is created but not signed in: it waits for approval.
+      if (d.pending || !d.user) {
+        setAuthNotice(d.message || "Your account has been created and is waiting for approval. You'll be able to sign in once it's approved.");
+        setAuthPassword("");
+        setAuthMode("login");
+        return;
+      }
       setMe(d.user || null);
       setAuthOpen(false);
       setAuthPassword("");
@@ -3482,6 +3490,24 @@ export default function App() {
       setAdminUsers(d.users || []);
     } catch(e) {
       setAdminErr(e.message || "Failed to load users");
+    } finally { setAdminLoad(false); }
+  };
+
+  // Approve or revoke one account. The server returns the refreshed list so the
+  // modal never shows a stale row after the write.
+  var setUserApproval = async function(email, approved) {
+    setAdminLoad(true); setAdminErr("");
+    try {
+      var r = await authFetch("/api/admin/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email, approved: approved }),
+      });
+      var d = await r.json();
+      if (!r.ok) throw new Error(d.error || "Failed to update user");
+      setAdminUsers(d.users || []);
+    } catch(e) {
+      setAdminErr(e.message || "Failed to update user");
     } finally { setAdminLoad(false); }
   };
 
@@ -5683,6 +5709,7 @@ export default function App() {
         .auth-in:focus{border-color:rgba(196,149,90,.55)}
         .auth-hint{font-family:'Crimson Pro',serif;font-size:12px;color:rgba(42,31,20,.5)}
         .auth-err{font-family:'Crimson Pro',serif;font-size:13px;color:#9d4630;background:rgba(157,70,48,.08);border:1px solid rgba(157,70,48,.25);border-radius:8px;padding:8px 10px}
+        .auth-note{font-family:'Crimson Pro',serif;font-size:13px;color:#5d4a2e;background:rgba(196,149,90,.12);border:1px solid rgba(196,149,90,.4);border-radius:8px;padding:8px 10px;line-height:1.45}
         .auth-switch{background:none;border:none;color:#c4955a;font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;text-decoration:underline;padding:0}
         .acct-email{font-family:'Crimson Pro',serif;font-size:12px;color:rgba(42,31,20,.6);max-width:340px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         /* Small screens: let the header wrap instead of clipping, hide the
@@ -5784,6 +5811,7 @@ export default function App() {
                 <div className="auth-hint">At least 10 characters. Longer is better than fancier.</div>
               )}
               {authErr && <div className="auth-err">{authErr}</div>}
+              {authNotice && <div className="auth-note">{authNotice}</div>}
               <button className="adm-btn approve" type="submit" disabled={authBusy}>
                 {authBusy ? "…" : (authMode === "login" ? "Sign in" : "Create account")}
               </button>
@@ -5819,12 +5847,33 @@ export default function App() {
                       </div>
                     </div>
                     {u.isAdmin && <div className="adm-status admin">Admin</div>}
+                    {!u.isAdmin && (
+                      <div className="adm-status pending" style={u.approved ? {background:"rgba(90,133,86,.18)",color:"#2f5a2a",borderColor:"rgba(90,133,86,.3)"} : null}>
+                        {u.approved ? (u.grandfathered ? "Existing" : "Approved") : "Pending"}
+                      </div>
+                    )}
+                    {!u.isAdmin && (
+                      <div className="adm-actions">
+                        {!u.approved && (
+                          <button className="adm-btn approve" disabled={adminLoad}
+                            onClick={function(){ setUserApproval(u.email, true); }}>Approve</button>
+                        )}
+                        {u.approved && (
+                          <button className="adm-btn reject" disabled={adminLoad}
+                            onClick={function(){ setUserApproval(u.email, false); }}>Revoke</button>
+                        )}
+                      </div>
+                    )}
                   </div>
                 );
               })}
             </div>
             <div className="adm-foot">
-              <span style={{fontSize:12,color:"rgba(0,0,0,.5)"}}>{adminUsers.length} {adminUsers.length === 1 ? "user" : "users"}</span>
+              <span style={{fontSize:12,color:"rgba(0,0,0,.5)"}}>
+                {adminUsers.length} {adminUsers.length === 1 ? "user" : "users"}
+                {adminUsers.filter(function(u){ return !u.isAdmin && !u.approved; }).length > 0 &&
+                  " · " + adminUsers.filter(function(u){ return !u.isAdmin && !u.approved; }).length + " awaiting approval"}
+              </span>
               <button className="adm-refresh" onClick={loadAdminUsers} disabled={adminLoad}>Refresh</button>
             </div>
           </div>
@@ -6015,6 +6064,7 @@ export default function App() {
                   <div className="auth-hint">At least 10 characters. Longer is better than fancier.</div>
                 )}
                 {authErr && <div className="auth-err">{authErr}</div>}
+              {authNotice && <div className="auth-note">{authNotice}</div>}
                 <button className="btn-p" type="submit" disabled={authBusy}>
                   {authBusy ? "…" : (authMode === "login" ? "Sign in" : "Create account")}
                 </button>
