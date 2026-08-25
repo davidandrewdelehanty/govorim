@@ -5760,6 +5760,9 @@ export default function App() {
         .psave:hover{background:rgba(196,149,90,.2)}
         .yobtn{width:100%;background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.15);color:#000;padding:9px;border-radius:10px;font-size:15px;cursor:pointer;font-family:'Crimson Pro',serif;transition:background .15s;text-align:left;margin-bottom:4px}
         .yobtn:hover{background:rgba(42,31,20,.12)}
+        .gvin{width:100%;box-sizing:border-box;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.15);color:#000;padding:8px 9px;border-radius:9px;font-size:14px;font-family:'Crimson Pro',serif}
+        .gvin:focus{outline:none;border-color:rgba(42,31,20,.4);background:rgba(42,31,20,.07)}
+        .gvin::placeholder{color:rgba(42,31,20,.45)}
         .panel{flex:1;padding:28px;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
         .phdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
         .pti{font-family:'Playfair Display',serif;font-size:20px;color:#000}
