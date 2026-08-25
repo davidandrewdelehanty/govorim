@@ -1,12 +1,16 @@
-// Serverless function: word definitions from the Yandex Dictionary API.
+// Serverless function: word definitions from the Yandex Dictionary API,
+// with English Wiktionary as a free, keyless second tier behind it.
 //
 // The old path sent every word tap through Gemini (/api/chat). This endpoint
 // replaces that with a real dictionary: instant, deterministic, and free
-// (10,000 lookups/day on the free key). The frontend still falls back to the
-// AI define for words Yandex doesn't know — rare or literary forms.
+// (10,000 lookups/day on the free key). Words Yandex has never heard of —
+// archaic, dialect and literary forms, which is most of what a 19th-century
+// novel throws at you — fall through to Wiktionary instead of to an AI.
 //
 // Required env var on Vercel:
 //   YANDEX_DICT_KEY — free key from https://yandex.com/dev/dictionary/keys/get/
+// Optional:
+//   WIKTIONARY_FALLBACK — set to "0" to switch the second tier off.
 //
 // Notes:
 // - MORPHO flag (0x0004) makes Yandex accept inflected forms: looking up
@@ -173,12 +177,233 @@ function buildEntry(defs, clickedWord, matchedForm) {
   };
 }
 
+
+// ---- Wiktionary fallback ---------------------------------------------------
+// Yandex is a modern learner's dictionary: excellent on everyday vocabulary,
+// silent on exactly the words the library is full of (davecha, treugolka,
+// archaic participles, dialect spellings). English Wiktionary covers that long
+// tail, so a Yandex miss falls through to it via freedictionaryapi.com — a
+// free, keyless JSON view over the same Wiktionary data. Their cap is 1000
+// requests/hour per IP; the CDN cache below keeps us nowhere near it.
+//
+// Wiktionary text is CC BY-SA 4.0, so these entries carry
+// definitionSource === "wiktionary" plus a sourceUrl, and the popup renders
+// the attribution line the licence requires.
+
+const WIKT_URL = "https://freedictionaryapi.com/api/v1/entries/ru/";
+const COMBINING = /[\u0300-\u036f]/g;   // stress marks live in the canonical form
+
+function deaccent(s) { return (s || "").replace(COMBINING, "").trim(); }
+
+function hasTag(tags, name) {
+  return Array.isArray(tags) && tags.some(function (t) { return String(t).toLowerCase() === name; });
+}
+
+function isFormOf(sense) { return hasTag(sense && sense.tags, "form of"); }
+
+async function wiktFetch(word, signal) {
+  const resp = await fetch(WIKT_URL + encodeURIComponent(word), {
+    signal,
+    headers: { accept: "application/json", "user-agent": "govorim.dev dictionary lookup" },
+  });
+  if (resp.status === 404) return null;
+  if (!resp.ok) {
+    const err = new Error("Wiktionary returned HTTP " + resp.status);
+    err.wiktStatus = resp.status;
+    throw err;
+  }
+  const data = await resp.json();
+  const all = Array.isArray(data && data.entries) ? data.entries : [];
+  const ru = all.filter(function (e) { return e && e.language && e.language.code === "ru"; });
+  if (!ru.length) return null;
+  return { entries: ru, sourceUrl: (data.source && data.source.url) || "" };
+}
+
+// The canonical form carries the stress mark and the grammatical tags.
+function canonicalForm(entry) {
+  const forms = Array.isArray(entry.forms) ? entry.forms : [];
+  for (const f of forms) if (hasTag(f.tags, "canonical")) return f;
+  return null;
+}
+
+function definedSenses(entry) {
+  const senses = Array.isArray(entry && entry.senses) ? entry.senses : [];
+  return senses.filter(function (s) { return s && s.definition; });
+}
+
+function realSenses(entry) {
+  const defined = definedSenses(entry);
+  const real = defined.filter(function (s) { return !isFormOf(s); });
+  return real.length ? real : defined;
+}
+
+// Prefer the entry that actually means something over one that only says
+// "genitive plural of ..." — a word can be both (stekló: noun and verb form).
+function pickEntry(entries) {
+  let best = null, bestScore = -1;
+  for (const e of entries) {
+    const defined = definedSenses(e);
+    const real = defined.filter(function (s) { return !isFormOf(s); });
+    const score = real.length * 10 + defined.length;
+    if (score > bestScore) { bestScore = score; best = e; }
+  }
+  return best;
+}
+
+// "prepositional singular of stol (stol)" -> the Cyrillic lemma.
+function lemmaPointer(entry) {
+  for (const s of definedSenses(entry)) {
+    const m = /\bof\s+([\u0400-\u04ff\u0300-\u036f-]+)/.exec(s.definition);
+    if (m) return deaccent(m[1]);
+  }
+  return "";
+}
+
+// An imperfective entry lists its perfective partner(s) as bare single-tag
+// forms; everything else in forms[] is the conjugation table or template noise.
+// Yandex never gave us this, so the Wiktionary tier actually fills aspectPair.
+function aspectPartners(entry, aspect) {
+  const want = aspect === "imperfective" ? "perfective" : aspect === "perfective" ? "imperfective" : "";
+  if (!want) return [];
+  const forms = Array.isArray(entry.forms) ? entry.forms : [];
+  const out = [];
+  for (const f of forms) {
+    if (!f || !f.word || f.word === "-") continue;
+    if (Array.isArray(f.tags) && f.tags.length === 1 && f.tags[0] === want) {
+      const w = deaccent(f.word);
+      if (w && out.indexOf(w) === -1) out.push(w);
+    }
+  }
+  return out.slice(0, 3);
+}
+
+// Map a Wiktionary pack onto the same entry shape the popup and the vocab
+// list already consume, so nothing downstream needs to know where it came from.
+function buildWiktEntry(pack, clickedWord, matchedForm, formNote) {
+  const entry = pickEntry(pack.entries);
+  if (!entry) return null;
+
+  const canon = canonicalForm(entry);
+  const accented = canon ? canon.word : "";
+  const canonTags = (canon && canon.tags) || [];
+  const lemma = deaccent(accented) || deaccent(entry.word) || matchedForm || clickedWord;
+
+  const senses = realSenses(entry);
+  const translation = senses.slice(0, 4)
+    .map(function (s) { return String(s.definition).trim(); })
+    .filter(Boolean)
+    .join("; ");
+  if (!translation) return null;
+
+  let aspect = "";
+  if (hasTag(canonTags, "imperfective")) aspect = "imperfective";
+  else if (hasTag(canonTags, "perfective")) aspect = "perfective";
+
+  let gender = "";
+  if (hasTag(canonTags, "masculine")) gender = "masculine";
+  else if (hasTag(canonTags, "feminine")) gender = "feminine";
+  else if (hasTag(canonTags, "neuter")) gender = "neuter";
+
+  const pair = aspectPartners(entry, aspect);
+
+  const bits = [];
+  if (accented && accented !== lemma) bits.push(accented);
+  if (gender) bits.push(gender + " noun");
+  else if (aspect) bits.push(aspect + " verb");
+  if (pair.length) bits.push((aspect === "imperfective" ? "pf. " : "impf. ") + pair.join(", "));
+  const ipa = (Array.isArray(entry.pronunciations) ? entry.pronunciations : [])
+    .filter(function (p) { return p && p.type === "ipa" && p.text && (!p.tags || !p.tags.length); })[0];
+  if (ipa) bits.push(ipa.text);
+  if (formNote) bits.push(formNote);
+  for (const other of pack.entries) {
+    if (other === entry || bits.length > 6) continue;
+    const os = realSenses(other)[0];
+    if (os) bits.push("also " + (other.partOfSpeech || "?") + ": " + String(os.definition).slice(0, 60));
+  }
+
+  const syns = [];
+  const addSyns = function (list) {
+    (Array.isArray(list) ? list : []).forEach(function (x) {
+      const w = deaccent(typeof x === "string" ? x : (x && x.word) || "");
+      if (w && w.toLowerCase() !== lemma.toLowerCase() && syns.indexOf(w) === -1) syns.push(w);
+    });
+  };
+  addSyns(entry.synonyms);
+  senses.forEach(function (s) { addSyns(s.synonyms); });
+
+  // Wiktionary examples are Russian-only (no gloss), and quotes can be a whole
+  // Bible verse — take the shortest useful thing and cap it.
+  let example = "";
+  for (const s of senses) {
+    const exs = Array.isArray(s.examples) ? s.examples : [];
+    for (const ex of exs) {
+      const t = (typeof ex === "string" ? ex : (ex && ex.text) || "").trim();
+      if (t) { example = t; break; }
+    }
+    if (example) break;
+    const qs = Array.isArray(s.quotes) ? s.quotes : [];
+    if (qs.length && qs[0] && qs[0].text) { example = String(qs[0].text).trim(); break; }
+  }
+  if (example.length > 180) example = example.slice(0, 177) + "…";
+
+  return {
+    word: clickedWord,
+    lemma: lemma,
+    matchedForm: matchedForm,
+    partOfSpeech: (entry.partOfSpeech || "").toLowerCase(),
+    aspect: aspect,
+    aspectPair: pair.join(", "),
+    translation: translation,
+    definitionRu: syns.length ? "≈ " + syns.slice(0, 5).join(", ") : "",
+    grammar: bits.join(" · "),
+    example: example,
+    exampleTranslation: "",
+    definitionSource: "wiktionary",
+    sourceUrl: pack.sourceUrl || "",
+  };
+}
+
+// Two candidates only (as clicked, and the yo-folded spelling): Wiktionary
+// indexes yo properly, so the variant spray Yandex needs would just burn time
+// against this request's shared 10s budget.
+async function wiktionaryLookup(candidates, clickedWord, signal) {
+  for (const cand of candidates) {
+    const pack = await wiktFetch(cand, signal);
+    if (!pack) continue;
+
+    const direct = pickEntry(pack.entries);
+    const hasReal = definedSenses(direct).some(function (s) { return !isFormOf(s); });
+    if (hasReal) {
+      const built = buildWiktEntry(pack, clickedWord, cand, "");
+      if (built) return built;
+      continue;
+    }
+
+    // An inflected form: "stole" only says "prepositional singular of stol".
+    // Follow that one hop for the actual meaning, keeping the grammatical note
+    // so the reader still sees which case they clicked.
+    const note = String((realSenses(direct)[0] || {}).definition || "").slice(0, 80);
+    const ptr = lemmaPointer(direct || {});
+    if (ptr && ptr !== cand) {
+      const lemPack = await wiktFetch(ptr, signal);
+      if (lemPack) {
+        const built = buildWiktEntry(lemPack, clickedWord, cand, note);
+        if (built) return built;
+      }
+    }
+    const asIs = buildWiktEntry(pack, clickedWord, cand, "");
+    if (asIs) return asIs;
+  }
+  return null;
+}
+
 // ---- Handler ---------------------------------------------------------------
 
 export default async function handler(req, res) {
   if (req.method !== "GET") return res.status(405).json({ error: "Method not allowed" });
 
-  if (!process.env.YANDEX_DICT_KEY) {
+  const wiktEnabled = process.env.WIKTIONARY_FALLBACK !== "0";
+  if (!process.env.YANDEX_DICT_KEY && !wiktEnabled) {
     return res.status(500).json({ error: "YANDEX_DICT_KEY not configured on the server" });
   }
 
@@ -207,7 +432,7 @@ export default async function handler(req, res) {
 
   // The whole request — every variant plus the ru-ru pass — shares one budget.
   const ctrl = new AbortController();
-  const timer = setTimeout(function () { ctrl.abort(); }, 8000);
+  const timer = setTimeout(function () { ctrl.abort(); }, 10000);
 
   try {
     // Try the word as clicked, then lowercase, then BOTH directions of the
@@ -223,14 +448,40 @@ export default async function handler(req, res) {
       .concat(yoVariants(deyo).slice(0, 3))
       .filter(function (w, i, arr) { return arr.indexOf(w) === i; });
 
-    let defs = [], matchedForm = "";
-    for (const cand of candidates) {
-      defs = await yandexLookup(cand, "ru-en", ctrl.signal);
-      if (defs.length) { matchedForm = cand; break; }
+    let defs = [], matchedForm = "", yandexErr = null;
+    if (process.env.YANDEX_DICT_KEY) {
+      try {
+        for (const cand of candidates) {
+          defs = await yandexLookup(cand, "ru-en", ctrl.signal);
+          if (defs.length) { matchedForm = cand; break; }
+        }
+      } catch (e) {
+        // A Yandex outage or an exhausted daily quota must not take the whole
+        // lookup down — Wiktionary can still answer. Keep the error and
+        // rethrow it only if that tier comes up empty as well.
+        if (e && e.name === "AbortError") throw e;
+        yandexErr = e;
+        defs = [];
+      }
     }
 
     if (!defs.length) {
-      // Cache misses too — the dictionary's coverage doesn't change hour to
+      if (wiktEnabled) {
+        const wiktCands = [lower, deyo].filter(function (w, i, arr) { return w && arr.indexOf(w) === i; });
+        let wikt = null;
+        try {
+          wikt = await wiktionaryLookup(wiktCands, word, ctrl.signal);
+        } catch (e) {
+          if (e && e.name === "AbortError") throw e;
+          console.warn("[define] Wiktionary tier failed:", (e && e.message) || e);
+        }
+        if (wikt) {
+          res.setHeader("Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
+          return res.status(200).json(wikt);
+        }
+      }
+      if (yandexErr) throw yandexErr;
+      // Cache misses too — neither dictionary's coverage changes hour to
       // hour, and repeat misses on the same rare word shouldn't spend quota.
       res.setHeader("Cache-Control", "public, s-maxage=86400");
       return res.status(404).json({ error: 'No dictionary entry found for "' + word + '"' });

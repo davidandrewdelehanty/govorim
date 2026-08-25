@@ -3926,12 +3926,10 @@ export default function App() {
     catch (_) {}   // quota full — the cache is an optimisation, not a requirement
   };
 
-  // When Yandex has no entry for a word (rare/literary forms), fall back to
-  // the old AI define. Flip to false for a pure-dictionary app with no AI
-  // define calls at all.
-  // Definitions come from the Yandex dictionary and nothing else. There is no
-  // AI fallback: a word the dictionary lacks (usually a proper name or a
-  // 19th-century form) simply reports as absent.
+  // Definitions come from dictionaries and nothing else — there is no AI
+  // fallback. /api/define tries Yandex first and, server-side, falls through
+  // to English Wiktionary for the rare and literary forms Yandex lacks. A word
+  // neither of them has (usually a proper name) reports as absent.
   var fetchDef = async function(word) {
     // Yandex Dictionary first: instant, deterministic, free (10k/day), and
     // MORPHO search resolves inflected forms to the lemma server-side. The
@@ -3943,7 +3941,7 @@ export default function App() {
     var cached = readDefCache(cacheKey);
     if (cached) return cached;
 
-    // -- 1. Yandex Dictionary (via our /api/define proxy) --
+    // -- 1. /api/define: Yandex Dictionary, then Wiktionary, server-side --
     var yandexDown = null;
     try {
       var r = await authFetch("/api/define?word=" + encodeURIComponent(clean));
@@ -3959,7 +3957,7 @@ export default function App() {
         yandexDown = errBody.error || ("HTTP " + r.status);
         console.warn("[def] Yandex lookup failed:", r.status, yandexDown);
       }
-      // 404 = the word simply isn't in the dictionary -> try the AI below.
+      // 404 = neither dictionary knows the word; the popup says so.
     } catch (netErr) {
       yandexDown = (netErr && netErr.message) || "network error";
       console.warn("[def] Yandex lookup unreachable:", yandexDown);
@@ -7969,6 +7967,7 @@ export default function App() {
                   {popup.data.grammar && <div className="pgr">{popup.data.grammar}</div>}
                   {popup.data.example && <div className="pex">{popup.data.example}{popup.data.exampleTranslation&&<div className="pext">{popup.data.exampleTranslation}</div>}</div>}
                   {popup.data.definitionSource === "yandex" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href="https://yandex.com/dev/dictionary/" target="_blank" rel="noreferrer" style={{color:"inherit"}}>Powered by Yandex.Dictionary</a></div>}
+                  {popup.data.definitionSource === "wiktionary" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href={popup.data.sourceUrl || "https://en.wiktionary.org/"} target="_blank" rel="noreferrer" style={{color:"inherit"}}>Wiktionary</a>{" \u00b7 "}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer" style={{color:"inherit"}}>CC BY-SA 4.0</a></div>}
                 </>
               )}
 
