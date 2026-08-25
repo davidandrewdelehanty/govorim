@@ -47,11 +47,22 @@ const flag = (name, dflt) => {
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-async function api(params) {
+async function api(params, attempt) {
+  attempt = attempt || 0;
   const url = API + "?" + new URLSearchParams(
     Object.assign({ format: "json", formatversion: "2" }, params)
   );
   const resp = await fetch(url, { headers: { "user-agent": UA, accept: "application/json" } });
+  // ru.wiktionary rate-limits a long enrichment run. Back off and keep going
+  // rather than throwing away everything fetched so far.
+  if (resp.status === 429 || resp.status >= 500) {
+    if (attempt >= 5) throw new Error("HTTP " + resp.status + " from ru.wiktionary after 6 attempts");
+    const retryAfter = parseInt(resp.headers.get("retry-after") || "0", 10);
+    const wait = retryAfter > 0 ? retryAfter * 1000 : Math.min(60000, 2000 * Math.pow(2, attempt));
+    console.error("    " + resp.status + " — backing off " + Math.round(wait / 1000) + "s");
+    await sleep(wait);
+    return api(params, attempt + 1);
+  }
   if (!resp.ok) throw new Error("HTTP " + resp.status + " from ru.wiktionary");
   return resp.json();
 }
@@ -92,11 +103,15 @@ function wordsFromAppendix(text) {
     const clean = String(gloss || "")
       .replace(/\[\[([^\]|]*)\|([^\]]*)\]\]/g, "$2")
       .replace(/\[\[([^\]]*)\]\]/g, "$1")
-      .replace(/'''/g, "")
+      .replace(/'{2,3}/g, "")   // '' italics as well as ''' bold
       .replace(/\{\{[^{}]*\}\}/g, "")
       .replace(/<[^>]+>/g, "")
+      .replace(/&nbsp;?/g, " ").replace(/&[a-z]+;/g, " ")
+      .replace(/https?:\/\/\S+/g, "")           // some entries append source URLs
+      .replace(/\s*,\s*(?=$)/, "")
       .replace(/^[\s—–\-:,;]+/, "")
       .replace(/\s{2,}/g, " ")
+      .replace(/[\s,;]+$/, "")
       .trim();
     const prev = found.get(key);
     if (prev && (prev.gloss || !clean)) return;
@@ -162,6 +177,25 @@ function entryFor(word, text) {
   };
 }
 
+// A shape the extractor doesn't know would fail silently — the count would just
+// come back low, which is how the 14-word run looked fine. Count the lines that
+// LOOK like entries but produced nothing, and say so.
+function reportUnmatched(text, words) {
+  const got = new Set(words.map(function (w) { return w.word.toLowerCase(); }));
+  const misses = [];
+  for (const raw of text.split("\n")) {
+    const line = raw.trim();
+    if (!line || /^={2,}/.test(line) || !/[—–]|\|\|/.test(line)) continue;
+    if (!/[а-яё]/i.test(line)) continue;
+    const head = line.replace(/^[*#:;|]+\s*/, "").split(/\s*(?:—|–|\|\|)\s*/)[0]
+      .replace(/\[\[|\]\]|'/g, "").trim().toLowerCase();
+    if (head && !got.has(head)) misses.push(line.slice(0, 90));
+  }
+  if (!misses.length) { console.error("every entry-shaped line was matched"); return; }
+  console.error("!! " + misses.length + " entry-shaped lines produced no word — sample:");
+  for (const m of misses.slice(0, 8)) console.error("   " + m);
+}
+
 async function cmdList() {
   const got = await pages([APPENDIX]);
   const text = got.get(APPENDIX);
@@ -171,6 +205,7 @@ async function cmdList() {
   const withGloss = words.filter(function (w) { return w.gloss; }).length;
   console.error("\n" + words.length + " words in " + APPENDIX +
                 " (" + withGloss + " with a gloss on the line)");
+  reportUnmatched(text, words);
 }
 
 // When the extraction looks wrong, look at what the page actually says.
@@ -202,8 +237,13 @@ async function cmdProbe(words) {
 
 async function cmdBuild() {
   const limit = parseInt(flag("limit", "0"), 10);
-  const pause = parseInt(flag("sleep", "250"), 10);
+  const pause = parseInt(flag("sleep", "400"), 10);
   const loose = argv.includes("--loose");
+  // The appendix gives every word a gloss on its own line, and most жаргон
+  // words have no ru.wiktionary entry at all — so the default build makes ZERO
+  // per-word requests. --enrich fetches entries on top, which is what earns an
+  // HTTP 429 on a 1886-word list; it resumes, so a rate-limited run is not lost.
+  const enrich = argv.includes("--enrich");
   const outPath = flag("out", path.join(HERE, "out", "slang-seed.json"));
 
   const got = await pages([APPENDIX]);
@@ -211,73 +251,102 @@ async function cmdBuild() {
   if (!text) throw new Error("Could not read " + APPENDIX);
   let words = wordsFromAppendix(text);
   if (limit > 0) words = words.slice(0, limit);
-  console.error(words.length + " words to fetch from " + APPENDIX);
 
+  const withGloss = words.filter(function (w) { return w.gloss; }).length;
+  console.error(words.length + " words in " + APPENDIX + ", " + withGloss + " with a gloss");
+  reportUnmatched(text, words);
+
+  // Every appendix line becomes an entry up front. Enrichment only ever
+  // upgrades one; nothing depends on the network succeeding.
   const glossary = {};
-  let withEnglish = 0, fromAppendix = 0, dropped = 0, offTopic = 0;
-
-  for (let i = 0; i < words.length; i += 50) {
-    const batch = words.slice(i, i + 50);
-    const texts = await pages(batch.map(function (w) { return w.word; }));
-    for (const w of batch) {
-      const key = w.word.toLowerCase().replace(/ё/g, "е");
-      const t = texts.get(w.word) || texts.get(w.word[0].toUpperCase() + w.word.slice(1));
-      const e = t ? entryFor(w.word, t) : null;
-      if (e) {
-        // A word whose entry carries no slang marker AND had no gloss on the
-        // appendix line is almost certainly a stray link from the page's prose
-        // — «идиш» and «акроним» arrived that way — or a same-spelling page for
-        // something else entirely, like «лабух» resolving to an Austrian
-        // commune. --loose keeps them.
-        if (!loose && !w.gloss && !looksLikeJargon(e)) { offTopic++; continue; }
-        if (e.hasEnglish) withEnglish++;
-        delete e.hasEnglish;
-        glossary[key] = e;
-        continue;
-      }
-      // Most жаргон words have no entry of their own — the appendix line is
-      // all there is, and it is still a real definition. Keep it rather than
-      // dropping the word.
-      if (w.gloss) {
-        glossary[key] = {
-          lemma: w.word,
-          partOfSpeech: "",
-          register: "блатной жаргон",
-          translation: w.gloss,
-          definitionRu: "",
-          example: "",
-          exampleTranslation: "",
-          source: "ru.wiktionary, Приложение:Уголовный жаргон (CC BY-SA)",
-          sourceUrl: "https://ru.wiktionary.org/wiki/" + encodeURIComponent(APPENDIX),
-        };
-        fromAppendix++;
-        continue;
-      }
-      dropped++;
-    }
-    console.error("  " + Math.min(i + 50, words.length) + "/" + words.length +
-                  "  kept " + Object.keys(glossary).length);
-    if (i + 50 < words.length) await sleep(pause);
+  let fromAppendix = 0;
+  for (const w of words) {
+    if (!w.gloss) continue;
+    glossary[w.word.toLowerCase().replace(/ё/g, "е")] = {
+      lemma: w.word,
+      partOfSpeech: "",
+      register: "блатной жаргон",
+      translation: w.gloss.length > 400 ? w.gloss.slice(0, 397) + "…" : w.gloss,
+      definitionRu: "",
+      example: "",
+      exampleTranslation: "",
+      // source / sourceUrl are identical for every appendix entry, so they live
+      // in _meta and lib/dict.js applies them as defaults. Repeating them here
+      // was 452KB of a 1MB file.
+    };
+    fromAppendix++;
   }
 
-  glossary._meta = {
-    source: APPENDIX,
-    sourceUrl: "https://ru.wiktionary.org/wiki/" + encodeURIComponent(APPENDIX),
-    license: "CC BY-SA 4.0",
-    built: new Date().toISOString().slice(0, 10),
-    words: Object.keys(glossary).length,
+  const write = function () {
+    glossary._meta = {
+      source: "ru.wiktionary, Приложение:Уголовный жаргон (CC BY-SA)",
+      sourceUrl: "https://ru.wiktionary.org/wiki/" + encodeURIComponent(APPENDIX),
+      license: "CC BY-SA 4.0",
+      built: new Date().toISOString().slice(0, 10),
+      words: Object.keys(glossary).filter(function (k) { return !k.startsWith("_"); }).length,
+      enriched: enrich,
+    };
+    fs.mkdirSync(path.dirname(outPath), { recursive: true });
+    fs.writeFileSync(outPath, JSON.stringify(glossary, null, 1), "utf8");
   };
 
-  fs.mkdirSync(path.dirname(outPath), { recursive: true });
-  fs.writeFileSync(outPath, JSON.stringify(glossary, null, 1), "utf8");
+  let upgraded = 0, offTopic = 0;
+  if (enrich) {
+    // Resume: keep anything a previous run already upgraded.
+    let done = new Set();
+    if (fs.existsSync(outPath)) {
+      try {
+        const prev = JSON.parse(fs.readFileSync(outPath, "utf8"));
+        for (const k of Object.keys(prev)) {
+          if (k.startsWith("_")) continue;
+          if (prev[k] && prev[k].source && prev[k].source.indexOf("Приложение") === -1) {
+            glossary[k] = prev[k];
+            done.add(k);
+          }
+        }
+        if (done.size) console.error("resuming — " + done.size + " already enriched");
+      } catch (e) { console.error("(could not read previous output: " + e.message + ")"); }
+    }
+
+    const todo = words.filter(function (w) { return !done.has(w.word.toLowerCase().replace(/ё/g, "е")); });
+    try {
+      for (let i = 0; i < todo.length; i += 50) {
+        const batch = todo.slice(i, i + 50);
+        const texts = await pages(batch.map(function (w) { return w.word; }));
+        for (const w of batch) {
+          const key = w.word.toLowerCase().replace(/ё/g, "е");
+          const t = texts.get(w.word) || texts.get(w.word[0].toUpperCase() + w.word.slice(1));
+          if (!t) continue;
+          const e = entryFor(w.word, t);
+          if (!e) continue;
+          // A same-spelling page for something else entirely — «лабух» resolves
+          // to an Austrian commune. Trust the appendix gloss over that.
+          if (!loose && !looksLikeJargon(e)) { offTopic++; continue; }
+          delete e.hasEnglish;
+          glossary[key] = e;
+          upgraded++;
+        }
+        console.error("  " + Math.min(i + 50, todo.length) + "/" + todo.length + "  upgraded " + upgraded);
+        write();                                   // checkpoint every batch
+        if (i + 50 < todo.length) await sleep(pause);
+      }
+    } catch (e) {
+      console.error("\nEnrichment stopped: " + e.message);
+      console.error("Everything fetched so far is saved — re-run with --enrich to resume.");
+    }
+  }
+
+  write();
 
   console.error("\nWrote " + outPath);
-  console.error("  kept              " + (Object.keys(glossary).length - 1));
-  console.error("  from own entry    " + (Object.keys(glossary).length - 1 - fromAppendix));
-  console.error("  from appendix line " + fromAppendix + " (no entry of their own)");
-  console.error("  with English      " + withEnglish + " (the rest carry a Russian gloss)");
-  console.error("  dropped           " + dropped + " (no entry and no gloss on the line)");
-  console.error("  off-topic         " + offTopic + " (entry exists but reads as ordinary vocabulary; --loose keeps them)");
+  console.error("  entries           " + (Object.keys(glossary).length - 1));
+  console.error("  from appendix     " + (fromAppendix - upgraded));
+  if (enrich) {
+    console.error("  upgraded w/ entry " + upgraded);
+    console.error("  kept appendix over a same-spelling page: " + offTopic);
+  } else {
+    console.error("  (add --enrich to also pull each word's own ru.wiktionary entry)");
+  }
   console.error("\nPush it with the rclone remote already on this machine.");
   console.error("RCLONE_S3_NO_CHECK_BUCKET is required — the R2 token is bucket-scoped, so a");
   console.error("single-file copy otherwise probes CreateBucket and R2 answers 403:");
@@ -296,7 +365,7 @@ if (!run[cmd]) {
   console.error("  probe WORD...              live-check the parser against ru.wiktionary");
   console.error("  raw [--lines N]            dump the appendix wikitext");
   console.error("  list                       words (and glosses) extracted from the appendix");
-  console.error("  build [--limit N] [--sleep MS] [--out FILE] [--loose]");
+  console.error("  build [--enrich] [--limit N] [--sleep MS] [--out FILE] [--loose]");
   process.exit(1);
 }
 run[cmd]().catch((e) => { console.error("FAILED: " + e.message); process.exit(1); });
