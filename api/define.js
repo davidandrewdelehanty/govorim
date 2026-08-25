@@ -26,6 +26,11 @@
 //   the popup renders it whenever definitionSource === "yandex".
 
 import { currentUser } from "../lib/auth.js";
+import {
+  loadGlossary, glossaryEntry, putGlossaryEntry, dictKey,
+  logMiss, listMisses, removeMiss,
+} from "../lib/dict.js";
+import { ruWiktionaryLookup } from "../lib/ruwikt.js";
 
 const YANDEX_URL = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup";
 const FLAG_MORPHO = 0x0004;
@@ -400,7 +405,24 @@ async function wiktionaryLookup(candidates, clickedWord, signal) {
 // ---- Handler ---------------------------------------------------------------
 
 export default async function handler(req, res) {
+  // POST is the curator's door: the reader popup, for the admin account only,
+  // writes a hand-authored entry for a word every tier missed. Folded into this
+  // function rather than a new one — the Vercel free plan counts functions.
+  if (req.method === "POST") return handleCurate(req, res);
   if (req.method !== "GET") return res.status(405).json({ error: "Method not allowed" });
+
+  // ?misses=1 — the curation worklist, ranked by how often each word actually
+  // interrupted reading. Admin only; never cached.
+  if (req.query && req.query.misses) {
+    const admin = currentUser(req);
+    if (!admin || !admin.isAdmin) return res.status(403).json({ error: "Admin access required" });
+    try {
+      res.setHeader("Cache-Control", "no-store");
+      return res.status(200).json({ misses: await listMisses() });
+    } catch (e) {
+      return res.status(502).json({ error: "Could not read the miss log: " + ((e && e.message) || "unknown") });
+    }
+  }
 
   const wiktEnabled = process.env.WIKTIONARY_FALLBACK !== "0";
   if (!process.env.YANDEX_DICT_KEY && !wiktEnabled) {
@@ -448,6 +470,28 @@ export default async function handler(req, res) {
       .concat(yoVariants(deyo).slice(0, 3))
       .filter(function (w, i, arr) { return arr.indexOf(w) === i; });
 
+    // -- 0. Curated glossary ------------------------------------------------
+    // Checked first, not last: an entry here was written by hand on purpose, so
+    // it should win even where Yandex has some blander sense of the word. This
+    // is also the only tier that knows блатной жаргон reliably.
+    try {
+      const glossary = await loadGlossary(false);
+      for (const cand of [lower, deyo]) {
+        const hit = glossary.get(dictKey(cand));
+        if (hit) {
+          const built = glossaryEntry(hit, word, cand);
+          if (built) {
+            // Short cache: a word curated from the popup should show its new
+            // definition on the next tap, not in a week.
+            res.setHeader("Cache-Control", "public, s-maxage=60");
+            return res.status(200).json(built);
+          }
+        }
+      }
+    } catch (e) {
+      console.warn("[define] glossary unavailable:", (e && e.message) || e);
+    }
+
     let defs = [], matchedForm = "", yandexErr = null;
     if (process.env.YANDEX_DICT_KEY) {
       try {
@@ -480,11 +524,36 @@ export default async function handler(req, res) {
           return res.status(200).json(wikt);
         }
       }
+
+      // -- 3. ru.wiktionary ---------------------------------------------------
+      // Last automatic tier, and the one that actually knows жаргон. Its
+      // definitions are Russian unless the entry carries a Перевод block.
+      if (process.env.RUWIKT_FALLBACK !== "0") {
+        const ruCands = [lower, deyo].filter(function (w, i, arr) { return w && arr.indexOf(w) === i; });
+        let ruWikt = null;
+        try {
+          ruWikt = await ruWiktionaryLookup(ruCands, word, ctrl.signal);
+        } catch (e) {
+          if (e && e.name === "AbortError") throw e;
+          console.warn("[define] ru.wiktionary tier failed:", (e && e.message) || e);
+        }
+        if (ruWikt) {
+          res.setHeader("Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
+          return res.status(200).json(ruWikt);
+        }
+      }
+
       if (yandexErr) throw yandexErr;
-      // Cache misses too — neither dictionary's coverage changes hour to
-      // hour, and repeat misses on the same rare word shouldn't spend quota.
+
+      // Nothing anywhere. Record it so the curation worklist grows itself:
+      // this is exactly the tail worth adding to the glossary by hand.
+      try { await logMiss(word, req.query && req.query.ctx); }
+      catch (e) { console.warn("[define] could not log miss:", (e && e.message) || e); }
+
+      // Cache misses too — no tier's coverage changes hour to hour, and repeat
+      // misses on the same rare word shouldn't spend quota or R2 writes.
       res.setHeader("Cache-Control", "public, s-maxage=86400");
-      return res.status(404).json({ error: 'No dictionary entry found for "' + word + '"' });
+      return res.status(404).json({ error: 'No dictionary entry found for "' + word + '"', noEntry: true });
     }
 
     const entry = buildEntry(defs, word, matchedForm);
@@ -519,5 +588,50 @@ export default async function handler(req, res) {
     return res.status(502).json({ error: "Dictionary lookup failed: " + ((err && err.message) || "unknown error") });
   } finally {
     clearTimeout(timer);
+  }
+}
+
+// ---- Curation (admin POST) -------------------------------------------------
+// One hand-authored glossary entry, written straight from the reader popup.
+// Keeps блатной жаргон curation where it actually happens — mid-page, at the
+// moment the word stops you — instead of in a repo round trip.
+
+async function handleCurate(req, res) {
+  const user = currentUser(req);
+  if (!user) return res.status(401).json({ error: "Not signed in" });
+  if (!user.isAdmin) return res.status(403).json({ error: "Admin access required" });
+
+  const body = (req.body && typeof req.body === "object") ? req.body : {};
+  const word = String(body.word || "").trim().replace(/[^а-яёА-ЯЁ-]/g, "");
+  const translation = String(body.translation || "").trim();
+  if (!word) return res.status(400).json({ error: "Missing word" });
+  if (!translation) return res.status(400).json({ error: "A definition is required" });
+
+  const clip = function (v, n) { return String(v || "").trim().slice(0, n); };
+  const entry = {
+    lemma: clip(body.lemma, 60) || word,
+    partOfSpeech: clip(body.partOfSpeech, 30),
+    register: clip(body.register, 60),
+    translation: clip(translation, 400),
+    definitionRu: clip(body.definitionRu, 400),
+    example: clip(body.example, 300),
+    exampleTranslation: clip(body.exampleTranslation, 300),
+    source: clip(body.source, 120),
+    // Jargon inflects unpredictably and no morphology tier ever sees these
+    // words, so the curator can name extra surface forms that map here.
+    forms: (Array.isArray(body.forms) ? body.forms : String(body.forms || "").split(/[,\s]+/))
+      .map(function (f) { return String(f).trim().replace(/[^а-яёА-ЯЁ-]/g, ""); })
+      .filter(Boolean).slice(0, 12),
+    addedBy: user.email,
+    addedAt: new Date().toISOString().slice(0, 10),
+  };
+
+  try {
+    const total = await putGlossaryEntry(word, entry);
+    try { await removeMiss(word); } catch (_) { /* the log is a convenience */ }
+    const hit = { entry: entry, lemma: entry.lemma, origin: "hand" };
+    return res.status(200).json({ ok: true, total: total, entry: glossaryEntry(hit, word, word) });
+  } catch (e) {
+    return res.status(502).json({ error: "Could not save the entry: " + ((e && e.message) || "unknown") });
   }
 }
