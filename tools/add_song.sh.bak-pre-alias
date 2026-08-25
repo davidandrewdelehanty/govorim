@@ -22,34 +22,6 @@ python3 - "$LYR" "$TITLE" "$ARTIST" "$YT" <<'PYEOF'
 import json, sys, re
 lyr_path, title, artist, yt = sys.argv[1:5]
 
-# Artists whose name has more than one spelling in the wild. Key = normalised
-# form (lowercase, punctuation and spacing stripped), value = the spelling the
-# app should show. Add a line here whenever a second rendering turns up; the
-# merge is automatic from then on, so the Music tab never grows twin listings.
-ARTIST_ALIASES = {
-    u"noizemc": u"Noize MC",
-    u"нойзмс": u"Noize MC",     # Нойз МС — all Cyrillic
-    u"нойзмc": u"Noize MC",      # Нойз МC — Cyrillic М, Latin C
-    u"нойзmc": u"Noize MC",       # Нойз MC — Latin MC
-    u"нойзэмси": u"Noize MC",   # Нойз Эм Си
-}
-
-def norm_artist(s):
-    """Fold case, ё/е, spacing and punctuation so lookups are forgiving."""
-    s = (s or u"").strip().lower().replace(u"ё", u"е")
-    return re.sub(r"[\s.,'’«»\"-]+", u"", s)
-
-def canon_artist(s):
-    """The spelling to store: the official one when we know an alias for it."""
-    return ARTIST_ALIASES.get(norm_artist(s), (s or u"").strip())
-
-def artist_key(s):
-    """Match key that folds aliases on BOTH sides, so an entry already saved
-    under an old spelling still matches a submission under the new one."""
-    return norm_artist(canon_artist(s))
-
-artist = canon_artist(artist)
-
 m = re.search(r'(?:v=|youtu\.be/|embed/|shorts/)([A-Za-z0-9_-]{11})', yt) \
     or re.fullmatch(r'\s*([A-Za-z0-9_-]{11})\s*', yt)
 if not m:
@@ -64,15 +36,11 @@ p = 'public/music/music.json'
 data = json.load(open(p, encoding='utf-8'))
 
 for a in data:
-    if artist_key(a['artist']) == artist_key(artist):
+    if a['artist'].strip().lower() == artist.strip().lower():
         entry = a
-        # An entry saved under an older spelling is renamed to the official one.
-        if canon_artist(entry['artist']) != entry['artist']:
-            print("Renaming existing listing %s -> %s" % (entry['artist'], canon_artist(entry['artist'])))
-            entry['artist'] = canon_artist(entry['artist'])
         break
 else:
-    entry = {'artist': artist, 'songs': []}
+    entry = {'artist': artist.strip(), 'songs': []}
     data.append(entry)
 
 for s in entry['songs']:
