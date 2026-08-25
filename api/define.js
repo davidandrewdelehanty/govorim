@@ -30,7 +30,7 @@ import {
   loadGlossary, glossaryEntry, putGlossaryEntry, dictKey,
   logMiss, listMisses, removeMiss,
 } from "../lib/dict.js";
-import { ruWiktionaryLookup } from "../lib/ruwikt.js";
+import { ruWiktionaryLookup, resolveLemma } from "../lib/ruwikt.js";
 
 const YANDEX_URL = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup";
 const FLAG_MORPHO = 0x0004;
@@ -454,7 +454,16 @@ export default async function handler(req, res) {
 
   // The whole request — every variant plus the ru-ru pass — shares one budget.
   const ctrl = new AbortController();
-  const timer = setTimeout(function () { ctrl.abort(); }, 10000);
+  // Vercel kills the function at 10s, so hold the whole tier stack inside a
+  // slightly smaller budget and return a clean 504 instead of a platform error.
+  const BUDGET_MS = 8500;
+  const startedAt = Date.now();
+  const timeLeft = function () { return BUDGET_MS - (Date.now() - startedAt); };
+  const timer = setTimeout(function () { ctrl.abort(); }, BUDGET_MS);
+
+  // Which tier answered, or why it didn't. Returned on a miss and logged by the
+  // client under window.DEF_DEBUG, so a dead tier is visible instead of guessed.
+  const trace = [];
 
   try {
     // Try the word as clicked, then lowercase, then BOTH directions of the
@@ -489,6 +498,7 @@ export default async function handler(req, res) {
         }
       }
     } catch (e) {
+      trace.push("glossary:error " + ((e && e.message) || e));
       console.warn("[define] glossary unavailable:", (e && e.message) || e);
     }
 
@@ -506,41 +516,73 @@ export default async function handler(req, res) {
         if (e && e.name === "AbortError") throw e;
         yandexErr = e;
         defs = [];
+        trace.push("yandex:error " + ((e && e.message) || e));
       }
+    } else {
+      trace.push("yandex:no-key");
     }
+    if (!defs.length && !yandexErr) trace.push("yandex:miss");
 
     if (!defs.length) {
-      if (wiktEnabled) {
-        const wiktCands = [lower, deyo].filter(function (w, i, arr) { return w && arr.indexOf(w) === i; });
+      // -- Lemma resolution ----------------------------------------------------
+      // The Wiktionary tiers are keyed by page title and have no morphology of
+      // their own, so an inflected click («банковал», «фраера») would miss even
+      // where the lemma is well documented. One stemmed search maps the surface
+      // form onto a real page before either tier runs.
+      let lemma = "";
+      if (process.env.LEMMA_LOOKUP !== "0" && timeLeft() > 2500) {
+        try {
+          lemma = await resolveLemma(lower, ctrl.signal);
+          trace.push(lemma ? "lemma:" + lemma : "lemma:none");
+        } catch (e) {
+          if (e && e.name === "AbortError") throw e;
+          trace.push("lemma:error " + ((e && e.message) || e));
+        }
+      }
+      const candsWith = function (extra) {
+        return [lower, deyo].concat(extra ? [extra.toLowerCase()] : [])
+          .filter(function (w, i, arr) { return w && arr.indexOf(w) === i; });
+      };
+
+      if (wiktEnabled && timeLeft() > 1500) {
+        const wiktCands = candsWith(lemma);
         let wikt = null;
         try {
           wikt = await wiktionaryLookup(wiktCands, word, ctrl.signal);
         } catch (e) {
           if (e && e.name === "AbortError") throw e;
+          trace.push("enwikt:error " + ((e && e.message) || e));
           console.warn("[define] Wiktionary tier failed:", (e && e.message) || e);
         }
         if (wikt) {
           res.setHeader("Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
           return res.status(200).json(wikt);
         }
+        trace.push("enwikt:miss");
+      } else if (wiktEnabled) {
+        trace.push("enwikt:skipped-no-time");
       }
 
       // -- 3. ru.wiktionary ---------------------------------------------------
       // Last automatic tier, and the one that actually knows жаргон. Its
       // definitions are Russian unless the entry carries a Перевод block.
-      if (process.env.RUWIKT_FALLBACK !== "0") {
-        const ruCands = [lower, deyo].filter(function (w, i, arr) { return w && arr.indexOf(w) === i; });
+      if (process.env.RUWIKT_FALLBACK !== "0" && timeLeft() > 1500) {
+        const ruCands = candsWith(lemma);
         let ruWikt = null;
         try {
           ruWikt = await ruWiktionaryLookup(ruCands, word, ctrl.signal);
         } catch (e) {
           if (e && e.name === "AbortError") throw e;
+          trace.push("ruwikt:error " + ((e && e.message) || e));
           console.warn("[define] ru.wiktionary tier failed:", (e && e.message) || e);
         }
         if (ruWikt) {
           res.setHeader("Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
           return res.status(200).json(ruWikt);
         }
+        trace.push("ruwikt:miss");
+      } else if (process.env.RUWIKT_FALLBACK !== "0") {
+        trace.push("ruwikt:skipped-no-time");
       }
 
       if (yandexErr) throw yandexErr;
@@ -553,7 +595,12 @@ export default async function handler(req, res) {
       // Cache misses too — no tier's coverage changes hour to hour, and repeat
       // misses on the same rare word shouldn't spend quota or R2 writes.
       res.setHeader("Cache-Control", "public, s-maxage=86400");
-      return res.status(404).json({ error: 'No dictionary entry found for "' + word + '"', noEntry: true });
+      return res.status(404).json({
+        error: 'No dictionary entry found for "' + word + '"',
+        noEntry: true,
+        trace: trace,
+        ms: Date.now() - startedAt,
+      });
     }
 
     const entry = buildEntry(defs, word, matchedForm);

@@ -1674,6 +1674,7 @@ export default function App() {
   // /api/auth/login, so there is no token for this code to hold or refresh --
   // same-origin fetches carry it automatically.
   var [me, setMe]             = useState(null);   // { id, email, isAdmin } | null
+  var [curate, setCurate]     = useState(null);   // admin: glossary entry being written
   var [authReady, setAuthReady] = useState(false); // false until /api/auth/me answers
   var [authOpen, setAuthOpen] = useState(false);  // sign-in panel visible
   var [authMode, setAuthMode] = useState("signup"); // "login" | "signup" — the gate leads with registration
@@ -3941,8 +3942,9 @@ export default function App() {
     var cached = readDefCache(cacheKey);
     if (cached) return cached;
 
-    // -- 1. /api/define: Yandex Dictionary, then Wiktionary, server-side --
+    // -- 1. /api/define: glossary, Yandex, Wiktionary, ru.wiktionary --
     var yandexDown = null;
+    var defTrace = null;
     try {
       var r = await authFetch("/api/define?word=" + encodeURIComponent(clean));
       if (r.ok) {
@@ -3952,12 +3954,18 @@ export default function App() {
           if (typeof window !== "undefined" && window.DEF_DEBUG) console.log("[def:yandex]", clean, "\u2192", data);
           return data;
         }
-      } else if (r.status !== 404) {
+      } else {
         var errBody = await r.json().catch(function(){ return {}; });
-        yandexDown = errBody.error || ("HTTP " + r.status);
-        console.warn("[def] Yandex lookup failed:", r.status, yandexDown);
+        if (r.status === 404) {
+          // Every tier missed. The server says which ones ran and why each
+          // gave up — surface it so a broken tier looks broken, not empty.
+          defTrace = errBody.trace || null;
+          if (defTrace) console.info("[def:miss]", clean, defTrace.join(" | "), (errBody.ms || "?") + "ms");
+        } else {
+          yandexDown = errBody.error || ("HTTP " + r.status);
+          console.warn("[def] lookup failed:", r.status, yandexDown);
+        }
       }
-      // 404 = neither dictionary knows the word; the popup says so.
     } catch (netErr) {
       yandexDown = (netErr && netErr.message) || "network error";
       console.warn("[def] Yandex lookup unreachable:", yandexDown);
@@ -3968,6 +3976,7 @@ export default function App() {
     var miss = new Error(yandexDown || ('No dictionary entry for "' + clean + '"'));
     miss.noEntry = !yandexDown;
     miss.serviceDown = yandexDown || null;
+    miss.trace = defTrace;
     throw miss;
   };
 
@@ -4055,8 +4064,8 @@ export default function App() {
       // real API errors behind a spelling suggestion — the reason a broken
       // backend looked like a dictionary miss.
       if (err && err.noEntry) {
-        // Not in the dictionary — offer the AI rather than spending on it.
-        setPopup(function(p){ return p ? Object.assign({},p,{loading:false,noEntry:clean}) : null; });
+        // No tier had it. For the admin this is the moment to curate it.
+        setPopup(function(p){ return p ? Object.assign({},p,{loading:false,noEntry:clean,trace:err.trace||null}) : null; });
         return;
       }
       var wordMightBeWrong = /not.?found|no entry|unknown word|missing/i.test(rawMsg);
@@ -4080,6 +4089,49 @@ export default function App() {
     } catch(err) {
       var m = 'Could not define "' + word + '" — ' + ((err && err.message) || "Unknown error");
       setPopup(function(p){ return p ? Object.assign({},p,{loading:false,error:m}) : null; });
+    }
+  };
+
+  // Admin-only curation. Блатной жаргон and сленг are a long tail no free
+  // dictionary covers completely, so the fix for a missed word happens here —
+  // in the popup, at the moment the word stops you — and is written straight
+  // into the R2 glossary, which /api/define checks ahead of every other tier.
+  var startCurate = function(word) {
+    setCurate({ word: word, translation: "", definitionRu: "", register: "блатной жаргон",
+                partOfSpeech: "", example: "", forms: "", busy: false, err: "" });
+  };
+
+  var curateField = function(key, value) {
+    setCurate(function(c){ if (!c) return c; var n = Object.assign({}, c); n[key] = value; return n; });
+  };
+
+  var saveCurate = async function() {
+    if (!curate || curate.busy) return;
+    if (!curate.translation.trim()) { curateField("err", "A definition is required."); return; }
+    setCurate(function(c){ return c ? Object.assign({}, c, {busy:true, err:""}) : c; });
+    try {
+      var r = await authFetch("/api/define", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          word: curate.word,
+          lemma: curate.word,
+          translation: curate.translation,
+          definitionRu: curate.definitionRu,
+          register: curate.register,
+          partOfSpeech: curate.partOfSpeech,
+          example: curate.example,
+          forms: curate.forms,
+          source: "Govorim glossary",
+        }),
+      });
+      var body = await r.json().catch(function(){ return {}; });
+      if (!r.ok || !body.entry) throw new Error(body.error || ("HTTP " + r.status));
+      writeDefCache(String(curate.word).toLowerCase(), body.entry);
+      setPopup(function(p){ return p ? Object.assign({}, p, {data:body.entry, noEntry:null, trace:null}) : null; });
+      setCurate(null);
+    } catch (e) {
+      setCurate(function(c){ return c ? Object.assign({}, c, {busy:false, err:(e && e.message) || "Save failed"}) : c; });
     }
   };
 
@@ -7951,6 +8003,47 @@ export default function App() {
                 </div>
               )}
 
+              {popup.noEntry && isAdmin && popup.trace && (
+                <div style={{fontSize:"0.68em",opacity:0.45,marginTop:4,wordBreak:"break-word"}}>
+                  {popup.trace.join(" · ")}
+                </div>
+              )}
+
+              {popup.noEntry && isAdmin && !curate && (
+                <button className="yobtn" style={{marginTop:8}}
+                        onClick={function(){ startCurate(popup.noEntry); }}>
+                  + Add to glossary
+                </button>
+              )}
+
+              {popup.noEntry && isAdmin && curate && (
+                <div style={{display:"flex",flexDirection:"column",gap:6,marginTop:8}}>
+                  <div className="ppos">Glossary entry for «{curate.word}»</div>
+                  <input className="gvin" autoFocus placeholder="English definition (required)"
+                         value={curate.translation}
+                         onChange={function(e){ curateField("translation", e.target.value); }} />
+                  <input className="gvin" placeholder="Russian gloss / synonyms (optional)"
+                         value={curate.definitionRu}
+                         onChange={function(e){ curateField("definitionRu", e.target.value); }} />
+                  <input className="gvin" placeholder="Register, e.g. блатной жаргон"
+                         value={curate.register}
+                         onChange={function(e){ curateField("register", e.target.value); }} />
+                  <input className="gvin" placeholder="Example sentence (optional)"
+                         value={curate.example}
+                         onChange={function(e){ curateField("example", e.target.value); }} />
+                  <input className="gvin" placeholder="Other forms that should hit this entry, comma separated"
+                         value={curate.forms}
+                         onChange={function(e){ curateField("forms", e.target.value); }} />
+                  {curate.err && <div className="perr">{curate.err}</div>}
+                  <div style={{display:"flex",gap:6}}>
+                    <button className="psave" disabled={curate.busy} onClick={saveCurate}>
+                      {curate.busy ? "Saving…" : "Save to glossary"}
+                    </button>
+                    <button className="yobtn" onClick={function(){ setCurate(null); }}>Cancel</button>
+                  </div>
+                </div>
+              )}
+
               {popup.yo && (
                 <div style={{display:"flex",flexDirection:"column",gap:4,marginTop:8}}>
                   <div className="ppos" style={{marginBottom:8}}>е or ё? Tap the right spelling:</div>
@@ -7968,6 +8061,8 @@ export default function App() {
                   {popup.data.example && <div className="pex">{popup.data.example}{popup.data.exampleTranslation&&<div className="pext">{popup.data.exampleTranslation}</div>}</div>}
                   {popup.data.definitionSource === "yandex" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href="https://yandex.com/dev/dictionary/" target="_blank" rel="noreferrer" style={{color:"inherit"}}>Powered by Yandex.Dictionary</a></div>}
                   {popup.data.definitionSource === "wiktionary" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href={popup.data.sourceUrl || "https://en.wiktionary.org/"} target="_blank" rel="noreferrer" style={{color:"inherit"}}>Wiktionary</a>{" \u00b7 "}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer" style={{color:"inherit"}}>CC BY-SA 4.0</a></div>}
+                  {popup.data.definitionSource === "ruwiktionary" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href={popup.data.sourceUrl || "https://ru.wiktionary.org/"} target="_blank" rel="noreferrer" style={{color:"inherit"}}>\u0412\u0438\u043a\u0438\u0441\u043b\u043e\u0432\u0430\u0440\u044c</a>{" \u00b7 "}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer" style={{color:"inherit"}}>CC BY-SA 4.0</a></div>}
+                  {popup.data.definitionSource === "glossary" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}>{popup.data.sourceNote ? popup.data.sourceNote : "Govorim glossary"}{isAdmin && <span style={{opacity:0.7}}>{" \u00b7 curated"}</span>}</div>}
                 </>
               )}
 
