@@ -14,6 +14,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { currentUser } from "../lib/auth.js";
+import { isPublicSite } from "../lib/site.js";
 
 function manifestPath() {
   return path.join(process.cwd(), "private", "books", "index.json");
@@ -62,7 +63,7 @@ export default function handler(req, res) {
   // Note this only hides the entry. The files it points at are static assets,
   // so they are removed from the public build entirely by
   // scripts/prune-public.mjs; filtering a list does not unpublish a file.
-  const publicSite = process.env.SITE_MODE === "public";
+  const publicSite = isPublicSite();
 
   const books = [];
   for (const entry of list) {

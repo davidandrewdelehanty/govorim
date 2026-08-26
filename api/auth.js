@@ -15,7 +15,7 @@
 //   ADMIN_EMAIL            — the one account that gets admin rights.
 //   R2_ENDPOINT, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY — account storage.
 
-import { siteName } from "../lib/site.js";
+import { siteName, isPublicSite } from "../lib/site.js";
 import {
   normalizeEmail,
   emailProblem,
@@ -138,11 +138,14 @@ export default async function handler(req, res) {
         try {
           const out = await sendEmail({
             to: notifyTo,
-            subject: "[" + siteName() + "] Account awaiting approval: " + safe,
-            html:
-              "<p>A new reader signed up and is waiting for approval:</p>" +
-              "<p><strong>" + safe + "</strong></p>" +
-              "<p>They cannot sign in until you approve them in Manage Users.</p>",
+            subject: "[" + siteName() + "]" +
+              (isPublicSite() ? " New reader: " : " Account awaiting approval: ") + safe,
+            html: isPublicSite()
+              ? "<p>A new reader signed up:</p><p><strong>" + safe + "</strong></p>" +
+                "<p>Registration is open here, so they already have access.</p>"
+              : "<p>A new reader signed up and is waiting for approval:</p>" +
+                "<p><strong>" + safe + "</strong></p>" +
+                "<p>They cannot sign in until you approve them in Manage Users.</p>",
           });
           if (out && out.sent === false) {
             console.error("[auth] signup notification not sent:", out.error);
