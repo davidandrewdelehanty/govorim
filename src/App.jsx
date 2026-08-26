@@ -2156,6 +2156,13 @@ export default function App() {
   var [expandedPart, setExpandedPart] = useState(null);
   var [expandedNav, setExpandedNav] = useState({});
   var [pidx, setPidx]           = useState(0);  // Current page within the current chapter
+  // Dual-language pane. The English column lives one horizontal scroll to the
+  // right of the Russian one. That reads well on a phone, but on desktop the
+  // only affordance was the container's own scrollbar — which sits at the
+  // BOTTOM of a full chapter, so a reader had to scroll to the end of the page
+  // to find the control that reveals the translation. Hence a floating toggle.
+  var [dualPane, setDualPane]   = useState(0);  // 0 = Russian, 1 = English
+  var dualRef                   = useRef(null);
   var [cbm,  setCbm]            = useState(0);
   var [lview, setLview]         = useState("read");
   var [lsearch, setLsearch]     = useState("");
@@ -5280,14 +5287,44 @@ export default function App() {
       return (
         <div className="dual-outer">
           <div className="dual-hint">⇄ English</div>
-          <div className="dual-scroll">
+          <div className="dual-scroll" ref={dualRef} onScroll={onDualScroll}>
             <div className="dual-grid">{litRendered}</div>
           </div>
+          <button
+            className={"dual-toggle" + (dualPane === 1 ? " on" : "")}
+            onClick={toggleDual}
+            aria-label={dualPane === 0 ? "Show the English translation" : "Back to the Russian text"}
+            title={dualPane === 0 ? "Show English" : "Back to Russian"}
+          >
+            {dualPane === 0 ? "EN →" : "← RU"}
+          </button>
         </div>
       );
     }
     return litRendered;
   };
+
+  // Scroll the pane rather than moving it: the container keeps its scroll-snap,
+  // so swipe and shift-wheel keep working exactly as before and this is just a
+  // third way to drive the same thing.
+  var toggleDual = function() {
+    var el = dualRef.current;
+    if (!el) return;
+    var to = dualPane === 0 ? el.clientWidth : 0;
+    try { el.scrollTo({ left: to, behavior: "smooth" }); }
+    catch (e) { el.scrollLeft = to; }          // older browsers: jump, don't fail
+  };
+
+  // Keep the label honest when the reader swipes or shift-scrolls by hand.
+  var onDualScroll = function(e) {
+    var el = e.currentTarget;
+    if (!el || !el.clientWidth) return;
+    var pane = el.scrollLeft > el.clientWidth / 2 ? 1 : 0;
+    setDualPane(function(prev){ return prev === pane ? prev : pane; });
+  };
+
+  // A new page always opens on the Russian side.
+  useEffect(function(){ setDualPane(0); }, [cidx, pidx]);
 
   var renderBubble = function(text) {
     // Diagnostic: log the raw AI message so we can verify whether footnotes
@@ -5607,6 +5644,17 @@ export default function App() {
         .dual-scroll{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin;padding-bottom:4px}
         .dual-grid{display:grid;grid-template-columns:100% 100%;column-gap:36px;align-items:start}
         .dual-grid > p{scroll-snap-align:start}
+        /* Pinned to the viewport, not to the end of the scroll container, so it
+           is reachable from anywhere in a long chapter. */
+        .dual-toggle{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:40;
+          background:rgba(255,252,246,.94);border:1px solid rgba(42,31,20,.18);color:rgba(42,31,20,.7);
+          font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.06em;font-weight:600;
+          padding:9px 11px;border-radius:999px;cursor:pointer;box-shadow:0 2px 10px rgba(42,31,20,.13);
+          transition:background .15s,color .15s,border-color .15s}
+        .dual-toggle:hover{background:#fff;color:rgba(42,31,20,.95);border-color:rgba(42,31,20,.34)}
+        .dual-toggle:focus-visible{outline:2px solid #a06e14;outline-offset:2px}
+        .dual-toggle.on{background:#a06e14;border-color:#a06e14;color:#fff}
+        @media (max-width:640px){.dual-toggle{right:10px;padding:8px 10px;font-size:11px}}
         .dual-en{color:rgba(42,31,20,.72)}
         .bible-en-vno{font-size:0.7em;font-weight:700;color:#c4955a;vertical-align:super;line-height:1;margin-right:2px;font-family:'Inter',sans-serif;letter-spacing:.02em}
         .dual-en-heading{font-weight:600;color:rgba(42,31,20,.62)}
