@@ -18,6 +18,13 @@ var IS_PUBLIC_SITE = SITE_MODE === "public";
 // republished, so the public site reads its own file and never falls back to
 // the other one.
 var MUSIC_URL = IS_PUBLIC_SITE ? "/music/music.public.json" : "/music/music.json";
+// What this deployment calls itself. The private site is Говорим ("we speak");
+// the public one is Самовар. Static files outside the bundle — index.html and
+// the web manifest — are rewritten at build time by scripts/brand.mjs instead,
+// since vite copies public/ through untouched.
+var SITE_NAME = IS_PUBLIC_SITE ? "Самовар" : "Говорим";
+var SITE_NAME_LATIN = IS_PUBLIC_SITE ? "Samovar" : "Govorim";
+var SITE_TAGLINE = IS_PUBLIC_SITE ? "Russian Reading" : "Russian Practice";
 
 // Every book in the library is labelled the same way: Russian title, em dash,
 // author. index.json keeps title and author as separate fields (the exercise
@@ -4187,7 +4194,7 @@ export default function App() {
           partOfSpeech: curate.partOfSpeech,
           example: curate.example,
           forms: curate.forms,
-          source: "Govorim glossary",
+          source: SITE_NAME_LATIN + " glossary",
         }),
       });
       var body = await r.json().catch(function(){ return {}; });
@@ -6200,7 +6207,7 @@ export default function App() {
           <div className="land-card">
             <div className="land-icon" style={{color:"#c4955a"}}><Pushkin size={68}/></div>
             <div>
-              <div className="land-title">Говорим</div>
+              <div className="land-title">{SITE_NAME}</div>
               <div className="land-sub">Russian Practice</div>
             </div>
             <div className="land-tagline">
@@ -6252,7 +6259,7 @@ export default function App() {
           <div className="auth-card">
             <div className="auth-brand">
               <div style={{color:"#c4955a"}}><Pushkin size={64}/></div>
-              <div className="auth-brand-title">Говорим</div>
+              <div className="auth-brand-title">{SITE_NAME}</div>
               <div className="auth-brand-sub">Russian Practice</div>
             </div>
           </div>
@@ -6264,7 +6271,7 @@ export default function App() {
           <div className="auth-card">
             <div className="auth-brand">
               <div style={{color:"#c4955a"}}><Pushkin size={64}/></div>
-              <div className="auth-brand-title">Говорим</div>
+              <div className="auth-brand-title">{SITE_NAME}</div>
               <div className="auth-brand-sub">Russian Practice</div>
             </div>
 
@@ -6339,7 +6346,7 @@ export default function App() {
             }}
             onKeyDown={function(e){ if (e.key === "Enter" || e.key === " ") { e.currentTarget.click(); } }}
             style={{cursor:"pointer"}}>
-            <span className="lru">Говорим</span><span className="lsub">Russian Practice</span>
+            <span className="lru">{SITE_NAME}</span><span className="lsub">{SITE_TAGLINE}</span>
           </div>
           <div style={{display:"flex",alignItems:"center",gap:12}}>
             {false && <div className="level-wrap" title="Russian proficiency level. Adapts AI questions to your skill. Changes apply immediately to chat and reading-mode analysis.">
@@ -6630,7 +6637,7 @@ export default function App() {
             {!started && !mode && (
               <div className="ss">
                 <div className="sico" style={{color:"#c4955a"}}><Pushkin size={64}/></div>
-                <h1 className="sti">Говорим</h1>
+                <h1 className="sti">{SITE_NAME}</h1>
                 <p className="sde">Choose how you want to practice today.</p>
                 <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:14}}>
                   <button className="btn-p" onClick={function(){ setMode("read"); }} style={{textAlign:"left",padding:"18px 22px"}}>
@@ -8158,8 +8165,8 @@ export default function App() {
                   {popup.data.definitionSource === "ruwiktionary" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href={popup.data.sourceUrl || "https://ru.wiktionary.org/"} target="_blank" rel="noreferrer" style={{color:"inherit"}}>\u0412\u0438\u043a\u0438\u0441\u043b\u043e\u0432\u0430\u0440\u044c</a>{" \u00b7 "}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer" style={{color:"inherit"}}>CC BY-SA 4.0</a></div>}
                   {popup.data.definitionSource === "mt" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}>{popup.data.mtProvider || "Machine translation"}</div>}
                   {popup.data.definitionSource === "glossary" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}>{popup.data.sourceUrl
-                    ? <a href={popup.data.sourceUrl} target="_blank" rel="noreferrer" style={{color:"inherit"}}>{popup.data.sourceNote || "Govorim glossary"}</a>
-                    : (popup.data.sourceNote || "Govorim glossary")}{isAdmin && <span style={{opacity:0.7}}>{" \u00b7 curated"}</span>}</div>}
+                    ? <a href={popup.data.sourceUrl} target="_blank" rel="noreferrer" style={{color:"inherit"}}>{popup.data.sourceNote || (SITE_NAME_LATIN + " glossary")}</a>
+                    : (popup.data.sourceNote || (SITE_NAME_LATIN + " glossary"))}{isAdmin && <span style={{opacity:0.7}}>{" \u00b7 curated"}</span>}</div>}
                 </>
               )}
 

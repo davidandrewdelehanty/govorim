@@ -7,7 +7,7 @@
     "dev": "vite",
     "books": "node scripts/generate-books-manifest.js",
     "prebuild": "node scripts/generate-books-manifest.js",
-    "build": "vite build && node scripts/prune-public.mjs",
+    "build": "vite build && node scripts/brand.mjs && node scripts/prune-public.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

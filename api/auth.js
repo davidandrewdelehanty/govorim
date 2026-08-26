@@ -15,6 +15,7 @@
 //   ADMIN_EMAIL            — the one account that gets admin rights.
 //   R2_ENDPOINT, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY — account storage.
 
+import { siteName } from "../lib/site.js";
 import {
   normalizeEmail,
   emailProblem,
@@ -137,7 +138,7 @@ export default async function handler(req, res) {
         try {
           const out = await sendEmail({
             to: notifyTo,
-            subject: "[Govorim] Account awaiting approval: " + safe,
+            subject: "[" + siteName() + "] Account awaiting approval: " + safe,
             html:
               "<p>A new reader signed up and is waiting for approval:</p>" +
               "<p><strong>" + safe + "</strong></p>" +

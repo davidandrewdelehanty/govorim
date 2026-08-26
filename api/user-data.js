@@ -21,6 +21,7 @@
 // userIdFor), so a rebuilt account lands back on its own vocabulary.
 // Accounts made under the old Clerk setup have their data under the old
 // Clerk user id; /api/admin/import-userdata copies such a prefix across.
+import { siteName } from "../lib/site.js";
 import {
   S3Client, GetObjectCommand, PutObjectCommand
 } from "@aws-sdk/client-s3";
@@ -333,7 +334,7 @@ async function handleForum(req, res, user, action) {
       };
       await forumPut(postKey(cat, post.id), post);
       await updateIndex(cat, post);
-      await notifyAdmin(user, "[Govorim forum] " + (CAT_LABELS[cat] || cat) + ": " + post.title, postEmailHtml(post, cat));
+      await notifyAdmin(user, "[" + siteName() + " forum] " + (CAT_LABELS[cat] || cat) + ": " + post.title, postEmailHtml(post, cat));
       return res.status(200).json({ ok: true, id: post.id });
     }
 
@@ -355,7 +356,7 @@ async function handleForum(req, res, user, action) {
       post.lastActivity = Date.now();
       await forumPut(postKey(cat, id), post);
       await updateIndex(cat, post);
-      await notifyAdmin(user, "[Govorim forum] Reply on: " + post.title,
+      await notifyAdmin(user, "[" + siteName() + " forum] Reply on: " + post.title,
         "<p><strong>" + escapeHtml(user.email ? displayName(user) : "reader") + "</strong> replied in <strong>" +
         escapeHtml(CAT_LABELS[cat] || cat) + "</strong> to \u201c" + escapeHtml(post.title) + "\u201d:</p>" +
         "<p style=\"white-space:pre-wrap\">" + escapeHtml(text) + "</p>" +
