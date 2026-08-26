@@ -26,18 +26,7 @@ import {
 } from "@aws-sdk/client-s3";
 
 const BUCKET = process.env.R2_BUCKET || "govorim-audio";
-
-// Two sites share this bucket. DATA_PREFIX keeps their accounts, user data and
-// forums apart -- unset (govorim) means the original top-level paths, so
-// nothing existing moves; the public site sets DATA_PREFIX=samovar/ and gets
-// its own namespace. Without this a public signup would land in the private
-// site's account index.
-const DATA_PREFIX = (function () {
-  const p = (process.env.DATA_PREFIX || "").trim().replace(/^\/+|\/+$/g, "");
-  return p ? p + "/" : "";
-})();
-
-const ACCOUNTS_PREFIX = DATA_PREFIX + "userdata/accounts";
+const ACCOUNTS_PREFIX = "userdata/accounts";
 const COOKIE_NAME = "gv_session";
 const SESSION_DAYS = 30;
 

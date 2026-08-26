@@ -34,3 +34,9 @@ __pycache__/
 
 # generated glossary seeds (rebuilt on demand, pushed to R2)
 tools/out/
+
+# Pulled Vercel environments — plaintext secrets, never commit these.
+# The existing .env / .env.local rules did NOT cover names like .env.vercel
+# or .env.production, which is exactly what `vercel env pull <file>` writes.
+.env.*
+!.env.example

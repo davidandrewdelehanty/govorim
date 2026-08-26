@@ -11,14 +11,32 @@ from email.parser import BytesParser
 from email.policy import default as email_default
 
 REPO = "/mnt/c/Users/david/projects/govorim-app"
-MUSIC = os.path.join(REPO, "public", "music", "music.json")
+# Two catalogues. govorim's music.json holds material that may not be
+# republished; the public site (Samovar) reads music.public.json and nothing
+# else. Picking the wrong one is the mistake this selector exists to prevent,
+# so the form always shows which catalogue is being written.
+MUSIC_FILES = {
+    "private": os.path.join(REPO, "public", "music", "music.json"),
+    "public":  os.path.join(REPO, "public", "music", "music.public.json"),
+}
+MUSIC_LABELS = {
+    "private": "govorim (private)",
+    "public":  "Samovar (public \u2014 public-domain songs only)",
+}
+
+def music_path(which):
+    return MUSIC_FILES.get(which, MUSIC_FILES["private"])
 PORT = 8765
 
-def load_music():
-    return json.load(open(MUSIC, encoding="utf-8"))
+def load_music(which="private"):
+    path = music_path(which)
+    if not os.path.isfile(path):
+        return []
+    return json.load(open(path, encoding="utf-8"))
 
-def save_music(data):
-    json.dump(data, open(MUSIC, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+def save_music(which, data):
+    json.dump(data, open(music_path(which), "w", encoding="utf-8"),
+              ensure_ascii=False, indent=1)
 
 # Artists whose name has more than one spelling in the wild. Key = normalised
 # form (lowercase, punctuation and spacing stripped), value = the spelling the
@@ -76,16 +94,23 @@ STYLE = """
 </style>
 """
 
-def form_page(msg=""):
+def form_page(msg="", which="private"):
     artists = ""
     try:
-        artists = "".join('<option value="%s">' % html.escape(a["artist"]) for a in load_music())
+        artists = "".join('<option value="%s">' % html.escape(a["artist"]) for a in load_music(which))
     except Exception:
         pass
+    options = "".join(
+        '<option value="%s"%s>%s</option>' % (k, " selected" if k == which else "", MUSIC_LABELS[k])
+        for k in ("private", "public")
+    )
     return """<!doctype html><meta charset="utf-8"><title>Govorim — add song</title>%s
 <a class="quit" href="/quit">quit</a>
 <h1>Add a song</h1>%s
 <form method="post" action="/add" enctype="multipart/form-data">
+ <label>Catalogue</label>
+ <select name="catalogue" onchange="location.search='?catalogue='+this.value">%s</select>
+ <div class="hint">Samovar is public \u2014 only songs whose lyrics are public domain</div>
  <label>Artist</label>
  <input type="text" name="artist" list="artists" required>
  <datalist id="artists">%s</datalist>
@@ -102,7 +127,7 @@ def form_page(msg=""):
   <button type="submit">Add song</button>
   <label class="chk"><input type="checkbox" name="push" checked> commit &amp; push after adding</label>
  </div>
-</form>""" % (STYLE, msg, artists)
+</form>""" % (STYLE, msg, options, artists)
 
 class H(BaseHTTPRequestHandler):
     def log_message(self, *a): pass
@@ -120,7 +145,10 @@ class H(BaseHTTPRequestHandler):
             self._send("%s<h1>Stopped.</h1><p>You can close this tab.</p>" % STYLE)
             threading.Thread(target=self.server.shutdown, daemon=True).start()
             return
-        self._send(form_page())
+        which = "private"
+        if "catalogue=public" in (self.path or ""):
+            which = "public"
+        self._send(form_page("", which))
 
     def do_POST(self):
         body = self.rfile.read(int(self.headers.get("Content-Length", 0)))
@@ -139,6 +167,9 @@ class H(BaseHTTPRequestHandler):
                 payload = part.get_payload(decode=True) or b""
                 fields[name] = payload.decode("utf-8", errors="replace")
 
+        which = fields.get("catalogue", "private").strip()
+        if which not in MUSIC_FILES:
+            which = "private"
         artist = fields.get("artist", "").strip()
         title = fields.get("title", "").strip()
         yt = fields.get("youtube", "").strip()
@@ -150,7 +181,7 @@ class H(BaseHTTPRequestHandler):
         lyrics = lyrics.replace("\r\n", "\n")
 
         def fail(m):
-            self._send(form_page('<div class="err">%s</div>' % html.escape(m)))
+            self._send(form_page('<div class="err">%s</div>' % html.escape(m), which))
 
         if not (artist and title and yt):
             return fail("Artist, title, and YouTube link are all required.")
@@ -161,7 +192,7 @@ class H(BaseHTTPRequestHandler):
             return fail("Couldn't extract a YouTube video ID from: " + yt)
 
         try:
-            data = load_music()
+            data = load_music(which)
         except Exception as e:
             return fail("Couldn't read music.json: %s" % e)
 
@@ -177,7 +208,7 @@ class H(BaseHTTPRequestHandler):
             return fail("«%s» already exists for %s — not overwriting." % (title, entry["artist"]))
 
         entry["songs"].append({"title": title, "youtube": vid, "lyrics": lyrics})
-        save_music(data)
+        save_music(which, data)
 
         msg = '<div class="ok">Added <b>%s — %s</b> (video %s).</div>' % (
             html.escape(entry["artist"]), html.escape(title), vid)
@@ -198,9 +229,9 @@ class H(BaseHTTPRequestHandler):
                 msg += '<div class="ok">Committed and pushed — live after Vercel redeploys.</div>'
             msg += "<pre>%s</pre>" % html.escape("\n".join(out))
         else:
-            msg += '<div class="ok">Saved to music.json (not committed).</div>'
+            msg += '<div class="ok">Saved to %s (not committed).</div>' % html.escape(os.path.basename(music_path(which)))
 
-        self._send(form_page(msg))
+        self._send(form_page(msg, which))
 
 def open_browser(url):
     for cmd in (["wslview", url],

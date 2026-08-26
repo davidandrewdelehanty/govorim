@@ -55,31 +55,10 @@ export default function handler(req, res) {
   }
   const isAdmin = !!(user && user.isAdmin);
 
-  // On the public deployment a book must opt IN. An entry with no "public"
-  // flag is private, so adding a book can never publish it by accident -- the
-  // failure mode of a default-true flag is the one that matters here.
-  //
-  // Note this only hides the entry. The files it points at are static assets,
-  // so they are removed from the public build entirely by
-  // scripts/prune-public.mjs; filtering a list does not unpublish a file.
-  const publicSite = process.env.SITE_MODE === "public";
-
   const books = [];
   for (const entry of list) {
     if (entry && entry.restricted) {
-      // Restricted books are admin-only on the private site and simply do not
-      // exist on the public one.
-      if (isAdmin && !publicSite) books.push(gateEntry(entry));
-      continue;
-    }
-    if (publicSite && !(entry && entry.public === true)) continue;
-    // Audio is opted in separately from the text. Most public books are
-    // text-only, so the audiobook block is dropped rather than left pointing at
-    // recordings the public build never ships.
-    if (publicSite && entry.audiobook && entry.publicAudio !== true) {
-      const noAudio = Object.assign({}, entry);
-      delete noAudio.audiobook;
-      books.push(noAudio);
+      if (isAdmin) books.push(gateEntry(entry));
       continue;
     }
     books.push(entry);

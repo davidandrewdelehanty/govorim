@@ -93,5 +93,5 @@ if [[ "$OK" =~ ^[Yy] ]]; then
   git push
   echo "Pushed — the song will be live after Vercel redeploys."
 else
-  echo "Saved to $MUSIC_REL (not committed yet)."
+  echo "Saved to public/music/music.json (not committed yet)."
 fi

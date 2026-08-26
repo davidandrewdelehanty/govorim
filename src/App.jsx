@@ -7,6 +7,18 @@ import { isCommonWord, dropCommonWords } from "./commonWords.js";
 // All spoken Russian (chat 🔊 Listen, book reading) uses the browser's built-in
 // speechSynthesis voices — no paid cloud TTS, no server round-trip, no API key.
 
+// Which deployment this build is. vite.config.js inlines __SITE_MODE__ from the
+// SITE_MODE environment variable, so the same source tree produces a private
+// build (the full library, the music tab) and a public one (opted-in books
+// only, its own music file) with no branching at runtime and no way for a
+// public build to reach private data by mistake.
+var SITE_MODE = (typeof __SITE_MODE__ !== "undefined" ? __SITE_MODE__ : "private");
+var IS_PUBLIC_SITE = SITE_MODE === "public";
+// Separate catalogues: the private music.json holds material that may not be
+// republished, so the public site reads its own file and never falls back to
+// the other one.
+var MUSIC_URL = IS_PUBLIC_SITE ? "/music/music.public.json" : "/music/music.json";
+
 // Every book in the library is labelled the same way: Russian title, em dash,
 // author. index.json keeps title and author as separate fields (the exercise
 // and lit-analysis prompts feed them to the model independently), so the joined
@@ -1933,7 +1945,7 @@ export default function App() {
   useEffect(function() {
     if (tab !== "music" || musicData) return;
     var cancelled = false;
-    fetch("/music/music.json")
+    fetch(MUSIC_URL)
       .then(function(r){ return r.ok ? r.json() : null; })
       .then(function(j){ if (!cancelled && j) setMusicData(j); })
       .catch(function(){});
