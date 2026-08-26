@@ -1675,6 +1675,8 @@ export default function App() {
   // same-origin fetches carry it automatically.
   var [me, setMe]             = useState(null);   // { id, email, isAdmin } | null
   var [curate, setCurate]     = useState(null);   // admin: glossary entry being written
+  var [sayState, setSayState] = useState("");     // popup audio: "" | "playing" | "none"
+  var sayAudioRef             = useRef(null);
   var [authReady, setAuthReady] = useState(false); // false until /api/auth/me answers
   var [authOpen, setAuthOpen] = useState(false);  // sign-in panel visible
   var [authMode, setAuthMode] = useState("signup"); // "login" | "signup" — the gate leads with registration
@@ -4052,6 +4054,8 @@ export default function App() {
       top = 16;
     }
     setPopXY({top:Math.max(8,top),left:left});
+    setSayState("");
+    try { if (sayAudioRef.current) sayAudioRef.current.pause(); } catch(e) {}
     setPopup({word:clean,data:null,loading:true,error:null,yo:null,srcOffset:(typeof charPosition==="number"?charPosition:null)});
     try {
       var data = await fetchDef(clean);
@@ -4090,6 +4094,55 @@ export default function App() {
       var m = 'Could not define "' + word + '" — ' + ((err && err.message) || "Unknown error");
       setPopup(function(p){ return p ? Object.assign({},p,{loading:false,error:m}) : null; });
     }
+  };
+
+  // Speaker button in the definition popup. Three layers, the same shape as the
+  // definition tiers themselves:
+  //   1. a real recording by a native speaker, if Wikimedia Commons has one
+  //   2. the browser's Russian voice, which the app already ships
+  //   3. an honest message when neither works
+  // Commons coverage is strongest for common vocabulary and thinnest for the
+  // rare and archaic words — the inverse of where the dictionary tiers struggle
+  // — so layer 2 carries more of this than you would hope. Ogg Vorbis also
+  // doesn't play on older Safari, which lands in the same fallback.
+  var sayWord = function(entry, clicked) {
+    var lemma = String((entry && entry.lemma) || clicked || "").replace(/\u0301/g, "").trim();
+    if (!lemma) return;
+
+    var speakIt = function() {
+      try {
+        if (!window.speechSynthesis) { setSayState("none"); return; }
+        var voice = pickRussianVoice();
+        if (!voice) { setSayState("none"); return; }
+        try { window.speechSynthesis.cancel(); } catch(e) {}
+        var u = new SpeechSynthesisUtterance(lemma);
+        u.lang = "ru-RU"; u.voice = voice; u.rate = 0.85;
+        u.onend   = function(){ setSayState(""); };
+        u.onerror = function(){ setSayState("none"); };
+        setSayState("playing");
+        window.speechSynthesis.speak(u);
+      } catch (e) { setSayState("none"); }
+    };
+
+    // Commons names its Russian recordings Ru-<слово>.ogg, and Special:FilePath
+    // resolves a bare filename with no API call. /api/define supplies the exact
+    // name when the ru.wiktionary tier saw one; otherwise the guess is free —
+    // the browser either gets a file or a 404, and a 404 falls through.
+    var url = (entry && entry.audioUrl) ||
+      ("https://commons.wikimedia.org/wiki/Special:FilePath/" +
+       encodeURIComponent("Ru-" + lemma + ".ogg"));
+
+    setSayState("");
+    try {
+      if (sayAudioRef.current) { try { sayAudioRef.current.pause(); } catch(e) {} }
+      var a = new Audio(url);
+      sayAudioRef.current = a;
+      a.onplaying = function(){ setSayState("playing"); };
+      a.onended   = function(){ setSayState(""); };
+      a.onerror   = function(){ speakIt(); };
+      var pr = a.play();
+      if (pr && pr.catch) pr.catch(function(){ speakIt(); });
+    } catch (e) { speakIt(); }
   };
 
   // Admin-only curation. Блатной жаргон and сленг are a long tail no free
@@ -5763,6 +5816,14 @@ export default function App() {
         .gvin{width:100%;box-sizing:border-box;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.15);color:#000;padding:8px 9px;border-radius:9px;font-size:14px;font-family:'Crimson Pro',serif}
         .gvin:focus{outline:none;border-color:rgba(42,31,20,.4);background:rgba(42,31,20,.07)}
         .gvin::placeholder{color:rgba(42,31,20,.45)}
+        .pmt{font-size:.78em;line-height:1.35;color:#7a5c2e;background:rgba(160,110,20,.09);
+             border-left:2px solid rgba(160,110,20,.45);padding:6px 8px;border-radius:0 6px 6px 0;margin-bottom:8px}
+        .pwrow{display:flex;align-items:baseline;gap:8px}
+        .pwrow .pw{flex:1;min-width:0}
+        .psay{flex:none;background:none;border:none;cursor:pointer;font-size:17px;line-height:1;
+              padding:2px 4px;border-radius:6px;color:rgba(42,31,20,.45);transition:color .15s,background .15s}
+        .psay:hover{color:rgba(42,31,20,.85);background:rgba(42,31,20,.07)}
+        .psay.on{color:#a06e14}
         .panel{flex:1;padding:28px;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
         .phdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
         .pti{font-family:'Playfair Display',serif;font-size:20px;color:#000}
@@ -7987,7 +8048,18 @@ export default function App() {
                 var showClickedHint = !!(lemma && clicked && lemma !== clicked && !(/\s\/\s/.test(headline)));
                 return (
                   <>
-                    <div className="pw">{headline}</div>
+                    <div className="pwrow">
+                      <div className="pw">{headline}</div>
+                      <button className={"psay" + (sayState === "playing" ? " on" : "")}
+                              title="Pronounce"
+                              aria-label={"Pronounce " + headline}
+                              onClick={function(){ sayWord(popup.data, popup.word); }}>♪</button>
+                    </div>
+                    {sayState === "none" && (
+                      <div style={{fontSize:11,color:"rgba(0,0,0,.4)",marginBottom:6,marginTop:-2}}>
+                        No audio available for this word.
+                      </div>
+                    )}
                     {showClickedHint && (
                       <div style={{fontSize:11,color:"rgba(0,0,0,.4)",marginBottom:6,marginTop:-2}}>
                         you clicked: {clicked}
@@ -8057,6 +8129,13 @@ export default function App() {
 
               {!popup.loading && !popup.error && !popup.yo && !popup.noEntry && popup.data && (
                 <>
+                  {popup.data.definitionSource === "mt" && (
+                    <div className="pmt">
+                      {popup.data.mtKind === "dictionary"
+                        ? "No dictionary here had this word — this is a bilingual-dictionary match from a translation engine."
+                        : "No dictionary anywhere had this word. This is a machine translation — treat it as a hint, not a definition."}
+                    </div>
+                  )}
                   <div className="ppos">{popup.data.partOfSpeech}{popup.data.aspect ? " · " + popup.data.aspect : ""}</div>
                   {popup.data.definitionRu && <div className="pdru">{popup.data.definitionRu}</div>}
                   <div className="ptr">{popup.data.translation}</div>
@@ -8065,6 +8144,7 @@ export default function App() {
                   {popup.data.definitionSource === "yandex" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href="https://yandex.com/dev/dictionary/" target="_blank" rel="noreferrer" style={{color:"inherit"}}>Powered by Yandex.Dictionary</a></div>}
                   {popup.data.definitionSource === "wiktionary" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href={popup.data.sourceUrl || "https://en.wiktionary.org/"} target="_blank" rel="noreferrer" style={{color:"inherit"}}>Wiktionary</a>{" \u00b7 "}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer" style={{color:"inherit"}}>CC BY-SA 4.0</a></div>}
                   {popup.data.definitionSource === "ruwiktionary" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href={popup.data.sourceUrl || "https://ru.wiktionary.org/"} target="_blank" rel="noreferrer" style={{color:"inherit"}}>\u0412\u0438\u043a\u0438\u0441\u043b\u043e\u0432\u0430\u0440\u044c</a>{" \u00b7 "}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer" style={{color:"inherit"}}>CC BY-SA 4.0</a></div>}
+                  {popup.data.definitionSource === "mt" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}>{popup.data.mtProvider || "Machine translation"}</div>}
                   {popup.data.definitionSource === "glossary" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}>{popup.data.sourceUrl
                     ? <a href={popup.data.sourceUrl} target="_blank" rel="noreferrer" style={{color:"inherit"}}>{popup.data.sourceNote || "Govorim glossary"}</a>
                     : (popup.data.sourceNote || "Govorim glossary")}{isAdmin && <span style={{opacity:0.7}}>{" \u00b7 curated"}</span>}</div>}

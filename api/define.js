@@ -27,10 +27,11 @@
 
 import { currentUser } from "../lib/auth.js";
 import {
-  loadGlossary, glossaryEntry, putGlossaryEntry, dictKey,
+  loadGlossary, lookupGlossary, glossaryEntry, putGlossaryEntry, dictKey,
   logMiss, listMisses, removeMiss,
 } from "../lib/dict.js";
 import { ruWiktionaryLookup, resolveLemma } from "../lib/ruwikt.js";
+import { mtLookup } from "../lib/mt.js";
 
 const YANDEX_URL = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup";
 const FLAG_MORPHO = 0x0004;
@@ -479,22 +480,21 @@ export default async function handler(req, res) {
       .concat(yoVariants(deyo).slice(0, 3))
       .filter(function (w, i, arr) { return arr.indexOf(w) === i; });
 
-    // -- 0. Curated glossary ------------------------------------------------
-    // Checked first, not last: an entry here was written by hand on purpose, so
-    // it should win even where Yandex has some blander sense of the word. This
-    // is also the only tier that knows блатной жаргон reliably.
+    // -- 0. Hand-written corrections ----------------------------------------
+    // ONLY entries curated by hand from the reader popup. Each one is a
+    // deliberate ruling about a specific word, so it outranks every dictionary.
+    // The bulk жаргон harvest is deliberately NOT consulted here — see tier 4.
+    let glossary = null;
     try {
-      const glossary = await loadGlossary(false);
-      for (const cand of [lower, deyo]) {
-        const hit = glossary.get(dictKey(cand));
-        if (hit) {
-          const built = glossaryEntry(hit, word, cand);
-          if (built) {
-            // Short cache: a word curated from the popup should show its new
-            // definition on the next tap, not in a week.
-            res.setHeader("Cache-Control", "public, s-maxage=60");
-            return res.status(200).json(built);
-          }
+      glossary = await loadGlossary(false);
+      const found = lookupGlossary(glossary, [lower, deyo], "hand");
+      if (found) {
+        const built = glossaryEntry(found.hit, word, found.matched);
+        if (built) {
+          // Short cache: a word curated from the popup should show its new
+          // definition on the next tap, not in a week.
+          res.setHeader("Cache-Control", "public, s-maxage=60");
+          return res.status(200).json(built);
         }
       }
     } catch (e) {
@@ -585,12 +585,59 @@ export default async function handler(req, res) {
         trace.push("ruwikt:skipped-no-time");
       }
 
+      // -- 4. Блатной жаргон / сленг backup -----------------------------------
+      // Last resort, and last on purpose. This set is 1886 criminal-jargon
+      // senses harvested from ru.wiktionary's Приложение:Уголовный жаргон, and
+      // a good share of its headwords are ordinary words carrying a second,
+      // underworld meaning — язык is "следователь" in there, шеф is "главарь
+      // шайки", банка is "литр водки". Consulted before the dictionaries it
+      // would wreck ordinary reading; consulted after them it only ever fires
+      // on a word no dictionary knows, which is exactly the жаргон tail.
+      if (glossary) {
+        const slang = lookupGlossary(glossary, [lower, deyo, lemma].filter(Boolean), null);
+        if (slang) {
+          const built = glossaryEntry(slang.hit, word, slang.matched);
+          if (built) {
+            trace.push("slang:hit");
+            res.setHeader("Cache-Control", "public, s-maxage=3600");
+            return res.status(200).json(built);
+          }
+        }
+        trace.push("slang:miss");
+      }
+
       if (yandexErr) throw yandexErr;
 
-      // Nothing anywhere. Record it so the curation worklist grows itself:
-      // this is exactly the tail worth adding to the glossary by hand.
+      // Every dictionary has now declined this word, so it belongs on the
+      // curation worklist EVEN IF machine translation answers below. Otherwise
+      // adding an MT tier would silently kill the mechanism that grows the
+      // жаргон glossary — a gloss would always appear and nothing would ever
+      // look like a gap again.
       try { await logMiss(word, req.query && req.query.ctx); }
       catch (e) { console.warn("[define] could not log miss:", (e && e.message) || e); }
+
+      // -- 6. Machine translation ---------------------------------------------
+      // A guess, clearly labelled as one, so reading is not stopped dead by a
+      // word nothing has. Azure's bilingual dictionary is tried before raw
+      // translation — see lib/mt.js.
+      if (timeLeft() > 1200) {
+        let mt = null;
+        try {
+          mt = await mtLookup([lower, deyo, lemma].filter(Boolean), word, ctrl.signal);
+        } catch (e) {
+          if (e && e.name === "AbortError") throw e;
+          trace.push("mt:error " + ((e && e.message) || e));
+          console.warn("[define] MT tier failed:", (e && e.message) || e);
+        }
+        if (mt) {
+          trace.push("mt:" + mt.mtKind);
+          res.setHeader("Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
+          return res.status(200).json(mt);
+        }
+        trace.push("mt:miss");
+      } else {
+        trace.push("mt:skipped-no-time");
+      }
 
       // Cache misses too — no tier's coverage changes hour to hour, and repeat
       // misses on the same rare word shouldn't spend quota or R2 writes.
