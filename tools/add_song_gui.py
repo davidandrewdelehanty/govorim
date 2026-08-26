@@ -10,7 +10,8 @@ from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 from email.parser import BytesParser
 from email.policy import default as email_default
 
-REPO = "/mnt/c/Users/david/projects/govorim-app"
+# Override with GOVORIM_REPO when running from anywhere but the usual WSL path.
+REPO = os.environ.get("GOVORIM_REPO", "/mnt/c/Users/david/projects/govorim-app")
 # Two catalogues. govorim's music.json holds material that may not be
 # republished; the public site (Samovar) reads music.public.json and nothing
 # else. Picking the wrong one is the mistake this selector exists to prevent,
@@ -23,6 +24,16 @@ MUSIC_LABELS = {
     "private": "govorim (private)",
     "public":  "Samovar (public \u2014 public-domain songs only)",
 }
+
+MUSIC_REL = {
+    "private": "public/music/music.json",
+    "public":  "public/music/music.public.json",
+}
+
+# Launch with --public to open straight on the Samovar catalogue. The dropdown
+# still switches either way; this only sets what the form opens on, so the
+# common case doesn't depend on remembering to change it.
+DEFAULT_CATALOGUE = "public" if "--public" in sys.argv else "private"
 
 def music_path(which):
     return MUSIC_FILES.get(which, MUSIC_FILES["private"])
@@ -145,9 +156,11 @@ class H(BaseHTTPRequestHandler):
             self._send("%s<h1>Stopped.</h1><p>You can close this tab.</p>" % STYLE)
             threading.Thread(target=self.server.shutdown, daemon=True).start()
             return
-        which = "private"
+        which = DEFAULT_CATALOGUE
         if "catalogue=public" in (self.path or ""):
             which = "public"
+        elif "catalogue=private" in (self.path or ""):
+            which = "private"
         self._send(form_page("", which))
 
     def do_POST(self):
@@ -167,7 +180,7 @@ class H(BaseHTTPRequestHandler):
                 payload = part.get_payload(decode=True) or b""
                 fields[name] = payload.decode("utf-8", errors="replace")
 
-        which = fields.get("catalogue", "private").strip()
+        which = fields.get("catalogue", DEFAULT_CATALOGUE).strip()
         if which not in MUSIC_FILES:
             which = "private"
         artist = fields.get("artist", "").strip()
@@ -214,16 +227,18 @@ class H(BaseHTTPRequestHandler):
             html.escape(entry["artist"]), html.escape(title), vid)
 
         if push:
-            cmds = [["git", "add", "public/music/music.json"],
-                    ["git", "commit", "-m", "Music: add %s — %s" % (artist, title)],
+            site = "Samovar" if which == "public" else "Govorim"
+            cmds = [["git", "add", MUSIC_REL[which]],
+                    ["git", "commit", "-m", "%s music: add %s — %s" % (site, artist, title)],
                     ["git", "push"]]
             out = []
             for c in cmds:
                 r = subprocess.run(c, cwd=REPO, capture_output=True, text=True)
                 out.append("$ " + " ".join(c) + "\n" + r.stdout + r.stderr)
                 if r.returncode != 0:
-                    msg += ('<div class="err">git step failed — the song IS saved in '
-                            'music.json, but you\'ll need to push manually.</div>')
+                    msg += ('<div class="err">git step failed — the song IS saved in %s, '
+                            'but you\'ll need to push manually.</div>'
+                            % html.escape(os.path.basename(music_path(which))))
                     break
             else:
                 msg += '<div class="ok">Committed and pushed — live after Vercel redeploys.</div>'
@@ -245,12 +260,20 @@ def open_browser(url):
     print("Open %s in your browser." % url)
 
 if __name__ == "__main__":
-    if not os.path.isfile(MUSIC):
-        sys.exit("music.json not found at %s" % MUSIC)
-    url = "http://127.0.0.1:%d/" % PORT
+    target = music_path(DEFAULT_CATALOGUE)
+    # Samovar's catalogue starts empty, so create it rather than refusing to run.
+    if not os.path.isfile(target):
+        if DEFAULT_CATALOGUE == "public":
+            os.makedirs(os.path.dirname(target), exist_ok=True)
+            json.dump([], open(target, "w", encoding="utf-8"))
+            print("Created %s" % target)
+        else:
+            sys.exit("music.json not found at %s" % target)
+    url = "http://127.0.0.1:%d/?catalogue=%s" % (PORT, DEFAULT_CATALOGUE)
     srv = ThreadingHTTPServer(("127.0.0.1", PORT), H)
     srv.daemon_threads = True
-    print("Govorim song uploader — %s  (Ctrl+C to stop)" % url)
+    print("%s song uploader — %s  (Ctrl+C to stop)"
+          % (MUSIC_LABELS[DEFAULT_CATALOGUE], url))
     open_browser(url)
     try:
         srv.serve_forever()
