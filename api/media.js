@@ -24,6 +24,7 @@ import path from "node:path";
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { requireAdminUser } from "../lib/auth.js";
+import { r2Endpoint } from "../lib/r2-endpoint.js";
 
 const PRIVATE_BUCKET = process.env.R2_PRIVATE_BUCKET || "govorim-private";
 const URL_TTL_SECONDS = 15 * 60;
@@ -43,7 +44,7 @@ function getS3() {
   if (!s3) {
     s3 = new S3Client({
       region: "auto",
-      endpoint: process.env.R2_ENDPOINT,
+      endpoint: r2Endpoint(),
       credentials: {
         accessKeyId: process.env.R2_ACCESS_KEY_ID,
         secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,

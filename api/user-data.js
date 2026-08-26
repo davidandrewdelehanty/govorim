@@ -26,10 +26,11 @@ import {
 } from "@aws-sdk/client-s3";
 import { requireUser } from "../lib/auth.js";
 import { sendEmail } from "../lib/admin/helpers.js";
+import { r2Endpoint } from "../lib/r2-endpoint.js";
 
 const s3 = new S3Client({
   region: "auto",
-  endpoint: process.env.R2_ENDPOINT,
+  endpoint: r2Endpoint(),
   credentials: {
     accessKeyId:     process.env.R2_ACCESS_KEY_ID,
     secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
