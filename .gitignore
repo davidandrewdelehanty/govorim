@@ -40,3 +40,6 @@ tools/out/
 # or .env.production, which is exactly what `vercel env pull <file>` writes.
 .env.*
 !.env.example
+
+# OCR scans downloaded by tools/archive-en.mjs — large, regenerable
+.cache/

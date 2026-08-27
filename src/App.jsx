@@ -4609,6 +4609,10 @@ export default function App() {
         // JSON and audio through /api/media rather than from /books/.
         restricted: !!opts.restricted,
         parallelEn: opts.parallelEn || null,
+        // Shown above the English pane. A verse translation is a work in its
+        // own right and does not track the Russian line for line, so a book
+        // that pairs one says so rather than implying a literal gloss.
+        translationNote: opts.translationNote || "",
         // Plays only: enables inline golden speaker-name formatting. Novels
         // must never get it — "Москва. Тишина стояла..." is not a character.
         play: !!opts.play,
@@ -4696,6 +4700,7 @@ export default function App() {
         audiobook: book.audiobook || null,
         restricted: !!book.restricted,
         parallelEn: book.parallelEn || null,
+        translationNote: book.translationNote || "",
         play: !!book.play,
       });
     } catch(err) {
@@ -5296,6 +5301,9 @@ export default function App() {
       return (
         <div className="dual-outer">
           <div className="dual-hint">⇄ English</div>
+          {bookMeta && bookMeta.translationNote && (
+            <div className="pmt tnote">{bookMeta.translationNote}</div>
+          )}
           <div className="dual-scroll" ref={dualRef} onScroll={onDualScroll}>
             <div className="dual-grid">{litRendered}</div>
           </div>
@@ -5655,6 +5663,7 @@ export default function App() {
         .dual-grid > p{scroll-snap-align:start}
         /* Pinned to the viewport, not to the end of the scroll container, so it
            is reachable from anywhere in a long chapter. */
+        .tnote{margin:0 0 10px;max-width:70ch}
         .dual-toggle{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:40;
           background:rgba(255,252,246,.94);border:1px solid rgba(42,31,20,.18);color:rgba(42,31,20,.7);
           font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.06em;font-weight:600;
