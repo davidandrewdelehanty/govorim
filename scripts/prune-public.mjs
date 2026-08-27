@@ -72,6 +72,11 @@ for (const e of publicEntries) {
     keepFiles.add(path.posix.normalize(e.filename));
     const base = path.posix.basename(e.filename).replace(/\.[^.]+$/, "");
     slugs.add(base);
+    // tools/make_case_drills.py names drills after the FB2 basename with every
+    // non-ASCII character replaced by an underscore, so a Cyrillic filename
+    // becomes a row of underscores. Mirror that rule exactly or those books'
+    // drills are generated and then pruned away.
+    slugs.add(base.replace(/[^A-Za-z0-9_-]/g, "_"));
   }
   if (e.parallelEn) {
     keepDirs.add(path.posix.normalize(e.parallelEn));
@@ -116,8 +121,15 @@ const kept = [];
 
 function rel(p) { return path.relative(BOOKS, p).split(path.sep).join("/"); }
 
+// Directories judged per-file rather than as a unit. Without this the whole
+// exercises/ folder was deleted before the case-drill rule below ever ran, so
+// EVERY book lost its drills on the public build — including the ones that were
+// correctly allowlisted.
+const DESCEND = new Set(["exercises"]);
+
 function isKept(relPath, isDir) {
   if (keepFiles.has(relPath)) return true;
+  if (isDir && DESCEND.has(relPath)) return true;
   // A directory on the path to something kept is descended into, not deleted;
   // its own children are then judged individually.
   if (isDir && keepAncestors.has(relPath)) return true;
@@ -125,10 +137,16 @@ function isKept(relPath, isDir) {
     if (relPath === d || relPath.startsWith(d + "/")) return true;
   }
   // Case drills: "<slug>__chNN.json" for books, "NN-NN.json" for scripture.
+  //
+  // Match by testing each known slug as a prefix rather than by splitting the
+  // filename on "__". A Cyrillic FB2 basename slugifies to a row of
+  // underscores, so the first "__" sits at index 0 and any split-based rule
+  // silently rejects the file.
   if (relPath.startsWith("exercises/")) {
     const name = path.posix.basename(relPath);
-    const sep = name.indexOf("__");
-    if (sep > 0) return slugs.has(name.slice(0, sep));
+    for (const slug of slugs) {
+      if (slug && name.startsWith(slug + "__")) return true;
+    }
     if (/^\d+-\d+\.json$/.test(name)) return anyBible;
     return false;
   }

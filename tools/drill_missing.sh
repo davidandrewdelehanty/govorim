@@ -6,17 +6,24 @@
 # Books that already have drill files are left alone (the tool never overwrites
 # without --force anyway, but skipping them keeps the run short).
 #
-# Usage:   bash tools/drill_missing.sh           # run them
-#          bash tools/drill_missing.sh --list    # just show what would run
+# Usage:   bash tools/drill_missing.sh              # every catalogue book
+#          bash tools/drill_missing.sh --list       # just show what would run
+#          bash tools/drill_missing.sh --public     # only books on Samovar
 set -u
+ONLY_PUBLIC=0
+for a in "$@"; do [ "$a" = "--public" ] && ONLY_PUBLIC=1; done
+export ONLY_PUBLIC
 cd "$(dirname "$0")/.."
 
 mapfile -t BOOKS < <(python3 - << 'PY'
 import json, os, re
 d = json.load(open('private/books/index.json', encoding='utf-8'))
 ex = os.listdir('public/books/exercises') if os.path.isdir('public/books/exercises') else []
+only_public = os.environ.get('ONLY_PUBLIC') == '1'
 for e in d:
     if not e.get('parallelEn'):
+        continue
+    if only_public and not e.get('public'):
         continue
     fn = e.get('filename', '')
     slug = re.sub(r'[^A-Za-z0-9_-]', '_', re.sub(r'\.[^.]+$', '', os.path.basename(fn)))
@@ -37,7 +44,7 @@ for row in "${BOOKS[@]}"; do
 done
 echo
 
-if [ "${1:-}" = "--list" ]; then exit 0; fi
+for a in "$@"; do [ "$a" = "--list" ] && exit 0; done
 
 for row in "${BOOKS[@]}"; do
   fb2="${row%%$'\t'*}"
