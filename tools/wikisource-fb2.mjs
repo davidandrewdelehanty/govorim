@@ -587,9 +587,12 @@ async function cmdShow(title) {
   console.log("lines   : " + n);
   console.log("--- first 12 ---");
   const sample = body.flatMap(sec => sec.blocks.flatMap(b => b.kind === "stanza" ? b.lines : [b.text]));
-  for (const l of sample.slice(0, 12)) console.log("   " + l);
+  // Verse lines are short; prose paragraphs are not. Printing whole paragraphs
+  // dumps the entire book instead of showing what was extracted.
+  const clip = (l) => (l.length > 110 ? l.slice(0, 110) + "…" : l);
+  for (const l of sample.slice(0, 12)) console.log("   " + clip(l));
   console.log("--- last 4 ---");
-  for (const l of sample.slice(-4)) console.log("   " + l);
+  for (const l of sample.slice(-4)) console.log("   " + clip(l));
 }
 
 async function cmdFetch(title) {
