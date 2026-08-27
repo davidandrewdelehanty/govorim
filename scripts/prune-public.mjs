@@ -84,8 +84,14 @@ for (const e of publicEntries) {
   }
   // Audio opts in separately — see api/catalogue.js. A public book without
   // publicAudio ships its text and nothing else.
-  if (e.publicAudio === true && e.audiobook && Array.isArray(e.audiobook.chapters)) {
-    for (const ch of e.audiobook.chapters) {
+  // A publicAudiobook overrides the private recording on the public site (see
+  // api/catalogue.js), so its chapter files must survive the prune whether or
+  // not publicAudio is set — otherwise the public build ships a catalogue
+  // entry pointing at JSONs that were deleted from under it.
+  const audio = e.publicAudiobook || (e.publicAudio === true ? e.audiobook : null);
+  if (audio && Array.isArray(audio.chapters)) {
+    for (const ch of audio.chapters) {
+      if (!ch) continue;                          // an unrecorded leading section
       const norm = path.posix.normalize(String(ch));
       keepFiles.add(norm);
       const dir = path.posix.dirname(norm);       // audio/<slug>

@@ -77,17 +77,37 @@ export default function handler(req, res) {
     // Audio is opted in separately from the text. Most public books are
     // text-only, so the audiobook block is dropped rather than left pointing at
     // recordings the public build never ships.
-    if (publicSite && entry.audiobook && entry.publicAudio !== true) {
-      const noAudio = Object.assign({}, entry);
-      delete noAudio.audiobook;
-      books.push(noAudio);
-      continue;
+    if (publicSite && entry.audiobook) {
+      // "publicAudiobook" is a second recording for the public site only. It
+      // exists because a book can have a commercial recording here -- often a
+      // hand-aligned one -- and a public-domain LibriVox reading that is the
+      // only one the public site may ship. Without it the two would have to be
+      // separate catalogue entries pointing at the same text.
+      if (entry.publicAudiobook) {
+        books.push(Object.assign({}, entry, { audiobook: entry.publicAudiobook }));
+        continue;
+      }
+      if (entry.publicAudio !== true) {
+        const noAudio = Object.assign({}, entry);
+        delete noAudio.audiobook;
+        books.push(noAudio);
+        continue;
+      }
     }
     books.push(entry);
   }
 
+  // The alternate recording is a server-side selector, never something the
+  // client chooses, so it is stripped from every response on both sites.
+  const clean = books.map(function (b) {
+    if (!b || !b.publicAudiobook) return b;
+    const out = Object.assign({}, b);
+    delete out.publicAudiobook;
+    return out;
+  });
+
   // Never cache at the edge: the response depends on the session cookie, and
   // a shared cache would hand one visitor's catalogue to the next one.
   res.setHeader("Cache-Control", "private, no-store");
-  res.status(200).json(books);
+  res.status(200).json(clean);
 }
