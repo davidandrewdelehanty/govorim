@@ -31,6 +31,45 @@ var SITE_NAME = IS_PUBLIC_SITE ? "Самовар" : "Говорим";
 var SITE_NAME_LATIN = IS_PUBLIC_SITE ? "Samovar" : "Govorim";
 var SITE_TAGLINE = IS_PUBLIC_SITE ? "Russian Reading" : "Russian Practice";
 
+// ---- deploy freshness --------------------------------------------------------
+// Every build stamps one id into the bundle (__BUILD_ID__) and writes the same
+// id to /version.json beside it. If the two disagree, this tab is running code
+// that has since been replaced on the server, and a reload picks up the new
+// build. Checked only at navigation moments — opening a book, switching tabs,
+// turning to a new chapter or page — never on a timer, so a deploy can't yank
+// the page out from under someone who is sitting still and reading. Reading
+// position is already saved per book, so a reload lands back where they were.
+var BUILD_ID = (typeof __BUILD_ID__ !== "undefined" ? __BUILD_ID__ : "");
+var updateChecking = false;
+var updateCheckedAt = 0;
+// Set from inside the component. A reload would drop the audio element back to
+// zero, so while a recording is playing the check is skipped entirely and the
+// next navigation after it stops picks the new build up.
+var appBusy = { audio: false };
+function checkForUpdate() {
+  if (!BUILD_ID) return;
+  if (appBusy.audio) return;
+  if (updateChecking) return;
+  var now = Date.now();
+  // Navigation can fire several times in a second; one request a minute is
+  // plenty to catch a deploy without hammering the origin.
+  if (now - updateCheckedAt < 60000) return;
+  updateCheckedAt = now;
+  updateChecking = true;
+  fetch("/version.json", { cache: "no-store" })
+    .then(function(r) { return r.ok ? r.json() : null; })
+    .then(function(v) {
+      if (appBusy.audio) return;   // playback started while the request was in flight
+      if (v && typeof v.build === "string" && v.build && v.build !== BUILD_ID) {
+        location.reload();
+      }
+    })
+    // Offline, blocked, or a stray HTML response where JSON was expected:
+    // running stale code beats reloading into a broken page, so do nothing.
+    .catch(function() {})
+    .then(function() { updateChecking = false; });
+}
+
 // Every book in the library is labelled the same way: Russian title, em dash,
 // author. index.json keeps title and author as separate fields (the exercise
 // and lit-analysis prompts feed them to the model independently), so the joined
@@ -1893,7 +1932,10 @@ export default function App() {
   // entries stay in sync if curriculum.json gets edited later. Mirrors the
   // vocab/tips persistence pattern below.
   var [savedTopics, setSavedTopics] = useState([]);
-  var [tab, setTab]           = useState("chat");
+  var [tab, setTabRaw]        = useState("chat");
+  // Switching tabs is a navigation moment: check whether a newer build
+  // has been deployed before rendering the next screen.
+  var setTab = function(t) { checkForUpdate(); setTabRaw(t); };
   var [started, setStarted]   = useState(false);
   var [mode, setMode]         = useState("read"); // chat removed; default to reading
   var [noAIMode, setNoAIMode] = useState(false);  // define uses AI; chat-specific UI gated separately below
@@ -2296,7 +2338,7 @@ export default function App() {
   var audioIdxRef = useRef(0);
   useEffect(function() { audioIdxRef.current = audioIdx; }, [audioIdx]);
   var audioPlayingRef = useRef(false);
-  useEffect(function() { audioPlayingRef.current = audioPlaying; }, [audioPlaying]);
+  useEffect(function() { audioPlayingRef.current = audioPlaying; appBusy.audio = audioPlaying; }, [audioPlaying]);
   // Need sentences accessible from prefetchSentence (called via async chains).
   var audioSentencesRef = useRef([]);
   useEffect(function() { audioSentencesRef.current = audioSentences; }, [audioSentences]);
@@ -4284,6 +4326,7 @@ export default function App() {
   };
 
   var navLit = async function(idx) {
+    checkForUpdate();
     stopTTS(); charPos.current = 0; paraText.current = "";
     if (idx < 0 || idx >= chapters.length) return;
     // Navigate; no auto-comprehension. User triggers via "Test your comprehension" button.
@@ -4294,6 +4337,7 @@ export default function App() {
   // are only loaded when the user explicitly clicks "Test your comprehension".
   var navPage = async function(newPidx) {
     if (newPidx < 0 || newPidx >= totalPages) return;
+    checkForUpdate();
     stopTTS(); charPos.current = 0; paraText.current = "";
     setPidx(newPidx); setMsgs([]); setLview("read");
   };
@@ -4714,6 +4758,8 @@ export default function App() {
 
   // Download a preset book from the server and load it through the normal pipeline.
   var loadPresetBook = async function(book) {
+    // Opening a story is the other navigation moment worth checking on.
+    checkForUpdate();
     setFErr("");
     setBookLoading(book.filename);
     try {
