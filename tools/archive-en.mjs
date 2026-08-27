@@ -162,15 +162,30 @@ async function cmdFetch() {
   console.log("English lines : " + en.length);
   console.log("Russian lines : " + ruTotal + "  in " + ru.length + " chapter(s): " + ru.join(", "));
   console.log("ratio         : " + (en.length / ruTotal).toFixed(2) + " English lines per Russian line");
+  console.log("                (a ratio far from 1.0 means the boundaries are wrong)");
   console.log("");
+
+  // A translator often skips what is not verse. Turner opens at Pushkin's
+  // Вступление, leaving the prose Предисловие — chapter 1 of the Russian —
+  // with no counterpart. Spread across every chapter regardless, that one
+  // absent section shifts the whole poem out of step, so the English can be
+  // told which chapter it really starts at.
+  const first = Math.max(1, parseInt(flag("from-chapter", "1"), 10)) - 1;
+  if (first > 0) {
+    console.log("skipping chapters 1-" + first + " (no English for them)");
+    console.log("");
+  }
+  const paired = ru.slice(first);
+  const pairedTotal = paired.reduce((a, b) => a + b, 0);
 
   const dir = "public/books/" + slug + "-en";
   fs.mkdirSync(dir, { recursive: true });
   let cursor = 0;
-  ru.forEach((paras, ci) => {
+  paired.forEach((paras, pi) => {
+    const ci = pi + first;
     // This chapter's share of the English, proportional to its share of the
     // Russian — so a chapter boundary always re-syncs the two sides.
-    const share = Math.round(en.length * (paras / ruTotal));
+    const share = Math.round(en.length * (paras / pairedTotal));
     const slice = en.slice(cursor, ci === ru.length - 1 ? en.length : cursor + share);
     cursor += slice.length;
     const out = {};
@@ -195,7 +210,7 @@ if (!run[cmd] || !id) {
   console.error("usage: node tools/archive-en.mjs <command> <archive-id> [options]");
   console.error("  survey ID                       headings in the scan");
   console.error("  slice  ID --from S [--to S]     preview a range");
-  console.error("  fetch  ID --from S [--to S] --slug SLUG");
+  console.error("  fetch  ID --from S [--to S] --slug SLUG [--from-chapter N]");
   process.exit(1);
 }
 run[cmd]().catch((e) => { console.error("FAILED: " + e.message); process.exit(1); });
