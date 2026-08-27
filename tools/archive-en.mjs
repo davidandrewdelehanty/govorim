@@ -208,16 +208,25 @@ async function cmdFetch() {
 
   if (splitOn) {
     const chaps = bodyChapters(text, new RegExp(splitOn));
+    // The Russian may carry sections the translation has no chapter for - an
+    // epigraph, a dedication - so the English can be told which section it
+    // really starts at, rather than being forced into a false 1:1.
+    const first = Math.max(1, parseInt(flag("from-chapter", "1"), 10)) - 1;
+    const lastCh = parseInt(flag("to-chapter", "0"), 10) || ru.length;
+    const target = ru.slice(first, lastCh);
     console.log("English chapters : " + chaps.length);
-    console.log("Russian chapters : " + ru.length);
-    if (chaps.length !== ru.length) {
-      throw new Error("chapter counts differ (" + chaps.length + " vs " + ru.length +
-                      ") - check --split-on and the line range; nothing written");
+    console.log("Russian sections : " + target.length +
+                (target.length !== ru.length ? "  (of " + ru.length + "; " +
+                 (first ? "skipping the first " + first : "") +
+                 (lastCh < ru.length ? (first ? ", " : "") + "stopping at " + lastCh : "") + ")" : ""));
+    if (chaps.length !== target.length) {
+      throw new Error("counts differ (" + chaps.length + " English vs " + target.length +
+                      " Russian) - check --split-on, the line range and --from-chapter; nothing written");
     }
     const dir2 = "public/books/" + slug + "-en";
     fs.mkdirSync(dir2, { recursive: true });
     chaps.forEach(function (lines, ci) {
-      const paras = ru[ci];
+      const paras = target[ci];
       const out = {};
       for (let i = 0; i < paras; i++) {
         const a = Math.floor(i * lines.length / paras);
@@ -225,7 +234,7 @@ async function cmdFetch() {
         const chunk = lines.slice(a, b).join(" ");
         if (chunk) out[String(i)] = chunk;
       }
-      const name = String(ci + 1).padStart(2, "0") + ".json";
+      const name = String(ci + first + 1).padStart(2, "0") + ".json";
       fs.writeFileSync(path.join(dir2, name), JSON.stringify(out), "utf8");
       console.log("  " + name + "  " + paras + " Russian units <- " + lines.length +
                   " English lines, " + Object.keys(out).length + " filled");
