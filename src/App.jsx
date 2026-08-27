@@ -6232,6 +6232,7 @@ export default function App() {
                       <option value="Poetry">Poetry</option>
                       <option value="Spectacle">Spectacle</option>
                       <option value="Speeches">Speeches</option>
+                      <option value="Speeches by Soviet Leaders">Speeches by Soviet Leaders</option>
                     </select>
                   </div>
                   <div style={{display:"flex",gap:10,alignItems:"center",marginTop:4}}>
@@ -6822,55 +6823,44 @@ export default function App() {
                             }}>
                             <option value="" disabled>📖 Choose a book from the library…</option>
                             {(function() {
-                              // "Texts Without English" is a normal category an admin sets on
-                              // a book; it renders LAST (after "Other") so the library ends with
-                              // the titles that have no parallel translation yet.
-                              var CATEGORIES = ["Works", "Song Lyrics", "Poetry", "Spectacle", "Speeches", "Texts Without English"];
-                              var ORDER = ["Works", "Song Lyrics", "Poetry", "Spectacle", "Speeches", "Other", "Texts Without English"];
-                              // Normalize legacy "Novel", "Short Stories", and "Plays" entries into "Works".
-                              var normalize = function(cat) {
-                                if (cat === "Novel" || cat === "Short Stories" || cat === "Plays") return "Works";
-                                return cat;
-                              };
-                              var buckets = {};
-                              CATEGORIES.forEach(function(c){ buckets[c] = []; });
-                              buckets["Other"] = [];
+                              // Grouped by author: that is how a reader looks for a text.
+                              // One <optgroup> per author, and the option is the bare
+                              // title, since the author is already the heading above it.
+                              // Category grouping lives on in the card grid below, which
+                              // has the room for it.
+                              var groups = {};
                               presetBooks.forEach(function(book, idx) {
-                                var cat = normalize((book && book.category) || "");
-                                var bucket = CATEGORIES.indexOf(cat) !== -1 ? cat : "Other";
-                                buckets[bucket].push({ book: book, idx: idx });
+                                var author = String((book && book.author) || "").trim() || "Other";
+                                if (!groups[author]) groups[author] = [];
+                                groups[author].push({ book: book, idx: idx });
                               });
-                              return ORDER.flatMap(function(cat) {
-                                var entries = buckets[cat];
-                                if (!entries.length) return [];
-                                var withAudio = entries.filter(function(e){ return !!e.book.audiobook; });
-                                var textOnly  = entries.filter(function(e){ return !e.book.audiobook; });
-                                var makeOption = function(entry) {
-                                  var book = entry.book;
-                                  return <option key={entry.idx} value={entry.idx}>{bookLabel(book)}</option>;
-                                };
-                                var groups = [];
-                                if (cat === "Texts Without English") {
-                                  // Defining trait is the missing translation, not the audio,
-                                  // so this one stays a single undivided group.
-                                  groups.push(
-                                    <optgroup key={cat} label={"📖 " + cat}>
-                                      {entries.map(makeOption)}
-                                    </optgroup>
-                                  );
-                                  return groups;
-                                }
-                                if (withAudio.length) groups.push(
-                                  <optgroup key={cat+"-audio"} label={"🎧 " + cat + " — With Audiobook"}>
-                                    {withAudio.map(makeOption)}
+                              // Cyrillic sorts correctly only with an explicit locale;
+                              // the unattributed bucket goes last rather than under "O".
+                              var authors = Object.keys(groups).sort(function(a, b) {
+                                if (a === "Other") return 1;
+                                if (b === "Other") return -1;
+                                return a.localeCompare(b, "ru");
+                              });
+                              return authors.map(function(author) {
+                                var entries = groups[author].slice().sort(function(a, b) {
+                                  return String((a.book && a.book.title) || "")
+                                    .localeCompare(String((b.book && b.book.title) || ""), "ru");
+                                });
+                                return (
+                                  <optgroup key={author} label={author}>
+                                    {entries.map(function(entry) {
+                                      var book = entry.book;
+                                      var title = (book && (book.title || book.filename)) || "";
+                                      // 🎧 marks the titles that come with a recording —
+                                      // the only thing beyond the title worth the width here.
+                                      return (
+                                        <option key={entry.idx} value={entry.idx}>
+                                          {(book && book.audiobook ? "🎧 " : "") + title}
+                                        </option>
+                                      );
+                                    })}
                                   </optgroup>
                                 );
-                                if (textOnly.length) groups.push(
-                                  <optgroup key={cat+"-text"} label={"📖 " + cat + " — Text Only"}>
-                                    {textOnly.map(makeOption)}
-                                  </optgroup>
-                                );
-                                return groups;
                               });
                             })()}
                           </select>
@@ -6896,10 +6886,10 @@ export default function App() {
                         // Group preset books by category, preserving original index for lookup.
                         // Normalize legacy "Novel"/"Short Stories"/"Plays" → "Works" so older
                         // entries in index.json fall into the right bucket without an admin edit.
-                        var CATEGORIES = ["Works", "Song Lyrics", "Poetry", "Spectacle", "Speeches", "Texts Without English"];
+                        var CATEGORIES = ["Works", "Song Lyrics", "Poetry", "Spectacle", "Speeches", "Speeches by Soviet Leaders", "Texts Without English"];
                         // Render order: "Texts Without English" sits at the very bottom,
                         // after the catch-all "Other" bucket.
-                        var ORDER = ["Works", "Song Lyrics", "Poetry", "Spectacle", "Speeches", "Other", "Texts Without English"];
+                        var ORDER = ["Works", "Song Lyrics", "Poetry", "Spectacle", "Speeches", "Speeches by Soviet Leaders", "Other", "Texts Without English"];
                         var normalize = function(cat) {
                           if (cat === "Novel" || cat === "Short Stories" || cat === "Plays") return "Works";
                           return cat;

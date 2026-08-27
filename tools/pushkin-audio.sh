@@ -31,6 +31,11 @@ pushkin-vadim|poems - pushkin|poemi_34_pushkin_64kb.mp3
 pushkin-ya-vas-lyubil|ya vas lyiubil - pushkin|msw013_18yavaslyubil_pushkin_eep_64kb.mp3
 pushkin-istina|istina - pushkin|msw010_istina_pushkin_sap_64kb.mp3
 pushkin-krasavitsa|krasavitsa pushkin|alexander-pushkin-krasavitse_64kb.mp3
+pushkin-tsygany|poems - pushkin|poemi_15_pushkin_64kb.mp3
+pushkin-ispoved|poems - pushkin|poemi_32_pushkin_64kb.mp3
+pushkin-yudif|poems - pushkin|poemi_37_pushkin_64kb.mp3
+pushkin-poltava|poems - pushkin|poemi_17_pushkin_64kb.mp3 poemi_18_pushkin_64kb.mp3 poemi_19_pushkin_64kb.mp3
+pushkin-kavkazsky-plennik|poems - pushkin|poemi_08_pushkin_64kb.mp3 poemi_09_pushkin_64kb.mp3 poemi_10_pushkin_64kb.mp3 poemi_11_pushkin_64kb.mp3
 pushkin-andzhelo|poems - pushkin|poemi_22_pushkin_64kb.mp3 poemi_23_pushkin_64kb.mp3 poemi_24_pushkin_64kb.mp3
 pushkin-medny-vsadnik|poems - pushkin|poemi_25_pushkin_64kb.mp3 poemi_26_pushkin_64kb.mp3 poemi_27_pushkin_64kb.mp3
 pushkin-monakh|poems - pushkin|poemi_28_pushkin_64kb.mp3 poemi_29_pushkin_64kb.mp3 poemi_30_pushkin_64kb.mp3
