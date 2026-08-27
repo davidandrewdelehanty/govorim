@@ -124,6 +124,29 @@ function bodyLines(text, from, to) {
   return lines.slice(a + 1, b).filter((l) => !isNoise(l)).map(cleanLine).filter(Boolean);
 }
 
+// Where the translation marks its own chapters, split on those instead of
+// spreading the text proportionally: each English chapter then lands against
+// its Russian counterpart exactly, and drift cannot accumulate across the book.
+//
+// The split must happen BEFORE noise filtering - a heading like
+// "XV -- CHILDHOOD" is the same shape as a running header, and the filter eats it.
+function bodyChapters(text, splitRe) {
+  const lines = text.split("\n");
+  const fl = parseInt(flag("from-line", "0"), 10);
+  const tl = parseInt(flag("to-line", "0"), 10);
+  const slice = fl > 0 ? lines.slice(fl, tl > 0 ? tl : lines.length) : lines;
+  const chapters = [];
+  let cur = null;
+  for (const raw of slice) {
+    if (splitRe.test(raw.trim())) { cur = []; chapters.push(cur); continue; }
+    if (cur === null) continue;
+    if (isNoise(raw)) continue;
+    const t = cleanLine(raw);
+    if (t) cur.push(t);
+  }
+  return chapters.filter(function (c) { return c.length; });
+}
+
 // ---- the Russian side --------------------------------------------------------
 // Chapter and paragraph counts have to come from the FB2 itself, because the
 // bucketing divides the English by exactly those numbers.
@@ -155,7 +178,7 @@ async function cmdSurvey() {
     const caps = /^[A-Z][A-Z\s.'-]{3,}$/.test(t) && t.replace(/\s/g, "").length >= 4;
     const titled = t.length > 3 && t.length < 60 &&
                    /^[A-Z]/.test(t) && !/[.,;:]$/.test(t) &&
-                   !lines[i - 1].trim() && !(lines[i + 1] || "").trim();
+                   !(lines[i - 1] || "").trim() && !(lines[i + 1] || "").trim();
     if (caps || titled) {
       console.log("  " + String(i).padStart(6) + "  " + t);
       shown++;
@@ -180,8 +203,38 @@ async function cmdFetch() {
   const slug = flag("slug", null);
   if (!slug) throw new Error("--slug <book-slug> is required");
   const text = await ocrText(id);
-  const en = bodyLines(text, flag("from", null), flag("to", null));
+  const splitOn = flag("split-on", null);
   const ru = russianShape(slug);
+
+  if (splitOn) {
+    const chaps = bodyChapters(text, new RegExp(splitOn));
+    console.log("English chapters : " + chaps.length);
+    console.log("Russian chapters : " + ru.length);
+    if (chaps.length !== ru.length) {
+      throw new Error("chapter counts differ (" + chaps.length + " vs " + ru.length +
+                      ") - check --split-on and the line range; nothing written");
+    }
+    const dir2 = "public/books/" + slug + "-en";
+    fs.mkdirSync(dir2, { recursive: true });
+    chaps.forEach(function (lines, ci) {
+      const paras = ru[ci];
+      const out = {};
+      for (let i = 0; i < paras; i++) {
+        const a = Math.floor(i * lines.length / paras);
+        const b = Math.floor((i + 1) * lines.length / paras);
+        const chunk = lines.slice(a, b).join(" ");
+        if (chunk) out[String(i)] = chunk;
+      }
+      const name = String(ci + 1).padStart(2, "0") + ".json";
+      fs.writeFileSync(path.join(dir2, name), JSON.stringify(out), "utf8");
+      console.log("  " + name + "  " + paras + " Russian units <- " + lines.length +
+                  " English lines, " + Object.keys(out).length + " filled");
+    });
+    console.log("wrote " + dir2 + "/  - chapter for chapter");
+    return;
+  }
+
+  const en = bodyLines(text, flag("from", null), flag("to", null));
   const ruTotal = ru.reduce((a, b) => a + b, 0);
 
   console.log("English lines : " + en.length);
@@ -270,6 +323,7 @@ if (!run[cmd] || !id) {
   console.error("  slice  ID --from S [--to S]     preview a range");
   console.error("         ...or --from-line N --to-line N, from `find`");
   console.error("  fetch  ID --from S [--to S] --slug SLUG [--from-chapter N] [--to-chapter N]");
+  console.error("         --split-on REGEX  split the English on its own chapter headings");
   process.exit(1);
 }
 run[cmd]().catch((e) => { console.error("FAILED: " + e.message); process.exit(1); });
