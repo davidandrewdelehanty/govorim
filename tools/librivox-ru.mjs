@@ -78,6 +78,36 @@ function fold(s) {
     .replace(/[^\p{L}\p{N}]+/gu, " ").trim();
 }
 
+// LibriVox files some Russian works under a LATIN transliteration — "Zapiski
+// iz podpolya (Notes from the Underground)" is Записки из подполья. Comparing
+// Cyrillic to Cyrillic scored that a miss and reported the catalogue as having
+// nothing, which was wrong. So each record is indexed under every name it
+// offers: the whole title, and each parenthesised or slash-separated alternate.
+// The Cyrillic side is transliterated to Latin to meet them.
+const RU2LAT = {
+  а:"a",б:"b",в:"v",г:"g",д:"d",е:"e",ж:"zh",з:"z",и:"i",й:"y",к:"k",л:"l",
+  м:"m",н:"n",о:"o",п:"p",р:"r",с:"s",т:"t",у:"u",ф:"f",х:"kh",ц:"ts",ч:"ch",
+  ш:"sh",щ:"shch",ъ:"",ы:"y",ь:"",э:"e",ю:"yu",я:"ya",
+};
+function translit(s) {
+  return fold(s).split("").map((c) => (c in RU2LAT ? RU2LAT[c] : c)).join("");
+}
+
+// Every name a record can be found under.
+function aliases(title) {
+  const parts = [title];
+  const paren = title.match(/\(([^)]+)\)/g) || [];
+  for (const p of paren) parts.push(p.slice(1, -1));
+  parts.push(title.replace(/\([^)]*\)/g, ""));
+  for (const seg of title.split("/")) parts.push(seg);
+  const keys = new Set();
+  for (const p of parts) {
+    const f = fold(p);
+    if (f) { keys.add(f); keys.add(translit(f)); }
+  }
+  return Array.from(keys);
+}
+
 async function cmdList() {
   const ru = await russianCatalogue();
   ru.sort((a, b) => a.title.localeCompare(b.title, "ru"));
@@ -88,7 +118,7 @@ async function cmdList() {
 async function cmdMatch() {
   const ru = await russianCatalogue();
   const index = new Map();
-  for (const b of ru) index.set(fold(b.title), b);
+  for (const b of ru) for (const k of aliases(b.title)) if (!index.has(k)) index.set(k, b);
 
   const D = JSON.parse(fs.readFileSync("private/books/index.json", "utf8"));
   // Public text, has audio, but no public-domain audio: the gap set.
@@ -98,12 +128,16 @@ async function cmdMatch() {
   console.log("");
   let hits = 0;
   for (const b of gap.sort((x, y) => x.title.localeCompare(y.title, "ru"))) {
-    const key = fold(b.title);
-    let found = index.get(key);
+    const keys = [fold(b.title), translit(b.title)];
+    let found = null;
+    for (const key of keys) { found = index.get(key); if (found) break; }
     if (!found) {
       // A LibriVox title often carries a subtitle or the author's name.
-      for (const [k, v] of index) {
-        if (k.indexOf(key) === 0 || key.indexOf(k) === 0) { found = v; break; }
+      for (const key of keys) {
+        for (const [k, v] of index) {
+          if (k.length >= 6 && (k.indexOf(key) === 0 || key.indexOf(k) === 0)) { found = v; break; }
+        }
+        if (found) break;
       }
     }
     if (found) { hits++; console.log("  HIT   " + b.title.padEnd(28) + found.url); }
