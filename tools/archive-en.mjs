@@ -186,9 +186,6 @@ async function cmdFetch() {
 
   console.log("English lines : " + en.length);
   console.log("Russian lines : " + ruTotal + "  in " + ru.length + " chapter(s): " + ru.join(", "));
-  console.log("ratio         : " + (en.length / ruTotal).toFixed(2) + " English lines per Russian line");
-  console.log("                (a ratio far from 1.0 means the boundaries are wrong)");
-  console.log("");
 
   // A translator often skips what is not verse. Turner opens at Pushkin's
   // Вступление, leaving the prose Предисловие — chapter 1 of the Russian —
@@ -206,6 +203,15 @@ async function cmdFetch() {
   if (first > 0 || lastCh < ru.length) console.log("");
   const paired = ru.slice(first, lastCh);
   const pairedTotal = paired.reduce((a, b) => a + b, 0);
+
+  // Measured against the chapters actually being paired, not the whole book:
+  // where a translator skipped a section, dividing by the full Russian makes a
+  // sound translation look lopsided and hides a genuinely bad one.
+  console.log("ratio         : " + (en.length / pairedTotal).toFixed(2) +
+              " English lines per paired Russian line" +
+              (pairedTotal !== ruTotal ? "  (of " + pairedTotal + " paired)" : ""));
+  console.log("                (a ratio far from 1.0 means the boundaries are wrong)");
+  console.log("");
 
   const dir = "public/books/" + slug + "-en";
   fs.mkdirSync(dir, { recursive: true });
