@@ -125,8 +125,36 @@ function cleanPage(text) {
   }
   t = t.replace(/__[A-ZА-Я]+__/g, "");
   t = t.replace(/^\s*\[\[[a-z\-]{2,12}:[^\]]*\]\]\s*$/gm, "");
-  t = t.replace(/\[\[(Категория|Category|Файл|File|Изображение|Image):[^\]]*\]\]/gi, "");
+  t = stripBracketLinks(t);
   return t;
+}
+
+// [[Файл:…]] captions nest other links and templates. A regex that stops at
+// the first ]] cuts the caption in half — it leaves a stray ]] behind (which
+// then reads as a line of verse) and, worse, can slice a {{template}} in two,
+// after which brace scanning for the whole rest of the page is off by one and
+// every {{poemx}} below it goes unrecognised. Count brackets instead.
+const LINK_NS = /^\s*(Категория|Category|Файл|File|Изображение|Image)\s*:/i;
+
+function stripBracketLinks(t) {
+  let out = "", i = 0;
+  while (i < t.length) {
+    const open = t.indexOf("[[", i);
+    if (open === -1) { out += t.slice(i); break; }
+    if (!LINK_NS.test(t.slice(open + 2, open + 40))) {
+      out += t.slice(i, open + 2); i = open + 2; continue;
+    }
+    out += t.slice(i, open);
+    let depth = 0, j = open;
+    while (j < t.length) {
+      if (t.startsWith("[[", j)) { depth++; j += 2; }
+      else if (t.startsWith("]]", j)) { depth--; j += 2; if (!depth) break; }
+      else j++;
+    }
+    if (depth !== 0) { out += t.slice(open); break; }      // unbalanced — leave it
+    i = j;
+  }
+  return out;
 }
 
 function headerInfo(text) {
@@ -143,20 +171,142 @@ function headerInfo(text) {
   return { author, licence };
 }
 
+// ---- page shapes beyond the plain single-poem page --------------------------
+//
+// Three shapes the first version could not read, each found by dumping `raw`:
+//
+//   INDEX PAGE   Полтава, Кавказский пленник, Цыганы: the page is a
+//                ==Содержание== list of [[Полтава (Пушкин)/Песнь первая|…]]
+//                links and holds no verse at all. Followed one subpage at a
+//                time, each becoming a section.
+//   {{poemx|…}}  Истина and most short lyrics: title, body and date as three
+//                template arguments, so the verse sits inside a balanced
+//                template rather than <poem> tags. Such a page often carries
+//                TWO — the lycée redaction and the canonical text — which is
+//                what put "editorial apparatus" in the middle of the verse.
+//   HEADINGS     Анджело, Монах: == Часть первая == / === I == with ordinary
+//                <poem> blocks. Left as text those headings land in the verse
+//                as lines reading "=== I ===".
+
+const APPARATUS = /^\s*(примечани|комментари|вариант|источник|ссылк|см\.|литератур|содержание|публикаци|издани|сноск|приложени)/i;
+
+const POEMX_MARK = "@@POEMX";
+const POEMX_END = "@@ENDPOEMX@@";
+
+// Rewrite each {{poemx|TITLE|BODY|DATE}} as a marked block so the line loop
+// below can see where a poem starts and ends. The date argument is the
+// editor's dating, not part of the poem, so it is dropped.
+function unwrapPoemx(text) {
+  let out = "", i = 0, n = 0;
+  while (i < text.length) {
+    const m = /\{\{\s*poemx1?\s*\|/i.exec(text.slice(i));
+    if (!m) { out += text.slice(i); break; }
+    const start = i + m.index;
+    out += text.slice(i, start);
+    let depth = 0, j = start;
+    while (j < text.length) {
+      if (text.startsWith("{{", j)) { depth++; j += 2; }
+      else if (text.startsWith("}}", j)) { depth--; j += 2; if (!depth) break; }
+      else j++;
+    }
+    if (depth !== 0) { out += text.slice(start); break; }   // unbalanced — leave it
+    const args = templateArgs(text.slice(start + 2, j - 2));
+    n++;
+    const title = stripInline(args[1] || "");
+    const body = String(args[2] || "").replace(/^\n+/, "").replace(/\n+$/, "");
+    out += "\n" + POEMX_MARK + "|" + n + "|" + title + "@@\n" + body + "\n" + POEMX_END + "\n";
+    i = j;
+  }
+  return { text: out, count: n };
+}
+
+const HEADING = /^(={2,6})(.+?)\1\s*$/;
+
+// A third page shape, on the short lyrics: no {{poemx}} at all, just
+//   <div class='poetry text'><div class='title'>Красавица</div><poem>…
+// The title div and the composition date inside the <poem> block both read as
+// lines of verse, which is where Красавица's two extra lines came from.
+const TITLE_DIV = /^<div\s+class=['"][^'"]*\btitle\b[^'"]*['"]\s*>(.*?)<\/div>\s*$/i;
+
+const MONTHS = "янв|фев|мар|апр|ма[йя]|июн|июл|авг|сен|окт|ноя|дек";
+
+// A dateline carries a year and no words except month names — «16 мая — июнь
+// 1832», «1817—1820», «<1816>». A line of verse that happens to mention a year
+// has other words in it, so it is left alone.
+function isDateline(raw) {
+  const t = raw.replace(/^''+|''+$/g, "").replace(/^[<(\[]+|[>)\]]+$/g, "").trim();
+  if (!/\b1[6-9]\d\d\b/.test(t)) return false;
+  const words = t.match(/[А-Яа-яЁёA-Za-z]+/g) || [];
+  const month = new RegExp("^(?:" + MONTHS + ")", "i");
+  return words.every(function (w) { return month.test(w); });
+}
+
+// Which heading level are the work's own divisions at? Анджело has three
+// «Часть» at level 2 and forty roman numerals at level 3: splitting on the
+// numerals would give forty chapters against three audio tracks.
+function chooseSplitLevel(text) {
+  const counts = {};
+  for (const raw of text.split("\n")) {
+    const h = HEADING.exec(raw.trim());
+    if (!h) continue;
+    const t = stripInline(h[2]);
+    if (!t || APPARATUS.test(t)) continue;
+    counts[h[1].length] = (counts[h[1].length] || 0) + 1;
+  }
+  for (let lvl = 2; lvl <= 4; lvl++) if ((counts[lvl] || 0) >= 2) return lvl;
+  return 0;
+}
+
 // -> [{ title, blocks:[{kind:"p",text} | {kind:"stanza",lines:[...]}] }]
-function extract(text) {
+function extract(text, opts) {
+  opts = opts || {};
+  const splitLevel = opts.splitLevel || 0;
+  const keepPoemx = opts.keepPoemx || 0;   // 0 = keep every {{poemx}} block
   const sections = [];
   let cur = { title: "", blocks: [] };
   let stanza = [];
+  let suppress = 0;        // heading level of the apparatus block being skipped
+  let skipPoemx = false;
   const flush = () => { if (stanza.length) { cur.blocks.push({ kind: "stanza", lines: stanza }); stanza = []; } };
   const push = () => { flush(); if (cur.blocks.length || cur.title) sections.push(cur); };
 
   for (const raw of text.split("\n")) {
     const line = raw.trim();
+
+    const px = /^@@POEMX\|(\d+)\|(.*)@@$/.exec(line);
+    if (px) {
+      const idx = parseInt(px[1], 10);
+      skipPoemx = !!(keepPoemx && idx !== keepPoemx);
+      if (!skipPoemx) { push(); cur = { title: px[2], blocks: [] }; }
+      continue;
+    }
+    if (line === POEMX_END) { flush(); skipPoemx = false; continue; }
+    if (skipPoemx) continue;
+
     if (!line) { flush(); continue; }
+
+    const h = HEADING.exec(line);
+    if (h) {
+      const lvl = h[1].length;
+      const ht = stripInline(h[2]);
+      if (!ht || APPARATUS.test(ht)) { flush(); suppress = lvl; continue; }
+      if (suppress && lvl > suppress) continue;
+      suppress = 0;
+      if (splitLevel && lvl <= splitLevel) { push(); cur = { title: ht, blocks: [] }; }
+      // A deeper heading is a stanza numeral, not a chapter: it goes in as a
+      // paragraph. As a <subtitle> the reader would split the audio on it.
+      else { flush(); cur.blocks.push({ kind: "p", text: ht }); }
+      continue;
+    }
+    if (suppress) continue;
+
     if (line === "}}") continue;                                  // wrapper close
     if (/^\{\{[A-Za-zА-Яа-я0-9]+\|.*\|$/.test(line)) continue;    // wrapper open {{F1|..|
     if (/^\[\[[a-z\-]{2,12}:/.test(line)) continue;               // interwiki
+
+    const td = TITLE_DIV.exec(line);
+    if (td) { push(); cur = { title: stripInline(td[1]), blocks: [] }; continue; }
+    if (isDateline(line)) { flush(); continue; }
 
     const sec = /^\{\{\s*poem-section\s*\|([\s\S]*)\}\}$/.exec(line);
     if (sec) { push(); cur = { title: stripInline(sec[1]), blocks: [] }; continue; }
@@ -257,12 +407,89 @@ async function resolveTitle(q) {
   return pref.title;
 }
 
+function countLines(body) {
+  return body.reduce(function (a, sec) {
+    return a + sec.blocks.reduce(function (m, b) {
+      return m + (b.kind === "stanza" ? b.lines.length : 1);
+    }, 0);
+  }, 0);
+}
+
+function parsePage(text, quiet) {
+  const cleaned = cleanPage(text);
+  const px = unwrapPoemx(cleaned);
+  let keep = 0;
+  if (px.count > 1) {
+    const v = String(flag("variant", "last")).toLowerCase();
+    keep = v === "first" ? 1 : v === "all" ? 0 : px.count;
+    if (!quiet) {
+      console.error("    " + px.count + " {{poemx}} blocks on this page — using " +
+                    (keep ? "#" + keep : "all of them") + "   (--variant first|last|all)");
+    }
+  }
+  const forced = parseInt(flag("split-level", "0"), 10) || 0;
+  const opts = { splitLevel: forced || chooseSplitLevel(cleaned), keepPoemx: keep };
+  let body = extract(px.text, opts);
+  // Choosing between two redactions must never be able to empty the page: if
+  // the chosen block turns out to hold nothing, take them all instead.
+  if (keep && !countLines(body)) {
+    opts.keepPoemx = 0;
+    body = extract(px.text, opts);
+    if (!quiet) console.error("    block #" + keep + " was empty — kept all of them");
+  }
+  return body;
+}
+
+// An index page carries no verse, only links to its own subpages.
+function subpageLinks(pageTitle, text) {
+  const prefix = pageTitle + "/";
+  const re = /\[\[([^\]|#]+)(?:\|([^\]]*))?\]\]/g;
+  const seen = new Set(), out = [];
+  let m;
+  while ((m = re.exec(text))) {
+    let target = m[1].trim().replace(/_/g, " ");
+    // Wikisource writes these either in full or relative: [[/Посвящение|…]].
+    if (target.charAt(0) === "/") target = pageTitle + target;
+    if (target.indexOf(prefix) !== 0) continue;
+    const tail = target.slice(prefix.length);
+    if (!tail || tail.indexOf("/") >= 0) continue;
+    if (APPARATUS.test(tail)) continue;
+    if (seen.has(target)) continue;
+    seen.add(target);
+    out.push({ title: target, label: stripInline(m[2] || tail) });
+  }
+  return out;
+}
+
 async function load(title) {
   if (argv.includes("--search")) title = await resolveTitle(title);
   const page = await wikitext(title);
   if (!page || !page.text) throw new Error('No such page: "' + title + '"');
   const info = headerInfo(page.text);
-  const body = extract(cleanPage(page.text));
+  let body = parsePage(page.text);
+
+  const subs = subpageLinks(page.title, page.text);
+  if (subs.length >= 2 && countLines(body) < 40) {
+    console.error("index page: following " + subs.length + " subpages");
+    body = [];
+    for (const sub of subs) {
+      await sleep(1500);                     // the same pacing the batch uses
+      const sp = await wikitext(sub.title);
+      if (!sp || !sp.text) { console.error("    MISSING  " + sub.title); continue; }
+      const secs = parsePage(sp.text, true);
+      const n = countLines(secs);
+      console.error("    " + sub.label + "  (" + n + " lines)");
+      if (!n) continue;
+      // One section per subpage: the subpage is the chapter, and its own
+      // internal headings stay inside it as paragraphs.
+      const blocks = [];
+      for (const sec of secs) {
+        if (sec.title) blocks.push({ kind: "p", text: sec.title });
+        for (const b of sec.blocks) blocks.push(b);
+      }
+      body.push({ title: sub.label, blocks: blocks });
+    }
+  }
   return { page, info, body };
 }
 
@@ -297,7 +524,26 @@ async function cmdFetch(title) {
   console.log("source: " + url);
 }
 
+// Parse a wikitext dump saved to a file. `raw > file` then `parsefile file`
+// checks a markup change offline, which is the only way to test the parser
+// without hammering ru.wikisource.
+async function cmdParseFile(file) {
+  const text = fs.readFileSync(file, "utf8");
+  const title = flag("title", path.basename(file, ".txt"));
+  const body = parsePage(text);
+  const subs = subpageLinks(title, text);
+  console.log("sections: " + body.map((x) => x.title || "(untitled)").join(" | "));
+  console.log("lines   : " + countLines(body));
+  if (subs.length) console.log("subpages: " + subs.map((x) => x.label).join(" | "));
+  const sample = body.flatMap((sec) => sec.blocks.flatMap((b) => b.kind === "stanza" ? b.lines : ["<p> " + b.text]));
+  console.log("--- first 8 ---");
+  for (const l of sample.slice(0, 8)) console.log("   " + l);
+  console.log("--- last 3 ---");
+  for (const l of sample.slice(-3)) console.log("   " + l);
+}
+
 const run = { search: () => cmdSearch(argv.slice(1).join(" ")),
+              parsefile: () => cmdParseFile(argv[1]),
               raw:    () => cmdRaw(argv[1]),
               show:   () => cmdShow(argv[1]),
               fetch:  () => cmdFetch(argv[1]) };
@@ -307,6 +553,9 @@ if (!run[cmd]) {
   console.error("  raw TITLE [--lines N]   dump the wikitext");
   console.error("  show TITLE              what would be extracted");
   console.error("  fetch TITLE --out PATH [--author NAME]");
+  console.error("  parsefile FILE [--title T]  parse a saved `raw` dump, no network");
+  console.error("  --split-level N         force chapter splitting at heading level N");
+  console.error("  --variant first|last|all  which {{poemx}} block, when a page has two");
   console.error("  ...add --search to resolve a title by search first (lyrics are");
   console.error("     titled by first line, so exact titles often miss)");
   process.exit(1);
