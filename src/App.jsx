@@ -6869,12 +6869,14 @@ export default function App() {
                                     {entries.map(function(entry) {
                                       var book = entry.book;
                                       var title = (book && (book.title || book.filename)) || "";
-                                      // 🎧 marks the titles that come with a recording —
-                                      // the only thing beyond the title worth the width here.
+                                      // 🎧 for a recording, EN for a parallel
+                                      // translation: the two things a reader
+                                      // actually chooses between, and all the
+                                      // width a dropdown row has to spare.
+                                      var marks = (book && book.audiobook ? "🎧 " : "") + title +
+                                                  (book && book.parallelEn ? "  · EN" : "");
                                       return (
-                                        <option key={entry.idx} value={entry.idx}>
-                                          {(book && book.audiobook ? "🎧 " : "") + title}
-                                        </option>
+                                        <option key={entry.idx} value={entry.idx}>{marks}</option>
                                       );
                                     })}
                                   </optgroup>
