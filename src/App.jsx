@@ -14,6 +14,11 @@ import { isCommonWord, dropCommonWords } from "./commonWords.js";
 // public build to reach private data by mistake.
 var SITE_MODE = (typeof __SITE_MODE__ !== "undefined" ? __SITE_MODE__ : "private");
 var IS_PUBLIC_SITE = SITE_MODE === "public";
+// Robot narration is off everywhere. The reader streams real recordings
+// only; where a book has none, it stays a text. Every speechSynthesis call
+// site is guarded by this, so flipping it back to true restores the feature
+// rather than needing the code written again.
+var TTS_ENABLED = false;
 // Separate catalogues: the private music.json holds material that may not be
 // republished, so the public site reads its own file and never falls back to
 // the other one.
@@ -2671,6 +2676,7 @@ export default function App() {
     if (override) sentenceOverrideRef.current = null;
 
     // ---- NATIVE TTS (browser speechSynthesis). Azure cloud TTS removed. ----
+    if (!TTS_ENABLED) { setAudioPlaying(false); audioPlayingRef.current = false; return; }
     var sentObj = audioSentencesRef.current[idx];
     var sentText = sentObj && sentObj.text;
     if (!sentText) { setAudioPlaying(false); audioPlayingRef.current = false; return; }
@@ -3350,6 +3356,7 @@ export default function App() {
   //      user-gesture-bound speak() it needs to fully wake up the audio engine,
   //      well before the user reaches the reading view and clicks ▶.
   useEffect(function() {
+    if (!TTS_ENABLED) return;
     if (!window.speechSynthesis) return;
     try { window.speechSynthesis.cancel(); } catch(e) {}
     var warmedUp = false;
@@ -3777,6 +3784,7 @@ export default function App() {
   }, []);
 
   var checkTTSAvailable = function() {
+    if (!TTS_ENABLED) { setTtsErr(""); return false; }
     if (!window.speechSynthesis) {
       setTtsErr("This browser does not support speechSynthesis.");
       return false;
@@ -3913,6 +3921,8 @@ export default function App() {
   }, [spkIdx]);
 
   var runDiagnostics = function() {
+    // A speech-engine test bench is meaningless with speech turned off.
+    if (!TTS_ENABLED) return;
     var logs = [];
     var addLog = function(line) {
       logs.push(line);
@@ -4167,6 +4177,7 @@ export default function App() {
 
     var speakIt = function() {
       try {
+        if (!TTS_ENABLED) { setSayState("none"); return; }
         if (!window.speechSynthesis) { setSayState("none"); return; }
         var voice = pickRussianVoice();
         if (!voice) { setSayState("none"); return; }
@@ -5418,6 +5429,9 @@ export default function App() {
   // bar). Same state (showVP, voice, allVoices) drives both call sites, so
   // picking a voice anywhere updates the entire app.
   var renderVoicePicker = function() {
+    // Picking a robot voice, and previewing it aloud, both go with the
+    // feature they configure.
+    if (!TTS_ENABLED) return null;
     if (!showVP) return null;
     return (
       <div className="vpanel" style={{maxHeight: diagLogs.length > 0 ? 380 : 180}}>
@@ -7557,7 +7571,7 @@ export default function App() {
                         Azure Dmitry. In Audiobook mode (when the book has an
                         audiobook for the current chapter) streams a real
                         recording, one file per chapter or act. */}
-                    {audioSentences.length > 0 && (
+                    {audioSentences.length > 0 && (TTS_ENABLED || audiobookData) && (
                       <div className="faudio">
                         {/* No skip buttons: scrub with the seek bar, or click
                             any word in the text and choose "Play from here". */}
@@ -7588,7 +7602,7 @@ export default function App() {
                             <span className="faudio-clock">{fmtClock(abCur)} / {fmtClock(abDur)}</span>
                           </>
                         )}
-                        {audiobookData && (
+                        {TTS_ENABLED && audiobookData && (
                           <button className={"faudio-mode" + (audiobookMode ? " active" : "")}
                             onClick={function(){
                               // Toggle modes. Stop whatever's playing first; both
@@ -7611,7 +7625,7 @@ export default function App() {
                         <button className="faudio-speed"
                           onClick={function(){ setAudioSpeedIdx((audioSpeedIdx + 1) % SPEED_OPTIONS.length); }}
                           title={"Playback speed (TTS mode only). Current: " + SPEED_OPTIONS[audioSpeedIdx].label}
-                          disabled={audiobookMode && !!audiobookData}>
+                          disabled={!TTS_ENABLED || (audiobookMode && !!audiobookData)}>
                           {SPEED_OPTIONS[audioSpeedIdx].label}
                         </button>
                       </div>
