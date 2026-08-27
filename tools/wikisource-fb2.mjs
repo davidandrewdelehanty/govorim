@@ -113,14 +113,24 @@ function stripInline(s) {
 // before any per-line work.
 function cleanPage(text) {
   let t = text.replace(/<!--[\s\S]*?-->/g, "");
-  const h = t.search(/\{\{\s*[Оо]тексте/);
-  if (h >= 0) {
+  // Header templates go by many names — {{Отексте}} on most pages, but
+  // {{ТолстойПСС}} on the Tolstoy collected works and others elsewhere. Naming
+  // them one at a time means every new author dumps its raw header into the
+  // text as verse. Recognise them by SHAPE instead: a template carrying a
+  // НАЗВАНИЕ or АВТОР parameter is a header, whatever it is called.
+  const HEADERISH = /\|\s*(НАЗВАНИЕ|АВТОР|ЛИЦЕНЗИЯ|ДАТАСОЗДАНИЯ)\s*=/;
+  for (;;) {
+    const h = t.indexOf("{{");
+    if (h < 0) break;
     let depth = 0, i = h;
     while (i < t.length) {
       if (t.startsWith("{{", i)) { depth++; i += 2; }
       else if (t.startsWith("}}", i)) { depth--; i += 2; if (!depth) break; }
       else i++;
     }
+    if (depth !== 0) break;                       // unbalanced — leave the page alone
+    const inner = t.slice(h + 2, i - 2);
+    if (!HEADERISH.test(inner)) break;            // not a header; stop at the first real template
     t = t.slice(0, h) + t.slice(i);
   }
   t = t.replace(/__[A-ZА-Я]+__/g, "");
@@ -374,6 +384,42 @@ function toFb2(title, author, srcUrl, sections) {
   return L.join("\n") + "\n";
 }
 
+// ---- Proofread Page ----------------------------------------------------------
+// A page whose wikitext is just <pages index="..." from=N to=M /> keeps its
+// text in the Page: namespace and stitches it together at render time. Fetching
+// the wikitext gets a header and nothing else — which is why «Детство» came
+// back empty. Ask the API to RENDER it instead and read the HTML.
+
+function decodeEntities(t) {
+  return t.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"')
+          .replace(/&#(\d+);/g, (m, n) => String.fromCharCode(parseInt(n, 10)))
+          .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&");
+}
+
+async function renderedParagraphs(title) {
+  const d = await api({ action: "parse", page: title, prop: "text",
+                        redirects: "1", disablelimitreport: "1" });
+  if (d.error) throw new Error("parse API: " + (d.error.info || d.error.code));
+  let html = (d.parse && d.parse.text) || "";
+  if (!html) return [];
+  // Proofread Page marks the seam between scanned pages, and carries footnote
+  // apparatus. None of it is the author's text.
+  html = html.replace(/<(script|style|table)[\s\S]*?<\/\1>/gi, "");
+  html = html.replace(/<sup[^>]*class="[^"]*reference[^"]*"[\s\S]*?<\/sup>/gi, "");
+  html = html.replace(/<span[^>]*class="[^"]*(pagenum|pnum|ws-pagenum)[^"]*"[\s\S]*?<\/span>/gi, "");
+  html = html.replace(/<div[^>]*class="[^"]*(reflist|references|noprint)[^"]*"[\s\S]*?<\/div>/gi, "");
+  const out = [];
+  const re = /<p[^>]*>([\s\S]*?)<\/p>/gi;
+  let m;
+  while ((m = re.exec(html))) {
+    const t = decodeEntities(m[1].replace(/<[^>]+>/g, "")).replace(/\s+/g, " ").trim();
+    if (t) out.push(t);
+  }
+  return out;
+}
+
+function isTransclusion(text) { return /<pages\s+index=/i.test(text); }
+
 // ---- commands --------------------------------------------------------------
 
 // When extraction looks wrong, look at the page. Guessing at the markup from
@@ -461,22 +507,59 @@ function subpageLinks(pageTitle, text) {
   return out;
 }
 
+// Some index pages link no subpages at all — «Детство (Толстой)» is a
+// Proofread Page transclusion whose wikitext holds a header, one <pages/> tag
+// and nothing else, though Глава I..XXVIII exist as real subpages. Where the
+// names are regular, generate them rather than scrape them.
+const ROMAN = [[1000,"M"],[900,"CM"],[500,"D"],[400,"CD"],[100,"C"],[90,"XC"],
+               [50,"L"],[40,"XL"],[10,"X"],[9,"IX"],[5,"V"],[4,"IV"],[1,"I"]];
+function roman(n) {
+  let out = "";
+  for (const [v, s] of ROMAN) while (n >= v) { out += s; n -= v; }
+  return out;
+}
+
+function generatedSubpages(pageTitle) {
+  const label = flag("subpages", null);
+  const count = parseInt(flag("count", "0"), 10);
+  if (!label || !count) return [];
+  const arabic = argv.includes("--arabic");
+  const out = [];
+  for (let i = 1; i <= count; i++) {
+    const num = arabic ? String(i) : roman(i);
+    out.push({ title: pageTitle + "/" + label + " " + num, label: label + " " + num });
+  }
+  return out;
+}
+
 async function load(title) {
   if (argv.includes("--search")) title = await resolveTitle(title);
   const page = await wikitext(title);
   if (!page || !page.text) throw new Error('No such page: "' + title + '"');
   const info = headerInfo(page.text);
   let body = parsePage(page.text);
+  if (!countLines(body) && isTransclusion(page.text) && !flag("subpages", null)) {
+    const ps = await renderedParagraphs(page.title);
+    if (ps.length) body = [{ title: "", blocks: ps.map((t) => ({ kind: "p", text: t })) }];
+  }
 
-  const subs = subpageLinks(page.title, page.text);
-  if (subs.length >= 2 && countLines(body) < 40) {
+  const gen = generatedSubpages(page.title);
+  const subs = gen.length ? gen : subpageLinks(page.title, page.text);
+  if (subs.length >= 2 && (gen.length || countLines(body) < 40)) {
     console.error("index page: following " + subs.length + " subpages");
     body = [];
     for (const sub of subs) {
       await sleep(1500);                     // the same pacing the batch uses
       const sp = await wikitext(sub.title);
       if (!sp || !sp.text) { console.error("    MISSING  " + sub.title); continue; }
-      const secs = parsePage(sp.text, true);
+      let secs;
+      if (isTransclusion(sp.text)) {
+        // Text lives in the Page: namespace; read the rendered HTML instead.
+        const ps = await renderedParagraphs(sub.title);
+        secs = ps.length ? [{ title: "", blocks: ps.map((t) => ({ kind: "p", text: t })) }] : [];
+      } else {
+        secs = parsePage(sp.text, true);
+      }
       const n = countLines(secs);
       console.error("    " + sub.label + "  (" + n + " lines)");
       if (!n) continue;
@@ -542,7 +625,15 @@ async function cmdParseFile(file) {
   for (const l of sample.slice(-3)) console.log("   " + l);
 }
 
+async function cmdRendered(title) {
+  const n = parseInt(flag("lines", "20"), 10);
+  const ps = await renderedParagraphs(title);
+  console.log("paragraphs: " + ps.length);
+  for (const t of ps.slice(0, n)) console.log("   " + t.slice(0, 100));
+}
+
 const run = { search: () => cmdSearch(argv.slice(1).join(" ")),
+              rendered: () => cmdRendered(argv[1]),
               parsefile: () => cmdParseFile(argv[1]),
               raw:    () => cmdRaw(argv[1]),
               show:   () => cmdShow(argv[1]),
@@ -554,6 +645,8 @@ if (!run[cmd]) {
   console.error("  show TITLE              what would be extracted");
   console.error("  fetch TITLE --out PATH [--author NAME]");
   console.error("  parsefile FILE [--title T]  parse a saved `raw` dump, no network");
+  console.error("  --subpages LABEL --count N   build TITLE/LABEL I..N yourself, for an");
+  console.error("       index page that links nothing (add --arabic for 1..N)");
   console.error("  --split-level N         force chapter splitting at heading level N");
   console.error("  --variant first|last|all  which {{poemx}} block, when a page has two");
   console.error("  ...add --search to resolve a title by search first (lyrics are");
