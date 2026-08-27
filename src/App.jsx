@@ -5691,6 +5691,13 @@ export default function App() {
         .quickpick{width:100%;box-sizing:border-box;font-size:15px;padding:10px 12px;
                    font-family:'Crimson Pro',serif;border-radius:8px;
                    border:1px solid rgba(42,31,20,.18);background:rgba(42,31,20,.05);color:#000}
+        /* Style the list too, the way .level-pill does. A select whose control
+           is painted but whose options are not falls back to the system palette
+           the moment it opens, which reads as the styling having vanished. */
+        .quickpick option{background:#ede8dd;color:#2a1f14;padding:4px 0}
+        .quickpick optgroup{background:#e4ddcf;color:#8a6a35;font-weight:600;font-style:normal}
+        .quickpick:hover{background:rgba(42,31,20,.08)}
+        .quickpick:focus{outline:none;border-color:rgba(196,149,90,.5)}
         @media (max-width:700px){.quickpick{font-size:16px;padding:12px}}
         .dual-toggle{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:40;
           background:rgba(255,252,246,.94);border:1px solid rgba(42,31,20,.18);color:rgba(42,31,20,.7);
@@ -6908,9 +6915,11 @@ export default function App() {
                                       // answer to the question being asked.
                                       var tight = optChars < 999;
                                       var lead = book && book.audiobook ? "🎧 " : "";
-                                      var tag = book && book.parallelEn
-                                        ? (tight ? " EN" : "  w/ ENG")
-                                        : (tight ? " —" : "  w/o ENG");
+                                      // The tag never abbreviates. It is the
+                                      // thing being asked of the row, so on a
+                                      // narrow screen the TITLE gives way and
+                                      // the tag stays whole.
+                                      var tag = book && book.parallelEn ? "  w/ ENG" : "  w/o ENG";
                                       // The marker must survive: it is the whole
                                       // point of the row. So the title is what
                                       // gives way, and only by as much as needed.
