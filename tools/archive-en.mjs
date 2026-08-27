@@ -44,16 +44,26 @@ const id = argv[1];
 const flag = (n, d) => { const i = argv.indexOf("--" + n); return i >= 0 && argv[i + 1] ? argv[i + 1] : d; };
 const CACHE = ".cache/archive";
 
+// A bare number is a Project Gutenberg ebook id; anything else is an
+// archive.org identifier. Worth preferring Gutenberg where a title exists on
+// both: its texts are proofread by hand, where archive.org's are raw OCR and
+// arrive with the scanning damage still in them.
+function sourceUrl(sourceId) {
+  return /^\d+$/.test(sourceId)
+    ? "https://www.gutenberg.org/ebooks/" + sourceId + ".txt.utf-8"
+    : "https://archive.org/download/" + sourceId + "/" + sourceId + "_djvu.txt";
+}
+
 async function ocrText(archiveId) {
   const file = path.join(CACHE, archiveId + ".txt");
   if (fs.existsSync(file)) {
     console.error("using cached " + file);
     return fs.readFileSync(file, "utf8");
   }
-  const url = "https://archive.org/download/" + archiveId + "/" + archiveId + "_djvu.txt";
+  const url = sourceUrl(archiveId);
   console.error("downloading " + url);
   const r = await fetch(url, { headers: { "user-agent": "govorim.dev text fetcher" } });
-  if (!r.ok) throw new Error("HTTP " + r.status + " from archive.org — check the id");
+  if (!r.ok) throw new Error("HTTP " + r.status + " from " + url + " — check the id");
   const text = await r.text();
   fs.mkdirSync(CACHE, { recursive: true });
   fs.writeFileSync(file, text, "utf8");
@@ -87,6 +97,15 @@ function cleanLine(s) {
 
 function bodyLines(text, from, to) {
   const lines = text.split("\n");
+  // Exact line numbers, straight from `find`. Needed wherever a running header
+  // repeats the title on every page: matching on the title text then lands on
+  // page two of the article and silently drops its opening.
+  const fl = parseInt(flag("from-line", "0"), 10);
+  const tl = parseInt(flag("to-line", "0"), 10);
+  if (fl > 0) {
+    const end = tl > 0 ? tl : lines.length;
+    return lines.slice(fl, end).filter((l) => !isNoise(l)).map(cleanLine).filter(Boolean);
+  }
   const find = (needle, startAt) => {
     if (!needle) return -1;
     const want = needle.toUpperCase().replace(/\s+/g, "");
@@ -127,11 +146,17 @@ async function cmdSurvey() {
   const lines = text.split("\n");
   console.log("total lines: " + lines.length);
   console.log("");
-  console.log("Headings the scan shows (all-caps lines, 4+ chars):");
+  console.log("Headings this text shows:");
   let shown = 0;
-  for (let i = 0; i < lines.length && shown < 80; i++) {
+  for (let i = 0; i < lines.length && shown < 120; i++) {
     const t = lines[i].trim();
-    if (/^[A-Z][A-Z\s.'-]{3,}$/.test(t) && t.replace(/\s/g, "").length >= 4) {
+    // All-caps for a scan; Gutenberg often centres a Title Case heading with a
+    // blank line either side, so accept that shape too.
+    const caps = /^[A-Z][A-Z\s.'-]{3,}$/.test(t) && t.replace(/\s/g, "").length >= 4;
+    const titled = t.length > 3 && t.length < 60 &&
+                   /^[A-Z]/.test(t) && !/[.,;:]$/.test(t) &&
+                   !lines[i - 1].trim() && !(lines[i + 1] || "").trim();
+    if (caps || titled) {
       console.log("  " + String(i).padStart(6) + "  " + t);
       shown++;
     }
@@ -171,11 +196,15 @@ async function cmdFetch() {
   // absent section shifts the whole poem out of step, so the English can be
   // told which chapter it really starts at.
   const first = Math.max(1, parseInt(flag("from-chapter", "1"), 10)) - 1;
-  if (first > 0) {
-    console.log("skipping chapters 1-" + first + " (no English for them)");
-    console.log("");
-  }
-  const paired = ru.slice(first);
+  // And a translator may stop early as well as start late: Marsden's 1890
+  // version of Кавказский пленник leaves off the Эпилог entirely. Spread over
+  // it anyway, an otherwise sound translation would be pulled out of step
+  // across every section it DOES cover.
+  const lastCh = parseInt(flag("to-chapter", "0"), 10) || ru.length;
+  if (first > 0) console.log("skipping chapters 1-" + first + " (no English for them)");
+  if (lastCh < ru.length) console.log("stopping after chapter " + lastCh + " (no English beyond it)");
+  if (first > 0 || lastCh < ru.length) console.log("");
+  const paired = ru.slice(first, lastCh);
   const pairedTotal = paired.reduce((a, b) => a + b, 0);
 
   const dir = "public/books/" + slug + "-en";
@@ -186,7 +215,7 @@ async function cmdFetch() {
     // This chapter's share of the English, proportional to its share of the
     // Russian — so a chapter boundary always re-syncs the two sides.
     const share = Math.round(en.length * (paras / pairedTotal));
-    const slice = en.slice(cursor, ci === ru.length - 1 ? en.length : cursor + share);
+    const slice = en.slice(cursor, pi === paired.length - 1 ? en.length : cursor + share);
     cursor += slice.length;
     const out = {};
     for (let i = 0; i < paras; i++) {
@@ -205,12 +234,36 @@ async function cmdFetch() {
   console.log("Read a few lines of each before trusting it — OCR noise survives cleanup.");
 }
 
-const run = { survey: cmdSurvey, slice: cmdSlice, fetch: cmdFetch };
+// A periodical volume runs to tens of thousands of lines and the piece you want
+// is one article buried in it, so listing headings from the top never reaches
+// it. Search instead, and report line numbers to pick boundaries from.
+async function cmdFind() {
+  const needle = argv.slice(2).filter((a) => a.indexOf("--") !== 0).join(" ");
+  if (!needle) throw new Error("give something to search for");
+  const text = await ocrText(id);
+  const lines = text.split("\n");
+  const re = new RegExp(needle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i");
+  let hits = 0;
+  for (let i = 0; i < lines.length; i++) {
+    if (!re.test(lines[i])) continue;
+    hits++;
+    if (hits > 40) { console.log("  ... more than 40 matches; narrow the search"); break; }
+    console.log("  " + String(i).padStart(6) + "  " + lines[i].trim().slice(0, 90));
+  }
+  if (!hits) console.log("  no match for: " + needle);
+  else console.log("\n  " + hits + " match(es)");
+}
+
+const run = { survey: cmdSurvey, slice: cmdSlice, fetch: cmdFetch, find: cmdFind };
 if (!run[cmd] || !id) {
-  console.error("usage: node tools/archive-en.mjs <command> <archive-id> [options]");
+  console.error("usage: node tools/archive-en.mjs <command> <source-id> [options]");
+  console.error("  source-id: an archive.org identifier, or a bare number for a");
+  console.error("             Project Gutenberg ebook (proofread, so preferred)");
   console.error("  survey ID                       headings in the scan");
+  console.error("  find   ID TEXT                  line numbers matching TEXT");
   console.error("  slice  ID --from S [--to S]     preview a range");
-  console.error("  fetch  ID --from S [--to S] --slug SLUG [--from-chapter N]");
+  console.error("         ...or --from-line N --to-line N, from `find`");
+  console.error("  fetch  ID --from S [--to S] --slug SLUG [--from-chapter N] [--to-chapter N]");
   process.exit(1);
 }
 run[cmd]().catch((e) => { console.error("FAILED: " + e.message); process.exit(1); });
