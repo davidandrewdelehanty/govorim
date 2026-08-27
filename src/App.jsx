@@ -1849,6 +1849,27 @@ export default function App() {
 
   var [msgs, setMsgs]         = useState([]);
   var [input, setInput]       = useState("");
+  // How much text one dropdown row can hold. A native <select> hands its open
+  // list to the OS on phones, which ignores CSS on <option> entirely — so a row
+  // is made to fit by shortening the STRING, not by styling it. The budget is
+  // derived from the viewport so it adapts instead of guessing at one phone.
+  var [optChars, setOptChars] = useState(999);
+  useEffect(function() {
+    var measure = function() {
+      var w = typeof window !== "undefined" ? window.innerWidth : 1200;
+      // Below ~700px the picker is full-width and modal; above it, rows are
+      // roomy enough that truncating would only lose information.
+      setOptChars(w >= 700 ? 999 : Math.max(16, Math.floor((w - 56) / 8.2)));
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    window.addEventListener("orientationchange", measure);
+    return function() {
+      window.removeEventListener("resize", measure);
+      window.removeEventListener("orientationchange", measure);
+    };
+  }, []);
+
   var [loading, setLoading]   = useState(false);
   // CEFR level for chat conversations. Persisted in localStorage so the user
   // doesn't have to re-pick each session. Defaults to B1 (the prior hard-coded
@@ -5664,6 +5685,13 @@ export default function App() {
         /* Pinned to the viewport, not to the end of the scroll container, so it
            is reachable from anywhere in a long chapter. */
         .tnote{margin:0 0 10px;max-width:70ch}
+        /* The closed control IS stylable, unlike its options. Full width and a
+           16px minimum, because anything smaller makes iOS zoom the page on
+           focus and leaves it zoomed. */
+        .quickpick{width:100%;box-sizing:border-box;font-size:15px;padding:10px 12px;
+                   font-family:'Crimson Pro',serif;border-radius:8px;
+                   border:1px solid rgba(42,31,20,.18);background:rgba(42,31,20,.05);color:#000}
+        @media (max-width:700px){.quickpick{font-size:16px;padding:12px}}
         .dual-toggle{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:40;
           background:rgba(255,252,246,.94);border:1px solid rgba(42,31,20,.18);color:rgba(42,31,20,.7);
           font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.06em;font-weight:600;
@@ -6827,6 +6855,7 @@ export default function App() {
                         <div style={{marginBottom:18}}>
                           <div style={{fontSize:11,letterSpacing:2,textTransform:"uppercase",color:"rgba(0,0,0,.45)",marginBottom:8,textAlign:"left"}}>Quick pick</div>
                           <select
+                            className="quickpick"
                             defaultValue=""
                             onChange={function(e){
                               var idx = e.target.value;
@@ -6877,10 +6906,20 @@ export default function App() {
                                       // positive one: an absent marker reads as
                                       // an oversight, where "w/o ENG" is an
                                       // answer to the question being asked.
-                                      var marks = (book && book.audiobook ? "🎧 " : "") + title +
-                                                  (book && book.parallelEn ? "  w/ ENG" : "  w/o ENG");
+                                      var tight = optChars < 999;
+                                      var lead = book && book.audiobook ? "🎧 " : "";
+                                      var tag = book && book.parallelEn
+                                        ? (tight ? " EN" : "  w/ ENG")
+                                        : (tight ? " —" : "  w/o ENG");
+                                      // The marker must survive: it is the whole
+                                      // point of the row. So the title is what
+                                      // gives way, and only by as much as needed.
+                                      var room = optChars - lead.length - tag.length;
+                                      var shown = tight && title.length > room
+                                        ? title.slice(0, Math.max(4, room - 1)).trim() + "…"
+                                        : title;
                                       return (
-                                        <option key={entry.idx} value={entry.idx}>{marks}</option>
+                                        <option key={entry.idx} value={entry.idx}>{lead + shown + tag}</option>
                                       );
                                     })}
                                   </optgroup>
