@@ -6086,20 +6086,30 @@ export default function App() {
         .adm-title{font-family:'Playfair Display',serif;font-size:24px;color:#c4955a}
         .adm-x{background:none;border:none;color:rgba(42,31,20,.6);font-size:24px;cursor:pointer;padding:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:all .15s}
         .adm-x:hover{background:rgba(42,31,20,.08);color:#000}
-        .adm-body{padding:20px 28px;display:flex;flex-direction:column;gap:12px;max-height:65vh;overflow-y:auto}
+        .adm-body{padding:8px 20px 12px;display:flex;flex-direction:column;gap:0;max-height:65vh;overflow-y:auto}
         .adm-empty{text-align:center;padding:32px;color:rgba(42,31,20,.5);font-style:italic}
-        .adm-row{display:flex;align-items:center;gap:14px;padding:14px 16px;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.08);border-radius:12px}
+        /* One user per line: a list, not a stack of cards. The card treatment cost
+           a card's worth of vertical space each and made ten users a scroll. */
+        .adm-row{display:flex;align-items:center;gap:10px;padding:6px 8px;background:none;
+                 border:none;border-bottom:1px solid rgba(42,31,20,.07);border-radius:0}
+        .adm-row:last-child{border-bottom:none}
+        .adm-row:hover{background:rgba(42,31,20,.035)}
         .adm-avatar{width:40px;height:40px;border-radius:50%;background:#f5f0e8 center/cover no-repeat;flex-shrink:0;border:1px solid rgba(42,31,20,.15)}
-        .adm-info{flex:1;min-width:0}
-        .adm-name{font-size:15px;color:#000;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-        .adm-email{font-size:13px;color:rgba(42,31,20,.55);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-        .adm-status{font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:6px;flex-shrink:0}
+        .adm-info{flex:1;min-width:0;display:flex;align-items:baseline;gap:10px}
+        .adm-name{font-size:14px;color:#000;font-weight:600;overflow:hidden;text-overflow:ellipsis;
+                  white-space:nowrap;flex:0 1 auto;max-width:54%}
+        .adm-email{font-size:12px;color:rgba(42,31,20,.5);overflow:hidden;text-overflow:ellipsis;
+                   white-space:nowrap;flex:1 1 auto}
+        .adm-status{font-size:10px;letter-spacing:.8px;text-transform:uppercase;padding:2px 8px;border-radius:5px;flex-shrink:0}
         .adm-status.approved{background:rgba(90,133,86,.18);color:#2f5a2a;border:1px solid rgba(90,133,86,.3)}
         .adm-status.rejected{background:rgba(196,149,90,.18);color:#9d4630;border:1px solid rgba(196,149,90,.3)}
         .adm-status.pending{background:rgba(196,149,90,.12);color:#c4955a;border:1px solid rgba(196,149,90,.25)}
         .adm-status.admin{background:rgba(135,168,196,.15);color:#2f4a6b;border:1px solid rgba(135,168,196,.3)}
         .adm-actions{display:flex;gap:8px;flex-shrink:0}
-        .adm-btn{padding:7px 14px;border:none;border-radius:8px;font-size:13px;font-family:'Crimson Pro',serif;cursor:pointer;transition:opacity .15s;font-weight:600}
+        .adm-btn{padding:4px 11px;border:none;border-radius:7px;font-size:12px;font-family:'Crimson Pro',serif;cursor:pointer;transition:opacity .15s;font-weight:600}
+        /* Below ~560px one line stops fitting; let it wrap rather than clip. */
+        @media (max-width:560px){.adm-info{flex-direction:column;align-items:flex-start;gap:1px}
+          .adm-name{max-width:100%}.adm-row{padding:8px}}
         .adm-btn:disabled{opacity:.5;cursor:wait}
         .adm-btn.approve{background:linear-gradient(135deg,#5a8556,#4a6845);color:#fff}
         .adm-btn.reject{background:rgba(196,149,90,.15);border:1px solid rgba(196,149,90,.4);color:#9d4630}
@@ -6195,7 +6205,7 @@ export default function App() {
                     <div className="adm-info">
                       <div className="adm-name">{u.email}</div>
                       <div className="adm-email">
-                        joined {when(u.createdAt)} · last signed in {when(u.lastLoginAt)}
+                        {when(u.createdAt)} · seen {when(u.lastLoginAt)}
                       </div>
                     </div>
                     {u.isAdmin && <div className="adm-status admin">Admin</div>}
