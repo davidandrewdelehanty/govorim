@@ -6873,8 +6873,12 @@ export default function App() {
                                       // translation: the two things a reader
                                       // actually chooses between, and all the
                                       // width a dropdown row has to spare.
+                                      // Both states are labelled, not just the
+                                      // positive one: an absent marker reads as
+                                      // an oversight, where "w/o ENG" is an
+                                      // answer to the question being asked.
                                       var marks = (book && book.audiobook ? "🎧 " : "") + title +
-                                                  (book && book.parallelEn ? "  · EN" : "");
+                                                  (book && book.parallelEn ? "  w/ ENG" : "  w/o ENG");
                                       return (
                                         <option key={entry.idx} value={entry.idx}>{marks}</option>
                                       );
