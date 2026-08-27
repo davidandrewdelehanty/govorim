@@ -1233,7 +1233,9 @@ async function parseFb2(buffer, options) {
   // file per chapter. This mirrors _walk_sections() in Auto-MFA's
   // app/fb2.py: the aligner and this reader must cut the same FB2 into the
   // same chapters, or the audio plays against the wrong text.
-  var walkSection = function(sec, out) {
+  // soleSection: this is the body's only top-level section, so it is the whole
+  // book. The short-scrap rule below must not fire on it — see there.
+  var walkSection = function(sec, out, soleSection) {
     var nested = Array.prototype.filter.call(sec.children, function(c) {
       return c.tagName && c.tagName.toLowerCase() === "section";
     });
@@ -1336,8 +1338,13 @@ async function parseFb2(buffer, options) {
     if (!nested.length) {
       var leafParas = paragraphsOf(sec, false);
       // An untitled scrap this short is front matter — a dedication, an
-      // epigraph, a colophon — not a chapter anyone recorded.
-      if (!partTitle &&
+      // epigraph, a colophon — not a chapter anyone recorded. But only when
+      // there is a book around it: «Я вас любил» is one untitled 43-word
+      // section and nothing else, so dropping it left no chapters at all and
+      // the fallback below rendered the <body><title> on its own — the reader
+      // showed the poem's name and not one line of the poem. A short lyric is
+      // a legitimate whole work.
+      if (!partTitle && !soleSection &&
           (leafParas.join(" ").match(/\S+/g) || []).length < FB2_MIN_MEDIAN_CHAPTER_WORDS) {
         return;
       }
@@ -1365,7 +1372,9 @@ async function parseFb2(buffer, options) {
     for (var si = 0; si < sub.length; si++) out.push(sub[si]);
   };
 
-  for (var i = 0; i < sections.length; i++) walkSection(sections[i], chapters);
+  for (var i = 0; i < sections.length; i++) {
+    walkSection(sections[i], chapters, sections.length === 1);
+  }
   } // end if (!isScripture)
 
   // Fallback: if no <section>s, treat entire body as one chapter
