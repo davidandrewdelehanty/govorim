@@ -161,6 +161,11 @@ var EPUB_BM    = "epub_bm_v1";
 // library screen and to auto-restore where the user left off when they
 // reopen a book.
 var BOOK_PROGRESS = "book_progress_v1";
+// Books the reader has marked finished: { [bookKey]: timestamp }. Kept apart
+// from BOOK_PROGRESS because progress is "where I stopped" and this is "I am
+// done" — a reader can finish a book without ever reaching its last page, and
+// can reopen a finished book without unfinishing it.
+var BOOKS_FINISHED = "books_finished_v1";
 
 // Stable identifier for a book — derived from filename + title so the same
 // book always gets the same key whether it's a preset or uploaded.
@@ -2454,6 +2459,41 @@ export default function App() {
     })();
   }, []);
 
+  // ── Finished books ───────────────────────────────────────────────────────
+  // A map rather than a list so the entry can carry when it was finished, for
+  // a reading history later. Stored locally and, for a signed-in reader, on
+  // the server, so the green check follows them between devices.
+  var [finishedMap, setFinishedMap] = useState({});
+  var [finishedLoaded, setFinishedLoaded] = useState(false);
+  useEffect(function() {
+    (async function() {
+      try {
+        var r = await storage.get(BOOKS_FINISHED);
+        if (r) setFinishedMap(JSON.parse(r.value) || {});
+      } catch(e) {}
+      setFinishedLoaded(true);
+    })();
+  }, []);
+  useEffect(function() {
+    if (!finishedLoaded) return;   // never persist the empty initial state
+    storage && storage.set(BOOKS_FINISHED, JSON.stringify(finishedMap)).catch(function(){});
+  }, [finishedMap, finishedLoaded]);
+
+  var isFinished = function(meta) {
+    var k = bookKey(meta);
+    return !!(k && finishedMap[k]);
+  };
+  var toggleFinished = function(meta) {
+    var k = bookKey(meta);
+    if (!k) return;
+    setFinishedMap(function(prev) {
+      var next = Object.assign({}, prev);
+      if (next[k]) delete next[k];
+      else next[k] = { at: Date.now(), title: meta.title || "", author: meta.author || "" };
+      return next;
+    });
+  };
+
   // Save a book's reading progress. Debounced via the deps so it only fires
   // when the page/chapter actually changes — not on every render.
   var saveBookProgress = async function(meta, ci, pi, totalChapters) {
@@ -3787,6 +3827,14 @@ export default function App() {
         });
         var serverTips  = Array.isArray(data.tips)  ? data.tips  : [];
 
+        // Finished books merge rather than replace: two devices can each have
+        // marked a different book read while offline, and neither mark should
+        // be the one that loses. The map is keyed by book, so a union is right.
+        var serverFinished = (data.finished && typeof data.finished === "object") ? data.finished : {};
+        if (Object.keys(serverFinished).length > 0) {
+          setFinishedMap(function(local) { return Object.assign({}, serverFinished, local); });
+        }
+
         if (serverVocab.length > 0 || serverTips.length > 0) {
           setVocab(serverVocab);
           setTips(serverTips);
@@ -3801,6 +3849,20 @@ export default function App() {
       } catch(e) {}
     })();
   }, [me]);
+
+  // Push the finished-books map after every change, once the initial sync has
+  // run — otherwise the empty starting state would clear the server copy.
+  useEffect(function() {
+    if (!me || !syncedFromServer || !finishedLoaded) return;
+    var t = setTimeout(function() {
+      authFetch("/api/user-data?type=finished", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ finished: finishedMap }),
+      }).catch(function(){});
+    }, 1200);
+    return function(){ clearTimeout(t); };
+  }, [finishedMap, me, syncedFromServer, finishedLoaded]);
 
   // After initial sync, push subsequent changes (debounced 1.5s).
   useEffect(function() {
@@ -6052,6 +6114,10 @@ export default function App() {
         .lib-tag{padding:2px 7px;border-radius:9px;font-size:10px;letter-spacing:.3px;font-weight:600;white-space:nowrap;border:1px solid rgba(42,31,20,.16);color:rgba(42,31,20,.72);background:rgba(42,31,20,.05)}
         .lib-tag.off{border-color:rgba(42,31,20,.08);color:rgba(42,31,20,.3);background:none;font-weight:500}
         .lib-card-cat{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#c4955a;padding:2px 8px;border-radius:10px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600}
+        .lib-done{color:#1e7a3c;font-weight:700;margin-right:6px}
+        .mark-read{flex:none;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.3px;padding:4px 10px;border-radius:12px;cursor:pointer;white-space:nowrap;border:1px solid rgba(42,31,20,.18);background:transparent;color:rgba(42,31,20,.55);transition:all .15s}
+        .mark-read:hover{border-color:rgba(30,122,60,.45);color:#1e7a3c}
+        .mark-read.on{border-color:rgba(30,122,60,.45);background:rgba(30,122,60,.10);color:#1e7a3c;font-weight:600}
         .lib-card-remove{background:transparent;border:none;color:rgba(42,31,20,.35);font-size:18px;cursor:pointer;padding:0 4px;line-height:1}
         .lib-card-remove:hover{color:#9d4630}
         /* Loading state: dim the card content and overlay a centered spinner.
@@ -7570,7 +7636,10 @@ export default function App() {
                                         loadPresetBook(book);
                                       }
                                     }}>
-                                    <div className="lib-card-title">{bookLabel(book)}</div>
+                                    <div className="lib-card-title">
+                                      {isFinished(book) && <span className="lib-done" title="You marked this as read">✓</span>}
+                                      {bookLabel(book)}
+                                    </div>
                                     <div className="lib-card-meta">
                                       {cat !== "Other" && cat !== "Texts Without English" && <span className="lib-card-cat">{cat}</span>}
                                       {cat === "Song Lyrics" ? (
@@ -8070,8 +8139,19 @@ export default function App() {
                         {/* Book title shown small above the chapter heading so the reader always knows
                             which book they're in, even after navigating mid-chapter. */}
                         {bookMeta.title && (
-                          <div style={{fontFamily:"'Crimson Pro',serif",fontStyle:"italic",fontSize:13,color:"rgba(0,0,0,.45)",marginBottom:4,letterSpacing:.3}}>
-                            {bookLabel(bookMeta)}
+                          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,marginBottom:4}}>
+                            <div style={{fontFamily:"'Crimson Pro',serif",fontStyle:"italic",fontSize:13,color:"rgba(0,0,0,.45)",letterSpacing:.3}}>
+                              {bookLabel(bookMeta)}
+                            </div>
+                            {/* Marking a book read is the reader's own judgement, not something
+                                inferred from reaching the last page — so it sits on every page,
+                                and clicking it again takes the mark off. */}
+                            <button
+                              className={"mark-read" + (isFinished(bookMeta) ? " on" : "")}
+                              onClick={function(){ toggleFinished(bookMeta); }}
+                              title={isFinished(bookMeta) ? "Marked as read — click to undo" : "Mark this book as read"}>
+                              {isFinished(bookMeta) ? "✓ Read" : "Mark as read"}
+                            </button>
                           </div>
                         )}
                         <div className="lhdr">

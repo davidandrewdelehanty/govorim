@@ -89,10 +89,13 @@ export default async function handler(req, res) {
       // Read vocab + tips from R2
       const vocab = await r2Get(userId, "vocab");
       const tips  = await r2Get(userId, "tips");
+      // Books the reader has marked read, as { [bookKey]: {at, title, author} }.
+      const finished = await r2Get(userId, "finished");
 
       return res.status(200).json({
         vocab: Array.isArray(vocab) ? vocab : [],
         tips:  Array.isArray(tips)  ? tips  : [],
+        finished: (finished && typeof finished === "object" && !Array.isArray(finished)) ? finished : {},
       });
     }
 
@@ -106,6 +109,17 @@ export default async function handler(req, res) {
         // Book reading progress: { [bookFilename]: { cidx, pidx, lastRead } }
         const progress = body.progress || {};
         await r2Put(userId, "progress", progress);
+        return res.status(200).json({ ok: true });
+      }
+
+      if (type === "finished") {
+        // Books marked read: { [bookKey]: { at, title, author } }. Replaces the
+        // stored map wholesale — the client holds the merged copy.
+        const finished = body.finished;
+        if (!finished || typeof finished !== "object" || Array.isArray(finished)) {
+          return res.status(400).json({ error: "finished must be an object" });
+        }
+        await r2Put(userId, "finished", finished);
         return res.status(200).json({ ok: true });
       }
 
