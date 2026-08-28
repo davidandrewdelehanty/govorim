@@ -1,98 +1,142 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Сара, ___ Авраама, не рожала ему детей.",
-      "lemma": "жена",
-      "options": ["жена", "жены", "жене", "женой"],
-      "correct": "жена",
-      "case": "Именительный (Nominative)",
-      "translation": "Sarai, Abram's wife, bore him no children.",
-      "explain": "Жена is in apposition to the subject Сара, so it stands in the nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "У нее была служанка из ___.",
-      "lemma": "Египет",
-      "options": ["Египет", "Египта", "Египту", "Египтом"],
-      "correct": "Египта",
-      "case": "Родительный (Genitive)",
-      "translation": "She had a servant from Egypt.",
-      "explain": "The preposition из governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Сара сказала ___, «Господь не дал мне детей».",
-      "lemma": "Авраам",
-      "options": ["Авраам", "Авраама", "Аврааму", "Авраамом"],
-      "correct": "Аврааму",
-      "case": "Дательный (Dative)",
-      "translation": "Sarai said to Abram, 'The Lord has not given me children.'",
-      "explain": "The verb сказала assigns its indirect object, Авраам, the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я отдала ___ тебе на ложе, а теперь она знает, что беременна и презирает меня.",
-      "lemma": "служанка",
-      "options": ["служанка", "служанки", "служанке", "служанку"],
-      "correct": "служанку",
-      "case": "Винительный (Accusative)",
-      "translation": "I gave my servant into your bed, and now she knows she is pregnant and despises me.",
-      "explain": "The transitive verb отдала takes its direct object, служанка, in the accusative."
-    },
-    {
-      "id": "c5",
-      "sentence": "Он будет жить во вражде со всеми своими ___.",
-      "lemma": "брат",
-      "options": ["братья", "братьев", "братьям", "братьями"],
-      "correct": "братьями",
-      "case": "Творительный (Instrumental)",
-      "translation": "He will live at odds with all his brothers.",
-      "explain": "The preposition со ('с', together with) governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Ангел Господень нашел Агарь в ___, неподалеку от источника.",
-      "lemma": "пустыня",
-      "options": ["пустыня", "пустыни", "пустыне", "пустыню"],
-      "correct": "пустыне",
-      "case": "Предложный (Prepositional)",
-      "translation": "The angel of the Lord found Hagar in the wilderness, near a spring.",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "У нее была служанка из Египта по имени Агарь.",
-      "question": "What was the name of Sarai's Egyptian servant?",
-      "options": ["Hagar", "Zilpah", "Bilhah", "Keturah"],
-      "correct": "Hagar",
-      "explain": "The text names her 'служанка из Египта по имени Агарь' (a servant from Egypt named Hagar)."
-    },
-    {
-      "id": "r2",
-      "ru": "Тогда Сара стала так притеснять Агарь, что та убежала от нее.",
-      "question": "Why did Hagar run away?",
-      "options": ["Because Sarai treated her harshly", "Because Abram sent her away", "Because she was afraid of Ishmael", "Because she wanted to return to Egypt"],
-      "correct": "Because Sarai treated her harshly",
-      "explain": "The text says Sarai 'стала так притеснять Агарь, что та убежала от нее' (began to mistreat Hagar so that she fled)."
-    },
-    {
-      "id": "r3",
-      "ru": "Еще ангел Господень сказал ей, «Я так умножу твоих потомков, что их невозможно будет сосчитать».",
-      "question": "What did the angel of the Lord promise Hagar?",
-      "options": ["To multiply her descendants beyond counting", "To give her freedom immediately", "To make her queen of Egypt", "To punish Sarai"],
-      "correct": "To multiply her descendants beyond counting",
-      "explain": "The angel says 'Я так умножу твоих потомков, что их невозможно будет сосчитать' (I will multiply your descendants so they cannot be counted)."
-    },
-    {
-      "id": "r4",
-      "ru": "Аврааму было восемьдесят шесть лет, когда Агарь родила ему Измаила.",
-      "question": "How old was Abram when Ishmael was born?",
-      "options": ["Eighty-six", "Ninety-nine", "Seventy-five", "One hundred"],
-      "correct": "Eighty-six",
-      "explain": "The text says 'Аврааму было восемьдесят шесть лет, когда Агарь родила ему Измаила' (Abram was eighty-six when Hagar bore him Ishmael)."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Сара, ___ Авраама, не рожала ему детей.",
+   "lemma": "жена",
+   "options": [
+    "жена",
+    "жены",
+    "жене",
+    "женой"
+   ],
+   "correct": "жена",
+   "case": "Именительный (Nominative)",
+   "explain": "Жена is in apposition to the subject Сара, so it stands in the nominative."
+  },
+  {
+   "id": "c2",
+   "sentence": "У нее была служанка из ___.",
+   "lemma": "Египет",
+   "options": [
+    "Египет",
+    "Египта",
+    "Египту",
+    "Египтом"
+   ],
+   "correct": "Египта",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition из governs the genitive case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Сара сказала ___, «Господь не дал мне детей».",
+   "lemma": "Авраам",
+   "options": [
+    "Авраам",
+    "Авраама",
+    "Аврааму",
+    "Авраамом"
+   ],
+   "correct": "Аврааму",
+   "case": "Дательный (Dative)",
+   "explain": "The verb сказала assigns its indirect object, Авраам, the dative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Я отдала ___ тебе на ложе, а теперь она знает, что беременна и презирает меня.",
+   "lemma": "служанка",
+   "options": [
+    "служанка",
+    "служанки",
+    "служанке",
+    "служанку"
+   ],
+   "correct": "служанку",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb отдала takes its direct object, служанка, in the accusative."
+  },
+  {
+   "id": "c5",
+   "sentence": "Он будет жить во вражде со всеми своими ___.",
+   "lemma": "брат",
+   "options": [
+    "братья",
+    "братьев",
+    "братьям",
+    "братьями"
+   ],
+   "correct": "братьями",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition со ('с', together with) governs the instrumental case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Ангел Господень нашел Агарь в ___, неподалеку от источника.",
+   "lemma": "пустыня",
+   "options": [
+    "пустыня",
+    "пустыни",
+    "пустыне",
+    "пустыню"
+   ],
+   "correct": "пустыне",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в indicating location takes the prepositional case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "У нее была служанка из Египта по имени Агарь.",
+   "question": "What was the name of Sarai's Egyptian servant?",
+   "options": [
+    "Hagar",
+    "Zilpah",
+    "Bilhah",
+    "Keturah"
+   ],
+   "correct": "Hagar",
+   "explain": "The text names her 'служанка из Египта по имени Агарь' (a servant from Egypt named Hagar)."
+  },
+  {
+   "id": "r2",
+   "ru": "Тогда Сара стала так притеснять Агарь, что та убежала от нее.",
+   "question": "Why did Hagar run away?",
+   "options": [
+    "Because Sarai treated her harshly",
+    "Because Abram sent her away",
+    "Because she was afraid of Ishmael",
+    "Because she wanted to return to Egypt"
+   ],
+   "correct": "Because Sarai treated her harshly",
+   "explain": "The text says Sarai 'стала так притеснять Агарь, что та убежала от нее' (began to mistreat Hagar so that she fled)."
+  },
+  {
+   "id": "r3",
+   "ru": "Еще ангел Господень сказал ей, «Я так умножу твоих потомков, что их невозможно будет сосчитать».",
+   "question": "What did the angel of the Lord promise Hagar?",
+   "options": [
+    "To multiply her descendants beyond counting",
+    "To give her freedom immediately",
+    "To make her queen of Egypt",
+    "To punish Sarai"
+   ],
+   "correct": "To multiply her descendants beyond counting",
+   "explain": "The angel says 'Я так умножу твоих потомков, что их невозможно будет сосчитать' (I will multiply your descendants so they cannot be counted)."
+  },
+  {
+   "id": "r4",
+   "ru": "Аврааму было восемьдесят шесть лет, когда Агарь родила ему Измаила.",
+   "question": "How old was Abram when Ishmael was born?",
+   "options": [
+    "Eighty-six",
+    "Ninety-nine",
+    "Seventy-five",
+    "One hundred"
+   ],
+   "correct": "Eighty-six",
+   "explain": "The text says 'Аврааму было восемьдесят шесть лет, когда Агарь родила ему Измаила' (Abram was eighty-six when Hagar bore him Ishmael)."
+  }
+ ]
 }

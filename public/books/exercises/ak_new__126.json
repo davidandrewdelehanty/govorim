@@ -1,1 +1,468 @@
-{"cases": [{"id": "c1", "sentence": "___ был очень веселый.", "lemma": "обед", "options": ["обед", "обеда", "обеду", "обедом"], "correct": "обед", "case": "Именительный (Nominative)", "translation": "The dinner was very merry.", "explain": "«Обед» is the subject of «был весёлый», so it stands in the Nominative case."}, {"id": "c2", "sentence": "Он и науку любил тогда, по выходе из ___.", "lemma": "университет", "options": ["университет", "университета", "университету", "университетом"], "correct": "университета", "case": "Родительный (Genitive)", "translation": "He had loved learning back then, right after leaving the university.", "explain": "The preposition «из» governs the Genitive case: «из университета»."}, {"id": "c3", "sentence": "«Ты знаешь», — обратился Левин к ___.", "lemma": "брат", "options": ["брат", "брата", "брату", "братом"], "correct": "брату", "case": "Дательный (Dative)", "translation": "'You know,' Levin turned to his brother.", "explain": "The preposition «к» requires the Dative case: «к брату»."}, {"id": "c4", "sentence": "Дарья Александровна должна была заехать домой, чтобы взять своего ___.", "lemma": "сын", "options": ["сын", "сына", "сыну", "сыном"], "correct": "сына", "case": "Винительный (Accusative)", "translation": "Darya Alexandrovna had to stop at home to fetch her son.", "explain": "«Сына» is the direct object of the transitive verb «взять»; for an animate masculine noun the Accusative form matches the Genitive."}, {"id": "c5", "sentence": "Да и вперёд простись с медвежьей ___, жена не пустит.", "lemma": "охота", "options": ["охота", "охоты", "охоте", "охотой"], "correct": "охотой", "case": "Творительный (Instrumental)", "translation": "And say goodbye to bear-hunting from now on — your wife won't let you go.", "explain": "The preposition «с» (\"with\"/\"to\") in «проститься с» governs the Instrumental case: «с охотой»."}, {"id": "c6", "sentence": "Левин обедал у себя в ___ со случайно собравшимися холостяками.", "lemma": "гостиница", "options": ["гостиница", "гостиницы", "гостинице", "гостиницу"], "correct": "гостинице", "case": "Предложный (Prepositional)", "translation": "Levin dined at his hotel with bachelors who happened to gather there.", "explain": "The preposition «в» (location) governs the Prepositional case: «в гостинице»."}, {"id": "c7", "sentence": "Левин по обычаю не видал своей ___.", "lemma": "невеста", "options": ["невеста", "невесты", "невесте", "невестой"], "correct": "невесты", "case": "Родительный (Genitive)", "translation": "By custom, Levin did not see his bride.", "explain": "The negated verb «не видал» triggers the Genitive of negation: «не видал невесты»."}], "reading": [{"id": "r1", "ru": "В день свадьбы Левин по обычаю, на исполнении всех обычаев строго настаивали княгиня и Дарья Александровна, не видал своей невесты и обедал у себя в гостинице со случайно собравшимися к нему тремя холостяками.", "question": "What did custom dictate for Levin on his wedding day?", "options": ["He should not see his bride and should dine with bachelors at his hotel", "He should visit the church early", "He should stay with Kitty all day", "He should fast the whole day"], "correct": "He should not see his bride and should dine with bachelors at his hotel", "explain": "The text says by custom he did not see his bride and dined at his hotel with three bachelors who had gathered."}, {"id": "r2", "ru": "Ведь вот, говорил Котовасов по привычке, приобретенной на кафедре, растягивая свои слова, какой был способный малый наш приятель Константин Дмитриевич.", "question": "How did Katavasov jokingly describe Levin at the dinner?", "options": ["As a capable fellow who is now 'gone', lost to love", "As a terrible friend", "As overly religious", "As a coward"], "correct": "As a capable fellow who is now 'gone', lost to love", "explain": "Katavasov jokingly speaks of Levin as if absent, since 'our capable friend Konstantin Dmitrievich' is no more (as a free man)."}, {"id": "r3", "ru": "«Более решительного врага женить бы, как вы, я не видал», — сказал Сергей Иванович.", "question": "What did Sergei Ivanovich say to Katavasov about marriage?", "options": ["That he had never seen such a determined enemy of marriage", "That he should marry immediately", "That he was the best matchmaker", "That he envied Levin"], "correct": "That he had never seen such a determined enemy of marriage", "explain": "Sergei Ivanovich tells him he has never seen a more resolute enemy of marrying."}, {"id": "r4", "ru": "«Как я буду счастлив, когда узнаю, что вы влюбитесь», — сказал Левин.", "question": "What did Levin say he would be happy to learn about Katavasov?", "options": ["That Katavasov had fallen in love", "That Katavasov had gotten a promotion", "That Katavasov had left the university", "That Katavasov had recovered from illness"], "correct": "That Katavasov had fallen in love", "explain": "Levin says he would be so happy when he learns Katavasov has fallen in love."}, {"id": "r5", "ru": "Дело в том, что я точно люблю каракатицу».", "question": "What did Katavasov humorously claim to love?", "options": ["A cuttlefish", "A cat", "His work", "Levin's fiancée"], "correct": "A cuttlefish", "explain": "Katavasov jokes that he is precisely in love with a cuttlefish."}, {"id": "r6", "ru": "«А нынче архип был, говорил, что лосей пропасть в прудном и два медведя», — сказал Чириков.", "question": "What news did Chirikov share about hunting?", "options": ["That there were plenty of elk and two bears nearby", "That the hunting season was over", "That a bear had been killed", "That there was no game left"], "correct": "That there were plenty of elk and two bears nearby", "explain": "Chirikov reports Arkhip's news of plenty of elk and two bears."}, {"id": "r7", "ru": "Представление, что жена его не пустит, было ему так приятно, что он готов был навсегда отказаться от удовольствия видеть медведей.", "question": "How did Levin feel about the idea that his wife wouldn't let him go hunting?", "options": ["Pleased enough to give up bear-hunting forever", "Angry and resentful", "Indifferent", "Determined to go hunting anyway"], "correct": "Pleased enough to give up bear-hunting forever", "explain": "The idea that his wife would not let him go was so pleasant to him that he was ready to give up seeing bears forever."}, {"id": "r8", "ru": "«Недаром установился этот обычай прощаться с холостою жизнью», сказал Сергей Иванович.", "question": "What custom did Sergei Ivanovich comment on?", "options": ["The custom of saying farewell to bachelor life", "The custom of hunting before a wedding", "The custom of visiting church before marriage", "The custom of giving gifts to the bride"], "correct": "The custom of saying farewell to bachelor life", "explain": "Sergei Ivanovich remarks that the custom of bidding farewell to bachelor life was established for good reason."}, {"id": "r9", "ru": "«Ну вот, ей-богу», — улыбаясь, сказал Левин, «что не могу найти в своей душе этого чувства сожаления о своей свободе».", "question": "What did Levin claim he could not find in his soul?", "options": ["Any regret for his lost freedom", "Any love for Kitty", "Any fear of marriage", "Any desire to hunt"], "correct": "Any regret for his lost freedom", "explain": "Levin says, smiling, that he cannot find in his soul any feeling of regret for his freedom."}, {"id": "r10", "ru": "Вскоре после обеда гости уехали, чтобы успеть переодеться к свадьбе.", "question": "Why did the guests leave soon after dinner?", "options": ["To have time to change clothes for the wedding", "To go hunting", "To visit the church early", "To meet Kitty"], "correct": "To have time to change clothes for the wedding", "explain": "The guests left soon after dinner in order to have time to change for the wedding."}, {"id": "r11", "ru": "И вдруг на него нашло странное чувство.", "question": "What came over Levin after the guests left?", "options": ["A strange feeling of fear and doubt", "A feeling of hunger", "A feeling of anger at his brother", "A feeling of joy and calm"], "correct": "A strange feeling of fear and doubt", "explain": "Suddenly a strange feeling came over him -- fear and doubt."}, {"id": "r12", "ru": "Он ревновал ее к Вронскому, как год тому назад, как будто этот вечер, когда он видел ее с Вронским, был вчера.", "question": "Who did Levin suddenly become jealous of?", "options": ["Vronsky", "Stepan Arkadyevich", "Sergei Ivanovich", "Chirikov"], "correct": "Vronsky", "explain": "He became jealous of her regarding Vronsky, as if the evening he'd seen her with Vronsky had been just yesterday."}, {"id": "r13", "ru": "С отчаянием в сердце и со злобой на всех людей, на себя, на нее, он вышел из гостиницы и поехал к ней.", "question": "What did Levin do in his despair?", "options": ["He left the hotel and went to see her", "He wrote her a letter", "He went to see his brother", "He went hunting to calm down"], "correct": "He left the hotel and went to see her", "explain": "With despair in his heart and anger at everyone, he left the hotel and went to her."}, {"id": "r14", "ru": "Она сидела на сундуке и о чем-то распоряжалась с девушкой, разбирая кучу разноцветных платьев, разложенных на спинках стульев и на полу.", "question": "What was Kitty doing when Levin arrived?", "options": ["Sorting through a pile of colorful dresses with a maid", "Writing letters", "Sleeping", "Practicing the wedding vows"], "correct": "Sorting through a pile of colorful dresses with a maid", "explain": "She was sitting on a trunk sorting a heap of dresses scattered on chairs and the floor, with a maid."}, {"id": "r15", "ru": "«Уйди, Дуняша, я позову тогда», — сказала Китти.", "question": "What did Kitty tell her maid Dunyasha to do?", "options": ["Leave, and Kitty would call her later", "Bring more dresses", "Fetch Levin some tea", "Stay and help her dress"], "correct": "Leave, and Kitty would call her later", "explain": "Kitty tells Dunyasha to go away and that she will call her later."}, {"id": "r16", "ru": "Он уже видел по ее любящему правдивому лицу, что ничего не может выйти из того, что он намерен был сказать, но ему все-таки нужно было, чтобы она сама разуверила его.", "question": "What did Levin see in Kitty's face even before he spoke?", "options": ["That nothing would come of what he intended to say, though he still needed her reassurance", "That she did not love him at all", "That she was angry with him", "That she wanted to cancel the wedding"], "correct": "That nothing would come of what he intended to say, though he still needed her reassurance", "explain": "He saw from her loving, truthful face that nothing could come of what he meant to say, yet he still needed her to reassure him herself."}, {"id": "r17", "ru": "Ты не могла согласиться выйти за меня замуж.", "question": "What absurd claim did Levin make to Kitty in his anguish?", "options": ["That she could not really have agreed to marry him", "That she was too young", "That she should marry someone else", "That the wedding should be postponed"], "correct": "That she could not really have agreed to marry him", "explain": "He insists to her that she could not have agreed to marry him, urging her to reconsider."}, {"id": "r18", "ru": "Что не надо? — Да, если ты не любишь меня. — Ты с ума сошел! — вскрикнула она, покраснев от досады.", "question": "How did Kitty respond to Levin's pitiful expression?", "options": ["She held back her annoyance and moved closer to him", "She burst into laughter", "She left the room angrily", "She called for her mother"], "correct": "She held back her annoyance and moved closer to him", "explain": "His face was so pitiful that she restrained her annoyance and, tossing a dress off a chair, sat down closer to him."}, {"id": "r19", "ru": "Когда княгиня через пять минут вошла в комнату, она нашла их уже совершенно помирившимися.", "question": "What did the princess find when she entered the room five minutes later?", "options": ["Levin and Kitty completely reconciled", "Levin gone", "Kitty crying alone", "An argument still raging"], "correct": "Levin and Kitty completely reconciled", "explain": "When the princess came in five minutes later, she found them already completely reconciled."}, {"id": "r20", "ru": "Узнав, зачем он приезжал, княгиня полушутошно, полусерьезно рассердилась и услала его домой одеваться и не мешать Ките причесываться, так как Шарль сейчас приедет.", "question": "How did the princess react upon learning why Levin had come?", "options": ["She got half-jokingly, half-seriously angry and sent him home to dress", "She praised his devotion", "She fainted from shock", "She scolded Kitty instead"], "correct": "She got half-jokingly, half-seriously angry and sent him home to dress", "explain": "Learning why he had come, the princess got half-jokingly, half-seriously angry and sent him home to dress, since the hairdresser Charles was about to arrive."}, {"id": "r21", "ru": "Ты поезжай в нашей карете за ним, а Сергей Иванович уже, если бы был так добр, заехать, а потом послать».", "question": "What arrangement was proposed for the carriages?", "options": ["Levin would take their carriage to fetch someone, while Sergei Ivanovich helped arrange the rest", "All would ride in one carriage", "Levin would walk to the church", "They would cancel the transport plans"], "correct": "Levin would take their carriage to fetch someone, while Sergei Ivanovich helped arrange the rest", "explain": "Stepan Arkadyevich proposes Levin take their carriage to fetch someone, while Sergei Ivanovich, if he would be so kind, calls and then sends it back."}], "highlight": [{"id": "h1", "question": "Which sentence describes the cheerful atmosphere of the dinner celebration?", "sentences": ["В день свадьбы Левин, по обычаю (на исполнении всех обычаев строго настаивали княгиня и Дарья Александровна), не видал своей невесты и обедал у себя в гостинице со случайно собравшимися к нему тремя холостяками: – Сергей Иванович, Катавасов, товарищ по университету, теперь профессор естественных наук, которого, встретив на улице, Левин затащил к себе, и Чириков, шафер, московский мировой судья, товарищ Левина по медвежьей охоте.", "Обед был очень веселый.", "Сергей Иванович был в самом хорошем расположении духа и забавлялся оригинальностью Катавасова.", "Катавасов, чувствуя, что его оригинальность оценена и понимаема, щеголял ею.", "Чириков весело и добродушно поддерживал всякий разговор."], "correct": [1], "explain": "Sentence 1 directly states that the dinner was very merry and celebratory."}, {"id": "h2", "question": "Which sentence expresses the speaker's view on what different people should do in society?", "sentences": ["– Нет, я не враг.", "Я друг разделения труда.", "Люди, которые делать ничего не могут, должны делать людей, а остальные – содействовать их просвещению и счастью.", "Вот как я понимаю.", "Мешать два эти ремесла есть тьма охотников, я не из их числа."], "correct": [2], "explain": "Sentence 2 articulates the belief that people unable to do certain things should create people while others should contribute to their enlightenment and happiness."}, {"id": "h3", "question": "Which sentence conveys Levin's conviction that true happiness lies in loving without freedom?", "sentences": ["Оставшись один и вспоминая разговоры этих холостяков, Левин еще раз спросил себя: – есть ли у него в душе это чувство сожаления о своей свободе, о котором они говорили?", "Он улыбнулся при этом вопросе.", "Зачем свобода?", "Счастие только в том, чтобы любить и желать, думать ее желаниями, ее мыслями, то есть никакой свободы, – вот это счастье!»"], "correct": [3], "explain": "Sentence 3 reflects Levin's understanding that happiness exists only in loving and desiring to think her thoughts - in having no freedom."}, {"id": "h4", "question": "Which sentence shows Levin deciding to visit his bride and ask if they should reconsider?", "sentences": ["Он быстро вскочил.", "«Нет, это так нельзя!", "– сказал он себе с отчаянием.", "– Пойду к ней, спрошу, скажу последний раз: – мы свободны, и не лучше ли остановиться?", "Все лучше, чем вечное несчастие, позор, неверность!!»", "С отчаянием в сердце и со злобой на всех людей, на себя, на нее он вышел из гостиницы и поехал к ней."], "correct": [3], "explain": "Sentence 3 reveals Levin's desperate intention to go to her and pose one final question about whether they should stop given their freedom."}, {"id": "h5", "question": "Which sentence depicts the bride's joyful reaction upon seeing Levin arrive?", "sentences": ["– вскрикнула она, увидав его и вся просияв от радости.", "– Как ты, как же вы (до этого последнего дня она говорила ему то «ты», то «вы»)?", "Вот не ждала!", "А я разбираю мои девичьи платья, кому какое…"], "correct": [0], "explain": "Sentence 0 shows her crying out and becoming radiant with joy at his unexpected arrival."}, {"id": "h6", "question": "Which sentence expresses Levin's doubt about the bride's capacity to love him?", "sentences": ["Ты ошиблась.", "Ты подумай хорошенько.", "Ты не можешь любить меня…", "Если…  лучше скажи, – говорил он, не глядя на нее.", "– Я буду несчастлив."], "correct": [2], "explain": "Sentence 2 contains Levin's direct expression of uncertainty that she can truly love him."}]}
+{
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "___ был очень веселый.",
+   "lemma": "обед",
+   "options": [
+    "обед",
+    "обеда",
+    "обеду",
+    "обедом"
+   ],
+   "correct": "обед",
+   "case": "Именительный (Nominative)",
+   "explain": "«Обед» is the subject of «был весёлый», so it stands in the Nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Он и науку любил тогда, по выходе из ___.",
+   "lemma": "университет",
+   "options": [
+    "университет",
+    "университета",
+    "университету",
+    "университетом"
+   ],
+   "correct": "университета",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition «из» governs the Genitive case: «из университета»."
+  },
+  {
+   "id": "c3",
+   "sentence": "«Ты знаешь», — обратился Левин к ___.",
+   "lemma": "брат",
+   "options": [
+    "брат",
+    "брата",
+    "брату",
+    "братом"
+   ],
+   "correct": "брату",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition «к» requires the Dative case: «к брату»."
+  },
+  {
+   "id": "c4",
+   "sentence": "Дарья Александровна должна была заехать домой, чтобы взять своего ___.",
+   "lemma": "сын",
+   "options": [
+    "сын",
+    "сына",
+    "сыну",
+    "сыном"
+   ],
+   "correct": "сына",
+   "case": "Винительный (Accusative)",
+   "explain": "«Сына» is the direct object of the transitive verb «взять»; for an animate masculine noun the Accusative form matches the Genitive."
+  },
+  {
+   "id": "c5",
+   "sentence": "Да и вперёд простись с медвежьей ___, жена не пустит.",
+   "lemma": "охота",
+   "options": [
+    "охота",
+    "охоты",
+    "охоте",
+    "охотой"
+   ],
+   "correct": "охотой",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition «с» (\"with\"/\"to\") in «проститься с» governs the Instrumental case: «с охотой»."
+  },
+  {
+   "id": "c6",
+   "sentence": "Левин обедал у себя в ___ со случайно собравшимися холостяками.",
+   "lemma": "гостиница",
+   "options": [
+    "гостиница",
+    "гостиницы",
+    "гостинице",
+    "гостиницу"
+   ],
+   "correct": "гостинице",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition «в» (location) governs the Prepositional case: «в гостинице»."
+  },
+  {
+   "id": "c7",
+   "sentence": "Левин по обычаю не видал своей ___.",
+   "lemma": "невеста",
+   "options": [
+    "невеста",
+    "невесты",
+    "невесте",
+    "невестой"
+   ],
+   "correct": "невесты",
+   "case": "Родительный (Genitive)",
+   "explain": "The negated verb «не видал» triggers the Genitive of negation: «не видал невесты»."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "В день свадьбы Левин по обычаю, на исполнении всех обычаев строго настаивали княгиня и Дарья Александровна, не видал своей невесты и обедал у себя в гостинице со случайно собравшимися к нему тремя холостяками.",
+   "question": "What did custom dictate for Levin on his wedding day?",
+   "options": [
+    "He should not see his bride and should dine with bachelors at his hotel",
+    "He should visit the church early",
+    "He should stay with Kitty all day",
+    "He should fast the whole day"
+   ],
+   "correct": "He should not see his bride and should dine with bachelors at his hotel",
+   "explain": "The text says by custom he did not see his bride and dined at his hotel with three bachelors who had gathered."
+  },
+  {
+   "id": "r2",
+   "ru": "Ведь вот, говорил Котовасов по привычке, приобретенной на кафедре, растягивая свои слова, какой был способный малый наш приятель Константин Дмитриевич.",
+   "question": "How did Katavasov jokingly describe Levin at the dinner?",
+   "options": [
+    "As a capable fellow who is now 'gone', lost to love",
+    "As a terrible friend",
+    "As overly religious",
+    "As a coward"
+   ],
+   "correct": "As a capable fellow who is now 'gone', lost to love",
+   "explain": "Katavasov jokingly speaks of Levin as if absent, since 'our capable friend Konstantin Dmitrievich' is no more (as a free man)."
+  },
+  {
+   "id": "r3",
+   "ru": "«Более решительного врага женить бы, как вы, я не видал», — сказал Сергей Иванович.",
+   "question": "What did Sergei Ivanovich say to Katavasov about marriage?",
+   "options": [
+    "That he had never seen such a determined enemy of marriage",
+    "That he should marry immediately",
+    "That he was the best matchmaker",
+    "That he envied Levin"
+   ],
+   "correct": "That he had never seen such a determined enemy of marriage",
+   "explain": "Sergei Ivanovich tells him he has never seen a more resolute enemy of marrying."
+  },
+  {
+   "id": "r4",
+   "ru": "«Как я буду счастлив, когда узнаю, что вы влюбитесь», — сказал Левин.",
+   "question": "What did Levin say he would be happy to learn about Katavasov?",
+   "options": [
+    "That Katavasov had fallen in love",
+    "That Katavasov had gotten a promotion",
+    "That Katavasov had left the university",
+    "That Katavasov had recovered from illness"
+   ],
+   "correct": "That Katavasov had fallen in love",
+   "explain": "Levin says he would be so happy when he learns Katavasov has fallen in love."
+  },
+  {
+   "id": "r5",
+   "ru": "Дело в том, что я точно люблю каракатицу».",
+   "question": "What did Katavasov humorously claim to love?",
+   "options": [
+    "A cuttlefish",
+    "A cat",
+    "His work",
+    "Levin's fiancée"
+   ],
+   "correct": "A cuttlefish",
+   "explain": "Katavasov jokes that he is precisely in love with a cuttlefish."
+  },
+  {
+   "id": "r6",
+   "ru": "«А нынче архип был, говорил, что лосей пропасть в прудном и два медведя», — сказал Чириков.",
+   "question": "What news did Chirikov share about hunting?",
+   "options": [
+    "That there were plenty of elk and two bears nearby",
+    "That the hunting season was over",
+    "That a bear had been killed",
+    "That there was no game left"
+   ],
+   "correct": "That there were plenty of elk and two bears nearby",
+   "explain": "Chirikov reports Arkhip's news of plenty of elk and two bears."
+  },
+  {
+   "id": "r7",
+   "ru": "Представление, что жена его не пустит, было ему так приятно, что он готов был навсегда отказаться от удовольствия видеть медведей.",
+   "question": "How did Levin feel about the idea that his wife wouldn't let him go hunting?",
+   "options": [
+    "Pleased enough to give up bear-hunting forever",
+    "Angry and resentful",
+    "Indifferent",
+    "Determined to go hunting anyway"
+   ],
+   "correct": "Pleased enough to give up bear-hunting forever",
+   "explain": "The idea that his wife would not let him go was so pleasant to him that he was ready to give up seeing bears forever."
+  },
+  {
+   "id": "r8",
+   "ru": "«Недаром установился этот обычай прощаться с холостою жизнью», сказал Сергей Иванович.",
+   "question": "What custom did Sergei Ivanovich comment on?",
+   "options": [
+    "The custom of saying farewell to bachelor life",
+    "The custom of hunting before a wedding",
+    "The custom of visiting church before marriage",
+    "The custom of giving gifts to the bride"
+   ],
+   "correct": "The custom of saying farewell to bachelor life",
+   "explain": "Sergei Ivanovich remarks that the custom of bidding farewell to bachelor life was established for good reason."
+  },
+  {
+   "id": "r9",
+   "ru": "«Ну вот, ей-богу», — улыбаясь, сказал Левин, «что не могу найти в своей душе этого чувства сожаления о своей свободе».",
+   "question": "What did Levin claim he could not find in his soul?",
+   "options": [
+    "Any regret for his lost freedom",
+    "Any love for Kitty",
+    "Any fear of marriage",
+    "Any desire to hunt"
+   ],
+   "correct": "Any regret for his lost freedom",
+   "explain": "Levin says, smiling, that he cannot find in his soul any feeling of regret for his freedom."
+  },
+  {
+   "id": "r10",
+   "ru": "Вскоре после обеда гости уехали, чтобы успеть переодеться к свадьбе.",
+   "question": "Why did the guests leave soon after dinner?",
+   "options": [
+    "To have time to change clothes for the wedding",
+    "To go hunting",
+    "To visit the church early",
+    "To meet Kitty"
+   ],
+   "correct": "To have time to change clothes for the wedding",
+   "explain": "The guests left soon after dinner in order to have time to change for the wedding."
+  },
+  {
+   "id": "r11",
+   "ru": "И вдруг на него нашло странное чувство.",
+   "question": "What came over Levin after the guests left?",
+   "options": [
+    "A strange feeling of fear and doubt",
+    "A feeling of hunger",
+    "A feeling of anger at his brother",
+    "A feeling of joy and calm"
+   ],
+   "correct": "A strange feeling of fear and doubt",
+   "explain": "Suddenly a strange feeling came over him -- fear and doubt."
+  },
+  {
+   "id": "r12",
+   "ru": "Он ревновал ее к Вронскому, как год тому назад, как будто этот вечер, когда он видел ее с Вронским, был вчера.",
+   "question": "Who did Levin suddenly become jealous of?",
+   "options": [
+    "Vronsky",
+    "Stepan Arkadyevich",
+    "Sergei Ivanovich",
+    "Chirikov"
+   ],
+   "correct": "Vronsky",
+   "explain": "He became jealous of her regarding Vronsky, as if the evening he'd seen her with Vronsky had been just yesterday."
+  },
+  {
+   "id": "r13",
+   "ru": "С отчаянием в сердце и со злобой на всех людей, на себя, на нее, он вышел из гостиницы и поехал к ней.",
+   "question": "What did Levin do in his despair?",
+   "options": [
+    "He left the hotel and went to see her",
+    "He wrote her a letter",
+    "He went to see his brother",
+    "He went hunting to calm down"
+   ],
+   "correct": "He left the hotel and went to see her",
+   "explain": "With despair in his heart and anger at everyone, he left the hotel and went to her."
+  },
+  {
+   "id": "r14",
+   "ru": "Она сидела на сундуке и о чем-то распоряжалась с девушкой, разбирая кучу разноцветных платьев, разложенных на спинках стульев и на полу.",
+   "question": "What was Kitty doing when Levin arrived?",
+   "options": [
+    "Sorting through a pile of colorful dresses with a maid",
+    "Writing letters",
+    "Sleeping",
+    "Practicing the wedding vows"
+   ],
+   "correct": "Sorting through a pile of colorful dresses with a maid",
+   "explain": "She was sitting on a trunk sorting a heap of dresses scattered on chairs and the floor, with a maid."
+  },
+  {
+   "id": "r15",
+   "ru": "«Уйди, Дуняша, я позову тогда», — сказала Китти.",
+   "question": "What did Kitty tell her maid Dunyasha to do?",
+   "options": [
+    "Leave, and Kitty would call her later",
+    "Bring more dresses",
+    "Fetch Levin some tea",
+    "Stay and help her dress"
+   ],
+   "correct": "Leave, and Kitty would call her later",
+   "explain": "Kitty tells Dunyasha to go away and that she will call her later."
+  },
+  {
+   "id": "r16",
+   "ru": "Он уже видел по ее любящему правдивому лицу, что ничего не может выйти из того, что он намерен был сказать, но ему все-таки нужно было, чтобы она сама разуверила его.",
+   "question": "What did Levin see in Kitty's face even before he spoke?",
+   "options": [
+    "That nothing would come of what he intended to say, though he still needed her reassurance",
+    "That she did not love him at all",
+    "That she was angry with him",
+    "That she wanted to cancel the wedding"
+   ],
+   "correct": "That nothing would come of what he intended to say, though he still needed her reassurance",
+   "explain": "He saw from her loving, truthful face that nothing could come of what he meant to say, yet he still needed her to reassure him herself."
+  },
+  {
+   "id": "r17",
+   "ru": "Ты не могла согласиться выйти за меня замуж.",
+   "question": "What absurd claim did Levin make to Kitty in his anguish?",
+   "options": [
+    "That she could not really have agreed to marry him",
+    "That she was too young",
+    "That she should marry someone else",
+    "That the wedding should be postponed"
+   ],
+   "correct": "That she could not really have agreed to marry him",
+   "explain": "He insists to her that she could not have agreed to marry him, urging her to reconsider."
+  },
+  {
+   "id": "r18",
+   "ru": "Что не надо? — Да, если ты не любишь меня. — Ты с ума сошел! — вскрикнула она, покраснев от досады.",
+   "question": "How did Kitty respond to Levin's pitiful expression?",
+   "options": [
+    "She held back her annoyance and moved closer to him",
+    "She burst into laughter",
+    "She left the room angrily",
+    "She called for her mother"
+   ],
+   "correct": "She held back her annoyance and moved closer to him",
+   "explain": "His face was so pitiful that she restrained her annoyance and, tossing a dress off a chair, sat down closer to him."
+  },
+  {
+   "id": "r19",
+   "ru": "Когда княгиня через пять минут вошла в комнату, она нашла их уже совершенно помирившимися.",
+   "question": "What did the princess find when she entered the room five minutes later?",
+   "options": [
+    "Levin and Kitty completely reconciled",
+    "Levin gone",
+    "Kitty crying alone",
+    "An argument still raging"
+   ],
+   "correct": "Levin and Kitty completely reconciled",
+   "explain": "When the princess came in five minutes later, she found them already completely reconciled."
+  },
+  {
+   "id": "r20",
+   "ru": "Узнав, зачем он приезжал, княгиня полушутошно, полусерьезно рассердилась и услала его домой одеваться и не мешать Ките причесываться, так как Шарль сейчас приедет.",
+   "question": "How did the princess react upon learning why Levin had come?",
+   "options": [
+    "She got half-jokingly, half-seriously angry and sent him home to dress",
+    "She praised his devotion",
+    "She fainted from shock",
+    "She scolded Kitty instead"
+   ],
+   "correct": "She got half-jokingly, half-seriously angry and sent him home to dress",
+   "explain": "Learning why he had come, the princess got half-jokingly, half-seriously angry and sent him home to dress, since the hairdresser Charles was about to arrive."
+  },
+  {
+   "id": "r21",
+   "ru": "Ты поезжай в нашей карете за ним, а Сергей Иванович уже, если бы был так добр, заехать, а потом послать».",
+   "question": "What arrangement was proposed for the carriages?",
+   "options": [
+    "Levin would take their carriage to fetch someone, while Sergei Ivanovich helped arrange the rest",
+    "All would ride in one carriage",
+    "Levin would walk to the church",
+    "They would cancel the transport plans"
+   ],
+   "correct": "Levin would take their carriage to fetch someone, while Sergei Ivanovich helped arrange the rest",
+   "explain": "Stepan Arkadyevich proposes Levin take their carriage to fetch someone, while Sergei Ivanovich, if he would be so kind, calls and then sends it back."
+  }
+ ],
+ "highlight": [
+  {
+   "id": "h1",
+   "question": "Which sentence describes the cheerful atmosphere of the dinner celebration?",
+   "sentences": [
+    "В день свадьбы Левин, по обычаю (на исполнении всех обычаев строго настаивали княгиня и Дарья Александровна), не видал своей невесты и обедал у себя в гостинице со случайно собравшимися к нему тремя холостяками: – Сергей Иванович, Катавасов, товарищ по университету, теперь профессор естественных наук, которого, встретив на улице, Левин затащил к себе, и Чириков, шафер, московский мировой судья, товарищ Левина по медвежьей охоте.",
+    "Обед был очень веселый.",
+    "Сергей Иванович был в самом хорошем расположении духа и забавлялся оригинальностью Катавасова.",
+    "Катавасов, чувствуя, что его оригинальность оценена и понимаема, щеголял ею.",
+    "Чириков весело и добродушно поддерживал всякий разговор."
+   ],
+   "correct": [
+    1
+   ],
+   "explain": "Sentence 1 directly states that the dinner was very merry and celebratory."
+  },
+  {
+   "id": "h2",
+   "question": "Which sentence expresses the speaker's view on what different people should do in society?",
+   "sentences": [
+    "– Нет, я не враг.",
+    "Я друг разделения труда.",
+    "Люди, которые делать ничего не могут, должны делать людей, а остальные – содействовать их просвещению и счастью.",
+    "Вот как я понимаю.",
+    "Мешать два эти ремесла есть тьма охотников, я не из их числа."
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "Sentence 2 articulates the belief that people unable to do certain things should create people while others should contribute to their enlightenment and happiness."
+  },
+  {
+   "id": "h3",
+   "question": "Which sentence conveys Levin's conviction that true happiness lies in loving without freedom?",
+   "sentences": [
+    "Оставшись один и вспоминая разговоры этих холостяков, Левин еще раз спросил себя: – есть ли у него в душе это чувство сожаления о своей свободе, о котором они говорили?",
+    "Он улыбнулся при этом вопросе.",
+    "Зачем свобода?",
+    "Счастие только в том, чтобы любить и желать, думать ее желаниями, ее мыслями, то есть никакой свободы, – вот это счастье!»"
+   ],
+   "correct": [
+    3
+   ],
+   "explain": "Sentence 3 reflects Levin's understanding that happiness exists only in loving and desiring to think her thoughts - in having no freedom."
+  },
+  {
+   "id": "h4",
+   "question": "Which sentence shows Levin deciding to visit his bride and ask if they should reconsider?",
+   "sentences": [
+    "Он быстро вскочил.",
+    "«Нет, это так нельзя!",
+    "– сказал он себе с отчаянием.",
+    "– Пойду к ней, спрошу, скажу последний раз: – мы свободны, и не лучше ли остановиться?",
+    "Все лучше, чем вечное несчастие, позор, неверность!!»",
+    "С отчаянием в сердце и со злобой на всех людей, на себя, на нее он вышел из гостиницы и поехал к ней."
+   ],
+   "correct": [
+    3
+   ],
+   "explain": "Sentence 3 reveals Levin's desperate intention to go to her and pose one final question about whether they should stop given their freedom."
+  },
+  {
+   "id": "h5",
+   "question": "Which sentence depicts the bride's joyful reaction upon seeing Levin arrive?",
+   "sentences": [
+    "– вскрикнула она, увидав его и вся просияв от радости.",
+    "– Как ты, как же вы (до этого последнего дня она говорила ему то «ты», то «вы»)?",
+    "Вот не ждала!",
+    "А я разбираю мои девичьи платья, кому какое…"
+   ],
+   "correct": [
+    0
+   ],
+   "explain": "Sentence 0 shows her crying out and becoming radiant with joy at his unexpected arrival."
+  },
+  {
+   "id": "h6",
+   "question": "Which sentence expresses Levin's doubt about the bride's capacity to love him?",
+   "sentences": [
+    "Ты ошиблась.",
+    "Ты подумай хорошенько.",
+    "Ты не можешь любить меня…",
+    "Если…  лучше скажи, – говорил он, не глядя на нее.",
+    "– Я буду несчастлив."
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "Sentence 2 contains Levin's direct expression of uncertainty that she can truly love him."
+  }
+ ]
+}

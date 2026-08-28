@@ -1,336 +1,522 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Мой ___ человек не очень умный, но добрый.",
-      "lemma": "учитель",
-      "options": ["учитель", "учителя", "учителю", "учителем"],
-      "correct": "учитель",
-      "case": "Именительный (Nominative)",
-      "translation": "My teacher (fiancé) is not a very clever man, but kind.",
-      "explain": "Учитель is the grammatical subject of the sentence, so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "У меня нет ___.",
-      "lemma": "деньги",
-      "options": ["деньги", "денег", "деньгам", "деньгами"],
-      "correct": "денег",
-      "case": "Родительный (Genitive)",
-      "translation": "I have no money.",
-      "explain": "The negated existential у меня нет requires the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "И чем скорее я увезу отсюда ___, тем лучше.",
-      "lemma": "Тригорин",
-      "options": ["Тригорин", "Тригорина", "Тригорину", "Тригориным"],
-      "correct": "Тригорина",
-      "case": "Винительный (Accusative)",
-      "translation": "And the sooner I take Trigorin away from here, the better.",
-      "explain": "Тригорина is the direct object of the transitive verb увезу (will take away), so it takes the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я прошу принять вас на память, этот маленький ___.",
-      "lemma": "медальон",
-      "options": ["медальон", "медальона", "медальону", "медальоном"],
-      "correct": "медальон",
-      "case": "Винительный (Accusative)",
-      "translation": "I ask you to accept this small medallion as a keepsake.",
-      "explain": "Медальон is the direct object of принять (to accept), so it takes the accusative case (same form as nominative for this inanimate noun)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Я приказал подавать лошадей к ___.",
-      "lemma": "час",
-      "options": ["час", "часа", "часу", "часом"],
-      "correct": "часу",
-      "case": "Дательный (Dative)",
-      "translation": "I ordered the horses to be brought round by one o'clock.",
-      "explain": "The preposition к (by/toward, indicating a point in time) governs the dative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Пришлите же мне ваши книги непременно с ___.",
-      "lemma": "автограф",
-      "options": ["автограф", "автографа", "автографу", "автографом"],
-      "correct": "автографом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Please be sure to send me your books with an autograph.",
-      "explain": "The preposition с (with) governs the instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Человек молодой, умный, живет в ___, в глуши.",
-      "lemma": "деревня",
-      "options": ["деревня", "деревни", "деревню", "деревне"],
-      "correct": "деревне",
-      "case": "Предложный (Prepositional)",
-      "translation": "A young, intelligent man lives in the countryside, in the backwoods.",
-      "explain": "The preposition в (in) denoting location governs the prepositional case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Ты единственная надежда ___.",
-      "lemma": "Россия",
-      "options": ["Россия", "России", "Россию", "Россией"],
-      "correct": "России",
-      "case": "Родительный (Genitive)",
-      "translation": "You are Russia's only hope.",
-      "explain": "России (of Russia) is a genitive modifier of надежда (hope), expressing possession."
-    },
-    {
-      "id": "c9",
-      "sentence": "Надо сказать ___, что лошади поданы.",
-      "lemma": "Ирина",
-      "options": ["Ирина", "Ирины", "Ирине", "Ириной"],
-      "correct": "Ирине",
-      "case": "Дательный (Dative)",
-      "translation": "We must tell Irina that the horses are ready.",
-      "explain": "The verb сказать (to tell/say to someone) takes its indirect object — the person told — in the dative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Вырву эту любовь из сердца,",
-      "question": "What does Masha say she will do with her hopeless love?",
-      "options": ["Tear it out of her heart", "Write a poem about it", "Confess it to Konstantin", "Forget about marriage entirely"],
-      "correct": "Tear it out of her heart",
-      "explain": "She says, 'Вырву эту любовь из сердца' — I will tear this love out of my heart."
-    },
-    {
-      "id": "r2",
-      "ru": "Замуж ухожу.",
-      "question": "What decision does Masha announce about marriage?",
-      "options": ["She is getting married (to Medvedenko)", "She is becoming an actress instead", "She is leaving the estate forever", "She is staying single"],
-      "correct": "She is getting married (to Medvedenko)",
-      "explain": "She says, 'Замуж ухожу. За Медведенко' — I am getting married, to Medvedenko."
-    },
-    {
-      "id": "r3",
-      "ru": "Все-таки, знаете ли, перемена.",
-      "question": "What does Masha say she needs, even though it may not be much?",
-      "options": ["A change", "More money", "A vacation", "A new house"],
-      "correct": "A change",
-      "explain": "She says, 'Все-таки, знаете ли, перемена' — still, you know, a change (of scenery/life)."
-    },
-    {
-      "id": "r4",
-      "ru": "То стрелялся, теперь, говорят, меня собирается вызвать на дуэль.",
-      "question": "What is said about the son's recent behavior?",
-      "options": ["He tried to shoot himself and now reportedly wants to challenge someone to a duel", "He got married secretly", "He moved to the city", "He stopped writing plays"],
-      "correct": "He tried to shoot himself and now reportedly wants to challenge someone to a duel",
-      "explain": "The line notes he shot himself before, and now is said to be planning to challenge someone to a duel."
-    },
-    {
-      "id": "r5",
-      "ru": "Идти мне в актрисы или нет?",
-      "question": "What question does Masha ask while telling her fortune with a pea?",
-      "options": ["Whether she should become an actress or not", "Whether Konstantin loves her", "Whether her husband will be kind", "Whether she should move to Moscow"],
-      "correct": "Whether she should become an actress or not",
-      "explain": "She asks, 'Идти мне в актрисы или нет?' — should I go into acting or not?"
-    },
-    {
-      "id": "r6",
-      "ru": "Я прошу принять вас на память, этот маленький медальон.",
-      "question": "What gift does Nina give as a keepsake?",
-      "options": ["A small medallion", "A book", "A ring", "A photograph"],
-      "correct": "A small medallion",
-      "explain": "She says, 'Я прошу принять вас на память, этот маленький медальон' — please accept this small medallion as a keepsake."
-    },
-    {
-      "id": "r7",
-      "ru": "И еще лежала белая чайка.",
-      "question": "What object is mentioned lying nearby, alongside the memory of that clear day?",
-      "options": ["A white seagull", "A white rose", "A silver ring", "A torn letter"],
-      "correct": "A white seagull",
-      "explain": "The line recalls, 'И еще лежала белая чайка' — and there also lay a white seagull."
-    },
-    {
-      "id": "r8",
-      "ru": "Страница 121, строки 11 и 12.",
-      "question": "What specific page and lines are mentioned regarding the book?",
-      "options": ["Page 121, lines 11 and 12", "Page 50, lines 1 and 2", "Page 200, lines 5 and 6", "Page 12, lines 21 and 22"],
-      "correct": "Page 121, lines 11 and 12",
-      "explain": "The text specifies 'Страница 121, строки 11 и 12.'"
-    },
-    {
-      "id": "r9",
-      "ru": "Вот уеду, так и не буду знать, от чего стрелял сын Константин.",
-      "question": "What does Sorin say he won't know once he leaves?",
-      "options": ["Why his nephew Konstantin shot himself", "Where the horses went", "How much money is left", "Why Trigorin is leaving"],
-      "correct": "Why his nephew Konstantin shot himself",
-      "explain": "Sorin says he will leave without ever knowing why his nephew Konstantin shot himself."
-    },
-    {
-      "id": "r10",
-      "ru": "И чем скорее я увезу отсюда Тригорина, тем лучше.",
-      "question": "What does Arkadina think would be best regarding Trigorin?",
-      "options": ["The sooner she takes Trigorin away from there, the better", "That Trigorin should stay forever", "That Trigorin should marry Masha", "That Trigorin should meet Sorin more often"],
-      "correct": "The sooner she takes Trigorin away from there, the better",
-      "explain": "She says, 'чем скорее я увезу отсюда Тригорина, тем лучше' — the sooner I take Trigorin away from here, the better."
-    },
-    {
-      "id": "r11",
-      "ru": "Человек молодой, умный, живет в деревне, в глуши,",
-      "question": "How is Konstantin's situation in the countryside described?",
-      "options": ["A young, intelligent man living in the countryside, in the backwoods", "A wealthy landowner with no worries", "An old retired teacher", "A famous actor on tour"],
-      "correct": "A young, intelligent man living in the countryside, in the backwoods",
-      "explain": "The text describes him as 'человек молодой, умный, живет в деревне, в глуши' — a young, intelligent man living in the countryside, in the backwoods."
-    },
-    {
-      "id": "r12",
-      "ru": "Один и тот же сюртучишко он таскает три года,",
-      "question": "What detail shows Konstantin's poverty?",
-      "options": ["He has worn the same coat for three years", "He has no shoes at all", "He sleeps outdoors", "He has sold all his books"],
-      "correct": "He has worn the same coat for three years",
-      "explain": "The line notes, 'Один и тот же сюртучишку он таскает три года' — he's worn the same shabby coat for three years."
-    },
-    {
-      "id": "r13",
-      "ru": "Всю мою пенсию забирает управляющий и тратит на земледелие, пчеловодство, скотоводство.",
-      "question": "What does Sorin say happens to his whole pension?",
-      "options": ["The estate manager takes it all and spends it on farming, beekeeping, and cattle-raising", "He saves it all in the bank", "He gives it all to Konstantin", "He spends it on travel"],
-      "correct": "The estate manager takes it all and spends it on farming, beekeeping, and cattle-raising",
-      "explain": "Sorin complains the manager takes his whole pension and spends it on agriculture, beekeeping, and cattle-raising."
-    },
-    {
-      "id": "r14",
-      "ru": "Мама, вот если бы ты, расщедрилась и дала бы ему взаймы тысячи полторы-две, он бы смог целый год прожить в городе",
-      "question": "What does Sorin ask Arkadina to do for Konstantin?",
-      "options": ["Lend him about one and a half to two thousand so he could live a year in the city", "Buy him a house in Moscow", "Send him to a doctor abroad", "Find him a wife"],
-      "correct": "Lend him about one and a half to two thousand so he could live a year in the city",
-      "explain": "Sorin asks her to be generous and lend Konstantin about 1,500 to 2,000 so he could live a whole year in the city."
-    },
-    {
-      "id": "r15",
-      "ru": "Помню, давно, в детстве, ты еще служила на казенной сцене, я был совсем маленьким,",
-      "question": "What memory does Konstantin bring up about his mother's past?",
-      "options": ["That she once performed on the state stage when he was very small", "That she used to sing him lullabies", "That she was once a nurse", "That she taught him to read"],
-      "correct": "That she once performed on the state stage when he was very small",
-      "explain": "He recalls that long ago, in childhood, she still served on the state (imperial) stage, when he was very small."
-    },
-    {
-      "id": "r16",
-      "ru": "У меня теперь кроме тебя никого не осталось.",
-      "question": "What does Konstantin say he has left, besides his mother?",
-      "options": ["No one", "Many friends", "Nina", "His father"],
-      "correct": "No one",
-      "explain": "He says, 'У меня теперь кроме тебя никого не осталось' — I have no one left now except you."
-    },
-    {
-      "id": "r17",
-      "ru": "Людям неталантливым у нас претензии, ничего другого не остается, как осуждать настоящие таланты.",
-      "question": "According to Arkadina, what do untalented people have no choice but to do?",
-      "options": ["Condemn real talents", "Support real talents", "Leave the theater", "Become critics themselves"],
-      "correct": "Condemn real talents",
-      "explain": "She says untalented people, out of pretension, have nothing left to do but condemn real talents."
-    },
-    {
-      "id": "r18",
-      "ru": "Пропались все надежды.",
-      "question": "What does Konstantin say has vanished?",
-      "options": ["All his hopes", "His manuscripts", "His mother's love", "His talent"],
-      "correct": "All his hopes",
-      "explain": "He says, 'Пропались все надежды' — all hopes have vanished."
-    },
-    {
-      "id": "r19",
-      "ru": "\"Если тебе когда-нибудь понадобится моя жизнь,",
-      "question": "What message does Konstantin leave for Nina, about his life?",
-      "options": ["That if she ever needs his life, she should come and take it", "That she should never contact him again", "That he is moving away forever", "That he forgives her completely"],
-      "correct": "That if she ever needs his life, she should come and take it",
-      "explain": "The note reads, 'Если тебе когда-нибудь понадобится моя жизнь... то приди и возьми ее' — if you ever need my life, come and take it."
-    },
-    {
-      "id": "r20",
-      "ru": "Любовь провинциальной девочки?",
-      "question": "How does Trigorin describe the love he is caught up in?",
-      "options": ["The love of a provincial girl", "A hopeless obsession", "A brief holiday romance", "A childhood friendship"],
-      "correct": "The love of a provincial girl",
-      "explain": "He muses, 'Любовь провинциальной девочки' — the love of a provincial girl."
-    },
-    {
-      "id": "r21",
-      "ru": "Любовь юная, прелестная, поэтическая, уносящая в мир грёз,",
-      "question": "How does Arkadina describe young love?",
-      "options": ["Young, lovely, poetic, carrying one into a world of dreams", "Painful and destructive", "Boring and predictable", "Dangerous and shameful"],
-      "correct": "Young, lovely, poetic, carrying one into a world of dreams",
-      "explain": "She describes it as 'юная, прелестная, поэтическая, уносящая в мир грез' — young, lovely, poetic, carrying one into a world of dreams."
-    },
-    {
-      "id": "r22",
-      "ru": "Я обивал пороги редакций, боролся с нуждой...",
-      "question": "What did Trigorin do in his youth, according to this line?",
-      "options": ["Wore out the thresholds of editorial offices, struggling with need", "Traveled the world", "Studied law", "Lived a life of leisure"],
-      "correct": "Wore out the thresholds of editorial offices, struggling with need",
-      "explain": "He recalls, 'Я обивал пороги редакций, боролся с нуждой' — I wore out the doorsteps of editorial offices, struggling with poverty."
-    },
-    {
-      "id": "r23",
-      "ru": "Ты, единственная, последняя страница моей жизни!",
-      "question": "How does Arkadina describe Trigorin's place in her life?",
-      "options": ["The unique, final page of her life", "Just a passing friend", "Someone she barely knows", "A rival for fame"],
-      "correct": "The unique, final page of her life",
-      "explain": "She calls him 'единственная, последняя страница моей жизни' — the one and only, final page of my life."
-    },
-    {
-      "id": "r24",
-      "ru": "Ты единственная надежда России...",
-      "question": "What grand claim does Arkadina make about Trigorin's importance?",
-      "options": ["That he is Russia's only hope", "That he is the richest man in Russia", "That he will become a politician", "That he should retire from writing"],
-      "correct": "That he is Russia's only hope",
-      "explain": "She declares, 'Ты единственная надежда России' — you are Russia's only hope."
-    },
-    {
-      "id": "r25",
-      "ru": "У меня нет своей воли...",
-      "question": "What does Trigorin say about his own will?",
-      "options": ["That he has no will of his own", "That his will is stronger than anyone's", "That he never had any doubts", "That he always does what he wants"],
-      "correct": "That he has no will of his own",
-      "explain": "He admits, 'У меня нет своей воли' — I have no will of my own."
-    },
-    {
-      "id": "r26",
-      "ru": "Имею честь с прискорбием доложить, что лошади поданы.",
-      "question": "What announcement is made about the horses?",
-      "options": ["That the horses have been brought around (are ready)", "That the horses have run away", "That there are no horses available", "That new horses were bought"],
-      "correct": "That the horses have been brought around (are ready)",
-      "explain": "The line announces, 'лошади поданы' — the horses have been brought round."
-    },
-    {
-      "id": "r27",
-      "ru": "Так вы уж, Ирина Николаевна, сделайте милость, наведите справочку: где теперь актер Суздальцев?",
-      "question": "What favor is Irina Nikolaevna asked to do?",
-      "options": ["Find out news about the actor Suzdaltsev", "Buy tickets to Moscow", "Write a letter to the newspaper", "Bring back a souvenir"],
-      "correct": "Find out news about the actor Suzdaltsev",
-      "explain": "She is asked to make inquiries about where the actor Suzdaltsev is now."
-    },
-    {
-      "id": "r28",
-      "ru": "И вот, когда они в одной драме играли заговорщиков, и когда их вдруг накрыли, то надо было сказать: \"Мы попали в западню\",",
-      "question": "What line from an old play is being recalled here?",
-      "options": ["'We have fallen into a trap'", "'To be or not to be'", "'All the world's a stage'", "'Once upon a time'"],
-      "correct": "'We have fallen into a trap'",
-      "explain": "The memory recalls the line from a play about conspirators: 'мы попали в западню' — we have fallen into a trap."
-    },
-    {
-      "id": "r29",
-      "ru": "Борис Алексеевич, я решила бесповоротно, жребий брошен,",
-      "question": "What decision does Nina announce to Trigorin?",
-      "options": ["That she has decided irrevocably, the die is cast", "That she is returning to her father's house", "That she will never act again", "That she is marrying Medvedenko"],
-      "correct": "That she has decided irrevocably, the die is cast",
-      "explain": "She declares, 'я решила бесповоротно, жребий брошен' — I have decided irrevocably, the die is cast."
-    },
-    {
-      "id": "r30",
-      "ru": "Остановитесь в \"Славянском Базаре\"...",
-      "question": "Where does Nina tell Trigorin to stay in Moscow?",
-      "options": ["The Slavyansky Bazaar", "The Grand Hotel", "Her aunt's apartment", "A theater dormitory"],
-      "correct": "The Slavyansky Bazaar",
-      "explain": "She says, 'Остановитесь в Славянском базаре' — stay at the Slavyansky Bazaar."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Мой ___ человек не очень умный, но добрый.",
+   "lemma": "учитель",
+   "options": [
+    "учитель",
+    "учителя",
+    "учителю",
+    "учителем"
+   ],
+   "correct": "учитель",
+   "case": "Именительный (Nominative)",
+   "explain": "Учитель is the grammatical subject of the sentence, so it stands in the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "У меня нет ___.",
+   "lemma": "деньги",
+   "options": [
+    "деньги",
+    "денег",
+    "деньгам",
+    "деньгами"
+   ],
+   "correct": "денег",
+   "case": "Родительный (Genitive)",
+   "explain": "The negated existential у меня нет requires the genitive case."
+  },
+  {
+   "id": "c3",
+   "sentence": "И чем скорее я увезу отсюда ___, тем лучше.",
+   "lemma": "Тригорин",
+   "options": [
+    "Тригорин",
+    "Тригорина",
+    "Тригорину",
+    "Тригориным"
+   ],
+   "correct": "Тригорина",
+   "case": "Винительный (Accusative)",
+   "explain": "Тригорина is the direct object of the transitive verb увезу (will take away), so it takes the accusative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Я прошу принять вас на память, этот маленький ___.",
+   "lemma": "медальон",
+   "options": [
+    "медальон",
+    "медальона",
+    "медальону",
+    "медальоном"
+   ],
+   "correct": "медальон",
+   "case": "Винительный (Accusative)",
+   "explain": "Медальон is the direct object of принять (to accept), so it takes the accusative case (same form as nominative for this inanimate noun)."
+  },
+  {
+   "id": "c5",
+   "sentence": "Я приказал подавать лошадей к ___.",
+   "lemma": "час",
+   "options": [
+    "час",
+    "часа",
+    "часу",
+    "часом"
+   ],
+   "correct": "часу",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition к (by/toward, indicating a point in time) governs the dative case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Пришлите же мне ваши книги непременно с ___.",
+   "lemma": "автограф",
+   "options": [
+    "автограф",
+    "автографа",
+    "автографу",
+    "автографом"
+   ],
+   "correct": "автографом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition с (with) governs the instrumental case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Человек молодой, умный, живет в ___, в глуши.",
+   "lemma": "деревня",
+   "options": [
+    "деревня",
+    "деревни",
+    "деревню",
+    "деревне"
+   ],
+   "correct": "деревне",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в (in) denoting location governs the prepositional case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Ты единственная надежда ___.",
+   "lemma": "Россия",
+   "options": [
+    "Россия",
+    "России",
+    "Россию",
+    "Россией"
+   ],
+   "correct": "России",
+   "case": "Родительный (Genitive)",
+   "explain": "России (of Russia) is a genitive modifier of надежда (hope), expressing possession."
+  },
+  {
+   "id": "c9",
+   "sentence": "Надо сказать ___, что лошади поданы.",
+   "lemma": "Ирина",
+   "options": [
+    "Ирина",
+    "Ирины",
+    "Ирине",
+    "Ириной"
+   ],
+   "correct": "Ирине",
+   "case": "Дательный (Dative)",
+   "explain": "The verb сказать (to tell/say to someone) takes its indirect object — the person told — in the dative case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Вырву эту любовь из сердца,",
+   "question": "What does Masha say she will do with her hopeless love?",
+   "options": [
+    "Tear it out of her heart",
+    "Write a poem about it",
+    "Confess it to Konstantin",
+    "Forget about marriage entirely"
+   ],
+   "correct": "Tear it out of her heart",
+   "explain": "She says, 'Вырву эту любовь из сердца' — I will tear this love out of my heart."
+  },
+  {
+   "id": "r2",
+   "ru": "Замуж ухожу.",
+   "question": "What decision does Masha announce about marriage?",
+   "options": [
+    "She is getting married (to Medvedenko)",
+    "She is becoming an actress instead",
+    "She is leaving the estate forever",
+    "She is staying single"
+   ],
+   "correct": "She is getting married (to Medvedenko)",
+   "explain": "She says, 'Замуж ухожу. За Медведенко' — I am getting married, to Medvedenko."
+  },
+  {
+   "id": "r3",
+   "ru": "Все-таки, знаете ли, перемена.",
+   "question": "What does Masha say she needs, even though it may not be much?",
+   "options": [
+    "A change",
+    "More money",
+    "A vacation",
+    "A new house"
+   ],
+   "correct": "A change",
+   "explain": "She says, 'Все-таки, знаете ли, перемена' — still, you know, a change (of scenery/life)."
+  },
+  {
+   "id": "r4",
+   "ru": "То стрелялся, теперь, говорят, меня собирается вызвать на дуэль.",
+   "question": "What is said about the son's recent behavior?",
+   "options": [
+    "He tried to shoot himself and now reportedly wants to challenge someone to a duel",
+    "He got married secretly",
+    "He moved to the city",
+    "He stopped writing plays"
+   ],
+   "correct": "He tried to shoot himself and now reportedly wants to challenge someone to a duel",
+   "explain": "The line notes he shot himself before, and now is said to be planning to challenge someone to a duel."
+  },
+  {
+   "id": "r5",
+   "ru": "Идти мне в актрисы или нет?",
+   "question": "What question does Masha ask while telling her fortune with a pea?",
+   "options": [
+    "Whether she should become an actress or not",
+    "Whether Konstantin loves her",
+    "Whether her husband will be kind",
+    "Whether she should move to Moscow"
+   ],
+   "correct": "Whether she should become an actress or not",
+   "explain": "She asks, 'Идти мне в актрисы или нет?' — should I go into acting or not?"
+  },
+  {
+   "id": "r6",
+   "ru": "Я прошу принять вас на память, этот маленький медальон.",
+   "question": "What gift does Nina give as a keepsake?",
+   "options": [
+    "A small medallion",
+    "A book",
+    "A ring",
+    "A photograph"
+   ],
+   "correct": "A small medallion",
+   "explain": "She says, 'Я прошу принять вас на память, этот маленький медальон' — please accept this small medallion as a keepsake."
+  },
+  {
+   "id": "r7",
+   "ru": "И еще лежала белая чайка.",
+   "question": "What object is mentioned lying nearby, alongside the memory of that clear day?",
+   "options": [
+    "A white seagull",
+    "A white rose",
+    "A silver ring",
+    "A torn letter"
+   ],
+   "correct": "A white seagull",
+   "explain": "The line recalls, 'И еще лежала белая чайка' — and there also lay a white seagull."
+  },
+  {
+   "id": "r8",
+   "ru": "Страница 121, строки 11 и 12.",
+   "question": "What specific page and lines are mentioned regarding the book?",
+   "options": [
+    "Page 121, lines 11 and 12",
+    "Page 50, lines 1 and 2",
+    "Page 200, lines 5 and 6",
+    "Page 12, lines 21 and 22"
+   ],
+   "correct": "Page 121, lines 11 and 12",
+   "explain": "The text specifies 'Страница 121, строки 11 и 12.'"
+  },
+  {
+   "id": "r9",
+   "ru": "Вот уеду, так и не буду знать, от чего стрелял сын Константин.",
+   "question": "What does Sorin say he won't know once he leaves?",
+   "options": [
+    "Why his nephew Konstantin shot himself",
+    "Where the horses went",
+    "How much money is left",
+    "Why Trigorin is leaving"
+   ],
+   "correct": "Why his nephew Konstantin shot himself",
+   "explain": "Sorin says he will leave without ever knowing why his nephew Konstantin shot himself."
+  },
+  {
+   "id": "r10",
+   "ru": "И чем скорее я увезу отсюда Тригорина, тем лучше.",
+   "question": "What does Arkadina think would be best regarding Trigorin?",
+   "options": [
+    "The sooner she takes Trigorin away from there, the better",
+    "That Trigorin should stay forever",
+    "That Trigorin should marry Masha",
+    "That Trigorin should meet Sorin more often"
+   ],
+   "correct": "The sooner she takes Trigorin away from there, the better",
+   "explain": "She says, 'чем скорее я увезу отсюда Тригорина, тем лучше' — the sooner I take Trigorin away from here, the better."
+  },
+  {
+   "id": "r11",
+   "ru": "Человек молодой, умный, живет в деревне, в глуши,",
+   "question": "How is Konstantin's situation in the countryside described?",
+   "options": [
+    "A young, intelligent man living in the countryside, in the backwoods",
+    "A wealthy landowner with no worries",
+    "An old retired teacher",
+    "A famous actor on tour"
+   ],
+   "correct": "A young, intelligent man living in the countryside, in the backwoods",
+   "explain": "The text describes him as 'человек молодой, умный, живет в деревне, в глуши' — a young, intelligent man living in the countryside, in the backwoods."
+  },
+  {
+   "id": "r12",
+   "ru": "Один и тот же сюртучишко он таскает три года,",
+   "question": "What detail shows Konstantin's poverty?",
+   "options": [
+    "He has worn the same coat for three years",
+    "He has no shoes at all",
+    "He sleeps outdoors",
+    "He has sold all his books"
+   ],
+   "correct": "He has worn the same coat for three years",
+   "explain": "The line notes, 'Один и тот же сюртучишку он таскает три года' — he's worn the same shabby coat for three years."
+  },
+  {
+   "id": "r13",
+   "ru": "Всю мою пенсию забирает управляющий и тратит на земледелие, пчеловодство, скотоводство.",
+   "question": "What does Sorin say happens to his whole pension?",
+   "options": [
+    "The estate manager takes it all and spends it on farming, beekeeping, and cattle-raising",
+    "He saves it all in the bank",
+    "He gives it all to Konstantin",
+    "He spends it on travel"
+   ],
+   "correct": "The estate manager takes it all and spends it on farming, beekeeping, and cattle-raising",
+   "explain": "Sorin complains the manager takes his whole pension and spends it on agriculture, beekeeping, and cattle-raising."
+  },
+  {
+   "id": "r14",
+   "ru": "Мама, вот если бы ты, расщедрилась и дала бы ему взаймы тысячи полторы-две, он бы смог целый год прожить в городе",
+   "question": "What does Sorin ask Arkadina to do for Konstantin?",
+   "options": [
+    "Lend him about one and a half to two thousand so he could live a year in the city",
+    "Buy him a house in Moscow",
+    "Send him to a doctor abroad",
+    "Find him a wife"
+   ],
+   "correct": "Lend him about one and a half to two thousand so he could live a year in the city",
+   "explain": "Sorin asks her to be generous and lend Konstantin about 1,500 to 2,000 so he could live a whole year in the city."
+  },
+  {
+   "id": "r15",
+   "ru": "Помню, давно, в детстве, ты еще служила на казенной сцене, я был совсем маленьким,",
+   "question": "What memory does Konstantin bring up about his mother's past?",
+   "options": [
+    "That she once performed on the state stage when he was very small",
+    "That she used to sing him lullabies",
+    "That she was once a nurse",
+    "That she taught him to read"
+   ],
+   "correct": "That she once performed on the state stage when he was very small",
+   "explain": "He recalls that long ago, in childhood, she still served on the state (imperial) stage, when he was very small."
+  },
+  {
+   "id": "r16",
+   "ru": "У меня теперь кроме тебя никого не осталось.",
+   "question": "What does Konstantin say he has left, besides his mother?",
+   "options": [
+    "No one",
+    "Many friends",
+    "Nina",
+    "His father"
+   ],
+   "correct": "No one",
+   "explain": "He says, 'У меня теперь кроме тебя никого не осталось' — I have no one left now except you."
+  },
+  {
+   "id": "r17",
+   "ru": "Людям неталантливым у нас претензии, ничего другого не остается, как осуждать настоящие таланты.",
+   "question": "According to Arkadina, what do untalented people have no choice but to do?",
+   "options": [
+    "Condemn real talents",
+    "Support real talents",
+    "Leave the theater",
+    "Become critics themselves"
+   ],
+   "correct": "Condemn real talents",
+   "explain": "She says untalented people, out of pretension, have nothing left to do but condemn real talents."
+  },
+  {
+   "id": "r18",
+   "ru": "Пропались все надежды.",
+   "question": "What does Konstantin say has vanished?",
+   "options": [
+    "All his hopes",
+    "His manuscripts",
+    "His mother's love",
+    "His talent"
+   ],
+   "correct": "All his hopes",
+   "explain": "He says, 'Пропались все надежды' — all hopes have vanished."
+  },
+  {
+   "id": "r19",
+   "ru": "\"Если тебе когда-нибудь понадобится моя жизнь,",
+   "question": "What message does Konstantin leave for Nina, about his life?",
+   "options": [
+    "That if she ever needs his life, she should come and take it",
+    "That she should never contact him again",
+    "That he is moving away forever",
+    "That he forgives her completely"
+   ],
+   "correct": "That if she ever needs his life, she should come and take it",
+   "explain": "The note reads, 'Если тебе когда-нибудь понадобится моя жизнь... то приди и возьми ее' — if you ever need my life, come and take it."
+  },
+  {
+   "id": "r20",
+   "ru": "Любовь провинциальной девочки?",
+   "question": "How does Trigorin describe the love he is caught up in?",
+   "options": [
+    "The love of a provincial girl",
+    "A hopeless obsession",
+    "A brief holiday romance",
+    "A childhood friendship"
+   ],
+   "correct": "The love of a provincial girl",
+   "explain": "He muses, 'Любовь провинциальной девочки' — the love of a provincial girl."
+  },
+  {
+   "id": "r21",
+   "ru": "Любовь юная, прелестная, поэтическая, уносящая в мир грёз,",
+   "question": "How does Arkadina describe young love?",
+   "options": [
+    "Young, lovely, poetic, carrying one into a world of dreams",
+    "Painful and destructive",
+    "Boring and predictable",
+    "Dangerous and shameful"
+   ],
+   "correct": "Young, lovely, poetic, carrying one into a world of dreams",
+   "explain": "She describes it as 'юная, прелестная, поэтическая, уносящая в мир грез' — young, lovely, poetic, carrying one into a world of dreams."
+  },
+  {
+   "id": "r22",
+   "ru": "Я обивал пороги редакций, боролся с нуждой...",
+   "question": "What did Trigorin do in his youth, according to this line?",
+   "options": [
+    "Wore out the thresholds of editorial offices, struggling with need",
+    "Traveled the world",
+    "Studied law",
+    "Lived a life of leisure"
+   ],
+   "correct": "Wore out the thresholds of editorial offices, struggling with need",
+   "explain": "He recalls, 'Я обивал пороги редакций, боролся с нуждой' — I wore out the doorsteps of editorial offices, struggling with poverty."
+  },
+  {
+   "id": "r23",
+   "ru": "Ты, единственная, последняя страница моей жизни!",
+   "question": "How does Arkadina describe Trigorin's place in her life?",
+   "options": [
+    "The unique, final page of her life",
+    "Just a passing friend",
+    "Someone she barely knows",
+    "A rival for fame"
+   ],
+   "correct": "The unique, final page of her life",
+   "explain": "She calls him 'единственная, последняя страница моей жизни' — the one and only, final page of my life."
+  },
+  {
+   "id": "r24",
+   "ru": "Ты единственная надежда России...",
+   "question": "What grand claim does Arkadina make about Trigorin's importance?",
+   "options": [
+    "That he is Russia's only hope",
+    "That he is the richest man in Russia",
+    "That he will become a politician",
+    "That he should retire from writing"
+   ],
+   "correct": "That he is Russia's only hope",
+   "explain": "She declares, 'Ты единственная надежда России' — you are Russia's only hope."
+  },
+  {
+   "id": "r25",
+   "ru": "У меня нет своей воли...",
+   "question": "What does Trigorin say about his own will?",
+   "options": [
+    "That he has no will of his own",
+    "That his will is stronger than anyone's",
+    "That he never had any doubts",
+    "That he always does what he wants"
+   ],
+   "correct": "That he has no will of his own",
+   "explain": "He admits, 'У меня нет своей воли' — I have no will of my own."
+  },
+  {
+   "id": "r26",
+   "ru": "Имею честь с прискорбием доложить, что лошади поданы.",
+   "question": "What announcement is made about the horses?",
+   "options": [
+    "That the horses have been brought around (are ready)",
+    "That the horses have run away",
+    "That there are no horses available",
+    "That new horses were bought"
+   ],
+   "correct": "That the horses have been brought around (are ready)",
+   "explain": "The line announces, 'лошади поданы' — the horses have been brought round."
+  },
+  {
+   "id": "r27",
+   "ru": "Так вы уж, Ирина Николаевна, сделайте милость, наведите справочку: где теперь актер Суздальцев?",
+   "question": "What favor is Irina Nikolaevna asked to do?",
+   "options": [
+    "Find out news about the actor Suzdaltsev",
+    "Buy tickets to Moscow",
+    "Write a letter to the newspaper",
+    "Bring back a souvenir"
+   ],
+   "correct": "Find out news about the actor Suzdaltsev",
+   "explain": "She is asked to make inquiries about where the actor Suzdaltsev is now."
+  },
+  {
+   "id": "r28",
+   "ru": "И вот, когда они в одной драме играли заговорщиков, и когда их вдруг накрыли, то надо было сказать: \"Мы попали в западню\",",
+   "question": "What line from an old play is being recalled here?",
+   "options": [
+    "'We have fallen into a trap'",
+    "'To be or not to be'",
+    "'All the world's a stage'",
+    "'Once upon a time'"
+   ],
+   "correct": "'We have fallen into a trap'",
+   "explain": "The memory recalls the line from a play about conspirators: 'мы попали в западню' — we have fallen into a trap."
+  },
+  {
+   "id": "r29",
+   "ru": "Борис Алексеевич, я решила бесповоротно, жребий брошен,",
+   "question": "What decision does Nina announce to Trigorin?",
+   "options": [
+    "That she has decided irrevocably, the die is cast",
+    "That she is returning to her father's house",
+    "That she will never act again",
+    "That she is marrying Medvedenko"
+   ],
+   "correct": "That she has decided irrevocably, the die is cast",
+   "explain": "She declares, 'я решила бесповоротно, жребий брошен' — I have decided irrevocably, the die is cast."
+  },
+  {
+   "id": "r30",
+   "ru": "Остановитесь в \"Славянском Базаре\"...",
+   "question": "Where does Nina tell Trigorin to stay in Moscow?",
+   "options": [
+    "The Slavyansky Bazaar",
+    "The Grand Hotel",
+    "Her aunt's apartment",
+    "A theater dormitory"
+   ],
+   "correct": "The Slavyansky Bazaar",
+   "explain": "She says, 'Остановитесь в Славянском базаре' — stay at the Slavyansky Bazaar."
+  }
+ ]
 }

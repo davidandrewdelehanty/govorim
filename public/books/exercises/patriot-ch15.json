@@ -1,1 +1,524 @@
-{"cases": [{"id": "c1", "sentence": "Мой ___ по делу Киров-Леса был признан незаконным Европейским судом по правам человека.", "lemma": "приговор", "options": ["приговор", "приговора", "приговору", "приговором"], "correct": "приговор", "case": "Именительный (Nominative)", "translation": "My verdict in the Kirovles case was declared unlawful by the European Court of Human Rights.", "explain": "Приговор is the subject of the passive verb был признан (was declared), so it stays in the Nominative case."}, {"id": "c2", "sentence": "У меня был ожог ___.", "lemma": "роговица", "options": ["роговица", "роговицы", "роговице", "роговицей"], "correct": "роговицы", "case": "Родительный (Genitive)", "translation": "I had a burn on my cornea.", "explain": "\"Ожог (чего?) роговицы\" — the noun naming what was burned takes the Genitive case."}, {"id": "c3", "sentence": "Одна из них — долги, которые Путин прощает другим ___.", "lemma": "страна", "options": ["страны", "стран", "странам", "странами"], "correct": "странам", "case": "Дательный (Dative)", "translation": "One of them is the debts that Putin forgives other countries.", "explain": "Странам is the indirect object of прощает (forgives to), so it takes the Dative case."}, {"id": "c4", "sentence": "Медведев просто обожает ___.", "lemma": "кроссовки", "options": ["кроссовки", "кроссовок", "кроссовкам", "кроссовками"], "correct": "кроссовки", "case": "Винительный (Accusative)", "translation": "Medvedev simply adores sneakers.", "explain": "Кроссовки is the direct object of обожает (adores), so it takes the Accusative case."}, {"id": "c5", "sentence": "___ их эротической банды была девушка из Беларуси по прозвищу Настя Рыбка.", "lemma": "главарь", "options": ["главарь", "главаря", "главарю", "главарём"], "correct": "главарём", "case": "Творительный (Instrumental)", "translation": "The ringleader of their erotic gang was a woman from Belarus nicknamed Nastya Rybka.", "explain": "After была (\"was\") naming a role, the predicate noun takes the Instrumental case, so главарь becomes главарём."}, {"id": "c6", "sentence": "___ мне сделали операцию, зрение удалось сохранить.", "lemma": "Барселона", "options": ["Барселона", "Барселоны", "Барселоне", "Барселоной"], "correct": "Барселоне", "case": "Предложный (Prepositional)", "translation": "In Barcelona I had surgery, and my eyesight was saved.", "explain": "The preposition в indicating location governs the Prepositional case, so Барселона becomes Барселоне."}, {"id": "c7", "sentence": "У него нашлось гигантское поместье на ___ в старинном городе Плесе.", "lemma": "Волга", "options": ["Волга", "Волги", "Волге", "Волгой"], "correct": "Волге", "case": "Предложный (Prepositional)", "translation": "He turned out to have a huge estate on the Volga in the old town of Plyos.", "explain": "The preposition на indicating a static location governs the Prepositional case, so Волга becomes Волге."}], "reading": [{"id": "r1", "ru": "Я выдвигаю свою кандидатуру на выборы президента России.", "question": "What announcement did Navalny's December 2016 letter make to nearly a million subscribers?", "options": ["That he was running for President of Russia", "That he was ending his political career", "That he was moving abroad", "That he was launching a new blog"], "correct": "That he was running for President of Russia", "explain": "The letter states \"Я выдвигаю свою кандидатуру на выборы президента России\"."}, {"id": "r2", "ru": "Такое письмо 13 декабря 2016 года получили около миллиона человек, те, кто был подписан на какую-то из рассылок Фонда борьбы с коррупцией.", "question": "How many people received Navalny's presidential announcement letter on December 13, 2016?", "options": ["About one million subscribers of the Anti-Corruption Foundation", "About ten thousand", "About five million", "Just his closest staff"], "correct": "About one million subscribers of the Anti-Corruption Foundation", "explain": "The text states \"около миллиона человек ... подписан на ... рассылок Фонда борьбы с коррупцией\" received it."}, {"id": "r3", "ru": "Мы сняли офис в одной из высоток Москва-Сити на чужое имя, потому что запись шла в строжайшем секрете.", "question": "Why did Navalny's team rent an office in a Moscow City skyscraper under someone else's name?", "options": ["To keep the announcement video secret from surveillance", "To avoid paying rent taxes", "To film a fake advertisement", "To hide from creditors"], "correct": "To keep the announcement video secret from surveillance", "explain": "They used a fake name \"потому что запись шла в строжайшем секрете\"."}, {"id": "r4", "ru": "«Полностью поддерживаю ваше решение баллотироваться, Алексей, но галстук очень немодный», — негодовали люди в комментариях.", "question": "What did viewers criticize about Navalny's presidential announcement video, according to comments?", "options": ["His tie was unfashionable", "His voice was too quiet", "The lighting was too dark", "The video was too short"], "correct": "His tie was unfashionable", "explain": "Commenters wrote \"галстук очень немодный\" while supporting his run."}, {"id": "r5", "ru": "Мой приговор по делу Киров-Леса был признан незаконным Европейским судом по правам человека.", "question": "What did the European Court of Human Rights rule about Navalny's Kirovles conviction?", "options": ["That it was unlawful", "That it was fully justified", "That it should be increased", "That it fell outside its jurisdiction"], "correct": "That it was unlawful", "explain": "His conviction \"был признан незаконным Европейским судом по правам человека\"."}, {"id": "r6", "ru": "За первый день мы собрали больше 6 миллионов рублей, по тем временам абсолютный рекорд.", "question": "How much money did Navalny's campaign raise on its very first day, setting a record?", "options": ["More than 6 million rubles", "More than 60 million rubles", "About 600,000 rubles", "About 6,000 rubles"], "correct": "More than 6 million rubles", "explain": "They \"собрали больше 6 миллионов рублей, по тем временам абсолютный рекорд\"."}, {"id": "r7", "ru": "Они будут следовать за мной по стране три года, наблюдая и ожидая приказа убить.", "question": "What did the FSB surveillance team assigned to Navalny after his announcement ultimately do, according to him?", "options": ["Followed him for three years, awaiting an order to kill him", "Arrested him within a week", "Left him alone entirely", "Protected him from attackers"], "correct": "Followed him for three years, awaiting an order to kill him", "explain": "He writes they \"будут следовать за мной по стране три года, наблюдая и ожидая приказа убить\"."}, {"id": "r8", "ru": "8 февраля нас с офицеровом осудили по тому же делу во второй раз.", "question": "What happened on February 8 in the retrial of the Kirovles case?", "options": ["Navalny and Ofitserov were convicted again on the same charges", "They were both fully acquitted", "The case was dismissed", "A new investigation was opened"], "correct": "Navalny and Ofitserov were convicted again on the same charges", "explain": "The text says \"8 февраля нас с офицеровом осудили по тому же делу во второй раз\"."}, {"id": "r9", "ru": "А текст нового приговора совпадал со старым вплоть до опечаток.", "question": "How similar was the new verdict text to the original one from years earlier?", "options": ["It matched the old one down to the typos", "It was completely rewritten", "It only kept the sentence length the same", "It reversed the original conclusions"], "correct": "It matched the old one down to the typos", "explain": "He notes \"текст нового приговора совпадал со старым вплоть до опечаток\"."}, {"id": "r10", "ru": "Передача «Навальный-2018», выходившая в 20 часов 18 минут каждый четверг, быстро стала самым популярным онлайн-стримом страны.", "question": "What was distinctive about Navalny's weekly show 'Navalny-2018'?", "options": ["It aired at 8:18pm every Thursday and became the country's most popular livestream", "It aired only once a month", "It was broadcast exclusively on state TV", "It ran for just five minutes each week"], "correct": "It aired at 8:18pm every Thursday and became the country's most popular livestream", "explain": "It aired \"в 20 часов 18 минут каждый четверг\" and \"стала самым популярным онлайн-стримом страны\"."}, {"id": "r11", "ru": "В 82 городах России мы открыли центры нашей компании, сняли офисы, наняли координаторов и по паре сотрудников, которые должны были организовывать работу волонтеров в этом городе.", "question": "What did Navalny's campaign accomplish in 82 Russian cities during the spring tour?", "options": ["Opened campaign offices and hired local coordinators", "Held the presidential election early", "Built new TV studios", "Organized only online events"], "correct": "Opened campaign offices and hired local coordinators", "explain": "They \"открыли центры нашей компании, сняли офисы, наняли координаторов\" in 82 cities."}, {"id": "r12", "ru": "Сейчас, когда я пишу эти строки, против Лилии и Ксении сфабрикованы уголовные дела.", "question": "What happened later to regional coordinators Liliya Chanysheva and Ksenia Fadeyeva, as Navalny notes while writing?", "options": ["Criminal cases were later fabricated against them", "They became government ministers", "They quit politics entirely", "They were awarded state honors"], "correct": "Criminal cases were later fabricated against them", "explain": "He writes \"против Лилии и Ксении сфабрикованы уголовные дела\"."}, {"id": "r13", "ru": "В Перми, например, пришла тысяча человек.", "question": "How many volunteers showed up to a single meeting in Perm?", "options": ["A thousand people", "A hundred people", "Ten thousand people", "Fifty people"], "correct": "A thousand people", "explain": "He notes \"В Перми, например, пришла тысяча человек\"."}, {"id": "r14", "ru": "Одна из них — долги, которые Путин прощает другим странам.", "question": "Which topic reliably won over even skeptical crowds at regional meetings?", "options": ["Debt forgiveness Putin granted to other countries", "Local road conditions", "Sports funding", "Foreign policy toward China"], "correct": "Debt forgiveness Putin granted to other countries", "explain": "He identifies \"долги, которые Путин прощает другим странам\" as a crowd-pleasing topic."}, {"id": "r15", "ru": "В Волгограде на штаб во время моей встречи с волонтерами напали человек 30 казаков и местных бандитов.", "question": "What happened to Navalny's team during a campaign meeting in Volgograd?", "options": ["About 30 Cossacks and local thugs attacked the campaign office", "Local police protected the meeting peacefully", "The mayor personally welcomed them", "A snowstorm forced them to cancel"], "correct": "About 30 Cossacks and local thugs attacked the campaign office", "explain": "The text says \"на штаб ... напали человек 30 казаков и местных бандитов\"."}, {"id": "r16", "ru": "Так, моими трибунами для выступления оказались такие экзотические места, как детская горка, лавочка и огромный сугроб.", "question": "What unusual venues did Navalny end up speaking from due to obstruction tactics?", "options": ["A children's slide, a bench, and a huge snowdrift", "Only official government buildings", "A soccer stadium each time", "A boat on a river"], "correct": "A children's slide, a bench, and a huge snowdrift", "explain": "His podiums became \"детская горка, лавочка и огромный сугроб\"."}, {"id": "r17", "ru": "Но это оказалась просто зеленка.", "question": "What turned out to be the substance thrown in Navalny's face before the Barnaul meeting?", "options": ["Green antiseptic dye (zelenka), not acid", "Genuine acid, causing permanent scarring", "Water, as a harmless prank", "Paint used by protesters"], "correct": "Green antiseptic dye (zelenka), not acid", "explain": "He writes \"Но это оказалась просто зеленка\", not the acid he first feared."}, {"id": "r18", "ru": "Главарем их эротической банды была девушка из Беларуси по прозвищу Настя Рыбка.", "question": "Who was identified as the ringleader of the women who staged a provocation at Navalny's office?", "options": ["A Belarusian woman nicknamed Nastya Rybka", "A famous Russian actress", "A former FSB officer", "Navalny's own former assistant"], "correct": "A Belarusian woman nicknamed Nastya Rybka", "explain": "The text names \"девушка из Беларуси по прозвищу Настя Рыбка\" as the ringleader."}, {"id": "r19", "ru": "Мы сняли расследование, его посмотрело больше 10 миллионов человек.", "question": "How many people watched the investigation into the yacht footage involving Deripaska and Prikhodko?", "options": ["More than 10 million", "About 1 million", "About 100,000", "Fewer than 10,000"], "correct": "More than 10 million", "explain": "The video \"посмотрело больше 10 миллионов человек\"."}, {"id": "r20", "ru": "У меня был ожог роговицы.", "question": "What lasting injury resulted from the second, more dangerous zelenka attack on Navalny?", "options": ["A chemical burn to the cornea of his eye", "A broken arm", "Permanent hearing loss", "A severe burn to his hands"], "correct": "A chemical burn to the cornea of his eye", "explain": "He states \"У меня был ожог роговицы\" from the poisoned dye."}, {"id": "r21", "ru": "В Барселоне мне сделали операцию, зрение удалось сохранить.", "question": "Where was Navalny finally able to get surgery to save his eyesight?", "options": ["Barcelona", "Moscow", "London", "Berlin"], "correct": "Barcelona", "explain": "He writes \"В Барселоне мне сделали операцию, зрение удалось сохранить\"."}, {"id": "r22", "ru": "Оно называлось «Он вам не Димон», и в нем я рассказывал о коррупции Дмитрия Медведева, тогда премьер-министра, до того президента.", "question": "What was the subject of the investigation titled 'He Is Not Dimon to You'?", "options": ["Corruption by then-Prime Minister Dmitry Medvedev", "Corruption in the Moscow police", "Corruption at Gazprom", "Corruption in the Central Election Commission"], "correct": "Corruption by then-Prime Minister Dmitry Medvedev", "explain": "The video was about \"коррупции Дмитрия Медведева, тогда премьер-министра\"."}, {"id": "r23", "ru": "У него нашлось гигантское поместье на Волге в старинном городе Плесе.", "question": "Where did investigators find a huge estate belonging to Medvedev?", "options": ["In the old town of Plyos on the Volga River", "In Sochi on the Black Sea coast", "In Siberia near Lake Baikal", "Outside St. Petersburg"], "correct": "In the old town of Plyos on the Volga River", "explain": "They found \"гигантское поместье на Волге в старинном городе Плесе\"."}, {"id": "r24", "ru": "Медведев просто обожает кроссовки.", "question": "What unexpected personal obsession helped investigators trace Medvedev's hidden wealth?", "options": ["His love of buying sneakers", "His love of luxury watches", "His love of yachts", "His love of fine wine"], "correct": "His love of buying sneakers", "explain": "They discovered \"Медведев просто обожает кроссовки\", ordering them by the dozen."}, {"id": "r25", "ru": "Она надменно сказала, что мне отказано в допуске к выборам на основании приговора по делу Керафлеса.", "question": "On what grounds did CEC chief Ella Pamfilova reject Navalny's presidential candidacy?", "options": ["His suspended sentence in the Kirovles (Yves Rocher) case", "His lack of a party affiliation", "His failure to submit paperwork on time", "His prior conviction for treason"], "correct": "His suspended sentence in the Kirovles (Yves Rocher) case", "explain": "Pamfilova said he was refused \"на основании приговора по делу Керафлеса\"."}], "highlight": [{"id": "h1", "question": "How does Navalny announce his presidential candidacy?", "sentences": ["«Привет, это Навальный.", "Раз вы на меня подписаны, то вам сообщаю первому: я выдвигаю свою кандидатуру на выборы президента России».", "Такое письмо 13 декабря 2016 года получили около миллиона человек — те, кто был подписан на какую-то из рассылок Фонда борьбы с коррупцией."], "correct": [0, 1], "explain": "Sentences 0 and 1 show he sends a message on December 13, 2016, to around a million people subscribed to his anti-corruption foundation mailing lists, announcing his candidacy."}, {"id": "h2", "question": "Why does the author work in a hotel rather than at home?", "sentences": ["Двенадцатого декабря, поздно вечером, прилетев обратно в Москву, я не поехал домой, а отправился в гостиницу.", "Мы держали ролик в секрете, поэтому монтировали его очень маленькой командой, в которой не было профессиональных монтажёров.", "Номер в гостинице был снова взят на подставное имя, и мы даже задёрнули шторы, чтобы с улицы нас не мог снять дрон.", "Мои коллеги заранее привезли туда огромный компьютер, и мы сидели вокруг него в полутьме, пытаясь на ходу освоить программу для видеомонтажа."], "correct": [0, 1, 2], "explain": "Sentences 0-2 explain that the video is kept secret with a small team, filmed in a hotel registered under a false name with curtains drawn to prevent drone surveillance."}, {"id": "h3", "question": "What does the text say about the campaign headquarters?", "sentences": ["Штабы Навального — самая разветвлённая и быстрорастущая оппозиционная сеть в стране — наглядно показывали, что в Кремле нас опасаются не зря.", "Даже после завершения кампании штабы в сорока крупнейших городах продолжали работать на протяжении нескольких лет, пока меня и моих сторонников не объявили экстремистами.", "Многие сотрудники штабов стали популярными политиками в своих регионах.", "Лилия Чанышева в Уфе и Ксения Фадеева в Томске — одни из самых ярких региональных координаторов и пример того, какими вообще должны быть настоящие политики: необыкновенно работоспособные, искренне преданные делу, толковые организаторы, а главное, честные люди.", "В Кремле их тоже заметили.", "Сейчас, когда я пишу эти строки, против Лилии и Ксении сфабрикованы уголовные дела."], "correct": [0, 1], "explain": "Sentences 0 and 1 describe the headquarters as the most extensive and fastest-growing opposition network in the country, showing how much the Kremlin fears them."}, {"id": "h4", "question": "Why are the regional visits important to Navalny?", "sentences": ["Несмотря на очень напряжённый график, эти поездки давали огромную отдачу.", "Люди ценили, что к ним приехал кандидат в президенты, часто выкладывали фотографии со встреч в инстаграм и тем самым расширяли мою аудиторию.", "Кроме того, мне были нужны голоса старшего поколения.", "Как до них достучаться без телевизора?", "Только встретиться лично."], "correct": [1, 2], "explain": "Sentences 1 and 2 show that people value his personal visit, share photos online expanding his audience, and he needs votes from older generations unreachable by television."}, {"id": "h5", "question": "What parallel case is mentioned regarding foreign influence?", "sentences": ["Незадолго до того, как мы опубликовали это расследование, в США как раз прогремела история о том, что глава предвыборного штаба Дональда Трампа, Пол Манафорт, получал миллионы долларов от Дерипаски, а сам рассказывал ему, что происходит в штабе.", "Этот эпизод стал одним из доказательств вмешательства России в выборы в США.", "Я тогда скептически к этому относился: ну какие рассказы?", "Вряд ли Дерипаска вообще общается с Путиным.", "А тут понял, что так это, видимо, и работало: вот же, прямо на яхте сидит чиновник путинского правительства и внимательно слушает."], "correct": [0, 1], "explain": "Sentences 0 and 1 describe how Trump's campaign manager Manafort received millions from Deripaska and reported to him, becoming evidence of Russian interference in US elections."}, {"id": "h6", "question": "What methods were used to obstruct Navalny's campaign?", "sentences": ["Существовали и другие способы препятствовать мне вести кампанию: согласитесь, непросто её вести, когда кандидат сидит, а я не вылезал из спецприёмников.", "За тот год я провёл под арестом два месяца (эта практика так понравилась Кремлю, что в следующем году я провёл там уже три).", "Во время президентской кампании первый раз меня посадили за митинг «Он вам не Димон»."], "correct": [0, 1], "explain": "Sentences 0 and 1 mention that conducting a campaign while under arrest is difficult, and the author spent two months detained during that year, a practice the Kremlin repeated the following year."}]}
+{
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Мой ___ по делу Киров-Леса был признан незаконным Европейским судом по правам человека.",
+   "lemma": "приговор",
+   "options": [
+    "приговор",
+    "приговора",
+    "приговору",
+    "приговором"
+   ],
+   "correct": "приговор",
+   "case": "Именительный (Nominative)",
+   "explain": "Приговор is the subject of the passive verb был признан (was declared), so it stays in the Nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "У меня был ожог ___.",
+   "lemma": "роговица",
+   "options": [
+    "роговица",
+    "роговицы",
+    "роговице",
+    "роговицей"
+   ],
+   "correct": "роговицы",
+   "case": "Родительный (Genitive)",
+   "explain": "\"Ожог (чего?) роговицы\" — the noun naming what was burned takes the Genitive case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Одна из них — долги, которые Путин прощает другим ___.",
+   "lemma": "страна",
+   "options": [
+    "страны",
+    "стран",
+    "странам",
+    "странами"
+   ],
+   "correct": "странам",
+   "case": "Дательный (Dative)",
+   "explain": "Странам is the indirect object of прощает (forgives to), so it takes the Dative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Медведев просто обожает ___.",
+   "lemma": "кроссовки",
+   "options": [
+    "кроссовки",
+    "кроссовок",
+    "кроссовкам",
+    "кроссовками"
+   ],
+   "correct": "кроссовки",
+   "case": "Винительный (Accusative)",
+   "explain": "Кроссовки is the direct object of обожает (adores), so it takes the Accusative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "___ их эротической банды была девушка из Беларуси по прозвищу Настя Рыбка.",
+   "lemma": "главарь",
+   "options": [
+    "главарь",
+    "главаря",
+    "главарю",
+    "главарём"
+   ],
+   "correct": "главарём",
+   "case": "Творительный (Instrumental)",
+   "explain": "After была (\"was\") naming a role, the predicate noun takes the Instrumental case, so главарь becomes главарём."
+  },
+  {
+   "id": "c6",
+   "sentence": "___ мне сделали операцию, зрение удалось сохранить.",
+   "lemma": "Барселона",
+   "options": [
+    "Барселона",
+    "Барселоны",
+    "Барселоне",
+    "Барселоной"
+   ],
+   "correct": "Барселоне",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в indicating location governs the Prepositional case, so Барселона becomes Барселоне."
+  },
+  {
+   "id": "c7",
+   "sentence": "У него нашлось гигантское поместье на ___ в старинном городе Плесе.",
+   "lemma": "Волга",
+   "options": [
+    "Волга",
+    "Волги",
+    "Волге",
+    "Волгой"
+   ],
+   "correct": "Волге",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition на indicating a static location governs the Prepositional case, so Волга becomes Волге."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Я выдвигаю свою кандидатуру на выборы президента России.",
+   "question": "What announcement did Navalny's December 2016 letter make to nearly a million subscribers?",
+   "options": [
+    "That he was running for President of Russia",
+    "That he was ending his political career",
+    "That he was moving abroad",
+    "That he was launching a new blog"
+   ],
+   "correct": "That he was running for President of Russia",
+   "explain": "The letter states \"Я выдвигаю свою кандидатуру на выборы президента России\"."
+  },
+  {
+   "id": "r2",
+   "ru": "Такое письмо 13 декабря 2016 года получили около миллиона человек, те, кто был подписан на какую-то из рассылок Фонда борьбы с коррупцией.",
+   "question": "How many people received Navalny's presidential announcement letter on December 13, 2016?",
+   "options": [
+    "About one million subscribers of the Anti-Corruption Foundation",
+    "About ten thousand",
+    "About five million",
+    "Just his closest staff"
+   ],
+   "correct": "About one million subscribers of the Anti-Corruption Foundation",
+   "explain": "The text states \"около миллиона человек ... подписан на ... рассылок Фонда борьбы с коррупцией\" received it."
+  },
+  {
+   "id": "r3",
+   "ru": "Мы сняли офис в одной из высоток Москва-Сити на чужое имя, потому что запись шла в строжайшем секрете.",
+   "question": "Why did Navalny's team rent an office in a Moscow City skyscraper under someone else's name?",
+   "options": [
+    "To keep the announcement video secret from surveillance",
+    "To avoid paying rent taxes",
+    "To film a fake advertisement",
+    "To hide from creditors"
+   ],
+   "correct": "To keep the announcement video secret from surveillance",
+   "explain": "They used a fake name \"потому что запись шла в строжайшем секрете\"."
+  },
+  {
+   "id": "r4",
+   "ru": "«Полностью поддерживаю ваше решение баллотироваться, Алексей, но галстук очень немодный», — негодовали люди в комментариях.",
+   "question": "What did viewers criticize about Navalny's presidential announcement video, according to comments?",
+   "options": [
+    "His tie was unfashionable",
+    "His voice was too quiet",
+    "The lighting was too dark",
+    "The video was too short"
+   ],
+   "correct": "His tie was unfashionable",
+   "explain": "Commenters wrote \"галстук очень немодный\" while supporting his run."
+  },
+  {
+   "id": "r5",
+   "ru": "Мой приговор по делу Киров-Леса был признан незаконным Европейским судом по правам человека.",
+   "question": "What did the European Court of Human Rights rule about Navalny's Kirovles conviction?",
+   "options": [
+    "That it was unlawful",
+    "That it was fully justified",
+    "That it should be increased",
+    "That it fell outside its jurisdiction"
+   ],
+   "correct": "That it was unlawful",
+   "explain": "His conviction \"был признан незаконным Европейским судом по правам человека\"."
+  },
+  {
+   "id": "r6",
+   "ru": "За первый день мы собрали больше 6 миллионов рублей, по тем временам абсолютный рекорд.",
+   "question": "How much money did Navalny's campaign raise on its very first day, setting a record?",
+   "options": [
+    "More than 6 million rubles",
+    "More than 60 million rubles",
+    "About 600,000 rubles",
+    "About 6,000 rubles"
+   ],
+   "correct": "More than 6 million rubles",
+   "explain": "They \"собрали больше 6 миллионов рублей, по тем временам абсолютный рекорд\"."
+  },
+  {
+   "id": "r7",
+   "ru": "Они будут следовать за мной по стране три года, наблюдая и ожидая приказа убить.",
+   "question": "What did the FSB surveillance team assigned to Navalny after his announcement ultimately do, according to him?",
+   "options": [
+    "Followed him for three years, awaiting an order to kill him",
+    "Arrested him within a week",
+    "Left him alone entirely",
+    "Protected him from attackers"
+   ],
+   "correct": "Followed him for three years, awaiting an order to kill him",
+   "explain": "He writes they \"будут следовать за мной по стране три года, наблюдая и ожидая приказа убить\"."
+  },
+  {
+   "id": "r8",
+   "ru": "8 февраля нас с офицеровом осудили по тому же делу во второй раз.",
+   "question": "What happened on February 8 in the retrial of the Kirovles case?",
+   "options": [
+    "Navalny and Ofitserov were convicted again on the same charges",
+    "They were both fully acquitted",
+    "The case was dismissed",
+    "A new investigation was opened"
+   ],
+   "correct": "Navalny and Ofitserov were convicted again on the same charges",
+   "explain": "The text says \"8 февраля нас с офицеровом осудили по тому же делу во второй раз\"."
+  },
+  {
+   "id": "r9",
+   "ru": "А текст нового приговора совпадал со старым вплоть до опечаток.",
+   "question": "How similar was the new verdict text to the original one from years earlier?",
+   "options": [
+    "It matched the old one down to the typos",
+    "It was completely rewritten",
+    "It only kept the sentence length the same",
+    "It reversed the original conclusions"
+   ],
+   "correct": "It matched the old one down to the typos",
+   "explain": "He notes \"текст нового приговора совпадал со старым вплоть до опечаток\"."
+  },
+  {
+   "id": "r10",
+   "ru": "Передача «Навальный-2018», выходившая в 20 часов 18 минут каждый четверг, быстро стала самым популярным онлайн-стримом страны.",
+   "question": "What was distinctive about Navalny's weekly show 'Navalny-2018'?",
+   "options": [
+    "It aired at 8:18pm every Thursday and became the country's most popular livestream",
+    "It aired only once a month",
+    "It was broadcast exclusively on state TV",
+    "It ran for just five minutes each week"
+   ],
+   "correct": "It aired at 8:18pm every Thursday and became the country's most popular livestream",
+   "explain": "It aired \"в 20 часов 18 минут каждый четверг\" and \"стала самым популярным онлайн-стримом страны\"."
+  },
+  {
+   "id": "r11",
+   "ru": "В 82 городах России мы открыли центры нашей компании, сняли офисы, наняли координаторов и по паре сотрудников, которые должны были организовывать работу волонтеров в этом городе.",
+   "question": "What did Navalny's campaign accomplish in 82 Russian cities during the spring tour?",
+   "options": [
+    "Opened campaign offices and hired local coordinators",
+    "Held the presidential election early",
+    "Built new TV studios",
+    "Organized only online events"
+   ],
+   "correct": "Opened campaign offices and hired local coordinators",
+   "explain": "They \"открыли центры нашей компании, сняли офисы, наняли координаторов\" in 82 cities."
+  },
+  {
+   "id": "r12",
+   "ru": "Сейчас, когда я пишу эти строки, против Лилии и Ксении сфабрикованы уголовные дела.",
+   "question": "What happened later to regional coordinators Liliya Chanysheva and Ksenia Fadeyeva, as Navalny notes while writing?",
+   "options": [
+    "Criminal cases were later fabricated against them",
+    "They became government ministers",
+    "They quit politics entirely",
+    "They were awarded state honors"
+   ],
+   "correct": "Criminal cases were later fabricated against them",
+   "explain": "He writes \"против Лилии и Ксении сфабрикованы уголовные дела\"."
+  },
+  {
+   "id": "r13",
+   "ru": "В Перми, например, пришла тысяча человек.",
+   "question": "How many volunteers showed up to a single meeting in Perm?",
+   "options": [
+    "A thousand people",
+    "A hundred people",
+    "Ten thousand people",
+    "Fifty people"
+   ],
+   "correct": "A thousand people",
+   "explain": "He notes \"В Перми, например, пришла тысяча человек\"."
+  },
+  {
+   "id": "r14",
+   "ru": "Одна из них — долги, которые Путин прощает другим странам.",
+   "question": "Which topic reliably won over even skeptical crowds at regional meetings?",
+   "options": [
+    "Debt forgiveness Putin granted to other countries",
+    "Local road conditions",
+    "Sports funding",
+    "Foreign policy toward China"
+   ],
+   "correct": "Debt forgiveness Putin granted to other countries",
+   "explain": "He identifies \"долги, которые Путин прощает другим странам\" as a crowd-pleasing topic."
+  },
+  {
+   "id": "r15",
+   "ru": "В Волгограде на штаб во время моей встречи с волонтерами напали человек 30 казаков и местных бандитов.",
+   "question": "What happened to Navalny's team during a campaign meeting in Volgograd?",
+   "options": [
+    "About 30 Cossacks and local thugs attacked the campaign office",
+    "Local police protected the meeting peacefully",
+    "The mayor personally welcomed them",
+    "A snowstorm forced them to cancel"
+   ],
+   "correct": "About 30 Cossacks and local thugs attacked the campaign office",
+   "explain": "The text says \"на штаб ... напали человек 30 казаков и местных бандитов\"."
+  },
+  {
+   "id": "r16",
+   "ru": "Так, моими трибунами для выступления оказались такие экзотические места, как детская горка, лавочка и огромный сугроб.",
+   "question": "What unusual venues did Navalny end up speaking from due to obstruction tactics?",
+   "options": [
+    "A children's slide, a bench, and a huge snowdrift",
+    "Only official government buildings",
+    "A soccer stadium each time",
+    "A boat on a river"
+   ],
+   "correct": "A children's slide, a bench, and a huge snowdrift",
+   "explain": "His podiums became \"детская горка, лавочка и огромный сугроб\"."
+  },
+  {
+   "id": "r17",
+   "ru": "Но это оказалась просто зеленка.",
+   "question": "What turned out to be the substance thrown in Navalny's face before the Barnaul meeting?",
+   "options": [
+    "Green antiseptic dye (zelenka), not acid",
+    "Genuine acid, causing permanent scarring",
+    "Water, as a harmless prank",
+    "Paint used by protesters"
+   ],
+   "correct": "Green antiseptic dye (zelenka), not acid",
+   "explain": "He writes \"Но это оказалась просто зеленка\", not the acid he first feared."
+  },
+  {
+   "id": "r18",
+   "ru": "Главарем их эротической банды была девушка из Беларуси по прозвищу Настя Рыбка.",
+   "question": "Who was identified as the ringleader of the women who staged a provocation at Navalny's office?",
+   "options": [
+    "A Belarusian woman nicknamed Nastya Rybka",
+    "A famous Russian actress",
+    "A former FSB officer",
+    "Navalny's own former assistant"
+   ],
+   "correct": "A Belarusian woman nicknamed Nastya Rybka",
+   "explain": "The text names \"девушка из Беларуси по прозвищу Настя Рыбка\" as the ringleader."
+  },
+  {
+   "id": "r19",
+   "ru": "Мы сняли расследование, его посмотрело больше 10 миллионов человек.",
+   "question": "How many people watched the investigation into the yacht footage involving Deripaska and Prikhodko?",
+   "options": [
+    "More than 10 million",
+    "About 1 million",
+    "About 100,000",
+    "Fewer than 10,000"
+   ],
+   "correct": "More than 10 million",
+   "explain": "The video \"посмотрело больше 10 миллионов человек\"."
+  },
+  {
+   "id": "r20",
+   "ru": "У меня был ожог роговицы.",
+   "question": "What lasting injury resulted from the second, more dangerous zelenka attack on Navalny?",
+   "options": [
+    "A chemical burn to the cornea of his eye",
+    "A broken arm",
+    "Permanent hearing loss",
+    "A severe burn to his hands"
+   ],
+   "correct": "A chemical burn to the cornea of his eye",
+   "explain": "He states \"У меня был ожог роговицы\" from the poisoned dye."
+  },
+  {
+   "id": "r21",
+   "ru": "В Барселоне мне сделали операцию, зрение удалось сохранить.",
+   "question": "Where was Navalny finally able to get surgery to save his eyesight?",
+   "options": [
+    "Barcelona",
+    "Moscow",
+    "London",
+    "Berlin"
+   ],
+   "correct": "Barcelona",
+   "explain": "He writes \"В Барселоне мне сделали операцию, зрение удалось сохранить\"."
+  },
+  {
+   "id": "r22",
+   "ru": "Оно называлось «Он вам не Димон», и в нем я рассказывал о коррупции Дмитрия Медведева, тогда премьер-министра, до того президента.",
+   "question": "What was the subject of the investigation titled 'He Is Not Dimon to You'?",
+   "options": [
+    "Corruption by then-Prime Minister Dmitry Medvedev",
+    "Corruption in the Moscow police",
+    "Corruption at Gazprom",
+    "Corruption in the Central Election Commission"
+   ],
+   "correct": "Corruption by then-Prime Minister Dmitry Medvedev",
+   "explain": "The video was about \"коррупции Дмитрия Медведева, тогда премьер-министра\"."
+  },
+  {
+   "id": "r23",
+   "ru": "У него нашлось гигантское поместье на Волге в старинном городе Плесе.",
+   "question": "Where did investigators find a huge estate belonging to Medvedev?",
+   "options": [
+    "In the old town of Plyos on the Volga River",
+    "In Sochi on the Black Sea coast",
+    "In Siberia near Lake Baikal",
+    "Outside St. Petersburg"
+   ],
+   "correct": "In the old town of Plyos on the Volga River",
+   "explain": "They found \"гигантское поместье на Волге в старинном городе Плесе\"."
+  },
+  {
+   "id": "r24",
+   "ru": "Медведев просто обожает кроссовки.",
+   "question": "What unexpected personal obsession helped investigators trace Medvedev's hidden wealth?",
+   "options": [
+    "His love of buying sneakers",
+    "His love of luxury watches",
+    "His love of yachts",
+    "His love of fine wine"
+   ],
+   "correct": "His love of buying sneakers",
+   "explain": "They discovered \"Медведев просто обожает кроссовки\", ordering them by the dozen."
+  },
+  {
+   "id": "r25",
+   "ru": "Она надменно сказала, что мне отказано в допуске к выборам на основании приговора по делу Керафлеса.",
+   "question": "On what grounds did CEC chief Ella Pamfilova reject Navalny's presidential candidacy?",
+   "options": [
+    "His suspended sentence in the Kirovles (Yves Rocher) case",
+    "His lack of a party affiliation",
+    "His failure to submit paperwork on time",
+    "His prior conviction for treason"
+   ],
+   "correct": "His suspended sentence in the Kirovles (Yves Rocher) case",
+   "explain": "Pamfilova said he was refused \"на основании приговора по делу Керафлеса\"."
+  }
+ ],
+ "highlight": [
+  {
+   "id": "h1",
+   "question": "How does Navalny announce his presidential candidacy?",
+   "sentences": [
+    "«Привет, это Навальный.",
+    "Раз вы на меня подписаны, то вам сообщаю первому: я выдвигаю свою кандидатуру на выборы президента России».",
+    "Такое письмо 13 декабря 2016 года получили около миллиона человек — те, кто был подписан на какую-то из рассылок Фонда борьбы с коррупцией."
+   ],
+   "correct": [
+    0,
+    1
+   ],
+   "explain": "Sentences 0 and 1 show he sends a message on December 13, 2016, to around a million people subscribed to his anti-corruption foundation mailing lists, announcing his candidacy."
+  },
+  {
+   "id": "h2",
+   "question": "Why does the author work in a hotel rather than at home?",
+   "sentences": [
+    "Двенадцатого декабря, поздно вечером, прилетев обратно в Москву, я не поехал домой, а отправился в гостиницу.",
+    "Мы держали ролик в секрете, поэтому монтировали его очень маленькой командой, в которой не было профессиональных монтажёров.",
+    "Номер в гостинице был снова взят на подставное имя, и мы даже задёрнули шторы, чтобы с улицы нас не мог снять дрон.",
+    "Мои коллеги заранее привезли туда огромный компьютер, и мы сидели вокруг него в полутьме, пытаясь на ходу освоить программу для видеомонтажа."
+   ],
+   "correct": [
+    0,
+    1,
+    2
+   ],
+   "explain": "Sentences 0-2 explain that the video is kept secret with a small team, filmed in a hotel registered under a false name with curtains drawn to prevent drone surveillance."
+  },
+  {
+   "id": "h3",
+   "question": "What does the text say about the campaign headquarters?",
+   "sentences": [
+    "Штабы Навального — самая разветвлённая и быстрорастущая оппозиционная сеть в стране — наглядно показывали, что в Кремле нас опасаются не зря.",
+    "Даже после завершения кампании штабы в сорока крупнейших городах продолжали работать на протяжении нескольких лет, пока меня и моих сторонников не объявили экстремистами.",
+    "Многие сотрудники штабов стали популярными политиками в своих регионах.",
+    "Лилия Чанышева в Уфе и Ксения Фадеева в Томске — одни из самых ярких региональных координаторов и пример того, какими вообще должны быть настоящие политики: необыкновенно работоспособные, искренне преданные делу, толковые организаторы, а главное, честные люди.",
+    "В Кремле их тоже заметили.",
+    "Сейчас, когда я пишу эти строки, против Лилии и Ксении сфабрикованы уголовные дела."
+   ],
+   "correct": [
+    0,
+    1
+   ],
+   "explain": "Sentences 0 and 1 describe the headquarters as the most extensive and fastest-growing opposition network in the country, showing how much the Kremlin fears them."
+  },
+  {
+   "id": "h4",
+   "question": "Why are the regional visits important to Navalny?",
+   "sentences": [
+    "Несмотря на очень напряжённый график, эти поездки давали огромную отдачу.",
+    "Люди ценили, что к ним приехал кандидат в президенты, часто выкладывали фотографии со встреч в инстаграм и тем самым расширяли мою аудиторию.",
+    "Кроме того, мне были нужны голоса старшего поколения.",
+    "Как до них достучаться без телевизора?",
+    "Только встретиться лично."
+   ],
+   "correct": [
+    1,
+    2
+   ],
+   "explain": "Sentences 1 and 2 show that people value his personal visit, share photos online expanding his audience, and he needs votes from older generations unreachable by television."
+  },
+  {
+   "id": "h5",
+   "question": "What parallel case is mentioned regarding foreign influence?",
+   "sentences": [
+    "Незадолго до того, как мы опубликовали это расследование, в США как раз прогремела история о том, что глава предвыборного штаба Дональда Трампа, Пол Манафорт, получал миллионы долларов от Дерипаски, а сам рассказывал ему, что происходит в штабе.",
+    "Этот эпизод стал одним из доказательств вмешательства России в выборы в США.",
+    "Я тогда скептически к этому относился: ну какие рассказы?",
+    "Вряд ли Дерипаска вообще общается с Путиным.",
+    "А тут понял, что так это, видимо, и работало: вот же, прямо на яхте сидит чиновник путинского правительства и внимательно слушает."
+   ],
+   "correct": [
+    0,
+    1
+   ],
+   "explain": "Sentences 0 and 1 describe how Trump's campaign manager Manafort received millions from Deripaska and reported to him, becoming evidence of Russian interference in US elections."
+  },
+  {
+   "id": "h6",
+   "question": "What methods were used to obstruct Navalny's campaign?",
+   "sentences": [
+    "Существовали и другие способы препятствовать мне вести кампанию: согласитесь, непросто её вести, когда кандидат сидит, а я не вылезал из спецприёмников.",
+    "За тот год я провёл под арестом два месяца (эта практика так понравилась Кремлю, что в следующем году я провёл там уже три).",
+    "Во время президентской кампании первый раз меня посадили за митинг «Он вам не Димон»."
+   ],
+   "correct": [
+    0,
+    1
+   ],
+   "explain": "Sentences 0 and 1 mention that conducting a campaign while under arrest is difficult, and the author spent two months detained during that year, a practice the Kremlin repeated the following year."
+  }
+ ]
+}

@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Когда вышел Израиль из ___, и дом Иакова от народа чужеземного.",
-      "lemma": "Египет",
-      "options": ["Египета", "Египет", "Египету", "Египтом"],
-      "correct": "Египета",
-      "case": "Родительный (Genitive)",
-      "translation": "When Israel came out of Egypt, and the house of Jacob from the foreign people.",
-      "explain": "The preposition из (from, out of) always governs the genitive case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Иуда стал его святилищем, Израиль его ___.",
-      "lemma": "владение",
-      "options": ["владение", "владению", "владения", "владением"],
-      "correct": "владением",
-      "case": "Творительный (Instrumental)",
-      "translation": "Judah became his sanctuary, Israel his possession.",
-      "explain": "The predicate nominative here requires the instrumental case after the verb стал."
-    },
-    {
-      "id": "c3",
-      "sentence": "Море увидело это и отступило, река Иордан обратилась ___, горы запрыгали, как бараны.",
-      "lemma": "вспять",
-      "options": ["вспять", "вспятям", "вспяти", "вспятями"],
-      "correct": "вспять",
-      "case": "Наречие (Adverb)",
-      "translation": "The sea saw it and fled, the river Jordan turned back, the mountains skipped like rams.",
-      "explain": "Вспять is an adverbial form indicating direction or movement backwards."
-    },
-    {
-      "id": "c4",
-      "sentence": "Что с тобой ___, что ты отступила, и с тобой Иордан, что ты обратился вспять?",
-      "lemma": "море",
-      "options": ["море", "морю", "морем", "морях"],
-      "correct": "море",
-      "case": "Именительный (Nominative)",
-      "translation": "Why, O sea, did you flee? Why, O Jordan, did you turn back?",
-      "explain": "Море (sea) is the subject of the exclamatory clause and stands in nominative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Трепещи земля перед ___, перед Богом Иакова, который превратил скалу в озеро воды.",
-      "lemma": "Владыка",
-      "options": ["Владыкой", "Владыке", "Владыка", "Владык"],
-      "correct": "Владыкой",
-      "case": "Творительный (Instrumental)",
-      "translation": "Tremble, O earth, before the Lord, before the God of Jacob, who turned the rock into a pool of water.",
-      "explain": "The preposition перед (before, in front of) governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Наш Бог на небесах и делает все, что ему угодно, а их идолы серебро и золото — дело ___ человеческих.",
-      "lemma": "рука",
-      "options": ["рук", "руке", "руками", "рукам"],
-      "correct": "рук",
-      "case": "Родительный (Genitive)",
-      "translation": "Our God is in the heavens and does all that pleases him, while their idols are silver and gold, made by human hands.",
-      "explain": "The genitive case is used to express possession or attribution: дело рук (the work of hands)."
-    },
-    {
-      "id": "c7",
-      "sentence": "Израиль, уповай на ___, Он их помощь ищет.",
-      "lemma": "Господь",
-      "options": ["Господа", "Господе", "Господу", "Господом"],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "Israel, trust in the Lord. He seeks their help.",
-      "explain": "The verb уповать (to trust) is followed by the preposition на with the accusative case; уповай на Господа means 'trust in the Lord.'"
-    },
-    {
-      "id": "c8",
-      "sentence": "Не мертвые восхваляют Господа, и не нисходящие в тишину, а мы прославим Господа отныне и ___.",
-      "lemma": "век",
-      "options": ["века", "вовеки", "веке", "веков"],
-      "correct": "вовеки",
-      "case": "Наречие (Adverbial Expression)",
-      "translation": "The dead do not praise the Lord, nor those who go down into silence, but we will praise the Lord from now and forever.",
-      "explain": "Вовеки is an adverbial form meaning 'forever' derived from the prepositional phrase во + век."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Когда вышел Израиль из Египта, и дом Иакова от народа чужеземного, Иуда стал его святилищем, Израиль его владением.",
-      "question": "After leaving Egypt, what became Judah and Israel for God?",
-      "options": ["His sanctuary and his possession", "His servants and his people", "His cities and his lands", "His priests and his kings"],
-      "correct": "His sanctuary and his possession",
-      "explain": "The text explicitly states 'Иуда стал его святилищем, Израиль его владением' (Judah became his sanctuary, Israel his possession)."
-    },
-    {
-      "id": "r2",
-      "ru": "Море увидело это и отступило, река Иордан обратилась вспять, горы запрыгали, как бараны, и холмы, как ягнята.",
-      "question": "How did nature respond to God's saving acts?",
-      "options": ["The sea fled, the Jordan turned back, mountains skipped like rams, hills like lambs", "The earth trembled and the sky opened", "The waters froze and the winds stilled", "The sun darkened and the moon fell"],
-      "correct": "The sea fled, the Jordan turned back, mountains skipped like rams, hills like lambs",
-      "explain": "The text describes nature's reactions: the sea fled, the Jordan turned back, the mountains skipped and the hills leaped."
-    },
-    {
-      "id": "r3",
-      "ru": "Не нам, не нам, Господи, а имени Твоему да будет слава ради милости и верности Твоей.",
-      "question": "To whom should glory be given according to this prayer?",
-      "options": ["To God's name for His mercy and truth", "To the people for their faith", "To the land for its abundance", "To the righteous for their deeds"],
-      "correct": "To God's name for His mercy and truth",
-      "explain": "The text directly says 'имени Твоему да будет слава ради милости и верности Твоей' (to Your name be glory for Your mercy and faithfulness)."
-    },
-    {
-      "id": "r4",
-      "ru": "Наш Бог на небесах и делает все, что ему угодно, а их идолы серебро и золото — дело рук человеческих.",
-      "question": "What is the contrast between the true God and idols?",
-      "options": ["The true God is in heaven and does what He pleases; idols are made by human hands", "The true God is silent; idols speak", "The true God requires sacrifices; idols do not", "The true God is distant; idols are near"],
-      "correct": "The true God is in heaven and does what He pleases; idols are made by human hands",
-      "explain": "The text contrasts 'Наш Бог на небесах и делает все, что ему угодно' with 'их идолы серебро и золото — дело рук человеческих.'"
-    },
-    {
-      "id": "r5",
-      "ru": "У них есть уста, но они не говорят, у них есть глаза, но они не видят, у них есть уши, но они не слышат.",
-      "question": "What does this verse say about idols?",
-      "options": ["They have mouths but don't speak, eyes but don't see, ears but don't hear", "They are beautiful but powerless", "They are old but valuable", "They are silent but important"],
-      "correct": "They have mouths but don't speak, eyes but don't see, ears but don't hear",
-      "explain": "The text explicitly lists the body parts idols possess but cannot use: mouths, eyes, and ears."
-    },
-    {
-      "id": "r6",
-      "ru": "Господь нас помнит и благословит, благослови дом Израилев, благослови дом Ааронов, благословит всех боящихся Господа, малых и великих.",
-      "question": "Who will the Lord bless according to this verse?",
-      "options": ["The house of Israel, the house of Aaron, and all who fear the Lord, both small and great", "Only the righteous and the wealthy", "Only the priests and the Levites", "Only those who keep the law"],
-      "correct": "The house of Israel, the house of Aaron, and all who fear the Lord, both small and great",
-      "explain": "The text states that God will bless 'дом Израилев, дом Ааронов, и всех боящихся Господа, малых и великих' (the house of Israel, the house of Aaron, and all who fear the Lord, small and great)."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Когда вышел Израиль из ___, и дом Иакова от народа чужеземного.",
+   "lemma": "Египет",
+   "options": [
+    "Египета",
+    "Египет",
+    "Египету",
+    "Египтом"
+   ],
+   "correct": "Египета",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition из (from, out of) always governs the genitive case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Иуда стал его святилищем, Израиль его ___.",
+   "lemma": "владение",
+   "options": [
+    "владение",
+    "владению",
+    "владения",
+    "владением"
+   ],
+   "correct": "владением",
+   "case": "Творительный (Instrumental)",
+   "explain": "The predicate nominative here requires the instrumental case after the verb стал."
+  },
+  {
+   "id": "c3",
+   "sentence": "Море увидело это и отступило, река Иордан обратилась ___, горы запрыгали, как бараны.",
+   "lemma": "вспять",
+   "options": [
+    "вспять",
+    "вспятям",
+    "вспяти",
+    "вспятями"
+   ],
+   "correct": "вспять",
+   "case": "Наречие (Adverb)",
+   "explain": "Вспять is an adverbial form indicating direction or movement backwards."
+  },
+  {
+   "id": "c4",
+   "sentence": "Что с тобой ___, что ты отступила, и с тобой Иордан, что ты обратился вспять?",
+   "lemma": "море",
+   "options": [
+    "море",
+    "морю",
+    "морем",
+    "морях"
+   ],
+   "correct": "море",
+   "case": "Именительный (Nominative)",
+   "explain": "Море (sea) is the subject of the exclamatory clause and stands in nominative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Трепещи земля перед ___, перед Богом Иакова, который превратил скалу в озеро воды.",
+   "lemma": "Владыка",
+   "options": [
+    "Владыкой",
+    "Владыке",
+    "Владыка",
+    "Владык"
+   ],
+   "correct": "Владыкой",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition перед (before, in front of) governs the instrumental case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Наш Бог на небесах и делает все, что ему угодно, а их идолы серебро и золото — дело ___ человеческих.",
+   "lemma": "рука",
+   "options": [
+    "рук",
+    "руке",
+    "руками",
+    "рукам"
+   ],
+   "correct": "рук",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive case is used to express possession or attribution: дело рук (the work of hands)."
+  },
+  {
+   "id": "c7",
+   "sentence": "Израиль, уповай на ___, Он их помощь ищет.",
+   "lemma": "Господь",
+   "options": [
+    "Господа",
+    "Господе",
+    "Господу",
+    "Господом"
+   ],
+   "correct": "Господа",
+   "case": "Родительный (Genitive)",
+   "explain": "The verb уповать (to trust) is followed by the preposition на with the accusative case; уповай на Господа means 'trust in the Lord.'"
+  },
+  {
+   "id": "c8",
+   "sentence": "Не мертвые восхваляют Господа, и не нисходящие в тишину, а мы прославим Господа отныне и ___.",
+   "lemma": "век",
+   "options": [
+    "века",
+    "вовеки",
+    "веке",
+    "веков"
+   ],
+   "correct": "вовеки",
+   "case": "Наречие (Adverbial Expression)",
+   "explain": "Вовеки is an adverbial form meaning 'forever' derived from the prepositional phrase во + век."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Когда вышел Израиль из Египта, и дом Иакова от народа чужеземного, Иуда стал его святилищем, Израиль его владением.",
+   "question": "After leaving Egypt, what became Judah and Israel for God?",
+   "options": [
+    "His sanctuary and his possession",
+    "His servants and his people",
+    "His cities and his lands",
+    "His priests and his kings"
+   ],
+   "correct": "His sanctuary and his possession",
+   "explain": "The text explicitly states 'Иуда стал его святилищем, Израиль его владением' (Judah became his sanctuary, Israel his possession)."
+  },
+  {
+   "id": "r2",
+   "ru": "Море увидело это и отступило, река Иордан обратилась вспять, горы запрыгали, как бараны, и холмы, как ягнята.",
+   "question": "How did nature respond to God's saving acts?",
+   "options": [
+    "The sea fled, the Jordan turned back, mountains skipped like rams, hills like lambs",
+    "The earth trembled and the sky opened",
+    "The waters froze and the winds stilled",
+    "The sun darkened and the moon fell"
+   ],
+   "correct": "The sea fled, the Jordan turned back, mountains skipped like rams, hills like lambs",
+   "explain": "The text describes nature's reactions: the sea fled, the Jordan turned back, the mountains skipped and the hills leaped."
+  },
+  {
+   "id": "r3",
+   "ru": "Не нам, не нам, Господи, а имени Твоему да будет слава ради милости и верности Твоей.",
+   "question": "To whom should glory be given according to this prayer?",
+   "options": [
+    "To God's name for His mercy and truth",
+    "To the people for their faith",
+    "To the land for its abundance",
+    "To the righteous for their deeds"
+   ],
+   "correct": "To God's name for His mercy and truth",
+   "explain": "The text directly says 'имени Твоему да будет слава ради милости и верности Твоей' (to Your name be glory for Your mercy and faithfulness)."
+  },
+  {
+   "id": "r4",
+   "ru": "Наш Бог на небесах и делает все, что ему угодно, а их идолы серебро и золото — дело рук человеческих.",
+   "question": "What is the contrast between the true God and idols?",
+   "options": [
+    "The true God is in heaven and does what He pleases; idols are made by human hands",
+    "The true God is silent; idols speak",
+    "The true God requires sacrifices; idols do not",
+    "The true God is distant; idols are near"
+   ],
+   "correct": "The true God is in heaven and does what He pleases; idols are made by human hands",
+   "explain": "The text contrasts 'Наш Бог на небесах и делает все, что ему угодно' with 'их идолы серебро и золото — дело рук человеческих.'"
+  },
+  {
+   "id": "r5",
+   "ru": "У них есть уста, но они не говорят, у них есть глаза, но они не видят, у них есть уши, но они не слышат.",
+   "question": "What does this verse say about idols?",
+   "options": [
+    "They have mouths but don't speak, eyes but don't see, ears but don't hear",
+    "They are beautiful but powerless",
+    "They are old but valuable",
+    "They are silent but important"
+   ],
+   "correct": "They have mouths but don't speak, eyes but don't see, ears but don't hear",
+   "explain": "The text explicitly lists the body parts idols possess but cannot use: mouths, eyes, and ears."
+  },
+  {
+   "id": "r6",
+   "ru": "Господь нас помнит и благословит, благослови дом Израилев, благослови дом Ааронов, благословит всех боящихся Господа, малых и великих.",
+   "question": "Who will the Lord bless according to this verse?",
+   "options": [
+    "The house of Israel, the house of Aaron, and all who fear the Lord, both small and great",
+    "Only the righteous and the wealthy",
+    "Only the priests and the Levites",
+    "Only those who keep the law"
+   ],
+   "correct": "The house of Israel, the house of Aaron, and all who fear the Lord, both small and great",
+   "explain": "The text states that God will bless 'дом Израилев, дом Ааронов, и всех боящихся Господа, малых и великих' (the house of Israel, the house of Aaron, and all who fear the Lord, small and great)."
+  }
+ ]
 }

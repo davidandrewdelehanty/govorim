@@ -1,204 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "В ___, когда верховный военачальник пришел в город Аждод.",
-      "lemma": "год",
-      "options": [
-        "год",
-        "года",
-        "году",
-        "годом"
-      ],
-      "correct": "год",
-      "case": "Винительный (Accusative)",
-      "translation": "In the year when the supreme commander came to the city of Ashdod.",
-      "explain": "The accusative expresses temporal reference when used with prepositions like в."
-    },
-    {
-      "id": "c2",
-      "sentence": "Посланный царем ___ Саргоном.",
-      "lemma": "Осирия",
-      "options": [
-        "Осирия",
-        "Осирии",
-        "Осирию",
-        "Осирией"
-      ],
-      "correct": "Осирии",
-      "case": "Родительный (Genitive)",
-      "translation": "Sent by the king of Assyria Sargon.",
-      "explain": "The genitive expresses possession: the king of Assyria."
-    },
-    {
-      "id": "c3",
-      "sentence": "Сними рубище с ___ тела и сандалии с ног.",
-      "lemma": "тело",
-      "options": [
-        "тело",
-        "тела",
-        "телу",
-        "телом"
-      ],
-      "correct": "тела",
-      "case": "Родительный (Genitive)",
-      "translation": "Remove the sackcloth from your body and sandals from your feet.",
-      "explain": "The preposition с (from) requires the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Сними рубище с тела и ___ с ног.",
-      "lemma": "сандалия",
-      "options": [
-        "сандалия",
-        "сандалии",
-        "сандалию",
-        "сандалией"
-      ],
-      "correct": "сандалии",
-      "case": "Родительный (Genitive)",
-      "translation": "Remove sandals from your feet.",
-      "explain": "The preposition с (from) requires the genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Он сделал это и ходил раздетый и ___ во знамение.",
-      "lemma": "босой",
-      "options": [
-        "босой",
-        "босых",
-        "босому",
-        "босыми"
-      ],
-      "correct": "босой",
-      "case": "Именительный (Nominative)",
-      "translation": "He did this and walked naked and barefoot as a sign.",
-      "explain": "The adjective босой agrees with the subject ходил in the nominative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Три ___ ходил раздетый и босой во знамение.",
-      "lemma": "год",
-      "options": [
-        "год",
-        "года",
-        "году",
-        "годом"
-      ],
-      "correct": "года",
-      "case": "Родительный (Genitive)",
-      "translation": "Three years walked naked and barefoot as a sign.",
-      "explain": "The genitive is used with numerals: три года (three years)."
-    },
-    {
-      "id": "c7",
-      "sentence": "Как знак грядущего для ___ и Куша.",
-      "lemma": "Египет",
-      "options": [
-        "Египета",
-        "Египет",
-        "Египету",
-        "Египете"
-      ],
-      "correct": "Египета",
-      "case": "Родительный (Genitive)",
-      "translation": "As a sign for Egypt and Ethiopia.",
-      "explain": "The genitive expresses the beneficiary or recipient of the sign."
-    },
-    {
-      "id": "c8",
-      "sentence": "На позор ___.",
-      "lemma": "Египет",
-      "options": [
-        "Египета",
-        "Египет",
-        "Египету",
-        "Египете"
-      ],
-      "correct": "Египета",
-      "case": "Родительный (Genitive)",
-      "translation": "To the shame of Egypt.",
-      "explain": "The genitive follows prepositions expressing purpose or result."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "В год, когда верховный военачальник, посланный царем Осирии Саргоном, пришел к городу Аждоду.",
-      "question": "Who came to Ashdod and under whose authority?",
-      "options": [
-        "The supreme commander sent by the king of Assyria Sargon",
-        "The king himself leading an army",
-        "An ambassador requesting peace",
-        "Merchants from a distant land"
-      ],
-      "correct": "The supreme commander sent by the king of Assyria Sargon",
-      "explain": "The text identifies the visitor as Sargon's commander coming to Ashdod."
-    },
-    {
-      "id": "r2",
-      "ru": "Господь говорил через Исайю сына Амоца.",
-      "question": "Through whom does the Lord speak?",
-      "options": [
-        "Through Isaiah the son of Amoz",
-        "Through the king of Egypt",
-        "Through the priests",
-        "Through the city elders"
-      ],
-      "correct": "Through Isaiah the son of Amoz",
-      "explain": "The text explicitly names Isaiah as God's prophet delivering the message."
-    },
-    {
-      "id": "r3",
-      "ru": "Он сказал ему, «Сними рубище с тела и сандалии с ног».",
-      "question": "What command does God give to Isaiah?",
-      "options": [
-        "Remove sackcloth from your body and sandals from your feet",
-        "Put on royal robes and ornaments",
-        "Go to the temple and pray",
-        "Gather the people for an assembly"
-      ],
-      "correct": "Remove sackcloth from your body and sandals from your feet",
-      "explain": "God directly commands Isaiah to remove his garments and footwear."
-    },
-    {
-      "id": "r4",
-      "ru": "Как мой слуга Исаия три года ходил раздетый и босой во знамение.",
-      "question": "How long was Isaiah to walk naked and barefoot?",
-      "options": [
-        "For three years as a sign",
-        "For one year only",
-        "For the rest of his life",
-        "For forty days"
-      ],
-      "correct": "For three years as a sign",
-      "explain": "The text specifies a three-year period for this sign to the people."
-    },
-    {
-      "id": "r5",
-      "ru": "Так царь Осирии уведет раздетых и босых египетских пленников.",
-      "question": "What will the king of Assyria do to Egyptian prisoners?",
-      "options": [
-        "Lead them away naked and barefoot as captives",
-        "Treat them with honor and respect",
-        "Grant them freedom and land",
-        "Return them to their families"
-      ],
-      "correct": "Lead them away naked and barefoot as captives",
-      "explain": "Isaiah's sign prophesies the shameful captivity and humiliation of Egyptians."
-    },
-    {
-      "id": "r6",
-      "ru": "Те, кто надеялся на куш и хвалился Египтом, ужаснутся и будут опозорены.",
-      "question": "What will happen to those who relied on Ethiopia and Egypt?",
-      "options": [
-        "They will be dismayed and ashamed",
-        "They will be rewarded greatly",
-        "They will find safety and protection",
-        "They will be forgotten"
-      ],
-      "correct": "They will be dismayed and ashamed",
-      "explain": "Those who trusted in these powers will experience terror and disgrace."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "В ___, когда верховный военачальник пришел в город Аждод.",
+   "lemma": "год",
+   "options": [
+    "год",
+    "года",
+    "году",
+    "годом"
+   ],
+   "correct": "год",
+   "case": "Винительный (Accusative)",
+   "explain": "The accusative expresses temporal reference when used with prepositions like в."
+  },
+  {
+   "id": "c2",
+   "sentence": "Посланный царем ___ Саргоном.",
+   "lemma": "Осирия",
+   "options": [
+    "Осирия",
+    "Осирии",
+    "Осирию",
+    "Осирией"
+   ],
+   "correct": "Осирии",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive expresses possession: the king of Assyria."
+  },
+  {
+   "id": "c3",
+   "sentence": "Сними рубище с ___ тела и сандалии с ног.",
+   "lemma": "тело",
+   "options": [
+    "тело",
+    "тела",
+    "телу",
+    "телом"
+   ],
+   "correct": "тела",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition с (from) requires the genitive case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Сними рубище с тела и ___ с ног.",
+   "lemma": "сандалия",
+   "options": [
+    "сандалия",
+    "сандалии",
+    "сандалию",
+    "сандалией"
+   ],
+   "correct": "сандалии",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition с (from) requires the genitive case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Он сделал это и ходил раздетый и ___ во знамение.",
+   "lemma": "босой",
+   "options": [
+    "босой",
+    "босых",
+    "босому",
+    "босыми"
+   ],
+   "correct": "босой",
+   "case": "Именительный (Nominative)",
+   "explain": "The adjective босой agrees with the subject ходил in the nominative case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Три ___ ходил раздетый и босой во знамение.",
+   "lemma": "год",
+   "options": [
+    "год",
+    "года",
+    "году",
+    "годом"
+   ],
+   "correct": "года",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive is used with numerals: три года (three years)."
+  },
+  {
+   "id": "c7",
+   "sentence": "Как знак грядущего для ___ и Куша.",
+   "lemma": "Египет",
+   "options": [
+    "Египета",
+    "Египет",
+    "Египету",
+    "Египете"
+   ],
+   "correct": "Египета",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive expresses the beneficiary or recipient of the sign."
+  },
+  {
+   "id": "c8",
+   "sentence": "На позор ___.",
+   "lemma": "Египет",
+   "options": [
+    "Египета",
+    "Египет",
+    "Египету",
+    "Египете"
+   ],
+   "correct": "Египета",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive follows prepositions expressing purpose or result."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "В год, когда верховный военачальник, посланный царем Осирии Саргоном, пришел к городу Аждоду.",
+   "question": "Who came to Ashdod and under whose authority?",
+   "options": [
+    "The supreme commander sent by the king of Assyria Sargon",
+    "The king himself leading an army",
+    "An ambassador requesting peace",
+    "Merchants from a distant land"
+   ],
+   "correct": "The supreme commander sent by the king of Assyria Sargon",
+   "explain": "The text identifies the visitor as Sargon's commander coming to Ashdod."
+  },
+  {
+   "id": "r2",
+   "ru": "Господь говорил через Исайю сына Амоца.",
+   "question": "Through whom does the Lord speak?",
+   "options": [
+    "Through Isaiah the son of Amoz",
+    "Through the king of Egypt",
+    "Through the priests",
+    "Through the city elders"
+   ],
+   "correct": "Through Isaiah the son of Amoz",
+   "explain": "The text explicitly names Isaiah as God's prophet delivering the message."
+  },
+  {
+   "id": "r3",
+   "ru": "Он сказал ему, «Сними рубище с тела и сандалии с ног».",
+   "question": "What command does God give to Isaiah?",
+   "options": [
+    "Remove sackcloth from your body and sandals from your feet",
+    "Put on royal robes and ornaments",
+    "Go to the temple and pray",
+    "Gather the people for an assembly"
+   ],
+   "correct": "Remove sackcloth from your body and sandals from your feet",
+   "explain": "God directly commands Isaiah to remove his garments and footwear."
+  },
+  {
+   "id": "r4",
+   "ru": "Как мой слуга Исаия три года ходил раздетый и босой во знамение.",
+   "question": "How long was Isaiah to walk naked and barefoot?",
+   "options": [
+    "For three years as a sign",
+    "For one year only",
+    "For the rest of his life",
+    "For forty days"
+   ],
+   "correct": "For three years as a sign",
+   "explain": "The text specifies a three-year period for this sign to the people."
+  },
+  {
+   "id": "r5",
+   "ru": "Так царь Осирии уведет раздетых и босых египетских пленников.",
+   "question": "What will the king of Assyria do to Egyptian prisoners?",
+   "options": [
+    "Lead them away naked and barefoot as captives",
+    "Treat them with honor and respect",
+    "Grant them freedom and land",
+    "Return them to their families"
+   ],
+   "correct": "Lead them away naked and barefoot as captives",
+   "explain": "Isaiah's sign prophesies the shameful captivity and humiliation of Egyptians."
+  },
+  {
+   "id": "r6",
+   "ru": "Те, кто надеялся на куш и хвалился Египтом, ужаснутся и будут опозорены.",
+   "question": "What will happen to those who relied on Ethiopia and Egypt?",
+   "options": [
+    "They will be dismayed and ashamed",
+    "They will be rewarded greatly",
+    "They will find safety and protection",
+    "They will be forgotten"
+   ],
+   "correct": "They will be dismayed and ashamed",
+   "explain": "Those who trusted in these powers will experience terror and disgrace."
+  }
+ ]
 }

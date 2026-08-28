@@ -1,204 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ мое твердо, Боже, буду петь и играть душой моей.",
-      "lemma": "сердце",
-      "options": [
-        "Сердце",
-        "сердца",
-        "сердцу",
-        "сердцем"
-      ],
-      "correct": "Сердце",
-      "case": "Именительный (Nominative)",
-      "translation": "My heart is steadfast, O God, I will sing and make music with all my soul.",
-      "explain": "Сердце is the grammatical subject, so it takes the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Я разбужу ___.",
-      "lemma": "зарю",
-      "options": [
-        "зарю",
-        "заря",
-        "зари",
-        "заре"
-      ],
-      "correct": "зарю",
-      "case": "Винительный (Accusative)",
-      "translation": "I will awaken the dawn.",
-      "explain": "Direct object of разбужу takes the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Прославлю Тебя, Господи, среди ___.",
-      "lemma": "народ",
-      "options": [
-        "народов",
-        "народ",
-        "народа",
-        "народу"
-      ],
-      "correct": "народов",
-      "case": "Родительный (Genitive)",
-      "translation": "I will praise you, O Lord, among the nations.",
-      "explain": "The preposition среди (among) governs the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Выше ___ будь превознесен, Боже.",
-      "lemma": "небо",
-      "options": [
-        "небес",
-        "небо",
-        "неба",
-        "небу"
-      ],
-      "correct": "небес",
-      "case": "Родительный (Genitive)",
-      "translation": "Be exalted above the heavens, O God.",
-      "explain": "The comparative выше (above) requires the genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Над всей ___ да будет слава Твоя.",
-      "lemma": "земля",
-      "options": [
-        "землей",
-        "земля",
-        "земли",
-        "земле"
-      ],
-      "correct": "землей",
-      "case": "Творительный (Instrumental)",
-      "translation": "Let your glory be over all the earth.",
-      "explain": "The preposition над (over) governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Сохрани нас правой ___ своей.",
-      "lemma": "рука",
-      "options": [
-        "рукой",
-        "рука",
-        "руки",
-        "руке"
-      ],
-      "correct": "рукой",
-      "case": "Творительный (Instrumental)",
-      "translation": "Save us with your right hand.",
-      "explain": "The instrumental case shows the means of action."
-    },
-    {
-      "id": "c7",
-      "sentence": "Кто приведет меня в укрепленный ___?",
-      "lemma": "город",
-      "options": [
-        "город",
-        "города",
-        "городу",
-        "городом"
-      ],
-      "correct": "город",
-      "case": "Винительный (Accusative)",
-      "translation": "Who will lead me to the fortified city?",
-      "explain": "The preposition в (into) with accusative indicates direction."
-    },
-    {
-      "id": "c8",
-      "sentence": "С ___ мы одержим победу.",
-      "lemma": "Господь",
-      "options": [
-        "Богом",
-        "Господь",
-        "Господа",
-        "Господу"
-      ],
-      "correct": "Богом",
-      "case": "Творительный (Instrumental)",
-      "translation": "With God we will gain the victory.",
-      "explain": "The preposition с (with) governing instrumental indicates association."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Сердце мое твердо, Боже, буду петь и играть душой моей.",
-      "question": "What does the psalmist resolve to do?",
-      "options": [
-        "Sing and make music with his whole being",
-        "Build a temple",
-        "Fight his enemies",
-        "Offer sacrifices"
-      ],
-      "correct": "Sing and make music with his whole being",
-      "explain": "From the text: Сердце мое твердо, Боже, буду петь и играть душой ..."
-    },
-    {
-      "id": "r2",
-      "ru": "Прославлю Тебя, Господи, среди народов, воспою Тебя среди племен.",
-      "question": "Where will the psalmist praise the Lord?",
-      "options": [
-        "In the temple",
-        "Among nations and peoples",
-        "In the wilderness",
-        "In his house"
-      ],
-      "correct": "Among nations and peoples",
-      "explain": "From the text: Прославлю Тебя, Господи, среди народов, воспою Теб..."
-    },
-    {
-      "id": "r3",
-      "ru": "Потому что милость Твоя превыше небес, и верность Твоя достигает облаков.",
-      "question": "What comparison is made about God's attributes?",
-      "options": [
-        "His mercy is stronger than enemies",
-        "His mercy is higher than the heavens",
-        "His mercy is eternal",
-        "His mercy is hidden"
-      ],
-      "correct": "His mercy is higher than the heavens",
-      "explain": "From the text: Потому что милость Твоя превыше небес, и верность ..."
-    },
-    {
-      "id": "r4",
-      "ru": "Сохрани нас правой рукой своей и ответь нам, чтобы возлюбленные Тобой спаслись.",
-      "question": "What does the psalmist ask God to do?",
-      "options": [
-        "Destroy his enemies",
-        "Save us with your right hand so the loved ones may be saved",
-        "Give us wealth",
-        "Make us kings"
-      ],
-      "correct": "Save us with your right hand so the loved ones may be saved",
-      "explain": "From the text: Сохрани нас правой рукой своей и ответь нам, чтобы..."
-    },
-    {
-      "id": "r5",
-      "ru": "Кто приведет меня в укрепленный город? Кто доведет меня до Эдома?",
-      "question": "What is the psalmist asking in this verse?",
-      "options": [
-        "Who will give him a city?",
-        "Who will lead him to fortified cities and to Edom?",
-        "Who will make him strong?",
-        "Who will teach him?"
-      ],
-      "correct": "Who will lead him to fortified cities and to Edom?",
-      "explain": "From the text: Кто приведет меня в укрепленный город? Кто доведет..."
-    },
-    {
-      "id": "r6",
-      "ru": "С Богом мы одержим победу, Он не звергнет наших врагов.",
-      "question": "What does the psalmist declare about victory?",
-      "options": [
-        "Victory is impossible",
-        "With God we will gain victory and He will overcome enemies",
-        "Enemies will defeat us",
-        "We must fight alone"
-      ],
-      "correct": "With God we will gain victory and He will overcome enemies",
-      "explain": "From the text: С Богом мы одержим победу, Он не звергнет наших вр..."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "___ мое твердо, Боже, буду петь и играть душой моей.",
+   "lemma": "сердце",
+   "options": [
+    "Сердце",
+    "сердца",
+    "сердцу",
+    "сердцем"
+   ],
+   "correct": "Сердце",
+   "case": "Именительный (Nominative)",
+   "explain": "Сердце is the grammatical subject, so it takes the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Я разбужу ___.",
+   "lemma": "зарю",
+   "options": [
+    "зарю",
+    "заря",
+    "зари",
+    "заре"
+   ],
+   "correct": "зарю",
+   "case": "Винительный (Accusative)",
+   "explain": "Direct object of разбужу takes the accusative case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Прославлю Тебя, Господи, среди ___.",
+   "lemma": "народ",
+   "options": [
+    "народов",
+    "народ",
+    "народа",
+    "народу"
+   ],
+   "correct": "народов",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition среди (among) governs the genitive case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Выше ___ будь превознесен, Боже.",
+   "lemma": "небо",
+   "options": [
+    "небес",
+    "небо",
+    "неба",
+    "небу"
+   ],
+   "correct": "небес",
+   "case": "Родительный (Genitive)",
+   "explain": "The comparative выше (above) requires the genitive case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Над всей ___ да будет слава Твоя.",
+   "lemma": "земля",
+   "options": [
+    "землей",
+    "земля",
+    "земли",
+    "земле"
+   ],
+   "correct": "землей",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition над (over) governs the instrumental case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Сохрани нас правой ___ своей.",
+   "lemma": "рука",
+   "options": [
+    "рукой",
+    "рука",
+    "руки",
+    "руке"
+   ],
+   "correct": "рукой",
+   "case": "Творительный (Instrumental)",
+   "explain": "The instrumental case shows the means of action."
+  },
+  {
+   "id": "c7",
+   "sentence": "Кто приведет меня в укрепленный ___?",
+   "lemma": "город",
+   "options": [
+    "город",
+    "города",
+    "городу",
+    "городом"
+   ],
+   "correct": "город",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition в (into) with accusative indicates direction."
+  },
+  {
+   "id": "c8",
+   "sentence": "С ___ мы одержим победу.",
+   "lemma": "Господь",
+   "options": [
+    "Богом",
+    "Господь",
+    "Господа",
+    "Господу"
+   ],
+   "correct": "Богом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition с (with) governing instrumental indicates association."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Сердце мое твердо, Боже, буду петь и играть душой моей.",
+   "question": "What does the psalmist resolve to do?",
+   "options": [
+    "Sing and make music with his whole being",
+    "Build a temple",
+    "Fight his enemies",
+    "Offer sacrifices"
+   ],
+   "correct": "Sing and make music with his whole being",
+   "explain": "From the text: Сердце мое твердо, Боже, буду петь и играть душой ..."
+  },
+  {
+   "id": "r2",
+   "ru": "Прославлю Тебя, Господи, среди народов, воспою Тебя среди племен.",
+   "question": "Where will the psalmist praise the Lord?",
+   "options": [
+    "In the temple",
+    "Among nations and peoples",
+    "In the wilderness",
+    "In his house"
+   ],
+   "correct": "Among nations and peoples",
+   "explain": "From the text: Прославлю Тебя, Господи, среди народов, воспою Теб..."
+  },
+  {
+   "id": "r3",
+   "ru": "Потому что милость Твоя превыше небес, и верность Твоя достигает облаков.",
+   "question": "What comparison is made about God's attributes?",
+   "options": [
+    "His mercy is stronger than enemies",
+    "His mercy is higher than the heavens",
+    "His mercy is eternal",
+    "His mercy is hidden"
+   ],
+   "correct": "His mercy is higher than the heavens",
+   "explain": "From the text: Потому что милость Твоя превыше небес, и верность ..."
+  },
+  {
+   "id": "r4",
+   "ru": "Сохрани нас правой рукой своей и ответь нам, чтобы возлюбленные Тобой спаслись.",
+   "question": "What does the psalmist ask God to do?",
+   "options": [
+    "Destroy his enemies",
+    "Save us with your right hand so the loved ones may be saved",
+    "Give us wealth",
+    "Make us kings"
+   ],
+   "correct": "Save us with your right hand so the loved ones may be saved",
+   "explain": "From the text: Сохрани нас правой рукой своей и ответь нам, чтобы..."
+  },
+  {
+   "id": "r5",
+   "ru": "Кто приведет меня в укрепленный город? Кто доведет меня до Эдома?",
+   "question": "What is the psalmist asking in this verse?",
+   "options": [
+    "Who will give him a city?",
+    "Who will lead him to fortified cities and to Edom?",
+    "Who will make him strong?",
+    "Who will teach him?"
+   ],
+   "correct": "Who will lead him to fortified cities and to Edom?",
+   "explain": "From the text: Кто приведет меня в укрепленный город? Кто доведет..."
+  },
+  {
+   "id": "r6",
+   "ru": "С Богом мы одержим победу, Он не звергнет наших врагов.",
+   "question": "What does the psalmist declare about victory?",
+   "options": [
+    "Victory is impossible",
+    "With God we will gain victory and He will overcome enemies",
+    "Enemies will defeat us",
+    "We must fight alone"
+   ],
+   "correct": "With God we will gain victory and He will overcome enemies",
+   "explain": "From the text: С Богом мы одержим победу, Он не звергнет наших вр..."
+  }
+ ]
 }

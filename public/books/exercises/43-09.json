@@ -1,154 +1,233 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Человек ответил: «Он ___».",
-      "lemma": "пророк",
-      "options": ["пророк", "пророка", "пророку", "пророком"],
-      "correct": "пророк",
-      "case": "Именительный (Nominative)",
-      "translation": "The man answered, 'He is a prophet.'",
-      "explain": "Пророк is a predicate noun describing the subject он, so it stays in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Нет, это не из-за его греха, или ___ его родителей",
-      "lemma": "грех",
-      "options": ["грех", "греха", "греху", "грехом"],
-      "correct": "греха",
-      "case": "Родительный (Genitive)",
-      "translation": "No, it is not because of his sin, or that of his parents.",
-      "explain": "The preposition из-за governs the genitive case for both items in the list."
-    },
-    {
-      "id": "c3",
-      "sentence": "«Воздай славу ___», — сказали они.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Богу",
-      "case": "Дательный (Dative)",
-      "translation": "'Give glory to God,' they said.",
-      "explain": "The verb воздать (to render/give) takes an indirect object in the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Иисус, проходя мимо, увидел ___ слепого от рождения.",
-      "lemma": "человек",
-      "options": ["человек", "человека", "человеку", "человеком"],
-      "correct": "человека",
-      "case": "Винительный (Accusative)",
-      "translation": "As Jesus passed by, he saw a man blind from birth.",
-      "explain": "The transitive verb увидеть takes a direct object; for animate masculine nouns the accusative form matches the genitive."
-    },
-    {
-      "id": "c5",
-      "sentence": "Иисус... смешал слюну с ___ и помазал ею глаза слепому.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "землю", "землёй"],
-      "correct": "землёй",
-      "case": "Творительный (Instrumental)",
-      "translation": "Jesus mixed saliva with dirt and anointed the blind man's eyes with it.",
-      "explain": "The preposition с meaning 'with' governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Пока я в ___, я свет миру.",
-      "lemma": "мир",
-      "options": ["мир", "мира", "миру", "мире"],
-      "correct": "мире",
-      "case": "Предложный (Prepositional)",
-      "translation": "While I am in the world, I am the light of the world.",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Однажды Иисус, проходя мимо, увидел человека слепого от рождения.",
-      "question": "What was notable about the man Jesus saw?",
-      "options": ["He was blind from birth", "He was lame from birth", "He was deaf from birth", "He was mute from birth"],
-      "correct": "He was blind from birth",
-      "explain": "The text says Jesus saw a man 'слепого от рождения' (blind from birth)."
-    },
-    {
-      "id": "r2",
-      "ru": "Ученики его спросили, «Рабби, почему этот человек родился слепым? Кто согрешил, он сам или его родители?»",
-      "question": "What did the disciples ask about the blind man?",
-      "options": ["Whether he or his parents had sinned to cause his blindness", "Whether he was a foreigner", "Whether he could be healed on the Sabbath", "Whether his parents were poor"],
-      "correct": "Whether he or his parents had sinned to cause his blindness",
-      "explain": "The disciples asked who sinned, the man himself or his parents, that he was born blind."
-    },
-    {
-      "id": "r3",
-      "ru": "«Это произошло для того, чтобы на нем были явлены Божьи дела.",
-      "question": "According to Jesus, why was the man born blind?",
-      "options": ["So that God's works might be displayed in him", "Because his parents sinned greatly", "Because he sinned before birth", "It was simply an accident of nature"],
-      "correct": "So that God's works might be displayed in him",
-      "explain": "Jesus said it happened so that God's works would be revealed in him."
-    },
-    {
-      "id": "r4",
-      "ru": "Сказав это, Иисус плюнул на землю, смешал слюну с землей и помазал ею глаза слепому.",
-      "question": "What did Jesus do to heal the blind man's eyes?",
-      "options": ["He made mud from spit and dirt and anointed the man's eyes", "He touched the eyes with a cloth", "He simply spoke a command", "He poured oil on the man's head"],
-      "correct": "He made mud from spit and dirt and anointed the man's eyes",
-      "explain": "Jesus spat on the ground, mixed saliva with dirt, and anointed the blind man's eyes with it."
-    },
-    {
-      "id": "r5",
-      "ru": "«А теперь пойди и умойся в пруду Силаам», — сказал он слепому.",
-      "question": "Where did Jesus tell the man to wash?",
-      "options": ["In the pool of Siloam", "In the Jordan River", "In the Sea of Galilee", "In a well near the temple"],
-      "correct": "In the pool of Siloam",
-      "explain": "Jesus told him to go and wash in the pool of Siloam."
-    },
-    {
-      "id": "r6",
-      "ru": "Соседи его и те, кто раньше видели его просящим милостыню, спрашивали, «Разве это не он сидел и просил милостыню?»",
-      "question": "What did the neighbors wonder about the healed man?",
-      "options": ["Whether he was the same man who used to beg", "Whether he was a Roman soldier", "Whether he was a relative of Lazarus", "Whether he was the temple priest"],
-      "correct": "Whether he was the same man who used to beg",
-      "explain": "The neighbors who had seen him begging asked whether this was the same man."
-    },
-    {
-      "id": "r7",
-      "ru": "Человека, который раньше был слепым, привели к фарисеям, потому что Иисус смешал грязь и открыл ему глаза в субботу.",
-      "question": "Why was the healing brought before the Pharisees as a problem?",
-      "options": ["Because it happened on the Sabbath", "Because the man refused to pay a fee", "Because Jesus healed him without asking", "Because the man was not Jewish"],
-      "correct": "Because it happened on the Sabbath",
-      "explain": "The healing was controversial because Jesus made the mud and opened the man's eyes on the Sabbath."
-    },
-    {
-      "id": "r8",
-      "ru": "Иудеи все еще не верили, что он был слеп и что обрел зрение, поэтому позвали его родителей.",
-      "question": "Whom did the Jewish leaders call in to confirm the healing?",
-      "options": ["The man's parents", "The man's neighbors", "The synagogue elders", "The Roman governor"],
-      "correct": "The man's parents",
-      "explain": "Because the Jews doubted the healing, they summoned the man's parents."
-    },
-    {
-      "id": "r9",
-      "ru": "«Воздай славу Богу», — сказали они. «Мы знаем, что этот человек грешник».",
-      "question": "What did the leaders demand of the healed man the second time they questioned him?",
-      "options": ["That he give glory to God, since they believed Jesus was a sinner", "That he pay back the cost of his sight", "That he leave Jerusalem forever", "That he become a Pharisee"],
-      "correct": "That he give glory to God, since they believed Jesus was a sinner",
-      "explain": "They told him to give glory to God, insisting that Jesus was a sinner."
-    },
-    {
-      "id": "r10",
-      "ru": "И они выгнали его вон.",
-      "question": "What happened to the healed man after he defended Jesus?",
-      "options": ["They threw him out", "They praised him", "They made him a Pharisee", "They gave him money"],
-      "correct": "They threw him out",
-      "explain": "After he argued with them, the religious leaders threw him out."
-    },
-    {
-      "id": "r11",
-      "ru": "Иисус сказал, «Я пришел в этот мир для суда, чтобы слепые видели, а те, кто видят, стали слепыми».",
-      "question": "What did Jesus say was the purpose of his coming, according to this passage?",
-      "options": ["For judgment, so the blind would see and those who see would become blind", "To end all sickness in the world", "To condemn the Pharisees to death", "To abolish the Sabbath laws"],
-      "correct": "For judgment, so the blind would see and those who see would become blind",
-      "explain": "Jesus said he came into the world for judgment, that the blind would see and those who see would become blind."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Человек ответил: «Он ___».",
+   "lemma": "пророк",
+   "options": [
+    "пророк",
+    "пророка",
+    "пророку",
+    "пророком"
+   ],
+   "correct": "пророк",
+   "case": "Именительный (Nominative)",
+   "explain": "Пророк is a predicate noun describing the subject он, so it stays in the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Нет, это не из-за его греха, или ___ его родителей",
+   "lemma": "грех",
+   "options": [
+    "грех",
+    "греха",
+    "греху",
+    "грехом"
+   ],
+   "correct": "греха",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition из-за governs the genitive case for both items in the list."
+  },
+  {
+   "id": "c3",
+   "sentence": "«Воздай славу ___», — сказали они.",
+   "lemma": "Бог",
+   "options": [
+    "Бог",
+    "Бога",
+    "Богу",
+    "Богом"
+   ],
+   "correct": "Богу",
+   "case": "Дательный (Dative)",
+   "explain": "The verb воздать (to render/give) takes an indirect object in the dative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Иисус, проходя мимо, увидел ___ слепого от рождения.",
+   "lemma": "человек",
+   "options": [
+    "человек",
+    "человека",
+    "человеку",
+    "человеком"
+   ],
+   "correct": "человека",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb увидеть takes a direct object; for animate masculine nouns the accusative form matches the genitive."
+  },
+  {
+   "id": "c5",
+   "sentence": "Иисус... смешал слюну с ___ и помазал ею глаза слепому.",
+   "lemma": "земля",
+   "options": [
+    "земля",
+    "земли",
+    "землю",
+    "землёй"
+   ],
+   "correct": "землёй",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition с meaning 'with' governs the instrumental case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Пока я в ___, я свет миру.",
+   "lemma": "мир",
+   "options": [
+    "мир",
+    "мира",
+    "миру",
+    "мире"
+   ],
+   "correct": "мире",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в indicating location takes the prepositional case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Однажды Иисус, проходя мимо, увидел человека слепого от рождения.",
+   "question": "What was notable about the man Jesus saw?",
+   "options": [
+    "He was blind from birth",
+    "He was lame from birth",
+    "He was deaf from birth",
+    "He was mute from birth"
+   ],
+   "correct": "He was blind from birth",
+   "explain": "The text says Jesus saw a man 'слепого от рождения' (blind from birth)."
+  },
+  {
+   "id": "r2",
+   "ru": "Ученики его спросили, «Рабби, почему этот человек родился слепым? Кто согрешил, он сам или его родители?»",
+   "question": "What did the disciples ask about the blind man?",
+   "options": [
+    "Whether he or his parents had sinned to cause his blindness",
+    "Whether he was a foreigner",
+    "Whether he could be healed on the Sabbath",
+    "Whether his parents were poor"
+   ],
+   "correct": "Whether he or his parents had sinned to cause his blindness",
+   "explain": "The disciples asked who sinned, the man himself or his parents, that he was born blind."
+  },
+  {
+   "id": "r3",
+   "ru": "«Это произошло для того, чтобы на нем были явлены Божьи дела.",
+   "question": "According to Jesus, why was the man born blind?",
+   "options": [
+    "So that God's works might be displayed in him",
+    "Because his parents sinned greatly",
+    "Because he sinned before birth",
+    "It was simply an accident of nature"
+   ],
+   "correct": "So that God's works might be displayed in him",
+   "explain": "Jesus said it happened so that God's works would be revealed in him."
+  },
+  {
+   "id": "r4",
+   "ru": "Сказав это, Иисус плюнул на землю, смешал слюну с землей и помазал ею глаза слепому.",
+   "question": "What did Jesus do to heal the blind man's eyes?",
+   "options": [
+    "He made mud from spit and dirt and anointed the man's eyes",
+    "He touched the eyes with a cloth",
+    "He simply spoke a command",
+    "He poured oil on the man's head"
+   ],
+   "correct": "He made mud from spit and dirt and anointed the man's eyes",
+   "explain": "Jesus spat on the ground, mixed saliva with dirt, and anointed the blind man's eyes with it."
+  },
+  {
+   "id": "r5",
+   "ru": "«А теперь пойди и умойся в пруду Силаам», — сказал он слепому.",
+   "question": "Where did Jesus tell the man to wash?",
+   "options": [
+    "In the pool of Siloam",
+    "In the Jordan River",
+    "In the Sea of Galilee",
+    "In a well near the temple"
+   ],
+   "correct": "In the pool of Siloam",
+   "explain": "Jesus told him to go and wash in the pool of Siloam."
+  },
+  {
+   "id": "r6",
+   "ru": "Соседи его и те, кто раньше видели его просящим милостыню, спрашивали, «Разве это не он сидел и просил милостыню?»",
+   "question": "What did the neighbors wonder about the healed man?",
+   "options": [
+    "Whether he was the same man who used to beg",
+    "Whether he was a Roman soldier",
+    "Whether he was a relative of Lazarus",
+    "Whether he was the temple priest"
+   ],
+   "correct": "Whether he was the same man who used to beg",
+   "explain": "The neighbors who had seen him begging asked whether this was the same man."
+  },
+  {
+   "id": "r7",
+   "ru": "Человека, который раньше был слепым, привели к фарисеям, потому что Иисус смешал грязь и открыл ему глаза в субботу.",
+   "question": "Why was the healing brought before the Pharisees as a problem?",
+   "options": [
+    "Because it happened on the Sabbath",
+    "Because the man refused to pay a fee",
+    "Because Jesus healed him without asking",
+    "Because the man was not Jewish"
+   ],
+   "correct": "Because it happened on the Sabbath",
+   "explain": "The healing was controversial because Jesus made the mud and opened the man's eyes on the Sabbath."
+  },
+  {
+   "id": "r8",
+   "ru": "Иудеи все еще не верили, что он был слеп и что обрел зрение, поэтому позвали его родителей.",
+   "question": "Whom did the Jewish leaders call in to confirm the healing?",
+   "options": [
+    "The man's parents",
+    "The man's neighbors",
+    "The synagogue elders",
+    "The Roman governor"
+   ],
+   "correct": "The man's parents",
+   "explain": "Because the Jews doubted the healing, they summoned the man's parents."
+  },
+  {
+   "id": "r9",
+   "ru": "«Воздай славу Богу», — сказали они. «Мы знаем, что этот человек грешник».",
+   "question": "What did the leaders demand of the healed man the second time they questioned him?",
+   "options": [
+    "That he give glory to God, since they believed Jesus was a sinner",
+    "That he pay back the cost of his sight",
+    "That he leave Jerusalem forever",
+    "That he become a Pharisee"
+   ],
+   "correct": "That he give glory to God, since they believed Jesus was a sinner",
+   "explain": "They told him to give glory to God, insisting that Jesus was a sinner."
+  },
+  {
+   "id": "r10",
+   "ru": "И они выгнали его вон.",
+   "question": "What happened to the healed man after he defended Jesus?",
+   "options": [
+    "They threw him out",
+    "They praised him",
+    "They made him a Pharisee",
+    "They gave him money"
+   ],
+   "correct": "They threw him out",
+   "explain": "After he argued with them, the religious leaders threw him out."
+  },
+  {
+   "id": "r11",
+   "ru": "Иисус сказал, «Я пришел в этот мир для суда, чтобы слепые видели, а те, кто видят, стали слепыми».",
+   "question": "What did Jesus say was the purpose of his coming, according to this passage?",
+   "options": [
+    "For judgment, so the blind would see and those who see would become blind",
+    "To end all sickness in the world",
+    "To condemn the Pharisees to death",
+    "To abolish the Sabbath laws"
+   ],
+   "correct": "For judgment, so the blind would see and those who see would become blind",
+   "explain": "Jesus said he came into the world for judgment, that the blind would see and those who see would become blind."
+  }
+ ]
 }

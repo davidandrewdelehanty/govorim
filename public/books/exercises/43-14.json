@@ -1,138 +1,207 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Это ___, который живет во мне, совершает свою работу.",
-      "lemma": "отец",
-      "options": ["отец", "отца", "отцу", "отцом"],
-      "correct": "отец",
-      "case": "Именительный (Nominative)",
-      "translation": "It is the Father, who lives in me, who does his work.",
-      "explain": "Отец is the grammatical subject of совершает, so it is nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Приближается князь этого ___.",
-      "lemma": "мир",
-      "options": ["мир", "мира", "миру", "миром"],
-      "correct": "мира",
-      "case": "Родительный (Genitive)",
-      "translation": "The prince of this world approaches.",
-      "explain": "The genitive here expresses possession: the prince of this world."
-    },
-    {
-      "id": "c3",
-      "sentence": "Он сможет сделать еще больше, потому что Я возвращаюсь к ___.",
-      "lemma": "отец",
-      "options": ["отец", "отца", "отцу", "отцом"],
-      "correct": "отцу",
-      "case": "Дательный (Dative)",
-      "translation": "He will do even greater things, because I am returning to the Father.",
-      "explain": "The preposition к governs the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я сделаю все, чего бы вы ни попросили во имя Мое, чтобы Отец был прославлен через ___.",
-      "lemma": "сын",
-      "options": ["сын", "сына", "сыну", "сыном"],
-      "correct": "сына",
-      "case": "Винительный (Accusative)",
-      "translation": "I will do whatever you ask in my name, so that the Father may be glorified through the Son.",
-      "explain": "The preposition через (through) governs the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Я не оставлю тебя ___.",
-      "lemma": "сирота",
-      "options": ["сирота", "сироты", "сироте", "сиротой"],
-      "correct": "сиротой",
-      "case": "Творительный (Instrumental)",
-      "translation": "I will not leave you an orphan.",
-      "explain": "The verb оставить (leave someone as something) governs a predicate instrumental."
-    },
-    {
-      "id": "c6",
-      "sentence": "В ___ Моего Отца много комнат.",
-      "lemma": "дом",
-      "options": ["дом", "дома", "дому", "доме"],
-      "correct": "доме",
-      "case": "Предложный (Prepositional)",
-      "translation": "In my Father's house there are many rooms.",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "В доме Моего Отца много комнат.",
-      "question": "What did Jesus say about his Father's house?",
-      "options": ["It has many rooms", "It has no rooms left", "It is far away", "It is empty"],
-      "correct": "It has many rooms",
-      "explain": "Jesus says, 'In my Father's house are many rooms.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Фома сказал ему, Господи, мы не знаем, куда ты идешь, как же мы можем знать туда путь?",
-      "question": "What question did Thomas ask Jesus?",
-      "options": ["How can we know the way if we don't know where you are going?", "Why are you leaving us?", "Who will lead us now?", "When will you return?"],
-      "correct": "How can we know the way if we don't know where you are going?",
-      "explain": "Thomas asked how they could know the way if they did not know where Jesus was going."
-    },
-    {
-      "id": "r3",
-      "ru": "Иисус ответил, Я есть путь, истина и жизнь. Никто не приходит к Отцу, как только через Меня.",
-      "question": "How did Jesus answer Thomas?",
-      "options": ["He said he is the way, the truth, and the life, and no one comes to the Father except through him", "He said the way is hidden from everyone", "He said Thomas would never understand", "He said the disciples must ask the Father directly"],
-      "correct": "He said he is the way, the truth, and the life, and no one comes to the Father except through him",
-      "explain": "Jesus answered, 'I am the way, the truth, and the life. No one comes to the Father except through me.'"
-    },
-    {
-      "id": "r4",
-      "ru": "Филипп сказал, «Господи, покажи нам отца, и этого нам будет достаточно».",
-      "question": "What did Philip ask Jesus?",
-      "options": ["To show them the Father", "To show them a miracle", "To explain a parable", "To heal a sick man"],
-      "correct": "To show them the Father",
-      "explain": "Philip said, 'Lord, show us the Father, and it is enough for us.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Кто видел меня, тот видел и отца».",
-      "question": "How did Jesus respond to Philip's request to see the Father?",
-      "options": ["Whoever has seen him has seen the Father", "The Father cannot be seen by anyone", "Only Moses had seen the Father", "Philip needed more faith first"],
-      "correct": "Whoever has seen him has seen the Father",
-      "explain": "Jesus replied, 'Whoever has seen me has seen the Father.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Я попрошу Отца, и Он даст вам другого заступника, чтобы он навеки остался с вами, Духа Истины.",
-      "question": "What did Jesus promise to ask the Father to give the disciples?",
-      "options": ["Another Counselor, the Spirit of Truth, to remain with them forever", "A new set of laws", "Riches and land", "A visible sign in the sky"],
-      "correct": "Another Counselor, the Spirit of Truth, to remain with them forever",
-      "explain": "Jesus promised to ask the Father to give them another Counselor, the Spirit of Truth, to remain with them forever."
-    },
-    {
-      "id": "r7",
-      "ru": "Я не оставлю вас сиротами, я вернусь к вам.",
-      "question": "What assurance did Jesus give about not abandoning his disciples?",
-      "options": ["He would not leave them as orphans; he would return to them", "He would send someone else forever in his place", "He would leave them in the Pharisees' care", "He would never speak to them again"],
-      "correct": "He would not leave them as orphans; he would return to them",
-      "explain": "Jesus said, 'I will not leave you as orphans; I will come to you.'"
-    },
-    {
-      "id": "r8",
-      "ru": "Мой мир я даю вам. Я даю вам не так, как дает этот мир.",
-      "question": "What kind of peace did Jesus say he gives?",
-      "options": ["A peace unlike what the world gives", "Temporary peace only", "Peace only for the Jewish people", "No real peace at all"],
-      "correct": "A peace unlike what the world gives",
-      "explain": "Jesus says he gives peace, but not as the world gives it."
-    },
-    {
-      "id": "r9",
-      "ru": "Но мир должен узнать, что я люблю отца, и что я делаю то, что отец мне повелел. Вставайте. Пойдем отсюда.",
-      "question": "How does the chapter end?",
-      "options": ["Jesus tells them to get up and go, so the world will know he loves the Father", "Jesus falls asleep at the table", "The disciples leave without him", "Jesus is arrested immediately"],
-      "correct": "Jesus tells them to get up and go, so the world will know he loves the Father",
-      "explain": "Jesus says the world must know he loves the Father, then tells them, 'Arise, let us go from here.'"
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Это ___, который живет во мне, совершает свою работу.",
+   "lemma": "отец",
+   "options": [
+    "отец",
+    "отца",
+    "отцу",
+    "отцом"
+   ],
+   "correct": "отец",
+   "case": "Именительный (Nominative)",
+   "explain": "Отец is the grammatical subject of совершает, so it is nominative."
+  },
+  {
+   "id": "c2",
+   "sentence": "Приближается князь этого ___.",
+   "lemma": "мир",
+   "options": [
+    "мир",
+    "мира",
+    "миру",
+    "миром"
+   ],
+   "correct": "мира",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive here expresses possession: the prince of this world."
+  },
+  {
+   "id": "c3",
+   "sentence": "Он сможет сделать еще больше, потому что Я возвращаюсь к ___.",
+   "lemma": "отец",
+   "options": [
+    "отец",
+    "отца",
+    "отцу",
+    "отцом"
+   ],
+   "correct": "отцу",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition к governs the dative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Я сделаю все, чего бы вы ни попросили во имя Мое, чтобы Отец был прославлен через ___.",
+   "lemma": "сын",
+   "options": [
+    "сын",
+    "сына",
+    "сыну",
+    "сыном"
+   ],
+   "correct": "сына",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition через (through) governs the accusative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Я не оставлю тебя ___.",
+   "lemma": "сирота",
+   "options": [
+    "сирота",
+    "сироты",
+    "сироте",
+    "сиротой"
+   ],
+   "correct": "сиротой",
+   "case": "Творительный (Instrumental)",
+   "explain": "The verb оставить (leave someone as something) governs a predicate instrumental."
+  },
+  {
+   "id": "c6",
+   "sentence": "В ___ Моего Отца много комнат.",
+   "lemma": "дом",
+   "options": [
+    "дом",
+    "дома",
+    "дому",
+    "доме"
+   ],
+   "correct": "доме",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в indicating location takes the prepositional case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "В доме Моего Отца много комнат.",
+   "question": "What did Jesus say about his Father's house?",
+   "options": [
+    "It has many rooms",
+    "It has no rooms left",
+    "It is far away",
+    "It is empty"
+   ],
+   "correct": "It has many rooms",
+   "explain": "Jesus says, 'In my Father's house are many rooms.'"
+  },
+  {
+   "id": "r2",
+   "ru": "Фома сказал ему, Господи, мы не знаем, куда ты идешь, как же мы можем знать туда путь?",
+   "question": "What question did Thomas ask Jesus?",
+   "options": [
+    "How can we know the way if we don't know where you are going?",
+    "Why are you leaving us?",
+    "Who will lead us now?",
+    "When will you return?"
+   ],
+   "correct": "How can we know the way if we don't know where you are going?",
+   "explain": "Thomas asked how they could know the way if they did not know where Jesus was going."
+  },
+  {
+   "id": "r3",
+   "ru": "Иисус ответил, Я есть путь, истина и жизнь. Никто не приходит к Отцу, как только через Меня.",
+   "question": "How did Jesus answer Thomas?",
+   "options": [
+    "He said he is the way, the truth, and the life, and no one comes to the Father except through him",
+    "He said the way is hidden from everyone",
+    "He said Thomas would never understand",
+    "He said the disciples must ask the Father directly"
+   ],
+   "correct": "He said he is the way, the truth, and the life, and no one comes to the Father except through him",
+   "explain": "Jesus answered, 'I am the way, the truth, and the life. No one comes to the Father except through me.'"
+  },
+  {
+   "id": "r4",
+   "ru": "Филипп сказал, «Господи, покажи нам отца, и этого нам будет достаточно».",
+   "question": "What did Philip ask Jesus?",
+   "options": [
+    "To show them the Father",
+    "To show them a miracle",
+    "To explain a parable",
+    "To heal a sick man"
+   ],
+   "correct": "To show them the Father",
+   "explain": "Philip said, 'Lord, show us the Father, and it is enough for us.'"
+  },
+  {
+   "id": "r5",
+   "ru": "Кто видел меня, тот видел и отца».",
+   "question": "How did Jesus respond to Philip's request to see the Father?",
+   "options": [
+    "Whoever has seen him has seen the Father",
+    "The Father cannot be seen by anyone",
+    "Only Moses had seen the Father",
+    "Philip needed more faith first"
+   ],
+   "correct": "Whoever has seen him has seen the Father",
+   "explain": "Jesus replied, 'Whoever has seen me has seen the Father.'"
+  },
+  {
+   "id": "r6",
+   "ru": "Я попрошу Отца, и Он даст вам другого заступника, чтобы он навеки остался с вами, Духа Истины.",
+   "question": "What did Jesus promise to ask the Father to give the disciples?",
+   "options": [
+    "Another Counselor, the Spirit of Truth, to remain with them forever",
+    "A new set of laws",
+    "Riches and land",
+    "A visible sign in the sky"
+   ],
+   "correct": "Another Counselor, the Spirit of Truth, to remain with them forever",
+   "explain": "Jesus promised to ask the Father to give them another Counselor, the Spirit of Truth, to remain with them forever."
+  },
+  {
+   "id": "r7",
+   "ru": "Я не оставлю вас сиротами, я вернусь к вам.",
+   "question": "What assurance did Jesus give about not abandoning his disciples?",
+   "options": [
+    "He would not leave them as orphans; he would return to them",
+    "He would send someone else forever in his place",
+    "He would leave them in the Pharisees' care",
+    "He would never speak to them again"
+   ],
+   "correct": "He would not leave them as orphans; he would return to them",
+   "explain": "Jesus said, 'I will not leave you as orphans; I will come to you.'"
+  },
+  {
+   "id": "r8",
+   "ru": "Мой мир я даю вам. Я даю вам не так, как дает этот мир.",
+   "question": "What kind of peace did Jesus say he gives?",
+   "options": [
+    "A peace unlike what the world gives",
+    "Temporary peace only",
+    "Peace only for the Jewish people",
+    "No real peace at all"
+   ],
+   "correct": "A peace unlike what the world gives",
+   "explain": "Jesus says he gives peace, but not as the world gives it."
+  },
+  {
+   "id": "r9",
+   "ru": "Но мир должен узнать, что я люблю отца, и что я делаю то, что отец мне повелел. Вставайте. Пойдем отсюда.",
+   "question": "How does the chapter end?",
+   "options": [
+    "Jesus tells them to get up and go, so the world will know he loves the Father",
+    "Jesus falls asleep at the table",
+    "The disciples leave without him",
+    "Jesus is arrested immediately"
+   ],
+   "correct": "Jesus tells them to get up and go, so the world will know he loves the Father",
+   "explain": "Jesus says the world must know he loves the Father, then tells them, 'Arise, let us go from here.'"
+  }
+ ]
 }

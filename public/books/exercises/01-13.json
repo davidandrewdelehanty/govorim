@@ -1,98 +1,142 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "И ___ не могла прокормить их обоих, у них было так много всего, что они не могли селиться вместе.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землю"],
-      "correct": "земля",
-      "case": "Именительный (Nominative)",
-      "translation": "And the land could not support them both, they had so much that they could not live together.",
-      "explain": "Земля is the subject of могла прокормить, so it stands in the nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "У Авраама теперь было много ___, серебра и золота.",
-      "lemma": "скот",
-      "options": ["скот", "скота", "скоту", "скотом"],
-      "correct": "скота",
-      "case": "Родительный (Genitive)",
-      "translation": "Abram now had much livestock, silver, and gold.",
-      "explain": "The quantity word много governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Господь сказал ___ после того, как Лот отделился от него.",
-      "lemma": "Авраам",
-      "options": ["Авраам", "Авраама", "Аврааму", "Авраамом"],
-      "correct": "Аврааму",
-      "case": "Дательный (Dative)",
-      "translation": "The Lord said to Abram after Lot had separated from him.",
-      "explain": "The verb сказал assigns its indirect object, Абраам, the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Лот выбрал себе всю ___ Иордана и отправился на восток.",
-      "lemma": "долина",
-      "options": ["долина", "долины", "долине", "долину"],
-      "correct": "долину",
-      "case": "Винительный (Accusative)",
-      "translation": "Lot chose for himself the whole plain of the Jordan and traveled east.",
-      "explain": "The transitive verb выбрал takes its direct object, долина, in the accusative."
-    },
-    {
-      "id": "c5",
-      "sentence": "Авраам с ___ и всем имуществом отправился из Египта в Нигев.",
-      "lemma": "жена",
-      "options": ["жена", "жены", "жене", "женой"],
-      "correct": "женой",
-      "case": "Творительный (Instrumental)",
-      "translation": "Abram set out from Egypt to the Negev with his wife and all his possessions.",
-      "explain": "The preposition с meaning 'together with' governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Аврам свернул шатры и направился жить невдалеке от великих деревьев Мамры в ___.",
-      "lemma": "Хеврон",
-      "options": ["Хеврон", "Хеврона", "Хеврону", "Хевроне"],
-      "correct": "Хевроне",
-      "case": "Предложный (Prepositional)",
-      "translation": "Abram moved his tents and went to live near the great trees of Mamre in Hebron.",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "У Авраама теперь было много скота, серебра и золота.",
-      "question": "What did Abram now have a great deal of?",
-      "options": ["Livestock, silver, and gold", "Camels and tents", "Horses and chariots", "Wives and servants"],
-      "correct": "Livestock, silver, and gold",
-      "explain": "The text says Abram had 'много скота, серебра и золота' (much livestock, silver, and gold)."
-    },
-    {
-      "id": "r2",
-      "ru": "Между пастухами Авраама и пастухами Лота случился раздор.",
-      "question": "Between whose herdsmen did strife arise?",
-      "options": ["Abram's herdsmen and Lot's herdsmen", "Abram's herdsmen and the Canaanites", "Lot's herdsmen and the Egyptians", "Abram's servants and Lot's servants"],
-      "correct": "Abram's herdsmen and Lot's herdsmen",
-      "explain": "The text says the strife was 'между пастухами Авраама и пастухами Лота' (between the herdsmen of Abram and the herdsmen of Lot)."
-    },
-    {
-      "id": "r3",
-      "ru": "Лот выбрал себе всю долину Иордана и отправился на восток.",
-      "question": "What did Lot choose for himself?",
-      "options": ["The whole plain of the Jordan, and went east", "The land of Canaan", "The hill country near Bethel", "The city of Hebron"],
-      "correct": "The whole plain of the Jordan, and went east",
-      "explain": "The text says Lot 'выбрал себе всю долину Иордана и отправился на восток' (chose the whole plain of the Jordan for himself and went east)."
-    },
-    {
-      "id": "r4",
-      "ru": "Я сделаю твое потомство многочисленным, как земную пыль, так что если кто сможет пересчитать пылинки, то и твое потомство будет пересчитано.",
-      "question": "To what did the Lord compare Abram's future offspring?",
-      "options": ["The dust of the earth", "The stars of the sky", "The sand of the sea", "The grains of wheat"],
-      "correct": "The dust of the earth",
-      "explain": "The Lord says he will make Abram's offspring 'многочисленным, как земную пыль' (as numerous as the dust of the earth)."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "И ___ не могла прокормить их обоих, у них было так много всего, что они не могли селиться вместе.",
+   "lemma": "земля",
+   "options": [
+    "земля",
+    "земли",
+    "земле",
+    "землю"
+   ],
+   "correct": "земля",
+   "case": "Именительный (Nominative)",
+   "explain": "Земля is the subject of могла прокормить, so it stands in the nominative."
+  },
+  {
+   "id": "c2",
+   "sentence": "У Авраама теперь было много ___, серебра и золота.",
+   "lemma": "скот",
+   "options": [
+    "скот",
+    "скота",
+    "скоту",
+    "скотом"
+   ],
+   "correct": "скота",
+   "case": "Родительный (Genitive)",
+   "explain": "The quantity word много governs the genitive case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Господь сказал ___ после того, как Лот отделился от него.",
+   "lemma": "Авраам",
+   "options": [
+    "Авраам",
+    "Авраама",
+    "Аврааму",
+    "Авраамом"
+   ],
+   "correct": "Аврааму",
+   "case": "Дательный (Dative)",
+   "explain": "The verb сказал assigns its indirect object, Абраам, the dative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Лот выбрал себе всю ___ Иордана и отправился на восток.",
+   "lemma": "долина",
+   "options": [
+    "долина",
+    "долины",
+    "долине",
+    "долину"
+   ],
+   "correct": "долину",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb выбрал takes its direct object, долина, in the accusative."
+  },
+  {
+   "id": "c5",
+   "sentence": "Авраам с ___ и всем имуществом отправился из Египта в Нигев.",
+   "lemma": "жена",
+   "options": [
+    "жена",
+    "жены",
+    "жене",
+    "женой"
+   ],
+   "correct": "женой",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition с meaning 'together with' governs the instrumental case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Аврам свернул шатры и направился жить невдалеке от великих деревьев Мамры в ___.",
+   "lemma": "Хеврон",
+   "options": [
+    "Хеврон",
+    "Хеврона",
+    "Хеврону",
+    "Хевроне"
+   ],
+   "correct": "Хевроне",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в indicating location takes the prepositional case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "У Авраама теперь было много скота, серебра и золота.",
+   "question": "What did Abram now have a great deal of?",
+   "options": [
+    "Livestock, silver, and gold",
+    "Camels and tents",
+    "Horses and chariots",
+    "Wives and servants"
+   ],
+   "correct": "Livestock, silver, and gold",
+   "explain": "The text says Abram had 'много скота, серебра и золота' (much livestock, silver, and gold)."
+  },
+  {
+   "id": "r2",
+   "ru": "Между пастухами Авраама и пастухами Лота случился раздор.",
+   "question": "Between whose herdsmen did strife arise?",
+   "options": [
+    "Abram's herdsmen and Lot's herdsmen",
+    "Abram's herdsmen and the Canaanites",
+    "Lot's herdsmen and the Egyptians",
+    "Abram's servants and Lot's servants"
+   ],
+   "correct": "Abram's herdsmen and Lot's herdsmen",
+   "explain": "The text says the strife was 'между пастухами Авраама и пастухами Лота' (between the herdsmen of Abram and the herdsmen of Lot)."
+  },
+  {
+   "id": "r3",
+   "ru": "Лот выбрал себе всю долину Иордана и отправился на восток.",
+   "question": "What did Lot choose for himself?",
+   "options": [
+    "The whole plain of the Jordan, and went east",
+    "The land of Canaan",
+    "The hill country near Bethel",
+    "The city of Hebron"
+   ],
+   "correct": "The whole plain of the Jordan, and went east",
+   "explain": "The text says Lot 'выбрал себе всю долину Иордана и отправился на восток' (chose the whole plain of the Jordan for himself and went east)."
+  },
+  {
+   "id": "r4",
+   "ru": "Я сделаю твое потомство многочисленным, как земную пыль, так что если кто сможет пересчитать пылинки, то и твое потомство будет пересчитано.",
+   "question": "To what did the Lord compare Abram's future offspring?",
+   "options": [
+    "The dust of the earth",
+    "The stars of the sky",
+    "The sand of the sea",
+    "The grains of wheat"
+   ],
+   "correct": "The dust of the earth",
+   "explain": "The Lord says he will make Abram's offspring 'многочисленным, как земную пыль' (as numerous as the dust of the earth)."
+  }
+ ]
 }

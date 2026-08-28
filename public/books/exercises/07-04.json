@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "После того, как Эхуд умер, израилетяне снова стали творить ___ в глазах Господа.",
-      "lemma": "зло",
-      "options": ["зло", "зла", "злу", "зловом"],
-      "correct": "зло",
-      "case": "Винительный (Accusative)",
-      "translation": "After Ehud died, the children of Israel again did evil in the sight of Yahweh.",
-      "explain": "The transitive verb творить (to do/commit) takes the accusative case for its direct object."
-    },
-    {
-      "id": "c2",
-      "sentence": "Господь отдал их в руки ___.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царём"],
-      "correct": "царя",
-      "case": "Родительный (Genitive)",
-      "translation": "Yahweh sold them into the hand of Jabin king of Canaan.",
-      "explain": "Possession after руки (hand) requires the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "У него было девятьсот железных ___.",
-      "lemma": "колесница",
-      "options": ["колесница", "колесницы", "колеснице", "колесницу"],
-      "correct": "колесницы",
-      "case": "Родительный (Genitive)",
-      "translation": "He had nine hundred iron chariots.",
-      "explain": "Numerical expressions with compound numbers (девятьсот) take the genitive plural."
-    },
-    {
-      "id": "c4",
-      "sentence": "Она сидела под пальмой Деворы между Рамой и ___.",
-      "lemma": "Вифиль",
-      "options": ["Вифиль", "Вифиля", "Вифилю", "Вифилем"],
-      "correct": "Вифилем",
-      "case": "Творительный (Instrumental)",
-      "translation": "She sat under the palm of Deborah between Ramah and Bethel.",
-      "explain": "The preposition между (between) governs the instrumental case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Она послала за Вараком, сыном ___, из Кедеша.",
-      "lemma": "Авинаам",
-      "options": ["Авинаам", "Авинаама", "Авинааму", "Авинаамом"],
-      "correct": "Авинаама",
-      "case": "Родительный (Genitive)",
-      "translation": "She sent and called Barak the son of Abinoam out of Kedesh.",
-      "explain": "The possessive genitive after сын (son) indicates the father's relationship."
-    },
-    {
-      "id": "c6",
-      "sentence": "Я приведу Сесару с его колесницами и воинами к реке ___.",
-      "lemma": "Кишон",
-      "options": ["Кишон", "Кишона", "Кишону", "Кишоном"],
-      "correct": "Кишону",
-      "case": "Дательный (Dative)",
-      "translation": "I will draw Sisera to the river Kishon with his chariots and his army.",
-      "explain": "The preposition к (to/toward) governs the dative case for indicating direction or destination."
-    },
-    {
-      "id": "c7",
-      "sentence": "И Девора пошла с Вараком в ___, где он призвал Завулона и Нефалима.",
-      "lemma": "Кедеш",
-      "options": ["Кедеш", "Кедеша", "Кедешу", "Кедешем"],
-      "correct": "Кедеш",
-      "case": "Винительный (Accusative)",
-      "translation": "Deborah went with Barak to Kedesh, where he called together Zebulun and Naphtali.",
-      "explain": "The preposition в (into/to) with motion governs the accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Сесара, сойдя с ___, бежал пешим.",
-      "lemma": "колесница",
-      "options": ["колесница", "колесницы", "колеснице", "колесницу"],
-      "correct": "колесницы",
-      "case": "Родительный (Genitive)",
-      "translation": "Sisera abandoned his chariot and fled away on his feet.",
-      "explain": "The preposition с (from/off) governs the genitive case when indicating movement away."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Начальником его войска был Сесара, который жил в Харашет-Гаиме.",
-      "question": "Who was the commander of Jabin's army and where did he live?",
-      "options": ["Sisera lived in Harosheth of the Gentiles", "Barak lived in Hazor", "Deborah lived in Harosheth", "The king commanded from Ramah"],
-      "correct": "Sisera lived in Harosheth of the Gentiles",
-      "explain": "The text states that Sisera was the captain of his army and lived in Harosheth of the Gentiles."
-    },
-    {
-      "id": "r2",
-      "ru": "В то время судьей в Израиле была пророчица Девора, жена Лапидота.",
-      "question": "What was Deborah's role in Israel during this time?",
-      "options": ["She was a prophetess who judged Israel", "She was a warrior queen", "She was a slave", "She was Sisera's wife"],
-      "correct": "She was a prophetess who judged Israel",
-      "explain": "The text explicitly states that Deborah was a prophetess who judged Israel at that time."
-    },
-    {
-      "id": "r3",
-      "ru": "Вараг сказал ей, «Если ты пойдешь со мной, то пойду и я, а если ты со мной не пойдешь, то и я не пойду».",
-      "question": "What condition did Barak place on his willingness to go to war?",
-      "options": ["He would only go if Deborah went with him", "He would go only if reinforcements arrived", "He would go only if the king commanded him", "He refused to go under any circumstances"],
-      "correct": "He would only go if Deborah went with him",
-      "explain": "Barak stated that he would only go to war if Deborah went with him."
-    },
-    {
-      "id": "r4",
-      "ru": "Но этот путь не приведет тебя к славе, потому что Господь отдаст Сесару в руки женщины.",
-      "question": "What did Deborah say would happen to Sisera as a result of Barak's condition?",
-      "options": ["Sisera would be delivered into the hand of a woman, depriving Barak of glory", "Sisera would escape to Egypt", "Barak would gain eternal fame", "A woman would betray Deborah"],
-      "correct": "Sisera would be delivered into the hand of a woman, depriving Barak of glory",
-      "explain": "Deborah told Barak that the journey would not bring him honor because Yahweh would sell Sisera into a woman's hand."
-    },
-    {
-      "id": "r5",
-      "ru": "Господь привел Сесару и все его колесницы и войско в замешательство перед мечом Варака.",
-      "question": "How did the battle turn in favor of the Israelites?",
-      "options": ["Yahweh confused Sisera and all his chariots and army before Barak's sword", "Barak's army was stronger", "Sisera's chariots broke down", "The Philistines came to help Israel"],
-      "correct": "Yahweh confused Sisera and all his chariots and army before Barak's sword",
-      "explain": "The text states that Yahweh confused Sisera, all his chariots, and all his army with the edge of the sword before Barak."
-    },
-    {
-      "id": "r6",
-      "ru": "Иаиль вышла навстречу Сесаре и сказала ему, «Заходи, мой господин, заходи ко мне, не бойся».",
-      "question": "What did Jael say to Sisera when he came to her tent?",
-      "options": ["Turn in to me, don't be afraid", "Go away, I cannot help you", "You must flee to Egypt", "I will hide you from Barak"],
-      "correct": "Turn in to me, don't be afraid",
-      "explain": "Jael invited Sisera into her tent, saying 'Turn in, my lord, turn in to me; don't be afraid.'"
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "После того, как Эхуд умер, израилетяне снова стали творить ___ в глазах Господа.",
+   "lemma": "зло",
+   "options": [
+    "зло",
+    "зла",
+    "злу",
+    "зловом"
+   ],
+   "correct": "зло",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb творить (to do/commit) takes the accusative case for its direct object."
+  },
+  {
+   "id": "c2",
+   "sentence": "Господь отдал их в руки ___.",
+   "lemma": "царь",
+   "options": [
+    "царь",
+    "царя",
+    "царю",
+    "царём"
+   ],
+   "correct": "царя",
+   "case": "Родительный (Genitive)",
+   "explain": "Possession after руки (hand) requires the genitive case."
+  },
+  {
+   "id": "c3",
+   "sentence": "У него было девятьсот железных ___.",
+   "lemma": "колесница",
+   "options": [
+    "колесница",
+    "колесницы",
+    "колеснице",
+    "колесницу"
+   ],
+   "correct": "колесницы",
+   "case": "Родительный (Genitive)",
+   "explain": "Numerical expressions with compound numbers (девятьсот) take the genitive plural."
+  },
+  {
+   "id": "c4",
+   "sentence": "Она сидела под пальмой Деворы между Рамой и ___.",
+   "lemma": "Вифиль",
+   "options": [
+    "Вифиль",
+    "Вифиля",
+    "Вифилю",
+    "Вифилем"
+   ],
+   "correct": "Вифилем",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition между (between) governs the instrumental case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Она послала за Вараком, сыном ___, из Кедеша.",
+   "lemma": "Авинаам",
+   "options": [
+    "Авинаам",
+    "Авинаама",
+    "Авинааму",
+    "Авинаамом"
+   ],
+   "correct": "Авинаама",
+   "case": "Родительный (Genitive)",
+   "explain": "The possessive genitive after сын (son) indicates the father's relationship."
+  },
+  {
+   "id": "c6",
+   "sentence": "Я приведу Сесару с его колесницами и воинами к реке ___.",
+   "lemma": "Кишон",
+   "options": [
+    "Кишон",
+    "Кишона",
+    "Кишону",
+    "Кишоном"
+   ],
+   "correct": "Кишону",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition к (to/toward) governs the dative case for indicating direction or destination."
+  },
+  {
+   "id": "c7",
+   "sentence": "И Девора пошла с Вараком в ___, где он призвал Завулона и Нефалима.",
+   "lemma": "Кедеш",
+   "options": [
+    "Кедеш",
+    "Кедеша",
+    "Кедешу",
+    "Кедешем"
+   ],
+   "correct": "Кедеш",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition в (into/to) with motion governs the accusative case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Сесара, сойдя с ___, бежал пешим.",
+   "lemma": "колесница",
+   "options": [
+    "колесница",
+    "колесницы",
+    "колеснице",
+    "колесницу"
+   ],
+   "correct": "колесницы",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition с (from/off) governs the genitive case when indicating movement away."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Начальником его войска был Сесара, который жил в Харашет-Гаиме.",
+   "question": "Who was the commander of Jabin's army and where did he live?",
+   "options": [
+    "Sisera lived in Harosheth of the Gentiles",
+    "Barak lived in Hazor",
+    "Deborah lived in Harosheth",
+    "The king commanded from Ramah"
+   ],
+   "correct": "Sisera lived in Harosheth of the Gentiles",
+   "explain": "The text states that Sisera was the captain of his army and lived in Harosheth of the Gentiles."
+  },
+  {
+   "id": "r2",
+   "ru": "В то время судьей в Израиле была пророчица Девора, жена Лапидота.",
+   "question": "What was Deborah's role in Israel during this time?",
+   "options": [
+    "She was a prophetess who judged Israel",
+    "She was a warrior queen",
+    "She was a slave",
+    "She was Sisera's wife"
+   ],
+   "correct": "She was a prophetess who judged Israel",
+   "explain": "The text explicitly states that Deborah was a prophetess who judged Israel at that time."
+  },
+  {
+   "id": "r3",
+   "ru": "Вараг сказал ей, «Если ты пойдешь со мной, то пойду и я, а если ты со мной не пойдешь, то и я не пойду».",
+   "question": "What condition did Barak place on his willingness to go to war?",
+   "options": [
+    "He would only go if Deborah went with him",
+    "He would go only if reinforcements arrived",
+    "He would go only if the king commanded him",
+    "He refused to go under any circumstances"
+   ],
+   "correct": "He would only go if Deborah went with him",
+   "explain": "Barak stated that he would only go to war if Deborah went with him."
+  },
+  {
+   "id": "r4",
+   "ru": "Но этот путь не приведет тебя к славе, потому что Господь отдаст Сесару в руки женщины.",
+   "question": "What did Deborah say would happen to Sisera as a result of Barak's condition?",
+   "options": [
+    "Sisera would be delivered into the hand of a woman, depriving Barak of glory",
+    "Sisera would escape to Egypt",
+    "Barak would gain eternal fame",
+    "A woman would betray Deborah"
+   ],
+   "correct": "Sisera would be delivered into the hand of a woman, depriving Barak of glory",
+   "explain": "Deborah told Barak that the journey would not bring him honor because Yahweh would sell Sisera into a woman's hand."
+  },
+  {
+   "id": "r5",
+   "ru": "Господь привел Сесару и все его колесницы и войско в замешательство перед мечом Варака.",
+   "question": "How did the battle turn in favor of the Israelites?",
+   "options": [
+    "Yahweh confused Sisera and all his chariots and army before Barak's sword",
+    "Barak's army was stronger",
+    "Sisera's chariots broke down",
+    "The Philistines came to help Israel"
+   ],
+   "correct": "Yahweh confused Sisera and all his chariots and army before Barak's sword",
+   "explain": "The text states that Yahweh confused Sisera, all his chariots, and all his army with the edge of the sword before Barak."
+  },
+  {
+   "id": "r6",
+   "ru": "Иаиль вышла навстречу Сесаре и сказала ему, «Заходи, мой господин, заходи ко мне, не бойся».",
+   "question": "What did Jael say to Sisera when he came to her tent?",
+   "options": [
+    "Turn in to me, don't be afraid",
+    "Go away, I cannot help you",
+    "You must flee to Egypt",
+    "I will hide you from Barak"
+   ],
+   "correct": "Turn in to me, don't be afraid",
+   "explain": "Jael invited Sisera into her tent, saying 'Turn in, my lord, turn in to me; don't be afraid.'"
+  }
+ ]
 }

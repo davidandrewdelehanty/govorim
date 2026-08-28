@@ -1,204 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Острижены ___, бороды сбриты.",
-      "lemma": "голова",
-      "options": [
-        "голова",
-        "головы",
-        "голове",
-        "голов"
-      ],
-      "correct": "головы",
-      "case": "Именительный (Nominative)",
-      "translation": "Heads are shorn, beards are cut off.",
-      "explain": "The nominative plural головы is the subject of the verb остриженs."
-    },
-    {
-      "id": "c2",
-      "sentence": "На крышах ___ все рыдают.",
-      "lemma": "дом",
-      "options": [
-        "дом",
-        "дома",
-        "домов",
-        "домом"
-      ],
-      "correct": "домов",
-      "case": "Родительный (Genitive)",
-      "translation": "On the roofs of houses everyone is weeping.",
-      "explain": "The genitive case expresses possession of the houses."
-    },
-    {
-      "id": "c3",
-      "sentence": "Восходит город к ___.",
-      "lemma": "храм",
-      "options": [
-        "храм",
-        "храма",
-        "храму",
-        "храме"
-      ],
-      "correct": "храму",
-      "case": "Дательный (Dative)",
-      "translation": "The city goes up to the temple.",
-      "explain": "The preposition к (toward) requires the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Рыдает Моав над ___ и Медевой.",
-      "lemma": "Нево",
-      "options": [
-        "Нево",
-        "Нева",
-        "Неву",
-        "Невом"
-      ],
-      "correct": "Невом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Moab wails over Nebo and Medeba.",
-      "explain": "The preposition над (over) governs the instrumental case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Плачет сердце мое о ___.",
-      "lemma": "Моав",
-      "options": [
-        "Моав",
-        "Моава",
-        "Моаву",
-        "Мааве"
-      ],
-      "correct": "Мааве",
-      "case": "Предложный (Prepositional)",
-      "translation": "My heart weeps for Moab.",
-      "explain": "The preposition о (about) requires the prepositional case."
-    },
-    {
-      "id": "c6",
-      "sentence": "На дороге в ___ поднимают плач.",
-      "lemma": "Харанаим",
-      "options": [
-        "Харанаим",
-        "Харанаима",
-        "Харанаиму",
-        "Харанаиме"
-      ],
-      "correct": "Харанаиму",
-      "case": "Дательный (Dative)",
-      "translation": "On the road to Horonaim they raise a cry.",
-      "explain": "The preposition в (to/into) with motion requires accusative; but in context, accusative form of proper noun may match dative."
-    },
-    {
-      "id": "c7",
-      "sentence": "Пересохли воды ___.",
-      "lemma": "Дзивон",
-      "options": [
-        "Дзивона",
-        "Дзивон",
-        "Дзивону",
-        "Дзивоне"
-      ],
-      "correct": "Дзивона",
-      "case": "Родительный (Genitive)",
-      "translation": "The waters of Dimon have dried up.",
-      "explain": "The genitive expresses possession: waters of Dimon."
-    },
-    {
-      "id": "c8",
-      "sentence": "Наведу льва на беженцев из ___.",
-      "lemma": "Моав",
-      "options": [
-        "Моав",
-        "Моава",
-        "Моаву",
-        "Моавом"
-      ],
-      "correct": "Моава",
-      "case": "Родительный (Genitive)",
-      "translation": "I will bring a lion on the refugees of Moab.",
-      "explain": "The preposition из (from) requires the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Как Ар-Моав опустошен, уничтожен за ночь?",
-      "question": "What is the main lament in this opening verse?",
-      "options": [
-        "That Moab was destroyed in a single night",
-        "That Moab will be restored",
-        "That Moab has strong walls",
-        "That Moab conquered its enemies"
-      ],
-      "correct": "That Moab was destroyed in a single night",
-      "explain": "The text explicitly states Ar-Moab is laid waste and destroyed overnight."
-    },
-    {
-      "id": "r2",
-      "ru": "Острижены головы, бороды сбриты, а на улицах народ в рубище.",
-      "question": "What signs of mourning are described?",
-      "options": [
-        "Shaved heads, beards cut off, and people wearing sackcloth",
-        "Torn clothing and falling on the ground",
-        "Fasting and prayer",
-        "Loud weeping only"
-      ],
-      "correct": "Shaved heads, beards cut off, and people wearing sackcloth",
-      "explain": "The text describes shaved heads, cut beards, and people in sackcloth as mourning signs."
-    },
-    {
-      "id": "r3",
-      "ru": "Плачет сердце мое о Мааве.",
-      "question": "Who is expressing deep grief?",
-      "options": [
-        "The prophet speaking for God",
-        "The people of Moab",
-        "The warrior commanders",
-        "The neighboring enemies"
-      ],
-      "correct": "The prophet speaking for God",
-      "explain": "This phrase shows the prophet's personal emotional response to Moab's fate."
-    },
-    {
-      "id": "r4",
-      "ru": "Пересохли воды Немрима, трава выгорела, завяла мурава, и зелени не осталось.",
-      "question": "What devastation is described?",
-      "options": [
-        "Dried waters, burned grass, withered plants, no vegetation",
-        "Abundant water and crops",
-        "Snow and ice",
-        "Flooding"
-      ],
-      "correct": "Dried waters, burned grass, withered plants, no vegetation",
-      "explain": "The passage describes complete natural devastation and desolation."
-    },
-    {
-      "id": "r5",
-      "ru": "Беженцы его бегут к Цаару, к Эгладш-Лешаи.",
-      "question": "Where are the refugees fleeing?",
-      "options": [
-        "To Zoar and Eglath Shelishiyah",
-        "To the temple for protection",
-        "To the nearest cities",
-        "Across the river Jordan"
-      ],
-      "correct": "To Zoar and Eglath Shelishiyah",
-      "explain": "The text explicitly names these two locations as the destinations."
-    },
-    {
-      "id": "r6",
-      "ru": "Вопят Хешбон и Елеала, голоса их слышны до Иохатца.",
-      "question": "How far can the cries be heard?",
-      "options": [
-        "From Heshbon and Elealeh to Jahaz",
-        "Throughout the kingdom",
-        "Only nearby",
-        "To distant lands"
-      ],
-      "correct": "From Heshbon and Elealeh to Jahaz",
-      "explain": "The text says the voices are heard from Heshbon and Elealeh to Jahaz."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Острижены ___, бороды сбриты.",
+   "lemma": "голова",
+   "options": [
+    "голова",
+    "головы",
+    "голове",
+    "голов"
+   ],
+   "correct": "головы",
+   "case": "Именительный (Nominative)",
+   "explain": "The nominative plural головы is the subject of the verb остриженs."
+  },
+  {
+   "id": "c2",
+   "sentence": "На крышах ___ все рыдают.",
+   "lemma": "дом",
+   "options": [
+    "дом",
+    "дома",
+    "домов",
+    "домом"
+   ],
+   "correct": "домов",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive case expresses possession of the houses."
+  },
+  {
+   "id": "c3",
+   "sentence": "Восходит город к ___.",
+   "lemma": "храм",
+   "options": [
+    "храм",
+    "храма",
+    "храму",
+    "храме"
+   ],
+   "correct": "храму",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition к (toward) requires the dative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Рыдает Моав над ___ и Медевой.",
+   "lemma": "Нево",
+   "options": [
+    "Нево",
+    "Нева",
+    "Неву",
+    "Невом"
+   ],
+   "correct": "Невом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition над (over) governs the instrumental case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Плачет сердце мое о ___.",
+   "lemma": "Моав",
+   "options": [
+    "Моав",
+    "Моава",
+    "Моаву",
+    "Мааве"
+   ],
+   "correct": "Мааве",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition о (about) requires the prepositional case."
+  },
+  {
+   "id": "c6",
+   "sentence": "На дороге в ___ поднимают плач.",
+   "lemma": "Харанаим",
+   "options": [
+    "Харанаим",
+    "Харанаима",
+    "Харанаиму",
+    "Харанаиме"
+   ],
+   "correct": "Харанаиму",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition в (to/into) with motion requires accusative; but in context, accusative form of proper noun may match dative."
+  },
+  {
+   "id": "c7",
+   "sentence": "Пересохли воды ___.",
+   "lemma": "Дзивон",
+   "options": [
+    "Дзивона",
+    "Дзивон",
+    "Дзивону",
+    "Дзивоне"
+   ],
+   "correct": "Дзивона",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive expresses possession: waters of Dimon."
+  },
+  {
+   "id": "c8",
+   "sentence": "Наведу льва на беженцев из ___.",
+   "lemma": "Моав",
+   "options": [
+    "Моав",
+    "Моава",
+    "Моаву",
+    "Моавом"
+   ],
+   "correct": "Моава",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition из (from) requires the genitive case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Как Ар-Моав опустошен, уничтожен за ночь?",
+   "question": "What is the main lament in this opening verse?",
+   "options": [
+    "That Moab was destroyed in a single night",
+    "That Moab will be restored",
+    "That Moab has strong walls",
+    "That Moab conquered its enemies"
+   ],
+   "correct": "That Moab was destroyed in a single night",
+   "explain": "The text explicitly states Ar-Moab is laid waste and destroyed overnight."
+  },
+  {
+   "id": "r2",
+   "ru": "Острижены головы, бороды сбриты, а на улицах народ в рубище.",
+   "question": "What signs of mourning are described?",
+   "options": [
+    "Shaved heads, beards cut off, and people wearing sackcloth",
+    "Torn clothing and falling on the ground",
+    "Fasting and prayer",
+    "Loud weeping only"
+   ],
+   "correct": "Shaved heads, beards cut off, and people wearing sackcloth",
+   "explain": "The text describes shaved heads, cut beards, and people in sackcloth as mourning signs."
+  },
+  {
+   "id": "r3",
+   "ru": "Плачет сердце мое о Мааве.",
+   "question": "Who is expressing deep grief?",
+   "options": [
+    "The prophet speaking for God",
+    "The people of Moab",
+    "The warrior commanders",
+    "The neighboring enemies"
+   ],
+   "correct": "The prophet speaking for God",
+   "explain": "This phrase shows the prophet's personal emotional response to Moab's fate."
+  },
+  {
+   "id": "r4",
+   "ru": "Пересохли воды Немрима, трава выгорела, завяла мурава, и зелени не осталось.",
+   "question": "What devastation is described?",
+   "options": [
+    "Dried waters, burned grass, withered plants, no vegetation",
+    "Abundant water and crops",
+    "Snow and ice",
+    "Flooding"
+   ],
+   "correct": "Dried waters, burned grass, withered plants, no vegetation",
+   "explain": "The passage describes complete natural devastation and desolation."
+  },
+  {
+   "id": "r5",
+   "ru": "Беженцы его бегут к Цаару, к Эгладш-Лешаи.",
+   "question": "Where are the refugees fleeing?",
+   "options": [
+    "To Zoar and Eglath Shelishiyah",
+    "To the temple for protection",
+    "To the nearest cities",
+    "Across the river Jordan"
+   ],
+   "correct": "To Zoar and Eglath Shelishiyah",
+   "explain": "The text explicitly names these two locations as the destinations."
+  },
+  {
+   "id": "r6",
+   "ru": "Вопят Хешбон и Елеала, голоса их слышны до Иохатца.",
+   "question": "How far can the cries be heard?",
+   "options": [
+    "From Heshbon and Elealeh to Jahaz",
+    "Throughout the kingdom",
+    "Only nearby",
+    "To distant lands"
+   ],
+   "correct": "From Heshbon and Elealeh to Jahaz",
+   "explain": "The text says the voices are heard from Heshbon and Elealeh to Jahaz."
+  }
+ ]
 }

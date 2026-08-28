@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "не в ярости упрекай меня, и не во ___ наказывай.",
-      "lemma": "гнев",
-      "options": ["гнев", "гнева", "гневом", "гневе"],
-      "correct": "гневе",
-      "case": "Предложный (Prepositional)",
-      "translation": "Don't rebuke me in your wrath, neither chasten me in your hot displeasure.",
-      "explain": "The preposition во (in) with the meaning of emotion or state governs the prepositional case."
-    },
-    {
-      "id": "c2",
-      "sentence": "стрелы Твои пронзили меня, и ___ Твоя на мне тяжела.",
-      "lemma": "рука",
-      "options": ["рука", "руки", "руку", "рукой"],
-      "correct": "рука",
-      "case": "Именительный (Nominative)",
-      "translation": "For your arrows have pierced me, your hand presses hard on me.",
-      "explain": "The noun рука is the nominative subject of the verb is (understood): your hand presses."
-    },
-    {
-      "id": "c3",
-      "sentence": "нет на теле моем здорового ___.",
-      "lemma": "место",
-      "options": ["место", "места", "месту", "местом"],
-      "correct": "места",
-      "case": "Родительный (Genitive)",
-      "translation": "There is no soundness in my flesh.",
-      "explain": "The genitive case is used after the negative construction 'there is no (нет)'."
-    },
-    {
-      "id": "c4",
-      "sentence": "Грехи мои меня поглотили, они как ___ отягощают меня.",
-      "lemma": "бремя",
-      "options": ["бремя", "бремена", "бремени", "бременем"],
-      "correct": "бремя",
-      "case": "Именительный (Nominative)",
-      "translation": "My iniquities have gone over my head. As a heavy burden, they are too heavy for me.",
-      "explain": "The nominative case is used for the predicate nominative after the verb 'like'."
-    },
-    {
-      "id": "c5",
-      "sentence": "Мои друзья и те, кто любят меня, из-за ___ меня избегают.",
-      "lemma": "язва",
-      "options": ["язва", "язвы", "язвой", "язв"],
-      "correct": "язв",
-      "case": "Родительный (Genitive)",
-      "translation": "My lovers and my friends stand aloof from my plague.",
-      "explain": "The preposition из-за (because of) governs the genitive plural case."
-    },
-    {
-      "id": "c6",
-      "sentence": "А я, как глухой, не слышу, как немой, не размыкаю ___.",
-      "lemma": "уста",
-      "options": ["уста", "уст", "устам", "устах"],
-      "correct": "уст",
-      "case": "Родительный (Genitive)",
-      "translation": "But I, as a deaf man, don't hear. I am as a mute man who doesn't open his mouth.",
-      "explain": "The genitive case is used in the negative construction 'not opening (from) the mouth'."
-    },
-    {
-      "id": "c7",
-      "sentence": "Не дай им торжествовать передо ___ когда мои ноги колеблются.",
-      "lemma": "я",
-      "options": ["я", "меня", "мне", "мной"],
-      "correct": "мной",
-      "case": "Творительный (Instrumental)",
-      "translation": "Don't let them gloat over me when my foot slips.",
-      "explain": "The preposition передо (before/in front of) governs the instrumental case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Злом воздают мне за ___, враждуют со мной за то, что добру я следую.",
-      "lemma": "добро",
-      "options": ["добро", "добра", "добру", "добром"],
-      "correct": "добро",
-      "case": "Винительный (Accusative)",
-      "translation": "They who render evil for good are also adversaries to me.",
-      "explain": "The verb воздают (render/give) with за takes the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Ведь стрелы Твои пронзили меня, и рука Твоя на мне тяжела.",
-      "question": "What is the psalmist experiencing as a result of God's judgment?",
-      "options": ["God's arrows have pierced him and His hand is heavy upon him", "God's blessings and favor", "God's silence and distance", "God's forgiveness and peace"],
-      "correct": "God's arrows have pierced him and His hand is heavy upon him",
-      "explain": "The text states стрелы Твои пронзили меня и рука Твоя на мне тяжела (Your arrows have pierced me and Your hand is heavy upon me)."
-    },
-    {
-      "id": "r2",
-      "ru": "Грехи мои меня поглотили, они как бремя отягощают меня.",
-      "question": "How does the psalmist describe his sins?",
-      "options": ["As a heavy burden that weighs him down", "As easily forgiven", "As forgotten", "As bringing him joy"],
-      "correct": "As a heavy burden that weighs him down",
-      "explain": "The text says Грехи мои меня поглотили, они как бремя отягощают меня (My sins have overwhelmed me; they are a heavy burden weighing me down)."
-    },
-    {
-      "id": "r3",
-      "ru": "Мои друзья и те, кто любят меня, из-за язв меня избегают.",
-      "question": "How do the psalmist's friends respond to his suffering?",
-      "options": ["They avoid him because of his wounds", "They help him recover", "They support him faithfully", "They rejoice in his suffering"],
-      "correct": "They avoid him because of his wounds",
-      "explain": "The text says Мои друзья и те, кто любят меня, из-за язв меня избегают (My friends and loved ones avoid me because of my wounds)."
-    },
-    {
-      "id": "r4",
-      "ru": "А я, как глухой, не слышу, как немой, не размыкаю уст.",
-      "question": "How does the psalmist respond to the accusations against him?",
-      "options": ["Like a deaf person who doesn't hear and a mute who doesn't speak", "He argues forcefully", "He admits his guilt immediately", "He seeks witnesses to defend him"],
-      "correct": "Like a deaf person who doesn't hear and a mute who doesn't speak",
-      "explain": "The text says я как глухой, не слышу, как немой, не размыкаю уст (I am like a deaf man who doesn't hear and a mute man who doesn't open his mouth)."
-    },
-    {
-      "id": "r5",
-      "ru": "Я признаю мое беззаконие и скорблю о моем грехе.",
-      "question": "What does the psalmist declare regarding his sin?",
-      "options": ["He acknowledges his transgression and grieves for his sin", "He denies all wrongdoing", "He blames others for his sin", "He refuses to repent"],
-      "correct": "He acknowledges his transgression and grieves for his sin",
-      "explain": "The text states Я признаю мое беззаконие и скорблю о моем грехе (I acknowledge my transgression and grieve for my sin)."
-    },
-    {
-      "id": "r6",
-      "ru": "Господи, не оставь меня, не удаляйся от меня, мой Бог, поспеши мне на помощь, Владыка мой Спаситель.",
-      "question": "What is the psalmist's urgent plea to God?",
-      "options": ["Don't abandon him and come quickly to his aid", "Punish his enemies severely", "Make him rich and powerful", "Take him away from the world"],
-      "correct": "Don't abandon him and come quickly to his aid",
-      "explain": "The text pleads: не оставь меня, не удаляйся от меня, поспеши мне на помощь (Do not forsake me, do not be far from me, come quickly to my aid)."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "не в ярости упрекай меня, и не во ___ наказывай.",
+   "lemma": "гнев",
+   "options": [
+    "гнев",
+    "гнева",
+    "гневом",
+    "гневе"
+   ],
+   "correct": "гневе",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition во (in) with the meaning of emotion or state governs the prepositional case."
+  },
+  {
+   "id": "c2",
+   "sentence": "стрелы Твои пронзили меня, и ___ Твоя на мне тяжела.",
+   "lemma": "рука",
+   "options": [
+    "рука",
+    "руки",
+    "руку",
+    "рукой"
+   ],
+   "correct": "рука",
+   "case": "Именительный (Nominative)",
+   "explain": "The noun рука is the nominative subject of the verb is (understood): your hand presses."
+  },
+  {
+   "id": "c3",
+   "sentence": "нет на теле моем здорового ___.",
+   "lemma": "место",
+   "options": [
+    "место",
+    "места",
+    "месту",
+    "местом"
+   ],
+   "correct": "места",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive case is used after the negative construction 'there is no (нет)'."
+  },
+  {
+   "id": "c4",
+   "sentence": "Грехи мои меня поглотили, они как ___ отягощают меня.",
+   "lemma": "бремя",
+   "options": [
+    "бремя",
+    "бремена",
+    "бремени",
+    "бременем"
+   ],
+   "correct": "бремя",
+   "case": "Именительный (Nominative)",
+   "explain": "The nominative case is used for the predicate nominative after the verb 'like'."
+  },
+  {
+   "id": "c5",
+   "sentence": "Мои друзья и те, кто любят меня, из-за ___ меня избегают.",
+   "lemma": "язва",
+   "options": [
+    "язва",
+    "язвы",
+    "язвой",
+    "язв"
+   ],
+   "correct": "язв",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition из-за (because of) governs the genitive plural case."
+  },
+  {
+   "id": "c6",
+   "sentence": "А я, как глухой, не слышу, как немой, не размыкаю ___.",
+   "lemma": "уста",
+   "options": [
+    "уста",
+    "уст",
+    "устам",
+    "устах"
+   ],
+   "correct": "уст",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive case is used in the negative construction 'not opening (from) the mouth'."
+  },
+  {
+   "id": "c7",
+   "sentence": "Не дай им торжествовать передо ___ когда мои ноги колеблются.",
+   "lemma": "я",
+   "options": [
+    "я",
+    "меня",
+    "мне",
+    "мной"
+   ],
+   "correct": "мной",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition передо (before/in front of) governs the instrumental case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Злом воздают мне за ___, враждуют со мной за то, что добру я следую.",
+   "lemma": "добро",
+   "options": [
+    "добро",
+    "добра",
+    "добру",
+    "добром"
+   ],
+   "correct": "добро",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb воздают (render/give) with за takes the accusative case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Ведь стрелы Твои пронзили меня, и рука Твоя на мне тяжела.",
+   "question": "What is the psalmist experiencing as a result of God's judgment?",
+   "options": [
+    "God's arrows have pierced him and His hand is heavy upon him",
+    "God's blessings and favor",
+    "God's silence and distance",
+    "God's forgiveness and peace"
+   ],
+   "correct": "God's arrows have pierced him and His hand is heavy upon him",
+   "explain": "The text states стрелы Твои пронзили меня и рука Твоя на мне тяжела (Your arrows have pierced me and Your hand is heavy upon me)."
+  },
+  {
+   "id": "r2",
+   "ru": "Грехи мои меня поглотили, они как бремя отягощают меня.",
+   "question": "How does the psalmist describe his sins?",
+   "options": [
+    "As a heavy burden that weighs him down",
+    "As easily forgiven",
+    "As forgotten",
+    "As bringing him joy"
+   ],
+   "correct": "As a heavy burden that weighs him down",
+   "explain": "The text says Грехи мои меня поглотили, они как бремя отягощают меня (My sins have overwhelmed me; they are a heavy burden weighing me down)."
+  },
+  {
+   "id": "r3",
+   "ru": "Мои друзья и те, кто любят меня, из-за язв меня избегают.",
+   "question": "How do the psalmist's friends respond to his suffering?",
+   "options": [
+    "They avoid him because of his wounds",
+    "They help him recover",
+    "They support him faithfully",
+    "They rejoice in his suffering"
+   ],
+   "correct": "They avoid him because of his wounds",
+   "explain": "The text says Мои друзья и те, кто любят меня, из-за язв меня избегают (My friends and loved ones avoid me because of my wounds)."
+  },
+  {
+   "id": "r4",
+   "ru": "А я, как глухой, не слышу, как немой, не размыкаю уст.",
+   "question": "How does the psalmist respond to the accusations against him?",
+   "options": [
+    "Like a deaf person who doesn't hear and a mute who doesn't speak",
+    "He argues forcefully",
+    "He admits his guilt immediately",
+    "He seeks witnesses to defend him"
+   ],
+   "correct": "Like a deaf person who doesn't hear and a mute who doesn't speak",
+   "explain": "The text says я как глухой, не слышу, как немой, не размыкаю уст (I am like a deaf man who doesn't hear and a mute man who doesn't open his mouth)."
+  },
+  {
+   "id": "r5",
+   "ru": "Я признаю мое беззаконие и скорблю о моем грехе.",
+   "question": "What does the psalmist declare regarding his sin?",
+   "options": [
+    "He acknowledges his transgression and grieves for his sin",
+    "He denies all wrongdoing",
+    "He blames others for his sin",
+    "He refuses to repent"
+   ],
+   "correct": "He acknowledges his transgression and grieves for his sin",
+   "explain": "The text states Я признаю мое беззаконие и скорблю о моем грехе (I acknowledge my transgression and grieve for my sin)."
+  },
+  {
+   "id": "r6",
+   "ru": "Господи, не оставь меня, не удаляйся от меня, мой Бог, поспеши мне на помощь, Владыка мой Спаситель.",
+   "question": "What is the psalmist's urgent plea to God?",
+   "options": [
+    "Don't abandon him and come quickly to his aid",
+    "Punish his enemies severely",
+    "Make him rich and powerful",
+    "Take him away from the world"
+   ],
+   "correct": "Don't abandon him and come quickly to his aid",
+   "explain": "The text pleads: не оставь меня, не удаляйся от меня, поспеши мне на помощь (Do not forsake me, do not be far from me, come quickly to my aid)."
+  }
+ ]
 }

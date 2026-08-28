@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Я верил, поэтому я и говорил, я сильно ___.",
-      "lemma": "сокрушенный",
-      "options": ["сокрушен", "сокрушена", "сокрушено", "сокрушены"],
-      "correct": "сокрушен",
-      "case": "Именительный (Nominative)",
-      "translation": "I believed, therefore I spoke; I am greatly afflicted.",
-      "explain": "The adjective сокрушен (afflicted) is a predicate adjective in nominative case, describing the subject я."
-    },
-    {
-      "id": "c2",
-      "sentence": "Чем воздам я Господу за всю его ___?",
-      "lemma": "доброта",
-      "options": ["доброту", "доброте", "добротой", "доброты"],
-      "correct": "доброту",
-      "case": "Винительный (Accusative)",
-      "translation": "How shall I repay the Lord for all his goodness?",
-      "explain": "The preposition за (for) with the accusative case indicates cause or reason; доброту is the accusative form."
-    },
-    {
-      "id": "c3",
-      "sentence": "Возьму ___ спасения и призову имя Господне.",
-      "lemma": "чаша",
-      "options": ["чашу", "чаше", "чашей", "чаши"],
-      "correct": "чашу",
-      "case": "Винительный (Accusative)",
-      "translation": "I will take the cup of salvation and call on the name of the Lord.",
-      "explain": "The verb возьму (I will take) is transitive and takes the accusative case for its direct object."
-    },
-    {
-      "id": "c4",
-      "sentence": "Исполню мои обеты Господу перед всем его ___.",
-      "lemma": "народ",
-      "options": ["народом", "народа", "народе", "народу"],
-      "correct": "народом",
-      "case": "Творительный (Instrumental)",
-      "translation": "I will fulfill my vows to the Lord before all his people.",
-      "explain": "The preposition перед (before, in front of) governs the instrumental case in the sense of 'in the presence of.'"
-    },
-    {
-      "id": "c5",
-      "sentence": "Дорога в глазах Господа ___ верных ему.",
-      "lemma": "смерть",
-      "options": ["смерть", "смерти", "смертью", "смертей"],
-      "correct": "смерть",
-      "case": "Именительный (Nominative)",
-      "translation": "Precious in the sight of the Lord is the death of his faithful.",
-      "explain": "The noun смерть (death) is the predicate nominative after the linking verb, describing what is precious."
-    },
-    {
-      "id": "c6",
-      "sentence": "Господи, истинно я ___ Твой, я слуга Твой и сын служанки Твоей.",
-      "lemma": "раб",
-      "options": ["рабом", "раба", "рабе", "раб"],
-      "correct": "раб",
-      "case": "Именительный (Nominative)",
-      "translation": "O Lord, truly I am your servant, I am your servant and the son of your maidservant.",
-      "explain": "The noun раб (servant) is the predicate nominative after the linking verb быть, describing the subject я."
-    },
-    {
-      "id": "c7",
-      "sentence": "Ты освободил меня от ___.",
-      "lemma": "цепь",
-      "options": ["цепей", "цепь", "цепи", "цепям"],
-      "correct": "цепей",
-      "case": "Родительный (Genitive)",
-      "translation": "You have freed me from my chains.",
-      "explain": "The preposition от (from) always governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Принесу тебе жертву благодарности и призову имя Господне во дворах дома Господне, посреди тебя, ___.",
-      "lemma": "Иерусалим",
-      "options": ["Иерусалиме", "Иерусалим", "Иерусалима", "Иерусалимом"],
-      "correct": "Иерусалиме",
-      "case": "Предложный (Prepositional)",
-      "translation": "I will bring a thank offering to you and call on the name of the Lord in the courts of the house of the Lord, in your midst, Jerusalem.",
-      "explain": "The preposition посреди (in the midst of) is followed by the prepositional case; the noun Иерусалим is in vocative address."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Я верил, поэтому я и говорил, я сильно сокрушен.",
-      "question": "What is the psalmist's emotional state in this verse?",
-      "options": ["He is greatly afflicted", "He is filled with joy", "He is confident and strong", "He is at peace"],
-      "correct": "He is greatly afflicted",
-      "explain": "The text says 'я сильно сокрушен' (I am greatly afflicted/grieved)."
-    },
-    {
-      "id": "r2",
-      "ru": "Чем воздам я Господу за всю его доброту ко мне?",
-      "question": "What does the psalmist recognize in this verse?",
-      "options": ["God's goodness toward him and his inability to repay it", "His own weakness and sinfulness", "The need to offer many sacrifices", "His debt to his neighbors"],
-      "correct": "God's goodness toward him and his inability to repay it",
-      "explain": "The text asks 'Чем воздам я Господу за всю его доброту' (How shall I repay the Lord for all his goodness)."
-    },
-    {
-      "id": "r3",
-      "ru": "Возьму чашу спасения и призову имя Господне, исполню мои обеты Господу перед всем его народом.",
-      "question": "How does the psalmist plan to respond to God's goodness?",
-      "options": ["By taking the cup of salvation, calling on God's name, and fulfilling his vows before all people", "By performing many sacrifices and rituals", "By becoming a priest in the temple", "By withdrawing from public life to pray"],
-      "correct": "By taking the cup of salvation, calling on God's name, and fulfilling his vows before all people",
-      "explain": "The text describes three actions: taking the cup of salvation, calling on God's name, and fulfilling vows before the people."
-    },
-    {
-      "id": "r4",
-      "ru": "Дорога в глазах Господа смерть верных ему.",
-      "question": "What is precious in God's sight?",
-      "options": ["The death of his faithful ones", "The life of the righteous", "The victory of the strong", "The wealth of the rich"],
-      "correct": "The death of his faithful ones",
-      "explain": "The text explicitly states 'Дорога в глазах Господа смерть верных ему' (Precious in God's sight is the death of his faithful)."
-    },
-    {
-      "id": "r5",
-      "ru": "Господи, истинно я слуга Твой, я слуга Твой и сын служанки Твоей, Ты освободил меня от цепей.",
-      "question": "How does the psalmist describe his relationship to God and his liberation?",
-      "options": ["He is God's servant, born of a servant girl, and God has freed him from bondage", "He is a king appointed by God", "He is a priest in God's temple", "He is a prophet sent by God"],
-      "correct": "He is God's servant, born of a servant girl, and God has freed him from bondage",
-      "explain": "The text states his servitude: 'я слуга Твой и сын служанки Твоей' and his liberation: 'Ты освободил меня от цепей.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Принесу тебе жертву благодарности и призову имя Господне.",
-      "question": "What will the psalmist do to thank God?",
-      "options": ["Bring a thank offering and call on God's name", "Build a temple for God", "Invite all people to worship", "Perform many prayers and fasts"],
-      "correct": "Bring a thank offering and call on God's name",
-      "explain": "The text says 'Принесу тебе жертву благодарности и призову имя Господне' (I will bring a thank offering and call on the Lord's name)."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Я верил, поэтому я и говорил, я сильно ___.",
+   "lemma": "сокрушенный",
+   "options": [
+    "сокрушен",
+    "сокрушена",
+    "сокрушено",
+    "сокрушены"
+   ],
+   "correct": "сокрушен",
+   "case": "Именительный (Nominative)",
+   "explain": "The adjective сокрушен (afflicted) is a predicate adjective in nominative case, describing the subject я."
+  },
+  {
+   "id": "c2",
+   "sentence": "Чем воздам я Господу за всю его ___?",
+   "lemma": "доброта",
+   "options": [
+    "доброту",
+    "доброте",
+    "добротой",
+    "доброты"
+   ],
+   "correct": "доброту",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition за (for) with the accusative case indicates cause or reason; доброту is the accusative form."
+  },
+  {
+   "id": "c3",
+   "sentence": "Возьму ___ спасения и призову имя Господне.",
+   "lemma": "чаша",
+   "options": [
+    "чашу",
+    "чаше",
+    "чашей",
+    "чаши"
+   ],
+   "correct": "чашу",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb возьму (I will take) is transitive and takes the accusative case for its direct object."
+  },
+  {
+   "id": "c4",
+   "sentence": "Исполню мои обеты Господу перед всем его ___.",
+   "lemma": "народ",
+   "options": [
+    "народом",
+    "народа",
+    "народе",
+    "народу"
+   ],
+   "correct": "народом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition перед (before, in front of) governs the instrumental case in the sense of 'in the presence of.'"
+  },
+  {
+   "id": "c5",
+   "sentence": "Дорога в глазах Господа ___ верных ему.",
+   "lemma": "смерть",
+   "options": [
+    "смерть",
+    "смерти",
+    "смертью",
+    "смертей"
+   ],
+   "correct": "смерть",
+   "case": "Именительный (Nominative)",
+   "explain": "The noun смерть (death) is the predicate nominative after the linking verb, describing what is precious."
+  },
+  {
+   "id": "c6",
+   "sentence": "Господи, истинно я ___ Твой, я слуга Твой и сын служанки Твоей.",
+   "lemma": "раб",
+   "options": [
+    "рабом",
+    "раба",
+    "рабе",
+    "раб"
+   ],
+   "correct": "раб",
+   "case": "Именительный (Nominative)",
+   "explain": "The noun раб (servant) is the predicate nominative after the linking verb быть, describing the subject я."
+  },
+  {
+   "id": "c7",
+   "sentence": "Ты освободил меня от ___.",
+   "lemma": "цепь",
+   "options": [
+    "цепей",
+    "цепь",
+    "цепи",
+    "цепям"
+   ],
+   "correct": "цепей",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition от (from) always governs the genitive case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Принесу тебе жертву благодарности и призову имя Господне во дворах дома Господне, посреди тебя, ___.",
+   "lemma": "Иерусалим",
+   "options": [
+    "Иерусалиме",
+    "Иерусалим",
+    "Иерусалима",
+    "Иерусалимом"
+   ],
+   "correct": "Иерусалиме",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition посреди (in the midst of) is followed by the prepositional case; the noun Иерусалим is in vocative address."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Я верил, поэтому я и говорил, я сильно сокрушен.",
+   "question": "What is the psalmist's emotional state in this verse?",
+   "options": [
+    "He is greatly afflicted",
+    "He is filled with joy",
+    "He is confident and strong",
+    "He is at peace"
+   ],
+   "correct": "He is greatly afflicted",
+   "explain": "The text says 'я сильно сокрушен' (I am greatly afflicted/grieved)."
+  },
+  {
+   "id": "r2",
+   "ru": "Чем воздам я Господу за всю его доброту ко мне?",
+   "question": "What does the psalmist recognize in this verse?",
+   "options": [
+    "God's goodness toward him and his inability to repay it",
+    "His own weakness and sinfulness",
+    "The need to offer many sacrifices",
+    "His debt to his neighbors"
+   ],
+   "correct": "God's goodness toward him and his inability to repay it",
+   "explain": "The text asks 'Чем воздам я Господу за всю его доброту' (How shall I repay the Lord for all his goodness)."
+  },
+  {
+   "id": "r3",
+   "ru": "Возьму чашу спасения и призову имя Господне, исполню мои обеты Господу перед всем его народом.",
+   "question": "How does the psalmist plan to respond to God's goodness?",
+   "options": [
+    "By taking the cup of salvation, calling on God's name, and fulfilling his vows before all people",
+    "By performing many sacrifices and rituals",
+    "By becoming a priest in the temple",
+    "By withdrawing from public life to pray"
+   ],
+   "correct": "By taking the cup of salvation, calling on God's name, and fulfilling his vows before all people",
+   "explain": "The text describes three actions: taking the cup of salvation, calling on God's name, and fulfilling vows before the people."
+  },
+  {
+   "id": "r4",
+   "ru": "Дорога в глазах Господа смерть верных ему.",
+   "question": "What is precious in God's sight?",
+   "options": [
+    "The death of his faithful ones",
+    "The life of the righteous",
+    "The victory of the strong",
+    "The wealth of the rich"
+   ],
+   "correct": "The death of his faithful ones",
+   "explain": "The text explicitly states 'Дорога в глазах Господа смерть верных ему' (Precious in God's sight is the death of his faithful)."
+  },
+  {
+   "id": "r5",
+   "ru": "Господи, истинно я слуга Твой, я слуга Твой и сын служанки Твоей, Ты освободил меня от цепей.",
+   "question": "How does the psalmist describe his relationship to God and his liberation?",
+   "options": [
+    "He is God's servant, born of a servant girl, and God has freed him from bondage",
+    "He is a king appointed by God",
+    "He is a priest in God's temple",
+    "He is a prophet sent by God"
+   ],
+   "correct": "He is God's servant, born of a servant girl, and God has freed him from bondage",
+   "explain": "The text states his servitude: 'я слуга Твой и сын служанки Твоей' and his liberation: 'Ты освободил меня от цепей.'"
+  },
+  {
+   "id": "r6",
+   "ru": "Принесу тебе жертву благодарности и призову имя Господне.",
+   "question": "What will the psalmist do to thank God?",
+   "options": [
+    "Bring a thank offering and call on God's name",
+    "Build a temple for God",
+    "Invite all people to worship",
+    "Perform many prayers and fasts"
+   ],
+   "correct": "Bring a thank offering and call on God's name",
+   "explain": "The text says 'Принесу тебе жертву благодарности и призову имя Господне' (I will bring a thank offering and call on the Lord's name)."
+  }
+ ]
 }

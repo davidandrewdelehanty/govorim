@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Ной и его сыновья — Сим, Хам и ___.",
-      "lemma": "Афет",
-      "options": ["Афет", "Афета", "Афету", "Афетом"],
-      "correct": "Афет",
-      "case": "Именительный (Nominative)",
-      "translation": "Noah and his sons were Shem, Ham, and Japheth.",
-      "explain": "Афет is listed as a subject alongside Shem and Ham in nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Сыновья Иофеты — Гомер, Магок, Мадай, Иован, Тувал, Мешех и ___.",
-      "lemma": "Терас",
-      "options": ["Терас", "Тераса", "Терасу", "Терасом"],
-      "correct": "Терас",
-      "case": "Именительный (Nominative)",
-      "translation": "The sons of Japheth were Gomer, Magog, Madai, Javan, Tubal, Meshech, and Tiras.",
-      "explain": "Терас is listed as one of the sons in nominative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Куш был отцом ___, который стал первым на земле могучим воином.",
-      "lemma": "Нимрод",
-      "options": ["Нимрод", "Нимрода", "Нимроду", "Нимродом"],
-      "correct": "Нимрода",
-      "case": "Родительный (Genitive)",
-      "translation": "Cush was the father of Nimrod, who became a mighty warrior on the earth.",
-      "explain": "The verb 'был отцом' (was the father of) governs the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "У Арпахшада родился ___, а у Шелаха родился Евер.",
-      "lemma": "Шелах",
-      "options": ["Шелах", "Шелаха", "Шелаху", "Шелахом"],
-      "correct": "Шелах",
-      "case": "Именительный (Nominative)",
-      "translation": "Arpachshad was the father of Shelah, and Shelah was the father of Eber.",
-      "explain": "Шелах is the subject of the verb 'родился' (was born) in nominative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Сим, Арпахшат, Шулах, Евер, Пеле, Креу, Сирук, Нагор, Тирах, ___.",
-      "lemma": "Авраам",
-      "options": ["Авраам", "Авраама", "Аврааму", "Авраамом"],
-      "correct": "Авраам",
-      "case": "Именительный (Nominative)",
-      "translation": "Shem, Arpachshad, Shelah, Eber, Peleg, Reu, Serug, Nahor, Terah, Abraham.",
-      "explain": "Авраам is listed as the final person in this genealogical sequence in nominative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Авраам был отцом ___, сыновья Исаака — Исаф и Израиль.",
-      "lemma": "Исаак",
-      "options": ["Исаак", "Исаака", "Исааку", "Исааком"],
-      "correct": "Исаака",
-      "case": "Родительный (Genitive)",
-      "translation": "Abraham was the father of Isaac, and the sons of Isaac were Esau and Israel.",
-      "explain": "The phrase 'был отцом' (was the father of) governs the genitive case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Сыновья Исаава — Элифаз, Рагуил и Иуш, Ялам и ___.",
-      "lemma": "Корах",
-      "options": ["Корах", "Кораха", "Корахе", "Корахом"],
-      "correct": "Корах",
-      "case": "Именительный (Nominative)",
-      "translation": "The sons of Esau were Eliphaz, Reuel, Jeush, Jalam, and Korah.",
-      "explain": "Корах is listed as one of Esau's sons in nominative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Вот цари, которые правили в Идоме еще до того, как в Израиле появились ___.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "цари", "царях"],
-      "correct": "цари",
-      "case": "Именительный (Nominative)",
-      "translation": "These are the kings who reigned in Edom before any king reigned over Israel.",
-      "explain": "цари is the subject of the verb 'появились' (appeared/arose) in nominative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Ной и его сыновья — Сим, Хам и Афет.",
-      "question": "Who were the sons of Noah?",
-      "options": ["Shem, Ham, and Japheth", "Adam, Seth, and Enosh", "Gomer, Magog, and Madai", "Elam, Asshur, and Arpachshad"],
-      "correct": "Shem, Ham, and Japheth",
-      "explain": "The text states 'Ной и его сыновья — Сим, Хам и Афет' (Noah and his sons were Shem, Ham, and Japheth)."
-    },
-    {
-      "id": "r2",
-      "ru": "Куш был отцом Инемрода, который стал первым на земле могучим воином.",
-      "question": "Who was Nimrod, and what was he known for?",
-      "options": ["Nimrod was the son of Cush and became a mighty warrior on the earth", "Nimrod was a king of Egypt", "Nimrod was a prophet", "Nimrod was the son of Abraham"],
-      "correct": "Nimrod was the son of Cush and became a mighty warrior on the earth",
-      "explain": "The text says 'Куш был отцом Инемрода, который стал первым на земле могучим воином' (Cush was the father of Nimrod, who became a mighty warrior on the earth)."
-    },
-    {
-      "id": "r3",
-      "ru": "У Евера родилось двое сыновей, одного звали Пелек, потому что в его дни земля была разделена, а его брата — Иоктан.",
-      "question": "Why was Eber's son named Peleg?",
-      "options": ["Because in his days the earth was divided", "Because he was the first king", "Because he built the tower of Babel", "Because he was a great warrior"],
-      "correct": "Because in his days the earth was divided",
-      "explain": "The text states that Peleg was named this 'потому что в его дни земля была разделена' (because in his days the earth was divided)."
-    },
-    {
-      "id": "r4",
-      "ru": "Сыновья Авраама, Исаак и Измаил.",
-      "question": "Who were the sons of Abraham?",
-      "options": ["Isaac and Ishmael", "Shem and Japheth", "Esau and Jacob", "Kedar and Nebaioth"],
-      "correct": "Isaac and Ishmael",
-      "explain": "The text clearly states 'Сыновья Авраама, Исаак и Измаил' (The sons of Abraham, Isaac and Ishmael)."
-    },
-    {
-      "id": "r5",
-      "ru": "Авраам был отцом Исаака, сыновья Исаака — Исаф и Израиль.",
-      "question": "What relationship did Abraham, Isaac, and Jacob/Israel have?",
-      "options": ["Abraham was the father of Isaac, and Isaac was the father of Esau and Israel", "Abraham and Isaac were brothers", "Isaac was the father of Abraham", "Isaac and Israel were the same person"],
-      "correct": "Abraham was the father of Isaac, and Isaac was the father of Esau and Israel",
-      "explain": "The text states the genealogy: 'Авраам был отцом Исаака, сыновья Исаака — Исаф и Израиль' (Abraham was the father of Isaac, and the sons of Isaac were Esau and Israel)."
-    },
-    {
-      "id": "r6",
-      "ru": "Вот цари, которые правили в Идоме еще до того, как в Израиле появились цари.",
-      "question": "What does the text say about the kings of Edom in relation to the kings of Israel?",
-      "options": ["The kings of Edom reigned before any king reigned over Israel", "The kings of Israel ruled before the kings of Edom", "The kings of Edom and Israel ruled at the same time", "No kings ever ruled in Edom"],
-      "correct": "The kings of Edom reigned before any king reigned over Israel",
-      "explain": "The text explicitly states 'цари, которые правили в Идоме еще до того, как в Израиле появились цари' (kings who reigned in Edom before any king arose in Israel)."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Ной и его сыновья — Сим, Хам и ___.",
+   "lemma": "Афет",
+   "options": [
+    "Афет",
+    "Афета",
+    "Афету",
+    "Афетом"
+   ],
+   "correct": "Афет",
+   "case": "Именительный (Nominative)",
+   "explain": "Афет is listed as a subject alongside Shem and Ham in nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Сыновья Иофеты — Гомер, Магок, Мадай, Иован, Тувал, Мешех и ___.",
+   "lemma": "Терас",
+   "options": [
+    "Терас",
+    "Тераса",
+    "Терасу",
+    "Терасом"
+   ],
+   "correct": "Терас",
+   "case": "Именительный (Nominative)",
+   "explain": "Терас is listed as one of the sons in nominative case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Куш был отцом ___, который стал первым на земле могучим воином.",
+   "lemma": "Нимрод",
+   "options": [
+    "Нимрод",
+    "Нимрода",
+    "Нимроду",
+    "Нимродом"
+   ],
+   "correct": "Нимрода",
+   "case": "Родительный (Genitive)",
+   "explain": "The verb 'был отцом' (was the father of) governs the genitive case."
+  },
+  {
+   "id": "c4",
+   "sentence": "У Арпахшада родился ___, а у Шелаха родился Евер.",
+   "lemma": "Шелах",
+   "options": [
+    "Шелах",
+    "Шелаха",
+    "Шелаху",
+    "Шелахом"
+   ],
+   "correct": "Шелах",
+   "case": "Именительный (Nominative)",
+   "explain": "Шелах is the subject of the verb 'родился' (was born) in nominative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Сим, Арпахшат, Шулах, Евер, Пеле, Креу, Сирук, Нагор, Тирах, ___.",
+   "lemma": "Авраам",
+   "options": [
+    "Авраам",
+    "Авраама",
+    "Аврааму",
+    "Авраамом"
+   ],
+   "correct": "Авраам",
+   "case": "Именительный (Nominative)",
+   "explain": "Авраам is listed as the final person in this genealogical sequence in nominative case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Авраам был отцом ___, сыновья Исаака — Исаф и Израиль.",
+   "lemma": "Исаак",
+   "options": [
+    "Исаак",
+    "Исаака",
+    "Исааку",
+    "Исааком"
+   ],
+   "correct": "Исаака",
+   "case": "Родительный (Genitive)",
+   "explain": "The phrase 'был отцом' (was the father of) governs the genitive case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Сыновья Исаава — Элифаз, Рагуил и Иуш, Ялам и ___.",
+   "lemma": "Корах",
+   "options": [
+    "Корах",
+    "Кораха",
+    "Корахе",
+    "Корахом"
+   ],
+   "correct": "Корах",
+   "case": "Именительный (Nominative)",
+   "explain": "Корах is listed as one of Esau's sons in nominative case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Вот цари, которые правили в Идоме еще до того, как в Израиле появились ___.",
+   "lemma": "царь",
+   "options": [
+    "царь",
+    "царя",
+    "цари",
+    "царях"
+   ],
+   "correct": "цари",
+   "case": "Именительный (Nominative)",
+   "explain": "цари is the subject of the verb 'появились' (appeared/arose) in nominative case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Ной и его сыновья — Сим, Хам и Афет.",
+   "question": "Who were the sons of Noah?",
+   "options": [
+    "Shem, Ham, and Japheth",
+    "Adam, Seth, and Enosh",
+    "Gomer, Magog, and Madai",
+    "Elam, Asshur, and Arpachshad"
+   ],
+   "correct": "Shem, Ham, and Japheth",
+   "explain": "The text states 'Ной и его сыновья — Сим, Хам и Афет' (Noah and his sons were Shem, Ham, and Japheth)."
+  },
+  {
+   "id": "r2",
+   "ru": "Куш был отцом Инемрода, который стал первым на земле могучим воином.",
+   "question": "Who was Nimrod, and what was he known for?",
+   "options": [
+    "Nimrod was the son of Cush and became a mighty warrior on the earth",
+    "Nimrod was a king of Egypt",
+    "Nimrod was a prophet",
+    "Nimrod was the son of Abraham"
+   ],
+   "correct": "Nimrod was the son of Cush and became a mighty warrior on the earth",
+   "explain": "The text says 'Куш был отцом Инемрода, который стал первым на земле могучим воином' (Cush was the father of Nimrod, who became a mighty warrior on the earth)."
+  },
+  {
+   "id": "r3",
+   "ru": "У Евера родилось двое сыновей, одного звали Пелек, потому что в его дни земля была разделена, а его брата — Иоктан.",
+   "question": "Why was Eber's son named Peleg?",
+   "options": [
+    "Because in his days the earth was divided",
+    "Because he was the first king",
+    "Because he built the tower of Babel",
+    "Because he was a great warrior"
+   ],
+   "correct": "Because in his days the earth was divided",
+   "explain": "The text states that Peleg was named this 'потому что в его дни земля была разделена' (because in his days the earth was divided)."
+  },
+  {
+   "id": "r4",
+   "ru": "Сыновья Авраама, Исаак и Измаил.",
+   "question": "Who were the sons of Abraham?",
+   "options": [
+    "Isaac and Ishmael",
+    "Shem and Japheth",
+    "Esau and Jacob",
+    "Kedar and Nebaioth"
+   ],
+   "correct": "Isaac and Ishmael",
+   "explain": "The text clearly states 'Сыновья Авраама, Исаак и Измаил' (The sons of Abraham, Isaac and Ishmael)."
+  },
+  {
+   "id": "r5",
+   "ru": "Авраам был отцом Исаака, сыновья Исаака — Исаф и Израиль.",
+   "question": "What relationship did Abraham, Isaac, and Jacob/Israel have?",
+   "options": [
+    "Abraham was the father of Isaac, and Isaac was the father of Esau and Israel",
+    "Abraham and Isaac were brothers",
+    "Isaac was the father of Abraham",
+    "Isaac and Israel were the same person"
+   ],
+   "correct": "Abraham was the father of Isaac, and Isaac was the father of Esau and Israel",
+   "explain": "The text states the genealogy: 'Авраам был отцом Исаака, сыновья Исаака — Исаф и Израиль' (Abraham was the father of Isaac, and the sons of Isaac were Esau and Israel)."
+  },
+  {
+   "id": "r6",
+   "ru": "Вот цари, которые правили в Идоме еще до того, как в Израиле появились цари.",
+   "question": "What does the text say about the kings of Edom in relation to the kings of Israel?",
+   "options": [
+    "The kings of Edom reigned before any king reigned over Israel",
+    "The kings of Israel ruled before the kings of Edom",
+    "The kings of Edom and Israel ruled at the same time",
+    "No kings ever ruled in Edom"
+   ],
+   "correct": "The kings of Edom reigned before any king reigned over Israel",
+   "explain": "The text explicitly states 'цари, которые правили в Идоме еще до того, как в Израиле появились цари' (kings who reigned in Edom before any king arose in Israel)."
+  }
+ ]
 }

@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Саулу было тридцать лет, когда он стал ___, и правил он Израилем сорок два года.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царём"],
-      "correct": "царь",
-      "case": "Именительный (Nominative)",
-      "translation": "Saul was thirty years old when he became king, and he reigned over Israel for forty-two years.",
-      "explain": "The predicate nominative after the verb стать requires the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Саул выбрал себе войска в Израиле три тысячи ___.",
-      "lemma": "человек",
-      "options": ["человек", "человека", "человеку", "человеком"],
-      "correct": "человека",
-      "case": "Родительный (Genitive)",
-      "translation": "Saul chose for himself three thousand men of Israel.",
-      "explain": "After numerals like 'три тысячи' (three thousand), the genitive plural is used."
-    },
-    {
-      "id": "c3",
-      "sentence": "Две тысячи были с ним в городе Мехмасе и в Нагорьях Вефиля, а тысяча с его сыном Иоаннафаном в городе ___, что в земле Вениамина.",
-      "lemma": "Гива",
-      "options": ["Гива", "Гивы", "Гиве", "Гиву"],
-      "correct": "Гиву",
-      "case": "Винительный (Accusative)",
-      "translation": "Two thousand were with him in Michmash and in the highlands of Bethel, and one thousand were with his son Jonathan in Gibeah of Benjamin.",
-      "explain": "The preposition в (in) when indicating direction requires the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Иоаннафан напал на сторожевую заставу филистимлян в Геве, и филистимляне услышали об ___.",
-      "lemma": "это",
-      "options": ["это", "этого", "этому", "этом"],
-      "correct": "этом",
-      "case": "Предложный (Prepositional)",
-      "translation": "Jonathan struck the garrison of the Philistines at Geba, and the Philistines heard of it.",
-      "explain": "The preposition об (about) requires the prepositional case."
-    },
-    {
-      "id": "c5",
-      "sentence": "У них было три тысячи колесниц, шесть тысяч колесничих и столько воинов, сколько песка на ___.",
-      "lemma": "берег",
-      "options": ["берег", "берега", "береге", "берегом"],
-      "correct": "береге",
-      "case": "Предложный (Prepositional)",
-      "translation": "They had thirty thousand chariots, six thousand horsemen, and soldiers as numerous as the sand on the seashore.",
-      "explain": "The preposition на (on) when governing location requires the prepositional case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Когда израилетяне увидели, что они в опасности, и что их сильно потеснили, они спрятались в пещерах и зарослях, среди скал, в ямах и ___.",
-      "lemma": "колодец",
-      "options": ["колодец", "колодца", "колодцах", "колодцами"],
-      "correct": "колодцах",
-      "case": "Предложный (Prepositional)",
-      "translation": "When the Israelites saw that they were in danger and greatly distressed, they hid in caves, thickets, rocks, holes, and cisterns.",
-      "explain": "The preposition в (in) governing location requires the prepositional case in the plural."
-    },
-    {
-      "id": "c7",
-      "sentence": "Некоторые евреи даже перебрались за ___ в землю Гада и в Галаад.",
-      "lemma": "Иордан",
-      "options": ["Иордана", "Иордане", "Иордан", "Иорданом"],
-      "correct": "Иордана",
-      "case": "Винительный (Accusative)",
-      "translation": "Some of the Hebrews even crossed over the Jordan to the land of Gad and Gilead.",
-      "explain": "The preposition за (beyond) requires the accusative case when indicating movement across."
-    },
-    {
-      "id": "c8",
-      "sentence": "Во всей земле Израиля невозможно было отыскать ни одного кузнеца, потому что филистимляне сказали, иначе евреи станут делать ___ или копья.",
-      "lemma": "меч",
-      "options": ["меч", "мечи", "мечей", "мечам"],
-      "correct": "мечи",
-      "case": "Винительный (Accusative)",
-      "translation": "There was no blacksmith found throughout all the land of Israel, for the Philistines said, lest the Hebrews make swords or spears.",
-      "explain": "The transitive verb делать requires the accusative case for its plural object."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Саулу было тридцать лет, когда он стал царем, и правил он Израилем сорок два года.",
-      "question": "How old was Saul when he became king, and how long did he reign?",
-      "options": ["He was thirty years old and reigned for forty-two years", "He was forty years old and reigned for thirty years", "He was twenty-five years old and reigned for fifty years", "He was thirty-five years old and reigned for forty years"],
-      "correct": "He was thirty years old and reigned for forty-two years",
-      "explain": "The text explicitly states Saul was thirty years old when he became king and reigned over Israel for forty-two years."
-    },
-    {
-      "id": "r2",
-      "ru": "Иоаннафан напал на сторожевую заставу филистимлян в Геве, и филистимляне услышали об этом.",
-      "question": "What action did Jonathan take that alerted the Philistines?",
-      "options": ["He struck the garrison of the Philistines at Geba", "He fled to the mountains", "He sent messengers to the elders", "He made a loud proclamation"],
-      "correct": "He struck the garrison of the Philistines at Geba",
-      "explain": "Jonathan struck (attacked) the Philistine garrison at Geba, and the Philistines heard about it."
-    },
-    {
-      "id": "r3",
-      "ru": "Филистимляне собрались воевать с Израилем, у них было три тысячи колесниц, шесть тысяч колесничих и столько воинов, сколько песка на морском берегу.",
-      "question": "How powerful was the Philistine force that assembled?",
-      "options": ["They had thirty thousand chariots, six thousand horsemen, and soldiers as numerous as the sand on the seashore", "They had ten thousand chariots and five thousand horsemen", "They had fifty chariots and five hundred soldiers", "They had only foot soldiers but no chariots"],
-      "correct": "They had thirty thousand chariots, six thousand horsemen, and soldiers as numerous as the sand on the seashore",
-      "explain": "The text describes the massive Philistine force with thirty thousand chariots, six thousand horsemen, and soldiers as numerous as sand."
-    },
-    {
-      "id": "r4",
-      "ru": "Когда израилетяне увидели, что они в опасности, и что их сильно потеснили, они спрятались в пещерах и зарослях, среди скал, в ямах и колодцах.",
-      "question": "What did the Israelites do when they saw the Philistine force?",
-      "options": ["They hid in caves, thickets, rocks, holes, and cisterns", "They prepared for battle", "They fled to other cities", "They surrendered immediately"],
-      "correct": "They hid in caves, thickets, rocks, holes, and cisterns",
-      "explain": "The Israelites, seeing the danger and being distressed, hid themselves in caves, thickets, rocks, holes, and cisterns."
-    },
-    {
-      "id": "r5",
-      "ru": "Во всей земле Израиля невозможно было отыскать ни одного кузнеца, потому что филистимляне сказали, иначе евреи станут делать мечи или копья.",
-      "question": "Why were there no blacksmiths in all of Israel?",
-      "options": ["The Philistines wanted to prevent the Hebrews from making swords or spears", "All the blacksmiths had died", "The Israelites rejected metalworking", "Blacksmiths had moved to other countries"],
-      "correct": "The Philistines wanted to prevent the Hebrews from making swords or spears",
-      "explain": "No blacksmith could be found in Israel because the Philistines said otherwise the Hebrews might make swords or spears."
-    },
-    {
-      "id": "r6",
-      "ru": "Поэтому в день сражения ни у одного воина с Саулом и Иоаннафаном не было в руке меча или копья.",
-      "question": "What was the consequence of the lack of blacksmiths on the day of battle?",
-      "options": ["None of the warriors with Saul and Jonathan had swords or spears in their hands", "All the warriors had equal weapons", "They used only bows and arrows", "They were better armed than the Philistines"],
-      "correct": "None of the warriors with Saul and Jonathan had swords or spears in their hands",
-      "explain": "Because of the Philistine control, on the day of battle, no warrior with Saul and Jonathan had a sword or spear in his hand."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Саулу было тридцать лет, когда он стал ___, и правил он Израилем сорок два года.",
+   "lemma": "царь",
+   "options": [
+    "царь",
+    "царя",
+    "царю",
+    "царём"
+   ],
+   "correct": "царь",
+   "case": "Именительный (Nominative)",
+   "explain": "The predicate nominative after the verb стать requires the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Саул выбрал себе войска в Израиле три тысячи ___.",
+   "lemma": "человек",
+   "options": [
+    "человек",
+    "человека",
+    "человеку",
+    "человеком"
+   ],
+   "correct": "человека",
+   "case": "Родительный (Genitive)",
+   "explain": "After numerals like 'три тысячи' (three thousand), the genitive plural is used."
+  },
+  {
+   "id": "c3",
+   "sentence": "Две тысячи были с ним в городе Мехмасе и в Нагорьях Вефиля, а тысяча с его сыном Иоаннафаном в городе ___, что в земле Вениамина.",
+   "lemma": "Гива",
+   "options": [
+    "Гива",
+    "Гивы",
+    "Гиве",
+    "Гиву"
+   ],
+   "correct": "Гиву",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition в (in) when indicating direction requires the accusative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Иоаннафан напал на сторожевую заставу филистимлян в Геве, и филистимляне услышали об ___.",
+   "lemma": "это",
+   "options": [
+    "это",
+    "этого",
+    "этому",
+    "этом"
+   ],
+   "correct": "этом",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition об (about) requires the prepositional case."
+  },
+  {
+   "id": "c5",
+   "sentence": "У них было три тысячи колесниц, шесть тысяч колесничих и столько воинов, сколько песка на ___.",
+   "lemma": "берег",
+   "options": [
+    "берег",
+    "берега",
+    "береге",
+    "берегом"
+   ],
+   "correct": "береге",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition на (on) when governing location requires the prepositional case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Когда израилетяне увидели, что они в опасности, и что их сильно потеснили, они спрятались в пещерах и зарослях, среди скал, в ямах и ___.",
+   "lemma": "колодец",
+   "options": [
+    "колодец",
+    "колодца",
+    "колодцах",
+    "колодцами"
+   ],
+   "correct": "колодцах",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в (in) governing location requires the prepositional case in the plural."
+  },
+  {
+   "id": "c7",
+   "sentence": "Некоторые евреи даже перебрались за ___ в землю Гада и в Галаад.",
+   "lemma": "Иордан",
+   "options": [
+    "Иордана",
+    "Иордане",
+    "Иордан",
+    "Иорданом"
+   ],
+   "correct": "Иордана",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition за (beyond) requires the accusative case when indicating movement across."
+  },
+  {
+   "id": "c8",
+   "sentence": "Во всей земле Израиля невозможно было отыскать ни одного кузнеца, потому что филистимляне сказали, иначе евреи станут делать ___ или копья.",
+   "lemma": "меч",
+   "options": [
+    "меч",
+    "мечи",
+    "мечей",
+    "мечам"
+   ],
+   "correct": "мечи",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb делать requires the accusative case for its plural object."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Саулу было тридцать лет, когда он стал царем, и правил он Израилем сорок два года.",
+   "question": "How old was Saul when he became king, and how long did he reign?",
+   "options": [
+    "He was thirty years old and reigned for forty-two years",
+    "He was forty years old and reigned for thirty years",
+    "He was twenty-five years old and reigned for fifty years",
+    "He was thirty-five years old and reigned for forty years"
+   ],
+   "correct": "He was thirty years old and reigned for forty-two years",
+   "explain": "The text explicitly states Saul was thirty years old when he became king and reigned over Israel for forty-two years."
+  },
+  {
+   "id": "r2",
+   "ru": "Иоаннафан напал на сторожевую заставу филистимлян в Геве, и филистимляне услышали об этом.",
+   "question": "What action did Jonathan take that alerted the Philistines?",
+   "options": [
+    "He struck the garrison of the Philistines at Geba",
+    "He fled to the mountains",
+    "He sent messengers to the elders",
+    "He made a loud proclamation"
+   ],
+   "correct": "He struck the garrison of the Philistines at Geba",
+   "explain": "Jonathan struck (attacked) the Philistine garrison at Geba, and the Philistines heard about it."
+  },
+  {
+   "id": "r3",
+   "ru": "Филистимляне собрались воевать с Израилем, у них было три тысячи колесниц, шесть тысяч колесничих и столько воинов, сколько песка на морском берегу.",
+   "question": "How powerful was the Philistine force that assembled?",
+   "options": [
+    "They had thirty thousand chariots, six thousand horsemen, and soldiers as numerous as the sand on the seashore",
+    "They had ten thousand chariots and five thousand horsemen",
+    "They had fifty chariots and five hundred soldiers",
+    "They had only foot soldiers but no chariots"
+   ],
+   "correct": "They had thirty thousand chariots, six thousand horsemen, and soldiers as numerous as the sand on the seashore",
+   "explain": "The text describes the massive Philistine force with thirty thousand chariots, six thousand horsemen, and soldiers as numerous as sand."
+  },
+  {
+   "id": "r4",
+   "ru": "Когда израилетяне увидели, что они в опасности, и что их сильно потеснили, они спрятались в пещерах и зарослях, среди скал, в ямах и колодцах.",
+   "question": "What did the Israelites do when they saw the Philistine force?",
+   "options": [
+    "They hid in caves, thickets, rocks, holes, and cisterns",
+    "They prepared for battle",
+    "They fled to other cities",
+    "They surrendered immediately"
+   ],
+   "correct": "They hid in caves, thickets, rocks, holes, and cisterns",
+   "explain": "The Israelites, seeing the danger and being distressed, hid themselves in caves, thickets, rocks, holes, and cisterns."
+  },
+  {
+   "id": "r5",
+   "ru": "Во всей земле Израиля невозможно было отыскать ни одного кузнеца, потому что филистимляне сказали, иначе евреи станут делать мечи или копья.",
+   "question": "Why were there no blacksmiths in all of Israel?",
+   "options": [
+    "The Philistines wanted to prevent the Hebrews from making swords or spears",
+    "All the blacksmiths had died",
+    "The Israelites rejected metalworking",
+    "Blacksmiths had moved to other countries"
+   ],
+   "correct": "The Philistines wanted to prevent the Hebrews from making swords or spears",
+   "explain": "No blacksmith could be found in Israel because the Philistines said otherwise the Hebrews might make swords or spears."
+  },
+  {
+   "id": "r6",
+   "ru": "Поэтому в день сражения ни у одного воина с Саулом и Иоаннафаном не было в руке меча или копья.",
+   "question": "What was the consequence of the lack of blacksmiths on the day of battle?",
+   "options": [
+    "None of the warriors with Saul and Jonathan had swords or spears in their hands",
+    "All the warriors had equal weapons",
+    "They used only bows and arrows",
+    "They were better armed than the Philistines"
+   ],
+   "correct": "None of the warriors with Saul and Jonathan had swords or spears in their hands",
+   "explain": "Because of the Philistine control, on the day of battle, no warrior with Saul and Jonathan had a sword or spear in his hand."
+  }
+ ]
 }

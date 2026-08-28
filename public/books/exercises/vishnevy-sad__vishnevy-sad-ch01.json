@@ -1,266 +1,415 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Пришел ___, слава богу.",
-      "lemma": "поезд",
-      "options": ["поезд", "поезда", "поезду", "поездом"],
-      "correct": "поезд",
-      "case": "Именительный (Nominative)",
-      "translation": "The train has arrived, thank God.",
-      "explain": "Поезд is the grammatical subject of the intransitive verb пришёл (arrived), so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Не плачь, говорит мужичок, до ___ заживет.",
-      "lemma": "свадьба",
-      "options": ["свадьба", "свадьбы", "свадьбе", "свадьбой"],
-      "correct": "свадьбы",
-      "case": "Родительный (Genitive)",
-      "translation": "Don't cry, says the little fellow, it'll heal before the wedding.",
-      "explain": "The preposition до (until/before) always governs the genitive case, giving свадьбы."
-    },
-    {
-      "id": "c3",
-      "sentence": "подвела меня к ___ вот в этой самой комнате в детской.",
-      "lemma": "рукомойник",
-      "options": ["рукомойник", "рукомойника", "рукомойнику", "рукомойником"],
-      "correct": "рукомойнику",
-      "case": "Дательный (Dative)",
-      "translation": "she led me to the wash-stand right in this very room, in the nursery.",
-      "explain": "The preposition к (toward) always governs the dative case, giving рукомойнику."
-    },
-    {
-      "id": "c4",
-      "sentence": "Так жаль, я обняла ее ___, жала руками и не могу выпустить.",
-      "lemma": "голова",
-      "options": ["голова", "головы", "голове", "голову"],
-      "correct": "голову",
-      "case": "Винительный (Accusative)",
-      "translation": "I felt so sorry for her that I embraced her head, pressed it with my hands, and couldn't let go.",
-      "explain": "Обнять (to embrace) is a transitive verb whose direct object takes the accusative case: голову."
-    },
-    {
-      "id": "c5",
-      "sentence": "Входят Дуняша со свечой и Лопахин с ___ в руке.",
-      "lemma": "книга",
-      "options": ["книга", "книги", "книге", "книгой"],
-      "correct": "книгой",
-      "case": "Творительный (Instrumental)",
-      "translation": "Dunyasha enters with a candle, and Lopakhin with a book in his hand.",
-      "explain": "The preposition с (with) expressing accompaniment governs the instrumental case: книгой."
-    },
-    {
-      "id": "c6",
-      "sentence": "Окна в ___ закрыты.",
-      "lemma": "комната",
-      "options": ["комната", "комнаты", "комнате", "комнатой"],
-      "correct": "комнате",
-      "case": "Предложный (Prepositional)",
-      "translation": "The windows in the room are closed.",
-      "explain": "The preposition в (in) marking a stationary location takes the prepositional case: комнате."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Пришел поезд, слава богу.",
-      "question": "What does Lopakhin say has finally happened at the start of the play?",
-      "options": ["The train has arrived", "The sun has risen", "Firs has woken up", "The orchard has been sold"],
-      "correct": "The train has arrived",
-      "explain": "Lopakhin's opening line announces that the train has finally arrived."
-    },
-    {
-      "id": "r2",
-      "ru": "Хороший она человек, легкий, простой человек.",
-      "question": "How does Lopakhin describe Lyubov Andreevna as he waits for her?",
-      "options": ["As a harsh and demanding woman", "As a good, easygoing, simple person", "As a stingy landowner", "As a stranger he has never met"],
-      "correct": "As a good, easygoing, simple person",
-      "explain": "Lopakhin recalls her fondly as a good, easy, simple person."
-    },
-    {
-      "id": "r3",
-      "ru": "Не плачь, говорит мужичок, до свадьбы заживет.",
-      "question": "What did young Lyubov Andreevna say to comfort Lopakhin after his father struck him?",
-      "options": ["That she would tell his father off", "That it would heal before his wedding (don't cry)", "That he should run away from home", "That she would bandage the wound herself"],
-      "correct": "That it would heal before his wedding (don't cry)",
-      "explain": "She tells him not to cry, using the saying 'it will heal before the wedding.'"
-    },
-    {
-      "id": "r4",
-      "ru": "А собаки всю ночь не спали.",
-      "question": "According to Dunyasha, what unusual behavior did the dogs show overnight?",
-      "options": ["They barked at strangers", "They ran away from the estate", "They didn't sleep all night", "They chased Yepikhodov"],
-      "correct": "They didn't sleep all night",
-      "explain": "Dunyasha says the dogs stayed awake all night because they sense the masters are coming."
-    },
-    {
-      "id": "r5",
-      "ru": "Сейчас утренник, мороз в три градуса, а вишня вся в цвету",
-      "question": "What contrast does Yepikhodov point out about the weather and the cherry orchard?",
-      "options": ["It's a heatwave yet the cherries have already fallen", "There's a frost of three degrees yet the cherry trees are all in bloom", "It's raining yet the orchard is on fire", "It's snowing yet the birds are singing"],
-      "correct": "There's a frost of three degrees yet the cherry trees are all in bloom",
-      "explain": "Yepikhodov notes the morning frost of three degrees despite the cherry trees being in full bloom."
-    },
-    {
-      "id": "r6",
-      "ru": "Каждый день случается со мной какое-нибудь несчастье.",
-      "question": "What does Yepikhodov say about his daily life?",
-      "options": ["Every day some misfortune happens to him", "Every day he receives good news", "Every day he plays the guitar for the family", "Every day he argues with Lopakhin"],
-      "correct": "Every day some misfortune happens to him",
-      "explain": "Yepikhodov complains that some misfortune befalls him every single day, earning him the nickname '22 misfortunes.'"
-    },
-    {
-      "id": "r7",
-      "ru": "А мне, Ермолай Алексеевич, признаться, Епиходов предложение сделал.",
-      "question": "What news does Dunyasha confide to Lopakhin?",
-      "options": ["That she is leaving the household", "That Yepikhodov has proposed marriage to her", "That she found a letter from Paris", "That she broke a plate"],
-      "correct": "That Yepikhodov has proposed marriage to her",
-      "explain": "Dunyasha tells Lopakhin that Yepikhodov has made her a proposal of marriage."
-    },
-    {
-      "id": "r8",
-      "ru": "Узнает ли она меня?",
-      "question": "What does Lopakhin wonder as the carriages approach?",
-      "options": ["Whether Lyubov Andreevna will recognize him after five years", "Whether the train is on time", "Whether Varya will marry him", "Whether the orchard will be sold"],
-      "correct": "Whether Lyubov Andreevna will recognize him after five years",
-      "explain": "Lopakhin anxiously wonders if she will recognize him, since they haven't seen each other in five years."
-    },
-    {
-      "id": "r9",
-      "ru": "Как холодно, у меня руки закоченели.",
-      "question": "What does Varya complain about right after arriving?",
-      "options": ["That her hands are frozen from the cold", "That she lost her keys", "That the coffee is cold", "That the house smells of naphthalene"],
-      "correct": "That her hands are frozen from the cold",
-      "explain": "Varya remarks how cold it is and that her hands have gone numb."
-    },
-    {
-      "id": "r10",
-      "ru": "Поезд опоздал на два часа.",
-      "question": "What does Gaev complain about as the family arrives?",
-      "options": ["That the train was two hours late", "That the servants forgot the luggage", "That Firs is too old to work", "That the orchard has been sold"],
-      "correct": "That the train was two hours late",
-      "explain": "Gaev exclaims that the train was two hours late, questioning what kind of arrangements these are."
-    },
-    {
-      "id": "r11",
-      "ru": "Третьего дня Петр Сергеевич приехали.",
-      "question": "What does Dunyasha tell Anya about Petya Trofimov?",
-      "options": ["He arrived two days ago and is staying in the bathhouse", "He has already left for Paris", "He is getting married soon", "He refused to visit the estate"],
-      "correct": "He arrived two days ago and is staying in the bathhouse",
-      "explain": "Dunyasha tells Anya that Pyotr Sergeyevich (Trofimov) arrived two days ago and lives in the bathhouse."
-    },
-    {
-      "id": "r12",
-      "ru": "Дуняша, кофе поскорей.",
-      "question": "What is the first thing Varya asks for when she enters?",
-      "options": ["Coffee, quickly", "A glass of wine", "The account books", "A doctor for Anya"],
-      "correct": "Coffee, quickly",
-      "explain": "Varya immediately instructs Dunyasha to bring coffee quickly since her mother wants it."
-    },
-    {
-      "id": "r13",
-      "ru": "Дачу свою около Ментоны она уже продала.",
-      "question": "What financial detail does Anya reveal about her mother?",
-      "options": ["She has already sold her dacha near Menton", "She won a lottery in Paris", "She bought a new estate in Yalta", "She invested all her money in the railway"],
-      "correct": "She has already sold her dacha near Menton",
-      "explain": "Anya tells Varya that their mother has already sold her villa near Menton and now has nothing left."
-    },
-    {
-      "id": "r14",
-      "ru": "Варя, в августе будут продавать имение.",
-      "question": "What does Varya reveal will happen in August?",
-      "options": ["The estate will be sold", "A wedding will take place", "The family will move to Paris", "The orchard will be replanted"],
-      "correct": "The estate will be sold",
-      "explain": "Varya tells Anya that the estate will be sold in August, prompting Anya's distress."
-    },
-    {
-      "id": "r15",
-      "ru": "Птицы поют в саду, который теперь час.",
-      "question": "What does Anya notice while standing near her room?",
-      "options": ["That birds are singing in the orchard", "That the house is completely silent", "That it has started to rain", "That Lopakhin is arguing with Gaev"],
-      "correct": "That birds are singing in the orchard",
-      "explain": "Anya remarks that birds are singing in the garden and asks what time it is."
-    },
-    {
-      "id": "r16",
-      "ru": "Шесть лет тому назад умер отец.",
-      "question": "What tragedy does Anya recall from six years ago?",
-      "options": ["Her father's death", "The loss of the family estate", "Her mother's illness", "A fire at the estate"],
-      "correct": "Her father's death",
-      "explain": "Anya recalls that their father died six years ago."
-    },
-    {
-      "id": "r17",
-      "ru": "Через месяц утонул в реке брат Гриша.",
-      "question": "What happened to Anya's brother Grisha a month after their father's death?",
-      "options": ["He drowned in the river", "He ran away to Moscow", "He fell seriously ill", "He left for military service"],
-      "correct": "He drowned in the river",
-      "explain": "Anya recounts that a month later, her little brother Grisha drowned in the river."
-    },
-    {
-      "id": "r18",
-      "ru": "Мне сейчас в пятом часу утра в Харьков ехать.",
-      "question": "Why does Lopakhin say he must leave soon?",
-      "options": ["He has to travel to Kharkov at five in the morning", "He is meeting a buyer for the orchard", "He must catch a train to Paris", "He needs to visit his sick father"],
-      "correct": "He has to travel to Kharkov at five in the morning",
-      "explain": "Lopakhin explains that he must leave for Kharkov at five o'clock in the morning."
-    },
-    {
-      "id": "r19",
-      "ru": "Вам уже известно, вишневый сад ваш продается за долги.",
-      "question": "What news does Lopakhin deliver about the cherry orchard?",
-      "options": ["It is being sold for debts", "It has already burned down", "It has been donated to the town", "It has doubled in value"],
-      "correct": "It is being sold for debts",
-      "explain": "Lopakhin informs the family that their cherry orchard is being sold to cover their debts."
-    },
-    {
-      "id": "r20",
-      "ru": "Вырубить старый вишневый сад.",
-      "question": "What drastic solution does Lopakhin propose for saving the estate?",
-      "options": ["Cutting down the old cherry orchard to build dachas", "Selling all the furniture", "Marrying Anya to a rich man", "Borrowing money from Pishchik"],
-      "correct": "Cutting down the old cherry orchard to build dachas",
-      "explain": "Lopakhin proposes clearing away old buildings and cutting down the old cherry orchard to make room for dacha plots."
-    },
-    {
-      "id": "r21",
-      "ru": "В прежнее время, лет сорок-пятьдесят назад, вишню сушили, мочили, мариновали, варенье варили и бывало...",
-      "question": "What does old Firs recall about the cherry orchard's past?",
-      "options": ["That forty or fifty years ago the cherries were dried, soaked, pickled, and made into jam", "That the orchard used to be much smaller", "That the cherries were once poisonous", "That no one ever harvested the cherries before"],
-      "correct": "That forty or fifty years ago the cherries were dried, soaked, pickled, and made into jam",
-      "explain": "Firs reminisces that forty or fifty years ago cherries were dried, soaked, pickled, and turned into jam."
-    },
-    {
-      "id": "r22",
-      "ru": "Шкаф сделан ровно сто лет тому назад.",
-      "question": "What does Gaev discover about the old bookcase?",
-      "options": ["It was made exactly a hundred years ago", "It was a gift from his grandfather", "It contains hidden money", "It was recently repaired by Yasha"],
-      "correct": "It was made exactly a hundred years ago",
-      "explain": "Gaev announces that the bookcase was made exactly one hundred years ago, based on numbers he found burned into a drawer."
-    },
-    {
-      "id": "r23",
-      "ru": "Через три недели увидимся.",
-      "question": "When does Lopakhin say he will see the family again before leaving?",
-      "options": ["In three weeks", "The next day", "In a month", "Never again"],
-      "correct": "In three weeks",
-      "explain": "As he departs, Lopakhin says they will see each other again in three weeks."
-    },
-    {
-      "id": "r24",
-      "ru": "Мне приказано было ждать до утра, но у меня не хватило терпения.",
-      "question": "Why does Trofimov say he came to see Lyubov Andreevna at night instead of waiting?",
-      "options": ["He was told to wait until morning but couldn't be patient", "He wanted to surprise Anya", "He was afraid of missing the train", "Varya insisted he come immediately"],
-      "correct": "He was told to wait until morning but couldn't be patient",
-      "explain": "Trofimov explains he was told to wait until morning but didn't have the patience to do so."
-    },
-    {
-      "id": "r25",
-      "ru": "Солнышко мое, весна моя.",
-      "question": "How does Trofimov describe Anya at the very end of the scene?",
-      "options": ["As his sunshine, his spring", "As a foolish, careless girl", "As his future wife", "As the true heir of the estate"],
-      "correct": "As his sunshine, his spring",
-      "explain": "In the closing line, Trofimov tenderly calls Anya his sunshine, his spring."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Пришел ___, слава богу.",
+   "lemma": "поезд",
+   "options": [
+    "поезд",
+    "поезда",
+    "поезду",
+    "поездом"
+   ],
+   "correct": "поезд",
+   "case": "Именительный (Nominative)",
+   "explain": "Поезд is the grammatical subject of the intransitive verb пришёл (arrived), so it stands in the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Не плачь, говорит мужичок, до ___ заживет.",
+   "lemma": "свадьба",
+   "options": [
+    "свадьба",
+    "свадьбы",
+    "свадьбе",
+    "свадьбой"
+   ],
+   "correct": "свадьбы",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition до (until/before) always governs the genitive case, giving свадьбы."
+  },
+  {
+   "id": "c3",
+   "sentence": "подвела меня к ___ вот в этой самой комнате в детской.",
+   "lemma": "рукомойник",
+   "options": [
+    "рукомойник",
+    "рукомойника",
+    "рукомойнику",
+    "рукомойником"
+   ],
+   "correct": "рукомойнику",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition к (toward) always governs the dative case, giving рукомойнику."
+  },
+  {
+   "id": "c4",
+   "sentence": "Так жаль, я обняла ее ___, жала руками и не могу выпустить.",
+   "lemma": "голова",
+   "options": [
+    "голова",
+    "головы",
+    "голове",
+    "голову"
+   ],
+   "correct": "голову",
+   "case": "Винительный (Accusative)",
+   "explain": "Обнять (to embrace) is a transitive verb whose direct object takes the accusative case: голову."
+  },
+  {
+   "id": "c5",
+   "sentence": "Входят Дуняша со свечой и Лопахин с ___ в руке.",
+   "lemma": "книга",
+   "options": [
+    "книга",
+    "книги",
+    "книге",
+    "книгой"
+   ],
+   "correct": "книгой",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition с (with) expressing accompaniment governs the instrumental case: книгой."
+  },
+  {
+   "id": "c6",
+   "sentence": "Окна в ___ закрыты.",
+   "lemma": "комната",
+   "options": [
+    "комната",
+    "комнаты",
+    "комнате",
+    "комнатой"
+   ],
+   "correct": "комнате",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в (in) marking a stationary location takes the prepositional case: комнате."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Пришел поезд, слава богу.",
+   "question": "What does Lopakhin say has finally happened at the start of the play?",
+   "options": [
+    "The train has arrived",
+    "The sun has risen",
+    "Firs has woken up",
+    "The orchard has been sold"
+   ],
+   "correct": "The train has arrived",
+   "explain": "Lopakhin's opening line announces that the train has finally arrived."
+  },
+  {
+   "id": "r2",
+   "ru": "Хороший она человек, легкий, простой человек.",
+   "question": "How does Lopakhin describe Lyubov Andreevna as he waits for her?",
+   "options": [
+    "As a harsh and demanding woman",
+    "As a good, easygoing, simple person",
+    "As a stingy landowner",
+    "As a stranger he has never met"
+   ],
+   "correct": "As a good, easygoing, simple person",
+   "explain": "Lopakhin recalls her fondly as a good, easy, simple person."
+  },
+  {
+   "id": "r3",
+   "ru": "Не плачь, говорит мужичок, до свадьбы заживет.",
+   "question": "What did young Lyubov Andreevna say to comfort Lopakhin after his father struck him?",
+   "options": [
+    "That she would tell his father off",
+    "That it would heal before his wedding (don't cry)",
+    "That he should run away from home",
+    "That she would bandage the wound herself"
+   ],
+   "correct": "That it would heal before his wedding (don't cry)",
+   "explain": "She tells him not to cry, using the saying 'it will heal before the wedding.'"
+  },
+  {
+   "id": "r4",
+   "ru": "А собаки всю ночь не спали.",
+   "question": "According to Dunyasha, what unusual behavior did the dogs show overnight?",
+   "options": [
+    "They barked at strangers",
+    "They ran away from the estate",
+    "They didn't sleep all night",
+    "They chased Yepikhodov"
+   ],
+   "correct": "They didn't sleep all night",
+   "explain": "Dunyasha says the dogs stayed awake all night because they sense the masters are coming."
+  },
+  {
+   "id": "r5",
+   "ru": "Сейчас утренник, мороз в три градуса, а вишня вся в цвету",
+   "question": "What contrast does Yepikhodov point out about the weather and the cherry orchard?",
+   "options": [
+    "It's a heatwave yet the cherries have already fallen",
+    "There's a frost of three degrees yet the cherry trees are all in bloom",
+    "It's raining yet the orchard is on fire",
+    "It's snowing yet the birds are singing"
+   ],
+   "correct": "There's a frost of three degrees yet the cherry trees are all in bloom",
+   "explain": "Yepikhodov notes the morning frost of three degrees despite the cherry trees being in full bloom."
+  },
+  {
+   "id": "r6",
+   "ru": "Каждый день случается со мной какое-нибудь несчастье.",
+   "question": "What does Yepikhodov say about his daily life?",
+   "options": [
+    "Every day some misfortune happens to him",
+    "Every day he receives good news",
+    "Every day he plays the guitar for the family",
+    "Every day he argues with Lopakhin"
+   ],
+   "correct": "Every day some misfortune happens to him",
+   "explain": "Yepikhodov complains that some misfortune befalls him every single day, earning him the nickname '22 misfortunes.'"
+  },
+  {
+   "id": "r7",
+   "ru": "А мне, Ермолай Алексеевич, признаться, Епиходов предложение сделал.",
+   "question": "What news does Dunyasha confide to Lopakhin?",
+   "options": [
+    "That she is leaving the household",
+    "That Yepikhodov has proposed marriage to her",
+    "That she found a letter from Paris",
+    "That she broke a plate"
+   ],
+   "correct": "That Yepikhodov has proposed marriage to her",
+   "explain": "Dunyasha tells Lopakhin that Yepikhodov has made her a proposal of marriage."
+  },
+  {
+   "id": "r8",
+   "ru": "Узнает ли она меня?",
+   "question": "What does Lopakhin wonder as the carriages approach?",
+   "options": [
+    "Whether Lyubov Andreevna will recognize him after five years",
+    "Whether the train is on time",
+    "Whether Varya will marry him",
+    "Whether the orchard will be sold"
+   ],
+   "correct": "Whether Lyubov Andreevna will recognize him after five years",
+   "explain": "Lopakhin anxiously wonders if she will recognize him, since they haven't seen each other in five years."
+  },
+  {
+   "id": "r9",
+   "ru": "Как холодно, у меня руки закоченели.",
+   "question": "What does Varya complain about right after arriving?",
+   "options": [
+    "That her hands are frozen from the cold",
+    "That she lost her keys",
+    "That the coffee is cold",
+    "That the house smells of naphthalene"
+   ],
+   "correct": "That her hands are frozen from the cold",
+   "explain": "Varya remarks how cold it is and that her hands have gone numb."
+  },
+  {
+   "id": "r10",
+   "ru": "Поезд опоздал на два часа.",
+   "question": "What does Gaev complain about as the family arrives?",
+   "options": [
+    "That the train was two hours late",
+    "That the servants forgot the luggage",
+    "That Firs is too old to work",
+    "That the orchard has been sold"
+   ],
+   "correct": "That the train was two hours late",
+   "explain": "Gaev exclaims that the train was two hours late, questioning what kind of arrangements these are."
+  },
+  {
+   "id": "r11",
+   "ru": "Третьего дня Петр Сергеевич приехали.",
+   "question": "What does Dunyasha tell Anya about Petya Trofimov?",
+   "options": [
+    "He arrived two days ago and is staying in the bathhouse",
+    "He has already left for Paris",
+    "He is getting married soon",
+    "He refused to visit the estate"
+   ],
+   "correct": "He arrived two days ago and is staying in the bathhouse",
+   "explain": "Dunyasha tells Anya that Pyotr Sergeyevich (Trofimov) arrived two days ago and lives in the bathhouse."
+  },
+  {
+   "id": "r12",
+   "ru": "Дуняша, кофе поскорей.",
+   "question": "What is the first thing Varya asks for when she enters?",
+   "options": [
+    "Coffee, quickly",
+    "A glass of wine",
+    "The account books",
+    "A doctor for Anya"
+   ],
+   "correct": "Coffee, quickly",
+   "explain": "Varya immediately instructs Dunyasha to bring coffee quickly since her mother wants it."
+  },
+  {
+   "id": "r13",
+   "ru": "Дачу свою около Ментоны она уже продала.",
+   "question": "What financial detail does Anya reveal about her mother?",
+   "options": [
+    "She has already sold her dacha near Menton",
+    "She won a lottery in Paris",
+    "She bought a new estate in Yalta",
+    "She invested all her money in the railway"
+   ],
+   "correct": "She has already sold her dacha near Menton",
+   "explain": "Anya tells Varya that their mother has already sold her villa near Menton and now has nothing left."
+  },
+  {
+   "id": "r14",
+   "ru": "Варя, в августе будут продавать имение.",
+   "question": "What does Varya reveal will happen in August?",
+   "options": [
+    "The estate will be sold",
+    "A wedding will take place",
+    "The family will move to Paris",
+    "The orchard will be replanted"
+   ],
+   "correct": "The estate will be sold",
+   "explain": "Varya tells Anya that the estate will be sold in August, prompting Anya's distress."
+  },
+  {
+   "id": "r15",
+   "ru": "Птицы поют в саду, который теперь час.",
+   "question": "What does Anya notice while standing near her room?",
+   "options": [
+    "That birds are singing in the orchard",
+    "That the house is completely silent",
+    "That it has started to rain",
+    "That Lopakhin is arguing with Gaev"
+   ],
+   "correct": "That birds are singing in the orchard",
+   "explain": "Anya remarks that birds are singing in the garden and asks what time it is."
+  },
+  {
+   "id": "r16",
+   "ru": "Шесть лет тому назад умер отец.",
+   "question": "What tragedy does Anya recall from six years ago?",
+   "options": [
+    "Her father's death",
+    "The loss of the family estate",
+    "Her mother's illness",
+    "A fire at the estate"
+   ],
+   "correct": "Her father's death",
+   "explain": "Anya recalls that their father died six years ago."
+  },
+  {
+   "id": "r17",
+   "ru": "Через месяц утонул в реке брат Гриша.",
+   "question": "What happened to Anya's brother Grisha a month after their father's death?",
+   "options": [
+    "He drowned in the river",
+    "He ran away to Moscow",
+    "He fell seriously ill",
+    "He left for military service"
+   ],
+   "correct": "He drowned in the river",
+   "explain": "Anya recounts that a month later, her little brother Grisha drowned in the river."
+  },
+  {
+   "id": "r18",
+   "ru": "Мне сейчас в пятом часу утра в Харьков ехать.",
+   "question": "Why does Lopakhin say he must leave soon?",
+   "options": [
+    "He has to travel to Kharkov at five in the morning",
+    "He is meeting a buyer for the orchard",
+    "He must catch a train to Paris",
+    "He needs to visit his sick father"
+   ],
+   "correct": "He has to travel to Kharkov at five in the morning",
+   "explain": "Lopakhin explains that he must leave for Kharkov at five o'clock in the morning."
+  },
+  {
+   "id": "r19",
+   "ru": "Вам уже известно, вишневый сад ваш продается за долги.",
+   "question": "What news does Lopakhin deliver about the cherry orchard?",
+   "options": [
+    "It is being sold for debts",
+    "It has already burned down",
+    "It has been donated to the town",
+    "It has doubled in value"
+   ],
+   "correct": "It is being sold for debts",
+   "explain": "Lopakhin informs the family that their cherry orchard is being sold to cover their debts."
+  },
+  {
+   "id": "r20",
+   "ru": "Вырубить старый вишневый сад.",
+   "question": "What drastic solution does Lopakhin propose for saving the estate?",
+   "options": [
+    "Cutting down the old cherry orchard to build dachas",
+    "Selling all the furniture",
+    "Marrying Anya to a rich man",
+    "Borrowing money from Pishchik"
+   ],
+   "correct": "Cutting down the old cherry orchard to build dachas",
+   "explain": "Lopakhin proposes clearing away old buildings and cutting down the old cherry orchard to make room for dacha plots."
+  },
+  {
+   "id": "r21",
+   "ru": "В прежнее время, лет сорок-пятьдесят назад, вишню сушили, мочили, мариновали, варенье варили и бывало...",
+   "question": "What does old Firs recall about the cherry orchard's past?",
+   "options": [
+    "That forty or fifty years ago the cherries were dried, soaked, pickled, and made into jam",
+    "That the orchard used to be much smaller",
+    "That the cherries were once poisonous",
+    "That no one ever harvested the cherries before"
+   ],
+   "correct": "That forty or fifty years ago the cherries were dried, soaked, pickled, and made into jam",
+   "explain": "Firs reminisces that forty or fifty years ago cherries were dried, soaked, pickled, and turned into jam."
+  },
+  {
+   "id": "r22",
+   "ru": "Шкаф сделан ровно сто лет тому назад.",
+   "question": "What does Gaev discover about the old bookcase?",
+   "options": [
+    "It was made exactly a hundred years ago",
+    "It was a gift from his grandfather",
+    "It contains hidden money",
+    "It was recently repaired by Yasha"
+   ],
+   "correct": "It was made exactly a hundred years ago",
+   "explain": "Gaev announces that the bookcase was made exactly one hundred years ago, based on numbers he found burned into a drawer."
+  },
+  {
+   "id": "r23",
+   "ru": "Через три недели увидимся.",
+   "question": "When does Lopakhin say he will see the family again before leaving?",
+   "options": [
+    "In three weeks",
+    "The next day",
+    "In a month",
+    "Never again"
+   ],
+   "correct": "In three weeks",
+   "explain": "As he departs, Lopakhin says they will see each other again in three weeks."
+  },
+  {
+   "id": "r24",
+   "ru": "Мне приказано было ждать до утра, но у меня не хватило терпения.",
+   "question": "Why does Trofimov say he came to see Lyubov Andreevna at night instead of waiting?",
+   "options": [
+    "He was told to wait until morning but couldn't be patient",
+    "He wanted to surprise Anya",
+    "He was afraid of missing the train",
+    "Varya insisted he come immediately"
+   ],
+   "correct": "He was told to wait until morning but couldn't be patient",
+   "explain": "Trofimov explains he was told to wait until morning but didn't have the patience to do so."
+  },
+  {
+   "id": "r25",
+   "ru": "Солнышко мое, весна моя.",
+   "question": "How does Trofimov describe Anya at the very end of the scene?",
+   "options": [
+    "As his sunshine, his spring",
+    "As a foolish, careless girl",
+    "As his future wife",
+    "As the true heir of the estate"
+   ],
+   "correct": "As his sunshine, his spring",
+   "explain": "In the closing line, Trofimov tenderly calls Anya his sunshine, his spring."
+  }
+ ]
 }

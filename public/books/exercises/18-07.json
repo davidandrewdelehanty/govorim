@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Не тяжкий ли труд уготовлен на земле ___?",
-      "lemma": "человек",
-      "options": ["человек", "человека", "человеку", "человеком"],
-      "correct": "человеку",
-      "case": "Дательный (Dative)",
-      "translation": "Is not heavy labor appointed to man on earth?",
-      "explain": "The verb уготовлен (appointed) with the dative of the person to whom something is appointed requires the dative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Как раб, который жаждет вечерней ___",
-      "lemma": "прохлада",
-      "options": ["прохлада", "прохлады", "прохладе", "прохладой"],
-      "correct": "прохлады",
-      "case": "Родительный (Genitive)",
-      "translation": "Like a servant who longs for the evening coolness",
-      "explain": "The verb жаждет (longs for) requires the genitive case expressing what one desires."
-    },
-    {
-      "id": "c3",
-      "sentence": "Как батрак, который ожидает ___, так и я получил месяцы суеты",
-      "lemma": "плата",
-      "options": ["плата", "платы", "плате", "плату"],
-      "correct": "платы",
-      "case": "Родительный (Genitive)",
-      "translation": "As a hired hand waits for his wages, so I have received months of misery",
-      "explain": "The verb ожидает (waits for) requires the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я ворочаюсь до зари, червями и язвами ___ одета",
-      "lemma": "кожа",
-      "options": ["кожа", "кожи", "коже", "кожей"],
-      "correct": "кожа",
-      "case": "Именительный (Nominative)",
-      "translation": "I toss and turn until dawn, my skin clothed with worms and sores",
-      "explain": "Кожа is the grammatical subject of the predicate adjective одета (clothed) and stands in the nominative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Бегут мои ___ быстрее откатского челнока",
-      "lemma": "день",
-      "options": ["дни", "дней", "дням", "днями"],
-      "correct": "дни",
-      "case": "Именительный (Nominative)",
-      "translation": "My days run faster than a weaver's shuttle",
-      "explain": "Дни (days) is the subject of the verb бегут (run) and stands in the nominative plural case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Вспомни, Боже, что жизнь моя лишь ___ ветра",
-      "lemma": "дуновение",
-      "options": ["дуновение", "дуновения", "дуновению", "дуновением"],
-      "correct": "дуновение",
-      "case": "Именительный (Nominative)",
-      "translation": "Remember, O God, that my life is but a breath of wind",
-      "explain": "Дуновение is a predicate nominative after the verb есть (is, implied) and stands in the nominative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Как редеет облако и исчезает, так не выйдет и тот, кто спускается в ___ мертвых",
-      "lemma": "мир",
-      "options": ["мир", "мира", "миру", "миром"],
-      "correct": "мир",
-      "case": "Винительный (Accusative)",
-      "translation": "As a cloud fades and is gone, so he who descends to Sheol does not come up",
-      "explain": "The verb спускается (descends) with the preposition в (into) requires the accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Разве я ___ или чудовище морское, что ты окружил меня стражей?",
-      "lemma": "море",
-      "options": ["море", "моря", "морю", "морем"],
-      "correct": "море",
-      "case": "Именительный (Nominative)",
-      "translation": "Am I the sea or a sea monster that you set a guard over me?",
-      "explain": "Море is the predicate nominative in this rhetorical question and stands in the nominative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Не тяжкий ли труд уготовлен на земле человеку, дни его, не дни ли батрака?",
-      "question": "What is Job comparing his days on earth to?",
-      "options": ["The days of a hired worker", "The days of a king", "The days of a shepherd", "The days of a merchant"],
-      "correct": "The days of a hired worker",
-      "explain": "Job asks if man's days on earth are not like those of a hired hand, toiling for wages."
-    },
-    {
-      "id": "r2",
-      "ru": "Ложась, размышляю, когда я встану, но тянется ночь, и я ворочаюсь до зари",
-      "question": "What is Job's experience at night?",
-      "options": ["He tosses and turns until dawn longing to rise", "He sleeps peacefully through the night", "He stands and watches the stars", "He prays without ceasing"],
-      "correct": "He tosses and turns until dawn longing to rise",
-      "explain": "Job describes lying down, wondering when morning will come, but the night stretches on and he writhes until dawn."
-    },
-    {
-      "id": "r3",
-      "ru": "Червями и язвами плоть одета, кожа потрескалась и гноится",
-      "question": "What condition is Job's body in?",
-      "options": ["Clothed with worms and sores, with skin cracked and festering", "Covered with fine linen", "Anointed with precious oils", "Healed and strengthened"],
-      "correct": "Clothed with worms and sores, with skin cracked and festering",
-      "explain": "Job describes his flesh as clothed with worms and sores, his skin cracked and oozing with pus."
-    },
-    {
-      "id": "r4",
-      "ru": "Вспомни, Боже, что жизнь моя лишь дуновение",
-      "question": "How does Job describe his life?",
-      "options": ["Merely a breath", "A long journey", "A great treasure", "An eternal reward"],
-      "correct": "Merely a breath",
-      "explain": "Job asks God to remember that his life is but a breath — fleeting and temporary."
-    },
-    {
-      "id": "r5",
-      "ru": "Как редеет облако и исчезает, так не выйдет и тот, кто спускается в мир мертвых",
-      "question": "What does Job say about those who descend to Sheol?",
-      "options": ["They do not return, like a cloud that fades away", "They live forever in glory", "They come back to the earth", "They dwell in comfort and peace"],
-      "correct": "They do not return, like a cloud that fades away",
-      "explain": "Job compares the irreversibility of death to a cloud that fades and is gone — those who descend to Sheol do not return."
-    },
-    {
-      "id": "r6",
-      "ru": "Обращение Иова к Богу: Что такое человек, что ты так его возвеличил, что обращаешь на него внимание?",
-      "question": "In Job's address to God, what does he ask?",
-      "options": ["Why God magnifies humanity and pays such attention to mankind", "Why God created the earth", "Why God made the stars", "Why God sent prophets"],
-      "correct": "Why God magnifies humanity and pays such attention to mankind",
-      "explain": "Job questions God about why He exalts man and pays such close attention to him, visiting him every morning."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Не тяжкий ли труд уготовлен на земле ___?",
+   "lemma": "человек",
+   "options": [
+    "человек",
+    "человека",
+    "человеку",
+    "человеком"
+   ],
+   "correct": "человеку",
+   "case": "Дательный (Dative)",
+   "explain": "The verb уготовлен (appointed) with the dative of the person to whom something is appointed requires the dative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Как раб, который жаждет вечерней ___",
+   "lemma": "прохлада",
+   "options": [
+    "прохлада",
+    "прохлады",
+    "прохладе",
+    "прохладой"
+   ],
+   "correct": "прохлады",
+   "case": "Родительный (Genitive)",
+   "explain": "The verb жаждет (longs for) requires the genitive case expressing what one desires."
+  },
+  {
+   "id": "c3",
+   "sentence": "Как батрак, который ожидает ___, так и я получил месяцы суеты",
+   "lemma": "плата",
+   "options": [
+    "плата",
+    "платы",
+    "плате",
+    "плату"
+   ],
+   "correct": "платы",
+   "case": "Родительный (Genitive)",
+   "explain": "The verb ожидает (waits for) requires the genitive case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Я ворочаюсь до зари, червями и язвами ___ одета",
+   "lemma": "кожа",
+   "options": [
+    "кожа",
+    "кожи",
+    "коже",
+    "кожей"
+   ],
+   "correct": "кожа",
+   "case": "Именительный (Nominative)",
+   "explain": "Кожа is the grammatical subject of the predicate adjective одета (clothed) and stands in the nominative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Бегут мои ___ быстрее откатского челнока",
+   "lemma": "день",
+   "options": [
+    "дни",
+    "дней",
+    "дням",
+    "днями"
+   ],
+   "correct": "дни",
+   "case": "Именительный (Nominative)",
+   "explain": "Дни (days) is the subject of the verb бегут (run) and stands in the nominative plural case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Вспомни, Боже, что жизнь моя лишь ___ ветра",
+   "lemma": "дуновение",
+   "options": [
+    "дуновение",
+    "дуновения",
+    "дуновению",
+    "дуновением"
+   ],
+   "correct": "дуновение",
+   "case": "Именительный (Nominative)",
+   "explain": "Дуновение is a predicate nominative after the verb есть (is, implied) and stands in the nominative case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Как редеет облако и исчезает, так не выйдет и тот, кто спускается в ___ мертвых",
+   "lemma": "мир",
+   "options": [
+    "мир",
+    "мира",
+    "миру",
+    "миром"
+   ],
+   "correct": "мир",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb спускается (descends) with the preposition в (into) requires the accusative case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Разве я ___ или чудовище морское, что ты окружил меня стражей?",
+   "lemma": "море",
+   "options": [
+    "море",
+    "моря",
+    "морю",
+    "морем"
+   ],
+   "correct": "море",
+   "case": "Именительный (Nominative)",
+   "explain": "Море is the predicate nominative in this rhetorical question and stands in the nominative case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Не тяжкий ли труд уготовлен на земле человеку, дни его, не дни ли батрака?",
+   "question": "What is Job comparing his days on earth to?",
+   "options": [
+    "The days of a hired worker",
+    "The days of a king",
+    "The days of a shepherd",
+    "The days of a merchant"
+   ],
+   "correct": "The days of a hired worker",
+   "explain": "Job asks if man's days on earth are not like those of a hired hand, toiling for wages."
+  },
+  {
+   "id": "r2",
+   "ru": "Ложась, размышляю, когда я встану, но тянется ночь, и я ворочаюсь до зари",
+   "question": "What is Job's experience at night?",
+   "options": [
+    "He tosses and turns until dawn longing to rise",
+    "He sleeps peacefully through the night",
+    "He stands and watches the stars",
+    "He prays without ceasing"
+   ],
+   "correct": "He tosses and turns until dawn longing to rise",
+   "explain": "Job describes lying down, wondering when morning will come, but the night stretches on and he writhes until dawn."
+  },
+  {
+   "id": "r3",
+   "ru": "Червями и язвами плоть одета, кожа потрескалась и гноится",
+   "question": "What condition is Job's body in?",
+   "options": [
+    "Clothed with worms and sores, with skin cracked and festering",
+    "Covered with fine linen",
+    "Anointed with precious oils",
+    "Healed and strengthened"
+   ],
+   "correct": "Clothed with worms and sores, with skin cracked and festering",
+   "explain": "Job describes his flesh as clothed with worms and sores, his skin cracked and oozing with pus."
+  },
+  {
+   "id": "r4",
+   "ru": "Вспомни, Боже, что жизнь моя лишь дуновение",
+   "question": "How does Job describe his life?",
+   "options": [
+    "Merely a breath",
+    "A long journey",
+    "A great treasure",
+    "An eternal reward"
+   ],
+   "correct": "Merely a breath",
+   "explain": "Job asks God to remember that his life is but a breath — fleeting and temporary."
+  },
+  {
+   "id": "r5",
+   "ru": "Как редеет облако и исчезает, так не выйдет и тот, кто спускается в мир мертвых",
+   "question": "What does Job say about those who descend to Sheol?",
+   "options": [
+    "They do not return, like a cloud that fades away",
+    "They live forever in glory",
+    "They come back to the earth",
+    "They dwell in comfort and peace"
+   ],
+   "correct": "They do not return, like a cloud that fades away",
+   "explain": "Job compares the irreversibility of death to a cloud that fades and is gone — those who descend to Sheol do not return."
+  },
+  {
+   "id": "r6",
+   "ru": "Обращение Иова к Богу: Что такое человек, что ты так его возвеличил, что обращаешь на него внимание?",
+   "question": "In Job's address to God, what does he ask?",
+   "options": [
+    "Why God magnifies humanity and pays such attention to mankind",
+    "Why God created the earth",
+    "Why God made the stars",
+    "Why God sent prophets"
+   ],
+   "correct": "Why God magnifies humanity and pays such attention to mankind",
+   "explain": "Job questions God about why He exalts man and pays such close attention to him, visiting him every morning."
+  }
+ ]
 }

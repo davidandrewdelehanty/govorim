@@ -1,450 +1,705 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Скоро начнется ___.",
-      "lemma": "спектакль",
-      "options": ["спектакль", "спектакля", "спектаклю", "спектаклем"],
-      "correct": "спектакль",
-      "case": "Именительный (Nominative)",
-      "translation": "The performance will begin soon.",
-      "explain": "«Спектакль» is the grammatical subject of «начнется», so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "От ___ не могу сидеть дома.",
-      "lemma": "тоска",
-      "options": ["тоска", "тоски", "тоске", "тоской"],
-      "correct": "тоски",
-      "case": "Родительный (Genitive)",
-      "translation": "Out of longing/anguish I cannot sit at home.",
-      "explain": "The preposition «от» (from/because of) governs the genitive case, giving «тоски»."
-    },
-    {
-      "id": "c3",
-      "sentence": "А меня тянет сюда к ___, как чайку.",
-      "lemma": "озеро",
-      "options": ["озеро", "озера", "озеру", "озером"],
-      "correct": "озеру",
-      "case": "Дательный (Dative)",
-      "translation": "And I am drawn here to the lake, like a seagull.",
-      "explain": "The preposition «к» (toward) governs the dative case, giving «озеру»."
-    },
-    {
-      "id": "c4",
-      "sentence": "Мария Ильинична, будьте добры, попросите вашего папашу, чтобы он распорядился отвязать ___.",
-      "lemma": "собака",
-      "options": ["собака", "собаки", "собаке", "собаку"],
-      "correct": "собаку",
-      "case": "Винительный (Accusative)",
-      "translation": "Maria Ilyinichna, would you be so kind as to ask your father to have the dog untied.",
-      "explain": "«Собаку» is the direct object of the infinitive «отвязать» (to untie), so it takes the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Но мне надоело, что она носится с этим ___.",
-      "lemma": "билетрист",
-      "options": ["билетрист", "билетриста", "билетристу", "билетристом"],
-      "correct": "билетристом",
-      "case": "Творительный (Instrumental)",
-      "translation": "But I'm sick of her fussing over this novelist.",
-      "explain": "The verb «носиться с (кем-чем)» governs the instrumental case, giving «билетристом»."
-    },
-    {
-      "id": "c6",
-      "sentence": "Никогда в ___ не жил, как хотел.",
-      "lemma": "деревня",
-      "options": ["деревня", "деревни", "деревне", "деревню"],
-      "correct": "деревне",
-      "case": "Предложный (Prepositional)",
-      "translation": "I never got to live in the countryside the way I wanted.",
-      "explain": "The preposition «в» marking location governs the prepositional case here, giving «деревне»."
-    },
-    {
-      "id": "c7",
-      "sentence": "Просто капризный самолюбивый ___.",
-      "lemma": "мальчик",
-      "options": ["мальчик", "мальчика", "мальчику", "мальчиком"],
-      "correct": "мальчик",
-      "case": "Именительный (Nominative)",
-      "translation": "Simply a capricious, vain boy.",
-      "explain": "Мальчик is a predicate noun describing the subject, so it stands in the nominative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Стало быть, показал он этот спектакль и надушил здесь серый не для ___, а для демонстрации.",
-      "lemma": "шутка",
-      "options": ["шутка", "шутки", "шутку", "шуткой"],
-      "correct": "шутки",
-      "case": "Родительный (Genitive)",
-      "translation": "So he staged this show and perfumed the place not for a joke, but for a demonstration.",
-      "explain": "The preposition для (for) always governs the genitive case."
-    },
-    {
-      "id": "c9",
-      "sentence": "С такой ___, с таким чудесным голосом.",
-      "lemma": "наружность",
-      "options": ["наружность", "наружности", "наружностью", "наружностях"],
-      "correct": "наружностью",
-      "case": "Творительный (Instrumental)",
-      "translation": "With such an appearance, with such a wonderful voice.",
-      "explain": "The preposition с (with) describing accompanying qualities governs the instrumental case."
-    },
-    {
-      "id": "c10",
-      "sentence": "На новые формы в ___.",
-      "lemma": "искусство",
-      "options": ["искусство", "искусства", "искусству", "искусстве"],
-      "correct": "искусстве",
-      "case": "Предложный (Prepositional)",
-      "translation": "About new forms in art.",
-      "explain": "The preposition в (in) denoting location/topic governs the prepositional case here."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Отчего вы всегда ходите в черном?",
-      "question": "What does Medvedenko ask Masha at the very start of the play?",
-      "options": ["Why she always wears black", "Why she is always late", "Why she never smiles", "Why she avoids him"],
-      "correct": "Why she always wears black",
-      "explain": "The opening line is a question about why Masha always dresses in black."
-    },
-    {
-      "id": "r2",
-      "ru": "Это траур по моей жизни.",
-      "question": "How does Masha explain why she wears black?",
-      "options": ["It is mourning for her (unhappy) life", "It is the fashion in the city", "Her mother told her to", "It is required for her job"],
-      "correct": "It is mourning for her (unhappy) life",
-      "explain": "Masha answers that it is mourning for her life, revealing her deep unhappiness."
-    },
-    {
-      "id": "r3",
-      "ru": "Я получаю всего 23 рубля в месяц,",
-      "question": "How much does Medvedenko say he earns per month?",
-      "options": ["Only 23 rubles", "100 rubles", "500 rubles", "Nothing, he works for free"],
-      "correct": "Only 23 rubles",
-      "explain": "Medvedenko complains that he earns only 23 rubles a month."
-    },
-    {
-      "id": "r4",
-      "ru": "Играть будет Заречная, а пьеса сочинения Константина Гавриловича.",
-      "question": "Who will perform in the play, and who wrote it?",
-      "options": ["Zarechnaya will act, and it was written by Konstantin Gavrilovich", "Masha will act, written by Medvedenko", "Arkadina will act, written by Trigorin", "Sorin will act, written by himself"],
-      "correct": "Zarechnaya will act, and it was written by Konstantin Gavrilovich",
-      "explain": "The text states that Zarechnaya will perform, and the play was written by Konstantin Gavrilovich (Treplev)."
-    },
-    {
-      "id": "r5",
-      "ru": "От тоски не могу сидеть дома,",
-      "question": "Why does Masha say she cannot stay home?",
-      "options": ["Out of anguish/melancholy", "Because her father forbids it", "Because the house is too small", "Because she has chores to do"],
-      "correct": "Out of anguish/melancholy",
-      "explain": "Masha says that out of melancholy (toska) she cannot bear to sit at home."
-    },
-    {
-      "id": "r6",
-      "ru": "Ваша любовь трогает меня, но я не могу отвечать взаимностью,",
-      "question": "How does Masha respond to Medvedenko's love for her?",
-      "options": ["She is touched but cannot return his feelings", "She says she loves him too", "She tells him to stop bothering her forever", "She agrees to marry him"],
-      "correct": "She is touched but cannot return his feelings",
-      "explain": "Masha tells him his love touches her, but she cannot reciprocate it."
-    },
-    {
-      "id": "r7",
-      "ru": "Мария Ильинична, будьте добры, попросите вашего папашу, чтобы он распорядился отвязать собаку,",
-      "question": "What request does someone make of Masha regarding the dog?",
-      "options": ["To ask her father to have the dog untied", "To feed the dog", "To take the dog for a walk", "To give the dog away"],
-      "correct": "To ask her father to have the dog untied",
-      "explain": "The speaker politely asks Masha to have her father order the dog untied, since it howls."
-    },
-    {
-      "id": "r8",
-      "ru": "Бывало, возьмешь отпуск на 28 дней и приедешь сюда, чтобы отдохнуть и все,",
-      "question": "What does Sorin recall about his past vacations at the estate?",
-      "options": ["He used to take 28 days of leave to come rest here", "He never had any vacation time", "He always spent his leave in the city", "He came here only once, briefly"],
-      "correct": "He used to take 28 days of leave to come rest here",
-      "explain": "Sorin recalls that he used to take a 28-day leave and come here just to rest."
-    },
-    {
-      "id": "r9",
-      "ru": "Ровно в половине девятого, как раз зайдет луна.",
-      "question": "What timing detail does Treplev mention about the moon for the play's staging?",
-      "options": ["The moon will set exactly at half past eight", "The sun will rise at half past eight", "The play starts at half past eight", "The guests arrive at half past eight"],
-      "correct": "The moon will set exactly at half past eight",
-      "explain": "Treplev notes that the moon will set precisely at half past eight, timing for the outdoor stage."
-    },
-    {
-      "id": "r10",
-      "ru": "Отец и мачеха стерегут ее, и вырваться из дому так же тяжело, как из тюрьмы.",
-      "question": "Why might Nina (Zarechnaya) be late for the performance?",
-      "options": ["Her father and stepmother guard her closely, making it hard to escape the house", "She has to travel a very long distance", "She is rehearsing another play", "She forgot the date of the performance"],
-      "correct": "Her father and stepmother guard her closely, making it hard to escape the house",
-      "explain": "The text explains that her father and stepmother watch her so closely that escaping the house is as hard as escaping prison."
-    },
-    {
-      "id": "r11",
-      "ru": "Она уже и против меня, и против спектакля, против моей пьесы, потому что не она играет, а Заречная.",
-      "question": "Why is Treplev's mother (Arkadina) against his play, according to him?",
-      "options": ["Because Zarechnaya is acting in it instead of her", "Because she thinks the play is poorly written", "Because she dislikes the outdoor setting", "Because she wasn't consulted about it"],
-      "correct": "Because Zarechnaya is acting in it instead of her",
-      "explain": "Treplev says his mother is against the play because Zarechnaya, not she, is the one performing in it."
-    },
-    {
-      "id": "r12",
-      "ru": "Нужно хвалить только ее одну, кричать, восхищаться ее великолепной игрой там в «Даме с камелями»",
-      "question": "According to Treplev, what does his mother demand regarding praise?",
-      "options": ["That only she be praised for her acting, such as in 'The Lady of the Camellias'", "That the whole cast be praised equally", "That critics never write about actors", "That she be left alone and not discussed"],
-      "correct": "That only she be praised for her acting, such as in 'The Lady of the Camellias'",
-      "explain": "Treplev complains that only she must be praised and admired for her magnificent acting, citing her roles in 'The Lady of the Camellias' and 'The Fumes of Life.'"
-    },
-    {
-      "id": "r13",
-      "ru": "И скупа, я знаю, у нее в Одессе в банке семьдесят тысяч это я знаю наверное.",
-      "question": "What does Treplev claim about his mother's wealth and stinginess?",
-      "options": ["She has seventy thousand in an Odessa bank yet is stingy", "She has given away all her money to charity", "She has no savings at all", "She spends all her money on Trigorin"],
-      "correct": "She has seventy thousand in an Odessa bank yet is stingy",
-      "explain": "Treplev claims his mother is stingy and has seventy thousand rubles in a bank in Odessa."
-    },
-    {
-      "id": "r14",
-      "ru": "Меня моя мать не любит.",
-      "question": "What painful belief does Treplev express about his mother?",
-      "options": ["That his mother does not love him", "That his mother has forgotten him", "That his mother prefers Sorin", "That his mother wants him to leave"],
-      "correct": "That his mother does not love him",
-      "explain": "Treplev states plainly that his own mother does not love him."
-    },
-    {
-      "id": "r15",
-      "ru": "Вот я и бегу, как Мопассан бежал от Эйфелевой башни, которая давила ему мозг своею пошлостью.",
-      "question": "What comparison does Treplev make about his own aversion to conventional theater?",
-      "options": ["He flees it like Maupassant fled the Eiffel Tower, which he found oppressively vulgar", "He compares himself to Napoleon fleeing Russia", "He compares it to fleeing a burning building", "He compares it to running from a storm"],
-      "correct": "He flees it like Maupassant fled the Eiffel Tower, which he found oppressively vulgar",
-      "explain": "Treplev says he flees conventional theater the way Maupassant fled the Eiffel Tower, which oppressed his mind with its vulgarity."
-    },
-    {
-      "id": "r16",
-      "ru": "Вышел из третьего курса университета по обстоятельствам, как говорится, от редакции независимым.",
-      "question": "What does Treplev say about his own education and status?",
-      "options": ["He left university in his third year due to circumstances, and is independent of any editorial board", "He graduated with honors", "He was expelled for misconduct", "He never attended university"],
-      "correct": "He left university in his third year due to circumstances, and is independent of any editorial board",
-      "explain": "Treplev bitterly describes himself as having left university in the third year 'due to circumstances,' with no affiliation."
-    },
-    {
-      "id": "r17",
-      "ru": "Сорок лет ему будет еще не скоро, но он уже знаменит и сыт, по горло.",
-      "question": "How does the description characterize Trigorin's age and fame?",
-      "options": ["He is not yet forty but already famous and 'fed up to the throat' (jaded)", "He is over sixty and long forgotten", "He is a young unknown writer", "He is exactly forty and retiring"],
-      "correct": "He is not yet forty but already famous and 'fed up to the throat' (jaded)",
-      "explain": "The text says Trigorin won't be forty for a while yet, but he is already famous and sated/jaded."
-    },
-    {
-      "id": "r18",
-      "ru": "Я без нее жить не могу...",
-      "question": "How does Treplev describe his feelings for Nina?",
-      "options": ["That he cannot live without her", "That he can easily live without her", "That he is unsure how he feels", "That he only likes her as a friend"],
-      "correct": "That he cannot live without her",
-      "explain": "Treplev declares that he cannot live without her."
-    },
-    {
-      "id": "r19",
-      "ru": "Боялась, что отец не пустит меня...",
-      "question": "What was Nina afraid of on her way to see Treplev?",
-      "options": ["That her father would not let her come", "That she would get lost in the dark", "That the lake would flood", "That she would miss the play entirely"],
-      "correct": "That her father would not let her come",
-      "explain": "Nina says she was afraid her father would not let her come."
-    },
-    {
-      "id": "r20",
-      "ru": "А меня тянет сюда к озеру, как чайку...",
-      "question": "What draws Nina to this place, according to her own words?",
-      "options": ["The lake draws her, like a seagull", "The theater draws her", "Treplev's mother draws her", "The nearby town draws her"],
-      "correct": "The lake draws her, like a seagull",
-      "explain": "Nina says she is drawn here to the lake, like a seagull — an image tied to the play's title."
-    },
-    {
-      "id": "r21",
-      "ru": "Не забудь бы спирт и серу.",
-      "question": "What preparations does Treplev worry about forgetting for the play's special effects?",
-      "options": ["Alcohol/spirit and sulfur", "Candles and matches", "Costumes and makeup", "Music and a curtain"],
-      "correct": "Alcohol/spirit and sulfur",
-      "explain": "Treplev reminds himself not to forget the spirit and sulfur needed for the stage effect of red glowing eyes."
-    },
-    {
-      "id": "r22",
-      "ru": "Вы доктор отлично знаете, что вам вреден сырой воздух,",
-      "question": "What health warning does someone give the doctor (Dorn) about his own habits?",
-      "options": ["That damp air is bad for him", "That he smokes too much", "That he drinks too much coffee", "That he doesn't sleep enough"],
-      "correct": "That damp air is bad for him",
-      "explain": "The character reminds Dorn that he, as a doctor, knows perfectly well that damp air is bad for his health."
-    },
-    {
-      "id": "r23",
-      "ru": "Женщины всегда влюблялись в вас и вешались на шею.",
-      "question": "What does someone say about Dorn's history with women?",
-      "options": ["Women always fell in love with him and threw themselves at him", "Women always avoided him", "He never had any romantic success", "Only one woman ever loved him"],
-      "correct": "Women always fell in love with him and threw themselves at him",
-      "explain": "The speaker claims that women always fell in love with Dorn and threw their arms around his neck."
-    },
-    {
-      "id": "r24",
-      "ru": "О вы, почтенные старые тени, которые носитесь над озером в эту ночную пору, прилетите к нам.",
-      "question": "How does Nina's monologue in Treplev's play begin, addressing spirits?",
-      "options": ["Calling upon venerable old shades that hover over the lake at night to come to them", "Calling upon the sun to rise early", "Calling upon the audience to applaud", "Calling upon her father to forgive her"],
-      "correct": "Calling upon venerable old shades that hover over the lake at night to come to them",
-      "explain": "The monologue opens by invoking the venerable old shades that hover over the lake at night to fly to them."
-    },
-    {
-      "id": "r25",
-      "ru": "Во мне душа Александра Великого, и Цезаря, и Шекспира, и Наполеона, и последней пиявки.",
-      "question": "What does the 'World Soul' in Treplev's play claim to contain within itself?",
-      "options": ["The souls of Alexander the Great, Caesar, Shakespeare, Napoleon, and even the lowliest leech", "Only the souls of great kings", "The soul of one single unnamed person", "Nothing at all, being empty"],
-      "correct": "The souls of Alexander the Great, Caesar, Shakespeare, Napoleon, and even the lowliest leech",
-      "explain": "The World Soul declares that within it are the souls of Alexander the Great, Caesar, Shakespeare, Napoleon, and even the lowliest leech."
-    },
-    {
-      "id": "r26",
-      "ru": "Ирина, матушка, нельзя так обращаться с молодым самолюбием.",
-      "question": "What does the speaker tell Irina about how she treated the young man?",
-      "options": ["She should not have treated his pride so harshly", "She should praise his talent more often", "She should let him direct a real theater", "She should apologize to Trigorin"],
-      "correct": "She should not have treated his pride so harshly",
-      "explain": "The line says one must not treat a young man's pride (self-love) that way."
-    },
-    {
-      "id": "r27",
-      "ru": "Стало быть, показал он этот спектакль и надушил здесь серый не для шутки, а для демонстрации...",
-      "question": "According to this line, why did Konstantin stage his play with such theatrical effects (like sulfur smoke)?",
-      "options": ["To demonstrate his new artistic ideas, not as a joke", "To scare his mother", "To impress Trigorin", "To celebrate his mother's birthday"],
-      "correct": "To demonstrate his new artistic ideas, not as a joke",
-      "explain": "The speaker concludes the smoke and staging were 'for demonstration,' not for a joke."
-    },
-    {
-      "id": "r28",
-      "ru": "Просто Капризный, самолюбивый мальчик.",
-      "question": "How does Irina (Arkadina) describe her son in this line?",
-      "options": ["A capricious, vain boy", "A brilliant young genius", "A hardworking student", "A shy but talented actor"],
-      "correct": "A capricious, vain boy",
-      "explain": "She calls him 'просто капризный самолюбивый мальчик' — simply a capricious, vain boy."
-    },
-    {
-      "id": "r29",
-      "ru": "Никто не имеет основания отделять дух от материи, так как, быть может, самый дух есть совокупность материальных атомов.",
-      "question": "What philosophical idea from Konstantin's play is being quoted here?",
-      "options": ["That spirit and matter cannot be separated, since spirit may be a collection of material atoms", "That love conquers all obstacles", "That nature is more important than art", "That death is the only truth"],
-      "correct": "That spirit and matter cannot be separated, since spirit may be a collection of material atoms",
-      "explain": "The line states no one has grounds to separate spirit from matter, since spirit may itself be a collection of material atoms."
-    },
-    {
-      "id": "r30",
-      "ru": "Жен-премьером и кумиром тогда всех шести усадьб был вот, рекомендую доктор Евгений Сергеевич Романов.",
-      "question": "Who is identified as the former idol and heartthrob of the six estates years ago?",
-      "options": ["Doctor Evgeny Sergeyevich (Dorn)", "Konstantin", "Trigorin", "Shamrayev"],
-      "correct": "Doctor Evgeny Sergeyevich (Dorn)",
-      "explain": "The text names 'доктор Евгений Сергеевич' as the leading man and idol of all six estates at that time."
-    },
-    {
-      "id": "r31",
-      "ru": "С такой наружностью, с таким чудным голосом нельзя, грешно сидеть в деревне. Вы должны поступить на сцену у вас должен быть талант. Ой, это моя мечта! Но она никогда не осуществится. Кто знает? Позвольте представить: Тригорин, Борис Алексеевич.",
-      "question": "Who is being introduced to Nina in this passage?",
-      "options": ["The writer Trigorin", "The doctor Dorn", "The teacher Medvedenko", "The estate manager Shamrayev"],
-      "correct": "The writer Trigorin",
-      "explain": "The passage ends with the introduction: 'Позвольте представить Тригорин Борис Алексеевич.'"
-    },
-    {
-      "id": "r32",
-      "ru": "Он хоть и знаменитый, но очень простой человек.",
-      "question": "How does Nina describe Trigorin despite his fame?",
-      "options": ["As a very simple, unpretentious man", "As arrogant and cold", "As shy and silent", "As rude to strangers"],
-      "correct": "As a very simple, unpretentious man",
-      "explain": "She says though he is famous, he is 'очень простой человек' — a very simple person."
-    },
-    {
-      "id": "r33",
-      "ru": "Для меня нет большего наслаждения, чем сидеть под вечер на берегу и смотреть на поплавок.",
-      "question": "What does Trigorin say gives him the greatest pleasure?",
-      "options": ["Sitting by the shore in the evening watching a fishing float", "Writing novels all night", "Attending the theater", "Traveling abroad"],
-      "correct": "Sitting by the shore in the evening watching a fishing float",
-      "explain": "Trigorin says there is no greater pleasure for him than sitting by the shore in the evening watching the float."
-    },
-    {
-      "id": "r34",
-      "ru": "Говорят, ее покойная мать оставила всё свое огромное состояние своему мужу.",
-      "question": "What is said about Masha's late mother?",
-      "options": ["She left her whole large fortune to her husband", "She was an actress", "She died of illness in the city", "She never married"],
-      "correct": "She left her whole large fortune to her husband",
-      "explain": "The text says her late mother left her entire large fortune to her husband."
-    },
-    {
-      "id": "r35",
-      "ru": "Когда эта девочка говорила об одиночестве",
-      "question": "What topic in Nina's performance moved Sorin, according to this line?",
-      "options": ["When the girl spoke about loneliness", "When she sang a song", "When she danced", "When she cried on stage"],
-      "correct": "When the girl spoke about loneliness",
-      "explain": "Sorin recalls being moved 'когда эта девочка говорила об одиночестве' — when the girl spoke of loneliness."
-    },
-    {
-      "id": "r36",
-      "ru": "Константин Гаврилович, мне ваша пьеса чрезвычайно понравилась.",
-      "question": "What does Nina tell Konstantin about his play?",
-      "options": ["That she liked it very much", "That she found it boring", "That she did not understand any of it", "That it was too short"],
-      "correct": "That she liked it very much",
-      "explain": "Nina tells him, 'мне ваша пьеса чрезвычайно понравилась' — she liked his play very much."
-    },
-    {
-      "id": "r37",
-      "ru": "Так и следовало, потому что художественное произведение непременно должно выражать какую-нибудь большую мысль.",
-      "question": "According to Dorn, what must a work of art necessarily express?",
-      "options": ["Some great idea", "A funny joke", "A historical event", "A love story"],
-      "correct": "Some great idea",
-      "explain": "Dorn says a work of art must necessarily express some great idea ('большую мысль')."
-    },
-    {
-      "id": "r38",
-      "ru": "Иначе, если вы пойдете по этой живописной дороге без определенной цели, вы заблудитесь и ваш талант погубит вас.",
-      "question": "What warning does Dorn give Konstantin about following an undefined path?",
-      "options": ["That he will lose his way and his talent will destroy him", "That he should stop writing altogether", "That he should marry Nina soon", "That he should leave the estate"],
-      "correct": "That he will lose his way and his talent will destroy him",
-      "explain": "Dorn warns that without a definite goal, Konstantin 'заблудится, и ваш талант погубит вас' — will lose his way and his talent will ruin him."
-    },
-    {
-      "id": "r39",
-      "ru": "Мне необходимо ее видеть.",
-      "question": "What does Konstantin desperately want after learning Nina left?",
-      "options": ["He needs to see her", "He needs to sleep", "He needs to talk to his mother", "He needs to finish his play"],
-      "correct": "He needs to see her",
-      "explain": "He repeats 'Мне необходимо ее видеть' — I need to see her."
-    },
-    {
-      "id": "r40",
-      "ru": "Я не люблю своего отца... Но к вам почему-то лежит мое сердце.",
-      "question": "What does Masha say about her feelings toward Dorn compared to her father?",
-      "options": ["She does not love her father, but her heart is drawn to Dorn", "She loves her father more than anyone", "She hates both her father and Dorn", "She wants to move away from both"],
-      "correct": "She does not love her father, but her heart is drawn to Dorn",
-      "explain": "Masha says she doesn't love her own father, but her heart is somehow drawn to Dorn."
-    },
-    {
-      "id": "r41",
-      "ru": "Я люблю Константина.",
-      "question": "Who does Masha confess she loves?",
-      "options": ["Konstantin", "Trigorin", "Medvedenko", "Dorn"],
-      "correct": "Konstantin",
-      "explain": "Masha says plainly 'Я люблю Константина' — I love Konstantin."
-    },
-    {
-      "id": "r42",
-      "ru": "Мне 55 лет.",
-      "question": "How old does the speaker say she is?",
-      "options": ["55", "45", "60", "35"],
-      "correct": "55",
-      "explain": "The line states plainly, 'Мне 55 лет.'"
-    },
-    {
-      "id": "r43",
-      "ru": "И эта бедная луна напрасно зажигает свой фонарь.",
-      "question": "What line from Konstantin's play is recalled about the moon?",
-      "options": ["The poor moon lights her lantern in vain", "The moon never rises here", "The moon is the seagull's home", "The moon has gone dark forever"],
-      "correct": "The poor moon lights her lantern in vain",
-      "explain": "The recalled line is, 'И эта бедная луна напрасно зажигает свой фонарь.'"
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Скоро начнется ___.",
+   "lemma": "спектакль",
+   "options": [
+    "спектакль",
+    "спектакля",
+    "спектаклю",
+    "спектаклем"
+   ],
+   "correct": "спектакль",
+   "case": "Именительный (Nominative)",
+   "explain": "«Спектакль» is the grammatical subject of «начнется», so it stands in the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "От ___ не могу сидеть дома.",
+   "lemma": "тоска",
+   "options": [
+    "тоска",
+    "тоски",
+    "тоске",
+    "тоской"
+   ],
+   "correct": "тоски",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition «от» (from/because of) governs the genitive case, giving «тоски»."
+  },
+  {
+   "id": "c3",
+   "sentence": "А меня тянет сюда к ___, как чайку.",
+   "lemma": "озеро",
+   "options": [
+    "озеро",
+    "озера",
+    "озеру",
+    "озером"
+   ],
+   "correct": "озеру",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition «к» (toward) governs the dative case, giving «озеру»."
+  },
+  {
+   "id": "c4",
+   "sentence": "Мария Ильинична, будьте добры, попросите вашего папашу, чтобы он распорядился отвязать ___.",
+   "lemma": "собака",
+   "options": [
+    "собака",
+    "собаки",
+    "собаке",
+    "собаку"
+   ],
+   "correct": "собаку",
+   "case": "Винительный (Accusative)",
+   "explain": "«Собаку» is the direct object of the infinitive «отвязать» (to untie), so it takes the accusative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Но мне надоело, что она носится с этим ___.",
+   "lemma": "билетрист",
+   "options": [
+    "билетрист",
+    "билетриста",
+    "билетристу",
+    "билетристом"
+   ],
+   "correct": "билетристом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The verb «носиться с (кем-чем)» governs the instrumental case, giving «билетристом»."
+  },
+  {
+   "id": "c6",
+   "sentence": "Никогда в ___ не жил, как хотел.",
+   "lemma": "деревня",
+   "options": [
+    "деревня",
+    "деревни",
+    "деревне",
+    "деревню"
+   ],
+   "correct": "деревне",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition «в» marking location governs the prepositional case here, giving «деревне»."
+  },
+  {
+   "id": "c7",
+   "sentence": "Просто капризный самолюбивый ___.",
+   "lemma": "мальчик",
+   "options": [
+    "мальчик",
+    "мальчика",
+    "мальчику",
+    "мальчиком"
+   ],
+   "correct": "мальчик",
+   "case": "Именительный (Nominative)",
+   "explain": "Мальчик is a predicate noun describing the subject, so it stands in the nominative case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Стало быть, показал он этот спектакль и надушил здесь серый не для ___, а для демонстрации.",
+   "lemma": "шутка",
+   "options": [
+    "шутка",
+    "шутки",
+    "шутку",
+    "шуткой"
+   ],
+   "correct": "шутки",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition для (for) always governs the genitive case."
+  },
+  {
+   "id": "c9",
+   "sentence": "С такой ___, с таким чудесным голосом.",
+   "lemma": "наружность",
+   "options": [
+    "наружность",
+    "наружности",
+    "наружностью",
+    "наружностях"
+   ],
+   "correct": "наружностью",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition с (with) describing accompanying qualities governs the instrumental case."
+  },
+  {
+   "id": "c10",
+   "sentence": "На новые формы в ___.",
+   "lemma": "искусство",
+   "options": [
+    "искусство",
+    "искусства",
+    "искусству",
+    "искусстве"
+   ],
+   "correct": "искусстве",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в (in) denoting location/topic governs the prepositional case here."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Отчего вы всегда ходите в черном?",
+   "question": "What does Medvedenko ask Masha at the very start of the play?",
+   "options": [
+    "Why she always wears black",
+    "Why she is always late",
+    "Why she never smiles",
+    "Why she avoids him"
+   ],
+   "correct": "Why she always wears black",
+   "explain": "The opening line is a question about why Masha always dresses in black."
+  },
+  {
+   "id": "r2",
+   "ru": "Это траур по моей жизни.",
+   "question": "How does Masha explain why she wears black?",
+   "options": [
+    "It is mourning for her (unhappy) life",
+    "It is the fashion in the city",
+    "Her mother told her to",
+    "It is required for her job"
+   ],
+   "correct": "It is mourning for her (unhappy) life",
+   "explain": "Masha answers that it is mourning for her life, revealing her deep unhappiness."
+  },
+  {
+   "id": "r3",
+   "ru": "Я получаю всего 23 рубля в месяц,",
+   "question": "How much does Medvedenko say he earns per month?",
+   "options": [
+    "Only 23 rubles",
+    "100 rubles",
+    "500 rubles",
+    "Nothing, he works for free"
+   ],
+   "correct": "Only 23 rubles",
+   "explain": "Medvedenko complains that he earns only 23 rubles a month."
+  },
+  {
+   "id": "r4",
+   "ru": "Играть будет Заречная, а пьеса сочинения Константина Гавриловича.",
+   "question": "Who will perform in the play, and who wrote it?",
+   "options": [
+    "Zarechnaya will act, and it was written by Konstantin Gavrilovich",
+    "Masha will act, written by Medvedenko",
+    "Arkadina will act, written by Trigorin",
+    "Sorin will act, written by himself"
+   ],
+   "correct": "Zarechnaya will act, and it was written by Konstantin Gavrilovich",
+   "explain": "The text states that Zarechnaya will perform, and the play was written by Konstantin Gavrilovich (Treplev)."
+  },
+  {
+   "id": "r5",
+   "ru": "От тоски не могу сидеть дома,",
+   "question": "Why does Masha say she cannot stay home?",
+   "options": [
+    "Out of anguish/melancholy",
+    "Because her father forbids it",
+    "Because the house is too small",
+    "Because she has chores to do"
+   ],
+   "correct": "Out of anguish/melancholy",
+   "explain": "Masha says that out of melancholy (toska) she cannot bear to sit at home."
+  },
+  {
+   "id": "r6",
+   "ru": "Ваша любовь трогает меня, но я не могу отвечать взаимностью,",
+   "question": "How does Masha respond to Medvedenko's love for her?",
+   "options": [
+    "She is touched but cannot return his feelings",
+    "She says she loves him too",
+    "She tells him to stop bothering her forever",
+    "She agrees to marry him"
+   ],
+   "correct": "She is touched but cannot return his feelings",
+   "explain": "Masha tells him his love touches her, but she cannot reciprocate it."
+  },
+  {
+   "id": "r7",
+   "ru": "Мария Ильинична, будьте добры, попросите вашего папашу, чтобы он распорядился отвязать собаку,",
+   "question": "What request does someone make of Masha regarding the dog?",
+   "options": [
+    "To ask her father to have the dog untied",
+    "To feed the dog",
+    "To take the dog for a walk",
+    "To give the dog away"
+   ],
+   "correct": "To ask her father to have the dog untied",
+   "explain": "The speaker politely asks Masha to have her father order the dog untied, since it howls."
+  },
+  {
+   "id": "r8",
+   "ru": "Бывало, возьмешь отпуск на 28 дней и приедешь сюда, чтобы отдохнуть и все,",
+   "question": "What does Sorin recall about his past vacations at the estate?",
+   "options": [
+    "He used to take 28 days of leave to come rest here",
+    "He never had any vacation time",
+    "He always spent his leave in the city",
+    "He came here only once, briefly"
+   ],
+   "correct": "He used to take 28 days of leave to come rest here",
+   "explain": "Sorin recalls that he used to take a 28-day leave and come here just to rest."
+  },
+  {
+   "id": "r9",
+   "ru": "Ровно в половине девятого, как раз зайдет луна.",
+   "question": "What timing detail does Treplev mention about the moon for the play's staging?",
+   "options": [
+    "The moon will set exactly at half past eight",
+    "The sun will rise at half past eight",
+    "The play starts at half past eight",
+    "The guests arrive at half past eight"
+   ],
+   "correct": "The moon will set exactly at half past eight",
+   "explain": "Treplev notes that the moon will set precisely at half past eight, timing for the outdoor stage."
+  },
+  {
+   "id": "r10",
+   "ru": "Отец и мачеха стерегут ее, и вырваться из дому так же тяжело, как из тюрьмы.",
+   "question": "Why might Nina (Zarechnaya) be late for the performance?",
+   "options": [
+    "Her father and stepmother guard her closely, making it hard to escape the house",
+    "She has to travel a very long distance",
+    "She is rehearsing another play",
+    "She forgot the date of the performance"
+   ],
+   "correct": "Her father and stepmother guard her closely, making it hard to escape the house",
+   "explain": "The text explains that her father and stepmother watch her so closely that escaping the house is as hard as escaping prison."
+  },
+  {
+   "id": "r11",
+   "ru": "Она уже и против меня, и против спектакля, против моей пьесы, потому что не она играет, а Заречная.",
+   "question": "Why is Treplev's mother (Arkadina) against his play, according to him?",
+   "options": [
+    "Because Zarechnaya is acting in it instead of her",
+    "Because she thinks the play is poorly written",
+    "Because she dislikes the outdoor setting",
+    "Because she wasn't consulted about it"
+   ],
+   "correct": "Because Zarechnaya is acting in it instead of her",
+   "explain": "Treplev says his mother is against the play because Zarechnaya, not she, is the one performing in it."
+  },
+  {
+   "id": "r12",
+   "ru": "Нужно хвалить только ее одну, кричать, восхищаться ее великолепной игрой там в «Даме с камелями»",
+   "question": "According to Treplev, what does his mother demand regarding praise?",
+   "options": [
+    "That only she be praised for her acting, such as in 'The Lady of the Camellias'",
+    "That the whole cast be praised equally",
+    "That critics never write about actors",
+    "That she be left alone and not discussed"
+   ],
+   "correct": "That only she be praised for her acting, such as in 'The Lady of the Camellias'",
+   "explain": "Treplev complains that only she must be praised and admired for her magnificent acting, citing her roles in 'The Lady of the Camellias' and 'The Fumes of Life.'"
+  },
+  {
+   "id": "r13",
+   "ru": "И скупа, я знаю, у нее в Одессе в банке семьдесят тысяч это я знаю наверное.",
+   "question": "What does Treplev claim about his mother's wealth and stinginess?",
+   "options": [
+    "She has seventy thousand in an Odessa bank yet is stingy",
+    "She has given away all her money to charity",
+    "She has no savings at all",
+    "She spends all her money on Trigorin"
+   ],
+   "correct": "She has seventy thousand in an Odessa bank yet is stingy",
+   "explain": "Treplev claims his mother is stingy and has seventy thousand rubles in a bank in Odessa."
+  },
+  {
+   "id": "r14",
+   "ru": "Меня моя мать не любит.",
+   "question": "What painful belief does Treplev express about his mother?",
+   "options": [
+    "That his mother does not love him",
+    "That his mother has forgotten him",
+    "That his mother prefers Sorin",
+    "That his mother wants him to leave"
+   ],
+   "correct": "That his mother does not love him",
+   "explain": "Treplev states plainly that his own mother does not love him."
+  },
+  {
+   "id": "r15",
+   "ru": "Вот я и бегу, как Мопассан бежал от Эйфелевой башни, которая давила ему мозг своею пошлостью.",
+   "question": "What comparison does Treplev make about his own aversion to conventional theater?",
+   "options": [
+    "He flees it like Maupassant fled the Eiffel Tower, which he found oppressively vulgar",
+    "He compares himself to Napoleon fleeing Russia",
+    "He compares it to fleeing a burning building",
+    "He compares it to running from a storm"
+   ],
+   "correct": "He flees it like Maupassant fled the Eiffel Tower, which he found oppressively vulgar",
+   "explain": "Treplev says he flees conventional theater the way Maupassant fled the Eiffel Tower, which oppressed his mind with its vulgarity."
+  },
+  {
+   "id": "r16",
+   "ru": "Вышел из третьего курса университета по обстоятельствам, как говорится, от редакции независимым.",
+   "question": "What does Treplev say about his own education and status?",
+   "options": [
+    "He left university in his third year due to circumstances, and is independent of any editorial board",
+    "He graduated with honors",
+    "He was expelled for misconduct",
+    "He never attended university"
+   ],
+   "correct": "He left university in his third year due to circumstances, and is independent of any editorial board",
+   "explain": "Treplev bitterly describes himself as having left university in the third year 'due to circumstances,' with no affiliation."
+  },
+  {
+   "id": "r17",
+   "ru": "Сорок лет ему будет еще не скоро, но он уже знаменит и сыт, по горло.",
+   "question": "How does the description characterize Trigorin's age and fame?",
+   "options": [
+    "He is not yet forty but already famous and 'fed up to the throat' (jaded)",
+    "He is over sixty and long forgotten",
+    "He is a young unknown writer",
+    "He is exactly forty and retiring"
+   ],
+   "correct": "He is not yet forty but already famous and 'fed up to the throat' (jaded)",
+   "explain": "The text says Trigorin won't be forty for a while yet, but he is already famous and sated/jaded."
+  },
+  {
+   "id": "r18",
+   "ru": "Я без нее жить не могу...",
+   "question": "How does Treplev describe his feelings for Nina?",
+   "options": [
+    "That he cannot live without her",
+    "That he can easily live without her",
+    "That he is unsure how he feels",
+    "That he only likes her as a friend"
+   ],
+   "correct": "That he cannot live without her",
+   "explain": "Treplev declares that he cannot live without her."
+  },
+  {
+   "id": "r19",
+   "ru": "Боялась, что отец не пустит меня...",
+   "question": "What was Nina afraid of on her way to see Treplev?",
+   "options": [
+    "That her father would not let her come",
+    "That she would get lost in the dark",
+    "That the lake would flood",
+    "That she would miss the play entirely"
+   ],
+   "correct": "That her father would not let her come",
+   "explain": "Nina says she was afraid her father would not let her come."
+  },
+  {
+   "id": "r20",
+   "ru": "А меня тянет сюда к озеру, как чайку...",
+   "question": "What draws Nina to this place, according to her own words?",
+   "options": [
+    "The lake draws her, like a seagull",
+    "The theater draws her",
+    "Treplev's mother draws her",
+    "The nearby town draws her"
+   ],
+   "correct": "The lake draws her, like a seagull",
+   "explain": "Nina says she is drawn here to the lake, like a seagull — an image tied to the play's title."
+  },
+  {
+   "id": "r21",
+   "ru": "Не забудь бы спирт и серу.",
+   "question": "What preparations does Treplev worry about forgetting for the play's special effects?",
+   "options": [
+    "Alcohol/spirit and sulfur",
+    "Candles and matches",
+    "Costumes and makeup",
+    "Music and a curtain"
+   ],
+   "correct": "Alcohol/spirit and sulfur",
+   "explain": "Treplev reminds himself not to forget the spirit and sulfur needed for the stage effect of red glowing eyes."
+  },
+  {
+   "id": "r22",
+   "ru": "Вы доктор отлично знаете, что вам вреден сырой воздух,",
+   "question": "What health warning does someone give the doctor (Dorn) about his own habits?",
+   "options": [
+    "That damp air is bad for him",
+    "That he smokes too much",
+    "That he drinks too much coffee",
+    "That he doesn't sleep enough"
+   ],
+   "correct": "That damp air is bad for him",
+   "explain": "The character reminds Dorn that he, as a doctor, knows perfectly well that damp air is bad for his health."
+  },
+  {
+   "id": "r23",
+   "ru": "Женщины всегда влюблялись в вас и вешались на шею.",
+   "question": "What does someone say about Dorn's history with women?",
+   "options": [
+    "Women always fell in love with him and threw themselves at him",
+    "Women always avoided him",
+    "He never had any romantic success",
+    "Only one woman ever loved him"
+   ],
+   "correct": "Women always fell in love with him and threw themselves at him",
+   "explain": "The speaker claims that women always fell in love with Dorn and threw their arms around his neck."
+  },
+  {
+   "id": "r24",
+   "ru": "О вы, почтенные старые тени, которые носитесь над озером в эту ночную пору, прилетите к нам.",
+   "question": "How does Nina's monologue in Treplev's play begin, addressing spirits?",
+   "options": [
+    "Calling upon venerable old shades that hover over the lake at night to come to them",
+    "Calling upon the sun to rise early",
+    "Calling upon the audience to applaud",
+    "Calling upon her father to forgive her"
+   ],
+   "correct": "Calling upon venerable old shades that hover over the lake at night to come to them",
+   "explain": "The monologue opens by invoking the venerable old shades that hover over the lake at night to fly to them."
+  },
+  {
+   "id": "r25",
+   "ru": "Во мне душа Александра Великого, и Цезаря, и Шекспира, и Наполеона, и последней пиявки.",
+   "question": "What does the 'World Soul' in Treplev's play claim to contain within itself?",
+   "options": [
+    "The souls of Alexander the Great, Caesar, Shakespeare, Napoleon, and even the lowliest leech",
+    "Only the souls of great kings",
+    "The soul of one single unnamed person",
+    "Nothing at all, being empty"
+   ],
+   "correct": "The souls of Alexander the Great, Caesar, Shakespeare, Napoleon, and even the lowliest leech",
+   "explain": "The World Soul declares that within it are the souls of Alexander the Great, Caesar, Shakespeare, Napoleon, and even the lowliest leech."
+  },
+  {
+   "id": "r26",
+   "ru": "Ирина, матушка, нельзя так обращаться с молодым самолюбием.",
+   "question": "What does the speaker tell Irina about how she treated the young man?",
+   "options": [
+    "She should not have treated his pride so harshly",
+    "She should praise his talent more often",
+    "She should let him direct a real theater",
+    "She should apologize to Trigorin"
+   ],
+   "correct": "She should not have treated his pride so harshly",
+   "explain": "The line says one must not treat a young man's pride (self-love) that way."
+  },
+  {
+   "id": "r27",
+   "ru": "Стало быть, показал он этот спектакль и надушил здесь серый не для шутки, а для демонстрации...",
+   "question": "According to this line, why did Konstantin stage his play with such theatrical effects (like sulfur smoke)?",
+   "options": [
+    "To demonstrate his new artistic ideas, not as a joke",
+    "To scare his mother",
+    "To impress Trigorin",
+    "To celebrate his mother's birthday"
+   ],
+   "correct": "To demonstrate his new artistic ideas, not as a joke",
+   "explain": "The speaker concludes the smoke and staging were 'for demonstration,' not for a joke."
+  },
+  {
+   "id": "r28",
+   "ru": "Просто Капризный, самолюбивый мальчик.",
+   "question": "How does Irina (Arkadina) describe her son in this line?",
+   "options": [
+    "A capricious, vain boy",
+    "A brilliant young genius",
+    "A hardworking student",
+    "A shy but talented actor"
+   ],
+   "correct": "A capricious, vain boy",
+   "explain": "She calls him 'просто капризный самолюбивый мальчик' — simply a capricious, vain boy."
+  },
+  {
+   "id": "r29",
+   "ru": "Никто не имеет основания отделять дух от материи, так как, быть может, самый дух есть совокупность материальных атомов.",
+   "question": "What philosophical idea from Konstantin's play is being quoted here?",
+   "options": [
+    "That spirit and matter cannot be separated, since spirit may be a collection of material atoms",
+    "That love conquers all obstacles",
+    "That nature is more important than art",
+    "That death is the only truth"
+   ],
+   "correct": "That spirit and matter cannot be separated, since spirit may be a collection of material atoms",
+   "explain": "The line states no one has grounds to separate spirit from matter, since spirit may itself be a collection of material atoms."
+  },
+  {
+   "id": "r30",
+   "ru": "Жен-премьером и кумиром тогда всех шести усадьб был вот, рекомендую доктор Евгений Сергеевич Романов.",
+   "question": "Who is identified as the former idol and heartthrob of the six estates years ago?",
+   "options": [
+    "Doctor Evgeny Sergeyevich (Dorn)",
+    "Konstantin",
+    "Trigorin",
+    "Shamrayev"
+   ],
+   "correct": "Doctor Evgeny Sergeyevich (Dorn)",
+   "explain": "The text names 'доктор Евгений Сергеевич' as the leading man and idol of all six estates at that time."
+  },
+  {
+   "id": "r31",
+   "ru": "С такой наружностью, с таким чудным голосом нельзя, грешно сидеть в деревне. Вы должны поступить на сцену у вас должен быть талант. Ой, это моя мечта! Но она никогда не осуществится. Кто знает? Позвольте представить: Тригорин, Борис Алексеевич.",
+   "question": "Who is being introduced to Nina in this passage?",
+   "options": [
+    "The writer Trigorin",
+    "The doctor Dorn",
+    "The teacher Medvedenko",
+    "The estate manager Shamrayev"
+   ],
+   "correct": "The writer Trigorin",
+   "explain": "The passage ends with the introduction: 'Позвольте представить Тригорин Борис Алексеевич.'"
+  },
+  {
+   "id": "r32",
+   "ru": "Он хоть и знаменитый, но очень простой человек.",
+   "question": "How does Nina describe Trigorin despite his fame?",
+   "options": [
+    "As a very simple, unpretentious man",
+    "As arrogant and cold",
+    "As shy and silent",
+    "As rude to strangers"
+   ],
+   "correct": "As a very simple, unpretentious man",
+   "explain": "She says though he is famous, he is 'очень простой человек' — a very simple person."
+  },
+  {
+   "id": "r33",
+   "ru": "Для меня нет большего наслаждения, чем сидеть под вечер на берегу и смотреть на поплавок.",
+   "question": "What does Trigorin say gives him the greatest pleasure?",
+   "options": [
+    "Sitting by the shore in the evening watching a fishing float",
+    "Writing novels all night",
+    "Attending the theater",
+    "Traveling abroad"
+   ],
+   "correct": "Sitting by the shore in the evening watching a fishing float",
+   "explain": "Trigorin says there is no greater pleasure for him than sitting by the shore in the evening watching the float."
+  },
+  {
+   "id": "r34",
+   "ru": "Говорят, ее покойная мать оставила всё свое огромное состояние своему мужу.",
+   "question": "What is said about Masha's late mother?",
+   "options": [
+    "She left her whole large fortune to her husband",
+    "She was an actress",
+    "She died of illness in the city",
+    "She never married"
+   ],
+   "correct": "She left her whole large fortune to her husband",
+   "explain": "The text says her late mother left her entire large fortune to her husband."
+  },
+  {
+   "id": "r35",
+   "ru": "Когда эта девочка говорила об одиночестве",
+   "question": "What topic in Nina's performance moved Sorin, according to this line?",
+   "options": [
+    "When the girl spoke about loneliness",
+    "When she sang a song",
+    "When she danced",
+    "When she cried on stage"
+   ],
+   "correct": "When the girl spoke about loneliness",
+   "explain": "Sorin recalls being moved 'когда эта девочка говорила об одиночестве' — when the girl spoke of loneliness."
+  },
+  {
+   "id": "r36",
+   "ru": "Константин Гаврилович, мне ваша пьеса чрезвычайно понравилась.",
+   "question": "What does Nina tell Konstantin about his play?",
+   "options": [
+    "That she liked it very much",
+    "That she found it boring",
+    "That she did not understand any of it",
+    "That it was too short"
+   ],
+   "correct": "That she liked it very much",
+   "explain": "Nina tells him, 'мне ваша пьеса чрезвычайно понравилась' — she liked his play very much."
+  },
+  {
+   "id": "r37",
+   "ru": "Так и следовало, потому что художественное произведение непременно должно выражать какую-нибудь большую мысль.",
+   "question": "According to Dorn, what must a work of art necessarily express?",
+   "options": [
+    "Some great idea",
+    "A funny joke",
+    "A historical event",
+    "A love story"
+   ],
+   "correct": "Some great idea",
+   "explain": "Dorn says a work of art must necessarily express some great idea ('большую мысль')."
+  },
+  {
+   "id": "r38",
+   "ru": "Иначе, если вы пойдете по этой живописной дороге без определенной цели, вы заблудитесь и ваш талант погубит вас.",
+   "question": "What warning does Dorn give Konstantin about following an undefined path?",
+   "options": [
+    "That he will lose his way and his talent will destroy him",
+    "That he should stop writing altogether",
+    "That he should marry Nina soon",
+    "That he should leave the estate"
+   ],
+   "correct": "That he will lose his way and his talent will destroy him",
+   "explain": "Dorn warns that without a definite goal, Konstantin 'заблудится, и ваш талант погубит вас' — will lose his way and his talent will ruin him."
+  },
+  {
+   "id": "r39",
+   "ru": "Мне необходимо ее видеть.",
+   "question": "What does Konstantin desperately want after learning Nina left?",
+   "options": [
+    "He needs to see her",
+    "He needs to sleep",
+    "He needs to talk to his mother",
+    "He needs to finish his play"
+   ],
+   "correct": "He needs to see her",
+   "explain": "He repeats 'Мне необходимо ее видеть' — I need to see her."
+  },
+  {
+   "id": "r40",
+   "ru": "Я не люблю своего отца... Но к вам почему-то лежит мое сердце.",
+   "question": "What does Masha say about her feelings toward Dorn compared to her father?",
+   "options": [
+    "She does not love her father, but her heart is drawn to Dorn",
+    "She loves her father more than anyone",
+    "She hates both her father and Dorn",
+    "She wants to move away from both"
+   ],
+   "correct": "She does not love her father, but her heart is drawn to Dorn",
+   "explain": "Masha says she doesn't love her own father, but her heart is somehow drawn to Dorn."
+  },
+  {
+   "id": "r41",
+   "ru": "Я люблю Константина.",
+   "question": "Who does Masha confess she loves?",
+   "options": [
+    "Konstantin",
+    "Trigorin",
+    "Medvedenko",
+    "Dorn"
+   ],
+   "correct": "Konstantin",
+   "explain": "Masha says plainly 'Я люблю Константина' — I love Konstantin."
+  },
+  {
+   "id": "r42",
+   "ru": "Мне 55 лет.",
+   "question": "How old does the speaker say she is?",
+   "options": [
+    "55",
+    "45",
+    "60",
+    "35"
+   ],
+   "correct": "55",
+   "explain": "The line states plainly, 'Мне 55 лет.'"
+  },
+  {
+   "id": "r43",
+   "ru": "И эта бедная луна напрасно зажигает свой фонарь.",
+   "question": "What line from Konstantin's play is recalled about the moon?",
+   "options": [
+    "The poor moon lights her lantern in vain",
+    "The moon never rises here",
+    "The moon is the seagull's home",
+    "The moon has gone dark forever"
+   ],
+   "correct": "The poor moon lights her lantern in vain",
+   "explain": "The recalled line is, 'И эта бедная луна напрасно зажигает свой фонарь.'"
+  }
+ ]
 }

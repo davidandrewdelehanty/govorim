@@ -1,346 +1,536 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "И вы начинаете относиться к самому себе как к третьему ___.",
-      "lemma": "лицо",
-      "options": ["лицо", "лица", "лицу", "лицом"],
-      "correct": "лицу",
-      "case": "Дательный (Dative)",
-      "translation": "And you begin to relate to yourself as if to a third person.",
-      "explain": "The preposition к (toward) governs the dative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Я имел подлость убить сегодня эту ___.",
-      "lemma": "чайка",
-      "options": ["чайка", "чайки", "чайку", "чайкой"],
-      "correct": "чайку",
-      "case": "Винительный (Accusative)",
-      "translation": "I had the meanness to kill this seagull today.",
-      "explain": "Чайку is the direct object of the transitive verb убить (to kill), so it takes the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Знаменитый ___, любимец публики.",
-      "lemma": "писатель",
-      "options": ["писатель", "писателя", "писателю", "писателем"],
-      "correct": "писатель",
-      "case": "Именительный (Nominative)",
-      "translation": "A famous writer, the darling of the public.",
-      "explain": "Писатель is a predicate noun in apposition to the subject, so it stands in the nominative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я не выношу его ___.",
-      "lemma": "грубость",
-      "options": ["грубость", "грубости", "грубостью", "грубостях"],
-      "correct": "грубости",
-      "case": "Родительный (Genitive)",
-      "translation": "I cannot bear his rudeness.",
-      "explain": "The verb выносить (to endure) governs the genitive case for its object here, expressing what is not tolerated."
-    },
-    {
-      "id": "c5",
-      "sentence": "Неудержимо бродит он среди людей, причастных к ___, искусству.",
-      "lemma": "литература",
-      "options": ["литература", "литературы", "литературе", "литературой"],
-      "correct": "литературе",
-      "case": "Дательный (Dative)",
-      "translation": "He wanders restlessly among people connected to literature, to art.",
-      "explain": "The preposition к (toward/connected to) governs the dative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Я имел подлость убить сегодня эту ___.",
-      "lemma": "чайка",
-      "options": ["чайка", "чайки", "чайку", "чайкой"],
-      "correct": "чайку",
-      "case": "Винительный (Accusative)",
-      "translation": "I had the meanness to kill this seagull today.",
-      "explain": "Чайку is the direct object of the transitive verb убить (to kill), so it takes the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Будь он проклят вместе с моим проклятым ___, которое сосет мою кровь.",
-      "lemma": "самолюбие",
-      "options": ["самолюбие", "самолюбия", "самолюбию", "самолюбием"],
-      "correct": "самолюбием",
-      "case": "Творительный (Instrumental)",
-      "translation": "Damn it, along with my cursed vanity, which sucks my blood.",
-      "explain": "The preposition с (with, meaning 'together with') governs the instrumental case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Бывают насильственные представления, когда человек день и ночь думает, например, о ___.",
-      "lemma": "луна",
-      "options": ["луна", "луны", "луне", "луной"],
-      "correct": "луне",
-      "case": "Предложный (Prepositional)",
-      "translation": "There are obsessive notions, when a person thinks day and night, for example, about the moon.",
-      "explain": "The preposition о (about) governs the prepositional case."
-    },
-    {
-      "id": "c9",
-      "sentence": "Я боялся ___.",
-      "lemma": "публика",
-      "options": ["публика", "публики", "публике", "публикой"],
-      "correct": "публики",
-      "case": "Родительный (Genitive)",
-      "translation": "I was afraid of the public.",
-      "explain": "The verb бояться (to be afraid of) governs the genitive case."
-    },
-    {
-      "id": "c10",
-      "sentence": "Я мечусь от стороны в сторону, как лисица, затравленная ___.",
-      "lemma": "пёс",
-      "options": ["пёс", "пса", "псу", "псами"],
-      "correct": "псами",
-      "case": "Творительный (Instrumental)",
-      "translation": "I rush from side to side, like a fox hunted down by hounds.",
-      "explain": "The past passive participle затравленная (hunted down) requires an instrumental agent — 'hunted down by the hounds.'"
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Вам 22 года.",
-      "question": "What age difference is being pointed out in this exchange?",
-      "options": ["The speaker is almost twice as old as the listener, who is 22", "The listener is older than the speaker", "Both are the same age", "The listener just turned 18"],
-      "correct": "The speaker is almost twice as old as the listener, who is 22",
-      "explain": "The line states 'Вам 22 года. Я почти вдвое вас старше' — you are 22, I am almost twice your age."
-    },
-    {
-      "id": "r2",
-      "ru": "Итак, когда женщина избрала писателя, которого она желает заполонить, она осаждает его посредством комплиментов, любезностей и угождений...\"",
-      "question": "According to this passage, how does a woman who wants to captivate a writer act?",
-      "options": ["She besieges him with compliments, courtesies, and favors", "She ignores him completely", "She writes him angry letters", "She avoids meeting him"],
-      "correct": "She besieges him with compliments, courtesies, and favors",
-      "explain": "The text says she 'осаждает его посредством комплиментов, любезности и угождений' — besieges him with compliments and favors."
-    },
-    {
-      "id": "r3",
-      "ru": "Отец и мачеха уехали в Тверь, и мы теперь свободны целых три дня.",
-      "question": "What happened that gave the speaker three days of freedom?",
-      "options": ["Her father and stepmother left for Tver", "Her father died", "She quit her job", "Trigorin left for Moscow"],
-      "correct": "Her father and stepmother left for Tver",
-      "explain": "The line says the father and stepmother went to Tver, leaving them free for three whole days."
-    },
-    {
-      "id": "r4",
-      "ru": "Мне кажется, ему хорошо было бы сейчас поехать куда-нибудь на воды.",
-      "question": "What does the doctor suggest Sorin should do for his health?",
-      "options": ["Go somewhere to take the waters (a health spa)", "Stop eating meat", "Move to the city permanently", "See a different doctor"],
-      "correct": "Go somewhere to take the waters (a health spa)",
-      "explain": "The line suggests it would be good for Sorin to go somewhere to 'take the waters' now."
-    },
-    {
-      "id": "r5",
-      "ru": "И вы начинаете относиться к самому себе, как к третьему лицу",
-      "question": "What effect of smoking and drinking is described here?",
-      "options": ["You start relating to yourself as if you were a third person", "You become instantly healthier", "You forget your own name", "You become more sociable"],
-      "correct": "You start relating to yourself as if you were a third person",
-      "explain": "The text says after smoking or drinking, 'вы начинаете относиться к самому себе как к третьему лицу' — you start treating yourself as a third person."
-    },
-    {
-      "id": "r6",
-      "ru": "Я прослужил по судебному ведомству 28 лет,",
-      "question": "How many years did the speaker serve in the judicial department?",
-      "options": ["28 years", "15 years", "10 years", "40 years"],
-      "correct": "28 years",
-      "explain": "The speaker states, 'Я прослужил по судебному ведомству 28 лет.'"
-    },
-    {
-      "id": "r7",
-      "ru": "В таком случае я немедленно уезжаю в Москву.",
-      "question": "What does Irina Nikolaevna (Arkadina) threaten to do if she cannot get horses?",
-      "options": ["Leave immediately for Moscow", "Fire the estate manager on the spot", "Stay at the estate forever", "Call the police"],
-      "correct": "Leave immediately for Moscow",
-      "explain": "She declares, 'В таком случае я немедленно уезжаю в Москву' — in that case I am leaving for Moscow immediately."
-    },
-    {
-      "id": "r8",
-      "ru": "Отказать Ирине Николаевне, знаменитой артистке!",
-      "question": "Who is being refused horses in this complaint?",
-      "options": ["Irina Nikolaevna, the famous actress", "Doctor Dorn", "The estate manager himself", "Konstantin Gavrilovich"],
-      "correct": "Irina Nikolaevna, the famous actress",
-      "explain": "The line complains about refusing horses to 'Ирине Николаевне, знаменитой артистке' — Irina Nikolaevna, the famous actress."
-    },
-    {
-      "id": "r9",
-      "ru": "Я сейчас же пойду и поговорю с ним.",
-      "question": "What does the speaker decide to do to resolve the horse dispute?",
-      "options": ["Go and talk to him (the manager) right away", "Ignore the problem entirely", "Call for new horses to be bought", "Leave without resolving it"],
-      "correct": "Go and talk to him (the manager) right away",
-      "explain": "The speaker says, 'Я сейчас же пойду и поговорю с ним' — I will go and talk to him right now."
-    },
-    {
-      "id": "r10",
-      "ru": "А в сущности следовало бы вашего мужа отсюда просто в шею,",
-      "question": "What does the speaker say should be done with someone's husband?",
-      "options": ["He should simply be thrown out by the scruff of the neck", "He should be given a raise", "He should be invited to dinner", "He should be sent to Moscow"],
-      "correct": "He should simply be thrown out by the scruff of the neck",
-      "explain": "The line says the husband should simply be thrown out 'в шею' (by the neck)."
-    },
-    {
-      "id": "r11",
-      "ru": "Я не выношу его грубости.",
-      "question": "What does the speaker say she cannot bear?",
-      "options": ["His rudeness", "His singing", "His cooking", "His silence"],
-      "correct": "His rudeness",
-      "explain": "She says 'Я не выношу его грубости' — I cannot bear his rudeness."
-    },
-    {
-      "id": "r12",
-      "ru": "Я страдаю от ревности.",
-      "question": "What feeling does the speaker say she suffers from?",
-      "options": ["Jealousy", "Hunger", "Boredom", "Fear of the dark"],
-      "correct": "Jealousy",
-      "explain": "She says 'Я страдаю от ревности' — I suffer from jealousy."
-    },
-    {
-      "id": "r13",
-      "ru": "А он целый день удит рыбу и радуется, что поймал двух головлей.",
-      "question": "What does Trigorin do all day, according to this line, and what makes him happy?",
-      "options": ["He fishes all day and is happy to catch two chub (fish)", "He writes all day and is happy with his royalties", "He walks in the garden and admires flowers", "He sleeps all day"],
-      "correct": "He fishes all day and is happy to catch two chub (fish)",
-      "explain": "The text says he fishes all day and rejoices at having caught two chub ('головлей')."
-    },
-    {
-      "id": "r14",
-      "ru": "Я имел подлость убить сегодня эту чайку.",
-      "question": "What does Konstantin confess he did today?",
-      "options": ["He had the meanness to kill this seagull", "He wrote a new play", "He proposed to Nina", "He burned his manuscripts"],
-      "correct": "He had the meanness to kill this seagull",
-      "explain": "He says, 'Я имел подлость убить сегодня эту чайку' — I had the meanness to kill this seagull today."
-    },
-    {
-      "id": "r15",
-      "ru": "Это началось с того вечера, когда так глупо провалилась моя пьеса.",
-      "question": "When did Konstantin's change in feeling begin, according to this line?",
-      "options": ["The evening his play so foolishly failed", "The day Nina arrived", "The day his mother left", "The night of the storm"],
-      "correct": "The evening his play so foolishly failed",
-      "explain": "He says it began 'с того вечера, когда так глупо провалилась моя пьеса' — the evening his play so stupidly failed."
-    },
-    {
-      "id": "r16",
-      "ru": "Ваше охлаждение ко мне страшно, невероятно, как будто я проснулся и вижу это озеро вдруг высохло или утекло в землю.",
-      "question": "What image does Konstantin use to describe how strange Nina's coldness feels to him?",
-      "options": ["As if the lake had suddenly dried up or sunk into the ground", "As if the sun had stopped shining", "As if a storm were coming", "As if the seagull had come back to life"],
-      "correct": "As if the lake had suddenly dried up or sunk into the ground",
-      "explain": "He compares her coldness to waking up and seeing the lake had suddenly dried up or sunk into the earth."
-    },
-    {
-      "id": "r17",
-      "ru": "Обстоятельства неожиданно сложились так, что, кажется, мы сегодня уезжаем.",
-      "question": "What does Trigorin announce about their plans?",
-      "options": ["That circumstances have turned out so that they are leaving today", "That they will stay another month", "That he is getting married", "That he is moving to the estate permanently"],
-      "correct": "That circumstances have turned out so that they are leaving today",
-      "explain": "Trigorin says circumstances turned out such that it seems they are leaving today."
-    },
-    {
-      "id": "r18",
-      "ru": "Хотел бы я хоть часок побывать на вашем месте, чтобы узнать, как вы думаете вообще что вы за штучка.",
-      "question": "What does Trigorin say he'd like to do for an hour, to understand Nina?",
-      "options": ["Be in her place, to know what she thinks and what kind of person she is", "Read her diary", "Follow her around town", "Interview her parents"],
-      "correct": "Be in her place, to know what she thinks and what kind of person she is",
-      "explain": "He says he'd like to spend an hour in her place to find out how she thinks and what sort of person she is."
-    },
-    {
-      "id": "r19",
-      "ru": "Когда бронят, то потом два дня чувствуешь себя не в духе.",
-      "question": "How does Trigorin say bad reviews affect him?",
-      "options": ["He feels out of sorts for two days afterward", "He stops writing forever", "He laughs them off immediately", "He writes an angry reply"],
-      "correct": "He feels out of sorts for two days afterward",
-      "explain": "He says when he is scolded in print, he feels out of sorts for two days afterward."
-    },
-    {
-      "id": "r20",
-      "ru": "Когда кончаю работу, бегу в театр или удить рыбу; тут бы отдохнуть, забыться, нет,",
-      "question": "What does Trigorin say happens even when he tries to rest by fishing or going to the theater?",
-      "options": ["He still cannot rest or forget his work", "He falls asleep immediately", "He starts writing a new play on the spot", "He forgets about writing completely"],
-      "correct": "He still cannot rest or forget his work",
-      "explain": "He says even when he runs to the theater or to fish to rest, he cannot manage to relax or forget."
-    },
-    {
-      "id": "r21",
-      "ru": "Маленький писатель, когда ему не везет, кажется себе неухлюшим.",
-      "question": "How does Trigorin describe an unlucky, minor writer?",
-      "options": ["Clumsy and awkward, seeming superfluous to himself", "Confident and admired by all", "Wealthy but unhappy", "Famous but lonely"],
-      "correct": "Clumsy and awkward, seeming superfluous to himself",
-      "explain": "He says a small, unlucky writer seems to himself clumsy, awkward, and superfluous."
-    },
-    {
-      "id": "r22",
-      "ru": "Я люблю вот эту воду, деревья, небо,",
-      "question": "What does Trigorin say he loves?",
-      "options": ["This water, the trees, the sky", "Fame and money", "The theater crowds", "His own writing"],
-      "correct": "This water, the trees, the sky",
-      "explain": "He says, 'Я люблю вот эту воду, деревья, небо' — I love this water, these trees, the sky."
-    },
-    {
-      "id": "r23",
-      "ru": "Она возбуждает во мне страсть, непреодолимое желание писать.",
-      "question": "What effect does nature have on Trigorin, according to this line?",
-      "options": ["It arouses in him a passion, an irresistible urge to write", "It puts him to sleep", "It makes him forget his writing", "It frightens him"],
-      "correct": "It arouses in him a passion, an irresistible urge to write",
-      "explain": "He says nature arouses in him a passion, an irresistible desire to write."
-    },
-    {
-      "id": "r24",
-      "ru": "Я мечусь от стороны в сторону, как лисица, затравленная псами,",
-      "question": "What image does Trigorin use to describe how he is pushed from all sides?",
-      "options": ["Like a fox hunted by hounds", "Like a bird trapped in a cage", "Like a fish out of water", "Like a soldier in battle"],
-      "correct": "Like a fox hunted by hounds",
-      "explain": "He compares himself to 'лисица, затравленная псами' — a fox hunted down by dogs."
-    },
-    {
-      "id": "r25",
-      "ru": "А во всем остальном я фальшив и фальшив до мозга костей.",
-      "question": "How does Trigorin describe himself in everything else besides nature?",
-      "options": ["False, false to the marrow of his bones", "Perfectly honest and sincere", "The happiest man alive", "Indifferent to everything"],
-      "correct": "False, false to the marrow of his bones",
-      "explain": "He says, 'я фальшив и фальшив до мозга костей' — I am false, false to the marrow of my bones."
-    },
-    {
-      "id": "r26",
-      "ru": "Если бы я была таким писателем, как вы, я отдала бы толпе всю свою жизнь,",
-      "question": "What does Nina say she would do if she were as great a writer as Trigorin?",
-      "options": ["Give her whole life to the crowd/public", "Stop writing immediately", "Move far away from people", "Refuse all fame"],
-      "correct": "Give her whole life to the crowd/public",
-      "explain": "Nina says if she were such a writer, she would give her whole life to the crowd."
-    },
-    {
-      "id": "r27",
-      "ru": "Видите на том берегу дом сад?",
-      "question": "What does Nina point out across the lake?",
-      "options": ["A house and garden", "A church", "A theater", "A mill"],
-      "correct": "A house and garden",
-      "explain": "She says, 'Видите, на том берегу дом, сад' — you see, on that shore there's a house, a garden."
-    },
-    {
-      "id": "r28",
-      "ru": "Это усадьба моей покойной матери.",
-      "question": "Whose estate is on the other shore of the lake?",
-      "options": ["Her late mother's estate", "Trigorin's estate", "Sorin's estate", "The doctor's estate"],
-      "correct": "Her late mother's estate",
-      "explain": "She says, 'Это усадьба моей покойной матери' — this is my late mother's estate."
-    },
-    {
-      "id": "r29",
-      "ru": "Константин Гаврилович убил.",
-      "question": "Who killed the seagull that is mentioned here?",
-      "options": ["Konstantin Gavrilovich", "Trigorin", "Shamrayev", "Dorn"],
-      "correct": "Konstantin Gavrilovich",
-      "explain": "The line states plainly, 'Константин Гаврилович убил' — Konstantin Gavrilovich killed it."
-    },
-    {
-      "id": "r30",
-      "ru": "На берегу озера с детства живет молодая девушка,",
-      "question": "In the story idea Trigorin is jotting down, where does the young girl live?",
-      "options": ["On the shore of a lake since childhood", "In a big city", "In a convent", "Abroad"],
-      "correct": "On the shore of a lake since childhood",
-      "explain": "The sketch begins, 'На берегу озера с детства живет молодая девушка' — a young girl has lived on the lake shore since childhood."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "И вы начинаете относиться к самому себе как к третьему ___.",
+   "lemma": "лицо",
+   "options": [
+    "лицо",
+    "лица",
+    "лицу",
+    "лицом"
+   ],
+   "correct": "лицу",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition к (toward) governs the dative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Я имел подлость убить сегодня эту ___.",
+   "lemma": "чайка",
+   "options": [
+    "чайка",
+    "чайки",
+    "чайку",
+    "чайкой"
+   ],
+   "correct": "чайку",
+   "case": "Винительный (Accusative)",
+   "explain": "Чайку is the direct object of the transitive verb убить (to kill), so it takes the accusative case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Знаменитый ___, любимец публики.",
+   "lemma": "писатель",
+   "options": [
+    "писатель",
+    "писателя",
+    "писателю",
+    "писателем"
+   ],
+   "correct": "писатель",
+   "case": "Именительный (Nominative)",
+   "explain": "Писатель is a predicate noun in apposition to the subject, so it stands in the nominative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Я не выношу его ___.",
+   "lemma": "грубость",
+   "options": [
+    "грубость",
+    "грубости",
+    "грубостью",
+    "грубостях"
+   ],
+   "correct": "грубости",
+   "case": "Родительный (Genitive)",
+   "explain": "The verb выносить (to endure) governs the genitive case for its object here, expressing what is not tolerated."
+  },
+  {
+   "id": "c5",
+   "sentence": "Неудержимо бродит он среди людей, причастных к ___, искусству.",
+   "lemma": "литература",
+   "options": [
+    "литература",
+    "литературы",
+    "литературе",
+    "литературой"
+   ],
+   "correct": "литературе",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition к (toward/connected to) governs the dative case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Я имел подлость убить сегодня эту ___.",
+   "lemma": "чайка",
+   "options": [
+    "чайка",
+    "чайки",
+    "чайку",
+    "чайкой"
+   ],
+   "correct": "чайку",
+   "case": "Винительный (Accusative)",
+   "explain": "Чайку is the direct object of the transitive verb убить (to kill), so it takes the accusative case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Будь он проклят вместе с моим проклятым ___, которое сосет мою кровь.",
+   "lemma": "самолюбие",
+   "options": [
+    "самолюбие",
+    "самолюбия",
+    "самолюбию",
+    "самолюбием"
+   ],
+   "correct": "самолюбием",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition с (with, meaning 'together with') governs the instrumental case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Бывают насильственные представления, когда человек день и ночь думает, например, о ___.",
+   "lemma": "луна",
+   "options": [
+    "луна",
+    "луны",
+    "луне",
+    "луной"
+   ],
+   "correct": "луне",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition о (about) governs the prepositional case."
+  },
+  {
+   "id": "c9",
+   "sentence": "Я боялся ___.",
+   "lemma": "публика",
+   "options": [
+    "публика",
+    "публики",
+    "публике",
+    "публикой"
+   ],
+   "correct": "публики",
+   "case": "Родительный (Genitive)",
+   "explain": "The verb бояться (to be afraid of) governs the genitive case."
+  },
+  {
+   "id": "c10",
+   "sentence": "Я мечусь от стороны в сторону, как лисица, затравленная ___.",
+   "lemma": "пёс",
+   "options": [
+    "пёс",
+    "пса",
+    "псу",
+    "псами"
+   ],
+   "correct": "псами",
+   "case": "Творительный (Instrumental)",
+   "explain": "The past passive participle затравленная (hunted down) requires an instrumental agent — 'hunted down by the hounds.'"
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Вам 22 года.",
+   "question": "What age difference is being pointed out in this exchange?",
+   "options": [
+    "The speaker is almost twice as old as the listener, who is 22",
+    "The listener is older than the speaker",
+    "Both are the same age",
+    "The listener just turned 18"
+   ],
+   "correct": "The speaker is almost twice as old as the listener, who is 22",
+   "explain": "The line states 'Вам 22 года. Я почти вдвое вас старше' — you are 22, I am almost twice your age."
+  },
+  {
+   "id": "r2",
+   "ru": "Итак, когда женщина избрала писателя, которого она желает заполонить, она осаждает его посредством комплиментов, любезностей и угождений...\"",
+   "question": "According to this passage, how does a woman who wants to captivate a writer act?",
+   "options": [
+    "She besieges him with compliments, courtesies, and favors",
+    "She ignores him completely",
+    "She writes him angry letters",
+    "She avoids meeting him"
+   ],
+   "correct": "She besieges him with compliments, courtesies, and favors",
+   "explain": "The text says she 'осаждает его посредством комплиментов, любезности и угождений' — besieges him with compliments and favors."
+  },
+  {
+   "id": "r3",
+   "ru": "Отец и мачеха уехали в Тверь, и мы теперь свободны целых три дня.",
+   "question": "What happened that gave the speaker three days of freedom?",
+   "options": [
+    "Her father and stepmother left for Tver",
+    "Her father died",
+    "She quit her job",
+    "Trigorin left for Moscow"
+   ],
+   "correct": "Her father and stepmother left for Tver",
+   "explain": "The line says the father and stepmother went to Tver, leaving them free for three whole days."
+  },
+  {
+   "id": "r4",
+   "ru": "Мне кажется, ему хорошо было бы сейчас поехать куда-нибудь на воды.",
+   "question": "What does the doctor suggest Sorin should do for his health?",
+   "options": [
+    "Go somewhere to take the waters (a health spa)",
+    "Stop eating meat",
+    "Move to the city permanently",
+    "See a different doctor"
+   ],
+   "correct": "Go somewhere to take the waters (a health spa)",
+   "explain": "The line suggests it would be good for Sorin to go somewhere to 'take the waters' now."
+  },
+  {
+   "id": "r5",
+   "ru": "И вы начинаете относиться к самому себе, как к третьему лицу",
+   "question": "What effect of smoking and drinking is described here?",
+   "options": [
+    "You start relating to yourself as if you were a third person",
+    "You become instantly healthier",
+    "You forget your own name",
+    "You become more sociable"
+   ],
+   "correct": "You start relating to yourself as if you were a third person",
+   "explain": "The text says after smoking or drinking, 'вы начинаете относиться к самому себе как к третьему лицу' — you start treating yourself as a third person."
+  },
+  {
+   "id": "r6",
+   "ru": "Я прослужил по судебному ведомству 28 лет,",
+   "question": "How many years did the speaker serve in the judicial department?",
+   "options": [
+    "28 years",
+    "15 years",
+    "10 years",
+    "40 years"
+   ],
+   "correct": "28 years",
+   "explain": "The speaker states, 'Я прослужил по судебному ведомству 28 лет.'"
+  },
+  {
+   "id": "r7",
+   "ru": "В таком случае я немедленно уезжаю в Москву.",
+   "question": "What does Irina Nikolaevna (Arkadina) threaten to do if she cannot get horses?",
+   "options": [
+    "Leave immediately for Moscow",
+    "Fire the estate manager on the spot",
+    "Stay at the estate forever",
+    "Call the police"
+   ],
+   "correct": "Leave immediately for Moscow",
+   "explain": "She declares, 'В таком случае я немедленно уезжаю в Москву' — in that case I am leaving for Moscow immediately."
+  },
+  {
+   "id": "r8",
+   "ru": "Отказать Ирине Николаевне, знаменитой артистке!",
+   "question": "Who is being refused horses in this complaint?",
+   "options": [
+    "Irina Nikolaevna, the famous actress",
+    "Doctor Dorn",
+    "The estate manager himself",
+    "Konstantin Gavrilovich"
+   ],
+   "correct": "Irina Nikolaevna, the famous actress",
+   "explain": "The line complains about refusing horses to 'Ирине Николаевне, знаменитой артистке' — Irina Nikolaevna, the famous actress."
+  },
+  {
+   "id": "r9",
+   "ru": "Я сейчас же пойду и поговорю с ним.",
+   "question": "What does the speaker decide to do to resolve the horse dispute?",
+   "options": [
+    "Go and talk to him (the manager) right away",
+    "Ignore the problem entirely",
+    "Call for new horses to be bought",
+    "Leave without resolving it"
+   ],
+   "correct": "Go and talk to him (the manager) right away",
+   "explain": "The speaker says, 'Я сейчас же пойду и поговорю с ним' — I will go and talk to him right now."
+  },
+  {
+   "id": "r10",
+   "ru": "А в сущности следовало бы вашего мужа отсюда просто в шею,",
+   "question": "What does the speaker say should be done with someone's husband?",
+   "options": [
+    "He should simply be thrown out by the scruff of the neck",
+    "He should be given a raise",
+    "He should be invited to dinner",
+    "He should be sent to Moscow"
+   ],
+   "correct": "He should simply be thrown out by the scruff of the neck",
+   "explain": "The line says the husband should simply be thrown out 'в шею' (by the neck)."
+  },
+  {
+   "id": "r11",
+   "ru": "Я не выношу его грубости.",
+   "question": "What does the speaker say she cannot bear?",
+   "options": [
+    "His rudeness",
+    "His singing",
+    "His cooking",
+    "His silence"
+   ],
+   "correct": "His rudeness",
+   "explain": "She says 'Я не выношу его грубости' — I cannot bear his rudeness."
+  },
+  {
+   "id": "r12",
+   "ru": "Я страдаю от ревности.",
+   "question": "What feeling does the speaker say she suffers from?",
+   "options": [
+    "Jealousy",
+    "Hunger",
+    "Boredom",
+    "Fear of the dark"
+   ],
+   "correct": "Jealousy",
+   "explain": "She says 'Я страдаю от ревности' — I suffer from jealousy."
+  },
+  {
+   "id": "r13",
+   "ru": "А он целый день удит рыбу и радуется, что поймал двух головлей.",
+   "question": "What does Trigorin do all day, according to this line, and what makes him happy?",
+   "options": [
+    "He fishes all day and is happy to catch two chub (fish)",
+    "He writes all day and is happy with his royalties",
+    "He walks in the garden and admires flowers",
+    "He sleeps all day"
+   ],
+   "correct": "He fishes all day and is happy to catch two chub (fish)",
+   "explain": "The text says he fishes all day and rejoices at having caught two chub ('головлей')."
+  },
+  {
+   "id": "r14",
+   "ru": "Я имел подлость убить сегодня эту чайку.",
+   "question": "What does Konstantin confess he did today?",
+   "options": [
+    "He had the meanness to kill this seagull",
+    "He wrote a new play",
+    "He proposed to Nina",
+    "He burned his manuscripts"
+   ],
+   "correct": "He had the meanness to kill this seagull",
+   "explain": "He says, 'Я имел подлость убить сегодня эту чайку' — I had the meanness to kill this seagull today."
+  },
+  {
+   "id": "r15",
+   "ru": "Это началось с того вечера, когда так глупо провалилась моя пьеса.",
+   "question": "When did Konstantin's change in feeling begin, according to this line?",
+   "options": [
+    "The evening his play so foolishly failed",
+    "The day Nina arrived",
+    "The day his mother left",
+    "The night of the storm"
+   ],
+   "correct": "The evening his play so foolishly failed",
+   "explain": "He says it began 'с того вечера, когда так глупо провалилась моя пьеса' — the evening his play so stupidly failed."
+  },
+  {
+   "id": "r16",
+   "ru": "Ваше охлаждение ко мне страшно, невероятно, как будто я проснулся и вижу это озеро вдруг высохло или утекло в землю.",
+   "question": "What image does Konstantin use to describe how strange Nina's coldness feels to him?",
+   "options": [
+    "As if the lake had suddenly dried up or sunk into the ground",
+    "As if the sun had stopped shining",
+    "As if a storm were coming",
+    "As if the seagull had come back to life"
+   ],
+   "correct": "As if the lake had suddenly dried up or sunk into the ground",
+   "explain": "He compares her coldness to waking up and seeing the lake had suddenly dried up or sunk into the earth."
+  },
+  {
+   "id": "r17",
+   "ru": "Обстоятельства неожиданно сложились так, что, кажется, мы сегодня уезжаем.",
+   "question": "What does Trigorin announce about their plans?",
+   "options": [
+    "That circumstances have turned out so that they are leaving today",
+    "That they will stay another month",
+    "That he is getting married",
+    "That he is moving to the estate permanently"
+   ],
+   "correct": "That circumstances have turned out so that they are leaving today",
+   "explain": "Trigorin says circumstances turned out such that it seems they are leaving today."
+  },
+  {
+   "id": "r18",
+   "ru": "Хотел бы я хоть часок побывать на вашем месте, чтобы узнать, как вы думаете вообще что вы за штучка.",
+   "question": "What does Trigorin say he'd like to do for an hour, to understand Nina?",
+   "options": [
+    "Be in her place, to know what she thinks and what kind of person she is",
+    "Read her diary",
+    "Follow her around town",
+    "Interview her parents"
+   ],
+   "correct": "Be in her place, to know what she thinks and what kind of person she is",
+   "explain": "He says he'd like to spend an hour in her place to find out how she thinks and what sort of person she is."
+  },
+  {
+   "id": "r19",
+   "ru": "Когда бронят, то потом два дня чувствуешь себя не в духе.",
+   "question": "How does Trigorin say bad reviews affect him?",
+   "options": [
+    "He feels out of sorts for two days afterward",
+    "He stops writing forever",
+    "He laughs them off immediately",
+    "He writes an angry reply"
+   ],
+   "correct": "He feels out of sorts for two days afterward",
+   "explain": "He says when he is scolded in print, he feels out of sorts for two days afterward."
+  },
+  {
+   "id": "r20",
+   "ru": "Когда кончаю работу, бегу в театр или удить рыбу; тут бы отдохнуть, забыться, нет,",
+   "question": "What does Trigorin say happens even when he tries to rest by fishing or going to the theater?",
+   "options": [
+    "He still cannot rest or forget his work",
+    "He falls asleep immediately",
+    "He starts writing a new play on the spot",
+    "He forgets about writing completely"
+   ],
+   "correct": "He still cannot rest or forget his work",
+   "explain": "He says even when he runs to the theater or to fish to rest, he cannot manage to relax or forget."
+  },
+  {
+   "id": "r21",
+   "ru": "Маленький писатель, когда ему не везет, кажется себе неухлюшим.",
+   "question": "How does Trigorin describe an unlucky, minor writer?",
+   "options": [
+    "Clumsy and awkward, seeming superfluous to himself",
+    "Confident and admired by all",
+    "Wealthy but unhappy",
+    "Famous but lonely"
+   ],
+   "correct": "Clumsy and awkward, seeming superfluous to himself",
+   "explain": "He says a small, unlucky writer seems to himself clumsy, awkward, and superfluous."
+  },
+  {
+   "id": "r22",
+   "ru": "Я люблю вот эту воду, деревья, небо,",
+   "question": "What does Trigorin say he loves?",
+   "options": [
+    "This water, the trees, the sky",
+    "Fame and money",
+    "The theater crowds",
+    "His own writing"
+   ],
+   "correct": "This water, the trees, the sky",
+   "explain": "He says, 'Я люблю вот эту воду, деревья, небо' — I love this water, these trees, the sky."
+  },
+  {
+   "id": "r23",
+   "ru": "Она возбуждает во мне страсть, непреодолимое желание писать.",
+   "question": "What effect does nature have on Trigorin, according to this line?",
+   "options": [
+    "It arouses in him a passion, an irresistible urge to write",
+    "It puts him to sleep",
+    "It makes him forget his writing",
+    "It frightens him"
+   ],
+   "correct": "It arouses in him a passion, an irresistible urge to write",
+   "explain": "He says nature arouses in him a passion, an irresistible desire to write."
+  },
+  {
+   "id": "r24",
+   "ru": "Я мечусь от стороны в сторону, как лисица, затравленная псами,",
+   "question": "What image does Trigorin use to describe how he is pushed from all sides?",
+   "options": [
+    "Like a fox hunted by hounds",
+    "Like a bird trapped in a cage",
+    "Like a fish out of water",
+    "Like a soldier in battle"
+   ],
+   "correct": "Like a fox hunted by hounds",
+   "explain": "He compares himself to 'лисица, затравленная псами' — a fox hunted down by dogs."
+  },
+  {
+   "id": "r25",
+   "ru": "А во всем остальном я фальшив и фальшив до мозга костей.",
+   "question": "How does Trigorin describe himself in everything else besides nature?",
+   "options": [
+    "False, false to the marrow of his bones",
+    "Perfectly honest and sincere",
+    "The happiest man alive",
+    "Indifferent to everything"
+   ],
+   "correct": "False, false to the marrow of his bones",
+   "explain": "He says, 'я фальшив и фальшив до мозга костей' — I am false, false to the marrow of my bones."
+  },
+  {
+   "id": "r26",
+   "ru": "Если бы я была таким писателем, как вы, я отдала бы толпе всю свою жизнь,",
+   "question": "What does Nina say she would do if she were as great a writer as Trigorin?",
+   "options": [
+    "Give her whole life to the crowd/public",
+    "Stop writing immediately",
+    "Move far away from people",
+    "Refuse all fame"
+   ],
+   "correct": "Give her whole life to the crowd/public",
+   "explain": "Nina says if she were such a writer, she would give her whole life to the crowd."
+  },
+  {
+   "id": "r27",
+   "ru": "Видите на том берегу дом сад?",
+   "question": "What does Nina point out across the lake?",
+   "options": [
+    "A house and garden",
+    "A church",
+    "A theater",
+    "A mill"
+   ],
+   "correct": "A house and garden",
+   "explain": "She says, 'Видите, на том берегу дом, сад' — you see, on that shore there's a house, a garden."
+  },
+  {
+   "id": "r28",
+   "ru": "Это усадьба моей покойной матери.",
+   "question": "Whose estate is on the other shore of the lake?",
+   "options": [
+    "Her late mother's estate",
+    "Trigorin's estate",
+    "Sorin's estate",
+    "The doctor's estate"
+   ],
+   "correct": "Her late mother's estate",
+   "explain": "She says, 'Это усадьба моей покойной матери' — this is my late mother's estate."
+  },
+  {
+   "id": "r29",
+   "ru": "Константин Гаврилович убил.",
+   "question": "Who killed the seagull that is mentioned here?",
+   "options": [
+    "Konstantin Gavrilovich",
+    "Trigorin",
+    "Shamrayev",
+    "Dorn"
+   ],
+   "correct": "Konstantin Gavrilovich",
+   "explain": "The line states plainly, 'Константин Гаврилович убил' — Konstantin Gavrilovich killed it."
+  },
+  {
+   "id": "r30",
+   "ru": "На берегу озера с детства живет молодая девушка,",
+   "question": "In the story idea Trigorin is jotting down, where does the young girl live?",
+   "options": [
+    "On the shore of a lake since childhood",
+    "In a big city",
+    "In a convent",
+    "Abroad"
+   ],
+   "correct": "On the shore of a lake since childhood",
+   "explain": "The sketch begins, 'На берегу озера с детства живет молодая девушка' — a young girl has lived on the lake shore since childhood."
+  }
+ ]
 }

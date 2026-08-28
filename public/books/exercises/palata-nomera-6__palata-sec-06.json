@@ -1,1 +1,464 @@
-{"cases": [{"id": "c1", "sentence": "В углу, в приемной, стоит большой ___ в киоте, с тяжелою лампадой, возле – ставник в белом чехле; на стенах висят портреты архиереев, вид Святогорского монастыря и венки из сухих васильков.", "lemma": "образ", "options": ["образ", "образа", "образу", "образом"], "correct": "образ", "case": "Именительный (Nominative)", "translation": "In the reception room stands a large ___ in an icon case, with a heavy lamp, nearby – a shutter in a white cover; on the walls hang portraits of archbishops, a view of the Svyatogorsk monastery, and wreaths of dried cornflowers.", "explain": "Образ is the subject of стоит (\"stands\"), so it takes the Nominative case."}, {"id": "c2", "sentence": "Половина жалованья уходит у него на покупку ___, и из шести комнат его квартиры три завалены книгами и старыми журналами.", "lemma": "книга", "options": ["книги", "книгам", "книг", "книгами"], "correct": "книг", "case": "Родительный (Genitive)", "translation": "Half his salary goes toward buying ___, and of the six rooms of his apartment three are cluttered with books and old journals.", "explain": "\"Покупка (чего?) книг\" — the noun completing покупка takes the Genitive case."}, {"id": "c3", "sentence": "К ___ обыкновенно приходит почтмейстер, Михаил Аверьяныч, единственный во всем городе человек, общество которого для Андрея Ефимыча не тягостно.", "lemma": "вечер", "options": ["вечер", "вечера", "вечеру", "вечером"], "correct": "вечеру", "case": "Дательный (Dative)", "translation": "Towards evening the postmaster, Mikhail Averyanich, usually comes to visit, the only person in the entire city whose company is not tiresome for Andrey Efimyich.", "explain": "The preposition к (\"towards\") governs the Dative case, so вечер becomes вечеру."}, {"id": "c4", "sentence": "Обыкновенно он идет в ___.", "lemma": "больница", "options": ["больница", "больницы", "больницу", "больнице"], "correct": "больницу", "case": "Винительный (Accusative)", "translation": "He usually goes to the hospital.", "explain": "The preposition в expressing motion into governs the Accusative case, so больница becomes больницу."}, {"id": "c5", "sentence": "Сергей Сергеич — человек с бритым, чисто вымытым, пухлым ___.", "lemma": "лицо", "options": ["лицо", "лица", "лицу", "лицом"], "correct": "лицом", "case": "Творительный (Instrumental)", "translation": "Sergei Sergeich is a man with a clean-shaven, well-washed, plump face.", "explain": "The preposition с describing an accompanying feature governs the Instrumental case, so лицо becomes лицом."}, {"id": "c6", "sentence": "Здесь, в больнице, в узком темном ___ сидят амбулаторные больные, ожидающие приемки.", "lemma": "коридорчик", "options": ["коридорчик", "коридорчика", "коридорчике", "коридорчиком"], "correct": "коридорчике", "case": "Предложный (Prepositional)", "translation": "Here, in the hospital, in the narrow dark ___ sit the outpatients waiting to be seen.", "explain": "The preposition в indicating location governs the Prepositional case, so коридорчик becomes коридорчике."}, {"id": "c7", "sentence": "Половина жалованья уходит у него на покупку книг, и из шести ___ его квартиры три завалены книгами и старыми журналами.", "lemma": "комната", "options": ["комнаты", "комнат", "комнатам", "комнатами"], "correct": "комнат", "case": "Родительный (Genitive)", "translation": "Half his salary goes toward buying books, and of the six ___ of his apartment three are cluttered with books and old journals.", "explain": "The numeral шести governs the Genitive plural, so комната becomes комнат."}, {"id": "c8", "sentence": "Михаил Аверьяныч сидит с веселым, оживленным ___.", "lemma": "вид", "options": ["вид", "вида", "виду", "видом"], "correct": "видом", "case": "Творительный (Instrumental)", "translation": "Mikhail Averyanych sits with a cheerful, animated look.", "explain": "The preposition с describing manner/appearance governs the Instrumental case, so вид becomes видом."}], "reading": [{"id": "r1", "ru": "Обыкновенно он встает утром часов в восемь, одевается и пьет чай.", "question": "What does Andrei Yefimych typically do first thing in the morning?", "options": ["He gets up around eight, dresses, and drinks tea", "He goes straight to the hospital before breakfast", "He reads newspapers in bed", "He exercises for an hour"], "correct": "He gets up around eight, dresses, and drinks tea", "explain": "The text says he usually rises around eight, dresses, and drinks tea."}, {"id": "r2", "ru": "Здесь, в больнице, в узком темном коридорчике сидят амбулаторные больные, ожидающие приемки.", "question": "Where do the outpatients wait to be seen?", "options": ["In a narrow, dark corridor at the hospital", "In a sunny waiting room", "Outside in the yard", "In the doctor's private office"], "correct": "In a narrow, dark corridor at the hospital", "explain": "The text describes outpatients sitting \"в узком темном коридорчике\"."}, {"id": "r3", "ru": "В приемной встречает его фельдшер Сергей Сергеич, маленький, толстый человек с бритым, чисто вымытым, пухлым лицом, с мягкими плавными манерами и в новом просторном костюме, похожий больше на сенатора, чем на фельдшера.", "question": "How is the feldsher (medical assistant) Sergei Sergeich described?", "options": ["As looking more like a senator than a feldsher", "As thin and nervous", "As young and shy", "As illiterate and rude"], "correct": "As looking more like a senator than a feldsher", "explain": "He is described as \"похожий больше на сенатора, чем на фельдшера\"."}, {"id": "r4", "ru": "Сергей Сергеич религиозен и любит благолепие.", "question": "What is said about Sergei Sergeich's religious character?", "options": ["He is religious and loves solemn church splendor", "He is an atheist", "He dislikes church rituals", "He never attends church"], "correct": "He is religious and loves solemn church splendor", "explain": "The text states \"Сергей Сергеич религиозен и любит благолепие\"."}, {"id": "r5", "ru": "Больных много, а времени мало, и потому дело ограничивается одним только коротким опросом и выдачей какого-нибудь лекарства, вроде летучей мази или касторки.", "question": "Why does each patient's examination stay so brief?", "options": ["Because there are many patients and little time, so it's limited to a short questioning and a dose of medicine", "Because the doctor refuses to examine anyone", "Because the hospital has no medicine at all", "Because patients refuse treatment"], "correct": "Because there are many patients and little time, so it's limited to a short questioning and a dose of medicine", "explain": "The text says \"Больных много, а времени мало\", so treatment is a short questioning and giving out medicine."}, {"id": "r6", "ru": "Во время приемки Андрей Ефимыч не делает никаких операций; он давно уже отвык от них и вид крови его неприятно волнует.", "question": "Why doesn't Andrei Yefimych perform any operations during appointments?", "options": ["He's grown unaccustomed to them and the sight of blood unpleasantly disturbs him", "He lacks the surgical instruments", "He's too old to operate", "Patients refuse surgery"], "correct": "He's grown unaccustomed to them and the sight of blood unpleasantly disturbs him", "explain": "He \"давно уже отвык от них и вид крови его неприятно волнует\"."}, {"id": "r7", "ru": "На приемке скоро ему прискучают робость больных и их бестолковость, близость благолепного Сергея Сергеича, портреты на стенах и свои собственные вопросы, которые он задает неизменно уже более двадцати лет.", "question": "What bores Andrei Yefimych during appointments?", "options": ["The patients' timidity, Sergei Sergeich's presence, the wall portraits, and his own repetitive questions", "The smell of medicine", "The long walk to the hospital", "Having too few patients"], "correct": "The patients' timidity, Sergei Sergeich's presence, the wall portraits, and his own repetitive questions", "explain": "The text lists exactly these things as prискучивающие (\"tiresome\") to him."}, {"id": "r8", "ru": "И он уходит, приняв пять-шесть больных.", "question": "How many patients does Andrei Yefimych typically see before leaving?", "options": ["Five or six", "Thirty", "None", "Over a hundred"], "correct": "Five or six", "explain": "The text says \"он уходит, приняв пять-шесть больных\"."}, {"id": "r9", "ru": "Половина жалованья уходит у него на покупку книг, и из шести комнат его квартиры три завалены книгами и старыми журналами.", "question": "How does Andrei Yefimych spend half his salary, and how does it affect his apartment?", "options": ["On buying books, filling three of his six rooms with books and old journals", "On travel, leaving his apartment empty", "On charity, leaving him poor", "On alcohol, filling his rooms with bottles"], "correct": "On buying books, filling three of his six rooms with books and old journals", "explain": "\"Половина жалованья уходит у него на покупку книг\" and three of six rooms are piled with books and journals."}, {"id": "r10", "ru": "Около книги всегда стоит графинчик с водкой и лежит соленый огурец или моченое яблоко прямо на сукне, без тарелки.", "question": "What does Andrei Yefimych always keep beside his book while reading?", "options": ["A small decanter of vodka and a salted cucumber or soaked apple", "A cup of tea and biscuits", "A candle and matches", "A stack of medical journals"], "correct": "A small decanter of vodka and a salted cucumber or soaked apple", "explain": "\"Около книги всегда стоит графинчик с водкой и лежит соленый огурец или моченое яблоко\"."}, {"id": "r11", "ru": "В три часа он осторожно подходит к кухонной двери, кашляет и говорит: – Дарьюшка, как бы мне пообедать…", "question": "What does Andrei Yefimych do at three o'clock?", "options": ["He cautiously approaches the kitchen door and asks Daryushka about dinner", "He goes for a walk", "He receives visitors", "He returns to the hospital"], "correct": "He cautiously approaches the kitchen door and asks Daryushka about dinner", "explain": "\"В три часа он осторожно подходит к кухонной двери... Дарьюшка, как бы мне пообедать\"."}, {"id": "r12", "ru": "Андрей Ефимыч ходит по своим комнатам, скрестив на груди руки, и думает.", "question": "What does Andrei Yefimych do after dinner?", "options": ["He paces through his rooms with arms crossed, thinking", "He falls asleep immediately", "He plays cards", "He writes letters"], "correct": "He paces through his rooms with arms crossed, thinking", "explain": "\"Андрей Ефимыч ходит по своим комнатам, скрестив на груди руки, и думает\"."}, {"id": "r13", "ru": "К вечеру обыкновенно приходит почтмейстер, Михаил Аверьяныч, единственный во всем городе человек, общество которого для Андрея Ефимыча не тягостно.", "question": "Who is the one person in town whose company Andrei Yefimych doesn't find tiresome?", "options": ["The postmaster Mikhail Averyanych", "The feldsher Sergei Sergeich", "Doctor Khobotov", "Ivan Dmitrich"], "correct": "The postmaster Mikhail Averyanych", "explain": "He is called \"единственный во всем городе человек, общество которого для Андрея Ефимыча не тягостно\"."}, {"id": "r14", "ru": "Михаил Аверьяныч когда-то был очень богатым помещиком и служил в кавалерии, но разорился и из нужды поступил под старость в почтовое ведомство.", "question": "What is Mikhail Averyanych's background?", "options": ["A once-wealthy landowner and cavalry officer who went broke and took a postal job in old age", "A former doctor turned postmaster", "A lifelong civil servant", "A retired priest"], "correct": "A once-wealthy landowner and cavalry officer who went broke and took a postal job in old age", "explain": "He \"когда-то был очень богатым помещиком и служил в кавалерии, но разорился... поступил... в почтовое ведомство\"."}, {"id": "r15", "ru": "Когда на почте кто-нибудь из посетителей протестует, не соглашается или просто начинает рассуждать, то Михаил Аверьяныч багровеет, трясется всем телом и кричит громовым голосом: «Замолчать!», так что за почтовым отделением давно уже установилась репутация учреждения, в котором страшно бывать.", "question": "How does Mikhail Averyanych react when a visitor at the post office argues with him?", "options": ["He turns purple, trembles all over, and shouts \"Silence!\" in a thunderous voice", "He calmly explains the rules", "He ignores them completely", "He laughs it off"], "correct": "He turns purple, trembles all over, and shouts \"Silence!\" in a thunderous voice", "explain": "He \"багровеет, трясется всем телом и кричит громовым голосом: «Замолчать!»\"."}, {"id": "r16", "ru": "Приятели садятся в кабинете на диван и некоторое время молча курят.", "question": "What do the two friends do when Mikhail Averyanych visits in the evening?", "options": ["They sit on the sofa in the study and smoke silently for a while", "They argue loudly", "They play chess", "They go for a walk together"], "correct": "They sit on the sofa in the study and smoke silently for a while", "explain": "\"Приятели садятся в кабинете на диван и некоторое время молча курят\"."}, {"id": "r17", "ru": "– Как жаль, – говорит он медленно и тихо, покачивая головой и не глядя в глаза собеседнику (он никогда не смотрит в глаза), – как глубоко жаль, уважаемый Михаил Аверьяныч, что в нашем городе совершенно нет людей, которые бы умели и любили вести умную и интересную беседу.", "question": "What does Andrei Yefimych lament about the town?", "options": ["That there is no one able and willing to hold intelligent, interesting conversation", "That there are no good restaurants", "That the winters are too cold", "That there is no hospital"], "correct": "That there is no one able and willing to hold intelligent, interesting conversation", "explain": "He says it is \"глубоко жаль... что в нашем городе совершенно нет людей, которые бы умели и любили вести умную и интересную беседу\"."}, {"id": "r18", "ru": "И он рассказывает, как жилось прежде здорово, весело и интересно, какая была в России умная интеллигенция и как высоко она ставила понятия о чести и дружбе.", "question": "What does Mikhail Averyanych reminisce about?", "options": ["How life used to be lively and interesting, with a clever intelligentsia that prized honor and friendship", "His childhood on a farm", "His time serving as a doctor", "The hospital's founding"], "correct": "How life used to be lively and interesting, with a clever intelligentsia that prized honor and friendship", "explain": "He recalls \"как жилось прежде здорово, весело и интересно, какая была в России умная интеллигенция\"."}, {"id": "r19", "ru": "– Мой отец дал мне прекрасное образование, по под влиянием идей шестидесятых годов заставил меня сделаться врачом.", "question": "Why did Andrei Yefimych become a doctor?", "options": ["His father gave him an excellent education but, under the influence of 1860s ideas, forced him to become a doctor", "He always dreamed of medicine himself", "He inherited the practice from his father", "He failed at law school first"], "correct": "His father gave him an excellent education but, under the influence of 1860s ideas, forced him to become a doctor", "explain": "He says \"Мой отец дал мне прекрасное образование, но под влиянием идей шестидесятых годов заставил меня сделаться врачом\"."}, {"id": "r20", "ru": "– А вы не верите в бессмертие души?", "question": "What question does Mikhail Averyanych suddenly ask the doctor?", "options": ["Whether he believes in the immortality of the soul", "Whether he believes in ghosts", "Whether he fears death", "Whether he wants to retire"], "correct": "Whether he believes in the immortality of the soul", "explain": "He asks \"А вы не верите в бессмертие души?\""}], "highlight": [{"id": "h1", "question": "Which sentence reveals that Andrei Efimych understands how painful this hospital environment is for sensitive patients?", "sentences": ["Здесь, в больнице, в узком темном коридорчике сидят амбулаторные больные, ожидающие приемки.", "Мимо них, стуча сапогами по кирпичному полу, бегают мужики и сиделки, проходят тощие больные в халатах, проносят мертвецов и посуду с нечистотами, плачут дети, дует сквозной ветер.", "Андрей Ефимыч знает, что для лихорадящих, чахоточных и вообще впечатлительных больных такая обстановка мучительна, но что поделаешь?", "В приемной встречает его фельдшер Сергей Сергеич, маленький, толстый человек с бритым, чисто вымытым, пухлым лицом, с мягкими плавными манерами и в новом просторном костюме, похожий больше на сенатора, чем на фельдшера.", "В городе он имеет громадную практику, носит белый галстук и считает себя более сведущим, чем доктор, который совсем не имеет практики."], "correct": [2], "explain": "He recognizes that the harsh conditions in the corridor are particularly torturous for feverish and impressionable patients."}, {"id": "h2", "question": "Which sentence shows how Andrei Efimych's examination process has become mechanical and detached?", "sentences": ["Больных много, а времени мало, и потому дело ограничивается одним только коротким опросом и выдачей какого-нибудь лекарства, вроде летучей мази или касторки.", "Андрей Ефимыч сидит, подперев щеку кулаком, задумавшись, и машинально задает вопросы.", "Сергей Сергеич тоже сидит, потирает свои ручки и изредка вмешивается."], "correct": [1], "explain": "He sits with his cheek on his fist, lost in thought, mechanically asking questions out of habit rather than genuine engagement."}, {"id": "h3", "question": "Which sentence demonstrates that his approach has remained unchanged for decades?", "sentences": ["На приемке скоро ему прискучают робость больных и их бестолковость, близость благолепного Сергея Сергеича, портреты на стенах и свои собственные вопросы, которые он задает неизменно уже более двадцати лет.", "И он уходит, приняв пять-шесть больных.", "Остальных без него принимает фельдшер."], "correct": [0], "explain": "He has been repeating the same questions and following the same routine for more than twenty years."}, {"id": "h4", "question": "Which sentence illustrates how deeply absorbed he is in his thoughts?", "sentences": ["После обеда, довольно плохого и неопрятного.", "Андрей Ефимыч ходит по своим комнатам, скрестив на груди руки, и думает.", "Бьет четыре часа, потом пять, а он все ходит и думает.", "Изредка поскрипывает кухонная дверь и показывается из нее красное, заспанное лицо Дарьюшки."], "correct": [2], "explain": "He walks for hours - from four o'clock until five - completely lost in his contemplation."}, {"id": "h5", "question": "Which sentence expresses his harsh judgment about his city's educated class?", "sentences": ["– Как жаль, – говорит он медленно и тихо, покачивая головой и не глядя в глаза собеседнику (он никогда не смотрит в глаза), – как глубоко жаль, уважаемый Михаил Аверьяныч, что в нашем городе совершенно нет людей, которые бы умели и любили вести умную и интересную беседу.", "Это громадное для нас лишение.", "Даже интеллигенция не возвышается над пошлостью; уровень ее развития, уверяю вас, нисколько не выше, чем у низшего сословия."], "correct": [2], "explain": "He argues that even the intelligentsia fails to transcend banality and shows no higher development than the lowest social classes."}, {"id": "h6", "question": "Which sentence describes a woman who boldly defied social conventions through her unconventional actions?", "sentences": ["И он рассказывает, как жилось прежде здорово, весело и интересно, какая была в России умная интеллигенция и как высоко она ставила понятия о чести и дружбе.", "Давали деньги взаймы без векселя, и считалось позором не протянуть руку помощи нуждающемуся товарищу.", "А какие были походы, приключения, стычки, какие товарищи, какие женщины!", "А Кавказ – какой удивительный край!", "А жена одного батальонного командира, странная женщина, надевала офицерское платье и уезжала по вечерам в горы, одна, без проводника.", "Говорят, что в аулах у нее был роман с каким-то князьком."], "correct": [4], "explain": "She wore officer's clothing and rode alone into the mountains at night, completely disregarding what proper society expected of women."}]}
+{
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "В углу, в приемной, стоит большой ___ в киоте, с тяжелою лампадой, возле – ставник в белом чехле; на стенах висят портреты архиереев, вид Святогорского монастыря и венки из сухих васильков.",
+   "lemma": "образ",
+   "options": [
+    "образ",
+    "образа",
+    "образу",
+    "образом"
+   ],
+   "correct": "образ",
+   "case": "Именительный (Nominative)",
+   "explain": "Образ is the subject of стоит (\"stands\"), so it takes the Nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Половина жалованья уходит у него на покупку ___, и из шести комнат его квартиры три завалены книгами и старыми журналами.",
+   "lemma": "книга",
+   "options": [
+    "книги",
+    "книгам",
+    "книг",
+    "книгами"
+   ],
+   "correct": "книг",
+   "case": "Родительный (Genitive)",
+   "explain": "\"Покупка (чего?) книг\" — the noun completing покупка takes the Genitive case."
+  },
+  {
+   "id": "c3",
+   "sentence": "К ___ обыкновенно приходит почтмейстер, Михаил Аверьяныч, единственный во всем городе человек, общество которого для Андрея Ефимыча не тягостно.",
+   "lemma": "вечер",
+   "options": [
+    "вечер",
+    "вечера",
+    "вечеру",
+    "вечером"
+   ],
+   "correct": "вечеру",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition к (\"towards\") governs the Dative case, so вечер becomes вечеру."
+  },
+  {
+   "id": "c4",
+   "sentence": "Обыкновенно он идет в ___.",
+   "lemma": "больница",
+   "options": [
+    "больница",
+    "больницы",
+    "больницу",
+    "больнице"
+   ],
+   "correct": "больницу",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition в expressing motion into governs the Accusative case, so больница becomes больницу."
+  },
+  {
+   "id": "c5",
+   "sentence": "Сергей Сергеич — человек с бритым, чисто вымытым, пухлым ___.",
+   "lemma": "лицо",
+   "options": [
+    "лицо",
+    "лица",
+    "лицу",
+    "лицом"
+   ],
+   "correct": "лицом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition с describing an accompanying feature governs the Instrumental case, so лицо becomes лицом."
+  },
+  {
+   "id": "c6",
+   "sentence": "Здесь, в больнице, в узком темном ___ сидят амбулаторные больные, ожидающие приемки.",
+   "lemma": "коридорчик",
+   "options": [
+    "коридорчик",
+    "коридорчика",
+    "коридорчике",
+    "коридорчиком"
+   ],
+   "correct": "коридорчике",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в indicating location governs the Prepositional case, so коридорчик becomes коридорчике."
+  },
+  {
+   "id": "c7",
+   "sentence": "Половина жалованья уходит у него на покупку книг, и из шести ___ его квартиры три завалены книгами и старыми журналами.",
+   "lemma": "комната",
+   "options": [
+    "комнаты",
+    "комнат",
+    "комнатам",
+    "комнатами"
+   ],
+   "correct": "комнат",
+   "case": "Родительный (Genitive)",
+   "explain": "The numeral шести governs the Genitive plural, so комната becomes комнат."
+  },
+  {
+   "id": "c8",
+   "sentence": "Михаил Аверьяныч сидит с веселым, оживленным ___.",
+   "lemma": "вид",
+   "options": [
+    "вид",
+    "вида",
+    "виду",
+    "видом"
+   ],
+   "correct": "видом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition с describing manner/appearance governs the Instrumental case, so вид becomes видом."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Обыкновенно он встает утром часов в восемь, одевается и пьет чай.",
+   "question": "What does Andrei Yefimych typically do first thing in the morning?",
+   "options": [
+    "He gets up around eight, dresses, and drinks tea",
+    "He goes straight to the hospital before breakfast",
+    "He reads newspapers in bed",
+    "He exercises for an hour"
+   ],
+   "correct": "He gets up around eight, dresses, and drinks tea",
+   "explain": "The text says he usually rises around eight, dresses, and drinks tea."
+  },
+  {
+   "id": "r2",
+   "ru": "Здесь, в больнице, в узком темном коридорчике сидят амбулаторные больные, ожидающие приемки.",
+   "question": "Where do the outpatients wait to be seen?",
+   "options": [
+    "In a narrow, dark corridor at the hospital",
+    "In a sunny waiting room",
+    "Outside in the yard",
+    "In the doctor's private office"
+   ],
+   "correct": "In a narrow, dark corridor at the hospital",
+   "explain": "The text describes outpatients sitting \"в узком темном коридорчике\"."
+  },
+  {
+   "id": "r3",
+   "ru": "В приемной встречает его фельдшер Сергей Сергеич, маленький, толстый человек с бритым, чисто вымытым, пухлым лицом, с мягкими плавными манерами и в новом просторном костюме, похожий больше на сенатора, чем на фельдшера.",
+   "question": "How is the feldsher (medical assistant) Sergei Sergeich described?",
+   "options": [
+    "As looking more like a senator than a feldsher",
+    "As thin and nervous",
+    "As young and shy",
+    "As illiterate and rude"
+   ],
+   "correct": "As looking more like a senator than a feldsher",
+   "explain": "He is described as \"похожий больше на сенатора, чем на фельдшера\"."
+  },
+  {
+   "id": "r4",
+   "ru": "Сергей Сергеич религиозен и любит благолепие.",
+   "question": "What is said about Sergei Sergeich's religious character?",
+   "options": [
+    "He is religious and loves solemn church splendor",
+    "He is an atheist",
+    "He dislikes church rituals",
+    "He never attends church"
+   ],
+   "correct": "He is religious and loves solemn church splendor",
+   "explain": "The text states \"Сергей Сергеич религиозен и любит благолепие\"."
+  },
+  {
+   "id": "r5",
+   "ru": "Больных много, а времени мало, и потому дело ограничивается одним только коротким опросом и выдачей какого-нибудь лекарства, вроде летучей мази или касторки.",
+   "question": "Why does each patient's examination stay so brief?",
+   "options": [
+    "Because there are many patients and little time, so it's limited to a short questioning and a dose of medicine",
+    "Because the doctor refuses to examine anyone",
+    "Because the hospital has no medicine at all",
+    "Because patients refuse treatment"
+   ],
+   "correct": "Because there are many patients and little time, so it's limited to a short questioning and a dose of medicine",
+   "explain": "The text says \"Больных много, а времени мало\", so treatment is a short questioning and giving out medicine."
+  },
+  {
+   "id": "r6",
+   "ru": "Во время приемки Андрей Ефимыч не делает никаких операций; он давно уже отвык от них и вид крови его неприятно волнует.",
+   "question": "Why doesn't Andrei Yefimych perform any operations during appointments?",
+   "options": [
+    "He's grown unaccustomed to them and the sight of blood unpleasantly disturbs him",
+    "He lacks the surgical instruments",
+    "He's too old to operate",
+    "Patients refuse surgery"
+   ],
+   "correct": "He's grown unaccustomed to them and the sight of blood unpleasantly disturbs him",
+   "explain": "He \"давно уже отвык от них и вид крови его неприятно волнует\"."
+  },
+  {
+   "id": "r7",
+   "ru": "На приемке скоро ему прискучают робость больных и их бестолковость, близость благолепного Сергея Сергеича, портреты на стенах и свои собственные вопросы, которые он задает неизменно уже более двадцати лет.",
+   "question": "What bores Andrei Yefimych during appointments?",
+   "options": [
+    "The patients' timidity, Sergei Sergeich's presence, the wall portraits, and his own repetitive questions",
+    "The smell of medicine",
+    "The long walk to the hospital",
+    "Having too few patients"
+   ],
+   "correct": "The patients' timidity, Sergei Sergeich's presence, the wall portraits, and his own repetitive questions",
+   "explain": "The text lists exactly these things as prискучивающие (\"tiresome\") to him."
+  },
+  {
+   "id": "r8",
+   "ru": "И он уходит, приняв пять-шесть больных.",
+   "question": "How many patients does Andrei Yefimych typically see before leaving?",
+   "options": [
+    "Five or six",
+    "Thirty",
+    "None",
+    "Over a hundred"
+   ],
+   "correct": "Five or six",
+   "explain": "The text says \"он уходит, приняв пять-шесть больных\"."
+  },
+  {
+   "id": "r9",
+   "ru": "Половина жалованья уходит у него на покупку книг, и из шести комнат его квартиры три завалены книгами и старыми журналами.",
+   "question": "How does Andrei Yefimych spend half his salary, and how does it affect his apartment?",
+   "options": [
+    "On buying books, filling three of his six rooms with books and old journals",
+    "On travel, leaving his apartment empty",
+    "On charity, leaving him poor",
+    "On alcohol, filling his rooms with bottles"
+   ],
+   "correct": "On buying books, filling three of his six rooms with books and old journals",
+   "explain": "\"Половина жалованья уходит у него на покупку книг\" and three of six rooms are piled with books and journals."
+  },
+  {
+   "id": "r10",
+   "ru": "Около книги всегда стоит графинчик с водкой и лежит соленый огурец или моченое яблоко прямо на сукне, без тарелки.",
+   "question": "What does Andrei Yefimych always keep beside his book while reading?",
+   "options": [
+    "A small decanter of vodka and a salted cucumber or soaked apple",
+    "A cup of tea and biscuits",
+    "A candle and matches",
+    "A stack of medical journals"
+   ],
+   "correct": "A small decanter of vodka and a salted cucumber or soaked apple",
+   "explain": "\"Около книги всегда стоит графинчик с водкой и лежит соленый огурец или моченое яблоко\"."
+  },
+  {
+   "id": "r11",
+   "ru": "В три часа он осторожно подходит к кухонной двери, кашляет и говорит: – Дарьюшка, как бы мне пообедать…",
+   "question": "What does Andrei Yefimych do at three o'clock?",
+   "options": [
+    "He cautiously approaches the kitchen door and asks Daryushka about dinner",
+    "He goes for a walk",
+    "He receives visitors",
+    "He returns to the hospital"
+   ],
+   "correct": "He cautiously approaches the kitchen door and asks Daryushka about dinner",
+   "explain": "\"В три часа он осторожно подходит к кухонной двери... Дарьюшка, как бы мне пообедать\"."
+  },
+  {
+   "id": "r12",
+   "ru": "Андрей Ефимыч ходит по своим комнатам, скрестив на груди руки, и думает.",
+   "question": "What does Andrei Yefimych do after dinner?",
+   "options": [
+    "He paces through his rooms with arms crossed, thinking",
+    "He falls asleep immediately",
+    "He plays cards",
+    "He writes letters"
+   ],
+   "correct": "He paces through his rooms with arms crossed, thinking",
+   "explain": "\"Андрей Ефимыч ходит по своим комнатам, скрестив на груди руки, и думает\"."
+  },
+  {
+   "id": "r13",
+   "ru": "К вечеру обыкновенно приходит почтмейстер, Михаил Аверьяныч, единственный во всем городе человек, общество которого для Андрея Ефимыча не тягостно.",
+   "question": "Who is the one person in town whose company Andrei Yefimych doesn't find tiresome?",
+   "options": [
+    "The postmaster Mikhail Averyanych",
+    "The feldsher Sergei Sergeich",
+    "Doctor Khobotov",
+    "Ivan Dmitrich"
+   ],
+   "correct": "The postmaster Mikhail Averyanych",
+   "explain": "He is called \"единственный во всем городе человек, общество которого для Андрея Ефимыча не тягостно\"."
+  },
+  {
+   "id": "r14",
+   "ru": "Михаил Аверьяныч когда-то был очень богатым помещиком и служил в кавалерии, но разорился и из нужды поступил под старость в почтовое ведомство.",
+   "question": "What is Mikhail Averyanych's background?",
+   "options": [
+    "A once-wealthy landowner and cavalry officer who went broke and took a postal job in old age",
+    "A former doctor turned postmaster",
+    "A lifelong civil servant",
+    "A retired priest"
+   ],
+   "correct": "A once-wealthy landowner and cavalry officer who went broke and took a postal job in old age",
+   "explain": "He \"когда-то был очень богатым помещиком и служил в кавалерии, но разорился... поступил... в почтовое ведомство\"."
+  },
+  {
+   "id": "r15",
+   "ru": "Когда на почте кто-нибудь из посетителей протестует, не соглашается или просто начинает рассуждать, то Михаил Аверьяныч багровеет, трясется всем телом и кричит громовым голосом: «Замолчать!», так что за почтовым отделением давно уже установилась репутация учреждения, в котором страшно бывать.",
+   "question": "How does Mikhail Averyanych react when a visitor at the post office argues with him?",
+   "options": [
+    "He turns purple, trembles all over, and shouts \"Silence!\" in a thunderous voice",
+    "He calmly explains the rules",
+    "He ignores them completely",
+    "He laughs it off"
+   ],
+   "correct": "He turns purple, trembles all over, and shouts \"Silence!\" in a thunderous voice",
+   "explain": "He \"багровеет, трясется всем телом и кричит громовым голосом: «Замолчать!»\"."
+  },
+  {
+   "id": "r16",
+   "ru": "Приятели садятся в кабинете на диван и некоторое время молча курят.",
+   "question": "What do the two friends do when Mikhail Averyanych visits in the evening?",
+   "options": [
+    "They sit on the sofa in the study and smoke silently for a while",
+    "They argue loudly",
+    "They play chess",
+    "They go for a walk together"
+   ],
+   "correct": "They sit on the sofa in the study and smoke silently for a while",
+   "explain": "\"Приятели садятся в кабинете на диван и некоторое время молча курят\"."
+  },
+  {
+   "id": "r17",
+   "ru": "– Как жаль, – говорит он медленно и тихо, покачивая головой и не глядя в глаза собеседнику (он никогда не смотрит в глаза), – как глубоко жаль, уважаемый Михаил Аверьяныч, что в нашем городе совершенно нет людей, которые бы умели и любили вести умную и интересную беседу.",
+   "question": "What does Andrei Yefimych lament about the town?",
+   "options": [
+    "That there is no one able and willing to hold intelligent, interesting conversation",
+    "That there are no good restaurants",
+    "That the winters are too cold",
+    "That there is no hospital"
+   ],
+   "correct": "That there is no one able and willing to hold intelligent, interesting conversation",
+   "explain": "He says it is \"глубоко жаль... что в нашем городе совершенно нет людей, которые бы умели и любили вести умную и интересную беседу\"."
+  },
+  {
+   "id": "r18",
+   "ru": "И он рассказывает, как жилось прежде здорово, весело и интересно, какая была в России умная интеллигенция и как высоко она ставила понятия о чести и дружбе.",
+   "question": "What does Mikhail Averyanych reminisce about?",
+   "options": [
+    "How life used to be lively and interesting, with a clever intelligentsia that prized honor and friendship",
+    "His childhood on a farm",
+    "His time serving as a doctor",
+    "The hospital's founding"
+   ],
+   "correct": "How life used to be lively and interesting, with a clever intelligentsia that prized honor and friendship",
+   "explain": "He recalls \"как жилось прежде здорово, весело и интересно, какая была в России умная интеллигенция\"."
+  },
+  {
+   "id": "r19",
+   "ru": "– Мой отец дал мне прекрасное образование, по под влиянием идей шестидесятых годов заставил меня сделаться врачом.",
+   "question": "Why did Andrei Yefimych become a doctor?",
+   "options": [
+    "His father gave him an excellent education but, under the influence of 1860s ideas, forced him to become a doctor",
+    "He always dreamed of medicine himself",
+    "He inherited the practice from his father",
+    "He failed at law school first"
+   ],
+   "correct": "His father gave him an excellent education but, under the influence of 1860s ideas, forced him to become a doctor",
+   "explain": "He says \"Мой отец дал мне прекрасное образование, но под влиянием идей шестидесятых годов заставил меня сделаться врачом\"."
+  },
+  {
+   "id": "r20",
+   "ru": "– А вы не верите в бессмертие души?",
+   "question": "What question does Mikhail Averyanych suddenly ask the doctor?",
+   "options": [
+    "Whether he believes in the immortality of the soul",
+    "Whether he believes in ghosts",
+    "Whether he fears death",
+    "Whether he wants to retire"
+   ],
+   "correct": "Whether he believes in the immortality of the soul",
+   "explain": "He asks \"А вы не верите в бессмертие души?\""
+  }
+ ],
+ "highlight": [
+  {
+   "id": "h1",
+   "question": "Which sentence reveals that Andrei Efimych understands how painful this hospital environment is for sensitive patients?",
+   "sentences": [
+    "Здесь, в больнице, в узком темном коридорчике сидят амбулаторные больные, ожидающие приемки.",
+    "Мимо них, стуча сапогами по кирпичному полу, бегают мужики и сиделки, проходят тощие больные в халатах, проносят мертвецов и посуду с нечистотами, плачут дети, дует сквозной ветер.",
+    "Андрей Ефимыч знает, что для лихорадящих, чахоточных и вообще впечатлительных больных такая обстановка мучительна, но что поделаешь?",
+    "В приемной встречает его фельдшер Сергей Сергеич, маленький, толстый человек с бритым, чисто вымытым, пухлым лицом, с мягкими плавными манерами и в новом просторном костюме, похожий больше на сенатора, чем на фельдшера.",
+    "В городе он имеет громадную практику, носит белый галстук и считает себя более сведущим, чем доктор, который совсем не имеет практики."
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "He recognizes that the harsh conditions in the corridor are particularly torturous for feverish and impressionable patients."
+  },
+  {
+   "id": "h2",
+   "question": "Which sentence shows how Andrei Efimych's examination process has become mechanical and detached?",
+   "sentences": [
+    "Больных много, а времени мало, и потому дело ограничивается одним только коротким опросом и выдачей какого-нибудь лекарства, вроде летучей мази или касторки.",
+    "Андрей Ефимыч сидит, подперев щеку кулаком, задумавшись, и машинально задает вопросы.",
+    "Сергей Сергеич тоже сидит, потирает свои ручки и изредка вмешивается."
+   ],
+   "correct": [
+    1
+   ],
+   "explain": "He sits with his cheek on his fist, lost in thought, mechanically asking questions out of habit rather than genuine engagement."
+  },
+  {
+   "id": "h3",
+   "question": "Which sentence demonstrates that his approach has remained unchanged for decades?",
+   "sentences": [
+    "На приемке скоро ему прискучают робость больных и их бестолковость, близость благолепного Сергея Сергеича, портреты на стенах и свои собственные вопросы, которые он задает неизменно уже более двадцати лет.",
+    "И он уходит, приняв пять-шесть больных.",
+    "Остальных без него принимает фельдшер."
+   ],
+   "correct": [
+    0
+   ],
+   "explain": "He has been repeating the same questions and following the same routine for more than twenty years."
+  },
+  {
+   "id": "h4",
+   "question": "Which sentence illustrates how deeply absorbed he is in his thoughts?",
+   "sentences": [
+    "После обеда, довольно плохого и неопрятного.",
+    "Андрей Ефимыч ходит по своим комнатам, скрестив на груди руки, и думает.",
+    "Бьет четыре часа, потом пять, а он все ходит и думает.",
+    "Изредка поскрипывает кухонная дверь и показывается из нее красное, заспанное лицо Дарьюшки."
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "He walks for hours - from four o'clock until five - completely lost in his contemplation."
+  },
+  {
+   "id": "h5",
+   "question": "Which sentence expresses his harsh judgment about his city's educated class?",
+   "sentences": [
+    "– Как жаль, – говорит он медленно и тихо, покачивая головой и не глядя в глаза собеседнику (он никогда не смотрит в глаза), – как глубоко жаль, уважаемый Михаил Аверьяныч, что в нашем городе совершенно нет людей, которые бы умели и любили вести умную и интересную беседу.",
+    "Это громадное для нас лишение.",
+    "Даже интеллигенция не возвышается над пошлостью; уровень ее развития, уверяю вас, нисколько не выше, чем у низшего сословия."
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "He argues that even the intelligentsia fails to transcend banality and shows no higher development than the lowest social classes."
+  },
+  {
+   "id": "h6",
+   "question": "Which sentence describes a woman who boldly defied social conventions through her unconventional actions?",
+   "sentences": [
+    "И он рассказывает, как жилось прежде здорово, весело и интересно, какая была в России умная интеллигенция и как высоко она ставила понятия о чести и дружбе.",
+    "Давали деньги взаймы без векселя, и считалось позором не протянуть руку помощи нуждающемуся товарищу.",
+    "А какие были походы, приключения, стычки, какие товарищи, какие женщины!",
+    "А Кавказ – какой удивительный край!",
+    "А жена одного батальонного командира, странная женщина, надевала офицерское платье и уезжала по вечерам в горы, одна, без проводника.",
+    "Говорят, что в аулах у нее был роман с каким-то князьком."
+   ],
+   "correct": [
+    4
+   ],
+   "explain": "She wore officer's clothing and rode alone into the mountains at night, completely disregarding what proper society expected of women."
+  }
+ ]
+}

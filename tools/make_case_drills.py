@@ -15,7 +15,8 @@
 #     independently confirms both readings — anything ambiguous is discarded;
 #   - the option list is built by pymorphy3 dictionary inflection (deterministic);
 #   - the correct answer is the surface form from the text, by definition;
-#   - the English comes from the published translation already in the repo.
+#   - no English: a translator's sentence rarely maps 1:1 onto the Russian,
+#     so the drill shows the Russian sentence alone.
 #
 # Output: public/books/exercises/<slug>__ch<cidx>.json  {"cases":[...]}
 # Existing files are left alone unless --force.
@@ -310,6 +311,14 @@ def drills_for_sentence(sent, seed):
                     'explain':'«%s %s» — %s.'%(t.text,head.text,why)})
     return out
 
+# RETIRED. This picked the English sentence sitting at roughly the same position
+# within the paragraph, which is a guess and was wrong often enough to be worse
+# than nothing: translators merge and split sentences, so drill 3 of a 5-sentence
+# paragraph routinely showed the English of a neighbouring clause. A case drill
+# does not need the English — the Russian sentence is the whole prompt — so the
+# field is no longer generated, and the reader no longer displays it.
+# Kept here (unused) because the position-mapping idea is still the right
+# starting point if per-sentence alignment is ever built properly.
 def sentence_translation(en_par, ridx, rtotal):
     """Pick the EN sentence at roughly the same position in the paragraph."""
     if not en_par: return ''
@@ -357,13 +366,8 @@ def main():
             for pi,par in enumerate(ch['paras']):
                 sents=sentences(par)
                 for si,s in enumerate(sents):
-                    tr=None
                     for d in drills_for_sentence(s, slug+str(ci)):
-                        if tr is None:
-                            tr=sentence_translation(enmap.get(str(pi),''),si,len(sents))
-                        if not tr: break
                         d['id']='c%d'%(len(drills)+1)
-                        d['translation']=tr
                         drills.append(d)
                 if len(drills)>=a.max_per_chapter: break
             if len(drills)>=3:
@@ -397,15 +401,9 @@ def run_bible(a, idx):
         for par in ch['paras']:
             vm=re.match(r'^\s*(\d{1,3})\s+(.*)$',par,re.S)
             vno, body = (vm.group(1), vm.group(2)) if vm else (None, par)
-            en=enmap.get(vno or '','')
-            if not en: continue
             for si,sent in enumerate(sentences(body)):
-                es=sentences(en)
-                tr=es[min(si,len(es)-1)] if es else en
-                if not tr: continue
                 for d in drills_for_sentence(sent, key):
                     d['id']='c%d'%(len(drills)+1)
-                    d['translation']=tr
                     drills.append(d)
             if len(drills)>=a.max_per_chapter: break
         if len(drills)>=3:

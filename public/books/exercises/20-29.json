@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Человек, любящий ___, приносит отцу радость.",
-      "lemma": "знание",
-      "options": ["знание", "знания", "знанию", "знанием"],
-      "correct": "знание",
-      "case": "Винительный (Accusative)",
-      "translation": "Whoever loves knowledge brings joy to his father.",
-      "explain": "Знание is the direct object of the transitive verb любит (loves), taking the accusative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Правосудием ___ укрепляет страну, а жадный до взяток ее разоряет.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царь",
-      "case": "Именительный (Nominative)",
-      "translation": "The king by justice makes the land stable.",
-      "explain": "Царь is the grammatical subject of the verb укрепляет (makes stable), requiring nominative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Листящий ближнему своему раскидывает сеть у него под ___.",
-      "lemma": "нога",
-      "options": ["нога", "ноги", "ногам", "ногами"],
-      "correct": "ногами",
-      "case": "Творительный (Instrumental)",
-      "translation": "A man who flatters his neighbor spreads a net under his feet.",
-      "explain": "The preposition под (under) with the meaning of 'at the feet of' takes the instrumental case (ногами)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Злодея ловит его же ___, а праведник может петь и радоваться.",
-      "lemma": "грех",
-      "options": ["грех", "греха", "греху", "грехом"],
-      "correct": "грех",
-      "case": "Винительный (Accusative)",
-      "translation": "An evil man is snared by his sin.",
-      "explain": "Грех is the direct object of the transitive verb ловит (snares), taking the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Помнит праведник о ___ бедняков, а нечестивый в них и не вникает.",
-      "lemma": "право",
-      "options": ["право", "права", "правам", "правах"],
-      "correct": "правах",
-      "case": "Предложный (Prepositional)",
-      "translation": "The righteous care about justice for the poor.",
-      "explain": "The preposition о (about) requires the prepositional case (правах)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Где мудрый судится с ___, там лишь злость и издевки.",
-      "lemma": "глупец",
-      "options": ["глупец", "глупца", "глупцу", "глупцом"],
-      "correct": "глупцом",
-      "case": "Творительный (Instrumental)",
-      "translation": "When a wise man goes to court with a foolish man, there is only anger and mockery.",
-      "explain": "The preposition с (with) requiring togetherness takes the instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Если правитель внимает ___, все его сановники становятся злодеями.",
-      "lemma": "обман",
-      "options": ["обман", "обмана", "обману", "обманом"],
-      "correct": "обману",
-      "case": "Дательный (Dative)",
-      "translation": "If a ruler listens to deception, all of his officials are wicked.",
-      "explain": "The verb внимает (listens to) with the meaning 'attends to' takes the dative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Наказывай ___, и он принесет тебе покой.",
-      "lemma": "сын",
-      "options": ["сын", "сына", "сыну", "сыном"],
-      "correct": "сына",
-      "case": "Винительный (Accusative)",
-      "translation": "Correct your son, and he will give you peace.",
-      "explain": "Сына is the direct object of the transitive verb наказывай (correct), taking the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Тот, кто коснеет в упрямстве после многих упреков, будет внезапно погублен, без исцеления.",
-      "question": "What happens to someone who stiffens his neck after many rebukes?",
-      "options": ["He becomes wise", "He will be destroyed suddenly, with no remedy", "He learns from the rebuke", "He becomes humble"],
-      "correct": "He will be destroyed suddenly, with no remedy",
-      "explain": "The text states: Тот, кто коснеет в упрямстве после многих упреков, будет внезапно погублен, без исцеления."
-    },
-    {
-      "id": "r2",
-      "ru": "Человек, любящий мудрость, приносит отцу радость, а приятель-блудниц расточает богатство.",
-      "question": "What contrasting outcomes result from loving wisdom versus associating with prostitutes?",
-      "options": ["Both bring wealth", "Wisdom brings joy to the father, but a companion of prostitutes squanders wealth", "Both bring shame", "Neither leads anywhere"],
-      "correct": "Wisdom brings joy to the father, but a companion of prostitutes squanders wealth",
-      "explain": "The text contrasts: Человек, любящий мудрость, приносит отцу радость (He who loves wisdom brings joy to his father), а приятель-блудниц расточает богатство (and a companion of prostitutes squanders wealth)."
-    },
-    {
-      "id": "r3",
-      "ru": "Когда умножаются праведники, люди радуются, а когда нечестивые правят, люди стонут.",
-      "question": "How do people react when the righteous thrive versus when the wicked rule?",
-      "options": ["The same way in both cases", "People rejoice when righteous thrive, but groan when wicked rule", "People are indifferent", "People are always unhappy"],
-      "correct": "People rejoice when righteous thrive, but groan when wicked rule",
-      "explain": "The text states: Когда умножаются праведники, люди радуются (When the righteous thrive, the people rejoice), а когда нечестивые правят, люди стонут (but when the wicked rule, the people groan)."
-    },
-    {
-      "id": "r4",
-      "ru": "Помнит праведник о правах бедняков, а нечестивый в них и не вникает.",
-      "question": "What is the difference in how the righteous and wicked treat the poor?",
-      "options": ["Both ignore the poor equally", "The righteous cares about justice for the poor, but the wicked are not concerned", "Both help the poor", "The wicked care more about the poor"],
-      "correct": "The righteous cares about justice for the poor, but the wicked are not concerned",
-      "explain": "The text states: Помнит праведник о правах бедняков (The righteous cares about rights of the poor), а нечестивый в них и не вникает (but the wicked is not concerned about knowledge)."
-    },
-    {
-      "id": "r5",
-      "ru": "Где нет откровения свыше, народ распоясывается, но блажен тот, кто хранит закон.",
-      "question": "What happens when there is no revelation from God?",
-      "options": ["People become more moral", "The people cast off restraint, but blessed is he who keeps the law", "People become wiser", "Society becomes more ordered"],
-      "correct": "The people cast off restraint, but blessed is he who keeps the law",
-      "explain": "The text states: Где нет откровения свыше, народ распоясывается (Where there is no revelation, the people cast off restraint), но блажен тот, кто хранит закон (but one who keeps the law is blessed)."
-    },
-    {
-      "id": "r6",
-      "ru": "Страх перед человеком — ловушка, а верящий Господу находится в безопасности.",
-      "question": "What is the danger of fearing people, and what brings safety?",
-      "options": ["Fear of people brings wealth, trust in God brings poverty", "Fear of people is a trap, but trusting in the Lord brings safety", "Both bring the same result", "Fear of people brings safety"],
-      "correct": "Fear of people is a trap, but trusting in the Lord brings safety",
-      "explain": "The text states: Страх перед человеком — ловушка (The fear of man is a snare), а верящий Господу находится в безопасности (but whoever puts his trust in the Lord is kept safe)."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Человек, любящий ___, приносит отцу радость.",
+   "lemma": "знание",
+   "options": [
+    "знание",
+    "знания",
+    "знанию",
+    "знанием"
+   ],
+   "correct": "знание",
+   "case": "Винительный (Accusative)",
+   "explain": "Знание is the direct object of the transitive verb любит (loves), taking the accusative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Правосудием ___ укрепляет страну, а жадный до взяток ее разоряет.",
+   "lemma": "царь",
+   "options": [
+    "царь",
+    "царя",
+    "царю",
+    "царем"
+   ],
+   "correct": "царь",
+   "case": "Именительный (Nominative)",
+   "explain": "Царь is the grammatical subject of the verb укрепляет (makes stable), requiring nominative case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Листящий ближнему своему раскидывает сеть у него под ___.",
+   "lemma": "нога",
+   "options": [
+    "нога",
+    "ноги",
+    "ногам",
+    "ногами"
+   ],
+   "correct": "ногами",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition под (under) with the meaning of 'at the feet of' takes the instrumental case (ногами)."
+  },
+  {
+   "id": "c4",
+   "sentence": "Злодея ловит его же ___, а праведник может петь и радоваться.",
+   "lemma": "грех",
+   "options": [
+    "грех",
+    "греха",
+    "греху",
+    "грехом"
+   ],
+   "correct": "грех",
+   "case": "Винительный (Accusative)",
+   "explain": "Грех is the direct object of the transitive verb ловит (snares), taking the accusative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Помнит праведник о ___ бедняков, а нечестивый в них и не вникает.",
+   "lemma": "право",
+   "options": [
+    "право",
+    "права",
+    "правам",
+    "правах"
+   ],
+   "correct": "правах",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition о (about) requires the prepositional case (правах)."
+  },
+  {
+   "id": "c6",
+   "sentence": "Где мудрый судится с ___, там лишь злость и издевки.",
+   "lemma": "глупец",
+   "options": [
+    "глупец",
+    "глупца",
+    "глупцу",
+    "глупцом"
+   ],
+   "correct": "глупцом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition с (with) requiring togetherness takes the instrumental case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Если правитель внимает ___, все его сановники становятся злодеями.",
+   "lemma": "обман",
+   "options": [
+    "обман",
+    "обмана",
+    "обману",
+    "обманом"
+   ],
+   "correct": "обману",
+   "case": "Дательный (Dative)",
+   "explain": "The verb внимает (listens to) with the meaning 'attends to' takes the dative case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Наказывай ___, и он принесет тебе покой.",
+   "lemma": "сын",
+   "options": [
+    "сын",
+    "сына",
+    "сыну",
+    "сыном"
+   ],
+   "correct": "сына",
+   "case": "Винительный (Accusative)",
+   "explain": "Сына is the direct object of the transitive verb наказывай (correct), taking the accusative case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Тот, кто коснеет в упрямстве после многих упреков, будет внезапно погублен, без исцеления.",
+   "question": "What happens to someone who stiffens his neck after many rebukes?",
+   "options": [
+    "He becomes wise",
+    "He will be destroyed suddenly, with no remedy",
+    "He learns from the rebuke",
+    "He becomes humble"
+   ],
+   "correct": "He will be destroyed suddenly, with no remedy",
+   "explain": "The text states: Тот, кто коснеет в упрямстве после многих упреков, будет внезапно погублен, без исцеления."
+  },
+  {
+   "id": "r2",
+   "ru": "Человек, любящий мудрость, приносит отцу радость, а приятель-блудниц расточает богатство.",
+   "question": "What contrasting outcomes result from loving wisdom versus associating with prostitutes?",
+   "options": [
+    "Both bring wealth",
+    "Wisdom brings joy to the father, but a companion of prostitutes squanders wealth",
+    "Both bring shame",
+    "Neither leads anywhere"
+   ],
+   "correct": "Wisdom brings joy to the father, but a companion of prostitutes squanders wealth",
+   "explain": "The text contrasts: Человек, любящий мудрость, приносит отцу радость (He who loves wisdom brings joy to his father), а приятель-блудниц расточает богатство (and a companion of prostitutes squanders wealth)."
+  },
+  {
+   "id": "r3",
+   "ru": "Когда умножаются праведники, люди радуются, а когда нечестивые правят, люди стонут.",
+   "question": "How do people react when the righteous thrive versus when the wicked rule?",
+   "options": [
+    "The same way in both cases",
+    "People rejoice when righteous thrive, but groan when wicked rule",
+    "People are indifferent",
+    "People are always unhappy"
+   ],
+   "correct": "People rejoice when righteous thrive, but groan when wicked rule",
+   "explain": "The text states: Когда умножаются праведники, люди радуются (When the righteous thrive, the people rejoice), а когда нечестивые правят, люди стонут (but when the wicked rule, the people groan)."
+  },
+  {
+   "id": "r4",
+   "ru": "Помнит праведник о правах бедняков, а нечестивый в них и не вникает.",
+   "question": "What is the difference in how the righteous and wicked treat the poor?",
+   "options": [
+    "Both ignore the poor equally",
+    "The righteous cares about justice for the poor, but the wicked are not concerned",
+    "Both help the poor",
+    "The wicked care more about the poor"
+   ],
+   "correct": "The righteous cares about justice for the poor, but the wicked are not concerned",
+   "explain": "The text states: Помнит праведник о правах бедняков (The righteous cares about rights of the poor), а нечестивый в них и не вникает (but the wicked is not concerned about knowledge)."
+  },
+  {
+   "id": "r5",
+   "ru": "Где нет откровения свыше, народ распоясывается, но блажен тот, кто хранит закон.",
+   "question": "What happens when there is no revelation from God?",
+   "options": [
+    "People become more moral",
+    "The people cast off restraint, but blessed is he who keeps the law",
+    "People become wiser",
+    "Society becomes more ordered"
+   ],
+   "correct": "The people cast off restraint, but blessed is he who keeps the law",
+   "explain": "The text states: Где нет откровения свыше, народ распоясывается (Where there is no revelation, the people cast off restraint), но блажен тот, кто хранит закон (but one who keeps the law is blessed)."
+  },
+  {
+   "id": "r6",
+   "ru": "Страх перед человеком — ловушка, а верящий Господу находится в безопасности.",
+   "question": "What is the danger of fearing people, and what brings safety?",
+   "options": [
+    "Fear of people brings wealth, trust in God brings poverty",
+    "Fear of people is a trap, but trusting in the Lord brings safety",
+    "Both bring the same result",
+    "Fear of people brings safety"
+   ],
+   "correct": "Fear of people is a trap, but trusting in the Lord brings safety",
+   "explain": "The text states: Страх перед человеком — ловушка (The fear of man is a snare), а верящий Господу находится в безопасности (but whoever puts his trust in the Lord is kept safe)."
+  }
+ ]
 }

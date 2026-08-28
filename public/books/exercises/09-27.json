@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Давид подумал про ___.",
-      "lemma": "дело",
-      "options": ["дело", "дела", "делу", "деле"],
-      "correct": "дело",
-      "case": "Винительный (Accusative)",
-      "translation": "David thought about the matter.",
-      "explain": "The verb думать (think) with про takes the accusative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Это спастись в ___ филистимлян.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "землю", "земле"],
-      "correct": "земле",
-      "case": "Предложный (Prepositional)",
-      "translation": "To escape to the land of the Philistines.",
-      "explain": "The preposition в with location takes the prepositional case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Давид вместе с шестью сотнями ___ ушел и перебрался к Ахишу.",
-      "lemma": "человек",
-      "options": ["человек", "человека", "людей", "мужчин"],
-      "correct": "человек",
-      "case": "Родительный (Genitive)",
-      "translation": "David, with six hundred men, went to Achish.",
-      "explain": "After a number in oblique cases, masculine nouns take genitive plural."
-    },
-    {
-      "id": "c4",
-      "sentence": "Давид со своими людьми поселился в ___ у Ахиша.",
-      "lemma": "Гат",
-      "options": ["Гат", "Гата", "Гату", "Гате"],
-      "correct": "Гате",
-      "case": "Предложный (Prepositional)",
-      "translation": "David settled in Gath with his people.",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    },
-    {
-      "id": "c5",
-      "sentence": "У Давида было две ___, Ахинаам и Авигайль.",
-      "lemma": "жена",
-      "options": ["жена", "жены", "жен", "женой"],
-      "correct": "жены",
-      "case": "Именительный (Nominative)",
-      "translation": "David had two wives, Ahinoam and Abigail.",
-      "explain": "The nominative plural жены is the subject of the sentence."
-    },
-    {
-      "id": "c6",
-      "sentence": "Отведи мне место в одном из твоих малых ___.",
-      "lemma": "город",
-      "options": ["город", "города", "городов", "городе"],
-      "correct": "городов",
-      "case": "Родительный (Genitive)",
-      "translation": "Assign me a place in one of your small cities.",
-      "explain": "The partitive phrase one of requires the genitive case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Всякий раз, когда Давид нападал на этот ___, он не оставлял в живых никого.",
-      "lemma": "край",
-      "options": ["край", "края", "краю", "краем"],
-      "correct": "край",
-      "case": "Винительный (Accusative)",
-      "translation": "Whenever David attacked that region, he left no one alive.",
-      "explain": "The preposition на with motion or attack takes the accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Когда Ахиш спрашивал, на ___ вы сегодня делали набег?",
-      "lemma": "кто",
-      "options": ["кто", "кого", "кому", "ком"],
-      "correct": "кого",
-      "case": "Винительный (Accusative)",
-      "translation": "When Achish asked, Whom did you raid today?",
-      "explain": "The preposition на with accusative in the sense of attacking."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Давид подумал про себя. «Теперь я в любой день могу погибнуть от руки Саула.»",
-      "question": "Why did David decide to flee to the Philistines?",
-      "options": ["He could perish at any time from Saul hand", "He wanted to become a Philistine king", "The Lord commanded him to go", "He was looking for treasure"],
-      "correct": "He could perish at any time from Saul hand",
-      "explain": "David thought he might perish one day by Saul hand."
-    },
-    {
-      "id": "r2",
-      "ru": "Давид со своими людьми поселился в Гате у Ахиша. У каждого из его людей была семья, и у Давида было две жены, Ахинаам из Израиля и Авигайль из Кармила, вдова Навала.",
-      "question": "What did David bring with him when he went to Achish?",
-      "options": ["Six hundred men with their families and two wives", "Only himself and fifty soldiers", "The ark of the covenant", "Thousands of weapons"],
-      "correct": "Six hundred men with their families and two wives",
-      "explain": "David lived with his men and their families including his two wives."
-    },
-    {
-      "id": "r3",
-      "ru": "Давид жил на филистинской земле год и четыре месяца.",
-      "question": "How long did David live in the land of the Philistines?",
-      "options": ["A year and four months", "Seven years", "Forty days and nights", "Two years"],
-      "correct": "A year and four months",
-      "explain": "The text states David lived in Philistine territory a year and four months."
-    },
-    {
-      "id": "r4",
-      "ru": "Всякий раз, когда Давид нападал на эту область, он не оставлял в живых ни мужчины, ни женщины, но забирал овец и валов, ослов, верблюдов и одежду.",
-      "question": "What did David do when he raided the lands?",
-      "options": ["Left no one alive and took their livestock and possessions", "Spared the women and children", "Left and returned to Israel", "Fought for the Philistines"],
-      "correct": "Left no one alive and took their livestock and possessions",
-      "explain": "David left no man or woman alive but took sheep, cattle, donkeys, camels, and clothing."
-    },
-    {
-      "id": "r5",
-      "ru": "Когда Ахиш спрашивал, «На кого вы сегодня делали набег?», Давид отвечал, «На Нигев Иудейский» или «На Нигев Иерахмиильский» или «На Нигев Кинеев».",
-      "question": "What false answers did David give about his raids?",
-      "options": ["Various areas of Judah", "The northern kingdom of Israel", "The land of Egypt", "The city of Jerusalem"],
-      "correct": "Various areas of Judah",
-      "explain": "David claimed to have raided various areas in the south of Judah."
-    },
-    {
-      "id": "r6",
-      "ru": "Ахиш доверял Давиду и говорил себе, «Его народ Израиль так ненавидит его, что он всегда будет моим слугой».",
-      "question": "What did Achish believe about David loyalty?",
-      "options": ["Israel hated David so much that he would always serve Achish", "David was secretly working against him", "David would return to Saul", "David wanted to become king"],
-      "correct": "Israel hated David so much that he would always serve Achish",
-      "explain": "Achish believed Israel abhorred David, so he would be his servant forever."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Давид подумал про ___.",
+   "lemma": "дело",
+   "options": [
+    "дело",
+    "дела",
+    "делу",
+    "деле"
+   ],
+   "correct": "дело",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb думать (think) with про takes the accusative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Это спастись в ___ филистимлян.",
+   "lemma": "земля",
+   "options": [
+    "земля",
+    "земли",
+    "землю",
+    "земле"
+   ],
+   "correct": "земле",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в with location takes the prepositional case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Давид вместе с шестью сотнями ___ ушел и перебрался к Ахишу.",
+   "lemma": "человек",
+   "options": [
+    "человек",
+    "человека",
+    "людей",
+    "мужчин"
+   ],
+   "correct": "человек",
+   "case": "Родительный (Genitive)",
+   "explain": "After a number in oblique cases, masculine nouns take genitive plural."
+  },
+  {
+   "id": "c4",
+   "sentence": "Давид со своими людьми поселился в ___ у Ахиша.",
+   "lemma": "Гат",
+   "options": [
+    "Гат",
+    "Гата",
+    "Гату",
+    "Гате"
+   ],
+   "correct": "Гате",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в indicating location takes the prepositional case."
+  },
+  {
+   "id": "c5",
+   "sentence": "У Давида было две ___, Ахинаам и Авигайль.",
+   "lemma": "жена",
+   "options": [
+    "жена",
+    "жены",
+    "жен",
+    "женой"
+   ],
+   "correct": "жены",
+   "case": "Именительный (Nominative)",
+   "explain": "The nominative plural жены is the subject of the sentence."
+  },
+  {
+   "id": "c6",
+   "sentence": "Отведи мне место в одном из твоих малых ___.",
+   "lemma": "город",
+   "options": [
+    "город",
+    "города",
+    "городов",
+    "городе"
+   ],
+   "correct": "городов",
+   "case": "Родительный (Genitive)",
+   "explain": "The partitive phrase one of requires the genitive case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Всякий раз, когда Давид нападал на этот ___, он не оставлял в живых никого.",
+   "lemma": "край",
+   "options": [
+    "край",
+    "края",
+    "краю",
+    "краем"
+   ],
+   "correct": "край",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition на with motion or attack takes the accusative case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Когда Ахиш спрашивал, на ___ вы сегодня делали набег?",
+   "lemma": "кто",
+   "options": [
+    "кто",
+    "кого",
+    "кому",
+    "ком"
+   ],
+   "correct": "кого",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition на with accusative in the sense of attacking."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Давид подумал про себя. «Теперь я в любой день могу погибнуть от руки Саула.»",
+   "question": "Why did David decide to flee to the Philistines?",
+   "options": [
+    "He could perish at any time from Saul hand",
+    "He wanted to become a Philistine king",
+    "The Lord commanded him to go",
+    "He was looking for treasure"
+   ],
+   "correct": "He could perish at any time from Saul hand",
+   "explain": "David thought he might perish one day by Saul hand."
+  },
+  {
+   "id": "r2",
+   "ru": "Давид со своими людьми поселился в Гате у Ахиша. У каждого из его людей была семья, и у Давида было две жены, Ахинаам из Израиля и Авигайль из Кармила, вдова Навала.",
+   "question": "What did David bring with him when he went to Achish?",
+   "options": [
+    "Six hundred men with their families and two wives",
+    "Only himself and fifty soldiers",
+    "The ark of the covenant",
+    "Thousands of weapons"
+   ],
+   "correct": "Six hundred men with their families and two wives",
+   "explain": "David lived with his men and their families including his two wives."
+  },
+  {
+   "id": "r3",
+   "ru": "Давид жил на филистинской земле год и четыре месяца.",
+   "question": "How long did David live in the land of the Philistines?",
+   "options": [
+    "A year and four months",
+    "Seven years",
+    "Forty days and nights",
+    "Two years"
+   ],
+   "correct": "A year and four months",
+   "explain": "The text states David lived in Philistine territory a year and four months."
+  },
+  {
+   "id": "r4",
+   "ru": "Всякий раз, когда Давид нападал на эту область, он не оставлял в живых ни мужчины, ни женщины, но забирал овец и валов, ослов, верблюдов и одежду.",
+   "question": "What did David do when he raided the lands?",
+   "options": [
+    "Left no one alive and took their livestock and possessions",
+    "Spared the women and children",
+    "Left and returned to Israel",
+    "Fought for the Philistines"
+   ],
+   "correct": "Left no one alive and took their livestock and possessions",
+   "explain": "David left no man or woman alive but took sheep, cattle, donkeys, camels, and clothing."
+  },
+  {
+   "id": "r5",
+   "ru": "Когда Ахиш спрашивал, «На кого вы сегодня делали набег?», Давид отвечал, «На Нигев Иудейский» или «На Нигев Иерахмиильский» или «На Нигев Кинеев».",
+   "question": "What false answers did David give about his raids?",
+   "options": [
+    "Various areas of Judah",
+    "The northern kingdom of Israel",
+    "The land of Egypt",
+    "The city of Jerusalem"
+   ],
+   "correct": "Various areas of Judah",
+   "explain": "David claimed to have raided various areas in the south of Judah."
+  },
+  {
+   "id": "r6",
+   "ru": "Ахиш доверял Давиду и говорил себе, «Его народ Израиль так ненавидит его, что он всегда будет моим слугой».",
+   "question": "What did Achish believe about David loyalty?",
+   "options": [
+    "Israel hated David so much that he would always serve Achish",
+    "David was secretly working against him",
+    "David would return to Saul",
+    "David wanted to become king"
+   ],
+   "correct": "Israel hated David so much that he would always serve Achish",
+   "explain": "Achish believed Israel abhorred David, so he would be his servant forever."
+  }
+ ]
 }

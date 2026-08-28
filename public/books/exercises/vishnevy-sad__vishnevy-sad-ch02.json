@@ -1,266 +1,415 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Скоро сядет ___.",
-      "lemma": "солнце",
-      "options": ["солнце", "солнца", "солнцу", "солнцем"],
-      "correct": "солнце",
-      "case": "Именительный (Nominative)",
-      "translation": "The sun will set soon.",
-      "explain": "Солнце is the subject of the intransitive verb сядет (will set), so it takes the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "У меня нет настоящего ___.",
-      "lemma": "паспорт",
-      "options": ["паспорт", "паспорта", "паспорту", "паспортом"],
-      "correct": "паспорта",
-      "case": "Родительный (Genitive)",
-      "translation": "I don't have a real passport.",
-      "explain": "The negated existential нет (there is no) requires the genitive case for what is absent: паспорта."
-    },
-    {
-      "id": "c3",
-      "sentence": "Мой отец и мамаша ездили по ___ и давали представления.",
-      "lemma": "ярмарка",
-      "options": ["ярмарки", "ярмарок", "ярмаркам", "ярмарками"],
-      "correct": "ярмаркам",
-      "case": "Дательный (Dative)",
-      "translation": "My father and mother used to travel around to fairs and give performances.",
-      "explain": "The preposition по (around/along) with a plural noun of routine movement governs the dative case: ярмаркам."
-    },
-    {
-      "id": "c4",
-      "sentence": "Видна дорога в ___ Гаева.",
-      "lemma": "усадьба",
-      "options": ["усадьба", "усадьбы", "усадьбу", "усадьбой"],
-      "correct": "усадьбу",
-      "case": "Винительный (Accusative)",
-      "translation": "The road to Gaev's estate can be seen.",
-      "explain": "The preposition в (into) expressing motion toward a destination governs the accusative case: усадьбу."
-    },
-    {
-      "id": "c5",
-      "sentence": "Перед ___ тоже было.",
-      "lemma": "несчастье",
-      "options": ["несчастье", "несчастья", "несчастью", "несчастьем"],
-      "correct": "несчастьем",
-      "case": "Творительный (Instrumental)",
-      "translation": "Before the misfortune, there were signs too.",
-      "explain": "The preposition перед (before) governs the instrumental case: несчастьем."
-    },
-    {
-      "id": "c6",
-      "sentence": "Она сняла с плеч ружье и поправляет пряжку на ___.",
-      "lemma": "ремень",
-      "options": ["ремень", "ремня", "ремню", "ремне"],
-      "correct": "ремне",
-      "case": "Предложный (Prepositional)",
-      "translation": "She took the rifle off her shoulders and is adjusting the buckle on her belt.",
-      "explain": "The preposition на (on) marking location governs the prepositional case: ремне."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "У меня нет настоящего паспорта.",
-      "question": "What does Charlotte say she lacks, adding to her sense of not knowing who she is?",
-      "options": ["A real passport", "A permanent home", "Any living relatives", "A proper education"],
-      "correct": "A real passport",
-      "explain": "Charlotte says she has no real passport and doesn't even know her own age."
-    },
-    {
-      "id": "r2",
-      "ru": "Когда я была маленькой девочкой, то мой отец и мамаша ездили по ярмаркам и давали представления.",
-      "question": "What did Charlotte's parents do for a living when she was a child?",
-      "options": ["They traveled to fairs giving performances", "They were servants on a noble estate", "They ran a small shop", "They taught in a village school"],
-      "correct": "They traveled to fairs giving performances",
-      "explain": "Charlotte recalls that her father and mother traveled around to fairs and put on shows."
-    },
-    {
-      "id": "r3",
-      "ru": "Никого у меня нет.",
-      "question": "How does Charlotte describe her sense of isolation?",
-      "options": ["She has no one at all", "She has too many relatives to count", "She has many friends among the servants", "She misses her parents but has Lopakhin"],
-      "correct": "She has no one at all",
-      "explain": "Charlotte laments that she has no one — she doesn't even know who she really is."
-    },
-    {
-      "id": "r4",
-      "ru": "Это гитара, а не мандолина.",
-      "question": "What does Dunyasha correct Yepikhodov about?",
-      "options": ["That his instrument is a guitar, not a mandolin", "That he is playing the wrong song", "That the guitar belongs to Yasha", "That he should be working, not playing music"],
-      "correct": "That his instrument is a guitar, not a mandolin",
-      "explain": "Dunyasha points out that Yepikhodov is playing a guitar, not a mandolin as he called it."
-    },
-    {
-      "id": "r5",
-      "ru": "Я развитой человек, читаю разные замечательные книги, но никак не могу понять направление.",
-      "question": "What existential confusion does Yepikhodov express about his own life?",
-      "options": ["He can't decide whether he wants to live or shoot himself", "He can't decide which book to read next", "He can't decide whether to marry Dunyasha", "He can't decide whether to quit his job"],
-      "correct": "He can't decide whether he wants to live or shoot himself",
-      "explain": "Yepikhodov says he cannot understand what he really wants — whether to live or to shoot himself."
-    },
-    {
-      "id": "r6",
-      "ru": "Но, тем не менее, я всегда ношу при себе револьвер.",
-      "question": "What does Yepikhodov reveal he always carries with him?",
-      "options": ["A revolver", "A guitar pick", "A book of poetry", "A photograph of Dunyasha"],
-      "correct": "A revolver",
-      "explain": "Yepikhodov states that he always carries a revolver with him, showing it to Dunyasha."
-    },
-    {
-      "id": "r7",
-      "ru": "Я стала тревожной, все беспокоюсь.",
-      "question": "How does Dunyasha describe how she has changed since living among the gentry?",
-      "options": ["She has become anxious and worries constantly", "She has become lazy and careless", "She has become greedy for money", "She has become bold and fearless"],
-      "correct": "She has become anxious and worries constantly",
-      "explain": "Dunyasha says she has become nervous and is constantly worried, having grown too delicate for simple life."
-    },
-    {
-      "id": "r8",
-      "ru": "Я страстно полюбила вас, вы образованный, можете обо всем рассуждать",
-      "question": "Why does Dunyasha say she fell in love with Yasha?",
-      "options": ["Because he is educated and can discuss anything", "Because he gave her expensive gifts", "Because he promised to marry her in Paris", "Because he defended her from Yepikhodov"],
-      "correct": "Because he is educated and can discuss anything",
-      "explain": "Dunyasha explains she fell passionately in love with Yasha because he is educated and can discuss any subject."
-    },
-    {
-      "id": "r9",
-      "ru": "Надо окончательно решить, время не ждет.",
-      "question": "What urgent point does Lopakhin press Lyubov Andreevna and Gaev about?",
-      "options": ["That they must finally decide about the land, since time is running out", "That they must pay Firs his wages", "That they must sell the piano", "That they must fix the billiard table"],
-      "correct": "That they must finally decide about the land, since time is running out",
-      "explain": "Lopakhin insists the matter must be decided once and for all, since time will not wait."
-    },
-    {
-      "id": "r10",
-      "ru": "Вчера было много денег, а сегодня совсем мало.",
-      "question": "What does Lyubov Andreevna notice when she looks in her purse?",
-      "options": ["That she had a lot of money yesterday but very little today", "That her purse is missing entirely", "That someone has stolen from her", "That she has exactly enough for the servants' wages"],
-      "correct": "That she had a lot of money yesterday but very little today",
-      "explain": "Looking into her purse, Lyubov Andreevna notices she had a lot of money yesterday but very little today."
-    },
-    {
-      "id": "r11",
-      "ru": "Бедная моя Варя из экономии кормит всех молочным супом.",
-      "question": "How is Varya trying to economize according to Lyubov Andreevna?",
-      "options": ["By feeding everyone milk soup to save money", "By selling the family's jewelry", "By dismissing half the servants", "By refusing to buy new clothes"],
-      "correct": "By feeding everyone milk soup to save money",
-      "explain": "Lyubov Andreevna says poor Varya, to economize, feeds everyone milk soup."
-    },
-    {
-      "id": "r12",
-      "ru": "Ваше имение собирается купить богач дириганов.",
-      "question": "What news does Lopakhin bring about a potential buyer for the estate?",
-      "options": ["A rich man named Deriganov is planning to buy it", "The bank has already bought it", "No one is interested in buying it", "Pishchik wants to buy it"],
-      "correct": "A rich man named Deriganov is planning to buy it",
-      "explain": "Lopakhin reports that the rich man Deriganov is preparing to buy the estate himself at the auction."
-    },
-    {
-      "id": "r13",
-      "ru": "Я или зарыдаю, или закричу, или в обморок упаду.",
-      "question": "How does Lopakhin express his frustration with Lyubov Andreevna and Gaev's indecision?",
-      "options": ["He says he might burst into tears, scream, or faint", "He says he will leave forever and never return", "He says he will buy the estate himself immediately", "He says he will call the bank to intervene"],
-      "correct": "He says he might burst into tears, scream, or faint",
-      "explain": "Overwhelmed by their indecision, Lopakhin says he might cry, shout, or faint."
-    },
-    {
-      "id": "r14",
-      "ru": "Муж мой умер от шампанского, он страшно пил.",
-      "question": "How does Lyubov Andreevna say her husband died?",
-      "options": ["From champagne — he drank terribly", "In a duel", "From a long illness", "In an accident on the estate"],
-      "correct": "From champagne — he drank terribly",
-      "explain": "Lyubov Andreevna confesses her husband died from champagne, as he drank terribly."
-    },
-    {
-      "id": "r15",
-      "ru": "Утонул мой мальчик.",
-      "question": "What tragedy does Lyubov Andreevna recall happening on the river near the estate?",
-      "options": ["Her little boy drowned", "Her husband drowned while fishing", "A servant drowned trying to save a dog", "Gaev nearly drowned as a child"],
-      "correct": "Her little boy drowned",
-      "explain": "Lyubov Andreevna recalls that her boy drowned in the river, right there on the estate."
-    },
-    {
-      "id": "r16",
-      "ru": "Мне предлагают место в банке.",
-      "question": "What job offer does Gaev mention having received?",
-      "options": ["A position at a bank paying six thousand a year", "A teaching post at a gymnasium", "A government post in Moscow", "A managerial role at Lopakhin's company"],
-      "correct": "A position at a bank paying six thousand a year",
-      "explain": "Gaev mentions he has been offered a post at a bank paying six thousand a year, though Lyubov Andreevna doubts he's suited for it."
-    },
-    {
-      "id": "r17",
-      "ru": "Меня женить собирались, а вашего папаши еще на свете не было",
-      "question": "What does old Firs say about how long he has served the family?",
-      "options": ["He was already grown and about to be married before Gaev's father was even born", "He was hired the same year Gaev was born", "He only started working for the family five years ago", "He was born into slavery on a different estate"],
-      "correct": "He was already grown and about to be married before Gaev's father was even born",
-      "explain": "Firs recalls that people were already planning his marriage when Gaev's father wasn't even born yet, showing his great age and long service."
-    },
-    {
-      "id": "r18",
-      "ru": "Наш вечный студент все с барышнями ходит",
-      "question": "How does Lopakhin teasingly describe Trofimov?",
-      "options": ["As the 'eternal student' who is always with young ladies", "As a lazy servant who never works", "As a foolish gambler", "As a talented but poor musician"],
-      "correct": "As the 'eternal student' who is always with young ladies",
-      "explain": "Lopakhin mockingly calls Trofimov 'our eternal student,' always seen walking with young ladies."
-    },
-    {
-      "id": "r19",
-      "ru": "Надо бы только работать.",
-      "question": "What does Trofimov insist people should do instead of admiring themselves?",
-      "options": ["Simply work", "Travel abroad", "Study philosophy", "Marry for love"],
-      "correct": "Simply work",
-      "explain": "Trofimov argues that people should stop admiring themselves and instead simply work."
-    },
-    {
-      "id": "r20",
-      "ru": "Укажите мне, где у нас ясли, о которых говорят так много и часто?",
-      "question": "What rhetorical challenge does Trofimov pose about Russian society's talk of progress?",
-      "options": ["He asks where the nurseries are that people talk about so much", "He asks where the new railways are", "He asks where the promised schools for peasants are", "He asks where the money for reforms has gone"],
-      "correct": "He asks where the nurseries are that people talk about so much",
-      "explain": "Trofimov challenges his listeners to show him the childcare nurseries that are talked about so often but never actually exist."
-    },
-    {
-      "id": "r21",
-      "ru": "Вдруг раздается отдаленный звук, точно с неба звук лопнувшей струны, замирающий, печальный.",
-      "question": "What strange sound interrupts the characters' quiet conversation?",
-      "options": ["A distant sound like a snapped string, fading and sad, as if from the sky", "The sound of a gunshot in the distance", "Church bells ringing suddenly", "A dog howling nearby"],
-      "correct": "A distant sound like a snapped string, fading and sad, as if from the sky",
-      "explain": "The stage direction describes a mysterious distant sound resembling a snapped string, fading and mournful."
-    },
-    {
-      "id": "r22",
-      "ru": "Перед несчастьем тоже было.",
-      "question": "What omen does Firs recall from before a past misfortune?",
-      "options": ["The same sound occurred before a past misfortune, along with an owl hooting and the samovar humming", "A comet appeared in the sky", "All the cattle fell ill", "The well ran dry"],
-      "correct": "The same sound occurred before a past misfortune, along with an owl hooting and the samovar humming",
-      "explain": "Firs recalls that before a misfortune, the same thing happened — an owl screeched and the samovar hummed constantly."
-    },
-    {
-      "id": "r23",
-      "ru": "Позвольте вас спросить, могу ли я пройти здесь прямо на станцию?",
-      "question": "What does the drunken passerby ask when he appears?",
-      "options": ["Whether he can walk straight through to the station", "Whether he can borrow money for a train ticket", "Whether the family will hire him", "Whether there is a tavern nearby"],
-      "correct": "Whether he can walk straight through to the station",
-      "explain": "The passerby politely asks whether he may pass straight through to the station."
-    },
-    {
-      "id": "r24",
-      "ru": "Напоминаю вам, господа, 22 августа будет продаваться вишневый сад.",
-      "question": "What reminder does Lopakhin give the group as they head off to supper?",
-      "options": ["That the cherry orchard will be sold on August 22nd", "That the musicians have been paid", "That Varya's engagement will be announced soon", "That the train to Kharkov leaves at dawn"],
-      "correct": "That the cherry orchard will be sold on August 22nd",
-      "explain": "Lopakhin reminds everyone that the cherry orchard will go up for sale on August 22nd, urging them to think about it."
-    },
-    {
-      "id": "r25",
-      "ru": "Если у вас есть ключи от хозяйства, то бросьте их в колодец и уходите.",
-      "question": "What radical advice does Trofimov give Anya about the estate?",
-      "options": ["To throw the household keys into the well and leave", "To sell the keys to Lopakhin", "To give the keys to Varya permanently", "To lock up the house and never return"],
-      "correct": "To throw the household keys into the well and leave",
-      "explain": "Trofimov tells Anya that if she has the keys to the household, she should throw them into the well and walk away, to be free."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Скоро сядет ___.",
+   "lemma": "солнце",
+   "options": [
+    "солнце",
+    "солнца",
+    "солнцу",
+    "солнцем"
+   ],
+   "correct": "солнце",
+   "case": "Именительный (Nominative)",
+   "explain": "Солнце is the subject of the intransitive verb сядет (will set), so it takes the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "У меня нет настоящего ___.",
+   "lemma": "паспорт",
+   "options": [
+    "паспорт",
+    "паспорта",
+    "паспорту",
+    "паспортом"
+   ],
+   "correct": "паспорта",
+   "case": "Родительный (Genitive)",
+   "explain": "The negated existential нет (there is no) requires the genitive case for what is absent: паспорта."
+  },
+  {
+   "id": "c3",
+   "sentence": "Мой отец и мамаша ездили по ___ и давали представления.",
+   "lemma": "ярмарка",
+   "options": [
+    "ярмарки",
+    "ярмарок",
+    "ярмаркам",
+    "ярмарками"
+   ],
+   "correct": "ярмаркам",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition по (around/along) with a plural noun of routine movement governs the dative case: ярмаркам."
+  },
+  {
+   "id": "c4",
+   "sentence": "Видна дорога в ___ Гаева.",
+   "lemma": "усадьба",
+   "options": [
+    "усадьба",
+    "усадьбы",
+    "усадьбу",
+    "усадьбой"
+   ],
+   "correct": "усадьбу",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition в (into) expressing motion toward a destination governs the accusative case: усадьбу."
+  },
+  {
+   "id": "c5",
+   "sentence": "Перед ___ тоже было.",
+   "lemma": "несчастье",
+   "options": [
+    "несчастье",
+    "несчастья",
+    "несчастью",
+    "несчастьем"
+   ],
+   "correct": "несчастьем",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition перед (before) governs the instrumental case: несчастьем."
+  },
+  {
+   "id": "c6",
+   "sentence": "Она сняла с плеч ружье и поправляет пряжку на ___.",
+   "lemma": "ремень",
+   "options": [
+    "ремень",
+    "ремня",
+    "ремню",
+    "ремне"
+   ],
+   "correct": "ремне",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition на (on) marking location governs the prepositional case: ремне."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "У меня нет настоящего паспорта.",
+   "question": "What does Charlotte say she lacks, adding to her sense of not knowing who she is?",
+   "options": [
+    "A real passport",
+    "A permanent home",
+    "Any living relatives",
+    "A proper education"
+   ],
+   "correct": "A real passport",
+   "explain": "Charlotte says she has no real passport and doesn't even know her own age."
+  },
+  {
+   "id": "r2",
+   "ru": "Когда я была маленькой девочкой, то мой отец и мамаша ездили по ярмаркам и давали представления.",
+   "question": "What did Charlotte's parents do for a living when she was a child?",
+   "options": [
+    "They traveled to fairs giving performances",
+    "They were servants on a noble estate",
+    "They ran a small shop",
+    "They taught in a village school"
+   ],
+   "correct": "They traveled to fairs giving performances",
+   "explain": "Charlotte recalls that her father and mother traveled around to fairs and put on shows."
+  },
+  {
+   "id": "r3",
+   "ru": "Никого у меня нет.",
+   "question": "How does Charlotte describe her sense of isolation?",
+   "options": [
+    "She has no one at all",
+    "She has too many relatives to count",
+    "She has many friends among the servants",
+    "She misses her parents but has Lopakhin"
+   ],
+   "correct": "She has no one at all",
+   "explain": "Charlotte laments that she has no one — she doesn't even know who she really is."
+  },
+  {
+   "id": "r4",
+   "ru": "Это гитара, а не мандолина.",
+   "question": "What does Dunyasha correct Yepikhodov about?",
+   "options": [
+    "That his instrument is a guitar, not a mandolin",
+    "That he is playing the wrong song",
+    "That the guitar belongs to Yasha",
+    "That he should be working, not playing music"
+   ],
+   "correct": "That his instrument is a guitar, not a mandolin",
+   "explain": "Dunyasha points out that Yepikhodov is playing a guitar, not a mandolin as he called it."
+  },
+  {
+   "id": "r5",
+   "ru": "Я развитой человек, читаю разные замечательные книги, но никак не могу понять направление.",
+   "question": "What existential confusion does Yepikhodov express about his own life?",
+   "options": [
+    "He can't decide whether he wants to live or shoot himself",
+    "He can't decide which book to read next",
+    "He can't decide whether to marry Dunyasha",
+    "He can't decide whether to quit his job"
+   ],
+   "correct": "He can't decide whether he wants to live or shoot himself",
+   "explain": "Yepikhodov says he cannot understand what he really wants — whether to live or to shoot himself."
+  },
+  {
+   "id": "r6",
+   "ru": "Но, тем не менее, я всегда ношу при себе револьвер.",
+   "question": "What does Yepikhodov reveal he always carries with him?",
+   "options": [
+    "A revolver",
+    "A guitar pick",
+    "A book of poetry",
+    "A photograph of Dunyasha"
+   ],
+   "correct": "A revolver",
+   "explain": "Yepikhodov states that he always carries a revolver with him, showing it to Dunyasha."
+  },
+  {
+   "id": "r7",
+   "ru": "Я стала тревожной, все беспокоюсь.",
+   "question": "How does Dunyasha describe how she has changed since living among the gentry?",
+   "options": [
+    "She has become anxious and worries constantly",
+    "She has become lazy and careless",
+    "She has become greedy for money",
+    "She has become bold and fearless"
+   ],
+   "correct": "She has become anxious and worries constantly",
+   "explain": "Dunyasha says she has become nervous and is constantly worried, having grown too delicate for simple life."
+  },
+  {
+   "id": "r8",
+   "ru": "Я страстно полюбила вас, вы образованный, можете обо всем рассуждать",
+   "question": "Why does Dunyasha say she fell in love with Yasha?",
+   "options": [
+    "Because he is educated and can discuss anything",
+    "Because he gave her expensive gifts",
+    "Because he promised to marry her in Paris",
+    "Because he defended her from Yepikhodov"
+   ],
+   "correct": "Because he is educated and can discuss anything",
+   "explain": "Dunyasha explains she fell passionately in love with Yasha because he is educated and can discuss any subject."
+  },
+  {
+   "id": "r9",
+   "ru": "Надо окончательно решить, время не ждет.",
+   "question": "What urgent point does Lopakhin press Lyubov Andreevna and Gaev about?",
+   "options": [
+    "That they must finally decide about the land, since time is running out",
+    "That they must pay Firs his wages",
+    "That they must sell the piano",
+    "That they must fix the billiard table"
+   ],
+   "correct": "That they must finally decide about the land, since time is running out",
+   "explain": "Lopakhin insists the matter must be decided once and for all, since time will not wait."
+  },
+  {
+   "id": "r10",
+   "ru": "Вчера было много денег, а сегодня совсем мало.",
+   "question": "What does Lyubov Andreevna notice when she looks in her purse?",
+   "options": [
+    "That she had a lot of money yesterday but very little today",
+    "That her purse is missing entirely",
+    "That someone has stolen from her",
+    "That she has exactly enough for the servants' wages"
+   ],
+   "correct": "That she had a lot of money yesterday but very little today",
+   "explain": "Looking into her purse, Lyubov Andreevna notices she had a lot of money yesterday but very little today."
+  },
+  {
+   "id": "r11",
+   "ru": "Бедная моя Варя из экономии кормит всех молочным супом.",
+   "question": "How is Varya trying to economize according to Lyubov Andreevna?",
+   "options": [
+    "By feeding everyone milk soup to save money",
+    "By selling the family's jewelry",
+    "By dismissing half the servants",
+    "By refusing to buy new clothes"
+   ],
+   "correct": "By feeding everyone milk soup to save money",
+   "explain": "Lyubov Andreevna says poor Varya, to economize, feeds everyone milk soup."
+  },
+  {
+   "id": "r12",
+   "ru": "Ваше имение собирается купить богач дириганов.",
+   "question": "What news does Lopakhin bring about a potential buyer for the estate?",
+   "options": [
+    "A rich man named Deriganov is planning to buy it",
+    "The bank has already bought it",
+    "No one is interested in buying it",
+    "Pishchik wants to buy it"
+   ],
+   "correct": "A rich man named Deriganov is planning to buy it",
+   "explain": "Lopakhin reports that the rich man Deriganov is preparing to buy the estate himself at the auction."
+  },
+  {
+   "id": "r13",
+   "ru": "Я или зарыдаю, или закричу, или в обморок упаду.",
+   "question": "How does Lopakhin express his frustration with Lyubov Andreevna and Gaev's indecision?",
+   "options": [
+    "He says he might burst into tears, scream, or faint",
+    "He says he will leave forever and never return",
+    "He says he will buy the estate himself immediately",
+    "He says he will call the bank to intervene"
+   ],
+   "correct": "He says he might burst into tears, scream, or faint",
+   "explain": "Overwhelmed by their indecision, Lopakhin says he might cry, shout, or faint."
+  },
+  {
+   "id": "r14",
+   "ru": "Муж мой умер от шампанского, он страшно пил.",
+   "question": "How does Lyubov Andreevna say her husband died?",
+   "options": [
+    "From champagne — he drank terribly",
+    "In a duel",
+    "From a long illness",
+    "In an accident on the estate"
+   ],
+   "correct": "From champagne — he drank terribly",
+   "explain": "Lyubov Andreevna confesses her husband died from champagne, as he drank terribly."
+  },
+  {
+   "id": "r15",
+   "ru": "Утонул мой мальчик.",
+   "question": "What tragedy does Lyubov Andreevna recall happening on the river near the estate?",
+   "options": [
+    "Her little boy drowned",
+    "Her husband drowned while fishing",
+    "A servant drowned trying to save a dog",
+    "Gaev nearly drowned as a child"
+   ],
+   "correct": "Her little boy drowned",
+   "explain": "Lyubov Andreevna recalls that her boy drowned in the river, right there on the estate."
+  },
+  {
+   "id": "r16",
+   "ru": "Мне предлагают место в банке.",
+   "question": "What job offer does Gaev mention having received?",
+   "options": [
+    "A position at a bank paying six thousand a year",
+    "A teaching post at a gymnasium",
+    "A government post in Moscow",
+    "A managerial role at Lopakhin's company"
+   ],
+   "correct": "A position at a bank paying six thousand a year",
+   "explain": "Gaev mentions he has been offered a post at a bank paying six thousand a year, though Lyubov Andreevna doubts he's suited for it."
+  },
+  {
+   "id": "r17",
+   "ru": "Меня женить собирались, а вашего папаши еще на свете не было",
+   "question": "What does old Firs say about how long he has served the family?",
+   "options": [
+    "He was already grown and about to be married before Gaev's father was even born",
+    "He was hired the same year Gaev was born",
+    "He only started working for the family five years ago",
+    "He was born into slavery on a different estate"
+   ],
+   "correct": "He was already grown and about to be married before Gaev's father was even born",
+   "explain": "Firs recalls that people were already planning his marriage when Gaev's father wasn't even born yet, showing his great age and long service."
+  },
+  {
+   "id": "r18",
+   "ru": "Наш вечный студент все с барышнями ходит",
+   "question": "How does Lopakhin teasingly describe Trofimov?",
+   "options": [
+    "As the 'eternal student' who is always with young ladies",
+    "As a lazy servant who never works",
+    "As a foolish gambler",
+    "As a talented but poor musician"
+   ],
+   "correct": "As the 'eternal student' who is always with young ladies",
+   "explain": "Lopakhin mockingly calls Trofimov 'our eternal student,' always seen walking with young ladies."
+  },
+  {
+   "id": "r19",
+   "ru": "Надо бы только работать.",
+   "question": "What does Trofimov insist people should do instead of admiring themselves?",
+   "options": [
+    "Simply work",
+    "Travel abroad",
+    "Study philosophy",
+    "Marry for love"
+   ],
+   "correct": "Simply work",
+   "explain": "Trofimov argues that people should stop admiring themselves and instead simply work."
+  },
+  {
+   "id": "r20",
+   "ru": "Укажите мне, где у нас ясли, о которых говорят так много и часто?",
+   "question": "What rhetorical challenge does Trofimov pose about Russian society's talk of progress?",
+   "options": [
+    "He asks where the nurseries are that people talk about so much",
+    "He asks where the new railways are",
+    "He asks where the promised schools for peasants are",
+    "He asks where the money for reforms has gone"
+   ],
+   "correct": "He asks where the nurseries are that people talk about so much",
+   "explain": "Trofimov challenges his listeners to show him the childcare nurseries that are talked about so often but never actually exist."
+  },
+  {
+   "id": "r21",
+   "ru": "Вдруг раздается отдаленный звук, точно с неба звук лопнувшей струны, замирающий, печальный.",
+   "question": "What strange sound interrupts the characters' quiet conversation?",
+   "options": [
+    "A distant sound like a snapped string, fading and sad, as if from the sky",
+    "The sound of a gunshot in the distance",
+    "Church bells ringing suddenly",
+    "A dog howling nearby"
+   ],
+   "correct": "A distant sound like a snapped string, fading and sad, as if from the sky",
+   "explain": "The stage direction describes a mysterious distant sound resembling a snapped string, fading and mournful."
+  },
+  {
+   "id": "r22",
+   "ru": "Перед несчастьем тоже было.",
+   "question": "What omen does Firs recall from before a past misfortune?",
+   "options": [
+    "The same sound occurred before a past misfortune, along with an owl hooting and the samovar humming",
+    "A comet appeared in the sky",
+    "All the cattle fell ill",
+    "The well ran dry"
+   ],
+   "correct": "The same sound occurred before a past misfortune, along with an owl hooting and the samovar humming",
+   "explain": "Firs recalls that before a misfortune, the same thing happened — an owl screeched and the samovar hummed constantly."
+  },
+  {
+   "id": "r23",
+   "ru": "Позвольте вас спросить, могу ли я пройти здесь прямо на станцию?",
+   "question": "What does the drunken passerby ask when he appears?",
+   "options": [
+    "Whether he can walk straight through to the station",
+    "Whether he can borrow money for a train ticket",
+    "Whether the family will hire him",
+    "Whether there is a tavern nearby"
+   ],
+   "correct": "Whether he can walk straight through to the station",
+   "explain": "The passerby politely asks whether he may pass straight through to the station."
+  },
+  {
+   "id": "r24",
+   "ru": "Напоминаю вам, господа, 22 августа будет продаваться вишневый сад.",
+   "question": "What reminder does Lopakhin give the group as they head off to supper?",
+   "options": [
+    "That the cherry orchard will be sold on August 22nd",
+    "That the musicians have been paid",
+    "That Varya's engagement will be announced soon",
+    "That the train to Kharkov leaves at dawn"
+   ],
+   "correct": "That the cherry orchard will be sold on August 22nd",
+   "explain": "Lopakhin reminds everyone that the cherry orchard will go up for sale on August 22nd, urging them to think about it."
+  },
+  {
+   "id": "r25",
+   "ru": "Если у вас есть ключи от хозяйства, то бросьте их в колодец и уходите.",
+   "question": "What radical advice does Trofimov give Anya about the estate?",
+   "options": [
+    "To throw the household keys into the well and leave",
+    "To sell the keys to Lopakhin",
+    "To give the keys to Varya permanently",
+    "To lock up the house and never return"
+   ],
+   "correct": "To throw the household keys into the well and leave",
+   "explain": "Trofimov tells Anya that if she has the keys to the household, she should throw them into the well and walk away, to be free."
+  }
+ ]
 }

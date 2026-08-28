@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Восхваляй, ___, Господа!",
-      "lemma": "душа",
-      "options": ["душа", "душе", "душой", "душу"],
-      "correct": "душа",
-      "case": "Именительный (Nominative)",
-      "translation": "O my soul, praise the Lord!",
-      "explain": "Душа is the subject addressed directly (nominative case addressing the soul)."
-    },
-    {
-      "id": "c2",
-      "sentence": "Всю свою жизнь буду восхвалять ___.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господа",
-      "case": "Винительный (Accusative)",
-      "translation": "All my life I will praise the Lord.",
-      "explain": "Господа is the direct object of the transitive verb восхвалять (to praise), requiring the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Когда ___ покидает его, и он возвращается в землю.",
-      "lemma": "дух",
-      "options": ["дух", "духа", "духом", "духе"],
-      "correct": "дух",
-      "case": "Именительный (Nominative)",
-      "translation": "When his spirit departs from him, and he returns to the earth.",
-      "explain": "Дух is the subject of the verb покидает (departs), requiring the nominative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Блажен тот, кому помощник Бог ___.",
-      "lemma": "Иаков",
-      "options": ["Иаков", "Иакова", "Иакову", "Иаковом"],
-      "correct": "Иакова",
-      "case": "Родительный (Genitive)",
-      "translation": "Blessed is he to whom God of Jacob is a helper.",
-      "explain": "The genitive case Иакова after Бог (God) expresses possession: 'God of Jacob.'"
-    },
-    {
-      "id": "c5",
-      "sentence": "Сотворивший ___ и землю.",
-      "lemma": "небо",
-      "options": ["небо", "неба", "небе", "небом"],
-      "correct": "небо",
-      "case": "Винительный (Accusative)",
-      "translation": "He who created heaven and earth.",
-      "explain": "Небо is the direct object of the verb сотворивший (created), taking the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Он вечно хранит свою ___.",
-      "lemma": "верность",
-      "options": ["верность", "верности", "верностью", "верностями"],
-      "correct": "верность",
-      "case": "Винительный (Accusative)",
-      "translation": "He forever keeps his faithfulness.",
-      "explain": "Верность is the direct object of the verb хранит (keeps); accusative singular feminine equals nominative."
-    },
-    {
-      "id": "c7",
-      "sentence": "Он защищает дело ___.",
-      "lemma": "угнетенный",
-      "options": ["угнетенные", "угнетенных", "угнетенным", "угнетенными"],
-      "correct": "угнетенных",
-      "case": "Родительный (Genitive)",
-      "translation": "He defends the cause of the oppressed.",
-      "explain": "The genitive case угнетенных after дело (cause) indicates possession or association."
-    },
-    {
-      "id": "c8",
-      "sentence": "Господь хранит ___.",
-      "lemma": "чужеземец",
-      "options": ["чужеземец", "чужеземца", "чужеземцев", "чужеземцами"],
-      "correct": "чужеземцев",
-      "case": "Винительный (Accusative)",
-      "translation": "The Lord preserves the foreigners.",
-      "explain": "Чужеземцев is the direct object of the transitive verb хранит (preserves), requiring the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Восхваляй, душа моя, Господа!",
-      "question": "What does the psalmist command his soul to do?",
-      "options": ["Praise the Lord", "Fear the Lord", "Serve the Lord", "Love the Lord"],
-      "correct": "Praise the Lord",
-      "explain": "Восхваляй means 'praise,' commanding the soul to praise the Lord."
-    },
-    {
-      "id": "r2",
-      "ru": "Всю свою жизнь буду восхвалять Господа, буду петь хвалу моему Богу, пока я жив.",
-      "question": "How long does the psalmist commit to praising the Lord?",
-      "options": ["Throughout his entire life", "For one day", "For a week", "Only in the temple"],
-      "correct": "Throughout his entire life",
-      "explain": "Всю свою жизнь (all my life) and пока я жив (while I live) indicate lifelong commitment."
-    },
-    {
-      "id": "r3",
-      "ru": "Не надейтесь на правителей, на человека, в котором нет спасения.",
-      "question": "On whom should we not rely according to this verse?",
-      "options": ["Rulers and mortals without salvation", "The righteous", "God", "The wise"],
-      "correct": "Rulers and mortals without salvation",
-      "explain": "The verse explicitly warns against trusting in правителей (rulers) and человека (man) without спасения (salvation)."
-    },
-    {
-      "id": "r4",
-      "ru": "Блажен тот, кому помощник Бог Иакова, кто надеется на Господа своего Бога, сотворившего небо и землю, море и все, что его наполняет.",
-      "question": "Who is blessed according to this verse?",
-      "options": ["Those who trust in the God of Jacob, who created heaven, earth, sea, and all within", "Those who worship idols", "Those who follow rulers", "Those who live in cities"],
-      "correct": "Those who trust in the God of Jacob, who created heaven, earth, sea, and all within",
-      "explain": "The verse states that blessed is he whose helper is God of Jacob and who trusts in Him as creator."
-    },
-    {
-      "id": "r5",
-      "ru": "Он защищает дело угнетенных, дает пищу голодным.",
-      "question": "What does the Lord do for the oppressed and hungry?",
-      "options": ["Defends their cause and provides food", "Ignores them", "Punishes them", "Asks them to wait"],
-      "correct": "Defends their cause and provides food",
-      "explain": "The verse states He защищает дело (defends the cause) of the угнетенных (oppressed) and дает пищу (gives food) to the голодным (hungry)."
-    },
-    {
-      "id": "r6",
-      "ru": "Господь царствует вовек, Твой Бог Сион во все поколения, Аллилуйя!",
-      "question": "For how long does the Lord reign?",
-      "options": ["Forever and to all generations", "For a limited time", "Only in Israel", "Only on certain days"],
-      "correct": "Forever and to all generations",
-      "explain": "Вовек (forever) and во все поколения (throughout all generations) emphasize God's eternal reign."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Восхваляй, ___, Господа!",
+   "lemma": "душа",
+   "options": [
+    "душа",
+    "душе",
+    "душой",
+    "душу"
+   ],
+   "correct": "душа",
+   "case": "Именительный (Nominative)",
+   "explain": "Душа is the subject addressed directly (nominative case addressing the soul)."
+  },
+  {
+   "id": "c2",
+   "sentence": "Всю свою жизнь буду восхвалять ___.",
+   "lemma": "Господь",
+   "options": [
+    "Господь",
+    "Господа",
+    "Господу",
+    "Господом"
+   ],
+   "correct": "Господа",
+   "case": "Винительный (Accusative)",
+   "explain": "Господа is the direct object of the transitive verb восхвалять (to praise), requiring the accusative case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Когда ___ покидает его, и он возвращается в землю.",
+   "lemma": "дух",
+   "options": [
+    "дух",
+    "духа",
+    "духом",
+    "духе"
+   ],
+   "correct": "дух",
+   "case": "Именительный (Nominative)",
+   "explain": "Дух is the subject of the verb покидает (departs), requiring the nominative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Блажен тот, кому помощник Бог ___.",
+   "lemma": "Иаков",
+   "options": [
+    "Иаков",
+    "Иакова",
+    "Иакову",
+    "Иаковом"
+   ],
+   "correct": "Иакова",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive case Иакова after Бог (God) expresses possession: 'God of Jacob.'"
+  },
+  {
+   "id": "c5",
+   "sentence": "Сотворивший ___ и землю.",
+   "lemma": "небо",
+   "options": [
+    "небо",
+    "неба",
+    "небе",
+    "небом"
+   ],
+   "correct": "небо",
+   "case": "Винительный (Accusative)",
+   "explain": "Небо is the direct object of the verb сотворивший (created), taking the accusative case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Он вечно хранит свою ___.",
+   "lemma": "верность",
+   "options": [
+    "верность",
+    "верности",
+    "верностью",
+    "верностями"
+   ],
+   "correct": "верность",
+   "case": "Винительный (Accusative)",
+   "explain": "Верность is the direct object of the verb хранит (keeps); accusative singular feminine equals nominative."
+  },
+  {
+   "id": "c7",
+   "sentence": "Он защищает дело ___.",
+   "lemma": "угнетенный",
+   "options": [
+    "угнетенные",
+    "угнетенных",
+    "угнетенным",
+    "угнетенными"
+   ],
+   "correct": "угнетенных",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive case угнетенных after дело (cause) indicates possession or association."
+  },
+  {
+   "id": "c8",
+   "sentence": "Господь хранит ___.",
+   "lemma": "чужеземец",
+   "options": [
+    "чужеземец",
+    "чужеземца",
+    "чужеземцев",
+    "чужеземцами"
+   ],
+   "correct": "чужеземцев",
+   "case": "Винительный (Accusative)",
+   "explain": "Чужеземцев is the direct object of the transitive verb хранит (preserves), requiring the accusative case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Восхваляй, душа моя, Господа!",
+   "question": "What does the psalmist command his soul to do?",
+   "options": [
+    "Praise the Lord",
+    "Fear the Lord",
+    "Serve the Lord",
+    "Love the Lord"
+   ],
+   "correct": "Praise the Lord",
+   "explain": "Восхваляй means 'praise,' commanding the soul to praise the Lord."
+  },
+  {
+   "id": "r2",
+   "ru": "Всю свою жизнь буду восхвалять Господа, буду петь хвалу моему Богу, пока я жив.",
+   "question": "How long does the psalmist commit to praising the Lord?",
+   "options": [
+    "Throughout his entire life",
+    "For one day",
+    "For a week",
+    "Only in the temple"
+   ],
+   "correct": "Throughout his entire life",
+   "explain": "Всю свою жизнь (all my life) and пока я жив (while I live) indicate lifelong commitment."
+  },
+  {
+   "id": "r3",
+   "ru": "Не надейтесь на правителей, на человека, в котором нет спасения.",
+   "question": "On whom should we not rely according to this verse?",
+   "options": [
+    "Rulers and mortals without salvation",
+    "The righteous",
+    "God",
+    "The wise"
+   ],
+   "correct": "Rulers and mortals without salvation",
+   "explain": "The verse explicitly warns against trusting in правителей (rulers) and человека (man) without спасения (salvation)."
+  },
+  {
+   "id": "r4",
+   "ru": "Блажен тот, кому помощник Бог Иакова, кто надеется на Господа своего Бога, сотворившего небо и землю, море и все, что его наполняет.",
+   "question": "Who is blessed according to this verse?",
+   "options": [
+    "Those who trust in the God of Jacob, who created heaven, earth, sea, and all within",
+    "Those who worship idols",
+    "Those who follow rulers",
+    "Those who live in cities"
+   ],
+   "correct": "Those who trust in the God of Jacob, who created heaven, earth, sea, and all within",
+   "explain": "The verse states that blessed is he whose helper is God of Jacob and who trusts in Him as creator."
+  },
+  {
+   "id": "r5",
+   "ru": "Он защищает дело угнетенных, дает пищу голодным.",
+   "question": "What does the Lord do for the oppressed and hungry?",
+   "options": [
+    "Defends their cause and provides food",
+    "Ignores them",
+    "Punishes them",
+    "Asks them to wait"
+   ],
+   "correct": "Defends their cause and provides food",
+   "explain": "The verse states He защищает дело (defends the cause) of the угнетенных (oppressed) and дает пищу (gives food) to the голодным (hungry)."
+  },
+  {
+   "id": "r6",
+   "ru": "Господь царствует вовек, Твой Бог Сион во все поколения, Аллилуйя!",
+   "question": "For how long does the Lord reign?",
+   "options": [
+    "Forever and to all generations",
+    "For a limited time",
+    "Only in Israel",
+    "Only on certain days"
+   ],
+   "correct": "Forever and to all generations",
+   "explain": "Вовек (forever) and во все поколения (throughout all generations) emphasize God's eternal reign."
+  }
+ ]
 }

@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Давид пришел в город Нов к ___ Ахимелеху.",
-      "lemma": "священник",
-      "options": ["священник", "священника", "священнику", "священником"],
-      "correct": "священнику",
-      "case": "Дательный (Dative)",
-      "translation": "David came to the city of Nob to the priest Ahimelech.",
-      "explain": "The preposition к (to) with a person requires the dative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Встретив его, ___ заволновался и спросил: Почему ты один?",
-      "lemma": "священник",
-      "options": ["священник", "священника", "священнику", "священником"],
-      "correct": "священник",
-      "case": "Именительный (Nominative)",
-      "translation": "Upon meeting him, the priest was troubled and asked: Why are you alone?",
-      "explain": "Священник is the subject of the verbs заволновался and спросил, requiring nominative."
-    },
-    {
-      "id": "c3",
-      "sentence": "Царь поручил мне одно дело и велел никому не говорить о ___.",
-      "lemma": "дело",
-      "options": ["дело", "дела", "делу", "деле"],
-      "correct": "деле",
-      "case": "Предложный (Prepositional)",
-      "translation": "The king has given me a task and ordered me to tell no one about the matter.",
-      "explain": "The preposition о (about) governs the prepositional case."
-    },
-    {
-      "id": "c4",
-      "sentence": "У меня нет обычного хлеба, но есть священный ___, если соблюдены условия.",
-      "lemma": "хлеб",
-      "options": ["хлеб", "хлеба", "хлебу", "хлебом"],
-      "correct": "хлеб",
-      "case": "Именительный (Nominative)",
-      "translation": "I have no common bread, but there is holy bread, if the conditions are met.",
-      "explain": "Хлеб is the predicate nominative after the verb есть, requiring nominative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Я слышал про мечом ___ Голиафа, которого ты убил.",
-      "lemma": "филистимлянин",
-      "options": ["филистимлянина", "филистимлянин", "филистимлянину", "филистимлянином"],
-      "correct": "филистимлянина",
-      "case": "Родительный (Genitive)",
-      "translation": "I heard about the sword of the Philistine Goliath, whom you killed.",
-      "explain": "The genitive case shows possession - the sword of the Philistine requires genitive."
-    },
-    {
-      "id": "c6",
-      "sentence": "Меч завернут в одежду и лежит здесь, позади ___.",
-      "lemma": "эфод",
-      "options": ["эфода", "эфод", "эфоду", "эфодом"],
-      "correct": "эфода",
-      "case": "Родительный (Genitive)",
-      "translation": "The sword is wrapped in cloth and lies here, behind the ephod.",
-      "explain": "The preposition позади (behind) governs the genitive case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Давид обратил внимание на слова и очень испугался ___.",
-      "lemma": "царь",
-      "options": ["царя", "царь", "царю", "царем"],
-      "correct": "царя",
-      "case": "Родительный (Genitive)",
-      "translation": "David was aware of these words and was very afraid of the king.",
-      "explain": "The verb бояться (to fear) always governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Он притворился перед ними ___.",
-      "lemma": "сумасшедший",
-      "options": ["сумасшедшим", "сумасшедший", "сумасшедшего", "сумасшедшему"],
-      "correct": "сумасшедшим",
-      "case": "Творительный (Instrumental)",
-      "translation": "He pretended before them to be insane.",
-      "explain": "The preposition перед (before/in front of) with притворился requires instrumental case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Давид пришел в город Нов к священнику Ахимелеху.",
-      "question": "Where did David go and to whom did he go?",
-      "options": ["To the priest Ahimelech in Nob", "To the king in Gibeah", "To Jonathan in the field", "To the king of Moab"],
-      "correct": "To the priest Ahimelech in Nob",
-      "explain": "The text states: 'Давид пришел в город Нов к священнику Ахимелеху' — David came to the city of Nob to priest Ahimelech."
-    },
-    {
-      "id": "r2",
-      "ru": "Встретив его, Ахимелех заволновался и спросил, «Почему ты один? Почему с тобой никого нет?»",
-      "question": "Why was the priest troubled when he saw David?",
-      "options": ["David was alone with no one accompanying him", "David was wounded", "David came at night", "David demanded weapons"],
-      "correct": "David was alone with no one accompanying him",
-      "explain": "Ахимелех asked: 'Почему ты один?' — Why are you alone? The priest was surprised to see David unaccompanied."
-    },
-    {
-      "id": "r3",
-      "ru": "Царь поручил мне одно дело и сказал, «Никто не должен ничего знать о порученном тебе деле».",
-      "question": "What did the king command David regarding his mission?",
-      "options": ["To keep it secret from everyone", "To complete it quickly", "To report back soon", "To take an army with him"],
-      "correct": "To keep it secret from everyone",
-      "explain": "The king said: 'Никто не должен ничего знать' — No one must know anything about the matter."
-    },
-    {
-      "id": "r4",
-      "ru": "У меня нет под рукой обычного хлеба. Здесь есть священный хлеб, но я дам его только при условии, что твои люди воздерживались от женщин.",
-      "question": "Under what condition would the priest give holy bread to David?",
-      "options": ["If his men had abstained from women", "If David paid for it", "If he brought witnesses", "If he came at night"],
-      "correct": "If his men had abstained from women",
-      "explain": "The priest says: 'я дам его только при условии, что твои люди воздерживались от женщин' — I will give it only if your men have kept themselves from women."
-    },
-    {
-      "id": "r5",
-      "ru": "Священник ответил, «Здесь есть меч филистимлянина Голиафа, которого ты убил в долине Эла».",
-      "question": "Whose sword did the priest have in the sanctuary?",
-      "options": ["The sword of Goliath the Philistine", "The sword of Saul", "The sword of David's father", "An Egyptian sword"],
-      "correct": "The sword of Goliath the Philistine",
-      "explain": "The priest says: 'Здесь есть меч филистимлянина Голиафа, которого ты убил' — Here is the sword of the Philistine Goliath, whom you killed."
-    },
-    {
-      "id": "r6",
-      "ru": "Давид очень просил меня позволить ему спешно отлучиться к себе в Вифлеем на жертвоприношение за весь его клан.",
-      "question": "Why did David want to go to Bethlehem?",
-      "options": ["For a yearly family sacrifice", "To visit his family", "To hide from Saul", "To recruit soldiers"],
-      "correct": "For a yearly family sacrifice",
-      "explain": "The priest says David asked to go 'на жертвоприношение за весь его клан' — for a sacrifice for his whole family."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Давид пришел в город Нов к ___ Ахимелеху.",
+   "lemma": "священник",
+   "options": [
+    "священник",
+    "священника",
+    "священнику",
+    "священником"
+   ],
+   "correct": "священнику",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition к (to) with a person requires the dative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Встретив его, ___ заволновался и спросил: Почему ты один?",
+   "lemma": "священник",
+   "options": [
+    "священник",
+    "священника",
+    "священнику",
+    "священником"
+   ],
+   "correct": "священник",
+   "case": "Именительный (Nominative)",
+   "explain": "Священник is the subject of the verbs заволновался and спросил, requiring nominative."
+  },
+  {
+   "id": "c3",
+   "sentence": "Царь поручил мне одно дело и велел никому не говорить о ___.",
+   "lemma": "дело",
+   "options": [
+    "дело",
+    "дела",
+    "делу",
+    "деле"
+   ],
+   "correct": "деле",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition о (about) governs the prepositional case."
+  },
+  {
+   "id": "c4",
+   "sentence": "У меня нет обычного хлеба, но есть священный ___, если соблюдены условия.",
+   "lemma": "хлеб",
+   "options": [
+    "хлеб",
+    "хлеба",
+    "хлебу",
+    "хлебом"
+   ],
+   "correct": "хлеб",
+   "case": "Именительный (Nominative)",
+   "explain": "Хлеб is the predicate nominative after the verb есть, requiring nominative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Я слышал про мечом ___ Голиафа, которого ты убил.",
+   "lemma": "филистимлянин",
+   "options": [
+    "филистимлянина",
+    "филистимлянин",
+    "филистимлянину",
+    "филистимлянином"
+   ],
+   "correct": "филистимлянина",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive case shows possession - the sword of the Philistine requires genitive."
+  },
+  {
+   "id": "c6",
+   "sentence": "Меч завернут в одежду и лежит здесь, позади ___.",
+   "lemma": "эфод",
+   "options": [
+    "эфода",
+    "эфод",
+    "эфоду",
+    "эфодом"
+   ],
+   "correct": "эфода",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition позади (behind) governs the genitive case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Давид обратил внимание на слова и очень испугался ___.",
+   "lemma": "царь",
+   "options": [
+    "царя",
+    "царь",
+    "царю",
+    "царем"
+   ],
+   "correct": "царя",
+   "case": "Родительный (Genitive)",
+   "explain": "The verb бояться (to fear) always governs the genitive case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Он притворился перед ними ___.",
+   "lemma": "сумасшедший",
+   "options": [
+    "сумасшедшим",
+    "сумасшедший",
+    "сумасшедшего",
+    "сумасшедшему"
+   ],
+   "correct": "сумасшедшим",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition перед (before/in front of) with притворился requires instrumental case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Давид пришел в город Нов к священнику Ахимелеху.",
+   "question": "Where did David go and to whom did he go?",
+   "options": [
+    "To the priest Ahimelech in Nob",
+    "To the king in Gibeah",
+    "To Jonathan in the field",
+    "To the king of Moab"
+   ],
+   "correct": "To the priest Ahimelech in Nob",
+   "explain": "The text states: 'Давид пришел в город Нов к священнику Ахимелеху' — David came to the city of Nob to priest Ahimelech."
+  },
+  {
+   "id": "r2",
+   "ru": "Встретив его, Ахимелех заволновался и спросил, «Почему ты один? Почему с тобой никого нет?»",
+   "question": "Why was the priest troubled when he saw David?",
+   "options": [
+    "David was alone with no one accompanying him",
+    "David was wounded",
+    "David came at night",
+    "David demanded weapons"
+   ],
+   "correct": "David was alone with no one accompanying him",
+   "explain": "Ахимелех asked: 'Почему ты один?' — Why are you alone? The priest was surprised to see David unaccompanied."
+  },
+  {
+   "id": "r3",
+   "ru": "Царь поручил мне одно дело и сказал, «Никто не должен ничего знать о порученном тебе деле».",
+   "question": "What did the king command David regarding his mission?",
+   "options": [
+    "To keep it secret from everyone",
+    "To complete it quickly",
+    "To report back soon",
+    "To take an army with him"
+   ],
+   "correct": "To keep it secret from everyone",
+   "explain": "The king said: 'Никто не должен ничего знать' — No one must know anything about the matter."
+  },
+  {
+   "id": "r4",
+   "ru": "У меня нет под рукой обычного хлеба. Здесь есть священный хлеб, но я дам его только при условии, что твои люди воздерживались от женщин.",
+   "question": "Under what condition would the priest give holy bread to David?",
+   "options": [
+    "If his men had abstained from women",
+    "If David paid for it",
+    "If he brought witnesses",
+    "If he came at night"
+   ],
+   "correct": "If his men had abstained from women",
+   "explain": "The priest says: 'я дам его только при условии, что твои люди воздерживались от женщин' — I will give it only if your men have kept themselves from women."
+  },
+  {
+   "id": "r5",
+   "ru": "Священник ответил, «Здесь есть меч филистимлянина Голиафа, которого ты убил в долине Эла».",
+   "question": "Whose sword did the priest have in the sanctuary?",
+   "options": [
+    "The sword of Goliath the Philistine",
+    "The sword of Saul",
+    "The sword of David's father",
+    "An Egyptian sword"
+   ],
+   "correct": "The sword of Goliath the Philistine",
+   "explain": "The priest says: 'Здесь есть меч филистимлянина Голиафа, которого ты убил' — Here is the sword of the Philistine Goliath, whom you killed."
+  },
+  {
+   "id": "r6",
+   "ru": "Давид очень просил меня позволить ему спешно отлучиться к себе в Вифлеем на жертвоприношение за весь его клан.",
+   "question": "Why did David want to go to Bethlehem?",
+   "options": [
+    "For a yearly family sacrifice",
+    "To visit his family",
+    "To hide from Saul",
+    "To recruit soldiers"
+   ],
+   "correct": "For a yearly family sacrifice",
+   "explain": "The priest says David asked to go 'на жертвоприношение за весь его клан' — for a sacrifice for his whole family."
+  }
+ ]
 }

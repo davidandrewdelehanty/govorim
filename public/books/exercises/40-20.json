@@ -1,138 +1,207 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ ответил одному из них. Друг, я же не обманываю тебя.",
-      "lemma": "хозяин",
-      "options": ["хозяин", "хозяина", "хозяину", "хозяином"],
-      "correct": "хозяин",
-      "case": "Именительный (Nominative)",
-      "translation": "The landowner answered one of them: Friend, I am doing you no wrong.",
-      "explain": "Хозяин is the subject of the verb ответил, so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "У ___ сидели двое слепых.",
-      "lemma": "дорога",
-      "options": ["дорога", "дороги", "дороге", "дорогу"],
-      "correct": "дороги",
-      "case": "Родительный (Genitive)",
-      "translation": "By the road sat two blind men.",
-      "explain": "The preposition у (by/at) governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Потом к ___ подошла мать сыновей Зеведея вместе с сыновьями.",
-      "lemma": "Иисус",
-      "options": ["Иисус", "Иисуса", "Иисусу", "Иисусом"],
-      "correct": "Иисусу",
-      "case": "Дательный (Dative)",
-      "translation": "Then the mother of the sons of Zebedee came to Jesus with her sons.",
-      "explain": "The preposition к (toward) governs the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Разве ты не согласился работать за один ___?",
-      "lemma": "динарий",
-      "options": ["динарий", "динария", "динарию", "динарием"],
-      "correct": "динарий",
-      "case": "Винительный (Accusative)",
-      "translation": "Didn't you agree to work for a single denarius?",
-      "explain": "The preposition за expressing an agreed price takes the accusative; for the inanimate noun динарий the accusative equals the nominative."
-    },
-    {
-      "id": "c5",
-      "sentence": "Эти места принадлежат тем, кому они назначены Моим ___.",
-      "lemma": "отец",
-      "options": ["отец", "отца", "отцу", "отцом"],
-      "correct": "отцом",
-      "case": "Творительный (Instrumental)",
-      "translation": "These seats belong to those for whom they have been prepared by my Father.",
-      "explain": "The passive participle назначены (assigned/prepared) requires the agent — Отцом — in the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Он рано утром вышел нанять людей на работу в своем ___.",
-      "lemma": "виноградник",
-      "options": ["виноградник", "виноградника", "винограднику", "винограднике"],
-      "correct": "винограднике",
-      "case": "Предложный (Prepositional)",
-      "translation": "He went out early in the morning to hire people to work in his vineyard.",
-      "explain": "The preposition в indicating location (inside the vineyard) governs the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Небесное царство подобно хозяину, который рано утром вышел нанять людей на работу в своем винограднике.",
-      "question": "What is the kingdom of heaven compared to in this parable?",
-      "options": ["A landowner who hires workers for his vineyard", "A shepherd who searches for a lost sheep", "A king who plans a wedding feast", "A merchant who searches for fine pearls"],
-      "correct": "A landowner who hires workers for his vineyard",
-      "explain": "The text says the kingdom of heaven is 'подобно хозяину, который... вышел нанять людей на работу в своем винограднике' (like a landowner who went out to hire workers for his vineyard)."
-    },
-    {
-      "id": "r2",
-      "ru": "В третьем часу он опять вышел и увидел, что на площади еще стоят люди без работы.",
-      "question": "What did the landowner see when he went out at the third hour?",
-      "options": ["People standing in the marketplace without work", "Workers already finishing the harvest", "Soldiers guarding the vineyard", "Merchants selling grapes"],
-      "correct": "People standing in the marketplace without work",
-      "explain": "The text says he saw 'на площади еще стоят люди без работы' (people still standing in the square without work)."
-    },
-    {
-      "id": "r3",
-      "ru": "«Позови всех работников и выдай им плату. Начни с тех, которые были наняты последними, и в конце рассчитайся с теми, кто нанят утром».",
-      "question": "In what order did the landowner tell his manager to pay the workers?",
-      "options": ["Starting with those hired last, ending with those hired first", "Starting with those hired first, ending with those hired last", "By how much work each one did", "Randomly, in no particular order"],
-      "correct": "Starting with those hired last, ending with those hired first",
-      "explain": "The landowner said 'Начни с тех, которые были наняты последними, и в конце рассчитайся с теми, кто нанят утром' (start with those hired last and finish with those hired in the morning)."
-    },
-    {
-      "id": "r4",
-      "ru": "Когда с ними расплатились, они стали роптать на хозяина.",
-      "question": "How did the workers hired first react when they were paid?",
-      "options": ["They grumbled against the landowner", "They thanked him joyfully", "They demanded to be hired again", "They gave part of their pay to the latecomers"],
-      "correct": "They grumbled against the landowner",
-      "explain": "The text says 'они стали роптать на хозяина' (they began to grumble against the landowner)."
-    },
-    {
-      "id": "r5",
-      "ru": "Так вот, последние будут первыми, и первые последними.",
-      "question": "How does Jesus summarize the point of the parable?",
-      "options": ["The last will be first, and the first last", "The rich will inherit the kingdom", "Only the first workers deserve pay", "Workers should never complain"],
-      "correct": "The last will be first, and the first last",
-      "explain": "Jesus concludes, 'последние будут первыми, и первые последними' (the last will be first, and the first last)."
-    },
-    {
-      "id": "r6",
-      "ru": "Они приговорят Его к смерти и отдадут язычникам наглумление, бичевание и распятие.",
-      "question": "What did Jesus predict would happen to him in Jerusalem?",
-      "options": ["He would be condemned to death and handed over to the Gentiles to be mocked, flogged, and crucified", "He would be crowned king", "He would be exiled from the city", "He would be made a member of the Sanhedrin"],
-      "correct": "He would be condemned to death and handed over to the Gentiles to be mocked, flogged, and crucified",
-      "explain": "Jesus said he would be condemned to death and handed 'язычникам на глумление, бичевание и распятие' (to the Gentiles to be mocked, flogged, and crucified)."
-    },
-    {
-      "id": "r7",
-      "ru": "Вели, чтобы оба мои сына сели один по правую, а другой по левую руку от тебя в твоем царстве.",
-      "question": "What did the mother of Zebedee's sons ask Jesus?",
-      "options": ["That her two sons sit at his right and left hand in his kingdom", "That her sons be forgiven their sins", "That her sons be healed of illness", "That her sons become high priests"],
-      "correct": "That her two sons sit at his right and left hand in his kingdom",
-      "explain": "She asked that her two sons 'сели один по правую, а другой по левую руку' from him in his kingdom."
-    },
-    {
-      "id": "r8",
-      "ru": "кто хочет стать среди вас самым великим, должен быть вам слугой, и кто хочет быть среди вас первым, пусть будет вам слугой",
-      "question": "According to Jesus, how does one become great among the disciples?",
-      "options": ["By becoming a servant to others", "By ruling over others like the pagan kings", "By accumulating wealth", "By being the eldest"],
-      "correct": "By becoming a servant to others",
-      "explain": "Jesus said whoever wants to be great 'должен быть вам слугой' (must be your servant)."
-    },
-    {
-      "id": "r9",
-      "ru": "Иисусу стало их жаль, и он прикоснулся к их глазам. Слепые сразу же обрели зрение и пошли за ним.",
-      "question": "What happened after Jesus touched the eyes of the two blind men?",
-      "options": ["They immediately received their sight and followed him", "They fell asleep", "They asked for money instead", "Nothing changed until the next day"],
-      "correct": "They immediately received their sight and followed him",
-      "explain": "The text says 'Слепые сразу же обрели зрение и пошли за ним' (the blind men immediately received their sight and followed him)."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "___ ответил одному из них. Друг, я же не обманываю тебя.",
+   "lemma": "хозяин",
+   "options": [
+    "хозяин",
+    "хозяина",
+    "хозяину",
+    "хозяином"
+   ],
+   "correct": "хозяин",
+   "case": "Именительный (Nominative)",
+   "explain": "Хозяин is the subject of the verb ответил, so it stands in the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "У ___ сидели двое слепых.",
+   "lemma": "дорога",
+   "options": [
+    "дорога",
+    "дороги",
+    "дороге",
+    "дорогу"
+   ],
+   "correct": "дороги",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition у (by/at) governs the genitive case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Потом к ___ подошла мать сыновей Зеведея вместе с сыновьями.",
+   "lemma": "Иисус",
+   "options": [
+    "Иисус",
+    "Иисуса",
+    "Иисусу",
+    "Иисусом"
+   ],
+   "correct": "Иисусу",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition к (toward) governs the dative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Разве ты не согласился работать за один ___?",
+   "lemma": "динарий",
+   "options": [
+    "динарий",
+    "динария",
+    "динарию",
+    "динарием"
+   ],
+   "correct": "динарий",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition за expressing an agreed price takes the accusative; for the inanimate noun динарий the accusative equals the nominative."
+  },
+  {
+   "id": "c5",
+   "sentence": "Эти места принадлежат тем, кому они назначены Моим ___.",
+   "lemma": "отец",
+   "options": [
+    "отец",
+    "отца",
+    "отцу",
+    "отцом"
+   ],
+   "correct": "отцом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The passive participle назначены (assigned/prepared) requires the agent — Отцом — in the instrumental case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Он рано утром вышел нанять людей на работу в своем ___.",
+   "lemma": "виноградник",
+   "options": [
+    "виноградник",
+    "виноградника",
+    "винограднику",
+    "винограднике"
+   ],
+   "correct": "винограднике",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в indicating location (inside the vineyard) governs the prepositional case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Небесное царство подобно хозяину, который рано утром вышел нанять людей на работу в своем винограднике.",
+   "question": "What is the kingdom of heaven compared to in this parable?",
+   "options": [
+    "A landowner who hires workers for his vineyard",
+    "A shepherd who searches for a lost sheep",
+    "A king who plans a wedding feast",
+    "A merchant who searches for fine pearls"
+   ],
+   "correct": "A landowner who hires workers for his vineyard",
+   "explain": "The text says the kingdom of heaven is 'подобно хозяину, который... вышел нанять людей на работу в своем винограднике' (like a landowner who went out to hire workers for his vineyard)."
+  },
+  {
+   "id": "r2",
+   "ru": "В третьем часу он опять вышел и увидел, что на площади еще стоят люди без работы.",
+   "question": "What did the landowner see when he went out at the third hour?",
+   "options": [
+    "People standing in the marketplace without work",
+    "Workers already finishing the harvest",
+    "Soldiers guarding the vineyard",
+    "Merchants selling grapes"
+   ],
+   "correct": "People standing in the marketplace without work",
+   "explain": "The text says he saw 'на площади еще стоят люди без работы' (people still standing in the square without work)."
+  },
+  {
+   "id": "r3",
+   "ru": "«Позови всех работников и выдай им плату. Начни с тех, которые были наняты последними, и в конце рассчитайся с теми, кто нанят утром».",
+   "question": "In what order did the landowner tell his manager to pay the workers?",
+   "options": [
+    "Starting with those hired last, ending with those hired first",
+    "Starting with those hired first, ending with those hired last",
+    "By how much work each one did",
+    "Randomly, in no particular order"
+   ],
+   "correct": "Starting with those hired last, ending with those hired first",
+   "explain": "The landowner said 'Начни с тех, которые были наняты последними, и в конце рассчитайся с теми, кто нанят утром' (start with those hired last and finish with those hired in the morning)."
+  },
+  {
+   "id": "r4",
+   "ru": "Когда с ними расплатились, они стали роптать на хозяина.",
+   "question": "How did the workers hired first react when they were paid?",
+   "options": [
+    "They grumbled against the landowner",
+    "They thanked him joyfully",
+    "They demanded to be hired again",
+    "They gave part of their pay to the latecomers"
+   ],
+   "correct": "They grumbled against the landowner",
+   "explain": "The text says 'они стали роптать на хозяина' (they began to grumble against the landowner)."
+  },
+  {
+   "id": "r5",
+   "ru": "Так вот, последние будут первыми, и первые последними.",
+   "question": "How does Jesus summarize the point of the parable?",
+   "options": [
+    "The last will be first, and the first last",
+    "The rich will inherit the kingdom",
+    "Only the first workers deserve pay",
+    "Workers should never complain"
+   ],
+   "correct": "The last will be first, and the first last",
+   "explain": "Jesus concludes, 'последние будут первыми, и первые последними' (the last will be first, and the first last)."
+  },
+  {
+   "id": "r6",
+   "ru": "Они приговорят Его к смерти и отдадут язычникам наглумление, бичевание и распятие.",
+   "question": "What did Jesus predict would happen to him in Jerusalem?",
+   "options": [
+    "He would be condemned to death and handed over to the Gentiles to be mocked, flogged, and crucified",
+    "He would be crowned king",
+    "He would be exiled from the city",
+    "He would be made a member of the Sanhedrin"
+   ],
+   "correct": "He would be condemned to death and handed over to the Gentiles to be mocked, flogged, and crucified",
+   "explain": "Jesus said he would be condemned to death and handed 'язычникам на глумление, бичевание и распятие' (to the Gentiles to be mocked, flogged, and crucified)."
+  },
+  {
+   "id": "r7",
+   "ru": "Вели, чтобы оба мои сына сели один по правую, а другой по левую руку от тебя в твоем царстве.",
+   "question": "What did the mother of Zebedee's sons ask Jesus?",
+   "options": [
+    "That her two sons sit at his right and left hand in his kingdom",
+    "That her sons be forgiven their sins",
+    "That her sons be healed of illness",
+    "That her sons become high priests"
+   ],
+   "correct": "That her two sons sit at his right and left hand in his kingdom",
+   "explain": "She asked that her two sons 'сели один по правую, а другой по левую руку' from him in his kingdom."
+  },
+  {
+   "id": "r8",
+   "ru": "кто хочет стать среди вас самым великим, должен быть вам слугой, и кто хочет быть среди вас первым, пусть будет вам слугой",
+   "question": "According to Jesus, how does one become great among the disciples?",
+   "options": [
+    "By becoming a servant to others",
+    "By ruling over others like the pagan kings",
+    "By accumulating wealth",
+    "By being the eldest"
+   ],
+   "correct": "By becoming a servant to others",
+   "explain": "Jesus said whoever wants to be great 'должен быть вам слугой' (must be your servant)."
+  },
+  {
+   "id": "r9",
+   "ru": "Иисусу стало их жаль, и он прикоснулся к их глазам. Слепые сразу же обрели зрение и пошли за ним.",
+   "question": "What happened after Jesus touched the eyes of the two blind men?",
+   "options": [
+    "They immediately received their sight and followed him",
+    "They fell asleep",
+    "They asked for money instead",
+    "Nothing changed until the next day"
+   ],
+   "correct": "They immediately received their sight and followed him",
+   "explain": "The text says 'Слепые сразу же обрели зрение и пошли за ним' (the blind men immediately received their sight and followed him)."
+  }
+ ]
 }

@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Нааман был военачальником ___ Арама.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царя",
-      "case": "Родительный (Genitive)",
-      "translation": "Naaman was the commander of the king of Syria's army.",
-      "explain": "The genitive case shows possession — the army of the king."
-    },
-    {
-      "id": "c2",
-      "sentence": "Отряды арамеев взяли в плен маленькую ___ из Израиля.",
-      "lemma": "девочка",
-      "options": ["девочка", "девочки", "девочке", "девочку"],
-      "correct": "девочку",
-      "case": "Винительный (Accusative)",
-      "translation": "The Aramean forces took captive a little girl from the land of Israel.",
-      "explain": "The accusative case is used for the direct object of the verb 'взяли' (took)."
-    },
-    {
-      "id": "c3",
-      "sentence": "Она сказала госпоже, если бы только моему господину повидать ___.",
-      "lemma": "пророк",
-      "options": ["пророк", "пророка", "пророку", "пророком"],
-      "correct": "пророка",
-      "case": "Родительный (Genitive)",
-      "translation": "She said to her mistress, 'If only my master could see the prophet...'",
-      "explain": "The infinitive 'повидать' (to see) governs the accusative, but here we need the genitive to complete the phrase."
-    },
-    {
-      "id": "c4",
-      "sentence": "И Нааман пошел, взяв с собой десять талантов серебра и десять смен ___.",
-      "lemma": "одежда",
-      "options": ["одежда", "одежды", "одежде", "одеждой"],
-      "correct": "одежды",
-      "case": "Родительный (Genitive)",
-      "translation": "And Naaman went, taking with him ten talents of silver and ten changes of clothing.",
-      "explain": "The genitive case is used after numbers in expressions of quantity."
-    },
-    {
-      "id": "c5",
-      "sentence": "Елисей отправил посланца сказать ему, пойди, омойся семь раз в ___.",
-      "lemma": "Иордан",
-      "options": ["Иордан", "Иордана", "Иордане", "Иорданом"],
-      "correct": "Иордане",
-      "case": "Предложный (Prepositional)",
-      "translation": "Elisha sent a messenger to him, saying, 'Go and wash in the Jordan seven times...'",
-      "explain": "The preposition в (in) governs the prepositional case when indicating location."
-    },
-    {
-      "id": "c6",
-      "sentence": "Разве Авана и Фарфар, реки ___, не лучше всех вод Израиля?",
-      "lemma": "Дамаск",
-      "options": ["Дамаск", "Дамаска", "Дамаску", "Дамаском"],
-      "correct": "Дамаска",
-      "case": "Родительный (Genitive)",
-      "translation": "Are not Abanah and Pharpar, the rivers of Damascus, better than all the waters of Israel?",
-      "explain": "The genitive case shows possession — the rivers of Damascus."
-    },
-    {
-      "id": "c7",
-      "sentence": "Тогда он пошел и семь раз окунулся в ___ как сказал ему Божий человек.",
-      "lemma": "Иордан",
-      "options": ["Иордан", "Иордана", "Иордане", "Иорданом"],
-      "correct": "Иордан",
-      "case": "Винительный (Accusative)",
-      "translation": "Then he went down, and dipped himself seven times in the Jordan, as the man of God had said to him.",
-      "explain": "The accusative case is used for the direct object of the verb 'окунулся' (dipped)."
-    },
-    {
-      "id": "c8",
-      "sentence": "Нааман со своими слугами вернулся к Божьему ___, он встал перед ним и сказал.",
-      "lemma": "человек",
-      "options": ["человек", "человека", "человеку", "человеком"],
-      "correct": "человеку",
-      "case": "Дательный (Dative)",
-      "translation": "Naaman returned to the man of God with all his company.",
-      "explain": "The preposition к (to) governs the dative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Нааман был военачальником царя Арама. Он был великим и уважаемым человеком в глазах своего господина, потому что через него Господь даровал Араму победу.",
-      "question": "Why was Naaman honored by his master, the king of Syria?",
-      "options": ["Because of his wealth", "Because the Lord had given Syria victory through him", "Because he was from a noble family", "Because he was a skilled diplomat"],
-      "correct": "Because the Lord had given Syria victory through him",
-      "explain": "The text states 'потому что через него Господь даровал Араму победу' — because through him the Lord had given Syria victory."
-    },
-    {
-      "id": "r2",
-      "ru": "Отряды арамеев во время одного из набегов взяли в Израиле в плен маленькую девочку, и она служила жене Наамана.",
-      "question": "Who did the Syrian raiders capture during one of their raids?",
-      "options": ["A young prophet", "A priest from Jerusalem", "A little girl from Israel", "A merchant's son"],
-      "correct": "A little girl from Israel",
-      "explain": "The text says 'взяли в Израиле в плен маленькую девочку' — they took a little girl from Israel captive."
-    },
-    {
-      "id": "r3",
-      "ru": "Когда царь Израиля прочитал это письмо, он разорвал на себе одежду и сказал, «Разве я бог, чтобы умерщвлять и оживлять?»",
-      "question": "Why did the king of Israel tear his clothes when he read the letter?",
-      "options": ["He was angry at the content", "He thought the request was impossible — that only God could heal leprosy", "He was sad about the situation", "He was showing respect for Naaman"],
-      "correct": "He thought the request was impossible — that only God could heal leprosy",
-      "explain": "The king asked 'Разве я бог, чтобы умерщвлять и оживлять?' — Am I God, to kill and make alive?"
-    },
-    {
-      "id": "r4",
-      "ru": "Елисей отправил посланца сказать ему, «Пойди, омойся семь раз в Иордане, твое тело исцелится, и ты станешь чист».",
-      "question": "What did Elisha tell Naaman to do to be healed?",
-      "options": ["Pray to God in the temple", "Bring an offering to the prophet", "Wash seven times in the Jordan River", "Fast for forty days"],
-      "correct": "Wash seven times in the Jordan River",
-      "explain": "The text states 'Пойди, омойся семь раз в Иордане' — Go wash seven times in the Jordan."
-    },
-    {
-      "id": "r5",
-      "ru": "Его слуги подошли к нему и сказали, «Отец, если бы пророк сказал тебе сделать нечто великое, разве бы ты этого не сделал?»",
-      "question": "What argument did Naaman's servants use to convince him to wash in the Jordan?",
-      "options": ["That the Jordan was closer than other rivers", "That if the prophet had asked for something difficult, he would have done it, so why not do something simple like washing", "That God would be angry if he refused", "That other kings had already been healed there"],
-      "correct": "That if the prophet had asked for something difficult, he would have done it, so why not do something simple like washing",
-      "explain": "The servants said if the prophet had asked for something great, he would have done it, so he should certainly do the simple act of washing."
-    },
-    {
-      "id": "r6",
-      "ru": "Геезий, слуга Елисея, Божьего человека, сказал себе. Мой господин отпустил этого арамея Наамана слишком легко, не взяв у него никаких даров.",
-      "question": "Why did Gehazi decide to run after Naaman?",
-      "options": ["To deliver a message from Elisha", "Because he thought Elisha had been too lenient in not taking gifts from Naaman", "To warn Naaman of danger", "To invite him back for another meeting"],
-      "correct": "Because he thought Elisha had been too lenient in not taking gifts from Naaman",
-      "explain": "Gehazi said 'Мой господин отпустил этого арамея Наамана слишком легко, не взяв у него никаких даров' — My master has spared this Naaman in not receiving gifts from him."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Нааман был военачальником ___ Арама.",
+   "lemma": "царь",
+   "options": [
+    "царь",
+    "царя",
+    "царю",
+    "царем"
+   ],
+   "correct": "царя",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive case shows possession — the army of the king."
+  },
+  {
+   "id": "c2",
+   "sentence": "Отряды арамеев взяли в плен маленькую ___ из Израиля.",
+   "lemma": "девочка",
+   "options": [
+    "девочка",
+    "девочки",
+    "девочке",
+    "девочку"
+   ],
+   "correct": "девочку",
+   "case": "Винительный (Accusative)",
+   "explain": "The accusative case is used for the direct object of the verb 'взяли' (took)."
+  },
+  {
+   "id": "c3",
+   "sentence": "Она сказала госпоже, если бы только моему господину повидать ___.",
+   "lemma": "пророк",
+   "options": [
+    "пророк",
+    "пророка",
+    "пророку",
+    "пророком"
+   ],
+   "correct": "пророка",
+   "case": "Родительный (Genitive)",
+   "explain": "The infinitive 'повидать' (to see) governs the accusative, but here we need the genitive to complete the phrase."
+  },
+  {
+   "id": "c4",
+   "sentence": "И Нааман пошел, взяв с собой десять талантов серебра и десять смен ___.",
+   "lemma": "одежда",
+   "options": [
+    "одежда",
+    "одежды",
+    "одежде",
+    "одеждой"
+   ],
+   "correct": "одежды",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive case is used after numbers in expressions of quantity."
+  },
+  {
+   "id": "c5",
+   "sentence": "Елисей отправил посланца сказать ему, пойди, омойся семь раз в ___.",
+   "lemma": "Иордан",
+   "options": [
+    "Иордан",
+    "Иордана",
+    "Иордане",
+    "Иорданом"
+   ],
+   "correct": "Иордане",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в (in) governs the prepositional case when indicating location."
+  },
+  {
+   "id": "c6",
+   "sentence": "Разве Авана и Фарфар, реки ___, не лучше всех вод Израиля?",
+   "lemma": "Дамаск",
+   "options": [
+    "Дамаск",
+    "Дамаска",
+    "Дамаску",
+    "Дамаском"
+   ],
+   "correct": "Дамаска",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive case shows possession — the rivers of Damascus."
+  },
+  {
+   "id": "c7",
+   "sentence": "Тогда он пошел и семь раз окунулся в ___ как сказал ему Божий человек.",
+   "lemma": "Иордан",
+   "options": [
+    "Иордан",
+    "Иордана",
+    "Иордане",
+    "Иорданом"
+   ],
+   "correct": "Иордан",
+   "case": "Винительный (Accusative)",
+   "explain": "The accusative case is used for the direct object of the verb 'окунулся' (dipped)."
+  },
+  {
+   "id": "c8",
+   "sentence": "Нааман со своими слугами вернулся к Божьему ___, он встал перед ним и сказал.",
+   "lemma": "человек",
+   "options": [
+    "человек",
+    "человека",
+    "человеку",
+    "человеком"
+   ],
+   "correct": "человеку",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition к (to) governs the dative case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Нааман был военачальником царя Арама. Он был великим и уважаемым человеком в глазах своего господина, потому что через него Господь даровал Араму победу.",
+   "question": "Why was Naaman honored by his master, the king of Syria?",
+   "options": [
+    "Because of his wealth",
+    "Because the Lord had given Syria victory through him",
+    "Because he was from a noble family",
+    "Because he was a skilled diplomat"
+   ],
+   "correct": "Because the Lord had given Syria victory through him",
+   "explain": "The text states 'потому что через него Господь даровал Араму победу' — because through him the Lord had given Syria victory."
+  },
+  {
+   "id": "r2",
+   "ru": "Отряды арамеев во время одного из набегов взяли в Израиле в плен маленькую девочку, и она служила жене Наамана.",
+   "question": "Who did the Syrian raiders capture during one of their raids?",
+   "options": [
+    "A young prophet",
+    "A priest from Jerusalem",
+    "A little girl from Israel",
+    "A merchant's son"
+   ],
+   "correct": "A little girl from Israel",
+   "explain": "The text says 'взяли в Израиле в плен маленькую девочку' — they took a little girl from Israel captive."
+  },
+  {
+   "id": "r3",
+   "ru": "Когда царь Израиля прочитал это письмо, он разорвал на себе одежду и сказал, «Разве я бог, чтобы умерщвлять и оживлять?»",
+   "question": "Why did the king of Israel tear his clothes when he read the letter?",
+   "options": [
+    "He was angry at the content",
+    "He thought the request was impossible — that only God could heal leprosy",
+    "He was sad about the situation",
+    "He was showing respect for Naaman"
+   ],
+   "correct": "He thought the request was impossible — that only God could heal leprosy",
+   "explain": "The king asked 'Разве я бог, чтобы умерщвлять и оживлять?' — Am I God, to kill and make alive?"
+  },
+  {
+   "id": "r4",
+   "ru": "Елисей отправил посланца сказать ему, «Пойди, омойся семь раз в Иордане, твое тело исцелится, и ты станешь чист».",
+   "question": "What did Elisha tell Naaman to do to be healed?",
+   "options": [
+    "Pray to God in the temple",
+    "Bring an offering to the prophet",
+    "Wash seven times in the Jordan River",
+    "Fast for forty days"
+   ],
+   "correct": "Wash seven times in the Jordan River",
+   "explain": "The text states 'Пойди, омойся семь раз в Иордане' — Go wash seven times in the Jordan."
+  },
+  {
+   "id": "r5",
+   "ru": "Его слуги подошли к нему и сказали, «Отец, если бы пророк сказал тебе сделать нечто великое, разве бы ты этого не сделал?»",
+   "question": "What argument did Naaman's servants use to convince him to wash in the Jordan?",
+   "options": [
+    "That the Jordan was closer than other rivers",
+    "That if the prophet had asked for something difficult, he would have done it, so why not do something simple like washing",
+    "That God would be angry if he refused",
+    "That other kings had already been healed there"
+   ],
+   "correct": "That if the prophet had asked for something difficult, he would have done it, so why not do something simple like washing",
+   "explain": "The servants said if the prophet had asked for something great, he would have done it, so he should certainly do the simple act of washing."
+  },
+  {
+   "id": "r6",
+   "ru": "Геезий, слуга Елисея, Божьего человека, сказал себе. Мой господин отпустил этого арамея Наамана слишком легко, не взяв у него никаких даров.",
+   "question": "Why did Gehazi decide to run after Naaman?",
+   "options": [
+    "To deliver a message from Elisha",
+    "Because he thought Elisha had been too lenient in not taking gifts from Naaman",
+    "To warn Naaman of danger",
+    "To invite him back for another meeting"
+   ],
+   "correct": "Because he thought Elisha had been too lenient in not taking gifts from Naaman",
+   "explain": "Gehazi said 'Мой господин отпустил этого арамея Наамана слишком легко, не взяв у него никаких даров' — My master has spared this Naaman in not receiving gifts from him."
+  }
+ ]
 }

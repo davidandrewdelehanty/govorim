@@ -1,130 +1,194 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ взял себе жен Исханана, Аду, дочь Хета-Илона, Агалеваму, дочь Анны и внучку Хевея-Цевиона.",
-      "lemma": "Исав",
-      "options": ["Исав", "Исава", "Исаву", "Исавом"],
-      "correct": "Исав",
-      "case": "Именительный (Nominative)",
-      "translation": "Esau took as his wives Ishcanana, Adah the daughter of Hittite-Elon, Oholibamah the daughter of Anah and granddaughter of Hivite-Zibeon.",
-      "explain": "Именительный падеж — «Исав» это подлежащее предложения, отвечающее на вопрос «кто взял жён?»."
-    },
-    {
-      "id": "c2",
-      "sentence": "Исав перебрался в другую землю на некоторое расстояние от своего ___ Иакова.",
-      "lemma": "брат",
-      "options": ["брат", "брата", "брату", "братом"],
-      "correct": "брата",
-      "case": "Родительный (Genitive)",
-      "translation": "Esau moved to another land some distance from his brother Jacob.",
-      "explain": "Родительный падеж — предлог «от» требует родительного падежа (от брата)."
-    },
-    {
-      "id": "c3",
-      "sentence": "У сына Исавы Лефазы была наложница по ___ Тимна, которая родила ему Амалика.",
-      "lemma": "имя",
-      "options": ["имя", "имени", "именем", "имена"],
-      "correct": "имени",
-      "case": "Дательный (Dative)",
-      "translation": "Esau's son Eliphaz had a concubine named Timna, who bore him Amalek.",
-      "explain": "Дательный падеж — устойчивое выражение «по имени» требует дательного падежа после предлога «по»."
-    },
-    {
-      "id": "c4",
-      "sentence": "Исав перебрался в другую ___ на некоторое расстояние от своего брата Иакова.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землю"],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "Esau moved to another land some distance from his brother Jacob.",
-      "explain": "Винительный падеж — предлог «в» при обозначении направления движения (куда?) требует винительного падежа (в землю)."
-    },
-    {
-      "id": "c5",
-      "sentence": "После смерти Беллы ___ вместо него стал Иавав, сын Зираха из Боцры.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царём", "царю"],
-      "correct": "царём",
-      "case": "Творительный (Instrumental)",
-      "translation": "After the death of Bela, Jobab son of Zerah of Bozrah became king in his place.",
-      "explain": "Творительный падеж — глагол «стать» требует творительного падежа при обозначении новой роли (стал царём)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Исав взял всё имущество, которое он приобрёл в ___, и перебрался в другую землю.",
-      "lemma": "Ханаан",
-      "options": ["Ханаан", "Ханаана", "Ханаане", "Ханааном"],
-      "correct": "Ханаане",
-      "case": "Предложный (Prepositional)",
-      "translation": "Esau took all the possessions that he had acquired in Canaan, and moved to another land.",
-      "explain": "Предложный падеж — предлог «в» при обозначении места (где?) требует предложного падежа (в Ханаане)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Исав взял себе жен Исханана, Аду, дочь Хета-Илона, Агалеваму, дочь Анны и внучку Хевея-Цевиона, а также Басимату, дочь Измаила, сестру Невайота.",
-      "question": "Whose daughter was Ada, one of Esau's wives?",
-      "options": ["Elon the Hittite", "Ishmael", "Anah", "Zibeon"],
-      "correct": "Elon the Hittite",
-      "explain": "The text says Ada was 'дочь Хета-Илона' — the daughter of Hittite-Elon."
-    },
-    {
-      "id": "r2",
-      "ru": "Ада родила Исаву Элифаза, Басимата родила Рагуила, Агалевама родила Ешуа, Ялама и Караха.",
-      "question": "Which son did Adah bear to Esau?",
-      "options": ["Elifaz", "Raguil", "Yeshua", "Yalam"],
-      "correct": "Elifaz",
-      "explain": "The text states 'Ада родила Исаву Элифаза' — Adah bore Elifaz to Esau."
-    },
-    {
-      "id": "r3",
-      "ru": "потому что у них было слишком много добра, чтобы им оставаться вместе.",
-      "question": "Why did Esau move away from Jacob?",
-      "options": ["Because they had too much livestock and possessions to stay together", "Because Jacob asked him to leave", "Because of a famine", "Because of a war between them"],
-      "correct": "Because they had too much livestock and possessions to stay together",
-      "explain": "The text explains they had too much wealth to remain together in the same land."
-    },
-    {
-      "id": "r4",
-      "ru": "Так Исав, он же Эдом, поселился в Нагорьях Сиира.",
-      "question": "Where did Esau settle?",
-      "options": ["The hill country of Seir", "The land of Canaan", "The land of Moab", "The city of Bozrah"],
-      "correct": "The hill country of Seir",
-      "explain": "The text says Esau settled 'в Нагорьях Сиира' — in the hill country of Seir."
-    },
-    {
-      "id": "r5",
-      "ru": "У сына Исавы Лефазы была наложница по имени Тимна, которая родила ему Амалика.",
-      "question": "Who was Timna?",
-      "options": ["A concubine of Eliphaz who bore him Amalek", "The wife of Esau", "The daughter of Anah", "A queen of Edom"],
-      "correct": "A concubine of Eliphaz who bore him Amalek",
-      "explain": "The text says Timna was a concubine of Eliphaz who bore him Amalek."
-    },
-    {
-      "id": "r6",
-      "ru": "Это тот Анна, который открыл в пустыне горячие ключи, когда пас ослов своего отца Цевиона.",
-      "question": "What did Anah discover in the wilderness?",
-      "options": ["Hot springs", "Gold mines", "A river", "A cave"],
-      "correct": "Hot springs",
-      "explain": "The text says Anah 'открыл в пустыне горячие ключи' — discovered hot springs in the wilderness."
-    },
-    {
-      "id": "r7",
-      "ru": "Белла, сын Беора, был царем в Эдоме.",
-      "question": "Who was the first king of Edom mentioned in the text?",
-      "options": ["Bela son of Beor", "Jobab son of Zerah", "Husham of the Temanites", "Hadad son of Bedad"],
-      "correct": "Bela son of Beor",
-      "explain": "The text introduces the kings of Edom with 'Белла, сын Беора, был царем в Эдоме' — Bela son of Beor was king in Edom."
-    },
-    {
-      "id": "r8",
-      "ru": "Это был Исав, отец Эдемитян.",
-      "question": "How does the chapter conclude?",
-      "options": ["By identifying Esau as the father of the Edomites", "By describing Esau's death", "By listing Esau's grandchildren", "By narrating a battle"],
-      "correct": "By identifying Esau as the father of the Edomites",
-      "explain": "The chapter's final sentence states 'Это был Исав, отец Эдемитян' — this was Esau, the father of the Edomites."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "___ взял себе жен Исханана, Аду, дочь Хета-Илона, Агалеваму, дочь Анны и внучку Хевея-Цевиона.",
+   "lemma": "Исав",
+   "options": [
+    "Исав",
+    "Исава",
+    "Исаву",
+    "Исавом"
+   ],
+   "correct": "Исав",
+   "case": "Именительный (Nominative)",
+   "explain": "Именительный падеж — «Исав» это подлежащее предложения, отвечающее на вопрос «кто взял жён?»."
+  },
+  {
+   "id": "c2",
+   "sentence": "Исав перебрался в другую землю на некоторое расстояние от своего ___ Иакова.",
+   "lemma": "брат",
+   "options": [
+    "брат",
+    "брата",
+    "брату",
+    "братом"
+   ],
+   "correct": "брата",
+   "case": "Родительный (Genitive)",
+   "explain": "Родительный падеж — предлог «от» требует родительного падежа (от брата)."
+  },
+  {
+   "id": "c3",
+   "sentence": "У сына Исавы Лефазы была наложница по ___ Тимна, которая родила ему Амалика.",
+   "lemma": "имя",
+   "options": [
+    "имя",
+    "имени",
+    "именем",
+    "имена"
+   ],
+   "correct": "имени",
+   "case": "Дательный (Dative)",
+   "explain": "Дательный падеж — устойчивое выражение «по имени» требует дательного падежа после предлога «по»."
+  },
+  {
+   "id": "c4",
+   "sentence": "Исав перебрался в другую ___ на некоторое расстояние от своего брата Иакова.",
+   "lemma": "земля",
+   "options": [
+    "земля",
+    "земли",
+    "земле",
+    "землю"
+   ],
+   "correct": "землю",
+   "case": "Винительный (Accusative)",
+   "explain": "Винительный падеж — предлог «в» при обозначении направления движения (куда?) требует винительного падежа (в землю)."
+  },
+  {
+   "id": "c5",
+   "sentence": "После смерти Беллы ___ вместо него стал Иавав, сын Зираха из Боцры.",
+   "lemma": "царь",
+   "options": [
+    "царь",
+    "царя",
+    "царём",
+    "царю"
+   ],
+   "correct": "царём",
+   "case": "Творительный (Instrumental)",
+   "explain": "Творительный падеж — глагол «стать» требует творительного падежа при обозначении новой роли (стал царём)."
+  },
+  {
+   "id": "c6",
+   "sentence": "Исав взял всё имущество, которое он приобрёл в ___, и перебрался в другую землю.",
+   "lemma": "Ханаан",
+   "options": [
+    "Ханаан",
+    "Ханаана",
+    "Ханаане",
+    "Ханааном"
+   ],
+   "correct": "Ханаане",
+   "case": "Предложный (Prepositional)",
+   "explain": "Предложный падеж — предлог «в» при обозначении места (где?) требует предложного падежа (в Ханаане)."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Исав взял себе жен Исханана, Аду, дочь Хета-Илона, Агалеваму, дочь Анны и внучку Хевея-Цевиона, а также Басимату, дочь Измаила, сестру Невайота.",
+   "question": "Whose daughter was Ada, one of Esau's wives?",
+   "options": [
+    "Elon the Hittite",
+    "Ishmael",
+    "Anah",
+    "Zibeon"
+   ],
+   "correct": "Elon the Hittite",
+   "explain": "The text says Ada was 'дочь Хета-Илона' — the daughter of Hittite-Elon."
+  },
+  {
+   "id": "r2",
+   "ru": "Ада родила Исаву Элифаза, Басимата родила Рагуила, Агалевама родила Ешуа, Ялама и Караха.",
+   "question": "Which son did Adah bear to Esau?",
+   "options": [
+    "Elifaz",
+    "Raguil",
+    "Yeshua",
+    "Yalam"
+   ],
+   "correct": "Elifaz",
+   "explain": "The text states 'Ада родила Исаву Элифаза' — Adah bore Elifaz to Esau."
+  },
+  {
+   "id": "r3",
+   "ru": "потому что у них было слишком много добра, чтобы им оставаться вместе.",
+   "question": "Why did Esau move away from Jacob?",
+   "options": [
+    "Because they had too much livestock and possessions to stay together",
+    "Because Jacob asked him to leave",
+    "Because of a famine",
+    "Because of a war between them"
+   ],
+   "correct": "Because they had too much livestock and possessions to stay together",
+   "explain": "The text explains they had too much wealth to remain together in the same land."
+  },
+  {
+   "id": "r4",
+   "ru": "Так Исав, он же Эдом, поселился в Нагорьях Сиира.",
+   "question": "Where did Esau settle?",
+   "options": [
+    "The hill country of Seir",
+    "The land of Canaan",
+    "The land of Moab",
+    "The city of Bozrah"
+   ],
+   "correct": "The hill country of Seir",
+   "explain": "The text says Esau settled 'в Нагорьях Сиира' — in the hill country of Seir."
+  },
+  {
+   "id": "r5",
+   "ru": "У сына Исавы Лефазы была наложница по имени Тимна, которая родила ему Амалика.",
+   "question": "Who was Timna?",
+   "options": [
+    "A concubine of Eliphaz who bore him Amalek",
+    "The wife of Esau",
+    "The daughter of Anah",
+    "A queen of Edom"
+   ],
+   "correct": "A concubine of Eliphaz who bore him Amalek",
+   "explain": "The text says Timna was a concubine of Eliphaz who bore him Amalek."
+  },
+  {
+   "id": "r6",
+   "ru": "Это тот Анна, который открыл в пустыне горячие ключи, когда пас ослов своего отца Цевиона.",
+   "question": "What did Anah discover in the wilderness?",
+   "options": [
+    "Hot springs",
+    "Gold mines",
+    "A river",
+    "A cave"
+   ],
+   "correct": "Hot springs",
+   "explain": "The text says Anah 'открыл в пустыне горячие ключи' — discovered hot springs in the wilderness."
+  },
+  {
+   "id": "r7",
+   "ru": "Белла, сын Беора, был царем в Эдоме.",
+   "question": "Who was the first king of Edom mentioned in the text?",
+   "options": [
+    "Bela son of Beor",
+    "Jobab son of Zerah",
+    "Husham of the Temanites",
+    "Hadad son of Bedad"
+   ],
+   "correct": "Bela son of Beor",
+   "explain": "The text introduces the kings of Edom with 'Белла, сын Беора, был царем в Эдоме' — Bela son of Beor was king in Edom."
+  },
+  {
+   "id": "r8",
+   "ru": "Это был Исав, отец Эдемитян.",
+   "question": "How does the chapter conclude?",
+   "options": [
+    "By identifying Esau as the father of the Edomites",
+    "By describing Esau's death",
+    "By listing Esau's grandchildren",
+    "By narrating a battle"
+   ],
+   "correct": "By identifying Esau as the father of the Edomites",
+   "explain": "The chapter's final sentence states 'Это был Исав, отец Эдемитян' — this was Esau, the father of the Edomites."
+  }
+ ]
 }

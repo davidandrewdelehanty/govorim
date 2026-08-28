@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Был некий знатный ___ из рода Вениамина.",
-      "lemma": "человек",
-      "options": ["человек", "человека", "человеку", "человеком"],
-      "correct": "человек",
-      "case": "Именительный (Nominative)",
-      "translation": "There was a certain noble man of Benjamin.",
-      "explain": "The noun is the grammatical subject of the sentence, so it takes the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Саул пошел искать ___.",
-      "lemma": "ослица",
-      "options": ["ослица", "ослиц", "ослице", "ослицу"],
-      "correct": "ослицу",
-      "case": "Винительный (Accusative)",
-      "translation": "Saul went to search for the donkeys.",
-      "explain": "The transitive verb искать (to search for) governs the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Вместе со слугой они прошли через ___ Ефрема.",
-      "lemma": "нагорье",
-      "options": ["нагорье", "нагорья", "нагорью", "нагорьем"],
-      "correct": "нагорье",
-      "case": "Именительный (Nominative)",
-      "translation": "Together with his servant, they passed through the hill country of Ephraim.",
-      "explain": "The noun is used as the object of the preposition через, which requires the accusative case; here used in its nominative form within the phrase."
-    },
-    {
-      "id": "c4",
-      "sentence": "В этом городе есть ___ Бога.",
-      "lemma": "человек",
-      "options": ["человек", "человека", "человеку", "человеком"],
-      "correct": "человек",
-      "case": "Именительный (Nominative)",
-      "translation": "There is a man of God in this city.",
-      "explain": "After the verb есть (there is), the predicate nominative takes the nominative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "У меня есть четверть шекеля ___.",
-      "lemma": "серебро",
-      "options": ["серебро", "серебра", "серебру", "серебром"],
-      "correct": "серебра",
-      "case": "Родительный (Genitive)",
-      "translation": "I have a quarter shekel of silver.",
-      "explain": "The partitive genitive is used after quantity expressions like 'четверть' (a quarter)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Поднимаясь в город на холм, они встретили девушек, которые шли за ___.",
-      "lemma": "вода",
-      "options": ["вода", "воды", "воде", "водой"],
-      "correct": "водой",
-      "case": "Творительный (Instrumental)",
-      "translation": "Going up to the city on the hill, they met young women who were going to draw water.",
-      "explain": "The preposition за (for, to fetch) here governs the instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Он был вождем своего ___.",
-      "lemma": "народ",
-      "options": ["народ", "народа", "народу", "народом"],
-      "correct": "народа",
-      "case": "Родительный (Genitive)",
-      "translation": "He was a leader of his people.",
-      "explain": "The preposition of possession (genitive) is used after the noun 'вождь' to show 'leader of.'"
-    },
-    {
-      "id": "c8",
-      "sentence": "Он избавит мой народ из руки ___.",
-      "lemma": "враг",
-      "options": ["враг", "врага", "врагу", "врагом"],
-      "correct": "врага",
-      "case": "Родительный (Genitive)",
-      "translation": "He will save my people from the hand of the enemy.",
-      "explain": "The preposition из (from) governs the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Был некий знатный человек из рода Вениамина, которого звали Киш, сын Авиила.",
-      "question": "Who was Kish, and from which tribe was he?",
-      "options": ["A noble man from Benjamin, son of Abiel", "A prophet from Judah", "A priest from Levi", "A king from Ephraim"],
-      "correct": "A noble man from Benjamin, son of Abiel",
-      "explain": "The text describes Kish as a noble man from Benjamin, whose father was Abiel."
-    },
-    {
-      "id": "r2",
-      "ru": "Саул был красивый юноша, красивее его не было среди израилетян.",
-      "question": "How is Saul described in terms of physical appearance?",
-      "options": ["Handsome and taller than other Israelites", "Short and dark-skinned", "Weak and sickly", "Average in appearance"],
-      "correct": "Handsome and taller than other Israelites",
-      "explain": "The text states Saul was a handsome young man and there was no one more handsome among the Israelites."
-    },
-    {
-      "id": "r3",
-      "ru": "Когда они добрались до земли Цуф, Саул сказал слуге: давай пойдем назад.",
-      "question": "What did Saul suggest they do when they reached the land of Zuph?",
-      "options": ["Return home", "Continue searching for the donkeys", "Ask the people for help", "Go to the city to find water"],
-      "correct": "Return home",
-      "explain": "Saul said 'Let's return' because he was concerned his father would worry about them."
-    },
-    {
-      "id": "r4",
-      "ru": "Послушай, в этом городе есть Божий человек, он пользуется большим уважением, и все, что он говорит, сбывается.",
-      "question": "What does the servant say about the man of God in the city?",
-      "options": ["He is highly honored and everything he says comes true", "He is old and no longer helpful", "He has no real power or influence", "He is known for his dishonesty"],
-      "correct": "He is highly honored and everything he says comes true",
-      "explain": "The servant testifies that the man of God is held in high honor and all his words come to pass."
-    },
-    {
-      "id": "r5",
-      "ru": "Прежде в Израиле, если человек шел вопросить Бога, он говорил, пойдем к провидцу.",
-      "question": "What term was formerly used for someone who inquired of God?",
-      "options": ["A seer", "A priest", "A king", "A judge"],
-      "correct": "A seer",
-      "explain": "The text explains that in earlier times, those who inquired of God were called 'seers' (провидец)."
-    },
-    {
-      "id": "r6",
-      "ru": "А за день до прихода Саула Господь открыл Самуилу, завтра, приблизительно в это время, я пошлю тебе человека из земли Вениамина.",
-      "question": "What did the Lord reveal to Samuel the day before Saul arrived?",
-      "options": ["That He would send a man from Benjamin to be prince over Israel", "That Saul was seeking lost donkeys", "That the Philistines would attack", "That Samuel should anoint a new priest"],
-      "correct": "That He would send a man from Benjamin to be prince over Israel",
-      "explain": "The Lord told Samuel that the next day He would send a man from Benjamin whom Samuel should anoint as prince."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Был некий знатный ___ из рода Вениамина.",
+   "lemma": "человек",
+   "options": [
+    "человек",
+    "человека",
+    "человеку",
+    "человеком"
+   ],
+   "correct": "человек",
+   "case": "Именительный (Nominative)",
+   "explain": "The noun is the grammatical subject of the sentence, so it takes the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Саул пошел искать ___.",
+   "lemma": "ослица",
+   "options": [
+    "ослица",
+    "ослиц",
+    "ослице",
+    "ослицу"
+   ],
+   "correct": "ослицу",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb искать (to search for) governs the accusative case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Вместе со слугой они прошли через ___ Ефрема.",
+   "lemma": "нагорье",
+   "options": [
+    "нагорье",
+    "нагорья",
+    "нагорью",
+    "нагорьем"
+   ],
+   "correct": "нагорье",
+   "case": "Именительный (Nominative)",
+   "explain": "The noun is used as the object of the preposition через, which requires the accusative case; here used in its nominative form within the phrase."
+  },
+  {
+   "id": "c4",
+   "sentence": "В этом городе есть ___ Бога.",
+   "lemma": "человек",
+   "options": [
+    "человек",
+    "человека",
+    "человеку",
+    "человеком"
+   ],
+   "correct": "человек",
+   "case": "Именительный (Nominative)",
+   "explain": "After the verb есть (there is), the predicate nominative takes the nominative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "У меня есть четверть шекеля ___.",
+   "lemma": "серебро",
+   "options": [
+    "серебро",
+    "серебра",
+    "серебру",
+    "серебром"
+   ],
+   "correct": "серебра",
+   "case": "Родительный (Genitive)",
+   "explain": "The partitive genitive is used after quantity expressions like 'четверть' (a quarter)."
+  },
+  {
+   "id": "c6",
+   "sentence": "Поднимаясь в город на холм, они встретили девушек, которые шли за ___.",
+   "lemma": "вода",
+   "options": [
+    "вода",
+    "воды",
+    "воде",
+    "водой"
+   ],
+   "correct": "водой",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition за (for, to fetch) here governs the instrumental case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Он был вождем своего ___.",
+   "lemma": "народ",
+   "options": [
+    "народ",
+    "народа",
+    "народу",
+    "народом"
+   ],
+   "correct": "народа",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition of possession (genitive) is used after the noun 'вождь' to show 'leader of.'"
+  },
+  {
+   "id": "c8",
+   "sentence": "Он избавит мой народ из руки ___.",
+   "lemma": "враг",
+   "options": [
+    "враг",
+    "врага",
+    "врагу",
+    "врагом"
+   ],
+   "correct": "врага",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition из (from) governs the genitive case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Был некий знатный человек из рода Вениамина, которого звали Киш, сын Авиила.",
+   "question": "Who was Kish, and from which tribe was he?",
+   "options": [
+    "A noble man from Benjamin, son of Abiel",
+    "A prophet from Judah",
+    "A priest from Levi",
+    "A king from Ephraim"
+   ],
+   "correct": "A noble man from Benjamin, son of Abiel",
+   "explain": "The text describes Kish as a noble man from Benjamin, whose father was Abiel."
+  },
+  {
+   "id": "r2",
+   "ru": "Саул был красивый юноша, красивее его не было среди израилетян.",
+   "question": "How is Saul described in terms of physical appearance?",
+   "options": [
+    "Handsome and taller than other Israelites",
+    "Short and dark-skinned",
+    "Weak and sickly",
+    "Average in appearance"
+   ],
+   "correct": "Handsome and taller than other Israelites",
+   "explain": "The text states Saul was a handsome young man and there was no one more handsome among the Israelites."
+  },
+  {
+   "id": "r3",
+   "ru": "Когда они добрались до земли Цуф, Саул сказал слуге: давай пойдем назад.",
+   "question": "What did Saul suggest they do when they reached the land of Zuph?",
+   "options": [
+    "Return home",
+    "Continue searching for the donkeys",
+    "Ask the people for help",
+    "Go to the city to find water"
+   ],
+   "correct": "Return home",
+   "explain": "Saul said 'Let's return' because he was concerned his father would worry about them."
+  },
+  {
+   "id": "r4",
+   "ru": "Послушай, в этом городе есть Божий человек, он пользуется большим уважением, и все, что он говорит, сбывается.",
+   "question": "What does the servant say about the man of God in the city?",
+   "options": [
+    "He is highly honored and everything he says comes true",
+    "He is old and no longer helpful",
+    "He has no real power or influence",
+    "He is known for his dishonesty"
+   ],
+   "correct": "He is highly honored and everything he says comes true",
+   "explain": "The servant testifies that the man of God is held in high honor and all his words come to pass."
+  },
+  {
+   "id": "r5",
+   "ru": "Прежде в Израиле, если человек шел вопросить Бога, он говорил, пойдем к провидцу.",
+   "question": "What term was formerly used for someone who inquired of God?",
+   "options": [
+    "A seer",
+    "A priest",
+    "A king",
+    "A judge"
+   ],
+   "correct": "A seer",
+   "explain": "The text explains that in earlier times, those who inquired of God were called 'seers' (провидец)."
+  },
+  {
+   "id": "r6",
+   "ru": "А за день до прихода Саула Господь открыл Самуилу, завтра, приблизительно в это время, я пошлю тебе человека из земли Вениамина.",
+   "question": "What did the Lord reveal to Samuel the day before Saul arrived?",
+   "options": [
+    "That He would send a man from Benjamin to be prince over Israel",
+    "That Saul was seeking lost donkeys",
+    "That the Philistines would attack",
+    "That Samuel should anoint a new priest"
+   ],
+   "correct": "That He would send a man from Benjamin to be prince over Israel",
+   "explain": "The Lord told Samuel that the next day He would send a man from Benjamin whom Samuel should anoint as prince."
+  }
+ ]
 }

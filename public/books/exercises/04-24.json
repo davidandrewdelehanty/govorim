@@ -1,20 +1,196 @@
 {
-  "cases": [
-    {"id":"c1","sentence":"а повернулся ___ к пустыне","lemma":"лицо","options":["лицо","лица","лицу","лицом"],"correct":"лицом","case":"Творительный (Instrumental)","translation":"but he turned his face toward the wilderness","explain":"The verb «повернулся» (turned) takes the instrumental to express with what he turned."},
-    {"id":"c2","sentence":"как сады у ___","lemma":"река","options":["река","реки","реку","рекой"],"correct":"реки","case":"Родительный (Genitive)","translation":"like gardens by the river","explain":"The preposition «у» (by/beside) governs the genitive case."},
-    {"id":"c3","sentence":"точно кедры у ___","lemma":"вода","options":["вода","воды","вод","водами"],"correct":"вод","case":"Родительный (Genitive)","translation":"just like cedars beside the waters","explain":"The preposition «у» (beside) governs the genitive case, here plural."},
-    {"id":"c4","sentence":"Восходит звезда от ___","lemma":"Иаков","options":["Иаков","Иакова","Иакову","Иаковом"],"correct":"Иакова","case":"Родительный (Genitive)","translation":"A star rises out of Jacob","explain":"The preposition «от» (from/out of) governs the genitive case."},
-    {"id":"c5","sentence":"Поднимается скипетр от ___","lemma":"Израиль","options":["Израиль","Израиля","Израилю","Израилем"],"correct":"Израиля","case":"Родительный (Genitive)","translation":"A scepter rises out of Israel","explain":"The preposition «от» (from/out of) governs the genitive case."},
-    {"id":"c6","sentence":"свой дворец, полный ___ и золота","lemma":"серебро","options":["серебро","серебра","серебру","серебром"],"correct":"серебра","case":"Родительный (Genitive)","translation":"his palace, full of silver and gold","explain":"The adjective «полный» (full of) governs the genitive case."},
-    {"id":"c7","sentence":"я не смог бы приступить по ___ Господа","lemma":"веление","options":["веление","веления","велению","велением"],"correct":"велению","case":"Дательный (Dative)","translation":"I could not act contrary to the command of the Lord","explain":"The preposition «по» (according to) governs the dative case."},
-    {"id":"c8","sentence":"он сжал ___ и сказал ему","lemma":"кулак","options":["кулаки","кулаков","кулакам","кулаками"],"correct":"кулаки","case":"Винительный (Accusative)","translation":"he clenched his fists and said to him","explain":"The transitive verb «сжал» (clenched) takes a direct object in the accusative case."}
-  ],
-  "reading": [
-    {"id":"r1","ru":"Когда Валаам увидел, что Господу угодно благословлять Израиль, то он не пошел искать знамений, как раньше, а повернулся лицом к пустыне.","question":"What did Balaam not do this time?","options":["Seek omens","Build altars","Offer sacrifices","Pray"],"correct":"Seek omens","explain":"The text says he did not go to seek omens as before."},
-    {"id":"r2","ru":"Из Египта их вывел Бог.","question":"From where did God bring them out?","options":["Egypt","Aram","Moab","Canaan"],"correct":"Egypt","explain":"The text says God brought them out of Egypt."},
-    {"id":"r3","ru":"Восходит звезда от Иакова.","question":"What rises out of Jacob?","options":["A star","A sword","A throne","A city"],"correct":"A star","explain":"The text says a star rises out of Jacob."},
-    {"id":"r4","ru":"Они пожирают вражеские народы, дробят им кости, разят их стрелами.","question":"What do they do to enemy nations?","options":["Devour them and break their bones","Make peace with them","Enslave them","Ignore them"],"correct":"Devour them and break their bones","explain":"The text says they devour enemy nations and break their bones."},
-    {"id":"r5","ru":"Валаам собрался и пошел обратно к себе домой, и Валак тоже пошел своей дорогой.","question":"What happened at the end?","options":["Balaam and Balak each went their own way","They fought","They feasted","Balaam stayed with Balak"],"correct":"Balaam and Balak each went their own way","explain":"The text says Balaam returned home and Balak also went his own way."},
-    {"id":"r6","ru":"Валаам увидел Амалика и произнес пророчество «Первым был среди народов Амалик, но в будущем сгинет навек».","question":"What did Balaam prophesy about Amalek?","options":["He was first among nations but will perish","He will rule forever","He will be blessed","He will conquer Israel"],"correct":"He was first among nations but will perish","explain":"The text says Amalek was first among the nations but will perish in the end."}
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "а повернулся ___ к пустыне",
+   "lemma": "лицо",
+   "options": [
+    "лицо",
+    "лица",
+    "лицу",
+    "лицом"
+   ],
+   "correct": "лицом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The verb «повернулся» (turned) takes the instrumental to express with what he turned."
+  },
+  {
+   "id": "c2",
+   "sentence": "как сады у ___",
+   "lemma": "река",
+   "options": [
+    "река",
+    "реки",
+    "реку",
+    "рекой"
+   ],
+   "correct": "реки",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition «у» (by/beside) governs the genitive case."
+  },
+  {
+   "id": "c3",
+   "sentence": "точно кедры у ___",
+   "lemma": "вода",
+   "options": [
+    "вода",
+    "воды",
+    "вод",
+    "водами"
+   ],
+   "correct": "вод",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition «у» (beside) governs the genitive case, here plural."
+  },
+  {
+   "id": "c4",
+   "sentence": "Восходит звезда от ___",
+   "lemma": "Иаков",
+   "options": [
+    "Иаков",
+    "Иакова",
+    "Иакову",
+    "Иаковом"
+   ],
+   "correct": "Иакова",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition «от» (from/out of) governs the genitive case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Поднимается скипетр от ___",
+   "lemma": "Израиль",
+   "options": [
+    "Израиль",
+    "Израиля",
+    "Израилю",
+    "Израилем"
+   ],
+   "correct": "Израиля",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition «от» (from/out of) governs the genitive case."
+  },
+  {
+   "id": "c6",
+   "sentence": "свой дворец, полный ___ и золота",
+   "lemma": "серебро",
+   "options": [
+    "серебро",
+    "серебра",
+    "серебру",
+    "серебром"
+   ],
+   "correct": "серебра",
+   "case": "Родительный (Genitive)",
+   "explain": "The adjective «полный» (full of) governs the genitive case."
+  },
+  {
+   "id": "c7",
+   "sentence": "я не смог бы приступить по ___ Господа",
+   "lemma": "веление",
+   "options": [
+    "веление",
+    "веления",
+    "велению",
+    "велением"
+   ],
+   "correct": "велению",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition «по» (according to) governs the dative case."
+  },
+  {
+   "id": "c8",
+   "sentence": "он сжал ___ и сказал ему",
+   "lemma": "кулак",
+   "options": [
+    "кулаки",
+    "кулаков",
+    "кулакам",
+    "кулаками"
+   ],
+   "correct": "кулаки",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb «сжал» (clenched) takes a direct object in the accusative case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Когда Валаам увидел, что Господу угодно благословлять Израиль, то он не пошел искать знамений, как раньше, а повернулся лицом к пустыне.",
+   "question": "What did Balaam not do this time?",
+   "options": [
+    "Seek omens",
+    "Build altars",
+    "Offer sacrifices",
+    "Pray"
+   ],
+   "correct": "Seek omens",
+   "explain": "The text says he did not go to seek omens as before."
+  },
+  {
+   "id": "r2",
+   "ru": "Из Египта их вывел Бог.",
+   "question": "From where did God bring them out?",
+   "options": [
+    "Egypt",
+    "Aram",
+    "Moab",
+    "Canaan"
+   ],
+   "correct": "Egypt",
+   "explain": "The text says God brought them out of Egypt."
+  },
+  {
+   "id": "r3",
+   "ru": "Восходит звезда от Иакова.",
+   "question": "What rises out of Jacob?",
+   "options": [
+    "A star",
+    "A sword",
+    "A throne",
+    "A city"
+   ],
+   "correct": "A star",
+   "explain": "The text says a star rises out of Jacob."
+  },
+  {
+   "id": "r4",
+   "ru": "Они пожирают вражеские народы, дробят им кости, разят их стрелами.",
+   "question": "What do they do to enemy nations?",
+   "options": [
+    "Devour them and break their bones",
+    "Make peace with them",
+    "Enslave them",
+    "Ignore them"
+   ],
+   "correct": "Devour them and break their bones",
+   "explain": "The text says they devour enemy nations and break their bones."
+  },
+  {
+   "id": "r5",
+   "ru": "Валаам собрался и пошел обратно к себе домой, и Валак тоже пошел своей дорогой.",
+   "question": "What happened at the end?",
+   "options": [
+    "Balaam and Balak each went their own way",
+    "They fought",
+    "They feasted",
+    "Balaam stayed with Balak"
+   ],
+   "correct": "Balaam and Balak each went their own way",
+   "explain": "The text says Balaam returned home and Balak also went his own way."
+  },
+  {
+   "id": "r6",
+   "ru": "Валаам увидел Амалика и произнес пророчество «Первым был среди народов Амалик, но в будущем сгинет навек».",
+   "question": "What did Balaam prophesy about Amalek?",
+   "options": [
+    "He was first among nations but will perish",
+    "He will rule forever",
+    "He will be blessed",
+    "He will conquer Israel"
+   ],
+   "correct": "He was first among nations but will perish",
+   "explain": "The text says Amalek was first among the nations but will perish in the end."
+  }
+ ]
 }

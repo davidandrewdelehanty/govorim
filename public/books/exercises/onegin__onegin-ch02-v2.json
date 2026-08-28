@@ -1,1 +1,540 @@
-{"cases": [{"id": "c1", "sentence": "Её ___ звалась Татьяна…", "lemma": "сестра", "options": ["сестра", "сестры", "сестре", "сестрой"], "correct": "сестра", "case": "Именительный (Nominative)", "translation": "Her sister was called Tatiana", "explain": "Сестра is the grammatical subject of звалась (was called), so it stands in the nominative."}, {"id": "c2", "sentence": "Часто целый день одна сидела молча у ___.", "lemma": "окно", "options": ["окно", "окна", "окну", "окном"], "correct": "окна", "case": "Родительный (Genitive)", "translation": "Often she sat alone all day silently by the window", "explain": "The preposition у (at/by) always governs the genitive case, so окно becomes окна."}, {"id": "c3", "sentence": "Она ласкаться не умела к ___.", "lemma": "отец", "options": ["отец", "отца", "отцу", "отцом"], "correct": "отцу", "case": "Дательный (Dative)", "translation": "She did not know how to be affectionate to her father", "explain": "The preposition к (toward) always requires the dative case, so отец becomes отцу."}, {"id": "c4", "sentence": "Мужик ___ благословил.", "lemma": "судьба", "options": ["судьба", "судьбы", "судьбу", "судьбой"], "correct": "судьбу", "case": "Винительный (Accusative)", "translation": "The peasant blessed his fate", "explain": "Судьбу is the direct object of the transitive verb благословил (blessed), so it takes the accusative."}, {"id": "c5", "sentence": "Онегин ___ отворил.", "lemma": "шкаф", "options": ["шкафы", "шкафов", "шкафам", "шкафах"], "correct": "шкафы", "case": "Винительный (Accusative)", "translation": "Onegin opened the cupboards", "explain": "Шкафы is the plural direct object of the transitive verb отворил (opened), an inanimate accusative that matches the nominative form."}, {"id": "c6", "sentence": "Господский дом уединенный, горой от ветров огражденный, стоял над ___.", "lemma": "речка", "options": ["речка", "речки", "речку", "речкой"], "correct": "речкой", "case": "Творительный (Instrumental)", "translation": "The secluded manor house, shielded from the winds by a hill, stood above the little river", "explain": "The preposition над (above) governs the instrumental case, so речка becomes речкой."}, {"id": "c7", "sentence": "Он слушал Ленского с ___.", "lemma": "улыбка", "options": ["улыбка", "улыбки", "улыбку", "улыбкой"], "correct": "улыбкой", "case": "Творительный (Instrumental)", "translation": "He listened to Lensky with a smile", "explain": "The preposition с meaning 'with' governs the instrumental case, so улыбка becomes улыбкой."}, {"id": "c8", "sentence": "Он в том ___ поселился.", "lemma": "покой", "options": ["покой", "покоя", "покою", "покое"], "correct": "покое", "case": "Предложный (Prepositional)", "translation": "He settled into that chamber", "explain": "The preposition в indicating static location requires the prepositional case, so покой becomes покое."}], "reading": [{"id": "r1", "ru": "Деревня, где скучал Евгений, была прелестный уголок.", "question": "How is the village where Evgeny grew bored described?", "options": ["As a lovely little corner", "As a dangerous swamp", "As a crowded city", "As completely abandoned"], "correct": "As a lovely little corner", "explain": "The text calls the village where Evgeny was bored 'a lovely little corner' (прелестный уголок)."}, {"id": "r2", "ru": "Господский дом уединенный, горой от ветров огражденный, стоял над речкою.", "question": "Where was the manor house situated?", "options": ["Above a small river, shielded from the winds by a hill", "In the middle of a forest", "Beside a busy road", "On top of a mountain"], "correct": "Above a small river, shielded from the winds by a hill", "explain": "The house is described as standing above a little river, protected from winds by a hill."}, {"id": "r3", "ru": "Все это ныне обветшало, не знаю право почему.", "question": "What does the narrator say about the manor's grandeur by the time of the story?", "options": ["It had all fallen into disrepair", "It had been completely rebuilt", "It had become a museum", "It had burned down"], "correct": "It had all fallen into disrepair", "explain": "The narrator remarks that 'all this has now become dilapidated,' admitting he doesn't quite know why."}, {"id": "r4", "ru": "Онегин шкафы отворил.", "question": "What does Onegin do upon exploring the old house?", "options": ["He opens the cupboards", "He burns the furniture", "He locks all the doors", "He calls for a servant"], "correct": "He opens the cupboards", "explain": "The text says 'Onegin opened the cupboards' while exploring his late uncle's belongings."}, {"id": "r5", "ru": "Там ерем он барщины старинной оброком легким заменил.", "question": "What change does Onegin make to how the peasants owe labor?", "options": ["He replaces the old forced labor (corvée) with a light quit-rent", "He frees all the serfs immediately", "He doubles the peasants' labor duties", "He sells the estate's land"], "correct": "He replaces the old forced labor (corvée) with a light quit-rent", "explain": "The text says he replaced the old corvée (барщина) with a light quit-rent (оброк)."}, {"id": "r6", "ru": "Мужик судьбу благословил.", "question": "How do the peasants react to Onegin's change in labor obligations?", "options": ["The peasant blessed his fate", "The peasant complained bitterly", "The peasant refused to work at all", "The peasant left the estate"], "correct": "The peasant blessed his fate", "explain": "The text says 'the peasant blessed his fate' after the lighter obligation was introduced."}, {"id": "r7", "ru": "И в голос все решили, так, что он опаснейший чудак.", "question": "How do the neighboring landowners come to regard Onegin after his reforms?", "options": ["As a most dangerous eccentric", "As a model landlord to imitate", "As a foreign spy", "As too generous to peasants"], "correct": "As a most dangerous eccentric", "explain": "The neighbors unanimously decide that he is 'the most dangerous eccentric.'"}, {"id": "r8", "ru": "По имени Владимир Ленской, душою прямо гетингенской, красавец в полном цвете лет, поклонник Канта и поэта.", "question": "How is the newly arrived neighbor Vladimir Lensky introduced?", "options": ["As a handsome young man in his prime, with a Göttingen soul, admirer of Kant and poetry", "As an elderly retired general", "As a poor traveling merchant", "As Onegin's cousin"], "correct": "As a handsome young man in his prime, with a Göttingen soul, admirer of Kant and poetry", "explain": "The text introduces Lensky as a handsome young man with a 'Göttingen soul,' an admirer of Kant and poetry."}, {"id": "r9", "ru": "Он из Германии туманной привез учености плоды, вольнолюбивые мечты.", "question": "What did Lensky bring back from Germany?", "options": ["The fruits of learning and freedom-loving dreams", "A large fortune", "A German wife", "A collection of weapons"], "correct": "The fruits of learning and freedom-loving dreams", "explain": "The text says he brought from misty Germany 'the fruits of learning, freedom-loving dreams.'"}, {"id": "r10", "ru": "Он верил, что душа родная соединиться с ним должна.", "question": "What romantic belief does Lensky hold?", "options": ["That a kindred soul was destined to unite with him", "That love always ends in betrayal", "That marriage is a foolish institution", "That he would never fall in love"], "correct": "That a kindred soul was destined to unite with him", "explain": "The text says he believed 'a kindred soul must unite with him.'"}, {"id": "r11", "ru": "Богат, хорош собою, ленский, Везде был принят, как жених.", "question": "Why was Lensky welcomed everywhere as a potential match?", "options": ["Because he was rich and good-looking", "Because he was the local priest", "Because he owned the largest library", "Because he was already married"], "correct": "Because he was rich and good-looking", "explain": "The text notes he was 'rich, good-looking,' so he was received everywhere as a suitable bridegroom."}, {"id": "r12", "ru": "Но Ленский, не имев, конечно, охоты узы брака несть, с Онегиным желал сердечно знакомство покороче свести.", "question": "What did Lensky want with Onegin, despite having no wish to marry?", "options": ["To become better and closer acquainted with him", "To challenge him to a duel immediately", "To borrow money from him", "To avoid him entirely"], "correct": "To become better and closer acquainted with him", "explain": "The text says Lensky sincerely wished to become more closely acquainted with Onegin."}, {"id": "r13", "ru": "Он слушал Ленского с улыбкой.", "question": "How does Onegin react when listening to Lensky?", "options": ["With a smile", "With open contempt", "With tears", "With loud laughter"], "correct": "With a smile", "explain": "The text simply states 'he listened to Lensky with a smile.'"}, {"id": "r14", "ru": "Ее сестра звалась Татьяна.", "question": "What is the name of Olga's older sister?", "options": ["Tatiana", "Praskovya", "Alina", "Polina"], "correct": "Tatiana", "explain": "The text directly states 'her sister was called Tatiana.'"}, {"id": "r15", "ru": "И так она звалась Татьяной.", "question": "Once more, how does the narrator confirm the older sister's name?", "options": ["So she was called Tatiana", "So she was called Olga", "So she was called Maria", "So she was called Anna"], "correct": "So she was called Tatiana", "explain": "The narrator repeats plainly, 'and so she was called Tatiana.'"}, {"id": "r16", "ru": "Она в семье своей родной казалась девочкой чужой.", "question": "How did Tatiana seem within her own family?", "options": ["Like a stranger, an outsider girl", "Like the favorite, most beloved child", "Like the eldest and wisest", "Like a carefree tomboy"], "correct": "Like a stranger, an outsider girl", "explain": "The text says that within her own family she 'seemed like a strange girl,' an outsider."}, {"id": "r17", "ru": "Она ласкаться не умела к отцу, ни к матери своей.", "question": "What could Tatiana not do with her parents?", "options": ["Be affectionate or caressing with her father or mother", "Speak to them at all", "Live in the same house as them", "Remember their names"], "correct": "Be affectionate or caressing with her father or mother", "explain": "The text says 'she did not know how to be affectionate to her father, nor to her mother.'"}, {"id": "r18", "ru": "Ее изнеженные пальцы не знали игл.", "question": "What household skill did Tatiana's delicate fingers not know?", "options": ["Needlework (needles)", "Cooking", "Playing music", "Writing letters"], "correct": "Needlework (needles)", "explain": "The text says 'her delicate fingers did not know needles,' meaning she avoided needlework."}, {"id": "r19", "ru": "Когда же няня собирала для Ольги на широкий луг всех маленьких ее подруг, она в горелки не играла.", "question": "What did Tatiana refuse to do when the nanny gathered Olga's little friends on the meadow?", "options": ["Play the game of tag/gorelki", "Eat with the other children", "Go outside at all", "Sing songs with them"], "correct": "Play the game of tag/gorelki", "explain": "The text says that while the other children played, 'she did not play at gorelki (tag).'"}, {"id": "r20", "ru": "Она любила на балконе предупреждать зари восход.", "question": "What did Tatiana love to do on the balcony?", "options": ["Anticipate the sunrise", "Watch the servants work", "Read love letters aloud", "Play cards with her sister"], "correct": "Anticipate the sunrise", "explain": "The text says 'she loved, on the balcony, to anticipate the sunrise.'"}, {"id": "r21", "ru": "Ей рано нравились романы, они ей заменяли все.", "question": "What did novels come to mean for Tatiana from an early age?", "options": ["They replaced everything else for her", "She found them boring and useless", "She was forbidden to read them", "They taught her practical housekeeping"], "correct": "They replaced everything else for her", "explain": "The text says novels pleased her early on, and 'they replaced everything for her.'"}, {"id": "r22", "ru": "Жена ж его была сама от Рихардсона без ума.", "question": "How did Tatiana's mother feel about the novelist Richardson?", "options": ["She herself was mad about Richardson", "She despised his novels", "She had never heard of him", "She thought his books were too short"], "correct": "She herself was mad about Richardson", "explain": "The text says the mother 'was herself mad about Richardson' (a popular sentimental novelist)."}, {"id": "r23", "ru": "Но муж любил ее сердечно, в ее затеи не входил.", "question": "How did the father (husband) treat his wife's household schemes?", "options": ["He loved her dearly but did not get involved in her schemes", "He constantly interfered with everything she did", "He forbade her from managing the house", "He divorced her over her habits"], "correct": "He loved her dearly but did not get involved in her schemes", "explain": "The text says 'the husband loved her heartily, but did not involve himself in her schemes.'"}, {"id": "r24", "ru": "Он был простой и добрый барин.", "question": "How is Tatiana's father, Dmitry Larin, remembered after his death?", "options": ["As a simple and kind master", "As a cruel and greedy landlord", "As a famous war hero", "As a wealthy merchant from Moscow"], "correct": "As a simple and kind master", "explain": "The text describes him simply as 'a simple and kind master' (барин)."}, {"id": "r25", "ru": "Своим пенатом возвращенный Владимир Ленский посетил Соседа памятник смиренный, И вздох он пеплу посвятил.", "question": "What does Lensky do upon returning to his own estate?", "options": ["He visits his neighbor's humble grave monument and sighs over his ashes", "He immediately proposes to Olga", "He sells his estate", "He challenges Onegin to a duel"], "correct": "He visits his neighbor's humble grave monument and sighs over his ashes", "explain": "The text says Lensky, returned to his own home, visited his neighbor's humble memorial and sighed over his ashes."}], "highlight": [{"id": "h1", "question": "Which lines describe the daily occupations of the room's previous inhabitant?", "sentences": ["Он в том покое поселился,", "Где деревенский старожил", "Лет сорок с ключницей бранился,", "В окно смотрел и мух давил.", "Всё было просто: пол дубовый,"], "correct": [2, 3], "explain": "They show how the old dweller spent forty years quarreling with the housekeeper, looking out the window and killing flies."}, {"id": "h2", "question": "Which lines express the belief that certain people are destined to be sacred friends?", "sentences": ["И что не дрогнет их рука", "Разбить сосуд клеветника;", "Что есть избранные судьбами,", "Людей священные друзья;", "Что их бессмертная семья"], "correct": [2, 3], "explain": "They state that there are those chosen by fate who are sacred friends of people."}, {"id": "h3", "question": "Which lines express the self-centered philosophy criticized in this passage?", "sentences": ["Но дружбы нет и той меж нами.", "Все предрассудки истребя,", "Мы почитаем всех нулями,", "А единицами — себя.", "Мы все глядим в Наполеоны;"], "correct": [2, 3], "explain": "They articulate the belief that everyone else is worthless while the self alone matters."}, {"id": "h4", "question": "Which lines describe how the poet openly revealed his innermost feelings?", "sentences": ["Как, сердца исповедь любя,", "Поэт высказывал себя;", "Свою доверчивую совесть", "Он простодушно обнажал.", "Евгений без труда узнал"], "correct": [2, 3], "explain": "They show how he naively and simply exposed his trustful conscience for others to see."}, {"id": "h5", "question": "Which line best captures Tatyana's essential character?", "sentences": ["Итак, она звалась Татьяной.", "Ни красотой сестры своей,", "Ни свежестью её румяной", "Не привлекла б она очей.", "Дика, печальна, молчалива,"], "correct": [4], "explain": "It describes her as wild, sad, and silent, defining her fundamental nature."}, {"id": "h6", "question": "Which lines reveal that Tatyana's true affection lay with someone other than her fiancé?", "sentences": ["Твердила часто ей об них.", "В то время был ещё жених", "Её супруг, но поневоле;", "Она вздыхала о другом,", "Который сердцем и умом"], "correct": [3, 4], "explain": "She sighed for another man, one who possessed both her heart and mind."}]}
+{
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Её ___ звалась Татьяна…",
+   "lemma": "сестра",
+   "options": [
+    "сестра",
+    "сестры",
+    "сестре",
+    "сестрой"
+   ],
+   "correct": "сестра",
+   "case": "Именительный (Nominative)",
+   "explain": "Сестра is the grammatical subject of звалась (was called), so it stands in the nominative."
+  },
+  {
+   "id": "c2",
+   "sentence": "Часто целый день одна сидела молча у ___.",
+   "lemma": "окно",
+   "options": [
+    "окно",
+    "окна",
+    "окну",
+    "окном"
+   ],
+   "correct": "окна",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition у (at/by) always governs the genitive case, so окно becomes окна."
+  },
+  {
+   "id": "c3",
+   "sentence": "Она ласкаться не умела к ___.",
+   "lemma": "отец",
+   "options": [
+    "отец",
+    "отца",
+    "отцу",
+    "отцом"
+   ],
+   "correct": "отцу",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition к (toward) always requires the dative case, so отец becomes отцу."
+  },
+  {
+   "id": "c4",
+   "sentence": "Мужик ___ благословил.",
+   "lemma": "судьба",
+   "options": [
+    "судьба",
+    "судьбы",
+    "судьбу",
+    "судьбой"
+   ],
+   "correct": "судьбу",
+   "case": "Винительный (Accusative)",
+   "explain": "Судьбу is the direct object of the transitive verb благословил (blessed), so it takes the accusative."
+  },
+  {
+   "id": "c5",
+   "sentence": "Онегин ___ отворил.",
+   "lemma": "шкаф",
+   "options": [
+    "шкафы",
+    "шкафов",
+    "шкафам",
+    "шкафах"
+   ],
+   "correct": "шкафы",
+   "case": "Винительный (Accusative)",
+   "explain": "Шкафы is the plural direct object of the transitive verb отворил (opened), an inanimate accusative that matches the nominative form."
+  },
+  {
+   "id": "c6",
+   "sentence": "Господский дом уединенный, горой от ветров огражденный, стоял над ___.",
+   "lemma": "речка",
+   "options": [
+    "речка",
+    "речки",
+    "речку",
+    "речкой"
+   ],
+   "correct": "речкой",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition над (above) governs the instrumental case, so речка becomes речкой."
+  },
+  {
+   "id": "c7",
+   "sentence": "Он слушал Ленского с ___.",
+   "lemma": "улыбка",
+   "options": [
+    "улыбка",
+    "улыбки",
+    "улыбку",
+    "улыбкой"
+   ],
+   "correct": "улыбкой",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition с meaning 'with' governs the instrumental case, so улыбка becomes улыбкой."
+  },
+  {
+   "id": "c8",
+   "sentence": "Он в том ___ поселился.",
+   "lemma": "покой",
+   "options": [
+    "покой",
+    "покоя",
+    "покою",
+    "покое"
+   ],
+   "correct": "покое",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в indicating static location requires the prepositional case, so покой becomes покое."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Деревня, где скучал Евгений, была прелестный уголок.",
+   "question": "How is the village where Evgeny grew bored described?",
+   "options": [
+    "As a lovely little corner",
+    "As a dangerous swamp",
+    "As a crowded city",
+    "As completely abandoned"
+   ],
+   "correct": "As a lovely little corner",
+   "explain": "The text calls the village where Evgeny was bored 'a lovely little corner' (прелестный уголок)."
+  },
+  {
+   "id": "r2",
+   "ru": "Господский дом уединенный, горой от ветров огражденный, стоял над речкою.",
+   "question": "Where was the manor house situated?",
+   "options": [
+    "Above a small river, shielded from the winds by a hill",
+    "In the middle of a forest",
+    "Beside a busy road",
+    "On top of a mountain"
+   ],
+   "correct": "Above a small river, shielded from the winds by a hill",
+   "explain": "The house is described as standing above a little river, protected from winds by a hill."
+  },
+  {
+   "id": "r3",
+   "ru": "Все это ныне обветшало, не знаю право почему.",
+   "question": "What does the narrator say about the manor's grandeur by the time of the story?",
+   "options": [
+    "It had all fallen into disrepair",
+    "It had been completely rebuilt",
+    "It had become a museum",
+    "It had burned down"
+   ],
+   "correct": "It had all fallen into disrepair",
+   "explain": "The narrator remarks that 'all this has now become dilapidated,' admitting he doesn't quite know why."
+  },
+  {
+   "id": "r4",
+   "ru": "Онегин шкафы отворил.",
+   "question": "What does Onegin do upon exploring the old house?",
+   "options": [
+    "He opens the cupboards",
+    "He burns the furniture",
+    "He locks all the doors",
+    "He calls for a servant"
+   ],
+   "correct": "He opens the cupboards",
+   "explain": "The text says 'Onegin opened the cupboards' while exploring his late uncle's belongings."
+  },
+  {
+   "id": "r5",
+   "ru": "Там ерем он барщины старинной оброком легким заменил.",
+   "question": "What change does Onegin make to how the peasants owe labor?",
+   "options": [
+    "He replaces the old forced labor (corvée) with a light quit-rent",
+    "He frees all the serfs immediately",
+    "He doubles the peasants' labor duties",
+    "He sells the estate's land"
+   ],
+   "correct": "He replaces the old forced labor (corvée) with a light quit-rent",
+   "explain": "The text says he replaced the old corvée (барщина) with a light quit-rent (оброк)."
+  },
+  {
+   "id": "r6",
+   "ru": "Мужик судьбу благословил.",
+   "question": "How do the peasants react to Onegin's change in labor obligations?",
+   "options": [
+    "The peasant blessed his fate",
+    "The peasant complained bitterly",
+    "The peasant refused to work at all",
+    "The peasant left the estate"
+   ],
+   "correct": "The peasant blessed his fate",
+   "explain": "The text says 'the peasant blessed his fate' after the lighter obligation was introduced."
+  },
+  {
+   "id": "r7",
+   "ru": "И в голос все решили, так, что он опаснейший чудак.",
+   "question": "How do the neighboring landowners come to regard Onegin after his reforms?",
+   "options": [
+    "As a most dangerous eccentric",
+    "As a model landlord to imitate",
+    "As a foreign spy",
+    "As too generous to peasants"
+   ],
+   "correct": "As a most dangerous eccentric",
+   "explain": "The neighbors unanimously decide that he is 'the most dangerous eccentric.'"
+  },
+  {
+   "id": "r8",
+   "ru": "По имени Владимир Ленской, душою прямо гетингенской, красавец в полном цвете лет, поклонник Канта и поэта.",
+   "question": "How is the newly arrived neighbor Vladimir Lensky introduced?",
+   "options": [
+    "As a handsome young man in his prime, with a Göttingen soul, admirer of Kant and poetry",
+    "As an elderly retired general",
+    "As a poor traveling merchant",
+    "As Onegin's cousin"
+   ],
+   "correct": "As a handsome young man in his prime, with a Göttingen soul, admirer of Kant and poetry",
+   "explain": "The text introduces Lensky as a handsome young man with a 'Göttingen soul,' an admirer of Kant and poetry."
+  },
+  {
+   "id": "r9",
+   "ru": "Он из Германии туманной привез учености плоды, вольнолюбивые мечты.",
+   "question": "What did Lensky bring back from Germany?",
+   "options": [
+    "The fruits of learning and freedom-loving dreams",
+    "A large fortune",
+    "A German wife",
+    "A collection of weapons"
+   ],
+   "correct": "The fruits of learning and freedom-loving dreams",
+   "explain": "The text says he brought from misty Germany 'the fruits of learning, freedom-loving dreams.'"
+  },
+  {
+   "id": "r10",
+   "ru": "Он верил, что душа родная соединиться с ним должна.",
+   "question": "What romantic belief does Lensky hold?",
+   "options": [
+    "That a kindred soul was destined to unite with him",
+    "That love always ends in betrayal",
+    "That marriage is a foolish institution",
+    "That he would never fall in love"
+   ],
+   "correct": "That a kindred soul was destined to unite with him",
+   "explain": "The text says he believed 'a kindred soul must unite with him.'"
+  },
+  {
+   "id": "r11",
+   "ru": "Богат, хорош собою, ленский, Везде был принят, как жених.",
+   "question": "Why was Lensky welcomed everywhere as a potential match?",
+   "options": [
+    "Because he was rich and good-looking",
+    "Because he was the local priest",
+    "Because he owned the largest library",
+    "Because he was already married"
+   ],
+   "correct": "Because he was rich and good-looking",
+   "explain": "The text notes he was 'rich, good-looking,' so he was received everywhere as a suitable bridegroom."
+  },
+  {
+   "id": "r12",
+   "ru": "Но Ленский, не имев, конечно, охоты узы брака несть, с Онегиным желал сердечно знакомство покороче свести.",
+   "question": "What did Lensky want with Onegin, despite having no wish to marry?",
+   "options": [
+    "To become better and closer acquainted with him",
+    "To challenge him to a duel immediately",
+    "To borrow money from him",
+    "To avoid him entirely"
+   ],
+   "correct": "To become better and closer acquainted with him",
+   "explain": "The text says Lensky sincerely wished to become more closely acquainted with Onegin."
+  },
+  {
+   "id": "r13",
+   "ru": "Он слушал Ленского с улыбкой.",
+   "question": "How does Onegin react when listening to Lensky?",
+   "options": [
+    "With a smile",
+    "With open contempt",
+    "With tears",
+    "With loud laughter"
+   ],
+   "correct": "With a smile",
+   "explain": "The text simply states 'he listened to Lensky with a smile.'"
+  },
+  {
+   "id": "r14",
+   "ru": "Ее сестра звалась Татьяна.",
+   "question": "What is the name of Olga's older sister?",
+   "options": [
+    "Tatiana",
+    "Praskovya",
+    "Alina",
+    "Polina"
+   ],
+   "correct": "Tatiana",
+   "explain": "The text directly states 'her sister was called Tatiana.'"
+  },
+  {
+   "id": "r15",
+   "ru": "И так она звалась Татьяной.",
+   "question": "Once more, how does the narrator confirm the older sister's name?",
+   "options": [
+    "So she was called Tatiana",
+    "So she was called Olga",
+    "So she was called Maria",
+    "So she was called Anna"
+   ],
+   "correct": "So she was called Tatiana",
+   "explain": "The narrator repeats plainly, 'and so she was called Tatiana.'"
+  },
+  {
+   "id": "r16",
+   "ru": "Она в семье своей родной казалась девочкой чужой.",
+   "question": "How did Tatiana seem within her own family?",
+   "options": [
+    "Like a stranger, an outsider girl",
+    "Like the favorite, most beloved child",
+    "Like the eldest and wisest",
+    "Like a carefree tomboy"
+   ],
+   "correct": "Like a stranger, an outsider girl",
+   "explain": "The text says that within her own family she 'seemed like a strange girl,' an outsider."
+  },
+  {
+   "id": "r17",
+   "ru": "Она ласкаться не умела к отцу, ни к матери своей.",
+   "question": "What could Tatiana not do with her parents?",
+   "options": [
+    "Be affectionate or caressing with her father or mother",
+    "Speak to them at all",
+    "Live in the same house as them",
+    "Remember their names"
+   ],
+   "correct": "Be affectionate or caressing with her father or mother",
+   "explain": "The text says 'she did not know how to be affectionate to her father, nor to her mother.'"
+  },
+  {
+   "id": "r18",
+   "ru": "Ее изнеженные пальцы не знали игл.",
+   "question": "What household skill did Tatiana's delicate fingers not know?",
+   "options": [
+    "Needlework (needles)",
+    "Cooking",
+    "Playing music",
+    "Writing letters"
+   ],
+   "correct": "Needlework (needles)",
+   "explain": "The text says 'her delicate fingers did not know needles,' meaning she avoided needlework."
+  },
+  {
+   "id": "r19",
+   "ru": "Когда же няня собирала для Ольги на широкий луг всех маленьких ее подруг, она в горелки не играла.",
+   "question": "What did Tatiana refuse to do when the nanny gathered Olga's little friends on the meadow?",
+   "options": [
+    "Play the game of tag/gorelki",
+    "Eat with the other children",
+    "Go outside at all",
+    "Sing songs with them"
+   ],
+   "correct": "Play the game of tag/gorelki",
+   "explain": "The text says that while the other children played, 'she did not play at gorelki (tag).'"
+  },
+  {
+   "id": "r20",
+   "ru": "Она любила на балконе предупреждать зари восход.",
+   "question": "What did Tatiana love to do on the balcony?",
+   "options": [
+    "Anticipate the sunrise",
+    "Watch the servants work",
+    "Read love letters aloud",
+    "Play cards with her sister"
+   ],
+   "correct": "Anticipate the sunrise",
+   "explain": "The text says 'she loved, on the balcony, to anticipate the sunrise.'"
+  },
+  {
+   "id": "r21",
+   "ru": "Ей рано нравились романы, они ей заменяли все.",
+   "question": "What did novels come to mean for Tatiana from an early age?",
+   "options": [
+    "They replaced everything else for her",
+    "She found them boring and useless",
+    "She was forbidden to read them",
+    "They taught her practical housekeeping"
+   ],
+   "correct": "They replaced everything else for her",
+   "explain": "The text says novels pleased her early on, and 'they replaced everything for her.'"
+  },
+  {
+   "id": "r22",
+   "ru": "Жена ж его была сама от Рихардсона без ума.",
+   "question": "How did Tatiana's mother feel about the novelist Richardson?",
+   "options": [
+    "She herself was mad about Richardson",
+    "She despised his novels",
+    "She had never heard of him",
+    "She thought his books were too short"
+   ],
+   "correct": "She herself was mad about Richardson",
+   "explain": "The text says the mother 'was herself mad about Richardson' (a popular sentimental novelist)."
+  },
+  {
+   "id": "r23",
+   "ru": "Но муж любил ее сердечно, в ее затеи не входил.",
+   "question": "How did the father (husband) treat his wife's household schemes?",
+   "options": [
+    "He loved her dearly but did not get involved in her schemes",
+    "He constantly interfered with everything she did",
+    "He forbade her from managing the house",
+    "He divorced her over her habits"
+   ],
+   "correct": "He loved her dearly but did not get involved in her schemes",
+   "explain": "The text says 'the husband loved her heartily, but did not involve himself in her schemes.'"
+  },
+  {
+   "id": "r24",
+   "ru": "Он был простой и добрый барин.",
+   "question": "How is Tatiana's father, Dmitry Larin, remembered after his death?",
+   "options": [
+    "As a simple and kind master",
+    "As a cruel and greedy landlord",
+    "As a famous war hero",
+    "As a wealthy merchant from Moscow"
+   ],
+   "correct": "As a simple and kind master",
+   "explain": "The text describes him simply as 'a simple and kind master' (барин)."
+  },
+  {
+   "id": "r25",
+   "ru": "Своим пенатом возвращенный Владимир Ленский посетил Соседа памятник смиренный, И вздох он пеплу посвятил.",
+   "question": "What does Lensky do upon returning to his own estate?",
+   "options": [
+    "He visits his neighbor's humble grave monument and sighs over his ashes",
+    "He immediately proposes to Olga",
+    "He sells his estate",
+    "He challenges Onegin to a duel"
+   ],
+   "correct": "He visits his neighbor's humble grave monument and sighs over his ashes",
+   "explain": "The text says Lensky, returned to his own home, visited his neighbor's humble memorial and sighed over his ashes."
+  }
+ ],
+ "highlight": [
+  {
+   "id": "h1",
+   "question": "Which lines describe the daily occupations of the room's previous inhabitant?",
+   "sentences": [
+    "Он в том покое поселился,",
+    "Где деревенский старожил",
+    "Лет сорок с ключницей бранился,",
+    "В окно смотрел и мух давил.",
+    "Всё было просто: пол дубовый,"
+   ],
+   "correct": [
+    2,
+    3
+   ],
+   "explain": "They show how the old dweller spent forty years quarreling with the housekeeper, looking out the window and killing flies."
+  },
+  {
+   "id": "h2",
+   "question": "Which lines express the belief that certain people are destined to be sacred friends?",
+   "sentences": [
+    "И что не дрогнет их рука",
+    "Разбить сосуд клеветника;",
+    "Что есть избранные судьбами,",
+    "Людей священные друзья;",
+    "Что их бессмертная семья"
+   ],
+   "correct": [
+    2,
+    3
+   ],
+   "explain": "They state that there are those chosen by fate who are sacred friends of people."
+  },
+  {
+   "id": "h3",
+   "question": "Which lines express the self-centered philosophy criticized in this passage?",
+   "sentences": [
+    "Но дружбы нет и той меж нами.",
+    "Все предрассудки истребя,",
+    "Мы почитаем всех нулями,",
+    "А единицами — себя.",
+    "Мы все глядим в Наполеоны;"
+   ],
+   "correct": [
+    2,
+    3
+   ],
+   "explain": "They articulate the belief that everyone else is worthless while the self alone matters."
+  },
+  {
+   "id": "h4",
+   "question": "Which lines describe how the poet openly revealed his innermost feelings?",
+   "sentences": [
+    "Как, сердца исповедь любя,",
+    "Поэт высказывал себя;",
+    "Свою доверчивую совесть",
+    "Он простодушно обнажал.",
+    "Евгений без труда узнал"
+   ],
+   "correct": [
+    2,
+    3
+   ],
+   "explain": "They show how he naively and simply exposed his trustful conscience for others to see."
+  },
+  {
+   "id": "h5",
+   "question": "Which line best captures Tatyana's essential character?",
+   "sentences": [
+    "Итак, она звалась Татьяной.",
+    "Ни красотой сестры своей,",
+    "Ни свежестью её румяной",
+    "Не привлекла б она очей.",
+    "Дика, печальна, молчалива,"
+   ],
+   "correct": [
+    4
+   ],
+   "explain": "It describes her as wild, sad, and silent, defining her fundamental nature."
+  },
+  {
+   "id": "h6",
+   "question": "Which lines reveal that Tatyana's true affection lay with someone other than her fiancé?",
+   "sentences": [
+    "Твердила часто ей об них.",
+    "В то время был ещё жених",
+    "Её супруг, но поневоле;",
+    "Она вздыхала о другом,",
+    "Который сердцем и умом"
+   ],
+   "correct": [
+    3,
+    4
+   ],
+   "explain": "She sighed for another man, one who possessed both her heart and mind."
+  }
+ ]
+}

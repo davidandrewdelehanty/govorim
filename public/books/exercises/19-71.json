@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Боже, справедливостью Твоей надари ___.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царя",
-      "case": "Винительный (Accusative)",
-      "translation": "God, endow the king with Your justice.",
-      "explain": "The transitive verb 'надари' (endow) takes the accusative case for its direct object."
-    },
-    {
-      "id": "c2",
-      "sentence": "Он судит ___ Твоего справедливо.",
-      "lemma": "народ",
-      "options": ["народ", "народа", "народу", "народом"],
-      "correct": "народ",
-      "case": "Винительный (Accusative)",
-      "translation": "He judges Your people righteously.",
-      "explain": "The transitive verb 'судит' (judges) takes the accusative case for its direct object."
-    },
-    {
-      "id": "c3",
-      "sentence": "От ___ Евфрата до краев земли будет владеть.",
-      "lemma": "река",
-      "options": ["река", "реки", "реку", "рекой"],
-      "correct": "реки",
-      "case": "Родительный (Genitive)",
-      "translation": "From the River to the ends of the earth he will rule.",
-      "explain": "The preposition 'от' (from) governs the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Жители пустынь преклонятся перед ___.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "царю", "царем"],
-      "correct": "царем",
-      "case": "Творительный (Instrumental)",
-      "translation": "Those who dwell in the wilderness will bow before the king.",
-      "explain": "The preposition 'перед' (before) governs the instrumental case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Цари принесут ему ___ и дары.",
-      "lemma": "подарок",
-      "options": ["подарок", "подарка", "подарку", "подарком"],
-      "correct": "подарок",
-      "case": "Винительный (Accusative)",
-      "translation": "The kings will bring him gifts and presents.",
-      "explain": "The transitive verb 'принесут' (will bring) takes the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Все ___ будут ему служить.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "землю", "землей"],
-      "correct": "земли",
-      "case": "Родительный (Genitive)",
-      "translation": "All lands will serve him.",
-      "explain": "The genitive case is used with 'все' (all) to express the set being referred to."
-    },
-    {
-      "id": "c7",
-      "sentence": "Он спасет нищего от ___.",
-      "lemma": "угнетение",
-      "options": ["угнетение", "угнетения", "угнетению", "угнетением"],
-      "correct": "угнетения",
-      "case": "Родительный (Genitive)",
-      "translation": "He will save the poor from oppression.",
-      "explain": "The preposition 'от' (from) governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Пусть вся ___ наполнится Его славою.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "землю", "землей"],
-      "correct": "земля",
-      "case": "Винительный (Accusative)",
-      "translation": "Let all the earth be filled with His glory.",
-      "explain": "After the verb 'наполнится' (will be filled), the subject nominative 'вся земля' is in nominative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Боже, справедливостью Твоей надери царя, и праведностью Твоей сына царского.",
-      "question": "What does God endow the king and the royal son with?",
-      "options": ["God's justice and righteousness", "Wealth and power", "Long life and health", "Wisdom and knowledge"],
-      "correct": "God's justice and righteousness",
-      "explain": "The verse says God endows them 'справедливостью Твоей' (with Your justice) and 'праведностью Твоей' (with Your righteousness)."
-    },
-    {
-      "id": "r2",
-      "ru": "Горы принесут процветание народу, и холмы — плоды праведности.",
-      "question": "What will the mountains and hills bring?",
-      "options": ["Prosperity and fruits of righteousness", "Water and crops", "Gold and silver", "Animals and birds"],
-      "correct": "Prosperity and fruits of righteousness",
-      "explain": "The verse states 'горы принесут процветание, и холмы плоды праведности' - mountains will bring prosperity and hills the fruits of righteousness."
-    },
-    {
-      "id": "r3",
-      "ru": "Он будет владычествовать от моря и до моря, и от реки Евфрата до краев земли.",
-      "question": "Over what territory will the righteous king rule?",
-      "options": ["From sea to sea and from the River Euphrates to the ends of the earth", "Only the land of Israel", "From the mountains to the plains", "Over all his enemies"],
-      "correct": "From sea to sea and from the River Euphrates to the ends of the earth",
-      "explain": "The verse specifies 'от моря и до моря ... и от реки Евфрата до краев земли' - from sea to sea and from the River Euphrates to the ends of the earth."
-    },
-    {
-      "id": "r4",
-      "ru": "Цари Таршиша и отдаленных побережий принесут ему дань, цари Шевы и Севы принесят дары.",
-      "question": "What will the distant kings bring to the righteous king?",
-      "options": ["Tribute and gifts", "Soldiers and weapons", "Slaves and servants", "Animals and provisions"],
-      "correct": "Tribute and gifts",
-      "explain": "The verse says the kings 'принесят ему дань' (will bring him tribute) and 'принесят дары' (will bring gifts)."
-    },
-    {
-      "id": "r5",
-      "ru": "Он спасет нищего, когда тот взывает, и угнетенного, у которого нет помощника.",
-      "question": "Who will the king save?",
-      "options": ["The needy when they cry out and the oppressed who have no helper", "All the wealthy people", "The mighty warriors", "The righteous judges"],
-      "correct": "The needy when they cry out and the oppressed who have no helper",
-      "explain": "The verse says he will save 'нищего' (the needy) 'когда тот взывает' (when he cries out) and 'угнетенного' (the oppressed) 'у которого нет помощника' (who has no helper)."
-    },
-    {
-      "id": "r6",
-      "ru": "Пусть всегда превозносится Его величественное имя, и наполнится вся земля Его славою.",
-      "question": "What should happen to God's glorious name and the earth?",
-      "options": ["It should be exalted always and fill the whole earth with His glory", "It should be forgotten and remembered only in temples", "It should be hidden from nations", "It should be feared by all people"],
-      "correct": "It should be exalted always and fill the whole earth with His glory",
-      "explain": "The verse says 'пусть всегда превозносится Его величественное имя ... и наполнится вся земля Его славою' - Let His glorious name be exalted always and let the whole earth be filled with His glory."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Боже, справедливостью Твоей надари ___.",
+   "lemma": "царь",
+   "options": [
+    "царь",
+    "царя",
+    "царю",
+    "царем"
+   ],
+   "correct": "царя",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb 'надари' (endow) takes the accusative case for its direct object."
+  },
+  {
+   "id": "c2",
+   "sentence": "Он судит ___ Твоего справедливо.",
+   "lemma": "народ",
+   "options": [
+    "народ",
+    "народа",
+    "народу",
+    "народом"
+   ],
+   "correct": "народ",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb 'судит' (judges) takes the accusative case for its direct object."
+  },
+  {
+   "id": "c3",
+   "sentence": "От ___ Евфрата до краев земли будет владеть.",
+   "lemma": "река",
+   "options": [
+    "река",
+    "реки",
+    "реку",
+    "рекой"
+   ],
+   "correct": "реки",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition 'от' (from) governs the genitive case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Жители пустынь преклонятся перед ___.",
+   "lemma": "царь",
+   "options": [
+    "царь",
+    "царя",
+    "царю",
+    "царем"
+   ],
+   "correct": "царем",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition 'перед' (before) governs the instrumental case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Цари принесут ему ___ и дары.",
+   "lemma": "подарок",
+   "options": [
+    "подарок",
+    "подарка",
+    "подарку",
+    "подарком"
+   ],
+   "correct": "подарок",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb 'принесут' (will bring) takes the accusative case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Все ___ будут ему служить.",
+   "lemma": "земля",
+   "options": [
+    "земля",
+    "земли",
+    "землю",
+    "землей"
+   ],
+   "correct": "земли",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive case is used with 'все' (all) to express the set being referred to."
+  },
+  {
+   "id": "c7",
+   "sentence": "Он спасет нищего от ___.",
+   "lemma": "угнетение",
+   "options": [
+    "угнетение",
+    "угнетения",
+    "угнетению",
+    "угнетением"
+   ],
+   "correct": "угнетения",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition 'от' (from) governs the genitive case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Пусть вся ___ наполнится Его славою.",
+   "lemma": "земля",
+   "options": [
+    "земля",
+    "земли",
+    "землю",
+    "землей"
+   ],
+   "correct": "земля",
+   "case": "Винительный (Accusative)",
+   "explain": "After the verb 'наполнится' (will be filled), the subject nominative 'вся земля' is in nominative case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Боже, справедливостью Твоей надери царя, и праведностью Твоей сына царского.",
+   "question": "What does God endow the king and the royal son with?",
+   "options": [
+    "God's justice and righteousness",
+    "Wealth and power",
+    "Long life and health",
+    "Wisdom and knowledge"
+   ],
+   "correct": "God's justice and righteousness",
+   "explain": "The verse says God endows them 'справедливостью Твоей' (with Your justice) and 'праведностью Твоей' (with Your righteousness)."
+  },
+  {
+   "id": "r2",
+   "ru": "Горы принесут процветание народу, и холмы — плоды праведности.",
+   "question": "What will the mountains and hills bring?",
+   "options": [
+    "Prosperity and fruits of righteousness",
+    "Water and crops",
+    "Gold and silver",
+    "Animals and birds"
+   ],
+   "correct": "Prosperity and fruits of righteousness",
+   "explain": "The verse states 'горы принесут процветание, и холмы плоды праведности' - mountains will bring prosperity and hills the fruits of righteousness."
+  },
+  {
+   "id": "r3",
+   "ru": "Он будет владычествовать от моря и до моря, и от реки Евфрата до краев земли.",
+   "question": "Over what territory will the righteous king rule?",
+   "options": [
+    "From sea to sea and from the River Euphrates to the ends of the earth",
+    "Only the land of Israel",
+    "From the mountains to the plains",
+    "Over all his enemies"
+   ],
+   "correct": "From sea to sea and from the River Euphrates to the ends of the earth",
+   "explain": "The verse specifies 'от моря и до моря ... и от реки Евфрата до краев земли' - from sea to sea and from the River Euphrates to the ends of the earth."
+  },
+  {
+   "id": "r4",
+   "ru": "Цари Таршиша и отдаленных побережий принесут ему дань, цари Шевы и Севы принесят дары.",
+   "question": "What will the distant kings bring to the righteous king?",
+   "options": [
+    "Tribute and gifts",
+    "Soldiers and weapons",
+    "Slaves and servants",
+    "Animals and provisions"
+   ],
+   "correct": "Tribute and gifts",
+   "explain": "The verse says the kings 'принесят ему дань' (will bring him tribute) and 'принесят дары' (will bring gifts)."
+  },
+  {
+   "id": "r5",
+   "ru": "Он спасет нищего, когда тот взывает, и угнетенного, у которого нет помощника.",
+   "question": "Who will the king save?",
+   "options": [
+    "The needy when they cry out and the oppressed who have no helper",
+    "All the wealthy people",
+    "The mighty warriors",
+    "The righteous judges"
+   ],
+   "correct": "The needy when they cry out and the oppressed who have no helper",
+   "explain": "The verse says he will save 'нищего' (the needy) 'когда тот взывает' (when he cries out) and 'угнетенного' (the oppressed) 'у которого нет помощника' (who has no helper)."
+  },
+  {
+   "id": "r6",
+   "ru": "Пусть всегда превозносится Его величественное имя, и наполнится вся земля Его славою.",
+   "question": "What should happen to God's glorious name and the earth?",
+   "options": [
+    "It should be exalted always and fill the whole earth with His glory",
+    "It should be forgotten and remembered only in temples",
+    "It should be hidden from nations",
+    "It should be feared by all people"
+   ],
+   "correct": "It should be exalted always and fill the whole earth with His glory",
+   "explain": "The verse says 'пусть всегда превозносится Его величественное имя ... и наполнится вся земля Его славою' - Let His glorious name be exalted always and let the whole earth be filled with His glory."
+  }
+ ]
 }

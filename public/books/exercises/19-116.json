@@ -1,70 +1,101 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Славьте ___ все народы, пойте хвалу Ему все люди.",
-      "lemma": "Господь",
-      "options": ["Господа", "Господе", "Господу", "Господом"],
-      "correct": "Господа",
-      "case": "Винительный (Accusative)",
-      "translation": "Praise the Lord, all nations! Sing praises to Him, all people!",
-      "explain": "The verb славьте (praise) is transitive and takes the accusative case for its direct object; for animate nouns, accusative looks like genitive."
-    },
-    {
-      "id": "c2",
-      "sentence": "Славьте Господа все ___, пойте хвалу Ему все люди.",
-      "lemma": "народ",
-      "options": ["народы", "народа", "народам", "народов"],
-      "correct": "народы",
-      "case": "Именительный (Nominative)",
-      "translation": "Praise the Lord, all nations! Sing praises to Him, all people!",
-      "explain": "The noun народы (nations) is the subject of the imperative sentence and stands in nominative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Славьте Господа все народы, пойте ___ Ему все люди.",
-      "lemma": "хвала",
-      "options": ["хвалу", "хвалы", "хвале", "хвалой"],
-      "correct": "хвалу",
-      "case": "Винительный (Accusative)",
-      "translation": "Praise the Lord, all nations! Sing praises to Him, all people!",
-      "explain": "The verb пойте (sing) is transitive and takes the accusative case for its direct object; хвалу is the accusative form of хвала."
-    },
-    {
-      "id": "c4",
-      "sentence": "Потому что велика Его ___ к нам и истина Его навеки.",
-      "lemma": "милость",
-      "options": ["милость", "милости", "милостью", "милостями"],
-      "correct": "милость",
-      "case": "Именительный (Nominative)",
-      "translation": "For His mercy toward us is great and His truth endures forever.",
-      "explain": "The noun милость (mercy) is the subject of the verb велика (is great) and stands in nominative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Славьте Господа все народы, пойте хвалу Ему все люди.",
-      "question": "Who is called upon to praise God in this verse?",
-      "options": ["All nations and all people", "Only the righteous", "Only the priests", "Only the wise and learned"],
-      "correct": "All nations and all people",
-      "explain": "The text explicitly says 'все народы' (all nations) and 'все люди' (all people) should praise the Lord."
-    },
-    {
-      "id": "r2",
-      "ru": "Потому что велика Его милость к нам и истина Его навеки.",
-      "question": "Why should all people praise the Lord?",
-      "options": ["Because His mercy is great toward us and His truth endures forever", "Because He has given us wealth and power", "Because He has made us rulers of the earth", "Because He has protected us from all enemies"],
-      "correct": "Because His mercy is great toward us and His truth endures forever",
-      "explain": "The text gives two reasons: the greatness of God's mercy 'велика Его милость' and the enduring nature of His truth 'истина Его навеки.'"
-    },
-    {
-      "id": "r3",
-      "ru": "Славьте Господа все народы, пойте хвалу Ему все люди, потому что велика Его милость к нам и истина Его навеки.",
-      "question": "What is the main theme of this verse?",
-      "options": ["Universal call to praise God for His eternal mercy and truth", "Praise offered by the righteous to God", "Singing in the temple with instruments", "Thanksgiving for material blessings"],
-      "correct": "Universal call to praise God for His eternal mercy and truth",
-      "explain": "The entire verse is a universal call (all nations, all people) to praise God because of His great mercy and eternal truth."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Славьте ___ все народы, пойте хвалу Ему все люди.",
+   "lemma": "Господь",
+   "options": [
+    "Господа",
+    "Господе",
+    "Господу",
+    "Господом"
+   ],
+   "correct": "Господа",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb славьте (praise) is transitive and takes the accusative case for its direct object; for animate nouns, accusative looks like genitive."
+  },
+  {
+   "id": "c2",
+   "sentence": "Славьте Господа все ___, пойте хвалу Ему все люди.",
+   "lemma": "народ",
+   "options": [
+    "народы",
+    "народа",
+    "народам",
+    "народов"
+   ],
+   "correct": "народы",
+   "case": "Именительный (Nominative)",
+   "explain": "The noun народы (nations) is the subject of the imperative sentence and stands in nominative case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Славьте Господа все народы, пойте ___ Ему все люди.",
+   "lemma": "хвала",
+   "options": [
+    "хвалу",
+    "хвалы",
+    "хвале",
+    "хвалой"
+   ],
+   "correct": "хвалу",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb пойте (sing) is transitive and takes the accusative case for its direct object; хвалу is the accusative form of хвала."
+  },
+  {
+   "id": "c4",
+   "sentence": "Потому что велика Его ___ к нам и истина Его навеки.",
+   "lemma": "милость",
+   "options": [
+    "милость",
+    "милости",
+    "милостью",
+    "милостями"
+   ],
+   "correct": "милость",
+   "case": "Именительный (Nominative)",
+   "explain": "The noun милость (mercy) is the subject of the verb велика (is great) and stands in nominative case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Славьте Господа все народы, пойте хвалу Ему все люди.",
+   "question": "Who is called upon to praise God in this verse?",
+   "options": [
+    "All nations and all people",
+    "Only the righteous",
+    "Only the priests",
+    "Only the wise and learned"
+   ],
+   "correct": "All nations and all people",
+   "explain": "The text explicitly says 'все народы' (all nations) and 'все люди' (all people) should praise the Lord."
+  },
+  {
+   "id": "r2",
+   "ru": "Потому что велика Его милость к нам и истина Его навеки.",
+   "question": "Why should all people praise the Lord?",
+   "options": [
+    "Because His mercy is great toward us and His truth endures forever",
+    "Because He has given us wealth and power",
+    "Because He has made us rulers of the earth",
+    "Because He has protected us from all enemies"
+   ],
+   "correct": "Because His mercy is great toward us and His truth endures forever",
+   "explain": "The text gives two reasons: the greatness of God's mercy 'велика Его милость' and the enduring nature of His truth 'истина Его навеки.'"
+  },
+  {
+   "id": "r3",
+   "ru": "Славьте Господа все народы, пойте хвалу Ему все люди, потому что велика Его милость к нам и истина Его навеки.",
+   "question": "What is the main theme of this verse?",
+   "options": [
+    "Universal call to praise God for His eternal mercy and truth",
+    "Praise offered by the righteous to God",
+    "Singing in the temple with instruments",
+    "Thanksgiving for material blessings"
+   ],
+   "correct": "Universal call to praise God for His eternal mercy and truth",
+   "explain": "The entire verse is a universal call (all nations, all people) to praise God because of His great mercy and eternal truth."
+  }
+ ]
 }

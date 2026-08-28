@@ -1,164 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Из лагеря Саула пришел ___ в разорванной одежде.",
-      "lemma": "человек",
-      "options": ["человек", "человека", "человеку", "человеком"],
-      "correct": "человек",
-      "case": "Именительный (Nominative)",
-      "translation": "A man came from Saul's camp in torn clothes.",
-      "explain": "Subject of the verb 'пришел' requires nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Придя к ___, он поклонился ему до земли.",
-      "lemma": "Давид",
-      "options": ["Давид", "Давида", "Давиду", "Давидом"],
-      "correct": "Давиду",
-      "case": "Дательный (Dative)",
-      "translation": "Coming to David, he bowed to the ground before him.",
-      "explain": "Preposition 'к' governs dative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Человек сказал о ___, который был у Саула.",
-      "lemma": "копье",
-      "options": ["копье", "копья", "копью", "копьем"],
-      "correct": "копье",
-      "case": "Винительный (Accusative)",
-      "translation": "The man spoke of the spear that Saul had.",
-      "explain": "Preposition 'о' with accusative case for things that are the object of speech."
-    },
-    {
-      "id": "c4",
-      "sentence": "Давид вернулся, победив ___ за два дня.",
-      "lemma": "Амаликитянин",
-      "options": ["Амаликитянин", "Амаликитянина", "Амаликитянину", "Амаликитянином"],
-      "correct": "Амаликитянина",
-      "case": "Винительный (Accusative)",
-      "translation": "David returned, having defeated the Amalekites in two days.",
-      "explain": "Direct object of the perfective verb 'победить' requires accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Саул опирался на свое ___ когда Давид его увидел.",
-      "lemma": "копье",
-      "options": ["копье", "копья", "копью", "копьем"],
-      "correct": "копьем",
-      "case": "Творительный (Instrumental)",
-      "translation": "Saul was leaning on his spear when David saw him.",
-      "explain": "Verb 'опираться' (to lean on) governs instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Браслет был с ___ Саула на руке.",
-      "lemma": "головка",
-      "options": ["голова", "головы", "голову", "голове"],
-      "correct": "головы",
-      "case": "Родительный (Genitive)",
-      "translation": "The bracelet was from Saul's arm on his hand.",
-      "explain": "Preposition 'с' with genitive meaning 'from' or 'off'."
-    },
-    {
-      "id": "c7",
-      "sentence": "Юноша сказал: 'Я был на ___ Гельбоа.'",
-      "lemma": "гора",
-      "options": ["гора", "горы", "гору", "горе"],
-      "correct": "горе",
-      "case": "Предложный (Locative)",
-      "translation": "The young man said: 'I was on Mount Gilboa.'",
-      "explain": "Preposition 'на' with locative (prepositional) case for location."
-    },
-    {
-      "id": "c8",
-      "sentence": "Все люди плакали о ___, который был мертв.",
-      "lemma": "сын",
-      "options": ["сын", "сына", "сыну", "сыне"],
-      "correct": "сыне",
-      "case": "Предложный (Locative)",
-      "translation": "All the people wept for the son who was dead.",
-      "explain": "Preposition 'о' with locative (prepositional) case in the phrase 'о + person'."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "После смерти Саула Давид вернулся, победив Амаликитян, и пробыл в Циклаге два дня.",
-      "question": "What did David do after the death of Saul?",
-      "options": [
-        "He defeated the Amalekites and stayed in Ziklag for two days",
-        "He became king immediately over all Israel",
-        "He fled to the mountains to hide from enemies",
-        "He went to Jerusalem to build a temple"
-      ],
-      "correct": "He defeated the Amalekites and stayed in Ziklag for two days",
-      "explain": "The text states David returned from defeating the Amalekites and stayed in Ziklag for two days."
-    },
-    {
-      "id": "r2",
-      "ru": "Придя к Давиду, он поклонился ему до земли.",
-      "question": "How did the man from Saul's camp greet David?",
-      "options": [
-        "He embraced David warmly",
-        "He bowed to the ground",
-        "He immediately began to speak",
-        "He challenged David to a duel"
-      ],
-      "correct": "He bowed to the ground",
-      "explain": "The text says 'поклонился ему до земли' meaning he bowed to the ground."
-    },
-    {
-      "id": "r3",
-      "ru": "Человек сказал, 'Я спасся из лагеря израилетян'.",
-      "question": "Where did the messenger escape from?",
-      "options": [
-        "From the camp of the Jebusites",
-        "From the camp of the Israelites",
-        "From the city of Jerusalem",
-        "From the fortress of Zion"
-      ],
-      "correct": "From the camp of the Israelites",
-      "explain": "The man explicitly states 'из лагеря израилетян' (from the camp of the Israelites)."
-    },
-    {
-      "id": "r4",
-      "ru": "Он сказал юноше, который принес ему это известие: 'Откуда ты знаешь, что Саул и его сын Ионафан мертвы?'",
-      "question": "What did David ask the young man about?",
-      "options": [
-        "How he knew about Saul and Jonathan's death",
-        "Where the Amalekites had gone",
-        "Why he came to Ziklag",
-        "What news he brought from Jerusalem"
-      ],
-      "correct": "How he knew about Saul and Jonathan's death",
-      "explain": "David questions how the young man knows that Saul and his son Jonathan are dead."
-    },
-    {
-      "id": "r5",
-      "ru": "Юноша ответил: 'Я случайно оказался на горе Гельбоа, и там был Саул, который опирался на свое копье.'",
-      "question": "What was Saul doing when the young man found him on Mount Gilboa?",
-      "options": [
-        "He was running from his enemies",
-        "He was leaning on his spear",
-        "He was building a fortress",
-        "He was speaking with his generals"
-      ],
-      "correct": "He was leaning on his spear",
-      "explain": "The text states 'Саул, который опирался на свое копье' (Saul was leaning on his spear)."
-    },
-    {
-      "id": "r6",
-      "ru": "Затем Давид и все, кто был с ним, разорвали на себе одежду и плакали до вечера о Сауле и его сыне Иоаннафане.",
-      "question": "How did David and his people mourn Saul and Jonathan?",
-      "options": [
-        "They sang funeral songs",
-        "They went to war against the Philistines",
-        "They tore their clothes, wept, and mourned until evening",
-        "They built a monument in their honor"
-      ],
-      "correct": "They tore their clothes, wept, and mourned until evening",
-      "explain": "The text describes that David and his people 'разорвали на себе одежду' (tore their clothes) and 'плакали до вечера' (wept until evening)."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Из лагеря Саула пришел ___ в разорванной одежде.",
+   "lemma": "человек",
+   "options": [
+    "человек",
+    "человека",
+    "человеку",
+    "человеком"
+   ],
+   "correct": "человек",
+   "case": "Именительный (Nominative)",
+   "explain": "Subject of the verb 'пришел' requires nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Придя к ___, он поклонился ему до земли.",
+   "lemma": "Давид",
+   "options": [
+    "Давид",
+    "Давида",
+    "Давиду",
+    "Давидом"
+   ],
+   "correct": "Давиду",
+   "case": "Дательный (Dative)",
+   "explain": "Preposition 'к' governs dative case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Человек сказал о ___, который был у Саула.",
+   "lemma": "копье",
+   "options": [
+    "копье",
+    "копья",
+    "копью",
+    "копьем"
+   ],
+   "correct": "копье",
+   "case": "Винительный (Accusative)",
+   "explain": "Preposition 'о' with accusative case for things that are the object of speech."
+  },
+  {
+   "id": "c4",
+   "sentence": "Давид вернулся, победив ___ за два дня.",
+   "lemma": "Амаликитянин",
+   "options": [
+    "Амаликитянин",
+    "Амаликитянина",
+    "Амаликитянину",
+    "Амаликитянином"
+   ],
+   "correct": "Амаликитянина",
+   "case": "Винительный (Accusative)",
+   "explain": "Direct object of the perfective verb 'победить' requires accusative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Саул опирался на свое ___ когда Давид его увидел.",
+   "lemma": "копье",
+   "options": [
+    "копье",
+    "копья",
+    "копью",
+    "копьем"
+   ],
+   "correct": "копьем",
+   "case": "Творительный (Instrumental)",
+   "explain": "Verb 'опираться' (to lean on) governs instrumental case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Браслет был с ___ Саула на руке.",
+   "lemma": "головка",
+   "options": [
+    "голова",
+    "головы",
+    "голову",
+    "голове"
+   ],
+   "correct": "головы",
+   "case": "Родительный (Genitive)",
+   "explain": "Preposition 'с' with genitive meaning 'from' or 'off'."
+  },
+  {
+   "id": "c7",
+   "sentence": "Юноша сказал: 'Я был на ___ Гельбоа.'",
+   "lemma": "гора",
+   "options": [
+    "гора",
+    "горы",
+    "гору",
+    "горе"
+   ],
+   "correct": "горе",
+   "case": "Предложный (Locative)",
+   "explain": "Preposition 'на' with locative (prepositional) case for location."
+  },
+  {
+   "id": "c8",
+   "sentence": "Все люди плакали о ___, который был мертв.",
+   "lemma": "сын",
+   "options": [
+    "сын",
+    "сына",
+    "сыну",
+    "сыне"
+   ],
+   "correct": "сыне",
+   "case": "Предложный (Locative)",
+   "explain": "Preposition 'о' with locative (prepositional) case in the phrase 'о + person'."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "После смерти Саула Давид вернулся, победив Амаликитян, и пробыл в Циклаге два дня.",
+   "question": "What did David do after the death of Saul?",
+   "options": [
+    "He defeated the Amalekites and stayed in Ziklag for two days",
+    "He became king immediately over all Israel",
+    "He fled to the mountains to hide from enemies",
+    "He went to Jerusalem to build a temple"
+   ],
+   "correct": "He defeated the Amalekites and stayed in Ziklag for two days",
+   "explain": "The text states David returned from defeating the Amalekites and stayed in Ziklag for two days."
+  },
+  {
+   "id": "r2",
+   "ru": "Придя к Давиду, он поклонился ему до земли.",
+   "question": "How did the man from Saul's camp greet David?",
+   "options": [
+    "He embraced David warmly",
+    "He bowed to the ground",
+    "He immediately began to speak",
+    "He challenged David to a duel"
+   ],
+   "correct": "He bowed to the ground",
+   "explain": "The text says 'поклонился ему до земли' meaning he bowed to the ground."
+  },
+  {
+   "id": "r3",
+   "ru": "Человек сказал, 'Я спасся из лагеря израилетян'.",
+   "question": "Where did the messenger escape from?",
+   "options": [
+    "From the camp of the Jebusites",
+    "From the camp of the Israelites",
+    "From the city of Jerusalem",
+    "From the fortress of Zion"
+   ],
+   "correct": "From the camp of the Israelites",
+   "explain": "The man explicitly states 'из лагеря израилетян' (from the camp of the Israelites)."
+  },
+  {
+   "id": "r4",
+   "ru": "Он сказал юноше, который принес ему это известие: 'Откуда ты знаешь, что Саул и его сын Ионафан мертвы?'",
+   "question": "What did David ask the young man about?",
+   "options": [
+    "How he knew about Saul and Jonathan's death",
+    "Where the Amalekites had gone",
+    "Why he came to Ziklag",
+    "What news he brought from Jerusalem"
+   ],
+   "correct": "How he knew about Saul and Jonathan's death",
+   "explain": "David questions how the young man knows that Saul and his son Jonathan are dead."
+  },
+  {
+   "id": "r5",
+   "ru": "Юноша ответил: 'Я случайно оказался на горе Гельбоа, и там был Саул, который опирался на свое копье.'",
+   "question": "What was Saul doing when the young man found him on Mount Gilboa?",
+   "options": [
+    "He was running from his enemies",
+    "He was leaning on his spear",
+    "He was building a fortress",
+    "He was speaking with his generals"
+   ],
+   "correct": "He was leaning on his spear",
+   "explain": "The text states 'Саул, который опирался на свое копье' (Saul was leaning on his spear)."
+  },
+  {
+   "id": "r6",
+   "ru": "Затем Давид и все, кто был с ним, разорвали на себе одежду и плакали до вечера о Сауле и его сыне Иоаннафане.",
+   "question": "How did David and his people mourn Saul and Jonathan?",
+   "options": [
+    "They sang funeral songs",
+    "They went to war against the Philistines",
+    "They tore their clothes, wept, and mourned until evening",
+    "They built a monument in their honor"
+   ],
+   "correct": "They tore their clothes, wept, and mourned until evening",
+   "explain": "The text describes that David and his people 'разорвали на себе одежду' (tore their clothes) and 'плакали до вечера' (wept until evening)."
+  }
+ ]
 }

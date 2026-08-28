@@ -1,204 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Есть рудник для ___.",
-      "lemma": "серебро",
-      "options": [
-        "серебро",
-        "серебра",
-        "серебру",
-        "серебром"
-      ],
-      "correct": "серебра",
-      "case": "Родительный (Genitive)",
-      "translation": "Surely there is a mine for silver.",
-      "explain": "The preposition 'для' (for) governs the genitive case; 'рудник для серебра' means 'a mine for silver'."
-    },
-    {
-      "id": "c2",
-      "sentence": "Из земли добывают ___.",
-      "lemma": "железо",
-      "options": [
-        "железо",
-        "железа",
-        "железу",
-        "железом"
-      ],
-      "correct": "железо",
-      "case": "Винительный (Accusative)",
-      "translation": "Iron is taken out of the earth.",
-      "explain": "The verb 'добывают' (extract/mine) requires the accusative case; for neuter nouns, accusative equals nominative."
-    },
-    {
-      "id": "c3",
-      "sentence": "Плавит медь из ___.",
-      "lemma": "руда",
-      "options": [
-        "руда",
-        "руды",
-        "руде",
-        "руду"
-      ],
-      "correct": "руды",
-      "case": "Родительный (Genitive)",
-      "translation": "Copper is smelted out of the ore.",
-      "explain": "The preposition 'из' (from/out of) governs the genitive case; 'из руды' means 'from the ore'."
-    },
-    {
-      "id": "c4",
-      "sentence": "Тьме рудокоп полагает ___.",
-      "lemma": "предел",
-      "options": [
-        "предел",
-        "предела",
-        "пределу",
-        "пределом"
-      ],
-      "correct": "предел",
-      "case": "Винительный (Accusative)",
-      "translation": "Man sets an end to darkness.",
-      "explain": "The verb 'полагает' (sets/places) requires the accusative case; for inanimate nouns, accusative equals nominative."
-    },
-    {
-      "id": "c5",
-      "sentence": "Далеко от жилья он роет ___.",
-      "lemma": "колодец",
-      "options": [
-        "колодец",
-        "колодца",
-        "колодцу",
-        "колодцом"
-      ],
-      "correct": "колодец",
-      "case": "Винительный (Accusative)",
-      "translation": "He breaks open a shaft away from where people live.",
-      "explain": "The transitive verb 'роет' (digs) requires the accusative case; 'роет колодец' means 'digs a well'."
-    },
-    {
-      "id": "c6",
-      "sentence": "В местах, что забыла стопа ___.",
-      "lemma": "человек",
-      "options": [
-        "человек",
-        "человека",
-        "человеку",
-        "человеком"
-      ],
-      "correct": "человека",
-      "case": "Родительный (Genitive)",
-      "translation": "In places which the foot of man has forgotten.",
-      "explain": "The possessive genitive 'стопа человека' (the foot of man) shows possession; the genitive follows the head noun."
-    },
-    {
-      "id": "c7",
-      "sentence": "Пути к ним не знает хищная ___.",
-      "lemma": "птица",
-      "options": [
-        "птица",
-        "птицы",
-        "птице",
-        "птицей"
-      ],
-      "correct": "птица",
-      "case": "Именительный (Nominative)",
-      "translation": "That path no bird of prey knows.",
-      "explain": "The noun птица (bird) is the subject of the verb 'знает' (knows); nominative case marks the subject."
-    },
-    {
-      "id": "c8",
-      "sentence": "Человек на ___ простирает руку.",
-      "lemma": "гранит",
-      "options": [
-        "гранит",
-        "гранита",
-        "гранту",
-        "гранитом"
-      ],
-      "correct": "гранит",
-      "case": "Винительный (Accusative)",
-      "translation": "He puts his hand upon the flinty rock.",
-      "explain": "The preposition 'на' (on) with the meaning of 'upon' governs the accusative case; 'на гранит' means 'on(to) granite'."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Есть рудник для серебра, и для золота есть горн плавильный. Из земли добывают железо и плавит медь из руды.",
-      "question": "What does the passage say about sources of precious metals and minerals?",
-      "options": [
-        "There is a mine for silver and a furnace for gold; iron is extracted from earth and copper is smelted from ore",
-        "The earth provides unlimited gold and silver to those who work hard",
-        "Gold and silver are more valuable than iron and copper",
-        "Precious metals are only found in deep caves and mountains"
-      ],
-      "correct": "There is a mine for silver and a furnace for gold; iron is extracted from earth and copper is smelted from ore",
-      "explain": "The text describes the locations and processes: 'Есть рудник для серебра, и для золота есть горн плавильный. Из земли добывают железо и плавит медь из руды'."
-    },
-    {
-      "id": "r2",
-      "ru": "Далеко от жилья он роет колодец, в местах, что забыла стопа человека, висит он и зыблится вдали от людей.",
-      "question": "Where does the miner dig and what is his condition?",
-      "options": [
-        "Far from settlements he digs wells in remote places, where he hangs and sways away from people",
-        "He digs near villages to provide water for people",
-        "He works in comfortable mines close to his home",
-        "He digs in deep caves where no one can see him"
-      ],
-      "correct": "Far from settlements he digs wells in remote places, where he hangs and sways away from people",
-      "explain": "The passage describes the miner's isolated work: 'Далеко от жилья он роет колодец, в местах, что забыла стопа человека, висит он и зыблится вдали от людей'."
-    },
-    {
-      "id": "r3",
-      "ru": "Земля, на которой вырастает пища, изнутри изрыта будто огнем, сапфиров россыпь в ее камнях, и в ней золотой песок.",
-      "question": "What treasures does the earth contain according to this passage?",
-      "options": [
-        "Food grows on earth's surface while sapphires and golden sand lie within",
-        "All the earth's wealth is hidden deep underground forever",
-        "The earth is barren except for what people cultivate",
-        "Precious stones are scattered everywhere on the earth's surface"
-      ],
-      "correct": "Food grows on earth's surface while sapphires and golden sand lie within",
-      "explain": "The passage describes what the earth yields: 'Земля, на которой вырастает пища, изнутри изрыта...сапфиров россыпь в ее камнях, и в ней золотой песок'."
-    },
-    {
-      "id": "r4",
-      "ru": "Но где можно найти мудрость, где обитает разум? Не знает смертный ее дома, на земле живых ее не найти?",
-      "question": "What profound question does Job ask about wisdom?",
-      "options": [
-        "Where can wisdom be found and where does understanding dwell; man does not know its dwelling place",
-        "Is wisdom found in books and teachings of the wise",
-        "Can a man become wise through wealth and power",
-        "Is wisdom inherited from one's ancestors"
-      ],
-      "correct": "Where can wisdom be found and where does understanding dwell; man does not know its dwelling place",
-      "explain": "The passage poses fundamental questions about wisdom: 'Но где можно найти мудрость, где обитает разум? Не знает смертный ее дома'."
-    },
-    {
-      "id": "r5",
-      "ru": "Пучина скажет, во мне ее нет, и мол, ведь море не у меня она.",
-      "question": "What do the deep and the sea declare about wisdom?",
-      "options": [
-        "Neither the deep nor the sea possess wisdom",
-        "Wisdom is hidden in the depths of the ocean",
-        "Sailors can find wisdom by traveling the seas",
-        "The ocean guards the secrets of wisdom"
-      ],
-      "correct": "Neither the deep nor the sea possess wisdom",
-      "explain": "The personified deep and sea deny having wisdom: 'Пучина скажет, во мне ее нет, и мол...море не у меня она'."
-    },
-    {
-      "id": "r6",
-      "ru": "Только Бог знает пути мудрости. Только Богу ведом к ней путь, Он знает ее жилище, ведь Он озирает края земли и видит все, что под небесами.",
-      "question": "According to this passage, who alone knows the path to wisdom?",
-      "options": [
-        "Only God knows the ways of wisdom and its dwelling place; He sees the ends of the earth and all under heaven",
-        "The wise men of the earth know the path to wisdom",
-        "Angels and spirits know the path to wisdom but don't reveal it",
-        "Philosophers and scholars have discovered the path to wisdom"
-      ],
-      "correct": "Only God knows the ways of wisdom and its dwelling place; He sees the ends of the earth and all under heaven",
-      "explain": "The passage affirms God's unique knowledge: 'Только Бог знает пути мудрости...Он озирает края земли и видит все, что под небесами'."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Есть рудник для ___.",
+   "lemma": "серебро",
+   "options": [
+    "серебро",
+    "серебра",
+    "серебру",
+    "серебром"
+   ],
+   "correct": "серебра",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition 'для' (for) governs the genitive case; 'рудник для серебра' means 'a mine for silver'."
+  },
+  {
+   "id": "c2",
+   "sentence": "Из земли добывают ___.",
+   "lemma": "железо",
+   "options": [
+    "железо",
+    "железа",
+    "железу",
+    "железом"
+   ],
+   "correct": "железо",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb 'добывают' (extract/mine) requires the accusative case; for neuter nouns, accusative equals nominative."
+  },
+  {
+   "id": "c3",
+   "sentence": "Плавит медь из ___.",
+   "lemma": "руда",
+   "options": [
+    "руда",
+    "руды",
+    "руде",
+    "руду"
+   ],
+   "correct": "руды",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition 'из' (from/out of) governs the genitive case; 'из руды' means 'from the ore'."
+  },
+  {
+   "id": "c4",
+   "sentence": "Тьме рудокоп полагает ___.",
+   "lemma": "предел",
+   "options": [
+    "предел",
+    "предела",
+    "пределу",
+    "пределом"
+   ],
+   "correct": "предел",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb 'полагает' (sets/places) requires the accusative case; for inanimate nouns, accusative equals nominative."
+  },
+  {
+   "id": "c5",
+   "sentence": "Далеко от жилья он роет ___.",
+   "lemma": "колодец",
+   "options": [
+    "колодец",
+    "колодца",
+    "колодцу",
+    "колодцом"
+   ],
+   "correct": "колодец",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb 'роет' (digs) requires the accusative case; 'роет колодец' means 'digs a well'."
+  },
+  {
+   "id": "c6",
+   "sentence": "В местах, что забыла стопа ___.",
+   "lemma": "человек",
+   "options": [
+    "человек",
+    "человека",
+    "человеку",
+    "человеком"
+   ],
+   "correct": "человека",
+   "case": "Родительный (Genitive)",
+   "explain": "The possessive genitive 'стопа человека' (the foot of man) shows possession; the genitive follows the head noun."
+  },
+  {
+   "id": "c7",
+   "sentence": "Пути к ним не знает хищная ___.",
+   "lemma": "птица",
+   "options": [
+    "птица",
+    "птицы",
+    "птице",
+    "птицей"
+   ],
+   "correct": "птица",
+   "case": "Именительный (Nominative)",
+   "explain": "The noun птица (bird) is the subject of the verb 'знает' (knows); nominative case marks the subject."
+  },
+  {
+   "id": "c8",
+   "sentence": "Человек на ___ простирает руку.",
+   "lemma": "гранит",
+   "options": [
+    "гранит",
+    "гранита",
+    "гранту",
+    "гранитом"
+   ],
+   "correct": "гранит",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition 'на' (on) with the meaning of 'upon' governs the accusative case; 'на гранит' means 'on(to) granite'."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Есть рудник для серебра, и для золота есть горн плавильный. Из земли добывают железо и плавит медь из руды.",
+   "question": "What does the passage say about sources of precious metals and minerals?",
+   "options": [
+    "There is a mine for silver and a furnace for gold; iron is extracted from earth and copper is smelted from ore",
+    "The earth provides unlimited gold and silver to those who work hard",
+    "Gold and silver are more valuable than iron and copper",
+    "Precious metals are only found in deep caves and mountains"
+   ],
+   "correct": "There is a mine for silver and a furnace for gold; iron is extracted from earth and copper is smelted from ore",
+   "explain": "The text describes the locations and processes: 'Есть рудник для серебра, и для золота есть горн плавильный. Из земли добывают железо и плавит медь из руды'."
+  },
+  {
+   "id": "r2",
+   "ru": "Далеко от жилья он роет колодец, в местах, что забыла стопа человека, висит он и зыблится вдали от людей.",
+   "question": "Where does the miner dig and what is his condition?",
+   "options": [
+    "Far from settlements he digs wells in remote places, where he hangs and sways away from people",
+    "He digs near villages to provide water for people",
+    "He works in comfortable mines close to his home",
+    "He digs in deep caves where no one can see him"
+   ],
+   "correct": "Far from settlements he digs wells in remote places, where he hangs and sways away from people",
+   "explain": "The passage describes the miner's isolated work: 'Далеко от жилья он роет колодец, в местах, что забыла стопа человека, висит он и зыблится вдали от людей'."
+  },
+  {
+   "id": "r3",
+   "ru": "Земля, на которой вырастает пища, изнутри изрыта будто огнем, сапфиров россыпь в ее камнях, и в ней золотой песок.",
+   "question": "What treasures does the earth contain according to this passage?",
+   "options": [
+    "Food grows on earth's surface while sapphires and golden sand lie within",
+    "All the earth's wealth is hidden deep underground forever",
+    "The earth is barren except for what people cultivate",
+    "Precious stones are scattered everywhere on the earth's surface"
+   ],
+   "correct": "Food grows on earth's surface while sapphires and golden sand lie within",
+   "explain": "The passage describes what the earth yields: 'Земля, на которой вырастает пища, изнутри изрыта...сапфиров россыпь в ее камнях, и в ней золотой песок'."
+  },
+  {
+   "id": "r4",
+   "ru": "Но где можно найти мудрость, где обитает разум? Не знает смертный ее дома, на земле живых ее не найти?",
+   "question": "What profound question does Job ask about wisdom?",
+   "options": [
+    "Where can wisdom be found and where does understanding dwell; man does not know its dwelling place",
+    "Is wisdom found in books and teachings of the wise",
+    "Can a man become wise through wealth and power",
+    "Is wisdom inherited from one's ancestors"
+   ],
+   "correct": "Where can wisdom be found and where does understanding dwell; man does not know its dwelling place",
+   "explain": "The passage poses fundamental questions about wisdom: 'Но где можно найти мудрость, где обитает разум? Не знает смертный ее дома'."
+  },
+  {
+   "id": "r5",
+   "ru": "Пучина скажет, во мне ее нет, и мол, ведь море не у меня она.",
+   "question": "What do the deep and the sea declare about wisdom?",
+   "options": [
+    "Neither the deep nor the sea possess wisdom",
+    "Wisdom is hidden in the depths of the ocean",
+    "Sailors can find wisdom by traveling the seas",
+    "The ocean guards the secrets of wisdom"
+   ],
+   "correct": "Neither the deep nor the sea possess wisdom",
+   "explain": "The personified deep and sea deny having wisdom: 'Пучина скажет, во мне ее нет, и мол...море не у меня она'."
+  },
+  {
+   "id": "r6",
+   "ru": "Только Бог знает пути мудрости. Только Богу ведом к ней путь, Он знает ее жилище, ведь Он озирает края земли и видит все, что под небесами.",
+   "question": "According to this passage, who alone knows the path to wisdom?",
+   "options": [
+    "Only God knows the ways of wisdom and its dwelling place; He sees the ends of the earth and all under heaven",
+    "The wise men of the earth know the path to wisdom",
+    "Angels and spirits know the path to wisdom but don't reveal it",
+    "Philosophers and scholars have discovered the path to wisdom"
+   ],
+   "correct": "Only God knows the ways of wisdom and its dwelling place; He sees the ends of the earth and all under heaven",
+   "explain": "The passage affirms God's unique knowledge: 'Только Бог знает пути мудрости...Он озирает края земли и видит все, что под небесами'."
+  }
+ ]
 }

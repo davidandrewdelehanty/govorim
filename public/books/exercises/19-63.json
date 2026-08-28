@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Боже, услышь мой ___",
-      "lemma": "голос",
-      "options": ["голос", "голоса", "голосу", "голосом"],
-      "correct": "голос",
-      "case": "Винительный (Accusative)",
-      "translation": "God, hear my voice",
-      "explain": "The verb 'услышать' (to hear) takes the accusative case"
-    },
-    {
-      "id": "c2",
-      "sentence": "сохрани мою жизнь от ___",
-      "lemma": "враг",
-      "options": ["враг", "врага", "врагу", "врагом"],
-      "correct": "врага",
-      "case": "Родительный (Genitive)",
-      "translation": "save my life from the enemy",
-      "explain": "The preposition 'от' (from) requires the genitive case"
-    },
-    {
-      "id": "c3",
-      "sentence": "Сокрой меня от ___ нечестивых",
-      "lemma": "замыслы",
-      "options": ["замыслы", "замыслов", "замыслам", "замыслами"],
-      "correct": "замыслов",
-      "case": "Родительный (Genitive)",
-      "translation": "Hide me from evil plans",
-      "explain": "The preposition 'от' (from) requires the genitive case"
-    },
-    {
-      "id": "c4",
-      "sentence": "Они заострили свои ___",
-      "lemma": "языки",
-      "options": ["языки", "языков", "языкам", "языками"],
-      "correct": "языки",
-      "case": "Винительный (Accusative)",
-      "translation": "They sharpened their tongues",
-      "explain": "The verb 'заострить' (to sharpen) takes the accusative case"
-    },
-    {
-      "id": "c5",
-      "sentence": "совещаются, чтобы спрятать свои ___",
-      "lemma": "сеть",
-      "options": ["сети", "сетей", "сетям", "сетями"],
-      "correct": "сети",
-      "case": "Винительный (Accusative)",
-      "translation": "consult to hide their nets",
-      "explain": "The verb 'спрятать' (to hide) takes the accusative case"
-    },
-    {
-      "id": "c6",
-      "sentence": "истинно коварный разум и ___",
-      "lemma": "сердце",
-      "options": ["сердце", "сердца", "сердцу", "сердцем"],
-      "correct": "сердце",
-      "case": "Именительный (Nominative)",
-      "translation": "truly cunning mind and heart",
-      "explain": "Nominative case for a subject noun in a compound structure"
-    },
-    {
-      "id": "c7",
-      "sentence": "стреляют в него из ___",
-      "lemma": "засада",
-      "options": ["засада", "засады", "засаде", "засаду"],
-      "correct": "засады",
-      "case": "Родительный (Genitive)",
-      "translation": "they shoot at him from ambush",
-      "explain": "The preposition 'из' (from) requires the genitive case"
-    },
-    {
-      "id": "c8",
-      "sentence": "Он обратит их языки против них самих и приведет их к ___",
-      "lemma": "гибель",
-      "options": ["гибель", "гибели", "гибелью", "гибельми"],
-      "correct": "гибели",
-      "case": "Дательный (Dative)",
-      "translation": "He will turn their tongues against them and lead them to destruction",
-      "explain": "The preposition 'к' (to, toward) requires the dative case"
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Боже, услышь мой голос, когда я возношу жалобы мои",
-      "question": "What does the speaker ask God to do?",
-      "options": ["Hear his voice", "Answer his prayer", "Save his life", "Hide him"],
-      "correct": "Hear his voice",
-      "explain": "The text explicitly says 'услышь мой голос' (hear my voice)"
-    },
-    {
-      "id": "r2",
-      "ru": "Сокрой меня от замыслов нечестивых, от шумной толпы злодеев",
-      "question": "What should God protect the speaker from?",
-      "options": ["Arrows and swords", "Evil plans and violent people", "Mountains and water", "Enemies and fire"],
-      "correct": "Evil plans and violent people",
-      "explain": "The text mentions both 'замыслов нечестивых' (evil plans) and 'толпы злодеев' (crowd of evildoers)"
-    },
-    {
-      "id": "r3",
-      "ru": "Они заострили свои языки, как мечи, и нацелили свои слова, как смертоносные стрелы",
-      "question": "What are the enemies' words compared to?",
-      "options": ["Water and fire", "Mountains and valleys", "Swords and deadly arrows", "Stones and shields"],
-      "correct": "Swords and deadly arrows",
-      "explain": "The text says their tongues are like swords ('как мечи') and their words like deadly arrows ('как смертоносные стрелы')"
-    },
-    {
-      "id": "r4",
-      "ru": "Он обратит их языки против них самих и приведет их к гибели",
-      "question": "What will happen to the enemies as a result of God's judgment?",
-      "options": ["They will flee", "Their own tongues will be turned against them", "They will find refuge", "They will be blessed"],
-      "correct": "Their own tongues will be turned against them",
-      "explain": "The text says 'их языки против них самих' (their tongues against themselves)"
-    },
-    {
-      "id": "r5",
-      "ru": "Все люди устрашатся, они будут возвещать дело Божие и размышлять о том, что Он сделал",
-      "question": "What will people do when they witness God's works?",
-      "options": ["Forget about God", "Declare and ponder God's works", "Oppose the righteous", "Hide in fear silently"],
-      "correct": "Declare and ponder God's works",
-      "explain": "The text says people will 'возвещать дело Божие' (declare God's work) and 'размышлять' (ponder what He has done)"
-    },
-    {
-      "id": "r6",
-      "ru": "Пусть праведные возрадуются о Господе и найдут в нем убежище",
-      "question": "What does the psalm wish for the righteous?",
-      "options": ["To be punished", "To rejoice in the Lord and find refuge in Him", "To flee the land", "To forget their faith"],
-      "correct": "To rejoice in the Lord and find refuge in Him",
-      "explain": "The text says 'возрадуются о Господе' (rejoice in the Lord) and 'найдут в нем убежище' (find refuge in Him)"
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Боже, услышь мой ___",
+   "lemma": "голос",
+   "options": [
+    "голос",
+    "голоса",
+    "голосу",
+    "голосом"
+   ],
+   "correct": "голос",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb 'услышать' (to hear) takes the accusative case"
+  },
+  {
+   "id": "c2",
+   "sentence": "сохрани мою жизнь от ___",
+   "lemma": "враг",
+   "options": [
+    "враг",
+    "врага",
+    "врагу",
+    "врагом"
+   ],
+   "correct": "врага",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition 'от' (from) requires the genitive case"
+  },
+  {
+   "id": "c3",
+   "sentence": "Сокрой меня от ___ нечестивых",
+   "lemma": "замыслы",
+   "options": [
+    "замыслы",
+    "замыслов",
+    "замыслам",
+    "замыслами"
+   ],
+   "correct": "замыслов",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition 'от' (from) requires the genitive case"
+  },
+  {
+   "id": "c4",
+   "sentence": "Они заострили свои ___",
+   "lemma": "языки",
+   "options": [
+    "языки",
+    "языков",
+    "языкам",
+    "языками"
+   ],
+   "correct": "языки",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb 'заострить' (to sharpen) takes the accusative case"
+  },
+  {
+   "id": "c5",
+   "sentence": "совещаются, чтобы спрятать свои ___",
+   "lemma": "сеть",
+   "options": [
+    "сети",
+    "сетей",
+    "сетям",
+    "сетями"
+   ],
+   "correct": "сети",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb 'спрятать' (to hide) takes the accusative case"
+  },
+  {
+   "id": "c6",
+   "sentence": "истинно коварный разум и ___",
+   "lemma": "сердце",
+   "options": [
+    "сердце",
+    "сердца",
+    "сердцу",
+    "сердцем"
+   ],
+   "correct": "сердце",
+   "case": "Именительный (Nominative)",
+   "explain": "Nominative case for a subject noun in a compound structure"
+  },
+  {
+   "id": "c7",
+   "sentence": "стреляют в него из ___",
+   "lemma": "засада",
+   "options": [
+    "засада",
+    "засады",
+    "засаде",
+    "засаду"
+   ],
+   "correct": "засады",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition 'из' (from) requires the genitive case"
+  },
+  {
+   "id": "c8",
+   "sentence": "Он обратит их языки против них самих и приведет их к ___",
+   "lemma": "гибель",
+   "options": [
+    "гибель",
+    "гибели",
+    "гибелью",
+    "гибельми"
+   ],
+   "correct": "гибели",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition 'к' (to, toward) requires the dative case"
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Боже, услышь мой голос, когда я возношу жалобы мои",
+   "question": "What does the speaker ask God to do?",
+   "options": [
+    "Hear his voice",
+    "Answer his prayer",
+    "Save his life",
+    "Hide him"
+   ],
+   "correct": "Hear his voice",
+   "explain": "The text explicitly says 'услышь мой голос' (hear my voice)"
+  },
+  {
+   "id": "r2",
+   "ru": "Сокрой меня от замыслов нечестивых, от шумной толпы злодеев",
+   "question": "What should God protect the speaker from?",
+   "options": [
+    "Arrows and swords",
+    "Evil plans and violent people",
+    "Mountains and water",
+    "Enemies and fire"
+   ],
+   "correct": "Evil plans and violent people",
+   "explain": "The text mentions both 'замыслов нечестивых' (evil plans) and 'толпы злодеев' (crowd of evildoers)"
+  },
+  {
+   "id": "r3",
+   "ru": "Они заострили свои языки, как мечи, и нацелили свои слова, как смертоносные стрелы",
+   "question": "What are the enemies' words compared to?",
+   "options": [
+    "Water and fire",
+    "Mountains and valleys",
+    "Swords and deadly arrows",
+    "Stones and shields"
+   ],
+   "correct": "Swords and deadly arrows",
+   "explain": "The text says their tongues are like swords ('как мечи') and their words like deadly arrows ('как смертоносные стрелы')"
+  },
+  {
+   "id": "r4",
+   "ru": "Он обратит их языки против них самих и приведет их к гибели",
+   "question": "What will happen to the enemies as a result of God's judgment?",
+   "options": [
+    "They will flee",
+    "Their own tongues will be turned against them",
+    "They will find refuge",
+    "They will be blessed"
+   ],
+   "correct": "Their own tongues will be turned against them",
+   "explain": "The text says 'их языки против них самих' (their tongues against themselves)"
+  },
+  {
+   "id": "r5",
+   "ru": "Все люди устрашатся, они будут возвещать дело Божие и размышлять о том, что Он сделал",
+   "question": "What will people do when they witness God's works?",
+   "options": [
+    "Forget about God",
+    "Declare and ponder God's works",
+    "Oppose the righteous",
+    "Hide in fear silently"
+   ],
+   "correct": "Declare and ponder God's works",
+   "explain": "The text says people will 'возвещать дело Божие' (declare God's work) and 'размышлять' (ponder what He has done)"
+  },
+  {
+   "id": "r6",
+   "ru": "Пусть праведные возрадуются о Господе и найдут в нем убежище",
+   "question": "What does the psalm wish for the righteous?",
+   "options": [
+    "To be punished",
+    "To rejoice in the Lord and find refuge in Him",
+    "To flee the land",
+    "To forget their faith"
+   ],
+   "correct": "To rejoice in the Lord and find refuge in Him",
+   "explain": "The text says 'возрадуются о Господе' (rejoice in the Lord) and 'найдут в нем убежище' (find refuge in Him)"
+  }
+ ]
 }

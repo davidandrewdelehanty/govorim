@@ -1,204 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Мой ___ разбит, мои дни угасли, мне грозит могила.",
-      "lemma": "дух",
-      "options": [
-        "дух",
-        "духа",
-        "духу",
-        "духом"
-      ],
-      "correct": "дух",
-      "case": "Именительный (Nominative)",
-      "translation": "My spirit is broken, my days are extinguished, the grave awaits me.",
-      "explain": "Дух is the subject of the sentence, requiring the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "О, земля, не скрывай мою ___, пусть не найдет покоя мой крик.",
-      "lemma": "слеза",
-      "options": [
-        "слеза",
-        "слезы",
-        "слезу",
-        "слезой"
-      ],
-      "correct": "слезу",
-      "case": "Винительный (Accusative)",
-      "translation": "Oh, earth, do not cover my blood, and let my cry find no resting place.",
-      "explain": "The transitive verb скрывай (hide) takes the direct object in the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Мой заступник на ___, мой свидетель в вышине.",
-      "lemma": "небеса",
-      "options": [
-        "небеса",
-        "небес",
-        "небесам",
-        "небесах"
-      ],
-      "correct": "небесах",
-      "case": "Предложный (Prepositional)",
-      "translation": "My helper is in heaven, my witness is on high.",
-      "explain": "The preposition на (in/on) indicating location governs the prepositional case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Мой заступник защитит меня перед ___, как человек защищает в суде своего друга.",
-      "lemma": "Бог",
-      "options": [
-        "Бог",
-        "Бога",
-        "Богом",
-        "Боге"
-      ],
-      "correct": "Богом",
-      "case": "Творительный (Instrumental)",
-      "translation": "My helper will defend me before God, as a man defends his friend in court.",
-      "explain": "The preposition перед (before) governing agency requires the instrumental case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Моим годам приходит ___, я ухожу в путь безвозвратный.",
-      "lemma": "конец",
-      "options": [
-        "конец",
-        "конца",
-        "концу",
-        "концом"
-      ],
-      "correct": "конец",
-      "case": "Именительный (Nominative)",
-      "translation": "My years draw to an end, I go on the path of no return.",
-      "explain": "Конец is the subject that 'comes' to the years, requiring nominative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Я становлюсь сам себе в посмешище, и дети видят мой ___.",
-      "lemma": "стыд",
-      "options": [
-        "стыд",
-        "стыда",
-        "стыду",
-        "стыдом"
-      ],
-      "correct": "стыд",
-      "case": "Винительный (Accusative)",
-      "translation": "I have become a mockery, and children see my shame.",
-      "explain": "The transitive verb видят (see) takes the direct object in the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Честные люди приходят в ужас от ___.",
-      "lemma": "я",
-      "options": [
-        "меня",
-        "я",
-        "мне",
-        "мной"
-      ],
-      "correct": "меня",
-      "case": "Родительный (Genitive)",
-      "translation": "The upright are astonished at my fate.",
-      "explain": "The preposition от (from/at) governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Праведник удержится в своем ___ и только крепнет в силе.",
-      "lemma": "день",
-      "options": [
-        "день",
-        "дня",
-        "днем",
-        "дне"
-      ],
-      "correct": "дне",
-      "case": "Предложный (Prepositional)",
-      "translation": "The righteous man holds to his path, and only grows stronger in strength.",
-      "explain": "The preposition в (in) indicating position governs the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "О, земля, не скрывай мою кровь, пусть не найдет покоя мой крик.",
-      "question": "What does Job appeal to the earth to do?",
-      "options": [
-        "Not to hide his blood and not to silence his cry",
-        "To cover his shame",
-        "To end his suffering",
-        "To honor his memory"
-      ],
-      "correct": "Not to hide his blood and not to silence his cry",
-      "explain": "Job cries О, земля, не скрывай мою кровь, пусть не найдет покоя мой крик — 'Oh, earth, do not cover my blood, and let my cry find no resting place.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Но даже теперь мой свидетель на небесах, и есть в вышине у меня защитник.",
-      "question": "What comfort does Job find in his suffering?",
-      "options": [
-        "He has a witness in heaven and a defender on high",
-        "His friends understand him",
-        "His suffering will end soon",
-        "God will punish his enemies"
-      ],
-      "correct": "He has a witness in heaven and a defender on high",
-      "explain": "Job says Но даже теперь мой свидетель на небесах, и есть в вышине у меня защитник — 'But even now my witness is in heaven; my advocate is on high.'"
-    },
-    {
-      "id": "r3",
-      "ru": "Мой заступник, друг мой, к Богу слезы мои текут.",
-      "question": "What does Job say about his tears?",
-      "options": [
-        "His tears flow to God as his helper and friend",
-        "His tears have dried up",
-        "His tears are useless",
-        "His tears bring him comfort"
-      ],
-      "correct": "His tears flow to God as his helper and friend",
-      "explain": "Job speaks of his advocate and friend, saying that his tears flow to God in prayer."
-    },
-    {
-      "id": "r4",
-      "ru": "Мой заступник защитит меня перед Богом, как человек защищает в суде своего друга.",
-      "question": "How does Job say his helper will defend him?",
-      "options": [
-        "As a man defends his friend before a judge",
-        "With force and violence",
-        "By his wisdom alone",
-        "Through his wealth"
-      ],
-      "correct": "As a man defends his friend before a judge",
-      "explain": "Job states Мой заступник защитит меня перед Богом, как человек защищает в суде своего друга — 'My helper will defend me before God, as a man defends his friend in court.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Моим годам приходит конец, я ухожу в путь безвозвратный.",
-      "question": "What does Job say about his future?",
-      "options": [
-        "His days are ending and he goes on the path of no return",
-        "His life will improve",
-        "He will be healed and restored",
-        "He will become prosperous again"
-      ],
-      "correct": "His days are ending and he goes on the path of no return",
-      "explain": "Job laments Моим годам приходит конец, я ухожу в путь безвозвратный — 'My years draw to an end, and I go on the path of no return.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Честные люди приходят в ужас от этого, и невинный воздымает руки против нечестивца.",
-      "question": "How do righteous people react to Job's fate?",
-      "options": [
-        "They are astonished and the innocent raises his hand against the wicked",
-        "They support him with comfort",
-        "They laugh at his misfortune",
-        "They ignore his suffering"
-      ],
-      "correct": "They are astonished and the innocent raises his hand against the wicked",
-      "explain": "The text indicates that righteous people are shocked by Job's suffering and respond by standing against those who oppress the innocent."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Мой ___ разбит, мои дни угасли, мне грозит могила.",
+   "lemma": "дух",
+   "options": [
+    "дух",
+    "духа",
+    "духу",
+    "духом"
+   ],
+   "correct": "дух",
+   "case": "Именительный (Nominative)",
+   "explain": "Дух is the subject of the sentence, requiring the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "О, земля, не скрывай мою ___, пусть не найдет покоя мой крик.",
+   "lemma": "слеза",
+   "options": [
+    "слеза",
+    "слезы",
+    "слезу",
+    "слезой"
+   ],
+   "correct": "слезу",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb скрывай (hide) takes the direct object in the accusative case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Мой заступник на ___, мой свидетель в вышине.",
+   "lemma": "небеса",
+   "options": [
+    "небеса",
+    "небес",
+    "небесам",
+    "небесах"
+   ],
+   "correct": "небесах",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition на (in/on) indicating location governs the prepositional case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Мой заступник защитит меня перед ___, как человек защищает в суде своего друга.",
+   "lemma": "Бог",
+   "options": [
+    "Бог",
+    "Бога",
+    "Богом",
+    "Боге"
+   ],
+   "correct": "Богом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition перед (before) governing agency requires the instrumental case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Моим годам приходит ___, я ухожу в путь безвозвратный.",
+   "lemma": "конец",
+   "options": [
+    "конец",
+    "конца",
+    "концу",
+    "концом"
+   ],
+   "correct": "конец",
+   "case": "Именительный (Nominative)",
+   "explain": "Конец is the subject that 'comes' to the years, requiring nominative case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Я становлюсь сам себе в посмешище, и дети видят мой ___.",
+   "lemma": "стыд",
+   "options": [
+    "стыд",
+    "стыда",
+    "стыду",
+    "стыдом"
+   ],
+   "correct": "стыд",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb видят (see) takes the direct object in the accusative case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Честные люди приходят в ужас от ___.",
+   "lemma": "я",
+   "options": [
+    "меня",
+    "я",
+    "мне",
+    "мной"
+   ],
+   "correct": "меня",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition от (from/at) governs the genitive case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Праведник удержится в своем ___ и только крепнет в силе.",
+   "lemma": "день",
+   "options": [
+    "день",
+    "дня",
+    "днем",
+    "дне"
+   ],
+   "correct": "дне",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в (in) indicating position governs the prepositional case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "О, земля, не скрывай мою кровь, пусть не найдет покоя мой крик.",
+   "question": "What does Job appeal to the earth to do?",
+   "options": [
+    "Not to hide his blood and not to silence his cry",
+    "To cover his shame",
+    "To end his suffering",
+    "To honor his memory"
+   ],
+   "correct": "Not to hide his blood and not to silence his cry",
+   "explain": "Job cries О, земля, не скрывай мою кровь, пусть не найдет покоя мой крик — 'Oh, earth, do not cover my blood, and let my cry find no resting place.'"
+  },
+  {
+   "id": "r2",
+   "ru": "Но даже теперь мой свидетель на небесах, и есть в вышине у меня защитник.",
+   "question": "What comfort does Job find in his suffering?",
+   "options": [
+    "He has a witness in heaven and a defender on high",
+    "His friends understand him",
+    "His suffering will end soon",
+    "God will punish his enemies"
+   ],
+   "correct": "He has a witness in heaven and a defender on high",
+   "explain": "Job says Но даже теперь мой свидетель на небесах, и есть в вышине у меня защитник — 'But even now my witness is in heaven; my advocate is on high.'"
+  },
+  {
+   "id": "r3",
+   "ru": "Мой заступник, друг мой, к Богу слезы мои текут.",
+   "question": "What does Job say about his tears?",
+   "options": [
+    "His tears flow to God as his helper and friend",
+    "His tears have dried up",
+    "His tears are useless",
+    "His tears bring him comfort"
+   ],
+   "correct": "His tears flow to God as his helper and friend",
+   "explain": "Job speaks of his advocate and friend, saying that his tears flow to God in prayer."
+  },
+  {
+   "id": "r4",
+   "ru": "Мой заступник защитит меня перед Богом, как человек защищает в суде своего друга.",
+   "question": "How does Job say his helper will defend him?",
+   "options": [
+    "As a man defends his friend before a judge",
+    "With force and violence",
+    "By his wisdom alone",
+    "Through his wealth"
+   ],
+   "correct": "As a man defends his friend before a judge",
+   "explain": "Job states Мой заступник защитит меня перед Богом, как человек защищает в суде своего друга — 'My helper will defend me before God, as a man defends his friend in court.'"
+  },
+  {
+   "id": "r5",
+   "ru": "Моим годам приходит конец, я ухожу в путь безвозвратный.",
+   "question": "What does Job say about his future?",
+   "options": [
+    "His days are ending and he goes on the path of no return",
+    "His life will improve",
+    "He will be healed and restored",
+    "He will become prosperous again"
+   ],
+   "correct": "His days are ending and he goes on the path of no return",
+   "explain": "Job laments Моим годам приходит конец, я ухожу в путь безвозвратный — 'My years draw to an end, and I go on the path of no return.'"
+  },
+  {
+   "id": "r6",
+   "ru": "Честные люди приходят в ужас от этого, и невинный воздымает руки против нечестивца.",
+   "question": "How do righteous people react to Job's fate?",
+   "options": [
+    "They are astonished and the innocent raises his hand against the wicked",
+    "They support him with comfort",
+    "They laugh at his misfortune",
+    "They ignore his suffering"
+   ],
+   "correct": "They are astonished and the innocent raises his hand against the wicked",
+   "explain": "The text indicates that righteous people are shocked by Job's suffering and respond by standing against those who oppress the innocent."
+  }
+ ]
 }

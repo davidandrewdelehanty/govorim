@@ -1,187 +1,181 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Я истинная виноградная ___, а мой отец виноградарь.",
-      "lemma": "лоза",
-      "options": [
-        "лоза",
-        "лозы",
-        "лозу",
-        "лозой"
-      ],
-      "correct": "лоза",
-      "case": "Именительный (Nominative)",
-      "translation": "I am the true vine, and my father is the gardener.",
-      "explain": "Лоза is the predicate noun describing the subject я, so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Они возненавидели меня без всякой ___.",
-      "lemma": "причина",
-      "options": [
-        "причина",
-        "причины",
-        "причине",
-        "причину"
-      ],
-      "correct": "причины",
-      "case": "Родительный (Genitive)",
-      "translation": "They hated me without any cause.",
-      "explain": "The preposition без ('without') always governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Если вы послушны моим ___, то вы будете жить в моей любви.",
-      "lemma": "заповедь",
-      "options": [
-        "заповеди",
-        "заповедей",
-        "заповедям",
-        "заповедями"
-      ],
-      "correct": "заповедям",
-      "case": "Дательный (Dative)",
-      "translation": "If you are obedient to my commandments, you will live in my love.",
-      "explain": "The short-form adjective послушны ('obedient to') governs its complement in the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Никто не может любить больше, чем тот, кто отдает жизнь свою за ___.",
-      "lemma": "друг",
-      "options": [
-        "друзья",
-        "друзей",
-        "друзьям",
-        "друзьями"
-      ],
-      "correct": "друзей",
-      "case": "Винительный (Accusative)",
-      "translation": "No one can love more than the one who lays down his life for his friends.",
-      "explain": "The preposition за ('for') governs the accusative here; for an animate plural noun the accusative form matches the genitive."
-    },
-    {
-      "id": "c5",
-      "sentence": "Я больше не называю вас ___, потому что слуга не знает, что делает его хозяин.",
-      "lemma": "слуга",
-      "options": [
-        "слуги",
-        "слуг",
-        "слугам",
-        "слугами"
-      ],
-      "correct": "слугами",
-      "case": "Творительный (Instrumental)",
-      "translation": "I no longer call you servants, because a servant does not know what his master is doing.",
-      "explain": "The verb называть ('to call someone something') places the predicate noun in the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "В этом исполняется сказанное в их ___.",
-      "lemma": "закон",
-      "options": [
-        "закон",
-        "закона",
-        "законом",
-        "законе"
-      ],
-      "correct": "законе",
-      "case": "Предложный (Prepositional)",
-      "translation": "This is to fulfill what is written in their law.",
-      "explain": "The preposition в ('in') governs the prepositional case here, indicating location within the law."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Ветвь сама по себе плодов приносить не может, если не будет на лозе.",
-      "question": "What does Jesus say a branch cannot do by itself?",
-      "options": [
-        "Bear fruit unless it remains in the vine",
-        "Grow taller than the vine",
-        "Survive a drought",
-        "Produce flowers"
-      ],
-      "correct": "Bear fruit unless it remains in the vine",
-      "explain": "Jesus says a branch cannot bear fruit by itself unless it remains on the vine."
-    },
-    {
-      "id": "r2",
-      "ru": "Кто не пребывает во мне, тот подобен ветке, что выброшена вон и засыхает.",
-      "question": "What happens to someone who does not remain in Jesus?",
-      "options": [
-        "He is thrown out like a branch and withers",
-        "He becomes a teacher",
-        "He receives more fruit",
-        "He is hidden from the world"
-      ],
-      "correct": "He is thrown out like a branch and withers",
-      "explain": "Jesus compares one who does not remain in him to a branch that is thrown out and withers."
-    },
-    {
-      "id": "r3",
-      "ru": "Вот моя заповедь, любите друг друга, как я вас полюбил.",
-      "question": "What is Jesus's commandment to his followers?",
-      "options": [
-        "Love one another as he has loved them",
-        "Fast for forty days",
-        "Give away all possessions",
-        "Avoid speaking with strangers"
-      ],
-      "correct": "Love one another as he has loved them",
-      "explain": "Jesus's commandment is that they love one another as he has loved them."
-    },
-    {
-      "id": "r4",
-      "ru": "Я больше не называю вас слугами, потому что слуга не знает, что делает его хозяин, но я называю вас друзьями, потому что все, что я услышал от моего отца, я открыл вам.",
-      "question": "Why does Jesus call his disciples 'friends' instead of 'servants'?",
-      "options": [
-        "Because he has made known to them everything he heard from his Father",
-        "Because they paid off a debt to him",
-        "Because they are older than he is",
-        "Because servants are punished more harshly"
-      ],
-      "correct": "Because he has made known to them everything he heard from his Father",
-      "explain": "Jesus explains that he calls them friends because he revealed to them everything he heard from his Father."
-    },
-    {
-      "id": "r5",
-      "ru": "Вы меня не выбирали, я сам вас выбрал и назначил, чтобы вы шли и приносили плод, и чтобы ваш плод выдержал испытания временем.",
-      "question": "According to Jesus, who chose whom?",
-      "options": [
-        "Jesus chose the disciples, not the other way around",
-        "The disciples chose Jesus first",
-        "The Father chose Judas alone",
-        "No one chose anyone"
-      ],
-      "correct": "Jesus chose the disciples, not the other way around",
-      "explain": "Jesus says the disciples did not choose him; he chose and appointed them."
-    },
-    {
-      "id": "r6",
-      "ru": "Если мир вас ненавидит, помните, что сначала он возненавидел Меня",
-      "question": "What does Jesus tell the disciples about the world's hatred?",
-      "options": [
-        "The world hated him before it hated them",
-        "The world will never hate them",
-        "Only Judas will be hated by the world",
-        "The world loves everyone equally"
-      ],
-      "correct": "The world hated him before it hated them",
-      "explain": "Jesus tells them to remember that the world hated him first, before it hated them."
-    },
-    {
-      "id": "r7",
-      "ru": "Вы тоже будете свидетельствовать, потому что вы были со мной с самого начала.",
-      "question": "Why will the disciples also testify about Jesus?",
-      "options": [
-        "Because they have been with him from the beginning",
-        "Because they wrote the Scriptures",
-        "Because they are angels",
-        "Because the Counselor forced them to"
-      ],
-      "correct": "Because they have been with him from the beginning",
-      "explain": "Jesus says the disciples will testify because they have been with him from the beginning."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Я истинная виноградная ___, а мой отец виноградарь.",
+   "lemma": "лоза",
+   "options": [
+    "лоза",
+    "лозы",
+    "лозу",
+    "лозой"
+   ],
+   "correct": "лоза",
+   "case": "Именительный (Nominative)",
+   "explain": "Лоза is the predicate noun describing the subject я, so it stands in the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Они возненавидели меня без всякой ___.",
+   "lemma": "причина",
+   "options": [
+    "причина",
+    "причины",
+    "причине",
+    "причину"
+   ],
+   "correct": "причины",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition без ('without') always governs the genitive case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Если вы послушны моим ___, то вы будете жить в моей любви.",
+   "lemma": "заповедь",
+   "options": [
+    "заповеди",
+    "заповедей",
+    "заповедям",
+    "заповедями"
+   ],
+   "correct": "заповедям",
+   "case": "Дательный (Dative)",
+   "explain": "The short-form adjective послушны ('obedient to') governs its complement in the dative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Никто не может любить больше, чем тот, кто отдает жизнь свою за ___.",
+   "lemma": "друг",
+   "options": [
+    "друзья",
+    "друзей",
+    "друзьям",
+    "друзьями"
+   ],
+   "correct": "друзей",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition за ('for') governs the accusative here; for an animate plural noun the accusative form matches the genitive."
+  },
+  {
+   "id": "c5",
+   "sentence": "Я больше не называю вас ___, потому что слуга не знает, что делает его хозяин.",
+   "lemma": "слуга",
+   "options": [
+    "слуги",
+    "слуг",
+    "слугам",
+    "слугами"
+   ],
+   "correct": "слугами",
+   "case": "Творительный (Instrumental)",
+   "explain": "The verb называть ('to call someone something') places the predicate noun in the instrumental case."
+  },
+  {
+   "id": "c6",
+   "sentence": "В этом исполняется сказанное в их ___.",
+   "lemma": "закон",
+   "options": [
+    "закон",
+    "закона",
+    "законом",
+    "законе"
+   ],
+   "correct": "законе",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в ('in') governs the prepositional case here, indicating location within the law."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Ветвь сама по себе плодов приносить не может, если не будет на лозе.",
+   "question": "What does Jesus say a branch cannot do by itself?",
+   "options": [
+    "Bear fruit unless it remains in the vine",
+    "Grow taller than the vine",
+    "Survive a drought",
+    "Produce flowers"
+   ],
+   "correct": "Bear fruit unless it remains in the vine",
+   "explain": "Jesus says a branch cannot bear fruit by itself unless it remains on the vine."
+  },
+  {
+   "id": "r2",
+   "ru": "Кто не пребывает во мне, тот подобен ветке, что выброшена вон и засыхает.",
+   "question": "What happens to someone who does not remain in Jesus?",
+   "options": [
+    "He is thrown out like a branch and withers",
+    "He becomes a teacher",
+    "He receives more fruit",
+    "He is hidden from the world"
+   ],
+   "correct": "He is thrown out like a branch and withers",
+   "explain": "Jesus compares one who does not remain in him to a branch that is thrown out and withers."
+  },
+  {
+   "id": "r3",
+   "ru": "Вот моя заповедь, любите друг друга, как я вас полюбил.",
+   "question": "What is Jesus's commandment to his followers?",
+   "options": [
+    "Love one another as he has loved them",
+    "Fast for forty days",
+    "Give away all possessions",
+    "Avoid speaking with strangers"
+   ],
+   "correct": "Love one another as he has loved them",
+   "explain": "Jesus's commandment is that they love one another as he has loved them."
+  },
+  {
+   "id": "r4",
+   "ru": "Я больше не называю вас слугами, потому что слуга не знает, что делает его хозяин, но я называю вас друзьями, потому что все, что я услышал от моего отца, я открыл вам.",
+   "question": "Why does Jesus call his disciples 'friends' instead of 'servants'?",
+   "options": [
+    "Because he has made known to them everything he heard from his Father",
+    "Because they paid off a debt to him",
+    "Because they are older than he is",
+    "Because servants are punished more harshly"
+   ],
+   "correct": "Because he has made known to them everything he heard from his Father",
+   "explain": "Jesus explains that he calls them friends because he revealed to them everything he heard from his Father."
+  },
+  {
+   "id": "r5",
+   "ru": "Вы меня не выбирали, я сам вас выбрал и назначил, чтобы вы шли и приносили плод, и чтобы ваш плод выдержал испытания временем.",
+   "question": "According to Jesus, who chose whom?",
+   "options": [
+    "Jesus chose the disciples, not the other way around",
+    "The disciples chose Jesus first",
+    "The Father chose Judas alone",
+    "No one chose anyone"
+   ],
+   "correct": "Jesus chose the disciples, not the other way around",
+   "explain": "Jesus says the disciples did not choose him; he chose and appointed them."
+  },
+  {
+   "id": "r6",
+   "ru": "Если мир вас ненавидит, помните, что сначала он возненавидел Меня",
+   "question": "What does Jesus tell the disciples about the world's hatred?",
+   "options": [
+    "The world hated him before it hated them",
+    "The world will never hate them",
+    "Only Judas will be hated by the world",
+    "The world loves everyone equally"
+   ],
+   "correct": "The world hated him before it hated them",
+   "explain": "Jesus tells them to remember that the world hated him first, before it hated them."
+  },
+  {
+   "id": "r7",
+   "ru": "Вы тоже будете свидетельствовать, потому что вы были со мной с самого начала.",
+   "question": "Why will the disciples also testify about Jesus?",
+   "options": [
+    "Because they have been with him from the beginning",
+    "Because they wrote the Scriptures",
+    "Because they are angels",
+    "Because the Counselor forced them to"
+   ],
+   "correct": "Because they have been with him from the beginning",
+   "explain": "Jesus says the disciples will testify because they have been with him from the beginning."
+  }
+ ]
 }

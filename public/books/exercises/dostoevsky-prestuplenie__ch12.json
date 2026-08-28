@@ -1,1 +1,519 @@
-{"cases": [{"id": "c1", "sentence": "Было часов восемь, ___ заходило.", "lemma": "солнце", "options": ["солнце", "солнца", "солнцу", "солнцем"], "correct": "солнце", "case": "Именительный (Nominative)", "translation": "It was about eight o'clock, the sun was setting.", "explain": "Солнце is the grammatical subject of заходило (was setting), so it stands in the nominative case."}, {"id": "c2", "sentence": "Взял тоже и все медные пятаки, сдачу с десяти ___, истраченных Разумихиным на платье.", "lemma": "рубль", "options": ["рубль", "рубля", "рублей", "рублём"], "correct": "рублей", "case": "Родительный (Genitive)", "translation": "He also took all the copper five-kopeck coins, the change from ten roubles that Razumikhin had spent on clothes.", "explain": "The preposition с (from) governs the genitive case, and десяти also requires a genitive plural noun."}, {"id": "c3", "sentence": "Он остановился, огляделся и оборотился к молодому ___ в красной рубахе, зевавшему у входа в мучной лабаз.", "lemma": "парень", "options": ["парень", "парня", "парню", "парнем"], "correct": "парню", "case": "Дательный (Dative)", "translation": "He stopped, looked around, and turned to the young fellow in a red shirt yawning at the entrance to the flour shop.", "explain": "The preposition к (toward) always governs the dative case."}, {"id": "c4", "sentence": "Одевшись совсем, во всё новое, он взглянул на деньги, лежавшие на столе, подумал и положил их в ___.", "lemma": "карман", "options": ["карман", "кармана", "карману", "карманом"], "correct": "карман", "case": "Винительный (Accusative)", "translation": "Having fully dressed in all new clothes, he glanced at the money lying on the table, thought a moment, and put it in his pocket.", "explain": "The preposition в expressing motion into governs the accusative case here."}, {"id": "c5", "sentence": "Не доходя Сенной, на мостовой, перед мелочною ___, стоял молодой черноволосый шарманщик.", "lemma": "лавка", "options": ["лавка", "лавки", "лавке", "лавкой"], "correct": "лавкой", "case": "Творительный (Instrumental)", "translation": "Before reaching the Haymarket, on the pavement, in front of a small shop, stood a young dark-haired organ-grinder.", "explain": "The preposition перед (in front of, before) governs the instrumental case."}, {"id": "c6", "sentence": "Какая-то дикая энергия заблистала вдруг в его воспаленных глазах и в его исхудалом бледно-желтом ___.", "lemma": "лицо", "options": ["лицо", "лица", "лицу", "лице"], "correct": "лице", "case": "Предложный (Prepositional)", "translation": "Some wild energy suddenly flashed in his inflamed eyes and in his gaunt, pale-yellow face.", "explain": "The preposition в indicating location governs the prepositional case."}, {"id": "c7", "sentence": "Это уж вывело Разумихина из себя: он крепко схватил его за ___.", "lemma": "плечо", "options": ["плечо", "плеча", "плечу", "плечом"], "correct": "плечо", "case": "Винительный (Accusative)", "translation": "This was enough to make Razumikhin lose his temper: he grabbed him firmly by the shoulder.", "explain": "The preposition за (by, taking hold of) governs the accusative case with verbs of grabbing."}], "reading": [{"id": "r1", "ru": "Через минуту он был уже на улице.", "question": "How soon after dressing did Raskolnikov leave the house?", "options": ["Within a minute", "After an hour", "The next morning", "He never left"], "correct": "Within a minute", "explain": "The text states «Через минуту он был уже на улице» — within a minute he was already on the street."}, {"id": "r2", "ru": "Было часов восемь, солнце заходило.", "question": "What time of day was it when Raskolnikov went out?", "options": ["Around eight in the evening, at sunset", "Early morning", "Midnight", "Noon"], "correct": "Around eight in the evening, at sunset", "explain": "The text says it was about eight o'clock and the sun was setting."}, {"id": "r3", "ru": "По старой привычке, обыкновенным путем своих прежних прогулок, он прямо направился на Сенную.", "question": "Where did Raskolnikov head out of old habit?", "options": ["To the Haymarket (Sennaya)", "To the police station", "To Sonya's apartment", "To the university"], "correct": "To the Haymarket (Sennaya)", "explain": "Following his old habitual route, he headed straight to Sennaya (the Haymarket)."}, {"id": "r4", "ru": "Раскольников приостановился рядом с двумя-тремя слушателями, послушал, вынул пятак и положил в руку девушке.", "question": "What did Raskolnikov do after listening to the girl singing to the organ-grinder?", "options": ["He gave her a five-kopeck coin", "He walked away without paying", "He asked her to stop singing", "He scolded the organ-grinder"], "correct": "He gave her a five-kopeck coin", "explain": "He listened briefly, then took out a five-kopeck coin and put it in the girl's hand."}, {"id": "r5", "ru": "Любите вы уличное пение? — обратился вдруг Раскольников к одному, уже немолодому, прохожему, стоявшему рядом с ним у шарманки и имевшему вид фланера.", "question": "What odd question did Raskolnikov suddenly ask a passerby?", "options": ["Whether he liked street singing", "Whether he had seen a murder", "Whether he knew the time", "Whether he had any money"], "correct": "Whether he liked street singing", "explain": "He suddenly asked a passerby, «Любите вы уличное пение?» — do you like street singing?"}, {"id": "r6", "ru": "Раскольников пошел прямо и вышел к тому углу на Сенной, где торговали мещанин и баба, разговаривавшие тогда с Лизаветой; но их теперь не было.", "question": "What did Raskolnikov find when he reached the corner where the tradesman and the woman had once talked with Lizaveta?", "options": ["They were no longer there", "They were arguing loudly", "They recognized him", "They were selling newspapers"], "correct": "They were no longer there", "explain": "The text says «но их теперь не было» — but they were not there now."}, {"id": "r7", "ru": "Тут есть большой дом, весь под распивочными и прочими съестно-выпивательными заведениями; из них поминутно выбегали женщины, одетые, как ходят «по соседству» — простоволосые и в одних платьях.", "question": "What kind of building did Raskolnikov pass in the lane leading to Sadovaya?", "options": ["A large building full of taverns and drinking establishments", "A hospital", "A church", "An empty warehouse"], "correct": "A large building full of taverns and drinking establishments", "explain": "The text describes a large building entirely occupied by taverns and eating-and-drinking establishments."}, {"id": "r8", "ru": "Не зайдете, милый барин? — спросила одна из женщин довольно звонким и не совсем еще осипшим голосом.", "question": "What did one of the women outside the tavern say to Raskolnikov?", "options": ["She invited him to come in", "She asked him for directions", "She warned him to leave", "She asked him his name"], "correct": "She invited him to come in", "explain": "She asked, «Не зайдете, милый барин?» — won't you come in, dear sir?"}, {"id": "r9", "ru": "Подарите мне, приятный кавалер, шесть копеек на выпивку!", "question": "What did the young woman (Duklida's companion) ask Raskolnikov for?", "options": ["Six kopecks for a drink", "A ride home", "His name and address", "A newspaper"], "correct": "Six kopecks for a drink", "explain": "She asked him to give her six kopecks for a drink."}, {"id": "r10", "ru": "Только бы жить, жить и жить! Как бы ни жить — только жить!..", "question": "What philosophical thought about life did Raskolnikov recall, attributed to a man condemned to death?", "options": ["That any life, however narrow, is better than death", "That death is preferable to suffering", "That wealth is the only true value", "That love conquers all"], "correct": "That any life, however narrow, is better than death", "explain": "He recalls the idea that one would rather live on a tiny ledge forever than die now — «только бы жить»."}, {"id": "r11", "ru": "Давеча Разумихин говорил про „Хрустальный дворец“.", "question": "What place did Raskolnikov recall Razumikhin mentioning earlier?", "options": ["The Crystal Palace tavern", "The police office", "The university", "Sonya's apartment"], "correct": "The Crystal Palace tavern", "explain": "He remembers that Razumikhin had spoken earlier about the «Хрустальный дворец» (Crystal Palace)."}, {"id": "r12", "ru": "Старые газеты и чай явились.", "question": "What did the waiter bring Raskolnikov at the tavern?", "options": ["Old newspapers and tea", "Vodka and bread", "A meal and wine", "Nothing, he was refused service"], "correct": "Old newspapers and tea", "explain": "The text states that old newspapers and tea appeared (were brought to him)."}, {"id": "r13", "ru": "Он заглянул — Заметов, тот же самый Заметов и в том же виде, с перстнями, с цепочками, с пробором в черных вьющихся и напомаженных волосах, в щегольском жилете и в несколько потертом сюртуке и несвежем белье.", "question": "Who sat down next to Raskolnikov at the tavern table?", "options": ["Zamyotov, the police clerk", "Razumikhin", "Porfiry Petrovich", "A stranger he had never met"], "correct": "Zamyotov, the police clerk", "explain": "He looked and saw it was Zamyotov, the same one, in the same appearance with rings and chains."}, {"id": "r14", "ru": "— Раскольников прищурил глаза и выждал, — разыскивал — и для того и зашел сюда — об убийстве старухи чиновницы, — произнес он наконец, почти шепотом, чрезвычайно приблизив свое лицо к лицу Заметова.", "question": "What did Raskolnikov finally admit he had been reading about in the newspapers?", "options": ["The murder of the old pawnbroker woman", "A fire on the Petersburg side", "A circus performance", "A counterfeit money scandal"], "correct": "The murder of the old pawnbroker woman", "explain": "He whispers that he had been searching for news about the murder of the old official's wife."}, {"id": "r15", "ru": "И в один миг припомнилось ему до чрезвычайной ясности ощущения одно недавнее мгновение, когда он стоял за дверью, с топором, запор прыгал, они за дверью ругались и ломились, а ему вдруг захотелось закричать им, ругаться с ними, высунуть им язык, дразнить их, смеяться, хохотать, хохотать, хохотать!", "question": "What memory of hiding behind the door with the axe suddenly overwhelmed Raskolnikov with laughter?", "options": ["The urge to shout, taunt, and laugh at those pounding on the door", "The urge to confess immediately", "The urge to run away", "The urge to help the people at the door"], "correct": "The urge to shout, taunt, and laugh at those pounding on the door", "explain": "He remembered wanting to shout at them, stick out his tongue, tease them, and laugh hysterically."}, {"id": "r16", "ru": "Нынче много этих мошенничеств развелось, — сказал Заметов.", "question": "What topic did Zamyotov bring up regarding recent crime?", "options": ["A gang of counterfeiters recently caught in Moscow", "The murder of the old woman", "Razumikhin's drunkenness", "Raskolnikov's illness"], "correct": "A gang of counterfeiters recently caught in Moscow", "explain": "Zamyotov mentions reading about a whole gang of counterfeiters caught in Moscow, calling it common fraud nowadays."}, {"id": "r17", "ru": "— Я бы вот как сделал: я бы взял деньги и вещи и, как ушел бы оттуда, тотчас, не заходя никуда, пошел бы куда-нибудь, где место глухое и только заборы одни, и почти нет никого, — огород какой-нибудь или в этом роде.", "question": "What hypothetical plan did Raskolnikov describe for hiding stolen goods?", "options": ["Burying them under a stone in a deserted place", "Selling them immediately to a pawnbroker", "Giving them to a friend to hold", "Throwing them into the river"], "correct": "Burying them under a stone in a deserted place", "explain": "He describes taking money and things straight to a deserted spot to hide them, eventually under a stone."}, {"id": "r18", "ru": "А что, если это я старуху и Лизавету убил? — проговорил он вдруг и — опомнился.", "question": "What shocking statement did Raskolnikov blurt out to Zamyotov?", "options": ["That he was the one who killed the old woman and Lizaveta", "That he wanted to become a police officer", "That he had seen the real murderer", "That he was leaving Petersburg"], "correct": "That he was the one who killed the old woman and Lizaveta", "explain": "He suddenly asked, «А что, если это я старуху и Лизавету убил?» — what if it was I who killed the old woman and Lizaveta?"}, {"id": "r19", "ru": "Он вышел, весь дрожа от какого-то дикого истерического ощущения, в котором между тем была часть нестерпимого наслаждения, — впрочем мрачный, ужасно усталый.", "question": "How did Raskolnikov feel as he left the tavern after confronting Zamyotov?", "options": ["Trembling with a mix of hysteria and unbearable pleasure, yet exhausted", "Calm and satisfied", "Cheerful and carefree", "Numb and indifferent"], "correct": "Trembling with a mix of hysteria and unbearable pleasure, yet exhausted", "explain": "He left trembling with a wild, hysterical feeling that included a strange pleasure, though gloomy and exhausted."}, {"id": "r20", "ru": "Так вот ты где! — крикнул он во всё горло.", "question": "What did Razumikhin shout when he collided with Raskolnikov at the door?", "options": ["So here you are!", "Get away from me!", "You are under arrest!", "Where is Zamyotov?"], "correct": "So here you are!", "explain": "Razumikhin shouted at the top of his voice, «Так вот ты где!» — so here you are!"}, {"id": "r21", "ru": "Отстань же, ради бога, и ты!", "question": "What did Raskolnikov beg Razumikhin to do?", "options": ["Leave him alone", "Take him to a doctor", "Walk him home", "Introduce him to Porfiry"], "correct": "Leave him alone", "explain": "He pleaded, «Отстань же, ради бога, и ты!» — leave me alone too, for God's sake!"}, {"id": "r22", "ru": "Из спермацетной мази вы сделаны, а вместо крови сыворотка!", "question": "How did Razumikhin mockingly describe people like Raskolnikov in his angry outburst?", "options": ["Made of spermaceti ointment with whey instead of blood", "Made of iron and stone", "Made of gold and silver", "Made of paper and ink"], "correct": "Made of spermaceti ointment with whey instead of blood", "explain": "Razumikhin rants that such people are made of spermaceti ointment with whey instead of blood, mocking their lifelessness."}, {"id": "r23", "ru": "Вдруг она облокотилась правою рукой о перила, подняла правую ногу и замахнула ее за решетку, затем левую, и бросилась в канаву.", "question": "What did the desperate woman on the bridge suddenly do?", "options": ["She threw herself into the canal", "She fainted", "She ran away", "She called for the police"], "correct": "She threw herself into the canal", "explain": "She leaned on the railing, swung her legs over, and threw herself into the canal (ditch)."}, {"id": "r24", "ru": "Ее положили на гранитные плиты схода.", "question": "Where was the rescued woman placed after being pulled from the water?", "options": ["On the granite steps by the water", "In a nearby carriage", "On the bridge itself", "In a police boat"], "correct": "On the granite steps by the water", "explain": "She was placed on the granite slabs of the steps leading down to the water."}, {"id": "r25", "ru": "И, схватив за плечо Раскольникова, он бросил его на улицу.", "question": "How did the big yard-keeper (dvornik) treat Raskolnikov at the end of the chapter?", "options": ["He grabbed him by the shoulder and threw him out into the street", "He invited him inside for tea", "He called the police to arrest him", "He apologized and let him pass"], "correct": "He grabbed him by the shoulder and threw him out into the street", "explain": "The big dvornik, calling him a swindler, grabbed Raskolnikov by the shoulder and threw him into the street."}], "highlight": [{"id": "h1", "question": "Which sentence explains how Raskolnikov found strength to act despite his physical weakness?", "sentences": ["«Сегодня же, сегодня же!..»", "— бормотал он про себя.", "Он понимал, однако, что еще слаб, но сильнейшее душевное напряжение, дошедшее до спокойствия, до неподвижной идеи, придавало ему сил и самоуверенности; он, впрочем, надеялся, что не упадет на улице.", "Одевшись совсем, во всё новое, он взглянул на деньги, лежавшие на столе, подумал и положил их в карман.", "Денег было двадцать пять рублей."], "correct": [2], "explain": "His intense mental preoccupation and fixed idea gave him the confidence and strength to overcome his frailty."}, {"id": "h2", "question": "Which sentence describes the appearance of the woman who approached him?", "sentences": ["— Не зайдете, милый барин?", "— спросила одна из женщин довольно звонким и не совсем еще осипшим голосом.", "Она была молода и даже не отвратительна — одна из всей группы."], "correct": [2], "explain": "She was young and not even unpleasant looking, notable among her companions for these qualities."}, {"id": "h3", "question": "Which sentence reveals Raskolnikov's anxious state while searching through the newspapers?", "sentences": ["Он отыскал наконец то, чего добивался, и стал читать; строки прыгали в его глазах, он, однако ж, дочел всё «известие» и жадно принялся отыскивать в следующих нумерах позднейшие прибавления.", "Руки его дрожали, перебирая листы, от судорожного нетерпения.", "Вдруг кто-то сел подле него, за его столом.", "Он заглянул — Заметов, тот же самый Заметов и в том же виде, с перстнями, с цепочками, с пробором в черных вьющихся и напомаженных волосах, в щегольском жилете и в несколько потертом сюртуке и несвежем белье.", "Он был весел, по крайней мере очень весело и добродушно улыбался.", "Смуглое лицо его немного разгорелось от выпитого шампанского."], "correct": [1], "explain": "His hands trembled with nervous agitation as he carefully turned through the pages looking for information."}, {"id": "h4", "question": "Which sentence marks Raskolnikov's sudden shift from laughter to deep melancholy?", "sentences": ["Оба замолчали.", "После внезапного, припадочного взрыва смеха Раскольников стал вдруг задумчив и грустен.", "Он облокотился на стол и подпер рукой голову.", "Казалось, он совершенно забыл про Заметова.", "Молчание длилось довольно долго."], "correct": [1], "explain": "After his sudden fit of laughter, Raskolnikov became withdrawn, thoughtful and sad."}, {"id": "h5", "question": "Which sentence shows Raskolnikov intensely whispering his detailed plan to Zametov?", "sentences": ["Я вот бы как поступил, — начал Раскольников, опять вдруг приближая свое лицо к лицу Заметова, опять в упор смотря на него и говоря опять шепотом, так что тот даже вздрогнул на этот раз.", "— Я бы вот как сделал: я бы взял деньги и вещи и, как ушел бы оттуда, тотчас, не заходя никуда, пошел бы куда-нибудь, где место глухое и только заборы одни, и почти нет никого, — огород какой-нибудь или в этом роде.", "Наглядел бы я там еще прежде, на этом дворе, какой-нибудь такой камень, этак в пуд или полтора весу, где-нибудь в углу, у забора, что с построения дома, может, лежит; приподнял бы этот камень — под ним ямка должна быть, — да в ямку-то эту все бы вещи и деньги и сложил.", "Сложил бы да и навалил бы камнем, в том виде как он прежде лежал, придавил бы ногой, да и пошел бы прочь.", "Да год бы, два бы не брал, три бы не брал, — ну, и ищите!", "Был, да весь вышел!"], "correct": [0], "explain": "Raskolnikov leans close to Zametov and begins explaining in a whisper exactly how he would commit the crime and dispose of evidence."}, {"id": "h6", "question": "Which sentence contains a dramatic threat about carrying someone away?", "sentences": ["Ты смеешь говорить: «пусти»?", "Да знаешь ли, что я сейчас с тобой сделаю?", "Возьму в охапку, завяжу узлом да и отнесу под мышкой домой, под замок!"], "correct": [2], "explain": "The speaker threatens to grab and bind the person and carry them home locked away under their arm."}]}
+{
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Было часов восемь, ___ заходило.",
+   "lemma": "солнце",
+   "options": [
+    "солнце",
+    "солнца",
+    "солнцу",
+    "солнцем"
+   ],
+   "correct": "солнце",
+   "case": "Именительный (Nominative)",
+   "explain": "Солнце is the grammatical subject of заходило (was setting), so it stands in the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Взял тоже и все медные пятаки, сдачу с десяти ___, истраченных Разумихиным на платье.",
+   "lemma": "рубль",
+   "options": [
+    "рубль",
+    "рубля",
+    "рублей",
+    "рублём"
+   ],
+   "correct": "рублей",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition с (from) governs the genitive case, and десяти also requires a genitive plural noun."
+  },
+  {
+   "id": "c3",
+   "sentence": "Он остановился, огляделся и оборотился к молодому ___ в красной рубахе, зевавшему у входа в мучной лабаз.",
+   "lemma": "парень",
+   "options": [
+    "парень",
+    "парня",
+    "парню",
+    "парнем"
+   ],
+   "correct": "парню",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition к (toward) always governs the dative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Одевшись совсем, во всё новое, он взглянул на деньги, лежавшие на столе, подумал и положил их в ___.",
+   "lemma": "карман",
+   "options": [
+    "карман",
+    "кармана",
+    "карману",
+    "карманом"
+   ],
+   "correct": "карман",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition в expressing motion into governs the accusative case here."
+  },
+  {
+   "id": "c5",
+   "sentence": "Не доходя Сенной, на мостовой, перед мелочною ___, стоял молодой черноволосый шарманщик.",
+   "lemma": "лавка",
+   "options": [
+    "лавка",
+    "лавки",
+    "лавке",
+    "лавкой"
+   ],
+   "correct": "лавкой",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition перед (in front of, before) governs the instrumental case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Какая-то дикая энергия заблистала вдруг в его воспаленных глазах и в его исхудалом бледно-желтом ___.",
+   "lemma": "лицо",
+   "options": [
+    "лицо",
+    "лица",
+    "лицу",
+    "лице"
+   ],
+   "correct": "лице",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в indicating location governs the prepositional case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Это уж вывело Разумихина из себя: он крепко схватил его за ___.",
+   "lemma": "плечо",
+   "options": [
+    "плечо",
+    "плеча",
+    "плечу",
+    "плечом"
+   ],
+   "correct": "плечо",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition за (by, taking hold of) governs the accusative case with verbs of grabbing."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Через минуту он был уже на улице.",
+   "question": "How soon after dressing did Raskolnikov leave the house?",
+   "options": [
+    "Within a minute",
+    "After an hour",
+    "The next morning",
+    "He never left"
+   ],
+   "correct": "Within a minute",
+   "explain": "The text states «Через минуту он был уже на улице» — within a minute he was already on the street."
+  },
+  {
+   "id": "r2",
+   "ru": "Было часов восемь, солнце заходило.",
+   "question": "What time of day was it when Raskolnikov went out?",
+   "options": [
+    "Around eight in the evening, at sunset",
+    "Early morning",
+    "Midnight",
+    "Noon"
+   ],
+   "correct": "Around eight in the evening, at sunset",
+   "explain": "The text says it was about eight o'clock and the sun was setting."
+  },
+  {
+   "id": "r3",
+   "ru": "По старой привычке, обыкновенным путем своих прежних прогулок, он прямо направился на Сенную.",
+   "question": "Where did Raskolnikov head out of old habit?",
+   "options": [
+    "To the Haymarket (Sennaya)",
+    "To the police station",
+    "To Sonya's apartment",
+    "To the university"
+   ],
+   "correct": "To the Haymarket (Sennaya)",
+   "explain": "Following his old habitual route, he headed straight to Sennaya (the Haymarket)."
+  },
+  {
+   "id": "r4",
+   "ru": "Раскольников приостановился рядом с двумя-тремя слушателями, послушал, вынул пятак и положил в руку девушке.",
+   "question": "What did Raskolnikov do after listening to the girl singing to the organ-grinder?",
+   "options": [
+    "He gave her a five-kopeck coin",
+    "He walked away without paying",
+    "He asked her to stop singing",
+    "He scolded the organ-grinder"
+   ],
+   "correct": "He gave her a five-kopeck coin",
+   "explain": "He listened briefly, then took out a five-kopeck coin and put it in the girl's hand."
+  },
+  {
+   "id": "r5",
+   "ru": "Любите вы уличное пение? — обратился вдруг Раскольников к одному, уже немолодому, прохожему, стоявшему рядом с ним у шарманки и имевшему вид фланера.",
+   "question": "What odd question did Raskolnikov suddenly ask a passerby?",
+   "options": [
+    "Whether he liked street singing",
+    "Whether he had seen a murder",
+    "Whether he knew the time",
+    "Whether he had any money"
+   ],
+   "correct": "Whether he liked street singing",
+   "explain": "He suddenly asked a passerby, «Любите вы уличное пение?» — do you like street singing?"
+  },
+  {
+   "id": "r6",
+   "ru": "Раскольников пошел прямо и вышел к тому углу на Сенной, где торговали мещанин и баба, разговаривавшие тогда с Лизаветой; но их теперь не было.",
+   "question": "What did Raskolnikov find when he reached the corner where the tradesman and the woman had once talked with Lizaveta?",
+   "options": [
+    "They were no longer there",
+    "They were arguing loudly",
+    "They recognized him",
+    "They were selling newspapers"
+   ],
+   "correct": "They were no longer there",
+   "explain": "The text says «но их теперь не было» — but they were not there now."
+  },
+  {
+   "id": "r7",
+   "ru": "Тут есть большой дом, весь под распивочными и прочими съестно-выпивательными заведениями; из них поминутно выбегали женщины, одетые, как ходят «по соседству» — простоволосые и в одних платьях.",
+   "question": "What kind of building did Raskolnikov pass in the lane leading to Sadovaya?",
+   "options": [
+    "A large building full of taverns and drinking establishments",
+    "A hospital",
+    "A church",
+    "An empty warehouse"
+   ],
+   "correct": "A large building full of taverns and drinking establishments",
+   "explain": "The text describes a large building entirely occupied by taverns and eating-and-drinking establishments."
+  },
+  {
+   "id": "r8",
+   "ru": "Не зайдете, милый барин? — спросила одна из женщин довольно звонким и не совсем еще осипшим голосом.",
+   "question": "What did one of the women outside the tavern say to Raskolnikov?",
+   "options": [
+    "She invited him to come in",
+    "She asked him for directions",
+    "She warned him to leave",
+    "She asked him his name"
+   ],
+   "correct": "She invited him to come in",
+   "explain": "She asked, «Не зайдете, милый барин?» — won't you come in, dear sir?"
+  },
+  {
+   "id": "r9",
+   "ru": "Подарите мне, приятный кавалер, шесть копеек на выпивку!",
+   "question": "What did the young woman (Duklida's companion) ask Raskolnikov for?",
+   "options": [
+    "Six kopecks for a drink",
+    "A ride home",
+    "His name and address",
+    "A newspaper"
+   ],
+   "correct": "Six kopecks for a drink",
+   "explain": "She asked him to give her six kopecks for a drink."
+  },
+  {
+   "id": "r10",
+   "ru": "Только бы жить, жить и жить! Как бы ни жить — только жить!..",
+   "question": "What philosophical thought about life did Raskolnikov recall, attributed to a man condemned to death?",
+   "options": [
+    "That any life, however narrow, is better than death",
+    "That death is preferable to suffering",
+    "That wealth is the only true value",
+    "That love conquers all"
+   ],
+   "correct": "That any life, however narrow, is better than death",
+   "explain": "He recalls the idea that one would rather live on a tiny ledge forever than die now — «только бы жить»."
+  },
+  {
+   "id": "r11",
+   "ru": "Давеча Разумихин говорил про „Хрустальный дворец“.",
+   "question": "What place did Raskolnikov recall Razumikhin mentioning earlier?",
+   "options": [
+    "The Crystal Palace tavern",
+    "The police office",
+    "The university",
+    "Sonya's apartment"
+   ],
+   "correct": "The Crystal Palace tavern",
+   "explain": "He remembers that Razumikhin had spoken earlier about the «Хрустальный дворец» (Crystal Palace)."
+  },
+  {
+   "id": "r12",
+   "ru": "Старые газеты и чай явились.",
+   "question": "What did the waiter bring Raskolnikov at the tavern?",
+   "options": [
+    "Old newspapers and tea",
+    "Vodka and bread",
+    "A meal and wine",
+    "Nothing, he was refused service"
+   ],
+   "correct": "Old newspapers and tea",
+   "explain": "The text states that old newspapers and tea appeared (were brought to him)."
+  },
+  {
+   "id": "r13",
+   "ru": "Он заглянул — Заметов, тот же самый Заметов и в том же виде, с перстнями, с цепочками, с пробором в черных вьющихся и напомаженных волосах, в щегольском жилете и в несколько потертом сюртуке и несвежем белье.",
+   "question": "Who sat down next to Raskolnikov at the tavern table?",
+   "options": [
+    "Zamyotov, the police clerk",
+    "Razumikhin",
+    "Porfiry Petrovich",
+    "A stranger he had never met"
+   ],
+   "correct": "Zamyotov, the police clerk",
+   "explain": "He looked and saw it was Zamyotov, the same one, in the same appearance with rings and chains."
+  },
+  {
+   "id": "r14",
+   "ru": "— Раскольников прищурил глаза и выждал, — разыскивал — и для того и зашел сюда — об убийстве старухи чиновницы, — произнес он наконец, почти шепотом, чрезвычайно приблизив свое лицо к лицу Заметова.",
+   "question": "What did Raskolnikov finally admit he had been reading about in the newspapers?",
+   "options": [
+    "The murder of the old pawnbroker woman",
+    "A fire on the Petersburg side",
+    "A circus performance",
+    "A counterfeit money scandal"
+   ],
+   "correct": "The murder of the old pawnbroker woman",
+   "explain": "He whispers that he had been searching for news about the murder of the old official's wife."
+  },
+  {
+   "id": "r15",
+   "ru": "И в один миг припомнилось ему до чрезвычайной ясности ощущения одно недавнее мгновение, когда он стоял за дверью, с топором, запор прыгал, они за дверью ругались и ломились, а ему вдруг захотелось закричать им, ругаться с ними, высунуть им язык, дразнить их, смеяться, хохотать, хохотать, хохотать!",
+   "question": "What memory of hiding behind the door with the axe suddenly overwhelmed Raskolnikov with laughter?",
+   "options": [
+    "The urge to shout, taunt, and laugh at those pounding on the door",
+    "The urge to confess immediately",
+    "The urge to run away",
+    "The urge to help the people at the door"
+   ],
+   "correct": "The urge to shout, taunt, and laugh at those pounding on the door",
+   "explain": "He remembered wanting to shout at them, stick out his tongue, tease them, and laugh hysterically."
+  },
+  {
+   "id": "r16",
+   "ru": "Нынче много этих мошенничеств развелось, — сказал Заметов.",
+   "question": "What topic did Zamyotov bring up regarding recent crime?",
+   "options": [
+    "A gang of counterfeiters recently caught in Moscow",
+    "The murder of the old woman",
+    "Razumikhin's drunkenness",
+    "Raskolnikov's illness"
+   ],
+   "correct": "A gang of counterfeiters recently caught in Moscow",
+   "explain": "Zamyotov mentions reading about a whole gang of counterfeiters caught in Moscow, calling it common fraud nowadays."
+  },
+  {
+   "id": "r17",
+   "ru": "— Я бы вот как сделал: я бы взял деньги и вещи и, как ушел бы оттуда, тотчас, не заходя никуда, пошел бы куда-нибудь, где место глухое и только заборы одни, и почти нет никого, — огород какой-нибудь или в этом роде.",
+   "question": "What hypothetical plan did Raskolnikov describe for hiding stolen goods?",
+   "options": [
+    "Burying them under a stone in a deserted place",
+    "Selling them immediately to a pawnbroker",
+    "Giving them to a friend to hold",
+    "Throwing them into the river"
+   ],
+   "correct": "Burying them under a stone in a deserted place",
+   "explain": "He describes taking money and things straight to a deserted spot to hide them, eventually under a stone."
+  },
+  {
+   "id": "r18",
+   "ru": "А что, если это я старуху и Лизавету убил? — проговорил он вдруг и — опомнился.",
+   "question": "What shocking statement did Raskolnikov blurt out to Zamyotov?",
+   "options": [
+    "That he was the one who killed the old woman and Lizaveta",
+    "That he wanted to become a police officer",
+    "That he had seen the real murderer",
+    "That he was leaving Petersburg"
+   ],
+   "correct": "That he was the one who killed the old woman and Lizaveta",
+   "explain": "He suddenly asked, «А что, если это я старуху и Лизавету убил?» — what if it was I who killed the old woman and Lizaveta?"
+  },
+  {
+   "id": "r19",
+   "ru": "Он вышел, весь дрожа от какого-то дикого истерического ощущения, в котором между тем была часть нестерпимого наслаждения, — впрочем мрачный, ужасно усталый.",
+   "question": "How did Raskolnikov feel as he left the tavern after confronting Zamyotov?",
+   "options": [
+    "Trembling with a mix of hysteria and unbearable pleasure, yet exhausted",
+    "Calm and satisfied",
+    "Cheerful and carefree",
+    "Numb and indifferent"
+   ],
+   "correct": "Trembling with a mix of hysteria and unbearable pleasure, yet exhausted",
+   "explain": "He left trembling with a wild, hysterical feeling that included a strange pleasure, though gloomy and exhausted."
+  },
+  {
+   "id": "r20",
+   "ru": "Так вот ты где! — крикнул он во всё горло.",
+   "question": "What did Razumikhin shout when he collided with Raskolnikov at the door?",
+   "options": [
+    "So here you are!",
+    "Get away from me!",
+    "You are under arrest!",
+    "Where is Zamyotov?"
+   ],
+   "correct": "So here you are!",
+   "explain": "Razumikhin shouted at the top of his voice, «Так вот ты где!» — so here you are!"
+  },
+  {
+   "id": "r21",
+   "ru": "Отстань же, ради бога, и ты!",
+   "question": "What did Raskolnikov beg Razumikhin to do?",
+   "options": [
+    "Leave him alone",
+    "Take him to a doctor",
+    "Walk him home",
+    "Introduce him to Porfiry"
+   ],
+   "correct": "Leave him alone",
+   "explain": "He pleaded, «Отстань же, ради бога, и ты!» — leave me alone too, for God's sake!"
+  },
+  {
+   "id": "r22",
+   "ru": "Из спермацетной мази вы сделаны, а вместо крови сыворотка!",
+   "question": "How did Razumikhin mockingly describe people like Raskolnikov in his angry outburst?",
+   "options": [
+    "Made of spermaceti ointment with whey instead of blood",
+    "Made of iron and stone",
+    "Made of gold and silver",
+    "Made of paper and ink"
+   ],
+   "correct": "Made of spermaceti ointment with whey instead of blood",
+   "explain": "Razumikhin rants that such people are made of spermaceti ointment with whey instead of blood, mocking their lifelessness."
+  },
+  {
+   "id": "r23",
+   "ru": "Вдруг она облокотилась правою рукой о перила, подняла правую ногу и замахнула ее за решетку, затем левую, и бросилась в канаву.",
+   "question": "What did the desperate woman on the bridge suddenly do?",
+   "options": [
+    "She threw herself into the canal",
+    "She fainted",
+    "She ran away",
+    "She called for the police"
+   ],
+   "correct": "She threw herself into the canal",
+   "explain": "She leaned on the railing, swung her legs over, and threw herself into the canal (ditch)."
+  },
+  {
+   "id": "r24",
+   "ru": "Ее положили на гранитные плиты схода.",
+   "question": "Where was the rescued woman placed after being pulled from the water?",
+   "options": [
+    "On the granite steps by the water",
+    "In a nearby carriage",
+    "On the bridge itself",
+    "In a police boat"
+   ],
+   "correct": "On the granite steps by the water",
+   "explain": "She was placed on the granite slabs of the steps leading down to the water."
+  },
+  {
+   "id": "r25",
+   "ru": "И, схватив за плечо Раскольникова, он бросил его на улицу.",
+   "question": "How did the big yard-keeper (dvornik) treat Raskolnikov at the end of the chapter?",
+   "options": [
+    "He grabbed him by the shoulder and threw him out into the street",
+    "He invited him inside for tea",
+    "He called the police to arrest him",
+    "He apologized and let him pass"
+   ],
+   "correct": "He grabbed him by the shoulder and threw him out into the street",
+   "explain": "The big dvornik, calling him a swindler, grabbed Raskolnikov by the shoulder and threw him into the street."
+  }
+ ],
+ "highlight": [
+  {
+   "id": "h1",
+   "question": "Which sentence explains how Raskolnikov found strength to act despite his physical weakness?",
+   "sentences": [
+    "«Сегодня же, сегодня же!..»",
+    "— бормотал он про себя.",
+    "Он понимал, однако, что еще слаб, но сильнейшее душевное напряжение, дошедшее до спокойствия, до неподвижной идеи, придавало ему сил и самоуверенности; он, впрочем, надеялся, что не упадет на улице.",
+    "Одевшись совсем, во всё новое, он взглянул на деньги, лежавшие на столе, подумал и положил их в карман.",
+    "Денег было двадцать пять рублей."
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "His intense mental preoccupation and fixed idea gave him the confidence and strength to overcome his frailty."
+  },
+  {
+   "id": "h2",
+   "question": "Which sentence describes the appearance of the woman who approached him?",
+   "sentences": [
+    "— Не зайдете, милый барин?",
+    "— спросила одна из женщин довольно звонким и не совсем еще осипшим голосом.",
+    "Она была молода и даже не отвратительна — одна из всей группы."
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "She was young and not even unpleasant looking, notable among her companions for these qualities."
+  },
+  {
+   "id": "h3",
+   "question": "Which sentence reveals Raskolnikov's anxious state while searching through the newspapers?",
+   "sentences": [
+    "Он отыскал наконец то, чего добивался, и стал читать; строки прыгали в его глазах, он, однако ж, дочел всё «известие» и жадно принялся отыскивать в следующих нумерах позднейшие прибавления.",
+    "Руки его дрожали, перебирая листы, от судорожного нетерпения.",
+    "Вдруг кто-то сел подле него, за его столом.",
+    "Он заглянул — Заметов, тот же самый Заметов и в том же виде, с перстнями, с цепочками, с пробором в черных вьющихся и напомаженных волосах, в щегольском жилете и в несколько потертом сюртуке и несвежем белье.",
+    "Он был весел, по крайней мере очень весело и добродушно улыбался.",
+    "Смуглое лицо его немного разгорелось от выпитого шампанского."
+   ],
+   "correct": [
+    1
+   ],
+   "explain": "His hands trembled with nervous agitation as he carefully turned through the pages looking for information."
+  },
+  {
+   "id": "h4",
+   "question": "Which sentence marks Raskolnikov's sudden shift from laughter to deep melancholy?",
+   "sentences": [
+    "Оба замолчали.",
+    "После внезапного, припадочного взрыва смеха Раскольников стал вдруг задумчив и грустен.",
+    "Он облокотился на стол и подпер рукой голову.",
+    "Казалось, он совершенно забыл про Заметова.",
+    "Молчание длилось довольно долго."
+   ],
+   "correct": [
+    1
+   ],
+   "explain": "After his sudden fit of laughter, Raskolnikov became withdrawn, thoughtful and sad."
+  },
+  {
+   "id": "h5",
+   "question": "Which sentence shows Raskolnikov intensely whispering his detailed plan to Zametov?",
+   "sentences": [
+    "Я вот бы как поступил, — начал Раскольников, опять вдруг приближая свое лицо к лицу Заметова, опять в упор смотря на него и говоря опять шепотом, так что тот даже вздрогнул на этот раз.",
+    "— Я бы вот как сделал: я бы взял деньги и вещи и, как ушел бы оттуда, тотчас, не заходя никуда, пошел бы куда-нибудь, где место глухое и только заборы одни, и почти нет никого, — огород какой-нибудь или в этом роде.",
+    "Наглядел бы я там еще прежде, на этом дворе, какой-нибудь такой камень, этак в пуд или полтора весу, где-нибудь в углу, у забора, что с построения дома, может, лежит; приподнял бы этот камень — под ним ямка должна быть, — да в ямку-то эту все бы вещи и деньги и сложил.",
+    "Сложил бы да и навалил бы камнем, в том виде как он прежде лежал, придавил бы ногой, да и пошел бы прочь.",
+    "Да год бы, два бы не брал, три бы не брал, — ну, и ищите!",
+    "Был, да весь вышел!"
+   ],
+   "correct": [
+    0
+   ],
+   "explain": "Raskolnikov leans close to Zametov and begins explaining in a whisper exactly how he would commit the crime and dispose of evidence."
+  },
+  {
+   "id": "h6",
+   "question": "Which sentence contains a dramatic threat about carrying someone away?",
+   "sentences": [
+    "Ты смеешь говорить: «пусти»?",
+    "Да знаешь ли, что я сейчас с тобой сделаю?",
+    "Возьму в охапку, завяжу узлом да и отнесу под мышкой домой, под замок!"
+   ],
+   "correct": [
+    2
+   ],
+   "explain": "The speaker threatens to grab and bind the person and carry them home locked away under their arm."
+  }
+ ]
+}

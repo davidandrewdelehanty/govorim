@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "А ты подними плач о ___ Израиля.",
-      "lemma": "вождь",
-      "options": ["вождь", "вождя", "вождям", "вождей"],
-      "correct": "вождей",
-      "case": "Родительный (Genitive)",
-      "translation": "Raise a lamentation for the princes of Israel.",
-      "explain": "The preposition о (about/for) with the meaning 'concerning' takes the genitive case in formal or poetic contexts."
-    },
-    {
-      "id": "c2",
-      "sentence": "Ах, какой львицей была твоя мать среди ___!",
-      "lemma": "лев",
-      "options": ["львов", "льву", "львах", "львом"],
-      "correct": "львов",
-      "case": "Родительный (Genitive)",
-      "translation": "Ah, what a lioness was your mother among lions!",
-      "explain": "The preposition среди (among) governing location takes the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Она среди львов молодых расположилась и растила ___.",
-      "lemma": "детеныш",
-      "options": ["детеныша", "детенышей", "детенышу", "детенышом"],
-      "correct": "детенышей",
-      "case": "Винительный (Accusative)",
-      "translation": "She lay among young lions and reared her cubs.",
-      "explain": "The verb растить (to rear/raise) is transitive and takes the direct object in the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Он научился ловить добычу, пожирал ___.",
-      "lemma": "люди",
-      "options": ["люди", "людей", "людям", "людьми"],
-      "correct": "людей",
-      "case": "Винительный (Accusative)",
-      "translation": "He learned to catch prey, he devoured people.",
-      "explain": "The verb пожирать (to devour) takes the direct object in the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Но пошли на него народы из областей окрестных, сеть на него раскинули, в яму к ним он попался по его ___.",
-      "lemma": "усилие",
-      "options": ["усилиям", "усилия", "усилие", "усилиях"],
-      "correct": "усилиям",
-      "case": "Дательный (Dative)",
-      "translation": "But nations came against him from the surrounding regions, they spread a net over him, in the pit he was caught by their efforts.",
-      "explain": "The preposition по with the meaning 'according to' takes the dative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Она красовалась своей высотой и порослью богатой от ___.",
-      "lemma": "вода",
-      "options": ["вода", "воды", "воду", "водой"],
-      "correct": "воды",
-      "case": "Родительный (Genitive)",
-      "translation": "She gloried in her height and abundant foliage from water.",
-      "explain": "The preposition от (from) governs the genitive case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Из ствола ее вышел огонь и поглотил ее ___.",
-      "lemma": "плод",
-      "options": ["плод", "плода", "плоды", "плодом"],
-      "correct": "плод",
-      "case": "Именительный (Nominative)",
-      "translation": "Fire went out from its trunk and consumed its fruit.",
-      "explain": "Плод is the direct object of the verb поглотил (consumed), but here functioning as a nominative predicate complement."
-    },
-    {
-      "id": "c8",
-      "sentence": "Нет на ней больше крепких ветвей, годных на ___ правителя.",
-      "lemma": "жезл",
-      "options": ["жезл", "жезла", "жезлу", "жезле"],
-      "correct": "жезл",
-      "case": "Винительный (Accusative)",
-      "translation": "There is no strong branch on it fit for the ruler's scepter.",
-      "explain": "The preposition на (for/on) with the meaning of purpose or assignment takes the accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Ах, какой львицей была твоя мать среди львов!",
-      "question": "What metaphor is used to describe the mother of the princes?",
-      "options": ["A lioness among lions", "A dove in the wilderness", "An eagle in the sky", "A lamb among wolves"],
-      "correct": "A lioness among lions",
-      "explain": "The text directly compares the mother to a lioness: 'какой львицей была твоя мать среди львов.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Она среди львов молодых расположилась и растила детенышей.",
-      "question": "What did the mother lion do among the young lions?",
-      "options": ["She lay among them and reared her cubs", "She fought against them fiercely", "She abandoned her offspring", "She migrated with the herd"],
-      "correct": "She lay among them and reared her cubs",
-      "explain": "The verse states: 'Она среди львов молодых расположилась и растила детенышей.'"
-    },
-    {
-      "id": "r3",
-      "ru": "Львом молодым он стал. Он научился ловить добычу, пожирал людей.",
-      "question": "What did the young lion learn to do?",
-      "options": ["Hunt prey and devour people", "Build nests and sing", "Dig holes for shelter", "Migrate long distances"],
-      "correct": "Hunt prey and devour people",
-      "explain": "The verse explicitly states: 'Он научился ловить добычу, пожирал людей.'"
-    },
-    {
-      "id": "r4",
-      "ru": "Но пошли на него народы из областей окрестных, сеть на него раскинули, в яму к ним он попался.",
-      "question": "What did the surrounding nations do to trap the lion?",
-      "options": ["Spread a net over him and caught him in a pit", "Built walls to contain him", "Starved him into submission", "Poisoned his food supply"],
-      "correct": "Spread a net over him and caught him in a pit",
-      "explain": "The text describes: 'сеть на него раскинули, в яму к ним он попался.'"
-    },
-    {
-      "id": "r5",
-      "ru": "Твоя мать была точно лоза виноградники, посаженная у воды, плодоносной была она и ветвистой от изобилия воды.",
-      "question": "What comparison is made about the mother in the second metaphor?",
-      "options": ["A vine in a vineyard planted by water, fruitful and full of branches", "A mighty oak tree in the desert", "A willow beside a stream", "A palm tree on a mountain"],
-      "correct": "A vine in a vineyard planted by water, fruitful and full of branches",
-      "explain": "The verse states: 'Твоя мать была точно лоза виноградники, посаженная у воды, плодоносной была она и ветвистой.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Это плач, и пусть им оплакивают.",
-      "question": "What is the purpose of the lamentation?",
-      "options": ["To be a lamentation that people will use to mourn", "To bring joy to the people", "To record historical events", "To provide instructions for building"],
-      "correct": "To be a lamentation that people will use to mourn",
-      "explain": "The concluding verse states: 'Это плач, и пусть им оплакивают' — This is a lamentation, and let it be used for mourning."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "А ты подними плач о ___ Израиля.",
+   "lemma": "вождь",
+   "options": [
+    "вождь",
+    "вождя",
+    "вождям",
+    "вождей"
+   ],
+   "correct": "вождей",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition о (about/for) with the meaning 'concerning' takes the genitive case in formal or poetic contexts."
+  },
+  {
+   "id": "c2",
+   "sentence": "Ах, какой львицей была твоя мать среди ___!",
+   "lemma": "лев",
+   "options": [
+    "львов",
+    "льву",
+    "львах",
+    "львом"
+   ],
+   "correct": "львов",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition среди (among) governing location takes the genitive case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Она среди львов молодых расположилась и растила ___.",
+   "lemma": "детеныш",
+   "options": [
+    "детеныша",
+    "детенышей",
+    "детенышу",
+    "детенышом"
+   ],
+   "correct": "детенышей",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb растить (to rear/raise) is transitive and takes the direct object in the accusative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Он научился ловить добычу, пожирал ___.",
+   "lemma": "люди",
+   "options": [
+    "люди",
+    "людей",
+    "людям",
+    "людьми"
+   ],
+   "correct": "людей",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb пожирать (to devour) takes the direct object in the accusative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Но пошли на него народы из областей окрестных, сеть на него раскинули, в яму к ним он попался по его ___.",
+   "lemma": "усилие",
+   "options": [
+    "усилиям",
+    "усилия",
+    "усилие",
+    "усилиях"
+   ],
+   "correct": "усилиям",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition по with the meaning 'according to' takes the dative case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Она красовалась своей высотой и порослью богатой от ___.",
+   "lemma": "вода",
+   "options": [
+    "вода",
+    "воды",
+    "воду",
+    "водой"
+   ],
+   "correct": "воды",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition от (from) governs the genitive case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Из ствола ее вышел огонь и поглотил ее ___.",
+   "lemma": "плод",
+   "options": [
+    "плод",
+    "плода",
+    "плоды",
+    "плодом"
+   ],
+   "correct": "плод",
+   "case": "Именительный (Nominative)",
+   "explain": "Плод is the direct object of the verb поглотил (consumed), but here functioning as a nominative predicate complement."
+  },
+  {
+   "id": "c8",
+   "sentence": "Нет на ней больше крепких ветвей, годных на ___ правителя.",
+   "lemma": "жезл",
+   "options": [
+    "жезл",
+    "жезла",
+    "жезлу",
+    "жезле"
+   ],
+   "correct": "жезл",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition на (for/on) with the meaning of purpose or assignment takes the accusative case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Ах, какой львицей была твоя мать среди львов!",
+   "question": "What metaphor is used to describe the mother of the princes?",
+   "options": [
+    "A lioness among lions",
+    "A dove in the wilderness",
+    "An eagle in the sky",
+    "A lamb among wolves"
+   ],
+   "correct": "A lioness among lions",
+   "explain": "The text directly compares the mother to a lioness: 'какой львицей была твоя мать среди львов.'"
+  },
+  {
+   "id": "r2",
+   "ru": "Она среди львов молодых расположилась и растила детенышей.",
+   "question": "What did the mother lion do among the young lions?",
+   "options": [
+    "She lay among them and reared her cubs",
+    "She fought against them fiercely",
+    "She abandoned her offspring",
+    "She migrated with the herd"
+   ],
+   "correct": "She lay among them and reared her cubs",
+   "explain": "The verse states: 'Она среди львов молодых расположилась и растила детенышей.'"
+  },
+  {
+   "id": "r3",
+   "ru": "Львом молодым он стал. Он научился ловить добычу, пожирал людей.",
+   "question": "What did the young lion learn to do?",
+   "options": [
+    "Hunt prey and devour people",
+    "Build nests and sing",
+    "Dig holes for shelter",
+    "Migrate long distances"
+   ],
+   "correct": "Hunt prey and devour people",
+   "explain": "The verse explicitly states: 'Он научился ловить добычу, пожирал людей.'"
+  },
+  {
+   "id": "r4",
+   "ru": "Но пошли на него народы из областей окрестных, сеть на него раскинули, в яму к ним он попался.",
+   "question": "What did the surrounding nations do to trap the lion?",
+   "options": [
+    "Spread a net over him and caught him in a pit",
+    "Built walls to contain him",
+    "Starved him into submission",
+    "Poisoned his food supply"
+   ],
+   "correct": "Spread a net over him and caught him in a pit",
+   "explain": "The text describes: 'сеть на него раскинули, в яму к ним он попался.'"
+  },
+  {
+   "id": "r5",
+   "ru": "Твоя мать была точно лоза виноградники, посаженная у воды, плодоносной была она и ветвистой от изобилия воды.",
+   "question": "What comparison is made about the mother in the second metaphor?",
+   "options": [
+    "A vine in a vineyard planted by water, fruitful and full of branches",
+    "A mighty oak tree in the desert",
+    "A willow beside a stream",
+    "A palm tree on a mountain"
+   ],
+   "correct": "A vine in a vineyard planted by water, fruitful and full of branches",
+   "explain": "The verse states: 'Твоя мать была точно лоза виноградники, посаженная у воды, плодоносной была она и ветвистой.'"
+  },
+  {
+   "id": "r6",
+   "ru": "Это плач, и пусть им оплакивают.",
+   "question": "What is the purpose of the lamentation?",
+   "options": [
+    "To be a lamentation that people will use to mourn",
+    "To bring joy to the people",
+    "To record historical events",
+    "To provide instructions for building"
+   ],
+   "correct": "To be a lamentation that people will use to mourn",
+   "explain": "The concluding verse states: 'Это плач, и пусть им оплакивают' — This is a lamentation, and let it be used for mourning."
+  }
+ ]
 }

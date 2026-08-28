@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Воистину Бог благ к Израилю, к чистым ___.",
-      "lemma": "сердце",
-      "options": ["сердца", "сердцу", "сердцам", "сердцем"],
-      "correct": "сердцам",
-      "case": "Дательный (Dative)",
-      "translation": "Surely God is good to Israel, to those with pure hearts.",
-      "explain": "The preposition 'к' (to) governs the dative case, and 'сердцам' is the dative plural."
-    },
-    {
-      "id": "c2",
-      "sentence": "Мои ноги едва не поскользнулись, и стопы мои чуть не потеряли ___.",
-      "lemma": "опора",
-      "options": ["опора", "опоры", "опору", "опорой"],
-      "correct": "опору",
-      "case": "Винительный (Accusative)",
-      "translation": "My feet almost slipped; my steps nearly lost their footing.",
-      "explain": "The transitive verb 'потеряли' (lost) takes the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Я позавидовал ___ их.",
-      "lemma": "богатство",
-      "options": ["богатство", "богатства", "богатству", "богатством"],
-      "correct": "богатству",
-      "case": "Дательный (Dative)",
-      "translation": "I envied their wealth.",
-      "explain": "The verb 'завидовать' (to envy) takes the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Открывают уста свои против ___, и слова их расхаживают по земле.",
-      "lemma": "небо",
-      "options": ["небо", "неба", "небу", "небом"],
-      "correct": "небо",
-      "case": "Винительный (Accusative)",
-      "translation": "They open their mouths against the heavens, and their words walk about on the earth.",
-      "explain": "The preposition 'против' (against) governs the genitive case, but here the accusative is used for the neuter noun."
-    },
-    {
-      "id": "c5",
-      "sentence": "Когда я пытался все это понять, то мне это казалось слишком ___.",
-      "lemma": "трудно",
-      "options": ["трудно", "трудного", "трудному", "трудным"],
-      "correct": "трудным",
-      "case": "Творительный (Instrumental)",
-      "translation": "When I tried to understand this, it seemed too difficult to me.",
-      "explain": "The predicate adjective after 'казалось' (seemed) takes the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Пока я не вошел в святилище Бога и не понял ___.",
-      "lemma": "конец",
-      "options": ["конец", "конца", "концу", "концом"],
-      "correct": "конца",
-      "case": "Родительный (Genitive)",
-      "translation": "Until I entered God's sanctuary and understood the end of the wicked.",
-      "explain": "The verb 'понял' (understood) takes the accusative, but here the genitive 'конца' means 'their ultimate fate.'"
-    },
-    {
-      "id": "c7",
-      "sentence": "Кто есть у меня на ___, кроме Тебя?",
-      "lemma": "небо",
-      "options": ["небо", "неба", "небу", "небе"],
-      "correct": "небе",
-      "case": "Предложный (Prepositional)",
-      "translation": "Who do I have in heaven besides You?",
-      "explain": "The preposition 'на' (on) with location governs the prepositional case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Ослабевает моя плоть и мое ___, но Бог твердыня сердца моего.",
-      "lemma": "сердце",
-      "options": ["сердце", "сердца", "сердцу", "сердцем"],
-      "correct": "сердце",
-      "case": "Именительный (Nominative)",
-      "translation": "My flesh and my heart fail, but God is the strength of my heart.",
-      "explain": "As the subject of the verb 'ослабевает' (fails), the nominative case is used."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Воистину Бог благ к Израилю, к чистым сердцам.",
-      "question": "To whom is God good according to this verse?",
-      "options": ["To Israel and to those with pure hearts", "Only to the wealthy", "To those who are strong", "To all people equally"],
-      "correct": "To Israel and to those with pure hearts",
-      "explain": "The verse states 'Бог благ к Израилю, к чистым сердцам' - God is good to Israel and to those with pure hearts."
-    },
-    {
-      "id": "r2",
-      "ru": "Мои ноги едва не поскользнулись, стопы мои чуть не потеряли опору.",
-      "question": "What happened to the speaker's feet?",
-      "options": ["They almost slipped and nearly lost their footing", "They became strong and steady", "They were healed from injury", "They led him to a safe place"],
-      "correct": "They almost slipped and nearly lost their footing",
-      "explain": "The verse says 'ноги едва не поскользнулись' (feet almost slipped) and 'стопы чуть не потеряли опору' (steps nearly lost footing)."
-    },
-    {
-      "id": "r3",
-      "ru": "Я позавидовал надменным, увидев процветание нечестивых.",
-      "question": "Why did the speaker feel envious?",
-      "options": ["Because he saw the arrogant and the prosperity of the wicked", "Because he was poor and hungry", "Because his enemies defeated him", "Because God ignored his prayers"],
-      "correct": "Because he saw the arrogant and the prosperity of the wicked",
-      "explain": "The verse says 'я позавидовал надменным, увидев процветание нечестивых' - I envied the arrogant when I saw the prosperity of the wicked."
-    },
-    {
-      "id": "r4",
-      "ru": "Когда я пытался все это понять, то мне это казалось слишком трудным.",
-      "question": "What was the speaker's reaction when he tried to understand the prosperity of the wicked?",
-      "options": ["It seemed too difficult to him", "He found it easy and comforting", "He understood it immediately", "He stopped thinking about it"],
-      "correct": "It seemed too difficult to him",
-      "explain": "The verse states 'мне это казалось слишком трудным' - it seemed too difficult to me."
-    },
-    {
-      "id": "r5",
-      "ru": "Пока я не вошел в святилище Бога и не понял конца их.",
-      "question": "What changed the speaker's understanding?",
-      "options": ["Entering God's sanctuary and understanding the fate of the wicked", "Praying with other believers", "Reading the laws of God", "Listening to the prophets"],
-      "correct": "Entering God's sanctuary and understanding the fate of the wicked",
-      "explain": "The verse says 'пока я не вошел в святилище Бога и не понял конца их' - until I entered God's sanctuary and understood their fate."
-    },
-    {
-      "id": "r6",
-      "ru": "Кто есть у меня на небесах, кроме Тебя? И на земле я ничего, кроме Тебя, не желаю.",
-      "question": "What does the speaker declare about his desires?",
-      "options": ["He wants only God in heaven and on earth", "He desires wealth and power above all", "He wants many friends and companions", "He seeks knowledge and wisdom"],
-      "correct": "He wants only God in heaven and on earth",
-      "explain": "The verse states 'кто есть у меня на небесах, кроме Тебя? ... на земле я ничего, кроме Тебя, не желаю' - Who do I have in heaven but You? And on earth I desire nothing but You."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Воистину Бог благ к Израилю, к чистым ___.",
+   "lemma": "сердце",
+   "options": [
+    "сердца",
+    "сердцу",
+    "сердцам",
+    "сердцем"
+   ],
+   "correct": "сердцам",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition 'к' (to) governs the dative case, and 'сердцам' is the dative plural."
+  },
+  {
+   "id": "c2",
+   "sentence": "Мои ноги едва не поскользнулись, и стопы мои чуть не потеряли ___.",
+   "lemma": "опора",
+   "options": [
+    "опора",
+    "опоры",
+    "опору",
+    "опорой"
+   ],
+   "correct": "опору",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb 'потеряли' (lost) takes the accusative case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Я позавидовал ___ их.",
+   "lemma": "богатство",
+   "options": [
+    "богатство",
+    "богатства",
+    "богатству",
+    "богатством"
+   ],
+   "correct": "богатству",
+   "case": "Дательный (Dative)",
+   "explain": "The verb 'завидовать' (to envy) takes the dative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Открывают уста свои против ___, и слова их расхаживают по земле.",
+   "lemma": "небо",
+   "options": [
+    "небо",
+    "неба",
+    "небу",
+    "небом"
+   ],
+   "correct": "небо",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition 'против' (against) governs the genitive case, but here the accusative is used for the neuter noun."
+  },
+  {
+   "id": "c5",
+   "sentence": "Когда я пытался все это понять, то мне это казалось слишком ___.",
+   "lemma": "трудно",
+   "options": [
+    "трудно",
+    "трудного",
+    "трудному",
+    "трудным"
+   ],
+   "correct": "трудным",
+   "case": "Творительный (Instrumental)",
+   "explain": "The predicate adjective after 'казалось' (seemed) takes the instrumental case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Пока я не вошел в святилище Бога и не понял ___.",
+   "lemma": "конец",
+   "options": [
+    "конец",
+    "конца",
+    "концу",
+    "концом"
+   ],
+   "correct": "конца",
+   "case": "Родительный (Genitive)",
+   "explain": "The verb 'понял' (understood) takes the accusative, but here the genitive 'конца' means 'their ultimate fate.'"
+  },
+  {
+   "id": "c7",
+   "sentence": "Кто есть у меня на ___, кроме Тебя?",
+   "lemma": "небо",
+   "options": [
+    "небо",
+    "неба",
+    "небу",
+    "небе"
+   ],
+   "correct": "небе",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition 'на' (on) with location governs the prepositional case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Ослабевает моя плоть и мое ___, но Бог твердыня сердца моего.",
+   "lemma": "сердце",
+   "options": [
+    "сердце",
+    "сердца",
+    "сердцу",
+    "сердцем"
+   ],
+   "correct": "сердце",
+   "case": "Именительный (Nominative)",
+   "explain": "As the subject of the verb 'ослабевает' (fails), the nominative case is used."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Воистину Бог благ к Израилю, к чистым сердцам.",
+   "question": "To whom is God good according to this verse?",
+   "options": [
+    "To Israel and to those with pure hearts",
+    "Only to the wealthy",
+    "To those who are strong",
+    "To all people equally"
+   ],
+   "correct": "To Israel and to those with pure hearts",
+   "explain": "The verse states 'Бог благ к Израилю, к чистым сердцам' - God is good to Israel and to those with pure hearts."
+  },
+  {
+   "id": "r2",
+   "ru": "Мои ноги едва не поскользнулись, стопы мои чуть не потеряли опору.",
+   "question": "What happened to the speaker's feet?",
+   "options": [
+    "They almost slipped and nearly lost their footing",
+    "They became strong and steady",
+    "They were healed from injury",
+    "They led him to a safe place"
+   ],
+   "correct": "They almost slipped and nearly lost their footing",
+   "explain": "The verse says 'ноги едва не поскользнулись' (feet almost slipped) and 'стопы чуть не потеряли опору' (steps nearly lost footing)."
+  },
+  {
+   "id": "r3",
+   "ru": "Я позавидовал надменным, увидев процветание нечестивых.",
+   "question": "Why did the speaker feel envious?",
+   "options": [
+    "Because he saw the arrogant and the prosperity of the wicked",
+    "Because he was poor and hungry",
+    "Because his enemies defeated him",
+    "Because God ignored his prayers"
+   ],
+   "correct": "Because he saw the arrogant and the prosperity of the wicked",
+   "explain": "The verse says 'я позавидовал надменным, увидев процветание нечестивых' - I envied the arrogant when I saw the prosperity of the wicked."
+  },
+  {
+   "id": "r4",
+   "ru": "Когда я пытался все это понять, то мне это казалось слишком трудным.",
+   "question": "What was the speaker's reaction when he tried to understand the prosperity of the wicked?",
+   "options": [
+    "It seemed too difficult to him",
+    "He found it easy and comforting",
+    "He understood it immediately",
+    "He stopped thinking about it"
+   ],
+   "correct": "It seemed too difficult to him",
+   "explain": "The verse states 'мне это казалось слишком трудным' - it seemed too difficult to me."
+  },
+  {
+   "id": "r5",
+   "ru": "Пока я не вошел в святилище Бога и не понял конца их.",
+   "question": "What changed the speaker's understanding?",
+   "options": [
+    "Entering God's sanctuary and understanding the fate of the wicked",
+    "Praying with other believers",
+    "Reading the laws of God",
+    "Listening to the prophets"
+   ],
+   "correct": "Entering God's sanctuary and understanding the fate of the wicked",
+   "explain": "The verse says 'пока я не вошел в святилище Бога и не понял конца их' - until I entered God's sanctuary and understood their fate."
+  },
+  {
+   "id": "r6",
+   "ru": "Кто есть у меня на небесах, кроме Тебя? И на земле я ничего, кроме Тебя, не желаю.",
+   "question": "What does the speaker declare about his desires?",
+   "options": [
+    "He wants only God in heaven and on earth",
+    "He desires wealth and power above all",
+    "He wants many friends and companions",
+    "He seeks knowledge and wisdom"
+   ],
+   "correct": "He wants only God in heaven and on earth",
+   "explain": "The verse states 'кто есть у меня на небесах, кроме Тебя? ... на земле я ничего, кроме Тебя, не желаю' - Who do I have in heaven but You? And on earth I desire nothing but You."
+  }
+ ]
 }

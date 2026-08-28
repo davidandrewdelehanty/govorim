@@ -1,304 +1,470 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ стихает.",
-      "lemma": "гул",
-      "options": ["гул", "гула", "гулу", "гулом"],
-      "correct": "гул",
-      "case": "Именительный (Nominative)",
-      "translation": "The rumble is dying down.",
-      "explain": "\"Гул\" is the subject of the intransitive verb \"стихает\" (is dying down), so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "До продажи вишневого ___ мы все волновались, страдали.",
-      "lemma": "сад",
-      "options": ["сад", "сада", "саду", "садом"],
-      "correct": "сада",
-      "case": "Родительный (Genitive)",
-      "translation": "Before the sale of the cherry orchard we were all anxious, we suffered.",
-      "explain": "The noun names what was sold, and \"продажа\" (sale) takes a genitive object, giving \"сада.\""
-    },
-    {
-      "id": "c3",
-      "sentence": "Отчего же письмо не взяли к ___?",
-      "lemma": "доктор",
-      "options": ["доктор", "доктора", "доктору", "доктором"],
-      "correct": "доктору",
-      "case": "Дательный (Dative)",
-      "translation": "Then why wasn't the letter taken to the doctor?",
-      "explain": "The preposition \"к\" (to/toward) always governs the dative case, giving \"доктору.\""
-    },
-    {
-      "id": "c4",
-      "sentence": "Целует ___ Любови Андреевне.",
-      "lemma": "рука",
-      "options": ["рука", "руки", "руке", "руку"],
-      "correct": "руку",
-      "case": "Винительный (Accusative)",
-      "translation": "He kisses Lyubov Andreevna's hand.",
-      "explain": "\"Целовать\" (to kiss) is a transitive verb whose direct object takes the accusative case: \"руку.\""
-    },
-    {
-      "id": "c5",
-      "sentence": "Слышно, как вдали стучат ___ по дереву.",
-      "lemma": "топор",
-      "options": ["топор", "топора", "топору", "топором"],
-      "correct": "топором",
-      "case": "Творительный (Instrumental)",
-      "translation": "You can hear them striking the tree with an axe far away.",
-      "explain": "\"Стучать\" (to strike/knock) names the instrument used without a preposition, so it takes the instrumental case: \"топором.\""
-    },
-    {
-      "id": "c6",
-      "sentence": "Да, жизнь в этом ___ кончилась.",
-      "lemma": "дом",
-      "options": ["дом", "дома", "дому", "доме"],
-      "correct": "доме",
-      "case": "Предложный (Prepositional)",
-      "translation": "Yes, life in this house is over.",
-      "explain": "The preposition \"в\" (in) marking a stationary location takes the prepositional case: \"доме.\""
-    },
-    {
-      "id": "c7",
-      "sentence": "Не могу без ___, не знаю, что вот делать с руками.",
-      "lemma": "работа",
-      "options": ["работа", "работы", "работе", "работой"],
-      "correct": "работы",
-      "case": "Родительный (Genitive)",
-      "translation": "I can't live without work, I don't know what to do with my hands.",
-      "explain": "The preposition \"без\" (without) always governs the genitive case: \"работы.\""
-    },
-    {
-      "id": "c8",
-      "sentence": "А я в Харьков уезжаю сейчас. Вот с этим ___.",
-      "lemma": "поезд",
-      "options": ["поезд", "поезда", "поезду", "поездом"],
-      "correct": "поездом",
-      "case": "Творительный (Instrumental)",
-      "translation": "And I'm leaving for Kharkov right now. On this very train.",
-      "explain": "The preposition \"с\" (with/on) here governs the instrumental case: \"поездом.\""
-    },
-    {
-      "id": "c9",
-      "sentence": "И только слышно, как далеко в саду топором стучат по ___.",
-      "lemma": "дерево",
-      "options": ["дерево", "дерева", "дереву", "деревом"],
-      "correct": "дереву",
-      "case": "Дательный (Dative)",
-      "translation": "And all you can hear is them striking the tree with an axe far away in the orchard.",
-      "explain": "The preposition \"по\" (against/along) with \"дерево\" here governs the dative case: \"дереву.\""
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Действие четвертое.",
-      "question": "What does this stage direction mark at the start of the passage?",
-      "options": ["The beginning of Act One", "The beginning of Act Four", "The end of the play", "A scene change within Act Two"],
-      "correct": "The beginning of Act Four",
-      "explain": "The text opens with the heading 'Act Four,' signaling the final act of the play."
-    },
-    {
-      "id": "r2",
-      "ru": "Нет ни занавесей на окнах, ни картин.",
-      "question": "What do the stage directions say about the room's windows and walls at the start of Act Four?",
-      "options": ["They are freshly decorated for a party", "There are no curtains on the windows and no pictures", "The windows are boarded up", "The pictures have been replaced with new ones"],
-      "correct": "There are no curtains on the windows and no pictures",
-      "explain": "The opening stage direction states there are no curtains on the windows and no pictures, showing the house has been stripped bare."
-    },
-    {
-      "id": "r3",
-      "ru": "Это пришли прощаться мужики.",
-      "question": "Why is there a noise (гул) heard offstage early in the act?",
-      "options": ["The peasants have come to say goodbye", "A fire has broken out", "Musicians are tuning instruments", "A storm is approaching"],
-      "correct": "The peasants have come to say goodbye",
-      "explain": "The text explains the offstage noise as the peasants who have come to say farewell."
-    },
-    {
-      "id": "r4",
-      "ru": "Спасибо, братцы, спасибо вам.",
-      "question": "What does Gaev's voice say to the peasants offstage?",
-      "options": ["He scolds them for being late", "He thanks them, addressing them as 'brothers'", "He asks them to leave immediately", "He offers them money"],
-      "correct": "He thanks them, addressing them as 'brothers'",
-      "explain": "Gaev's offstage voice says 'Thank you, brothers, thank you,' expressing gratitude to the peasants."
-    },
-    {
-      "id": "r5",
-      "ru": "Народ добрый, но мало понимает.",
-      "question": "According to Yasha, what is his opinion of the common people (простой народ)?",
-      "options": ["They are clever but dishonest", "They are kind but understand little", "They are lazy and unkind", "They are wealthy and educated"],
-      "correct": "They are kind but understand little",
-      "explain": "Yasha remarks that the common people are kind ('добрый') but understand little ('мало понимает')."
-    },
-    {
-      "id": "r6",
-      "ru": "Она не плачет, но бледна.",
-      "question": "How does Lyubov Andreevna appear when she enters with Gaev after saying goodbye to the peasants?",
-      "options": ["She is laughing with relief", "She is not crying, but she is pale", "She has fainted", "She is angrily shouting"],
-      "correct": "She is not crying, but she is pale",
-      "explain": "The stage direction says she is not crying but is pale, and her face trembles because she cannot speak."
-    },
-    {
-      "id": "r7",
-      "ru": "Ты отдала им свой кошелек, Люба.",
-      "question": "What does Gaev reproach Lyubov Andreevna for doing?",
-      "options": ["Selling the house without telling him", "Giving her purse away to the peasants", "Forgetting to pack her belongings", "Inviting too many guests to the farewell"],
-      "correct": "Giving her purse away to the peasants",
-      "explain": "Gaev tells her, 'You gave them your purse, Lyuba. That's not right,' scolding her generosity."
-    },
-    {
-      "id": "r8",
-      "ru": "Из города не догадался привезть, а на станции нашел только одну бутылку.",
-      "question": "Why does Lopakhin only have one bottle of champagne for the farewell toast?",
-      "options": ["He forgot to buy champagne in town and found only one bottle at the station", "The shop in town was closed for a holiday", "Yasha drank the rest earlier", "He decided to save money and buy only one bottle"],
-      "correct": "He forgot to buy champagne in town and found only one bottle at the station",
-      "explain": "Lopakhin explains he didn't think to bring champagne from town, and at the station he found only one bottle."
-    },
-    {
-      "id": "r9",
-      "ru": "Это шампанское ненастоящее, могу вас уверить.",
-      "question": "What does Yasha say about the quality of the champagne after drinking it?",
-      "options": ["It is the finest champagne he has ever tasted", "It is not real/genuine champagne", "It has gone sour", "It is too sweet for his taste"],
-      "correct": "It is not real/genuine champagne",
-      "explain": "Yasha assures the others that the champagne is not genuine ('ненастоящее')."
-    },
-    {
-      "id": "r10",
-      "ru": "Господа, имейте в виду, до поезда осталось всего сорок шесть минут.",
-      "question": "What time-related warning does Lopakhin give after checking the clock?",
-      "options": ["Only forty-six minutes remain before the train", "The train has already left", "There is no train until tomorrow", "They have all day to pack"],
-      "correct": "Only forty-six minutes remain before the train",
-      "explain": "Lopakhin looks at the clock and warns that only forty-six minutes remain before the train departs."
-    },
-    {
-      "id": "r11",
-      "ru": "Я все болтался с вами, замучился без дела.",
-      "question": "Why does Lopakhin say he wants to go to Kharkov and work again?",
-      "options": ["He is bored of idleness and worn out from having no work", "He wants to escape Trofimov's criticism", "He has run out of money", "He wants to avoid Varya"],
-      "correct": "He is bored of idleness and worn out from having no work",
-      "explain": "Lopakhin says he has been loafing about with everyone and is worn out from having nothing to do."
-    },
-    {
-      "id": "r12",
-      "ru": "Не размахивай руками.",
-      "question": "What piece of advice does Trofimov give Lopakhin as a parting word?",
-      "options": ["Save more of his earnings", "Stop waving his arms around (a habit)", "Marry Varya immediately", "Sell his business in Kharkov"],
-      "correct": "Stop waving his arms around (a habit)",
-      "explain": "Trofimov advises Lopakhin, 'Don't wave your arms,' urging him to break the habit."
-    },
-    {
-      "id": "r13",
-      "ru": "Возьмите вашу гадость.",
-      "question": "What does Varya do with Trofimov's galoshes?",
-      "options": ["She polishes them and returns them politely", "She throws them onto the stage, calling them 'nastiness'", "She hides them so he cannot leave", "She gives them to Yepikhodov"],
-      "correct": "She throws them onto the stage, calling them 'nastiness'",
-      "explain": "Varya, from another room, shouts 'Take your nastiness' and throws the galoshes onto the stage."
-    },
-    {
-      "id": "r14",
-      "ru": "Я весной посеял маку тысячу десятин и теперь заработал сорок тысяч чистого.",
-      "question": "What business success does Lopakhin boast about to Trofimov?",
-      "options": ["He sold the cherry orchard for a huge profit", "He sowed a thousand acres of poppies and made forty thousand rubles profit", "He opened a bank in Kharkov", "He inherited money from Pishchik"],
-      "correct": "He sowed a thousand acres of poppies and made forty thousand rubles profit",
-      "explain": "Lopakhin boasts he sowed a thousand desyatinas of poppies in spring and cleared forty thousand rubles."
-    },
-    {
-      "id": "r15",
-      "ru": "Человечество идет к высшей правде, к высшему счастью, какое только возможно на земле.",
-      "question": "What idealistic claim does Trofimov make about humanity's direction?",
-      "options": ["Humanity is moving toward higher truth and the highest happiness possible on earth", "Humanity is doomed to repeat its mistakes", "Humanity should abandon education", "Humanity will always be ruled by the wealthy"],
-      "correct": "Humanity is moving toward higher truth and the highest happiness possible on earth",
-      "explain": "Trofimov declares that humanity is advancing toward higher truth and the greatest happiness possible on earth, placing himself in the front ranks."
-    },
-    {
-      "id": "r16",
-      "ru": "Мама вас просит, пока она не уехала, чтобы не рубили сада.",
-      "question": "What request does Anya relay to Lopakhin and Trofimov before her mother leaves?",
-      "options": ["That they hurry to the station immediately", "That the orchard not be cut down while her mother is still there", "That they say goodbye to Firs personally", "That they bring more champagne"],
-      "correct": "That the orchard not be cut down while her mother is still there",
-      "explain": "Anya says her mother asks that the orchard not be cut down while she is still present."
-    },
-    {
-      "id": "r17",
-      "ru": "Долголетний Фирс, по моему окончательному мнению, в починку не годится, его надо к праотцам.",
-      "question": "What does Yepikhodov say about old Firs?",
-      "options": ["Firs should be promoted to head servant", "Firs is beyond repair and, in his opinion, should join his ancestors (i.e., is near death)", "Firs should go to Paris with Yasha", "Firs has already left for the hospital"],
-      "correct": "Firs is beyond repair and, in his opinion, should join his ancestors (i.e., is near death)",
-      "explain": "Yepikhodov remarks that the aged Firs is 'not fit for repair' and, in his final opinion, should join his ancestors."
-    },
-    {
-      "id": "r18",
-      "ru": "Через шесть дней я опять в Париже.",
-      "question": "What does Yasha say he will be doing in six days?",
-      "options": ["Marrying Dunyasha", "Back in Paris again", "Starting work for Lopakhin", "Visiting his mother in the countryside"],
-      "correct": "Back in Paris again",
-      "explain": "Yasha says that in six days he will be back in Paris, showing his eagerness to leave Russia."
-    },
-    {
-      "id": "r19",
-      "ru": "До продажи вишневого сада мы все волновались, страдали.",
-      "question": "According to Gaev, how did the family feel before the sale of the cherry orchard was finalized?",
-      "options": ["They were indifferent to the outcome", "They were anxious and suffering", "They were celebrating in advance", "They were arguing constantly over money"],
-      "correct": "They were anxious and suffering",
-      "explain": "Gaev says that before the sale of the cherry orchard they were all anxious and suffered, but calmed down once it was decided."
-    },
-    {
-      "id": "r20",
-      "ru": "Я подготовлюсь, выдержу экзамен в гимназии и потом буду работать, тебе помогать.",
-      "question": "What does Anya promise to do to help her mother in the future?",
-      "options": ["Marry a wealthy merchant", "Study, pass her school exam, and then work to help her mother", "Take over management of the orchard", "Move permanently to Paris"],
-      "correct": "Study, pass her school exam, and then work to help her mother",
-      "explain": "Anya tells her mother she will prepare, pass her exam at the gymnasium, and then work to help her."
-    },
-    {
-      "id": "r21",
-      "ru": "Приехали ко мне англичане.",
-      "question": "What surprising business news does Pishchik share?",
-      "options": ["Englishmen came to him and found white clay on his land", "He has been elected mayor", "His farm burned down", "He has decided to become a farmer himself"],
-      "correct": "Englishmen came to him and found white clay on his land",
-      "explain": "Pishchik excitedly explains that Englishmen came to his estate and found a deposit of white clay in the ground."
-    },
-    {
-      "id": "r22",
-      "ru": "Она привыкла рано вставать и работать, и теперь без труда она как рыба без воды.",
-      "question": "How does Lyubov Andreevna describe Varya's second worry — Varya's situation without her usual work?",
-      "options": ["Varya is delighted to finally rest", "Varya is used to rising early and working, and without work now she is like a fish out of water", "Varya has found a new job she loves", "Varya no longer wants to live at the estate"],
-      "correct": "Varya is used to rising early and working, and without work now she is like a fish out of water",
-      "explain": "Lyubov Andreevna says Varya is used to early rising and hard work, and without it now she is like a fish out of water, having grown thin and pale."
-    },
-    {
-      "id": "r23",
-      "ru": "Вот и кончилась жизнь в этом доме.",
-      "question": "What does Varya say as she looks over the emptied house one last time?",
-      "options": ["Life in this house has come to an end", "The house will soon be rebuilt", "She wants to buy the house herself", "The house was always empty like this"],
-      "correct": "Life in this house has come to an end",
-      "explain": "Varya remarks that life in this house has now ended and will not return."
-    },
-    {
-      "id": "r24",
-      "ru": "Помню, когда мне было шесть лет, в троицин день, я сидел на этом окне и смотрел, как мой отец шел в церковь.",
-      "question": "What childhood memory does Gaev recall while looking at the window one last time?",
-      "options": ["Sitting at that window at age six on Trinity Sunday, watching his father walk to church", "Learning to read at that window with his mother", "Watching the cherry trees bloom for the first time", "Playing billiards with his father as a child"],
-      "correct": "Sitting at that window at age six on Trinity Sunday, watching his father walk to church",
-      "explain": "Gaev remembers that at six years old, on Trinity Sunday, he sat at that window watching his father walk to church."
-    },
-    {
-      "id": "r25",
-      "ru": "О мой милый, мой нежный, прекрасный сад!",
-      "question": "How does Lyubov Andreevna address the cherry orchard in her final farewell?",
-      "options": ["As a burden she is relieved to leave behind", "As her dear, tender, beautiful garden/life/youth/happiness", "As a place she never truly loved", "As property she regrets not selling sooner"],
-      "correct": "As her dear, tender, beautiful garden/life/youth/happiness",
-      "explain": "In her farewell, Lyubov Andreevna calls the orchard 'my dear, my tender, beautiful garden,' equating it with her life, youth, and happiness."
-    },
-    {
-      "id": "r26",
-      "ru": "Слышится отдаленный звук, точно с неба звук лопнувшей струны печальной.",
-      "question": "What mysterious sound is described near the very end of the play, as Firs lies alone?",
-      "options": ["A distant sound like a snapped string, sad and fading, coming as if from the sky", "A gunshot from the forest", "Church bells ringing in the distance", "The sound of a train whistle"],
-      "correct": "A distant sound like a snapped string, sad and fading, coming as if from the sky",
-      "explain": "The stage direction describes a distant sound resembling a snapped string, mournful and seeming to come from the sky, just before Firs is left in silence."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "___ стихает.",
+   "lemma": "гул",
+   "options": [
+    "гул",
+    "гула",
+    "гулу",
+    "гулом"
+   ],
+   "correct": "гул",
+   "case": "Именительный (Nominative)",
+   "explain": "\"Гул\" is the subject of the intransitive verb \"стихает\" (is dying down), so it stands in the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "До продажи вишневого ___ мы все волновались, страдали.",
+   "lemma": "сад",
+   "options": [
+    "сад",
+    "сада",
+    "саду",
+    "садом"
+   ],
+   "correct": "сада",
+   "case": "Родительный (Genitive)",
+   "explain": "The noun names what was sold, and \"продажа\" (sale) takes a genitive object, giving \"сада.\""
+  },
+  {
+   "id": "c3",
+   "sentence": "Отчего же письмо не взяли к ___?",
+   "lemma": "доктор",
+   "options": [
+    "доктор",
+    "доктора",
+    "доктору",
+    "доктором"
+   ],
+   "correct": "доктору",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition \"к\" (to/toward) always governs the dative case, giving \"доктору.\""
+  },
+  {
+   "id": "c4",
+   "sentence": "Целует ___ Любови Андреевне.",
+   "lemma": "рука",
+   "options": [
+    "рука",
+    "руки",
+    "руке",
+    "руку"
+   ],
+   "correct": "руку",
+   "case": "Винительный (Accusative)",
+   "explain": "\"Целовать\" (to kiss) is a transitive verb whose direct object takes the accusative case: \"руку.\""
+  },
+  {
+   "id": "c5",
+   "sentence": "Слышно, как вдали стучат ___ по дереву.",
+   "lemma": "топор",
+   "options": [
+    "топор",
+    "топора",
+    "топору",
+    "топором"
+   ],
+   "correct": "топором",
+   "case": "Творительный (Instrumental)",
+   "explain": "\"Стучать\" (to strike/knock) names the instrument used without a preposition, so it takes the instrumental case: \"топором.\""
+  },
+  {
+   "id": "c6",
+   "sentence": "Да, жизнь в этом ___ кончилась.",
+   "lemma": "дом",
+   "options": [
+    "дом",
+    "дома",
+    "дому",
+    "доме"
+   ],
+   "correct": "доме",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition \"в\" (in) marking a stationary location takes the prepositional case: \"доме.\""
+  },
+  {
+   "id": "c7",
+   "sentence": "Не могу без ___, не знаю, что вот делать с руками.",
+   "lemma": "работа",
+   "options": [
+    "работа",
+    "работы",
+    "работе",
+    "работой"
+   ],
+   "correct": "работы",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition \"без\" (without) always governs the genitive case: \"работы.\""
+  },
+  {
+   "id": "c8",
+   "sentence": "А я в Харьков уезжаю сейчас. Вот с этим ___.",
+   "lemma": "поезд",
+   "options": [
+    "поезд",
+    "поезда",
+    "поезду",
+    "поездом"
+   ],
+   "correct": "поездом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition \"с\" (with/on) here governs the instrumental case: \"поездом.\""
+  },
+  {
+   "id": "c9",
+   "sentence": "И только слышно, как далеко в саду топором стучат по ___.",
+   "lemma": "дерево",
+   "options": [
+    "дерево",
+    "дерева",
+    "дереву",
+    "деревом"
+   ],
+   "correct": "дереву",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition \"по\" (against/along) with \"дерево\" here governs the dative case: \"дереву.\""
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Действие четвертое.",
+   "question": "What does this stage direction mark at the start of the passage?",
+   "options": [
+    "The beginning of Act One",
+    "The beginning of Act Four",
+    "The end of the play",
+    "A scene change within Act Two"
+   ],
+   "correct": "The beginning of Act Four",
+   "explain": "The text opens with the heading 'Act Four,' signaling the final act of the play."
+  },
+  {
+   "id": "r2",
+   "ru": "Нет ни занавесей на окнах, ни картин.",
+   "question": "What do the stage directions say about the room's windows and walls at the start of Act Four?",
+   "options": [
+    "They are freshly decorated for a party",
+    "There are no curtains on the windows and no pictures",
+    "The windows are boarded up",
+    "The pictures have been replaced with new ones"
+   ],
+   "correct": "There are no curtains on the windows and no pictures",
+   "explain": "The opening stage direction states there are no curtains on the windows and no pictures, showing the house has been stripped bare."
+  },
+  {
+   "id": "r3",
+   "ru": "Это пришли прощаться мужики.",
+   "question": "Why is there a noise (гул) heard offstage early in the act?",
+   "options": [
+    "The peasants have come to say goodbye",
+    "A fire has broken out",
+    "Musicians are tuning instruments",
+    "A storm is approaching"
+   ],
+   "correct": "The peasants have come to say goodbye",
+   "explain": "The text explains the offstage noise as the peasants who have come to say farewell."
+  },
+  {
+   "id": "r4",
+   "ru": "Спасибо, братцы, спасибо вам.",
+   "question": "What does Gaev's voice say to the peasants offstage?",
+   "options": [
+    "He scolds them for being late",
+    "He thanks them, addressing them as 'brothers'",
+    "He asks them to leave immediately",
+    "He offers them money"
+   ],
+   "correct": "He thanks them, addressing them as 'brothers'",
+   "explain": "Gaev's offstage voice says 'Thank you, brothers, thank you,' expressing gratitude to the peasants."
+  },
+  {
+   "id": "r5",
+   "ru": "Народ добрый, но мало понимает.",
+   "question": "According to Yasha, what is his opinion of the common people (простой народ)?",
+   "options": [
+    "They are clever but dishonest",
+    "They are kind but understand little",
+    "They are lazy and unkind",
+    "They are wealthy and educated"
+   ],
+   "correct": "They are kind but understand little",
+   "explain": "Yasha remarks that the common people are kind ('добрый') but understand little ('мало понимает')."
+  },
+  {
+   "id": "r6",
+   "ru": "Она не плачет, но бледна.",
+   "question": "How does Lyubov Andreevna appear when she enters with Gaev after saying goodbye to the peasants?",
+   "options": [
+    "She is laughing with relief",
+    "She is not crying, but she is pale",
+    "She has fainted",
+    "She is angrily shouting"
+   ],
+   "correct": "She is not crying, but she is pale",
+   "explain": "The stage direction says she is not crying but is pale, and her face trembles because she cannot speak."
+  },
+  {
+   "id": "r7",
+   "ru": "Ты отдала им свой кошелек, Люба.",
+   "question": "What does Gaev reproach Lyubov Andreevna for doing?",
+   "options": [
+    "Selling the house without telling him",
+    "Giving her purse away to the peasants",
+    "Forgetting to pack her belongings",
+    "Inviting too many guests to the farewell"
+   ],
+   "correct": "Giving her purse away to the peasants",
+   "explain": "Gaev tells her, 'You gave them your purse, Lyuba. That's not right,' scolding her generosity."
+  },
+  {
+   "id": "r8",
+   "ru": "Из города не догадался привезть, а на станции нашел только одну бутылку.",
+   "question": "Why does Lopakhin only have one bottle of champagne for the farewell toast?",
+   "options": [
+    "He forgot to buy champagne in town and found only one bottle at the station",
+    "The shop in town was closed for a holiday",
+    "Yasha drank the rest earlier",
+    "He decided to save money and buy only one bottle"
+   ],
+   "correct": "He forgot to buy champagne in town and found only one bottle at the station",
+   "explain": "Lopakhin explains he didn't think to bring champagne from town, and at the station he found only one bottle."
+  },
+  {
+   "id": "r9",
+   "ru": "Это шампанское ненастоящее, могу вас уверить.",
+   "question": "What does Yasha say about the quality of the champagne after drinking it?",
+   "options": [
+    "It is the finest champagne he has ever tasted",
+    "It is not real/genuine champagne",
+    "It has gone sour",
+    "It is too sweet for his taste"
+   ],
+   "correct": "It is not real/genuine champagne",
+   "explain": "Yasha assures the others that the champagne is not genuine ('ненастоящее')."
+  },
+  {
+   "id": "r10",
+   "ru": "Господа, имейте в виду, до поезда осталось всего сорок шесть минут.",
+   "question": "What time-related warning does Lopakhin give after checking the clock?",
+   "options": [
+    "Only forty-six minutes remain before the train",
+    "The train has already left",
+    "There is no train until tomorrow",
+    "They have all day to pack"
+   ],
+   "correct": "Only forty-six minutes remain before the train",
+   "explain": "Lopakhin looks at the clock and warns that only forty-six minutes remain before the train departs."
+  },
+  {
+   "id": "r11",
+   "ru": "Я все болтался с вами, замучился без дела.",
+   "question": "Why does Lopakhin say he wants to go to Kharkov and work again?",
+   "options": [
+    "He is bored of idleness and worn out from having no work",
+    "He wants to escape Trofimov's criticism",
+    "He has run out of money",
+    "He wants to avoid Varya"
+   ],
+   "correct": "He is bored of idleness and worn out from having no work",
+   "explain": "Lopakhin says he has been loafing about with everyone and is worn out from having nothing to do."
+  },
+  {
+   "id": "r12",
+   "ru": "Не размахивай руками.",
+   "question": "What piece of advice does Trofimov give Lopakhin as a parting word?",
+   "options": [
+    "Save more of his earnings",
+    "Stop waving his arms around (a habit)",
+    "Marry Varya immediately",
+    "Sell his business in Kharkov"
+   ],
+   "correct": "Stop waving his arms around (a habit)",
+   "explain": "Trofimov advises Lopakhin, 'Don't wave your arms,' urging him to break the habit."
+  },
+  {
+   "id": "r13",
+   "ru": "Возьмите вашу гадость.",
+   "question": "What does Varya do with Trofimov's galoshes?",
+   "options": [
+    "She polishes them and returns them politely",
+    "She throws them onto the stage, calling them 'nastiness'",
+    "She hides them so he cannot leave",
+    "She gives them to Yepikhodov"
+   ],
+   "correct": "She throws them onto the stage, calling them 'nastiness'",
+   "explain": "Varya, from another room, shouts 'Take your nastiness' and throws the galoshes onto the stage."
+  },
+  {
+   "id": "r14",
+   "ru": "Я весной посеял маку тысячу десятин и теперь заработал сорок тысяч чистого.",
+   "question": "What business success does Lopakhin boast about to Trofimov?",
+   "options": [
+    "He sold the cherry orchard for a huge profit",
+    "He sowed a thousand acres of poppies and made forty thousand rubles profit",
+    "He opened a bank in Kharkov",
+    "He inherited money from Pishchik"
+   ],
+   "correct": "He sowed a thousand acres of poppies and made forty thousand rubles profit",
+   "explain": "Lopakhin boasts he sowed a thousand desyatinas of poppies in spring and cleared forty thousand rubles."
+  },
+  {
+   "id": "r15",
+   "ru": "Человечество идет к высшей правде, к высшему счастью, какое только возможно на земле.",
+   "question": "What idealistic claim does Trofimov make about humanity's direction?",
+   "options": [
+    "Humanity is moving toward higher truth and the highest happiness possible on earth",
+    "Humanity is doomed to repeat its mistakes",
+    "Humanity should abandon education",
+    "Humanity will always be ruled by the wealthy"
+   ],
+   "correct": "Humanity is moving toward higher truth and the highest happiness possible on earth",
+   "explain": "Trofimov declares that humanity is advancing toward higher truth and the greatest happiness possible on earth, placing himself in the front ranks."
+  },
+  {
+   "id": "r16",
+   "ru": "Мама вас просит, пока она не уехала, чтобы не рубили сада.",
+   "question": "What request does Anya relay to Lopakhin and Trofimov before her mother leaves?",
+   "options": [
+    "That they hurry to the station immediately",
+    "That the orchard not be cut down while her mother is still there",
+    "That they say goodbye to Firs personally",
+    "That they bring more champagne"
+   ],
+   "correct": "That the orchard not be cut down while her mother is still there",
+   "explain": "Anya says her mother asks that the orchard not be cut down while she is still present."
+  },
+  {
+   "id": "r17",
+   "ru": "Долголетний Фирс, по моему окончательному мнению, в починку не годится, его надо к праотцам.",
+   "question": "What does Yepikhodov say about old Firs?",
+   "options": [
+    "Firs should be promoted to head servant",
+    "Firs is beyond repair and, in his opinion, should join his ancestors (i.e., is near death)",
+    "Firs should go to Paris with Yasha",
+    "Firs has already left for the hospital"
+   ],
+   "correct": "Firs is beyond repair and, in his opinion, should join his ancestors (i.e., is near death)",
+   "explain": "Yepikhodov remarks that the aged Firs is 'not fit for repair' and, in his final opinion, should join his ancestors."
+  },
+  {
+   "id": "r18",
+   "ru": "Через шесть дней я опять в Париже.",
+   "question": "What does Yasha say he will be doing in six days?",
+   "options": [
+    "Marrying Dunyasha",
+    "Back in Paris again",
+    "Starting work for Lopakhin",
+    "Visiting his mother in the countryside"
+   ],
+   "correct": "Back in Paris again",
+   "explain": "Yasha says that in six days he will be back in Paris, showing his eagerness to leave Russia."
+  },
+  {
+   "id": "r19",
+   "ru": "До продажи вишневого сада мы все волновались, страдали.",
+   "question": "According to Gaev, how did the family feel before the sale of the cherry orchard was finalized?",
+   "options": [
+    "They were indifferent to the outcome",
+    "They were anxious and suffering",
+    "They were celebrating in advance",
+    "They were arguing constantly over money"
+   ],
+   "correct": "They were anxious and suffering",
+   "explain": "Gaev says that before the sale of the cherry orchard they were all anxious and suffered, but calmed down once it was decided."
+  },
+  {
+   "id": "r20",
+   "ru": "Я подготовлюсь, выдержу экзамен в гимназии и потом буду работать, тебе помогать.",
+   "question": "What does Anya promise to do to help her mother in the future?",
+   "options": [
+    "Marry a wealthy merchant",
+    "Study, pass her school exam, and then work to help her mother",
+    "Take over management of the orchard",
+    "Move permanently to Paris"
+   ],
+   "correct": "Study, pass her school exam, and then work to help her mother",
+   "explain": "Anya tells her mother she will prepare, pass her exam at the gymnasium, and then work to help her."
+  },
+  {
+   "id": "r21",
+   "ru": "Приехали ко мне англичане.",
+   "question": "What surprising business news does Pishchik share?",
+   "options": [
+    "Englishmen came to him and found white clay on his land",
+    "He has been elected mayor",
+    "His farm burned down",
+    "He has decided to become a farmer himself"
+   ],
+   "correct": "Englishmen came to him and found white clay on his land",
+   "explain": "Pishchik excitedly explains that Englishmen came to his estate and found a deposit of white clay in the ground."
+  },
+  {
+   "id": "r22",
+   "ru": "Она привыкла рано вставать и работать, и теперь без труда она как рыба без воды.",
+   "question": "How does Lyubov Andreevna describe Varya's second worry — Varya's situation without her usual work?",
+   "options": [
+    "Varya is delighted to finally rest",
+    "Varya is used to rising early and working, and without work now she is like a fish out of water",
+    "Varya has found a new job she loves",
+    "Varya no longer wants to live at the estate"
+   ],
+   "correct": "Varya is used to rising early and working, and without work now she is like a fish out of water",
+   "explain": "Lyubov Andreevna says Varya is used to early rising and hard work, and without it now she is like a fish out of water, having grown thin and pale."
+  },
+  {
+   "id": "r23",
+   "ru": "Вот и кончилась жизнь в этом доме.",
+   "question": "What does Varya say as she looks over the emptied house one last time?",
+   "options": [
+    "Life in this house has come to an end",
+    "The house will soon be rebuilt",
+    "She wants to buy the house herself",
+    "The house was always empty like this"
+   ],
+   "correct": "Life in this house has come to an end",
+   "explain": "Varya remarks that life in this house has now ended and will not return."
+  },
+  {
+   "id": "r24",
+   "ru": "Помню, когда мне было шесть лет, в троицин день, я сидел на этом окне и смотрел, как мой отец шел в церковь.",
+   "question": "What childhood memory does Gaev recall while looking at the window one last time?",
+   "options": [
+    "Sitting at that window at age six on Trinity Sunday, watching his father walk to church",
+    "Learning to read at that window with his mother",
+    "Watching the cherry trees bloom for the first time",
+    "Playing billiards with his father as a child"
+   ],
+   "correct": "Sitting at that window at age six on Trinity Sunday, watching his father walk to church",
+   "explain": "Gaev remembers that at six years old, on Trinity Sunday, he sat at that window watching his father walk to church."
+  },
+  {
+   "id": "r25",
+   "ru": "О мой милый, мой нежный, прекрасный сад!",
+   "question": "How does Lyubov Andreevna address the cherry orchard in her final farewell?",
+   "options": [
+    "As a burden she is relieved to leave behind",
+    "As her dear, tender, beautiful garden/life/youth/happiness",
+    "As a place she never truly loved",
+    "As property she regrets not selling sooner"
+   ],
+   "correct": "As her dear, tender, beautiful garden/life/youth/happiness",
+   "explain": "In her farewell, Lyubov Andreevna calls the orchard 'my dear, my tender, beautiful garden,' equating it with her life, youth, and happiness."
+  },
+  {
+   "id": "r26",
+   "ru": "Слышится отдаленный звук, точно с неба звук лопнувшей струны печальной.",
+   "question": "What mysterious sound is described near the very end of the play, as Firs lies alone?",
+   "options": [
+    "A distant sound like a snapped string, sad and fading, coming as if from the sky",
+    "A gunshot from the forest",
+    "Church bells ringing in the distance",
+    "The sound of a train whistle"
+   ],
+   "correct": "A distant sound like a snapped string, sad and fading, coming as if from the sky",
+   "explain": "The stage direction describes a distant sound resembling a snapped string, mournful and seeming to come from the sky, just before Firs is left in silence."
+  }
+ ]
 }

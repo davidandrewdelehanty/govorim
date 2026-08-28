@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "От старейшины, дорогому ___, которого я люблю как пребывающего в истине.",
-      "lemma": "Гай",
-      "options": ["Гай", "Гая", "Гаю", "Гаем"],
-      "correct": "Гаю",
-      "case": "Дательный (Dative)",
-      "translation": "From the elder, to the beloved Gaius, whom I love as one who is living in the truth.",
-      "explain": "The verb 'пишу' (I write) with the recipient takes the dative case — 'дорогому Гаю' (to the dear Gaius)."
-    },
-    {
-      "id": "c2",
-      "sentence": "Дорогой мой, я молюсь, чтобы все у тебя было благополучно, и чтобы ты был здоров так же, как благополучна твоя _____.",
-      "lemma": "душа",
-      "options": ["душа", "души", "душе", "душу"],
-      "correct": "душа",
-      "case": "Именительный (Nominative)",
-      "translation": "Beloved, I pray that all may go well with you and that you may be in good health, just as it is well with your soul.",
-      "explain": "Душа is the subject of the predicate adjective благополучна (prospers), so it stands in the nominative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Они засвидетельствовали о твоей любви перед ______.",
-      "lemma": "церковь",
-      "options": ["церковь", "церкви", "церкве", "церковью"],
-      "correct": "церковью",
-      "case": "Творительный (Instrumental)",
-      "translation": "They have testified to your love before the church.",
-      "explain": "The preposition перед (before/in front of) governs the instrumental case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Они ради имени Иисуса отправились в путь, ничего не взяв от ________.",
-      "lemma": "язычник",
-      "options": ["язычник", "язычники", "язычников", "язычниками"],
-      "correct": "язычников",
-      "case": "Родительный (Genitive)",
-      "translation": "For the sake of the Name they set out, taking nothing from the Gentiles.",
-      "explain": "The preposition от (from) always governs the genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Я написал _______, но Диатреф, который любит у них главенствовать, не принимает нас.",
-      "lemma": "церковь",
-      "options": ["церковь", "церкви", "церкве", "церковью"],
-      "correct": "церкви",
-      "case": "Дательный (Dative)",
-      "translation": "I have written to the church, but Diotrephes, who likes to put himself first, does not acknowledge our authority.",
-      "explain": "The verb 'написал' (wrote) with the recipient takes the dative case — 'написал церкви' (wrote to the church)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Кто делает добро, тот от _____, а кто делает зло, тот Бога не видел.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Бога",
-      "case": "Родительный (Genitive)",
-      "translation": "Whoever does good is of God; whoever does evil has not seen God.",
-      "explain": "The preposition от (from) always governs the genitive case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Все хорошо говорят о _________, тоже говорит и сама истина.",
-      "lemma": "Димитрий",
-      "options": ["Димитрий", "Димитрия", "Димитрием", "Димитрии"],
-      "correct": "Димитрии",
-      "case": "Предложный (Prepositional)",
-      "translation": "Demetrius has a good testimony from everyone, and so does the truth itself.",
-      "explain": "The preposition о (about) with the prepositional case indicates the topic or subject of speech."
-    },
-    {
-      "id": "c8",
-      "sentence": "Еще о многом я хотел бы тебе сказать, но не буду доверять это _______ и перу.",
-      "lemma": "чернила",
-      "options": ["чернила", "чернил", "чернилам", "чернилами"],
-      "correct": "чернилам",
-      "case": "Дательный (Dative)",
-      "translation": "I have much more to write to you, but I do not want to write to you with pen and ink.",
-      "explain": "The verb 'доверять' (to trust/entrust) takes the dative case — 'доверять чернилам' (to entrust to ink)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "От старейшины, дорогому Гаю, которого я люблю как пребывающего в истине.",
-      "question": "To whom is this epistle addressed?",
-      "options": ["To Gaius, whom the writer loves", "To the church at Rome", "To the apostles", "To all believers"],
-      "correct": "To Gaius, whom the writer loves",
-      "explain": "The salutation directly states: 'дорогому Гаю, которого я люблю как пребывающего в истине' — to the dear Gaius, whom I love as one living in the truth."
-    },
-    {
-      "id": "r2",
-      "ru": "Дорогой мой, я молюсь, чтобы все у тебя было благополучно, и чтобы ты был здоров так же, как благополучна твоя душа.",
-      "question": "What is the writer's prayer for Gaius?",
-      "options": ["That all may go well with him and that he be healthy as his soul prospers", "That he gain wealth and wisdom", "That he lead the church well", "That he avoid persecution"],
-      "correct": "That all may go well with him and that he be healthy as his soul prospers",
-      "explain": "The text explicitly states 'я молюсь, чтобы все у тебя было благополучно, и чтобы ты был здоров так же, как благополучна твоя душа' — I pray that all may go well with you and that you be healthy as your soul prospers."
-    },
-    {
-      "id": "r3",
-      "ru": "Они засвидетельствовали о твоей любви перед церковью.",
-      "question": "What have the brothers testified about Gaius?",
-      "options": ["About his love before the church", "About his wealth", "About his leadership", "About his knowledge"],
-      "correct": "About his love before the church",
-      "explain": "The text says 'засвидетельствовали о твоей любви перед церковью' — they testified about your love before the church."
-    },
-    {
-      "id": "r4",
-      "ru": "Они ради имени Иисуса отправились в путь, ничего не взяв от язычников.",
-      "question": "Why did the missionaries accept no support from the Gentiles?",
-      "options": ["For the sake of the Name of Jesus", "Because they were wealthy", "Because the Gentiles refused to help", "Because they preferred hardship"],
-      "correct": "For the sake of the Name of Jesus",
-      "explain": "The text states 'Они ради имени Иисуса отправились в путь, ничего не взяв от язычников' — They set out for the sake of the Name, taking nothing from the Gentiles."
-    },
-    {
-      "id": "r5",
-      "ru": "Кто делает добро, тот от Бога, а кто делает зло, тот Бога не видел.",
-      "question": "According to this verse, what characterizes those who do good versus those who do evil?",
-      "options": ["Those who do good are of God; those who do evil have not seen God", "Those who do good are wise; those who do evil are foolish", "Those who do good are rich; those who do evil are poor", "Those who do good are strong; those who do evil are weak"],
-      "correct": "Those who do good are of God; those who do evil have not seen God",
-      "explain": "The text directly contrasts: 'Кто делает добро, тот от Бога, а кто делает зло, тот Бога не видел' — Whoever does good is of God; whoever does evil has not seen God."
-    },
-    {
-      "id": "r6",
-      "ru": "Я надеюсь скоро тебя увидеть, и тогда мы поговорим лично.",
-      "question": "What is the writer's hope for the future?",
-      "options": ["To see Gaius soon and speak with him in person", "To write many letters to Gaius", "To visit the entire church", "To send envoys to Gaius"],
-      "correct": "To see Gaius soon and speak with him in person",
-      "explain": "The text states 'я надеюсь скоро тебя увидеть, и тогда мы поговорим лично' — I hope to see you soon, and then we will speak in person."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "От старейшины, дорогому ___, которого я люблю как пребывающего в истине.",
+   "lemma": "Гай",
+   "options": [
+    "Гай",
+    "Гая",
+    "Гаю",
+    "Гаем"
+   ],
+   "correct": "Гаю",
+   "case": "Дательный (Dative)",
+   "explain": "The verb 'пишу' (I write) with the recipient takes the dative case — 'дорогому Гаю' (to the dear Gaius)."
+  },
+  {
+   "id": "c2",
+   "sentence": "Дорогой мой, я молюсь, чтобы все у тебя было благополучно, и чтобы ты был здоров так же, как благополучна твоя _____.",
+   "lemma": "душа",
+   "options": [
+    "душа",
+    "души",
+    "душе",
+    "душу"
+   ],
+   "correct": "душа",
+   "case": "Именительный (Nominative)",
+   "explain": "Душа is the subject of the predicate adjective благополучна (prospers), so it stands in the nominative case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Они засвидетельствовали о твоей любви перед ______.",
+   "lemma": "церковь",
+   "options": [
+    "церковь",
+    "церкви",
+    "церкве",
+    "церковью"
+   ],
+   "correct": "церковью",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition перед (before/in front of) governs the instrumental case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Они ради имени Иисуса отправились в путь, ничего не взяв от ________.",
+   "lemma": "язычник",
+   "options": [
+    "язычник",
+    "язычники",
+    "язычников",
+    "язычниками"
+   ],
+   "correct": "язычников",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition от (from) always governs the genitive case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Я написал _______, но Диатреф, который любит у них главенствовать, не принимает нас.",
+   "lemma": "церковь",
+   "options": [
+    "церковь",
+    "церкви",
+    "церкве",
+    "церковью"
+   ],
+   "correct": "церкви",
+   "case": "Дательный (Dative)",
+   "explain": "The verb 'написал' (wrote) with the recipient takes the dative case — 'написал церкви' (wrote to the church)."
+  },
+  {
+   "id": "c6",
+   "sentence": "Кто делает добро, тот от _____, а кто делает зло, тот Бога не видел.",
+   "lemma": "Бог",
+   "options": [
+    "Бог",
+    "Бога",
+    "Богу",
+    "Богом"
+   ],
+   "correct": "Бога",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition от (from) always governs the genitive case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Все хорошо говорят о _________, тоже говорит и сама истина.",
+   "lemma": "Димитрий",
+   "options": [
+    "Димитрий",
+    "Димитрия",
+    "Димитрием",
+    "Димитрии"
+   ],
+   "correct": "Димитрии",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition о (about) with the prepositional case indicates the topic or subject of speech."
+  },
+  {
+   "id": "c8",
+   "sentence": "Еще о многом я хотел бы тебе сказать, но не буду доверять это _______ и перу.",
+   "lemma": "чернила",
+   "options": [
+    "чернила",
+    "чернил",
+    "чернилам",
+    "чернилами"
+   ],
+   "correct": "чернилам",
+   "case": "Дательный (Dative)",
+   "explain": "The verb 'доверять' (to trust/entrust) takes the dative case — 'доверять чернилам' (to entrust to ink)."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "От старейшины, дорогому Гаю, которого я люблю как пребывающего в истине.",
+   "question": "To whom is this epistle addressed?",
+   "options": [
+    "To Gaius, whom the writer loves",
+    "To the church at Rome",
+    "To the apostles",
+    "To all believers"
+   ],
+   "correct": "To Gaius, whom the writer loves",
+   "explain": "The salutation directly states: 'дорогому Гаю, которого я люблю как пребывающего в истине' — to the dear Gaius, whom I love as one living in the truth."
+  },
+  {
+   "id": "r2",
+   "ru": "Дорогой мой, я молюсь, чтобы все у тебя было благополучно, и чтобы ты был здоров так же, как благополучна твоя душа.",
+   "question": "What is the writer's prayer for Gaius?",
+   "options": [
+    "That all may go well with him and that he be healthy as his soul prospers",
+    "That he gain wealth and wisdom",
+    "That he lead the church well",
+    "That he avoid persecution"
+   ],
+   "correct": "That all may go well with him and that he be healthy as his soul prospers",
+   "explain": "The text explicitly states 'я молюсь, чтобы все у тебя было благополучно, и чтобы ты был здоров так же, как благополучна твоя душа' — I pray that all may go well with you and that you be healthy as your soul prospers."
+  },
+  {
+   "id": "r3",
+   "ru": "Они засвидетельствовали о твоей любви перед церковью.",
+   "question": "What have the brothers testified about Gaius?",
+   "options": [
+    "About his love before the church",
+    "About his wealth",
+    "About his leadership",
+    "About his knowledge"
+   ],
+   "correct": "About his love before the church",
+   "explain": "The text says 'засвидетельствовали о твоей любви перед церковью' — they testified about your love before the church."
+  },
+  {
+   "id": "r4",
+   "ru": "Они ради имени Иисуса отправились в путь, ничего не взяв от язычников.",
+   "question": "Why did the missionaries accept no support from the Gentiles?",
+   "options": [
+    "For the sake of the Name of Jesus",
+    "Because they were wealthy",
+    "Because the Gentiles refused to help",
+    "Because they preferred hardship"
+   ],
+   "correct": "For the sake of the Name of Jesus",
+   "explain": "The text states 'Они ради имени Иисуса отправились в путь, ничего не взяв от язычников' — They set out for the sake of the Name, taking nothing from the Gentiles."
+  },
+  {
+   "id": "r5",
+   "ru": "Кто делает добро, тот от Бога, а кто делает зло, тот Бога не видел.",
+   "question": "According to this verse, what characterizes those who do good versus those who do evil?",
+   "options": [
+    "Those who do good are of God; those who do evil have not seen God",
+    "Those who do good are wise; those who do evil are foolish",
+    "Those who do good are rich; those who do evil are poor",
+    "Those who do good are strong; those who do evil are weak"
+   ],
+   "correct": "Those who do good are of God; those who do evil have not seen God",
+   "explain": "The text directly contrasts: 'Кто делает добро, тот от Бога, а кто делает зло, тот Бога не видел' — Whoever does good is of God; whoever does evil has not seen God."
+  },
+  {
+   "id": "r6",
+   "ru": "Я надеюсь скоро тебя увидеть, и тогда мы поговорим лично.",
+   "question": "What is the writer's hope for the future?",
+   "options": [
+    "To see Gaius soon and speak with him in person",
+    "To write many letters to Gaius",
+    "To visit the entire church",
+    "To send envoys to Gaius"
+   ],
+   "correct": "To see Gaius soon and speak with him in person",
+   "explain": "The text states 'я надеюсь скоро тебя увидеть, и тогда мы поговорим лично' — I hope to see you soon, and then we will speak in person."
+  }
+ ]
 }

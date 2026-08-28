@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Славьте Господа с ___, в высотах прославляйте Его.",
-      "lemma": "небо",
-      "options": ["небо", "неба", "небе", "небом"],
-      "correct": "неба",
-      "case": "Родительный (Genitive)",
-      "translation": "Praise the Lord from the heavens; praise him in the heights.",
-      "explain": "The genitive case неба with the preposition с (from) indicates the place from which praise rises."
-    },
-    {
-      "id": "c2",
-      "sentence": "Славьте Его все Его ___, славьте Его все Его воинства.",
-      "lemma": "ангел",
-      "options": ["ангел", "ангела", "ангелы", "ангелов"],
-      "correct": "ангелы",
-      "case": "Винительный (Accusative)",
-      "translation": "Praise him, all his angels; praise him, all his hosts.",
-      "explain": "Ангелы is the direct object of the imperative verb славьте (praise), taking the accusative plural case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Славьте Его ___ и луна, славьте Его все блистающие звезды.",
-      "lemma": "солнце",
-      "options": ["солнце", "солнца", "солнцем", "солнцах"],
-      "correct": "солнце",
-      "case": "Винительный (Accusative)",
-      "translation": "Praise him, sun and moon; praise him, all you shining stars.",
-      "explain": "Солнце is the direct object of the imperative verb славьте (praise), taking the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Славьте Его ___ небес и воды, которые выше небес.",
-      "lemma": "небо",
-      "options": ["небо", "небеса", "небесах", "небесам"],
-      "correct": "небеса",
-      "case": "Винительный (Accusative)",
-      "translation": "Praise him, you heavens of heavens, and you waters above the heavens.",
-      "explain": "Небеса is the direct object of the imperative verb славьте (praise), taking the accusative plural case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Пусть славят имя ___, потому что Он повелел, и они были созданы.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "Let them praise the name of the Lord, for he commanded and they were created.",
-      "explain": "The genitive case Господа after имя (name) indicates possession: 'the name of the Lord.'"
-    },
-    {
-      "id": "c6",
-      "sentence": "Славьте Господа ___, морские чудовища и все водные глубины.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землю"],
-      "correct": "земли",
-      "case": "Родительный (Genitive)",
-      "translation": "Praise the Lord from the earth, you great sea creatures, and all depths.",
-      "explain": "The genitive case земли with the preposition with Славьте от (from the earth) indicates the place of origin."
-    },
-    {
-      "id": "c7",
-      "sentence": "Плодовые ___ и все кедры, звери и всякий скот.",
-      "lemma": "дерево",
-      "options": ["дерево", "деревья", "деревьями", "деревьях"],
-      "correct": "деревья",
-      "case": "Винительный (Accusative)",
-      "translation": "Fruit trees and all cedars, wild animals and all cattle.",
-      "explain": "Деревья is the direct object implied by the imperative context, taking the accusative plural case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Земные ___ и все народы, правители и все судьи земные.",
-      "lemma": "царь",
-      "options": ["царь", "царя", "цари", "царей"],
-      "correct": "цари",
-      "case": "Винительный (Accusative)",
-      "translation": "Kings of the earth and all peoples, princes and all judges of the earth.",
-      "explain": "Цари is the direct object of the imperative to praise, taking the accusative plural case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Аллилуйя! Славьте Господа с небес, в высотах прославляйте Его, славьте Его все Его ангелы, славьте Его все Его воинства.",
-      "question": "What is called to praise the Lord from heaven?",
-      "options": ["His angels and all his hosts", "Only the sun", "Only the birds", "Only the wind"],
-      "correct": "His angels and all his hosts",
-      "explain": "The verse explicitly calls upon all the Его ангелы (His angels) and все Его воинства (all His hosts) to praise Him."
-    },
-    {
-      "id": "r2",
-      "ru": "Славьте Его солнце и луна, славьте Его все блистающие звезды, славьте Его небеса небес и воды, которые выше небес.",
-      "question": "What heavenly bodies and celestial elements are commanded to praise God?",
-      "options": ["The sun, moon, stars, heavens of heavens, and waters above heavens", "Only the sun", "Only the stars", "Only the moon"],
-      "correct": "The sun, moon, stars, heavens of heavens, and waters above heavens",
-      "explain": "The passage lists солнце и луна (sun and moon), все блистающие звезды (all shining stars), небеса небес (heavens of heavens), and воды выше небес (waters above heavens)."
-    },
-    {
-      "id": "r3",
-      "ru": "Пусть славят имя Господа, потому что Он повелел, и они были созданы. Он утвердил их навечно, дал устав, который не отменить.",
-      "question": "Why should all creation praise God's name?",
-      "options": ["Because He commanded and created them, and He has established them forever", "Because they are powerful", "Because they are beautiful", "Because they move freely"],
-      "correct": "Because He commanded and created them, and He has established them forever",
-      "explain": "The text gives the reason: Он повелел (He commanded), они были созданы (they were created), утвердил их навечно (He established them forever), and дал устав, который не отменить (gave laws that cannot be changed)."
-    },
-    {
-      "id": "r4",
-      "ru": "Славьте Господа земли, морские чудовища и все водные глубины, молния и град, снег и туман, бурный ветер, исполняющий Его Слово.",
-      "question": "What earthly and natural phenomena are called to praise the Lord?",
-      "options": ["Sea creatures, depths, lightning, hail, snow, fog, and stormy wind", "Only animals", "Only water", "Only weather"],
-      "correct": "Sea creatures, depths, lightning, hail, snow, fog, and stormy wind",
-      "explain": "The verse comprehensively lists морские чудовища (sea creatures), водные глубины (depths), молния (lightning), град (hail), снег (snow), туман (fog), and бурный ветер (stormy wind)."
-    },
-    {
-      "id": "r5",
-      "ru": "Плодовые деревья и все кедры, звери и всякий скот, присмыкающиеся и крылатые птицы, земные цари и все народы, правители и все судьи земные, юноши и девушки, пожилые люди и дети.",
-      "question": "What creation and humanity are commanded to praise the Lord?",
-      "options": ["Trees, animals, all creatures, rulers, and all people of all ages", "Only kings", "Only birds", "Only young people"],
-      "correct": "Trees, animals, all creatures, rulers, and all people of all ages",
-      "explain": "The extensive passage includes деревья (trees), звери (animals), всякий скот (all livestock), крылатые птицы (winged birds), цари (kings), народы (peoples), судьи (judges), и all ages from юноши (young men) to дети (children)."
-    },
-    {
-      "id": "r6",
-      "ru": "Славьте все имя Господне, потому что только Его имя превознесено. Слава Его выше земли и небес.",
-      "question": "What is emphasized about God's name and glory?",
-      "options": ["His name alone is exalted and his glory is above earth and heavens", "His name is common", "His glory is limited to earth", "His name is weak"],
-      "correct": "His name alone is exalted and his glory is above earth and heavens",
-      "explain": "The text emphasizes that только Его имя превознесено (His name alone is exalted) and that Слава Его выше земли и небес (His glory is above earth and heavens)."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Славьте Господа с ___, в высотах прославляйте Его.",
+   "lemma": "небо",
+   "options": [
+    "небо",
+    "неба",
+    "небе",
+    "небом"
+   ],
+   "correct": "неба",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive case неба with the preposition с (from) indicates the place from which praise rises."
+  },
+  {
+   "id": "c2",
+   "sentence": "Славьте Его все Его ___, славьте Его все Его воинства.",
+   "lemma": "ангел",
+   "options": [
+    "ангел",
+    "ангела",
+    "ангелы",
+    "ангелов"
+   ],
+   "correct": "ангелы",
+   "case": "Винительный (Accusative)",
+   "explain": "Ангелы is the direct object of the imperative verb славьте (praise), taking the accusative plural case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Славьте Его ___ и луна, славьте Его все блистающие звезды.",
+   "lemma": "солнце",
+   "options": [
+    "солнце",
+    "солнца",
+    "солнцем",
+    "солнцах"
+   ],
+   "correct": "солнце",
+   "case": "Винительный (Accusative)",
+   "explain": "Солнце is the direct object of the imperative verb славьте (praise), taking the accusative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Славьте Его ___ небес и воды, которые выше небес.",
+   "lemma": "небо",
+   "options": [
+    "небо",
+    "небеса",
+    "небесах",
+    "небесам"
+   ],
+   "correct": "небеса",
+   "case": "Винительный (Accusative)",
+   "explain": "Небеса is the direct object of the imperative verb славьте (praise), taking the accusative plural case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Пусть славят имя ___, потому что Он повелел, и они были созданы.",
+   "lemma": "Господь",
+   "options": [
+    "Господь",
+    "Господа",
+    "Господу",
+    "Господом"
+   ],
+   "correct": "Господа",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive case Господа after имя (name) indicates possession: 'the name of the Lord.'"
+  },
+  {
+   "id": "c6",
+   "sentence": "Славьте Господа ___, морские чудовища и все водные глубины.",
+   "lemma": "земля",
+   "options": [
+    "земля",
+    "земли",
+    "земле",
+    "землю"
+   ],
+   "correct": "земли",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive case земли with the preposition with Славьте от (from the earth) indicates the place of origin."
+  },
+  {
+   "id": "c7",
+   "sentence": "Плодовые ___ и все кедры, звери и всякий скот.",
+   "lemma": "дерево",
+   "options": [
+    "дерево",
+    "деревья",
+    "деревьями",
+    "деревьях"
+   ],
+   "correct": "деревья",
+   "case": "Винительный (Accusative)",
+   "explain": "Деревья is the direct object implied by the imperative context, taking the accusative plural case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Земные ___ и все народы, правители и все судьи земные.",
+   "lemma": "царь",
+   "options": [
+    "царь",
+    "царя",
+    "цари",
+    "царей"
+   ],
+   "correct": "цари",
+   "case": "Винительный (Accusative)",
+   "explain": "Цари is the direct object of the imperative to praise, taking the accusative plural case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Аллилуйя! Славьте Господа с небес, в высотах прославляйте Его, славьте Его все Его ангелы, славьте Его все Его воинства.",
+   "question": "What is called to praise the Lord from heaven?",
+   "options": [
+    "His angels and all his hosts",
+    "Only the sun",
+    "Only the birds",
+    "Only the wind"
+   ],
+   "correct": "His angels and all his hosts",
+   "explain": "The verse explicitly calls upon all the Его ангелы (His angels) and все Его воинства (all His hosts) to praise Him."
+  },
+  {
+   "id": "r2",
+   "ru": "Славьте Его солнце и луна, славьте Его все блистающие звезды, славьте Его небеса небес и воды, которые выше небес.",
+   "question": "What heavenly bodies and celestial elements are commanded to praise God?",
+   "options": [
+    "The sun, moon, stars, heavens of heavens, and waters above heavens",
+    "Only the sun",
+    "Only the stars",
+    "Only the moon"
+   ],
+   "correct": "The sun, moon, stars, heavens of heavens, and waters above heavens",
+   "explain": "The passage lists солнце и луна (sun and moon), все блистающие звезды (all shining stars), небеса небес (heavens of heavens), and воды выше небес (waters above heavens)."
+  },
+  {
+   "id": "r3",
+   "ru": "Пусть славят имя Господа, потому что Он повелел, и они были созданы. Он утвердил их навечно, дал устав, который не отменить.",
+   "question": "Why should all creation praise God's name?",
+   "options": [
+    "Because He commanded and created them, and He has established them forever",
+    "Because they are powerful",
+    "Because they are beautiful",
+    "Because they move freely"
+   ],
+   "correct": "Because He commanded and created them, and He has established them forever",
+   "explain": "The text gives the reason: Он повелел (He commanded), они были созданы (they were created), утвердил их навечно (He established them forever), and дал устав, который не отменить (gave laws that cannot be changed)."
+  },
+  {
+   "id": "r4",
+   "ru": "Славьте Господа земли, морские чудовища и все водные глубины, молния и град, снег и туман, бурный ветер, исполняющий Его Слово.",
+   "question": "What earthly and natural phenomena are called to praise the Lord?",
+   "options": [
+    "Sea creatures, depths, lightning, hail, snow, fog, and stormy wind",
+    "Only animals",
+    "Only water",
+    "Only weather"
+   ],
+   "correct": "Sea creatures, depths, lightning, hail, snow, fog, and stormy wind",
+   "explain": "The verse comprehensively lists морские чудовища (sea creatures), водные глубины (depths), молния (lightning), град (hail), снег (snow), туман (fog), and бурный ветер (stormy wind)."
+  },
+  {
+   "id": "r5",
+   "ru": "Плодовые деревья и все кедры, звери и всякий скот, присмыкающиеся и крылатые птицы, земные цари и все народы, правители и все судьи земные, юноши и девушки, пожилые люди и дети.",
+   "question": "What creation and humanity are commanded to praise the Lord?",
+   "options": [
+    "Trees, animals, all creatures, rulers, and all people of all ages",
+    "Only kings",
+    "Only birds",
+    "Only young people"
+   ],
+   "correct": "Trees, animals, all creatures, rulers, and all people of all ages",
+   "explain": "The extensive passage includes деревья (trees), звери (animals), всякий скот (all livestock), крылатые птицы (winged birds), цари (kings), народы (peoples), судьи (judges), и all ages from юноши (young men) to дети (children)."
+  },
+  {
+   "id": "r6",
+   "ru": "Славьте все имя Господне, потому что только Его имя превознесено. Слава Его выше земли и небес.",
+   "question": "What is emphasized about God's name and glory?",
+   "options": [
+    "His name alone is exalted and his glory is above earth and heavens",
+    "His name is common",
+    "His glory is limited to earth",
+    "His name is weak"
+   ],
+   "correct": "His name alone is exalted and his glory is above earth and heavens",
+   "explain": "The text emphasizes that только Его имя превознесено (His name alone is exalted) and that Слава Его выше земли и небес (His glory is above earth and heavens)."
+  }
+ ]
 }

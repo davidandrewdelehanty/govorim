@@ -1,170 +1,194 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Как написано в книге пророка Исаии, ___ раздается в пустыне.",
-      "lemma": "голос",
-      "options": ["голос", "голоса", "голосу", "голосом"],
-      "correct": "голос",
-      "case": "Именительный (Nominative)",
-      "translation": "As it is written in the book of the prophet Isaiah, a voice cries out in the wilderness.",
-      "explain": "Голос is the subject of раздается (rings out) → nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Уже и топор лежит у ___ деревьев.",
-      "lemma": "корень",
-      "options": ["корень", "корня", "корню", "корнем"],
-      "correct": "корня",
-      "case": "Родительный (Genitive)",
-      "translation": "Already the axe lies at the root of the trees.",
-      "explain": "The preposition у (at) takes the genitive → корня."
-    },
-    {
-      "id": "c3",
-      "sentence": "Иоанн пошел по всем областям, прилегающим к ___.",
-      "lemma": "Иордан",
-      "options": ["Иордан", "Иордана", "Иордану", "Иорданом"],
-      "correct": "Иордану",
-      "case": "Дательный (Dative)",
-      "translation": "John went through all the regions bordering the Jordan.",
-      "explain": "The preposition к (bordering/toward) governs the dative → Иордану."
-    },
-    {
-      "id": "c4",
-      "sentence": "Ирод ко всему злу добавил еще одно, заключив ___ в темницу.",
-      "lemma": "Иоанн",
-      "options": ["Иоанн", "Иоанна", "Иоанну", "Иоанном"],
-      "correct": "Иоанна",
-      "case": "Винительный (Accusative)",
-      "translation": "Herod added this to all his other evils: he locked John up in prison.",
-      "explain": "Иоанна is the direct object of заключив (having locked up) → accusative. Иоанн is animate, so its accusative matches the genitive form."
-    },
-    {
-      "id": "c5",
-      "sentence": "Никого ложно не обвиняйте и довольствуйтесь своим ___.",
-      "lemma": "жалование",
-      "options": ["жалование", "жалования", "жалованию", "жалованием"],
-      "correct": "жалованием",
-      "case": "Творительный (Instrumental)",
-      "translation": "Do not falsely accuse anyone, and be content with your wages.",
-      "explain": "The verb довольствоваться (be content with) governs the instrumental → жалованием."
-    },
-    {
-      "id": "c6",
-      "sentence": "Слово Бога было к Иоанну, сыну Захарии, в ___.",
-      "lemma": "пустыня",
-      "options": ["пустыня", "пустыни", "пустыню", "пустыне"],
-      "correct": "пустыне",
-      "case": "Предложный (Prepositional)",
-      "translation": "The word of God came to John, son of Zechariah, in the wilderness.",
-      "explain": "В (in), marking location, takes the prepositional → пустыне."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "слово Бога было к Иоанну, сыну Захарии, в пустыне.",
-      "question": "To whom did the word of God come in the wilderness?",
-      "options": [
-        "John, son of Zechariah",
-        "Pontius Pilate",
-        "Herod, ruler of Galilee",
-        "Caiaphas the high priest"
-      ],
-      "correct": "John, son of Zechariah",
-      "explain": "The word of God came to John, the son of Zechariah, in the wilderness."
-    },
-    {
-      "id": "r2",
-      "ru": "Иоанн пошел по всем областям, прилегающим к Иордану, и проповедовал крещение в знак покаяния для прощения грехов.",
-      "question": "What did John proclaim as he went through the regions near the Jordan?",
-      "options": [
-        "A baptism of repentance for the forgiveness of sins",
-        "A new law replacing Moses' commandments",
-        "The coronation of a new king",
-        "A call to arms against Rome"
-      ],
-      "correct": "A baptism of repentance for the forgiveness of sins",
-      "explain": "John preached a baptism of repentance for the forgiveness of sins throughout the region near the Jordan."
-    },
-    {
-      "id": "r3",
-      "ru": "«Приготовьте путь Господу, сделайте прямыми дороги его. Всякий овраг пусть будет засыпан».",
-      "question": "What did the prophet Isaiah's words, quoted about John, command?",
-      "options": [
-        "\"Prepare the way for the Lord, make his paths straight\"",
-        "\"Build a temple for the Lord\"",
-        "\"Gather all nations to Jerusalem\"",
-        "\"Destroy the idols of the land\""
-      ],
-      "correct": "\"Prepare the way for the Lord, make his paths straight\"",
-      "explain": "The quotation from Isaiah says, \"Prepare the way for the Lord, make his paths straight.\""
-    },
-    {
-      "id": "r4",
-      "ru": "«Тот, у кого две рубахи, пусть даст одну тому, у кого нет вообще, и тот, у кого есть еда, пусть сделает то же самое».",
-      "question": "What did John tell the crowd to do when they asked 'What then must we do?'",
-      "options": [
-        "Share clothing and food with those who have none",
-        "Fast for forty days",
-        "Sell all their possessions",
-        "Go to the temple daily"
-      ],
-      "correct": "Share clothing and food with those who have none",
-      "explain": "John told them that whoever has two shirts should share with the one who has none, and likewise with food."
-    },
-    {
-      "id": "r5",
-      "ru": "«Не вымогайте у людей денег силой и угрозами. Никого ложно не обвиняйте и довольствуйтесь своим жалованием».",
-      "question": "What did John tell the soldiers to do?",
-      "options": [
-        "Not extort money by force or false accusation, and be content with their wages",
-        "Leave the army immediately",
-        "Give their weapons to the poor",
-        "Arrest the tax collectors"
-      ],
-      "correct": "Not extort money by force or false accusation, and be content with their wages",
-      "explain": "John told the soldiers not to extort money by force or threats, not to falsely accuse anyone, and to be content with their wages."
-    },
-    {
-      "id": "r6",
-      "ru": "«Я крещу вас водой, но придет тот, кто могущественнее меня, я даже не достоин развязать ремни его сандалий.",
-      "question": "What did John say about the one who was coming after him?",
-      "options": [
-        "He was more powerful than John, whose sandal straps John was not worthy to untie",
-        "He would arrive with a great army",
-        "He would build a new temple in Jerusalem",
-        "He would rule as governor of Judea"
-      ],
-      "correct": "He was more powerful than John, whose sandal straps John was not worthy to untie",
-      "explain": "John said he baptized with water, but one more powerful was coming, whose sandal straps he was not worthy to untie."
-    },
-    {
-      "id": "r7",
-      "ru": "Ирод ко всему злу добавил еще одно, заключив Иоанна в темницу.",
-      "question": "What did Herod do to John after being rebuked by him?",
-      "options": [
-        "He shut John up in prison",
-        "He asked John for forgiveness",
-        "He made John a royal advisor",
-        "He exiled John from Galilee"
-      ],
-      "correct": "He shut John up in prison",
-      "explain": "Herod, rebuked by John, added to his evils by locking John up in prison."
-    },
-    {
-      "id": "r8",
-      "ru": "и на него спустился Святой Дух в телесном виде, в образе голубя, и с небес прозвучал голос. «Ты мой любимый сын, в Тебе моя радость».",
-      "question": "What happened when Jesus was baptized and praying?",
-      "options": [
-        "The Holy Spirit descended on him like a dove and a voice from heaven called him the beloved Son",
-        "An earthquake shook the region",
-        "The sky turned dark for three hours",
-        "A crowd of angels sang praises"
-      ],
-      "correct": "The Holy Spirit descended on him like a dove and a voice from heaven called him the beloved Son",
-      "explain": "The Holy Spirit descended on Jesus in bodily form like a dove, and a voice from heaven called him the beloved Son."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Как написано в книге пророка Исаии, ___ раздается в пустыне.",
+   "lemma": "голос",
+   "options": [
+    "голос",
+    "голоса",
+    "голосу",
+    "голосом"
+   ],
+   "correct": "голос",
+   "case": "Именительный (Nominative)",
+   "explain": "Голос is the subject of раздается (rings out) → nominative."
+  },
+  {
+   "id": "c2",
+   "sentence": "Уже и топор лежит у ___ деревьев.",
+   "lemma": "корень",
+   "options": [
+    "корень",
+    "корня",
+    "корню",
+    "корнем"
+   ],
+   "correct": "корня",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition у (at) takes the genitive → корня."
+  },
+  {
+   "id": "c3",
+   "sentence": "Иоанн пошел по всем областям, прилегающим к ___.",
+   "lemma": "Иордан",
+   "options": [
+    "Иордан",
+    "Иордана",
+    "Иордану",
+    "Иорданом"
+   ],
+   "correct": "Иордану",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition к (bordering/toward) governs the dative → Иордану."
+  },
+  {
+   "id": "c4",
+   "sentence": "Ирод ко всему злу добавил еще одно, заключив ___ в темницу.",
+   "lemma": "Иоанн",
+   "options": [
+    "Иоанн",
+    "Иоанна",
+    "Иоанну",
+    "Иоанном"
+   ],
+   "correct": "Иоанна",
+   "case": "Винительный (Accusative)",
+   "explain": "Иоанна is the direct object of заключив (having locked up) → accusative. Иоанн is animate, so its accusative matches the genitive form."
+  },
+  {
+   "id": "c5",
+   "sentence": "Никого ложно не обвиняйте и довольствуйтесь своим ___.",
+   "lemma": "жалование",
+   "options": [
+    "жалование",
+    "жалования",
+    "жалованию",
+    "жалованием"
+   ],
+   "correct": "жалованием",
+   "case": "Творительный (Instrumental)",
+   "explain": "The verb довольствоваться (be content with) governs the instrumental → жалованием."
+  },
+  {
+   "id": "c6",
+   "sentence": "Слово Бога было к Иоанну, сыну Захарии, в ___.",
+   "lemma": "пустыня",
+   "options": [
+    "пустыня",
+    "пустыни",
+    "пустыню",
+    "пустыне"
+   ],
+   "correct": "пустыне",
+   "case": "Предложный (Prepositional)",
+   "explain": "В (in), marking location, takes the prepositional → пустыне."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "слово Бога было к Иоанну, сыну Захарии, в пустыне.",
+   "question": "To whom did the word of God come in the wilderness?",
+   "options": [
+    "John, son of Zechariah",
+    "Pontius Pilate",
+    "Herod, ruler of Galilee",
+    "Caiaphas the high priest"
+   ],
+   "correct": "John, son of Zechariah",
+   "explain": "The word of God came to John, the son of Zechariah, in the wilderness."
+  },
+  {
+   "id": "r2",
+   "ru": "Иоанн пошел по всем областям, прилегающим к Иордану, и проповедовал крещение в знак покаяния для прощения грехов.",
+   "question": "What did John proclaim as he went through the regions near the Jordan?",
+   "options": [
+    "A baptism of repentance for the forgiveness of sins",
+    "A new law replacing Moses' commandments",
+    "The coronation of a new king",
+    "A call to arms against Rome"
+   ],
+   "correct": "A baptism of repentance for the forgiveness of sins",
+   "explain": "John preached a baptism of repentance for the forgiveness of sins throughout the region near the Jordan."
+  },
+  {
+   "id": "r3",
+   "ru": "«Приготовьте путь Господу, сделайте прямыми дороги его. Всякий овраг пусть будет засыпан».",
+   "question": "What did the prophet Isaiah's words, quoted about John, command?",
+   "options": [
+    "\"Prepare the way for the Lord, make his paths straight\"",
+    "\"Build a temple for the Lord\"",
+    "\"Gather all nations to Jerusalem\"",
+    "\"Destroy the idols of the land\""
+   ],
+   "correct": "\"Prepare the way for the Lord, make his paths straight\"",
+   "explain": "The quotation from Isaiah says, \"Prepare the way for the Lord, make his paths straight.\""
+  },
+  {
+   "id": "r4",
+   "ru": "«Тот, у кого две рубахи, пусть даст одну тому, у кого нет вообще, и тот, у кого есть еда, пусть сделает то же самое».",
+   "question": "What did John tell the crowd to do when they asked 'What then must we do?'",
+   "options": [
+    "Share clothing and food with those who have none",
+    "Fast for forty days",
+    "Sell all their possessions",
+    "Go to the temple daily"
+   ],
+   "correct": "Share clothing and food with those who have none",
+   "explain": "John told them that whoever has two shirts should share with the one who has none, and likewise with food."
+  },
+  {
+   "id": "r5",
+   "ru": "«Не вымогайте у людей денег силой и угрозами. Никого ложно не обвиняйте и довольствуйтесь своим жалованием».",
+   "question": "What did John tell the soldiers to do?",
+   "options": [
+    "Not extort money by force or false accusation, and be content with their wages",
+    "Leave the army immediately",
+    "Give their weapons to the poor",
+    "Arrest the tax collectors"
+   ],
+   "correct": "Not extort money by force or false accusation, and be content with their wages",
+   "explain": "John told the soldiers not to extort money by force or threats, not to falsely accuse anyone, and to be content with their wages."
+  },
+  {
+   "id": "r6",
+   "ru": "«Я крещу вас водой, но придет тот, кто могущественнее меня, я даже не достоин развязать ремни его сандалий.",
+   "question": "What did John say about the one who was coming after him?",
+   "options": [
+    "He was more powerful than John, whose sandal straps John was not worthy to untie",
+    "He would arrive with a great army",
+    "He would build a new temple in Jerusalem",
+    "He would rule as governor of Judea"
+   ],
+   "correct": "He was more powerful than John, whose sandal straps John was not worthy to untie",
+   "explain": "John said he baptized with water, but one more powerful was coming, whose sandal straps he was not worthy to untie."
+  },
+  {
+   "id": "r7",
+   "ru": "Ирод ко всему злу добавил еще одно, заключив Иоанна в темницу.",
+   "question": "What did Herod do to John after being rebuked by him?",
+   "options": [
+    "He shut John up in prison",
+    "He asked John for forgiveness",
+    "He made John a royal advisor",
+    "He exiled John from Galilee"
+   ],
+   "correct": "He shut John up in prison",
+   "explain": "Herod, rebuked by John, added to his evils by locking John up in prison."
+  },
+  {
+   "id": "r8",
+   "ru": "и на него спустился Святой Дух в телесном виде, в образе голубя, и с небес прозвучал голос. «Ты мой любимый сын, в Тебе моя радость».",
+   "question": "What happened when Jesus was baptized and praying?",
+   "options": [
+    "The Holy Spirit descended on him like a dove and a voice from heaven called him the beloved Son",
+    "An earthquake shook the region",
+    "The sky turned dark for three hours",
+    "A crowd of angels sang praises"
+   ],
+   "correct": "The Holy Spirit descended on him like a dove and a voice from heaven called him the beloved Son",
+   "explain": "The Holy Spirit descended on Jesus in bodily form like a dove, and a voice from heaven called him the beloved Son."
+  }
+ ]
 }

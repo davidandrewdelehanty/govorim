@@ -8221,10 +8221,14 @@ export default function App() {
                                 </div>
                               )}
 
-                              {/* Lemma prompt + English translation */}
+                              {/* Lemma prompt. The drill's English line is deliberately NOT
+                                  shown: these sentences are pulled from the parallel translation,
+                                  where a translator's sentence rarely maps one-to-one onto the
+                                  Russian one, so the "translation" was usually of a neighbouring
+                                  or merged sentence and read as an error. The drill is a case
+                                  exercise — the Russian sentence is the whole prompt. */}
                               <div style={{textAlign:"center",marginBottom:22}}>
                                 <div style={{fontSize:15,color:"rgba(42,31,20,.75)"}}>Put <strong style={{color:"#a56a24",fontSize:18}}>{q.lemma}</strong> in the correct case</div>
-                                {q.translation && <div style={{fontSize:14,color:"rgba(42,31,20,.5)",fontStyle:"italic",marginTop:8}}>{q.translation}</div>}
                               </div>
                               </>)}
 

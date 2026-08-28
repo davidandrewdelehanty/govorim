@@ -1,164 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "В земле Уц жил человек по имени ___.",
-      "lemma": "Иов",
-      "options": ["Иов", "Иова", "Иову", "Иовом"],
-      "correct": "Иов",
-      "case": "Именительный (Nominative)",
-      "translation": "In the land of Uz lived a man named Job.",
-      "explain": "The proper noun 'Иов' (Job) is in the nominative case as the subject of the sentence."
-    },
-    {
-      "id": "c2",
-      "sentence": "Этот человек был непорочен и праведен, жил в страхе перед ___ и сторонился зла.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Богом",
-      "case": "Творительный (Instrumental)",
-      "translation": "This man was blameless and upright, lived in fear before God and turned away from evil.",
-      "explain": "The preposition 'перед' (before) governs the instrumental case."
-    },
-    {
-      "id": "c3",
-      "sentence": "У него было великое множество ___ в его владении.",
-      "lemma": "слуга",
-      "options": ["слуга", "слуги", "слугам", "слуг"],
-      "correct": "слуг",
-      "case": "Родительный (Genitive)",
-      "translation": "He had a great multitude of servants in his possession.",
-      "explain": "The noun 'множество' (multitude) requires the genitive case for the object being counted."
-    },
-    {
-      "id": "c4",
-      "sentence": "Он был славнее всех жителей ___.",
-      "lemma": "Восток",
-      "options": ["Восток", "Востока", "Востоку", "Востоком"],
-      "correct": "Востока",
-      "case": "Родительный (Genitive)",
-      "translation": "He was more glorious than all inhabitants of the East.",
-      "explain": "The construction 'славнее всех жителей...' requires the genitive case to show comparison."
-    },
-    {
-      "id": "c5",
-      "sentence": "Его сыновья сходились, чтобы пировать по очереди в домах друг ___ друга.",
-      "lemma": "ты",
-      "options": ["ты", "тебя", "тебе", "у тебя"],
-      "correct": "у тебя",
-      "case": "Родительный (Genitive)",
-      "translation": "His sons gathered to hold a feast in turn in each other's houses.",
-      "explain": "The phrase 'друг у друга' (each other) uses the genitive case with the preposition 'у'."
-    },
-    {
-      "id": "c6",
-      "sentence": "Рано утром он возносил за каждого из них всесожжение, думая о своих ___.",
-      "lemma": "сын",
-      "options": ["сын", "сыны", "сынов", "сынам"],
-      "correct": "сынов",
-      "case": "Родительный (Genitive)",
-      "translation": "Early in the morning he offered burnt offerings for each of them, thinking of his sons.",
-      "explain": "The preposition 'за' (for) with the sense of 'каждого' requires the genitive case in plural form."
-    },
-    {
-      "id": "c7",
-      "sentence": "Он думал: 'Быть может, мои сыновья согрешили перед ___ и оскорбили его в своем сердце.'",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Богом",
-      "case": "Творительный (Instrumental)",
-      "translation": "He thought: 'Perhaps my sons have sinned before God and offended Him in their hearts.'",
-      "explain": "The preposition 'перед' (before) governing an offense requires the instrumental case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Однажды сыновья Божии пришли, чтобы предстать перед ___, и с ними пришел Сатана.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Once the sons of God came to present themselves before the Lord, and Satan came with them.",
-      "explain": "The preposition 'перед' (before) governs the instrumental case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Пролог «В земле Уц жил человек по имени Иов. Этот человек был непорочен и праведен, жил в страхе перед Богом и сторонился зла».",
-      "question": "What qualities of Job are described in the prologue?",
-      "options": [
-        "He was blameless, upright, feared God, and turned away from evil",
-        "He was wealthy, powerful, and feared by all his neighbors",
-        "He was a priest and teacher of righteousness",
-        "He was a warrior who protected the land of Uz"
-      ],
-      "correct": "He was blameless, upright, feared God, and turned away from evil",
-      "explain": "The text explicitly lists these qualities: 'был непорочен и праведен, жил в страхе перед Богом и сторонился зла' (blameless, upright, feared God, turned away from evil)."
-    },
-    {
-      "id": "r2",
-      "ru": "Во владении у него было семь тысяч овец, три тысячи верблюдов, пятьсот пар волов и пятьсот ослиц, а еще великое множество слуг.",
-      "question": "What did Job possess?",
-      "options": [
-        "Thousands of sheep, camels, oxen, donkeys, and many servants",
-        "Vast lands and mines of precious metals",
-        "A powerful army and fortified cities",
-        "Ships and trading posts throughout the region"
-      ],
-      "correct": "Thousands of sheep, camels, oxen, donkeys, and many servants",
-      "explain": "The text lists his possessions: 'семь тысяч овец, три тысячи верблюдов, пятьсот пар волов и пятьсот ослиц, а еще великое множество слуг' (seven thousand sheep, three thousand camels, five hundred yoke of oxen, five hundred female donkeys, and a great multitude of servants)."
-    },
-    {
-      "id": "r3",
-      "ru": "Его сыновья сходились, чтобы пировать по очереди в домах друг у друга, и приглашали трех своих сестер, чтобы есть и пить вместе с ними.",
-      "question": "How did Job's sons celebrate?",
-      "options": [
-        "They held feasts in turn at each other's houses and invited their three sisters",
-        "They offered sacrifices at the temple on feast days",
-        "They gathered at their father's house to honor the king",
-        "They traveled throughout the land celebrating victories in battle"
-      ],
-      "correct": "They held feasts in turn at each other's houses and invited their three sisters",
-      "explain": "The text states: 'сходились, чтобы пировать по очереди в домах друг у друга, и приглашали трех своих сестер' (gathered to hold feasts in turn at each other's houses and invited their three sisters)."
-    },
-    {
-      "id": "r4",
-      "ru": "Когда время пиров истекало, Иов посылал за ними и освящал их.",
-      "question": "What did Job do when the feasting period ended?",
-      "options": [
-        "He sent for his children and sanctified them",
-        "He offered sacrifices to thank the Lord",
-        "He sent them away to pursue other activities",
-        "He required them to work in his fields"
-      ],
-      "correct": "He sent for his children and sanctified them",
-      "explain": "The text says: 'Иов посылал за ними и освящал их' (Job sent for them and sanctified them)."
-    },
-    {
-      "id": "r5",
-      "ru": "Рано утром он возносил за каждого из них всесожжение, думая, 'Быть может, мои сыновья согрешили и оскорбили Бога в своем сердце.'",
-      "question": "Why did Job make burnt offerings for his sons?",
-      "options": [
-        "He feared they might have sinned and offended God in their hearts",
-        "He wanted to ensure they would have good harvests",
-        "He was required to do so by the priests",
-        "He made offerings to celebrate their achievements"
-      ],
-      "correct": "He feared they might have sinned and offended God in their hearts",
-      "explain": "The text shows his reason: 'Быть может, мои сыновья согрешили и оскорбили Бога в своем сердце' (Perhaps my sons have sinned and offended God in their hearts)."
-    },
-    {
-      "id": "r6",
-      "ru": "Господь сказал Сатане, 'Приметил ли ты моего слугу Иова? Нет на земле такого человека, как он, непорочного и праведного, кто живет в страхе перед Богом и сторонится зла.'",
-      "question": "How did God describe Job to Satan?",
-      "options": [
-        "There is no one like him on earth—he is blameless, upright, fears God, and turns away from evil",
-        "He is the wisest man in all the lands and richest of all the kings",
-        "He is a prophet chosen to carry God's word to all nations",
-        "He is the strongest warrior and most honored among men"
-      ],
-      "correct": "There is no one like him on earth—he is blameless, upright, fears God, and turns away from evil",
-      "explain": "God's assessment is explicit: 'Нет на земле такого человека, как он, непорочного и праведного, кто живет в страхе перед Богом и сторонится зла' (There is no one like him on earth, blameless and upright, who fears God and turns away from evil)."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "В земле Уц жил человек по имени ___.",
+   "lemma": "Иов",
+   "options": [
+    "Иов",
+    "Иова",
+    "Иову",
+    "Иовом"
+   ],
+   "correct": "Иов",
+   "case": "Именительный (Nominative)",
+   "explain": "The proper noun 'Иов' (Job) is in the nominative case as the subject of the sentence."
+  },
+  {
+   "id": "c2",
+   "sentence": "Этот человек был непорочен и праведен, жил в страхе перед ___ и сторонился зла.",
+   "lemma": "Бог",
+   "options": [
+    "Бог",
+    "Бога",
+    "Богу",
+    "Богом"
+   ],
+   "correct": "Богом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition 'перед' (before) governs the instrumental case."
+  },
+  {
+   "id": "c3",
+   "sentence": "У него было великое множество ___ в его владении.",
+   "lemma": "слуга",
+   "options": [
+    "слуга",
+    "слуги",
+    "слугам",
+    "слуг"
+   ],
+   "correct": "слуг",
+   "case": "Родительный (Genitive)",
+   "explain": "The noun 'множество' (multitude) requires the genitive case for the object being counted."
+  },
+  {
+   "id": "c4",
+   "sentence": "Он был славнее всех жителей ___.",
+   "lemma": "Восток",
+   "options": [
+    "Восток",
+    "Востока",
+    "Востоку",
+    "Востоком"
+   ],
+   "correct": "Востока",
+   "case": "Родительный (Genitive)",
+   "explain": "The construction 'славнее всех жителей...' requires the genitive case to show comparison."
+  },
+  {
+   "id": "c5",
+   "sentence": "Его сыновья сходились, чтобы пировать по очереди в домах друг ___ друга.",
+   "lemma": "ты",
+   "options": [
+    "ты",
+    "тебя",
+    "тебе",
+    "у тебя"
+   ],
+   "correct": "у тебя",
+   "case": "Родительный (Genitive)",
+   "explain": "The phrase 'друг у друга' (each other) uses the genitive case with the preposition 'у'."
+  },
+  {
+   "id": "c6",
+   "sentence": "Рано утром он возносил за каждого из них всесожжение, думая о своих ___.",
+   "lemma": "сын",
+   "options": [
+    "сын",
+    "сыны",
+    "сынов",
+    "сынам"
+   ],
+   "correct": "сынов",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition 'за' (for) with the sense of 'каждого' requires the genitive case in plural form."
+  },
+  {
+   "id": "c7",
+   "sentence": "Он думал: 'Быть может, мои сыновья согрешили перед ___ и оскорбили его в своем сердце.'",
+   "lemma": "Бог",
+   "options": [
+    "Бог",
+    "Бога",
+    "Богу",
+    "Богом"
+   ],
+   "correct": "Богом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition 'перед' (before) governing an offense requires the instrumental case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Однажды сыновья Божии пришли, чтобы предстать перед ___, и с ними пришел Сатана.",
+   "lemma": "Господь",
+   "options": [
+    "Господь",
+    "Господа",
+    "Господу",
+    "Господом"
+   ],
+   "correct": "Господом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition 'перед' (before) governs the instrumental case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Пролог «В земле Уц жил человек по имени Иов. Этот человек был непорочен и праведен, жил в страхе перед Богом и сторонился зла».",
+   "question": "What qualities of Job are described in the prologue?",
+   "options": [
+    "He was blameless, upright, feared God, and turned away from evil",
+    "He was wealthy, powerful, and feared by all his neighbors",
+    "He was a priest and teacher of righteousness",
+    "He was a warrior who protected the land of Uz"
+   ],
+   "correct": "He was blameless, upright, feared God, and turned away from evil",
+   "explain": "The text explicitly lists these qualities: 'был непорочен и праведен, жил в страхе перед Богом и сторонился зла' (blameless, upright, feared God, turned away from evil)."
+  },
+  {
+   "id": "r2",
+   "ru": "Во владении у него было семь тысяч овец, три тысячи верблюдов, пятьсот пар волов и пятьсот ослиц, а еще великое множество слуг.",
+   "question": "What did Job possess?",
+   "options": [
+    "Thousands of sheep, camels, oxen, donkeys, and many servants",
+    "Vast lands and mines of precious metals",
+    "A powerful army and fortified cities",
+    "Ships and trading posts throughout the region"
+   ],
+   "correct": "Thousands of sheep, camels, oxen, donkeys, and many servants",
+   "explain": "The text lists his possessions: 'семь тысяч овец, три тысячи верблюдов, пятьсот пар волов и пятьсот ослиц, а еще великое множество слуг' (seven thousand sheep, three thousand camels, five hundred yoke of oxen, five hundred female donkeys, and a great multitude of servants)."
+  },
+  {
+   "id": "r3",
+   "ru": "Его сыновья сходились, чтобы пировать по очереди в домах друг у друга, и приглашали трех своих сестер, чтобы есть и пить вместе с ними.",
+   "question": "How did Job's sons celebrate?",
+   "options": [
+    "They held feasts in turn at each other's houses and invited their three sisters",
+    "They offered sacrifices at the temple on feast days",
+    "They gathered at their father's house to honor the king",
+    "They traveled throughout the land celebrating victories in battle"
+   ],
+   "correct": "They held feasts in turn at each other's houses and invited their three sisters",
+   "explain": "The text states: 'сходились, чтобы пировать по очереди в домах друг у друга, и приглашали трех своих сестер' (gathered to hold feasts in turn at each other's houses and invited their three sisters)."
+  },
+  {
+   "id": "r4",
+   "ru": "Когда время пиров истекало, Иов посылал за ними и освящал их.",
+   "question": "What did Job do when the feasting period ended?",
+   "options": [
+    "He sent for his children and sanctified them",
+    "He offered sacrifices to thank the Lord",
+    "He sent them away to pursue other activities",
+    "He required them to work in his fields"
+   ],
+   "correct": "He sent for his children and sanctified them",
+   "explain": "The text says: 'Иов посылал за ними и освящал их' (Job sent for them and sanctified them)."
+  },
+  {
+   "id": "r5",
+   "ru": "Рано утром он возносил за каждого из них всесожжение, думая, 'Быть может, мои сыновья согрешили и оскорбили Бога в своем сердце.'",
+   "question": "Why did Job make burnt offerings for his sons?",
+   "options": [
+    "He feared they might have sinned and offended God in their hearts",
+    "He wanted to ensure they would have good harvests",
+    "He was required to do so by the priests",
+    "He made offerings to celebrate their achievements"
+   ],
+   "correct": "He feared they might have sinned and offended God in their hearts",
+   "explain": "The text shows his reason: 'Быть может, мои сыновья согрешили и оскорбили Бога в своем сердце' (Perhaps my sons have sinned and offended God in their hearts)."
+  },
+  {
+   "id": "r6",
+   "ru": "Господь сказал Сатане, 'Приметил ли ты моего слугу Иова? Нет на земле такого человека, как он, непорочного и праведного, кто живет в страхе перед Богом и сторонится зла.'",
+   "question": "How did God describe Job to Satan?",
+   "options": [
+    "There is no one like him on earth—he is blameless, upright, fears God, and turns away from evil",
+    "He is the wisest man in all the lands and richest of all the kings",
+    "He is a prophet chosen to carry God's word to all nations",
+    "He is the strongest warrior and most honored among men"
+   ],
+   "correct": "There is no one like him on earth—he is blameless, upright, fears God, and turns away from evil",
+   "explain": "God's assessment is explicit: 'Нет на земле такого человека, как он, непорочного и праведного, кто живет в страхе перед Богом и сторонится зла' (There is no one like him on earth, blameless and upright, who fears God and turns away from evil)."
+  }
+ ]
 }

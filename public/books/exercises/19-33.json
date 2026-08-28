@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Восхвалю ___.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "I will praise the Lord.",
-      "explain": "The verb восхвалю (I will praise) takes the accusative case, which for the animate noun Господь is identical to the genitive form Господа."
-    },
-    {
-      "id": "c2",
-      "sentence": "___ моя будет хвалиться Господом.",
-      "lemma": "душа",
-      "options": ["душа", "души", "душу", "душой"],
-      "correct": "душа",
-      "case": "Именительный (Nominative)",
-      "translation": "My soul shall boast in the Lord.",
-      "explain": "The noun душа is the grammatical subject of the verb будет хвалиться, so it stands in the nominative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "избавил от всех моих ___.",
-      "lemma": "страх",
-      "options": ["страх", "страха", "страху", "страхом"],
-      "correct": "страха",
-      "case": "Родительный (Genitive)",
-      "translation": "delivered me from all my fears.",
-      "explain": "The preposition от (from) always governs the genitive case."
-    },
-    {
-      "id": "c4",
-      "sentence": "лица их не покроет ___.",
-      "lemma": "стыд",
-      "options": ["стыд", "стыда", "стыду", "стыдом"],
-      "correct": "стыд",
-      "case": "Именительный (Nominative)",
-      "translation": "their faces shall never be covered with shame.",
-      "explain": "The noun стыд is the nominative subject of the verb покроет (will cover)."
-    },
-    {
-      "id": "c5",
-      "sentence": "удерживай свой ___ от зла.",
-      "lemma": "язык",
-      "options": ["язык", "языка", "языку", "языком"],
-      "correct": "язык",
-      "case": "Винительный (Accusative)",
-      "translation": "keep your tongue from evil.",
-      "explain": "The verb удерживай (keep) takes the accusative case for its direct object."
-    },
-    {
-      "id": "c6",
-      "sentence": "удерживай свой язык от ___.",
-      "lemma": "зло",
-      "options": ["зло", "зла", "злу", "злом"],
-      "correct": "зла",
-      "case": "Родительный (Genitive)",
-      "translation": "keep your tongue from evil.",
-      "explain": "The preposition от (from) always governs the genitive case."
-    },
-    {
-      "id": "c7",
-      "sentence": "___ Господень ополчается вокруг тех, кто боится Господа.",
-      "lemma": "ангел",
-      "options": ["ангел", "ангела", "ангелу", "ангелом"],
-      "correct": "ангел",
-      "case": "Именительный (Nominative)",
-      "translation": "Yahweh's angel encamps around those who fear him.",
-      "explain": "The noun ангел is the nominative subject of the verb ополчается (encamps)."
-    },
-    {
-      "id": "c8",
-      "sentence": "ищи ___ и стремись к нему.",
-      "lemma": "мир",
-      "options": ["мир", "мира", "миру", "миром"],
-      "correct": "мира",
-      "case": "Родительный (Genitive)",
-      "translation": "Seek peace and pursue it.",
-      "explain": "The verb ищи (seek) can take the genitive case when expressing a search for something."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Восхвалю Господа во всякое время, хвала ему всегда на устах моих.",
-      "question": "According to the text, what should be on the psalmist's lips at all times?",
-      "options": ["Praise", "Prayers", "Silence", "Lament"],
-      "correct": "Praise",
-      "explain": "The text states хвала ему всегда на устах моих (praise to him always on my lips)."
-    },
-    {
-      "id": "r2",
-      "ru": "Я искал Господа, и Он мне ответил, и от всех моих страхов меня избавил.",
-      "question": "How did the Lord respond when the psalmist sought Him?",
-      "options": ["He answered and delivered from fears", "He was silent", "He turned away", "He sent an angel"],
-      "correct": "He answered and delivered from fears",
-      "explain": "The text explicitly says Он мне ответил и от всех моих страхов меня избавил (He answered me and delivered me from all my fears)."
-    },
-    {
-      "id": "r3",
-      "ru": "Кусите и увидите, как благ Господь.",
-      "question": "What does the psalmist invite people to do to understand God's goodness?",
-      "options": ["Taste and see", "Hear and understand", "Read and believe", "Wait and trust"],
-      "correct": "Taste and see",
-      "explain": "The text says Кусите и увидите, как благ Господь (Taste and see that the Lord is good)."
-    },
-    {
-      "id": "r4",
-      "ru": "Бойтесь Господа, святые его, ведь кто боится его, ни в чем не нуждается.",
-      "question": "According to the text, what do those who fear the Lord lack?",
-      "options": ["Nothing", "Faith", "Courage", "Wisdom"],
-      "correct": "Nothing",
-      "explain": "The text states кто боится его, ни в чем не нуждается (those who fear him lack nothing)."
-    },
-    {
-      "id": "r5",
-      "ru": "Придите, дети, послушайте меня, я научу вас страху Господню.",
-      "question": "What does the psalmist offer to teach the children?",
-      "options": ["Fear of the Lord", "Wisdom", "Music", "History"],
-      "correct": "Fear of the Lord",
-      "explain": "The text says я научу вас страху Господню (I will teach you the fear of the Lord)."
-    },
-    {
-      "id": "r6",
-      "ru": "Удаляйся от зла и твори добро, ищи мира и стремись к нему.",
-      "question": "What two actions should a person take according to this verse?",
-      "options": ["Depart from evil and do good", "Pray and fast", "Love and forgive", "Work and rest"],
-      "correct": "Depart from evil and do good",
-      "explain": "The text explicitly commands Удаляйся от зла и твори добро (Depart from evil and do good)."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Восхвалю ___.",
+   "lemma": "Господь",
+   "options": [
+    "Господь",
+    "Господа",
+    "Господу",
+    "Господом"
+   ],
+   "correct": "Господа",
+   "case": "Родительный (Genitive)",
+   "explain": "The verb восхвалю (I will praise) takes the accusative case, which for the animate noun Господь is identical to the genitive form Господа."
+  },
+  {
+   "id": "c2",
+   "sentence": "___ моя будет хвалиться Господом.",
+   "lemma": "душа",
+   "options": [
+    "душа",
+    "души",
+    "душу",
+    "душой"
+   ],
+   "correct": "душа",
+   "case": "Именительный (Nominative)",
+   "explain": "The noun душа is the grammatical subject of the verb будет хвалиться, so it stands in the nominative case."
+  },
+  {
+   "id": "c3",
+   "sentence": "избавил от всех моих ___.",
+   "lemma": "страх",
+   "options": [
+    "страх",
+    "страха",
+    "страху",
+    "страхом"
+   ],
+   "correct": "страха",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition от (from) always governs the genitive case."
+  },
+  {
+   "id": "c4",
+   "sentence": "лица их не покроет ___.",
+   "lemma": "стыд",
+   "options": [
+    "стыд",
+    "стыда",
+    "стыду",
+    "стыдом"
+   ],
+   "correct": "стыд",
+   "case": "Именительный (Nominative)",
+   "explain": "The noun стыд is the nominative subject of the verb покроет (will cover)."
+  },
+  {
+   "id": "c5",
+   "sentence": "удерживай свой ___ от зла.",
+   "lemma": "язык",
+   "options": [
+    "язык",
+    "языка",
+    "языку",
+    "языком"
+   ],
+   "correct": "язык",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb удерживай (keep) takes the accusative case for its direct object."
+  },
+  {
+   "id": "c6",
+   "sentence": "удерживай свой язык от ___.",
+   "lemma": "зло",
+   "options": [
+    "зло",
+    "зла",
+    "злу",
+    "злом"
+   ],
+   "correct": "зла",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition от (from) always governs the genitive case."
+  },
+  {
+   "id": "c7",
+   "sentence": "___ Господень ополчается вокруг тех, кто боится Господа.",
+   "lemma": "ангел",
+   "options": [
+    "ангел",
+    "ангела",
+    "ангелу",
+    "ангелом"
+   ],
+   "correct": "ангел",
+   "case": "Именительный (Nominative)",
+   "explain": "The noun ангел is the nominative subject of the verb ополчается (encamps)."
+  },
+  {
+   "id": "c8",
+   "sentence": "ищи ___ и стремись к нему.",
+   "lemma": "мир",
+   "options": [
+    "мир",
+    "мира",
+    "миру",
+    "миром"
+   ],
+   "correct": "мира",
+   "case": "Родительный (Genitive)",
+   "explain": "The verb ищи (seek) can take the genitive case when expressing a search for something."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Восхвалю Господа во всякое время, хвала ему всегда на устах моих.",
+   "question": "According to the text, what should be on the psalmist's lips at all times?",
+   "options": [
+    "Praise",
+    "Prayers",
+    "Silence",
+    "Lament"
+   ],
+   "correct": "Praise",
+   "explain": "The text states хвала ему всегда на устах моих (praise to him always on my lips)."
+  },
+  {
+   "id": "r2",
+   "ru": "Я искал Господа, и Он мне ответил, и от всех моих страхов меня избавил.",
+   "question": "How did the Lord respond when the psalmist sought Him?",
+   "options": [
+    "He answered and delivered from fears",
+    "He was silent",
+    "He turned away",
+    "He sent an angel"
+   ],
+   "correct": "He answered and delivered from fears",
+   "explain": "The text explicitly says Он мне ответил и от всех моих страхов меня избавил (He answered me and delivered me from all my fears)."
+  },
+  {
+   "id": "r3",
+   "ru": "Кусите и увидите, как благ Господь.",
+   "question": "What does the psalmist invite people to do to understand God's goodness?",
+   "options": [
+    "Taste and see",
+    "Hear and understand",
+    "Read and believe",
+    "Wait and trust"
+   ],
+   "correct": "Taste and see",
+   "explain": "The text says Кусите и увидите, как благ Господь (Taste and see that the Lord is good)."
+  },
+  {
+   "id": "r4",
+   "ru": "Бойтесь Господа, святые его, ведь кто боится его, ни в чем не нуждается.",
+   "question": "According to the text, what do those who fear the Lord lack?",
+   "options": [
+    "Nothing",
+    "Faith",
+    "Courage",
+    "Wisdom"
+   ],
+   "correct": "Nothing",
+   "explain": "The text states кто боится его, ни в чем не нуждается (those who fear him lack nothing)."
+  },
+  {
+   "id": "r5",
+   "ru": "Придите, дети, послушайте меня, я научу вас страху Господню.",
+   "question": "What does the psalmist offer to teach the children?",
+   "options": [
+    "Fear of the Lord",
+    "Wisdom",
+    "Music",
+    "History"
+   ],
+   "correct": "Fear of the Lord",
+   "explain": "The text says я научу вас страху Господню (I will teach you the fear of the Lord)."
+  },
+  {
+   "id": "r6",
+   "ru": "Удаляйся от зла и твори добро, ищи мира и стремись к нему.",
+   "question": "What two actions should a person take according to this verse?",
+   "options": [
+    "Depart from evil and do good",
+    "Pray and fast",
+    "Love and forgive",
+    "Work and rest"
+   ],
+   "correct": "Depart from evil and do good",
+   "explain": "The text explicitly commands Удаляйся от зла и твори добро (Depart from evil and do good)."
+  }
+ ]
 }

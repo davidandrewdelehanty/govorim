@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Дирижер у хора Псалом ___, когда пророк Нафан пришел к нему после того, как Давид согрешил",
-      "lemma": "Давид",
-      "options": ["Давид", "Давида", "Давиду", "Давиде"],
-      "correct": "Давида",
-      "case": "Родительный (Genitive)",
-      "translation": "A Psalm of David, when the prophet Nathan came to him after David had sinned",
-      "explain": "Давида in genitive case indicates possession: 'Psalm of David.'"
-    },
-    {
-      "id": "c2",
-      "sentence": "Боже, помилуй меня по своей милости, по великой своей любви изгладь мои ___",
-      "lemma": "беззаконие",
-      "options": ["беззаконие", "беззакония", "беззаконию", "беззаконием"],
-      "correct": "беззакония",
-      "case": "Винительный (Accusative)",
-      "translation": "Have mercy on me, O God, according to your mercy; erase my transgressions",
-      "explain": "Беззакония as direct object of the verb изгладь (erase) takes accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Омой меня от неправды и от греха очисти, потому что я сознаю свои ___",
-      "lemma": "беззаконие",
-      "options": ["беззаконие", "беззакония", "беззаконию", "беззаконием"],
-      "correct": "беззакония",
-      "case": "Винительный (Accusative)",
-      "translation": "Wash me from my iniquity and cleanse me from my sin, for I acknowledge my transgressions",
-      "explain": "Беззакония as the direct object of сознаю (acknowledge) takes accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Против Тебя одного я согрешил и в Твоих глазах сделал ___",
-      "lemma": "зло",
-      "options": ["зло", "зла", "злу", "злом"],
-      "correct": "зло",
-      "case": "Винительный (Accusative)",
-      "translation": "Against you only have I sinned and done what is evil in your eyes",
-      "explain": "Зло as direct object of the verb сделал (did) takes accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "но ты желаешь истины, сокрытой в ___, так наполни меня своей мудростью",
-      "lemma": "сердце",
-      "options": ["сердце", "сердца", "сердцу", "сердцем"],
-      "correct": "сердце",
-      "case": "Винительный (Accusative)",
-      "translation": "Yet you desire truth in the inner being, so fill me with wisdom",
-      "explain": "Сердце in accusative (same form as nominative for neuter nouns) is the location where truth is desired."
-    },
-    {
-      "id": "c6",
-      "sentence": "Очисти меня и сопом, и буду чист, омой меня и стану белее ___",
-      "lemma": "снег",
-      "options": ["снег", "снега", "снегу", "снеге"],
-      "correct": "снега",
-      "case": "Родительный (Genitive)",
-      "translation": "Cleanse me with hyssop, and I will be clean; wash me, and I will be whiter than snow",
-      "explain": "The adjective белее (whiter) with genitive means 'whiter than': 'whiter than snow.'"
-    },
-    {
-      "id": "c7",
-      "sentence": "Отврати лицо от моих грехов и неправду мою ___",
-      "lemma": "изглаживать",
-      "options": ["изгладь", "изглажу", "изгладить", "изглаженный"],
-      "correct": "изгладь",
-      "case": "Винительный (Accusative)",
-      "translation": "Turn your face from my sins and blot out all my iniquity",
-      "explain": "This is the imperative form of the transitive verb, governing accusative."
-    },
-    {
-      "id": "c8",
-      "sentence": "Верни мне радость твоего спасения и духом владычественным поддержи ___",
-      "lemma": "я",
-      "options": ["я", "меня", "мне", "мной"],
-      "correct": "меня",
-      "case": "Винительный (Accusative)",
-      "translation": "Restore to me the joy of your salvation and sustain me with a willing spirit",
-      "explain": "Меня as the direct object of the verb поддержи (sustain) takes accusative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Боже, помилуй меня по своей милости, по великой своей любви изгладь мои беззакония",
-      "question": "What does the speaker ask God to do?",
-      "options": ["Have mercy and erase transgressions according to God's mercy and love", "Punish the speaker for their sins", "Ignore the speaker's faults", "Test the speaker's faith"],
-      "correct": "Have mercy and erase transgressions according to God's mercy and love",
-      "explain": "помилуй меня (have mercy on me) по своей милости и любви (according to your mercy and love) изгладь мои беззакония (erase my transgressions)."
-    },
-    {
-      "id": "r2",
-      "ru": "Против Тебя одного я согрешил и в Твоих глазах сделал зло",
-      "question": "Against whom does the speaker acknowledge sinning?",
-      "options": ["Against God alone", "Against the prophet Nathan", "Against all people", "Against the speaker's own family"],
-      "correct": "Against God alone",
-      "explain": "Против Тебя одного я согрешил — Against you only have I sinned, acknowledging that sin is fundamentally against God."
-    },
-    {
-      "id": "r3",
-      "ru": "Вот грешником я родился, грешным зачела меня моя мать",
-      "question": "What does this verse suggest about human nature?",
-      "options": ["People are born in sin from conception", "Only the speaker is sinful", "Sin comes from mothers only", "All humans are righteous at birth"],
-      "correct": "People are born in sin from conception",
-      "explain": "грешником я родился (I was born in sin), грешным зачела меня моя мать (sinful was I conceived) — expressing original sinfulness."
-    },
-    {
-      "id": "r4",
-      "ru": "Но ты желаешь истины, сокрытой в сердце, так наполни меня своей мудростью",
-      "question": "What does God desire and what does the speaker request?",
-      "options": ["God desires truth in the heart; fill me with your wisdom", "God desires external sacrifices only", "God desires punishment of all sinners", "God desires wealth and possessions"],
-      "correct": "God desires truth in the heart; fill me with your wisdom",
-      "explain": "ты желаешь истины, сокрытой в сердце (you desire truth in the inner being) так наполни меня своей мудростью (so fill me with your wisdom)."
-    },
-    {
-      "id": "r5",
-      "ru": "Открой мне уста, Владыка, и они тебя возвеличат",
-      "question": "What will the speaker's mouth do?",
-      "options": ["Magnify and praise the Lord", "Spread false teachings", "Keep silent and hidden", "Speak only complaints"],
-      "correct": "Magnify and praise the Lord",
-      "explain": "Открой мне уста (open my mouth) и они тебя возвеличат (and they will magnify you)."
-    },
-    {
-      "id": "r6",
-      "ru": "Жертва Богу, дух сокрушенный, сокрушенное и скорбящее сердце Божие, ты не презришь",
-      "question": "What kind of sacrifice is pleasing to God?",
-      "options": ["A broken and contrite spirit and heart", "Only animal sacrifices", "Only gold and treasures", "Loud public prayers"],
-      "correct": "A broken and contrite spirit and heart",
-      "explain": "Жертва Богу, дух сокрушенный... сокрушенное и скорбящее сердце — The sacrifices God accepts are a broken spirit and contrite heart."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Дирижер у хора Псалом ___, когда пророк Нафан пришел к нему после того, как Давид согрешил",
+   "lemma": "Давид",
+   "options": [
+    "Давид",
+    "Давида",
+    "Давиду",
+    "Давиде"
+   ],
+   "correct": "Давида",
+   "case": "Родительный (Genitive)",
+   "explain": "Давида in genitive case indicates possession: 'Psalm of David.'"
+  },
+  {
+   "id": "c2",
+   "sentence": "Боже, помилуй меня по своей милости, по великой своей любви изгладь мои ___",
+   "lemma": "беззаконие",
+   "options": [
+    "беззаконие",
+    "беззакония",
+    "беззаконию",
+    "беззаконием"
+   ],
+   "correct": "беззакония",
+   "case": "Винительный (Accusative)",
+   "explain": "Беззакония as direct object of the verb изгладь (erase) takes accusative case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Омой меня от неправды и от греха очисти, потому что я сознаю свои ___",
+   "lemma": "беззаконие",
+   "options": [
+    "беззаконие",
+    "беззакония",
+    "беззаконию",
+    "беззаконием"
+   ],
+   "correct": "беззакония",
+   "case": "Винительный (Accusative)",
+   "explain": "Беззакония as the direct object of сознаю (acknowledge) takes accusative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Против Тебя одного я согрешил и в Твоих глазах сделал ___",
+   "lemma": "зло",
+   "options": [
+    "зло",
+    "зла",
+    "злу",
+    "злом"
+   ],
+   "correct": "зло",
+   "case": "Винительный (Accusative)",
+   "explain": "Зло as direct object of the verb сделал (did) takes accusative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "но ты желаешь истины, сокрытой в ___, так наполни меня своей мудростью",
+   "lemma": "сердце",
+   "options": [
+    "сердце",
+    "сердца",
+    "сердцу",
+    "сердцем"
+   ],
+   "correct": "сердце",
+   "case": "Винительный (Accusative)",
+   "explain": "Сердце in accusative (same form as nominative for neuter nouns) is the location where truth is desired."
+  },
+  {
+   "id": "c6",
+   "sentence": "Очисти меня и сопом, и буду чист, омой меня и стану белее ___",
+   "lemma": "снег",
+   "options": [
+    "снег",
+    "снега",
+    "снегу",
+    "снеге"
+   ],
+   "correct": "снега",
+   "case": "Родительный (Genitive)",
+   "explain": "The adjective белее (whiter) with genitive means 'whiter than': 'whiter than snow.'"
+  },
+  {
+   "id": "c7",
+   "sentence": "Отврати лицо от моих грехов и неправду мою ___",
+   "lemma": "изглаживать",
+   "options": [
+    "изгладь",
+    "изглажу",
+    "изгладить",
+    "изглаженный"
+   ],
+   "correct": "изгладь",
+   "case": "Винительный (Accusative)",
+   "explain": "This is the imperative form of the transitive verb, governing accusative."
+  },
+  {
+   "id": "c8",
+   "sentence": "Верни мне радость твоего спасения и духом владычественным поддержи ___",
+   "lemma": "я",
+   "options": [
+    "я",
+    "меня",
+    "мне",
+    "мной"
+   ],
+   "correct": "меня",
+   "case": "Винительный (Accusative)",
+   "explain": "Меня as the direct object of the verb поддержи (sustain) takes accusative case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Боже, помилуй меня по своей милости, по великой своей любви изгладь мои беззакония",
+   "question": "What does the speaker ask God to do?",
+   "options": [
+    "Have mercy and erase transgressions according to God's mercy and love",
+    "Punish the speaker for their sins",
+    "Ignore the speaker's faults",
+    "Test the speaker's faith"
+   ],
+   "correct": "Have mercy and erase transgressions according to God's mercy and love",
+   "explain": "помилуй меня (have mercy on me) по своей милости и любви (according to your mercy and love) изгладь мои беззакония (erase my transgressions)."
+  },
+  {
+   "id": "r2",
+   "ru": "Против Тебя одного я согрешил и в Твоих глазах сделал зло",
+   "question": "Against whom does the speaker acknowledge sinning?",
+   "options": [
+    "Against God alone",
+    "Against the prophet Nathan",
+    "Against all people",
+    "Against the speaker's own family"
+   ],
+   "correct": "Against God alone",
+   "explain": "Против Тебя одного я согрешил — Against you only have I sinned, acknowledging that sin is fundamentally against God."
+  },
+  {
+   "id": "r3",
+   "ru": "Вот грешником я родился, грешным зачела меня моя мать",
+   "question": "What does this verse suggest about human nature?",
+   "options": [
+    "People are born in sin from conception",
+    "Only the speaker is sinful",
+    "Sin comes from mothers only",
+    "All humans are righteous at birth"
+   ],
+   "correct": "People are born in sin from conception",
+   "explain": "грешником я родился (I was born in sin), грешным зачела меня моя мать (sinful was I conceived) — expressing original sinfulness."
+  },
+  {
+   "id": "r4",
+   "ru": "Но ты желаешь истины, сокрытой в сердце, так наполни меня своей мудростью",
+   "question": "What does God desire and what does the speaker request?",
+   "options": [
+    "God desires truth in the heart; fill me with your wisdom",
+    "God desires external sacrifices only",
+    "God desires punishment of all sinners",
+    "God desires wealth and possessions"
+   ],
+   "correct": "God desires truth in the heart; fill me with your wisdom",
+   "explain": "ты желаешь истины, сокрытой в сердце (you desire truth in the inner being) так наполни меня своей мудростью (so fill me with your wisdom)."
+  },
+  {
+   "id": "r5",
+   "ru": "Открой мне уста, Владыка, и они тебя возвеличат",
+   "question": "What will the speaker's mouth do?",
+   "options": [
+    "Magnify and praise the Lord",
+    "Spread false teachings",
+    "Keep silent and hidden",
+    "Speak only complaints"
+   ],
+   "correct": "Magnify and praise the Lord",
+   "explain": "Открой мне уста (open my mouth) и они тебя возвеличат (and they will magnify you)."
+  },
+  {
+   "id": "r6",
+   "ru": "Жертва Богу, дух сокрушенный, сокрушенное и скорбящее сердце Божие, ты не презришь",
+   "question": "What kind of sacrifice is pleasing to God?",
+   "options": [
+    "A broken and contrite spirit and heart",
+    "Only animal sacrifices",
+    "Only gold and treasures",
+    "Loud public prayers"
+   ],
+   "correct": "A broken and contrite spirit and heart",
+   "explain": "Жертва Богу, дух сокрушенный... сокрушенное и скорбящее сердце — The sacrifices God accepts are a broken spirit and contrite heart."
+  }
+ ]
 }

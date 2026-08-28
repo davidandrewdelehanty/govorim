@@ -1,1 +1,536 @@
-{"cases": [{"id": "c1", "sentence": "По телевизору шёл ___ «Лебединое озеро».", "lemma": "балет", "options": ["балет", "балета", "балету", "балетом"], "correct": "балет", "case": "Именительный (Nominative)", "translation": "On TV, the ballet \"Swan Lake\" was playing.", "explain": "Балет is the subject of the verb шел (was playing), so it stands in the Nominative case."}, {"id": "c2", "sentence": "Из архивов и воспоминаний участников событий мы знаем, что ГКЧП разработал план ___ Белого дома, но в итоге не стал реализовывать его, чтобы избежать человеческих жертв.", "lemma": "штурм", "options": ["штурм", "штурма", "штурму", "штурмом"], "correct": "штурма", "case": "Родительный (Genitive)", "translation": "From archives and memoirs of event participants, we know that the GKChP developed a plan to storm the White House, but ultimately decided not to carry it out in order to avoid casualties.", "explain": "\"План (чего?) штурма\" — the noun naming what the plan is for takes the Genitive case."}, {"id": "c3", "sentence": "Золотов обкрадывает своих солдат, закупая продовольствие по ___ в несколько раз выше рыночной.", "lemma": "цена", "options": ["цена", "цены", "цене", "ценой"], "correct": "цене", "case": "Дательный (Dative)", "translation": "Zolotov robs his own soldiers by purchasing food at a price several times higher than market rate.", "explain": "The preposition по (\"at/according to\") governs the Dative case, so цена becomes цене."}, {"id": "c4", "sentence": "Защитить они хотели ___, президента РСФСР, и законодательную власть РСФСР, Верховный Совет.", "lemma": "Ельцин", "options": ["Ельцин", "Ельцина", "Ельцину", "Ельциным"], "correct": "Ельцина", "case": "Винительный (Accusative)", "translation": "What they wanted to defend was ___, the president of the RSFSR, and the legislative power of the RSFSR, the Supreme Soviet.", "explain": "Ельцин is the direct object of защитить (to defend), so it takes the Accusative case."}, {"id": "c5", "sentence": "Во-первых, я мог быть бит прямо в школе перед друзьями и, что ещё ужаснее, перед девочками, а во-вторых, Кран мог побить меня с целой ___ своих друзей-хулиганов.", "lemma": "компания", "options": ["компания", "компании", "компанию", "компанией"], "correct": "компанией", "case": "Творительный (Instrumental)", "translation": "First, I could be beaten right at school in front of my friends and, worse still, in front of girls, and second, Kran could beat me up along with a whole gang of his hooligan friends.", "explain": "The preposition с (\"with\") governs the Instrumental case, so компания becomes компанией."}, {"id": "c6", "sentence": "Их руководители встретились в белорусском ___.", "lemma": "лес", "options": ["лес", "леса", "лесу", "лесом"], "correct": "лесу", "case": "Предложный (Prepositional)", "translation": "Their leaders met in a Belarusian forest.", "explain": "The preposition в indicating location governs the Prepositional case; лес takes the special locative ending лесу."}, {"id": "c7", "sentence": "Выкрикивая все известные мне ругательства, я несколько раз со всей силы ударил его в ___.", "lemma": "лицо", "options": ["лицо", "лица", "лицу", "лицом"], "correct": "лицо", "case": "Винительный (Accusative)", "translation": "Shouting every profanity I knew, I hit him in the face several times with all my strength.", "explain": "The preposition в indicating the target of the blow governs the Accusative, so лицо stays лицо (neuter, same as Nominative)."}, {"id": "c8", "sentence": "Дядя Витя был сослуживцем отца и другом нашей ___.", "lemma": "семья", "options": ["семья", "семьи", "семье", "семьей"], "correct": "семьи", "case": "Родительный (Genitive)", "translation": "Uncle Vitya was a colleague of my father's and a friend of our family.", "explain": "\"Друг (кого?) семьи\" — the noun naming whose friend he was takes the Genitive case."}], "reading": [{"id": "r1", "ru": "Все приезжающие обожали фотографироваться с фирменным дорожным знаком нашего городка. Осторожно, танки.", "question": "What was the town's famous road sign that visitors loved photographing?", "options": ["\"Caution: tanks\"", "\"Welcome to Kalininets\"", "\"No entry\"", "\"Military zone\""], "correct": "\"Caution: tanks\"", "explain": "Visitors loved posing with the sign reading \"Осторожно, танки\" (Caution: tanks)."}, {"id": "r2", "ru": "По телевизору шел балет «Лебединое озеро». По этому признаку любой советский человек безошибочно понимал — случилось что-то серьезное.", "question": "What TV broadcast signaled to Soviet citizens that something serious had happened?", "options": ["The ballet \"Swan Lake\" replacing normal programming", "A special emergency news bulletin", "Classical military marches", "A blank test-pattern screen"], "correct": "The ballet \"Swan Lake\" replacing normal programming", "explain": "Seeing \"Лебединое озеро\" on TV was a well-known signal that something serious had occurred."}, {"id": "r3", "ru": "В стране было объявлено чрезвычайное положение, а самопровозглашенный ГКЧП, Государственный комитет по чрезвычайному положению, заявил, что к нему переходит вся полнота власти.", "question": "What did the self-proclaimed GKChP announce during the coup?", "options": ["That full state power was transferring to it", "That Gorbachev had officially resigned", "That new elections would be held", "That martial law was being lifted"], "correct": "That full state power was transferring to it", "explain": "The GKChP \"заявил, что к нему переходит вся полнота власти\"."}, {"id": "r4", "ru": "Михаил Горбачев, в то время уже не генеральный секретарь КПСС, а президент СССР, то ли арестован, то ли просто удерживается на своей даче в «Форосе».", "question": "What was reportedly happening to Gorbachev during the coup?", "options": ["He was either arrested or held at his dacha in Foros", "He had fled the country", "He had joined the plotters", "He was giving a live address on TV"], "correct": "He was either arrested or held at his dacha in Foros", "explain": "The text says Gorbachev \"то ли арестован, то ли просто удерживается на своей даче в «Форосе»\"."}, {"id": "r5", "ru": "Главным хитом стали трясущиеся руки Геннадия Янаева, вице-президента СССР.", "question": "What visual detail undermined the coup plotters during their press conference?", "options": ["Vice President Gennady Yanayev's visibly shaking hands", "A power outage during the broadcast", "A plotter falling asleep on camera", "A journalist storming the stage"], "correct": "Vice President Gennady Yanayev's visibly shaking hands", "explain": "The text says \"Главным хитом стали трясущиеся руки Геннадия Янаева\"."}, {"id": "r6", "ru": "Сотни тысяч горожан вышли на улицы в Ленинграде.", "question": "What happened in Leningrad during the coup?", "options": ["Hundreds of thousands of residents took to the streets", "The city declared independence", "The military took full control", "All shops closed indefinitely"], "correct": "Hundreds of thousands of residents took to the streets", "explain": "The text states \"Сотни тысяч горожан вышли на улицы в Ленинграде\"."}, {"id": "r7", "ru": "В какой-то момент один из танковых батальонов демонстративно перешёл на сторону Ельцина и развернул свои десять танков так, что они уже как бы защищали Белый дом.", "question": "What symbolic act by a tank battalion boosted Yeltsin's side?", "options": ["It defected to Yeltsin's side", "It opened fire on the White House", "It retreated to its home base", "It surrendered to the police"], "correct": "It defected to Yeltsin's side", "explain": "One tank battalion \"демонстративно перешел на сторону Ельцина\"."}, {"id": "r8", "ru": "Наш же Таманский танк сыграл роль в главном звездном моменте Бориса Ельцина, который залез на него, чтобы обратиться к своим сторонникам.", "question": "What iconic moment did Yeltsin have involving a tank from the Tamanskaya division?", "options": ["He climbed on it to address his supporters", "He was arrested standing next to it", "He personally drove it into battle", "He hid inside it during the coup"], "correct": "He climbed on it to address his supporters", "explain": "Yeltsin \"залез на него, чтобы обратиться к своим сторонникам\" (climbed on the tank to address supporters)."}, {"id": "r9", "ru": "Ровно по центру этой фотографии, возвышаясь над Ельциным, стоит один из его тогдашних телохранителей Виктор Золотов.", "question": "Who appears prominently behind Yeltsin in the famous tank photograph?", "options": ["Viktor Zolotov, one of his bodyguards", "Vladimir Putin", "Yeltsin's son-in-law", "A foreign journalist"], "correct": "Viktor Zolotov, one of his bodyguards", "explain": "The text notes bodyguard \"Виктор Золотов\" stands towering over Yeltsin in the photo."}, {"id": "r10", "ru": "Наш фонд расследовал коррупцию Золотова, и мы обнаружили, что он обкрадывает своих собственных солдат и офицеров, закупая продовольствие по цене в несколько раз выше рыночной.", "question": "What did Navalny's foundation later uncover about Zolotov, by then a National Guard commander?", "options": ["He was stealing from his own soldiers via inflated food prices", "He was funding terrorism abroad", "He was smuggling weapons", "He was avoiding taxes on a large scale"], "correct": "He was stealing from his own soldiers via inflated food prices", "explain": "The investigation found Zolotov \"обкрадывает своих собственных солдат и офицеров, закупая продовольствие по цене в несколько раз выше рыночной\"."}, {"id": "r11", "ru": "21 августа министр обороны СССР Язов отдал приказ о выводе войск из Москвы.", "question": "What order did Defense Minister Yazov give on August 21?", "options": ["To withdraw troops from Moscow", "To storm the White House", "To arrest Yeltsin immediately", "To declare full-scale war"], "correct": "To withdraw troops from Moscow", "explain": "The text says Yazov \"отдал приказ о выводе войск из Москвы\"."}, {"id": "r12", "ru": "8 декабря 1991 года республики РСФСР, Белоруссия и Украина провернули удивительный трюк.", "question": "What historic event happened on December 8, 1991?", "options": ["Russia, Belarus, and Ukraine agreed to dissolve the USSR", "The Berlin Wall fell", "Gorbachev was reelected president", "The August coup began"], "correct": "Russia, Belarus, and Ukraine agreed to dissolve the USSR", "explain": "On that date, the three republics \"провернули удивительный трюк\" of dissolving the USSR."}, {"id": "r13", "ru": "Их руководители Ельцин, Шушкевич и Кравчук встретились в белорусском лесу и заявили, что, мол, раз наши три республики были учредительницами СССР, то мы можем его и распустить.", "question": "Where did the leaders of Russia, Belarus, and Ukraine meet to dissolve the USSR?", "options": ["In a forest in Belarus", "In the Kremlin", "In Kyiv", "In Warsaw"], "correct": "In a forest in Belarus", "explain": "Yeltsin, Shushkevich, and Kravchuk \"встретились в белорусском лесу\"."}, {"id": "r14", "ru": "В ленинградском отделе КГБ тогда работал подполковник Владимир Путин, который в то время вовсе не кричал о геополитической катастрофе, а в погоне за деньгами и новыми возможностями радостно покинул ряды своей организации, чтобы окончательно примкнуть к одному из главных сторонников Ельцина, мэру Ленинграда Анатолию Собчаку.", "question": "What was Putin's position during the 1991 coup, according to the text?", "options": ["A lieutenant colonel in the Leningrad KGB office", "The mayor of Leningrad", "A general stationed in Moscow", "A member of the GKChP"], "correct": "A lieutenant colonel in the Leningrad KGB office", "explain": "The text notes \"В ленинградском отделе КГБ тогда работал подполковник Владимир Путин\"."}, {"id": "r15", "ru": "Я лично ещё в 2008 году написал законопроект, по которому любой, у кого среди предков есть русский или представитель другого коренного народа России, получает российское гражданство автоматически, просто предъявив любой документ, в котором обозначена национальность, например свидетельство о рождении дедушки или бабушки.", "question": "What law did Navalny propose in 2008 regarding ethnic Russians abroad?", "options": ["Automatic citizenship for those with Russian ancestry", "Free housing for military veterans", "A ban on dual citizenship", "Mandatory Russian language testing"], "correct": "Automatic citizenship for those with Russian ancestry", "explain": "He describes writing a bill giving automatic citizenship to \"любой, у кого среди предков есть русский\"."}, {"id": "r16", "ru": "На первом месте тогда были личные проблемы, среди которых главное было, конечно, поступить.", "question": "Amid the historic events of 1991, what was Alexei's main personal concern?", "options": ["Getting into a university", "Finding a job", "Getting married", "Learning to drive"], "correct": "Getting into a university", "explain": "He admits his main worry was \"поступить\" (getting admitted to university)."}, {"id": "r17", "ru": "Мне нужно было 18 баллов.", "question": "How many points did Alexei need to pass his Moscow State University entrance exams?", "options": ["18", "20", "15", "25"], "correct": "18", "explain": "He states \"Мне нужно было 18 баллов\"."}, {"id": "r18", "ru": "Я не поступаю. Конечно, сам виноват.", "question": "What happened after Alexei scored only 17 points on his MGU law exams?", "options": ["He failed to get in", "He was admitted with honors", "He was offered a scholarship anyway", "He was allowed to retake immediately"], "correct": "He failed to get in", "explain": "He writes bluntly \"Я не поступаю. Конечно, сам виноват\"."}, {"id": "r19", "ru": "Так я попал в место, которое на жаргоне тех времен называлось Лумумбарием.", "question": "What university did Alexei end up attending instead of MGU?", "options": ["The Peoples' Friendship University (RUDN), nicknamed \"Lumumbary\"", "Moscow State Institute of International Relations", "The Higher School of Economics", "A military academy"], "correct": "The Peoples' Friendship University (RUDN), nicknamed \"Lumumbary\"", "explain": "He ended up at the place nicknamed \"Лумумбарий\" (RUDN)."}, {"id": "r20", "ru": "Полностью мой вуз назывался Российским университетом дружбы народов имени Патриса Лумумбы.", "question": "Who was Alexei's university named after?", "options": ["Patrice Lumumba", "Vladimir Lenin", "Karl Marx", "Yuri Gagarin"], "correct": "Patrice Lumumba", "explain": "His university was fully named \"Российский университет дружбы народов имени Патриса Лумумбы\"."}, {"id": "r21", "ru": "Однажды мать, которой я в очередной раз пожаловался, что хотел бы заниматься карате, сказала, «Так дядя Витя вроде бы им занимался».", "question": "Which forbidden martial art did young Alexei desperately want to learn?", "options": ["Karate", "Boxing", "Judo", "Fencing"], "correct": "Karate", "explain": "He kept complaining that he wanted \"заниматься карате\", prompting his mother's remark about Uncle Vitya."}, {"id": "r22", "ru": "В Советском Союзе была специальная статья Уголовного кодекса «Незаконное обучение карате».", "question": "What was surprising about karate under Soviet law, as Navalny explains?", "options": ["Teaching it illegally could lead to prison", "It was mandatory in all schools", "It was an official Olympic event", "It was reserved only for the military"], "correct": "Teaching it illegally could lead to prison", "explain": "There was literally a criminal code article for \"Незаконное обучение карате\" (illegal teaching of karate)."}, {"id": "r23", "ru": "Так я понял, что оказался в ужасной роли мальчика, у которого хулиганы отнимают деньги.", "question": "What ongoing problem did young Alexei face with an older bully nicknamed \"Kran\"?", "options": ["Kran repeatedly extorted money from him", "Kran stole his bicycle", "Kran mocked his school grades", "Kran threatened his family directly"], "correct": "Kran repeatedly extorted money from him", "explain": "He realized he'd become \"мальчика, у которого хулиганы отнимают деньги\" (the boy bullies take money from)."}, {"id": "r24", "ru": "Выкрикивая все известные мне ругательства, я несколько раз со всей силы ударил его в лицо.", "question": "How did Alexei finally confront Kran after enduring the extortion?", "options": ["He shouted curses and punched him in the face", "He reported him to a teacher", "He hired an older boy to fight for him", "He simply avoided him forever afterward"], "correct": "He shouted curses and punched him in the face", "explain": "He describes shouting curses while he \"несколько раз со всей силы ударил его в лицо\"."}, {"id": "r25", "ru": "Дядя Витя был сослуживцем отца и другом нашей семьи.", "question": "Who was \"Uncle Vitya,\" the man who secretly showed Alexei karate photographs?", "options": ["A colleague of his father and family friend", "His uncle by blood", "A neighbor he had never met before", "A schoolteacher at his school"], "correct": "A colleague of his father and family friend", "explain": "The text introduces him as \"сослуживцем отца и другом нашей семьи\"."}], "highlight": [{"id": "h1", "question": "What did the television broadcast of Swan Lake indicate to Soviet citizens?", "sentences": ["Обрадовавшись, что у меня есть какой-то, хоть и притянутый за уши, повод не идти на дачу, я вернулся домой, чтобы включить телевизор и узнать, что происходит.", "По телевизору шёл балет «Лебединое озеро».", "По этому признаку любой советский человек безошибочно понимал: случилось что-то серьёзное.", "С детства я знал, что, если вместо мультфильмов показывают какой-то дурацкий концерт классической музыки, значит, умер какой-то вождь.", "Это было сигналом к кампании общественной скорби.", "Было непонятно, кто мог умереть сейчас: Горбачёв был молодой, а ни из-за кого другого не стали бы менять нормальные передачи на балерин."], "correct": [2, 3], "explain": "By tradition, such classical ballet broadcasts signaled that something serious had occurred, specifically that a prominent leader had died."}, {"id": "h2", "question": "What does the author suggest about why the conspirators abandoned their plan?", "sentences": ["Из архивов и воспоминаний участников событий мы знаем, что ГКЧП разработал план штурма Белого дома, но в итоге не стал реализовывать его, чтобы избежать человеческих жертв.", "Мне кажется, дело ещё и в том, что заговорщики понимали неосуществимость своего плана.", "К тому моменту воинские части уже массово отказывались выполнять их приказы.", "Трагическая гибель трёх человек в ночь с 20 на 21 августа была результатом хаоса и дезорганизации управления войсками, а не противостояния армии и народа."], "correct": [1, 2], "explain": "He believes they understood the plan was infeasible and military units were already massively refusing to obey their orders."}, {"id": "h3", "question": "What simple policy measure does the author say could have prevented many conflicts?", "sentences": ["Это всё было «политической повесткой ГКЧП», а если ГКЧП говорит, что это проблема, то мы должны говорить, что такой проблемы не существует.", "Огромное количество конфликтов можно было бы предотвратить и много судеб спасти, если бы тогдашнее российское правительство предложило простейшие программы по возвращению русских на территорию России.", "Понятно, что откуда-нибудь из более богатых стран Балтии никто бы особо не поехал, там нужны были другие подходы, но на недоуменные восклицания живущих в Узбекистане, Киргизии и многих других республиках — «А мы-то теперь что, нам-то теперь что делать?»", "— надо было как-то отвечать.", "Поразительно, что даже сейчас, когда тема «русофобии» и ущемления русских стала чуть ли не главным пунктом кремлёвской повестки, это по-прежнему голая лицемерная риторика, за которой не стоит никаких действий."], "correct": [1], "explain": "Programs designed to help Russians return to Russian territory could have addressed the concerns of displaced populations in various republics."}, {"id": "h4", "question": "What serious obstacle prevented the author from pursuing his favorite activity?", "sentences": ["Каждую весну, когда учитель выдавал огромный список летнего чтения, класс стонал и возмущался, а я втайне ликовал.", "Ведь лучшего развлечения, чем чтение, не существует!", "Ну разве что, как я писал выше, что-нибудь взрывать и поджигать.", "В обед читать книжку, а вечером пойти что-нибудь взорвать — вот она, идеальная жизнь.", "К сожалению, мою страсть к чтению серьёзно ограничивал всё тот же дефицит, ведь хорошие книги было очень сложно достать."], "correct": [4], "explain": "The scarcity of books made it very difficult to obtain good literature, despite his passionate desire to read."}, {"id": "h5", "question": "What was the author's greatest fear after the conflict with Kran?", "sentences": ["В итоге я всё-таки убежал, и следующие дня три было прямо очень страшно.", "Во-первых, я мог быть бит прямо в школе перед друзьями и, что ещё ужаснее, перед девочками, а во-вторых, Кран мог побить меня с целой компанией своих друзей-хулиганов.", "Об этом даже думать не хотелось.", "Однако, к моему огромному удивлению, несколько раз столкнувшись со своим злодеем в школе, я обнаружил, что он только устрашающе смотрит на меня, но к активным действиям не переходит.", "Постепенно установилась ситуация, при которой он демонстративно не замечал меня, а я точно так же — его."], "correct": [1], "explain": "He feared being beaten either in front of his friends and especially in front of girls, or being attacked by Kran and his gang of friends."}, {"id": "h6", "question": "What did the author learn about the management knowledge taught in the course?", "sentences": ["Курс был платным и включал лекции по праву, психологии, экономике и чему-то ещё.", "Выяснилось, что тайные менеджерские знания можно получить, тупо прочитав обычный учебник по праву.", "На лекциях, в общем, и пересказывали такие учебники.", "Но зато, поскольку занятия проходили в настоящем вузе, они выглядели прямо по-взрослому: большая полукруглая аудитория, забитая людьми, лектор за кафедрой, у меня специальная тетрадочка для конспектов, кто-то хихикает на заднем ряду, и лектор делает сердитое замечание."], "correct": [1], "explain": "He discovered that this supposedly secret knowledge could simply be obtained by reading an ordinary law textbook."}]}
+{
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "По телевизору шёл ___ «Лебединое озеро».",
+   "lemma": "балет",
+   "options": [
+    "балет",
+    "балета",
+    "балету",
+    "балетом"
+   ],
+   "correct": "балет",
+   "case": "Именительный (Nominative)",
+   "explain": "Балет is the subject of the verb шел (was playing), so it stands in the Nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Из архивов и воспоминаний участников событий мы знаем, что ГКЧП разработал план ___ Белого дома, но в итоге не стал реализовывать его, чтобы избежать человеческих жертв.",
+   "lemma": "штурм",
+   "options": [
+    "штурм",
+    "штурма",
+    "штурму",
+    "штурмом"
+   ],
+   "correct": "штурма",
+   "case": "Родительный (Genitive)",
+   "explain": "\"План (чего?) штурма\" — the noun naming what the plan is for takes the Genitive case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Золотов обкрадывает своих солдат, закупая продовольствие по ___ в несколько раз выше рыночной.",
+   "lemma": "цена",
+   "options": [
+    "цена",
+    "цены",
+    "цене",
+    "ценой"
+   ],
+   "correct": "цене",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition по (\"at/according to\") governs the Dative case, so цена becomes цене."
+  },
+  {
+   "id": "c4",
+   "sentence": "Защитить они хотели ___, президента РСФСР, и законодательную власть РСФСР, Верховный Совет.",
+   "lemma": "Ельцин",
+   "options": [
+    "Ельцин",
+    "Ельцина",
+    "Ельцину",
+    "Ельциным"
+   ],
+   "correct": "Ельцина",
+   "case": "Винительный (Accusative)",
+   "explain": "Ельцин is the direct object of защитить (to defend), so it takes the Accusative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Во-первых, я мог быть бит прямо в школе перед друзьями и, что ещё ужаснее, перед девочками, а во-вторых, Кран мог побить меня с целой ___ своих друзей-хулиганов.",
+   "lemma": "компания",
+   "options": [
+    "компания",
+    "компании",
+    "компанию",
+    "компанией"
+   ],
+   "correct": "компанией",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition с (\"with\") governs the Instrumental case, so компания becomes компанией."
+  },
+  {
+   "id": "c6",
+   "sentence": "Их руководители встретились в белорусском ___.",
+   "lemma": "лес",
+   "options": [
+    "лес",
+    "леса",
+    "лесу",
+    "лесом"
+   ],
+   "correct": "лесу",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в indicating location governs the Prepositional case; лес takes the special locative ending лесу."
+  },
+  {
+   "id": "c7",
+   "sentence": "Выкрикивая все известные мне ругательства, я несколько раз со всей силы ударил его в ___.",
+   "lemma": "лицо",
+   "options": [
+    "лицо",
+    "лица",
+    "лицу",
+    "лицом"
+   ],
+   "correct": "лицо",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition в indicating the target of the blow governs the Accusative, so лицо stays лицо (neuter, same as Nominative)."
+  },
+  {
+   "id": "c8",
+   "sentence": "Дядя Витя был сослуживцем отца и другом нашей ___.",
+   "lemma": "семья",
+   "options": [
+    "семья",
+    "семьи",
+    "семье",
+    "семьей"
+   ],
+   "correct": "семьи",
+   "case": "Родительный (Genitive)",
+   "explain": "\"Друг (кого?) семьи\" — the noun naming whose friend he was takes the Genitive case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Все приезжающие обожали фотографироваться с фирменным дорожным знаком нашего городка. Осторожно, танки.",
+   "question": "What was the town's famous road sign that visitors loved photographing?",
+   "options": [
+    "\"Caution: tanks\"",
+    "\"Welcome to Kalininets\"",
+    "\"No entry\"",
+    "\"Military zone\""
+   ],
+   "correct": "\"Caution: tanks\"",
+   "explain": "Visitors loved posing with the sign reading \"Осторожно, танки\" (Caution: tanks)."
+  },
+  {
+   "id": "r2",
+   "ru": "По телевизору шел балет «Лебединое озеро». По этому признаку любой советский человек безошибочно понимал — случилось что-то серьезное.",
+   "question": "What TV broadcast signaled to Soviet citizens that something serious had happened?",
+   "options": [
+    "The ballet \"Swan Lake\" replacing normal programming",
+    "A special emergency news bulletin",
+    "Classical military marches",
+    "A blank test-pattern screen"
+   ],
+   "correct": "The ballet \"Swan Lake\" replacing normal programming",
+   "explain": "Seeing \"Лебединое озеро\" on TV was a well-known signal that something serious had occurred."
+  },
+  {
+   "id": "r3",
+   "ru": "В стране было объявлено чрезвычайное положение, а самопровозглашенный ГКЧП, Государственный комитет по чрезвычайному положению, заявил, что к нему переходит вся полнота власти.",
+   "question": "What did the self-proclaimed GKChP announce during the coup?",
+   "options": [
+    "That full state power was transferring to it",
+    "That Gorbachev had officially resigned",
+    "That new elections would be held",
+    "That martial law was being lifted"
+   ],
+   "correct": "That full state power was transferring to it",
+   "explain": "The GKChP \"заявил, что к нему переходит вся полнота власти\"."
+  },
+  {
+   "id": "r4",
+   "ru": "Михаил Горбачев, в то время уже не генеральный секретарь КПСС, а президент СССР, то ли арестован, то ли просто удерживается на своей даче в «Форосе».",
+   "question": "What was reportedly happening to Gorbachev during the coup?",
+   "options": [
+    "He was either arrested or held at his dacha in Foros",
+    "He had fled the country",
+    "He had joined the plotters",
+    "He was giving a live address on TV"
+   ],
+   "correct": "He was either arrested or held at his dacha in Foros",
+   "explain": "The text says Gorbachev \"то ли арестован, то ли просто удерживается на своей даче в «Форосе»\"."
+  },
+  {
+   "id": "r5",
+   "ru": "Главным хитом стали трясущиеся руки Геннадия Янаева, вице-президента СССР.",
+   "question": "What visual detail undermined the coup plotters during their press conference?",
+   "options": [
+    "Vice President Gennady Yanayev's visibly shaking hands",
+    "A power outage during the broadcast",
+    "A plotter falling asleep on camera",
+    "A journalist storming the stage"
+   ],
+   "correct": "Vice President Gennady Yanayev's visibly shaking hands",
+   "explain": "The text says \"Главным хитом стали трясущиеся руки Геннадия Янаева\"."
+  },
+  {
+   "id": "r6",
+   "ru": "Сотни тысяч горожан вышли на улицы в Ленинграде.",
+   "question": "What happened in Leningrad during the coup?",
+   "options": [
+    "Hundreds of thousands of residents took to the streets",
+    "The city declared independence",
+    "The military took full control",
+    "All shops closed indefinitely"
+   ],
+   "correct": "Hundreds of thousands of residents took to the streets",
+   "explain": "The text states \"Сотни тысяч горожан вышли на улицы в Ленинграде\"."
+  },
+  {
+   "id": "r7",
+   "ru": "В какой-то момент один из танковых батальонов демонстративно перешёл на сторону Ельцина и развернул свои десять танков так, что они уже как бы защищали Белый дом.",
+   "question": "What symbolic act by a tank battalion boosted Yeltsin's side?",
+   "options": [
+    "It defected to Yeltsin's side",
+    "It opened fire on the White House",
+    "It retreated to its home base",
+    "It surrendered to the police"
+   ],
+   "correct": "It defected to Yeltsin's side",
+   "explain": "One tank battalion \"демонстративно перешел на сторону Ельцина\"."
+  },
+  {
+   "id": "r8",
+   "ru": "Наш же Таманский танк сыграл роль в главном звездном моменте Бориса Ельцина, который залез на него, чтобы обратиться к своим сторонникам.",
+   "question": "What iconic moment did Yeltsin have involving a tank from the Tamanskaya division?",
+   "options": [
+    "He climbed on it to address his supporters",
+    "He was arrested standing next to it",
+    "He personally drove it into battle",
+    "He hid inside it during the coup"
+   ],
+   "correct": "He climbed on it to address his supporters",
+   "explain": "Yeltsin \"залез на него, чтобы обратиться к своим сторонникам\" (climbed on the tank to address supporters)."
+  },
+  {
+   "id": "r9",
+   "ru": "Ровно по центру этой фотографии, возвышаясь над Ельциным, стоит один из его тогдашних телохранителей Виктор Золотов.",
+   "question": "Who appears prominently behind Yeltsin in the famous tank photograph?",
+   "options": [
+    "Viktor Zolotov, one of his bodyguards",
+    "Vladimir Putin",
+    "Yeltsin's son-in-law",
+    "A foreign journalist"
+   ],
+   "correct": "Viktor Zolotov, one of his bodyguards",
+   "explain": "The text notes bodyguard \"Виктор Золотов\" stands towering over Yeltsin in the photo."
+  },
+  {
+   "id": "r10",
+   "ru": "Наш фонд расследовал коррупцию Золотова, и мы обнаружили, что он обкрадывает своих собственных солдат и офицеров, закупая продовольствие по цене в несколько раз выше рыночной.",
+   "question": "What did Navalny's foundation later uncover about Zolotov, by then a National Guard commander?",
+   "options": [
+    "He was stealing from his own soldiers via inflated food prices",
+    "He was funding terrorism abroad",
+    "He was smuggling weapons",
+    "He was avoiding taxes on a large scale"
+   ],
+   "correct": "He was stealing from his own soldiers via inflated food prices",
+   "explain": "The investigation found Zolotov \"обкрадывает своих собственных солдат и офицеров, закупая продовольствие по цене в несколько раз выше рыночной\"."
+  },
+  {
+   "id": "r11",
+   "ru": "21 августа министр обороны СССР Язов отдал приказ о выводе войск из Москвы.",
+   "question": "What order did Defense Minister Yazov give on August 21?",
+   "options": [
+    "To withdraw troops from Moscow",
+    "To storm the White House",
+    "To arrest Yeltsin immediately",
+    "To declare full-scale war"
+   ],
+   "correct": "To withdraw troops from Moscow",
+   "explain": "The text says Yazov \"отдал приказ о выводе войск из Москвы\"."
+  },
+  {
+   "id": "r12",
+   "ru": "8 декабря 1991 года республики РСФСР, Белоруссия и Украина провернули удивительный трюк.",
+   "question": "What historic event happened on December 8, 1991?",
+   "options": [
+    "Russia, Belarus, and Ukraine agreed to dissolve the USSR",
+    "The Berlin Wall fell",
+    "Gorbachev was reelected president",
+    "The August coup began"
+   ],
+   "correct": "Russia, Belarus, and Ukraine agreed to dissolve the USSR",
+   "explain": "On that date, the three republics \"провернули удивительный трюк\" of dissolving the USSR."
+  },
+  {
+   "id": "r13",
+   "ru": "Их руководители Ельцин, Шушкевич и Кравчук встретились в белорусском лесу и заявили, что, мол, раз наши три республики были учредительницами СССР, то мы можем его и распустить.",
+   "question": "Where did the leaders of Russia, Belarus, and Ukraine meet to dissolve the USSR?",
+   "options": [
+    "In a forest in Belarus",
+    "In the Kremlin",
+    "In Kyiv",
+    "In Warsaw"
+   ],
+   "correct": "In a forest in Belarus",
+   "explain": "Yeltsin, Shushkevich, and Kravchuk \"встретились в белорусском лесу\"."
+  },
+  {
+   "id": "r14",
+   "ru": "В ленинградском отделе КГБ тогда работал подполковник Владимир Путин, который в то время вовсе не кричал о геополитической катастрофе, а в погоне за деньгами и новыми возможностями радостно покинул ряды своей организации, чтобы окончательно примкнуть к одному из главных сторонников Ельцина, мэру Ленинграда Анатолию Собчаку.",
+   "question": "What was Putin's position during the 1991 coup, according to the text?",
+   "options": [
+    "A lieutenant colonel in the Leningrad KGB office",
+    "The mayor of Leningrad",
+    "A general stationed in Moscow",
+    "A member of the GKChP"
+   ],
+   "correct": "A lieutenant colonel in the Leningrad KGB office",
+   "explain": "The text notes \"В ленинградском отделе КГБ тогда работал подполковник Владимир Путин\"."
+  },
+  {
+   "id": "r15",
+   "ru": "Я лично ещё в 2008 году написал законопроект, по которому любой, у кого среди предков есть русский или представитель другого коренного народа России, получает российское гражданство автоматически, просто предъявив любой документ, в котором обозначена национальность, например свидетельство о рождении дедушки или бабушки.",
+   "question": "What law did Navalny propose in 2008 regarding ethnic Russians abroad?",
+   "options": [
+    "Automatic citizenship for those with Russian ancestry",
+    "Free housing for military veterans",
+    "A ban on dual citizenship",
+    "Mandatory Russian language testing"
+   ],
+   "correct": "Automatic citizenship for those with Russian ancestry",
+   "explain": "He describes writing a bill giving automatic citizenship to \"любой, у кого среди предков есть русский\"."
+  },
+  {
+   "id": "r16",
+   "ru": "На первом месте тогда были личные проблемы, среди которых главное было, конечно, поступить.",
+   "question": "Amid the historic events of 1991, what was Alexei's main personal concern?",
+   "options": [
+    "Getting into a university",
+    "Finding a job",
+    "Getting married",
+    "Learning to drive"
+   ],
+   "correct": "Getting into a university",
+   "explain": "He admits his main worry was \"поступить\" (getting admitted to university)."
+  },
+  {
+   "id": "r17",
+   "ru": "Мне нужно было 18 баллов.",
+   "question": "How many points did Alexei need to pass his Moscow State University entrance exams?",
+   "options": [
+    "18",
+    "20",
+    "15",
+    "25"
+   ],
+   "correct": "18",
+   "explain": "He states \"Мне нужно было 18 баллов\"."
+  },
+  {
+   "id": "r18",
+   "ru": "Я не поступаю. Конечно, сам виноват.",
+   "question": "What happened after Alexei scored only 17 points on his MGU law exams?",
+   "options": [
+    "He failed to get in",
+    "He was admitted with honors",
+    "He was offered a scholarship anyway",
+    "He was allowed to retake immediately"
+   ],
+   "correct": "He failed to get in",
+   "explain": "He writes bluntly \"Я не поступаю. Конечно, сам виноват\"."
+  },
+  {
+   "id": "r19",
+   "ru": "Так я попал в место, которое на жаргоне тех времен называлось Лумумбарием.",
+   "question": "What university did Alexei end up attending instead of MGU?",
+   "options": [
+    "The Peoples' Friendship University (RUDN), nicknamed \"Lumumbary\"",
+    "Moscow State Institute of International Relations",
+    "The Higher School of Economics",
+    "A military academy"
+   ],
+   "correct": "The Peoples' Friendship University (RUDN), nicknamed \"Lumumbary\"",
+   "explain": "He ended up at the place nicknamed \"Лумумбарий\" (RUDN)."
+  },
+  {
+   "id": "r20",
+   "ru": "Полностью мой вуз назывался Российским университетом дружбы народов имени Патриса Лумумбы.",
+   "question": "Who was Alexei's university named after?",
+   "options": [
+    "Patrice Lumumba",
+    "Vladimir Lenin",
+    "Karl Marx",
+    "Yuri Gagarin"
+   ],
+   "correct": "Patrice Lumumba",
+   "explain": "His university was fully named \"Российский университет дружбы народов имени Патриса Лумумбы\"."
+  },
+  {
+   "id": "r21",
+   "ru": "Однажды мать, которой я в очередной раз пожаловался, что хотел бы заниматься карате, сказала, «Так дядя Витя вроде бы им занимался».",
+   "question": "Which forbidden martial art did young Alexei desperately want to learn?",
+   "options": [
+    "Karate",
+    "Boxing",
+    "Judo",
+    "Fencing"
+   ],
+   "correct": "Karate",
+   "explain": "He kept complaining that he wanted \"заниматься карате\", prompting his mother's remark about Uncle Vitya."
+  },
+  {
+   "id": "r22",
+   "ru": "В Советском Союзе была специальная статья Уголовного кодекса «Незаконное обучение карате».",
+   "question": "What was surprising about karate under Soviet law, as Navalny explains?",
+   "options": [
+    "Teaching it illegally could lead to prison",
+    "It was mandatory in all schools",
+    "It was an official Olympic event",
+    "It was reserved only for the military"
+   ],
+   "correct": "Teaching it illegally could lead to prison",
+   "explain": "There was literally a criminal code article for \"Незаконное обучение карате\" (illegal teaching of karate)."
+  },
+  {
+   "id": "r23",
+   "ru": "Так я понял, что оказался в ужасной роли мальчика, у которого хулиганы отнимают деньги.",
+   "question": "What ongoing problem did young Alexei face with an older bully nicknamed \"Kran\"?",
+   "options": [
+    "Kran repeatedly extorted money from him",
+    "Kran stole his bicycle",
+    "Kran mocked his school grades",
+    "Kran threatened his family directly"
+   ],
+   "correct": "Kran repeatedly extorted money from him",
+   "explain": "He realized he'd become \"мальчика, у которого хулиганы отнимают деньги\" (the boy bullies take money from)."
+  },
+  {
+   "id": "r24",
+   "ru": "Выкрикивая все известные мне ругательства, я несколько раз со всей силы ударил его в лицо.",
+   "question": "How did Alexei finally confront Kran after enduring the extortion?",
+   "options": [
+    "He shouted curses and punched him in the face",
+    "He reported him to a teacher",
+    "He hired an older boy to fight for him",
+    "He simply avoided him forever afterward"
+   ],
+   "correct": "He shouted curses and punched him in the face",
+   "explain": "He describes shouting curses while he \"несколько раз со всей силы ударил его в лицо\"."
+  },
+  {
+   "id": "r25",
+   "ru": "Дядя Витя был сослуживцем отца и другом нашей семьи.",
+   "question": "Who was \"Uncle Vitya,\" the man who secretly showed Alexei karate photographs?",
+   "options": [
+    "A colleague of his father and family friend",
+    "His uncle by blood",
+    "A neighbor he had never met before",
+    "A schoolteacher at his school"
+   ],
+   "correct": "A colleague of his father and family friend",
+   "explain": "The text introduces him as \"сослуживцем отца и другом нашей семьи\"."
+  }
+ ],
+ "highlight": [
+  {
+   "id": "h1",
+   "question": "What did the television broadcast of Swan Lake indicate to Soviet citizens?",
+   "sentences": [
+    "Обрадовавшись, что у меня есть какой-то, хоть и притянутый за уши, повод не идти на дачу, я вернулся домой, чтобы включить телевизор и узнать, что происходит.",
+    "По телевизору шёл балет «Лебединое озеро».",
+    "По этому признаку любой советский человек безошибочно понимал: случилось что-то серьёзное.",
+    "С детства я знал, что, если вместо мультфильмов показывают какой-то дурацкий концерт классической музыки, значит, умер какой-то вождь.",
+    "Это было сигналом к кампании общественной скорби.",
+    "Было непонятно, кто мог умереть сейчас: Горбачёв был молодой, а ни из-за кого другого не стали бы менять нормальные передачи на балерин."
+   ],
+   "correct": [
+    2,
+    3
+   ],
+   "explain": "By tradition, such classical ballet broadcasts signaled that something serious had occurred, specifically that a prominent leader had died."
+  },
+  {
+   "id": "h2",
+   "question": "What does the author suggest about why the conspirators abandoned their plan?",
+   "sentences": [
+    "Из архивов и воспоминаний участников событий мы знаем, что ГКЧП разработал план штурма Белого дома, но в итоге не стал реализовывать его, чтобы избежать человеческих жертв.",
+    "Мне кажется, дело ещё и в том, что заговорщики понимали неосуществимость своего плана.",
+    "К тому моменту воинские части уже массово отказывались выполнять их приказы.",
+    "Трагическая гибель трёх человек в ночь с 20 на 21 августа была результатом хаоса и дезорганизации управления войсками, а не противостояния армии и народа."
+   ],
+   "correct": [
+    1,
+    2
+   ],
+   "explain": "He believes they understood the plan was infeasible and military units were already massively refusing to obey their orders."
+  },
+  {
+   "id": "h3",
+   "question": "What simple policy measure does the author say could have prevented many conflicts?",
+   "sentences": [
+    "Это всё было «политической повесткой ГКЧП», а если ГКЧП говорит, что это проблема, то мы должны говорить, что такой проблемы не существует.",
+    "Огромное количество конфликтов можно было бы предотвратить и много судеб спасти, если бы тогдашнее российское правительство предложило простейшие программы по возвращению русских на территорию России.",
+    "Понятно, что откуда-нибудь из более богатых стран Балтии никто бы особо не поехал, там нужны были другие подходы, но на недоуменные восклицания живущих в Узбекистане, Киргизии и многих других республиках — «А мы-то теперь что, нам-то теперь что делать?»",
+    "— надо было как-то отвечать.",
+    "Поразительно, что даже сейчас, когда тема «русофобии» и ущемления русских стала чуть ли не главным пунктом кремлёвской повестки, это по-прежнему голая лицемерная риторика, за которой не стоит никаких действий."
+   ],
+   "correct": [
+    1
+   ],
+   "explain": "Programs designed to help Russians return to Russian territory could have addressed the concerns of displaced populations in various republics."
+  },
+  {
+   "id": "h4",
+   "question": "What serious obstacle prevented the author from pursuing his favorite activity?",
+   "sentences": [
+    "Каждую весну, когда учитель выдавал огромный список летнего чтения, класс стонал и возмущался, а я втайне ликовал.",
+    "Ведь лучшего развлечения, чем чтение, не существует!",
+    "Ну разве что, как я писал выше, что-нибудь взрывать и поджигать.",
+    "В обед читать книжку, а вечером пойти что-нибудь взорвать — вот она, идеальная жизнь.",
+    "К сожалению, мою страсть к чтению серьёзно ограничивал всё тот же дефицит, ведь хорошие книги было очень сложно достать."
+   ],
+   "correct": [
+    4
+   ],
+   "explain": "The scarcity of books made it very difficult to obtain good literature, despite his passionate desire to read."
+  },
+  {
+   "id": "h5",
+   "question": "What was the author's greatest fear after the conflict with Kran?",
+   "sentences": [
+    "В итоге я всё-таки убежал, и следующие дня три было прямо очень страшно.",
+    "Во-первых, я мог быть бит прямо в школе перед друзьями и, что ещё ужаснее, перед девочками, а во-вторых, Кран мог побить меня с целой компанией своих друзей-хулиганов.",
+    "Об этом даже думать не хотелось.",
+    "Однако, к моему огромному удивлению, несколько раз столкнувшись со своим злодеем в школе, я обнаружил, что он только устрашающе смотрит на меня, но к активным действиям не переходит.",
+    "Постепенно установилась ситуация, при которой он демонстративно не замечал меня, а я точно так же — его."
+   ],
+   "correct": [
+    1
+   ],
+   "explain": "He feared being beaten either in front of his friends and especially in front of girls, or being attacked by Kran and his gang of friends."
+  },
+  {
+   "id": "h6",
+   "question": "What did the author learn about the management knowledge taught in the course?",
+   "sentences": [
+    "Курс был платным и включал лекции по праву, психологии, экономике и чему-то ещё.",
+    "Выяснилось, что тайные менеджерские знания можно получить, тупо прочитав обычный учебник по праву.",
+    "На лекциях, в общем, и пересказывали такие учебники.",
+    "Но зато, поскольку занятия проходили в настоящем вузе, они выглядели прямо по-взрослому: большая полукруглая аудитория, забитая людьми, лектор за кафедрой, у меня специальная тетрадочка для конспектов, кто-то хихикает на заднем ряду, и лектор делает сердитое замечание."
+   ],
+   "correct": [
+    1
+   ],
+   "explain": "He discovered that this supposedly secret knowledge could simply be obtained by reading an ordinary law textbook."
+  }
+ ]
+}

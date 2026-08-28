@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Приближается ___, пылающий как печь.",
-      "lemma": "день",
-      "options": ["дня", "день", "днём", "дне"],
-      "correct": "день",
-      "case": "Именительный (Nominative)",
-      "translation": "The day comes, burning as a furnace.",
-      "explain": "День is the subject of the verb приближается, taking the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Все гордецы и злодеи станут ___.",
-      "lemma": "солома",
-      "options": ["соломой", "солому", "соломе", "соломы"],
-      "correct": "соломой",
-      "case": "Творительный (Instrumental)",
-      "translation": "All the proud and all who work wickedness will be stubble.",
-      "explain": "The verb станут (will become) takes the instrumental case for the resulting state."
-    },
-    {
-      "id": "c3",
-      "sentence": "Наступающий ___ спалит их.",
-      "lemma": "день",
-      "options": ["день", "дня", "днём", "дне"],
-      "correct": "день",
-      "case": "Винительный (Accusative)",
-      "translation": "The day that comes will burn them up.",
-      "explain": "The transitive verb спалит takes the accusative case object."
-    },
-    {
-      "id": "c4",
-      "sentence": "Не оставит от них ни корней, ни ___.",
-      "lemma": "ветка",
-      "options": ["ветки", "веток", "веткой", "ветку"],
-      "correct": "веток",
-      "case": "Родительный (Genitive)",
-      "translation": "He will leave them neither root nor branch.",
-      "explain": "The negation не with ни uses the genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Но для вас, кто чтит мое имя, взойдет ___ правды.",
-      "lemma": "солнце",
-      "options": ["солнца", "солнцем", "солнце", "солнцу"],
-      "correct": "солнце",
-      "case": "Именительный (Nominative)",
-      "translation": "But to you who fear my name shall the sun of righteousness arise.",
-      "explain": "Солнце is the subject of the verb взойдет, standing in the nominative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "В лучах его — ___.",
-      "lemma": "исцеление",
-      "options": ["исцеления", "исцеленье", "исцеление", "исцелению"],
-      "correct": "исцеление",
-      "case": "Именительный (Nominative)",
-      "translation": "In his rays is healing.",
-      "explain": "Исцеление is the predicate nominative after the dash, taking the nominative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Вы пойдете, резвясь, как телята, которых выпустили из ___.",
-      "lemma": "стойло",
-      "options": ["стойла", "стойлом", "стойле", "стойлу"],
-      "correct": "стойла",
-      "case": "Родительный (Genitive)",
-      "translation": "You will go out, and leap like calves released from the stall.",
-      "explain": "The preposition из (from) always governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Помните ___ моего слуги Моисея.",
-      "lemma": "закон",
-      "options": ["закон", "закона", "законом", "законе"],
-      "correct": "закон",
-      "case": "Винительный (Accusative)",
-      "translation": "Remember the law of Moses my servant.",
-      "explain": "The imperative verb помните takes the accusative case object."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "День Господа Приближается день, пылающий как печь.",
-      "question": "How is the coming day described?",
-      "options": ["As a burning furnace", "As a time of peace", "As a new beginning", "As a season of growth"],
-      "correct": "As a burning furnace",
-      "explain": "The verse says: Приближается день, пылающий как печь (There comes a day, burning like a furnace)."
-    },
-    {
-      "id": "r2",
-      "ru": "Все гордецы и злодеи станут соломой, и наступающий день спалит их.",
-      "question": "What will happen to the proud and wicked?",
-      "options": ["They will become stubble and be burned", "They will repent and be forgiven", "They will gain wisdom", "They will inherit the earth"],
-      "correct": "They will become stubble and be burned",
-      "explain": "The verse states: станут соломой, и наступающий день спалит их (will become stubble, and the day that comes will burn them)."
-    },
-    {
-      "id": "r3",
-      "ru": "Но для вас, кто чтит мое имя, взойдет солнце правды.",
-      "question": "For whom will the sun of righteousness arise?",
-      "options": ["For those who fear His name", "For all people", "For the wealthy", "For those in power"],
-      "correct": "For those who fear His name",
-      "explain": "The verse says: для вас, кто чтит мое имя, взойдет солнце правды (for you who fear my name shall the sun of righteousness arise)."
-    },
-    {
-      "id": "r4",
-      "ru": "Вы растопчете злодеев, они станут пылью у вас под ногами в тот день, когда я буду действовать.",
-      "question": "What will happen to the wicked when the Lord acts?",
-      "options": ["They will become dust under your feet", "They will be given another chance", "They will flee to distant lands", "They will rule over you"],
-      "correct": "They will become dust under your feet",
-      "explain": "The verse says: Вы растопчете злодеев, они станут пылью у вас под ногами (You shall tread down the wicked; they will be ashes under your feet)."
-    },
-    {
-      "id": "r5",
-      "ru": "Прежде чем наступит день Господа, великий и страшный, я пошлю к вам пророка Илию.",
-      "question": "What will the Lord send before the great and terrible day of the Lord?",
-      "options": ["The prophet Elijah", "Healing waters", "A new king", "Gifts of grain and wine"],
-      "correct": "The prophet Elijah",
-      "explain": "The verse says: я пошлю к вам пророка Илию (I will send you Elijah the prophet)."
-    },
-    {
-      "id": "r6",
-      "ru": "Он обратит сердца отцов к детям, а сердца детей к отцам.",
-      "question": "What will Elijah do according to this verse?",
-      "options": ["Turn the hearts of fathers to children and children to fathers", "Build new temples", "Establish new laws", "Teach all people to worship"],
-      "correct": "Turn the hearts of fathers to children and children to fathers",
-      "explain": "The verse states: Он обратит сердца отцов к детям, а сердца детей к отцам (He will turn the hearts of the fathers to the children, and the hearts of the children to their fathers)."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Приближается ___, пылающий как печь.",
+   "lemma": "день",
+   "options": [
+    "дня",
+    "день",
+    "днём",
+    "дне"
+   ],
+   "correct": "день",
+   "case": "Именительный (Nominative)",
+   "explain": "День is the subject of the verb приближается, taking the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Все гордецы и злодеи станут ___.",
+   "lemma": "солома",
+   "options": [
+    "соломой",
+    "солому",
+    "соломе",
+    "соломы"
+   ],
+   "correct": "соломой",
+   "case": "Творительный (Instrumental)",
+   "explain": "The verb станут (will become) takes the instrumental case for the resulting state."
+  },
+  {
+   "id": "c3",
+   "sentence": "Наступающий ___ спалит их.",
+   "lemma": "день",
+   "options": [
+    "день",
+    "дня",
+    "днём",
+    "дне"
+   ],
+   "correct": "день",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb спалит takes the accusative case object."
+  },
+  {
+   "id": "c4",
+   "sentence": "Не оставит от них ни корней, ни ___.",
+   "lemma": "ветка",
+   "options": [
+    "ветки",
+    "веток",
+    "веткой",
+    "ветку"
+   ],
+   "correct": "веток",
+   "case": "Родительный (Genitive)",
+   "explain": "The negation не with ни uses the genitive case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Но для вас, кто чтит мое имя, взойдет ___ правды.",
+   "lemma": "солнце",
+   "options": [
+    "солнца",
+    "солнцем",
+    "солнце",
+    "солнцу"
+   ],
+   "correct": "солнце",
+   "case": "Именительный (Nominative)",
+   "explain": "Солнце is the subject of the verb взойдет, standing in the nominative case."
+  },
+  {
+   "id": "c6",
+   "sentence": "В лучах его — ___.",
+   "lemma": "исцеление",
+   "options": [
+    "исцеления",
+    "исцеленье",
+    "исцеление",
+    "исцелению"
+   ],
+   "correct": "исцеление",
+   "case": "Именительный (Nominative)",
+   "explain": "Исцеление is the predicate nominative after the dash, taking the nominative case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Вы пойдете, резвясь, как телята, которых выпустили из ___.",
+   "lemma": "стойло",
+   "options": [
+    "стойла",
+    "стойлом",
+    "стойле",
+    "стойлу"
+   ],
+   "correct": "стойла",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition из (from) always governs the genitive case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Помните ___ моего слуги Моисея.",
+   "lemma": "закон",
+   "options": [
+    "закон",
+    "закона",
+    "законом",
+    "законе"
+   ],
+   "correct": "закон",
+   "case": "Винительный (Accusative)",
+   "explain": "The imperative verb помните takes the accusative case object."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "День Господа Приближается день, пылающий как печь.",
+   "question": "How is the coming day described?",
+   "options": [
+    "As a burning furnace",
+    "As a time of peace",
+    "As a new beginning",
+    "As a season of growth"
+   ],
+   "correct": "As a burning furnace",
+   "explain": "The verse says: Приближается день, пылающий как печь (There comes a day, burning like a furnace)."
+  },
+  {
+   "id": "r2",
+   "ru": "Все гордецы и злодеи станут соломой, и наступающий день спалит их.",
+   "question": "What will happen to the proud and wicked?",
+   "options": [
+    "They will become stubble and be burned",
+    "They will repent and be forgiven",
+    "They will gain wisdom",
+    "They will inherit the earth"
+   ],
+   "correct": "They will become stubble and be burned",
+   "explain": "The verse states: станут соломой, и наступающий день спалит их (will become stubble, and the day that comes will burn them)."
+  },
+  {
+   "id": "r3",
+   "ru": "Но для вас, кто чтит мое имя, взойдет солнце правды.",
+   "question": "For whom will the sun of righteousness arise?",
+   "options": [
+    "For those who fear His name",
+    "For all people",
+    "For the wealthy",
+    "For those in power"
+   ],
+   "correct": "For those who fear His name",
+   "explain": "The verse says: для вас, кто чтит мое имя, взойдет солнце правды (for you who fear my name shall the sun of righteousness arise)."
+  },
+  {
+   "id": "r4",
+   "ru": "Вы растопчете злодеев, они станут пылью у вас под ногами в тот день, когда я буду действовать.",
+   "question": "What will happen to the wicked when the Lord acts?",
+   "options": [
+    "They will become dust under your feet",
+    "They will be given another chance",
+    "They will flee to distant lands",
+    "They will rule over you"
+   ],
+   "correct": "They will become dust under your feet",
+   "explain": "The verse says: Вы растопчете злодеев, они станут пылью у вас под ногами (You shall tread down the wicked; they will be ashes under your feet)."
+  },
+  {
+   "id": "r5",
+   "ru": "Прежде чем наступит день Господа, великий и страшный, я пошлю к вам пророка Илию.",
+   "question": "What will the Lord send before the great and terrible day of the Lord?",
+   "options": [
+    "The prophet Elijah",
+    "Healing waters",
+    "A new king",
+    "Gifts of grain and wine"
+   ],
+   "correct": "The prophet Elijah",
+   "explain": "The verse says: я пошлю к вам пророка Илию (I will send you Elijah the prophet)."
+  },
+  {
+   "id": "r6",
+   "ru": "Он обратит сердца отцов к детям, а сердца детей к отцам.",
+   "question": "What will Elijah do according to this verse?",
+   "options": [
+    "Turn the hearts of fathers to children and children to fathers",
+    "Build new temples",
+    "Establish new laws",
+    "Teach all people to worship"
+   ],
+   "correct": "Turn the hearts of fathers to children and children to fathers",
+   "explain": "The verse states: Он обратит сердца отцов к детям, а сердца детей к отцам (He will turn the hearts of the fathers to the children, and the hearts of the children to their fathers)."
+  }
+ ]
 }

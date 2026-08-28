@@ -1,204 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Я самый невежественный из ___, я разума человеческого не имею.",
-      "lemma": "люди",
-      "options": [
-        "людей",
-        "людям",
-        "людьми",
-        "люди"
-      ],
-      "correct": "людей",
-      "case": "Родительный (Genitive)",
-      "translation": "I am the most ignorant of people, I do not have human understanding.",
-      "explain": "The preposition 'из' (from, out of) governs the Genitive case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Кто воду в свой плащ ___?",
-      "lemma": "завернуть",
-      "options": [
-        "завернул",
-        "завернула",
-        "завернуло",
-        "завернули"
-      ],
-      "correct": "завернул",
-      "case": "Именительный (Nominative)",
-      "translation": "Who has wrapped water in his cloak?",
-      "explain": "Past tense masculine singular agrees with subject (Nominative)."
-    },
-    {
-      "id": "c3",
-      "sentence": "Двух вещей я прошу у ___, Боже.",
-      "lemma": "ты",
-      "options": [
-        "ты",
-        "тебя",
-        "тебе",
-        "тобой"
-      ],
-      "correct": "тебя",
-      "case": "Винительный (Accusative)",
-      "translation": "Two things I ask of you, God.",
-      "explain": "The verb 'просить' (to ask) governs the Accusative case for the person."
-    },
-    {
-      "id": "c4",
-      "sentence": "Удали от меня суету и ___, не давай мне ни бедности, ни богатства.",
-      "lemma": "обман",
-      "options": [
-        "обман",
-        "обмана",
-        "обманом",
-        "обмане"
-      ],
-      "correct": "обман",
-      "case": "Винительный (Accusative)",
-      "translation": "Remove deception and falsehood from me, give me neither poverty nor riches.",
-      "explain": "The verb 'удали' (remove) takes the Accusative case for the direct object."
-    },
-    {
-      "id": "c5",
-      "sentence": "Кто восходил на небо и нисходил из ___?",
-      "lemma": "небо",
-      "options": [
-        "неба",
-        "небу",
-        "небом",
-        "небе"
-      ],
-      "correct": "неба",
-      "case": "Родительный (Genitive)",
-      "translation": "Who ascended into heaven and descended from it?",
-      "explain": "The preposition 'из' (from) governs the Genitive case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Есть такие, что проклинают своих ___ и не благословляют матерей.",
-      "lemma": "отец",
-      "options": [
-        "отцы",
-        "отца",
-        "отцов",
-        "отцам"
-      ],
-      "correct": "отцов",
-      "case": "Родительный (Genitive)",
-      "translation": "There are such who curse their fathers and do not bless their mothers.",
-      "explain": "The verb 'проклинают' (curse) with plural object takes Genitive in negative context."
-    },
-    {
-      "id": "c7",
-      "sentence": "У пиявки две дочери. «Дай!» — кричат ___.",
-      "lemma": "они",
-      "options": [
-        "они",
-        "их",
-        "им",
-        "ними"
-      ],
-      "correct": "они",
-      "case": "Именительный (Nominative)",
-      "translation": "'Give!' they cry. The leech has two daughters.",
-      "explain": "The pronoun subject of 'кричат' (cry) is in Nominative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Глаз, глумящийся над ___, выдолбят вороны из долины.",
-      "lemma": "отец",
-      "options": [
-        "отец",
-        "отцом",
-        "отца",
-        "отцу"
-      ],
-      "correct": "отцом",
-      "case": "Творительный (Instrumental)",
-      "translation": "The eye that mocks his father, the ravens shall pick out.",
-      "explain": "The preposition 'над' (over/at) governs the Instrumental case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Суета сует, сказал Екклесиаст. Суета сует, все суета.",
-      "question": "What does the Preacher emphasize is futile?",
-      "options": [
-        "All work",
-        "All pleasure",
-        "All is vanity",
-        "All people"
-      ],
-      "correct": "All is vanity",
-      "explain": "The text states 'Суета сует' (Vanity of vanities), emphasizing the futility of all earthly pursuits."
-    },
-    {
-      "id": "r2",
-      "ru": "Этот человек сказал Итиелу, Итиелу и Ухалу, «Я самый невежественный из людей, я разума человеческого не имею, мудрости я не учился, нет у меня познания святого».",
-      "question": "What does Agur claim about his own knowledge?",
-      "options": [
-        "He is the wisest",
-        "He is the most ignorant and lacks understanding",
-        "He has learned much",
-        "He knows everything"
-      ],
-      "correct": "He is the most ignorant and lacks understanding",
-      "explain": "Agur declares himself the most ignorant of men without human understanding or wisdom."
-    },
-    {
-      "id": "r3",
-      "ru": "Не клевещи на слугу перед хозяином его, чтобы его проклятие не пало на тебя, и ты не пострадал.",
-      "question": "What warning is given about servants?",
-      "options": [
-        "Always praise them",
-        "Do not slander them before their master",
-        "Obey them strictly",
-        "Ignore their requests"
-      ],
-      "correct": "Do not slander them before their master",
-      "explain": "The text warns against slandering a servant before his master, lest his curse fall upon you."
-    },
-    {
-      "id": "r4",
-      "ru": "Вот три вещи, что ненасытны, даже четыре, что никогда не скажут довольно.",
-      "question": "How many insatiable things are listed?",
-      "options": [
-        "Two",
-        "Three",
-        "Four",
-        "Six"
-      ],
-      "correct": "Four",
-      "explain": "The text lists three insatiable things, then four more that never say 'enough'."
-    },
-    {
-      "id": "r5",
-      "ru": "Муравьи — народец несильный, а делают летом запасы.",
-      "question": "What is notable about ants according to this passage?",
-      "options": [
-        "They are strong",
-        "Though weak, they store up provisions in summer",
-        "They live forever",
-        "They rule the earth"
-      ],
-      "correct": "Though weak, they store up provisions in summer",
-      "explain": "The text identifies ants as a weak people who provide their food in the summer."
-    },
-    {
-      "id": "r6",
-      "ru": "Ведь если взбивать молоко, получится масло, если ударить по носу, кровь польется, а если гнев разжечь, вспыхнет вражда.",
-      "question": "What results from churning milk?",
-      "options": [
-        "Cheese",
-        "Butter",
-        "Cream",
-        "Yogurt"
-      ],
-      "correct": "Butter",
-      "explain": "The verse states 'если взбивать молоко, получится масло' (if you churn milk, butter will result)."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Я самый невежественный из ___, я разума человеческого не имею.",
+   "lemma": "люди",
+   "options": [
+    "людей",
+    "людям",
+    "людьми",
+    "люди"
+   ],
+   "correct": "людей",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition 'из' (from, out of) governs the Genitive case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Кто воду в свой плащ ___?",
+   "lemma": "завернуть",
+   "options": [
+    "завернул",
+    "завернула",
+    "завернуло",
+    "завернули"
+   ],
+   "correct": "завернул",
+   "case": "Именительный (Nominative)",
+   "explain": "Past tense masculine singular agrees with subject (Nominative)."
+  },
+  {
+   "id": "c3",
+   "sentence": "Двух вещей я прошу у ___, Боже.",
+   "lemma": "ты",
+   "options": [
+    "ты",
+    "тебя",
+    "тебе",
+    "тобой"
+   ],
+   "correct": "тебя",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb 'просить' (to ask) governs the Accusative case for the person."
+  },
+  {
+   "id": "c4",
+   "sentence": "Удали от меня суету и ___, не давай мне ни бедности, ни богатства.",
+   "lemma": "обман",
+   "options": [
+    "обман",
+    "обмана",
+    "обманом",
+    "обмане"
+   ],
+   "correct": "обман",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb 'удали' (remove) takes the Accusative case for the direct object."
+  },
+  {
+   "id": "c5",
+   "sentence": "Кто восходил на небо и нисходил из ___?",
+   "lemma": "небо",
+   "options": [
+    "неба",
+    "небу",
+    "небом",
+    "небе"
+   ],
+   "correct": "неба",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition 'из' (from) governs the Genitive case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Есть такие, что проклинают своих ___ и не благословляют матерей.",
+   "lemma": "отец",
+   "options": [
+    "отцы",
+    "отца",
+    "отцов",
+    "отцам"
+   ],
+   "correct": "отцов",
+   "case": "Родительный (Genitive)",
+   "explain": "The verb 'проклинают' (curse) with plural object takes Genitive in negative context."
+  },
+  {
+   "id": "c7",
+   "sentence": "У пиявки две дочери. «Дай!» — кричат ___.",
+   "lemma": "они",
+   "options": [
+    "они",
+    "их",
+    "им",
+    "ними"
+   ],
+   "correct": "они",
+   "case": "Именительный (Nominative)",
+   "explain": "The pronoun subject of 'кричат' (cry) is in Nominative case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Глаз, глумящийся над ___, выдолбят вороны из долины.",
+   "lemma": "отец",
+   "options": [
+    "отец",
+    "отцом",
+    "отца",
+    "отцу"
+   ],
+   "correct": "отцом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition 'над' (over/at) governs the Instrumental case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Суета сует, сказал Екклесиаст. Суета сует, все суета.",
+   "question": "What does the Preacher emphasize is futile?",
+   "options": [
+    "All work",
+    "All pleasure",
+    "All is vanity",
+    "All people"
+   ],
+   "correct": "All is vanity",
+   "explain": "The text states 'Суета сует' (Vanity of vanities), emphasizing the futility of all earthly pursuits."
+  },
+  {
+   "id": "r2",
+   "ru": "Этот человек сказал Итиелу, Итиелу и Ухалу, «Я самый невежественный из людей, я разума человеческого не имею, мудрости я не учился, нет у меня познания святого».",
+   "question": "What does Agur claim about his own knowledge?",
+   "options": [
+    "He is the wisest",
+    "He is the most ignorant and lacks understanding",
+    "He has learned much",
+    "He knows everything"
+   ],
+   "correct": "He is the most ignorant and lacks understanding",
+   "explain": "Agur declares himself the most ignorant of men without human understanding or wisdom."
+  },
+  {
+   "id": "r3",
+   "ru": "Не клевещи на слугу перед хозяином его, чтобы его проклятие не пало на тебя, и ты не пострадал.",
+   "question": "What warning is given about servants?",
+   "options": [
+    "Always praise them",
+    "Do not slander them before their master",
+    "Obey them strictly",
+    "Ignore their requests"
+   ],
+   "correct": "Do not slander them before their master",
+   "explain": "The text warns against slandering a servant before his master, lest his curse fall upon you."
+  },
+  {
+   "id": "r4",
+   "ru": "Вот три вещи, что ненасытны, даже четыре, что никогда не скажут довольно.",
+   "question": "How many insatiable things are listed?",
+   "options": [
+    "Two",
+    "Three",
+    "Four",
+    "Six"
+   ],
+   "correct": "Four",
+   "explain": "The text lists three insatiable things, then four more that never say 'enough'."
+  },
+  {
+   "id": "r5",
+   "ru": "Муравьи — народец несильный, а делают летом запасы.",
+   "question": "What is notable about ants according to this passage?",
+   "options": [
+    "They are strong",
+    "Though weak, they store up provisions in summer",
+    "They live forever",
+    "They rule the earth"
+   ],
+   "correct": "Though weak, they store up provisions in summer",
+   "explain": "The text identifies ants as a weak people who provide their food in the summer."
+  },
+  {
+   "id": "r6",
+   "ru": "Ведь если взбивать молоко, получится масло, если ударить по носу, кровь польется, а если гнев разжечь, вспыхнет вражда.",
+   "question": "What results from churning milk?",
+   "options": [
+    "Cheese",
+    "Butter",
+    "Cream",
+    "Yogurt"
+   ],
+   "correct": "Butter",
+   "explain": "The verse states 'если взбивать молоко, получится масло' (if you churn milk, butter will result)."
+  }
+ ]
 }

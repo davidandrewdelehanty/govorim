@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "От Павла, осужденного за ___ в Иисуса Христа",
-      "lemma": "вера",
-      "options": ["вера", "веры", "вере", "веру"],
-      "correct": "веру",
-      "case": "Винительный (Accusative)",
-      "translation": "From Paul, a prisoner of Christ Jesus",
-      "explain": "Accusative case after preposition 'за' (for)"
-    },
-    {
-      "id": "c2",
-      "sentence": "от брата Тимофея, дорогому нашему соработнику ___",
-      "lemma": "Филимон",
-      "options": ["Филимон", "Филимона", "Филимону", "Филимоном"],
-      "correct": "Филимону",
-      "case": "Дательный (Dative)",
-      "translation": "to Philemon, our beloved fellow worker",
-      "explain": "Dative case indicating the addressee"
-    },
-    {
-      "id": "c3",
-      "sentence": "Я всегда в ___ благодарю Бога моего за тебя",
-      "lemma": "молитва",
-      "options": ["молитва", "молитвы", "молитвах", "молитвой"],
-      "correct": "молитвах",
-      "case": "Предложный (Prepositional)",
-      "translation": "I always thank my God making mention of you in my prayers",
-      "explain": "Prepositional plural case after preposition 'в' (in)"
-    },
-    {
-      "id": "c4",
-      "sentence": "так как до меня доходят слухи о твоей ___ в Господа Иисуса",
-      "lemma": "вера",
-      "options": ["вера", "веры", "вере", "веру"],
-      "correct": "вере",
-      "case": "Предложный (Prepositional)",
-      "translation": "hearing of your love and of the faith which you have toward the Lord Jesus",
-      "explain": "Prepositional case after preposition 'о' (about)"
-    },
-    {
-      "id": "c5",
-      "sentence": "Я молюсь о том, чтобы ___ общая для нас обоих привела тебя к познанию",
-      "lemma": "вера",
-      "options": ["вера", "веры", "вере", "верой"],
-      "correct": "вера",
-      "case": "Именительный (Nominative)",
-      "translation": "I pray that the fellowship of your faith may become effective in the knowledge",
-      "explain": "Nominative case as subject of 'привела' (led)"
-    },
-    {
-      "id": "c6",
-      "sentence": "Поэтому, хотя я мог бы смело потребовать от тебя во имя Христа исполнить твой ___",
-      "lemma": "долг",
-      "options": ["долг", "долга", "долгу", "долгом"],
-      "correct": "долг",
-      "case": "Винительный (Accusative)",
-      "translation": "Therefore though I have all boldness in Christ to command you that which is appropriate",
-      "explain": "Accusative case as direct object of 'исполнить' (fulfill)"
-    },
-    {
-      "id": "c7",
-      "sentence": "прошу тебя проявить ___ к Анисиму",
-      "lemma": "милость",
-      "options": ["милость", "милости", "милостью", "милосте"],
-      "correct": "милость",
-      "case": "Винительный (Accusative)",
-      "translation": "I beg you for mercy toward Onesimus",
-      "explain": "Accusative case as direct object of 'проявить' (show)"
-    },
-    {
-      "id": "c8",
-      "sentence": "Я посылаю его обратно к тебе, и для меня это все равно, что отделить часть самого ___",
-      "lemma": "себя",
-      "options": ["я", "меня", "себя", "мною"],
-      "correct": "себя",
-      "case": "Винительный (Accusative)",
-      "translation": "I am sending him back to you, that is, my own heart",
-      "explain": "Accusative case as direct object of 'отделить' (separate)"
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Я всегда в молитвах благодарю Бога моего за тебя, так как до меня доходят слухи о твоей вере в Господа Иисуса и о твоей любви ко всем Его последователям.",
-      "question": "Why does Paul thank God for Philemon?",
-      "options": ["Because of his faith in Jesus and his love for all believers", "Because he is a rich man", "Because he is a powerful leader", "Because he is a skilled teacher"],
-      "correct": "Because of his faith in Jesus and his love for all believers",
-      "explain": "Paul thanks God 'за твоей вере в Господа Иисуса и о твоей любви ко всем Его последователям' (for his faith in Jesus and love for believers)"
-    },
-    {
-      "id": "r2",
-      "ru": "Я молюсь о том, чтобы вера, общая для нас обоих, привела тебя к познанию всего того доброго, что мы обретаем во Христе.",
-      "question": "What does Paul pray about for Philemon?",
-      "options": ["That his faith will lead him to knowledge of all good things in Christ", "That he will become rich", "That he will have many children", "That he will become famous"],
-      "correct": "That his faith will lead him to knowledge of all good things in Christ",
-      "explain": "Paul prays that 'вера, общая для нас обоих, привела тебя к познанию всего того доброго, что мы обретаем во Христе' (their common faith will lead him to knowledge of the good in Christ)"
-    },
-    {
-      "id": "r3",
-      "ru": "Я, Павел, посол Иисуса Христа, а теперь еще и заключенный за веру в Него, прошу тебя проявить милость к Анисиму.",
-      "question": "What is Paul's current status and what does he ask Philemon?",
-      "options": ["He is an apostle and prisoner, and asks for mercy toward Onesimus", "He is a free man asking for money", "He is a leader asking for land", "He is a merchant asking for goods"],
-      "correct": "He is an apostle and prisoner, and asks for mercy toward Onesimus",
-      "explain": "Paul says 'Я, Павел, посол Иисуса Христа, а теперь еще и заключенный за веру' and 'прошу тебя проявить милость к Анисиму'"
-    },
-    {
-      "id": "r4",
-      "ru": "Может быть, раньше он и был для тебя бесполезным, но сейчас он действительно полезный и тебе, и мне.",
-      "question": "What change has occurred with Onesimus?",
-      "options": ["He was formerly useless but now is useful to both Philemon and Paul", "He was always useful", "He has become even more useless", "He has become angry"],
-      "correct": "He was formerly useless but now is useful to both Philemon and Paul",
-      "explain": "The text states 'раньше он и был для тебя бесполезным, но сейчас он действительно полезный и тебе, и мне'"
-    },
-    {
-      "id": "r5",
-      "ru": "Я очень хотел бы оставить его при себе, чтобы он вместо тебя помогал мне здесь, в тюрьме, куда я заключен за возвещение радостной вести.",
-      "question": "What did Paul want to do with Onesimus, and why didn't he?",
-      "options": ["Keep him to serve in Paul's place, but respected Philemon's rights", "Let him go free", "Give him to another church", "Send him to Jerusalem"],
-      "correct": "Keep him to serve in Paul's place, but respected Philemon's rights",
-      "explain": "Paul wanted to keep Onesimus 'вместо тебя помогал мне' but he follows this by saying he doesn't want to do anything without Philemon's consent"
-    },
-    {
-      "id": "r6",
-      "ru": "Если ты считаешь меня своим сотоварищем, то прими его так, как принял бы меня.",
-      "question": "How does Paul ask Philemon to receive Onesimus?",
-      "options": ["As he would receive Paul himself", "As a servant only", "As a slave forever", "With contempt"],
-      "correct": "As he would receive Paul himself",
-      "explain": "Paul says 'если ты считаешь меня своим сотоварищем, то прими его так, как принял бы меня' (receive him as you would receive me)"
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "От Павла, осужденного за ___ в Иисуса Христа",
+   "lemma": "вера",
+   "options": [
+    "вера",
+    "веры",
+    "вере",
+    "веру"
+   ],
+   "correct": "веру",
+   "case": "Винительный (Accusative)",
+   "explain": "Accusative case after preposition 'за' (for)"
+  },
+  {
+   "id": "c2",
+   "sentence": "от брата Тимофея, дорогому нашему соработнику ___",
+   "lemma": "Филимон",
+   "options": [
+    "Филимон",
+    "Филимона",
+    "Филимону",
+    "Филимоном"
+   ],
+   "correct": "Филимону",
+   "case": "Дательный (Dative)",
+   "explain": "Dative case indicating the addressee"
+  },
+  {
+   "id": "c3",
+   "sentence": "Я всегда в ___ благодарю Бога моего за тебя",
+   "lemma": "молитва",
+   "options": [
+    "молитва",
+    "молитвы",
+    "молитвах",
+    "молитвой"
+   ],
+   "correct": "молитвах",
+   "case": "Предложный (Prepositional)",
+   "explain": "Prepositional plural case after preposition 'в' (in)"
+  },
+  {
+   "id": "c4",
+   "sentence": "так как до меня доходят слухи о твоей ___ в Господа Иисуса",
+   "lemma": "вера",
+   "options": [
+    "вера",
+    "веры",
+    "вере",
+    "веру"
+   ],
+   "correct": "вере",
+   "case": "Предложный (Prepositional)",
+   "explain": "Prepositional case after preposition 'о' (about)"
+  },
+  {
+   "id": "c5",
+   "sentence": "Я молюсь о том, чтобы ___ общая для нас обоих привела тебя к познанию",
+   "lemma": "вера",
+   "options": [
+    "вера",
+    "веры",
+    "вере",
+    "верой"
+   ],
+   "correct": "вера",
+   "case": "Именительный (Nominative)",
+   "explain": "Nominative case as subject of 'привела' (led)"
+  },
+  {
+   "id": "c6",
+   "sentence": "Поэтому, хотя я мог бы смело потребовать от тебя во имя Христа исполнить твой ___",
+   "lemma": "долг",
+   "options": [
+    "долг",
+    "долга",
+    "долгу",
+    "долгом"
+   ],
+   "correct": "долг",
+   "case": "Винительный (Accusative)",
+   "explain": "Accusative case as direct object of 'исполнить' (fulfill)"
+  },
+  {
+   "id": "c7",
+   "sentence": "прошу тебя проявить ___ к Анисиму",
+   "lemma": "милость",
+   "options": [
+    "милость",
+    "милости",
+    "милостью",
+    "милосте"
+   ],
+   "correct": "милость",
+   "case": "Винительный (Accusative)",
+   "explain": "Accusative case as direct object of 'проявить' (show)"
+  },
+  {
+   "id": "c8",
+   "sentence": "Я посылаю его обратно к тебе, и для меня это все равно, что отделить часть самого ___",
+   "lemma": "себя",
+   "options": [
+    "я",
+    "меня",
+    "себя",
+    "мною"
+   ],
+   "correct": "себя",
+   "case": "Винительный (Accusative)",
+   "explain": "Accusative case as direct object of 'отделить' (separate)"
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Я всегда в молитвах благодарю Бога моего за тебя, так как до меня доходят слухи о твоей вере в Господа Иисуса и о твоей любви ко всем Его последователям.",
+   "question": "Why does Paul thank God for Philemon?",
+   "options": [
+    "Because of his faith in Jesus and his love for all believers",
+    "Because he is a rich man",
+    "Because he is a powerful leader",
+    "Because he is a skilled teacher"
+   ],
+   "correct": "Because of his faith in Jesus and his love for all believers",
+   "explain": "Paul thanks God 'за твоей вере в Господа Иисуса и о твоей любви ко всем Его последователям' (for his faith in Jesus and love for believers)"
+  },
+  {
+   "id": "r2",
+   "ru": "Я молюсь о том, чтобы вера, общая для нас обоих, привела тебя к познанию всего того доброго, что мы обретаем во Христе.",
+   "question": "What does Paul pray about for Philemon?",
+   "options": [
+    "That his faith will lead him to knowledge of all good things in Christ",
+    "That he will become rich",
+    "That he will have many children",
+    "That he will become famous"
+   ],
+   "correct": "That his faith will lead him to knowledge of all good things in Christ",
+   "explain": "Paul prays that 'вера, общая для нас обоих, привела тебя к познанию всего того доброго, что мы обретаем во Христе' (their common faith will lead him to knowledge of the good in Christ)"
+  },
+  {
+   "id": "r3",
+   "ru": "Я, Павел, посол Иисуса Христа, а теперь еще и заключенный за веру в Него, прошу тебя проявить милость к Анисиму.",
+   "question": "What is Paul's current status and what does he ask Philemon?",
+   "options": [
+    "He is an apostle and prisoner, and asks for mercy toward Onesimus",
+    "He is a free man asking for money",
+    "He is a leader asking for land",
+    "He is a merchant asking for goods"
+   ],
+   "correct": "He is an apostle and prisoner, and asks for mercy toward Onesimus",
+   "explain": "Paul says 'Я, Павел, посол Иисуса Христа, а теперь еще и заключенный за веру' and 'прошу тебя проявить милость к Анисиму'"
+  },
+  {
+   "id": "r4",
+   "ru": "Может быть, раньше он и был для тебя бесполезным, но сейчас он действительно полезный и тебе, и мне.",
+   "question": "What change has occurred with Onesimus?",
+   "options": [
+    "He was formerly useless but now is useful to both Philemon and Paul",
+    "He was always useful",
+    "He has become even more useless",
+    "He has become angry"
+   ],
+   "correct": "He was formerly useless but now is useful to both Philemon and Paul",
+   "explain": "The text states 'раньше он и был для тебя бесполезным, но сейчас он действительно полезный и тебе, и мне'"
+  },
+  {
+   "id": "r5",
+   "ru": "Я очень хотел бы оставить его при себе, чтобы он вместо тебя помогал мне здесь, в тюрьме, куда я заключен за возвещение радостной вести.",
+   "question": "What did Paul want to do with Onesimus, and why didn't he?",
+   "options": [
+    "Keep him to serve in Paul's place, but respected Philemon's rights",
+    "Let him go free",
+    "Give him to another church",
+    "Send him to Jerusalem"
+   ],
+   "correct": "Keep him to serve in Paul's place, but respected Philemon's rights",
+   "explain": "Paul wanted to keep Onesimus 'вместо тебя помогал мне' but he follows this by saying he doesn't want to do anything without Philemon's consent"
+  },
+  {
+   "id": "r6",
+   "ru": "Если ты считаешь меня своим сотоварищем, то прими его так, как принял бы меня.",
+   "question": "How does Paul ask Philemon to receive Onesimus?",
+   "options": [
+    "As he would receive Paul himself",
+    "As a servant only",
+    "As a slave forever",
+    "With contempt"
+   ],
+   "correct": "As he would receive Paul himself",
+   "explain": "Paul says 'если ты считаешь меня своим сотоварищем, то прими его так, как принял бы меня' (receive him as you would receive me)"
+  }
+ ]
 }

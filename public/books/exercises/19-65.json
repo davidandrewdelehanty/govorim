@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "смотрите на Божьи ___",
-      "lemma": "дела",
-      "options": ["дела", "дел", "делам", "делами"],
-      "correct": "дела",
-      "case": "Винительный (Accusative)",
-      "translation": "look at God's deeds",
-      "explain": "The verb 'смотреть' (to look) with the preposition 'на' takes the accusative case"
-    },
-    {
-      "id": "c2",
-      "sentence": "он сделал ___",
-      "lemma": "море",
-      "options": ["море", "моря", "морю", "морем"],
-      "correct": "море",
-      "case": "Винительный (Accusative)",
-      "translation": "he made the sea",
-      "explain": "The verb 'сделать' (to make) takes the accusative case"
-    },
-    {
-      "id": "c3",
-      "sentence": "они перешли ___",
-      "lemma": "река",
-      "options": ["река", "реку", "реки", "реке"],
-      "correct": "реку",
-      "case": "Винительный (Accusative)",
-      "translation": "they crossed the river",
-      "explain": "The verb 'перейти' (to cross) takes the accusative case for the object crossed"
-    },
-    {
-      "id": "c4",
-      "sentence": "по ___",
-      "lemma": "суша",
-      "options": ["суша", "суши", "суше", "сушей"],
-      "correct": "суше",
-      "case": "Дательный (Dative)",
-      "translation": "on dry land",
-      "explain": "The preposition 'по' (along, on) when indicating location requires the dative case"
-    },
-    {
-      "id": "c5",
-      "sentence": "не спускает с ___ в глаз",
-      "lemma": "народ",
-      "options": ["народ", "народа", "народу", "народом"],
-      "correct": "народа",
-      "case": "Родительный (Genitive)",
-      "translation": "does not take his eyes from the people",
-      "explain": "The preposition 'с' (from) requires the genitive case"
-    },
-    {
-      "id": "c6",
-      "sentence": "чтобы ___ против него не восстали",
-      "lemma": "мятежники",
-      "options": ["мятежники", "мятежников", "мятежникам", "мятежниками"],
-      "correct": "мятежники",
-      "case": "Именительный (Nominative)",
-      "translation": "so that rebels against Him do not rise up",
-      "explain": "Nominative case for the subject of the verb 'восстали' (rose up)"
-    },
-    {
-      "id": "c7",
-      "sentence": "воздайте ___ Ему",
-      "lemma": "хвала",
-      "options": ["хвала", "хвалу", "хвалы", "хвалой"],
-      "correct": "хвалу",
-      "case": "Винительный (Accusative)",
-      "translation": "render praise to Him",
-      "explain": "The verb 'воздать' (to render, to give) takes the accusative case"
-    },
-    {
-      "id": "c8",
-      "sentence": "сквозь огонь и ___",
-      "lemma": "вода",
-      "options": ["вода", "воду", "воды", "водой"],
-      "correct": "воду",
-      "case": "Винительный (Accusative)",
-      "translation": "through fire and water",
-      "explain": "The preposition 'сквозь' (through) requires the accusative case"
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Придите, смотрите на Божьи дела, как устрашающие его дела для сынов человеческих",
-      "question": "What are people invited to do?",
-      "options": ["To flee from God's deeds", "To come and look at God's awesome deeds", "To hide from the Lord", "To sing songs"],
-      "correct": "To come and look at God's awesome deeds",
-      "explain": "The text says 'Придите, смотрите на Божьи дела' (Come, look at God's deeds)"
-    },
-    {
-      "id": "r2",
-      "ru": "Он сохранил нам жизнь и не дал нашим ногам споткнуться",
-      "question": "What has God done for His people?",
-      "options": ["Abandoned them", "Preserved their lives and kept their feet from slipping", "Led them to captivity", "Brought them hunger"],
-      "correct": "Preserved their lives and kept their feet from slipping",
-      "explain": "The text says 'сохранил нам жизнь и не дал нашим ногам споткнуться' (preserved our lives and did not let our feet slip)"
-    },
-    {
-      "id": "r3",
-      "ru": "Боже, Ты испытал нас, очистил, как серебро",
-      "question": "What does the psalmist say God has done to His people?",
-      "options": ["Abandoned and rejected them", "Tested them and purified them like silver", "Made them wealthy and powerful", "Caused them to forget Him"],
-      "correct": "Tested them and purified them like silver",
-      "explain": "The text says 'Ты испытал нас, очистил, как серебро' (You tested us, purified us like silver)"
-    },
-    {
-      "id": "r4",
-      "ru": "Мы прошли сквозь огонь и воду, но ты нас вывел к месту изобилия",
-      "question": "What happened after the people passed through trials?",
-      "options": ["They perished in the wilderness", "God brought them out to a place of abundance", "They were abandoned by the Lord", "They wandered forever"],
-      "correct": "God brought them out to a place of abundance",
-      "explain": "The text says 'ты нас вывел к месту изобилия' (you brought us out to a place of abundance)"
-    },
-    {
-      "id": "r5",
-      "ru": "Я приду в твой храм со всесожжениями и исполню свои обеты тебе",
-      "question": "What will the speaker do at God's temple?",
-      "options": ["Complain about God's judgment", "Bring sacrifices and fulfill his vows", "Ask for punishment", "Deny his promises"],
-      "correct": "Bring sacrifices and fulfill his vows",
-      "explain": "The text says 'приду в твой храм со всесожжениями и исполню свои обеты' (I will come to Your temple with sacrifices and fulfill my vows)"
-    },
-    {
-      "id": "r6",
-      "ru": "Благословен будь Бог, не отвергший мою молитву и милости меня не лишивший",
-      "question": "How does the psalm conclude regarding God's response?",
-      "options": ["God has forsaken the speaker", "God is blessed for not rejecting prayer and withholding mercy", "God remains silent", "God has abandoned His people"],
-      "correct": "God is blessed for not rejecting prayer and withholding mercy",
-      "explain": "The text says God is 'не отвергший мою молитву и милости меня не лишивший' (not rejected my prayer and not withheld mercy)"
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "смотрите на Божьи ___",
+   "lemma": "дела",
+   "options": [
+    "дела",
+    "дел",
+    "делам",
+    "делами"
+   ],
+   "correct": "дела",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb 'смотреть' (to look) with the preposition 'на' takes the accusative case"
+  },
+  {
+   "id": "c2",
+   "sentence": "он сделал ___",
+   "lemma": "море",
+   "options": [
+    "море",
+    "моря",
+    "морю",
+    "морем"
+   ],
+   "correct": "море",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb 'сделать' (to make) takes the accusative case"
+  },
+  {
+   "id": "c3",
+   "sentence": "они перешли ___",
+   "lemma": "река",
+   "options": [
+    "река",
+    "реку",
+    "реки",
+    "реке"
+   ],
+   "correct": "реку",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb 'перейти' (to cross) takes the accusative case for the object crossed"
+  },
+  {
+   "id": "c4",
+   "sentence": "по ___",
+   "lemma": "суша",
+   "options": [
+    "суша",
+    "суши",
+    "суше",
+    "сушей"
+   ],
+   "correct": "суше",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition 'по' (along, on) when indicating location requires the dative case"
+  },
+  {
+   "id": "c5",
+   "sentence": "не спускает с ___ в глаз",
+   "lemma": "народ",
+   "options": [
+    "народ",
+    "народа",
+    "народу",
+    "народом"
+   ],
+   "correct": "народа",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition 'с' (from) requires the genitive case"
+  },
+  {
+   "id": "c6",
+   "sentence": "чтобы ___ против него не восстали",
+   "lemma": "мятежники",
+   "options": [
+    "мятежники",
+    "мятежников",
+    "мятежникам",
+    "мятежниками"
+   ],
+   "correct": "мятежники",
+   "case": "Именительный (Nominative)",
+   "explain": "Nominative case for the subject of the verb 'восстали' (rose up)"
+  },
+  {
+   "id": "c7",
+   "sentence": "воздайте ___ Ему",
+   "lemma": "хвала",
+   "options": [
+    "хвала",
+    "хвалу",
+    "хвалы",
+    "хвалой"
+   ],
+   "correct": "хвалу",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb 'воздать' (to render, to give) takes the accusative case"
+  },
+  {
+   "id": "c8",
+   "sentence": "сквозь огонь и ___",
+   "lemma": "вода",
+   "options": [
+    "вода",
+    "воду",
+    "воды",
+    "водой"
+   ],
+   "correct": "воду",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition 'сквозь' (through) requires the accusative case"
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Придите, смотрите на Божьи дела, как устрашающие его дела для сынов человеческих",
+   "question": "What are people invited to do?",
+   "options": [
+    "To flee from God's deeds",
+    "To come and look at God's awesome deeds",
+    "To hide from the Lord",
+    "To sing songs"
+   ],
+   "correct": "To come and look at God's awesome deeds",
+   "explain": "The text says 'Придите, смотрите на Божьи дела' (Come, look at God's deeds)"
+  },
+  {
+   "id": "r2",
+   "ru": "Он сохранил нам жизнь и не дал нашим ногам споткнуться",
+   "question": "What has God done for His people?",
+   "options": [
+    "Abandoned them",
+    "Preserved their lives and kept their feet from slipping",
+    "Led them to captivity",
+    "Brought them hunger"
+   ],
+   "correct": "Preserved their lives and kept their feet from slipping",
+   "explain": "The text says 'сохранил нам жизнь и не дал нашим ногам споткнуться' (preserved our lives and did not let our feet slip)"
+  },
+  {
+   "id": "r3",
+   "ru": "Боже, Ты испытал нас, очистил, как серебро",
+   "question": "What does the psalmist say God has done to His people?",
+   "options": [
+    "Abandoned and rejected them",
+    "Tested them and purified them like silver",
+    "Made them wealthy and powerful",
+    "Caused them to forget Him"
+   ],
+   "correct": "Tested them and purified them like silver",
+   "explain": "The text says 'Ты испытал нас, очистил, как серебро' (You tested us, purified us like silver)"
+  },
+  {
+   "id": "r4",
+   "ru": "Мы прошли сквозь огонь и воду, но ты нас вывел к месту изобилия",
+   "question": "What happened after the people passed through trials?",
+   "options": [
+    "They perished in the wilderness",
+    "God brought them out to a place of abundance",
+    "They were abandoned by the Lord",
+    "They wandered forever"
+   ],
+   "correct": "God brought them out to a place of abundance",
+   "explain": "The text says 'ты нас вывел к месту изобилия' (you brought us out to a place of abundance)"
+  },
+  {
+   "id": "r5",
+   "ru": "Я приду в твой храм со всесожжениями и исполню свои обеты тебе",
+   "question": "What will the speaker do at God's temple?",
+   "options": [
+    "Complain about God's judgment",
+    "Bring sacrifices and fulfill his vows",
+    "Ask for punishment",
+    "Deny his promises"
+   ],
+   "correct": "Bring sacrifices and fulfill his vows",
+   "explain": "The text says 'приду в твой храм со всесожжениями и исполню свои обеты' (I will come to Your temple with sacrifices and fulfill my vows)"
+  },
+  {
+   "id": "r6",
+   "ru": "Благословен будь Бог, не отвергший мою молитву и милости меня не лишивший",
+   "question": "How does the psalm conclude regarding God's response?",
+   "options": [
+    "God has forsaken the speaker",
+    "God is blessed for not rejecting prayer and withholding mercy",
+    "God remains silent",
+    "God has abandoned His people"
+   ],
+   "correct": "God is blessed for not rejecting prayer and withholding mercy",
+   "explain": "The text says God is 'не отвергший мою молитву и милости меня не лишивший' (not rejected my prayer and not withheld mercy)"
+  }
+ ]
 }

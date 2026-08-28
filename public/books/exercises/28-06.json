@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "В своем ___ они будут настойчиво искать меня.",
-      "lemma": "страдание",
-      "options": ["страдании", "страдания", "страдание", "страданием"],
-      "correct": "страдании",
-      "case": "Предложный (Prepositional)",
-      "translation": "In their suffering they will earnestly seek me.",
-      "explain": "The preposition в (in) governs the prepositional case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Он поранил нас, но Он же и перевяжет наши ___.",
-      "lemma": "рана",
-      "options": ["раны", "ран", "ранам", "ранами"],
-      "correct": "раны",
-      "case": "Винительный (Accusative)",
-      "translation": "He wounded us, but He will also wrap up our wounds.",
-      "explain": "The transitive verb перевяжет (will bind up) governs the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Через два дня Он оживит нас, а на третий день Он восстановит нас, чтобы мы жили в Его ___.",
-      "lemma": "присутствие",
-      "options": ["присутствия", "присутствии", "присутствие", "присутствием"],
-      "correct": "присутствии",
-      "case": "Предложный (Prepositional)",
-      "translation": "After two days He will revive us. On the third day He will raise us up, and we will live before Him.",
-      "explain": "The preposition в (in) with the prepositional case indicates location."
-    },
-    {
-      "id": "c4",
-      "sentence": "То, что Он придет, верно, как и то, что взойдет ___.",
-      "lemma": "солнце",
-      "options": ["солнца", "солнце", "солнцем", "солнцу"],
-      "correct": "солнце",
-      "case": "Именительный (Nominative)",
-      "translation": "That He will come is certain, as is the rising of the sun.",
-      "explain": "The sun is the grammatical subject of the verb взойдет (will rise), so it takes nominative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Он придет к нам, как ___, подобно весенним дождям.",
-      "lemma": "дождь",
-      "options": ["дождя", "дожде", "дождь", "дождю"],
-      "correct": "дождь",
-      "case": "Именительный (Nominative)",
-      "translation": "He will come to us like rain, like the spring rains that water the earth.",
-      "explain": "In a simile comparison with как (like), the nominative case is used."
-    },
-    {
-      "id": "c6",
-      "sentence": "Ваша верность, как утренний туман, словно ___, что вскоре исчезает.",
-      "lemma": "роса",
-      "options": ["роса", "росы", "росе", "росой"],
-      "correct": "роса",
-      "case": "Именительный (Nominative)",
-      "translation": "Your faithfulness is like morning mist, like the dew that quickly disappears.",
-      "explain": "The dew is in apposition to faithfulness and subject of the clause, taking nominative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Поэтому я резал вас на куски через моих ___.",
-      "lemma": "пророк",
-      "options": ["пророк", "пророка", "пророками", "пророков"],
-      "correct": "пророков",
-      "case": "Винительный (Accusative)",
-      "translation": "Therefore I have cut them to pieces with the prophets.",
-      "explain": "The preposition через (through) governs the accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Ведь я милости хочу, а не ___.",
-      "lemma": "жертва",
-      "options": ["жертвы", "жертвой", "жертву", "жертвам"],
-      "correct": "жертвы",
-      "case": "Родительный (Genitive)",
-      "translation": "For I desire mercy, and not sacrifice.",
-      "explain": "Negated desire takes the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Пойдем и вернемся к Господу. Он поразил нас, но Он же и исцелит нас.",
-      "question": "What does the passage promise about God's healing?",
-      "options": ["He will heal them after striking them", "He will punish them forever", "He will never return to them", "He will demand payment"],
-      "correct": "He will heal them after striking them",
-      "explain": "The text promises 'Он поразил нас, но Он же и исцелит нас' — He struck us, but He will also heal us."
-    },
-    {
-      "id": "r2",
-      "ru": "Через два дня Он оживит нас, а на третий день Он восстановит нас, чтобы мы жили в Его присутствии.",
-      "question": "On what day will God restore Israel?",
-      "options": ["The third day", "The first day", "The seventh day", "The fortieth day"],
-      "correct": "The third day",
-      "explain": "The text explicitly states 'на третий день Он восстановит нас' — on the third day He will restore us."
-    },
-    {
-      "id": "r3",
-      "ru": "Узнаем же Господа, будем стремиться узнать Его.",
-      "question": "What is Israel called to do?",
-      "options": ["Seek to know the Lord", "Build more altars", "Flee to Egypt", "Fight their enemies"],
-      "correct": "Seek to know the Lord",
-      "explain": "The call is 'Узнаем же Господа, будем стремиться узнать Его' — Let us acknowledge and seek to know the Lord."
-    },
-    {
-      "id": "r4",
-      "ru": "Ваша верность, как утренний туман, словно роса, что вскоре исчезает.",
-      "question": "What is Israel's faithfulness compared to?",
-      "options": ["Morning mist and dew that disappears", "A strong stone foundation", "An eternal flame", "Pure refined gold"],
-      "correct": "Morning mist and dew that disappears",
-      "explain": "God compares their faithfulness to morning mist and dew that quickly disappears, indicating its fleeting nature."
-    },
-    {
-      "id": "r5",
-      "ru": "Ведь я милости хочу, а не жертвы. И познание Бога более, нежели всесожжение.",
-      "question": "What does God prefer to sacrifices?",
-      "options": ["Mercy and knowledge of God", "Beautiful temples", "Expensive offerings", "Frequent festivals"],
-      "correct": "Mercy and knowledge of God",
-      "explain": "God declares 'я милости хочу, а не жертвы' — I desire mercy, not sacrifice, and knowledge of God more than burnt offerings."
-    },
-    {
-      "id": "r6",
-      "ru": "В доме Израиля я увидел ужасную вещь. Там Ефрем предался распутству.",
-      "question": "What evil did God observe in Israel?",
-      "options": ["Ephraim engaged in prostitution", "They built false temples", "They hoarded wealth", "They refused to pray"],
-      "correct": "Ephraim engaged in prostitution",
-      "explain": "The text states 'Там Ефрем предался распутству' — There Ephraim engaged in prostitution (spiritual unfaithfulness)."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "В своем ___ они будут настойчиво искать меня.",
+   "lemma": "страдание",
+   "options": [
+    "страдании",
+    "страдания",
+    "страдание",
+    "страданием"
+   ],
+   "correct": "страдании",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в (in) governs the prepositional case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Он поранил нас, но Он же и перевяжет наши ___.",
+   "lemma": "рана",
+   "options": [
+    "раны",
+    "ран",
+    "ранам",
+    "ранами"
+   ],
+   "correct": "раны",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb перевяжет (will bind up) governs the accusative case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Через два дня Он оживит нас, а на третий день Он восстановит нас, чтобы мы жили в Его ___.",
+   "lemma": "присутствие",
+   "options": [
+    "присутствия",
+    "присутствии",
+    "присутствие",
+    "присутствием"
+   ],
+   "correct": "присутствии",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в (in) with the prepositional case indicates location."
+  },
+  {
+   "id": "c4",
+   "sentence": "То, что Он придет, верно, как и то, что взойдет ___.",
+   "lemma": "солнце",
+   "options": [
+    "солнца",
+    "солнце",
+    "солнцем",
+    "солнцу"
+   ],
+   "correct": "солнце",
+   "case": "Именительный (Nominative)",
+   "explain": "The sun is the grammatical subject of the verb взойдет (will rise), so it takes nominative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Он придет к нам, как ___, подобно весенним дождям.",
+   "lemma": "дождь",
+   "options": [
+    "дождя",
+    "дожде",
+    "дождь",
+    "дождю"
+   ],
+   "correct": "дождь",
+   "case": "Именительный (Nominative)",
+   "explain": "In a simile comparison with как (like), the nominative case is used."
+  },
+  {
+   "id": "c6",
+   "sentence": "Ваша верность, как утренний туман, словно ___, что вскоре исчезает.",
+   "lemma": "роса",
+   "options": [
+    "роса",
+    "росы",
+    "росе",
+    "росой"
+   ],
+   "correct": "роса",
+   "case": "Именительный (Nominative)",
+   "explain": "The dew is in apposition to faithfulness and subject of the clause, taking nominative case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Поэтому я резал вас на куски через моих ___.",
+   "lemma": "пророк",
+   "options": [
+    "пророк",
+    "пророка",
+    "пророками",
+    "пророков"
+   ],
+   "correct": "пророков",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition через (through) governs the accusative case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Ведь я милости хочу, а не ___.",
+   "lemma": "жертва",
+   "options": [
+    "жертвы",
+    "жертвой",
+    "жертву",
+    "жертвам"
+   ],
+   "correct": "жертвы",
+   "case": "Родительный (Genitive)",
+   "explain": "Negated desire takes the genitive case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Пойдем и вернемся к Господу. Он поразил нас, но Он же и исцелит нас.",
+   "question": "What does the passage promise about God's healing?",
+   "options": [
+    "He will heal them after striking them",
+    "He will punish them forever",
+    "He will never return to them",
+    "He will demand payment"
+   ],
+   "correct": "He will heal them after striking them",
+   "explain": "The text promises 'Он поразил нас, но Он же и исцелит нас' — He struck us, but He will also heal us."
+  },
+  {
+   "id": "r2",
+   "ru": "Через два дня Он оживит нас, а на третий день Он восстановит нас, чтобы мы жили в Его присутствии.",
+   "question": "On what day will God restore Israel?",
+   "options": [
+    "The third day",
+    "The first day",
+    "The seventh day",
+    "The fortieth day"
+   ],
+   "correct": "The third day",
+   "explain": "The text explicitly states 'на третий день Он восстановит нас' — on the third day He will restore us."
+  },
+  {
+   "id": "r3",
+   "ru": "Узнаем же Господа, будем стремиться узнать Его.",
+   "question": "What is Israel called to do?",
+   "options": [
+    "Seek to know the Lord",
+    "Build more altars",
+    "Flee to Egypt",
+    "Fight their enemies"
+   ],
+   "correct": "Seek to know the Lord",
+   "explain": "The call is 'Узнаем же Господа, будем стремиться узнать Его' — Let us acknowledge and seek to know the Lord."
+  },
+  {
+   "id": "r4",
+   "ru": "Ваша верность, как утренний туман, словно роса, что вскоре исчезает.",
+   "question": "What is Israel's faithfulness compared to?",
+   "options": [
+    "Morning mist and dew that disappears",
+    "A strong stone foundation",
+    "An eternal flame",
+    "Pure refined gold"
+   ],
+   "correct": "Morning mist and dew that disappears",
+   "explain": "God compares their faithfulness to morning mist and dew that quickly disappears, indicating its fleeting nature."
+  },
+  {
+   "id": "r5",
+   "ru": "Ведь я милости хочу, а не жертвы. И познание Бога более, нежели всесожжение.",
+   "question": "What does God prefer to sacrifices?",
+   "options": [
+    "Mercy and knowledge of God",
+    "Beautiful temples",
+    "Expensive offerings",
+    "Frequent festivals"
+   ],
+   "correct": "Mercy and knowledge of God",
+   "explain": "God declares 'я милости хочу, а не жертвы' — I desire mercy, not sacrifice, and knowledge of God more than burnt offerings."
+  },
+  {
+   "id": "r6",
+   "ru": "В доме Израиля я увидел ужасную вещь. Там Ефрем предался распутству.",
+   "question": "What evil did God observe in Israel?",
+   "options": [
+    "Ephraim engaged in prostitution",
+    "They built false temples",
+    "They hoarded wealth",
+    "They refused to pray"
+   ],
+   "correct": "Ephraim engaged in prostitution",
+   "explain": "The text states 'Там Ефрем предался распутству' — There Ephraim engaged in prostitution (spiritual unfaithfulness)."
+  }
+ ]
 }

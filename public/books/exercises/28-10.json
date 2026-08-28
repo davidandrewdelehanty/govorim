@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Израиль, ветвистый ___. Он производил плод для себя.",
-      "lemma": "виноград",
-      "options": ["виноград", "винограда", "винограду", "винограде"],
-      "correct": "виноград",
-      "case": "Именительный (Nominative)",
-      "translation": "Israel is a luxuriant vine that produces his fruit.",
-      "explain": "The vineyard is in apposition to Israel, the grammatical subject, taking nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Чем больше было у него плодов, тем больше он возводил ___.",
-      "lemma": "жертвенник",
-      "options": ["жертвенников", "жертвеннику", "жертвеннике", "жертвенникам"],
-      "correct": "жертвенников",
-      "case": "Винительный (Accusative)",
-      "translation": "According to the abundance of his fruit he has multiplied his altars.",
-      "explain": "The transitive verb возводил (built/raised) governs the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Их сердце обманчиво, и теперь они должны понести ___.",
-      "lemma": "наказание",
-      "options": ["наказание", "наказания", "наказанию", "наказанием"],
-      "correct": "наказание",
-      "case": "Винительный (Accusative)",
-      "translation": "Their heart is divided. Now they will be found guilty.",
-      "explain": "The verb понести (to bear/suffer) governs the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Тогда они скажут, «У нас нет царя, потому что мы не почитали ___».",
-      "lemma": "Господь",
-      "options": ["Господа", "Господу", "Господе", "Господом"],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "Then they will say, 'We have no king, because we didn't fear Yahweh.'",
-      "explain": "The verb почитали (feared/honored) with negation takes the genitive case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Поэтому суд явится над ними, словно ядовитые сорняки на вспаханном ___.",
-      "lemma": "поле",
-      "options": ["поля", "полю", "полем", "поле"],
-      "correct": "поле",
-      "case": "Предложный (Prepositional)",
-      "translation": "Therefore judgment springs up like poisonous weeds in the furrows of the field.",
-      "explain": "The preposition на (on) governs the prepositional case when indicating location."
-    },
-    {
-      "id": "c6",
-      "sentence": "Жители Самарии будут бояться за ___ Тельца Бет-Авена.",
-      "lemma": "идол",
-      "options": ["идола", "идолу", "идолом", "идоле"],
-      "correct": "идола",
-      "case": "Винительный (Accusative)",
-      "translation": "The inhabitants of Samaria will be in terror for the calves of Beth Aven.",
-      "explain": "The preposition за (for, concerning) takes the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Самария и ее царь уплывут, как ветка по ___ воды.",
-      "lemma": "течение",
-      "options": ["течения", "течению", "течением", "течении"],
-      "correct": "течению",
-      "case": "Дательный (Dative)",
-      "translation": "Samaria and her king float away like a twig on the water.",
-      "explain": "The preposition по (along, on) governs the dative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Как Салман разрушил Бет-Арбел в день ___, когда матери вместе со своими детьми были забиты до смерти.",
-      "lemma": "битва",
-      "options": ["битва", "битвы", "битве", "битвой"],
-      "correct": "битвы",
-      "case": "Родительный (Genitive)",
-      "translation": "As Shalman destroyed Beth Arbel in the day of battle when mothers were dashed in pieces with their children.",
-      "explain": "The preposition в (in) with genitive indicates the time/occasion of battle."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Израиль, ветвистый виноград. Он производил плод для себя. Чем больше было у него плодов, тем больше он возводил жертвенников.",
-      "question": "What did Israel do as he became more prosperous?",
-      "options": ["He built more altars", "He sought God's wisdom", "He helped the poor", "He made peace with neighbors"],
-      "correct": "He built more altars",
-      "explain": "The text states that the more fruit Israel produced, the more altars he built."
-    },
-    {
-      "id": "r2",
-      "ru": "Их сердце обманчиво, и теперь они должны понести наказание. Господь разрушит их жертвенники и уничтожит их священные столбы.",
-      "question": "What will God do because their hearts are divided?",
-      "options": ["Destroy their altars and sacred stones", "Provide them with riches", "Grant them victory over enemies", "Give them a new king"],
-      "correct": "Destroy their altars and sacred stones",
-      "explain": "The text states that because their hearts are divided, the Lord will demolish their altars and destroy their sacred stones."
-    },
-    {
-      "id": "r3",
-      "ru": "Тогда они скажут, «У нас нет царя, потому что мы не почитали Господа».",
-      "question": "What reason will they give for their lack of a king?",
-      "options": ["They did not fear Yahweh", "They were too weak to have a king", "They refused to follow any ruler", "They lost their king in battle"],
-      "correct": "They did not fear Yahweh",
-      "explain": "They will say 'мы не почитали Господа' — we did not fear Yahweh."
-    },
-    {
-      "id": "r4",
-      "ru": "Жители Самарии будут бояться за идола Тельца Бет-Авена. Его народ и его жрецы, что радовались славе идола, будут скорбеть по нему, потому что слава отойдет от него.",
-      "question": "Why will the priests mourn for the calf idol?",
-      "options": ["Because its glory will depart from it", "Because they will find a better god", "Because it will bring them wealth", "Because the people will honor it more"],
-      "correct": "Because its glory will depart from it",
-      "explain": "The text says the priests will mourn 'потому что слава отойдет от него' — because the glory will depart from it."
-    },
-    {
-      "id": "r5",
-      "ru": "Ефрем, приученная целиться, привыкшая молотить зерно, итак я сам надену ермо на ее тучную шею.",
-      "question": "What will God do to Ephraim?",
-      "options": ["Put a yoke on her well-fed neck", "Grant her wealth and power", "Make her a great nation", "Give her victory in war"],
-      "correct": "Put a yoke on her well-fed neck",
-      "explain": "God says 'я сам надену ермо на ее тучную шею' — I will put a yoke on her well-fed neck."
-    },
-    {
-      "id": "r6",
-      "ru": "Сейте для себя праведность и пожнете плоды верной любви. Распашите свою целину, потому что настало время искать Господа.",
-      "question": "What does this exhortation call people to do?",
-      "options": ["Sow righteousness and seek Yahweh", "Build more temples and altars", "Gather wealth and riches", "Prepare for war against enemies"],
-      "correct": "Sow righteousness and seek Yahweh",
-      "explain": "The text calls people to 'Сейте для себя праведность' and to seek Yahweh — to sow righteousness and seek the Lord."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Израиль, ветвистый ___. Он производил плод для себя.",
+   "lemma": "виноград",
+   "options": [
+    "виноград",
+    "винограда",
+    "винограду",
+    "винограде"
+   ],
+   "correct": "виноград",
+   "case": "Именительный (Nominative)",
+   "explain": "The vineyard is in apposition to Israel, the grammatical subject, taking nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Чем больше было у него плодов, тем больше он возводил ___.",
+   "lemma": "жертвенник",
+   "options": [
+    "жертвенников",
+    "жертвеннику",
+    "жертвеннике",
+    "жертвенникам"
+   ],
+   "correct": "жертвенников",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb возводил (built/raised) governs the accusative case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Их сердце обманчиво, и теперь они должны понести ___.",
+   "lemma": "наказание",
+   "options": [
+    "наказание",
+    "наказания",
+    "наказанию",
+    "наказанием"
+   ],
+   "correct": "наказание",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb понести (to bear/suffer) governs the accusative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Тогда они скажут, «У нас нет царя, потому что мы не почитали ___».",
+   "lemma": "Господь",
+   "options": [
+    "Господа",
+    "Господу",
+    "Господе",
+    "Господом"
+   ],
+   "correct": "Господа",
+   "case": "Родительный (Genitive)",
+   "explain": "The verb почитали (feared/honored) with negation takes the genitive case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Поэтому суд явится над ними, словно ядовитые сорняки на вспаханном ___.",
+   "lemma": "поле",
+   "options": [
+    "поля",
+    "полю",
+    "полем",
+    "поле"
+   ],
+   "correct": "поле",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition на (on) governs the prepositional case when indicating location."
+  },
+  {
+   "id": "c6",
+   "sentence": "Жители Самарии будут бояться за ___ Тельца Бет-Авена.",
+   "lemma": "идол",
+   "options": [
+    "идола",
+    "идолу",
+    "идолом",
+    "идоле"
+   ],
+   "correct": "идола",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition за (for, concerning) takes the accusative case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Самария и ее царь уплывут, как ветка по ___ воды.",
+   "lemma": "течение",
+   "options": [
+    "течения",
+    "течению",
+    "течением",
+    "течении"
+   ],
+   "correct": "течению",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition по (along, on) governs the dative case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Как Салман разрушил Бет-Арбел в день ___, когда матери вместе со своими детьми были забиты до смерти.",
+   "lemma": "битва",
+   "options": [
+    "битва",
+    "битвы",
+    "битве",
+    "битвой"
+   ],
+   "correct": "битвы",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition в (in) with genitive indicates the time/occasion of battle."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Израиль, ветвистый виноград. Он производил плод для себя. Чем больше было у него плодов, тем больше он возводил жертвенников.",
+   "question": "What did Israel do as he became more prosperous?",
+   "options": [
+    "He built more altars",
+    "He sought God's wisdom",
+    "He helped the poor",
+    "He made peace with neighbors"
+   ],
+   "correct": "He built more altars",
+   "explain": "The text states that the more fruit Israel produced, the more altars he built."
+  },
+  {
+   "id": "r2",
+   "ru": "Их сердце обманчиво, и теперь они должны понести наказание. Господь разрушит их жертвенники и уничтожит их священные столбы.",
+   "question": "What will God do because their hearts are divided?",
+   "options": [
+    "Destroy their altars and sacred stones",
+    "Provide them with riches",
+    "Grant them victory over enemies",
+    "Give them a new king"
+   ],
+   "correct": "Destroy their altars and sacred stones",
+   "explain": "The text states that because their hearts are divided, the Lord will demolish their altars and destroy their sacred stones."
+  },
+  {
+   "id": "r3",
+   "ru": "Тогда они скажут, «У нас нет царя, потому что мы не почитали Господа».",
+   "question": "What reason will they give for their lack of a king?",
+   "options": [
+    "They did not fear Yahweh",
+    "They were too weak to have a king",
+    "They refused to follow any ruler",
+    "They lost their king in battle"
+   ],
+   "correct": "They did not fear Yahweh",
+   "explain": "They will say 'мы не почитали Господа' — we did not fear Yahweh."
+  },
+  {
+   "id": "r4",
+   "ru": "Жители Самарии будут бояться за идола Тельца Бет-Авена. Его народ и его жрецы, что радовались славе идола, будут скорбеть по нему, потому что слава отойдет от него.",
+   "question": "Why will the priests mourn for the calf idol?",
+   "options": [
+    "Because its glory will depart from it",
+    "Because they will find a better god",
+    "Because it will bring them wealth",
+    "Because the people will honor it more"
+   ],
+   "correct": "Because its glory will depart from it",
+   "explain": "The text says the priests will mourn 'потому что слава отойдет от него' — because the glory will depart from it."
+  },
+  {
+   "id": "r5",
+   "ru": "Ефрем, приученная целиться, привыкшая молотить зерно, итак я сам надену ермо на ее тучную шею.",
+   "question": "What will God do to Ephraim?",
+   "options": [
+    "Put a yoke on her well-fed neck",
+    "Grant her wealth and power",
+    "Make her a great nation",
+    "Give her victory in war"
+   ],
+   "correct": "Put a yoke on her well-fed neck",
+   "explain": "God says 'я сам надену ермо на ее тучную шею' — I will put a yoke on her well-fed neck."
+  },
+  {
+   "id": "r6",
+   "ru": "Сейте для себя праведность и пожнете плоды верной любви. Распашите свою целину, потому что настало время искать Господа.",
+   "question": "What does this exhortation call people to do?",
+   "options": [
+    "Sow righteousness and seek Yahweh",
+    "Build more temples and altars",
+    "Gather wealth and riches",
+    "Prepare for war against enemies"
+   ],
+   "correct": "Sow righteousness and seek Yahweh",
+   "explain": "The text calls people to 'Сейте для себя праведность' and to seek Yahweh — to sow righteousness and seek the Lord."
+  }
+ ]
 }

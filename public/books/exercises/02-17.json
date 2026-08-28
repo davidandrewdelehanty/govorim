@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Там не было ___, чтобы утолить жажду.",
-      "lemma": "вода",
-      "options": ["вода", "воды", "воде", "водой"],
-      "correct": "воды",
-      "case": "Родительный (Genitive)",
-      "translation": "There was no water there to quench their thirst.",
-      "explain": "After the negated existential не было the noun stands in the genitive."
-    },
-    {
-      "id": "c2",
-      "sentence": "Народ хотел утолить ___.",
-      "lemma": "жажда",
-      "options": ["жажда", "жажды", "жажде", "жажду"],
-      "correct": "жажду",
-      "case": "Винительный (Accusative)",
-      "translation": "The people wanted to quench their thirst.",
-      "explain": "The transitive verb утолить takes a direct object in the accusative."
-    },
-    {
-      "id": "c3",
-      "sentence": "Моисей встал на вершине холма с Божьим ___ в руках.",
-      "lemma": "посох",
-      "options": ["посох", "посоха", "посохом", "посохе"],
-      "correct": "посохом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Moses stood on the top of the hill with God's rod in his hands.",
-      "explain": "The preposition с in the sense of 'with' governs the instrumental case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я встану перед тобой на ___.",
-      "lemma": "скала",
-      "options": ["скала", "скалы", "скале", "скалой"],
-      "correct": "скале",
-      "case": "Предложный (Prepositional)",
-      "translation": "I will stand before you on the rock.",
-      "explain": "The preposition на indicating location takes the prepositional case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Что мне делать с этим ___?",
-      "lemma": "народ",
-      "options": ["народ", "народа", "народом", "народе"],
-      "correct": "народом",
-      "case": "Творительный (Instrumental)",
-      "translation": "What shall I do with this people?",
-      "explain": "The preposition с in the sense of 'with' governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Моисей взмолился ___.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господу",
-      "case": "Дательный (Dative)",
-      "translation": "Moses cried out to the Lord.",
-      "explain": "The verb взмолиться takes its object in the dative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Зачем ты вывел нас из ___?",
-      "lemma": "Египет",
-      "options": ["Египет", "Египта", "Египту", "Египте"],
-      "correct": "Египта",
-      "case": "Родительный (Genitive)",
-      "translation": "Why did you bring us out of Egypt?",
-      "explain": "The preposition из governs the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Рука была воздета к ___ Господа.",
-      "lemma": "престол",
-      "options": ["престол", "престола", "престолу", "престоле"],
-      "correct": "престолу",
-      "case": "Дательный (Dative)",
-      "translation": "A hand was lifted to the throne of the Lord.",
-      "explain": "The preposition к governs the dative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Они расположились лагерем в Рефидиме, но там не было воды, чтобы утолить жажду.",
-      "question": "Why did the people begin to complain at Rephidim?",
-      "options": ["There was no water to drink", "There was no food", "Enemies attacked them", "They had lost their way"],
-      "correct": "There was no water to drink",
-      "explain": "The text says at Rephidim 'не было воды, чтобы утолить жажду' (there was no water to quench their thirst)."
-    },
-    {
-      "id": "r2",
-      "ru": "Моисей взмолился Господу.",
-      "question": "What did Moses do when the people were ready to stone him?",
-      "options": ["He cried out to the Lord", "He fled into the desert", "He fought the people", "He gathered the elders"],
-      "correct": "He cried out to the Lord",
-      "explain": "The text states plainly 'Моисей взмолился Господу' (Moses cried out to the Lord)."
-    },
-    {
-      "id": "r3",
-      "ru": "Ударь по скале, из нее потечет вода, и народ сможет утолить жажду",
-      "question": "What did the Lord say would happen when Moses struck the rock?",
-      "options": ["Water would flow out of it", "Fire would come out", "The rock would split open", "The ground would shake"],
-      "correct": "Water would flow out of it",
-      "explain": "The Lord said 'из нее потечет вода' (water will flow out of it) when Moses struck the rock."
-    },
-    {
-      "id": "r4",
-      "ru": "Когда Моисей поднимал руки, израилетяне побеждали, но едва он опускал руки, побеждали амаликитяне, потому что руки у Моисея уставали.",
-      "question": "When did the Israelites prevail in the battle?",
-      "options": ["When Moses held up his hands", "When Moses lowered his hands", "When Joshua drew his sword", "When the sun set"],
-      "correct": "When Moses held up his hands",
-      "explain": "The text says 'Когда Моисей поднимал руки, израилетяне побеждали' (when Moses raised his hands, the Israelites prevailed)."
-    },
-    {
-      "id": "r5",
-      "ru": "Тогда Аарон и Хур взяли камень, положили под него, и он сел.",
-      "question": "How did Aaron and Hur help Moses when his hands grew tired?",
-      "options": ["They put a stone under him to sit on", "They carried him down the hill", "They took the rod from him", "They fought in his place"],
-      "correct": "They put a stone under him to sit on",
-      "explain": "The text says they 'взяли камень, положили под него, и он сел' (took a stone, put it under him, and he sat down)."
-    },
-    {
-      "id": "r6",
-      "ru": "Моисей воздвиг жертвенник и назвал его «Господь мое знамя», потому что он сказал, «Рука была воздета к престолу Господа.",
-      "question": "What did Moses name the altar he built?",
-      "options": ["The Lord is my Banner", "The Lord Provides", "The Rock of Horeb", "Massah and Meribah"],
-      "correct": "The Lord is my Banner",
-      "explain": "The text says Moses built an altar and 'назвал его «Господь мое знамя»' (called it 'the Lord is my Banner')."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Там не было ___, чтобы утолить жажду.",
+   "lemma": "вода",
+   "options": [
+    "вода",
+    "воды",
+    "воде",
+    "водой"
+   ],
+   "correct": "воды",
+   "case": "Родительный (Genitive)",
+   "explain": "After the negated existential не было the noun stands in the genitive."
+  },
+  {
+   "id": "c2",
+   "sentence": "Народ хотел утолить ___.",
+   "lemma": "жажда",
+   "options": [
+    "жажда",
+    "жажды",
+    "жажде",
+    "жажду"
+   ],
+   "correct": "жажду",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb утолить takes a direct object in the accusative."
+  },
+  {
+   "id": "c3",
+   "sentence": "Моисей встал на вершине холма с Божьим ___ в руках.",
+   "lemma": "посох",
+   "options": [
+    "посох",
+    "посоха",
+    "посохом",
+    "посохе"
+   ],
+   "correct": "посохом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition с in the sense of 'with' governs the instrumental case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Я встану перед тобой на ___.",
+   "lemma": "скала",
+   "options": [
+    "скала",
+    "скалы",
+    "скале",
+    "скалой"
+   ],
+   "correct": "скале",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition на indicating location takes the prepositional case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Что мне делать с этим ___?",
+   "lemma": "народ",
+   "options": [
+    "народ",
+    "народа",
+    "народом",
+    "народе"
+   ],
+   "correct": "народом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition с in the sense of 'with' governs the instrumental case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Моисей взмолился ___.",
+   "lemma": "Господь",
+   "options": [
+    "Господь",
+    "Господа",
+    "Господу",
+    "Господом"
+   ],
+   "correct": "Господу",
+   "case": "Дательный (Dative)",
+   "explain": "The verb взмолиться takes its object in the dative case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Зачем ты вывел нас из ___?",
+   "lemma": "Египет",
+   "options": [
+    "Египет",
+    "Египта",
+    "Египту",
+    "Египте"
+   ],
+   "correct": "Египта",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition из governs the genitive case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Рука была воздета к ___ Господа.",
+   "lemma": "престол",
+   "options": [
+    "престол",
+    "престола",
+    "престолу",
+    "престоле"
+   ],
+   "correct": "престолу",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition к governs the dative case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Они расположились лагерем в Рефидиме, но там не было воды, чтобы утолить жажду.",
+   "question": "Why did the people begin to complain at Rephidim?",
+   "options": [
+    "There was no water to drink",
+    "There was no food",
+    "Enemies attacked them",
+    "They had lost their way"
+   ],
+   "correct": "There was no water to drink",
+   "explain": "The text says at Rephidim 'не было воды, чтобы утолить жажду' (there was no water to quench their thirst)."
+  },
+  {
+   "id": "r2",
+   "ru": "Моисей взмолился Господу.",
+   "question": "What did Moses do when the people were ready to stone him?",
+   "options": [
+    "He cried out to the Lord",
+    "He fled into the desert",
+    "He fought the people",
+    "He gathered the elders"
+   ],
+   "correct": "He cried out to the Lord",
+   "explain": "The text states plainly 'Моисей взмолился Господу' (Moses cried out to the Lord)."
+  },
+  {
+   "id": "r3",
+   "ru": "Ударь по скале, из нее потечет вода, и народ сможет утолить жажду",
+   "question": "What did the Lord say would happen when Moses struck the rock?",
+   "options": [
+    "Water would flow out of it",
+    "Fire would come out",
+    "The rock would split open",
+    "The ground would shake"
+   ],
+   "correct": "Water would flow out of it",
+   "explain": "The Lord said 'из нее потечет вода' (water will flow out of it) when Moses struck the rock."
+  },
+  {
+   "id": "r4",
+   "ru": "Когда Моисей поднимал руки, израилетяне побеждали, но едва он опускал руки, побеждали амаликитяне, потому что руки у Моисея уставали.",
+   "question": "When did the Israelites prevail in the battle?",
+   "options": [
+    "When Moses held up his hands",
+    "When Moses lowered his hands",
+    "When Joshua drew his sword",
+    "When the sun set"
+   ],
+   "correct": "When Moses held up his hands",
+   "explain": "The text says 'Когда Моисей поднимал руки, израилетяне побеждали' (when Moses raised his hands, the Israelites prevailed)."
+  },
+  {
+   "id": "r5",
+   "ru": "Тогда Аарон и Хур взяли камень, положили под него, и он сел.",
+   "question": "How did Aaron and Hur help Moses when his hands grew tired?",
+   "options": [
+    "They put a stone under him to sit on",
+    "They carried him down the hill",
+    "They took the rod from him",
+    "They fought in his place"
+   ],
+   "correct": "They put a stone under him to sit on",
+   "explain": "The text says they 'взяли камень, положили под него, и он сел' (took a stone, put it under him, and he sat down)."
+  },
+  {
+   "id": "r6",
+   "ru": "Моисей воздвиг жертвенник и назвал его «Господь мое знамя», потому что он сказал, «Рука была воздета к престолу Господа.",
+   "question": "What did Moses name the altar he built?",
+   "options": [
+    "The Lord is my Banner",
+    "The Lord Provides",
+    "The Rock of Horeb",
+    "Massah and Meribah"
+   ],
+   "correct": "The Lord is my Banner",
+   "explain": "The text says Moses built an altar and 'назвал его «Господь мое знамя»' (called it 'the Lord is my Banner')."
+  }
+ ]
 }

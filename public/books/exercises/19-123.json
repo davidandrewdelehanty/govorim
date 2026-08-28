@@ -1,204 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Если бы Господь был не на нашей ___, да скажет Израиль.",
-      "lemma": "сторона",
-      "options": [
-        "сторона",
-        "стороне",
-        "стороны",
-        "сторону"
-      ],
-      "correct": "стороне",
-      "case": "Предложный (Prepositional)",
-      "translation": "If the Lord had not been on our side, let Israel say.",
-      "explain": "The preposition на (on) governs the prepositional case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Когда напали на нас ___, то они поглотили бы нас живьем.",
-      "lemma": "люди",
-      "options": [
-        "люди",
-        "людей",
-        "людьми",
-        "людям"
-      ],
-      "correct": "люди",
-      "case": "Именительный (Nominative)",
-      "translation": "When people attacked us, they would have swallowed us alive.",
-      "explain": "Люди is the grammatical subject of напали (attacked), so it stands in the nominative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Когда их ___ разгорелся на нас.",
-      "lemma": "гнев",
-      "options": [
-        "гнев",
-        "гнева",
-        "гневу",
-        "гневом"
-      ],
-      "correct": "гнев",
-      "case": "Именительный (Nominative)",
-      "translation": "When their wrath was kindled against us.",
-      "explain": "Гнев is the subject of the verb разгорелся (was kindled), requiring nominative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Тогда потопили бы нас ___, поток пронесся бы над нами.",
-      "lemma": "вода",
-      "options": [
-        "вода",
-        "воды",
-        "водой",
-        "воду"
-      ],
-      "correct": "воды",
-      "case": "Именительный (Nominative)",
-      "translation": "Then the waters would have overwhelmed us, the stream would have swept over us.",
-      "explain": "Воды is the grammatical subject of потопили бы (would have overwhelmed), requiring nominative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Поток пронесся бы над ___, бурные воды прошли бы над душой нашей.",
-      "lemma": "мы",
-      "options": [
-        "нами",
-        "нас",
-        "нам",
-        "нашей"
-      ],
-      "correct": "нами",
-      "case": "Творительный (Instrumental)",
-      "translation": "The stream would have swept over us, raging waters would have gone over us.",
-      "explain": "The preposition над (over) governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Благословен Господь, который не отдал нас добыче в их ___.",
-      "lemma": "зуб",
-      "options": [
-        "зуб",
-        "зубы",
-        "зубам",
-        "зубах"
-      ],
-      "correct": "зубы",
-      "case": "Винительный (Accusative)",
-      "translation": "Blessed is the Lord, who has not given us as prey to their teeth.",
-      "explain": "The preposition в with accusative indicates motion into or placement within; зубы is the object being targeted."
-    },
-    {
-      "id": "c7",
-      "sentence": "Наша душа избавилась, как ___ из сети ловца.",
-      "lemma": "птица",
-      "options": [
-        "птица",
-        "птицы",
-        "птице",
-        "птицей"
-      ],
-      "correct": "птица",
-      "case": "Именительный (Nominative)",
-      "translation": "Our soul has escaped like a bird out of the fowler's snare.",
-      "explain": "Птица is the subject of the implied comparison, standing in nominative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Помощь наша в имени ___, сотворившего небо и землю.",
-      "lemma": "Господь",
-      "options": [
-        "Господь",
-        "Господа",
-        "Господу",
-        "Господом"
-      ],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "Our help is in the name of the Lord, who made heaven and earth.",
-      "explain": "The preposition в (in) with genitive expresses the notion of location within a thing's sphere; the possessive genitive follows."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Если бы Господь был не на нашей стороне, да скажет Израиль.",
-      "question": "What would not have happened if the Lord had not been on Israel's side?",
-      "options": [
-        "They would not have been swallowed alive",
-        "They would have built the Temple",
-        "They would have become wise",
-        "They would have lived in peace"
-      ],
-      "correct": "They would not have been swallowed alive",
-      "explain": "The text says if the Lord had not been on their side, 'they would have swallowed us alive.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Тогда потопили бы нас воды, поток пронесся бы над нами.",
-      "question": "What metaphor is used to describe the threat they would have faced?",
-      "options": [
-        "Overwhelming waters and a rushing stream",
-        "A raging fire",
-        "A terrible darkness",
-        "Wild beasts"
-      ],
-      "correct": "Overwhelming waters and a rushing stream",
-      "explain": "The text describes the danger using the metaphor of waters and a stream overwhelming them."
-    },
-    {
-      "id": "r3",
-      "ru": "Благословен Господь, который не отдал нас добыче в их зубы.",
-      "question": "What does the Psalmist say God did not do?",
-      "options": [
-        "Give them as prey to their enemies' teeth",
-        "Take their land",
-        "Send them into slavery",
-        "Forget their prayers"
-      ],
-      "correct": "Give them as prey to their enemies' teeth",
-      "explain": "The blessing is specifically that God 'did not give us as prey to their teeth.'"
-    },
-    {
-      "id": "r4",
-      "ru": "Наша душа избавилась, как птица из сети ловца.",
-      "question": "To what is the soul's deliverance compared?",
-      "options": [
-        "A bird escaping from a snare",
-        "Water flowing from a spring",
-        "Light breaking through darkness",
-        "A strong fortress"
-      ],
-      "correct": "A bird escaping from a snare",
-      "explain": "The text uses the simile 'как птица из сети ловца' — like a bird from the snare of a fowler."
-    },
-    {
-      "id": "r5",
-      "ru": "Сеть порвана, и мы избавились.",
-      "question": "What is the result of the broken net?",
-      "options": [
-        "They are delivered/freed",
-        "They build a new home",
-        "They gain riches",
-        "They become powerful"
-      ],
-      "correct": "They are delivered/freed",
-      "explain": "After stating the net is broken, the text immediately says 'we have been delivered/escaped.'"
-    },
-    {
-      "id": "r6",
-      "ru": "Помощь наша в имени Господа, сотворившего небо и землю.",
-      "question": "Where is the Psalmist's help found?",
-      "options": [
-        "In the name of the Lord who made heaven and earth",
-        "In their own strength",
-        "In the Temple walls",
-        "In the counsel of the wise"
-      ],
-      "correct": "In the name of the Lord who made heaven and earth",
-      "explain": "The text explicitly states 'Our help is in the name of the Lord, who made heaven and earth.'"
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Если бы Господь был не на нашей ___, да скажет Израиль.",
+   "lemma": "сторона",
+   "options": [
+    "сторона",
+    "стороне",
+    "стороны",
+    "сторону"
+   ],
+   "correct": "стороне",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition на (on) governs the prepositional case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Когда напали на нас ___, то они поглотили бы нас живьем.",
+   "lemma": "люди",
+   "options": [
+    "люди",
+    "людей",
+    "людьми",
+    "людям"
+   ],
+   "correct": "люди",
+   "case": "Именительный (Nominative)",
+   "explain": "Люди is the grammatical subject of напали (attacked), so it stands in the nominative case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Когда их ___ разгорелся на нас.",
+   "lemma": "гнев",
+   "options": [
+    "гнев",
+    "гнева",
+    "гневу",
+    "гневом"
+   ],
+   "correct": "гнев",
+   "case": "Именительный (Nominative)",
+   "explain": "Гнев is the subject of the verb разгорелся (was kindled), requiring nominative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Тогда потопили бы нас ___, поток пронесся бы над нами.",
+   "lemma": "вода",
+   "options": [
+    "вода",
+    "воды",
+    "водой",
+    "воду"
+   ],
+   "correct": "воды",
+   "case": "Именительный (Nominative)",
+   "explain": "Воды is the grammatical subject of потопили бы (would have overwhelmed), requiring nominative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Поток пронесся бы над ___, бурные воды прошли бы над душой нашей.",
+   "lemma": "мы",
+   "options": [
+    "нами",
+    "нас",
+    "нам",
+    "нашей"
+   ],
+   "correct": "нами",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition над (over) governs the instrumental case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Благословен Господь, который не отдал нас добыче в их ___.",
+   "lemma": "зуб",
+   "options": [
+    "зуб",
+    "зубы",
+    "зубам",
+    "зубах"
+   ],
+   "correct": "зубы",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition в with accusative indicates motion into or placement within; зубы is the object being targeted."
+  },
+  {
+   "id": "c7",
+   "sentence": "Наша душа избавилась, как ___ из сети ловца.",
+   "lemma": "птица",
+   "options": [
+    "птица",
+    "птицы",
+    "птице",
+    "птицей"
+   ],
+   "correct": "птица",
+   "case": "Именительный (Nominative)",
+   "explain": "Птица is the subject of the implied comparison, standing in nominative case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Помощь наша в имени ___, сотворившего небо и землю.",
+   "lemma": "Господь",
+   "options": [
+    "Господь",
+    "Господа",
+    "Господу",
+    "Господом"
+   ],
+   "correct": "Господа",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition в (in) with genitive expresses the notion of location within a thing's sphere; the possessive genitive follows."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Если бы Господь был не на нашей стороне, да скажет Израиль.",
+   "question": "What would not have happened if the Lord had not been on Israel's side?",
+   "options": [
+    "They would not have been swallowed alive",
+    "They would have built the Temple",
+    "They would have become wise",
+    "They would have lived in peace"
+   ],
+   "correct": "They would not have been swallowed alive",
+   "explain": "The text says if the Lord had not been on their side, 'they would have swallowed us alive.'"
+  },
+  {
+   "id": "r2",
+   "ru": "Тогда потопили бы нас воды, поток пронесся бы над нами.",
+   "question": "What metaphor is used to describe the threat they would have faced?",
+   "options": [
+    "Overwhelming waters and a rushing stream",
+    "A raging fire",
+    "A terrible darkness",
+    "Wild beasts"
+   ],
+   "correct": "Overwhelming waters and a rushing stream",
+   "explain": "The text describes the danger using the metaphor of waters and a stream overwhelming them."
+  },
+  {
+   "id": "r3",
+   "ru": "Благословен Господь, который не отдал нас добыче в их зубы.",
+   "question": "What does the Psalmist say God did not do?",
+   "options": [
+    "Give them as prey to their enemies' teeth",
+    "Take their land",
+    "Send them into slavery",
+    "Forget their prayers"
+   ],
+   "correct": "Give them as prey to their enemies' teeth",
+   "explain": "The blessing is specifically that God 'did not give us as prey to their teeth.'"
+  },
+  {
+   "id": "r4",
+   "ru": "Наша душа избавилась, как птица из сети ловца.",
+   "question": "To what is the soul's deliverance compared?",
+   "options": [
+    "A bird escaping from a snare",
+    "Water flowing from a spring",
+    "Light breaking through darkness",
+    "A strong fortress"
+   ],
+   "correct": "A bird escaping from a snare",
+   "explain": "The text uses the simile 'как птица из сети ловца' — like a bird from the snare of a fowler."
+  },
+  {
+   "id": "r5",
+   "ru": "Сеть порвана, и мы избавились.",
+   "question": "What is the result of the broken net?",
+   "options": [
+    "They are delivered/freed",
+    "They build a new home",
+    "They gain riches",
+    "They become powerful"
+   ],
+   "correct": "They are delivered/freed",
+   "explain": "After stating the net is broken, the text immediately says 'we have been delivered/escaped.'"
+  },
+  {
+   "id": "r6",
+   "ru": "Помощь наша в имени Господа, сотворившего небо и землю.",
+   "question": "Where is the Psalmist's help found?",
+   "options": [
+    "In the name of the Lord who made heaven and earth",
+    "In their own strength",
+    "In the Temple walls",
+    "In the counsel of the wise"
+   ],
+   "correct": "In the name of the Lord who made heaven and earth",
+   "explain": "The text explicitly states 'Our help is in the name of the Lord, who made heaven and earth.'"
+  }
+ ]
 }

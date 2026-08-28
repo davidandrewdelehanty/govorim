@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Я поднимаю губительный вихрь на ___ и жителей Лев Камая.",
-      "lemma": "Вавилон",
-      "options": ["Вавилон", "Вавилона", "Вавилону", "Вавилоне"],
-      "correct": "Вавилон",
-      "case": "Винительный (Accusative)",
-      "translation": "I raise a destroying wind against Babylon and those who dwell in Lebkamai.",
-      "explain": "Вавилон is the direct object of the transitive verb поднимаю (I raise), taking the accusative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Я пошлю в ___ иноземцев, они развеют его.",
-      "lemma": "Вавилон",
-      "options": ["Вавилон", "Вавилона", "Вавилону", "Вавилоне"],
-      "correct": "Вавилон",
-      "case": "Винительный (Accusative)",
-      "translation": "I will send strangers to Babylon; they will winnow it.",
-      "explain": "The preposition в (to/into) with the accusative case indicates motion toward a destination."
-    },
-    {
-      "id": "c3",
-      "sentence": "Спасайтесь бегством, чтобы не погибнуть за ___ его.",
-      "lemma": "грех",
-      "options": ["грех", "греха", "греху", "грехом"],
-      "correct": "греха",
-      "case": "Родительный (Genitive)",
-      "translation": "Flee to save yourselves, and do not perish because of his sin.",
-      "explain": "The preposition за (because of) with genitive case indicates the reason or cause."
-    },
-    {
-      "id": "c4",
-      "sentence": "Вавилон был золотым кубком в руке ___.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господа",
-      "case": "Родительный (Genitive)",
-      "translation": "Babylon was a golden cup in the hand of the Lord.",
-      "explain": "The genitive case с 'руке' shows possession: 'in the hand of the Lord.'"
-    },
-    {
-      "id": "c5",
-      "sentence": "Народы пили его ___ и вот они безумствуют.",
-      "lemma": "вино",
-      "options": ["вино", "вина", "вину", "вином"],
-      "correct": "вино",
-      "case": "Винительный (Accusative)",
-      "translation": "The nations drank of his wine; therefore the nations have gone mad.",
-      "explain": "Вино is the direct object of the verb пили (they drank), taking the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Он простер свою правую ___ на врага.",
-      "lemma": "рука",
-      "options": ["рука", "руки", "руку", "рукой"],
-      "correct": "руку",
-      "case": "Винительный (Accusative)",
-      "translation": "He has extended his right hand against the enemy.",
-      "explain": "Руку is the direct object of the verb простер (extended), taking the accusative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Он поднимает тучи с края ___.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "землю", "землёй"],
-      "correct": "земли",
-      "case": "Родительный (Genitive)",
-      "translation": "He causes the vapors to ascend from the ends of the earth.",
-      "explain": "The phrase 'край земли' (edge of the earth) uses the genitive case to show possession."
-    },
-    {
-      "id": "c8",
-      "sentence": "Когда он возвышает голос, шумят небесные ___.",
-      "lemma": "вода",
-      "options": ["вода", "воды", "воде", "водой"],
-      "correct": "воды",
-      "case": "Именительный (Nominative)",
-      "translation": "When he utters his voice, there is a roar of waters in the heavens.",
-      "explain": "Воды is the subject of the verb шумят (roar), taking the nominative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Так говорит Господь, я поднимаю губительный вихрь на Вавилон и жителей Лев Камая.",
-      "question": "What does the Lord say He will raise against Babylon?",
-      "options": ["A destroying wind", "An army", "Judgment", "Darkness"],
-      "correct": "A destroying wind",
-      "explain": "The text states: Я поднимаю губительный вихрь (I raise a destroying wind)."
-    },
-    {
-      "id": "r2",
-      "ru": "Вавилон был золотым кубком в руке Господа, он напоил всю землю.",
-      "question": "What comparison does the text make about Babylon?",
-      "options": ["A golden cup in God's hand", "A strong fortress", "A great city", "A powerful army"],
-      "correct": "A golden cup in God's hand",
-      "explain": "The text says: Вавилон был золотым кубком в руке Господа (Babylon was a golden cup in the Lord's hand)."
-    },
-    {
-      "id": "r3",
-      "ru": "Ведь Израиль с Иудеей не покинуты их Богом, Господом сил.",
-      "question": "What is said about Israel and Judah in relation to God?",
-      "options": ["They are not forsaken by their God", "They have been punished", "They are far from God", "God has hidden from them"],
-      "correct": "They are not forsaken by their God",
-      "explain": "The verse states: Израиль с Иудеей не покинуты их Богом (Israel and Judah are not forsaken by their God)."
-    },
-    {
-      "id": "r4",
-      "ru": "Вавилон внезапно падет и погибнет, рыдайте о нем.",
-      "question": "How will Babylon's fall occur?",
-      "options": ["Suddenly", "Gradually", "After a long war", "In darkness"],
-      "correct": "Suddenly",
-      "explain": "The text says: Вавилон внезапно падет и погибнет (Babylon will suddenly fall and perish)."
-    },
-    {
-      "id": "r5",
-      "ru": "Я создал землю своим могуществом, утвердил мир своей мудростью.",
-      "question": "What does the Lord say He created with His power?",
-      "options": ["The earth", "Heaven", "All nations", "All people"],
-      "correct": "The earth",
-      "explain": "The verse states: Я создал землю своим могуществом (I created the earth by My power)."
-    },
-    {
-      "id": "r6",
-      "ru": "Но он, удел Иакова, не таков, как они, потому что он творец всего.",
-      "question": "How is Jacob's portion different from idols?",
-      "options": ["He is the Creator of all things", "He is more powerful", "He never fails", "He provides wealth"],
-      "correct": "He is the Creator of all things",
-      "explain": "The text says: он творец всего (he is the Creator of all)."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Я поднимаю губительный вихрь на ___ и жителей Лев Камая.",
+   "lemma": "Вавилон",
+   "options": [
+    "Вавилон",
+    "Вавилона",
+    "Вавилону",
+    "Вавилоне"
+   ],
+   "correct": "Вавилон",
+   "case": "Винительный (Accusative)",
+   "explain": "Вавилон is the direct object of the transitive verb поднимаю (I raise), taking the accusative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Я пошлю в ___ иноземцев, они развеют его.",
+   "lemma": "Вавилон",
+   "options": [
+    "Вавилон",
+    "Вавилона",
+    "Вавилону",
+    "Вавилоне"
+   ],
+   "correct": "Вавилон",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition в (to/into) with the accusative case indicates motion toward a destination."
+  },
+  {
+   "id": "c3",
+   "sentence": "Спасайтесь бегством, чтобы не погибнуть за ___ его.",
+   "lemma": "грех",
+   "options": [
+    "грех",
+    "греха",
+    "греху",
+    "грехом"
+   ],
+   "correct": "греха",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition за (because of) with genitive case indicates the reason or cause."
+  },
+  {
+   "id": "c4",
+   "sentence": "Вавилон был золотым кубком в руке ___.",
+   "lemma": "Господь",
+   "options": [
+    "Господь",
+    "Господа",
+    "Господу",
+    "Господом"
+   ],
+   "correct": "Господа",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive case с 'руке' shows possession: 'in the hand of the Lord.'"
+  },
+  {
+   "id": "c5",
+   "sentence": "Народы пили его ___ и вот они безумствуют.",
+   "lemma": "вино",
+   "options": [
+    "вино",
+    "вина",
+    "вину",
+    "вином"
+   ],
+   "correct": "вино",
+   "case": "Винительный (Accusative)",
+   "explain": "Вино is the direct object of the verb пили (they drank), taking the accusative case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Он простер свою правую ___ на врага.",
+   "lemma": "рука",
+   "options": [
+    "рука",
+    "руки",
+    "руку",
+    "рукой"
+   ],
+   "correct": "руку",
+   "case": "Винительный (Accusative)",
+   "explain": "Руку is the direct object of the verb простер (extended), taking the accusative case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Он поднимает тучи с края ___.",
+   "lemma": "земля",
+   "options": [
+    "земля",
+    "земли",
+    "землю",
+    "землёй"
+   ],
+   "correct": "земли",
+   "case": "Родительный (Genitive)",
+   "explain": "The phrase 'край земли' (edge of the earth) uses the genitive case to show possession."
+  },
+  {
+   "id": "c8",
+   "sentence": "Когда он возвышает голос, шумят небесные ___.",
+   "lemma": "вода",
+   "options": [
+    "вода",
+    "воды",
+    "воде",
+    "водой"
+   ],
+   "correct": "воды",
+   "case": "Именительный (Nominative)",
+   "explain": "Воды is the subject of the verb шумят (roar), taking the nominative case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Так говорит Господь, я поднимаю губительный вихрь на Вавилон и жителей Лев Камая.",
+   "question": "What does the Lord say He will raise against Babylon?",
+   "options": [
+    "A destroying wind",
+    "An army",
+    "Judgment",
+    "Darkness"
+   ],
+   "correct": "A destroying wind",
+   "explain": "The text states: Я поднимаю губительный вихрь (I raise a destroying wind)."
+  },
+  {
+   "id": "r2",
+   "ru": "Вавилон был золотым кубком в руке Господа, он напоил всю землю.",
+   "question": "What comparison does the text make about Babylon?",
+   "options": [
+    "A golden cup in God's hand",
+    "A strong fortress",
+    "A great city",
+    "A powerful army"
+   ],
+   "correct": "A golden cup in God's hand",
+   "explain": "The text says: Вавилон был золотым кубком в руке Господа (Babylon was a golden cup in the Lord's hand)."
+  },
+  {
+   "id": "r3",
+   "ru": "Ведь Израиль с Иудеей не покинуты их Богом, Господом сил.",
+   "question": "What is said about Israel and Judah in relation to God?",
+   "options": [
+    "They are not forsaken by their God",
+    "They have been punished",
+    "They are far from God",
+    "God has hidden from them"
+   ],
+   "correct": "They are not forsaken by their God",
+   "explain": "The verse states: Израиль с Иудеей не покинуты их Богом (Israel and Judah are not forsaken by their God)."
+  },
+  {
+   "id": "r4",
+   "ru": "Вавилон внезапно падет и погибнет, рыдайте о нем.",
+   "question": "How will Babylon's fall occur?",
+   "options": [
+    "Suddenly",
+    "Gradually",
+    "After a long war",
+    "In darkness"
+   ],
+   "correct": "Suddenly",
+   "explain": "The text says: Вавилон внезапно падет и погибнет (Babylon will suddenly fall and perish)."
+  },
+  {
+   "id": "r5",
+   "ru": "Я создал землю своим могуществом, утвердил мир своей мудростью.",
+   "question": "What does the Lord say He created with His power?",
+   "options": [
+    "The earth",
+    "Heaven",
+    "All nations",
+    "All people"
+   ],
+   "correct": "The earth",
+   "explain": "The verse states: Я создал землю своим могуществом (I created the earth by My power)."
+  },
+  {
+   "id": "r6",
+   "ru": "Но он, удел Иакова, не таков, как они, потому что он творец всего.",
+   "question": "How is Jacob's portion different from idols?",
+   "options": [
+    "He is the Creator of all things",
+    "He is more powerful",
+    "He never fails",
+    "He provides wealth"
+   ],
+   "correct": "He is the Creator of all things",
+   "explain": "The text says: он творец всего (he is the Creator of all)."
+  }
+ ]
 }

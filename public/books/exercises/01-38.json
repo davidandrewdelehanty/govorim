@@ -1,138 +1,207 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ в то время оставил братьев и поселился у одного человека из Эдулама.",
-      "lemma": "Иуда",
-      "options": ["Иуда", "Иуды", "Иуде", "Иудой"],
-      "correct": "Иуда",
-      "case": "Именительный (Nominative)",
-      "translation": "At that time Judah left his brothers and settled near a man from Adullam.",
-      "explain": "Иуда is the subject of оставил, so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Она села у ___ в Инаим, который на дороге в Тимну.",
-      "lemma": "вход",
-      "options": ["вход", "входа", "входу", "входом"],
-      "correct": "входа",
-      "case": "Родительный (Genitive)",
-      "translation": "She sat at the entrance to Enaim, which is on the road to Timnah.",
-      "explain": "The preposition у governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Иуда сказал своей ___ Фамаре, «Живи вдовой в доме у твоего отца».",
-      "lemma": "невестка",
-      "options": ["невестка", "невестки", "невестке", "невестку"],
-      "correct": "невестке",
-      "case": "Дательный (Dative)",
-      "translation": "Judah said to his daughter-in-law Tamar, 'Live as a widow in your father's house.'",
-      "explain": "The verb сказать takes the person addressed (to whom) in the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Он изливал семя на ___, чтобы не произвести потомство для брата.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землю"],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "He spilled his seed on the ground, so as not to produce offspring for his brother.",
-      "explain": "The preposition на indicating direction (onto) takes the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Ты должен лечь с ___ брата и исполнить долг.",
-      "lemma": "жена",
-      "options": ["жена", "жены", "жене", "женой"],
-      "correct": "женой",
-      "case": "Творительный (Instrumental)",
-      "translation": "You must go in to your brother's wife and perform the duty.",
-      "explain": "The preposition с meaning 'together with' governs the instrumental case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Живи вдовой в ___ у твоего отца, пока не вырастет мой сын Шелла.",
-      "lemma": "дом",
-      "options": ["дом", "дома", "дому", "доме"],
-      "correct": "доме",
-      "case": "Предложный (Prepositional)",
-      "translation": "Live as a widow in your father's house until my son Shelah grows up.",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Иуда в то время оставил братьев и поселился у одного человека из Эдулама по имени Хира.",
-      "question": "What did Judah do at that time regarding his brothers?",
-      "options": ["He left his brothers and settled near a man named Hirah", "He killed his brothers", "He sent his brothers to Egypt", "He married his brothers' wives"],
-      "correct": "He left his brothers and settled near a man named Hirah",
-      "explain": "The text says Judah 'оставил братьев и поселился у одного человека... по имени Хира' (left his brothers and settled near a man named Hirah)."
-    },
-    {
-      "id": "r2",
-      "ru": "Иуда взял для своего первенца Ира жену по имени Фомарь.",
-      "question": "Who did Judah take as a wife for his firstborn son Er?",
-      "options": ["Tamar", "Shua", "Zilpah", "Asenath"],
-      "correct": "Tamar",
-      "explain": "The text says Judah took 'жену по имени Фомарь' (a wife named Tamar) for Er."
-    },
-    {
-      "id": "r3",
-      "ru": "Но Ир, Иудин первенец, был грешен в глазах Господа, и Господь предал его смерти.",
-      "question": "What happened to Er, Judah's firstborn?",
-      "options": ["The Lord put him to death for his wickedness", "He moved away to Egypt", "He married a second wife", "He became a shepherd"],
-      "correct": "The Lord put him to death for his wickedness",
-      "explain": "The text says Er 'был грешен в глазах Господа, и Господь предал его смерти' (was wicked in the Lord's sight, and the Lord put him to death)."
-    },
-    {
-      "id": "r4",
-      "ru": "Тогда Иуда сказал своей невестке Фамаре, «Живи вдовой в доме у твоего отца, пока не вырастет мой сын Шелла».",
-      "question": "What did Judah tell Tamar to do after Onan's death?",
-      "options": ["Live as a widow in her father's house until Shelah grew up", "Marry Hirah instead", "Leave the land immediately", "Move in with Judah"],
-      "correct": "Live as a widow in her father's house until Shelah grew up",
-      "explain": "Judah tells Tamar 'Живи вдовой в доме у твоего отца, пока не вырастет мой сын Шелла' (live as a widow in your father's house until my son Shelah grows up)."
-    },
-    {
-      "id": "r5",
-      "ru": "Она сняла вдовьи одежды, покрылась накидкой, чтобы ее не узнали, и села у входа в Инаим",
-      "question": "What did Tamar do to disguise herself before meeting Judah?",
-      "options": ["She took off her widow's clothes and covered herself with a veil", "She dressed as a soldier", "She dyed her hair", "She wore Judah's own clothing"],
-      "correct": "She took off her widow's clothes and covered herself with a veil",
-      "explain": "The text says she 'сняла вдовьи одежды, покрылась накидкой, чтобы ее не узнали' (took off her widow's clothes and covered herself with a veil so she would not be recognized)."
-    },
-    {
-      "id": "r6",
-      "ru": "Она ответила, «Твою печать на шнурке и посох, который у тебя в руке».",
-      "question": "What pledge did Tamar ask Judah for?",
-      "options": ["His seal, cord, and staff", "His flock of sheep", "His silver and gold", "His signet ring only"],
-      "correct": "His seal, cord, and staff",
-      "explain": "Tamar answers 'Твою печать на шнурке и посох' (your seal on the cord, and your staff)."
-    },
-    {
-      "id": "r7",
-      "ru": "Иуда сказал, «Выведите ее, и пусть она будет сожжена».",
-      "question": "What did Judah initially order be done to Tamar when he heard she was pregnant?",
-      "options": ["That she be brought out and burned", "That she be sent away quietly", "That she be forgiven", "That she marry Shelah immediately"],
-      "correct": "That she be brought out and burned",
-      "explain": "Judah says 'Выведите ее, и пусть она будет сожжена' (bring her out, and let her be burned)."
-    },
-    {
-      "id": "r8",
-      "ru": "Иуда узнал их и сказал, «Она правее, чем я, потому что я не отдал ее за моего сына Шеллу, и он больше не ложился с ней».",
-      "question": "What did Judah admit when he recognized the seal, cord, and staff?",
-      "options": ["That Tamar was more righteous than he was", "That he had been robbed", "That Shelah had lied to him", "That Hirah was responsible"],
-      "correct": "That Tamar was more righteous than he was",
-      "explain": "Judah says 'Она правее, чем я' (she is more righteous than I)."
-    },
-    {
-      "id": "r9",
-      "ru": "Затем вышел и тот, у которого на запястье была алая нить, и ему дали имя Зирах.",
-      "question": "What was the second twin, who had the scarlet thread on his wrist, named?",
-      "options": ["Zerah", "Perez", "Shelah", "Onan"],
-      "correct": "Zerah",
-      "explain": "The text says the one with the scarlet thread on his wrist 'ему дали имя Зирах' (was given the name Zerah)."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "___ в то время оставил братьев и поселился у одного человека из Эдулама.",
+   "lemma": "Иуда",
+   "options": [
+    "Иуда",
+    "Иуды",
+    "Иуде",
+    "Иудой"
+   ],
+   "correct": "Иуда",
+   "case": "Именительный (Nominative)",
+   "explain": "Иуда is the subject of оставил, so it stands in the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Она села у ___ в Инаим, который на дороге в Тимну.",
+   "lemma": "вход",
+   "options": [
+    "вход",
+    "входа",
+    "входу",
+    "входом"
+   ],
+   "correct": "входа",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition у governs the genitive case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Иуда сказал своей ___ Фамаре, «Живи вдовой в доме у твоего отца».",
+   "lemma": "невестка",
+   "options": [
+    "невестка",
+    "невестки",
+    "невестке",
+    "невестку"
+   ],
+   "correct": "невестке",
+   "case": "Дательный (Dative)",
+   "explain": "The verb сказать takes the person addressed (to whom) in the dative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Он изливал семя на ___, чтобы не произвести потомство для брата.",
+   "lemma": "земля",
+   "options": [
+    "земля",
+    "земли",
+    "земле",
+    "землю"
+   ],
+   "correct": "землю",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition на indicating direction (onto) takes the accusative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Ты должен лечь с ___ брата и исполнить долг.",
+   "lemma": "жена",
+   "options": [
+    "жена",
+    "жены",
+    "жене",
+    "женой"
+   ],
+   "correct": "женой",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition с meaning 'together with' governs the instrumental case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Живи вдовой в ___ у твоего отца, пока не вырастет мой сын Шелла.",
+   "lemma": "дом",
+   "options": [
+    "дом",
+    "дома",
+    "дому",
+    "доме"
+   ],
+   "correct": "доме",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в indicating location takes the prepositional case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Иуда в то время оставил братьев и поселился у одного человека из Эдулама по имени Хира.",
+   "question": "What did Judah do at that time regarding his brothers?",
+   "options": [
+    "He left his brothers and settled near a man named Hirah",
+    "He killed his brothers",
+    "He sent his brothers to Egypt",
+    "He married his brothers' wives"
+   ],
+   "correct": "He left his brothers and settled near a man named Hirah",
+   "explain": "The text says Judah 'оставил братьев и поселился у одного человека... по имени Хира' (left his brothers and settled near a man named Hirah)."
+  },
+  {
+   "id": "r2",
+   "ru": "Иуда взял для своего первенца Ира жену по имени Фомарь.",
+   "question": "Who did Judah take as a wife for his firstborn son Er?",
+   "options": [
+    "Tamar",
+    "Shua",
+    "Zilpah",
+    "Asenath"
+   ],
+   "correct": "Tamar",
+   "explain": "The text says Judah took 'жену по имени Фомарь' (a wife named Tamar) for Er."
+  },
+  {
+   "id": "r3",
+   "ru": "Но Ир, Иудин первенец, был грешен в глазах Господа, и Господь предал его смерти.",
+   "question": "What happened to Er, Judah's firstborn?",
+   "options": [
+    "The Lord put him to death for his wickedness",
+    "He moved away to Egypt",
+    "He married a second wife",
+    "He became a shepherd"
+   ],
+   "correct": "The Lord put him to death for his wickedness",
+   "explain": "The text says Er 'был грешен в глазах Господа, и Господь предал его смерти' (was wicked in the Lord's sight, and the Lord put him to death)."
+  },
+  {
+   "id": "r4",
+   "ru": "Тогда Иуда сказал своей невестке Фамаре, «Живи вдовой в доме у твоего отца, пока не вырастет мой сын Шелла».",
+   "question": "What did Judah tell Tamar to do after Onan's death?",
+   "options": [
+    "Live as a widow in her father's house until Shelah grew up",
+    "Marry Hirah instead",
+    "Leave the land immediately",
+    "Move in with Judah"
+   ],
+   "correct": "Live as a widow in her father's house until Shelah grew up",
+   "explain": "Judah tells Tamar 'Живи вдовой в доме у твоего отца, пока не вырастет мой сын Шелла' (live as a widow in your father's house until my son Shelah grows up)."
+  },
+  {
+   "id": "r5",
+   "ru": "Она сняла вдовьи одежды, покрылась накидкой, чтобы ее не узнали, и села у входа в Инаим",
+   "question": "What did Tamar do to disguise herself before meeting Judah?",
+   "options": [
+    "She took off her widow's clothes and covered herself with a veil",
+    "She dressed as a soldier",
+    "She dyed her hair",
+    "She wore Judah's own clothing"
+   ],
+   "correct": "She took off her widow's clothes and covered herself with a veil",
+   "explain": "The text says she 'сняла вдовьи одежды, покрылась накидкой, чтобы ее не узнали' (took off her widow's clothes and covered herself with a veil so she would not be recognized)."
+  },
+  {
+   "id": "r6",
+   "ru": "Она ответила, «Твою печать на шнурке и посох, который у тебя в руке».",
+   "question": "What pledge did Tamar ask Judah for?",
+   "options": [
+    "His seal, cord, and staff",
+    "His flock of sheep",
+    "His silver and gold",
+    "His signet ring only"
+   ],
+   "correct": "His seal, cord, and staff",
+   "explain": "Tamar answers 'Твою печать на шнурке и посох' (your seal on the cord, and your staff)."
+  },
+  {
+   "id": "r7",
+   "ru": "Иуда сказал, «Выведите ее, и пусть она будет сожжена».",
+   "question": "What did Judah initially order be done to Tamar when he heard she was pregnant?",
+   "options": [
+    "That she be brought out and burned",
+    "That she be sent away quietly",
+    "That she be forgiven",
+    "That she marry Shelah immediately"
+   ],
+   "correct": "That she be brought out and burned",
+   "explain": "Judah says 'Выведите ее, и пусть она будет сожжена' (bring her out, and let her be burned)."
+  },
+  {
+   "id": "r8",
+   "ru": "Иуда узнал их и сказал, «Она правее, чем я, потому что я не отдал ее за моего сына Шеллу, и он больше не ложился с ней».",
+   "question": "What did Judah admit when he recognized the seal, cord, and staff?",
+   "options": [
+    "That Tamar was more righteous than he was",
+    "That he had been robbed",
+    "That Shelah had lied to him",
+    "That Hirah was responsible"
+   ],
+   "correct": "That Tamar was more righteous than he was",
+   "explain": "Judah says 'Она правее, чем я' (she is more righteous than I)."
+  },
+  {
+   "id": "r9",
+   "ru": "Затем вышел и тот, у которого на запястье была алая нить, и ему дали имя Зирах.",
+   "question": "What was the second twin, who had the scarlet thread on his wrist, named?",
+   "options": [
+    "Zerah",
+    "Perez",
+    "Shelah",
+    "Onan"
+   ],
+   "correct": "Zerah",
+   "explain": "The text says the one with the scarlet thread on his wrist 'ему дали имя Зирах' (was given the name Zerah)."
+  }
+ ]
 }

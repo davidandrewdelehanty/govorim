@@ -1,1 +1,117 @@
-{"cases": [{"id": "c1", "sentence": "Действие происходит в ___ Л. А. Раневской.", "lemma": "имение", "options": ["имение", "имения", "имении", "имением"], "correct": "имении", "case": "Предложный (Prepositional)", "translation": "The action takes place on L. A. Ranevskaya's estate.", "explain": "«В» meaning location (where?, not motion towards) takes the prepositional, so имение becomes имении."}, {"id": "c2", "sentence": "Гаев Леонид Андреевич, брат ___.", "lemma": "Раневская", "options": ["Раневская", "Раневской", "Раневскую", "Раневскою"], "correct": "Раневской", "case": "Родительный (Genitive)", "translation": "Gaev, Leonid Andreevich, Ranevskaya's brother.", "explain": "A noun of relationship like брат governs the genitive to say whose brother he is; the surname declines like an adjective, giving Раневской."}, {"id": "c3", "sentence": "Шарлотта Ивановна, ___.", "lemma": "гувернантка", "options": ["гувернантка", "гувернантки", "гувернантке", "гувернанткой"], "correct": "гувернантка", "case": "Именительный (Nominative)", "translation": "Charlotta Ivanovna, a governess.", "explain": "In this cast list the job title stands in apposition to the character's name, so it copies the name's nominative case."}], "reading": [{"id": "r1", "ru": "Фирс, лакей, старик 87 лет.", "question": "Who is Firs and how old is he?", "options": ["A footman, an old man of 87", "A merchant, an old man of 87", "A station master of 51", "A young footman of 24"], "correct": "A footman, an old man of 87", "explain": "The list gives Firs as a лакей (footman) and an old man of 87."}, {"id": "r2", "ru": "Варя, ее приемная дочь, 24 лет.", "question": "What is Varya's relationship to Ranevskaya?", "options": ["She is her adopted daughter, aged 24", "She is her own daughter, aged 17", "She is her sister, aged 24", "She is her governess, aged 24"], "correct": "She is her adopted daughter, aged 24", "explain": "Varya is listed as ее приемная дочь, 24 лет — the adopted daughter, aged 24, while Anya at 17 is the natural daughter."}, {"id": "r3", "ru": "Лопахин Ермолай Алексеевич, купец.", "question": "What is Lopakhin's occupation in the cast list?", "options": ["A merchant", "A landowner", "A student", "A clerk"], "correct": "A merchant", "explain": "Lopakhin Ermolai Alekseevich is described as купец, a merchant; Simeonov-Pishchik is the landowner and Trofimov the student."}, {"id": "r4", "ru": "Действие происходит в имении Л. А. Раневской.", "question": "Where does the play take place?", "options": ["On Ranevskaya's estate", "At a railway station in town", "In Lopakhin's merchant house", "In Paris, where Ranevskaya lives"], "correct": "On Ranevskaya's estate", "explain": "The closing line states that the action happens в имении Л. А. Раневской, on L. A. Ranevskaya's estate."}], "highlight": [{"id": "h1", "question": "Which line names the character who is a merchant?", "sentences": ["Раневская Любовь Андреевна, помещица.", "Аня, ее дочь, 17 лет.", "Варя, ее приемная дочь, 24 лет.", "Гаев Леонид Андреевич, брат Раневской.", "Лопахин Ермолай Алексеевич, купец."], "correct": [4], "explain": "Only the line about Lopakhin Ermolai Alekseevich gives the occupation купец, a merchant."}]}
+{
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Действие происходит в ___ Л. А. Раневской.",
+   "lemma": "имение",
+   "options": [
+    "имение",
+    "имения",
+    "имении",
+    "имением"
+   ],
+   "correct": "имении",
+   "case": "Предложный (Prepositional)",
+   "explain": "«В» meaning location (where?, not motion towards) takes the prepositional, so имение becomes имении."
+  },
+  {
+   "id": "c2",
+   "sentence": "Гаев Леонид Андреевич, брат ___.",
+   "lemma": "Раневская",
+   "options": [
+    "Раневская",
+    "Раневской",
+    "Раневскую",
+    "Раневскою"
+   ],
+   "correct": "Раневской",
+   "case": "Родительный (Genitive)",
+   "explain": "A noun of relationship like брат governs the genitive to say whose brother he is; the surname declines like an adjective, giving Раневской."
+  },
+  {
+   "id": "c3",
+   "sentence": "Шарлотта Ивановна, ___.",
+   "lemma": "гувернантка",
+   "options": [
+    "гувернантка",
+    "гувернантки",
+    "гувернантке",
+    "гувернанткой"
+   ],
+   "correct": "гувернантка",
+   "case": "Именительный (Nominative)",
+   "explain": "In this cast list the job title stands in apposition to the character's name, so it copies the name's nominative case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Фирс, лакей, старик 87 лет.",
+   "question": "Who is Firs and how old is he?",
+   "options": [
+    "A footman, an old man of 87",
+    "A merchant, an old man of 87",
+    "A station master of 51",
+    "A young footman of 24"
+   ],
+   "correct": "A footman, an old man of 87",
+   "explain": "The list gives Firs as a лакей (footman) and an old man of 87."
+  },
+  {
+   "id": "r2",
+   "ru": "Варя, ее приемная дочь, 24 лет.",
+   "question": "What is Varya's relationship to Ranevskaya?",
+   "options": [
+    "She is her adopted daughter, aged 24",
+    "She is her own daughter, aged 17",
+    "She is her sister, aged 24",
+    "She is her governess, aged 24"
+   ],
+   "correct": "She is her adopted daughter, aged 24",
+   "explain": "Varya is listed as ее приемная дочь, 24 лет — the adopted daughter, aged 24, while Anya at 17 is the natural daughter."
+  },
+  {
+   "id": "r3",
+   "ru": "Лопахин Ермолай Алексеевич, купец.",
+   "question": "What is Lopakhin's occupation in the cast list?",
+   "options": [
+    "A merchant",
+    "A landowner",
+    "A student",
+    "A clerk"
+   ],
+   "correct": "A merchant",
+   "explain": "Lopakhin Ermolai Alekseevich is described as купец, a merchant; Simeonov-Pishchik is the landowner and Trofimov the student."
+  },
+  {
+   "id": "r4",
+   "ru": "Действие происходит в имении Л. А. Раневской.",
+   "question": "Where does the play take place?",
+   "options": [
+    "On Ranevskaya's estate",
+    "At a railway station in town",
+    "In Lopakhin's merchant house",
+    "In Paris, where Ranevskaya lives"
+   ],
+   "correct": "On Ranevskaya's estate",
+   "explain": "The closing line states that the action happens в имении Л. А. Раневской, on L. A. Ranevskaya's estate."
+  }
+ ],
+ "highlight": [
+  {
+   "id": "h1",
+   "question": "Which line names the character who is a merchant?",
+   "sentences": [
+    "Раневская Любовь Андреевна, помещица.",
+    "Аня, ее дочь, 17 лет.",
+    "Варя, ее приемная дочь, 24 лет.",
+    "Гаев Леонид Андреевич, брат Раневской.",
+    "Лопахин Ермолай Алексеевич, купец."
+   ],
+   "correct": [
+    4
+   ],
+   "explain": "Only the line about Lopakhin Ermolai Alekseevich gives the occupation купец, a merchant."
+  }
+ ]
+}

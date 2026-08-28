@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Так говорит Господь, Бог Израиля, запиши все слова, которые я говорил тебе в ___.",
-      "lemma": "свиток",
-      "options": ["свиток", "свитка", "свитку", "свитком"],
-      "correct": "свиток",
-      "case": "Винительный (Accusative)",
-      "translation": "The Lord, God of Israel, says: Write all the words I have spoken to you in a book.",
-      "explain": "Свиток is the direct object of запиши (write), taking the accusative case, which for inanimate nouns is the same as the nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Наступят ___, когда я восстановлю мой народ, Израиль и Иудею.",
-      "lemma": "день",
-      "options": ["день", "дня", "дню", "днем"],
-      "correct": "дня",
-      "case": "Родительный (Genitive)",
-      "translation": "The days will come when I will restore my people, Israel and Judah.",
-      "explain": "The phrase 'наступят дни' (days will come) uses the genitive plural after 'наступят': дни → дней."
-    },
-    {
-      "id": "c3",
-      "sentence": "В тот ___, возвещает Господь сил, я разобью ермо, которое у них на шее.",
-      "lemma": "день",
-      "options": ["день", "дня", "дню", "дне"],
-      "correct": "день",
-      "case": "Винительный (Accusative)",
-      "translation": "In that day, says the Lord of Hosts, I will break the yoke that is on their neck.",
-      "explain": "В + accusative indicates a specific point in time: в тот день (in that day)."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я спасу тебя из далекого ___, твое потомство из земли его плена.",
-      "lemma": "край",
-      "options": ["край", "края", "краю", "краем"],
-      "correct": "края",
-      "case": "Родительный (Genitive)",
-      "translation": "I will save you from a distant land, your offspring from the land of their captivity.",
-      "explain": "The preposition из (from) governs the genitive case: из далекого края (from a distant land)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Иаков вернется к спокойной и мирной жизни, и никто не будет его ___.",
-      "lemma": "устрашение",
-      "options": ["устрашение", "устрашения", "устрашению", "устрашением"],
-      "correct": "устрашением",
-      "case": "Творительный (Instrumental)",
-      "translation": "Jacob will return to quiet and peaceful living, and no one will make him afraid.",
-      "explain": "The instrumental case is used after быть (to be) to indicate the state or condition: никто не будет его устрашением (no one will be his terror)."
-    },
-    {
-      "id": "c6",
-      "sentence": "Твоя ___ неисцелима, твое увечье жестоко.",
-      "lemma": "рана",
-      "options": ["рана", "раны", "рану", "раной"],
-      "correct": "рана",
-      "case": "Именительный (Nominative)",
-      "translation": "Your wound is incurable, your injury is cruel.",
-      "explain": "Рана is the subject of the verb неисцелима (is incurable), taking the nominative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Я истреблю все народы, среди которых рассеял тебя, а тебя не истреблю, я накажу тебя по справедливости, но безнаказанным не оставлю ___.",
-      "lemma": "ты",
-      "options": ["ты", "тебя", "тебе", "тобой"],
-      "correct": "тебя",
-      "case": "Винительный (Accusative)",
-      "translation": "I will make an end of all the nations among which I have scattered you, but I will not make a complete end of you. I will punish you with justice, but will not leave you unpunished.",
-      "explain": "The verb оставлю (I will leave) with the negative безнаказанным (unpunished) takes the accusative object: оставлю тебя (will leave you)."
-    },
-    {
-      "id": "c8",
-      "sentence": "Их вождь будет одним из них, их правитель выйдет из их ___.",
-      "lemma": "среда",
-      "options": ["среда", "среды", "среде", "средой"],
-      "correct": "среды",
-      "case": "Родительный (Genitive)",
-      "translation": "Their leader will be one of them; their ruler will go forth from among them.",
-      "explain": "The preposition из (from) governs the genitive case: из их среды (from among them)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Так говорит Господь, Бог Израиля, запиши все слова, которые я говорил тебе в свиток.",
-      "question": "What does God command Jeremiah to do?",
-      "options": ["Write all the words God has spoken to him in a book", "Speak the words aloud to the people", "Hide the words in a sealed place", "Teach the words to other prophets"],
-      "correct": "Write all the words God has spoken to him in a book",
-      "explain": "God commands: запиши все слова, которые я говорил тебе в свиток — Write all the words that I have spoken to you in a book."
-    },
-    {
-      "id": "r2",
-      "ru": "Наступят дни, возвещает Господь, когда я восстановлю мой народ, Израиль и Иудею, и приведу их в землю, которую отдал во владение их отцам.",
-      "question": "What will God do in the days to come?",
-      "options": ["Restore His people Israel and Judah and bring them to the land He gave their fathers", "Scatter them to foreign lands", "Make them slaves forever", "Destroy their cities"],
-      "correct": "Restore His people Israel and Judah and bring them to the land He gave their fathers",
-      "explain": "God says: я восстановлю мой народ, Израиль и Иудею, и приведу их в землю — I will restore Israel and Judah and bring them into the land."
-    },
-    {
-      "id": "r3",
-      "ru": "В тот день, возвещает Господь сил, я разобью ермо, которое у них на шее, и разорву их оковы. Чужеземцы больше не будут их порабощать.",
-      "question": "What will happen to Israel's bondage according to this passage?",
-      "options": ["The yoke and chains will be broken, and foreigners will no longer enslave them", "They will be bound by stronger chains", "Foreigners will rule over them forever", "They will remain in exile"],
-      "correct": "The yoke and chains will be broken, and foreigners will no longer enslave them",
-      "explain": "God declares: я разобью ермо ... и разорву их оковы. Чужеземцы больше не будут их порабощать — I will break the yoke and burst the chains; strangers will no more make them slaves."
-    },
-    {
-      "id": "r4",
-      "ru": "Итак, не бойся, слуга мой Иаков, не пугайся, Израиль, я спасу тебя из далекого края, твое потомство из земли его плена.",
-      "question": "What assurance does God give to Jacob and Israel?",
-      "options": ["He will save them from distant exile and their offspring from the land of captivity", "They must endure captivity forever", "They will be forgotten by God", "They will be destroyed completely"],
-      "correct": "He will save them from distant exile and their offspring from the land of captivity",
-      "explain": "God says: я спасу тебя из далекого края, твое потомство из земли его плена — I will save you from afar and your offspring from the land of captivity."
-    },
-    {
-      "id": "r5",
-      "ru": "Я истреблю все народы, среди которых рассеял тебя, а тебя не истреблю. Я накажу тебя по справедливости, но безнаказанным не оставлю тебя.",
-      "question": "How will God deal with Israel and the nations that have scattered them?",
-      "options": ["He will destroy the nations but not Israel, though He will punish Israel justly", "He will destroy both Israel and the nations", "He will leave Israel completely unpunished", "He will favor all nations equally"],
-      "correct": "He will destroy the nations but not Israel, though He will punish Israel justly",
-      "explain": "God says: я истреблю все народы ... а тебя не истреблю. Я накажу тебя по справедливости — I will make an end of all the nations, but you I will not make an end of. I will punish you with justice."
-    },
-    {
-      "id": "r6",
-      "ru": "Твоя рана неисцелима, твое увечье жестоко, нет у тебя ходатая, нет для твоей раны лекарств.",
-      "question": "What is the condition of Israel as described in this verse?",
-      "options": ["The wound is incurable, the injury is severe, with no one to intercede and no remedy", "The wound will heal quickly", "There are many friends to help", "Medicines will easily cure the injury"],
-      "correct": "The wound is incurable, the injury is severe, with no one to intercede and no remedy",
-      "explain": "The passage states: Твоя рана неисцелима, твое увечье жестоко, нет у тебя ходатая, нет для твоей раны лекарств — Your wound is incurable, injury is cruel, with no intercessor and no healing."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Так говорит Господь, Бог Израиля, запиши все слова, которые я говорил тебе в ___.",
+   "lemma": "свиток",
+   "options": [
+    "свиток",
+    "свитка",
+    "свитку",
+    "свитком"
+   ],
+   "correct": "свиток",
+   "case": "Винительный (Accusative)",
+   "explain": "Свиток is the direct object of запиши (write), taking the accusative case, which for inanimate nouns is the same as the nominative."
+  },
+  {
+   "id": "c2",
+   "sentence": "Наступят ___, когда я восстановлю мой народ, Израиль и Иудею.",
+   "lemma": "день",
+   "options": [
+    "день",
+    "дня",
+    "дню",
+    "днем"
+   ],
+   "correct": "дня",
+   "case": "Родительный (Genitive)",
+   "explain": "The phrase 'наступят дни' (days will come) uses the genitive plural after 'наступят': дни → дней."
+  },
+  {
+   "id": "c3",
+   "sentence": "В тот ___, возвещает Господь сил, я разобью ермо, которое у них на шее.",
+   "lemma": "день",
+   "options": [
+    "день",
+    "дня",
+    "дню",
+    "дне"
+   ],
+   "correct": "день",
+   "case": "Винительный (Accusative)",
+   "explain": "В + accusative indicates a specific point in time: в тот день (in that day)."
+  },
+  {
+   "id": "c4",
+   "sentence": "Я спасу тебя из далекого ___, твое потомство из земли его плена.",
+   "lemma": "край",
+   "options": [
+    "край",
+    "края",
+    "краю",
+    "краем"
+   ],
+   "correct": "края",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition из (from) governs the genitive case: из далекого края (from a distant land)."
+  },
+  {
+   "id": "c5",
+   "sentence": "Иаков вернется к спокойной и мирной жизни, и никто не будет его ___.",
+   "lemma": "устрашение",
+   "options": [
+    "устрашение",
+    "устрашения",
+    "устрашению",
+    "устрашением"
+   ],
+   "correct": "устрашением",
+   "case": "Творительный (Instrumental)",
+   "explain": "The instrumental case is used after быть (to be) to indicate the state or condition: никто не будет его устрашением (no one will be his terror)."
+  },
+  {
+   "id": "c6",
+   "sentence": "Твоя ___ неисцелима, твое увечье жестоко.",
+   "lemma": "рана",
+   "options": [
+    "рана",
+    "раны",
+    "рану",
+    "раной"
+   ],
+   "correct": "рана",
+   "case": "Именительный (Nominative)",
+   "explain": "Рана is the subject of the verb неисцелима (is incurable), taking the nominative case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Я истреблю все народы, среди которых рассеял тебя, а тебя не истреблю, я накажу тебя по справедливости, но безнаказанным не оставлю ___.",
+   "lemma": "ты",
+   "options": [
+    "ты",
+    "тебя",
+    "тебе",
+    "тобой"
+   ],
+   "correct": "тебя",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb оставлю (I will leave) with the negative безнаказанным (unpunished) takes the accusative object: оставлю тебя (will leave you)."
+  },
+  {
+   "id": "c8",
+   "sentence": "Их вождь будет одним из них, их правитель выйдет из их ___.",
+   "lemma": "среда",
+   "options": [
+    "среда",
+    "среды",
+    "среде",
+    "средой"
+   ],
+   "correct": "среды",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition из (from) governs the genitive case: из их среды (from among them)."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Так говорит Господь, Бог Израиля, запиши все слова, которые я говорил тебе в свиток.",
+   "question": "What does God command Jeremiah to do?",
+   "options": [
+    "Write all the words God has spoken to him in a book",
+    "Speak the words aloud to the people",
+    "Hide the words in a sealed place",
+    "Teach the words to other prophets"
+   ],
+   "correct": "Write all the words God has spoken to him in a book",
+   "explain": "God commands: запиши все слова, которые я говорил тебе в свиток — Write all the words that I have spoken to you in a book."
+  },
+  {
+   "id": "r2",
+   "ru": "Наступят дни, возвещает Господь, когда я восстановлю мой народ, Израиль и Иудею, и приведу их в землю, которую отдал во владение их отцам.",
+   "question": "What will God do in the days to come?",
+   "options": [
+    "Restore His people Israel and Judah and bring them to the land He gave their fathers",
+    "Scatter them to foreign lands",
+    "Make them slaves forever",
+    "Destroy their cities"
+   ],
+   "correct": "Restore His people Israel and Judah and bring them to the land He gave their fathers",
+   "explain": "God says: я восстановлю мой народ, Израиль и Иудею, и приведу их в землю — I will restore Israel and Judah and bring them into the land."
+  },
+  {
+   "id": "r3",
+   "ru": "В тот день, возвещает Господь сил, я разобью ермо, которое у них на шее, и разорву их оковы. Чужеземцы больше не будут их порабощать.",
+   "question": "What will happen to Israel's bondage according to this passage?",
+   "options": [
+    "The yoke and chains will be broken, and foreigners will no longer enslave them",
+    "They will be bound by stronger chains",
+    "Foreigners will rule over them forever",
+    "They will remain in exile"
+   ],
+   "correct": "The yoke and chains will be broken, and foreigners will no longer enslave them",
+   "explain": "God declares: я разобью ермо ... и разорву их оковы. Чужеземцы больше не будут их порабощать — I will break the yoke and burst the chains; strangers will no more make them slaves."
+  },
+  {
+   "id": "r4",
+   "ru": "Итак, не бойся, слуга мой Иаков, не пугайся, Израиль, я спасу тебя из далекого края, твое потомство из земли его плена.",
+   "question": "What assurance does God give to Jacob and Israel?",
+   "options": [
+    "He will save them from distant exile and their offspring from the land of captivity",
+    "They must endure captivity forever",
+    "They will be forgotten by God",
+    "They will be destroyed completely"
+   ],
+   "correct": "He will save them from distant exile and their offspring from the land of captivity",
+   "explain": "God says: я спасу тебя из далекого края, твое потомство из земли его плена — I will save you from afar and your offspring from the land of captivity."
+  },
+  {
+   "id": "r5",
+   "ru": "Я истреблю все народы, среди которых рассеял тебя, а тебя не истреблю. Я накажу тебя по справедливости, но безнаказанным не оставлю тебя.",
+   "question": "How will God deal with Israel and the nations that have scattered them?",
+   "options": [
+    "He will destroy the nations but not Israel, though He will punish Israel justly",
+    "He will destroy both Israel and the nations",
+    "He will leave Israel completely unpunished",
+    "He will favor all nations equally"
+   ],
+   "correct": "He will destroy the nations but not Israel, though He will punish Israel justly",
+   "explain": "God says: я истреблю все народы ... а тебя не истреблю. Я накажу тебя по справедливости — I will make an end of all the nations, but you I will not make an end of. I will punish you with justice."
+  },
+  {
+   "id": "r6",
+   "ru": "Твоя рана неисцелима, твое увечье жестоко, нет у тебя ходатая, нет для твоей раны лекарств.",
+   "question": "What is the condition of Israel as described in this verse?",
+   "options": [
+    "The wound is incurable, the injury is severe, with no one to intercede and no remedy",
+    "The wound will heal quickly",
+    "There are many friends to help",
+    "Medicines will easily cure the injury"
+   ],
+   "correct": "The wound is incurable, the injury is severe, with no one to intercede and no remedy",
+   "explain": "The passage states: Твоя рана неисцелима, твое увечье жестоко, нет у тебя ходатая, нет для твоей раны лекарств — Your wound is incurable, injury is cruel, with no intercessor and no healing."
+  }
+ ]
 }

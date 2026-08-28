@@ -1,204 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "В Иудее известен ___.",
-      "lemma": "Бог",
-      "options": [
-        "Бог",
-        "Бога",
-        "Богу",
-        "Богом"
-      ],
-      "correct": "Бог",
-      "case": "Именительный (Nominative)",
-      "translation": "In Judah, God is known.",
-      "explain": "Бог is the subject of the sentence (predicate nominative), taking the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Велико его имя в ___.",
-      "lemma": "Израиль",
-      "options": [
-        "Израиль",
-        "Израиля",
-        "Израилю",
-        "Израиле"
-      ],
-      "correct": "Израиле",
-      "case": "Предложный (Prepositional)",
-      "translation": "His name is great in Israel.",
-      "explain": "The preposition в (in) governing location uses the prepositional case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Там он сокрушил сверкающие ___.",
-      "lemma": "стрела",
-      "options": [
-        "стрела",
-        "стрелы",
-        "стрелу",
-        "стрелой"
-      ],
-      "correct": "стрелы",
-      "case": "Винительный (Accusative)",
-      "translation": "There he broke the flaming arrows.",
-      "explain": "Стрелы is the direct object of the transitive verb сокрушил (broke), taking the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Ты сияешь во ___.",
-      "lemma": "свет",
-      "options": [
-        "свет",
-        "света",
-        "свету",
-        "свете"
-      ],
-      "correct": "свете",
-      "case": "Предложный (Prepositional)",
-      "translation": "You shine in the light.",
-      "explain": "The preposition во (in) with location requires the prepositional case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Крепкие сердцем стали ___.",
-      "lemma": "добыча",
-      "options": [
-        "добыча",
-        "добычи",
-        "добычу",
-        "добычей"
-      ],
-      "correct": "добычей",
-      "case": "Творительный (Instrumental)",
-      "translation": "Valiant men lie plundered.",
-      "explain": "Добычей is the predicate nominative using the instrumental case to describe the result state."
-    },
-    {
-      "id": "c6",
-      "sentence": "От грозного крика твоего ___ упали замертво.",
-      "lemma": "конь",
-      "options": [
-        "конь",
-        "коня",
-        "коню",
-        "конем"
-      ],
-      "correct": "конь",
-      "case": "Именительный (Nominative)",
-      "translation": "At your terrible cry, the horse fell dead.",
-      "explain": "Конь is the grammatical subject performing the action упали (fell), requiring the nominative."
-    },
-    {
-      "id": "c7",
-      "sentence": "И кто устоит пред твоим ___?",
-      "lemma": "лицо",
-      "options": [
-        "лицо",
-        "лица",
-        "лицу",
-        "лицом"
-      ],
-      "correct": "лицом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Who can stand before your face?",
-      "explain": "The preposition пред (before) takes the instrumental case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Твой гнев на ___ принесет тебе хвалу.",
-      "lemma": "люди",
-      "options": [
-        "люди",
-        "людей",
-        "людям",
-        "людьми"
-      ],
-      "correct": "людей",
-      "case": "Родительный (Genitive)",
-      "translation": "Your wrath upon people will bring you praise.",
-      "explain": "The preposition на (upon) with 'people' in this construction uses the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "В Иудее известен Бог.",
-      "question": "Where is God known, according to the text?",
-      "options": [
-        "In Judah",
-        "In Israel",
-        "In Zion",
-        "In Egypt"
-      ],
-      "correct": "In Judah",
-      "explain": "The text states 'В Иудее известен Бог' — In Judah, God is known."
-    },
-    {
-      "id": "r2",
-      "ru": "Там он сокрушил сверкающие стрелы, щит и меч, орудия войны.",
-      "question": "What instruments of war did God break?",
-      "options": [
-        "Flaming arrows, shield, and sword",
-        "Chariots and horses",
-        "Walls and gates",
-        "Weapons and shields only"
-      ],
-      "correct": "Flaming arrows, shield, and sword",
-      "explain": "The passage lists 'сверкающие стрелы, щит и меч, орудия войны' — flaming arrows, shield, and sword."
-    },
-    {
-      "id": "r3",
-      "ru": "Ни один из них не смог даже руку поднять.",
-      "question": "What could none of the warriors do?",
-      "options": [
-        "Lift their hand",
-        "Fight back",
-        "Escape",
-        "Speak"
-      ],
-      "correct": "Lift their hand",
-      "explain": "The text says 'Ни один из них не смог даже руку поднять' — Not one of them could even lift their hand."
-    },
-    {
-      "id": "r4",
-      "ru": "Лишь тебя надо бояться.",
-      "question": "Who alone should be feared?",
-      "options": [
-        "You (God)",
-        "The enemy",
-        "The powerful",
-        "Kings"
-      ],
-      "correct": "You (God)",
-      "explain": "The verse states 'Лишь тебя надо бояться' — Only you should be feared."
-    },
-    {
-      "id": "r5",
-      "ru": "Ты произнес суд с небес, вся земля испугалась и притихла.",
-      "question": "What happened to the earth when God pronounced judgment from heaven?",
-      "options": [
-        "It was afraid and silent",
-        "It shook violently",
-        "It opened up",
-        "It flooded"
-      ],
-      "correct": "It was afraid and silent",
-      "explain": "The text says 'вся земля испугалась и притихла' — the whole earth was afraid and became silent."
-    },
-    {
-      "id": "r6",
-      "ru": "Все, кто вокруг него, приносите дары грозному.",
-      "question": "What should those around God do?",
-      "options": [
-        "Bring gifts to him who is awesome",
-        "Sing praises",
-        "Make vows",
-        "Flee"
-      ],
-      "correct": "Bring gifts to him who is awesome",
-      "explain": "The verse commands 'приносите дары грозному' — bring gifts to the awesome one."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "В Иудее известен ___.",
+   "lemma": "Бог",
+   "options": [
+    "Бог",
+    "Бога",
+    "Богу",
+    "Богом"
+   ],
+   "correct": "Бог",
+   "case": "Именительный (Nominative)",
+   "explain": "Бог is the subject of the sentence (predicate nominative), taking the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Велико его имя в ___.",
+   "lemma": "Израиль",
+   "options": [
+    "Израиль",
+    "Израиля",
+    "Израилю",
+    "Израиле"
+   ],
+   "correct": "Израиле",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в (in) governing location uses the prepositional case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Там он сокрушил сверкающие ___.",
+   "lemma": "стрела",
+   "options": [
+    "стрела",
+    "стрелы",
+    "стрелу",
+    "стрелой"
+   ],
+   "correct": "стрелы",
+   "case": "Винительный (Accusative)",
+   "explain": "Стрелы is the direct object of the transitive verb сокрушил (broke), taking the accusative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Ты сияешь во ___.",
+   "lemma": "свет",
+   "options": [
+    "свет",
+    "света",
+    "свету",
+    "свете"
+   ],
+   "correct": "свете",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition во (in) with location requires the prepositional case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Крепкие сердцем стали ___.",
+   "lemma": "добыча",
+   "options": [
+    "добыча",
+    "добычи",
+    "добычу",
+    "добычей"
+   ],
+   "correct": "добычей",
+   "case": "Творительный (Instrumental)",
+   "explain": "Добычей is the predicate nominative using the instrumental case to describe the result state."
+  },
+  {
+   "id": "c6",
+   "sentence": "От грозного крика твоего ___ упали замертво.",
+   "lemma": "конь",
+   "options": [
+    "конь",
+    "коня",
+    "коню",
+    "конем"
+   ],
+   "correct": "конь",
+   "case": "Именительный (Nominative)",
+   "explain": "Конь is the grammatical subject performing the action упали (fell), requiring the nominative."
+  },
+  {
+   "id": "c7",
+   "sentence": "И кто устоит пред твоим ___?",
+   "lemma": "лицо",
+   "options": [
+    "лицо",
+    "лица",
+    "лицу",
+    "лицом"
+   ],
+   "correct": "лицом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition пред (before) takes the instrumental case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Твой гнев на ___ принесет тебе хвалу.",
+   "lemma": "люди",
+   "options": [
+    "люди",
+    "людей",
+    "людям",
+    "людьми"
+   ],
+   "correct": "людей",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition на (upon) with 'people' in this construction uses the genitive case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "В Иудее известен Бог.",
+   "question": "Where is God known, according to the text?",
+   "options": [
+    "In Judah",
+    "In Israel",
+    "In Zion",
+    "In Egypt"
+   ],
+   "correct": "In Judah",
+   "explain": "The text states 'В Иудее известен Бог' — In Judah, God is known."
+  },
+  {
+   "id": "r2",
+   "ru": "Там он сокрушил сверкающие стрелы, щит и меч, орудия войны.",
+   "question": "What instruments of war did God break?",
+   "options": [
+    "Flaming arrows, shield, and sword",
+    "Chariots and horses",
+    "Walls and gates",
+    "Weapons and shields only"
+   ],
+   "correct": "Flaming arrows, shield, and sword",
+   "explain": "The passage lists 'сверкающие стрелы, щит и меч, орудия войны' — flaming arrows, shield, and sword."
+  },
+  {
+   "id": "r3",
+   "ru": "Ни один из них не смог даже руку поднять.",
+   "question": "What could none of the warriors do?",
+   "options": [
+    "Lift their hand",
+    "Fight back",
+    "Escape",
+    "Speak"
+   ],
+   "correct": "Lift their hand",
+   "explain": "The text says 'Ни один из них не смог даже руку поднять' — Not one of them could even lift their hand."
+  },
+  {
+   "id": "r4",
+   "ru": "Лишь тебя надо бояться.",
+   "question": "Who alone should be feared?",
+   "options": [
+    "You (God)",
+    "The enemy",
+    "The powerful",
+    "Kings"
+   ],
+   "correct": "You (God)",
+   "explain": "The verse states 'Лишь тебя надо бояться' — Only you should be feared."
+  },
+  {
+   "id": "r5",
+   "ru": "Ты произнес суд с небес, вся земля испугалась и притихла.",
+   "question": "What happened to the earth when God pronounced judgment from heaven?",
+   "options": [
+    "It was afraid and silent",
+    "It shook violently",
+    "It opened up",
+    "It flooded"
+   ],
+   "correct": "It was afraid and silent",
+   "explain": "The text says 'вся земля испугалась и притихла' — the whole earth was afraid and became silent."
+  },
+  {
+   "id": "r6",
+   "ru": "Все, кто вокруг него, приносите дары грозному.",
+   "question": "What should those around God do?",
+   "options": [
+    "Bring gifts to him who is awesome",
+    "Sing praises",
+    "Make vows",
+    "Flee"
+   ],
+   "correct": "Bring gifts to him who is awesome",
+   "explain": "The verse commands 'приносите дары грозному' — bring gifts to the awesome one."
+  }
+ ]
 }

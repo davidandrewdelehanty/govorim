@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Слово Господа, которое было к Иеремии. Выслушай условия этого ___ и перескажи их народу Иудеи.",
-      "lemma": "завет",
-      "options": ["завет", "завета", "завету", "завете"],
-      "correct": "завета",
-      "case": "Родительный (Genitive)",
-      "translation": "The word of Yahweh that came to Jeremiah: Hear the words of this covenant and tell them to the people of Judah.",
-      "explain": "The preposition условия этого (conditions of this) requires the genitive case to show possession."
-    },
-    {
-      "id": "c2",
-      "sentence": "Скажи им, так говорит Господь Бог Израиля, проклят тот человек, который не исполняет условий этого ___, условий, которые я поставил вашим предкам.",
-      "lemma": "завет",
-      "options": ["завет", "завета", "завету", "заветом"],
-      "correct": "завета",
-      "case": "Родительный (Genitive)",
-      "translation": "Tell them, thus says the Lord, God of Israel: Cursed is the man who does not obey the terms of this covenant, which I commanded your fathers.",
-      "explain": "The genitive case shows possession—the terms that belong to this covenant."
-    },
-    {
-      "id": "c3",
-      "sentence": "Сказав, «Слушайте меня и делайте все, что я вам велю, и вы будете моим народом, а я вашим ___.",
-      "lemma": "Бог",
-      "options": ["Бог", "Богу", "Богом", "Боге"],
-      "correct": "Богом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Saying, 'Obey my voice, and do all that I command you; then you will be my people, and I will be your God.'",
-      "explain": "After the verb быть (to be) in the predicate, the instrumental case is used."
-    },
-    {
-      "id": "c4",
-      "sentence": "Тогда я исполню клятву, данную вашим отцам, дать ___. А ты живешь среди коварного народа, и из-за своего коварства они отказываются знать меня.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "землю", "земле"],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "Then I will fulfill the oath sworn to your fathers, to give them a land flowing with milk and honey.",
-      "explain": "The transitive verb дать (to give) governs the accusative case for its direct object."
-    },
-    {
-      "id": "c5",
-      "sentence": "Из-за своего коварства они отказываются знать меня, — возвещает ___.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господе"],
-      "correct": "Господь",
-      "case": "Именительный (Nominative)",
-      "translation": "Because of their deceit they refuse to know me, says the Lord.",
-      "explain": "Господь is the subject of the verb возвещает, requiring the nominative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "С того дня, как я вывел ваших предков из ___, и до ныне, Я предостерегал их, говоря, слушайтесь меня.",
-      "lemma": "Египет",
-      "options": ["Египет", "Египета", "Египету", "Египте"],
-      "correct": "Египета",
-      "case": "Родительный (Genitive)",
-      "translation": "From the day I brought your ancestors up out of Egypt until now I have sent all my servants the prophets to you again and again.",
-      "explain": "The preposition из (out of, from) governs the genitive case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Они вернулись к грехам своих предков, которые отказались слушаться моих ___.",
-      "lemma": "слово",
-      "options": ["слово", "слова", "слов", "словом"],
-      "correct": "слов",
-      "case": "Родительный (Genitive)",
-      "translation": "They have turned back to the iniquities of their forefathers, who refused to hear my words.",
-      "explain": "The verb слушаться (to obey) with the genitive preposition requires the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Поэтому так говорит Господь, я обрушу на них беду, которой они не смогут избежать. Они станут взывать ко мне, но я не буду их слушать. Города Иудеи и жители Иерусалима пойдут взывать к богам, которым возжигают благовоние, но те нисколько не помогут им, когда грянет ___.",
-      "lemma": "беда",
-      "options": ["беда", "беды", "беде", "бедой"],
-      "correct": "беда",
-      "case": "Именительный (Nominative)",
-      "translation": "Therefore Yahweh says, I will bring disaster on them which they cannot escape; and they will cry to me, but I will not listen to them.",
-      "explain": "Беда is the subject of the implied verb, requiring the nominative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Слово Господа, которое было к Иеремии. Выслушай условия этого завета и перескажи их народу Иудеи и жителям Иерусалима.",
-      "question": "What is Jeremiah commanded to do with the covenant?",
-      "options": ["Keep it secret from everyone", "Hear the conditions and speak them to the people of Judah and Jerusalem", "Destroy the written covenant", "Modify the covenant terms"],
-      "correct": "Hear the conditions and speak them to the people of Judah and Jerusalem",
-      "explain": "The text says 'Выслушай условия этого завета и перескажи их народу' — Hear the words of the covenant and tell them to the people."
-    },
-    {
-      "id": "r2",
-      "ru": "Проклят тот человек, который не исполняет условий этого завета.",
-      "question": "What does God say about those who break the covenant?",
-      "options": ["They will be blessed", "They will be cursed", "They will receive great rewards", "They will become leaders"],
-      "correct": "They will be cursed",
-      "explain": "The passage states 'Проклят тот человек, который не исполняет условий этого завета' — Cursed is the man who does not obey the words of this covenant."
-    },
-    {
-      "id": "r3",
-      "ru": "С того дня, как я вывел ваших предков из Египта и до ныне, Я предостерегал их, говоря, слушайтесь меня.",
-      "question": "For how long has God been warning the people?",
-      "options": ["Only since recently", "Since He brought their ancestors out of Egypt until now", "For just one year", "Only during times of crisis"],
-      "correct": "Since He brought their ancestors out of Egypt until now",
-      "explain": "God says 'С того дня, как я вывел ваших предков из Египта и до ныне' — From the day He brought them out of Egypt until now."
-    },
-    {
-      "id": "r4",
-      "ru": "Но они не слушали и не внимали, а жили каждый по упрямству своего злого сердца.",
-      "question": "How did the people respond to God's warnings?",
-      "options": ["They obeyed God's commands", "They did not listen but stubbornly followed their own evil hearts", "They asked for forgiveness", "They changed their ways"],
-      "correct": "They did not listen but stubbornly followed their own evil hearts",
-      "explain": "The text says 'Но они не слушали и не внимали, а жили каждый по упрямству своего злого сердца' — They did not listen, nor did they obey; instead, everyone walked in the stubbornness of their evil heart."
-    },
-    {
-      "id": "r5",
-      "ru": "И дом Израиля, и дом Иуды расторгли завет, заключенный между мной и их предками.",
-      "question": "What did both Israel and Judah do to the covenant?",
-      "options": ["They kept it faithfully", "They broke the covenant made between God and their fathers", "They renewed it", "They improved it"],
-      "correct": "They broke the covenant made between God and their fathers",
-      "explain": "The passage states 'дом Израиля, и дом Иуды расторгли завет, заключенный между мной и их предками' — The house of Israel and the house of Judah have broken My covenant."
-    },
-    {
-      "id": "r6",
-      "ru": "Затем Господь сказал мне. Среди народа Иудеи и среди жителей Иерусалима возник заговор.",
-      "question": "What problem has arisen among the people of Judah?",
-      "options": ["A famine is destroying crops", "A conspiracy has arisen among the people", "They are preparing for war", "They are building new temples"],
-      "correct": "A conspiracy has arisen among the people",
-      "explain": "The text says 'Среди народа Иудеи и среди жителей Иерусалима возник заговор' — A conspiracy is found among the people of Judah and inhabitants of Jerusalem."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Слово Господа, которое было к Иеремии. Выслушай условия этого ___ и перескажи их народу Иудеи.",
+   "lemma": "завет",
+   "options": [
+    "завет",
+    "завета",
+    "завету",
+    "завете"
+   ],
+   "correct": "завета",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition условия этого (conditions of this) requires the genitive case to show possession."
+  },
+  {
+   "id": "c2",
+   "sentence": "Скажи им, так говорит Господь Бог Израиля, проклят тот человек, который не исполняет условий этого ___, условий, которые я поставил вашим предкам.",
+   "lemma": "завет",
+   "options": [
+    "завет",
+    "завета",
+    "завету",
+    "заветом"
+   ],
+   "correct": "завета",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive case shows possession—the terms that belong to this covenant."
+  },
+  {
+   "id": "c3",
+   "sentence": "Сказав, «Слушайте меня и делайте все, что я вам велю, и вы будете моим народом, а я вашим ___.",
+   "lemma": "Бог",
+   "options": [
+    "Бог",
+    "Богу",
+    "Богом",
+    "Боге"
+   ],
+   "correct": "Богом",
+   "case": "Творительный (Instrumental)",
+   "explain": "After the verb быть (to be) in the predicate, the instrumental case is used."
+  },
+  {
+   "id": "c4",
+   "sentence": "Тогда я исполню клятву, данную вашим отцам, дать ___. А ты живешь среди коварного народа, и из-за своего коварства они отказываются знать меня.",
+   "lemma": "земля",
+   "options": [
+    "земля",
+    "земли",
+    "землю",
+    "земле"
+   ],
+   "correct": "землю",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb дать (to give) governs the accusative case for its direct object."
+  },
+  {
+   "id": "c5",
+   "sentence": "Из-за своего коварства они отказываются знать меня, — возвещает ___.",
+   "lemma": "Господь",
+   "options": [
+    "Господь",
+    "Господа",
+    "Господу",
+    "Господе"
+   ],
+   "correct": "Господь",
+   "case": "Именительный (Nominative)",
+   "explain": "Господь is the subject of the verb возвещает, requiring the nominative case."
+  },
+  {
+   "id": "c6",
+   "sentence": "С того дня, как я вывел ваших предков из ___, и до ныне, Я предостерегал их, говоря, слушайтесь меня.",
+   "lemma": "Египет",
+   "options": [
+    "Египет",
+    "Египета",
+    "Египету",
+    "Египте"
+   ],
+   "correct": "Египета",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition из (out of, from) governs the genitive case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Они вернулись к грехам своих предков, которые отказались слушаться моих ___.",
+   "lemma": "слово",
+   "options": [
+    "слово",
+    "слова",
+    "слов",
+    "словом"
+   ],
+   "correct": "слов",
+   "case": "Родительный (Genitive)",
+   "explain": "The verb слушаться (to obey) with the genitive preposition requires the genitive case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Поэтому так говорит Господь, я обрушу на них беду, которой они не смогут избежать. Они станут взывать ко мне, но я не буду их слушать. Города Иудеи и жители Иерусалима пойдут взывать к богам, которым возжигают благовоние, но те нисколько не помогут им, когда грянет ___.",
+   "lemma": "беда",
+   "options": [
+    "беда",
+    "беды",
+    "беде",
+    "бедой"
+   ],
+   "correct": "беда",
+   "case": "Именительный (Nominative)",
+   "explain": "Беда is the subject of the implied verb, requiring the nominative case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Слово Господа, которое было к Иеремии. Выслушай условия этого завета и перескажи их народу Иудеи и жителям Иерусалима.",
+   "question": "What is Jeremiah commanded to do with the covenant?",
+   "options": [
+    "Keep it secret from everyone",
+    "Hear the conditions and speak them to the people of Judah and Jerusalem",
+    "Destroy the written covenant",
+    "Modify the covenant terms"
+   ],
+   "correct": "Hear the conditions and speak them to the people of Judah and Jerusalem",
+   "explain": "The text says 'Выслушай условия этого завета и перескажи их народу' — Hear the words of the covenant and tell them to the people."
+  },
+  {
+   "id": "r2",
+   "ru": "Проклят тот человек, который не исполняет условий этого завета.",
+   "question": "What does God say about those who break the covenant?",
+   "options": [
+    "They will be blessed",
+    "They will be cursed",
+    "They will receive great rewards",
+    "They will become leaders"
+   ],
+   "correct": "They will be cursed",
+   "explain": "The passage states 'Проклят тот человек, который не исполняет условий этого завета' — Cursed is the man who does not obey the words of this covenant."
+  },
+  {
+   "id": "r3",
+   "ru": "С того дня, как я вывел ваших предков из Египта и до ныне, Я предостерегал их, говоря, слушайтесь меня.",
+   "question": "For how long has God been warning the people?",
+   "options": [
+    "Only since recently",
+    "Since He brought their ancestors out of Egypt until now",
+    "For just one year",
+    "Only during times of crisis"
+   ],
+   "correct": "Since He brought their ancestors out of Egypt until now",
+   "explain": "God says 'С того дня, как я вывел ваших предков из Египта и до ныне' — From the day He brought them out of Egypt until now."
+  },
+  {
+   "id": "r4",
+   "ru": "Но они не слушали и не внимали, а жили каждый по упрямству своего злого сердца.",
+   "question": "How did the people respond to God's warnings?",
+   "options": [
+    "They obeyed God's commands",
+    "They did not listen but stubbornly followed their own evil hearts",
+    "They asked for forgiveness",
+    "They changed their ways"
+   ],
+   "correct": "They did not listen but stubbornly followed their own evil hearts",
+   "explain": "The text says 'Но они не слушали и не внимали, а жили каждый по упрямству своего злого сердца' — They did not listen, nor did they obey; instead, everyone walked in the stubbornness of their evil heart."
+  },
+  {
+   "id": "r5",
+   "ru": "И дом Израиля, и дом Иуды расторгли завет, заключенный между мной и их предками.",
+   "question": "What did both Israel and Judah do to the covenant?",
+   "options": [
+    "They kept it faithfully",
+    "They broke the covenant made between God and their fathers",
+    "They renewed it",
+    "They improved it"
+   ],
+   "correct": "They broke the covenant made between God and their fathers",
+   "explain": "The passage states 'дом Израиля, и дом Иуды расторгли завет, заключенный между мной и их предками' — The house of Israel and the house of Judah have broken My covenant."
+  },
+  {
+   "id": "r6",
+   "ru": "Затем Господь сказал мне. Среди народа Иудеи и среди жителей Иерусалима возник заговор.",
+   "question": "What problem has arisen among the people of Judah?",
+   "options": [
+    "A famine is destroying crops",
+    "A conspiracy has arisen among the people",
+    "They are preparing for war",
+    "They are building new temples"
+   ],
+   "correct": "A conspiracy has arisen among the people",
+   "explain": "The text says 'Среди народа Иудеи и среди жителей Иерусалима возник заговор' — A conspiracy is found among the people of Judah and inhabitants of Jerusalem."
+  }
+ ]
 }

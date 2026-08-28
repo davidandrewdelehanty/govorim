@@ -1,204 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Господи, ___ спасения моего, днем и ночью взываю к Тебе.",
-      "lemma": "Бог",
-      "options": [
-        "Боже",
-        "Бога",
-        "Богу",
-        "Богом"
-      ],
-      "correct": "Боже",
-      "case": "Звательный (Vocative)",
-      "translation": "Lord, God of my salvation, day and night I cry out to You.",
-      "explain": "Direct address to God uses the vocative case (or nominative in modern Russian)."
-    },
-    {
-      "id": "c2",
-      "sentence": "Я стал, как те, кто спускается в ___.",
-      "lemma": "пропасть",
-      "options": [
-        "пропасть",
-        "пропасти",
-        "пропастью",
-        "пропастье"
-      ],
-      "correct": "пропасть",
-      "case": "Винительный (Accusative)",
-      "translation": "I became like one who descends into the abyss.",
-      "explain": "The verb спускается (descends) is followed by the accusative preposition в."
-    },
-    {
-      "id": "c3",
-      "sentence": "Я брошен между ___.",
-      "lemma": "мертвый",
-      "options": [
-        "мертвый",
-        "мертвого",
-        "мертвыми",
-        "мертвом"
-      ],
-      "correct": "мертвыми",
-      "case": "Творительный (Instrumental)",
-      "translation": "I am cast among the dead.",
-      "explain": "The preposition между (among) governs the instrumental case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Ты положил меня в глубокую ___.",
-      "lemma": "пропасть",
-      "options": [
-        "пропасть",
-        "пропасти",
-        "пропастью",
-        "пропастье"
-      ],
-      "correct": "пропасть",
-      "case": "Винительный (Accusative)",
-      "translation": "You have laid me in the deep abyss.",
-      "explain": "The verb положил (laid) takes the accusative case for its object."
-    },
-    {
-      "id": "c5",
-      "sentence": "Ты отвратил от меня ___.",
-      "lemma": "друг",
-      "options": [
-        "друг",
-        "друга",
-        "друго́в",
-        "друге"
-      ],
-      "correct": "друго́в",
-      "case": "Родительный (Genitive)",
-      "translation": "You have turned my friends away from me.",
-      "explain": "The preposition от (from) governs the genitive case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Я заключен и не могу выйти, глаза истомились от ___.",
-      "lemma": "горе",
-      "options": [
-        "горе",
-        "горя",
-        "горю",
-        "горем"
-      ],
-      "correct": "горя",
-      "case": "Родительный (Genitive)",
-      "translation": "I am enclosed and cannot go out; my eyes are weary from grief.",
-      "explain": "The preposition от (from) governs the genitive case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Разве для мертвых Ты творишь ___?",
-      "lemma": "чудо",
-      "options": [
-        "чудо",
-        "чуда",
-        "чудо́в",
-        "чудом"
-      ],
-      "correct": "чудо́в",
-      "case": "Родительный (Genitive)",
-      "translation": "Do You perform wonders for the dead?",
-      "explain": "The verb творишь (perform) takes the accusative, but in this context refers to plural genitive."
-    },
-    {
-      "id": "c8",
-      "sentence": "Тьма — мой близкий ___.",
-      "lemma": "друг",
-      "options": [
-        "друг",
-        "друга",
-        "друку",
-        "друге"
-      ],
-      "correct": "друг",
-      "case": "Именительный (Nominative)",
-      "translation": "Darkness is my close friend.",
-      "explain": "After the copula verb быть (to be), the predicate nominative stands in the nominative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Господи, Бог спасения моего, днем и ночью взываю к Тебе, пусть достигнет Тебя молитва моя, услышь мою мольбу.",
-      "question": "What does the psalmist ask God to do?",
-      "options": [
-        "To hear his prayer and supplication",
-        "To destroy his enemies",
-        "To give him riches",
-        "To make him a king"
-      ],
-      "correct": "To hear his prayer and supplication",
-      "explain": "The text says пусть достигнет Тебя молитва моя, услышь мою мольбу — let my prayer reach You, hear my supplication."
-    },
-    {
-      "id": "r2",
-      "ru": "Насытилась душа моя страданиями, и жизнь моя приблизилась к миру мертвых.",
-      "question": "What has happened to the psalmist's soul?",
-      "options": [
-        "It is full of troubles and near death",
-        "It is filled with joy",
-        "It is at rest",
-        "It is hidden"
-      ],
-      "correct": "It is full of troubles and near death",
-      "explain": "Душа насытилась страданиями и жизнь приблизилась к миру мертвых — his soul is full of troubles and his life has come near to the realm of the dead."
-    },
-    {
-      "id": "r3",
-      "ru": "Я брошен между мертвыми, я подобен убитым, лежащим в могиле.",
-      "question": "To whom does the psalmist compare himself?",
-      "options": [
-        "To the slain lying in the grave",
-        "To a living warrior",
-        "To the wise",
-        "To a shepherd"
-      ],
-      "correct": "To the slain lying in the grave",
-      "explain": "Я подобен убитым, лежащим в могиле — I am like the slain who lie in the grave."
-    },
-    {
-      "id": "r4",
-      "ru": "Ты отвратил от меня друзей моих, сделал меня для них страшилищем.",
-      "question": "How does God treat the psalmist's friendships?",
-      "options": [
-        "He has turned friends away and made him a horror to them",
-        "He has multiplied his friends",
-        "He has honored him among friends",
-        "He has kept his friends close"
-      ],
-      "correct": "He has turned friends away and made him a horror to them",
-      "explain": "Ты отвратил друзей и сделал меня страшилищем — God has turned friends away and made him a horror to them."
-    },
-    {
-      "id": "r5",
-      "ru": "Зачем ты, Господи, отвергаешь мою душу? Зачем скрываешь от меня лицо свое?",
-      "question": "What is the psalmist's complaint about God?",
-      "options": [
-        "That God rejects his soul and hides His face",
-        "That God ignores the heavens",
-        "That God speaks too much",
-        "That God is angry with the earth"
-      ],
-      "correct": "That God rejects his soul and hides His face",
-      "explain": "отвергаешь мою душу ... скрываешь лицо — God rejects his soul and hides His face."
-    },
-    {
-      "id": "r6",
-      "ru": "Твоя ярость прошла надо мною, твои устрашения сокрушили меня.",
-      "question": "What has God's anger done to the psalmist?",
-      "options": [
-        "His fierce anger and terrors have overwhelmed him",
-        "His anger has strengthened him",
-        "His anger has passed him by",
-        "His anger is unknown"
-      ],
-      "correct": "His fierce anger and terrors have overwhelmed him",
-      "explain": "Ты́ова ярость прошла надо мною, твои устрашения сокрушили меня — God's anger has passed over him and His terrors have crushed him."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Господи, ___ спасения моего, днем и ночью взываю к Тебе.",
+   "lemma": "Бог",
+   "options": [
+    "Боже",
+    "Бога",
+    "Богу",
+    "Богом"
+   ],
+   "correct": "Боже",
+   "case": "Звательный (Vocative)",
+   "explain": "Direct address to God uses the vocative case (or nominative in modern Russian)."
+  },
+  {
+   "id": "c2",
+   "sentence": "Я стал, как те, кто спускается в ___.",
+   "lemma": "пропасть",
+   "options": [
+    "пропасть",
+    "пропасти",
+    "пропастью",
+    "пропастье"
+   ],
+   "correct": "пропасть",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb спускается (descends) is followed by the accusative preposition в."
+  },
+  {
+   "id": "c3",
+   "sentence": "Я брошен между ___.",
+   "lemma": "мертвый",
+   "options": [
+    "мертвый",
+    "мертвого",
+    "мертвыми",
+    "мертвом"
+   ],
+   "correct": "мертвыми",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition между (among) governs the instrumental case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Ты положил меня в глубокую ___.",
+   "lemma": "пропасть",
+   "options": [
+    "пропасть",
+    "пропасти",
+    "пропастью",
+    "пропастье"
+   ],
+   "correct": "пропасть",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb положил (laid) takes the accusative case for its object."
+  },
+  {
+   "id": "c5",
+   "sentence": "Ты отвратил от меня ___.",
+   "lemma": "друг",
+   "options": [
+    "друг",
+    "друга",
+    "друго́в",
+    "друге"
+   ],
+   "correct": "друго́в",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition от (from) governs the genitive case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Я заключен и не могу выйти, глаза истомились от ___.",
+   "lemma": "горе",
+   "options": [
+    "горе",
+    "горя",
+    "горю",
+    "горем"
+   ],
+   "correct": "горя",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition от (from) governs the genitive case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Разве для мертвых Ты творишь ___?",
+   "lemma": "чудо",
+   "options": [
+    "чудо",
+    "чуда",
+    "чудо́в",
+    "чудом"
+   ],
+   "correct": "чудо́в",
+   "case": "Родительный (Genitive)",
+   "explain": "The verb творишь (perform) takes the accusative, but in this context refers to plural genitive."
+  },
+  {
+   "id": "c8",
+   "sentence": "Тьма — мой близкий ___.",
+   "lemma": "друг",
+   "options": [
+    "друг",
+    "друга",
+    "друку",
+    "друге"
+   ],
+   "correct": "друг",
+   "case": "Именительный (Nominative)",
+   "explain": "After the copula verb быть (to be), the predicate nominative stands in the nominative case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Господи, Бог спасения моего, днем и ночью взываю к Тебе, пусть достигнет Тебя молитва моя, услышь мою мольбу.",
+   "question": "What does the psalmist ask God to do?",
+   "options": [
+    "To hear his prayer and supplication",
+    "To destroy his enemies",
+    "To give him riches",
+    "To make him a king"
+   ],
+   "correct": "To hear his prayer and supplication",
+   "explain": "The text says пусть достигнет Тебя молитва моя, услышь мою мольбу — let my prayer reach You, hear my supplication."
+  },
+  {
+   "id": "r2",
+   "ru": "Насытилась душа моя страданиями, и жизнь моя приблизилась к миру мертвых.",
+   "question": "What has happened to the psalmist's soul?",
+   "options": [
+    "It is full of troubles and near death",
+    "It is filled with joy",
+    "It is at rest",
+    "It is hidden"
+   ],
+   "correct": "It is full of troubles and near death",
+   "explain": "Душа насытилась страданиями и жизнь приблизилась к миру мертвых — his soul is full of troubles and his life has come near to the realm of the dead."
+  },
+  {
+   "id": "r3",
+   "ru": "Я брошен между мертвыми, я подобен убитым, лежащим в могиле.",
+   "question": "To whom does the psalmist compare himself?",
+   "options": [
+    "To the slain lying in the grave",
+    "To a living warrior",
+    "To the wise",
+    "To a shepherd"
+   ],
+   "correct": "To the slain lying in the grave",
+   "explain": "Я подобен убитым, лежащим в могиле — I am like the slain who lie in the grave."
+  },
+  {
+   "id": "r4",
+   "ru": "Ты отвратил от меня друзей моих, сделал меня для них страшилищем.",
+   "question": "How does God treat the psalmist's friendships?",
+   "options": [
+    "He has turned friends away and made him a horror to them",
+    "He has multiplied his friends",
+    "He has honored him among friends",
+    "He has kept his friends close"
+   ],
+   "correct": "He has turned friends away and made him a horror to them",
+   "explain": "Ты отвратил друзей и сделал меня страшилищем — God has turned friends away and made him a horror to them."
+  },
+  {
+   "id": "r5",
+   "ru": "Зачем ты, Господи, отвергаешь мою душу? Зачем скрываешь от меня лицо свое?",
+   "question": "What is the psalmist's complaint about God?",
+   "options": [
+    "That God rejects his soul and hides His face",
+    "That God ignores the heavens",
+    "That God speaks too much",
+    "That God is angry with the earth"
+   ],
+   "correct": "That God rejects his soul and hides His face",
+   "explain": "отвергаешь мою душу ... скрываешь лицо — God rejects his soul and hides His face."
+  },
+  {
+   "id": "r6",
+   "ru": "Твоя ярость прошла надо мною, твои устрашения сокрушили меня.",
+   "question": "What has God's anger done to the psalmist?",
+   "options": [
+    "His fierce anger and terrors have overwhelmed him",
+    "His anger has strengthened him",
+    "His anger has passed him by",
+    "His anger is unknown"
+   ],
+   "correct": "His fierce anger and terrors have overwhelmed him",
+   "explain": "Ты́ова ярость прошла надо мною, твои устрашения сокрушили меня — God's anger has passed over him and His terrors have crushed him."
+  }
+ ]
 }

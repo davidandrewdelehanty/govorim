@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "«Придите, воспоем ___, вознесем хвалу с коле нашего спасения.»",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господу",
-      "case": "Дательный (Dative)",
-      "translation": "Come, let us sing to the Lord, raise praise for our salvation.",
-      "explain": "The verb воспоем (sing) with a dative complement governs the dative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Придем пред лицо Его с благодарением, с ___ будем Ему восклицать.",
-      "lemma": "песня",
-      "options": ["песня", "песни", "песне", "песнями"],
-      "correct": "песнями",
-      "case": "Творительный (Instrumental)",
-      "translation": "Let us come before his presence with thanksgiving, with songs let us shout to him.",
-      "explain": "The preposition с (with) governing the instrumental case."
-    },
-    {
-      "id": "c3",
-      "sentence": "потому что Господь — великий ___ и великий Царь над всеми богами.",
-      "lemma": "Бог",
-      "options": ["Бог", "Бога", "Богу", "Богом"],
-      "correct": "Бог",
-      "case": "Именительный (Nominative)",
-      "translation": "because the Lord is a great God and a great King above all gods.",
-      "explain": "Бог is the predicate nominative following the copula, so it takes the nominative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "В Его руке глубины ___ и вершины гор принадлежат Ему.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "земле", "землей"],
-      "correct": "земли",
-      "case": "Родительный (Genitive)",
-      "translation": "In his hand are the deep places of the earth and the heights of the mountains.",
-      "explain": "Глубины (depths) is a construct that governs the genitive case for the thing of which it contains depths."
-    },
-    {
-      "id": "c5",
-      "sentence": "Несите ___ и идите во дворы Его.",
-      "lemma": "дар",
-      "options": ["дар", "дара", "дару", "даром"],
-      "correct": "дар",
-      "case": "Винительный (Accusative)",
-      "translation": "Bring an offering and come into his courts.",
-      "explain": "Дар is the direct object of the transitive verb несите (bring), so it takes the accusative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "«Придите, поклонимся и пойдем перед Ним, преклоним колено перед ___, Создателем нашим.»",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господом", "Господе"],
-      "correct": "Господом",
-      "case": "Творительный (Instrumental)",
-      "translation": "Come, let us worship and bow down. Let us kneel before the Lord, our Creator.",
-      "explain": "The preposition перед (before) governing the instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Сегодня, если услышите его голос, то не ожесточайте ваших ___.",
-      "lemma": "сердце",
-      "options": ["сердце", "сердца", "сердцу", "сердцем"],
-      "correct": "сердца",
-      "case": "Родительный (Genitive)",
-      "translation": "Today, if you hear his voice, do not harden your hearts.",
-      "explain": "In negation with the negative imperative, the accusative direct object takes the genitive case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Сорок лет я гневался на это поколение и сказал, «Сердца этого ___ заблуждаются.»",
-      "lemma": "народ",
-      "options": ["народ", "народа", "народе", "народом"],
-      "correct": "народа",
-      "case": "Родительный (Genitive)",
-      "translation": "Forty years I was grieved with that generation and said, 'The hearts of this people err.'",
-      "explain": "The genitive possessive construction; the hearts belong to the people."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "«Придите, воспоем Господу, вознесем хвалу с коле нашего спасения.»",
-      "question": "What does the psalmist invite people to do?",
-      "options": ["Sing to the Lord and raise praise for their salvation", "Remain silent and wait", "Build a temple", "Flee from danger"],
-      "correct": "Sing to the Lord and raise praise for their salvation",
-      "explain": "The text says 'Придите, воспоем Господу, вознесем хвалу' — Come, let us sing to the Lord, raise praise."
-    },
-    {
-      "id": "r2",
-      "ru": "потому что Господь — великий Бог и великий Царь над всеми богами.",
-      "question": "Why does the psalmist call for worship?",
-      "options": ["Because the Lord is a great God and great King above all gods", "Because the Lord is weak and needs help", "Because the Lord is like other gods", "Because the Lord lives far away"],
-      "correct": "Because the Lord is a great God and great King above all gods",
-      "explain": "The text explicitly states 'Господь — великий Бог и великий Царь над всеми богами.'"
-    },
-    {
-      "id": "r3",
-      "ru": "«Придите, поклонимся и пойдем перед Ним, преклоним колено перед Господом, Создателем нашим.»",
-      "question": "What posture of worship does the psalmist advocate?",
-      "options": ["Bowing down and kneeling before the Lord, their Creator", "Standing with arms raised", "Sitting in silence", "Dancing with instruments"],
-      "correct": "Bowing down and kneeling before the Lord, their Creator",
-      "explain": "Поклонимся (let us worship/bow) and преклоним колено (let us kneel) describe physical postures of reverence."
-    },
-    {
-      "id": "r4",
-      "ru": "Он наш Бог, а мы его народ, который он пасет, его овцы, о которых он заботится.",
-      "question": "What relationship does the text describe between God and his people?",
-      "options": ["God is their shepherd and they are his flock, under his care", "God and the people are equals", "The people own God", "God abandons his people"],
-      "correct": "God is their shepherd and they are his flock, under his care",
-      "explain": "The shepherd metaphor is explicit: 'пасет' (pastures/shepherds) and 'овцы' (sheep), showing God's protective relationship."
-    },
-    {
-      "id": "r5",
-      "ru": "Сегодня, если услышите его голос, то не ожесточайте ваших сердец, как в Мериве, как это было в тот день в массе, в пустыне, где испытывали и проверяли меня ваши отцы.",
-      "question": "What warning does the psalmist give, and what historical comparison does he make?",
-      "options": ["Don't harden your hearts; remember when your fathers tested God in Meribah and Massah in the wilderness", "Listen to your ancestors' wisdom", "Harden your hearts like stone", "Forget the past"],
-      "correct": "Don't harden your hearts; remember when your fathers tested God in Meribah and Massah in the wilderness",
-      "explain": "The text warns 'не ожесточайте ваших сердец' (don't harden your hearts) and references the historical instances 'в Мериве' and 'в массе' (Meribah and Massah)."
-    },
-    {
-      "id": "r6",
-      "ru": "Поэтому я поклялся в гневе моем, они не войдут в мой покой.",
-      "question": "What oath did God swear in his wrath concerning the people?",
-      "options": ["They will not enter into his rest", "They will inherit the promised land", "They will be blessed forever", "They will rule over all nations"],
-      "correct": "They will not enter into his rest",
-      "explain": "The text explicitly states 'они не войдут в мой покой' — they will not enter into my rest."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "«Придите, воспоем ___, вознесем хвалу с коле нашего спасения.»",
+   "lemma": "Господь",
+   "options": [
+    "Господь",
+    "Господа",
+    "Господу",
+    "Господом"
+   ],
+   "correct": "Господу",
+   "case": "Дательный (Dative)",
+   "explain": "The verb воспоем (sing) with a dative complement governs the dative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Придем пред лицо Его с благодарением, с ___ будем Ему восклицать.",
+   "lemma": "песня",
+   "options": [
+    "песня",
+    "песни",
+    "песне",
+    "песнями"
+   ],
+   "correct": "песнями",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition с (with) governing the instrumental case."
+  },
+  {
+   "id": "c3",
+   "sentence": "потому что Господь — великий ___ и великий Царь над всеми богами.",
+   "lemma": "Бог",
+   "options": [
+    "Бог",
+    "Бога",
+    "Богу",
+    "Богом"
+   ],
+   "correct": "Бог",
+   "case": "Именительный (Nominative)",
+   "explain": "Бог is the predicate nominative following the copula, so it takes the nominative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "В Его руке глубины ___ и вершины гор принадлежат Ему.",
+   "lemma": "земля",
+   "options": [
+    "земля",
+    "земли",
+    "земле",
+    "землей"
+   ],
+   "correct": "земли",
+   "case": "Родительный (Genitive)",
+   "explain": "Глубины (depths) is a construct that governs the genitive case for the thing of which it contains depths."
+  },
+  {
+   "id": "c5",
+   "sentence": "Несите ___ и идите во дворы Его.",
+   "lemma": "дар",
+   "options": [
+    "дар",
+    "дара",
+    "дару",
+    "даром"
+   ],
+   "correct": "дар",
+   "case": "Винительный (Accusative)",
+   "explain": "Дар is the direct object of the transitive verb несите (bring), so it takes the accusative case."
+  },
+  {
+   "id": "c6",
+   "sentence": "«Придите, поклонимся и пойдем перед Ним, преклоним колено перед ___, Создателем нашим.»",
+   "lemma": "Господь",
+   "options": [
+    "Господь",
+    "Господа",
+    "Господом",
+    "Господе"
+   ],
+   "correct": "Господом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition перед (before) governing the instrumental case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Сегодня, если услышите его голос, то не ожесточайте ваших ___.",
+   "lemma": "сердце",
+   "options": [
+    "сердце",
+    "сердца",
+    "сердцу",
+    "сердцем"
+   ],
+   "correct": "сердца",
+   "case": "Родительный (Genitive)",
+   "explain": "In negation with the negative imperative, the accusative direct object takes the genitive case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Сорок лет я гневался на это поколение и сказал, «Сердца этого ___ заблуждаются.»",
+   "lemma": "народ",
+   "options": [
+    "народ",
+    "народа",
+    "народе",
+    "народом"
+   ],
+   "correct": "народа",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive possessive construction; the hearts belong to the people."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "«Придите, воспоем Господу, вознесем хвалу с коле нашего спасения.»",
+   "question": "What does the psalmist invite people to do?",
+   "options": [
+    "Sing to the Lord and raise praise for their salvation",
+    "Remain silent and wait",
+    "Build a temple",
+    "Flee from danger"
+   ],
+   "correct": "Sing to the Lord and raise praise for their salvation",
+   "explain": "The text says 'Придите, воспоем Господу, вознесем хвалу' — Come, let us sing to the Lord, raise praise."
+  },
+  {
+   "id": "r2",
+   "ru": "потому что Господь — великий Бог и великий Царь над всеми богами.",
+   "question": "Why does the psalmist call for worship?",
+   "options": [
+    "Because the Lord is a great God and great King above all gods",
+    "Because the Lord is weak and needs help",
+    "Because the Lord is like other gods",
+    "Because the Lord lives far away"
+   ],
+   "correct": "Because the Lord is a great God and great King above all gods",
+   "explain": "The text explicitly states 'Господь — великий Бог и великий Царь над всеми богами.'"
+  },
+  {
+   "id": "r3",
+   "ru": "«Придите, поклонимся и пойдем перед Ним, преклоним колено перед Господом, Создателем нашим.»",
+   "question": "What posture of worship does the psalmist advocate?",
+   "options": [
+    "Bowing down and kneeling before the Lord, their Creator",
+    "Standing with arms raised",
+    "Sitting in silence",
+    "Dancing with instruments"
+   ],
+   "correct": "Bowing down and kneeling before the Lord, their Creator",
+   "explain": "Поклонимся (let us worship/bow) and преклоним колено (let us kneel) describe physical postures of reverence."
+  },
+  {
+   "id": "r4",
+   "ru": "Он наш Бог, а мы его народ, который он пасет, его овцы, о которых он заботится.",
+   "question": "What relationship does the text describe between God and his people?",
+   "options": [
+    "God is their shepherd and they are his flock, under his care",
+    "God and the people are equals",
+    "The people own God",
+    "God abandons his people"
+   ],
+   "correct": "God is their shepherd and they are his flock, under his care",
+   "explain": "The shepherd metaphor is explicit: 'пасет' (pastures/shepherds) and 'овцы' (sheep), showing God's protective relationship."
+  },
+  {
+   "id": "r5",
+   "ru": "Сегодня, если услышите его голос, то не ожесточайте ваших сердец, как в Мериве, как это было в тот день в массе, в пустыне, где испытывали и проверяли меня ваши отцы.",
+   "question": "What warning does the psalmist give, and what historical comparison does he make?",
+   "options": [
+    "Don't harden your hearts; remember when your fathers tested God in Meribah and Massah in the wilderness",
+    "Listen to your ancestors' wisdom",
+    "Harden your hearts like stone",
+    "Forget the past"
+   ],
+   "correct": "Don't harden your hearts; remember when your fathers tested God in Meribah and Massah in the wilderness",
+   "explain": "The text warns 'не ожесточайте ваших сердец' (don't harden your hearts) and references the historical instances 'в Мериве' and 'в массе' (Meribah and Massah)."
+  },
+  {
+   "id": "r6",
+   "ru": "Поэтому я поклялся в гневе моем, они не войдут в мой покой.",
+   "question": "What oath did God swear in his wrath concerning the people?",
+   "options": [
+    "They will not enter into his rest",
+    "They will inherit the promised land",
+    "They will be blessed forever",
+    "They will rule over all nations"
+   ],
+   "correct": "They will not enter into his rest",
+   "explain": "The text explicitly states 'они не войдут в мой покой' — they will not enter into my rest."
+  }
+ ]
 }

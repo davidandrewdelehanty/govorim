@@ -1,106 +1,155 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Вот ___ потомков Адама.",
-      "lemma": "родословие",
-      "options": ["родословие", "родословия", "родословию", "родословием"],
-      "correct": "родословие",
-      "case": "Именительный (Nominative)",
-      "translation": "This is the genealogy of Adam's descendants.",
-      "explain": "Родословие is the grammatical subject presented by вот, so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Вот родословие потомков ___.",
-      "lemma": "Адам",
-      "options": ["Адам", "Адама", "Адаму", "Адамом"],
-      "correct": "Адама",
-      "case": "Родительный (Genitive)",
-      "translation": "This is the genealogy of the descendants of Adam.",
-      "explain": "The genitive case here expresses possession — the descendants belonging to Adam."
-    },
-    {
-      "id": "c3",
-      "sentence": "Он создал его по ___ Божьему.",
-      "lemma": "подобие",
-      "options": ["подобие", "подобия", "подобию", "подобием"],
-      "correct": "подобию",
-      "case": "Дательный (Dative)",
-      "translation": "He made him in the likeness of God.",
-      "explain": "The preposition по meaning 'according to' governs the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Он сотворил мужчину и ___ и благословил их.",
-      "lemma": "женщина",
-      "options": ["женщина", "женщины", "женщину", "женщиной"],
-      "correct": "женщину",
-      "case": "Винительный (Accusative)",
-      "translation": "He created male and female and blessed them.",
-      "explain": "Женщину is the direct object of the transitive verb сотворил (created), so it takes the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Он утешит нас в работе, в тяжком труде рук наших, на земле, проклятой ___.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господом",
-      "case": "Творительный (Instrumental)",
-      "translation": "He will comfort us in our labor and in the toil of our hands, caused by the ground the Lord has cursed.",
-      "explain": "The instrumental case here expresses the agent of the passive participle проклятой — 'cursed by the Lord.'"
-    },
-    {
-      "id": "c6",
-      "sentence": "Он утешит нас в работе, в тяжком ___ рук наших.",
-      "lemma": "труд",
-      "options": ["труд", "труда", "труду", "труде"],
-      "correct": "труде",
-      "case": "Предложный (Prepositional)",
-      "translation": "He will comfort us in our labor, in the hard toil of our hands.",
-      "explain": "The preposition в indicating a state or activity governs the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Когда Бог сотворил человека, Он создал его по подобию Божьему.",
-      "question": "In whose likeness did God create man?",
-      "options": ["God's own likeness", "The angels' likeness", "No particular likeness", "Adam's own likeness"],
-      "correct": "God's own likeness",
-      "explain": "The text says God created man 'по подобию Божьему' — in the likeness of God."
-    },
-    {
-      "id": "r2",
-      "ru": "Всего Адам жил 930 лет и умер.",
-      "question": "How many years did Adam live in total?",
-      "options": ["930 years", "800 years", "1000 years", "500 years"],
-      "correct": "930 years",
-      "explain": "The text states 'Всего Адам жил 930 лет и умер' — in total Adam lived 930 years and died."
-    },
-    {
-      "id": "r3",
-      "ru": "Енох ходил с Богом, потом его не стало, потому что Бог взял его.",
-      "question": "What happened to Enoch instead of dying?",
-      "options": ["God took him, and he was no more", "He lived forever on earth", "He became a king", "He turned into an angel visibly"],
-      "correct": "God took him, and he was no more",
-      "explain": "The text says Enoch walked with God, 'потом его не стало, потому что Бог взял его' — then he was no more, for God took him."
-    },
-    {
-      "id": "r4",
-      "ru": "Всего Мафусал жил 969 лет и умер.",
-      "question": "Who lived the longest according to this chapter, at 969 years?",
-      "options": ["Methuselah (Мафусал)", "Adam", "Noah", "Enoch"],
-      "correct": "Methuselah (Мафусал)",
-      "explain": "The text says 'Всего Мафусал жил 969 лет и умер' — Methuselah lived 969 years in total, the longest lifespan listed."
-    },
-    {
-      "id": "r5",
-      "ru": "Он назвал его Ной и сказал, «Он утешит нас в работе, в тяжком труде рук наших, на земле, проклятой Господом».",
-      "question": "What did Lamech say about his son Noah?",
-      "options": ["That he would comfort them in their toil on the cursed ground", "That he would be a great warrior", "That he would build a city", "That he would live forever"],
-      "correct": "That he would comfort them in their toil on the cursed ground",
-      "explain": "Lamech says of Noah, 'Он утешит нас в работе, в тяжком труде рук наших' — he will comfort us in our labor."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Вот ___ потомков Адама.",
+   "lemma": "родословие",
+   "options": [
+    "родословие",
+    "родословия",
+    "родословию",
+    "родословием"
+   ],
+   "correct": "родословие",
+   "case": "Именительный (Nominative)",
+   "explain": "Родословие is the grammatical subject presented by вот, so it stands in the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Вот родословие потомков ___.",
+   "lemma": "Адам",
+   "options": [
+    "Адам",
+    "Адама",
+    "Адаму",
+    "Адамом"
+   ],
+   "correct": "Адама",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive case here expresses possession — the descendants belonging to Adam."
+  },
+  {
+   "id": "c3",
+   "sentence": "Он создал его по ___ Божьему.",
+   "lemma": "подобие",
+   "options": [
+    "подобие",
+    "подобия",
+    "подобию",
+    "подобием"
+   ],
+   "correct": "подобию",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition по meaning 'according to' governs the dative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Он сотворил мужчину и ___ и благословил их.",
+   "lemma": "женщина",
+   "options": [
+    "женщина",
+    "женщины",
+    "женщину",
+    "женщиной"
+   ],
+   "correct": "женщину",
+   "case": "Винительный (Accusative)",
+   "explain": "Женщину is the direct object of the transitive verb сотворил (created), so it takes the accusative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Он утешит нас в работе, в тяжком труде рук наших, на земле, проклятой ___.",
+   "lemma": "Господь",
+   "options": [
+    "Господь",
+    "Господа",
+    "Господу",
+    "Господом"
+   ],
+   "correct": "Господом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The instrumental case here expresses the agent of the passive participle проклятой — 'cursed by the Lord.'"
+  },
+  {
+   "id": "c6",
+   "sentence": "Он утешит нас в работе, в тяжком ___ рук наших.",
+   "lemma": "труд",
+   "options": [
+    "труд",
+    "труда",
+    "труду",
+    "труде"
+   ],
+   "correct": "труде",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в indicating a state or activity governs the prepositional case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Когда Бог сотворил человека, Он создал его по подобию Божьему.",
+   "question": "In whose likeness did God create man?",
+   "options": [
+    "God's own likeness",
+    "The angels' likeness",
+    "No particular likeness",
+    "Adam's own likeness"
+   ],
+   "correct": "God's own likeness",
+   "explain": "The text says God created man 'по подобию Божьему' — in the likeness of God."
+  },
+  {
+   "id": "r2",
+   "ru": "Всего Адам жил 930 лет и умер.",
+   "question": "How many years did Adam live in total?",
+   "options": [
+    "930 years",
+    "800 years",
+    "1000 years",
+    "500 years"
+   ],
+   "correct": "930 years",
+   "explain": "The text states 'Всего Адам жил 930 лет и умер' — in total Adam lived 930 years and died."
+  },
+  {
+   "id": "r3",
+   "ru": "Енох ходил с Богом, потом его не стало, потому что Бог взял его.",
+   "question": "What happened to Enoch instead of dying?",
+   "options": [
+    "God took him, and he was no more",
+    "He lived forever on earth",
+    "He became a king",
+    "He turned into an angel visibly"
+   ],
+   "correct": "God took him, and he was no more",
+   "explain": "The text says Enoch walked with God, 'потом его не стало, потому что Бог взял его' — then he was no more, for God took him."
+  },
+  {
+   "id": "r4",
+   "ru": "Всего Мафусал жил 969 лет и умер.",
+   "question": "Who lived the longest according to this chapter, at 969 years?",
+   "options": [
+    "Methuselah (Мафусал)",
+    "Adam",
+    "Noah",
+    "Enoch"
+   ],
+   "correct": "Methuselah (Мафусал)",
+   "explain": "The text says 'Всего Мафусал жил 969 лет и умер' — Methuselah lived 969 years in total, the longest lifespan listed."
+  },
+  {
+   "id": "r5",
+   "ru": "Он назвал его Ной и сказал, «Он утешит нас в работе, в тяжком труде рук наших, на земле, проклятой Господом».",
+   "question": "What did Lamech say about his son Noah?",
+   "options": [
+    "That he would comfort them in their toil on the cursed ground",
+    "That he would be a great warrior",
+    "That he would build a city",
+    "That he would live forever"
+   ],
+   "correct": "That he would comfort them in their toil on the cursed ground",
+   "explain": "Lamech says of Noah, 'Он утешит нас в работе, в тяжком труде рук наших' — he will comfort us in our labor."
+  }
+ ]
 }

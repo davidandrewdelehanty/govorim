@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Скажи ___, чтобы мужчины и женщины попросили у соседей.",
-      "lemma": "народ",
-      "options": ["народ", "народа", "народу", "народом"],
-      "correct": "народу",
-      "case": "Дательный (Dative)",
-      "translation": "Tell the people, so that men and women ask of their neighbors.",
-      "explain": "The verb сказать (to tell someone) takes its addressee in the dative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Мужчины и женщины попросили у ___ серебряных и золотых вещей.",
-      "lemma": "сосед",
-      "options": ["соседи", "соседей", "соседям", "соседями"],
-      "correct": "соседей",
-      "case": "Родительный множественного (Genitive plural)",
-      "translation": "The men and women asked of their neighbors for silver and gold items.",
-      "explain": "The preposition у governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Самого Моисея считали великим ___ в Египте.",
-      "lemma": "человек",
-      "options": ["человек", "человека", "человеку", "человеком"],
-      "correct": "человеком",
-      "case": "Творительный (Instrumental)",
-      "translation": "Moses himself was considered a great man in Egypt.",
-      "explain": "The verb считать (to consider someone something) takes the predicate in the instrumental case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Я покараю ___ и Египет еще лишь раз.",
-      "lemma": "фараон",
-      "options": ["фараон", "фараона", "фараону", "фараоном"],
-      "correct": "фараона",
-      "case": "Винительный (Accusative)",
-      "translation": "I will punish Pharaoh and Egypt just one more time.",
-      "explain": "The direct object of the transitive verb покарать takes the accusative; for an animate noun it equals the genitive form."
-    },
-    {
-      "id": "c5",
-      "sentence": "Около полуночи я пройду по ___.",
-      "lemma": "Египет",
-      "options": ["Египет", "Египта", "Египту", "Египтом"],
-      "correct": "Египту",
-      "case": "Дательный (Dative)",
-      "translation": "About midnight I will pass through Egypt.",
-      "explain": "The preposition по governs the dative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Все первенцы в ___ умрут.",
-      "lemma": "Египет",
-      "options": ["Египет", "Египта", "Египте", "Египтом"],
-      "correct": "Египте",
-      "case": "Предложный (Prepositional)",
-      "translation": "All the firstborn in Egypt will die.",
-      "explain": "The preposition в indicating location takes the prepositional case."
-    },
-    {
-      "id": "c7",
-      "sentence": "И Моисей, кипя ___, вышел от фараона.",
-      "lemma": "гнев",
-      "options": ["гнев", "гнева", "гневу", "гневом"],
-      "correct": "гневом",
-      "case": "Творительный (Instrumental)",
-      "translation": "And Moses, seething with anger, went out from Pharaoh.",
-      "explain": "The instrumental case expresses the manner (seething with anger)."
-    },
-    {
-      "id": "c8",
-      "sentence": "Он не отпустил израилетян из своей ___.",
-      "lemma": "страна",
-      "options": ["страна", "страны", "стране", "страну"],
-      "correct": "страны",
-      "case": "Родительный (Genitive)",
-      "translation": "He did not let the Israelites go out of his country.",
-      "explain": "The preposition из governs the genitive case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Умрет даже первородный приплод скота.",
-      "question": "Besides people, what else was to die?",
-      "options": ["Even the firstborn offspring of the livestock", "All the crops of the field", "The fish of the rivers", "The birds of the sky"],
-      "correct": "Even the firstborn offspring of the livestock",
-      "explain": "The text says 'Умрет даже первородный приплод скота' (even the firstborn of the livestock will die)."
-    },
-    {
-      "id": "r2",
-      "ru": "По всему Египту будет громкий плач, подобного которому не бывало прежде и не будет впредь.",
-      "question": "What is said about the great cry throughout Egypt?",
-      "options": ["There has never been one like it before, nor will there be again", "It would last exactly seven days", "It would come only from the Israelites", "It would be silent and unnoticed"],
-      "correct": "There has never been one like it before, nor will there be again",
-      "explain": "The text says the cry would be 'подобного которому не бывало прежде и не будет впредь' (like none before or after)."
-    },
-    {
-      "id": "r3",
-      "ru": "Но на израилетян и на их скот даже собака не залает.",
-      "question": "What is said about the Israelites during this event?",
-      "options": ["Not even a dog will bark at them or their livestock", "They will lose their firstborn as well", "They will flee into the mountains", "They will fight against the Egyptians"],
-      "correct": "Not even a dog will bark at them or their livestock",
-      "explain": "The text says 'даже собака не залает' at the Israelites or their livestock."
-    },
-    {
-      "id": "r4",
-      "ru": "Тогда вы узнаете, что Господь делает различия между Египтом и Израилем.",
-      "question": "What will the people come to know?",
-      "options": ["That the Lord makes a distinction between Egypt and Israel", "That Egypt is mightier than Israel", "That Israel will remain in Egypt", "That the plagues have ended"],
-      "correct": "That the Lord makes a distinction between Egypt and Israel",
-      "explain": "The text says the Lord 'делает различия между Египтом и Израилем' (makes a distinction between Egypt and Israel)."
-    },
-    {
-      "id": "r5",
-      "ru": "И Моисей, кипя гневом, вышел от фараона.",
-      "question": "In what state did Moses leave Pharaoh?",
-      "options": ["Seething with anger", "Full of joy", "Weeping quietly", "Trembling with fear"],
-      "correct": "Seething with anger",
-      "explain": "The text says Moses left 'кипя гневом' (seething with anger)."
-    },
-    {
-      "id": "r6",
-      "ru": "Моисей и Аарон сотворили перед фараоном все эти чудеса, но Господь сделал сердце фараона упрямым, и он не отпустил израилетян из своей страны.",
-      "question": "What was the outcome after Moses and Aaron performed the wonders?",
-      "options": ["The Lord hardened Pharaoh's heart and he did not let Israel go", "Pharaoh freed the Israelites at once", "Pharaoh fled from Egypt", "The Egyptians began to worship the Lord"],
-      "correct": "The Lord hardened Pharaoh's heart and he did not let Israel go",
-      "explain": "The text says the Lord 'сделал сердце фараона упрямым' and Pharaoh did not release the Israelites."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Скажи ___, чтобы мужчины и женщины попросили у соседей.",
+   "lemma": "народ",
+   "options": [
+    "народ",
+    "народа",
+    "народу",
+    "народом"
+   ],
+   "correct": "народу",
+   "case": "Дательный (Dative)",
+   "explain": "The verb сказать (to tell someone) takes its addressee in the dative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Мужчины и женщины попросили у ___ серебряных и золотых вещей.",
+   "lemma": "сосед",
+   "options": [
+    "соседи",
+    "соседей",
+    "соседям",
+    "соседями"
+   ],
+   "correct": "соседей",
+   "case": "Родительный множественного (Genitive plural)",
+   "explain": "The preposition у governs the genitive case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Самого Моисея считали великим ___ в Египте.",
+   "lemma": "человек",
+   "options": [
+    "человек",
+    "человека",
+    "человеку",
+    "человеком"
+   ],
+   "correct": "человеком",
+   "case": "Творительный (Instrumental)",
+   "explain": "The verb считать (to consider someone something) takes the predicate in the instrumental case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Я покараю ___ и Египет еще лишь раз.",
+   "lemma": "фараон",
+   "options": [
+    "фараон",
+    "фараона",
+    "фараону",
+    "фараоном"
+   ],
+   "correct": "фараона",
+   "case": "Винительный (Accusative)",
+   "explain": "The direct object of the transitive verb покарать takes the accusative; for an animate noun it equals the genitive form."
+  },
+  {
+   "id": "c5",
+   "sentence": "Около полуночи я пройду по ___.",
+   "lemma": "Египет",
+   "options": [
+    "Египет",
+    "Египта",
+    "Египту",
+    "Египтом"
+   ],
+   "correct": "Египту",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition по governs the dative case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Все первенцы в ___ умрут.",
+   "lemma": "Египет",
+   "options": [
+    "Египет",
+    "Египта",
+    "Египте",
+    "Египтом"
+   ],
+   "correct": "Египте",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в indicating location takes the prepositional case."
+  },
+  {
+   "id": "c7",
+   "sentence": "И Моисей, кипя ___, вышел от фараона.",
+   "lemma": "гнев",
+   "options": [
+    "гнев",
+    "гнева",
+    "гневу",
+    "гневом"
+   ],
+   "correct": "гневом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The instrumental case expresses the manner (seething with anger)."
+  },
+  {
+   "id": "c8",
+   "sentence": "Он не отпустил израилетян из своей ___.",
+   "lemma": "страна",
+   "options": [
+    "страна",
+    "страны",
+    "стране",
+    "страну"
+   ],
+   "correct": "страны",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition из governs the genitive case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Умрет даже первородный приплод скота.",
+   "question": "Besides people, what else was to die?",
+   "options": [
+    "Even the firstborn offspring of the livestock",
+    "All the crops of the field",
+    "The fish of the rivers",
+    "The birds of the sky"
+   ],
+   "correct": "Even the firstborn offspring of the livestock",
+   "explain": "The text says 'Умрет даже первородный приплод скота' (even the firstborn of the livestock will die)."
+  },
+  {
+   "id": "r2",
+   "ru": "По всему Египту будет громкий плач, подобного которому не бывало прежде и не будет впредь.",
+   "question": "What is said about the great cry throughout Egypt?",
+   "options": [
+    "There has never been one like it before, nor will there be again",
+    "It would last exactly seven days",
+    "It would come only from the Israelites",
+    "It would be silent and unnoticed"
+   ],
+   "correct": "There has never been one like it before, nor will there be again",
+   "explain": "The text says the cry would be 'подобного которому не бывало прежде и не будет впредь' (like none before or after)."
+  },
+  {
+   "id": "r3",
+   "ru": "Но на израилетян и на их скот даже собака не залает.",
+   "question": "What is said about the Israelites during this event?",
+   "options": [
+    "Not even a dog will bark at them or their livestock",
+    "They will lose their firstborn as well",
+    "They will flee into the mountains",
+    "They will fight against the Egyptians"
+   ],
+   "correct": "Not even a dog will bark at them or their livestock",
+   "explain": "The text says 'даже собака не залает' at the Israelites or their livestock."
+  },
+  {
+   "id": "r4",
+   "ru": "Тогда вы узнаете, что Господь делает различия между Египтом и Израилем.",
+   "question": "What will the people come to know?",
+   "options": [
+    "That the Lord makes a distinction between Egypt and Israel",
+    "That Egypt is mightier than Israel",
+    "That Israel will remain in Egypt",
+    "That the plagues have ended"
+   ],
+   "correct": "That the Lord makes a distinction between Egypt and Israel",
+   "explain": "The text says the Lord 'делает различия между Египтом и Израилем' (makes a distinction between Egypt and Israel)."
+  },
+  {
+   "id": "r5",
+   "ru": "И Моисей, кипя гневом, вышел от фараона.",
+   "question": "In what state did Moses leave Pharaoh?",
+   "options": [
+    "Seething with anger",
+    "Full of joy",
+    "Weeping quietly",
+    "Trembling with fear"
+   ],
+   "correct": "Seething with anger",
+   "explain": "The text says Moses left 'кипя гневом' (seething with anger)."
+  },
+  {
+   "id": "r6",
+   "ru": "Моисей и Аарон сотворили перед фараоном все эти чудеса, но Господь сделал сердце фараона упрямым, и он не отпустил израилетян из своей страны.",
+   "question": "What was the outcome after Moses and Aaron performed the wonders?",
+   "options": [
+    "The Lord hardened Pharaoh's heart and he did not let Israel go",
+    "Pharaoh freed the Israelites at once",
+    "Pharaoh fled from Egypt",
+    "The Egyptians began to worship the Lord"
+   ],
+   "correct": "The Lord hardened Pharaoh's heart and he did not let Israel go",
+   "explain": "The text says the Lord 'сделал сердце фараона упрямым' and Pharaoh did not release the Israelites."
+  }
+ ]
 }

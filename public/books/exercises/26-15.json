@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Было ко мне ___ Господа.",
-      "lemma": "слово",
-      "options": ["слово", "слова", "слову", "словом"],
-      "correct": "слово",
-      "case": "Именительный (Nominative)",
-      "translation": "The word of the Lord came to me.",
-      "explain": "Слово is the grammatical subject, requiring the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Сын человеческий, чем древесина виноградной лозы лучше древесины ветвей всех деревьев ___?",
-      "lemma": "лес",
-      "options": ["лес", "леса", "лесу", "лесом"],
-      "correct": "леса",
-      "case": "Родительный (Genitive)",
-      "translation": "Son of man, what is the vine tree more than any tree, the vine-branch among the trees of the forest?",
-      "explain": "The preposition всех (all) with the genitive case requires леса."
-    },
-    {
-      "id": "c3",
-      "sentence": "Разве берут древесину виноградной лозы, чтобы сделать что-нибудь нужное или колышки для ___?",
-      "lemma": "дерево",
-      "options": ["дерево", "дерева", "дереву", "деревом"],
-      "correct": "дерева",
-      "case": "Родительный (Genitive)",
-      "translation": "Will wood be taken to make anything or pegs for a tree?",
-      "explain": "The preposition для (for) requires the genitive case дерева."
-    },
-    {
-      "id": "c4",
-      "sentence": "Когда ее бросают в огонь, как топливо, и ___ сжигает оба ее конца, то годится ли она на что-нибудь?",
-      "lemma": "огонь",
-      "options": ["огонь", "огня", "огню", "огнём"],
-      "correct": "огонь",
-      "case": "Именительный (Nominative)",
-      "translation": "When it is cast into the fire as fuel and the fire devours both its ends, is it useful for anything?",
-      "explain": "Огонь is the grammatical subject of the verb сжигает, requiring nominative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Если она ни на что не годится, когда была целой, то на что же она сгодится после того, как ее поглотил ___ и она обуглилась?",
-      "lemma": "огонь",
-      "options": ["огонь", "огня", "огню", "огнём"],
-      "correct": "огонь",
-      "case": "Винительный (Accusative)",
-      "translation": "If it is not useful when whole, what good is it after the fire has consumed it?",
-      "explain": "The transitive verb поглотил (devoured) requires the accusative case огонь."
-    },
-    {
-      "id": "c6",
-      "sentence": "Как я отдал древесину виноградной лозы среди деревьев леса на пожирание ___, так поступлю я и с жителями Иерусалима.",
-      "lemma": "огонь",
-      "options": ["огонь", "огня", "огню", "огнём"],
-      "correct": "огню",
-      "case": "Дательный (Dative)",
-      "translation": "As I gave the wood of the vine among the trees of the forest as fuel to the fire, so I will deal with the inhabitants of Jerusalem.",
-      "explain": "The preposition на (to) with the meaning 'for consumption' requires the dative case огню."
-    },
-    {
-      "id": "c7",
-      "sentence": "Я обращу лицо мое против них перед огнём, даже если они выберутся из ___, огонь все равно их поглотит.",
-      "lemma": "огонь",
-      "options": ["огонь", "огня", "огню", "огнём"],
-      "correct": "огня",
-      "case": "Родительный (Genitive)",
-      "translation": "I turn my face against them. Though they escape from the fire, the fire will still consume them.",
-      "explain": "The preposition из (out of) requires the genitive case огня."
-    },
-    {
-      "id": "c8",
-      "sentence": "Я придам ___ опустошению за то, что они нарушили верность мне.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "землю", "землёй"],
-      "correct": "землю",
-      "case": "Винительный (Accusative)",
-      "translation": "I will make the land desolate because they have trespassed against me.",
-      "explain": "The verb придам (will make) with an object requires the accusative case землю."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Было ко мне слово Господа.",
-      "question": "What comes to the prophet at the beginning?",
-      "options": ["The word of the Lord", "A vision of the temple", "A command from priests", "An instruction for judgment"],
-      "correct": "The word of the Lord",
-      "explain": "The chapter opens with 'Было ко мне слово Господа' — 'Yahweh's word came to me.'"
-    },
-    {
-      "id": "r2",
-      "ru": "Сын человеческий, чем древесина виноградной лозы лучше древесины ветвей всех деревьев леса?",
-      "question": "What does God ask about the vine tree?",
-      "options": ["What makes vine wood better than other forest wood?", "Why is the vine more beautiful than other trees?", "How much stronger is vine wood than oak?", "When does vine wood produce the best fruit?"],
-      "correct": "What makes vine wood better than other forest wood?",
-      "explain": "God asks 'чем древесина виноградной лозы лучше древесины ветвей всех деревьев леса?' — 'What is the vine tree more than any tree among the trees of the forest?'"
-    },
-    {
-      "id": "r3",
-      "ru": "Разве берут древесину виноградной лозы, чтобы сделать что-нибудь нужное?",
-      "question": "What is the use of vine wood?",
-      "options": ["It is not useful for making anything", "It is used for building houses", "It is made into fine furniture", "It is used for weapons"],
-      "correct": "It is not useful for making anything",
-      "explain": "The question 'Разве берут древесину виноградной лозы, чтобы сделать что-нибудь нужное?' implies that vine wood is not taken for any useful purpose."
-    },
-    {
-      "id": "r4",
-      "ru": "Когда ее бросают в огонь, как топливо, и огонь сжигает оба ее конца и обугливает середину, то годится ли она на что-нибудь?",
-      "question": "After the vine is burned by fire on both ends and charred in the middle, what is its usefulness?",
-      "options": ["It is useless", "It becomes useful for carving", "It can still be used for fuel", "It is suitable for tools"],
-      "correct": "It is useless",
-      "explain": "The passage describes fire consuming both ends and charring the middle, then asks 'то годится ли она на что-нибудь?' — 'Is it still suitable for any work?'"
-    },
-    {
-      "id": "r5",
-      "ru": "Как я отдал древесину виноградной лозы среди деревьев леса на пожирание огню, так поступлю я и с жителями Иерусалима.",
-      "question": "What does God compare the fate of Jerusalem's inhabitants to?",
-      "options": ["The vine wood given to the fire as fuel", "The trees of the forest being uprooted", "The judgment of false prophets", "The exile of the righteous"],
-      "correct": "The vine wood given to the fire as fuel",
-      "explain": "God states 'Как я отдал древесину виноградной лозы... на пожирание огню, так поступлю я и с жителями Иерусалима' — 'As I gave the vine wood to the fire, so I will deal with Jerusalem's inhabitants.'"
-    },
-    {
-      "id": "r6",
-      "ru": "И когда я обращу против них лицо, вы узнаете, что я Господь.",
-      "question": "When will people know that God is the Lord?",
-      "options": ["When God sets His face against them", "When the temple is rebuilt", "When the king returns", "When peace comes to the land"],
-      "correct": "When God sets His face against them",
-      "explain": "The text states 'когда я обращу против них лицо, вы узнаете, что я Господь' — 'when I set my face against them, you will know that I am Yahweh.'"
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Было ко мне ___ Господа.",
+   "lemma": "слово",
+   "options": [
+    "слово",
+    "слова",
+    "слову",
+    "словом"
+   ],
+   "correct": "слово",
+   "case": "Именительный (Nominative)",
+   "explain": "Слово is the grammatical subject, requiring the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Сын человеческий, чем древесина виноградной лозы лучше древесины ветвей всех деревьев ___?",
+   "lemma": "лес",
+   "options": [
+    "лес",
+    "леса",
+    "лесу",
+    "лесом"
+   ],
+   "correct": "леса",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition всех (all) with the genitive case requires леса."
+  },
+  {
+   "id": "c3",
+   "sentence": "Разве берут древесину виноградной лозы, чтобы сделать что-нибудь нужное или колышки для ___?",
+   "lemma": "дерево",
+   "options": [
+    "дерево",
+    "дерева",
+    "дереву",
+    "деревом"
+   ],
+   "correct": "дерева",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition для (for) requires the genitive case дерева."
+  },
+  {
+   "id": "c4",
+   "sentence": "Когда ее бросают в огонь, как топливо, и ___ сжигает оба ее конца, то годится ли она на что-нибудь?",
+   "lemma": "огонь",
+   "options": [
+    "огонь",
+    "огня",
+    "огню",
+    "огнём"
+   ],
+   "correct": "огонь",
+   "case": "Именительный (Nominative)",
+   "explain": "Огонь is the grammatical subject of the verb сжигает, requiring nominative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Если она ни на что не годится, когда была целой, то на что же она сгодится после того, как ее поглотил ___ и она обуглилась?",
+   "lemma": "огонь",
+   "options": [
+    "огонь",
+    "огня",
+    "огню",
+    "огнём"
+   ],
+   "correct": "огонь",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb поглотил (devoured) requires the accusative case огонь."
+  },
+  {
+   "id": "c6",
+   "sentence": "Как я отдал древесину виноградной лозы среди деревьев леса на пожирание ___, так поступлю я и с жителями Иерусалима.",
+   "lemma": "огонь",
+   "options": [
+    "огонь",
+    "огня",
+    "огню",
+    "огнём"
+   ],
+   "correct": "огню",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition на (to) with the meaning 'for consumption' requires the dative case огню."
+  },
+  {
+   "id": "c7",
+   "sentence": "Я обращу лицо мое против них перед огнём, даже если они выберутся из ___, огонь все равно их поглотит.",
+   "lemma": "огонь",
+   "options": [
+    "огонь",
+    "огня",
+    "огню",
+    "огнём"
+   ],
+   "correct": "огня",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition из (out of) requires the genitive case огня."
+  },
+  {
+   "id": "c8",
+   "sentence": "Я придам ___ опустошению за то, что они нарушили верность мне.",
+   "lemma": "земля",
+   "options": [
+    "земля",
+    "земли",
+    "землю",
+    "землёй"
+   ],
+   "correct": "землю",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb придам (will make) with an object requires the accusative case землю."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Было ко мне слово Господа.",
+   "question": "What comes to the prophet at the beginning?",
+   "options": [
+    "The word of the Lord",
+    "A vision of the temple",
+    "A command from priests",
+    "An instruction for judgment"
+   ],
+   "correct": "The word of the Lord",
+   "explain": "The chapter opens with 'Было ко мне слово Господа' — 'Yahweh's word came to me.'"
+  },
+  {
+   "id": "r2",
+   "ru": "Сын человеческий, чем древесина виноградной лозы лучше древесины ветвей всех деревьев леса?",
+   "question": "What does God ask about the vine tree?",
+   "options": [
+    "What makes vine wood better than other forest wood?",
+    "Why is the vine more beautiful than other trees?",
+    "How much stronger is vine wood than oak?",
+    "When does vine wood produce the best fruit?"
+   ],
+   "correct": "What makes vine wood better than other forest wood?",
+   "explain": "God asks 'чем древесина виноградной лозы лучше древесины ветвей всех деревьев леса?' — 'What is the vine tree more than any tree among the trees of the forest?'"
+  },
+  {
+   "id": "r3",
+   "ru": "Разве берут древесину виноградной лозы, чтобы сделать что-нибудь нужное?",
+   "question": "What is the use of vine wood?",
+   "options": [
+    "It is not useful for making anything",
+    "It is used for building houses",
+    "It is made into fine furniture",
+    "It is used for weapons"
+   ],
+   "correct": "It is not useful for making anything",
+   "explain": "The question 'Разве берут древесину виноградной лозы, чтобы сделать что-нибудь нужное?' implies that vine wood is not taken for any useful purpose."
+  },
+  {
+   "id": "r4",
+   "ru": "Когда ее бросают в огонь, как топливо, и огонь сжигает оба ее конца и обугливает середину, то годится ли она на что-нибудь?",
+   "question": "After the vine is burned by fire on both ends and charred in the middle, what is its usefulness?",
+   "options": [
+    "It is useless",
+    "It becomes useful for carving",
+    "It can still be used for fuel",
+    "It is suitable for tools"
+   ],
+   "correct": "It is useless",
+   "explain": "The passage describes fire consuming both ends and charring the middle, then asks 'то годится ли она на что-нибудь?' — 'Is it still suitable for any work?'"
+  },
+  {
+   "id": "r5",
+   "ru": "Как я отдал древесину виноградной лозы среди деревьев леса на пожирание огню, так поступлю я и с жителями Иерусалима.",
+   "question": "What does God compare the fate of Jerusalem's inhabitants to?",
+   "options": [
+    "The vine wood given to the fire as fuel",
+    "The trees of the forest being uprooted",
+    "The judgment of false prophets",
+    "The exile of the righteous"
+   ],
+   "correct": "The vine wood given to the fire as fuel",
+   "explain": "God states 'Как я отдал древесину виноградной лозы... на пожирание огню, так поступлю я и с жителями Иерусалима' — 'As I gave the vine wood to the fire, so I will deal with Jerusalem's inhabitants.'"
+  },
+  {
+   "id": "r6",
+   "ru": "И когда я обращу против них лицо, вы узнаете, что я Господь.",
+   "question": "When will people know that God is the Lord?",
+   "options": [
+    "When God sets His face against them",
+    "When the temple is rebuilt",
+    "When the king returns",
+    "When peace comes to the land"
+   ],
+   "correct": "When God sets His face against them",
+   "explain": "The text states 'когда я обращу против них лицо, вы узнаете, что я Господь' — 'when I set my face against them, you will know that I am Yahweh.'"
+  }
+ ]
 }

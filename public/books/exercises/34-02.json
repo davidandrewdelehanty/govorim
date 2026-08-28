@@ -1,204 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Ниневия, против тебя поднимается ___.",
-      "lemma": "разрушитель",
-      "options": [
-        "разрушитель",
-        "разрушителя",
-        "разрушителю",
-        "разрушителем"
-      ],
-      "correct": "разрушитель",
-      "case": "Именительный (Nominative)",
-      "translation": "Nineveh, a destroyer has come up against you.",
-      "explain": "Разрушитель is the grammatical subject of the predicate поднимается, standing in nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Охраняй крепости, стереги ___, укрепляй себя, собери все свои силы.",
-      "lemma": "дорога",
-      "options": [
-        "дорога",
-        "дорогу",
-        "дороги",
-        "дороге"
-      ],
-      "correct": "дорогу",
-      "case": "Винительный (Accusative)",
-      "translation": "Keep the fortress! Watch the way! Strengthen yourself, gather all your forces.",
-      "explain": "The direct object of the imperative verb стереги (watch/guard) takes the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Щиты бойцов его красны. Его воины в багряных ___.",
-      "lemma": "одежды",
-      "options": [
-        "одежды",
-        "одежд",
-        "одеждах",
-        "одеждами"
-      ],
-      "correct": "одеждах",
-      "case": "Предложный (Prepositional)",
-      "translation": "The shields of his mighty men are made red. The valiant men are in scarlet garments.",
-      "explain": "The preposition в (in) governing location requires the prepositional case."
-    },
-    {
-      "id": "c4",
-      "sentence": "В день, когда они приготовлены к ___, колышется лес копий.",
-      "lemma": "бой",
-      "options": [
-        "бой",
-        "боя",
-        "бою",
-        "боем"
-      ],
-      "correct": "бою",
-      "case": "Дательный (Dative)",
-      "translation": "In the day when they are prepared for battle, the spears are brandished.",
-      "explain": "The preposition к (to/toward) governing direction or purpose requires the dative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Проносятся по улицам колесницы, мечутся по ___.",
-      "lemma": "площади",
-      "options": [
-        "площади",
-        "площадей",
-        "площадям",
-        "площадями"
-      ],
-      "correct": "площадям",
-      "case": "Дательный (Dative)",
-      "translation": "The chariots rage in the streets; they rush back and forth in the wide ways.",
-      "explain": "The preposition по (about/through) with plural dative requires the dative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Речные ворота распахнуты, и враг разрушает царский ___.",
-      "lemma": "дворец",
-      "options": [
-        "дворец",
-        "дворца",
-        "дворцу",
-        "дворцом"
-      ],
-      "correct": "дворец",
-      "case": "Именительный (Nominative)",
-      "translation": "The gates of the rivers are opened, and the palace is dissolved.",
-      "explain": "The direct object of the verb разрушает (destroys) for masculine nouns takes accusative, which equals nominative."
-    },
-    {
-      "id": "c7",
-      "sentence": "Я не оставлю на земле ___ для тебя, и не будет больше слышен голос твоих посланников.",
-      "lemma": "добыча",
-      "options": [
-        "добыча",
-        "добычу",
-        "добычи",
-        "добычей"
-      ],
-      "correct": "добычи",
-      "case": "Родительный (Genitive)",
-      "translation": "I will cut off your prey from the earth, and the voice of your messengers will no longer be heard.",
-      "explain": "After the preposition в (in) negated context, the genitive expresses absence or non-existence."
-    },
-    {
-      "id": "c8",
-      "sentence": "Сердца людей замирают от страха, колени трясутся, дрожат тела, и у всех бледнеют ___.",
-      "lemma": "лица",
-      "options": [
-        "лица",
-        "лиц",
-        "лицам",
-        "лицами"
-      ],
-      "correct": "лица",
-      "case": "Именительный (Nominative)",
-      "translation": "The heart melts, the knees knock together, their bodies and faces have grown pale.",
-      "explain": "Лица is the subject of the predicate бледнеют, standing in nominative case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Ниневия, против тебя поднимается разрушитель. Охраняй крепости, стереги дорогу, укрепляй себя, собери все свои силы.",
-      "question": "What warning is given to Nineveh?",
-      "options": [
-        "A destroyer has come against her; she must guard her fortresses and strengthen her forces",
-        "She will enjoy peace and prosperity",
-        "She will be blessed with abundance",
-        "She will gain many new allies"
-      ],
-      "correct": "A destroyer has come against her; she must guard her fortresses and strengthen her forces",
-      "explain": "The text states против тебя поднимается разрушитель, then commands Охраняй крепости... укрепляй себя, собери все свои силы — a destroyer has come against you; guard your fortresses, strengthen yourself, gather all your strength."
-    },
-    {
-      "id": "r2",
-      "ru": "Щиты бойцов его красны. Его воины в багряных одеждах. Сверкает металл колесниц.",
-      "question": "How is the military force of the destroyer described?",
-      "options": [
-        "With red shields, warriors in scarlet garments, and gleaming chariots",
-        "With wooden shields and simple clothing",
-        "With armor of bronze and gold",
-        "With peace and harmony"
-      ],
-      "correct": "With red shields, warriors in scarlet garments, and gleaming chariots",
-      "explain": "The text describes Щиты бойцов его красны, Его воины в багряных одеждах, Сверкает металл колесниц — his warriors' shields are red, his warriors in scarlet garments, the metal of chariots flashes."
-    },
-    {
-      "id": "r3",
-      "ru": "Проносятся по улицам колесницы, мечутся по площадям. Они подобны пылающим факелам, как сверкающие молнии.",
-      "question": "What imagery describes the movement of the invading forces?",
-      "options": [
-        "Like flaming torches and flashing lightning racing through streets and squares",
-        "Like slow-moving caravans",
-        "Like merchants trading peacefully",
-        "Like shepherds tending their flocks"
-      ],
-      "correct": "Like flaming torches and flashing lightning racing through streets and squares",
-      "explain": "Проносятся по улицам колесницы, мечутся по площадям. Они подобны пылающим факелам, как сверкающие молнии — chariots race through the streets, rush through the squares, resembling flaming torches, like flashing lightning."
-    },
-    {
-      "id": "r4",
-      "ru": "Решено. Неневия будет обнажена и уведена в плен. Рабыни ее стонят, как голубки, и бьют себя в грудь.",
-      "question": "What is the fate of Nineveh?",
-      "options": [
-        "She will be uncovered, led away in captivity, with her servants mourning and wailing",
-        "She will be restored to power",
-        "She will gain new territories",
-        "She will be strengthened"
-      ],
-      "correct": "She will be uncovered, led away in captivity, with her servants mourning and wailing",
-      "explain": "The text states Решено. Неневия будет обнажена и уведена в плен. Рабыни ее стонят, как голубки — It is decreed: Nineveh will be uncovered and carried away in captivity; her servants moan like doves."
-    },
-    {
-      "id": "r5",
-      "ru": "Нет конца их запасам и богатствам из сокровищниц. Разграблен, опустошен и разорен город.",
-      "question": "What happens to Nineveh's wealth and the city itself?",
-      "options": [
-        "The treasures are plundered and the city is ravaged and destroyed",
-        "The treasures are protected and the city is strengthened",
-        "New wealth flows into the city",
-        "The city becomes a center of trade"
-      ],
-      "correct": "The treasures are plundered and the city is ravaged and destroyed",
-      "explain": "The text says Нет конца их запасам и богатствам из сокровищниц (there is no end to the plunder of treasures) but then Разграблен, опустошен и разорен город — the city is plundered, emptied, and laid waste."
-    },
-    {
-      "id": "r6",
-      "ru": "Где же теперь Неневия, что была как логово львов, как место, где выкармливают своих львят?",
-      "question": "To what is Nineveh compared in this passage?",
-      "options": [
-        "To a den of lions where lion cubs were nurtured",
-        "To a garden of roses",
-        "To a city of peace",
-        "To a great library"
-      ],
-      "correct": "To a den of lions where lion cubs were nurtured",
-      "explain": "The text states Неневия, что была как логово львов, как место, где выкармливают своих львят — Nineveh was like a den of lions, like a place where they nourished their lion cubs."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Ниневия, против тебя поднимается ___.",
+   "lemma": "разрушитель",
+   "options": [
+    "разрушитель",
+    "разрушителя",
+    "разрушителю",
+    "разрушителем"
+   ],
+   "correct": "разрушитель",
+   "case": "Именительный (Nominative)",
+   "explain": "Разрушитель is the grammatical subject of the predicate поднимается, standing in nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Охраняй крепости, стереги ___, укрепляй себя, собери все свои силы.",
+   "lemma": "дорога",
+   "options": [
+    "дорога",
+    "дорогу",
+    "дороги",
+    "дороге"
+   ],
+   "correct": "дорогу",
+   "case": "Винительный (Accusative)",
+   "explain": "The direct object of the imperative verb стереги (watch/guard) takes the accusative case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Щиты бойцов его красны. Его воины в багряных ___.",
+   "lemma": "одежды",
+   "options": [
+    "одежды",
+    "одежд",
+    "одеждах",
+    "одеждами"
+   ],
+   "correct": "одеждах",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в (in) governing location requires the prepositional case."
+  },
+  {
+   "id": "c4",
+   "sentence": "В день, когда они приготовлены к ___, колышется лес копий.",
+   "lemma": "бой",
+   "options": [
+    "бой",
+    "боя",
+    "бою",
+    "боем"
+   ],
+   "correct": "бою",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition к (to/toward) governing direction or purpose requires the dative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Проносятся по улицам колесницы, мечутся по ___.",
+   "lemma": "площади",
+   "options": [
+    "площади",
+    "площадей",
+    "площадям",
+    "площадями"
+   ],
+   "correct": "площадям",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition по (about/through) with plural dative requires the dative case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Речные ворота распахнуты, и враг разрушает царский ___.",
+   "lemma": "дворец",
+   "options": [
+    "дворец",
+    "дворца",
+    "дворцу",
+    "дворцом"
+   ],
+   "correct": "дворец",
+   "case": "Именительный (Nominative)",
+   "explain": "The direct object of the verb разрушает (destroys) for masculine nouns takes accusative, which equals nominative."
+  },
+  {
+   "id": "c7",
+   "sentence": "Я не оставлю на земле ___ для тебя, и не будет больше слышен голос твоих посланников.",
+   "lemma": "добыча",
+   "options": [
+    "добыча",
+    "добычу",
+    "добычи",
+    "добычей"
+   ],
+   "correct": "добычи",
+   "case": "Родительный (Genitive)",
+   "explain": "After the preposition в (in) negated context, the genitive expresses absence or non-existence."
+  },
+  {
+   "id": "c8",
+   "sentence": "Сердца людей замирают от страха, колени трясутся, дрожат тела, и у всех бледнеют ___.",
+   "lemma": "лица",
+   "options": [
+    "лица",
+    "лиц",
+    "лицам",
+    "лицами"
+   ],
+   "correct": "лица",
+   "case": "Именительный (Nominative)",
+   "explain": "Лица is the subject of the predicate бледнеют, standing in nominative case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Ниневия, против тебя поднимается разрушитель. Охраняй крепости, стереги дорогу, укрепляй себя, собери все свои силы.",
+   "question": "What warning is given to Nineveh?",
+   "options": [
+    "A destroyer has come against her; she must guard her fortresses and strengthen her forces",
+    "She will enjoy peace and prosperity",
+    "She will be blessed with abundance",
+    "She will gain many new allies"
+   ],
+   "correct": "A destroyer has come against her; she must guard her fortresses and strengthen her forces",
+   "explain": "The text states против тебя поднимается разрушитель, then commands Охраняй крепости... укрепляй себя, собери все свои силы — a destroyer has come against you; guard your fortresses, strengthen yourself, gather all your strength."
+  },
+  {
+   "id": "r2",
+   "ru": "Щиты бойцов его красны. Его воины в багряных одеждах. Сверкает металл колесниц.",
+   "question": "How is the military force of the destroyer described?",
+   "options": [
+    "With red shields, warriors in scarlet garments, and gleaming chariots",
+    "With wooden shields and simple clothing",
+    "With armor of bronze and gold",
+    "With peace and harmony"
+   ],
+   "correct": "With red shields, warriors in scarlet garments, and gleaming chariots",
+   "explain": "The text describes Щиты бойцов его красны, Его воины в багряных одеждах, Сверкает металл колесниц — his warriors' shields are red, his warriors in scarlet garments, the metal of chariots flashes."
+  },
+  {
+   "id": "r3",
+   "ru": "Проносятся по улицам колесницы, мечутся по площадям. Они подобны пылающим факелам, как сверкающие молнии.",
+   "question": "What imagery describes the movement of the invading forces?",
+   "options": [
+    "Like flaming torches and flashing lightning racing through streets and squares",
+    "Like slow-moving caravans",
+    "Like merchants trading peacefully",
+    "Like shepherds tending their flocks"
+   ],
+   "correct": "Like flaming torches and flashing lightning racing through streets and squares",
+   "explain": "Проносятся по улицам колесницы, мечутся по площадям. Они подобны пылающим факелам, как сверкающие молнии — chariots race through the streets, rush through the squares, resembling flaming torches, like flashing lightning."
+  },
+  {
+   "id": "r4",
+   "ru": "Решено. Неневия будет обнажена и уведена в плен. Рабыни ее стонят, как голубки, и бьют себя в грудь.",
+   "question": "What is the fate of Nineveh?",
+   "options": [
+    "She will be uncovered, led away in captivity, with her servants mourning and wailing",
+    "She will be restored to power",
+    "She will gain new territories",
+    "She will be strengthened"
+   ],
+   "correct": "She will be uncovered, led away in captivity, with her servants mourning and wailing",
+   "explain": "The text states Решено. Неневия будет обнажена и уведена в плен. Рабыни ее стонят, как голубки — It is decreed: Nineveh will be uncovered and carried away in captivity; her servants moan like doves."
+  },
+  {
+   "id": "r5",
+   "ru": "Нет конца их запасам и богатствам из сокровищниц. Разграблен, опустошен и разорен город.",
+   "question": "What happens to Nineveh's wealth and the city itself?",
+   "options": [
+    "The treasures are plundered and the city is ravaged and destroyed",
+    "The treasures are protected and the city is strengthened",
+    "New wealth flows into the city",
+    "The city becomes a center of trade"
+   ],
+   "correct": "The treasures are plundered and the city is ravaged and destroyed",
+   "explain": "The text says Нет конца их запасам и богатствам из сокровищниц (there is no end to the plunder of treasures) but then Разграблен, опустошен и разорен город — the city is plundered, emptied, and laid waste."
+  },
+  {
+   "id": "r6",
+   "ru": "Где же теперь Неневия, что была как логово львов, как место, где выкармливают своих львят?",
+   "question": "To what is Nineveh compared in this passage?",
+   "options": [
+    "To a den of lions where lion cubs were nurtured",
+    "To a garden of roses",
+    "To a city of peace",
+    "To a great library"
+   ],
+   "correct": "To a den of lions where lion cubs were nurtured",
+   "explain": "The text states Неневия, что была как логово львов, как место, где выкармливают своих львят — Nineveh was like a den of lions, like a place where they nourished their lion cubs."
+  }
+ ]
 }

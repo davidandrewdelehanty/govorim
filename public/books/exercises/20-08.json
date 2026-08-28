@@ -1,204 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Разве это не ___ зовет?",
-      "lemma": "голос",
-      "options": [
-        "голос",
-        "голоса",
-        "голосом",
-        "голосе"
-      ],
-      "correct": "голос",
-      "case": "Именительный (Nominative)",
-      "translation": "Doesn't a voice call?",
-      "explain": "The subject of 'зовет' (calls) takes the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "На возвышенностях при дороге, на распутьях она встает. У ворот, что ведут в ___, и у входов она кричит",
-      "lemma": "город",
-      "options": [
-        "город",
-        "города",
-        "городу",
-        "городом"
-      ],
-      "correct": "город",
-      "case": "Винительный (Accusative)",
-      "translation": "At the gates leading to the city",
-      "explain": "The preposition 'в' meaning 'into' with motion takes the accusative case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Простаки, научитесь предусмотрительности! Глупы, научитесь ___!",
-      "lemma": "разум",
-      "options": [
-        "разум",
-        "разума",
-        "разуму",
-        "разумом"
-      ],
-      "correct": "разуму",
-      "case": "Дательный (Dative)",
-      "translation": "Fools, acquire understanding!",
-      "explain": "The verb 'научиться' (to learn) governs the dative case with the object of learning."
-    },
-    {
-      "id": "c4",
-      "sentence": "Все слова моих ___ праведны, ни заблуждения нет в них, ни лжи.",
-      "lemma": "уста",
-      "options": [
-        "уста",
-        "уст",
-        "устам",
-        "устами"
-      ],
-      "correct": "уст",
-      "case": "Родительный (Genitive)",
-      "translation": "All the words of my mouth are righteous",
-      "explain": "The genitive case is used in the phrase 'слова моих уст' (words of my mouth)."
-    },
-    {
-      "id": "c5",
-      "sentence": "Предпочтите наставление мое серебру, знание наилучшему ___",
-      "lemma": "золото",
-      "options": [
-        "золото",
-        "золота",
-        "золоту",
-        "золотом"
-      ],
-      "correct": "золоту",
-      "case": "Дательный (Dative)",
-      "translation": "Prefer my instruction to silver, knowledge to gold",
-      "explain": "In comparative constructions, Russian uses the dative case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Я мудрость обитаю с ___, обладаю знанием и рассудительностью",
-      "lemma": "благоразумие",
-      "options": [
-        "благоразумие",
-        "благоразумия",
-        "благоразумием",
-        "благоразумии"
-      ],
-      "correct": "благоразумием",
-      "case": "Творительный (Instrumental)",
-      "translation": "I wisdom dwell with prudence",
-      "explain": "The preposition 'с' (with) governing companionship takes the instrumental case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Мною правят цари, и правители пишут справедливый ___",
-      "lemma": "закон",
-      "options": [
-        "закон",
-        "закона",
-        "закону",
-        "законом"
-      ],
-      "correct": "закон",
-      "case": "Винительный (Accusative)",
-      "translation": "By me kings reign, and rulers write just laws",
-      "explain": "The verb 'пишут' (write) takes a direct object in the accusative case."
-    },
-    {
-      "id": "c8",
-      "sentence": "Господь создал меня в начале своих ___, прежде древнейших своих деяний",
-      "lemma": "дело",
-      "options": [
-        "дело",
-        "дела",
-        "дел",
-        "делом"
-      ],
-      "correct": "дел",
-      "case": "Родительный (Genitive)",
-      "translation": "The Lord created me at the beginning of his works",
-      "explain": "The genitive plural case is used in the phrase 'в начале своих дел' (at the beginning of his works)."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Разве это не мудрость зовет? Разве это не разум возвышает голос?",
-      "question": "What does wisdom do according to this passage?",
-      "options": [
-        "Wisdom calls and reason raises its voice",
-        "Wisdom is silent",
-        "Wisdom hides",
-        "Wisdom creates chaos"
-      ],
-      "correct": "Wisdom calls and reason raises its voice",
-      "explain": "The text explicitly asks 'Разве это не мудрость зовет? Разве это не разум возвышает голос?'"
-    },
-    {
-      "id": "r2",
-      "ru": "Простаки, научитесь предусмотрительности! Глупы, научитесь разуму!",
-      "question": "What does Wisdom command the simple and foolish to do?",
-      "options": [
-        "Learn prudence and understanding",
-        "Flee away",
-        "Bow down",
-        "Build houses"
-      ],
-      "correct": "Learn prudence and understanding",
-      "explain": "Wisdom calls 'Простаки, научитесь предусмотрительности! Глупы, научитесь разуму!' — Learn prudence and understanding."
-    },
-    {
-      "id": "r3",
-      "ru": "Все слова моих уст праведны, ни заблуждения нет в них, ни лжи.",
-      "question": "What characteristic does Wisdom claim about her words?",
-      "options": [
-        "All her words are righteous and contain no error or falsehood",
-        "Her words are deceptive",
-        "Her words are unclear",
-        "Her words cause confusion"
-      ],
-      "correct": "All her words are righteous and contain no error or falsehood",
-      "explain": "The text states 'Все слова моих уст праведны, ни заблуждения нет в них, ни лжи.'"
-    },
-    {
-      "id": "r4",
-      "ru": "Предпочтите наставление мое серебру, знание наилучшему золоту, потому что мудрость дороже драгоценных камней, и ничто из желаемого тобой с ней не сравнится.",
-      "question": "What comparison does Wisdom make regarding its value?",
-      "options": [
-        "Wisdom is more valuable than silver, gold, and precious stones",
-        "Wisdom is worthless",
-        "Wisdom is equal to silver",
-        "Wisdom is less valuable than gold"
-      ],
-      "correct": "Wisdom is more valuable than silver, gold, and precious stones",
-      "explain": "The passage compares wisdom favorably to silver, gold, and precious stones."
-    },
-    {
-      "id": "r5",
-      "ru": "Я мудрость обитаю с благоразумием, обладаю знанием и рассудительностью.",
-      "question": "What qualities does Wisdom say it possesses?",
-      "options": [
-        "Prudence, knowledge, and discretion",
-        "Gold and silver",
-        "Power and might",
-        "Beauty and grace"
-      ],
-      "correct": "Prudence, knowledge, and discretion",
-      "explain": "The text says 'обитаю с благоразумием, обладаю знанием и рассудительностью' — I dwell with prudence and possess knowledge and discretion."
-    },
-    {
-      "id": "r6",
-      "ru": "Господь создал меня в начале своих дел, прежде древнейших своих деяний, я от века была назначена изначально прежде начала мира.",
-      "question": "When was Wisdom created according to this passage?",
-      "options": [
-        "At the beginning of God's works, before the world was made",
-        "After the creation of humans",
-        "During the flood",
-        "At the end of time"
-      ],
-      "correct": "At the beginning of God's works, before the world was made",
-      "explain": "The text states 'Господь создал меня в начале своих дел ... прежде начала мира' — God created me at the beginning of his works, before the beginning of the world."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Разве это не ___ зовет?",
+   "lemma": "голос",
+   "options": [
+    "голос",
+    "голоса",
+    "голосом",
+    "голосе"
+   ],
+   "correct": "голос",
+   "case": "Именительный (Nominative)",
+   "explain": "The subject of 'зовет' (calls) takes the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "На возвышенностях при дороге, на распутьях она встает. У ворот, что ведут в ___, и у входов она кричит",
+   "lemma": "город",
+   "options": [
+    "город",
+    "города",
+    "городу",
+    "городом"
+   ],
+   "correct": "город",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition 'в' meaning 'into' with motion takes the accusative case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Простаки, научитесь предусмотрительности! Глупы, научитесь ___!",
+   "lemma": "разум",
+   "options": [
+    "разум",
+    "разума",
+    "разуму",
+    "разумом"
+   ],
+   "correct": "разуму",
+   "case": "Дательный (Dative)",
+   "explain": "The verb 'научиться' (to learn) governs the dative case with the object of learning."
+  },
+  {
+   "id": "c4",
+   "sentence": "Все слова моих ___ праведны, ни заблуждения нет в них, ни лжи.",
+   "lemma": "уста",
+   "options": [
+    "уста",
+    "уст",
+    "устам",
+    "устами"
+   ],
+   "correct": "уст",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive case is used in the phrase 'слова моих уст' (words of my mouth)."
+  },
+  {
+   "id": "c5",
+   "sentence": "Предпочтите наставление мое серебру, знание наилучшему ___",
+   "lemma": "золото",
+   "options": [
+    "золото",
+    "золота",
+    "золоту",
+    "золотом"
+   ],
+   "correct": "золоту",
+   "case": "Дательный (Dative)",
+   "explain": "In comparative constructions, Russian uses the dative case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Я мудрость обитаю с ___, обладаю знанием и рассудительностью",
+   "lemma": "благоразумие",
+   "options": [
+    "благоразумие",
+    "благоразумия",
+    "благоразумием",
+    "благоразумии"
+   ],
+   "correct": "благоразумием",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition 'с' (with) governing companionship takes the instrumental case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Мною правят цари, и правители пишут справедливый ___",
+   "lemma": "закон",
+   "options": [
+    "закон",
+    "закона",
+    "закону",
+    "законом"
+   ],
+   "correct": "закон",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb 'пишут' (write) takes a direct object in the accusative case."
+  },
+  {
+   "id": "c8",
+   "sentence": "Господь создал меня в начале своих ___, прежде древнейших своих деяний",
+   "lemma": "дело",
+   "options": [
+    "дело",
+    "дела",
+    "дел",
+    "делом"
+   ],
+   "correct": "дел",
+   "case": "Родительный (Genitive)",
+   "explain": "The genitive plural case is used in the phrase 'в начале своих дел' (at the beginning of his works)."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Разве это не мудрость зовет? Разве это не разум возвышает голос?",
+   "question": "What does wisdom do according to this passage?",
+   "options": [
+    "Wisdom calls and reason raises its voice",
+    "Wisdom is silent",
+    "Wisdom hides",
+    "Wisdom creates chaos"
+   ],
+   "correct": "Wisdom calls and reason raises its voice",
+   "explain": "The text explicitly asks 'Разве это не мудрость зовет? Разве это не разум возвышает голос?'"
+  },
+  {
+   "id": "r2",
+   "ru": "Простаки, научитесь предусмотрительности! Глупы, научитесь разуму!",
+   "question": "What does Wisdom command the simple and foolish to do?",
+   "options": [
+    "Learn prudence and understanding",
+    "Flee away",
+    "Bow down",
+    "Build houses"
+   ],
+   "correct": "Learn prudence and understanding",
+   "explain": "Wisdom calls 'Простаки, научитесь предусмотрительности! Глупы, научитесь разуму!' — Learn prudence and understanding."
+  },
+  {
+   "id": "r3",
+   "ru": "Все слова моих уст праведны, ни заблуждения нет в них, ни лжи.",
+   "question": "What characteristic does Wisdom claim about her words?",
+   "options": [
+    "All her words are righteous and contain no error or falsehood",
+    "Her words are deceptive",
+    "Her words are unclear",
+    "Her words cause confusion"
+   ],
+   "correct": "All her words are righteous and contain no error or falsehood",
+   "explain": "The text states 'Все слова моих уст праведны, ни заблуждения нет в них, ни лжи.'"
+  },
+  {
+   "id": "r4",
+   "ru": "Предпочтите наставление мое серебру, знание наилучшему золоту, потому что мудрость дороже драгоценных камней, и ничто из желаемого тобой с ней не сравнится.",
+   "question": "What comparison does Wisdom make regarding its value?",
+   "options": [
+    "Wisdom is more valuable than silver, gold, and precious stones",
+    "Wisdom is worthless",
+    "Wisdom is equal to silver",
+    "Wisdom is less valuable than gold"
+   ],
+   "correct": "Wisdom is more valuable than silver, gold, and precious stones",
+   "explain": "The passage compares wisdom favorably to silver, gold, and precious stones."
+  },
+  {
+   "id": "r5",
+   "ru": "Я мудрость обитаю с благоразумием, обладаю знанием и рассудительностью.",
+   "question": "What qualities does Wisdom say it possesses?",
+   "options": [
+    "Prudence, knowledge, and discretion",
+    "Gold and silver",
+    "Power and might",
+    "Beauty and grace"
+   ],
+   "correct": "Prudence, knowledge, and discretion",
+   "explain": "The text says 'обитаю с благоразумием, обладаю знанием и рассудительностью' — I dwell with prudence and possess knowledge and discretion."
+  },
+  {
+   "id": "r6",
+   "ru": "Господь создал меня в начале своих дел, прежде древнейших своих деяний, я от века была назначена изначально прежде начала мира.",
+   "question": "When was Wisdom created according to this passage?",
+   "options": [
+    "At the beginning of God's works, before the world was made",
+    "After the creation of humans",
+    "During the flood",
+    "At the end of time"
+   ],
+   "correct": "At the beginning of God's works, before the world was made",
+   "explain": "The text states 'Господь создал меня в начале своих дел ... прежде начала мира' — God created me at the beginning of his works, before the beginning of the world."
+  }
+ ]
 }

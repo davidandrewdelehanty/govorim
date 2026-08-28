@@ -1,122 +1,181 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ пас стада, а Каин обрабатывал землю.",
-      "lemma": "Авель",
-      "options": ["Авель", "Авеля", "Авелю", "Авелем"],
-      "correct": "Авель",
-      "case": "Именительный (Nominative)",
-      "translation": "Abel kept flocks, while Cain worked the ground.",
-      "explain": "Авель is the subject of пас (kept/tended), so it takes the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Кровь твоего брата взывает ко мне из ___.",
-      "lemma": "земля",
-      "options": ["земля", "земли", "землю", "землёй"],
-      "correct": "земли",
-      "case": "Родительный (Genitive)",
-      "translation": "Your brother's blood cries out to me from the ground.",
-      "explain": "The preposition из (out of/from) governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Тогда Господь сказал ___, «Почему ты сердишься?»",
-      "lemma": "Каин",
-      "options": ["Каин", "Каина", "Каину", "Каином"],
-      "correct": "Каину",
-      "case": "Дательный (Dative)",
-      "translation": "Then the Lord said to Cain, 'Why are you angry?'",
-      "explain": "The verb сказать (to say/tell) takes the person addressed in the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Потом она родила его ___ Авеля.",
-      "lemma": "брат",
-      "options": ["брат", "брата", "брату", "братом"],
-      "correct": "брата",
-      "case": "Винительный (Accusative)",
-      "translation": "Then she gave birth to his brother Abel.",
-      "explain": "Брата is the direct object of родила (gave birth to); animate masculine nouns take an accusative identical to the genitive."
-    },
-    {
-      "id": "c5",
-      "sentence": "Кровь твоего брата, пролитую твоей ___.",
-      "lemma": "рука",
-      "options": ["рука", "руки", "руку", "рукой"],
-      "correct": "рукой",
-      "case": "Творительный (Instrumental)",
-      "translation": "Your brother's blood, shed by your hand.",
-      "explain": "The instrumental case here expresses the means or instrument — 'by your hand' — without needing a preposition."
-    },
-    {
-      "id": "c6",
-      "sentence": "Когда они были в ___, Каин накинулся на своего брата Авеля и убил его.",
-      "lemma": "поле",
-      "options": ["поле", "поля", "полю", "полем"],
-      "correct": "поле",
-      "case": "Предложный (Prepositional)",
-      "translation": "When they were in the field, Cain attacked his brother Abel and killed him.",
-      "explain": "The preposition в indicating location governs the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Авель пас стада, а Каин обрабатывал землю.",
-      "question": "What were the occupations of Cain and Abel?",
-      "options": ["Abel kept flocks and Cain worked the ground", "Cain kept flocks and Abel worked the ground", "Both were shepherds", "Both were farmers"],
-      "correct": "Abel kept flocks and Cain worked the ground",
-      "explain": "The text says 'Авель пас стада, а Каин обрабатывал землю' — Abel kept flocks, and Cain worked the ground."
-    },
-    {
-      "id": "r2",
-      "ru": "Каин разгневался, и лицо его потемнело от гнева.",
-      "question": "How did Cain react when his offering was not accepted?",
-      "options": ["He became angry and his face grew dark", "He laughed and left", "He apologized to Abel", "He built an altar"],
-      "correct": "He became angry and his face grew dark",
-      "explain": "The text says Cain 'разгневался, и лицо его потемнело от гнева' — became angry and his face darkened with anger."
-    },
-    {
-      "id": "r3",
-      "ru": "Но если ты поступаешь неправильно, то у твоих дверей притаился грех».",
-      "question": "What did God warn Cain was lurking at his door?",
-      "options": ["Sin", "A wild animal", "Abel", "A stranger"],
-      "correct": "Sin",
-      "explain": "God warns that 'у твоих дверей притаился грех' — sin is crouching at his door."
-    },
-    {
-      "id": "r4",
-      "ru": "Каин накинулся на своего брата Авеля и убил его.",
-      "question": "What did Cain do to Abel in the field?",
-      "options": ["He attacked and killed him", "He argued with him and left", "He gave him a gift", "He forgave him"],
-      "correct": "He attacked and killed him",
-      "explain": "The text says Cain 'накинулся на своего брата Авеля и убил его' — attacked his brother Abel and killed him."
-    },
-    {
-      "id": "r5",
-      "ru": "Теперь ты проклят, изгнан с земли, которая разверзлась, чтобы принять кровь твоего брата, пролитую твоей рукой.",
-      "question": "What curse did God pronounce on Cain?",
-      "options": ["He would be cursed and driven from the ground that received his brother's blood", "He would immediately die", "He would become a king", "He would lose his family"],
-      "correct": "He would be cursed and driven from the ground that received his brother's blood",
-      "explain": "God says Cain is 'проклят, изгнан с земли, которая разверзлась, чтобы принять кровь твоего брата' — cursed and driven from the ground that received his brother's blood."
-    },
-    {
-      "id": "r6",
-      "ru": "И Господь сделал Каину метку, чтобы никто, встретившись с ним, не убил его.",
-      "question": "Why did God give Cain a mark?",
-      "options": ["So that no one who found him would kill him", "To identify him as a sinner", "To show he was blessed", "To mark his territory"],
-      "correct": "So that no one who found him would kill him",
-      "explain": "The text says God made a mark 'чтобы никто, встретившись с ним, не убил его' — so that no one who met him would kill him."
-    },
-    {
-      "id": "r7",
-      "ru": "В то время люди начали призывать имя Господа.",
-      "question": "What did people begin to do in the days of Enosh?",
-      "options": ["Call on the name of the Lord", "Build cities", "Wage war", "Worship idols"],
-      "correct": "Call on the name of the Lord",
-      "explain": "The chapter ends, 'В то время люди начали призывать имя Господа' — at that time people began to call on the name of the Lord."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "___ пас стада, а Каин обрабатывал землю.",
+   "lemma": "Авель",
+   "options": [
+    "Авель",
+    "Авеля",
+    "Авелю",
+    "Авелем"
+   ],
+   "correct": "Авель",
+   "case": "Именительный (Nominative)",
+   "explain": "Авель is the subject of пас (kept/tended), so it takes the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Кровь твоего брата взывает ко мне из ___.",
+   "lemma": "земля",
+   "options": [
+    "земля",
+    "земли",
+    "землю",
+    "землёй"
+   ],
+   "correct": "земли",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition из (out of/from) governs the genitive case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Тогда Господь сказал ___, «Почему ты сердишься?»",
+   "lemma": "Каин",
+   "options": [
+    "Каин",
+    "Каина",
+    "Каину",
+    "Каином"
+   ],
+   "correct": "Каину",
+   "case": "Дательный (Dative)",
+   "explain": "The verb сказать (to say/tell) takes the person addressed in the dative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Потом она родила его ___ Авеля.",
+   "lemma": "брат",
+   "options": [
+    "брат",
+    "брата",
+    "брату",
+    "братом"
+   ],
+   "correct": "брата",
+   "case": "Винительный (Accusative)",
+   "explain": "Брата is the direct object of родила (gave birth to); animate masculine nouns take an accusative identical to the genitive."
+  },
+  {
+   "id": "c5",
+   "sentence": "Кровь твоего брата, пролитую твоей ___.",
+   "lemma": "рука",
+   "options": [
+    "рука",
+    "руки",
+    "руку",
+    "рукой"
+   ],
+   "correct": "рукой",
+   "case": "Творительный (Instrumental)",
+   "explain": "The instrumental case here expresses the means or instrument — 'by your hand' — without needing a preposition."
+  },
+  {
+   "id": "c6",
+   "sentence": "Когда они были в ___, Каин накинулся на своего брата Авеля и убил его.",
+   "lemma": "поле",
+   "options": [
+    "поле",
+    "поля",
+    "полю",
+    "полем"
+   ],
+   "correct": "поле",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в indicating location governs the prepositional case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Авель пас стада, а Каин обрабатывал землю.",
+   "question": "What were the occupations of Cain and Abel?",
+   "options": [
+    "Abel kept flocks and Cain worked the ground",
+    "Cain kept flocks and Abel worked the ground",
+    "Both were shepherds",
+    "Both were farmers"
+   ],
+   "correct": "Abel kept flocks and Cain worked the ground",
+   "explain": "The text says 'Авель пас стада, а Каин обрабатывал землю' — Abel kept flocks, and Cain worked the ground."
+  },
+  {
+   "id": "r2",
+   "ru": "Каин разгневался, и лицо его потемнело от гнева.",
+   "question": "How did Cain react when his offering was not accepted?",
+   "options": [
+    "He became angry and his face grew dark",
+    "He laughed and left",
+    "He apologized to Abel",
+    "He built an altar"
+   ],
+   "correct": "He became angry and his face grew dark",
+   "explain": "The text says Cain 'разгневался, и лицо его потемнело от гнева' — became angry and his face darkened with anger."
+  },
+  {
+   "id": "r3",
+   "ru": "Но если ты поступаешь неправильно, то у твоих дверей притаился грех».",
+   "question": "What did God warn Cain was lurking at his door?",
+   "options": [
+    "Sin",
+    "A wild animal",
+    "Abel",
+    "A stranger"
+   ],
+   "correct": "Sin",
+   "explain": "God warns that 'у твоих дверей притаился грех' — sin is crouching at his door."
+  },
+  {
+   "id": "r4",
+   "ru": "Каин накинулся на своего брата Авеля и убил его.",
+   "question": "What did Cain do to Abel in the field?",
+   "options": [
+    "He attacked and killed him",
+    "He argued with him and left",
+    "He gave him a gift",
+    "He forgave him"
+   ],
+   "correct": "He attacked and killed him",
+   "explain": "The text says Cain 'накинулся на своего брата Авеля и убил его' — attacked his brother Abel and killed him."
+  },
+  {
+   "id": "r5",
+   "ru": "Теперь ты проклят, изгнан с земли, которая разверзлась, чтобы принять кровь твоего брата, пролитую твоей рукой.",
+   "question": "What curse did God pronounce on Cain?",
+   "options": [
+    "He would be cursed and driven from the ground that received his brother's blood",
+    "He would immediately die",
+    "He would become a king",
+    "He would lose his family"
+   ],
+   "correct": "He would be cursed and driven from the ground that received his brother's blood",
+   "explain": "God says Cain is 'проклят, изгнан с земли, которая разверзлась, чтобы принять кровь твоего брата' — cursed and driven from the ground that received his brother's blood."
+  },
+  {
+   "id": "r6",
+   "ru": "И Господь сделал Каину метку, чтобы никто, встретившись с ним, не убил его.",
+   "question": "Why did God give Cain a mark?",
+   "options": [
+    "So that no one who found him would kill him",
+    "To identify him as a sinner",
+    "To show he was blessed",
+    "To mark his territory"
+   ],
+   "correct": "So that no one who found him would kill him",
+   "explain": "The text says God made a mark 'чтобы никто, встретившись с ним, не убил его' — so that no one who met him would kill him."
+  },
+  {
+   "id": "r7",
+   "ru": "В то время люди начали призывать имя Господа.",
+   "question": "What did people begin to do in the days of Enosh?",
+   "options": [
+    "Call on the name of the Lord",
+    "Build cities",
+    "Wage war",
+    "Worship idols"
+   ],
+   "correct": "Call on the name of the Lord",
+   "explain": "The chapter ends, 'В то время люди начали призывать имя Господа' — at that time people began to call on the name of the Lord."
+  }
+ ]
 }

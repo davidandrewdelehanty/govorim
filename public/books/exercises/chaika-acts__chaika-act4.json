@@ -1,416 +1,643 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Значит, я опасно ___.",
-      "lemma": "больной",
-      "options": ["больной", "больного", "больному", "больным"],
-      "correct": "больной",
-      "case": "Именительный (Nominative)",
-      "translation": "So I am dangerously ill.",
-      "explain": "Больной is a predicate adjective/noun describing the subject я, so it is nominative."
-    },
-    {
-      "id": "c2",
-      "sentence": "Твой отец не даст мне ___.",
-      "lemma": "лошадь",
-      "options": ["лошадь", "лошади", "лошадью", "лошадях"],
-      "correct": "лошади",
-      "case": "Родительный (Genitive)",
-      "translation": "Your father won't give me a horse.",
-      "explain": "The negated verb не даст (won't give) governs the genitive case for its object here."
-    },
-    {
-      "id": "c3",
-      "sentence": "А как-то Константин Гаврилович подстрелил ___, и вы попросили сделать из нее чучело.",
-      "lemma": "чайка",
-      "options": ["чайка", "чайки", "чайку", "чайкой"],
-      "correct": "чайку",
-      "case": "Винительный (Accusative)",
-      "translation": "And once Konstantin Gavrilovich shot a seagull, and you asked to have it stuffed.",
-      "explain": "Чайку is the direct object of the transitive verb подстрелил (shot), so it takes the accusative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Отец с ___ всюду расставили сторожей, чтобы даже близко не подпустить ее к усадьбе.",
-      "lemma": "мачеха",
-      "options": ["мачеха", "мачехи", "мачехе", "мачехой"],
-      "correct": "мачехой",
-      "case": "Творительный (Instrumental)",
-      "translation": "Her father and stepmother posted watchmen everywhere so as not to let her even come near the estate.",
-      "explain": "The preposition с (together with) governs the instrumental case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Здесь, в ___, на постоялом дворе.",
-      "lemma": "город",
-      "options": ["город", "города", "городу", "городе"],
-      "correct": "городе",
-      "case": "Предложный (Prepositional)",
-      "translation": "Here, in the town, at the inn.",
-      "explain": "The preposition в (in) denoting location governs the prepositional case."
-    },
-    {
-      "id": "c6",
-      "sentence": "Отец с мачехой всюду расставили сторожей, чтобы даже близко не подпустить ее к ___.",
-      "lemma": "усадьба",
-      "options": ["усадьба", "усадьбы", "усадьбе", "усадьбой"],
-      "correct": "усадьбе",
-      "case": "Дательный (Dative)",
-      "translation": "Her father and stepmother posted watchmen everywhere so as not to let her even come near the estate.",
-      "explain": "The preposition к (toward/near) governs the dative case."
-    },
-    {
-      "id": "c7",
-      "sentence": "Мы все стареем, так сказать, выветриваемся под воздействием ___.",
-      "lemma": "стихия",
-      "options": ["стихия", "стихии", "стихией", "стихиях"],
-      "correct": "стихии",
-      "case": "Родительный (Genitive)",
-      "translation": "We are all aging, so to speak, weathering away under the effect of the elements.",
-      "explain": "Стихии (of the elements) is a genitive modifier of воздействием (effect/influence), expressing 'effect of X.'"
-    },
-    {
-      "id": "c8",
-      "sentence": "Вот вещь, о которой я вам давеча говорил. ___ чайки.",
-      "lemma": "чучело",
-      "options": ["чучело", "чучела", "чучелу", "чучелом"],
-      "correct": "чучело",
-      "case": "Именительный (Nominative)",
-      "translation": "Here's the thing I told you about earlier. A stuffed seagull.",
-      "explain": "Чучело is a naming/labeling noun standing alone, so it is nominative."
-    },
-    {
-      "id": "c9",
-      "sentence": "Лошади мои стоят у ___.",
-      "lemma": "калитка",
-      "options": ["калитка", "калитки", "калитке", "калиткой"],
-      "correct": "калитки",
-      "case": "Родительный (Genitive)",
-      "translation": "My horses are standing at the gate.",
-      "explain": "The preposition у (at/by) governs the genitive case."
-    },
-    {
-      "id": "c10",
-      "sentence": "Я так много говорил о новых формах, а теперь сам чувствую, как мало-помалу сползаю к ___.",
-      "lemma": "рутина",
-      "options": ["рутина", "рутины", "рутине", "рутиной"],
-      "correct": "рутине",
-      "case": "Дательный (Dative)",
-      "translation": "I talked so much about new forms, and now I feel myself slipping little by little into routine.",
-      "explain": "The preposition к (toward) governs the dative case."
-    },
-    {
-      "id": "c11",
-      "sentence": "Помните, вы пострелили ___?",
-      "lemma": "чайка",
-      "options": ["чайка", "чайки", "чайку", "чайкой"],
-      "correct": "чайку",
-      "case": "Винительный (Accusative)",
-      "translation": "Remember, you shot a seagull?",
-      "explain": "Чайку is the direct object of the transitive verb пострелили (shot), so it takes the accusative case."
-    },
-    {
-      "id": "c12",
-      "sentence": "Лопнула склянка с ___.",
-      "lemma": "эфир",
-      "options": ["эфир", "эфира", "эфиру", "эфиром"],
-      "correct": "эфиром",
-      "case": "Творительный (Instrumental)",
-      "translation": "A vial of ether burst.",
-      "explain": "The preposition с (with) governs the instrumental case."
-    },
-    {
-      "id": "c13",
-      "sentence": "Далекие звуки рояля, тающие в тихом ароматном ___.",
-      "lemma": "воздух",
-      "options": ["воздух", "воздуха", "воздуху", "воздухе"],
-      "correct": "воздухе",
-      "case": "Предложный (Prepositional)",
-      "translation": "The distant sounds of a piano, melting away in the quiet, fragrant air.",
-      "explain": "The preposition в (in) denoting location governs the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Старик каждую минуту спрашивает, где Костя, где Костя... Жить без него не может...",
-      "question": "What does the old man (Sorin) constantly ask about?",
-      "options": ["Where Kostya (Konstantin) is", "Where his money is", "When the doctor is coming", "When dinner will be ready"],
-      "correct": "Where Kostya (Konstantin) is",
-      "explain": "The line says the old man keeps asking every minute, 'где Костя' — where is Kostya."
-    },
-    {
-      "id": "r2",
-      "ru": "Надо бы сказать, чтобы сломали в саду тот театр.",
-      "question": "What does someone suggest should be done to the old theater/stage in the garden?",
-      "options": ["It should be torn down", "It should be repainted", "It should be moved indoors", "It should be locked up"],
-      "correct": "It should be torn down",
-      "explain": "The line suggests, 'чтобы сломали в саду тот театр' — that they should tear down that theater in the garden."
-    },
-    {
-      "id": "r3",
-      "ru": "Наш ребеночек, небось, голоден.",
-      "question": "What concern is raised about the baby?",
-      "options": ["That the baby is probably hungry", "That the baby is sick", "That the baby is lost", "That the baby has a fever"],
-      "correct": "That the baby is probably hungry",
-      "explain": "The line worries, 'Наш ребеночек, небось, голоден' — our baby is probably hungry."
-    },
-    {
-      "id": "r4",
-      "ru": "Твой отец не даст мне лошади.",
-      "question": "What does Masha say about getting horses from her father?",
-      "options": ["That her father won't give her horses", "That her father already gave her horses", "That she doesn't need horses", "That her father sold the horses"],
-      "correct": "That her father won't give her horses",
-      "explain": "She says, 'Твой отец не даст мне лошади' — your father won't give me horses."
-    },
-    {
-      "id": "r5",
-      "ru": "Никто не думал не гадал, что из вас, Костя, выйдет настоящий писатель.",
-      "question": "What did no one expect Konstantin (Kostya) would become?",
-      "options": ["A real writer", "A doctor", "A soldier", "A teacher"],
-      "correct": "A real writer",
-      "explain": "The line says no one thought or guessed that Kostya would become a real writer."
-    },
-    {
-      "id": "r6",
-      "ru": "Безнадежная любовь – это только в романах.",
-      "question": "What is said about hopeless love?",
-      "options": ["That it only exists in novels", "That it always ends happily", "That it is the strongest kind of love", "That it never really happens"],
-      "correct": "That it only exists in novels",
-      "explain": "The line dismisses it: 'Безнадежная любовь – это только в романах' — hopeless love only exists in novels."
-    },
-    {
-      "id": "r7",
-      "ru": "У меня теперь в доме шестеро. А мука семь гривен пуд.",
-      "question": "What complaint is made about household expenses?",
-      "options": ["There are six people in the house now, and flour costs seven grivnas a pood", "There is no food left in the house", "The servants demand higher wages", "The house needs repairs"],
-      "correct": "There are six people in the house now, and flour costs seven grivnas a pood",
-      "explain": "The complaint states there are now six people in the house, and flour costs seven grivnas per pood."
-    },
-    {
-      "id": "r8",
-      "ru": "Когда я не принадлежал себе ни днем, ни ночью, мне удалось скопить две тысячи,",
-      "question": "How much did the doctor manage to save over thirty years of restless practice?",
-      "options": ["Two thousand", "Ten thousand", "Five hundred", "Nothing at all"],
-      "correct": "Two thousand",
-      "explain": "He says he managed to save two thousand over thirty years of restless practice."
-    },
-    {
-      "id": "r9",
-      "ru": "\"Человек, который хотел\".",
-      "question": "What is the working title of the story idea Sorin wants to give Kostya?",
-      "options": ["'The Man Who Wanted'", "'The Lonely Traveler'", "'A Life at the Lake'", "'The Doctor's Secret'"],
-      "correct": "'The Man Who Wanted'",
-      "explain": "Sorin says the story should be called 'Человек, который хотел' — The Man Who Wanted."
-    },
-    {
-      "id": "r10",
-      "ru": "Вы 25 лет прослужили по судебному ведомству только и всего.",
-      "question": "How many years did Sorin serve in the judicial department, according to this line?",
-      "options": ["25 years", "28 years", "40 years", "15 years"],
-      "correct": "25 years",
-      "explain": "The line states, 'Вы 25 лет прослужили по судебному ведомству только и всего.'"
-    },
-    {
-      "id": "r11",
-      "ru": "Она ушла из дома и сошлась с Тригориным.",
-      "question": "What happened between Nina and Trigorin, according to Dorn's account?",
-      "options": ["She left home and took up with Trigorin", "She married Trigorin", "She never met Trigorin again", "She became his editor"],
-      "correct": "She left home and took up with Trigorin",
-      "explain": "Dorn says, 'Она ушла из дома и сошлась с Тригориным' — she left home and took up with Trigorin."
-    },
-    {
-      "id": "r12",
-      "ru": "Ребенок умер.",
-      "question": "What happened to Nina and Trigorin's child?",
-      "options": ["The child died", "The child was given away", "The child grew up healthy", "There was no child"],
-      "correct": "The child died",
-      "explain": "The line states simply, 'Ребенок умер' — the child died."
-    },
-    {
-      "id": "r13",
-      "ru": "Подписывалась Чайкой.",
-      "question": "What did Nina sign her letters with?",
-      "options": ["'The Seagull'", "Her real name", "'Provincial girl'", "No signature at all"],
-      "correct": "'The Seagull'",
-      "explain": "The text says she signed herself 'чайкой' — as 'the Seagull.'"
-    },
-    {
-      "id": "r14",
-      "ru": "Отец с мачехой всюду расставили сторожей, чтобы даже близко не допускать ее к усадьбе.",
-      "question": "What did Nina's father and stepmother do to keep her away?",
-      "options": ["Posted guards everywhere to keep her from the estate", "Sent her money to stay away", "Wrote her letters begging her to return", "Hired a lawyer against her"],
-      "correct": "Posted guards everywhere to keep her from the estate",
-      "explain": "The text says her father and stepmother posted watchmen everywhere so she couldn't even get near the estate."
-    },
-    {
-      "id": "r15",
-      "ru": "Действительный статский советник Сорин",
-      "question": "What title is given to Sorin in this passage?",
-      "options": ["Active State Councillor", "Colonel", "Professor", "Ambassador"],
-      "correct": "Active State Councillor",
-      "explain": "The text names him, 'Действительный статский советник Сорин.'"
-    },
-    {
-      "id": "r16",
-      "ru": "Ирина Николаевна говорила, мне, что вы уже забыли старое и перестали гневаться.",
-      "question": "What did Irina Nikolaevna tell Trigorin about Konstantin's mood?",
-      "options": ["That Konstantin had forgotten the past and stopped being angry", "That Konstantin still refuses to speak to him", "That Konstantin has left for good", "That Konstantin wants a duel"],
-      "correct": "That Konstantin had forgotten the past and stopped being angry",
-      "explain": "The line says Irina Nikolaevna told him Konstantin had already forgotten the old grudge and stopped being angry."
-    },
-    {
-      "id": "r17",
-      "ru": "И никто не знает вашей настоящей фамилии,",
-      "question": "What does the public not know about Trigorin, according to this line?",
-      "options": ["No one knows his real surname", "No one knows his age", "No one knows where he lives", "No one knows what he writes about"],
-      "correct": "No one knows his real surname",
-      "explain": "The line says nobody knows his real surname, since he publishes under a pseudonym."
-    },
-    {
-      "id": "r18",
-      "ru": "В него еще играла наша покойная мать, когда мы были детьми.",
-      "question": "Who used to play the old lotto game when the children were young?",
-      "options": ["Their late mother", "Their father", "The doctor", "The estate manager"],
-      "correct": "Their late mother",
-      "explain": "The line recalls, 'В него еще играла наша покойная мать, когда мы были детьми' — our late mother used to play it when we were children."
-    },
-    {
-      "id": "r19",
-      "ru": "Если бы я жил в такой усадьбе, у озера, то разве я стал бы писать?",
-      "question": "What does the doctor imagine he would do if he lived at such a lakeside estate?",
-      "options": ["He would not become a writer, and would just fish instead", "He would write every day", "He would become a fisherman for a living", "He would sell the estate"],
-      "correct": "He would not become a writer, and would just fish instead",
-      "explain": "He wonders if he lived at such an estate by the lake, would he even become a writer, and imagines he'd just fish instead."
-    },
-    {
-      "id": "r20",
-      "ru": "А как-то Константин Гаврилович подстрелил чайку, и вы попросили сделать из нее чучело.",
-      "question": "What had Konstantin once done with a seagull, as recalled here?",
-      "options": ["He shot one and had it stuffed", "He set it free", "He painted a picture of it", "He wrote a song about it"],
-      "correct": "He shot one and had it stuffed",
-      "explain": "The line recalls, 'Константин Гаврилович подстрелил чайку, и вы попросили сделать из нее чучело' — Konstantin shot a seagull and you asked to have it stuffed."
-    },
-    {
-      "id": "r21",
-      "ru": "Тригорин выработал себе приемы,",
-      "question": "What is said about Trigorin's writing method?",
-      "options": ["He has developed his own techniques, making it easier for him", "He never revises his work", "He refuses to describe nature", "He writes only about the moon"],
-      "correct": "He has developed his own techniques, making it easier for him",
-      "explain": "The line says, 'Тригорину легче он выработал себе приемы' — it's easier for Trigorin, he has worked out his own techniques."
-    },
-    {
-      "id": "r22",
-      "ru": "Она пришла!",
-      "question": "What does Konstantin realize with joy?",
-      "options": ["That she (Nina) has come", "That his play is finished", "That his mother has arrived", "That Trigorin has left"],
-      "correct": "That she (Nina) has come",
-      "explain": "He repeats, 'Она пришла' — she has come."
-    },
-    {
-      "id": "r23",
-      "ru": "Вы похудели,",
-      "question": "What physical change does Konstantin notice in Nina?",
-      "options": ["She has lost weight", "She has cut her hair", "She looks much older", "She is wearing new clothes"],
-      "correct": "She has lost weight",
-      "explain": "He says, 'Вы похудели' — you have lost weight."
-    },
-    {
-      "id": "r24",
-      "ru": "Я-то каждый день ходил к вам стоял у вас под окнами, как нищий.",
-      "question": "How does Konstantin describe his own behavior around Nina's house?",
-      "options": ["He walked to her every day and stood under her windows like a beggar", "He wrote her a letter every day", "He avoided her house completely", "He sent her flowers daily"],
-      "correct": "He walked to her every day and stood under her windows like a beggar",
-      "explain": "He confesses he went to her every day, standing under her windows 'как нищий' — like a beggar."
-    },
-    {
-      "id": "r25",
-      "ru": "Я чайка.",
-      "question": "What does Nina repeatedly call herself?",
-      "options": ["A seagull", "An actress only", "A ghost", "A stranger"],
-      "correct": "A seagull",
-      "explain": "She says, 'Я чайка' — I am a seagull, though she then corrects herself."
-    },
-    {
-      "id": "r26",
-      "ru": "Вы стали писателем.",
-      "question": "What has Nina noticed Konstantin has become?",
-      "options": ["A writer", "A doctor", "A soldier", "A teacher"],
-      "correct": "A writer",
-      "explain": "She tells him, 'Вы стали писателем' — you have become a writer."
-    },
-    {
-      "id": "r27",
-      "ru": "Завтра рано утром ехать в Елец",
-      "question": "Where must Nina travel early the next morning?",
-      "options": ["Yelets", "Moscow", "Odessa", "Kharkov"],
-      "correct": "Yelets",
-      "explain": "She says, 'Завтра рано утром ехать в Елец' — tomorrow early morning I must go to Yelets."
-    },
-    {
-      "id": "r28",
-      "ru": "Я зову вас, целую землю, по которой вы ходили;",
-      "question": "What obsessive gesture does Konstantin describe doing?",
-      "options": ["Kissing the ground she walked on", "Writing her name everywhere", "Burning her letters", "Following her to Moscow"],
-      "correct": "Kissing the ground she walked on",
-      "explain": "He says, 'целую землю, по которой вы ходили' — I kiss the ground you walked on."
-    },
-    {
-      "id": "r29",
-      "ru": "Лошади мои стоят у калитки.",
-      "question": "Where does Nina say her horses are waiting?",
-      "options": ["At the gate", "At the station", "In the barn", "By the lake"],
-      "correct": "At the gate",
-      "explain": "She says, 'Лошади мои стоят у калитки' — my horses are standing at the gate."
-    },
-    {
-      "id": "r30",
-      "ru": "Он не верил в театр,",
-      "question": "What did Trigorin apparently not believe in, according to Nina?",
-      "options": ["The theater", "Love", "Money", "Writing"],
-      "correct": "The theater",
-      "explain": "She recalls, 'Он не верил в театр' — he didn't believe in the theater."
-    },
-    {
-      "id": "r31",
-      "ru": "Помните, вы подстрелили чайку?",
-      "question": "What does Konstantin remind Nina he once did to a seagull?",
-      "options": ["He shot it", "He set it free", "He painted it", "He gave it to her as a gift"],
-      "correct": "He shot it",
-      "explain": "He asks, 'Помните, вы пострелили чайку?' — do you remember, you shot a seagull?"
-    },
-    {
-      "id": "r32",
-      "ru": "И чувствую, как с каждым днем растут мои душевные силы...",
-      "question": "What does Nina say is growing stronger within her every day?",
-      "options": ["Her spiritual/inner strength", "Her fear of the stage", "Her wealth", "Her anger at Trigorin"],
-      "correct": "Her spiritual/inner strength",
-      "explain": "She says, 'растут мои душевные силы' — my inner (spiritual) strength grows."
-    },
-    {
-      "id": "r33",
-      "ru": "Люблю, люблю страстно, до отчаяния люблю.",
-      "question": "How does Nina describe her love for Trigorin?",
-      "options": ["She loves him passionately, even to the point of despair", "She has completely stopped loving him", "She only respects him as a writer", "She fears him"],
-      "correct": "She loves him passionately, even to the point of despair",
-      "explain": "She says, 'Люблю, люблю страстно, да отчаянье люблю' — I love him, love him passionately, love him to the point of despair."
-    },
-    {
-      "id": "r34",
-      "ru": "Лопнула склянка с эфиром.",
-      "question": "What breaks, foreshadowing trouble, in the final scene?",
-      "options": ["A vial of ether", "A window", "A mirror", "A wine glass"],
-      "correct": "A vial of ether",
-      "explain": "The line says, 'Лопнула склянка с эфиром' — a vial of ether burst."
-    },
-    {
-      "id": "r35",
-      "ru": "Дело в том, что Константин Гаврилович застрелился...",
-      "question": "What is the final tragic revelation at the end?",
-      "options": ["Konstantin Gavrilovich has shot himself", "Trigorin has left forever", "Nina has drowned", "The estate has burned down"],
-      "correct": "Konstantin Gavrilovich has shot himself",
-      "explain": "The final line reveals, 'Константин Гаврилович застрелился' — Konstantin Gavrilovich has shot himself."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Значит, я опасно ___.",
+   "lemma": "больной",
+   "options": [
+    "больной",
+    "больного",
+    "больному",
+    "больным"
+   ],
+   "correct": "больной",
+   "case": "Именительный (Nominative)",
+   "explain": "Больной is a predicate adjective/noun describing the subject я, so it is nominative."
+  },
+  {
+   "id": "c2",
+   "sentence": "Твой отец не даст мне ___.",
+   "lemma": "лошадь",
+   "options": [
+    "лошадь",
+    "лошади",
+    "лошадью",
+    "лошадях"
+   ],
+   "correct": "лошади",
+   "case": "Родительный (Genitive)",
+   "explain": "The negated verb не даст (won't give) governs the genitive case for its object here."
+  },
+  {
+   "id": "c3",
+   "sentence": "А как-то Константин Гаврилович подстрелил ___, и вы попросили сделать из нее чучело.",
+   "lemma": "чайка",
+   "options": [
+    "чайка",
+    "чайки",
+    "чайку",
+    "чайкой"
+   ],
+   "correct": "чайку",
+   "case": "Винительный (Accusative)",
+   "explain": "Чайку is the direct object of the transitive verb подстрелил (shot), so it takes the accusative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Отец с ___ всюду расставили сторожей, чтобы даже близко не подпустить ее к усадьбе.",
+   "lemma": "мачеха",
+   "options": [
+    "мачеха",
+    "мачехи",
+    "мачехе",
+    "мачехой"
+   ],
+   "correct": "мачехой",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition с (together with) governs the instrumental case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Здесь, в ___, на постоялом дворе.",
+   "lemma": "город",
+   "options": [
+    "город",
+    "города",
+    "городу",
+    "городе"
+   ],
+   "correct": "городе",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в (in) denoting location governs the prepositional case."
+  },
+  {
+   "id": "c6",
+   "sentence": "Отец с мачехой всюду расставили сторожей, чтобы даже близко не подпустить ее к ___.",
+   "lemma": "усадьба",
+   "options": [
+    "усадьба",
+    "усадьбы",
+    "усадьбе",
+    "усадьбой"
+   ],
+   "correct": "усадьбе",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition к (toward/near) governs the dative case."
+  },
+  {
+   "id": "c7",
+   "sentence": "Мы все стареем, так сказать, выветриваемся под воздействием ___.",
+   "lemma": "стихия",
+   "options": [
+    "стихия",
+    "стихии",
+    "стихией",
+    "стихиях"
+   ],
+   "correct": "стихии",
+   "case": "Родительный (Genitive)",
+   "explain": "Стихии (of the elements) is a genitive modifier of воздействием (effect/influence), expressing 'effect of X.'"
+  },
+  {
+   "id": "c8",
+   "sentence": "Вот вещь, о которой я вам давеча говорил. ___ чайки.",
+   "lemma": "чучело",
+   "options": [
+    "чучело",
+    "чучела",
+    "чучелу",
+    "чучелом"
+   ],
+   "correct": "чучело",
+   "case": "Именительный (Nominative)",
+   "explain": "Чучело is a naming/labeling noun standing alone, so it is nominative."
+  },
+  {
+   "id": "c9",
+   "sentence": "Лошади мои стоят у ___.",
+   "lemma": "калитка",
+   "options": [
+    "калитка",
+    "калитки",
+    "калитке",
+    "калиткой"
+   ],
+   "correct": "калитки",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition у (at/by) governs the genitive case."
+  },
+  {
+   "id": "c10",
+   "sentence": "Я так много говорил о новых формах, а теперь сам чувствую, как мало-помалу сползаю к ___.",
+   "lemma": "рутина",
+   "options": [
+    "рутина",
+    "рутины",
+    "рутине",
+    "рутиной"
+   ],
+   "correct": "рутине",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition к (toward) governs the dative case."
+  },
+  {
+   "id": "c11",
+   "sentence": "Помните, вы пострелили ___?",
+   "lemma": "чайка",
+   "options": [
+    "чайка",
+    "чайки",
+    "чайку",
+    "чайкой"
+   ],
+   "correct": "чайку",
+   "case": "Винительный (Accusative)",
+   "explain": "Чайку is the direct object of the transitive verb пострелили (shot), so it takes the accusative case."
+  },
+  {
+   "id": "c12",
+   "sentence": "Лопнула склянка с ___.",
+   "lemma": "эфир",
+   "options": [
+    "эфир",
+    "эфира",
+    "эфиру",
+    "эфиром"
+   ],
+   "correct": "эфиром",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition с (with) governs the instrumental case."
+  },
+  {
+   "id": "c13",
+   "sentence": "Далекие звуки рояля, тающие в тихом ароматном ___.",
+   "lemma": "воздух",
+   "options": [
+    "воздух",
+    "воздуха",
+    "воздуху",
+    "воздухе"
+   ],
+   "correct": "воздухе",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в (in) denoting location governs the prepositional case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Старик каждую минуту спрашивает, где Костя, где Костя... Жить без него не может...",
+   "question": "What does the old man (Sorin) constantly ask about?",
+   "options": [
+    "Where Kostya (Konstantin) is",
+    "Where his money is",
+    "When the doctor is coming",
+    "When dinner will be ready"
+   ],
+   "correct": "Where Kostya (Konstantin) is",
+   "explain": "The line says the old man keeps asking every minute, 'где Костя' — where is Kostya."
+  },
+  {
+   "id": "r2",
+   "ru": "Надо бы сказать, чтобы сломали в саду тот театр.",
+   "question": "What does someone suggest should be done to the old theater/stage in the garden?",
+   "options": [
+    "It should be torn down",
+    "It should be repainted",
+    "It should be moved indoors",
+    "It should be locked up"
+   ],
+   "correct": "It should be torn down",
+   "explain": "The line suggests, 'чтобы сломали в саду тот театр' — that they should tear down that theater in the garden."
+  },
+  {
+   "id": "r3",
+   "ru": "Наш ребеночек, небось, голоден.",
+   "question": "What concern is raised about the baby?",
+   "options": [
+    "That the baby is probably hungry",
+    "That the baby is sick",
+    "That the baby is lost",
+    "That the baby has a fever"
+   ],
+   "correct": "That the baby is probably hungry",
+   "explain": "The line worries, 'Наш ребеночек, небось, голоден' — our baby is probably hungry."
+  },
+  {
+   "id": "r4",
+   "ru": "Твой отец не даст мне лошади.",
+   "question": "What does Masha say about getting horses from her father?",
+   "options": [
+    "That her father won't give her horses",
+    "That her father already gave her horses",
+    "That she doesn't need horses",
+    "That her father sold the horses"
+   ],
+   "correct": "That her father won't give her horses",
+   "explain": "She says, 'Твой отец не даст мне лошади' — your father won't give me horses."
+  },
+  {
+   "id": "r5",
+   "ru": "Никто не думал не гадал, что из вас, Костя, выйдет настоящий писатель.",
+   "question": "What did no one expect Konstantin (Kostya) would become?",
+   "options": [
+    "A real writer",
+    "A doctor",
+    "A soldier",
+    "A teacher"
+   ],
+   "correct": "A real writer",
+   "explain": "The line says no one thought or guessed that Kostya would become a real writer."
+  },
+  {
+   "id": "r6",
+   "ru": "Безнадежная любовь – это только в романах.",
+   "question": "What is said about hopeless love?",
+   "options": [
+    "That it only exists in novels",
+    "That it always ends happily",
+    "That it is the strongest kind of love",
+    "That it never really happens"
+   ],
+   "correct": "That it only exists in novels",
+   "explain": "The line dismisses it: 'Безнадежная любовь – это только в романах' — hopeless love only exists in novels."
+  },
+  {
+   "id": "r7",
+   "ru": "У меня теперь в доме шестеро. А мука семь гривен пуд.",
+   "question": "What complaint is made about household expenses?",
+   "options": [
+    "There are six people in the house now, and flour costs seven grivnas a pood",
+    "There is no food left in the house",
+    "The servants demand higher wages",
+    "The house needs repairs"
+   ],
+   "correct": "There are six people in the house now, and flour costs seven grivnas a pood",
+   "explain": "The complaint states there are now six people in the house, and flour costs seven grivnas per pood."
+  },
+  {
+   "id": "r8",
+   "ru": "Когда я не принадлежал себе ни днем, ни ночью, мне удалось скопить две тысячи,",
+   "question": "How much did the doctor manage to save over thirty years of restless practice?",
+   "options": [
+    "Two thousand",
+    "Ten thousand",
+    "Five hundred",
+    "Nothing at all"
+   ],
+   "correct": "Two thousand",
+   "explain": "He says he managed to save two thousand over thirty years of restless practice."
+  },
+  {
+   "id": "r9",
+   "ru": "\"Человек, который хотел\".",
+   "question": "What is the working title of the story idea Sorin wants to give Kostya?",
+   "options": [
+    "'The Man Who Wanted'",
+    "'The Lonely Traveler'",
+    "'A Life at the Lake'",
+    "'The Doctor's Secret'"
+   ],
+   "correct": "'The Man Who Wanted'",
+   "explain": "Sorin says the story should be called 'Человек, который хотел' — The Man Who Wanted."
+  },
+  {
+   "id": "r10",
+   "ru": "Вы 25 лет прослужили по судебному ведомству только и всего.",
+   "question": "How many years did Sorin serve in the judicial department, according to this line?",
+   "options": [
+    "25 years",
+    "28 years",
+    "40 years",
+    "15 years"
+   ],
+   "correct": "25 years",
+   "explain": "The line states, 'Вы 25 лет прослужили по судебному ведомству только и всего.'"
+  },
+  {
+   "id": "r11",
+   "ru": "Она ушла из дома и сошлась с Тригориным.",
+   "question": "What happened between Nina and Trigorin, according to Dorn's account?",
+   "options": [
+    "She left home and took up with Trigorin",
+    "She married Trigorin",
+    "She never met Trigorin again",
+    "She became his editor"
+   ],
+   "correct": "She left home and took up with Trigorin",
+   "explain": "Dorn says, 'Она ушла из дома и сошлась с Тригориным' — she left home and took up with Trigorin."
+  },
+  {
+   "id": "r12",
+   "ru": "Ребенок умер.",
+   "question": "What happened to Nina and Trigorin's child?",
+   "options": [
+    "The child died",
+    "The child was given away",
+    "The child grew up healthy",
+    "There was no child"
+   ],
+   "correct": "The child died",
+   "explain": "The line states simply, 'Ребенок умер' — the child died."
+  },
+  {
+   "id": "r13",
+   "ru": "Подписывалась Чайкой.",
+   "question": "What did Nina sign her letters with?",
+   "options": [
+    "'The Seagull'",
+    "Her real name",
+    "'Provincial girl'",
+    "No signature at all"
+   ],
+   "correct": "'The Seagull'",
+   "explain": "The text says she signed herself 'чайкой' — as 'the Seagull.'"
+  },
+  {
+   "id": "r14",
+   "ru": "Отец с мачехой всюду расставили сторожей, чтобы даже близко не допускать ее к усадьбе.",
+   "question": "What did Nina's father and stepmother do to keep her away?",
+   "options": [
+    "Posted guards everywhere to keep her from the estate",
+    "Sent her money to stay away",
+    "Wrote her letters begging her to return",
+    "Hired a lawyer against her"
+   ],
+   "correct": "Posted guards everywhere to keep her from the estate",
+   "explain": "The text says her father and stepmother posted watchmen everywhere so she couldn't even get near the estate."
+  },
+  {
+   "id": "r15",
+   "ru": "Действительный статский советник Сорин",
+   "question": "What title is given to Sorin in this passage?",
+   "options": [
+    "Active State Councillor",
+    "Colonel",
+    "Professor",
+    "Ambassador"
+   ],
+   "correct": "Active State Councillor",
+   "explain": "The text names him, 'Действительный статский советник Сорин.'"
+  },
+  {
+   "id": "r16",
+   "ru": "Ирина Николаевна говорила, мне, что вы уже забыли старое и перестали гневаться.",
+   "question": "What did Irina Nikolaevna tell Trigorin about Konstantin's mood?",
+   "options": [
+    "That Konstantin had forgotten the past and stopped being angry",
+    "That Konstantin still refuses to speak to him",
+    "That Konstantin has left for good",
+    "That Konstantin wants a duel"
+   ],
+   "correct": "That Konstantin had forgotten the past and stopped being angry",
+   "explain": "The line says Irina Nikolaevna told him Konstantin had already forgotten the old grudge and stopped being angry."
+  },
+  {
+   "id": "r17",
+   "ru": "И никто не знает вашей настоящей фамилии,",
+   "question": "What does the public not know about Trigorin, according to this line?",
+   "options": [
+    "No one knows his real surname",
+    "No one knows his age",
+    "No one knows where he lives",
+    "No one knows what he writes about"
+   ],
+   "correct": "No one knows his real surname",
+   "explain": "The line says nobody knows his real surname, since he publishes under a pseudonym."
+  },
+  {
+   "id": "r18",
+   "ru": "В него еще играла наша покойная мать, когда мы были детьми.",
+   "question": "Who used to play the old lotto game when the children were young?",
+   "options": [
+    "Their late mother",
+    "Their father",
+    "The doctor",
+    "The estate manager"
+   ],
+   "correct": "Their late mother",
+   "explain": "The line recalls, 'В него еще играла наша покойная мать, когда мы были детьми' — our late mother used to play it when we were children."
+  },
+  {
+   "id": "r19",
+   "ru": "Если бы я жил в такой усадьбе, у озера, то разве я стал бы писать?",
+   "question": "What does the doctor imagine he would do if he lived at such a lakeside estate?",
+   "options": [
+    "He would not become a writer, and would just fish instead",
+    "He would write every day",
+    "He would become a fisherman for a living",
+    "He would sell the estate"
+   ],
+   "correct": "He would not become a writer, and would just fish instead",
+   "explain": "He wonders if he lived at such an estate by the lake, would he even become a writer, and imagines he'd just fish instead."
+  },
+  {
+   "id": "r20",
+   "ru": "А как-то Константин Гаврилович подстрелил чайку, и вы попросили сделать из нее чучело.",
+   "question": "What had Konstantin once done with a seagull, as recalled here?",
+   "options": [
+    "He shot one and had it stuffed",
+    "He set it free",
+    "He painted a picture of it",
+    "He wrote a song about it"
+   ],
+   "correct": "He shot one and had it stuffed",
+   "explain": "The line recalls, 'Константин Гаврилович подстрелил чайку, и вы попросили сделать из нее чучело' — Konstantin shot a seagull and you asked to have it stuffed."
+  },
+  {
+   "id": "r21",
+   "ru": "Тригорин выработал себе приемы,",
+   "question": "What is said about Trigorin's writing method?",
+   "options": [
+    "He has developed his own techniques, making it easier for him",
+    "He never revises his work",
+    "He refuses to describe nature",
+    "He writes only about the moon"
+   ],
+   "correct": "He has developed his own techniques, making it easier for him",
+   "explain": "The line says, 'Тригорину легче он выработал себе приемы' — it's easier for Trigorin, he has worked out his own techniques."
+  },
+  {
+   "id": "r22",
+   "ru": "Она пришла!",
+   "question": "What does Konstantin realize with joy?",
+   "options": [
+    "That she (Nina) has come",
+    "That his play is finished",
+    "That his mother has arrived",
+    "That Trigorin has left"
+   ],
+   "correct": "That she (Nina) has come",
+   "explain": "He repeats, 'Она пришла' — she has come."
+  },
+  {
+   "id": "r23",
+   "ru": "Вы похудели,",
+   "question": "What physical change does Konstantin notice in Nina?",
+   "options": [
+    "She has lost weight",
+    "She has cut her hair",
+    "She looks much older",
+    "She is wearing new clothes"
+   ],
+   "correct": "She has lost weight",
+   "explain": "He says, 'Вы похудели' — you have lost weight."
+  },
+  {
+   "id": "r24",
+   "ru": "Я-то каждый день ходил к вам стоял у вас под окнами, как нищий.",
+   "question": "How does Konstantin describe his own behavior around Nina's house?",
+   "options": [
+    "He walked to her every day and stood under her windows like a beggar",
+    "He wrote her a letter every day",
+    "He avoided her house completely",
+    "He sent her flowers daily"
+   ],
+   "correct": "He walked to her every day and stood under her windows like a beggar",
+   "explain": "He confesses he went to her every day, standing under her windows 'как нищий' — like a beggar."
+  },
+  {
+   "id": "r25",
+   "ru": "Я чайка.",
+   "question": "What does Nina repeatedly call herself?",
+   "options": [
+    "A seagull",
+    "An actress only",
+    "A ghost",
+    "A stranger"
+   ],
+   "correct": "A seagull",
+   "explain": "She says, 'Я чайка' — I am a seagull, though she then corrects herself."
+  },
+  {
+   "id": "r26",
+   "ru": "Вы стали писателем.",
+   "question": "What has Nina noticed Konstantin has become?",
+   "options": [
+    "A writer",
+    "A doctor",
+    "A soldier",
+    "A teacher"
+   ],
+   "correct": "A writer",
+   "explain": "She tells him, 'Вы стали писателем' — you have become a writer."
+  },
+  {
+   "id": "r27",
+   "ru": "Завтра рано утром ехать в Елец",
+   "question": "Where must Nina travel early the next morning?",
+   "options": [
+    "Yelets",
+    "Moscow",
+    "Odessa",
+    "Kharkov"
+   ],
+   "correct": "Yelets",
+   "explain": "She says, 'Завтра рано утром ехать в Елец' — tomorrow early morning I must go to Yelets."
+  },
+  {
+   "id": "r28",
+   "ru": "Я зову вас, целую землю, по которой вы ходили;",
+   "question": "What obsessive gesture does Konstantin describe doing?",
+   "options": [
+    "Kissing the ground she walked on",
+    "Writing her name everywhere",
+    "Burning her letters",
+    "Following her to Moscow"
+   ],
+   "correct": "Kissing the ground she walked on",
+   "explain": "He says, 'целую землю, по которой вы ходили' — I kiss the ground you walked on."
+  },
+  {
+   "id": "r29",
+   "ru": "Лошади мои стоят у калитки.",
+   "question": "Where does Nina say her horses are waiting?",
+   "options": [
+    "At the gate",
+    "At the station",
+    "In the barn",
+    "By the lake"
+   ],
+   "correct": "At the gate",
+   "explain": "She says, 'Лошади мои стоят у калитки' — my horses are standing at the gate."
+  },
+  {
+   "id": "r30",
+   "ru": "Он не верил в театр,",
+   "question": "What did Trigorin apparently not believe in, according to Nina?",
+   "options": [
+    "The theater",
+    "Love",
+    "Money",
+    "Writing"
+   ],
+   "correct": "The theater",
+   "explain": "She recalls, 'Он не верил в театр' — he didn't believe in the theater."
+  },
+  {
+   "id": "r31",
+   "ru": "Помните, вы подстрелили чайку?",
+   "question": "What does Konstantin remind Nina he once did to a seagull?",
+   "options": [
+    "He shot it",
+    "He set it free",
+    "He painted it",
+    "He gave it to her as a gift"
+   ],
+   "correct": "He shot it",
+   "explain": "He asks, 'Помните, вы пострелили чайку?' — do you remember, you shot a seagull?"
+  },
+  {
+   "id": "r32",
+   "ru": "И чувствую, как с каждым днем растут мои душевные силы...",
+   "question": "What does Nina say is growing stronger within her every day?",
+   "options": [
+    "Her spiritual/inner strength",
+    "Her fear of the stage",
+    "Her wealth",
+    "Her anger at Trigorin"
+   ],
+   "correct": "Her spiritual/inner strength",
+   "explain": "She says, 'растут мои душевные силы' — my inner (spiritual) strength grows."
+  },
+  {
+   "id": "r33",
+   "ru": "Люблю, люблю страстно, до отчаяния люблю.",
+   "question": "How does Nina describe her love for Trigorin?",
+   "options": [
+    "She loves him passionately, even to the point of despair",
+    "She has completely stopped loving him",
+    "She only respects him as a writer",
+    "She fears him"
+   ],
+   "correct": "She loves him passionately, even to the point of despair",
+   "explain": "She says, 'Люблю, люблю страстно, да отчаянье люблю' — I love him, love him passionately, love him to the point of despair."
+  },
+  {
+   "id": "r34",
+   "ru": "Лопнула склянка с эфиром.",
+   "question": "What breaks, foreshadowing trouble, in the final scene?",
+   "options": [
+    "A vial of ether",
+    "A window",
+    "A mirror",
+    "A wine glass"
+   ],
+   "correct": "A vial of ether",
+   "explain": "The line says, 'Лопнула склянка с эфиром' — a vial of ether burst."
+  },
+  {
+   "id": "r35",
+   "ru": "Дело в том, что Константин Гаврилович застрелился...",
+   "question": "What is the final tragic revelation at the end?",
+   "options": [
+    "Konstantin Gavrilovich has shot himself",
+    "Trigorin has left forever",
+    "Nina has drowned",
+    "The estate has burned down"
+   ],
+   "correct": "Konstantin Gavrilovich has shot himself",
+   "explain": "The final line reveals, 'Константин Гаврилович застрелился' — Konstantin Gavrilovich has shot himself."
+  }
+ ]
 }

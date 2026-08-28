@@ -1,134 +1,196 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "Я люблю ___, потому что Он услышал мой голос, мои моления.",
-      "lemma": "Господь",
-      "options": ["Господь", "Господа", "Господу", "Господом"],
-      "correct": "Господа",
-      "case": "Винительный (Accusative)",
-      "translation": "I love the Lord because He has heard my voice and my prayers.",
-      "explain": "The transitive verb люблю (I love) governs the accusative case for its direct object; for animate nouns, this form resembles the genitive."
-    },
-    {
-      "id": "c2",
-      "sentence": "Смерть объяла меня своими ___, адские муки постигли меня.",
-      "lemma": "оковы",
-      "options": ["оковы", "оков", "оковам", "оковами"],
-      "correct": "оковами",
-      "case": "Творительный (Instrumental)",
-      "translation": "The cords of death surrounded me, the pains of Sheol seized me.",
-      "explain": "The verb объяла (encircled/surrounded) indicates the instrument or means, requiring the instrumental case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Смерть объяла меня своими оковами, адские муки постигли меня, я познал ___.",
-      "lemma": "беда",
-      "options": ["беду", "беде", "бедой", "беды"],
-      "correct": "беду",
-      "case": "Винительный (Accusative)",
-      "translation": "The cords of death surrounded me, the pains of Sheol seized me, I found trouble.",
-      "explain": "The verb познал (I found/experienced) is transitive and takes the accusative case for its direct object."
-    },
-    {
-      "id": "c4",
-      "sentence": "«О Господи, умоляю Тебя, избавь ___ мою».",
-      "lemma": "душа",
-      "options": ["душу", "душе", "душой", "души"],
-      "correct": "душу",
-      "case": "Винительный (Accusative)",
-      "translation": "O Lord, I beg you, deliver my soul.",
-      "explain": "The imperative verb избавь (deliver) is transitive and requires the accusative case for its object."
-    },
-    {
-      "id": "c5",
-      "sentence": "Господь милостив и праведен, милосерден Бог наш, хранит Господь рабов ___.",
-      "lemma": "мудрый",
-      "options": ["мудрого", "мудрому", "мудрым", "мудрый"],
-      "correct": "мудрого",
-      "case": "Винительный (Accusative)",
-      "translation": "The Lord is gracious and righteous; our God is merciful and preserves his wise servants.",
-      "explain": "The verb хранит (preserves) is transitive and takes the accusative case; for animate adjectives, accusative looks like genitive."
-    },
-    {
-      "id": "c6",
-      "sentence": "Возвратись, душа моя, в свой ___, потому что Господь был благ тебе.",
-      "lemma": "покой",
-      "options": ["покой", "покоя", "покою", "покое"],
-      "correct": "покой",
-      "case": "Винительный (Accusative)",
-      "translation": "Return to your rest, my soul, because the Lord has been good to you.",
-      "explain": "After the verb возвратись (return), the preposition в (into) with accusative indicates direction toward a destination."
-    },
-    {
-      "id": "c7",
-      "sentence": "Ты избавил ___ мою от смерти, глаза мои от слез и ноги мои от падения.",
-      "lemma": "душа",
-      "options": ["душу", "душе", "душой", "души"],
-      "correct": "душу",
-      "case": "Винительный (Accusative)",
-      "translation": "You have delivered my soul from death, my eyes from tears, and my feet from falling.",
-      "explain": "The verb избавил (delivered) is transitive and takes the accusative case for its direct object."
-    },
-    {
-      "id": "c8",
-      "sentence": "Буду ходить перед Господом на ___ живых.",
-      "lemma": "земля",
-      "options": ["земле", "земля", "земли", "землей"],
-      "correct": "земле",
-      "case": "Предложный (Prepositional)",
-      "translation": "I will walk before the Lord in the land of the living.",
-      "explain": "The preposition на (on) indicating location requires the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Я люблю Господа, потому что Он услышал мой голос, мои моления.",
-      "question": "Why does the psalmist love the Lord?",
-      "options": ["Because the Lord has heard his voice and his prayers", "Because the Lord has given him wealth", "Because the Lord has made him a king", "Because the Lord has protected him from enemies"],
-      "correct": "Because the Lord has heard his voice and his prayers",
-      "explain": "The text explicitly states 'потому что Он услышал мой голос, мои моления' (because He has heard my voice and my prayers)."
-    },
-    {
-      "id": "r2",
-      "ru": "Смерть объяла меня своими оковами, адские муки постигли меня, я познал бедствие и скорбь.",
-      "question": "What afflictions did the psalmist experience?",
-      "options": ["Death surrounded him, the pains of Sheol seized him, and he found trouble and sorrow", "He lost his wealth and his family", "He was betrayed by his friends", "He was imprisoned in a dungeon"],
-      "correct": "Death surrounded him, the pains of Sheol seized him, and he found trouble and sorrow",
-      "explain": "The text describes these specific afflictions: the cords of death, the pains of Sheol, trouble and sorrow."
-    },
-    {
-      "id": "r3",
-      "ru": "Тогда я призвал имя Господне, «О Господи, умоляю Тебя, избавь душу мою».",
-      "question": "What did the psalmist pray when he was in distress?",
-      "options": ["O Lord, I beg you, deliver my soul", "O Lord, grant me strength", "O Lord, forgive my sins", "O Lord, grant me victory"],
-      "correct": "O Lord, I beg you, deliver my soul",
-      "explain": "The text gives the exact prayer: 'О Господи, умоляю Тебя, избавь душу мою' (O Lord, I beg you, deliver my soul)."
-    },
-    {
-      "id": "r4",
-      "ru": "Возвратись, душа моя, в свой покой, потому что Господь был благ тебе.",
-      "question": "Why should the soul return to rest?",
-      "options": ["Because the Lord has been good to it", "Because danger has passed", "Because the night is over", "Because healing has come"],
-      "correct": "Because the Lord has been good to it",
-      "explain": "The text says 'потому что Господь был благ тебе' (because the Lord has been good to you)."
-    },
-    {
-      "id": "r5",
-      "ru": "Ты избавил душу мою от смерти, глаза мои от слез и ноги мои от падения.",
-      "question": "What threefold deliverance does the psalmist describe?",
-      "options": ["Deliverance from death, tears, and falling", "Deliverance from enemies, hunger, and disease", "Deliverance from fear, doubt, and despair", "Deliverance from poverty, shame, and exile"],
-      "correct": "Deliverance from death, tears, and falling",
-      "explain": "The text lists: 'душу мою от смерти, глаза мои от слез и ноги мои от падения' (my soul from death, my eyes from tears, my feet from falling)."
-    },
-    {
-      "id": "r6",
-      "ru": "Буду ходить перед Господом на земле живых.",
-      "question": "Where does the psalmist promise to walk?",
-      "options": ["Before the Lord in the land of the living", "In the temple of the Lord", "In the courts of Jerusalem", "In the presence of all nations"],
-      "correct": "Before the Lord in the land of the living",
-      "explain": "The text says 'Буду ходить перед Господом на земле живых' (I will walk before the Lord in the land of the living)."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Я люблю ___, потому что Он услышал мой голос, мои моления.",
+   "lemma": "Господь",
+   "options": [
+    "Господь",
+    "Господа",
+    "Господу",
+    "Господом"
+   ],
+   "correct": "Господа",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb люблю (I love) governs the accusative case for its direct object; for animate nouns, this form resembles the genitive."
+  },
+  {
+   "id": "c2",
+   "sentence": "Смерть объяла меня своими ___, адские муки постигли меня.",
+   "lemma": "оковы",
+   "options": [
+    "оковы",
+    "оков",
+    "оковам",
+    "оковами"
+   ],
+   "correct": "оковами",
+   "case": "Творительный (Instrumental)",
+   "explain": "The verb объяла (encircled/surrounded) indicates the instrument or means, requiring the instrumental case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Смерть объяла меня своими оковами, адские муки постигли меня, я познал ___.",
+   "lemma": "беда",
+   "options": [
+    "беду",
+    "беде",
+    "бедой",
+    "беды"
+   ],
+   "correct": "беду",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb познал (I found/experienced) is transitive and takes the accusative case for its direct object."
+  },
+  {
+   "id": "c4",
+   "sentence": "«О Господи, умоляю Тебя, избавь ___ мою».",
+   "lemma": "душа",
+   "options": [
+    "душу",
+    "душе",
+    "душой",
+    "души"
+   ],
+   "correct": "душу",
+   "case": "Винительный (Accusative)",
+   "explain": "The imperative verb избавь (deliver) is transitive and requires the accusative case for its object."
+  },
+  {
+   "id": "c5",
+   "sentence": "Господь милостив и праведен, милосерден Бог наш, хранит Господь рабов ___.",
+   "lemma": "мудрый",
+   "options": [
+    "мудрого",
+    "мудрому",
+    "мудрым",
+    "мудрый"
+   ],
+   "correct": "мудрого",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb хранит (preserves) is transitive and takes the accusative case; for animate adjectives, accusative looks like genitive."
+  },
+  {
+   "id": "c6",
+   "sentence": "Возвратись, душа моя, в свой ___, потому что Господь был благ тебе.",
+   "lemma": "покой",
+   "options": [
+    "покой",
+    "покоя",
+    "покою",
+    "покое"
+   ],
+   "correct": "покой",
+   "case": "Винительный (Accusative)",
+   "explain": "After the verb возвратись (return), the preposition в (into) with accusative indicates direction toward a destination."
+  },
+  {
+   "id": "c7",
+   "sentence": "Ты избавил ___ мою от смерти, глаза мои от слез и ноги мои от падения.",
+   "lemma": "душа",
+   "options": [
+    "душу",
+    "душе",
+    "душой",
+    "души"
+   ],
+   "correct": "душу",
+   "case": "Винительный (Accusative)",
+   "explain": "The verb избавил (delivered) is transitive and takes the accusative case for its direct object."
+  },
+  {
+   "id": "c8",
+   "sentence": "Буду ходить перед Господом на ___ живых.",
+   "lemma": "земля",
+   "options": [
+    "земле",
+    "земля",
+    "земли",
+    "землей"
+   ],
+   "correct": "земле",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition на (on) indicating location requires the prepositional case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Я люблю Господа, потому что Он услышал мой голос, мои моления.",
+   "question": "Why does the psalmist love the Lord?",
+   "options": [
+    "Because the Lord has heard his voice and his prayers",
+    "Because the Lord has given him wealth",
+    "Because the Lord has made him a king",
+    "Because the Lord has protected him from enemies"
+   ],
+   "correct": "Because the Lord has heard his voice and his prayers",
+   "explain": "The text explicitly states 'потому что Он услышал мой голос, мои моления' (because He has heard my voice and my prayers)."
+  },
+  {
+   "id": "r2",
+   "ru": "Смерть объяла меня своими оковами, адские муки постигли меня, я познал бедствие и скорбь.",
+   "question": "What afflictions did the psalmist experience?",
+   "options": [
+    "Death surrounded him, the pains of Sheol seized him, and he found trouble and sorrow",
+    "He lost his wealth and his family",
+    "He was betrayed by his friends",
+    "He was imprisoned in a dungeon"
+   ],
+   "correct": "Death surrounded him, the pains of Sheol seized him, and he found trouble and sorrow",
+   "explain": "The text describes these specific afflictions: the cords of death, the pains of Sheol, trouble and sorrow."
+  },
+  {
+   "id": "r3",
+   "ru": "Тогда я призвал имя Господне, «О Господи, умоляю Тебя, избавь душу мою».",
+   "question": "What did the psalmist pray when he was in distress?",
+   "options": [
+    "O Lord, I beg you, deliver my soul",
+    "O Lord, grant me strength",
+    "O Lord, forgive my sins",
+    "O Lord, grant me victory"
+   ],
+   "correct": "O Lord, I beg you, deliver my soul",
+   "explain": "The text gives the exact prayer: 'О Господи, умоляю Тебя, избавь душу мою' (O Lord, I beg you, deliver my soul)."
+  },
+  {
+   "id": "r4",
+   "ru": "Возвратись, душа моя, в свой покой, потому что Господь был благ тебе.",
+   "question": "Why should the soul return to rest?",
+   "options": [
+    "Because the Lord has been good to it",
+    "Because danger has passed",
+    "Because the night is over",
+    "Because healing has come"
+   ],
+   "correct": "Because the Lord has been good to it",
+   "explain": "The text says 'потому что Господь был благ тебе' (because the Lord has been good to you)."
+  },
+  {
+   "id": "r5",
+   "ru": "Ты избавил душу мою от смерти, глаза мои от слез и ноги мои от падения.",
+   "question": "What threefold deliverance does the psalmist describe?",
+   "options": [
+    "Deliverance from death, tears, and falling",
+    "Deliverance from enemies, hunger, and disease",
+    "Deliverance from fear, doubt, and despair",
+    "Deliverance from poverty, shame, and exile"
+   ],
+   "correct": "Deliverance from death, tears, and falling",
+   "explain": "The text lists: 'душу мою от смерти, глаза мои от слез и ноги мои от падения' (my soul from death, my eyes from tears, my feet from falling)."
+  },
+  {
+   "id": "r6",
+   "ru": "Буду ходить перед Господом на земле живых.",
+   "question": "Where does the psalmist promise to walk?",
+   "options": [
+    "Before the Lord in the land of the living",
+    "In the temple of the Lord",
+    "In the courts of Jerusalem",
+    "In the presence of all nations"
+   ],
+   "correct": "Before the Lord in the land of the living",
+   "explain": "The text says 'Буду ходить перед Господом на земле живых' (I will walk before the Lord in the land of the living)."
+  }
+ ]
 }

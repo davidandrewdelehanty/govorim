@@ -1,20 +1,196 @@
 {
-  "cases": [
-    {"id":"c1","sentence":"Они пришли ко ___ шатра собрания","lemma":"вход","options":["вход","входа","входу","входом"],"correct":"входу","case":"Дательный (Dative)","translation":"They came to the entrance of the Tent of Meeting","explain":"The preposition «к/ко» (to/toward) governs the dative case."},
-    {"id":"c2","sentence":"Наш отец умер в ___","lemma":"пустыня","options":["пустыня","пустыни","пустыне","пустыней"],"correct":"пустыне","case":"Предложный (Prepositional)","translation":"Our father died in the wilderness","explain":"The preposition «в» indicating location governs the prepositional case."},
-    {"id":"c3","sentence":"Дай нам на дел наравне с ___ отца","lemma":"брат","options":["братья","братьев","братьям","братьями"],"correct":"братьями","case":"Творительный (Instrumental)","translation":"Give us a possession along with our father's brothers","explain":"The preposition «с» (with) governs the instrumental case."},
-    {"id":"c4","sentence":"Моисей представил их дело ___","lemma":"Господь","options":["Господь","Господа","Господу","Господом"],"correct":"Господу","case":"Дательный (Dative)","translation":"Moses brought their case before the Lord","explain":"The verb «представил» (presented) takes the recipient in the dative case."},
-    {"id":"c5","sentence":"Поднимись на эту ___ в Нагорье Аварим","lemma":"гора","options":["гора","горы","гору","горой"],"correct":"гору","case":"Винительный (Accusative)","translation":"Go up onto this mountain in the range of Abarim","explain":"The preposition «на» expressing direction/motion governs the accusative case."},
-    {"id":"c6","sentence":"поставит над ___ человека","lemma":"народ","options":["народ","народа","народу","народом"],"correct":"народом","case":"Творительный (Instrumental)","translation":"let him set a man over the people","explain":"The preposition «над» (over/above) governs the instrumental case."},
-    {"id":"c7","sentence":"чтобы народ Господа не уподобился Атаре без ___","lemma":"пастух","options":["пастух","пастуха","пастуху","пастухом"],"correct":"пастуха","case":"Родительный (Genitive)","translation":"so that the Lord's people would not be like a flock without a shepherd","explain":"The preposition «без» (without) governs the genitive case."},
-    {"id":"c8","sentence":"поставь его перед ___ Элиазаром","lemma":"священник","options":["священник","священника","священнику","священником"],"correct":"священником","case":"Творительный (Instrumental)","translation":"set him before Eleazar the priest","explain":"The preposition «перед» (before/in front of) governs the instrumental case."}
-  ],
-  "reading": [
-    {"id":"r1","ru":"Дочери Целовхада унаследуют землю.","question":"Who will inherit the land in this passage?","options":["The daughters of Zelophehad","The sons of Korah","The Levites","The Moabites"],"correct":"The daughters of Zelophehad","explain":"The heading and text say the daughters of Zelophehad will inherit the land."},
-    {"id":"r2","ru":"Моисей сделал, как повелел ему Господь.","question":"What did Moses do?","options":["As the Lord commanded him","The opposite","Nothing","He refused"],"correct":"As the Lord commanded him","explain":"The text says Moses did as the Lord commanded him."},
-    {"id":"r3","ru":"Он поставил Иисуса перед священником Элиазаром и обществом, возложил на него руки и назначил его своим преемником, как говорил через Моисея Господь.","question":"Whom did Moses commission as his successor?","options":["Joshua","Eleazar","Caleb","Phinehas"],"correct":"Joshua","explain":"The text says Moses set Joshua before Eleazar and appointed him his successor."},
-    {"id":"r4","ru":"Это были воды Миривы у Кадеша, что в пустыне Цин.","question":"Where were the waters of Meribah?","options":["At Kadesh in the wilderness of Zin","In Egypt","At the Jordan","In Moab"],"correct":"At Kadesh in the wilderness of Zin","explain":"The text says they were the waters of Meribah at Kadesh in the wilderness of Zin."},
-    {"id":"r5","ru":"Почему имя нашего отца должно быть забыто его кланом из-за того, что у него не было сыновей?","question":"What did the daughters not want to happen?","options":["Their father's name to be lost","To leave Egypt","To fight","To marry"],"correct":"Their father's name to be lost","explain":"The daughters ask why their father's name should be lost from his clan because he had no sons."},
-    {"id":"r6","ru":"Поднимись на эту гору в Нагорье Аварим и посмотри на землю, которую я даю израилетянам.","question":"What did the Lord tell Moses to do?","options":["Go up the mountain and see the land","Cross the Jordan","Build an altar","Count the people"],"correct":"Go up the mountain and see the land","explain":"The Lord tells Moses to go up the mountain and see the land given to Israel."}
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "Они пришли ко ___ шатра собрания",
+   "lemma": "вход",
+   "options": [
+    "вход",
+    "входа",
+    "входу",
+    "входом"
+   ],
+   "correct": "входу",
+   "case": "Дательный (Dative)",
+   "explain": "The preposition «к/ко» (to/toward) governs the dative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Наш отец умер в ___",
+   "lemma": "пустыня",
+   "options": [
+    "пустыня",
+    "пустыни",
+    "пустыне",
+    "пустыней"
+   ],
+   "correct": "пустыне",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition «в» indicating location governs the prepositional case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Дай нам на дел наравне с ___ отца",
+   "lemma": "брат",
+   "options": [
+    "братья",
+    "братьев",
+    "братьям",
+    "братьями"
+   ],
+   "correct": "братьями",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition «с» (with) governs the instrumental case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Моисей представил их дело ___",
+   "lemma": "Господь",
+   "options": [
+    "Господь",
+    "Господа",
+    "Господу",
+    "Господом"
+   ],
+   "correct": "Господу",
+   "case": "Дательный (Dative)",
+   "explain": "The verb «представил» (presented) takes the recipient in the dative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Поднимись на эту ___ в Нагорье Аварим",
+   "lemma": "гора",
+   "options": [
+    "гора",
+    "горы",
+    "гору",
+    "горой"
+   ],
+   "correct": "гору",
+   "case": "Винительный (Accusative)",
+   "explain": "The preposition «на» expressing direction/motion governs the accusative case."
+  },
+  {
+   "id": "c6",
+   "sentence": "поставит над ___ человека",
+   "lemma": "народ",
+   "options": [
+    "народ",
+    "народа",
+    "народу",
+    "народом"
+   ],
+   "correct": "народом",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition «над» (over/above) governs the instrumental case."
+  },
+  {
+   "id": "c7",
+   "sentence": "чтобы народ Господа не уподобился Атаре без ___",
+   "lemma": "пастух",
+   "options": [
+    "пастух",
+    "пастуха",
+    "пастуху",
+    "пастухом"
+   ],
+   "correct": "пастуха",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition «без» (without) governs the genitive case."
+  },
+  {
+   "id": "c8",
+   "sentence": "поставь его перед ___ Элиазаром",
+   "lemma": "священник",
+   "options": [
+    "священник",
+    "священника",
+    "священнику",
+    "священником"
+   ],
+   "correct": "священником",
+   "case": "Творительный (Instrumental)",
+   "explain": "The preposition «перед» (before/in front of) governs the instrumental case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Дочери Целовхада унаследуют землю.",
+   "question": "Who will inherit the land in this passage?",
+   "options": [
+    "The daughters of Zelophehad",
+    "The sons of Korah",
+    "The Levites",
+    "The Moabites"
+   ],
+   "correct": "The daughters of Zelophehad",
+   "explain": "The heading and text say the daughters of Zelophehad will inherit the land."
+  },
+  {
+   "id": "r2",
+   "ru": "Моисей сделал, как повелел ему Господь.",
+   "question": "What did Moses do?",
+   "options": [
+    "As the Lord commanded him",
+    "The opposite",
+    "Nothing",
+    "He refused"
+   ],
+   "correct": "As the Lord commanded him",
+   "explain": "The text says Moses did as the Lord commanded him."
+  },
+  {
+   "id": "r3",
+   "ru": "Он поставил Иисуса перед священником Элиазаром и обществом, возложил на него руки и назначил его своим преемником, как говорил через Моисея Господь.",
+   "question": "Whom did Moses commission as his successor?",
+   "options": [
+    "Joshua",
+    "Eleazar",
+    "Caleb",
+    "Phinehas"
+   ],
+   "correct": "Joshua",
+   "explain": "The text says Moses set Joshua before Eleazar and appointed him his successor."
+  },
+  {
+   "id": "r4",
+   "ru": "Это были воды Миривы у Кадеша, что в пустыне Цин.",
+   "question": "Where were the waters of Meribah?",
+   "options": [
+    "At Kadesh in the wilderness of Zin",
+    "In Egypt",
+    "At the Jordan",
+    "In Moab"
+   ],
+   "correct": "At Kadesh in the wilderness of Zin",
+   "explain": "The text says they were the waters of Meribah at Kadesh in the wilderness of Zin."
+  },
+  {
+   "id": "r5",
+   "ru": "Почему имя нашего отца должно быть забыто его кланом из-за того, что у него не было сыновей?",
+   "question": "What did the daughters not want to happen?",
+   "options": [
+    "Their father's name to be lost",
+    "To leave Egypt",
+    "To fight",
+    "To marry"
+   ],
+   "correct": "Their father's name to be lost",
+   "explain": "The daughters ask why their father's name should be lost from his clan because he had no sons."
+  },
+  {
+   "id": "r6",
+   "ru": "Поднимись на эту гору в Нагорье Аварим и посмотри на землю, которую я даю израилетянам.",
+   "question": "What did the Lord tell Moses to do?",
+   "options": [
+    "Go up the mountain and see the land",
+    "Cross the Jordan",
+    "Build an altar",
+    "Count the people"
+   ],
+   "correct": "Go up the mountain and see the land",
+   "explain": "The Lord tells Moses to go up the mountain and see the land given to Israel."
+  }
+ ]
 }

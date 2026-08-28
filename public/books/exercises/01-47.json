@@ -1,226 +1,220 @@
 {
-  "cases": [
-    {
-      "id": "c1",
-      "sentence": "___ Египта перед тобой.",
-      "lemma": "земля",
-      "options": [
-        "земля",
-        "земли",
-        "землю",
-        "землёй"
-      ],
-      "correct": "земля",
-      "case": "Именительный (Nominative)",
-      "translation": "The land of Egypt is before you.",
-      "explain": "Земля is the grammatical subject of the sentence, so it stands in the nominative case."
-    },
-    {
-      "id": "c2",
-      "sentence": "Они получали постоянную долю от ___.",
-      "lemma": "фараон",
-      "options": [
-        "фараон",
-        "фараона",
-        "фараону",
-        "фараоном"
-      ],
-      "correct": "фараона",
-      "case": "Родительный (Genitive)",
-      "translation": "They received a fixed portion from Pharaoh.",
-      "explain": "The preposition от (from) governs the genitive case."
-    },
-    {
-      "id": "c3",
-      "sentence": "Иосиф сказал ___, «Теперь, когда я купил вас и вашу землю для фараона, вот вам семена, чтобы засеять землю».",
-      "lemma": "народ",
-      "options": [
-        "народ",
-        "народа",
-        "народу",
-        "народом"
-      ],
-      "correct": "народу",
-      "case": "Дательный (Dative)",
-      "translation": "Joseph said to the people, 'Now that I have bought you and your land for Pharaoh, here is seed for you to sow the land.'",
-      "explain": "The verb сказал (said) takes its indirect object (to whom) in the dative case."
-    },
-    {
-      "id": "c4",
-      "sentence": "Если я нашел расположение в твоих глазах, положи ___ мне под бедро и обещай, что явишь мне милость и верность.",
-      "lemma": "рука",
-      "options": [
-        "рука",
-        "руки",
-        "руке",
-        "руку"
-      ],
-      "correct": "руку",
-      "case": "Винительный (Accusative)",
-      "translation": "If I have found favor in your eyes, put your hand under my thigh and promise to show me kindness and faithfulness.",
-      "explain": "The transitive verb положи (put) takes its direct object in the accusative case."
-    },
-    {
-      "id": "c5",
-      "sentence": "Иосиф обеспечил ___ отца и братьев и весь свой род.",
-      "lemma": "еда",
-      "options": [
-        "еда",
-        "еды",
-        "еду",
-        "едой"
-      ],
-      "correct": "едой",
-      "case": "Творительный (Instrumental)",
-      "translation": "Joseph provided his father and brothers and all his household with food.",
-      "explain": "The verb обеспечил (provided) governs the instrumental case for the thing supplied."
-    },
-    {
-      "id": "c6",
-      "sentence": "Иаков прожил в ___ 17 лет, так что всего он жил 147 лет.",
-      "lemma": "Египет",
-      "options": [
-        "Египет",
-        "Египта",
-        "Египту",
-        "Египте"
-      ],
-      "correct": "Египте",
-      "case": "Предложный (Prepositional)",
-      "translation": "Jacob lived in Egypt 17 years, so that in all he lived 147 years.",
-      "explain": "The preposition в indicating location governs the prepositional case."
-    }
-  ],
-  "reading": [
-    {
-      "id": "r1",
-      "ru": "Мой отец и братья со своими стадами крупного и мелкого скота и всем имуществом пришли из земли Ханаана и сейчас находятся в Гошене».",
-      "question": "What did Joseph tell Pharaoh about his family?",
-      "options": [
-        "They had arrived from Canaan and were now in Goshen",
-        "They had died in the famine",
-        "They refused to come to Egypt",
-        "They wanted to return to Canaan immediately"
-      ],
-      "correct": "They had arrived from Canaan and were now in Goshen",
-      "explain": "Joseph tells Pharaoh his father and brothers came from Canaan and are now in Goshen."
-    },
-    {
-      "id": "r2",
-      "ru": "Фараон спросил братьев, «Чем вы занимаетесь?»",
-      "question": "What did Pharaoh ask Joseph's brothers?",
-      "options": [
-        "What is your occupation?",
-        "Where is your father?",
-        "How long is the famine?",
-        "Why did you come to Egypt?"
-      ],
-      "correct": "What is your occupation?",
-      "explain": "Pharaoh asks the brothers what their occupation is."
-    },
-    {
-      "id": "r3",
-      "ru": "Иаков ответил фараону, «Дней моего странствования сто тридцать лет.",
-      "question": "How old did Jacob say he was when he met Pharaoh?",
-      "options": [
-        "130 years",
-        "147 years",
-        "17 years",
-        "70 years"
-      ],
-      "correct": "130 years",
-      "explain": "Jacob tells Pharaoh the days of his pilgrimage have been 130 years."
-    },
-    {
-      "id": "r4",
-      "ru": "Иосиф собрал все деньги, какие только были в Египте и Ханаане, в уплату за зерно, которое у него покупали.",
-      "question": "What did Joseph collect in exchange for grain during the famine?",
-      "options": [
-        "All the money in Egypt and Canaan",
-        "Livestock only",
-        "Land only",
-        "Precious stones"
-      ],
-      "correct": "All the money in Egypt and Canaan",
-      "explain": "Joseph gathered all the money in Egypt and Canaan in payment for grain."
-    },
-    {
-      "id": "r5",
-      "ru": "Иосиф сказал, «Приведите свой скот, а я дам вам хлеба в обмен на него, раз у вас кончились деньги».",
-      "question": "What did Joseph offer to trade for bread once the people's money ran out?",
-      "options": [
-        "Their livestock",
-        "Their land",
-        "Their children",
-        "Their tools"
-      ],
-      "correct": "Their livestock",
-      "explain": "Joseph tells them to bring their livestock and he will give them bread in exchange."
-    },
-    {
-      "id": "r6",
-      "ru": "Купи нас и нашу землю в обмен на хлеб, а мы с нашей землей будем в рабстве у фараона",
-      "question": "What did the Egyptians offer to sell in exchange for bread when even their livestock was gone?",
-      "options": [
-        "Themselves and their land",
-        "Their remaining silver",
-        "Their temples",
-        "Their children"
-      ],
-      "correct": "Themselves and their land",
-      "explain": "The Egyptians offer to sell themselves and their land in exchange for bread."
-    },
-    {
-      "id": "r7",
-      "ru": "Он не купил только землю жрецов, потому что они получали постоянную долю от фараона",
-      "question": "Whose land did Joseph not buy during the famine?",
-      "options": [
-        "The priests' land",
-        "The shepherds' land",
-        "The soldiers' land",
-        "Pharaoh's own land"
-      ],
-      "correct": "The priests' land",
-      "explain": "Joseph did not buy the priests' land, since they received a fixed portion from Pharaoh."
-    },
-    {
-      "id": "r8",
-      "ru": "Когда поспеет урожай, отдайте одну пятую от него фараону, а остальные четыре пятых будут вам",
-      "question": "What portion of the harvest did Joseph's law require to be given to Pharaoh?",
-      "options": [
-        "One fifth",
-        "One half",
-        "One third",
-        "All of it"
-      ],
-      "correct": "One fifth",
-      "explain": "Joseph's law required one fifth of the harvest to be given to Pharaoh."
-    },
-    {
-      "id": "r9",
-      "ru": "Иаков прожил в Египте 17 лет, так что всего он жил 147 лет.",
-      "question": "How many total years did Jacob live?",
-      "options": [
-        "147",
-        "130",
-        "110",
-        "70"
-      ],
-      "correct": "147",
-      "explain": "The text states Jacob lived a total of 147 years."
-    },
-    {
-      "id": "r10",
-      "ru": "Не хорони меня в Египте, но когда я сойду к моим отцам, вынеси меня из Египта и похорони там, где похоронены они».",
-      "question": "What request did Jacob make of Joseph near the end of his life?",
-      "options": [
-        "To be buried with his ancestors, not in Egypt",
-        "To be crowned as pharaoh",
-        "To free all the Egyptian slaves",
-        "To divide his land among all his sons immediately"
-      ],
-      "correct": "To be buried with his ancestors, not in Egypt",
-      "explain": "Jacob asks Joseph not to bury him in Egypt, but to carry him out and bury him with his ancestors."
-    }
-  ]
+ "cases": [
+  {
+   "id": "c1",
+   "sentence": "___ Египта перед тобой.",
+   "lemma": "земля",
+   "options": [
+    "земля",
+    "земли",
+    "землю",
+    "землёй"
+   ],
+   "correct": "земля",
+   "case": "Именительный (Nominative)",
+   "explain": "Земля is the grammatical subject of the sentence, so it stands in the nominative case."
+  },
+  {
+   "id": "c2",
+   "sentence": "Они получали постоянную долю от ___.",
+   "lemma": "фараон",
+   "options": [
+    "фараон",
+    "фараона",
+    "фараону",
+    "фараоном"
+   ],
+   "correct": "фараона",
+   "case": "Родительный (Genitive)",
+   "explain": "The preposition от (from) governs the genitive case."
+  },
+  {
+   "id": "c3",
+   "sentence": "Иосиф сказал ___, «Теперь, когда я купил вас и вашу землю для фараона, вот вам семена, чтобы засеять землю».",
+   "lemma": "народ",
+   "options": [
+    "народ",
+    "народа",
+    "народу",
+    "народом"
+   ],
+   "correct": "народу",
+   "case": "Дательный (Dative)",
+   "explain": "The verb сказал (said) takes its indirect object (to whom) in the dative case."
+  },
+  {
+   "id": "c4",
+   "sentence": "Если я нашел расположение в твоих глазах, положи ___ мне под бедро и обещай, что явишь мне милость и верность.",
+   "lemma": "рука",
+   "options": [
+    "рука",
+    "руки",
+    "руке",
+    "руку"
+   ],
+   "correct": "руку",
+   "case": "Винительный (Accusative)",
+   "explain": "The transitive verb положи (put) takes its direct object in the accusative case."
+  },
+  {
+   "id": "c5",
+   "sentence": "Иосиф обеспечил ___ отца и братьев и весь свой род.",
+   "lemma": "еда",
+   "options": [
+    "еда",
+    "еды",
+    "еду",
+    "едой"
+   ],
+   "correct": "едой",
+   "case": "Творительный (Instrumental)",
+   "explain": "The verb обеспечил (provided) governs the instrumental case for the thing supplied."
+  },
+  {
+   "id": "c6",
+   "sentence": "Иаков прожил в ___ 17 лет, так что всего он жил 147 лет.",
+   "lemma": "Египет",
+   "options": [
+    "Египет",
+    "Египта",
+    "Египту",
+    "Египте"
+   ],
+   "correct": "Египте",
+   "case": "Предложный (Prepositional)",
+   "explain": "The preposition в indicating location governs the prepositional case."
+  }
+ ],
+ "reading": [
+  {
+   "id": "r1",
+   "ru": "Мой отец и братья со своими стадами крупного и мелкого скота и всем имуществом пришли из земли Ханаана и сейчас находятся в Гошене».",
+   "question": "What did Joseph tell Pharaoh about his family?",
+   "options": [
+    "They had arrived from Canaan and were now in Goshen",
+    "They had died in the famine",
+    "They refused to come to Egypt",
+    "They wanted to return to Canaan immediately"
+   ],
+   "correct": "They had arrived from Canaan and were now in Goshen",
+   "explain": "Joseph tells Pharaoh his father and brothers came from Canaan and are now in Goshen."
+  },
+  {
+   "id": "r2",
+   "ru": "Фараон спросил братьев, «Чем вы занимаетесь?»",
+   "question": "What did Pharaoh ask Joseph's brothers?",
+   "options": [
+    "What is your occupation?",
+    "Where is your father?",
+    "How long is the famine?",
+    "Why did you come to Egypt?"
+   ],
+   "correct": "What is your occupation?",
+   "explain": "Pharaoh asks the brothers what their occupation is."
+  },
+  {
+   "id": "r3",
+   "ru": "Иаков ответил фараону, «Дней моего странствования сто тридцать лет.",
+   "question": "How old did Jacob say he was when he met Pharaoh?",
+   "options": [
+    "130 years",
+    "147 years",
+    "17 years",
+    "70 years"
+   ],
+   "correct": "130 years",
+   "explain": "Jacob tells Pharaoh the days of his pilgrimage have been 130 years."
+  },
+  {
+   "id": "r4",
+   "ru": "Иосиф собрал все деньги, какие только были в Египте и Ханаане, в уплату за зерно, которое у него покупали.",
+   "question": "What did Joseph collect in exchange for grain during the famine?",
+   "options": [
+    "All the money in Egypt and Canaan",
+    "Livestock only",
+    "Land only",
+    "Precious stones"
+   ],
+   "correct": "All the money in Egypt and Canaan",
+   "explain": "Joseph gathered all the money in Egypt and Canaan in payment for grain."
+  },
+  {
+   "id": "r5",
+   "ru": "Иосиф сказал, «Приведите свой скот, а я дам вам хлеба в обмен на него, раз у вас кончились деньги».",
+   "question": "What did Joseph offer to trade for bread once the people's money ran out?",
+   "options": [
+    "Their livestock",
+    "Their land",
+    "Their children",
+    "Their tools"
+   ],
+   "correct": "Their livestock",
+   "explain": "Joseph tells them to bring their livestock and he will give them bread in exchange."
+  },
+  {
+   "id": "r6",
+   "ru": "Купи нас и нашу землю в обмен на хлеб, а мы с нашей землей будем в рабстве у фараона",
+   "question": "What did the Egyptians offer to sell in exchange for bread when even their livestock was gone?",
+   "options": [
+    "Themselves and their land",
+    "Their remaining silver",
+    "Their temples",
+    "Their children"
+   ],
+   "correct": "Themselves and their land",
+   "explain": "The Egyptians offer to sell themselves and their land in exchange for bread."
+  },
+  {
+   "id": "r7",
+   "ru": "Он не купил только землю жрецов, потому что они получали постоянную долю от фараона",
+   "question": "Whose land did Joseph not buy during the famine?",
+   "options": [
+    "The priests' land",
+    "The shepherds' land",
+    "The soldiers' land",
+    "Pharaoh's own land"
+   ],
+   "correct": "The priests' land",
+   "explain": "Joseph did not buy the priests' land, since they received a fixed portion from Pharaoh."
+  },
+  {
+   "id": "r8",
+   "ru": "Когда поспеет урожай, отдайте одну пятую от него фараону, а остальные четыре пятых будут вам",
+   "question": "What portion of the harvest did Joseph's law require to be given to Pharaoh?",
+   "options": [
+    "One fifth",
+    "One half",
+    "One third",
+    "All of it"
+   ],
+   "correct": "One fifth",
+   "explain": "Joseph's law required one fifth of the harvest to be given to Pharaoh."
+  },
+  {
+   "id": "r9",
+   "ru": "Иаков прожил в Египте 17 лет, так что всего он жил 147 лет.",
+   "question": "How many total years did Jacob live?",
+   "options": [
+    "147",
+    "130",
+    "110",
+    "70"
+   ],
+   "correct": "147",
+   "explain": "The text states Jacob lived a total of 147 years."
+  },
+  {
+   "id": "r10",
+   "ru": "Не хорони меня в Египте, но когда я сойду к моим отцам, вынеси меня из Египта и похорони там, где похоронены они».",
+   "question": "What request did Jacob make of Joseph near the end of his life?",
+   "options": [
+    "To be buried with his ancestors, not in Egypt",
+    "To be crowned as pharaoh",
+    "To free all the Egyptian slaves",
+    "To divide his land among all his sons immediately"
+   ],
+   "correct": "To be buried with his ancestors, not in Egypt",
+   "explain": "Jacob asks Joseph not to bury him in Egypt, but to carry him out and bury him with his ancestors."
+  }
+ ]
 }
