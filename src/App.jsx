@@ -5487,7 +5487,10 @@ export default function App() {
       return (
         <div className="dual-outer">
           <div className="dual-hint">⇄ English</div>
-          {bookMeta && bookMeta.translationNote && (
+          {/* The translator's note introduces the translation once, on the
+              first section — repeating it above every chapter turns it into
+              boilerplate the reader learns to scroll past. */}
+          {bookMeta && bookMeta.translationNote && cidx === 0 && pidx === 0 && (
             <div className="pmt tnote">{bookMeta.translationNote}</div>
           )}
           <div className="dual-scroll" ref={dualRef} onScroll={onDualScroll}>
