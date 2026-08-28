@@ -759,6 +759,53 @@ async function buildChaptersFromToc(entries, zipFiles) {
   return chapters;
 }
 
+// ── The author's own section numbering ──────────────────────────────────────
+// The reader splits a book into a flat list of sections, and the position in
+// that list is NOT the author's chapter number: a preface, a publisher's note,
+// a dedication, a translator's introduction, a list of characters and an
+// appendix all take a slot. Calling the first of those "Chapter 1" is simply
+// wrong, and so is calling an act of a play or a canto of a poem a chapter.
+//
+// So: read the number out of the heading the author actually wrote, and use
+// the word "chapter" ONLY when the heading is a numbered chapter. Everything
+// else — «Предисловие», «От автора», «Действие первое», «Ночь первая»,
+// «Примечания», a story title — returns null, and the reader falls back to a
+// bare position ("3 of 21"), which claims nothing the book doesn't say.
+function romanToInt(r) {
+  var map = { I:1, V:5, X:10, L:50, C:100, D:500, M:1000 };
+  var up = String(r).toUpperCase(), total = 0;
+  for (var i = 0; i < up.length; i++) {
+    var v = map[up[i]];
+    if (!v) return null;
+    var nxt = map[up[i+1]] || 0;
+    total += (v < nxt) ? -v : v;
+  }
+  return total || null;
+}
+
+function authorChapterNo(heading) {
+  var h = String(heading == null ? "" : heading).trim();
+  if (!h) return null;
+  // "Часть вторая — Глава V" / "Журнал Печорина — I. Тамань": the part is
+  // context, the chapter is the last segment.
+  var seg = h.split(/\s+[—–-]\s+/);
+  if (seg.length > 1) h = seg[seg.length - 1].trim();
+
+  // Explicit chapter word: «Глава 10 Эпилог», "ГЛАВА XII. СИРОТА."
+  var m = h.match(/^(?:глава|chapter)\s*[.:]?\s*(\d{1,3}|[IVXLCivxlc]{1,7})\b/i);
+  if (!m) {
+    // A bare numeral heading, alone or followed by the chapter's own title:
+    // "V", "1.", "III Верующие бабы". A word must not precede the numeral —
+    // that is how «Действие I», «Песнь первая» and «Ночь первая» stay out.
+    m = h.match(/^(\d{1,3}|[IVXLC]{1,7})(?:[.)．]|\s|$)/);
+  }
+  if (!m) return null;
+  var raw = m[1];
+  var n = /^\d+$/.test(raw) ? parseInt(raw, 10) : romanToInt(raw);
+  if (!n || n > 400) return null;
+  return n;
+}
+
 // ── Text-based chapter marker detection ─────────────────────────────────────
 // Authors mark their chapter divisions inside the actual text — usually with
 // Roman numerals (I, II, III...), Arabic numbers (1, 2, 3), or "Глава N" /
@@ -5729,7 +5776,12 @@ export default function App() {
         .lib-card:hover{background:rgba(42,31,20,.08);border-color:rgba(196,149,90,.3);transform:translateY(-1px)}
         .lib-card-title{font-family:'Playfair Display',serif;font-size:15px;color:#000;line-height:1.3;margin-bottom:8px}
         .lib-card-author{font-size:12px;color:rgba(42,31,20,.6);font-style:italic;margin-bottom:6px}
-        .lib-card-meta{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:rgba(42,31,20,.4);margin-top:auto;padding-top:4px}
+        .lib-card-meta{display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:5px;font-size:11px;color:rgba(42,31,20,.4);margin-top:auto;padding-top:4px}
+        /* What a listing actually has: the Russian text, an English translation
+           beside it, a narrated recording. Both states are shown — a missing
+           marker reads as an oversight, where "no English" is an answer. */
+        .lib-tag{padding:2px 7px;border-radius:9px;font-size:10px;letter-spacing:.3px;font-weight:600;white-space:nowrap;border:1px solid rgba(42,31,20,.16);color:rgba(42,31,20,.72);background:rgba(42,31,20,.05)}
+        .lib-tag.off{border-color:rgba(42,31,20,.08);color:rgba(42,31,20,.3);background:none;font-weight:500}
         .lib-card-cat{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#c4955a;padding:2px 8px;border-radius:10px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600}
         .lib-card-remove{background:transparent;border:none;color:rgba(42,31,20,.35);font-size:18px;cursor:pointer;padding:0 4px;line-height:1}
         .lib-card-remove:hover{color:#9d4630}
@@ -6978,71 +7030,6 @@ export default function App() {
                       uploads show in their own "My Uploads" section at the top. */}
                   {(presetBooks.length > 0) && (
                     <div style={{marginTop:18,paddingTop:18,borderTop:"1px solid rgba(210,197,175,.1)",width:"100%"}}>
-                      {/* Continue Reading — books with saved progress, newest first.
-                          Clicking one resumes at the saved chapter/page. */}
-                      {(function() {
-                        var entries = Object.keys(progressMap).map(function(k){ return progressMap[k]; });
-                        entries.sort(function(a, b){ return (b.lastRead || 0) - (a.lastRead || 0); });
-                        var recent = entries.slice(0, 6);
-                        if (recent.length === 0) return null;
-                        // Match recents against actual library entries so we can resume them.
-                        var findEntry = function(rec) {
-                          // Try uploaded books first (matched by filename or title)
-                          for (var i = 0; i < uploadedBooks.length; i++) {
-                            var u = uploadedBooks[i];
-                            if (rec.filename && u.filename === rec.filename && u.title === rec.title) return { type: "upload", book: u };
-                            if (u.title === rec.title && (u.author || "") === (rec.author || "")) return { type: "upload", book: u };
-                          }
-                          for (var j = 0; j < presetBooks.length; j++) {
-                            var pBook = presetBooks[j];
-                            if (rec.filename && pBook.filename === rec.filename) return { type: "preset", book: pBook };
-                          }
-                          return null;
-                        };
-                        return (
-                          <div className="lib-section" style={{marginBottom:18}}>
-                            <div className="lib-section-hdr">Continue reading</div>
-                            <div className="lib-grid">
-                              {recent.map(function(rec, i) {
-                                var match = findEntry(rec);
-                                if (!match) return null;
-                                var total = rec.totalChapters || 1;
-                                var pct = total > 1 ? Math.round((rec.cidx / total) * 100) : (rec.pidx > 0 ? 50 : 0);
-                                var humanLast = (function() {
-                                  var ms = Date.now() - (rec.lastRead || 0);
-                                  var min = Math.floor(ms / 60000);
-                                  if (min < 1) return "just now";
-                                  if (min < 60) return min + "m ago";
-                                  var hr = Math.floor(min / 60);
-                                  if (hr < 24) return hr + "h ago";
-                                  var d = Math.floor(hr / 24);
-                                  if (d < 30) return d + "d ago";
-                                  return "a while ago";
-                                })();
-                                return (
-                                  <div key={i} className="lcard" onClick={function() {
-                                    if (match.type === "upload") openUploadedBook(match.book);
-                                    else if (match.book.category === "Song Lyrics") openSongPicker(match.book);
-                                    else loadPresetBook(match.book);
-                                  }}>
-                                    <div className="lcn" style={{color:"rgba(0,0,0,.5)"}}>↻ {humanLast}</div>
-                                    <div className="lchead">{bookLabel(rec)}</div>
-                                    <div style={{marginTop:8,fontSize:11,color:"rgba(0,0,0,.55)"}}>
-                                      Ch. {(rec.cidx || 0) + 1}{total > 1 ? "/" + total : ""}
-                                      {(rec.pidx || 0) > 0 && " · Page " + ((rec.pidx || 0) + 1)}
-                                      {" · " + pct + "%"}
-                                    </div>
-                                    <div style={{marginTop:6,height:3,background:"rgba(210,197,175,.1)",borderRadius:2,overflow:"hidden"}}>
-                                      <div style={{height:"100%",width:pct+"%",background:"#c8a276"}}/>
-                                    </div>
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          </div>
-                        );
-                      })()}
-
                       {/* Quick pick dropdown — for users who know exactly which book they want
                           and prefer not to scroll through the card grid below. Lives alongside
                           the card grid; both stay in sync via the same data source. */}
@@ -7126,6 +7113,71 @@ export default function App() {
                           </select>
                         </div>
                       )}
+
+                      {/* Continue Reading — books with saved progress, newest first.
+                          Clicking one resumes at the saved chapter/page. */}
+                      {(function() {
+                        var entries = Object.keys(progressMap).map(function(k){ return progressMap[k]; });
+                        entries.sort(function(a, b){ return (b.lastRead || 0) - (a.lastRead || 0); });
+                        var recent = entries.slice(0, 6);
+                        if (recent.length === 0) return null;
+                        // Match recents against actual library entries so we can resume them.
+                        var findEntry = function(rec) {
+                          // Try uploaded books first (matched by filename or title)
+                          for (var i = 0; i < uploadedBooks.length; i++) {
+                            var u = uploadedBooks[i];
+                            if (rec.filename && u.filename === rec.filename && u.title === rec.title) return { type: "upload", book: u };
+                            if (u.title === rec.title && (u.author || "") === (rec.author || "")) return { type: "upload", book: u };
+                          }
+                          for (var j = 0; j < presetBooks.length; j++) {
+                            var pBook = presetBooks[j];
+                            if (rec.filename && pBook.filename === rec.filename) return { type: "preset", book: pBook };
+                          }
+                          return null;
+                        };
+                        return (
+                          <div className="lib-section" style={{marginBottom:18}}>
+                            <div className="lib-section-hdr">Continue reading</div>
+                            <div className="lib-grid">
+                              {recent.map(function(rec, i) {
+                                var match = findEntry(rec);
+                                if (!match) return null;
+                                var total = rec.totalChapters || 1;
+                                var pct = total > 1 ? Math.round((rec.cidx / total) * 100) : (rec.pidx > 0 ? 50 : 0);
+                                var humanLast = (function() {
+                                  var ms = Date.now() - (rec.lastRead || 0);
+                                  var min = Math.floor(ms / 60000);
+                                  if (min < 1) return "just now";
+                                  if (min < 60) return min + "m ago";
+                                  var hr = Math.floor(min / 60);
+                                  if (hr < 24) return hr + "h ago";
+                                  var d = Math.floor(hr / 24);
+                                  if (d < 30) return d + "d ago";
+                                  return "a while ago";
+                                })();
+                                return (
+                                  <div key={i} className="lcard" onClick={function() {
+                                    if (match.type === "upload") openUploadedBook(match.book);
+                                    else if (match.book.category === "Song Lyrics") openSongPicker(match.book);
+                                    else loadPresetBook(match.book);
+                                  }}>
+                                    <div className="lcn" style={{color:"rgba(0,0,0,.5)"}}>↻ {humanLast}</div>
+                                    <div className="lchead">{bookLabel(rec)}</div>
+                                    <div style={{marginTop:8,fontSize:11,color:"rgba(0,0,0,.55)"}}>
+                                      {(rec.cidx || 0) + 1}{total > 1 ? "/" + total : ""}
+                                      {(rec.pidx || 0) > 0 && " · Page " + ((rec.pidx || 0) + 1)}
+                                      {" · " + pct + "%"}
+                                    </div>
+                                    <div style={{marginTop:6,height:3,background:"rgba(210,197,175,.1)",borderRadius:2,overflow:"hidden"}}>
+                                      <div style={{height:"100%",width:pct+"%",background:"#c8a276"}}/>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })()}
                       <input
                         type="text"
                         placeholder="🔍 Search books and authors…"
@@ -7238,9 +7290,20 @@ export default function App() {
                                     <div className="lib-card-title">{bookLabel(book)}</div>
                                     <div className="lib-card-meta">
                                       {cat !== "Other" && cat !== "Texts Without English" && <span className="lib-card-cat">{cat}</span>}
-                                      {book.audiobook && <span style={{fontSize:11,color:"#c4955a"}}>🎧 Audiobook</span>}
-                                      {cat === "Song Lyrics" && book.songs && book.songs.length > 0 && (
-                                        <span style={{fontSize:11,color:"rgba(42,31,20,.45)"}}>{book.songs.length} song{book.songs.length === 1 ? "" : "s"}</span>
+                                      {cat === "Song Lyrics" ? (
+                                        book.songs && book.songs.length > 0 && (
+                                          <span style={{fontSize:11,color:"rgba(42,31,20,.45)"}}>{book.songs.length} song{book.songs.length === 1 ? "" : "s"}</span>
+                                        )
+                                      ) : (
+                                        <>
+                                          <span className="lib-tag">Russian</span>
+                                          <span className={"lib-tag" + ((book.parallelEn || book.isBible) ? "" : " off")}>
+                                            {(book.parallelEn || book.isBible) ? "English" : "no English"}
+                                          </span>
+                                          <span className={"lib-tag" + (book.audiobook ? "" : " off")}>
+                                            {book.audiobook ? "🎧 Audiobook" : "no audiobook"}
+                                          </span>
+                                        </>
                                       )}
                                     </div>
                                     {isLoading && (
@@ -7678,7 +7741,7 @@ export default function App() {
               <div className="lit-wrap">
                 <div className="lit-top">
                   <button className={"ltab"+(lview==="read"?" on":"")} onClick={function(){ setLview("read"); }}>📖 Read</button>
-                  <button className={"ltab"+(lview==="nav"?" on":"")} onClick={function(){ setLview("nav"); }}>🗂 Chapters</button>
+                  <button className={"ltab"+(lview==="nav"?" on":"")} onClick={function(){ setLview("nav"); }}>🗂 Contents</button>
                   <button className={"ltab"+(lview==="search"?" on":"")} onClick={function(){ setLview("search"); }}>🔍 Search</button>
                   {exData && (exData.cases||[]).length > 0 && <button className={"ltab"+(lview==="exercises"?" on":"")} onClick={function(){ setLview("exercises"); }}>📝 Exercises</button>}
                   {/* Page + chapter nav moved up here so they stay visible
@@ -7691,8 +7754,8 @@ export default function App() {
                       </>)}
                       {chapters.length > 1 && (
                         <>
-                          <button className="lnb-inline ch" style={{fontSize:15,padding:"8px 14px"}} onClick={function(){ if (cidx > 0) navLit(cidx-1); }} disabled={loading || cidx <= 0} title={singlePageMode ? "Previous song" : "Previous chapter"}>‹ {singlePageMode ? "Previous Song" : "Previous Chapter"}</button>
-                          <button className="lnb-inline ch" style={{fontSize:15,padding:"8px 14px"}} onClick={function(){ if (cidx < chapters.length - 1) navLit(cidx+1); }} disabled={loading || cidx >= chapters.length - 1} title={singlePageMode ? "Next song" : "Next chapter"}>{singlePageMode ? "Next Song" : "Next Chapter"} ›</button>
+                          <button className="lnb-inline ch" style={{fontSize:15,padding:"8px 14px"}} onClick={function(){ if (cidx > 0) navLit(cidx-1); }} disabled={loading || cidx <= 0} title={singlePageMode ? "Previous song" : "Previous section"}>‹ {singlePageMode ? "Previous Song" : "Previous"}</button>
+                          <button className="lnb-inline ch" style={{fontSize:15,padding:"8px 14px"}} onClick={function(){ if (cidx < chapters.length - 1) navLit(cidx+1); }} disabled={loading || cidx >= chapters.length - 1} title={singlePageMode ? "Next song" : "Next section"}>{singlePageMode ? "Next Song" : "Next"} ›</button>
                         </>
                       )}
                       <button className="lnb-inline lbm-inline" onClick={function(){ setCbm(cidx); }} title="Bookmark this chapter">📌</button>
@@ -7702,7 +7765,7 @@ export default function App() {
                     <span className="lpct">
                       {singlePageMode
                         ? <>Song {cidx+1}/{chapters.length} · {pct}%</>
-                        : <>Ch. {cidx+1}/{chapters.length}{totalPages > 1 ? " · Page " + (pidx+1) + "/" + totalPages : ""} · {pct}%</>}
+                        : <>{cidx+1}/{chapters.length}{totalPages > 1 ? " · Page " + (pidx+1) + "/" + totalPages : ""} · {pct}%</>}
                     </span>
                     <div className="lpbar"><div className="lpfill" style={{width:pct+"%"}}/></div>
                   </div>
@@ -7724,7 +7787,16 @@ export default function App() {
                         <div className="lhdr">
                           {singlePageMode
                             ? <>Song {cidx+1} of {chapters.length} · click any word to define</>
-                            : <>Chapter {cidx+1} of {chapters.length} · click any word to define</>}
+                            : (function(){
+                                // The author's own chapter number when this section is a
+                                // numbered chapter; otherwise just where we are in the book.
+                                var no = authorChapterNo(curChapter && curChapter.heading);
+                                var pos = (cidx+1) + " of " + chapters.length;
+                                var label = !no ? pos
+                                          : (no === cidx+1 ? "Chapter " + no + " of " + chapters.length
+                                                           : "Chapter " + no + " · " + pos);
+                                return <>{label} · click any word to define</>;
+                              })()}
                         </div>
                         {curChapter.heading && (
                           <div className="lch-heading" style={{display:"flex",alignItems:"center",gap:12,flexWrap:"wrap"}}>
@@ -8231,7 +8303,7 @@ export default function App() {
                                 {stamp && <span style={{fontSize:11,color:"rgba(0,0,0,.35)",fontStyle:"italic",fontFamily:"'Crimson Pro',serif"}}>Added {stamp}</span>}
                                 {v.srcBook && (
                                   <button onClick={function(){ goToSource(v); }}
-                                    title={"Open " + (v.srcTitle||"source") + (typeof v.srcChapter==="number" ? " — chapter " + (v.srcChapter+1) : "")}
+                                    title={"Open " + (v.srcTitle||"source") + (typeof v.srcChapter==="number" ? " — section " + (v.srcChapter+1) : "")}
                                     style={{fontSize:11,background:"none",border:"none",color:"#c4955a",cursor:"pointer",fontFamily:"'Inter',sans-serif",padding:0,textDecoration:"underline"}}>
                                     ↗ {v.srcTitle ? (v.srcTitle.length>22 ? v.srcTitle.slice(0,22)+"…" : v.srcTitle) : "source"}
                                   </button>
