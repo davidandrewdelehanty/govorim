@@ -1672,25 +1672,34 @@ function Pushkin({ size }) {
   return <span style={maskStyle} aria-label="Pushkin"/>;
 }
 
-// Самовар only. A plain form POST to PayPal's own hosted donate page — no
+// Самовар only: the donate button and the Discord invite, in that order.
+// The PayPal half is a plain form POST to PayPal's own hosted page — no
 // script, no amount fixed here, and nothing to do with payment ever touches
 // this site. Rendered on both home screens: the library, which is where
 // everyone lands, and the mode picker behind the logo.
-function DonateBlock() {
+function SupportLinks() {
   if (!IS_PUBLIC_SITE) return null;
   return (
-    <form className="donate" action="https://www.paypal.com/donate" method="post"
-          target="_blank" rel="noopener noreferrer">
-      <input type="hidden" name="business" value="8TRRPQMCNY69A" />
-      <input type="hidden" name="no_recurring" value="1" />
-      <input type="hidden" name="item_name"
-             value="This money will help cover the costs of operating this website and the tools used to add new material and fix bugs." />
-      <input type="hidden" name="currency_code" value="USD" />
-      <button className="donate-btn" type="submit" title="Donate via PayPal — opens in a new tab">
-        Donate to help cover site maintenance costs
-        <span className="sub">any amount appreciated</span>
-      </button>
-    </form>
+    <div className="support">
+      <form className="donate" action="https://www.paypal.com/donate" method="post"
+            target="_blank" rel="noopener noreferrer">
+        <input type="hidden" name="business" value="8TRRPQMCNY69A" />
+        <input type="hidden" name="no_recurring" value="1" />
+        <input type="hidden" name="item_name"
+               value="This money will help cover the costs of operating this website and the tools used to add new material and fix bugs." />
+        <input type="hidden" name="currency_code" value="USD" />
+        <button className="donate-btn" type="submit" title="Donate via PayPal — opens in a new tab">
+          Donate to help cover site maintenance costs
+          <span className="sub">any amount appreciated</span>
+        </button>
+      </form>
+      <a className="discord-btn" href="https://discord.gg/NMPzHB99F"
+         target="_blank" rel="noopener noreferrer"
+         title="Самовар Russian Literature on Discord — opens in a new tab">
+        Join the Самовар Discord
+        <span className="sub">talk about the books, ask for titles, report anything broken</span>
+      </a>
+    </div>
   );
 }
 
@@ -5758,6 +5767,14 @@ export default function App() {
         .donate-btn:hover{background:rgba(196,149,90,.1);border-color:rgba(196,149,90,.7);color:#000}
         .donate-btn .sub{display:block;font-size:12.5px;font-style:italic;
              color:rgba(42,31,20,.5);margin-top:2px}
+        .support{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%}
+        .discord-btn{display:inline-block;text-align:center;text-decoration:none;
+             background:none;border:1px solid rgba(88,101,242,.4);color:rgba(42,31,20,.72);
+             font-family:'Crimson Pro',serif;font-size:14px;line-height:1.45;padding:10px 20px;
+             border-radius:10px;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+        .discord-btn:hover{background:rgba(88,101,242,.09);border-color:rgba(88,101,242,.75);color:#000}
+        .discord-btn .sub{display:block;font-size:12.5px;font-style:italic;
+             color:rgba(42,31,20,.5);margin-top:2px}
         .tsel{width:100%;max-width:500px;display:flex;flex-direction:column;gap:12px;text-align:left}
         .slbl{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:rgba(42,31,20,.35)}
         select,input[type="text"],textarea{width:100%;background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.16);color:#000;padding:12px 16px;border-radius:10px;font-family:'Crimson Pro',serif;font-size:16px;outline:none;transition:border-color .2s}
@@ -6901,7 +6918,7 @@ export default function App() {
           <div className="main">
             {!started && !mode && (
               <div className="ss">
-                <DonateBlock />
+                <SupportLinks />
                 <div className="sico" style={{color:"#c4955a"}}><Pushkin size={64}/></div>
                 <h1 className="sti">{SITE_NAME}</h1>
                 <p className="sde">Choose how you want to practice today.</p>
@@ -6930,7 +6947,7 @@ export default function App() {
 
             {!started && mode === "read" && (
               <div className="ss">
-                <DonateBlock />
+                <SupportLinks />
                 <div className="sico">📖</div>
                 <h1 className="sti">{chapters.length > 0 ? bookMeta.title : "Open a Russian book"}</h1>
                 <p className="sde">{chapters.length > 0 ? bookMeta.author : "Choose a book from the library to begin reading."}</p>
