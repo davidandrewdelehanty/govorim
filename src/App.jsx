@@ -2272,6 +2272,16 @@ export default function App() {
   var [chapters, setChapters]   = useState([]);
   // Pre-loaded library: books shipped in /public/books/. Fetched once on mount from /books/index.json.
   var [presetBooks, setPresetBooks] = useState([]);
+  // Guards the /book/<slug> deep-link boot so it runs exactly once.
+  var deepLinkDone = useRef(false);
+  // pushState above means Back/Forward change the URL without React knowing.
+  // A full reload is the simplest honest response: the deep-link boot (or the
+  // plain library) then renders whatever the restored URL says.
+  useEffect(function() {
+    var onPop = function(){ window.location.reload(); };
+    window.addEventListener("popstate", onPop);
+    return function(){ window.removeEventListener("popstate", onPop); };
+  }, []);
   var srcJumpChapterRef = useRef(null);
   var srcJumpOffsetRef = useRef(null);  // vocab source-link: char offset of the saved word, to highlight its sentence on arrival
   var [vocabCollapsed, setVocabCollapsed] = useState({});
@@ -4866,6 +4876,16 @@ export default function App() {
       var r = await fetch(bookFileUrl(book), { credentials: "same-origin" });
       if (!r.ok) throw new Error("Could not load « " + book.filename + " »: HTTP " + r.status);
       var buf = await r.arrayBuffer();
+      // Every preset book has a shareable URL (/book/<slug>), and the public
+      // build prerenders a real page there for search engines. Put the URL in
+      // the address bar when the book opens; replaceState when we are already
+      // there (the deep-link boot), pushState otherwise so Back returns.
+      if (book.slug) {
+        try {
+          var slugPath = "/book/" + book.slug;
+          if (window.location.pathname !== slugPath) window.history.pushState({ b: book.slug }, "", slugPath);
+        } catch (e) {}
+      }
       await loadFile(buf, book.filename, {
         fromPreset: true,
         splitByNumberedSections: !!book.splitByNumberedSections,
@@ -4944,7 +4964,22 @@ export default function App() {
   useEffect(function() {
     fetch("/api/catalogue", { credentials: "same-origin" })
       .then(function(r){ return r.ok ? r.json() : null; })
-      .then(function(list){ if (Array.isArray(list)) setPresetBooks(list); })
+      .then(function(list){
+        if (!Array.isArray(list)) return;
+        setPresetBooks(list);
+        // Deep link: booting on /book/<slug> opens that book. Once only —
+        // the catalogue refetches on sign-in/out, and that must not yank
+        // the reader back into a book they already left.
+        if (!deepLinkDone.current) {
+          deepLinkDone.current = true;
+          var m = (window.location.pathname || "").match(/^\/book\/([a-z0-9-]+)\/?$/);
+          if (m) {
+            for (var dli = 0; dli < list.length; dli++) {
+              if (list[dli] && list[dli].slug === m[1]) { loadPresetBook(list[dli]); break; }
+            }
+          }
+        }
+      })
       .catch(function(){ /* no library, that's fine */ });
     // Re-fetch when the session changes: signing in as the admin adds the
     // restricted books, signing out has to take them away again.
@@ -7025,6 +7060,7 @@ export default function App() {
                       
                       <button onClick={async function(){
                         setChapters([]); setCidx(0); setCbm(0); setBookMeta({title:"",author:""});
+                        try { window.history.replaceState({}, "", "/"); } catch(e) {}
                         try { await storage.delete(EPUB_CACHE); } catch(e) {}
                         try { await storage.delete(EPUB_BM); } catch(e) {}
                         try { await storage.delete(QHIST_KEY); } catch(e) {}

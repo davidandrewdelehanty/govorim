@@ -25,6 +25,10 @@
     {
       "source": "/api/auth/:action*",
       "destination": "/api/auth?action=:action*"
+    },
+    {
+      "source": "/book/:slug*",
+      "destination": "/index.html"
     }
   ],
   "headers": [
