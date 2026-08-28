@@ -6151,27 +6151,8 @@ export default function App() {
         .adm-status.rejected{background:rgba(196,149,90,.18);color:#9d4630;border:1px solid rgba(196,149,90,.3)}
         .adm-status.pending{background:rgba(196,149,90,.12);color:#c4955a;border:1px solid rgba(196,149,90,.25)}
         .adm-status.admin{background:rgba(135,168,196,.15);color:#2f4a6b;border:1px solid rgba(135,168,196,.3)}
-        @media (max-width:560px){
-          .adm-over{padding:0;align-items:stretch}
-          .adm-modal{margin:0;border-radius:0;border:none;min-height:100dvh;max-width:none}
-          .adm-head{padding:14px 16px 12px}
-          .adm-title{font-size:18px}
-          .adm-body{padding:4px 10px 10px;max-height:none;flex:1}
-          .adm-row{gap:8px;padding:9px 6px;align-items:center}
-          .adm-info{flex-direction:column;align-items:flex-start;gap:1px}
-          .adm-name{font-size:13px;max-width:100%}
-          .adm-email{font-size:11px;max-width:100%}
-          .adm-status{font-size:9px;padding:2px 6px;letter-spacing:.5px}
-          .adm-actions{margin-left:0;flex-shrink:0}
-          .adm-btn{font-size:11px;padding:4px 9px}
-          .adm-foot{padding:10px 16px}
-        }
-        html{-webkit-text-size-adjust:100%}
         .adm-actions{display:flex;gap:8px;flex-shrink:0}
         .adm-btn{padding:4px 11px;border:none;border-radius:7px;font-size:12px;font-family:'Crimson Pro',serif;cursor:pointer;transition:opacity .15s;font-weight:600}
-        /* Below ~560px one line stops fitting; let it wrap rather than clip. */
-        @media (max-width:560px){.adm-info{flex-direction:column;align-items:flex-start;gap:1px}
-          .adm-name{max-width:100%}.adm-row{padding:8px}}
         .adm-btn:disabled{opacity:.5;cursor:wait}
         .adm-btn.approve{background:linear-gradient(135deg,#5a8556,#4a6845);color:#fff}
         .adm-btn.reject{background:rgba(196,149,90,.15);border:1px solid rgba(196,149,90,.4);color:#9d4630}
@@ -6182,10 +6163,24 @@ export default function App() {
         .adm-refresh:hover{color:#000;border-color:rgba(42,31,20,.4)}
         .adm-trigger{background:rgba(135,168,196,.12);border:1px solid rgba(135,168,196,.3);color:#2f4a6b;padding:6px 12px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'Crimson Pro',serif;display:flex;align-items:center;gap:6px}
         .adm-trigger:hover{background:rgba(135,168,196,.2)}
-        @media (max-width:520px){
-          .adm-row{flex-wrap:wrap}
-          .adm-actions{width:100%;justify-content:flex-end}
+        /* All admin mobile rules live here, AFTER every .adm- base rule —
+           equal specificity means source order decides the winner. */
+        @media (max-width:560px){
+          .adm-over{padding:0;align-items:stretch}
+          .adm-modal{margin:0;border-radius:0;border:none;min-height:100dvh;max-width:none}
+          .adm-head{padding:14px 16px 12px}
+          .adm-title{font-size:18px}
+          .adm-body{padding:4px 10px 10px;max-height:none;flex:1}
+          .adm-row{gap:8px;padding:9px 6px;align-items:center;flex-wrap:nowrap}
+          .adm-info{flex-direction:column;align-items:flex-start;gap:1px}
+          .adm-name{font-size:13px;max-width:100%}
+          .adm-email{font-size:11px;max-width:100%}
+          .adm-status{font-size:9px;padding:2px 6px;letter-spacing:.5px}
+          .adm-actions{margin-left:0;flex-shrink:0;width:auto}
+          .adm-btn{font-size:11px;padding:4px 9px}
+          .adm-foot{padding:10px 16px}
         }
+        html{-webkit-text-size-adjust:100%}
       .cl-formFieldInput,.cl-input,[class*='cl-formFieldInput'],[class*='cl-input']{
           background:#ffffff !important;
           color:#000 !important;
