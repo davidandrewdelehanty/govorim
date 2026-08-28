@@ -6128,12 +6128,17 @@ export default function App() {
         .gvin::placeholder{color:rgba(42,31,20,.45)}
         .pmt{font-size:.78em;line-height:1.35;color:#7a5c2e;background:rgba(160,110,20,.09);
              border-left:2px solid rgba(160,110,20,.45);padding:6px 8px;border-radius:0 6px 6px 0;margin-bottom:8px}
-        .pwrow{display:flex;align-items:baseline;gap:8px}
-        .pwrow .pw{flex:1;min-width:0}
-        .psay{flex:none;background:none;border:none;cursor:pointer;font-size:17px;line-height:1;
-              padding:2px 4px;border-radius:6px;color:rgba(42,31,20,.45);transition:color .15s,background .15s}
-        .psay:hover{color:rgba(42,31,20,.85);background:rgba(42,31,20,.07)}
-        .psay.on{color:#a06e14}
+        /* The row reserves the top-right corner for the close ×, so the Listen
+           button never crowds it — a mis-tap there closes the definition the
+           reader was trying to hear. */
+        .pwrow{display:flex;align-items:center;gap:10px;padding-right:34px}
+        .pwrow .pw{flex:1;min-width:0;padding-right:0}
+        .psay{flex:none;display:inline-flex;align-items:center;gap:5px;background:rgba(42,31,20,.04);
+              border:1px solid rgba(42,31,20,.16);cursor:pointer;font-family:'Inter',sans-serif;
+              font-size:11px;letter-spacing:.3px;line-height:1;padding:6px 9px;border-radius:8px;
+              color:rgba(42,31,20,.6);white-space:nowrap;transition:color .15s,background .15s,border-color .15s}
+        .psay:hover{color:rgba(42,31,20,.85);background:rgba(42,31,20,.08);border-color:rgba(42,31,20,.28)}
+        .psay.on{color:#a06e14;border-color:rgba(160,110,20,.4);background:rgba(160,110,20,.08)}
         .panel{flex:1;padding:28px;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
         .phdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
         .pti{font-family:'Playfair Display',serif;font-size:20px;color:#000}
@@ -8449,7 +8454,7 @@ export default function App() {
                       <button className={"psay" + (sayState === "playing" ? " on" : "")}
                               title="Pronounce"
                               aria-label={"Pronounce " + headline}
-                              onClick={function(){ sayWord(popup.data, popup.word); }}>♪</button>
+                              onClick={function(){ sayWord(popup.data, popup.word); }}>Listen <span aria-hidden="true">🔊</span></button>
                     </div>
                     {sayState === "none" && (
                       <div style={{fontSize:11,color:"rgba(0,0,0,.4)",marginBottom:6,marginTop:-2}}>
