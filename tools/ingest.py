@@ -87,6 +87,36 @@ def txt_to_fb2(text, title, author):
     out += ["</body>", "</FictionBook>"]
     return "\n".join(out)
 
+def build_fb2(chapters, title, author):
+    """Write an FB2 containing EXACTLY the chapters we aligned against.
+
+    This is not cosmetic. ru_chapters() drops the az.lib.ru title-page section
+    and any «Примечания» apparatus, so its chapter 1 is the first real chapter
+    — but the reader parses the ORIGINAL file, where chapter 1 is the title
+    page. Every English file then lands one chapter early, which is why the
+    opening screen showed front matter beside chapter one's translation.
+    Rebuilding the file from the same list the alignment used makes the two
+    numberings the same numbering, by construction.
+    """
+    def esc(t):
+        return t.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    out = ['<?xml version="1.0" encoding="utf-8"?>',
+           '<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.1">',
+           '<description><title-info>',
+           '<book-title>%s</book-title>' % esc(title),
+           '<author><nickname>%s</nickname></author>' % esc(author),
+           '</title-info></description>',
+           '<body>',
+           '<title><p>%s</p></title>' % esc(title)]
+    for head, ps in chapters:
+        out.append("<section>")
+        if head:
+            out.append("<title><p>%s</p></title>" % esc(head))
+        out += ["<p>%s</p>" % esc(x) for x in ps]
+        out.append("</section>")
+    out += ["</body>", "</FictionBook>"]
+    return "\n".join(out)
+
 def ru_chapters(fb2):
     """Leaf sections → [(heading, [paragraphs])], mirroring the reader."""
     x = re.sub(r"<binary[\s\S]*?</binary>", "", fb2)
@@ -141,6 +171,85 @@ CHAPTER_HEAD = re.compile(
 FRONT = re.compile(r"project gutenberg|^contents$|^by$|translated|^introduction$|"
                    r"^preface$|copyright|^transcriber", re.I)
 
+# Gutenberg's own ebook header, which is not part of the work at all.
+PG_HEADER = re.compile(
+    r"^(title|author|translator|illustrator|editor|release date|language|credits|"
+    r"other information|posting date|last updated|produced by|contents)[^:]{0,30}:", re.I)
+PG_NOTE = re.compile(
+    r"^(this e-?book belongs|every effort has been made|the front matter|"
+    r"transcriber|updated editions|start of th|end of th|n\.b\.|note[.:—-])", re.I)
+# A bare year, a lone translator's name, an edition line: chrome, not text.
+PG_STRAY = re.compile(r"^\(?\d{4}\)?\.?$|^[A-Z][a-z]+ [A-Z][a-z]+$")
+# A dramatis-personae entry: NAME IN CAPS, then a description.
+CAST = re.compile(r"^[A-ZÁÉÍÓÚÀÈÌÒÙÄÖÜÑ][A-ZÁÉÍÓÚÀÈÌÒÙÄÖÜÑ' .\u2019-]{2,40}[.,]\s+[A-Za-z]")
+CAST_HEAD = re.compile(r"^(characters|dramatis personae|persons of the drama|"
+                       r"personages|the persons)\b", re.I)
+
+# ── proper-name anchors ──────────────────────────────────────────────────
+# Names survive translation: Анисья→Anisya, Пётр→Peter, and numerals stay put.
+# Comparing those is language-independent and catches the failure a length
+# model cannot see — an English cast list "aligned" against Russian dialogue.
+TRANSLIT = {
+ "а":"a","б":"b","в":"v","г":"g","д":"d","е":"e","ё":"e","ж":"zh","з":"z","и":"i",
+ "й":"i","к":"k","л":"l","м":"m","н":"n","о":"o","п":"p","р":"r","с":"s","т":"t",
+ "у":"u","ф":"f","х":"h","ц":"ts","ч":"ch","ш":"sh","щ":"sh","ъ":"","ы":"i","ь":"",
+ "э":"e","ю":"iu","я":"ia"}
+
+def translit(w):
+    return "".join(TRANSLIT.get(c, c) for c in w.lower())
+
+def ru_keys(text):
+    out = set()
+    # Capitalised AND all-caps: in a play the speaker names are ПЁТР, АНИСЬЯ,
+    # which a "capital followed by lowercase" pattern misses entirely — and
+    # those are the strongest anchors the text has.
+    for w in re.findall(r"[А-ЯЁ][а-яё]{3,}|[А-ЯЁ]{4,}", text):
+        out.add(translit(w)[:3])
+    for n in re.findall(r"\d+", text):
+        out.add(n)
+    return out
+
+def en_keys(text):
+    out = set()
+    for w in re.findall(r"[A-ZÁÉÍÓÚÀÈÌÒÙÄÖÜÑ][a-záéíóúàèìòùäöüñ]{3,}|"
+                        r"[A-ZÁÉÍÓÚÀÈÌÒÙÄÖÜÑ]{4,}", text):
+        out.add(w.lower().replace("y", "i")[:3])
+    for n in re.findall(r"\d+", text):
+        out.add(n)
+    return out
+
+def anchor_score(ru_text, en_text):
+    a, b = ru_keys(ru_text), en_keys(en_text)
+    if not a or not b:
+        return 0.0
+    shared = len(a & b)
+    if shared < 2:                # one shared prefix is coincidence
+        return 0.0
+    return shared / min(len(a), len(b))
+
+def find_start(ru_ps, en_ps, max_ru=25, max_en=60):
+    """The first paragraph pair that is genuinely the same passage.
+
+    Front matter is asymmetric in both directions: Gutenberg stacks an ebook
+    header and a cast list above the English, while the Russian edition opens
+    on a subtitle and two epigraphs the translator dropped. Trimming one side
+    only moves the error. So search both openings for the first pair that
+    shares real anchors, and start there — earlier Russian paragraphs simply
+    get no English beside them, which is honest and reads correctly.
+    """
+    best, bi, bj = 0.34, 0, 0
+    for i, rp in enumerate(ru_ps[:max_ru]):
+        if len(rp) < 50 or len(ru_keys(rp)) < 2:
+            continue
+        for j, ep in enumerate(en_ps[:max_en]):
+            # Prefer an earlier meeting point when scores are close: front
+            # matter is short, so the true start is near the top, and a later
+            # coincidental match would throw the whole book out of step.
+            sc = anchor_score(rp, ep) - 0.0015 * (i + j)
+            if sc > best:
+                best, bi, bj = sc, i, j
+    return bi, bj
+
 def spine_order(Z):
     """Reading order from the EPUB's own spine.
 
@@ -186,9 +295,9 @@ def epub_blocks(path):
                 if h:
                     out.append(("H", h))
             else:
-                p = clean(m.group(3))
-                if p:
-                    out.append(("P", p))
+                pp = clean(m.group(3))
+                if pp:
+                    out.append(("P", pp))
     return out
 
 def norm_title(s):
@@ -196,11 +305,7 @@ def norm_title(s):
     return re.sub(r"[^a-z0-9 ]", " ", s).strip()
 
 def en_extract(path, want_title):
-    """Blocks belonging to one work inside a volume, as [(heading, [paras])].
-
-    A volume's work headings are the headings that are NOT bare numerals; the
-    work runs from its own heading to the next one of those.
-    """
+    """Blocks belonging to one work inside a volume, as [(heading, [paras])]."""
     blocks = epub_blocks(path)
     cand = [i for i, (k, t) in enumerate(blocks)
             if k == "H" and not CHAPTER_HEAD.match(t) and not FRONT.search(t)]
@@ -222,20 +327,32 @@ def en_extract(path, want_title):
             start = i
             break
     if start is None:
-        # single-work volume: begin after the front matter
         firstP = next((i for i, (k, _) in enumerate(blocks) if k == "P"), 0)
         start, end = firstP, len(blocks)
     else:
         later = [i for i in work_idx if i > start]
         end = later[0] if later else len(blocks)
-    chs, head, cur = [], "", []
+    chs, head, cur, in_cast = [], "", [], False
     for k, t in blocks[start:end]:
         if k == "H":
+            if CAST_HEAD.match(t):
+                in_cast = True
+                continue
             if CHAPTER_HEAD.match(t):
+                in_cast = False
                 if cur:
                     chs.append((head, cur)); cur = []
                 head = t
             continue
+        if PG_HEADER.match(t) or PG_NOTE.match(t):
+            continue
+        if not cur and PG_STRAY.match(t):
+            continue
+        # The cast list is KEPT. Both editions carry one, and "PETER
+        # IGNÁTITCH. A well-to-do peasant, 42 years old" pairs precisely with
+        # «Петр -- мужик богатый, 42-х лет». Dropping it from one side only is
+        # what threw the whole play out of step.
+        in_cast = False
         if FRONT.search(t) and len(t) < 120:
             continue
         cur.append(t)
@@ -300,6 +417,67 @@ def align(ru_ps, en_ps):
         i, j = pi, pj
     return {k: v for k, v in out.items() if v}
 
+def align_chapters(ru_chs, en_chs):
+    """Map Russian chapters to English chapters by evidence, not by position.
+
+    Equal chapter counts are NOT proof of correspondence: an FB2 often carries
+    a front-matter section, so RU chapter 1 is a title page while EN chapter 1
+    is already Chapter I — and everything after is off by one. That kind of
+    drift is invisible to a length model and to a start-of-book check, because
+    each chapter still pairs plausibly with the wrong neighbour.
+
+    So score every RU chapter against every EN chapter on shared proper names
+    and numbers, then take the best monotone mapping. Chapters with no partner
+    are allowed: a preface or an appendix genuinely has none.
+    """
+    R, E = len(ru_chs), len(en_chs)
+    if R == 0 or E == 0:
+        return []
+    rk = [set().union(*[ru_keys(p) for p in ps]) if ps else set() for _, ps in ru_chs]
+    ek = [set().union(*[en_keys(p) for p in ps]) if ps else set() for _, ps in en_chs]
+    rlen = [sum(len(p) for p in ps) for _, ps in ru_chs]
+    elen = [sum(len(p) for p in ps) for _, ps in en_chs]
+    tot_r, tot_e = sum(rlen) or 1, sum(elen) or 1
+
+    def sc(i, j):
+        a, b = rk[i], ek[j]
+        if not a or not b:
+            return 0.0
+        overlap = len(a & b) / min(len(a), len(b))
+        # a chapter should also be about the right SIZE relative to the book
+        fr, fe = rlen[i] / tot_r, elen[j] / tot_e
+        size = 1.0 - min(abs(fr - fe) / max(fr, fe, 1e-6), 1.0)
+        return 0.75 * overlap + 0.25 * size
+
+    NEG = -1e9
+    d = [[NEG] * (E + 1) for _ in range(R + 1)]
+    bk = [[None] * (E + 1) for _ in range(R + 1)]
+    d[0][0] = 0.0
+    SKIP = -0.15                       # mild cost for leaving a chapter unpaired
+    for i in range(R + 1):
+        for j in range(E + 1):
+            if d[i][j] == NEG:
+                continue
+            if i < R and j < E:
+                v = d[i][j] + sc(i, j)
+                if v > d[i+1][j+1]: d[i+1][j+1], bk[i+1][j+1] = v, (i, j, 1, 1)
+            if i < R:
+                v = d[i][j] + SKIP
+                if v > d[i+1][j]: d[i+1][j], bk[i+1][j] = v, (i, j, 1, 0)
+            if j < E:
+                v = d[i][j] + SKIP
+                if v > d[i][j+1]: d[i][j+1], bk[i][j+1] = v, (i, j, 0, 1)
+    i, j, out = R, E, {}
+    while (i, j) != (0, 0):
+        st = bk[i][j]
+        if st is None:
+            break
+        pi, pj, dr, de = st
+        if dr and de:
+            out[pi] = pj
+        i, j = pi, pj
+    return [out.get(i) for i in range(R)]      # RU chapter → EN chapter or None
+
 def chapter_pair(ru_chs, en_chs):
     """Match RU chapters to EN chapters; fall back to proportional split."""
     if len(ru_chs) == len(en_chs):
@@ -336,12 +514,37 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--only"); ap.add_argument("--limit", type=int)
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--no-embed", action="store_true",
+                    help="skip semantic alignment; use the length heuristic")
+    ap.add_argument("--model", default=None, help="sentence-transformers model")
+    ap.add_argument("--force", action="store_true",
+                    help="rebuild works already in the catalogue")
+    ap.add_argument("--min-sim", type=float, default=0.62,
+                    help="reject a book whose mean paired similarity is below "
+                         "this (0.62 is the line between a real translation "
+                         "and a plausible-looking mismatch)")
     ap.add_argument("--min-pct", type=int, default=45,
                     help="skip works whose English covers less than this %% "
                          "of the Russian (default 45)")
     ap.add_argument("--public", action="store_true",
                     help='mark the new entries "public": true for Samovar')
     a = ap.parse_args()
+
+    EA = None
+    if not a.no_embed:
+        try:
+            sys.path.insert(0, os.path.join(ROOT, "tools"))
+            import embed_align as EA
+            if a.model:
+                EA.DEFAULT_MODEL = a.model
+            EA.load(EA.DEFAULT_MODEL)
+            print("semantic alignment: %s\n" % EA.DEFAULT_MODEL)
+        except SystemExit:
+            raise
+        except Exception as e:
+            print("embeddings unavailable (%s) — falling back to the length "
+                  "heuristic\n" % e)
+            EA = None
 
     rows = list(csv.DictReader(io.open(LEDGER, encoding="utf-8"), delimiter="\t"))
     for r in rows:
@@ -358,7 +561,7 @@ def main():
             continue
         if a.limit and done >= a.limit:
             break
-        if slug in have:
+        if slug in have and not a.force:
             continue
         fb2 = ru_fb2(slug, r["ru_title"], r["author"])
         enp = os.path.join(SRC, "en", slug + ".epub")
@@ -372,33 +575,162 @@ def main():
         if not ru_chs or not en_chs:
             print("  %-28s no chapters (ru=%d en=%d)" % (slug, len(ru_chs), len(en_chs)))
             continue
-        # A Russian text that arrived as a stub pairs at a flattering 100%
-        # against an equally short English slice, and ships as a four-paragraph
-        # «Майская ночь». Judge the RU side on its own terms first.
-        ru_words = sum(len(p.split()) for _, ps in ru_chs for p in ps)
-        if r.get("verse") != "1" and ru_words < 400:
-            print("  %-28s RU text looks truncated (%d words) — skipped"
-                  % (slug, ru_words))
-            continue
-        pairs = chapter_pair(ru_chs, en_chs)
-        maps, ru_total, paired = [], 0, 0
-        for ru_ps, en_ps in pairs:
-            mp = align(ru_ps, en_ps)
-            maps.append(mp); ru_total += len(ru_ps); paired += len(mp)
+        ru_flat = [p for _, ps in ru_chs for p in ps]
+        en_flat = [p for _, ps in en_chs for p in ps]
+
+        if EA is not None:
+            # ── semantic path ────────────────────────────────────────────
+            # Embed each side once, then let similarity decide both which
+            # chapters correspond and which paragraphs within them. Nothing
+            # here assumes the two texts start together or run in step.
+            print("  %-28s working ..." % slug, flush=True)
+            rv = EA.encode(ru_flat, EA.DEFAULT_MODEL, cache_key=slug + "-ru",
+                           label="RU")
+            ev = EA.encode(en_flat, EA.DEFAULT_MODEL, cache_key=slug + "-en",
+                           label="EN")
+            # How the two sides are matched depends on whether they even
+            # agree about what a chapter is. When the counts are close, map
+            # chapter to chapter. When they are not — one Russian section
+            # against forty English ones, or a hundred and ten against six —
+            # a one-to-one mapping discards everything it cannot pair, which
+            # is how Рудин ended up with 8% of its English and Дым with none.
+            # In that case align the whole book as a single stream and cut
+            # the result back into chapters afterwards.
+            ratio = len(ru_chs) / max(len(en_chs), 1)
+            maps, ru_total, paired, sims = [], 0, 0, []
+            if 0.8 <= ratio <= 1.25 and min(len(ru_chs), len(en_chs)) > 1:
+                cmap = EA.chapter_map(ru_chs, en_chs, EA.DEFAULT_MODEL,
+                                      cache_key=slug)
+                ru_off, en_off, o = [], [], 0
+                for _, ps in ru_chs:
+                    ru_off.append(o); o += len(ps)
+                o = 0
+                for _, ps in en_chs:
+                    en_off.append(o); o += len(ps)
+                for ci, (_, ru_ps) in enumerate(ru_chs):
+                    j = cmap[ci] if ci < len(cmap) else None
+                    if j is None:
+                        maps.append({}); ru_total += len(ru_ps); continue
+                    en_ps = en_chs[j][1]
+                    rvc = rv[ru_off[ci]:ru_off[ci] + len(ru_ps)]
+                    evc = ev[en_off[j]:en_off[j] + len(en_ps)]
+                    mp = EA.align_paragraphs(ru_ps, en_ps, rvc, evc)
+                    maps.append(mp); ru_total += len(ru_ps); paired += len(mp)
+                    for k in list(mp)[:40]:
+                        if k < len(rvc) and len(evc):
+                            sims.append(max(float(rvc[k] @ evc[t])
+                                            for t in range(len(evc))))
+            else:
+                band = max(80, int(0.08 * max(len(ru_flat), len(en_flat))))
+                gmap = EA.align_paragraphs(ru_flat, en_flat, rv, ev, band=band)
+                g = 0
+                for _, ps in ru_chs:
+                    mp = {}
+                    for k in range(len(ps)):
+                        v = gmap.get(g + k)
+                        if v:
+                            mp[k] = v
+                    maps.append(mp); ru_total += len(ps); paired += len(mp)
+                    g += len(ps)
+                # Sample the quality of what was actually paired. The window
+                # is clamped into range: a Russian index can sit well past the
+                # end of a shorter English text.
+                for k in list(gmap)[:120]:
+                    if k >= len(rv) or not len(ev):
+                        continue
+                    c = min(k, len(ev) - 1)
+                    lo = max(0, c - 40)
+                    hi = min(len(ev), lo + 80)
+                    if hi > lo:
+                        sims.append(max(float(rv[k] @ ev[t]) for t in range(lo, hi)))
+            start_conf = sum(sims) / len(sims) if sims else 0.0
+            start_shift = (0, 0)
+            no_anchors = False
+        else:
+            i0, j0 = find_start(ru_flat, en_flat)
+            start_conf = (anchor_score(ru_flat[i0], en_flat[j0])
+                          if i0 < len(ru_flat) and j0 < len(en_flat) else 0.0)
+            no_anchors = not any(len(ru_keys(p)) >= 2 for p in ru_flat[:25])
+            start_shift = (i0, j0)
+            en_use = en_flat[j0:]
+            maps, ru_total, paired = [], 0, 0
+            cmap = align_chapters(ru_chs, en_chs) if min(len(ru_chs), len(en_chs)) > 1 else None
+            matched = sum(1 for x in (cmap or []) if x is not None)
+            if cmap and matched >= 0.6 * min(len(ru_chs), len(en_chs)):
+                for ci, (_, ru_ps) in enumerate(ru_chs):
+                    j = cmap[ci]
+                    if j is None:
+                        maps.append({}); ru_total += len(ru_ps); continue
+                    en_ps = en_chs[j][1]
+                    k0, l0 = (i0, j0) if (ci == 0 and j == 0) else (0, 0)
+                    mp = align(ru_ps[k0:], en_ps[l0:])
+                    mp = {k + k0: v for k, v in mp.items()}
+                    maps.append(mp); ru_total += len(ru_ps); paired += len(mp)
+            else:
+                tot = sum(len(ru_flat[k]) for k in range(i0, len(ru_flat))) or 1
+                pos, g = 0, 0
+                for _, ps in ru_chs:
+                    k0 = max(0, min(i0 - g, len(ps)))
+                    local = ps[k0:]
+                    share = sum(len(x) for x in local) / tot
+                    take = int(round(share * len(en_use)))
+                    seg = en_use[pos:pos + take]; pos += take
+                    mp = align(local, seg) if local and seg else {}
+                    mp = {k + k0: v for k, v in mp.items()}
+                    maps.append(mp); ru_total += len(ps); paired += len(mp)
+                    g += len(ps)
+
         blank = 1 - (paired / max(ru_total, 1))
         pct = 100 * (1 - blank)
         verdict = "ok" if pct >= 60 else ("thin" if pct >= 35 else "ABRIDGED?")
-        print("  %-28s ru_ch=%-3d en_ch=%-3d paras=%-5d paired=%3.0f%%  %s"
-              % (slug, len(ru_chs), len(en_chs), ru_total, pct, verdict))
-        if pct < a.min_pct:
-            print("       skipped — below --min-pct %d; a translation this far "
-                  "short of the Russian is usually an abridgement" % a.min_pct)
+        # No anchors at all in the opening is "cannot tell", not "wrong".
+        if EA is not None:
+            flag = "" if start_conf >= 0.55 else "  ← LOW SIMILARITY"
+        else:
+            flag = ("" if start_conf >= 0.34 else
+                    ("  (no names to check)" if no_anchors else "  ← CHECK OPENING"))
+        print("  %-28s ru_ch=%-3d en_ch=%-3d paras=%-5d paired=%3.0f%%  "
+              "sim=%.2f  %s%s"
+              % (slug, len(ru_chs), len(en_chs), ru_total, pct,
+                 start_conf, verdict, flag))
+        # Similarity is the honest gate. Pairing percentage only says the DP
+        # found SOMETHING for each paragraph, and on a mismatched book it
+        # cheerfully pairs everything: Дубровский paired 100% against the
+        # English of Капитанская дочка. Mean similarity separates them —
+        # Олеся and Рудин sit at 0.80 and 0.76, the wrong-text books at 0.42
+        # to 0.51.
+        reject = None
+        if EA is not None and start_conf < a.min_sim:
+            reject = "similarity %.2f below --min-sim %.2f" % (start_conf, a.min_sim)
+        elif pct < a.min_pct:
+            reject = "paired %d%% below --min-pct %d" % (pct, a.min_pct)
+        if reject:
+            print("       skipped — %s" % reject)
+            # Remove anything an earlier, more permissive run left behind, so
+            # the library never keeps a book the current threshold rejects.
+            if not a.dry_run:
+                import shutil
+                f = os.path.join(BOOKS, "novel", slug + ".fb2")
+                d = os.path.join(BOOKS, slug + "-en")
+                if os.path.exists(f):
+                    os.remove(f)
+                if os.path.isdir(d):
+                    shutil.rmtree(d)
+                before = len(manifest)
+                manifest[:] = [e for e in manifest if e.get("slug") != slug]
+                if len(manifest) != before:
+                    json.dump(manifest, io.open(MANIFEST, "w", encoding="utf-8"),
+                              ensure_ascii=False, indent=2)
+                    print("       removed its earlier files and catalogue entry")
             continue
         if a.dry_run:
             done += 1; continue
         os.makedirs(os.path.join(BOOKS, "novel"), exist_ok=True)
+        # Write the rebuilt file, not the original, so the reader's chapter
+        # numbering matches the alignment's.
         io.open(os.path.join(BOOKS, "novel", slug + ".fb2"), "w",
-                encoding="utf-8", newline="\n").write(fb2)
+                encoding="utf-8", newline="\n").write(
+                    build_fb2(ru_chs, r["ru_title"], r["author"]))
         d = os.path.join(BOOKS, slug + "-en")
         os.makedirs(d, exist_ok=True)
         for i, mp in enumerate(maps):
@@ -415,6 +747,7 @@ def main():
             entry["verse"] = True          # so drill generation can skip it
         if a.public:
             entry["public"] = True
+        manifest = [e for e in manifest if e.get("slug") != slug]
         manifest.append(entry)
         done += 1
     if not a.dry_run and done:
