@@ -5415,19 +5415,19 @@ export default function App() {
             ];
           }
           var dualCells = [
-            <p key={"ru" + pi} className="dual-ru"
+            <p key={"ru" + pi} className="dual-ru" lang="ru"
                style={Object.assign({gridColumn: 1, gridRow: String(pi + 1)}, pMargin)}>{ruBody}</p>
           ];
           if (emitEn) {
             dualCells.push(
-              <p key={"en" + pi} className={"dual-en" + (bibleHeadingLine ? " dual-en-heading" : "")}
+              <p key={"en" + pi} className={"dual-en" + (bibleHeadingLine ? " dual-en-heading" : "")} lang="en"
                  style={Object.assign({gridColumn: 2, gridRow: (pi + 1) + (enSpan > 1 ? " / span " + enSpan : "")}, pMargin)}>{enContent}</p>
             );
           }
           return dualCells;
         }
         return (
-          <p key={pi} style={pMargin}>
+          <p key={pi} lang="ru" style={pMargin}>
             {ruBody}
           </p>
         );

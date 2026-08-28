@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="theme-color" content="#1a1611" />
 
-    <title>Говорим — Russian Practice</title>
-    <meta name="description" content="Говорим — Russian language practice with EPUB reading and conversational tutoring." />
+    <!-- The interface is English, the texts are Russian, so the page is
+         declared en and every Russian string below carries its own lang="ru".
+         No hreflang: both languages live at one URL, and hreflang needs a
+         separate URL per language to mean anything. -->
+    <title>Говорим — Russian reading practice</title>
+    <meta name="description" content="Russian literature in the original, with an English translation beside it and a recording to listen along to. — Русская литература в оригинале, с английским переводом рядом и аудиозаписью." />
+    <meta name="keywords" content="Russian literature, parallel text, dual language reader, Russian audiobook, LibriVox, русская литература, параллельный перевод, чтение на русском, аудиокниги" />
 
     <!-- Govorim is private and account-gated, so it asks not to be indexed.
          scripts/brand.mjs replaces this whole tag for the Samovar build. -->
@@ -15,14 +20,15 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Говорим" />
-    <meta property="og:title" content="Говорим — Russian Practice" />
-    <meta property="og:description" content="Говорим — Russian language practice with EPUB reading and conversational tutoring." />
+    <meta property="og:title" content="Говорим — Russian reading practice" />
+    <meta property="og:description" content="Russian literature in the original, with an English translation beside it and a recording to listen along to. — Русская литература в оригинале, с английским переводом рядом и аудиозаписью." />
     <meta property="og:url" content="https://govorim.dev/" />
-    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="ru_RU" />
     <meta property="og:image" content="https://govorim.dev/apple-touch-icon.png" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Говорим — Russian Practice" />
-    <meta name="twitter:description" content="Говорим — Russian language practice with EPUB reading and conversational tutoring." />
+    <meta name="twitter:title" content="Говорим — Russian reading practice" />
+    <meta name="twitter:description" content="Russian literature in the original, with an English translation beside it and a recording to listen along to. — Русская литература в оригинале, с английским переводом рядом и аудиозаписью." />
     <meta name="twitter:image" content="https://govorim.dev/apple-touch-icon.png" />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -36,10 +42,11 @@
       body { -webkit-font-smoothing: antialiased; }
       /* Only ever seen by a reader with JavaScript off, and by anything that
          does not run it. Plain, accurate, and never shown to anyone who gets
-         the app itself. */
+         the app itself. Both languages, because the site is both. */
       .nojs { max-width: 40rem; margin: 0 auto; padding: 3rem 1.5rem;
               color: #e8ddcb; font-family: Georgia, "Times New Roman", serif; line-height: 1.6; }
-      .nojs h1 { color: #c8a276; font-weight: 400; }
+      .nojs h1 { color: #c8a276; font-weight: 400; margin-bottom: 0.2em; }
+      .nojs h2 { color: #c8a276; font-weight: 400; font-size: 1.05rem; margin-top: 2rem; }
       .nojs a { color: #c8a276; }
     </style>
   </head>
@@ -48,9 +55,13 @@
     <noscript>
       <div class="nojs">
         <h1>Говорим</h1>
-        <p>Russian literature to read in the original, with an English translation
-           beside it and a recording to listen along to.</p>
-        <p>This reader needs JavaScript. Please enable it and reload the page.</p>
+        <p lang="en">Russian literature to read in the original, with an English
+           translation beside it and a recording to listen along to.</p>
+        <p lang="ru">Русская литература в оригинале: английский перевод рядом
+           с текстом и аудиозапись, под которую можно читать.</p>
+        <h2 lang="en">This reader needs JavaScript</h2>
+        <p lang="en">Please enable it and reload the page.</p>
+        <p lang="ru">Для работы читалки нужен JavaScript. Включите его и обновите страницу.</p>
       </div>
     </noscript>
     <script type="module" src="/src/main.jsx"></script>

@@ -35,10 +35,13 @@ const swaps = ["favicon.svg", "apple-touch-icon.png", "robots.txt", "sitemap.xml
 
 const edits = [
   ["index.html", [
-    ["Говорим — Russian Practice",
+    ["Говорим — Russian reading practice",
      "Самовар — Russian literature with parallel English"],
-    ["Говорим — Russian language practice with EPUB reading and conversational tutoring.",
-     "Read Russian literature in the original with a public-domain English translation beside it and a LibriVox recording to listen along to. Free, no account needed."],
+    // One description string carrying both languages: there is a single URL,
+    // so there is a single description, and a Russian-language search has to
+    // find something Russian in it.
+    ["Russian literature in the original, with an English translation beside it and a recording to listen along to. — Русская литература в оригинале, с английским переводом рядом и аудиозаписью.",
+     "Read Russian literature in the original with a public-domain English translation beside it and a LibriVox recording to listen along to. Free, no account needed. — Русская классика в оригинале: параллельный английский перевод и аудиокнига LibriVox. Бесплатно, без регистрации."],
     // Говорим asks to stay out of the index; Самовар wants in.
     ['<meta name="robots" content="noindex, nofollow" />',
      '<meta name="robots" content="index, follow" />'],
