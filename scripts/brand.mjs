@@ -43,8 +43,11 @@ const edits = [
     ["Russian literature in the original, with an English translation beside it and a recording to listen along to. — Русская литература в оригинале, с английским переводом рядом и аудиозаписью.",
      "Read Russian literature in the original with a public-domain English translation beside it and a LibriVox recording to listen along to. Free, no account needed. — Русская классика в оригинале: параллельный английский перевод и аудиокнига LibriVox. Бесплатно, без регистрации."],
     // Говорим asks to stay out of the index; Самовар wants in.
+    // The verification tag is Google Search Console's proof of ownership for
+    // samovar.live — it rides along with the robots swap so it exists ONLY on
+    // the public build, never on Говорим.
     ['<meta name="robots" content="noindex, nofollow" />',
-     '<meta name="robots" content="index, follow" />'],
+     '<meta name="robots" content="index, follow" />\n    <meta name="google-site-verification" content="_2pVgU3NiXtE3VwCzRaQ7NMioWm30MYHxxIFhX98BaQ" />'],
     ["https://govorim.dev/", "https://samovar.live/"],
     ["https://govorim.dev/apple-touch-icon.png", "https://samovar.live/apple-touch-icon.png"],
   ]],
