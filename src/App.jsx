@@ -6901,6 +6901,7 @@ export default function App() {
           <div className="main">
             {!started && !mode && (
               <div className="ss">
+                <DonateBlock />
                 <div className="sico" style={{color:"#c4955a"}}><Pushkin size={64}/></div>
                 <h1 className="sti">{SITE_NAME}</h1>
                 <p className="sde">Choose how you want to practice today.</p>
@@ -6924,12 +6925,12 @@ export default function App() {
                     <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Request books, report bugs, and talk with other readers.</div>
                   </button>
                 </div>
-                <DonateBlock />
               </div>
             )}
 
             {!started && mode === "read" && (
               <div className="ss">
+                <DonateBlock />
                 <div className="sico">📖</div>
                 <h1 className="sti">{chapters.length > 0 ? bookMeta.title : "Open a Russian book"}</h1>
                 <p className="sde">{chapters.length > 0 ? bookMeta.author : "Choose a book from the library to begin reading."}</p>
@@ -7300,7 +7301,6 @@ export default function App() {
 
                   {fErr && <p style={{color:"#9d4630",fontSize:13,lineHeight:1.5}}>{fErr}</p>}
                   <button className="btn-g" onClick={function(){ setMode(""); }}>← Back</button>
-                  <DonateBlock />
                 </div>
               </div>
             )}
