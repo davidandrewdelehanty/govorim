@@ -1693,7 +1693,9 @@ function SupportLinks() {
           <span className="sub">any amount appreciated</span>
         </button>
       </form>
-      <a className="discord-btn" href="https://discord.gg/NMPzHB99F"
+      {/* Permanent invite — set to never expire. Discord's default invite
+          dies after 7 days, which would quietly break this link. */}
+      <a className="discord-btn" href="https://discord.gg/nePcT58a37"
          target="_blank" rel="noopener noreferrer"
          title="Самовар Russian Literature on Discord — opens in a new tab">
         Join the Самовар Discord
