@@ -2039,7 +2039,19 @@ export default function App() {
     var cancelled = false;
     fetch(MUSIC_URL)
       .then(function(r){ return r.ok ? r.json() : null; })
-      .then(function(j){ if (!cancelled && j) setMusicData(j); })
+      .then(function(j){
+        // Sorted ONCE here, not at render: musicArtist/musicSong are indices
+        // into this array, so re-sorting later would point them at the wrong
+        // artist. localeCompare with "ru" puts Cyrillic in its own alphabet
+        // order rather than by code point, and keeps Latin names sane too.
+        if (!cancelled && j) {
+          j.sort(function(a, b){
+            return String(a.artist || "").localeCompare(String(b.artist || ""), "ru",
+                                                        { sensitivity: "base" });
+          });
+          setMusicData(j);
+        }
+      })
       .catch(function(){});
     return function(){ cancelled = true; };
   }, [tab, musicData]);
