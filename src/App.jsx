@@ -374,6 +374,80 @@ function tokenise(text) {
   return (text || "").match(/[а-яёА-ЯЁ]+|[^а-яёА-ЯЁ]+/g) || [];
 }
 
+// ── Saved-vocabulary highlighting: Russian paradigm generation ──────────
+// The vocabulary stores headwords («книга», «говорить») while the page carries
+// inflected forms («книгами», «говорю»). Rather than guess by shared prefix —
+// which cannot separate «столе» (the same word as «стол») from «столица»
+// (a different one) — we expand each saved headword into its actual paradigm
+// once, at save time, and then match the page exactly against that list.
+//
+// Generation is deliberately conservative: it covers the regular noun,
+// adjective and verb patterns and produces nothing for a shape it does not
+// recognise, in which case the word still highlights in the form the reader
+// clicked. A generated string that is not a real word simply never matches.
+var RU_VELAR = "\u043a\u0433\u0445", RU_HUSH = "\u0436\u0447\u0448\u0449";
+var RU_VOW = "\u0430\u0435\u0451\u0438\u043e\u0443\u044b\u044d\u044e\u044f";
+function ruHardVowel(stem) {
+  var c = stem.slice(-1);
+  return (RU_VELAR.indexOf(c) >= 0 || RU_HUSH.indexOf(c) >= 0) ? "и" : "ы";
+}
+function ruPush(out, stem, ends) { for (var i = 0; i < ends.length; i++) out.push(stem + ends[i]); }
+function ruNounForms(w, out) {
+  var last = w.slice(-1), stem = w.slice(0, -1), I;
+  if (last === "а") { I = ruHardVowel(stem); ruPush(out, stem, ["а", I, "е", "у", "ой", "ою", "", "ам", "ами", "ах"]); return true; }
+  if (last === "я") { ruPush(out, stem, ["я", "и", "е", "ю", "ей", "ею", "ь", "ям", "ями", "ях"]); return true; }
+  if (last === "о") { ruPush(out, stem, ["о", "а", "у", "ом", "е", "ам", "ами", "ах"]); return true; }
+  if (last === "е") { ruPush(out, stem, ["е", "я", "ю", "ем", "ей", "ям", "ями", "ях"]); return true; }
+  if (last === "й") { ruPush(out, stem, ["й", "я", "ю", "ем", "е", "и", "ев", "ям", "ями", "ях"]); return true; }
+  if (last === "ь") { ruPush(out, stem, ["ь", "я", "ю", "ем", "е", "и", "ей", "ью", "ям", "ями", "ях", "ам", "ами", "ах"]); return true; }
+  if (RU_VOW.indexOf(last) < 0) { I = ruHardVowel(w); ruPush(out, w, ["", "а", "у", "ом", "е", I, "ов", "ам", "ами", "ах"]); return true; }
+  return false;
+}
+function ruAdjForms(w, out) {
+  var tail = w.slice(-2);
+  if (tail !== "ый" && tail !== "ий" && tail !== "ой") return false;
+  var stem = w.slice(0, -2), I = ruHardVowel(stem);
+  ruPush(out, stem, [tail, I + "й", "ого", "ому", "его", "ему", "ым", "им", "ом", "ем",
+                     "ая", "яя", "ое", "ее", "ой", "ей", "ую", "юю", "ою", "ею",
+                     I + "е", I + "х", I + "м", I + "ми", "их", "им", "ими", "ие"]);
+  return true;
+}
+function ruPresentForms(base, hard, out) {
+  ruPush(out, base, hard ? ["ю", "ешь", "ет", "ем", "ете", "ют"]
+                         : ["ю", "ишь", "ит", "им", "ите", "ят", "ат", "у"]);
+}
+function ruVerbForms(w, out) {
+  if (w.slice(-2) !== "ть") return false;
+  ruPush(out, w.slice(0, -2), ["л", "ла", "ло", "ли"]);
+  out.push(w);
+  var t3 = w.slice(-3);
+  if (t3 === "ать" || t3 === "ять") ruPresentForms(w.slice(0, -2), true, out);
+  else if (t3 === "ить") ruPresentForms(w.slice(0, -3), false, out);
+  else if (t3 === "еть") { ruPresentForms(w.slice(0, -3), false, out); ruPresentForms(w.slice(0, -2), true, out); }
+  else ruPresentForms(w.slice(0, -2), true, out);
+  return true;
+}
+// -ся / -сь attaches after a consonant, -сь after a vowel: учусь, учишься, училась.
+function ruReflexive(forms) {
+  return forms.map(function(f) { return f + (RU_VOW.indexOf(f.slice(-1)) >= 0 ? "сь" : "ся"); });
+}
+function ruForms(word) {
+  var w = String(word || "").toLowerCase().replace(/\u0301/g, "").replace(/ё/g, "е").trim();
+  if (!w || w.length < 3 || /[^\u0430-\u044f-]/.test(w)) return [];
+  var out = [w], reflexive = false;
+  if (w.slice(-4) === "ться") { reflexive = true; w = w.slice(0, -2); }
+  var gen = [];
+  if (!ruVerbForms(w, gen)) { if (!ruAdjForms(w, gen)) ruNounForms(w, gen); }
+  if (reflexive) gen = ruReflexive(gen);
+  out = out.concat(gen);
+  var seen = Object.create(null), res = [];
+  for (var i = 0; i < out.length; i++) {
+    var f = out[i];
+    if (f && f.length > 2 && !seen[f]) { seen[f] = 1; res.push(f); }
+  }
+  return res.slice(0, 60);
+}
+
 function yoVariants(word) {
   var out = [];
   for (var i = 0; i < word.length; i++) {
@@ -2055,6 +2129,41 @@ export default function App() {
     try { localStorage.setItem("gv_chat_level", level); } catch(e) {}
   }, [level]);
   var [vocab, setVocab]       = useState([]);
+  // ── Saved-vocabulary highlighting ───────────────────────
+  // Words the reader has saved are coloured in the text, so a page shows at a
+  // glance what is already known.
+  //
+  // Matching is exact against a set built per reader: the headword itself, the
+  // dictionary lemma the definition returned, every surface form the reader has
+  // actually clicked, and the generated paradigm (see ruForms above). Nothing
+  // is matched by prefix, so «стол» never lights up «столица» and «ночь» never
+  // lights up «ночной».
+  var savedForms = useMemo(function() {
+    var set = Object.create(null);
+    var add = function(x) {
+      var w = String(x || "").toLowerCase().replace(/\u0301/g, "").replace(/ё/g, "е").trim();
+      if (w && w.length > 2 && !/[^\u0430-\u044f-]/.test(w)) set[w] = 1;
+    };
+    (vocab || []).forEach(function(v) {
+      if (!v) return;
+      // The headword may be an aspect pair — «читать / прочитать» — so split it.
+      String(v.ru || "").split(/\s*\/\s*/).forEach(function(head) {
+        head = head.trim();
+        if (!head || /\s/.test(head)) return;    // multi-word phrases are skipped
+        add(head);
+        ruForms(head).forEach(add);
+      });
+      if (v.lemma) { add(v.lemma); ruForms(v.lemma).forEach(add); }
+      if (Array.isArray(v.forms)) v.forms.forEach(add);
+    });
+    return set;
+  }, [vocab]);
+
+  var isSaved = function(word) {
+    var w = String(word || "").toLowerCase().replace(/\u0301/g, "").replace(/ё/g, "е");
+    return w.length > 2 && savedForms[w] === 1;
+  };
+
   var [tips, setTips]         = useState([]);
   // savedTopics: array of curriculum topic IDs the user has bookmarked from
   // the grammar reference. Stored as just IDs (e.g. "a2-accusative") so saved
@@ -4355,6 +4464,11 @@ export default function App() {
     try {
       var data = await fetchDef(clean);
       setPopup(function(p){ return p ? Object.assign({},p,{data:data,loading:false}) : null; });
+      // If this word is already saved, remember the form the reader just
+      // clicked. Generated paradigms miss the irregulars (пишу from писать,
+      // люблю from любить); a form the reader has actually looked up is
+      // ground truth, so the list gets more accurate the more they read.
+      rememberForm(data && data.lemma, clean);
     } catch(err) {
       var rawMsg = (err && err.message) || "Unknown error";
       var likelyRateLimit = /Too many|rate.?limit|429|quota|exhaust/i.test(rawMsg);
@@ -5072,6 +5186,30 @@ export default function App() {
       .catch(function(err){ setGramErr("Couldn't load curriculum: " + (err.message || err)); });
   }, []);
 
+  // Attach a surface form to the saved entry it belongs to, so the next time
+  // that exact form appears on the page it is coloured. No-op when the word
+  // is not in the vocabulary, or when the form is already recorded.
+  var rememberForm = function(lemma, surface) {
+    var l = String(lemma || "").toLowerCase().replace(/\u0301/g, "").replace(/ё/g, "е").trim();
+    var f = String(surface || "").toLowerCase().replace(/\u0301/g, "").replace(/ё/g, "е").trim();
+    if (!l || !f || f === l || f.length < 3) return;
+    setVocab(function(prev) {
+      var hit = -1;
+      for (var i = 0; i < prev.length; i++) {
+        var v = prev[i];
+        var heads = String((v && v.ru) || "").toLowerCase().replace(/ё/g, "е").split(/\s*\/\s*/);
+        var vl = String((v && v.lemma) || "").toLowerCase().replace(/ё/g, "е");
+        if (vl === l || heads.indexOf(l) >= 0) { hit = i; break; }
+      }
+      if (hit < 0) return prev;
+      var cur = Array.isArray(prev[hit].forms) ? prev[hit].forms : [];
+      if (cur.indexOf(f) >= 0) return prev;
+      var next = prev.slice();
+      next[hit] = Object.assign({}, prev[hit], { forms: cur.concat([f]).slice(-40) });
+      return next;
+    });
+  };
+
       var addV = function(ruOrEntry, en) {
     // Accepts either (ruString, enString) for legacy callers OR a full entry object:
     //   {ru, en, pos, aspect, grammar, example, exampleTranslation}
@@ -5255,6 +5393,11 @@ export default function App() {
     }
     return {
       ru: ru || fallbackRu,
+      // Kept for the red saved-word highlighting: the bare lemma drives the
+      // generated paradigm, and `forms` records the surface form the reader
+      // actually clicked, which is the one form we can never get wrong.
+      lemma: lemma,
+      forms: fallbackRu && fallbackRu.toLowerCase() !== lemma.toLowerCase() ? [fallbackRu] : [],
       en: (data.translation || "").trim(),
       pos: (data.partOfSpeech || "").trim(),
       aspect: (data.aspect || "").trim(),
@@ -5485,7 +5628,7 @@ export default function App() {
                     }
                     elems.push(
                       <span key={i}
-                        className={"rw" + (hl ? " rwhl" : "") + (inName ? " play-speaker" : "")}
+                        className={"rw" + (hl ? " rwhl" : "") + (inName ? " play-speaker" : "") + (!inName && isSaved(tk.text) ? " vsaved" : "")}
                         data-rw-start={tk.start}
                         onClick={clickPlay}
                         title={inName ? "" : (noAIMode ? "Click to read from here" : "Click for a definition")}>{accented(tk.text)}</span>
@@ -5514,7 +5657,7 @@ export default function App() {
                     : (function(w, pos){ return function(e){ defWord(w, e, pos); }; })(tk.text, tk.start);
                   return (
                     <span key={i}
-                      className={"rw" + (hl ? " rwhl" : "")}
+                      className={"rw" + (hl ? " rwhl" : "") + (isSaved(tk.text) ? " vsaved" : "")}
                       data-rw-start={tk.start}
                       onClick={clickReg}
                       title={noAIMode ? "Click to read from here" : "Click for a definition"}>{accented(tk.text)}</span>
@@ -5969,6 +6112,13 @@ export default function App() {
         .vw.rw{color:#c4955a;border-bottom:1px dotted rgba(196,149,90,.5)}
         .vw.rw:hover{color:#000;border-bottom-color:#c4955a;background:rgba(196,149,90,.18);border-radius:2px}
         .rw{cursor:pointer;border-bottom:1px dotted rgba(42,31,20,.18);transition:color .15s,background .12s}
+        /* A word already in the reader's vocabulary. Red carries the meaning
+           here, so it stays red on hover and under the audio highlight too —
+           losing the colour at exactly the moment the word is being read
+           would defeat the point. */
+        .rw.vsaved{color:#b3261e;border-bottom-color:rgba(179,38,30,.35)}
+        .rw.vsaved:hover{color:#8c1d18;border-bottom-color:#b3261e;background:rgba(179,38,30,.10)}
+        .rw.vsaved.rwhl{color:#8c1d18}
         .rw:hover{color:#c4955a;border-bottom-color:#c4955a}
         .rwhl{background:rgba(196,149,90,.18);color:#000;border-bottom-color:#c4955a;border-radius:3px;padding:1px 2px}
         /* Two-choice bubble on a clicked word: define it, or play from it. */
