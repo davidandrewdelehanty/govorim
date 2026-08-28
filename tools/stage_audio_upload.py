@@ -47,6 +47,11 @@ BOOKS = [
          title="Капитанская дочка — Пушкин (split out of a mixed folder)"),
     dict(slug="loshadinaya-familiya", folder="a horsey name", pad=2,
          title="Лошадиная фамилия — Чехов (single story)"),
+    # LibriVox numbers its six sections 00–05 (00 = «От издателя»); the numeric
+    # sort keeps that order, so 00 becomes 01.mp3 and every tale shifts up one.
+    dict(slug="belkin", folder="books with librivox/povesti pokoinovo - pushkin", pad=2,
+         only=r"belkintales_\d+_pushkin.*\.mp3$",
+         title="Повести Белкина — Пушкин (6 sections incl. От издателя)"),
 ]
 
 AUDIO_EXT = (".mp3", ".m4a", ".wav", ".ogg", ".opus", ".flac")
