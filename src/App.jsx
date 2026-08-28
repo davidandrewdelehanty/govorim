@@ -2583,13 +2583,38 @@ export default function App() {
   // Playback rate in Azure-percent. -25 = noticeably slower (good for tough
   // passages), -8 = the previous default (slightly slow for learners),
   // 0 = natural, +15 = slightly fast (good for familiar text).
-  var SPEED_OPTIONS = [{ label: "Slow", rate: -25 }, { label: "Normal", rate: -8 }, { label: "Fast", rate: 15 }];
-  var [audioSpeedIdx, setAudioSpeedIdx] = useState(1);  // default = Normal (-8)
+  // The same three settings drive both playback paths, but by different means.
+  // The synthetic voice is re-rendered at a percentage offset from its natural
+  // rate (`rate`); a recording is already rendered, so it is resampled by the
+  // audio element at a multiplier (`abRate`). Index 1 is the default in both.
+  //
+  // The multipliers are deliberately gentler than the TTS offsets: a narrator
+  // reading Russian at 1.5x is unusable for a learner, and the browser's own
+  // pitch correction starts to sound artificial past about 1.25x.
+  var SPEED_OPTIONS = [
+    { label: "Slow",   rate: -25, abRate: 0.8  },
+    { label: "Normal", rate:  -8, abRate: 1    },
+    { label: "Fast",   rate:  15, abRate: 1.25 },
+  ];
+  var [audioSpeedIdx, setAudioSpeedIdx] = useState(1);  // default = Normal
   var audioSpeedRef = useRef(-8);
+  var abRateRef = useRef(1);
+  // Point the recording's audio element at the current multiplier. Called on
+  // every speed change and again after each load(), which resets playbackRate
+  // back to defaultPlaybackRate — so both are set, or the rate silently
+  // reverts to 1x whenever the chapter changes.
+  var applyAudiobookRate = function() {
+    var a = audiobookAudioRef.current;
+    if (!a) return;
+    try { a.defaultPlaybackRate = abRateRef.current; a.playbackRate = abRateRef.current; } catch(e) {}
+  };
   useEffect(function() {
     audioSpeedRef.current = SPEED_OPTIONS[audioSpeedIdx].rate;
-    // Speed change invalidates cached audio (was rendered at the old rate).
-    // Cache wipe is safe — next prefetch will rebuild at the new rate.
+    abRateRef.current = SPEED_OPTIONS[audioSpeedIdx].abRate;
+    applyAudiobookRate();
+    // Speed change invalidates cached synthetic audio (rendered at the old
+    // rate). Cache wipe is safe — next prefetch rebuilds at the new rate.
+    // A recording needs no such wipe: the same file simply plays faster.
     audioCacheRef.current = {};
   }, [audioSpeedIdx]);
   var sentenceOverrideRef = useRef(null);
@@ -2911,6 +2936,7 @@ export default function App() {
       // endpoint does not, so a gated book failed with ERR_FAILED before a
       // byte was fetched. Plain media loads have never needed CORS.
       audiobookAudioRef.current = audio;
+      try { audio.defaultPlaybackRate = abRateRef.current; audio.playbackRate = abRateRef.current; } catch(e) {}
       // Drive the on-screen time counter / scrubber.
       audio.addEventListener("timeupdate", function(){ setAbCur(audio.currentTime || 0); });
       audio.addEventListener("seeked", function(){ setAbCur(audio.currentTime || 0); });
@@ -3656,6 +3682,8 @@ export default function App() {
       try { audio.pause(); } catch(e) {}
       audio.src = data.audio_url;
       try { audio.load(); } catch(e) {}
+      applyAudiobookRate();          // load() reset it to defaultPlaybackRate
+
       if (wasPlaying) {
         var t = setTimeout(function(){ playAudiobookFromSentence(0); }, 150);
         return function(){ clearTimeout(t); };
@@ -6114,7 +6142,7 @@ export default function App() {
         .lib-tag{padding:2px 7px;border-radius:9px;font-size:10px;letter-spacing:.3px;font-weight:600;white-space:nowrap;border:1px solid rgba(42,31,20,.16);color:rgba(42,31,20,.72);background:rgba(42,31,20,.05)}
         .lib-tag.off{border-color:rgba(42,31,20,.08);color:rgba(42,31,20,.3);background:none;font-weight:500}
         .lib-card-cat{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#c4955a;padding:2px 8px;border-radius:10px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600}
-        .lib-done{color:#1e7a3c;font-weight:700;margin-right:6px}
+        .lib-done{padding:2px 8px;border-radius:10px;font-size:10px;letter-spacing:.3px;font-weight:700;white-space:nowrap;color:#1e7a3c;background:rgba(30,122,60,.10);border:1px solid rgba(30,122,60,.35)}
         .mark-read{flex:none;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.3px;padding:4px 10px;border-radius:12px;cursor:pointer;white-space:nowrap;border:1px solid rgba(42,31,20,.18);background:transparent;color:rgba(42,31,20,.55);transition:all .15s}
         .mark-read:hover{border-color:rgba(30,122,60,.45);color:#1e7a3c}
         .mark-read.on{border-color:rgba(30,122,60,.45);background:rgba(30,122,60,.10);color:#1e7a3c;font-weight:600}
@@ -7512,7 +7540,10 @@ export default function App() {
                                     else if (match.book.category === "Song Lyrics") openSongPicker(match.book);
                                     else loadPresetBook(match.book);
                                   }}>
-                                    <div className="lcn" style={{color:"rgba(0,0,0,.5)"}}>↻ {humanLast}</div>
+                                    <div className="lcn" style={{color:"rgba(0,0,0,.5)"}}>
+                                      ↻ {humanLast}
+                                      {isFinished(match.book) && <span className="lib-done" style={{marginLeft:8}}>✓ Read</span>}
+                                    </div>
                                     <div className="lchead">{bookLabel(rec)}</div>
                                     <div style={{marginTop:8,fontSize:11,color:"rgba(0,0,0,.55)"}}>
                                       {pct + "%"}
@@ -7636,11 +7667,12 @@ export default function App() {
                                         loadPresetBook(book);
                                       }
                                     }}>
-                                    <div className="lib-card-title">
-                                      {isFinished(book) && <span className="lib-done" title="You marked this as read">✓</span>}
-                                      {bookLabel(book)}
-                                    </div>
+                                    <div className="lib-card-title">{bookLabel(book)}</div>
                                     <div className="lib-card-meta">
+                                      {/* Sits first in the meta row, where the eye already goes for
+                                          the Russian/English/audiobook tags — a bare tick tucked in
+                                          front of the title was too easy to miss. */}
+                                      {isFinished(book) && <span className="lib-done" title="You marked this as read">✓ Read</span>}
                                       {cat !== "Other" && cat !== "Texts Without English" && <span className="lib-card-cat">{cat}</span>}
                                       {cat === "Song Lyrics" ? (
                                         book.songs && book.songs.length > 0 && (
@@ -8243,12 +8275,23 @@ export default function App() {
                             {audiobookMode ? "🎧" : "🤖"}
                           </button>
                         )}
-                        <button className="faudio-speed"
-                          onClick={function(){ setAudioSpeedIdx((audioSpeedIdx + 1) % SPEED_OPTIONS.length); }}
-                          title={"Playback speed (TTS mode only). Current: " + SPEED_OPTIONS[audioSpeedIdx].label}
-                          disabled={!TTS_ENABLED || (audiobookMode && !!audiobookData)}>
-                          {SPEED_OPTIONS[audioSpeedIdx].label}
-                        </button>
+                        {(function(){
+                          // Speed applies to whichever source is actually playing:
+                          // the recording (resampled by the audio element) or the
+                          // synthetic voice (re-rendered at the new rate).
+                          var onRecording = audiobookMode && !!audiobookData;
+                          var opt = SPEED_OPTIONS[audioSpeedIdx];
+                          return (
+                            <button className="faudio-speed"
+                              onClick={function(){ setAudioSpeedIdx((audioSpeedIdx + 1) % SPEED_OPTIONS.length); }}
+                              title={onRecording
+                                ? ("Narration speed \u2014 " + opt.abRate + "\u00d7 (" + opt.label + ")")
+                                : ("Playback speed for the built-in voice. Current: " + opt.label)}
+                              disabled={!onRecording && !TTS_ENABLED}>
+                              {opt.label}
+                            </button>
+                          );
+                        })()}
                       </div>
                     )}
                   </>
