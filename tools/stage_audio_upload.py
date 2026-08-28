@@ -52,6 +52,24 @@ BOOKS = [
     dict(slug="belkin", folder="books with librivox/povesti pokoinovo - pushkin", pad=2,
          only=r"belkintales_\d+_pushkin.*\.mp3$",
          title="Повести Белкина — Пушкин (6 sections incl. От издателя)"),
+    dict(slug="radost", folder="books with librivox/radost - chekhov", pad=2,
+         only=r"msw037_19_radost", title="Радость — Чехов (1 story)"),
+    dict(slug="sluchai-s-klassikom", folder="books with librivox/sluchai s klassikom chekhov", pad=2,
+         only=r"msw013_16", title="Случай с классиком — Чехов (1 story)"),
+    dict(slug="predlozhenie", folder="books with librivox/predlozheniye - chekhov", pad=2,
+         only=r"predlozhenie_01", title="Предложение — Чехов (1 act)"),
+    # The three LibriVox parts were joined into polesye-full.mp3 (ffmpeg concat) —
+    # only that file uploads, as 01.mp3.
+    dict(slug="polesye", folder="books with librivox/poezd v polyeze", pad=2,
+         only=r"polesye-full", title="Поездка в Полесье — Тургенев (joined recording)"),
+    dict(slug="dva-tovarishcha", folder="books with librivox/dva tovarischa tolstoy", pad=2,
+         only=r"msw012_13", title="Два товарища — Толстой (1 fable)"),
+    dict(slug="khoryok", folder="books with librivox/horek tolsotoy", pad=2,
+         only=r"msw012_14", title="Хорёк — Толстой (1 fable)"),
+    dict(slug="demon", folder="books with librivox/demon lermontov", pad=2,
+         only=r"msw009_0[34]", title="Демон — Лермонтов (2 parts)"),
+    dict(slug="uchenie-khrista", folder="books with librivox/the teachings of christ for children - tolstoy", pad=2,
+         only=r"teachingsofchrist_\d", title="Учение Христа — Толстой (9 sections)"),
 ]
 
 AUDIO_EXT = (".mp3", ".m4a", ".wav", ".ogg", ".opus", ".flac")
