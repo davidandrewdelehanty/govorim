@@ -5161,7 +5161,15 @@ export default function App() {
     // Side-by-side dual language is on whenever this chapter has English
     // loaded (Bible verses or parallelEn prose). RU column = full reader
     // width; EN column slides in from the right.
-    var dualActive = !!(proseEn || bibleEn);
+    //
+    // "Loaded" means actual rows, not just a file. A chapter whose English
+    // was never written still ships a JSON so the loader doesn't 404 — БК's
+    // «От автора» is {"_note": …} and Белкина's «От издателя» is {} — and an
+    // object is truthy, so testing proseEn alone rendered the ⇄ hint and a
+    // completely empty English pane on the FIRST chapter a reader opens.
+    // Such chapters now read as plain Russian (the _note box still shows).
+    var proseEnUsable = !!(proseEn && Object.keys(proseEn).some(function(k){ return k !== "_note"; }));
+    var dualActive = !!(proseEnUsable || bibleEn);
     var litEntries = (function() {
       // Pull the non-empty paragraphs in the order they appear, matching how
       // computePages indexes them.
