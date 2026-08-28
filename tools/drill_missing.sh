@@ -52,6 +52,10 @@ for line in (os.environ.get('SKIP_REASONS') or '').splitlines():
         k, _, why = line.partition('|')
         skip[k.strip()] = why.strip()
 for e in d:
+    # Case drills need prose sentences. Verse is marked at ingest time, so a
+    # poem is skipped without needing a hand-maintained list.
+    if e.get('verse'):
+        continue
     if not e.get('parallelEn'):
         continue
     if only_public and not e.get('public'):
