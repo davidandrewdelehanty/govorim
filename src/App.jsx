@@ -5678,15 +5678,15 @@ export default function App() {
               var labelText, labelColor, rowOpacity;
               if (isCloud) {
                 labelText = " · Azure Cloud";
-                labelColor = "#c4955a";
+                labelColor = "#000";
                 rowOpacity = null;
               } else if (isSiri && !network) {
                 labelText = " · Siri ★★★";
-                labelColor = "#c4955a";
+                labelColor = "#000";
                 rowOpacity = null;
               } else if (isEnhanced && !network) {
                 labelText = " · Enhanced ★★";
-                labelColor = "#c4955a";
+                labelColor = "#000";
                 rowOpacity = null;
               } else if (!network) {
                 labelText = " · local ✓";
@@ -5694,7 +5694,7 @@ export default function App() {
                 rowOpacity = null;
               } else if (isHighQualityNetwork) {
                 labelText = " · neural ★";
-                labelColor = "#c4955a";
+                labelColor = "#000";
                 rowOpacity = null;
               } else {
                 labelText = " · network ⚠";
@@ -5763,7 +5763,7 @@ export default function App() {
         .logo{display:flex;align-items:baseline;gap:10px}
         .lru{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#000}
         .lsub{font-size:11px;color:rgba(42,31,20,.35);letter-spacing:2.5px;text-transform:uppercase}
-        .tbadge{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#c4955a;padding:6px 14px;border-radius:20px;font-size:13px;cursor:pointer;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .tbadge{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#000;padding:6px 14px;border-radius:20px;font-size:13px;cursor:pointer;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         /* Library browser: search + card-grid of preset & uploaded books.
            Replaces the prior <select> dropdown on the Read launch screen. */
         .lib-search{width:100%;padding:12px 16px;font-size:16px;background:rgba(42,31,20,.05);border:1px solid rgba(42,31,20,.18);border-radius:10px;color:#000;font-family:'Crimson Pro',serif;margin-bottom:20px;box-sizing:border-box;letter-spacing:.01em}
@@ -5791,12 +5791,12 @@ export default function App() {
         .lib-card.is-loading > *:not(.lib-card-loader){opacity:.3}
         .lib-card.is-disabled{pointer-events:none;opacity:.45}
         .lib-card-loader{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(35,32,26,.65);border-radius:10px;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);z-index:1}
-        .lib-card-loader span{font-size:13px;color:#c4955a;font-family:'Crimson Pro',serif;font-style:italic}
+        .lib-card-loader span{font-size:13px;color:#000;font-family:'Crimson Pro',serif;font-style:italic}
         /* Persistent CEFR level selector pinned in the header. Compact pill style
            that matches the Topic badge. The label sits to the left of the dropdown. */
         .level-wrap{display:flex;align-items:center;gap:6px}
         .level-lbl{font-size:10px;color:rgba(42,31,20,.4);text-transform:uppercase;letter-spacing:1.5px;font-weight:600}
-        .level-pill{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#c4955a;padding:5px 10px;border-radius:14px;font-size:13px;font-family:'Crimson Pro',serif;cursor:pointer;width:auto;outline:none}
+        .level-pill{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#000;padding:5px 10px;border-radius:14px;font-size:13px;font-family:'Crimson Pro',serif;cursor:pointer;width:auto;outline:none}
         .level-pill:hover{background:rgba(196,149,90,.18)}
         .level-pill option{background:#ede8dd}
         @media(max-width:600px){.level-lbl{display:none}.level-pill{padding:4px 8px;font-size:12px}}
@@ -5804,7 +5804,7 @@ export default function App() {
         .tabs{display:flex;border-bottom:1px solid rgba(42,31,20,.1);padding:0 28px;position:relative;z-index:10}
         .tab{padding:11px 20px;background:none;border:none;color:#000;font-family:'Crimson Pro',serif;font-size:14px;cursor:pointer;border-bottom:2px solid transparent;position:relative;top:1px;transition:color .2s}
         .tab.on{color:#000;border-bottom-color:#c4955a;font-weight:600}
-        .tab:hover:not(.on){color:#c4955a}
+        .tab:hover:not(.on){color:#000}
         .bdg{background:#c4955a;color:#fff;font-size:10px;border-radius:10px;padding:1px 5px;margin-left:4px;vertical-align:middle}
         .bdg.g{background:#5a8556}
         .main{flex:1;display:flex;flex-direction:column;position:relative;z-index:1;min-height:0}
@@ -5849,7 +5849,7 @@ export default function App() {
         .mline{display:block;margin-bottom:3px;line-height:1.7}
         .tline{color:rgba(42,31,20,.5);font-size:14px;margin-top:6px;display:block;line-height:1.65;padding-top:5px;border-top:1px solid rgba(42,31,20,.08)}
         .tipline{color:rgba(128,168,128,.85);font-size:13.5px;border-left:2px solid rgba(128,168,128,.35);padding-left:8px;margin-top:7px;display:block;line-height:1.5}
-        .qline{color:#c4955a;font-size:15px;margin-top:10px;display:block;line-height:1.6;padding:8px 12px;background:rgba(196,149,90,.07);border-radius:8px;border-left:2px solid rgba(196,149,90,.4)}
+        .qline{color:#000;font-size:15px;margin-top:10px;display:block;line-height:1.6;padding:8px 12px;background:rgba(196,149,90,.07);border-radius:8px;border-left:2px solid rgba(196,149,90,.4)}
         .vw{color:#c4955a} .corr{color:#2f4a6b}
         .vw.rw{color:#c4955a;border-bottom:1px dotted rgba(196,149,90,.5)}
         .vw.rw:hover{color:#000;border-bottom-color:#c4955a;background:rgba(196,149,90,.18);border-radius:2px}
@@ -5911,7 +5911,7 @@ export default function App() {
         .spk{padding:5px 12px;border-radius:20px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif;background:rgba(42,31,20,.07);border:1px solid rgba(42,31,20,.2);color:rgba(42,31,20,.7);transition:all .15s}
         .spk:hover{background:rgba(42,31,20,.14)} .spkon{background:rgba(196,149,90,.18);border-color:rgba(196,149,90,.35);color:#e08a78}
         .chip{padding:5px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-family:'Crimson Pro',serif;border:1px solid;transition:background .15s}
-        .vc{background:rgba(196,149,90,.09);border-color:rgba(196,149,90,.28);color:#c4955a} .vc:hover:not(:disabled){background:rgba(196,149,90,.18)}
+        .vc{background:rgba(196,149,90,.09);border-color:rgba(196,149,90,.28);color:#000} .vc:hover:not(:disabled){background:rgba(196,149,90,.18)}
         .tc{background:rgba(128,168,128,.08);border-color:rgba(128,168,128,.25);color:rgba(128,168,128,.9)} .tc:hover:not(:disabled){background:rgba(128,168,128,.15)}
         .chip:disabled,.chipsaved{cursor:default;opacity:.7}
         .chipsaved{background:rgba(128,168,128,.15)!important;border-color:rgba(128,168,128,.4)!important;color:rgba(150,190,150,.95)!important}
@@ -5928,7 +5928,7 @@ export default function App() {
         .lit-wrap{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden}
         .lit-top{display:flex;align-items:center;gap:8px;padding:8px 28px;border-bottom:1px solid rgba(42,31,20,.1);flex-shrink:0;background:#f5f0e8;flex-wrap:wrap}
         .ltab{padding:6px 14px;border-radius:16px;background:none;border:1px solid rgba(42,31,20,.14);color:rgba(42,31,20,.45);font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;transition:all .15s}
-        .ltab.on{background:rgba(196,149,90,.12);border-color:rgba(196,149,90,.3);color:#c4955a}
+        .ltab.on{background:rgba(196,149,90,.12);border-color:rgba(196,149,90,.3);color:#000}
         .ltab:hover:not(.on){background:rgba(42,31,20,.06)}
         /* Inline page/chapter nav — compact buttons in the top tab row,
            freed from the bottom of the screen so the floating audio bar
@@ -5939,9 +5939,9 @@ export default function App() {
         .lnb-inline:disabled{opacity:.3;cursor:default}
         .lnb-inline.p{background:linear-gradient(135deg,#c4955a,#a87a42);border-color:transparent;color:#fff}
         .lnb-inline.p:hover:not(:disabled){opacity:.9}
-        .lnb-inline.ch{border-color:rgba(196,149,90,.3);background:rgba(196,149,90,.08);color:#c4955a;font-size:12px;padding:5px 9px}
+        .lnb-inline.ch{border-color:rgba(196,149,90,.3);background:rgba(196,149,90,.08);color:#000;font-size:12px;padding:5px 9px}
         .lnb-inline.ch:hover:not(:disabled){background:rgba(196,149,90,.18);border-color:rgba(196,149,90,.5)}
-        .lbm-inline{border-color:rgba(196,149,90,.25);background:rgba(196,149,90,.07);color:#c4955a}
+        .lbm-inline{border-color:rgba(196,149,90,.25);background:rgba(196,149,90,.07);color:#000}
         .lbm-inline:hover{background:rgba(196,149,90,.15)}
         @media(max-width:780px){
           .lit-top{padding:6px 12px;gap:5px}
@@ -5970,15 +5970,15 @@ export default function App() {
         .faudio-play{background:#c4955a;color:#fff;border-color:#c4955a;width:52px;height:52px;font-size:22px}
         .faudio-play:hover{background:#d4ae7f}
         .faudio-status{color:rgba(42,31,20,.55);font-size:12px;font-family:'Inter',system-ui,sans-serif;margin-left:10px;letter-spacing:.3px;min-width:90px;text-align:left}
-        .faudio-narrator{color:#c4955a;font-style:italic}
+        .faudio-narrator{color:#000;font-style:italic}
         .faudio-seek{flex:1;min-width:80px;max-width:280px;accent-color:#c4955a;cursor:pointer;height:4px}
         .faudio-clock{color:rgba(42,31,20,.7);font-size:12px;font-family:'Inter',system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.3px;min-width:82px;text-align:right;white-space:nowrap}
         /* 🎧 ↔ 🤖 mode toggle — only renders when an audiobook is available */
         .faudio-mode{background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.2);color:rgba(42,31,20,.7);border-radius:50%;width:36px;height:36px;font-size:16px;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-        .faudio-mode:hover{background:rgba(196,149,90,.12);color:#c4955a;border-color:rgba(196,149,90,.4)}
-        .faudio-mode.active{background:rgba(196,149,90,.18);color:#c4955a;border-color:#c4955a}
+        .faudio-mode:hover{background:rgba(196,149,90,.12);color:#000;border-color:rgba(196,149,90,.4)}
+        .faudio-mode.active{background:rgba(196,149,90,.18);color:#000;border-color:#c4955a}
         .faudio-speed{margin-left:auto;background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.2);color:rgba(42,31,20,.7);border-radius:14px;padding:6px 12px;font-size:12px;font-family:'Crimson Pro',serif;cursor:pointer;transition:all .15s;letter-spacing:.3px}
-        .faudio-speed:hover{background:rgba(196,149,90,.12);color:#c4955a;border-color:rgba(196,149,90,.3)}
+        .faudio-speed:hover{background:rgba(196,149,90,.12);color:#000;border-color:rgba(196,149,90,.3)}
         .faudio-speed:disabled{opacity:.35;cursor:not-allowed}
         @media(max-width:600px){
           .faudio{padding:0 12px;gap:10px;height:62px}
@@ -6007,7 +6007,7 @@ export default function App() {
         .vprow{width:100%;background:none;border:none;border-bottom:1px solid rgba(42,31,20,.05);padding:7px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:10px;transition:background .15s}
         .vprow:hover,.vprow.sel{background:rgba(196,149,90,.06)}
         .vpn{font-size:14px;color:#000;font-family:'Crimson Pro',serif;text-align:left}
-        .vpnru{color:#c4955a} .vpl{font-size:11px;color:rgba(42,31,20,.28)}
+        .vpnru{color:#000} .vpl{font-size:11px;color:rgba(42,31,20,.28)}
         .vpem{font-size:13px;color:rgba(42,31,20,.3);padding:14px 0;text-align:center}
         .lit-body{flex:1;display:flex;min-height:0;overflow:hidden}
         .lit-left{flex:1;overflow-y:auto;padding:24px 28px;border-right:1px solid rgba(42,31,20,.08)}
@@ -6077,7 +6077,7 @@ export default function App() {
           .lnav.noai { bottom: auto; }
         }
         .lhdr{font-size:11px;color:rgba(42,31,20,.3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
-        .lch-heading{font-family:'Playfair Display',serif;font-size:20px;color:#c4955a;margin-bottom:14px}
+        .lch-heading{font-family:'Playfair Display',serif;font-size:20px;color:#000;margin-bottom:14px}
         .ltxt{font-size:17.5px;line-height:1.85;color:#000;font-family:'Crimson Pro',serif;word-wrap:break-word;overflow-wrap:break-word;letter-spacing:.005em}
         .play-speaker{color:#c4955a;font-weight:600;letter-spacing:.04em;border-bottom:none !important;cursor:default !important}
         .play-speaker:hover{color:#c4955a !important;background:none !important}
@@ -6091,16 +6091,16 @@ export default function App() {
         .lnb{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(42,31,20,.14);background:rgba(42,31,20,.05);color:rgba(42,31,20,.55);font-family:'Crimson Pro',serif;font-size:14px;cursor:pointer;transition:all .15s;text-align:center}
         .lnb:hover:not(:disabled){background:rgba(42,31,20,.1);color:#000} .lnb:disabled{opacity:.22;cursor:default}
         .lnb.p{background:linear-gradient(135deg,#9d4630,#82362a);border-color:transparent;color:#fff} .lnb.p:hover{opacity:.9}
-        .lbm{padding:10px 14px;border-radius:10px;border:1px solid rgba(196,149,90,.25);background:rgba(196,149,90,.07);color:#c4955a;font-size:15px;cursor:pointer;transition:background .15s}
+        .lbm{padding:10px 14px;border-radius:10px;border:1px solid rgba(196,149,90,.25);background:rgba(196,149,90,.07);color:#000;font-size:15px;cursor:pointer;transition:background .15s}
         .lbm:hover{background:rgba(196,149,90,.15)}
-        .lnb-sm{flex:1;padding:7px 12px;border-radius:8px;border:1px solid rgba(196,149,90,.3);background:rgba(196,149,90,.08);color:#c4955a;font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;transition:all .15s;text-align:center}
+        .lnb-sm{flex:1;padding:7px 12px;border-radius:8px;border:1px solid rgba(196,149,90,.3);background:rgba(196,149,90,.08);color:#000;font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;transition:all .15s;text-align:center}
         .lnb-sm:hover:not(:disabled){background:rgba(196,149,90,.18);border-color:rgba(196,149,90,.5)}
         .lnb-sm:disabled{opacity:.35;cursor:default}
         .navpanel{flex:1;overflow-y:auto;padding:16px 28px;display:flex;flex-direction:column;gap:8px}
         .lcard{padding:12px 14px;border-radius:10px;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.09);cursor:pointer;transition:all .15s}
         .lcard:hover{background:rgba(42,31,20,.08)} .lcard.cur{border-color:rgba(196,149,90,.4);background:rgba(196,149,90,.07)}
         .lcn{font-size:10px;color:rgba(42,31,20,.28);letter-spacing:1px;margin-bottom:4px}
-        .lchead{font-size:14px;color:#c4955a;font-family:'Playfair Display',serif;margin-bottom:3px}
+        .lchead{font-size:14px;color:#000;font-family:'Playfair Display',serif;margin-bottom:3px}
         .lcp{font-size:13px;color:rgba(42,31,20,.55);line-height:1.4}
         .lem{text-align:center;color:rgba(42,31,20,.28);padding:32px;font-size:14px}
         .lsbar{padding:12px 28px;border-bottom:1px solid rgba(42,31,20,.08)}
@@ -6109,7 +6109,7 @@ export default function App() {
         @keyframes pf{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
         .pcl{position:absolute;top:10px;right:12px;background:none;border:none;color:rgba(42,31,20,.35);font-size:18px;cursor:pointer}
         .pcl:hover{color:rgba(42,31,20,.7)}
-        .pw{font-family:'Playfair Display',serif;font-size:22px;color:#c4955a;margin-bottom:2px;padding-right:24px}
+        .pw{font-family:'Playfair Display',serif;font-size:22px;color:#000;margin-bottom:2px;padding-right:24px}
         .ppos{font-size:11px;color:rgba(42,31,20,.35);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
         /* Russian-language definition — top of the popup body so the Russian reading practice happens first. */
         .pdru{font-family:'Crimson Pro',serif;font-size:15px;color:#000;line-height:1.5;margin-bottom:8px;padding:8px 10px;background:rgba(196,149,90,.06);border-left:2px solid rgba(196,149,90,.4);border-radius:4px}
@@ -6119,7 +6119,7 @@ export default function App() {
         .pext{font-size:12px;color:rgba(42,31,20,.3);margin-top:3px}
         .pload{color:rgba(42,31,20,.4);font-size:14px;text-align:center;padding:14px 0}
         .perr{color:#9d4630;font-size:13px}
-        .psave{margin-top:12px;width:100%;border:1px solid rgba(196,149,90,.28);background:rgba(196,149,90,.09);color:#c4955a;padding:10px;border-radius:10px;font-size:14px;cursor:pointer;font-family:'Crimson Pro',serif;transition:background .15s}
+        .psave{margin-top:12px;width:100%;border:1px solid rgba(196,149,90,.28);background:rgba(196,149,90,.09);color:#000;padding:10px;border-radius:10px;font-size:14px;cursor:pointer;font-family:'Crimson Pro',serif;transition:background .15s}
         .psave:hover{background:rgba(196,149,90,.2)}
         .yobtn{width:100%;background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.15);color:#000;padding:9px;border-radius:10px;font-size:15px;cursor:pointer;font-family:'Crimson Pro',serif;transition:background .15s;text-align:left;margin-bottom:4px}
         .yobtn:hover{background:rgba(42,31,20,.12)}
@@ -6142,7 +6142,7 @@ export default function App() {
         .panel{flex:1;padding:28px;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
         .phdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
         .pti{font-family:'Playfair Display',serif;font-size:20px;color:#000}
-        .ab{border:1px solid rgba(196,149,90,.28);background:rgba(196,149,90,.08);color:#c4955a;padding:7px 16px;border-radius:20px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif;transition:background .15s}
+        .ab{border:1px solid rgba(196,149,90,.28);background:rgba(196,149,90,.08);color:#000;padding:7px 16px;border-radius:20px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif;transition:background .15s}
         .ab:hover{background:rgba(196,149,90,.18)}
         .ab.g{border-color:rgba(128,168,128,.28);background:rgba(128,168,128,.07);color:rgba(128,168,128,.9)} .ab.g:hover{background:rgba(128,168,128,.15)}
         .empty{text-align:center;color:rgba(42,31,20,.3);font-size:15px;padding:48px 0;line-height:1.7}
@@ -6172,7 +6172,7 @@ export default function App() {
         .land::before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 20% 10%,rgba(150,80,60,.10) 0%,transparent 55%),radial-gradient(ellipse at 80% 90%,rgba(80,90,130,.08) 0%,transparent 55%)}
         .land-card{position:relative;max-width:580px;width:100%;text-align:center;display:flex;flex-direction:column;gap:28px;align-items:center;padding:24px}
         .land-icon{font-size:56px;margin-bottom:-4px}
-        .land-title{font-family:'Playfair Display',serif;font-size:54px;font-weight:700;color:#c4955a;letter-spacing:-1px;line-height:1}
+        .land-title{font-family:'Playfair Display',serif;font-size:54px;font-weight:700;color:#000;letter-spacing:-1px;line-height:1}
         .land-sub{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:rgba(42,31,20,.45);margin-top:-12px}
         .land-tagline{font-family:'Crimson Pro',serif;font-style:italic;font-size:18px;color:rgba(42,31,20,.75);max-width:440px;line-height:1.5}
         .land-tips{background:rgba(196,149,90,.06);border:1px solid rgba(196,149,90,.18);border-radius:14px;padding:22px 26px;text-align:left;width:100%;max-width:440px;display:flex;flex-direction:column;gap:14px;margin-top:8px}
@@ -6180,11 +6180,11 @@ export default function App() {
         .land-features-title{font-family:'Playfair Display',serif;font-size:14px;color:#3f6b3a;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:4px}
         .land-feat{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.5;color:#000}
         .land-feat-icon{flex-shrink:0;font-size:18px;line-height:1.4;width:26px;text-align:center}
-        .land-feat strong{color:#c4955a;font-weight:600}
-        .land-tips-title{font-family:'Playfair Display',serif;font-size:14px;color:#c4955a;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:4px}
+        .land-feat strong{color:#000;font-weight:600}
+        .land-tips-title{font-family:'Playfair Display',serif;font-size:14px;color:#000;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:4px}
         .land-tip{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5;color:#000}
-        .land-tip-num{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(196,149,90,.15);border:1px solid rgba(196,149,90,.3);color:#c4955a;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:1px}
-        .land-tip strong{color:#c4955a;font-weight:600}
+        .land-tip-num{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(196,149,90,.15);border:1px solid rgba(196,149,90,.3);color:#000;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:1px}
+        .land-tip strong{color:#000;font-weight:600}
         .land-begin{background:linear-gradient(135deg,#9d4630,#82362a);color:#fff;border:none;padding:16px 48px;border-radius:12px;font-size:18px;font-family:'Crimson Pro',serif;cursor:pointer;transition:opacity .15s,transform .1s;letter-spacing:1px;margin-top:8px;box-shadow:none;transform:translateY(-1px)}
         .land-begin:active{transform:translateY(0)}
         @media (max-width:520px){
@@ -6201,7 +6201,7 @@ export default function App() {
         .auth-card{position:relative;display:flex;flex-direction:column;align-items:center;gap:20px;max-width:440px;width:100%}
         .auth-brand{text-align:center;margin-bottom:8px}
         .auth-brand-icon{font-size:44px}
-        .auth-brand-title{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:#c4955a;line-height:1;margin-top:8px}
+        .auth-brand-title{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:#000;line-height:1;margin-top:8px}
         .auth-brand-sub{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(42,31,20,.45);margin-top:6px}
         /* Account gate. html/body are overflow:hidden for the app shell, so the
            gate has to own its own scrolling or a short viewport clips the form. */
@@ -6248,7 +6248,7 @@ export default function App() {
         .auth-hint{font-family:'Crimson Pro',serif;font-size:12px;color:rgba(42,31,20,.5)}
         .auth-err{font-family:'Crimson Pro',serif;font-size:13px;color:#9d4630;background:rgba(157,70,48,.08);border:1px solid rgba(157,70,48,.25);border-radius:8px;padding:8px 10px}
         .auth-note{font-family:'Crimson Pro',serif;font-size:13px;color:#5d4a2e;background:rgba(196,149,90,.12);border:1px solid rgba(196,149,90,.4);border-radius:8px;padding:8px 10px;line-height:1.45}
-        .auth-switch{background:none;border:none;color:#c4955a;font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;text-decoration:underline;padding:0}
+        .auth-switch{background:none;border:none;color:#000;font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;text-decoration:underline;padding:0}
         .acct-email{font-family:'Crimson Pro',serif;font-size:12px;color:rgba(42,31,20,.6);max-width:340px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         /* Small screens: let the header wrap instead of clipping, hide the
            email (Sign out still shows who you are on tap), and make the tab
@@ -6270,7 +6270,7 @@ export default function App() {
           .auth-modal{max-width:100%;margin:16px 0}
         }
         .adm-head{padding:22px 28px 18px;border-bottom:1px solid rgba(42,31,20,.1);display:flex;align-items:center;justify-content:space-between;gap:16px}
-        .adm-title{font-family:'Playfair Display',serif;font-size:24px;color:#c4955a}
+        .adm-title{font-family:'Playfair Display',serif;font-size:24px;color:#000}
         .adm-x{background:none;border:none;color:rgba(42,31,20,.6);font-size:24px;cursor:pointer;padding:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:all .15s}
         .adm-x:hover{background:rgba(42,31,20,.08);color:#000}
         .adm-body{padding:8px 20px 12px;display:flex;flex-direction:column;gap:0;max-height:65vh;overflow-y:auto}
@@ -6290,7 +6290,7 @@ export default function App() {
         .adm-status{font-size:10px;letter-spacing:.8px;text-transform:uppercase;padding:2px 8px;border-radius:5px;flex-shrink:0}
         .adm-status.approved{background:rgba(90,133,86,.18);color:#2f5a2a;border:1px solid rgba(90,133,86,.3)}
         .adm-status.rejected{background:rgba(196,149,90,.18);color:#9d4630;border:1px solid rgba(196,149,90,.3)}
-        .adm-status.pending{background:rgba(196,149,90,.12);color:#c4955a;border:1px solid rgba(196,149,90,.25)}
+        .adm-status.pending{background:rgba(196,149,90,.12);color:#000;border:1px solid rgba(196,149,90,.25)}
         .adm-status.admin{background:rgba(135,168,196,.15);color:#2f4a6b;border:1px solid rgba(135,168,196,.3)}
         .adm-actions{display:flex;gap:8px;flex-shrink:0}
         .adm-btn{padding:4px 11px;border:none;border-radius:7px;font-size:12px;font-family:'Crimson Pro',serif;cursor:pointer;transition:opacity .15s;font-weight:600}
@@ -6339,7 +6339,7 @@ export default function App() {
           color:#fff !important;
         }
         [class*='cl-footerActionLink'],[class*='cl-formFieldAction']{
-          color:#c4955a !important;
+          color:#000 !important;
         }
       `}</style>
 
@@ -6552,7 +6552,7 @@ export default function App() {
             </div>
 
             <div style={{margin:"2px 0 0",padding:"12px 14px",borderRadius:10,background:"rgba(200,162,118,.10)",border:"1px solid rgba(200,162,118,.28)",fontSize:14,lineHeight:1.55,color:"rgba(0,0,0,.92)"}}>
-              <strong style={{color:"#c4955a"}}>About the audio:</strong> Most books in the library — Патриот, Тёмные аллеи, Анна Каренина and others — come with real human narration, split chapter by chapter so each recording matches the chapter you’re reading. A few are still text-only while we add their audio.
+              <strong style={{color:"#000"}}>About the audio:</strong> Most books in the library — Патриот, Тёмные аллеи, Анна Каренина and others — come with real human narration, split chapter by chapter so each recording matches the chapter you’re reading. A few are still text-only while we add their audio.
             </div>
             <div className="land-tips">
               <div className="land-tips-title">For the best experience</div>
@@ -6847,7 +6847,7 @@ export default function App() {
                               style={{padding:"7px 14px",borderRadius:18,cursor:"pointer",fontSize:14,
                                 border:"1px solid rgba(196,149,90,.5)",
                                 background:active?"#c4955a":"transparent",
-                                color:active?"#fff":"#c4955a",fontWeight:active?600:400}}>
+                                color:active?"#fff":"#000",fontWeight:active?600:400}}>
                               {c.label}
                             </button>
                           );
@@ -6898,7 +6898,7 @@ export default function App() {
                               onClick={function(){ openForumThread(p2.id); }}>
                               {forumCat === "requests" && (
                                 <button title="Upvote" onClick={function(e){ e.stopPropagation(); toggleForumVote(p2.id); }}
-                                  style={{border:"1px solid rgba(196,149,90,.5)",background:"transparent",color:"#c4955a",
+                                  style={{border:"1px solid rgba(196,149,90,.5)",background:"transparent",color:"#000",
                                     borderRadius:8,padding:"4px 9px",cursor:"pointer",fontSize:13,lineHeight:1.2,minWidth:38}}>
                                   ▲<br/>{p2.voteCount || 0}
                                 </button>
@@ -6927,7 +6927,7 @@ export default function App() {
                             {forumCat === "requests" && (
                               <button title="Upvote" onClick={function(){ toggleForumVote(forumThread.id); }}
                                 style={{border:"1px solid rgba(196,149,90,.6)",borderRadius:8,padding:"4px 9px",cursor:"pointer",fontSize:13,lineHeight:1.2,minWidth:38,
-                                  background:forumThread.youVoted?"#c4955a":"transparent",color:forumThread.youVoted?"#fff":"#c4955a"}}>
+                                  background:forumThread.youVoted?"#c4955a":"transparent",color:forumThread.youVoted?"#fff":"#000"}}>
                                 ▲<br/>{forumThread.voteCount || 0}
                               </button>
                             )}
@@ -7412,7 +7412,7 @@ export default function App() {
                 that set this mode is gone. Kept so re-enabling is one flag. */}
             {WORDBANK_ENABLED && mode === "wordbank" && (
               <div className="ss">
-                <div className="sico" style={{color:"#c4955a"}}>🗂️</div>
+                <div className="sico" style={{color:"#000"}}>🗂️</div>
                 <h1 className="sti">Vocab</h1>
 
                 {!wbIndex && <p className="sde">Loading word bank…</p>}
@@ -7501,7 +7501,7 @@ export default function App() {
                 "← Back" buttons walks back one step at a time. */}
             {mode === "grammar" && !gramTopicId && (
               <div className="ss">
-                <div className="sico" style={{color:"#c4955a"}}>📚</div>
+                <div className="sico" style={{color:"#000"}}>📚</div>
                 <h1 className="sti">Grammar Reference</h1>
                 <p className="sde">Pick your level, then choose a topic. Rules and examples on every page.</p>
 
@@ -7571,7 +7571,7 @@ export default function App() {
                                     style={{textAlign:"left",background:"none",border:"none",borderBottom:"1px solid rgba(210,197,175,.06)",padding:"12px 14px",cursor:"pointer",color:"#000",fontFamily:"'Crimson Pro',serif",display:"flex",alignItems:"flex-start",gap:12,transition:"background .12s"}}
                                     onMouseEnter={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.06)"; }}
                                     onMouseLeave={function(e){ e.currentTarget.style.background = "none"; }}>
-                                    <span style={{fontSize:11,fontWeight:600,letterSpacing:1.5,color:"#c4955a",background:"rgba(200,162,118,.12)",padding:"3px 7px",borderRadius:4,flexShrink:0,marginTop:1}}>{t.level}</span>
+                                    <span style={{fontSize:11,fontWeight:600,letterSpacing:1.5,color:"#000",background:"rgba(200,162,118,.12)",padding:"3px 7px",borderRadius:4,flexShrink:0,marginTop:1}}>{t.level}</span>
                                     <span style={{display:"flex",flexDirection:"column",gap:2,flex:1,minWidth:0}}>
                                       <span style={{fontSize:15,fontWeight:500,color:"#000"}}>{t.title}</span>
                                       {t.subtitle && <span style={{fontSize:12,fontStyle:"italic",color:"rgba(0,0,0,.55)",lineHeight:1.45}}>{t.subtitle}</span>}
@@ -7673,7 +7673,7 @@ export default function App() {
                   </div>
 
                   <div className="gramref-body">
-                    <h1 style={{fontFamily:"'Playfair Display',serif",fontSize:32,fontWeight:700,color:"#c4955a",marginBottom:6,lineHeight:1.15}}>{topic.title}</h1>
+                    <h1 style={{fontFamily:"'Playfair Display',serif",fontSize:32,fontWeight:700,color:"#000",marginBottom:6,lineHeight:1.15}}>{topic.title}</h1>
                     {topic.subtitle && <p style={{fontStyle:"italic",fontSize:16,color:"rgba(0,0,0,.65)",marginBottom:24,fontFamily:"'Crimson Pro',serif",lineHeight:1.5}}>{topic.subtitle}</p>}
 
                     {(topic.sections || []).map(function(sec, si) {
@@ -7685,7 +7685,7 @@ export default function App() {
                               {(sec.items || []).map(function(item, ii) {
                                 return (
                                   <li key={ii} style={{paddingLeft:18,position:"relative",lineHeight:1.55,fontSize:15}}>
-                                    <span style={{position:"absolute",left:0,top:0,color:"#c4955a"}}>•</span>
+                                    <span style={{position:"absolute",left:0,top:0,color:"#000"}}>•</span>
                                     {item}
                                   </li>
                                 );
@@ -8054,7 +8054,7 @@ export default function App() {
                           <div style={{padding:"30px 20px",textAlign:"center"}}>
                             <div style={{fontSize:48,marginBottom:12}}>{exScore === exQuestions.length ? "🎉" : exScore >= exQuestions.length * 0.7 ? "👏" : "📚"}</div>
                             <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,color:"#000",marginBottom:8}}>Done!</h2>
-                            <p style={{fontSize:20,color:"#000",marginBottom:6}}>You got <strong style={{color:"#c4955a"}}>{exScore}</strong> of <strong>{exQuestions.length}</strong> correct.</p>
+                            <p style={{fontSize:20,color:"#000",marginBottom:6}}>You got <strong style={{color:"#000"}}>{exScore}</strong> of <strong>{exQuestions.length}</strong> correct.</p>
                             <p style={{fontSize:14,color:"rgba(42,31,20,.5)",marginBottom:28}}>{Math.round(exScore / exQuestions.length * 100)}%</p>
                             <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
                               <button className="btn-p" style={{maxWidth:200}} onClick={exCat === "reading" ? startReadingQuiz : startCaseQuiz}>Try again</button>
@@ -8180,8 +8180,8 @@ export default function App() {
                   // Final score screen
                   <div style={{padding:"40px 20px",textAlign:"center"}}>
                     <div style={{fontSize:48,marginBottom:12}}>{quizScore === quizQuestions.length ? "🎉" : quizScore >= quizQuestions.length * 0.7 ? "👏" : "📚"}</div>
-                    <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,color:"#c4955a",marginBottom:8}}>Quiz Complete!</h2>
-                    <p style={{fontSize:20,color:"#000",marginBottom:6}}>You got <strong style={{color:"#c4955a"}}>{quizScore}</strong> of <strong>{quizQuestions.length}</strong> correct.</p>
+                    <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,color:"#000",marginBottom:8}}>Quiz Complete!</h2>
+                    <p style={{fontSize:20,color:"#000",marginBottom:6}}>You got <strong style={{color:"#000"}}>{quizScore}</strong> of <strong>{quizQuestions.length}</strong> correct.</p>
                     <p style={{fontSize:14,color:"rgba(0,0,0,.5)",marginBottom:28}}>{Math.round(quizScore / quizQuestions.length * 100)}%</p>
                     {quizSkipNote && <p style={{fontSize:12,color:"rgba(0,0,0,.4)",fontStyle:"italic",marginBottom:20,maxWidth:440,margin:"0 auto 20px"}}>{quizSkipNote}</p>}
                     <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
@@ -8200,7 +8200,7 @@ export default function App() {
                     <div style={{textAlign:"center",marginBottom:8}}>
                       <span style={{fontSize:12,color:"rgba(0,0,0,.45)",textTransform:"uppercase",letterSpacing:1.5}}>{quizQuestions[quizIdx].pos}</span>
                     </div>
-                    <div style={{fontSize:42,fontFamily:"'Playfair Display',serif",color:"#c4955a",textAlign:"center",marginBottom:30,fontWeight:600}}>
+                    <div style={{fontSize:42,fontFamily:"'Playfair Display',serif",color:"#000",textAlign:"center",marginBottom:30,fontWeight:600}}>
                       {quizQuestions[quizIdx].word}
                     </div>
                     {/* Multiple choice options */}
@@ -8254,7 +8254,7 @@ export default function App() {
                     onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
                     <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
                       <span style={{fontSize:24}}>📝</span>
-                      <span style={{fontSize:18,fontWeight:600,color:"#c4955a",fontFamily:"'Playfair Display',serif"}}>Multiple Choice Quiz</span>
+                      <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Playfair Display',serif"}}>Multiple Choice Quiz</span>
                     </div>
                     <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>Quick recall test. Each question shows a Russian word with 4 English meaning options (from same-pos vocabulary).</p>
                   </button>
@@ -8309,7 +8309,7 @@ export default function App() {
                                 {v.srcBook && (
                                   <button onClick={function(){ goToSource(v); }}
                                     title={"Open " + (v.srcTitle||"source") + (typeof v.srcChapter==="number" ? " — section " + (v.srcChapter+1) : "")}
-                                    style={{fontSize:11,background:"none",border:"none",color:"#c4955a",cursor:"pointer",fontFamily:"'Inter',sans-serif",padding:0,textDecoration:"underline"}}>
+                                    style={{fontSize:11,background:"none",border:"none",color:"#000",cursor:"pointer",fontFamily:"'Inter',sans-serif",padding:0,textDecoration:"underline"}}>
                                     ↗ {v.srcTitle ? (v.srcTitle.length>22 ? v.srcTitle.slice(0,22)+"…" : v.srcTitle) : "source"}
                                   </button>
                                 )}
@@ -8370,7 +8370,7 @@ export default function App() {
                         <div className="icont" style={{flex:1}}>
                           <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:2}}>
                             <span style={{fontSize:10,letterSpacing:1.5,padding:"2px 6px",border:"1px solid rgba(210,197,175,.25)",borderRadius:3,color:"rgba(0,0,0,.6)"}}>{topic.level}</span>
-                            <span className="ipri" style={{fontSize:15,color:"#c4955a"}}>📚 {topic.title}</span>
+                            <span className="ipri" style={{fontSize:15,color:"#000"}}>📚 {topic.title}</span>
                           </div>
                           {topic.subtitle && <span style={{fontSize:13,fontStyle:"italic",color:"rgba(0,0,0,.55)",fontFamily:"'Crimson Pro',serif"}}>{topic.subtitle}</span>}
                         </div>
