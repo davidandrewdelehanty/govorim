@@ -1672,6 +1672,28 @@ function Pushkin({ size }) {
   return <span style={maskStyle} aria-label="Pushkin"/>;
 }
 
+// Самовар only. A plain form POST to PayPal's own hosted donate page — no
+// script, no amount fixed here, and nothing to do with payment ever touches
+// this site. Rendered on both home screens: the library, which is where
+// everyone lands, and the mode picker behind the logo.
+function DonateBlock() {
+  if (!IS_PUBLIC_SITE) return null;
+  return (
+    <form className="donate" action="https://www.paypal.com/donate" method="post"
+          target="_blank" rel="noopener noreferrer">
+      <input type="hidden" name="business" value="8TRRPQMCNY69A" />
+      <input type="hidden" name="no_recurring" value="1" />
+      <input type="hidden" name="item_name"
+             value="This money will help cover the costs of operating this website and the tools used to add new material and fix bugs." />
+      <input type="hidden" name="currency_code" value="USD" />
+      <button className="donate-btn" type="submit" title="Donate via PayPal — opens in a new tab">
+        Donate to help cover site maintenance costs
+        <span className="sub">any amount appreciated</span>
+      </button>
+    </form>
+  );
+}
+
 
 function FileBtn({ label, onLoad }) {
   var ref = useRef(null);
@@ -5727,6 +5749,15 @@ export default function App() {
         .sico{font-size:54px;line-height:1}
         .sti{font-family:'Playfair Display',serif;font-size:30px;color:#000;font-weight:400}
         .sde{color:rgba(42,31,20,.5);font-size:16px;max-width:500px;line-height:1.6}
+        /* Donate: deliberately quiet — it sits under the four mode cards and
+           must not compete with them, so no gold fill, just a hairline. */
+        .donate{margin-top:2px}
+        .donate-btn{background:none;border:1px solid rgba(196,149,90,.4);color:rgba(42,31,20,.72);
+             font-family:'Crimson Pro',serif;font-size:14px;line-height:1.45;padding:10px 20px;
+             border-radius:10px;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+        .donate-btn:hover{background:rgba(196,149,90,.1);border-color:rgba(196,149,90,.7);color:#000}
+        .donate-btn .sub{display:block;font-size:12.5px;font-style:italic;
+             color:rgba(42,31,20,.5);margin-top:2px}
         .tsel{width:100%;max-width:500px;display:flex;flex-direction:column;gap:12px;text-align:left}
         .slbl{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:rgba(42,31,20,.35)}
         select,input[type="text"],textarea{width:100%;background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.16);color:#000;padding:12px 16px;border-radius:10px;font-family:'Crimson Pro',serif;font-size:16px;outline:none;transition:border-color .2s}
@@ -6893,6 +6924,7 @@ export default function App() {
                     <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Request books, report bugs, and talk with other readers.</div>
                   </button>
                 </div>
+                <DonateBlock />
               </div>
             )}
 
@@ -7268,6 +7300,7 @@ export default function App() {
 
                   {fErr && <p style={{color:"#9d4630",fontSize:13,lineHeight:1.5}}>{fErr}</p>}
                   <button className="btn-g" onClick={function(){ setMode(""); }}>← Back</button>
+                  <DonateBlock />
                 </div>
               </div>
             )}
