@@ -47,10 +47,17 @@ export default function handler(req, res) {
   if (!Array.isArray(list)) return res.status(500).json({ error: "Catalogue is malformed" });
 
   const user = currentUser(req);
-  // The library is gated: no account, no catalogue. Registration is instant
+  const publicSiteEarly = isPublicSite();
+  // Govorim is gated: no account, no catalogue. Registration is instant
   // (api/auth.js signup issues a session straight away), so this is a door,
   // not a waiting room.
-  if (!user) {
+  //
+  // Samovar is not. Its gate offers "continue without an account", and
+  // everything it lists is public-domain and explicitly opted in with
+  // "public": true — restricted entries do not exist on this deployment at
+  // all (see the loop below). A signed-out visitor therefore gets exactly the
+  // same list a signed-in one does; the account only buys vocabulary sync.
+  if (!user && !publicSiteEarly) {
     res.setHeader("Cache-Control", "private, no-store");
     return res.status(401).json({ error: "An account is required to browse the library." });
   }

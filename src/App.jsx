@@ -6739,11 +6739,19 @@ export default function App() {
                     {/* ── List view ── */}
                     {!forumThread && (
                       <div style={{display:"flex",flexDirection:"column",gap:8}}>
-                        {!forumCompose && (
+                        {/* Guests (Самовар's "continue without an account") can read the
+                            forum but not write to it — posting needs a user to attribute
+                            the post to, and /api/user-data rejects a sessionless write. */}
+                        {me && !forumCompose && (
                           <button className="btn-g" style={{alignSelf:"flex-end",padding:"6px 14px",fontSize:13}}
                             onClick={function(){ setForumCompose(true); }}>＋ New post</button>
                         )}
-                        {forumCompose && (
+                        {!me && (
+                          <div style={{alignSelf:"flex-end",fontSize:12.5,fontStyle:"italic",color:"rgba(42,31,20,.55)"}}>
+                            Sign in to post or reply.
+                          </div>
+                        )}
+                        {me && forumCompose && (
                           <div style={{display:"flex",flexDirection:"column",gap:8,padding:14,borderRadius:10,
                             border:"1px solid rgba(196,149,90,.4)",background:"rgba(196,149,90,.07)"}}>
                             <input value={forumTitle} maxLength={120} placeholder={forumCat==="requests"?"Book title and author…":forumCat==="bugs"?"What broke?":"Title…"}
@@ -6812,7 +6820,7 @@ export default function App() {
                               <div style={{fontSize:14,whiteSpace:"pre-wrap",color:"#333"}}>{forumThread.body}</div>
                             </div>
                           </div>
-                          {me.isAdmin && (
+                          {me && me.isAdmin && (
                             <div style={{display:"flex",gap:6,marginTop:10,flexWrap:"wrap"}}>
                               <button className="btn-g" style={{padding:"4px 10px",fontSize:12}} onClick={function(){ forumMod(forumThread.pinned ? "unpin" : "pin"); }}>{forumThread.pinned ? "Unpin" : "Pin"}</button>
                               <button className="btn-g" style={{padding:"4px 10px",fontSize:12}} onClick={function(){ forumMod(forumThread.closed ? "open" : "close"); }}>{forumThread.closed ? "Reopen" : "Close"}</button>
@@ -6832,7 +6840,7 @@ export default function App() {
                           );
                         })}
 
-                        {(!forumThread.closed || me.isAdmin) && (
+                        {me && (!forumThread.closed || me.isAdmin) && (
                           <div style={{display:"flex",flexDirection:"column",gap:6,marginLeft:18}}>
                             <textarea value={forumReply} maxLength={2000} rows={3} placeholder="Write a reply…"
                               onChange={function(e){ setForumReply(e.target.value); }}

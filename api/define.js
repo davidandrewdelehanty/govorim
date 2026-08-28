@@ -26,6 +26,7 @@
 //   the popup renders it whenever definitionSource === "yandex".
 
 import { currentUser } from "../lib/auth.js";
+import { isPublicSite } from "../lib/site.js";
 import {
   loadGlossary, lookupGlossary, glossaryEntry, putGlossaryEntry, dictKey,
   logMiss, listMisses, removeMiss,
@@ -445,9 +446,11 @@ export default async function handler(req, res) {
   const desktopKey = process.env.DESKTOP_KEY;
   const presented = req.headers["x-govorim-key"];
   const isDesktop = !!desktopKey && presented === desktopKey;
-  // Site is account-gated; the anonymous tier below is retained only so the
-  // limiter's shape matches api/chat.js.
-  if (!user && !isDesktop) {
+  // Govorim is account-gated. Samovar is not: its gate offers "continue
+  // without an account", and tap-a-word-for-a-definition is one of the three
+  // things that screen promises, so it has to work signed out. Guests fall
+  // into the limiter's anonymous tier, which already existed.
+  if (!user && !isDesktop && !isPublicSite()) {
     return res.status(401).json({ error: "An account is required. Create one — it is instant and free." });
   }
   const rl = checkRateLimit(ip, !!user || isDesktop);
