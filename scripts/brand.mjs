@@ -28,13 +28,22 @@ const BRAND = path.join(process.cwd(), "brand", "samovar");
 // favicon.svg is both the browser-tab icon and the Android "Add to Home
 // screen" icon (manifest.webmanifest points at it); apple-touch-icon.png is
 // the iOS one.
-const swaps = ["favicon.svg", "apple-touch-icon.png"];
+// robots.txt: the source copy tells everything to keep out, because Говорим is
+// account-gated and has no business in an index. Самовар is public, so its
+// copy opens the site up and points at a sitemap — which only exists here.
+const swaps = ["favicon.svg", "apple-touch-icon.png", "robots.txt", "sitemap.xml"];
 
 const edits = [
   ["index.html", [
-    ["Говорим — Russian Practice", "Самовар — Russian Reading"],
+    ["Говорим — Russian Practice",
+     "Самовар — Russian literature with parallel English"],
     ["Говорим — Russian language practice with EPUB reading and conversational tutoring.",
-     "Самовар — public-domain Russian literature with parallel English translations."],
+     "Read Russian literature in the original with a public-domain English translation beside it and a LibriVox recording to listen along to. Free, no account needed."],
+    // Говорим asks to stay out of the index; Самовар wants in.
+    ['<meta name="robots" content="noindex, nofollow" />',
+     '<meta name="robots" content="index, follow" />'],
+    ["https://govorim.dev/", "https://samovar.live/"],
+    ["https://govorim.dev/apple-touch-icon.png", "https://samovar.live/apple-touch-icon.png"],
   ]],
   ["manifest.webmanifest", [
     ['"name": "Говорим"', '"name": "Самовар"'],
@@ -49,7 +58,11 @@ for (const file of swaps) {
   const from = path.join(BRAND, file);
   const to = path.join(DIST, file);
   if (!fs.existsSync(from)) { console.warn("[brand] missing source, skipped: brand/samovar/" + file); continue; }
-  if (!fs.existsSync(to))   { console.warn("[brand] nothing to replace, skipped: dist/" + file); continue; }
+  // sitemap.xml has no counterpart in the private build — it is added, not
+  // replaced — so only the genuine swaps require an existing target.
+  if (!fs.existsSync(to) && file !== "sitemap.xml") {
+    console.warn("[brand] nothing to replace, skipped: dist/" + file); continue;
+  }
   fs.copyFileSync(from, to);
   console.log("[brand] icon  " + file);
   changed++;
