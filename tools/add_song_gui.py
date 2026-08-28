@@ -5,7 +5,7 @@ Run from WSL:  python3 tools/add_song_gui.py
 Opens a form in your browser; each submit adds a song to public/music/music.json,
 with an optional commit + push. Ctrl+C in the terminal (or the Quit link) stops it.
 """
-import json, re, os, sys, html, subprocess, threading
+import json, re, os, sys, html, subprocess, threading, urllib.parse
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 from email.parser import BytesParser
 from email.policy import default as email_default
@@ -23,7 +23,27 @@ MUSIC_FILES = {
 MUSIC_LABELS = {
     "private": "govorim (private)",
     "public":  "Samovar (public \u2014 public-domain songs only)",
+    "both":    "both \u2014 govorim and Samovar",
 }
+
+# "both" is an ADD-time choice only: it writes the same song into each
+# catalogue and commits both files together. Editing and deleting always name
+# one real catalogue, because the listing rows carry the file they came from.
+def targets(which):
+    return ["private", "public"] if which == "both" else [which]
+
+def other(which):
+    """The catalogue a song can be copied ACROSS to."""
+    return "public" if which == "private" else "private"
+
+def song_keys(which):
+    """{(artist_key, lowercased title)} already in a catalogue."""
+    try:
+        data = load_music(which)
+    except Exception:
+        return set()
+    return {(artist_key(a["artist"]), (sg.get("title") or "").strip().lower())
+            for a in data for sg in (a.get("songs") or [])}
 
 MUSIC_REL = {
     "private": "public/music/music.json",
@@ -48,6 +68,22 @@ def load_music(which="private"):
 def save_music(which, data):
     json.dump(data, open(music_path(which), "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
+
+def counts(data):
+    """(artists, songs) for the catalogue header."""
+    return len(data), sum(len(a.get("songs") or []) for a in data)
+
+def git_publish(which, message):
+    """Commit and push the catalogue file(s). Returns (ok, transcript)."""
+    out = []
+    adds = [["git", "add", MUSIC_REL[w]] for w in targets(which)]
+    for c in (adds + [["git", "commit", "-m", message],
+                      ["git", "push"]]):
+        r = subprocess.run(c, cwd=REPO, capture_output=True, text=True)
+        out.append("$ " + " ".join(c) + "\n" + r.stdout + r.stderr)
+        if r.returncode != 0:
+            return False, "\n".join(out)
+    return True, "\n".join(out)
 
 # Artists whose name has more than one spelling in the wild. Key = normalised
 # form (lowercase, punctuation and spacing stripped), value = the spelling the
@@ -102,18 +138,223 @@ STYLE = """
  a{color:#c4955a}
  .quit{float:right;font-size:.85em}
  .hint{color:#7a6d58;font-size:.85em;margin-top:2px}
+ h2{color:#c4955a;font-size:1.15em;font-weight:600;margin:38px 0 2px;
+    border-top:1px solid #3a3226;padding-top:22px}
+ .count{color:#7a6d58;font-size:.72em;font-weight:400;font-family:monospace}
+ .empty{color:#7a6d58;font-style:italic;margin-top:10px}
+ .art{margin-top:18px}
+ .art-name{color:#e8ddcb;font-weight:600;font-size:1.02em;
+     border-bottom:1px solid #3a3226;padding-bottom:5px;margin-bottom:2px}
+ .song{display:flex;align-items:baseline;gap:10px;padding:7px 0;
+     border-bottom:1px solid #262019}
+ .song:last-child{border-bottom:none}
+ .s-title{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ .s-meta{color:#7a6d58;font-size:.78em;font-family:monospace;flex-shrink:0}
+ .song form{margin:0;flex-shrink:0}
+ .del{background:none;border:1px solid #7a4444;color:#c07a6a;
+     padding:3px 11px;font-size:.8em;font-weight:400;border-radius:5px}
+ .del:hover{background:#3a2020;color:#e0a090}
+ .edit{background:none;border:1px solid #4a3f30;color:#a89880;
+     padding:3px 11px;font-size:.8em;font-weight:400;border-radius:5px}
+ .edit:hover{background:#26211a;color:#e8ddcb;border-color:#c4955a}
+ .editing{background:#241f16;border:1px solid #c4955a;border-radius:6px;
+     padding:14px 18px;margin:16px 0;color:#c4955a}
+ .editing b{color:#e8ddcb}
+ .copybox{margin:0 6px 0 0;flex-shrink:0}
+ .copyspacer{display:inline-block;width:13px;height:1px}
+ .copybar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+     background:#20251c;border:1px solid #3f5136;border-radius:6px;padding:11px 14px;margin-top:12px}
+ .copybar button{background:#5a8556;color:#eaf3e8;font-size:.85em;padding:6px 14px}
+ .copybar button:hover{background:#6c9b67}
+ .copybar .lbl{color:#9db396;font-size:.85em}
+ .copybar .none{color:#7a6d58;font-size:.85em;font-style:italic}
+ .selall{background:none;border:1px solid #4a3f30;color:#a89880;font-size:.8em;padding:4px 10px}
+ .confirm{background:#3a2020;border:1px solid #7a4444;border-radius:6px;padding:18px 20px;margin:18px 0}
+ .confirm b{color:#e8ddcb}
+ .cancel{background:none;border:1px solid #4a3f30;color:#a89880}
+ .cancel:hover{background:#26211a;color:#e8ddcb}
 </style>
 """
+
+def catalogue_html(which):
+    """The catalogue(s) as they stand. With "both" selected each file is listed
+    separately, so every edit/delete button still names one real catalogue."""
+    if which == "both":
+        return "".join(catalogue_html(w) for w in targets(which))
+    try:
+        data = load_music(which)
+    except Exception as e:
+        return '<h2>Current catalogue</h2><div class="err">Couldn\'t read %s: %s</div>' % (
+            html.escape(os.path.basename(music_path(which))), html.escape(str(e)))
+
+    n_art, n_song = counts(data)
+    head = '<h2>Current catalogue <span class="count">%s &middot; %d artist%s &middot; %d song%s</span></h2>' % (
+        html.escape(os.path.basename(music_path(which))),
+        n_art, "" if n_art == 1 else "s",
+        n_song, "" if n_song == 1 else "s")
+
+    if not data:
+        return head + '<div class="empty">Nothing in this catalogue yet.</div>'
+
+    dest = other(which)
+    have_there = song_keys(dest)
+    formid = "copy-" + which
+    missing = 0
+
+    out = [head]
+    for a in sorted(data, key=lambda x: (x.get("artist") or "").lower()):
+        songs = a.get("songs") or []
+        out.append('<div class="art"><div class="art-name">%s <span class="count">%d</span></div>'
+                   % (html.escape(a.get("artist") or "—"), len(songs)))
+        for sg in songs:
+            lines = len((sg.get("lyrics") or "").strip().splitlines())
+            key = (artist_key(a.get("artist") or ""), (sg.get("title") or "").strip().lower())
+            if key in have_there:
+                box = '<span class="copybox copyspacer"></span>'
+            else:
+                missing += 1
+                box = ('<input class="copybox cb-%s" type="checkbox" form="%s" name="copy" '
+                       'value="%s" title="copy to %s">'
+                       % (which, formid,
+                          html.escape((a.get("artist") or "") + "|||" + (sg.get("title") or "")),
+                          html.escape(MUSIC_LABELS[dest])))
+            out.append(
+                '<div class="song">'
+                + box +
+                '<span class="s-title">%s</span>'
+                '<span class="s-meta">%s &middot; %d line%s</span>'
+                '<form method="post" action="/edit" enctype="multipart/form-data">'
+                '<input type="hidden" name="catalogue" value="%s">'
+                '<input type="hidden" name="artist" value="%s">'
+                '<input type="hidden" name="title" value="%s">'
+                '<button type="submit" class="edit">edit</button>'
+                '</form>'
+                '<form method="post" action="/delete" enctype="multipart/form-data">'
+                '<input type="hidden" name="catalogue" value="%s">'
+                '<input type="hidden" name="artist" value="%s">'
+                '<input type="hidden" name="title" value="%s">'
+                '<button type="submit" class="del">delete</button>'
+                '</form></div>'
+                % (html.escape(sg.get("title") or "—"),
+                   html.escape(sg.get("youtube") or "no id"),
+                   lines, "" if lines == 1 else "s",
+                   html.escape(which),
+                   html.escape(a.get("artist") or ""),
+                   html.escape(sg.get("title") or ""),
+                   html.escape(which),
+                   html.escape(a.get("artist") or ""),
+                   html.escape(sg.get("title") or "")))
+        out.append('</div>')
+
+    # Copying across catalogues. The form sits OUTSIDE the song rows and the
+    # checkboxes point at it by id — the rows already carry their own
+    # edit/delete forms, and HTML forms cannot nest.
+    out.append('<form class="copybar" id="%s" method="post" action="/copy" '
+               'enctype="multipart/form-data">' % formid)
+    out.append('<input type="hidden" name="catalogue" value="%s">' % html.escape(which))
+    if missing:
+        # No "<" in the handler: it sits in an HTML attribute.
+        out.append('<button type="button" class="selall" onclick="'
+                   "var b=document.getElementsByClassName('cb-%s');"
+                   "for(var i=b.length;i--;)b[i].checked=!b[i].checked;"
+                   '">select all</button>' % which)
+        out.append('<span class="lbl">%d song%s not in %s</span>'
+                   % (missing, "" if missing == 1 else "s", html.escape(MUSIC_LABELS[dest])))
+        out.append('<button type="submit">Copy checked \u2192 %s</button>'
+                   % html.escape("govorim" if dest == "private" else "Samovar"))
+        out.append('<label class="chk"><input type="checkbox" name="push" checked> '
+                   'commit &amp; push</label>')
+    else:
+        out.append('<span class="none">Every song here is already in %s.</span>'
+                   % html.escape(MUSIC_LABELS[dest]))
+    out.append('</form>')
+    return "".join(out)
+
+def edit_page(which, orig_artist, orig_title, song, msg=""):
+    """The add form, pre-filled, writing back over one existing song."""
+    artists = ""
+    try:
+        artists = "".join('<option value="%s">' % html.escape(a["artist"])
+                          for a in load_music(which))
+    except Exception:
+        pass
+    return """<!doctype html><meta charset="utf-8"><title>Govorim \u2014 edit song</title>%s
+<a class="quit" href="/quit">quit</a>
+<h1>Edit a song</h1>%s
+<div class="editing">Editing <b>%s \u2014 %s</b> in <b>%s</b>.
+Change the artist to move the song to a different one.</div>
+<form method="post" action="/edit/save" enctype="multipart/form-data">
+ <input type="hidden" name="catalogue" value="%s">
+ <input type="hidden" name="orig_artist" value="%s">
+ <input type="hidden" name="orig_title" value="%s">
+ <label>Artist</label>
+ <input type="text" name="artist" list="artists" value="%s" required>
+ <datalist id="artists">%s</datalist>
+ <label>Song title</label>
+ <input type="text" name="title" value="%s" required>
+ <label>YouTube link (or bare video ID)</label>
+ <input type="text" name="youtube" value="%s" required>
+ <label>Lyrics</label>
+ <textarea name="lyrics" required>%s</textarea>
+ <label>\u2026or replace them from a .txt file</label>
+ <input type="file" name="lyricsfile" accept=".txt">
+ <div class="row">
+  <button type="submit">Save changes</button>
+  <a href="/?catalogue=%s"><button type="button" class="cancel">Cancel</button></a>
+  <label class="chk"><input type="checkbox" name="push" checked> commit &amp; push after saving</label>
+ </div>
+</form>""" % (STYLE, msg,
+              html.escape(orig_artist), html.escape(orig_title),
+              html.escape(MUSIC_LABELS[which]),
+              html.escape(which),
+              html.escape(orig_artist), html.escape(orig_title),
+              html.escape(song.get("artist_shown") or orig_artist),
+              artists,
+              html.escape(song.get("title") or ""),
+              html.escape(song.get("youtube") or ""),
+              html.escape(song.get("lyrics") or ""),
+              html.escape(which))
+
+def confirm_page(which, artist, title, lines):
+    """Deleting is not undoable, so it takes a second click."""
+    return """<!doctype html><meta charset="utf-8"><title>Govorim — delete song</title>%s
+<a class="quit" href="/quit">quit</a>
+<h1>Delete a song</h1>
+<div class="confirm">
+ <p>Remove <b>%s &mdash; %s</b> (%d line%s of lyrics) from <b>%s</b>?</p>
+ <p>This rewrites the catalogue file. There's no undo inside this tool &mdash;
+ recovery means <code>git checkout</code> on the file.</p>
+</div>
+<form method="post" action="/delete/confirm" enctype="multipart/form-data">
+ <input type="hidden" name="catalogue" value="%s">
+ <input type="hidden" name="artist" value="%s">
+ <input type="hidden" name="title" value="%s">
+ <div class="row">
+  <button type="submit" class="del">Delete it</button>
+  <a href="/?catalogue=%s"><button type="button" class="cancel">Cancel</button></a>
+  <label class="chk"><input type="checkbox" name="push" checked> commit &amp; push after deleting</label>
+ </div>
+</form>""" % (STYLE, html.escape(artist), html.escape(title),
+              lines, "" if lines == 1 else "s",
+              html.escape(MUSIC_LABELS[which]),
+              html.escape(which), html.escape(artist), html.escape(title),
+              html.escape(which))
 
 def form_page(msg="", which="private"):
     artists = ""
     try:
-        artists = "".join('<option value="%s">' % html.escape(a["artist"]) for a in load_music(which))
+        seen, opts = set(), []
+        for w in targets(which):
+            for a in load_music(w):
+                if a["artist"] not in seen:
+                    seen.add(a["artist"])
+                    opts.append('<option value="%s">' % html.escape(a["artist"]))
+        artists = "".join(opts)
     except Exception:
         pass
     options = "".join(
         '<option value="%s"%s>%s</option>' % (k, " selected" if k == which else "", MUSIC_LABELS[k])
-        for k in ("private", "public")
+        for k in ("private", "public", "both")
     )
     return """<!doctype html><meta charset="utf-8"><title>Govorim — add song</title>%s
 <a class="quit" href="/quit">quit</a>
@@ -138,7 +379,8 @@ def form_page(msg="", which="private"):
   <button type="submit">Add song</button>
   <label class="chk"><input type="checkbox" name="push" checked> commit &amp; push after adding</label>
  </div>
-</form>""" % (STYLE, msg, options, artists)
+</form>
+%s""" % (STYLE, msg, options, artists, catalogue_html(which))
 
 class H(BaseHTTPRequestHandler):
     def log_message(self, *a): pass
@@ -163,26 +405,324 @@ class H(BaseHTTPRequestHandler):
             which = "private"
         self._send(form_page("", which))
 
-    def do_POST(self):
+    def _parse(self):
+        """Fields from either a multipart form (the add form, which carries a
+        file) or a plain urlencoded one."""
         body = self.rfile.read(int(self.headers.get("Content-Length", 0)))
         ctype = self.headers.get("Content-Type", "")
-        msg = BytesParser(policy=email_default).parsebytes(
-            b"Content-Type: " + ctype.encode() + b"\r\n\r\n" + body)
-        fields, filebytes = {}, None
-        for part in (msg.iter_parts() if msg.is_multipart() else []):
-            name = part.get_param("name", header="content-disposition")
-            if not name:
-                continue
-            if part.get_filename():
-                if name == "lyricsfile":
-                    filebytes = part.get_payload(decode=True)
-            else:
-                payload = part.get_payload(decode=True) or b""
-                fields[name] = payload.decode("utf-8", errors="replace")
+        # `multi` keeps EVERY value for a repeated name — the copy form sends
+        # one "copy" field per ticked song, and a plain dict would keep only
+        # the last one.
+        fields, multi, filebytes = {}, {}, None
+        if "multipart/" in ctype:
+            msg = BytesParser(policy=email_default).parsebytes(
+                b"Content-Type: " + ctype.encode() + b"\r\n\r\n" + body)
+            for part in (msg.iter_parts() if msg.is_multipart() else []):
+                name = part.get_param("name", header="content-disposition")
+                if not name:
+                    continue
+                if part.get_filename():
+                    if name == "lyricsfile":
+                        filebytes = part.get_payload(decode=True)
+                else:
+                    payload = part.get_payload(decode=True) or b""
+                    val = payload.decode("utf-8", errors="replace")
+                    fields[name] = val
+                    multi.setdefault(name, []).append(val)
+        else:
+            for k, v in urllib.parse.parse_qsl(body.decode("utf-8", errors="replace"),
+                                               keep_blank_values=True):
+                fields[k] = v
+                multi.setdefault(k, []).append(v)
+        return fields, multi, filebytes
 
-        which = fields.get("catalogue", DEFAULT_CATALOGUE).strip()
-        if which not in MUSIC_FILES:
-            which = "private"
+    def _which(self, fields):
+        w = (fields.get("catalogue") or DEFAULT_CATALOGUE).strip()
+        return w if (w in MUSIC_FILES or w == "both") else "private"
+
+    def _find(self, data, artist, title):
+        """Locate an (artist entry, song) pair by exact stored spelling."""
+        entry = next((a for a in data if (a.get("artist") or "") == artist), None)
+        if entry is None:
+            return None, None
+        song = next((sg for sg in (entry.get("songs") or [])
+                     if (sg.get("title") or "") == title), None)
+        return entry, song
+
+    def do_POST(self):
+        fields, multi, filebytes = self._parse()
+        if self.path.startswith("/copy"):
+            return self.act_copy(fields, multi)
+        if self.path.startswith("/delete/confirm"):
+            return self.act_delete(fields)
+        if self.path.startswith("/delete"):
+            return self.ask_delete(fields)
+        if self.path.startswith("/edit/save"):
+            return self.act_edit(fields, filebytes)
+        if self.path.startswith("/edit"):
+            return self.ask_edit(fields)
+        return self.act_add(fields, filebytes)
+
+    def ask_edit(self, fields):
+        which = self._which(fields)
+        artist = fields.get("artist", "").strip()
+        title = fields.get("title", "").strip()
+        try:
+            data = load_music(which)
+        except Exception as e:
+            return self._send(form_page(
+                '<div class="err">Couldn\'t read the catalogue: %s</div>'
+                % html.escape(str(e)), which))
+        entry, song = self._find(data, artist, title)
+        if song is None:
+            return self._send(form_page(
+                '<div class="err">Couldn\'t find \u00ab%s\u00bb by %s \u2014 the catalogue may have '
+                'changed since this page was loaded. Reload and try again.</div>'
+                % (html.escape(title), html.escape(artist)), which))
+        self._send(edit_page(which, artist, title, song))
+
+    def act_edit(self, fields, filebytes):
+        which = self._which(fields)
+        orig_artist = fields.get("orig_artist", "").strip()
+        orig_title = fields.get("orig_title", "").strip()
+        artist = fields.get("artist", "").strip()
+        title = fields.get("title", "").strip()
+        yt = fields.get("youtube", "").strip()
+        lyrics = fields.get("lyrics", "").strip()
+        push = "push" in fields
+
+        if filebytes:
+            lyrics = filebytes.decode("utf-8-sig", errors="replace").strip()
+        lyrics = lyrics.replace("\r\n", "\n")
+
+        try:
+            data = load_music(which)
+        except Exception as e:
+            return self._send(form_page(
+                '<div class="err">Couldn\'t read the catalogue: %s</div>'
+                % html.escape(str(e)), which))
+
+        old_entry, song = self._find(data, orig_artist, orig_title)
+        if song is None:
+            return self._send(form_page(
+                '<div class="err">\u00ab%s\u00bb by %s is no longer in the catalogue \u2014 '
+                'nothing was changed.</div>'
+                % (html.escape(orig_title), html.escape(orig_artist)), which))
+
+        def back(m):
+            shown = dict(song)
+            shown["title"] = title or song.get("title")
+            shown["youtube"] = yt or song.get("youtube")
+            shown["lyrics"] = lyrics or song.get("lyrics")
+            shown["artist_shown"] = artist or orig_artist
+            self._send(edit_page(which, orig_artist, orig_title, shown,
+                                 '<div class="err">%s</div>' % html.escape(m)))
+
+        if not (artist and title and yt):
+            return back("Artist, title and YouTube link are all required.")
+        if not lyrics:
+            return back("Lyrics can't be empty. To remove the song entirely, use delete.")
+        vid = yt_id(yt)
+        if not vid:
+            return back("Couldn't extract a YouTube video ID from: " + yt)
+
+        artist = canon_artist(artist)
+        dest = next((a for a in data if artist_key(a["artist"]) == artist_key(artist)), None)
+        moving = dest is not old_entry
+
+        clash = next((sg for sg in ((dest or {}).get("songs") or [])
+                      if sg is not song and (sg.get("title") or "").strip().lower() == title.lower()), None)
+        if clash is not None:
+            return back("\u00ab%s\u00bb already exists for %s \u2014 not overwriting." % (title, dest["artist"]))
+
+        song["title"] = title
+        song["youtube"] = vid
+        song["lyrics"] = lyrics
+
+        dropped = False
+        if moving:
+            old_entry["songs"] = [sg for sg in old_entry["songs"] if sg is not song]
+            if dest is None:
+                dest = {"artist": artist, "songs": []}
+                data.append(dest)
+            elif canon_artist(dest["artist"]) != dest["artist"]:
+                dest["artist"] = canon_artist(dest["artist"])
+            dest["songs"].append(song)
+            if not old_entry["songs"]:
+                data = [a for a in data if a is not old_entry]
+                dropped = True
+        save_music(which, data)
+
+        changes = []
+        if artist_key(orig_artist) != artist_key(artist):
+            changes.append("artist \u2192 %s" % html.escape(dest["artist"]))
+        if orig_title != title:
+            changes.append("title \u2192 %s" % html.escape(title))
+        msg = '<div class="ok">Saved <b>%s \u2014 %s</b>%s.%s</div>' % (
+            html.escape(dest["artist"] if moving else old_entry["artist"]),
+            html.escape(title),
+            (" (" + ", ".join(changes) + ")") if changes else "",
+            (" %s had no songs left, so the artist was removed." % html.escape(orig_artist)) if dropped else "")
+
+        if push:
+            site = "Samovar" if which == "public" else "Govorim"
+            ok, out = git_publish(which, "%s music: edit %s \u2014 %s" % (site, artist, title))
+            if ok:
+                msg += '<div class="ok">Committed and pushed \u2014 live after Vercel redeploys.</div>'
+            else:
+                msg += ('<div class="err">git step failed \u2014 the change IS saved in %s, '
+                        'but you\'ll need to push manually.</div>'
+                        % html.escape(os.path.basename(music_path(which))))
+            msg += "<pre>%s</pre>" % html.escape(out)
+        else:
+            msg += ('<div class="ok">Saved to %s (not committed).</div>'
+                    % html.escape(os.path.basename(music_path(which))))
+        self._send(form_page(msg, which))
+
+    def act_copy(self, fields, multi):
+        """Copy ticked songs into the other catalogue, leaving the source alone."""
+        which = self._which(fields)
+        if which == "both":
+            return self._send(form_page(
+                '<div class="err">Pick one catalogue to copy FROM.</div>', which))
+        dest = other(which)
+        picks = multi.get("copy") or []
+        push = "push" in fields
+        if not picks:
+            return self._send(form_page(
+                '<div class="err">Nothing ticked \u2014 tick the songs to copy first.</div>', which))
+        try:
+            src_data = load_music(which)
+            dst_data = load_music(dest)
+        except Exception as e:
+            return self._send(form_page(
+                '<div class="err">Couldn\'t read a catalogue: %s</div>' % html.escape(str(e)), which))
+
+        added, skipped, gone = [], [], []
+        for pick in picks:
+            artist, _, title = pick.partition("|||")
+            artist, title = artist.strip(), title.strip()
+            entry, song = None, None
+            for a in src_data:
+                if artist_key(a["artist"]) == artist_key(artist):
+                    entry = a
+                    song = next((sg for sg in (a.get("songs") or [])
+                                 if (sg.get("title") or "").strip() == title), None)
+                    break
+            if song is None:
+                gone.append("%s \u2014 %s" % (artist, title)); continue
+            want = canon_artist(entry["artist"])
+            dst_entry = next((a for a in dst_data if artist_key(a["artist"]) == artist_key(want)), None)
+            if dst_entry is not None and any(
+                    (sg.get("title") or "").strip().lower() == title.lower()
+                    for sg in dst_entry["songs"]):
+                skipped.append("%s \u2014 %s" % (want, title)); continue
+            if dst_entry is None:
+                dst_entry = {"artist": want, "songs": []}
+                dst_data.append(dst_entry)
+            dst_entry["songs"].append({"title": song.get("title"),
+                                       "youtube": song.get("youtube"),
+                                       "lyrics": song.get("lyrics")})
+            added.append("%s \u2014 %s" % (want, title))
+
+        if added:
+            save_music(dest, dst_data)
+
+        msg = ""
+        if added:
+            msg += ('<div class="ok">Copied %d song%s into <b>%s</b>:<br>%s</div>'
+                    % (len(added), "" if len(added) == 1 else "s",
+                       html.escape(os.path.basename(music_path(dest))),
+                       "<br>".join(html.escape(x) for x in added)))
+        if skipped:
+            msg += ('<div class="ok">Already there, left alone: %s</div>'
+                    % "<br>".join(html.escape(x) for x in skipped))
+        if gone:
+            msg += ('<div class="err">No longer in the source catalogue: %s</div>'
+                    % "<br>".join(html.escape(x) for x in gone))
+
+        if added and push:
+            site = "Govorim" if dest == "private" else "Samovar"
+            label = added[0] if len(added) == 1 else "%d songs" % len(added)
+            ok, out = git_publish(dest, "%s music: copy %s from %s"
+                                  % (site, label,
+                                     "Samovar" if which == "public" else "govorim"))
+            if ok:
+                msg += '<div class="ok">Committed and pushed \u2014 live after Vercel redeploys.</div>'
+            else:
+                msg += ('<div class="err">git step failed \u2014 the songs ARE saved in %s, '
+                        'but you\'ll need to push manually.</div>'
+                        % html.escape(os.path.basename(music_path(dest))))
+            msg += "<pre>%s</pre>" % html.escape(out)
+        elif added:
+            msg += ('<div class="ok">Saved to %s (not committed).</div>'
+                    % html.escape(os.path.basename(music_path(dest))))
+        self._send(form_page(msg, which))
+
+    def ask_delete(self, fields):
+        which = self._which(fields)
+        artist = fields.get("artist", "").strip()
+        title = fields.get("title", "").strip()
+        try:
+            data = load_music(which)
+        except Exception as e:
+            return self._send(form_page(
+                '<div class="err">Couldn\'t read the catalogue: %s</div>'
+                % html.escape(str(e)), which))
+        entry, song = self._find(data, artist, title)
+        if song is None:
+            return self._send(form_page(
+                '<div class="err">Couldn\'t find \u00ab%s\u00bb by %s \u2014 the catalogue may have '
+                'changed since this page was loaded. Reload and try again.</div>'
+                % (html.escape(title), html.escape(artist)), which))
+        lines = len((song.get("lyrics") or "").strip().splitlines())
+        self._send(confirm_page(which, artist, title, lines))
+
+    def act_delete(self, fields):
+        which = self._which(fields)
+        artist = fields.get("artist", "").strip()
+        title = fields.get("title", "").strip()
+        push = "push" in fields
+        try:
+            data = load_music(which)
+        except Exception as e:
+            return self._send(form_page(
+                '<div class="err">Couldn\'t read the catalogue: %s</div>'
+                % html.escape(str(e)), which))
+        entry, song = self._find(data, artist, title)
+        if song is None:
+            return self._send(form_page(
+                '<div class="err">\u00ab%s\u00bb is no longer listed under %s \u2014 nothing was changed.</div>'
+                % (html.escape(title), html.escape(artist)), which))
+
+        entry["songs"] = [sg for sg in entry["songs"] if sg is not song]
+        dropped = not entry["songs"]
+        if dropped:
+            data = [a for a in data if a is not entry]
+        save_music(which, data)
+
+        msg = '<div class="ok">Deleted <b>%s \u2014 %s</b>.%s</div>' % (
+            html.escape(artist), html.escape(title),
+            (" That was the last song by %s, so the artist was removed too."
+             % html.escape(artist)) if dropped else "")
+
+        if push:
+            site = "Samovar" if which == "public" else "Govorim"
+            ok, out = git_publish(which, "%s music: remove %s \u2014 %s" % (site, artist, title))
+            if ok:
+                msg += '<div class="ok">Committed and pushed \u2014 gone after Vercel redeploys.</div>'
+            else:
+                msg += ('<div class="err">git step failed \u2014 the song IS removed from %s, '
+                        'but you\'ll need to push manually.</div>'
+                        % html.escape(os.path.basename(music_path(which))))
+            msg += "<pre>%s</pre>" % html.escape(out)
+        else:
+            msg += ('<div class="ok">Saved to %s (not committed).</div>'
+                    % html.escape(os.path.basename(music_path(which))))
+        self._send(form_page(msg, which))
+
+    def act_add(self, fields, filebytes):
+        which = self._which(fields)
         artist = fields.get("artist", "").strip()
         title = fields.get("title", "").strip()
         yt = fields.get("youtube", "").strip()
@@ -204,47 +744,51 @@ class H(BaseHTTPRequestHandler):
         if not vid:
             return fail("Couldn't extract a YouTube video ID from: " + yt)
 
-        try:
-            data = load_music(which)
-        except Exception as e:
-            return fail("Couldn't read music.json: %s" % e)
-
         artist = canon_artist(artist)
-        entry = next((a for a in data if artist_key(a["artist"]) == artist_key(artist)), None)
-        if entry is None:
-            entry = {"artist": artist, "songs": []}
-            data.append(entry)
-        elif canon_artist(entry["artist"]) != entry["artist"]:
-            # An entry saved under an older spelling is renamed to the official one.
-            entry["artist"] = canon_artist(entry["artist"])
-        if any(s["title"].strip().lower() == title.lower() for s in entry["songs"]):
-            return fail("«%s» already exists for %s — not overwriting." % (title, entry["artist"]))
+        # Read every target BEFORE writing any, and refuse the whole add if the
+        # song is already in one of them — a half-published song is worse than
+        # a rejected one.
+        loaded = []
+        for w in targets(which):
+            try:
+                data = load_music(w)
+            except Exception as e:
+                return fail("Couldn't read %s: %s" % (os.path.basename(music_path(w)), e))
+            entry = next((a for a in data if artist_key(a["artist"]) == artist_key(artist)), None)
+            if entry is not None and any(
+                    sg["title"].strip().lower() == title.lower() for sg in entry["songs"]):
+                return fail("«%s» already exists for %s in %s — not overwriting."
+                            % (title, entry["artist"], MUSIC_LABELS[w]))
+            loaded.append((w, data, entry))
 
-        entry["songs"].append({"title": title, "youtube": vid, "lyrics": lyrics})
-        save_music(which, data)
+        shown = artist
+        for w, data, entry in loaded:
+            if entry is None:
+                entry = {"artist": artist, "songs": []}
+                data.append(entry)
+            elif canon_artist(entry["artist"]) != entry["artist"]:
+                # An entry saved under an older spelling is renamed to the official one.
+                entry["artist"] = canon_artist(entry["artist"])
+            entry["songs"].append({"title": title, "youtube": vid, "lyrics": lyrics})
+            save_music(w, data)
+            shown = entry["artist"]
 
-        msg = '<div class="ok">Added <b>%s — %s</b> (video %s).</div>' % (
-            html.escape(entry["artist"]), html.escape(title), vid)
+        where = " and ".join(os.path.basename(music_path(w)) for w in targets(which))
+        msg = '<div class="ok">Added <b>%s — %s</b> (video %s) to %s.</div>' % (
+            html.escape(shown), html.escape(title), vid, html.escape(where))
 
         if push:
-            site = "Samovar" if which == "public" else "Govorim"
-            cmds = [["git", "add", MUSIC_REL[which]],
-                    ["git", "commit", "-m", "%s music: add %s — %s" % (site, artist, title)],
-                    ["git", "push"]]
-            out = []
-            for c in cmds:
-                r = subprocess.run(c, cwd=REPO, capture_output=True, text=True)
-                out.append("$ " + " ".join(c) + "\n" + r.stdout + r.stderr)
-                if r.returncode != 0:
-                    msg += ('<div class="err">git step failed — the song IS saved in %s, '
-                            'but you\'ll need to push manually.</div>'
-                            % html.escape(os.path.basename(music_path(which))))
-                    break
-            else:
+            site = ("Govorim + Samovar" if which == "both"
+                    else "Samovar" if which == "public" else "Govorim")
+            ok, out = git_publish(which, "%s music: add %s — %s" % (site, artist, title))
+            if ok:
                 msg += '<div class="ok">Committed and pushed — live after Vercel redeploys.</div>'
-            msg += "<pre>%s</pre>" % html.escape("\n".join(out))
+            else:
+                msg += ('<div class="err">git step failed — the song IS saved in %s, '
+                        'but you\'ll need to push manually.</div>' % html.escape(where))
+            msg += "<pre>%s</pre>" % html.escape(out)
         else:
-            msg += '<div class="ok">Saved to %s (not committed).</div>' % html.escape(os.path.basename(music_path(which)))
+            msg += '<div class="ok">Saved to %s (not committed).</div>' % html.escape(where)
 
         self._send(form_page(msg, which))
 
