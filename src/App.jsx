@@ -1751,7 +1751,15 @@ export default function App() {
   var sayAudioRef             = useRef(null);
   var [authReady, setAuthReady] = useState(false); // false until /api/auth/me answers
   var [authOpen, setAuthOpen] = useState(false);  // sign-in panel visible
-  var [authMode, setAuthMode] = useState("signup"); // "login" | "signup" — the gate leads with registration
+  // "login" | "signup". Govorim leads with registration; Самовар leads with
+  // sign-in (returning readers outnumber new ones there) — Dave, Aug 2026.
+  var [authMode, setAuthMode] = useState(IS_PUBLIC_SITE ? "login" : "signup");
+  // Самовар only: the gate can be skipped. Remembered per device so returning
+  // guests go straight in; signing in later still works from the header.
+  var [guest, setGuest] = useState(function() {
+    try { return IS_PUBLIC_SITE && localStorage.getItem("samovar_guest") === "1"; }
+    catch (e) { return false; }
+  });
   var [authEmail, setAuthEmail]       = useState("");
   var [authPassword, setAuthPassword] = useState("");
   var [authBusy, setAuthBusy] = useState(false);
@@ -6077,6 +6085,10 @@ export default function App() {
         .gate-feat{display:flex;gap:10px;align-items:flex-start;font-family:'Crimson Pro',serif;font-size:14px;line-height:1.45;color:rgba(42,31,20,.8)}
         .gate-feat span{flex-shrink:0;width:22px;text-align:center}
         .gate-note{font-family:'Crimson Pro',serif;font-style:italic;font-size:13px;color:rgba(42,31,20,.5);text-align:center;max-width:400px;margin:0 auto}
+        .gate-guest{margin-top:14px;padding-top:14px;border-top:1px solid rgba(42,31,20,.1);display:flex;flex-direction:column;gap:6px;align-items:center}
+        .gate-guest-btn{background:none;border:1px solid rgba(42,31,20,.22);color:rgba(42,31,20,.75);padding:9px 18px;border-radius:8px;font-size:14px;cursor:pointer;font-family:'Crimson Pro',serif}
+        .gate-guest-btn:hover{color:#000;border-color:rgba(196,149,90,.55)}
+        .gate-guest-note{font-family:'Crimson Pro',serif;font-style:italic;font-size:12px;color:rgba(42,31,20,.5);text-align:center;max-width:340px}
         @media (max-width:560px){
           .auth-page{padding:26px 16px}
           .auth-brand-title{font-size:34px}
@@ -6450,7 +6462,7 @@ export default function App() {
         </div>
       )}
 
-      {authReady && !me && (
+      {authReady && !me && !guest && (
         <div className="auth-page">
           <div className="auth-card">
             <div className="auth-brand">
@@ -6494,6 +6506,15 @@ export default function App() {
                 }}>
                   {authMode === "login" ? "No account yet? Create one" : "Already have an account? Sign in"}
                 </button>
+                {IS_PUBLIC_SITE && (
+                  <div className="gate-guest">
+                    <button className="gate-guest-btn" type="button" onClick={function(){
+                      try { localStorage.setItem("samovar_guest", "1"); } catch (e) {}
+                      setGuest(true);
+                    }}>Continue without an account →</button>
+                    <div className="gate-guest-note">Without an account the vocabulary list won&#8217;t work — saved words don&#8217;t follow you between devices.</div>
+                  </div>
+                )}
               </form>
             </div>
 
@@ -6505,7 +6526,7 @@ export default function App() {
         </div>
       )}
 
-      {authReady && me && (
+      {authReady && (me || guest) && (
       <div className="app">
         <header className="hdr">
           <div
