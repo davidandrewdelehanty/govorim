@@ -812,6 +812,47 @@ function authorChapterNo(heading) {
 // "Часть N" / "Chapter N". Detecting these is far more reliable than trusting
 // spine items or TOC labels, which often include front matter (cover, copyright,
 // title page) as if they were chapters.
+// English label for a section, from the author's own heading — or null when
+// the heading speaks for itself (a story title, «Ночь первая», a canto).
+// "Chapter" appears ONLY for numbered chapters; front and back matter get
+// their own names instead of being miscounted as chapter one.
+function sectionLabel(heading) {
+  var h = String(heading == null ? "" : heading).trim();
+  if (!h) return null;
+  var no = authorChapterNo(h);
+  if (no) return { long: "Chapter " + no, short: "Ch. " + no };
+  var whole = h.toLowerCase();
+  var seg = whole.split(/\s+[—–-]\s+/);
+  var last = seg[seg.length - 1];
+  var NAMES = [
+    [/^от автора/, "Author\u2019s note"],
+    [/^от издателя/, "Publisher\u2019s note"],
+    [/^от переводчика/, "Translator\u2019s note"],
+    [/^предислови/, "Preface"],
+    [/^пролог/, "Prologue"],
+    [/^эпилог/, "Epilogue"],
+    [/^посвящени/, "Dedication"],
+    [/^примечани/, "Notes"],
+    [/^приложени/, "Appendix"],
+    [/^вступлени/, "Introduction"], [/^введени/, "Introduction"],
+    [/^заключени/, "Conclusion"],
+    [/^послеслови/, "Afterword"],
+    [/^действующие лица/, "Characters"],
+  ];
+  for (var i = 0; i < NAMES.length; i++) {
+    if (NAMES[i][0].test(whole) || NAMES[i][0].test(last)) {
+      return { long: NAMES[i][1], short: NAMES[i][1] };
+    }
+  }
+  var act = whole.match(/^действие\s+(\d{1,2}|[ivxl]{1,4}|первое|второе|третье|четвертое|четвёртое|пятое|шестое)/);
+  if (act) {
+    var ORD = { "первое":1, "второе":2, "третье":3, "четвертое":4, "четвёртое":4, "пятое":5, "шестое":6 };
+    var n = ORD[act[1]] || (/^\d+$/.test(act[1]) ? parseInt(act[1],10) : romanToInt(act[1]));
+    if (n) return { long: "Act " + n, short: "Act " + n };
+  }
+  return null;
+}
+
 function isChapterMarker(line) {
   var l = (line || "").trim();
   if (!l || l.length > 30) return false;
@@ -2437,6 +2478,42 @@ export default function App() {
   var [bibleEn, setBibleEn] = useState(null);
   // Dual-language prose (bookMeta.parallelEn): chapter's paragraph-index → English map.
   var [proseEn, setProseEn] = useState(null);
+  // ── Stress marks (ударения) ────────────────────────────────────────────
+  // stressMap: { lowercaseWord: index-of-stressed-vowel } for THIS book,
+  // built offline by tools/gen_stress_maps.py from the OpenRussian
+  // dictionary. Only words whose stress is unambiguous across the entire
+  // dictionary are present — homographs (за́мок/замо́к, ру́ки/руки́) are
+  // excluded at build time, so every mark shown is certain. Words the
+  // dictionary doesn't know simply go unmarked.
+  // The marks are DISPLAY ONLY: the acute is inserted while rendering the
+  // word span, so clicks, definitions, TTS, audio offsets and search all
+  // keep working on the clean text.
+  var [accentsOn, setAccentsOn] = useState(false);
+  var [stressMap, setStressMap] = useState(null);
+  useEffect(function() {
+    storage.get("accents_on").then(function(r){ if (r && r.value === "1") setAccentsOn(true); }).catch(function(){});
+  }, []);
+  var toggleAccents = function() {
+    var next = !accentsOn;
+    setAccentsOn(next);
+    storage.set("accents_on", next ? "1" : "0").catch(function(){});
+  };
+  useEffect(function() {
+    setStressMap(null);
+    var fn = bookMeta && bookMeta.filename;
+    if (!fn) return;
+    var stem = fn.split("/").pop().replace(/\.fb2\.zip$|\.epub$|\.fb2$|\.txt$|\.x?html?$/i, "");
+    fetch("/books/stress/" + encodeURIComponent(stem) + ".json")
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(m){ if (m) setStressMap(m); })
+      .catch(function(){ /* no stress data for this book — fine */ });
+  }, [bookMeta && bookMeta.filename]);
+  var accented = function(w) {
+    if (!accentsOn || !stressMap) return w;
+    var i = stressMap[w.toLowerCase()];
+    if (i === undefined || i >= w.length) return w;
+    return w.slice(0, i + 1) + "\u0301" + w.slice(i + 1);
+  };
   // Bible section-heading translations ({russianHeading: englishHeading}), one
   // global file shared by every chapter. Loaded lazily on first Bible chapter.
   var [bibleHeadings, setBibleHeadings] = useState(null);
@@ -5411,7 +5488,7 @@ export default function App() {
                         className={"rw" + (hl ? " rwhl" : "") + (inName ? " play-speaker" : "")}
                         data-rw-start={tk.start}
                         onClick={clickPlay}
-                        title={inName ? "" : (noAIMode ? "Click to read from here" : "Click for a definition")}>{tk.text}</span>
+                        title={inName ? "" : (noAIMode ? "Click to read from here" : "Click for a definition")}>{accented(tk.text)}</span>
                     );
                     // Just after the speaker name finishes, insert the em-dash separator.
                     if (inName && (i+1 >= para.length || para[i+1].end > speakerNameEnd)) {
@@ -5440,7 +5517,7 @@ export default function App() {
                       className={"rw" + (hl ? " rwhl" : "")}
                       data-rw-start={tk.start}
                       onClick={clickReg}
-                      title={noAIMode ? "Click to read from here" : "Click for a definition"}>{tk.text}</span>
+                      title={noAIMode ? "Click to read from here" : "Click for a definition"}>{accented(tk.text)}</span>
                   );
                 }
                 // Bible verse numbers: token is just a number (e.g. "1", "23")
@@ -7055,7 +7132,10 @@ export default function App() {
                 <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:10}}>
                   {chapters.length > 0 ? (
                     <>
-                      {cbm > 0 && <button className="btn-p" onClick={function(){ startLit(cbm); }}>📌 Resume at chapter {cbm+1}</button>}
+                      {cbm > 0 && <button className="btn-p" onClick={function(){ startLit(cbm); }}>{(function(){
+                        var sl = sectionLabel(chapters[cbm] && chapters[cbm].heading);
+                        return "📌 Resume at " + (sl ? sl.long.toLowerCase() : "your bookmark");
+                      })()}</button>}
                       <button className={cbm>0?"btn-g":"btn-p"} onClick={function(){ startLit(0); }}>{cbm>0?"Start from beginning":"Начать читать →"}</button>
                       
                       <button onClick={async function(){
@@ -7208,9 +7288,7 @@ export default function App() {
                                     <div className="lcn" style={{color:"rgba(0,0,0,.5)"}}>↻ {humanLast}</div>
                                     <div className="lchead">{bookLabel(rec)}</div>
                                     <div style={{marginTop:8,fontSize:11,color:"rgba(0,0,0,.55)"}}>
-                                      {(rec.cidx || 0) + 1}{total > 1 ? "/" + total : ""}
-                                      {(rec.pidx || 0) > 0 && " · Page " + ((rec.pidx || 0) + 1)}
-                                      {" · " + pct + "%"}
+                                      {pct + "%"}
                                     </div>
                                     <div style={{marginTop:6,height:3,background:"rgba(210,197,175,.1)",borderRadius:2,overflow:"hidden"}}>
                                       <div style={{height:"100%",width:pct+"%",background:"#c8a276"}}/>
@@ -7787,6 +7865,10 @@ export default function App() {
                   <button className={"ltab"+(lview==="read"?" on":"")} onClick={function(){ setLview("read"); }}>📖 Read</button>
                   <button className={"ltab"+(lview==="nav"?" on":"")} onClick={function(){ setLview("nav"); }}>🗂 Contents</button>
                   <button className={"ltab"+(lview==="search"?" on":"")} onClick={function(){ setLview("search"); }}>🔍 Search</button>
+                  {stressMap && !singlePageMode && (
+                    <button className={"ltab"+(accentsOn?" on":"")} onClick={toggleAccents}
+                      title="Show stress marks — only on words whose stress is unambiguous">а́ Stress</button>
+                  )}
                   {exData && (exData.cases||[]).length > 0 && <button className={"ltab"+(lview==="exercises"?" on":"")} onClick={function(){ setLview("exercises"); }}>📝 Exercises</button>}
                   {/* Page + chapter nav moved up here so they stay visible
                       while the floating audio bar covers the bottom of the page. */}
@@ -7809,7 +7891,10 @@ export default function App() {
                     <span className="lpct">
                       {singlePageMode
                         ? <>Song {cidx+1}/{chapters.length} · {pct}%</>
-                        : <>{cidx+1}/{chapters.length}{totalPages > 1 ? " · Page " + (pidx+1) + "/" + totalPages : ""} · {pct}%</>}
+                        : (function(){
+                            var sl = sectionLabel(curChapter && curChapter.heading);
+                            return <>{sl ? sl.short + " · " : ""}{pct}%</>;
+                          })()}
                     </span>
                     <div className="lpbar"><div className="lpfill" style={{width:pct+"%"}}/></div>
                   </div>
@@ -7832,14 +7917,12 @@ export default function App() {
                           {singlePageMode
                             ? <>Song {cidx+1} of {chapters.length} · click any word to define</>
                             : (function(){
-                                // The author's own chapter number when this section is a
-                                // numbered chapter; otherwise just where we are in the book.
-                                var no = authorChapterNo(curChapter && curChapter.heading);
-                                var pos = (cidx+1) + " of " + chapters.length;
-                                var label = !no ? pos
-                                          : (no === cidx+1 ? "Chapter " + no + " of " + chapters.length
-                                                           : "Chapter " + no + " · " + pos);
-                                return <>{label} · click any word to define</>;
+                                // Only the author's own numbering — no "3 of 104" position
+                                // counting. Front matter is named (Author's note, Preface),
+                                // and a heading that names itself gets no label at all.
+                                var sl = sectionLabel(curChapter && curChapter.heading);
+                                return sl ? <>{sl.long} · click any word to define</>
+                                          : <>Click any word to define</>;
                               })()}
                         </div>
                         {curChapter.heading && (

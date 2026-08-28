@@ -72,6 +72,9 @@ for (const e of publicEntries) {
     keepFiles.add(path.posix.normalize(e.filename));
     const base = path.posix.basename(e.filename).replace(/\.[^.]+$/, "");
     slugs.add(base);
+    // Stress-mark sidecar (tools/gen_stress_maps.py) — one JSON per book,
+    // named by the same basename, holding the certain-stress word map.
+    keepFiles.add("stress/" + base + ".json");
     // tools/make_case_drills.py names drills after the FB2 basename with every
     // non-ASCII character replaced by an underscore, so a Cyrillic filename
     // becomes a row of underscores. Mirror that rule exactly or those books'
