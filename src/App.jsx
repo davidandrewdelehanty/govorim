@@ -2129,6 +2129,9 @@ export default function App() {
     try { localStorage.setItem("gv_chat_level", level); } catch(e) {}
   }, [level]);
   var [vocab, setVocab]       = useState([]);
+  // True once the stored vocabulary has been read back at boot; gates the
+  // writers below so they cannot persist the empty initial state over it.
+  var [localLoaded, setLocalLoaded] = useState(false);
   // ── Saved-vocabulary highlighting ───────────────────────
   // Words the reader has saved are coloured in the text, so a page shows at a
   // glance what is already known.
@@ -3626,11 +3629,19 @@ export default function App() {
         if (v) setVocab(JSON.parse(v.value)); if (g) setTips(JSON.parse(g.value));
         if (st) setSavedTopics(JSON.parse(st.value));
       } catch(e) {}
+      setLocalLoaded(true);
     })();
   }, []);
-  useEffect(function() { storage && storage.set("vocab", JSON.stringify(vocab)).catch(function(){}); }, [vocab]);
-  useEffect(function() { storage && storage.set("grammar", JSON.stringify(tips)).catch(function(){}); }, [tips]);
-  useEffect(function() { storage && storage.set("grammar-topics", JSON.stringify(savedTopics)).catch(function(){}); }, [savedTopics]);
+  // The three writers below must not run until that read has finished. Every
+  // one of these lists starts as [], and the writers fire on mount alongside
+  // the reader — so without the gate the empty initial state races the read
+  // and overwrites the stored list with [] before it has been loaded back.
+  // A signed-in reader was rescued by the server copy on the next sync; a
+  // signed-out one simply lost the vocabulary, which is also why a word saved
+  // just before a reload could come back missing.
+  useEffect(function() { if (localLoaded) storage && storage.set("vocab", JSON.stringify(vocab)).catch(function(){}); }, [vocab, localLoaded]);
+  useEffect(function() { if (localLoaded) storage && storage.set("grammar", JSON.stringify(tips)).catch(function(){}); }, [tips, localLoaded]);
+  useEffect(function() { if (localLoaded) storage && storage.set("grammar-topics", JSON.stringify(savedTopics)).catch(function(){}); }, [savedTopics, localLoaded]);
 
   // ── Frequency Vocab Bank persistence ────────────────────────────────────
   // All four effects below no-op while WORDBANK_ENABLED is false: no stored
