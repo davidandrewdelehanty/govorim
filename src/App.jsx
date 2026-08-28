@@ -6131,9 +6131,10 @@ export default function App() {
           .hdr>div:last-child{flex-wrap:wrap;row-gap:6px;justify-content:flex-end}
           .lsub{display:none}
           .acct-email{display:none}
-          .tabs{padding:0 10px;overflow-x:auto;scrollbar-width:none}
-          .tabs::-webkit-scrollbar{display:none}
-          .tab{white-space:nowrap;flex-shrink:0}
+          /* All five tabs stay visible: wrap onto a second row instead of
+             scrolling sideways — a hidden scrollbar made Music undiscoverable. */
+          .tabs{padding:0 10px;flex-wrap:wrap}
+          .tab{white-space:nowrap;flex-shrink:0;padding:9px 12px;font-size:13px}
           .tbadge{max-width:38vw}
           .ss{padding:28px 14px}
         }
