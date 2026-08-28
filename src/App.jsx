@@ -6084,15 +6084,16 @@ export default function App() {
         }
         .userbtn-wrap{display:flex;align-items:center}
 
-        /* Pending-approval screen */
-        .pending{min-height:100vh;background:#f5f0e8;display:flex;align-items:center;justify-content:center;padding:32px;position:relative}
-        .pending::before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 20% 10%,rgba(150,80,60,.10) 0%,transparent 55%),radial-gradient(ellipse at 80% 90%,rgba(80,90,130,.08) 0%,transparent 55%)}
-        .pending-card{position:relative;max-width:480px;text-align:center;display:flex;flex-direction:column;gap:20px;align-items:center}
-        .pending-icon{font-size:56px}
-        .pending-title{font-family:'Playfair Display',serif;font-size:32px;color:#c4955a;line-height:1.2}
-        .pending-msg{font-size:16px;line-height:1.6;color:rgba(42,31,20,.78);max-width:400px}
-        .pending-email{font-size:13px;color:rgba(42,31,20,.5);background:rgba(196,149,90,.08);padding:8px 16px;border-radius:8px;border:1px solid rgba(196,149,90,.2)}
-        .pending-userbtn{margin-top:8px}
+        /* The pending-approval SCREEN used to live here, styled off a bare
+           ".pending". The screen is gone (the site reads signed out), but the
+           rules outlived it and kept matching the admin list's status badge,
+           which also carries "pending" — so every badge inherited
+           min-height:100vh (one user per screenful) and a position:fixed
+           full-viewport ::before gradient, painted once per user and stacked
+           into a wash over the whole panel. Status badges are styled by
+           ".adm-status.<state>" below; never reintroduce an unscoped
+           ".pending" rule. NOTE: this whole block is inside a template
+           literal — no backticks in here. */
 
         /* Admin panel overlay */
         .adm-over{position:fixed;inset:0;background:rgba(26,22,17,.92);z-index:200;display:flex;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto}
@@ -6267,7 +6268,7 @@ export default function App() {
                     </div>
                     {u.isAdmin && <div className="adm-status admin">Admin</div>}
                     {!u.isAdmin && (
-                      <div className="adm-status pending" style={u.approved ? {background:"rgba(90,133,86,.18)",color:"#2f5a2a",borderColor:"rgba(90,133,86,.3)"} : null}>
+                      <div className={"adm-status " + (u.approved ? "approved" : "pending")}>
                         {u.approved ? (u.grandfathered ? "Existing" : "Approved") : "Pending"}
                       </div>
                     )}
