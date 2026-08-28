@@ -111,7 +111,7 @@ Edit `public/books/index.json`. Find the book's entry (or add it if it doesn't e
   "filename": "novel/gogol-nose.fb2",
   "title": "Нос",
   "author": "Николай Гоголь",
-  "category": "Works",
+  "category": "Novels",
   "audiobook": {
     "narrator": "Игорь Ильинский",
     "year": 1955,

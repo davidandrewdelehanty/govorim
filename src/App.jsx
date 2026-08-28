@@ -1875,7 +1875,7 @@ export default function App() {
   // Book-upload-specific fields (only used when upMode === "book")
   var [upBookFile, setUpBookFile]     = useState(null);
   var [upBookAuthor, setUpBookAuthor] = useState("");
-  var [upBookCategory, setUpBookCategory] = useState("Works");
+  var [upBookCategory, setUpBookCategory] = useState("Novels");
   // Song-picker state — opened when the user picks a Song Lyrics artist from
   // the library dropdown. Lists the artist's individual songs so the user can
   // jump straight to one instead of starting at song 1.
@@ -6446,8 +6446,12 @@ export default function App() {
                     <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Category</label>
                     <select value={upBookCategory} onChange={function(e){ setUpBookCategory(e.target.value); }} disabled={upBusy}
                       style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#000",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}>
-                      <option value="Works">Works</option>
+                      <option value="Novels">Novels</option>
+                      <option value="Novellas">Novellas</option>
+                      <option value="Short Stories">Short Stories</option>
+                      <option value="Plays">Plays</option>
                       <option value="Poetry">Poetry</option>
+                      <option value="Religious Texts">Religious Texts</option>
                       <option value="Spectacle">Spectacle</option>
                       <option value="Speeches">Speeches</option>
                       <option value="Speeches by Soviet Leaders">Speeches by Soviet Leaders</option>
@@ -7140,14 +7144,21 @@ export default function App() {
                         var filteredUploads = uploadedBooks.filter(matches);
 
                         // Group preset books by category, preserving original index for lookup.
-                        // Normalize legacy "Novel"/"Short Stories"/"Plays" → "Works" so older
-                        // entries in index.json fall into the right bucket without an admin edit.
-                        var CATEGORIES = ["Works", "Song Lyrics", "Poetry", "Spectacle", "Speeches", "Speeches by Soviet Leaders", "Texts Without English"];
+                        // Books are filed by what they actually are — Novels, Novellas, Short
+                        // Stories, Plays, Poetry — rather than lumped into one prose bucket.
+                        // "Works" is kept only as a legacy fallback so a book that still carries
+                        // the old category (an older upload, a hand-edited entry) keeps rendering
+                        // instead of vanishing into "Other".
+                        var CATEGORIES = ["Novels", "Novellas", "Short Stories", "Plays", "Poetry", "Song Lyrics", "Religious Texts", "Spectacle", "Speeches", "Speeches by Soviet Leaders", "Works", "Texts Without English"];
                         // Render order: "Texts Without English" sits at the very bottom,
                         // after the catch-all "Other" bucket.
-                        var ORDER = ["Works", "Song Lyrics", "Poetry", "Spectacle", "Speeches", "Speeches by Soviet Leaders", "Other", "Texts Without English"];
+                        var ORDER = ["Novels", "Novellas", "Short Stories", "Plays", "Poetry", "Song Lyrics", "Religious Texts", "Spectacle", "Speeches", "Speeches by Soviet Leaders", "Works", "Other", "Texts Without English"];
                         var normalize = function(cat) {
-                          if (cat === "Novel" || cat === "Short Stories" || cat === "Plays") return "Works";
+                          // Singular legacy spellings written by older uploads.
+                          if (cat === "Novel") return "Novels";
+                          if (cat === "Novella") return "Novellas";
+                          if (cat === "Short Story") return "Short Stories";
+                          if (cat === "Play") return "Plays";
                           return cat;
                         };
                         var buckets = {};

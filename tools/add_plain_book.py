@@ -111,7 +111,7 @@ def main():
     ap.add_argument("--fb2", required=True, help="path under public/books/, e.g. novel/idiot.fb2")
     ap.add_argument("--title", required=True)
     ap.add_argument("--author", default="")
-    ap.add_argument("--category", default="Works")
+    ap.add_argument("--category", default="Novels")
     ap.add_argument("--narrator", default="audiobook")
     ap.add_argument("--source", default="r2")
     ap.add_argument("--base", default=PUBLIC_BASE, help="public bucket base URL")

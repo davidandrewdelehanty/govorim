@@ -10,7 +10,7 @@
 // manual JSON edits.
 //
 // FOLDER CONVENTION (preferred):
-//   public/books/novel/tolstoy-anna.fb2       → category "Works" (novels, short stories, plays all combined)
+//   public/books/novel/tolstoy-anna.fb2       → category "Novels" (default for the prose/drama folder)
 //   public/books/lyrics/tsoi-songs.epub       → category "Song Lyrics"
 //   public/books/poetry/akhmatova.fb2         → category "Poetry"
 //
@@ -45,20 +45,21 @@ const manifest   = path.join(privateDir, "index.json");
 const SUPPORTED = /\.(fb2\.zip|epub|fb2|txt|html|htm|xhtml)$/i;
 
 // Maps a subfolder name → category (the canonical name used in the picker).
-// Add aliases here if you want to support multiple folder spellings for the
-// same category. The "novel" folder is the unified home for all prose works
-// AND plays — they're all combined into "Works". Legacy "short-stories" and
-// "plays" folder names are still recognized so files left in those locations
-// during migration get picked up correctly.
+// This only supplies a STARTING category for a file that has no manifest entry
+// yet; books are classified by what they are (Novels, Novellas, Short Stories,
+// Plays, Poetry, Religious Texts), and that classification is a hand-set field
+// on the entry, which this script preserves. The "novel" folder holds all prose
+// and drama, so a new file dropped there starts as "Novels" and gets corrected
+// in index.json if it is actually a play or a story.
 const FOLDER_TO_CATEGORY = {
-  "novel":         "Works",
-  "novels":        "Works",
-  "works":         "Works",
-  "short-stories": "Works",  // legacy folder
-  "stories":       "Works",
-  "plays":         "Works",  // legacy folder
-  "play":          "Works",
-  "drama":         "Works",
+  "novel":         "Novels",
+  "novels":        "Novels",
+  "works":         "Novels",
+  "short-stories": "Short Stories",
+  "stories":       "Short Stories",
+  "plays":         "Plays",
+  "play":          "Plays",
+  "drama":         "Plays",
   "lyrics":        "Song Lyrics",
   "song-lyrics":   "Song Lyrics",
   "songs":         "Song Lyrics",
@@ -67,7 +68,7 @@ const FOLDER_TO_CATEGORY = {
 };
 
 // Render order in the picker (must match the App.jsx CATEGORIES list).
-const CATEGORY_ORDER = ["Works", "Song Lyrics", "Poetry", "Spectacle", "Speeches"];
+const CATEGORY_ORDER = ["Novels", "Novellas", "Short Stories", "Plays", "Poetry", "Song Lyrics", "Religious Texts", "Spectacle", "Speeches", "Speeches by Soviet Leaders", "Works"];
 
 // 1. Load any existing manifest so we keep manual metadata edits.
 let existing = [];
