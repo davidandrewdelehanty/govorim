@@ -5714,7 +5714,7 @@ export default function App() {
         .app::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:none}
         .hdr{padding:16px 28px 12px;border-bottom:1px solid rgba(42,31,20,.1);display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative;z-index:10}
         .logo{display:flex;align-items:baseline;gap:10px}
-        .lru{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#c4955a}
+        .lru{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#000}
         .lsub{font-size:11px;color:rgba(42,31,20,.35);letter-spacing:2.5px;text-transform:uppercase}
         .tbadge{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#c4955a;padding:6px 14px;border-radius:20px;font-size:13px;cursor:pointer;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         /* Library browser: search + card-grid of preset & uploaded books.
@@ -5727,7 +5727,7 @@ export default function App() {
         .lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
         .lib-card{padding:14px;border-radius:10px;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.1);cursor:pointer;transition:all .15s;position:relative;display:flex;flex-direction:column;gap:4px}
         .lib-card:hover{background:rgba(42,31,20,.08);border-color:rgba(196,149,90,.3);transform:translateY(-1px)}
-        .lib-card-title{font-family:'Playfair Display',serif;font-size:15px;color:#c4955a;line-height:1.3;margin-bottom:8px}
+        .lib-card-title{font-family:'Playfair Display',serif;font-size:15px;color:#000;line-height:1.3;margin-bottom:8px}
         .lib-card-author{font-size:12px;color:rgba(42,31,20,.6);font-style:italic;margin-bottom:6px}
         .lib-card-meta{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:rgba(42,31,20,.4);margin-top:auto;padding-top:4px}
         .lib-card-cat{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#c4955a;padding:2px 8px;border-radius:10px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600}
