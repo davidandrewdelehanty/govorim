@@ -3456,6 +3456,22 @@ export default function App() {
     return computePages(curChapter.text || "", { singlePage: true });
   }, [curChapter.text, singlePageMode]);
   var totalPages = pages.length;
+  // Scripture is paged one BOOK at a time, so the reader can be fifty chapters
+  // deep in a single scroll. These are the marks to jump between. They come
+  // out of the text rather than the catalogue because the paragraph a reader
+  // scrolls to is the paragraph the text puts the mark in.
+  var bibleChapters = useMemo(function() {
+    if (!(bookMeta && bookMeta.isBible)) return [];
+    var out = [];
+    String((curChapter && curChapter.text) || "")
+      .split(/\n{2,}/)
+      .filter(function(t) { return t.trim().length > 0; })
+      .forEach(function(t, i) {
+        var m = t.trim().match(/^Глава\s+(\d+)$/);
+        if (m) out.push({ at: i, n: m[1] });
+      });
+    return out;
+  }, [curChapter && curChapter.text, bookMeta && bookMeta.isBible]);
   var lastCidxRef = useRef(-1);
   var currentPage = pages[Math.min(pidx, totalPages - 1)] || pages[0];
   // Keep the page ref in lockstep with the rendered page,
@@ -5990,6 +6006,10 @@ export default function App() {
         // Dual-language Bible: the English line for this verse (if loaded and
         // this paragraph is a numbered verse). Display-only; the audio and word
         // highlighting stay Russian, since the aligner only tokenizes Cyrillic.
+        // "Глава 12" on its own line: the chapter mark inside a book-sized
+        // page. It reads as a heading, and its trailing numeral is a chapter
+        // number, not a verse number.
+        var bibleChapterMark = bibleInline && /^Глава\s+\d+$/.test(paraText.trim());
         var bibleEnLine = null, bibleHeadingLine = null, bibleEnNum = null;
         if (bibleEn || bibleHeadings) {
           // Section headings ("Сотворение мира") and the chapter title
@@ -6000,7 +6020,11 @@ export default function App() {
           // known section heading — if so, show its English translation instead
           // of treating it as scripture.
           var headKey = paraText.replace(/^\s*\d+\s+/, "").trim();
-          if (bibleHeadings && bibleHeadings[headKey]) {
+          // The headings map belongs to the NRP Bible, which has no English of
+          // its own. An entry that ships a translation answers for itself —
+          // otherwise a short verse that happens to read like a section title
+          // gets the title's English instead of its own.
+          if (bibleHeadings && bibleHeadings[headKey] && !(bookMeta && bookMeta.parallelEn)) {
             bibleHeadingLine = bibleHeadings[headKey];
           } else if (bibleEn) {
             var vno = (paraText.match(/^\s*(\d+)/) || [])[1];
@@ -6095,7 +6119,9 @@ export default function App() {
                 // artifact (the chapter-title number merged in) — drop it so the
                 // heading reads cleanly ("Сотворение мира", not "1 Сотворение мира").
                 if (verseNumMatch && bibleHeadingLine) { return null; }
-                if (verseNumMatch && bookMeta && bookMeta.filename && bookMeta.filename.indexOf("Библии") !== -1) {
+                if (verseNumMatch && bibleChapterMark) { return <span key={i}>{tk.text}</span>; }
+                if (verseNumMatch && bookMeta && (bookMeta.isBible
+                    || (bookMeta.filename && bookMeta.filename.indexOf("Библии") !== -1))) {
                   return (
                     <span key={i}>
                       <span style={{
@@ -6185,13 +6211,17 @@ export default function App() {
                         allowFullScreen />
               </div>
             )}
-            <p id={"sp" + entry.chIdx} lang="ru" style={pMargin}>
+            <p id={"sp" + entry.chIdx} lang="ru" style={pMargin}
+               className={bibleChapterMark ? "bible-chapter" : undefined}>
               {ruBody}
               {/* The Russian line already carries its verse number, so the
-                  English beneath it does not repeat one. */}
-              {bibleInline && (bibleHeadingLine || bibleEnLine) && (
+                  English beneath it does not repeat one. A book-sized page
+                  keys its English by paragraph (proseEnLine) rather than by
+                  verse number, which stops being unique once a page holds
+                  more than one chapter. */}
+              {bibleInline && (bibleHeadingLine || bibleEnLine || proseEnLine) && (
                 <span className={"bible-en" + (bibleHeadingLine ? " bible-heading-en" : "")}
-                      lang="en">{bibleHeadingLine || bibleEnLine}</span>
+                      lang="en">{bibleHeadingLine || bibleEnLine || proseEnLine}</span>
               )}
             </p>
           </Fragment>
@@ -6612,6 +6642,13 @@ export default function App() {
            and below the definition popup (200/201) it hands off to. */
         /* Dual-language Bible: English translation shown under each Russian verse */
         .bible-en{display:block;margin-top:3px;color:rgba(42,31,20,.5);font-size:0.9em;font-style:italic;line-height:1.5;letter-spacing:.005em}
+        .bible-chapter{font-family:'Playfair Display',serif;font-size:1.05em;font-weight:700;
+          color:#c4955a;text-align:center;letter-spacing:.14em;text-transform:uppercase;
+          margin:2.2em 0 1.1em !important;padding-top:1.2em;
+          border-top:1px solid rgba(196,149,90,.22)}
+        .bible-chapter .bible-en{font-style:normal;font-size:.72em;letter-spacing:.14em;
+          color:rgba(42,31,20,.42);margin-top:2px}
+        .bible-index{max-height:132px;overflow-y:auto}
         .bible-heading-en{font-style:normal;font-weight:600;color:rgba(42,31,20,.62);font-size:0.95em;letter-spacing:.01em}
         /* Side-by-side dual language: the Russian column takes the full reader
            width; the English column sits just off-screen to the right. The
@@ -8668,6 +8705,21 @@ export default function App() {
                                           || document.getElementById("sec" + sec.at);
                                     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
                                   }}>{sec.heading}</button>
+                              );
+                            })}
+                          </nav>
+                        )}
+                        {/* A whole book on one page needs its chapters
+                            reachable without dragging the scrollbar. */}
+                        {bibleChapters.length > 1 && (
+                          <nav className="story-index bible-index" aria-label="Chapters">
+                            {bibleChapters.map(function(ch) {
+                              return (
+                                <button key={ch.at} className="story-index-link"
+                                  onClick={function() {
+                                    var el = document.getElementById("sp" + ch.at);
+                                    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                                  }}>{ch.n}</button>
                               );
                             })}
                           </nav>

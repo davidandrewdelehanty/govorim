@@ -2,32 +2,156 @@
 """Build the Synodal Bible entry: the five books of Moses and the four Gospels.
 
 Two public-domain texts, verified before use: the Russian Synodal (1876) and
-the King James (1611). Both come from one source with one schema, so their
-book and chapter indices line up without any mapping guesswork.
+the King James (1611).
 
 Output:
-  public/books/novel/bible-synodal.fb2   one <section> per chapter
-  public/books/bible-kjv/NN-CC.json      verse number -> King James text
+  public/books/novel/bible-synodal.fb2   one <section> per BOOK
+  public/books/bible-kjv/NN.json         paragraph index -> King James text
 
-The FB2 puts ONE verse in each paragraph, led by its number and a space. That
-is exactly what the reader looks for — it reads the leading digits off a
-paragraph and fetches that verse's English — so the two cannot drift apart.
+ONE PAGE PER BOOK, not per chapter. The recordings are book-length — one
+reader working through the whole of Genesis — so a page that ends at Genesis 2
+strands the video two chapters into its own audio. A book-sized page lets the
+one recording cover the one page, which is what reading along wants.
+
+Chapters survive as plain "Глава N" paragraphs. They are deliberately NOT
+<subtitle> elements: the reader treats a numbered subtitle as a chapter break
+and would split the book straight back into fifty pages.
+
+The English is keyed by PARAGRAPH INDEX within the section, the scheme
+parallelEn already uses for prose. Verse numbers restart at every chapter and
+stop being unique the moment a page holds more than one of them.
+
+ALIGNMENT. The two sources disagree about verse counts in 41 of the 276
+chapters — each omits or merges where the other divides. Pairing by position,
+which is what this entry shipped with, silently shifts every verse after the
+first disagreement for the rest of the chapter. So the verses are aligned
+instead, by a monotonic DP over four moves: 1:1; one Russian verse holding two
+English; two holding one; and a Russian verse with NO English at all, for the
+verses the King James source is simply missing (Matthew 2:16 among them).
+Scoring is how far a pairing's length ratio sits from the chapter's own
+average, with matching numerals counted as evidence for and clashing ones as
+evidence against.
+
+Without that fourth move a missing English verse had to be absorbed by a 2:1
+merge, which put verse 15's English against verses 15 AND 16 and left 16
+looking translated when it was not. A gap shown as a gap is the honest
+rendering; the English text itself is never dropped, since the reverse case
+(a verse the Russian source lacks) still joins onto its neighbour.
+
+The 235 chapters where the counts agree are the control: the pairing there
+should be the identity one, and the DP returns it in 234. The exception,
+Mark 7, is not a failure — the English source drops a verse in the middle and
+gains one back at verse 33, so its counts match while its verses do not, and
+the DP is right to refuse the identity pairing there. It places the gap one
+verse early (at 7:11 rather than 7:12), which is the known limit of scoring on
+length alone. Re-run tools/check_bible_align.py to reproduce this.
 """
-import io, json, os, re, sys, html
+import io, json, math, os, re, sys, html
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.abspath(os.path.join(ROOT, "..", "govorim-sources", "bible"))
 
-# (index in the 66-book file, Russian name, canonical two-digit number)
+# (index in the 66-book source, Russian name, English name)
 BOOKS = [
-    (0,  "Бытие",        "01"), (1,  "Исход",  "02"), (2, "Левит", "03"),
-    (3,  "Числа",        "04"), (4,  "Второзаконие", "05"),
-    (39, "Матфея",       "40"), (40, "Марка",  "41"), (41, "Луки",  "42"),
-    (42, "Иоанна",       "43"),
+    (0,  "Бытие",        "Genesis"),
+    (1,  "Исход",        "Exodus"),
+    (2,  "Левит",        "Leviticus"),
+    (3,  "Числа",        "Numbers"),
+    (4,  "Второзаконие", "Deuteronomy"),
+    (39, "Матфея",       "Matthew"),
+    (40, "Марка",        "Mark"),
+    (41, "Луки",         "Luke"),
+    (42, "Иоанна",       "John"),
 ]
+
+# A merge has to earn its place. The number of merges is forced by the verse
+# counts, so this constant does not decide how many there are -- it only stops
+# the DP inventing offsetting pairs of them where 1:1 already fits.
+MERGE_PENALTY = 3.0
+
+# A Russian verse the English source does not have at all. Priced the same as
+# a merge because it is the same kind of event — one verse that will not pair
+# one-to-one — and letting the length term pick between them is the point.
+SKIP_PENALTY = 3.0
+
 
 def esc(s):
     return html.escape(str(s), quote=False)
+
+
+def clean_ru(v):
+    return re.sub(r"\s+", " ", str(v)).strip()
+
+
+def clean_en(v):
+    # The King James marks translator-supplied words with braces. They are a
+    # typographic instruction (set these in italics), not part of the verse.
+    return re.sub(r"\s+", " ", str(v).replace("{", "").replace("}", "")).strip()
+
+
+def _digits(s):
+    return tuple(sorted(re.findall(r"\d+", s)))
+
+
+def align(R, E):
+    """Monotonic verse alignment. Returns [(ri, rspan, ei, espan), ...]."""
+    rl = [max(len(x), 1) for x in R]
+    el = [max(len(x), 1) for x in E]
+    rd = [_digits(x) for x in R]
+    ed = [_digits(x) for x in E]
+    k = sum(el) / float(sum(rl)) if sum(rl) else 1.0
+
+    def cost(a, b):
+        return abs(math.log(max(b, 1) / (max(a, 1) * k)))
+
+    def dcost(rs, es):
+        if not rs and not es:
+            return 0.0
+        if rs == es:
+            return -0.30
+        return 0.25 if (rs and es) else 0.10
+
+    n, m = len(R), len(E)
+    INF = float("inf")
+    d = [[INF] * (m + 1) for _ in range(n + 1)]
+    bk = [[None] * (m + 1) for _ in range(n + 1)]
+    d[0][0] = 0.0
+    for i in range(n + 1):
+        for j in range(m + 1):
+            c = d[i][j]
+            if c == INF:
+                continue
+            if i < n and j < m:
+                v = c + cost(rl[i], el[j]) + dcost(rd[i], ed[j])
+                if v < d[i + 1][j + 1]:
+                    d[i + 1][j + 1] = v
+                    bk[i + 1][j + 1] = (i, j, 1, 1)
+            if i < n and j + 1 < m:
+                v = (c + cost(rl[i], el[j] + el[j + 1])
+                     + dcost(rd[i], tuple(sorted(ed[j] + ed[j + 1]))) + MERGE_PENALTY)
+                if v < d[i + 1][j + 2]:
+                    d[i + 1][j + 2] = v
+                    bk[i + 1][j + 2] = (i, j, 1, 2)
+            if i + 1 < n and j < m:
+                v = (c + cost(rl[i] + rl[i + 1], el[j])
+                     + dcost(tuple(sorted(rd[i] + rd[i + 1])), ed[j]) + MERGE_PENALTY)
+                if v < d[i + 2][j + 1]:
+                    d[i + 2][j + 1] = v
+                    bk[i + 2][j + 1] = (i, j, 2, 1)
+            if i < n:
+                v = c + SKIP_PENALTY
+                if v < d[i + 1][j]:
+                    d[i + 1][j] = v
+                    bk[i + 1][j] = (i, j, 1, 0)
+    if d[n][m] == INF:
+        sys.exit("no alignment path (ru=%d en=%d)" % (n, m))
+    out, i, j = [], n, m
+    while i or j:
+        pi, pj, a, b = bk[i][j]
+        out.append((pi, a, pj, b))
+        i, j = pi, pj
+    return out[::-1]
+
 
 def main():
     ru = json.load(io.open(os.path.join(SRC, "ru_synodal.json"), encoding="utf-8-sig"))
@@ -35,39 +159,46 @@ def main():
 
     endir = os.path.join(ROOT, "public", "books", "bible-kjv")
     os.makedirs(endir, exist_ok=True)
+    for f in os.listdir(endir):
+        if f.endswith(".json"):
+            os.remove(os.path.join(endir, f))
 
-    secs, chapters, verses, enfiles = [], 0, 0, 0
-    for idx, name, no in BOOKS:
+    secs, totals, merged_chapters = [], [], 0
+    for si, (idx, name, ename) in enumerate(BOOKS):
         rb, eb = ru[idx], en[idx]
         if len(rb["chapters"]) != len(eb["chapters"]):
             sys.exit("chapter count mismatch in %s" % name)
+
+        body, emap, p = [], {}, 0
+        chapters = verses = 0
         for ci, rch in enumerate(rb["chapters"]):
-            ech = eb["chapters"][ci]
-            head = "%s %d" % (name, ci + 1)
-            body = []
-            for vi, v in enumerate(rch):
-                t = re.sub(r"\s+", " ", str(v)).strip()
-                if not t:
-                    continue
-                # "12 В начале…" — the number, a space, then the verse.
-                body.append("<p>%d %s</p>" % (vi + 1, esc(t)))
-                verses += 1
-            if not body:
-                continue
-            secs.append("<section>\n<title><p>%s</p></title>\n%s\n</section>"
-                        % (esc(head), "\n".join(body)))
+            ech = [clean_en(x) for x in eb["chapters"][ci]]
+            rch = [clean_ru(x) for x in rch]
+            if len(rch) != len(ech):
+                merged_chapters += 1
+
+            body.append("<p>Глава %d</p>" % (ci + 1))
+            emap[str(p)] = "Chapter %d" % (ci + 1)
+            p += 1
             chapters += 1
 
-            # English for the same chapter, keyed by verse number.
-            emap = {}
-            for vi, v in enumerate(ech):
-                t = re.sub(r"\s+", " ", str(v)).strip()
-                if t:
-                    emap[str(vi + 1)] = t
-            with io.open(os.path.join(endir, "%s-%02d.json" % (no, ci + 1)),
-                         "w", encoding="utf-8") as f:
-                json.dump(emap, f, ensure_ascii=False, separators=(",", ":"))
-            enfiles += 1
+            first = p          # paragraph index of this chapter's verse 1
+            for vi, t in enumerate(rch):
+                body.append("<p>%d %s</p>" % (vi + 1, esc(t)))
+                p += 1
+                verses += 1
+
+            for (ri, rspan, ei, espan) in align(rch, ech):
+                text = " ".join(x for x in ech[ei:ei + espan] if x)
+                if text:
+                    emap[str(first + ri)] = text
+
+        secs.append("<section>\n<title><p>%s</p></title>\n%s\n</section>"
+                    % (esc(name), "\n".join(body)))
+        with io.open(os.path.join(endir, "%02d.json" % (si + 1)),
+                     "w", encoding="utf-8") as f:
+            json.dump(emap, f, ensure_ascii=False, separators=(",", ":"))
+        totals.append((name, ename, chapters, verses, p, len(emap)))
 
     fb2 = ('<?xml version="1.0" encoding="utf-8"?>\n'
            '<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0">\n'
@@ -79,8 +210,14 @@ def main():
     out = os.path.join(ROOT, "public", "books", "novel", "bible-synodal.fb2")
     io.open(out, "w", encoding="utf-8").write(fb2)
 
-    print("chapters: %d   verses: %d   english files: %d" % (chapters, verses, enfiles))
-    print("fb2: %s (%.1f MB)" % (out, os.path.getsize(out) / 1e6))
+    print("%-14s %-12s %5s %7s %7s %7s" % ("book", "english", "chs", "verses", "paras", "en"))
+    for name, ename, c, v, pn, e in totals:
+        print("%-14s %-12s %5d %7d %7d %7d" % (name, ename, c, v, pn, e))
+    print("\n%d sections, %d chapters, %d verses, %d chapters needed alignment"
+          % (len(secs), sum(t[2] for t in totals), sum(t[3] for t in totals),
+             merged_chapters))
+    print("wrote %s (%.1f MB)" % (out, os.path.getsize(out) / 1e6))
+
 
 if __name__ == "__main__":
     main()
