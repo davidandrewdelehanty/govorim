@@ -507,13 +507,17 @@ var JUNK_SECTION = /^(примечани|комментари|оглавлени
 // instead of being realigned — and an off-by-one there would put every English
 // line against the wrong Russian one.
 function mergeStorySections(chs) {
-  var texts = [], sections = [], offsets = [], tight = [], at = 0;
+  var texts = [], sections = [], offsets = [], tight = [], videosAt = [], at = 0;
   for (var i = 0; i < chs.length; i++) {
     var c = chs[i] || {};
     var body = String(c.text || "");
     var h = String(c.heading || "").trim();
     offsets.push(at);
     if (h && !JUNK_SECTION.test(h)) sections.push({ heading: h, at: at });
+    // Videos were attached per source chapter, and the merge would otherwise
+    // drop them. Keyed by paragraph index rather than by section, because a
+    // section whose heading was filtered out of the index can still carry one.
+    if (c.youtubeId) videosAt.push({ at: at, id: c.youtubeId, start: c.youtubeStart || 0 });
     (c.tightIdx || []).forEach(function(x) { tight.push(x + at); });
     texts.push(body);
     at += body.split("\n\n").length;
@@ -524,6 +528,8 @@ function mergeStorySections(chs) {
     tightIdx: tight,
     sections: sections,          // for the jump index and the inline dividers
     offsets: offsets,            // paragraph index each source chapter starts at
+    videosAt: videosAt,          // a video shows where its own section begins
+    hasVideo: videosAt.length > 0,
     merged: chs.length,
   }];
 }
@@ -5818,8 +5824,11 @@ export default function App() {
     ((curChapter && curChapter.sections) || []).forEach(function(sec) {
       sectionAt[sec.at] = sec.heading;
     });
+    var videoAt = Object.create(null);
+    ((curChapter && curChapter.videosAt) || []).forEach(function(v) { videoAt[v.at] = v; });
     var litRendered = litEntries.map(function(entry, pi, paraArr) {
       var secHead = sectionAt[entry.chIdx];
+      var secVid = videoAt[entry.chIdx];
         var para = entry.para;
         // Detect play-style speaker attribution at the start of a paragraph.
         // Russian plays commonly use Title Case names like "Маша. ..." or "Медведенко. ..."
@@ -6011,6 +6020,18 @@ export default function App() {
             <p key={"ru" + pi} className="dual-ru" lang="ru" id={"sp" + entry.chIdx}
                style={Object.assign({gridColumn: 1, gridRow: String(pi + 1)}, pMargin)}>{ruBody}</p>
           ];
+          if (secVid) {
+            dualCells.unshift(
+              <div key={"vid" + pi} className="chvid"
+                   style={{gridColumn: 1, gridRow: String(pi + 1)}}>
+                <iframe src={"https://www.youtube.com/embed/" + secVid.id
+                             + (secVid.start ? "?start=" + secVid.start : "")}
+                        title={secHead || bookMeta.title || "Video"} loading="lazy"
+                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen />
+              </div>
+            );
+          }
           if (secHead) {
             dualCells.unshift(
               <div key={"sec" + pi} className="sec-div" id={"sec" + entry.chIdx}
@@ -6028,6 +6049,15 @@ export default function App() {
         return (
           <Fragment key={pi}>
             {secHead && <div className="sec-div" id={"sec" + entry.chIdx}>{secHead}</div>}
+            {secVid && (
+              <div className="chvid">
+                <iframe src={"https://www.youtube.com/embed/" + secVid.id
+                             + (secVid.start ? "?start=" + secVid.start : "")}
+                        title={secHead || bookMeta.title || "Video"} loading="lazy"
+                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen />
+              </div>
+            )}
             <p id={"sp" + entry.chIdx} lang="ru" style={pMargin}>
               {ruBody}
             </p>
@@ -8457,7 +8487,7 @@ export default function App() {
                             It sits above the text because it is meant to be watched
                             first and read along with — and where it appears, the
                             audio bar stays away (see the player below). */}
-                        {curChapter.youtubeId && (
+                        {curChapter.youtubeId && !curChapter.merged && (
                           <div className="chvid">
                             <iframe
                               src={"https://www.youtube.com/embed/" + curChapter.youtubeId
@@ -8511,7 +8541,7 @@ export default function App() {
                         Azure Dmitry. In Audiobook mode (when the book has an
                         audiobook for the current chapter) streams a real
                         recording, one file per chapter or act. */}
-                    {audioSentences.length > 0 && (TTS_ENABLED || audiobookData) && !curChapter.youtubeId && (
+                    {audioSentences.length > 0 && (TTS_ENABLED || audiobookData) && !curChapter.youtubeId && !curChapter.hasVideo && (
                       <div className="faudio">
                         {/* No skip buttons: scrub with the seek bar, or click
                             any word in the text and choose "Play from here". */}
