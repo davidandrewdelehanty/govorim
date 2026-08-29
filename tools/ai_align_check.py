@@ -31,6 +31,7 @@ from scan_alignment import BOOKS, INDEX, chapters, score_file
 HERE = os.path.dirname(os.path.abspath(__file__))
 REQS = os.path.join(HERE, "ai-align-requests.jsonl")
 STATE = os.path.join(HERE, "ai-align-batch.json")
+MAP = os.path.join(HERE, "ai-align-map.json")
 OUT = os.path.join(HERE, "ai-align-findings.json")
 
 MODEL = "claude-haiku-4-5-20251001"
@@ -124,7 +125,7 @@ def build(limit, floor, min_names):
             picked.append((on, b, chs, f))
     picked.sort(key=lambda t: t[0])
 
-    reqs, ru_chars, en_chars = [], 0, 0
+    reqs, index, ru_chars, en_chars = [], {}, 0, 0
     for on, b, chs, f in picked:
         for w in windows_for(b, chs, f):
             lines = []
@@ -137,14 +138,22 @@ def build(limit, floor, min_names):
                 b.get("title", ""),
                 (" — " + b["author"]) if b.get("author") else "",
                 b["parallelEn"], os.path.basename(f), w[0][0], w[-1][0])
+            # custom_id takes letters, digits, dashes and underscores only —
+            # a folder name with a dot in it is a 400 with no other symptom. The
+            # real identity lives in a map beside the requests.
+            cid = "w%05d" % len(reqs)
+            index[cid] = {"dir": b["parallelEn"], "file": os.path.basename(f),
+                          "row": w[0][0]}
             reqs.append({
-                "custom_id": "%s|%s|%d" % (b["parallelEn"], os.path.basename(f), w[0][0]),
+                "custom_id": cid,
                 "params": {
                     "model": MODEL,
                     "max_tokens": 200,
                     "temperature": 0,
-                    "system": [{"type": "text", "text": SYSTEM,
-                                "cache_control": {"type": "ephemeral"}}],
+                    # No cache_control: Haiku 4.5 will not cache a prompt under
+                    # 4,096 tokens and this system prompt is a sixth of that, so
+                    # the marker bought nothing.
+                    "system": SYSTEM,
                     "messages": [{"role": "user", "content": head + "\n".join(lines)}],
                 },
             })
@@ -156,6 +165,7 @@ def build(limit, floor, min_names):
     with io.open(REQS, "w", encoding="utf-8") as fh:
         for r in reqs:
             fh.write(json.dumps(r, ensure_ascii=False) + "\n")
+    json.dump(index, io.open(MAP, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     tin = tokens(ru_chars, en_chars) + len(reqs) * 60
     tout = len(reqs) * 70
     cost = tin / 1e6 * IN_RATE + tout / 1e6 * OUT_RATE
@@ -171,8 +181,22 @@ def call(url, data=None, key=None, method=None):
     req.add_header("x-api-key", key)
     req.add_header("anthropic-version", "2023-06-01")
     req.add_header("content-type", "application/json")
-    with urllib.request.urlopen(req, timeout=120) as r:
-        return r.read()
+    try:
+        with urllib.request.urlopen(req, timeout=120) as r:
+            return r.read()
+    except urllib.error.HTTPError as e:
+        # The API says what is wrong in the body. Swallowing it and showing a
+        # bare "HTTP Error 400: Bad Request" wastes everyone's afternoon.
+        body = ""
+        try:
+            body = e.read().decode("utf-8", "replace")
+        except Exception:
+            pass
+        try:
+            msg = json.loads(body)["error"]["message"]
+        except Exception:
+            msg = body[:600] or e.reason
+        sys.exit("the API refused the request (HTTP %d):\n  %s" % (e.code, msg))
 
 
 def submit(key):
@@ -208,6 +232,7 @@ def fetch(key):
     if not url:
         sys.exit("the batch has no results yet")
     raw = call(url, key=key).decode("utf-8")
+    index = json.load(io.open(MAP, encoding="utf-8"))
     found = []
     for line in raw.splitlines():
         if not line.strip():
@@ -224,8 +249,10 @@ def fetch(key):
             v = json.loads(m.group(0))
         except ValueError:
             continue
-        d, f, row = r["custom_id"].split("|")
-        v.update(dir=d, file=f, row=int(row))
+        who = index.get(r["custom_id"])
+        if not who:
+            continue
+        v.update(who)
         found.append(v)
     json.dump(found, io.open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print("read %d verdict(s) -> %s" % (len(found), OUT))
