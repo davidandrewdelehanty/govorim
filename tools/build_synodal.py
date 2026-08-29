@@ -21,6 +21,13 @@ The English is keyed by PARAGRAPH INDEX within the section, the scheme
 parallelEn already uses for prose. Verse numbers restart at every chapter and
 stop being unique the moment a page holds more than one of them.
 
+RUN-ON WORDS. The Russian source drops the odd space — "И стал свет" arrives
+as "И сталсвет" — and the reader shows text exactly as it is written. The
+splits live in tools/synodal_fixes.json, made and reviewed by
+tools/find_run_ons.py; that file has the whole account of how they were found
+and what the method cannot do. Applying them here needs neither the tool nor
+its dictionary.
+
 ALIGNMENT. The two sources disagree about verse counts in 41 of the 276
 chapters — each omits or merges where the other divides. Pairing by position,
 which is what this entry shipped with, silently shifts every verse after the
@@ -79,8 +86,37 @@ def esc(s):
     return html.escape(str(s), quote=False)
 
 
+FIXES = json.load(io.open(os.path.join(ROOT, "tools", "synodal_fixes.json"),
+                          encoding="utf-8"))
+# Every split must put the same letters back, or a "fix" is quietly rewriting
+# scripture rather than spacing it.
+for _k, _v in FIXES.items():
+    if "".join(_v.split()) != _k:
+        sys.exit("synodal_fixes.json: %r does not spell %r" % (_v, _k))
+# Cut positions, so the original capitals survive: "Младенцас" is cut, not
+# looked up and replaced by a lowercase copy of itself.
+CUTS = dict((k, [len(p) for p in v.split()]) for k, v in FIXES.items())
+WORD = re.compile(r"[А-Яа-яЁё]+")
+
+
 def clean_ru(v):
     return re.sub(r"\s+", " ", str(v)).strip()
+
+
+def unrun(text, tally):
+    """Put back the spaces the source lost."""
+    def one(m):
+        w = m.group(0)
+        lens = CUTS.get(w.lower())
+        if not lens:
+            return w
+        tally[0] += 1
+        out, i = [], 0
+        for n in lens:
+            out.append(w[i:i + n])
+            i += n
+        return " ".join(out)
+    return WORD.sub(one, text)
 
 
 def clean_en(v):
@@ -163,6 +199,7 @@ def main():
         if f.endswith(".json"):
             os.remove(os.path.join(endir, f))
 
+    tally = [0]
     secs, totals, merged_chapters = [], [], 0
     for si, (idx, name, ename) in enumerate(BOOKS):
         rb, eb = ru[idx], en[idx]
@@ -173,7 +210,7 @@ def main():
         chapters = verses = 0
         for ci, rch in enumerate(rb["chapters"]):
             ech = [clean_en(x) for x in eb["chapters"][ci]]
-            rch = [clean_ru(x) for x in rch]
+            rch = [unrun(clean_ru(x), tally) for x in rch]
             if len(rch) != len(ech):
                 merged_chapters += 1
 
@@ -213,7 +250,8 @@ def main():
     print("%-14s %-12s %5s %7s %7s %7s" % ("book", "english", "chs", "verses", "paras", "en"))
     for name, ename, c, v, pn, e in totals:
         print("%-14s %-12s %5d %7d %7d %7d" % (name, ename, c, v, pn, e))
-    print("\n%d sections, %d chapters, %d verses, %d chapters needed alignment"
+    print("\n%d run-on words split (%d in the table)" % (tally[0], len(FIXES)))
+    print("%d sections, %d chapters, %d verses, %d chapters needed alignment"
           % (len(secs), sum(t[2] for t in totals), sum(t[3] for t in totals),
              merged_chapters))
     print("wrote %s (%.1f MB)" % (out, os.path.getsize(out) / 1e6))
