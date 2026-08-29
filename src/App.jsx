@@ -489,6 +489,17 @@ function bibleKeyFromHeading(h) {
   return no + "-" + ch;
 }
 
+// A chapter can be a stretch of a much longer recording: Anna Karenina's
+// parts are two twelve-hour files with a marker per chapter. Without an end
+// the player would run on for hours past the chapter the reader is on, so a
+// chapter that knows where it stops passes both bounds to the embed.
+function ytEmbed(id, start, end) {
+  var q = [];
+  if (start) q.push("start=" + start);
+  if (end)   q.push("end=" + end);
+  return "https://www.youtube.com/embed/" + id + (q.length ? "?" + q.join("&") : "");
+}
+
 function ytStart(s) {
   var t = String(s || "");
   var m = t.match(/[?&#](?:t|start)=(\d+)h(\d+)m(\d+)s/) ;
@@ -544,7 +555,7 @@ function mergeStorySections(chs) {
     // Videos were attached per source chapter, and the merge would otherwise
     // drop them. Keyed by paragraph index rather than by section, because a
     // section whose heading was filtered out of the index can still carry one.
-    if (c.youtubeId) videosAt.push({ at: at, id: c.youtubeId, start: c.youtubeStart || 0 });
+    if (c.youtubeId) videosAt.push({ at: at, id: c.youtubeId, start: c.youtubeStart || 0, end: c.youtubeEnd || 0 });
     (c.tightIdx || []).forEach(function(x) { tight.push(x + at); });
     texts.push(body);
     at += body.split("\n\n").length;
@@ -597,9 +608,11 @@ function attachVideos(chapters, entry) {
     var id = ytId(raw);
     if (!id) return ch;
     var start = (v && typeof v === "object" && v.start) ? (+v.start || 0) : ytStart(raw);
+    var end   = (v && typeof v === "object" && v.end)   ? (+v.end   || 0) : 0;
     return Object.assign({}, ch, {
       youtubeId: id,
       youtubeStart: start,
+      youtubeEnd: end,
       youtubeUrl: "https://www.youtube.com/watch?v=" + id + (start ? "&t=" + start : ""),
     });
   });
@@ -6235,8 +6248,7 @@ export default function App() {
               dualCells.unshift(
                 <div key={"vid" + pi} className="chvid"
                      style={{gridColumn: 1, gridRow: String(pi + 1)}}>
-                  <iframe src={"https://www.youtube.com/embed/" + secVid.id
-                               + (secVid.start ? "?start=" + secVid.start : "")}
+                  <iframe src={ytEmbed(secVid.id, secVid.start, secVid.end)}
                           title={secHead || bookMeta.title || "Video"} loading="lazy"
                           allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen />
@@ -6249,8 +6261,7 @@ export default function App() {
             dualCells.unshift(
               <div key={"vid" + pi} className="chvid"
                    style={{gridColumn: 1, gridRow: String(pi + 1)}}>
-                <iframe src={"https://www.youtube.com/embed/" + secVid.id
-                             + (secVid.start ? "?start=" + secVid.start : "")}
+                <iframe src={ytEmbed(secVid.id, secVid.start, secVid.end)}
                         title={secHead || bookMeta.title || "Video"} loading="lazy"
                         allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen />
@@ -6276,8 +6287,7 @@ export default function App() {
             {secHead && <div className="sec-div" id={"sec" + entry.chIdx}>{secHead}</div>}
             {secVid && (
               <div className="chvid">
-                <iframe src={"https://www.youtube.com/embed/" + secVid.id
-                             + (secVid.start ? "?start=" + secVid.start : "")}
+                <iframe src={ytEmbed(secVid.id, secVid.start, secVid.end)}
                         title={secHead || bookMeta.title || "Video"} loading="lazy"
                         allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen />
@@ -8858,8 +8868,7 @@ export default function App() {
                           <div className={"chvid-dock" + (vidStuck ? " stuck" : "")}>
                             <div className="chvid">
                               <iframe
-                                src={"https://www.youtube.com/embed/" + curChapter.youtubeId
-                                     + (curChapter.youtubeStart ? "?start=" + curChapter.youtubeStart : "")}
+                                src={ytEmbed(curChapter.youtubeId, curChapter.youtubeStart, curChapter.youtubeEnd)}
                                 title={curChapter.heading || bookMeta.title || "Video"}
                                 loading="lazy"
                                 allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
