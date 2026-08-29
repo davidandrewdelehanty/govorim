@@ -3473,6 +3473,29 @@ export default function App() {
     return out;
   }, [curChapter && curChapter.text, bookMeta && bookMeta.isBible]);
   var lastCidxRef = useRef(-1);
+  // A reading is meant to be listened to WHILE reading, which means the pause
+  // button has to stay reachable — scrolling the player off the top of the
+  // page turns "stop for a second" into a scroll back up. The player stays
+  // docked to the top of the column instead, and shrinks once the reader is
+  // past it: at full height it would take a third of the column with it.
+  var [vidStuck, setVidStuck] = useState(false);
+  useEffect(function() {
+    if (!(started && isLit)) return;
+    var el = document.querySelector(".lit-left");
+    // Desktop scrolls the column; mobile (max-width:900px) scrolls the page.
+    var read = function() {
+      var a = (el && el.scrollTop) || 0;
+      var b = window.pageYOffset || (document.documentElement || {}).scrollTop || 0;
+      setVidStuck(Math.max(a, b) > 90);
+    };
+    read();
+    if (el) el.addEventListener("scroll", read, { passive: true });
+    window.addEventListener("scroll", read, { passive: true });
+    return function() {
+      if (el) el.removeEventListener("scroll", read);
+      window.removeEventListener("scroll", read);
+    };
+  }, [started, isLit, cidx, pidx, curChapter && curChapter.youtubeId]);
   var currentPage = pages[Math.min(pidx, totalPages - 1)] || pages[0];
   // Keep the page ref in lockstep with the rendered page,
   // so the audiobook RAF loop highlights the right page after a flip.
@@ -6536,6 +6559,22 @@ export default function App() {
           padding-bottom:min(56.25%,360px);height:0;border-radius:10px;overflow:hidden;
           background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.12)}
         .chvid iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+        /* The player rides along at the top of the reading column. Opaque, or
+           the text scrolls through it; above the text, or the text scrolls
+           over it. */
+        .chvid-dock{position:sticky;top:0;z-index:6;background:#f5f0e8;
+          padding:6px 0 10px;margin-bottom:8px}
+        /* The column is padded, and a sticky element parks at the padding box,
+           so a strip of text kept showing in the padding above the player.
+           This paints that strip. It is clipped by the column on desktop and
+           sits off-screen on mobile, where the page itself scrolls. */
+        .chvid-dock::before{content:"";position:absolute;left:0;right:0;bottom:100%;
+          height:26px;background:#f5f0e8}
+        .chvid-dock .chvid{margin:0;transition:padding-bottom .22s ease}
+        .chvid-dock.stuck{border-bottom:1px solid rgba(42,31,20,.08);
+          box-shadow:0 8px 16px -10px rgba(42,31,20,.4)}
+        .chvid-dock.stuck .chvid{padding-bottom:min(56.25%,170px)}
+        @media(max-width:900px){.chvid-dock.stuck .chvid{padding-bottom:min(56.25%,128px)}}
         .story-index{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 20px;padding:12px 14px;
           border:1px solid rgba(42,31,20,.12);border-radius:10px;background:rgba(42,31,20,.03)}
         .story-index-link{font-family:'Inter',sans-serif;font-size:12px;line-height:1.2;
@@ -8665,14 +8704,16 @@ export default function App() {
                             first and read along with — and where it appears, the
                             audio bar stays away (see the player below). */}
                         {curChapter.youtubeId && !curChapter.merged && (
-                          <div className="chvid">
-                            <iframe
-                              src={"https://www.youtube.com/embed/" + curChapter.youtubeId
-                                   + (curChapter.youtubeStart ? "?start=" + curChapter.youtubeStart : "")}
-                              title={curChapter.heading || bookMeta.title || "Video"}
-                              loading="lazy"
-                              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                              allowFullScreen />
+                          <div className={"chvid-dock" + (vidStuck ? " stuck" : "")}>
+                            <div className="chvid">
+                              <iframe
+                                src={"https://www.youtube.com/embed/" + curChapter.youtubeId
+                                     + (curChapter.youtubeStart ? "?start=" + curChapter.youtubeStart : "")}
+                                title={curChapter.heading || bookMeta.title || "Video"}
+                                loading="lazy"
+                                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen />
+                            </div>
                           </div>
                         )}
                         {curChapter.heading && (
