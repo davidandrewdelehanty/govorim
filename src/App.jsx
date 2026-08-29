@@ -166,6 +166,7 @@ var BOOK_PROGRESS = "book_progress_v1";
 // done" — a reader can finish a book without ever reaching its last page, and
 // can reopen a finished book without unfinishing it.
 var BOOKS_FINISHED = "books_finished_v1";
+var BOOKS_HIDE_DONE = "books_hide_done_v1";
 
 // Stable identifier for a book — derived from filename + title so the same
 // book always gets the same key whether it's a preset or uploaded.
@@ -2478,6 +2479,23 @@ export default function App() {
     if (!finishedLoaded) return;   // never persist the empty initial state
     storage && storage.set(BOOKS_FINISHED, JSON.stringify(finishedMap)).catch(function(){});
   }, [finishedMap, finishedLoaded]);
+
+  // Filter for the library screen: hide what has been finished, so the list
+  // shows what is left to read. Persisted, because a reader who turns it on
+  // wants it on tomorrow too.
+  var [hideFinished, setHideFinished] = useState(false);
+  useEffect(function() {
+    (async function() {
+      try {
+        var r = await storage.get(BOOKS_HIDE_DONE);
+        if (r) setHideFinished(JSON.parse(r.value) === true);
+      } catch(e) {}
+    })();
+  }, []);
+  useEffect(function() {
+    if (!finishedLoaded) return;
+    storage && storage.set(BOOKS_HIDE_DONE, JSON.stringify(hideFinished)).catch(function(){});
+  }, [hideFinished, finishedLoaded]);
 
   var isFinished = function(meta) {
     var k = bookKey(meta);
@@ -6142,6 +6160,13 @@ export default function App() {
         .lib-tag{padding:2px 7px;border-radius:9px;font-size:10px;letter-spacing:.3px;font-weight:600;white-space:nowrap;border:1px solid rgba(42,31,20,.16);color:rgba(42,31,20,.72);background:rgba(42,31,20,.05)}
         .lib-tag.off{border-color:rgba(42,31,20,.08);color:rgba(42,31,20,.3);background:none;font-weight:500}
         .lib-card-cat{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#c4955a;padding:2px 8px;border-radius:10px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600}
+        .lib-filters{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap}
+        .lib-filters .lib-search{flex:1 1 220px;min-width:0}
+        .lib-filter-btn{flex:none;font-family:'Inter',sans-serif;font-size:12px;white-space:nowrap;
+          padding:0 14px;border-radius:8px;cursor:pointer;transition:all .15s;
+          border:1px solid rgba(42,31,20,.18);background:transparent;color:rgba(42,31,20,.6)}
+        .lib-filter-btn:hover{border-color:rgba(30,122,60,.45);color:#1e7a3c}
+        .lib-filter-btn.on{border-color:rgba(30,122,60,.45);background:rgba(30,122,60,.10);color:#1e7a3c;font-weight:600}
         .lib-done{padding:2px 8px;border-radius:10px;font-size:10px;letter-spacing:.3px;font-weight:700;white-space:nowrap;color:#1e7a3c;background:rgba(30,122,60,.10);border:1px solid rgba(30,122,60,.35)}
         .mark-read{flex:none;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.3px;padding:4px 10px;border-radius:12px;cursor:pointer;white-space:nowrap;border:1px solid rgba(42,31,20,.18);background:transparent;color:rgba(42,31,20,.55);transition:all .15s}
         .mark-read:hover{border-color:rgba(30,122,60,.45);color:#1e7a3c}
@@ -7438,6 +7463,10 @@ export default function App() {
                               // has the room for it.
                               var groups = {};
                               presetBooks.forEach(function(book, idx) {
+                                // Mirrors the grid's filter: a book hidden below is
+                                // hidden here too, or the two lists disagree about
+                                // what the library contains.
+                                if (hideFinished && isFinished(book)) return;
                                 var author = String((book && book.author) || "").trim() || "Other";
                                 if (!groups[author]) groups[author] = [];
                                 groups[author].push({ book: book, idx: idx });
@@ -7477,12 +7506,16 @@ export default function App() {
                                       // The marker must survive: it is the whole
                                       // point of the row. So the title is what
                                       // gives way, and only by as much as needed.
-                                      var room = optChars - lead.length - tag.length;
+                                      // A native <option> cannot carry styled markup, so the
+                                      // mark has to be a glyph that is green on its own —
+                                      // a plain ✓ would inherit the option's text colour.
+                                      var done = isFinished(book) ? "  \u2705" : "";
+                                      var room = optChars - lead.length - tag.length - done.length;
                                       var shown = tight && title.length > room
                                         ? title.slice(0, Math.max(4, room - 1)).trim() + "…"
                                         : title;
                                       return (
-                                        <option key={entry.idx} value={entry.idx}>{lead + shown + tag}</option>
+                                        <option key={entry.idx} value={entry.idx}>{lead + shown + tag + done}</option>
                                       );
                                     })}
                                   </optgroup>
@@ -7558,16 +7591,40 @@ export default function App() {
                           </div>
                         );
                       })()}
-                      <input
-                        type="text"
-                        placeholder="🔍 Search books and authors…"
-                        value={bookSearch}
-                        onChange={function(e){ setBookSearch(e.target.value); }}
-                        className="lib-search"
-                      />
+                      {/* Search and the finished filter sit on one row: both answer
+                          "what am I looking at", and the toggle names the count it
+                          removes so it is never a mystery why a book is missing. */}
+                      <div className="lib-filters">
+                        <input
+                          type="text"
+                          placeholder="🔍 Search books and authors…"
+                          value={bookSearch}
+                          onChange={function(e){ setBookSearch(e.target.value); }}
+                          className="lib-search"
+                        />
+                        {(function() {
+                          var done = presetBooks.filter(function(b){ return isFinished(b); }).length;
+                          if (!done && !hideFinished) return null;   // nothing to hide yet
+                          return (
+                            <button
+                              className={"lib-filter-btn" + (hideFinished ? " on" : "")}
+                              aria-pressed={hideFinished}
+                              onClick={function(){ setHideFinished(!hideFinished); }}
+                              title={hideFinished
+                                ? "Showing only what you haven't finished — click to show every book"
+                                : "Hide the books you've marked as read"}>
+                              {hideFinished ? "☑" : "☐"} Hide read{done ? " (" + done + ")" : ""}
+                            </button>
+                          );
+                        })()}
+                      </div>
                       {(function() {
                         var q = bookSearch.toLowerCase().trim();
                         var matches = function(book) {
+                          // The finished filter rides along with the search so every
+                          // consumer of this predicate — the grid, its category
+                          // counts, and the uploads row — agrees on what is visible.
+                          if (hideFinished && isFinished(book)) return false;
                           if (!q) return true;
                           var hay = ((book.title || "") + " " + (book.author || "") + " " + (book.filename || "")).toLowerCase();
                           return hay.indexOf(q) !== -1;
