@@ -5412,6 +5412,7 @@ export default function App() {
         // JSON and audio through /api/media rather than from /books/.
         restricted: !!opts.restricted,
         parallelEn: opts.parallelEn || null,
+        flowEn: !!opts.flowEn,
         // Shown above the English pane. A verse translation is a work in its
         // own right and does not track the Russian line for line, so a book
         // that pairs one says so rather than implying a literal gloss.
@@ -5535,6 +5536,7 @@ export default function App() {
         parallelEn: book.parallelEn || null,
         translationNote: book.translationNote || "",
         play: !!book.play,
+        flowEn: !!book.flowEn,
       });
     } catch(err) {
       setFErr(err.message || "Failed to load preset book");
@@ -5970,6 +5972,18 @@ export default function App() {
     // loses the correspondence that makes it useful, and every other parallel
     // book keeps the two-column view untouched.
     var bibleInline = !!(bookMeta && bookMeta.isBible);
+  // Some translations cannot be paired row by row and never could be. Garnett
+  // gives Мёртвые души 70 paragraphs where the Russian has 112; a translator
+  // who merges three paragraphs into one is not making a mistake, and neither
+  // is one who moves a clause to the end of a scene. Pinning that to rows
+  // produces confident nonsense — the wrong English beside a paragraph reads
+  // as a translation of it, which is worse than no English at all.
+  //
+  // Flow mode stops pretending. The Russian runs down its column and the
+  // English runs down its own, each at its natural length, and the reader
+  // matches them by eye the way they would with two books open. Set per book
+  // in the catalogue, from the alignment score.
+  var flowEn = !!(bookMeta && bookMeta.flowEn) && !bibleInline;
     var dualActive = !!((proseEnUsable || bibleEn) && !bibleInline);
     var litEntries = (function() {
       // Pull the non-empty paragraphs in the order they appear, matching how
@@ -6208,6 +6222,29 @@ export default function App() {
             <p key={"ru" + pi} className="dual-ru" lang="ru" id={"sp" + entry.chIdx}
                style={Object.assign({gridColumn: 1, gridRow: String(pi + 1)}, pMargin)}>{ruBody}</p>
           ];
+          // Flow mode: the Russian keeps its rows, the English does not get a
+          // cell here at all — it is emitted once, below, as a single column.
+          if (flowEn) {
+            if (secHead) {
+              dualCells.unshift(
+                <div key={"sec" + pi} className="sec-div" id={"sec" + entry.chIdx}
+                     style={{gridColumn: 1, gridRow: String(pi + 1)}}>{secHead}</div>
+              );
+            }
+            if (secVid) {
+              dualCells.unshift(
+                <div key={"vid" + pi} className="chvid"
+                     style={{gridColumn: 1, gridRow: String(pi + 1)}}>
+                  <iframe src={"https://www.youtube.com/embed/" + secVid.id
+                               + (secVid.start ? "?start=" + secVid.start : "")}
+                          title={secHead || bookMeta.title || "Video"} loading="lazy"
+                          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen />
+                </div>
+              );
+            }
+            return dualCells;
+          }
           if (secVid) {
             dualCells.unshift(
               <div key={"vid" + pi} className="chvid"
@@ -6262,6 +6299,15 @@ export default function App() {
           </Fragment>
         );
       });
+    // Flow mode's English: every entry on the page, in order, at its own
+    // length. No row is claimed for it, so nothing here can put the wrong
+    // paragraph beside a Russian one.
+    var flowEnBlocks = null;
+    if (dualActive && flowEn && proseEn) {
+      flowEnBlocks = litEntries
+        .map(function(e) { return proseEn[String(e.chIdx)]; })
+        .filter(function(t) { return t && String(t).trim(); });
+    }
     if (dualActive) {
       // Horizontal slide viewport: full-width RU pane on screen, EN pane one
       // swipe / shift-scroll to the right, snap points at each pane edge.
@@ -6275,7 +6321,17 @@ export default function App() {
             <div className="pmt tnote">{bookMeta.translationNote}</div>
           )}
           <div className="dual-scroll" ref={dualRef} onScroll={onDualScroll}>
-            <div className="dual-grid">{litRendered}</div>
+            <div className={"dual-grid" + (flowEn ? " flow" : "")}>
+              {litRendered}
+              {flowEn && flowEnBlocks && flowEnBlocks.length > 0 && (
+                <div className="dual-en-flow" lang="en"
+                     style={{gridColumn: 2, gridRow: "1 / span " + Math.max(1, litEntries.length)}}>
+                  {flowEnBlocks.map(function(t, i) {
+                    return <p key={i} className="dual-en">{t}</p>;
+                  })}
+                </div>
+              )}
+            </div>
           </div>
           <button
             className={"dual-toggle" + (dualPane === 1 ? " on" : "")}
@@ -6720,6 +6776,14 @@ export default function App() {
         /* Pinned to the viewport, not to the end of the scroll container, so it
            is reachable from anywhere in a long chapter. */
         .tnote{margin:0 0 10px;max-width:70ch}
+        /* Flow mode. The English is a single grid cell beside the whole
+           Russian column, so its paragraphs run at their own length instead of
+           being stretched or squeezed to line up with a Russian row. It starts
+           at the top and ends where it ends — the two texts are the same text,
+           not the same table. */
+        .dual-en-flow{align-self:start}
+        .dual-en-flow .dual-en{margin:0 0 1.2em}
+        .dual-grid.flow{align-items:start}
         /* The closed control IS stylable, unlike its options. Full width and a
            16px minimum, because anything smaller makes iOS zoom the page on
            focus and leaves it zoomed. */
