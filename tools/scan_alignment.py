@@ -42,6 +42,14 @@ WHAT THE COLUMNS MEAN
   spread  How much that ratio wobbles from paragraph to paragraph, in octaves.
           A steady translation stays under about 1. A file that is right at
           the start and wrong by the end wobbles.
+  own-row Of the paragraphs carrying a proper noun or a number, how many find
+          it in the English on their OWN row rather than a neighbouring one.
+          The second opinion, and the important one: length correlation cannot
+          tell a page that is right from a page that is uniformly two sentences
+          late, and this can. Healthy books sit at 90-100%. Blank where the
+          chapter has fewer than three names to go on — n is that count.
+  drift   Where those names mostly land, when it is not the row they belong to.
+          A whole file reading +1 is displaced, not mistranslated.
   digits  Where both sides carry numbers, how often the numbers agree. Numbers
           survive translation, so disagreement is real evidence. Blank when
           the chapter has none, which is most prose.
@@ -66,6 +74,59 @@ SKIP_DIRS = set(["bible-kjv"])
 TAG = re.compile(r"\{[^}]*\}")
 PARA_TAGS = ("p", "v", "subtitle")
 DIGITS = re.compile(r"\d+")
+
+
+# Cyrillic to Latin, in the several spellings a translator might choose. Names
+# are what survive translation, and they are the only thing in a paragraph that
+# can be checked across the language barrier without understanding either side.
+TRANS = {
+    "а": ["a"], "б": ["b"], "в": ["v"], "г": ["g"], "д": ["d"], "е": ["e", "ye"],
+    "ё": ["e", "yo"], "ж": ["zh", "j"], "з": ["z"], "и": ["i"], "й": ["i", "y"],
+    "к": ["k", "c"], "л": ["l"], "м": ["m"], "н": ["n"], "о": ["o"], "п": ["p"],
+    "р": ["r"], "с": ["s"], "т": ["t"], "у": ["u", "oo"], "ф": ["f"],
+    "х": ["kh", "h"], "ц": ["ts"], "ч": ["ch"], "ш": ["sh"], "щ": ["sch", "shch"],
+    "ъ": [""], "ы": ["y", "i"], "ь": [""], "э": ["e"], "ю": ["yu", "iu"],
+    "я": ["ya", "ia"],
+}
+# Proper nouns only. Every other word matches something by accident once it is
+# cut to four letters, and accidental matches land equally on every row, which
+# is precisely what drowns out the signal.
+RUWORD = re.compile(r"(?<![.!?…»\"\'\-—]\s)(?<!^)\b[А-ЯЁ][а-яё]{3,}")
+ENWORD = re.compile(r"(?<![.!?…\"\'\-—]\s)(?<!^)\b[A-Z][a-z]{3,}")
+NUM = re.compile(r"\d+")
+STEM = 4          # how much of a name has to survive to count as the same name
+
+
+def ru_stems(text):
+    """Latin stems a Russian paragraph's longer words could be written as."""
+    out = set()
+    for w in RUWORD.findall(text):
+        w = w.lower()
+        forms = [""]
+        for ch in w:
+            opts = TRANS.get(ch, [ch])
+            forms = [f + o for f in forms for o in opts]
+            forms = [f for f in forms if len(f) <= STEM + 2]
+            if all(len(f) >= STEM for f in forms):
+                break
+        for f in forms:
+            if len(f) >= STEM:
+                out.add(f[:STEM])
+    return out
+
+
+def en_stems(text):
+    return set(w.lower()[:STEM] for w in ENWORD.findall(text))
+
+
+def anchor_score(ru, en):
+    """How much do these two share that survives translation — names, numbers."""
+    n = len(set(NUM.findall(ru)) & set(NUM.findall(en)))
+    return n + len(ru_stems(ru) & en_stems(en))
+
+
+def anchored(ru, en):
+    return anchor_score(ru, en) > 0
 
 
 def local(el):
@@ -256,6 +317,7 @@ def score_file(chapter, emap):
         return row
 
     ru, en, dig_ok, dig_n = [], [], 0, 0
+    pairs = []
     import math
     logs = []
     for pos, i in enumerate(idx):
@@ -270,6 +332,7 @@ def score_file(chapter, emap):
         e = str(emap[str(i)]).strip()
         if len(r) < 40 or len(e) < 40:
             continue                  # one-line dialogue carries no length signal
+        pairs.append((r, e))
         ru.append(len(r)); en.append(len(e))
         logs.append(math.log(len(e) / float(len(r)), 2))
         dr, de = DIGITS.findall(r), DIGITS.findall(e)
@@ -286,6 +349,50 @@ def score_file(chapter, emap):
     q = sorted(logs)
     row["spread"] = q[int(.75 * (len(q) - 1))] - q[int(.25 * (len(q) - 1))]
     row["digits"] = (dig_ok / float(dig_n)) if dig_n >= 3 else None
+
+    # A second opinion that length cannot fake. Names and numbers cross the
+    # language barrier intact, so a right pairing shares them far more often
+    # than a wrong one — and crucially this is NOT what the re-slicer optimises,
+    # so it can grade the re-slicer's work. Scored against the same paragraphs
+    # paired with the wrong English (rotated half a chapter along), which is
+    # the rate to beat: books full of names score high either way, and it is
+    # the LIFT over that baseline that means something.
+    if len(pairs) >= 6:
+        hit = sum(1 for r, e in pairs if anchored(r, e))
+        half = len(pairs) // 2
+        null = sum(1 for i, (r, _) in enumerate(pairs)
+                   if anchored(r, pairs[(i + half) % len(pairs)][1]))
+        row["anchor"] = hit / float(len(pairs))
+        row["lift"] = (hit + 1.0) / (null + 1.0)
+
+        # Which row does each Russian paragraph's name actually turn up on?
+        # If it is reliably one or two rows along rather than its own, the file
+        # is not wrong so much as displaced, and by how much. This is the thing
+        # length correlation cannot see: a page can score 0.99 while every row
+        # of it sits two sentences late.
+        votes, placed = {}, 0
+        for i, (r, _) in enumerate(pairs):
+            if not (NUM.findall(r) or ru_stems(r)):
+                continue
+            # The STRONGEST offset, not the first one that matches: taking the
+            # first with zero at the head of the list quietly votes for "no
+            # drift" every time a paragraph matches in two places.
+            near = [(anchor_score(r, pairs[i + o][1]), -abs(o), o)
+                    for o in (-2, -1, 0, 1, 2) if 0 <= i + o < len(pairs)]
+            near.sort(reverse=True)
+            if not near or near[0][0] == 0:
+                continue
+            placed += 1
+            o = near[0][2]
+            votes[o] = votes.get(o, 0) + 1
+        # Three is a small sample, but a name is strong evidence and most
+        # chapters carry only a handful. `placed` travels with the verdict so a
+        # thin one can be discounted.
+        if placed >= 3:
+            best = max(votes, key=lambda k: votes[k])
+            row["onrow"] = votes.get(0, 0) / float(placed)
+            row["drift"] = best if best else 0
+            row["placed"] = placed
     return row
 
 
@@ -460,6 +567,11 @@ def main():
         elif r["ratio"] < mid_ratio / 2.0: why.append("English far shorter")
         if r["spread"] > 1.6: why.append("ratio unsteady")
         if r["digits"] is not None and r["digits"] < 0.4: why.append("numbers disagree")
+        if r.get("onrow") is not None and r.get("placed", 0) >= 5:
+            if r["drift"]:
+                why.append("names land %+d rows away" % r["drift"])
+            elif r["onrow"] < 0.6:
+                why.append("names on the wrong rows")
         return "; ".join(why)
 
     for r in rows:
@@ -486,20 +598,24 @@ def main():
                       median([r["ratio"] for r in rs]), title, d))
     works = [w for w in works if w[1]]
     works.sort(key=lambda w: (-w[0], w[3]))
-    print("%-32s %-24s %9s %6s %6s" % ("work", "folder", "flagged", "rho", "ratio"))
+    print("%-30s %-24s %9s %6s %8s" % ("work", "folder", "flagged", "rho", "own-row"))
     for frac, nb, n, rho, rat, title, d in works[:a.top]:
-        print("%-32s %-24s %4d/%-4d %6.2f %6.2f"
-              % (title[:32], d[:24], nb, n, rho, rat))
+        ors = [r["onrow"] for r in per[(title, d)] if r.get("onrow") is not None]
+        print("%-30s %-24s %4d/%-4d %6.2f %8s"
+              % (title[:30], d[:24], nb, n, rho,
+                 ("%.0f%%" % (100 * median(ors))) if ors else "--"))
     if len(works) > a.top:
         print("... %d more works with at least one flagged file" % (len(works) - a.top))
 
     print("\nworst individual files")
-    print("%-28s %-26s %5s %6s %6s %6s  %s"
-          % ("work", "file", "n", "rho", "ratio", "spread", "why"))
+    print("%-26s %-24s %5s %6s %6s %8s  %s"
+          % ("work", "file", "n", "rho", "ratio", "own-row", "why"))
     for r in bad[:a.top]:
-        print("%-28s %-26s %5d %6.2f %6.2f %6.2f  %s"
-              % (r["book"][:28], (r["dir"][:17] + "/" + r["file"]), r["used"],
-                 r["rho"], r["ratio"], r["spread"], r["flag"]))
+        print("%-26s %-24s %5d %6.2f %6.2f %8s  %s"
+              % (r["book"][:26], (r["dir"][:15] + "/" + r["file"]), r["used"],
+                 r["rho"], r["ratio"],
+                 ("%.0f%%" % (100 * r["onrow"])) if r.get("onrow") is not None else "--",
+                 r["flag"]))
     if len(bad) > a.top:
         print("... %d more (raise --top, or --json for all)" % (len(bad) - a.top))
 
