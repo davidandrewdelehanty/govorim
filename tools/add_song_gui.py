@@ -609,7 +609,11 @@ def book_videos_page(bid, msg=""):
             vid = (v.get("youtube") if isinstance(v, dict) else v) or ""
             secs = int(v["start"]) if (isinstance(v, dict) and v.get("start")) else 0
             if whole and vid == whole:
-                cur = ("%d:%02d" % (secs // 60, secs % 60)) if secs else ""
+                # Always render a time, never an empty box. A chapter that uses
+                # the whole-work video from its very start still has a value —
+                # showing nothing made the row look unset, and saving the page
+                # then removed a video that was there.
+                cur = "%d:%02d" % (secs // 60, secs % 60)
             elif vid:
                 cur = vid + ("&t=%d" % secs if secs else "")
             else:
