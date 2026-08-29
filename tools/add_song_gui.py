@@ -792,7 +792,7 @@ class H(BaseHTTPRequestHandler):
         # The commit is not optional. A video that lives only in the working
         # tree never reaches the site, and `git push` reports nothing to do —
         # which is exactly the trap this used to set. Only the push is a choice.
-        want_push = True
+        want_push = False
         ok, log = git_books_publish("Chapter videos: " + note, push=want_push)
         if ok:
             msg += ('<div class="ok">Committed and pushed — live after Vercel redeploys.</div>'
@@ -830,7 +830,7 @@ class H(BaseHTTPRequestHandler):
         title = fields.get("title", "").strip()
         yt = fields.get("youtube", "").strip()
         lyrics = fields.get("lyrics", "").strip()
-        push = True
+        push = False
 
         if filebytes:
             lyrics = filebytes.decode("utf-8-sig", errors="replace").strip()
@@ -925,7 +925,7 @@ class H(BaseHTTPRequestHandler):
                 '<div class="err">Pick one catalogue to copy FROM.</div>', which))
         dest = other(which)
         picks = multi.get("copy") or []
-        push = True
+        push = False
         if not picks:
             return self._send(form_page(
                 '<div class="err">Nothing ticked \u2014 tick the songs to copy first.</div>', which))
@@ -1018,7 +1018,7 @@ class H(BaseHTTPRequestHandler):
         which = self._which(fields)
         artist = fields.get("artist", "").strip()
         title = fields.get("title", "").strip()
-        push = True
+        push = False
         try:
             data = load_music(which)
         except Exception as e:
@@ -1060,7 +1060,7 @@ class H(BaseHTTPRequestHandler):
         title = fields.get("title", "").strip()
         yt = fields.get("youtube", "").strip()
         lyrics = fields.get("lyrics", "").strip()
-        push = True
+        push = False
 
         if not lyrics and filebytes:
             lyrics = filebytes.decode("utf-8-sig", errors="replace").strip()
