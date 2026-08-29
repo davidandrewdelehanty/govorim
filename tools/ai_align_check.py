@@ -143,12 +143,15 @@ def windows_for(book, chs, path):
 
 
 def build(limit, floor, min_names, model=MODEL, in_rate=IN_RATE, out_rate=OUT_RATE,
-          effort=False):
+          effort=False, only=None, from_file=0):
     cat = json.load(io.open(INDEX, encoding="utf-8"))
     picked = []
     for b in cat:
         d = b.get("parallelEn")
         if not d or d == "bible-kjv":
+            continue
+        # --book re-reads one folder after a fix, without paying for the rest.
+        if only and d not in only:
             continue
         chs = chapters(os.path.join(BOOKS, b["filename"]))
         if not chs:
@@ -156,6 +159,8 @@ def build(limit, floor, min_names, model=MODEL, in_rate=IN_RATE, out_rate=OUT_RA
         for f in sorted(glob.glob(os.path.join(BOOKS, d, "[0-9]*.json"))):
             ci = int(re.match(r"(\d+)", os.path.basename(f)).group(1)) - 1
             if not (0 <= ci < len(chs)):
+                continue
+            if ci + 1 < from_file:
                 continue
             r = score_file(chs[ci], json.load(io.open(f, encoding="utf-8")))
             on, placed = r.get("onrow"), r.get("placed", 0)
@@ -572,6 +577,10 @@ def main():
     ap.add_argument("--model", choices=sorted(MODELS), default="haiku",
                     help="haiku is the cheap sweep; sonnet judges literary "
                          "prose better and costs about twice as much")
+    ap.add_argument("--book", default="",
+                    help="only these parallelEn folders (comma separated)")
+    ap.add_argument("--from-file", type=int, default=0,
+                    help="skip files numbered below this")
     ap.add_argument("--everything", action="store_true",
                     help="read every paired file, not only the ones that fail "
                          "the free checks")
@@ -593,7 +602,9 @@ def main():
     if a.cancel:
         return 0 if cancel(key) else 1
     if a.build:
-        build(a.limit, a.floor, a.min_names, model, in_rate, out_rate, effort)
+        only = set(x.strip() for x in a.book.split(",") if x.strip()) or None
+        build(a.limit, a.floor, a.min_names, model, in_rate, out_rate, effort,
+              only, a.from_file)
     if a.submit:
         submit(key)
     if a.wait:
