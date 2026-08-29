@@ -333,6 +333,122 @@ def report(found=None):
     print("\n%d file(s) with at least one bad window" % len(byfile))
 
 
+PAGE = """<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alignment review</title><style>
+:root{--bg:#faf7f2;--fg:#191512;--dim:#6b6259;--rule:#e2dccf;--card:#fff;--accent:#a8712c}
+@media (prefers-color-scheme:dark){:root{--bg:#16130f;--fg:#ece6dd;--dim:#9a9086;--rule:#2f2a24;--card:#1e1a16;--accent:#d8a25a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 24px 80px}
+h1{font-size:28px;margin:0 0 6px;letter-spacing:-.01em}
+.sub{color:var(--dim);margin:0 0 32px}
+.tiles{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 40px}
+.tile{flex:1 1 150px;background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:14px 16px}
+.tile b{display:block;font-size:26px;font-weight:600;letter-spacing:-.02em}
+.tile span{color:var(--dim);font-size:12.5px;text-transform:uppercase;letter-spacing:.07em}
+h2{font-size:17px;margin:38px 0 4px;letter-spacing:-.005em}
+h2 .n{color:var(--dim);font-weight:400}
+.note{color:var(--dim);margin:0 0 14px;font-size:14px;max-width:70ch}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--dim);font-weight:600;padding:10px 12px;border-bottom:1px solid var(--rule)}
+td{padding:9px 12px;border-top:1px solid var(--rule);vertical-align:top}
+tr:first-child td{border-top:none}
+.work{font-weight:600}
+.file{color:var(--dim);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;white-space:nowrap}
+.off{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:600;color:var(--accent);white-space:nowrap}
+.why{color:var(--dim);font-size:13.5px}
+.scroll{overflow-x:auto}
+.empty{color:var(--dim);font-style:italic;padding:8px 0}
+</style></head><body><div class="wrap">__BODY__</div></body></html>
+"""
+
+
+def esc(t):
+    return (str(t or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
+
+
+def html_report(found, path, model):
+    from collections import defaultdict
+    files = defaultdict(list)
+    for v in found:
+        files[(v["dir"], v["file"])].append(v)
+
+    same, drift, wrong, other, unsure = [], [], [], [], []
+    for key, vs in files.items():
+        offs = sorted(set(v.get("offset") for v in vs
+                          if v.get("verdict") == "OFFSET" and v.get("offset")))
+        kinds = set(v.get("verdict") for v in vs)
+        if "DIFFERENT_WORK" in kinds:
+            wrong.append((key, vs, offs))
+        elif offs and len(offs) == 1:
+            same.append((key, vs, offs))
+        elif offs:
+            drift.append((key, vs, offs))
+        elif kinds & set(["SCRAMBLED", "PARTIAL"]):
+            other.append((key, vs, offs))
+        elif kinds == set(["UNSURE"]):
+            unsure.append((key, vs, offs))
+    for g in (same, drift, wrong, other, unsure):
+        g.sort(key=lambda t: -len(t[1]))
+
+    def table(group):
+        if not group:
+            return "<p class='empty'>Nothing in this group.</p>"
+        rows = []
+        for (d, f), vs, offs in group:
+            worst = sorted(vs, key=lambda v: {"DIFFERENT_WORK": 0, "SCRAMBLED": 1,
+                                              "OFFSET": 2, "PARTIAL": 3}.get(v["verdict"], 9))[0]
+            o = ("shift %+d" % -offs[0]) if len(offs) == 1 else \
+                (", ".join("%+d" % x for x in offs) if offs else "—")
+            rows.append("<tr><td class='work'>%s</td><td class='file'>%s</td>"
+                        "<td class='off'>%s</td><td>%d</td><td class='why'>%s</td></tr>"
+                        % (esc(d), esc(f), esc(o), len(vs), esc(worst.get("why"))))
+        return ("<div class='scroll'><table><tr><th>folder</th><th>file</th>"
+                "<th>offset</th><th>windows</th><th>what the reader saw</th></tr>"
+                + "".join(rows) + "</table></div>")
+
+    bad = [v for v in found if v.get("verdict") not in ("OK", "UNSURE")]
+    body = []
+    body.append("<h1>Alignment review</h1>")
+    body.append("<p class='sub'>%d windows read by %s across %d chapter files.</p>"
+                % (len(found), esc(model), len(files)))
+    body.append("<div class='tiles'>"
+                "<div class='tile'><b>%d</b><span>windows wrong</span></div>"
+                "<div class='tile'><b>%d</b><span>files affected</span></div>"
+                "<div class='tile'><b>%d</b><span>one clean shift</span></div>"
+                "<div class='tile'><b>%d</b><span>drifted</span></div>"
+                "<div class='tile'><b>%d</b><span>wrong work</span></div>"
+                "</div>" % (len(bad), len(same) + len(drift) + len(wrong) + len(other),
+                            len(same), len(drift), len(wrong)))
+    body.append("<h2>One clean shift <span class='n'>%d</span></h2>" % len(same))
+    body.append("<p class='note'>Every window of these files reports the same offset, so the "
+                "English is the right text with the wrong keys. "
+                "<code>tools/apply_ai_offsets.py</code> moves them and checks the result "
+                "against the names measure before writing.</p>")
+    body.append(table(same))
+    body.append("<h2>Drifted <span class='n'>%d</span></h2>" % len(drift))
+    body.append("<p class='note'>The offset changes down the chapter, so no single shift fixes "
+                "these. The repair moves each window by its own offset, which helps but rarely "
+                "finishes the job.</p>")
+    body.append(table(drift))
+    body.append("<h2>Wrong work <span class='n'>%d</span></h2>" % len(wrong))
+    body.append("<p class='note'>The English belongs to another story. No re-keying saves these; "
+                "the file needs the right translation sourced. Check the reason before acting — "
+                "a passage from far away in the SAME book should have been called an offset.</p>")
+    body.append(table(wrong))
+    body.append("<h2>Scrambled or partial <span class='n'>%d</span></h2>" % len(other))
+    body.append("<p class='note'>Right work, no fixed pattern, or right for part of the window "
+                "only. These need reading.</p>")
+    body.append(table(other))
+    body.append("<h2>Could not tell <span class='n'>%d</span></h2>" % len(unsure))
+    body.append("<p class='note'>Too little text, too free a translation, or bare dialogue. Not "
+                "evidence of a fault.</p>")
+    body.append(table(unsure))
+    io.open(path, "w", encoding="utf-8").write(PAGE.replace("__BODY__", "\n".join(body)))
+    print("wrote %s" % path)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--build", action="store_true")
@@ -340,6 +456,8 @@ def main():
     ap.add_argument("--wait", action="store_true")
     ap.add_argument("--fetch", action="store_true")
     ap.add_argument("--report", action="store_true")
+    ap.add_argument("--html", default=os.path.join(HERE, "alignment-review.html"),
+                    help="where to write the readable version")
     ap.add_argument("--limit", type=int, default=0, help="send only the worst N windows")
     ap.add_argument("--floor", type=float, default=0.80,
                     help="read files scoring below this on names (default 0.80)")
@@ -372,6 +490,8 @@ def main():
         fetch(key)
     if a.report:
         report()
+        html_report(json.load(io.open(OUT, encoding="utf-8")), a.html,
+                    MODELS[a.model][0])
     return 0
 
 
