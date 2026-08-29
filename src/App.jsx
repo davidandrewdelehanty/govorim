@@ -153,6 +153,12 @@ function isBibleBook(meta) {
   return /библия|bible|евангелие|новый\s+завет|ветхий\s+завет|псалтир[ьи]|псалмы|апокалипсис|книг[аи]\s|деяния|послание|откровение|пророк[ао]?|святое\s+писание|священное\s+писание|синодальн/i.test(t);
 }
 
+// The pathname the tab was opened on, read once at module load. The address
+// bar is rewritten during the session (a book opens, a book closes), so by the
+// time the catalogue arrives it no longer says where the reader arrived from.
+// This does, and it cannot be clobbered.
+var BOOT_PATH = (typeof window !== "undefined" && window.location && window.location.pathname) || "";
+
 var EPUB_CACHE = "epub_data_v1";
 var EPUB_BM    = "epub_bm_v1";
 
@@ -5365,6 +5371,7 @@ export default function App() {
         isBible: !!opts.isBible,
         bibleEn: opts.bibleEn || null,
       };
+      if (!opts.fromPreset) curSlug.current = "";
       setChapters(chs);
       setBookMeta(meta);
       setCbm(0);
@@ -5428,8 +5435,13 @@ export default function App() {
     } catch(err) { setFErr(err.message); }
   };
 
+  // The slug of the book currently open in the reader, or "" for an upload or
+  // no book at all. The address bar is kept in step with this.
+  var curSlug = useRef("");
+
   // Download a preset book from the server and load it through the normal pipeline.
   var loadPresetBook = async function(book) {
+    curSlug.current = (book && book.slug) || "";
     // Opening a story is the other navigation moment worth checking on.
     checkForUpdate();
     setFErr("");
@@ -5546,7 +5558,7 @@ export default function App() {
         // the reader back into a book they already left.
         if (!deepLinkDone.current) {
           deepLinkDone.current = true;
-          var m = (window.location.pathname || "").match(/^\/book\/([a-z0-9-]+)\/?$/);
+          var m = BOOT_PATH.match(/^\/book\/([a-z0-9-]+)\/?$/);
           if (m) {
             for (var dli = 0; dli < list.length; dli++) {
               if (list[dli] && list[dli].slug === m[1]) { loadPresetBook(list[dli]); break; }
@@ -5558,6 +5570,21 @@ export default function App() {
     // Re-fetch when the session changes: signing in as the admin adds the
     // restricted books, signing out has to take them away again.
   }, [me]);
+
+  // The address bar is state, not a souvenir. /book/<slug> means "this book is
+  // open right now" — so closing the book has to take the slug with it, or the
+  // next refresh silently reopens a book the reader already left. (That is why
+  // refreshing the library screen kept landing in whichever book was read
+  // last.) Both directions: reopening the reader puts the slug back.
+  useEffect(function() {
+    try {
+      var here = (window.location.pathname || "");
+      var want = (started && mode === "read" && curSlug.current)
+        ? "/book/" + curSlug.current
+        : (here.indexOf("/book/") === 0 ? "/" : here);
+      if (want !== here) window.history.replaceState({}, "", want);
+    } catch (e) {}
+  }, [started, mode, cidx]);
 
   // Fetch the grammar curriculum once on mount. The file lives in /public/grammar/
   // so it's served as a static asset; edits to the JSON take effect immediately
@@ -7795,7 +7822,14 @@ export default function App() {
                                 // hidden here too, or the two lists disagree about
                                 // what the library contains.
                                 if (hideFinished && isFinished(book)) return;
-                                var author = String((book && book.author) || "").trim() || "Other";
+                                // A text with no author is not anonymous by
+                                // accident — scripture, folk song, an official
+                                // document. Its category is the heading a
+                                // reader would look under, so use that before
+                                // falling back to the unattributed bucket.
+                                var author = String((book && book.author) || "").trim()
+                                  || String((book && book.category) || "").trim()
+                                  || "Other";
                                 if (!groups[author]) groups[author] = [];
                                 groups[author].push({ book: book, idx: idx });
                               });
