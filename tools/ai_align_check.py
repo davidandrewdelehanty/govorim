@@ -35,6 +35,13 @@ MAP = os.path.join(HERE, "ai-align-map.json")
 OUT = os.path.join(HERE, "ai-align-findings.json")
 
 MODEL = "claude-haiku-4-5-20251001"
+MODELS = {"haiku": ("claude-haiku-4-5-20251001", 0.50, 2.50),
+          "sonnet": ("claude-sonnet-5", 1.00, 5.00)}
+# A Message Batch takes at most 100,000 requests or 256 MB, whichever comes
+# first. The whole library is about 9,000 windows, so the count is never the
+# problem and the size very nearly never is — but a batch refused for size
+# after a long upload is a miserable way to find out.
+MAX_BYTES = 240 * 1024 * 1024
 API = "https://api.anthropic.com/v1/messages/batches"
 WINDOW, OVERLAP = 12, 2
 IN_RATE, OUT_RATE = 0.50, 2.50        # batch pricing, $/MTok
@@ -104,7 +111,7 @@ def windows_for(book, chs, path):
     return out
 
 
-def build(limit, floor, min_names):
+def build(limit, floor, min_names, model=MODEL, in_rate=IN_RATE, out_rate=OUT_RATE):
     cat = json.load(io.open(INDEX, encoding="utf-8"))
     picked = []
     for b in cat:
@@ -147,7 +154,7 @@ def build(limit, floor, min_names):
             reqs.append({
                 "custom_id": cid,
                 "params": {
-                    "model": MODEL,
+                    "model": model,
                     "max_tokens": 200,
                     "temperature": 0,
                     # No cache_control: Haiku 4.5 will not cache a prompt under
@@ -168,15 +175,38 @@ def build(limit, floor, min_names):
     json.dump(index, io.open(MAP, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     tin = tokens(ru_chars, en_chars) + len(reqs) * 60
     tout = len(reqs) * 70
-    cost = tin / 1e6 * IN_RATE + tout / 1e6 * OUT_RATE
+    cost = tin / 1e6 * in_rate + tout / 1e6 * out_rate
     print("%d file(s) need reading, %d window(s) to send" % (len(picked), len(reqs)))
     print("about %.1fM input tokens and %.0fk output" % (tin / 1e6, tout / 1e3))
-    print("estimated cost at batch rates: $%.2f" % cost)
+    print("estimated cost at batch rates on %s: $%.2f" % (model, cost))
     print("wrote %s" % REQS)
     return len(reqs)
 
 
-def call(url, data=None, key=None, method=None):
+# Overloaded, rate-limited, or a blip on the way — none of which mean the
+# request was wrong. A poll loop that quits on the first 503 abandons a batch
+# that is running perfectly well on the other end.
+TRANSIENT = (408, 409, 429, 500, 502, 503, 504, 529)
+
+
+def call(url, data=None, key=None, method=None, tries=6):
+    for attempt in range(tries):
+        try:
+            return _once(url, data, key, method)
+        except _Transient as t:
+            if attempt == tries - 1:
+                sys.exit("the API kept failing (HTTP %d): %s" % (t.code, t.msg))
+            naptime = min(60, 2 ** attempt * 5)
+            print("  ...HTTP %d (%s) — retrying in %ds" % (t.code, t.msg[:60], naptime))
+            time.sleep(naptime)
+
+
+class _Transient(Exception):
+    def __init__(self, code, msg):
+        self.code, self.msg = code, msg
+
+
+def _once(url, data=None, key=None, method=None):
     req = urllib.request.Request(url, data=data, method=method)
     req.add_header("x-api-key", key)
     req.add_header("anthropic-version", "2023-06-01")
@@ -195,8 +225,12 @@ def call(url, data=None, key=None, method=None):
         try:
             msg = json.loads(body)["error"]["message"]
         except Exception:
-            msg = body[:600] or e.reason
+            msg = body[:600] or str(e.reason)
+        if e.code in TRANSIENT:
+            raise _Transient(e.code, msg)
         sys.exit("the API refused the request (HTTP %d):\n  %s" % (e.code, msg))
+    except urllib.error.URLError as e:
+        raise _Transient(0, str(e.reason))
 
 
 def submit(key):
@@ -204,7 +238,15 @@ def submit(key):
     if not reqs:
         sys.exit("no requests — run --build first")
     body = json.dumps({"requests": reqs}).encode("utf-8")
+    if len(body) > MAX_BYTES:
+        sys.exit("this batch is %.0f MB and the limit is 256 MB — narrow it with\n"
+                 "--floor or --limit and run it in parts." % (len(body) / 1e6))
     got = json.loads(call(API, body, key))
+    # Keep the id-to-file map WITH the batch. Rebuilding the requests for a
+    # different run replaces the map on disk, and results fetched against the
+    # wrong map are not an error — they are wrong answers with confident
+    # filenames on them.
+    got["index"] = json.load(io.open(MAP, encoding="utf-8"))
     json.dump(got, io.open(STATE, "w", encoding="utf-8"), indent=1)
     print("submitted %d window(s) as %s" % (len(reqs), got["id"]))
     return got["id"]
@@ -215,6 +257,7 @@ def wait(key, every=30):
     while True:
         got = json.loads(call(API + "/" + bid, key=key))
         counts = got.get("request_counts", {})
+        got["index"] = json.load(io.open(STATE, encoding="utf-8")).get("index")
         print("  %s  %s" % (got.get("processing_status"),
                             " ".join("%s=%s" % kv for kv in sorted(counts.items()))))
         if got.get("processing_status") == "ended":
@@ -224,15 +267,16 @@ def wait(key, every=30):
 
 
 def fetch(key):
-    got = json.load(io.open(STATE, encoding="utf-8"))
+    saved = json.load(io.open(STATE, encoding="utf-8"))
+    got = saved
     url = got.get("results_url")
     if not url:
-        got = json.loads(call(API + "/" + got["id"], key=key))
+        got = json.loads(call(API + "/" + saved["id"], key=key))
         url = got.get("results_url")
     if not url:
         sys.exit("the batch has no results yet")
     raw = call(url, key=key).decode("utf-8")
-    index = json.load(io.open(MAP, encoding="utf-8"))
+    index = saved.get("index") or json.load(io.open(MAP, encoding="utf-8"))
     found = []
     for line in raw.splitlines():
         if not line.strip():
@@ -291,6 +335,12 @@ def main():
     ap.add_argument("--floor", type=float, default=0.80,
                     help="read files scoring below this on names (default 0.80)")
     ap.add_argument("--min-names", type=int, default=4)
+    ap.add_argument("--model", choices=sorted(MODELS), default="haiku",
+                    help="haiku is the cheap sweep; sonnet judges literary "
+                         "prose better and costs about twice as much")
+    ap.add_argument("--everything", action="store_true",
+                    help="read every paired file, not only the ones that fail "
+                         "the free checks")
     a = ap.parse_args()
     if not any((a.build, a.submit, a.wait, a.fetch, a.report)):
         ap.error("nothing to do — try --build")
@@ -300,8 +350,11 @@ def main():
         sys.exit("ANTHROPIC_API_KEY is not set. A Console key is separate from a\n"
                  "Claude subscription: https://platform.claude.com/settings/keys")
 
+    model, in_rate, out_rate = MODELS[a.model]
+    if a.everything:
+        a.floor, a.min_names = 1.1, 0
     if a.build:
-        build(a.limit, a.floor, a.min_names)
+        build(a.limit, a.floor, a.min_names, model, in_rate, out_rate)
     if a.submit:
         submit(key)
     if a.wait:
