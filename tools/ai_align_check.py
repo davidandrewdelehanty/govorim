@@ -287,6 +287,35 @@ def submit(key):
     return got["id"]
 
 
+def status(key, once=True):
+    """Where the batch has got to, in one line you can run any time."""
+    saved = json.load(io.open(STATE, encoding="utf-8"))
+    got = json.loads(call(API + "/" + saved["id"], key=key))
+    c = got.get("request_counts", {}) or {}
+    done = sum(c.get(k, 0) for k in ("succeeded", "errored", "canceled", "expired"))
+    total = done + c.get("processing", 0)
+    started = got.get("created_at", "")
+    mins = ""
+    if started:
+        try:
+            import datetime
+            t0 = datetime.datetime.fromisoformat(started)
+            mins = " · %d min in" % ((datetime.datetime.now(datetime.timezone.utc)
+                                      - t0).total_seconds() // 60)
+        except Exception:
+            pass
+    bar = ""
+    if total:
+        filled = int(28.0 * done / total)
+        bar = " [%s%s] %d%%" % ("#" * filled, "." * (28 - filled), 100 * done // total)
+    print("%s  %d/%d%s%s" % (got.get("processing_status"), done, total, bar, mins))
+    if c.get("errored"):
+        print("  %d errored — --fetch will say why" % c["errored"])
+    if got.get("processing_status") == "ended":
+        print("  done. python3 tools/ai_align_check.py --fetch --report")
+    return got
+
+
 def cancel(key):
     """Stop a batch that is still running.
 
@@ -530,6 +559,8 @@ def main():
     ap.add_argument("--wait", action="store_true")
     ap.add_argument("--fetch", action="store_true")
     ap.add_argument("--report", action="store_true")
+    ap.add_argument("--status", action="store_true",
+                    help="print how far the batch has got, once, and stop")
     ap.add_argument("--cancel", action="store_true",
                     help="stop the batch in flight; unprocessed requests are not billed")
     ap.add_argument("--html", default=os.path.join(HERE, "alignment-review.html"),
@@ -545,17 +576,20 @@ def main():
                     help="read every paired file, not only the ones that fail "
                          "the free checks")
     a = ap.parse_args()
-    if not any((a.build, a.submit, a.wait, a.fetch, a.report, a.cancel)):
+    if not any((a.build, a.submit, a.wait, a.fetch, a.report, a.cancel, a.status)):
         ap.error("nothing to do — try --build")
 
     key = os.environ.get("ANTHROPIC_API_KEY")
-    if (a.submit or a.wait or a.fetch or a.cancel) and not key:
+    if (a.submit or a.wait or a.fetch or a.cancel or a.status) and not key:
         sys.exit("ANTHROPIC_API_KEY is not set. A Console key is separate from a\n"
                  "Claude subscription: https://platform.claude.com/settings/keys")
 
     model, in_rate, out_rate, effort = MODELS[a.model]
     if a.everything:
         a.floor, a.min_names = 1.1, 0
+    if a.status:
+        status(key)
+        return 0
     if a.cancel:
         return 0 if cancel(key) else 1
     if a.build:
