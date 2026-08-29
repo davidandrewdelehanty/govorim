@@ -5362,6 +5362,8 @@ export default function App() {
         // Plays only: enables inline golden speaker-name formatting. Novels
         // must never get it — "Москва. Тишина стояла..." is not a character.
         play: !!opts.play,
+        isBible: !!opts.isBible,
+        bibleEn: opts.bibleEn || null,
       };
       setChapters(chs);
       setBookMeta(meta);
@@ -5463,6 +5465,10 @@ export default function App() {
         videos: (book.videos && typeof book.videos === "object") ? book.videos : null,
         audiobook: book.audiobook || null,
         restricted: !!book.restricted,
+        // A Bible entry declares itself, and names the translation it pairs
+        // against; without these the verse English never loads.
+        isBible: !!book.isBible,
+        bibleEn: book.bibleEn || null,
         parallelEn: book.parallelEn || null,
         translationNote: book.translationNote || "",
         play: !!book.play,
