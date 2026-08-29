@@ -36,7 +36,8 @@ OUT = os.path.join(HERE, "ai-align-findings.json")
 
 MODEL = "claude-haiku-4-5-20251001"
 MODELS = {"haiku": ("claude-haiku-4-5-20251001", 0.50, 2.50),
-          "sonnet": ("claude-sonnet-5", 1.00, 5.00)}
+          "sonnet": ("claude-sonnet-5", 1.00, 5.00),
+          "opus": ("claude-opus-5", 2.50, 12.50)}
 # A Message Batch takes at most 100,000 requests or 256 MB, whichever comes
 # first. The whole library is about 9,000 windows, so the count is never the
 # problem and the size very nearly never is — but a batch refused for size
@@ -64,10 +65,18 @@ NOT errors. Do not report these:
 
 Errors. Report only these:
 - DIFFERENT_WORK: the English is another story or novel entirely — different
-  characters, setting, events. Happens when an anthology was sliced wrongly.
+  characters, a different setting, a different cast of names. Happens when an
+  anthology was sliced into its stories at the wrong boundaries.
+  This is NOT the label for English taken from somewhere ELSE IN THE SAME WORK.
+  If the characters are the same people and the setting is the same book, but
+  the passage sits earlier or later than the Russian beside it, that is OFFSET
+  or SCRAMBLED however far apart the two passages are. Ask yourself whether a
+  reader who knew the book would say "that is the wrong novel" or "that is the
+  wrong page of this novel"; only the first is DIFFERENT_WORK.
 - OFFSET: right work, shifted. Row N's English belongs to row N+k. Give k
   (positive = the English runs ahead). It shows as a RUN of rows each matching
-  a fixed distance away, not one odd row.
+  a fixed distance away, not one odd row. Give the k you can actually see in
+  this window; do not round it toward a neighbouring window's answer.
 - PARTIAL: correct for part of the window, breaking part way. Give the row.
 - SCRAMBLED: right work, rows out of order with no fixed pattern.
 
