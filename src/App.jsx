@@ -2646,6 +2646,11 @@ export default function App() {
       var all = r ? (JSON.parse(r.value) || {}) : {};
       all[key] = {
         cidx: ci, pidx: pi,
+        // A merged short story is one page, so cidx and pidx never move and
+        // progress would read as "opened, never advanced". `sec` is the
+        // paragraph the reader has scrolled to, which is the only thing that
+        // does advance on such a book.
+        sec: secAtRef.current || 0,
         lastRead: Date.now(),
         title: meta.title,
         author: meta.author || "",
@@ -3321,6 +3326,40 @@ export default function App() {
 
   var isLit = mode === "read";
 
+  // Which section of a merged story is on screen. Tracked from the reader's own
+  // scroller rather than from cidx, because a merged story has only one chapter.
+  var [secAt, setSecAt] = useState(0);
+  var secAtRef = useRef(0);
+  useEffect(function() { secAtRef.current = secAt; }, [secAt]);
+  var mergedCh = chapters[cidx] || null;
+  useEffect(function() {
+    if (!(mergedCh && mergedCh.merged)) return;
+    var marks = (mergedCh.sections || []).map(function(x) { return x.at; });
+    if (!marks.length) return;
+    var box = document.querySelector(".lit-left");
+    if (!box) return;
+    var timer = null;
+    var onScroll = function() {
+      if (timer) return;                       // one measurement per frame budget
+      timer = setTimeout(function() {
+        timer = null;
+        var top = box.getBoundingClientRect().top + 80;   // just under the header
+        var cur = marks[0];
+        for (var i = 0; i < marks.length; i++) {
+          var el = document.getElementById("sp" + marks[i]);
+          if (el && el.getBoundingClientRect().top <= top) cur = marks[i];
+        }
+        setSecAt(function(prev) { return prev === cur ? prev : cur; });
+      }, 250);
+    };
+    box.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return function() {
+      box.removeEventListener("scroll", onScroll);
+      if (timer) clearTimeout(timer);
+    };
+  }, [mergedCh && mergedCh.merged, mergedCh && mergedCh.text]);
+
   // Auto-save reading progress whenever the user moves to a new page or chapter.
   // Skipped when no book is loaded, when title is missing (transient state), or
   // when we're at chapter 0 / page 0 with no story actually started.
@@ -3329,7 +3368,26 @@ export default function App() {
     if (!bookMeta || !bookMeta.title) return;
     if (!chapters || chapters.length === 0) return;
     saveBookProgress(bookMeta, cidx, pidx, chapters.length);
-  }, [cidx, pidx, started, isLit, bookMeta.title, chapters.length]);
+  }, [cidx, pidx, secAt, started, isLit, bookMeta.title, chapters.length]);
+
+  // Reopening a merged story returns the reader to the section they left, once
+  // the text is on the page. Runs once per book: after that the scroll listener
+  // above owns secAt, and re-running would yank the reader back.
+  var restoredRef = useRef("");
+  useEffect(function() {
+    if (!started || !isLit) return;
+    if (!(mergedCh && mergedCh.merged)) return;
+    var key = bookKey(bookMeta);
+    if (!key || restoredRef.current === key) return;
+    var saved = progressMap[key] && progressMap[key].sec;
+    restoredRef.current = key;
+    if (!saved) return;
+    var t = setTimeout(function() {
+      var el = document.getElementById("sp" + saved);
+      if (el) el.scrollIntoView({ block: "start" });
+    }, 220);
+    return function() { clearTimeout(t); };
+  }, [started, isLit, mergedCh && mergedCh.merged, bookMeta.title]);
   var pct  = chapters.length > 0 ? Math.round((cidx / chapters.length) * 100) : 0;
   var curChapter = (function(){
     var ch = chapters[cidx] || { heading: "", text: "" };
