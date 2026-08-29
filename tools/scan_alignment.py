@@ -221,6 +221,88 @@ def split_at_markers(sec, subs):
 
 CYR = re.compile(r"[А-Яа-яЁё]")
 
+# The reader's FB2_MIN_MEDIAN_CHAPTER_WORDS. A split is only believable if the
+# pieces are chapter-sized: Eugene Onegin wraps each of its stanzas in its own
+# <section> inside the eight "Глава" sections, and Demon numbers its stanzas
+# with roman numerals exactly the way a novel numbers its chapters. Without
+# this guard the scanner saw 383 chapters where the reader shows 8, every
+# English file "overran", and the whole book read as broken.
+MIN_MEDIAN_WORDS = 150
+
+
+def words_of(paras):
+    return len(re.findall(r"\S+", " ".join(paras)))
+
+
+def median_words(chs):
+    sizes = sorted(words_of(c) for c in chs)
+    return sizes[len(sizes) // 2] if sizes else 0
+
+
+def title_of(sec):
+    for e in sec:
+        if local(e) == "title":
+            return text_of(e)
+    return ""
+
+
+def all_paragraphs(sec):
+    """Every paragraph under a section, nested sections included."""
+    out = []
+    def walk(node, in_title):
+        for ch in node:
+            t = local(ch)
+            if t == "title":
+                walk(ch, True)
+                continue
+            if t in PARA_TAGS and not in_title:
+                s = text_of(ch)
+                if s:
+                    out.append(s)
+            walk(ch, in_title)
+    walk(sec, False)
+    return out
+
+
+def walk_section(sec, out, sole=False):
+    """Mirrors walkSection in App.jsx: subtitle split, then nesting, then leaf."""
+    nested = [e for e in sec if local(e) == "section" and len(e) > 0]
+    split = None
+    if not nested:
+        subs = markers(sec)
+        if subs:
+            split = [c for c in split_at_markers(sec, subs)
+                     if sum(len(CYR.findall(p)) for p in c) >= 5]
+            if len(split) < 2 or median_words(split) < MIN_MEDIAN_WORDS:
+                split = None      # stanzas, endnotes or similar - not chapters
+    if split:
+        out.extend(split)
+        return
+    if not nested:
+        paras = paragraphs(sec)
+        # An untitled scrap this short is front matter - a dedication, an
+        # epigraph, a colophon. But a short lyric standing alone is a whole
+        # work: «Я вас любил» is one untitled 43-word section and nothing else.
+        if not sole and not title_of(sec) and words_of(paras) < MIN_MEDIAN_WORDS:
+            return
+        if paras:
+            out.append(paras)
+        return
+    sub = []
+    pre = paragraphs(sec)          # the part's preamble, before its first child
+    if pre:
+        sub.append(pre)
+    for c in nested:
+        walk_section(c, sub)
+    if sub and median_words(sub) < MIN_MEDIAN_WORDS:
+        # The nesting was not chapter structure. Keep the section whole.
+        whole = all_paragraphs(sec)
+        if whole:
+            out.append(whole)
+        return
+    out.extend(sub)
+
+
 
 def chapters(path):
     """Chapters of an FB2, as lists of paragraphs.
@@ -265,16 +347,17 @@ def chapters(path):
         # reader does not count it as one. Leaving it in shifted every English
         # file of that book by one and produced a very convincing false alarm.
         return len(ch) > 0
-    for body in [e for e in root if local(e) == "body"]:
-        for sec in [e for e in body if local(e) == "section"]:
-            kids = [e for e in sec if local(e) == "section"]
-            if kids:
-                for c in kids:
-                    subs = markers(c)
-                    out.extend(split_at_markers(c, subs) if subs else [paragraphs(c)])
-                continue
-            subs = markers(sec)
-            out.extend(split_at_markers(sec, subs) if subs else [paragraphs(sec)])
+    # Only the MAIN body. FB2 keeps footnotes in <body name="notes"> and
+    # sometimes a whole second copy of the text in another named body: War and
+    # Peace came out as 1,389 chapters against 361 English files that way.
+    # Prefer the first unnamed body, exactly as the reader does.
+    bodies = [e for e in root if local(e) == "body"]
+    main = next((b for b in bodies if not b.get("name")), None) or (bodies[0] if bodies else None)
+    if main is None:
+        return None
+    secs = [e for e in main if local(e) == "section"]
+    for sec in secs:
+        walk_section(sec, out, sole=(len(secs) == 1))
     out = [c for c in out if keep(c)]
     # A chapter list with no Cyrillic in it means the decode went wrong in a way
     # that did not raise. Better to score nothing than to score punctuation.
