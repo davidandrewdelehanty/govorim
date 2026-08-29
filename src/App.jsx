@@ -6276,6 +6276,13 @@ export default function App() {
         </div>
       );
     }
+    // Scripture lays its English under each verse rather than in a second
+    // pane, so it never reaches the branch above — and was the one entry whose
+    // translator's note nobody could read.
+    if (bibleInline && bookMeta && bookMeta.translationNote && cidx === 0 && pidx === 0) {
+      return [<div key="tnote" className="pmt tnote">{bookMeta.translationNote}</div>]
+        .concat(litRendered);
+    }
     return litRendered;
   };
 
