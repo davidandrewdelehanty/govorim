@@ -462,6 +462,27 @@ function ruForms(word) {
 // timestamp — the &t=873 or ?start=873 that YouTube puts there when you copy
 // a link "at the current time". So one recording can serve a whole book:
 // paste the same video against each chapter with its own timestamp.
+// Russian Bible book names to their canonical numbers, so a chapter titled
+// "Бытие 1" can find its English at bible-en/01-01.json. The existing NRT
+// entry derives that key from its audiobook's own file names; an entry with
+// no audiobook — a Synodal text carrying YouTube readings, say — has nothing
+// to derive it from, so the heading is read instead.
+var BIBLE_BOOK_NO = {
+  "бытие":"01","исход":"02","левит":"03","числа":"04","второзаконие":"05",
+  "матфея":"40","от матфея":"40","марка":"41","от марка":"41","от марк":"41",
+  "луки":"42","от луки":"42","иоанна":"43","от иоанна":"43",
+};
+// "Бытие 12" -> "01-12"; null when the heading is not a Bible chapter.
+function bibleKeyFromHeading(h) {
+  var m = String(h || "").trim().match(/^(.+?)\s+(\d{1,3})$/);
+  if (!m) return null;
+  var no = BIBLE_BOOK_NO[m[1].toLowerCase().replace(/\s+/g, " ").trim()];
+  if (!no) return null;
+  var ch = m[2];
+  while (ch.length < 2) ch = "0" + ch;
+  return no + "-" + ch;
+}
+
 function ytStart(s) {
   var t = String(s || "");
   var m = t.match(/[?&#](?:t|start)=(\d+)h(\d+)m(\d+)s/) ;
@@ -3559,14 +3580,22 @@ export default function App() {
     // isBibleBook() detector, which misses this book's "Библии" title).
     var chs = bookMeta && bookMeta.audiobook && bookMeta.audiobook.chapters;
     var key = chs && chs[cidx] && (String(chs[cidx]).match(/bible-nrp\/(\d+-\d+)\.json/) || [])[1];
+    // Fall back to the chapter's own heading, which is what a Bible entry
+    // without that audiobook has to go on.
+    if (!key && bookMeta && bookMeta.isBible) {
+      key = bibleKeyFromHeading(chapters[cidx] && chapters[cidx].heading);
+    }
     if (!key) return;
+    // Which English: a second Bible pairs against a different translation, so
+    // the entry names its own folder and bible-en stays the default.
+    var dir = (bookMeta && bookMeta.bibleEn) || "bible-en";
     var cancelled = false;
-    fetch("/books/bible-en/" + key + ".json")
+    fetch("/books/" + dir + "/" + key + ".json")
       .then(function(r) { return r.ok ? r.json() : null; })
       .then(function(j) { if (!cancelled && j) setBibleEn(j); })
       .catch(function() {});
     return function() { cancelled = true; };
-  }, [bookMeta && bookMeta.filename, cidx]);
+  }, [bookMeta && bookMeta.filename, bookMeta && bookMeta.bibleEn, cidx]);
 
   // Dual-language prose (Москва–Петушки): the catalogue entry names a folder
   // in parallelEn; each chapter file maps paragraph index → English paragraph.
