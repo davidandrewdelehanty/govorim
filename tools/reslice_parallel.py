@@ -180,6 +180,7 @@ def diced(emap):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--book", help="one parallelEn folder")
+    ap.add_argument("--file", default="", help="one file in it, e.g. 09.json")
     ap.add_argument("--apply", action="store_true", help="write the improved files")
     ap.add_argument("--min-gain", type=float, default=0.25,
                     help="how much better a re-cut must score to be kept")
@@ -189,7 +190,8 @@ def main():
     entries = [b for b in catalogue if b.get("parallelEn")
                and (not a.book or b["parallelEn"] == a.book)]
 
-    print("%-26s %-12s %6s %6s %7s" % ("work", "file", "before", "after", "verdict"))
+    print("%-26s %-10s %11s %11s %7s"
+          % ("work", "file", "names", "length", "verdict"))
     kept = skipped = 0
     gains = []
     for b in entries:
@@ -200,6 +202,8 @@ def main():
         for f in sorted(glob.glob(os.path.join(BOOKS, b["parallelEn"], "[0-9]*.json"))):
             m = re.match(r"^(\d+)\.json$", os.path.basename(f))
             if not m:
+                continue
+            if a.file and os.path.basename(f) != a.file:
                 continue
             ci = int(m.group(1)) - 1
             if not (0 <= ci < len(chs)):
@@ -216,10 +220,24 @@ def main():
             after, _ = rho_of(chs[ci], new)
             if after is None:
                 continue
-            ok = after - before >= a.min_gain
-            print("%-26s %-12s %6.2f %6.2f %7s"
-                  % (b.get("title", "")[:26], os.path.basename(f), before, after,
-                     "keep" if ok else "leave"))
+            # rho grades its own homework: the re-cut redistributes English by
+            # LENGTH, and rho measures length agreement, so it has scored 0.96
+            # on pairings two sentences out. The names measure - does a proper
+            # noun in the Russian turn up in the English on its own row - is
+            # the one signal the re-cut cannot flatter, so it holds the veto.
+            nb = score_file(chs[ci], emap)
+            na = score_file(chs[ci], new)
+            n_before, n_after = nb.get("onrow"), na.get("onrow")
+            n_ok = (n_before is None or n_after is None
+                    or n_after >= n_before - 0.01)
+            ok = (after - before >= a.min_gain) and n_ok
+            def pct(x):
+                return "  n/a" if x is None else "%3.0f%%" % (100 * x)
+            print("%-26s %-10s %s->%s %5.2f->%5.2f %7s%s"
+                  % (b.get("title", "")[:26], os.path.basename(f),
+                     pct(n_before), pct(n_after), before, after,
+                     "keep" if ok else "leave",
+                     "" if n_ok else "   (names would fall)"))
             if ok:
                 kept += 1
                 gains.append(after - before)
