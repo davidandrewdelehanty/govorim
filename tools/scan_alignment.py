@@ -161,7 +161,23 @@ def paragraphs(sec):
     return out
 
 
-ROMAN = re.compile(r"^(?:глава\s+)?([IVXLC]{1,7}|\d{1,3})[.．]?$", re.I)
+# Mirrors App.jsx fb2ChapterMarker / FB2_CHAPTER_MARK_RE exactly. Getting this
+# wrong is not a small error: Anna Karenina's part 5 chapter XX is the one
+# chapter in the novel that carries a title ("XX СМЕРТЬ"), the old pattern
+# refused it, and the book came out with 238 chapters where the reader shows
+# 239 — so every English file from 144 on was compared against the wrong
+# chapter and 106 windows were sent to the model already broken.
+ROMAN_HOMOGLYPHS = {"Х": "X", "І": "I", "Ѵ": "V", "С": "C", "М": "M", "Д": "D"}
+ROMAN = re.compile(r"^(?:глава\s+)?([ivxlcdm]+)\.?(?:\s+\S[\s\S]*)?$", re.I)
+
+
+def chapter_marker(txt):
+    t = (txt or "").strip()
+    if not t:
+        return ""
+    t = "".join(ROMAN_HOMOGLYPHS.get(c, c) for c in t)
+    m = ROMAN.match(t)
+    return m.group(1).upper() if m else ""
 
 
 def markers(sec):
@@ -172,8 +188,9 @@ def markers(sec):
     the parser sees eight chapters where the English folder has 239 files, and
     every one of them goes unscored.
     """
-    subs = [e for e in sec if local(e) == "subtitle" and ROMAN.match(text_of(e))]
-    return subs if len(set(text_of(e) for e in subs)) >= 2 else []
+    subs = [e for e in sec if local(e) == "subtitle" and chapter_marker(text_of(e))]
+    marks = set(chapter_marker(text_of(e)) for e in subs)
+    return subs if len(marks) >= 2 else []
 
 
 def split_at_markers(sec, subs):
