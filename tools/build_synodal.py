@@ -5,21 +5,17 @@ Two public-domain texts, verified before use: the Russian Synodal (1876) and
 the King James (1611).
 
 Output:
-  public/books/novel/bible-synodal.fb2   one <section> per BOOK
+  public/books/novel/bible-synodal.fb2   one <section> per CHAPTER
   public/books/bible-kjv/NN.json         paragraph index -> King James text
 
-ONE PAGE PER BOOK, not per chapter. The recordings are book-length — one
-reader working through the whole of Genesis — so a page that ends at Genesis 2
-strands the video two chapters into its own audio. A book-sized page lets the
-one recording cover the one page, which is what reading along wants.
+ONE PAGE PER CHAPTER, numbered straight through: Бытие 1 is 01.json, Иоанна 21
+is 276.json. It was briefly one page per book, so that a single book-length
+recording could cover its whole page — but Genesis is fifty chapters and 1,529
+verses, and a page nobody can find their way down is worse than a recording
+that only covers the top of one. Per-chapter readings go on their own chapters.
 
-Chapters survive as plain "Глава N" paragraphs. They are deliberately NOT
-<subtitle> elements: the reader treats a numbered subtitle as a chapter break
-and would split the book straight back into fifty pages.
-
-The English is keyed by PARAGRAPH INDEX within the section, the scheme
-parallelEn already uses for prose. Verse numbers restart at every chapter and
-stop being unique the moment a page holds more than one of them.
+The English is keyed by PARAGRAPH INDEX within the chapter, the scheme
+parallelEn already uses for prose, so entry 0 is verse 1.
 
 RUN-ON WORDS. The Russian source drops the odd space — "И стал свет" arrives
 as "И сталсвет" — and the reader shows text exactly as it is written. The
@@ -206,7 +202,7 @@ def main():
         if len(rb["chapters"]) != len(eb["chapters"]):
             sys.exit("chapter count mismatch in %s" % name)
 
-        body, emap, p = [], {}, 0
+        p = 0
         chapters = verses = 0
         for ci, rch in enumerate(rb["chapters"]):
             ech = [clean_en(x) for x in eb["chapters"][ci]]
@@ -214,28 +210,24 @@ def main():
             if len(rch) != len(ech):
                 merged_chapters += 1
 
-            body.append("<p>Глава %d</p>" % (ci + 1))
-            emap[str(p)] = "Chapter %d" % (ci + 1)
-            p += 1
-            chapters += 1
-
-            first = p          # paragraph index of this chapter's verse 1
+            body, emap = [], {}
             for vi, t in enumerate(rch):
                 body.append("<p>%d %s</p>" % (vi + 1, esc(t)))
-                p += 1
                 verses += 1
 
             for (ri, rspan, ei, espan) in align(rch, ech):
                 text = " ".join(x for x in ech[ei:ei + espan] if x)
                 if text:
-                    emap[str(first + ri)] = text
+                    emap[str(ri)] = text
 
-        secs.append("<section>\n<title><p>%s</p></title>\n%s\n</section>"
-                    % (esc(name), "\n".join(body)))
-        with io.open(os.path.join(endir, "%02d.json" % (si + 1)),
-                     "w", encoding="utf-8") as f:
-            json.dump(emap, f, ensure_ascii=False, separators=(",", ":"))
-        totals.append((name, ename, chapters, verses, p, len(emap)))
+            chapters += 1
+            p += len(rch)
+            secs.append("<section>\n<title><p>%s %d</p></title>\n%s\n</section>"
+                        % (esc(name), ci + 1, "\n".join(body)))
+            with io.open(os.path.join(endir, "%02d.json" % len(secs)),
+                         "w", encoding="utf-8") as f:
+                json.dump(emap, f, ensure_ascii=False, separators=(",", ":"))
+        totals.append((name, ename, chapters, verses, p, len(secs)))
 
     fb2 = ('<?xml version="1.0" encoding="utf-8"?>\n'
            '<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0">\n'
@@ -247,9 +239,10 @@ def main():
     out = os.path.join(ROOT, "public", "books", "novel", "bible-synodal.fb2")
     io.open(out, "w", encoding="utf-8").write(fb2)
 
-    print("%-14s %-12s %5s %7s %7s %7s" % ("book", "english", "chs", "verses", "paras", "en"))
+    print("%-14s %-12s %5s %7s %7s %9s" % ("book", "english", "chs", "verses",
+                                           "paras", "last file"))
     for name, ename, c, v, pn, e in totals:
-        print("%-14s %-12s %5d %7d %7d %7d" % (name, ename, c, v, pn, e))
+        print("%-14s %-12s %5d %7d %7d %9d" % (name, ename, c, v, pn, e))
     print("\n%d run-on words split (%d in the table)" % (tally[0], len(FIXES)))
     print("%d sections, %d chapters, %d verses, %d chapters needed alignment"
           % (len(secs), sum(t[2] for t in totals), sum(t[3] for t in totals),
