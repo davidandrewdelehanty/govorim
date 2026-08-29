@@ -35,9 +35,16 @@ MAP = os.path.join(HERE, "ai-align-map.json")
 OUT = os.path.join(HERE, "ai-align-findings.json")
 
 MODEL = "claude-haiku-4-5-20251001"
-MODELS = {"haiku": ("claude-haiku-4-5-20251001", 0.50, 2.50),
-          "sonnet": ("claude-sonnet-5", 1.00, 5.00),
-          "opus": ("claude-opus-5", 2.50, 12.50)}
+# name -> (api id, $/MTok in, $/MTok out, does it take an effort setting)
+MODELS = {"haiku": ("claude-haiku-4-5-20251001", 0.50, 2.50, False),
+          "sonnet": ("claude-sonnet-5", 1.00, 5.00, True),
+          "opus": ("claude-opus-5", 2.50, 12.50, True)}
+# max_tokens is a hard limit on the WHOLE output — thinking included. Sonnet 5
+# and Opus 5 think by default at high effort, so a 200-token ceiling failed
+# every one of 7,213 requests while the same code worked on Haiku 4.5, which
+# has no adaptive thinking. Give them room, and ask for low effort: this is
+# classification against a rubric, not a problem that rewards deliberation.
+MAX_TOKENS = 2000
 # A Message Batch takes at most 100,000 requests or 256 MB, whichever comes
 # first. The whole library is about 9,000 windows, so the count is never the
 # problem and the size very nearly never is — but a batch refused for size
@@ -120,7 +127,8 @@ def windows_for(book, chs, path):
     return out
 
 
-def build(limit, floor, min_names, model=MODEL, in_rate=IN_RATE, out_rate=OUT_RATE):
+def build(limit, floor, min_names, model=MODEL, in_rate=IN_RATE, out_rate=OUT_RATE,
+          effort=False):
     cat = json.load(io.open(INDEX, encoding="utf-8"))
     picked = []
     for b in cat:
@@ -160,19 +168,20 @@ def build(limit, floor, min_names, model=MODEL, in_rate=IN_RATE, out_rate=OUT_RA
             cid = "w%05d" % len(reqs)
             index[cid] = {"dir": b["parallelEn"], "file": os.path.basename(f),
                           "row": w[0][0]}
-            reqs.append({
-                "custom_id": cid,
-                "params": {
-                    "model": model,
-                    "max_tokens": 200,
-                    "temperature": 0,
-                    # No cache_control: Haiku 4.5 will not cache a prompt under
-                    # 4,096 tokens and this system prompt is a sixth of that, so
-                    # the marker bought nothing.
-                    "system": SYSTEM,
-                    "messages": [{"role": "user", "content": head + "\n".join(lines)}],
-                },
-            })
+            params = {
+                "model": model,
+                "max_tokens": MAX_TOKENS,
+                # No cache_control: Haiku 4.5 will not cache a prompt under
+                # 4,096 tokens and this system prompt is a sixth of that, so
+                # the marker bought nothing.
+                "system": SYSTEM,
+                "messages": [{"role": "user", "content": head + "\n".join(lines)}],
+            }
+            if effort:
+                params["output_config"] = {"effort": "low"}
+            else:
+                params["temperature"] = 0
+            reqs.append({"custom_id": cid, "params": params})
             if limit and len(reqs) >= limit:
                 break
         if limit and len(reqs) >= limit:
@@ -183,7 +192,8 @@ def build(limit, floor, min_names, model=MODEL, in_rate=IN_RATE, out_rate=OUT_RA
             fh.write(json.dumps(r, ensure_ascii=False) + "\n")
     json.dump(index, io.open(MAP, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     tin = tokens(ru_chars, en_chars) + len(reqs) * 60
-    tout = len(reqs) * 70
+    # A thinking model spends more on the way to the same short answer.
+    tout = len(reqs) * (260 if effort else 70)
     cost = tin / 1e6 * in_rate + tout / 1e6 * out_rate
     print("%d file(s) need reading, %d window(s) to send" % (len(picked), len(reqs)))
     print("about %.1fM input tokens and %.0fk output" % (tin / 1e6, tout / 1e3))
@@ -287,12 +297,20 @@ def fetch(key):
     raw = call(url, key=key).decode("utf-8")
     index = saved.get("index") or json.load(io.open(MAP, encoding="utf-8"))
     found = []
+    # Every failure the batch reports, gathered and shown. Skipping them
+    # quietly turns "7,213 errored" into a blank report and no idea why.
+    kinds, samples = {}, {}
     for line in raw.splitlines():
         if not line.strip():
             continue
         r = json.loads(line)
         res = r.get("result", {})
         if res.get("type") != "succeeded":
+            err = res.get("error", {}) or {}
+            inner = err.get("error", err)
+            kind = "%s / %s" % (res.get("type"), inner.get("type", "?"))
+            kinds[kind] = kinds.get(kind, 0) + 1
+            samples.setdefault(kind, inner.get("message", json.dumps(res)[:400]))
             continue
         text = "".join(c.get("text", "") for c in res["message"]["content"])
         m = re.search(r"\{.*\}", text, re.S)
@@ -309,6 +327,12 @@ def fetch(key):
         found.append(v)
     json.dump(found, io.open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print("read %d verdict(s) -> %s" % (len(found), OUT))
+    if kinds:
+        print("\n%d request(s) did not produce an answer:" % sum(kinds.values()))
+        for k, n in sorted(kinds.items(), key=lambda kv: -kv[1]):
+            print("  %5d  %s" % (n, k))
+            print("         %s" % samples[k][:300])
+        print("\nNone of these are billed.")
     return found
 
 
@@ -477,11 +501,11 @@ def main():
         sys.exit("ANTHROPIC_API_KEY is not set. A Console key is separate from a\n"
                  "Claude subscription: https://platform.claude.com/settings/keys")
 
-    model, in_rate, out_rate = MODELS[a.model]
+    model, in_rate, out_rate, effort = MODELS[a.model]
     if a.everything:
         a.floor, a.min_names = 1.1, 0
     if a.build:
-        build(a.limit, a.floor, a.min_names, model, in_rate, out_rate)
+        build(a.limit, a.floor, a.min_names, model, in_rate, out_rate, effort)
     if a.submit:
         submit(key)
     if a.wait:
@@ -490,8 +514,7 @@ def main():
         fetch(key)
     if a.report:
         report()
-        html_report(json.load(io.open(OUT, encoding="utf-8")), a.html,
-                    MODELS[a.model][0])
+        html_report(json.load(io.open(OUT, encoding="utf-8")), a.html, model)
     return 0
 
 
