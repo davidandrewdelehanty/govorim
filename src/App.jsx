@@ -5300,11 +5300,13 @@ export default function App() {
       // user just lists URLs in song order in index.json. Missing/null entries
       // mean "no link for this song".
       chs = attachVideos(chs, opts);
-      // Anthologies are exempt: Повести Белкина holds five separate tales, and
-      // those really are chapters.
-      if (opts.category === "Short Stories" && !opts.collection && chs.length > 1) {
-        chs = mergeStorySections(chs);
-      }
+      // Short stories were merged onto one page here, with a jump index and
+      // per-section videos. Turned off: the paragraph offsets the merge
+      // computed drifted from the ones the renderer actually produces —
+      // 0/19/62/103 against a true 0/20/64/106 on Дама с собачкой — so every
+      // section marker, video and English line landed progressively earlier
+      // than it should. mergeStorySections is left below for reference, but
+      // nothing calls it; a chapter is a page again.
 
       var title = opts.title || result.title;
       var author = opts.author || result.author;
