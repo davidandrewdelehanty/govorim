@@ -7577,7 +7577,7 @@ export default function App() {
                                       // an oversight, where "w/o ENG" is an
                                       // answer to the question being asked.
                                       var tight = optChars < 999;
-                                      var lead = book && book.audiobook ? "🎧 " : "";
+                                      var lead = book && book.audiobook ? "🎧 " : (book && book.videos ? "🎬 " : "");
                                       // The tag never abbreviates. It is the
                                       // thing being asked of the row, so on a
                                       // narrow screen the TITLE gives way and
@@ -7821,8 +7821,13 @@ export default function App() {
                                           <span className={"lib-tag" + ((book.parallelEn || book.isBible) ? "" : " off")}>
                                             {(book.parallelEn || book.isBible) ? "English" : "no English"}
                                           </span>
-                                          <span className={"lib-tag" + (book.audiobook ? "" : " off")}>
-                                            {book.audiobook ? "🎧 Audiobook" : "no audiobook"}
+                                          {/* A chapter video is narration too, as far as a reader
+                                              choosing what to listen to is concerned — so a book
+                                              carrying one counts as having audio, and says which. */}
+                                          <span className={"lib-tag" + ((book.audiobook || book.videos) ? "" : " off")}>
+                                            {book.audiobook ? "🎧 Audiobook"
+                                              : book.videos ? "🎬 Video"
+                                              : "no audiobook"}
                                           </span>
                                         </>
                                       )}
