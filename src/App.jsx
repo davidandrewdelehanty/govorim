@@ -6850,8 +6850,19 @@ export default function App() {
              User scrolls DOWN to reach the answer field and the next-page buttons.
              No more 40vh chat panel eating screen space.
              Overrides the desktop "lock-to-viewport" model (overflow:hidden, height:100vh). */
-          html, body { overflow: auto; height: auto; }
+          /* overflow:auto on BODY makes the body its own scroll container, and
+             every position:sticky on the page then anchors to a box that never
+             scrolls — which is why the docked video rode the text off the top
+             here while working on desktop. The document scrolls; the body just
+             gets out of the way. */
+          html { overflow: auto; height: auto; }
+          body { overflow: visible; height: auto; }
           .app { height: auto; min-height: 100vh; overflow: visible; }
+          /* The page scrolls here, not the column — and an ancestor with
+             overflow:hidden takes over as a sticky element's scroll context,
+             which parked the docked video at the top of the document and let
+             it scroll away. */
+          .lit-wrap { overflow: visible; }
           .lit-body { flex-direction: column; overflow: visible; flex: none; }
           .lit-left {
             border-right: none;
