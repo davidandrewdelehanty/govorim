@@ -8129,16 +8129,18 @@ export default function App() {
                         // "Works" is kept only as a legacy fallback so a book that still carries
                         // the old category (an older upload, a hand-edited entry) keeps rendering
                         // instead of vanishing into "Other".
-                        var CATEGORIES = ["Novels", "Novellas", "Short Stories", "Plays", "Poetry", "Song Lyrics", "Religious Texts", "Spectacle", "Speeches", "Speeches by Soviet Leaders", "Works", "Texts Without English"];
+                        var CATEGORIES = ["Novels", "Novellas", "Short Stories", "Plays", "Poetry", "Song Lyrics", "Religious Texts", "Theatrical Performances", "Speeches", "Speeches by Soviet Leaders", "Works", "Texts Without English"];
                         // Render order: "Texts Without English" sits at the very bottom,
                         // after the catch-all "Other" bucket.
-                        var ORDER = ["Novels", "Novellas", "Short Stories", "Plays", "Poetry", "Song Lyrics", "Religious Texts", "Spectacle", "Speeches", "Speeches by Soviet Leaders", "Works", "Other", "Texts Without English"];
+                        var ORDER = ["Novels", "Novellas", "Short Stories", "Plays", "Poetry", "Song Lyrics", "Religious Texts", "Theatrical Performances", "Speeches", "Speeches by Soviet Leaders", "Works", "Other", "Texts Without English"];
                         var normalize = function(cat) {
                           // Singular legacy spellings written by older uploads.
                           if (cat === "Novel") return "Novels";
                           if (cat === "Novella") return "Novellas";
                           if (cat === "Short Story") return "Short Stories";
                           if (cat === "Play") return "Plays";
+                          // "Spectacle" was the earlier name for staged productions.
+                          if (cat === "Spectacle") return "Theatrical Performances";
                           return cat;
                         };
                         var buckets = {};
