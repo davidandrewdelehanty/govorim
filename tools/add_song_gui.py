@@ -73,31 +73,51 @@ def counts(data):
     """(artists, songs) for the catalogue header."""
     return len(data), sum(len(a.get("songs") or []) for a in data)
 
-def git_publish(which, message):
-    """Commit and push the catalogue file(s). Returns (ok, transcript)."""
+COMMITTED_ONLY = ('<div class="ok">Committed. Run '
+                  '<code>git push origin main</code> to publish.</div>')
+
+def _git(cmds):
+    """Run each command in turn, stopping at the first failure."""
     out = []
-    adds = [["git", "add", MUSIC_REL[w]] for w in targets(which)]
-    for c in (adds + [["git", "commit", "-m", message],
-                      ["git", "push"]]):
+    for c in cmds:
         r = subprocess.run(c, cwd=REPO, capture_output=True, text=True)
         out.append("$ " + " ".join(c) + "\n" + r.stdout + r.stderr)
         if r.returncode != 0:
+            # An empty commit is not a failure: it means the save changed
+            # nothing, which is worth saying but not worth shouting about.
+            if c[1] == "commit" and "nothing to commit" in (r.stdout + r.stderr):
+                continue
             return False, "\n".join(out)
     return True, "\n".join(out)
 
+# Committing and pushing are deliberately separate. A save that is only in the
+# working tree is invisible to the site — that is the whole failure this
+# guards against — so the commit ALWAYS runs, and only the push is optional.
+# A push that fails then costs nothing: the work is already committed and one
+# `git push` sends it.
+def git_commit_paths(paths, message):
+    return _git([["git", "add"] + list(paths), ["git", "commit", "-m", message]])
 
-def git_books_publish(message):
+def git_push_only():
+    return _git([["git", "push"]])
+
+def git_publish(which, message, push=True):
+    ok, out = git_commit_paths([MUSIC_REL[w] for w in targets(which)], message)
+    if not ok or not push:
+        return ok, out
+    ok2, out2 = git_push_only()
+    return ok2, out + "\n" + out2
+
+
+def git_books_publish(message, push=True):
     """Commit and push private/books/index.json. One file, both sites: the
     catalogue is shared and each entry's own "public" flag decides whether
     Samovar shows it."""
-    out = []
-    for c in ([["git", "add", BOOKS_REL], ["git", "commit", "-m", message],
-               ["git", "push"]]):
-        r = subprocess.run(c, cwd=REPO, capture_output=True, text=True)
-        out.append("$ " + " ".join(c) + "\n" + r.stdout + r.stderr)
-        if r.returncode != 0:
-            return False, "\n".join(out)
-    return True, "\n".join(out)
+    ok, out = git_commit_paths([BOOKS_REL], message)
+    if not ok or not push:
+        return ok, out
+    ok2, out2 = git_push_only()
+    return ok2, out + "\n" + out2
 
 # Artists whose name has more than one spelling in the wild. Key = normalised
 # form (lowercase, punctuation and spacing stripped), value = the spelling the
@@ -359,8 +379,6 @@ def catalogue_html(which):
                    % (missing, "" if missing == 1 else "s", html.escape(MUSIC_LABELS[dest])))
         out.append('<button type="submit">Copy checked \u2192 %s</button>'
                    % html.escape("govorim" if dest == "private" else "Samovar"))
-        out.append('<label class="chk"><input type="checkbox" name="push" checked> '
-                   'commit &amp; push</label>')
     else:
         out.append('<span class="none">Every song here is already in %s.</span>'
                    % html.escape(MUSIC_LABELS[dest]))
@@ -398,7 +416,6 @@ Change the artist to move the song to a different one.</div>
  <div class="row">
   <button type="submit">Save changes</button>
   <a href="/?catalogue=%s"><button type="button" class="cancel">Cancel</button></a>
-  <label class="chk"><input type="checkbox" name="push" checked> commit &amp; push after saving</label>
  </div>
 </form>""" % (STYLE, msg,
               html.escape(orig_artist), html.escape(orig_title),
@@ -429,7 +446,6 @@ def confirm_page(which, artist, title, lines):
  <div class="row">
   <button type="submit" class="del">Delete it</button>
   <a href="/?catalogue=%s"><button type="button" class="cancel">Cancel</button></a>
-  <label class="chk"><input type="checkbox" name="push" checked> commit &amp; push after deleting</label>
  </div>
 </form>""" % (STYLE, html.escape(artist), html.escape(title),
               lines, "" if lines == 1 else "s",
@@ -475,7 +491,6 @@ def form_page(msg="", which="private"):
  <input type="file" name="lyricsfile" accept=".txt">
  <div class="row">
   <button type="submit">Add song</button>
-  <label class="chk"><input type="checkbox" name="push" checked> commit &amp; push after adding</label>
  </div>
 </form>
 %s""" % (STYLE, msg, options, artists, catalogue_html(which))
@@ -571,7 +586,6 @@ def book_videos_page(bid, msg=""):
  %s
  <div class="row">
   <button type="submit">Save videos</button>
-  <label class="chk"><input type="checkbox" name="push" checked> commit &amp; push after saving</label>
  </div>
 </form>""" % (html.escape(b.get("title") or "?"), STYLE,
               html.escape(b.get("title") or "?"), msg,
@@ -712,10 +726,19 @@ class H(BaseHTTPRequestHandler):
                                      b.get("title") or bid)
         msg = '<div class="ok">Saved — %s (%s).</div>' % (html.escape(note),
                                                           html.escape(book_sites(b)))
-        if fields.get("push"):
-            ok, log = git_books_publish("Chapter videos: " + note)
-            msg += ('<div class="ok">Pushed.</div>' if ok
-                    else '<div class="err">Push failed:<pre>%s</pre></div>' % html.escape(log))
+        # The commit is not optional. A video that lives only in the working
+        # tree never reaches the site, and `git push` reports nothing to do —
+        # which is exactly the trap this used to set. Only the push is a choice.
+        want_push = True
+        ok, log = git_books_publish("Chapter videos: " + note, push=want_push)
+        if ok:
+            msg += ('<div class="ok">Committed and pushed — live after Vercel redeploys.</div>'
+                    if want_push else
+                    '<div class="ok">Committed. Run <code>git push origin main</code> to publish.</div>')
+        else:
+            msg += ('<div class="err">git step failed — the video IS saved in %s, '
+                    'but it is not published yet:<pre>%s</pre></div>'
+                    % (html.escape(BOOKS_REL), html.escape(log)))
         return self._send(book_videos_page(bid, msg))
 
     def ask_edit(self, fields):
@@ -744,7 +767,7 @@ class H(BaseHTTPRequestHandler):
         title = fields.get("title", "").strip()
         yt = fields.get("youtube", "").strip()
         lyrics = fields.get("lyrics", "").strip()
-        push = "push" in fields
+        push = True
 
         if filebytes:
             lyrics = filebytes.decode("utf-8-sig", errors="replace").strip()
@@ -819,19 +842,16 @@ class H(BaseHTTPRequestHandler):
             (" (" + ", ".join(changes) + ")") if changes else "",
             (" %s had no songs left, so the artist was removed." % html.escape(orig_artist)) if dropped else "")
 
-        if push:
-            site = "Samovar" if which == "public" else "Govorim"
-            ok, out = git_publish(which, "%s music: edit %s \u2014 %s" % (site, artist, title))
-            if ok:
-                msg += '<div class="ok">Committed and pushed \u2014 live after Vercel redeploys.</div>'
-            else:
-                msg += ('<div class="err">git step failed \u2014 the change IS saved in %s, '
-                        'but you\'ll need to push manually.</div>'
-                        % html.escape(os.path.basename(music_path(which))))
-            msg += "<pre>%s</pre>" % html.escape(out)
+        site = "Samovar" if which == "public" else "Govorim"
+        ok, out = git_publish(which, "%s music: edit %s \u2014 %s" % (site, artist, title), push=push)
+        if ok:
+            msg += ('<div class="ok">Committed and pushed \u2014 live after Vercel redeploys.</div>'
+                    if push else COMMITTED_ONLY)
         else:
-            msg += ('<div class="ok">Saved to %s (not committed).</div>'
+            msg += ('<div class="err">git step failed \u2014 the change IS saved in %s, '
+                    'but it is not published yet.</div>'
                     % html.escape(os.path.basename(music_path(which))))
+        msg += "<pre>%s</pre>" % html.escape(out)
         self._send(form_page(msg, which))
 
     def act_copy(self, fields, multi):
@@ -842,7 +862,7 @@ class H(BaseHTTPRequestHandler):
                 '<div class="err">Pick one catalogue to copy FROM.</div>', which))
         dest = other(which)
         picks = multi.get("copy") or []
-        push = "push" in fields
+        push = True
         if not picks:
             return self._send(form_page(
                 '<div class="err">Nothing ticked \u2014 tick the songs to copy first.</div>', which))
@@ -896,22 +916,20 @@ class H(BaseHTTPRequestHandler):
             msg += ('<div class="err">No longer in the source catalogue: %s</div>'
                     % "<br>".join(html.escape(x) for x in gone))
 
-        if added and push:
+        if added:
             site = "Govorim" if dest == "private" else "Samovar"
             label = added[0] if len(added) == 1 else "%d songs" % len(added)
             ok, out = git_publish(dest, "%s music: copy %s from %s"
                                   % (site, label,
-                                     "Samovar" if which == "public" else "govorim"))
+                                     "Samovar" if which == "public" else "govorim"), push=push)
             if ok:
-                msg += '<div class="ok">Committed and pushed \u2014 live after Vercel redeploys.</div>'
+                msg += ('<div class="ok">Committed and pushed \u2014 live after Vercel redeploys.</div>'
+                        if push else COMMITTED_ONLY)
             else:
                 msg += ('<div class="err">git step failed \u2014 the songs ARE saved in %s, '
-                        'but you\'ll need to push manually.</div>'
+                        'but they are not published yet.</div>'
                         % html.escape(os.path.basename(music_path(dest))))
             msg += "<pre>%s</pre>" % html.escape(out)
-        elif added:
-            msg += ('<div class="ok">Saved to %s (not committed).</div>'
-                    % html.escape(os.path.basename(music_path(dest))))
         self._send(form_page(msg, which))
 
     def ask_delete(self, fields):
@@ -937,7 +955,7 @@ class H(BaseHTTPRequestHandler):
         which = self._which(fields)
         artist = fields.get("artist", "").strip()
         title = fields.get("title", "").strip()
-        push = "push" in fields
+        push = True
         try:
             data = load_music(which)
         except Exception as e:
@@ -961,19 +979,16 @@ class H(BaseHTTPRequestHandler):
             (" That was the last song by %s, so the artist was removed too."
              % html.escape(artist)) if dropped else "")
 
-        if push:
-            site = "Samovar" if which == "public" else "Govorim"
-            ok, out = git_publish(which, "%s music: remove %s \u2014 %s" % (site, artist, title))
-            if ok:
-                msg += '<div class="ok">Committed and pushed \u2014 gone after Vercel redeploys.</div>'
-            else:
-                msg += ('<div class="err">git step failed \u2014 the song IS removed from %s, '
-                        'but you\'ll need to push manually.</div>'
-                        % html.escape(os.path.basename(music_path(which))))
-            msg += "<pre>%s</pre>" % html.escape(out)
+        site = "Samovar" if which == "public" else "Govorim"
+        ok, out = git_publish(which, "%s music: remove %s \u2014 %s" % (site, artist, title), push=push)
+        if ok:
+            msg += ('<div class="ok">Committed and pushed \u2014 gone after Vercel redeploys.</div>'
+                    if push else COMMITTED_ONLY)
         else:
-            msg += ('<div class="ok">Saved to %s (not committed).</div>'
+            msg += ('<div class="err">git step failed \u2014 the song IS removed from %s, '
+                    'but it is not published yet.</div>'
                     % html.escape(os.path.basename(music_path(which))))
+        msg += "<pre>%s</pre>" % html.escape(out)
         self._send(form_page(msg, which))
 
     def act_add(self, fields, filebytes):
@@ -982,7 +997,7 @@ class H(BaseHTTPRequestHandler):
         title = fields.get("title", "").strip()
         yt = fields.get("youtube", "").strip()
         lyrics = fields.get("lyrics", "").strip()
-        push = "push" in fields
+        push = True
 
         if not lyrics and filebytes:
             lyrics = filebytes.decode("utf-8-sig", errors="replace").strip()
@@ -1032,18 +1047,16 @@ class H(BaseHTTPRequestHandler):
         msg = '<div class="ok">Added <b>%s — %s</b> (video %s) to %s.</div>' % (
             html.escape(shown), html.escape(title), vid, html.escape(where))
 
-        if push:
-            site = ("Govorim + Samovar" if which == "both"
-                    else "Samovar" if which == "public" else "Govorim")
-            ok, out = git_publish(which, "%s music: add %s — %s" % (site, artist, title))
-            if ok:
-                msg += '<div class="ok">Committed and pushed — live after Vercel redeploys.</div>'
-            else:
-                msg += ('<div class="err">git step failed — the song IS saved in %s, '
-                        'but you\'ll need to push manually.</div>' % html.escape(where))
-            msg += "<pre>%s</pre>" % html.escape(out)
+        site = ("Govorim + Samovar" if which == "both"
+                else "Samovar" if which == "public" else "Govorim")
+        ok, out = git_publish(which, "%s music: add %s \u2014 %s" % (site, artist, title), push=push)
+        if ok:
+            msg += ('<div class="ok">Committed and pushed \u2014 live after Vercel redeploys.</div>'
+                    if push else COMMITTED_ONLY)
         else:
-            msg += '<div class="ok">Saved to %s (not committed).</div>' % html.escape(where)
+            msg += ('<div class="err">git step failed \u2014 the song IS saved in %s, '
+                    'but it is not published yet.</div>' % html.escape(where))
+        msg += "<pre>%s</pre>" % html.escape(out)
 
         self._send(form_page(msg, which))
 
