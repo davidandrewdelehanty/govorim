@@ -7983,17 +7983,34 @@ export default function App() {
                                       // translation: the two things a reader
                                       // actually chooses between, and all the
                                       // width a dropdown row has to spare.
-                                      // Both states are labelled, not just the
-                                      // positive one: an absent marker reads as
-                                      // an oversight, where "w/o ENG" is an
-                                      // answer to the question being asked.
+                                      // Only the positive states are marked. A
+                                      // library where most books have English
+                                      // spent that width saying "w/o ENG" on
+                                      // the few that do not, which is a lot of
+                                      // ink for an absence — and it crowded out
+                                      // the titles it was sitting next to.
                                       var tight = optChars < 999;
-                                      var lead = book && book.audiobook ? "🎧 " : (book && book.videos ? "🎬 " : "");
+                                      // The film reel means a staged
+                                      // performance, and only that. A chapter
+                                      // video on an ordinary book is narration
+                                      // as far as a reader choosing what to
+                                      // listen to is concerned, so it gets the
+                                      // headphones the LibriVox recordings get.
+                                      var perf = book && String((book.category) || "") === "Theatrical Performances";
+                                      // A catalogue entry waiting for its video
+                                      // carries an empty videos object. That is
+                                      // not a video, and a row that promises one
+                                      // is worse than a row that promises
+                                      // nothing.
+                                      var hasVid = !!(book && book.videos && Object.keys(book.videos).length);
+                                      var lead = book && (book.audiobook || hasVid)
+                                        ? ((perf && hasVid) ? "🎬 " : "🎧 ")
+                                        : "";
                                       // The tag never abbreviates. It is the
                                       // thing being asked of the row, so on a
                                       // narrow screen the TITLE gives way and
                                       // the tag stays whole.
-                                      var tag = book && book.parallelEn ? "  w/ ENG" : "  w/o ENG";
+                                      var tag = book && (book.parallelEn || book.isBible) ? "  EN" : "";
                                       // The marker must survive: it is the whole
                                       // point of the row. So the title is what
                                       // gives way, and only by as much as needed.
@@ -8231,17 +8248,32 @@ export default function App() {
                                       ) : (
                                         <>
                                           <span className="lib-tag">Russian</span>
-                                          <span className={"lib-tag" + ((book.parallelEn || book.isBible) ? "" : " off")}>
-                                            {(book.parallelEn || book.isBible) ? "English" : "no English"}
-                                          </span>
+                                          {/* Only what a book HAS. The shelf it sits on already
+                                              says the rest — anything without a translation is
+                                              filed under Texts Without English — so a card that
+                                              spelled out "no English" was answering a question
+                                              the heading above it had answered already. */}
+                                          {(book.parallelEn || book.isBible) && (
+                                            <span className="lib-tag">EN</span>
+                                          )}
                                           {/* A chapter video is narration too, as far as a reader
-                                              choosing what to listen to is concerned — so a book
-                                              carrying one counts as having audio, and says which. */}
-                                          <span className={"lib-tag" + ((book.audiobook || book.videos) ? "" : " off")}>
-                                            {book.audiobook ? "🎧 Audiobook"
-                                              : book.videos ? "🎬 Video"
-                                              : "no audiobook"}
-                                          </span>
+                                              choosing what to listen to is concerned — so it gets
+                                              the same headphones as a LibriVox recording. The film
+                                              reel is reserved for a staged performance, where the
+                                              video IS the thing on offer. */}
+                                          {(function() {
+                                            // An empty videos object is a slot waiting to be
+                                            // filled, not a recording anyone can play.
+                                            var hasVid = !!(book.videos && Object.keys(book.videos).length);
+                                            if (!book.audiobook && !hasVid) return null;
+                                            return (
+                                              <span className="lib-tag">
+                                                {(cat === "Theatrical Performances" && hasVid)
+                                                  ? "🎬 Performance"
+                                                  : "🎧 Audiobook"}
+                                              </span>
+                                            );
+                                          })()}
                                         </>
                                       )}
                                     </div>
