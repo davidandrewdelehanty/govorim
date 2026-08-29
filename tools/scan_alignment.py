@@ -304,7 +304,34 @@ def walk_section(sec, out, sole=False):
 
 
 
-def chapters(path):
+# The reader INJECTS text that is in no FB2. Anna Karenina's epigraph is read
+# aloud at the start of every recording and missing from most sources, so the
+# reader prepends «Мне отмщение и Аз воздам» to chapter 1; War and Peace gets
+# the narrator's spoken announcement prepended for the same reason. Both are
+# real paragraphs on the page with real English beside them, and a scanner that
+# cannot see them counts one paragraph too few, calls the English one row late,
+# and "repairs" a chapter that was right. That is exactly what happened to
+# Anna Karenina chapter 1: the names measure reported 11%% -> 89%% for a change
+# that deleted the epigraph's English and put "Happy families are all alike"
+# beside «Мне отмщение».
+INJECTED = [
+    ("Каренин", "«Мне отмщение и Аз воздам»"),
+    ("Война и мир",
+     "Лев Николаевич Толстой. Война и мир. Том первый. Часть первая. Глава первая."),
+]
+
+
+def inject(title, out):
+    """Prepend to chapter 1 whatever the reader prepends to chapter 1."""
+    if not out:
+        return out
+    for needle, line in INJECTED:
+        if needle.lower() in (title or "").lower() and line not in out[0]:
+            out[0] = [line] + out[0]
+    return out
+
+
+def chapters(path, title=None):
     """Chapters of an FB2, as lists of paragraphs.
 
     Top-level sections are chapters, except where a section holds sections of
@@ -363,7 +390,16 @@ def chapters(path):
     # that did not raise. Better to score nothing than to score punctuation.
     if out and not any(CYR.search(p) for c in out[:6] for p in c[:6]):
         return None
-    return out
+    # The FB2 does not carry these; the reader shows them anyway. The reader
+    # matches on the book-title in the FB2's own description, so match on the
+    # same string rather than on a filename that happens to be transliterated.
+    if title is None:
+        title = ""
+        for desc in [e for e in root if local(e) == "description"]:
+            for ti in [e for e in desc if local(e) == "title-info"]:
+                for bt in [e for e in ti if local(e) == "book-title"]:
+                    title = text_of(bt)
+    return inject(title, out)
 
 
 def spearman(xs, ys):

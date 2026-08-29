@@ -8815,11 +8815,25 @@ export default function App() {
                             )}
                           </div>
                         )}
-                        {proseEn && proseEn._note && pidx === 0 && (
-                          <div className="bible-en" style={{margin:"0 0 18px",padding:"10px 14px",border:"1px solid rgba(196,149,90,.35)",borderRadius:10,background:"rgba(196,149,90,.06)",fontSize:"0.92em"}}>
-                            {proseEn._note}
-                          </div>
-                        )}
+                        {/* A chapter-level note, for something true of this
+                            chapter and not of the book. Three English folders
+                            also carried the BOOK's translator note here, from
+                            before the catalogue had a field for it, and every
+                            reader of Anna Karenina, Karamazov and Petushki saw
+                            the same paragraph twice. A note that merely repeats
+                            the book's own note is not a chapter note. */}
+                        {(function() {
+                          var n = proseEn && proseEn._note;
+                          if (!n || pidx !== 0) return null;
+                          var book = (bookMeta && bookMeta.translationNote) || "";
+                          var trim = function(t) { return String(t).replace(/\s+/g, " ").trim().slice(0, 60); };
+                          if (book && trim(n) === trim(book)) return null;
+                          return (
+                            <div className="bible-en" style={{margin:"0 0 18px",padding:"10px 14px",border:"1px solid rgba(196,149,90,.35)",borderRadius:10,background:"rgba(196,149,90,.06)",fontSize:"0.92em"}}>
+                              {n}
+                            </div>
+                          );
+                        })()}
                         {/* Jump index for a merged short story. Scrolls rather than
                             setting a hash: the address bar carries /book/<slug> for
                             deep links, and a hash would fight it. */}
