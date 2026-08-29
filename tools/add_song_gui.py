@@ -160,6 +160,23 @@ def yt_start(s):
     return int(m.group(1)) if m else 0
 
 
+def parse_ts(s):
+    """Seconds from a bare timestamp typed on its own: 14:33, 1:14:33, 873,
+    14m33s. None when the text is not a timestamp at all."""
+    t = str(s or "").strip()
+    if not t:
+        return None
+    m = re.fullmatch(r"(?:(\d+):)?(\d{1,2}):(\d{2})", t)
+    if m:
+        return int(m.group(1) or 0) * 3600 + int(m.group(2)) * 60 + int(m.group(3))
+    m = re.fullmatch(r"(?:(\d+)h)?(?:(\d+)m)?(\d+)s?", t)
+    if m and (m.group(1) or m.group(2) or t.endswith("s")):
+        return int(m.group(1) or 0) * 3600 + int(m.group(2) or 0) * 60 + int(m.group(3))
+    if re.fullmatch(r"\d{1,6}", t):
+        return int(t)
+    return None
+
+
 def yt_id(s):
     m = re.search(r'(?:v=|youtu\.be/|embed/|shorts/)([A-Za-z0-9_-]{11})', s) \
         or re.fullmatch(r'\s*([A-Za-z0-9_-]{11})\s*', s)
@@ -573,21 +590,34 @@ def book_videos_page(bid, msg=""):
         if isinstance(v, dict) and v.get("heading"):
             by_head[v["heading"].strip().lower()] = v.get("youtube") or ""
 
+    # When every chapter already points at the same recording, show it once in
+    # the whole-work box instead of repeating it down every row.
+    ids = set((v.get("youtube") if isinstance(v, dict) else v) or "" for v in vids.values())
+    whole = ids.pop() if len(ids) == 1 else ""
+
     if not chapters:
         body = '<div class="err">Could not read the chapters out of %s.</div>' % html.escape(b.get("filename") or "?")
     else:
         rows = []
         for i, head in chapters:
-            cur = by_head.get((head or "").strip().lower(), "")
-            if not cur:
-                v = vids.get(str(i))
-                cur = (v.get("youtube") if isinstance(v, dict) else v) or ""
-                if isinstance(v, dict) and v.get("start"):
-                    cur += "&t=%d" % int(v["start"])
+            v = vids.get(str(i))
+            if v is None and head:
+                for vv in vids.values():
+                    if isinstance(vv, dict) and (vv.get("heading") or "").strip().lower() == head.strip().lower():
+                        v = vv
+                        break
+            vid = (v.get("youtube") if isinstance(v, dict) else v) or ""
+            secs = int(v["start"]) if (isinstance(v, dict) and v.get("start")) else 0
+            if whole and vid == whole:
+                cur = ("%d:%02d" % (secs // 60, secs % 60)) if secs else ""
+            elif vid:
+                cur = vid + ("&t=%d" % secs if secs else "")
+            else:
+                cur = ""
             label = head or "(no heading)"
             rows.append(
                 '<label>%d &nbsp; %s</label>'
-                '<input type="text" name="v_%d" value="%s" placeholder="YouTube link or ID — leave blank for none">'
+                '<input type="text" name="v_%d" value="%s" placeholder="link, or just a time like 14:33 when using the video above">'
                 '<input type="hidden" name="h_%d" value="%s">'
                 % (i, html.escape(label), i, html.escape(cur), i, html.escape(head or "")))
         body = "".join(rows)
@@ -596,10 +626,16 @@ def book_videos_page(bid, msg=""):
 <a class="quit" href="/quit">quit</a>
 <h1>%s</h1>%s
 <p class="hint">%s &nbsp;·&nbsp; %s &nbsp;·&nbsp; <a href="/videos" style="color:#c4955a">← all works</a></p>
-<div class="hint">A chapter with a video shows it at the top of the page, and its
- audio bar is hidden. Clear the box to remove one.</div>
+<div class="hint">Each chapter is its own page, and its video sits at the top of
+ it. Clear a box to remove one.</div>
+<div class="hint">One long reading of the whole work? Put it in the box below,
+ then give each chapter just the time it starts at &mdash; <code>14:33</code>,
+ <code>1:02:10</code>, or plain seconds. A chapter with a full link of its own
+ keeps it.</div>
 <form method="post" action="/videos/save">
  <input type="hidden" name="book" value="%s">
+ <label>Video for the whole work &mdash; optional</label>
+ <input type="text" name="wholevid" value="%s" placeholder="YouTube link or ID that every chapter below shares">
  %s
  <div class="row">
   <button type="submit">Save videos</button>
@@ -607,7 +643,7 @@ def book_videos_page(bid, msg=""):
 </form>""" % (html.escape(b.get("title") or "?"), STYLE,
               html.escape(b.get("title") or "?"), msg,
               html.escape(b.get("author") or "?"), html.escape(book_sites(b)),
-              html.escape(bid), body)
+              html.escape(bid), html.escape(whole), body)
 
 class H(BaseHTTPRequestHandler):
     def log_message(self, *a): pass
@@ -714,6 +750,10 @@ class H(BaseHTTPRequestHandler):
         if b is None:
             return self._send(videos_index_page('<div class="err">No book called %s.</div>' % html.escape(bid)))
 
+        # One recording can serve a whole work: name it once, then give each
+        # chapter only the time it starts at. A chapter carrying a full link of
+        # its own still wins.
+        whole = yt_id(fields.get("wholevid") or "")
         videos, bad = {}, []
         for k, v in fields.items():
             if not k.startswith("v_"):
@@ -722,12 +762,15 @@ class H(BaseHTTPRequestHandler):
             if not raw:
                 continue
             idx = k[2:]
-            vid = yt_id(raw)
+            vid, secs = yt_id(raw), yt_start(raw)
             if not vid:
-                bad.append(raw)
-                continue
+                ts = parse_ts(raw)
+                if ts is not None and whole:
+                    vid, secs = whole, ts
+                else:
+                    bad.append(raw)
+                    continue
             videos[idx] = {"youtube": vid, "heading": (fields.get("h_" + idx) or "").strip()}
-            secs = yt_start(raw)
             if secs:
                 videos[idx]["start"] = secs
 
