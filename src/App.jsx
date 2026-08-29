@@ -454,6 +454,70 @@ function ruForms(word) {
   return res.slice(0, 60);
 }
 
+// Pull the 11-character video id out of whatever was pasted — a watch URL, a
+// youtu.be short link, an embed URL, a Shorts link, or the bare id itself.
+// Returns "" for anything that is not recognisably a YouTube reference, so a
+// bad paste shows no player rather than an empty grey box.
+function ytId(s) {
+  var t = String(s || "").trim();
+  if (!t) return "";
+  var m = t.match(/(?:v=|youtu\.be\/|embed\/|shorts\/|live\/)([A-Za-z0-9_-]{11})/);
+  if (m) return m[1];
+  return /^[A-Za-z0-9_-]{11}$/.test(t) ? t : "";
+}
+
+// Attach per-chapter videos to a chapter list.
+//
+// Two shapes are accepted. `videos` is a sparse map keyed by chapter index —
+// {"0": "dQw4w9WgXcQ", "7": "..."} — which is what the uploader writes, and
+// the only sane shape for a novel where three chapters out of a hundred have
+// a reading. `songs` is the older dense array, kept so existing Song Lyrics
+// entries keep working.
+function vidHeadKey(s) {
+  return String(s || "").toLowerCase().replace(/ё/g, "е").replace(/[^\wа-я0-9]+/gi, " ").trim();
+}
+function attachVideos(chapters, entry) {
+  if (!entry) return chapters;
+  var videos = entry.videos && typeof entry.videos === "object" ? entry.videos : null;
+  var songs = Array.isArray(entry.songs) ? entry.songs : null;
+  if (!videos && !songs) return chapters;
+
+  // Heading lookup, built once. An entry written by the uploader carries the
+  // heading it was attached to as well as the index, and the heading is tried
+  // first: the reader's own chapter splitter has median-length and subtitle
+  // rules that can renumber a book when the FB2 is re-cut, and a video that
+  // silently moves to the wrong poem is worse than one that does not show.
+  // The index is the fallback, for headings that are blank or repeated.
+  var byHead = Object.create(null);
+  if (videos) {
+    Object.keys(videos).forEach(function(k) {
+      var v = videos[k];
+      var head = (v && typeof v === "object") ? v.heading : "";
+      var kk = vidHeadKey(head);
+      if (kk) byHead[kk] = v;
+    });
+  }
+  var used = Object.create(null);
+
+  return chapters.map(function(ch, i) {
+    var v = null;
+    var hk = vidHeadKey(ch && ch.heading);
+    if (hk && byHead[hk] && !used[hk]) { v = byHead[hk]; used[hk] = 1; }
+    if (!v && videos) v = videos[String(i)];
+    var raw = (v && typeof v === "object") ? (v.youtube || v.url || "") : (v || "");
+    if (!raw && songs) {
+      var e = songs[i];
+      raw = (e && typeof e === "object") ? (e.youtube || "") : (e || "");
+    }
+    var id = ytId(raw);
+    if (!id) return ch;
+    return Object.assign({}, ch, {
+      youtubeId: id,
+      youtubeUrl: "https://www.youtube.com/watch?v=" + id,
+    });
+  });
+}
+
 function yoVariants(word) {
   var out = [];
   for (var i = 0; i < word.length; i++) {
@@ -3686,6 +3750,21 @@ export default function App() {
     );
   };
 
+  // Landing on a chapter that has a video takes the audio bar away, so anything
+  // still playing from the previous chapter would carry on with no visible
+  // control to stop it. Halt both playback paths on the way in.
+  useEffect(function() {
+    if (!(curChapter && curChapter.youtubeId)) return;
+    if (audioPlayingRef.current) {
+      if (audiobookModeRef.current) { try { pauseAudiobook(); } catch(e) {} }
+      else if (audioElemRef.current) { try { audioElemRef.current.pause(); } catch(e) {} }
+    }
+    try { if (audiobookAudioRef.current) audiobookAudioRef.current.pause(); } catch(e) {}
+    clearSentenceHighlight();
+    setAudioPlaying(false);
+    audioPlayingRef.current = false;
+  }, [curChapter && curChapter.youtubeId]);
+
   // When the loaded chapter changes, re-point the audio element at the new
   // chapter's file. Without this, switching chapters leaves the previous
   // chapter's audio playing under the new chapter's text and highlight.
@@ -5077,15 +5156,7 @@ export default function App() {
       // book entry. The array is indexed by chapter position (0-based), so the
       // user just lists URLs in song order in index.json. Missing/null entries
       // mean "no link for this song".
-      if (Array.isArray(opts.songs)) {
-        chs = chs.map(function(ch, i){
-          var entry = opts.songs[i];
-          var url = "";
-          if (typeof entry === "string") url = entry;
-          else if (entry && typeof entry === "object" && typeof entry.youtube === "string") url = entry.youtube;
-          return url ? Object.assign({}, ch, { youtubeUrl: url }) : ch;
-        });
-      }
+      chs = attachVideos(chs, opts);
 
       var title = opts.title || result.title;
       var author = opts.author || result.author;
@@ -5205,6 +5276,9 @@ export default function App() {
         // Optional per-chapter YouTube links (used by song collections). Array
         // indexed 0..N where each entry is a URL or null/missing.
         songs: Array.isArray(book.songs) ? book.songs : null,
+        // Per-chapter videos written by the uploader: a sparse map keyed by
+        // chapter index, each carrying the heading it was attached to.
+        videos: (book.videos && typeof book.videos === "object") ? book.videos : null,
         audiobook: book.audiobook || null,
         restricted: !!book.restricted,
         parallelEn: book.parallelEn || null,
@@ -5237,7 +5311,9 @@ export default function App() {
         splitByNumberedSections: !!d.splitByNumberedSections,
         audiobook: book.audiobook || d.audiobook || null,
       };
-      setChapters(d.chapters);
+      // Videos come off the live catalogue entry, not the cached chapters: a
+      // video attached after this book was cached must still appear.
+      setChapters(attachVideos(d.chapters, book));
       setBookMeta(meta);
       setCbm(0);
       // Bring the entry to the top of the recents list (touch to refresh "addedAt").
@@ -6160,6 +6236,10 @@ export default function App() {
         .lib-tag{padding:2px 7px;border-radius:9px;font-size:10px;letter-spacing:.3px;font-weight:600;white-space:nowrap;border:1px solid rgba(42,31,20,.16);color:rgba(42,31,20,.72);background:rgba(42,31,20,.05)}
         .lib-tag.off{border-color:rgba(42,31,20,.08);color:rgba(42,31,20,.3);background:none;font-weight:500}
         .lib-card-cat{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#c4955a;padding:2px 8px;border-radius:10px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600}
+        .chvid{position:relative;width:100%;max-width:640px;margin:0 0 18px;
+          padding-bottom:min(56.25%,360px);height:0;border-radius:10px;overflow:hidden;
+          background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.12)}
+        .chvid iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
         .lib-filters{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap}
         .lib-filters .lib-search{flex:1 1 220px;min-width:0}
         .lib-filter-btn{flex:none;font-family:'Inter',sans-serif;font-size:12px;white-space:nowrap;
@@ -8255,10 +8335,25 @@ export default function App() {
                                           : <>Click any word to define</>;
                               })()}
                         </div>
+                        {/* A reading or performance for this chapter, played from
+                            YouTube itself so the video stays where it was posted.
+                            It sits above the text because it is meant to be watched
+                            first and read along with — and where it appears, the
+                            audio bar stays away (see the player below). */}
+                        {curChapter.youtubeId && (
+                          <div className="chvid">
+                            <iframe
+                              src={"https://www.youtube.com/embed/" + curChapter.youtubeId}
+                              title={curChapter.heading || bookMeta.title || "Video"}
+                              loading="lazy"
+                              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen />
+                          </div>
+                        )}
                         {curChapter.heading && (
                           <div className="lch-heading" style={{display:"flex",alignItems:"center",gap:12,flexWrap:"wrap"}}>
                             <span>{curChapter.heading}</span>
-                            {curChapter.youtubeUrl && (
+                            {curChapter.youtubeUrl && !curChapter.youtubeId && (
                               <a href={curChapter.youtubeUrl} target="_blank" rel="noopener noreferrer"
                                 title="Listen on YouTube"
                                 style={{fontSize:12,color:"rgba(0,0,0,.7)",textDecoration:"none",padding:"4px 10px",border:"1px solid rgba(210,197,175,.25)",borderRadius:4,fontFamily:"'Inter',sans-serif"}}>
@@ -8281,7 +8376,7 @@ export default function App() {
                         Azure Dmitry. In Audiobook mode (when the book has an
                         audiobook for the current chapter) streams a real
                         recording, one file per chapter or act. */}
-                    {audioSentences.length > 0 && (TTS_ENABLED || audiobookData) && (
+                    {audioSentences.length > 0 && (TTS_ENABLED || audiobookData) && !curChapter.youtubeId && (
                       <div className="faudio">
                         {/* No skip buttons: scrub with the seek bar, or click
                             any word in the text and choose "Play from here". */}

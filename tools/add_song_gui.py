@@ -5,7 +5,7 @@ Run from WSL:  python3 tools/add_song_gui.py
 Opens a form in your browser; each submit adds a song to public/music/music.json,
 with an optional commit + push. Ctrl+C in the terminal (or the Quit link) stops it.
 """
-import json, re, os, sys, html, subprocess, threading, urllib.parse
+import io, json, re, os, sys, html, subprocess, threading, urllib.parse
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 from email.parser import BytesParser
 from email.policy import default as email_default
@@ -85,6 +85,20 @@ def git_publish(which, message):
             return False, "\n".join(out)
     return True, "\n".join(out)
 
+
+def git_books_publish(message):
+    """Commit and push private/books/index.json. One file, both sites: the
+    catalogue is shared and each entry's own "public" flag decides whether
+    Samovar shows it."""
+    out = []
+    for c in ([["git", "add", BOOKS_REL], ["git", "commit", "-m", message],
+               ["git", "push"]]):
+        r = subprocess.run(c, cwd=REPO, capture_output=True, text=True)
+        out.append("$ " + " ".join(c) + "\n" + r.stdout + r.stderr)
+        if r.returncode != 0:
+            return False, "\n".join(out)
+    return True, "\n".join(out)
+
 # Artists whose name has more than one spelling in the wild. Key = normalised
 # form (lowercase, punctuation and spacing stripped), value = the spelling the
 # app should show. Add a line here whenever a second rendering turns up; the
@@ -115,6 +129,89 @@ def yt_id(s):
     m = re.search(r'(?:v=|youtu\.be/|embed/|shorts/)([A-Za-z0-9_-]{11})', s) \
         or re.fullmatch(r'\s*([A-Za-z0-9_-]{11})\s*', s)
     return m.group(1) if m else None
+
+
+# ── Chapter videos ───────────────────────────────────────────────────────
+# A YouTube reading pinned to the top of one chapter of a real book (as
+# opposed to a song, which lives in music.json). Mostly poetry — one video per
+# poem in a collection — but any chapter of any book can carry one.
+#
+# Videos live on the book's own entry in private/books/index.json, under a
+# "videos" map keyed by chapter index:
+#
+#     "videos": { "3": { "youtube": "dQw4w9WgXcQ", "heading": "Парус" } }
+#
+# The heading is stored alongside the index because the reader matches on it
+# FIRST. The app's chapter splitter has median-length and subtitle rules that
+# can renumber a book if its FB2 is ever re-cut, and a video silently moving
+# to the wrong poem is worse than one that fails to show. The index is only
+# the fallback, for chapters whose heading is blank or repeated.
+BOOKS_REL = "private/books/index.json"
+BOOKS_PATH = os.path.join(REPO, "private", "books", "index.json")
+
+def load_books():
+    return json.load(open(BOOKS_PATH, encoding="utf-8"))
+
+def save_books(data):
+    json.dump(data, open(BOOKS_PATH, "w", encoding="utf-8"),
+              ensure_ascii=False, indent=2)
+
+def book_id(b):
+    """Stable handle for a catalogue entry — slug where there is one."""
+    return b.get("slug") or b.get("filename") or (b.get("title") or "")
+
+def book_sites(b):
+    """Where this book already appears. Videos follow the book, so there is no
+    separate publish target for them: one index.json serves both sites and the
+    entry's own "public" flag decides whether Samovar sees it."""
+    return "Govorim + Samovar" if b.get("public") is True else "Govorim only"
+
+# Leaf <section> titles in document order — a picking aid, not the reader's own
+# split. Exact agreement is not required precisely because the heading, not the
+# number, is what binds the video to the chapter.
+SEC_OPEN = re.compile(r"<section\b[^>]*>", re.I)
+SEC_CLOSE = re.compile(r"</section\s*>", re.I)
+TITLE_BLK = re.compile(r"<title\b[^>]*>(.*?)</title\s*>", re.I | re.S)
+TAGS = re.compile(r"<[^>]+>")
+
+def chapter_headings(b):
+    """[(index, heading)] for a book, or [] when the FB2 cannot be read."""
+    fn = b.get("filename") or ""
+    for tree in ("public", "private"):
+        path = os.path.join(REPO, tree, "books", fn)
+        if os.path.isfile(path):
+            break
+    else:
+        return []
+    try:
+        raw = io.open(path, encoding="utf-8", errors="ignore").read()
+    except OSError:
+        return []
+    raw = re.sub(r"<binary[\s\S]*?</binary>", "", raw)
+    # Walk the section tags, remembering where each opened; a section that
+    # closes with nothing opened inside it is a leaf.
+    out, stack = [], []
+    for m in re.finditer(r"<section\b[^>]*>|</section\s*>", raw, re.I):
+        if m.group(0).lower().startswith("</"):
+            if not stack:
+                continue
+            start, had_child = stack.pop()
+            if stack:
+                stack[-1] = (stack[-1][0], True)
+            if had_child:
+                continue
+            body = raw[start:m.start()]
+            t = TITLE_BLK.search(body)
+            head = ""
+            if t:
+                head = TAGS.sub(" ", t.group(1))
+                head = re.sub(r"\s+", " ", head).strip()
+            out.append(head)
+        else:
+            if stack:
+                stack[-1] = (stack[-1][0], True)
+            stack.append((m.end(), False))
+    return list(enumerate(out))
 
 STYLE = """
 <style>
@@ -358,7 +455,8 @@ def form_page(msg="", which="private"):
     )
     return """<!doctype html><meta charset="utf-8"><title>Govorim — add song</title>%s
 <a class="quit" href="/quit">quit</a>
-<h1>Add a song</h1>%s
+<h1>Add a song</h1>
+<p class="hint"><a href="/videos" style="color:#c4955a">Chapter videos →</a> — attach a YouTube reading to a chapter of any book</p>%s
 <form method="post" action="/add" enctype="multipart/form-data">
  <label>Catalogue</label>
  <select name="catalogue" onchange="location.search='?catalogue='+this.value">%s</select>
@@ -382,6 +480,104 @@ def form_page(msg="", which="private"):
 </form>
 %s""" % (STYLE, msg, options, artists, catalogue_html(which))
 
+
+def videos_index_page(msg=""):
+    """Every catalogue book, plus a jump list of the ones already carrying
+    videos — the second is what you actually use day to day, so it goes on
+    top."""
+    try:
+        books = load_books()
+    except Exception as e:
+        return """<!doctype html><meta charset="utf-8"><title>Govorim — videos</title>%s
+<a class="quit" href="/quit">quit</a><h1>Chapter videos</h1>
+<div class="err">Could not read %s — %s</div>""" % (STYLE, BOOKS_REL, html.escape(str(e)))
+
+    loaded = [b for b in books if (b.get("videos") or {})]
+    loaded.sort(key=lambda b: (b.get("author") or "", b.get("title") or ""))
+
+    if loaded:
+        rows = "".join(
+            '<option value="%s">%s — %s (%d)</option>' % (
+                html.escape(book_id(b)),
+                html.escape(b.get("author") or "?"),
+                html.escape(b.get("title") or "?"),
+                len(b.get("videos") or {}))
+            for b in loaded)
+        jump = """<form method="post" action="/videos/book">
+ <label>Books with videos</label>
+ <select name="book" onchange="this.form.submit()">
+  <option value="">%d loaded — pick one to edit…</option>%s</select>
+</form>""" % (len(loaded), rows)
+    else:
+        jump = '<div class="hint">No book has a video yet.</div>'
+
+    allrows = "".join(
+        '<option value="%s">%s — %s</option>' % (
+            html.escape(book_id(b)),
+            html.escape(b.get("author") or "?"),
+            html.escape(b.get("title") or "?"))
+        for b in sorted(books, key=lambda x: ((x.get("author") or ""), (x.get("title") or ""))))
+
+    return """<!doctype html><meta charset="utf-8"><title>Govorim — chapter videos</title>%s
+<a class="quit" href="/quit">quit</a>
+<h1>Chapter videos</h1>%s
+<p class="hint"><a href="/" style="color:#c4955a">← back to songs</a></p>
+%s
+<form method="post" action="/videos/book">
+ <label>All works (%d)</label>
+ <select name="book"><option value="">choose a book…</option>%s</select>
+ <div class="row"><button type="submit">Open</button></div>
+</form>""" % (STYLE, msg, jump, len(books), allrows)
+
+
+def book_videos_page(bid, msg=""):
+    books = load_books()
+    b = next((x for x in books if book_id(x) == bid), None)
+    if b is None:
+        return videos_index_page('<div class="err">No book called %s.</div>' % html.escape(bid))
+
+    chapters = chapter_headings(b)
+    vids = b.get("videos") or {}
+    by_head = {}
+    for k, v in vids.items():
+        if isinstance(v, dict) and v.get("heading"):
+            by_head[v["heading"].strip().lower()] = v.get("youtube") or ""
+
+    if not chapters:
+        body = '<div class="err">Could not read the chapters out of %s.</div>' % html.escape(b.get("filename") or "?")
+    else:
+        rows = []
+        for i, head in chapters:
+            cur = by_head.get((head or "").strip().lower(), "")
+            if not cur:
+                v = vids.get(str(i))
+                cur = (v.get("youtube") if isinstance(v, dict) else v) or ""
+            label = head or "(no heading)"
+            rows.append(
+                '<label>%d &nbsp; %s</label>'
+                '<input type="text" name="v_%d" value="%s" placeholder="YouTube link or ID — leave blank for none">'
+                '<input type="hidden" name="h_%d" value="%s">'
+                % (i, html.escape(label), i, html.escape(cur), i, html.escape(head or "")))
+        body = "".join(rows)
+
+    return """<!doctype html><meta charset="utf-8"><title>Govorim — %s</title>%s
+<a class="quit" href="/quit">quit</a>
+<h1>%s</h1>%s
+<p class="hint">%s &nbsp;·&nbsp; %s &nbsp;·&nbsp; <a href="/videos" style="color:#c4955a">← all works</a></p>
+<div class="hint">A chapter with a video shows it at the top of the page, and its
+ audio bar is hidden. Clear the box to remove one.</div>
+<form method="post" action="/videos/save">
+ <input type="hidden" name="book" value="%s">
+ %s
+ <div class="row">
+  <button type="submit">Save videos</button>
+  <label class="chk"><input type="checkbox" name="push" checked> commit &amp; push after saving</label>
+ </div>
+</form>""" % (html.escape(b.get("title") or "?"), STYLE,
+              html.escape(b.get("title") or "?"), msg,
+              html.escape(b.get("author") or "?"), html.escape(book_sites(b)),
+              html.escape(bid), body)
+
 class H(BaseHTTPRequestHandler):
     def log_message(self, *a): pass
 
@@ -398,6 +594,8 @@ class H(BaseHTTPRequestHandler):
             self._send("%s<h1>Stopped.</h1><p>You can close this tab.</p>" % STYLE)
             threading.Thread(target=self.server.shutdown, daemon=True).start()
             return
+        if (self.path or "").startswith("/videos"):
+            return self._send(videos_index_page())
         which = DEFAULT_CATALOGUE
         if "catalogue=public" in (self.path or ""):
             which = "public"
@@ -451,6 +649,11 @@ class H(BaseHTTPRequestHandler):
 
     def do_POST(self):
         fields, multi, filebytes = self._parse()
+        if self.path.startswith("/videos/save"):
+            return self.act_videos_save(fields)
+        if self.path.startswith("/videos/book"):
+            bid = (fields.get("book") or "").strip()
+            return self._send(videos_index_page() if not bid else book_videos_page(bid))
         if self.path.startswith("/copy"):
             return self.act_copy(fields, multi)
         if self.path.startswith("/delete/confirm"):
@@ -462,6 +665,58 @@ class H(BaseHTTPRequestHandler):
         if self.path.startswith("/edit"):
             return self.ask_edit(fields)
         return self.act_add(fields, filebytes)
+
+
+    def act_videos_save(self, fields):
+        """Write the video map back onto one book's catalogue entry.
+
+        Only chapters with a usable id are stored, so clearing a box removes
+        that video; a paste that is not recognisably YouTube is reported rather
+        than silently dropped, because a typo that quietly does nothing is the
+        worst outcome here."""
+        bid = (fields.get("book") or "").strip()
+        try:
+            books = load_books()
+        except Exception as e:
+            return self._send(videos_index_page('<div class="err">%s</div>' % html.escape(str(e))))
+        b = next((x for x in books if book_id(x) == bid), None)
+        if b is None:
+            return self._send(videos_index_page('<div class="err">No book called %s.</div>' % html.escape(bid)))
+
+        videos, bad = {}, []
+        for k, v in fields.items():
+            if not k.startswith("v_"):
+                continue
+            raw = (v or "").strip()
+            if not raw:
+                continue
+            idx = k[2:]
+            vid = yt_id(raw)
+            if not vid:
+                bad.append(raw)
+                continue
+            videos[idx] = {"youtube": vid, "heading": (fields.get("h_" + idx) or "").strip()}
+
+        if bad:
+            return self._send(book_videos_page(
+                bid, '<div class="err">Not a YouTube link: %s</div>'
+                     % html.escape(", ".join(bad[:4]))))
+
+        if videos:
+            b["videos"] = videos
+        else:
+            b.pop("videos", None)
+        save_books(books)
+
+        note = "%d video%s on %s" % (len(videos), "" if len(videos) == 1 else "s",
+                                     b.get("title") or bid)
+        msg = '<div class="ok">Saved — %s (%s).</div>' % (html.escape(note),
+                                                          html.escape(book_sites(b)))
+        if fields.get("push"):
+            ok, log = git_books_publish("Chapter videos: " + note)
+            msg += ('<div class="ok">Pushed.</div>' if ok
+                    else '<div class="err">Push failed:<pre>%s</pre></div>' % html.escape(log))
+        return self._send(book_videos_page(bid, msg))
 
     def ask_edit(self, fields):
         which = self._which(fields)
