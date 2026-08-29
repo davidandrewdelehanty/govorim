@@ -3455,6 +3455,18 @@ export default function App() {
   var pages = useMemo(function() {
     return computePages(curChapter.text || "", { singlePage: true });
   }, [curChapter.text, singlePageMode]);
+  // What the chapter either side of this one is called. A button at the foot of
+  // a chapter is read after the text, when "Next ›" alone has stopped meaning
+  // anything — naming the destination is the whole point of putting it there.
+  var neighbourName = function(i) {
+    if (i < 0 || i >= chapters.length) return "";
+    var h = String((chapters[i] && chapters[i].heading) || "").trim();
+    if (h) {
+      var sl = sectionLabel(h);
+      return sl ? sl.long : h;
+    }
+    return (singlePageMode ? "Song " : "Chapter ") + (i + 1);
+  };
   var totalPages = pages.length;
   // Scripture is paged one BOOK at a time, so the reader can be fifty chapters
   // deep in a single scroll. These are the marks to jump between. They come
@@ -6767,6 +6779,29 @@ export default function App() {
            freed from the bottom of the screen so the floating audio bar
            can sit there without blocking navigation. */
         .lit-top-nav{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+        /* Chapter nav at the foot of the text. The bottom margin is not
+           decoration: the floating audio bar is fixed 68px tall over the end of
+           the page, and without clearance these buttons sit underneath it —
+           which is why the pair at the top were put at the top. */
+        .chap-foot{display:flex;gap:12px;margin:44px 0 96px;padding-top:22px;
+          border-top:1px solid rgba(42,31,20,.12)}
+        .chap-foot-btn{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;
+          align-items:flex-start;text-align:left;padding:12px 16px;border-radius:10px;
+          border:1px solid rgba(42,31,20,.14);background:rgba(42,31,20,.03);
+          font-family:'Crimson Pro',serif;cursor:pointer;transition:all .15s}
+        .chap-foot-btn.next{align-items:flex-end;text-align:right}
+        .chap-foot-btn:hover:not(:disabled){background:rgba(196,149,90,.09);
+          border-color:rgba(196,149,90,.45)}
+        .chap-foot-btn:disabled{opacity:.32;cursor:default}
+        .chap-foot-btn .dir{font-family:'Inter',system-ui,sans-serif;font-size:11px;
+          letter-spacing:.09em;text-transform:uppercase;color:rgba(42,31,20,.45)}
+        .chap-foot-btn .name{font-size:16.5px;color:#000;line-height:1.3;
+          overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+        @media(max-width:600px){
+          .chap-foot{gap:8px;margin:32px 0 90px}
+          .chap-foot-btn{padding:10px 12px}
+          .chap-foot-btn .name{font-size:15px}
+        }
         .lnb-inline{padding:5px 11px;border-radius:8px;border:1px solid rgba(42,31,20,.16);background:rgba(42,31,20,.05);color:rgba(42,31,20,.55);font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;transition:all .15s}
         .lnb-inline:hover:not(:disabled){background:rgba(42,31,20,.1);color:#000}
         .lnb-inline:disabled{opacity:.3;cursor:default}
@@ -8784,6 +8819,26 @@ export default function App() {
                           </nav>
                         )}
                         <div className="ltxt">{renderLit(curChapter.text)}</div>
+                        {/* The same move again at the foot of the text, where a
+                            reader who has finished the chapter actually is. The
+                            pair at the top stays: it is for leaving a chapter,
+                            this is for finishing one. */}
+                        {chapters.length > 1 && (
+                          <nav className="chap-foot" aria-label="Chapter navigation">
+                            <button className="chap-foot-btn"
+                              onClick={function(){ if (cidx > 0) navLit(cidx - 1); }}
+                              disabled={loading || cidx <= 0}>
+                              <span className="dir">‹ {singlePageMode ? "Previous song" : "Previous"}</span>
+                              <span className="name">{neighbourName(cidx - 1)}</span>
+                            </button>
+                            <button className="chap-foot-btn next"
+                              onClick={function(){ if (cidx < chapters.length - 1) navLit(cidx + 1); }}
+                              disabled={loading || cidx >= chapters.length - 1}>
+                              <span className="dir">{singlePageMode ? "Next song" : "Next"} ›</span>
+                              <span className="name">{neighbourName(cidx + 1)}</span>
+                            </button>
+                          </nav>
+                        )}
                       </div>
                     </div>
 

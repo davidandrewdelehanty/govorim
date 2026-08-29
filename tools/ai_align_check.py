@@ -315,7 +315,7 @@ def fetch(key):
     found = []
     # Every failure the batch reports, gathered and shown. Skipping them
     # quietly turns "7,213 errored" into a blank report and no idea why.
-    kinds, samples, used = {}, {}, [0, 0]
+    kinds, samples, used, unparsed = {}, {}, [0, 0], []
     for line in raw.splitlines():
         if not line.strip():
             continue
@@ -329,12 +329,16 @@ def fetch(key):
             samples.setdefault(kind, inner.get("message", json.dumps(res)[:400]))
             continue
         text = "".join(c.get("text", "") for c in res["message"]["content"])
+        # A reply that is not JSON is a lost window, not a clean one. At this
+        # scale a silent 5%% would be 360 files nobody knows went unread.
         m = re.search(r"\{.*\}", text, re.S)
         if not m:
+            unparsed.append((r["custom_id"], text[:120]))
             continue
         try:
             v = json.loads(m.group(0))
         except ValueError:
+            unparsed.append((r["custom_id"], text[:120]))
             continue
         u = res["message"].get("usage", {}) or {}
         used[0] += u.get("input_tokens", 0) + u.get("cache_read_input_tokens", 0)
@@ -346,6 +350,10 @@ def fetch(key):
         found.append(v)
     json.dump(found, io.open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print("read %d verdict(s) -> %s" % (len(found), OUT))
+    if unparsed:
+        print("%d answer(s) were not JSON and were dropped, e.g.:" % len(unparsed))
+        for cid, t in unparsed[:3]:
+            print("   %s  %s" % (cid, t.replace("\n", " ")[:96]))
     if used[0]:
         model = saved.get("model") or ""
         rate = next((m[1:3] for m in MODELS.values() if m[0] == model), (1.0, 5.0))
