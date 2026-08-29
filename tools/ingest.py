@@ -300,12 +300,134 @@ def epub_blocks(path):
                     out.append(("P", pp))
     return out
 
+# Typographic punctuation must be folded to ASCII BEFORE NFKD, which drops it
+# rather than decomposing it. Korolenko's volume heads its story "MAKAR\u2019S
+# DREAM" with a curly apostrophe; our source table writes a straight one. Left
+# alone those normalise to "makars dream" and "makar s dream", which never meet
+# \u2014 and the whole volume comes back instead of the story.
+SMART = {0x2018: "'", 0x2019: "'", 0x201a: "'", 0x201b: "'",
+         0x201c: '"', 0x201d: '"', 0x2032: "'", 0x2035: "'",
+         0x2013: "-", 0x2014: "-", 0x2012: "-", 0x2212: "-", 0x00ad: "-"}
+
+# Volumes that title a work differently from our source table. Fuzzy matching
+# cannot bridge these \u2014 no amount of it turns "light" into "gentle".
+EN_TITLE_ALIASES = {
+    "light breathing": ["gentle breathing"],     # \u0411\u0443\u043d\u0438\u043d, Koteliansky/Woolf 1922
+}
+
 def norm_title(s):
+    s = str(s or "").translate(SMART)
     s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower()
-    return re.sub(r"[^a-z0-9 ]", " ", s).strip()
+    return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9 ]", " ", s)).strip()
+
+
+def toc_entries(Z, spine):
+    """[(label, spine_index, char_offset)] from the volume's own TOC.
+
+    A TOC entry names a work AND says exactly where it starts \u2014 file plus
+    anchor. That pair is a position in the whole document, which is what both
+    of our failure modes need: PG 44998 keeps a four-story volume in ONE file
+    separated only by id anchors, so file-level slicing returns everything,
+    while PG 62555 splits works across files but heads each with a bare roman
+    numeral, so scanning for headings finds nothing.
+    """
+    names = [n for n in Z.namelist()
+             if n.lower().endswith(("toc.xhtml", "nav.xhtml", "toc.ncx"))]
+    base = {n.split("/")[-1]: i for i, n in enumerate(spine)}
+    cache, out = {}, []
+    for tn in names:
+        try:
+            raw = Z.read(tn).decode("utf-8", "ignore")
+        except Exception:
+            continue
+        for m in re.finditer(
+                r'<(?:a|content)[^>]+(?:href|src)="([^"#]*)(?:#([^"]*))?"[^>]*>(.*?)</(?:a|content)>',
+                raw, re.S | re.I):
+            lab = clean(m.group(3))
+            # Page-number links ("[57]") and bare numerals are not works.
+            if not lab or re.fullmatch(r"\[?[ivxlcdm\d]+\]?", lab, re.I):
+                continue
+            si = base.get(m.group(1).split("/")[-1])
+            if si is None:
+                continue
+            anchor, off = m.group(2), 0
+            if anchor:
+                if si not in cache:
+                    cache[si] = Z.read(spine[si]).decode("utf-8", "ignore")
+                a = re.search(r'id=["\']%s["\']' % re.escape(anchor), cache[si])
+                off = a.start() if a else 0
+            out.append((lab, si, off))
+        if out:
+            break
+    return out
+
+
+def paras_between(Z, spine, start, end):
+    """Paragraphs from one global position up to the next."""
+    si, so = start
+    ei, eo = end if end else (len(spine) - 1, None)
+    chunks = []
+    for i in range(si, min(ei, len(spine) - 1) + 1):
+        doc = Z.read(spine[i]).decode("utf-8", "replace")
+        a = so if i == si else 0
+        b = eo if (i == ei and eo is not None) else len(doc)
+        chunks.append(doc[a:b])
+    body = re.sub(r"<(script|style)[\s\S]*?</\1>", "", "\n".join(chunks))
+    out = []
+    for m in re.finditer(r"<p[^>]*>([\s\S]*?)</p>", body):
+        t = clean(m.group(1))
+        if t:
+            out.append(t)
+    return out
+
+
+def toc_slice(path, want_title):
+    """One work's paragraphs, located through the TOC. None when not found."""
+    try:
+        Z = zipfile.ZipFile(path)
+    except Exception:
+        return None
+    spine = spine_order(Z)
+    toc = toc_entries(Z, spine)
+    if not toc or not want_title:
+        return None
+    want = norm_title(want_title)
+    wants = [want] + EN_TITLE_ALIASES.get(want, [])
+    hits = [i for i, (lab, _s, _o) in enumerate(toc)
+            if any(norm_title(lab) == w for w in wants)]
+    if not hits:
+        hits = [i for i, (lab, _s, _o) in enumerate(toc)
+                if any(len(norm_title(lab)) > 6
+                       and (norm_title(lab) in w or w in norm_title(lab))
+                       for w in wants)]
+    best = None
+    for h in hits:
+        _lab, si, so = toc[h]
+        nxt = None
+        for _l2, s2, o2 in toc[h + 1:]:
+            if (s2, o2) > (si, so):
+                nxt = (s2, o2)
+                break
+        ps = paras_between(Z, spine, (si, so), nxt)
+        # A volume's title page carries the same label as the work itself;
+        # only one of the two has the text under it.
+        if ps and (best is None or len(ps) > len(best)):
+            best = ps
+    return best
 
 def en_extract(path, want_title):
     """Blocks belonging to one work inside a volume, as [(heading, [paras])]."""
+    # The TOC is the one place a volume reliably states what it contains and
+    # where each piece begins, so it is tried before scanning for headings.
+    ts = toc_slice(path, want_title)
+    # A TOC entry bearing the work's title is sometimes its title PAGE, with
+    # the text itself filed under later entries named something else — "Part
+    # I", "Fragment I". Andreyev's volume does exactly that, and the slice
+    # comes back as five lines and 43 words. Anything that small is front
+    # matter, not a work, so fall through to the heading scan instead of
+    # replacing a good pairing with a title page.
+    if ts and len(ts) >= 8 and sum(len(t.split()) for t in ts) >= 300:
+        return [(want_title, ts)]
     blocks = epub_blocks(path)
     cand = [i for i, (k, t) in enumerate(blocks)
             if k == "H" and not CHAPTER_HEAD.match(t) and not FRONT.search(t)]
