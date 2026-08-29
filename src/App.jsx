@@ -5887,7 +5887,12 @@ export default function App() {
     // completely empty English pane on the FIRST chapter a reader opens.
     // Such chapters now read as plain Russian (the _note box still shows).
     var proseEnUsable = !!(proseEn && Object.keys(proseEn).some(function(k){ return k !== "_note"; }));
-    var dualActive = !!(proseEnUsable || bibleEn);
+    // Scripture reads layered rather than side by side: the verse, then its
+    // English directly beneath it. Swiping a column away from a numbered verse
+    // loses the correspondence that makes it useful, and every other parallel
+    // book keeps the two-column view untouched.
+    var bibleInline = !!(bookMeta && bookMeta.isBible);
+    var dualActive = !!((proseEnUsable || bibleEn) && !bibleInline);
     var litEntries = (function() {
       // Pull the non-empty paragraphs in the order they appear, matching how
       // computePages indexes them.
@@ -6155,6 +6160,12 @@ export default function App() {
             )}
             <p id={"sp" + entry.chIdx} lang="ru" style={pMargin}>
               {ruBody}
+              {/* The Russian line already carries its verse number, so the
+                  English beneath it does not repeat one. */}
+              {bibleInline && (bibleHeadingLine || bibleEnLine) && (
+                <span className={"bible-en" + (bibleHeadingLine ? " bible-heading-en" : "")}
+                      lang="en">{bibleHeadingLine || bibleEnLine}</span>
+              )}
             </p>
           </Fragment>
         );
