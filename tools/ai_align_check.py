@@ -287,6 +287,21 @@ def submit(key):
     return got["id"]
 
 
+def cancel(key):
+    """Stop a batch that is still running.
+
+    Anything already processed is billed and stays fetchable; whatever had not
+    started is cancelled and costs nothing. Cancelling takes a moment to take
+    effect, so the status may still read in_progress on the next poll.
+    """
+    bid = json.load(io.open(STATE, encoding="utf-8"))["id"]
+    got = json.loads(call(API + "/" + bid + "/cancel", data=b"", key=key, method="POST"))
+    print("cancelling %s — status now %s" % (bid, got.get("processing_status")))
+    print("counts: %s" % got.get("request_counts"))
+    print("whatever finished before this is still yours: --fetch --report")
+    return got
+
+
 def wait(key, every=30):
     bid = json.load(io.open(STATE, encoding="utf-8"))["id"]
     while True:
@@ -515,6 +530,8 @@ def main():
     ap.add_argument("--wait", action="store_true")
     ap.add_argument("--fetch", action="store_true")
     ap.add_argument("--report", action="store_true")
+    ap.add_argument("--cancel", action="store_true",
+                    help="stop the batch in flight; unprocessed requests are not billed")
     ap.add_argument("--html", default=os.path.join(HERE, "alignment-review.html"),
                     help="where to write the readable version")
     ap.add_argument("--limit", type=int, default=0, help="send only the worst N windows")
@@ -528,17 +545,19 @@ def main():
                     help="read every paired file, not only the ones that fail "
                          "the free checks")
     a = ap.parse_args()
-    if not any((a.build, a.submit, a.wait, a.fetch, a.report)):
+    if not any((a.build, a.submit, a.wait, a.fetch, a.report, a.cancel)):
         ap.error("nothing to do — try --build")
 
     key = os.environ.get("ANTHROPIC_API_KEY")
-    if (a.submit or a.wait or a.fetch) and not key:
+    if (a.submit or a.wait or a.fetch or a.cancel) and not key:
         sys.exit("ANTHROPIC_API_KEY is not set. A Console key is separate from a\n"
                  "Claude subscription: https://platform.claude.com/settings/keys")
 
     model, in_rate, out_rate, effort = MODELS[a.model]
     if a.everything:
         a.floor, a.min_names = 1.1, 0
+    if a.cancel:
+        return 0 if cancel(key) else 1
     if a.build:
         build(a.limit, a.floor, a.min_names, model, in_rate, out_rate, effort)
     if a.submit:
