@@ -80,10 +80,24 @@ Errors. Report only these:
   or SCRAMBLED however far apart the two passages are. Ask yourself whether a
   reader who knew the book would say "that is the wrong novel" or "that is the
   wrong page of this novel"; only the first is DIFFERENT_WORK.
-- OFFSET: right work, shifted. Row N's English belongs to row N+k. Give k
-  (positive = the English runs ahead). It shows as a RUN of rows each matching
-  a fixed distance away, not one odd row. Give the k you can actually see in
-  this window; do not round it toward a neighbouring window's answer.
+- OFFSET: right work, shifted. You MUST give the number k, and k is defined
+  one way only:
+
+      k is where the English that BELONGS beside a row is currently sitting.
+      If the English that belongs beside [7] is sitting on row [9], k is +2.
+      If the English that belongs beside [7] is sitting on row [5], k is -2.
+
+  Work it out on one row you are sure of and check it on a second before you
+  answer. The repair moves every English entry back by k, so the sign is the
+  whole value of the answer: a k with the wrong sign moves the file twice as
+  far wrong as leaving it alone.
+
+  It shows as a RUN of rows each matching a fixed distance away, not one odd
+  row. Give the k you can see in THIS window and do not round it toward a
+  neighbouring window's; the offset often changes down a chapter.
+
+  If you can see the file is shifted but cannot pin k down, answer SCRAMBLED.
+  Do not answer OFFSET with a null k — it cannot be acted on.
 - PARTIAL: correct for part of the window, breaking part way. Give the row.
 - SCRAMBLED: right work, rows out of order with no fixed pattern.
 
@@ -91,7 +105,8 @@ If you cannot tell — too little text, too free a translation, a window of bare
 dialogue — answer UNSURE. UNSURE is worth more than a guess: a person reads
 these flags, and a wrong flag costs more than a missing one.
 
-Reply with JSON and nothing else:
+Reply with JSON and nothing else. "offset" is required and must be a non-zero
+integer when the verdict is OFFSET, and null for every other verdict:
 {"verdict":"OK|DIFFERENT_WORK|OFFSET|PARTIAL|SCRAMBLED|UNSURE",
  "offset":<int or null>,"breaks_at":<row or null>,
  "confidence":"high|medium|low",
@@ -266,6 +281,7 @@ def submit(key):
     # wrong map are not an error — they are wrong answers with confident
     # filenames on them.
     got["index"] = json.load(io.open(MAP, encoding="utf-8"))
+    got["model"] = reqs[0]["params"]["model"]
     json.dump(got, io.open(STATE, "w", encoding="utf-8"), indent=1)
     print("submitted %d window(s) as %s" % (len(reqs), got["id"]))
     return got["id"]
@@ -299,7 +315,7 @@ def fetch(key):
     found = []
     # Every failure the batch reports, gathered and shown. Skipping them
     # quietly turns "7,213 errored" into a blank report and no idea why.
-    kinds, samples = {}, {}
+    kinds, samples, used = {}, {}, [0, 0]
     for line in raw.splitlines():
         if not line.strip():
             continue
@@ -320,6 +336,9 @@ def fetch(key):
             v = json.loads(m.group(0))
         except ValueError:
             continue
+        u = res["message"].get("usage", {}) or {}
+        used[0] += u.get("input_tokens", 0) + u.get("cache_read_input_tokens", 0)
+        used[1] += u.get("output_tokens", 0)
         who = index.get(r["custom_id"])
         if not who:
             continue
@@ -327,6 +346,14 @@ def fetch(key):
         found.append(v)
     json.dump(found, io.open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print("read %d verdict(s) -> %s" % (len(found), OUT))
+    if used[0]:
+        model = saved.get("model") or ""
+        rate = next((m[1:3] for m in MODELS.values() if m[0] == model), (1.0, 5.0))
+        spent = used[0] / 1e6 * rate[0] + used[1] / 1e6 * rate[1]
+        n = max(1, len(found))
+        print("actually used %dk in / %dk out  =  $%.2f  (%.4f per window)"
+              % (used[0] / 1000, used[1] / 1000, spent, spent / n))
+        print("  the whole library is 7,213 windows: about $%.2f" % (spent / n * 7213))
     if kinds:
         print("\n%d request(s) did not produce an answer:" % sum(kinds.values()))
         for k, n in sorted(kinds.items(), key=lambda kv: -kv[1]):
