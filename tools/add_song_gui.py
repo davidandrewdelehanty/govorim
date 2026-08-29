@@ -145,6 +145,21 @@ def artist_key(s):
     under an old spelling still matches a submission under the new one."""
     return norm_artist(canon_artist(s))
 
+def yt_start(s):
+    """Seconds from a link's own timestamp (&t=873, &t=14m33s). One recording
+    can then serve a whole book: paste it against each chapter with the
+    timestamp where that chapter begins."""
+    t = str(s or "")
+    m = re.search(r"[?&#](?:t|start)=(\d+)h(\d+)m(\d+)s", t)
+    if m:
+        return int(m.group(1)) * 3600 + int(m.group(2)) * 60 + int(m.group(3))
+    m = re.search(r"[?&#](?:t|start)=(\d+)m(\d+)s", t)
+    if m:
+        return int(m.group(1)) * 60 + int(m.group(2))
+    m = re.search(r"[?&#](?:t|start)=(\d+)s?\b", t)
+    return int(m.group(1)) if m else 0
+
+
 def yt_id(s):
     m = re.search(r'(?:v=|youtu\.be/|embed/|shorts/)([A-Za-z0-9_-]{11})', s) \
         or re.fullmatch(r'\s*([A-Za-z0-9_-]{11})\s*', s)
@@ -567,6 +582,8 @@ def book_videos_page(bid, msg=""):
             if not cur:
                 v = vids.get(str(i))
                 cur = (v.get("youtube") if isinstance(v, dict) else v) or ""
+                if isinstance(v, dict) and v.get("start"):
+                    cur += "&t=%d" % int(v["start"])
             label = head or "(no heading)"
             rows.append(
                 '<label>%d &nbsp; %s</label>'
@@ -710,6 +727,9 @@ class H(BaseHTTPRequestHandler):
                 bad.append(raw)
                 continue
             videos[idx] = {"youtube": vid, "heading": (fields.get("h_" + idx) or "").strip()}
+            secs = yt_start(raw)
+            if secs:
+                videos[idx]["start"] = secs
 
         if bad:
             return self._send(book_videos_page(

@@ -1,5 +1,5 @@
 // THEME_VERSION=2
-import { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo, Fragment } from "react";
 import { isCommonWord, dropCommonWords } from "./commonWords.js";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
@@ -458,6 +458,20 @@ function ruForms(word) {
 // youtu.be short link, an embed URL, a Shorts link, or the bare id itself.
 // Returns "" for anything that is not recognisably a YouTube reference, so a
 // bad paste shows no player rather than an empty grey box.
+// Seconds into the video this chapter begins, taken from the link's own
+// timestamp — the &t=873 or ?start=873 that YouTube puts there when you copy
+// a link "at the current time". So one recording can serve a whole book:
+// paste the same video against each chapter with its own timestamp.
+function ytStart(s) {
+  var t = String(s || "");
+  var m = t.match(/[?&#](?:t|start)=(\d+)h(\d+)m(\d+)s/) ;
+  if (m) return (+m[1]) * 3600 + (+m[2]) * 60 + (+m[3]);
+  m = t.match(/[?&#](?:t|start)=(\d+)m(\d+)s/);
+  if (m) return (+m[1]) * 60 + (+m[2]);
+  m = t.match(/[?&#](?:t|start)=(\d+)s?\b/);
+  return m ? +m[1] : 0;
+}
+
 function ytId(s) {
   var t = String(s || "").trim();
   if (!t) return "";
@@ -476,6 +490,44 @@ function ytId(s) {
 function vidHeadKey(s) {
   return String(s || "").toLowerCase().replace(/ё/g, "е").replace(/[^\wа-я0-9]+/gi, " ").trim();
 }
+// Section headings that are artefacts of the FB2 rather than divisions of the
+// story: endnote blocks, tables of contents, and the author's name standing
+// alone above the text. They are skipped in the jump index — a reader looking
+// for part III does not want "Примечания" in the list.
+var JUNK_SECTION = /^(примечани|комментари|оглавлени|содержани|сноски|коммент)/i;
+
+// Short stories read as one continuous page. Their sections are divisions of a
+// single story, not chapters, and stopping a four-part story at "I" to make
+// the reader press Next serves nothing.
+//
+// The merge happens here, on the parsed chapters, rather than in the renderer:
+// pushChapter joins paragraphs with a blank line, so joining chapter texts the
+// same way makes the merged paragraph count exactly the sum of the parts. That
+// is what lets the per-section English maps be re-indexed by a simple offset
+// instead of being realigned — and an off-by-one there would put every English
+// line against the wrong Russian one.
+function mergeStorySections(chs) {
+  var texts = [], sections = [], offsets = [], tight = [], at = 0;
+  for (var i = 0; i < chs.length; i++) {
+    var c = chs[i] || {};
+    var body = String(c.text || "");
+    var h = String(c.heading || "").trim();
+    offsets.push(at);
+    if (h && !JUNK_SECTION.test(h)) sections.push({ heading: h, at: at });
+    (c.tightIdx || []).forEach(function(x) { tight.push(x + at); });
+    texts.push(body);
+    at += body.split("\n\n").length;
+  }
+  return [{
+    heading: "",                 // the book's title already sits above the page
+    text: texts.join("\n\n"),
+    tightIdx: tight,
+    sections: sections,          // for the jump index and the inline dividers
+    offsets: offsets,            // paragraph index each source chapter starts at
+    merged: chs.length,
+  }];
+}
+
 function attachVideos(chapters, entry) {
   if (!entry) return chapters;
   var videos = entry.videos && typeof entry.videos === "object" ? entry.videos : null;
@@ -511,9 +563,11 @@ function attachVideos(chapters, entry) {
     }
     var id = ytId(raw);
     if (!id) return ch;
+    var start = (v && typeof v === "object" && v.start) ? (+v.start || 0) : ytStart(raw);
     return Object.assign({}, ch, {
       youtubeId: id,
-      youtubeUrl: "https://www.youtube.com/watch?v=" + id,
+      youtubeStart: start,
+      youtubeUrl: "https://www.youtube.com/watch?v=" + id + (start ? "&t=" + start : ""),
     });
   });
 }
@@ -3459,13 +3513,38 @@ export default function App() {
     var dir = bookMeta && bookMeta.parallelEn;
     if (!dir) return;
     var cancelled = false;
-    var nn = String(cidx + 1); if (nn.length < 2) nn = "0" + nn;
-    fetch("/books/" + dir + "/" + nn + ".json")
-      .then(function(r) { return r.ok ? r.json() : null; })
-      .then(function(j) { if (!cancelled && j) setProseEn(j); })
-      .catch(function() {});
+    var pad = function(i) { var n = String(i); return n.length < 2 ? "0" + n : n; };
+    var get = function(i) {
+      return fetch("/books/" + dir + "/" + pad(i) + ".json")
+        .then(function(r) { return r.ok ? r.json() : null; })
+        .catch(function() { return null; });
+    };
+
+    // A merged short story is one page built from several source chapters, and
+    // the English was aligned per chapter — so every file is fetched and its
+    // keys shifted by the paragraph index its chapter starts at. The offsets
+    // come from the merge itself, where the paragraph counts are exact.
+    var offs = curChapter && curChapter.merged ? curChapter.offsets : null;
+    if (offs && offs.length) {
+      Promise.all(offs.map(function(_, i) { return get(i + 1); })).then(function(parts) {
+        if (cancelled) return;
+        var out = null;
+        parts.forEach(function(j, i) {
+          if (!j) return;
+          out = out || {};
+          Object.keys(j).forEach(function(k) {
+            if (k === "_note") { if (!out._note) out._note = j[k]; return; }
+            out[String(parseInt(k, 10) + offs[i])] = j[k];
+          });
+        });
+        if (out) setProseEn(out);
+      });
+      return function() { cancelled = true; };
+    }
+
+    get(cidx + 1).then(function(j) { if (!cancelled && j) setProseEn(j); });
     return function() { cancelled = true; };
-  }, [bookMeta && bookMeta.parallelEn, cidx]);
+  }, [bookMeta && bookMeta.parallelEn, cidx, curChapter && curChapter.merged]);
 
   // Load the Bible section-heading translations once (same map for every
   // chapter). Fetched the first time a Bible chapter is opened, then reused.
@@ -5157,6 +5236,11 @@ export default function App() {
       // user just lists URLs in song order in index.json. Missing/null entries
       // mean "no link for this song".
       chs = attachVideos(chs, opts);
+      // Anthologies are exempt: Повести Белкина holds five separate tales, and
+      // those really are chapters.
+      if (opts.category === "Short Stories" && !opts.collection && chs.length > 1) {
+        chs = mergeStorySections(chs);
+      }
 
       var title = opts.title || result.title;
       var author = opts.author || result.author;
@@ -5273,6 +5357,9 @@ export default function App() {
         title: book.title,
         author: book.author,
         category: book.category || "",
+        // Marks an entry that holds several separate works, so the short-story
+        // one-page merge leaves it alone.
+        collection: !!book.collection,
         // Optional per-chapter YouTube links (used by song collections). Array
         // indexed 0..N where each entry is a URL or null/missing.
         songs: Array.isArray(book.songs) ? book.songs : null,
@@ -5725,7 +5812,14 @@ export default function App() {
       // keeping each one's chapter-level paragraph index (parallel text keys on it).
       return currentPage.paraIndices.map(function(idx){ return { para: nonEmpty[idx] || [], chIdx: idx }; }).filter(function(e2){ return e2.para.length > 0; });
     })();
+    // Where each merged section begins, so the page can show a divider there
+    // and the index above can jump to it.
+    var sectionAt = Object.create(null);
+    ((curChapter && curChapter.sections) || []).forEach(function(sec) {
+      sectionAt[sec.at] = sec.heading;
+    });
     var litRendered = litEntries.map(function(entry, pi, paraArr) {
+      var secHead = sectionAt[entry.chIdx];
         var para = entry.para;
         // Detect play-style speaker attribution at the start of a paragraph.
         // Russian plays commonly use Title Case names like "Маша. ..." or "Медведенко. ..."
@@ -5914,9 +6008,15 @@ export default function App() {
             ];
           }
           var dualCells = [
-            <p key={"ru" + pi} className="dual-ru" lang="ru"
+            <p key={"ru" + pi} className="dual-ru" lang="ru" id={"sp" + entry.chIdx}
                style={Object.assign({gridColumn: 1, gridRow: String(pi + 1)}, pMargin)}>{ruBody}</p>
           ];
+          if (secHead) {
+            dualCells.unshift(
+              <div key={"sec" + pi} className="sec-div" id={"sec" + entry.chIdx}
+                   style={{gridColumn: 1, gridRow: String(pi + 1)}}>{secHead}</div>
+            );
+          }
           if (emitEn) {
             dualCells.push(
               <p key={"en" + pi} className={"dual-en" + (bibleHeadingLine ? " dual-en-heading" : "")} lang="en"
@@ -5926,9 +6026,12 @@ export default function App() {
           return dualCells;
         }
         return (
-          <p key={pi} lang="ru" style={pMargin}>
-            {ruBody}
-          </p>
+          <Fragment key={pi}>
+            {secHead && <div className="sec-div" id={"sec" + entry.chIdx}>{secHead}</div>}
+            <p id={"sp" + entry.chIdx} lang="ru" style={pMargin}>
+              {ruBody}
+            </p>
+          </Fragment>
         );
       });
     if (dualActive) {
@@ -6240,6 +6343,15 @@ export default function App() {
           padding-bottom:min(56.25%,360px);height:0;border-radius:10px;overflow:hidden;
           background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.12)}
         .chvid iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+        .story-index{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 20px;padding:12px 14px;
+          border:1px solid rgba(42,31,20,.12);border-radius:10px;background:rgba(42,31,20,.03)}
+        .story-index-link{font-family:'Inter',sans-serif;font-size:12px;line-height:1.2;
+          padding:5px 10px;border-radius:14px;cursor:pointer;color:rgba(42,31,20,.7);
+          border:1px solid rgba(42,31,20,.16);background:transparent;transition:all .15s}
+        .story-index-link:hover{border-color:rgba(196,149,90,.55);color:#000;background:rgba(196,149,90,.08)}
+        .sec-div{font-family:'Playfair Display',serif;font-size:15px;letter-spacing:.04em;
+          color:rgba(42,31,20,.55);margin:26px 0 10px;padding-top:14px;
+          border-top:1px solid rgba(42,31,20,.12)}
         .lib-filters{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap}
         .lib-filters .lib-search{flex:1 1 220px;min-width:0}
         .lib-filter-btn{flex:none;font-family:'Inter',sans-serif;font-size:12px;white-space:nowrap;
@@ -8348,7 +8460,8 @@ export default function App() {
                         {curChapter.youtubeId && (
                           <div className="chvid">
                             <iframe
-                              src={"https://www.youtube.com/embed/" + curChapter.youtubeId}
+                              src={"https://www.youtube.com/embed/" + curChapter.youtubeId
+                                   + (curChapter.youtubeStart ? "?start=" + curChapter.youtubeStart : "")}
                               title={curChapter.heading || bookMeta.title || "Video"}
                               loading="lazy"
                               allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -8371,6 +8484,23 @@ export default function App() {
                           <div className="bible-en" style={{margin:"0 0 18px",padding:"10px 14px",border:"1px solid rgba(196,149,90,.35)",borderRadius:10,background:"rgba(196,149,90,.06)",fontSize:"0.92em"}}>
                             {proseEn._note}
                           </div>
+                        )}
+                        {/* Jump index for a merged short story. Scrolls rather than
+                            setting a hash: the address bar carries /book/<slug> for
+                            deep links, and a hash would fight it. */}
+                        {curChapter.sections && curChapter.sections.length > 1 && (
+                          <nav className="story-index" aria-label="Sections">
+                            {curChapter.sections.map(function(sec, si) {
+                              return (
+                                <button key={si} className="story-index-link"
+                                  onClick={function() {
+                                    var el = document.getElementById("sp" + sec.at)
+                                          || document.getElementById("sec" + sec.at);
+                                    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                                  }}>{sec.heading}</button>
+                              );
+                            })}
+                          </nav>
                         )}
                         <div className="ltxt">{renderLit(curChapter.text)}</div>
                       </div>
