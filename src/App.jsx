@@ -2923,6 +2923,11 @@ export default function App() {
   var [libCat, setLibCat] = useState("");
   // Set when the reader has drilled into one author from the Authors shelf.
   var [libAuthor, setLibAuthor] = useState("");
+  // Quick pick can narrow to the books that are fully equipped — an English
+  // translation to read beside the Russian AND a recording to hear it in.
+  // That combination is what someone learning the language actually wants,
+  // and it is 58 of the 171, so it is worth being able to ask for.
+  var [quickEnAudio, setQuickEnAudio] = useState(false);
   // Tracks which book is currently being loaded (after click). Shows a spinner
   // overlay on the card and disables further clicks during the fetch+parse cycle
   // so the user gets clear feedback that the click registered.
@@ -8539,6 +8544,12 @@ export default function App() {
                             onChange={function(e){
                               var idx = e.target.value;
                               if (idx === "") return;
+                              // The first row is a switch, not a book.
+                              if (idx === "__enaudio__") {
+                                setQuickEnAudio(!quickEnAudio);
+                                e.target.value = "";
+                                return;
+                              }
                               var book = presetBooks[parseInt(idx,10)];
                               if (book && book.category === "Song Lyrics") {
                                 openSongPicker(book);
@@ -8547,7 +8558,16 @@ export default function App() {
                               }
                               e.target.value = "";  // reset so picking same again triggers onChange
                             }}>
-                            <option value="" disabled>📖 Choose a book from the library…</option>
+                            <option value="" disabled>
+                              {quickEnAudio
+                                ? "🎧 EN — with translation and recording…"
+                                : "📖 Choose a book from the library…"}
+                            </option>
+                            <option value="__enaudio__">
+                              {quickEnAudio
+                                ? "↩︎  Show every book again"
+                                : "🎧 EN  Only works with English and audio"}
+                            </option>
                             {(function() {
                               // Grouped by author: that is how a reader looks for a text.
                               // One <optgroup> per author, and the option is the bare
@@ -8560,6 +8580,18 @@ export default function App() {
                                 // hidden here too, or the two lists disagree about
                                 // what the library contains.
                                 if (hideFinished && isFinished(book)) return;
+                                // Fully-equipped filter: a translation to read
+                                // beside the Russian, and something to hear it
+                                // in — a narrated recording or a chapter video,
+                                // which is narration as far as a listener is
+                                // concerned. An empty videos object is a slot
+                                // waiting to be filled, not a recording.
+                                if (quickEnAudio) {
+                                  var qEn = !!(book.parallelEn || book.isBible);
+                                  var qAu = !!(book.audiobook ||
+                                    (book.videos && Object.keys(book.videos).length));
+                                  if (!qEn || !qAu) return;
+                                }
                                 // A text with no author is not anonymous by
                                 // accident — scripture, folk song, an official
                                 // document. Its category is the heading a
