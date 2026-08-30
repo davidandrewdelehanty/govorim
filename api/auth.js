@@ -165,6 +165,11 @@ export default async function handler(req, res) {
           message: "Your account has been created and is waiting for approval.",
         });
       }
+      // Record the signup as a use of the account. Without this a brand-new
+      // reader carried a session while the panel showed a dash where their
+      // last visit should be, and their login count sat at zero until the
+      // cookie expired a month later and they signed in by hand.
+      await touchLogin(account);
       setSessionCookie(res, signSession(account));
       return res.status(200).json({ user: publicUser(account) });
     }

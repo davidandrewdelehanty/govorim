@@ -25,7 +25,7 @@ import { siteName } from "../lib/site.js";
 import {
   S3Client, GetObjectCommand, PutObjectCommand
 } from "@aws-sdk/client-s3";
-import { requireUser } from "../lib/auth.js";
+import { requireUser, currentUser, bumpDaily, touchSeen } from "../lib/auth.js";
 import { sendEmail } from "../lib/admin/helpers.js";
 import { r2Endpoint } from "../lib/r2-endpoint.js";
 
@@ -91,6 +91,17 @@ export default async function handler(req, res) {
   if (req.query && req.query.anon) {
     if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
     try {
+      // Signed in or not decides which tallies this open belongs to. Read
+      // rather than required: an unauthenticated open is the whole point.
+      const who = currentUser(req);
+      await bumpDaily("opens", 1);
+      if (who) {
+        // A thirty-day cookie hides how recently an account was really used.
+        // Opening a book is a use; this records it, at most once a day.
+        await touchSeen(who.email);
+        return res.status(200).json({ ok: true });
+      }
+      await bumpDaily("anonOpens", 1);
       const key = `${PREFIX}/_stats/anon.json`;
       let cur = null;
       try {

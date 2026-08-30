@@ -4665,7 +4665,13 @@ export default function App() {
   };
 
   // Auto-load users when admin panel opens.
-  useEffect(function() { if (showAdmin && isAdmin) loadAdminUsers(); }, [showAdmin, isAdmin]);
+  useEffect(function() {
+    if (!(showAdmin && isAdmin)) return;
+    loadAdminUsers();
+    // The two figures at the head of the list are the reason the panel is
+    // open half the time, so they are fetched with it rather than on a click.
+    loadAdminTotals();
+  }, [showAdmin, isAdmin]);
 
   // Upload a song to the library. Hits /api/admin/upload-song which commits
   // to GitHub → Vercel redeploys → song appears in picker after deploy.
@@ -5828,13 +5834,17 @@ export default function App() {
       var r = await fetch(bookFileUrl(book), { credentials: "same-origin" });
       if (!r.ok) throw new Error("Could not load « " + book.filename + " »: HTTP " + r.status);
       var buf = await r.arrayBuffer();
-      // A signed-out reader's activity never reaches the server — it all lives
-      // in their own browser — so the one thing the site can know is that a
-      // book was opened. Fire-and-forget, and only when there is no session:
-      // a signed-in reader is already counted through their progress file.
-      if (!me) {
-        try { fetch("/api/user-data?anon=open", { method: "POST" }).catch(function(){}); } catch (e) {}
-      }
+      // Tell the server a book was opened. Fired for everyone, not only the
+      // signed-out: the server sorts them by whether the request carries a
+      // session, which is what makes "opened today" a real figure rather than
+      // one that quietly omits the account holders. For a signed-out reader it
+      // is the only trace that exists — nothing else they do reaches the
+      // server — and it records a count and nothing else. Fire-and-forget:
+      // this must never delay or fail a book opening.
+      try {
+        fetch("/api/user-data?anon=open", { method: "POST", credentials: "same-origin" })
+          .catch(function(){});
+      } catch (e) {}
       await loadFile(buf, book.filename, {
         fromPreset: true,
         splitByNumberedSections: !!book.splitByNumberedSections,
@@ -7609,6 +7619,11 @@ export default function App() {
           word-break:break-all;text-align:right;max-width:60%}
         .admd-sechdr{font-size:11px;letter-spacing:2px;text-transform:uppercase;
           color:rgba(42,31,20,.5);margin-top:4px}
+        .adm-today{cursor:pointer}
+        .adm-today:hover{background:rgba(196,149,90,.08)}
+        .adm-today .adm-name{font-family:'Playfair Display',serif}
+        .adm-today-n{font-family:'Playfair Display',serif;font-size:26px;color:#000;
+          font-variant-numeric:tabular-nums;padding-left:12px}
         .adm-all{cursor:pointer}
         .adm-all:hover{background:rgba(196,149,90,.08)}
         .adm-all .adm-name{font-family:'Playfair Display',serif}
@@ -7734,6 +7749,36 @@ export default function App() {
             </div>
             {adminErr && <div className="adm-err">{adminErr}</div>}
             <div className="adm-body">
+              {/* Today, at the very head of the list. Two numbers that answer
+                  "is anyone out there right now" before any question about a
+                  particular reader. */}
+              {!adminLoad && (function(){
+                var T = adminTotals, td = T && T.today;
+                var cell = function(label, value, sub){
+                  return (
+                    <div className="adm-row adm-today"
+                      onClick={function(){ setAdminDetail({ __totals: true }); }}>
+                      <div className="adm-info">
+                        <div className="adm-name">{label}</div>
+                        <div className="adm-email">{sub}</div>
+                      </div>
+                      <div className="adm-today-n">
+                        {adminTotalsLoad && !T ? "…" : value}
+                      </div>
+                    </div>
+                  );
+                };
+                return (
+                  <>
+                    {cell("Books opened today",
+                      td ? td.opens : "—",
+                      td ? (td.accountOpens + " signed in · " + td.anonOpens + " signed out") : "counting starts with the first open")}
+                    {cell("Logins today",
+                      td ? td.logins : "—",
+                      "sign-ins recorded since midnight UTC")}
+                  </>
+                );
+              })()}
               {/* All readers, before the individual rows: the site's own totals,
                   which is the question you ask before you ask about anyone. */}
               {!adminLoad && (
@@ -7757,12 +7802,26 @@ export default function App() {
               {!adminLoad && adminUsers.length === 0 && <div className="adm-empty">No users yet.</div>}
               {!adminLoad && adminUsers.map(function(u){
                 var when = function(t){ return t ? new Date(t).toLocaleDateString() : "—"; };
+                // "Seen" must mean seen. A thirty-day cookie lets someone read
+                // daily for a month while their last sign-in stays a month old,
+                // so the later of the two is the honest answer.
+                var seenAt = Math.max(u.lastSeenAt || 0, u.lastLoginAt || 0);
+                var ago = function(t){
+                  if (!t) return "never";
+                  var m = Math.floor((Date.now() - t) / 60000);
+                  if (m < 1) return "just now";
+                  if (m < 60) return m + "m ago";
+                  var h = Math.floor(m / 60);
+                  if (h < 24) return h + "h ago";
+                  var d2 = Math.floor(h / 24);
+                  return d2 < 30 ? d2 + "d ago" : when(t);
+                };
                 return (
                   <div key={u.id} className="adm-row">
                     <div className="adm-info">
                       <div className="adm-name">{u.email}</div>
-                      <div className="adm-email">
-                        {when(u.createdAt)} · seen {when(u.lastLoginAt)}
+                      <div className="adm-email" title={seenAt ? new Date(seenAt).toLocaleString() : ""}>
+                        joined {when(u.createdAt)} · seen {ago(seenAt)}
                       </div>
                     </div>
                     {u.isAdmin && <div className="adm-status admin">Admin</div>}
@@ -7822,7 +7881,22 @@ export default function App() {
                         <div><span className="k">Accounts</span><span className="v">{T.accounts}</span></div>
                         <div><span className="k">Accounts with reading recorded</span><span className="v">{T.readersWithProgress}</span></div>
                       </div>
-                      <div className="admd-sechdr">Books opened</div>
+                      <div className="admd-sechdr">Today · {T.today && T.today.date}</div>
+                      <div className="admd-stats">
+                        <div className="admd-stat still">
+                          <span className="n">{T.today ? T.today.opens : 0}</span>
+                          <span className="l">books opened</span>
+                        </div>
+                        <div className="admd-stat still">
+                          <span className="n">{T.today ? T.today.logins : 0}</span>
+                          <span className="l">logins</span>
+                        </div>
+                        <div className="admd-stat still">
+                          <span className="n">{T.today ? T.today.anonOpens : 0}</span>
+                          <span className="l">of those, signed out</span>
+                        </div>
+                      </div>
+                      <div className="admd-sechdr">All time · books opened</div>
                       <div className="admd-stats">
                         <div className="admd-stat still">
                           <span className="n">{T.booksOpened}</span>
@@ -7949,7 +8023,14 @@ export default function App() {
                   <>
                     <div className="admd-facts">
                       <div><span className="k">First visit</span><span className="v">{whenFull(d.createdAt)}</span></div>
-                      <div><span className="k">Last visit</span><span className="v">{whenFull(d.lastLoginAt)}</span></div>
+                      <div><span className="k">Last sign-in</span><span className="v">{whenFull(d.lastLoginAt)}</span></div>
+                      <div>
+                        <span className="k">Last seen reading</span>
+                        <span className="v">
+                          {d.lastSeenAt ? whenFull(d.lastSeenAt)
+                            : <span className="unrec" title="Recorded from the reader's next book open. A session lasts thirty days, so a sign-in date can be much older than the last visit.">not recorded yet</span>}
+                        </span>
+                      </div>
                       <div>
                         <span className="k">Logins recorded</span>
                         <span className="v">
