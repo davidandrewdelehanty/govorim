@@ -2394,6 +2394,11 @@ export default function App() {
   // client learns about it from /api/auth/me rather than from a build-time var.
   var [showAdmin, setShowAdmin]   = useState(false);
   var [adminUsers, setAdminUsers] = useState([]);
+  // One reader in full — the object /api/admin/users?email= returns — plus
+  // which of its drill-down windows is open (reading / vocab / finished).
+  var [adminDetail, setAdminDetail]         = useState(null);
+  var [adminDetailLoad, setAdminDetailLoad] = useState(false);
+  var [adminDetailView, setAdminDetailView] = useState("");
   var [adminLoad, setAdminLoad]   = useState(false);
   var [adminErr, setAdminErr]     = useState("");
   // Upload-song panel state — admin-only, accessed via "📤 Upload" trigger.
@@ -4428,6 +4433,24 @@ export default function App() {
     })();
   }, [me]);
 
+  // Push reading progress the same way. Progress was localStorage-only until
+  // the admin panel grew a per-reader view; without this, "books opened"
+  // would honestly have to read zero for every reader on every device but
+  // their first. Debounced harder than finished (10s): progress changes on
+  // every page turn, and the server copy only needs to be roughly current.
+  useEffect(function() {
+    if (!me || !syncedFromServer) return;
+    if (!progressMap || !Object.keys(progressMap).length) return;
+    var t = setTimeout(function() {
+      authFetch("/api/user-data?type=progress", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ progress: progressMap }),
+      }).catch(function(){});
+    }, 10000);
+    return function(){ clearTimeout(t); };
+  }, [progressMap, me, syncedFromServer]);
+
   // Push the finished-books map after every change, once the initial sync has
   // run — otherwise the empty starting state would clear the server copy.
   useEffect(function() {
@@ -4575,6 +4598,19 @@ export default function App() {
     } catch(e) {
       setAdminErr(e.message || "Failed to update user");
     } finally { setAdminLoad(false); }
+  };
+
+  // Everything the site holds on one reader, for the detail window.
+  var loadUserDetail = async function(email) {
+    setAdminDetailLoad(true); setAdminErr(""); setAdminDetailView("");
+    try {
+      var r = await authFetch("/api/admin/users?email=" + encodeURIComponent(email));
+      var d = await r.json();
+      if (!r.ok) throw new Error(d.error || "Failed to load user");
+      setAdminDetail(d.user);
+    } catch(e) {
+      setAdminErr(e.message || "Failed to load user");
+    } finally { setAdminDetailLoad(false); }
   };
 
   // Auto-load users when admin panel opens.
@@ -7487,6 +7523,28 @@ export default function App() {
         .adm-x:hover{background:rgba(42,31,20,.08);color:#000}
         .adm-body{padding:8px 20px 12px;display:flex;flex-direction:column;gap:0;max-height:65vh;overflow-y:auto}
         .adm-empty{text-align:center;padding:32px;color:rgba(42,31,20,.5);font-style:italic}
+        /* One reader in detail: dates, then a stat tile per data type. */
+        .admd-facts{display:flex;flex-direction:column;gap:6px;padding:4px 2px}
+        .admd-facts>div{display:flex;justify-content:space-between;gap:16px;font-size:13px}
+        .admd-facts .k{color:rgba(42,31,20,.55)}
+        .admd-facts .v{color:#000;font-variant-numeric:tabular-nums}
+        .admd-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+        .admd-stat{display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px 8px;
+          background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.12);border-radius:10px;
+          cursor:pointer;font-family:inherit;transition:all .15s}
+        .admd-stat:not(:disabled):not(.still):hover{background:rgba(196,149,90,.14);border-color:rgba(196,149,90,.4)}
+        .admd-stat:disabled{cursor:default;opacity:.55}
+        .admd-stat.still{cursor:default}
+        .admd-stat .n{font-size:22px;font-family:'Playfair Display',serif;color:#000}
+        .admd-stat .l{font-size:11px;color:rgba(42,31,20,.55);letter-spacing:.3px}
+        .admd-row{padding:9px 4px;border-bottom:1px solid rgba(42,31,20,.07)}
+        .admd-t{font-size:14px;color:#000}
+        .admd-s{font-size:12px;color:rgba(42,31,20,.55);margin-top:2px}
+        .admd-vgrid{display:flex;flex-direction:column;gap:0;max-height:50vh;overflow-y:auto}
+        .admd-vrow{display:flex;justify-content:space-between;gap:14px;padding:6px 4px;
+          border-bottom:1px solid rgba(42,31,20,.06);font-size:13px}
+        .admd-vrow .ru{color:#000}
+        .admd-vrow .en{color:rgba(42,31,20,.6);text-align:right}
         /* One user per line: a list, not a stack of cards. The card treatment cost
            a card's worth of vertical space each and made ten users a scroll. */
         .adm-row{display:flex;align-items:center;gap:10px;padding:6px 8px;background:none;
@@ -7624,18 +7682,18 @@ export default function App() {
                         {u.approved ? (u.grandfathered ? "Existing" : "Approved") : "Pending"}
                       </div>
                     )}
-                    {!u.isAdmin && (
-                      <div className="adm-actions">
-                        {!u.approved && (
-                          <button className="adm-btn approve" disabled={adminLoad}
-                            onClick={function(){ setUserApproval(u.email, true); }}>Approve</button>
-                        )}
-                        {u.approved && (
-                          <button className="adm-btn reject" disabled={adminLoad}
-                            onClick={function(){ setUserApproval(u.email, false); }}>Revoke</button>
-                        )}
-                      </div>
-                    )}
+                    <div className="adm-actions">
+                      <button className="adm-btn" disabled={adminDetailLoad}
+                        onClick={function(){ loadUserDetail(u.email); }}>Details</button>
+                      {!u.isAdmin && !u.approved && (
+                        <button className="adm-btn approve" disabled={adminLoad}
+                          onClick={function(){ setUserApproval(u.email, true); }}>Approve</button>
+                      )}
+                      {!u.isAdmin && u.approved && (
+                        <button className="adm-btn reject" disabled={adminLoad}
+                          onClick={function(){ setUserApproval(u.email, false); }}>Revoke</button>
+                      )}
+                    </div>
                   </div>
                 );
               })}
@@ -7647,6 +7705,133 @@ export default function App() {
                   " · " + adminUsers.filter(function(u){ return !u.isAdmin && !u.approved; }).length + " awaiting approval"}
               </span>
               <button className="adm-refresh" onClick={loadAdminUsers} disabled={adminLoad}>Refresh</button>
+            </div>
+          </div>
+        </div>
+      )}
+      {adminDetail && isAdmin && (
+        <div className="adm-over" style={{zIndex:210}}
+          onClick={function(e){ if (e.target.className === "adm-over") { setAdminDetail(null); setAdminDetailView(""); } }}>
+          <div className="adm-modal" style={{maxWidth:640}}>
+            <div className="adm-head">
+              <div className="adm-title" style={{fontSize:20,overflow:"hidden",textOverflow:"ellipsis"}}>
+                {adminDetail.email}
+              </div>
+              <button className="adm-x" onClick={function(){ setAdminDetail(null); setAdminDetailView(""); }}>×</button>
+            </div>
+            <div className="adm-body" style={{padding:"16px 24px 20px",gap:14}}>
+              {(function(){
+                var d = adminDetail;
+                var when = function(t){ return t ? new Date(t).toLocaleDateString() : "—"; };
+                var whenFull = function(t){ return t ? new Date(t).toLocaleString() : "—"; };
+                if (adminDetailView === "reading") {
+                  return (
+                    <>
+                      <button className="adm-btn" style={{alignSelf:"flex-start"}}
+                        onClick={function(){ setAdminDetailView(""); }}>← Back</button>
+                      {!d.reading.length && <div className="adm-empty">Hasn't opened a book yet.</div>}
+                      {d.reading.map(function(rb){
+                        var pct = rb.totalChapters > 1 ? Math.round((rb.cidx / rb.totalChapters) * 100) : 0;
+                        return (
+                          <div key={rb.key} className="admd-row">
+                            <div>
+                              <div className="admd-t">{rb.title}{rb.author ? " — " + rb.author : ""}</div>
+                              <div className="admd-s">
+                                {rb.totalChapters > 1
+                                  ? "chapter " + (rb.cidx + 1) + " of " + rb.totalChapters + " (" + pct + "%)"
+                                  : "single-chapter book"}
+                                {" · last read " + when(rb.lastRead)}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </>
+                  );
+                }
+                if (adminDetailView === "finished") {
+                  return (
+                    <>
+                      <button className="adm-btn" style={{alignSelf:"flex-start"}}
+                        onClick={function(){ setAdminDetailView(""); }}>← Back</button>
+                      {!d.finished.length && <div className="adm-empty">No books marked read.</div>}
+                      {d.finished.map(function(fb){
+                        return (
+                          <div key={fb.key} className="admd-row">
+                            <div>
+                              <div className="admd-t">{fb.title}{fb.author ? " — " + fb.author : ""}</div>
+                              <div className="admd-s">marked read {when(fb.at)}</div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </>
+                  );
+                }
+                if (adminDetailView === "vocab") {
+                  var words = d.vocab.slice().reverse();
+                  return (
+                    <>
+                      <div style={{display:"flex",alignItems:"center",gap:10}}>
+                        <button className="adm-btn" onClick={function(){ setAdminDetailView(""); }}>← Back</button>
+                        <span className="admd-s">
+                          {d.counts.vocab} saved word{d.counts.vocab === 1 ? "" : "s"}
+                          {d.counts.vocab > words.length ? " (newest " + words.length + " shown)" : ""}
+                        </span>
+                      </div>
+                      {!words.length && <div className="adm-empty">No saved words.</div>}
+                      <div className="admd-vgrid">
+                        {words.map(function(v, i){
+                          return (
+                            <div key={i} className="admd-vrow">
+                              <span className="ru">{v.ru}</span>
+                              {v.en && <span className="en">{v.en}</span>}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </>
+                  );
+                }
+                // The overview: account dates on top, then a stat per data
+                // type — each a button when there is a window behind it.
+                return (
+                  <>
+                    <div className="admd-facts">
+                      <div><span className="k">First visit</span><span className="v">{whenFull(d.createdAt)}</span></div>
+                      <div><span className="k">Last visit</span><span className="v">{whenFull(d.lastLoginAt)}</span></div>
+                      <div><span className="k">Logins recorded</span><span className="v">{d.loginCount || "0"}</span></div>
+                      {d.approvedAt ? <div><span className="k">Approved</span><span className="v">{whenFull(d.approvedAt)}</span></div> : null}
+                      {d.passwordChangedAt ? <div><span className="k">Password changed</span><span className="v">{whenFull(d.passwordChangedAt)}</span></div> : null}
+                    </div>
+                    <div className="admd-stats">
+                      <button className="admd-stat" disabled={!d.counts.booksOpened}
+                        onClick={function(){ setAdminDetailView("reading"); }}>
+                        <span className="n">{d.counts.booksOpened}</span>
+                        <span className="l">books opened</span>
+                      </button>
+                      <button className="admd-stat" disabled={!d.counts.booksFinished}
+                        onClick={function(){ setAdminDetailView("finished"); }}>
+                        <span className="n">{d.counts.booksFinished}</span>
+                        <span className="l">marked read</span>
+                      </button>
+                      <button className="admd-stat" disabled={!d.counts.vocab}
+                        onClick={function(){ setAdminDetailView("vocab"); }}>
+                        <span className="n">{d.counts.vocab}</span>
+                        <span className="l">vocab words</span>
+                      </button>
+                      <div className="admd-stat still">
+                        <span className="n">{d.counts.tips}</span>
+                        <span className="l">saved tips</span>
+                      </div>
+                    </div>
+                    <div className="admd-s" style={{textAlign:"center"}}>
+                      Click a number for the list behind it. Login counting began August 2026,
+                      so long-time readers show fewer than their true total.
+                    </div>
+                  </>
+                );
+              })()}
             </div>
           </div>
         </div>
