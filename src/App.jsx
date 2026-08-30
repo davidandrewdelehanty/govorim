@@ -2399,6 +2399,8 @@ export default function App() {
   var [adminDetail, setAdminDetail]         = useState(null);
   var [adminDetailLoad, setAdminDetailLoad] = useState(false);
   var [adminDetailView, setAdminDetailView] = useState("");
+  var [adminTotals, setAdminTotals]         = useState(null);
+  var [adminTotalsLoad, setAdminTotalsLoad] = useState(false);
   var [adminLegacyId, setAdminLegacyId]     = useState("");
   var [adminLegacyMsg, setAdminLegacyMsg]   = useState("");
   var [adminLoad, setAdminLoad]   = useState(false);
@@ -4607,6 +4609,19 @@ export default function App() {
     } finally { setAdminLoad(false); }
   };
 
+  // Every reader at once. Summed server-side across all the account files.
+  var loadAdminTotals = async function() {
+    setAdminTotalsLoad(true); setAdminErr("");
+    try {
+      var r = await authFetch("/api/admin/users?totals=1");
+      var d = await r.json();
+      if (!r.ok) throw new Error(d.error || "Failed to total");
+      setAdminTotals(d.totals);
+    } catch(e) {
+      setAdminErr(e.message || "Failed to total");
+    } finally { setAdminTotalsLoad(false); }
+  };
+
   // Everything the site holds on one reader, for the detail window.
   var loadUserDetail = async function(email) {
     setAdminDetailLoad(true); setAdminErr(""); setAdminDetailView("");
@@ -5813,6 +5828,13 @@ export default function App() {
       var r = await fetch(bookFileUrl(book), { credentials: "same-origin" });
       if (!r.ok) throw new Error("Could not load « " + book.filename + " »: HTTP " + r.status);
       var buf = await r.arrayBuffer();
+      // A signed-out reader's activity never reaches the server — it all lives
+      // in their own browser — so the one thing the site can know is that a
+      // book was opened. Fire-and-forget, and only when there is no session:
+      // a signed-in reader is already counted through their progress file.
+      if (!me) {
+        try { fetch("/api/user-data?anon=open", { method: "POST" }).catch(function(){}); } catch (e) {}
+      }
       await loadFile(buf, book.filename, {
         fromPreset: true,
         splitByNumberedSections: !!book.splitByNumberedSections,
@@ -7585,6 +7607,11 @@ export default function App() {
         .admd-facts .unrec,.admd-stat .unrec{color:rgba(42,31,20,.38);font-style:italic;font-size:13px}
         .admd-facts .mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;
           word-break:break-all;text-align:right;max-width:60%}
+        .admd-sechdr{font-size:11px;letter-spacing:2px;text-transform:uppercase;
+          color:rgba(42,31,20,.5);margin-top:4px}
+        .adm-all{cursor:pointer}
+        .adm-all:hover{background:rgba(196,149,90,.08)}
+        .adm-all .adm-name{font-family:'Playfair Display',serif}
         .admd-store{border:1px solid rgba(42,31,20,.1);border-radius:10px;padding:10px 12px}
         .admd-store summary{cursor:pointer;font-size:12px;color:rgba(42,31,20,.6);letter-spacing:.3px}
         .admd-adopt{margin-top:12px;padding-top:10px;border-top:1px solid rgba(42,31,20,.08)}
@@ -7707,6 +7734,25 @@ export default function App() {
             </div>
             {adminErr && <div className="adm-err">{adminErr}</div>}
             <div className="adm-body">
+              {/* All readers, before the individual rows: the site's own totals,
+                  which is the question you ask before you ask about anyone. */}
+              {!adminLoad && (
+                <div className="adm-row adm-all"
+                  onClick={function(){ if (!adminTotals) loadAdminTotals(); setAdminDetail({ __totals: true }); }}>
+                  <div className="adm-info">
+                    <div className="adm-name">All readers</div>
+                    <div className="adm-email">
+                      {adminUsers.length} account{adminUsers.length === 1 ? "" : "s"} · site-wide totals
+                    </div>
+                  </div>
+                  <div className="adm-actions">
+                    <button className="adm-btn" disabled={adminTotalsLoad}
+                      onClick={function(e){ e.stopPropagation(); loadAdminTotals(); setAdminDetail({ __totals: true }); }}>
+                      {adminTotalsLoad ? "Counting…" : "Totals"}
+                    </button>
+                  </div>
+                </div>
+              )}
               {adminLoad && <div className="adm-empty">Loading users…</div>}
               {!adminLoad && adminUsers.length === 0 && <div className="adm-empty">No users yet.</div>}
               {!adminLoad && adminUsers.map(function(u){
@@ -7758,7 +7804,7 @@ export default function App() {
           <div className="adm-modal" style={{maxWidth:640}}>
             <div className="adm-head">
               <div className="adm-title" style={{fontSize:20,overflow:"hidden",textOverflow:"ellipsis"}}>
-                {adminDetail.email}
+                {adminDetail.__totals ? "All readers" : adminDetail.email}
               </div>
               <button className="adm-x" onClick={function(){ setAdminDetail(null); setAdminDetailView(""); }}>×</button>
             </div>
@@ -7767,6 +7813,67 @@ export default function App() {
                 var d = adminDetail;
                 var when = function(t){ return t ? new Date(t).toLocaleDateString() : "—"; };
                 var whenFull = function(t){ return t ? new Date(t).toLocaleString() : "—"; };
+                if (d.__totals) {
+                  var T = adminTotals;
+                  if (!T) return <div className="adm-empty">{adminTotalsLoad ? "Counting…" : "No totals yet."}</div>;
+                  return (
+                    <>
+                      <div className="admd-facts">
+                        <div><span className="k">Accounts</span><span className="v">{T.accounts}</span></div>
+                        <div><span className="k">Accounts with reading recorded</span><span className="v">{T.readersWithProgress}</span></div>
+                      </div>
+                      <div className="admd-sechdr">Books opened</div>
+                      <div className="admd-stats">
+                        <div className="admd-stat still">
+                          <span className="n">{T.booksOpened}</span>
+                          <span className="l">by account holders</span>
+                        </div>
+                        <div className="admd-stat still">
+                          <span className="n">{T.anonSince ? T.anonBooksOpened : <span className="unrec">—</span>}</span>
+                          <span className="l">signed out</span>
+                        </div>
+                        <div className="admd-stat still">
+                          <span className="n">{T.totalBooksOpened}</span>
+                          <span className="l">both together</span>
+                        </div>
+                      </div>
+                      <div className="admd-sechdr">Saved by account holders</div>
+                      <div className="admd-stats">
+                        <div className="admd-stat still">
+                          <span className="n">{T.vocab}</span>
+                          <span className="l">vocab words</span>
+                        </div>
+                        <div className="admd-stat still">
+                          <span className="n">{T.finished}</span>
+                          <span className="l">marked read</span>
+                        </div>
+                        <div className="admd-stat still">
+                          <span className="n">{T.tips}</span>
+                          <span className="l">grammar tips</span>
+                        </div>
+                      </div>
+                      <div className="admd-s" style={{lineHeight:1.5}}>
+                        Books opened by account holders counts distinct books in each
+                        reader's saved positions, so it is books rather than visits, and
+                        it fills in as readers return — progress only began reaching the
+                        server in August 2026.
+                        {" "}
+                        {T.anonSince
+                          ? "Signed-out opens have been counted since " + when(T.anonSince) + "."
+                          : "Signed-out opens are not counted yet — the tally starts at the first one."}
+                        {" "}A signed-out reader keeps everything in their own browser, so that
+                        figure is a count of book opens and nothing else: no identity, no titles,
+                        and no way to tell one reader from ten.
+                        {" "}Vocabulary, marked-read and grammar tips have always been stored, so
+                        those three are complete.
+                      </div>
+                      <button className="adm-btn" style={{alignSelf:"center"}}
+                        disabled={adminTotalsLoad} onClick={loadAdminTotals}>
+                        {adminTotalsLoad ? "Counting…" : "Recount"}
+                      </button>
+                    </>
+                  );
+                }
                 if (adminDetailView === "reading") {
                   return (
                     <>

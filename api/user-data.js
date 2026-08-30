@@ -76,6 +76,46 @@ async function r2Put(userId, type, data) {
 
 // ── Main handler ──────────────────────────────────────────────────────────────
 export default async function handler(req, res) {
+  // ── Anonymous reading counter ───────────────────────────────────────────
+  // Runs BEFORE the session check, because the whole point is the readers who
+  // have no session. A signed-out reader keeps vocabulary, progress and the
+  // rest in their own browser and none of it ever reaches the server, so the
+  // only thing the site can know about them is a tally it is told. This
+  // increments one number and stores nothing else — no identity, no address,
+  // no title, nothing that says which reader or which book.
+  //
+  // It is unauthenticated, so it is inflatable by anyone who wants to spend an
+  // afternoon POSTing to it. That is the price of counting people who have not
+  // identified themselves, and it is why the panel labels this figure as
+  // signed-out book opens rather than as readers.
+  if (req.query && req.query.anon) {
+    if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
+    try {
+      const key = `${PREFIX}/_stats/anon.json`;
+      let cur = null;
+      try {
+        const resp = await s3.send(new GetObjectCommand({ Bucket: BUCKET, Key: key }));
+        cur = JSON.parse(await resp.Body.transformToString());
+      } catch (e) {
+        if (!(e.name === "NoSuchKey" || e.$metadata?.httpStatusCode === 404)) throw e;
+      }
+      const next = {
+        booksOpened: ((cur && cur.booksOpened) || 0) + 1,
+        since: (cur && cur.since) || Date.now(),
+      };
+      // Read-merge-write with no transaction: two opens in the same instant can
+      // lose one. Acceptable for a running tally nobody is billed against.
+      await s3.send(new PutObjectCommand({
+        Bucket: BUCKET, Key: key,
+        Body: JSON.stringify(next), ContentType: "application/json",
+      }));
+      return res.status(200).json({ ok: true });
+    } catch (e) {
+      // Never let a counter break a page load.
+      return res.status(200).json({ ok: false });
+    }
+  }
+
   const user = requireUser(req, res);
   if (!user) return;
   const userId = user.id;
