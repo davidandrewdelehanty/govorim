@@ -597,6 +597,13 @@ function ChapterVideo(props) {
   // player that no longer exists.
   var id = props.id, start = props.start || 0, end = props.end || 0;
   var host = useRef(null), player = useRef(null), held = useRef(false);
+  // The window this chapter occupies, read by the polling loop, which cannot
+  // see React state. Updated below whenever the chapter changes.
+  var win = useRef({ start: start, end: end });
+  // True when playback was stopped by reaching the chapter's end rather than
+  // by the reader. Turning to the next chapter resumes from exactly there,
+  // which is what makes a whole-book recording play straight through.
+  var stoppedAtEnd = useRef(false);
   var [ready, setReady]   = useState(false);
   var [pos, setPos]       = useState(0);
   var [playing, setPlay]  = useState(false);
@@ -605,7 +612,8 @@ function ChapterVideo(props) {
 
   useEffect(function() {
     setReady(false); setPos(0); setPlay(false); setTotal(0); setDrag(null);
-    held.current = false;
+    held.current = false; stoppedAtEnd.current = false;
+    win.current = { start: start, end: end };
     var dead = false, tick = null;
     var node = host.current;
     if (!node) return;
@@ -634,8 +642,7 @@ function ChapterVideo(props) {
           playerVars: (function(){
             var v = { rel: 0, modestbranding: 1, playsinline: 1 };
             if (start) v.start = start;
-            if (end)   v.end = end;
-            return v;
+            return v;   // the end is enforced in the poll, so it can move
           })(),
           events: {
             onReady: function(e) {
@@ -646,6 +653,11 @@ function ChapterVideo(props) {
               setPos(start);
               setReady(true);
               if (props.ctrl) props.ctrl.current = {
+                // Where the recording is now, for a bookmark that wants to
+                // remember the listening place and not only the reading one.
+                now: function() {
+                  try { return player.current.getCurrentTime() || 0; } catch (x) { return 0; }
+                },
                 seekAbs: function(sec) {
                   try {
                     player.current.seekTo(sec, true);
@@ -681,7 +693,18 @@ function ChapterVideo(props) {
     tick = setInterval(function() {
       var p = player.current;
       if (!p || held.current || !p.getCurrentTime) return;
-      try { var t = p.getCurrentTime(); if (typeof t === "number") setPos(t); } catch (e) {}
+      try {
+        var t = p.getCurrentTime();
+        if (typeof t !== "number") return;
+        setPos(t);
+        var w = win.current;
+        if (w.end && t >= w.end - 0.25) {
+          // Stop at the chapter's end, and record that the recording did not
+          // run out — the reader simply reached the edge of this chapter.
+          try { p.pauseVideo(); } catch (x) {}
+          stoppedAtEnd.current = true;
+        }
+      } catch (e) {}
     }, 250);
     return function() {
       dead = true;
@@ -691,7 +714,28 @@ function ChapterVideo(props) {
       player.current = null;
       if (node) node.innerHTML = "";
     };
-  }, [id, start, end]);
+  }, [id]);
+
+  // Chapter changed while the same recording stays loaded. Three cases: the
+  // reader listened to the end and turned the page, which resumes seamlessly;
+  // they jumped somewhere the playhead already sits, which is left alone; or
+  // they went elsewhere entirely, which seeks.
+  useEffect(function() {
+    win.current = { start: start, end: end };
+    var p = player.current;
+    if (!p || !p.getCurrentTime) return;
+    var t = 0;
+    try { t = p.getCurrentTime() || 0; } catch (e) { return; }
+    var inside = t >= start - 2 && (!end || t <= end);
+    if (inside && stoppedAtEnd.current) {
+      stoppedAtEnd.current = false;
+      try { p.playVideo(); } catch (e) {}          // carry straight on
+      return;
+    }
+    if (inside) return;                            // already in the right place
+    stoppedAtEnd.current = false;
+    try { p.seekTo(start, true); setPos(start); } catch (e) {}
+  }, [start, end]);
 
   // The chapter's own clock: zero is where the chapter begins, not where the
   // recording does.
@@ -700,7 +744,7 @@ function ChapterVideo(props) {
   var shown = (drag === null) ? rel : drag;
   var seek = function(v) {
     v = Math.min(span, Math.max(0, v));
-    setDrag(null); held.current = false; setPos(start + v);
+    setDrag(null); held.current = false; setPos(start + v); stoppedAtEnd.current = false;
     try { player.current && player.current.seekTo(start + v, true); } catch (e) {}
   };
   var toggle = function() {
@@ -2912,9 +2956,21 @@ export default function App() {
       var cur = prev[key];
       var next = Object.assign({}, prev);
       if (cur && cur.cidx === cidx && cur.off === off) delete next[key];
-      else next[key] = { cidx: cidx, off: off, at: Date.now(),
-        title: bookMeta.title || "", author: bookMeta.author || "",
-        filename: bookMeta.filename || "" };
+      else {
+        var e2 = { cidx: cidx, off: off, at: Date.now(),
+          title: bookMeta.title || "", author: bookMeta.author || "",
+          filename: bookMeta.filename || "" };
+        // If a recording is loaded, remember the second too. Coming back then
+        // restores both places at once — the paragraph on the page and the
+        // moment in the reading.
+        try {
+          if (ytCtrlRef.current && ytCtrlRef.current.now) {
+            var sec = ytCtrlRef.current.now();
+            if (sec > 0) e2.audio = Math.round(sec);
+          }
+        } catch (e3) {}
+        next[key] = e2;
+      }
       return next;
     });
   };
@@ -6700,7 +6756,10 @@ export default function App() {
         var bmHere = !!(bmEntry && bmEntry.cidx === cidx && paraOff !== null && bmEntry.off === paraOff);
         var bmBtn = (paraOff !== null) ? (
           <button className={"pbm" + (bmHere ? " on" : "")} type="button"
-            title={bmHere ? "Remove bookmark" : "Bookmark this paragraph (replaces the old one)"}
+            title={bmHere ? "Remove bookmark"
+              : (curChapter.youtubeId
+                 ? "Bookmark this paragraph and where the recording is now (replaces the old one)"
+                 : "Bookmark this paragraph (replaces the old one)")}
             aria-label={bmHere ? "Remove bookmark" : "Bookmark this paragraph"}
             onClick={function(){ setBookmarkAt(paraOff); }}>🔖</button>
         ) : null;
@@ -7301,6 +7360,10 @@ export default function App() {
           background:rgba(42,31,20,.05);border:1px solid rgba(42,31,20,.14);
           font-family:'Crimson Pro',serif;font-size:14px;color:rgba(42,31,20,.72)}
         .no-audio .sub{display:block;font-size:12.5px;color:rgba(42,31,20,.5);margin-top:2px}
+        .one-rec{max-width:640px;margin:0 0 16px;padding:10px 14px;border-radius:10px;
+          background:rgba(196,149,90,.09);border:1px solid rgba(196,149,90,.3);
+          font-family:'Crimson Pro',serif;font-size:14px;color:rgba(42,31,20,.75)}
+        .one-rec .sub{display:block;font-size:12.5px;color:rgba(42,31,20,.55);margin-top:3px;line-height:1.5}
         /* Jump-here: a small play mark at the head of a paragraph. Faint until
            wanted — the text is the page, the transport is a courtesy. */
         .pjump{float:left;margin:2px 8px 0 -2px;width:22px;height:22px;padding:0;
@@ -9476,10 +9539,16 @@ export default function App() {
                                       srcJumpChapterRef.current = bm.cidx || 0;
                                       srcJumpOffsetRef.current = (typeof bm.off === "number") ? bm.off : null;
                                       loadPresetBook(book);
+                                      // The book has to load, parse and raise a
+                                      // player before there is anything to seek.
+                                      if (bm.audio) setTimeout(function(){
+                                        try { ytCtrlRef.current && ytCtrlRef.current.seekAbs(bm.audio); } catch (e) {}
+                                      }, 2500);
                                     }}>
                                     <div className="lib-card-title">{bm.title || bm.key}{bm.author ? " — " + bm.author : ""}</div>
                                     <div className="lib-card-meta">
                                       <span className="lib-tag">🔖 ch. {(bm.cidx || 0) + 1}</span>
+                                      {bm.audio ? <span className="lib-tag">🎧 {fmtClock(bm.audio)}</span> : null}
                                       {when && <span style={{fontSize:11,color:"rgba(42,31,20,.45)"}}>set {when}</span>}
                                       <button className="lib-card-remove" title="Remove this bookmark"
                                         onClick={function(e){
@@ -10286,7 +10355,12 @@ export default function App() {
                             srcJumpOffsetRef.current = bm.off;
                             navLit(bm.cidx);
                           }
-                        }}>🔖 Bookmark</button>
+                          // Put the recording back where it was, once the
+                          // chapter's player has had a moment to settle.
+                          if (bm.audio) setTimeout(function(){
+                            try { ytCtrlRef.current && ytCtrlRef.current.seekAbs(bm.audio); } catch (e) {}
+                          }, bm.cidx === cidx ? 0 : 1200);
+                        }}>🔖 Bookmark{bm.audio ? " 🎧" : ""}</button>
                     );
                   })()}
                   {stressMap && !singlePageMode && (
@@ -10368,7 +10442,7 @@ export default function App() {
                         {curChapter.youtubeId && !curChapter.merged && (
                           <div className={"chvid-dock" + (vidStuck ? " stuck" : "")}>
                             <ChapterVideo
-                              key={curChapter.youtubeId + ":" + (curChapter.youtubeStart || 0)}
+                              key={curChapter.youtubeId}
                               id={curChapter.youtubeId}
                               start={curChapter.youtubeStart}
                               end={curChapter.youtubeEnd}
@@ -10394,6 +10468,27 @@ export default function App() {
                               <span className="sub">
                                 The reading available for this book doesn’t cover it
                                 {TTS_ENABLED ? " — the synthetic voice below still reads it aloud." : "."}
+                              </span>
+                            </div>
+                          );
+                        })()}
+                        {/* One recording, many chapters: say how it behaves,
+                            because "the audio kept playing when I turned the
+                            page" is either a feature or a bug depending on
+                            whether you were told to expect it. */}
+                        {(function(){
+                          if (!curChapter.youtubeId) return null;
+                          var shared = (chapters || []).filter(function(c){
+                            return c.youtubeId === curChapter.youtubeId; }).length;
+                          if (shared < 2) return null;
+                          return (
+                            <div className="one-rec">
+                              🎧 One recording covers {shared} chapters of this book
+                              <span className="sub">
+                                It stops at the end of this chapter. Turn to the next one and it
+                                carries straight on from where it stopped, so you can listen through
+                                without hunting for your place — and the 🔖 pin beside any paragraph
+                                saves the moment in the recording along with the paragraph.
                               </span>
                             </div>
                           );
