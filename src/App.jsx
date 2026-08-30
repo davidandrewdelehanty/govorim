@@ -8357,71 +8357,6 @@ export default function App() {
                         </div>
                       )}
 
-                      {/* Continue Reading — books with saved progress, newest first.
-                          Clicking one resumes at the saved chapter/page. */}
-                      {(function() {
-                        var entries = Object.keys(progressMap).map(function(k){ return progressMap[k]; });
-                        entries.sort(function(a, b){ return (b.lastRead || 0) - (a.lastRead || 0); });
-                        var recent = entries.slice(0, 6);
-                        if (recent.length === 0) return null;
-                        // Match recents against actual library entries so we can resume them.
-                        var findEntry = function(rec) {
-                          // Try uploaded books first (matched by filename or title)
-                          for (var i = 0; i < uploadedBooks.length; i++) {
-                            var u = uploadedBooks[i];
-                            if (rec.filename && u.filename === rec.filename && u.title === rec.title) return { type: "upload", book: u };
-                            if (u.title === rec.title && (u.author || "") === (rec.author || "")) return { type: "upload", book: u };
-                          }
-                          for (var j = 0; j < presetBooks.length; j++) {
-                            var pBook = presetBooks[j];
-                            if (rec.filename && pBook.filename === rec.filename) return { type: "preset", book: pBook };
-                          }
-                          return null;
-                        };
-                        return (
-                          <div className="lib-section" style={{marginBottom:18}}>
-                            <div className="lib-section-hdr">Continue reading</div>
-                            <div className="lib-grid">
-                              {recent.map(function(rec, i) {
-                                var match = findEntry(rec);
-                                if (!match) return null;
-                                var total = rec.totalChapters || 1;
-                                var pct = total > 1 ? Math.round((rec.cidx / total) * 100) : (rec.pidx > 0 ? 50 : 0);
-                                var humanLast = (function() {
-                                  var ms = Date.now() - (rec.lastRead || 0);
-                                  var min = Math.floor(ms / 60000);
-                                  if (min < 1) return "just now";
-                                  if (min < 60) return min + "m ago";
-                                  var hr = Math.floor(min / 60);
-                                  if (hr < 24) return hr + "h ago";
-                                  var d = Math.floor(hr / 24);
-                                  if (d < 30) return d + "d ago";
-                                  return "a while ago";
-                                })();
-                                return (
-                                  <div key={i} className="lcard" onClick={function() {
-                                    if (match.type === "upload") openUploadedBook(match.book);
-                                    else if (match.book.category === "Song Lyrics") openSongPicker(match.book);
-                                    else loadPresetBook(match.book);
-                                  }}>
-                                    <div className="lcn" style={{color:"rgba(0,0,0,.5)"}}>
-                                      ↻ {humanLast}
-                                      {isFinished(match.book) && <span className="lib-done" style={{marginLeft:8}}>✓ Read</span>}
-                                    </div>
-                                    <div className="lchead">{bookLabel(rec)}</div>
-                                    <div style={{marginTop:8,fontSize:11,color:"rgba(0,0,0,.55)"}}>
-                                      {pct + "%"}
-                                    </div>
-                                    <div style={{marginTop:6,height:3,background:"rgba(210,197,175,.1)",borderRadius:2,overflow:"hidden"}}>
-                                      <div style={{height:"100%",width:pct+"%",background:"#c8a276"}}/>
-                                    </div>
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          </div>
-                        );
-                      })()}
                       {/* Search and the finished filter sit on one row: both answer
                           "what am I looking at", and the toggle names the count it
                           removes so it is never a mystery why a book is missing. */}
@@ -8688,6 +8623,78 @@ export default function App() {
                               );
                             })}
                           </>
+                        );
+                      })()}
+
+                      {/* Continue reading sits at the FOOT of the library, not
+                          the head. At the top it was the first thing between the
+                          reader and the shelves every single visit, including the
+                          visits where they came to start something new — and it is
+                          six cards of what they have already chosen, which is the
+                          one thing they do not need help finding. */}
+                      {/* Continue Reading — books with saved progress, newest first.
+                          Clicking one resumes at the saved chapter/page. */}
+                      {(function() {
+                        var entries = Object.keys(progressMap).map(function(k){ return progressMap[k]; });
+                        entries.sort(function(a, b){ return (b.lastRead || 0) - (a.lastRead || 0); });
+                        var recent = entries.slice(0, 6);
+                        if (recent.length === 0) return null;
+                        // Match recents against actual library entries so we can resume them.
+                        var findEntry = function(rec) {
+                          // Try uploaded books first (matched by filename or title)
+                          for (var i = 0; i < uploadedBooks.length; i++) {
+                            var u = uploadedBooks[i];
+                            if (rec.filename && u.filename === rec.filename && u.title === rec.title) return { type: "upload", book: u };
+                            if (u.title === rec.title && (u.author || "") === (rec.author || "")) return { type: "upload", book: u };
+                          }
+                          for (var j = 0; j < presetBooks.length; j++) {
+                            var pBook = presetBooks[j];
+                            if (rec.filename && pBook.filename === rec.filename) return { type: "preset", book: pBook };
+                          }
+                          return null;
+                        };
+                        return (
+                          <div className="lib-section" style={{marginBottom:18}}>
+                            <div className="lib-section-hdr">Continue reading</div>
+                            <div className="lib-grid">
+                              {recent.map(function(rec, i) {
+                                var match = findEntry(rec);
+                                if (!match) return null;
+                                var total = rec.totalChapters || 1;
+                                var pct = total > 1 ? Math.round((rec.cidx / total) * 100) : (rec.pidx > 0 ? 50 : 0);
+                                var humanLast = (function() {
+                                  var ms = Date.now() - (rec.lastRead || 0);
+                                  var min = Math.floor(ms / 60000);
+                                  if (min < 1) return "just now";
+                                  if (min < 60) return min + "m ago";
+                                  var hr = Math.floor(min / 60);
+                                  if (hr < 24) return hr + "h ago";
+                                  var d = Math.floor(hr / 24);
+                                  if (d < 30) return d + "d ago";
+                                  return "a while ago";
+                                })();
+                                return (
+                                  <div key={i} className="lcard" onClick={function() {
+                                    if (match.type === "upload") openUploadedBook(match.book);
+                                    else if (match.book.category === "Song Lyrics") openSongPicker(match.book);
+                                    else loadPresetBook(match.book);
+                                  }}>
+                                    <div className="lcn" style={{color:"rgba(0,0,0,.5)"}}>
+                                      ↻ {humanLast}
+                                      {isFinished(match.book) && <span className="lib-done" style={{marginLeft:8}}>✓ Read</span>}
+                                    </div>
+                                    <div className="lchead">{bookLabel(rec)}</div>
+                                    <div style={{marginTop:8,fontSize:11,color:"rgba(0,0,0,.55)"}}>
+                                      {pct + "%"}
+                                    </div>
+                                    <div style={{marginTop:6,height:3,background:"rgba(210,197,175,.1)",borderRadius:2,overflow:"hidden"}}>
+                                      <div style={{height:"100%",width:pct+"%",background:"#c8a276"}}/>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
                         );
                       })()}
 
