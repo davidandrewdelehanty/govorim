@@ -45,10 +45,15 @@ var updateCheckedAt = 0;
 // Set from inside the component. A reload would drop the audio element back to
 // zero, so while a recording is playing the check is skipped entirely and the
 // next navigation after it stops picks the new build up.
-var appBusy = { audio: false };
+// `opening` covers the window between clicking a book and the reader
+// rendering it: a reload fired in that window throws the click away and
+// lands back on the library, which is exactly what it looked like from
+// the outside — "I picked a book and it put me back on the shelf".
+var appBusy = { audio: false, opening: false };
 function checkForUpdate() {
   if (!BUILD_ID) return;
   if (appBusy.audio) return;
+  if (appBusy.opening) return;
   if (updateChecking) return;
   var now = Date.now();
   // Navigation can fire several times in a second; one request a minute is
@@ -60,6 +65,7 @@ function checkForUpdate() {
     .then(function(r) { return r.ok ? r.json() : null; })
     .then(function(v) {
       if (appBusy.audio) return;   // playback started while the request was in flight
+      if (appBusy.opening) return; // a book started opening while the request was in flight
       if (v && typeof v.build === "string" && v.build && v.build !== BUILD_ID) {
         location.reload();
       }
@@ -5507,24 +5513,29 @@ export default function App() {
   // Download a preset book from the server and load it through the normal pipeline.
   var loadPresetBook = async function(book) {
     curSlug.current = (book && book.slug) || "";
+    // Hold every reload off until the reader is up. Downloading and parsing a
+    // novel takes seconds, and a reload landing inside those seconds discards
+    // the click silently.
+    appBusy.opening = true;
     // Opening a story is the other navigation moment worth checking on.
     checkForUpdate();
     setFErr("");
     setBookLoading(book.filename);
+    // Every preset book has a shareable URL (/book/<slug>), and the public
+    // build prerenders a real page there for search engines. The address bar
+    // is set BEFORE the download, not after: a reload during the load then
+    // comes back to /book/<slug> and the deep-link boot reopens the book,
+    // instead of coming back to "/" and the library.
+    if (book.slug) {
+      try {
+        var slugPath = "/book/" + book.slug;
+        if (window.location.pathname !== slugPath) window.history.pushState({ b: book.slug }, "", slugPath);
+      } catch (e) {}
+    }
     try {
       var r = await fetch(bookFileUrl(book), { credentials: "same-origin" });
       if (!r.ok) throw new Error("Could not load « " + book.filename + " »: HTTP " + r.status);
       var buf = await r.arrayBuffer();
-      // Every preset book has a shareable URL (/book/<slug>), and the public
-      // build prerenders a real page there for search engines. Put the URL in
-      // the address bar when the book opens; replaceState when we are already
-      // there (the deep-link boot), pushState otherwise so Back returns.
-      if (book.slug) {
-        try {
-          var slugPath = "/book/" + book.slug;
-          if (window.location.pathname !== slugPath) window.history.pushState({ b: book.slug }, "", slugPath);
-        } catch (e) {}
-      }
       await loadFile(buf, book.filename, {
         fromPreset: true,
         splitByNumberedSections: !!book.splitByNumberedSections,
@@ -5553,7 +5564,14 @@ export default function App() {
       });
     } catch(err) {
       setFErr(err.message || "Failed to load preset book");
+      // The book never opened, so the slug in the address bar is a lie — and a
+      // refresh would try to reopen the book that just failed.
+      try {
+        if (window.location.pathname.indexOf("/book/") === 0) window.history.replaceState({}, "", "/");
+      } catch (e) {}
+      curSlug.current = "";
     }
+    appBusy.opening = false;
     setBookLoading(null);
   };
 
@@ -5645,6 +5663,9 @@ export default function App() {
   useEffect(function() {
     try {
       var here = (window.location.pathname || "");
+      // Mid-open, `started` is still false while the chapters are already in
+      // state. Trust the slug, not `started`, until the open finishes.
+      if (appBusy.opening) return;
       var want = (started && mode === "read" && curSlug.current)
         ? "/book/" + curSlug.current
         : (here.indexOf("/book/") === 0 ? "/" : here);
