@@ -7058,6 +7058,10 @@ export default function App() {
         </div>
       )}
       <div className="nowar">НЕТ ВОЙНЕ</div>
+      <a className="donate-pp" href="https://memopzk.org/en/donate/"
+         target="_blank" rel="noopener noreferrer">
+        Donate to Political Prisoners · Memorial
+      </a>
     </div>
   );
 
@@ -7783,6 +7787,11 @@ export default function App() {
         .site-foot .n{font-variant-numeric:tabular-nums;color:rgba(42,31,20,.6)}
         .site-foot .since{opacity:.75}
         .site-foot .nowar{margin-top:6px;font-size:11px;letter-spacing:3px;color:rgba(42,31,20,.5)}
+        .site-foot .donate-pp{display:inline-block;margin-top:10px;padding:8px 18px;
+          background:#d9534f;color:#fff;text-decoration:none;border-radius:5px;
+          font-weight:600;font-size:12px;letter-spacing:.03em;font-family:'Inter',sans-serif;
+          transition:background .15s}
+        .site-foot .donate-pp:hover{background:#c9302c}
         .auth-foot{position:absolute;left:0;right:0;bottom:0}
         .adm-today{cursor:pointer}
         .adm-today:hover{background:rgba(196,149,90,.08)}
