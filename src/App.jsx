@@ -2859,7 +2859,9 @@ export default function App() {
       var cur = prev[key];
       var next = Object.assign({}, prev);
       if (cur && cur.cidx === cidx && cur.off === off) delete next[key];
-      else next[key] = { cidx: cidx, off: off, at: Date.now() };
+      else next[key] = { cidx: cidx, off: off, at: Date.now(),
+        title: bookMeta.title || "", author: bookMeta.author || "",
+        filename: bookMeta.filename || "" };
       return next;
     });
   };
@@ -2954,10 +2956,20 @@ export default function App() {
   var toggleFinished = function(meta) {
     var k = bookKey(meta);
     if (!k) return;
+    var nowFinished = false;
     setFinishedMap(function(prev) {
       var next = Object.assign({}, prev);
       if (next[k]) delete next[k];
-      else next[k] = { at: Date.now(), title: meta.title || "", author: meta.author || "" };
+      else { next[k] = { at: Date.now(), title: meta.title || "", author: meta.author || "" }; nowFinished = true; }
+      return next;
+    });
+    // A finished book has no place left to hold: the bookmark comes out with
+    // the marking. Unmarking does not bring it back — the pin was a place in
+    // an unfinished read, and that read ended.
+    setBookmarkMap(function(prev) {
+      if (!nowFinished || !prev[k]) return prev;
+      var next = Object.assign({}, prev);
+      delete next[k];
       return next;
     });
   };
@@ -3003,6 +3015,8 @@ export default function App() {
   // That combination is what someone learning the language actually wants,
   // and it is 58 of the 171, so it is worth being able to ask for.
   var [quickEnAudio, setQuickEnAudio] = useState(false);
+  // The bookmarks directory on the library screen.
+  var [showBookmarks, setShowBookmarks] = useState(false);
   // Tracks which book is currently being loaded (after click). Shows a spinner
   // overlay on the card and disables further clicks during the fetch+parse cycle
   // so the user gets clear feedback that the click registered.
@@ -9257,6 +9271,19 @@ export default function App() {
                           className="lib-search"
                         />
                         {(function() {
+                          var nbm = Object.keys(bookmarkMap).length;
+                          if (!nbm && !showBookmarks) return null;
+                          return (
+                            <button
+                              className={"lib-filter-btn" + (showBookmarks ? " on" : "")}
+                              aria-pressed={showBookmarks}
+                              onClick={function(){ setShowBookmarks(!showBookmarks); }}
+                              title="Every book holding a bookmark — click one to pick up where the pin is">
+                              🔖 Bookmarks{nbm ? " (" + nbm + ")" : ""}
+                            </button>
+                          );
+                        })()}
+                        {(function() {
                           var done = presetBooks.filter(function(b){ return isFinished(b); }).length;
                           if (!done && !hideFinished) return null;   // nothing to hide yet
                           return (
@@ -9272,6 +9299,58 @@ export default function App() {
                           );
                         })()}
                       </div>
+                      {/* The bookmark directory: every book with a pin in it,
+                          newest first. Clicking one opens the book and lands on
+                          the pinned paragraph, riding the same source-link
+                          machinery as the in-book jump. */}
+                      {showBookmarks && (function(){
+                        var entries = Object.keys(bookmarkMap).map(function(k){
+                          return Object.assign({ key: k }, bookmarkMap[k]);
+                        }).sort(function(a, b){ return (b.at || 0) - (a.at || 0); });
+                        return (
+                          <div className="lib-section">
+                            <div className="lib-section-hdr">🔖 Bookmarks</div>
+                            {!entries.length && (
+                              <div className="lib-cat-hint">No bookmarks yet — open a book and click the 🔖 beside any paragraph.</div>
+                            )}
+                            <div className="lib-grid">
+                              {entries.map(function(bm){
+                                var book = null;
+                                for (var i = 0; i < presetBooks.length; i++) {
+                                  if (presetBooks[i].filename === bm.filename) { book = presetBooks[i]; break; }
+                                }
+                                var when = bm.at ? new Date(bm.at).toLocaleDateString() : "";
+                                return (
+                                  <div key={bm.key}
+                                    className={"lib-card" + (book ? "" : " is-disabled")}
+                                    title={book ? "Open at the bookmark" : "This book is no longer in the library"}
+                                    onClick={function(){
+                                      if (!book || bookLoading !== null) return;
+                                      srcJumpChapterRef.current = bm.cidx || 0;
+                                      srcJumpOffsetRef.current = (typeof bm.off === "number") ? bm.off : null;
+                                      loadPresetBook(book);
+                                    }}>
+                                    <div className="lib-card-title">{bm.title || bm.key}{bm.author ? " — " + bm.author : ""}</div>
+                                    <div className="lib-card-meta">
+                                      <span className="lib-tag">🔖 ch. {(bm.cidx || 0) + 1}</span>
+                                      {when && <span style={{fontSize:11,color:"rgba(42,31,20,.45)"}}>set {when}</span>}
+                                      <button className="lib-card-remove" title="Remove this bookmark"
+                                        onClick={function(e){
+                                          e.stopPropagation();
+                                          setBookmarkMap(function(prev){
+                                            var next = Object.assign({}, prev);
+                                            delete next[bm.key];
+                                            return next;
+                                          });
+                                        }}>×</button>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })()}
                       {(function() {
                         var q = bookSearch.toLowerCase().trim();
                         var matchesBase = function(book) {
