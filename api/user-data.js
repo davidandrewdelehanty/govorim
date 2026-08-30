@@ -94,6 +94,24 @@ export default async function handler(req, res) {
     // The public count, for the footer. Readable by anyone, because it is
     // shown to everyone — a running total and the date it started, and
     // nothing that says who any of those visits belonged to.
+    // Funding: the running cost of the site and what has come in against it.
+    // Public because the progress is shown to everyone, and because the point
+    // of showing it is to stop asking once the costs are met.
+    if (req.query.anon === "funding" && req.method === "GET") {
+      try {
+        const resp = await s3.send(new GetObjectCommand({
+          Bucket: BUCKET, Key: `${PREFIX}/_stats/funding.json`,
+        }));
+        const f = JSON.parse(await resp.Body.transformToString());
+        res.setHeader("Cache-Control", "public, max-age=300, s-maxage=300");
+        return res.status(200).json({
+          goal: f.goal || 0, raised: f.raised || 0,
+          period: f.period || "", note: f.note || "", updatedAt: f.updatedAt || null,
+        });
+      } catch (e) {
+        return res.status(200).json({ goal: 0, raised: 0 });
+      }
+    }
     if (req.query.anon === "count" && req.method === "GET") {
       try {
         const resp = await s3.send(new GetObjectCommand({

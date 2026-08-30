@@ -2241,10 +2241,51 @@ function Pushkin({ size }) {
 // script, no amount fixed here, and nothing to do with payment ever touches
 // this site. Rendered on both home screens: the library, which is where
 // everyone lands, and the mode picker behind the logo.
-function SupportLinks() {
+function SupportLinks(props) {
   if (!IS_PUBLIC_SITE) return null;
+  var f = props && props.funding;
+  var goal = (f && f.goal) || 0;
+  var raised = (f && f.raised) || 0;
+  var pct = goal > 0 ? Math.min(100, Math.round((raised / goal) * 100)) : 0;
+  var covered = goal > 0 && raised >= goal;
+  // Costs met: say so and stop asking. A donate button that keeps soliciting
+  // past the bill it was raised for is asking for something else.
+  if (covered) {
+    return (
+      <div className="support">
+        <div className="fund-done">
+          <div className="fund-done-t">Costs are covered{f.period ? " for " + f.period : ""} — thank you.</div>
+          <div className="fund-bar"><div style={{width:"100%"}} /></div>
+          <div className="fund-sub">
+            ${raised} of ${goal}. Donations are closed until the next bill; the site is
+            not collecting more than it costs to run.
+          </div>
+        </div>
+        <a className="discord-btn" href="https://discord.gg/nePcT58a37"
+           target="_blank" rel="noopener noreferrer"
+           title="Самовар Russian Literature on Discord — opens in a new tab">
+          <span className="row">
+            <svg className="dico" viewBox="0 0 127.14 96.36" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+            </svg>
+            <span>Join the Самовар Discord</span>
+          </span>
+          <span className="sub">talk about the books, ask for titles, report anything broken</span>
+        </a>
+      </div>
+    );
+  }
   return (
     <div className="support">
+      {goal > 0 && (
+        <div className="fund">
+          <div className="fund-bar"><div style={{width: pct + "%"}} /></div>
+          <div className="fund-sub">
+            ${raised} of ${goal} toward {f.period ? f.period + " " : ""}running costs
+            {f.note ? " · " + f.note : ""}
+          </div>
+        </div>
+      )}
       <form className="donate" action="https://www.paypal.com/donate" method="post"
             target="_blank" rel="noopener noreferrer">
         <input type="hidden" name="business" value="8TRRPQMCNY69A" />
@@ -2434,6 +2475,11 @@ export default function App() {
   var [adminDetail, setAdminDetail]         = useState(null);
   var [adminDetailLoad, setAdminDetailLoad] = useState(false);
   var [adminDetailView, setAdminDetailView] = useState("");
+  var [adminFunding, setAdminFunding]       = useState(null);
+  var [fundGoal, setFundGoal]               = useState("");
+  var [fundRaised, setFundRaised]           = useState("");
+  var [fundPeriod, setFundPeriod]           = useState("");
+  var [fundMsg, setFundMsg]                 = useState("");
   var [adminBooks, setAdminBooks]           = useState(null);
   var [adminBooksLoad, setAdminBooksLoad]   = useState(false);
   var [adminBookSort, setAdminBookSort]     = useState("opens");
@@ -4724,6 +4770,35 @@ export default function App() {
     } finally { setAdminLoad(false); }
   };
 
+  // The cost target the public progress bar reads.
+  var loadFunding = async function() {
+    try {
+      var r = await authFetch("/api/admin/users?funding=1");
+      var d = await r.json();
+      if (r.ok && d.funding) {
+        setAdminFunding(d.funding);
+        setFundGoal(String(d.funding.goal || ""));
+        setFundRaised(String(d.funding.raised || ""));
+        setFundPeriod(d.funding.period || "");
+      }
+    } catch(e) {}
+  };
+  var saveFunding = async function() {
+    setFundMsg("");
+    try {
+      var r = await authFetch("/api/admin/users?funding=1", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ goal: Number(fundGoal) || 0, raised: Number(fundRaised) || 0,
+                               period: fundPeriod }),
+      });
+      var d = await r.json();
+      if (!r.ok) throw new Error(d.error || "Save failed");
+      setAdminFunding(d.funding);
+      setFundMsg("Saved. The public bar follows within five minutes — it is edge-cached.");
+    } catch(e) { setFundMsg(e.message || "Save failed"); }
+  };
+
   // Per-book tallies for the reads-by-book sheet.
   var loadAdminBooks = async function() {
     setAdminBooksLoad(true); setAdminErr("");
@@ -4799,6 +4874,7 @@ export default function App() {
     // The two figures at the head of the list are the reason the panel is
     // open half the time, so they are fetched with it rather than on a click.
     loadAdminTotals();
+    loadFunding();
   }, [showAdmin, isAdmin]);
 
   // Upload a song to the library. Hits /api/admin/upload-song which commits
@@ -6113,6 +6189,14 @@ export default function App() {
   // The footer's running total. Read once on mount; the endpoint is cached
   // five minutes at the edge, so this costs nothing worth counting.
   var [siteVisits, setSiteVisits] = useState(null);
+  var [funding, setFunding] = useState(null);
+  useEffect(function() {
+    if (!IS_PUBLIC_SITE) return;
+    fetch("/api/user-data?anon=funding")
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){ if (d && typeof d.goal === "number") setFunding(d); })
+      .catch(function(){});
+  }, []);
   useEffect(function() {
     fetch("/api/user-data?anon=count")
       .then(function(r){ return r.ok ? r.json() : null; })
@@ -7320,6 +7404,15 @@ export default function App() {
         .discord-btn:hover{background:#4752C4;border-color:#4752C4;color:#fff;
              box-shadow:0 2px 8px rgba(88,101,242,.35)}
         .discord-btn:active{transform:translateY(1px)}
+        /* Progress toward the bill, and the state where it is paid. A goal is
+           a promise about when to stop asking, so it is drawn plainly. */
+        .fund{width:100%;max-width:420px;text-align:center}
+        .fund-bar{height:6px;background:rgba(42,31,20,.1);border-radius:3px;overflow:hidden;margin-bottom:6px}
+        .fund-bar>div{height:100%;background:#8aab7c;border-radius:3px;transition:width .4s ease}
+        .fund-sub{font-family:'Crimson Pro',serif;font-size:12.5px;color:rgba(42,31,20,.55)}
+        .fund-done{width:100%;max-width:420px;text-align:center;padding:14px 18px;
+          background:rgba(138,171,124,.12);border:1px solid rgba(138,171,124,.4);border-radius:10px}
+        .fund-done-t{font-family:'Playfair Display',serif;font-size:15px;color:#2f5a2a;margin-bottom:8px}
         .discord-btn .row{display:flex;align-items:center;justify-content:center;gap:10px}
         .discord-btn .dico{width:22px;height:auto;flex:none;display:block}
         .discord-btn .sub{display:block;font-size:12px;font-weight:400;font-style:normal;
@@ -7888,6 +7981,10 @@ export default function App() {
           transition:background .15s}
         .site-foot .donate-pp:hover{background:#c9302c}
         .auth-foot{position:absolute;left:0;right:0;bottom:0}
+        .adm-fund .adm-fund-row{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-top:10px}
+        .adm-fund .adm-fund-row label{display:flex;flex-direction:column;gap:4px;font-size:11px;
+          color:rgba(42,31,20,.55);letter-spacing:.3px}
+        .adm-fund .adm-fund-row input{width:110px;font-size:14px;padding:7px 10px}
         .adm-today{cursor:pointer}
         .adm-today:hover{background:rgba(196,149,90,.08)}
         .adm-today .adm-name{font-family:'Playfair Display',serif}
@@ -8053,6 +8150,35 @@ export default function App() {
                   </>
                 );
               })()}
+              {!adminLoad && IS_PUBLIC_SITE && (
+                <div className="adm-row adm-fund">
+                  <div className="adm-info" style={{width:"100%"}}>
+                    <div className="adm-name">Running costs</div>
+                    <div className="adm-email">
+                      {adminFunding && adminFunding.goal
+                        ? "$" + adminFunding.raised + " of $" + adminFunding.goal +
+                          (adminFunding.period ? " · " + adminFunding.period : "") +
+                          (adminFunding.raised >= adminFunding.goal ? " · covered, donations closed" : "")
+                        : "no goal set — the donate button asks with no target"}
+                    </div>
+                    <div className="adm-fund-row">
+                      <label>Goal $<input className="auth-in" inputMode="decimal" value={fundGoal}
+                        onChange={function(e){ setFundGoal(e.target.value); }} /></label>
+                      <label>Received $<input className="auth-in" inputMode="decimal" value={fundRaised}
+                        onChange={function(e){ setFundRaised(e.target.value); }} /></label>
+                      <label>Period <input className="auth-in" placeholder="August 2026" value={fundPeriod}
+                        onChange={function(e){ setFundPeriod(e.target.value); }} /></label>
+                      <button className="adm-btn" onClick={saveFunding}>Save</button>
+                    </div>
+                    {fundMsg && <div className="admd-s" style={{marginTop:6}}>{fundMsg}</div>}
+                    <div className="admd-s" style={{marginTop:6,lineHeight:1.5}}>
+                      Received is entered by hand from your PayPal balance — nothing on this
+                      site touches payment. When it reaches the goal the donate button is
+                      replaced by a note saying costs are covered, and stops asking.
+                    </div>
+                  </div>
+                </div>
+              )}
               {!adminLoad && (
                 <div className="adm-row adm-today"
                   onClick={function(){ if (!adminBooks) loadAdminBooks(); setAdminDetail({ __books: true }); }}>
@@ -9075,7 +9201,7 @@ export default function App() {
           <div className="main">
             {!started && !mode && (
               <div className="ss">
-                <SupportLinks />
+                <SupportLinks funding={funding} />
                 <div className="sico" style={{color:"#c4955a"}}><Pushkin size={64}/></div>
                 <h1 className="sti">{SITE_NAME}</h1>
                 <p className="sde">Choose how you want to practice today.</p>
@@ -9104,7 +9230,7 @@ export default function App() {
 
             {!started && mode === "read" && (
               <div className="ss">
-                <SupportLinks />
+                <SupportLinks funding={funding} />
                 <div className="sico">📖</div>
                 <h1 className="sti">{chapters.length > 0 ? bookMeta.title : "Open a Russian book"}</h1>
                 <p className="sde">{chapters.length > 0 ? bookMeta.author : "Choose a book from the library to begin reading."}</p>
