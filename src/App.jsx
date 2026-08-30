@@ -2849,6 +2849,31 @@ export default function App() {
     window.addEventListener("popstate", onPop);
     return function(){ window.removeEventListener("popstate", onPop); };
   }, []);
+  // Set, clear and jump for the one-per-book bookmark. Same-chapter jumps
+  // scroll directly; cross-chapter jumps set the vocab source-link refs and
+  // let that path change chapter, highlight and scroll.
+  var setBookmarkAt = function(off) {
+    var key = bookKey(bookMeta);
+    if (!key) return;
+    setBookmarkMap(function(prev) {
+      var cur = prev[key];
+      var next = Object.assign({}, prev);
+      if (cur && cur.cidx === cidx && cur.off === off) delete next[key];
+      else next[key] = { cidx: cidx, off: off, at: Date.now() };
+      return next;
+    });
+  };
+  var scrollToOffset = function(off) {
+    try {
+      var nodes = document.querySelectorAll(".lit-body [data-rw-start]");
+      var bestNode = null, bestVal = Infinity;
+      for (var ni = 0; ni < nodes.length; ni++) {
+        var v = parseInt(nodes[ni].dataset.rwStart, 10);
+        if (!isNaN(v) && v >= off && v < bestVal) { bestVal = v; bestNode = nodes[ni]; }
+      }
+      if (bestNode && bestNode.scrollIntoView) bestNode.scrollIntoView({ behavior: "smooth", block: "center" });
+    } catch (e) {}
+  };
   var srcJumpChapterRef = useRef(null);
   var srcJumpOffsetRef = useRef(null);  // vocab source-link: char offset of the saved word, to highlight its sentence on arrival
   var [vocabCollapsed, setVocabCollapsed] = useState({});
@@ -2873,6 +2898,23 @@ export default function App() {
   // a reading history later. Stored locally and, for a signed-in reader, on
   // the server, so the green check follows them between devices.
   var [finishedMap, setFinishedMap] = useState({});
+  // One bookmark per book: { [bookKey]: { cidx, off, at } }, where `off` is
+  // the paragraph's chapter-relative char offset — the same coordinate the
+  // vocab source-link uses, so the jump rides its machinery. Setting a new
+  // bookmark anywhere replaces the old one; the pin marks where you are, not
+  // everywhere you have been.
+  var [bookmarkMap, setBookmarkMap] = useState({});
+  var bookmarksLoaded = useRef(false);
+  useEffect(function() {
+    storage.get("gv_bookmarks_v1").then(function(r){
+      if (r && r.value) { try { setBookmarkMap(JSON.parse(r.value) || {}); } catch (e) {} }
+      bookmarksLoaded.current = true;
+    }).catch(function(){ bookmarksLoaded.current = true; });
+  }, []);
+  useEffect(function() {
+    if (!bookmarksLoaded.current) return;
+    storage.set("gv_bookmarks_v1", JSON.stringify(bookmarkMap)).catch(function(){});
+  }, [bookmarkMap]);
   var [finishedLoaded, setFinishedLoaded] = useState(false);
   useEffect(function() {
     (async function() {
@@ -6546,6 +6588,17 @@ export default function App() {
               } catch (e) {}
             }}>▶</button>
         ) : null;
+        // The bookmark pin. Every paragraph can take it; the one that has it
+        // shows solid. paraOff is the paragraph's chapter-relative offset.
+        var paraOff = (entry.para && entry.para[0]) ? entry.para[0].start : null;
+        var bmEntry = bookmarkMap[bookKey(bookMeta)];
+        var bmHere = !!(bmEntry && bmEntry.cidx === cidx && paraOff !== null && bmEntry.off === paraOff);
+        var bmBtn = (paraOff !== null) ? (
+          <button className={"pbm" + (bmHere ? " on" : "")} type="button"
+            title={bmHere ? "Remove bookmark" : "Bookmark this paragraph (replaces the old one)"}
+            aria-label={bmHere ? "Remove bookmark" : "Bookmark this paragraph"}
+            onClick={function(){ setBookmarkAt(paraOff); }}>🔖</button>
+        ) : null;
         var isTight = !!(curChapter && curChapter.tightIdx && curChapter.tightIdx.indexOf(entry.chIdx) !== -1);
         var pMargin = {marginBottom: singlePageMode ? "0.35em"
           : (bookMeta && bookMeta.filename && bookMeta.filename.indexOf("негин") !== -1 ? "0.1em"
@@ -6669,7 +6722,7 @@ export default function App() {
           }
           var dualCells = [
             <p key={"ru" + pi} className="dual-ru" lang="ru" id={"sp" + entry.chIdx}
-               style={Object.assign({gridColumn: 1, gridRow: String(pi + 1)}, pMargin)}>{jumpBtn}{ruBody}</p>
+               style={Object.assign({gridColumn: 1, gridRow: String(pi + 1)}, pMargin)}>{jumpBtn}{bmBtn}{ruBody}</p>
           ];
           // Flow mode: the Russian keeps its rows, the English does not get a
           // cell here at all — it is emitted once, below, as a single column.
@@ -6731,7 +6784,7 @@ export default function App() {
             )}
             <p id={"sp" + entry.chIdx} lang="ru" style={pMargin}
                className={bibleChapterMark ? "bible-chapter" : undefined}>
-              {jumpBtn}{ruBody}
+              {jumpBtn}{bmBtn}{ruBody}
               {/* The Russian line already carries its verse number, so the
                   English beneath it does not repeat one. A book-sized page
                   keys its English by paragraph (proseEnLine) rather than by
@@ -7148,6 +7201,17 @@ export default function App() {
           opacity:.35;transition:opacity .15s,background .15s}
         .pjump:hover{opacity:1;background:rgba(196,149,90,.25)}
         @media(hover:none){.pjump{opacity:.55}}
+        /* The bookmark pin. One per book; faint on every paragraph, solid on
+           the one that holds it. */
+        .pbm{float:left;margin:2px 8px 0 -2px;width:22px;height:22px;padding:0;
+          display:inline-flex;align-items:center;justify-content:center;
+          background:transparent;border:1px solid rgba(42,31,20,.14);border-radius:50%;
+          font-size:10px;line-height:1;cursor:pointer;filter:grayscale(1);
+          opacity:.22;transition:opacity .15s,background .15s}
+        .pbm:hover{opacity:.9;filter:none;background:rgba(196,149,90,.15)}
+        .pbm.on{opacity:1;filter:none;background:rgba(196,149,90,.2);border-color:rgba(196,149,90,.55)}
+        @media(hover:none){.pbm{opacity:.4}}
+        .ltab.bmjump{border-color:rgba(196,149,90,.4)}
         @media(max-width:560px){.chvid-scrub{gap:6px;padding:6px 8px}
           .chvid-scrub button{min-width:32px;padding:5px 6px;font-size:11px}
           .chvid-scrub .t{font-size:11px}}
@@ -9981,6 +10045,24 @@ export default function App() {
                   <button className={"ltab"+(lview==="read"?" on":"")} onClick={function(){ setLview("read"); }}>📖 Read</button>
                   <button className={"ltab"+(lview==="nav"?" on":"")} onClick={function(){ setLview("nav"); }}>🗂 Contents</button>
                   <button className={"ltab"+(lview==="search"?" on":"")} onClick={function(){ setLview("search"); }}>🔍 Search</button>
+                  {(function(){
+                    var bm = bookmarkMap[bookKey(bookMeta)];
+                    if (!bm) return null;
+                    var where = (chapters[bm.cidx] && chapters[bm.cidx].heading)
+                      ? sectionLabel(chapters[bm.cidx].heading) : null;
+                    return (
+                      <button className="ltab bmjump"
+                        title={"Jump to your bookmark" + (where && where.long ? " — " + where.long : "")}
+                        onClick={function(){
+                          setLview("read");
+                          if (bm.cidx === cidx) { scrollToOffset(bm.off); }
+                          else {
+                            srcJumpOffsetRef.current = bm.off;
+                            navLit(bm.cidx);
+                          }
+                        }}>🔖 Bookmark</button>
+                    );
+                  })()}
                   {stressMap && !singlePageMode && (
                     <button className={"ltab"+(accentsOn?" on":"")} onClick={toggleAccents}
                       title="Show stress marks — only on words whose stress is unambiguous">а́ Stress</button>
