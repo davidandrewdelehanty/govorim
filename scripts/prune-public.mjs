@@ -103,6 +103,12 @@ for (const e of publicEntries) {
       if (parts.length > 1) slugs.add(parts[parts.length - 1]);
     }
   }
+  // Paragraph->seconds sync maps for the jump-here buttons. They contain
+  // nothing but integers keyed by paragraph index — no text — but they only
+  // make sense for books whose text ships, so they follow the book.
+  if (e.filename) {
+    keepDirs.add("audio-sync/" + path.posix.basename(e.filename).replace(/\.[^.]+$/, ""));
+  }
   if (e.isBible) {
     anyBible = true;
     // Scripture's English is not a parallelEn folder — it is keyed off the
