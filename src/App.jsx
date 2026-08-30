@@ -2750,6 +2750,11 @@ export default function App() {
   };
   // Search filter for the library view — filters both preset + uploaded.
   var [bookSearch, setBookSearch] = useState("");
+  // Which shelf the library is showing. "" is the landing state — chips only,
+  // no list; a category name shows that shelf; "__all__" is "the whole library"
+  // for anyone who would rather scroll than choose. A search overrides all
+  // three, because searching is asking about the whole library by definition.
+  var [libCat, setLibCat] = useState("");
   // Tracks which book is currently being loaded (after click). Shows a spinner
   // overlay on the card and disables further clicks during the fetch+parse cycle
   // so the user gets clear feedback that the click registered.
@@ -6686,6 +6691,13 @@ export default function App() {
         .lib-search{width:100%;padding:12px 16px;font-size:16px;background:rgba(42,31,20,.05);border:1px solid rgba(42,31,20,.18);border-radius:10px;color:#000;font-family:'Crimson Pro',serif;margin-bottom:20px;box-sizing:border-box;letter-spacing:.01em}
         .lib-search:focus{outline:none;border-color:rgba(196,149,90,.5);background:rgba(42,31,20,.08)}
         .lib-search::placeholder{color:rgba(42,31,20,.4)}
+        .lib-cats{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+        .lib-cat-chip{padding:8px 15px;border-radius:999px;border:1px solid rgba(42,31,20,.16);background:rgba(42,31,20,.04);color:rgba(42,31,20,.8);font-family:'Crimson Pro',serif;font-size:14px;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:7px;line-height:1}
+        .lib-cat-chip:hover{background:rgba(196,149,90,.14);border-color:rgba(196,149,90,.4);transform:translateY(-1px)}
+        .lib-cat-chip.on{background:rgba(196,149,90,.18);border-color:rgba(196,149,90,.6);color:#000;font-weight:600}
+        .lib-cat-chip .n{font-size:11px;opacity:.5;font-variant-numeric:tabular-nums}
+        .lib-cat-chip.all{border-style:dashed}
+        .lib-cat-hint{padding:34px 16px;text-align:center;color:rgba(42,31,20,.45);font-style:italic;font-size:14px}
         .lib-section{margin-bottom:22px}
         .lib-section-hdr{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(42,31,20,.55);margin-bottom:10px;padding-left:4px;font-weight:600}
         .lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
@@ -8309,8 +8321,50 @@ export default function App() {
                         if (q && totalResults === 0) {
                           return <div style={{padding:"40px 16px",textAlign:"center",color:"rgba(0,0,0,.5)",fontStyle:"italic"}}>No books match «{bookSearch}»</div>;
                         }
+                        // The shelves that actually hold something right now, which is
+                        // what the chips offer: an empty shelf is not a choice.
+                        var shelves = ORDER.filter(function(c){ return buckets[c].length > 0; });
+                        // A search is a question about the whole library, so it shows
+                        // every match regardless of which shelf is open.
+                        var searching = !!q;
+                        var openCat = searching ? "__all__" : libCat;
+                        var shelvesToRender = (openCat === "__all__") ? shelves
+                          : (openCat && buckets[openCat] && buckets[openCat].length) ? [openCat] : [];
+                        var chipLabel = function(c) {
+                          if (c === "Speeches by Soviet Leaders") return "🗣 Soviet Speeches";
+                          if (c === "Texts Without English") return "📖 Russian Only";
+                          if (c === "Theatrical Performances") return "🎬 Performances";
+                          var icons = { "Novels":"📕", "Novellas":"📗", "Short Stories":"📄",
+                            "Plays":"🎭", "Poetry":"✒️", "Song Lyrics":"🎵",
+                            "Religious Texts":"🕯", "Speeches":"🗣", "Works":"📚", "Other":"📦" };
+                          return (icons[c] ? icons[c] + " " : "") + c;
+                        };
                         return (
                           <>
+                            {/* Shelf chips. The launch screen opens on these rather than on
+                                every book at once: a hundred and seventy cards is a wall, not
+                                a choice. "Entire library" is still one click away for anyone
+                                who would rather scroll. */}
+                            <div className="lib-cats">
+                              {shelves.map(function(c){
+                                return (
+                                  <button key={c} type="button"
+                                    className={"lib-cat-chip" + (!searching && libCat === c ? " on" : "")}
+                                    aria-pressed={!searching && libCat === c}
+                                    onClick={function(){ setLibCat(libCat === c ? "" : c); }}>
+                                    <span>{chipLabel(c)}</span>
+                                    <span className="n">{buckets[c].length}</span>
+                                  </button>
+                                );
+                              })}
+                              <button type="button"
+                                className={"lib-cat-chip all" + (!searching && libCat === "__all__" ? " on" : "")}
+                                aria-pressed={!searching && libCat === "__all__"}
+                                onClick={function(){ setLibCat(libCat === "__all__" ? "" : "__all__"); }}>
+                                <span>Entire library</span>
+                                <span className="n">{presetCount}</span>
+                              </button>
+                            </div>
                             {/* My Uploads section — only when there are uploaded books matching the filter */}
                             {filteredUploads.length > 0 && (
                               <div className="lib-section">
@@ -8347,8 +8401,12 @@ export default function App() {
                                 </div>
                               </div>
                             )}
+                            {/* Nothing chosen yet: the chips above are the page. */}
+                            {!searching && !shelvesToRender.length && (
+                              <div className="lib-cat-hint">Pick a shelf above, or open the entire library.</div>
+                            )}
                             {/* Preset library, grouped by category, then by audiobook availability */}
-                            {ORDER.map(function(cat) {
+                            {shelvesToRender.map(function(cat) {
                               var entries = buckets[cat];
                               if (!entries.length) return null;
                               var withAudio = entries.filter(function(e){ return !!(e.book.audiobook); });
