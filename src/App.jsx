@@ -6978,18 +6978,23 @@ export default function App() {
   // shell is height:100vh with overflow hidden, so an element placed after it
   // sits below a viewport that never scrolls — which is where the first
   // version of this footer went, rendering faithfully into the void.
-  var siteFoot = (siteVisits && siteVisits.visits > 0) ? (
+  var siteFoot = (
     <div className="site-foot">
-      <span className="n">{siteVisits.visits.toLocaleString()}</span>
-      {" visit" + (siteVisits.visits === 1 ? "" : "s")}
-      {siteVisits.since && (
-        <span className="since">
-          {" since " + new Date(siteVisits.since)
-            .toLocaleDateString(undefined, { month: "long", year: "numeric" })}
-        </span>
+      {siteVisits && siteVisits.visits > 0 && (
+        <div>
+          <span className="n">{siteVisits.visits.toLocaleString()}</span>
+          {" visit" + (siteVisits.visits === 1 ? "" : "s")}
+          {siteVisits.since && (
+            <span className="since">
+              {" since " + new Date(siteVisits.since)
+                .toLocaleDateString(undefined, { month: "long", year: "numeric" })}
+            </span>
+          )}
+        </div>
       )}
+      <div className="nowar">НЕТ ВОЙНЕ</div>
     </div>
-  ) : null;
+  );
 
   return (
     <>
@@ -7703,6 +7708,7 @@ export default function App() {
           font-size:12px;color:rgba(42,31,20,.42);letter-spacing:.02em}
         .site-foot .n{font-variant-numeric:tabular-nums;color:rgba(42,31,20,.6)}
         .site-foot .since{opacity:.75}
+        .site-foot .nowar{margin-top:6px;font-size:11px;letter-spacing:3px;color:rgba(42,31,20,.5)}
         .auth-foot{position:absolute;left:0;right:0;bottom:0}
         .adm-today{cursor:pointer}
         .adm-today:hover{background:rgba(196,149,90,.08)}
@@ -8505,7 +8511,7 @@ export default function App() {
 
       {authReady && !me && !guest && (
         <div className="auth-page">
-          {siteFoot && <div className="auth-foot">{siteFoot}</div>}
+          <div className="auth-foot">{siteFoot}</div>
           <div className="auth-card">
             <div className="auth-brand">
               <div style={{color:"#c4955a"}}><Pushkin size={64}/></div>
