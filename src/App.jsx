@@ -2399,6 +2399,8 @@ export default function App() {
   var [adminDetail, setAdminDetail]         = useState(null);
   var [adminDetailLoad, setAdminDetailLoad] = useState(false);
   var [adminDetailView, setAdminDetailView] = useState("");
+  var [adminLegacyId, setAdminLegacyId]     = useState("");
+  var [adminLegacyMsg, setAdminLegacyMsg]   = useState("");
   var [adminLoad, setAdminLoad]   = useState(false);
   var [adminErr, setAdminErr]     = useState("");
   // Upload-song panel state — admin-only, accessed via "📤 Upload" trigger.
@@ -4610,6 +4612,35 @@ export default function App() {
       setAdminDetail(d.user);
     } catch(e) {
       setAdminErr(e.message || "Failed to load user");
+    } finally { setAdminDetailLoad(false); }
+  };
+
+  // Adopt a reader's data from an older user id. Govorim predates the current
+  // auth: accounts carried over from the Clerk setup have their vocabulary and
+  // progress filed under a user_2… id that no longer derives from the email,
+  // so the panel finds nothing and the reader looks brand new. This copies the
+  // old prefix onto the current one — the server refuses to overwrite a file
+  // that already exists, so it cannot clobber a live vocabulary list.
+  var adoptLegacyData = async function(email) {
+    var from = (adminLegacyId || "").trim();
+    if (!from) return;
+    setAdminDetailLoad(true); setAdminLegacyMsg(""); setAdminErr("");
+    try {
+      var r = await authFetch("/api/admin/import-userdata", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ from: from, toEmail: email }),
+      });
+      var d = await r.json();
+      if (!r.ok) throw new Error(d.error || "Import failed");
+      var moved = (d.moved || []).map(function(m){ return m.type; });
+      setAdminLegacyMsg(moved.length
+        ? "Copied " + moved.join(", ") + "."
+        : "Nothing to copy — that id has no files, or this reader already has them.");
+      setAdminLegacyId("");
+      await loadUserDetail(email);
+    } catch(e) {
+      setAdminLegacyMsg(e.message || "Import failed");
     } finally { setAdminDetailLoad(false); }
   };
 
@@ -7547,6 +7578,11 @@ export default function App() {
         .admd-vrow .en{color:rgba(42,31,20,.6);text-align:right}
         /* Never measured, as against measured and found to be nothing. */
         .admd-facts .unrec,.admd-stat .unrec{color:rgba(42,31,20,.38);font-style:italic;font-size:13px}
+        .admd-facts .mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;
+          word-break:break-all;text-align:right;max-width:60%}
+        .admd-store{border:1px solid rgba(42,31,20,.1);border-radius:10px;padding:10px 12px}
+        .admd-store summary{cursor:pointer;font-size:12px;color:rgba(42,31,20,.6);letter-spacing:.3px}
+        .admd-adopt{margin-top:12px;padding-top:10px;border-top:1px solid rgba(42,31,20,.08)}
         /* One user per line: a list, not a stack of cards. The card treatment cost
            a card's worth of vertical space each and made ten users a scroll. */
         .adm-row{display:flex;align-items:center;gap:10px;padding:6px 8px;background:none;
@@ -7839,6 +7875,41 @@ export default function App() {
                         <span className="l">saved tips</span>
                       </div>
                     </div>
+                    {/* Where the panel looked, and what answered. On a site with
+                        one reader an empty panel is a mystery; this makes it a
+                        fact — and offers the one repair it usually needs. */}
+                    <details className="admd-store">
+                      <summary>Stored data</summary>
+                      <div className="admd-facts" style={{marginTop:8}}>
+                        <div><span className="k">Reading as</span><span className="v mono">{d.id}</span></div>
+                        {d.storage && <div><span className="k">Path</span><span className="v mono">{d.storage.prefix}</span></div>}
+                        <div><span className="k">Files found</span><span className="v">
+                          {(function(){
+                            var r = d.recorded || {};
+                            var have = ["vocab","tips","progress","finished","settings"]
+                              .filter(function(k){ return r[k]; });
+                            return have.length ? have.join(", ") : "none";
+                          })()}
+                        </span></div>
+                      </div>
+                      <div className="admd-adopt">
+                        <div className="admd-s" style={{lineHeight:1.5}}>
+                          Data saved under an older account id — anything from the Clerk
+                          setup Govorim used to run on — is filed under that id, not this
+                          one, so it reads as empty here. Paste the old id to copy it
+                          across. Existing files are never overwritten.
+                        </div>
+                        <div style={{display:"flex",gap:8,marginTop:8}}>
+                          <input className="auth-in" style={{flex:1,fontSize:13,padding:"7px 10px"}}
+                            placeholder="user_2…"
+                            value={adminLegacyId}
+                            onChange={function(e){ setAdminLegacyId(e.target.value); }} />
+                          <button className="adm-btn" disabled={adminDetailLoad || !adminLegacyId.trim()}
+                            onClick={function(){ adoptLegacyData(d.email); }}>Copy across</button>
+                        </div>
+                        {adminLegacyMsg && <div className="admd-s" style={{marginTop:6}}>{adminLegacyMsg}</div>}
+                      </div>
+                    </details>
                     <div className="admd-s" style={{textAlign:"center",lineHeight:1.5}}>
                       Click a number for the list behind it.
                       {(d.recorded && (!d.recorded.logins || !d.recorded.progress)) && (
