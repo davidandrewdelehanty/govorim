@@ -89,6 +89,21 @@ export default async function handler(req, res) {
   // identified themselves, and it is why the panel labels this figure as
   // signed-out book opens rather than as readers.
   if (req.query && req.query.anon) {
+    // The public count, for the footer. Readable by anyone, because it is
+    // shown to everyone — a running total and the date it started, and
+    // nothing that says who any of those visits belonged to.
+    if (req.query.anon === "count" && req.method === "GET") {
+      try {
+        const resp = await s3.send(new GetObjectCommand({
+          Bucket: BUCKET, Key: `${PREFIX}/_stats/site.json`,
+        }));
+        const cur = JSON.parse(await resp.Body.transformToString());
+        res.setHeader("Cache-Control", "public, max-age=300, s-maxage=300");
+        return res.status(200).json({ visits: cur.visits || 0, since: cur.since || null });
+      } catch (e) {
+        return res.status(200).json({ visits: 0, since: null });
+      }
+    }
     if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
     // A visit, as against a book opening. Fired once per browser per day by
     // the client, so this counts people arriving rather than pages rendered —

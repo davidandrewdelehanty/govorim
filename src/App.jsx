@@ -5998,6 +5998,16 @@ export default function App() {
     } catch (e) {}
   }, [started, mode, cidx]);
 
+  // The footer's running total. Read once on mount; the endpoint is cached
+  // five minutes at the edge, so this costs nothing worth counting.
+  var [siteVisits, setSiteVisits] = useState(null);
+  useEffect(function() {
+    fetch("/api/user-data?anon=count")
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){ if (d && typeof d.visits === "number") setSiteVisits(d); })
+      .catch(function(){});
+  }, []);
+
   // Count the visit, once per browser per day. Throttled in localStorage
   // rather than server-side, because a visit is a person arriving and a person
   // who reloads twice has not arrived twice. A browser that clears storage
@@ -7669,6 +7679,13 @@ export default function App() {
         .admd-bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px}
         .admd-bar>div{width:100%;background:rgba(196,149,90,.55);border-radius:2px 2px 0 0}
         .admd-bar>span{font-size:9px;color:rgba(42,31,20,.45);font-variant-numeric:tabular-nums}
+        /* The visitors' book, at the foot of the page. Quiet: a courtesy to
+           whoever wonders whether anyone else is here, not a metric anybody
+           came for. */
+        .site-foot{text-align:center;padding:16px 16px 24px;font-family:'Crimson Pro',serif;
+          font-size:12px;color:rgba(42,31,20,.42);letter-spacing:.02em}
+        .site-foot .n{font-variant-numeric:tabular-nums;color:rgba(42,31,20,.6)}
+        .site-foot .since{opacity:.75}
         .adm-today{cursor:pointer}
         .adm-today:hover{background:rgba(196,149,90,.08)}
         .adm-today .adm-name{font-family:'Playfair Display',serif}
@@ -10796,6 +10813,23 @@ export default function App() {
           </div>
         )}
       </div>
+      )}
+      {/* A counter at the foot of the page, the way a library keeps a
+          visitors' book. Shown to everyone, signed in or not, and it says
+          only how many visits there have been — never who, never what they
+          read. Hidden until the count answers, so the page never flashes a
+          zero that only means "not loaded yet". */}
+      {siteVisits && siteVisits.visits > 0 && (
+        <div className="site-foot">
+          <span className="n">{siteVisits.visits.toLocaleString()}</span>
+          {" visit" + (siteVisits.visits === 1 ? "" : "s")}
+          {siteVisits.since && (
+            <span className="since">
+              {" since " + new Date(siteVisits.since)
+                .toLocaleDateString(undefined, { month: "long", year: "numeric" })}
+            </span>
+          )}
+        </div>
       )}
     </>
   );
