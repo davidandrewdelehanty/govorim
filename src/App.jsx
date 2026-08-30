@@ -7545,6 +7545,8 @@ export default function App() {
           border-bottom:1px solid rgba(42,31,20,.06);font-size:13px}
         .admd-vrow .ru{color:#000}
         .admd-vrow .en{color:rgba(42,31,20,.6);text-align:right}
+        /* Never measured, as against measured and found to be nothing. */
+        .admd-facts .unrec,.admd-stat .unrec{color:rgba(42,31,20,.38);font-style:italic;font-size:13px}
         /* One user per line: a list, not a stack of cards. The card treatment cost
            a card's worth of vertical space each and made ten users a scroll. */
         .adm-row{display:flex;align-items:center;gap:10px;padding:6px 8px;background:none;
@@ -7800,14 +7802,26 @@ export default function App() {
                     <div className="admd-facts">
                       <div><span className="k">First visit</span><span className="v">{whenFull(d.createdAt)}</span></div>
                       <div><span className="k">Last visit</span><span className="v">{whenFull(d.lastLoginAt)}</span></div>
-                      <div><span className="k">Logins recorded</span><span className="v">{d.loginCount || "0"}</span></div>
+                      <div>
+                        <span className="k">Logins recorded</span>
+                        <span className="v">
+                          {(d.recorded && !d.recorded.logins)
+                            ? <span className="unrec" title="Counting began with this account's next sign-in. Their last visit above is real.">not counted yet</span>
+                            : (d.loginCount || 0)}
+                        </span>
+                      </div>
                       {d.approvedAt ? <div><span className="k">Approved</span><span className="v">{whenFull(d.approvedAt)}</span></div> : null}
                       {d.passwordChangedAt ? <div><span className="k">Password changed</span><span className="v">{whenFull(d.passwordChangedAt)}</span></div> : null}
                     </div>
                     <div className="admd-stats">
                       <button className="admd-stat" disabled={!d.counts.booksOpened}
-                        onClick={function(){ setAdminDetailView("reading"); }}>
-                        <span className="n">{d.counts.booksOpened}</span>
+                        onClick={function(){ setAdminDetailView("reading"); }}
+                        title={(d.recorded && !d.recorded.progress)
+                          ? "Reading progress was kept in the browser until now. It uploads on this reader's next visit, back-history and all."
+                          : ""}>
+                        <span className="n">
+                          {(d.recorded && !d.recorded.progress) ? <span className="unrec">—</span> : d.counts.booksOpened}
+                        </span>
                         <span className="l">books opened</span>
                       </button>
                       <button className="admd-stat" disabled={!d.counts.booksFinished}
@@ -7825,9 +7839,15 @@ export default function App() {
                         <span className="l">saved tips</span>
                       </div>
                     </div>
-                    <div className="admd-s" style={{textAlign:"center"}}>
-                      Click a number for the list behind it. Login counting began August 2026,
-                      so long-time readers show fewer than their true total.
+                    <div className="admd-s" style={{textAlign:"center",lineHeight:1.5}}>
+                      Click a number for the list behind it.
+                      {(d.recorded && (!d.recorded.logins || !d.recorded.progress)) && (
+                        <> A dash means the site never measured it, not that the reader did nothing:
+                        logins were first counted in August 2026, and reading position lived in the
+                        browser until then — it uploads, back-history and all, on their next visit.
+                        Vocabulary and marked-read have always been stored, so a zero there is a
+                        real zero.</>
+                      )}
                     </div>
                   </>
                 );
