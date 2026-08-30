@@ -6974,6 +6974,23 @@ export default function App() {
     );
   };
 
+  // The visitors' book, rendered wherever a screen has a bottom. The app
+  // shell is height:100vh with overflow hidden, so an element placed after it
+  // sits below a viewport that never scrolls — which is where the first
+  // version of this footer went, rendering faithfully into the void.
+  var siteFoot = (siteVisits && siteVisits.visits > 0) ? (
+    <div className="site-foot">
+      <span className="n">{siteVisits.visits.toLocaleString()}</span>
+      {" visit" + (siteVisits.visits === 1 ? "" : "s")}
+      {siteVisits.since && (
+        <span className="since">
+          {" since " + new Date(siteVisits.since)
+            .toLocaleDateString(undefined, { month: "long", year: "numeric" })}
+        </span>
+      )}
+    </div>
+  ) : null;
+
   return (
     <>
       <style>{`
@@ -7686,6 +7703,7 @@ export default function App() {
           font-size:12px;color:rgba(42,31,20,.42);letter-spacing:.02em}
         .site-foot .n{font-variant-numeric:tabular-nums;color:rgba(42,31,20,.6)}
         .site-foot .since{opacity:.75}
+        .auth-foot{position:absolute;left:0;right:0;bottom:0}
         .adm-today{cursor:pointer}
         .adm-today:hover{background:rgba(196,149,90,.08)}
         .adm-today .adm-name{font-family:'Playfair Display',serif}
@@ -8487,6 +8505,7 @@ export default function App() {
 
       {authReady && !me && !guest && (
         <div className="auth-page">
+          {siteFoot && <div className="auth-foot">{siteFoot}</div>}
           <div className="auth-card">
             <div className="auth-brand">
               <div style={{color:"#c4955a"}}><Pushkin size={64}/></div>
@@ -9522,6 +9541,7 @@ export default function App() {
                   )}
 
                   {fErr && <p style={{color:"#9d4630",fontSize:13,lineHeight:1.5}}>{fErr}</p>}
+                  {siteFoot}
                   <button className="btn-g" onClick={function(){ setMode(""); }}>← Back</button>
                 </div>
               </div>
@@ -10813,23 +10833,6 @@ export default function App() {
           </div>
         )}
       </div>
-      )}
-      {/* A counter at the foot of the page, the way a library keeps a
-          visitors' book. Shown to everyone, signed in or not, and it says
-          only how many visits there have been — never who, never what they
-          read. Hidden until the count answers, so the page never flashes a
-          zero that only means "not loaded yet". */}
-      {siteVisits && siteVisits.visits > 0 && (
-        <div className="site-foot">
-          <span className="n">{siteVisits.visits.toLocaleString()}</span>
-          {" visit" + (siteVisits.visits === 1 ? "" : "s")}
-          {siteVisits.since && (
-            <span className="since">
-              {" since " + new Date(siteVisits.since)
-                .toLocaleDateString(undefined, { month: "long", year: "numeric" })}
-            </span>
-          )}
-        </div>
       )}
     </>
   );
