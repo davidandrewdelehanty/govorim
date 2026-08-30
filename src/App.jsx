@@ -591,6 +591,10 @@ function fmtClock(sec) {
 }
 
 function ChapterVideo(props) {
+  // props.ctrl, when given, is a ref the page can drive the player through —
+  // the jump-here buttons in the text seek with it. Filled when the player is
+  // ready, cleared when it is torn down, so a stale button can never seek a
+  // player that no longer exists.
   var id = props.id, start = props.start || 0, end = props.end || 0;
   var host = useRef(null), player = useRef(null), held = useRef(false);
   var [ready, setReady]   = useState(false);
@@ -641,6 +645,15 @@ function ChapterVideo(props) {
               setTotal(d);
               setPos(start);
               setReady(true);
+              if (props.ctrl) props.ctrl.current = {
+                seekAbs: function(sec) {
+                  try {
+                    player.current.seekTo(sec, true);
+                    player.current.playVideo();
+                    setPos(sec);
+                  } catch (x) {}
+                }
+              };
             },
             onStateChange: function(e) {
               if (dead) return;
@@ -659,6 +672,7 @@ function ChapterVideo(props) {
     return function() {
       dead = true;
       if (tick) clearInterval(tick);
+      if (props.ctrl) props.ctrl.current = null;
       try { player.current && player.current.destroy && player.current.destroy(); } catch (e) {}
       player.current = null;
       if (node) node.innerHTML = "";
@@ -3070,6 +3084,13 @@ export default function App() {
   var [bibleEn, setBibleEn] = useState(null);
   // Dual-language prose (bookMeta.parallelEn): chapter's paragraph-index → English map.
   var [proseEn, setProseEn] = useState(null);
+  // Paragraph-level times into the chapter's recording, produced offline from
+  // the video's transcript (tools/para_sync.py). Keyed by the same paragraph
+  // index as the English (entry.chIdx), fetched by convention from
+  // /books/audio-sync/<book>/<chapter>.json — a 404 simply means no jump
+  // buttons for this chapter, so books opt in by having the files.
+  var [paraSync, setParaSync] = useState(null);
+  var ytCtrlRef = useRef(null);
   // ── Stress marks (ударения) ────────────────────────────────────────────
   // stressMap: { lowercaseWord: index-of-stressed-vowel } for THIS book,
   // built offline by tools/gen_stress_maps.py from the OpenRussian
@@ -3868,6 +3889,20 @@ export default function App() {
       .catch(function() {});
     return function() { cancelled = true; };
   }, [bookMeta && bookMeta.audiobook, cidx]);
+
+  // Fetch this chapter's paragraph->seconds map, when the book ships one.
+  useEffect(function() {
+    setParaSync(null);
+    if (!(curChapter && curChapter.youtubeId && bookMeta && bookMeta.filename)) return;
+    var base = String(bookMeta.filename).split("/").pop().replace(/\.[^.]+$/, "");
+    var nn = String(cidx); if (nn.length < 2) nn = "0" + nn;
+    var cancelled = false;
+    fetch("/books/audio-sync/" + base + "/" + nn + ".json")
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(m){ if (!cancelled && m && typeof m === "object") setParaSync(m); })
+      .catch(function(){});
+    return function(){ cancelled = true; };
+  }, [bookMeta && bookMeta.filename, cidx, curChapter && curChapter.youtubeId]);
 
   // Dual-language Bible: load the English (WEB) verses for the current chapter,
   // keyed by the same book-chapter as the audio so they line up 1:1 with the
@@ -6481,6 +6516,22 @@ export default function App() {
           proseEnLine = proseEn[String(entry.chIdx)] || null;
         }
 
+        // The jump-here control: this paragraph's moment in the recording,
+        // when the chapter ships a sync map and the player is up to be driven.
+        var jumpSec = (paraSync && curChapter && curChapter.youtubeId)
+          ? paraSync[String(entry.chIdx)] : null;
+        var jumpBtn = (typeof jumpSec === "number") ? (
+          <button className="pjump" type="button"
+            title={"Play from here — " + fmtClock(jumpSec - (curChapter.youtubeStart || 0))}
+            aria-label="Play the recording from this paragraph"
+            onClick={function(){
+              if (ytCtrlRef.current) ytCtrlRef.current.seekAbs(jumpSec);
+              else try {
+                document.querySelector(".chvid-dock") &&
+                document.querySelector(".chvid-dock").scrollIntoView({ behavior: "smooth" });
+              } catch (e) {}
+            }}>▶</button>
+        ) : null;
         var isTight = !!(curChapter && curChapter.tightIdx && curChapter.tightIdx.indexOf(entry.chIdx) !== -1);
         var pMargin = {marginBottom: singlePageMode ? "0.35em"
           : (bookMeta && bookMeta.filename && bookMeta.filename.indexOf("негин") !== -1 ? "0.1em"
@@ -6604,7 +6655,7 @@ export default function App() {
           }
           var dualCells = [
             <p key={"ru" + pi} className="dual-ru" lang="ru" id={"sp" + entry.chIdx}
-               style={Object.assign({gridColumn: 1, gridRow: String(pi + 1)}, pMargin)}>{ruBody}</p>
+               style={Object.assign({gridColumn: 1, gridRow: String(pi + 1)}, pMargin)}>{jumpBtn}{ruBody}</p>
           ];
           // Flow mode: the Russian keeps its rows, the English does not get a
           // cell here at all — it is emitted once, below, as a single column.
@@ -6666,7 +6717,7 @@ export default function App() {
             )}
             <p id={"sp" + entry.chIdx} lang="ru" style={pMargin}
                className={bibleChapterMark ? "bible-chapter" : undefined}>
-              {ruBody}
+              {jumpBtn}{ruBody}
               {/* The Russian line already carries its verse number, so the
                   English beneath it does not repeat one. A book-sized page
                   keys its English by paragraph (proseEnLine) rather than by
@@ -7070,6 +7121,15 @@ export default function App() {
         .chvid-scrub .t{flex:none;font-size:12px;color:rgba(42,31,20,.6);white-space:nowrap;
           font-variant-numeric:tabular-nums}
         .chvid-scrub .t .sep{opacity:.4;margin:0 3px}
+        /* Jump-here: a small play mark at the head of a paragraph. Faint until
+           wanted — the text is the page, the transport is a courtesy. */
+        .pjump{float:left;margin:2px 8px 0 -2px;width:22px;height:22px;padding:0;
+          display:inline-flex;align-items:center;justify-content:center;
+          background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.3);border-radius:50%;
+          color:rgba(196,149,90,.9);font-size:9px;line-height:1;cursor:pointer;
+          opacity:.35;transition:opacity .15s,background .15s}
+        .pjump:hover{opacity:1;background:rgba(196,149,90,.25)}
+        @media(hover:none){.pjump{opacity:.55}}
         @media(max-width:560px){.chvid-scrub{gap:6px;padding:6px 8px}
           .chvid-scrub button{min-width:32px;padding:5px 6px;font-size:11px}
           .chvid-scrub .t{font-size:11px}}
@@ -9981,6 +10041,7 @@ export default function App() {
                               id={curChapter.youtubeId}
                               start={curChapter.youtubeStart}
                               end={curChapter.youtubeEnd}
+                              ctrl={ytCtrlRef}
                               title={curChapter.heading || bookMeta.title || "Video"} />
                           </div>
                         )}
