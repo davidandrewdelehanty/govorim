@@ -2399,6 +2399,9 @@ export default function App() {
   var [adminDetail, setAdminDetail]         = useState(null);
   var [adminDetailLoad, setAdminDetailLoad] = useState(false);
   var [adminDetailView, setAdminDetailView] = useState("");
+  var [adminBooks, setAdminBooks]           = useState(null);
+  var [adminBooksLoad, setAdminBooksLoad]   = useState(false);
+  var [adminBookSort, setAdminBookSort]     = useState("opens");
   var [adminTotals, setAdminTotals]         = useState(null);
   var [adminTotalsLoad, setAdminTotalsLoad] = useState(false);
   var [adminLegacyId, setAdminLegacyId]     = useState("");
@@ -4609,6 +4612,19 @@ export default function App() {
     } finally { setAdminLoad(false); }
   };
 
+  // Per-book tallies for the reads-by-book sheet.
+  var loadAdminBooks = async function() {
+    setAdminBooksLoad(true); setAdminErr("");
+    try {
+      var r = await authFetch("/api/admin/users?books=1");
+      var d = await r.json();
+      if (!r.ok) throw new Error(d.error || "Failed to load book stats");
+      setAdminBooks(d);
+    } catch(e) {
+      setAdminErr(e.message || "Failed to load book stats");
+    } finally { setAdminBooksLoad(false); }
+  };
+
   // Every reader at once. Summed server-side across all the account files.
   var loadAdminTotals = async function() {
     setAdminTotalsLoad(true); setAdminErr("");
@@ -5842,8 +5858,8 @@ export default function App() {
       // server — and it records a count and nothing else. Fire-and-forget:
       // this must never delay or fail a book opening.
       try {
-        fetch("/api/user-data?anon=open", { method: "POST", credentials: "same-origin" })
-          .catch(function(){});
+        fetch("/api/user-data?anon=open&b=" + encodeURIComponent(book.filename || ""),
+              { method: "POST", credentials: "same-origin" }).catch(function(){});
       } catch (e) {}
       await loadFile(buf, book.filename, {
         fromPreset: true,
@@ -5981,6 +5997,21 @@ export default function App() {
       if (want !== here) window.history.replaceState({}, "", want);
     } catch (e) {}
   }, [started, mode, cidx]);
+
+  // Count the visit, once per browser per day. Throttled in localStorage
+  // rather than server-side, because a visit is a person arriving and a person
+  // who reloads twice has not arrived twice. A browser that clears storage
+  // counts again the next day, which overstates slightly and cannot be helped
+  // without following people around, which is not worth a number.
+  useEffect(function() {
+    try {
+      var today = new Date().toISOString().slice(0, 10);
+      if (localStorage.getItem("gv_visit_day") === today) return;
+      localStorage.setItem("gv_visit_day", today);
+      fetch("/api/user-data?anon=visit", { method: "POST", credentials: "same-origin" })
+        .catch(function(){});
+    } catch (e) {}
+  }, []);
 
   // Fetch the grammar curriculum once on mount. The file lives in /public/grammar/
   // so it's served as a static asset; edits to the JSON take effect immediately
@@ -7619,6 +7650,25 @@ export default function App() {
           word-break:break-all;text-align:right;max-width:60%}
         .admd-sechdr{font-size:11px;letter-spacing:2px;text-transform:uppercase;
           color:rgba(42,31,20,.5);margin-top:4px}
+        /* Reads-by-book: a spreadsheet, so it reads like one — tight rows,
+           numbers right-aligned and tabular, headers that sort on click. */
+        .admd-sheetwrap{max-height:52vh;overflow:auto;border:1px solid rgba(42,31,20,.12);border-radius:10px}
+        .admd-sheet{width:100%;border-collapse:collapse;font-size:13px}
+        .admd-sheet thead th{position:sticky;top:0;background:#f3ede2;text-align:left;
+          padding:8px 10px;font-weight:600;font-size:11px;letter-spacing:.5px;text-transform:uppercase;
+          color:rgba(42,31,20,.6);cursor:pointer;white-space:nowrap;border-bottom:1px solid rgba(42,31,20,.14)}
+        .admd-sheet thead th:hover{color:#000}
+        .admd-sheet thead th.on{color:#000;box-shadow:inset 0 -2px 0 rgba(196,149,90,.7)}
+        .admd-sheet td{padding:6px 10px;border-bottom:1px solid rgba(42,31,20,.06);vertical-align:top}
+        .admd-sheet tr:nth-child(even) td{background:rgba(42,31,20,.02)}
+        .admd-sheet .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+        .admd-sheet .dim{color:rgba(42,31,20,.55)}
+        .admd-sheet tr.zero td{color:rgba(42,31,20,.42)}
+        /* Fourteen days of visits, so a number has a shape behind it. */
+        .admd-trend{display:flex;align-items:flex-end;gap:4px;height:60px;padding:4px 2px}
+        .admd-bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px}
+        .admd-bar>div{width:100%;background:rgba(196,149,90,.55);border-radius:2px 2px 0 0}
+        .admd-bar>span{font-size:9px;color:rgba(42,31,20,.45);font-variant-numeric:tabular-nums}
         .adm-today{cursor:pointer}
         .adm-today:hover{background:rgba(196,149,90,.08)}
         .adm-today .adm-name{font-family:'Playfair Display',serif}
@@ -7776,9 +7826,28 @@ export default function App() {
                     {cell("Logins today",
                       td ? td.logins : "—",
                       "sign-ins recorded since midnight UTC")}
+                    {cell("Visits today",
+                      td ? td.visits : "—",
+                      T && T.visits
+                        ? T.visits.toLocaleString() + " since counting began"
+                        : "one per browser per day, not per page load")}
                   </>
                 );
               })()}
+              {!adminLoad && (
+                <div className="adm-row adm-today"
+                  onClick={function(){ if (!adminBooks) loadAdminBooks(); setAdminDetail({ __books: true }); }}>
+                  <div className="adm-info">
+                    <div className="adm-name">Total reads by book</div>
+                    <div className="adm-email">every title, ranked by times opened</div>
+                  </div>
+                  <div className="adm-today-n">
+                    {adminBooksLoad ? "…" : (adminBooks
+                      ? Object.keys(adminBooks.opens || {}).length
+                      : "▸")}
+                  </div>
+                </div>
+              )}
               {/* All readers, before the individual rows: the site's own totals,
                   which is the question you ask before you ask about anyone. */}
               {!adminLoad && (
@@ -7863,7 +7932,9 @@ export default function App() {
           <div className="adm-modal" style={{maxWidth:640}}>
             <div className="adm-head">
               <div className="adm-title" style={{fontSize:20,overflow:"hidden",textOverflow:"ellipsis"}}>
-                {adminDetail.__totals ? "All readers" : adminDetail.email}
+                {adminDetail.__totals ? "All readers"
+                  : adminDetail.__books ? "Reads by book"
+                  : adminDetail.email}
               </div>
               <button className="adm-x" onClick={function(){ setAdminDetail(null); setAdminDetailView(""); }}>×</button>
             </div>
@@ -7872,6 +7943,103 @@ export default function App() {
                 var d = adminDetail;
                 var when = function(t){ return t ? new Date(t).toLocaleDateString() : "—"; };
                 var whenFull = function(t){ return t ? new Date(t).toLocaleString() : "—"; };
+                if (d.__books) {
+                  if (!adminBooks) return <div className="adm-empty">{adminBooksLoad ? "Counting…" : "No book stats yet."}</div>;
+                  // Every book in the library, not only the opened ones: a
+                  // title nobody has picked up is the most interesting row on
+                  // the sheet, and it is invisible if zero rows are omitted.
+                  var opens = adminBooks.opens || {}, readersBy = adminBooks.readers || {};
+                  var rows = presetBooks.map(function(b){
+                    return {
+                      title: b.title || b.filename,
+                      author: b.author || "",
+                      category: b.category || "",
+                      opens: opens[b.filename] || 0,
+                      readers: (readersBy[b.filename] || {}).readers || 0,
+                    };
+                  });
+                  // Anything counted that is no longer in the catalogue still
+                  // happened, so it is shown rather than quietly dropped.
+                  Object.keys(opens).forEach(function(fn){
+                    if (!presetBooks.some(function(b){ return b.filename === fn; })) {
+                      rows.push({ title: fn, author: "", category: "(no longer in the library)",
+                                  opens: opens[fn], readers: 0 });
+                    }
+                  });
+                  var sortKey = adminBookSort;
+                  rows.sort(function(a, b){
+                    if (sortKey === "title")  return String(a.title).localeCompare(String(b.title), "ru");
+                    if (sortKey === "author") return String(a.author).localeCompare(String(b.author), "ru")
+                                                  || String(a.title).localeCompare(String(b.title), "ru");
+                    if (sortKey === "readers") return b.readers - a.readers || b.opens - a.opens;
+                    return b.opens - a.opens || String(a.title).localeCompare(String(b.title), "ru");
+                  });
+                  var totalOpens = rows.reduce(function(n, r){ return n + r.opens; }, 0);
+                  var hdr = function(key, label, cls){
+                    return (
+                      <th className={(cls || "") + (sortKey === key ? " on" : "")}
+                        onClick={function(){ setAdminBookSort(key); }}>{label}</th>
+                    );
+                  };
+                  var csv = function(){
+                    var out = ["Title\tAuthor\tCategory\tTimes opened\tReaders in progress"];
+                    rows.forEach(function(r){
+                      out.push([r.title, r.author, r.category, r.opens, r.readers].join("\t"));
+                    });
+                    var blob = new Blob([out.join("\n")], { type: "text/tab-separated-values" });
+                    var a = document.createElement("a");
+                    a.href = URL.createObjectURL(blob);
+                    a.download = "reads-by-book.tsv";
+                    a.click();
+                    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+                  };
+                  return (
+                    <>
+                      <div style={{display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"}}>
+                        <span className="admd-s">
+                          {rows.length} titles · {totalOpens} opens counted
+                          {adminBooks.since ? " since " + when(adminBooks.since) : ""}
+                        </span>
+                        <span style={{flex:1}} />
+                        <button className="adm-btn" onClick={csv}>Download .tsv</button>
+                        <button className="adm-btn" disabled={adminBooksLoad} onClick={loadAdminBooks}>Refresh</button>
+                      </div>
+                      <div className="admd-sheetwrap">
+                        <table className="admd-sheet">
+                          <thead>
+                            <tr>
+                              <th className="num">#</th>
+                              {hdr("title", "Book")}
+                              {hdr("author", "Author")}
+                              {hdr("opens", "Opened", "num")}
+                              {hdr("readers", "Readers", "num")}
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {rows.map(function(r, i){
+                              return (
+                                <tr key={i} className={r.opens ? "" : "zero"}>
+                                  <td className="num">{i + 1}</td>
+                                  <td>{r.title}</td>
+                                  <td className="dim">{r.author}</td>
+                                  <td className="num">{r.opens}</td>
+                                  <td className="num dim">{r.readers || ""}</td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
+                      <div className="admd-s" style={{lineHeight:1.5}}>
+                        <b>Opened</b> counts book openings since the tally began — every
+                        reader, signed in or not, one per opening. <b>Readers</b> is how many
+                        accounts hold a saved position in that book right now, which answers a
+                        different question and is usually much smaller. A zero in Opened means
+                        nobody has opened it since counting started, not that nobody ever has.
+                      </div>
+                    </>
+                  );
+                }
                 if (d.__totals) {
                   var T = adminTotals;
                   if (!T) return <div className="adm-empty">{adminTotalsLoad ? "Counting…" : "No totals yet."}</div>;
@@ -7881,6 +8049,31 @@ export default function App() {
                         <div><span className="k">Accounts</span><span className="v">{T.accounts}</span></div>
                         <div><span className="k">Accounts with reading recorded</span><span className="v">{T.readersWithProgress}</span></div>
                       </div>
+                      <div className="admd-sechdr">Site</div>
+                      <div className="admd-stats">
+                        <div className="admd-stat still">
+                          <span className="n">{T.visitsSince ? T.visits : <span className="unrec">—</span>}</span>
+                          <span className="l">visits all time</span>
+                        </div>
+                        <div className="admd-stat still">
+                          <span className="n">{T.today ? T.today.visits : 0}</span>
+                          <span className="l">visits today</span>
+                        </div>
+                      </div>
+                      {T.recent && T.recent.length > 1 && (
+                        <div className="admd-trend">
+                          {T.recent.map(function(r){
+                            var top = Math.max.apply(null, T.recent.map(function(x){ return x.visits; }).concat([1]));
+                            return (
+                              <div key={r.date} className="admd-bar"
+                                title={r.date + " — " + r.visits + " visits, " + r.opens + " opens, " + r.logins + " logins"}>
+                                <div style={{height: Math.max(2, Math.round((r.visits / top) * 40)) + "px"}} />
+                                <span>{r.date.slice(8)}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
                       <div className="admd-sechdr">Today · {T.today && T.today.date}</div>
                       <div className="admd-stats">
                         <div className="admd-stat still">

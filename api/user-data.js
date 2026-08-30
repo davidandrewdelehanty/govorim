@@ -90,11 +90,69 @@ export default async function handler(req, res) {
   // signed-out book opens rather than as readers.
   if (req.query && req.query.anon) {
     if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
+    // A visit, as against a book opening. Fired once per browser per day by
+    // the client, so this counts people arriving rather than pages rendered —
+    // a number that goes up when someone comes back tomorrow, not when they
+    // click twice. Stores a running total and a per-day figure, nothing else.
+    if (req.query.anon === "visit") {
+      try {
+        const who = currentUser(req);
+        await bumpDaily("visits", 1);
+        if (!who) await bumpDaily("anonVisits", 1);
+        const key = `${PREFIX}/_stats/site.json`;
+        let cur = null;
+        try {
+          const resp = await s3.send(new GetObjectCommand({ Bucket: BUCKET, Key: key }));
+          cur = JSON.parse(await resp.Body.transformToString());
+        } catch (e) {
+          if (!(e.name === "NoSuchKey" || e.$metadata?.httpStatusCode === 404)) throw e;
+        }
+        await s3.send(new PutObjectCommand({
+          Bucket: BUCKET, Key: key,
+          Body: JSON.stringify({
+            visits: ((cur && cur.visits) || 0) + 1,
+            since: (cur && cur.since) || Date.now(),
+          }),
+          ContentType: "application/json",
+        }));
+        return res.status(200).json({ ok: true });
+      } catch (e) {
+        return res.status(200).json({ ok: false });
+      }
+    }
     try {
       // Signed in or not decides which tallies this open belongs to. Read
       // rather than required: an unauthenticated open is the whole point.
       const who = currentUser(req);
       await bumpDaily("opens", 1);
+      // Which book, so the panel can rank them. A filename, not a reader —
+      // this counter says "Дубровский was opened 41 times", never who by.
+      // Sanitised and capped: it becomes a key in a JSON file, and the value
+      // arrives from the open internet.
+      const raw = String((req.query && req.query.b) || "");
+      const bookKey = raw.replace(/[^\w./\- ]+/g, "").slice(0, 160);
+      if (bookKey) {
+        try {
+          const bk = `${PREFIX}/_stats/books.json`;
+          let books = null;
+          try {
+            const r2 = await s3.send(new GetObjectCommand({ Bucket: BUCKET, Key: bk }));
+            books = JSON.parse(await r2.Body.transformToString());
+          } catch (e) {
+            if (!(e.name === "NoSuchKey" || e.$metadata?.httpStatusCode === 404)) throw e;
+          }
+          books = (books && typeof books === "object") ? books : {};
+          // A cap on distinct keys, so a bad actor posting junk filenames
+          // cannot grow this file without bound. Known books keep counting.
+          if (books[bookKey] !== undefined || Object.keys(books).length < 400) {
+            books[bookKey] = (books[bookKey] || 0) + 1;
+            await s3.send(new PutObjectCommand({
+              Bucket: BUCKET, Key: bk,
+              Body: JSON.stringify(books), ContentType: "application/json",
+            }));
+          }
+        } catch (e) { /* the tally must not break the opening */ }
+      }
       if (who) {
         // A thirty-day cookie hides how recently an account was really used.
         // Opening a book is a use; this records it, at most once a day.
