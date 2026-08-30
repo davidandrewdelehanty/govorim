@@ -659,7 +659,21 @@ function ChapterVideo(props) {
               if (dead) return;
               setPlay(e.data === 1);
             },
-            onError: function(){ if (!dead) plain(); }
+            onError: function(e) {
+              if (dead) return;
+              // Tell the site a recording refused to play. The server mails
+              // the librarian once per video, ever — see the embederr branch
+              // in api/user-data.js — so this can fire freely.
+              try {
+                fetch("/api/user-data?anon=embederr", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ v: id, code: (e && e.data) || 0,
+                    where: props.title || "" }),
+                }).catch(function(){});
+              } catch (x) {}
+              plain();
+            }
           }
         });
       } catch (e) { plain(); }

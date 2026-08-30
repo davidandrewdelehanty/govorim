@@ -22,6 +22,8 @@
 // Accounts made under the old Clerk setup have their data under the old
 // Clerk user id; /api/admin/import-userdata copies such a prefix across.
 import { siteName } from "../lib/site.js";
+import fs from "node:fs";
+import path from "node:path";
 import {
   S3Client, GetObjectCommand, PutObjectCommand
 } from "@aws-sdk/client-s3";
@@ -105,6 +107,81 @@ export default async function handler(req, res) {
       }
     }
     if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
+    // ── A video that would not play ─────────────────────────────────────
+    // The chapter player reports when YouTube refuses it (embedding turned
+    // off, video deleted or private), so a dead recording is known the first
+    // time a reader hits it rather than whenever someone thinks to sweep.
+    //
+    // This endpoint cannot require a session — signed-out readers hit dead
+    // videos too — so it is built to be unspammable: the id must be a video
+    // actually in the catalogue (checked against the manifest), and each id
+    // mails at most once, ever, via a dedupe file. An attacker can at worst
+    // send one email per genuinely catalogued video, which is the email you
+    // wanted anyway.
+    if (req.query.anon === "embederr") {
+      try {
+        let body = req.body;
+        if (typeof body === "string") { try { body = JSON.parse(body); } catch { body = {}; } }
+        body = body || {};
+        const v = String(body.v || "").trim();
+        const code = parseInt(body.code, 10) || 0;
+        const where = String(body.where || "").slice(0, 200);
+        if (!/^[A-Za-z0-9_-]{11}$/.test(v)) return res.status(200).json({ ok: false });
+        // Only ids the catalogue actually carries.
+        let manifest = [];
+        try {
+          manifest = JSON.parse(fs.readFileSync(
+            path.join(process.cwd(), "private", "books", "index.json"), "utf8"));
+        } catch (e) {}
+        const known = new Set();
+        for (const b of manifest) {
+          for (const k of Object.keys(b.videos || {})) {
+            const y = String((b.videos[k] || {}).youtube || "");
+            if (y) known.add(y);
+          }
+          for (const u of (b.songs || [])) {
+            const m = String(u || "").match(/([A-Za-z0-9_-]{11})/);
+            if (m) known.add(m[1]);
+          }
+        }
+        if (!known.has(v)) return res.status(200).json({ ok: false });
+        // Once per video, ever.
+        const key = `${PREFIX}/_stats/embed-errors.json`;
+        let seen = null;
+        try {
+          const r2 = await s3.send(new GetObjectCommand({ Bucket: BUCKET, Key: key }));
+          seen = JSON.parse(await r2.Body.transformToString());
+        } catch (e) {
+          if (!(e.name === "NoSuchKey" || e.$metadata?.httpStatusCode === 404)) throw e;
+        }
+        seen = (seen && typeof seen === "object") ? seen : {};
+        if (seen[v]) return res.status(200).json({ ok: true, dedup: true });
+        seen[v] = { at: Date.now(), code, where };
+        await s3.send(new PutObjectCommand({
+          Bucket: BUCKET, Key: key,
+          Body: JSON.stringify(seen, null, 2), ContentType: "application/json",
+        }));
+        const to = process.env.FORUM_NOTIFY_EMAIL || process.env.ADMIN_EMAIL;
+        if (to) {
+          const meaning = { 101: "embedding disabled by the uploader",
+                            150: "embedding disabled by the uploader",
+                            100: "video removed or private",
+                            2: "malformed video id", 5: "player error" }[code] || ("error code " + code);
+          await sendEmail({
+            to,
+            subject: siteName() + ": a recording will not play — " + v,
+            html: "<p>A reader hit a video that refused to play.</p>" +
+              "<p><b>Video:</b> <a href=\"https://www.youtube.com/watch?v=" + v + "\">" + v + "</a><br>" +
+              "<b>Why:</b> " + meaning + " (code " + code + ")<br>" +
+              "<b>Where:</b> " + (where || "unknown") + "</p>" +
+              "<p>This mails once per video. The row in _stats/embed-errors.json remembers it was sent.</p>",
+          });
+        }
+        return res.status(200).json({ ok: true });
+      } catch (e) {
+        return res.status(200).json({ ok: false });
+      }
+    }
     // A visit, as against a book opening. Fired once per browser per day by
     // the client, so this counts people arriving rather than pages rendered —
     // a number that goes up when someone comes back tomorrow, not when they
