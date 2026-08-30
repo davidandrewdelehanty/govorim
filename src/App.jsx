@@ -2914,6 +2914,8 @@ export default function App() {
   // for anyone who would rather scroll than choose. A search overrides all
   // three, because searching is asking about the whole library by definition.
   var [libCat, setLibCat] = useState("");
+  // Set when the reader has drilled into one author from the Authors shelf.
+  var [libAuthor, setLibAuthor] = useState("");
   // Tracks which book is currently being loaded (after click). Shows a spinner
   // overlay on the card and disables further clicks during the fetch+parse cycle
   // so the user gets clear feedback that the click registered.
@@ -6856,6 +6858,14 @@ export default function App() {
         .lib-cat-chip.on{background:rgba(196,149,90,.18);border-color:rgba(196,149,90,.6);color:#000;font-weight:600}
         .lib-cat-chip .n{font-size:11px;opacity:.5;font-variant-numeric:tabular-nums}
         .lib-cat-chip.all{border-style:dashed}
+        /* The Authors shelf. Names, not cards: a name is short and there are
+           thirty of them, so they tile far tighter than book cards do. */
+        .lib-authors{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+        .lib-author{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:10px;
+          background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.12);cursor:pointer;
+          font-family:'Crimson Pro',serif;font-size:15px;color:#000;line-height:1;transition:all .15s}
+        .lib-author:hover{background:rgba(196,149,90,.14);border-color:rgba(196,149,90,.4);transform:translateY(-1px)}
+        .lib-author .n{font-size:11px;color:rgba(42,31,20,.45);font-variant-numeric:tabular-nums}
         .lib-cat-hint{padding:34px 16px;text-align:center;color:rgba(42,31,20,.45);font-style:italic;font-size:14px}
         .lib-section{margin-bottom:22px}
         .lib-section-hdr{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(42,31,20,.55);margin-bottom:10px;padding-left:4px;font-weight:600}
@@ -8386,11 +8396,29 @@ export default function App() {
                       </div>
                       {(function() {
                         var q = bookSearch.toLowerCase().trim();
-                        var matches = function(book) {
+                        var matchesBase = function(book) {
                           // The finished filter rides along with the search so every
                           // consumer of this predicate — the grid, its category
                           // counts, and the uploads row — agrees on what is visible.
                           if (hideFinished && isFinished(book)) return false;
+                          if (!q) return true;
+                          var hay0 = ((book.title || "") + " " + (book.author || "") + " " + (book.filename || "")).toLowerCase();
+                          return hay0.indexOf(q) !== -1;
+                        };
+                        // Author counts are taken before the author filter is applied,
+                        // or every author but the open one would read zero.
+                        var authorCounts = {};
+                        presetBooks.forEach(function(book){
+                          if (!matchesBase(book)) return;
+                          var a = (book.author || "").trim();
+                          if (a) authorCounts[a] = (authorCounts[a] || 0) + 1;
+                        });
+                        var authorList = Object.keys(authorCounts).sort(function(a, b){
+                          return a.localeCompare(b, "ru");
+                        });
+                        var matches = function(book) {
+                          if (!matchesBase(book)) return false;
+                          if (libAuthor && !q && (book.author || "").trim() !== libAuthor) return false;
                           if (!q) return true;
                           var hay = ((book.title || "") + " " + (book.author || "") + " " + (book.filename || "")).toLowerCase();
                           return hay.indexOf(q) !== -1;
@@ -8439,8 +8467,14 @@ export default function App() {
                         // A search is a question about the whole library, so it shows
                         // every match regardless of which shelf is open.
                         var searching = !!q;
-                        var openCat = searching ? "__all__" : libCat;
-                        var shelvesToRender = (openCat === "__all__") ? shelves
+                        // Three ways to be looking at books: searching, inside one
+                        // author, or on a shelf. The first two show every category
+                        // they touch; the third shows one.
+                        var authorView = !searching && !!libAuthor;
+                        var inAuthors  = !searching && !libAuthor && libCat === "__authors__";
+                        var openCat = (searching || authorView) ? "__all__" : libCat;
+                        var shelvesToRender = inAuthors ? []
+                          : (openCat === "__all__") ? shelves
                           : (openCat && buckets[openCat] && buckets[openCat].length) ? [openCat] : [];
                         var chipLabel = function(c) {
                           if (c === "Speeches by Soviet Leaders") return "🗣 Soviet Speeches";
@@ -8458,7 +8492,29 @@ export default function App() {
                                 a choice. "Entire library" is still one click away for anyone
                                 who would rather scroll. */}
                             <div className="lib-cats">
-                              {shelves.map(function(c){
+                              {authorView && (
+                                <>
+                                  <button type="button" className="lib-cat-chip"
+                                    onClick={function(){ setLibAuthor(""); setLibCat("__authors__"); }}>
+                                    <span>← Authors</span>
+                                  </button>
+                                  <button type="button" className="lib-cat-chip on"
+                                    onClick={function(){ setLibAuthor(""); setLibCat("__authors__"); }}>
+                                    <span>✍ {libAuthor}</span>
+                                    <span className="n">{authorCounts[libAuthor] || 0}</span>
+                                  </button>
+                                </>
+                              )}
+                              {!authorView && (
+                                <button type="button"
+                                  className={"lib-cat-chip" + (inAuthors ? " on" : "")}
+                                  aria-pressed={inAuthors}
+                                  onClick={function(){ setLibCat(libCat === "__authors__" ? "" : "__authors__"); }}>
+                                  <span>✍ Authors</span>
+                                  <span className="n">{authorList.length}</span>
+                                </button>
+                              )}
+                              {!authorView && shelves.map(function(c){
                                 return (
                                   <button key={c} type="button"
                                     className={"lib-cat-chip" + (!searching && libCat === c ? " on" : "")}
@@ -8469,14 +8525,34 @@ export default function App() {
                                   </button>
                                 );
                               })}
-                              <button type="button"
-                                className={"lib-cat-chip all" + (!searching && libCat === "__all__" ? " on" : "")}
-                                aria-pressed={!searching && libCat === "__all__"}
-                                onClick={function(){ setLibCat(libCat === "__all__" ? "" : "__all__"); }}>
-                                <span>Entire library</span>
-                                <span className="n">{presetCount}</span>
-                              </button>
+                              {!authorView && (
+                                <button type="button"
+                                  className={"lib-cat-chip all" + (!searching && libCat === "__all__" ? " on" : "")}
+                                  aria-pressed={!searching && libCat === "__all__"}
+                                  onClick={function(){ setLibCat(libCat === "__all__" ? "" : "__all__"); }}>
+                                  <span>Entire library</span>
+                                  <span className="n">{presetCount}</span>
+                                </button>
+                              )}
                             </div>
+                            {/* The Authors shelf: every name in the library once,
+                                with how much of them is on it. */}
+                            {inAuthors && (
+                              <div className="lib-authors">
+                                {authorList.map(function(a){
+                                  return (
+                                    <button key={a} type="button" className="lib-author"
+                                      onClick={function(){ setLibAuthor(a); }}>
+                                      <span className="nm">{a}</span>
+                                      <span className="n">{authorCounts[a]}</span>
+                                    </button>
+                                  );
+                                })}
+                                {!authorList.length && (
+                                  <div className="lib-cat-hint">No authors to show.</div>
+                                )}
+                              </div>
+                            )}
                             {/* My Uploads section — only when there are uploaded books matching the filter */}
                             {filteredUploads.length > 0 && (
                               <div className="lib-section">
@@ -8514,7 +8590,7 @@ export default function App() {
                               </div>
                             )}
                             {/* Nothing chosen yet: the chips above are the page. */}
-                            {!searching && !shelvesToRender.length && (
+                            {!searching && !inAuthors && !shelvesToRender.length && (
                               <div className="lib-cat-hint">Pick a shelf above, or open the entire library.</div>
                             )}
                             {/* Preset library, grouped by category, then by audiobook availability */}
