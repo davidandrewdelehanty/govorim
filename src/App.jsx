@@ -484,6 +484,45 @@ var BIBLE_BOOK_NO = {
   "матфея":"40","от матфея":"40","марка":"41","от марка":"41","от марк":"41",
   "луки":"42","от луки":"42","иоанна":"43","от иоанна":"43",
 };
+// Which testament a Russian Bible book belongs to. Used only to build the nav
+// drawer: a flat Bible whose chapters are titled "Бытие 1" has nothing in the
+// heading to group by, so the tiers are derived here instead of being written
+// into the text. Keys are lowercase; the canon is listed in full so that
+// adding a book to the FB2 needs no code change.
+var BIBLE_TESTAMENT = (function(){
+  var ot = ("бытие|исход|левит|числа|второзаконие|иисуса навина|навина|судей|руфь|"
+    + "1-я царств|2-я царств|3-я царств|4-я царств|1-я паралипоменон|2-я паралипоменон|"
+    + "ездры|неемии|есфирь|иов|иова|псалтирь|псалом|притчи|екклесиаст|песнь песней|"
+    + "исаия|исаии|иеремия|иеремии|плач иеремии|иезекииль|иезекииля|даниил|даниила|"
+    + "осия|осии|иоиль|иоиля|амос|амоса|авдий|авдия|иона|ионы|михей|михея|наум|наума|"
+    + "аввакум|аввакума|софония|софонии|аггей|аггея|захария|захарии|малахия|малахии|"
+    + "товит|товита|иудифь|премудрости соломона|сирах|сираха|варух|варуха|"
+    + "1-я маккавейская|2-я маккавейская|3-я маккавейская|2-я ездры|3-я ездры|"
+    + "манассии").split("|");
+  var nt = ("матфея|от матфея|марка|от марка|от марк|луки|от луки|иоанна|от иоанна|"
+    + "деяния|иакова|1-е петра|2-е петра|1-е иоанна|2-е иоанна|3-е иоанна|иуды|"
+    + "римлянам|1-е коринфянам|2-е коринфянам|галатам|ефесянам|филиппийцам|колоссянам|"
+    + "1-е фессалоникийцам|2-е фессалоникийцам|1-е тимофею|2-е тимофею|титу|филимону|"
+    + "евреям|откровение").split("|");
+  var m = {};
+  ot.forEach(function(k){ m[k] = "Ветхий Завет"; });
+  nt.forEach(function(k){ m[k] = "Новый Завет"; });
+  return m;
+})();
+
+// "Бытие 12" -> ["Ветхий Завет", "Бытие", "Глава 12"], so the generic nav tree
+// (which groups on " — " segments) nests Testament > Book > Chapter for a Bible
+// whose headings carry no tiers of their own. Null for anything unrecognised,
+// which leaves that chapter to the ordinary flat rendering.
+function bibleNavSegs(h) {
+  var m = String(h || "").trim().match(/^(.+?)\s+(\d{1,3})$/);
+  if (!m) return null;
+  var book = m[1].replace(/\s+/g, " ").trim();
+  var t = BIBLE_TESTAMENT[book.toLowerCase()];
+  if (!t) return null;
+  return [t, book, "Глава " + m[2]];
+}
+
 // "Бытие 12" -> "01-12"; null when the heading is not a Bible chapter.
 function bibleKeyFromHeading(h) {
   var m = String(h || "").trim().match(/^(.+?)\s+(\d{1,3})$/);
@@ -9070,8 +9109,15 @@ export default function App() {
                       // 2 = Part>Chapter like Anna Karenina, 3 = Testament>Book>Chapter for the Bible).
                       var SEP = " — ";
                       var maxDepth = 1;
+                      // A Bible with flat "Бытие 1" headings has no tiers to
+                      // split on, so they are derived from the book name.
+                      var isBibleNav = !!(bookMeta && bookMeta.isBible);
+                      var segsOf = function(heading){
+                        if (isBibleNav) { var b = bibleNavSegs(heading); if (b) return b; }
+                        return String(heading || "").split(/\s+[\u2013—]\s+/);
+                      };
                       var navItems = chapters.map(function(ch, i){
-                        var segs = (ch.heading || "").split(/\s+[\u2013—]\s+/);
+                        var segs = segsOf(ch.heading);
                         if (segs.length > maxDepth) maxDepth = segs.length;
                         return { idx: i, segs: segs, ch: ch };
                       });
@@ -9098,7 +9144,7 @@ export default function App() {
                         }
                         node.chapters.push({ idx: it.idx, name: it.segs[it.segs.length - 1], ch: it.ch });
                       });
-                      var curSegs = ((chapters[cidx] && chapters[cidx].heading) || "").split(/\s+[\u2013—]\s+/);
+                      var curSegs = segsOf(chapters[cidx] && chapters[cidx].heading);
                       var curKeys = {}; var ckp = "";
                       for (var cki = 0; cki < curSegs.length - 1; cki++){ ckp = ckp ? ckp + SEP + curSegs[cki] : curSegs[cki]; curKeys[ckp] = true; }
                       var navOpen = function(key){ return (expandedNav && (key in expandedNav)) ? expandedNav[key] : !!curKeys[key]; };
