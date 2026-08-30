@@ -2262,7 +2262,14 @@ function SupportLinks() {
       <a className="discord-btn" href="https://discord.gg/nePcT58a37"
          target="_blank" rel="noopener noreferrer"
          title="Самовар Russian Literature on Discord — opens in a new tab">
-        Join the Самовар Discord
+        <span className="row">
+          {/* Discord's own mark, drawn inline so the button needs no network
+              request and no image file to render. */}
+          <svg className="dico" viewBox="0 0 127.14 96.36" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+          </svg>
+          <span>Join the Самовар Discord</span>
+        </span>
         <span className="sub">talk about the books, ask for titles, report anything broken</span>
       </a>
     </div>
@@ -7301,13 +7308,23 @@ export default function App() {
         .donate-btn .sub{display:block;font-size:12.5px;font-style:italic;
              color:rgba(42,31,20,.5);margin-top:2px}
         .support{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%}
+        /* Discord's own button, near enough: their blurple, their mark, their
+           weight — so it reads as the thing it opens rather than as one more
+           link on the page. The subtitle stays in the site's voice. */
         .discord-btn{display:inline-block;text-align:center;text-decoration:none;
-             background:none;border:1px solid rgba(88,101,242,.4);color:rgba(42,31,20,.72);
-             font-family:'Crimson Pro',serif;font-size:14px;line-height:1.45;padding:10px 20px;
-             border-radius:10px;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
-        .discord-btn:hover{background:rgba(88,101,242,.09);border-color:rgba(88,101,242,.75);color:#000}
-        .discord-btn .sub{display:block;font-size:12.5px;font-style:italic;
-             color:rgba(42,31,20,.5);margin-top:2px}
+             background:#5865F2;border:1px solid #5865F2;color:#fff;
+             font-family:'Inter',-apple-system,'Segoe UI',sans-serif;font-size:15px;font-weight:600;
+             line-height:1.35;padding:11px 22px;border-radius:8px;cursor:pointer;
+             box-shadow:0 1px 2px rgba(42,31,20,.12);
+             transition:background .15s,box-shadow .15s,transform .1s}
+        .discord-btn:hover{background:#4752C4;border-color:#4752C4;color:#fff;
+             box-shadow:0 2px 8px rgba(88,101,242,.35)}
+        .discord-btn:active{transform:translateY(1px)}
+        .discord-btn .row{display:flex;align-items:center;justify-content:center;gap:10px}
+        .discord-btn .dico{width:22px;height:auto;flex:none;display:block}
+        .discord-btn .sub{display:block;font-size:12px;font-weight:400;font-style:normal;
+             color:rgba(255,255,255,.78);margin-top:3px;
+             font-family:'Crimson Pro',serif;font-style:italic}
         .tsel{width:100%;max-width:500px;display:flex;flex-direction:column;gap:12px;text-align:left}
         .slbl{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:rgba(42,31,20,.35)}
         select,input[type="text"],textarea{width:100%;background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.16);color:#000;padding:12px 16px;border-radius:10px;font-family:'Crimson Pro',serif;font-size:16px;outline:none;transition:border-color .2s}
