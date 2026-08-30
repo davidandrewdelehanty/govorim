@@ -7297,6 +7297,10 @@ export default function App() {
         .chvid-scrub .t{flex:none;font-size:12px;color:rgba(42,31,20,.6);white-space:nowrap;
           font-variant-numeric:tabular-nums}
         .chvid-scrub .t .sep{opacity:.4;margin:0 3px}
+        .no-audio{max-width:640px;margin:0 0 16px;padding:10px 14px;border-radius:10px;
+          background:rgba(42,31,20,.05);border:1px solid rgba(42,31,20,.14);
+          font-family:'Crimson Pro',serif;font-size:14px;color:rgba(42,31,20,.72)}
+        .no-audio .sub{display:block;font-size:12.5px;color:rgba(42,31,20,.5);margin-top:2px}
         /* Jump-here: a small play mark at the head of a paragraph. Faint until
            wanted — the text is the page, the transport is a courtesy. */
         .pjump{float:left;margin:2px 8px 0 -2px;width:22px;height:22px;padding:0;
@@ -10372,6 +10376,28 @@ export default function App() {
                               title={curChapter.heading || bookMeta.title || "Video"} />
                           </div>
                         )}
+                        {/* A chapter with no recording, in a book that has them
+                            elsewhere. Without this the player simply is not
+                            there and the reader is left wondering whether
+                            something failed to load — Фивейский is missing two
+                            chapters its playlist never recorded, and that is
+                            worth saying rather than leaving as an absence. */}
+                        {(function(){
+                          var ab = bookMeta && bookMeta.audiobook;
+                          var abHere = !!(ab && Array.isArray(ab.chapters) && ab.chapters[cidx]);
+                          if (curChapter.youtubeId || curChapter.hasVideo || abHere) return null;
+                          var bookHasAudio = !!ab || (chapters || []).some(function(c){ return !!c.youtubeId; });
+                          if (!bookHasAudio) return null;
+                          return (
+                            <div className="no-audio">
+                              🔇 No recording for this chapter
+                              <span className="sub">
+                                The reading available for this book doesn’t cover it
+                                {TTS_ENABLED ? " — the synthetic voice below still reads it aloud." : "."}
+                              </span>
+                            </div>
+                          );
+                        })()}
                         {curChapter.heading && (
                           <div className="lch-heading" style={{display:"flex",alignItems:"center",gap:12,flexWrap:"wrap"}}>
                             <span>{curChapter.heading}</span>
