@@ -545,6 +545,165 @@ function ytEmbed(id, start, end) {
   return "https://www.youtube.com/embed/" + id + (q.length ? "?" + q.join("&") : "");
 }
 
+// ── Chapter-scoped player ────────────────────────────────────────────────
+// A chapter is usually a slice of a much longer recording — War and Peace is
+// twelve hours in two files — and the embed's own scrubber spans the whole
+// thing. At that scale one pixel is minutes and the smallest drag lands in a
+// different chapter, which makes rewinding a sentence impossible. The IFrame
+// API is the only way to read and set the playing position from outside the
+// player, so it is loaded here and the bar below is drawn against the
+// chapter's own span instead of the file's.
+//
+// Everything degrades: if the script never loads (offline, blocked), the
+// plain embed is put in its place and behaves exactly as it did before.
+var ytApiWaiters = [];
+var ytApiState = 0;   // 0 untried, 1 loading, 2 ready, 3 failed
+function whenYTApi(cb) {
+  if (typeof window === "undefined") return;
+  if (ytApiState === 3) { cb(false); return; }
+  if ((window.YT && window.YT.Player) || ytApiState === 2) { ytApiState = 2; cb(true); return; }
+  ytApiWaiters.push(cb);
+  if (ytApiState === 1) return;
+  ytApiState = 1;
+  var flush = function(ok) {
+    var list = ytApiWaiters; ytApiWaiters = [];
+    for (var i = 0; i < list.length; i++) { try { list[i](ok); } catch (e) {} }
+  };
+  var prev = window.onYouTubeIframeAPIReady;
+  window.onYouTubeIframeAPIReady = function() {
+    if (typeof prev === "function") { try { prev(); } catch (e) {} }
+    ytApiState = 2; flush(true);
+  };
+  var sc = document.createElement("script");
+  sc.src = "https://www.youtube.com/iframe_api";
+  sc.async = true;
+  sc.onerror = function(){ ytApiState = 3; flush(false); };
+  document.head.appendChild(sc);
+  // A script that neither loads nor errors (a proxy swallowing it) would
+  // otherwise leave the reader with no player at all.
+  setTimeout(function(){ if (ytApiState === 1) { ytApiState = 3; flush(false); } }, 8000);
+}
+
+function fmtClock(sec) {
+  sec = Math.max(0, Math.round(sec || 0));
+  var h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s2 = sec % 60;
+  return (h ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s2 < 10 ? "0" : "") + s2;
+}
+
+function ChapterVideo(props) {
+  var id = props.id, start = props.start || 0, end = props.end || 0;
+  var host = useRef(null), player = useRef(null), held = useRef(false);
+  var [ready, setReady]   = useState(false);
+  var [pos, setPos]       = useState(0);
+  var [playing, setPlay]  = useState(false);
+  var [total, setTotal]   = useState(0);
+  var [drag, setDrag]     = useState(null);
+
+  useEffect(function() {
+    setReady(false); setPos(0); setPlay(false); setTotal(0); setDrag(null);
+    held.current = false;
+    var dead = false, tick = null;
+    var node = host.current;
+    if (!node) return;
+    // React never owns what goes in here — the API replaces the element it is
+    // given, and letting React reconcile a node the player has swapped out is
+    // how you get "node to be removed is not a child" on the next chapter.
+    node.innerHTML = "";
+    var mount = document.createElement("div");
+    node.appendChild(mount);
+    var plain = function() {
+      if (dead) return;
+      node.innerHTML = "";
+      var f = document.createElement("iframe");
+      f.src = ytEmbed(id, start, end);
+      f.title = props.title || "Video";
+      f.allow = "accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      f.setAttribute("allowfullscreen", "");
+      node.appendChild(f);
+    };
+    whenYTApi(function(ok) {
+      if (dead) return;
+      if (!ok) { plain(); return; }
+      try {
+        player.current = new window.YT.Player(mount, {
+          videoId: id,
+          playerVars: (function(){
+            var v = { rel: 0, modestbranding: 1, playsinline: 1 };
+            if (start) v.start = start;
+            if (end)   v.end = end;
+            return v;
+          })(),
+          events: {
+            onReady: function(e) {
+              if (dead) return;
+              var d = 0;
+              try { d = e.target.getDuration() || 0; } catch (x) {}
+              setTotal(d);
+              setPos(start);
+              setReady(true);
+            },
+            onStateChange: function(e) {
+              if (dead) return;
+              setPlay(e.data === 1);
+            },
+            onError: function(){ if (!dead) plain(); }
+          }
+        });
+      } catch (e) { plain(); }
+    });
+    tick = setInterval(function() {
+      var p = player.current;
+      if (!p || held.current || !p.getCurrentTime) return;
+      try { var t = p.getCurrentTime(); if (typeof t === "number") setPos(t); } catch (e) {}
+    }, 250);
+    return function() {
+      dead = true;
+      if (tick) clearInterval(tick);
+      try { player.current && player.current.destroy && player.current.destroy(); } catch (e) {}
+      player.current = null;
+      if (node) node.innerHTML = "";
+    };
+  }, [id, start, end]);
+
+  // The chapter's own clock: zero is where the chapter begins, not where the
+  // recording does.
+  var span = Math.max(1, ((end || total || 0) - start) || 0);
+  var rel  = Math.min(span, Math.max(0, (pos || 0) - start));
+  var shown = (drag === null) ? rel : drag;
+  var seek = function(v) {
+    v = Math.min(span, Math.max(0, v));
+    setDrag(null); held.current = false; setPos(start + v);
+    try { player.current && player.current.seekTo(start + v, true); } catch (e) {}
+  };
+  var toggle = function() {
+    var p = player.current; if (!p) return;
+    try { playing ? p.pauseVideo() : p.playVideo(); } catch (e) {}
+  };
+  return (
+    <>
+      <div className="chvid" ref={host} />
+      {ready && (
+        <div className="chvid-scrub">
+          <button type="button" onClick={toggle} title={playing ? "Pause" : "Play"}
+            aria-label={playing ? "Pause" : "Play"}>{playing ? "❚❚" : "▶"}</button>
+          <button type="button" onClick={function(){ seek(rel - 15); }}
+            title="Back 15 seconds" aria-label="Back 15 seconds">↺15</button>
+          <input type="range" min="0" max={Math.round(span)} step="1" value={Math.round(shown)}
+            aria-label="Position in this chapter"
+            onPointerDown={function(){ held.current = true; }}
+            onChange={function(e){ held.current = true; setDrag(+e.target.value); }}
+            onPointerUp={function(){ if (drag !== null) seek(drag); else held.current = false; }}
+            onKeyUp={function(){ if (drag !== null) seek(drag); }}
+            onBlur={function(){ if (drag !== null) seek(drag); }} />
+          <button type="button" onClick={function(){ seek(rel + 15); }}
+            title="Forward 15 seconds" aria-label="Forward 15 seconds">15↻</button>
+          <span className="t">{fmtClock(shown)}<span className="sep">/</span>{fmtClock(span)}</span>
+        </div>
+      )}
+    </>
+  );
+}
+
 function ytStart(s) {
   var t = String(s || "");
   var m = t.match(/[?&#](?:t|start)=(\d+)h(\d+)m(\d+)s/) ;
@@ -6719,6 +6878,24 @@ export default function App() {
         /* The player rides along at the top of the reading column. Opaque, or
            the text scrolls through it; above the text, or the text scrolls
            over it. */
+        /* The chapter's own transport. The embed's scrubber measures the whole
+           file, which for a twelve-hour recording makes a single chapter a few
+           pixels wide; this one measures the chapter. */
+        .chvid-scrub{display:flex;align-items:center;gap:8px;width:100%;max-width:640px;
+          margin:8px 0 16px;padding:7px 10px;box-sizing:border-box;
+          background:rgba(42,31,20,.05);border:1px solid rgba(42,31,20,.13);border-radius:10px;
+          font-family:'Inter',sans-serif}
+        .chvid-scrub button{flex:none;min-width:38px;padding:5px 8px;font-size:12px;line-height:1.2;
+          background:rgba(255,255,255,.55);border:1px solid rgba(42,31,20,.16);border-radius:7px;
+          color:rgba(42,31,20,.8);cursor:pointer;font-family:'Inter',sans-serif;transition:all .12s}
+        .chvid-scrub button:hover{background:rgba(196,149,90,.18);border-color:rgba(196,149,90,.45);color:#000}
+        .chvid-scrub input[type=range]{flex:1 1 auto;min-width:60px;height:24px;accent-color:#c4955a;cursor:pointer}
+        .chvid-scrub .t{flex:none;font-size:12px;color:rgba(42,31,20,.6);white-space:nowrap;
+          font-variant-numeric:tabular-nums}
+        .chvid-scrub .t .sep{opacity:.4;margin:0 3px}
+        @media(max-width:560px){.chvid-scrub{gap:6px;padding:6px 8px}
+          .chvid-scrub button{min-width:32px;padding:5px 6px;font-size:11px}
+          .chvid-scrub .t{font-size:11px}}
         .chvid-dock{position:sticky;top:0;z-index:6;background:#f5f0e8;
           padding:6px 0 10px;margin-bottom:8px}
         /* The column is padded, and a sticky element parks at the padding box,
@@ -8984,14 +9161,12 @@ export default function App() {
                             audio bar stays away (see the player below). */}
                         {curChapter.youtubeId && !curChapter.merged && (
                           <div className={"chvid-dock" + (vidStuck ? " stuck" : "")}>
-                            <div className="chvid">
-                              <iframe
-                                src={ytEmbed(curChapter.youtubeId, curChapter.youtubeStart, curChapter.youtubeEnd)}
-                                title={curChapter.heading || bookMeta.title || "Video"}
-                                loading="lazy"
-                                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen />
-                            </div>
+                            <ChapterVideo
+                              key={curChapter.youtubeId + ":" + (curChapter.youtubeStart || 0)}
+                              id={curChapter.youtubeId}
+                              start={curChapter.youtubeStart}
+                              end={curChapter.youtubeEnd}
+                              title={curChapter.heading || bookMeta.title || "Video"} />
                           </div>
                         )}
                         {curChapter.heading && (
