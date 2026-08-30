@@ -2949,13 +2949,13 @@ export default function App() {
   // Set, clear and jump for the one-per-book bookmark. Same-chapter jumps
   // scroll directly; cross-chapter jumps set the vocab source-link refs and
   // let that path change chapter, highlight and scroll.
-  var setBookmarkAt = function(off) {
+  var setBookmarkAt = function(off, withAudio) {
     var key = bookKey(bookMeta);
     if (!key) return;
     setBookmarkMap(function(prev) {
       var cur = prev[key];
       var next = Object.assign({}, prev);
-      if (cur && cur.cidx === cidx && cur.off === off) delete next[key];
+      if (withAudio === "remove" || (withAudio === undefined && cur && cur.cidx === cidx && cur.off === off)) delete next[key];
       else {
         var e2 = { cidx: cidx, off: off, at: Date.now(),
           title: bookMeta.title || "", author: bookMeta.author || "",
@@ -2963,17 +2963,33 @@ export default function App() {
         // If a recording is loaded, remember the second too. Coming back then
         // restores both places at once — the paragraph on the page and the
         // moment in the reading.
-        try {
-          if (ytCtrlRef.current && ytCtrlRef.current.now) {
-            var sec = ytCtrlRef.current.now();
-            if (sec > 0) e2.audio = Math.round(sec);
-          }
-        } catch (e3) {}
+        if (withAudio === true) {
+          try {
+            if (ytCtrlRef.current && ytCtrlRef.current.now) {
+              var sec = ytCtrlRef.current.now();
+              if (sec > 0) e2.audio = Math.round(sec);
+            }
+          } catch (e3) {}
+        }
         next[key] = e2;
       }
       return next;
     });
   };
+  // The pin asks rather than assumes: a reader marking a paragraph is not
+  // always listening, and one who is may want the page without the second.
+  var [bmMenu, setBmMenu] = useState(null);   // {x, y, off, here} | null
+  useEffect(function() {
+    if (!bmMenu) return;
+    var close = function(){ setBmMenu(null); };
+    window.addEventListener("mousedown", close);
+    window.addEventListener("scroll", close, true);
+    return function(){
+      window.removeEventListener("mousedown", close);
+      window.removeEventListener("scroll", close, true);
+    };
+  }, [bmMenu]);
+
   var scrollToOffset = function(off) {
     try {
       var nodes = document.querySelectorAll(".lit-body [data-rw-start]");
@@ -6761,7 +6777,12 @@ export default function App() {
                  ? "Bookmark this paragraph and where the recording is now (replaces the old one)"
                  : "Bookmark this paragraph (replaces the old one)")}
             aria-label={bmHere ? "Remove bookmark" : "Bookmark this paragraph"}
-            onClick={function(){ setBookmarkAt(paraOff); }}>🔖</button>
+            onClick={function(e){
+              e.stopPropagation();
+              var r = e.currentTarget.getBoundingClientRect();
+              setBmMenu({ x: r.left, y: r.bottom + 6, off: paraOff,
+                          here: bmHere, bm: bmEntry || null });
+            }}>🔖</button>
         ) : null;
         var isTight = !!(curChapter && curChapter.tightIdx && curChapter.tightIdx.indexOf(entry.chIdx) !== -1);
         var pMargin = {marginBottom: singlePageMode ? "0.35em"
@@ -7364,6 +7385,18 @@ export default function App() {
           background:rgba(196,149,90,.09);border:1px solid rgba(196,149,90,.3);
           font-family:'Crimson Pro',serif;font-size:14px;color:rgba(42,31,20,.75)}
         .one-rec .sub{display:block;font-size:12.5px;color:rgba(42,31,20,.55);margin-top:3px;line-height:1.5}
+        /* The pin's little menu. Fixed, so it is not clipped by the column it
+           springs from. */
+        .bm-menu{position:fixed;z-index:120;display:flex;flex-direction:column;gap:2px;
+          background:#fbf8f2;border:1px solid rgba(196,149,90,.45);border-radius:10px;
+          padding:5px;box-shadow:0 6px 20px rgba(42,31,20,.16);min-width:190px}
+        .bm-menu button{text-align:left;background:none;border:none;cursor:pointer;
+          font-family:'Crimson Pro',serif;font-size:14px;color:#000;padding:8px 12px;
+          border-radius:7px;transition:background .12s}
+        .bm-menu button:hover{background:rgba(196,149,90,.16)}
+        .bm-menu .at{color:rgba(42,31,20,.5);font-size:12px;font-variant-numeric:tabular-nums}
+        .bm-menu button.resume{border-top:1px solid rgba(42,31,20,.1);margin-top:3px;
+          padding-top:9px;border-radius:0 0 7px 7px;color:#5d4a2e}
         /* Jump-here: a small play mark at the head of a paragraph. Faint until
            wanted — the text is the page, the transport is a courtesy. */
         .pjump{float:left;margin:2px 8px 0 -2px;width:22px;height:22px;padding:0;
@@ -10472,6 +10505,58 @@ export default function App() {
                             </div>
                           );
                         })()}
+                        {bmMenu && (
+                          <div className="bm-menu" style={{left: bmMenu.x + "px", top: bmMenu.y + "px"}}
+                               onMouseDown={function(e){ e.stopPropagation(); }}>
+                            {bmMenu.here ? (
+                              <button onClick={function(){ setBookmarkAt(bmMenu.off, "remove"); setBmMenu(null); }}>
+                                Remove bookmark
+                              </button>
+                            ) : null}
+                            <button onClick={function(){ setBookmarkAt(bmMenu.off, false); setBmMenu(null); }}>
+                              Save place
+                            </button>
+                            {curChapter.youtubeId && (
+                              <button onClick={function(){ setBookmarkAt(bmMenu.off, true); setBmMenu(null); }}>
+                                Save place in audio too
+                                <span className="at">
+                                  {(function(){
+                                    try {
+                                      var n = ytCtrlRef.current && ytCtrlRef.current.now
+                                        ? ytCtrlRef.current.now() : 0;
+                                      return n > 0 ? " · " + fmtClock(n - (curChapter.youtubeStart || 0)) : "";
+                                    } catch (e) { return ""; }
+                                  })()}
+                                </span>
+                              </button>
+                            )}
+                            {/* Resume from the audio checkpoint. Offered wherever
+                                the pin is opened, since the point of a saved
+                                listening place is to return to it from wherever
+                                you are — and it changes chapter if the bookmark
+                                lives in another one. */}
+                            {bmMenu.bm && bmMenu.bm.audio ? (
+                              <button className="resume" onClick={function(){
+                                var bm = bmMenu.bm; setBmMenu(null);
+                                var go = function(){
+                                  try { ytCtrlRef.current && ytCtrlRef.current.seekAbs(bm.audio); } catch (e) {}
+                                };
+                                if (bm.cidx === cidx) { scrollToOffset(bm.off); go(); }
+                                else {
+                                  srcJumpOffsetRef.current = bm.off;
+                                  navLit(bm.cidx);
+                                  setTimeout(go, 1200);   // let the chapter's player settle
+                                }
+                              }}>
+                                ▶ Resume from saved audio
+                                <span className="at">
+                                  {" · ch " + ((bmMenu.bm.cidx || 0) + 1) + " · " + fmtClock(
+                                    bmMenu.bm.audio - ((chapters[bmMenu.bm.cidx] || {}).youtubeStart || 0))}
+                                </span>
+                              </button>
+                            ) : null}
+                          </div>
+                        )}
                         {/* One recording, many chapters: say how it behaves,
                             because "the audio kept playing when I turned the
                             page" is either a feature or a bug depending on
