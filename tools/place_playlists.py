@@ -116,7 +116,10 @@ def run(entry, vids, apply_it=True):
             'med': round(med, 2), 'rate': round(rmed, 3), 'split': split}
 
 def main():
-    pls = [r for r in json.load(io.open('tools/hunt-playlists.json', encoding='utf-8')) if r.get('playlist')]
+    # A later pass writes its finds to its own file; point at it with HUNT_PL
+    # rather than overwriting pass one's results.
+    src = os.environ.get('HUNT_PL', 'tools/hunt-playlists.json')
+    pls = [r for r in json.load(io.open(src, encoding='utf-8')) if r.get('playlist')]
     idx = json.load(io.open('private/books/index.json', encoding='utf-8'))
     by = {b['filename']: b for b in idx}
     a = int(sys.argv[1]) if len(sys.argv) > 2 else 0

@@ -2285,6 +2285,23 @@ function Pushkin({ size }) {
 // script, no amount fixed here, and nothing to do with payment ever touches
 // this site. Rendered on both home screens: the library, which is where
 // everyone lands, and the mode picker behind the logo.
+// Memorial's own mark, served from the site so the button does not depend on
+// their servers being reachable. The lockup is red and blue on transparent,
+// so it needs a light chip behind it — the old solid-red button would have
+// swallowed half the logo.
+function MemorialDonate(props) {
+  return (
+    <a className={"mem-btn" + (props && props.small ? " sm" : "")}
+       href="https://memopzk.org/en/donate/"
+       target="_blank" rel="noopener noreferrer"
+       title="Political prisoners support. Memorial — opens in a new tab">
+      <img className="mem-logo" src="/img/memorial.svg"
+           alt="Political prisoners support. Memorial" />
+      <span className="mem-cta">Donate to political prisoners</span>
+    </a>
+  );
+}
+
 function SupportLinks(props) {
   if (!IS_PUBLIC_SITE) return null;
   var f = props && props.funding;
@@ -2297,6 +2314,7 @@ function SupportLinks(props) {
   if (covered) {
     return (
       <div className="support">
+        <MemorialDonate />
         <div className="fund-done">
           <div className="fund-done-t">Costs are covered{f.period ? " for " + f.period : ""} — thank you.</div>
           <div className="fund-bar"><div style={{width:"100%"}} /></div>
@@ -2321,6 +2339,7 @@ function SupportLinks(props) {
   }
   return (
     <div className="support">
+      <MemorialDonate />
       {goal > 0 && (
         <div className="fund">
           <div className="fund-bar"><div style={{width: pct + "%"}} /></div>
@@ -7296,10 +7315,7 @@ export default function App() {
         </div>
       )}
       <div className="nowar">НЕТ ВОЙНЕ</div>
-      <a className="donate-pp" href="https://memopzk.org/en/donate/"
-         target="_blank" rel="noopener noreferrer">
-        Donate to Political Prisoners · Memorial
-      </a>
+      <MemorialDonate small />
     </div>
   );
 
@@ -7492,6 +7508,20 @@ export default function App() {
         .donate-btn .sub{display:block;font-size:12.5px;font-style:italic;
              color:rgba(42,31,20,.5);margin-top:2px}
         .support{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%}
+        /* Memorial's lockup is red-and-blue on transparent, so the chip behind
+           it stays light in both placements. Height is fixed and width left to
+           follow the artwork, so their proportions are never squeezed. */
+        .mem-btn{display:flex;flex-direction:column;align-items:center;gap:7px;
+          text-decoration:none;background:#fff;border:1px solid rgba(228,61,48,.35);
+          border-radius:8px;padding:12px 20px 11px;transition:border-color .15s,box-shadow .15s,transform .1s}
+        .mem-btn:hover{border-color:#e43d30;box-shadow:0 2px 10px rgba(228,61,48,.16)}
+        .mem-btn:active{transform:translateY(1px)}
+        .mem-logo{display:block;height:26px;width:auto;max-width:100%}
+        .mem-cta{font-family:'Inter',sans-serif;font-size:12px;font-weight:600;
+          letter-spacing:.03em;color:#e43d30}
+        .mem-btn.sm{padding:9px 16px 8px;gap:5px}
+        .mem-btn.sm .mem-logo{height:20px}
+        .mem-btn.sm .mem-cta{font-size:11px}
         /* Discord's own button, near enough: their blurple, their mark, their
            weight — so it reads as the thing it opens rather than as one more
            link on the page. The subtitle stays in the site's voice. */
@@ -8075,11 +8105,7 @@ export default function App() {
         .site-foot .n{font-variant-numeric:tabular-nums;color:rgba(42,31,20,.6)}
         .site-foot .since{opacity:.75}
         .site-foot .nowar{margin-top:6px;font-size:11px;letter-spacing:3px;color:rgba(42,31,20,.5)}
-        .site-foot .donate-pp{display:inline-block;margin-top:10px;padding:8px 18px;
-          background:#d9534f;color:#fff;text-decoration:none;border-radius:5px;
-          font-weight:600;font-size:12px;letter-spacing:.03em;font-family:'Inter',sans-serif;
-          transition:background .15s}
-        .site-foot .donate-pp:hover{background:#c9302c}
+        .site-foot .mem-btn{margin:10px auto 0;width:max-content}
         .auth-foot{position:absolute;left:0;right:0;bottom:0}
         .adm-fund .adm-fund-row{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-top:10px}
         .adm-fund .adm-fund-row label{display:flex;flex-direction:column;gap:4px;font-size:11px;
