@@ -10207,7 +10207,7 @@ export default function App() {
                                         the situation the work opens on and stops
                                         there, because a reader browsing a library has
                                         not read these yet. */}
-                                    {book.blurb && !isFinished(book) && (
+                                    {book.blurb && (
                                       <div className="lib-card-blurb">{book.blurb}</div>
                                     )}
                                     <div className="lib-card-meta">
