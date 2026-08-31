@@ -3991,6 +3991,16 @@ export default function App() {
     }
     return ch;
   })();
+
+  // Does this chapter carry paragraph jump points? Several things behave
+  // differently when it does, because with them the reader can put the
+  // recording anywhere from the text itself, and without them the only way
+  // through a multi-chapter file is to let it run on. The map is fetched per
+  // chapter, so this is a per-chapter fact, which is the right grain: a book
+  // can have arrows in most chapters and none in the one whose transcript
+  // came back garbled.
+  var hasJumps = !!(paraSync && Object.keys(paraSync).length);
+
   // Paginate the current chapter. Single-page mode (whole-chapter-as-one-page)
   // applies to any book in the "Song Lyrics" category, so users see a full song
   // per screen and use chapter-nav arrows to advance. The legacy
@@ -10896,7 +10906,15 @@ export default function App() {
                             <button onClick={function(){ setBookmarkAt(bmMenu.off, false); setBmMenu(null); }}>
                               Save place
                             </button>
-                            {curChapter.youtubeId && (
+                            {/* Only where the paragraphs have no jump points. With
+                                them, the paragraph IS the place in the recording —
+                                the pin already knows the moment, and offering to
+                                save it separately asks the reader to keep track of
+                                something the text is keeping track of for them.
+                                Without them, a single recording spans several
+                                chapters and the audio position is the only way back
+                                to where you stopped. */}
+                            {curChapter.youtubeId && !hasJumps && (
                               <button onClick={function(){ setBookmarkAt(bmMenu.off, true); setBmMenu(null); }}>
                                 Save place in audio too
                                 <span className="at">
@@ -10943,6 +10961,13 @@ export default function App() {
                             whether you were told to expect it. */}
                         {(function(){
                           if (!curChapter.youtubeId) return null;
+                          // With jump points there is nothing here to explain: the
+                          // arrows put the reader anywhere in the recording, so how
+                          // one file happens to span several chapters is an
+                          // implementation detail. The notice is for the books where
+                          // carrying on from where it stopped is the ONLY way
+                          // through — a single file with no transcript to anchor.
+                          if (hasJumps) return null;
                           var shared = (chapters || []).filter(function(c){
                             return c.youtubeId === curChapter.youtubeId; }).length;
                           if (shared < 2) return null;
