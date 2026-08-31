@@ -341,6 +341,17 @@ export default async function handler(req, res) {
   if (!user) return;
   const userId = user.id;
 
+  // Any authenticated call is the reader being present. A page load touches
+  // this through /api/auth/me, but a tab left open all afternoon never loads
+  // again — it just goes on saving progress and vocabulary through here, and
+  // without this that reader would look last-seen at whatever time they
+  // opened the tab. touchSeen throttles itself, so this costs a read.
+  //
+  // Awaited, not fired and forgotten: this runs on a serverless function that
+  // can be frozen the moment the response is sent, and a dangling promise
+  // would lose the write it was supposed to make.
+  try { await touchSeen(user.email); } catch (e) {}
+
   // ── Forum routes (rewritten from /api/forum/<action>) ──
   const forumAction = req.query && req.query.forum;
   if (forumAction) return handleForum(req, res, user, String(forumAction));

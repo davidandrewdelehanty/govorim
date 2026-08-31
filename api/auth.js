@@ -24,6 +24,7 @@ import {
   createAccount,
   verifyPassword,
   touchLogin,
+  touchSeen,
   signSession,
   setSessionCookie,
   clearSessionCookie,
@@ -93,6 +94,14 @@ export default async function handler(req, res) {
       // An R2 hiccup should not lock every reader out of the site, so fall
       // through and trust the signed session.
     }
+    // Every page load by a signed-in reader counts as being seen. This runs
+    // on each boot of the app, which is the only event that happens for
+    // everyone — the old call site was the book-opening counter, so a reader
+    // who signed in and browsed the library without opening anything showed
+    // as never seen at all, which is most of what the panel was reporting.
+    // touchSeen throttles itself, so this is a read on nearly every call and
+    // a write only when the stored time has gone stale.
+    try { await touchSeen(who.email); } catch (_) {}
     return res.status(200).json({ user: who });
   }
 
