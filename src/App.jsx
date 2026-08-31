@@ -2285,6 +2285,26 @@ function Pushkin({ size }) {
 // script, no amount fixed here, and nothing to do with payment ever touches
 // this site. Rendered on both home screens: the library, which is where
 // everyone lands, and the mode picker behind the logo.
+// A press on either donate button, recorded. This is intent and not money —
+// neither PayPal nor Memorial tells this site what happened after the reader
+// left — so the panel that reads these counts them as people setting out to
+// give. sendBeacon because the click navigates away in the same instant and a
+// normal fetch would be cancelled mid-flight; the fetch is the fallback for
+// browsers without it, and every failure is swallowed, because a counter must
+// never stand between a reader and a donation.
+function noteDonateClick(which) {
+  try {
+    var url = "/api/user-data?anon=donateclick";
+    var body = JSON.stringify({ which: which });
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(url, new Blob([body], { type: "application/json" }));
+    } else {
+      fetch(url, { method: "POST", headers: { "Content-Type": "application/json" },
+                   body: body, keepalive: true }).catch(function () {});
+    }
+  } catch (e) {}
+}
+
 // Memorial's own mark, served from the site so the button does not depend on
 // their servers being reachable. The lockup is red and blue on transparent,
 // so it needs a light chip behind it — the old solid-red button would have
@@ -2294,11 +2314,50 @@ function MemorialDonate(props) {
     <a className={"mem-btn" + (props && props.small ? " sm" : "")}
        href="https://memopzk.org/en/donate/"
        target="_blank" rel="noopener noreferrer"
+       onClick={function () { noteDonateClick("memorial"); }}
        title="Political prisoners support. Memorial — opens in a new tab">
       <img className="mem-logo" src="/img/memorial.svg"
            alt="Political prisoners support. Memorial" />
       <span className="mem-cta">Donate to political prisoners</span>
     </a>
+  );
+}
+
+// The site's own appeal. The progress bar used to float above the button as a
+// separate strip, which read as two unrelated things — a statistic, and then a
+// request. Inside the button it is one object: what is needed, how far along,
+// and the way to help, in that order.
+function DonateCosts(props) {
+  var f = props && props.funding;
+  var goal = (f && f.goal) || 0;
+  var raised = (f && f.raised) || 0;
+  var pct = goal > 0 ? Math.min(100, Math.round((raised / goal) * 100)) : 0;
+  return (
+    <form className={"donate" + (props && props.small ? " sm" : "")}
+          action="https://www.paypal.com/donate" method="post"
+          target="_blank" rel="noopener noreferrer"
+          onSubmit={function () { noteDonateClick("costs"); }}>
+      <input type="hidden" name="business" value="8TRRPQMCNY69A" />
+      <input type="hidden" name="no_recurring" value="1" />
+      <input type="hidden" name="item_name"
+             value="This money will help cover the costs of operating this website and the tools used to add new material and fix bugs." />
+      <input type="hidden" name="currency_code" value="USD" />
+      <button className="donate-btn" type="submit" title="Donate via PayPal — opens in a new tab">
+        <span className="dn-t">Donate to help cover site maintenance costs</span>
+        {goal > 0 && (
+          <span className="dn-fund">
+            <span className="dn-bar"><span style={{width: pct + "%"}} /></span>
+            <span className="dn-num">
+              <b>${raised}</b> of ${goal}
+              {f && f.period ? " toward " + f.period + " running costs" : " toward running costs"}
+            </span>
+          </span>
+        )}
+        <span className="sub">
+          {f && f.note ? f.note : "any amount appreciated"}
+        </span>
+      </button>
+    </form>
   );
 }
 
@@ -2340,27 +2399,7 @@ function SupportLinks(props) {
   return (
     <div className="support">
       <MemorialDonate />
-      {goal > 0 && (
-        <div className="fund">
-          <div className="fund-bar"><div style={{width: pct + "%"}} /></div>
-          <div className="fund-sub">
-            ${raised} of ${goal} toward {f.period ? f.period + " " : ""}running costs
-            {f.note ? " · " + f.note : ""}
-          </div>
-        </div>
-      )}
-      <form className="donate" action="https://www.paypal.com/donate" method="post"
-            target="_blank" rel="noopener noreferrer">
-        <input type="hidden" name="business" value="8TRRPQMCNY69A" />
-        <input type="hidden" name="no_recurring" value="1" />
-        <input type="hidden" name="item_name"
-               value="This money will help cover the costs of operating this website and the tools used to add new material and fix bugs." />
-        <input type="hidden" name="currency_code" value="USD" />
-        <button className="donate-btn" type="submit" title="Donate via PayPal — opens in a new tab">
-          Donate to help cover site maintenance costs
-          <span className="sub">any amount appreciated</span>
-        </button>
-      </form>
+      <DonateCosts funding={f} />
       {/* Permanent invite — set to never expire. Discord's default invite
           dies after 7 days, which would quietly break this link. */}
       <a className="discord-btn" href="https://discord.gg/nePcT58a37"
@@ -7315,7 +7354,10 @@ export default function App() {
         </div>
       )}
       <div className="nowar">НЕТ ВОЙНЕ</div>
-      <MemorialDonate small />
+      <div className="foot-give">
+        <MemorialDonate small />
+        {IS_PUBLIC_SITE && <DonateCosts funding={funding} small />}
+      </div>
     </div>
   );
 
@@ -7501,13 +7543,35 @@ export default function App() {
         /* Donate: deliberately quiet — it sits under the four mode cards and
            must not compete with them, so no gold fill, just a hairline. */
         .donate{margin-top:2px}
-        .donate-btn{background:none;border:1px solid rgba(196,149,90,.4);color:rgba(42,31,20,.72);
-             font-family:'Crimson Pro',serif;font-size:14px;line-height:1.45;padding:10px 20px;
-             border-radius:10px;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
-        .donate-btn:hover{background:rgba(196,149,90,.1);border-color:rgba(196,149,90,.7);color:#000}
+        .donate{width:100%;max-width:340px}
+        .donate-btn{display:block;width:100%;text-align:center;cursor:pointer;
+          background:#fffdf9;border:1px solid rgba(196,149,90,.45);border-radius:10px;
+          padding:14px 18px 12px;font-family:'Crimson Pro',serif;
+          transition:border-color .15s,box-shadow .15s,transform .1s}
+        .donate-btn:hover{border-color:rgba(196,149,90,.85);box-shadow:0 2px 10px rgba(196,149,90,.18)}
+        .donate-btn:active{transform:translateY(1px)}
+        .donate-btn .dn-t{display:block;font-size:15px;font-weight:600;color:#2a1f14;
+          line-height:1.3}
+        /* The bar lives inside the button now. Above it, the appeal reads as a
+           statistic someone else is keeping; inside, it is part of the ask. */
+        .donate-btn .dn-fund{display:block;margin:10px 0 7px}
+        .donate-btn .dn-bar{display:block;height:7px;border-radius:4px;overflow:hidden;
+          background:rgba(42,31,20,.1)}
+        .donate-btn .dn-bar > span{display:block;height:100%;border-radius:4px;
+          background:linear-gradient(90deg,#c4955a,#a87b3f);transition:width .5s ease}
+        .donate-btn .dn-num{display:block;margin-top:6px;font-size:12.5px;
+          color:rgba(42,31,20,.66);font-variant-numeric:tabular-nums}
+        .donate-btn .dn-num b{color:#a87b3f;font-weight:600}
         .donate-btn .sub{display:block;font-size:12.5px;font-style:italic;
-             color:rgba(42,31,20,.5);margin-top:2px}
-        .support{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%}
+          color:rgba(42,31,20,.5);margin-top:2px}
+        .donate.sm{max-width:290px}
+        .donate.sm .donate-btn{padding:11px 15px 10px;border-radius:9px}
+        .donate.sm .donate-btn .dn-t{font-size:13px}
+        .donate.sm .donate-btn .dn-fund{margin:8px 0 6px}
+        .donate.sm .donate-btn .dn-bar{height:6px}
+        .donate.sm .donate-btn .dn-num{font-size:11.5px}
+        .donate.sm .donate-btn .sub{font-size:11px}
+.support{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%}
         /* Memorial's lockup is red-and-blue on transparent, so the chip behind
            it stays light in both placements. Height is fixed and width left to
            follow the artwork, so their proportions are never squeezed. */
@@ -8076,6 +8140,8 @@ export default function App() {
         .admd-facts .unrec,.admd-stat .unrec{color:rgba(42,31,20,.38);font-style:italic;font-size:13px}
         .admd-facts .mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;
           word-break:break-all;text-align:right;max-width:60%}
+        .admd-note{font-family:'Crimson Pro',serif;font-size:12px;font-style:italic;
+          color:rgba(42,31,20,.5);line-height:1.5;margin:6px 2px 2px}
         .admd-sechdr{font-size:11px;letter-spacing:2px;text-transform:uppercase;
           color:rgba(42,31,20,.5);margin-top:4px}
         /* Reads-by-book: a spreadsheet, so it reads like one — tight rows,
@@ -8105,7 +8171,13 @@ export default function App() {
         .site-foot .n{font-variant-numeric:tabular-nums;color:rgba(42,31,20,.6)}
         .site-foot .since{opacity:.75}
         .site-foot .nowar{margin-top:6px;font-size:11px;letter-spacing:3px;color:rgba(42,31,20,.5)}
-        .site-foot .mem-btn{margin:10px auto 0;width:max-content}
+        /* Both appeals share a row on a wide screen and stack on a narrow one,
+           aligned at the top so the taller of the two does not drag the other
+           down with it. */
+        .site-foot .foot-give{display:flex;flex-wrap:wrap;justify-content:center;
+          align-items:flex-start;gap:12px;margin-top:12px}
+        .site-foot .mem-btn{width:max-content}
+        .site-foot .donate{width:auto}
         .auth-foot{position:absolute;left:0;right:0;bottom:0}
         .adm-fund .adm-fund-row{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-top:10px}
         .adm-fund .adm-fund-row label{display:flex;flex-direction:column;gap:4px;font-size:11px;
@@ -8530,6 +8602,37 @@ export default function App() {
                           <span className="n">{T.today ? T.today.visits : 0}</span>
                           <span className="l">visits today</span>
                         </div>
+                      </div>
+                      {/* A press is not a payment. Neither PayPal nor Memorial
+                          reports back, so these say how many readers set out
+                          to give — which is still the only way to tell whether
+                          the Memorial link is being used or just occupying
+                          space above the site's own appeal. */}
+                      <div className="admd-sechdr">Donate buttons pressed</div>
+                      <div className="admd-stats">
+                        <div className="admd-stat still">
+                          <span className="n">{T.donate ? T.donate.memorial : 0}</span>
+                          <span className="l">Memorial · all time</span>
+                        </div>
+                        <div className="admd-stat still">
+                          <span className="n">{T.donate ? T.donate.costs : 0}</span>
+                          <span className="l">site costs · all time</span>
+                        </div>
+                        <div className="admd-stat still">
+                          <span className="n">{T.today ? (T.today.donateMemorial || 0) : 0}</span>
+                          <span className="l">Memorial today</span>
+                        </div>
+                        <div className="admd-stat still">
+                          <span className="n">{T.today ? (T.today.donateCosts || 0) : 0}</span>
+                          <span className="l">site costs today</span>
+                        </div>
+                      </div>
+                      <div className="admd-note">
+                        Presses, not payments — the site is never told what happened
+                        after the reader left for PayPal or Memorial.
+                        {T.donate && T.donate.since
+                          ? " Counting since " + new Date(T.donate.since).toLocaleDateString() + "."
+                          : " Nothing recorded yet."}
                       </div>
                       {T.recent && T.recent.length > 1 && (
                         <div className="admd-trend">

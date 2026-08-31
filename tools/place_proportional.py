@@ -20,6 +20,16 @@ from scan_alignment import chapters as fb2_chapters
 from vtt_tokens import load, norm
 
 MIN_RATIO, MAX_RATIO = 0.80, 1.15   # spoken words against the book's own
+MAX_CHAPTERS = 4                    # see below
+
+# Proportional placement assumes the reader works through the book front to
+# back. A continuous poem in two or three cantos always does. A COLLECTION
+# does not: the reading of Повести Белкина attached to this library goes
+# backwards through the tales, and placing its six chapters in proportion put
+# every one of them on the wrong story — silently, because nothing in a word
+# count can notice. So this refuses anything with more than a handful of
+# chapters, where that risk lives, and leaves it to place_scattered.py, which
+# locates each chapter and lets the recording declare its own order.
 
 def wl(p): return [x for x in (norm(y) for y in p.split()) if x]
 
@@ -36,6 +46,8 @@ def place(entry, vid):
     ratio = spoken / float(total)
     if not (MIN_RATIO <= ratio <= MAX_RATIO):
         return {'ok': False, 'why': 'transcript is %d%% of the book' % (ratio * 100)}
+    if len(chs) > MAX_CHAPTERS:
+        return {'ok': False, 'why': '%d chapters — too many to place blind' % len(chs)}
     dur = toks[-1][0]
     # Chapter starts in proportion to preceding words.
     starts, n = [], 0

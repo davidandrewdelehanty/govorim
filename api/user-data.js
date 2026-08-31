@@ -200,6 +200,48 @@ export default async function handler(req, res) {
         return res.status(200).json({ ok: false });
       }
     }
+    // ── Which donate button gets pressed ───────────────────────────────
+    // Two buttons ask for money and they ask for different things: one sends
+    // readers to Memorial for political prisoners, the other covers this
+    // site's bills. Knowing which one people actually press is the only way
+    // to tell whether the Memorial link is doing anything or is just decoration
+    // above a PayPal form.
+    //
+    // This records the CLICK, not the donation — neither PayPal nor Memorial
+    // tells this site what happened after the reader left, so a press here
+    // means intent and nothing more, and the panel says so. Unauthenticated,
+    // like every counter on this route, because signed-out readers donate too;
+    // the value is clamped to the two known buttons so the file cannot be
+    // filled with junk keys.
+    if (req.query.anon === "donateclick") {
+      try {
+        let body = req.body;
+        if (typeof body === "string") { try { body = JSON.parse(body); } catch { body = {}; } }
+        const which = String((body || {}).which || "");
+        if (which !== "memorial" && which !== "costs") {
+          return res.status(200).json({ ok: false });
+        }
+        await bumpDaily(which === "memorial" ? "donateMemorial" : "donateCosts", 1);
+        const key = `${PREFIX}/_stats/donate-clicks.json`;
+        let cur = null;
+        try {
+          const resp = await s3.send(new GetObjectCommand({ Bucket: BUCKET, Key: key }));
+          cur = JSON.parse(await resp.Body.transformToString());
+        } catch (e) {
+          if (!(e.name === "NoSuchKey" || e.$metadata?.httpStatusCode === 404)) throw e;
+        }
+        cur = (cur && typeof cur === "object") ? cur : {};
+        cur[which] = (cur[which] || 0) + 1;
+        cur.since = cur.since || Date.now();
+        await s3.send(new PutObjectCommand({
+          Bucket: BUCKET, Key: key,
+          Body: JSON.stringify(cur, null, 2), ContentType: "application/json",
+        }));
+        return res.status(200).json({ ok: true });
+      } catch (e) {
+        return res.status(200).json({ ok: false });
+      }
+    }
     // A visit, as against a book opening. Fired once per browser per day by
     // the client, so this counts people arriving rather than pages rendered —
     // a number that goes up when someone comes back tomorrow, not when they
