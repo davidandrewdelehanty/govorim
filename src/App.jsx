@@ -7428,7 +7428,10 @@ export default function App() {
         .lib-cat-hint{padding:34px 16px;text-align:center;color:rgba(42,31,20,.45);font-style:italic;font-size:14px}
         .lib-section{margin-bottom:22px}
         .lib-section-hdr{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(42,31,20,.55);margin-bottom:10px;padding-left:4px;font-weight:600}
-        .lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+        /* Wider cards than before: a description at 220px wraps to seven or
+           eight very short lines, which reads worse than the same words on
+           four. */
+        .lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:10px}
         .lib-card{padding:14px;border-radius:10px;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.1);cursor:pointer;transition:all .15s;position:relative;display:flex;flex-direction:column;gap:4px}
         .lib-card:hover{background:rgba(42,31,20,.08);border-color:rgba(196,149,90,.3);transform:translateY(-1px)}
         .lib-card-title{font-family:'Playfair Display',serif;font-size:15px;color:#000;line-height:1.3;margin-bottom:8px}
@@ -7752,9 +7755,12 @@ export default function App() {
         /* The native arrow is drawn by the platform and looks like a form
            control from another decade next to everything else here, so it is
            turned off and replaced with one that matches the type. */
+        /* No line clamp. These are two sentences at most, written to a 190
+           character ceiling, and a description that stops mid-clause is worse
+           than no description — the cards are in a grid with no fixed height,
+           so they simply grow and the row evens itself out. */
         .lib-card-blurb{font-family:'Crimson Pro',serif;font-size:13px;line-height:1.45;
-          color:rgba(42,31,20,.62);margin:5px 0 2px;
-          display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+          color:rgba(42,31,20,.62);margin:5px 0 2px}
         .quickpick{width:100%;box-sizing:border-box;font-size:15.5px;padding:12px 38px 12px 14px;
                    font-family:'Crimson Pro',serif;border-radius:10px;cursor:pointer;
                    border:1px solid rgba(42,31,20,.2);background-color:#fffdf9;color:#2a1f14;
