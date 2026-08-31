@@ -40,8 +40,8 @@ const edits = [
     // One description string carrying both languages: there is a single URL,
     // so there is a single description, and a Russian-language search has to
     // find something Russian in it.
-    ["Russian literature in the original, with an English translation beside it and a recording to listen along to. — Русская литература в оригинале, с английским переводом рядом и аудиозаписью.",
-     "Read Russian literature in the original with a public-domain English translation beside it and a LibriVox recording to listen along to. Free, no account needed. — Русская классика в оригинале: параллельный английский перевод и аудиокнига LibriVox. Бесплатно, без регистрации."],
+    ["A Russian reader with a parallel English translation and Russian audio, built to make reading the classics in the original easier. — Читалка русской классики: параллельный английский перевод и аудио, чтобы читать в оригинале было легче.",
+     "A Russian reader with a parallel English translation and Russian audio, built to make reading the classics in the original easier. Free, no account needed. — Читалка русской классики: параллельный английский перевод и аудиокниги, чтобы читать в оригинале было легче. Бесплатно, без регистрации."],
     // Говорим asks to stay out of the index; Самовар wants in.
     // The verification tag is Google Search Console's proof of ownership for
     // samovar.live — it rides along with the robots swap so it exists ONLY on

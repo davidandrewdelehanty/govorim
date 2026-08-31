@@ -7415,9 +7415,27 @@ export default function App() {
         .lib-tag{padding:2px 7px;border-radius:9px;font-size:10px;letter-spacing:.3px;font-weight:600;white-space:nowrap;border:1px solid rgba(42,31,20,.16);color:rgba(42,31,20,.72);background:rgba(42,31,20,.05)}
         .lib-tag.off{border-color:rgba(42,31,20,.08);color:rgba(42,31,20,.3);background:none;font-weight:500}
         .lib-card-cat{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#c4955a;padding:2px 8px;border-radius:10px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600}
+        /* The player was capped in pixels only — 360px — with nothing tying it
+           to the window. On a laptop running Chrome with a bookmarks bar the
+           viewport is around 700px, and 360 of it plus the scrubber and the
+           dock's padding left the reader a strip of text at the bottom. The
+           cap is now whichever is smallest: the video's own aspect ratio, 360
+           pixels, or a third of the window — so the text always keeps two
+           thirds of the screen, however short the window is. */
         .chvid{position:relative;width:100%;max-width:640px;margin:0 0 18px;
-          padding-bottom:min(56.25%,360px);height:0;border-radius:10px;overflow:hidden;
+          padding-bottom:min(56.25%,360px,32vh);height:0;border-radius:10px;overflow:hidden;
           background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.12)}
+        @supports (height:1dvh){
+          .chvid{padding-bottom:min(56.25%,360px,32dvh)}
+        }
+        /* A genuinely short window — a small laptop, or a browser with several
+           toolbars — gives the video less again. */
+        @media (max-height:720px){
+          .chvid{padding-bottom:min(56.25%,260px,28vh)}
+        }
+        @media (max-height:560px){
+          .chvid{padding-bottom:min(56.25%,180px,24vh)}
+        }
         .chvid iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
         /* The player rides along at the top of the reading column. Opaque, or
            the text scrolls through it; above the text, or the text scrolls
@@ -7491,8 +7509,9 @@ export default function App() {
         .chvid-dock .chvid{margin:0;transition:padding-bottom .22s ease}
         .chvid-dock.stuck{border-bottom:1px solid rgba(42,31,20,.08);
           box-shadow:0 8px 16px -10px rgba(42,31,20,.4)}
-        .chvid-dock.stuck .chvid{padding-bottom:min(56.25%,170px)}
-        @media(max-width:900px){.chvid-dock.stuck .chvid{padding-bottom:min(56.25%,128px)}}
+        .chvid-dock.stuck .chvid{padding-bottom:min(56.25%,170px,18vh)}
+        @media(max-width:900px){.chvid-dock.stuck .chvid{padding-bottom:min(56.25%,128px,16vh)}}
+        @media (max-height:720px){.chvid-dock.stuck .chvid{padding-bottom:min(56.25%,120px,15vh)}}
         .story-index{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 20px;padding:12px 14px;
           border:1px solid rgba(42,31,20,.12);border-radius:10px;background:rgba(42,31,20,.03)}
         .story-index-link{font-family:'Inter',sans-serif;font-size:12px;line-height:1.2;
@@ -7688,6 +7707,9 @@ export default function App() {
         /* The native arrow is drawn by the platform and looks like a form
            control from another decade next to everything else here, so it is
            turned off and replaced with one that matches the type. */
+        .lib-card-blurb{font-family:'Crimson Pro',serif;font-size:13px;line-height:1.45;
+          color:rgba(42,31,20,.62);margin:5px 0 2px;
+          display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
         .quickpick{width:100%;box-sizing:border-box;font-size:15.5px;padding:12px 38px 12px 14px;
                    font-family:'Crimson Pro',serif;border-radius:10px;cursor:pointer;
                    border:1px solid rgba(42,31,20,.2);background-color:#fffdf9;color:#2a1f14;
@@ -8063,9 +8085,20 @@ export default function App() {
         .gate-feat{display:flex;gap:10px;align-items:flex-start;font-family:'Crimson Pro',serif;font-size:14px;line-height:1.45;color:rgba(42,31,20,.8)}
         .gate-feat span{flex-shrink:0;width:22px;text-align:center}
         .gate-note{font-family:'Crimson Pro',serif;font-style:italic;font-size:13px;color:rgba(42,31,20,.5);text-align:center;max-width:400px;margin:0 auto}
-        .gate-guest{margin-top:14px;padding-top:14px;border-top:1px solid rgba(42,31,20,.1);display:flex;flex-direction:column;gap:6px;align-items:center}
-        .gate-guest-btn{background:none;border:1px solid rgba(42,31,20,.22);color:rgba(42,31,20,.75);padding:9px 18px;border-radius:8px;font-size:14px;cursor:pointer;font-family:'Crimson Pro',serif}
-        .gate-guest-btn:hover{color:#000;border-color:rgba(196,149,90,.55)}
+        .gate-guest{margin:2px 0 16px;display:flex;flex-direction:column;gap:8px;align-items:center}
+        /* This is the primary action on the page — the site is free to read —
+           so it is filled, not outlined, and the sign-in form below it is the
+           secondary path rather than the other way round. */
+        .gate-guest-btn{width:100%;background:linear-gradient(180deg,#c4955a,#a87b3f);
+          border:1px solid #8f6730;color:#fff;padding:14px 20px;border-radius:9px;
+          font-size:16px;font-weight:600;cursor:pointer;font-family:'Crimson Pro',serif;
+          letter-spacing:.01em;box-shadow:0 2px 10px rgba(168,123,63,.28);
+          transition:filter .15s,box-shadow .15s,transform .1s}
+        .gate-guest-btn:hover{filter:brightness(1.06);box-shadow:0 3px 14px rgba(168,123,63,.38)}
+        .gate-guest-btn:active{transform:translateY(1px)}
+        .gate-or{width:100%;display:flex;align-items:center;gap:10px;margin-top:6px;
+          font-family:'Crimson Pro',serif;font-size:12px;color:rgba(42,31,20,.45)}
+        .gate-or::before,.gate-or::after{content:"";flex:1;height:1px;background:rgba(42,31,20,.12)}
         .gate-guest-note{font-family:'Crimson Pro',serif;font-style:italic;font-size:12px;color:rgba(42,31,20,.5);text-align:center;max-width:340px}
         @media (max-width:560px){
           .auth-page{padding:26px 16px}
@@ -9076,9 +9109,28 @@ export default function App() {
                 <div className="gate-feat"><span>✏️</span><div>Tap any word for its dictionary entry, and save it to your vocabulary.</div></div>
               </div>
 
+              {/* The way in comes before the way to sign up. Nothing on this
+                  site requires an account to read, and burying that under the
+                  password fields made a free library look like a gated one. */}
+              {IS_PUBLIC_SITE && (
+                <div className="gate-guest">
+                  <button className="gate-guest-btn" type="button" onClick={function(){
+                    try { localStorage.setItem("samovar_guest", "1"); } catch (e) {}
+                    setGuest(true);
+                  }}>Start reading — no account needed →</button>
+                  <div className="gate-guest-note">Free, nothing to fill in. An account only adds a vocabulary list that follows you between devices.</div>
+                  <div className="gate-or"><span>or sign in</span></div>
+                </div>
+              )}
+
               <form className="auth-form" onSubmit={submitAuth}>
                 <label className="auth-lbl">Email
-                  <input className="auth-in" type="email" autoComplete="username" autoFocus
+                  {/* No autofocus on the public site: the guest button above is
+                      the primary action, and grabbing focus for the email field
+                      opens the keyboard on a phone over a form nobody has to
+                      fill in. Говорим is account-only, so it still focuses. */}
+                  <input className="auth-in" type="email" autoComplete="username"
+                    autoFocus={!IS_PUBLIC_SITE}
                     value={authEmail} onChange={function(e){ setAuthEmail(e.target.value); }} required />
                 </label>
                 <label className="auth-lbl">Password
@@ -9099,15 +9151,6 @@ export default function App() {
                 }}>
                   {authMode === "login" ? "No account yet? Create one" : "Already have an account? Sign in"}
                 </button>
-                {IS_PUBLIC_SITE && (
-                  <div className="gate-guest">
-                    <button className="gate-guest-btn" type="button" onClick={function(){
-                      try { localStorage.setItem("samovar_guest", "1"); } catch (e) {}
-                      setGuest(true);
-                    }}>Continue without an account →</button>
-                    <div className="gate-guest-note">Without an account the vocabulary list won&#8217;t work — saved words don&#8217;t follow you between devices.</div>
-                  </div>
-                )}
               </form>
             </div>
 
@@ -9616,9 +9659,20 @@ export default function App() {
                                       // nothing.
                                       var hasVid = !!(book && book.videos && Object.keys(book.videos).length);
                                       var hasAud = !!(book && (book.audiobook || hasVid));
-                                      var marks = " \uD83C\uDDF7\uD83C\uDDFA";
+                                      // Flags were the obvious mark for the two
+                                      // languages and they cannot be used here.
+                                      // Windows ships no flag glyphs — Segoe UI Emoji
+                                      // omits them as a matter of policy — so Chrome
+                                      // and Edge on Windows draw 🇷🇺 as an empty box or
+                                      // a bare letter pair, and a native <option>
+                                      // cannot carry an image to stand in for one.
+                                      // RU and EN are letters: they render in every
+                                      // font on every platform, which is the only
+                                      // property that matters for a mark whose whole
+                                      // job is to be seen.
+                                      var marks = " RU";
                                       if (book && (book.parallelEn || book.isBible)) {
-                                        marks += " \uD83C\uDDEC\uD83C\uDDE7";
+                                        marks += " EN";
                                       }
                                       if (hasAud) marks += " \uD83C\uDFA7";
                                       // The film reel means a staged performance and
@@ -10011,6 +10065,14 @@ export default function App() {
                                       }
                                     }}>
                                     <div className="lib-card-title">{bookLabel(book)}</div>
+                                    {/* What the book is about, in a line — enough to
+                                        choose by. Deliberately spoiler-free: it gives
+                                        the situation the work opens on and stops
+                                        there, because a reader browsing a library has
+                                        not read these yet. */}
+                                    {book.blurb && !isFinished(book) && (
+                                      <div className="lib-card-blurb">{book.blurb}</div>
+                                    )}
                                     <div className="lib-card-meta">
                                       {/* Sits first in the meta row, where the eye already goes for
                                           the Russian/English/audiobook tags — a bare tick tucked in
