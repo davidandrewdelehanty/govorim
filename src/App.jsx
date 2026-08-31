@@ -7683,16 +7683,26 @@ export default function App() {
         /* The closed control IS stylable, unlike its options. Full width and a
            16px minimum, because anything smaller makes iOS zoom the page on
            focus and leaves it zoomed. */
-        .quickpick{width:100%;box-sizing:border-box;font-size:15px;padding:10px 12px;
-                   font-family:'Crimson Pro',serif;border-radius:8px;
-                   border:1px solid rgba(42,31,20,.18);background:rgba(42,31,20,.05);color:#000}
+        /* The native arrow is drawn by the platform and looks like a form
+           control from another decade next to everything else here, so it is
+           turned off and replaced with one that matches the type. */
+        .quickpick{width:100%;box-sizing:border-box;font-size:15.5px;padding:12px 38px 12px 14px;
+                   font-family:'Crimson Pro',serif;border-radius:10px;cursor:pointer;
+                   border:1px solid rgba(42,31,20,.2);background-color:#fffdf9;color:#2a1f14;
+                   appearance:none;-webkit-appearance:none;-moz-appearance:none;
+                   background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%238a6a35' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' d='M1 1.5 6 6.5 11 1.5'/%3E%3C/svg%3E");
+                   background-repeat:no-repeat;background-position:right 14px center;background-size:12px 8px;
+                   transition:border-color .15s,box-shadow .15s}
         /* Style the list too, the way .level-pill does. A select whose control
            is painted but whose options are not falls back to the system palette
            the moment it opens, which reads as the styling having vanished. */
-        .quickpick option{background:#ede8dd;color:#2a1f14;padding:4px 0}
-        .quickpick optgroup{background:#e4ddcf;color:#8a6a35;font-weight:600;font-style:normal}
-        .quickpick:hover{background:rgba(42,31,20,.08)}
-        .quickpick:focus{outline:none;border-color:rgba(196,149,90,.5)}
+        .quickpick option{background:#fffdf9;color:#2a1f14;padding:7px 10px;font-size:15px}
+        .quickpick optgroup{background:#efe7d8;color:#8a6a35;font-weight:600;font-style:normal;
+                   font-family:'Playfair Display',serif;font-size:13px;letter-spacing:.02em;
+                   padding:6px 0}
+        .quickpick:hover{border-color:rgba(196,149,90,.75)}
+        .quickpick:focus{outline:none;border-color:rgba(196,149,90,.9);
+                   box-shadow:0 0 0 3px rgba(196,149,90,.18)}
         @media (max-width:700px){.quickpick{font-size:16px;padding:12px}}
         .dual-toggle{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:40;
           background:rgba(255,252,246,.94);border:1px solid rgba(42,31,20,.18);color:rgba(42,31,20,.7);
@@ -9587,12 +9597,15 @@ export default function App() {
                                       // ink for an absence — and it crowded out
                                       // the titles it was sitting next to.
                                       var tight = optChars < 999;
-                                      // The film reel means a staged
-                                      // performance, and only that. A chapter
-                                      // video on an ordinary book is narration
-                                      // as far as a reader choosing what to
-                                      // listen to is concerned, so it gets the
-                                      // headphones the LibriVox recordings get.
+                                      // One run of marks after every title, always
+                                      // in the same order, so the column reads down
+                                      // the list rather than having to be parsed row
+                                      // by row: Russian, English, listen, watch. The
+                                      // Russian flag is on every row by definition —
+                                      // that is the point of it. A constant is not
+                                      // wasted ink here, it is the ruler the other
+                                      // three are measured against, and its absence
+                                      // would be the only thing worth noticing.
                                       var perf = book && String((book.category) || "") === "Theatrical Performances";
                                       // A catalogue entry waiting for its video
                                       // carries an empty videos object. That is
@@ -9600,22 +9613,47 @@ export default function App() {
                                       // is worse than a row that promises
                                       // nothing.
                                       var hasVid = !!(book && book.videos && Object.keys(book.videos).length);
-                                      var lead = book && (book.audiobook || hasVid)
-                                        ? ((perf && hasVid) ? "🎬 " : "🎧 ")
-                                        : "";
-                                      // The tag never abbreviates. It is the
-                                      // thing being asked of the row, so on a
-                                      // narrow screen the TITLE gives way and
-                                      // the tag stays whole.
-                                      var tag = book && (book.parallelEn || book.isBible) ? "  EN" : "";
+                                      var hasAud = !!(book && (book.audiobook || hasVid));
+                                      var marks = " \uD83C\uDDF7\uD83C\uDDFA";
+                                      if (book && (book.parallelEn || book.isBible)) {
+                                        marks += " \uD83C\uDDEC\uD83C\uDDE7";
+                                      }
+                                      if (hasAud) marks += " \uD83C\uDFA7";
+                                      // The film reel means a staged performance and
+                                      // only that. A chapter video on an ordinary
+                                      // book is narration as far as a reader choosing
+                                      // what to listen to is concerned, so it keeps
+                                      // the headphones and gets no reel.
+                                      if (perf && hasVid) marks += " \uD83C\uDFAC";
+                                      var lead = "";
+                                      var tag = marks;
                                       // The marker must survive: it is the whole
                                       // point of the row. So the title is what
                                       // gives way, and only by as much as needed.
                                       // A native <option> cannot carry styled markup, so the
                                       // mark has to be a glyph that is green on its own —
                                       // a plain ✓ would inherit the option's text colour.
-                                      var done = isFinished(book) ? "  \u2705" : "";
-                                      var room = optChars - lead.length - tag.length - done.length;
+                                      var done = isFinished(book) ? " \u2705" : "";
+                                      // An emoji is two surrogate halves in a JS
+                                      // string and a flag is four, so .length says
+                                      // this row of marks costs sixteen characters
+                                      // when it draws about eight columns. Budgeting
+                                      // by .length ate the titles it was meant to sit
+                                      // beside. Count what is drawn: two columns per
+                                      // emoji, one per space.
+                                      var cols = function(str) {
+                                        var n = 0;
+                                        for (var ch of str) {
+                                          var c = ch.codePointAt(0);
+                                          // A flag is two regional-indicator letters
+                                          // that draw as one glyph, so each half is
+                                          // worth one column, not two.
+                                          n += (c >= 0x1F1E6 && c <= 0x1F1FF) ? 1
+                                             : (c > 0x2100) ? 2 : 1;
+                                        }
+                                        return n;
+                                      };
+                                      var room = optChars - cols(tag) - cols(done);
                                       var shown = tight && title.length > room
                                         ? title.slice(0, Math.max(4, room - 1)).trim() + "…"
                                         : title;
@@ -9995,7 +10033,7 @@ export default function App() {
                                             return (
                                               <span className="lib-tag">
                                                 {(cat === "Theatrical Performances" && hasVid)
-                                                  ? "🎬 Performance"
+                                                  ? "\uD83C\uDFAC Performance"
                                                   : "🎧 Audiobook"}
                                               </span>
                                             );
