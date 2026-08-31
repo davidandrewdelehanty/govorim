@@ -7790,7 +7790,7 @@ export default function App() {
            not the same table. */
         /* The English pane needs its own snap point, or it cannot be reached.
            The scroller is scroll-snap-type:x mandatory and the snap points are
-           declared on `.dual-grid > p` — which the Russian column has, being
+           declared on '.dual-grid > p' — which the Russian column has, being
            paragraphs, and which flow mode's English does NOT, being one div.
            With no snap target in the second column the scroller was obliged to
            return to the only ones it had, all at the left edge: the toggle did
