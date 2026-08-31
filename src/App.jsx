@@ -7788,7 +7788,16 @@ export default function App() {
            being stretched or squeezed to line up with a Russian row. It starts
            at the top and ends where it ends — the two texts are the same text,
            not the same table. */
-        .dual-en-flow{align-self:start}
+        /* The English pane needs its own snap point, or it cannot be reached.
+           The scroller is scroll-snap-type:x mandatory and the snap points are
+           declared on `.dual-grid > p` — which the Russian column has, being
+           paragraphs, and which flow mode's English does NOT, being one div.
+           With no snap target in the second column the scroller was obliged to
+           return to the only ones it had, all at the left edge: the toggle did
+           nothing, a swipe sprang back, and setting scrollLeft by hand was
+           undone before the next frame. Every flow-mode book had this, not
+           only the one where it was noticed. */
+        .dual-en-flow{align-self:start;scroll-snap-align:start}
         .dual-en-flow .dual-en{margin:0 0 1.2em}
         .dual-grid.flow{align-items:start}
         /* The closed control IS stylable, unlike its options. Full width and a
