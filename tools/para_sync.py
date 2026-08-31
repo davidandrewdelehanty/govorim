@@ -19,7 +19,24 @@ def paragraphs_of_chunk(chunk):
 def words_of(text):
     return [w for w in (norm(x) for x in text.split()) if w]
 
-def align_chapter(paras, toks, t0, t1):
+SPEAKER = re.compile(r'^\s*(?:[А-ЯЁ][а-яё]*\.?\s*){1,3}\s*(?:\([^)]*\)\s*)?\.\s+')
+STAGE   = re.compile(r'\([^)]*\)')
+
+def spoken(text):
+    """What an actor actually says, out of what the page prints.
+
+    A printed play gives every speech its character's name — "Медведенко.
+    Отчего вы всегда ходите в черном?" — and stage directions in parentheses.
+    None of it is spoken aloud, so a ten-word probe taken off the page spends
+    its first words on text that cannot be in the recording. Чайка anchored
+    28% of its paragraphs that way. Only the probe is cleaned; the paragraph
+    itself is untouched, because its index is what the map is keyed by.
+    """
+    t = SPEAKER.sub('', text or '')
+    return STAGE.sub(' ', t)
+
+
+def align_chapter(paras, toks, t0, t1, play=False):
     # Each paragraph is looked for where it OUGHT to fall — chapter start plus
     # the narrator's rate times the words before it — inside a generous window.
     # No running lock: one garbled opening then fails alone instead of
@@ -33,25 +50,80 @@ def align_chapter(paras, toks, t0, t1):
     total_w = sum(wc)
     span = (t1 - t0) if t1 else (times[-1] - t0)
     rate = span / max(total_w, 1)
-    cands = {}
-    cum = 0
-    for pi, para in enumerate(paras):
-        op = words_of(para)[:10]
-        exp_t = t0 + rate * cum
-        cum += wc[pi]
+    # Where a paragraph OUGHT to fall is only as good as the assumption that
+    # the reading proceeds evenly, and a staged performance does not: stage
+    # business, music and silence fall where the play needs them, not in
+    # proportion to the words. Over a 43-minute act of Чайка the drift ran
+    # well past the ±75s window and every paragraph missed, so a performance
+    # whose act boundaries were already confirmed to the second produced no
+    # map at all.
+    #
+    # So look twice. The first pass samples widely with a window loose enough
+    # to survive that drift, which costs little because it probes one
+    # paragraph in eight. Those anchors then say what the local pace actually
+    # is, and the second pass asks the tight question — where does THIS
+    # paragraph fall, between the two anchors that surround it — which is the
+    # question the ±75s window was always meant to answer.
+    def probe(pi, para, centre, half):
+        op = words_of(spoken(para) if play else para)[:10]
         if len(op) < 4:
-            continue
-        a = bisect.bisect_left(times, exp_t - 75)
-        b = bisect.bisect_left(times, exp_t + 75)
-        a, b = max(lo, a), min(hi, b)
+            return None
+        a = max(lo, bisect.bisect_left(times, centre - half))
+        b = min(hi, bisect.bisect_left(times, centre + half))
         best = (0.0, None)
         for j in range(a, max(a + 1, b - len(op))):
             r = difflib.SequenceMatcher(None, words[j:j+len(op)], op).ratio()
             if r > best[0]:
                 best = (r, times[j])
                 if r > 0.95: break
-        if best[0] >= 0.6:
-            cands[pi] = best[1]
+        return best[1] if best[0] >= 0.6 else None
+
+    cum_at = []
+    cum = 0
+    for pi in range(len(paras)):
+        cum_at.append(cum); cum += wc[pi]
+
+    coarse = {}
+    step = max(1, len(paras) // 24)
+    for pi in range(0, len(paras), step):
+        t = probe(pi, paras[pi], t0 + rate * cum_at[pi], 300)
+        if t is not None:
+            coarse[pi] = t
+    # Keep only the coarse anchors that move forward together; a wide window
+    # buys reach at the cost of the occasional wild match.
+    ck = sorted(coarse)
+    fwd, last_t = [], -1
+    for k in ck:
+        if coarse[k] >= last_t:
+            fwd.append(k); last_t = coarse[k]
+    coarse = {k: coarse[k] for k in fwd}
+    ca = sorted(coarse)
+
+    def expected(pi):
+        """Where this paragraph falls, given the coarse anchors around it."""
+        if not ca:
+            return t0 + rate * cum_at[pi]
+        before = [k for k in ca if k <= pi]
+        after = [k for k in ca if k > pi]
+        if before and after:
+            a, b = before[-1], after[0]
+            wa, wb = cum_at[a], cum_at[b]
+            f = (cum_at[pi] - wa) / float(max(wb - wa, 1))
+            return coarse[a] + f * (coarse[b] - coarse[a])
+        if before:
+            a = before[-1]
+            return coarse[a] + rate * (cum_at[pi] - cum_at[a])
+        b = after[0]
+        return coarse[b] - rate * (cum_at[b] - cum_at[pi])
+
+    cands = {}
+    for pi, para in enumerate(paras):
+        if pi in coarse:
+            cands[pi] = coarse[pi]
+            continue
+        t = probe(pi, para, expected(pi), 75)
+        if t is not None:
+            cands[pi] = t
     # Longest increasing subsequence over the matched times, so one wrong match
     # cannot fold time backwards for its neighbours.
     ks = sorted(cands)

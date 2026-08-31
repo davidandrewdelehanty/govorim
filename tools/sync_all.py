@@ -64,7 +64,12 @@ def run(entry, verbose=True):
         enc = en_para_count(entry, c)
         if enc is not None and abs(enc - len(paras)) > 1:
             mismatch += 1; continue
-        m, anchored, total = align_chapter(paras, t, v.get('start', 0), v.get('end', 0))
+        # A play's page carries speaker names and stage directions that nobody
+        # says aloud; the probe drops them. Prose is left exactly as printed.
+        is_play = bool(entry.get('play')) or \
+            str(entry.get('category') or '') in ('Plays', 'Theatrical Performances')
+        m, anchored, total = align_chapter(paras, t, v.get('start', 0), v.get('end', 0),
+                                           play=is_play)
         if not m: skipped += 1; continue
         ts = [m[x] for x in sorted(m, key=int)]
         if any(a > b for a, b in zip(ts, ts[1:])):
