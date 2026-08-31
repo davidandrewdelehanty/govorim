@@ -7089,9 +7089,19 @@ export default function App() {
     // paragraph beside a Russian one.
     var flowEnBlocks = null;
     if (dualActive && flowEn && proseEn) {
-      flowEnBlocks = litEntries
-        .map(function(e) { return proseEn[String(e.chIdx)]; })
-        .filter(function(t) { return t && String(t).trim(); });
+      flowEnBlocks = [];
+      litEntries.forEach(function(e) {
+        var t = proseEn[String(e.chIdx)];
+        if (!t || !String(t).trim()) return;
+        // One index can hold more than one English paragraph — where the
+        // translation runs longer than the Russian there are more paragraphs
+        // than there are places to hang them. They are stored with a blank
+        // line between, and split back out here, so the English keeps its own
+        // paragraphing instead of being run together into a slab.
+        String(t).split(/\n\s*\n/).forEach(function(part) {
+          if (part.trim()) flowEnBlocks.push(part.trim());
+        });
+      });
     }
     if (dualActive) {
       // Horizontal slide viewport: full-width RU pane on screen, EN pane one

@@ -144,6 +144,37 @@ def main():
     starts, at = [], 0
     for c in ru:
         starts.append(at); at += len(c)
+    # FLOW MODE — the honest option when the two texts will not pair.
+    #
+    # Дубровский's editions disagree about paragraphing in both directions and
+    # about where chapters begin, and every alignment good enough to look right
+    # was still wrong in three or four places. A wrong pairing is worse than
+    # none: the reader trusts the line beside the Russian.
+    #
+    # So nothing is paired. The English chapter is spread across the Russian
+    # chapter's paragraph indices in proportion, purely so the reader's PAGE
+    # shows roughly the stretch of English that answers the Russian in front of
+    # them — flow mode renders the blocks in order at their own length, and
+    # claims no row. Where two English paragraphs land on one index they are
+    # kept apart by a blank line so the renderer can still break them.
+    if '--flow' in sys.argv:
+        os.makedirs(outdir, exist_ok=True)
+        tot = 0
+        for ci, c in enumerate(ru):
+            EC = enchs[ci] if ci < len(enchs) else []
+            M, N = max(len(c), 1), len(EC)
+            slot = {}
+            for j, para in enumerate(EC):
+                k = min(M - 1, (j * M) // max(N, 1))
+                slot.setdefault(k, []).append(para)
+            m = dict((str(k), '\n\n'.join(v)) for k, v in slot.items())
+            tot += sum(len(v) for v in slot.values())
+            io.open(os.path.join(outdir, '%02d.json' % (ci + 1)), 'w', encoding='utf-8').write(
+                json.dumps(m, ensure_ascii=False, indent=1) + '\n')
+            print('ch%-3d ru %3d  en %3d  spread over %3d slots' % (ci + 1, len(c), N, len(m)), flush=True)
+        print('\n%d english paragraphs placed, none of them claiming to translate a particular Russian one' % tot)
+        return
+
     print('aligning %d russian paragraphs against %d english, as one stream' % (len(R), len(E)), flush=True)
     pairs = align(R, E)
     if pairs is None:
