@@ -9803,8 +9803,19 @@ export default function App() {
                             {shelvesToRender.map(function(cat) {
                               var entries = buckets[cat];
                               if (!entries.length) return null;
-                              var withAudio = entries.filter(function(e){ return !!(e.book.audiobook); });
-                              var textOnly  = entries.filter(function(e){ return !e.book.audiobook; });
+                              // A recording is a recording. This asked only about
+                              // `audiobook` and so filed every book whose audio
+                              // comes from chapter videos under "Text Only" —
+                              // which after the audio hunt was sixty of them,
+                              // including Яма, Тарас Бульба and every Chekhov
+                              // story added that day. The card badge already
+                              // counted videos; the shelf heading did not.
+                              var hasRec = function(b) {
+                                return !!(b && (b.audiobook ||
+                                  (b.videos && Object.keys(b.videos).length)));
+                              };
+                              var withAudio = entries.filter(function(e){ return hasRec(e.book); });
+                              var textOnly  = entries.filter(function(e){ return !hasRec(e.book); });
                               var renderCard = function(entry) {
                                 var book = entry.book;
                                 var isLoading = bookLoading === book.filename;
