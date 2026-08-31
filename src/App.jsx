@@ -604,6 +604,14 @@ function ChapterVideo(props) {
   // by the reader. Turning to the next chapter resumes from exactly there,
   // which is what makes a whole-book recording play straight through.
   var stoppedAtEnd = useRef(false);
+  // Minimised means the picture is clipped away and the player keeps running:
+  // the iframe is still laid out at full size inside a container of zero
+  // height, so YouTube goes on thinking it is visible and the audio does not
+  // stop. Destroying the iframe would stop it. The choice is remembered,
+  // because a reader who wants audio only wants it for the whole book.
+  var [mini, setMini] = useState(function() {
+    try { return localStorage.getItem("gv_vid_mini") === "1"; } catch (e) { return false; }
+  });
   var [ready, setReady]   = useState(false);
   var [pos, setPos]       = useState(0);
   var [playing, setPlay]  = useState(false);
@@ -753,7 +761,7 @@ function ChapterVideo(props) {
   };
   return (
     <>
-      <div className="chvid" ref={host} />
+      <div className={"chvid" + (mini ? " mini" : "")} ref={host} />
       {ready && (
         <div className="chvid-scrub">
           <button type="button" onClick={toggle} title={playing ? "Pause" : "Play"}
@@ -770,6 +778,16 @@ function ChapterVideo(props) {
           <button type="button" onClick={function(){ seek(rel + 15); }}
             title="Forward 15 seconds" aria-label="Forward 15 seconds">15↻</button>
           <span className="t">{fmtClock(shown)}<span className="sep">/</span>{fmtClock(span)}</span>
+          {/* Hides the picture and keeps the transport. A staged performance is
+              meant to be watched; a narrated reading is not, and its player is
+              just a rectangle taking room from the page. */}
+          <button type="button" className="vid-mini"
+            onClick={function(){
+              var v = !mini; setMini(v);
+              try { localStorage.setItem("gv_vid_mini", v ? "1" : "0"); } catch (e) {}
+            }}
+            title={mini ? "Show the video" : "Hide the video — the audio keeps playing"}
+            aria-pressed={mini}>{mini ? "▽ Video" : "△ Video"}</button>
         </div>
       )}
     </>
@@ -7905,6 +7923,43 @@ export default function App() {
            1000+ pixels. Center the content. */
         .lit-left > *{max-width:760px;margin-left:auto;margin-right:auto}
         .lit-right{width:460px;flex-shrink:0;display:flex;flex-direction:column;min-height:0}
+
+        /* Minimised: the container collapses to nothing and clips, while the
+           iframe inside keeps a real size. A player resized to 0x0 or hidden
+           gets throttled or paused by the browser; one that is merely clipped
+           carries on, which is the whole point — the reader wanted the audio,
+           not the rectangle. */
+        .chvid.mini{padding-bottom:0;height:0;border-width:0;margin:0}
+        .chvid.mini iframe{height:240px}
+        .chvid-scrub .vid-mini{margin-left:2px;font-family:'Crimson Pro',serif;
+          font-size:11.5px;letter-spacing:.02em;opacity:.85}
+
+        /* Wide screens: the video moves out of the reading column and into a
+           rail of its own on the left, and the text takes the room back. This
+           is what the request was really about — a player stacked above the
+           text costs the text that height on every page, and a staged
+           performance needs to be big enough to actually watch.
+           display:contents on the dock lets its two children — the picture and
+           the transport — be placed independently: picture in the left rail,
+           transport across the top of the text where it has always been. */
+        @media (min-width:1250px){
+          .lit-left.has-vid{display:grid;
+            grid-template-columns:clamp(260px,23vw,400px) minmax(0,1fr);
+            column-gap:30px;align-content:start}
+          .lit-left.has-vid > *{grid-column:2;max-width:760px;width:100%;
+            margin-left:0;margin-right:auto}
+          .lit-left.has-vid > .chvid-dock{display:contents}
+          .lit-left.has-vid .chvid{grid-column:1;grid-row:1 / span 500;
+            position:sticky;top:0;align-self:start;max-width:none;width:100%;
+            padding-bottom:56.25%;margin:0}
+          /* The rail is narrow enough that the picture never crowds the text,
+             so the viewport caps that protect a stacked player are dropped. */
+          .lit-left.has-vid .chvid.mini{padding-bottom:0}
+          .lit-left.has-vid .chvid-scrub{grid-column:2;grid-row:1;
+            position:sticky;top:0;z-index:6;background:#f5f0e8;max-width:760px;
+            margin:0 auto 14px 0}
+          .lit-left.has-vid .chvid-dock::before{display:none}
+        }
         @media(max-width:900px){
           /* Mobile reading layout: vertical flow, page scrolls.
              - Book text dominates the top — natural height, fully readable
@@ -10723,7 +10778,8 @@ export default function App() {
                     {renderVoicePicker()}
 
                     <div className="lit-body">
-                      <div className={"lit-left" + (noAIMode ? " noai" : "")}>
+                      <div className={"lit-left" + (noAIMode ? " noai" : "")
+                        + ((curChapter && curChapter.youtubeId && !curChapter.merged) ? " has-vid" : "")}>
                         {/* Book title shown small above the chapter heading so the reader always knows
                             which book they're in, even after navigating mid-chapter. */}
                         {bookMeta.title && (
