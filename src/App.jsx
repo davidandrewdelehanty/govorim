@@ -2272,31 +2272,44 @@ async function parseBook(buffer, fname) {
   }
 }
 
-// PUSHKIN_PNG: white-on-transparent silhouette of Alexander Pushkin (right-facing profile).
-// Rendered via CSS mask so the silhouette picks up `currentColor` from its container,
-// blending with the rest of the warm-tone palette.
-var PUSHKIN_PNG = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG4AAACWCAYAAAA/mr2PAAACvUlEQVR42u3dW1LDMBBEUaTK/rccfqCKDyCQ6DEtn14A2Lq6o5HiOG9vIiIiZ6Zd4Sbv9/v94UC01oArCufPgxIAsV0dUirABlQmvBtQmpNjoVS07gZWZm6AZaYbgswJ2NiWue4x7oWJuXNyAhcKsI2+iauVxq/3vLJ8NsBeX8s+7z8G3BXa/apHXg2wTHiak4AOcgi4K5+GVLr3DlomPKUyFF5nW2YYF2odcIxjHXAC3KnW9eolAbwnwYEWWCpBq2tdBy0TXgctE56uMhQecKc0J8qkDbhyCZwAB5z8ltlPhgHHONkKLu19H7pKiYIH3ElrnHJZ3zrGhcID7qRS6aC5vnWMC4XnY51QeIwLhQdcKDzgQuEBFwrPIXMoPMaFwnNWGQrvR+PAqw3v11IJXt3cDMGevCqF5sQGXFYGuFDrgAuFB9yppdKWoGhXurobkjFiKJW6SgFOxoPTrOxf3xgXCu1pcKzbC+0l48DbO269wkXIhjWufcRQLjZ3xh91ulJ4jWPhwRtwAEPBKZuh4EALNk4K7uPYti+eqxxozaPJOrJRa4xbX+bKlkrQNCegAXcONODs485N1fXapwOhJRS4UIhK5aCJunqyNrZlGsi4UAOBC+1IgQuF11JmmLWPcUfYB1wovF5xNoHHuGMD3JXBKZPrx4xxVzWObYHgQNs36ZVKXaUAJ8AB9018aZFxOkvgGKdcKpVSEhzrGCerwbEu2Djw1m0JlMpC8Ib8fhzrats37SVsEMyFN61UgjcXnjUudN2b/tpDwz/HvunGgTdnDPuufyyFNuDgrRu3vvoiAAwzjn1jx6lXvCh5PD4lBs8T0f+f1D3lQkEraBz7/j+By8507wMLBXclgM8sFTFri/c8h4I7CeKIZiy+m0uCGPG7AyDO3eocvX/aAXLVnvSSG99RQB0ciIiIjM87TzG8n8xH9rsAAAAASUVORK5CYII=";
-var PUSHKIN_ASPECT = 150 / 110;  // height / width of the source image
-
-function Pushkin({ size }) {
+// The samovar the site is named after, drawn rather than photographed: a
+// silhouette has to survive being 26 pixels tall on a tab strip, and an urn
+// with a lid, two handles, a tap and a footed pedestal is still legible there
+// when a portrait is not. It was a photographic silhouette of Pushkin before,
+// carried as a base64 PNG; this is a few hundred bytes of paths that take
+// currentColor, so it inherits whatever the palette is doing.
+function Samovar({ size }) {
   var s = size || 56;
-  var maskStyle = {
-    display: "inline-block",
-    width: s,
-    height: Math.round(s * PUSHKIN_ASPECT),
-    backgroundColor: "currentColor",
-    WebkitMaskImage: "url(" + PUSHKIN_PNG + ")",
-    WebkitMaskRepeat: "no-repeat",
-    WebkitMaskSize: "contain",
-    WebkitMaskPosition: "center",
-    maskImage: "url(" + PUSHKIN_PNG + ")",
-    maskRepeat: "no-repeat",
-    maskSize: "contain",
-    maskPosition: "center",
-    verticalAlign: "middle",
-  };
-  return <span style={maskStyle} aria-label="Pushkin"/>;
+  return (
+    <svg width={s} height={Math.round(s * 150 / 110)} viewBox="0 0 110 150"
+         fill="currentColor" role="img" aria-label="Samovar"
+         style={{display:"inline-block", verticalAlign:"middle"}}>
+      {/* lid: finial, dome, and the rim that keeps the dome from reading as
+          part of the body at small sizes */}
+      <circle cx="55" cy="6" r="4.5"/>
+      <rect x="52" y="9" width="6" height="4"/>
+      <path d="M35 25 C38 15 45 9 55 9 C65 9 72 15 75 25 Z"/>
+      <rect x="29" y="25" width="52" height="7" rx="2.5"/>
+      {/* body */}
+      <path d="M38 34 C26 42 18 57 18 73 C18 89 25 101 36 105 L74 105 C85 101 92 89 92 73 C92 57 84 42 72 34 Z"/>
+      {/* handles */}
+      <path d="M22 41 C3 44 -1 65 13 73 L18 64 C9 59 12 48 26 47 Z"/>
+      <path d="M88 41 C107 44 111 65 97 73 L92 64 C101 59 98 48 84 47 Z"/>
+      {/* tap: spout, stem and key, set below the handle so the two do not
+          merge into one shape */}
+      <rect x="90" y="86" width="19" height="7" rx="3"/>
+      <rect x="98" y="72" width="7" height="16" rx="1.5"/>
+      <circle cx="101.5" cy="69" r="5"/>
+      {/* waist, pedestal and feet */}
+      <rect x="45" y="105" width="20" height="9"/>
+      <path d="M33 114 h44 l6 12 h-56 z"/>
+      <rect x="21" y="126" width="68" height="9" rx="3.5"/>
+      <rect x="27" y="135" width="10" height="6" rx="2"/>
+      <rect x="73" y="135" width="10" height="6" rx="2"/>
+    </svg>
+  );
 }
+
 
 // Самовар only: the donate button and the Discord invite, in that order.
 // The PayPal half is a plain form POST to PayPal's own hosted page — no
@@ -4520,7 +4533,7 @@ export default function App() {
     return (
       <button onClick={function(e){ e.stopPropagation(); playExClip(id, sentence); }}
         title="Play this line from the recording"
-        style={{background: playing ? "rgba(196,149,90,.25)" : "rgba(42,31,20,.06)", border:"1px solid rgba(42,31,20,.18)",
+        style={{background: playing ? "rgba(42,31,20,.25)" : "rgba(42,31,20,.06)", border:"1px solid rgba(42,31,20,.18)",
           color:"#2a1f14", width:30, height:30, minWidth:30, borderRadius:"50%", cursor:"pointer", fontSize:13,
           display:"inline-flex", alignItems:"center", justifyContent:"center", verticalAlign:"middle", flexShrink:0, padding:0, lineHeight:1}}>
         {playing ? "⏸" : "🔊"}
@@ -6903,7 +6916,7 @@ export default function App() {
                   } else {
                     var verseNumMatch2 = tk.text.match(/^(\d+)(\s*)$/);
                   if (verseNumMatch2 && bookMeta && bookMeta.filename && bookMeta.filename.indexOf("Библии") !== -1) {
-                    elems.push(<span key={i}><span style={{fontSize:"0.7em",fontWeight:700,color:"#c4955a",verticalAlign:"super",lineHeight:1,marginRight:"2px",fontFamily:"sans-serif"}}>{verseNumMatch2[1]}</span>{verseNumMatch2[2]}</span>);
+                    elems.push(<span key={i}><span style={{fontSize:"0.7em",fontWeight:700,color:"#2a1f14",verticalAlign:"super",lineHeight:1,marginRight:"2px",fontFamily:"sans-serif"}}>{verseNumMatch2[1]}</span>{verseNumMatch2[2]}</span>);
                   } else {
                     elems.push(<span key={i}>{tk.text.replace(/\n/g, " ")}</span>);
                   }
@@ -6939,7 +6952,7 @@ export default function App() {
                   return (
                     <span key={i}>
                       <span style={{
-                        fontSize:"0.7em", fontWeight:700, color:"#c4955a",
+                        fontSize:"0.7em", fontWeight:700, color:"#2a1f14",
                         verticalAlign:"super", lineHeight:1, marginRight:"2px",
                         fontFamily:"sans-serif", letterSpacing:"0.02em"
                       }}>{verseNumMatch[1]}</span>
@@ -7228,7 +7241,7 @@ export default function App() {
             {diagLogs.map(function(line,i){
               var color = line.indexOf("onerror") >= 0 || line.indexOf("THREW") >= 0 ? "#c87a6806a"
                        : line.indexOf("onstart") >= 0 ? "#82a882"
-                       : line.indexOf("===") >= 0 ? "#c8a276" : "rgba(210,197,175,.7)";
+                       : line.indexOf("===") >= 0 ? "#4a3f34" : "rgba(210,197,175,.7)";
               return <div key={i} style={{color:color,whiteSpace:"pre-wrap",wordBreak:"break-all"}}>{line}</div>;
             })}
           </div>
@@ -7405,16 +7418,16 @@ export default function App() {
         .logo{display:flex;align-items:baseline;gap:10px;flex:none}
         .lru{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#000}
         .lsub{font-size:11px;color:rgba(42,31,20,.35);letter-spacing:2.5px;text-transform:uppercase}
-        .tbadge{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#000;padding:6px 14px;border-radius:20px;font-size:13px;cursor:pointer;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .tbadge{background:rgba(42,31,20,.1);border:1px solid rgba(42,31,20,.25);color:#000;padding:6px 14px;border-radius:20px;font-size:13px;cursor:pointer;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         /* Library browser: search + card-grid of preset & uploaded books.
            Replaces the prior <select> dropdown on the Read launch screen. */
         .lib-search{width:100%;padding:12px 16px;font-size:16px;background:rgba(42,31,20,.05);border:1px solid rgba(42,31,20,.18);border-radius:10px;color:#000;font-family:'Crimson Pro',serif;margin-bottom:20px;box-sizing:border-box;letter-spacing:.01em}
-        .lib-search:focus{outline:none;border-color:rgba(196,149,90,.5);background:rgba(42,31,20,.08)}
+        .lib-search:focus{outline:none;border-color:rgba(42,31,20,.5);background:rgba(42,31,20,.08)}
         .lib-search::placeholder{color:rgba(42,31,20,.4)}
         .lib-cats{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
         .lib-cat-chip{padding:8px 15px;border-radius:999px;border:1px solid rgba(42,31,20,.16);background:rgba(42,31,20,.04);color:rgba(42,31,20,.8);font-family:'Crimson Pro',serif;font-size:14px;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:7px;line-height:1}
-        .lib-cat-chip:hover{background:rgba(196,149,90,.14);border-color:rgba(196,149,90,.4);transform:translateY(-1px)}
-        .lib-cat-chip.on{background:rgba(196,149,90,.18);border-color:rgba(196,149,90,.6);color:#000;font-weight:600}
+        .lib-cat-chip:hover{background:rgba(42,31,20,.14);border-color:rgba(42,31,20,.4);transform:translateY(-1px)}
+        .lib-cat-chip.on{background:rgba(42,31,20,.18);border-color:rgba(42,31,20,.6);color:#000;font-weight:600}
         .lib-cat-chip .n{font-size:11px;opacity:.5;font-variant-numeric:tabular-nums}
         .lib-cat-chip.all{border-style:dashed}
         /* The Authors shelf. Names, not cards: a name is short and there are
@@ -7423,7 +7436,7 @@ export default function App() {
         .lib-author{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:10px;
           background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.12);cursor:pointer;
           font-family:'Crimson Pro',serif;font-size:15px;color:#000;line-height:1;transition:all .15s}
-        .lib-author:hover{background:rgba(196,149,90,.14);border-color:rgba(196,149,90,.4);transform:translateY(-1px)}
+        .lib-author:hover{background:rgba(42,31,20,.14);border-color:rgba(42,31,20,.4);transform:translateY(-1px)}
         .lib-author .n{font-size:11px;color:rgba(42,31,20,.45);font-variant-numeric:tabular-nums}
         .lib-cat-hint{padding:34px 16px;text-align:center;color:rgba(42,31,20,.45);font-style:italic;font-size:14px}
         .lib-section{margin-bottom:22px}
@@ -7433,7 +7446,7 @@ export default function App() {
            four. */
         .lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:10px}
         .lib-card{padding:14px;border-radius:10px;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.1);cursor:pointer;transition:all .15s;position:relative;display:flex;flex-direction:column;gap:4px}
-        .lib-card:hover{background:rgba(42,31,20,.08);border-color:rgba(196,149,90,.3);transform:translateY(-1px)}
+        .lib-card:hover{background:rgba(42,31,20,.08);border-color:rgba(42,31,20,.3);transform:translateY(-1px)}
         .lib-card-title{font-family:'Playfair Display',serif;font-size:15px;color:#000;line-height:1.3;margin-bottom:8px}
         .lib-card-author{font-size:12px;color:rgba(42,31,20,.6);font-style:italic;margin-bottom:6px}
         .lib-card-meta{display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:5px;font-size:11px;color:rgba(42,31,20,.4);margin-top:auto;padding-top:4px}
@@ -7442,7 +7455,7 @@ export default function App() {
            marker reads as an oversight, where "no English" is an answer. */
         .lib-tag{padding:2px 7px;border-radius:9px;font-size:10px;letter-spacing:.3px;font-weight:600;white-space:nowrap;border:1px solid rgba(42,31,20,.16);color:rgba(42,31,20,.72);background:rgba(42,31,20,.05)}
         .lib-tag.off{border-color:rgba(42,31,20,.08);color:rgba(42,31,20,.3);background:none;font-weight:500}
-        .lib-card-cat{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#c4955a;padding:2px 8px;border-radius:10px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600}
+        .lib-card-cat{background:rgba(42,31,20,.1);border:1px solid rgba(42,31,20,.25);color:#2a1f14;padding:2px 8px;border-radius:10px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:600}
         /* The player was capped in pixels only — 360px — with nothing tying it
            to the window. On a laptop running Chrome with a bookmarks bar the
            viewport is around 700px, and 360 of it plus the scrubber and the
@@ -7478,8 +7491,8 @@ export default function App() {
         .chvid-scrub button{flex:none;min-width:38px;padding:5px 8px;font-size:12px;line-height:1.2;
           background:rgba(255,255,255,.55);border:1px solid rgba(42,31,20,.16);border-radius:7px;
           color:rgba(42,31,20,.8);cursor:pointer;font-family:'Inter',sans-serif;transition:all .12s}
-        .chvid-scrub button:hover{background:rgba(196,149,90,.18);border-color:rgba(196,149,90,.45);color:#000}
-        .chvid-scrub input[type=range]{flex:1 1 auto;min-width:60px;height:24px;accent-color:#c4955a;cursor:pointer}
+        .chvid-scrub button:hover{background:rgba(42,31,20,.18);border-color:rgba(42,31,20,.45);color:#000}
+        .chvid-scrub input[type=range]{flex:1 1 auto;min-width:60px;height:24px;accent-color:#2a1f14;cursor:pointer}
         .chvid-scrub .t{flex:none;font-size:12px;color:rgba(42,31,20,.6);white-space:nowrap;
           font-variant-numeric:tabular-nums}
         .chvid-scrub .t .sep{opacity:.4;margin:0 3px}
@@ -7488,18 +7501,18 @@ export default function App() {
           font-family:'Crimson Pro',serif;font-size:14px;color:rgba(42,31,20,.72)}
         .no-audio .sub{display:block;font-size:12.5px;color:rgba(42,31,20,.5);margin-top:2px}
         .one-rec{max-width:640px;margin:0 0 16px;padding:10px 14px;border-radius:10px;
-          background:rgba(196,149,90,.09);border:1px solid rgba(196,149,90,.3);
+          background:rgba(42,31,20,.09);border:1px solid rgba(42,31,20,.3);
           font-family:'Crimson Pro',serif;font-size:14px;color:rgba(42,31,20,.75)}
         .one-rec .sub{display:block;font-size:12.5px;color:rgba(42,31,20,.55);margin-top:3px;line-height:1.5}
         /* The pin's little menu. Fixed, so it is not clipped by the column it
            springs from. */
         .bm-menu{position:fixed;z-index:120;display:flex;flex-direction:column;gap:2px;
-          background:#fbf8f2;border:1px solid rgba(196,149,90,.45);border-radius:10px;
+          background:#fbf8f2;border:1px solid rgba(42,31,20,.45);border-radius:10px;
           padding:5px;box-shadow:0 6px 20px rgba(42,31,20,.16);min-width:190px}
         .bm-menu button{text-align:left;background:none;border:none;cursor:pointer;
           font-family:'Crimson Pro',serif;font-size:14px;color:#000;padding:8px 12px;
           border-radius:7px;transition:background .12s}
-        .bm-menu button:hover{background:rgba(196,149,90,.16)}
+        .bm-menu button:hover{background:rgba(42,31,20,.16)}
         .bm-menu .at{color:rgba(42,31,20,.5);font-size:12px;font-variant-numeric:tabular-nums}
         .bm-menu button.resume{border-top:1px solid rgba(42,31,20,.1);margin-top:3px;
           padding-top:9px;border-radius:0 0 7px 7px;color:#5d4a2e}
@@ -7507,10 +7520,10 @@ export default function App() {
            wanted — the text is the page, the transport is a courtesy. */
         .pjump{float:left;margin:2px 8px 0 -2px;width:22px;height:22px;padding:0;
           display:inline-flex;align-items:center;justify-content:center;
-          background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.3);border-radius:50%;
-          color:rgba(196,149,90,.9);font-size:9px;line-height:1;cursor:pointer;
+          background:rgba(42,31,20,.1);border:1px solid rgba(42,31,20,.3);border-radius:50%;
+          color:rgba(42,31,20,.9);font-size:9px;line-height:1;cursor:pointer;
           opacity:.35;transition:opacity .15s,background .15s}
-        .pjump:hover{opacity:1;background:rgba(196,149,90,.25)}
+        .pjump:hover{opacity:1;background:rgba(42,31,20,.25)}
         @media(hover:none){.pjump{opacity:.55}}
         /* The bookmark pin. One per book; faint on every paragraph, solid on
            the one that holds it. */
@@ -7519,10 +7532,10 @@ export default function App() {
           background:transparent;border:1px solid rgba(42,31,20,.14);border-radius:50%;
           font-size:10px;line-height:1;cursor:pointer;filter:grayscale(1);
           opacity:.22;transition:opacity .15s,background .15s}
-        .pbm:hover{opacity:.9;filter:none;background:rgba(196,149,90,.15)}
-        .pbm.on{opacity:1;filter:none;background:rgba(196,149,90,.2);border-color:rgba(196,149,90,.55)}
+        .pbm:hover{opacity:.9;filter:none;background:rgba(42,31,20,.15)}
+        .pbm.on{opacity:1;filter:none;background:rgba(42,31,20,.2);border-color:rgba(42,31,20,.55)}
         @media(hover:none){.pbm{opacity:.4}}
-        .ltab.bmjump{border-color:rgba(196,149,90,.4)}
+        .ltab.bmjump{border-color:rgba(42,31,20,.4)}
         @media(max-width:560px){.chvid-scrub{gap:6px;padding:6px 8px}
           .chvid-scrub button{min-width:32px;padding:5px 6px;font-size:11px}
           .chvid-scrub .t{font-size:11px}}
@@ -7545,7 +7558,7 @@ export default function App() {
         .story-index-link{font-family:'Inter',sans-serif;font-size:12px;line-height:1.2;
           padding:5px 10px;border-radius:14px;cursor:pointer;color:rgba(42,31,20,.7);
           border:1px solid rgba(42,31,20,.16);background:transparent;transition:all .15s}
-        .story-index-link:hover{border-color:rgba(196,149,90,.55);color:#000;background:rgba(196,149,90,.08)}
+        .story-index-link:hover{border-color:rgba(42,31,20,.55);color:#000;background:rgba(42,31,20,.08)}
         .sec-div{font-family:'Playfair Display',serif;font-size:15px;letter-spacing:.04em;
           color:rgba(42,31,20,.55);margin:26px 0 10px;padding-top:14px;
           border-top:1px solid rgba(42,31,20,.12)}
@@ -7564,7 +7577,7 @@ export default function App() {
         .lib-card-remove:hover{color:#9d4630}
         /* Loading state: dim the card content and overlay a centered spinner.
            Disabled state (a different card is loading): grey out + ignore clicks. */
-        .lib-card.is-loading{pointer-events:none;border-color:rgba(196,149,90,.45);background:rgba(196,149,90,.06)}
+        .lib-card.is-loading{pointer-events:none;border-color:rgba(42,31,20,.45);background:rgba(42,31,20,.06)}
         .lib-card.is-loading > *:not(.lib-card-loader){opacity:.3}
         .lib-card.is-disabled{pointer-events:none;opacity:.45}
         .lib-card-loader{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(35,32,26,.65);border-radius:10px;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);z-index:1}
@@ -7573,11 +7586,11 @@ export default function App() {
            that matches the Topic badge. The label sits to the left of the dropdown. */
         .level-wrap{display:flex;align-items:center;gap:6px}
         .level-lbl{font-size:10px;color:rgba(42,31,20,.4);text-transform:uppercase;letter-spacing:1.5px;font-weight:600}
-        .level-pill{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#000;padding:5px 10px;border-radius:14px;font-size:13px;font-family:'Crimson Pro',serif;cursor:pointer;width:auto;outline:none}
-        .level-pill:hover{background:rgba(196,149,90,.18)}
+        .level-pill{background:rgba(42,31,20,.1);border:1px solid rgba(42,31,20,.25);color:#000;padding:5px 10px;border-radius:14px;font-size:13px;font-family:'Crimson Pro',serif;cursor:pointer;width:auto;outline:none}
+        .level-pill:hover{background:rgba(42,31,20,.18)}
         .level-pill option{background:#ede8dd}
         @media(max-width:600px){.level-lbl{display:none}.level-pill{padding:4px 8px;font-size:12px}}
-        .tbadge:hover{background:rgba(196,149,90,.18)}
+        .tbadge:hover{background:rgba(42,31,20,.18)}
         /* Inline in the header now, so the underline that marked the active
            tab has no bar to sit on — it becomes a soft pill instead, which
            reads at any vertical position. Scrolls sideways rather than
@@ -7588,8 +7601,8 @@ export default function App() {
         .tab{padding:6px 13px;background:none;border:1px solid transparent;border-radius:7px;
           color:rgba(42,31,20,.66);font-family:'Crimson Pro',serif;font-size:14.5px;
           cursor:pointer;white-space:nowrap;flex:none;transition:background .15s,color .15s}
-        .tab.on{color:#000;font-weight:600;background:rgba(196,149,90,.16);
-          border-color:rgba(196,149,90,.32)}
+        .tab.on{color:#000;font-weight:600;background:rgba(42,31,20,.16);
+          border-color:rgba(42,31,20,.32)}
         .tab:hover:not(.on){color:#000;background:rgba(42,31,20,.05)}
         /* Narrow: the tagline goes first — it is decoration — then the account
            email, so the sections keep their room the longest. */
@@ -7602,7 +7615,7 @@ export default function App() {
           .acct-email{display:none}
           .lru{font-size:19px}
         }
-        .bdg{background:#c4955a;color:#fff;font-size:10px;border-radius:10px;padding:1px 5px;margin-left:4px;vertical-align:middle}
+        .bdg{background:#2a1f14;color:#fff;font-size:10px;border-radius:10px;padding:1px 5px;margin-left:4px;vertical-align:middle}
         .bdg.g{background:#5a8556}
         .main{flex:1;display:flex;flex-direction:column;position:relative;z-index:1;min-height:0}
         .ss{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:48px 28px;text-align:center;gap:22px;overflow-y:auto;min-height:0}
@@ -7614,10 +7627,10 @@ export default function App() {
         .donate{margin-top:2px}
         .donate{width:100%;max-width:340px}
         .donate-btn{display:block;width:100%;text-align:center;cursor:pointer;
-          background:#fffdf9;border:1px solid rgba(196,149,90,.45);border-radius:10px;
+          background:#fffdf9;border:1px solid rgba(42,31,20,.45);border-radius:10px;
           padding:14px 18px 12px;font-family:'Crimson Pro',serif;
           transition:border-color .15s,box-shadow .15s,transform .1s}
-        .donate-btn:hover{border-color:rgba(196,149,90,.85);box-shadow:0 2px 10px rgba(196,149,90,.18)}
+        .donate-btn:hover{border-color:rgba(42,31,20,.85);box-shadow:0 2px 10px rgba(42,31,20,.18)}
         .donate-btn:active{transform:translateY(1px)}
         .donate-btn .dn-t{display:block;font-size:15px;font-weight:600;color:#2a1f14;
           line-height:1.3}
@@ -7627,10 +7640,10 @@ export default function App() {
         .donate-btn .dn-bar{display:block;height:7px;border-radius:4px;overflow:hidden;
           background:rgba(42,31,20,.1)}
         .donate-btn .dn-bar > span{display:block;height:100%;border-radius:4px;
-          background:linear-gradient(90deg,#c4955a,#a87b3f);transition:width .5s ease}
+          background:linear-gradient(90deg,#2a1f14,#0f0c08);transition:width .5s ease}
         .donate-btn .dn-num{display:block;margin-top:6px;font-size:12.5px;
           color:rgba(42,31,20,.66);font-variant-numeric:tabular-nums}
-        .donate-btn .dn-num b{color:#a87b3f;font-weight:600}
+        .donate-btn .dn-num b{color:#0f0c08;font-weight:600}
         .donate-btn .sub{display:block;font-size:12.5px;font-style:italic;
           color:rgba(42,31,20,.5);margin-top:2px}
         .donate.sm{max-width:290px}
@@ -7686,8 +7699,8 @@ export default function App() {
         select,input[type="text"],textarea{width:100%;background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.16);color:#000;padding:12px 16px;border-radius:10px;font-family:'Crimson Pro',serif;font-size:16px;outline:none;transition:border-color .2s}
         select{appearance:none;cursor:pointer} select option{background:#ede8dd}
         ::placeholder{color:rgba(42,31,20,.28)}
-        input:focus,textarea:focus,select:focus{border-color:rgba(196,149,90,.5)}
-        .btn-p{background:linear-gradient(135deg,#c4955a,#a87a42);color:#fff;border:none;padding:14px 32px;border-radius:10px;font-family:'Playfair Display',serif;font-size:17px;cursor:pointer;width:100%;box-shadow:0 4px 20px rgba(196,149,90,.3);transition:opacity .2s}
+        input:focus,textarea:focus,select:focus{border-color:rgba(42,31,20,.5)}
+        .btn-p{background:linear-gradient(135deg,#2a1f14,#0f0c08);color:#fff;border:none;padding:14px 32px;border-radius:10px;font-family:'Playfair Display',serif;font-size:17px;cursor:pointer;width:100%;box-shadow:0 4px 20px rgba(42,31,20,.3);transition:opacity .2s}
         .btn-p:hover:not(:disabled){opacity:.88} .btn-p:disabled{opacity:.4;cursor:default}
         .btn-g{background:rgba(42,31,20,.07);color:rgba(42,31,20,.6);border:1px solid rgba(42,31,20,.15);padding:12px 24px;border-radius:10px;font-family:'Crimson Pro',serif;font-size:15px;cursor:pointer;width:100%;transition:background .2s}
         .btn-g:hover{background:rgba(42,31,20,.12)}
@@ -7697,14 +7710,14 @@ export default function App() {
         .msg.user{align-items:flex-end} .msg.ai{align-items:flex-start}
         .bub{max-width:72%;padding:14px 18px;font-size:16px;line-height:1.7}
         .abub{background:rgba(42,31,20,.065);border:1px solid rgba(42,31,20,.11);border-radius:4px 16px 16px 16px}
-        .ubub{background:rgba(196,149,90,.2);border:1px solid rgba(196,149,90,.28);border-radius:16px 4px 16px 16px}
+        .ubub{background:rgba(42,31,20,.2);border:1px solid rgba(42,31,20,.28);border-radius:16px 4px 16px 16px}
         .mline{display:block;margin-bottom:3px;line-height:1.7}
         .tline{color:rgba(42,31,20,.5);font-size:14px;margin-top:6px;display:block;line-height:1.65;padding-top:5px;border-top:1px solid rgba(42,31,20,.08)}
         .tipline{color:rgba(128,168,128,.85);font-size:13.5px;border-left:2px solid rgba(128,168,128,.35);padding-left:8px;margin-top:7px;display:block;line-height:1.5}
-        .qline{color:#000;font-size:15px;margin-top:10px;display:block;line-height:1.6;padding:8px 12px;background:rgba(196,149,90,.07);border-radius:8px;border-left:2px solid rgba(196,149,90,.4)}
-        .vw{color:#c4955a} .corr{color:#2f4a6b}
-        .vw.rw{color:#c4955a;border-bottom:1px dotted rgba(196,149,90,.5)}
-        .vw.rw:hover{color:#000;border-bottom-color:#c4955a;background:rgba(196,149,90,.18);border-radius:2px}
+        .qline{color:#000;font-size:15px;margin-top:10px;display:block;line-height:1.6;padding:8px 12px;background:rgba(42,31,20,.07);border-radius:8px;border-left:2px solid rgba(42,31,20,.4)}
+        .vw{color:#2a1f14} .corr{color:#2f4a6b}
+        .vw.rw{color:#2a1f14;border-bottom:1px dotted rgba(42,31,20,.5)}
+        .vw.rw:hover{color:#000;border-bottom-color:#2a1f14;background:rgba(42,31,20,.18);border-radius:2px}
         .rw{cursor:pointer;border-bottom:1px dotted rgba(42,31,20,.18);transition:color .15s,background .12s}
         /* A word already in the reader's vocabulary. Red carries the meaning
            here, so it stays red on hover and under the audio highlight too —
@@ -7713,8 +7726,8 @@ export default function App() {
         .rw.vsaved{color:#b3261e;border-bottom-color:rgba(179,38,30,.35)}
         .rw.vsaved:hover{color:#8c1d18;border-bottom-color:#b3261e;background:rgba(179,38,30,.10)}
         .rw.vsaved.rwhl{color:#8c1d18}
-        .rw:hover{color:#c4955a;border-bottom-color:#c4955a}
-        .rwhl{background:rgba(196,149,90,.18);color:#000;border-bottom-color:#c4955a;border-radius:3px;padding:1px 2px}
+        .rw:hover{color:#2a1f14;border-bottom-color:#2a1f14}
+        .rwhl{background:rgba(42,31,20,.18);color:#000;border-bottom-color:#2a1f14;border-radius:3px;padding:1px 2px}
         /* Two-choice bubble on a clicked word: define it, or play from it. */
         /* Above the floating audio bar (z-index 100) so a word near the
            bottom of the page doesn't open its menu underneath the player,
@@ -7722,9 +7735,9 @@ export default function App() {
         /* Dual-language Bible: English translation shown under each Russian verse */
         .bible-en{display:block;margin-top:3px;color:rgba(42,31,20,.5);font-size:0.9em;font-style:italic;line-height:1.5;letter-spacing:.005em}
         .bible-chapter{font-family:'Playfair Display',serif;font-size:1.05em;font-weight:700;
-          color:#c4955a;text-align:center;letter-spacing:.14em;text-transform:uppercase;
+          color:#2a1f14;text-align:center;letter-spacing:.14em;text-transform:uppercase;
           margin:2.2em 0 1.1em !important;padding-top:1.2em;
-          border-top:1px solid rgba(196,149,90,.22)}
+          border-top:1px solid rgba(42,31,20,.22)}
         .bible-chapter .bible-en{font-style:normal;font-size:.72em;letter-spacing:.14em;
           color:rgba(42,31,20,.42);margin-top:2px}
         .bible-index{max-height:132px;overflow-y:auto}
@@ -7772,12 +7785,12 @@ export default function App() {
            is painted but whose options are not falls back to the system palette
            the moment it opens, which reads as the styling having vanished. */
         .quickpick option{background:#fffdf9;color:#2a1f14;padding:7px 10px;font-size:15px}
-        .quickpick optgroup{background:#efe7d8;color:#8a6a35;font-weight:600;font-style:normal;
+        .quickpick optgroup{background:#efe7d8;color:#4a3f34;font-weight:600;font-style:normal;
                    font-family:'Playfair Display',serif;font-size:13px;letter-spacing:.02em;
                    padding:6px 0}
-        .quickpick:hover{border-color:rgba(196,149,90,.75)}
-        .quickpick:focus{outline:none;border-color:rgba(196,149,90,.9);
-                   box-shadow:0 0 0 3px rgba(196,149,90,.18)}
+        .quickpick:hover{border-color:rgba(42,31,20,.75)}
+        .quickpick:focus{outline:none;border-color:rgba(42,31,20,.9);
+                   box-shadow:0 0 0 3px rgba(42,31,20,.18)}
         @media (max-width:700px){.quickpick{font-size:16px;padding:12px}}
         .dual-toggle{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:40;
           background:rgba(255,252,246,.94);border:1px solid rgba(42,31,20,.18);color:rgba(42,31,20,.7);
@@ -7785,23 +7798,23 @@ export default function App() {
           padding:9px 11px;border-radius:999px;cursor:pointer;box-shadow:0 2px 10px rgba(42,31,20,.13);
           transition:background .15s,color .15s,border-color .15s}
         .dual-toggle:hover{background:#fff;color:rgba(42,31,20,.95);border-color:rgba(42,31,20,.34)}
-        .dual-toggle:focus-visible{outline:2px solid #a06e14;outline-offset:2px}
-        .dual-toggle.on{background:#a06e14;border-color:#a06e14;color:#fff}
+        .dual-toggle:focus-visible{outline:2px solid #2a1f14;outline-offset:2px}
+        .dual-toggle.on{background:#2a1f14;border-color:#2a1f14;color:#fff}
         @media (max-width:640px){.dual-toggle{right:10px;padding:8px 10px;font-size:11px}}
         .dual-en{color:rgba(42,31,20,.72)}
-        .bible-en-vno{font-size:0.7em;font-weight:700;color:#c4955a;vertical-align:super;line-height:1;margin-right:2px;font-family:'Inter',sans-serif;letter-spacing:.02em}
+        .bible-en-vno{font-size:0.7em;font-weight:700;color:#2a1f14;vertical-align:super;line-height:1;margin-right:2px;font-family:'Inter',sans-serif;letter-spacing:.02em}
         .dual-en-heading{font-weight:600;color:rgba(42,31,20,.62)}
         /* Words inside the sentence currently being read aloud. Applied at
            the start of each sentence's playback via direct DOM manipulation
            (no React re-render). Uses a soft warm tint so a whole sentence's
            worth of words reads as a single coherent block, not as flashing
            individual highlights. */
-        .rw-reading{color:#8b4513;border-bottom:2px solid #c4955a;transition:color .1s ease,border-color .1s ease}
+        .rw-reading{color:#8b4513;border-bottom:2px solid #2a1f14;transition:color .1s ease,border-color .1s ease}
         .acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
         .spk{padding:5px 12px;border-radius:20px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif;background:rgba(42,31,20,.07);border:1px solid rgba(42,31,20,.2);color:rgba(42,31,20,.7);transition:all .15s}
-        .spk:hover{background:rgba(42,31,20,.14)} .spkon{background:rgba(196,149,90,.18);border-color:rgba(196,149,90,.35);color:#e08a78}
+        .spk:hover{background:rgba(42,31,20,.14)} .spkon{background:rgba(42,31,20,.18);border-color:rgba(42,31,20,.35);color:#e08a78}
         .chip{padding:5px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-family:'Crimson Pro',serif;border:1px solid;transition:background .15s}
-        .vc{background:rgba(196,149,90,.09);border-color:rgba(196,149,90,.28);color:#000} .vc:hover:not(:disabled){background:rgba(196,149,90,.18)}
+        .vc{background:rgba(42,31,20,.09);border-color:rgba(42,31,20,.28);color:#000} .vc:hover:not(:disabled){background:rgba(42,31,20,.18)}
         .tc{background:rgba(128,168,128,.08);border-color:rgba(128,168,128,.25);color:rgba(128,168,128,.9)} .tc:hover:not(:disabled){background:rgba(128,168,128,.15)}
         .chip:disabled,.chipsaved{cursor:default;opacity:.7}
         .chipsaved{background:rgba(128,168,128,.15)!important;border-color:rgba(128,168,128,.4)!important;color:rgba(150,190,150,.95)!important}
@@ -7811,14 +7824,14 @@ export default function App() {
         @keyframes bounce{0%,80%,100%{transform:translateY(0);opacity:.4}40%{transform:translateY(-5px);opacity:1}}
         .ibar{padding:12px 28px 16px;border-top:1px solid rgba(42,31,20,.09);display:flex;gap:10px;align-items:flex-end;background:#f5f0e8;z-index:10}
         .ibar textarea{flex:1;resize:none;min-height:44px;max-height:120px;padding:10px 14px;border-radius:22px;font-size:15px;line-height:1.5}
-        .isend{background:linear-gradient(135deg,#c4955a,#a87a42);color:#fff;border:none;width:44px;height:44px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity .15s}
+        .isend{background:linear-gradient(135deg,#2a1f14,#0f0c08);color:#fff;border:none;width:44px;height:44px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity .15s}
         .isend:hover:not(:disabled){opacity:.85} .isend:disabled{opacity:.35;cursor:default}
         .inew{background:rgba(42,31,20,.06);color:rgba(42,31,20,.5);border:1px solid rgba(42,31,20,.15);padding:0 16px;border-radius:22px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif;height:44px;white-space:nowrap;transition:all .15s}
         .inew:hover{background:rgba(42,31,20,.12);color:#000}
         .lit-wrap{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden}
         .lit-top{display:flex;align-items:center;gap:8px;padding:8px 28px;border-bottom:1px solid rgba(42,31,20,.1);flex-shrink:0;background:#f5f0e8;flex-wrap:wrap}
         .ltab{padding:6px 14px;border-radius:16px;background:none;border:1px solid rgba(42,31,20,.14);color:rgba(42,31,20,.45);font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;transition:all .15s}
-        .ltab.on{background:rgba(196,149,90,.12);border-color:rgba(196,149,90,.3);color:#000}
+        .ltab.on{background:rgba(42,31,20,.12);border-color:rgba(42,31,20,.3);color:#000}
         .ltab:hover:not(.on){background:rgba(42,31,20,.06)}
         /* Inline page/chapter nav — compact buttons in the top tab row,
            freed from the bottom of the screen so the floating audio bar
@@ -7835,8 +7848,8 @@ export default function App() {
           border:1px solid rgba(42,31,20,.14);background:rgba(42,31,20,.03);
           font-family:'Crimson Pro',serif;cursor:pointer;transition:all .15s}
         .chap-foot-btn.next{align-items:flex-end;text-align:right}
-        .chap-foot-btn:hover:not(:disabled){background:rgba(196,149,90,.09);
-          border-color:rgba(196,149,90,.45)}
+        .chap-foot-btn:hover:not(:disabled){background:rgba(42,31,20,.09);
+          border-color:rgba(42,31,20,.45)}
         .chap-foot-btn:disabled{opacity:.32;cursor:default}
         .chap-foot-btn .dir{font-family:'Inter',system-ui,sans-serif;font-size:11px;
           letter-spacing:.09em;text-transform:uppercase;color:rgba(42,31,20,.45)}
@@ -7850,12 +7863,12 @@ export default function App() {
         .lnb-inline{padding:5px 11px;border-radius:8px;border:1px solid rgba(42,31,20,.16);background:rgba(42,31,20,.05);color:rgba(42,31,20,.55);font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;transition:all .15s}
         .lnb-inline:hover:not(:disabled){background:rgba(42,31,20,.1);color:#000}
         .lnb-inline:disabled{opacity:.3;cursor:default}
-        .lnb-inline.p{background:linear-gradient(135deg,#c4955a,#a87a42);border-color:transparent;color:#fff}
+        .lnb-inline.p{background:linear-gradient(135deg,#2a1f14,#0f0c08);border-color:transparent;color:#fff}
         .lnb-inline.p:hover:not(:disabled){opacity:.9}
-        .lnb-inline.ch{border-color:rgba(196,149,90,.3);background:rgba(196,149,90,.08);color:#000;font-size:12px;padding:5px 9px}
-        .lnb-inline.ch:hover:not(:disabled){background:rgba(196,149,90,.18);border-color:rgba(196,149,90,.5)}
-        .lbm-inline{border-color:rgba(196,149,90,.25);background:rgba(196,149,90,.07);color:#000}
-        .lbm-inline:hover{background:rgba(196,149,90,.15)}
+        .lnb-inline.ch{border-color:rgba(42,31,20,.3);background:rgba(42,31,20,.08);color:#000;font-size:12px;padding:5px 9px}
+        .lnb-inline.ch:hover:not(:disabled){background:rgba(42,31,20,.18);border-color:rgba(42,31,20,.5)}
+        .lbm-inline{border-color:rgba(42,31,20,.25);background:rgba(42,31,20,.07);color:#000}
+        .lbm-inline:hover{background:rgba(42,31,20,.15)}
         @media(max-width:780px){
           .lit-top{padding:6px 12px;gap:5px}
           .ltab{padding:5px 10px;font-size:12px}
@@ -7865,11 +7878,11 @@ export default function App() {
         .lprog{margin-left:auto;display:flex;align-items:center;gap:10px}
         .lpct{font-size:12px;color:rgba(42,31,20,.35)}
         .lpbar{width:80px;height:3px;background:rgba(42,31,20,.1);border-radius:2px;overflow:hidden}
-        .lpfill{height:100%;background:#c4955a;border-radius:2px;transition:width .3s}
+        .lpfill{height:100%;background:#2a1f14;border-radius:2px;transition:width .3s}
         .ttsbar{display:flex;align-items:center;gap:10px;padding:7px 28px;background:#f0ebe0;border-bottom:1px solid rgba(42,31,20,.08);flex-shrink:0}
-        .ttsplay{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#c4955a,#a87a42);border:none;color:#fff;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity .15s}
+        .ttsplay{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2a1f14,#0f0c08);border:none;color:#fff;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity .15s}
         .ttsplay:hover{opacity:.85}
-        .ttspause{width:32px;height:32px;border-radius:50%;background:rgba(196,149,90,.2);border:1px solid rgba(196,149,90,.4);color:#e08a78;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .ttspause{width:32px;height:32px;border-radius:50%;background:rgba(42,31,20,.2);border:1px solid rgba(42,31,20,.4);color:#e08a78;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
         .ttslab{flex:1;font-size:12px;color:rgba(42,31,20,.4);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         .ttsbtn{background:none;border:1px solid rgba(42,31,20,.15);color:rgba(42,31,20,.4);height:26px;border-radius:8px;font-size:12px;cursor:pointer;padding:0 10px;transition:all .15s}
         .ttsbtn:hover{background:rgba(42,31,20,.08);color:rgba(42,31,20,.7)}
@@ -7880,18 +7893,18 @@ export default function App() {
         .faudio-btn{background:rgba(42,31,20,.08);border:1px solid rgba(42,31,20,.28);color:#000;width:44px;height:44px;border-radius:50%;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s,opacity .15s}
         .faudio-btn:hover{background:rgba(42,31,20,.18)}
         .faudio-btn:disabled{opacity:.35;cursor:not-allowed}
-        .faudio-play{background:#c4955a;color:#fff;border-color:#c4955a;width:52px;height:52px;font-size:22px}
+        .faudio-play{background:#2a1f14;color:#fff;border-color:#2a1f14;width:52px;height:52px;font-size:22px}
         .faudio-play:hover{background:#d4ae7f}
         .faudio-status{color:rgba(42,31,20,.55);font-size:12px;font-family:'Inter',system-ui,sans-serif;margin-left:10px;letter-spacing:.3px;min-width:90px;text-align:left}
         .faudio-narrator{color:#000;font-style:italic}
-        .faudio-seek{flex:1;min-width:80px;max-width:280px;accent-color:#c4955a;cursor:pointer;height:4px}
+        .faudio-seek{flex:1;min-width:80px;max-width:280px;accent-color:#2a1f14;cursor:pointer;height:4px}
         .faudio-clock{color:rgba(42,31,20,.7);font-size:12px;font-family:'Inter',system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.3px;min-width:82px;text-align:right;white-space:nowrap}
         /* 🎧 ↔ 🤖 mode toggle — only renders when an audiobook is available */
         .faudio-mode{background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.2);color:rgba(42,31,20,.7);border-radius:50%;width:36px;height:36px;font-size:16px;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-        .faudio-mode:hover{background:rgba(196,149,90,.12);color:#000;border-color:rgba(196,149,90,.4)}
-        .faudio-mode.active{background:rgba(196,149,90,.18);color:#000;border-color:#c4955a}
+        .faudio-mode:hover{background:rgba(42,31,20,.12);color:#000;border-color:rgba(42,31,20,.4)}
+        .faudio-mode.active{background:rgba(42,31,20,.18);color:#000;border-color:#2a1f14}
         .faudio-speed{margin-left:auto;background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.2);color:rgba(42,31,20,.7);border-radius:14px;padding:6px 12px;font-size:12px;font-family:'Crimson Pro',serif;cursor:pointer;transition:all .15s;letter-spacing:.3px}
-        .faudio-speed:hover{background:rgba(196,149,90,.12);color:#000;border-color:rgba(196,149,90,.3)}
+        .faudio-speed:hover{background:rgba(42,31,20,.12);color:#000;border-color:rgba(42,31,20,.3)}
         .faudio-speed:disabled{opacity:.35;cursor:not-allowed}
         @media(max-width:600px){
           .faudio{padding:0 12px;gap:10px;height:62px}
@@ -7918,7 +7931,7 @@ export default function App() {
         .vphdr{padding:7px 28px 4px;border-bottom:1px solid rgba(42,31,20,.06);font-size:12px;color:rgba(42,31,20,.35)}
         .vplist{overflow-y:auto;padding:4px 28px}
         .vprow{width:100%;background:none;border:none;border-bottom:1px solid rgba(42,31,20,.05);padding:7px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:10px;transition:background .15s}
-        .vprow:hover,.vprow.sel{background:rgba(196,149,90,.06)}
+        .vprow:hover,.vprow.sel{background:rgba(42,31,20,.06)}
         .vpn{font-size:14px;color:#000;font-family:'Crimson Pro',serif;text-align:left}
         .vpnru{color:#000} .vpl{font-size:11px;color:rgba(42,31,20,.28)}
         .vpem{font-size:13px;color:rgba(42,31,20,.3);padding:14px 0;text-align:center}
@@ -7955,15 +7968,24 @@ export default function App() {
           .lit-left.has-vid > *{grid-column:2;max-width:760px;width:100%;
             margin-left:0;margin-right:auto}
           .lit-left.has-vid > .chvid-dock{display:contents}
-          .lit-left.has-vid .chvid{grid-column:1;grid-row:1 / span 500;
-            position:sticky;top:0;align-self:start;max-width:none;width:100%;
+          .lit-left.has-vid .chvid{grid-column:1;grid-row:2 / span 500;
+            position:sticky;top:52px;align-self:start;max-width:none;width:100%;
             padding-bottom:56.25%;margin:0}
           /* The rail is narrow enough that the picture never crowds the text,
              so the viewport caps that protect a stacked player are dropped. */
           .lit-left.has-vid .chvid.mini{padding-bottom:0}
-          .lit-left.has-vid .chvid-scrub{grid-column:2;grid-row:1;
-            position:sticky;top:0;z-index:6;background:#f5f0e8;max-width:760px;
-            margin:0 auto 14px 0}
+          /* The transport spans the whole reading area and sits flush under the
+             bar above it, so it reads as part of the page's furniture. As a
+             rounded pill floating in the whitespace at the top of the text it
+             looked like something that had come loose. The negative margins
+             pull it out into the column's own padding to reach both edges, and
+             the negative sticky offset cancels that padding again so it parks
+             flush rather than 24px down. */
+          .lit-left.has-vid .chvid-scrub{grid-column:1 / -1;grid-row:1;
+            position:sticky;top:-24px;z-index:7;max-width:none;width:auto;
+            margin:-24px -28px 20px;padding:9px 28px;border-radius:0;
+            border-width:0 0 1px 0;border-color:rgba(42,31,20,.12);
+            background:#f5f0e8}
           .lit-left.has-vid .chvid-dock::before{display:none}
         }
         @media(max-width:900px){
@@ -8040,8 +8062,8 @@ export default function App() {
         .lhdr{font-size:11px;color:rgba(42,31,20,.3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
         .lch-heading{font-family:'Playfair Display',serif;font-size:20px;color:#000;margin-bottom:14px}
         .ltxt{font-size:17.5px;line-height:1.85;color:#000;font-family:'Crimson Pro',serif;word-wrap:break-word;overflow-wrap:break-word;letter-spacing:.005em}
-        .play-speaker{color:#c4955a;font-weight:600;letter-spacing:.04em;border-bottom:none !important;cursor:default !important}
-        .play-speaker:hover{color:#c4955a !important;background:none !important}
+        .play-speaker{color:#2a1f14;font-weight:600;letter-spacing:.04em;border-bottom:none !important;cursor:default !important}
+        .play-speaker:hover{color:#2a1f14 !important;background:none !important}
         .play-dash{color:rgba(42,31,20,.45);padding:0 6px;font-weight:300}
         .lit-msgs{flex:0 1 auto;max-height:50%;overflow-y:auto;padding:14px 20px 8px;display:flex;flex-direction:column;gap:10px}
         .lit-ibar{position:relative;padding:10px 20px 14px;border-top:1px solid rgba(42,31,20,.08);background:#f5f0e8;flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
@@ -8052,36 +8074,36 @@ export default function App() {
         .lnb{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(42,31,20,.14);background:rgba(42,31,20,.05);color:rgba(42,31,20,.55);font-family:'Crimson Pro',serif;font-size:14px;cursor:pointer;transition:all .15s;text-align:center}
         .lnb:hover:not(:disabled){background:rgba(42,31,20,.1);color:#000} .lnb:disabled{opacity:.22;cursor:default}
         .lnb.p{background:linear-gradient(135deg,#9d4630,#82362a);border-color:transparent;color:#fff} .lnb.p:hover{opacity:.9}
-        .lbm{padding:10px 14px;border-radius:10px;border:1px solid rgba(196,149,90,.25);background:rgba(196,149,90,.07);color:#000;font-size:15px;cursor:pointer;transition:background .15s}
-        .lbm:hover{background:rgba(196,149,90,.15)}
-        .lnb-sm{flex:1;padding:7px 12px;border-radius:8px;border:1px solid rgba(196,149,90,.3);background:rgba(196,149,90,.08);color:#000;font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;transition:all .15s;text-align:center}
-        .lnb-sm:hover:not(:disabled){background:rgba(196,149,90,.18);border-color:rgba(196,149,90,.5)}
+        .lbm{padding:10px 14px;border-radius:10px;border:1px solid rgba(42,31,20,.25);background:rgba(42,31,20,.07);color:#000;font-size:15px;cursor:pointer;transition:background .15s}
+        .lbm:hover{background:rgba(42,31,20,.15)}
+        .lnb-sm{flex:1;padding:7px 12px;border-radius:8px;border:1px solid rgba(42,31,20,.3);background:rgba(42,31,20,.08);color:#000;font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;transition:all .15s;text-align:center}
+        .lnb-sm:hover:not(:disabled){background:rgba(42,31,20,.18);border-color:rgba(42,31,20,.5)}
         .lnb-sm:disabled{opacity:.35;cursor:default}
         .navpanel{flex:1;overflow-y:auto;padding:16px 28px;display:flex;flex-direction:column;gap:8px}
         .lcard{padding:12px 14px;border-radius:10px;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.09);cursor:pointer;transition:all .15s}
-        .lcard:hover{background:rgba(42,31,20,.08)} .lcard.cur{border-color:rgba(196,149,90,.4);background:rgba(196,149,90,.07)}
+        .lcard:hover{background:rgba(42,31,20,.08)} .lcard.cur{border-color:rgba(42,31,20,.4);background:rgba(42,31,20,.07)}
         .lcn{font-size:10px;color:rgba(42,31,20,.28);letter-spacing:1px;margin-bottom:4px}
         .lchead{font-size:14px;color:#000;font-family:'Playfair Display',serif;margin-bottom:3px}
         .lcp{font-size:13px;color:rgba(42,31,20,.55);line-height:1.4}
         .lem{text-align:center;color:rgba(42,31,20,.28);padding:32px;font-size:14px}
         .lsbar{padding:12px 28px;border-bottom:1px solid rgba(42,31,20,.08)}
         .pover{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.15)}
-        .pop{position:fixed;z-index:201;background:#f5f0e8;border:1px solid rgba(196,149,90,.3);border-radius:14px;padding:16px 18px 18px;box-shadow:0 4px 24px rgba(42,31,20,.12);animation:pf .15s ease;max-height:calc(100vh - 32px);overflow-y:auto;overscroll-behavior:contain}
+        .pop{position:fixed;z-index:201;background:#f5f0e8;border:1px solid rgba(42,31,20,.3);border-radius:14px;padding:16px 18px 18px;box-shadow:0 4px 24px rgba(42,31,20,.12);animation:pf .15s ease;max-height:calc(100vh - 32px);overflow-y:auto;overscroll-behavior:contain}
         @keyframes pf{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
         .pcl{position:absolute;top:10px;right:12px;background:none;border:none;color:rgba(42,31,20,.35);font-size:18px;cursor:pointer}
         .pcl:hover{color:rgba(42,31,20,.7)}
         .pw{font-family:'Playfair Display',serif;font-size:22px;color:#000;margin-bottom:2px;padding-right:24px}
         .ppos{font-size:11px;color:rgba(42,31,20,.35);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
         /* Russian-language definition — top of the popup body so the Russian reading practice happens first. */
-        .pdru{font-family:'Crimson Pro',serif;font-size:15px;color:#000;line-height:1.5;margin-bottom:8px;padding:8px 10px;background:rgba(196,149,90,.06);border-left:2px solid rgba(196,149,90,.4);border-radius:4px}
+        .pdru{font-family:'Crimson Pro',serif;font-size:15px;color:#000;line-height:1.5;margin-bottom:8px;padding:8px 10px;background:rgba(42,31,20,.06);border-left:2px solid rgba(42,31,20,.4);border-radius:4px}
         .ptr{font-size:16px;color:rgba(42,31,20,.65);margin-bottom:7px;font-style:italic;padding-left:2px}
         .pgr{font-size:13px;color:#33507a;margin-bottom:7px;background:rgba(135,168,196,.08);border-radius:8px;padding:5px 10px}
         .pex{font-size:13px;color:rgba(42,31,20,.5);border-top:1px solid rgba(42,31,20,.08);padding-top:7px;line-height:1.5}
         .pext{font-size:12px;color:rgba(42,31,20,.3);margin-top:3px}
         .pload{color:rgba(42,31,20,.4);font-size:14px;text-align:center;padding:14px 0}
         .perr{color:#9d4630;font-size:13px}
-        .psave{margin-top:12px;width:100%;border:1px solid rgba(196,149,90,.28);background:rgba(196,149,90,.09);color:#000;padding:10px;border-radius:10px;font-size:14px;cursor:pointer;font-family:'Crimson Pro',serif;transition:background .15s}
-        .psave:hover{background:rgba(196,149,90,.2)}
+        .psave{margin-top:12px;width:100%;border:1px solid rgba(42,31,20,.28);background:rgba(42,31,20,.09);color:#000;padding:10px;border-radius:10px;font-size:14px;cursor:pointer;font-family:'Crimson Pro',serif;transition:background .15s}
+        .psave:hover{background:rgba(42,31,20,.2)}
         .yobtn{width:100%;background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.15);color:#000;padding:9px;border-radius:10px;font-size:15px;cursor:pointer;font-family:'Crimson Pro',serif;transition:background .15s;text-align:left;margin-bottom:4px}
         .yobtn:hover{background:rgba(42,31,20,.12)}
         .gvin{width:100%;box-sizing:border-box;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.15);color:#000;padding:8px 9px;border-radius:9px;font-size:14px;font-family:'Crimson Pro',serif}
@@ -8099,12 +8121,12 @@ export default function App() {
               font-size:11px;letter-spacing:.3px;line-height:1;padding:6px 9px;border-radius:8px;
               color:rgba(42,31,20,.6);white-space:nowrap;transition:color .15s,background .15s,border-color .15s}
         .psay:hover{color:rgba(42,31,20,.85);background:rgba(42,31,20,.08);border-color:rgba(42,31,20,.28)}
-        .psay.on{color:#a06e14;border-color:rgba(160,110,20,.4);background:rgba(160,110,20,.08)}
+        .psay.on{color:#2a1f14;border-color:rgba(160,110,20,.4);background:rgba(160,110,20,.08)}
         .panel{flex:1;padding:28px;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
         .phdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
         .pti{font-family:'Playfair Display',serif;font-size:20px;color:#000}
-        .ab{border:1px solid rgba(196,149,90,.28);background:rgba(196,149,90,.08);color:#000;padding:7px 16px;border-radius:20px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif;transition:background .15s}
-        .ab:hover{background:rgba(196,149,90,.18)}
+        .ab{border:1px solid rgba(42,31,20,.28);background:rgba(42,31,20,.08);color:#000;padding:7px 16px;border-radius:20px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif;transition:background .15s}
+        .ab:hover{background:rgba(42,31,20,.18)}
         .ab.g{border-color:rgba(128,168,128,.28);background:rgba(128,168,128,.07);color:rgba(128,168,128,.9)} .ab.g:hover{background:rgba(128,168,128,.15)}
         .empty{text-align:center;color:rgba(42,31,20,.3);font-size:15px;padding:48px 0;line-height:1.7}
         .ilist{display:flex;flex-direction:column;gap:8px}
@@ -8112,20 +8134,20 @@ export default function App() {
         .icard:hover{background:rgba(42,31,20,.07)}
         .icont{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
         .ipri{font-size:17px;color:#000;font-family:'Playfair Display',serif}
-        .ipos{font-size:11px;color:rgba(196,149,90,.7);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:1px}
+        .ipos{font-size:11px;color:rgba(42,31,20,.7);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:1px}
         .isec{font-size:14px;color:rgba(42,31,20,.75)}
         .igr{font-size:12px;color:#33507a;background:rgba(135,168,196,.06);border-radius:6px;padding:3px 8px;align-self:flex-start;margin-top:3px}
         .iex{font-size:13px;color:rgba(42,31,20,.5);font-style:italic;margin-top:6px;padding-top:6px;border-top:1px solid rgba(42,31,20,.06);line-height:1.5}
         .iext{font-style:normal;font-size:12px;color:rgba(42,31,20,.35);margin-top:2px}
-        .rmb{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:rgba(200,128,112,.75);font-size:18px;cursor:pointer;padding:0;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
-        .rmb:hover{background:rgba(196,149,90,.3);border-color:rgba(196,149,90,.5);color:#fff}
+        .rmb{background:rgba(42,31,20,.1);border:1px solid rgba(42,31,20,.25);color:rgba(200,128,112,.75);font-size:18px;cursor:pointer;padding:0;width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
+        .rmb:hover{background:rgba(42,31,20,.3);border-color:rgba(42,31,20,.5);color:#fff}
         .mover{position:fixed;inset:0;background:rgba(26,22,17,.85);z-index:100;display:flex;align-items:center;justify-content:center;padding:24px}
         .modal{background:#fbf8f2;border:1px solid rgba(42,31,20,.14);border-radius:16px;padding:28px;width:100%;max-width:480px;display:flex;flex-direction:column;gap:16px}
         .mti{font-family:'Playfair Display',serif;font-size:22px;color:#000}
         .mact{display:flex;gap:10px;justify-content:flex-end;margin-top:4px}
         .mcanc{background:none;border:1px solid rgba(42,31,20,.18);color:rgba(42,31,20,.55);padding:10px 20px;border-radius:10px;font-size:15px;cursor:pointer;font-family:'Crimson Pro',serif;transition:all .15s}
         .mcanc:hover{color:#000;border-color:rgba(42,31,20,.35)}
-        .mconf{background:linear-gradient(135deg,#c4955a,#a87a42);color:#fff;border:none;padding:10px 20px;border-radius:10px;font-size:15px;cursor:pointer;font-family:'Crimson Pro',serif;transition:opacity .15s}
+        .mconf{background:linear-gradient(135deg,#2a1f14,#0f0c08);color:#fff;border:none;padding:10px 20px;border-radius:10px;font-size:15px;cursor:pointer;font-family:'Crimson Pro',serif;transition:opacity .15s}
         .mconf:hover{opacity:.85} .mconf.g{background:linear-gradient(135deg,#5a8556,#4a6845)}
 
         /* First-visit landing screen */
@@ -8136,7 +8158,7 @@ export default function App() {
         .land-title{font-family:'Playfair Display',serif;font-size:54px;font-weight:700;color:#000;letter-spacing:-1px;line-height:1}
         .land-sub{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:rgba(42,31,20,.45);margin-top:-12px}
         .land-tagline{font-family:'Crimson Pro',serif;font-style:italic;font-size:18px;color:rgba(42,31,20,.75);max-width:440px;line-height:1.5}
-        .land-tips{background:rgba(196,149,90,.06);border:1px solid rgba(196,149,90,.18);border-radius:14px;padding:22px 26px;text-align:left;width:100%;max-width:440px;display:flex;flex-direction:column;gap:14px;margin-top:8px}
+        .land-tips{background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.18);border-radius:14px;padding:22px 26px;text-align:left;width:100%;max-width:440px;display:flex;flex-direction:column;gap:14px;margin-top:8px}
         .land-features{background:rgba(80,120,90,.04);border:1px solid rgba(120,160,130,.16);border-radius:14px;padding:22px 26px;text-align:left;width:100%;max-width:440px;display:flex;flex-direction:column;gap:12px;margin-top:8px}
         .land-features-title{font-family:'Playfair Display',serif;font-size:14px;color:#3f6b3a;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:4px}
         .land-feat{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.5;color:#000}
@@ -8144,7 +8166,7 @@ export default function App() {
         .land-feat strong{color:#000;font-weight:600}
         .land-tips-title{font-family:'Playfair Display',serif;font-size:14px;color:#000;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:4px}
         .land-tip{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5;color:#000}
-        .land-tip-num{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(196,149,90,.15);border:1px solid rgba(196,149,90,.3);color:#000;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:1px}
+        .land-tip-num{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(42,31,20,.15);border:1px solid rgba(42,31,20,.3);color:#000;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:1px}
         .land-tip strong{color:#000;font-weight:600}
         .land-begin{background:linear-gradient(135deg,#9d4630,#82362a);color:#fff;border:none;padding:16px 48px;border-radius:12px;font-size:18px;font-family:'Crimson Pro',serif;cursor:pointer;transition:opacity .15s,transform .1s;letter-spacing:1px;margin-top:8px;box-shadow:none;transform:translateY(-1px)}
         .land-begin:active{transform:translateY(0)}
@@ -8177,12 +8199,12 @@ export default function App() {
         /* This is the primary action on the page — the site is free to read —
            so it is filled, not outlined, and the sign-in form below it is the
            secondary path rather than the other way round. */
-        .gate-guest-btn{width:100%;background:linear-gradient(180deg,#c4955a,#a87b3f);
-          border:1px solid #8f6730;color:#fff;padding:14px 20px;border-radius:9px;
+        .gate-guest-btn{width:100%;background:linear-gradient(180deg,#2a1f14,#0f0c08);
+          border:1px solid #0f0c08;color:#fff;padding:14px 20px;border-radius:9px;
           font-size:16px;font-weight:600;cursor:pointer;font-family:'Crimson Pro',serif;
-          letter-spacing:.01em;box-shadow:0 2px 10px rgba(168,123,63,.28);
+          letter-spacing:.01em;box-shadow:0 2px 10px rgba(42,31,20,.28);
           transition:filter .15s,box-shadow .15s,transform .1s}
-        .gate-guest-btn:hover{filter:brightness(1.06);box-shadow:0 3px 14px rgba(168,123,63,.38)}
+        .gate-guest-btn:hover{filter:brightness(1.06);box-shadow:0 3px 14px rgba(42,31,20,.38)}
         .gate-guest-btn:active{transform:translateY(1px)}
         .gate-or{width:100%;display:flex;align-items:center;gap:10px;margin-top:6px;
           font-family:'Crimson Pro',serif;font-size:12px;color:rgba(42,31,20,.45)}
@@ -8216,10 +8238,10 @@ export default function App() {
         .auth-why{font-family:'Crimson Pro',serif;font-size:13px;line-height:1.5;color:rgba(42,31,20,.65)}
         .auth-lbl{display:flex;flex-direction:column;gap:6px;font-family:'Crimson Pro',serif;font-size:13px;color:#000}
         .auth-in{background:#fff;border:1px solid rgba(42,31,20,.18);border-radius:8px;padding:10px 12px;font-family:'Crimson Pro',serif;font-size:15px;color:#000;outline:none}
-        .auth-in:focus{border-color:rgba(196,149,90,.55)}
+        .auth-in:focus{border-color:rgba(42,31,20,.55)}
         .auth-hint{font-family:'Crimson Pro',serif;font-size:12px;color:rgba(42,31,20,.5)}
         .auth-err{font-family:'Crimson Pro',serif;font-size:13px;color:#9d4630;background:rgba(157,70,48,.08);border:1px solid rgba(157,70,48,.25);border-radius:8px;padding:8px 10px}
-        .auth-note{font-family:'Crimson Pro',serif;font-size:13px;color:#5d4a2e;background:rgba(196,149,90,.12);border:1px solid rgba(196,149,90,.4);border-radius:8px;padding:8px 10px;line-height:1.45}
+        .auth-note{font-family:'Crimson Pro',serif;font-size:13px;color:#5d4a2e;background:rgba(42,31,20,.12);border:1px solid rgba(42,31,20,.4);border-radius:8px;padding:8px 10px;line-height:1.45}
         .auth-switch{background:none;border:none;color:#000;font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;text-decoration:underline;padding:0}
         .acct-email{font-family:'Crimson Pro',serif;font-size:12px;color:rgba(42,31,20,.6);max-width:340px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         /* Small screens: let the header wrap instead of clipping, hide the
@@ -8259,7 +8281,7 @@ export default function App() {
         .admd-stat{display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px 8px;
           background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.12);border-radius:10px;
           cursor:pointer;font-family:inherit;transition:all .15s}
-        .admd-stat:not(:disabled):not(.still):hover{background:rgba(196,149,90,.14);border-color:rgba(196,149,90,.4)}
+        .admd-stat:not(:disabled):not(.still):hover{background:rgba(42,31,20,.14);border-color:rgba(42,31,20,.4)}
         .admd-stat:disabled{cursor:default;opacity:.55}
         .admd-stat.still{cursor:default}
         .admd-stat .n{font-size:22px;font-family:'Playfair Display',serif;color:#000}
@@ -8288,7 +8310,7 @@ export default function App() {
           padding:8px 10px;font-weight:600;font-size:11px;letter-spacing:.5px;text-transform:uppercase;
           color:rgba(42,31,20,.6);cursor:pointer;white-space:nowrap;border-bottom:1px solid rgba(42,31,20,.14)}
         .admd-sheet thead th:hover{color:#000}
-        .admd-sheet thead th.on{color:#000;box-shadow:inset 0 -2px 0 rgba(196,149,90,.7)}
+        .admd-sheet thead th.on{color:#000;box-shadow:inset 0 -2px 0 rgba(42,31,20,.7)}
         .admd-sheet td{padding:6px 10px;border-bottom:1px solid rgba(42,31,20,.06);vertical-align:top}
         .admd-sheet tr:nth-child(even) td{background:rgba(42,31,20,.02)}
         .admd-sheet .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -8297,7 +8319,7 @@ export default function App() {
         /* Fourteen days of visits, so a number has a shape behind it. */
         .admd-trend{display:flex;align-items:flex-end;gap:4px;height:60px;padding:4px 2px}
         .admd-bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px}
-        .admd-bar>div{width:100%;background:rgba(196,149,90,.55);border-radius:2px 2px 0 0}
+        .admd-bar>div{width:100%;background:rgba(42,31,20,.55);border-radius:2px 2px 0 0}
         .admd-bar>span{font-size:9px;color:rgba(42,31,20,.45);font-variant-numeric:tabular-nums}
         /* The visitors' book, at the foot of the page. Quiet: a courtesy to
            whoever wonders whether anyone else is here, not a metric anybody
@@ -8320,12 +8342,12 @@ export default function App() {
           color:rgba(42,31,20,.55);letter-spacing:.3px}
         .adm-fund .adm-fund-row input{width:110px;font-size:14px;padding:7px 10px}
         .adm-today{cursor:pointer}
-        .adm-today:hover{background:rgba(196,149,90,.08)}
+        .adm-today:hover{background:rgba(42,31,20,.08)}
         .adm-today .adm-name{font-family:'Playfair Display',serif}
         .adm-today-n{font-family:'Playfair Display',serif;font-size:26px;color:#000;
           font-variant-numeric:tabular-nums;padding-left:12px}
         .adm-all{cursor:pointer}
-        .adm-all:hover{background:rgba(196,149,90,.08)}
+        .adm-all:hover{background:rgba(42,31,20,.08)}
         .adm-all .adm-name{font-family:'Playfair Display',serif}
         .admd-store{border:1px solid rgba(42,31,20,.1);border-radius:10px;padding:10px 12px}
         .admd-store summary{cursor:pointer;font-size:12px;color:rgba(42,31,20,.6);letter-spacing:.3px}
@@ -8344,16 +8366,16 @@ export default function App() {
                    white-space:nowrap;flex:1 1 auto}
         .adm-status{font-size:10px;letter-spacing:.8px;text-transform:uppercase;padding:2px 8px;border-radius:5px;flex-shrink:0}
         .adm-status.approved{background:rgba(90,133,86,.18);color:#2f5a2a;border:1px solid rgba(90,133,86,.3)}
-        .adm-status.rejected{background:rgba(196,149,90,.18);color:#9d4630;border:1px solid rgba(196,149,90,.3)}
-        .adm-status.pending{background:rgba(196,149,90,.12);color:#000;border:1px solid rgba(196,149,90,.25)}
+        .adm-status.rejected{background:rgba(42,31,20,.18);color:#9d4630;border:1px solid rgba(42,31,20,.3)}
+        .adm-status.pending{background:rgba(42,31,20,.12);color:#000;border:1px solid rgba(42,31,20,.25)}
         .adm-status.admin{background:rgba(135,168,196,.15);color:#2f4a6b;border:1px solid rgba(135,168,196,.3)}
         .adm-actions{display:flex;gap:8px;flex-shrink:0}
         .adm-btn{padding:4px 11px;border:none;border-radius:7px;font-size:12px;font-family:'Crimson Pro',serif;cursor:pointer;transition:opacity .15s;font-weight:600}
         .adm-btn:disabled{opacity:.5;cursor:wait}
         .adm-btn.approve{background:linear-gradient(135deg,#5a8556,#4a6845);color:#fff}
-        .adm-btn.reject{background:rgba(196,149,90,.15);border:1px solid rgba(196,149,90,.4);color:#9d4630}
-        .adm-btn.reject:hover:not(:disabled){background:rgba(196,149,90,.3)}
-        .adm-err{margin:0 28px 16px;padding:12px 16px;background:rgba(196,149,90,.18);border:1px solid rgba(196,149,90,.35);color:#9d4630;border-radius:10px;font-size:13px}
+        .adm-btn.reject{background:rgba(42,31,20,.15);border:1px solid rgba(42,31,20,.4);color:#9d4630}
+        .adm-btn.reject:hover:not(:disabled){background:rgba(42,31,20,.3)}
+        .adm-err{margin:0 28px 16px;padding:12px 16px;background:rgba(42,31,20,.18);border:1px solid rgba(42,31,20,.35);color:#9d4630;border-radius:10px;font-size:13px}
         .adm-foot{padding:16px 28px;border-top:1px solid rgba(42,31,20,.08);display:flex;justify-content:space-between;align-items:center}
         .adm-refresh{background:none;border:1px solid rgba(42,31,20,.18);color:rgba(42,31,20,.7);padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif}
         .adm-refresh:hover{color:#000;border-color:rgba(42,31,20,.4)}
@@ -8380,7 +8402,7 @@ export default function App() {
       .cl-formFieldInput,.cl-input,[class*='cl-formFieldInput'],[class*='cl-input']{
           background:#ffffff !important;
           color:#000 !important;
-          border-color:rgba(196,149,90,.4) !important;
+          border-color:rgba(42,31,20,.4) !important;
         }
         [class*='cl-card'],[class*='cl-modalContent']{
           background:#f5f0e8 !important;
@@ -8390,7 +8412,7 @@ export default function App() {
           color:#000 !important;
         }
         [class*='cl-formButtonPrimary']{
-          background:#c4955a !important;
+          background:#2a1f14 !important;
           color:#fff !important;
         }
         [class*='cl-footerActionLink'],[class*='cl-formFieldAction']{
@@ -9100,7 +9122,7 @@ export default function App() {
                   </div>
                   <div style={{display:"flex",gap:10,alignItems:"center",marginTop:4}}>
                     <button onClick={uploadBook} disabled={upBusy || !upBookFile || !upTitle.trim()}
-                      style={{padding:"10px 22px",background:"#c8a276",color:"#1a1612",border:"none",borderRadius:4,fontWeight:600,fontSize:14,cursor:upBusy?"wait":"pointer",opacity:(upBusy || !upBookFile || !upTitle.trim())?.5:1,fontFamily:"'Crimson Pro',serif"}}>
+                      style={{padding:"10px 22px",background:"#4a3f34",color:"#1a1612",border:"none",borderRadius:4,fontWeight:600,fontSize:14,cursor:upBusy?"wait":"pointer",opacity:(upBusy || !upBookFile || !upTitle.trim())?.5:1,fontFamily:"'Crimson Pro',serif"}}>
                       {upBusy ? "Uploading..." : "Upload book"}
                     </button>
                     <button onClick={function(){ setUpBookFile(null); setUpTitle(""); setUpBookAuthor(""); setUpMsg(""); setUpErr(""); }} disabled={upBusy}
@@ -9117,7 +9139,7 @@ export default function App() {
       {false && !seenLanding && (
         <div className="land">
           <div className="land-card">
-            <div className="land-icon" style={{color:"#c4955a"}}><Pushkin size={68}/></div>
+            <div className="land-icon" style={{color:"#2a1f14"}}><Samovar size={68}/></div>
             <div>
               <div className="land-title">{SITE_NAME}</div>
               <div className="land-sub">Russian Practice</div>
@@ -9170,7 +9192,7 @@ export default function App() {
         <div className="auth-page">
           <div className="auth-card">
             <div className="auth-brand">
-              <div style={{color:"#c4955a"}}><Pushkin size={64}/></div>
+              <div style={{color:"#2a1f14"}}><Samovar size={64}/></div>
               <div className="auth-brand-title">{SITE_NAME}</div>
               <div className="auth-brand-sub">Russian Practice</div>
             </div>
@@ -9183,7 +9205,7 @@ export default function App() {
           <div className="auth-foot">{siteFoot}</div>
           <div className="auth-card">
             <div className="auth-brand">
-              <div style={{color:"#c4955a"}}><Pushkin size={64}/></div>
+              <div style={{color:"#2a1f14"}}><Samovar size={64}/></div>
               <div className="auth-brand-title">{SITE_NAME}</div>
               <div className="auth-brand-sub">Russian Practice</div>
             </div>
@@ -9445,8 +9467,8 @@ export default function App() {
                           return (
                             <button key={c.id} onClick={function(){ setForumCat(c.id); setForumCompose(false); }}
                               style={{padding:"7px 14px",borderRadius:18,cursor:"pointer",fontSize:14,
-                                border:"1px solid rgba(196,149,90,.5)",
-                                background:active?"#c4955a":"transparent",
+                                border:"1px solid rgba(42,31,20,.5)",
+                                background:active?"#2a1f14":"transparent",
                                 color:active?"#fff":"#000",fontWeight:active?600:400}}>
                               {c.label}
                             </button>
@@ -9472,7 +9494,7 @@ export default function App() {
                         )}
                         {me && forumCompose && (
                           <div style={{display:"flex",flexDirection:"column",gap:8,padding:14,borderRadius:10,
-                            border:"1px solid rgba(196,149,90,.4)",background:"rgba(196,149,90,.07)"}}>
+                            border:"1px solid rgba(42,31,20,.4)",background:"rgba(42,31,20,.07)"}}>
                             <input value={forumTitle} maxLength={120} placeholder={forumCat==="requests"?"Book title and author…":forumCat==="bugs"?"What broke?":"Title…"}
                               onChange={function(e){ setForumTitle(e.target.value); }}
                               style={{padding:"9px 12px",borderRadius:8,border:"1px solid rgba(0,0,0,.2)",fontSize:15,fontFamily:"inherit"}}/>
@@ -9498,7 +9520,7 @@ export default function App() {
                               onClick={function(){ openForumThread(p2.id); }}>
                               {forumCat === "requests" && (
                                 <button title="Upvote" onClick={function(e){ e.stopPropagation(); toggleForumVote(p2.id); }}
-                                  style={{border:"1px solid rgba(196,149,90,.5)",background:"transparent",color:"#000",
+                                  style={{border:"1px solid rgba(42,31,20,.5)",background:"transparent",color:"#000",
                                     borderRadius:8,padding:"4px 9px",cursor:"pointer",fontSize:13,lineHeight:1.2,minWidth:38}}>
                                   ▲<br/>{p2.voteCount || 0}
                                 </button>
@@ -9522,12 +9544,12 @@ export default function App() {
                       <div style={{display:"flex",flexDirection:"column",gap:10}}>
                         <button className="btn-g" style={{alignSelf:"flex-start",padding:"5px 12px",fontSize:13}}
                           onClick={function(){ setForumThread(null); loadForumBoard(forumCat); }}>← All posts</button>
-                        <div style={{padding:"12px 14px",borderRadius:10,border:"1px solid rgba(196,149,90,.4)",background:"rgba(196,149,90,.07)"}}>
+                        <div style={{padding:"12px 14px",borderRadius:10,border:"1px solid rgba(42,31,20,.4)",background:"rgba(42,31,20,.07)"}}>
                           <div style={{display:"flex",gap:10,alignItems:"flex-start"}}>
                             {forumCat === "requests" && (
                               <button title="Upvote" onClick={function(){ toggleForumVote(forumThread.id); }}
-                                style={{border:"1px solid rgba(196,149,90,.6)",borderRadius:8,padding:"4px 9px",cursor:"pointer",fontSize:13,lineHeight:1.2,minWidth:38,
-                                  background:forumThread.youVoted?"#c4955a":"transparent",color:forumThread.youVoted?"#fff":"#000"}}>
+                                style={{border:"1px solid rgba(42,31,20,.6)",borderRadius:8,padding:"4px 9px",cursor:"pointer",fontSize:13,lineHeight:1.2,minWidth:38,
+                                  background:forumThread.youVoted?"#2a1f14":"transparent",color:forumThread.youVoted?"#fff":"#000"}}>
                                 ▲<br/>{forumThread.voteCount || 0}
                               </button>
                             )}
@@ -9582,7 +9604,7 @@ export default function App() {
             {!started && !mode && (
               <div className="ss">
                 <SupportLinks funding={funding} />
-                <div className="sico" style={{color:"#c4955a"}}><Pushkin size={64}/></div>
+                <div className="sico" style={{color:"#2a1f14"}}><Samovar size={64}/></div>
                 <h1 className="sti">{SITE_NAME}</h1>
                 <p className="sde">Choose how you want to practice today.</p>
                 <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:14}}>
@@ -10318,7 +10340,7 @@ export default function App() {
                                       {pct + "%"}
                                     </div>
                                     <div style={{marginTop:6,height:3,background:"rgba(210,197,175,.1)",borderRadius:2,overflow:"hidden"}}>
-                                      <div style={{height:"100%",width:pct+"%",background:"#c8a276"}}/>
+                                      <div style={{height:"100%",width:pct+"%",background:"#4a3f34"}}/>
                                     </div>
                                   </div>
                                 );
@@ -10953,7 +10975,7 @@ export default function App() {
                           var trim = function(t) { return String(t).replace(/\s+/g, " ").trim().slice(0, 60); };
                           if (book && trim(n) === trim(book)) return null;
                           return (
-                            <div className="bible-en" style={{margin:"0 0 18px",padding:"10px 14px",border:"1px solid rgba(196,149,90,.35)",borderRadius:10,background:"rgba(196,149,90,.06)",fontSize:"0.92em"}}>
+                            <div className="bible-en" style={{margin:"0 0 18px",padding:"10px 14px",border:"1px solid rgba(42,31,20,.35)",borderRadius:10,background:"rgba(42,31,20,.06)",fontSize:"0.92em"}}>
                               {n}
                             </div>
                           );
@@ -11206,9 +11228,9 @@ export default function App() {
                           {/* Grammar (only when a prebuilt exercise set exists) */}
                           {exData && (<>
                           <button onClick={startCaseQuiz}
-                            style={{background:"rgba(196,149,90,.12)",border:"1px solid rgba(196,149,90,.45)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
-                            onMouseOver={function(e){ e.currentTarget.style.background = "rgba(196,149,90,.2)"; }}
-                            onMouseOut={function(e){ e.currentTarget.style.background = "rgba(196,149,90,.12)"; }}>
+                            style={{background:"rgba(42,31,20,.12)",border:"1px solid rgba(42,31,20,.45)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
+                            onMouseOver={function(e){ e.currentTarget.style.background = "rgba(42,31,20,.2)"; }}
+                            onMouseOut={function(e){ e.currentTarget.style.background = "rgba(42,31,20,.12)"; }}>
                             <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
                               <span style={{fontSize:24}}>🔤</span>
                               <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Playfair Display',serif"}}>Grammar — Cases</span>
@@ -11294,7 +11316,7 @@ export default function App() {
                               {/* Sentence with the blank (filled with the correct form once answered) */}
                               <div style={{fontSize:26,fontFamily:"'Crimson Pro',serif",color:"#000",textAlign:"center",lineHeight:1.5,marginBottom:14}}>
                                 {parts[0]}
-                                <span style={{display:"inline-block",minWidth:70,textAlign:"center",fontWeight:700,color: answered ? "#2f5a2a" : "#a56a24",borderBottom:"2px solid rgba(196,149,90,.6)",padding:"0 6px"}}>
+                                <span style={{display:"inline-block",minWidth:70,textAlign:"center",fontWeight:700,color: answered ? "#2f5a2a" : "#2a1f14",borderBottom:"2px solid rgba(42,31,20,.6)",padding:"0 6px"}}>
                                   {answered ? q.correct : "   "}
                                 </span>
                                 {parts[1] || ""}
@@ -11314,7 +11336,7 @@ export default function App() {
                                   or merged sentence and read as an error. The drill is a case
                                   exercise — the Russian sentence is the whole prompt. */}
                               <div style={{textAlign:"center",marginBottom:22}}>
-                                <div style={{fontSize:15,color:"rgba(42,31,20,.75)"}}>Put <strong style={{color:"#a56a24",fontSize:18}}>{q.lemma}</strong> in the correct case</div>
+                                <div style={{fontSize:15,color:"rgba(42,31,20,.75)"}}>Put <strong style={{color:"#2a1f14",fontSize:18}}>{q.lemma}</strong> in the correct case</div>
                               </div>
                               </>)}
 
@@ -11548,7 +11570,7 @@ export default function App() {
                                   </button>
                                   {canQuiz && (
                                     <button onClick={function(){ startQuiz(g); }}
-                                      style={{fontSize:12,background:"#c8a276",color:"#1a1612",border:"none",borderRadius:4,padding:"4px 12px",fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>
+                                      style={{fontSize:12,background:"#4a3f34",color:"#1a1612",border:"none",borderRadius:4,padding:"4px 12px",fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>
                                       Quiz
                                     </button>
                                   )}

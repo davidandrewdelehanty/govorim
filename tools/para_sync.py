@@ -140,25 +140,16 @@ def align_chapter(paras, toks, t0, t1, play=False):
         i = max(range(n), key=lambda x: best_len[x])
         while i >= 0:
             keep[seq[i][0]] = seq[i][1]; i = prev[i]
-    # Interpolate everything else between kept anchors by word count.
-    out = dict(keep)
-    anchors = sorted(keep)
-    allk = list(range(len(paras)))
-    for a, b in zip(anchors, anchors[1:]):
-        gap = [k for k in allk if a < k < b]
-        if not gap: continue
-        tot = sum(wc[k] for k in [a] + gap)
-        t, sp = out[a], out[b] - out[a]
-        acc = 0
-        for k in [a] + gap:
-            if k != a: out[k] = t + sp * acc / tot
-            acc += wc[k]
-    if anchors:
-        first, last = anchors[0], anchors[-1]
-        r0 = rate
-        for k in allk:
-            if k < first:
-                out[k] = max(t0, out[first] - r0 * sum(wc[k:first]))
-            elif k > last:
-                out[k] = out[last] + r0 * sum(wc[last:k])
-    return {str(k): int(round(v)) for k, v in sorted(out.items())}, len(keep), len(paras)
+    # Only the paragraphs actually FOUND in the transcript get a time.
+    #
+    # This used to fill the gaps by interpolating between anchors on word
+    # count, which gave every paragraph a jump button. The times were
+    # plausible and that was the problem: a button that lands thirty seconds
+    # out is worse than no button, because the reader cannot tell which kind
+    # they just pressed, and one bad jump teaches them not to trust any of
+    # them. An arrow now means the words beside it were located in the
+    # recording. Where the transcript garbled a passage, or the reader cut it,
+    # there is simply no arrow — which is honest, and the paragraph above it
+    # still gets you close.
+    return ({str(k): int(round(v)) for k, v in sorted(keep.items())},
+            len(keep), len(paras))
