@@ -64,14 +64,44 @@ def align_chapter(paras, toks, t0, t1, play=False):
     # is, and the second pass asks the tight question — where does THIS
     # paragraph fall, between the two anchors that surround it — which is the
     # question the ±75s window was always meant to answer.
+    # Only score where the paragraph could actually begin.
+    #
+    # Scoring every position in the window meant one 721-paragraph chapter of
+    # Преступление и наказание against a five-hour transcript ran for minutes,
+    # and the book has forty-two of them. The transcript is indexed by word
+    # once instead, and a position is scored only where one of the probe's
+    # first three words occurs — a few dozen candidates rather than several
+    # hundred, with the same answer, because a ten-word window sharing none of
+    # those three words cannot reach 0.6 anyway. place_scattered.py has worked
+    # this way from the start; this brings the paragraph aligner in line.
+    where = {}
+    for i, w in enumerate(words):
+        if w:
+            where.setdefault(w, []).append(i)
+
     def probe(pi, para, centre, half):
         op = words_of(spoken(para) if play else para)[:10]
         if len(op) < 4:
             return None
         a = max(lo, bisect.bisect_left(times, centre - half))
         b = min(hi, bisect.bisect_left(times, centre + half))
+        # The occurrence lists are sorted, so take the slice that falls in the
+        # window rather than walking the whole list. Without this, a paragraph
+        # beginning "И" or "Он" scanned every one of that word's thousands of
+        # occurrences in the book — three words times six thousand paragraphs
+        # times a few thousand positions, which is where the minutes went.
+        cands = set()
+        for k in range(min(3, len(op))):
+            occ = where.get(op[k])
+            if not occ: continue
+            lo_i = bisect.bisect_left(occ, a + k)
+            hi_i = bisect.bisect_left(occ, b + k)
+            for j in occ[lo_i:hi_i]:
+                cands.add(j - k)
         best = (0.0, None)
-        for j in range(a, max(a + 1, b - len(op))):
+        for j in sorted(cands):
+            if j + len(op) > len(words):
+                continue
             r = difflib.SequenceMatcher(None, words[j:j+len(op)], op).ratio()
             if r > best[0]:
                 best = (r, times[j])

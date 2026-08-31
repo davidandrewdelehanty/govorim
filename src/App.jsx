@@ -7702,6 +7702,15 @@ export default function App() {
         input:focus,textarea:focus,select:focus{border-color:rgba(42,31,20,.5)}
         .btn-p{background:linear-gradient(135deg,#2a1f14,#0f0c08);color:#fff;border:none;padding:14px 32px;border-radius:10px;font-family:'Playfair Display',serif;font-size:17px;cursor:pointer;width:100%;box-shadow:0 4px 20px rgba(42,31,20,.3);transition:opacity .2s}
         .btn-p:hover:not(:disabled){opacity:.88} .btn-p:disabled{opacity:.4;cursor:default}
+        /* The mode choices are not one primary action among lesser ones — they
+           are four equal doors, and four filled black slabs stacked down the
+           page read as a wall. Outlined on the paper they read as choices. */
+        .mode-btn{background:#f5f0e8;color:#000;border:1px solid #2a1f14;
+          box-shadow:none;transition:background .15s,box-shadow .15s,transform .1s}
+        .mode-btn:hover:not(:disabled){opacity:1;background:rgba(42,31,20,.06);
+          box-shadow:0 2px 10px rgba(42,31,20,.14)}
+        .mode-btn:active:not(:disabled){transform:translateY(1px)}
+        .mode-btn *{color:inherit}
         .btn-g{background:rgba(42,31,20,.07);color:rgba(42,31,20,.6);border:1px solid rgba(42,31,20,.15);padding:12px 24px;border-radius:10px;font-family:'Crimson Pro',serif;font-size:15px;cursor:pointer;width:100%;transition:background .2s}
         .btn-g:hover{background:rgba(42,31,20,.12)}
         .chat-wrap{flex:1;display:flex;flex-direction:column;min-height:0}
@@ -9608,21 +9617,21 @@ export default function App() {
                 <h1 className="sti">{SITE_NAME}</h1>
                 <p className="sde">Choose how you want to practice today.</p>
                 <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:14}}>
-                  <button className="btn-p" onClick={function(){ setMode("read"); }} style={{textAlign:"left",padding:"18px 22px"}}>
+                  <button className="btn-p mode-btn" onClick={function(){ setMode("read"); }} style={{textAlign:"left",padding:"18px 22px"}}>
                     <div style={{fontSize:22,marginBottom:4}}>📖 Read</div>
                     <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Open a book from the library and read along with the narration.</div>
                   </button>
-                  <button className="btn-p" onClick={function(){ setMode("grammar"); }} style={{textAlign:"left",padding:"18px 22px"}}>
+                  <button className="btn-p mode-btn" onClick={function(){ setMode("grammar"); }} style={{textAlign:"left",padding:"18px 22px"}}>
                     <div style={{fontSize:22,marginBottom:4}}>📚 Grammar</div>
                     <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Pick your level and a topic. Quick reference pages with rules and examples.</div>
                   </button>
                   {WORDBANK_ENABLED && (
-                    <button className="btn-p" onClick={function(){ setMode("wordbank"); }} style={{textAlign:"left",padding:"18px 22px"}}>
+                    <button className="btn-p mode-btn" onClick={function(){ setMode("wordbank"); }} style={{textAlign:"left",padding:"18px 22px"}}>
                       <div style={{fontSize:22,marginBottom:4}}>🗂️ Vocab</div>
                       <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Drill the most common Russian words, ranked by real-world frequency, in blocks of 30.</div>
                     </button>
                   )}
-                  <button className="btn-p" onClick={function(){ setTab("forum"); }} style={{textAlign:"left",padding:"18px 22px"}}>
+                  <button className="btn-p mode-btn" onClick={function(){ setTab("forum"); }} style={{textAlign:"left",padding:"18px 22px"}}>
                     <div style={{fontSize:22,marginBottom:4}}>💬 Forum</div>
                     <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Request books, report bugs, and talk with other readers.</div>
                   </button>
