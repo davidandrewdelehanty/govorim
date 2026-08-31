@@ -706,7 +706,11 @@ function ChapterVideo(props) {
         if (typeof t !== "number") return;
         setPos(t);
         var w = win.current;
-        if (w.end && t >= w.end - 0.25) {
+        if (w.end && t >= w.end - 0.25 && !stoppedAtEnd.current) {
+          // Pause ONCE per crossing. Without the flag in the condition, the
+          // next tick saw the playhead still past the edge and paused again —
+          // so pressing play at a chapter boundary was dead: the reader could
+          // never listen past the end on purpose.
           // Stop at the chapter's end, and record that the recording did not
           // run out — the reader simply reached the edge of this chapter.
           try { p.pauseVideo(); } catch (x) {}
@@ -888,12 +892,25 @@ function attachVideos(chapters, entry) {
     });
   }
   var used = Object.create(null);
+  // All headings present in THIS cut of the book, so the index fallback can
+  // tell "the heading was renamed" (fall back) from "the heading moved to a
+  // different chapter" (do not — the heading match will place it there, and
+  // the index fallback here would attach the same video a second time).
+  var headsInBook = Object.create(null);
+  chapters.forEach(function(ch) {
+    var k = vidHeadKey(ch && ch.heading);
+    if (k) headsInBook[k] = 1;
+  });
 
   return chapters.map(function(ch, i) {
     var v = null;
     var hk = vidHeadKey(ch && ch.heading);
     if (hk && byHead[hk] && !used[hk]) { v = byHead[hk]; used[hk] = 1; }
-    if (!v && videos) v = videos[String(i)];
+    if (!v && videos) {
+      var cand = videos[String(i)];
+      var candHead = (cand && typeof cand === "object") ? vidHeadKey(cand.heading) : "";
+      if (!(candHead && headsInBook[candHead] && candHead !== hk)) v = cand;
+    }
     var raw = (v && typeof v === "object") ? (v.youtube || v.url || "") : (v || "");
     if (!raw && songs) {
       var e = songs[i];
@@ -2598,6 +2615,23 @@ export default function App() {
     try { await fetch("/api/auth/logout", { credentials: "same-origin" }); } catch(_) {}
     setMe(null);
     setShowAdmin(false);
+    // Leaving the account must also leave its data behind. Without this,
+    // three leaks follow on a shared browser: (1) the previous reader's
+    // vocabulary, tips and finished list stay on screen for whoever walks up
+    // next; (2) syncedFromServer stays true, so the next sign-in skips the
+    // initial fetch and the debounced push effects write THIS state into the
+    // new account; (3) even with the flag reset, the initial sync's
+    // "server empty, upload local" path would seed a fresh account with the
+    // previous reader's words. The account's copy lives on the server; the
+    // local mirror is cleared here. Reading progress stays: it is
+    // device-local by design and never pulled back from the server, so
+    // clearing it would simply destroy it.
+    setSyncedFromServer(false);
+    setSyncErr("");
+    try { storage.set("gv_synced_as", "").catch(function(){}); } catch(e) {}
+    setVocab([]);
+    setTips([]);
+    setFinishedMap({});
   };
 
   // Admin panel state — opened from the header. Only shown for the admin
@@ -3167,7 +3201,7 @@ export default function App() {
 
   var isFinished = function(meta) {
     var k = bookKey(meta);
-    return !!(k && finishedMap[k]);
+    return !!(k && finishedMap[k] && !finishedMap[k].removed);
   };
   var toggleFinished = function(meta) {
     var k = bookKey(meta);
@@ -3175,8 +3209,18 @@ export default function App() {
     var nowFinished = false;
     setFinishedMap(function(prev) {
       var next = Object.assign({}, prev);
-      if (next[k]) delete next[k];
-      else { next[k] = { at: Date.now(), title: meta.title || "", author: meta.author || "" }; nowFinished = true; }
+      // Unmarking leaves a tombstone rather than deleting the key. A deleted
+      // key cannot win a merge: any other device (or the server copy) that
+      // still holds the old mark would resurrect it at the next sign-in, and
+      // its push would spread the mark back to every device — permanently.
+      // The tombstone records WHEN the unmark happened, so newest-wins merges
+      // settle the question in the unmark's favour.
+      if (next[k] && !next[k].removed) {
+        next[k] = { removed: true, at: Date.now(), title: next[k].title || "", author: next[k].author || "" };
+      } else {
+        next[k] = { at: Date.now(), title: meta.title || "", author: meta.author || "" };
+        nowFinished = true;
+      }
       return next;
     });
     // A finished book has no place left to hold: the bookmark comes out with
@@ -3377,6 +3421,23 @@ export default function App() {
   // buttons for this chapter, so books opt in by having the files.
   var [paraSync, setParaSync] = useState(null);
   var ytCtrlRef = useRef(null);
+  // Seek the chapter's recording to `sec` as soon as its player exists. The
+  // player is raised asynchronously (book parse, chapter render, YT API,
+  // onReady), so a fixed delay either fired before the player existed (the
+  // seek silently vanished) or made the reader wait out a player that was
+  // already up. The ctrl ref is set exactly at onReady and cleared at
+  // teardown, so polling it is the readiness signal itself.
+  var seekWhenReady = function(sec) {
+    var tries = 0;
+    var t = setInterval(function() {
+      tries++;
+      var c = ytCtrlRef.current;
+      if (c && c.seekAbs) {
+        clearInterval(t);
+        try { c.seekAbs(sec); } catch (e) {}
+      } else if (tries > 40) clearInterval(t);   // ~12s: no player is coming
+    }, 300);
+  };
   // ── Stress marks (ударения) ────────────────────────────────────────────
   // stressMap: { lowercaseWord: index-of-stressed-vowel } for THIS book,
   // built offline by tools/gen_stress_maps.py from the OpenRussian
@@ -4734,10 +4795,18 @@ export default function App() {
     // Only sync for signed-in users. Signed out, vocabulary still saves —
     // it just stays in this browser.
     if (!me || syncedFromServer) return;
+    // Wait for the local-storage reads to finish first. Both run on mount,
+    // and if the server answered before storage did, the late local read
+    // would overwrite the merged state with the stale local copy — which the
+    // push effects would then upload.
+    if (!localLoaded || !finishedLoaded) return;
     (async function() {
       try {
         var r = await authFetch("/api/user-data");
-        if (!r.ok) return;
+        if (!r.ok) {
+          setSyncErr("Couldn't load your synced data — words saved now will stay on this device until the page is reloaded.");
+          return;
+        }
         var data = await r.json();
         var serverVocab = Array.isArray(data.vocab) ? data.vocab : [];
         // The server stores `created` but strips `id`. Use a stable per-entry
@@ -4758,12 +4827,40 @@ export default function App() {
         // be the one that loses. The map is keyed by book, so a union is right.
         var serverFinished = (data.finished && typeof data.finished === "object") ? data.finished : {};
         if (Object.keys(serverFinished).length > 0) {
-          setFinishedMap(function(local) { return Object.assign({}, serverFinished, local); });
+          // Per-key newest-wins, not a blind union: records carry `at`, and an
+          // unmark is a tombstone ({removed:true, at}) — so whichever side
+          // acted on the book most recently decides, in both directions.
+          setFinishedMap(function(local) {
+            var merged = Object.assign({}, serverFinished);
+            Object.keys(local).forEach(function(k) {
+              var sv = merged[k], lc = local[k];
+              if (!sv || ((lc && lc.at) || 0) > ((sv && sv.at) || 0)) merged[k] = lc;
+            });
+            return merged;
+          });
         }
 
         if (serverVocab.length > 0 || serverTips.length > 0) {
-          setVocab(serverVocab);
-          setTips(serverTips);
+          // If this browser holds GUEST data — words saved while signed out,
+          // never synced into any account — fold it in rather than discard
+          // it. The gv_synced_as flag distinguishes guest data from a stale
+          // mirror of an account (merging a stale mirror would resurrect
+          // entries deleted on another device, so mirrors are replaced).
+          var wasGuest = false;
+          try { var gsync = await storage.get("gv_synced_as"); wasGuest = !(gsync && gsync.value); } catch(e2) {}
+          var mergedVocab = serverVocab, mergedTips = serverTips;
+          if (wasGuest && (vocab.length > 0 || tips.length > 0)) {
+            var haveRu = {};
+            serverVocab.forEach(function(v){ haveRu[String((v && v.ru) || "").toLowerCase()] = 1; });
+            var extra = vocab.filter(function(v){ return v && v.ru && !haveRu[String(v.ru).toLowerCase()]; })
+              .map(function(v, i){ return Object.assign({}, v, { _key: "guest_" + (v.created || v.id || i) + "_" + i }); });
+            mergedVocab = serverVocab.concat(extra);
+            var haveTip = {};
+            serverTips.forEach(function(t){ haveTip[String((t && t.tip) || t || "")] = 1; });
+            mergedTips = serverTips.concat(tips.filter(function(t){ return t && !haveTip[String((t && t.tip) || t || "")]; }));
+          }
+          setVocab(mergedVocab);
+          setTips(mergedTips);
         } else if (vocab.length > 0 || tips.length > 0) {
           await authFetch("/api/user-data", {
             method: "POST",
@@ -4772,9 +4869,12 @@ export default function App() {
           });
         }
         setSyncedFromServer(true);
-      } catch(e) {}
+        try { storage.set("gv_synced_as", me.email || "1").catch(function(){}); } catch(e3) {}
+      } catch(e) {
+        setSyncErr("Couldn't load your synced data — words saved now will stay on this device until the page is reloaded.");
+      }
     })();
-  }, [me]);
+  }, [me, localLoaded, finishedLoaded]);
 
   // Push reading progress the same way. Progress was localStorage-only until
   // the admin panel grew a per-reader view; without this, "books opened"
@@ -4825,7 +4925,7 @@ export default function App() {
         if (r.status === 413) {
           // Payload rejected as too large. R2 has no size limit of its own, so
           // this now means the request body exceeded the function's own cap.
-          setSyncErr("Vocabulary list too large to sync in one go.");
+          setSyncErr("Vocabulary list too large to sync in one go. Remove a few entries from the Vocabulary tab to keep syncing.");
         } else if (r.ok) {
           // Save succeeded — clear any previous error (user removed entries to get under the limit).
           if (syncErr) setSyncErr("");
@@ -6187,13 +6287,15 @@ export default function App() {
 
   // Download a preset book from the server and load it through the normal pipeline.
   var loadPresetBook = async function(book) {
+    if (bookLoading !== null) return;   // see openUploadedBook — one load at a time
     curSlug.current = (book && book.slug) || "";
     // Hold every reload off until the reader is up. Downloading and parsing a
     // novel takes seconds, and a reload landing inside those seconds discards
     // the click silently.
     appBusy.opening = true;
-    // Opening a story is the other navigation moment worth checking on.
-    checkForUpdate();
+    // (No update check here: appBusy.opening is already set, so a check would
+    // return immediately — and that is right. A reload during the open would
+    // discard the click; the next navigation picks any new build up.)
     setFErr("");
     setBookLoading(book.filename);
     // Every preset book has a shareable URL (/book/<slug>), and the public
@@ -6264,6 +6366,10 @@ export default function App() {
   // Open one of the user's previously uploaded books from local storage.
   // Reads the parsed content saved by loadFile and rehydrates the reader state.
   var openUploadedBook = async function(book) {
+    // One book at a time. The library cards check bookLoading before calling,
+    // but the quick pick and Continue reading did not — a double-click there
+    // ran two loads concurrently and let them interleave reader state.
+    if (bookLoading !== null) return;
     setFErr("");
     setBookLoading(book.id);
     try {
@@ -6277,6 +6383,10 @@ export default function App() {
       var meta = {
         title: d.title || book.title || "Untitled",
         author: d.author || book.author || "",
+        // Without the filename, bookKey() computes "::Title" here but
+        // "<file>::Title" at first open — so reopening an upload lost its
+        // reading progress, finished mark, bookmark and vocab backlinks.
+        filename: d.filename || book.filename || "",
         category: d.category || book.category || "",
         splitByNumberedSections: !!d.splitByNumberedSections,
         audiobook: book.audiobook || d.audiobook || null,
@@ -8012,6 +8122,14 @@ export default function App() {
           /* The rail is narrow enough that the picture never crowds the text,
              so the viewport caps that protect a stacked player are dropped. */
           .lit-left.has-vid .chvid.mini{padding-bottom:0}
+          /* Minimised: give the rail's column back to the text. The picture is
+             clipped away, so without this the layout kept a 260-400px strip of
+             blank page reserved for it. The iframe keeps a real size inside
+             the clipped box — a player resized to 0x0 gets throttled or paused
+             by the browser, one merely clipped carries on playing. Browsers
+             without :has() simply keep the empty rail. */
+          .lit-left.has-vid:has(.chvid.mini){grid-template-columns:0 minmax(0,1fr);column-gap:0}
+          .lit-left.has-vid .chvid.mini iframe{width:320px;height:180px}
           /* The transport spans the whole reading area and sits flush under the
              bar above it, so it reads as part of the page's furniture. As a
              rounded pill floating in the whitespace at the top of the text it
@@ -9386,7 +9504,7 @@ export default function App() {
 
         {syncErr && (
           <div style={{padding:"8px 28px",background:"rgba(157,70,48,.18)",borderBottom:"1px solid rgba(157,70,48,.35)",color:"#9d4630",fontSize:13,display:"flex",alignItems:"center",gap:10}}>
-            <span style={{flex:1}}>⚠️ {syncErr} <span style={{opacity:.75,fontStyle:"italic"}}>Remove a few entries from the Vocabulary tab to keep syncing.</span></span>
+            <span style={{flex:1}}>⚠️ {syncErr}</span>
             <button onClick={function(){ setSyncErr(""); }} style={{background:"none",border:"none",color:"#9d4630",cursor:"pointer",fontSize:18,padding:0}}>×</button>
           </div>
         )}
@@ -9963,9 +10081,7 @@ export default function App() {
                                       loadPresetBook(book);
                                       // The book has to load, parse and raise a
                                       // player before there is anything to seek.
-                                      if (bm.audio) setTimeout(function(){
-                                        try { ytCtrlRef.current && ytCtrlRef.current.seekAbs(bm.audio); } catch (e) {}
-                                      }, 2500);
+                                      if (bm.audio) seekWhenReady(bm.audio);
                                     }}>
                                     <div className="lib-card-title">{bm.title || bm.key}{bm.author ? " — " + bm.author : ""}</div>
                                     <div className="lib-card-meta">
@@ -10336,15 +10452,25 @@ export default function App() {
                         if (recent.length === 0) return null;
                         // Match recents against actual library entries so we can resume them.
                         var findEntry = function(rec) {
-                          // Try uploaded books first (matched by filename or title)
+                          // Exact filename matches first — upload, then preset.
+                          // The loose title/author match runs LAST and only for
+                          // records with no filename at all (written before
+                          // uploads recorded one): run any earlier, it stole a
+                          // preset book card whenever an upload shared its
+                          // title, and resumed the wrong copy.
                           for (var i = 0; i < uploadedBooks.length; i++) {
                             var u = uploadedBooks[i];
                             if (rec.filename && u.filename === rec.filename && u.title === rec.title) return { type: "upload", book: u };
-                            if (u.title === rec.title && (u.author || "") === (rec.author || "")) return { type: "upload", book: u };
                           }
                           for (var j = 0; j < presetBooks.length; j++) {
                             var pBook = presetBooks[j];
                             if (rec.filename && pBook.filename === rec.filename) return { type: "preset", book: pBook };
+                          }
+                          if (!rec.filename) {
+                            for (var i2 = 0; i2 < uploadedBooks.length; i2++) {
+                              var u2 = uploadedBooks[i2];
+                              if (u2.title === rec.title && (u2.author || "") === (rec.author || "")) return { type: "upload", book: u2 };
+                            }
                           }
                           return null;
                         };
@@ -10801,11 +10927,12 @@ export default function App() {
                             srcJumpOffsetRef.current = bm.off;
                             navLit(bm.cidx);
                           }
-                          // Put the recording back where it was, once the
-                          // chapter's player has had a moment to settle.
-                          if (bm.audio) setTimeout(function(){
-                            try { ytCtrlRef.current && ytCtrlRef.current.seekAbs(bm.audio); } catch (e) {}
-                          }, bm.cidx === cidx ? 0 : 1200);
+                          // Put the recording back where it was, as soon as
+                          // the chapter's player is up.
+                          if (bm.audio) {
+                            if (bm.cidx === cidx) { try { ytCtrlRef.current && ytCtrlRef.current.seekAbs(bm.audio); } catch (e) {} }
+                            else seekWhenReady(bm.audio);
+                          }
                         }}>🔖 Bookmark{bm.audio ? " 🎧" : ""}</button>
                     );
                   })()}
@@ -10960,14 +11087,13 @@ export default function App() {
                             {bmMenu.bm && bmMenu.bm.audio ? (
                               <button className="resume" onClick={function(){
                                 var bm = bmMenu.bm; setBmMenu(null);
-                                var go = function(){
+                                if (bm.cidx === cidx) {
+                                  scrollToOffset(bm.off);
                                   try { ytCtrlRef.current && ytCtrlRef.current.seekAbs(bm.audio); } catch (e) {}
-                                };
-                                if (bm.cidx === cidx) { scrollToOffset(bm.off); go(); }
-                                else {
+                                } else {
                                   srcJumpOffsetRef.current = bm.off;
                                   navLit(bm.cidx);
-                                  setTimeout(go, 1200);   // let the chapter's player settle
+                                  seekWhenReady(bm.audio);   // fires when the chapter's player is up
                                 }
                               }}>
                                 ▶ Resume from saved audio

@@ -191,7 +191,7 @@ export default async function handler(req, res) {
             html: "<p>A reader hit a video that refused to play.</p>" +
               "<p><b>Video:</b> <a href=\"https://www.youtube.com/watch?v=" + v + "\">" + v + "</a><br>" +
               "<b>Why:</b> " + meaning + " (code " + code + ")<br>" +
-              "<b>Where:</b> " + (where || "unknown") + "</p>" +
+              "<b>Where:</b> " + escapeHtml(where || "unknown") + "</p>" +
               "<p>This mails once per video. The row in _stats/embed-errors.json remembers it was sent.</p>",
           });
         }
@@ -378,9 +378,21 @@ export default async function handler(req, res) {
       const type = req.query && req.query.type;
 
       if (type === "progress") {
-        // Book reading progress: { [bookFilename]: { cidx, pidx, lastRead } }
+        // Book reading progress: { [bookFilename]: { cidx, pidx, lastRead } }.
+        // Merged per book rather than replaced wholesale: each device pushes
+        // only the books IT has opened, so a phone with one book would
+        // otherwise erase the twenty a laptop had reported. Per key, the
+        // newer lastRead wins.
         const progress = body.progress || {};
-        await r2Put(userId, "progress", progress);
+        let existing = null;
+        try { existing = await r2Get(userId, "progress"); } catch (e) {}
+        const merged = (existing && typeof existing === "object" && !Array.isArray(existing)) ? existing : {};
+        for (const k of Object.keys(progress)) {
+          const inc = progress[k];
+          const cur = merged[k];
+          if (!cur || ((inc && inc.lastRead) || 0) >= ((cur && cur.lastRead) || 0)) merged[k] = inc;
+        }
+        await r2Put(userId, "progress", merged);
         return res.status(200).json({ ok: true });
       }
 

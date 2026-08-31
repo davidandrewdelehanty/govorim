@@ -16,6 +16,10 @@
 //   R2_ENDPOINT, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY — account storage.
 
 import { siteName, isPublicSite } from "../lib/site.js";
+
+// Built once per instance, used when a login names an account that does not
+// exist — see the login handler.
+let decoyHash = null;
 import {
   normalizeEmail,
   emailProblem,
@@ -23,6 +27,7 @@ import {
   findAccount,
   createAccount,
   verifyPassword,
+  hashPassword,
   touchLogin,
   touchSeen,
   signSession,
@@ -185,9 +190,15 @@ export default async function handler(req, res) {
 
     // login
     const account = await findAccount(email);
-    // Same message and roughly the same work whether the account exists or
-    // the password is wrong, so this cannot be used to enumerate accounts.
-    const ok = account ? await verifyPassword(password, account.passwordHash) : false;
+    // Same message AND the same work whether the account exists or the
+    // password is wrong: a missing account still burns one scrypt against a
+    // decoy hash, so response TIME cannot be used to enumerate accounts —
+    // before this, the no-account path skipped scrypt and answered visibly
+    // faster than a wrong password did.
+    if (!decoyHash) decoyHash = await hashPassword("decoy-timing-pad");
+    const ok = account
+      ? await verifyPassword(password, account.passwordHash)
+      : (await verifyPassword(password, decoyHash), false);
     if (!ok) {
       noteAttempt(ip);
       return res.status(401).json({ error: "Email or password is incorrect." });

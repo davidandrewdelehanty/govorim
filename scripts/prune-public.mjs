@@ -119,6 +119,26 @@ for (const e of publicEntries) {
   }
 }
 
+// Two different Cyrillic titles CAN slugify to the same underscore run. If a
+// public book and a non-public book ever collide that way, the exact-stem rule
+// above cannot tell their drills apart, and the private one would ship.
+// Refusing to deploy is the right failure here too.
+{
+  const privateSlugs = new Set();
+  for (const e of manifest) {
+    if (!e || !e.filename) continue;
+    if (e.public === true && !e.restricted) continue;
+    const b = path.posix.basename(e.filename).replace(/\.[^.]+$/, "");
+    privateSlugs.add(b.replace(/[^A-Za-z0-9_-]/g, "_"));
+  }
+  const clash = [...slugs].filter((s) => privateSlugs.has(s));
+  if (clash.length) {
+    console.error("[prune] FATAL: public and non-public books slugify to the same drill name(s): " + clash.join(", "));
+    console.error("[prune] Rename one of the FB2 files — otherwise the private book's exercises would ship.");
+    process.exit(1);
+  }
+}
+
 // Every directory on the way to something we keep must survive the walk.
 // Without this, novel/ was deleted along with the FB2s inside it that the
 // allowlist had explicitly named — the retention rule only understood kept
@@ -159,8 +179,17 @@ function isKept(relPath, isDir) {
   // silently rejects the file.
   if (relPath.startsWith("exercises/")) {
     const name = path.posix.basename(relPath);
+    // Prefix match, but the character after "<slug>__" must be alphanumeric.
+    // Cyrillic basenames slugify to runs of underscores, and one underscore
+    // run is a prefix of every longer one — a bare startsWith() rule kept a
+    // restricted book's drills whenever any public book had a shorter (or
+    // equal) Cyrillic name. A restricted run's leftover characters are always
+    // "_" or "-", while every real drill continues with "ch", a digit, or the
+    // slug repeated — so demanding an alphanumeric next character separates
+    // them without losing any legitimate naming variant.
     for (const slug of slugs) {
-      if (slug && name.startsWith(slug + "__")) return true;
+      if (slug && name.startsWith(slug + "__") &&
+          /^[A-Za-z0-9]/.test(name.slice(slug.length + 2))) return true;
     }
     if (/^\d+-\d+\.json$/.test(name)) return anyBible;
     return false;

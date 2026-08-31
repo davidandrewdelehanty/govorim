@@ -87,7 +87,10 @@ function headSwap(html, re, replacement, what, slug) {
   return html.replace(re, replacement);
 }
 
-const books = manifest.filter((e) => e && e.public === true && e.slug);
+// !restricted matches prune-public.mjs: a restricted book is never public,
+// and must not leak its title and description into a prerendered page or the
+// sitemap even if someone flags it public by mistake.
+const books = manifest.filter((e) => e && e.public === true && !e.restricted && e.slug);
 const urls = [ORIGIN + "/"];
 let written = 0;
 
