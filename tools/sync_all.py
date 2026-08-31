@@ -24,18 +24,23 @@ def toks_for(vid):
         _cache[vid] = load(p) if os.path.exists(p) else None
     return _cache[vid]
 
-def en_para_count(entry, cidx):
-    """Highest English key + 1 for this chapter, or None."""
+def en_shape(entry, cidx):
+    """How the English for this chapter is keyed: (highest key + 1, how many).
+
+    The keys are RUSSIAN paragraph indices, and the map may be dense (one
+    English paragraph per Russian one) or sparse. Both numbers are needed to
+    tell those apart, and the caller uses them for different checks.
+    """
     d = entry.get('parallelEn')
-    if not d: return None
+    if not d: return None, None
     p = 'public/books/%s/%02d.json' % (d, cidx + 1)
-    if not os.path.exists(p): return None
+    if not os.path.exists(p): return None, None
     try:
         m = json.load(io.open(p, encoding='utf-8'))
         ks = [int(k) for k in m if k.lstrip('-').isdigit()]
-        return (max(ks) + 1) if ks else None
+        return ((max(ks) + 1) if ks else None), len(ks)
     except Exception:
-        return None
+        return None, None
 
 def run(entry, verbose=True):
     fn = entry.get('filename')
@@ -61,9 +66,21 @@ def run(entry, verbose=True):
         t = toks_for(vid) if vid else None
         if not t: notrans += 1; continue
         paras = chs[c]
-        enc = en_para_count(entry, c)
-        if enc is not None and abs(enc - len(paras)) > 1:
-            mismatch += 1; continue
+        # No English check here. There used to be one, and it had no business
+        # in this function: these maps key RUSSIAN paragraph indices to moments
+        # in a RUSSIAN recording, and whether a translation exists — or how it
+        # is chunked — says nothing about whether a paragraph was found in the
+        # transcript. It was a proxy for "did we split the chapters the way the
+        # reader does", and a poor one: books with no English were never
+        # checked at all, so the protection was only ever applied to half the
+        # library. It cost Евгений Онегин every one of its arrows, because its
+        # English is paired by stanza — 54 entries against 770 lines — and cost
+        # Коляска its arrows over 90 against 94.
+        #
+        # What actually guards this: a paragraph is anchored only on a 0.6
+        # match against the transcript, the map must come out monotonic, and a
+        # chapter under 25% anchored is thrown away. None of those need a
+        # translation to work.
         # A play's page carries speaker names and stage directions that nobody
         # says aloud; the probe drops them. Prose is left exactly as printed.
         is_play = bool(entry.get('play')) or \

@@ -10307,6 +10307,11 @@ export default function App() {
                           Clicking one resumes at the saved chapter/page. */}
                       {(function() {
                         var entries = Object.keys(progressMap).map(function(k){ return progressMap[k]; });
+                        // A book marked read is finished, and there is nothing to
+                        // continue. Progress is kept — unmark it and it comes back
+                        // where it was — but it stops occupying a slot here, which
+                        // only holds six.
+                        entries = entries.filter(function(rec){ return !isFinished(rec); });
                         entries.sort(function(a, b){ return (b.lastRead || 0) - (a.lastRead || 0); });
                         var recent = entries.slice(0, 6);
                         if (recent.length === 0) return null;
