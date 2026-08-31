@@ -79,11 +79,58 @@ def place(path, vid):
     for n, i in enumerate(order):
         nxt = found[order[n+1]][1] if n + 1 < len(order) else end
         span[i] = (int(found[i][1]), int(nxt))
+    # Every chapter but the last is bounded by the next chapter's opening — a
+    # measurement. The last one has no such neighbour, and handing it the end
+    # of the video assumes the recording stops when the book does. It often
+    # does not: Мужики's last chapter matched at 0.93 like all the others and
+    # then failed at 1.25 s/w purely because eleven minutes of something else
+    # follows the story. So the final chapter ends where its own words run
+    # out, at the pace the rest of the reading kept, and never past the video.
+    interior = [i for i in range(len(chs)) if i != order[-1]]
+    if interior:
+        base = statistics.median(
+            [(span[i][1] - span[i][0]) / float(max(found[i][2], 1)) for i in interior])
+        if RATE_LO <= base <= RATE_HI:
+            last = order[-1]
+            span[last] = (span[last][0],
+                          min(end, span[last][0] + int(found[last][2] * base * 1.15)))
+    rates = [(span[i][1] - span[i][0]) / float(max(found[i][2], 1)) for i in range(len(chs))]
+    # One anchor landing on a phrase that recurs later throws exactly two
+    # chapters out — the one that now runs long and the one that now runs
+    # short — while the pair together keeps the reading's own pace. Накануне
+    # did this at chapter 26: 0.20 s/w against neighbours at 0.49 to 0.63, and
+    # 0.52 across the two of them. Refusing the whole book for that throws away
+    # thirty-four good anchors to punish one. The disagreeing anchor is dropped
+    # instead and its boundary interpolated between the two that agree, by word
+    # count — the same repair para_sync makes at paragraph level.
+    dropped = []
+    for pass_no in range(3):
+        rates = [(span[i][1] - span[i][0]) / float(max(found[i][2], 1)) for i in range(len(chs))]
+        worst, worstd = None, 0
+        good = [r for r in rates if RATE_LO <= r <= RATE_HI]
+        if len(good) < 3: break
+        mid = statistics.median(good)
+        for n, i in enumerate(order):
+            if n == 0: continue          # chapter one starts where it starts
+            r = rates[i]
+            if RATE_LO <= r <= RATE_HI: continue
+            d = abs(r - mid)
+            if d > worstd: worst, worstd = n, d
+        if worst is None: break
+        n = worst
+        i = order[n]
+        prev = order[n-1]
+        nxt = span[i][1]
+        wp, wi = max(found[prev][2], 1), max(found[i][2], 1)
+        newstart = span[prev][0] + int((nxt - span[prev][0]) * wp / float(wp + wi))
+        span[prev] = (span[prev][0], newstart)
+        span[i] = (newstart, nxt)
+        dropped.append(i + 1)
     rates = [(span[i][1] - span[i][0]) / float(max(found[i][2], 1)) for i in range(len(chs))]
     bad = [i+1 for i, r in enumerate(rates) if not (RATE_LO <= r <= RATE_HI)]
     if bad:
         return {'ok': False, 'why': 'chapters %s run at an impossible rate' % bad}
-    return {'ok': True, 'span': span, 'order': [i+1 for i in order],
+    return {'ok': True, 'span': span, 'order': [i+1 for i in order], 'dropped': dropped,
             'med': statistics.median([f[0] for f in found]),
             'rate': statistics.median(rates), 'chapters': len(chs)}
 
@@ -106,8 +153,9 @@ def main():
     e['videos'] = v
     io.open('private/books/index.json', 'w', encoding='utf-8').write(
         json.dumps(idx, ensure_ascii=False, indent=2) + '\n')
-    print('%s — %d chapters, read in order %s, median match %.2f, %.2f s/w'
-          % (e['title'], out['chapters'], out['order'], out['med'], out['rate']))
+    print('%s — %d chapters, read in order %s, median match %.2f, %.2f s/w%s'
+          % (e['title'], out['chapters'], out['order'], out['med'], out['rate'],
+             ('; boundary interpolated for ' + str(out['dropped'])) if out.get('dropped') else ''))
 
 if __name__ == '__main__':
     main()

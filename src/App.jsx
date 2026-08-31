@@ -2398,8 +2398,10 @@ function SupportLinks(props) {
   }
   return (
     <div className="support">
+      {/* The site's own appeal lives in the footer and nowhere else. Two
+          asks stacked at the top of the library was one ask too many in the
+          place where someone has come to read. */}
       <MemorialDonate />
-      <DonateCosts funding={f} />
       {/* Permanent invite — set to never expire. Discord's default invite
           dies after 7 days, which would quietly break this link. */}
       <a className="discord-btn" href="https://discord.gg/nePcT58a37"
@@ -9625,6 +9627,16 @@ export default function App() {
                                       // what to listen to is concerned, so it keeps
                                       // the headphones and gets no reel.
                                       if (perf && hasVid) marks += " \uD83C\uDFAC";
+                                      // The masks say what the work IS, where the
+                                      // rest of the row says what there is of it —
+                                      // so they come last, after the four marks that
+                                      // read down the column, rather than breaking
+                                      // that column apart. A staged performance is a
+                                      // play too, whatever shelf it sits on.
+                                      var isPlay = book && (book.play === true ||
+                                        String(book.category || "") === "Plays" ||
+                                        String(book.category || "") === "Theatrical Performances");
+                                      if (isPlay) marks += " \uD83C\uDFAD";
                                       var lead = "";
                                       var tag = marks;
                                       // The marker must survive: it is the whole
