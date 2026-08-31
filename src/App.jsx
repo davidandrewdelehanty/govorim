@@ -7376,8 +7376,15 @@ export default function App() {
            for older browsers. */
         .app{height:100vh;height:100dvh;background:#f5f0e8;display:flex;flex-direction:column;width:100%;overflow:hidden}
         .app::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:none}
-        .hdr{padding:16px 28px 12px;border-bottom:1px solid rgba(42,31,20,.1);display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative;z-index:10}
-        .logo{display:flex;align-items:baseline;gap:10px}
+        /* One bar. The name, then the sections, then the account controls
+           pushed to the far end. gap:0 on the header itself because the tabs
+           bring their own spacing and the right-hand group is pushed over by
+           margin-left:auto rather than by justify-content, which would fight
+           the tabs for the middle. */
+        .hdr{padding:10px 20px;border-bottom:1px solid rgba(42,31,20,.1);display:flex;
+          align-items:center;gap:18px;position:relative;z-index:10;flex-wrap:nowrap}
+        .hdr-right{display:flex;align-items:center;gap:12px;margin-left:auto;flex:none}
+        .logo{display:flex;align-items:baseline;gap:10px;flex:none}
         .lru{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#000}
         .lsub{font-size:11px;color:rgba(42,31,20,.35);letter-spacing:2.5px;text-transform:uppercase}
         .tbadge{background:rgba(196,149,90,.1);border:1px solid rgba(196,149,90,.25);color:#000;padding:6px 14px;border-radius:20px;font-size:13px;cursor:pointer;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -7550,10 +7557,30 @@ export default function App() {
         .level-pill option{background:#ede8dd}
         @media(max-width:600px){.level-lbl{display:none}.level-pill{padding:4px 8px;font-size:12px}}
         .tbadge:hover{background:rgba(196,149,90,.18)}
-        .tabs{display:flex;border-bottom:1px solid rgba(42,31,20,.1);padding:0 28px;position:relative;z-index:10}
-        .tab{padding:11px 20px;background:none;border:none;color:#000;font-family:'Crimson Pro',serif;font-size:14px;cursor:pointer;border-bottom:2px solid transparent;position:relative;top:1px;transition:color .2s}
-        .tab.on{color:#000;border-bottom-color:#c4955a;font-weight:600}
-        .tab:hover:not(.on){color:#000}
+        /* Inline in the header now, so the underline that marked the active
+           tab has no bar to sit on — it becomes a soft pill instead, which
+           reads at any vertical position. Scrolls sideways rather than
+           wrapping when the window is narrow, so the bar stays one line. */
+        .tabs{display:flex;align-items:center;gap:2px;min-width:0;overflow-x:auto;
+          scrollbar-width:none;-ms-overflow-style:none}
+        .tabs::-webkit-scrollbar{display:none}
+        .tab{padding:6px 13px;background:none;border:1px solid transparent;border-radius:7px;
+          color:rgba(42,31,20,.66);font-family:'Crimson Pro',serif;font-size:14.5px;
+          cursor:pointer;white-space:nowrap;flex:none;transition:background .15s,color .15s}
+        .tab.on{color:#000;font-weight:600;background:rgba(196,149,90,.16);
+          border-color:rgba(196,149,90,.32)}
+        .tab:hover:not(.on){color:#000;background:rgba(42,31,20,.05)}
+        /* Narrow: the tagline goes first — it is decoration — then the account
+           email, so the sections keep their room the longest. */
+        @media(max-width:900px){
+          .hdr{padding:9px 14px;gap:12px}
+          .lsub{display:none}
+          .tab{padding:6px 10px;font-size:13.5px}
+        }
+        @media(max-width:620px){
+          .acct-email{display:none}
+          .lru{font-size:19px}
+        }
         .bdg{background:#c4955a;color:#fff;font-size:10px;border-radius:10px;padding:1px 5px;margin-left:4px;vertical-align:middle}
         .bdg.g{background:#5a8556}
         .main{flex:1;display:flex;flex-direction:column;position:relative;z-index:1;min-height:0}
@@ -8139,13 +8166,16 @@ export default function App() {
            row horizontally scrollable so all four tabs stay reachable. */
         @media (max-width:640px){
           .hdr{flex-wrap:wrap;padding:10px 14px;row-gap:8px}
-          .hdr>div:last-child{flex-wrap:wrap;row-gap:6px;justify-content:flex-end}
+          .hdr-right{flex-wrap:wrap;row-gap:6px;justify-content:flex-end}
           .lsub{display:none}
           .acct-email{display:none}
-          /* All five tabs stay visible: wrap onto a second row instead of
-             scrolling sideways — a hidden scrollbar made Music undiscoverable. */
-          .tabs{padding:0 10px;flex-wrap:wrap}
-          .tab{white-space:nowrap;flex-shrink:0;padding:9px 12px;font-size:13px}
+          /* On a phone the one bar becomes two again, deliberately: the tabs
+             take a full row of their own and WRAP rather than scroll, because
+             a hidden sideways scrollbar made Music undiscoverable. The saving
+             this change makes is for the desktop window, which is where the
+             two bars were costing reading height. */
+          .tabs{order:3;width:100%;flex-wrap:wrap;overflow:visible;gap:4px}
+          .tab{white-space:nowrap;flex-shrink:0;padding:7px 11px;font-size:13px}
           .tbadge{max-width:38vw}
           .ss{padding:28px 14px}
         }
@@ -9189,7 +9219,24 @@ export default function App() {
             style={{cursor:"pointer"}}>
             <span className="lru">{SITE_NAME}</span><span className="lsub">{SITE_TAGLINE}</span>
           </div>
-          <div style={{display:"flex",alignItems:"center",gap:12}}>
+
+          {/* The tabs used to be a second bar under this one. Two bars of
+              chrome above the text is a lot on a laptop, where the window is
+              short to begin with — they sit beside the name now and the page
+              gets the height back. */}
+          <div className="tabs">
+            {["chat","vocab","grammar","forum","music"].map(function(t){
+              return (
+                <button key={t} className={"tab"+(tab===t?" on":"")} onClick={function(){ setTab(t); }}>
+                  {t==="chat"?"Reading":t==="vocab"?"Vocabulary":t==="grammar"?"Grammar":t==="forum"?"Forum":"Music"}
+                  {t==="vocab"&&vocab.length>0&&<span className="bdg">{vocab.length}</span>}
+                  {t==="grammar"&&tips.length>0&&<span className="bdg g">{tips.length}</span>}
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="hdr-right">
             {false && <div className="level-wrap" title="Russian proficiency level. Adapts AI questions to your skill. Changes apply immediately to chat and reading-mode analysis.">
               <span className="level-lbl">Level</span>
               <select className="level-pill" value={level} onChange={function(e){ setLevel(e.target.value); }}>
@@ -9209,18 +9256,6 @@ export default function App() {
             ))}
           </div>
         </header>
-
-        <div className="tabs">
-          {["chat","vocab","grammar","forum","music"].map(function(t){
-            return (
-              <button key={t} className={"tab"+(tab===t?" on":"")} onClick={function(){ setTab(t); }}>
-                {t==="chat"?"Reading":t==="vocab"?"Vocabulary":t==="grammar"?"Grammar":t==="forum"?"Forum":"Music"}
-                {t==="vocab"&&vocab.length>0&&<span className="bdg">{vocab.length}</span>}
-                {t==="grammar"&&tips.length>0&&<span className="bdg g">{tips.length}</span>}
-              </button>
-            );
-          })}
-        </div>
         {ttsErr && (
           <div style={{padding:"8px 28px",background:"rgba(157,70,48,.18)",borderBottom:"1px solid rgba(157,70,48,.35)",color:"#9d4630",fontSize:13,display:"flex",alignItems:"center",gap:10}}>
             <span style={{flex:1}}>🔊 {ttsErr}</span>
