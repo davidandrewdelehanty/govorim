@@ -281,8 +281,18 @@ export default async function handler(req, res) {
       // this counter says "Дубровский was opened 41 times", never who by.
       // Sanitised and capped: it becomes a key in a JSON file, and the value
       // arrives from the open internet.
+      // \w is ASCII-only in JavaScript, so the first version of this filter
+      // deleted every Cyrillic letter: «novel/Chekhov - Chayka.fb2» in its real
+      // spelling arrived as «novel/ - .fb2», and every Cyrillic-named file in
+      // the library piled into one meaningless row in the admin panel. The
+      // Cyrillic block is allowed explicitly now. The filter exists to keep
+      // control characters and path tricks out of an R2 key, not to insist the
+      // alphabet be Latin.
       const raw = String((req.query && req.query.b) || "");
-      const bookKey = raw.replace(/[^\w./\- ]+/g, "").slice(0, 160);
+      const bookKey = raw
+        .replace(/[^\w\u0400-\u04FF.\/\-\u2013\u2014\u00AB\u00BB() ]+/g, "")
+        .replace(/\.{2,}/g, ".")
+        .slice(0, 160);
       if (bookKey) {
         try {
           const bk = `${PREFIX}/_stats/books.json`;
