@@ -870,6 +870,281 @@ function mergeStorySections(chs) {
   }];
 }
 
+// ---------------------------------------------------------------------------
+// Play formatting.
+//
+// A play on the page is not prose: the speaker's name carries the line, the
+// stage directions are the author talking past the characters, and the cast
+// list is a table. The FB2s in this library mark none of that reliably — some
+// wrap directions in <emphasis>, most just print them as ordinary paragraphs —
+// so the shape is recovered from the text itself.
+//
+// Everything here is DISPLAY ONLY. It never edits a paragraph, so character
+// offsets, the alignment JSONs and the parallel-English keys are untouched.
+// ---------------------------------------------------------------------------
+
+// samlib and OCR sources spell some names with Latin look-alikes ("Hикита",
+// "Maтрена"), so those capitals open a speaker label too.
+var PLAY_CAP = "А-ЯЁABCEHKMOPTXY";
+var CAST_HEAD_RE = /^(действующие\s+лица|лица(?:\s+[а-яё]+){0,2}\s+действия|лица)\s*[:.]?$/i;
+// A parenthesis is allowed inside the name — "Софья Александровна (Соня)" —
+// but no sentence punctuation, which is what keeps a stage direction
+// ("Действие происходит в усадьбе Сорина. —") out of the cast list.
+var CAST_ROW_RE  = new RegExp("^([" + PLAY_CAP + "][^,.:;—–]{0,60}?)\\s*(,|--|—|–)\\s+(.{2,})$");
+// NAME, an optional parenthetical, then the stop before the line. The stop is
+// optional when a parenthetical is present: some editions print
+// "Костылев (подвигаясь к двери) Сколько ты у меня..." with none.
+var SPEECH_RE = new RegExp("^([" + PLAY_CAP + "][а-яёa-zА-ЯЁ\\-]*(?:\\s+[" + PLAY_CAP + "][а-яёa-zА-ЯЁ\\-]*){0,3})(\\s*\\([^)]{1,200}\\))?\\s*([.:])?(\\s+|(?=[" + PLAY_CAP + "]))");
+// A title rather than a name — "Частный пристав.", "Член банка (читает)." —
+// so the words after the first are lowercase. Only trusted once the same label
+// has opened several paragraphs, which no ordinary sentence does.
+var LOOSE_SPEECH_RE = new RegExp("^([" + PLAY_CAP + "][а-яёa-z\\-]+(?:\\s+[а-яёa-z" + PLAY_CAP + "][а-яёa-z\\-]+){0,3})(\\s*\\([^)]{1,200}\\))?\\s*([.:,])?(\\s+|(?=[" + PLAY_CAP + "]))");
+// Act and scene headings the FB2 left loose in the body text.
+var SCENE_HEAD_RE = /^((?:действие|акт|явление|сцена|картина|вариант|эпилог|пролог)(?![а-яё])[^.!?]{0,28}|[IVXLC]{1,7}\.?)$/i;
+var STOCK_STAGE_RE = /^(пауза|молчание|занавес|антракт|поцелуй|та\s+же|те\s+же[^.!?]*)\s*[.!…]?$/i;
+var STAGE_OPEN_RE = /^(вход[а-яё]+|уход[а-яё]+|выход[а-яё]+|появля[а-яё]+|показыва[а-яё]+|слышн[а-яё]+|раздаётся|раздается|за\s+сценой|за\s+эстрадой|поднимается\s+занавес|действие\s+происходит)/i;
+// Third-person narration carries no "я/ты/вы"; a line of dialogue that happens
+// to name a character does. This is what keeps a speech continuing after an
+// interrupting direction from being italicised as one.
+var PLAY_PERSON_RE = /(^|[^А-Яа-яЁё])(я|ты|вы|мы|меня|мне|тебя|тебе|вас|нас|нам|вам|мой|моя|мои|твой|твоя|ваш|ваша|наш)([^А-Яа-яЁё]|$)/i;
+var PLAY_HOMOGLYPH = { a:"а", c:"с", e:"е", o:"о", p:"р", x:"х", y:"у", A:"А", B:"В", C:"С",
+                       E:"Е", H:"Н", K:"К", M:"М", O:"О", P:"Р", T:"Т", X:"Х", Y:"У" };
+
+// One key per character, whichever alphabet the file happened to use.
+function playLabelKey(str) {
+  var t = String(str).replace(/\s+/g, "").toLowerCase(), out = "";
+  for (var i = 0; i < t.length; i++) { var ch = t.charAt(i); out += PLAY_HOMOGLYPH[ch] || ch; }
+  return out;
+}
+
+// "Пётр (качая головой). Уж эти работники!" → where the name ends, where the
+// parenthetical sits, and where the line itself begins. `names` restricts this
+// to the book's actual cast; without it every paragraph opening with a
+// capitalised word and a full stop would look like a speech.
+function playSpeechParts(t, names, loose) {
+  var m = t.match(SPEECH_RE);
+  if ((!m || (names && !names[playLabelKey(m[1])])) && (loose || !names)) {
+    var lm = t.match(LOOSE_SPEECH_RE);
+    if (lm && (!names || names[playLabelKey(lm[1])])) m = lm;
+  }
+  // A comma after the name — "Рисположенский, Это точно, Самсон Силыч" — is a
+  // real convention in some editions, but it is also how a scene's roll-call
+  // joins two characters, so it is refused when a second cast name follows.
+  var afterComma = m ? t.slice(m[0].length) : "";
+  var rollCall = m && m[3] === "," && names &&
+                 names[playLabelKey((afterComma.match(/^[А-ЯЁ][а-яё\-]+/) || [""])[0])];
+  var ok = !!m && m[1].length <= 40 && (m[2] || m[3]) && t.length > m[0].length + 3 &&
+           !(m[3] === "," && !/^[А-ЯЁ«"(]/.test(afterComma)) && !rollCall &&
+           !(names && !names[playLabelKey(m[1])]);
+  if (!ok) {
+    // Editions that letter-space their speaker names ("Кате р и на.") — the
+    // stop is still in place, so try the prefix with its spaces squeezed out.
+    if (names) {
+      var dot = t.indexOf(".");
+      if (dot > 0 && dot <= 25 && names[playLabelKey(t.slice(0, dot))] && t.length > dot + 4) {
+        return { name: t.slice(0, dot), nameEnd: dot, parenStart: -1, parenEnd: -1,
+                 attribEnd: dot + (/^\.\s/.test(t.slice(dot)) ? 2 : 1) };
+      }
+    }
+    return null;
+  }
+  var nameEnd = m[1].length, parenStart = -1, parenEnd = -1;
+  if (m[2]) {
+    parenStart = nameEnd + (m[2].length - m[2].replace(/^\s+/, "").length);
+    parenEnd   = nameEnd + m[2].length;
+  }
+  return { name: m[1], nameEnd: nameEnd, parenStart: parenStart, parenEnd: parenEnd,
+           attribEnd: m[0].length };
+}
+
+// The book's cast, learned from its own speeches: a label counts as a name once
+// it has opened two paragraphs, and a lowercase-tailed one ("Частный пристав")
+// once it has opened three. That threshold is what keeps a one-off prose
+// opening — "Картины. Четыре акта." — from being read as a character, and it
+// needs no cast list to work. Cast-list rows are added outright, since a
+// walk-on with a single line never reaches any threshold.
+function playSpeakerNames(chapterParas) {
+  var seen = Object.create(null), loose = Object.create(null), labels = Object.create(null);
+  var i, j;
+  for (i = 0; i < chapterParas.length; i++) {
+    for (j = 0; j < chapterParas[i].length; j++) {
+      var t0 = String(chapterParas[i][j] || "").trim();
+      var m0 = t0.match(SPEECH_RE);
+      if (m0 && m0[1].length <= 40 && (m0[2] || m0[3]) && t0.length > m0[0].length + 3) {
+        var k = playLabelKey(m0[1]); seen[k] = (seen[k] || 0) + 1;
+      }
+      var l0 = t0.match(LOOSE_SPEECH_RE);
+      if (l0 && l0[1].length <= 40 && (l0[2] || l0[3]) && t0.length > l0[0].length + 3) {
+        var lk = playLabelKey(l0[1]); loose[lk] = (loose[lk] || 0) + 1;
+      }
+      var cr = t0.match(CAST_ROW_RE);
+      if (cr && cr[1].split(/\s+/).length <= 4) labels[playLabelKey(cr[1])] = true;
+    }
+  }
+  for (var key in seen) if (seen[key] >= 2) labels[key] = true;
+  for (var key2 in loose) if (loose[key2] >= 3) labels[key2] = true;
+  // The individual words too, for spotting a character named inside a direction.
+  var words = Object.create(null);
+  for (i = 0; i < chapterParas.length; i++) {
+    for (j = 0; j < chapterParas[i].length; j++) {
+      var sp = playSpeechParts(String(chapterParas[i][j] || "").trim(), labels, true);
+      if (!sp) continue;
+      var parts = sp.name.split(/\s+/);
+      for (var w = 0; w < parts.length; w++) {
+        var word = parts[w].replace(/[^А-Яа-яЁё\-]/g, "");
+        if (word.length >= 4) words[word.toLowerCase()] = true;
+      }
+    }
+  }
+  return { labels: labels, words: words };
+}
+
+function playNamesStageLine(t, words) {
+  if (PLAY_PERSON_RE.test(t)) return false;
+  var caps = t.match(/[А-ЯЁ][а-яё\-]{3,}/g) || [];
+  for (var k = 0; k < caps.length; k++) if (words[caps[k].toLowerCase()]) return true;
+  return false;
+}
+
+// A short third-person sentence between speeches — "Пьют.", "Няня уходит.",
+// "Окно закрывается." A question, an exclamation or a first- or second-person
+// pronoun means somebody is talking, not the stage.
+function playShortStageLine(t) {
+  if (!/\.$/.test(t) || /[?!…]/.test(t)) return false;
+  if (PLAY_PERSON_RE.test(t)) return false;
+  return (t.match(/\S+/g) || []).length <= 8;
+}
+
+// Classify every paragraph of one chapter. `emph[i]` is true where the FB2
+// wrapped the whole paragraph in <emphasis>, which is how several of these
+// editions mark their stage directions.
+function classifyPlay(paras, emph, names, headingIsCast) {
+  var out = [], inCast = !!headingIsCast, seenSpeech = false;
+  // Some editions print the cast with nothing written over it — Вишнёвый сад
+  // and Горе от ума open their first act straight into the list. A run of
+  // three or more "Имя, описание." lines before anyone has spoken is a cast
+  // list whatever it is called, and walk-ons with no description ("Прохожий.")
+  // belong to the run once it has started.
+  var castRun = Object.create(null);
+  if (!inCast) {
+    var run = [], q, tq, cq;
+    for (q = 0; q < paras.length; q++) {
+      tq = String(paras[q] || "").trim();
+      if (!(emph && emph[q]) && playSpeechParts(tq, names.labels, true)) break;
+      cq = tq.match(CAST_ROW_RE);
+      if (cq && cq[1].split(/\s+/).length <= 5) { run.push(q); continue; }
+      if (run.length && /^[А-ЯЁ][^.!?]{0,28}\.$/.test(tq) && (tq.match(/\S+/g) || []).length <= 3) {
+        run.push(q); continue;
+      }
+      if (run.length >= 3) run.forEach(function(x){ castRun[x] = true; });
+      run = [];
+    }
+    if (run.length >= 3) run.forEach(function(x){ castRun[x] = true; });
+  }
+  for (var i = 0; i < paras.length; i++) {
+    var t = String(paras[i] || "").trim();
+    if (CAST_HEAD_RE.test(t)) { out.push({ kind: "castHead" }); inCast = true; continue; }
+    if (SCENE_HEAD_RE.test(t)) { out.push({ kind: "sceneHead" }); inCast = false; continue; }
+    if (inCast || castRun[i]) {
+      var cm = t.match(CAST_ROW_RE);
+      if (cm && cm[1].split(/\s+/).length <= 5) {
+        out.push({ kind: "cast", nameEnd: cm[1].length, descStart: cm[0].length - cm[3].length });
+        continue;
+      }
+      // "Повар." / "Горничная." — a walk-on with no description.
+      if (/^[А-ЯЁ][^.!?]{0,28}\.$/.test(t) && (t.match(/\S+/g) || []).length <= 3) {
+        out.push({ kind: "cast", nameEnd: t.length - 1, descStart: t.length });
+        continue;
+      }
+      if (!castRun[i]) inCast = false;
+    }
+    // The file's own <emphasis> is better evidence than anything read out of
+    // the words, so it is checked before the line is taken for a speech: a
+    // scene's opening roll-call ("Петр, Анисья и Акулина.") is marked up as a
+    // direction and would otherwise look like Пётр speaking.
+    if (!(emph && emph[i])) {
+      var sp = playSpeechParts(t, names.labels, true);
+      if (sp) { sp.kind = "speech"; out.push(sp); seenSpeech = true; continue; }
+    }
+    // Everything before the first speech of a chapter is scene-setting.
+    if (!seenSpeech || (emph && emph[i]) || STOCK_STAGE_RE.test(t) || STAGE_OPEN_RE.test(t) ||
+        playNamesStageLine(t, names.words) || playShortStageLine(t)) {
+      out.push({ kind: "stage" }); continue;
+    }
+    out.push({ kind: "text" });
+  }
+  return out;
+}
+
+// The az.lib/samlib sources type their dashes as a double hyphen. Display
+// only — the text itself keeps whatever the file has, so nothing that indexes
+// into it moves.
+function playText(t) { return String(t).replace(/\n/g, " ").replace(/--/g, "\u2014"); }
+
+// Parenthesised directions inside a line: [start, end) character ranges.
+function inlineDirections(t, from) {
+  var ranges = [], depth = 0, start = -1;
+  for (var i = from || 0; i < t.length; i++) {
+    if (t.charAt(i) === "(") { if (depth === 0) start = i; depth++; }
+    else if (t.charAt(i) === ")") {
+      depth--;
+      if (depth <= 0 && start > -1) { ranges.push([start, i + 1]); start = -1; depth = 0; }
+    }
+  }
+  return ranges;
+}
+
+// Paragraphs of a chapter, indexed exactly as the renderer indexes them.
+function chapterParagraphs(text) {
+  return String(text || "").split(/\n{2,}/).filter(function(p){ return p.trim().length > 0; });
+}
+
+// One page per act.
+//
+// Several of these FB2s wrap every явление in its own <section>, so the reader
+// cut Власть тьмы into 113 chapters — a cast list on one, five lines of
+// dialogue on the next. An act is the unit a play is read in, so the явления
+// are folded back into the act that holds them and become section dividers and
+// jump-index entries inside it (the mechanism the short-story merge used).
+//
+// Offsets are counted with chapterParagraphs, the renderer's own paragraph
+// rule, rather than by splitting on a literal blank line — an offset that
+// drifts by one puts every divider in the wrong place.
+var ACT_HEAD_RE = /^\s*(действие|акт)(?![а-яё])/i;
+function mergePlayActs(chs) {
+  var acts = 0, gi;
+  for (gi = 0; gi < chs.length; gi++) if (ACT_HEAD_RE.test(String(chs[gi].heading || ""))) acts++;
+  if (acts < 2 || chs.length <= acts + 1) return chs;   // already one page per act
+  var groups = [];
+  for (gi = 0; gi < chs.length; gi++) {
+    // The source chapter index is what the per-chapter English files are named
+    // after, so it has to survive the merge.
+    var c = Object.assign({}, chs[gi], { srcIdx: gi });
+    if (!groups.length || ACT_HEAD_RE.test(String(c.heading || ""))) groups.push([c]);
+    else groups[groups.length - 1].push(c);
+  }
+  return groups.map(function(parts) {
+    var text = "", sections = [], tight = [], emph = [], offsets = [], partIdx = [], at = 0;
+    for (var i = 0; i < parts.length; i++) {
+      var part = parts[i], body = String(part.text || "");
+      at = chapterParagraphs(text).length;
+      // The act's own name is already the page title; the scenes inside it are
+      // what the dividers and the jump index are for.
+      if (i > 0 && String(part.heading || "").trim()) {
+        sections.push({ heading: String(part.heading).trim(), at: at });
+      }
+      (part.tightIdx || []).forEach(function(x){ tight.push(x + at); });
+      (part.emphIdx  || []).forEach(function(x){ emph.push(x + at); });
+      offsets.push(at);
+      partIdx.push(part.srcIdx);
+      text = text ? (text + "\n\n" + body) : body;
+    }
+    return { heading: parts[0].heading || "", text: text, tightIdx: tight,
+             emphIdx: emph, sections: sections, offsets: offsets, partIdx: partIdx,
+             merged: parts.length };
+  });
+}
+
 function attachVideos(chapters, entry) {
   if (!entry) return chapters;
   var videos = entry.videos && typeof entry.videos === "object" ? entry.videos : null;
@@ -1921,6 +2196,23 @@ async function parseFb2(buffer, options) {
     // untouched) and rendered tight. Deliberately NOT extended to <poem>:
     // Горе от ума wraps every speech in one, and those want normal spacing.
     out.tightIdx = [];
+    // Paragraphs the FB2 wrapped entirely in <emphasis>. Several of the plays
+    // mark their stage directions that way, and it is a far better signal than
+    // any guess made from the words. Recorded beside the text, never in it.
+    out.emphIdx = [];
+    var whollyEmphasised = function(el) {
+      var sawEm = false;
+      for (var ci = 0; ci < el.childNodes.length; ci++) {
+        var n = el.childNodes[ci];
+        if (n.nodeType === 3) { if (n.nodeValue && n.nodeValue.trim()) return false; continue; }
+        if (n.nodeType !== 1) continue;
+        var tg = (n.tagName || "").toLowerCase();
+        if (tg === "emphasis") { sawEm = true; continue; }
+        if (tg === "strong") continue;
+        return false;
+      }
+      return sawEm;
+    };
     var walk = function(el, inVerse) {
       for (var wi = 0; wi < el.children.length; wi++) {
         var c = el.children[wi];
@@ -1946,6 +2238,7 @@ async function parseFb2(buffer, options) {
             }
           }
           if (inVerse) out.tightIdx.push(out.length);
+          if (tag === "p" && whollyEmphasised(c)) out.emphIdx.push(out.length);
           out.push(t);
           continue;
         }
@@ -1965,7 +2258,8 @@ async function parseFb2(buffer, options) {
     var body = paras.join("\n\n");
     if ((body.match(/[а-яёА-ЯЁ]/g) || []).length < 5) return;   // no Russian text
     out.push({ heading: heading || ("Глава " + (out.length + 1)), text: body,
-               tightIdx: (paras && paras.tightIdx) || [] });
+               tightIdx: (paras && paras.tightIdx) || [],
+               emphIdx: (paras && paras.emphIdx) || [] });
   };
 
   // Depth-first: one chapter per LEAF <section>, in document order. FB2s vary
@@ -4137,6 +4431,21 @@ export default function App() {
   var pages = useMemo(function() {
     return computePages(curChapter.text || "", { singlePage: true });
   }, [curChapter.text, singlePageMode]);
+  // Plays: the cast, learned once per book from its own speeches, and then the
+  // shape of the chapter on screen — who speaks, what is a stage direction,
+  // which lines are the cast list. Both are display-only.
+  var playOn = !!(bookMeta && bookMeta.play) && !singlePageMode;
+  var playNames = useMemo(function() {
+    if (!playOn) return null;
+    return playSpeakerNames((chapters || []).map(function(c){ return chapterParagraphs(c.text); }));
+  }, [chapters, playOn]);
+  var playKinds = useMemo(function() {
+    if (!playNames || !curChapter) return null;
+    var emph = [];
+    (curChapter.emphIdx || []).forEach(function(x){ emph[x] = true; });
+    return classifyPlay(chapterParagraphs(curChapter.text), emph, playNames,
+                        CAST_HEAD_RE.test(String(curChapter.heading || "").trim()));
+  }, [curChapter, playNames]);
   // What the chapter either side of this one is called. A button at the foot of
   // a chapter is read after the text, when "Next ›" alone has stopped meaning
   // anything — naming the destination is the whole point of putting it there.
@@ -4371,8 +4680,12 @@ export default function App() {
     // keys shifted by the paragraph index its chapter starts at. The offsets
     // come from the merge itself, where the paragraph counts are exact.
     var offs = curChapter && curChapter.merged ? curChapter.offsets : null;
+    // Which source chapter each part came from. A merged short story is the
+    // whole book, so its parts are files 1..N; a merged act is one act among
+    // several and its parts are named after their own chapter numbers.
+    var srcOf = (curChapter && curChapter.partIdx) || null;
     if (offs && offs.length) {
-      Promise.all(offs.map(function(_, i) { return get(i + 1); })).then(function(parts) {
+      Promise.all(offs.map(function(_, i) { return get((srcOf ? srcOf[i] : i) + 1); })).then(function(parts) {
         if (cancelled) return;
         var out = null;
         parts.forEach(function(j, i) {
@@ -6243,6 +6556,14 @@ export default function App() {
       // user just lists URLs in song order in index.json. Missing/null entries
       // mean "no link for this song".
       chs = attachVideos(chs, opts);
+      // Plays whose FB2 gives every явление its own <section> are folded back
+      // into one page per act. Parallel English survives it — each scene's file
+      // is still fetched and its keys shifted by where that scene starts — but
+      // videos and audiobooks are keyed by chapter index with no such offset,
+      // so a book carrying either is left as it is.
+      if (opts.play && !opts.videos && !opts.songs && !opts.audiobook) {
+        chs = mergePlayActs(chs);
+      }
       // Short stories were merged onto one page here, with a jump index and
       // per-section videos. Turned off: the paragraph offsets the merge
       // computed drifted from the ones the renderer actually produces —
@@ -6954,34 +7275,35 @@ export default function App() {
       var secHead = sectionAt[entry.chIdx];
       var secVid = videoAt[entry.chIdx];
         var para = entry.para;
-        // Detect play-style speaker attribution at the start of a paragraph.
-        // Russian plays commonly use Title Case names like "Маша. ..." or "Медведенко. ..."
-        // (Chekhov, Ostrovsky, Tolstoy plays). Older drama uses ALL CAPS like "ЛУКА. ..." (Gorky).
-        // Pattern: 1-3 Russian Title-Case or ALL-CAPS words, then . : — – or -, then space + dialogue.
         var paraText = para.map(function(t){ return t.text; }).join("");
-        // Play-line detection: NAME punct dialogue. Skip for song books since
-        // lines like "Владимирский централ - ветер северный" would otherwise
-        // false-match as a speaker named "Владимирский централ".
-        // Горе от ума: speaker names are merged into the first line of each
-        // speech in the FB2 (Chekhov print style, "Имя. Реплика"), but the
-        // generic Title-Case pattern below misses this play's odd labels
-        // ("1-я княжна", "Лиза и София", "Лакей его"), so the play matches
-        // against its exact cast list instead — zero false positives on verse
-        // lines that merely open with a capitalized word.
-        var isGorePlay = bookMeta && bookMeta.filename && bookMeta.filename.indexOf("gore-ot-uma") !== -1;
-        var goreSpeakerRe = /^(Графиня-бабушка|Графиня-внучка|Наталья Дмитриевна|Платон Михайлович|Голос Софии|Лиза и София|Все вместе|Лакей его|[1-6]-я княжна|Лизанька|Молчалин|Репетилов|Скалозуб|Загорецкий|Хлёстова|Княгиня|Фамусов|Чацкий|София|Князь|Лакей|Слуга|Лиза|Всё|Все)([.:])(\s+)/;
-        // Speaker formatting is opt-in per book via the catalogue's
-        // "play": true flag — prose paragraphs that happen to open with a
-        // Title-Case word + period ("Москва. Тишина...") must stay plain.
-        var speakerMatch = (singlePageMode || !(bookMeta && bookMeta.play)) ? null
-          : (isGorePlay
-              ? paraText.match(goreSpeakerRe)
-              : paraText.match(/^([А-ЯЁ][а-яёА-ЯЁ\-]+(?:\s+[А-ЯЁ][а-яёА-ЯЁ\-]+){0,2})\s*([.:—–\-])(\s+)/));
-        var speakerNameEnd = -1, attribEnd = -1;
-        // Guard against false positives — name must look like a name (≤40 chars) and there must be dialogue after.
-        if (speakerMatch && speakerMatch[1].length <= 40 && paraText.length > speakerMatch[0].length + 3) {
-          speakerNameEnd = (para[0] ? para[0].start : 0) + speakerMatch[1].length;
-          attribEnd     = (para[0] ? para[0].start : 0) + speakerMatch[0].length;
+        var paraBase = para[0] ? para[0].start : 0;
+        // What this paragraph IS, in a play: a speech, a stage direction, a row
+        // of the cast list, a scene heading, or the continuation of a speech
+        // that a direction interrupted. classifyPlay works it out for the whole
+        // chapter at once (see playKinds); here it only becomes character
+        // ranges the token loop below can paint.
+        //   speakerNameEnd  — the speaker's name, set apart and unclickable
+        //   skipStart/End   — the printed stop between name and line, replaced
+        //                     on screen by an em dash
+        //   dirRanges       — parenthesised directions, and a cast row's
+        //                     description, set in italic
+        var playKind = playKinds ? playKinds[entry.chIdx] : null;
+        var speakerNameEnd = -1, skipStart = -1, skipEnd = -1, dirRanges = null;
+        if (playKind) {
+          if (playKind.kind === "speech") {
+            speakerNameEnd = paraBase + playKind.nameEnd;
+            skipStart = paraBase + (playKind.parenEnd > -1 ? playKind.parenEnd : playKind.nameEnd);
+            skipEnd   = paraBase + playKind.attribEnd;
+            dirRanges = inlineDirections(paraText, 0);
+          } else if (playKind.kind === "cast") {
+            speakerNameEnd = paraBase + playKind.nameEnd;
+            skipStart = paraBase + playKind.nameEnd;
+            skipEnd   = paraBase + playKind.descStart;
+            dirRanges = playKind.descStart < paraText.length
+              ? [[playKind.descStart, paraText.length]] : [];
+          } else if (playKind.kind === "text") {
+            dirRanges = inlineDirections(paraText, 0);
+          }
         }
 
         // Dual-language Bible: the English line for this verse (if loaded and
@@ -7069,17 +7391,30 @@ export default function App() {
           : (bookMeta && bookMeta.filename && bookMeta.filename.indexOf("негин") !== -1 ? "0.1em"
           : (isTight ? "0.15em" : "1.2em"))};
         var ruBody = (function(){
-              // If this paragraph is a play line, replace the punctuation between name and dialogue with an em-dash.
-              if (speakerNameEnd > -1) {
+              // A play line. The speaker's name is set apart and does not open a
+              // definition (it is a name, not vocabulary); the printed stop after
+              // it is replaced on screen by an em dash; parenthesised directions
+              // go italic but stay clickable, because they are ordinary Russian a
+              // reader may well want to look up.
+              if (playKind) {
+                var dirs = dirRanges || [];
+                var inDirRange = function(tk) {
+                  var a = tk.start - paraBase, b = tk.end - paraBase;
+                  for (var d = 0; d < dirs.length; d++) if (a < dirs[d][1] && b > dirs[d][0]) return true;
+                  return false;
+                };
                 var elems = [];
+                var dashPut = false;
+                var pushDash = function(key) {
+                  if (dashPut || skipStart < 0) return;
+                  dashPut = true;
+                  elems.push(<span key={key} className="play-dash"> — </span>);
+                };
                 for (var i = 0; i < para.length; i++) {
                   var tk = para[i];
                   var hl = tk.isRu && tk.start === activeStart;
-                  var inName = tk.end <= speakerNameEnd;
-                  var inAttrib = tk.end <= attribEnd;
-
-                  // Skip the original separator (.:—) and the whitespace right after.
-                  if (inAttrib && !inName) continue;
+                  var inName = speakerNameEnd > -1 && tk.end <= speakerNameEnd;
+                  var dir = !inName && inDirRange(tk);
 
                   if (tk.isRu) {
                     var clickPlay;
@@ -7093,23 +7428,28 @@ export default function App() {
                     }
                     elems.push(
                       <span key={i}
-                        className={"rw" + (hl ? " rwhl" : "") + (inName ? " play-speaker" : "") + (!inName && isSaved(tk.text) ? " vsaved" : "")}
+                        className={"rw" + (hl ? " rwhl" : "") + (inName ? " play-speaker" : "")
+                          + (dir ? " play-dir" : "") + (!inName && isSaved(tk.text) ? " vsaved" : "")}
                         data-rw-start={tk.start}
                         onClick={clickPlay}
                         title={inName ? "" : (noAIMode ? "Click to read from here" : "Click for a definition")}>{accented(tk.text)}</span>
                     );
-                    // Just after the speaker name finishes, insert the em-dash separator.
-                    if (inName && (i+1 >= para.length || para[i+1].end > speakerNameEnd)) {
-                      elems.push(<span key={"d"+i} className="play-dash">— </span>);
-                    }
-                  } else {
-                    var verseNumMatch2 = tk.text.match(/^(\d+)(\s*)$/);
-                  if (verseNumMatch2 && bookMeta && bookMeta.filename && bookMeta.filename.indexOf("Библии") !== -1) {
-                    elems.push(<span key={i}><span style={{fontSize:"0.7em",fontWeight:700,color:"#2a1f14",verticalAlign:"super",lineHeight:1,marginRight:"2px",fontFamily:"sans-serif"}}>{verseNumMatch2[1]}</span>{verseNumMatch2[2]}</span>);
-                  } else {
-                    elems.push(<span key={i}>{tk.text.replace(/\n/g, " ")}</span>);
+                    continue;
                   }
+                  // The punctuation run between the name and the line. It can
+                  // carry more than the stop — «Кулигин (поет). "Среди долины…»
+                  // opens its quotation in the same run — so only the stop
+                  // itself is dropped and the rest is kept.
+                  var txt = playText(tk.text);
+                  if (skipStart > -1 && tk.end > skipStart && tk.start < skipEnd) {
+                    var head = playText(tk.text.slice(0, Math.max(0, skipStart - tk.start)));
+                    var tail = playText(tk.text.slice(Math.max(0, skipEnd - tk.start)));
+                    if (head) elems.push(<span key={"h"+i}>{head}</span>);
+                    pushDash("d" + i);
+                    if (tail) elems.push(<span key={"t"+i} className={dir ? "play-dir" : undefined}>{tail}</span>);
+                    continue;
                   }
+                  elems.push(<span key={i} className={dir ? "play-dir" : undefined}>{txt}</span>);
                 }
                 return elems;
               }
@@ -7186,7 +7526,7 @@ export default function App() {
             ];
           }
           var dualCells = [
-            <p key={"ru" + pi} className="dual-ru" lang="ru" id={"sp" + entry.chIdx}
+            <p key={"ru" + pi} className={"dual-ru" + (playKind ? " play-" + playKind.kind : "")} lang="ru" id={"sp" + entry.chIdx}
                style={Object.assign({gridColumn: 1, gridRow: String(pi + 1)}, pMargin)}>{jumpBtn}{bmBtn}{ruBody}</p>
           ];
           // Flow mode: the Russian keeps its rows, the English does not get a
@@ -7247,8 +7587,9 @@ export default function App() {
                         allowFullScreen />
               </div>
             )}
-            <p id={"sp" + entry.chIdx} lang="ru" style={pMargin}
-               className={bibleChapterMark ? "bible-chapter" : undefined}>
+            <p id={"sp" + entry.chIdx} lang="ru" style={playKind ? undefined : pMargin}
+               className={playKind ? ("play-p play-" + playKind.kind)
+                                   : (bibleChapterMark ? "bible-chapter" : undefined)}>
               {jumpBtn}{bmBtn}{ruBody}
               {/* The Russian line already carries its verse number, so the
                   English beneath it does not repeat one. A book-sized page
@@ -8291,7 +8632,27 @@ export default function App() {
         .ltxt{font-size:17.5px;line-height:1.85;color:#000;font-family:'Crimson Pro',serif;word-wrap:break-word;overflow-wrap:break-word;letter-spacing:.005em}
         .play-speaker{color:#2a1f14;font-weight:600;letter-spacing:.04em;border-bottom:none !important;cursor:default !important}
         .play-speaker:hover{color:#2a1f14 !important;background:none !important}
-        .play-dash{color:rgba(42,31,20,.45);padding:0 6px;font-weight:300}
+        .play-dash{color:rgba(42,31,20,.45);padding:0 4px;font-weight:300}
+        /* A play on the page. Speeches hang off the left margin so the run of
+           speakers' names reads down the edge of the column the way it does in
+           a printed script; the stage keeps its distance in italic. */
+        .play-p{margin:0 0 .55em}
+        .play-speech,.play-text{padding-left:1.9em;text-indent:-1.9em}
+        .play-text{text-indent:0}
+        .play-dir{font-style:italic;color:rgba(42,31,20,.58)}
+        .play-dir.rw{border-bottom-color:rgba(42,31,20,.12)}
+        .play-stage{padding-left:1.9em;margin:.75em 0 .85em;font-style:italic;
+          font-size:.95em;color:rgba(42,31,20,.6)}
+        .play-stage .rw{border-bottom-color:rgba(42,31,20,.12)}
+        .play-castHead{text-align:center;font-size:12.5px;letter-spacing:.14em;
+          text-transform:uppercase;color:rgba(42,31,20,.55);margin:6px 0 14px}
+        .play-castHead .rw{border-bottom:none}
+        .play-cast{padding-left:1.7em;text-indent:-1.7em;margin:0 0 .3em}
+        .play-cast .play-speaker{letter-spacing:.03em}
+        .play-sceneHead{font-family:'Playfair Display',serif;font-size:14px;letter-spacing:.05em;
+          color:rgba(42,31,20,.55);margin:24px 0 12px;padding-top:12px;
+          border-top:1px solid rgba(42,31,20,.12)}
+        .play-sceneHead .rw{border-bottom:none}
         .lit-msgs{flex:0 1 auto;max-height:50%;overflow-y:auto;padding:14px 20px 8px;display:flex;flex-direction:column;gap:10px}
         .lit-ibar{position:relative;padding:10px 20px 14px;border-top:1px solid rgba(42,31,20,.08);background:#f5f0e8;flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
         .lit-ibar textarea{flex:1;width:100%;resize:none;min-height:80px;max-height:none;padding:14px 60px 14px 16px;border-radius:14px;font-size:16px;line-height:1.55}
