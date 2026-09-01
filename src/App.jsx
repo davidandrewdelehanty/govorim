@@ -1408,6 +1408,62 @@ function sectionLabel(heading) {
   return null;
 }
 
+// Full English label for a structured heading: every " — " segment is
+// translated ("Часть вторая — Глава V" -> "Part Two — Chapter V"), so the
+// English pane can be labelled with the translation's own chapter numbering.
+// Returns null when nothing in the heading is structural (a story title).
+function enOrdinalWord(n) {
+  var W = ["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten",
+           "Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen","Twenty"];
+  return (n >= 1 && n <= 20) ? W[n] : String(n);
+}
+function ruOrdinalNo(word) {
+  var w = String(word || "").toLowerCase();
+  var STEMS = [["двадцат",20],["девятнадцат",19],["восемнадцат",18],["семнадцат",17],["шестнадцат",16],
+    ["пятнадцат",15],["четырнадцат",14],["тринадцат",13],["двенадцат",12],["одиннадцат",11],["десят",10],
+    ["девят",9],["восьм",8],["седьм",7],["шест",6],["пят",5],["четверт",4],["четвёрт",4],["трет",3],["втор",2],["перв",1]];
+  for (var i = 0; i < STEMS.length; i++) if (w.indexOf(STEMS[i][0]) === 0) return STEMS[i][1];
+  return null;
+}
+function enChapterLabel(heading) {
+  var h = String(heading == null ? "" : heading).trim();
+  if (!h) return null;
+  var segs = h.split(/\s+[—–]\s+/);
+  var out = [];
+  // NB: \b is useless after Cyrillic in JS regexes (Cyrillic is not \w),
+  // so the kind word is matched with an explicit separator instead.
+  var KINDS = [[/^том[\s.]/i,"Volume"],[/^книга[\s.]/i,"Book"],[/^часть[\s.]/i,"Part"],[/^глава[\s.]/i,"Chapter"],
+    [/^действие[\s.]/i,"Act"],[/^акт[\s.]/i,"Act"],[/^явление[\s.]/i,"Scene"],[/^картина[\s.]/i,"Scene"],
+    [/^песнь[\s.]/i,"Canto"],[/^отрывок[\s.]/i,"Fragment"],[/^ночь[\s.]/i,"Night"],[/^отч[её]т[\s.№]/i,"Progress Report"]];
+  var structural = 0;
+  for (var i = 0; i < segs.length; i++) {
+    var seg = segs[i].replace(/^[\*\s]+|[\*\s]+$/g, "").trim();
+    var done = false;
+    var lbl = sectionLabel(seg);        // Preface / Epilogue / Author's note / bare "Chapter N"
+    for (var k = 0; k < KINDS.length && !done; k++) {
+      if (KINDS[k][0].test(seg)) {
+        var rest = seg.replace(KINDS[k][0], "").trim();
+        var m = rest.match(/^(\d{1,3})/);
+        var n = m ? parseInt(m[1], 10) : romanToInt((rest.match(/^[IVXLCХ]{1,7}/i) || [""])[0].replace(/Х/g, "X"));
+        if (!n) n = ruOrdinalNo(rest);
+        if (n) { out.push(KINDS[k][1] + " " + (KINDS[k][1] === "Chapter" || KINDS[k][1] === "Scene" ? n : enOrdinalWord(n))); structural++; done = true; }
+        else if (KINDS[k][1] === "Fragment" && /последн/i.test(rest)) { out.push("The Last Fragment"); structural++; done = true; }
+      }
+    }
+    if (done) continue;
+    if (lbl && lbl.long) { out.push(lbl.long); structural++; continue; }
+    if (/^посвящени/i.test(seg)) { out.push("Dedication"); structural++; continue; }
+    // a bare numeral in a non-final position is a part index of some kind
+    var bare = seg.match(/^(\d{1,3}|[IVXLCХ]{1,7})[.)]?$/i);
+    if (bare) {
+      var bn = /^\d+$/.test(bare[1]) ? parseInt(bare[1], 10) : romanToInt(bare[1].replace(/Х/g, "X"));
+      if (bn) { out.push("Chapter " + bn); structural++; continue; }
+    }
+  }
+  if (!structural) return null;
+  return out.join(" — ");
+}
+
 function isChapterMarker(line) {
   var l = (line || "").trim();
   if (!l || l.length > 30) return false;
@@ -1922,13 +1978,20 @@ async function parseFb2(buffer, options) {
   // same chapters, or the audio plays against the wrong text.
   // soleSection: this is the body's only top-level section, so it is the whole
   // book. The short-scrap rule below must not fire on it — see there.
-  var walkSection = function(sec, out, soleSection) {
+  var walkSection = function(sec, out, soleSection, ancestorTitle) {
     var nested = Array.prototype.filter.call(sec.children, function(c) {
       return c.tagName && c.tagName.toLowerCase() === "section";
     });
     var titleEl = sec.querySelector(":scope > title");
     var partTitle = titleEl ? titleEl.textContent.replace(/\s+/g, " ").trim() : "";
     if (fb2IsNotesTitle(partTitle)) return;   // endnotes left in the main body
+    // Chapters inside a titled part inherit the part's name: a nested FB2
+    // (КНИГА > часть > главы) otherwise yields headings that are bare
+    // numerals repeated per part, and the navigation can't tell Book One's
+    // "I" from Book Three's. Decorative asterisks around part names go.
+    var cleanPart = partTitle.replace(/^\*+\s*|\s*\*+$/g, "");
+    var joined = (ancestorTitle && cleanPart) ? (ancestorTitle + " — " + cleanPart)
+               : (cleanPart || ancestorTitle || "");
 
     // Nesting only counts as chapter structure when the subsections are
     // chapters in their own right, which in practice means they're titled.
@@ -1987,7 +2050,7 @@ async function parseFb2(buffer, options) {
         var cyrCount = (body.match(/[а-яёА-ЯЁ]/g) || []).length;
         if (cyrCount >= 5) {
           split.push({
-            heading: (partTitle ? partTitle + " — " : "") + currentSubtitle,
+            heading: (joined ? joined + " — " : "") + currentSubtitle,
             text: body,
           });
         }
@@ -2035,15 +2098,15 @@ async function parseFb2(buffer, options) {
           (leafParas.join(" ").match(/\S+/g) || []).length < FB2_MIN_MEDIAN_CHAPTER_WORDS) {
         return;
       }
-      pushChapter(out, partTitle, leafParas);
+      pushChapter(out, joined, leafParas);
       return;
     }
 
     // Walk the subsections into a scratch list first, so their combined size
     // can be sanity-checked before they're accepted as chapters.
     var sub = [];
-    pushChapter(sub, partTitle, paragraphsOf(sec, true));   // the part's preamble
-    for (var ni = 0; ni < nested.length; ni++) walkSection(nested[ni], sub);
+    pushChapter(sub, joined, paragraphsOf(sec, true));   // the part's preamble
+    for (var ni = 0; ni < nested.length; ni++) walkSection(nested[ni], sub, false, joined);
 
     // Same size guard as the subtitle split, for the same reason: nesting a
     // <section> per unit is how one book marks its chapters and how another
@@ -2053,7 +2116,7 @@ async function parseFb2(buffer, options) {
     // with a median of 60 words. When the pieces come out that small the
     // nesting wasn't chapter structure, so the section is kept whole.
     if (sub.length && medianWords(sub) < FB2_MIN_MEDIAN_CHAPTER_WORDS) {
-      pushChapter(out, partTitle, paragraphsOf(sec, false));
+      pushChapter(out, joined, paragraphsOf(sec, false));
       return;
     }
     for (var si = 0; si < sub.length; si++) out.push(sub[si]);
@@ -6211,6 +6274,10 @@ export default function App() {
         // own right and does not track the Russian line for line, so a book
         // that pairs one says so rather than implying a literal gloss.
         translationNote: opts.translationNote || "",
+        // English work title and translator, shown with the chapter label so
+        // the reader always knows WHICH translation sits beside the text.
+        enTitle: opts.enTitle || "",
+        translator: opts.translator || "",
         // Plays only: enables inline golden speaker-name formatting. Novels
         // must never get it — "Москва. Тишина стояла..." is not a character.
         play: !!opts.play,
@@ -6347,6 +6414,8 @@ export default function App() {
         bibleEn: book.bibleEn || null,
         parallelEn: book.parallelEn || null,
         translationNote: book.translationNote || "",
+        enTitle: book.enTitle || "",
+        translator: book.translator || "",
         play: !!book.play,
         flowEn: !!book.flowEn,
       });
@@ -8217,6 +8286,8 @@ export default function App() {
         }
         .lhdr{font-size:11px;color:rgba(42,31,20,.3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
         .lch-heading{font-family:'Playfair Display',serif;font-size:20px;color:#000;margin-bottom:14px}
+        .lch-en{font-family:'Inter',sans-serif;font-size:12.5px;color:rgba(42,31,20,.6);margin:-2px 0 12px;letter-spacing:.01em}
+        .lch-en i{font-style:italic;opacity:.9}
         .ltxt{font-size:17.5px;line-height:1.85;color:#000;font-family:'Crimson Pro',serif;word-wrap:break-word;overflow-wrap:break-word;letter-spacing:.005em}
         .play-speaker{color:#2a1f14;font-weight:600;letter-spacing:.04em;border-bottom:none !important;cursor:default !important}
         .play-speaker:hover{color:#2a1f14 !important;background:none !important}
@@ -11145,6 +11216,28 @@ export default function App() {
                             )}
                           </div>
                         )}
+                        {/* The English pane, introduced properly: the
+                            translation's own chapter label, the title the
+                            translation was published under, and the
+                            translator's name — on every chapter page, so the
+                            English text is never anonymous. */}
+                        {(function() {
+                          if (!bookMeta || !bookMeta.parallelEn) return null;
+                          var lbl = (proseEn && proseEn._title) || enChapterLabel(curChapter && curChapter.heading);
+                          var credit = "";
+                          if (bookMeta.enTitle) {
+                            credit = bookMeta.enTitle;
+                            if (bookMeta.translator) credit += ", translated by " + bookMeta.translator;
+                          } else if (bookMeta.translator) {
+                            credit = "translated by " + bookMeta.translator;
+                          }
+                          if (!lbl && !credit) return null;
+                          return (
+                            <div className="lch-en">
+                              {lbl}{lbl && credit ? " — " : ""}{credit ? <i>{credit}</i> : null}
+                            </div>
+                          );
+                        })()}
                         {/* A chapter-level note, for something true of this
                             chapter and not of the book. Three English folders
                             also carried the BOOK's translator note here, from
