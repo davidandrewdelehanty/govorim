@@ -1259,6 +1259,35 @@ function ProgressPanel(props) {
   );
 }
 
+// ---------------------------------------------------------------------------
+// Which reading of an ambiguous form the sentence points to. No dictionary can
+// tell «ношу» the noun from «ношу» the verb; the word before it often can. A
+// personal pronoun or «не» in front wants a verb, a preposition wants a noun
+// or adjective, and an adjective ending in front wants a noun. This is a
+// nudge, not a verdict — every reading stays one tap away — and where no cue
+// is present the order the dictionary gave is kept.
+// ---------------------------------------------------------------------------
+var CUE_PRONOUN = /^(я|ты|он|она|оно|мы|вы|они|кто|не|уже|всё|все)$/i;
+var CUE_PREPOSITION = /^(в|во|на|за|под|подо|над|о|об|обо|от|ото|до|из|изо|у|к|ко|с|со|по|при|для|без|через|про|между|перед|около|возле|вокруг|среди|против|сквозь|ради|кроме|вместо)$/i;
+var CUE_ADJECTIVE = /(ый|ий|ой|ая|яя|ое|ее|ые|ие|ую|юю|ого|его|ому|ему|ым|им|ой|ей|ых|их|ыми|ими)$/i;
+function readingsInContext(readings, prevWord) {
+  var list = (readings || []).slice();
+  var prev = String(prevWord || "").toLowerCase().replace(/ё/g, "е");
+  if (!prev) return { list: list, cue: "" };
+  var wants = CUE_PRONOUN.test(prev) ? "verb"
+            : CUE_PREPOSITION.test(prev) ? "noun"
+            : (CUE_ADJECTIVE.test(prev) && prev.length > 4) ? "noun" : "";
+  if (!wants) return { list: list, cue: "" };
+  var isKind = function(r) {
+    var pos = String(r.pos || "").toLowerCase();
+    if (wants === "verb") return /verb|глагол/.test(pos) && !/adverb|наречие/.test(pos);
+    return /noun|adj|существ|прилаг/.test(pos) && !/pronoun/.test(pos);
+  };
+  var hit = list.filter(isKind), rest = list.filter(function(r){ return !isKind(r); });
+  if (!hit.length) return { list: list, cue: "" };
+  return { list: hit.concat(rest), cue: wants };
+}
+
 function attachVideos(chapters, entry) {
   if (!entry) return chapters;
   var videos = entry.videos && typeof entry.videos === "object" ? entry.videos : null;
@@ -6279,9 +6308,30 @@ export default function App() {
     setPopXY({top:Math.max(8,top),left:left});
     setSayState("");
     try { if (sayAudioRef.current) sayAudioRef.current.pause(); } catch(e) {}
-    setPopup({word:clean,data:null,loading:true,error:null,yo:null,srcOffset:(typeof charPosition==="number"?charPosition:null)});
+    // The word before the click, for telling apart readings of one spelling.
+    var prevWord = "";
+    if (typeof charPosition === "number" && curChapter && curChapter.text) {
+      var before = curChapter.text.slice(Math.max(0, charPosition - 40), charPosition);
+      var pm = before.match(/([А-Яа-яЁё][А-Яа-яЁё-]*)[^А-Яа-яЁё]*$/);
+      if (pm) prevWord = pm[1];
+    }
+    setPopup({word:clean,data:null,loading:true,error:null,yo:null,srcOffset:(typeof charPosition==="number"?charPosition:null),prev:prevWord});
     try {
       var data = await fetchDef(clean);
+      // Several headwords behind this spelling: order them by the sentence's
+      // cue, and if the cue points at a different reading than the one the
+      // dictionary led with, show that one — the others stay a tap away.
+      if (data && data.readings && data.readings.length > 1) {
+        var ranked = readingsInContext(data.readings, prevWord);
+        data = Object.assign({}, data, { readings: ranked.list, readingCue: ranked.cue });
+        var top = ranked.list[0];
+        if (ranked.cue && top && String(top.lemma).toLowerCase() !== String(data.lemma || "").toLowerCase()) {
+          try {
+            var alt = await fetchDef(top.lemma);
+            if (alt && alt.translation) data = Object.assign({}, alt, { readings: ranked.list, readingCue: ranked.cue, word: clean });
+          } catch (e0) {}
+        }
+      }
       setPopup(function(p){ return p ? Object.assign({},p,{data:data,loading:false}) : null; });
       // If this word is already saved, remember the form the reader just
       // clicked. Generated paradigms miss the irregulars (пишу from писать,
@@ -6310,6 +6360,20 @@ export default function App() {
           : 'Could not define "' + clean + '" — ' + rawMsg;
         setPopup(function(p){ return p ? Object.assign({},p,{loading:false,error:msg}) : null; });
       }
+    }
+  };
+
+  // The reader picked another reading. Its entry is looked up by headword,
+  // and the chip row is carried over so the choice can be changed again.
+  var switchReading = async function(lemma) {
+    var keep = popup && popup.data ? { readings: popup.data.readings, readingCue: popup.data.readingCue, word: popup.word } : {};
+    setPopup(function(p){ return p ? Object.assign({},p,{loading:true,error:null}) : null; });
+    try {
+      var data = await fetchDef(lemma);
+      setPopup(function(p){ return p ? Object.assign({},p,{data:Object.assign({}, data, keep),loading:false}) : null; });
+    } catch(err) {
+      var m2 = 'Could not define "' + lemma + '" \u2014 ' + ((err && err.message) || "Unknown error");
+      setPopup(function(p){ return p ? Object.assign({},p,{loading:false,error:m2}) : null; });
     }
   };
 
@@ -8975,6 +9039,18 @@ export default function App() {
         .learned-ru{font-weight:600;color:#000} .learned-en{color:rgba(42,31,20,.8)}
         .learned-when{font-family:'Inter',sans-serif;font-size:11px;color:rgba(42,31,20,.45)}
         @media (max-width:520px){.learned-row{grid-template-columns:1fr 1fr}.learned-when{display:none}}
+        /* Readings: one spelling, several words */
+        .preads{margin:0 0 10px;padding:8px 10px;border:1px solid rgba(42,31,20,.14);border-radius:10px;background:rgba(42,31,20,.035)}
+        .preads-q{font-size:12px;color:rgba(42,31,20,.65);margin-bottom:7px;line-height:1.4}
+        .preads-row{display:flex;flex-wrap:wrap;gap:6px}
+        .pread{display:inline-flex;flex-direction:column;align-items:flex-start;gap:1px;padding:6px 10px;border-radius:9px;cursor:pointer;
+          border:1px solid rgba(42,31,20,.2);background:#fff;color:#000;font-family:'Crimson Pro',serif;text-align:left;transition:all .12s}
+        .pread:hover{border-color:rgba(42,31,20,.5);background:rgba(42,31,20,.05)}
+        .pread.on{border-color:#1e7a3c;background:rgba(30,122,60,.10);cursor:default}
+        .pread-pos{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(42,31,20,.55)}
+        .pread.on .pread-pos{color:#1e7a3c}
+        .pread-lem{font-size:16px;font-weight:600;line-height:1.15}
+        .pread-note{font-size:11.5px;font-style:italic;color:rgba(42,31,20,.6)}
         .play-speaker{color:#2a1f14;font-weight:600;letter-spacing:.04em;border-bottom:none !important;cursor:default !important}
         .play-speaker:hover{color:#2a1f14 !important;background:none !important}
         .play-dash{color:rgba(42,31,20,.45);padding:0 4px;font-weight:300}
@@ -12798,6 +12874,28 @@ export default function App() {
 
               {!popup.loading && !popup.error && !popup.yo && !popup.noEntry && popup.data && (
                 <>
+                  {popup.data.readings && popup.data.readings.length > 1 && (
+                    <div className="preads" role="group" aria-label="Which word is this?">
+                      <div className="preads-q">
+                        {popup.data.readingCue
+                          ? ("Could be more than one word \u2014 \u00ab" + (popup.prev || "") + "\u00bb before it suggests the " + popup.data.readingCue + ":")
+                          : "Could be more than one word \u2014 pick from the sentence:"}
+                      </div>
+                      <div className="preads-row">
+                        {popup.data.readings.map(function(r, i){
+                          var cur = String(r.lemma).toLowerCase() === String(popup.data.lemma || "").toLowerCase();
+                          return (
+                            <button key={i} className={"pread" + (cur ? " on" : "")} disabled={cur}
+                                    title={r.note || ""} onClick={function(){ switchReading(r.lemma); }}>
+                              <span className="pread-pos">{r.pos || "other"}</span>
+                              <span className="pread-lem">{r.lemma}</span>
+                              {r.note && <span className="pread-note">{r.note.replace(/\s+of\s+.*$/, "")}</span>}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
                   {popup.data.definitionSource === "mt" && (
                     <div className="pmt">
                       {popup.data.mtKind === "dictionary"

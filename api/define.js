@@ -374,20 +374,24 @@ function buildWiktEntry(pack, clickedWord, matchedForm, formNote) {
 // Two candidates only (as clicked, and the yo-folded spelling): Wiktionary
 // indexes yo properly, so the variant spray Yandex needs would just burn time
 // against this request's shared 10s budget.
-async function wiktionaryLookup(candidates, clickedWord, signal, timeLeft) {
+async function wiktionaryLookup(candidates, clickedWord, signal, timeLeft, sharedReadings) {
   let weak = null;   // a form-of page with no lemma behind it; used only last
+  const readings = sharedReadings || [];
+  const finish = function (built) { return withReadings(built, readings); };
   for (const cand of candidates) {
     // Several confirmed lemmas can arrive now, and Vercel kills the function at
     // ten seconds — stop trying rather than be killed mid-answer.
     if (timeLeft && timeLeft() < 1200) break;
     const pack = await wiktFetch(cand, signal);
     if (!pack) continue;
+    // Every reading this page knows, whichever of them we end up showing.
+    for (const r of readingsFromWikt(pack, cand)) addReading(readings, r.lemma, r.pos, r.note);
 
     const direct = pickEntry(pack.entries);
     const hasReal = definedSenses(direct).some(function (s) { return !isFormOf(s); });
     if (hasReal) {
       const built = buildWiktEntry(pack, clickedWord, cand, "");
-      if (built) return built;
+      if (built) return finish(built);
       continue;
     }
 
@@ -403,7 +407,7 @@ async function wiktionaryLookup(candidates, clickedWord, signal, timeLeft) {
       const lemPack = await wiktFetch(ptr, signal);
       if (lemPack) {
         const built = buildWiktEntry(lemPack, clickedWord, cand, note);
-        if (built) return built;
+        if (built) return finish(built);
       }
     }
     // Nothing but "genitive singular of X" and no page for X. That is a
@@ -414,7 +418,7 @@ async function wiktionaryLookup(candidates, clickedWord, signal, timeLeft) {
     const asIs = buildWiktEntry(pack, clickedWord, cand, "");
     if (asIs && !weak) { asIs.weakFormOf = true; weak = asIs; }
   }
-  return weak;
+  return weak ? finish(weak) : null;
 }
 
 // "genitive singular of фраер" / "inflection of фраер" → фраер.
@@ -423,10 +427,74 @@ function lemmaFromNote(note) {
   return m ? deaccent(m[1]).replace(/[^\u0400-\u04ff-]/g, "") : "";
 }
 
+// ---- Readings ---------------------------------------------------------------
+// One spelling, several words. «ношу» is the accusative of ноша AND the
+// first person of носить; «стекло» is glass AND the past of стечь. No
+// dictionary can say which the reader met — only the sentence can — so when a
+// form resolves to more than one headword the answer carries every reading,
+// labelled by part of speech, and the popup lets the reader choose. Each
+// reading is {lemma, pos, note}; the note is the grammatical relation
+// ("accusative singular of ноша") when the source states it.
+
+function addReading(list, lemma, pos, note) {
+  lemma = deaccent(String(lemma || "")).trim();
+  if (!lemma) return;
+  pos = String(pos || "").toLowerCase().trim();
+  const key = lemma.toLowerCase() + "|" + pos;
+  for (const r of list) if (r.key === key) return;
+  list.push({ key: key, lemma: lemma, pos: pos, note: String(note || "").slice(0, 90) });
+}
+
+// Yandex's MORPHO search returns one def[] entry per analysis, each with the
+// headword and its part of speech — «ношу» comes back as ноша/noun and
+// носить/verb side by side.
+function readingsFromYandex(defs) {
+  const out = [];
+  for (const d of defs || []) if (d && d.text) addReading(out, d.text, d.pos, "");
+  return out;
+}
+
+// en.wiktionary keeps one entry per part of speech on the page for a form,
+// and its senses say what the form is of: that is exactly the list we want.
+function readingsFromWikt(pack, surface) {
+  const out = [];
+  if (!pack || !Array.isArray(pack.entries)) return out;
+  for (const e of pack.entries) {
+    const pos = e.partOfSpeech || "";
+    const senses = definedSenses(e);
+    const real = senses.filter(function (s) { return !isFormOf(s); });
+    if (real.length) {
+      const canon = canonicalForm(e);
+      addReading(out, deaccent(canon ? canon.word : "") || surface, pos, "");
+    }
+    for (const sn of senses) {
+      if (!isFormOf(sn)) continue;
+      const m = /\bof\s+([\u0400-\u04ff\u0300-\u036f-]+)/.exec(sn.definition);
+      if (m) addReading(out, m[1], pos, String(sn.definition).replace(/\s*\(.*?\)\s*$/, ""));
+    }
+  }
+  return out;
+}
+
+// Attach the list to an answer — only when there is actually a choice. A
+// reading that arrived labelled replaces the same headword unlabelled.
+function withReadings(entry, readings) {
+  if (!entry) return entry;
+  const labelled = {};
+  for (const r of readings || []) if (r.pos) labelled[r.lemma.toLowerCase()] = true;
+  const list = (readings || []).filter(function (r) { return r.pos || !labelled[r.lemma.toLowerCase()]; });
+  const distinct = {};
+  for (const r of list) distinct[r.lemma.toLowerCase()] = true;
+  if (Object.keys(distinct).length >= 2) {
+    entry.readings = list.map(function (r) { return { lemma: r.lemma, pos: r.pos, note: r.note }; });
+  }
+  return entry;
+}
+
 // A Yandex hit, dressed and sent. Split out so the lemma retry below can use
 // the same path as the first-pass lookup.
-async function sendYandex(res, defs, word, matchedForm, signal) {
-  const entry = buildEntry(defs, word, matchedForm);
+async function sendYandex(res, defs, word, matchedForm, signal, readings) {
+  const entry = withReadings(buildEntry(defs, word, matchedForm), readings || readingsFromYandex(defs));
   // Russian synonyms for the monolingual line. Strictly best-effort.
   try {
     const ruDefs = await yandexLookup(entry.lemma, "ru-ru", signal);
@@ -579,6 +647,7 @@ export default async function handler(req, res) {
       // page. Only if that finds nothing does the older stemmed SEARCH run: it
       // is a search engine rather than a lemmatiser, so it goes second.
       let lemma = "", lemmas = [], weakWikt = null;
+      const readings = [];   // every headword this form can belong to — see withReadings
       if (process.env.LEMMA_LOOKUP !== "0" && timeLeft() > 2500) {
         const guesses = lemmaCandidates(lower, 12);
         if (guesses.length) {
@@ -604,6 +673,10 @@ export default async function handler(req, res) {
           }
         }
         lemma = lemmas[0] || "";
+        // Two confirmed headwords behind one form (ноша and носить behind
+        // «ношу») are two readings whatever the dictionaries go on to say.
+        // Unlabelled here; the Wiktionary page labels them when it has them.
+        if (lemmas.length >= 2) for (const lm of lemmas) addReading(readings, lm, "", "");
       }
       const candsWith = function (extra) {
         return [lower, deyo].concat(lemmas)
@@ -623,7 +696,9 @@ export default async function handler(req, res) {
             const lemDefs = await yandexLookup(lem, "ru-en", ctrl.signal);
             if (lemDefs.length) {
               trace.push("yandex:lemma-hit " + lem);
-              return sendYandex(res, lemDefs, word, lem, ctrl.signal);
+              const rd = readingsFromYandex(lemDefs);
+              for (const r of readings) addReading(rd, r.lemma, r.pos, r.note);
+              return sendYandex(res, lemDefs, word, lem, ctrl.signal, rd);
             }
           } catch (e) {
             if (e && e.name === "AbortError") throw e;
@@ -638,7 +713,7 @@ export default async function handler(req, res) {
         const wiktCands = candsWith(lemma);
         let wikt = null;
         try {
-          wikt = await wiktionaryLookup(wiktCands, word, ctrl.signal, timeLeft);
+          wikt = await wiktionaryLookup(wiktCands, word, ctrl.signal, timeLeft, readings);
         } catch (e) {
           if (e && e.name === "AbortError") throw e;
           trace.push("enwikt:error " + ((e && e.message) || e));
@@ -697,7 +772,7 @@ export default async function handler(req, res) {
           }
           delete ruWikt.noEnglish;
           res.setHeader("Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
-          return res.status(200).json(ruWikt);
+          return res.status(200).json(withReadings(ruWikt, readings));
         }
         trace.push("ruwikt:miss");
       } else if (process.env.RUWIKT_FALLBACK !== "0") {
@@ -719,7 +794,7 @@ export default async function handler(req, res) {
           if (built) {
             trace.push("slang:hit");
             res.setHeader("Cache-Control", "public, s-maxage=3600");
-            return res.status(200).json(built);
+            return res.status(200).json(withReadings(built, readings));
           }
         }
         trace.push("slang:miss");
@@ -731,7 +806,7 @@ export default async function handler(req, res) {
         delete weakWikt.weakFormOf;
         trace.push("enwikt:form-only-used");
         res.setHeader("Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
-        return res.status(200).json(weakWikt);
+        return res.status(200).json(withReadings(weakWikt, readings));
       }
 
       if (yandexErr) throw yandexErr;
@@ -778,7 +853,24 @@ export default async function handler(req, res) {
       });
     }
 
-    return sendYandex(res, defs, word, matchedForm, ctrl.signal);
+    // Yandex answered. If what it answered with is a different word from what
+    // was clicked — an inflected form — the same spelling may belong to a
+    // second headword Yandex did not mention (its MORPHO search stops at the
+    // first article as often as not). One look at the form's own Wiktionary
+    // page lists every word it can be, and that is what the chip row needs.
+    let yReadings = readingsFromYandex(defs);
+    const yLemma = String((defs[0] && defs[0].text) || "").toLowerCase();
+    const inflected = yLemma && yLemma !== lower && yLemma !== deyo;
+    if (wiktEnabled && (inflected || yReadings.length > 1) && timeLeft() > 2500) {
+      try {
+        const surfacePack = await wiktFetch(lower, ctrl.signal);
+        for (const r of readingsFromWikt(surfacePack, lower)) addReading(yReadings, r.lemma, r.pos, r.note);
+        trace.push("readings:" + yReadings.length);
+      } catch (e) {
+        if (e && e.name === "AbortError") throw e;
+      }
+    }
+    return sendYandex(res, defs, word, matchedForm, ctrl.signal, yReadings);
   } catch (err) {
     const ys = err && err.yandexStatus;
     if (ys === 401 || ys === 402) {
