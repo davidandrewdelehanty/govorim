@@ -374,6 +374,7 @@ function buildWiktEntry(pack, clickedWord, matchedForm, formNote) {
 // indexes yo properly, so the variant spray Yandex needs would just burn time
 // against this request's shared 10s budget.
 async function wiktionaryLookup(candidates, clickedWord, signal) {
+  let weak = null;   // a form-of page with no lemma behind it; used only last
   for (const cand of candidates) {
     const pack = await wiktFetch(cand, signal);
     if (!pack) continue;
@@ -390,7 +391,10 @@ async function wiktionaryLookup(candidates, clickedWord, signal) {
     // Follow that one hop for the actual meaning, keeping the grammatical note
     // so the reader still sees which case they clicked.
     const note = String((realSenses(direct)[0] || {}).definition || "").slice(0, 80);
-    const ptr = lemmaPointer(direct || {});
+    // The structured pointer is missing on plenty of Russian form-of pages, so
+    // the lemma is read out of the sense text as well — "genitive singular of
+    // фраер" names the word it wants us to look at.
+    const ptr = lemmaPointer(direct || {}) || lemmaFromNote(note);
     if (ptr && ptr !== cand) {
       const lemPack = await wiktFetch(ptr, signal);
       if (lemPack) {
@@ -398,10 +402,41 @@ async function wiktionaryLookup(candidates, clickedWord, signal) {
         if (built) return built;
       }
     }
+    // Nothing but "genitive singular of X" and no page for X. That is a
+    // grammatical note, not a definition, so it is held back rather than
+    // returned: ru.wiktionary and the жаргон glossary know words en.wiktionary
+    // only has inflection tables for, and they get their turn first. If they
+    // come up empty too, the caller falls back to this.
     const asIs = buildWiktEntry(pack, clickedWord, cand, "");
-    if (asIs) return asIs;
+    if (asIs && !weak) { asIs.weakFormOf = true; weak = asIs; }
   }
-  return null;
+  return weak;
+}
+
+// "genitive singular of фраер" / "inflection of фраер" → фраер.
+function lemmaFromNote(note) {
+  const m = String(note || "").match(/\bof\s+([\u0400-\u04ff\u0300-\u036f-]{2,})/i);
+  return m ? deaccent(m[1]).replace(/[^\u0400-\u04ff-]/g, "") : "";
+}
+
+// A Yandex hit, dressed and sent. Split out so the lemma retry below can use
+// the same path as the first-pass lookup.
+async function sendYandex(res, defs, word, matchedForm, signal) {
+  const entry = buildEntry(defs, word, matchedForm);
+  // Russian synonyms for the monolingual line. Strictly best-effort.
+  try {
+    const ruDefs = await yandexLookup(entry.lemma, "ru-ru", signal);
+    if (ruDefs.length && Array.isArray(ruDefs[0].tr)) {
+      const syns = ruDefs[0].tr.map(function (t) { return t.text; })
+        .filter(function (t) { return t && t.toLowerCase() !== entry.lemma.toLowerCase(); })
+        .slice(0, 5);
+      if (syns.length) entry.definitionRu = "≈ " + syns.join(", ");
+    }
+  } catch (_) { /* synonyms are a garnish */ }
+  // A week at the CDN: dictionary entries do not change. The browser also
+  // caches in localStorage, so this mostly serves other users of the word.
+  res.setHeader("Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
+  return res.status(200).json(entry);
 }
 
 // ---- Handler ---------------------------------------------------------------
@@ -532,7 +567,7 @@ export default async function handler(req, res) {
       // their own, so an inflected click («банковал», «фраера») would miss even
       // where the lemma is well documented. One stemmed search maps the surface
       // form onto a real page before either tier runs.
-      let lemma = "";
+      let lemma = "", weakWikt = null;
       if (process.env.LEMMA_LOOKUP !== "0" && timeLeft() > 2500) {
         try {
           lemma = await resolveLemma(lower, ctrl.signal);
@@ -547,6 +582,26 @@ export default async function handler(req, res) {
           .filter(function (w, i, arr) { return w && arr.indexOf(w) === i; });
       };
 
+      // Yandex is the best answer this stack has, and its MORPHO search does
+      // not reach every form — «фраера», «кипежнулся», «рамсы» all come back
+      // empty even where the lemma has a full entry. The lemma has just been
+      // resolved, so ask again with it. A real bilingual entry beats a
+      // Wiktionary inflection note, which is what the reader was getting.
+      if (lemma && lemma !== lower && lemma !== deyo &&
+          process.env.YANDEX_DICT_KEY && !yandexErr && timeLeft() > 1800) {
+        try {
+          const lemDefs = await yandexLookup(lemma, "ru-en", ctrl.signal);
+          if (lemDefs.length) {
+            trace.push("yandex:lemma-hit " + lemma);
+            return sendYandex(res, lemDefs, word, lemma, ctrl.signal);
+          }
+          trace.push("yandex:lemma-miss");
+        } catch (e) {
+          if (e && e.name === "AbortError") throw e;
+          trace.push("yandex:lemma-error " + ((e && e.message) || e));
+        }
+      }
+
       if (wiktEnabled && timeLeft() > 1500) {
         const wiktCands = candsWith(lemma);
         let wikt = null;
@@ -557,11 +612,17 @@ export default async function handler(req, res) {
           trace.push("enwikt:error " + ((e && e.message) || e));
           console.warn("[define] Wiktionary tier failed:", (e && e.message) || e);
         }
-        if (wikt) {
+        if (wikt && wikt.weakFormOf) {
+          // "genitive singular of X" and nothing about X. Keep it as the
+          // last-ditch answer and let the tiers that know жаргон run.
+          weakWikt = wikt;
+          trace.push("enwikt:form-only");
+        } else if (wikt) {
           res.setHeader("Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
           return res.status(200).json(wikt);
+        } else {
+          trace.push("enwikt:miss");
         }
-        trace.push("enwikt:miss");
       } else if (wiktEnabled) {
         trace.push("enwikt:skipped-no-time");
       }
@@ -580,6 +641,29 @@ export default async function handler(req, res) {
           console.warn("[define] ru.wiktionary tier failed:", (e && e.message) || e);
         }
         if (ruWikt) {
+          // Викисловарь answers жаргон in Russian, which is no help to a
+          // reader who came here for the English. Machine translation is a
+          // hint rather than a definition — but a hint plus the Russian gloss
+          // beats a wall of Russian, and the popup labels it as a guess.
+          if (ruWikt.noEnglish && timeLeft() > 1500) {
+            let mtEn = null;
+            try {
+              mtEn = await mtLookup([ruWikt.lemma, lower, deyo].filter(Boolean), word, ctrl.signal);
+            } catch (e) {
+              if (e && e.name === "AbortError") throw e;
+              trace.push("ruwikt:mt-error " + ((e && e.message) || e));
+            }
+            if (mtEn && mtEn.translation) {
+              ruWikt.definitionRu = ruWikt.translation;
+              ruWikt.translation = mtEn.translation;
+              ruWikt.mtAssisted = true;
+              ruWikt.mtProvider = mtEn.mtProvider;
+              ruWikt.grammar = [ruWikt.grammar, "English is a machine translation"]
+                .filter(Boolean).join(" · ");
+              trace.push("ruwikt:mt-english");
+            }
+          }
+          delete ruWikt.noEnglish;
           res.setHeader("Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
           return res.status(200).json(ruWikt);
         }
@@ -607,6 +691,15 @@ export default async function handler(req, res) {
           }
         }
         trace.push("slang:miss");
+      }
+
+      if (weakWikt) {
+        // Nothing better exists anywhere. A grammatical note is thin, but it
+        // names the lemma, and that is more use than a blank popup.
+        delete weakWikt.weakFormOf;
+        trace.push("enwikt:form-only-used");
+        res.setHeader("Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
+        return res.status(200).json(weakWikt);
       }
 
       if (yandexErr) throw yandexErr;
@@ -653,23 +746,7 @@ export default async function handler(req, res) {
       });
     }
 
-    const entry = buildEntry(defs, word, matchedForm);
-
-    // Russian synonyms for the monolingual line. Strictly best-effort.
-    try {
-      const ruDefs = await yandexLookup(entry.lemma, "ru-ru", ctrl.signal);
-      if (ruDefs.length && Array.isArray(ruDefs[0].tr)) {
-        const syns = ruDefs[0].tr.map(function (t) { return t.text; })
-          .filter(function (t) { return t && t.toLowerCase() !== entry.lemma.toLowerCase(); })
-          .slice(0, 5);
-        if (syns.length) entry.definitionRu = "≈ " + syns.join(", ");
-      }
-    } catch (_) { /* synonyms are a garnish */ }
-
-    // A week at the CDN: dictionary entries do not change. The browser also
-    // caches in localStorage, so this mostly serves other users of the word.
-    res.setHeader("Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
-    return res.status(200).json(entry);
+    return sendYandex(res, defs, word, matchedForm, ctrl.signal);
   } catch (err) {
     const ys = err && err.yandexStatus;
     if (ys === 401 || ys === 402) {

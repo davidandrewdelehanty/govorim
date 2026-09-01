@@ -1079,7 +1079,7 @@ function classifyPlay(paras, emph, names, headingIsCast) {
 // The az.lib/samlib sources type their dashes as a double hyphen. Display
 // only — the text itself keeps whatever the file has, so nothing that indexes
 // into it moves.
-function playText(t) { return String(t).replace(/\n/g, " ").replace(/--/g, "\u2014"); }
+function playPunct(t) { return String(t).replace(/\n/g, " ").replace(/--/g, "\u2014"); }
 
 // Parenthesised directions inside a line: [start, end) character ranges.
 function inlineDirections(t, from) {
@@ -7440,10 +7440,10 @@ export default function App() {
                   // carry more than the stop — «Кулигин (поет). "Среди долины…»
                   // opens its quotation in the same run — so only the stop
                   // itself is dropped and the rest is kept.
-                  var txt = playText(tk.text);
+                  var txt = playPunct(tk.text);
                   if (skipStart > -1 && tk.end > skipStart && tk.start < skipEnd) {
-                    var head = playText(tk.text.slice(0, Math.max(0, skipStart - tk.start)));
-                    var tail = playText(tk.text.slice(Math.max(0, skipEnd - tk.start)));
+                    var head = playPunct(tk.text.slice(0, Math.max(0, skipStart - tk.start)));
+                    var tail = playPunct(tk.text.slice(Math.max(0, skipEnd - tk.start)));
                     if (head) elems.push(<span key={"h"+i}>{head}</span>);
                     pushDash("d" + i);
                     if (tail) elems.push(<span key={"t"+i} className={dir ? "play-dir" : undefined}>{tail}</span>);
@@ -12419,6 +12419,15 @@ export default function App() {
                       {popup.data.mtKind === "dictionary"
                         ? "No dictionary here had this word — this is a bilingual-dictionary match from a translation engine."
                         : "No dictionary anywhere had this word. This is a machine translation — treat it as a hint, not a definition."}
+                    </div>
+                  )}
+                  {/* Викисловарь had the word but only in Russian — жаргон
+                      usually has no English entry anywhere. The Russian
+                      definition below is the real one; the English line above
+                      it is a machine translation standing in for one. */}
+                  {popup.data.mtAssisted && (
+                    <div className="pmt">
+                      Only a Russian definition exists for this word. The English line is a machine translation — treat it as a hint.
                     </div>
                   )}
                   <div className="ppos">{popup.data.partOfSpeech}{popup.data.aspect ? " · " + popup.data.aspect : ""}</div>
