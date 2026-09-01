@@ -9537,7 +9537,19 @@ export default function App() {
           <div className="tabs">
             {["chat","vocab","grammar","forum","music"].map(function(t){
               return (
-                <button key={t} className={"tab"+(tab===t?" on":"")} onClick={function(){ setTab(t); }}>
+                <button key={t} className={"tab"+(tab===t?" on":"")} onClick={function(){
+                  // The Reading tab always lands on the "Open a Russian book"
+                  // library page, not on whatever book was left open. The
+                  // chapters state is kept, so the Resume-at-bookmark button
+                  // on that page still takes you straight back in.
+                  if (t === "chat") {
+                    setMode("read");
+                    setStarted(false);
+                    setLview("read");
+                    stopTTS();
+                  }
+                  setTab(t);
+                }}>
                   {t==="chat"?"Reading":t==="vocab"?"Vocabulary":t==="grammar"?"Grammar":t==="forum"?"Forum":"Music"}
                   {t==="vocab"&&vocab.length>0&&<span className="bdg">{vocab.length}</span>}
                   {t==="grammar"&&tips.length>0&&<span className="bdg g">{tips.length}</span>}
