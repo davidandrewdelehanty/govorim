@@ -363,11 +363,17 @@ export default async function handler(req, res) {
       const tips  = await r2Get(userId, "tips");
       // Books the reader has marked read, as { [bookKey]: {at, title, author} }.
       const finished = await r2Get(userId, "finished");
+      // Words retired from the active list by the spaced-repetition scheduler,
+      // and the day-by-day reading and practice log behind the streak.
+      const learned = await r2Get(userId, "learned");
+      const stats = await r2Get(userId, "stats");
 
       return res.status(200).json({
         vocab: Array.isArray(vocab) ? vocab : [],
         tips:  Array.isArray(tips)  ? tips  : [],
         finished: (finished && typeof finished === "object" && !Array.isArray(finished)) ? finished : {},
+        learned: Array.isArray(learned) ? learned : [],
+        stats: (stats && typeof stats === "object" && !Array.isArray(stats)) ? stats : {},
       });
     }
 
@@ -404,6 +410,42 @@ export default async function handler(req, res) {
           return res.status(400).json({ error: "finished must be an object" });
         }
         await r2Put(userId, "finished", finished);
+        return res.status(200).json({ ok: true });
+      }
+
+      if (type === "stats") {
+        // Daily reading/practice log: { "2026-09-01": { read, practiced } }.
+        // Merged per day, larger figure wins: each device only saw its own
+        // sessions, and two devices reading on one day would otherwise take
+        // turns erasing each other's count.
+        const inc = body.stats;
+        if (!inc || typeof inc !== "object" || Array.isArray(inc)) {
+          return res.status(400).json({ error: "stats must be an object" });
+        }
+        let existing = null;
+        try { existing = await r2Get(userId, "stats"); } catch (e) {}
+        const merged = (existing && typeof existing === "object" && !Array.isArray(existing)) ? existing : {};
+        for (const k of Object.keys(inc)) {
+          if (!/^\d{4}-\d{2}-\d{2}$/.test(k)) continue;
+          const a = merged[k] || {}, b = inc[k] || {};
+          merged[k] = {
+            read: Math.max(Number(a.read) || 0, Number(b.read) || 0),
+            practiced: Math.max(Number(a.practiced) || 0, Number(b.practiced) || 0),
+          };
+        }
+        await r2Put(userId, "stats", merged);
+        return res.status(200).json({ ok: true, stats: merged });
+      }
+
+      if (type === "learned") {
+        // Retired vocabulary. Replaced wholesale, like vocab: the client holds
+        // the merged copy, and an empty list is refused for the same reason.
+        const learned = body.learned;
+        if (!Array.isArray(learned)) return res.status(400).json({ error: "learned must be an array" });
+        if (learned.length === 0 && body.allowEmpty !== true) {
+          return res.status(200).json({ ok: true, skipped: "empty payload" });
+        }
+        await r2Put(userId, "learned", learned);
         return res.status(200).json({ ok: true });
       }
 

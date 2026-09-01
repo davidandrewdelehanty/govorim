@@ -1,6 +1,9 @@
 // THEME_VERSION=2
 import { useState, useRef, useEffect, useCallback, useMemo, Fragment } from "react";
 import { isCommonWord, dropCommonWords } from "./commonWords.js";
+import { review as srsReview, isLearned, dueWords, weakestWords, recallNow } from "./srs.js";
+import { dayKey, bump as bumpStats, streaks, lastWeek, yearGrid, mergeStats,
+         totals as statsTotals, GOAL_WORDS, GOAL_CARDS } from "./stats.js";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
@@ -1143,6 +1146,117 @@ function mergePlayActs(chs) {
              emphIdx: emph, sections: sections, offsets: offsets, partIdx: partIdx,
              merged: parts.length };
   });
+}
+
+// ---------------------------------------------------------------------------
+// The reader's progress, on the home screen. Streak first — it is the thing a
+// returning reader wants to know — then the week, then the year as a field of
+// dots, then the counts that only change slowly. Everything here is derived
+// from three stores the app already keeps: the daily log (src/stats.js), the
+// finished-books map, and the vocabulary list with its retired words.
+// ---------------------------------------------------------------------------
+var DAY_LETTERS = ["S", "M", "T", "W", "T", "F", "S"];
+var MONTHS_SHORT = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function fmtInt(n) { return String(Math.round(n || 0)).replace(/\B(?=(\d{3})+(?!\d))/g, "\u2009"); }
+
+function ProgressPanel(props) {
+  var stats = props.stats || {};
+  var goals = { words: GOAL_WORDS, cards: GOAL_CARDS };
+  var st = streaks(stats, goals);
+  var week = lastWeek(stats, goals);
+  var year = new Date().getFullYear();
+  var grid = yearGrid(stats, year);
+  var tot = statsTotals(stats);
+  var yearRead = grid.reduce(function(a, d){ return a + d.read; }, 0);
+  var peak = Math.max(goals.words, Math.max.apply(null, week.map(function(d){ return d.read + d.practiced * 25; })));
+  var goalPct = Math.min(100, goals.words / peak * 100);
+  var books = props.booksFinished || 0;
+  var learned = props.learned || 0;
+  var due = props.due || 0;
+
+  // The dot grid: one column per week, seven rows, Sunday at the top — the
+  // shape a calendar already has, so a reader can find last Tuesday in it.
+  var cols = [], col = [];
+  var lead = grid.length ? grid[0].date.getDay() : 0;
+  for (var i = 0; i < lead; i++) col.push(null);
+  grid.forEach(function(d){
+    col.push(d);
+    if (col.length === 7) { cols.push(col); col = []; }
+  });
+  if (col.length) { while (col.length < 7) col.push(null); cols.push(col); }
+  var monthMarks = [];
+  cols.forEach(function(c, ci){
+    var first = c.find(function(d){ return d; });
+    if (first && first.date.getDate() <= 7) monthMarks.push({ ci: ci, m: MONTHS_SHORT[first.date.getMonth()] });
+  });
+
+  var headline = st.current === 0
+    ? "Start a streak today"
+    : "You have a " + st.current + " day streak";
+  var sub = st.current === 0
+    ? "Read " + goals.words + " words or practice " + goals.cards + " flashcards to light the first flame."
+    : "Read " + goals.words + " words or practice " + goals.cards + " flashcards every day to keep it going.";
+
+  return (
+    <section className="prog" aria-label="Your reading progress">
+      <h2 className="prog-head">{headline}</h2>
+      <p className="prog-sub">{sub}{!st.todayMet && st.current > 0 ? " Today isn\u2019t done yet." : ""}</p>
+
+      <div className="prog-week">
+        <div className="prog-legend">
+          <span><i className="sw read"></i>Words read</span>
+          <span><i className="sw prac"></i>Words practiced</span>
+          <span><i className="sw goal"></i>Daily goal</span>
+        </div>
+        <div className="prog-bars" style={{"--goal": goalPct + "%"}}>
+          {week.map(function(d){
+            var r = d.read / peak * 100, pr = d.practiced * 25 / peak * 100;
+            return (
+              <div key={d.key} className={"prog-day" + (d.isToday ? " today" : "")} title={d.key + ": " + fmtInt(d.read) + " words read, " + d.practiced + " practiced"}>
+                <div className="prog-col">
+                  <div className="prog-bar prac" style={{height: pr + "%"}}></div>
+                  <div className="prog-bar read" style={{height: r + "%"}}></div>
+                </div>
+                <div className="prog-dl">{DAY_LETTERS[d.date.getDay()]}</div>
+                <div className={"prog-flame" + (d.met ? " lit" : "")} aria-label={d.met ? "goal met" : "goal not met"}>
+                  <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M12 2c1 4 5 5.5 5 11a5 5 0 0 1-10 0c0-2 .8-3.3 1.8-4.4.3 1.4 1 2.4 2.2 2.4 0-3 .5-6 1-9z" fill="currentColor"/></svg>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="prog-tiles">
+        <div className="prog-tile"><b>{books}</b><span>{books === 1 ? "book finished" : "books finished"}</span></div>
+        <div className="prog-tile"><b>{learned}</b><span>{learned === 1 ? "word learned" : "words learned"}</span></div>
+        <div className="prog-tile"><b>{tot.days}</b><span>{tot.days === 1 ? "day of reading" : "days of reading"}</span></div>
+        <div className="prog-tile"><b>{st.longest}</b><span>longest streak</span></div>
+      </div>
+      {due > 0 && props.onReview && (
+        <button className="prog-due" onClick={props.onReview}>
+          {due} {due === 1 ? "word is" : "words are"} due for review →
+        </button>
+      )}
+
+      <div className="prog-year">
+        <div className="prog-year-head"><span>{year}</span><span className="mono">{fmtInt(yearRead)} words read</span></div>
+        <div className="prog-grid-wrap">
+          <div className="prog-months">
+            {monthMarks.map(function(m){ return <span key={m.m + m.ci} style={{gridColumn: m.ci + 1}}>{m.m}</span>; })}
+          </div>
+          <div className="prog-grid" style={{gridTemplateColumns: "repeat(" + cols.length + ", 11px)"}}>
+            {cols.map(function(c, ci){
+              return c.map(function(d, ri){
+                if (!d) return <i key={ci + "-" + ri} className="dot empty"></i>;
+                return <i key={d.key} className={"dot l" + d.level} title={d.key + ": " + fmtInt(d.read) + " read, " + d.practiced + " practiced"}></i>;
+              });
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function attachVideos(chapters, entry) {
@@ -3200,6 +3314,8 @@ export default function App() {
   var [quizSelected, setQuizSelected] = useState(null);
   var [quizScore, setQuizScore]       = useState(0);
   var [quizSkipNote, setQuizSkipNote] = useState("");
+  var [quizDue, setQuizDue]           = useState(0);    // how many of this session's words were actually due
+  var [quizLearnedNow, setQuizLearnedNow] = useState([]);   // words retired during this session
 
   // ── Exercises (grammar/reading drills tied to the current chapter) ─────────
   // exData: the loaded exercise set for the current chapter (or null).
@@ -3507,6 +3623,47 @@ export default function App() {
   // a reading history later. Stored locally and, for a signed-in reader, on
   // the server, so the green check follows them between devices.
   var [finishedMap, setFinishedMap] = useState({});
+  // The day-by-day log behind the streak ({ "2026-09-01": {read, practiced} })
+  // and the words the scheduler has retired from the active list. Both live
+  // in local storage for everyone and on the server for a signed-in reader.
+  var [stats, setStats] = useState({});
+  var [learned, setLearned] = useState([]);
+  var statsLoaded = useRef(false);
+  var learnedLoaded = useRef(false);
+  useEffect(function() {
+    storage.get("gv_stats_v1").then(function(r){
+      if (r && r.value) { try { var v = JSON.parse(r.value) || {}; setStats(function(s){ return mergeStats(s, v); }); } catch (e) {} }
+      statsLoaded.current = true;
+    }).catch(function(){ statsLoaded.current = true; });
+    storage.get("gv_learned_v1").then(function(r){
+      if (r && r.value) { try { var l = JSON.parse(r.value) || []; setLearned(function(cur){ return mergeLearned(cur, l); }); } catch (e) {} }
+      learnedLoaded.current = true;
+    }).catch(function(){ learnedLoaded.current = true; });
+  }, []);
+  useEffect(function() {
+    if (!statsLoaded.current) return;
+    storage.set("gv_stats_v1", JSON.stringify(stats)).catch(function(){});
+  }, [stats]);
+  useEffect(function() {
+    if (!learnedLoaded.current) return;
+    storage.set("gv_learned_v1", JSON.stringify(learned)).catch(function(){});
+  }, [learned]);
+  var bumpToday = function(field, n) {
+    if (!n) return;
+    setStats(function(s){ return bumpStats(s, field, n); });
+  };
+  // Retired words from two sources, one list: keyed by the Russian, and the
+  // copy retired more recently is the one kept.
+  var mergeLearned = function(a, b) {
+    var byRu = {};
+    [].concat(a || [], b || []).forEach(function(v){
+      if (!v || !v.ru) return;
+      var k = String(v.ru).toLowerCase();
+      if (!byRu[k] || (v.learnedAt || 0) > (byRu[k].learnedAt || 0)) byRu[k] = v;
+    });
+    return Object.keys(byRu).map(function(k){ return byRu[k]; })
+      .sort(function(x, y){ return (y.learnedAt || 0) - (x.learnedAt || 0); });
+  };
   // One bookmark per book: { [bookKey]: { cidx, off, at } }, where `off` is
   // the paragraph's chapter-relative char offset — the same coordinate the
   // vocab source-link uses, so the jump rides its machinery. Setting a new
@@ -4446,6 +4603,35 @@ export default function App() {
     return classifyPlay(chapterParagraphs(curChapter.text), emph, playNames,
                         CAST_HEAD_RE.test(String(curChapter.heading || "").trim()));
   }, [curChapter, playNames]);
+
+  // Words read. A paragraph counts once it has actually been on screen — most
+  // of it inside the viewport — and counts once per session: scrolling back
+  // up doesn't reread it. That is the same measure Readlang uses, and it is
+  // honest enough for a streak: it credits what was in front of the reader's
+  // eyes, not what was loaded.
+  var readSeen = useRef({});
+  useEffect(function() {
+    if (!(started && isLit && lview === "read") || !curChapter || typeof IntersectionObserver === "undefined") return;
+    var paras = chapterParagraphs(curChapter.text);
+    var scope = bookKey(bookMeta) + "#" + cidx + ":";
+    var io = new IntersectionObserver(function(entries) {
+      var add = 0;
+      entries.forEach(function(en) {
+        if (!en.isIntersecting) return;
+        var idx = parseInt(String(en.target.id).slice(2), 10);
+        if (isNaN(idx)) return;
+        var k = scope + idx;
+        if (readSeen.current[k]) return;
+        readSeen.current[k] = 1;
+        add += ((paras[idx] || "").match(/[\u0410-\u044f\u0401\u0451][\u0410-\u044f\u0401\u0451-]*/g) || []).length;
+        io.unobserve(en.target);
+      });
+      if (add) bumpToday("read", add);
+    }, { threshold: 0.6 });
+    var nodes = document.querySelectorAll('.lit-left p[id^="sp"]');
+    for (var ni = 0; ni < nodes.length; ni++) io.observe(nodes[ni]);
+    return function(){ io.disconnect(); };
+  }, [started, isLit, lview, cidx, curChapter, bookMeta && bookMeta.filename]);
   // What the chapter either side of this one is called. A button at the foot of
   // a chapter is read after the text, when "Next ›" alone has stopped meaning
   // anything — naming the destination is the whole point of putting it there.
@@ -5216,6 +5402,15 @@ export default function App() {
           });
         }
 
+        // The daily log merges by taking the larger figure per day, and the
+        // retired list by word — both are safe whichever side loaded first.
+        if (data.stats && typeof data.stats === "object") {
+          setStats(function(s){ return mergeStats(s, data.stats); });
+        }
+        if (Array.isArray(data.learned) && data.learned.length) {
+          setLearned(function(cur){ return mergeLearned(cur, data.learned); });
+        }
+
         if (serverVocab.length > 0 || serverTips.length > 0) {
           // If this browser holds GUEST data — words saved while signed out,
           // never synced into any account — fold it in rather than discard
@@ -5269,6 +5464,33 @@ export default function App() {
     }, 10000);
     return function(){ clearTimeout(t); };
   }, [progressMap, me, syncedFromServer]);
+
+  // The daily log goes up a few seconds after it changes. The server merges
+  // per day, so a burst of scroll events costs one write, not fifty.
+  useEffect(function() {
+    if (!me || !syncedFromServer || !statsLoaded.current) return;
+    if (!stats || !Object.keys(stats).length) return;
+    var t = setTimeout(function() {
+      authFetch("/api/user-data?type=stats", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ stats: stats }),
+      }).catch(function(){});
+    }, 5000);
+    return function(){ clearTimeout(t); };
+  }, [stats, me, syncedFromServer]);
+  useEffect(function() {
+    if (!me || !syncedFromServer || !learnedLoaded.current) return;
+    if (!learned || !learned.length) return;
+    var t = setTimeout(function() {
+      authFetch("/api/user-data?type=learned", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ learned: learned }),
+      }).catch(function(){});
+    }, 1500);
+    return function(){ clearTimeout(t); };
+  }, [learned, me, syncedFromServer]);
 
   // Push the finished-books map after every change, once the initial sync has
   // run — otherwise the empty starting state would clear the server copy.
@@ -7020,24 +7242,54 @@ export default function App() {
       return a;
     };
 
-    var questions = [];
-    var skipped = 0;
-    quizVocab.forEach(function(v){
+    // Spaced repetition decides what gets asked. Words that are due — never
+    // tested, or whose chance of recall has slipped below 90% — come first,
+    // most urgent at the top. If fewer than eight are due, the session is
+    // topped up with the least-secure words, so a reader who wants to
+    // practise always can; but a word the scheduler trusts is never asked
+    // early just to fill a quiz, because that is the time spaced repetition
+    // exists to give back. Twenty questions is a session.
+    var SESSION = 20;
+    var filterPos = (typeof posFilter === "string" && posFilter) ? posFilter.toLowerCase().trim() : null;
+    var askable = quizVocab.filter(function(v){
       var p = (v.pos || "").toLowerCase().trim();
-      if (!p || !v.en) { skipped++; return; }
-      var filterPos = (typeof posFilter === "string" && posFilter) ? posFilter.toLowerCase().trim() : null;
-      if (filterPos && p !== filterPos) { skipped++; return; }
-      if ((groups[p] || []).length < QUIZ_MIN) { skipped++; return; }   // only quiz 10+ types
-      var siblings = (groups[p] || []).filter(function(x){ return (x._key||x.id) !== (v._key||v.id); });
+      if (!p || !v.en) return false;
+      if (filterPos && p !== filterPos) return false;
+      return (groups[p] || []).length >= QUIZ_MIN;
+    });
+    var now = Date.now();
+    var picked = dueWords(askable, now, SESSION);
+    var dueCount = picked.length;
+    if (picked.length < 8) {
+      var have = {};
+      picked.forEach(function(v){ have[v._key || v.id || v.ru] = 1; });
+      weakestWords(askable, now).forEach(function(v){
+        if (picked.length >= Math.min(SESSION, 8) || have[v._key || v.id || v.ru]) return;
+        picked.push(v); have[v._key || v.id || v.ru] = 1;
+      });
+    }
+    var questions = [];
+    var skipped = askable.length ? 0 : quizVocab.length;
+    picked.forEach(function(v){
+      var p = (v.pos || "").toLowerCase().trim();
+      // Distractors come from every word of the same kind the reader has ever
+      // saved — retired words included — so a small active list still gives
+      // four plausible choices.
+      var siblings = (groups[p] || []).concat(learned.filter(function(x){ return (x.pos || "").toLowerCase().trim() === p && x.en; }))
+        .filter(function(x){ return (x._key||x.id||x.ru) !== (v._key||v.id||v.ru) && x.en !== v.en; });
       if (siblings.length < 3) { skipped++; return; }
       var distractors = shuffle(siblings).slice(0, 3).map(function(s){ return s.en; });
       questions.push({
+        key: v._key || v.id || v.ru,
         word: v.ru,
         correct: v.en,
         options: shuffle(distractors.concat([v.en])),
         pos: v.pos,
+        isNew: !(v.srs && v.srs.S),
       });
     });
+    setQuizDue(dueCount);
+    setQuizLearnedNow([]);
 
     if (questions.length === 0) {
       alert("You need more saved vocabulary! Add at least 4 words that share the same part of speech (e.g. 4 verbs), each with an English meaning and a part-of-speech tag.");
@@ -7046,14 +7298,51 @@ export default function App() {
 
     var skipNote = skipped > 0 ? skipped + " word(s) skipped (no part-of-speech tag or too few same-pos siblings)." : "";
     if (commonSkipped > 0) skipNote += (skipNote ? " " : "") + commonSkipped + " word(s) skipped — already on your known-words list.";
+    if (dueCount === 0 && questions.length) skipNote = "Nothing is due today — these are your least-secure words." + (skipNote ? " " + skipNote : "");
     setQuizSkipNote(skipNote);
-    setQuizQuestions(shuffle(questions));
+    setQuizQuestions(questions);
     setQuizIdx(0);
     setQuizSelected(null);
     setQuizScore(0);
     setQuizMenu(false);
     setQuizMode(true);
   };
+
+  // One answer, into the scheduler. The word's next review date moves, the
+  // day's practice count goes up, and a word that has just crossed the
+  // learned threshold leaves the active list for the retired one — with the
+  // schedule it earned, so putting it back later restores everything.
+  var recordAnswer = function(key, correct) {
+    var now = Date.now();
+    var cur = vocab.find(function(v){ return (v._key || v.id || v.ru) === key; });
+    if (!cur) return;
+    var next = Object.assign({}, cur, { srs: srsReview(cur.srs, correct, now) });
+    if (isLearned(next.srs)) {
+      var retired = Object.assign({}, next, { learnedAt: now });
+      setVocab(function(list){ return list.filter(function(v){ return (v._key || v.id || v.ru) !== key; }); });
+      setLearned(function(l){ return mergeLearned(l, [retired]); });
+      setQuizLearnedNow(function(l){ return l.concat([retired.ru]); });
+    } else {
+      setVocab(function(list){ return list.map(function(v){ return (v._key || v.id || v.ru) === key ? next : v; }); });
+    }
+    bumpToday("practiced", 1);
+  };
+  // Back from retired to active, keeping its schedule: the next review lands
+  // where the scheduler last put it, not at "new".
+  var restoreLearned = function(ru) {
+    var k = String(ru).toLowerCase();
+    var entry = learned.find(function(v){ return String(v.ru).toLowerCase() === k; });
+    if (!entry) return;
+    setLearned(function(cur){ return cur.filter(function(v){ return String(v.ru).toLowerCase() !== k; }); });
+    setVocab(function(list){
+      var back = Object.assign({}, entry); delete back.learnedAt;
+      back.srs = Object.assign({}, back.srs || {}, { run: 0 });   // it will have to earn retirement again
+      return list.concat([back]);
+    });
+  };
+  var dueNow = useMemo(function(){
+    return dueWords(dropCommonWords(vocab, function(v){ return v && v.ru; }).filter(function(v){ return v && v.en && v.pos; }), Date.now()).length;
+  }, [vocab]);
 
   // Bookmarks for grammar curriculum topics. We only store the topic ID — when
   // the user clicks a saved card we re-render the full content from curriculum.json,
@@ -8630,6 +8919,62 @@ export default function App() {
         .lch-en{font-family:'Inter',sans-serif;font-size:12.5px;color:rgba(42,31,20,.6);margin:-2px 0 12px;letter-spacing:.01em}
         .lch-en i{font-style:italic;opacity:.9}
         .ltxt{font-size:17.5px;line-height:1.85;color:#000;font-family:'Crimson Pro',serif;word-wrap:break-word;overflow-wrap:break-word;letter-spacing:.005em}
+        /* ── Progress panel (home screen) ─────────────────────────────── */
+        .prog{width:100%;max-width:640px;margin:6px auto 22px;display:flex;flex-direction:column;gap:16px;text-align:left}
+        .prog-head{font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:#000;margin:0;text-align:center;text-wrap:balance}
+        .prog-sub{margin:-6px 0 0;text-align:center;color:rgba(42,31,20,.7);font-size:15px;line-height:1.5}
+        .prog-week{background:#4f8a6e;color:#fff;border-radius:18px;padding:16px 18px 14px}
+        .prog-legend{display:flex;gap:18px;flex-wrap:wrap;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;margin-bottom:12px}
+        .prog-legend span{display:inline-flex;align-items:center;gap:7px}
+        .prog-legend .sw{display:inline-block;width:14px;height:14px;border-radius:3px}
+        .prog-legend .sw.read{background:#8fe0b0} .prog-legend .sw.prac{background:#2f4a6b}
+        .prog-legend .sw.goal{width:18px;height:0;border-top:2px dashed rgba(255,255,255,.75);border-radius:0}
+        .prog-bars{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;position:relative;padding-top:6px}
+        .prog-day{display:flex;flex-direction:column;align-items:center;gap:6px}
+        .prog-col{position:relative;width:100%;max-width:46px;height:120px;display:flex;flex-direction:column;justify-content:flex-end;
+          border-bottom:2px solid rgba(255,255,255,.9)}
+        .prog-col::after{content:"";position:absolute;left:-5px;right:-5px;bottom:var(--goal,20%);
+          border-top:2px dashed rgba(255,255,255,.75);pointer-events:none}
+        .prog-bar{width:100%;border-radius:3px 3px 0 0;transition:height .3s}
+        .prog-bar.read{background:#8fe0b0} .prog-bar.prac{background:#2f4a6b;border-radius:0}
+        .prog-day.today .prog-bar.read{background:#b8f0cf}
+        .prog-dl{font-family:'Inter',sans-serif;font-weight:700;font-size:15px;letter-spacing:.04em}
+        .prog-flame{color:rgba(255,255,255,.28)} .prog-flame.lit{color:#fff}
+        .prog-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+        @media (max-width:520px){.prog-tiles{grid-template-columns:repeat(2,1fr)}}
+        .prog-tile{background:rgba(42,31,20,.05);border:1px solid rgba(42,31,20,.12);border-radius:12px;padding:12px 10px;
+          display:flex;flex-direction:column;align-items:center;gap:2px}
+        .prog-tile b{font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:#000;line-height:1.1;font-variant-numeric:tabular-nums}
+        .prog-tile span{font-size:12px;color:rgba(42,31,20,.65);text-align:center;letter-spacing:.02em}
+        .prog-due{align-self:center;background:none;border:1px solid rgba(30,122,60,.45);color:#1e7a3c;border-radius:999px;
+          padding:7px 16px;font-family:'Crimson Pro',serif;font-size:15px;cursor:pointer}
+        .prog-due:hover{background:rgba(30,122,60,.08)}
+        .prog-year{background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.1);border-radius:14px;padding:12px 14px 14px}
+        .prog-year-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;
+          font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:#000}
+        .prog-year-head .mono{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:rgba(42,31,20,.6);font-variant-numeric:tabular-nums}
+        .prog-grid-wrap{overflow-x:auto;padding-bottom:4px}
+        .prog-months{display:grid;grid-auto-columns:11px;grid-auto-flow:column;gap:3px;font-family:'Inter',sans-serif;font-size:10px;
+          color:rgba(42,31,20,.5);height:14px;margin-bottom:3px}
+        .prog-months span{white-space:nowrap}
+        .prog-grid{display:grid;grid-template-rows:repeat(7,11px);grid-auto-flow:column;gap:3px}
+        .prog-grid .dot{display:block;width:11px;height:11px;border-radius:50%;background:rgba(42,31,20,.09)}
+        .prog-grid .dot.empty{background:transparent}
+        .prog-grid .dot.l1{background:#b7dfb0} .prog-grid .dot.l2{background:#7cc27a}
+        .prog-grid .dot.l3{background:#3f9a47} .prog-grid .dot.l4{background:#1f6b2a}
+        /* Retired words on the Vocabulary tab */
+        .learned{margin:0 0 16px;border:1px solid rgba(30,122,60,.3);border-radius:12px;background:rgba(30,122,60,.05)}
+        .learned summary{cursor:pointer;padding:10px 14px;font-family:'Playfair Display',serif;font-size:16px;color:#000;
+          display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+        .learned-n{font-family:'Inter',sans-serif;font-size:12px;font-weight:700;color:#1e7a3c;background:rgba(30,122,60,.12);
+          padding:2px 8px;border-radius:10px}
+        .learned-hint{font-family:'Crimson Pro',serif;font-size:13px;font-style:italic;color:rgba(42,31,20,.55)}
+        .learned-list{display:flex;flex-direction:column;padding:0 14px 10px}
+        .learned-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1.6fr) auto auto;gap:10px;align-items:center;
+          padding:7px 0;border-top:1px solid rgba(42,31,20,.08);font-size:15px}
+        .learned-ru{font-weight:600;color:#000} .learned-en{color:rgba(42,31,20,.8)}
+        .learned-when{font-family:'Inter',sans-serif;font-size:11px;color:rgba(42,31,20,.45)}
+        @media (max-width:520px){.learned-row{grid-template-columns:1fr 1fr}.learned-when{display:none}}
         .play-speaker{color:#2a1f14;font-weight:600;letter-spacing:.04em;border-bottom:none !important;cursor:default !important}
         .play-speaker:hover{color:#2a1f14 !important;background:none !important}
         .play-dash{color:rgba(42,31,20,.45);padding:0 4px;font-weight:300}
@@ -10236,6 +10581,17 @@ export default function App() {
                 <div className="sico">📖</div>
                 <h1 className="sti">{chapters.length > 0 ? bookMeta.title : "Open a Russian book"}</h1>
                 <p className="sde">{chapters.length > 0 ? bookMeta.author : "Choose a book from the library to begin reading."}</p>
+                {/* The reader's own record, for signed-in readers: streak, the
+                    week, the year, and the slow counts. Guests have nothing
+                    that persists between devices, so they get the library. */}
+                {me && (
+                  <ProgressPanel
+                    stats={stats}
+                    learned={learned.length}
+                    due={dueNow}
+                    booksFinished={Object.keys(finishedMap).filter(function(k){ return finishedMap[k] && !finishedMap[k].removed; }).length}
+                    onReview={function(){ setTab("vocab"); setQuizMode(false); setQuizMenu(true); }} />
+                )}
                 <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:10}}>
                   {chapters.length > 0 ? (
                     <>
@@ -12067,6 +12423,11 @@ export default function App() {
                     <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,color:"#000",marginBottom:8}}>Quiz Complete!</h2>
                     <p style={{fontSize:20,color:"#000",marginBottom:6}}>You got <strong style={{color:"#000"}}>{quizScore}</strong> of <strong>{quizQuestions.length}</strong> correct.</p>
                     <p style={{fontSize:14,color:"rgba(0,0,0,.5)",marginBottom:28}}>{Math.round(quizScore / quizQuestions.length * 100)}%</p>
+                    {quizLearnedNow.length > 0 && (
+                      <p style={{fontSize:14,color:"#1e7a3c",marginBottom:14,maxWidth:460,margin:"0 auto 14px"}}>
+                        🎓 Learned and retired from your list: <strong>{quizLearnedNow.join(", ")}</strong>. They stay under Learned words on the Vocabulary tab if you ever want them back.
+                      </p>
+                    )}
                     {quizSkipNote && <p style={{fontSize:12,color:"rgba(0,0,0,.4)",fontStyle:"italic",marginBottom:20,maxWidth:440,margin:"0 auto 20px"}}>{quizSkipNote}</p>}
                     <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
                       <button className="btn-p" style={{maxWidth:200}} onClick={startQuiz}>Retake quiz</button>
@@ -12082,7 +12443,7 @@ export default function App() {
                     </div>
                     {/* The Russian word being quizzed */}
                     <div style={{textAlign:"center",marginBottom:8}}>
-                      <span style={{fontSize:12,color:"rgba(0,0,0,.45)",textTransform:"uppercase",letterSpacing:1.5}}>{quizQuestions[quizIdx].pos}</span>
+                      <span style={{fontSize:12,color:"rgba(0,0,0,.45)",textTransform:"uppercase",letterSpacing:1.5}}>{quizQuestions[quizIdx].pos}{quizQuestions[quizIdx].isNew ? " \u00b7 first review" : ""}</span>
                     </div>
                     <div style={{fontSize:42,fontFamily:"'Playfair Display',serif",color:"#000",textAlign:"center",marginBottom:30,fontWeight:600}}>
                       {quizQuestions[quizIdx].word}
@@ -12102,6 +12463,7 @@ export default function App() {
                           <button key={i} disabled={quizSelected !== null} onClick={function(){
                             setQuizSelected(opt);
                             if (isCorrect) setQuizScore(function(s){ return s + 1; });
+                            recordAnswer(quizQuestions[quizIdx].key, isCorrect);
                           }} style={{background:bg,border:"1px solid "+brd,color:col,padding:"14px 18px",borderRadius:10,fontSize:16,fontFamily:"'Crimson Pro',serif",cursor: quizSelected !== null ? "default" : "pointer", textAlign:"left", transition:"all .15s"}}>
                             <span style={{display:"inline-block",width:20,color:"rgba(0,0,0,.45)",fontFamily:"'Inter',sans-serif",fontSize:13}}>{String.fromCharCode(65 + i)}.</span>
                             {opt}
@@ -12130,7 +12492,11 @@ export default function App() {
                   <button className="ab" onClick={function(){ setQuizMenu(false); }}>← Back to list</button>
                 </div>
                 <div style={{padding:"24px 16px",display:"flex",flexDirection:"column",gap:14,maxWidth:560,margin:"0 auto"}}>
-                  <p style={{color:"rgba(0,0,0,.65)",fontSize:14,textAlign:"center",margin:"0 0 8px"}}>How would you like to practice your {vocab.length} saved {vocab.length === 1 ? "word" : "words"}?</p>
+                  <p style={{color:"rgba(0,0,0,.65)",fontSize:14,textAlign:"center",margin:"0 0 8px"}}>
+                    {dueNow > 0
+                      ? (dueNow + " of your " + vocab.length + " saved words " + (dueNow === 1 ? "is" : "are") + " due for review.")
+                      : ("Nothing is due right now \u2014 a session will drill your " + Math.min(8, vocab.length) + " least-secure words.")}
+                  </p>
                   {/* Multiple Choice Quiz option */}
                   <button onClick={startQuiz}
                     style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
@@ -12157,6 +12523,24 @@ export default function App() {
                     <button className="ab" onClick={function(){ setNRu(""); setNEn(""); setShowWord(true); }}>+ Add word</button>
                   </div>
                 </div>
+                {learned.length > 0 && (
+                  <details className="learned">
+                    <summary>🎓 Learned words <span className="learned-n">{learned.length}</span>
+                      <span className="learned-hint">retired by the review scheduler — open to see them or put one back</span></summary>
+                    <div className="learned-list">
+                      {learned.map(function(v){
+                        return (
+                          <div key={v.ru} className="learned-row">
+                            <span className="learned-ru">{v.ru}</span>
+                            <span className="learned-en">{v.en}</span>
+                            <span className="learned-when">{v.learnedAt ? new Date(v.learnedAt).toLocaleDateString() : ""}</span>
+                            <button className="ab" onClick={function(){ restoreLearned(v.ru); }} title="Return this word to the active list">Put back</button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </details>
+                )}
                 {vocab.length===0 ? <p className="empty">No words saved yet.<br/>Click any Russian word to define and save it.</p>
                   : (function(){
                       // Group vocab by part of speech. Words with no pos go last under "Other".
