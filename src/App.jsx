@@ -1223,6 +1223,40 @@ function ProgressPanel(props) {
         ? ("Keep it: " + fmtInt(wordsLeft) + " more words, or " + cardsLeft + " more cards, before midnight.")
         : ("Read " + fmtInt(goals.words) + " words or review " + goals.cards + " cards to tear today’s leaf."));
 
+  // "Read now!" jumps the home screen past the panel to the resume buttons and
+  // the library — the reason someone opened this page in the first place.
+  var jump = function() {
+    var el = document.getElementById("read-now");
+    if (!el) return;
+    try { el.scrollIntoView({ behavior: "smooth", block: "start" }); }
+    catch (e) { el.scrollIntoView(); }
+  };
+
+  var controls = (
+    <div className="prog-ctl">
+      <button className="prog-jump" onClick={jump}>Read now! <span aria-hidden="true">↓</span></button>
+      <button className="prog-min" onClick={props.onToggle} aria-expanded={!!props.open}
+              title={props.open ? "Minimise" : "Expand"}>{props.open ? "▾" : "▸"}</button>
+      {props.onHide && (
+        <button className="prog-min" onClick={props.onHide} title="Hide this — you can bring it back below">✕</button>
+      )}
+    </div>
+  );
+
+  if (!props.open) {
+    return (
+      <section className="prog collapsed" aria-label="Your reading">
+        <div className="prog-bar">
+          <span className="prog-bar-n">{st.current}</span>
+          <span className="prog-bar-lbl">{ruPlural(st.current, "день", "дня", "дней")} подряд</span>
+          <span className="prog-bar-dot" aria-hidden="true">·</span>
+          <span className="prog-bar-st">{st.todayMet ? "today’s leaf is torn" : "today’s leaf is still on the pad"}</span>
+          {controls}
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="prog" aria-label="Your reading">
       <div className="prog-top">
@@ -1234,6 +1268,7 @@ function ProgressPanel(props) {
           </div>
         </div>
         <p className="prog-status">{status}</p>
+        {controls}
       </div>
 
       <div className="cal">
@@ -3609,6 +3644,9 @@ export default function App() {
           } catch (e3) {}
         }
         next[key] = e2;
+        // A bookmark is the reader saying "I got to here", so the words
+        // between the last mark and this point are read.
+        advanceReadMark(cidx, off, true);
       }
       return next;
     });
@@ -3667,6 +3705,27 @@ export default function App() {
   // in local storage for everyone and on the server for a signed-in reader.
   var [stats, setStats] = useState({});
   var [learned, setLearned] = useState([]);
+  // Whether the progress panel is open, and whether the reader wants it at
+  // all. Both persist; hiding it leaves a one-line way back.
+  var [progOpen, setProgOpen] = useState(true);
+  var [progHidden, setProgHidden] = useState(false);
+  var progUiLoaded = useRef(false);
+  useEffect(function() {
+    storage.get("gv_prog_ui_v1").then(function(r){
+      if (r && r.value) {
+        try {
+          var v = JSON.parse(r.value) || {};
+          if (typeof v.open === "boolean") setProgOpen(v.open);
+          if (typeof v.hidden === "boolean") setProgHidden(v.hidden);
+        } catch (e) {}
+      }
+      progUiLoaded.current = true;
+    }).catch(function(){ progUiLoaded.current = true; });
+  }, []);
+  useEffect(function() {
+    if (!progUiLoaded.current) return;
+    storage.set("gv_prog_ui_v1", JSON.stringify({ open: progOpen, hidden: progHidden })).catch(function(){});
+  }, [progOpen, progHidden]);
   var statsLoaded = useRef(false);
   var learnedLoaded = useRef(false);
   useEffect(function() {
@@ -3773,6 +3832,12 @@ export default function App() {
       } else {
         next[k] = { at: Date.now(), title: meta.title || "", author: meta.author || "" };
         nowFinished = true;
+        // There is no page turn after the last chapter, so finishing the book
+        // is what counts the tail of it.
+        if (k === bookKey(bookMeta) && chapters.length) {
+          var lastIdx = chapters.length - 1;
+          advanceReadMark(lastIdx, String((chapters[lastIdx] && chapters[lastIdx].text) || "").length, true);
+        }
       }
       return next;
     });
@@ -4643,34 +4708,54 @@ export default function App() {
                         CAST_HEAD_RE.test(String(curChapter.heading || "").trim()));
   }, [curChapter, playNames]);
 
-  // Words read. A paragraph counts once it has actually been on screen — most
-  // of it inside the viewport — and counts once per session: scrolling back
-  // up doesn't reread it. That is the same measure Readlang uses, and it is
-  // honest enough for a streak: it credits what was in front of the reader's
-  // eyes, not what was loaded.
-  var readSeen = useRef({});
+  // Words read, measured from how far through the book the reader has got.
+  //
+  // A high-water mark per book — the furthest point reached — advances when a
+  // page is turned or a bookmark is dropped, and the words between the old
+  // mark and the new one are what gets counted. Turning back and reading a
+  // page again adds nothing, because the mark does not move backwards.
+  //
+  // Only two moves credit anything: turning to the NEXT chapter, and setting a
+  // bookmark ahead of the mark in the chapter you are in. Jumping from the
+  // contents, a search result or a resume link moves the mark without counting
+  // — that is navigation, not reading, and crediting a jump to chapter fifty
+  // would hand someone the whole book for one tap.
+  var readMark = useRef({});
+  var readMarkLoaded = useRef(false);
   useEffect(function() {
-    if (!(started && isLit && lview === "read") || !curChapter || typeof IntersectionObserver === "undefined") return;
-    var paras = chapterParagraphs(curChapter.text);
-    var scope = bookKey(bookMeta) + "#" + cidx + ":";
-    var io = new IntersectionObserver(function(entries) {
-      var add = 0;
-      entries.forEach(function(en) {
-        if (!en.isIntersecting) return;
-        var idx = parseInt(String(en.target.id).slice(2), 10);
-        if (isNaN(idx)) return;
-        var k = scope + idx;
-        if (readSeen.current[k]) return;
-        readSeen.current[k] = 1;
-        add += ((paras[idx] || "").match(/[\u0410-\u044f\u0401\u0451][\u0410-\u044f\u0401\u0451-]*/g) || []).length;
-        io.unobserve(en.target);
-      });
-      if (add) bumpToday("read", add);
-    }, { threshold: 0.6 });
-    var nodes = document.querySelectorAll('.lit-left p[id^="sp"]');
-    for (var ni = 0; ni < nodes.length; ni++) io.observe(nodes[ni]);
-    return function(){ io.disconnect(); };
-  }, [started, isLit, lview, cidx, curChapter, bookMeta && bookMeta.filename]);
+    storage.get("gv_readmark_v1").then(function(r){
+      if (r && r.value) { try { readMark.current = JSON.parse(r.value) || {}; } catch (e) {} }
+      readMarkLoaded.current = true;
+    }).catch(function(){ readMarkLoaded.current = true; });
+  }, []);
+  var saveReadMark = function() {
+    if (!readMarkLoaded.current) return;
+    try { storage.set("gv_readmark_v1", JSON.stringify(readMark.current)).catch(function(){}); } catch (e) {}
+  };
+  // Russian words in a chapter, and up to a character offset within it.
+  var ruCount = function(t) { return (String(t || "").match(/[А-Яа-яЁё][А-Яа-яЁё-]*/g) || []).length; };
+  var wordsBefore = function(ci, off) {
+    var n = 0;
+    for (var i = 0; i < ci && i < chapters.length; i++) n += ruCount(chapters[i] && chapters[i].text);
+    var cur = chapters[ci] && chapters[ci].text;
+    if (cur) n += ruCount(off > 0 ? String(cur).slice(0, off) : "");
+    return n;
+  };
+  // `credit` false just moves the mark (a jump); true counts the span crossed.
+  var advanceReadMark = function(ci, off, credit) {
+    var key = bookKey(bookMeta);
+    if (!key || !chapters.length || ci < 0 || ci >= chapters.length) return;
+    var mark = readMark.current[key];
+    var to = wordsBefore(ci, off || 0);
+    if (mark && credit) {
+      var from = wordsBefore(mark.cidx, mark.off || 0);
+      if (to > from) bumpToday("read", to - from);
+    }
+    if (!mark || to >= wordsBefore(mark.cidx, mark.off || 0)) {
+      readMark.current[key] = { cidx: ci, off: off || 0 };
+      saveReadMark();
+    }
+  };
   // What the chapter either side of this one is called. A button at the foot of
   // a chapter is read after the text, when "Next ›" alone has stopped meaning
   // anything — naming the destination is the whole point of putting it there.
@@ -6503,6 +6588,10 @@ export default function App() {
     setCidx(i); setCbm(i); setPidx(pi); setStarted(true); setMsgs([]);
     setPopup(null); stopTTS(); setLview("read");
     charPos.current = 0; paraText.current = "";
+    // Plant the high-water mark where the reader is starting. Without it the
+    // first page turn would have nothing to measure from and the opening
+    // chapter would go uncounted.
+    setTimeout(function(){ advanceReadMark(i, 0, false); }, 0);
   };
 
   // Look up saved progress for a given book meta. Returns {cidx, pidx} or null.
@@ -6523,6 +6612,9 @@ export default function App() {
     checkForUpdate();
     stopTTS(); charPos.current = 0; paraText.current = "";
     if (idx < 0 || idx >= chapters.length) return;
+    // Turning the page forward credits the chapter just left; anything else
+    // only moves the mark.
+    advanceReadMark(idx, 0, idx === cidx + 1);
     // Navigate; no auto-comprehension. User triggers via "Test your comprehension" button.
     setCidx(idx); setCbm(idx); setPidx(0); setMsgs([]); setLview("read");
   };
@@ -9003,7 +9095,25 @@ export default function App() {
         .prog-num-lbl{display:flex;flex-direction:column;gap:2px;line-height:1.15}
         .prog-num-lbl .ru{font-family:'Playfair Display',serif;font-size:19px;color:#2a1f14}
         .prog-num-lbl .en{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(42,31,20,.55)}
-        .prog-status{margin:0;max-width:30ch;font-size:15px;line-height:1.45;color:rgba(42,31,20,.75);font-style:italic}
+        .prog-status{margin:0;max-width:26ch;font-size:15px;line-height:1.45;color:rgba(42,31,20,.75);font-style:italic}
+        .prog-ctl{display:flex;align-items:center;gap:6px;margin-left:auto}
+        .prog-jump{background:none;border:1px solid rgba(42,31,20,.25);border-radius:999px;padding:5px 13px;cursor:pointer;
+          font-family:'Crimson Pro',serif;font-size:14px;color:#2a1f14;white-space:nowrap;transition:all .14s}
+        .prog-jump:hover{background:#2a1f14;color:#f5f0e8;border-color:#2a1f14}
+        .prog-min{background:none;border:1px solid rgba(42,31,20,.2);border-radius:50%;width:26px;height:26px;line-height:1;
+          font-size:13px;color:rgba(42,31,20,.65);cursor:pointer;flex:none}
+        .prog-min:hover{background:rgba(42,31,20,.07);color:#2a1f14}
+        /* minimised: one line, no pad */
+        .prog.collapsed{gap:0;margin-bottom:14px}
+        .prog-bar{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;padding:8px 2px 12px;border-bottom:1px solid rgba(42,31,20,.18)}
+        .prog-bar-n{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#2a1f14;line-height:1;font-variant-numeric:tabular-nums}
+        .prog-bar-lbl{font-family:'Playfair Display',serif;font-size:15px;color:#2a1f14}
+        .prog-bar-dot{color:rgba(42,31,20,.35)}
+        .prog-bar-st{font-size:14px;font-style:italic;color:rgba(42,31,20,.6)}
+        .prog-bar .prog-ctl{align-self:center}
+        .prog-restore{align-self:center;background:none;border:none;border-bottom:1px solid rgba(42,31,20,.25);padding:2px 0;margin-bottom:6px;
+          font-family:'Crimson Pro',serif;font-style:italic;font-size:14px;color:rgba(42,31,20,.6);cursor:pointer}
+        .prog-restore:hover{color:#2a1f14;border-bottom-color:#2a1f14}
         /* the pad */
         .cal{background:#fbf8f2;border:1px solid rgba(42,31,20,.16);border-radius:4px;padding:12px 14px 12px;
           box-shadow:0 1px 0 rgba(42,31,20,.12),0 3px 0 -1px #f1ebdf,0 4px 0 -1px rgba(42,31,20,.12),0 6px 0 -2px #ede6d8,0 7px 0 -2px rgba(42,31,20,.1)}
@@ -10692,15 +10802,23 @@ export default function App() {
                 {/* The reader's own record, for signed-in readers: streak, the
                     week, the year, and the slow counts. Guests have nothing
                     that persists between devices, so they get the library. */}
-                {me && (
+                {me && !progHidden && (
                   <ProgressPanel
                     stats={stats}
                     learned={learned.length}
                     due={dueNow}
                     finishedMap={finishedMap}
+                    open={progOpen}
+                    onToggle={function(){ setProgOpen(!progOpen); }}
+                    onHide={function(){ setProgHidden(true); }}
                     onReview={function(){ setTab("vocab"); setQuizMode(false); setQuizMenu(true); }} />
                 )}
-                <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:10}}>
+                {me && progHidden && (
+                  <button className="prog-restore" onClick={function(){ setProgHidden(false); setProgOpen(true); }}>
+                    Show your reading record
+                  </button>
+                )}
+                <div id="read-now" style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:10,scrollMarginTop:12}}>
                   {chapters.length > 0 ? (
                     <>
                       {cbm > 0 && <button className="btn-p" onClick={function(){ startLit(cbm); }}>{(function(){
