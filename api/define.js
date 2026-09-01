@@ -31,7 +31,8 @@ import {
   loadGlossary, lookupGlossary, glossaryEntry, putGlossaryEntry, dictKey,
   logMiss, listMisses, removeMiss,
 } from "../lib/dict.js";
-import { ruWiktionaryLookup, resolveLemma } from "../lib/ruwikt.js";
+import { ruWiktionaryLookup, resolveLemma, existingTitles } from "../lib/ruwikt.js";
+import { lemmaCandidates } from "../lib/morph.js";
 import { mtLookup } from "../lib/mt.js";
 
 const YANDEX_URL = "https://dictionary.yandex.net/api/v1/dicservice.json/lookup";
@@ -373,9 +374,12 @@ function buildWiktEntry(pack, clickedWord, matchedForm, formNote) {
 // Two candidates only (as clicked, and the yo-folded spelling): Wiktionary
 // indexes yo properly, so the variant spray Yandex needs would just burn time
 // against this request's shared 10s budget.
-async function wiktionaryLookup(candidates, clickedWord, signal) {
+async function wiktionaryLookup(candidates, clickedWord, signal, timeLeft) {
   let weak = null;   // a form-of page with no lemma behind it; used only last
   for (const cand of candidates) {
+    // Several confirmed lemmas can arrive now, and Vercel kills the function at
+    // ten seconds — stop trying rather than be killed mid-answer.
+    if (timeLeft && timeLeft() < 1200) break;
     const pack = await wiktFetch(cand, signal);
     if (!pack) continue;
 
@@ -565,20 +569,45 @@ export default async function handler(req, res) {
       // -- Lemma resolution ----------------------------------------------------
       // The Wiktionary tiers are keyed by page title and have no morphology of
       // their own, so an inflected click («банковал», «фраера») would miss even
-      // where the lemma is well documented. One stemmed search maps the surface
-      // form onto a real page before either tier runs.
-      let lemma = "", weakWikt = null;
+      // where the lemma is well documented. On govorim.dev Yandex's MORPHO flag
+      // covers most of that; Samovar has no Yandex tier at all, so this IS the
+      // morphology and it has to carry the whole stack.
+      //
+      // Two passes. First, rewrite the ending by rule (lib/morph.js) and ask
+      // Викисловарь in ONE request which of the guesses are real words — a
+      // dozen candidates for one round trip, and a wrong guess is simply not a
+      // page. Only if that finds nothing does the older stemmed SEARCH run: it
+      // is a search engine rather than a lemmatiser, so it goes second.
+      let lemma = "", lemmas = [], weakWikt = null;
       if (process.env.LEMMA_LOOKUP !== "0" && timeLeft() > 2500) {
-        try {
-          lemma = await resolveLemma(lower, ctrl.signal);
-          trace.push(lemma ? "lemma:" + lemma : "lemma:none");
-        } catch (e) {
-          if (e && e.name === "AbortError") throw e;
-          trace.push("lemma:error " + ((e && e.message) || e));
+        const guesses = lemmaCandidates(lower, 12);
+        if (guesses.length) {
+          try {
+            lemmas = (await existingTitles(guesses, ctrl.signal)).slice(0, 3);
+            trace.push(lemmas.length ? "morph:" + lemmas.join("/")
+                                     : "morph:none-of-" + guesses.length);
+          } catch (e) {
+            if (e && e.name === "AbortError") throw e;
+            trace.push("morph:error " + ((e && e.message) || e));
+          }
+        } else {
+          trace.push("morph:no-guess");
         }
+        if (!lemmas.length && timeLeft() > 2000) {
+          try {
+            const found = await resolveLemma(lower, ctrl.signal);
+            if (found) lemmas = [found];
+            trace.push(found ? "lemma:" + found : "lemma:none");
+          } catch (e) {
+            if (e && e.name === "AbortError") throw e;
+            trace.push("lemma:error " + ((e && e.message) || e));
+          }
+        }
+        lemma = lemmas[0] || "";
       }
       const candsWith = function (extra) {
-        return [lower, deyo].concat(extra ? [extra.toLowerCase()] : [])
+        return [lower, deyo].concat(lemmas)
+          .concat(extra ? [String(extra).toLowerCase()] : [])
           .filter(function (w, i, arr) { return w && arr.indexOf(w) === i; });
       };
 
@@ -587,26 +616,29 @@ export default async function handler(req, res) {
       // empty even where the lemma has a full entry. The lemma has just been
       // resolved, so ask again with it. A real bilingual entry beats a
       // Wiktionary inflection note, which is what the reader was getting.
-      if (lemma && lemma !== lower && lemma !== deyo &&
-          process.env.YANDEX_DICT_KEY && !yandexErr && timeLeft() > 1800) {
-        try {
-          const lemDefs = await yandexLookup(lemma, "ru-en", ctrl.signal);
-          if (lemDefs.length) {
-            trace.push("yandex:lemma-hit " + lemma);
-            return sendYandex(res, lemDefs, word, lemma, ctrl.signal);
+      if (lemmas.length && process.env.YANDEX_DICT_KEY && !yandexErr) {
+        for (const lem of lemmas) {
+          if (lem === lower || lem === deyo || timeLeft() < 1800) break;
+          try {
+            const lemDefs = await yandexLookup(lem, "ru-en", ctrl.signal);
+            if (lemDefs.length) {
+              trace.push("yandex:lemma-hit " + lem);
+              return sendYandex(res, lemDefs, word, lem, ctrl.signal);
+            }
+          } catch (e) {
+            if (e && e.name === "AbortError") throw e;
+            trace.push("yandex:lemma-error " + ((e && e.message) || e));
+            break;
           }
-          trace.push("yandex:lemma-miss");
-        } catch (e) {
-          if (e && e.name === "AbortError") throw e;
-          trace.push("yandex:lemma-error " + ((e && e.message) || e));
         }
+        trace.push("yandex:lemma-miss");
       }
 
       if (wiktEnabled && timeLeft() > 1500) {
         const wiktCands = candsWith(lemma);
         let wikt = null;
         try {
-          wikt = await wiktionaryLookup(wiktCands, word, ctrl.signal);
+          wikt = await wiktionaryLookup(wiktCands, word, ctrl.signal, timeLeft);
         } catch (e) {
           if (e && e.name === "AbortError") throw e;
           trace.push("enwikt:error " + ((e && e.message) || e));
@@ -634,7 +666,7 @@ export default async function handler(req, res) {
         const ruCands = candsWith(lemma);
         let ruWikt = null;
         try {
-          ruWikt = await ruWiktionaryLookup(ruCands, word, ctrl.signal);
+          ruWikt = await ruWiktionaryLookup(ruCands, word, ctrl.signal, timeLeft);
         } catch (e) {
           if (e && e.name === "AbortError") throw e;
           trace.push("ruwikt:error " + ((e && e.message) || e));
@@ -681,7 +713,7 @@ export default async function handler(req, res) {
       // would wreck ordinary reading; consulted after them it only ever fires
       // on a word no dictionary knows, which is exactly the жаргон tail.
       if (glossary) {
-        const slang = lookupGlossary(glossary, [lower, deyo, lemma].filter(Boolean), null);
+        const slang = lookupGlossary(glossary, [lower, deyo].concat(lemmas).filter(Boolean), null);
         if (slang) {
           const built = glossaryEntry(slang.hit, word, slang.matched);
           if (built) {
@@ -719,7 +751,7 @@ export default async function handler(req, res) {
       if (timeLeft() > 1200) {
         let mt = null;
         try {
-          mt = await mtLookup([lower, deyo, lemma].filter(Boolean), word, ctrl.signal);
+          mt = await mtLookup([lower, deyo].concat(lemmas).filter(Boolean), word, ctrl.signal);
         } catch (e) {
           if (e && e.name === "AbortError") throw e;
           trace.push("mt:error " + ((e && e.message) || e));
