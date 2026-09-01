@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect, useCallback, useMemo, Fragment } from "react";
 import { isCommonWord, dropCommonWords } from "./commonWords.js";
 import { review as srsReview, isLearned, dueWords, weakestWords, recallNow } from "./srs.js";
-import { dayKey, bump as bumpStats, streaks, lastWeek, yearGrid, mergeStats,
+import { dayKey, dayMet, bump as bumpStats, streaks, mergeStats,
          totals as statsTotals, GOAL_WORDS, GOAL_CARDS } from "./stats.js";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
@@ -1155,137 +1155,147 @@ function mergePlayActs(chs) {
 // from three stores the app already keeps: the daily log (src/stats.js), the
 // finished-books map, and the vocabulary list with its retired words.
 // ---------------------------------------------------------------------------
-var DAY_LETTERS = ["S", "M", "T", "W", "T", "F", "S"];
-var MONTHS_SHORT = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-function fmtInt(n) { return String(Math.round(n || 0)).replace(/\B(?=(\d{3})+(?!\d))/g, "\u2009"); }
+// The Russian wall calendar is a tear-off one — отрывной календарь — a pad of
+// daily leaves, and a day that has been lived is a leaf torn off. That is the
+// figure this panel is built on: the month as a pad of leaves, each day's leaf
+// torn once the reading goal is met, the ink on each leaf showing how much was
+// read. The week runs Monday to Sunday, as Russian calendars do.
+var RU_DAYS = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
+var RU_MONTHS = ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
+var EN_MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+function fmtInt(n) { return String(Math.round(n || 0)).replace(/\B(?=(\d{3})+(?!\d))/g, " "); }
+function ruPlural(n, one, few, many) {
+  var m10 = n % 10, m100 = n % 100;
+  if (m10 === 1 && m100 !== 11) return one;
+  if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return few;
+  return many;
+}
 
 function ProgressPanel(props) {
   var stats = props.stats || {};
   var goals = { words: GOAL_WORDS, cards: GOAL_CARDS };
   var st = streaks(stats, goals);
-  var week = lastWeek(stats, goals);
-  var year = new Date().getFullYear();
-  var grid = yearGrid(stats, year);
   var tot = statsTotals(stats);
-  var yearRead = grid.reduce(function(a, d){ return a + d.read; }, 0);
-  var peak = Math.max(goals.words, Math.max.apply(null, week.map(function(d){ return d.read + d.practiced * 25; })));
-  var goalPct = Math.min(100, goals.words / peak * 100);
-  var books = props.booksFinished || 0;
-  var learned = props.learned || 0;
-  var due = props.due || 0;
+  var today = new Date();
+  var todayKey = dayKey(today.getTime());
+  var todayRec = stats[todayKey] || {};
 
-  // The dot grid: one column per week, seven rows, Sunday at the top — the
-  // shape a calendar already has, so a reader can find last Tuesday in it.
-  var cols = [], col = [];
-  var lead = grid.length ? grid[0].date.getDay() : 0;
-  for (var i = 0; i < lead; i++) col.push(null);
-  grid.forEach(function(d){
-    col.push(d);
-    if (col.length === 7) { cols.push(col); col = []; }
-  });
-  if (col.length) { while (col.length < 7) col.push(null); cols.push(col); }
-  var monthMarks = [];
-  cols.forEach(function(c, ci){
-    var first = c.find(function(d){ return d; });
-    if (first && first.date.getDate() <= 7) monthMarks.push({ ci: ci, m: MONTHS_SHORT[first.date.getMonth()] });
-  });
+  // Which month the pad is open at. Starts on this month; the arrows page.
+  var monthState = useState(0);
+  var monthOffset = monthState[0], setMonthOffset = monthState[1];
+  var shown = new Date(today.getFullYear(), today.getMonth() + monthOffset, 1);
+  var year = shown.getFullYear(), month = shown.getMonth();
+  var daysInMonth = new Date(year, month + 1, 0).getDate();
+  var lead = (shown.getDay() + 6) % 7;                    // Monday first
+  var cells = [];
+  for (var i = 0; i < lead; i++) cells.push(null);
+  for (var d = 1; d <= daysInMonth; d++) {
+    var k = dayKey(new Date(year, month, d).getTime());
+    var rec = stats[k] || {};
+    var v = (rec.read || 0) + (rec.practiced || 0) * 25;
+    cells.push({
+      d: d, key: k, rec: rec,
+      future: k > todayKey,
+      isToday: k === todayKey,
+      met: dayMet(rec, goals),
+      level: v <= 0 ? 0 : v < 250 ? 1 : v < 750 ? 2 : v < 2000 ? 3 : 4,
+    });
+  }
+  while (cells.length % 7) cells.push(null);
+  var monthRead = cells.reduce(function(a, c){ return a + (c ? (c.rec.read || 0) : 0); }, 0);
+  var monthMet = cells.filter(function(c){ return c && c.met; }).length;
 
-  var headline = st.current === 0
-    ? "Start a streak today"
-    : "You have a " + st.current + " day streak";
-  var sub = st.current === 0
-    ? "Read " + goals.words + " words or practice " + goals.cards + " flashcards to light the first flame."
-    : "Read " + goals.words + " words or practice " + goals.cards + " flashcards every day to keep it going.";
+  // The shelf: books finished, newest on the right, as spines.
+  var shelf = Object.keys(props.finishedMap || {}).map(function(k){ return props.finishedMap[k]; })
+    .filter(function(f){ return f && !f.removed; })
+    .sort(function(a, b){ return (a.at || 0) - (b.at || 0); });
+  var SPINES = 9;
+  var overflow = Math.max(0, shelf.length - SPINES);
+  var spines = shelf.slice(-SPINES);
+  var spineTints = ["sp-a", "sp-b", "sp-c", "sp-d"];
+
+  var learnedN = props.learned || 0, due = props.due || 0;
+  var wordsLeft = Math.max(0, goals.words - (todayRec.read || 0));
+  var cardsLeft = Math.max(0, goals.cards - (todayRec.practiced || 0));
+  var status = st.todayMet
+    ? "Today’s leaf is torn."
+    : (st.current > 0
+        ? ("Keep it: " + fmtInt(wordsLeft) + " more words, or " + cardsLeft + " more cards, before midnight.")
+        : ("Read " + fmtInt(goals.words) + " words or review " + goals.cards + " cards to tear today’s leaf."));
 
   return (
-    <section className="prog" aria-label="Your reading progress">
-      <h2 className="prog-head">{headline}</h2>
-      <p className="prog-sub">{sub}{!st.todayMet && st.current > 0 ? " Today isn\u2019t done yet." : ""}</p>
-
-      <div className="prog-week">
-        <div className="prog-legend">
-          <span><i className="sw read"></i>Words read</span>
-          <span><i className="sw prac"></i>Words practiced</span>
-          <span><i className="sw goal"></i>Daily goal</span>
+    <section className="prog" aria-label="Your reading">
+      <div className="prog-top">
+        <div className="prog-streak">
+          <div className="prog-num">{st.current}</div>
+          <div className="prog-num-lbl">
+            <span className="ru">{ruPlural(st.current, "день", "дня", "дней")} подряд</span>
+            <span className="en">{st.current === 1 ? "day in a row" : "days in a row"}</span>
+          </div>
         </div>
-        <div className="prog-bars" style={{"--goal": goalPct + "%"}}>
-          {week.map(function(d){
-            var r = d.read / peak * 100, pr = d.practiced * 25 / peak * 100;
+        <p className="prog-status">{status}</p>
+      </div>
+
+      <div className="cal">
+        <div className="cal-head">
+          <button className="cal-nav" onClick={function(){ setMonthOffset(monthOffset - 1); }} aria-label="Previous month">‹</button>
+          <div className="cal-title">
+            <span className="ru">{RU_MONTHS[month]}</span>
+            <span className="en">{EN_MONTHS[month]} {year}</span>
+          </div>
+          <button className="cal-nav" onClick={function(){ setMonthOffset(monthOffset + 1); }} disabled={monthOffset >= 0} aria-label="Next month">›</button>
+        </div>
+        <div className="cal-days">{RU_DAYS.map(function(n){ return <span key={n}>{n}</span>; })}</div>
+        <div className="cal-grid">
+          {cells.map(function(c, i){
+            if (!c) return <span key={"e" + i} className="leaf blank"></span>;
+            var cls = "leaf l" + c.level + (c.met ? " torn" : "") + (c.isToday ? " today" : "") + (c.future ? " future" : "");
+            var tip = c.key + (c.rec.read || c.rec.practiced ? ": " + fmtInt(c.rec.read || 0) + " words read, " + (c.rec.practiced || 0) + " cards" : "");
             return (
-              <div key={d.key} className={"prog-day" + (d.isToday ? " today" : "")} title={d.key + ": " + fmtInt(d.read) + " words read, " + d.practiced + " practiced"}>
-                <div className="prog-col">
-                  <div className="prog-bar prac" style={{height: pr + "%"}}></div>
-                  <div className="prog-bar read" style={{height: r + "%"}}></div>
-                </div>
-                <div className="prog-dl">{DAY_LETTERS[d.date.getDay()]}</div>
-                <div className={"prog-flame" + (d.met ? " lit" : "")} aria-label={d.met ? "goal met" : "goal not met"}>
-                  <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M12 2c1 4 5 5.5 5 11a5 5 0 0 1-10 0c0-2 .8-3.3 1.8-4.4.3 1.4 1 2.4 2.2 2.4 0-3 .5-6 1-9z" fill="currentColor"/></svg>
-                </div>
-              </div>
+              <span key={c.key} className={cls} title={tip}>
+                <b>{c.d}</b>
+                {c.rec.read > 0 && !c.future && <i>{c.rec.read >= 1000 ? (Math.round(c.rec.read / 100) / 10) + "k" : c.rec.read}</i>}
+              </span>
             );
           })}
         </div>
+        <div className="cal-foot">
+          <span>{fmtInt(monthRead)} words read this month</span>
+          <span>{monthMet} {monthMet === 1 ? "leaf" : "leaves"} torn</span>
+        </div>
       </div>
 
-      <div className="prog-tiles">
-        <div className="prog-tile"><b>{books}</b><span>{books === 1 ? "book finished" : "books finished"}</span></div>
-        <div className="prog-tile"><b>{learned}</b><span>{learned === 1 ? "word learned" : "words learned"}</span></div>
-        <div className="prog-tile"><b>{tot.days}</b><span>{tot.days === 1 ? "day of reading" : "days of reading"}</span></div>
-        <div className="prog-tile"><b>{st.longest}</b><span>longest streak</span></div>
-      </div>
+      <dl className="ledger">
+        <div><dt>Books finished</dt><dd>{shelf.length}</dd></div>
+        <div><dt>Words learned</dt><dd>{learnedN}</dd></div>
+        <div><dt>Days of reading</dt><dd>{tot.days}</dd></div>
+        <div><dt>Longest streak</dt><dd>{st.longest}</dd></div>
+      </dl>
       {due > 0 && props.onReview && (
         <button className="prog-due" onClick={props.onReview}>
           {due} {due === 1 ? "word is" : "words are"} due for review →
         </button>
       )}
 
-      <div className="prog-year">
-        <div className="prog-year-head"><span>{year}</span><span className="mono">{fmtInt(yearRead)} words read</span></div>
-        <div className="prog-grid-wrap">
-          <div className="prog-months">
-            {monthMarks.map(function(m){ return <span key={m.m + m.ci} style={{gridColumn: m.ci + 1}}>{m.m}</span>; })}
-          </div>
-          <div className="prog-grid" style={{gridTemplateColumns: "repeat(" + cols.length + ", 11px)"}}>
-            {cols.map(function(c, ci){
-              return c.map(function(d, ri){
-                if (!d) return <i key={ci + "-" + ri} className="dot empty"></i>;
-                return <i key={d.key} className={"dot l" + d.level} title={d.key + ": " + fmtInt(d.read) + " read, " + d.practiced + " practiced"}></i>;
-              });
-            })}
-          </div>
+      <div className="shelf" aria-label="Books you have finished">
+        <div className="shelf-row">
+          {spines.length === 0 && <span className="shelf-empty">Nothing on the shelf yet — mark a book read when you finish it.</span>}
+          {spines.map(function(f, i){
+            var t = String(f.title || "Untitled");
+            var w = Math.min(60, Math.max(24, 12 + t.length * 1.4));
+            return (
+              <span key={(f.title || "") + (f.at || i)} className={"spine " + spineTints[i % spineTints.length]}
+                    style={{width: w + "px"}} title={t + (f.author ? " — " + f.author : "") + (f.at ? " · finished " + new Date(f.at).toLocaleDateString() : "")}>
+                <span className="spine-t">{t}</span>
+              </span>
+            );
+          })}
+          {overflow > 0 && <span className="spine more" title={overflow + " more"}><span className="spine-t">+{overflow}</span></span>}
         </div>
+        <div className="shelf-board"></div>
       </div>
     </section>
   );
-}
-
-// ---------------------------------------------------------------------------
-// Which reading of an ambiguous form the sentence points to. No dictionary can
-// tell «ношу» the noun from «ношу» the verb; the word before it often can. A
-// personal pronoun or «не» in front wants a verb, a preposition wants a noun
-// or adjective, and an adjective ending in front wants a noun. This is a
-// nudge, not a verdict — every reading stays one tap away — and where no cue
-// is present the order the dictionary gave is kept.
-// ---------------------------------------------------------------------------
-var CUE_PRONOUN = /^(я|ты|он|она|оно|мы|вы|они|кто|не|уже|всё|все)$/i;
-var CUE_PREPOSITION = /^(в|во|на|за|под|подо|над|о|об|обо|от|ото|до|из|изо|у|к|ко|с|со|по|при|для|без|через|про|между|перед|около|возле|вокруг|среди|против|сквозь|ради|кроме|вместо)$/i;
-var CUE_ADJECTIVE = /(ый|ий|ой|ая|яя|ое|ее|ые|ие|ую|юю|ого|его|ому|ему|ым|им|ой|ей|ых|их|ыми|ими)$/i;
-function readingsInContext(readings, prevWord) {
-  var list = (readings || []).slice();
-  var prev = String(prevWord || "").toLowerCase().replace(/ё/g, "е");
-  if (!prev) return { list: list, cue: "" };
-  var wants = CUE_PRONOUN.test(prev) ? "verb"
-            : CUE_PREPOSITION.test(prev) ? "noun"
-            : (CUE_ADJECTIVE.test(prev) && prev.length > 4) ? "noun" : "";
-  if (!wants) return { list: list, cue: "" };
-  var isKind = function(r) {
-    var pos = String(r.pos || "").toLowerCase();
-    if (wants === "verb") return /verb|глагол/.test(pos) && !/adverb|наречие/.test(pos);
-    return /noun|adj|существ|прилаг/.test(pos) && !/pronoun/.test(pos);
-  };
-  var hit = list.filter(isKind), rest = list.filter(function(r){ return !isKind(r); });
-  if (!hit.length) return { list: list, cue: "" };
-  return { list: hit.concat(rest), cue: wants };
 }
 
 function attachVideos(chapters, entry) {
@@ -8983,49 +8993,71 @@ export default function App() {
         .lch-en{font-family:'Inter',sans-serif;font-size:12.5px;color:rgba(42,31,20,.6);margin:-2px 0 12px;letter-spacing:.01em}
         .lch-en i{font-style:italic;opacity:.9}
         .ltxt{font-size:17.5px;line-height:1.85;color:#000;font-family:'Crimson Pro',serif;word-wrap:break-word;overflow-wrap:break-word;letter-spacing:.005em}
-        /* ── Progress panel (home screen) ─────────────────────────────── */
-        .prog{width:100%;max-width:640px;margin:6px auto 22px;display:flex;flex-direction:column;gap:16px;text-align:left}
-        .prog-head{font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:#000;margin:0;text-align:center;text-wrap:balance}
-        .prog-sub{margin:-6px 0 0;text-align:center;color:rgba(42,31,20,.7);font-size:15px;line-height:1.5}
-        .prog-week{background:#4f8a6e;color:#fff;border-radius:18px;padding:16px 18px 14px}
-        .prog-legend{display:flex;gap:18px;flex-wrap:wrap;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;margin-bottom:12px}
-        .prog-legend span{display:inline-flex;align-items:center;gap:7px}
-        .prog-legend .sw{display:inline-block;width:14px;height:14px;border-radius:3px}
-        .prog-legend .sw.read{background:#8fe0b0} .prog-legend .sw.prac{background:#2f4a6b}
-        .prog-legend .sw.goal{width:18px;height:0;border-top:2px dashed rgba(255,255,255,.75);border-radius:0}
-        .prog-bars{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;position:relative;padding-top:6px}
-        .prog-day{display:flex;flex-direction:column;align-items:center;gap:6px}
-        .prog-col{position:relative;width:100%;max-width:46px;height:120px;display:flex;flex-direction:column;justify-content:flex-end;
-          border-bottom:2px solid rgba(255,255,255,.9)}
-        .prog-col::after{content:"";position:absolute;left:-5px;right:-5px;bottom:var(--goal,20%);
-          border-top:2px dashed rgba(255,255,255,.75);pointer-events:none}
-        .prog-bar{width:100%;border-radius:3px 3px 0 0;transition:height .3s}
-        .prog-bar.read{background:#8fe0b0} .prog-bar.prac{background:#2f4a6b;border-radius:0}
-        .prog-day.today .prog-bar.read{background:#b8f0cf}
-        .prog-dl{font-family:'Inter',sans-serif;font-weight:700;font-size:15px;letter-spacing:.04em}
-        .prog-flame{color:rgba(255,255,255,.28)} .prog-flame.lit{color:#fff}
-        .prog-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-        @media (max-width:520px){.prog-tiles{grid-template-columns:repeat(2,1fr)}}
-        .prog-tile{background:rgba(42,31,20,.05);border:1px solid rgba(42,31,20,.12);border-radius:12px;padding:12px 10px;
-          display:flex;flex-direction:column;align-items:center;gap:2px}
-        .prog-tile b{font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:#000;line-height:1.1;font-variant-numeric:tabular-nums}
-        .prog-tile span{font-size:12px;color:rgba(42,31,20,.65);text-align:center;letter-spacing:.02em}
+        /* ── Progress: the tear-off calendar ───────────────────────────── */
+        .prog{width:100%;max-width:620px;margin:4px auto 26px;display:flex;flex-direction:column;gap:18px;text-align:left}
+        .prog-top{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;
+          padding-bottom:14px;border-bottom:1px solid rgba(42,31,20,.18)}
+        .prog-streak{display:flex;align-items:baseline;gap:12px}
+        .prog-num{font-family:'Playfair Display',serif;font-size:64px;font-weight:700;line-height:.9;color:#2a1f14;
+          font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+        .prog-num-lbl{display:flex;flex-direction:column;gap:2px;line-height:1.15}
+        .prog-num-lbl .ru{font-family:'Playfair Display',serif;font-size:19px;color:#2a1f14}
+        .prog-num-lbl .en{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(42,31,20,.55)}
+        .prog-status{margin:0;max-width:30ch;font-size:15px;line-height:1.45;color:rgba(42,31,20,.75);font-style:italic}
+        /* the pad */
+        .cal{background:#fbf8f2;border:1px solid rgba(42,31,20,.16);border-radius:4px;padding:12px 14px 12px;
+          box-shadow:0 1px 0 rgba(42,31,20,.12),0 3px 0 -1px #f1ebdf,0 4px 0 -1px rgba(42,31,20,.12),0 6px 0 -2px #ede6d8,0 7px 0 -2px rgba(42,31,20,.1)}
+        .cal-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+        .cal-title{display:flex;flex-direction:column;align-items:center;line-height:1.1}
+        .cal-title .ru{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#2a1f14;letter-spacing:.02em}
+        .cal-title .en{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(42,31,20,.5);margin-top:3px}
+        .cal-nav{background:none;border:1px solid rgba(42,31,20,.2);border-radius:50%;width:30px;height:30px;font-size:20px;line-height:1;
+          color:#2a1f14;cursor:pointer;font-family:'Crimson Pro',serif}
+        .cal-nav:hover:not(:disabled){background:rgba(42,31,20,.06)} .cal-nav:disabled{opacity:.3;cursor:default}
+        .cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:4px}
+        .cal-days span{text-align:center;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(42,31,20,.5)}
+        .cal-days span:nth-child(n+6){color:rgba(157,70,48,.7)}
+        .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+        .leaf{position:relative;aspect-ratio:1/.82;border:1px solid rgba(42,31,20,.13);border-radius:2px;background:#fff;
+          display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;overflow:hidden}
+        .leaf b{font-family:'Playfair Display',serif;font-weight:600;font-size:14px;color:#2a1f14;line-height:1}
+        .leaf i{font-family:'Inter',sans-serif;font-style:normal;font-size:9.5px;color:rgba(42,31,20,.6);font-variant-numeric:tabular-nums}
+        .leaf.blank{border-color:transparent;background:transparent}
+        .leaf.future{background:transparent;border-style:dashed;border-color:rgba(42,31,20,.12)} .leaf.future b{color:rgba(42,31,20,.3)}
+        /* ink wash by how much was read */
+        .leaf.l1{background:#f3ecdf} .leaf.l2{background:#e9dfcc} .leaf.l3{background:#dccdb2} .leaf.l4{background:#cdb994}
+        .leaf.l4 b{color:#1f150c}
+        /* the torn leaf: goal met — the corner is gone and the pad shows through */
+        .leaf.torn{border-color:rgba(157,70,48,.55);
+          background-image:linear-gradient(225deg,#fbf8f2 0,#fbf8f2 13px,rgba(157,70,48,.9) 13px,rgba(157,70,48,.9) 14.5px,transparent 14.5px)}
+        .leaf.torn::after{content:"";position:absolute;top:0;right:0;width:13px;height:13px;
+          background:linear-gradient(225deg,transparent 0,transparent 7px,rgba(42,31,20,.18) 7px,rgba(42,31,20,.18) 8px,transparent 8px)}
+        .leaf.today{outline:2px solid #2a1f14;outline-offset:-2px}
+        .leaf.today b{color:#000}
+        .cal-foot{display:flex;justify-content:space-between;gap:10px;margin-top:10px;font-size:13px;color:rgba(42,31,20,.6);font-style:italic}
+        /* the ledger */
+        .ledger{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:0;border-top:1px solid rgba(42,31,20,.18);border-bottom:1px solid rgba(42,31,20,.18)}
+        .ledger>div{padding:10px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;border-left:1px solid rgba(42,31,20,.1)}
+        .ledger>div:first-child{border-left:none}
+        .ledger dt{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(42,31,20,.55);text-align:center}
+        .ledger dd{margin:0;font-family:'Playfair Display',serif;font-size:24px;font-weight:600;color:#2a1f14;font-variant-numeric:tabular-nums;line-height:1}
+        @media (max-width:520px){.ledger{grid-template-columns:repeat(2,1fr)}.ledger>div:nth-child(3){border-left:none}.ledger>div:nth-child(n+3){border-top:1px solid rgba(42,31,20,.1)}
+          .prog-num{font-size:52px}}
         .prog-due{align-self:center;background:none;border:1px solid rgba(30,122,60,.45);color:#1e7a3c;border-radius:999px;
-          padding:7px 16px;font-family:'Crimson Pro',serif;font-size:15px;cursor:pointer}
+          padding:7px 16px;font-family:'Crimson Pro',serif;font-size:15px;cursor:pointer;margin-top:-6px}
         .prog-due:hover{background:rgba(30,122,60,.08)}
-        .prog-year{background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.1);border-radius:14px;padding:12px 14px 14px}
-        .prog-year-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;
-          font-family:'Playfair Display',serif;font-size:17px;font-weight:600;color:#000}
-        .prog-year-head .mono{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:rgba(42,31,20,.6);font-variant-numeric:tabular-nums}
-        .prog-grid-wrap{overflow-x:auto;padding-bottom:4px}
-        .prog-months{display:grid;grid-auto-columns:11px;grid-auto-flow:column;gap:3px;font-family:'Inter',sans-serif;font-size:10px;
-          color:rgba(42,31,20,.5);height:14px;margin-bottom:3px}
-        .prog-months span{white-space:nowrap}
-        .prog-grid{display:grid;grid-template-rows:repeat(7,11px);grid-auto-flow:column;gap:3px}
-        .prog-grid .dot{display:block;width:11px;height:11px;border-radius:50%;background:rgba(42,31,20,.09)}
-        .prog-grid .dot.empty{background:transparent}
-        .prog-grid .dot.l1{background:#b7dfb0} .prog-grid .dot.l2{background:#7cc27a}
-        .prog-grid .dot.l3{background:#3f9a47} .prog-grid .dot.l4{background:#1f6b2a}
+        /* the shelf */
+        .shelf{padding:0 6px}
+        .shelf-row{display:flex;align-items:flex-end;gap:3px;min-height:122px;padding:0 10px}
+        .shelf-board{height:7px;background:linear-gradient(#5a4632,#3d2f21);border-radius:1px;box-shadow:0 3px 0 #2a1f14,0 6px 8px rgba(42,31,20,.25)}
+        .spine{position:relative;height:110px;border-radius:2px 2px 0 0;box-shadow:inset -3px 0 0 rgba(0,0,0,.18),inset 2px 0 0 rgba(255,255,255,.18);
+          display:flex;align-items:center;justify-content:center;overflow:hidden;flex:none}
+        .spine.sp-a{background:#8d5a3b;height:112px} .spine.sp-b{background:#4e6a5b;height:102px}
+        .spine.sp-c{background:#9d4630;height:118px} .spine.sp-d{background:#5c4a3a;height:106px}
+        .spine.more{background:#d8cfbf;height:84px} .spine.more .spine-t{color:#2a1f14;writing-mode:horizontal-tb;transform:none;font-size:14px}
+        .spine-t{writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Playfair Display',serif;font-size:11.5px;letter-spacing:.03em;
+          color:rgba(255,255,255,.92);white-space:nowrap;max-height:100px;overflow:hidden;text-overflow:ellipsis}
+        .shelf-empty{font-size:13.5px;font-style:italic;color:rgba(42,31,20,.5);align-self:center;margin:0 auto;padding-bottom:30px}
         /* Retired words on the Vocabulary tab */
         .learned{margin:0 0 16px;border:1px solid rgba(30,122,60,.3);border-radius:12px;background:rgba(30,122,60,.05)}
         .learned summary{cursor:pointer;padding:10px 14px;font-family:'Playfair Display',serif;font-size:16px;color:#000;
@@ -10665,7 +10697,7 @@ export default function App() {
                     stats={stats}
                     learned={learned.length}
                     due={dueNow}
-                    booksFinished={Object.keys(finishedMap).filter(function(k){ return finishedMap[k] && !finishedMap[k].removed; }).length}
+                    finishedMap={finishedMap}
                     onReview={function(){ setTab("vocab"); setQuizMode(false); setQuizMenu(true); }} />
                 )}
                 <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:10}}>
