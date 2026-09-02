@@ -3057,8 +3057,10 @@ function SupportLinks(props) {
   var raised = (f && f.raised) || 0;
   var pct = goal > 0 ? Math.min(100, Math.round((raised / goal) * 100)) : 0;
   var covered = goal > 0 && raised >= goal;
-  // Costs met: say so and stop asking. A donate button that keeps soliciting
-  // past the bill it was raised for is asking for something else.
+  // The site's own appeal is switched off altogether (see DonateCosts), so
+  // the "costs are covered" notice that went with it is off too: the page
+  // asks for Memorial and for nothing else.
+  covered = false;
   if (covered) {
     return (
       <div className="support">
