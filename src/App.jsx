@@ -3177,6 +3177,10 @@ function isLocalMsVoice(v) {
 // /vocab/blocks/*.json fetches that used to fire on every page load are
 // skipped, so a disabled feature costs nothing.
 var WORDBANK_ENABLED = false;
+// The forum is switched off: Discord does the job better. The tab, the
+// page, the chooser button and the board loader are all gated on this; the
+// code and /api/forum stay in place so it can come back by flipping it.
+var FORUM_ENABLED = false;
 
 export default function App() {
   // ── Account (optional) ────────────────────────────────────────────────────
@@ -3663,7 +3667,7 @@ export default function App() {
     return d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
   };
   useEffect(function() {
-    if (tab === "forum" && me) loadForumBoard(forumCat);
+    if (FORUM_ENABLED && tab === "forum" && me) loadForumBoard(forumCat);
   }, [tab, forumCat, me && me.id]);
   var [wbCur, setWbCur]                 = useState(null);      // {card, correct, options}
   var [wbSel, setWbSel]                 = useState(null);
@@ -10777,7 +10781,7 @@ export default function App() {
               short to begin with — they sit beside the name now and the page
               gets the height back. */}
           <div className="tabs">
-            {["chat","vocab","grammar","forum","music"].map(function(t){
+            {["chat","vocab","grammar","forum","music"].filter(function(t){ return t !== "forum" || FORUM_ENABLED; }).map(function(t){
               return (
                 <button key={t} className={"tab"+(tab===t?" on":"")} onClick={function(){
                   // The Reading tab always lands on the "Open a Russian book"
@@ -10915,7 +10919,7 @@ export default function App() {
           </div>
         )}
 
-        {tab==="forum" && (
+        {FORUM_ENABLED && tab==="forum" && (
           <div className="main">
               <div className="ss" style={{alignItems:"stretch",maxWidth:680,width:"100%"}}>
                 <div style={{textAlign:"center"}}>
@@ -11103,10 +11107,12 @@ export default function App() {
                       <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Drill the most common Russian words, ranked by real-world frequency, in blocks of 30.</div>
                     </button>
                   )}
+                  {FORUM_ENABLED && (
                   <button className="btn-p mode-btn" onClick={function(){ setTab("forum"); }} style={{textAlign:"left",padding:"18px 22px"}}>
                     <div style={{fontSize:22,marginBottom:4}}>💬 Forum</div>
                     <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Request books, report bugs, and talk with other readers.</div>
                   </button>
+                  )}
                 </div>
               </div>
             )}
