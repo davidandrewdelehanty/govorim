@@ -175,6 +175,7 @@ def propose(args):
               file=sys.stderr)
 
     explicit = dict(p.split("=", 1) for p in (args.vtt or []))
+    ident = cbt.words_of(args.ident_words) if args.ident_words else None
 
     # chapters that share a video are matched together, in order, so a match can
     # never land before the previous chapter's.
@@ -220,6 +221,25 @@ def propose(args):
                 # expectation forward rather than letting the cursor stall.
                 expect = anchor + 60.0
                 continue
+            # Some recordings announce every chapter ("Лев Николаевич Толстой.
+            # Юность. Глава тринадцатая.") before reading it. The body match
+            # lands after that announcement, which would drop the reader into
+            # the prose with the heading already gone. When --ident-words is
+            # given, step back to the start of the announcement so the chapter
+            # begins where a listener would say it begins.
+            if ident:
+                # Nearest announcement BEFORE the prose, not the earliest in
+                # the window: scanning back from the text, the first "глава" we
+                # meet is this chapter's, and an earlier one belongs to the
+                # chapter before it.
+                limit = words[i]["b"] - args.ident_back
+                k = i - 1
+                while k > cursor and words[k]["b"] >= limit:
+                    if words[k]["w"] == ident[0] and \
+                       [x["w"] for x in words[k:k + len(ident)]] == ident:
+                        i = k
+                        break
+                    k -= 1
             t = words[i]["b"]
             rows.append({
                 "slug": entry.get("slug", args.slug),
@@ -337,6 +357,11 @@ def main():
     ap.add_argument("--out", default="timings.csv")
     ap.add_argument("--window", type=float, default=600.0,
                     help="seconds either side of the expected start to search (default 10 min)")
+    ap.add_argument("--ident-words",
+                    help="spoken announcement that opens each chapter, e.g. "
+                         "\"лев николаевич\"; the start is pulled back to it")
+    ap.add_argument("--ident-back", type=float, default=45.0,
+                    help="how many seconds before the text to look for it")
     ap.add_argument("--probe", type=int, default=20,
                     help="words of a chapter's opening to match on; longer resists set phrases")
     ap.add_argument("--lead", type=float, default=1.0, help="seconds kept before the first word")
