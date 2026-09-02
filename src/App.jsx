@@ -4937,18 +4937,40 @@ export default function App() {
   // deep in a single scroll. These are the marks to jump between. They come
   // out of the text rather than the catalogue because the paragraph a reader
   // scrolls to is the paragraph the text puts the mark in.
+  //
+  // Prose gets the same index when a chapter carries part markers the splitter
+  // left in place — «Анна на шее» is one section whose second half opens with
+  // a bare "II", and a lone marker is not enough to split on (see the two-
+  // distinct-numerals rule in parseFb2). The marker lines are already on the
+  // page; this only makes them reachable. The chapter's own opening is listed
+  // first so the index reads "I · II" rather than a stray "II".
   var bibleChapters = useMemo(function() {
-    if (!(bookMeta && bookMeta.isBible)) return [];
+    var isBible = isBibleBook(bookMeta);
     var out = [];
-    String((curChapter && curChapter.text) || "")
+    var paras = String((curChapter && curChapter.text) || "")
       .split(/\n{2,}/)
-      .filter(function(t) { return t.trim().length > 0; })
-      .forEach(function(t, i) {
+      .filter(function(t) { return t.trim().length > 0; });
+    if (isBible) {
+      paras.forEach(function(t, i) {
         var m = t.trim().match(/^Глава\s+(\d+)$/);
         if (m) out.push({ at: i, n: m[1] });
       });
+      return out;
+    }
+    var bare = function(t) {
+      var s = t.trim().replace(/[ХІѴСМД]/g, function (c) { return FB2_ROMAN_HOMOGLYPHS[c]; });
+      var m = s.match(/^([IVXLCDM]{1,8})\.?$/i) || s.match(/^Глава\s+(\d{1,3}|[IVXLCDM]{1,8})\.?$/i);
+      return m ? m[1].toUpperCase() : "";
+    };
+    paras.forEach(function(t, i) {
+      var n = bare(t);
+      if (n && i > 0) out.push({ at: i, n: n });
+    });
+    if (!out.length) return out;
+    var head = bare(String((curChapter && curChapter.heading) || "").replace(/^.*—\s*/, ""));
+    out.unshift({ at: 0, n: head || "↑" });
     return out;
-  }, [curChapter && curChapter.text, bookMeta && bookMeta.isBible]);
+  }, [curChapter && curChapter.text, curChapter && curChapter.heading, bookMeta && bookMeta.isBible]);
   var lastCidxRef = useRef(-1);
   // A reading is meant to be listened to WHILE reading, which means the pause
   // button has to stay reachable — scrolling the player off the top of the
@@ -12516,8 +12538,9 @@ export default function App() {
                           </nav>
                         )}
                         {/* A whole book on one page needs its chapters
-                            reachable without dragging the scrollbar. */}
-                        {bibleChapters.length > 1 && (
+                            reachable without dragging the scrollbar; a chapter
+                            with in-text part markers, its parts. */}
+                        {bibleChapters.length > 1 && !(curChapter.sections && curChapter.sections.length > 1) && (
                           <nav className="story-index bible-index" aria-label="Chapters">
                             {bibleChapters.map(function(ch) {
                               return (
