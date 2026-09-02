@@ -4040,6 +4040,34 @@ export default function App() {
     var k = bookKey(meta);
     return !!(k && finishedMap[k] && !finishedMap[k].removed);
   };
+  // Two ways of undoing a reading. "Reset" puts a book back at its first
+  // page — for the reader who skimmed ahead to see what a book is like and
+  // now means to read it properly — and keeps it on the Continue list at 0%.
+  // "Forget" drops it from the list altogether, as if it had never been
+  // opened. Both act on the same record the reader resumes from, so the next
+  // opening honours them. The server copy of progress feeds only the admin's
+  // "books opened" count and is left alone.
+  var writeProgressMap = async function(fn) {
+    try {
+      var r = await storage.get(BOOK_PROGRESS);
+      var all = r ? (JSON.parse(r.value) || {}) : {};
+      all = fn(all) || all;
+      await storage.set(BOOK_PROGRESS, JSON.stringify(all));
+      setProgressMap(all);
+    } catch (e) {}
+  };
+  var resetBookProgress = function(key) {
+    if (!key) return;
+    return writeProgressMap(function(all) {
+      if (all[key]) all[key] = Object.assign({}, all[key], { cidx: 0, pidx: 0, sec: 0, lastRead: Date.now() });
+      return all;
+    });
+  };
+  var forgetBookProgress = function(key) {
+    if (!key) return;
+    return writeProgressMap(function(all) { delete all[key]; return all; });
+  };
+
   var toggleFinished = function(meta) {
     var k = bookKey(meta);
     if (!k) return;
@@ -10088,16 +10116,20 @@ export default function App() {
         }
         /* Continue reading: a short list, not a stack of tiles. */
         .lcard{padding:10px 0;border:0;border-bottom:1px solid var(--rule-soft);background:none;display:grid;
-          grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"head when" "bar bar";gap:2px 16px;align-items:baseline}
+          grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"head when" "pct pct" "bar bar";gap:2px 16px;align-items:baseline}
         .lcard:hover{background:none}
         .lcard:hover .lchead{color:var(--rubric)}
         .lcard.cur{background:none;border-color:var(--rule-soft)}
         .lchead{grid-area:head;font-family:var(--display);font-size:17px;margin:0}
         .lcard .lcn{grid-area:when;font-family:var(--sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin:0;color:var(--ink-3)!important}
-        .lcard > div[style*="marginTop:8"],.lcard > div[style*="margin-top: 8px"]{grid-area:bar;font-family:var(--sans);font-size:10px;letter-spacing:.1em;margin-top:2px!important}
+        .lcard > div[style*="marginTop:8"],.lcard > div[style*="margin-top: 8px"]{grid-area:pct;font-family:var(--sans);font-size:10px;letter-spacing:.1em;margin-top:2px!important}
         .lcard > div[style*="height:3"],.lcard > div[style*="height: 3px"]{grid-area:bar;margin-top:0!important}
         .lcard > div[style*="height: 3px"] > div,.lcard > div[style*="height:3"] > div{background:var(--ink)!important}
         .lcp{font-family:var(--serif)}
+        .lcard-act{background:none;border:0;border-bottom:1px solid transparent;padding:0;margin-left:12px;cursor:pointer;
+          font-family:var(--sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+        .lcard-act:hover{color:var(--rubric);border-bottom-color:var(--rubric)}
+        .read-acts{display:inline-flex;align-items:center;gap:16px;flex:none}
         /* Contents drawer (same .lcard) */
         .navpanel .lcard{display:block;padding:8px 0}
         .navpanel .lcard.cur .lchead{color:var(--rubric)}
@@ -10160,7 +10192,7 @@ export default function App() {
         .rwhl{background:var(--paper-2);border-bottom:0;color:var(--ink)}
         .rw-reading{color:var(--rubric);border-bottom:1px solid var(--rubric)}
         .rw.vsaved{color:var(--rubric);border-bottom:1px dotted rgba(155,45,31,.5)}
-        .pjump,.pbm{background:none;border:0;opacity:.3;filter:none;color:var(--ink);font-size:11px;width:20px;height:22px;margin:3px 6px 0 -26px}
+        .pjump,.pbm{background:none;border:0;opacity:.22;filter:none;color:var(--ink);font-size:11px;width:20px;height:22px;margin:3px 6px 0 -26px}
         .pjump:hover,.pbm:hover{background:none;opacity:1;color:var(--rubric)}
         .pbm.on{background:none;border:0;opacity:1;color:var(--rubric)}
         @media(max-width:900px){.pjump,.pbm{margin-left:-2px}}
@@ -12215,7 +12247,7 @@ export default function App() {
                       {/* Continue Reading — books with saved progress, newest first.
                           Clicking one resumes at the saved chapter/page. */}
                       {(function() {
-                        var entries = Object.keys(progressMap).map(function(k){ return progressMap[k]; });
+                        var entries = Object.keys(progressMap).map(function(k){ return Object.assign({ key: k }, progressMap[k]); });
                         // A book marked read is finished, and there is nothing to
                         // continue. Progress is kept — unmark it and it comes back
                         // where it was — but it stops occupying a slot here, which
@@ -12277,6 +12309,15 @@ export default function App() {
                                     <div className="lcn" style={{color:"rgba(0,0,0,.5)"}}>
                                       {humanLast}
                                       {isFinished(match.book) && <span className="lib-done" style={{marginLeft:8}}>read</span>}
+                                      {/* Undo, two ways: back to the first page, or off the
+                                          list entirely. Both stop the click reaching the
+                                          row, which would open the book instead. */}
+                                      {(rec.cidx > 0 || rec.pidx > 0) && (
+                                        <button type="button" className="lcard-act" title="Back to the first page — for a book you skimmed and now mean to read"
+                                          onClick={function(e){ e.stopPropagation(); resetBookProgress(rec.key); }}>reset</button>
+                                      )}
+                                      <button type="button" className="lcard-act" title="Take this book off the list"
+                                        onClick={function(e){ e.stopPropagation(); forgetBookProgress(rec.key); }}>remove</button>
                                     </div>
                                     <div className="lchead">{bookLabel(rec)}</div>
                                     <div style={{marginTop:8,fontSize:11,color:"rgba(0,0,0,.55)"}}>
@@ -12762,12 +12803,20 @@ export default function App() {
                             {/* Marking a book read is the reader's own judgement, not something
                                 inferred from reaching the last page — so it sits on every page,
                                 and clicking it again takes the mark off. */}
-                            <button
-                              className={"mark-read" + (isFinished(bookMeta) ? " on" : "")}
-                              onClick={function(){ toggleFinished(bookMeta); }}
-                              title={isFinished(bookMeta) ? "Marked as read — click to undo" : "Mark this book as read"}>
-                              {isFinished(bookMeta) ? "Read" : "Mark as read"}
-                            </button>
+                            <span className="read-acts">
+                              {(cidx > 0 || pidx > 0) && (
+                                <button className="mark-read" title="Back to the first page and forget where you were — for a book you skimmed and now mean to read"
+                                  onClick={function(){ resetBookProgress(bookKey(bookMeta)); setCbm(0); startLit(0, chapters); }}>
+                                  Start over
+                                </button>
+                              )}
+                              <button
+                                className={"mark-read" + (isFinished(bookMeta) ? " on" : "")}
+                                onClick={function(){ toggleFinished(bookMeta); }}
+                                title={isFinished(bookMeta) ? "Marked as read — click to undo" : "Mark this book as read"}>
+                                {isFinished(bookMeta) ? "Read" : "Mark as read"}
+                              </button>
+                            </span>
                           </div>
                         )}
                         <div className="lhdr">
