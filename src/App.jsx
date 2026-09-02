@@ -3657,6 +3657,58 @@ export default function App() {
       .then(function(j){ if (j) setExBank(j); })
       .catch(function(){});
   };
+  // Tatoeba: a few million CC-BY sentence pairs, built into shards by
+  // tools/build_tatoeba.py and keyed by lemma. Whole-index-in-the-browser is
+  // out of the question at that size, so a lookup fetches the ONE shard its
+  // lemma hashes into — a hundred kilobytes, cached for the session, and most
+  // readers only ever touch a handful. The hash below must stay identical to
+  // the Python one in the builder.
+  var [tatShards, setTatShards] = useState({});      // shard index → data
+  var tatMeta = useRef(null);
+  var tatTried = useRef({});
+  var fnv1a = function(str) {
+    var h = 0x811C9DC5;
+    for (var i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
+    return h;
+  };
+  var loadTatoeba = async function(lemma) {
+    var key = String(lemma || "").toLowerCase().trim();
+    if (!key) return;
+    try {
+      if (!tatMeta.current) {
+        if (tatTried.current.__meta) return;
+        tatTried.current.__meta = true;
+        var mr = await fetch("/vocab/tatoeba/index.json");
+        if (!mr.ok) return;
+        tatMeta.current = await mr.json();
+      }
+      var n = (tatMeta.current && tatMeta.current.shards) || 0;
+      if (!n) return;
+      var shard = fnv1a(key) % n;
+      if (tatTried.current[shard]) return;
+      tatTried.current[shard] = true;
+      var r = await fetch("/vocab/tatoeba/s" + (shard < 10 ? "0" : "") + shard + ".json");
+      if (!r.ok) return;
+      var data = await r.json();
+      setTatShards(function(cur){ var next = Object.assign({}, cur); next[shard] = data; return next; });
+    } catch (e) { /* examples are a garnish, never a blocker */ }
+  };
+  // Whatever Tatoeba has for this word, once its shard has arrived.
+  var tatExamples = function(word, lemma) {
+    var n = tatMeta.current && tatMeta.current.shards;
+    if (!n) return [];
+    var tries = [lemma, word].filter(Boolean);
+    for (var i = 0; i < tries.length; i++) {
+      var k = String(tries[i]).toLowerCase().trim();
+      var sh = tatShards[fnv1a(k) % n];
+      if (sh && sh[k]) return sh[k];
+      var de = k.replace(/ё/g, "е");
+      var sh2 = tatShards[fnv1a(de) % n];
+      if (sh2 && sh2[de]) return sh2[de];
+    }
+    return [];
+  };
+
   // The deck's example for a word or its lemma, as {ru, en} — or nothing.
   // A sentence from the deck is a GENERAL example: it shows the word's
   // commonest sense, which is not necessarily the sense the reader just met.
@@ -6543,6 +6595,9 @@ export default function App() {
         }
       }
       setPopup(function(p){ return p ? Object.assign({},p,{data:data,loading:false}) : null; });
+      // Fetch this lemma's Tatoeba shard in the background, so "See other
+      // examples" has something to show the moment it is tapped.
+      loadTatoeba((data && data.lemma) || clean);
       // If this word is already saved, remember the form the reader just
       // clicked. Generated paradigms miss the irregulars (пишу from писать,
       // люблю from любить); a form the reader has actually looked up is
@@ -7595,6 +7650,7 @@ export default function App() {
       var bx = bankExample(v.ru, v.lemma);
       var met = Array.isArray(v.sentences) ? v.sentences
               : (v.srcSentence ? [{ s: v.srcSentence, w: v.srcWhere || "" }] : []);
+      var pick = met.length ? Math.floor(Math.random() * met.length) : 0;
       questions.push({
         key: v._key || v.id || v.ru,
         word: v.ru,
@@ -7607,10 +7663,12 @@ export default function App() {
         // earns its keep.
         // One of the reader's own encounters, chosen at random so a word met
         // in several senses shows a different one each time it comes round.
-        sentence: (met.length ? met[Math.floor(Math.random() * met.length)].s
+        sentence: (met.length ? met[pick].s
                               : (v.example || v.exBankRu || (bx && bx.ru) || "")),
         sentenceEn: met.length ? "" : (v.exampleTranslation || v.exBankEn || (bx && bx.en) || ""),
-        sentenceWhere: met.length ? (met[0].w || v.srcTitle || "") : "",
+        // The book credited has to be the book the shown sentence came from,
+        // so the choice is made once and both fields read the same index.
+        sentenceWhere: met.length ? (met[pick].w || v.srcTitle || "") : "",
         sentenceOf: met.length,
       });
     });
@@ -9355,6 +9413,8 @@ export default function App() {
         .pexbtn:hover{border-color:rgba(42,31,20,.5);background:rgba(42,31,20,.04)}
         .pexbtn-sub{font-size:11.5px;font-style:italic;color:rgba(42,31,20,.5)}
         .pexlist{display:flex;flex-direction:column;gap:6px;margin:8px 0 2px}
+        .pctx-credit{font-size:10.5px;color:rgba(42,31,20,.45);margin-top:2px}
+        .pctx-credit a{color:inherit}
         .ictx-wrap{display:flex;flex-direction:column;gap:5px;margin-top:5px}
         .ictx-lbl{font-family:'Inter',sans-serif;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:rgba(42,31,20,.42)}
         .iex.ictx{font-style:normal;border-left:2px solid rgba(42,31,20,.22);padding-left:9px}
@@ -13311,7 +13371,8 @@ export default function App() {
                       in front of the reader. */}
                   {(function(){
                     var bx = bankExample(popup.word, popup.data.lemma);
-                    var hasOther = !!(popup.data.example || bx);
+                    var tat = tatExamples(popup.word, popup.data.lemma);
+                    var hasOther = !!(popup.data.example || bx || tat.length);
                     if (!hasOther) return null;
                     if (!popup.showEx) {
                       return (
@@ -13337,6 +13398,23 @@ export default function App() {
                             <div className="pctx-lbl">General example{bx.pos ? " · as a " + bx.pos : ""}</div>
                             <p className="pctx-s" lang="ru">{bx.ru}</p>
                             {bx.en && <div className="pctx-en">{bx.en}</div>}
+                          </div>
+                        )}
+                        {tat.map(function(row, i){
+                          return (
+                            <div key={"t" + i} className="pctx bank">
+                              <div className="pctx-lbl">From Tatoeba</div>
+                              <p className="pctx-s" lang="ru">{markWord(row[0], popup.word).map(function(part, k){
+                                return k === 1 ? <b key={k}>{part}</b> : <span key={k}>{part}</span>;
+                              })}</p>
+                              {row[1] && <div className="pctx-en">{row[1]}</div>}
+                            </div>
+                          );
+                        })}
+                        {tat.length > 0 && (
+                          <div className="pctx-credit">
+                            Sentences from <a href="https://tatoeba.org/" target="_blank" rel="noreferrer">Tatoeba</a>
+                            {" · "}<a href="https://creativecommons.org/licenses/by/2.0/fr/" target="_blank" rel="noreferrer">CC BY 2.0 FR</a>
                           </div>
                         )}
                       </div>
