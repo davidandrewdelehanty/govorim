@@ -3132,7 +3132,7 @@ function FileBtn({ label, onLoad }) {
     <div style={{display:"flex",flexDirection:"column",gap:6,width:"100%"}}>
       <input ref={ref} type="file" accept=".epub,.fb2,.zip,.txt,.html,.htm,.xhtml,.pdf" style={{display:"none"}} onChange={go}/>
       <button className="btn-p" onClick={function(){ ref.current && ref.current.click(); }} disabled={busy}>
-        {busy ? "Loading…" : "📂 " + label}
+        {busy ? "Loading…" : label}
       </button>
       {err && <p style={{color:"#9d4630",fontSize:13}}>{err}</p>}
     </div>
@@ -8122,7 +8122,7 @@ export default function App() {
               var r = e.currentTarget.getBoundingClientRect();
               setBmMenu({ x: r.left, y: r.bottom + 6, off: paraOff,
                           here: bmHere, bm: bmEntry || null });
-            }}>🔖</button>
+            }}>⚑</button>
         ) : null;
         var isTight = !!(curChapter && curChapter.tightIdx && curChapter.tightIdx.indexOf(entry.chIdx) !== -1);
         var pMargin = {marginBottom: singlePageMode ? "0.35em"
@@ -8675,9 +8675,9 @@ export default function App() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,500&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap');
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-        html,body{height:100%;background:#f5f0e8;color:#000;font-family:'Crimson Pro',serif;overflow:hidden}
+        html,body{height:100%;background:#f5f0e8;color:#000;font-family:'Literata',serif;overflow:hidden}
         /* Lock the app to the viewport: full width, viewport height. Inner panels
            (book text, chat messages) scroll within their own bounds — the page
            itself never scrolls. Uses 100dvh (dynamic viewport height) so mobile
@@ -8694,16 +8694,16 @@ export default function App() {
           align-items:center;gap:18px;position:relative;z-index:10;flex-wrap:nowrap}
         .hdr-right{display:flex;align-items:center;gap:12px;margin-left:auto;flex:none}
         .logo{display:flex;align-items:baseline;gap:10px;flex:none}
-        .lru{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#000}
+        .lru{font-family:'Old Standard TT',serif;font-size:22px;font-weight:700;color:#000}
         .lsub{font-size:11px;color:rgba(42,31,20,.35);letter-spacing:2.5px;text-transform:uppercase}
         .tbadge{background:rgba(42,31,20,.1);border:1px solid rgba(42,31,20,.25);color:#000;padding:6px 14px;border-radius:20px;font-size:13px;cursor:pointer;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         /* Library browser: search + card-grid of preset & uploaded books.
            Replaces the prior <select> dropdown on the Read launch screen. */
-        .lib-search{width:100%;padding:12px 16px;font-size:16px;background:rgba(42,31,20,.05);border:1px solid rgba(42,31,20,.18);border-radius:10px;color:#000;font-family:'Crimson Pro',serif;margin-bottom:20px;box-sizing:border-box;letter-spacing:.01em}
+        .lib-search{width:100%;padding:12px 16px;font-size:16px;background:rgba(42,31,20,.05);border:1px solid rgba(42,31,20,.18);border-radius:10px;color:#000;font-family:'Literata',serif;margin-bottom:20px;box-sizing:border-box;letter-spacing:.01em}
         .lib-search:focus{outline:none;border-color:rgba(42,31,20,.5);background:rgba(42,31,20,.08)}
         .lib-search::placeholder{color:rgba(42,31,20,.4)}
         .lib-cats{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
-        .lib-cat-chip{padding:8px 15px;border-radius:999px;border:1px solid rgba(42,31,20,.16);background:rgba(42,31,20,.04);color:rgba(42,31,20,.8);font-family:'Crimson Pro',serif;font-size:14px;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:7px;line-height:1}
+        .lib-cat-chip{padding:8px 15px;border-radius:999px;border:1px solid rgba(42,31,20,.16);background:rgba(42,31,20,.04);color:rgba(42,31,20,.8);font-family:'Literata',serif;font-size:14px;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:7px;line-height:1}
         .lib-cat-chip:hover{background:rgba(42,31,20,.14);border-color:rgba(42,31,20,.4);transform:translateY(-1px)}
         .lib-cat-chip.on{background:rgba(42,31,20,.18);border-color:rgba(42,31,20,.6);color:#000;font-weight:600}
         .lib-cat-chip .n{font-size:11px;opacity:.5;font-variant-numeric:tabular-nums}
@@ -8713,7 +8713,7 @@ export default function App() {
         .lib-authors{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
         .lib-author{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:10px;
           background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.12);cursor:pointer;
-          font-family:'Crimson Pro',serif;font-size:15px;color:#000;line-height:1;transition:all .15s}
+          font-family:'Literata',serif;font-size:15px;color:#000;line-height:1;transition:all .15s}
         .lib-author:hover{background:rgba(42,31,20,.14);border-color:rgba(42,31,20,.4);transform:translateY(-1px)}
         .lib-author .n{font-size:11px;color:rgba(42,31,20,.45);font-variant-numeric:tabular-nums}
         .lib-cat-hint{padding:34px 16px;text-align:center;color:rgba(42,31,20,.45);font-style:italic;font-size:14px}
@@ -8725,7 +8725,7 @@ export default function App() {
         .lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:10px}
         .lib-card{padding:14px;border-radius:10px;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.1);cursor:pointer;transition:all .15s;position:relative;display:flex;flex-direction:column;gap:4px}
         .lib-card:hover{background:rgba(42,31,20,.08);border-color:rgba(42,31,20,.3);transform:translateY(-1px)}
-        .lib-card-title{font-family:'Playfair Display',serif;font-size:15px;color:#000;line-height:1.3;margin-bottom:8px}
+        .lib-card-title{font-family:'Old Standard TT',serif;font-size:15px;color:#000;line-height:1.3;margin-bottom:8px}
         .lib-card-author{font-size:12px;color:rgba(42,31,20,.6);font-style:italic;margin-bottom:6px}
         .lib-card-meta{display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:5px;font-size:11px;color:rgba(42,31,20,.4);margin-top:auto;padding-top:4px}
         /* What a listing actually has: the Russian text, an English translation
@@ -8765,10 +8765,10 @@ export default function App() {
         .chvid-scrub{display:flex;align-items:center;gap:8px;width:100%;max-width:640px;
           margin:8px 0 16px;padding:7px 10px;box-sizing:border-box;
           background:rgba(42,31,20,.05);border:1px solid rgba(42,31,20,.13);border-radius:10px;
-          font-family:'Inter',sans-serif}
+          font-family:'IBM Plex Sans',sans-serif}
         .chvid-scrub button{flex:none;min-width:38px;padding:5px 8px;font-size:12px;line-height:1.2;
           background:rgba(255,255,255,.55);border:1px solid rgba(42,31,20,.16);border-radius:7px;
-          color:rgba(42,31,20,.8);cursor:pointer;font-family:'Inter',sans-serif;transition:all .12s}
+          color:rgba(42,31,20,.8);cursor:pointer;font-family:'IBM Plex Sans',sans-serif;transition:all .12s}
         .chvid-scrub button:hover{background:rgba(42,31,20,.18);border-color:rgba(42,31,20,.45);color:#000}
         .chvid-scrub input[type=range]{flex:1 1 auto;min-width:60px;height:24px;accent-color:#2a1f14;cursor:pointer}
         .chvid-scrub .t{flex:none;font-size:12px;color:rgba(42,31,20,.6);white-space:nowrap;
@@ -8779,11 +8779,11 @@ export default function App() {
         .dub-note b{font-weight:600;color:#2a1f14}
         .no-audio{max-width:640px;margin:0 0 16px;padding:10px 14px;border-radius:10px;
           background:rgba(42,31,20,.05);border:1px solid rgba(42,31,20,.14);
-          font-family:'Crimson Pro',serif;font-size:14px;color:rgba(42,31,20,.72)}
+          font-family:'Literata',serif;font-size:14px;color:rgba(42,31,20,.72)}
         .no-audio .sub{display:block;font-size:12.5px;color:rgba(42,31,20,.5);margin-top:2px}
         .one-rec{max-width:640px;margin:0 0 16px;padding:10px 14px;border-radius:10px;
           background:rgba(42,31,20,.09);border:1px solid rgba(42,31,20,.3);
-          font-family:'Crimson Pro',serif;font-size:14px;color:rgba(42,31,20,.75)}
+          font-family:'Literata',serif;font-size:14px;color:rgba(42,31,20,.75)}
         .one-rec .sub{display:block;font-size:12.5px;color:rgba(42,31,20,.55);margin-top:3px;line-height:1.5}
         /* The pin's little menu. Fixed, so it is not clipped by the column it
            springs from. */
@@ -8791,7 +8791,7 @@ export default function App() {
           background:#fbf8f2;border:1px solid rgba(42,31,20,.45);border-radius:10px;
           padding:5px;box-shadow:0 6px 20px rgba(42,31,20,.16);min-width:190px}
         .bm-menu button{text-align:left;background:none;border:none;cursor:pointer;
-          font-family:'Crimson Pro',serif;font-size:14px;color:#000;padding:8px 12px;
+          font-family:'Literata',serif;font-size:14px;color:#000;padding:8px 12px;
           border-radius:7px;transition:background .12s}
         .bm-menu button:hover{background:rgba(42,31,20,.16)}
         .bm-menu .at{color:rgba(42,31,20,.5);font-size:12px;font-variant-numeric:tabular-nums}
@@ -8836,22 +8836,22 @@ export default function App() {
         @media (max-height:720px){.chvid-dock.stuck .chvid{padding-bottom:min(56.25%,120px,15vh)}}
         .story-index{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 20px;padding:12px 14px;
           border:1px solid rgba(42,31,20,.12);border-radius:10px;background:rgba(42,31,20,.03)}
-        .story-index-link{font-family:'Inter',sans-serif;font-size:12px;line-height:1.2;
+        .story-index-link{font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.2;
           padding:5px 10px;border-radius:14px;cursor:pointer;color:rgba(42,31,20,.7);
           border:1px solid rgba(42,31,20,.16);background:transparent;transition:all .15s}
         .story-index-link:hover{border-color:rgba(42,31,20,.55);color:#000;background:rgba(42,31,20,.08)}
-        .sec-div{font-family:'Playfair Display',serif;font-size:15px;letter-spacing:.04em;
+        .sec-div{font-family:'Old Standard TT',serif;font-size:15px;letter-spacing:.04em;
           color:rgba(42,31,20,.55);margin:26px 0 10px;padding-top:14px;
           border-top:1px solid rgba(42,31,20,.12)}
         .lib-filters{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap}
         .lib-filters .lib-search{flex:1 1 220px;min-width:0}
-        .lib-filter-btn{flex:none;font-family:'Inter',sans-serif;font-size:12px;white-space:nowrap;
+        .lib-filter-btn{flex:none;font-family:'IBM Plex Sans',sans-serif;font-size:12px;white-space:nowrap;
           padding:0 14px;border-radius:8px;cursor:pointer;transition:all .15s;
           border:1px solid rgba(42,31,20,.18);background:transparent;color:rgba(42,31,20,.6)}
         .lib-filter-btn:hover{border-color:rgba(30,122,60,.45);color:#1e7a3c}
         .lib-filter-btn.on{border-color:rgba(30,122,60,.45);background:rgba(30,122,60,.10);color:#1e7a3c;font-weight:600}
         .lib-done{padding:2px 8px;border-radius:10px;font-size:10px;letter-spacing:.3px;font-weight:700;white-space:nowrap;color:#1e7a3c;background:rgba(30,122,60,.10);border:1px solid rgba(30,122,60,.35)}
-        .mark-read{flex:none;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.3px;padding:4px 10px;border-radius:12px;cursor:pointer;white-space:nowrap;border:1px solid rgba(42,31,20,.18);background:transparent;color:rgba(42,31,20,.55);transition:all .15s}
+        .mark-read{flex:none;font-family:'IBM Plex Sans',sans-serif;font-size:11px;letter-spacing:.3px;padding:4px 10px;border-radius:12px;cursor:pointer;white-space:nowrap;border:1px solid rgba(42,31,20,.18);background:transparent;color:rgba(42,31,20,.55);transition:all .15s}
         .mark-read:hover{border-color:rgba(30,122,60,.45);color:#1e7a3c}
         .mark-read.on{border-color:rgba(30,122,60,.45);background:rgba(30,122,60,.10);color:#1e7a3c;font-weight:600}
         .lib-card-remove{background:transparent;border:none;color:rgba(42,31,20,.35);font-size:18px;cursor:pointer;padding:0 4px;line-height:1}
@@ -8862,12 +8862,12 @@ export default function App() {
         .lib-card.is-loading > *:not(.lib-card-loader){opacity:.3}
         .lib-card.is-disabled{pointer-events:none;opacity:.45}
         .lib-card-loader{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(35,32,26,.65);border-radius:10px;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);z-index:1}
-        .lib-card-loader span{font-size:13px;color:#000;font-family:'Crimson Pro',serif;font-style:italic}
+        .lib-card-loader span{font-size:13px;color:#000;font-family:'Literata',serif;font-style:italic}
         /* Persistent CEFR level selector pinned in the header. Compact pill style
            that matches the Topic badge. The label sits to the left of the dropdown. */
         .level-wrap{display:flex;align-items:center;gap:6px}
         .level-lbl{font-size:10px;color:rgba(42,31,20,.4);text-transform:uppercase;letter-spacing:1.5px;font-weight:600}
-        .level-pill{background:rgba(42,31,20,.1);border:1px solid rgba(42,31,20,.25);color:#000;padding:5px 10px;border-radius:14px;font-size:13px;font-family:'Crimson Pro',serif;cursor:pointer;width:auto;outline:none}
+        .level-pill{background:rgba(42,31,20,.1);border:1px solid rgba(42,31,20,.25);color:#000;padding:5px 10px;border-radius:14px;font-size:13px;font-family:'Literata',serif;cursor:pointer;width:auto;outline:none}
         .level-pill:hover{background:rgba(42,31,20,.18)}
         .level-pill option{background:#ede8dd}
         @media(max-width:600px){.level-lbl{display:none}.level-pill{padding:4px 8px;font-size:12px}}
@@ -8880,7 +8880,7 @@ export default function App() {
           scrollbar-width:none;-ms-overflow-style:none}
         .tabs::-webkit-scrollbar{display:none}
         .tab{padding:6px 13px;background:none;border:1px solid transparent;border-radius:7px;
-          color:rgba(42,31,20,.66);font-family:'Crimson Pro',serif;font-size:14.5px;
+          color:rgba(42,31,20,.66);font-family:'Literata',serif;font-size:14.5px;
           cursor:pointer;white-space:nowrap;flex:none;transition:background .15s,color .15s}
         .tab.on{color:#000;font-weight:600;background:rgba(42,31,20,.16);
           border-color:rgba(42,31,20,.32)}
@@ -8901,7 +8901,7 @@ export default function App() {
         .main{flex:1;display:flex;flex-direction:column;position:relative;z-index:1;min-height:0}
         .ss{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:48px 28px;text-align:center;gap:22px;overflow-y:auto;min-height:0}
         .sico{font-size:54px;line-height:1}
-        .sti{font-family:'Playfair Display',serif;font-size:30px;color:#000;font-weight:400}
+        .sti{font-family:'Old Standard TT',serif;font-size:30px;color:#000;font-weight:400}
         .sde{color:rgba(42,31,20,.5);font-size:16px;max-width:500px;line-height:1.6}
         .news{width:100%;max-width:500px;margin:0 0 22px;padding:13px 16px;text-align:left;
               background:rgba(200,162,118,.10);border:1px solid rgba(200,162,118,.42);
@@ -8911,7 +8911,7 @@ export default function App() {
         .news-t{font-size:14px;font-weight:600;color:#2a1f14;letter-spacing:.01em}
         .news-d{font-size:11.5px;color:rgba(42,31,20,.45);font-variant-numeric:tabular-nums}
         .news-b{font-size:13.5px;line-height:1.55;color:rgba(42,31,20,.72);
-                font-family:'Crimson Pro',serif}
+                font-family:'Literata',serif}
         .news-b a{color:#8a5a2b}
         /* Donate: deliberately quiet — it sits under the four mode cards and
            must not compete with them, so no gold fill, just a hairline. */
@@ -8919,7 +8919,7 @@ export default function App() {
         .donate{width:100%;max-width:340px}
         .donate-btn{display:block;width:100%;text-align:center;cursor:pointer;
           background:#fffdf9;border:1px solid rgba(42,31,20,.45);border-radius:10px;
-          padding:14px 18px 12px;font-family:'Crimson Pro',serif;
+          padding:14px 18px 12px;font-family:'Literata',serif;
           transition:border-color .15s,box-shadow .15s,transform .1s}
         .donate-btn:hover{border-color:rgba(42,31,20,.85);box-shadow:0 2px 10px rgba(42,31,20,.18)}
         .donate-btn:active{transform:translateY(1px)}
@@ -8954,7 +8954,7 @@ export default function App() {
         .mem-btn:hover{border-color:#e43d30;box-shadow:0 2px 10px rgba(228,61,48,.16)}
         .mem-btn:active{transform:translateY(1px)}
         .mem-logo{display:block;height:26px;width:auto;max-width:100%}
-        .mem-cta{font-family:'Inter',sans-serif;font-size:12px;font-weight:600;
+        .mem-cta{font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;
           letter-spacing:.03em;color:#e43d30}
         .mem-btn.sm{padding:9px 16px 8px;gap:5px}
         .mem-btn.sm .mem-logo{height:20px}
@@ -8964,7 +8964,7 @@ export default function App() {
            link on the page. The subtitle stays in the site's voice. */
         .discord-btn{display:inline-block;text-align:center;text-decoration:none;
              background:#5865F2;border:1px solid #5865F2;color:#fff;
-             font-family:'Inter',-apple-system,'Segoe UI',sans-serif;font-size:15px;font-weight:600;
+             font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:600;
              line-height:1.35;padding:11px 22px;border-radius:8px;cursor:pointer;
              box-shadow:0 1px 2px rgba(42,31,20,.12);
              transition:background .15s,box-shadow .15s,transform .1s}
@@ -8976,22 +8976,22 @@ export default function App() {
         .fund{width:100%;max-width:420px;text-align:center}
         .fund-bar{height:6px;background:rgba(42,31,20,.1);border-radius:3px;overflow:hidden;margin-bottom:6px}
         .fund-bar>div{height:100%;background:#8aab7c;border-radius:3px;transition:width .4s ease}
-        .fund-sub{font-family:'Crimson Pro',serif;font-size:12.5px;color:rgba(42,31,20,.55)}
+        .fund-sub{font-family:'Literata',serif;font-size:12.5px;color:rgba(42,31,20,.55)}
         .fund-done{width:100%;max-width:420px;text-align:center;padding:14px 18px;
           background:rgba(138,171,124,.12);border:1px solid rgba(138,171,124,.4);border-radius:10px}
-        .fund-done-t{font-family:'Playfair Display',serif;font-size:15px;color:#2f5a2a;margin-bottom:8px}
+        .fund-done-t{font-family:'Old Standard TT',serif;font-size:15px;color:#2f5a2a;margin-bottom:8px}
         .discord-btn .row{display:flex;align-items:center;justify-content:center;gap:10px}
         .discord-btn .dico{width:22px;height:auto;flex:none;display:block}
         .discord-btn .sub{display:block;font-size:12px;font-weight:400;font-style:normal;
              color:rgba(255,255,255,.78);margin-top:3px;
-             font-family:'Crimson Pro',serif;font-style:italic}
+             font-family:'Literata',serif;font-style:italic}
         .tsel{width:100%;max-width:500px;display:flex;flex-direction:column;gap:12px;text-align:left}
         .slbl{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:rgba(42,31,20,.35)}
-        select,input[type="text"],textarea{width:100%;background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.16);color:#000;padding:12px 16px;border-radius:10px;font-family:'Crimson Pro',serif;font-size:16px;outline:none;transition:border-color .2s}
+        select,input[type="text"],textarea{width:100%;background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.16);color:#000;padding:12px 16px;border-radius:10px;font-family:'Literata',serif;font-size:16px;outline:none;transition:border-color .2s}
         select{appearance:none;cursor:pointer} select option{background:#ede8dd}
         ::placeholder{color:rgba(42,31,20,.28)}
         input:focus,textarea:focus,select:focus{border-color:rgba(42,31,20,.5)}
-        .btn-p{background:linear-gradient(135deg,#2a1f14,#0f0c08);color:#fff;border:none;padding:14px 32px;border-radius:10px;font-family:'Playfair Display',serif;font-size:17px;cursor:pointer;width:100%;box-shadow:0 4px 20px rgba(42,31,20,.3);transition:opacity .2s}
+        .btn-p{background:linear-gradient(135deg,#2a1f14,#0f0c08);color:#fff;border:none;padding:14px 32px;border-radius:10px;font-family:'Old Standard TT',serif;font-size:17px;cursor:pointer;width:100%;box-shadow:0 4px 20px rgba(42,31,20,.3);transition:opacity .2s}
         .btn-p:hover:not(:disabled){opacity:.88} .btn-p:disabled{opacity:.4;cursor:default}
         /* The mode choices are not one primary action among lesser ones — they
            are four equal doors, and four filled black slabs stacked down the
@@ -9002,7 +9002,7 @@ export default function App() {
           box-shadow:0 2px 10px rgba(42,31,20,.14)}
         .mode-btn:active:not(:disabled){transform:translateY(1px)}
         .mode-btn *{color:inherit}
-        .btn-g{background:rgba(42,31,20,.07);color:rgba(42,31,20,.6);border:1px solid rgba(42,31,20,.15);padding:12px 24px;border-radius:10px;font-family:'Crimson Pro',serif;font-size:15px;cursor:pointer;width:100%;transition:background .2s}
+        .btn-g{background:rgba(42,31,20,.07);color:rgba(42,31,20,.6);border:1px solid rgba(42,31,20,.15);padding:12px 24px;border-radius:10px;font-family:'Literata',serif;font-size:15px;cursor:pointer;width:100%;transition:background .2s}
         .btn-g:hover{background:rgba(42,31,20,.12)}
         .chat-wrap{flex:1;display:flex;flex-direction:column;min-height:0}
         .msgs{flex:1;overflow-y:auto;padding:20px 28px 8px;display:flex;flex-direction:column;gap:12px}
@@ -9034,7 +9034,7 @@ export default function App() {
            and below the definition popup (200/201) it hands off to. */
         /* Dual-language Bible: English translation shown under each Russian verse */
         .bible-en{display:block;margin-top:3px;color:rgba(42,31,20,.5);font-size:0.9em;font-style:italic;line-height:1.5;letter-spacing:.005em}
-        .bible-chapter{font-family:'Playfair Display',serif;font-size:1.05em;font-weight:700;
+        .bible-chapter{font-family:'Old Standard TT',serif;font-size:1.05em;font-weight:700;
           color:#2a1f14;text-align:center;letter-spacing:.14em;text-transform:uppercase;
           margin:2.2em 0 1.1em !important;padding-top:1.2em;
           border-top:1px solid rgba(42,31,20,.22)}
@@ -9047,7 +9047,7 @@ export default function App() {
            block scrolls horizontally — swipe on mobile, shift-wheel / drag /
            thin scrollbar on desktop — with snap points at each column, and one
            grid row per paragraph keeps RU and EN vertically lined up. */
-        .dual-hint{text-align:right;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(42,31,20,.38);margin:0 0 8px;user-select:none}
+        .dual-hint{text-align:right;font-family:'IBM Plex Sans',sans-serif;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(42,31,20,.38);margin:0 0 8px;user-select:none}
         .dual-scroll{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin;padding-bottom:4px}
         .dual-grid{display:grid;grid-template-columns:100% 100%;column-gap:36px;align-items:start}
         .dual-grid > p{scroll-snap-align:start}
@@ -9081,10 +9081,10 @@ export default function App() {
            character ceiling, and a description that stops mid-clause is worse
            than no description — the cards are in a grid with no fixed height,
            so they simply grow and the row evens itself out. */
-        .lib-card-blurb{font-family:'Crimson Pro',serif;font-size:13px;line-height:1.45;
+        .lib-card-blurb{font-family:'Literata',serif;font-size:13px;line-height:1.45;
           color:rgba(42,31,20,.62);margin:5px 0 2px}
         .quickpick{width:100%;box-sizing:border-box;font-size:15.5px;padding:12px 38px 12px 14px;
-                   font-family:'Crimson Pro',serif;border-radius:10px;cursor:pointer;
+                   font-family:'Literata',serif;border-radius:10px;cursor:pointer;
                    border:1px solid rgba(42,31,20,.2);background-color:#fffdf9;color:#2a1f14;
                    appearance:none;-webkit-appearance:none;-moz-appearance:none;
                    background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%238a6a35' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' d='M1 1.5 6 6.5 11 1.5'/%3E%3C/svg%3E");
@@ -9095,7 +9095,7 @@ export default function App() {
            the moment it opens, which reads as the styling having vanished. */
         .quickpick option{background:#fffdf9;color:#2a1f14;padding:7px 10px;font-size:15px}
         .quickpick optgroup{background:#efe7d8;color:#4a3f34;font-weight:600;font-style:normal;
-                   font-family:'Playfair Display',serif;font-size:13px;letter-spacing:.02em;
+                   font-family:'Old Standard TT',serif;font-size:13px;letter-spacing:.02em;
                    padding:6px 0}
         .quickpick:hover{border-color:rgba(42,31,20,.75)}
         .quickpick:focus{outline:none;border-color:rgba(42,31,20,.9);
@@ -9103,7 +9103,7 @@ export default function App() {
         @media (max-width:700px){.quickpick{font-size:16px;padding:12px}}
         .dual-toggle{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:40;
           background:rgba(255,252,246,.94);border:1px solid rgba(42,31,20,.18);color:rgba(42,31,20,.7);
-          font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.06em;font-weight:600;
+          font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.06em;font-weight:600;
           padding:9px 11px;border-radius:999px;cursor:pointer;box-shadow:0 2px 10px rgba(42,31,20,.13);
           transition:background .15s,color .15s,border-color .15s}
         .dual-toggle:hover{background:#fff;color:rgba(42,31,20,.95);border-color:rgba(42,31,20,.34)}
@@ -9111,7 +9111,7 @@ export default function App() {
         .dual-toggle.on{background:#2a1f14;border-color:#2a1f14;color:#fff}
         @media (max-width:640px){.dual-toggle{right:10px;padding:8px 10px;font-size:11px}}
         .dual-en{color:rgba(42,31,20,.72)}
-        .bible-en-vno{font-size:0.7em;font-weight:700;color:#2a1f14;vertical-align:super;line-height:1;margin-right:2px;font-family:'Inter',sans-serif;letter-spacing:.02em}
+        .bible-en-vno{font-size:0.7em;font-weight:700;color:#2a1f14;vertical-align:super;line-height:1;margin-right:2px;font-family:'IBM Plex Sans',sans-serif;letter-spacing:.02em}
         .dual-en-heading{font-weight:600;color:rgba(42,31,20,.62)}
         /* Words inside the sentence currently being read aloud. Applied at
            the start of each sentence's playback via direct DOM manipulation
@@ -9120,9 +9120,9 @@ export default function App() {
            individual highlights. */
         .rw-reading{color:#8b4513;border-bottom:2px solid #2a1f14;transition:color .1s ease,border-color .1s ease}
         .acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
-        .spk{padding:5px 12px;border-radius:20px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif;background:rgba(42,31,20,.07);border:1px solid rgba(42,31,20,.2);color:rgba(42,31,20,.7);transition:all .15s}
+        .spk{padding:5px 12px;border-radius:20px;font-size:13px;cursor:pointer;font-family:'Literata',serif;background:rgba(42,31,20,.07);border:1px solid rgba(42,31,20,.2);color:rgba(42,31,20,.7);transition:all .15s}
         .spk:hover{background:rgba(42,31,20,.14)} .spkon{background:rgba(42,31,20,.18);border-color:rgba(42,31,20,.35);color:#e08a78}
-        .chip{padding:5px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-family:'Crimson Pro',serif;border:1px solid;transition:background .15s}
+        .chip{padding:5px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-family:'Literata',serif;border:1px solid;transition:background .15s}
         .vc{background:rgba(42,31,20,.09);border-color:rgba(42,31,20,.28);color:#000} .vc:hover:not(:disabled){background:rgba(42,31,20,.18)}
         .tc{background:rgba(128,168,128,.08);border-color:rgba(128,168,128,.25);color:rgba(128,168,128,.9)} .tc:hover:not(:disabled){background:rgba(128,168,128,.15)}
         .chip:disabled,.chipsaved{cursor:default;opacity:.7}
@@ -9135,11 +9135,11 @@ export default function App() {
         .ibar textarea{flex:1;resize:none;min-height:44px;max-height:120px;padding:10px 14px;border-radius:22px;font-size:15px;line-height:1.5}
         .isend{background:linear-gradient(135deg,#2a1f14,#0f0c08);color:#fff;border:none;width:44px;height:44px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity .15s}
         .isend:hover:not(:disabled){opacity:.85} .isend:disabled{opacity:.35;cursor:default}
-        .inew{background:rgba(42,31,20,.06);color:rgba(42,31,20,.5);border:1px solid rgba(42,31,20,.15);padding:0 16px;border-radius:22px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif;height:44px;white-space:nowrap;transition:all .15s}
+        .inew{background:rgba(42,31,20,.06);color:rgba(42,31,20,.5);border:1px solid rgba(42,31,20,.15);padding:0 16px;border-radius:22px;font-size:13px;cursor:pointer;font-family:'Literata',serif;height:44px;white-space:nowrap;transition:all .15s}
         .inew:hover{background:rgba(42,31,20,.12);color:#000}
         .lit-wrap{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden}
         .lit-top{display:flex;align-items:center;gap:8px;padding:8px 28px;border-bottom:1px solid rgba(42,31,20,.1);flex-shrink:0;background:#f5f0e8;flex-wrap:wrap}
-        .ltab{padding:6px 14px;border-radius:16px;background:none;border:1px solid rgba(42,31,20,.14);color:rgba(42,31,20,.45);font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;transition:all .15s}
+        .ltab{padding:6px 14px;border-radius:16px;background:none;border:1px solid rgba(42,31,20,.14);color:rgba(42,31,20,.45);font-family:'Literata',serif;font-size:13px;cursor:pointer;transition:all .15s}
         .ltab.on{background:rgba(42,31,20,.12);border-color:rgba(42,31,20,.3);color:#000}
         .ltab:hover:not(.on){background:rgba(42,31,20,.06)}
         /* Inline page/chapter nav — compact buttons in the top tab row,
@@ -9155,12 +9155,12 @@ export default function App() {
         .chap-foot-btn{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;
           align-items:flex-start;text-align:left;padding:12px 16px;border-radius:10px;
           border:1px solid rgba(42,31,20,.14);background:rgba(42,31,20,.03);
-          font-family:'Crimson Pro',serif;cursor:pointer;transition:all .15s}
+          font-family:'Literata',serif;cursor:pointer;transition:all .15s}
         .chap-foot-btn.next{align-items:flex-end;text-align:right}
         .chap-foot-btn:hover:not(:disabled){background:rgba(42,31,20,.09);
           border-color:rgba(42,31,20,.45)}
         .chap-foot-btn:disabled{opacity:.32;cursor:default}
-        .chap-foot-btn .dir{font-family:'Inter',system-ui,sans-serif;font-size:11px;
+        .chap-foot-btn .dir{font-family:'IBM Plex Sans',sans-serif;font-size:11px;
           letter-spacing:.09em;text-transform:uppercase;color:rgba(42,31,20,.45)}
         .chap-foot-btn .name{font-size:16.5px;color:#000;line-height:1.3;
           overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
@@ -9169,7 +9169,7 @@ export default function App() {
           .chap-foot-btn{padding:10px 12px}
           .chap-foot-btn .name{font-size:15px}
         }
-        .lnb-inline{padding:5px 11px;border-radius:8px;border:1px solid rgba(42,31,20,.16);background:rgba(42,31,20,.05);color:rgba(42,31,20,.55);font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;transition:all .15s}
+        .lnb-inline{padding:5px 11px;border-radius:8px;border:1px solid rgba(42,31,20,.16);background:rgba(42,31,20,.05);color:rgba(42,31,20,.55);font-family:'Literata',serif;font-size:13px;cursor:pointer;transition:all .15s}
         .lnb-inline:hover:not(:disabled){background:rgba(42,31,20,.1);color:#000}
         .lnb-inline:disabled{opacity:.3;cursor:default}
         .lnb-inline.p{background:linear-gradient(135deg,#2a1f14,#0f0c08);border-color:transparent;color:#fff}
@@ -9204,15 +9204,15 @@ export default function App() {
         .faudio-btn:disabled{opacity:.35;cursor:not-allowed}
         .faudio-play{background:#2a1f14;color:#fff;border-color:#2a1f14;width:52px;height:52px;font-size:22px}
         .faudio-play:hover{background:#d4ae7f}
-        .faudio-status{color:rgba(42,31,20,.55);font-size:12px;font-family:'Inter',system-ui,sans-serif;margin-left:10px;letter-spacing:.3px;min-width:90px;text-align:left}
+        .faudio-status{color:rgba(42,31,20,.55);font-size:12px;font-family:'IBM Plex Sans',sans-serif;margin-left:10px;letter-spacing:.3px;min-width:90px;text-align:left}
         .faudio-narrator{color:#000;font-style:italic}
         .faudio-seek{flex:1;min-width:80px;max-width:280px;accent-color:#2a1f14;cursor:pointer;height:4px}
-        .faudio-clock{color:rgba(42,31,20,.7);font-size:12px;font-family:'Inter',system-ui,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.3px;min-width:82px;text-align:right;white-space:nowrap}
+        .faudio-clock{color:rgba(42,31,20,.7);font-size:12px;font-family:'IBM Plex Sans',sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.3px;min-width:82px;text-align:right;white-space:nowrap}
         /* 🎧 ↔ 🤖 mode toggle — only renders when an audiobook is available */
         .faudio-mode{background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.2);color:rgba(42,31,20,.7);border-radius:50%;width:36px;height:36px;font-size:16px;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;flex-shrink:0}
         .faudio-mode:hover{background:rgba(42,31,20,.12);color:#000;border-color:rgba(42,31,20,.4)}
         .faudio-mode.active{background:rgba(42,31,20,.18);color:#000;border-color:#2a1f14}
-        .faudio-speed{margin-left:auto;background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.2);color:rgba(42,31,20,.7);border-radius:14px;padding:6px 12px;font-size:12px;font-family:'Crimson Pro',serif;cursor:pointer;transition:all .15s;letter-spacing:.3px}
+        .faudio-speed{margin-left:auto;background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.2);color:rgba(42,31,20,.7);border-radius:14px;padding:6px 12px;font-size:12px;font-family:'Literata',serif;cursor:pointer;transition:all .15s;letter-spacing:.3px}
         .faudio-speed:hover{background:rgba(42,31,20,.12);color:#000;border-color:rgba(42,31,20,.3)}
         .faudio-speed:disabled{opacity:.35;cursor:not-allowed}
         @media(max-width:600px){
@@ -9241,7 +9241,7 @@ export default function App() {
         .vplist{overflow-y:auto;padding:4px 28px}
         .vprow{width:100%;background:none;border:none;border-bottom:1px solid rgba(42,31,20,.05);padding:7px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:10px;transition:background .15s}
         .vprow:hover,.vprow.sel{background:rgba(42,31,20,.06)}
-        .vpn{font-size:14px;color:#000;font-family:'Crimson Pro',serif;text-align:left}
+        .vpn{font-size:14px;color:#000;font-family:'Literata',serif;text-align:left}
         .vpnru{color:#000} .vpl{font-size:11px;color:rgba(42,31,20,.28)}
         .vpem{font-size:13px;color:rgba(42,31,20,.3);padding:14px 0;text-align:center}
         .lit-body{flex:1;display:flex;min-height:0;overflow:hidden}
@@ -9259,7 +9259,7 @@ export default function App() {
            not the rectangle. */
         .chvid.mini{padding-bottom:0;height:0;border-width:0;margin:0}
         .chvid.mini iframe{height:240px}
-        .chvid-scrub .vid-mini{margin-left:2px;font-family:'Crimson Pro',serif;
+        .chvid-scrub .vid-mini{margin-left:2px;font-family:'Literata',serif;
           font-size:11.5px;letter-spacing:.02em;opacity:.85}
 
         /* Wide screens: the video moves out of the reading column and into a
@@ -9377,24 +9377,24 @@ export default function App() {
           .lnav.noai { bottom: auto; }
         }
         .lhdr{font-size:11px;color:rgba(42,31,20,.3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
-        .lch-heading{font-family:'Playfair Display',serif;font-size:20px;color:#000;margin-bottom:14px}
-        .lch-en{font-family:'Inter',sans-serif;font-size:12.5px;color:rgba(42,31,20,.6);margin:-2px 0 12px;letter-spacing:.01em}
+        .lch-heading{font-family:'Old Standard TT',serif;font-size:20px;color:#000;margin-bottom:14px}
+        .lch-en{font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:rgba(42,31,20,.6);margin:-2px 0 12px;letter-spacing:.01em}
         .lch-en i{font-style:italic;opacity:.9}
-        .ltxt{font-size:17.5px;line-height:1.85;color:#000;font-family:'Crimson Pro',serif;word-wrap:break-word;overflow-wrap:break-word;letter-spacing:.005em}
+        .ltxt{font-size:17.5px;line-height:1.85;color:#000;font-family:'Literata',serif;word-wrap:break-word;overflow-wrap:break-word;letter-spacing:.005em}
         /* ── Progress: the tear-off calendar ───────────────────────────── */
         .prog{width:100%;max-width:620px;margin:4px auto 26px;display:flex;flex-direction:column;gap:18px;text-align:left}
         .prog-top{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;
           padding-bottom:14px;border-bottom:1px solid rgba(42,31,20,.18)}
         .prog-streak{display:flex;align-items:baseline;gap:12px}
-        .prog-num{font-family:'Playfair Display',serif;font-size:64px;font-weight:700;line-height:.9;color:#2a1f14;
+        .prog-num{font-family:'Old Standard TT',serif;font-size:64px;font-weight:700;line-height:.9;color:#2a1f14;
           font-variant-numeric:tabular-nums;letter-spacing:-.02em}
         .prog-num-lbl{display:flex;flex-direction:column;gap:2px;line-height:1.15}
-        .prog-num-lbl .ru{font-family:'Playfair Display',serif;font-size:19px;color:#2a1f14}
-        .prog-num-lbl .en{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(42,31,20,.55)}
+        .prog-num-lbl .ru{font-family:'Old Standard TT',serif;font-size:19px;color:#2a1f14}
+        .prog-num-lbl .en{font-family:'IBM Plex Sans',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(42,31,20,.55)}
         .prog-status{margin:0;max-width:26ch;font-size:15px;line-height:1.45;color:rgba(42,31,20,.75);font-style:italic}
         .prog-ctl{display:flex;align-items:center;gap:6px;margin-left:auto}
         .prog-jump{background:none;border:1px solid rgba(42,31,20,.25);border-radius:999px;padding:5px 13px;cursor:pointer;
-          font-family:'Crimson Pro',serif;font-size:14px;color:#2a1f14;white-space:nowrap;transition:all .14s}
+          font-family:'Literata',serif;font-size:14px;color:#2a1f14;white-space:nowrap;transition:all .14s}
         .prog-jump:hover{background:#2a1f14;color:#f5f0e8;border-color:#2a1f14}
         .prog-min{background:none;border:1px solid rgba(42,31,20,.2);border-radius:50%;width:26px;height:26px;line-height:1;
           font-size:13px;color:rgba(42,31,20,.65);cursor:pointer;flex:none}
@@ -9402,32 +9402,32 @@ export default function App() {
         /* minimised: one line, no pad */
         .prog.collapsed{gap:0;margin-bottom:14px}
         .prog-bar{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;padding:8px 2px 12px;border-bottom:1px solid rgba(42,31,20,.18)}
-        .prog-bar-n{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#2a1f14;line-height:1;font-variant-numeric:tabular-nums}
-        .prog-bar-lbl{font-family:'Playfair Display',serif;font-size:15px;color:#2a1f14}
+        .prog-bar-n{font-family:'Old Standard TT',serif;font-size:26px;font-weight:700;color:#2a1f14;line-height:1;font-variant-numeric:tabular-nums}
+        .prog-bar-lbl{font-family:'Old Standard TT',serif;font-size:15px;color:#2a1f14}
         .prog-bar-dot{color:rgba(42,31,20,.35)}
         .prog-bar-st{font-size:14px;font-style:italic;color:rgba(42,31,20,.6)}
         .prog-bar .prog-ctl{align-self:center}
         .prog-restore{align-self:center;background:none;border:none;border-bottom:1px solid rgba(42,31,20,.25);padding:2px 0;margin-bottom:6px;
-          font-family:'Crimson Pro',serif;font-style:italic;font-size:14px;color:rgba(42,31,20,.6);cursor:pointer}
+          font-family:'Literata',serif;font-style:italic;font-size:14px;color:rgba(42,31,20,.6);cursor:pointer}
         .prog-restore:hover{color:#2a1f14;border-bottom-color:#2a1f14}
         /* the pad */
         .cal{background:#fbf8f2;border:1px solid rgba(42,31,20,.16);border-radius:4px;padding:12px 14px 12px;
           box-shadow:0 1px 0 rgba(42,31,20,.12),0 3px 0 -1px #f1ebdf,0 4px 0 -1px rgba(42,31,20,.12),0 6px 0 -2px #ede6d8,0 7px 0 -2px rgba(42,31,20,.1)}
         .cal-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
         .cal-title{display:flex;flex-direction:column;align-items:center;line-height:1.1}
-        .cal-title .ru{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#2a1f14;letter-spacing:.02em}
-        .cal-title .en{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(42,31,20,.5);margin-top:3px}
+        .cal-title .ru{font-family:'Old Standard TT',serif;font-size:20px;font-weight:600;color:#2a1f14;letter-spacing:.02em}
+        .cal-title .en{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(42,31,20,.5);margin-top:3px}
         .cal-nav{background:none;border:1px solid rgba(42,31,20,.2);border-radius:50%;width:30px;height:30px;font-size:20px;line-height:1;
-          color:#2a1f14;cursor:pointer;font-family:'Crimson Pro',serif}
+          color:#2a1f14;cursor:pointer;font-family:'Literata',serif}
         .cal-nav:hover:not(:disabled){background:rgba(42,31,20,.06)} .cal-nav:disabled{opacity:.3;cursor:default}
         .cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:4px}
-        .cal-days span{text-align:center;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(42,31,20,.5)}
+        .cal-days span{text-align:center;font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(42,31,20,.5)}
         .cal-days span:nth-child(n+6){color:rgba(157,70,48,.7)}
         .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
         .leaf{position:relative;aspect-ratio:1/.82;border:1px solid rgba(42,31,20,.13);border-radius:2px;background:#fff;
           display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;overflow:hidden}
-        .leaf b{font-family:'Playfair Display',serif;font-weight:600;font-size:14px;color:#2a1f14;line-height:1}
-        .leaf i{font-family:'Inter',sans-serif;font-style:normal;font-size:9.5px;color:rgba(42,31,20,.6);font-variant-numeric:tabular-nums}
+        .leaf b{font-family:'Old Standard TT',serif;font-weight:600;font-size:14px;color:#2a1f14;line-height:1}
+        .leaf i{font-family:'IBM Plex Sans',sans-serif;font-style:normal;font-size:9.5px;color:rgba(42,31,20,.6);font-variant-numeric:tabular-nums}
         .leaf.blank{border-color:transparent;background:transparent}
         .leaf.future{background:transparent;border-style:dashed;border-color:rgba(42,31,20,.12)} .leaf.future b{color:rgba(42,31,20,.3)}
         /* ink wash by how much was read */
@@ -9445,12 +9445,12 @@ export default function App() {
         .ledger{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:0;border-top:1px solid rgba(42,31,20,.18);border-bottom:1px solid rgba(42,31,20,.18)}
         .ledger>div{padding:10px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;border-left:1px solid rgba(42,31,20,.1)}
         .ledger>div:first-child{border-left:none}
-        .ledger dt{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(42,31,20,.55);text-align:center}
-        .ledger dd{margin:0;font-family:'Playfair Display',serif;font-size:24px;font-weight:600;color:#2a1f14;font-variant-numeric:tabular-nums;line-height:1}
+        .ledger dt{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(42,31,20,.55);text-align:center}
+        .ledger dd{margin:0;font-family:'Old Standard TT',serif;font-size:24px;font-weight:600;color:#2a1f14;font-variant-numeric:tabular-nums;line-height:1}
         @media (max-width:520px){.ledger{grid-template-columns:repeat(2,1fr)}.ledger>div:nth-child(3){border-left:none}.ledger>div:nth-child(n+3){border-top:1px solid rgba(42,31,20,.1)}
           .prog-num{font-size:52px}}
         .prog-due{align-self:center;background:none;border:1px solid rgba(30,122,60,.45);color:#1e7a3c;border-radius:999px;
-          padding:7px 16px;font-family:'Crimson Pro',serif;font-size:15px;cursor:pointer;margin-top:-6px}
+          padding:7px 16px;font-family:'Literata',serif;font-size:15px;cursor:pointer;margin-top:-6px}
         .prog-due:hover{background:rgba(30,122,60,.08)}
         /* the shelf */
         .shelf{padding:0 6px}
@@ -9461,45 +9461,45 @@ export default function App() {
         .spine.sp-a{background:#8d5a3b;height:112px} .spine.sp-b{background:#4e6a5b;height:102px}
         .spine.sp-c{background:#9d4630;height:118px} .spine.sp-d{background:#5c4a3a;height:106px}
         .spine.more{background:#d8cfbf;height:84px} .spine.more .spine-t{color:#2a1f14;writing-mode:horizontal-tb;transform:none;font-size:14px}
-        .spine-t{writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Playfair Display',serif;font-size:11.5px;letter-spacing:.03em;
+        .spine-t{writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Old Standard TT',serif;font-size:11.5px;letter-spacing:.03em;
           color:rgba(255,255,255,.92);white-space:nowrap;max-height:100px;overflow:hidden;text-overflow:ellipsis}
         .shelf-empty{font-size:13.5px;font-style:italic;color:rgba(42,31,20,.5);align-self:center;margin:0 auto;padding-bottom:30px}
         /* Retired words on the Vocabulary tab */
         .learned{margin:0 0 16px;border:1px solid rgba(30,122,60,.3);border-radius:12px;background:rgba(30,122,60,.05)}
-        .learned summary{cursor:pointer;padding:10px 14px;font-family:'Playfair Display',serif;font-size:16px;color:#000;
+        .learned summary{cursor:pointer;padding:10px 14px;font-family:'Old Standard TT',serif;font-size:16px;color:#000;
           display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-        .learned-n{font-family:'Inter',sans-serif;font-size:12px;font-weight:700;color:#1e7a3c;background:rgba(30,122,60,.12);
+        .learned-n{font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:700;color:#1e7a3c;background:rgba(30,122,60,.12);
           padding:2px 8px;border-radius:10px}
-        .learned-hint{font-family:'Crimson Pro',serif;font-size:13px;font-style:italic;color:rgba(42,31,20,.55)}
+        .learned-hint{font-family:'Literata',serif;font-size:13px;font-style:italic;color:rgba(42,31,20,.55)}
         .learned-list{display:flex;flex-direction:column;padding:0 14px 10px}
         .learned-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1.6fr) auto auto;gap:10px;align-items:center;
           padding:7px 0;border-top:1px solid rgba(42,31,20,.08);font-size:15px}
         .learned-ru{font-weight:600;color:#000} .learned-en{color:rgba(42,31,20,.8)}
-        .learned-when{font-family:'Inter',sans-serif;font-size:11px;color:rgba(42,31,20,.45)}
+        .learned-when{font-family:'IBM Plex Sans',sans-serif;font-size:11px;color:rgba(42,31,20,.45)}
         @media (max-width:520px){.learned-row{grid-template-columns:1fr 1fr}.learned-when{display:none}}
         /* An example sentence — in the popup, the vocab card and the quiz */
         .pctx{margin:8px 0 4px;padding:8px 10px;border-left:2px solid rgba(42,31,20,.28);background:rgba(42,31,20,.035);border-radius:0 8px 8px 0}
         .pctx.bank{border-left-color:rgba(42,31,20,.16)}
-        .pctx-lbl{font-family:'Inter',sans-serif;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(42,31,20,.45);margin-bottom:3px}
+        .pctx-lbl{font-family:'IBM Plex Sans',sans-serif;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(42,31,20,.45);margin-bottom:3px}
         .pctx-s{margin:0;font-size:15px;line-height:1.5;color:#1c1610}
         .pctx-s b{font-weight:700;background:rgba(200,162,118,.32);border-radius:2px;padding:0 1px}
         .pctx-en{font-size:13px;font-style:italic;color:rgba(42,31,20,.6);margin-top:3px}
         .pctx-src{font-size:11.5px;font-style:italic;color:rgba(42,31,20,.5);margin-top:4px}
         .pexbtn{display:flex;flex-direction:column;align-items:flex-start;gap:1px;width:100%;margin:8px 0 2px;padding:7px 10px;
           background:none;border:1px dashed rgba(42,31,20,.28);border-radius:8px;cursor:pointer;
-          font-family:'Crimson Pro',serif;font-size:14px;color:rgba(42,31,20,.8);text-align:left}
+          font-family:'Literata',serif;font-size:14px;color:rgba(42,31,20,.8);text-align:left}
         .pexbtn:hover{border-color:rgba(42,31,20,.5);background:rgba(42,31,20,.04)}
         .pexbtn-sub{font-size:11.5px;font-style:italic;color:rgba(42,31,20,.5)}
         .pexlist{display:flex;flex-direction:column;gap:6px;margin:8px 0 2px}
         .pctx-credit{font-size:10.5px;color:rgba(42,31,20,.45);margin-top:2px}
         .pctx-credit a{color:inherit}
         .ictx-wrap{display:flex;flex-direction:column;gap:5px;margin-top:5px}
-        .ictx-lbl{font-family:'Inter',sans-serif;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:rgba(42,31,20,.42)}
+        .ictx-lbl{font-family:'IBM Plex Sans',sans-serif;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:rgba(42,31,20,.42)}
         .iex.ictx{font-style:normal;border-left:2px solid rgba(42,31,20,.22);padding-left:9px}
         .iex.ictx b{font-weight:700;background:rgba(200,162,118,.3);border-radius:2px;padding:0 1px}
         .qex{max-width:560px;margin:22px auto 0;padding:12px 14px;border-left:2px solid rgba(42,31,20,.25);
           background:rgba(42,31,20,.04);border-radius:0 10px 10px 0;text-align:left}
-        .qex-s{margin:0;font-size:17px;line-height:1.55;color:#1c1610;font-family:'Crimson Pro',serif}
+        .qex-s{margin:0;font-size:17px;line-height:1.55;color:#1c1610;font-family:'Literata',serif}
         .qex-s b{font-weight:700;background:rgba(200,162,118,.35);border-radius:2px;padding:0 2px}
         .qex-en{font-size:14px;font-style:italic;color:rgba(42,31,20,.62);margin-top:5px}
         .qex-src{font-size:12px;font-style:italic;color:rgba(42,31,20,.45);margin-top:6px}
@@ -9508,10 +9508,10 @@ export default function App() {
         .preads-q{font-size:12px;color:rgba(42,31,20,.65);margin-bottom:7px;line-height:1.4}
         .preads-row{display:flex;flex-wrap:wrap;gap:6px}
         .pread{display:inline-flex;flex-direction:column;align-items:flex-start;gap:1px;padding:6px 10px;border-radius:9px;cursor:pointer;
-          border:1px solid rgba(42,31,20,.2);background:#fff;color:#000;font-family:'Crimson Pro',serif;text-align:left;transition:all .12s}
+          border:1px solid rgba(42,31,20,.2);background:#fff;color:#000;font-family:'Literata',serif;text-align:left;transition:all .12s}
         .pread:hover{border-color:rgba(42,31,20,.5);background:rgba(42,31,20,.05)}
         .pread.on{border-color:#1e7a3c;background:rgba(30,122,60,.10);cursor:default}
-        .pread-pos{font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(42,31,20,.55)}
+        .pread-pos{font-family:'IBM Plex Sans',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(42,31,20,.55)}
         .pread.on .pread-pos{color:#1e7a3c}
         .pread-lem{font-size:16px;font-weight:600;line-height:1.15}
         .pread-note{font-size:11.5px;font-style:italic;color:rgba(42,31,20,.6)}
@@ -9534,7 +9534,7 @@ export default function App() {
         .play-castHead .rw{border-bottom:none}
         .play-cast{padding-left:1.7em;text-indent:-1.7em;margin:0 0 .3em}
         .play-cast .play-speaker{letter-spacing:.03em}
-        .play-sceneHead{font-family:'Playfair Display',serif;font-size:14px;letter-spacing:.05em;
+        .play-sceneHead{font-family:'Old Standard TT',serif;font-size:14px;letter-spacing:.05em;
           color:rgba(42,31,20,.55);margin:24px 0 12px;padding-top:12px;
           border-top:1px solid rgba(42,31,20,.12)}
         .play-sceneHead .rw{border-bottom:none}
@@ -9544,19 +9544,19 @@ export default function App() {
         .lit-ibar .isend{position:absolute;bottom:22px;right:28px;box-shadow:none;flex-direction:column;gap:6px;padding:10px 28px 12px;border-top:1px solid rgba(42,31,20,.08);flex-shrink:0;background:#f5f0e8}
         .lnav-row{display:flex;gap:8px;justify-content:center;align-items:stretch}
         .lnav-row-sm{margin-top:2px}
-        .lnb{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(42,31,20,.14);background:rgba(42,31,20,.05);color:rgba(42,31,20,.55);font-family:'Crimson Pro',serif;font-size:14px;cursor:pointer;transition:all .15s;text-align:center}
+        .lnb{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(42,31,20,.14);background:rgba(42,31,20,.05);color:rgba(42,31,20,.55);font-family:'Literata',serif;font-size:14px;cursor:pointer;transition:all .15s;text-align:center}
         .lnb:hover:not(:disabled){background:rgba(42,31,20,.1);color:#000} .lnb:disabled{opacity:.22;cursor:default}
         .lnb.p{background:linear-gradient(135deg,#9d4630,#82362a);border-color:transparent;color:#fff} .lnb.p:hover{opacity:.9}
         .lbm{padding:10px 14px;border-radius:10px;border:1px solid rgba(42,31,20,.25);background:rgba(42,31,20,.07);color:#000;font-size:15px;cursor:pointer;transition:background .15s}
         .lbm:hover{background:rgba(42,31,20,.15)}
-        .lnb-sm{flex:1;padding:7px 12px;border-radius:8px;border:1px solid rgba(42,31,20,.3);background:rgba(42,31,20,.08);color:#000;font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;transition:all .15s;text-align:center}
+        .lnb-sm{flex:1;padding:7px 12px;border-radius:8px;border:1px solid rgba(42,31,20,.3);background:rgba(42,31,20,.08);color:#000;font-family:'Literata',serif;font-size:13px;cursor:pointer;transition:all .15s;text-align:center}
         .lnb-sm:hover:not(:disabled){background:rgba(42,31,20,.18);border-color:rgba(42,31,20,.5)}
         .lnb-sm:disabled{opacity:.35;cursor:default}
         .navpanel{flex:1;overflow-y:auto;padding:16px 28px;display:flex;flex-direction:column;gap:8px}
         .lcard{padding:12px 14px;border-radius:10px;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.09);cursor:pointer;transition:all .15s}
         .lcard:hover{background:rgba(42,31,20,.08)} .lcard.cur{border-color:rgba(42,31,20,.4);background:rgba(42,31,20,.07)}
         .lcn{font-size:10px;color:rgba(42,31,20,.28);letter-spacing:1px;margin-bottom:4px}
-        .lchead{font-size:14px;color:#000;font-family:'Playfair Display',serif;margin-bottom:3px}
+        .lchead{font-size:14px;color:#000;font-family:'Old Standard TT',serif;margin-bottom:3px}
         .lcp{font-size:13px;color:rgba(42,31,20,.55);line-height:1.4}
         .lem{text-align:center;color:rgba(42,31,20,.28);padding:32px;font-size:14px}
         .lsbar{padding:12px 28px;border-bottom:1px solid rgba(42,31,20,.08)}
@@ -9565,21 +9565,21 @@ export default function App() {
         @keyframes pf{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
         .pcl{position:absolute;top:10px;right:12px;background:none;border:none;color:rgba(42,31,20,.35);font-size:18px;cursor:pointer}
         .pcl:hover{color:rgba(42,31,20,.7)}
-        .pw{font-family:'Playfair Display',serif;font-size:22px;color:#000;margin-bottom:2px;padding-right:24px}
+        .pw{font-family:'Old Standard TT',serif;font-size:22px;color:#000;margin-bottom:2px;padding-right:24px}
         .ppos{font-size:11px;color:rgba(42,31,20,.35);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
         /* Russian-language definition — top of the popup body so the Russian reading practice happens first. */
-        .pdru{font-family:'Crimson Pro',serif;font-size:15px;color:#000;line-height:1.5;margin-bottom:8px;padding:8px 10px;background:rgba(42,31,20,.06);border-left:2px solid rgba(42,31,20,.4);border-radius:4px}
+        .pdru{font-family:'Literata',serif;font-size:15px;color:#000;line-height:1.5;margin-bottom:8px;padding:8px 10px;background:rgba(42,31,20,.06);border-left:2px solid rgba(42,31,20,.4);border-radius:4px}
         .ptr{font-size:16px;color:rgba(42,31,20,.65);margin-bottom:7px;font-style:italic;padding-left:2px}
         .pgr{font-size:13px;color:#33507a;margin-bottom:7px;background:rgba(135,168,196,.08);border-radius:8px;padding:5px 10px}
         .pex{font-size:13px;color:rgba(42,31,20,.5);border-top:1px solid rgba(42,31,20,.08);padding-top:7px;line-height:1.5}
         .pext{font-size:12px;color:rgba(42,31,20,.3);margin-top:3px}
         .pload{color:rgba(42,31,20,.4);font-size:14px;text-align:center;padding:14px 0}
         .perr{color:#9d4630;font-size:13px}
-        .psave{margin-top:12px;width:100%;border:1px solid rgba(42,31,20,.28);background:rgba(42,31,20,.09);color:#000;padding:10px;border-radius:10px;font-size:14px;cursor:pointer;font-family:'Crimson Pro',serif;transition:background .15s}
+        .psave{margin-top:12px;width:100%;border:1px solid rgba(42,31,20,.28);background:rgba(42,31,20,.09);color:#000;padding:10px;border-radius:10px;font-size:14px;cursor:pointer;font-family:'Literata',serif;transition:background .15s}
         .psave:hover{background:rgba(42,31,20,.2)}
-        .yobtn{width:100%;background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.15);color:#000;padding:9px;border-radius:10px;font-size:15px;cursor:pointer;font-family:'Crimson Pro',serif;transition:background .15s;text-align:left;margin-bottom:4px}
+        .yobtn{width:100%;background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.15);color:#000;padding:9px;border-radius:10px;font-size:15px;cursor:pointer;font-family:'Literata',serif;transition:background .15s;text-align:left;margin-bottom:4px}
         .yobtn:hover{background:rgba(42,31,20,.12)}
-        .gvin{width:100%;box-sizing:border-box;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.15);color:#000;padding:8px 9px;border-radius:9px;font-size:14px;font-family:'Crimson Pro',serif}
+        .gvin{width:100%;box-sizing:border-box;background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.15);color:#000;padding:8px 9px;border-radius:9px;font-size:14px;font-family:'Literata',serif}
         .gvin:focus{outline:none;border-color:rgba(42,31,20,.4);background:rgba(42,31,20,.07)}
         .gvin::placeholder{color:rgba(42,31,20,.45)}
         .pmt{font-size:.78em;line-height:1.35;color:#7a5c2e;background:rgba(160,110,20,.09);
@@ -9590,15 +9590,15 @@ export default function App() {
         .pwrow{display:flex;align-items:center;gap:10px;padding-right:34px}
         .pwrow .pw{flex:1;min-width:0;padding-right:0}
         .psay{flex:none;display:inline-flex;align-items:center;gap:5px;background:rgba(42,31,20,.04);
-              border:1px solid rgba(42,31,20,.16);cursor:pointer;font-family:'Inter',sans-serif;
+              border:1px solid rgba(42,31,20,.16);cursor:pointer;font-family:'IBM Plex Sans',sans-serif;
               font-size:11px;letter-spacing:.3px;line-height:1;padding:6px 9px;border-radius:8px;
               color:rgba(42,31,20,.6);white-space:nowrap;transition:color .15s,background .15s,border-color .15s}
         .psay:hover{color:rgba(42,31,20,.85);background:rgba(42,31,20,.08);border-color:rgba(42,31,20,.28)}
         .psay.on{color:#2a1f14;border-color:rgba(160,110,20,.4);background:rgba(160,110,20,.08)}
         .panel{flex:1;padding:28px;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
         .phdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
-        .pti{font-family:'Playfair Display',serif;font-size:20px;color:#000}
-        .ab{border:1px solid rgba(42,31,20,.28);background:rgba(42,31,20,.08);color:#000;padding:7px 16px;border-radius:20px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif;transition:background .15s}
+        .pti{font-family:'Old Standard TT',serif;font-size:20px;color:#000}
+        .ab{border:1px solid rgba(42,31,20,.28);background:rgba(42,31,20,.08);color:#000;padding:7px 16px;border-radius:20px;font-size:13px;cursor:pointer;font-family:'Literata',serif;transition:background .15s}
         .ab:hover{background:rgba(42,31,20,.18)}
         .ab.g{border-color:rgba(128,168,128,.28);background:rgba(128,168,128,.07);color:rgba(128,168,128,.9)} .ab.g:hover{background:rgba(128,168,128,.15)}
         .empty{text-align:center;color:rgba(42,31,20,.3);font-size:15px;padding:48px 0;line-height:1.7}
@@ -9606,7 +9606,7 @@ export default function App() {
         .icard{background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.09);border-radius:12px;padding:13px 16px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;transition:background .15s}
         .icard:hover{background:rgba(42,31,20,.07)}
         .icont{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
-        .ipri{font-size:17px;color:#000;font-family:'Playfair Display',serif}
+        .ipri{font-size:17px;color:#000;font-family:'Old Standard TT',serif}
         .ipos{font-size:11px;color:rgba(42,31,20,.7);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:1px}
         .isec{font-size:14px;color:rgba(42,31,20,.75)}
         .igr{font-size:12px;color:#33507a;background:rgba(135,168,196,.06);border-radius:6px;padding:3px 8px;align-self:flex-start;margin-top:3px}
@@ -9616,11 +9616,11 @@ export default function App() {
         .rmb:hover{background:rgba(42,31,20,.3);border-color:rgba(42,31,20,.5);color:#fff}
         .mover{position:fixed;inset:0;background:rgba(26,22,17,.85);z-index:100;display:flex;align-items:center;justify-content:center;padding:24px}
         .modal{background:#fbf8f2;border:1px solid rgba(42,31,20,.14);border-radius:16px;padding:28px;width:100%;max-width:480px;display:flex;flex-direction:column;gap:16px}
-        .mti{font-family:'Playfair Display',serif;font-size:22px;color:#000}
+        .mti{font-family:'Old Standard TT',serif;font-size:22px;color:#000}
         .mact{display:flex;gap:10px;justify-content:flex-end;margin-top:4px}
-        .mcanc{background:none;border:1px solid rgba(42,31,20,.18);color:rgba(42,31,20,.55);padding:10px 20px;border-radius:10px;font-size:15px;cursor:pointer;font-family:'Crimson Pro',serif;transition:all .15s}
+        .mcanc{background:none;border:1px solid rgba(42,31,20,.18);color:rgba(42,31,20,.55);padding:10px 20px;border-radius:10px;font-size:15px;cursor:pointer;font-family:'Literata',serif;transition:all .15s}
         .mcanc:hover{color:#000;border-color:rgba(42,31,20,.35)}
-        .mconf{background:linear-gradient(135deg,#2a1f14,#0f0c08);color:#fff;border:none;padding:10px 20px;border-radius:10px;font-size:15px;cursor:pointer;font-family:'Crimson Pro',serif;transition:opacity .15s}
+        .mconf{background:linear-gradient(135deg,#2a1f14,#0f0c08);color:#fff;border:none;padding:10px 20px;border-radius:10px;font-size:15px;cursor:pointer;font-family:'Literata',serif;transition:opacity .15s}
         .mconf:hover{opacity:.85} .mconf.g{background:linear-gradient(135deg,#5a8556,#4a6845)}
 
         /* First-visit landing screen */
@@ -9628,20 +9628,20 @@ export default function App() {
         .land::before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 20% 10%,rgba(150,80,60,.10) 0%,transparent 55%),radial-gradient(ellipse at 80% 90%,rgba(80,90,130,.08) 0%,transparent 55%)}
         .land-card{position:relative;max-width:580px;width:100%;text-align:center;display:flex;flex-direction:column;gap:28px;align-items:center;padding:24px}
         .land-icon{font-size:56px;margin-bottom:-4px}
-        .land-title{font-family:'Playfair Display',serif;font-size:54px;font-weight:700;color:#000;letter-spacing:-1px;line-height:1}
+        .land-title{font-family:'Old Standard TT',serif;font-size:54px;font-weight:700;color:#000;letter-spacing:-1px;line-height:1}
         .land-sub{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:rgba(42,31,20,.45);margin-top:-12px}
-        .land-tagline{font-family:'Crimson Pro',serif;font-style:italic;font-size:18px;color:rgba(42,31,20,.75);max-width:440px;line-height:1.5}
+        .land-tagline{font-family:'Literata',serif;font-style:italic;font-size:18px;color:rgba(42,31,20,.75);max-width:440px;line-height:1.5}
         .land-tips{background:rgba(42,31,20,.06);border:1px solid rgba(42,31,20,.18);border-radius:14px;padding:22px 26px;text-align:left;width:100%;max-width:440px;display:flex;flex-direction:column;gap:14px;margin-top:8px}
         .land-features{background:rgba(80,120,90,.04);border:1px solid rgba(120,160,130,.16);border-radius:14px;padding:22px 26px;text-align:left;width:100%;max-width:440px;display:flex;flex-direction:column;gap:12px;margin-top:8px}
-        .land-features-title{font-family:'Playfair Display',serif;font-size:14px;color:#3f6b3a;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:4px}
+        .land-features-title{font-family:'Old Standard TT',serif;font-size:14px;color:#3f6b3a;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:4px}
         .land-feat{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.5;color:#000}
         .land-feat-icon{flex-shrink:0;font-size:18px;line-height:1.4;width:26px;text-align:center}
         .land-feat strong{color:#000;font-weight:600}
-        .land-tips-title{font-family:'Playfair Display',serif;font-size:14px;color:#000;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:4px}
+        .land-tips-title{font-family:'Old Standard TT',serif;font-size:14px;color:#000;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:4px}
         .land-tip{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5;color:#000}
         .land-tip-num{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(42,31,20,.15);border:1px solid rgba(42,31,20,.3);color:#000;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:1px}
         .land-tip strong{color:#000;font-weight:600}
-        .land-begin{background:linear-gradient(135deg,#9d4630,#82362a);color:#fff;border:none;padding:16px 48px;border-radius:12px;font-size:18px;font-family:'Crimson Pro',serif;cursor:pointer;transition:opacity .15s,transform .1s;letter-spacing:1px;margin-top:8px;box-shadow:none;transform:translateY(-1px)}
+        .land-begin{background:linear-gradient(135deg,#9d4630,#82362a);color:#fff;border:none;padding:16px 48px;border-radius:12px;font-size:18px;font-family:'Literata',serif;cursor:pointer;transition:opacity .15s,transform .1s;letter-spacing:1px;margin-top:8px;box-shadow:none;transform:translateY(-1px)}
         .land-begin:active{transform:translateY(0)}
         @media (max-width:520px){
           .land-title{font-size:42px}
@@ -9657,32 +9657,32 @@ export default function App() {
         .auth-card{position:relative;display:flex;flex-direction:column;align-items:center;gap:20px;max-width:440px;width:100%}
         .auth-brand{text-align:center;margin-bottom:8px}
         .auth-brand-icon{font-size:44px}
-        .auth-brand-title{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:#000;line-height:1;margin-top:8px}
+        .auth-brand-title{font-family:'Old Standard TT',serif;font-size:42px;font-weight:700;color:#000;line-height:1;margin-top:8px}
         .auth-brand-sub{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(42,31,20,.45);margin-top:6px}
         /* Account gate. html/body are overflow:hidden for the app shell, so the
            gate has to own its own scrolling or a short viewport clips the form. */
         .auth-page{height:100vh;height:100dvh;overflow-y:auto;align-items:flex-start;padding:44px 32px}
         .gate-card{position:relative;background:#fbf8f2;border:1px solid rgba(42,31,20,.14);border-radius:16px;width:100%;padding:6px 4px 14px}
-        .gate-blurb{font-family:'Crimson Pro',serif;font-size:15px;line-height:1.6;color:rgba(42,31,20,.75);text-align:center;max-width:400px;margin:0 auto}
+        .gate-blurb{font-family:'Literata',serif;font-size:15px;line-height:1.6;color:rgba(42,31,20,.75);text-align:center;max-width:400px;margin:0 auto}
         .gate-feats{display:flex;flex-direction:column;gap:9px;padding:16px 22px 4px;max-width:420px;margin:0 auto}
-        .gate-feat{display:flex;gap:10px;align-items:flex-start;font-family:'Crimson Pro',serif;font-size:14px;line-height:1.45;color:rgba(42,31,20,.8)}
+        .gate-feat{display:flex;gap:10px;align-items:flex-start;font-family:'Literata',serif;font-size:14px;line-height:1.45;color:rgba(42,31,20,.8)}
         .gate-feat span{flex-shrink:0;width:22px;text-align:center}
-        .gate-note{font-family:'Crimson Pro',serif;font-style:italic;font-size:13px;color:rgba(42,31,20,.5);text-align:center;max-width:400px;margin:0 auto}
+        .gate-note{font-family:'Literata',serif;font-style:italic;font-size:13px;color:rgba(42,31,20,.5);text-align:center;max-width:400px;margin:0 auto}
         .gate-guest{margin:2px 0 16px;display:flex;flex-direction:column;gap:8px;align-items:center}
         /* This is the primary action on the page — the site is free to read —
            so it is filled, not outlined, and the sign-in form below it is the
            secondary path rather than the other way round. */
         .gate-guest-btn{width:100%;background:linear-gradient(180deg,#2a1f14,#0f0c08);
           border:1px solid #0f0c08;color:#fff;padding:14px 20px;border-radius:9px;
-          font-size:16px;font-weight:600;cursor:pointer;font-family:'Crimson Pro',serif;
+          font-size:16px;font-weight:600;cursor:pointer;font-family:'Literata',serif;
           letter-spacing:.01em;box-shadow:0 2px 10px rgba(42,31,20,.28);
           transition:filter .15s,box-shadow .15s,transform .1s}
         .gate-guest-btn:hover{filter:brightness(1.06);box-shadow:0 3px 14px rgba(42,31,20,.38)}
         .gate-guest-btn:active{transform:translateY(1px)}
         .gate-or{width:100%;display:flex;align-items:center;gap:10px;margin-top:6px;
-          font-family:'Crimson Pro',serif;font-size:12px;color:rgba(42,31,20,.45)}
+          font-family:'Literata',serif;font-size:12px;color:rgba(42,31,20,.45)}
         .gate-or::before,.gate-or::after{content:"";flex:1;height:1px;background:rgba(42,31,20,.12)}
-        .gate-guest-note{font-family:'Crimson Pro',serif;font-style:italic;font-size:12px;color:rgba(42,31,20,.5);text-align:center;max-width:340px}
+        .gate-guest-note{font-family:'Literata',serif;font-style:italic;font-size:12px;color:rgba(42,31,20,.5);text-align:center;max-width:340px}
         @media (max-width:560px){
           .auth-page{padding:26px 16px}
           .auth-brand-title{font-size:34px}
@@ -9708,15 +9708,15 @@ export default function App() {
         /* Account panel */
         .auth-modal{max-width:420px}
         .auth-form{display:flex;flex-direction:column;gap:12px;padding:18px}
-        .auth-why{font-family:'Crimson Pro',serif;font-size:13px;line-height:1.5;color:rgba(42,31,20,.65)}
-        .auth-lbl{display:flex;flex-direction:column;gap:6px;font-family:'Crimson Pro',serif;font-size:13px;color:#000}
-        .auth-in{background:#fff;border:1px solid rgba(42,31,20,.18);border-radius:8px;padding:10px 12px;font-family:'Crimson Pro',serif;font-size:15px;color:#000;outline:none}
+        .auth-why{font-family:'Literata',serif;font-size:13px;line-height:1.5;color:rgba(42,31,20,.65)}
+        .auth-lbl{display:flex;flex-direction:column;gap:6px;font-family:'Literata',serif;font-size:13px;color:#000}
+        .auth-in{background:#fff;border:1px solid rgba(42,31,20,.18);border-radius:8px;padding:10px 12px;font-family:'Literata',serif;font-size:15px;color:#000;outline:none}
         .auth-in:focus{border-color:rgba(42,31,20,.55)}
-        .auth-hint{font-family:'Crimson Pro',serif;font-size:12px;color:rgba(42,31,20,.5)}
-        .auth-err{font-family:'Crimson Pro',serif;font-size:13px;color:#9d4630;background:rgba(157,70,48,.08);border:1px solid rgba(157,70,48,.25);border-radius:8px;padding:8px 10px}
-        .auth-note{font-family:'Crimson Pro',serif;font-size:13px;color:#5d4a2e;background:rgba(42,31,20,.12);border:1px solid rgba(42,31,20,.4);border-radius:8px;padding:8px 10px;line-height:1.45}
-        .auth-switch{background:none;border:none;color:#000;font-family:'Crimson Pro',serif;font-size:13px;cursor:pointer;text-decoration:underline;padding:0}
-        .acct-email{font-family:'Crimson Pro',serif;font-size:12px;color:rgba(42,31,20,.6);max-width:340px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .auth-hint{font-family:'Literata',serif;font-size:12px;color:rgba(42,31,20,.5)}
+        .auth-err{font-family:'Literata',serif;font-size:13px;color:#9d4630;background:rgba(157,70,48,.08);border:1px solid rgba(157,70,48,.25);border-radius:8px;padding:8px 10px}
+        .auth-note{font-family:'Literata',serif;font-size:13px;color:#5d4a2e;background:rgba(42,31,20,.12);border:1px solid rgba(42,31,20,.4);border-radius:8px;padding:8px 10px;line-height:1.45}
+        .auth-switch{background:none;border:none;color:#000;font-family:'Literata',serif;font-size:13px;cursor:pointer;text-decoration:underline;padding:0}
+        .acct-email{font-family:'Literata',serif;font-size:12px;color:rgba(42,31,20,.6);max-width:340px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         /* Small screens: let the header wrap instead of clipping, hide the
            email (Sign out still shows who you are on tap), and make the tab
            row horizontally scrollable so all four tabs stay reachable. */
@@ -9740,7 +9740,7 @@ export default function App() {
           .auth-modal{max-width:100%;margin:16px 0}
         }
         .adm-head{padding:22px 28px 18px;border-bottom:1px solid rgba(42,31,20,.1);display:flex;align-items:center;justify-content:space-between;gap:16px}
-        .adm-title{font-family:'Playfair Display',serif;font-size:24px;color:#000}
+        .adm-title{font-family:'Old Standard TT',serif;font-size:24px;color:#000}
         .adm-x{background:none;border:none;color:rgba(42,31,20,.6);font-size:24px;cursor:pointer;padding:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:all .15s}
         .adm-x:hover{background:rgba(42,31,20,.08);color:#000}
         .adm-body{padding:8px 20px 12px;display:flex;flex-direction:column;gap:0;max-height:65vh;overflow-y:auto}
@@ -9757,7 +9757,7 @@ export default function App() {
         .admd-stat:not(:disabled):not(.still):hover{background:rgba(42,31,20,.14);border-color:rgba(42,31,20,.4)}
         .admd-stat:disabled{cursor:default;opacity:.55}
         .admd-stat.still{cursor:default}
-        .admd-stat .n{font-size:22px;font-family:'Playfair Display',serif;color:#000}
+        .admd-stat .n{font-size:22px;font-family:'Old Standard TT',serif;color:#000}
         .admd-stat .l{font-size:11px;color:rgba(42,31,20,.55);letter-spacing:.3px}
         .admd-row{padding:9px 4px;border-bottom:1px solid rgba(42,31,20,.07)}
         .admd-t{font-size:14px;color:#000}
@@ -9771,7 +9771,7 @@ export default function App() {
         .admd-facts .unrec,.admd-stat .unrec{color:rgba(42,31,20,.38);font-style:italic;font-size:13px}
         .admd-facts .mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;
           word-break:break-all;text-align:right;max-width:60%}
-        .admd-note{font-family:'Crimson Pro',serif;font-size:12px;font-style:italic;
+        .admd-note{font-family:'Literata',serif;font-size:12px;font-style:italic;
           color:rgba(42,31,20,.5);line-height:1.5;margin:6px 2px 2px}
         .admd-sechdr{font-size:11px;letter-spacing:2px;text-transform:uppercase;
           color:rgba(42,31,20,.5);margin-top:4px}
@@ -9797,7 +9797,7 @@ export default function App() {
         /* The visitors' book, at the foot of the page. Quiet: a courtesy to
            whoever wonders whether anyone else is here, not a metric anybody
            came for. */
-        .site-foot{text-align:center;padding:16px 16px 24px;font-family:'Crimson Pro',serif;
+        .site-foot{text-align:center;padding:16px 16px 24px;font-family:'Literata',serif;
           font-size:12px;color:rgba(42,31,20,.42);letter-spacing:.02em}
         .site-foot .n{font-variant-numeric:tabular-nums;color:rgba(42,31,20,.6)}
         .site-foot .since{opacity:.75}
@@ -9816,12 +9816,12 @@ export default function App() {
         .adm-fund .adm-fund-row input{width:110px;font-size:14px;padding:7px 10px}
         .adm-today{cursor:pointer}
         .adm-today:hover{background:rgba(42,31,20,.08)}
-        .adm-today .adm-name{font-family:'Playfair Display',serif}
-        .adm-today-n{font-family:'Playfair Display',serif;font-size:26px;color:#000;
+        .adm-today .adm-name{font-family:'Old Standard TT',serif}
+        .adm-today-n{font-family:'Old Standard TT',serif;font-size:26px;color:#000;
           font-variant-numeric:tabular-nums;padding-left:12px}
         .adm-all{cursor:pointer}
         .adm-all:hover{background:rgba(42,31,20,.08)}
-        .adm-all .adm-name{font-family:'Playfair Display',serif}
+        .adm-all .adm-name{font-family:'Old Standard TT',serif}
         .admd-store{border:1px solid rgba(42,31,20,.1);border-radius:10px;padding:10px 12px}
         .admd-store summary{cursor:pointer;font-size:12px;color:rgba(42,31,20,.6);letter-spacing:.3px}
         .admd-adopt{margin-top:12px;padding-top:10px;border-top:1px solid rgba(42,31,20,.08)}
@@ -9843,16 +9843,16 @@ export default function App() {
         .adm-status.pending{background:rgba(42,31,20,.12);color:#000;border:1px solid rgba(42,31,20,.25)}
         .adm-status.admin{background:rgba(135,168,196,.15);color:#2f4a6b;border:1px solid rgba(135,168,196,.3)}
         .adm-actions{display:flex;gap:8px;flex-shrink:0}
-        .adm-btn{padding:4px 11px;border:none;border-radius:7px;font-size:12px;font-family:'Crimson Pro',serif;cursor:pointer;transition:opacity .15s;font-weight:600}
+        .adm-btn{padding:4px 11px;border:none;border-radius:7px;font-size:12px;font-family:'Literata',serif;cursor:pointer;transition:opacity .15s;font-weight:600}
         .adm-btn:disabled{opacity:.5;cursor:wait}
         .adm-btn.approve{background:linear-gradient(135deg,#5a8556,#4a6845);color:#fff}
         .adm-btn.reject{background:rgba(42,31,20,.15);border:1px solid rgba(42,31,20,.4);color:#9d4630}
         .adm-btn.reject:hover:not(:disabled){background:rgba(42,31,20,.3)}
         .adm-err{margin:0 28px 16px;padding:12px 16px;background:rgba(42,31,20,.18);border:1px solid rgba(42,31,20,.35);color:#9d4630;border-radius:10px;font-size:13px}
         .adm-foot{padding:16px 28px;border-top:1px solid rgba(42,31,20,.08);display:flex;justify-content:space-between;align-items:center}
-        .adm-refresh{background:none;border:1px solid rgba(42,31,20,.18);color:rgba(42,31,20,.7);padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;font-family:'Crimson Pro',serif}
+        .adm-refresh{background:none;border:1px solid rgba(42,31,20,.18);color:rgba(42,31,20,.7);padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;font-family:'Literata',serif}
         .adm-refresh:hover{color:#000;border-color:rgba(42,31,20,.4)}
-        .adm-trigger{background:rgba(135,168,196,.12);border:1px solid rgba(135,168,196,.3);color:#2f4a6b;padding:6px 12px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'Crimson Pro',serif;display:flex;align-items:center;gap:6px}
+        .adm-trigger{background:rgba(135,168,196,.12);border:1px solid rgba(135,168,196,.3);color:#2f4a6b;padding:6px 12px;border-radius:8px;font-size:12px;cursor:pointer;font-family:'Literata',serif;display:flex;align-items:center;gap:6px}
         .adm-trigger:hover{background:rgba(135,168,196,.2)}
         /* All admin mobile rules live here, AFTER every .adm- base rule —
            equal specificity means source order decides the winner. */
@@ -9891,6 +9891,380 @@ export default function App() {
         [class*='cl-footerActionLink'],[class*='cl-formFieldAction']{
           color:#000 !important;
         }
+
+        /* ══════════════════════════════════════════════════════════════════
+           Editorial theme (September 2026). One layer, appended after the
+           rules above so it wins on source order; nothing above was deleted.
+           The idea is a well-set book: paper, one ink, a red rubric, hairline
+           rules instead of boxes, small capitals for the furniture, and not a
+           single emoji doing the work of a word.
+           ══════════════════════════════════════════════════════════════════ */
+        :root{
+          --paper:#f4efe5;--paper-2:#ebe4d6;--paper-3:#fbf8f2;
+          --ink:#1b1613;--ink-2:rgba(27,22,19,.66);--ink-3:rgba(27,22,19,.44);--ink-4:rgba(27,22,19,.26);
+          --rule:rgba(27,22,19,.24);--rule-soft:rgba(27,22,19,.11);
+          --rubric:#9b2d1f;--rubric-soft:rgba(155,45,31,.10);
+          --serif:'Literata',Georgia,'Times New Roman',serif;
+          --display:'Old Standard TT','Literata',Georgia,serif;
+          --sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+        }
+        html,body{background:var(--paper);color:var(--ink);font-family:var(--serif)}
+        .app,.lit-top,.ibar,.lit-ibar,.lnav,.lit-right,.chvid-dock,.chvid-dock::before,
+        .lit-left.has-vid .chvid-scrub,.ttsbar,.gramref-hdr,.vpanel,.faudio{background:var(--paper)}
+        /* Nothing is rounded and nothing floats. */
+        button,input,select,textarea,.lib-card,.lcard,.icard,.pop,.modal,.chvid,.chvid-scrub,.story-index,
+        .pctx,.preads,.pread,.tbadge,.lib-tag,.lib-card-cat,.lib-cat-chip,.tab,.ltab,.lnb-inline,.mark-read,
+        .lib-filter-btn,.donate-btn,.mem-btn,.discord-btn,.fund-done,.news,.no-audio,.one-rec,.bm-menu,
+        .quickpick,.lib-search,.btn-p,.btn-g,.ab,.psave,.yobtn,.gvin,.qex,.learned,.gate-card,.auth-in,
+        .adm-modal,.chap-foot-btn,.prog-jump,.dual-toggle,.lib-author,.lib-done,.pdru,.pgr,.pmt,.igr,
+        .land-tips,.land-features,.land-begin,.gate-guest-btn,.auth-err,.auth-note,.adm-trigger,.mconf,.mcanc,
+        .spk,.chip,.abub,.ubub,.typing,.inew,.rmb,.lbm,.lnb,.lnb-sm,.ttsbtn,.faudio-speed,.cal,.leaf,.learned-n,
+        .admd-stat,.admd-store,.admd-sheetwrap,.adm-err,.adm-refresh,.adm-btn,.adm-status,.prog-due{border-radius:0!important}
+        .btn-p,.mconf,.isend,.lnb-inline.p,.lnb.p,.ttsplay,.land-begin,.gate-guest-btn,.adm-btn.approve{background:var(--ink)!important;box-shadow:none!important}
+        .btn-p,.btn-g,.mconf,.mcanc,.ab,.land-begin,.gate-guest-btn{font-family:var(--sans);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+        .psave{font-family:var(--serif);font-size:14.5px}
+        .btn-g{background:none;border:1px solid var(--rule);color:var(--ink);width:auto;align-self:center;padding:9px 20px}
+        .btn-g:hover{background:var(--paper-2)}
+        .mode-btn{background:none!important;border:1px solid var(--ink);text-transform:none;letter-spacing:0}
+        .mode-btn:hover:not(:disabled){background:var(--paper-2)!important;box-shadow:none}
+        .mode-btn > div:first-child{font-family:var(--display);font-size:22px}
+        .mode-btn > div:last-child{font-family:var(--serif)!important;font-size:14px!important}
+        select,input[type="text"],textarea,.auth-in,.gvin{background:var(--paper-3);border:1px solid var(--rule);font-family:var(--serif);color:var(--ink)}
+        input:focus,textarea:focus,select:focus,.auth-in:focus,.gvin:focus{border-color:var(--ink)}
+        ::placeholder{color:var(--ink-3)}
+
+        /* ── Masthead ───────────────────────────────────────────────────── */
+        .hdr{padding:16px 32px 0;border-bottom:0;flex-wrap:wrap;gap:0 30px;align-items:baseline;background:var(--paper)}
+        .hdr::after{content:"";order:10;flex-basis:100%;height:0;margin-top:11px;border-top:1px solid var(--ink);box-shadow:0 2px 0 var(--paper),0 3px 0 var(--ink)}
+        .logo{gap:12px}
+        .lru{font-family:var(--display);font-size:30px;font-weight:700;letter-spacing:.005em;color:var(--ink);line-height:1}
+        .lsub{font-family:var(--sans);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-2);display:inline}
+        .tabs{gap:24px;overflow:visible}
+        .tab{padding:6px 0 4px;border:0;border-bottom:2px solid transparent;border-radius:0!important;background:none;
+          font-family:var(--sans);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);font-weight:500}
+        .tab.on{background:none;border-color:var(--ink);color:var(--ink);font-weight:600}
+        .tab:hover:not(.on){background:none;color:var(--ink)}
+        .bdg{background:none;color:var(--ink-3);font-family:var(--sans);font-size:10px;padding:0;margin-left:5px;letter-spacing:0}
+        .bdg.g{background:none;color:var(--ink-3)}
+        .hdr-right{gap:14px;align-self:center}
+        .adm-trigger,.tbadge{background:none;border:0;border-bottom:1px solid var(--rule);color:var(--ink);padding:3px 0;
+          font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;cursor:pointer}
+        .adm-trigger:hover,.tbadge:hover{background:none;border-bottom-color:var(--ink);color:var(--rubric)}
+        .tbadge{font-family:var(--serif);font-style:italic;font-size:14px;text-transform:none;letter-spacing:0;max-width:260px}
+        .acct-email{font-family:var(--sans);font-size:11px;color:var(--ink-3)}
+        @media(max-width:900px){.hdr{padding:12px 18px 0;gap:0 18px}.tabs{gap:16px}.tab{font-size:11px;letter-spacing:.12em}}
+        @media(max-width:640px){
+          .hdr{row-gap:6px}
+          .tabs{order:3;width:100%;flex-wrap:wrap;gap:4px 16px}
+          .hdr::after{margin-top:6px}
+          .lru{font-size:26px}
+          .lsub{display:none}
+        }
+
+        /* ── The page ───────────────────────────────────────────────────── */
+        .ss{padding:30px 32px 70px;gap:14px;text-align:left;align-items:center}
+        .ss > *{width:100%;max-width:820px}
+        .ss > .sico{display:none}
+        .sti{font-family:var(--display);font-size:34px;font-weight:400;line-height:1.15;color:var(--ink);margin-top:14px}
+        .sde{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--ink-2);max-width:820px;line-height:1.5;margin-top:-6px}
+        #read-now{max-width:820px!important;width:100%!important;gap:8px!important}
+        #read-now > div[style]{border-top:0!important;margin-top:8px!important;padding-top:0!important}
+        .lib-cat-hint{font-style:italic;color:var(--ink-3);padding:26px 0}
+        .news{border-radius:0;border:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule-soft);background:none;padding:12px 0}
+        .news:before{display:none}
+        .news-t{font-family:var(--display);font-size:16px}
+        .news-b{font-family:var(--serif)}
+        /* Memorial and the Discord keep their own colours and marks — they
+           are other people's doors, and should look like them — but as two
+           compact buttons side by side, not two signs stood on the page. */
+        .support{flex-direction:row;flex-wrap:wrap;justify-content:center;align-items:stretch;gap:10px;
+          padding:12px 0 14px;border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);margin-bottom:6px}
+        .mem-btn,.mem-btn.sm{flex-direction:row;align-items:center;gap:10px;background:#fff;border:1px solid #e43d30;
+          border-radius:3px!important;padding:8px 16px;box-shadow:none;transition:background .12s}
+        .mem-btn:hover{box-shadow:none;background:#fff5f4;border-color:#e43d30}
+        .mem-logo,.mem-btn.sm .mem-logo{height:20px}
+        .mem-cta,.mem-btn.sm .mem-cta{font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#e43d30;font-weight:600}
+        .discord-btn{background:#5865F2;border:1px solid #5865F2;color:#fff;border-radius:3px!important;box-shadow:none;padding:8px 16px;
+          display:inline-flex;align-items:center;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;line-height:1}
+        .discord-btn:hover{background:#4752C4;border-color:#4752C4;box-shadow:none;color:#fff}
+        .discord-btn .dico{width:18px;opacity:1}
+        .discord-btn .row{gap:9px}
+        .discord-btn .sub{display:none}
+        .fund-done{display:none}
+        .site-foot{font-family:var(--sans);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding:26px 16px 30px;border-top:1px solid var(--rule-soft);margin-top:20px}
+        .site-foot .n{color:var(--ink-2)}
+        .site-foot .nowar{margin-top:8px;letter-spacing:.32em;color:var(--ink);font-size:11px}
+        .site-foot .foot-give{margin-top:12px;gap:10px}
+        .site-foot .mem-btn{width:auto}
+
+        /* ── Library ────────────────────────────────────────────────────── */
+        .quickpick{background-color:var(--paper-3);border:1px solid var(--rule);font-family:var(--serif);font-size:15px;padding:10px 38px 10px 12px}
+        .quickpick optgroup{font-family:var(--display);background:var(--paper-2)}
+        .quickpick:focus{box-shadow:none;border-color:var(--ink)}
+        input[type="text"].lib-search,.lib-search{background:none;border:0;border-bottom:1px solid var(--ink);padding:10px 0;margin:6px 0 4px;
+          font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink)}
+        input[type="text"].lib-search:focus{background:none;border-bottom-color:var(--rubric)}
+        .lib-filters{align-items:flex-end;gap:18px}
+        .lib-filter-btn{border:0;border-bottom:1px solid transparent;background:none;padding:0 0 8px;color:var(--ink-2);
+          font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+        .lib-filter-btn:hover,.lib-filter-btn.on{color:var(--ink);border-bottom-color:var(--ink);background:none;font-weight:600}
+        .lib-cats{gap:6px 22px;padding:14px 0 12px;margin-bottom:10px;border-bottom:1px solid var(--rule-soft)}
+        .lib-cat-chip{background:none;border:0;border-bottom:1px solid transparent;padding:3px 0;gap:6px;
+          font-family:var(--sans);font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);font-weight:500;transition:color .12s}
+        .lib-cat-chip:hover{background:none;transform:none;color:var(--ink);border-color:transparent}
+        .lib-cat-chip.on{background:none;border-bottom-color:var(--ink);color:var(--ink);font-weight:600}
+        .lib-cat-chip.all{border-style:solid}
+        .lib-cat-chip .n{font-family:var(--serif);font-style:italic;text-transform:none;letter-spacing:0;font-size:12.5px;opacity:.55;font-weight:400}
+        .lib-authors{gap:0 26px;row-gap:2px;margin:4px 0 20px;columns:auto;display:block;column-width:220px;column-gap:26px}
+        .lib-author{display:flex;width:100%;justify-content:space-between;align-items:baseline;gap:10px;padding:6px 0;
+          background:none;border:0;border-bottom:1px solid var(--rule-soft);font-family:var(--serif);font-size:16px;break-inside:avoid}
+        .lib-author:hover{background:none;transform:none;color:var(--rubric);border-bottom-color:var(--rule-soft)}
+        .lib-author .n{font-style:italic;font-size:12.5px;color:var(--ink-3)}
+        .lib-section{margin-bottom:26px}
+        .lib-section-hdr{font-family:var(--display);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);
+          font-weight:400;padding:0 0 6px;margin:16px 0 0;border-bottom:1px solid var(--ink)}
+        .lib-grid{display:block}
+        .lib-card{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"title marks" "blurb marks";
+          gap:2px 20px;padding:13px 0 12px;border:0;border-bottom:1px solid var(--rule-soft);background:none;transition:none}
+        .lib-card:hover{background:none;transform:none;border-color:var(--rule-soft)}
+        .lib-card:hover .lib-card-title{color:var(--rubric)}
+        .lib-card-title{grid-area:title;font-family:var(--display);font-size:19px;line-height:1.25;margin:0;color:var(--ink)}
+        .lib-card-title .a{font-family:var(--serif);font-style:italic;font-size:14.5px;color:var(--ink-2);margin-left:8px;white-space:nowrap}
+        .lib-card-blurb{grid-area:blurb;font-family:var(--serif);font-size:14px;line-height:1.5;color:var(--ink-2);margin:1px 0 0;max-width:62ch}
+        .lib-card-meta{grid-area:marks;align-self:start;margin:0;padding-top:6px;gap:0 10px;flex-wrap:nowrap;justify-content:flex-end}
+        .lib-tag,.lib-card-cat,.lib-done{background:none;border:0;padding:0;font-family:var(--sans);font-size:10px;letter-spacing:.16em;
+          text-transform:uppercase;color:var(--ink-3);font-weight:500}
+        .lib-card-cat{display:none}
+        .lib-done{color:var(--rubric)}
+        .lib-card-loader{background:rgba(244,239,229,.8);backdrop-filter:none;-webkit-backdrop-filter:none}
+        .lib-card-loader span{font-family:var(--serif)}
+        .lib-card-remove{color:var(--ink-3)}
+        @media(max-width:600px){
+          .lib-card{grid-template-columns:1fr;grid-template-areas:"title" "blurb" "marks";gap:3px 0}
+          .lib-card-meta{justify-content:flex-start;padding-top:4px}
+          .lib-card-title .a{display:block;margin:2px 0 0;white-space:normal}
+        }
+        /* Continue reading: a short list, not a stack of tiles. */
+        .lcard{padding:10px 0;border:0;border-bottom:1px solid var(--rule-soft);background:none;display:grid;
+          grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"head when" "bar bar";gap:2px 16px;align-items:baseline}
+        .lcard:hover{background:none}
+        .lcard:hover .lchead{color:var(--rubric)}
+        .lcard.cur{background:none;border-color:var(--rule-soft)}
+        .lchead{grid-area:head;font-family:var(--display);font-size:17px;margin:0}
+        .lcard .lcn{grid-area:when;font-family:var(--sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin:0;color:var(--ink-3)!important}
+        .lcard > div[style*="marginTop:8"],.lcard > div[style*="margin-top: 8px"]{grid-area:bar;font-family:var(--sans);font-size:10px;letter-spacing:.1em;margin-top:2px!important}
+        .lcard > div[style*="height:3"],.lcard > div[style*="height: 3px"]{grid-area:bar;margin-top:0!important}
+        .lcard > div[style*="height: 3px"] > div,.lcard > div[style*="height:3"] > div{background:var(--ink)!important}
+        .lcp{font-family:var(--serif)}
+        /* Contents drawer (same .lcard) */
+        .navpanel .lcard{display:block;padding:8px 0}
+        .navpanel .lcard.cur .lchead{color:var(--rubric)}
+        .navpanel .lcn{font-family:var(--sans);letter-spacing:.14em;font-size:10px;color:var(--ink-3)}
+        .navpanel .lchead{font-family:var(--display);font-size:16px}
+
+        /* ── The reader ─────────────────────────────────────────────────── */
+        .lit-top{padding:10px 32px 8px;border-bottom:1px solid var(--rule-soft);gap:6px 18px}
+        .ltab{padding:5px 0;border:0;border-bottom:1px solid transparent;background:none;color:var(--ink-2);
+          font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+        .ltab.on{background:none;border-bottom-color:var(--ink);color:var(--ink);font-weight:600}
+        .ltab:hover:not(.on){background:none;color:var(--ink)}
+        .ltab.bmjump{border-bottom-color:transparent;color:var(--rubric)}
+        .lit-top-nav{gap:4px 14px;margin-left:12px}
+        .lnb-inline,.lnb-inline.ch,.lnb-inline.p,.lbm-inline{background:none!important;border:0;border-bottom:1px solid transparent;color:var(--ink);
+          font-family:var(--sans);font-size:11px!important;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:5px 0!important}
+        .lnb-inline:hover:not(:disabled),.lnb-inline.ch:hover:not(:disabled),.lbm-inline:hover{background:none!important;color:var(--rubric);border-bottom-color:transparent}
+        .lnb-inline.p{color:var(--ink)!important}
+        .lnb-inline:disabled{opacity:.28}
+        .lbm-inline{font-family:var(--sans);letter-spacing:.14em}
+        .lprog{gap:10px}
+        .lpct{font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+        .lpbar{width:90px;height:2px;background:var(--rule-soft)}
+        .lpfill{background:var(--ink)}
+        @media(max-width:780px){.lit-top{padding:8px 16px 6px;gap:4px 12px}.lit-top-nav{margin-left:0}}
+        .lit-left{padding:26px 32px 40px;border-right:0}
+        .lit-left > .lhdr{margin-top:2px}
+        .mark-read{border:0;border-bottom:1px solid transparent;background:none;padding:3px 0;color:var(--ink-3);
+          font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase}
+        .mark-read:hover{border-bottom-color:var(--ink);color:var(--ink);background:none}
+        .mark-read.on{background:none;border-bottom-color:var(--rubric);color:var(--rubric);font-weight:600}
+        .book-line{font-family:var(--serif)!important;font-style:italic!important;font-size:14px!important;color:var(--ink-2)!important;letter-spacing:0!important}
+        .lhdr{font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;color:var(--ink-3);margin-bottom:10px}
+        .chvid{border:1px solid var(--rule);background:var(--paper-2)}
+        .chvid-scrub{background:none;border:0;border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);padding:6px 0;margin:8px 0 18px;font-family:var(--sans)}
+        .chvid-scrub button{background:none;border:0;color:var(--ink);font-family:var(--sans);font-size:11.5px;letter-spacing:.06em;font-weight:500;min-width:0;padding:5px 8px}
+        .chvid-scrub button:hover{background:none;color:var(--rubric)}
+        .chvid-scrub button:first-child{font-size:14px;padding-left:2px}
+        .chvid-scrub input[type=range]{accent-color:var(--ink)}
+        .chvid-scrub .t{font-family:var(--sans);font-size:11.5px;color:var(--ink-2)}
+        .chvid-scrub .vid-mini{font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;opacity:1;color:var(--ink-3)}
+        .lit-left.has-vid .chvid-scrub{margin:-26px -32px 22px;padding:8px 32px;border-top:0;border-bottom:1px solid var(--rule-soft)}
+        .chvid-dock.stuck{border-bottom:0;box-shadow:none}
+        .no-audio,.one-rec{border:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule-soft);background:none;padding:10px 0;font-family:var(--serif);color:var(--ink-2)}
+        .story-index{border:0;border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);background:none;padding:10px 0;gap:4px 16px}
+        .story-index-link{border:0;padding:2px 0;font-family:var(--display);font-size:15px;color:var(--ink-2);letter-spacing:.04em}
+        .story-index-link:hover{background:none;color:var(--rubric)}
+        .sec-div{font-family:var(--display);color:var(--ink);border-top:1px solid var(--rule)}
+        .lch-heading{font-family:var(--display);font-size:30px;font-weight:400;line-height:1.15;margin:6px 0 6px;color:var(--ink)}
+        .lch-en{font-family:var(--serif);font-style:italic;font-size:14.5px;letter-spacing:0;color:var(--ink-2);margin:0 0 20px;padding-bottom:12px;border-bottom:1px solid var(--rule-soft)}
+        .lch-en i{font-style:normal}
+        .ltxt{font-family:var(--serif);font-size:18px;line-height:1.72;color:var(--ink);letter-spacing:0}
+        .ltxt p,.dual-ru{font-variant-numeric:oldstyle-nums}
+        .dual-en{font-family:var(--serif);color:var(--ink-2)}
+        .dual-hint{font-family:var(--sans);letter-spacing:.14em;color:var(--ink-3)}
+        .dual-toggle{background:var(--paper-3);border:1px solid var(--ink);color:var(--ink);box-shadow:none;font-family:var(--sans);letter-spacing:.14em;padding:8px 10px}
+        .dual-toggle.on{background:var(--ink);color:var(--paper)}
+        .rw{border-bottom:0}
+        .rw:hover{color:var(--rubric);border-bottom:0;background:none}
+        .rwhl{background:var(--paper-2);border-bottom:0;color:var(--ink)}
+        .rw-reading{color:var(--rubric);border-bottom:1px solid var(--rubric)}
+        .rw.vsaved{color:var(--rubric);border-bottom:1px dotted rgba(155,45,31,.5)}
+        .pjump,.pbm{background:none;border:0;opacity:.3;filter:none;color:var(--ink);font-size:11px;width:20px;height:22px;margin:3px 6px 0 -26px}
+        .pjump:hover,.pbm:hover{background:none;opacity:1;color:var(--rubric)}
+        .pbm.on{background:none;border:0;opacity:1;color:var(--rubric)}
+        @media(max-width:900px){.pjump,.pbm{margin-left:-2px}}
+        .bm-menu{background:var(--paper-3);border:1px solid var(--ink);box-shadow:none}
+        .bm-menu button{font-family:var(--serif)}
+        .bm-menu button:hover{background:var(--paper-2)}
+        .chap-foot{border-top:1px solid var(--ink);gap:24px}
+        .chap-foot-btn{border:0;background:none;padding:14px 0}
+        .chap-foot-btn:hover:not(:disabled){background:none}
+        .chap-foot-btn:hover:not(:disabled) .name{color:var(--rubric)}
+        .chap-foot-btn .dir{font-family:var(--sans);letter-spacing:.16em;color:var(--ink-3)}
+        .chap-foot-btn .name{font-family:var(--display);font-size:18px}
+        .navpanel{padding:16px 32px;max-width:860px;width:100%;margin:0 auto}
+        .lsbar{padding:12px 32px}
+        .lem{font-style:italic;color:var(--ink-3)}
+        .play-speaker{font-family:var(--sans);font-size:.86em;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+        .play-sceneHead{font-family:var(--display);color:var(--ink);border-top:1px solid var(--rule)}
+        .bible-chapter{font-family:var(--display)}
+        .faudio{background:var(--paper);border-top:1px solid var(--ink);box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+        .faudio-btn,.faudio-mode{background:none;border:1px solid var(--rule);color:var(--ink)}
+        .faudio-play{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+        .faudio-play:hover{background:var(--rubric)}
+        .faudio-status,.faudio-clock{font-family:var(--sans)}
+        .faudio-speed{background:none;border:1px solid var(--rule);font-family:var(--sans);font-size:11px;letter-spacing:.08em}
+        .ttsplay{background:var(--ink)}
+        .ttsbtn{font-family:var(--sans);font-size:11px;letter-spacing:.08em}
+
+        /* ── The word ───────────────────────────────────────────────────── */
+        .pover{background:rgba(27,22,19,.18)}
+        .pop{background:var(--paper-3);border:1px solid var(--ink);box-shadow:none;padding:18px 20px 20px;animation:none}
+        .pw{font-family:var(--serif);font-size:25px;font-weight:600;line-height:1.1;letter-spacing:-.005em}
+        .ppos,.pread-pos,.pctx-lbl,.ictx-lbl{font-family:var(--sans);letter-spacing:.16em;color:var(--ink-3);font-size:10px}
+        .psay{background:none;border:1px solid var(--rule);font-family:var(--sans);letter-spacing:.12em;text-transform:uppercase;font-size:10px;color:var(--ink-2)}
+        .psay:hover,.psay.on{background:none;border-color:var(--ink);color:var(--ink)}
+        .pdru{background:none;border-left:2px solid var(--ink);font-family:var(--serif);padding:2px 0 2px 12px}
+        .ptr{font-family:var(--serif);font-size:17px;color:var(--ink);font-style:normal;padding:0}
+        .pgr{background:none;color:var(--ink-2);font-family:var(--serif);font-style:italic;font-size:13.5px;padding:0;border-top:1px solid var(--rule-soft);padding-top:7px;margin-top:4px}
+        .pex{font-family:var(--serif)}
+        .pctx{background:none;border-left:2px solid var(--rule);padding:4px 0 4px 12px}
+        .pctx-s{font-family:var(--serif)}
+        .pctx-s b,.iex.ictx b,.qex-s b{background:none;color:var(--rubric);font-weight:600}
+        .pexbtn{border:0;border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);padding:8px 0;font-family:var(--serif);color:var(--ink)}
+        .pexbtn:hover{background:none;border-color:var(--rule)}
+        .pexbtn-sub{font-family:var(--serif)}
+        .pctx-credit{font-family:var(--sans);font-size:10px;letter-spacing:.06em;color:var(--ink-3)}
+        .preads{background:none;border:0;border-bottom:1px solid var(--rule-soft);padding:0 0 10px}
+        .preads-q{font-family:var(--serif);font-style:italic;font-size:13px}
+        .pread{background:none;border:1px solid var(--rule);font-family:var(--serif)}
+        .pread:hover{background:none;border-color:var(--ink)}
+        .pread.on{border-color:var(--ink);background:var(--paper-2)}
+        .pread.on .pread-pos{color:var(--ink)}
+        .pread-lem{font-family:var(--display);font-weight:400;font-size:17px}
+        .pmt{background:none;border-left:2px solid var(--rubric);color:var(--ink-2);font-family:var(--serif);font-style:italic}
+        .psave{background:var(--ink);color:var(--paper);border:1px solid var(--ink)}
+        .psave:hover{background:var(--rubric);border-color:var(--rubric)}
+        .pcl{font-family:var(--sans);color:var(--ink-3)}
+        .perr{color:var(--rubric);font-family:var(--serif)}
+        .pload{font-style:italic;color:var(--ink-3)}
+        .yobtn{background:none;border:1px solid var(--rule);font-family:var(--serif);text-transform:none;letter-spacing:0;font-size:15px}
+
+        /* ── Vocabulary, grammar, music, admin ──────────────────────────── */
+        .panel{padding:30px 32px;max-width:900px;width:100%;margin:0 auto}
+        .phdr{border-bottom:1px solid var(--ink);padding-bottom:8px;margin-bottom:6px}
+        .pti{font-family:var(--display);font-size:24px;font-weight:400}
+        .ab{background:none;border:1px solid var(--ink);color:var(--ink);padding:6px 14px;font-size:11px}
+        .ab:hover{background:var(--paper-2)}
+        .ab.g{border-color:var(--rule);color:var(--ink-2);background:none}
+        .ab.g:hover{background:var(--paper-2)}
+        .empty{font-style:italic;color:var(--ink-3)}
+        .icard{background:none;border:0;border-bottom:1px solid var(--rule-soft);padding:12px 0}
+        .icard:hover{background:none}
+        .ipri{font-family:var(--display);font-size:19px}
+        .ipos,.learned-when{font-family:var(--sans);letter-spacing:.14em;font-size:10px;color:var(--ink-3)}
+        .isec{font-family:var(--serif)}
+        .igr{background:none;color:var(--ink-2);font-style:italic;padding:0;font-family:var(--serif)}
+        .iex{font-family:var(--serif);border-top:1px solid var(--rule-soft)}
+        .rmb{background:none;border:1px solid var(--rule);color:var(--ink-3)}
+        .rmb:hover{background:none;border-color:var(--rubric);color:var(--rubric)}
+        .learned{border:0;border-top:1px solid var(--rule);background:none}
+        .learned summary{font-family:var(--display);padding:10px 0}
+        .learned-n{background:none;color:var(--rubric);font-family:var(--sans);padding:0}
+        .learned-hint{font-family:var(--serif)}
+        .learned-list{padding:0 0 10px}
+        .learned-ru{font-family:var(--display);font-weight:400}
+        .qex{background:none;border-left:2px solid var(--rule);padding:4px 0 4px 14px}
+        .qex-s{font-family:var(--serif)}
+        .gramref-hdr{background:var(--paper);border-bottom:1px solid var(--rule-soft);padding:10px 32px}
+        .gramref-body{font-family:var(--serif)}
+        .gramref-body h1,.gramref-body h2,.gramref-body h3{font-family:var(--display);font-weight:400}
+        .gramref-nav{border-top:1px solid var(--ink)}
+        .modal{background:var(--paper-3);border:1px solid var(--ink)}
+        .mti{font-family:var(--display);font-weight:400}
+        .mover{background:rgba(27,22,19,.55)}
+        .mcanc{background:none;border:1px solid var(--rule);color:var(--ink)}
+        .mconf.g{background:var(--ink)!important}
+        .adm-modal{background:var(--paper-3);border:1px solid var(--ink)}
+        .adm-title,.adm-today-n,.admd-stat .n{font-family:var(--display);font-weight:400}
+        .admd-stat{background:none;border:1px solid var(--rule-soft)}
+        .adm-status{font-family:var(--sans)}
+        .adm-btn{font-family:var(--sans);letter-spacing:.08em;text-transform:uppercase;font-size:10.5px}
+        .chip,.spk{font-family:var(--sans);font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:none;border:1px solid var(--rule);color:var(--ink)}
+        .chipsaved{background:var(--paper-2)!important;border-color:var(--rule)!important;color:var(--ink-2)!important}
+        .abub,.ubub{background:none;border:0;border-left:2px solid var(--rule);padding:6px 0 6px 14px}
+        .ubub{border-left-color:var(--ink)}
+        .typing{background:none;border:0}
+        .tipline{color:var(--ink-2);border-left-color:var(--rule)}
+        .qline{background:none;border-left:2px solid var(--rubric)}
+        .isend{background:var(--ink)!important}
+        .inew{font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:none;border:1px solid var(--rule)}
+        .ibar textarea,.lit-ibar textarea{border-radius:0!important}
+        /* The reader's own record */
+        .prog-num,.prog-num-lbl .ru,.prog-bar-n,.prog-bar-lbl,.cal-title .ru,.leaf b,.ledger dd{font-family:var(--display);font-weight:400}
+        .prog-num-lbl .en,.cal-title .en,.cal-days span,.ledger dt{font-family:var(--sans)}
+        .prog-jump,.prog-due{border:1px solid var(--rule);font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+        .prog-jump:hover{background:var(--ink);color:var(--paper)}
+        .prog-due{color:var(--rubric);border-color:var(--rubric)}
+        .prog-due:hover{background:var(--rubric-soft)}
+        .cal{background:var(--paper-3);border:1px solid var(--rule);box-shadow:none}
+        .leaf{background:var(--paper-3);border-color:var(--rule-soft)}
+        .leaf.l1{background:#efe8da}.leaf.l2{background:#e5dbc8}.leaf.l3{background:#d8caae}.leaf.l4{background:#c9b58f}
+        .leaf.today{outline-color:var(--ink)}
+        .spine-t{font-family:var(--display)}
+        .prog-restore{font-family:var(--serif)}
+
+        /* ── The door: first visit and sign-in ──────────────────────────── */
+        .land,.auth-page{background:var(--paper)}
+        .land::before,.auth-page::before{display:none}
+        .land-icon,.auth-brand-icon{display:none}
+        .land-title,.auth-brand-title{font-family:var(--display);font-weight:700;letter-spacing:0}
+        .land-sub,.auth-brand-sub{font-family:var(--sans);letter-spacing:.26em;color:var(--ink-2)}
+        .land-tagline,.gate-blurb{font-family:var(--serif)}
+        .land-tips,.land-features,.gate-card{background:none;border:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule-soft)}
+        .land-tips-title,.land-features-title{font-family:var(--sans);color:var(--ink-2);letter-spacing:.2em}
+        .land-feat-icon{display:none}
+        .land-tip-num{border-radius:0;background:none;border:1px solid var(--rule);font-family:var(--sans)}
+        .land-begin,.gate-guest-btn{background:var(--ink)!important;border:1px solid var(--ink)!important;color:var(--paper)!important;font-family:var(--sans)!important;font-weight:600!important;font-size:12.5px!important;letter-spacing:.16em!important;text-transform:uppercase!important;box-shadow:none!important}
+        .gate-feat{font-family:var(--serif)}
+        .gate-feat span{display:none}
+        .gate-note,.gate-guest-note,.auth-hint,.auth-why{font-family:var(--serif)}
+        .gate-or{font-family:var(--sans);letter-spacing:.14em;text-transform:uppercase;font-size:10px}
+        .auth-lbl{font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+        .auth-form .btn-p{margin-top:4px}
+        .auth-foot{position:static;margin-top:18px}
+        .auth-switch{font-family:var(--serif);color:var(--rubric);text-decoration:none;border-bottom:1px solid var(--rubric)}
+        .auth-err{background:none;border:0;border-left:2px solid var(--rubric);color:var(--rubric);font-family:var(--serif);padding:2px 0 2px 12px}
+        .auth-note{background:none;border:0;border-left:2px solid var(--ink);color:var(--ink-2);font-family:var(--serif);padding:2px 0 2px 12px}
       `}</style>
 
       {/* The app itself. No sign-in gate: reading, audio, definitions and
@@ -9939,7 +10313,7 @@ export default function App() {
         <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setShowAdmin(false); }}>
           <div className="adm-modal">
             <div className="adm-head">
-              <div className="adm-title">👥 Manage Users</div>
+              <div className="adm-title">Manage users</div>
               <button className="adm-x" onClick={function(){ setShowAdmin(false); }}>×</button>
             </div>
             {adminErr && <div className="adm-err">{adminErr}</div>}
@@ -10522,7 +10896,7 @@ export default function App() {
         <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setShowUpload(false); }}>
           <div className="adm-modal" style={{maxWidth:640}}>
             <div className="adm-head">
-              <div className="adm-title">📤 Upload</div>
+              <div className="adm-title">Upload</div>
               <button className="adm-x" onClick={function(){ setShowUpload(false); }}>×</button>
             </div>
             <div className="adm-body" style={{padding:20,display:"flex",flexDirection:"column",gap:14}}>
@@ -10545,7 +10919,7 @@ export default function App() {
               {upMode === "book" && (
                 <>
                   <div>
-                    <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Book file</label>
+                    <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Literata',serif",fontStyle:"italic"}}>Book file</label>
                     <input type="file" accept=".epub,.fb2,.txt,.html,.htm,.xhtml"
                       onChange={function(e){
                         var f = e.target.files && e.target.files[0];
@@ -10559,27 +10933,27 @@ export default function App() {
                       disabled={upBusy}
                       style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#000",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
                     {upBookFile && (
-                      <div style={{fontSize:11,opacity:.55,marginTop:4,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>
+                      <div style={{fontSize:11,opacity:.55,marginTop:4,fontFamily:"'Literata',serif",fontStyle:"italic"}}>
                         {upBookFile.name} · {Math.round(upBookFile.size / 1024)} KB
                       </div>
                     )}
                   </div>
                   <div>
-                    <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Title</label>
+                    <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Literata',serif",fontStyle:"italic"}}>Title</label>
                     <input type="text" value={upTitle} onChange={function(e){ setUpTitle(e.target.value); }}
                       placeholder="e.g. Анна Каренина"
                       disabled={upBusy}
                       style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#000",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
                   </div>
                   <div>
-                    <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Author <span style={{opacity:.5}}>(optional)</span></label>
+                    <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Literata',serif",fontStyle:"italic"}}>Author <span style={{opacity:.5}}>(optional)</span></label>
                     <input type="text" value={upBookAuthor} onChange={function(e){ setUpBookAuthor(e.target.value); }}
                       placeholder="e.g. Лев Толстой"
                       disabled={upBusy}
                       style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#000",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}/>
                   </div>
                   <div>
-                    <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Category</label>
+                    <label style={{display:"block",marginBottom:5,fontSize:13,opacity:.75,fontFamily:"'Literata',serif",fontStyle:"italic"}}>Category</label>
                     <select value={upBookCategory} onChange={function(e){ setUpBookCategory(e.target.value); }} disabled={upBusy}
                       style={{width:"100%",padding:"9px 12px",background:"rgba(0,0,0,.3)",border:"1px solid rgba(210,197,175,.2)",color:"#000",borderRadius:4,fontSize:14,fontFamily:"inherit",boxSizing:"border-box"}}>
                       <option value="Novels">Novels</option>
@@ -10595,11 +10969,11 @@ export default function App() {
                   </div>
                   <div style={{display:"flex",gap:10,alignItems:"center",marginTop:4}}>
                     <button onClick={uploadBook} disabled={upBusy || !upBookFile || !upTitle.trim()}
-                      style={{padding:"10px 22px",background:"#4a3f34",color:"#1a1612",border:"none",borderRadius:4,fontWeight:600,fontSize:14,cursor:upBusy?"wait":"pointer",opacity:(upBusy || !upBookFile || !upTitle.trim())?.5:1,fontFamily:"'Crimson Pro',serif"}}>
+                      style={{padding:"10px 22px",background:"#4a3f34",color:"#1a1612",border:"none",borderRadius:4,fontWeight:600,fontSize:14,cursor:upBusy?"wait":"pointer",opacity:(upBusy || !upBookFile || !upTitle.trim())?.5:1,fontFamily:"'Literata',serif"}}>
                       {upBusy ? "Uploading..." : "Upload book"}
                     </button>
                     <button onClick={function(){ setUpBookFile(null); setUpTitle(""); setUpBookAuthor(""); setUpMsg(""); setUpErr(""); }} disabled={upBusy}
-                      style={{padding:"10px 16px",background:"transparent",color:"#000",border:"1px solid rgba(210,197,175,.25)",borderRadius:4,fontSize:13,cursor:"pointer",fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>
+                      style={{padding:"10px 16px",background:"transparent",color:"#000",border:"1px solid rgba(210,197,175,.25)",borderRadius:4,fontSize:13,cursor:"pointer",fontFamily:"'Literata',serif",fontStyle:"italic"}}>
                       Clear
                     </button>
                   </div>
@@ -10623,11 +10997,11 @@ export default function App() {
 
             <div className="land-features">
               <div className="land-features-title">What you can do</div>
-              <div className="land-feat"><span className="land-feat-icon">📖</span><div><strong>Read</strong> — Choose from the preloaded library of Russian books and stories.</div></div>
-              <div className="land-feat"><span className="land-feat-icon">🔊</span><div><strong>Listen</strong> — Most books come with a narrated audiobook, split by chapter (or by act, for plays) so the recording lines up with what’s on the page.</div></div>
-              <div className="land-feat"><span className="land-feat-icon">✏️</span><div><strong>Define</strong> — Tap any Russian word for translation, lemma, aspect pairs, and example sentences.</div></div>
-              <div className="land-feat"><span className="land-feat-icon">🎯</span><div><strong>Pick your level</strong> — Set your proficiency (A1–C2) and the AI tutor calibrates the difficulty of its reading-comprehension questions to match.</div></div>
-              <div className="land-feat"><span className="land-feat-icon">📚</span><div><strong>Build a library</strong> — Save vocab and grammar tips; they sync across all your devices.</div></div>
+              <div className="land-feat"><span className="land-feat-icon"></span><div><strong>Read</strong> — Choose from the preloaded library of Russian books and stories.</div></div>
+              <div className="land-feat"><span className="land-feat-icon"></span><div><strong>Listen</strong> — Most books come with a narrated audiobook, split by chapter (or by act, for plays) so the recording lines up with what’s on the page.</div></div>
+              <div className="land-feat"><span className="land-feat-icon"></span><div><strong>Define</strong> — Tap any Russian word for translation, lemma, aspect pairs, and example sentences.</div></div>
+              <div className="land-feat"><span className="land-feat-icon"></span><div><strong>Pick your level</strong> — Set your proficiency (A1–C2) and the AI tutor calibrates the difficulty of its reading-comprehension questions to match.</div></div>
+              <div className="land-feat"><span className="land-feat-icon"></span><div><strong>Build a library</strong> — Save vocab and grammar tips; they sync across all your devices.</div></div>
             </div>
 
             <div style={{margin:"2px 0 0",padding:"12px 14px",borderRadius:10,background:"rgba(200,162,118,.10)",border:"1px solid rgba(200,162,118,.28)",fontSize:14,lineHeight:1.55,color:"rgba(0,0,0,.92)"}}>
@@ -10690,9 +11064,9 @@ export default function App() {
 
             <div className="gate-card">
               <div className="gate-feats">
-                <div className="gate-feat"><span>📖</span><div>Read from a library of Russian books and stories.</div></div>
-                <div className="gate-feat"><span>🔊</span><div>Listen along — most books have a narrated recording, split by chapter.</div></div>
-                <div className="gate-feat"><span>✏️</span><div>Tap any word for its dictionary entry, and save it to your vocabulary.</div></div>
+                <div className="gate-feat"><span></span><div>Read from a library of Russian books and stories.</div></div>
+                <div className="gate-feat"><span></span><div>Listen along — most books have a narrated recording, split by chapter.</div></div>
+                <div className="gate-feat"><span></span><div>Tap any word for its dictionary entry, and save it to your vocabulary.</div></div>
               </div>
 
               {/* The way in comes before the way to sign up. Nothing on this
@@ -10811,9 +11185,9 @@ export default function App() {
                 {LEVELS.map(function(l){ return <option key={l.code} value={l.code}>{l.label}</option>; })}
               </select>
             </div>}
-            {started && isLit && <button className="tbadge" onClick={function(){ setShowTopic(true); }}>{"📖 " + (bookMeta.title || "Book")}</button>}
+            {started && isLit && <button className="tbadge" onClick={function(){ setShowTopic(true); }}>{bookMeta.title || "Book"}</button>}
 
-            {isAdmin && <button className="adm-trigger" onClick={function(){ setShowAdmin(true); }} title="Accounts">👥 Users</button>}
+            {isAdmin && <button className="adm-trigger" onClick={function(){ setShowAdmin(true); }} title="Accounts">Users</button>}
             {authReady && (me ? (
               <div className="userbtn-wrap">
                 <span className="acct-email" title={me.email}>{me.email}</span>
@@ -10826,14 +11200,14 @@ export default function App() {
         </header>
         {ttsErr && (
           <div style={{padding:"8px 28px",background:"rgba(157,70,48,.18)",borderBottom:"1px solid rgba(157,70,48,.35)",color:"#9d4630",fontSize:13,display:"flex",alignItems:"center",gap:10}}>
-            <span style={{flex:1}}>🔊 {ttsErr}</span>
+            <span style={{flex:1}}>{ttsErr}</span>
             <button onClick={function(){ setTtsErr(""); }} style={{background:"none",border:"none",color:"#9d4630",cursor:"pointer",fontSize:18,padding:0}}>×</button>
           </div>
         )}
 
         {syncErr && (
           <div style={{padding:"8px 28px",background:"rgba(157,70,48,.18)",borderBottom:"1px solid rgba(157,70,48,.35)",color:"#9d4630",fontSize:13,display:"flex",alignItems:"center",gap:10}}>
-            <span style={{flex:1}}>⚠️ {syncErr}</span>
+            <span style={{flex:1}}>{syncErr}</span>
             <button onClick={function(){ setSyncErr(""); }} style={{background:"none",border:"none",color:"#9d4630",cursor:"pointer",fontSize:18,padding:0}}>×</button>
           </div>
         )}
@@ -10862,9 +11236,9 @@ export default function App() {
                               allowFullScreen />
                           </div>
                         </div>
-                        <div style={{fontFamily:"'Crimson Pro',serif",fontSize:15,color:"rgba(42,31,20,.55)",letterSpacing:.5}}>{artist.artist}</div>
-                        <h1 style={{fontFamily:"'Playfair Display',serif",fontSize:34,color:"#000",fontWeight:700,margin:"2px 0 18px",lineHeight:1.15}}>{song.title}</h1>
-                        <div style={{fontFamily:"'Crimson Pro',serif",fontSize:19,color:"#1c1610"}}>
+                        <div style={{fontFamily:"'Literata',serif",fontSize:15,color:"rgba(42,31,20,.55)",letterSpacing:.5}}>{artist.artist}</div>
+                        <h1 style={{fontFamily:"'Old Standard TT',serif",fontSize:34,color:"#000",fontWeight:700,margin:"2px 0 18px",lineHeight:1.15}}>{song.title}</h1>
+                        <div style={{fontFamily:"'Literata',serif",fontSize:19,color:"#1c1610"}}>
                           {renderLyrics(song.lyrics, artist.artist + " · " + song.title)}
                         </div>
                         <div style={{height:16}}/>
@@ -10878,7 +11252,6 @@ export default function App() {
               if (artist) {
                 return (
                   <div className="ss">
-                    <div className="sico">🎤</div>
                     <h1 className="sti">{artist.artist}</h1>
                     <div style={{width:"100%",maxWidth:520,display:"flex",flexDirection:"column",gap:10}}>
                       {artist.songs.map(function(sg, i2){
@@ -10898,7 +11271,6 @@ export default function App() {
               /* ── Artist list ── */
               return (
                 <div className="ss">
-                  <div className="sico">🎵</div>
                   <h1 className="sti">Music</h1>
                   <p className="sde">Учите русский через песни — каждое слово можно нажать.</p>
                   <div style={{width:"100%",maxWidth:520,display:"flex",flexDirection:"column",gap:10}}>
@@ -10907,8 +11279,8 @@ export default function App() {
                       return (
                         <button key={i2} className="btn-p" style={{textAlign:"left",padding:"16px 20px"}}
                           onClick={function(){ setMusicArtist(i2); setMusicSong(null); }}>
-                          <div style={{fontSize:19}}>🎤 {ar.artist}</div>
-                          <div style={{fontSize:12,opacity:.8,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>{ar.songs.length} {ar.songs.length===1?"песня":"песни"}</div>
+                          <div style={{fontSize:19}}>{ar.artist}</div>
+                          <div style={{fontSize:12,opacity:.8,fontFamily:"'Literata',serif",fontStyle:"italic"}}>{ar.songs.length} {ar.songs.length===1?"песня":"песни"}</div>
                         </button>
                       );
                     })}
@@ -11090,27 +11462,27 @@ export default function App() {
               <div className="ss">
                 <SupportLinks funding={funding} />
                 <div className="sico" style={{color:"#2a1f14"}}><Samovar size={64}/></div>
-                <h1 className="sti">{SITE_NAME}</h1>
-                <p className="sde">Choose how you want to practice today.</p>
+                <h1 className="sti">Practice</h1>
+                <p className="sde">Reading, or the grammar reference — choose.</p>
                 <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:14}}>
                   <button className="btn-p mode-btn" onClick={function(){ setMode("read"); }} style={{textAlign:"left",padding:"18px 22px"}}>
-                    <div style={{fontSize:22,marginBottom:4}}>📖 Read</div>
-                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Open a book from the library and read along with the narration.</div>
+                    <div style={{fontSize:22,marginBottom:4}}>Read</div>
+                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Literata',serif",fontStyle:"italic"}}>Open a book from the library and read along with the narration.</div>
                   </button>
                   <button className="btn-p mode-btn" onClick={function(){ setMode("grammar"); }} style={{textAlign:"left",padding:"18px 22px"}}>
-                    <div style={{fontSize:22,marginBottom:4}}>📚 Grammar</div>
-                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Pick your level and a topic. Quick reference pages with rules and examples.</div>
+                    <div style={{fontSize:22,marginBottom:4}}>Grammar</div>
+                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Literata',serif",fontStyle:"italic"}}>Pick your level and a topic. Quick reference pages with rules and examples.</div>
                   </button>
                   {WORDBANK_ENABLED && (
                     <button className="btn-p mode-btn" onClick={function(){ setMode("wordbank"); }} style={{textAlign:"left",padding:"18px 22px"}}>
-                      <div style={{fontSize:22,marginBottom:4}}>🗂️ Vocab</div>
-                      <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Drill the most common Russian words, ranked by real-world frequency, in blocks of 30.</div>
+                      <div style={{fontSize:22,marginBottom:4}}>Vocab</div>
+                      <div style={{fontSize:13,opacity:.85,fontFamily:"'Literata',serif",fontStyle:"italic"}}>Drill the most common Russian words, ranked by real-world frequency, in blocks of 30.</div>
                     </button>
                   )}
                   {FORUM_ENABLED && (
                   <button className="btn-p mode-btn" onClick={function(){ setTab("forum"); }} style={{textAlign:"left",padding:"18px 22px"}}>
-                    <div style={{fontSize:22,marginBottom:4}}>💬 Forum</div>
-                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Crimson Pro',serif",fontStyle:"italic"}}>Request books, report bugs, and talk with other readers.</div>
+                    <div style={{fontSize:22,marginBottom:4}}>Forum</div>
+                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Literata',serif",fontStyle:"italic"}}>Request books, report bugs, and talk with other readers.</div>
                   </button>
                   )}
                 </div>
@@ -11132,9 +11504,8 @@ export default function App() {
                     </div>
                   </div>
                 )}
-                <div className="sico">📖</div>
-                <h1 className="sti">{chapters.length > 0 ? bookMeta.title : "Open a Russian book"}</h1>
-                <p className="sde">{chapters.length > 0 ? bookMeta.author : "Choose a book from the library to begin reading."}</p>
+                <h1 className="sti">{chapters.length > 0 ? bookMeta.title : "The library"}</h1>
+                <p className="sde">{chapters.length > 0 ? bookMeta.author : "Russian classics with a narrator, an English translation beside the text, and a dictionary under every word."}</p>
                 {/* The reader's own record, for signed-in readers: streak, the
                     week, the year, and the slow counts. Guests have nothing
                     that persists between devices, so they get the library. */}
@@ -11159,9 +11530,9 @@ export default function App() {
                     <>
                       {cbm > 0 && <button className="btn-p" onClick={function(){ startLit(cbm); }}>{(function(){
                         var sl = sectionLabel(chapters[cbm] && chapters[cbm].heading);
-                        return "📌 Resume at " + (sl ? sl.long.toLowerCase() : "your bookmark");
+                        return "Resume at " + (sl ? sl.long.toLowerCase() : "your bookmark");
                       })()}</button>}
-                      <button className={cbm>0?"btn-g":"btn-p"} onClick={function(){ startLit(0); }}>{cbm>0?"Start from beginning":"Начать читать →"}</button>
+                      <button className={cbm>0?"btn-g":"btn-p"} onClick={function(){ startLit(0); }}>{cbm>0?"Start from the beginning":"Начать читать →"}</button>
                       
                       <button onClick={async function(){
                         setChapters([]); setCidx(0); setCbm(0); setBookMeta({title:"",author:""});
@@ -11169,7 +11540,7 @@ export default function App() {
                         try { await storage.delete(EPUB_CACHE); } catch(e) {}
                         try { await storage.delete(EPUB_BM); } catch(e) {}
                         try { await storage.delete(QHIST_KEY); } catch(e) {}
-                      }} style={{background:"none",border:"none",color:"rgba(0,0,0,.4)",fontSize:11,fontStyle:"italic",fontFamily:"'Crimson Pro',serif",cursor:"pointer",padding:"4px",marginTop:4,textDecoration:"underline",textDecorationColor:"rgba(210,197,175,.2)",alignSelf:"center"}}>clear cached book</button>
+                      }} style={{background:"none",border:"none",color:"rgba(0,0,0,.4)",fontSize:11,fontStyle:"italic",fontFamily:"'Literata',serif",cursor:"pointer",padding:"4px",marginTop:4,textDecoration:"underline",textDecorationColor:"rgba(210,197,175,.2)",alignSelf:"center"}}>clear cached book</button>
                     </>
                   ) : ( <></> )}
 
@@ -11184,7 +11555,7 @@ export default function App() {
                           the card grid; both stay in sync via the same data source. */}
                       {presetBooks.length > 0 && (
                         <div style={{marginBottom:18}}>
-                          <div style={{fontSize:11,letterSpacing:2,textTransform:"uppercase",color:"rgba(0,0,0,.45)",marginBottom:8,textAlign:"left"}}>Quick pick</div>
+                          <div className="slbl" style={{marginBottom:8,textAlign:"left"}}>Quick pick</div>
                           <select
                             className="quickpick"
                             defaultValue=""
@@ -11207,13 +11578,13 @@ export default function App() {
                             }}>
                             <option value="" disabled>
                               {quickEnAudio
-                                ? "🎧 EN — with translation and recording…"
-                                : "📖 Choose a book from the library…"}
+                                ? "With translation and recording — choose a book…"
+                                : "Choose a book from the library…"}
                             </option>
                             <option value="__enaudio__">
                               {quickEnAudio
-                                ? "↩︎  Show every book again"
-                                : "🎧 EN  Only works with English and audio"}
+                                ? "Show every book again"
+                                : "Only books with English and a recording"}
                             </option>
                             {(function() {
                               // Grouped by author: that is how a reader looks for a text.
@@ -11377,7 +11748,7 @@ export default function App() {
                       <div className="lib-filters">
                         <input
                           type="text"
-                          placeholder="🔍 Search books and authors…"
+                          placeholder="Search the library — a title, an author…"
                           value={bookSearch}
                           onChange={function(e){ setBookSearch(e.target.value); }}
                           className="lib-search"
@@ -11391,7 +11762,7 @@ export default function App() {
                               aria-pressed={showBookmarks}
                               onClick={function(){ setShowBookmarks(!showBookmarks); }}
                               title="Every book holding a bookmark — click one to pick up where the pin is">
-                              🔖 Bookmarks{nbm ? " (" + nbm + ")" : ""}
+                              Bookmarks{nbm ? " (" + nbm + ")" : ""}
                             </button>
                           );
                         })()}
@@ -11406,7 +11777,7 @@ export default function App() {
                               title={hideFinished
                                 ? "Showing only what you haven't finished — click to show every book"
                                 : "Hide the books you've marked as read"}>
-                              {hideFinished ? "☑" : "☐"} Hide read{done ? " (" + done + ")" : ""}
+                              {hideFinished ? "Showing unread" : "Hide read"}{done ? " (" + done + ")" : ""}
                             </button>
                           );
                         })()}
@@ -11421,9 +11792,9 @@ export default function App() {
                         }).sort(function(a, b){ return (b.at || 0) - (a.at || 0); });
                         return (
                           <div className="lib-section">
-                            <div className="lib-section-hdr">🔖 Bookmarks</div>
+                            <div className="lib-section-hdr">Bookmarks</div>
                             {!entries.length && (
-                              <div className="lib-cat-hint">No bookmarks yet — open a book and click the 🔖 beside any paragraph.</div>
+                              <div className="lib-cat-hint">No bookmarks yet — open a book and click the flag beside any paragraph.</div>
                             )}
                             <div className="lib-grid">
                               {entries.map(function(bm){
@@ -11447,8 +11818,8 @@ export default function App() {
                                     }}>
                                     <div className="lib-card-title">{bm.title || bm.key}{bm.author ? " — " + bm.author : ""}</div>
                                     <div className="lib-card-meta">
-                                      <span className="lib-tag">🔖 ch. {(bm.cidx || 0) + 1}</span>
-                                      {bm.audio ? <span className="lib-tag">🎧 {fmtClock(bm.audio)}</span> : null}
+                                      <span className="lib-tag">ch. {(bm.cidx || 0) + 1}</span>
+                                      {bm.audio ? <span className="lib-tag">{fmtClock(bm.audio)}</span> : null}
                                       {when && <span style={{fontSize:11,color:"rgba(42,31,20,.45)"}}>set {when}</span>}
                                       <button className="lib-card-remove" title="Remove this bookmark"
                                         onClick={function(e){
@@ -11550,13 +11921,12 @@ export default function App() {
                           : (openCat === "__all__") ? shelves
                           : (openCat && buckets[openCat] && buckets[openCat].length) ? [openCat] : [];
                         var chipLabel = function(c) {
-                          if (c === "Speeches by Soviet Leaders") return "🗣 Soviet Speeches";
-                          if (c === "Texts Without English") return "📖 Russian Only";
-                          if (c === "Theatrical Performances") return "🎬 Performances";
-                          var icons = { "Novels":"📕", "Novellas":"📗", "Short Stories":"📄",
-                            "Plays":"🎭", "Poetry":"✒️", "Song Lyrics":"🎵",
-                            "Religious Texts":"🕯", "Speeches":"🗣", "Works":"📚", "Other":"📦" };
-                          return (icons[c] ? icons[c] + " " : "") + c;
+                          if (c === "Speeches by Soviet Leaders") return "Soviet speeches";
+                          if (c === "Texts Without English") return "Russian only";
+                          if (c === "Theatrical Performances") return "Performances";
+                          if (c === "Short Stories") return "Stories";
+                          if (c === "Religious Texts") return "Scripture";
+                          return c;
                         };
                         return (
                           <>
@@ -11573,7 +11943,7 @@ export default function App() {
                                   </button>
                                   <button type="button" className="lib-cat-chip on"
                                     onClick={function(){ setLibAuthor(""); setLibCat("__authors__"); }}>
-                                    <span>✍ {libAuthor}</span>
+                                    <span>{libAuthor}</span>
                                     <span className="n">{authorCounts[libAuthor] || 0}</span>
                                   </button>
                                 </>
@@ -11583,7 +11953,7 @@ export default function App() {
                                   className={"lib-cat-chip" + (inAuthors ? " on" : "")}
                                   aria-pressed={inAuthors}
                                   onClick={function(){ setLibCat(libCat === "__authors__" ? "" : "__authors__"); }}>
-                                  <span>✍ Authors</span>
+                                  <span>Authors</span>
                                   <span className="n">{authorList.length}</span>
                                 </button>
                               )}
@@ -11698,7 +12068,7 @@ export default function App() {
                                         loadPresetBook(book);
                                       }
                                     }}>
-                                    <div className="lib-card-title">{bookLabel(book)}</div>
+                                    <div className="lib-card-title">{book.title || book.filename}{book.author && book.author !== book.title ? <span className="a">{book.author}</span> : null}</div>
                                     {/* What the book is about, in a line — enough to
                                         choose by. Deliberately spoiler-free: it gives
                                         the situation the work opens on and stops
@@ -11711,7 +12081,7 @@ export default function App() {
                                       {/* Sits first in the meta row, where the eye already goes for
                                           the Russian/English/audiobook tags — a bare tick tucked in
                                           front of the title was too easy to miss. */}
-                                      {isFinished(book) && <span className="lib-done" title="You marked this as read">✓ Read</span>}
+                                      {isFinished(book) && <span className="lib-done" title="You marked this as read">read</span>}
                                       {cat !== "Other" && cat !== "Texts Without English" && <span className="lib-card-cat">{cat}</span>}
                                       {cat === "Song Lyrics" ? (
                                         book.songs && book.songs.length > 0 && (
@@ -11719,14 +12089,14 @@ export default function App() {
                                         )
                                       ) : (
                                         <>
-                                          <span className="lib-tag">Russian</span>
+                                          <span className="lib-tag">ru</span>
                                           {/* Only what a book HAS. The shelf it sits on already
                                               says the rest — anything without a translation is
                                               filed under Texts Without English — so a card that
                                               spelled out "no English" was answering a question
                                               the heading above it had answered already. */}
                                           {(book.parallelEn || book.isBible) && (
-                                            <span className="lib-tag">EN</span>
+                                            <span className="lib-tag">en</span>
                                           )}
                                           {/* A chapter video is narration too, as far as a reader
                                               choosing what to listen to is concerned — so it gets
@@ -11741,8 +12111,8 @@ export default function App() {
                                             return (
                                               <span className="lib-tag">
                                                 {(cat === "Theatrical Performances" && hasVid)
-                                                  ? "\uD83C\uDFAC Performance"
-                                                  : "🎧 Audiobook"}
+                                                  ? "video"
+                                                  : "audio"}
                                               </span>
                                             );
                                           })()}
@@ -11764,7 +12134,7 @@ export default function App() {
                                 // badge on each card already says that).
                                 return (
                                   <div key={cat} className="lib-section">
-                                    <div className="lib-section-hdr">📖 Texts Without English</div>
+                                    <div className="lib-section-hdr">Texts without English</div>
                                     <div className="lib-grid">{entries.map(renderCard)}</div>
                                   </div>
                                 );
@@ -11773,7 +12143,7 @@ export default function App() {
                                 <div key={cat} className="lib-section">
                                   {withAudio.length > 0 && (
                                     <>
-                                      <div className="lib-section-hdr">🎧 {cat} — With Audiobook</div>
+                                      <div className="lib-section-hdr">{cat} · with a recording</div>
                                       <div className="lib-grid" style={{marginBottom:18}}>
                                         {withAudio.map(renderCard)}
                                       </div>
@@ -11781,7 +12151,7 @@ export default function App() {
                                   )}
                                   {textOnly.length > 0 && (
                                     <>
-                                      <div className="lib-section-hdr">📖 {cat} — Text Only</div>
+                                      <div className="lib-section-hdr">{cat} · text only</div>
                                       <div className="lib-grid">
                                         {textOnly.map(renderCard)}
                                       </div>
@@ -11863,8 +12233,8 @@ export default function App() {
                                     else loadPresetBook(match.book);
                                   }}>
                                     <div className="lcn" style={{color:"rgba(0,0,0,.5)"}}>
-                                      ↻ {humanLast}
-                                      {isFinished(match.book) && <span className="lib-done" style={{marginLeft:8}}>✓ Read</span>}
+                                      {humanLast}
+                                      {isFinished(match.book) && <span className="lib-done" style={{marginLeft:8}}>read</span>}
                                     </div>
                                     <div className="lchead">{bookLabel(rec)}</div>
                                     <div style={{marginTop:8,fontSize:11,color:"rgba(0,0,0,.55)"}}>
@@ -11887,8 +12257,8 @@ export default function App() {
                       {songPickerBook && (
                         <div ref={songPickerRef} style={{marginTop:14,padding:14,background:"rgba(0,0,0,.25)",border:"1px solid rgba(200,162,118,.4)",borderRadius:6,scrollMarginTop:20}}>
                           <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",marginBottom:10}}>
-                            <div style={{fontFamily:"'Crimson Pro',serif",fontSize:15}}>
-                              🎵 <span style={{fontStyle:"italic"}}>{songPickerBook.title}</span> · pick a song
+                            <div style={{fontFamily:"'Literata',serif",fontSize:15}}>
+                              <span style={{fontStyle:"italic"}}>{songPickerBook.title}</span> · pick a song
                             </div>
                             <button onClick={function(){ setSongPickerBook(null); setSongPickerList([]); setSongPickerErr(""); }}
                               style={{background:"transparent",color:"rgba(0,0,0,.55)",border:"none",cursor:"pointer",fontSize:18,padding:"0 4px"}}>×</button>
@@ -11907,7 +12277,7 @@ export default function App() {
                               {songPickerList.map(function(s){
                                 return (
                                   <button key={s.index} onClick={function(){ jumpToSong(s.index); }}
-                                    style={{textAlign:"left",padding:"8px 12px",background:"transparent",color:"#000",border:"1px solid rgba(210,197,175,.1)",borderRadius:4,cursor:"pointer",fontSize:14,fontFamily:"'Crimson Pro',serif",display:"flex",justifyContent:"space-between",alignItems:"center"}}
+                                    style={{textAlign:"left",padding:"8px 12px",background:"transparent",color:"#000",border:"1px solid rgba(210,197,175,.1)",borderRadius:4,cursor:"pointer",fontSize:14,fontFamily:"'Literata',serif",display:"flex",justifyContent:"space-between",alignItems:"center"}}
                                     onMouseEnter={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.1)"; e.currentTarget.style.borderColor = "rgba(200,162,118,.3)"; }}
                                     onMouseLeave={function(e){ e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(210,197,175,.1)"; }}>
                                     <span><span style={{opacity:.4,marginRight:8}}>{s.index + 1}.</span>{s.title}</span>
@@ -11938,7 +12308,7 @@ export default function App() {
                 that set this mode is gone. Kept so re-enabling is one flag. */}
             {WORDBANK_ENABLED && mode === "wordbank" && (
               <div className="ss">
-                <div className="sico" style={{color:"#000"}}>🗂️</div>
+                
                 <h1 className="sti">Vocab</h1>
 
                 {!wbIndex && <p className="sde">Loading word bank…</p>}
@@ -11984,7 +12354,7 @@ export default function App() {
                     <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:16,alignItems:"center"}}>
                       <div style={{fontSize:12,opacity:.6}}>Block {wbBlockNum} · {wbBlockStats().done}/{wbBlockStats().total} mastered</div>
                       <div style={{display:"flex",alignItems:"center",gap:10}}>
-                        <span style={{fontSize:28,fontFamily:"'Playfair Display',serif"}}>{wbCur.card.ru}</span>
+                        <span style={{fontSize:28,fontFamily:"'Old Standard TT',serif"}}>{wbCur.card.ru}</span>
                         <button className="ttsbtn" onClick={function(){ speakMsg(speakText, "wb-" + wbCur.card.id); }} title="Listen">🔊</button>
                       </div>
                       <div style={{fontSize:11,opacity:.55,textTransform:"uppercase",letterSpacing:.5}}>
@@ -12027,7 +12397,7 @@ export default function App() {
                 "← Back" buttons walks back one step at a time. */}
             {mode === "grammar" && !gramTopicId && (
               <div className="ss">
-                <div className="sico" style={{color:"#000"}}>📚</div>
+                
                 <h1 className="sti">Grammar Reference</h1>
                 <p className="sde">Pick your level, then choose a topic. Rules and examples on every page.</p>
 
@@ -12043,8 +12413,8 @@ export default function App() {
                         type="text"
                         value={gramSearch}
                         onChange={function(e){ setGramSearch(e.target.value); }}
-                        placeholder="🔍 Search all levels (e.g. 'case', 'aspect', 'motion')"
-                        style={{width:"100%",padding:"10px 36px 10px 14px",fontSize:14,background:"rgba(210,197,175,.05)",border:"1px solid rgba(210,197,175,.15)",borderRadius:8,color:"#000",fontFamily:"'Crimson Pro',serif"}}
+                        placeholder="Search all levels — case, aspect, motion…"
+                        style={{width:"100%",padding:"10px 36px 10px 14px",fontSize:14,background:"rgba(210,197,175,.05)",border:"1px solid rgba(210,197,175,.15)",borderRadius:8,color:"#000",fontFamily:"'Literata',serif"}}
                       />
                       {gramSearch && (
                         <button
@@ -12094,7 +12464,7 @@ export default function App() {
                                   <button
                                     key={t.id}
                                     onClick={function(){ setGramTopicId(t.id); }}
-                                    style={{textAlign:"left",background:"none",border:"none",borderBottom:"1px solid rgba(210,197,175,.06)",padding:"12px 14px",cursor:"pointer",color:"#000",fontFamily:"'Crimson Pro',serif",display:"flex",alignItems:"flex-start",gap:12,transition:"background .12s"}}
+                                    style={{textAlign:"left",background:"none",border:"none",borderBottom:"1px solid rgba(210,197,175,.06)",padding:"12px 14px",cursor:"pointer",color:"#000",fontFamily:"'Literata',serif",display:"flex",alignItems:"flex-start",gap:12,transition:"background .12s"}}
                                     onMouseEnter={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.06)"; }}
                                     onMouseLeave={function(e){ e.currentTarget.style.background = "none"; }}>
                                     <span style={{fontSize:11,fontWeight:600,letterSpacing:1.5,color:"#000",background:"rgba(200,162,118,.12)",padding:"3px 7px",borderRadius:4,flexShrink:0,marginTop:1}}>{t.level}</span>
@@ -12130,7 +12500,7 @@ export default function App() {
                           return (
                             <>
                               {L && L.description && (
-                                <p style={{fontSize:13,fontStyle:"italic",color:"rgba(0,0,0,.55)",margin:"4px 2px 0",fontFamily:"'Crimson Pro',serif",lineHeight:1.5}}>{L.description}</p>
+                                <p style={{fontSize:13,fontStyle:"italic",color:"rgba(0,0,0,.55)",margin:"4px 2px 0",fontFamily:"'Literata',serif",lineHeight:1.5}}>{L.description}</p>
                               )}
                               <span className="slbl" style={{marginTop:14}}>Topic ({topicsHere.length} available)</span>
                               <select
@@ -12140,7 +12510,7 @@ export default function App() {
                                   if (id) setGramTopicId(id);
                                   e.target.value = "";
                                 }}>
-                                <option value="" disabled>📖 Choose a topic…</option>
+                                <option value="" disabled>Choose a topic…</option>
                                 {topicsHere.map(function(t) {
                                   return <option key={t.id} value={t.id}>{t.title}</option>;
                                 })}
@@ -12190,7 +12560,7 @@ export default function App() {
                             title={saved ? "Already saved — click to remove from Grammar tab" : "Save to Grammar tab for quick review"}
                             onClick={function(){ saved ? rmTopic(topic.id) : addTopic(topic.id); }}
                             style={saved ? {color:"#2f5a2a",borderColor:"rgba(154,178,142,.4)"} : null}>
-                            {saved ? "✓ Saved" : "📚 Save topic"}
+                            {saved ? "Saved" : "Save topic"}
                           </button>
                         );
                       })()}
@@ -12199,13 +12569,13 @@ export default function App() {
                   </div>
 
                   <div className="gramref-body">
-                    <h1 style={{fontFamily:"'Playfair Display',serif",fontSize:32,fontWeight:700,color:"#000",marginBottom:6,lineHeight:1.15}}>{topic.title}</h1>
-                    {topic.subtitle && <p style={{fontStyle:"italic",fontSize:16,color:"rgba(0,0,0,.65)",marginBottom:24,fontFamily:"'Crimson Pro',serif",lineHeight:1.5}}>{topic.subtitle}</p>}
+                    <h1 style={{fontFamily:"'Old Standard TT',serif",fontSize:32,fontWeight:700,color:"#000",marginBottom:6,lineHeight:1.15}}>{topic.title}</h1>
+                    {topic.subtitle && <p style={{fontStyle:"italic",fontSize:16,color:"rgba(0,0,0,.65)",marginBottom:24,fontFamily:"'Literata',serif",lineHeight:1.5}}>{topic.subtitle}</p>}
 
                     {(topic.sections || []).map(function(sec, si) {
                       return (
                         <section key={si} style={{marginBottom:22}}>
-                          {sec.heading && <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:14,fontWeight:700,color:"rgba(0,0,0,.5)",textTransform:"uppercase",letterSpacing:2,marginBottom:10,paddingBottom:6,borderBottom:"1px solid rgba(210,197,175,.08)"}}>{sec.heading}</h2>}
+                          {sec.heading && <h2 style={{fontFamily:"'Old Standard TT',serif",fontSize:14,fontWeight:700,color:"rgba(0,0,0,.5)",textTransform:"uppercase",letterSpacing:2,marginBottom:10,paddingBottom:6,borderBottom:"1px solid rgba(210,197,175,.08)"}}>{sec.heading}</h2>}
                           {sec.type === "bullets" && (
                             <ul style={{listStyle:"none",padding:0,margin:0,display:"flex",flexDirection:"column",gap:8}}>
                               {(sec.items || []).map(function(item, ii) {
@@ -12237,7 +12607,7 @@ export default function App() {
                                         </button>
                                       )}
                                     </div>
-                                    {en && <span style={{fontStyle:"italic",fontSize:13,color:"rgba(0,0,0,.55)",fontFamily:"'Crimson Pro',serif",lineHeight:1.5}}>{en}</span>}
+                                    {en && <span style={{fontStyle:"italic",fontSize:13,color:"rgba(0,0,0,.55)",fontFamily:"'Literata',serif",lineHeight:1.5}}>{en}</span>}
                                   </div>
                                 );
                               })}
@@ -12271,9 +12641,9 @@ export default function App() {
             {started && isLit && (
               <div className="lit-wrap">
                 <div className="lit-top">
-                  <button className={"ltab"+(lview==="read"?" on":"")} onClick={function(){ setLview("read"); }}>📖 Read</button>
-                  <button className={"ltab"+(lview==="nav"?" on":"")} onClick={function(){ setLview("nav"); }}>🗂 Contents</button>
-                  <button className={"ltab"+(lview==="search"?" on":"")} onClick={function(){ setLview("search"); }}>🔍 Search</button>
+                  <button className={"ltab"+(lview==="read"?" on":"")} onClick={function(){ setLview("read"); }}>Read</button>
+                  <button className={"ltab"+(lview==="nav"?" on":"")} onClick={function(){ setLview("nav"); }}>Contents</button>
+                  <button className={"ltab"+(lview==="search"?" on":"")} onClick={function(){ setLview("search"); }}>Search</button>
                   {(function(){
                     var bm = bookmarkMap[bookKey(bookMeta)];
                     if (!bm) return null;
@@ -12295,14 +12665,14 @@ export default function App() {
                             if (bm.cidx === cidx) { try { ytCtrlRef.current && ytCtrlRef.current.seekAbs(bm.audio); } catch (e) {} }
                             else seekWhenReady(bm.audio);
                           }
-                        }}>🔖 Bookmark{bm.audio ? " 🎧" : ""}</button>
+                        }}>To the bookmark</button>
                     );
                   })()}
                   {stressMap && !singlePageMode && (
                     <button className={"ltab"+(accentsOn?" on":"")} onClick={toggleAccents}
                       title="Show stress marks — only on words whose stress is unambiguous">а́ Stress</button>
                   )}
-                  {exData && (exData.cases||[]).length > 0 && <button className={"ltab"+(lview==="exercises"?" on":"")} onClick={function(){ setLview("exercises"); }}>📝 Exercises</button>}
+                  {exData && (exData.cases||[]).length > 0 && <button className={"ltab"+(lview==="exercises"?" on":"")} onClick={function(){ setLview("exercises"); }}>Exercises</button>}
                   {/* Page + chapter nav moved up here so they stay visible
                       while the floating audio bar covers the bottom of the page. */}
                   {lview === "read" && (
@@ -12317,7 +12687,7 @@ export default function App() {
                           <button className="lnb-inline ch" style={{fontSize:15,padding:"8px 14px"}} onClick={function(){ if (cidx < chapters.length - 1) navLit(cidx+1); }} disabled={loading || cidx >= chapters.length - 1} title={singlePageMode ? "Next song" : "Next section"}>{singlePageMode ? "Next Song" : "Next"} ›</button>
                         </>
                       )}
-                      <button className="lnb-inline lbm-inline" onClick={function(){ setCbm(cidx); }} title="Bookmark this chapter">📌</button>
+                      <button className="lnb-inline lbm-inline" onClick={function(){ setCbm(cidx); }} title="Bookmark this chapter">Mark chapter</button>
                     </div>
                   )}
                   <div className="lprog">
@@ -12344,7 +12714,7 @@ export default function App() {
                             which book they're in, even after navigating mid-chapter. */}
                         {bookMeta.title && (
                           <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,marginBottom:4}}>
-                            <div style={{fontFamily:"'Crimson Pro',serif",fontStyle:"italic",fontSize:13,color:"rgba(0,0,0,.45)",letterSpacing:.3}}>
+                            <div className="book-line">
                               {bookLabel(bookMeta)}
                             </div>
                             {/* Marking a book read is the reader's own judgement, not something
@@ -12354,20 +12724,19 @@ export default function App() {
                               className={"mark-read" + (isFinished(bookMeta) ? " on" : "")}
                               onClick={function(){ toggleFinished(bookMeta); }}
                               title={isFinished(bookMeta) ? "Marked as read — click to undo" : "Mark this book as read"}>
-                              {isFinished(bookMeta) ? "✓ Read" : "Mark as read"}
+                              {isFinished(bookMeta) ? "Read" : "Mark as read"}
                             </button>
                           </div>
                         )}
                         <div className="lhdr">
                           {singlePageMode
-                            ? <>Song {cidx+1} of {chapters.length} · click any word to define</>
+                            ? <>Song {cidx+1} of {chapters.length}</>
                             : (function(){
                                 // Only the author's own numbering — no "3 of 104" position
                                 // counting. Front matter is named (Author's note, Preface),
                                 // and a heading that names itself gets no label at all.
                                 var sl = sectionLabel(curChapter && curChapter.heading);
-                                return sl ? <>{sl.long} · click any word to define</>
-                                          : <>Click any word to define</>;
+                                return sl ? <>{sl.long}</> : null;
                               })()}
                         </div>
                         {/* A reading or performance for this chapter, played from
@@ -12405,7 +12774,7 @@ export default function App() {
                           if (!bookHasAudio) return null;
                           return (
                             <div className="no-audio">
-                              🔇 No recording for this chapter
+                              No recording for this chapter
                               <span className="sub">
                                 The reading available for this book doesn’t cover it
                                 {TTS_ENABLED ? " — the synthetic voice below still reads it aloud." : "."}
@@ -12490,11 +12859,11 @@ export default function App() {
                           if (shared < 2) return null;
                           return (
                             <div className="one-rec">
-                              🎧 One recording covers {shared} chapters of this book
+                              One recording covers {shared} chapters of this book
                               <span className="sub">
                                 It stops at the end of this chapter. Turn to the next one and it
                                 carries straight on from where it stopped, so you can listen through
-                                without hunting for your place — and the 🔖 pin beside any paragraph
+                                without hunting for your place — and the flag beside any paragraph
                                 saves the moment in the recording along with the paragraph.
                               </span>
                             </div>
@@ -12506,8 +12875,8 @@ export default function App() {
                             {curChapter.youtubeUrl && !curChapter.youtubeId && (
                               <a href={curChapter.youtubeUrl} target="_blank" rel="noopener noreferrer"
                                 title="Listen on YouTube"
-                                style={{fontSize:12,color:"rgba(0,0,0,.7)",textDecoration:"none",padding:"4px 10px",border:"1px solid rgba(210,197,175,.25)",borderRadius:4,fontFamily:"'Inter',sans-serif"}}>
-                                🎵 Listen on YouTube ↗
+                                style={{fontSize:12,color:"rgba(0,0,0,.7)",textDecoration:"none",padding:"4px 10px",border:"1px solid rgba(210,197,175,.25)",borderRadius:4,fontFamily:"'IBM Plex Sans',sans-serif"}}>
+                                Listen on YouTube ↗
                               </a>
                             )}
                           </div>
@@ -12630,7 +12999,7 @@ export default function App() {
                               longer tracks anything. TTS mode still plays
                               sentence by sentence, so it keeps the counter. */}
                           {audiobookMode && audiobookData
-                            ? <span className="faudio-narrator">🎧 {audiobookData.narrator || "Audiobook"}</span>
+                            ? <span className="faudio-narrator">{audiobookData.narrator || "Audiobook"}</span>
                             : <>Sentence {audioIdx + 1} / {audioSentences.length}</>}
                         </span>
                         {audiobookMode && audiobookData && (
@@ -12663,7 +13032,7 @@ export default function App() {
                               setAudiobookMode(!audiobookMode);
                             }}
                             title={audiobookMode ? "Switch to the built-in voice" : "Switch to audiobook narrator"}>
-                            {audiobookMode ? "🎧" : "🤖"}
+                            {audiobookMode ? "rec" : "tts"}
                           </button>
                         )}
                         {(function(){
@@ -12712,7 +13081,7 @@ export default function App() {
                         return chapters.map(function(ch, i){
                           return (
                             <div key={i} className={"lcard"+(i===cidx?" cur":"")} onClick={function(){ setLview("read"); navLit(i); }}>
-                              <div className="lcn">{i+1}{i===cbm?" 📌":""}{i===cidx?" ◀":""}</div>
+                              <div className="lcn">{i+1}{i===cbm?" · bookmarked":""}{i===cidx?" · here":""}</div>
                               <div className="lchead">{ch.heading}</div>
                               <div className="lcp">{ch.text.slice(0,80)}…</div>
                             </div>
@@ -12755,7 +13124,7 @@ export default function App() {
                               var i = c.idx;
                               return (
                                 <div key={i} className={"lcard"+(i===cidx?" cur":"")} onClick={function(){ setLview("read"); navLit(i); }} style={{marginLeft:((depth+1)*14)+"px"}}>
-                                  <div className="lcn">{i+1}{i===cbm?" 📌":""}{i===cidx?" ◀":""}</div>
+                                  <div className="lcn">{i+1}{i===cbm?" · bookmarked":""}{i===cidx?" · here":""}</div>
                                   <div className="lchead">{c.name}</div>
                                 </div>
                               );
@@ -12779,7 +13148,7 @@ export default function App() {
                       {lres.map(function(i){
                         return (
                           <div key={i} className={"lcard"+(i===cidx?" cur":"")} onClick={function(){ setLsearch(""); setLview("read"); navLit(i); }}>
-                            <div className="lcn">{i+1}{i===cbm?" 📌":""}</div>
+                            <div className="lcn">{i+1}{i===cbm?" · bookmarked":""}</div>
                             <div className="lchead">{chapters[i].heading}</div>
                             <div className="lcp">{chapters[i].text.slice(0,100)}…</div>
                           </div>
@@ -12795,19 +13164,19 @@ export default function App() {
                     {exCat === "menu" && (
                       <div style={{padding:"18px 8px"}}>
                         <div style={{textAlign:"center",marginBottom:20}}>
-                          <div style={{fontSize:20,fontFamily:"'Playfair Display',serif",color:"#000",fontWeight:600}}>{(exData && exData.title) || "Exercises"}</div>
+                          <div style={{fontSize:20,fontFamily:"'Old Standard TT',serif",color:"#000",fontWeight:600}}>{(exData && exData.title) || "Exercises"}</div>
                           {exData && exData.source && <div style={{fontSize:13,color:"rgba(42,31,20,.5)",marginTop:4}}>{exData.source}</div>}
                         </div>
                         <div style={{display:"flex",flexDirection:"column",gap:14}}>
                           {/* Grammar (only when a prebuilt exercise set exists) */}
                           {exData && (<>
                           <button onClick={startCaseQuiz}
-                            style={{background:"rgba(42,31,20,.12)",border:"1px solid rgba(42,31,20,.45)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
+                            style={{background:"rgba(42,31,20,.12)",border:"1px solid rgba(42,31,20,.45)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
                             onMouseOver={function(e){ e.currentTarget.style.background = "rgba(42,31,20,.2)"; }}
                             onMouseOut={function(e){ e.currentTarget.style.background = "rgba(42,31,20,.12)"; }}>
                             <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
-                              <span style={{fontSize:24}}>🔤</span>
-                              <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Playfair Display',serif"}}>Grammar — Cases</span>
+                              
+                              <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Grammar — Cases</span>
                             </div>
                             <p style={{fontSize:13,color:"rgba(42,31,20,.55)",margin:0,lineHeight:1.5}}>{(exData.cases||[]).length} questions. Pick the correct case form to fill each blank, with the English line for context.</p>
                           </button>
@@ -12819,13 +13188,13 @@ export default function App() {
                             var hasReading = exData.reading && exData.reading.length;
                             return (
                           <button onClick={hasReading ? startReadingQuiz : function(){ setExCat("reading-soon"); }}
-                            style={{background:"rgba(90,133,86,.1)",border:"1px solid rgba(90,133,86,.35)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
+                            style={{background:"rgba(90,133,86,.1)",border:"1px solid rgba(90,133,86,.35)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
                             onMouseOver={function(e){ e.currentTarget.style.background = "rgba(90,133,86,.16)"; }}
                             onMouseOut={function(e){ e.currentTarget.style.background = "rgba(90,133,86,.1)"; }}>
                             <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
-                              <span style={{fontSize:24}}>📖</span>
-                              <span style={{fontSize:18,fontWeight:600,color:"#2f5a2a",fontFamily:"'Playfair Display',serif"}}>Reading — Comprehension</span>
-                              {!hasReading && <span style={{fontSize:11,color:"rgba(42,31,20,.4)",border:"1px solid rgba(42,31,20,.25)",borderRadius:20,padding:"2px 8px",fontFamily:"'Inter',sans-serif"}}>soon</span>}
+                              
+                              <span style={{fontSize:18,fontWeight:600,color:"#2f5a2a",fontFamily:"'Old Standard TT',serif"}}>Reading — Comprehension</span>
+                              {!hasReading && <span style={{fontSize:11,color:"rgba(42,31,20,.4)",border:"1px solid rgba(42,31,20,.25)",borderRadius:20,padding:"2px 8px",fontFamily:"'IBM Plex Sans',sans-serif"}}>soon</span>}
                             </div>
                             <p style={{fontSize:13,color:"rgba(42,31,20,.55)",margin:0,lineHeight:1.5}}>{hasReading ? (exData.reading.length + " questions in English about what the passage says.") : "Questions about what the passage says. Coming next."}</p>
                           </button>
@@ -12839,7 +13208,7 @@ export default function App() {
                     {/* ── Reading placeholder (only when no reading set exists) ── */}
                     {exCat === "reading-soon" && (
                       <div style={{padding:"40px 20px",textAlign:"center"}}>
-                        <div style={{fontSize:40,marginBottom:12}}>📖</div>
+                        
                         <p style={{color:"rgba(42,31,20,.7)",fontSize:15,lineHeight:1.6,maxWidth:440,margin:"0 auto 24px"}}>Reading-comprehension exercises for this passage are coming soon.</p>
                         <button className="btn-g" style={{maxWidth:240}} onClick={function(){ setExCat("menu"); }}>← Back</button>
                       </div>
@@ -12857,7 +13226,7 @@ export default function App() {
                           // Results screen
                           <div style={{padding:"30px 20px",textAlign:"center"}}>
                             <div style={{fontSize:48,marginBottom:12}}>{exScore === exQuestions.length ? "🎉" : exScore >= exQuestions.length * 0.7 ? "👏" : "📚"}</div>
-                            <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,color:"#000",marginBottom:8}}>Done!</h2>
+                            <h2 style={{fontFamily:"'Old Standard TT',serif",fontSize:26,color:"#000",marginBottom:8}}>Done!</h2>
                             <p style={{fontSize:20,color:"#000",marginBottom:6}}>You got <strong style={{color:"#000"}}>{exScore}</strong> of <strong>{exQuestions.length}</strong> correct.</p>
                             <p style={{fontSize:14,color:"rgba(42,31,20,.5)",marginBottom:28}}>{Math.round(exScore / exQuestions.length * 100)}%</p>
                             <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
@@ -12880,15 +13249,15 @@ export default function App() {
                                   {/* The Russian line to read (with a play button for the recording), then the English question below it. */}
                                   {q.ru && <div style={{display:"flex",alignItems:"flex-start",justifyContent:"center",gap:10,marginBottom:14}}>
                                     {exClipBtn("r"+exIdx, q.ru)}
-                                    <div style={{fontSize:23,fontFamily:"'Crimson Pro',serif",color:"#000",textAlign:"center",lineHeight:1.55}}>{q.ru}</div>
+                                    <div style={{fontSize:23,fontFamily:"'Literata',serif",color:"#000",textAlign:"center",lineHeight:1.55}}>{q.ru}</div>
                                   </div>}
-                                  <div style={{fontSize:16,fontFamily:"'Inter',sans-serif",color:"rgba(42,31,20,.7)",textAlign:"center",lineHeight:1.5,fontWeight:600}}>{q.question}</div>
+                                  <div style={{fontSize:16,fontFamily:"'IBM Plex Sans',sans-serif",color:"rgba(42,31,20,.7)",textAlign:"center",lineHeight:1.5,fontWeight:600}}>{q.question}</div>
                                 </div>
                               )}
 
                               {!isReading && (<>
                               {/* Sentence with the blank (filled with the correct form once answered) */}
-                              <div style={{fontSize:26,fontFamily:"'Crimson Pro',serif",color:"#000",textAlign:"center",lineHeight:1.5,marginBottom:14}}>
+                              <div style={{fontSize:26,fontFamily:"'Literata',serif",color:"#000",textAlign:"center",lineHeight:1.5,marginBottom:14}}>
                                 {parts[0]}
                                 <span style={{display:"inline-block",minWidth:70,textAlign:"center",fontWeight:700,color: answered ? "#2f5a2a" : "#2a1f14",borderBottom:"2px solid rgba(42,31,20,.6)",padding:"0 6px"}}>
                                   {answered ? q.correct : "   "}
@@ -12929,8 +13298,8 @@ export default function App() {
                                     <button key={i} disabled={answered} onClick={function(){
                                       setExSelected(opt);
                                       if (isCorrect) setExScore(function(s){ return s + 1; });
-                                    }} style={{background:bg,border:"1px solid "+brd,color:col,padding:"13px 18px",borderRadius:10,fontSize:18,fontFamily:"'Crimson Pro',serif",cursor: answered ? "default" : "pointer",textAlign:"left",transition:"all .15s"}}>
-                                      <span style={{display:"inline-block",width:20,color:"rgba(42,31,20,.45)",fontFamily:"'Inter',sans-serif",fontSize:13}}>{String.fromCharCode(65 + i)}.</span>
+                                    }} style={{background:bg,border:"1px solid "+brd,color:col,padding:"13px 18px",borderRadius:10,fontSize:18,fontFamily:"'Literata',serif",cursor: answered ? "default" : "pointer",textAlign:"left",transition:"all .15s"}}>
+                                      <span style={{display:"inline-block",width:20,color:"rgba(42,31,20,.45)",fontFamily:"'IBM Plex Sans',sans-serif",fontSize:13}}>{String.fromCharCode(65 + i)}.</span>
                                       {opt}
                                     </button>
                                   );
@@ -12941,7 +13310,7 @@ export default function App() {
                               {answered && (
                                 <div style={{maxWidth:520,margin:"18px auto 0",background:"rgba(42,31,20,.05)",border:"1px solid rgba(42,31,20,.14)",borderRadius:10,padding:"14px 16px"}}>
                                   <div style={{fontSize:15,fontWeight:600,color: wasRight ? "#2f5a2a" : "#9d4630",marginBottom:6}}>
-                                    {wasRight ? "✓ Correct" : "✗ Not quite"}{!isReading && q.case ? " — " + q.case : ""}
+                                    {wasRight ? "Correct" : "Not quite"}{!isReading && q.case ? " — " + q.case : ""}
                                   </div>
                                   <div style={{fontSize:14,color:"rgba(42,31,20,.7)",lineHeight:1.55}}>{q.explain}</div>
                                 </div>
@@ -12976,7 +13345,7 @@ export default function App() {
               // ── Quiz view ──────────────────────────────────────────────
               <>
                 <div className="phdr">
-                  <span className="pti">📝 Vocab Quiz</span>
+                  <span className="pti">Vocabulary quiz</span>
                   <button className="ab" onClick={function(){ setQuizMode(false); setQuizMenu(true); }}>← Back</button>
                 </div>
                 {quizQuestions.length === 0 ? (
@@ -12988,7 +13357,7 @@ export default function App() {
                   // Final score screen
                   <div style={{padding:"40px 20px",textAlign:"center"}}>
                     <div style={{fontSize:48,marginBottom:12}}>{quizScore === quizQuestions.length ? "🎉" : quizScore >= quizQuestions.length * 0.7 ? "👏" : "📚"}</div>
-                    <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:26,color:"#000",marginBottom:8}}>Quiz Complete!</h2>
+                    <h2 style={{fontFamily:"'Old Standard TT',serif",fontSize:26,color:"#000",marginBottom:8}}>Quiz Complete!</h2>
                     <p style={{fontSize:20,color:"#000",marginBottom:6}}>You got <strong style={{color:"#000"}}>{quizScore}</strong> of <strong>{quizQuestions.length}</strong> correct.</p>
                     <p style={{fontSize:14,color:"rgba(0,0,0,.5)",marginBottom:28}}>{Math.round(quizScore / quizQuestions.length * 100)}%</p>
                     {quizLearnedNow.length > 0 && (
@@ -13013,7 +13382,7 @@ export default function App() {
                     <div style={{textAlign:"center",marginBottom:8}}>
                       <span style={{fontSize:12,color:"rgba(0,0,0,.45)",textTransform:"uppercase",letterSpacing:1.5}}>{quizQuestions[quizIdx].pos}{quizQuestions[quizIdx].isNew ? " \u00b7 first review" : ""}</span>
                     </div>
-                    <div style={{fontSize:42,fontFamily:"'Playfair Display',serif",color:"#000",textAlign:"center",marginBottom:30,fontWeight:600}}>
+                    <div style={{fontSize:42,fontFamily:"'Old Standard TT',serif",color:"#000",textAlign:"center",marginBottom:30,fontWeight:600}}>
                       {quizQuestions[quizIdx].word}
                     </div>
                     {/* Multiple choice options */}
@@ -13032,8 +13401,8 @@ export default function App() {
                             setQuizSelected(opt);
                             if (isCorrect) setQuizScore(function(s){ return s + 1; });
                             recordAnswer(quizQuestions[quizIdx].key, isCorrect);
-                          }} style={{background:bg,border:"1px solid "+brd,color:col,padding:"14px 18px",borderRadius:10,fontSize:16,fontFamily:"'Crimson Pro',serif",cursor: quizSelected !== null ? "default" : "pointer", textAlign:"left", transition:"all .15s"}}>
-                            <span style={{display:"inline-block",width:20,color:"rgba(0,0,0,.45)",fontFamily:"'Inter',sans-serif",fontSize:13}}>{String.fromCharCode(65 + i)}.</span>
+                          }} style={{background:bg,border:"1px solid "+brd,color:col,padding:"14px 18px",borderRadius:10,fontSize:16,fontFamily:"'Literata',serif",cursor: quizSelected !== null ? "default" : "pointer", textAlign:"left", transition:"all .15s"}}>
+                            <span style={{display:"inline-block",width:20,color:"rgba(0,0,0,.45)",fontFamily:"'IBM Plex Sans',sans-serif",fontSize:13}}>{String.fromCharCode(65 + i)}.</span>
                             {opt}
                           </button>
                         );
@@ -13069,7 +13438,7 @@ export default function App() {
               // ── Review choice menu (Multiple Choice vs Chat Practice) ──
               <>
                 <div className="phdr">
-                  <span className="pti">📝 Review Vocabulary</span>
+                  <span className="pti">Review vocabulary</span>
                   <button className="ab" onClick={function(){ setQuizMenu(false); }}>← Back to list</button>
                 </div>
                 <div style={{padding:"24px 16px",display:"flex",flexDirection:"column",gap:14,maxWidth:560,margin:"0 auto"}}>
@@ -13080,12 +13449,12 @@ export default function App() {
                   </p>
                   {/* Multiple Choice Quiz option */}
                   <button onClick={startQuiz}
-                    style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Crimson Pro',serif",transition:"all .15s"}}
+                    style={{background:"rgba(200,162,118,.08)",border:"1px solid rgba(200,162,118,.3)",color:"#000",padding:"18px 20px",borderRadius:12,cursor:"pointer",textAlign:"left",fontFamily:"'Literata',serif",transition:"all .15s"}}
                     onMouseOver={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.14)"; }}
                     onMouseOut={function(e){ e.currentTarget.style.background = "rgba(200,162,118,.08)"; }}>
                     <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:6}}>
-                      <span style={{fontSize:24}}>📝</span>
-                      <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Playfair Display',serif"}}>Multiple Choice Quiz</span>
+                      
+                      <span style={{fontSize:18,fontWeight:600,color:"#000",fontFamily:"'Old Standard TT',serif"}}>Multiple Choice Quiz</span>
                     </div>
                     <p style={{fontSize:13,color:"rgba(0,0,0,.55)",margin:0,lineHeight:1.5}}>Quick recall test. Each question shows a Russian word with 4 English meaning options (from same-pos vocabulary).</p>
                   </button>
@@ -13106,7 +13475,7 @@ export default function App() {
                 </div>
                 {learned.length > 0 && (
                   <details className="learned">
-                    <summary>🎓 Learned words <span className="learned-n">{learned.length}</span>
+                    <summary>Learned words <span className="learned-n">{learned.length}</span>
                       <span className="learned-hint">retired by the review scheduler — open to see them or put one back</span></summary>
                     <div className="learned-list">
                       {learned.map(function(v){
@@ -13182,11 +13551,11 @@ export default function App() {
                                 </div>
                               )}
                               <div style={{display:"flex",alignItems:"center",gap:10,marginTop:6,flexWrap:"wrap"}}>
-                                {stamp && <span style={{fontSize:11,color:"rgba(0,0,0,.35)",fontStyle:"italic",fontFamily:"'Crimson Pro',serif"}}>Added {stamp}</span>}
+                                {stamp && <span style={{fontSize:11,color:"rgba(0,0,0,.35)",fontStyle:"italic",fontFamily:"'Literata',serif"}}>Added {stamp}</span>}
                                 {v.srcBook && (
                                   <button onClick={function(){ goToSource(v); }}
                                     title={"Open " + (v.srcTitle||"source") + (typeof v.srcChapter==="number" ? " — section " + (v.srcChapter+1) : "")}
-                                    style={{fontSize:11,background:"none",border:"none",color:"#000",cursor:"pointer",fontFamily:"'Inter',sans-serif",padding:0,textDecoration:"underline"}}>
+                                    style={{fontSize:11,background:"none",border:"none",color:"#000",cursor:"pointer",fontFamily:"'IBM Plex Sans',sans-serif",padding:0,textDecoration:"underline"}}>
                                     ↗ {v.srcTitle ? (v.srcTitle.length>22 ? v.srcTitle.slice(0,22)+"…" : v.srcTitle) : "source"}
                                   </button>
                                 )}
@@ -13206,14 +13575,14 @@ export default function App() {
                               <div key={g} style={{marginBottom:18}}>
                                 <div style={{display:"flex",alignItems:"center",gap:10,padding:"6px 2px",borderBottom:"1px solid rgba(210,197,175,.15)",marginBottom:8}}>
                                   <button onClick={function(){ setVocabCollapsed(function(pp){ var n=Object.assign({},pp); n[g]=!n[g]; return n; }); }}
-                                    style={{background:"none",border:"none",color:"#000",cursor:"pointer",fontSize:14,fontWeight:600,fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:6,flex:1,textAlign:"left",padding:0}}>
+                                    style={{background:"none",border:"none",color:"#000",cursor:"pointer",fontSize:14,fontWeight:600,fontFamily:"'IBM Plex Sans',sans-serif",display:"flex",alignItems:"center",gap:6,flex:1,textAlign:"left",padding:0}}>
                                     <span style={{fontSize:11,opacity:.6}}>{collapsed?"\u25b6":"\u25bc"}</span>
                                     <span style={{textTransform:"capitalize"}}>{g}</span>
                                     <span style={{opacity:.5,fontWeight:400}}>({words.length})</span>
                                   </button>
                                   {canQuiz && (
                                     <button onClick={function(){ startQuiz(g); }}
-                                      style={{fontSize:12,background:"#4a3f34",color:"#1a1612",border:"none",borderRadius:4,padding:"4px 12px",fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>
+                                      style={{fontSize:12,background:"#4a3f34",color:"#1a1612",border:"none",borderRadius:4,padding:"4px 12px",fontWeight:600,cursor:"pointer",fontFamily:"'IBM Plex Sans',sans-serif"}}>
                                       Quiz
                                     </button>
                                   )}
@@ -13247,9 +13616,9 @@ export default function App() {
                         <div className="icont" style={{flex:1}}>
                           <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:2}}>
                             <span style={{fontSize:10,letterSpacing:1.5,padding:"2px 6px",border:"1px solid rgba(210,197,175,.25)",borderRadius:3,color:"rgba(0,0,0,.6)"}}>{topic.level}</span>
-                            <span className="ipri" style={{fontSize:15,color:"#000"}}>📚 {topic.title}</span>
+                            <span className="ipri" style={{fontSize:15,color:"#000"}}>{topic.title}</span>
                           </div>
-                          {topic.subtitle && <span style={{fontSize:13,fontStyle:"italic",color:"rgba(0,0,0,.55)",fontFamily:"'Crimson Pro',serif"}}>{topic.subtitle}</span>}
+                          {topic.subtitle && <span style={{fontSize:13,fontStyle:"italic",color:"rgba(0,0,0,.55)",fontFamily:"'Literata',serif"}}>{topic.subtitle}</span>}
                         </div>
                         <button className="rmb" title="Remove from Grammar tab" onClick={function(e){ e.stopPropagation(); rmTopic(id); }}>×</button>
                       </div>
@@ -13260,11 +13629,11 @@ export default function App() {
             )}
 
             <div className="phdr"><span className="pti">Grammar Tips</span><button className="ab g" onClick={function(){ setNTip(""); setShowTip(true); }}>+ Add tip</button></div>
-            {tips.length===0 ? <p className="empty">No tips saved yet.<br/>Click 📝 Save tip under any tutor message, or use 📚 Grammar to bookmark a curriculum topic.</p>
+            {tips.length===0 ? <p className="empty">No tips saved yet.<br/>Open Grammar from the home page and save a topic to keep it here.</p>
               : <div className="ilist">{tips.map(function(t){
                 return (
                   <div key={t.id} className="icard">
-                    <div className="icont"><span className="ipri" style={{fontSize:15}}>📝 {t.tip}</span></div>
+                    <div className="icont"><span className="ipri" style={{fontSize:15}}>{t.tip}</span></div>
                     <button className="rmb" onClick={function(){ setTips(function(p){ return p.filter(function(x){ return x.id!==t.id; }); }); }}>×</button>
                   </div>
                 );
@@ -13275,7 +13644,7 @@ export default function App() {
         {showTopic && (
           <div className="mover" onClick={function(){ setShowTopic(false); }}>
             <div className="modal" onClick={function(e){ e.stopPropagation(); }}>
-              <span className="mti">{"📖 " + (bookMeta.title || "Reading")}</span>
+              <span className="mti">{bookMeta.title || "Reading"}</span>
               <div className="mact">
                 <button className="mcanc" onClick={function(){ setShowTopic(false); }}>Cancel</button>
                 <button className="mconf" onClick={function(){ setShowTopic(false); setStarted(false); setMode(""); setMsgs([]); stopTTS(); }}>← Back to start</button>
@@ -13331,7 +13700,7 @@ export default function App() {
                       <button className={"psay" + (sayState === "playing" ? " on" : "")}
                               title="Pronounce"
                               aria-label={"Pronounce " + headline}
-                              onClick={function(){ sayWord(popup.data, popup.word); }}>Listen <span aria-hidden="true">🔊</span></button>
+                              onClick={function(){ sayWord(popup.data, popup.word); }}>Listen</button>
                     </div>
                     {sayState === "none" && (
                       <div style={{fontSize:11,color:"rgba(0,0,0,.4)",marginBottom:6,marginTop:-2}}>
