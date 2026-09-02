@@ -1403,6 +1403,14 @@ function readingsInContext(readings, prevWord) {
   return { list: hit.concat(rest), cue: wants };
 }
 
+// What's new on the library page. One item, dated, replaced rather than
+// appended — a list of old news is worse than none. Set NEWS to null to hide.
+var NEWS = {
+  date: "2 September 2026",
+  title: "Drastically improved video timestamps",
+  body: "Chapter start times across the library have been re-checked against the recordings themselves. If a chapter still starts in the wrong place, please report it on the Discord \u2014 say which book and chapter and we\u2019ll fix it.",
+};
+
 function attachVideos(chapters, entry) {
   if (!entry) return chapters;
   var videos = entry.videos && typeof entry.videos === "object" ? entry.videos : null;
@@ -8835,6 +8843,16 @@ export default function App() {
         .sico{font-size:54px;line-height:1}
         .sti{font-family:'Playfair Display',serif;font-size:30px;color:#000;font-weight:400}
         .sde{color:rgba(42,31,20,.5);font-size:16px;max-width:500px;line-height:1.6}
+        .news{width:100%;max-width:500px;margin:0 0 22px;padding:13px 16px;text-align:left;
+              background:rgba(200,162,118,.10);border:1px solid rgba(200,162,118,.42);
+              border-radius:3px;position:relative}
+        .news:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:rgba(176,132,80,.55)}
+        .news-h{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:4px}
+        .news-t{font-size:14px;font-weight:600;color:#2a1f14;letter-spacing:.01em}
+        .news-d{font-size:11.5px;color:rgba(42,31,20,.45);font-variant-numeric:tabular-nums}
+        .news-b{font-size:13.5px;line-height:1.55;color:rgba(42,31,20,.72);
+                font-family:'Crimson Pro',serif}
+        .news-b a{color:#8a5a2b}
         /* Donate: deliberately quiet — it sits under the four mode cards and
            must not compete with them, so no gold fill, just a hairline. */
         .donate{margin-top:2px}
@@ -11040,6 +11058,18 @@ export default function App() {
             {!started && mode === "read" && (
               <div className="ss">
                 <SupportLinks funding={funding} />
+                {NEWS && (
+                  <div className="news">
+                    <div className="news-h">
+                      <span className="news-t">{NEWS.title}</span>
+                      <span className="news-d">{NEWS.date}</span>
+                    </div>
+                    <div className="news-b">
+                      {NEWS.body}{" "}
+                      <a href="https://discord.gg/nePcT58a37" target="_blank" rel="noreferrer">Join the Discord</a>.
+                    </div>
+                  </div>
+                )}
                 <div className="sico">📖</div>
                 <h1 className="sti">{chapters.length > 0 ? bookMeta.title : "Open a Russian book"}</h1>
                 <p className="sde">{chapters.length > 0 ? bookMeta.author : "Choose a book from the library to begin reading."}</p>

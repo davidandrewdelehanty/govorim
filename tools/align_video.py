@@ -48,6 +48,46 @@ _spec = importlib.util.spec_from_file_location("cbt", os.path.join(HERE, "chop_b
 cbt = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(cbt)
 
+def best_with_continuation(words, probe, cont, lo, hi):
+    """Locate the opening, then ask whether the chapter CONTINUES from there.
+
+    A set phrase defeats a single probe. "построй мне здесь семь жертвенников"
+    is said twice inside Числа 23, and the matcher took the second one — 225
+    seconds late, with a confident 0.81. No score threshold catches that,
+    because the text really is there.
+
+    What separates the true opening from a later echo is what comes NEXT: only
+    at the real start do the chapter's following words run on from it. Letting
+    that steer the CHOICE was tried and made things worse — re-ranking near-tied
+    candidates cost 23 points of ten-second accuracy on the Bible against what
+    it recovered. So the original matcher still picks, and the continuation is
+    only measured: a low score means "this looks like an echo, send it to a
+    person" rather than silently moving the answer.
+
+    Returns (index, opening score, continuation score).
+    """
+    import difflib
+    i, sc = cbt.best_match(words, probe, lo, hi)
+    if i < 0:
+        return -1, 0.0, 0.0
+    if not cont:
+        return i, sc, 1.0
+    n = len(probe)
+    a2, b2 = i + n, min(len(words) - len(cont), i + n + 4 * len(cont))
+    cm = difflib.SequenceMatcher(); cm.set_seq2(" ".join(cont))
+    best = 0.0
+    for j in range(a2, max(a2, b2)):
+        cm.set_seq1(" ".join(w["w"] for w in words[j:j + len(cont)]))
+        if cm.real_quick_ratio() < best or cm.quick_ratio() < best:
+            continue
+        r = cm.ratio()
+        if r > best:
+            best = r
+            if best > 0.95:
+                break
+    return i, sc, best
+
+
 CUE = re.compile(r"^(\d\d):(\d\d):(\d\d\.\d\d\d) --> (\d\d):(\d\d):(\d\d\.\d\d\d)")
 WORD = re.compile(r"<(\d\d):(\d\d):(\d\d\.\d\d\d)><c>\s*([^<]+)</c>")
 
@@ -143,7 +183,9 @@ def fb2_chapters_body(path, probe_words):
         chapters.append({"title": title or "(untitled)",
                          "probe": body[:probe_words],
                          "probes": [body[o:o + probe_words] for o in (0, 40, 90, 160, 260)
-                                    if len(body[o:o + probe_words]) >= probe_words // 2]})
+                                    if len(body[o:o + probe_words]) >= probe_words // 2],
+                         "conts": [body[o + probe_words:o + 2 * probe_words] for o in (0, 40, 90, 160, 260)
+                                   if len(body[o:o + probe_words]) >= probe_words // 2]})
 
     for b in bodies:
         for sec in [c for c in b if cbt.strip_ns(c.tag) == "section"]:
@@ -232,15 +274,25 @@ def propose(args):
             anchor = float(cur) if cur is not None else expect
             lo = max(cursor, bisect.bisect_left(times, anchor - args.window))
             hi = min(len(words), bisect.bisect_right(times, anchor + args.window))
-            i, score, depth = -1, 0.0, 0
-            for pi, pr in enumerate(chapters[ci].get("probes") or [probe]):
+            # Depth 0 — the chapter's real opening — is the answer whenever it
+            # matches at all. Deeper probes exist only for plays, where the
+            # opening is a cast list nobody reads aloud. Taking the
+            # best-scoring depth instead of the first workable one let a probe
+            # from inside the chapter outscore the true start and report ITS
+            # timestamp: on the Bible that dropped ten-second accuracy from
+            # 98% to 75%, with the damage looking like ordinary drift.
+            i, score, depth, cont_score = -1, 0.0, 0, 1.0
+            prs = chapters[ci].get("probes") or [probe]
+            cts = chapters[ci].get("conts") or []
+            for pi, pr in enumerate(prs):
                 if not pr:
                     continue
-                ii, sc = cbt.best_match(words, pr, lo, max(lo, hi))
+                ct = cts[pi] if pi < len(cts) else []
+                ii, sc, cs = best_with_continuation(words, pr, ct, lo, max(lo, hi))
                 if ii >= 0 and sc > score:
-                    i, score, depth = ii, sc, pi
-                if score >= 0.9:      # good enough; deeper probes cannot improve on this
-                    break
+                    i, score, depth, cont_score = ii, sc, pi, cs
+                if score >= args.min_score:
+                    break                      # the shallowest probe that works wins
             if i < 0:
                 # Nothing in the window. Keep the walk honest by stepping the
                 # expectation forward rather than letting the cursor stall.
@@ -279,6 +331,12 @@ def propose(args):
                 "heard_at_match": " ".join(w["w"] for w in words[i:i + 8]),
                 "at_window_edge": "yes" if abs(t - anchor) > args.window * 0.9 else "",
                 "probe_depth": depth,
+                "continues": round(cont_score, 2),
+                # 0.70 sits in the gap measured on the Bible: 63 correct chapters never
+                # scored below 0.79, and the one wrong match — Числа 23, where
+                # Balaam's line is spoken twice — scored 0.53. Zero false
+                # positives at this threshold on that set.
+                "suspect_repeat": "yes" if cont_score < 0.70 else "",
                 "check_url": "https://youtu.be/%s?t=%d" % (vid, max(0, int(t - args.lead) - 3)),
                 "new_start_sec": "",
             })
@@ -296,7 +354,7 @@ def propose(args):
 
     rows.sort(key=lambda r: r["chapter"])
     cols = ["slug", "chapter", "heading", "video", "current_start", "proposed_start",
-            "delta_sec", "score", "fb2_opening", "heard_at_match", "at_window_edge", "probe_depth", "check_url", "new_start_sec"]
+            "delta_sec", "score", "fb2_opening", "heard_at_match", "at_window_edge", "probe_depth", "continues", "suspect_repeat", "check_url", "new_start_sec"]
     with io.open(args.out, "w", encoding="utf-8-sig", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=cols)
         w.writeheader()
@@ -335,6 +393,14 @@ def apply(args):
             # Гроза act 1 matched at 0:04:38 against a correct start of
             # 0:00:00. Only a depth-0 match is a chapter start; anything
             # deeper is an anchor inside the chapter and needs a human.
+            # The chapter's opening words were found, but the words that
+            # should follow them are not there — so this is very likely a
+            # later echo of a set phrase, not the chapter's start. Числа 23
+            # failed exactly this way at a confident 0.83.
+            if r.get("suspect_repeat"):
+                print("  SKIP %s ch%-4s opening matches but the chapter does not continue there"
+                      % (r.get("slug"), r.get("chapter")))
+                continue
             if int(r.get("probe_depth") or 0) > 0:
                 print("  SKIP %s ch%-4s matched %s words in — not a start"
                       % (r.get("slug"), r.get("chapter"), r.get("probe_depth")))
