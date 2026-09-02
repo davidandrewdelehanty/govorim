@@ -1333,6 +1333,47 @@ function ProgressPanel(props) {
   );
 }
 
+// The sentence a word was clicked in. The best example sentence for a word is
+// the one the reader actually met it in — it is real Russian, it is at their
+// level by definition, and it comes with a citation. Ends are found on . ! ? …
+// and on a line break, and an abbreviation like «т. д.» does not end a
+// sentence. Trimmed to something a popup can hold.
+var RU_ABBR = /(^|\s)(т|д|г|гг|в|вв|см|стр|им|проф|акад|ул|пр|обл|руб|коп|мин|тыс|млн|млрд|н|э|др|пр)\.$/i;
+function sentenceAround(text, pos, maxLen) {
+  var t = String(text || "");
+  if (!t || typeof pos !== "number" || pos < 0 || pos >= t.length) return "";
+  var isEnd = function(i) {
+    if (i < 0 || i >= t.length) return true;
+    var c = t.charAt(i);
+    if (c === "\n") return true;
+    if (".!?…".indexOf(c) === -1) return false;
+    // A stop inside «т. д.» or an initial is not the end of anything.
+    return !RU_ABBR.test(t.slice(Math.max(0, i - 12), i + 1));
+  };
+  var a = pos;
+  while (a > 0 && !isEnd(a - 1)) a--;
+  var b = pos;
+  while (b < t.length && !isEnd(b)) b++;
+  while (b < t.length && ".!?…»\"".indexOf(t.charAt(b)) !== -1) b++;
+  var out = t.slice(a, b).replace(/\s+/g, " ").trim();
+  var cap = maxLen || 260;
+  if (out.length > cap) {
+    // Keep the clicked word in view rather than the sentence's opening.
+    var rel = pos - a, from = Math.max(0, Math.min(rel - Math.floor(cap / 2), out.length - cap));
+    out = (from > 0 ? "…" : "") + out.slice(from, from + cap).trim() + (from + cap < out.length ? "…" : "");
+  }
+  return out;
+}
+
+// The clicked word, marked inside its sentence, so the eye lands on it.
+function markWord(sentence, word) {
+  var s2 = String(sentence || ""), w = String(word || "").trim();
+  if (!s2 || !w) return [s2];
+  var i = s2.toLowerCase().replace(/ё/g, "е").indexOf(w.toLowerCase().replace(/ё/g, "е"));
+  if (i < 0) return [s2];
+  return [s2.slice(0, i), s2.slice(i, i + w.length), s2.slice(i + w.length)];
+}
+
 // ---------------------------------------------------------------------------
 // Which reading of an ambiguous form the sentence points to. No dictionary can
 // tell «ношу» the noun from «ношу» the verb; the word before it often can. A
@@ -3502,7 +3543,7 @@ export default function App() {
   }, [tab, musicData]);
   // Lyrics rendering: every Russian word clickable for a definition, line
   // breaks preserved, stanzas separated by wider gaps.
-  var renderLyrics = function(text) {
+  var renderLyrics = function(text, lyricWhere) {
     return String(text||"").split("\n").map(function(line, li) {
       if (!line.trim()) return <div key={li} style={{height:14}}/>;
       var parts = line.match(/[а-яёА-ЯЁ]+|[^а-яёА-ЯЁ]+/g) || [];
@@ -3510,7 +3551,7 @@ export default function App() {
         <div key={li} style={{lineHeight:1.75}}>
           {parts.map(function(pt, wi) {
             if (/[а-яёА-ЯЁ]/.test(pt[0])) {
-              return <span key={wi} className="rw" onClick={function(e){ defWord(pt, e); }}>{pt}</span>;
+              return <span key={wi} className="rw" onClick={function(e){ defWord(pt, e, undefined, line, lyricWhere); }}>{pt}</span>;
             }
             return <span key={wi}>{pt}</span>;
           })}
@@ -3602,6 +3643,36 @@ export default function App() {
   var [wbLoading, setWbLoading]         = useState(false);
 
   var [popup, setPopup]   = useState(null);
+  // One example sentence per headword for the 825 commonest words, built from
+  // the frequency deck by scripts/build-examples.mjs. Fetched the first time a
+  // definition is opened and kept for the session — 86 KB, so it is not worth
+  // loading for a reader who never taps a word.
+  var [exBank, setExBank] = useState(null);
+  var exBankTried = useRef(false);
+  var loadExamples = function() {
+    if (exBankTried.current) return;
+    exBankTried.current = true;
+    fetch("/vocab/examples.json")
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){ if (j) setExBank(j); })
+      .catch(function(){});
+  };
+  // The deck's example for a word or its lemma, as {ru, en} — or nothing.
+  // A sentence from the deck is a GENERAL example: it shows the word's
+  // commonest sense, which is not necessarily the sense the reader just met.
+  // It is never shown unasked — it sits behind a button that says so — and it
+  // carries the part of speech it was written for, so a reader looking at a
+  // verb can see at a glance that the example is about a noun.
+  var bankExample = function(word, lemma) {
+    if (!exBank) return null;
+    var tries = [lemma, word].filter(Boolean);
+    for (var i = 0; i < tries.length; i++) {
+      var k = String(tries[i]).toLowerCase().trim();
+      var hit = exBank[k] || exBank[k.replace(/ё/g, "е")];
+      if (hit && hit[0]) return { ru: hit[0], en: hit[1] || "", pos: hit[2] || "" };
+    }
+    return null;
+  };
   var [popXY, setPopXY]   = useState({top:100,left:16});
   var popRef = useRef(null);
   // Two-choice bubble shown when a Russian word is clicked: define it, or
@@ -6368,7 +6439,9 @@ export default function App() {
   // Open the two-choice bubble over a clicked word. Positioned the same way
   // as the definition popup, but much shorter, so it can usually sit right
   // under the word.
-  var defWord = async function(word, e, charPosition) {
+  // `lineContext` and `songWhere` are for places with no chapter text behind
+  // them — a song lyric, where the line IS the sentence.
+  var defWord = async function(word, e, charPosition, lineContext, songWhere) {
     e.stopPropagation();
     if (noAIMode) return;  // No API calls in read-without-AI mode.
     var clean = word.replace(/[^а-яёА-ЯЁ]/g,"");
@@ -6439,7 +6512,20 @@ export default function App() {
       var pm = before.match(/([А-Яа-яЁё][А-Яа-яЁё-]*)[^А-Яа-яЁё]*$/);
       if (pm) prevWord = pm[1];
     }
-    setPopup({word:clean,data:null,loading:true,error:null,yo:null,srcOffset:(typeof charPosition==="number"?charPosition:null),prev:prevWord});
+    // The sentence it sits in, and the work it came from. Kept whether or not
+    // the reader saves the word — it is the popup's best example either way.
+    var srcSentence = "", srcWhere = "";
+    if (typeof charPosition === "number" && curChapter && curChapter.text) {
+      srcSentence = sentenceAround(curChapter.text, charPosition);
+      var sl2 = sectionLabel(curChapter.heading);
+      srcWhere = (bookMeta.title || "") + (sl2 ? " · " + sl2.long : "");
+    } else if (lineContext) {
+      srcSentence = String(lineContext).replace(/\s+/g, " ").trim();
+      srcWhere = songWhere || "";
+    }
+    loadExamples();
+    setPopup({word:clean,data:null,loading:true,error:null,yo:null,srcOffset:(typeof charPosition==="number"?charPosition:null),prev:prevWord,
+              sentence:srcSentence,where:srcWhere});
     try {
       var data = await fetchDef(clean);
       // Several headwords behind this spelling: order them by the sentence's
@@ -6462,6 +6548,7 @@ export default function App() {
       // люблю from любить); a form the reader has actually looked up is
       // ground truth, so the list gets more accurate the more they read.
       rememberForm(data && data.lemma, clean);
+      if (srcSentence) noteSentence(data && data.lemma, clean, srcSentence, srcWhere);
     } catch(err) {
       var rawMsg = (err && err.message) || "Unknown error";
       var likelyRateLimit = /Too many|rate.?limit|429|quota|exhaust/i.test(rawMsg);
@@ -7343,6 +7430,36 @@ export default function App() {
     });
   };
 
+  // A word saved once but met many times. One stored sentence would freeze a
+  // word into whichever sense the reader happened to meet first — «масть» is
+  // жаргон in Круг and a suit of cards in Пушкин — so every later encounter is
+  // appended instead, up to three, and the card shows them side by side. That
+  // turns the polysemy problem into the thing that teaches it.
+  var noteSentence = function(lemma, surface, sentence, where) {
+    var sent = String(sentence || "").trim();
+    if (!sent || sent.length < 12) return;
+    var l = String(lemma || "").toLowerCase().replace(/\u0301/g, "").replace(/ё/g, "е").trim();
+    var f = String(surface || "").toLowerCase().replace(/ё/g, "е").trim();
+    setVocab(function(prev) {
+      var hit = -1;
+      for (var i = 0; i < prev.length; i++) {
+        var v = prev[i];
+        var heads = String((v && v.ru) || "").toLowerCase().replace(/ё/g, "е").split(/\s*\/\s*/);
+        var vl = String((v && v.lemma) || "").toLowerCase().replace(/ё/g, "е");
+        if ((l && (vl === l || heads.indexOf(l) >= 0)) || (f && heads.indexOf(f) >= 0)) { hit = i; break; }
+      }
+      if (hit < 0) return prev;
+      var cur = Array.isArray(prev[hit].sentences) ? prev[hit].sentences : [];
+      // The first sentence may have been stored flat, before this existed.
+      if (!cur.length && prev[hit].srcSentence) cur = [{ s: prev[hit].srcSentence, w: prev[hit].srcWhere || "" }];
+      var norm = function(x){ return String(x).toLowerCase().replace(/[^а-яё]/gi, ""); };
+      for (var c = 0; c < cur.length; c++) if (norm(cur[c].s) === norm(sent)) return prev;
+      var next = prev.slice();
+      next[hit] = Object.assign({}, prev[hit], { sentences: cur.concat([{ s: sent, w: where || "", at: Date.now() }]).slice(-3) });
+      return next;
+    });
+  };
+
       var addV = function(ruOrEntry, en) {
     // Accepts either (ruString, enString) for legacy callers OR a full entry object:
     //   {ru, en, pos, aspect, grammar, example, exampleTranslation}
@@ -7397,6 +7514,7 @@ export default function App() {
   };
 
   var startQuiz = function(posFilter) {
+    loadExamples();
     // Known-words stoplist first: saved words that are among the ~500 most
     // common are never quizzed. They stay in the vocab list (still visible,
     // still usable in chat practice) — they just aren't tested.
@@ -7474,6 +7592,9 @@ export default function App() {
         .filter(function(x){ return (x._key||x.id||x.ru) !== (v._key||v.id||v.ru) && x.en !== v.en; });
       if (siblings.length < 3) { skipped++; return; }
       var distractors = shuffle(siblings).slice(0, 3).map(function(s){ return s.en; });
+      var bx = bankExample(v.ru, v.lemma);
+      var met = Array.isArray(v.sentences) ? v.sentences
+              : (v.srcSentence ? [{ s: v.srcSentence, w: v.srcWhere || "" }] : []);
       questions.push({
         key: v._key || v.id || v.ru,
         word: v.ru,
@@ -7481,6 +7602,16 @@ export default function App() {
         options: shuffle(distractors.concat([v.en])),
         pos: v.pos,
         isNew: !(v.srs && v.srs.S),
+        // Shown once the answer is in: seeing the word at work, at the moment
+        // the meaning has just been recalled or missed, is where an example
+        // earns its keep.
+        // One of the reader's own encounters, chosen at random so a word met
+        // in several senses shows a different one each time it comes round.
+        sentence: (met.length ? met[Math.floor(Math.random() * met.length)].s
+                              : (v.example || v.exBankRu || (bx && bx.ru) || "")),
+        sentenceEn: met.length ? "" : (v.exampleTranslation || v.exBankEn || (bx && bx.en) || ""),
+        sentenceWhere: met.length ? (met[0].w || v.srcTitle || "") : "",
+        sentenceOf: met.length,
       });
     });
     setQuizDue(dueCount);
@@ -9210,6 +9341,30 @@ export default function App() {
         .learned-ru{font-weight:600;color:#000} .learned-en{color:rgba(42,31,20,.8)}
         .learned-when{font-family:'Inter',sans-serif;font-size:11px;color:rgba(42,31,20,.45)}
         @media (max-width:520px){.learned-row{grid-template-columns:1fr 1fr}.learned-when{display:none}}
+        /* An example sentence — in the popup, the vocab card and the quiz */
+        .pctx{margin:8px 0 4px;padding:8px 10px;border-left:2px solid rgba(42,31,20,.28);background:rgba(42,31,20,.035);border-radius:0 8px 8px 0}
+        .pctx.bank{border-left-color:rgba(42,31,20,.16)}
+        .pctx-lbl{font-family:'Inter',sans-serif;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(42,31,20,.45);margin-bottom:3px}
+        .pctx-s{margin:0;font-size:15px;line-height:1.5;color:#1c1610}
+        .pctx-s b{font-weight:700;background:rgba(200,162,118,.32);border-radius:2px;padding:0 1px}
+        .pctx-en{font-size:13px;font-style:italic;color:rgba(42,31,20,.6);margin-top:3px}
+        .pctx-src{font-size:11.5px;font-style:italic;color:rgba(42,31,20,.5);margin-top:4px}
+        .pexbtn{display:flex;flex-direction:column;align-items:flex-start;gap:1px;width:100%;margin:8px 0 2px;padding:7px 10px;
+          background:none;border:1px dashed rgba(42,31,20,.28);border-radius:8px;cursor:pointer;
+          font-family:'Crimson Pro',serif;font-size:14px;color:rgba(42,31,20,.8);text-align:left}
+        .pexbtn:hover{border-color:rgba(42,31,20,.5);background:rgba(42,31,20,.04)}
+        .pexbtn-sub{font-size:11.5px;font-style:italic;color:rgba(42,31,20,.5)}
+        .pexlist{display:flex;flex-direction:column;gap:6px;margin:8px 0 2px}
+        .ictx-wrap{display:flex;flex-direction:column;gap:5px;margin-top:5px}
+        .ictx-lbl{font-family:'Inter',sans-serif;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:rgba(42,31,20,.42)}
+        .iex.ictx{font-style:normal;border-left:2px solid rgba(42,31,20,.22);padding-left:9px}
+        .iex.ictx b{font-weight:700;background:rgba(200,162,118,.3);border-radius:2px;padding:0 1px}
+        .qex{max-width:560px;margin:22px auto 0;padding:12px 14px;border-left:2px solid rgba(42,31,20,.25);
+          background:rgba(42,31,20,.04);border-radius:0 10px 10px 0;text-align:left}
+        .qex-s{margin:0;font-size:17px;line-height:1.55;color:#1c1610;font-family:'Crimson Pro',serif}
+        .qex-s b{font-weight:700;background:rgba(200,162,118,.35);border-radius:2px;padding:0 2px}
+        .qex-en{font-size:14px;font-style:italic;color:rgba(42,31,20,.62);margin-top:5px}
+        .qex-src{font-size:12px;font-style:italic;color:rgba(42,31,20,.45);margin-top:6px}
         /* Readings: one spelling, several words */
         .preads{margin:0 0 10px;padding:8px 10px;border:1px solid rgba(42,31,20,.14);border-radius:10px;background:rgba(42,31,20,.035)}
         .preads-q{font-size:12px;color:rgba(42,31,20,.65);margin-bottom:7px;line-height:1.4}
@@ -10572,7 +10727,7 @@ export default function App() {
                         <div style={{fontFamily:"'Crimson Pro',serif",fontSize:15,color:"rgba(42,31,20,.55)",letterSpacing:.5}}>{artist.artist}</div>
                         <h1 style={{fontFamily:"'Playfair Display',serif",fontSize:34,color:"#000",fontWeight:700,margin:"2px 0 18px",lineHeight:1.15}}>{song.title}</h1>
                         <div style={{fontFamily:"'Crimson Pro',serif",fontSize:19,color:"#1c1610"}}>
-                          {renderLyrics(song.lyrics)}
+                          {renderLyrics(song.lyrics, artist.artist + " · " + song.title)}
                         </div>
                         <div style={{height:16}}/>
                       </div>
@@ -12726,6 +12881,19 @@ export default function App() {
                         );
                       })}
                     </div>
+                    {quizSelected !== null && quizQuestions[quizIdx].sentence && (
+                      <div className="qex">
+                        <p className="qex-s" lang="ru">{markWord(quizQuestions[quizIdx].sentence, quizQuestions[quizIdx].word).map(function(part, i){
+                          return i === 1 ? <b key={i}>{part}</b> : <span key={i}>{part}</span>;
+                        })}</p>
+                        {quizQuestions[quizIdx].sentenceEn && <div className="qex-en">{quizQuestions[quizIdx].sentenceEn}</div>}
+                        {quizQuestions[quizIdx].sentenceWhere && (
+                          <div className="qex-src">{quizQuestions[quizIdx].sentenceWhere}
+                            {quizQuestions[quizIdx].sentenceOf > 1 ? " · one of " + quizQuestions[quizIdx].sentenceOf + " places you met it" : ""}
+                          </div>
+                        )}
+                      </div>
+                    )}
                     {quizSelected !== null && (
                       <div style={{marginTop:24,textAlign:"center"}}>
                         <button className="btn-p" style={{maxWidth:280}} onClick={function(){
@@ -12821,10 +12989,38 @@ export default function App() {
                               {posLine && <span className="ipos">{posLine}</span>}
                               {v.en && <span className="isec">{v.en}</span>}
                               {v.grammar && <span className="igr">{v.grammar}</span>}
-                              {v.example && (
+                              {/* The sentence the word was met in, then the
+                                  dictionary's example, then the deck's. */}
+                              {(function(){
+                                var sents = Array.isArray(v.sentences) ? v.sentences
+                                  : (v.srcSentence ? [{ s: v.srcSentence, w: v.srcWhere || "" }] : []);
+                                if (!sents.length) return null;
+                                return (
+                                  <div className="ictx-wrap">
+                                    {sents.length > 1 && <div className="ictx-lbl">Where you met it</div>}
+                                    {sents.map(function(x, si){
+                                      return (
+                                        <div key={si} className="iex ictx">
+                                          {markWord(x.s, v.ru).map(function(part, i){
+                                            return i === 1 ? <b key={i}>{part}</b> : <span key={i}>{part}</span>;
+                                          })}
+                                          {x.w && <div className="iext">{x.w}</div>}
+                                        </div>
+                                      );
+                                    })}
+                                  </div>
+                                );
+                              })()}
+                              {!(Array.isArray(v.sentences) && v.sentences.length) && !v.srcSentence && v.example && (
                                 <div className="iex">
                                   «&nbsp;{v.example}&nbsp;»
                                   {v.exampleTranslation && <div className="iext">{v.exampleTranslation}</div>}
+                                </div>
+                              )}
+                              {!(Array.isArray(v.sentences) && v.sentences.length) && !v.srcSentence && !v.example && v.exBankRu && (
+                                <div className="iex">
+                                  «&nbsp;{v.exBankRu}&nbsp;»
+                                  {v.exBankEn && <div className="iext">{v.exBankEn}</div>}
                                 </div>
                               )}
                               <div style={{display:"flex",alignItems:"center",gap:10,marginTop:6,flexWrap:"wrap"}}>
@@ -13095,7 +13291,57 @@ export default function App() {
                   {popup.data.definitionRu && <div className="pdru">{popup.data.definitionRu}</div>}
                   <div className="ptr">{popup.data.translation}</div>
                   {popup.data.grammar && <div className="pgr">{popup.data.grammar}</div>}
-                  {popup.data.example && <div className="pex">{popup.data.example}{popup.data.exampleTranslation&&<div className="pext">{popup.data.exampleTranslation}</div>}</div>}
+                  {/* Where the reader actually met the word beats any
+                      dictionary's example, so it goes first and is cited. The
+                      dictionary's own example follows; the frequency deck is
+                      the fallback for a word met with no sentence around it
+                      (a saved word, a search result). */}
+                  {popup.sentence && (
+                    <div className="pctx">
+                      <div className="pctx-lbl">In this text</div>
+                      <p className="pctx-s" lang="ru">{markWord(popup.sentence, popup.word).map(function(part, i){
+                        return i === 1 ? <b key={i}>{part}</b> : <span key={i}>{part}</span>;
+                      })}</p>
+                      {popup.where && <div className="pctx-src">{popup.where}</div>}
+                    </div>
+                  )}
+                  {/* Everything else is opt-in, and says why: a dictionary's
+                      example and the frequency deck's both show the word's
+                      commonest sense, which need not be the sense on the page
+                      in front of the reader. */}
+                  {(function(){
+                    var bx = bankExample(popup.word, popup.data.lemma);
+                    var hasOther = !!(popup.data.example || bx);
+                    if (!hasOther) return null;
+                    if (!popup.showEx) {
+                      return (
+                        <button className="pexbtn" onClick={function(){
+                          setPopup(function(pp){ return pp ? Object.assign({}, pp, { showEx: true }) : null; });
+                        }}>
+                          See other examples
+                          <span className="pexbtn-sub">may show other senses of the word</span>
+                        </button>
+                      );
+                    }
+                    return (
+                      <div className="pexlist">
+                        {popup.data.example && (
+                          <div className="pctx bank">
+                            <div className="pctx-lbl">From the dictionary</div>
+                            <p className="pctx-s" lang="ru">{popup.data.example}</p>
+                            {popup.data.exampleTranslation && <div className="pctx-en">{popup.data.exampleTranslation}</div>}
+                          </div>
+                        )}
+                        {bx && (
+                          <div className="pctx bank">
+                            <div className="pctx-lbl">General example{bx.pos ? " · as a " + bx.pos : ""}</div>
+                            <p className="pctx-s" lang="ru">{bx.ru}</p>
+                            {bx.en && <div className="pctx-en">{bx.en}</div>}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })()}
                   {popup.data.definitionSource === "yandex" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href="https://yandex.com/dev/dictionary/" target="_blank" rel="noreferrer" style={{color:"inherit"}}>Powered by Yandex.Dictionary</a></div>}
                   {popup.data.definitionSource === "wiktionary" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href={popup.data.sourceUrl || "https://en.wiktionary.org/"} target="_blank" rel="noreferrer" style={{color:"inherit"}}>Wiktionary</a>{" \u00b7 "}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer" style={{color:"inherit"}}>CC BY-SA 4.0</a></div>}
                   {popup.data.definitionSource === "ruwiktionary" && <div style={{fontSize:"0.72em",opacity:0.55,marginTop:6}}><a href={popup.data.sourceUrl || "https://ru.wiktionary.org/"} target="_blank" rel="noreferrer" style={{color:"inherit"}}>\u0412\u0438\u043a\u0438\u0441\u043b\u043e\u0432\u0430\u0440\u044c</a>{" \u00b7 "}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer" style={{color:"inherit"}}>CC BY-SA 4.0</a></div>}
@@ -13114,6 +13360,15 @@ export default function App() {
                   <button className="psave" onClick={function(){
                     if (entry.ru) {
                       if (popup.srcOffset != null) entry.srcOffset = popup.srcOffset;
+                      // The sentence travels with the word: the vocabulary list
+                      // and the quiz both show it later, when the book is long
+                      // closed.
+                      if (popup.sentence) {
+                        entry.sentences = [{ s: popup.sentence, w: popup.where || "", at: Date.now() }];
+                      } else {
+                        var bx2 = bankExample(popup.word, popup.data && popup.data.lemma);
+                        if (bx2) { entry.exBankRu = bx2.ru; entry.exBankEn = bx2.en; }
+                      }
                       addV(entry);
                     }
                     setPopup(null);
