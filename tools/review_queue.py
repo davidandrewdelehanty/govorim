@@ -50,6 +50,11 @@ def chapter_openings(path, n=3):
             if len(buf) > 260:
                 break
         buf = re.sub(r"\s+", " ", buf).strip()
+        # A section with no body text is not a chapter — the aligner and the
+        # reader both skip it. Counting Мелкий бес's epigraph here put every
+        # "listen for" line one chapter off.
+        if not buf:
+            return
         parts = re.split(r"(?<=[.!?…])\s+", buf)
         out.append(" ".join(parts[:n])[:230])
 

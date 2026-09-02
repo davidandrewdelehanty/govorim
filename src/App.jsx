@@ -32,7 +32,7 @@ var MUSIC_URL = IS_PUBLIC_SITE ? "/music/music.public.json" : "/music/music.json
 // since vite copies public/ through untouched.
 var SITE_NAME = IS_PUBLIC_SITE ? "Самовар" : "Говорим";
 var SITE_NAME_LATIN = IS_PUBLIC_SITE ? "Samovar" : "Govorim";
-var SITE_TAGLINE = IS_PUBLIC_SITE ? "Russian Reading" : "Russian Practice";
+var SITE_TAGLINE = IS_PUBLIC_SITE ? "Russian Literature Companion" : "Russian Practice";
 
 // ---- deploy freshness --------------------------------------------------------
 // Every build stamps one id into the bundle (__BUILD_ID__) and writes the same
@@ -542,7 +542,12 @@ function bibleKeyFromHeading(h) {
 // the player would run on for hours past the chapter the reader is on, so a
 // chapter that knows where it stops passes both bounds to the embed.
 function ytEmbed(id, start, end) {
-  var q = [];
+  // hl=ru: some recordings carry a YouTube-generated English voice-over that
+  // is served BY DEFAULT to English-locale viewers — a reader opening Мелкий
+  // бес heard the book in machine English. The player's language is the hint
+  // YouTube uses to choose the track; there is no parameter that pins it, so
+  // chapters on such videos also carry a notice (see `dubbed`).
+  var q = ["hl=ru"];
   if (start) q.push("start=" + start);
   if (end)   q.push("end=" + end);
   return "https://www.youtube.com/embed/" + id + (q.length ? "?" + q.join("&") : "");
@@ -1466,6 +1471,7 @@ function attachVideos(chapters, entry) {
       youtubeStart: start,
       youtubeEnd: end,
       youtubeUrl: "https://www.youtube.com/watch?v=" + id + (start ? "&t=" + start : ""),
+      dubbed: !!(v && typeof v === "object" && v.dubbed),
     });
   });
 }
@@ -8717,6 +8723,9 @@ export default function App() {
         .chvid-scrub .t{flex:none;font-size:12px;color:rgba(42,31,20,.6);white-space:nowrap;
           font-variant-numeric:tabular-nums}
         .chvid-scrub .t .sep{opacity:.4;margin:0 3px}
+                .dub-note{max-width:560px;margin:8px auto 0;padding:8px 12px;font-size:12.5px;line-height:1.5;
+                  color:rgba(42,31,20,.72);background:rgba(200,162,118,.10);border:1px solid rgba(200,162,118,.4);border-radius:3px}
+        .dub-note b{font-weight:600;color:#2a1f14}
         .no-audio{max-width:640px;margin:0 0 16px;padding:10px 14px;border-radius:10px;
           background:rgba(42,31,20,.05);border:1px solid rgba(42,31,20,.14);
           font-family:'Crimson Pro',serif;font-size:14px;color:rgba(42,31,20,.72)}
@@ -10555,7 +10564,7 @@ export default function App() {
             <div className="land-icon" style={{color:"#2a1f14"}}><Samovar size={68}/></div>
             <div>
               <div className="land-title">{SITE_NAME}</div>
-              <div className="land-sub">Russian Practice</div>
+              <div className="land-sub">{SITE_TAGLINE}</div>
             </div>
             <div className="land-tagline">
               A reader for Russian-language texts — read books from the built-in library with narrated audiobooks split chapter by chapter so you can follow along, tap any word for an instant definition, and test your comprehension with an AI tutor tuned to your level.
@@ -10607,7 +10616,7 @@ export default function App() {
             <div className="auth-brand">
               <div style={{color:"#2a1f14"}}><Samovar size={64}/></div>
               <div className="auth-brand-title">{SITE_NAME}</div>
-              <div className="auth-brand-sub">Russian Practice</div>
+              <div className="auth-brand-sub">{SITE_TAGLINE}</div>
             </div>
           </div>
         </div>
@@ -10620,7 +10629,7 @@ export default function App() {
             <div className="auth-brand">
               <div style={{color:"#2a1f14"}}><Samovar size={64}/></div>
               <div className="auth-brand-title">{SITE_NAME}</div>
-              <div className="auth-brand-sub">Russian Practice</div>
+              <div className="auth-brand-sub">{SITE_TAGLINE}</div>
             </div>
 
             <div className="gate-blurb">
@@ -12322,6 +12331,12 @@ export default function App() {
                               end={curChapter.youtubeEnd}
                               ctrl={ytCtrlRef}
                               title={curChapter.heading || bookMeta.title || "Video"} />
+                            {curChapter.dubbed && (
+                              <div className="dub-note">
+                                🔈 Hearing English? YouTube added an automatic English voice to this recording and may play it first.
+                                In the player, choose <b>⚙ → Audio track → Russian original</b>.
+                              </div>
+                            )}
                           </div>
                         )}
                         {/* A chapter with no recording, in a book that has them

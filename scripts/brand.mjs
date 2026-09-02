@@ -36,7 +36,7 @@ const swaps = ["favicon.svg", "apple-touch-icon.png", "robots.txt", "sitemap.xml
 const edits = [
   ["index.html", [
     ["Говорим — Russian reading practice",
-     "Самовар — Russian literature with parallel English"],
+     "Самовар — Russian Literature Companion"],
     // One description string carrying both languages: there is a single URL,
     // so there is a single description, and a Russian-language search has to
     // find something Russian in it.
