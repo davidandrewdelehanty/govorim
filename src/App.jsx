@@ -542,11 +542,13 @@ function bibleKeyFromHeading(h) {
 // the player would run on for hours past the chapter the reader is on, so a
 // chapter that knows where it stops passes both bounds to the embed.
 function ytEmbed(id, start, end) {
-  // hl=ru: some recordings carry a YouTube-generated English voice-over that
-  // is served BY DEFAULT to English-locale viewers — a reader opening Мелкий
-  // бес heard the book in machine English. The player's language is the hint
-  // YouTube uses to choose the track; there is no parameter that pins it, so
-  // chapters on such videos also carry a notice (see `dubbed`).
+  // hl=ru: a Russian-language player. Roughly 60% of the catalogue's videos
+  // carry a YouTube-generated English voice-over that the WATCH page serves
+  // by default to an English-locale account. Tested on the site itself
+  // (2 Sept 2026): the embed plays the Russian original with or without this
+  // hint — it has no account to take a locale from — so this is belt and
+  // braces, not the fix. The `dubbed` flag in the manifest records which
+  // videos have the track, in case YouTube's embed behaviour changes.
   var q = ["hl=ru"];
   if (start) q.push("start=" + start);
   if (end)   q.push("end=" + end);
@@ -1410,11 +1412,7 @@ function readingsInContext(readings, prevWord) {
 
 // What's new on the library page. One item, dated, replaced rather than
 // appended — a list of old news is worse than none. Set NEWS to null to hide.
-var NEWS = {
-  date: "2 September 2026",
-  title: "Drastically improved video timestamps",
-  body: "Chapter start times across the library have been re-checked against the recordings themselves. If a chapter still starts in the wrong place, please report it on the Discord \u2014 say which book and chapter and we\u2019ll fix it.",
-};
+var NEWS = null;   // e.g. { date: "2 September 2026", title: "…", body: "…" }
 
 function attachVideos(chapters, entry) {
   if (!entry) return chapters;
@@ -12331,12 +12329,11 @@ export default function App() {
                               end={curChapter.youtubeEnd}
                               ctrl={ytCtrlRef}
                               title={curChapter.heading || bookMeta.title || "Video"} />
-                            {curChapter.dubbed && (
-                              <div className="dub-note">
-                                🔈 Hearing English? YouTube added an automatic English voice to this recording and may play it first.
-                                In the player, choose <b>⚙ → Audio track → Russian original</b>.
-                              </div>
-                            )}
+                            {/* `dubbed` marks videos with a YouTube English
+                                voice-over. The embed was tested to play the
+                                Russian original regardless, so no notice is
+                                shown; the flag stays so one can be switched
+                                on in a line if that ever changes. */}
                           </div>
                         )}
                         {/* A chapter with no recording, in a book that has them
