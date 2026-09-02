@@ -124,9 +124,18 @@ def fb2_chapters_body(path, probe_words):
             if el is title_el:
                 continue
             body += cbt.words_of(" ".join(x for x in el.itertext()))
-            if len(body) >= probe_words * 3:
+            if len(body) >= probe_words + 300:
                 break
-        chapters.append({"title": title or "(untitled)", "probe": body[:probe_words]})
+        # Several probes at increasing depth, not one. A play's chapter opens
+        # with "ДЕЙСТВУЮЩИЕ ЛИЦА", the cast, and a stage direction — none of
+        # which a performance says out loud — so a probe taken at word 0
+        # matches nothing in the captions. Trying deeper offsets finds the
+        # first line that IS spoken. For prose the first probe wins and the
+        # others are never used.
+        chapters.append({"title": title or "(untitled)",
+                         "probe": body[:probe_words],
+                         "probes": [body[o:o + probe_words] for o in (0, 40, 90, 160, 260)
+                                    if len(body[o:o + probe_words]) >= probe_words // 2]})
 
     for b in bodies:
         for sec in [c for c in b if cbt.strip_ns(c.tag) == "section"]:
@@ -215,7 +224,15 @@ def propose(args):
             anchor = float(cur) if cur is not None else expect
             lo = max(cursor, bisect.bisect_left(times, anchor - args.window))
             hi = min(len(words), bisect.bisect_right(times, anchor + args.window))
-            i, score = cbt.best_match(words, probe, lo, max(lo, hi))
+            i, score, depth = -1, 0.0, 0
+            for pi, pr in enumerate(chapters[ci].get("probes") or [probe]):
+                if not pr:
+                    continue
+                ii, sc = cbt.best_match(words, pr, lo, max(lo, hi))
+                if ii >= 0 and sc > score:
+                    i, score, depth = ii, sc, pi
+                if score >= 0.9:      # good enough; deeper probes cannot improve on this
+                    break
             if i < 0:
                 # Nothing in the window. Keep the walk honest by stepping the
                 # expectation forward rather than letting the cursor stall.
@@ -250,9 +267,10 @@ def propose(args):
                 "proposed_start": clock(max(0, t - args.lead)),
                 "delta_sec": "" if cur is None else int(round(t - args.lead - cur)),
                 "score": round(score, 3),
-                "fb2_opening": " ".join(probe[:8]),
+                "fb2_opening": " ".join((chapters[ci].get("probes") or [probe])[depth][:8]),
                 "heard_at_match": " ".join(w["w"] for w in words[i:i + 8]),
                 "at_window_edge": "yes" if abs(t - anchor) > args.window * 0.9 else "",
+                "probe_depth": depth,
                 "check_url": "https://youtu.be/%s?t=%d" % (vid, max(0, int(t - args.lead) - 3)),
                 "new_start_sec": "",
             })
@@ -270,7 +288,7 @@ def propose(args):
 
     rows.sort(key=lambda r: r["chapter"])
     cols = ["slug", "chapter", "heading", "video", "current_start", "proposed_start",
-            "delta_sec", "score", "fb2_opening", "heard_at_match", "at_window_edge", "check_url", "new_start_sec"]
+            "delta_sec", "score", "fb2_opening", "heard_at_match", "at_window_edge", "probe_depth", "check_url", "new_start_sec"]
     with io.open(args.out, "w", encoding="utf-8-sig", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=cols)
         w.writeheader()
@@ -302,6 +320,16 @@ def apply(args):
                 continue
         else:
             if float(r.get("score") or 0) < args.min_score:
+                continue
+            # A probe taken from deeper in the chapter (see fb2_chapters_body)
+            # locates text that IS spoken, which is how a play matches at all —
+            # but its timestamp is that text's, minutes after the act begins.
+            # Гроза act 1 matched at 0:04:38 against a correct start of
+            # 0:00:00. Only a depth-0 match is a chapter start; anything
+            # deeper is an anchor inside the chapter and needs a human.
+            if int(r.get("probe_depth") or 0) > 0:
+                print("  SKIP %s ch%-4s matched %s words in — not a start"
+                      % (r.get("slug"), r.get("chapter"), r.get("probe_depth")))
                 continue
             p = (r.get("proposed_start") or "").split(":")
             if len(p) != 3:
