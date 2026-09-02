@@ -7356,6 +7356,9 @@ export default function App() {
         translator: book.translator || "",
         play: !!book.play,
         flowEn: !!book.flowEn,
+        // Keeps a poem whose stanza or footnote numbers would otherwise be
+        // read as chapter markers on one page (see the marker re-split).
+        onePage: !!book.onePage,
       });
     } catch(err) {
       setFErr(err.message || "Failed to load preset book");
