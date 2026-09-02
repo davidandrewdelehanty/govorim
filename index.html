@@ -48,7 +48,22 @@
       .nojs h1 { color: #c8a276; font-weight: 400; margin-bottom: 0.2em; }
       .nojs h2 { color: #c8a276; font-weight: 400; font-size: 1.05rem; margin-top: 2rem; }
       .nojs a { color: #c8a276; }
+      /* The prerendered book page (scripts/prerender-books.mjs) puts the same
+         kind of block INSIDE #root so a crawler has text to index. A person
+         with JavaScript saw it too, for as long as the bundle took to arrive —
+         on a phone, long enough to read. Hidden the moment scripts run; the
+         script below puts it back if the app has not mounted after a while,
+         so a failed load still shows the book rather than a dark screen. */
+      html.js #root > .nojs { display: none; }
     </style>
+    <script>
+      document.documentElement.classList.add("js");
+      setTimeout(function () {
+        var r = document.getElementById("root");
+        if (r && r.firstElementChild && r.firstElementChild.className === "nojs")
+          document.documentElement.classList.remove("js");
+      }, 8000);
+    </script>
   </head>
   <body>
     <div id="root"></div>
