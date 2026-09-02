@@ -71,3 +71,13 @@ tools/vtt-wanted.txt
 # regenerable at any time from tools/captions/flagged-videos.txt, so the URL
 # list is tracked and the captions themselves are not.
 tools/captions/*.vtt
+
+# yt-dlp metadata fetched for tools/scan_timestamps.py — ~50 MB of comment
+# threads. The verified chapter marks extracted from them are what matters and
+# those live in the manifest; the raw threads regenerate from meta-videos.txt.
+tools/captions/*.info.json
+tools/captions/*.description
+
+# Intermediate output from tools/flatten_fb2.py — the accepted result is copied
+# over the original and the previous version kept as .bak-preflatten.
+*.fb2.new

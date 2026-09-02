@@ -132,6 +132,14 @@ def fb2_chapters_body(path, probe_words):
         # matches nothing in the captions. Trying deeper offsets finds the
         # first line that IS spoken. For prose the first probe wins and the
         # others are never used.
+        # A section with no body text is not a chapter. Арап Петра Великого's
+        # FB2 opens with an empty one; counting it made this extractor report 8
+        # chapters against a videos map of 8 and call the book safe, while the
+        # reader's own splitter drops it and yields 7. Every index after it was
+        # off by one, and the timings looked merely "wrong" rather than
+        # misaligned. Skipping it makes this agree with what the reader sees.
+        if not body:
+            return
         chapters.append({"title": title or "(untitled)",
                          "probe": body[:probe_words],
                          "probes": [body[o:o + probe_words] for o in (0, 40, 90, 160, 260)

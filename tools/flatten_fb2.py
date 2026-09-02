@@ -158,12 +158,26 @@ def main():
     if desc is not None:
         out_root.append(desc)
     out_body = ET.SubElement(out_root, "{%s}body" % FB2_NS)
+    # The body may carry the work's own title ("Евгений Онегин") outside any
+    # section. Rebuilding without it lost those words.
+    for src_body in bodies:
+        bt = next((c for c in src_body if ln(c.tag) == "title"), None)
+        if bt is not None:
+            out_body.append(bt)
+            break
     for s in picked:
         sec = ET.SubElement(out_body, "{%s}section" % FB2_NS)
         t = ET.SubElement(sec, "{%s}title" % FB2_NS)
         tp = ET.SubElement(t, "{%s}p" % FB2_NS)
         tp.text = title_of(s) or ""
         content_of(s, sec)
+    # Footnote and comment bodies are content, not structure. This rebuilt the
+    # file from the main body alone and silently dropped them: Евгений Онегин
+    # lost its whole <body name="notes"> — 202 words translating the French,
+    # Italian and Latin — and the loss showed up only as a word count that did
+    # not add up. Carry every other body through untouched.
+    for b in [c for c in root if ln(c.tag) == "body" and c.get("name") in ("notes", "comments")]:
+        out_root.append(b)
     # Binary payloads (cover images) are referenced from <description>; keep them
     # so the file stays a valid, self-contained FB2.
     for b in [c for c in root if ln(c.tag) == "binary"]:
