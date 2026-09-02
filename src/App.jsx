@@ -1333,6 +1333,35 @@ function ProgressPanel(props) {
   );
 }
 
+// ---------------------------------------------------------------------------
+// Which reading of an ambiguous form the sentence points to. No dictionary can
+// tell «ношу» the noun from «ношу» the verb; the word before it often can. A
+// personal pronoun or «не» in front wants a verb, a preposition wants a noun
+// or adjective, and an adjective ending in front wants a noun. This is a
+// nudge, not a verdict — every reading stays one tap away — and where no cue
+// is present the order the dictionary gave is kept.
+// ---------------------------------------------------------------------------
+var CUE_PRONOUN = /^(я|ты|он|она|оно|мы|вы|они|кто|не|уже|всё|все)$/i;
+var CUE_PREPOSITION = /^(в|во|на|за|под|подо|над|о|об|обо|от|ото|до|из|изо|у|к|ко|с|со|по|при|для|без|через|про|между|перед|около|возле|вокруг|среди|против|сквозь|ради|кроме|вместо)$/i;
+var CUE_ADJECTIVE = /(ый|ий|ой|ая|яя|ое|ее|ые|ие|ую|юю|ого|его|ому|ему|ым|им|ой|ей|ых|их|ыми|ими)$/i;
+function readingsInContext(readings, prevWord) {
+  var list = (readings || []).slice();
+  var prev = String(prevWord || "").toLowerCase().replace(/ё/g, "е");
+  if (!prev) return { list: list, cue: "" };
+  var wants = CUE_PRONOUN.test(prev) ? "verb"
+            : CUE_PREPOSITION.test(prev) ? "noun"
+            : (CUE_ADJECTIVE.test(prev) && prev.length > 4) ? "noun" : "";
+  if (!wants) return { list: list, cue: "" };
+  var isKind = function(r) {
+    var pos = String(r.pos || "").toLowerCase();
+    if (wants === "verb") return /verb|глагол/.test(pos) && !/adverb|наречие/.test(pos);
+    return /noun|adj|существ|прилаг/.test(pos) && !/pronoun/.test(pos);
+  };
+  var hit = list.filter(isKind), rest = list.filter(function(r){ return !isKind(r); });
+  if (!hit.length) return { list: list, cue: "" };
+  return { list: hit.concat(rest), cue: wants };
+}
+
 function attachVideos(chapters, entry) {
   if (!entry) return chapters;
   var videos = entry.videos && typeof entry.videos === "object" ? entry.videos : null;
