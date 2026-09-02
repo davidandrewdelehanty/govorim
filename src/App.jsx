@@ -4967,7 +4967,11 @@ export default function App() {
       if (n && i > 0) out.push({ at: i, n: n });
     });
     if (!out.length) return out;
-    var head = bare(String((curChapter && curChapter.heading) || "").replace(/^.*—\s*/, ""));
+    // The opening's label: the first paragraph when it is itself a marker
+    // (Бесы numbers the parts of every chapter from "I"), else the numeral in
+    // the chapter's own heading, else a plain arrow.
+    var head = bare(paras[0] || "") ||
+               bare(String((curChapter && curChapter.heading) || "").replace(/^.*—\s*/, ""));
     out.unshift({ at: 0, n: head || "↑" });
     return out;
   }, [curChapter && curChapter.text, curChapter && curChapter.heading, bookMeta && bookMeta.isBible]);

@@ -96,7 +96,11 @@ def main():
     args = ap.parse_args()
 
     root, enc = read(args.src)
-    ns = "{%s}" % FB2_NS if root.tag.startswith("{") else ""
+    # The file's OWN namespace, whatever version it declares. Building the
+    # new sections in a hard-coded 2.0 namespace inside a 2.1 file produced a
+    # mixed document (ns0:body holding plain <section>s) that the reader could
+    # not walk — Бесы came out as 104 chapters instead of 24.
+    ns = root.tag.split("}", 1)[0] + "}" if root.tag.startswith("{") else ""
     before_w, before_p, before_s = words(root), paras(root), subtitles(root)
 
     bodies = [el for el in root.iter() if sn(el.tag) == "body"
@@ -130,7 +134,7 @@ def main():
         print("  (check only — nothing written)")
         return 0
 
-    ET.register_namespace("", FB2_NS)
+    ET.register_namespace("", ns[1:-1] if ns else FB2_NS)
     out = args.out or args.src
     if args.write and not args.out:
         bak = args.src + ".bak-presplit"
