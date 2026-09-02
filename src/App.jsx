@@ -2038,6 +2038,16 @@ function splitByMarkers(chapters) {
   }
   if (markers.length < 2) return null;
   var out = [];
+  // What stands before the first marker used to be thrown away. For a cast
+  // list or a dedication that was no loss, but «Скучная история» opens with
+  // four thousand words before its first "II", «Первая любовь» with the
+  // frame story that sets the whole thing up, and both were simply missing.
+  // A chapter-sized lead is kept as the opening chapter; a scrap the size of
+  // a dramatis personae is still front matter and still goes.
+  var lead = lines.slice(0, markers[0].idx).join("\n").trim();
+  if ((lead.match(/[А-Яа-яЁё][А-Яа-яЁё-]*/g) || []).length >= FB2_MIN_MEDIAN_CHAPTER_WORDS) {
+    out.push({ heading: "", text: lead });
+  }
   for (var j = 0; j < markers.length; j++) {
     var start = markers[j].idx + 1;
     var end = (j + 1 < markers.length) ? markers[j + 1].idx : lines.length;
@@ -3003,6 +3013,10 @@ function MemorialDonate(props) {
 // request. Inside the button it is one object: what is needed, how far along,
 // and the way to help, in that order.
 function DonateCosts(props) {
+  // Switched off: the site is not asking for money for itself. Memorial's
+  // appeal is the only one on the page. The form is kept intact below so the
+  // button can come back by deleting this one line.
+  return null;
   var f = props && props.funding;
   var goal = (f && f.goal) || 0;
   var raised = (f && f.raised) || 0;
@@ -7129,7 +7143,11 @@ export default function App() {
           var h = (c.heading || "").trim();
           return h && !/^\u0433\u043b\u0430\u0432\u0430\s+\d+$/i.test(h) && !/^chapter\s+\d+$/i.test(h);
         }).length;
-        var bymark = (alreadyScripture || realHeadings >= 2) ? null : splitByMarkers(chs);
+        // `onePage` in the catalogue: the numerals in this text are not
+        // chapters — a poem's stanza numbers («Домик в Коломне»), or footnote
+        // numbers standing on their own line («Бахчисарайский фонтан») — so
+        // it stays one page, with its English and its recording keyed to it.
+        var bymark = (alreadyScripture || realHeadings >= 2 || opts.onePage) ? null : splitByMarkers(chs);
         if (bymark && bymark.length >= 2) {
           chs = bymark;
         } else if (!alreadyScripture && chs.length > 1) {
