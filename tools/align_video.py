@@ -323,6 +323,20 @@ def apply(args):
             old = seg.get("start")
             if old == t:
                 continue
+            # A chapter can never begin before the one before it, nor before
+            # its own video segment. Арап Петра Великого ch7 was proposed at
+            # 5532 against ch6's start of 5598, and applying it left ch6
+            # ending 66 seconds before it began. The matcher can produce this
+            # when two chapters are short and adjacent; the manifest must not
+            # be able to store it.
+            prior = [k for k in keys if k < ci
+                     and (videos.get(str(k)) or {}).get("youtube") == seg.get("youtube")]
+            if prior:
+                ps = (videos.get(str(prior[-1])) or {}).get("start")
+                if ps is not None and t <= ps:
+                    print("  SKIP %s ch%-4d %s would start at or before ch%d (%s)"
+                          % (e.get("slug"), ci, clock(t), prior[-1], clock(ps)))
+                    continue
             print("  %s ch%-4d %s -> %s" % (e.get("slug"), ci,
                   clock(old) if old is not None else "(none)", clock(t)))
             seg["start"] = t
