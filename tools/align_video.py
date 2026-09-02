@@ -351,6 +351,13 @@ def apply(args):
             old = seg.get("start")
             if old == t:
                 continue
+            # A timing a person set by hand outranks anything measured here.
+            # Чайка and the спектакль act openings were set by ear against the
+            # recording; the matcher has no better information than the person
+            # who listened, and on plays it demonstrably has worse.
+            if seg.get("manual"):
+                print("  KEEP %s ch%-4d %s — set manually" % (e.get("slug"), ci, clock(old)))
+                continue
             # A chapter can never begin before the one before it, nor before
             # its own video segment. Арап Петра Великого ch7 was proposed at
             # 5532 against ch6's start of 5598, and applying it left ch6
