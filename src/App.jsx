@@ -10360,7 +10360,8 @@ export default function App() {
         .gate-or{font-family:var(--sans);letter-spacing:.14em;text-transform:uppercase;font-size:10px}
         .auth-lbl{font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
         .auth-form .btn-p{margin-top:4px}
-        .auth-foot{position:static;margin-top:18px}
+        .auth-page{flex-direction:column;align-items:center;justify-content:flex-start}
+        .auth-foot{position:static;order:10;width:100%;max-width:440px;margin-top:18px}
         .auth-switch{font-family:var(--serif);color:var(--rubric);text-decoration:none;border-bottom:1px solid var(--rubric)}
         .auth-err{background:none;border:0;border-left:2px solid var(--rubric);color:var(--rubric);font-family:var(--serif);padding:2px 0 2px 12px}
         .auth-note{background:none;border:0;border-left:2px solid var(--ink);color:var(--ink-2);font-family:var(--serif);padding:2px 0 2px 12px}
