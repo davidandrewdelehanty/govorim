@@ -83,6 +83,16 @@ function checkForUpdate() {
 // author. index.json keeps title and author as separate fields (the exercise
 // and lit-analysis prompts feed them to the model independently), so the joined
 // form lives here and every surface that names a book calls this.
+// A length, written out: "13,758 words". The catalogue carries the count for
+// every preset book (tools/word_counts.py counts them the way the reader does,
+// so the card and the open book never disagree); an upload has none until it
+// is open, and then the reader counts its own.
+function fmtWords(n) {
+  n = Math.round(Number(n) || 0);
+  if (!n) return "";
+  return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " words";
+}
+
 function bookLabel(book) {
   if (!book) return "";
   var title = book.title || book.filename || "";
@@ -4126,7 +4136,7 @@ export default function App() {
 
   // Save a book's reading progress. Debounced via the deps so it only fires
   // when the page/chapter actually changes — not on every render.
-  var saveBookProgress = async function(meta, ci, pi, totalChapters) {
+  var saveBookProgress = async function(meta, ci, pi, totalChapters, words, wordsRead) {
     var key = bookKey(meta);
     if (!key || !meta.title) return;
     try {
@@ -4146,6 +4156,12 @@ export default function App() {
         category: meta.category || "",
         splitByNumberedSections: !!meta.splitByNumberedSections,
         totalChapters: totalChapters || 0,
+        // How long the book is and how much of it is behind the reader, so
+        // Continue reading can show real progress for a book that is not
+        // open — chapter counts alone made a scene of Мелкий бес look like
+        // the same stride as a part of Anna Karenina.
+        words: words || 0,
+        wordsRead: wordsRead || 0,
       };
       await storage.set(BOOK_PROGRESS, JSON.stringify(all));
       setProgressMap(all);
@@ -4893,7 +4909,8 @@ export default function App() {
     if (!started || !isLit) return;
     if (!bookMeta || !bookMeta.title) return;
     if (!chapters || chapters.length === 0) return;
-    saveBookProgress(bookMeta, cidx, pidx, chapters.length);
+    saveBookProgress(bookMeta, cidx, pidx, chapters.length,
+                     bookWordsShown, bookWords.upto[cidx] || 0);
   }, [cidx, pidx, secAt, started, isLit, bookMeta.title, chapters.length]);
 
   // A book, and every chapter in it, opens at the first line of the text.
@@ -4940,7 +4957,25 @@ export default function App() {
     }, 220);
     return function() { clearTimeout(t); };
   }, [started, isLit, mergedCh && mergedCh.merged, bookMeta.title]);
-  var pct  = chapters.length > 0 ? Math.round((cidx / chapters.length) * 100) : 0;
+  // Where the reader has got to, measured in words rather than in chapters.
+  // Counted once per book (the same expression as `ruCount` below, which
+  // cannot be used here — it is declared further down and this runs during
+  // render). `upto[i]` is the words lying behind chapter i.
+  var bookWords = useMemo(function() {
+    var upto = [], total = 0;
+    for (var i = 0; i < chapters.length; i++) {
+      upto.push(total);
+      total += (String((chapters[i] && chapters[i].text) || "")
+        .match(/[А-Яа-яЁё][А-Яа-яЁё-]*/g) || []).length;
+    }
+    return { upto: upto, total: total };
+  }, [chapters]);
+  // The catalogue's count is the one shown, everywhere, so the number on the
+  // library card and the number in the open book are the same number.
+  var bookWordsShown = (bookMeta && bookMeta.words) || bookWords.total;
+  var pct  = isFinished(bookMeta) ? 100
+           : bookWords.total ? Math.round(((bookWords.upto[cidx] || 0) / bookWords.total) * 100)
+           : (chapters.length > 0 ? Math.round((cidx / chapters.length) * 100) : 0);
   var curChapter = (function(){
     var ch = chapters[cidx] || { heading: "", text: "" };
     // The chapter text ALWAYS comes from the book. Chapter JSONs built by
@@ -10207,6 +10242,8 @@ export default function App() {
         .mark-read:hover{border-bottom-color:var(--ink);color:var(--ink);background:none}
         .mark-read.on{background:none;border-bottom-color:var(--rubric);color:var(--rubric);font-weight:600}
         .book-line{font-family:var(--serif)!important;font-style:italic!important;font-size:14px!important;color:var(--ink-2)!important;letter-spacing:0!important}
+        .book-line .book-len{font-style:normal;color:var(--ink-3);font-variant-numeric:tabular-nums}
+        .lib-tag.len{font-variant-numeric:tabular-nums;letter-spacing:.1em}
         .lhdr{font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;color:var(--ink-3);margin-bottom:10px}
         .chvid{border:1px solid var(--rule);background:var(--paper-2)}
         .chvid-scrub{background:none;border:0;border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);padding:6px 0;margin:8px 0 18px;font-family:var(--sans)}
@@ -12242,6 +12279,10 @@ export default function App() {
                                               </span>
                                             );
                                           })()}
+                                          {/* How long it is. The one thing a reader choosing
+                                              between a story and a novel most wants to know,
+                                              and the shelf could not say. */}
+                                          {book.words ? <span className="lib-tag len">{fmtWords(book.words)}</span> : null}
                                         </>
                                       )}
                                     </div>
@@ -12340,7 +12381,12 @@ export default function App() {
                                 var match = findEntry(rec);
                                 if (!match) return null;
                                 var total = rec.totalChapters || 1;
-                                var pct = total > 1 ? Math.round((rec.cidx / total) * 100) : (rec.pidx > 0 ? 50 : 0);
+                                // Words where they were recorded, chapters for a
+                                // record written before the reader counted words.
+                                var recWords = rec.words || (match.book && match.book.words) || 0;
+                                var pct = (rec.words && rec.wordsRead != null)
+                                  ? Math.round((rec.wordsRead / rec.words) * 100)
+                                  : (total > 1 ? Math.round((rec.cidx / total) * 100) : (rec.pidx > 0 ? 50 : 0));
                                 var humanLast = (function() {
                                   var ms = Date.now() - (rec.lastRead || 0);
                                   var min = Math.floor(ms / 60000);
@@ -12373,7 +12419,7 @@ export default function App() {
                                     </div>
                                     <div className="lchead">{bookLabel(rec)}</div>
                                     <div style={{marginTop:8,fontSize:11,color:"rgba(0,0,0,.55)"}}>
-                                      {pct + "%"}
+                                      {recWords ? pct + "% of " + fmtWords(recWords) : pct + "%"}
                                     </div>
                                     <div style={{marginTop:6,height:3,background:"rgba(210,197,175,.1)",borderRadius:2,overflow:"hidden"}}>
                                       <div style={{height:"100%",width:pct+"%",background:"#4a3f34"}}/>
@@ -12851,6 +12897,13 @@ export default function App() {
                           <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,marginBottom:4}}>
                             <div className="book-line">
                               {bookLabel(bookMeta)}
+                              {bookWordsShown ? (
+                                <span className="book-len">
+                                  {" · "}
+                                  {chapters.length > 1 ? pct + "% of " : ""}
+                                  {fmtWords(bookWordsShown)}
+                                </span>
+                              ) : null}
                             </div>
                             {/* Marking a book read is the reader's own judgement, not something
                                 inferred from reaching the last page — so it sits on every page,
