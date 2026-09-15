@@ -101,6 +101,75 @@ function bookLabel(book) {
   return title + " — " + author;
 }
 
+// Books the reader opened from their own machine. Kept in IndexedDB rather
+// than localStorage: a parsed novel is well over a megabyte of JSON and
+// localStorage gives the whole page about five, so the old localStorage path
+// would throw QuotaExceededError on the first long book and take the other
+// uploads with it. Everything here stays on the reader's machine — no part of
+// an opened file is ever sent to the server.
+var bookStore = (function() {
+  var DB = "govorim_books", STORE = "books", dbp = null;
+  var open = function() {
+    if (dbp) return dbp;
+    dbp = new Promise(function(resolve, reject) {
+      if (typeof indexedDB === "undefined") { reject(new Error("no indexedDB")); return; }
+      var rq = indexedDB.open(DB, 1);
+      rq.onupgradeneeded = function() {
+        if (!rq.result.objectStoreNames.contains(STORE)) rq.result.createObjectStore(STORE);
+      };
+      rq.onsuccess = function() { resolve(rq.result); };
+      rq.onerror = function() { reject(rq.error); };
+    });
+    return dbp;
+  };
+  var run = function(mode, fn) {
+    return open().then(function(db) {
+      return new Promise(function(resolve, reject) {
+        var tx = db.transaction(STORE, mode);
+        var rq = fn(tx.objectStore(STORE));
+        rq.onsuccess = function() { resolve(rq.result); };
+        rq.onerror = function() { reject(rq.error); };
+      });
+    });
+  };
+  // Private browsing and a few locked-down configurations have no usable
+  // IndexedDB. Falling back to localStorage keeps short books working rather
+  // than failing the feature outright.
+  var fall = function(op, key, value) {
+    try {
+      if (op === "get") { var v = localStorage.getItem(key); return v === null ? null : v; }
+      if (op === "set") { localStorage.setItem(key, value); return value; }
+      localStorage.removeItem(key);
+    } catch (e) {}
+    return null;
+  };
+  return {
+    get: function(key) {
+      return run("readonly", function(st) { return st.get(key); })
+        .then(function(v) {
+          // An upload written before this store existed still lives in
+          // localStorage; move it across the first time it is opened.
+          if (v === undefined || v === null) {
+            var old = fall("get", key);
+            if (old != null) { run("readwrite", function(st) { return st.put(old, key); }).catch(function(){});
+                               fall("del", key); }
+            return old;
+          }
+          return v;
+        })
+        .catch(function() { return fall("get", key); });
+    },
+    set: function(key, value) {
+      return run("readwrite", function(st) { return st.put(value, key); })
+        .catch(function() { return fall("set", key, value); });
+    },
+    delete: function(key) {
+      return run("readwrite", function(st) { return st.delete(key); })
+        .catch(function() { return fall("del", key); });
+    },
+  };
+})();
+
 var storage = {
   get: function(key) {
     return Promise.resolve().then(function() {
@@ -206,8 +275,27 @@ function bookKey(meta) {
 // only so stale blobs keep getting cleaned out of users' storage.
 var QHIST_KEY  = "epub_qhist_v1";
 var UPLOADS_LIST_KEY  = "epub_uploads_v1";
+// The recording a reader pasted beside their own book, per book. Tiny — one
+// YouTube id each — so it stays in localStorage with the other small keys.
+var OWN_VIDEO_KEY = "gv_own_video_v1";
+
+// A YouTube id out of whatever the reader pasted: the watch URL, the share
+// link, the embed URL, a link with a timestamp or a playlist on the end, or
+// the bare id. Returns "" when there is no id in there, which is what keeps a
+// typo from loading an empty player.
+function youtubeId(input) {
+  var t = String(input || "").trim();
+  if (!t) return "";
+  if (/^[\w-]{11}$/.test(t)) return t;
+  var m = t.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/|\/live\/)([\w-]{11})/);
+  return m ? m[1] : "";
+}
 var UPLOAD_BOOK_PREFIX = "epub_upload_";
-var MAX_UPLOADS = 5;
+// How many of the reader's own books are kept. Five was chosen when the
+// payload lived in localStorage and a sixth long book would have blown the
+// quota; IndexedDB has room, so this is now about keeping the list short
+// enough to read rather than about storage.
+var MAX_UPLOADS = 12;
 // Paginates a chapter for the on-screen reader. A page is at most 5 paragraphs
 // AND at most ~1700 characters — whichever limit is hit first. Paragraphs are
 // kept intact (never split mid-paragraph) EXCEPT when a chapter is one giant
@@ -1423,6 +1511,21 @@ function readingsInContext(readings, prevWord) {
 // What's new on the library page. One item, dated, replaced rather than
 // appended — a list of old news is worse than none. Set NEWS to null to hide.
 var NEWS = null;   // e.g. { date: "2 September 2026", title: "…", body: "…" }
+
+// The reader's own recording, laid over every chapter of their own book.
+//
+// A catalogue video is a per-chapter affair — Anna Karenina's parts are two
+// twelve-hour files with a start and an end for each of 239 chapters — but a
+// reader pasting one link means "this recording, for this book". Writing it
+// into the same per-chapter shape means the reader renders it with the code
+// that was already there, instead of a second video path existing for this
+// one case.
+function ownVideoMap(chapters, id) {
+  if (!id || !chapters || !chapters.length) return null;
+  var out = {};
+  for (var i = 0; i < chapters.length; i++) out[i] = { youtube: id };
+  return out;
+}
 
 function attachVideos(chapters, entry) {
   if (!entry) return chapters;
@@ -3937,6 +4040,28 @@ export default function App() {
   // alongside the preset books. Each entry is metadata; full content lives at
   // storage[UPLOAD_BOOK_PREFIX + id].
   var [uploadedBooks, setUploadedBooks] = useState([]);
+  // The reader's own book: the recording pasted beside it, and the map of
+  // every link they have pasted so far (book key -> YouTube id), so a book
+  // reopened next week still has its recording.
+  var [ownVideo, setOwnVideo] = useState("");
+  var [ownVideoRaw, setOwnVideoRaw] = useState("");
+  var [ownVideoErr, setOwnVideoErr] = useState("");
+  var ownVideosRef = useRef(null);
+  var readOwnVideos = function() {
+    if (ownVideosRef.current) return ownVideosRef.current;
+    var m = {};
+    try { m = JSON.parse(localStorage.getItem(OWN_VIDEO_KEY) || "{}") || {}; } catch (e) {}
+    ownVideosRef.current = m;
+    return m;
+  };
+  var rememberOwnVideo = function(meta, id) {
+    var k = bookKey(meta);
+    if (!k) return;
+    var m = readOwnVideos();
+    if (id) m[k] = id; else delete m[k];
+    ownVideosRef.current = m;
+    try { localStorage.setItem(OWN_VIDEO_KEY, JSON.stringify(m)); } catch (e) {}
+  };
   // Per-book progress map. Loaded from storage on mount and after every save.
   // Drives the "Continue reading" section on the library screen.
   var [progressMap, setProgressMap] = useState({});
@@ -7377,6 +7502,17 @@ export default function App() {
         bibleEn: opts.bibleEn || null,
       };
       if (!opts.fromPreset) curSlug.current = "";
+      // A book opened from the reader's own machine carries the recording they
+      // pasted next to it — either just now on the Your own book page, or the
+      // last time they had this book open.
+      if (!opts.fromPreset) {
+        var ownId = ownVideo || readOwnVideos()[bookKey(meta)] || "";
+        if (ownId) {
+          if (ownId !== ownVideo) setOwnVideo(ownId);
+          rememberOwnVideo(meta, ownId);
+          chs = attachVideos(chs, { videos: ownVideoMap(chs, ownId) });
+        }
+      }
       setChapters(chs);
       setBookMeta(meta);
       setCbm(0);
@@ -7412,7 +7548,7 @@ export default function App() {
             splitByNumberedSections: !!opts.splitByNumberedSections,
             addedAt: Date.now(),
           };
-          await storage.set(UPLOAD_BOOK_PREFIX + id, JSON.stringify({
+          await bookStore.set(UPLOAD_BOOK_PREFIX + id, JSON.stringify({
             chapters: chs, title: title, author: author,
             category: entry.category, splitByNumberedSections: entry.splitByNumberedSections,
             filename: entry.filename,
@@ -7422,7 +7558,7 @@ export default function App() {
           current.unshift(entry);
           while (current.length > MAX_UPLOADS) {
             var evicted = current.pop();
-            try { await storage.delete(UPLOAD_BOOK_PREFIX + evicted.id); } catch(e) {}
+            try { await bookStore.delete(UPLOAD_BOOK_PREFIX + evicted.id); } catch(e) {}
           }
           await storage.set(UPLOADS_LIST_KEY, JSON.stringify(current));
           setUploadedBooks(current);
@@ -7537,13 +7673,13 @@ export default function App() {
     setFErr("");
     setBookLoading(book.id);
     try {
-      var r = await storage.get(UPLOAD_BOOK_PREFIX + book.id);
-      if (!r || !r.value) {
-        setFErr("This uploaded book is no longer available in storage.");
+      var r = await bookStore.get(UPLOAD_BOOK_PREFIX + book.id);
+      if (!r) {
+        setFErr("This book is no longer in your browser's storage.");
         setBookLoading(null);
         return;
       }
-      var d = JSON.parse(r.value);
+      var d = typeof r === "string" ? JSON.parse(r) : r;
       var meta = {
         title: d.title || book.title || "Untitled",
         author: d.author || book.author || "",
@@ -7556,8 +7692,14 @@ export default function App() {
         audiobook: book.audiobook || d.audiobook || null,
       };
       // Videos come off the live catalogue entry, not the cached chapters: a
-      // video attached after this book was cached must still appear.
-      setChapters(attachVideos(d.chapters, book));
+      // video attached after this book was cached must still appear. For the
+      // reader's own book there is no catalogue entry — the recording is
+      // whatever they pasted beside it, remembered under the book's key.
+      var ownId2 = readOwnVideos()[bookKey(meta)] || "";
+      setOwnVideo(ownId2);
+      setChapters(attachVideos(
+        d.chapters,
+        ownId2 ? { videos: ownVideoMap(d.chapters, ownId2) } : book));
       setBookMeta(meta);
       setCbm(0);
       // Bring the entry to the top of the recents list (touch to refresh "addedAt").
@@ -7581,7 +7723,7 @@ export default function App() {
   // Permanently remove an uploaded book from the library + storage.
   var removeUploadedBook = async function(id) {
     try {
-      await storage.delete(UPLOAD_BOOK_PREFIX + id);
+      await bookStore.delete(UPLOAD_BOOK_PREFIX + id);
       var current = uploadedBooks.filter(function(b){ return b.id !== id; });
       await storage.set(UPLOADS_LIST_KEY, JSON.stringify(current));
       setUploadedBooks(current);
@@ -10415,6 +10557,79 @@ export default function App() {
         .spine-t{font-family:var(--display)}
         .prog-restore{font-family:var(--serif)}
 
+        /* ── Your own book ─────────────────────────────────────────────── */
+        /* The way in, under the reading record. A ruled block rather than a
+           button, so it reads as another shelf in the library rather than an
+           action bolted to the bottom of the page. */
+        .own-entry{display:block;width:100%;max-width:620px;text-align:left;cursor:pointer;
+          margin:4px auto 22px;padding:16px 18px;background:var(--paper-3);
+          border:1px solid var(--ink-4);border-left:3px solid var(--rubric);border-radius:0}
+        .own-entry:hover{border-left-color:var(--ink);background:#fff}
+        .own-entry-t{display:block;font-family:var(--display);font-size:19px;color:var(--ink);margin-bottom:4px}
+        .own-entry-s{display:block;font-family:var(--serif);font-style:italic;font-size:13.5px;
+          line-height:1.55;color:var(--ink-2)}
+
+        /* .ss is the page shell and must stay full width: the editorial theme
+           centres the column with a rule on .ss > * (width 100%, max-width
+           820px), so capping .ss itself shrank the whole page and pinned it
+           to the left edge. NOTE: this stylesheet is a JS template literal —
+           a backtick in a comment here ends the string and breaks the file. */
+        .own-back{align-self:flex-start;background:none;border:none;padding:0;margin-bottom:10px;cursor:pointer;
+          font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+        .own-back:hover{color:var(--ink)}
+        /* The page is the reader's own column, at the reader's own width, so
+           the file lands where the text will be. */
+        .own-frame{width:100%;margin:14px auto 0;display:flex;flex-direction:column;gap:14px}
+
+        /* The recording. The empty state holds exactly the space the player
+           will take, so nothing below it moves when a link is pasted. */
+        .own-vid{margin:0}
+        .own-vid-empty{position:relative;width:100%;padding-bottom:56.25%;
+          border:1px dashed var(--ink-4);background:var(--paper-2)}
+        .own-vid-hint{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+          padding:0 24px;text-align:center;font-family:var(--serif);font-style:italic;
+          font-size:14px;color:var(--ink-3)}
+        .own-vid-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+        .own-vid-in{flex:1 1 260px;min-width:0;padding:9px 11px;background:var(--paper-3);
+          border:1px solid var(--ink-4);border-radius:0;color:var(--ink);
+          font-family:var(--sans);font-size:13.5px}
+        .own-vid-in:focus{outline:none;border-color:var(--ink-2)}
+        /* .btn-p is full-width by default, which wrapped the button onto its
+           own line under the input. */
+        .own-vid-go{flex:0 0 auto;width:auto;padding:9px 18px}
+        .own-vid-clear{flex:0 0 auto;background:none;border:none;cursor:pointer;padding:6px 2px;
+          font-family:var(--serif);font-style:italic;font-size:13px;color:var(--ink-3);
+          border-bottom:1px solid var(--ink-4)}
+        .own-vid-clear:hover{color:var(--ink);border-bottom-color:var(--ink)}
+
+        /* Where the text goes. Ruled on all four sides and tall enough to read
+           as a page, so the button sits in the middle of the space the book
+           will fill rather than floating under the video. */
+        .own-text{display:flex;align-items:center;justify-content:center;
+          min-height:230px;padding:28px 22px;background:var(--paper-3);border:1px solid var(--ink-4)}
+        .own-open{width:100%;max-width:320px;display:flex;flex-direction:column;align-items:center;gap:10px}
+        .own-formats{margin:0;font-family:var(--sans);font-size:11px;letter-spacing:.14em;
+          text-transform:uppercase;color:var(--ink-3);text-align:center}
+        .own-err{margin:0;font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--rubric)}
+
+        .own-recent{border-top:1px solid var(--ink-4);padding-top:12px}
+        .own-recent-h{font-family:var(--sans);font-size:11px;letter-spacing:.16em;
+          text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
+        .own-recent-row{display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(27,22,19,.08)}
+        .own-recent-open{flex:1 1 auto;min-width:0;text-align:left;background:none;border:none;cursor:pointer;
+          padding:9px 2px;display:flex;flex-direction:column;gap:2px}
+        .own-recent-t{font-family:var(--serif);font-size:15px;color:var(--ink)}
+        .own-recent-a{font-family:var(--serif);font-style:italic;font-size:12.5px;color:var(--ink-3)}
+        .own-recent-open:hover .own-recent-t{color:var(--rubric)}
+        .own-recent-x{flex:0 0 auto;background:none;border:none;cursor:pointer;padding:6px 8px;
+          font-size:17px;line-height:1;color:var(--ink-4)}
+        .own-recent-x:hover{color:var(--rubric)}
+
+        @media(max-width:560px){
+          .own-text{min-height:180px;padding:20px 14px}
+          .own-vid-go{flex:1 1 auto}
+        }
+
         /* ── The door: first visit and sign-in ──────────────────────────── */
         .land,.auth-page{background:var(--paper)}
         .land::before,.auth-page::before{display:none}
@@ -11662,6 +11877,99 @@ export default function App() {
               </div>
             )}
 
+            {/* ── Your own book ──────────────────────────────────────────
+                A reader-shaped page with the two things missing: a pane for a
+                recording, and a way in for a file. Once the file is open the
+                ordinary reader takes over — this page exists only to get the
+                book into it. */}
+            {!started && mode === "ownbook" && (
+              <div className="ss own-page">
+                <button className="own-back" onClick={function(){ setMode("read"); }}>← The library</button>
+                <h1 className="sti">Your own book</h1>
+                <p className="sde">
+                  Read a book of your own with everything the library gets: a dictionary
+                  under every word, the words you save, and your reading record. The file
+                  is read here in your browser and never sent anywhere.
+                </p>
+
+                <div className="own-frame">
+                  {/* The recording. Empty until a link is pasted, and deliberately
+                      the same shape and size it will be once it is playing, so the
+                      page does not jump when the video arrives. */}
+                  {ownVideo ? (
+                    <div className="chvid own-vid">
+                      <iframe src={ytEmbed(ownVideo)} title="Your recording" loading="lazy"
+                              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen />
+                    </div>
+                  ) : (
+                    <div className="own-vid-empty">
+                      <span className="own-vid-hint">Paste a YouTube link to play a recording beside the text</span>
+                    </div>
+                  )}
+                  <div className="own-vid-row">
+                    <input
+                      className="own-vid-in"
+                      type="text"
+                      value={ownVideoRaw}
+                      placeholder="https://www.youtube.com/watch?v=…"
+                      onChange={function(e){ setOwnVideoRaw(e.target.value); setOwnVideoErr(""); }}
+                      onKeyDown={function(e){ if (e.key === "Enter") e.currentTarget.nextSibling.click(); }} />
+                    <button className="btn-p own-vid-go" onClick={function(){
+                      var id = youtubeId(ownVideoRaw);
+                      if (!id) { setOwnVideoErr("That does not look like a YouTube link."); return; }
+                      setOwnVideo(id); setOwnVideoErr("");
+                      if (started) rememberOwnVideo(bookMeta, id);
+                    }}>Load</button>
+                    {ownVideo && (
+                      <button className="own-vid-clear" onClick={function(){
+                        setOwnVideo(""); setOwnVideoRaw("");
+                        if (started) rememberOwnVideo(bookMeta, "");
+                      }}>Clear</button>
+                    )}
+                  </div>
+                  {ownVideoErr && <p className="own-err">{ownVideoErr}</p>}
+
+                  {/* Where the text goes. */}
+                  <div className="own-text">
+                    <div className="own-open">
+                      <FileBtn label="Open a book file" onLoad={function(buf, name){
+                        // Back to "read" before the book opens. The reader is
+                        // the same reader the library uses, and it decides it
+                        // is showing a book from `mode` (isLit === mode ===
+                        // "read") — left on "ownbook" it would render nothing
+                        // at all, which is exactly what it did the first time.
+                        setMode("read");
+                        loadFile(buf, name, {});
+                      }} />
+                      <p className="own-formats">
+                        EPUB · FB2 · FB2.ZIP · PDF · TXT · HTML
+                      </p>
+                      {fErr && <p className="own-err">{fErr}</p>}
+                    </div>
+                  </div>
+
+                  {uploadedBooks.length > 0 && (
+                    <div className="own-recent">
+                      <div className="own-recent-h">Books you have opened</div>
+                      {uploadedBooks.map(function(b){
+                        return (
+                          <div key={b.id} className="own-recent-row">
+                            <button className="own-recent-open" onClick={function(){ setMode("read"); openUploadedBook(b); }}>
+                              <span className="own-recent-t">{b.title || b.filename}</span>
+                              {b.author ? <span className="own-recent-a">{b.author}</span> : null}
+                            </button>
+                            <button className="own-recent-x" title="Remove from this device"
+                              onClick={function(){ removeUploadedBook(b.id); }}>×</button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
             {!started && mode === "read" && (
               <div className="ss">
                 <SupportLinks funding={funding} />
@@ -11698,6 +12006,18 @@ export default function App() {
                     Show your reading record
                   </button>
                 )}
+                {/* The library is not the only thing worth reading. Everything
+                    that makes this reader useful — the dictionary under every
+                    word, the saved vocabulary, the reading record — works just
+                    as well on a book the reader brings themselves. */}
+                <button className="own-entry" onClick={function(){ setMode("ownbook"); }}>
+                  <span className="own-entry-t">Use your own book</span>
+                  <span className="own-entry-s">
+                    Open an EPUB, FB2, PDF or text file from this device and read it
+                    here, with a recording of your choosing beside it. Nothing is
+                    uploaded — the file is read in your browser and stays there.
+                  </span>
+                </button>
                 <div id="read-now" style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:10,scrollMarginTop:12}}>
                   {chapters.length > 0 ? (
                     <>
@@ -13063,14 +13383,20 @@ export default function App() {
                           var shared = (chapters || []).filter(function(c){
                             return c.youtubeId === curChapter.youtubeId; }).length;
                           if (shared < 2) return null;
+                          // A catalogue recording is cut to the chapter: it has a
+                          // start and an end, so it stops where the chapter does.
+                          // A recording the reader pasted beside their own book
+                          // has neither — it is the same whole file on every
+                          // chapter — so the note has to say something different
+                          // or it describes behaviour the reader will not see.
+                          var bounded = !!(curChapter.youtubeEnd || curChapter.youtubeStart);
                           return (
                             <div className="one-rec">
                               One recording covers {shared} chapters of this book
                               <span className="sub">
-                                It stops at the end of this chapter. Turn to the next one and it
-                                carries straight on from where it stopped, so you can listen through
-                                without hunting for your place — and the flag beside any paragraph
-                                saves the moment in the recording along with the paragraph.
+                                {bounded
+                                  ? "It stops at the end of this chapter. Turn to the next one and it carries straight on from where it stopped, so you can listen through without hunting for your place — and the flag beside any paragraph saves the moment in the recording along with the paragraph."
+                                  : "It plays from the beginning on every chapter, so scrub to where you are — the flag beside any paragraph saves the moment in the recording along with the paragraph, which is the quick way back."}
                               </span>
                             </div>
                           );
