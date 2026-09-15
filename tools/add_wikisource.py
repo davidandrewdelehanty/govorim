@@ -96,7 +96,7 @@ def api_html(title):
     """Rendered HTML of one Wikisource page."""
     q = urllib.parse.urlencode({
         "action": "parse", "prop": "text", "page": title,
-        "format": "json", "formatversion": "2"})
+        "format": "json", "formatversion": "2", "redirects": "1"})
     req = urllib.request.Request(API + "?" + q, headers={"User-Agent": UA})
     with urllib.request.urlopen(req, timeout=120) as r:
         j = json.loads(r.read().decode("utf-8"))
@@ -140,7 +140,7 @@ def index_members(index_title, index_html):
     return out
 
 
-def chapters_from_pages(pages):
+def chapters_from_pages(pages, book_title=""):
     """[(page title, html)] -> chapters, one per page."""
     chapters = []
     for title, h in pages:
@@ -159,7 +159,9 @@ def chapters_from_pages(pages):
         # A one-page work still has to be chaptered from the inside.
         chapters = split_at_headings(chapters[0]["title"],
                                      chapters[0]["blocks"])
-    return [drop_self_title(c) for c in chapters if not is_front_matter(c)]
+    return group_by_part(
+        [drop_self_title(c) for c in chapters if not is_front_matter(c)],
+        book_title)
 
 
 def _strip_bad_xml(h, hard=False):
@@ -295,13 +297,22 @@ FRONT_MATTER = re.compile(
 LEADERS = re.compile(r"[.\u2024\u2027]\s*[.\u2024\u2027]\s*[.\u2024\u2027]")
 
 
+# "Часть I", "Том 2", "Книга первая" — a division of the work, not a chapter
+# of it. These arrive as their own page holding nothing but a list of the
+# chapters beneath them, which is useless to read and useful to know.
+PART_TITLE = re.compile(
+    r"^(Часть|Том|Книга)\s+([IVXLC]+|\d+|"
+    r"перв|втор|трет|четв|пят|шест|седьм|восьм|девят|десят)", re.I)
+
+
 def is_front_matter(chapter):
     """A contents page is not chapter one.
 
-    The export keeps the work's own table of contents and its list of
-    editions, which arrive looking like a chapter of thirty-eight lines and
-    twenty-nine words — enough to survive an emptiness check, and enough to
-    make the first thing a reader opens a page of dot leaders.
+    The export keeps the work's own table of contents, its list of editions
+    and one index page per part, and every one of them arrives looking like a
+    short chapter — enough to survive an emptiness check, and enough that
+    opening Обломов put a list of fifty-two chapter names on screen instead of
+    the first line of the novel.
     """
     blocks = chapter["blocks"]
     if not blocks:
@@ -312,6 +323,123 @@ def is_front_matter(chapter):
     if len(texts) >= 5 and sum(1 for t in texts if LEADERS.search(t)) > len(texts) * 0.5:
         return True
     return False
+
+
+def looks_like_index(chapter, titles):
+    """A page whose whole content is the names of other pages.
+
+    Dot leaders catch the typeset kind; this catches the bare kind, where a
+    part page holds twelve lines reading "Глава I", "Глава II" and nothing
+    else. Judged against the book's OWN chapter titles, so a chapter that
+    merely opens with a numeral is safe.
+    """
+    texts = [t.strip() for _k, t in chapter["blocks"] if t.strip()]
+    if not texts or len(texts) > 200:
+        return False
+    words = sum(len(RU_WORD.findall(t)) for t in texts)
+    if words > 400:
+        return False
+    hits = sum(1 for t in texts
+               if _norm_title(t) in titles or NUMERAL.match(t)
+               or PART_TITLE.match(t))
+    return hits >= max(3, len(texts) * 0.6)
+
+
+def _norm_title(s):
+    return re.sub(r"[^a-zа-я0-9]+", "", (s or "").lower().replace("ё", "е"))
+
+
+def group_by_part(chapters, book_title=""):
+    """Drop the index pages, and let the parts they named survive as tiers.
+
+    The reader builds its collapsible contents by splitting a chapter heading
+    on " — ": one segment is a flat list, two give Part > Chapter the way Anna
+    Karenina has it. The part index pages are the only place that grouping is
+    recorded, so they are read for their names and then thrown away — the
+    book keeps its structure and loses the pages nobody wants to read.
+    """
+    titles = {_norm_title(c["title"]) for c in chapters if c["title"]}
+    out, part = [], ""
+    for c in chapters:
+        if looks_like_index(c, titles):
+            m = PART_TITLE.match((c["title"] or "").strip())
+            part = c["title"].strip() if m else part
+            continue
+        blocks = c["blocks"]
+        # Not every book gives its parts a page. Воскресение simply opens the
+        # first chapter of each part with the words "Часть первая", which is
+        # the same fact in a different place — and left alone it prints the
+        # part name as the chapter's first line instead of grouping by it.
+        if blocks and PART_TITLE.match(blocks[0][1].strip()):
+            part = blocks[0][1].strip()
+            c = dict(c, blocks=blocks[1:])
+        if part and c["title"] and " — " not in c["title"]:
+            c = dict(c, title=part + " — " + c["title"])
+        out.append(c)
+    return merge_opening_matter(drop_whole_text_copy(out or chapters),
+                                book_title=book_title)
+
+
+def drop_whole_text_copy(chapters):
+    """Some works are on Wikisource twice over: once as "Текст целиком" and
+    once act by act, and the export ships both, so Бесприданница arrived at
+    36,235 words for an 18,000-word play and every line was on screen twice.
+
+    Size alone is not enough to spot it — Старуха Изергиль is three parts and
+    the third is as long as the other two together, and judging by size threw
+    it away. So the test is containment: the suspect must actually hold the
+    opening words of at least two other chapters.
+    """
+    if len(chapters) < 3:
+        return chapters
+    sizes = [sum(len(RU_WORD.findall(t)) for _k, t in c["blocks"])
+             for c in chapters]
+    total = sum(sizes)
+    for i, n in enumerate(sizes):
+        if n < (total - n) * 0.85:
+            continue
+        hay = _norm_title(" ".join(t for _k, t in chapters[i]["blocks"]))
+        covered = 0
+        for j, other in enumerate(chapters):
+            if j == i or sizes[j] < 50:
+                continue
+            opening = ""
+            for _k, t in other["blocks"]:
+                opening += t
+                if len(_norm_title(opening)) >= 60:
+                    break
+            head = _norm_title(opening)[:60]
+            if head and head in hay:
+                covered += 1
+        if covered >= 2:
+            return chapters[:i] + chapters[i + 1:]
+    return chapters
+
+
+def merge_opening_matter(chapters, floor=150, book_title=""):
+    """An epigraph is not chapter one.
+
+    Пиковая дама opens on its epigraph, Борис Годунов on its dedication to
+    Karamzin, Бесприданница on the cast list — each of them a real part of the
+    book and none of them the thing a reader means to open. A printed book
+    sets them at the head of the first chapter, so they go there: the reader
+    still sees them, and the book still opens at chapter one.
+    """
+    if len(chapters) < 3:
+        return chapters
+    first = chapters[0]
+    words = sum(len(RU_WORD.findall(t)) for _k, t in first["blocks"])
+    # A first "chapter" carrying the book's own name is a title page however
+    # long its epigraph runs — Путешествие's is 268 words of Trediakovsky.
+    titled = book_title and _same(first["title"] or "", book_title)
+    if words >= floor and not titled:
+        return chapters
+    rest = chapters[1:]
+    head = list(first["blocks"])
+    if first["title"]:
+        head.insert(0, ("n", first["title"]))
+    rest[0] = dict(rest[0], blocks=head + list(rest[0]["blocks"]))
+    return rest
 
 
 def drop_self_title(chapter):
@@ -371,7 +499,10 @@ def _clean_chunks(blocks):
         r"(Это произведение перешло в общественное достояние"
         r"|Public ?Domain|Creative Commons|GNU Free Documentation"
         r"|Внимание! Данная страница|Источник:|См\. также|Викитека"
-        r"|Оригинал (?:находится|здесь))", re.I)
+        r"|Оригинал (?:находится|здесь)"
+        # A modern editor's note on which edition was set from. Apparatus,
+        # and it was opening Обыкновенная история in place of chapter one.
+        r"|В настоящем издании|печатается по тексту)", re.I)
     return _drop_notes([(k, t) for (k, t) in blocks if not bad.search(t)])
 
 
@@ -401,6 +532,37 @@ def page_chapter_name(title):
     if len(parts) > 1 and EDITION_SEGMENT.match(last):
         return re.sub(r"\s*\([^()]*\)\s*$", "", parts[0]).strip()
     return last
+
+
+# ws-export names each document after its Wikisource page path, so the file
+# says which chapter it is even when the navigation label does not. Обломов's
+# Часть III Глава II came through labelled "второй главы третьей части" — a
+# fragment of a sentence — while its filename read ..._Cast__3_Glava_2.
+CHAPTERISH = re.compile(
+    r"^(Глава|Часть|Том|Книга|Действие|Явление|Запись|Песнь|Сцена|"
+    r"[IVXLC]+\b|\d+\b)", re.I)
+FILE_CHAPTER = re.compile(r"_Glava_(\d{1,3})", re.I)
+
+
+def _roman(n):
+    vals = ((100, "C"), (90, "XC"), (50, "L"), (40, "XL"), (10, "X"),
+            (9, "IX"), (5, "V"), (4, "IV"), (1, "I"))
+    out = ""
+    for v, sym in vals:
+        while n >= v:
+            out += sym
+            n -= v
+    return out
+
+
+def label_from_file(href, label):
+    """Trust the filename when the navigation label is not a chapter name."""
+    if label and CHAPTERISH.match(label.strip()):
+        return label
+    m = FILE_CHAPTER.search(href or "")
+    if m:
+        return "Глава " + _roman(int(m.group(1)))
+    return label
 
 
 def _same(a, b):
@@ -467,7 +629,8 @@ def read_epub(data):
         blocks = _clean_chunks(_blocks(body))
         if not blocks:
             continue
-        name = labels.get(h) or labels.get(os.path.basename(h)) or ""
+        name = label_from_file(
+            h, labels.get(h) or labels.get(os.path.basename(h)) or "")
         # The page repeats its own title as the first heading. Keeping it
         # would print every chapter's name twice.
         if name and blocks and blocks[0][0] == "h" and \
@@ -482,7 +645,8 @@ def read_epub(data):
     if len(chapters) == 1:
         chapters = split_at_headings(chapters[0]["title"],
                                      chapters[0]["blocks"])
-    chapters = [drop_self_title(c) for c in chapters if not is_front_matter(c)]
+    chapters = group_by_part(
+        [drop_self_title(c) for c in chapters if not is_front_matter(c)], title)
     return title, author, chapters
 
 
@@ -609,7 +773,7 @@ def main():
             if j["slug"] in cached_html:
                 # Pages fetched somewhere with network access.
                 pairs = [(x["page"], x["html"]) for x in cached_html[j["slug"]]]
-                chapters = chapters_from_pages(pairs)
+                chapters = chapters_from_pages(pairs, j["title"])
                 t, au = j["title"], j["author"]
             elif page.startswith("@"):
                 # A collection: the index page names the stories.
@@ -618,7 +782,7 @@ def main():
                 if not members:
                     raise RuntimeError("index page listed no chapters")
                 chapters = chapters_from_pages(
-                    [(m, api_html(m)) for m in members])
+                    [(m, api_html(m)) for m in members], j["title"])
                 t, au = j["title"], j["author"]
                 page = idx
             else:
