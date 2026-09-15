@@ -8122,9 +8122,19 @@ export default function App() {
   //
   // Flow mode stops pretending. The Russian runs down its column and the
   // English runs down its own, each at its natural length, and the reader
-  // matches them by eye the way they would with two books open. Set per book
-  // in the catalogue, from the alignment score.
-  var flowEn = !!(bookMeta && bookMeta.flowEn) && !bibleInline;
+  // matches them by eye the way they would with two books open.
+  //
+  // It used to be set per book, from the alignment score, and the books that
+  // scored well kept the paragraph-by-paragraph pairing. They should not
+  // have: a good score means most paragraphs line up, and the handful that
+  // do not are exactly where a reader reaches for the translation. Chapter
+  // against chapter is the honest unit, so every book reads this way now.
+  // `flowEn` in the catalogue is left alone — it no longer decides anything.
+  //
+  // Scripture is the exception, and not an arbitrary one: a verse number is a
+  // correspondence both texts carry, so the Bible keeps its verse pairing and
+  // lays the English under each verse (bibleInline) rather than in a column.
+  var flowEn = !bibleInline;
     var dualActive = !!((proseEnUsable || bibleEn) && !bibleInline);
     var litEntries = (function() {
       // Pull the non-empty paragraphs in the order they appear, matching how
