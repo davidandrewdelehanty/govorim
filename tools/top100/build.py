@@ -154,6 +154,15 @@ for r in rows:
     A("| %d | **%s** — %s (%s) | %s | %s | %s |"
       % (r["rank"], r["title"], r["author"], r["year"], have, fb2, aud))
 A("")
+# Two works have a Wikisource page that is not the book, or is not a book.
+# Saying so here is the difference between a to-do and a trap.
+CAVEAT = {
+    "Пётр Первый": "the Wikisource page under this name is A. N. Tolstoy's "
+                   "PLAY, not the novel — the novel is not there",
+    "Басни": "the index links 200 fables as 200 separate pages and runs on "
+             "into the rest of Krylov's verse; needs its own importer",
+}
+
 A("## Not in the library, and free to add")
 A("")
 A("These %d have a Wikisource text and are not on the shelf yet:"
@@ -161,8 +170,10 @@ A("These %d have a Wikisource text and are not on the shelf yet:"
 A("")
 for r in rows:
     if r["epub"] and not r["in_library"]:
-        A("- **%s** — %s · [EPUB](%s) · [audio](%s)"
-          % (r["title"], r["author"], r["epub"], r["audio"]))
+        note = CAVEAT.get(r["title"])
+        A("- **%s** — %s · [EPUB](%s) · [audio](%s)%s"
+          % (r["title"], r["author"], r["epub"], r["audio"],
+             ("\n  **Careful:** " + note) if note else ""))
 A("")
 A("## In copyright — not addable from a free source")
 A("")

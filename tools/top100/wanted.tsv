@@ -1,0 +1,45 @@
+# Works from the top-100 list that Russian Wikisource carries and the shelf
+# did not. Columns: slug, Wikisource page, author, title, category, blurb.
+# Add a row and re-run:  python3 tools/add_wikisource.py --list tools/top100/wanted.tsv
+#
+# A page beginning "@" is a collection index: the stories are separate
+# Wikisource pages and the tool reads the index's links, in order.
+#
+# Two rows are marked SKIP and stay that way until Wikisource has them as a
+# book rather than as scattered pages:
+#   Басни (Крылов)  — the index links 200 fables as 200 separate pages, and
+#                     bleeds into the rest of Krylov's verse.
+#   Пётр Первый     — Wikisource's "Пётр I (Толстой)" is A. N. Tolstoy's PLAY,
+#                     not the novel; the novel is not there.
+oblomov	Обломов (Гончаров)	Гончаров И.А.	Обломов	Novels	A Petersburg gentleman who cannot bring himself to get out of bed is roused by an old schoolfriend and by a young woman who believes she can change him.
+zamyatin-my	Мы (Замятин)	Замятин Е.И.	Мы	Novels	In a glass city a thousand years from now, the builder of the state's first spaceship keeps a diary, and a woman with a sharp smile begins to take an interest in him.
+pikovaya-dama	Пиковая дама (Пушкин)	Пушкин А.С.	Пиковая дама	Short Stories	A German officer who never gambles hears that an old countess once won three cards in a single night, and sets out to learn her secret.
+dvenadtsat-stulev	Двенадцать стульев (Ильф и Петров)	Ильф И. и Петров Е.	Двенадцать стульев	Novels	A former marshal of the nobility learns that his mother-in-law sewed the family jewels into one of a set of twelve chairs, and takes a charming confidence man as his partner in finding it.
+zapiski-okhotnika	@Записки охотника (Тургенев)	Тургенев И.С.	Записки охотника	Short Stories	A landowner walks the fields and forests of Orel province with his gun, and the serfs, bailiffs and small gentry he meets along the way tell him their lives.
+mtsyri	Мцыри (Лермонтов)	Лермонтов М.Ю.	Мцыри	Poetry	A Georgian boy raised in a monastery escapes into the mountains during a storm, and three days later is found half dead and made to explain himself.
+belaya-gvardiya	Белая гвардия (Булгаков)	Булгаков М.А.	Белая гвардия	Novels	The winter of 1918 in Kiev, where a family of officers and their friends hold to the old order as the city changes hands around them.
+granatovyy-braslet	Гранатовый браслет (Куприн)	Куприн А.И.	Гранатовый браслет	Novellas	On her name day a princess receives a garnet bracelet from the anonymous clerk who has written to her for years, and her husband and brother decide to put a stop to it.
+voskresenie	Воскресение (Толстой)	Толстой Л.Н.	Воскресение	Novels	Called to serve on a jury, a prince recognises the prostitute in the dock as the girl he seduced years before, and follows her sentence to Siberia.
+kak-zakalyalas-stal	Как закалялась сталь (Островский)	Островский Н.А.	Как закалялась сталь	Novels	A railwayman's son thrown out of school for a prank grows up through the civil war into a Bolshevik who will not stop working even as his body fails.
+vechera-na-khutore-bliz-dikanki	@Вечера на хуторе близ Диканьки (Гоголь)	Гоголь Н.В.	Вечера на хуторе близ Диканьки	Short Stories	Village tales from Ukraine, told by a beekeeper: a blacksmith who rides the devil to Petersburg for a pair of slippers, a drowned girl, a witch, a lost letter.
+alye-parusa	Алые паруса (Грин)/1965	Грин А.С.	Алые паруса	Novellas	A sailor's daughter in a hostile fishing village is told by a wandering storyteller that a ship with scarlet sails will one day come for her, and she believes it.
+zolotoy-telyonok	Золотой телёнок (Ильф и Петров)	Ильф И. и Петров Е.	Золотой телёнок	Novels	The great schemer returns, this time on the trail of an underground Soviet millionaire who lives on a clerk's salary to avoid attention.
+boris-godunov	Борис Годунов (Пушкин)	Пушкин А.С.	Борис Годунов	Plays	Boris takes the throne over the body of a murdered child, and years later a runaway monk crosses into Poland claiming to be that child, alive.
+nedorosl	Недоросль (Фонвизин)/СС2 1959	Фонвизин Д.И.	Недоросль	Plays	A brutish provincial family schemes to marry off a rich orphan to one of their own, while their idle son fails at every lesson his tutors set him.
+obyknovennaya-istoriya	Обыкновенная история (Гончаров)	Гончаров И.А.	Обыкновенная история	Novels	A romantic young man arrives in Petersburg full of verses and high feeling, and is taken in hand by a coolly practical uncle in the civil service.
+levsha	Левша (Лесков)/Издание 1902—1903 гг. — ВТ	Лесков Н.С.	Левша	Short Stories	The English present the tsar with a clockwork flea, and a squinting left-handed gunsmith from Tula is set the task of going one better.
+unizhennye-i-oskorblyonnye	Униженные и оскорблённые (Достоевский)	Достоевский Ф.М.	Униженные и оскорблённые	Novels	A young writer in Petersburg takes in an orphaned girl fleeing her grandfather's house, and is drawn into the ruin of the family he grew up with.
+istoriya-odnogo-goroda	История одного города (Салтыков-Щедрин)	Салтыков-Щедрин М.Е.	История одного города	Novels	The chronicle of the town of Glupov and the governors sent to rule it, among them one with a music box in place of a head.
+khadzhi-murat	Хаджи-Мурат (Толстой)	Толстой Л.Н.	Хаджи-Мурат	Novellas	A Chechen commander at odds with Shamil goes over to the Russians, and finds himself a guest, a prize and a hostage at once.
+dvoryanskoe-gnezdo	Дворянское гнездо (Тургенев)	Тургенев И.С.	Дворянское гнездо	Novels	A landowner comes home from Paris after his wife's betrayal, and falls in love with a devout young cousin before news arrives that changes everything.
+bednaya-liza	Бедная Лиза (Карамзин)	Карамзин Н.М.	Бедная Лиза	Short Stories	A peasant girl selling flowers near the Simonov monastery meets a young nobleman, and believes he means to keep his word.
+puteshestvie-iz-peterburga-v-moskvu	Путешествие из Петербурга в Москву (Радищев)	Радищев А.Н.	Путешествие из Петербурга в Москву	Novels	A traveller between the two capitals stops at each posting station and sets down what serfdom looks like from the road — the book that sent its author to Siberia.
+starukha-izergil	Старуха Изергиль (Горький)	Горький М.	Старуха Изергиль	Short Stories	By the sea in Bessarabia an old woman tells three stories: the son of an eagle, her own many lovers, and the man who tore out his heart to light a way through the forest.
+#SKIP pyotr-pervyy	Пётр I (Толстой)	Толстой А.Н.	Пётр Первый	Novels	The making of a tsar and a country, from a boy's terror in the Kremlin during the streltsy revolt to the founding of a city in a swamp.
+ocharovannyy-strannik	Очарованный странник (Лесков)	Лесков Н.С.	Очарованный странник	Novellas	A huge monk on a boat tells his fellow passengers how he got there: a coachman, a horse doctor, a captive among the Tatars, a soldier, and now this.
+bespridannitsa	Бесприданница (Островский)	Островский А.Н.	Бесприданница	Plays	A beautiful girl with no dowry agrees to marry a petty official, and then the man who abandoned her comes back to town.
+timur-i-ego-komanda	Тимур и его команда (Гайдар)	Гайдар А.П.	Тимур и его команда	Novellas	In a summer village outside Moscow a band of boys secretly does the heavy work for the families of men away at the front, and the local toughs try to stop them.
+alenkiy-tsvetochek	Аленький цветочек (Аксаков)	Аксаков С.Т.	Аленький цветочек	Short Stories	A merchant's youngest daughter asks for nothing but a scarlet flower, and her father picks one from a garden that belongs to someone.
+konyok-gorbunok	Конёк-горбунок (Ершов)/1868 (ВТ)	Ершов П.П.	Конёк-Горбунок	Poetry	The youngest and silliest of three brothers catches a mare and is given a small humpbacked horse, which turns out to be the best friend a fool ever had.
+#SKIP basni-krylova	Басни (Крылов)	Крылов И.А.	Басни	Poetry	The fables every Russian child learns by heart: the crow and the fox, the dragonfly and the ant, the quartet of animals who cannot work out why they sound so bad.
+blok-dvenadtsat	Двенадцать (Блок)	Блок А.А.	Двенадцать	Poetry	Twelve Red Guardsmen march through a blizzard in revolutionary Petrograd, and someone is walking ahead of them in the snow.
