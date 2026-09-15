@@ -7098,7 +7098,20 @@ export default function App() {
   };
 
   // Look up saved progress for a given book meta. Returns {cidx, pidx} or null.
-  var loadBookProgress = async function(meta) {
+  // Where the reader left off — but only if it still means the same thing.
+  //
+  // A saved place is a chapter NUMBER, and a chapter number is only meaningful
+  // against the cut of the book it was saved from. Re-cut the book and every
+  // number after the change points somewhere else: dropping the four part-index
+  // pages from Обломов took it from 52 chapters to 47, and a reader who had
+  // stopped in part two came back to part three. The stored totalChapters says
+  // which cut the number came from, so a mismatch means the place is not
+  // recoverable and the book opens at the beginning instead of somewhere
+  // plausible and wrong.
+  //
+  // A record written before totalChapters existed carries 0. There is nothing
+  // to compare, so it is honoured and clamped by startLit.
+  var loadBookProgress = async function(meta, nowTotal) {
     var key = bookKey(meta);
     if (!key) return null;
     try {
@@ -7107,6 +7120,8 @@ export default function App() {
       var all = JSON.parse(r.value) || {};
       var entry = all[key];
       if (!entry) return null;
+      var was = entry.totalChapters || 0;
+      if (was && nowTotal && was !== nowTotal) return null;
       return { cidx: entry.cidx || 0, pidx: entry.pidx || 0 };
     } catch(e) { return null; }
   };
@@ -7565,7 +7580,7 @@ export default function App() {
         } catch(e) { console.log("Failed to track upload:", e); }
       }
       // Resume from saved progress if this exact book has been opened before.
-      var savedProg = await loadBookProgress(meta);
+      var savedProg = await loadBookProgress(meta, chs.length);
       var startCi = savedProg ? savedProg.cidx : 0;
       var startPi = savedProg ? savedProg.pidx : 0;
       if (srcJumpChapterRef.current !== null && srcJumpChapterRef.current !== undefined) {
@@ -7710,7 +7725,7 @@ export default function App() {
         setUploadedBooks(updated);
       } catch(e) {}
       // Resume from saved progress if this book has been opened before.
-      var savedProg2 = await loadBookProgress(meta);
+      var savedProg2 = await loadBookProgress(meta, (d.chapters || []).length);
       var startCi2 = savedProg2 ? savedProg2.cidx : 0;
       var startPi2 = savedProg2 ? savedProg2.pidx : 0;
       startLit(startCi2, d.chapters, meta, startPi2);
