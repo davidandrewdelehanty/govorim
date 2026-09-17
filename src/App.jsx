@@ -5345,6 +5345,16 @@ export default function App() {
   };
   // Russian words in a chapter, and up to a character offset within it.
   var ruCount = function(t) { return (String(t || "").match(/[А-Яа-яЁё][А-Яа-яЁё-]*/g) || []).length; };
+  // Short enough to read at a sitting and see whole — a lyric, a fable, a
+  // page of Крылов. Measured over the book, not the chapter.
+  var tinyWork = useMemo(function() {
+    var n = (bookMeta && bookMeta.words) || 0;
+    if (!n) {
+      for (var i = 0; i < chapters.length; i++) n += ruCount(chapters[i] && chapters[i].text);
+    }
+    return n > 0 && n <= 900;
+  }, [bookMeta && bookMeta.words, chapters]);
+
   var wordsBefore = function(ci, off) {
     var n = 0;
     for (var i = 0; i < ci && i < chapters.length; i++) n += ruCount(chapters[i] && chapters[i].text);
@@ -8606,7 +8616,12 @@ export default function App() {
         var paraOff = (entry.para && entry.para[0]) ? entry.para[0].start : null;
         var bmEntry = bookmarkMap[bookKey(bookMeta)];
         var bmHere = !!(bmEntry && bmEntry.cidx === cidx && paraOff !== null && bmEntry.off === paraOff);
-        var bmBtn = (paraOff !== null) ? (
+        // A bookmark marks your place, and a work you can see all of at once
+        // has no place to lose. On «Я вас любил» — fifty words, eight lines —
+        // a flag on every line was more furniture than poem. The cut-off is the
+        // whole work rather than the chapter, so a short chapter of a long book
+        // keeps its flags: that book is still one you put down.
+        var bmBtn = (paraOff !== null && !tinyWork) ? (
           <button className={"pbm" + (bmHere ? " on" : "")} type="button"
             title={bmHere ? "Remove bookmark"
               : (curChapter.youtubeId
@@ -12340,10 +12355,23 @@ export default function App() {
                             onChange={function(e){
                               var idx = e.target.value;
                               if (idx === "") return;
-                              // The first row is a switch, not a book.
+                              // The first rows are not books.
                               if (idx === "__enaudio__") {
                                 setQuickEnAudio(!quickEnAudio);
                                 e.target.value = "";
+                                return;
+                              }
+                              // Out of the dropdown and into the shelf, which is
+                              // the readable way to look at two hundred books.
+                              if (idx === "__all__") {
+                                setLibCat("__all__");
+                                setBookSearch("");
+                                setLibAuthor("");
+                                e.target.value = "";
+                                try {
+                                  var el = document.querySelector(".lib-cats");
+                                  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                                } catch (err) {}
                                 return;
                               }
                               var book = presetBooks[parseInt(idx,10)];
@@ -12359,6 +12387,7 @@ export default function App() {
                                 ? "With translation and recording — choose a book…"
                                 : "Choose a book from the library…"}
                             </option>
+                            <option value="__all__">View the entire library — every book, as a list</option>
                             <option value="__enaudio__">
                               {quickEnAudio
                                 ? "Show every book again"
