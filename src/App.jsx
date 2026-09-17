@@ -1527,6 +1527,63 @@ function ownVideoMap(chapters, id) {
   return out;
 }
 
+// ── How long is long? ───────────────────────────────────────────────────
+// The library runs from Блок's Двенадцать at 1,104 words to Война и мир at
+// 443,831, and the answer to "something short tonight" depends on what is
+// actually on the shelf rather than on a number picked in advance.
+//
+// The bands are QUARTILES of the real counts, not four equal slices of the
+// range: the distribution is nowhere near even — cutting 1k–444k into four
+// would put nine books in ten under "short" and leave "very long" holding
+// Война и мир on its own. Quartiles put roughly a quarter of the shelf in each
+// band, which is what makes the choice worth offering. The labels carry the
+// real word ranges, so nobody has to guess what this site means by "long".
+var LENGTH_BANDS = [
+  { key: "s",  name: "Short" },
+  { key: "m",  name: "Medium" },
+  { key: "l",  name: "Long" },
+  { key: "xl", name: "Very long" },
+];
+
+function lengthBands(books) {
+  var counts = (books || [])
+    .map(function(b) { return b && b.words; })
+    .filter(function(n) { return typeof n === "number" && n > 0; })
+    .sort(function(a, b) { return a - b; });
+  if (counts.length < 8) return null;   // too few to divide meaningfully
+  var at = function(f) { return counts[Math.floor((counts.length - 1) * f)]; };
+  var cuts = [at(0.25), at(0.5), at(0.75)];
+  // A shelf where a quartile boundary repeats (many books of the same length)
+  // would make an empty band; nudging keeps every band reachable.
+  for (var i = 1; i < cuts.length; i++) {
+    if (cuts[i] <= cuts[i - 1]) cuts[i] = cuts[i - 1] + 1;
+  }
+  return { cuts: cuts, min: counts[0], max: counts[counts.length - 1] };
+}
+
+function lengthBandOf(words, bands) {
+  if (!bands || !words) return "";
+  if (words <= bands.cuts[0]) return "s";
+  if (words <= bands.cuts[1]) return "m";
+  if (words <= bands.cuts[2]) return "l";
+  return "xl";
+}
+
+// "Short · under 6,000 words" — the band and what it actually means.
+function lengthBandLabel(key, bands) {
+  var name = (LENGTH_BANDS.filter(function(b){ return b.key === key; })[0] || {}).name || key;
+  if (!bands) return name;
+  var k = function(n) {
+    return n >= 10000 ? Math.round(n / 1000) + "k"
+         : n >= 1000  ? (Math.round(n / 100) / 10) + "k"
+         : String(n);
+  };
+  if (key === "s")  return name + " · under " + k(bands.cuts[0]) + " words";
+  if (key === "m")  return name + " · " + k(bands.cuts[0]) + "–" + k(bands.cuts[1]) + " words";
+  if (key === "l")  return name + " · " + k(bands.cuts[1]) + "–" + k(bands.cuts[2]) + " words";
+  return name + " · over " + k(bands.cuts[2]) + " words";
+}
+
 function attachVideos(chapters, entry) {
   if (!entry) return chapters;
   var videos = entry.videos && typeof entry.videos === "object" ? entry.videos : null;
@@ -4040,6 +4097,8 @@ export default function App() {
   // alongside the preset books. Each entry is metadata; full content lives at
   // storage[UPLOAD_BOOK_PREFIX + id].
   var [uploadedBooks, setUploadedBooks] = useState([]);
+  // Which length band the shelf is filtered to, or "" for all of them.
+  var [libLength, setLibLength] = useState("");
   // The reader's own book: the recording pasted beside it, and the map of
   // every link they have pasted so far (book key -> YouTube id), so a book
   // reopened next week still has its recording.
@@ -4086,7 +4145,11 @@ export default function App() {
   var [learned, setLearned] = useState([]);
   // Whether the progress panel is open, and whether the reader wants it at
   // all. Both persist; hiding it leaves a one-line way back.
-  var [progOpen, setProgOpen] = useState(true);
+  // Folded by default. The record is worth having and worth glancing at, but
+  // it is not what the page is for — opening the library should put the books
+  // under the heading, not a month of calendar leaves the reader has to scroll
+  // past. Whichever way they leave it is remembered (gv_prog_ui_v1).
+  var [progOpen, setProgOpen] = useState(false);
   var [progHidden, setProgHidden] = useState(false);
   var progUiLoaded = useRef(false);
   useEffect(function() {
@@ -5037,6 +5100,31 @@ export default function App() {
     saveBookProgress(bookMeta, cidx, pidx, chapters.length,
                      bookWordsShown, bookWords.upto[cidx] || 0);
   }, [cidx, pidx, secAt, started, isLit, bookMeta.title, chapters.length]);
+
+  // Plant the reading mark once the book is actually on the page.
+  //
+  // startLit tries to do this on a setTimeout, but advanceReadMark reads
+  // `chapters` and `bookMeta` out of the closure it was defined in, and at that
+  // moment they are still the PREVIOUS book — usually none at all. So it hit
+  // its own `!chapters.length` guard and returned, every time, for every book:
+  // no mark was ever planted on opening.
+  //
+  // A credit is measured from the mark, and `advanceReadMark` only credits
+  // when a mark already exists, so the first chapter turn of every book found
+  // nothing to measure from and counted nothing. The first chapter of every
+  // book a reader opened went uncounted — which is why the total only seemed
+  // to move when a bookmark was dropped, since that path plants and credits in
+  // one go with current values.
+  //
+  // Running as an effect means chapters and bookMeta are committed by the time
+  // it fires. It plants only when the book has no mark yet: a book being
+  // resumed keeps the mark it already has, so nothing is ever re-counted.
+  useEffect(function() {
+    if (!(started && isLit) || !chapters.length) return;
+    var key = bookKey(bookMeta);
+    if (!key || readMark.current[key]) return;
+    advanceReadMark(cidx, 0, false);
+  }, [started, isLit, chapters, bookMeta.title, bookMeta.filename, cidx]);
 
   // A book, and every chapter in it, opens at the first line of the text.
   //
@@ -7111,6 +7199,11 @@ export default function App() {
   //
   // A record written before totalChapters existed carries 0. There is nothing
   // to compare, so it is honoured and clamped by startLit.
+  // The band boundaries, from the whole shelf rather than from what is
+  // currently showing — they must not shift under the reader as they type in
+  // the search box. Recomputed only when the catalogue itself changes.
+  var lenBands = useMemo(function(){ return lengthBands(presetBooks); }, [presetBooks]);
+
   var loadBookProgress = async function(meta, nowTotal) {
     var key = bookKey(meta);
     if (!key) return null;
@@ -7143,6 +7236,21 @@ export default function App() {
     if (newPidx < 0 || newPidx >= totalPages) return;
     checkForUpdate();
     stopTTS(); charPos.current = 0; paraText.current = "";
+    // A page turn is reading, and it was not being counted.
+    //
+    // The record credited a forward CHAPTER turn, a bookmark dropped ahead of
+    // the mark, and marking a book read. Inside a chapter it counted nothing —
+    // so a reader working through one of Обломов's chapters, three and a half
+    // thousand words across several pages, earned nothing for any of it until
+    // they crossed into the next chapter. Whole sessions could end on zero.
+    //
+    // Each page knows where it starts in the chapter's text (startChar), which
+    // is exactly what the mark measures in, so this is the same rule one level
+    // down: step forward a page, credit the span crossed. Anything else — a
+    // jump backwards, the contents, a search result — only moves the mark, and
+    // the mark itself never goes backwards, so nothing is ever counted twice.
+    var pg = pages[newPidx];
+    advanceReadMark(cidx, pg ? pg.startChar : 0, newPidx === pidx + 1);
     setPidx(newPidx); setMsgs([]); setLview("read");
   };
 
@@ -10572,6 +10680,19 @@ export default function App() {
         .spine-t{font-family:var(--display)}
         .prog-restore{font-family:var(--serif)}
 
+        /* The length filter. Underlined like the search box beside it rather
+           than boxed, so the row stays one line of controls. */
+        .lib-len{flex:none;background:none;border:0;border-bottom:1px solid var(--ink-4);
+          padding:10px 18px 8px 0;margin:6px 0 4px;color:var(--ink);cursor:pointer;
+          font-family:var(--sans);font-size:13px;border-radius:0;
+          -webkit-appearance:none;appearance:none;
+          background-image:linear-gradient(45deg,transparent 50%,var(--ink-3) 50%),
+                           linear-gradient(135deg,var(--ink-3) 50%,transparent 50%);
+          background-position:calc(100% - 9px) calc(50% + 1px),calc(100% - 4px) calc(50% + 1px);
+          background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+        .lib-len:focus{outline:none;border-bottom-color:var(--rubric)}
+        .lib-len:hover{border-bottom-color:var(--ink)}
+
         /* ── Your own book ─────────────────────────────────────────────── */
         /* The way in, under the reading record. A ruled block rather than a
            button, so it reads as another shelf in the library rather than an
@@ -12261,6 +12382,18 @@ export default function App() {
                           onChange={function(e){ setBookSearch(e.target.value); }}
                           className="lib-search"
                         />
+                        {lenBands && (
+                          <select
+                            className="lib-len"
+                            value={libLength}
+                            onChange={function(e){ setLibLength(e.target.value); }}
+                            title="Pick by how long it is — the bands come from the shelf itself">
+                            <option value="">Any length</option>
+                            {LENGTH_BANDS.map(function(b){
+                              return <option key={b.key} value={b.key}>{lengthBandLabel(b.key, lenBands)}</option>;
+                            })}
+                          </select>
+                        )}
                         {(function() {
                           var nbm = Object.keys(bookmarkMap).length;
                           if (!nbm && !showBookmarks) return null;
@@ -12353,6 +12486,10 @@ export default function App() {
                           // consumer of this predicate — the grid, its category
                           // counts, and the uploads row — agrees on what is visible.
                           if (hideFinished && isFinished(book)) return false;
+                          // A book with no count (an upload not yet opened) is not
+                          // hidden by a length filter it cannot be judged against.
+                          if (libLength && book.words &&
+                              lengthBandOf(book.words, lenBands) !== libLength) return false;
                           if (!q) return true;
                           var hay0 = ((book.title || "") + " " + (book.author || "") + " " + (book.filename || "")).toLowerCase();
                           return hay0.indexOf(q) !== -1;
