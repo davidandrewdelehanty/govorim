@@ -1512,19 +1512,41 @@ function readingsInContext(readings, prevWord) {
 // appended — a list of old news is worse than none. Set NEWS to null to hide.
 var NEWS = null;   // e.g. { date: "2 September 2026", title: "…", body: "…" }
 
-// The reader's own recording, laid over every chapter of their own book.
+// What the reader has attached to their own book.
+//
+//   { mode: "book" | "chapter", id: "<one recording>", byChapter: { 3: "<id>" } }
+//
+// "book" is an audiobook read straight through: one recording, every chapter.
+// "chapter" is a lecture series or a channel posting a chapter at a time: a
+// different recording each time, set from the reader on the chapter it belongs
+// to. Before this existed the value was a bare id, which is read as the "book"
+// case so nothing anyone saved is lost.
+function normOwnVideo(v) {
+  if (!v) return { mode: "book", id: "", byChapter: {} };
+  if (typeof v === "string") return { mode: "book", id: v, byChapter: {} };
+  return {
+    mode: v.mode === "chapter" ? "chapter" : "book",
+    id: v.id || "",
+    byChapter: (v.byChapter && typeof v.byChapter === "object") ? v.byChapter : {},
+  };
+}
+
+// The record, in the per-chapter shape the reader already knows how to draw.
 //
 // A catalogue video is a per-chapter affair — Anna Karenina's parts are two
-// twelve-hour files with a start and an end for each of 239 chapters — but a
-// reader pasting one link means "this recording, for this book". Writing it
-// into the same per-chapter shape means the reader renders it with the code
-// that was already there, instead of a second video path existing for this
-// one case.
-function ownVideoMap(chapters, id) {
-  if (!id || !chapters || !chapters.length) return null;
-  var out = {};
-  for (var i = 0; i < chapters.length; i++) out[i] = { youtube: id };
-  return out;
+// twelve-hour files with a start and an end for each of 239 chapters — so
+// writing an own-book recording into that same shape means it renders through
+// the code that was already there, rather than a second video path existing
+// for this one case. One recording for the book simply fills every slot.
+function ownVideoMap(chapters, rec) {
+  var r = normOwnVideo(rec);
+  if (!chapters || !chapters.length) return null;
+  var out = {}, any = false;
+  for (var i = 0; i < chapters.length; i++) {
+    var id = r.mode === "chapter" ? r.byChapter[i] : r.id;
+    if (id) { out[i] = { youtube: id }; any = true; }
+  }
+  return any ? out : null;
 }
 
 // ── How long is long? ───────────────────────────────────────────────────
@@ -1582,6 +1604,19 @@ function lengthBandLabel(key, bands) {
   if (key === "m")  return name + " · " + k(bands.cuts[0]) + "–" + k(bands.cuts[1]) + " words";
   if (key === "l")  return name + " · " + k(bands.cuts[1]) + "–" + k(bands.cuts[2]) + " words";
   return name + " · over " + k(bands.cuts[2]) + " words";
+}
+
+// Clearing a recording has to actually clear it: attachVideos only ever adds,
+// so re-running it over chapters that already carry a video would leave the
+// old one in place.
+function stripVideos(chapters) {
+  return (chapters || []).map(function(ch) {
+    if (!ch || !ch.youtubeId) return ch;
+    var c = Object.assign({}, ch);
+    delete c.youtubeId; delete c.youtubeStart; delete c.youtubeEnd;
+    delete c.youtubeUrl; delete c.dubbed;
+    return c;
+  });
 }
 
 function attachVideos(chapters, entry) {
@@ -3343,7 +3378,7 @@ function SupportLinks(props) {
 }
 
 
-function FileBtn({ label, onLoad }) {
+function FileBtn({ label, onLoad, btnClass }) {
   var ref = useRef(null);
   var [busy, setBusy] = useState(false);
   var [err, setErr] = useState("");
@@ -3361,7 +3396,8 @@ function FileBtn({ label, onLoad }) {
   return (
     <div style={{display:"flex",flexDirection:"column",gap:6,width:"100%"}}>
       <input ref={ref} type="file" accept=".epub,.fb2,.zip,.txt,.html,.htm,.xhtml,.pdf" style={{display:"none"}} onChange={go}/>
-      <button className="btn-p" onClick={function(){ ref.current && ref.current.click(); }} disabled={busy}>
+      <button className={btnClass || "btn-p"}
+              onClick={function(){ ref.current && ref.current.click(); }} disabled={busy}>
         {busy ? "Loading…" : label}
       </button>
       {err && <p style={{color:"#9d4630",fontSize:13}}>{err}</p>}
@@ -4102,9 +4138,12 @@ export default function App() {
   // The reader's own book: the recording pasted beside it, and the map of
   // every link they have pasted so far (book key -> YouTube id), so a book
   // reopened next week still has its recording.
-  var [ownVideo, setOwnVideo] = useState("");
+  // The recording set-up for the book currently open, and the box the reader
+  // types a link into (on the opening page, and again in the reader).
+  var [ownRec, setOwnRec] = useState({ mode: "book", id: "", byChapter: {} });
   var [ownVideoRaw, setOwnVideoRaw] = useState("");
   var [ownVideoErr, setOwnVideoErr] = useState("");
+  var [ownVidOpen, setOwnVidOpen] = useState(false);
   var ownVideosRef = useRef(null);
   var readOwnVideos = function() {
     if (ownVideosRef.current) return ownVideosRef.current;
@@ -4113,13 +4152,39 @@ export default function App() {
     ownVideosRef.current = m;
     return m;
   };
-  var rememberOwnVideo = function(meta, id) {
+  var ownVideoFor = function(meta) {
+    return normOwnVideo(readOwnVideos()[bookKey(meta)]);
+  };
+  var rememberOwnVideo = function(meta, rec) {
     var k = bookKey(meta);
     if (!k) return;
+    var r = normOwnVideo(rec);
     var m = readOwnVideos();
-    if (id) m[k] = id; else delete m[k];
+    var empty = !r.id && !Object.keys(r.byChapter).length;
+    if (empty) delete m[k]; else m[k] = r;
     ownVideosRef.current = m;
     try { localStorage.setItem(OWN_VIDEO_KEY, JSON.stringify(m)); } catch (e) {}
+  };
+  // Attach a link to the book as a whole, or to one chapter of it, and put the
+  // change on the page straight away — the chapters carry the video, so they
+  // are rebuilt rather than merely re-rendered.
+  var setOwnVideoLink = function(id, chapterIdx) {
+    var next = normOwnVideo(ownRec);
+    next = { mode: next.mode, id: next.id,
+             byChapter: Object.assign({}, next.byChapter) };
+    if (next.mode === "chapter" && typeof chapterIdx === "number") {
+      if (id) next.byChapter[chapterIdx] = id; else delete next.byChapter[chapterIdx];
+    } else {
+      next.id = id || "";
+    }
+    setOwnRec(next);
+    if (started && bookMeta && bookMeta.own) {
+      rememberOwnVideo(bookMeta, next);
+      setChapters(function(chs) {
+        return attachVideos(stripVideos(chs), { videos: ownVideoMap(chs, next) });
+      });
+    }
+    return next;
   };
   // Per-book progress map. Loaded from storage on mount and after every save.
   // Drives the "Continue reading" section on the library screen.
@@ -7623,18 +7688,24 @@ export default function App() {
         play: !!opts.play,
         isBible: !!opts.isBible,
         bibleEn: opts.bibleEn || null,
+        // The reader's own file rather than a catalogue book. Decides whether
+        // the reader offers to attach a recording.
+        own: !opts.fromPreset,
       };
       if (!opts.fromPreset) curSlug.current = "";
       // A book opened from the reader's own machine carries the recording they
       // pasted next to it — either just now on the Your own book page, or the
       // last time they had this book open.
       if (!opts.fromPreset) {
-        var ownId = ownVideo || readOwnVideos()[bookKey(meta)] || "";
-        if (ownId) {
-          if (ownId !== ownVideo) setOwnVideo(ownId);
-          rememberOwnVideo(meta, ownId);
-          chs = attachVideos(chs, { videos: ownVideoMap(chs, ownId) });
-        }
+        // Whatever was chosen on the opening page, unless this book already
+        // carries a set-up from a previous session — then that wins, because
+        // it is the one with the per-chapter links in it.
+        var saved = ownVideoFor(meta);
+        var rec = (saved.id || Object.keys(saved.byChapter).length) ? saved : ownRec;
+        setOwnRec(rec);
+        rememberOwnVideo(meta, rec);
+        var vids = ownVideoMap(chs, rec);
+        if (vids) chs = attachVideos(chs, { videos: vids });
       }
       setChapters(chs);
       setBookMeta(meta);
@@ -7813,16 +7884,16 @@ export default function App() {
         category: d.category || book.category || "",
         splitByNumberedSections: !!d.splitByNumberedSections,
         audiobook: book.audiobook || d.audiobook || null,
+        own: true,
       };
       // Videos come off the live catalogue entry, not the cached chapters: a
       // video attached after this book was cached must still appear. For the
       // reader's own book there is no catalogue entry — the recording is
       // whatever they pasted beside it, remembered under the book's key.
-      var ownId2 = readOwnVideos()[bookKey(meta)] || "";
-      setOwnVideo(ownId2);
-      setChapters(attachVideos(
-        d.chapters,
-        ownId2 ? { videos: ownVideoMap(d.chapters, ownId2) } : book));
+      var rec2 = ownVideoFor(meta);
+      setOwnRec(rec2);
+      var vids2 = ownVideoMap(d.chapters, rec2);
+      setChapters(attachVideos(d.chapters, vids2 ? { videos: vids2 } : book));
       setBookMeta(meta);
       setCbm(0);
       // Bring the entry to the top of the recents list (touch to refresh "addedAt").
@@ -10697,10 +10768,11 @@ export default function App() {
         /* The way in, under the reading record. A ruled block rather than a
            button, so it reads as another shelf in the library rather than an
            action bolted to the bottom of the page. */
-        .own-entry{display:block;width:100%;max-width:620px;text-align:left;cursor:pointer;
-          margin:4px auto 22px;padding:16px 18px;background:var(--paper-3);
-          border:1px solid var(--ink-4);border-left:3px solid var(--rubric);border-radius:0}
-        .own-entry:hover{border-left-color:var(--ink);background:#fff}
+        .own-entry{display:block;width:100%;text-align:left;cursor:pointer;
+          margin:4px auto 22px;padding:16px 0;background:none;
+          border:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink-4);border-radius:0}
+        .own-entry:hover .own-entry-t{color:var(--rubric)}
+        .own-entry:hover{border-bottom-color:var(--ink)}
         .own-entry-t{display:block;font-family:var(--display);font-size:19px;color:var(--ink);margin-bottom:4px}
         .own-entry-s{display:block;font-family:var(--serif);font-style:italic;font-size:13.5px;
           line-height:1.55;color:var(--ink-2)}
@@ -10715,24 +10787,63 @@ export default function App() {
         .own-back:hover{color:var(--ink)}
         /* The page is the reader's own column, at the reader's own width, so
            the file lands where the text will be. */
-        .own-frame{width:100%;margin:14px auto 0;display:flex;flex-direction:column;gap:14px}
+        .own-frame{width:100%;margin:14px auto 0;display:flex;flex-direction:column;gap:30px}
+
+        /* Two sections, each headed the way the rest of the site heads things:
+           a rule, then small-caps sans. No cards, no shadows — the redesign
+           builds with hairlines and space. */
+        .own-sec{display:flex;flex-direction:column;gap:12px}
+        .own-sec-h{font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+          color:var(--ink-2);padding-bottom:7px;border-bottom:1px solid var(--ink);
+          display:flex;align-items:baseline;gap:10px}
+        .own-opt{font-family:var(--serif);font-style:italic;font-size:12px;letter-spacing:0;
+          text-transform:none;color:var(--ink-3)}
+
+        /* The action. .btn-p is the pre-redesign black slab — rounded, shadowed,
+           full width — and the redesign's own answer to it is .mode-btn:
+           outlined on the paper, square, small-caps. This follows that. */
+        .own-act{background:none;border:1px solid var(--ink);color:var(--ink);
+          border-radius:0;box-shadow:none;width:auto;padding:10px 22px;cursor:pointer;
+          font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+        .own-act:hover:not(:disabled){background:var(--paper-2)}
+        .own-act:disabled{opacity:.45;cursor:default}
+        .own-act-wide{width:100%;max-width:280px}
+
+        /* A text action, underlined rather than boxed, like the library's. */
+        .own-link-btn{background:none;border:none;padding:6px 2px;cursor:pointer;
+          font-family:var(--serif);font-style:italic;font-size:13px;color:var(--ink-3);
+          border-bottom:1px solid var(--ink-4)}
+        .own-link-btn:hover{color:var(--ink);border-bottom-color:var(--ink)}
+
+        .own-check{display:flex;gap:10px;align-items:flex-start;cursor:pointer;padding:2px 0}
+        .own-check input{margin:3px 0 0;accent-color:var(--rubric);flex:none}
+        .own-check-t{display:block;font-family:var(--serif);font-size:15px;color:var(--ink)}
+        .own-check-s{display:block;font-family:var(--serif);font-style:italic;font-size:13px;
+          line-height:1.55;color:var(--ink-3);margin-top:3px}
+        .own-note,.own-rec-n{margin:0;font-family:var(--serif);font-style:italic;font-size:13.5px;
+          line-height:1.6;color:var(--ink-2)}
+
+        /* Setting a chapter's recording, from the reader. */
+        .own-rec-bar{border-bottom:1px solid var(--ink-4);padding:14px 0 16px;
+          display:flex;flex-direction:column;gap:10px}
+        .own-rec-h{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+          color:var(--ink-2);display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
 
         /* The recording. The empty state holds exactly the space the player
            will take, so nothing below it moves when a link is pasted. */
         .own-vid{margin:0}
-        .own-vid-empty{position:relative;width:100%;padding-bottom:56.25%;
-          border:1px dashed var(--ink-4);background:var(--paper-2)}
+        .own-vid-empty{position:relative;width:100%;padding-bottom:34%;
+          border:1px solid var(--ink-4);background:var(--paper-2)}
         .own-vid-hint{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
           padding:0 24px;text-align:center;font-family:var(--serif);font-style:italic;
           font-size:14px;color:var(--ink-3)}
         .own-vid-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-        .own-vid-in{flex:1 1 260px;min-width:0;padding:9px 11px;background:var(--paper-3);
-          border:1px solid var(--ink-4);border-radius:0;color:var(--ink);
-          font-family:var(--sans);font-size:13.5px}
-        .own-vid-in:focus{outline:none;border-color:var(--ink-2)}
-        /* .btn-p is full-width by default, which wrapped the button onto its
-           own line under the input. */
-        .own-vid-go{flex:0 0 auto;width:auto;padding:9px 18px}
+        /* Underlined, like the library's search box — not a boxed field. */
+        .own-vid-in,input[type="text"].own-vid-in{flex:1 1 240px;min-width:0;background:none;
+          border:0;border-bottom:1px solid var(--ink);border-radius:0;padding:9px 0;
+          color:var(--ink);font-family:var(--serif);font-size:15px}
+        .own-vid-in:focus,input[type="text"].own-vid-in:focus{outline:none;border-bottom-color:var(--rubric)}
+        .own-vid-row .own-act{flex:0 0 auto}
         .own-vid-clear{flex:0 0 auto;background:none;border:none;cursor:pointer;padding:6px 2px;
           font-family:var(--serif);font-style:italic;font-size:13px;color:var(--ink-3);
           border-bottom:1px solid var(--ink-4)}
@@ -10741,8 +10852,10 @@ export default function App() {
         /* Where the text goes. Ruled on all four sides and tall enough to read
            as a page, so the button sits in the middle of the space the book
            will fill rather than floating under the video. */
+        /* Where the text goes: the shape of a page, ruled like one. */
         .own-text{display:flex;align-items:center;justify-content:center;
-          min-height:230px;padding:28px 22px;background:var(--paper-3);border:1px solid var(--ink-4)}
+          min-height:210px;padding:30px 22px;background:var(--paper-3);
+          border:1px solid var(--ink-4)}
         .own-open{width:100%;max-width:320px;display:flex;flex-direction:column;align-items:center;gap:10px}
         .own-formats{margin:0;font-family:var(--sans);font-size:11px;letter-spacing:.14em;
           text-transform:uppercase;color:var(--ink-3);text-align:center}
@@ -12029,59 +12142,95 @@ export default function App() {
                 </p>
 
                 <div className="own-frame">
-                  {/* The recording. Empty until a link is pasted, and deliberately
-                      the same shape and size it will be once it is playing, so the
-                      page does not jump when the video arrives. */}
-                  {ownVideo ? (
-                    <div className="chvid own-vid">
-                      <iframe src={ytEmbed(ownVideo)} title="Your recording" loading="lazy"
-                              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                              allowFullScreen />
-                    </div>
-                  ) : (
-                    <div className="own-vid-empty">
-                      <span className="own-vid-hint">Paste a YouTube link to play a recording beside the text</span>
-                    </div>
-                  )}
-                  <div className="own-vid-row">
-                    <input
-                      className="own-vid-in"
-                      type="text"
-                      value={ownVideoRaw}
-                      placeholder="https://www.youtube.com/watch?v=…"
-                      onChange={function(e){ setOwnVideoRaw(e.target.value); setOwnVideoErr(""); }}
-                      onKeyDown={function(e){ if (e.key === "Enter") e.currentTarget.nextSibling.click(); }} />
-                    <button className="btn-p own-vid-go" onClick={function(){
-                      var id = youtubeId(ownVideoRaw);
-                      if (!id) { setOwnVideoErr("That does not look like a YouTube link."); return; }
-                      setOwnVideo(id); setOwnVideoErr("");
-                      if (started) rememberOwnVideo(bookMeta, id);
-                    }}>Load</button>
-                    {ownVideo && (
-                      <button className="own-vid-clear" onClick={function(){
-                        setOwnVideo(""); setOwnVideoRaw("");
-                        if (started) rememberOwnVideo(bookMeta, "");
-                      }}>Clear</button>
-                    )}
-                  </div>
-                  {ownVideoErr && <p className="own-err">{ownVideoErr}</p>}
+                  {/* ── The recording ───────────────────────────────────────
+                      Two ways to listen, and the reader picks before the book
+                      opens because the two need different things from them:
+                      one link now, or one link per chapter as they go. */}
+                  <div className="own-sec">
+                    <div className="own-sec-h">The recording <span className="own-opt">optional</span></div>
 
-                  {/* Where the text goes. */}
-                  <div className="own-text">
-                    <div className="own-open">
-                      <FileBtn label="Open a book file" onLoad={function(buf, name){
-                        // Back to "read" before the book opens. The reader is
-                        // the same reader the library uses, and it decides it
-                        // is showing a book from `mode` (isLit === mode ===
-                        // "read") — left on "ownbook" it would render nothing
-                        // at all, which is exactly what it did the first time.
-                        setMode("read");
-                        loadFile(buf, name, {});
-                      }} />
-                      <p className="own-formats">
-                        EPUB · FB2 · FB2.ZIP · PDF · TXT · HTML
+                    <label className="own-check">
+                      <input type="checkbox" checked={ownRec.mode === "chapter"}
+                        onChange={function(e){
+                          setOwnRec(Object.assign({}, ownRec,
+                            { mode: e.target.checked ? "chapter" : "book" }));
+                          setOwnVideoErr("");
+                        }} />
+                      <span>
+                        <span className="own-check-t">A different recording for each chapter</span>
+                        <span className="own-check-s">
+                          For a lecture series, or a channel posting a chapter at a time. Leave
+                          this off for an audiobook read straight through — one recording, every
+                          chapter.
+                        </span>
+                      </span>
+                    </label>
+
+                    {ownRec.mode === "book" ? (
+                      <>
+                        {ownRec.id ? (
+                          <div className="chvid own-vid">
+                            <iframe src={ytEmbed(ownRec.id)} title="Your recording" loading="lazy"
+                                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen />
+                          </div>
+                        ) : (
+                          <div className="own-vid-empty">
+                            <span className="own-vid-hint">A YouTube link plays a recording beside the text</span>
+                          </div>
+                        )}
+                        <div className="own-vid-row">
+                          <input
+                            className="own-vid-in"
+                            type="text"
+                            value={ownVideoRaw}
+                            placeholder="https://www.youtube.com/watch?v=…"
+                            onChange={function(e){ setOwnVideoRaw(e.target.value); setOwnVideoErr(""); }}
+                            onKeyDown={function(e){ if (e.key === "Enter") {
+                              var id = youtubeId(ownVideoRaw);
+                              if (!id) { setOwnVideoErr("That does not look like a YouTube link."); return; }
+                              setOwnVideoLink(id); setOwnVideoErr("");
+                            } }} />
+                          <button className="own-act" onClick={function(){
+                            var id = youtubeId(ownVideoRaw);
+                            if (!id) { setOwnVideoErr("That does not look like a YouTube link."); return; }
+                            setOwnVideoLink(id); setOwnVideoErr("");
+                          }}>Add</button>
+                          {ownRec.id && (
+                            <button className="own-link-btn" onClick={function(){
+                              setOwnVideoLink(""); setOwnVideoRaw("");
+                            }}>Remove</button>
+                          )}
+                        </div>
+                      </>
+                    ) : (
+                      <p className="own-note">
+                        You will add each chapter's link from the reader, on the chapter it
+                        belongs to — there is a <em>Recording</em> button above the text.
                       </p>
-                      {fErr && <p className="own-err">{fErr}</p>}
+                    )}
+                    {ownVideoErr && <p className="own-err">{ownVideoErr}</p>}
+                  </div>
+
+                  {/* ── The book ─────────────────────────────────────────── */}
+                  <div className="own-sec">
+                    <div className="own-sec-h">The book</div>
+                    <div className="own-text">
+                      <div className="own-open">
+                        <FileBtn label="Open a file" btnClass="own-act own-act-wide" onLoad={function(buf, name){
+                          // Back to "read" before the book opens. The reader is
+                          // the same reader the library uses, and it decides it
+                          // is showing a book from `mode` (isLit === mode ===
+                          // "read") — left on "ownbook" it would render nothing
+                          // at all, which is exactly what it did the first time.
+                          setMode("read");
+                          loadFile(buf, name, {});
+                        }} />
+                        <p className="own-formats">
+                          EPUB · FB2 · FB2.ZIP · PDF · TXT · HTML
+                        </p>
+                        {fErr && <p className="own-err">{fErr}</p>}
+                      </div>
                     </div>
                   </div>
 
@@ -13331,6 +13480,19 @@ export default function App() {
                         }}>To the bookmark</button>
                     );
                   })()}
+                  {bookMeta.own && (
+                    <button className={"ltab"+(ownVidOpen?" on":"")}
+                      title={ownRec.mode === "chapter"
+                        ? "Attach a recording to this chapter"
+                        : "Attach a recording to this book"}
+                      onClick={function(){
+                        var cur = ownRec.mode === "chapter"
+                          ? (ownRec.byChapter[cidx] || "") : ownRec.id;
+                        setOwnVideoRaw(cur ? "https://youtu.be/" + cur : "");
+                        setOwnVideoErr("");
+                        setOwnVidOpen(!ownVidOpen);
+                      }}>Recording</button>
+                  )}
                   {stressMap && !singlePageMode && (
                     <button className={"ltab"+(accentsOn?" on":"")} onClick={toggleAccents}
                       title="Show stress marks — only on words whose stress is unambiguous">а́ Stress</button>
@@ -13373,6 +13535,57 @@ export default function App() {
                     <div className="lit-body">
                       <div className={"lit-left" + (noAIMode ? " noai" : "")
                         + ((curChapter && curChapter.youtubeId && !curChapter.merged) ? " has-vid" : "")}>
+                {bookMeta.own && ownVidOpen && (
+                          <div className="own-rec-bar">
+                            <div className="own-rec-h">
+                              {ownRec.mode === "chapter"
+                                ? "Recording for this chapter"
+                                : "Recording for the whole book"}
+                              <button className="own-link-btn" onClick={function(){
+                                var next = Object.assign({}, ownRec,
+                                  { mode: ownRec.mode === "chapter" ? "book" : "chapter" });
+                                setOwnRec(next);
+                                if (bookMeta.own) rememberOwnVideo(bookMeta, next);
+                                setChapters(function(chs){
+                                  return attachVideos(stripVideos(chs), { videos: ownVideoMap(chs, next) });
+                                });
+                              }}>
+                                {ownRec.mode === "chapter" ? "use one for the whole book" : "use one per chapter"}
+                              </button>
+                            </div>
+                            <div className="own-vid-row">
+                              <input className="own-vid-in" type="text" value={ownVideoRaw}
+                                placeholder="https://www.youtube.com/watch?v=…"
+                                onChange={function(e){ setOwnVideoRaw(e.target.value); setOwnVideoErr(""); }}
+                                onKeyDown={function(e){ if (e.key === "Enter") {
+                                  var id = youtubeId(ownVideoRaw);
+                                  if (!id) { setOwnVideoErr("That does not look like a YouTube link."); return; }
+                                  setOwnVideoLink(id, cidx); setOwnVideoErr(""); setOwnVidOpen(false);
+                                } }} />
+                              <button className="own-act" onClick={function(){
+                                var id = youtubeId(ownVideoRaw);
+                                if (!id) { setOwnVideoErr("That does not look like a YouTube link."); return; }
+                                setOwnVideoLink(id, cidx); setOwnVideoErr(""); setOwnVidOpen(false);
+                              }}>Add</button>
+                              {(ownRec.mode === "chapter" ? ownRec.byChapter[cidx] : ownRec.id) && (
+                                <button className="own-link-btn" onClick={function(){
+                                  setOwnVideoLink("", cidx); setOwnVideoRaw("");
+                                }}>Remove</button>
+                              )}
+                            </div>
+                            {ownVideoErr && <p className="own-err">{ownVideoErr}</p>}
+                            {ownRec.mode === "chapter" && (
+                              <p className="own-rec-n">
+                                {(function(){
+                                  var n = Object.keys(ownRec.byChapter).length;
+                                  return n
+                                    ? n + (n === 1 ? " chapter has" : " chapters have") + " a recording so far."
+                                    : "No chapter has a recording yet.";
+                                })()}
+                              </p>
+                            )}
+                          </div>
+                        )}
                         {/* Book title shown small above the chapter heading so the reader always knows
                             which book they're in, even after navigating mid-chapter. */}
                         {bookMeta.title && (
