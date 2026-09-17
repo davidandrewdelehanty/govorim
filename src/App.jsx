@@ -12739,7 +12739,17 @@ export default function App() {
                         // they touch; the third shows one.
                         var authorView = !searching && !!libAuthor;
                         var inAuthors  = !searching && !libAuthor && libCat === "__authors__";
-                        var openCat = (searching || authorView) ? "__all__" : libCat;
+                        // A search opens every shelf, because the answer could be on
+                        // any of them. Picking a length is the same kind of question —
+                        // "what have you got that is short?" — and answering it with a
+                        // row of chips whose numbers went down, still waiting to be
+                        // clicked, is not an answer. So a band on its own opens every
+                        // shelf too, and the books sit under the category headings the
+                        // way they always do. A category chosen as well narrows to it:
+                        // then the reader has asked a narrower question.
+                        var openCat = (searching || authorView) ? "__all__"
+                                    : (libLength && !libCat) ? "__all__"
+                                    : libCat;
                         var shelvesToRender = inAuthors ? []
                           : (openCat === "__all__") ? shelves
                           : (openCat && buckets[openCat] && buckets[openCat].length) ? [openCat] : [];
