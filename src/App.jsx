@@ -13520,6 +13520,25 @@ export default function App() {
                     );
                   })()}
                   {bookMeta.own && (
+                    <button className="ltab"
+                      title="Close this book and open another of your own"
+                      onClick={function(){
+                        stopTTS();
+                        setStarted(false);
+                        setLview("read");
+                        setOwnVidOpen(false);
+                        setOwnVideoRaw("");
+                        setOwnVideoErr("");
+                        // The next book starts with no recording attached. The
+                        // one just set is not lost — it is saved against this
+                        // book's key and returns with it. The per-chapter
+                        // choice is the reader's habit, so it stays.
+                        setOwnRec({ mode: ownRec.mode, id: "", byChapter: {} });
+                        setMode("ownbook");
+                        try { window.scrollTo(0, 0); } catch (e) {}
+                      }}>Another book</button>
+                  )}
+                  {bookMeta.own && (
                     <button className={"ltab"+(ownVidOpen?" on":"")}
                       title={ownRec.mode === "chapter"
                         ? "Attach a recording to this chapter"
