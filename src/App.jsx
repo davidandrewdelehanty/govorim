@@ -14218,7 +14218,7 @@ export default function App() {
                   )}
                   {stressMap && !singlePageMode && (
                     <button className={"ltab"+(accentsOn?" on":"")} onClick={toggleAccents}
-                      title="Show stress marks — only on words whose stress is unambiguous">а́ Stress</button>
+                      title="Show stress marks — only on words whose stress is unambiguous">Stress marks</button>
                   )}
                   {exData && (exData.cases||[]).length > 0 && <button className={"ltab"+(lview==="exercises"?" on":"")} onClick={function(){ setLview("exercises"); }}>Exercises</button>}
                   {/* Page + chapter nav moved up here so they stay visible
