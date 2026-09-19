@@ -3565,6 +3565,8 @@ export default function App() {
   var [adminBooks, setAdminBooks]           = useState(null);
   var [adminBooksLoad, setAdminBooksLoad]   = useState(false);
   var [adminBookSort, setAdminBookSort]     = useState("opens");
+  // Which sheet the reads window is showing — the library or the music.
+  var [adminBookTab, setAdminBookTab]       = useState("books");
   var [adminTotals, setAdminTotals]         = useState(null);
   var [adminTotalsLoad, setAdminTotalsLoad] = useState(false);
   var [adminLegacyId, setAdminLegacyId]     = useState("");
@@ -3818,8 +3820,11 @@ export default function App() {
   var [musicData, setMusicData]     = useState(null);
   var [musicArtist, setMusicArtist] = useState(null);   // index into musicData
   var [musicSong, setMusicSong]     = useState(null);   // index into artist.songs
+  // Set when something other than the Music tab wants the song titles — the
+  // admin panel's music sheet, which has to name the ids it is counting.
+  var [musicWanted, setMusicWanted] = useState(false);
   useEffect(function() {
-    if (tab !== "music" || musicData) return;
+    if ((tab !== "music" && !musicWanted) || musicData) return;
     var cancelled = false;
     fetch(MUSIC_URL)
       .then(function(r){ return r.ok ? r.json() : null; })
@@ -3838,7 +3843,7 @@ export default function App() {
       })
       .catch(function(){});
     return function(){ cancelled = true; };
-  }, [tab, musicData]);
+  }, [tab, musicData, musicWanted]);
   // Lyrics rendering: every Russian word clickable for a definition, line
   // breaks preserved, stanzas separated by wider gaps.
   var renderLyrics = function(text, lyricWhere) {
@@ -4253,10 +4258,136 @@ export default function App() {
     if (!learnedLoaded.current) return;
     storage.set("gv_learned_v1", JSON.stringify(learned)).catch(function(){});
   }, [learned]);
+
+  // ── Songs opened, and case drills finished ────────────────────────────
+  //
+  // songsRead: { [youtubeId]: { n, at, artist, title } } — keyed by the id
+  // because that is the one field of a song that survives a retitling.
+  // drills: { runs, questions, correct, last, byBook } — one entry per
+  // finished case quiz, kept apart from the daily log's `practiced` so the
+  // streak keeps meaning what it meant yesterday.
+  var [songsRead, setSongsRead] = useState({});
+  var songsReadLoaded = useRef(false);
+  var [drills, setDrills] = useState({ runs: 0, questions: 0, correct: 0, last: 0, byBook: {} });
+  var drillsLoaded = useRef(false);
+  useEffect(function() {
+    storage.get("gv_songs_v1").then(function(r){
+      if (r && r.value) { try { var v = JSON.parse(r.value) || {}; setSongsRead(function(m){ return mergeSongs(m, v); }); } catch (e) {} }
+      songsReadLoaded.current = true;
+    }).catch(function(){ songsReadLoaded.current = true; });
+    storage.get("gv_drills_v1").then(function(r){
+      if (r && r.value) { try { var d = JSON.parse(r.value) || {}; setDrills(function(c){ return mergeDrills(c, d); }); } catch (e) {} }
+      drillsLoaded.current = true;
+    }).catch(function(){ drillsLoaded.current = true; });
+  }, []);
+  useEffect(function() {
+    if (!songsReadLoaded.current) return;
+    storage.set("gv_songs_v1", JSON.stringify(songsRead)).catch(function(){});
+  }, [songsRead]);
+  useEffect(function() {
+    if (!drillsLoaded.current) return;
+    storage.set("gv_drills_v1", JSON.stringify(drills)).catch(function(){});
+  }, [drills]);
+
+  // A song opened. Two records, for two different questions: the site-wide
+  // tally answers "does anyone play this", the reader's own list answers
+  // "what do they keep coming back to". The tally is fire-and-forget and
+  // must never hold up the video.
+  var recordSongOpen = function(artistName, song) {
+    var id = (song && song.youtube) || "";
+    if (!/^[A-Za-z0-9_-]{11}$/.test(id)) return;
+    setSongsRead(function(m){
+      var cur = m[id] || {};
+      var next = Object.assign({}, m);
+      next[id] = {
+        n: (cur.n || 0) + 1,
+        at: Date.now(),
+        artist: artistName || cur.artist || "",
+        title: (song && song.title) || cur.title || "",
+      };
+      return next;
+    });
+    try {
+      fetch("/api/user-data?anon=song&s=" + encodeURIComponent(id),
+            { method: "POST", credentials: "same-origin" }).catch(function(){});
+    } catch (e) {}
+  };
+
+  // A case quiz played to the end. Recorded on the last answer rather than on
+  // the results screen: the results screen re-renders, and a render is not an
+  // event — counting there would add a run every time React redrew it.
+  var recordDrill = function(nQuestions, nCorrect, meta) {
+    if (!nQuestions) return;
+    var key = (meta && bookKey(meta)) || "";
+    var title = (meta && meta.title) || "";
+    setDrills(function(d){
+      var byBook = Object.assign({}, (d && d.byBook) || {});
+      if (key) {
+        var b = byBook[key] || {};
+        byBook[key] = {
+          runs: (b.runs || 0) + 1,
+          questions: (b.questions || 0) + nQuestions,
+          correct: (b.correct || 0) + nCorrect,
+          title: title || b.title || "",
+        };
+      }
+      return {
+        runs: ((d && d.runs) || 0) + 1,
+        questions: ((d && d.questions) || 0) + nQuestions,
+        correct: ((d && d.correct) || 0) + nCorrect,
+        last: Date.now(),
+        byBook: byBook,
+      };
+    });
+  };
+
   var bumpToday = function(field, n) {
     if (!n) return;
     setStats(function(s){ return bumpStats(s, field, n); });
   };
+  // Two devices' song lists, one list: per song the larger play count and the
+  // later visit, since neither device saw the other's afternoon.
+  var mergeSongs = function(a, b) {
+    var out = {};
+    [a, b].forEach(function(src){
+      Object.keys(src || {}).forEach(function(k){
+        var v = src[k] || {}, cur = out[k] || {};
+        out[k] = {
+          n: Math.max(cur.n || 0, v.n || 0),
+          at: Math.max(cur.at || 0, v.at || 0),
+          artist: v.artist || cur.artist || "",
+          title: v.title || cur.title || "",
+        };
+      });
+    });
+    return out;
+  };
+
+  // Drill counters only ever go up, so the larger figure is the true one.
+  var mergeDrills = function(a, b) {
+    a = a || {}; b = b || {};
+    var big = function(x, y){ return Math.max(Number(x) || 0, Number(y) || 0); };
+    var byBook = {};
+    [a.byBook || {}, b.byBook || {}].forEach(function(src){
+      Object.keys(src).forEach(function(k){
+        var v = src[k] || {}, cur = byBook[k] || {};
+        byBook[k] = {
+          runs: big(cur.runs, v.runs),
+          questions: big(cur.questions, v.questions),
+          correct: big(cur.correct, v.correct),
+          title: v.title || cur.title || "",
+        };
+      });
+    });
+    return {
+      runs: big(a.runs, b.runs),
+      questions: big(a.questions, b.questions),
+      correct: big(a.correct, b.correct),
+      last: big(a.last, b.last),
+      byBook: byBook,
+    };
+  };
+
   // Retired words from two sources, one list: keyed by the Russian, and the
   // copy retired more recently is the one kept.
   var mergeLearned = function(a, b) {
@@ -4427,6 +4558,21 @@ export default function App() {
   // for anyone who would rather scroll than choose. A search overrides all
   // three, because searching is asking about the whole library by definition.
   var [libCat, setLibCat] = useState("");
+  // The library's public tallies: { opens: {filename: n}, songs: {id: n} }.
+  // Fetched the first time somebody opens the Most-read shelf, not on every
+  // page load — most visits never ask, and the answer is cached for five
+  // minutes at the edge anyway.
+  var [libReads, setLibReads] = useState(null);
+  var [libReadsLoad, setLibReadsLoad] = useState(false);
+  var loadLibReads = function() {
+    if (libReadsLoad) return;
+    setLibReadsLoad(true);
+    fetch("/api/user-data?anon=books")
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){ setLibReads(j || { opens: {}, songs: {} }); })
+      .catch(function(){ setLibReads({ opens: {}, songs: {} }); })
+      .then(function(){ setLibReadsLoad(false); });
+  };
   // Set when the reader has drilled into one author from the Authors shelf.
   var [libAuthor, setLibAuthor] = useState("");
   // Quick pick can narrow to the books that are fully equipped — an English
@@ -6181,6 +6327,12 @@ export default function App() {
         if (Array.isArray(data.learned) && data.learned.length) {
           setLearned(function(cur){ return mergeLearned(cur, data.learned); });
         }
+        if (data.songs && typeof data.songs === "object" && Object.keys(data.songs).length) {
+          setSongsRead(function(m){ return mergeSongs(m, data.songs); });
+        }
+        if (data.drills && typeof data.drills === "object") {
+          setDrills(function(d){ return mergeDrills(d, data.drills); });
+        }
 
         if (serverVocab.length > 0 || serverTips.length > 0) {
           // If this browser holds GUEST data — words saved while signed out,
@@ -6250,6 +6402,33 @@ export default function App() {
     }, 5000);
     return function(){ clearTimeout(t); };
   }, [stats, me, syncedFromServer]);
+  // Songs and drills go up on the same terms: after the first sync, only when
+  // there is something to say, and debounced so a run of three songs costs one
+  // write rather than three.
+  useEffect(function() {
+    if (!me || !syncedFromServer || !songsReadLoaded.current) return;
+    if (!songsRead || !Object.keys(songsRead).length) return;
+    var t = setTimeout(function() {
+      authFetch("/api/user-data?type=songs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ songs: songsRead }),
+      }).catch(function(){});
+    }, 3000);
+    return function(){ clearTimeout(t); };
+  }, [songsRead, me, syncedFromServer]);
+  useEffect(function() {
+    if (!me || !syncedFromServer || !drillsLoaded.current) return;
+    if (!drills || !drills.runs) return;
+    var t = setTimeout(function() {
+      authFetch("/api/user-data?type=drills", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ drills: drills }),
+      }).catch(function(){});
+    }, 3000);
+    return function(){ clearTimeout(t); };
+  }, [drills, me, syncedFromServer]);
   useEffect(function() {
     if (!me || !syncedFromServer || !learnedLoaded.current) return;
     if (!learned || !learned.length) return;
@@ -9219,6 +9398,27 @@ export default function App() {
         .lib-cat-chip.on{background:rgba(42,31,20,.18);border-color:rgba(42,31,20,.6);color:#000;font-weight:600}
         .lib-cat-chip .n{font-size:11px;opacity:.5;font-variant-numeric:tabular-nums}
         .lib-cat-chip.all{border-style:dashed}
+        /* The Most-read shelf: a ranked list whose rows are doors, set as a
+           table of contents rather than as cards — the ranking is the point,
+           and cards put it second to the cover. */
+        .lib-reads{align-self:stretch;width:100%;max-width:720px;margin:0}
+        .lib-reads-h{display:flex;flex-direction:column;gap:3px;margin-bottom:10px}
+        .lib-reads-h>span:first-child{font-family:'Old Standard TT',serif;font-size:22px;color:#000}
+        .lib-reads-sub{font-family:'Literata',serif;font-style:italic;font-size:13px;color:rgba(42,31,20,.55)}
+        .lib-reads-list{list-style:none;margin:0;padding:0}
+        .lib-read-row{display:flex;align-items:baseline;gap:14px;width:100%;text-align:left;
+          background:none;border:0;border-bottom:1px solid rgba(42,31,20,.1);padding:10px 2px;
+          cursor:pointer;font-family:inherit;transition:background .12s}
+        .lib-read-row:hover:not(:disabled){background:rgba(42,31,20,.05)}
+        .lib-read-row:disabled{cursor:default;opacity:.5}
+        .lib-read-row .rk{font-family:'IBM Plex Sans',sans-serif;font-size:12px;
+          color:rgba(42,31,20,.4);min-width:26px;font-variant-numeric:tabular-nums}
+        .lib-read-row .tt{flex:1;font-family:'Literata',serif;font-size:16px;color:#1c1610}
+        .lib-read-row .au{display:block;font-size:12.5px;color:rgba(42,31,20,.5);margin-top:2px}
+        .lib-read-row .ct{font-family:'Old Standard TT',serif;font-size:18px;color:#000;
+          font-variant-numeric:tabular-nums}
+        .lib-reads-note{font-family:'Literata',serif;font-size:12.5px;line-height:1.6;
+          color:rgba(42,31,20,.5);margin:18px 0 0;max-width:60ch}
         /* The Authors shelf. Names, not cards: a name is short and there are
            thirty of them, so they tile far tighter than book cards do. */
         .lib-authors{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
@@ -10288,6 +10488,17 @@ export default function App() {
           color:rgba(42,31,20,.5);margin-top:4px}
         /* Reads-by-book: a spreadsheet, so it reads like one — tight rows,
            numbers right-aligned and tabular, headers that sort on click. */
+        /* Two sheets behind one row — the library and the music. Underlined
+           rather than boxed, like the library's own shelf chips. */
+        .admd-tabs{display:flex;gap:18px;border-bottom:1px solid rgba(42,31,20,.14);padding-bottom:0}
+        .admd-tab{background:none;border:0;border-bottom:2px solid transparent;padding:4px 0 7px;
+          font-family:'IBM Plex Sans',sans-serif;font-size:11px;letter-spacing:1.6px;
+          text-transform:uppercase;color:rgba(42,31,20,.5);cursor:pointer;display:flex;
+          align-items:center;gap:6px}
+        .admd-tab:hover{color:#000}
+        .admd-tab.on{color:#000;border-bottom-color:rgba(42,31,20,.7)}
+        .admd-tab .n{font-family:'Literata',serif;font-style:italic;text-transform:none;
+          letter-spacing:0;font-size:12px;opacity:.55}
         .admd-sheetwrap{max-height:52vh;overflow:auto;border:1px solid rgba(42,31,20,.12);border-radius:10px}
         .admd-sheet{width:100%;border-collapse:collapse;font-size:13px}
         .admd-sheet thead th{position:sticky;top:0;background:#f3ede2;text-align:left;
@@ -11036,14 +11247,29 @@ export default function App() {
               )}
               {!adminLoad && (
                 <div className="adm-row adm-today"
-                  onClick={function(){ if (!adminBooks) loadAdminBooks(); setAdminDetail({ __books: true }); }}>
+                  onClick={function(){ if (!adminBooks) loadAdminBooks(); setMusicWanted(true); setAdminDetail({ __books: true }); }}>
                   <div className="adm-info">
                     <div className="adm-name">Total reads by book</div>
-                    <div className="adm-email">every title, ranked by times opened</div>
+                    <div className="adm-email">
+                      {(function(){
+                        if (!adminBooks) return "every title and every song, ranked by times opened";
+                        var titles = Object.keys(adminBooks.opens || {}).length;
+                        var songs = Object.keys(adminBooks.songs || {}).length;
+                        var plays = Object.keys(adminBooks.songs || {}).reduce(function(n, k){
+                          return n + (adminBooks.songs[k] || 0); }, 0);
+                        return titles + " title" + (titles === 1 ? "" : "s") + " opened · " +
+                               plays + " song play" + (plays === 1 ? "" : "s") +
+                               " across " + songs + " song" + (songs === 1 ? "" : "s");
+                      })()}
+                    </div>
                   </div>
+                  {/* The total, not the number of distinct titles: one of those
+                      is a figure about the library's reach and the other is a
+                      figure about its length. */}
                   <div className="adm-today-n">
                     {adminBooksLoad ? "…" : (adminBooks
-                      ? Object.keys(adminBooks.opens || {}).length
+                      ? Object.keys(adminBooks.opens || {}).reduce(function(n, k){
+                          return n + (adminBooks.opens[k] || 0); }, 0)
                       : "▸")}
                   </div>
                 </div>
@@ -11133,7 +11359,8 @@ export default function App() {
             <div className="adm-head">
               <div className="adm-title" style={{fontSize:20,overflow:"hidden",textOverflow:"ellipsis"}}>
                 {adminDetail.__totals ? "All readers"
-                  : adminDetail.__books ? "Reads by book"
+                  : adminDetail.__books
+                    ? (adminBookTab === "songs" ? "Songs opened" : "Reads by book")
                   : adminDetail.email}
               </div>
               <button className="adm-x" onClick={function(){ setAdminDetail(null); setAdminDetailView(""); }}>×</button>
@@ -11193,8 +11420,122 @@ export default function App() {
                     a.click();
                     setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
                   };
+                  // The music, counted the same way. The tally is keyed by
+                  // YouTube id — the one field of a song that survives being
+                  // retitled — so the manifest is what turns a row back into a
+                  // name; an id the manifest no longer carries still played,
+                  // and is shown under its id rather than dropped.
+                  var songCounts = adminBooks.songs || {};
+                  var songRows = [];
+                  // One row per video id. Two artists can list the same
+                  // recording — a duet filed under both names — and the tally
+                  // is keyed by the id, so a second row would show the same
+                  // count twice and add it twice to the total.
+                  var seenIds = {};
+                  (musicData || []).forEach(function(ar){
+                    (ar.songs || []).forEach(function(sg){
+                      var id = sg.youtube || "";
+                      if (!id || seenIds[id]) return;
+                      seenIds[id] = true;
+                      songRows.push({ id: id, title: sg.title || id, artist: ar.artist || "",
+                                      opens: songCounts[id] || 0 });
+                    });
+                  });
+                  Object.keys(songCounts).forEach(function(id){
+                    if (!seenIds[id]) songRows.push({ id: id, title: id, artist: "(no longer in the music list)",
+                                                      opens: songCounts[id] });
+                  });
+                  songRows.sort(function(a, b){
+                    if (sortKey === "title")  return String(a.title).localeCompare(String(b.title), "ru");
+                    if (sortKey === "author") return String(a.artist).localeCompare(String(b.artist), "ru")
+                                                  || String(a.title).localeCompare(String(b.title), "ru");
+                    return b.opens - a.opens || String(a.title).localeCompare(String(b.title), "ru");
+                  });
+                  var totalPlays = songRows.reduce(function(n, r){ return n + r.opens; }, 0);
+                  var readBooks = rows.filter(function(r){ return r.opens > 0; }).length;
+                  var topBook = rows.slice().sort(function(a, b){ return b.opens - a.opens; })[0];
+                  var topSong = songRows.slice().sort(function(a, b){ return b.opens - a.opens; })[0];
+                  if (adminBookTab === "songs") {
+                    return (
+                      <>
+                        <div className="admd-tabs">
+                          <button className="admd-tab" onClick={function(){ setAdminBookTab("books"); }}>Books</button>
+                          <button className="admd-tab on">Music</button>
+                        </div>
+                        {!musicData && <div className="adm-empty">Loading the song list…</div>}
+                        <div className="admd-stats">
+                          <div className="admd-stat still">
+                            <span className="n">{totalPlays}</span><span className="l">songs opened</span>
+                          </div>
+                          <div className="admd-stat still">
+                            <span className="n">{songRows.filter(function(r){ return r.opens > 0; }).length}</span>
+                            <span className="l">of {songRows.length} played</span>
+                          </div>
+                          <div className="admd-stat still">
+                            <span className="n">{topSong ? topSong.opens : 0}</span>
+                            <span className="l">{topSong && topSong.opens ? topSong.title : "most played"}</span>
+                          </div>
+                        </div>
+                        <div className="admd-sheetwrap">
+                          <table className="admd-sheet">
+                            <thead>
+                              <tr>
+                                <th className="num">#</th>
+                                {hdr("title", "Song")}
+                                {hdr("author", "Artist")}
+                                {hdr("opens", "Opened", "num")}
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {songRows.map(function(r, i){
+                                return (
+                                  <tr key={r.id} className={r.opens ? "" : "zero"}>
+                                    <td className="num">{i + 1}</td>
+                                    <td>{r.title}</td>
+                                    <td className="dim">{r.artist}</td>
+                                    <td className="num">{r.opens}</td>
+                                  </tr>
+                                );
+                              })}
+                              {!songRows.length && (
+                                <tr><td colSpan={4} className="dim" style={{padding:"14px 10px"}}>
+                                  No songs counted yet.
+                                </td></tr>
+                              )}
+                            </tbody>
+                          </table>
+                        </div>
+                        <div className="admd-s" style={{lineHeight:1.5}}>
+                          One per opening of a song in the Music tab, every reader, signed in
+                          or not. Counting began in September 2026, so a zero means nobody has
+                          opened it since — not that nobody ever has.
+                        </div>
+                      </>
+                    );
+                  }
                   return (
                     <>
+                      <div className="admd-tabs">
+                        <button className="admd-tab on">Books</button>
+                        <button className="admd-tab" onClick={function(){ setMusicWanted(true); setAdminBookTab("songs"); }}>
+                          Music <span className="n">{totalPlays}</span>
+                        </button>
+                      </div>
+                      {/* The three figures worth having before the sheet: how
+                          far the library reaches, how much of it is untouched,
+                          and what is being read most. */}
+                      <div className="admd-stats">
+                        <div className="admd-stat still">
+                          <span className="n">{totalOpens}</span><span className="l">books opened</span>
+                        </div>
+                        <div className="admd-stat still">
+                          <span className="n">{readBooks}</span><span className="l">of {rows.length} touched</span>
+                        </div>
+                        <div className="admd-stat still">
+                          <span className="n">{topBook ? topBook.opens : 0}</span>
+                          <span className="l">{topBook && topBook.opens ? topBook.title : "most opened"}</span>
+                        </div>
+                      </div>
                       <div style={{display:"flex",alignItems:"center",gap:10,flexWrap:"wrap"}}>
                         <span className="admd-s">
                           {rows.length} titles · {totalOpens} opens counted
@@ -11349,6 +11690,57 @@ export default function App() {
                           <span className="n">{T.tips}</span>
                           <span className="l">grammar tips</span>
                         </div>
+                        <div className="admd-stat still">
+                          <span className="n">{T.learned || 0}</span>
+                          <span className="l">words retired</span>
+                        </div>
+                      </div>
+                      {/* What the site's readers have actually done, as against
+                          what they have saved. Words read is the honest measure
+                          of the library's use and it has never been shown here. */}
+                      <div className="admd-sechdr">Read and practised</div>
+                      <div className="admd-stats">
+                        <div className="admd-stat still">
+                          <span className="n">{(T.wordsRead || 0).toLocaleString()}</span>
+                          <span className="l">Russian words read</span>
+                        </div>
+                        <div className="admd-stat still">
+                          <span className="n">{T.practiced || 0}</span>
+                          <span className="l">vocab answers</span>
+                        </div>
+                        <div className="admd-stat still">
+                          <span className="n">{T.daysActive || 0}</span>
+                          <span className="l">reader-days</span>
+                        </div>
+                      </div>
+                      <div className="admd-sechdr">Music and case drills</div>
+                      <div className="admd-stats">
+                        <div className="admd-stat still">
+                          <span className="n">{T.songPlays || 0}</span>
+                          <span className="l">songs opened</span>
+                        </div>
+                        <div className="admd-stat still">
+                          <span className="n">{T.readersWithSongs || 0}</span>
+                          <span className="l">readers on music</span>
+                        </div>
+                        <div className="admd-stat still">
+                          <span className="n">{T.drillRuns || 0}</span>
+                          <span className="l">case drills finished</span>
+                        </div>
+                        <div className="admd-stat still">
+                          <span className="n">
+                            {T.drillQuestions
+                              ? Math.round((T.drillCorrect / T.drillQuestions) * 100) + "%"
+                              : "—"}
+                          </span>
+                          <span className="l">of {T.drillQuestions || 0} answers right</span>
+                        </div>
+                      </div>
+                      <div className="admd-note">
+                        Songs and case drills have been recorded since September 2026 and
+                        only for signed-in readers, so these four count that much and no
+                        further back. Words read is per reader-device and merges by taking
+                        the larger figure for each day.
                       </div>
                       <div className="admd-s" style={{lineHeight:1.5}}>
                         Books opened by account holders counts distinct books in each
@@ -11409,6 +11801,61 @@ export default function App() {
                             <div>
                               <div className="admd-t">{fb.title}{fb.author ? " — " + fb.author : ""}</div>
                               <div className="admd-s">marked read {when(fb.at)}</div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </>
+                  );
+                }
+                if (adminDetailView === "songs") {
+                  var sl = d.songs || [];
+                  return (
+                    <>
+                      <div style={{display:"flex",alignItems:"center",gap:10}}>
+                        <button className="adm-btn" onClick={function(){ setAdminDetailView(""); }}>← Back</button>
+                        <span className="admd-s">
+                          {sl.length} song{sl.length === 1 ? "" : "s"} · {d.counts.songPlays || 0} opening
+                          {(d.counts.songPlays || 0) === 1 ? "" : "s"}
+                        </span>
+                      </div>
+                      {!sl.length && <div className="adm-empty">No songs opened.</div>}
+                      {sl.map(function(sg){
+                        return (
+                          <div key={sg.id} className="admd-row">
+                            <div>
+                              <div className="admd-t">{sg.title}{sg.artist ? " — " + sg.artist : ""}</div>
+                              <div className="admd-s">
+                                {sg.n > 1 ? sg.n + " times · last " : "once · "}{when(sg.at)}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </>
+                  );
+                }
+                if (adminDetailView === "drills") {
+                  var dl = d.drillBooks || [];
+                  return (
+                    <>
+                      <div style={{display:"flex",alignItems:"center",gap:10}}>
+                        <button className="adm-btn" onClick={function(){ setAdminDetailView(""); }}>← Back</button>
+                        <span className="admd-s">
+                          {d.counts.drillRuns || 0} drill{(d.counts.drillRuns || 0) === 1 ? "" : "s"} ·
+                          {" "}{d.counts.drillCorrect || 0} of {d.counts.drillQuestions || 0} right
+                        </span>
+                      </div>
+                      {!dl.length && <div className="adm-empty">No case drills finished.</div>}
+                      {dl.map(function(db){
+                        return (
+                          <div key={db.key} className="admd-row">
+                            <div>
+                              <div className="admd-t">{db.title}</div>
+                              <div className="admd-s">
+                                {db.runs} drill{db.runs === 1 ? "" : "s"} · {db.correct} of {db.questions} right
+                                {db.questions ? " (" + Math.round((db.correct / db.questions) * 100) + "%)" : ""}
+                              </div>
                             </div>
                           </div>
                         );
@@ -11492,6 +11939,90 @@ export default function App() {
                         <span className="l">saved tips</span>
                       </div>
                     </div>
+                    {/* How much Russian this reader has actually read, which is
+                        the question the four numbers above never answered. */}
+                    <div className="admd-sechdr">Read and practised</div>
+                    <div className="admd-stats">
+                      <div className="admd-stat still">
+                        <span className="n">
+                          {(d.recorded && !d.recorded.stats)
+                            ? <span className="unrec">—</span>
+                            : (d.counts.wordsRead || 0).toLocaleString()}
+                        </span>
+                        <span className="l">words read</span>
+                      </div>
+                      <div className="admd-stat still">
+                        <span className="n">{d.counts.daysActive || 0}</span>
+                        <span className="l">days with a session</span>
+                      </div>
+                      <div className="admd-stat still">
+                        <span className="n">{d.counts.streak || 0}</span>
+                        <span className="l">day streak</span>
+                      </div>
+                      <div className="admd-stat still">
+                        <span className="n">{d.counts.practiced || 0}</span>
+                        <span className="l">vocab answers</span>
+                      </div>
+                      <div className="admd-stat still">
+                        <span className="n">{d.counts.learned || 0}</span>
+                        <span className="l">words retired</span>
+                      </div>
+                    </div>
+                    <div className="admd-sechdr">Music and case drills</div>
+                    <div className="admd-stats">
+                      <button className="admd-stat" disabled={!d.counts.songs}
+                        onClick={function(){ setAdminDetailView("songs"); }}
+                        title={(d.recorded && !d.recorded.songs)
+                          ? "Songs have only been recorded since September 2026 — this fills in on their next visit."
+                          : ""}>
+                        <span className="n">
+                          {(d.recorded && !d.recorded.songs) ? <span className="unrec">—</span> : d.counts.songs}
+                        </span>
+                        <span className="l">songs opened</span>
+                      </button>
+                      <div className="admd-stat still">
+                        <span className="n">
+                          {(d.recorded && !d.recorded.songs) ? <span className="unrec">—</span> : (d.counts.songPlays || 0)}
+                        </span>
+                        <span className="l">times played</span>
+                      </div>
+                      <button className="admd-stat" disabled={!(d.drillBooks || []).length}
+                        onClick={function(){ setAdminDetailView("drills"); }}
+                        title={(d.recorded && !d.recorded.drills)
+                          ? "Case drills have only been recorded since September 2026."
+                          : ""}>
+                        <span className="n">
+                          {(d.recorded && !d.recorded.drills) ? <span className="unrec">—</span> : (d.counts.drillRuns || 0)}
+                        </span>
+                        <span className="l">case drills</span>
+                      </button>
+                      <div className="admd-stat still">
+                        <span className="n">
+                          {d.counts.drillQuestions
+                            ? Math.round((d.counts.drillCorrect / d.counts.drillQuestions) * 100) + "%"
+                            : <span className="unrec">—</span>}
+                        </span>
+                        <span className="l">of {d.counts.drillQuestions || 0} right</span>
+                      </div>
+                    </div>
+                    {/* Eight weeks of the daily log, the same strip the site
+                        trend uses — a reader who comes every evening and one
+                        who read everything in a weekend are not the same
+                        reader, and the totals above cannot tell them apart. */}
+                    {(d.days || []).length > 1 && (
+                      <div className="admd-trend">
+                        {d.days.map(function(r){
+                          var top = Math.max.apply(null, d.days.map(function(x){ return x.read; }).concat([1]));
+                          return (
+                            <div key={r.date} className="admd-bar"
+                              title={r.date + " — " + r.read + " words, " + r.practiced + " cards"}>
+                              <div style={{height: Math.max(2, Math.round((r.read / top) * 40)) + "px"}} />
+                              <span>{r.date.slice(8)}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
                     {/* Where the panel looked, and what answered. On a site with
                         one reader an empty panel is a mystery; this makes it a
                         fact — and offers the one repair it usually needs. */}
@@ -11909,7 +12440,7 @@ export default function App() {
                       {artist.songs.map(function(sg, i2){
                         return (
                           <button key={i2} className="btn-p" style={{textAlign:"left",padding:"14px 18px"}}
-                            onClick={function(){ setMusicSong(i2); }}>
+                            onClick={function(){ setMusicSong(i2); recordSongOpen(artist.artist, sg); }}>
                             <div style={{fontSize:17}}>{sg.title}</div>
                           </button>
                         );
@@ -12739,6 +13270,7 @@ export default function App() {
                         // they touch; the third shows one.
                         var authorView = !searching && !!libAuthor;
                         var inAuthors  = !searching && !libAuthor && libCat === "__authors__";
+                        var inReads    = !searching && !libAuthor && libCat === "__reads__";
                         // A search opens every shelf, because the answer could be on
                         // any of them. Picking a length is the same kind of question —
                         // "what have you got that is short?" — and answering it with a
@@ -12750,7 +13282,7 @@ export default function App() {
                         var openCat = (searching || authorView) ? "__all__"
                                     : (libLength && !libCat) ? "__all__"
                                     : libCat;
-                        var shelvesToRender = inAuthors ? []
+                        var shelvesToRender = (inAuthors || inReads) ? []
                           : (openCat === "__all__") ? shelves
                           : (openCat && buckets[openCat] && buckets[openCat].length) ? [openCat] : [];
                         var chipLabel = function(c) {
@@ -12788,6 +13320,23 @@ export default function App() {
                                   onClick={function(){ setLibCat(libCat === "__authors__" ? "" : "__authors__"); }}>
                                   <span>Authors</span>
                                   <span className="n">{authorList.length}</span>
+                                </button>
+                              )}
+                              {/* What everyone else is reading. The tally has
+                                  existed since August and was admin-only, which
+                                  made a secret of a fact about the shelf rather
+                                  than about anybody on it. */}
+                              {!authorView && (
+                                <button type="button"
+                                  className={"lib-cat-chip" + (inReads ? " on" : "")}
+                                  aria-pressed={inReads}
+                                  onClick={function(){
+                                    var next = libCat === "__reads__" ? "" : "__reads__";
+                                    setLibCat(next);
+                                    if (next && !libReads) loadLibReads();
+                                    if (next) setMusicWanted(true);
+                                  }}>
+                                  <span>Most read</span>
                                 </button>
                               )}
                               {!authorView && shelves.map(function(c){
@@ -12829,6 +13378,121 @@ export default function App() {
                                 )}
                               </div>
                             )}
+                            {/* Most read: every title that has been opened, in
+                                order, and the songs underneath on the same
+                                terms. A row is a book — clicking it opens the
+                                book, which is the one thing a ranked list on a
+                                library page ought to do. */}
+                            {inReads && (function(){
+                              if (!libReads) {
+                                return <div className="lib-cat-hint">{libReadsLoad ? "Counting…" : "Nothing counted yet."}</div>;
+                              }
+                              var opens = libReads.opens || {};
+                              var byName = {};
+                              presetBooks.forEach(function(b){ byName[b.filename] = b; });
+                              var rows = Object.keys(opens).map(function(fn){
+                                var b = byName[fn];
+                                return {
+                                  fn: fn,
+                                  book: b || null,
+                                  title: b ? (b.title || fn) : fn,
+                                  author: b ? (b.author || "") : "",
+                                  n: opens[fn] || 0,
+                                };
+                              }).filter(function(r){
+                                // A title the library no longer carries still
+                                // has a count, and a row nobody can open is
+                                // furniture on a page whose rows are doors.
+                                return r.n > 0 && r.book;
+                              }).sort(function(a, b){
+                                return b.n - a.n || String(a.title).localeCompare(String(b.title), "ru");
+                              });
+                              var total = rows.reduce(function(n, r){ return n + r.n; }, 0);
+                              var songCounts = libReads.songs || {};
+                              var songRows = [], songSeen = {};
+                              (musicData || []).forEach(function(ar){
+                                (ar.songs || []).forEach(function(sg){
+                                  var id = sg.youtube || "";
+                                  var n = songCounts[id] || 0;
+                                  // Once per video: the same recording can be
+                                  // listed under two artists, and the count
+                                  // belongs to the video, not to the listing.
+                                  if (!n || !id || songSeen[id]) return;
+                                  songSeen[id] = true;
+                                  songRows.push({ id: id, title: sg.title, artist: ar.artist, n: n });
+                                });
+                              });
+                              songRows.sort(function(a, b){ return b.n - a.n; });
+                              return (
+                                <div className="lib-reads">
+                                  <div className="lib-reads-h">
+                                    <span>What everyone is reading</span>
+                                    <span className="lib-reads-sub">
+                                      {total.toLocaleString()} opening{total === 1 ? "" : "s"} of {rows.length} title
+                                      {rows.length === 1 ? "" : "s"}
+                                      {libReads.since
+                                        ? ", counted since " + new Date(libReads.since).toLocaleDateString(undefined, { month: "long", year: "numeric" })
+                                        : ""}
+                                    </span>
+                                  </div>
+                                  {!rows.length && <div className="lib-cat-hint">Nothing has been opened yet.</div>}
+                                  <ol className="lib-reads-list">
+                                    {rows.map(function(r, i){
+                                      return (
+                                        <li key={r.fn}>
+                                          <button type="button" className="lib-read-row"
+                                            disabled={bookLoading !== null}
+                                            onClick={function(){
+                                              if (bookLoading !== null) return;
+                                              if (r.book.category === "Song Lyrics") openSongPicker(r.book);
+                                              else loadPresetBook(r.book);
+                                            }}>
+                                            <span className="rk">{i + 1}</span>
+                                            <span className="tt">
+                                              {r.title}
+                                              {r.author ? <span className="au">{r.author}</span> : null}
+                                            </span>
+                                            <span className="ct">{r.n}</span>
+                                          </button>
+                                        </li>
+                                      );
+                                    })}
+                                  </ol>
+                                  {songRows.length > 0 && (
+                                    <>
+                                      <div className="lib-reads-h" style={{marginTop:26}}>
+                                        <span>And in the Music tab</span>
+                                        <span className="lib-reads-sub">
+                                          {songRows.reduce(function(n, r){ return n + r.n; }, 0)} opening
+                                          {songRows.reduce(function(n, r){ return n + r.n; }, 0) === 1 ? "" : "s"}
+                                        </span>
+                                      </div>
+                                      <ol className="lib-reads-list">
+                                        {songRows.slice(0, 20).map(function(r, i){
+                                          return (
+                                            <li key={r.id}>
+                                              <button type="button" className="lib-read-row"
+                                                onClick={function(){ setTab("music"); }}>
+                                                <span className="rk">{i + 1}</span>
+                                                <span className="tt">{r.title}<span className="au">{r.artist}</span></span>
+                                                <span className="ct">{r.n}</span>
+                                              </button>
+                                            </li>
+                                          );
+                                        })}
+                                      </ol>
+                                    </>
+                                  )}
+                                  <p className="lib-reads-note">
+                                    An opening, not a finishing and not a reader: one person coming
+                                    back to a book eight times counts eight. Nothing here is counted
+                                    further back than the tally itself, so a title missing from this
+                                    list has been added recently or read before counting began — not
+                                    ignored.
+                                  </p>
+                                </div>
+                              );
+                            })()}
                             {/* My Uploads section — only when there are uploaded books matching the filter */}
                             {filteredUploads.length > 0 && (
                               <div className="lib-section">
@@ -12866,7 +13530,7 @@ export default function App() {
                               </div>
                             )}
                             {/* Nothing chosen yet: the chips above are the page. */}
-                            {!searching && !inAuthors && !shelvesToRender.length && (
+                            {!searching && !inAuthors && !inReads && !shelvesToRender.length && (
                               <div className="lib-cat-hint">Pick a shelf above, or open the entire library.</div>
                             )}
                             {/* Preset library, grouped by category, then by audiobook availability */}
@@ -14274,6 +14938,12 @@ export default function App() {
                               {answered && (
                                 <div style={{marginTop:22,textAlign:"center"}}>
                                   <button className="btn-p" style={{maxWidth:260}} onClick={function(){
+                                    // The last answer is where a drill is
+                                    // finished. The results screen is a render
+                                    // and would count again on every redraw.
+                                    if (exCat === "grammar" && exIdx + 1 >= exQuestions.length) {
+                                      recordDrill(exQuestions.length, exScore, bookMeta);
+                                    }
                                     setExIdx(function(i){ return i + 1; });
                                     setExSelected(null);
                                   }}>

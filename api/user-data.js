@@ -76,6 +76,30 @@ async function r2Put(userId, type, data) {
   await s3.send(cmd);
 }
 
+// Every YouTube id the music manifests carry, read once per cold start. Both
+// files are consulted rather than the one this deployment serves: the two sites
+// share a bucket, and a song counted under one should not be refused under the
+// other for the sake of a file name.
+let SONG_IDS = null;
+function knownSongIds() {
+  if (SONG_IDS) return SONG_IDS;
+  const ids = new Set();
+  for (const name of ["music.json", "music.public.json"]) {
+    try {
+      const j = JSON.parse(fs.readFileSync(
+        path.join(process.cwd(), "public", "music", name), "utf8"));
+      for (const artist of (Array.isArray(j) ? j : [])) {
+        for (const song of ((artist && artist.songs) || [])) {
+          const y = String((song && song.youtube) || "").trim();
+          if (/^[A-Za-z0-9_-]{11}$/.test(y)) ids.add(y);
+        }
+      }
+    } catch (e) { /* a missing manifest just means no ids from it */ }
+  }
+  SONG_IDS = ids;
+  return ids;
+}
+
 // ── Main handler ──────────────────────────────────────────────────────────────
 export default async function handler(req, res) {
   // ── Anonymous reading counter ───────────────────────────────────────────
@@ -110,6 +134,33 @@ export default async function handler(req, res) {
         });
       } catch (e) {
         return res.status(200).json({ goal: 0, raised: 0 });
+      }
+    }
+    // The library's own weather: how often each title has been opened, and
+    // how often each song has been played. Public because it describes the
+    // shelf rather than anyone standing at it — a filename and a number, with
+    // no way to tell one reader from a hundred. Cached hard: it changes by one
+    // every few minutes and nobody needs it to the second.
+    if (req.query.anon === "books" && req.method === "GET") {
+      try {
+        const grab = async function (name) {
+          try {
+            const r = await s3.send(new GetObjectCommand({
+              Bucket: BUCKET, Key: `${PREFIX}/_stats/${name}.json`,
+            }));
+            const j = JSON.parse(await r.Body.transformToString());
+            return (j && typeof j === "object") ? j : {};
+          } catch (e) { return {}; }
+        };
+        const [books, songs, anon] = await Promise.all([
+          grab("books"), grab("songs"), grab("anon"),
+        ]);
+        res.setHeader("Cache-Control", "public, max-age=300, s-maxage=300");
+        return res.status(200).json({
+          opens: books, songs: songs, since: anon.since || null,
+        });
+      } catch (e) {
+        return res.status(200).json({ opens: {}, songs: {}, since: null });
       }
     }
     if (req.query.anon === "count" && req.method === "GET") {
@@ -236,6 +287,41 @@ export default async function handler(req, res) {
         await s3.send(new PutObjectCommand({
           Bucket: BUCKET, Key: key,
           Body: JSON.stringify(cur, null, 2), ContentType: "application/json",
+        }));
+        return res.status(200).json({ ok: true });
+      } catch (e) {
+        return res.status(200).json({ ok: false });
+      }
+    }
+    // A song opened in the Music tab. The books tally has always answered
+    // "which of these does anyone actually read"; this asks it of the music,
+    // which until now was shipped blind.
+    //
+    // Keyed by the YouTube id rather than the title: the id is the one field
+    // that survives a retitling or a change of spelling, and it is eleven
+    // characters of a fixed alphabet, which makes it safe as a key. Only ids
+    // the music manifest actually carries are counted — the same guard the
+    // dead-embed report uses — so an unauthenticated endpoint cannot be used
+    // to grow the file with ids nobody ships.
+    if (req.query.anon === "song") {
+      try {
+        const v = String((req.query && req.query.s) || "").trim();
+        if (!/^[A-Za-z0-9_-]{11}$/.test(v)) return res.status(200).json({ ok: false });
+        if (!knownSongIds().has(v)) return res.status(200).json({ ok: false });
+        await bumpDaily("songOpens", 1);
+        const key = `${PREFIX}/_stats/songs.json`;
+        let cur = null;
+        try {
+          const resp = await s3.send(new GetObjectCommand({ Bucket: BUCKET, Key: key }));
+          cur = JSON.parse(await resp.Body.transformToString());
+        } catch (e) {
+          if (!(e.name === "NoSuchKey" || e.$metadata?.httpStatusCode === 404)) throw e;
+        }
+        cur = (cur && typeof cur === "object") ? cur : {};
+        cur[v] = (cur[v] || 0) + 1;
+        await s3.send(new PutObjectCommand({
+          Bucket: BUCKET, Key: key,
+          Body: JSON.stringify(cur), ContentType: "application/json",
         }));
         return res.status(200).json({ ok: true });
       } catch (e) {
@@ -377,6 +463,12 @@ export default async function handler(req, res) {
       // and the day-by-day reading and practice log behind the streak.
       const learned = await r2Get(userId, "learned");
       const stats = await r2Get(userId, "stats");
+      // Songs opened in the Music tab, and finished case drills. Both used to
+      // live only in the browser, so both read empty for every account that
+      // predates this — which is a gap in the record, not a reader who never
+      // did either.
+      const songs = await r2Get(userId, "songs");
+      const drills = await r2Get(userId, "drills");
 
       return res.status(200).json({
         vocab: Array.isArray(vocab) ? vocab : [],
@@ -384,6 +476,8 @@ export default async function handler(req, res) {
         finished: (finished && typeof finished === "object" && !Array.isArray(finished)) ? finished : {},
         learned: Array.isArray(learned) ? learned : [],
         stats: (stats && typeof stats === "object" && !Array.isArray(stats)) ? stats : {},
+        songs: (songs && typeof songs === "object" && !Array.isArray(songs)) ? songs : {},
+        drills: (drills && typeof drills === "object" && !Array.isArray(drills)) ? drills : {},
       });
     }
 
@@ -457,6 +551,68 @@ export default async function handler(req, res) {
         }
         await r2Put(userId, "learned", learned);
         return res.status(200).json({ ok: true });
+      }
+
+      if (type === "songs") {
+        // Songs opened in the Music tab, as
+        //   { [youtubeId]: { n, at, artist, title } }.
+        // Merged per song: n takes the larger count and `at` the later visit,
+        // for the same reason progress is merged — each device saw only its
+        // own listening, and a phone with one song would otherwise erase the
+        // twenty a laptop had.
+        const inc = body.songs;
+        if (!inc || typeof inc !== "object" || Array.isArray(inc)) {
+          return res.status(400).json({ error: "songs must be an object" });
+        }
+        let existing = null;
+        try { existing = await r2Get(userId, "songs"); } catch (e) {}
+        const merged = (existing && typeof existing === "object" && !Array.isArray(existing)) ? existing : {};
+        for (const k of Object.keys(inc)) {
+          if (!/^[A-Za-z0-9_-]{11}$/.test(k)) continue;
+          const a = merged[k] || {}, b = inc[k] || {};
+          merged[k] = {
+            n: Math.max(Number(a.n) || 0, Number(b.n) || 0),
+            at: Math.max(Number(a.at) || 0, Number(b.at) || 0),
+            artist: String(b.artist || a.artist || "").slice(0, 120),
+            title: String(b.title || a.title || "").slice(0, 160),
+          };
+        }
+        await r2Put(userId, "songs", merged);
+        return res.status(200).json({ ok: true });
+      }
+
+      if (type === "drills") {
+        // Case drills finished, as
+        //   { runs, questions, correct, last, byBook: { [key]: {...} } }.
+        // Counters only ever go up, so the larger figure wins a merge — the
+        // same rule the daily reading log uses, and for the same reason.
+        const inc = body.drills;
+        if (!inc || typeof inc !== "object" || Array.isArray(inc)) {
+          return res.status(400).json({ error: "drills must be an object" });
+        }
+        let existing = null;
+        try { existing = await r2Get(userId, "drills"); } catch (e) {}
+        const cur = (existing && typeof existing === "object" && !Array.isArray(existing)) ? existing : {};
+        const big = function (a, b) { return Math.max(Number(a) || 0, Number(b) || 0); };
+        const merged = {
+          runs: big(cur.runs, inc.runs),
+          questions: big(cur.questions, inc.questions),
+          correct: big(cur.correct, inc.correct),
+          last: big(cur.last, inc.last),
+          byBook: Object.assign({}, cur.byBook || {}),
+        };
+        const inBooks = (inc.byBook && typeof inc.byBook === "object") ? inc.byBook : {};
+        for (const k of Object.keys(inBooks).slice(0, 400)) {
+          const a = merged.byBook[k] || {}, b = inBooks[k] || {};
+          merged.byBook[String(k).slice(0, 200)] = {
+            runs: big(a.runs, b.runs),
+            questions: big(a.questions, b.questions),
+            correct: big(a.correct, b.correct),
+            title: String(b.title || a.title || "").slice(0, 160),
+          };
+        }
+        await r2Put(userId, "drills", merged);
+        return res.status(200).json({ ok: true, drills: merged });
       }
 
       if (type === "settings") {
