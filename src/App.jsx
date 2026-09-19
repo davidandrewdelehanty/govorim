@@ -9401,7 +9401,7 @@ export default function App() {
         /* The Most-read shelf: a ranked list whose rows are doors, set as a
            table of contents rather than as cards — the ranking is the point,
            and cards put it second to the cover. */
-        .lib-reads{align-self:stretch;width:100%;max-width:720px;margin:0}
+        .lib-reads{align-self:center;width:100%;max-width:700px;margin:0}
         .lib-reads-h{display:flex;flex-direction:column;gap:3px;margin-bottom:10px}
         .lib-reads-h>span:first-child{font-family:'Old Standard TT',serif;font-size:22px;color:#000}
         .lib-reads-sub{font-family:'Literata',serif;font-style:italic;font-size:13px;color:rgba(42,31,20,.55)}
@@ -12338,7 +12338,7 @@ export default function App() {
               short to begin with — they sit beside the name now and the page
               gets the height back. */}
           <div className="tabs">
-            {["chat","vocab","grammar","forum","music"].filter(function(t){ return t !== "forum" || FORUM_ENABLED; }).map(function(t){
+            {["chat","ranked","vocab","grammar","forum","music"].filter(function(t){ return t !== "forum" || FORUM_ENABLED; }).map(function(t){
               return (
                 <button key={t} className={"tab"+(tab===t?" on":"")} onClick={function(){
                   // The Reading tab always lands on the "Open a Russian book"
@@ -12351,9 +12351,18 @@ export default function App() {
                     setLview("read");
                     stopTTS();
                   }
+                  // The ranking is one cached request and most visits never
+                  // ask for it, so it is fetched when somebody opens the tab
+                  // rather than on every page load. The music list comes too:
+                  // the song rows are keyed by video id and need names.
+                  if (t === "ranked") {
+                    if (!libReads) loadLibReads();
+                    setMusicWanted(true);
+                    stopTTS();
+                  }
                   setTab(t);
                 }}>
-                  {t==="chat"?"Reading":t==="vocab"?"Vocabulary":t==="grammar"?"Grammar":t==="forum"?"Forum":"Music"}
+                  {t==="chat"?"Reading":t==="ranked"?"Books by popularity":t==="vocab"?"Vocabulary":t==="grammar"?"Grammar":t==="forum"?"Forum":"Music"}
                   {t==="vocab"&&vocab.length>0&&<span className="bdg">{vocab.length}</span>}
                   {t==="grammar"&&tips.length>0&&<span className="bdg g">{tips.length}</span>}
                 </button>
@@ -12392,6 +12401,131 @@ export default function App() {
           <div style={{padding:"8px 28px",background:"rgba(157,70,48,.18)",borderBottom:"1px solid rgba(157,70,48,.35)",color:"#9d4630",fontSize:13,display:"flex",alignItems:"center",gap:10}}>
             <span style={{flex:1}}>{syncErr}</span>
             <button onClick={function(){ setSyncErr(""); }} style={{background:"none",border:"none",color:"#9d4630",cursor:"pointer",fontSize:18,padding:0}}>×</button>
+          </div>
+        )}
+
+        {tab==="ranked" && (
+          <div className="main">
+            <div className="ss">
+              <h1 className="sti">Books by popularity</h1>
+              <p className="sde">
+                Every book in the library, ranked by how many times it has been opened.
+                Tap one to start reading it.
+              </p>
+              {(function(){
+                if (!libReads) {
+                  return <div className="lib-cat-hint">{libReadsLoad ? "Counting…" : "Nothing counted yet."}</div>;
+                }
+                var opens = libReads.opens || {};
+                // Only the library's own books. A reader's own file never
+                // reaches this counter — only loadPresetBook reports an open —
+                // and looking each counted name up in the catalogue makes that
+                // structural rather than a promise: a filename with no book
+                // behind it produces no row.
+                var byName = {};
+                presetBooks.forEach(function(b){ byName[b.filename] = b; });
+                var rows = Object.keys(opens).map(function(fn){
+                  var b = byName[fn];
+                  return { fn: fn, book: b || null,
+                           title: b ? (b.title || fn) : fn,
+                           author: b ? (b.author || "") : "",
+                           n: opens[fn] || 0 };
+                }).filter(function(r){
+                  return r.n > 0 && r.book;
+                }).sort(function(a, b){
+                  return b.n - a.n || String(a.title).localeCompare(String(b.title), "ru");
+                });
+                var total = rows.reduce(function(n, r){ return n + r.n; }, 0);
+                var songCounts = libReads.songs || {};
+                var songRows = [], songSeen = {};
+                (musicData || []).forEach(function(ar){
+                  (ar.songs || []).forEach(function(sg){
+                    var id = sg.youtube || "";
+                    var n = songCounts[id] || 0;
+                    // Once per video: the same recording can be listed under
+                    // two artists, and the count belongs to the video.
+                    if (!n || !id || songSeen[id]) return;
+                    songSeen[id] = true;
+                    songRows.push({ id: id, title: sg.title, artist: ar.artist, n: n });
+                  });
+                });
+                songRows.sort(function(a, b){ return b.n - a.n; });
+                var openBook = function(book){
+                  if (bookLoading !== null) return;
+                  // The reader lives on the Reading tab, so the tab has to
+                  // move with the book or the page would appear to do nothing.
+                  setTab("chat");
+                  setMode("read");
+                  if (book.category === "Song Lyrics") openSongPicker(book);
+                  else loadPresetBook(book);
+                };
+                return (
+                  <div className="lib-reads">
+                    <div className="lib-reads-h">
+                      <span className="lib-reads-sub">
+                        {total.toLocaleString()} opening{total === 1 ? "" : "s"} of {rows.length} title
+                        {rows.length === 1 ? "" : "s"}
+                        {libReads.since
+                          ? ", counted since " + new Date(libReads.since).toLocaleDateString(undefined, { month: "long", year: "numeric" })
+                          : ""}
+                      </span>
+                    </div>
+                    {!rows.length && <div className="lib-cat-hint">Nothing has been opened yet.</div>}
+                    <ol className="lib-reads-list">
+                      {rows.map(function(r, i){
+                        return (
+                          <li key={r.fn}>
+                            <button type="button" className="lib-read-row"
+                              disabled={bookLoading !== null}
+                              onClick={function(){ openBook(r.book); }}>
+                              <span className="rk">{i + 1}</span>
+                              <span className="tt">
+                                {r.title}
+                                {r.author ? <span className="au">{r.author}</span> : null}
+                              </span>
+                              <span className="ct">{r.n}</span>
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ol>
+                    {songRows.length > 0 && (
+                      <>
+                        <div className="lib-reads-h" style={{marginTop:26}}>
+                          <span>And in the Music tab</span>
+                          <span className="lib-reads-sub">
+                            {songRows.reduce(function(n, r){ return n + r.n; }, 0)} opening
+                            {songRows.reduce(function(n, r){ return n + r.n; }, 0) === 1 ? "" : "s"}
+                          </span>
+                        </div>
+                        <ol className="lib-reads-list">
+                          {songRows.slice(0, 20).map(function(r, i){
+                            return (
+                              <li key={r.id}>
+                                <button type="button" className="lib-read-row"
+                                  onClick={function(){ setTab("music"); }}>
+                                  <span className="rk">{i + 1}</span>
+                                  <span className="tt">{r.title}<span className="au">{r.artist}</span></span>
+                                  <span className="ct">{r.n}</span>
+                                </button>
+                              </li>
+                            );
+                          })}
+                        </ol>
+                      </>
+                    )}
+                    <p className="lib-reads-note">
+                      An opening, not a finishing and not a reader: one person coming back
+                      to a book eight times counts eight. Books you open from your own
+                      machine are never counted here — nothing about them reaches the
+                      server. And nothing is counted further back than the tally itself, so
+                      a title missing from this list has been added recently or read before
+                      counting began, not ignored.
+                    </p>
+                  </div>
+                );
+              })()}
+            </div>
           </div>
         )}
 
@@ -13270,7 +13404,6 @@ export default function App() {
                         // they touch; the third shows one.
                         var authorView = !searching && !!libAuthor;
                         var inAuthors  = !searching && !libAuthor && libCat === "__authors__";
-                        var inReads    = !searching && !libAuthor && libCat === "__reads__";
                         // A search opens every shelf, because the answer could be on
                         // any of them. Picking a length is the same kind of question —
                         // "what have you got that is short?" — and answering it with a
@@ -13282,7 +13415,7 @@ export default function App() {
                         var openCat = (searching || authorView) ? "__all__"
                                     : (libLength && !libCat) ? "__all__"
                                     : libCat;
-                        var shelvesToRender = (inAuthors || inReads) ? []
+                        var shelvesToRender = inAuthors ? []
                           : (openCat === "__all__") ? shelves
                           : (openCat && buckets[openCat] && buckets[openCat].length) ? [openCat] : [];
                         var chipLabel = function(c) {
@@ -13320,23 +13453,6 @@ export default function App() {
                                   onClick={function(){ setLibCat(libCat === "__authors__" ? "" : "__authors__"); }}>
                                   <span>Authors</span>
                                   <span className="n">{authorList.length}</span>
-                                </button>
-                              )}
-                              {/* What everyone else is reading. The tally has
-                                  existed since August and was admin-only, which
-                                  made a secret of a fact about the shelf rather
-                                  than about anybody on it. */}
-                              {!authorView && (
-                                <button type="button"
-                                  className={"lib-cat-chip" + (inReads ? " on" : "")}
-                                  aria-pressed={inReads}
-                                  onClick={function(){
-                                    var next = libCat === "__reads__" ? "" : "__reads__";
-                                    setLibCat(next);
-                                    if (next && !libReads) loadLibReads();
-                                    if (next) setMusicWanted(true);
-                                  }}>
-                                  <span>Most read</span>
                                 </button>
                               )}
                               {!authorView && shelves.map(function(c){
@@ -13378,121 +13494,6 @@ export default function App() {
                                 )}
                               </div>
                             )}
-                            {/* Most read: every title that has been opened, in
-                                order, and the songs underneath on the same
-                                terms. A row is a book — clicking it opens the
-                                book, which is the one thing a ranked list on a
-                                library page ought to do. */}
-                            {inReads && (function(){
-                              if (!libReads) {
-                                return <div className="lib-cat-hint">{libReadsLoad ? "Counting…" : "Nothing counted yet."}</div>;
-                              }
-                              var opens = libReads.opens || {};
-                              var byName = {};
-                              presetBooks.forEach(function(b){ byName[b.filename] = b; });
-                              var rows = Object.keys(opens).map(function(fn){
-                                var b = byName[fn];
-                                return {
-                                  fn: fn,
-                                  book: b || null,
-                                  title: b ? (b.title || fn) : fn,
-                                  author: b ? (b.author || "") : "",
-                                  n: opens[fn] || 0,
-                                };
-                              }).filter(function(r){
-                                // A title the library no longer carries still
-                                // has a count, and a row nobody can open is
-                                // furniture on a page whose rows are doors.
-                                return r.n > 0 && r.book;
-                              }).sort(function(a, b){
-                                return b.n - a.n || String(a.title).localeCompare(String(b.title), "ru");
-                              });
-                              var total = rows.reduce(function(n, r){ return n + r.n; }, 0);
-                              var songCounts = libReads.songs || {};
-                              var songRows = [], songSeen = {};
-                              (musicData || []).forEach(function(ar){
-                                (ar.songs || []).forEach(function(sg){
-                                  var id = sg.youtube || "";
-                                  var n = songCounts[id] || 0;
-                                  // Once per video: the same recording can be
-                                  // listed under two artists, and the count
-                                  // belongs to the video, not to the listing.
-                                  if (!n || !id || songSeen[id]) return;
-                                  songSeen[id] = true;
-                                  songRows.push({ id: id, title: sg.title, artist: ar.artist, n: n });
-                                });
-                              });
-                              songRows.sort(function(a, b){ return b.n - a.n; });
-                              return (
-                                <div className="lib-reads">
-                                  <div className="lib-reads-h">
-                                    <span>What everyone is reading</span>
-                                    <span className="lib-reads-sub">
-                                      {total.toLocaleString()} opening{total === 1 ? "" : "s"} of {rows.length} title
-                                      {rows.length === 1 ? "" : "s"}
-                                      {libReads.since
-                                        ? ", counted since " + new Date(libReads.since).toLocaleDateString(undefined, { month: "long", year: "numeric" })
-                                        : ""}
-                                    </span>
-                                  </div>
-                                  {!rows.length && <div className="lib-cat-hint">Nothing has been opened yet.</div>}
-                                  <ol className="lib-reads-list">
-                                    {rows.map(function(r, i){
-                                      return (
-                                        <li key={r.fn}>
-                                          <button type="button" className="lib-read-row"
-                                            disabled={bookLoading !== null}
-                                            onClick={function(){
-                                              if (bookLoading !== null) return;
-                                              if (r.book.category === "Song Lyrics") openSongPicker(r.book);
-                                              else loadPresetBook(r.book);
-                                            }}>
-                                            <span className="rk">{i + 1}</span>
-                                            <span className="tt">
-                                              {r.title}
-                                              {r.author ? <span className="au">{r.author}</span> : null}
-                                            </span>
-                                            <span className="ct">{r.n}</span>
-                                          </button>
-                                        </li>
-                                      );
-                                    })}
-                                  </ol>
-                                  {songRows.length > 0 && (
-                                    <>
-                                      <div className="lib-reads-h" style={{marginTop:26}}>
-                                        <span>And in the Music tab</span>
-                                        <span className="lib-reads-sub">
-                                          {songRows.reduce(function(n, r){ return n + r.n; }, 0)} opening
-                                          {songRows.reduce(function(n, r){ return n + r.n; }, 0) === 1 ? "" : "s"}
-                                        </span>
-                                      </div>
-                                      <ol className="lib-reads-list">
-                                        {songRows.slice(0, 20).map(function(r, i){
-                                          return (
-                                            <li key={r.id}>
-                                              <button type="button" className="lib-read-row"
-                                                onClick={function(){ setTab("music"); }}>
-                                                <span className="rk">{i + 1}</span>
-                                                <span className="tt">{r.title}<span className="au">{r.artist}</span></span>
-                                                <span className="ct">{r.n}</span>
-                                              </button>
-                                            </li>
-                                          );
-                                        })}
-                                      </ol>
-                                    </>
-                                  )}
-                                  <p className="lib-reads-note">
-                                    An opening, not a finishing and not a reader: one person coming
-                                    back to a book eight times counts eight. Nothing here is counted
-                                    further back than the tally itself, so a title missing from this
-                                    list has been added recently or read before counting began — not
-                                    ignored.
-                                  </p>
-                                </div>
-                              );
-                            })()}
                             {/* My Uploads section — only when there are uploaded books matching the filter */}
                             {filteredUploads.length > 0 && (
                               <div className="lib-section">
@@ -13530,7 +13531,7 @@ export default function App() {
                               </div>
                             )}
                             {/* Nothing chosen yet: the chips above are the page. */}
-                            {!searching && !inAuthors && !inReads && !shelvesToRender.length && (
+                            {!searching && !inAuthors && !shelvesToRender.length && (
                               <div className="lib-cat-hint">Pick a shelf above, or open the entire library.</div>
                             )}
                             {/* Preset library, grouped by category, then by audiobook availability */}
