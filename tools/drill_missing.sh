@@ -1,15 +1,22 @@
 #!/usr/bin/env bash
 # Generate case drills for every catalogue book that is missing them.
 #
-# A book qualifies only if it has a parallelEn translation — make_case_drills.py
-# pulls each drill's English sentence from there, and skips books without one.
+# It used to require a parallelEn translation, because a drill once showed the
+# English of the sentence it had blanked. It no longer does — see the RETIRED
+# note in make_case_drills.py — so that requirement was guarding a field that
+# does not exist and holding two thirds of the library out of drills. Gone.
+#
+# What remains is the verse rule: a drill blanks an adjective-noun pair out of
+# a running sentence, and a line of Пушкин is not one. The index has no `verse`
+# flag (an earlier version of this comment claimed otherwise; nothing sets it),
+# so the category is the test and Poetry is verse.
+#
 # Books that already have drill files are left alone (the tool never overwrites
 # without --force anyway, but skipping them keeps the run short).
 #
-# Some books are skipped by default (see SKIP below) — verse works, where the
-# drills want prose sentences, plus anything deliberately left alone. The run
-# always prints what it skipped, so nothing goes missing quietly; --no-skip
-# turns the list off.
+# The SKIP list below is for individual exceptions — works still in copyright,
+# and anything deliberately left alone. The run always prints what it skipped,
+# so nothing goes missing quietly; --no-skip turns the list off.
 #
 # Usage:   bash tools/drill_missing.sh              # every catalogue book
 #          bash tools/drill_missing.sh --list       # just show what would run
@@ -27,15 +34,23 @@ cd "$(dirname "$0")/.."
 
 # Skipped unless --no-skip. Keyed on the FB2 filename, with the reason, so a
 # future reader can tell a deliberate omission from an oversight.
+# The verse works are caught by the category test now, so this list is what
+# it was always for: the individual exceptions. The copyright dates are the
+# Russian term, life of the author plus seventy, with the four-year wartime
+# extension where it applies — a drill quotes one sentence, which is a small
+# use, but committing extracts of a work still in copyright is a decision to
+# take deliberately rather than by running a script over the whole shelf.
 SKIP_REASONS=$(cat <<'SKIPLIST'
-pushkin-bakhchisaraysky-fontan.fb2|verse — drills need prose sentences
-pushkin-medny-vsadnik.fb2|verse — drills need prose sentences
-pushkin-kavkazsky-plennik.fb2|verse — drills need prose sentences
-pushkin-tsygany.fb2|verse — drills need prose sentences
-pushkin-poltava.fb2|verse — drills need prose sentences
-pushkin-ya-vas-lyubil.fb2|verse — drills need prose sentences
 lermontov-demon.fb2|verse, and its English is keyed per section not per paragraph
 keyes-tsvety-dlya-eldzhernona.fb2|left alone deliberately
+zhivago-parts.fb2|Pasternak d.1960 — still in copyright in Russia
+tixi don.fb2|Sholokhov d.1984 — still in copyright in Russia
+«Денискины рассказы».fb2|Dragunsky d.1972 — still in copyright in Russia
+patriot.fb2|authorship and term not established
+Новый Русский Перевод Библии — по главам.fb2|modern translation, still in copyright
+bible-synodal.fb2|the Bible has its own keying — use make_case_drills.py --bible
+brezhnev-oktyabr-60-1977.fb2|Brezhnev d.1982 — still in copyright in Russia
+brezhnev-den-pobedy-1975.fb2|Brezhnev d.1982 — still in copyright in Russia
 SKIPLIST
 )
 export SKIP_REASONS
@@ -52,11 +67,9 @@ for line in (os.environ.get('SKIP_REASONS') or '').splitlines():
         k, _, why = line.partition('|')
         skip[k.strip()] = why.strip()
 for e in d:
-    # Case drills need prose sentences. Verse is marked at ingest time, so a
-    # poem is skipped without needing a hand-maintained list.
-    if e.get('verse'):
-        continue
-    if not e.get('parallelEn'):
+    # Case drills need prose sentences, and the shelf a book sits on is the
+    # only thing in the catalogue that says whether it is verse.
+    if e.get('category') == 'Poetry':
         continue
     if only_public and not e.get('public'):
         continue
@@ -93,7 +106,7 @@ BOOKS=("${KEEP[@]:-}")
 [ -z "${BOOKS[0]:-}" ] && BOOKS=()
 
 if [ "${#BOOKS[@]}" -eq 0 ]; then
-  echo "Nothing to do — every parallelEn book already has drills."
+  echo "Nothing to do — every prose book already has drills."
   exit 0
 fi
 

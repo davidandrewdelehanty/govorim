@@ -3447,6 +3447,11 @@ var WORDBANK_ENABLED = false;
 // page, the chooser button and the board loader are all gated on this; the
 // code and /api/forum stay in place so it can come back by flipping it.
 var FORUM_ENABLED = false;
+// Grammar is switched off for now — the banner tab and the button on the
+// opening page are both gated on this. Nothing is deleted: the reference
+// pages, the curriculum loader and the saved-topics list are all still here
+// and still work, so bringing it back is this one word.
+var GRAMMAR_ENABLED = false;
 
 export default function App() {
   // ── Account (optional) ────────────────────────────────────────────────────
@@ -10856,6 +10861,28 @@ export default function App() {
         .pjump:hover,.pbm:hover{background:none;opacity:1;color:var(--rubric)}
         .pbm.on{background:none;border:0;opacity:1;color:var(--rubric)}
         @media(max-width:900px){.pjump,.pbm{margin-left:-2px}}
+        /* The bookmark flag, quieted. At 22% it was still a grey mark beside
+           every paragraph of a long chapter — a column of furniture down the
+           margin of a page whose whole point is the text. It is invisible now
+           until the pointer is on the paragraph it belongs to, which is the
+           only moment anyone wants it; a bookmark actually set stays visible,
+           because that one is information rather than an offer. Touch has no
+           hover to reveal anything, so there it stays faintly drawn. */
+        @media(hover:hover){
+          /* Reveal on the text block, not on each paragraph. Per-paragraph was
+             the obvious rule and the wrong one: the flag floats into the
+             gutter on a negative margin, so it sits OUTSIDE its paragraph's
+             box, and reaching for it left the paragraph and took the flag
+             with it — a control that fled the cursor. Hovering anywhere in the
+             text brings the whole column up faintly instead, which is also the
+             honest version of what the reader is choosing between. */
+          .pbm{opacity:0;transition:opacity .14s}
+          .lit-left:hover .pbm,.ltxt:hover .pbm{opacity:.28}
+          .pbm:hover,.lit-left:hover .pbm:hover{opacity:1;color:var(--rubric)}
+          .pbm.on,.lit-left:hover .pbm.on{opacity:1;color:var(--rubric)}
+          .pbm:focus-visible{opacity:1}
+        }
+        @media(hover:none){.pbm{opacity:.16}.pbm.on{opacity:1;color:var(--rubric)}}
         .bm-menu{background:var(--paper-3);border:1px solid var(--ink);box-shadow:none}
         .bm-menu button{font-family:var(--serif)}
         .bm-menu button:hover{background:var(--paper-2)}
@@ -12338,7 +12365,11 @@ export default function App() {
               short to begin with — they sit beside the name now and the page
               gets the height back. */}
           <div className="tabs">
-            {["chat","ranked","vocab","grammar","forum","music"].filter(function(t){ return t !== "forum" || FORUM_ENABLED; }).map(function(t){
+            {["chat","ranked","vocab","grammar","forum","music"].filter(function(t){
+              if (t === "forum") return FORUM_ENABLED;
+              if (t === "grammar") return GRAMMAR_ENABLED;
+              return true;
+            }).map(function(t){
               return (
                 <button key={t} className={"tab"+(tab===t?" on":"")} onClick={function(){
                   // The Reading tab always lands on the "Open a Russian book"
@@ -12780,16 +12811,20 @@ export default function App() {
                 <SupportLinks funding={funding} />
                 <div className="sico" style={{color:"#2a1f14"}}><Samovar size={64}/></div>
                 <h1 className="sti">Practice</h1>
-                <p className="sde">Reading, or the grammar reference — choose.</p>
+                <p className="sde">
+                  {GRAMMAR_ENABLED ? "Reading, or the grammar reference — choose." : "Open a book and read."}
+                </p>
                 <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:14}}>
                   <button className="btn-p mode-btn" onClick={function(){ setMode("read"); }} style={{textAlign:"left",padding:"18px 22px"}}>
                     <div style={{fontSize:22,marginBottom:4}}>Read</div>
                     <div style={{fontSize:13,opacity:.85,fontFamily:"'Literata',serif",fontStyle:"italic"}}>Open a book from the library and read along with the narration.</div>
                   </button>
-                  <button className="btn-p mode-btn" onClick={function(){ setMode("grammar"); }} style={{textAlign:"left",padding:"18px 22px"}}>
-                    <div style={{fontSize:22,marginBottom:4}}>Grammar</div>
-                    <div style={{fontSize:13,opacity:.85,fontFamily:"'Literata',serif",fontStyle:"italic"}}>Pick your level and a topic. Quick reference pages with rules and examples.</div>
-                  </button>
+                  {GRAMMAR_ENABLED && (
+                    <button className="btn-p mode-btn" onClick={function(){ setMode("grammar"); }} style={{textAlign:"left",padding:"18px 22px"}}>
+                      <div style={{fontSize:22,marginBottom:4}}>Grammar</div>
+                      <div style={{fontSize:13,opacity:.85,fontFamily:"'Literata',serif",fontStyle:"italic"}}>Pick your level and a topic. Quick reference pages with rules and examples.</div>
+                    </button>
+                  )}
                   {WORDBANK_ENABLED && (
                     <button className="btn-p mode-btn" onClick={function(){ setMode("wordbank"); }} style={{textAlign:"left",padding:"18px 22px"}}>
                       <div style={{fontSize:22,marginBottom:4}}>Vocab</div>

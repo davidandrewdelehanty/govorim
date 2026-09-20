@@ -329,9 +329,11 @@ def sentence_translation(en_par, ridx, rtotal):
 
 def main():
     ap=argparse.ArgumentParser()
-    ap.add_argument('--repo',default='/mnt/c/Users/david/projects/govorim-app')
+    # The repo this file lives in, not whichever machine wrote the default.
+    ap.add_argument('--repo',default=os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     ap.add_argument('--book',help='FB2 filename as in the catalogue, e.g. moskva-petushki.fb2')
-    ap.add_argument('--all-parallel',action='store_true')
+    ap.add_argument('--all-parallel',action='store_true',help='every book with a parallelEn translation')
+    ap.add_argument('--all-prose',action='store_true',help='every book that is not verse (category Poetry)')
     ap.add_argument('--max-per-chapter',type=int,default=100000)
     ap.add_argument('--force',action='store_true')
     ap.add_argument('--bible',action='store_true',help='Bible only')
@@ -341,16 +343,23 @@ def main():
     if a.all: a.all_parallel=True
     if a.bible:
         run_bible(a, idx); return
-    books=[b for b in idx if 'parallelEn' in b]
-    if a.book: books=[b for b in books if b['filename'].endswith('/'+a.book) or b['filename']==a.book]
-    if not a.all_parallel and not a.book and not a.all:
-        sys.exit('Pick --book <file.fb2>, --all-parallel, --bible, or --all. Tagged books:\n  '+
-                 '\n  '.join(b['filename'] for b in [x for x in idx if 'parallelEn' in x]))
+    # Which books. --book looks through the WHOLE catalogue: it used to search
+    # only the parallelEn subset, so naming any other book found nothing and
+    # said nothing about why.
+    if a.book:
+        books=[b for b in idx if b.get('filename','').endswith('/'+a.book) or b.get('filename')==a.book]
+        if not books: sys.exit('No book in the catalogue is called %r.'%a.book)
+    elif a.all_prose:
+        books=[b for b in idx if b.get('category')!='Poetry' and b.get('filename')]
+    else:
+        books=[b for b in idx if 'parallelEn' in b]
+    if not a.all_parallel and not a.all_prose and not a.book and not a.all:
+        sys.exit('Pick --book <file.fb2>, --all-prose, --all-parallel, --bible, or --all.')
     outdir=os.path.join(a.repo,'public/books/exercises')
     os.makedirs(outdir,exist_ok=True)
     for b in books:
         fb2=os.path.join(a.repo,'public/books',b['filename'])
-        endir=os.path.join(a.repo,'public/books',b['parallelEn'])
+        endir=os.path.join(a.repo,'public/books',b['parallelEn']) if b.get('parallelEn') else None
         slug=re.sub(r'[^A-Za-z0-9_-]','_',re.sub(r'\.[^.]+$','',os.path.basename(b['filename'])))
         chapters=fb2_chapters(fb2)
         print('%s: %d chapters'%(b['title'],len(chapters)))
@@ -360,8 +369,13 @@ def main():
             if os.path.exists(fpath) and not a.force:
                 print('  ch%d: exists, skipping'%ci); continue
             nn=str(ci+1); nn='0'+nn if len(nn)<2 else nn
-            try: enmap=json.load(open(os.path.join(endir,nn+'.json'),encoding='utf-8'))
-            except Exception: enmap={}
+            # Loaded for nothing: kept only so the shape of this loop still
+            # matches run_bible below. See the RETIRED note at the foot of the
+            # file — a drill has shown no English line since August 2026.
+            enmap={}
+            if endir:
+                try: enmap=json.load(open(os.path.join(endir,nn+'.json'),encoding='utf-8'))
+                except Exception: enmap={}
             drills=[]
             for pi,par in enumerate(ch['paras']):
                 sents=sentences(par)
