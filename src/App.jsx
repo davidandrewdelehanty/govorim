@@ -3257,8 +3257,23 @@ var AVATARS = [
       "M12 3.5l2.4 5.2 5.6.6-4.2 3.8 1.2 5.6L12 15.8l-5 2.9 1.2-5.6L4 9.3l5.6-.6z" ] },
 ];
 
+// A photo id is "photo:<user id>:<version>". The version is only there to make
+// a new upload a new URL, so the browser's copy of the old one is never shown.
+function avatarPhotoUrl(id) {
+  var m = /^photo:(u_[0-9a-f]{24}):([a-z0-9]{1,12})$/.exec(String(id || ""));
+  return m ? "/api/auth?action=photo&u=" + m[1] + "&v=" + m[2] : "";
+}
+
 function Avatar({ id, name, size }) {
   var s = size || 28;
+  var photo = avatarPhotoUrl(id);
+  if (photo) {
+    return (
+      <span className="avatar photo" style={{width:s,height:s}} aria-hidden="true">
+        <img src={photo} alt="" width={s} height={s} loading="lazy" decoding="async" draggable={false} />
+      </span>
+    );
+  }
   var a = null;
   for (var i = 0; i < AVATARS.length; i++) if (AVATARS[i].id === id) { a = AVATARS[i]; break; }
   if (!a) {
@@ -3604,6 +3619,55 @@ export default function App() {
       setAcctBusy(false);
     }
   };
+  // A photo from the reader's own machine. Everything that makes it an avatar
+  // happens here, before it leaves: the middle square of the picture, drawn
+  // at 256 pixels a side and saved as a JPEG of twenty-odd kilobytes. A phone
+  // photo is several megabytes and three thousand pixels across; sending that
+  // to be shown at 26 would cost every reader who sees it, every time.
+  var photoInputRef = useRef(null);
+  var uploadPhoto = async function(file) {
+    if (!file) return;
+    setAcctSaved("");
+    if (!/^image\//.test(file.type || "")) { setAcctSaved("That file is not an image."); return; }
+    if (file.size > 25 * 1024 * 1024) { setAcctSaved("That image is too large — under 25 MB, please."); return; }
+    setAcctBusy(true);
+    var url = URL.createObjectURL(file);
+    try {
+      var img = await new Promise(function(ok, bad){
+        var im = new Image();
+        im.onload = function(){ ok(im); };
+        im.onerror = function(){ bad(new Error("This browser cannot read that image. Try a JPEG or PNG.")); };
+        im.src = url;
+      });
+      var w = img.naturalWidth, h = img.naturalHeight;
+      if (!w || !h) throw new Error("That image is empty.");
+      var side = Math.min(w, h), OUT = 256;
+      var cv = document.createElement("canvas");
+      cv.width = OUT; cv.height = OUT;
+      var cx = cv.getContext("2d");
+      // A transparent PNG would turn black as a JPEG; give it the page's paper.
+      cx.fillStyle = "#f5f0e8"; cx.fillRect(0, 0, OUT, OUT);
+      cx.imageSmoothingQuality = "high";
+      cx.drawImage(img, (w - side) / 2, (h - side) / 2, side, side, 0, 0, OUT, OUT);
+      var data = cv.toDataURL("image/jpeg", 0.86);
+      var r = await fetch("/api/auth/photo", {
+        method: "POST", credentials: "same-origin",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ data: data }),
+      });
+      var d = await r.json().catch(function(){ return {}; });
+      if (!r.ok) throw new Error(d.error || "Could not save the photo.");
+      setMe(function(cur){ return Object.assign({}, cur || {}, d.user || {}); });
+      setAcctSaved("Photo saved.");
+    } catch (err) {
+      setAcctSaved(err.message || "Could not save the photo.");
+    } finally {
+      URL.revokeObjectURL(url);
+      setAcctBusy(false);
+      if (photoInputRef.current) photoInputRef.current.value = "";
+    }
+  };
+
   var submitAuth = async function(e) {
     if (e && e.preventDefault) e.preventDefault();
     if (authBusy) return;
@@ -11450,6 +11514,9 @@ export default function App() {
         .avatar{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;
           border:1px solid var(--rule);border-radius:50%!important;background:var(--paper-3);color:var(--ink)}
         .avatar.mono{font-family:var(--display);font-weight:700;line-height:1}
+        .avatar.photo{overflow:hidden;padding:0}
+        .avatar.photo img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
+        .acct-photo-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
         .acct-btn{display:inline-flex;align-items:center;gap:8px;background:none;border:0;padding:0;cursor:pointer;color:var(--ink)}
         .acct-btn:hover .avatar{border-color:var(--ink)}
         .acct-btn:hover .acct-email{color:var(--ink)}
@@ -12050,7 +12117,25 @@ export default function App() {
 
                     <div className="acct-sec">
                       <div className="acct-h">Avatar</div>
+                      <div className="acct-photo-row">
+                        <input ref={photoInputRef} type="file" accept="image/*" hidden
+                          onChange={function(e){ uploadPhoto(e.target.files && e.target.files[0]); }} />
+                        <button type="button" className="adm-btn" disabled={acctBusy}
+                          onClick={function(){ if (photoInputRef.current) photoInputRef.current.click(); }}>
+                          {me.avatarPhoto ? "Upload a different photo" : "Upload a photo"}
+                        </button>
+                        <span className="acct-note" style={{marginTop:0}}>
+                          From your computer. The middle square is used.
+                        </span>
+                      </div>
                       <div className="acct-avs">
+                        {me.avatarPhoto && (
+                          <button type="button" title="Your photo" aria-label="Your photo"
+                            className={"acct-av" + (me.avatar === me.avatarPhoto ? " on" : "")} disabled={acctBusy}
+                            onClick={function(){ if (me.avatar !== me.avatarPhoto) saveProfile({ avatar: me.avatarPhoto }); }}>
+                            <Avatar id={me.avatarPhoto} size={40} />
+                          </button>
+                        )}
                         <button type="button" className={"acct-av" + (!me.avatar ? " on" : "")}
                           title="Your initial" disabled={acctBusy}
                           onClick={function(){ if (me.avatar) saveProfile({ avatar: "" }); }}>

@@ -38,6 +38,8 @@ import {
   setProfile,
   isUsernameFree,
   usernameProblem,
+  savePhoto,
+  readPhoto,
 } from "../lib/auth.js";
 import { sendEmail } from "../lib/admin/helpers.js";
 
@@ -102,6 +104,7 @@ export default async function handler(req, res) {
       }
       who.username = account.username || "";
       who.avatar = account.avatar || "";
+      who.avatarPhoto = account.avatarPhoto || "";
       who.createdAt = account.createdAt || null;
     } catch (_) {
       // An R2 hiccup should not lock every reader out of the site, so fall
@@ -146,6 +149,47 @@ export default async function handler(req, res) {
       return res.status(200).json({ ok: true, user: Object.assign({}, who, {
         username: out.account.username || "",
         avatar: out.account.avatar || "",
+        avatarPhoto: out.account.avatarPhoto || "",
+        createdAt: out.account.createdAt || null,
+      }) });
+    } catch (e) {
+      return res.status(500).json({ error: "Could not save: " + (e.message || e) });
+    }
+  }
+
+  // Avatar photos. GET ?u=<user id> is the picture, for anyone — it is shown
+  // beside the reader's notes and in group member lists, so it has to load
+  // for readers other than its owner. The URL carries the photo's version,
+  // so a new upload is a new URL and the old one can be cached for good.
+  // POST { data: <base64 JPEG> } replaces the signed-in reader's own photo
+  // and makes it their avatar.
+  if (action === "photo") {
+    if (req.method === "GET") {
+      const uid = String((req.query && req.query.u) || "");
+      try {
+        const buf = await readPhoto(uid);
+        if (!buf) return res.status(404).end();
+        res.setHeader("Content-Type", "image/jpeg");
+        res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+        res.setHeader("X-Content-Type-Options", "nosniff");
+        return res.status(200).send(buf);
+      } catch (e) {
+        return res.status(500).end();
+      }
+    }
+    if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
+    const who = currentUser(req);
+    if (!who) return res.status(401).json({ error: "Sign in first." });
+    const body = readBody(req);
+    const b64 = String(body.data || "").replace(/^data:image\/jpeg;base64,/, "");
+    if (!b64 || b64.length > 300 * 1024) return res.status(400).json({ error: "That image is too large." });
+    try {
+      const out = await savePhoto(who.email, Buffer.from(b64, "base64"));
+      if (out.error) return res.status(400).json({ error: out.error });
+      return res.status(200).json({ ok: true, user: Object.assign({}, who, {
+        username: out.account.username || "",
+        avatar: out.account.avatar || "",
+        avatarPhoto: out.account.avatarPhoto || "",
         createdAt: out.account.createdAt || null,
       }) });
     } catch (e) {
