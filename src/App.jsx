@@ -3565,6 +3565,8 @@ export default function App() {
   // "login" | "signup". Govorim leads with registration; Самовар leads with
   // sign-in (returning readers outnumber new ones there) — Dave, Aug 2026.
   var [authMode, setAuthMode] = useState(IS_PUBLIC_SITE ? "login" : "signup");
+  // New accounts choose a username up front. Sign-in is still by email.
+  var [authUsername, setAuthUsername] = useState("");
   // Самовар only: the gate can be skipped. Remembered per device so returning
   // guests go straight in; signing in later still works from the header.
   var [guest, setGuest] = useState(function() {
@@ -3677,7 +3679,9 @@ export default function App() {
         method: "POST",
         credentials: "same-origin",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: authEmail.trim(), password: authPassword }),
+        body: JSON.stringify(authMode === "signup"
+          ? { email: authEmail.trim(), password: authPassword, username: authUsername.trim() }
+          : { email: authEmail.trim(), password: authPassword }),
       });
       var d = await r.json().catch(function() { return {}; });
       if (!r.ok) throw new Error(d.error || "Sign-in failed");
@@ -4774,6 +4778,20 @@ export default function App() {
       .then(function(j){ setLibReads(j || { opens: {}, songs: {} }); })
       .catch(function(){ setLibReads({ opens: {}, songs: {} }); })
       .then(function(){ setLibReadsLoad(false); });
+  };
+  // The leaderboards: words retired through practice, and books marked read.
+  // Fetched when the tab is opened, like the popularity list, and always
+  // fresh on a re-open — the edge caches it for a minute regardless.
+  var [boards, setBoards] = useState(null);
+  var [boardsLoad, setBoardsLoad] = useState(false);
+  var loadBoards = function() {
+    if (boardsLoad) return;
+    setBoardsLoad(true);
+    fetch("/api/user-data?anon=boards")
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){ setBoards(j || { learned: [], read: [] }); })
+      .catch(function(){ setBoards({ learned: [], read: [] }); })
+      .then(function(){ setBoardsLoad(false); });
   };
   // Set when the reader has drilled into one author from the Authors shelf.
   var [libAuthor, setLibAuthor] = useState("");
@@ -9938,6 +9956,15 @@ export default function App() {
         .lib-read-row .au{display:block;font-size:12.5px;color:rgba(42,31,20,.5);margin-top:2px}
         .lib-read-row .ct{font-family:'Old Standard TT',serif;font-size:18px;color:#000;
           font-variant-numeric:tabular-nums}
+        .auth-lbl .auth-hint{text-transform:none;letter-spacing:normal;display:block;margin-top:5px}
+        .lb-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px 40px;width:100%;max-width:900px;align-self:center}
+        .lb-row{display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(42,31,20,.1);padding:8px 2px}
+        .lb-row .rk{font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(42,31,20,.45);min-width:22px;font-variant-numeric:tabular-nums}
+        .lb-row .tt{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:'Literata',serif;font-size:16px;color:#1c1610}
+        .lb-row .ct{font-family:'Old Standard TT',serif;font-size:18px;color:#000;font-variant-numeric:tabular-nums}
+        .lb-row.me .tt{color:var(--rubric,#9b2d1f);font-weight:600}
+        .lb-join{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:'Literata',serif;font-style:italic;
+          font-size:14px;color:rgba(42,31,20,.7);margin:0 0 22px}
         .lib-reads-note{font-family:'Literata',serif;font-size:12.5px;line-height:1.6;
           color:rgba(42,31,20,.5);margin:18px 0 0;max-width:60ch}
         /* The Authors shelf. Names, not cards: a name is short and there are
@@ -11842,6 +11869,14 @@ export default function App() {
                 Saving vocabulary works without an account — signing in just keeps
                 it in step across your devices.
               </div>
+{authMode === "signup" && (
+                <label className="auth-lbl">Username
+                  <input className="auth-in" type="text" autoComplete="nickname" maxLength={24}
+                    spellCheck={false} placeholder="letters, digits, _ . -"
+                    value={authUsername} onChange={function(e){ setAuthUsername(e.target.value); }} required />
+                  <span className="auth-hint">Shown on the leaderboard and beside your notes. You still sign in with your email.</span>
+                </label>
+              )}
               <label className="auth-lbl">Email
                 <input className="auth-in" type="email" autoComplete="username"
                   value={authEmail} onChange={function(e){ setAuthEmail(e.target.value); }} required />
@@ -13303,6 +13338,14 @@ export default function App() {
               )}
 
               <form className="auth-form" onSubmit={submitAuth}>
+{authMode === "signup" && (
+                  <label className="auth-lbl">Username
+                    <input className="auth-in" type="text" autoComplete="nickname" maxLength={24}
+                      spellCheck={false} placeholder="letters, digits, _ . -"
+                      value={authUsername} onChange={function(e){ setAuthUsername(e.target.value); }} required />
+                    <span className="auth-hint">Shown on the leaderboard and beside your notes. You still sign in with your email.</span>
+                  </label>
+                )}
                 <label className="auth-lbl">Email
                   {/* No autofocus on the public site: the guest button above is
                       the primary action, and grabbing focus for the email field
@@ -13374,7 +13417,7 @@ export default function App() {
               short to begin with — they sit beside the name now and the page
               gets the height back. */}
           <div className="tabs">
-            {["chat","ranked","vocab","grammar","forum","music"].filter(function(t){
+            {["chat","ranked","leaders","vocab","grammar","forum","music"].filter(function(t){
               if (t === "forum") return FORUM_ENABLED;
               if (t === "grammar") return GRAMMAR_ENABLED;
               return true;
@@ -13400,9 +13443,10 @@ export default function App() {
                     setMusicWanted(true);
                     stopTTS();
                   }
+                  if (t === "leaders") { loadBoards(); stopTTS(); }
                   setTab(t);
                 }}>
-                  {t==="chat"?"Reading":t==="ranked"?"Books by popularity":t==="vocab"?"Vocabulary":t==="grammar"?"Grammar":t==="forum"?"Forum":"Music"}
+                  {t==="chat"?"Reading":t==="ranked"?"Books by popularity":t==="leaders"?"Leaderboard":t==="vocab"?"Vocabulary":t==="grammar"?"Grammar":t==="forum"?"Forum":"Music"}
                   {t==="vocab"&&vocab.length>0&&<span className="bdg">{vocab.length}</span>}
                   {t==="grammar"&&tips.length>0&&<span className="bdg g">{tips.length}</span>}
                 </button>
@@ -13450,6 +13494,62 @@ export default function App() {
           <div style={{padding:"8px 28px",background:"rgba(157,70,48,.18)",borderBottom:"1px solid rgba(157,70,48,.35)",color:"#9d4630",fontSize:13,display:"flex",alignItems:"center",gap:10}}>
             <span style={{flex:1}}>{syncErr}</span>
             <button onClick={function(){ setSyncErr(""); }} style={{background:"none",border:"none",color:"#9d4630",cursor:"pointer",fontSize:18,padding:0}}>×</button>
+          </div>
+        )}
+
+        {tab==="leaders" && (
+          <div className="main">
+            <div className="ss">
+              <h1 className="sti">Leaderboard</h1>
+              <p className="sde">
+                The readers who have learned the most words and read the most books.
+              </p>
+              {me && !me.username && (
+                <div className="lb-join">
+                  You are not on the board yet: it only shows readers with a username.
+                  <button type="button" className="adm-btn" onClick={function(){ setShowAcct(true); }}>Choose a username</button>
+                </div>
+              )}
+              {!boards ? (
+                <div className="lib-cat-hint">{boardsLoad ? "Counting…" : "Nothing counted yet."}</div>
+              ) : (
+                <div className="lb-cols">
+                  {[
+                    { key: "learned", h: "Words learned", sub: "retired by practice — a word counts once the review scheduler has seen it answered right often enough", unit: "words" },
+                    { key: "read", h: "Books read", sub: "marked read in the library", unit: "books" },
+                  ].map(function(col){
+                    var rows = boards[col.key] || [];
+                    return (
+                      <section key={col.key} className="lb-col">
+                        <div className="lib-reads-h">
+                          <span>{col.h}</span>
+                          <span className="lib-reads-sub">{col.sub}</span>
+                        </div>
+                        {!rows.length && <div className="lib-cat-hint">Nobody yet — the first place is open.</div>}
+                        <ol className="lib-reads-list">
+                          {rows.map(function(r, i){
+                            var mine = !!(me && me.username && r.name === me.username);
+                            return (
+                              <li key={r.name} className={"lb-row" + (mine ? " me" : "")}>
+                                <span className="rk">{i + 1}</span>
+                                <Avatar id={r.avatar} name={r.name} size={26} />
+                                <span className="tt">{r.name}</span>
+                                <span className="ct" title={r.n + " " + col.unit}>{fmtInt(r.n)}</span>
+                              </li>
+                            );
+                          })}
+                        </ol>
+                      </section>
+                    );
+                  })}
+                </div>
+              )}
+              <p className="lib-reads-note">
+                Only readers who have set a username appear here. Words count only
+                when practice retires them — saving a word does not, and neither does
+                putting one back. A book counts when it is marked read.
+              </p>
+            </div>
           </div>
         )}
 

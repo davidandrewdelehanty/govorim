@@ -228,8 +228,24 @@ export default async function handler(req, res) {
     if (action === "signup") {
       const badPassword = passwordProblem(password);
       if (badPassword) return res.status(400).json({ error: badPassword });
+      // A username is required for new accounts — it is what the reader is
+      // called on the leaderboards, beside their notes and in groups. Sign-in
+      // stays by email; the username is a display name, not a login.
+      const username = String(body.username || "").trim();
+      const badName = usernameProblem(username);
+      if (badName) return res.status(400).json({ error: badName });
+      if (!(await isUsernameFree(username, email))) {
+        return res.status(409).json({ error: "That username is taken." });
+      }
       const { account, error } = await createAccount(email, password);
       if (error) return res.status(409).json({ error });
+      // Claimed after the account exists, since the name index points at it.
+      // Two sign-ups racing for one name is the only way this fails, and then
+      // the loser is in with no username and can pick one on the account page.
+      try {
+        const named = await setProfile(email, { username: username });
+        if (named && named.account) Object.assign(account, named.account);
+      } catch (e) {}
       // Tell the admin someone joined. Best-effort — a mail failure must never
       // break the signup — but log the reason, because a silent failure here is
       // indistinguishable from "nobody signed up".

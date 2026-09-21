@@ -27,7 +27,8 @@ import path from "node:path";
 import {
   S3Client, GetObjectCommand, PutObjectCommand
 } from "@aws-sdk/client-s3";
-import { requireUser, currentUser, bumpDaily, touchSeen, findAccount } from "../lib/auth.js";
+import { requireUser, currentUser, bumpDaily, touchSeen, findAccount,
+  updateBoardRow, readBoards, learnedCount, finishedCount } from "../lib/auth.js";
 import { sendEmail } from "../lib/admin/helpers.js";
 import { r2Endpoint } from "../lib/r2-endpoint.js";
 
@@ -141,6 +142,19 @@ export default async function handler(req, res) {
     // shelf rather than anyone standing at it — a filename and a number, with
     // no way to tell one reader from a hundred. Cached hard: it changes by one
     // every few minutes and nobody needs it to the second.
+    // The leaderboards: words retired through practice, and books marked read.
+    // Public, like the popularity list — and only readers who have chosen a
+    // username appear, so nobody is on it by their email.
+    if (req.query.anon === "boards" && req.method === "GET") {
+      try {
+        const out = await readBoards(100);
+        res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300");
+        return res.status(200).json(out);
+      } catch (e) {
+        return res.status(200).json({ learned: [], read: [], error: "unavailable" });
+      }
+    }
+
     if (req.query.anon === "books" && req.method === "GET") {
       try {
         const grab = async function (name) {
@@ -521,6 +535,7 @@ export default async function handler(req, res) {
           return res.status(400).json({ error: "finished must be an object" });
         }
         await r2Put(userId, "finished", finished);
+        await noteBoard(user, { read: finishedCount(finished) });
         return res.status(200).json({ ok: true });
       }
 
@@ -557,6 +572,7 @@ export default async function handler(req, res) {
           return res.status(200).json({ ok: true, skipped: "empty payload" });
         }
         await r2Put(userId, "learned", learned);
+        await noteBoard(user, { learned: learnedCount(learned) });
         return res.status(200).json({ ok: true });
       }
 
@@ -852,6 +868,19 @@ function cleanAnnot(raw) {
 
 const GROUPS = `${PREFIX}/_groups`;
 const GROUP_ITEM_CAP = 4000;
+
+// The reader's row on the leaderboards, with their current name and avatar
+// carried along so the board never has to look an account up to draw it.
+// Best-effort: a board that is a save behind is better than a failed save.
+async function noteBoard(user, counts) {
+  try {
+    const account = await findAccount(user.email).catch(function () { return null; });
+    await updateBoardRow(user.id, Object.assign({
+      name: (account && account.username) || "",
+      avatar: (account && account.avatar) || "",
+    }, counts));
+  } catch (e) {}
+}
 
 // Read with the ETag, so the write can say "only if nobody else wrote since".
 async function r2GetTagged(key) {
