@@ -4,6 +4,7 @@ import { isCommonWord, dropCommonWords } from "./commonWords.js";
 import { review as srsReview, isLearned, dueWords, weakestWords, recallNow } from "./srs.js";
 import { dayKey, dayMet, bump as bumpStats, streaks, mergeStats,
          totals as statsTotals, GOAL_WORDS, GOAL_CARDS } from "./stats.js";
+import { AnnotLayer, HL_COLORS, INK_COLORS, annotId } from "./annotations.jsx";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
@@ -6470,6 +6471,9 @@ export default function App() {
         if (data.drills && typeof data.drills === "object") {
           setDrills(function(d){ return mergeDrills(d, data.drills); });
         }
+        if (data.annots && data.annots.items && Object.keys(data.annots.items).length) {
+          setAnnots(function(m){ return mergeAnnots(m, data.annots.items); });
+        }
 
         if (serverVocab.length > 0 || serverTips.length > 0) {
           // If this browser holds GUEST data — words saved while signed out,
@@ -6566,6 +6570,320 @@ export default function App() {
     }, 3000);
     return function(){ clearTimeout(t); };
   }, [drills, me, syncedFromServer]);
+
+  // ── Annotations: highlights, notes, pen ────────────────────────────────
+  //
+  // annots: the reader's own, every book, { [id]: item }. Group items live in
+  // grpItems and never mix into this map — leaving a group leaves them behind.
+  var ltxtRef = useRef(null);
+  var [annots, setAnnots]       = useState({});
+  var annotsLoaded              = useRef(false);
+  var [annTool, setAnnTool]     = useState("");         // "" | "pen" | "erase"
+  var [inkColor, setInkColor]   = useState("ink");
+  var [hlColor, setHlColor]     = useState("yellow");
+  var [selBox, setSelBox]       = useState(null);       // the settled selection
+  var [selShared, setSelShared] = useState(true);       // group or just me
+  var [notePop, setNotePop]     = useState(null);       // { id, layer, x, y }
+  var [noteDraft, setNoteDraft] = useState("");
+  var mergeAnnots = function(a, b) {
+    var out = Object.assign({}, a || {});
+    Object.keys(b || {}).forEach(function(k) {
+      var v = b[k], c = out[k];
+      if (v && (!c || (v.updatedAt || 0) >= (c.updatedAt || 0))) out[k] = v;
+    });
+    return out;
+  };
+  useEffect(function() {
+    storage.get("gv_annots_v1").then(function(r) {
+      if (r && r.value) { try { var v = JSON.parse(r.value) || {}; setAnnots(function(m){ return mergeAnnots(m, v); }); } catch (e) {} }
+      annotsLoaded.current = true;
+    }).catch(function(){ annotsLoaded.current = true; });
+  }, []);
+  useEffect(function() {
+    if (!annotsLoaded.current) return;
+    storage.set("gv_annots_v1", JSON.stringify(annots)).catch(function(){});
+  }, [annots]);
+  useEffect(function() {
+    if (!me || !syncedFromServer || !annotsLoaded.current) return;
+    if (!Object.keys(annots).length) return;
+    var t = setTimeout(function() {
+      authFetch("/api/user-data?type=annots", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items: annots }),
+      }).catch(function(){});
+    }, 2500);
+    return function(){ clearTimeout(t); };
+  }, [annots, me, syncedFromServer]);
+
+  // ── Group reads ──
+  var [grp, setGrp]                 = useState(null);   // { id, name, filename, title, ... }
+  var [grpItems, setGrpItems]       = useState({});
+  var [grpMembers, setGrpMembers]   = useState([]);
+  var [grpOwner, setGrpOwner]       = useState(false);
+  var [grpErr, setGrpErr]           = useState("");
+  var grpSince                      = useRef(0);
+  var [showGroups, setShowGroups]   = useState(false);
+  var [groupsList, setGroupsList]   = useState(null);
+  var [groupsLoad, setGroupsLoad]   = useState(false);
+  // Every group this reader has ever been in. Membership is permanent, so
+  // this is the way back to any group's notes, closed or not, listed or not.
+  var [myGroups, setMyGroups]       = useState(null);
+  var [grpName, setGrpName]         = useState("");
+  var [grpBook, setGrpBook]         = useState("");
+  var [grpBusy, setGrpBusy]         = useState(false);
+  // A reload keeps you in your group: it is remembered on the device and
+  // checked against the server on the first poll.
+  useEffect(function() {
+    try { var g = JSON.parse(localStorage.getItem("gv_group_v1") || "null"); if (g && g.id) setGrp(g); } catch (e) {}
+  }, []);
+  var rememberGroup = function(g) {
+    try { if (g) localStorage.setItem("gv_group_v1", JSON.stringify(g)); else localStorage.removeItem("gv_group_v1"); } catch (e) {}
+  };
+  var endLocalGroup = function() {
+    setGrp(null); setGrpItems({}); setGrpMembers([]); setGrpOwner(false);
+    rememberGroup(null);
+  };
+  // The poll. `since` is the server's own clock, handed back each time, with
+  // five seconds of overlap so a write that landed while the last poll was
+  // being answered cannot slip between two polls. The overlap re-sends a few
+  // items; they are simply replaced.
+  useEffect(function() {
+    if (!grp || !me) return;
+    var stop = false, timer = 0;
+    grpSince.current = 0;
+    setGrpItems({});
+    var tick = async function() {
+      if (stop) return;
+      if (document.hidden) { timer = setTimeout(tick, 4000); return; }
+      try {
+        var r = await authFetch("/api/user-data?group=items&id=" + encodeURIComponent(grp.id) +
+                                "&since=" + Math.max(0, grpSince.current - 5000));
+        var d = await r.json().catch(function(){ return {}; });
+        if (stop) return;
+        if (r.status === 404 || r.status === 403) {
+          setGrpErr(d.error || "That group could not be found.");
+          endLocalGroup();
+          return;
+        }
+        if (r.ok) {
+          if (d.items && d.items.length) {
+            setGrpItems(function(m) {
+              var n = Object.assign({}, m);
+              d.items.forEach(function(it){ n[it.id] = it; });   // the server is the authority
+              return n;
+            });
+          }
+          setGrpMembers(d.members || []);
+          setGrpOwner(!!d.isOwner);
+          if (d.group) setGrp(function(cur){ return cur ? Object.assign({}, cur, d.group) : cur; });
+          if (d.now) grpSince.current = d.now;
+        }
+      } catch (e) {}
+      if (!stop) timer = setTimeout(tick, 3000);
+    };
+    tick();
+    return function(){ stop = true; clearTimeout(timer); };
+  }, [grp && grp.id, me && me.id]);
+
+  var curBookKey = bookKey(bookMeta);
+  var inGrpBook = !!(grp && bookMeta && bookMeta.filename && bookMeta.filename === grp.filename && !bookMeta.own);
+  var meAsAuthor = me ? { uid: me.id, name: me.username || String(me.email || "").split("@")[0], avatar: me.avatar || "" } : null;
+
+  // What the page shows for this chapter: yours, and the group's if you are
+  // on the group's book.
+  var annItems = useMemo(function() {
+    var out = [];
+    Object.keys(annots).forEach(function(k) {
+      var it = annots[k];
+      if (it && !it.deleted && it.bookKey === curBookKey && it.cidx === cidx) out.push(Object.assign({ layer: "me" }, it));
+    });
+    if (inGrpBook) {
+      Object.keys(grpItems).forEach(function(k) {
+        var it = grpItems[k];
+        if (it && !it.deleted && it.cidx === cidx) out.push(Object.assign({}, it, { layer: "group" }));
+      });
+    }
+    return out;
+  }, [annots, grpItems, curBookKey, cidx, inGrpBook]);
+
+  // Every annotation in this book, for the Notes list.
+  var bookAnnots = useMemo(function() {
+    var out = [];
+    Object.keys(annots).forEach(function(k) {
+      var it = annots[k];
+      if (it && !it.deleted && it.bookKey === curBookKey) out.push(Object.assign({ layer: "me" }, it));
+    });
+    if (inGrpBook) Object.keys(grpItems).forEach(function(k) {
+      var it = grpItems[k];
+      if (it && !it.deleted) out.push(Object.assign({}, it, { layer: "group" }));
+    });
+    out.sort(function(a, b) {
+      return a.cidx - b.cidx || ((a.start != null ? a.start : a.paraStart) - (b.start != null ? b.start : b.paraStart));
+    });
+    return out;
+  }, [annots, grpItems, curBookKey, inGrpBook]);
+
+  var putGroupItem = function(item) {
+    authFetch("/api/user-data?group=put", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: grp.id, item: item }),
+    }).then(function(r){ return r.json().then(function(d){ return { ok: r.ok, d: d }; }); })
+      .then(function(res) {
+        if (res.ok && res.d.item) {
+          setGrpItems(function(m){ var n = Object.assign({}, m); n[res.d.item.id] = res.d.item; return n; });
+        } else {
+          setGrpErr((res.d && res.d.error) || "Could not share that.");
+        }
+      }).catch(function(){ setGrpErr("Could not reach the group — it will be tried again when you next mark something."); });
+  };
+  var addAnnot = function(fields, layer) {
+    var now = Date.now();
+    var it = Object.assign({ id: annotId(), bookKey: curBookKey, cidx: cidx, createdAt: now, updatedAt: now }, fields);
+    if (layer === "group" && grp && me) {
+      var local = Object.assign({}, it, { by: meAsAuthor });
+      setGrpItems(function(m){ var n = Object.assign({}, m); n[it.id] = local; return n; });
+      putGroupItem(it);
+    } else {
+      setAnnots(function(m){ var n = Object.assign({}, m); n[it.id] = it; return n; });
+    }
+    return it;
+  };
+  var findAnnot = function(id, layer) {
+    return layer === "group" ? grpItems[id] : annots[id];
+  };
+  var canEditAnnot = function(it, layer) {
+    if (!it) return false;
+    if (layer !== "group") return true;
+    return !!(me && it.by && it.by.uid === me.id);
+  };
+  var updateAnnot = function(id, layer, changes) {
+    var cur = findAnnot(id, layer);
+    if (!cur) return;
+    var next = Object.assign({}, cur, changes, { updatedAt: Date.now() });
+    if (layer === "group") {
+      setGrpItems(function(m){ var n = Object.assign({}, m); n[id] = next; return n; });
+      var send = Object.assign({}, next); delete send.by; delete send.layer;
+      putGroupItem(send);
+    } else {
+      delete next.layer;
+      setAnnots(function(m){ var n = Object.assign({}, m); n[id] = next; return n; });
+    }
+  };
+  var removeAnnot = function(id, layer) { updateAnnot(id, layer, { deleted: true }); };
+
+  var newLayer = function() { return (inGrpBook && me && selShared && !grp.closed) ? "group" : "me"; };
+  var makeHighlight = function(color, withNote) {
+    var sb = selBox;
+    if (!sb) return;
+    var layer = newLayer();
+    var it = addAnnot({ kind: "hl", start: sb.start, end: sb.end, quote: sb.quote, color: color, note: "" }, layer);
+    setHlColor(color);
+    try { window.getSelection().removeAllRanges(); } catch (e) {}
+    setSelBox(null);
+    if (withNote) {
+      setNoteDraft("");
+      setNotePop({ id: it.id, layer: layer, x: sb.x, y: sb.bottom + 8, fresh: true });
+    }
+  };
+  var addInk = function(stroke) {
+    addAnnot({ kind: "ink", paraStart: stroke.paraStart, points: stroke.points,
+               color: stroke.color, size: stroke.size }, newLayer());
+  };
+  var eraseInk = function(it) {
+    if (it.layer === "group" && !canEditAnnot(it, "group")) {
+      setGrpErr("That stroke is " + ((it.by && it.by.name) || "another reader") + "'s.");
+      return;
+    }
+    removeAnnot(it.id, it.layer);
+  };
+  var openMarker = function(it, rect) {
+    setNoteDraft(it.note || "");
+    setNotePop({ id: it.id, layer: it.layer, x: rect.left, y: rect.bottom + 6 });
+  };
+  var jumpToAnnot = function(it) {
+    var off = it.kind === "hl" ? it.start : it.paraStart;
+    setLview("read");
+    if (it.cidx === cidx) setTimeout(function(){ scrollToOffset(off); }, 60);
+    else { srcJumpOffsetRef.current = off; navLit(it.cidx); }
+  };
+  // A selection or an open note belongs to the chapter it was made in.
+  useEffect(function() { setSelBox(null); setNotePop(null); }, [cidx, curBookKey]);
+  useEffect(function() { if (annTool) setSelBox(null); }, [annTool]);
+
+  // ── group actions ──
+  var loadGroups = function() {
+    setGroupsLoad(true);
+    authFetch("/api/user-data?group=list")
+      .then(function(r){ return r.json(); })
+      .then(function(d){ setGroupsList((d && d.groups) || []); })
+      .catch(function(){ setGroupsList([]); })
+      .then(function(){ setGroupsLoad(false); });
+    authFetch("/api/user-data?group=mine")
+      .then(function(r){ return r.json(); })
+      .then(function(d){ setMyGroups((d && d.groups) || []); })
+      .catch(function(){ setMyGroups([]); });
+  };
+  var openGroupBook = function(g) {
+    var book = null;
+    for (var i = 0; i < presetBooks.length; i++) if (presetBooks[i].filename === g.filename) { book = presetBooks[i]; break; }
+    if (!book) { setGrpErr("That book is not in your library."); return; }
+    setShowGroups(false);
+    setTab("chat");
+    setMode("read");
+    if (bookMeta && bookMeta.filename === book.filename && started) return;
+    loadPresetBook(book);
+  };
+  var enterGroup = function(g) {
+    var slim = { id: g.id, name: g.name, filename: g.filename, title: g.title, author: g.author };
+    setGrp(slim);
+    rememberGroup(slim);
+    setGrpErr("");
+    setSelShared(true);
+    openGroupBook(g);
+  };
+  var joinGroup = async function(g) {
+    setGrpBusy(true); setGrpErr("");
+    try {
+      var r = await authFetch("/api/user-data?group=join", {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: g.id }),
+      });
+      var d = await r.json().catch(function(){ return {}; });
+      if (!r.ok) throw new Error(d.error || "Could not join.");
+      enterGroup(d.group || g);
+    } catch (e) { setGrpErr(e.message); }
+    setGrpBusy(false);
+  };
+  var createGroup = async function() {
+    setGrpBusy(true); setGrpErr("");
+    try {
+      var r = await authFetch("/api/user-data?group=create", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: grpName.trim(), filename: grpBook }),
+      });
+      var d = await r.json().catch(function(){ return {}; });
+      if (!r.ok) throw new Error(d.error || "Could not start the group.");
+      setGrpName("");
+      enterGroup(d.group);
+    } catch (e) { setGrpErr(e.message); }
+    setGrpBusy(false);
+  };
+  // Stepping out of a group only takes it off this page. Membership is
+  // permanent: the group stays under "Your groups", notes and all.
+  var leaveGroup = function() { endLocalGroup(); };
+  // The starter can close a group to new marks. Nothing is removed.
+  var closeGroup = async function() {
+    var g = grp;
+    if (!g) return;
+    try {
+      var r = await authFetch("/api/user-data?group=close", {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: g.id }),
+      });
+      var d = await r.json().catch(function(){ return {}; });
+      if (!r.ok) throw new Error(d.error || "Could not close it.");
+      setGrp(function(cur){ return cur ? Object.assign({}, cur, { closed: true }) : cur; });
+      loadGroups();
+    } catch (e) { setGrpErr(e.message); }
+  };
   useEffect(function() {
     if (!me || !syncedFromServer || !learnedLoaded.current) return;
     if (!learned || !learned.length) return;
@@ -8996,6 +9314,7 @@ export default function App() {
                         className={"rw" + (hl ? " rwhl" : "") + (inName ? " play-speaker" : "")
                           + (dir ? " play-dir" : "") + (!inName && isSaved(tk.text) ? " vsaved" : "")}
                         data-rw-start={tk.start}
+                        data-rw-end={tk.end}
                         onClick={clickPlay}
                         title={inName ? "" : (noAIMode ? "Click to read from here" : "Click for a definition")}>{accented(tk.text)}</span>
                     );
@@ -9029,6 +9348,7 @@ export default function App() {
                     <span key={i}
                       className={"rw" + (hl ? " rwhl" : "") + (isSaved(tk.text) ? " vsaved" : "")}
                       data-rw-start={tk.start}
+                      data-rw-end={tk.end}
                       onClick={clickReg}
                       title={noAIMode ? "Click to read from here" : "Click for a definition"}>{accented(tk.text)}</span>
                   );
@@ -11015,6 +11335,109 @@ export default function App() {
           .pbm:focus-visible{opacity:1}
         }
         @media(hover:none){.pbm{opacity:.16}.pbm.on{opacity:1;color:var(--rubric)}}
+        /* ── Highlights, notes, pen ─────────────────────────────────────── */
+        .ltxt{position:relative}
+        /* Each word is its own span, so the spaces between highlighted words
+           would stay bare and the mark would read as a row of tiles. A little
+           padding out, the same margin back in: the fills meet over the space
+           and not a letter of the text moves. */
+        .ltxt [data-hl]{border-radius:2px;padding:.04em .13em;margin:0 -.13em;
+          box-decoration-break:clone;-webkit-box-decoration-break:clone}
+        .ltxt [data-hl="yellow"]{background:rgba(240,200,70,.42)}
+        .ltxt [data-hl="green"]{background:rgba(130,190,120,.38)}
+        .ltxt [data-hl="blue"]{background:rgba(120,170,225,.36)}
+        .ltxt [data-hl="pink"]{background:rgba(235,140,160,.36)}
+        .ltxt [data-hl-layer="group"]{box-shadow:inset 0 -1.5px 0 rgba(27,22,19,.45)}
+        .annot-layer{position:absolute;inset:0;pointer-events:none;z-index:3}
+        .annot-ink{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+        .ink-stroke{opacity:.86}
+        .ink-stroke.grp{opacity:.7}
+        .annot-layer.tool-erase .ink-stroke{pointer-events:auto;cursor:pointer}
+        .annot-layer.tool-erase .ink-stroke:hover{opacity:.3}
+        .annot-layer.tool-erase .ink-hit{pointer-events:stroke;cursor:pointer}
+        .annot-pen{position:absolute;inset:0;pointer-events:auto;cursor:crosshair;touch-action:none}
+        .hl-mark{position:absolute;pointer-events:auto;border:0;padding:0;cursor:pointer;
+          width:8px;height:8px;border-radius:50%!important;transform:translate(1px,-35%);opacity:.8}
+        .hl-mark:hover{opacity:1;transform:translate(1px,-35%) scale(1.25)}
+        .hl-mark.c-yellow{background:#c9a227}.hl-mark.c-green{background:#4f8a48}
+        .hl-mark.c-blue{background:#3f73a8}.hl-mark.c-pink{background:#b8546c}
+        .hl-mark.has-note{width:16px;height:14px;border-radius:2px!important;background:var(--ink);color:var(--paper);
+          display:flex;align-items:center;justify-content:center;transform:translate(2px,-55%)}
+        .hl-mark.has-note:hover{transform:translate(2px,-55%) scale(1.1)}
+        .ltab-n{font-family:var(--serif);font-style:italic;text-transform:none;letter-spacing:0;opacity:.55;margin-left:5px}
+        .annot-bar{border-bottom:1px solid var(--rule-soft);padding:6px 0;display:flex;flex-direction:column;gap:6px;background:var(--paper)}
+        .grp-strip,.pen-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:0 32px}
+        .grp-lbl{font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+        .grp-name{font-family:var(--display);font-size:17px;color:var(--ink)}
+        .grp-who{display:flex;gap:4px;align-items:center}
+        .grp-m{position:relative;opacity:.45}
+        .grp-m.here{opacity:1}
+        .grp-m.here::after{content:"";position:absolute;right:-1px;bottom:-1px;width:7px;height:7px;border-radius:50%;
+          background:#4f8a48;border:1.5px solid var(--paper)}
+        .grp-open,.grp-leave,.pen-btn{background:none;border:0;border-bottom:1px solid var(--rule);padding:2px 0;cursor:pointer;
+          font-family:var(--sans);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+        .grp-open:hover,.grp-leave:hover,.pen-btn:hover{color:var(--rubric);border-bottom-color:var(--rubric)}
+        .pen-btn.on{color:var(--rubric);border-bottom-color:var(--rubric)}
+        .pen-btn.done{color:var(--ink);border-bottom-color:var(--ink)}
+        .ink-sw{width:18px;height:18px;border-radius:50%!important;border:2px solid var(--paper);box-shadow:0 0 0 1px var(--rule);cursor:pointer;padding:0}
+        .ink-sw.on{box-shadow:0 0 0 2px var(--ink)}
+        .ink-sw.c-ink{background:#1b1613}.ink-sw.c-pink{background:#9b2d1f}.ink-sw.c-blue{background:#2f5c8a}
+        .grp-err{margin:0 32px;font-family:var(--serif);font-size:13.5px;color:var(--rubric);display:flex;gap:10px;align-items:center}
+        .grp-err button{background:none;border:0;color:var(--rubric);cursor:pointer;font-size:16px;padding:0}
+        .annot-pop{position:fixed;z-index:300;background:var(--paper-3);border:1px solid var(--ink);padding:8px 10px;
+          box-shadow:0 6px 20px rgba(27,22,19,.16);display:flex;flex-direction:column;gap:6px}
+        .annot-pop-row,.note-pop-row{display:flex;align-items:center;gap:8px}
+        .hl-sw{width:24px;height:24px;border-radius:50%!important;border:1px solid var(--rule);cursor:pointer;padding:0}
+        .hl-sw.sm{width:18px;height:18px}
+        .hl-sw.last,.hl-sw.on{box-shadow:0 0 0 2px var(--paper-3),0 0 0 3.5px var(--ink)}
+        .hl-sw.c-yellow{background:rgba(240,200,70,.75)}.hl-sw.c-green{background:rgba(130,190,120,.75)}
+        .hl-sw.c-blue{background:rgba(120,170,225,.75)}.hl-sw.c-pink{background:rgba(235,140,160,.75)}
+        .pop-btn{margin-left:auto;background:none;border:0;border-bottom:1px solid var(--ink);padding:2px 0;cursor:pointer;
+          font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+        .pop-btn.quiet{margin-left:0;border-bottom-color:var(--rule);color:var(--ink-2)}
+        .pop-btn:hover{color:var(--rubric);border-bottom-color:var(--rubric)}
+        .pop-share{background:none;border:0;padding:0;text-align:left;cursor:pointer;font-family:var(--serif);
+          font-style:italic;font-size:12.5px;color:var(--ink-2)}
+        .pop-share:hover{color:var(--rubric)}
+        .note-over{position:fixed;inset:0;z-index:310}
+        .note-pop{position:fixed;background:var(--paper-3);border:1px solid var(--ink);padding:12px 14px;
+          box-shadow:0 8px 28px rgba(27,22,19,.18);display:flex;flex-direction:column;gap:10px}
+        .note-pop-by{display:flex;align-items:center;gap:8px;font-family:var(--sans);font-size:12px;color:var(--ink-2)}
+        .note-pop-q{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-2);line-height:1.45}
+        .note-pop-in{width:100%;resize:vertical;font-family:var(--serif);font-size:15px;padding:8px 10px;min-height:84px}
+        .note-pop-t{font-family:var(--serif);font-size:15px;color:var(--ink);line-height:1.5;white-space:pre-wrap}
+        .note-none{color:var(--ink-3);font-style:italic}
+        .notes-panel{max-width:680px;margin:0 auto;padding:22px 20px 60px}
+        .notes-h{display:flex;flex-direction:column;gap:3px;margin-bottom:12px}
+        .notes-h>span:first-child{font-family:var(--display);font-size:24px;color:var(--ink)}
+        .notes-sub{font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--ink-3)}
+        .notes-empty{font-family:var(--serif);font-size:15px;color:var(--ink-2);line-height:1.6}
+        .notes-ch{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3);margin:18px 0 4px}
+        .note-row{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:none;border:0;
+          border-bottom:1px solid var(--rule-soft);padding:10px 2px;cursor:pointer;font-family:inherit}
+        .note-row:hover{background:rgba(27,22,19,.04)}
+        .note-chip{flex-shrink:0;width:12px;height:12px;margin-top:5px;border-radius:2px}
+        .note-chip.c-yellow{background:rgba(240,200,70,.8)}.note-chip.c-green{background:rgba(130,190,120,.8)}
+        .note-chip.c-blue{background:rgba(120,170,225,.8)}.note-chip.c-pink{background:rgba(235,140,160,.8)}
+        .note-chip.ink{border-radius:50%;background:none;border:2px solid #1b1613}
+        .note-body{display:flex;flex-direction:column;gap:3px;min-width:0}
+        .note-q{font-family:var(--serif);font-size:15.5px;color:var(--ink);line-height:1.45}
+        .note-q.ink{font-style:italic;color:var(--ink-2)}
+        .note-t{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-2);white-space:pre-wrap}
+        .note-by{font-family:var(--sans);font-size:11px;color:var(--ink-3)}
+        .grp-entry{margin-bottom:0}
+        .grp-intro{font-family:var(--serif);font-size:14.5px;color:var(--ink-2);line-height:1.55;margin:0 0 10px}
+        .grp-form{display:flex;flex-direction:column;gap:8px}
+        .grp-form .adm-btn{align-self:flex-start}
+        .grp-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--rule-soft)}
+        .grp-row.cur{background:none}
+        .grp-row-t{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
+        .grp-row-n{font-family:var(--display);font-size:18px;color:var(--ink)}
+        .grp-row-b{font-family:var(--serif);font-size:14px;color:var(--ink-2)}
+        .grp-row-m{font-family:var(--sans);font-size:11px;color:var(--ink-3)}
+        .grp-row-c{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-3)}
+        .grp-closed{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--ink-3)}
+        @media(max-width:900px){.grp-strip,.pen-tools{padding:0 18px}.grp-err{margin:0 18px}}
         /* ── Avatar and the account page ─────────────────────────────────── */
         .avatar{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;
           border:1px solid var(--rule);border-radius:50%!important;background:var(--paper-3);color:var(--ink)}
@@ -11371,6 +11794,189 @@ export default function App() {
         </div>
       )}
 
+      {selBox && started && !annTool && lview === "read" && (function(){
+        var touch = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(hover:none)").matches;
+        var w = 250;
+        var left = Math.max(8, Math.min(window.innerWidth - w - 8, selBox.x - w / 2));
+        // Above the words with a mouse; below them on touch, where the
+        // phone's own copy menu sits above.
+        var top = touch ? selBox.bottom + 12 : Math.max(8, selBox.y - 58);
+        return (
+          <div className="annot-pop" style={{ left: left + "px", top: top + "px", width: w + "px" }}
+            onMouseDown={function(e){ e.preventDefault(); }}>
+            <div className="annot-pop-row">
+              {HL_COLORS.map(function(c){
+                return (
+                  <button key={c.id} type="button" title={"Highlight — " + c.label} aria-label={"Highlight " + c.label}
+                    className={"hl-sw c-" + c.id + (hlColor === c.id ? " last" : "")}
+                    onClick={function(){ makeHighlight(c.id, false); }} />
+                );
+              })}
+              <button type="button" className="pop-btn" onClick={function(){ makeHighlight(hlColor, true); }}>Note</button>
+            </div>
+            {inGrpBook && me && (
+              <button type="button" className="pop-share" onClick={function(){ setSelShared(!selShared); }}>
+                {selShared ? "Shared with " + grp.name : "Just me — not shared"}
+              </button>
+            )}
+          </div>
+        );
+      })()}
+      {notePop && (function(){
+        var it = findAnnot(notePop.id, notePop.layer);
+        if (!it || it.deleted) return null;
+        var mine = canEditAnnot(it, notePop.layer);
+        var w = 300;
+        var left = Math.max(8, Math.min(window.innerWidth - w - 8, notePop.x - 20));
+        var top = Math.min(window.innerHeight - 280, notePop.y);
+        var close = function(){
+          if (mine && (noteDraft || "") !== (it.note || "")) updateAnnot(it.id, notePop.layer, { note: noteDraft.trim() });
+          setNotePop(null);
+        };
+        return (
+          <div className="note-over" onMouseDown={function(e){ if (e.target.className === "note-over") close(); }}>
+            <div className="note-pop" style={{ left: left + "px", top: Math.max(8, top) + "px", width: w + "px" }}>
+              {notePop.layer === "group" && it.by && (
+                <div className="note-pop-by">
+                  <Avatar id={it.by.avatar} name={it.by.name} size={22} /> <span>{it.by.name}</span>
+                </div>
+              )}
+              {it.quote && <div className="note-pop-q">«{it.quote.length > 160 ? it.quote.slice(0, 160) + "…" : it.quote}»</div>}
+              {mine ? (
+                <textarea className="note-pop-in" rows={4} autoFocus={!!notePop.fresh}
+                  placeholder="A note in the margin…" value={noteDraft}
+                  onChange={function(e){ setNoteDraft(e.target.value); }} />
+              ) : (
+                <div className="note-pop-t">{it.note || <span className="note-none">No note.</span>}</div>
+              )}
+              <div className="note-pop-row">
+                {mine && HL_COLORS.map(function(c){
+                  return (
+                    <button key={c.id} type="button" aria-label={c.label} title={c.label}
+                      className={"hl-sw sm c-" + c.id + (it.color === c.id ? " on" : "")}
+                      onClick={function(){ updateAnnot(it.id, notePop.layer, { color: c.id }); }} />
+                  );
+                })}
+                <span style={{flex:1}} />
+                {mine && (
+                  <button type="button" className="pop-btn quiet"
+                    onClick={function(){ removeAnnot(it.id, notePop.layer); setNotePop(null); }}>Remove</button>
+                )}
+                <button type="button" className="pop-btn" onClick={close}>{mine ? "Done" : "Close"}</button>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+      {showGroups && (
+        <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setShowGroups(false); }}>
+          <div className="adm-modal acct-modal" role="dialog" aria-label="Group reads">
+            <div className="adm-head">
+              <div className="adm-title">Group reads</div>
+              <button className="adm-x" onClick={function(){ setShowGroups(false); }}>×</button>
+            </div>
+            <div className="adm-body acct-body">
+              <p className="grp-intro">
+                Read a book together. Everyone in a group sees each other's highlights,
+                notes and pen marks on the page, arriving within a few seconds.
+              </p>
+              {!me && (
+                <div className="acct-sec">
+                  <p className="grp-intro">Group reads are for signed-in readers — the others need to know whose note is whose.</p>
+                  <button className="adm-btn" onClick={function(){ setShowGroups(false); setAuthMode("login"); setAuthErr(""); setAuthOpen(true); }}>Sign in</button>
+                </div>
+              )}
+              {me && grp && (
+                <div className="acct-sec">
+                  <div className="acct-h">You are in</div>
+                  <div className="grp-row cur">
+                    <div className="grp-row-t">
+                      <span className="grp-row-n">{grp.name}</span>
+                      <span className="grp-row-b">{grp.title}{grp.author ? " — " + grp.author : ""}</span>
+                    </div>
+                    <button className="adm-btn" onClick={function(){ openGroupBook(grp); }}>Open</button>
+                    <button className="adm-btn" onClick={leaveGroup}>Step out</button>
+                    {grpOwner && !grp.closed && <button className="adm-btn reject" onClick={closeGroup}>Close to new notes</button>}
+                  </div>
+                  <div className="acct-note">
+                    Stepping out only takes the group off your page — you stay a member and keep its notes for good.
+                    {grpOwner && !grp.closed ? " Closing it stops new marks; nothing already there is removed." : ""}
+                  </div>
+                </div>
+              )}
+              {me && myGroups && myGroups.filter(function(g){ return !grp || g.id !== grp.id; }).length > 0 && (
+                <div className="acct-sec">
+                  <div className="acct-h">Your groups</div>
+                  {myGroups.filter(function(g){ return !grp || g.id !== grp.id; }).map(function(g){
+                    return (
+                      <div key={g.id} className="grp-row">
+                        <div className="grp-row-t">
+                          <span className="grp-row-n">{g.name}{g.closed ? <span className="grp-row-c"> · closed</span> : null}</span>
+                          <span className="grp-row-b">{g.title}{g.author ? " — " + g.author : ""}</span>
+                          <span className="grp-row-m">{g.members} reader{g.members === 1 ? "" : "s"} · {g.items} mark{g.items === 1 ? "" : "s"}</span>
+                        </div>
+                        <button className="adm-btn" onClick={function(){ enterGroup(g); }}>Open</button>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+              {me && (
+                <div className="acct-sec">
+                  <div className="acct-h">Start a group read</div>
+                  <div className="grp-form">
+                    <input className="auth-in acct-in" placeholder="A name for the group" maxLength={60}
+                      value={grpName} onChange={function(e){ setGrpName(e.target.value); }} />
+                    <select className="auth-in acct-in" value={grpBook} onChange={function(e){ setGrpBook(e.target.value); }}>
+                      <option value="">Choose a book…</option>
+                      {presetBooks.filter(function(b){ return b.category !== "Song Lyrics"; })
+                        .slice().sort(function(a, b){ return String(a.title).localeCompare(String(b.title), "ru"); })
+                        .map(function(b){ return <option key={b.filename} value={b.filename}>{b.title}{b.author ? " — " + b.author : ""}</option>; })}
+                    </select>
+                    <button className="adm-btn approve" disabled={grpBusy || grpName.trim().length < 3 || !grpBook}
+                      onClick={createGroup}>{grpBusy ? "Starting…" : "Start"}</button>
+                  </div>
+                </div>
+              )}
+              {me && (
+                <div className="acct-sec">
+                  <div className="acct-h">Open groups</div>
+                  {groupsLoad && !groupsList && <div className="grp-intro">Looking…</div>}
+                  {groupsList && !groupsList.length && <div className="grp-intro">No groups yet — start the first.</div>}
+                  {(groupsList || []).map(function(g){
+                    var ago = function(t){
+                      if (!t) return "";
+                      var m = Math.floor((Date.now() - t) / 60000);
+                      if (m < 2) return "active now";
+                      if (m < 60) return "active " + m + " min ago";
+                      var h = Math.floor(m / 60);
+                      if (h < 24) return "active " + h + " h ago";
+                      return "active " + new Date(t).toLocaleDateString();
+                    };
+                    var isCur = grp && grp.id === g.id;
+                    return (
+                      <div key={g.id} className={"grp-row" + (isCur ? " cur" : "")}>
+                        <div className="grp-row-t">
+                          <span className="grp-row-n">{g.name}{g.closed ? <span className="grp-row-c"> · closed</span> : null}</span>
+                          <span className="grp-row-b">{g.title}{g.author ? " — " + g.author : ""}</span>
+                          <span className="grp-row-m">
+                            started by {g.ownerName} · {g.members} reader{g.members === 1 ? "" : "s"}
+                            {" · "}{g.items} mark{g.items === 1 ? "" : "s"} · {ago(g.lastActive)}
+                          </span>
+                        </div>
+                        {isCur
+                          ? <button className="adm-btn" onClick={function(){ openGroupBook(g); }}>Open</button>
+                          : <button className="adm-btn approve" disabled={grpBusy} onClick={function(){ joinGroup(g); }}>Join</button>}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+              {grpErr && <div className="acct-msg bad">{grpErr}</div>}
+            </div>
+          </div>
+        </div>
+      )}
       {showAcct && me && (
         <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setShowAcct(false); }}>
           <div className="adm-modal acct-modal" role="dialog" aria-label="Your account">
@@ -13329,6 +13935,21 @@ export default function App() {
                     that makes this reader useful — the dictionary under every
                     word, the saved vocabulary, the reading record — works just
                     as well on a book the reader brings themselves. */}
+                {/* Reading with other people. */}
+                <button className="own-entry grp-entry" onClick={function(){
+                  setGrpErr("");
+                  if (!grpBook && bookMeta && bookMeta.filename && !bookMeta.own) setGrpBook(bookMeta.filename);
+                  setShowGroups(true);
+                  if (me) loadGroups();
+                }}>
+                  <span className="own-entry-t">Group Reads</span>
+                  <span className="own-entry-s">
+                    {grp
+                      ? <>You are in «{grp.name}», reading {grp.title}. Open it, or find another group.</>
+                      : <>Read a book together: highlights, notes and pen marks shared with everyone in the
+                          group as they make them. Start a group, or join one that is already reading.</>}
+                  </span>
+                </button>
                 <button className="own-entry" onClick={function(){ setMode("ownbook"); }}>
                   <span className="own-entry-t">Use your own book</span>
                   <span className="own-entry-s">
@@ -14538,6 +15159,14 @@ export default function App() {
                         }}>To the bookmark</button>
                     );
                   })()}
+                  <button className={"ltab" + (annTool ? " on" : "")}
+                    title="Draw on the page with a pen"
+                    onClick={function(){ setLview("read"); setAnnTool(annTool ? "" : "pen"); }}>Draw</button>
+                  <button className={"ltab" + (lview === "notes" ? " on" : "")}
+                    title="Your highlights and notes in this book"
+                    onClick={function(){ setAnnTool(""); setLview(lview === "notes" ? "read" : "notes"); }}>
+                    Notes{bookAnnots.length ? <span className="ltab-n">{bookAnnots.length}</span> : null}
+                  </button>
                   {bookMeta.own && (
                     <button className="ltab"
                       title="Close this book and open another of your own"
@@ -14605,6 +15234,66 @@ export default function App() {
                   </div>
                 </div>
 
+                {(grp || annTool) && (
+                  <div className="annot-bar">
+                    {grp && (
+                      <div className="grp-strip">
+                        <span className="grp-lbl">Group read</span>
+                        <span className="grp-name">{grp.name}</span>
+                        {inGrpBook ? (
+                          <span className="grp-who">
+                            {grpMembers.map(function(m, i){
+                              return (
+                                <span key={i} className={"grp-m" + (m.here ? " here" : "")}
+                                  title={m.name + (m.owner ? " — started this group" : "") + (m.here ? " — reading now" : "")}>
+                                  <Avatar id={m.avatar} name={m.name} size={22} />
+                                </span>
+                              );
+                            })}
+                          </span>
+                        ) : (
+                          <button className="grp-open" onClick={function(){ openGroupBook(grp); }}>
+                            Open {grp.title || "the group's book"}
+                          </button>
+                        )}
+                        {grp.closed && <span className="grp-closed">closed — its notes stay, new marks are yours alone</span>}
+                        <span style={{flex:1}} />
+                        <button className="grp-leave" title="Take this group off the page. It stays in Your groups, notes and all."
+                          onClick={leaveGroup}>Step out</button>
+                      </div>
+                    )}
+                    {annTool && (
+                      <div className="pen-tools">
+                        <span className="grp-lbl">Pen</span>
+                        {INK_COLORS.map(function(c){
+                          return (
+                            <button key={c.id} type="button" title={c.label} aria-label={c.label}
+                              className={"ink-sw c-" + c.id + (annTool === "pen" && inkColor === c.id ? " on" : "")}
+                              onClick={function(){ setInkColor(c.id); setAnnTool("pen"); }} />
+                          );
+                        })}
+                        <button type="button" className={"pen-btn" + (annTool === "erase" ? " on" : "")}
+                          onClick={function(){ setAnnTool(annTool === "erase" ? "pen" : "erase"); }}>
+                          {annTool === "erase" ? "Erasing — tap a stroke" : "Eraser"}
+                        </button>
+                        {inGrpBook && me && (
+                          <button type="button" className="pen-btn" onClick={function(){ setSelShared(!selShared); }}
+                            title="Where new marks go">
+                            {selShared ? "Shared with the group" : "Just me"}
+                          </button>
+                        )}
+                        <span style={{flex:1}} />
+                        <button type="button" className="pen-btn done" onClick={function(){ setAnnTool(""); }}>Done</button>
+                      </div>
+                    )}
+                    {grpErr && (
+                      <div className="grp-err">
+                        {grpErr}
+                        <button onClick={function(){ setGrpErr(""); }} aria-label="Dismiss">×</button>
+                      </div>
+                    )}
+                  </div>
+                )}
                 {lview==="read" && (
                   <>
                     {renderVoicePicker()}
@@ -14929,7 +15618,12 @@ export default function App() {
                             })}
                           </nav>
                         )}
-                        <div className="ltxt">{renderLit(curChapter.text)}</div>
+                        <div className="ltxt" ref={ltxtRef}>
+                          {renderLit(curChapter.text)}
+                          <AnnotLayer rootRef={ltxtRef} items={annItems} tool={annTool} inkColor={inkColor}
+                            onInk={addInk} onErase={eraseInk} onMarker={openMarker}
+                            onSelect={function(sb){ if (!annTool) setSelBox(sb); }} />
+                        </div>
                         {/* The same move again at the foot of the text, where a
                             reader who has finished the chapter actually is. The
                             pair at the top stays: it is for leaving a chapter,
@@ -15031,6 +15725,40 @@ export default function App() {
                   </>
                 )}
 
+                {lview==="notes" && (
+                  <div className="notes-panel">
+                    <div className="notes-h">
+                      <span>Notes in this book</span>
+                      {inGrpBook && <span className="notes-sub">yours, and {grp.name}'s</span>}
+                    </div>
+                    {!bookAnnots.length && (
+                      <p className="notes-empty">
+                        Select any words in the text to highlight them or add a note. Draw puts a
+                        pen in your hand. Everything you mark is listed here.
+                      </p>
+                    )}
+                    {bookAnnots.map(function(it, i){
+                      var head = (i === 0 || bookAnnots[i - 1].cidx !== it.cidx)
+                        ? ((sectionLabel(chapters[it.cidx] && chapters[it.cidx].heading) || {}).long || ("Chapter " + (it.cidx + 1)))
+                        : null;
+                      return (
+                        <Fragment key={it.layer + it.id}>
+                          {head && <div className="notes-ch">{head}</div>}
+                          <button type="button" className="note-row" onClick={function(){ jumpToAnnot(it); }}>
+                            <span className={"note-chip c-" + it.color + (it.kind === "ink" ? " ink" : "")} />
+                            <span className="note-body">
+                              {it.kind === "hl"
+                                ? <span className="note-q">{it.quote}</span>
+                                : <span className="note-q ink">A pen mark</span>}
+                              {it.note ? <span className="note-t">{it.note}</span> : null}
+                              {it.layer === "group" && it.by ? <span className="note-by">{it.by.name}</span> : null}
+                            </span>
+                          </button>
+                        </Fragment>
+                      );
+                    })}
+                  </div>
+                )}
                 {lview==="nav" && (
                   <div className="navpanel">
                     {(function(){

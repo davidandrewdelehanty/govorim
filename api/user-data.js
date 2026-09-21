@@ -21,13 +21,13 @@
 // userIdFor), so a rebuilt account lands back on its own vocabulary.
 // Accounts made under the old Clerk setup have their data under the old
 // Clerk user id; /api/admin/import-userdata copies such a prefix across.
-import { siteName } from "../lib/site.js";
+import { siteName, isPublicSite } from "../lib/site.js";
 import fs from "node:fs";
 import path from "node:path";
 import {
   S3Client, GetObjectCommand, PutObjectCommand
 } from "@aws-sdk/client-s3";
-import { requireUser, currentUser, bumpDaily, touchSeen } from "../lib/auth.js";
+import { requireUser, currentUser, bumpDaily, touchSeen, findAccount } from "../lib/auth.js";
 import { sendEmail } from "../lib/admin/helpers.js";
 import { r2Endpoint } from "../lib/r2-endpoint.js";
 
@@ -452,6 +452,10 @@ export default async function handler(req, res) {
   const forumAction = req.query && req.query.forum;
   if (forumAction) return handleForum(req, res, user, String(forumAction));
 
+  // ── Group reads (?group=<action>) ──
+  const groupAction = req.query && req.query.group;
+  if (groupAction) return handleGroup(req, res, user, String(groupAction));
+
   try {
     if (req.method === "GET") {
       // Read vocab + tips from R2
@@ -469,6 +473,8 @@ export default async function handler(req, res) {
       // did either.
       const songs = await r2Get(userId, "songs");
       const drills = await r2Get(userId, "drills");
+      // Highlights, notes and pen strokes: { items: { [id]: item } }.
+      const annots = await r2Get(userId, "annots");
 
       return res.status(200).json({
         vocab: Array.isArray(vocab) ? vocab : [],
@@ -478,6 +484,7 @@ export default async function handler(req, res) {
         stats: (stats && typeof stats === "object" && !Array.isArray(stats)) ? stats : {},
         songs: (songs && typeof songs === "object" && !Array.isArray(songs)) ? songs : {},
         drills: (drills && typeof drills === "object" && !Array.isArray(drills)) ? drills : {},
+        annots: (annots && typeof annots === "object" && annots.items) ? annots : { items: {} },
       });
     }
 
@@ -551,6 +558,29 @@ export default async function handler(req, res) {
         }
         await r2Put(userId, "learned", learned);
         return res.status(200).json({ ok: true });
+      }
+
+      if (type === "annots") {
+        // A reader's own annotations. Merged per item on updatedAt, so each
+        // device's newest edit to each highlight wins and a deletion (a
+        // tombstone with deleted:true) beats an older copy of the same item.
+        const inc = body.items;
+        if (!inc || typeof inc !== "object" || Array.isArray(inc)) {
+          return res.status(400).json({ error: "items must be an object" });
+        }
+        let existing = null;
+        try { existing = await r2Get(userId, "annots"); } catch (e) {}
+        const items = (existing && existing.items && typeof existing.items === "object") ? existing.items : {};
+        let n = 0;
+        for (const k of Object.keys(inc)) {
+          if (++n > 5000) break;
+          const it = cleanAnnot(inc[k]);
+          if (!it || it.id !== k) continue;
+          const cur = items[k];
+          if (!cur || (it.updatedAt || 0) >= (cur.updatedAt || 0)) items[k] = it;
+        }
+        await r2Put(userId, "annots", { items });
+        return res.status(200).json({ ok: true, count: Object.keys(items).length });
       }
 
       if (type === "songs") {
@@ -764,6 +794,313 @@ async function updateIndex(cat, post, remove) {
 // to ADMIN_EMAIL). Best-effort: a Resend hiccup never fails the request. The
 // admin's own posts are skipped — no point mailing yourself about yourself.
 const CAT_LABELS = { requests: "Book requests", bugs: "Bugs", general: "General" };
+
+// ── Annotations ───────────────────────────────────────────────────────────────
+//
+// One shape for both layers, personal and group. It follows the W3C Web
+// Annotation model that Recogito and Apache Annotator use: a highlight is
+// anchored by POSITION (start/end in the chapter's own character offsets —
+// the same coordinates the reader's word spans carry) and by QUOTE (the words
+// themselves), so if a book's text is ever corrected and the offsets move,
+// the quote is what finds the passage again. A pen stroke is anchored to the
+// paragraph it was drawn on, with its points as fractions of that
+// paragraph's box, so it stays with its paragraph when the page reflows.
+const ANNOT_COLORS = new Set(["yellow", "green", "blue", "pink", "ink"]);
+function num(v, lo, hi) {
+  const n = Number(v);
+  if (!isFinite(n)) return null;
+  return Math.min(hi, Math.max(lo, n));
+}
+function cleanAnnot(raw) {
+  if (!raw || typeof raw !== "object") return null;
+  const id = String(raw.id || "");
+  if (!/^[A-Za-z0-9_-]{6,40}$/.test(id)) return null;
+  const kind = raw.kind === "ink" ? "ink" : raw.kind === "hl" ? "hl" : null;
+  if (!kind) return null;
+  const out = {
+    id, kind,
+    bookKey: String(raw.bookKey || "").slice(0, 300),
+    cidx: Math.floor(num(raw.cidx, 0, 100000) || 0),
+    color: ANNOT_COLORS.has(raw.color) ? raw.color : (kind === "ink" ? "ink" : "yellow"),
+    createdAt: Math.floor(num(raw.createdAt, 0, 9e15) || Date.now()),
+    updatedAt: Math.floor(num(raw.updatedAt, 0, 9e15) || Date.now()),
+  };
+  if (raw.deleted) { out.deleted = true; return out; }
+  if (kind === "hl") {
+    const s = Math.floor(num(raw.start, 0, 1e8)), e = Math.floor(num(raw.end, 0, 1e8));
+    if (s === null || e === null || e <= s || e - s > 20000) return null;
+    out.start = s; out.end = e;
+    out.quote = String(raw.quote || "").slice(0, 600);
+    out.note = String(raw.note || "").slice(0, 2000);
+  } else {
+    out.paraStart = Math.floor(num(raw.paraStart, 0, 1e8) || 0);
+    out.size = num(raw.size, 1, 24) || 3;
+    const pts = Array.isArray(raw.points) ? raw.points.slice(0, 800) : [];
+    out.points = [];
+    for (const p of pts) {
+      if (!Array.isArray(p)) continue;
+      const x = num(p[0], -0.5, 1.5), y = num(p[1], -0.5, 1.5);
+      if (x === null || y === null) continue;
+      out.points.push([Math.round(x * 10000) / 10000, Math.round(y * 10000) / 10000]);
+    }
+    if (out.points.length < 2) return null;
+  }
+  return out;
+}
+
+// ── Group reads ──────────────────────────────────────────────────────────────
+
+const GROUPS = `${PREFIX}/_groups`;
+const GROUP_ITEM_CAP = 4000;
+
+// Read with the ETag, so the write can say "only if nobody else wrote since".
+async function r2GetTagged(key) {
+  try {
+    const r = await s3.send(new GetObjectCommand({ Bucket: BUCKET, Key: key }));
+    return { data: JSON.parse(await r.Body.transformToString()), etag: r.ETag || null };
+  } catch (e) {
+    if (e.name === "NoSuchKey" || e.$metadata?.httpStatusCode === 404) return { data: null, etag: null };
+    throw e;
+  }
+}
+// Read-modify-write that cannot lose a concurrent write: the PUT carries
+// If-Match (or If-None-Match for a new file) and a 412 means another reader
+// got there first — re-read and apply the change again. `fn` returns the new
+// value, or undefined to write nothing.
+async function r2Update(key, fn) {
+  for (let attempt = 0; attempt < 6; attempt++) {
+    const { data, etag } = await r2GetTagged(key);
+    const next = fn(data);
+    if (next === undefined) return data;
+    const cmd = { Bucket: BUCKET, Key: key, Body: JSON.stringify(next), ContentType: "application/json" };
+    if (etag) cmd.IfMatch = etag; else cmd.IfNoneMatch = "*";
+    try {
+      await s3.send(new PutObjectCommand(cmd));
+      return next;
+    } catch (e) {
+      const clash = e.name === "PreconditionFailed" || e.$metadata?.httpStatusCode === 412;
+      if (!clash) throw e;
+      await new Promise(function (r) { setTimeout(r, 40 + Math.random() * 120); });
+    }
+  }
+  throw new Error("Too many people writing at once — try again.");
+}
+
+function catalogueBook(filename) {
+  try {
+    const all = JSON.parse(fs.readFileSync(path.join(process.cwd(), "private", "books", "index.json"), "utf8"));
+    const b = all.find(function (x) { return x && x.filename === filename; });
+    if (!b) return null;
+    if (b.restricted) return null;
+    if (isPublicSite() && !b.public) return null;
+    return b;
+  } catch (e) { return null; }
+}
+
+function groupSummary(g) {
+  return {
+    id: g.id, name: g.name, filename: g.filename, title: g.title, author: g.author,
+    ownerName: g.ownerName, createdAt: g.createdAt, lastActive: g.lastActive,
+    closed: !!g.closed,
+    members: Object.keys(g.members || {}).length,
+    items: Object.keys(g.items || {}).filter(function (k) { return !g.items[k].deleted; }).length,
+  };
+}
+
+async function refreshIndex(g, remove) {
+  await r2Update(`${GROUPS}/index.json`, function (cur) {
+    const idx = (cur && Array.isArray(cur.groups)) ? cur.groups : [];
+    const rest = idx.filter(function (x) { return x.id !== g.id; });
+    if (!remove) rest.unshift(groupSummary(g));
+    rest.sort(function (a, b) { return (b.lastActive || 0) - (a.lastActive || 0); });
+    return { groups: rest.slice(0, 300) };
+  });
+}
+
+// Every group a reader has ever been in, so they can always get back to it —
+// even one that has dropped off the public list or been closed.
+async function rememberMembership(uid, gid) {
+  let cur = null;
+  try { cur = await r2Get(uid, "groups"); } catch (e) {}
+  const ids = (cur && Array.isArray(cur.ids)) ? cur.ids : [];
+  if (ids.indexOf(gid) === -1) {
+    ids.unshift(gid);
+    await r2Put(uid, "groups", { ids: ids.slice(0, 500) });
+  }
+}
+
+async function handleGroup(req, res, user, action) {
+  let body = req.body;
+  if (typeof body === "string") { try { body = JSON.parse(body); } catch { body = {}; } }
+  body = body || {};
+  const q = req.query || {};
+  const account = await findAccount(user.email).catch(function () { return null; });
+  const me = {
+    uid: user.id,
+    name: (account && account.username) || String(user.email || "").split("@")[0],
+    avatar: (account && account.avatar) || "",
+  };
+  const gid = String(body.id || q.id || "");
+  const gkey = function (id) { return `${GROUPS}/${id}.json`; };
+  const validId = /^[a-z0-9]{8}$/.test(gid);
+
+  try {
+    // Every group, newest activity first. Public by design: the list is how
+    // readers find one another.
+    if (action === "list" && req.method === "GET") {
+      const idx = (await r2GetTagged(`${GROUPS}/index.json`)).data;
+      const groups = ((idx && idx.groups) || []).filter(function (g) {
+        return !isPublicSite() || !!catalogueBook(g.filename);
+      });
+      return res.status(200).json({ groups });
+    }
+
+    if (action === "mine" && req.method === "GET") {
+      let cur = null;
+      try { cur = await r2Get(me.uid, "groups"); } catch (e) {}
+      const ids = (cur && Array.isArray(cur.ids)) ? cur.ids : [];
+      const out = [];
+      for (const id of ids.slice(0, 100)) {
+        if (!/^[a-z0-9]{8}$/.test(id)) continue;
+        const g = (await r2GetTagged(gkey(id))).data;
+        if (g && g.members && g.members[me.uid]) out.push(groupSummary(g));
+      }
+      return res.status(200).json({ groups: out });
+    }
+
+    if (action === "create" && req.method === "POST") {
+      const name = String(body.name || "").trim().replace(/\s+/g, " ");
+      if (name.length < 3 || name.length > 60) return res.status(400).json({ error: "Give the group a name of 3 to 60 characters." });
+      const book = catalogueBook(String(body.filename || ""));
+      if (!book) return res.status(400).json({ error: "Group reads are for books in the library." });
+      const idx = (await r2GetTagged(`${GROUPS}/index.json`)).data;
+      const mine = ((idx && idx.groups) || []).filter(function (g) { return g.ownerName === me.name; });
+      if (mine.length >= 5) return res.status(400).json({ error: "You already run five group reads — end one first." });
+      const id = Array.from({ length: 8 }, function () {
+        return "abcdefghjkmnpqrstuvwxyz23456789"[Math.floor(Math.random() * 31)];
+      }).join("");
+      const now = Date.now();
+      const g = {
+        id, name, filename: book.filename, title: book.title || "", author: book.author || "",
+        owner: me.uid, ownerName: me.name, createdAt: now, lastActive: now,
+        members: { [me.uid]: { name: me.name, avatar: me.avatar, joinedAt: now, seenAt: now } },
+        items: {},
+      };
+      await r2Update(gkey(id), function (cur) { return cur ? undefined : g; });
+      await refreshIndex(g);
+      await rememberMembership(me.uid, id);
+      return res.status(200).json({ ok: true, group: groupSummary(g) });
+    }
+
+    if (!validId) return res.status(400).json({ error: "No such group." });
+
+    if (action === "join" && req.method === "POST") {
+      const now = Date.now();
+      const g = await r2Update(gkey(gid), function (cur) {
+        if (!cur) return undefined;
+        cur.members = cur.members || {};
+        cur.members[me.uid] = Object.assign({}, cur.members[me.uid] || { joinedAt: now },
+          { name: me.name, avatar: me.avatar, seenAt: now });
+        cur.lastActive = now;
+        return cur;
+      });
+      if (!g) return res.status(404).json({ error: "No such group." });
+      await refreshIndex(g);
+      await rememberMembership(me.uid, gid);
+      return res.status(200).json({ ok: true, group: groupSummary(g) });
+    }
+
+    // Leaving does not remove anyone. A member keeps the group's notes for
+    // good; "leave" is only the page no longer showing it, which the client
+    // handles — this answers so old clients do not error.
+    if (action === "leave" && req.method === "POST") {
+      return res.status(200).json({ ok: true });
+    }
+
+    // The starter can close a group to new marks. Nothing is removed: every
+    // member keeps reading what is there, forever.
+    if ((action === "close" || action === "end") && req.method === "POST") {
+      const cur = (await r2GetTagged(gkey(gid))).data;
+      if (!cur) return res.status(404).json({ error: "No such group." });
+      if (cur.owner !== me.uid && !user.isAdmin) return res.status(403).json({ error: "Only the reader who started it can close it." });
+      const g = await r2Update(gkey(gid), function (c) {
+        if (!c) return undefined;
+        c.closed = true; c.closedAt = Date.now();
+        return c;
+      });
+      if (g) await refreshIndex(g);
+      return res.status(200).json({ ok: true });
+    }
+
+    // The poll. Everything that changed since the reader last asked, plus who
+    // is here. `now` is the server's clock, which the client echoes back as
+    // `since`, so no two machines' clocks ever have to agree.
+    if (action === "items" && req.method === "GET") {
+      const { data: g } = await r2GetTagged(gkey(gid));
+      if (!g) return res.status(404).json({ error: "No such group." });
+      if (!g.members || !g.members[me.uid]) return res.status(403).json({ error: "Join the group first." });
+      const since = Number(q.since) || 0;
+      const items = [];
+      for (const k of Object.keys(g.items || {})) {
+        const it = g.items[k];
+        if ((it.updatedAt || 0) > since) items.push(it);
+      }
+      const now = Date.now();
+      // Presence: who has polled in the last half-minute counts as here.
+      const members = Object.keys(g.members).map(function (uid) {
+        const m = g.members[uid];
+        return { name: m.name, avatar: m.avatar, here: now - (m.seenAt || 0) < 30000, owner: uid === g.owner };
+      });
+      // Marking this reader seen costs a write, so it happens at most every
+      // twenty seconds rather than on every poll.
+      if (now - ((g.members[me.uid] || {}).seenAt || 0) > 20000) {
+        r2Update(gkey(gid), function (cur) {
+          if (!cur || !cur.members || !cur.members[me.uid]) return undefined;
+          cur.members[me.uid].seenAt = now;
+          return cur;
+        }).catch(function () {});
+      }
+      return res.status(200).json({ now, items, members, group: groupSummary(g), isOwner: g.owner === me.uid });
+    }
+
+    if (action === "put" && req.method === "POST") {
+      const it = cleanAnnot(body.item);
+      if (!it) return res.status(400).json({ error: "That annotation could not be read." });
+      const now = Date.now();
+      let refused = "";
+      const g = await r2Update(gkey(gid), function (cur) {
+        if (!cur) { refused = "No such group."; return undefined; }
+        if (cur.closed || cur.ended) { refused = "This group read is closed — its notes stay, but it takes no new ones."; return undefined; }
+        if (!cur.members || !cur.members[me.uid]) { refused = "Join the group first."; return undefined; }
+        cur.items = cur.items || {};
+        const prev = cur.items[it.id];
+        // Only the reader who made an annotation may change or remove it. Not
+        // even the starter can take away another member's note: the group's
+        // pages are everyone's record.
+        if (prev && prev.by && prev.by.uid !== me.uid) {
+          refused = "That note belongs to another reader."; return undefined;
+        }
+        if (!prev && Object.keys(cur.items).length >= GROUP_ITEM_CAP) { refused = "This group's page is full."; return undefined; }
+        const bookKeyOk = !it.bookKey || it.bookKey.indexOf(cur.filename) === 0;
+        if (!bookKeyOk) { refused = "That annotation is for another book."; return undefined; }
+        it.updatedAt = now;
+        it.by = prev && prev.by ? prev.by : { uid: me.uid, name: me.name, avatar: me.avatar };
+        cur.items[it.id] = it;
+        cur.lastActive = now;
+        return cur;
+      });
+      if (refused) return res.status(400).json({ error: refused });
+      if (!g) return res.status(404).json({ error: "No such group." });
+      // The public list only needs to move when the count does.
+      if (!it.deleted) refreshIndex(g).catch(function () {});
+      return res.status(200).json({ ok: true, item: g.items[it.id] });
+    }
+
+    return res.status(404).json({ error: "Unknown group action: " + action });
+  } catch (err) {
+    return res.status(500).json({ error: err.message || "Group read failed." });
+  }
+}
 
 function escapeHtml(t) {
   return String(t || "").replace(/[&<>"]/g, function (ch) {
