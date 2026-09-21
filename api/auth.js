@@ -35,6 +35,9 @@ import {
   clearSessionCookie,
   currentUser,
   isApproved,
+  setProfile,
+  isUsernameFree,
+  usernameProblem,
 } from "../lib/auth.js";
 import { sendEmail } from "../lib/admin/helpers.js";
 
@@ -88,13 +91,18 @@ export default async function handler(req, res) {
     const who = currentUser(req);
     if (!who) return res.status(200).json({ user: null });
     // Re-read the account so revoking approval takes effect on the next page
-    // load rather than whenever the signed session happens to expire.
+    // load rather than whenever the signed session happens to expire. The
+    // same read carries the profile — username, avatar, when they joined —
+    // which the session token deliberately does not.
     try {
       const account = await findAccount(who.email);
       if (!account || !isApproved(account)) {
         clearSessionCookie(res);
         return res.status(200).json({ user: null, pending: !!account });
       }
+      who.username = account.username || "";
+      who.avatar = account.avatar || "";
+      who.createdAt = account.createdAt || null;
     } catch (_) {
       // An R2 hiccup should not lock every reader out of the site, so fall
       // through and trust the signed session.
@@ -108,6 +116,41 @@ export default async function handler(req, res) {
     // a write only when the stored time has gone stale.
     try { await touchSeen(who.email); } catch (_) {}
     return res.status(200).json({ user: who });
+  }
+
+  // The reader's own profile. GET ?check=<name> answers whether a username is
+  // free, so the form can say so before anyone presses Save; POST sets the
+  // username and/or avatar. Signed-in readers only, and only their own.
+  if (action === "profile") {
+    const who = currentUser(req);
+    if (!who) return res.status(401).json({ error: "Sign in first." });
+    if (req.method === "GET") {
+      const name = String((req.query && req.query.check) || "");
+      const prob = usernameProblem(name);
+      if (prob) return res.status(200).json({ ok: false, error: prob });
+      try {
+        const free = await isUsernameFree(name, who.email);
+        return res.status(200).json({ ok: free, error: free ? "" : "That username is taken." });
+      } catch (e) {
+        return res.status(500).json({ ok: false, error: "Could not check right now." });
+      }
+    }
+    if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
+    const body = readBody(req);
+    const changes = {};
+    if (body.username !== undefined) changes.username = body.username;
+    if (body.avatar !== undefined) changes.avatar = body.avatar;
+    try {
+      const out = await setProfile(who.email, changes);
+      if (out.error) return res.status(400).json({ error: out.error });
+      return res.status(200).json({ ok: true, user: Object.assign({}, who, {
+        username: out.account.username || "",
+        avatar: out.account.avatar || "",
+        createdAt: out.account.createdAt || null,
+      }) });
+    } catch (e) {
+      return res.status(500).json({ error: "Could not save: " + (e.message || e) });
+    }
   }
 
   if (action === "logout") {

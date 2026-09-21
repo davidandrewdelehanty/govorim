@@ -3197,6 +3197,86 @@ async function parseBook(buffer, fname) {
 // when a portrait is not. It was a photographic silhouette of Pushkin before,
 // carried as a base64 PNG; this is a few hundred bytes of paths that take
 // currentColor, so it inherits whatever the palette is doing.
+// ── Avatars ────────────────────────────────────────────────────────────────
+// A small set of line drawings in the site's one ink, 24×24, stroke only, so
+// they sit in the banner like a letter of the masthead rather than a sticker.
+// Stored by id on the account; the server checks only the id's shape, so a
+// drawing can be added here without touching it. "" means the monogram —
+// the reader's own initial, which is the default and needs no choosing.
+var AVATARS = [
+  { id: "samovar", label: "Samovar", d: [
+      "M9 4.5h6", "M12 4.5V3", "M8 7.5c0-1.7 1.8-3 4-3s4 1.3 4 3",
+      "M7 7.5h10", "M7.5 7.5c-1 2-1.5 4-1.5 6 0 2.5 2.7 4.5 6 4.5s6-2 6-4.5c0-2-.5-4-1.5-6",
+      "M18 12h2.5v2", "M9 18l-1 3h8l-1-3" ] },
+  { id: "book", label: "Open book", d: [
+      "M12 6.5C10 5 7 4.5 4 5v13c3-.5 6 0 8 1.5",
+      "M12 6.5C14 5 17 4.5 20 5v13c-3-.5-6 0-8 1.5", "M12 6.5v13" ] },
+  { id: "quill", label: "Quill", d: [
+      "M19 4C12 5 7.5 10 6 17", "M19 4c-1 5-4 8.5-8.5 10.5",
+      "M9.5 9.5c2 .5 3.5.3 5-1", "M6 17l-1.5 3.5" ] },
+  { id: "birch", label: "Birch", d: [
+      "M12 21V3", "M12 8l-4-3", "M12 12l4-3.5", "M12 15.5l-3.5-2.5",
+      "M10.8 6.2h1.4", "M11.8 10.5h1.4", "M10.8 17h1.4" ] },
+  { id: "dome", label: "Onion dome", d: [
+      "M12 2.5v2.5", "M10.8 3.6h2.4",
+      "M12 5c-3 2-5 4.3-5 6.8 0 1.6 1 2.7 2 3.2h6c1-.5 2-1.6 2-3.2 0-2.5-2-4.8-5-6.8z",
+      "M8 15v6", "M16 15v6", "M6 21h12", "M12 17.5v3.5" ] },
+  { id: "tea", label: "Glass of tea", d: [
+      "M7 7h10l-1.3 11.5H8.3z", "M6.2 7h11.6", "M7.6 11h8.8",
+      "M17 9.5h1.8c.9 0 1.2 1.1.6 1.7L16.5 14", "M6 20.5h12" ] },
+  { id: "doll", label: "Nesting doll", d: [
+      "M12 3a3.3 3.3 0 0 0-3.3 3.3c0 1 .4 1.8 1 2.4C7.8 10 7 12.5 7 15c0 3.3 2.2 6 5 6s5-2.7 5-6c0-2.5-.8-5-2.7-6.3.6-.6 1-1.4 1-2.4A3.3 3.3 0 0 0 12 3z",
+      "M10.3 6.2h3.4", "M9 13.5c1.8 1.2 4.2 1.2 6 0" ] },
+  { id: "bear", label: "Bear", d: [
+      "M7.5 7.2a2 2 0 1 1 2.6-2.6", "M16.5 7.2a2 2 0 1 0-2.6-2.6",
+      "M12 5.5c-3.6 0-6 2.7-6 6.2 0 3.8 2.7 6.8 6 6.8s6-3 6-6.8c0-3.5-2.4-6.2-6-6.2z",
+      "M9.7 11h.01", "M14.3 11h.01", "M11 14.2c.6.5 1.4.5 2 0" ] },
+  { id: "fox", label: "Fox", d: [
+      "M5 4l3.5 5", "M19 4l-3.5 5", "M5 4c-.5 5 1 9 7 15 6-6 7.5-10 7-15",
+      "M8.5 9c1.5-.8 5.5-.8 7 0", "M9.8 12h.01", "M14.2 12h.01", "M11.3 15.5h1.4" ] },
+  { id: "owl", label: "Owl", d: [
+      "M6 5l2 2.5M18 5l-2 2.5", "M6 5c-1 6 0 13 6 15 6-2 7-9 6-15-2 1.5-4 2-6 2s-4-.5-6-2z",
+      "M9.5 11a1.8 1.8 0 1 0 0 .01", "M14.5 11a1.8 1.8 0 1 0 0 .01", "M11.4 13.8l.6 1 .6-1" ] },
+  { id: "candle", label: "Candle", d: [
+      "M12 3c-1.3 1.7-1.3 3.2 0 4.3 1.3-1.1 1.3-2.6 0-4.3z", "M12 7.3V9",
+      "M9 9h6v10H9z", "M6.5 19h11", "M13 11.5v3" ] },
+  { id: "moon", label: "Moon", d: [
+      "M15.5 4.5A7.5 7.5 0 1 0 19.5 16 6 6 0 0 1 15.5 4.5z",
+      "M18.5 5.5l.5 1 1 .5-1 .5-.5 1-.5-1-1-.5 1-.5z" ] },
+  { id: "snow", label: "Snowflake", d: [
+      "M12 3v18", "M4.2 7.5l15.6 9", "M4.2 16.5l15.6-9",
+      "M10 4.5l2 2 2-2", "M10 19.5l2-2 2 2" ] },
+  { id: "balalaika", label: "Balalaika", d: [
+      "M12 2.5v9", "M11 3.5h2", "M12 11.5l-6.5 8h13z",
+      "M12 14.8a1.3 1.3 0 1 0 0 .01", "M8.5 19.5l3.5-3.2 3.5 3.2" ] },
+  { id: "troika", label: "Horse", d: [
+      "M6 20l1-6c-1.5-1-2-3-1-5l3-4 2 2h3c3 0 5 2 5 5v8",
+      "M9 5l-.5-2.5", "M14 20v-5", "M9.5 9.5h.01" ] },
+  { id: "star", label: "Star", d: [
+      "M12 3.5l2.4 5.2 5.6.6-4.2 3.8 1.2 5.6L12 15.8l-5 2.9 1.2-5.6L4 9.3l5.6-.6z" ] },
+];
+
+function Avatar({ id, name, size }) {
+  var s = size || 28;
+  var a = null;
+  for (var i = 0; i < AVATARS.length; i++) if (AVATARS[i].id === id) { a = AVATARS[i]; break; }
+  if (!a) {
+    // The monogram: the first letter of whatever the reader is called here.
+    var ch = String(name || "?").trim().charAt(0).toUpperCase() || "?";
+    return (
+      <span className="avatar mono" style={{width:s,height:s,fontSize:Math.round(s*0.52)}} aria-hidden="true">{ch}</span>
+    );
+  }
+  return (
+    <span className="avatar" style={{width:s,height:s}} aria-hidden="true">
+      <svg viewBox="0 0 24 24" width={Math.round(s*0.72)} height={Math.round(s*0.72)} fill="none"
+           stroke="currentColor" strokeWidth={s >= 48 ? 1.3 : 1.6} strokeLinecap="round" strokeLinejoin="round">
+        {a.d.map(function(d, k){ return <path key={k} d={d}/>; })}
+      </svg>
+    </span>
+  );
+}
+
 function Samovar({ size }) {
   var s = size || 56;
   return (
@@ -3499,6 +3579,30 @@ export default function App() {
     return function() { cancelled = true; };
   }, []);
 
+  // Save username and/or avatar. The server is the one that decides a name
+  // is free — the check while typing is a courtesy, not a guarantee.
+  var saveProfile = async function(changes) {
+    setAcctBusy(true); setAcctSaved("");
+    try {
+      var r = await fetch("/api/auth/profile", {
+        method: "POST", credentials: "same-origin",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(changes),
+      });
+      var d = await r.json().catch(function(){ return {}; });
+      if (!r.ok) throw new Error(d.error || "Could not save.");
+      setMe(function(cur){ return Object.assign({}, cur || {}, d.user || {}); });
+      setAcctSaved(changes.username !== undefined ? "Username saved." : "Avatar saved.");
+      if (changes.username !== undefined) setAcctNameMsg({ ok: true, text: "" });
+      return true;
+    } catch (err) {
+      if (changes.username !== undefined) setAcctNameMsg({ ok: false, text: err.message || "Could not save." });
+      else setAcctSaved(err.message || "Could not save.");
+      return false;
+    } finally {
+      setAcctBusy(false);
+    }
+  };
   var submitAuth = async function(e) {
     if (e && e.preventDefault) e.preventDefault();
     if (authBusy) return;
@@ -3556,6 +3660,34 @@ export default function App() {
   // account; ADMIN_EMAIL now lives only on the server (lib/auth.js), so the
   // client learns about it from /api/auth/me rather than from a build-time var.
   var [showAdmin, setShowAdmin]   = useState(false);
+  // The reader's own account page, and the username box on it.
+  var [showAcct, setShowAcct]       = useState(false);
+  var [acctName, setAcctName]       = useState("");
+  var [acctNameMsg, setAcctNameMsg] = useState({ ok: false, text: "" });
+  var [acctBusy, setAcctBusy]       = useState(false);
+  var [acctSaved, setAcctSaved]     = useState("");
+
+  // Declared here, below the state it watches, and not up beside saveProfile:
+  // a hook's dependency list is read where the call sits, and above these
+  // `var`s it read them as undefined — so the effect never saw a keystroke.
+  // Is the name in the box free? Asked half a second after the typing stops.
+  useEffect(function() {
+    if (!showAcct || !me) return;
+    var n = acctName.trim();
+    if (!n || n === (me.username || "")) { setAcctNameMsg({ ok: false, text: "" }); return; }
+    var cancelled = false;
+    var t = setTimeout(function() {
+      fetch("/api/auth/profile?check=" + encodeURIComponent(n), { credentials: "same-origin" })
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          if (cancelled) return;
+          setAcctNameMsg(d && d.ok ? { ok: true, text: "Available." } : { ok: false, text: (d && d.error) || "Not available." });
+        })
+        .catch(function(){});
+    }, 450);
+    return function(){ cancelled = true; clearTimeout(t); };
+  }, [acctName, showAcct, me && me.username]);
+
   var [adminUsers, setAdminUsers] = useState([]);
   // One reader in full — the object /api/admin/users?email= returns — plus
   // which of its drill-down windows is open (reading / vocab / finished).
@@ -10404,7 +10536,7 @@ export default function App() {
           .auth-brand-title{font-size:34px}
           .gate-feats{padding:14px 8px 4px}
         }
-        .userbtn-wrap{display:flex;align-items:center}
+        .userbtn-wrap{display:flex;align-items:center;gap:16px}
 
         /* The pending-approval SCREEN used to live here, styled off a bare
            ".pending". The screen is gone (the site reads signed out), but the
@@ -10883,6 +11015,46 @@ export default function App() {
           .pbm:focus-visible{opacity:1}
         }
         @media(hover:none){.pbm{opacity:.16}.pbm.on{opacity:1;color:var(--rubric)}}
+        /* ── Avatar and the account page ─────────────────────────────────── */
+        .avatar{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;
+          border:1px solid var(--rule);border-radius:50%!important;background:var(--paper-3);color:var(--ink)}
+        .avatar.mono{font-family:var(--display);font-weight:700;line-height:1}
+        .acct-btn{display:inline-flex;align-items:center;gap:8px;background:none;border:0;padding:0;cursor:pointer;color:var(--ink)}
+        .acct-btn:hover .avatar{border-color:var(--ink)}
+        .acct-btn:hover .acct-email{color:var(--ink)}
+        .acct-modal{max-width:620px}
+        .acct-body{padding:18px 26px 24px;gap:0}
+        .acct-id{display:flex;align-items:center;gap:18px;padding-bottom:18px;border-bottom:1px solid var(--rule-soft)}
+        .acct-name{font-family:var(--display);font-size:26px;color:var(--ink);line-height:1.1}
+        .acct-none{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink-3)}
+        .acct-mail{font-family:var(--sans);font-size:12px;color:var(--ink-2);margin-top:5px}
+        .acct-since{font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--ink-3);margin-top:2px}
+        .acct-sec{padding:18px 0;border-bottom:1px solid var(--rule-soft)}
+        .acct-sec:last-of-type{border-bottom:0}
+        .acct-h{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:12px}
+        .acct-row{display:flex;gap:10px}
+        .acct-in{flex:1;font-size:15px;padding:8px 11px}
+        .acct-msg{font-family:var(--serif);font-size:13.5px;margin-top:8px}
+        .acct-msg.ok{color:#3d5f37}
+        .acct-msg.bad{color:var(--rubric)}
+        .acct-note{font-family:var(--serif);font-style:italic;font-size:12.5px;color:var(--ink-3);margin-top:8px}
+        .acct-avs{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:8px}
+        .acct-av{display:flex;align-items:center;justify-content:center;background:none;border:1px solid transparent;
+          padding:5px;cursor:pointer}
+        .acct-av:hover:not(:disabled){border-color:var(--rule)}
+        .acct-av.on{border-color:var(--ink)}
+        .acct-av.on .avatar{background:var(--paper-2)}
+        .acct-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px 18px}
+        .acct-stat{display:flex;flex-direction:column;gap:3px}
+        .acct-stat .n{font-family:var(--display);font-size:26px;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
+        .acct-stat .l{font-family:var(--serif);font-size:13px;color:var(--ink-2)}
+        .acct-list{margin-top:16px}
+        .acct-sub{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--ink-3);margin-bottom:4px}
+        .acct-li{display:flex;justify-content:space-between;gap:14px;padding:7px 0;border-bottom:1px solid var(--rule-soft);
+          font-family:var(--serif);font-size:14.5px;color:var(--ink)}
+        .acct-li .a{color:var(--ink-3)}
+        .acct-li .w{font-family:var(--sans);font-size:11px;color:var(--ink-3);white-space:nowrap;align-self:center}
+        @media(max-width:640px){.acct-body{padding:14px 16px 20px}.acct-stat .n{font-size:22px}}
         .bm-menu{background:var(--paper-3);border:1px solid var(--ink);box-shadow:none}
         .bm-menu button{font-family:var(--serif)}
         .bm-menu button:hover{background:var(--paper-2)}
@@ -11199,6 +11371,144 @@ export default function App() {
         </div>
       )}
 
+      {showAcct && me && (
+        <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setShowAcct(false); }}>
+          <div className="adm-modal acct-modal" role="dialog" aria-label="Your account">
+            <div className="adm-head">
+              <div className="adm-title">Your account</div>
+              <button className="adm-x" onClick={function(){ setShowAcct(false); }}>×</button>
+            </div>
+            <div className="adm-body acct-body">
+              {(function(){
+                // Everything below comes from the records already on this
+                // page — the same ones the reading-record panel draws and the
+                // admin sheet reads — so the three cannot disagree.
+                var goals = { words: GOAL_WORDS, cards: GOAL_CARDS };
+                var st = streaks(stats, goals);
+                var tot = statsTotals(stats);
+                var opened = Object.keys(progressMap || {}).map(function(k){
+                  var v = progressMap[k] || {};
+                  return { key: k, title: v.title || k, author: v.author || "", cidx: v.cidx || 0,
+                           total: v.totalChapters || 0, at: v.lastRead || 0 };
+                }).sort(function(a, b){ return b.at - a.at; });
+                var finished = Object.keys(finishedMap || {}).filter(function(k){
+                  return finishedMap[k] && !finishedMap[k].removed;
+                });
+                var songKeys = Object.keys(songsRead || {});
+                var plays = songKeys.reduce(function(n, k){ return n + ((songsRead[k] || {}).n || 0); }, 0);
+                var dr = drills || {};
+                var joined = me.createdAt
+                  ? new Date(me.createdAt).toLocaleDateString(undefined, { month: "long", year: "numeric" })
+                  : "";
+                var tile = function(n, l){
+                  return <div className="acct-stat"><span className="n">{n}</span><span className="l">{l}</span></div>;
+                };
+                return (
+                  <>
+                    <div className="acct-id">
+                      <Avatar id={me.avatar} name={me.username || me.email} size={64} />
+                      <div className="acct-id-t">
+                        <div className="acct-name">{me.username || <span className="acct-none">No username yet</span>}</div>
+                        <div className="acct-mail">{me.email}</div>
+                        {joined && <div className="acct-since">reading here since {joined}</div>}
+                      </div>
+                    </div>
+
+                    <div className="acct-sec">
+                      <div className="acct-h">Username</div>
+                      <form className="acct-row" onSubmit={function(e){
+                        e.preventDefault();
+                        var n = acctName.trim();
+                        if (!n || n === (me.username || "")) return;
+                        saveProfile({ username: n });
+                      }}>
+                        <input className="auth-in acct-in" value={acctName} maxLength={24}
+                          placeholder="letters, digits, _ . -" autoComplete="off" spellCheck={false}
+                          onChange={function(e){ setAcctName(e.target.value); setAcctSaved(""); }} />
+                        <button className="adm-btn" type="submit"
+                          disabled={acctBusy || !acctName.trim() || acctName.trim() === (me.username || "")}>Save</button>
+                      </form>
+                      {acctNameMsg.text && (
+                        <div className={"acct-msg" + (acctNameMsg.ok ? " ok" : " bad")}>{acctNameMsg.text}</div>
+                      )}
+                      <div className="acct-note">Unique on the site. Three to twenty-four characters, Latin or Cyrillic.</div>
+                    </div>
+
+                    <div className="acct-sec">
+                      <div className="acct-h">Avatar</div>
+                      <div className="acct-avs">
+                        <button type="button" className={"acct-av" + (!me.avatar ? " on" : "")}
+                          title="Your initial" disabled={acctBusy}
+                          onClick={function(){ if (me.avatar) saveProfile({ avatar: "" }); }}>
+                          <Avatar id="" name={me.username || me.email} size={40} />
+                        </button>
+                        {AVATARS.map(function(a){
+                          return (
+                            <button key={a.id} type="button" title={a.label} aria-label={a.label}
+                              className={"acct-av" + (me.avatar === a.id ? " on" : "")} disabled={acctBusy}
+                              onClick={function(){ if (me.avatar !== a.id) saveProfile({ avatar: a.id }); }}>
+                              <Avatar id={a.id} size={40} />
+                            </button>
+                          );
+                        })}
+                      </div>
+                      {acctSaved && <div className="acct-msg ok">{acctSaved}</div>}
+                    </div>
+
+                    <div className="acct-sec">
+                      <div className="acct-h">Reading</div>
+                      <div className="acct-stats">
+                        {tile(fmtInt(tot.read), "Russian words read")}
+                        {tile(tot.days, "days with a session")}
+                        {tile(st.current, "day streak")}
+                        {tile(st.longest, "longest streak")}
+                        {tile(opened.length, "books opened")}
+                        {tile(finished.length, "marked read")}
+                      </div>
+                      {opened.length > 0 && (
+                        <div className="acct-list">
+                          <div className="acct-sub">Reading now</div>
+                          {opened.slice(0, 5).map(function(b){
+                            return (
+                              <div key={b.key} className="acct-li">
+                                <span className="t">{b.title}{b.author ? <span className="a"> — {b.author}</span> : null}</span>
+                                <span className="w">{b.total > 1 ? "ch. " + (b.cidx + 1) + " of " + b.total : ""}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="acct-sec">
+                      <div className="acct-h">Words</div>
+                      <div className="acct-stats">
+                        {tile(vocab.length, "saved to your vocabulary")}
+                        {tile(learned.length, "retired as learned")}
+                        {tile(tot.practiced, "vocabulary answers")}
+                      </div>
+                    </div>
+
+                    <div className="acct-sec">
+                      <div className="acct-h">Music and case drills</div>
+                      <div className="acct-stats">
+                        {tile(songKeys.length, "songs opened")}
+                        {tile(plays, "times played")}
+                        {tile(dr.runs || 0, "case drills finished")}
+                        {tile(dr.questions ? Math.round(((dr.correct || 0) / dr.questions) * 100) + "%" : "—",
+                              "of " + (dr.questions || 0) + " answers right")}
+                      </div>
+                    </div>
+                    <div className="acct-note" style={{textAlign:"center"}}>
+                      Songs and case drills have been recorded since September 2026.
+                    </div>
+                  </>
+                );
+              })()}
+            </div>
+          </div>
+        </div>
+      )}
       {showAdmin && isAdmin && (
         <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setShowAdmin(false); }}>
           <div className="adm-modal">
@@ -12413,7 +12723,16 @@ export default function App() {
             {isAdmin && <button className="adm-trigger" onClick={function(){ setShowAdmin(true); }} title="Accounts">Users</button>}
             {authReady && (me ? (
               <div className="userbtn-wrap">
-                <span className="acct-email" title={me.email}>{me.email}</span>
+                <button type="button" className="acct-btn" title="Your account"
+                  onClick={function(){
+                    setAcctName(me.username || "");
+                    setAcctNameMsg({ ok: false, text: "" });
+                    setAcctSaved("");
+                    setShowAcct(true);
+                  }}>
+                  <Avatar id={me.avatar} name={me.username || me.email} size={26} />
+                  <span className="acct-email">{me.username || me.email}</span>
+                </button>
                 <button className="adm-trigger" onClick={signOut} title="Sign out">Sign out</button>
               </div>
             ) : (
