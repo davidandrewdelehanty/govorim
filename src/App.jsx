@@ -11311,6 +11311,14 @@ export default function App() {
         .rw.vsaved{color:var(--rubric);border-bottom:1px dotted rgba(155,45,31,.5)}
         .pjump,.pbm{background:none;border:0;opacity:.22;filter:none;color:var(--ink);font-size:11px;width:20px;height:22px;margin:3px 6px 0 -26px}
         .pjump:hover,.pbm:hover{background:none;opacity:1;color:var(--rubric)}
+        /* Jump-here, findable. It went in at the flag's 22% grey, and next to
+           the flag that was right; on its own it was a speck in the margin and
+           a reader looking for Анна Каренина's jump points reported none. The
+           flag is an offer on every paragraph; this is the recording's own
+           map of the text, so it is drawn in the rubric and at a weight you
+           can see without hunting. Still quieter than the text. */
+        .pjump{opacity:.6;color:var(--rubric);font-size:13px}
+        .pjump:hover{opacity:1}
         .pbm.on{background:none;border:0;opacity:1;color:var(--rubric)}
         @media(max-width:900px){.pjump,.pbm{margin-left:-2px}}
         /* The bookmark flag, quieted. At 22% it was still a grey mark beside
