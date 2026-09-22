@@ -6728,6 +6728,13 @@ export default function App() {
   var [grpName, setGrpName]         = useState("");
   var [grpBook, setGrpBook]         = useState("");
   var [grpBusy, setGrpBusy]         = useState(false);
+  // Choosing the group's book happens in the library itself — the same
+  // shelves, search and quick pick as opening a book — so anything a reader
+  // can open, a performance included, is something a group can read. While
+  // this is set, opening a book picks it for the group instead.
+  var [grpPicking, setGrpPicking]   = useState(false);
+  var grpPickingRef                 = useRef(false);
+  grpPickingRef.current = grpPicking;
   // The group's chat: every message the poll has brought, oldest first, and
   // whether the side panel is open. `chatSeenAt` is the newest message this
   // reader has had in front of them, for the count on the closed tab.
@@ -7004,6 +7011,33 @@ export default function App() {
     } catch (e) { setGrpErr(e.message); }
     setGrpBusy(false);
   };
+  var startGroupPick = function() {
+    setGrpErr("");
+    setGrpPicking(true);
+    setShowGroups(false);
+    // The library, exactly as the Reading tab opens it.
+    setTab("chat");
+    setMode("read");
+    setStarted(false);
+    setLview("read");
+    stopTTS();
+    try { window.scrollTo(0, 0); } catch (e) {}
+  };
+  var pickGroupBook = function(book) {
+    if (!book || !book.filename) return;
+    if (book.category === "Song Lyrics") {
+      setGrpErr("Song collections can't be group reads — choose a book or a performance.");
+      return;
+    }
+    setGrpBook(book.filename);
+    setGrpPicking(false);
+    setGrpErr("");
+    setShowGroups(true);
+  };
+  var cancelGroupPick = function() { setGrpPicking(false); setShowGroups(true); };
+  // Leaving the library for another tab ends the choosing: a book opened
+  // later from anywhere is a book to read, not a pick.
+  useEffect(function() { if (grpPicking && tab !== "chat") setGrpPicking(false); }, [tab]);
   var createGroup = async function() {
     setGrpBusy(true); setGrpErr("");
     try {
@@ -7401,6 +7435,7 @@ export default function App() {
   // titles aren't pre-populated (e.g. older artist entries), fetch the .txt
   // and parse it to extract chapter headings.
   var openSongPicker = async function(book) {
+    if (grpPickingRef.current) { pickGroupBook(book); return; }
     setSongPickerBook(book);
     setSongPickerErr("");
     setSongPickerList([]);
@@ -8571,6 +8606,7 @@ export default function App() {
 
   // Download a preset book from the server and load it through the normal pipeline.
   var loadPresetBook = async function(book) {
+    if (grpPickingRef.current) { pickGroupBook(book); return; }
     if (bookLoading !== null) return;   // see openUploadedBook — one load at a time
     curSlug.current = (book && book.slug) || "";
     // Hold every reload off until the reader is up. Downloading and parsing a
@@ -11537,6 +11573,18 @@ export default function App() {
         /* ── Group chat: a tab on the right edge, below the English one, and a
            column that opens beside the text. Set like the rest of the page —
            ruled paper, the ink, a transcript rather than a messenger. */
+        .grp-pick{flex:1;min-width:0;display:flex;align-items:baseline;gap:8px;text-align:left;cursor:pointer;
+          background:var(--paper-3);border:1px solid var(--rule);padding:8px 11px;font-family:var(--serif);font-size:15px;color:var(--ink)}
+        .grp-pick:hover{border-color:var(--ink)}
+        .grp-pick-t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .grp-pick-t.none{color:var(--ink-3);font-style:italic}
+        .grp-pick-a{font-style:italic;color:var(--ink-2);font-size:13px;white-space:nowrap}
+        .grp-pick-c{margin-left:auto;font-family:var(--sans);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+        .grp-picking{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;
+          background:var(--paper);border-top:1px solid var(--ink);border-bottom:3px double var(--ink);padding:12px 0;margin:0 0 18px}
+        .grp-picking-k{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--rubric)}
+        .grp-picking-t{font-family:var(--serif);font-size:16px;color:var(--ink);margin-top:3px}
+        .grp-picking-e{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--rubric);margin-top:3px}
         .gchat-tab{position:fixed;right:14px;top:calc(50% + 46px);transform:translateY(-50%);z-index:40;
           display:flex;align-items:center;gap:6px;background:var(--paper-3);border:1px solid var(--ink);color:var(--ink);
           padding:7px 10px;cursor:pointer;border-radius:0}
@@ -12150,12 +12198,24 @@ export default function App() {
                   <div className="grp-form">
                     <input className="auth-in acct-in" placeholder="A name for the group" maxLength={60}
                       value={grpName} onChange={function(e){ setGrpName(e.target.value); }} />
-                    <select className="auth-in acct-in" value={grpBook} onChange={function(e){ setGrpBook(e.target.value); }}>
-                      <option value="">Choose a book…</option>
-                      {presetBooks.filter(function(b){ return b.category !== "Song Lyrics"; })
-                        .slice().sort(function(a, b){ return String(a.title).localeCompare(String(b.title), "ru"); })
-                        .map(function(b){ return <option key={b.filename} value={b.filename}>{b.title}{b.author ? " — " + b.author : ""}</option>; })}
-                    </select>
+                    {(function(){
+                      var chosen = null;
+                      for (var i = 0; i < presetBooks.length; i++) if (presetBooks[i].filename === grpBook) { chosen = presetBooks[i]; break; }
+                      return (
+                        <button type="button" className={"grp-pick" + (chosen ? " set" : "")} onClick={startGroupPick}
+                          title="Opens the library — choose the book there the way you would to read it">
+                          {chosen ? (
+                            <>
+                              <span className="grp-pick-t">{chosen.title}</span>
+                              {chosen.author && <span className="grp-pick-a">{chosen.author}</span>}
+                              <span className="grp-pick-c">change</span>
+                            </>
+                          ) : (
+                            <span className="grp-pick-t none">Choose a book from the library…</span>
+                          )}
+                        </button>
+                      );
+                    })()}
                     <button className="adm-btn approve" disabled={grpBusy || grpName.trim().length < 3 || !grpBook}
                       onClick={createGroup}>{grpBusy ? "Starting…" : "Start"}</button>
                   </div>
@@ -14206,6 +14266,16 @@ export default function App() {
                       {NEWS.body}{" "}
                       <a href="https://discord.gg/nePcT58a37" target="_blank" rel="noreferrer">Join the Discord</a>.
                     </div>
+                  </div>
+                )}
+                {grpPicking && (
+                  <div className="grp-picking">
+                    <div>
+                      <div className="grp-picking-k">Group read</div>
+                      <div className="grp-picking-t">Choose the book for {grpName.trim() ? "«" + grpName.trim() + "»" : "your group"} — tap any title below.</div>
+                      {grpErr && <div className="grp-picking-e">{grpErr}</div>}
+                    </div>
+                    <button type="button" className="adm-btn" onClick={cancelGroupPick}>Cancel</button>
                   </div>
                 )}
                 <h1 className="sti">{chapters.length > 0 ? bookMeta.title : "The library"}</h1>
