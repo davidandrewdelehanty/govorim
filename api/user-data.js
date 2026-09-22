@@ -990,6 +990,14 @@ async function handleGroup(req, res, user, action) {
   const gkey = function (id) { return `${GROUPS}/${id}.json`; };
   const validId = /^[a-z0-9]{8}$/.test(gid);
 
+  // Group reads are for readers with a username: it is what the other
+  // members see beside every note and chat line, and an email address cut at
+  // the @ is not something anyone chose to show strangers. Only the public
+  // list of groups is open without one.
+  if (action !== "list" && !(account && account.username)) {
+    return res.status(403).json({ error: "Choose a username to take part in group reads.", needUsername: true });
+  }
+
   try {
     // Every group, newest activity first. Public by design: the list is how
     // readers find one another.

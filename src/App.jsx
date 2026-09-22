@@ -3750,6 +3750,9 @@ export default function App() {
   var [acctNameMsg, setAcctNameMsg] = useState({ ok: false, text: "" });
   var [acctBusy, setAcctBusy]       = useState(false);
   var [acctSaved, setAcctSaved]     = useState("");
+  // Why the account window was opened for the reader, when something sent
+  // them there (group reads without a username).
+  var [acctNeed, setAcctNeed]       = useState("");
 
   // Declared here, below the state it watches, and not up beside saveProfile:
   // a hook's dependency list is read where the call sits, and above these
@@ -6733,6 +6736,10 @@ export default function App() {
   // can open, a performance included, is something a group can read. While
   // this is set, opening a book picks it for the group instead.
   var [grpPicking, setGrpPicking]   = useState(false);
+  // Set when a reader was sent to sign up, or to choose a username, on the
+  // way into group reads — so they arrive back at group reads afterwards
+  // instead of having to find the button again.
+  var grpAfterAuth                  = useRef(false);
   var grpPickingRef                 = useRef(false);
   grpPickingRef.current = grpPicking;
   // The group's chat: every message the poll has brought, oldest first, and
@@ -6775,6 +6782,10 @@ export default function App() {
                                 "&since=" + Math.max(0, grpSince.current - 5000));
         var d = await r.json().catch(function(){ return {}; });
         if (stop) return;
+        if (r.status === 403 && d.needUsername) {
+          setGrpErr(d.error);
+          return;
+        }
         if (r.status === 404 || r.status === 403) {
           setGrpErr(d.error || "That group could not be found.");
           endLocalGroup();
@@ -7035,6 +7046,44 @@ export default function App() {
     setShowGroups(true);
   };
   var cancelGroupPick = function() { setGrpPicking(false); setShowGroups(true); };
+  // Group reads need an account and a username: everyone in a group sees
+  // who wrote each note and each line of chat. A reader without an account
+  // is taken to sign-up; one without a username, to the place to choose one.
+  var openGroupReads = function() {
+    setGrpErr("");
+    if (!me) {
+      grpAfterAuth.current = true;
+      setShowGroups(false);
+      setAuthMode("signup");
+      setAuthErr("");
+      setAuthNotice("Group reads need an account with a username — make one here, or sign in if you have one. You'll come straight back to group reads.");
+      setAuthOpen(true);
+      return;
+    }
+    if (!me.username) {
+      grpAfterAuth.current = true;
+      setShowGroups(false);
+      setAcctNeed("Choose a username to take part in group reads. It's what the other readers see beside your notes and messages.");
+      setShowAcct(true);
+      return;
+    }
+    if (!grpBook && bookMeta && bookMeta.filename && !bookMeta.own) setGrpBook(bookMeta.filename);
+    setShowGroups(true);
+    loadGroups();
+  };
+  // Back to group reads once the account, and its username, exist.
+  useEffect(function() {
+    if (!grpAfterAuth.current || !me) return;
+    if (!me.username) {
+      if (!showAcct && !authOpen) { setAcctNeed("Choose a username to take part in group reads. It's what the other readers see beside your notes and messages."); setShowAcct(true); }
+      return;
+    }
+    grpAfterAuth.current = false;
+    setShowAcct(false);
+    setAcctNeed("");
+    setShowGroups(true);
+    loadGroups();
+  }, [me && me.id, me && me.username, authOpen]);
   // Leaving the library for another tab ends the choosing: a book opened
   // later from anywhere is a book to read, not a pick.
   useEffect(function() { if (grpPicking && tab !== "chat") setGrpPicking(false); }, [tab]);
@@ -11573,6 +11622,9 @@ export default function App() {
         /* ── Group chat: a tab on the right edge, below the English one, and a
            column that opens beside the text. Set like the rest of the page —
            ruled paper, the ink, a transcript rather than a messenger. */
+        .grp-auth-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+        .acct-need{font-family:var(--serif);font-size:14.5px;line-height:1.5;color:var(--ink);
+          border-left:2px solid var(--rubric);padding:8px 0 8px 12px;margin:14px 0 4px;background:none}
         .grp-pick{flex:1;min-width:0;display:flex;align-items:baseline;gap:8px;text-align:left;cursor:pointer;
           background:var(--paper-3);border:1px solid var(--rule);padding:8px 11px;font-family:var(--serif);font-size:15px;color:var(--ink)}
         .grp-pick:hover{border-color:var(--ink)}
@@ -12151,11 +12203,20 @@ export default function App() {
               </p>
               {!me && (
                 <div className="acct-sec">
-                  <p className="grp-intro">Group reads are for signed-in readers — the others need to know whose note is whose.</p>
-                  <button className="adm-btn" onClick={function(){ setShowGroups(false); setAuthMode("login"); setAuthErr(""); setAuthOpen(true); }}>Sign in</button>
+                  <p className="grp-intro">Group reads need an account with a username — the others need to know whose note is whose.</p>
+                  <div className="grp-auth-row">
+                    <button className="adm-btn approve" onClick={openGroupReads}>Create an account</button>
+                    <button className="adm-btn" onClick={function(){ grpAfterAuth.current = true; setShowGroups(false); setAuthMode("login"); setAuthErr(""); setAuthNotice(""); setAuthOpen(true); }}>Sign in</button>
+                  </div>
                 </div>
               )}
-              {me && grp && (
+              {me && !me.username && (
+                <div className="acct-sec">
+                  <p className="grp-intro">Choose a username first — it is what the other readers see beside your notes and messages.</p>
+                  <button className="adm-btn approve" onClick={openGroupReads}>Choose a username</button>
+                </div>
+              )}
+              {me && me.username && grp && (
                 <div className="acct-sec">
                   <div className="acct-h">You are in</div>
                   <div className="grp-row cur">
@@ -12173,7 +12234,7 @@ export default function App() {
                   </div>
                 </div>
               )}
-              {me && myGroups && myGroups.filter(function(g){ return !grp || g.id !== grp.id; }).length > 0 && (
+              {me && me.username && myGroups && myGroups.filter(function(g){ return !grp || g.id !== grp.id; }).length > 0 && (
                 <div className="acct-sec">
                   <div className="acct-h">Your groups</div>
                   {myGroups.filter(function(g){ return !grp || g.id !== grp.id; })
@@ -12192,7 +12253,7 @@ export default function App() {
                   })}
                 </div>
               )}
-              {me && (
+              {me && me.username && (
                 <div className="acct-sec">
                   <div className="acct-h">Start a group read</div>
                   <div className="grp-form">
@@ -12221,7 +12282,7 @@ export default function App() {
                   </div>
                 </div>
               )}
-              {me && (
+              {me && me.username && (
                 <div className="acct-sec">
                   <div className="acct-h">Open groups</div>
                   {groupsLoad && !groupsList && <div className="grp-intro">Looking…</div>}
@@ -12257,9 +12318,10 @@ export default function App() {
           <div className="adm-modal acct-modal" role="dialog" aria-label="Your account">
             <div className="adm-head">
               <div className="adm-title">Your account</div>
-              <button className="adm-x" onClick={function(){ setShowAcct(false); }}>×</button>
+              <button className="adm-x" onClick={function(){ setShowAcct(false); setAcctNeed(""); grpAfterAuth.current = false; }}>×</button>
             </div>
             <div className="adm-body acct-body">
+              {acctNeed && <div className="acct-need">{acctNeed}</div>}
               {(function(){
                 // Everything below comes from the records already on this
                 // page — the same ones the reading-record panel draws and the
@@ -14304,12 +14366,7 @@ export default function App() {
                     word, the saved vocabulary, the reading record — works just
                     as well on a book the reader brings themselves. */}
                 {/* Reading with other people. */}
-                <button className="own-entry grp-entry" onClick={function(){
-                  setGrpErr("");
-                  if (!grpBook && bookMeta && bookMeta.filename && !bookMeta.own) setGrpBook(bookMeta.filename);
-                  setShowGroups(true);
-                  if (me) loadGroups();
-                }}>
+                <button className="own-entry grp-entry" onClick={openGroupReads}>
                   <span className="own-entry-t">Group Reads</span>
                   <span className="own-entry-s">
                     {grp
