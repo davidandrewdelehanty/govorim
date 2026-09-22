@@ -13891,7 +13891,7 @@ export default function App() {
                 <div className="lb-cols">
                   {[
                     { key: "learned", h: "Words learned", sub: "retired by practice — a word counts once the review scheduler has seen it answered right often enough", unit: "words" },
-                    { key: "read", h: "Books read", sub: "marked read in the library", unit: "books" },
+                    { key: "words", h: "Words read", sub: "Russian words read, counted as you go — a short story counts what it is, and so does a novel", unit: "words" },
                   ].map(function(col){
                     var rows = boards[col.key] || [];
                     return (
@@ -13920,9 +13920,11 @@ export default function App() {
                 </div>
               )}
               <p className="lib-reads-note">
-                Only readers who have set a username appear here. Words count only
-                when practice retires them — saving a word does not, and neither does
-                putting one back. A book counts when it is marked read.
+                Only readers who have set a username appear here. Words learned count
+                only when practice retires them — saving a word does not, and neither
+                does putting one back. Words read are counted page by page as you
+                read, the same figure your own reading record shows, so finishing a
+                long book is worth what it costs and a poem is worth a poem.
               </p>
             </div>
           </div>
