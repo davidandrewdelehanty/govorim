@@ -3954,6 +3954,9 @@ export default function App() {
   var setTab = function(t) { checkForUpdate(); setTabRaw(t); };
   var [started, setStarted]   = useState(false);
   var [mode, setMode]         = useState("read"); // chat removed; default to reading
+  // No empty mode: the page that asked "Read or Grammar?" is gone, so any
+  // path that clears the mode lands on the library instead of a blank page.
+  useEffect(function() { if (!mode) setMode("read"); }, [mode]);
   var [noAIMode, setNoAIMode] = useState(false);  // define uses AI; chat-specific UI gated separately below
   // Clear any leftover "no_ai_mode_v1" flag from older versions so users who previously
   // bypassed login don't get stuck in a partially-broken state.
@@ -13765,10 +13768,11 @@ export default function App() {
             title="Back to home"
             onClick={function(){
               // Reset all the state that defines "where you are" so the user
-              // lands on the home screen (the chat/read/grammar mode picker).
-              // We do NOT clear `chapters` — if the user was reading a book,
-              // they can pick "Read" again and resume where they left off.
-              setMode("");
+              // lands on the library. There used to be a Read / Grammar picker
+              // in front of it; with grammar switched off it was a page with
+              // one button, so home is the library now. `chapters` is kept,
+              // so the resume button there still goes straight back in.
+              setMode("read");
               setStarted(false);
               setMsgs([]);
               setGramTopicId("");
@@ -14295,7 +14299,10 @@ export default function App() {
 
         {tab==="chat" && (
           <div className="main">
-            {!started && !mode && (
+            {/* The old Read / Grammar picker. Nothing leads here any more —
+                every way home lands on the library — but it is kept, switched
+                off, for the day grammar comes back. */}
+            {false && !started && !mode && (
               <div className="ss">
                 <SupportLinks funding={funding} />
                 <div className="sico" style={{color:"#2a1f14"}}><Samovar size={64}/></div>
@@ -15354,7 +15361,6 @@ export default function App() {
 
                   {fErr && <p style={{color:"#9d4630",fontSize:13,lineHeight:1.5}}>{fErr}</p>}
                   {siteFoot}
-                  <button className="btn-g" onClick={function(){ setMode(""); }}>← Back</button>
                 </div>
               </div>
             )}
@@ -15444,7 +15450,7 @@ export default function App() {
                   );
                 })()}
 
-                <button className="btn-g" onClick={function(){ setMode(""); }}>← Back</button>
+                <button className="btn-g" onClick={function(){ setMode("read"); }}>← Back</button>
               </div>
             )}
 
@@ -15586,7 +15592,7 @@ export default function App() {
                 {!curriculum && !gramErr && <p style={{color:"rgba(0,0,0,.55)",fontStyle:"italic"}}>Loading curriculum…</p>}
 
                 <div style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:8,marginTop:18}}>
-                  <button className="btn-g" onClick={function(){ setMode(""); setGramLevel(""); setGramSearch(""); }}>← Back</button>
+                  <button className="btn-g" onClick={function(){ setMode("read"); setGramLevel(""); setGramSearch(""); }}>← Back</button>
                 </div>
               </div>
             )}
@@ -17017,7 +17023,7 @@ export default function App() {
               <span className="mti">{bookMeta.title || "Reading"}</span>
               <div className="mact">
                 <button className="mcanc" onClick={function(){ setShowTopic(false); }}>Cancel</button>
-                <button className="mconf" onClick={function(){ setShowTopic(false); setStarted(false); setMode(""); setMsgs([]); stopTTS(); }}>← Back to start</button>
+                <button className="mconf" onClick={function(){ setShowTopic(false); setStarted(false); setMode("read"); setMsgs([]); stopTTS(); }}>← Back to start</button>
               </div>
             </div>
           </div>
