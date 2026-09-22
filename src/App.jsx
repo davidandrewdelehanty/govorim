@@ -11780,13 +11780,42 @@ export default function App() {
         .grp-intro{font-family:var(--serif);font-size:14.5px;color:var(--ink-2);line-height:1.55;margin:0 0 10px}
         .grp-form{display:flex;flex-direction:column;gap:8px}
         .grp-form .adm-btn{align-self:flex-start}
-        .grp-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--rule-soft)}
+        /* ── Group lists. One ruled entry per group: the name set large, what
+           it is reading beneath in the text face, the small facts last, and
+           the action at the right on a wide screen or under the entry on a
+           phone — never squeezed beside a title until the title breaks
+           after every word. */
+        .grp-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:14px 0;border-bottom:1px solid var(--rule-soft)}
+        .grp-row:last-child{border-bottom:0}
         .grp-row.cur{background:none}
-        .grp-row-t{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
-        .grp-row-n{font-family:var(--display);font-size:18px;color:var(--ink)}
-        .grp-row-b{font-family:var(--serif);font-size:14px;color:var(--ink-2)}
-        .grp-row-m{font-family:var(--sans);font-size:11px;color:var(--ink-3)}
+        .grp-row-t{display:flex;flex-direction:column;gap:3px;flex:1 1 260px;min-width:0}
+        .grp-row-n{font-family:var(--display);font-size:19px;line-height:1.2;color:var(--ink);overflow-wrap:anywhere}
+        .grp-row-b{font-family:var(--serif);font-size:14.5px;line-height:1.35;color:var(--ink)}
+        .grp-row-b i{color:var(--ink-3)}
+        .grp-row-au{color:var(--ink-2)}
+        .grp-row-m{font-family:var(--sans);font-size:11px;letter-spacing:.03em;color:var(--ink-3)}
         .grp-row-c{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-3)}
+        .grp-acts{display:flex;align-items:center;gap:6px 18px;flex-wrap:wrap}
+        .grp-act{appearance:none;-webkit-appearance:none;background:none;border:1px solid var(--ink);border-radius:0;
+          color:var(--ink);font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+          padding:8px 14px;cursor:pointer;line-height:1}
+        .grp-act:hover:not(:disabled){background:var(--paper-2)}
+        .grp-act.go{background:var(--ink);color:var(--paper)}
+        .grp-act.go:hover:not(:disabled){background:var(--ink);opacity:.86}
+        .grp-act:disabled{opacity:.35;cursor:default}
+        .grp-act.link{border:0;padding:8px 0;border-bottom:1px solid var(--rule)}
+        .grp-act.link:hover{background:none;border-bottom-color:var(--ink)}
+        .grp-act.warn{color:var(--rubric);border-bottom-color:rgba(155,45,31,.35)}
+        .grp-now{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:14px 0 16px;display:flex;flex-direction:column;gap:5px}
+        .grp-now .grp-row-n{font-size:22px}
+        .grp-now-who{display:flex;align-items:center;gap:4px;margin-top:4px}
+        .grp-now-who .grp-row-m{margin-left:8px}
+        .grp-now .grp-acts{margin-top:10px}
+        @media (max-width:560px){
+          .grp-row{flex-direction:column;align-items:stretch;gap:10px}
+          .grp-row-t{flex:none}
+          .grp-row .grp-acts .grp-act{padding:9px 16px}
+        }
         .grp-closed{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--ink-3)}
         @media(max-width:900px){.grp-strip,.pen-tools{padding:0 18px}.grp-err{margin:0 18px}}
         /* ── Avatar and the account page ─────────────────────────────────── */
@@ -12302,14 +12331,26 @@ export default function App() {
               {me && me.username && grp && (
                 <div className="acct-sec">
                   <div className="acct-h">You are in</div>
-                  <div className="grp-row cur">
-                    <div className="grp-row-t">
-                      <span className="grp-row-n">{grp.name}</span>
-                      <span className="grp-row-b">{grp.title}{grp.author ? " — " + grp.author : ""}</span>
+                  <div className="grp-now">
+                    <div className="grp-row-n">{grp.name}{grp.closed ? <span className="grp-row-c"> · closed</span> : null}</div>
+                    <div className="grp-row-b"><i>reading</i> {grp.title}{grp.author ? <span className="grp-row-au"> · {grp.author}</span> : null}</div>
+                    {grpMembers.length > 0 && (
+                      <div className="grp-now-who">
+                        {grpMembers.map(function(m, i){
+                          return (
+                            <span key={i} className={"grp-m" + (m.here ? " here" : "")} title={m.name + (m.here ? " — reading now" : "")}>
+                              <Avatar id={m.avatar} name={m.name} size={22} />
+                            </span>
+                          );
+                        })}
+                        <span className="grp-row-m">{grpMembers.filter(function(m){ return m.here; }).length} reading now</span>
+                      </div>
+                    )}
+                    <div className="grp-acts">
+                      <button className="grp-act go" onClick={function(){ openGroupBook(grp); }}>Open the book</button>
+                      <button className="grp-act link" onClick={leaveGroup}>Step out</button>
+                      {grpOwner && !grp.closed && <button className="grp-act link warn" onClick={closeGroup}>Close to new notes</button>}
                     </div>
-                    <button className="adm-btn" onClick={function(){ openGroupBook(grp); }}>Open</button>
-                    <button className="adm-btn" onClick={leaveGroup}>Step out</button>
-                    {grpOwner && !grp.closed && <button className="adm-btn reject" onClick={closeGroup}>Close to new notes</button>}
                   </div>
                   <div className="acct-note">
                     Stepping out only takes the group off your page — you stay a member and keep its notes for good.
@@ -12327,10 +12368,12 @@ export default function App() {
                       <div key={g.id} className="grp-row">
                         <div className="grp-row-t">
                           <span className="grp-row-n">{g.name}{g.closed ? <span className="grp-row-c"> · closed</span> : null}</span>
-                          <span className="grp-row-b">{g.title}{g.author ? " — " + g.author : ""}</span>
+                          <span className="grp-row-b"><i>reading</i> {g.title}{g.author ? <span className="grp-row-au"> · {g.author}</span> : null}</span>
                           <span className="grp-row-m">{g.members} reader{g.members === 1 ? "" : "s"} · {g.items} mark{g.items === 1 ? "" : "s"}{g.lastActive ? " · " + groupAgo(g.lastActive) : ""}</span>
                         </div>
-                        <button className="adm-btn" onClick={function(){ enterGroup(g); }}>Open</button>
+                        <div className="grp-acts">
+                          <button className="grp-act" onClick={function(){ enterGroup(g); }}>Open</button>
+                        </div>
                       </div>
                     );
                   })}
@@ -12360,8 +12403,8 @@ export default function App() {
                         </button>
                       );
                     })()}
-                    <button className="adm-btn approve" disabled={grpBusy || grpName.trim().length < 3 || !grpBook}
-                      onClick={createGroup}>{grpBusy ? "Starting…" : "Start"}</button>
+                    <button className="grp-act go" disabled={grpBusy || grpName.trim().length < 3 || !grpBook}
+                      onClick={createGroup}>{grpBusy ? "Starting…" : "Start the group"}</button>
                   </div>
                 </div>
               )}
@@ -12377,15 +12420,19 @@ export default function App() {
                       <div key={g.id} className={"grp-row" + (isCur ? " cur" : "")}>
                         <div className="grp-row-t">
                           <span className="grp-row-n">{g.name}{g.closed ? <span className="grp-row-c"> · closed</span> : null}</span>
-                          <span className="grp-row-b">{g.title}{g.author ? " — " + g.author : ""}</span>
+                          <span className="grp-row-b"><i>reading</i> {g.title}{g.author ? <span className="grp-row-au"> · {g.author}</span> : null}</span>
                           <span className="grp-row-m">
                             started by {g.ownerName} · {g.members} reader{g.members === 1 ? "" : "s"}
                             {" · "}{g.items} mark{g.items === 1 ? "" : "s"} · {ago(g.lastActive)}
                           </span>
                         </div>
-                        {isCur
-                          ? <button className="adm-btn" onClick={function(){ openGroupBook(g); }}>Open</button>
-                          : <button className="adm-btn approve" disabled={grpBusy} onClick={function(){ joinGroup(g); }}>Join</button>}
+                        <div className="grp-acts">
+                          {isCur
+                            ? <button className="grp-act" onClick={function(){ openGroupBook(g); }}>Open</button>
+                            : (myGroups || []).some(function(x){ return x.id === g.id; })
+                              ? <button className="grp-act" onClick={function(){ enterGroup(g); }}>Open</button>
+                              : <button className="grp-act go" disabled={grpBusy} onClick={function(){ joinGroup(g); }}>Join</button>}
+                        </div>
                       </div>
                     );
                   })}
