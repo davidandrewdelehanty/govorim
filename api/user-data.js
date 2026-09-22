@@ -151,7 +151,8 @@ export default async function handler(req, res) {
         res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300");
         return res.status(200).json(out);
       } catch (e) {
-        return res.status(200).json({ learned: [], read: [], error: "unavailable" });
+        return res.status(200).json({ learned: [], words: [], read: [],
+                                      error: "unavailable", note: e.message || String(e) });
       }
     }
 

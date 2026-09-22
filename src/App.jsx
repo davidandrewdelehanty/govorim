@@ -13885,6 +13885,9 @@ export default function App() {
                   <button type="button" className="adm-btn" onClick={function(){ setShowAcct(true); }}>Choose a username</button>
                 </div>
               )}
+              {boards && boards.building && (
+                <div className="lb-join">Still counting everyone who has read here — open this again in a moment for the rest.</div>
+              )}
               {!boards ? (
                 <div className="lib-cat-hint">{boardsLoad ? "Counting…" : "Nothing counted yet."}</div>
               ) : (
