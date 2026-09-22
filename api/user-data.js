@@ -927,10 +927,26 @@ function catalogueBook(filename) {
   } catch (e) { return null; }
 }
 
+// When the group last did something, from the record itself: its creation,
+// the newest highlight, note or pen stroke still on the page, and the newest
+// line of chat. Worked out rather than stored, so joining, closing or deleting
+// a mark never counts as activity, and groups from before this rule sort by
+// what actually happened in them.
+function groupActivity(g) {
+  let t = g.createdAt || 0;
+  for (const k of Object.keys(g.items || {})) {
+    const it = g.items[k];
+    if (it && !it.deleted) t = Math.max(t, it.updatedAt || it.createdAt || 0);
+  }
+  const chat = Array.isArray(g.chat) ? g.chat : [];
+  if (chat.length) t = Math.max(t, chat[chat.length - 1].at || 0);
+  return t;
+}
+
 function groupSummary(g) {
   return {
     id: g.id, name: g.name, filename: g.filename, title: g.title, author: g.author,
-    ownerName: g.ownerName, createdAt: g.createdAt, lastActive: g.lastActive,
+    ownerName: g.ownerName, createdAt: g.createdAt, lastActive: groupActivity(g),
     closed: !!g.closed,
     members: Object.keys(g.members || {}).length,
     items: Object.keys(g.items || {}).filter(function (k) { return !g.items[k].deleted; }).length,
@@ -943,7 +959,7 @@ async function refreshIndex(g, remove) {
     const rest = idx.filter(function (x) { return x.id !== g.id; });
     if (!remove) rest.unshift(groupSummary(g));
     rest.sort(function (a, b) { return (b.lastActive || 0) - (a.lastActive || 0); });
-    return { groups: rest.slice(0, 300) };
+    return { groups: rest.slice(0, 300), v: (cur && cur.v) || 0 };
   });
 }
 
@@ -978,10 +994,25 @@ async function handleGroup(req, res, user, action) {
     // Every group, newest activity first. Public by design: the list is how
     // readers find one another.
     if (action === "list" && req.method === "GET") {
-      const idx = (await r2GetTagged(`${GROUPS}/index.json`)).data;
+      let idx = (await r2GetTagged(`${GROUPS}/index.json`)).data;
+      // Once: the list was kept by a stored time that joining also moved.
+      // Re-read every group and re-summarise it by what happened in it.
+      if (idx && Array.isArray(idx.groups) && idx.v !== 2) {
+        const fresh = [];
+        for (const e of idx.groups) {
+          const g = (await r2GetTagged(gkey(e.id))).data;
+          if (g) fresh.push(groupSummary(g));
+        }
+        idx = await r2Update(`${GROUPS}/index.json`, function (cur) {
+          const byId = {};
+          fresh.forEach(function (x) { byId[x.id] = x; });
+          const list = ((cur && cur.groups) || []).map(function (x) { return byId[x.id] || x; });
+          return { groups: list, v: 2 };
+        });
+      }
       const groups = ((idx && idx.groups) || []).filter(function (g) {
         return !isPublicSite() || !!catalogueBook(g.filename);
-      });
+      }).sort(function (a, b) { return (b.lastActive || 0) - (a.lastActive || 0); });
       return res.status(200).json({ groups });
     }
 
@@ -995,6 +1026,7 @@ async function handleGroup(req, res, user, action) {
         const g = (await r2GetTagged(gkey(id))).data;
         if (g && g.members && g.members[me.uid]) out.push(groupSummary(g));
       }
+      out.sort(function (a, b) { return (b.lastActive || 0) - (a.lastActive || 0); });
       return res.status(200).json({ groups: out });
     }
 
@@ -1031,7 +1063,6 @@ async function handleGroup(req, res, user, action) {
         cur.members = cur.members || {};
         cur.members[me.uid] = Object.assign({}, cur.members[me.uid] || { joinedAt: now },
           { name: me.name, avatar: me.avatar, seenAt: now });
-        cur.lastActive = now;
         return cur;
       });
       if (!g) return res.status(404).json({ error: "No such group." });
@@ -1106,7 +1137,7 @@ async function handleGroup(req, res, user, action) {
       if (text.length > 1000) return res.status(400).json({ error: "Keep a message under 1000 characters." });
       const now = Date.now();
       let refused = "", msg = null;
-      await r2Update(gkey(gid), function (cur) {
+      const g = await r2Update(gkey(gid), function (cur) {
         if (!cur) { refused = "No such group."; return undefined; }
         if (cur.closed || cur.ended) { refused = "This group read is closed — its chat stays, but it takes no new messages."; return undefined; }
         if (!cur.members || !cur.members[me.uid]) { refused = "Join the group first."; return undefined; }
@@ -1124,6 +1155,7 @@ async function handleGroup(req, res, user, action) {
         return cur;
       });
       if (refused) return res.status(400).json({ error: refused });
+      try { await refreshIndex(g); } catch (e) {}
       return res.status(200).json({ ok: true, msg });
     }
 
@@ -1156,7 +1188,7 @@ async function handleGroup(req, res, user, action) {
       if (refused) return res.status(400).json({ error: refused });
       if (!g) return res.status(404).json({ error: "No such group." });
       // The public list only needs to move when the count does.
-      if (!it.deleted) refreshIndex(g).catch(function () {});
+      try { await refreshIndex(g); } catch (e) {}
       return res.status(200).json({ ok: true, item: g.items[it.id] });
     }
 

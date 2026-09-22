@@ -3258,6 +3258,20 @@ var AVATARS = [
       "M12 3.5l2.4 5.2 5.6.6-4.2 3.8 1.2 5.6L12 15.8l-5 2.9 1.2-5.6L4 9.3l5.6-.6z" ] },
 ];
 
+// "active 5 min ago" for the group lists. Activity is the group's creation,
+// its newest mark and its newest chat line — the server works it out.
+function groupAgo(t) {
+  if (!t) return "";
+  var m = Math.floor((Date.now() - t) / 60000);
+  if (m < 2) return "active now";
+  if (m < 60) return "active " + m + " min ago";
+  var h = Math.floor(m / 60);
+  if (h < 24) return "active " + h + " h ago";
+  var d = Math.floor(h / 24);
+  if (d < 7) return "active " + d + " day" + (d === 1 ? "" : "s") + " ago";
+  return "active " + new Date(t).toLocaleDateString();
+}
+
 // A photo id is "photo:<user id>:<version>". The version is only there to make
 // a new upload a new URL, so the browser's copy of the old one is never shown.
 function avatarPhotoUrl(id) {
@@ -12114,13 +12128,15 @@ export default function App() {
               {me && myGroups && myGroups.filter(function(g){ return !grp || g.id !== grp.id; }).length > 0 && (
                 <div className="acct-sec">
                   <div className="acct-h">Your groups</div>
-                  {myGroups.filter(function(g){ return !grp || g.id !== grp.id; }).map(function(g){
+                  {myGroups.filter(function(g){ return !grp || g.id !== grp.id; })
+                    .slice().sort(function(a, b){ return (b.lastActive || 0) - (a.lastActive || 0); })
+                    .map(function(g){
                     return (
                       <div key={g.id} className="grp-row">
                         <div className="grp-row-t">
                           <span className="grp-row-n">{g.name}{g.closed ? <span className="grp-row-c"> · closed</span> : null}</span>
                           <span className="grp-row-b">{g.title}{g.author ? " — " + g.author : ""}</span>
-                          <span className="grp-row-m">{g.members} reader{g.members === 1 ? "" : "s"} · {g.items} mark{g.items === 1 ? "" : "s"}</span>
+                          <span className="grp-row-m">{g.members} reader{g.members === 1 ? "" : "s"} · {g.items} mark{g.items === 1 ? "" : "s"}{g.lastActive ? " · " + groupAgo(g.lastActive) : ""}</span>
                         </div>
                         <button className="adm-btn" onClick={function(){ enterGroup(g); }}>Open</button>
                       </div>
@@ -12150,16 +12166,8 @@ export default function App() {
                   <div className="acct-h">Open groups</div>
                   {groupsLoad && !groupsList && <div className="grp-intro">Looking…</div>}
                   {groupsList && !groupsList.length && <div className="grp-intro">No groups yet — start the first.</div>}
-                  {(groupsList || []).map(function(g){
-                    var ago = function(t){
-                      if (!t) return "";
-                      var m = Math.floor((Date.now() - t) / 60000);
-                      if (m < 2) return "active now";
-                      if (m < 60) return "active " + m + " min ago";
-                      var h = Math.floor(m / 60);
-                      if (h < 24) return "active " + h + " h ago";
-                      return "active " + new Date(t).toLocaleDateString();
-                    };
+                  {(groupsList || []).slice().sort(function(a, b){ return (b.lastActive || 0) - (a.lastActive || 0); }).map(function(g){
+                    var ago = groupAgo;
                     var isCur = grp && grp.id === g.id;
                     return (
                       <div key={g.id} className={"grp-row" + (isCur ? " cur" : "")}>
