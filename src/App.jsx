@@ -6825,9 +6825,12 @@ export default function App() {
 
   // What the page shows for this chapter: yours, and the group's if you are
   // on the group's book.
+  // Inside a group read the page is the group's: its highlights, notes and
+  // pen marks, and nobody's private ones — those belong to reading the book
+  // alone, and come back the moment you step out of the group.
   var annItems = useMemo(function() {
     var out = [];
-    Object.keys(annots).forEach(function(k) {
+    if (!inGrpBook) Object.keys(annots).forEach(function(k) {
       var it = annots[k];
       if (it && !it.deleted && it.bookKey === curBookKey && it.cidx === cidx) out.push(Object.assign({ layer: "me" }, it));
     });
@@ -6843,7 +6846,7 @@ export default function App() {
   // Every annotation in this book, for the Notes list.
   var bookAnnots = useMemo(function() {
     var out = [];
-    Object.keys(annots).forEach(function(k) {
+    if (!inGrpBook) Object.keys(annots).forEach(function(k) {
       var it = annots[k];
       if (it && !it.deleted && it.bookKey === curBookKey) out.push(Object.assign({ layer: "me" }, it));
     });
@@ -6940,10 +6943,18 @@ export default function App() {
   };
   var removeAnnot = function(id, layer) { updateAnnot(id, layer, { deleted: true }); };
 
-  var newLayer = function() { return (inGrpBook && me && selShared && !grp.closed) ? "group" : "me"; };
+  var newLayer = function() { return inGrpBook ? "group" : "me"; };
+  var groupClosedNow = function() {
+    if (inGrpBook && grp && grp.closed) {
+      setGrpErr("This group read is closed — its marks stay, but it takes no new ones. Step out to mark the book for yourself.");
+      return true;
+    }
+    return false;
+  };
   var makeHighlight = function(color, withNote) {
     var sb = selBox;
     if (!sb) return;
+    if (groupClosedNow()) { setSelBox(null); return; }
     var layer = newLayer();
     var it = addAnnot({ kind: "hl", start: sb.start, end: sb.end, quote: sb.quote, color: color, note: "" }, layer);
     setHlColor(color);
@@ -6955,6 +6966,7 @@ export default function App() {
     }
   };
   var addInk = function(stroke) {
+    if (groupClosedNow()) return;
     addAnnot({ kind: "ink", paraStart: stroke.paraStart, points: stroke.points,
                color: stroke.color, size: stroke.size }, newLayer());
   };
@@ -6965,7 +6977,17 @@ export default function App() {
     }
     removeAnnot(it.id, it.layer);
   };
+  // Several readers can mark the same words. A marker opens the one mark it
+  // stands for when it is alone, and otherwise the list of every highlight
+  // and note that touches those words — each one openable from there.
   var openMarker = function(it, rect) {
+    var stack = annItems.filter(function(x) {
+      return x.kind === "hl" && x.start < it.end && x.end > it.start;
+    }).sort(function(a, b){ return (a.createdAt || 0) - (b.createdAt || 0); });
+    if (stack.length > 1) {
+      setNotePop({ stack: stack.map(function(x){ return { id: x.id, layer: x.layer }; }), x: rect.left, y: rect.bottom + 6 });
+      return;
+    }
     setNoteDraft(it.note || "");
     setNotePop({ id: it.id, layer: it.layer, x: rect.left, y: rect.bottom + 6 });
   };
@@ -11601,6 +11623,25 @@ export default function App() {
         .ltxt [data-hl="blue"]{background:rgba(120,170,225,.36)}
         .ltxt [data-hl="pink"]{background:rgba(235,140,160,.36)}
         .ltxt [data-hl-layer="group"]{box-shadow:inset 0 -1.5px 0 rgba(27,22,19,.45)}
+        /* Marked by more than one reader: the fill deepens and the rule
+           doubles — no new colour, just more ink where more people stopped. */
+        .ltxt [data-hl-n="2"]{box-shadow:inset 0 -1.5px 0 rgba(27,22,19,.5),inset 0 -4px 0 rgba(27,22,19,.12);filter:saturate(1.35)}
+        .ltxt [data-hl-n="3"]{box-shadow:inset 0 -1.5px 0 rgba(27,22,19,.6),inset 0 -4px 0 rgba(27,22,19,.22);filter:saturate(1.7)}
+        .hl-mark.multi{width:16px;height:14px;border-radius:2px!important;background:var(--ink);color:var(--paper);
+          display:flex;align-items:center;justify-content:center;transform:translate(2px,-55%)}
+        .hl-mark.multi:hover{transform:translate(2px,-55%) scale(1.1)}
+        .hl-mark-n{font-family:var(--sans);font-size:9.5px;font-weight:700;line-height:1}
+        .note-stack-h{font-family:var(--sans);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);margin-bottom:6px}
+        .note-stack{display:flex;flex-direction:column;max-height:300px;overflow-y:auto}
+        .note-stack-r{display:flex;gap:10px;align-items:flex-start;text-align:left;background:none;border:0;
+          border-top:1px solid var(--rule-soft);padding:9px 2px;cursor:pointer;font:inherit;color:var(--ink)}
+        .note-stack-r:hover{background:var(--paper-2)}
+        .note-stack-r .note-chip{margin-top:4px;flex:none}
+        .note-stack-b{display:flex;flex-direction:column;gap:3px;min-width:0}
+        .note-stack-by{display:flex;align-items:center;gap:6px;font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.05em}
+        .note-stack-q{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--ink-2)}
+        .note-stack-t{font-family:var(--serif);font-size:14px;line-height:1.4;color:var(--ink)}
+        .pen-where{font-family:var(--serif);font-style:italic;font-size:12.5px;color:var(--ink-3)}
         .annot-layer{position:absolute;inset:0;pointer-events:none;z-index:3}
         .annot-ink{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
         .ink-stroke{opacity:.86}
@@ -11706,7 +11747,7 @@ export default function App() {
           font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
         .pop-btn.quiet{margin-left:0;border-bottom-color:var(--rule);color:var(--ink-2)}
         .pop-btn:hover{color:var(--rubric);border-bottom-color:var(--rubric)}
-        .pop-share{background:none;border:0;padding:0;text-align:left;cursor:pointer;font-family:var(--serif);
+        .pop-share{background:none;border:0;padding:0;text-align:left;cursor:default;font-family:var(--serif);
           font-style:italic;font-size:12.5px;color:var(--ink-2)}
         .pop-share:hover{color:var(--rubric)}
         .note-over{position:fixed;inset:0;z-index:310}
@@ -12135,15 +12176,51 @@ export default function App() {
               })}
               <button type="button" className="pop-btn" onClick={function(){ makeHighlight(hlColor, true); }}>Note</button>
             </div>
-            {inGrpBook && me && (
-              <button type="button" className="pop-share" onClick={function(){ setSelShared(!selShared); }}>
-                {selShared ? "Shared with " + grp.name : "Just me — not shared"}
-              </button>
+            {inGrpBook && (
+              <div className="pop-share">{grp.closed ? "This group read is closed to new marks" : "Shared with " + grp.name}</div>
             )}
           </div>
         );
       })()}
-      {notePop && (function(){
+      {notePop && notePop.stack && (function(){
+        var rows = notePop.stack.map(function(r){ var it = findAnnot(r.id, r.layer); return it && !it.deleted ? Object.assign({ layer: r.layer }, it) : null; })
+          .filter(Boolean);
+        if (!rows.length) return null;
+        var w = 320;
+        var left = Math.max(8, Math.min(window.innerWidth - w - 8, notePop.x - 20));
+        var top = Math.min(window.innerHeight - 320, notePop.y);
+        return (
+          <div className="note-over" onMouseDown={function(e){ if (e.target.className === "note-over") setNotePop(null); }}>
+            <div className="note-pop stack" style={{ left: left + "px", top: Math.max(8, top) + "px", width: w + "px" }}>
+              <div className="note-stack-h">{rows.length} marks on these words</div>
+              <div className="note-stack">
+                {rows.map(function(it){
+                  return (
+                    <button key={it.id} type="button" className="note-stack-r" onClick={function(){
+                      setNoteDraft(it.note || "");
+                      setNotePop({ id: it.id, layer: it.layer, x: notePop.x, y: notePop.y, back: notePop.stack });
+                    }}>
+                      <span className={"note-chip c-" + it.color} />
+                      <span className="note-stack-b">
+                        {it.by ? (
+                          <span className="note-stack-by"><Avatar id={it.by.avatar} name={it.by.name} size={18} />{it.by.name}</span>
+                        ) : <span className="note-stack-by">You</span>}
+                        <span className="note-stack-q">«{it.quote && it.quote.length > 70 ? it.quote.slice(0, 70) + "…" : it.quote}»</span>
+                        {it.note ? <span className="note-stack-t">{it.note.length > 120 ? it.note.slice(0, 120) + "…" : it.note}</span> : null}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="note-pop-row">
+                <span style={{flex:1}} />
+                <button type="button" className="pop-btn" onClick={function(){ setNotePop(null); }}>Close</button>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+      {notePop && !notePop.stack && (function(){
         var it = findAnnot(notePop.id, notePop.layer);
         if (!it || it.deleted) return null;
         var mine = canEditAnnot(it, notePop.layer);
@@ -12179,6 +12256,12 @@ export default function App() {
                   );
                 })}
                 <span style={{flex:1}} />
+                {notePop.back && (
+                  <button type="button" className="pop-btn quiet" onClick={function(){
+                    if (mine && (noteDraft || "") !== (it.note || "")) updateAnnot(it.id, notePop.layer, { note: noteDraft.trim() });
+                    setNotePop({ stack: notePop.back, x: notePop.x, y: notePop.y });
+                  }}>← All</button>
+                )}
                 {mine && (
                   <button type="button" className="pop-btn quiet"
                     onClick={function(){ removeAnnot(it.id, notePop.layer); setNotePop(null); }}>Remove</button>
@@ -15798,12 +15881,7 @@ export default function App() {
                           onClick={function(){ setAnnTool(annTool === "erase" ? "pen" : "erase"); }}>
                           {annTool === "erase" ? "Erasing — tap a stroke" : "Eraser"}
                         </button>
-                        {inGrpBook && me && (
-                          <button type="button" className="pen-btn" onClick={function(){ setSelShared(!selShared); }}
-                            title="Where new marks go">
-                            {selShared ? "Shared with the group" : "Just me"}
-                          </button>
-                        )}
+                        {inGrpBook && <span className="pen-where">Shared with the group</span>}
                         <span style={{flex:1}} />
                         <button type="button" className="pen-btn done" onClick={function(){ setAnnTool(""); }}>Done</button>
                       </div>
@@ -16251,7 +16329,7 @@ export default function App() {
                   <div className="notes-panel">
                     <div className="notes-h">
                       <span>Notes in this book</span>
-                      {inGrpBook && <span className="notes-sub">yours, and {grp.name}'s</span>}
+                      {inGrpBook && <span className="notes-sub">{grp.name} — everyone's in the group; your own notes on this book stay out of it</span>}
                     </div>
                     {!bookAnnots.length && (
                       <p className="notes-empty">

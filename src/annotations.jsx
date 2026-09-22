@@ -184,24 +184,44 @@ export function AnnotLayer(props) {
     var rootBox = root.getBoundingClientRect();
     var lastSpan = {};
     for (var i = 0; i < spans.length; i++) {
-      var el = spans[i], r = spanRange(el), hit = null;
+      var el = spans[i], r = spanRange(el), hit = null, n = 0;
       for (var j = 0; j < hls.length; j++) {
         var h = hls[j];
-        if (h.start < r[1] && h.end > r[0]) { hit = h; lastSpan[h.id] = el; }
+        if (h.start < r[1] && h.end > r[0]) { hit = h; n++; lastSpan[h.id] = el; }
       }
       if (hit) {
+        // The newest mark gives the colour; how many readers have marked the
+        // word is written beside it, so a word three people chose reads
+        // differently from a word one person did.
+        var nn = n > 2 ? "3" : String(n);
         if (el.getAttribute("data-hl") !== hit.color) el.setAttribute("data-hl", hit.color);
         if (el.getAttribute("data-hl-layer") !== hit.layer) el.setAttribute("data-hl-layer", hit.layer);
+        if (el.getAttribute("data-hl-n") !== nn) el.setAttribute("data-hl-n", nn);
       } else if (el.hasAttribute("data-hl")) {
-        el.removeAttribute("data-hl"); el.removeAttribute("data-hl-layer");
+        el.removeAttribute("data-hl"); el.removeAttribute("data-hl-layer"); el.removeAttribute("data-hl-n");
       }
     }
-    var marks = [];
+    // One marker per place. Two readers who highlight the same words end on
+    // the same word, and two markers on one spot are one marker you can
+    // click and one you cannot; so they merge, and the merged one says how
+    // many it stands for. The popover it opens lists them all.
+    var marks = [], at = {};
     hls.forEach(function(h) {
       var el = lastSpan[h.id];
       if (!el) return;
       var b = el.getBoundingClientRect();
-      marks.push({ id: h.id, x: b.right - rootBox.left, y: b.top - rootBox.top, note: !!h.note, color: h.color, layer: h.layer });
+      var x = b.right - rootBox.left, y = b.top - rootBox.top;
+      var key = Math.round(x) + ":" + Math.round(y);
+      if (at[key]) {
+        var m0 = at[key];
+        m0.ids.push(h.id); m0.n++;
+        m0.note = m0.note || !!h.note;
+        m0.id = h.id; m0.color = h.color; m0.layer = h.layer;   // newest on top
+        return;
+      }
+      var m = { id: h.id, ids: [h.id], n: 1, x: x, y: y, note: !!h.note, color: h.color, layer: h.layer };
+      at[key] = m;
+      marks.push(m);
     });
     var paras = {};
     items.forEach(function(it) {
@@ -303,16 +323,16 @@ export function AnnotLayer(props) {
       )}
       {!tool && geo.marks.map(function(m) {
         return (
-          <button key={m.id} type="button" className={"hl-mark c-" + m.color + (m.note ? " has-note" : "") + (m.layer === "group" ? " grp" : "")}
+          <button key={m.ids[0]} type="button" className={"hl-mark c-" + m.color + (m.note ? " has-note" : "") + (m.layer === "group" ? " grp" : "") + (m.n > 1 ? " multi" : "")}
             style={{ left: m.x + "px", top: m.y + "px" }}
-            title={m.note ? "Read the note" : "Highlight — add a note or remove it"}
+            title={m.n > 1 ? m.n + " marks here — see them all" : (m.note ? "Read the note" : "Highlight — add a note or remove it")}
             onClick={function(e){
               e.stopPropagation();
               var it = null;
               for (var i = 0; i < items.length; i++) if (items[i].id === m.id) { it = items[i]; break; }
               if (it && props.onMarker) props.onMarker(it, e.currentTarget.getBoundingClientRect());
             }}>
-            {m.note ? (
+            {m.n > 1 ? <span className="hl-mark-n">{m.n}</span> : m.note ? (
               <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true">
                 <path d="M2 2.5h8v5.5H5.5L3 10V8H2z" fill="currentColor" />
               </svg>
