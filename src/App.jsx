@@ -11623,6 +11623,14 @@ export default function App() {
         .ltxt [data-hl="blue"]{background:rgba(120,170,225,.36)}
         .ltxt [data-hl="pink"]{background:rgba(235,140,160,.36)}
         .ltxt [data-hl-layer="group"]{box-shadow:inset 0 -1.5px 0 rgba(27,22,19,.45)}
+        /* Touch screens choose words by press-and-hold (annotations.jsx), not
+           by the phone's own selection, whose menu covers the marking bar. */
+        @media (pointer:coarse){
+          .ltxt{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+          .ltxt textarea,.ltxt input{-webkit-user-select:text;user-select:text}
+        }
+        .pop-hint{font-family:var(--serif);font-style:italic;font-size:12px;line-height:1.35;color:var(--ink-3);margin-top:6px}
+        .ltxt [data-tsel]{background:rgba(27,22,19,.16);border-radius:2px;box-shadow:inset 0 -2px 0 var(--ink)}
         /* Marked by more than one reader: the fill deepens and the rule
            doubles — no new colour, just more ink where more people stopped. */
         .ltxt [data-hl-n="2"]{box-shadow:inset 0 -1.5px 0 rgba(27,22,19,.5),inset 0 -4px 0 rgba(27,22,19,.12);filter:saturate(1.35)}
@@ -12189,11 +12197,14 @@ export default function App() {
         var touch = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(hover:none)").matches;
         var w = 250;
         var left = Math.max(8, Math.min(window.innerWidth - w - 8, selBox.x - w / 2));
-        // Above the words with a mouse; below them on touch, where the
-        // phone's own copy menu sits above.
-        var top = touch ? selBox.bottom + 12 : Math.max(8, selBox.y - 58);
+        // Above the words. On touch the phone's own menu no longer appears
+        // (words are chosen by press-and-hold), so above is free there too,
+        // and it is where a finger resting on the words does not cover it.
+        // Below only when there is no room above.
+        var hTop = touch ? 86 : 58;
+        var top = selBox.y - hTop > 8 ? selBox.y - hTop : selBox.bottom + 12;
         return (
-          <div className="annot-pop" style={{ left: left + "px", top: top + "px", width: w + "px" }}
+          <div className="annot-pop" data-annot-keep="" style={{ left: left + "px", top: top + "px", width: w + "px" }}
             onMouseDown={function(e){ e.preventDefault(); }}>
             <div className="annot-pop-row">
               {HL_COLORS.map(function(c){
@@ -12208,6 +12219,9 @@ export default function App() {
             {inGrpBook && (
               <div className="pop-share">{grp.closed ? "This group read is closed to new marks" : "Shared with " + grp.name}</div>
             )}
+            {selBox.touch && (
+              <div className="pop-hint">Slide, or tap another word, to take in more · tap elsewhere to cancel</div>
+            )}
           </div>
         );
       })()}
@@ -12219,7 +12233,7 @@ export default function App() {
         var left = Math.max(8, Math.min(window.innerWidth - w - 8, notePop.x - 20));
         var top = Math.min(window.innerHeight - 320, notePop.y);
         return (
-          <div className="note-over" onMouseDown={function(e){ if (e.target.className === "note-over") setNotePop(null); }}>
+          <div className="note-over" data-annot-keep="" onClick={function(e){ if (e.target.className === "note-over") setNotePop(null); }}>
             <div className="note-pop stack" style={{ left: left + "px", top: Math.max(8, top) + "px", width: w + "px" }}>
               <div className="note-stack-h">{rows.length} marks on these words</div>
               <div className="note-stack">
@@ -12261,7 +12275,7 @@ export default function App() {
           setNotePop(null);
         };
         return (
-          <div className="note-over" onMouseDown={function(e){ if (e.target.className === "note-over") close(); }}>
+          <div className="note-over" data-annot-keep="" onClick={function(e){ if (e.target.className === "note-over") close(); }}>
             <div className="note-pop" style={{ left: left + "px", top: Math.max(8, top) + "px", width: w + "px" }}>
               {notePop.layer === "group" && it.by && (
                 <div className="note-pop-by">
@@ -16269,7 +16283,8 @@ export default function App() {
                           {renderLit(curChapter.text)}
                           <AnnotLayer rootRef={ltxtRef} items={annItems} tool={annTool} inkColor={inkColor}
                             onInk={addInk} onErase={eraseInk} onMarker={openMarker}
-                            onSelect={function(sb){ if (!annTool) setSelBox(sb); }} />
+                            onSelect={function(sb){ if (!annTool) setSelBox(sb); }}
+                            selOpen={!!selBox} />
                         </div>
                         {/* The same move again at the foot of the text, where a
                             reader who has finished the chapter actually is. The

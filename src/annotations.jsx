@@ -95,6 +95,29 @@ export function readSelection(root) {
   };
 }
 
+// The same shape as readSelection, for a run of word spans chosen by touch.
+function selectionOfSpans(a, b) {
+  var ra = spanRange(a), rb = spanRange(b);
+  var first = ra[0] <= rb[0] ? a : b, last = first === a ? b : a;
+  var range = document.createRange();
+  range.setStartBefore(first);
+  range.setEndAfter(last);
+  var box = range.getBoundingClientRect();
+  return {
+    start: Math.min(ra[0], rb[0]), end: Math.max(ra[1], rb[1]),
+    quote: range.toString().replace(/\s+/g, " ").trim().slice(0, 600),
+    x: box.left + box.width / 2, y: box.top, bottom: box.bottom,
+    lastRect: last.getBoundingClientRect(),
+    touch: true,
+  };
+}
+
+function wordAt(root, x, y) {
+  var el = document.elementFromPoint(x, y);
+  var w = el && el.closest ? el.closest("[data-rw-start]") : null;
+  return w && root.contains(w) ? w : null;
+}
+
 // ── The layer: paints highlights onto the words, draws ink, holds the pen ──
 //
 // props:
@@ -110,6 +133,8 @@ export function AnnotLayer(props) {
   var rootRef = props.rootRef;
   var items = props.items || [];
   var tool = props.tool || "";
+  var toolRef = useRef(tool);
+  toolRef.current = tool;
   var [tick, setTick] = useState(0);
   var [geo, setGeo] = useState({ w: 0, h: 0, marks: [], paras: {} });
   var [live, setLive] = useState(null);
@@ -147,6 +172,122 @@ export function AnnotLayer(props) {
   // A drag that ends on a word would also be a click on that word, and a click
   // on a word opens its definition. While text is selected, the click belongs
   // to the selection.
+  // ── Choosing words on a phone ──
+  //
+  // A phone's own text selection brings its own menu — Copy, Look Up, Share —
+  // which sits on top of ours, and letting go of it means tapping somewhere
+  // else, which on this page is tapping a word, which opens its definition.
+  // So on a touch screen the reader's text is not natively selectable at all,
+  // and words are chosen the way a reader would mark them with a finger:
+  //   · press and hold a word — it is chosen, and the marking bar appears;
+  //   · keep the finger down and slide — the choice follows it;
+  //   · tap another word — the choice stretches to it;
+  //   · tap anywhere else — the choice is dropped, and that tap does nothing
+  //     else: no definition, no following a link underneath.
+  var coarse = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(pointer:coarse)").matches;
+  var tsel = useRef({ anchor: null, end: null, active: false, dragging: false, timer: 0, x: 0, y: 0, mute: 0 });
+  var paintTouch = function() {
+    var root = rootRef.current, T = tsel.current;
+    if (!root) return;
+    var on = {};
+    if (T.active && T.anchor && T.end) {
+      var ra = spanRange(T.anchor), rb = spanRange(T.end);
+      var lo = Math.min(ra[0], rb[0]), hi = Math.max(ra[1], rb[1]);
+      var spans = root.querySelectorAll("[data-rw-start]");
+      for (var i = 0; i < spans.length; i++) {
+        var r = spanRange(spans[i]);
+        if (r[0] >= lo && r[1] <= hi) on[i] = true;
+      }
+      for (var j = 0; j < spans.length; j++) {
+        if (on[j]) { if (!spans[j].hasAttribute("data-tsel")) spans[j].setAttribute("data-tsel", ""); }
+        else if (spans[j].hasAttribute("data-tsel")) spans[j].removeAttribute("data-tsel");
+      }
+    } else {
+      var marked = root.querySelectorAll("[data-tsel]");
+      for (var k = 0; k < marked.length; k++) marked[k].removeAttribute("data-tsel");
+    }
+  };
+  var dropTouch = function(tell) {
+    var T = tsel.current;
+    if (!T.active) return;
+    T.active = false; T.dragging = false; T.anchor = T.end = null;
+    paintTouch();
+    if (tell && onSelectRef.current) onSelectRef.current(null);
+  };
+  // The parent closes the bar when a highlight is made or the chapter
+  // changes; the chosen words go with it.
+  useEffect(function() { if (!props.selOpen) dropTouch(false); }, [props.selOpen]);
+  useEffect(function() {
+    var root = rootRef.current;
+    if (!root || !coarse) return;
+    var T = tsel.current;
+    var emit = function() {
+      if (T.active && T.anchor && T.end && onSelectRef.current) onSelectRef.current(selectionOfSpans(T.anchor, T.end));
+    };
+    var onStart = function(e) {
+      if (toolRef.current) return;
+      if (e.touches.length !== 1) return;
+      var t = e.touches[0];
+      T.x = t.clientX; T.y = t.clientY;
+      clearTimeout(T.timer);
+      var w = wordAt(root, t.clientX, t.clientY);
+      if (!w) return;
+      T.timer = setTimeout(function() {
+        T.active = true; T.dragging = true; T.anchor = w; T.end = w;
+        paintTouch();
+        try { navigator.vibrate && navigator.vibrate(8); } catch (x) {}
+        emit();
+      }, 380);
+    };
+    var onMove = function(e) {
+      var t = e.touches[0];
+      if (!t) return;
+      if (T.dragging) {
+        e.preventDefault();                       // the page does not scroll while choosing
+        var w = wordAt(root, t.clientX, t.clientY);
+        if (w && w !== T.end) { T.end = w; paintTouch(); }
+        return;
+      }
+      if (Math.abs(t.clientX - T.x) > 10 || Math.abs(t.clientY - T.y) > 10) clearTimeout(T.timer);
+    };
+    var onEnd = function() {
+      clearTimeout(T.timer);
+      if (T.dragging) {
+        T.dragging = false;
+        T.mute = Date.now() + 700;               // the lift is not a tap on a word
+        emit();
+      }
+    };
+    // Taps while words are chosen belong to the choosing — here and anywhere
+    // on the page — except on the marking bar and the notes themselves.
+    var onClick = function(e) {
+      var keep = e.target && e.target.closest && e.target.closest("[data-annot-keep]");
+      if (keep) return;
+      if (Date.now() < T.mute) { e.stopPropagation(); e.preventDefault(); return; }
+      if (!T.active) return;
+      e.stopPropagation(); e.preventDefault();
+      var w = root.contains(e.target) && e.target.closest ? e.target.closest("[data-rw-start]") : null;
+      if (w) { T.end = w; paintTouch(); emit(); }
+      else dropTouch(true);
+    };
+    var noMenu = function(e) { if (T.active || T.dragging) e.preventDefault(); };
+    root.addEventListener("touchstart", onStart, { passive: true });
+    root.addEventListener("touchmove", onMove, { passive: false });
+    root.addEventListener("touchend", onEnd);
+    root.addEventListener("touchcancel", onEnd);
+    root.addEventListener("contextmenu", noMenu);
+    window.addEventListener("click", onClick, true);
+    return function() {
+      clearTimeout(T.timer);
+      root.removeEventListener("touchstart", onStart);
+      root.removeEventListener("touchmove", onMove);
+      root.removeEventListener("touchend", onEnd);
+      root.removeEventListener("touchcancel", onEnd);
+      root.removeEventListener("contextmenu", noMenu);
+      window.removeEventListener("click", onClick, true);
+    };
+  }, [rootRef, coarse]);
+
   useEffect(function() {
     var root = rootRef.current;
     if (!root) return;
@@ -159,6 +300,7 @@ export function AnnotLayer(props) {
     var onSel = function() {
       clearTimeout(t);
       t = setTimeout(function() {
+        if (tsel.current.active) return;       // a touch choice is not a text selection
         var r = rootRef.current ? readSelection(rootRef.current) : null;
         if (onSelectRef.current) onSelectRef.current(r);
       }, 260);
@@ -323,7 +465,7 @@ export function AnnotLayer(props) {
       )}
       {!tool && geo.marks.map(function(m) {
         return (
-          <button key={m.ids[0]} type="button" className={"hl-mark c-" + m.color + (m.note ? " has-note" : "") + (m.layer === "group" ? " grp" : "") + (m.n > 1 ? " multi" : "")}
+          <button key={m.ids[0]} type="button" data-annot-keep="" className={"hl-mark c-" + m.color + (m.note ? " has-note" : "") + (m.layer === "group" ? " grp" : "") + (m.n > 1 ? " multi" : "")}
             style={{ left: m.x + "px", top: m.y + "px" }}
             title={m.n > 1 ? m.n + " marks here — see them all" : (m.note ? "Read the note" : "Highlight — add a note or remove it")}
             onClick={function(e){
