@@ -1,5 +1,6 @@
 // THEME_VERSION=2
 import { useState, useRef, useEffect, useCallback, useMemo, Fragment } from "react";
+import { createPortal } from "react-dom";
 import { isCommonWord, dropCommonWords } from "./commonWords.js";
 import { review as srsReview, isLearned, dueWords, weakestWords, recallNow } from "./srs.js";
 import { dayKey, dayMet, bump as bumpStats, streaks, mergeStats,
@@ -6713,6 +6714,16 @@ export default function App() {
   var [grpName, setGrpName]         = useState("");
   var [grpBook, setGrpBook]         = useState("");
   var [grpBusy, setGrpBusy]         = useState(false);
+  // The group's chat: every message the poll has brought, oldest first, and
+  // whether the side panel is open. `chatSeenAt` is the newest message this
+  // reader has had in front of them, for the count on the closed tab.
+  var [grpChat, setGrpChat]         = useState([]);
+  var [chatOpen, setChatOpen]       = useState(false);
+  var [chatSeenAt, setChatSeenAt]   = useState(0);
+  var [chatDraft, setChatDraft]     = useState("");
+  var [chatErr, setChatErr]         = useState("");
+  var [chatBusy, setChatBusy]       = useState(false);
+  var chatListRef                   = useRef(null);
   // A reload keeps you in your group: it is remembered on the device and
   // checked against the server on the first poll.
   useEffect(function() {
@@ -6734,6 +6745,7 @@ export default function App() {
     var stop = false, timer = 0;
     grpSince.current = 0;
     setGrpItems({});
+    setGrpChat([]); setChatSeenAt(0); setChatErr("");
     var tick = async function() {
       if (stop) return;
       if (document.hidden) { timer = setTimeout(tick, 4000); return; }
@@ -6753,6 +6765,14 @@ export default function App() {
               var n = Object.assign({}, m);
               d.items.forEach(function(it){ n[it.id] = it; });   // the server is the authority
               return n;
+            });
+          }
+          if (d.chat && d.chat.length) {
+            setGrpChat(function(list) {
+              var have = {}; list.forEach(function(m){ have[m.id] = true; });
+              var add = d.chat.filter(function(m){ return m && m.id && !have[m.id]; });
+              if (!add.length) return list;
+              return list.concat(add).sort(function(a, b){ return a.at - b.at; }).slice(-400);
             });
           }
           setGrpMembers(d.members || []);
@@ -6804,6 +6824,41 @@ export default function App() {
     });
     return out;
   }, [annots, grpItems, curBookKey, inGrpBook]);
+
+  var sendChat = function() {
+    var text = chatDraft.trim();
+    if (!text || chatBusy || !grp) return;
+    setChatBusy(true); setChatErr("");
+    authFetch("/api/user-data?group=say", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: grp.id, text: text }),
+    }).then(function(r){ return r.json().then(function(d){ return { ok: r.ok, d: d }; }); })
+      .then(function(res) {
+        if (res.ok && res.d.msg) {
+          setChatDraft("");
+          setGrpChat(function(list) {
+            if (list.some(function(m){ return m.id === res.d.msg.id; })) return list;
+            return list.concat([res.d.msg]);
+          });
+        } else setChatErr((res.d && res.d.error) || "Could not send that.");
+      })
+      .catch(function(){ setChatErr("Could not reach the group. Your message is still in the box."); })
+      .then(function(){ setChatBusy(false); });
+  };
+  // While the panel is open everything in it counts as read, and the list
+  // follows new messages down — unless the reader has scrolled up to look at
+  // something older, when it stays where they put it.
+  useEffect(function() {
+    if (!chatOpen || !grpChat.length) return;
+    setChatSeenAt(grpChat[grpChat.length - 1].at);
+    var el = chatListRef.current;
+    if (el && el.scrollHeight - el.scrollTop - el.clientHeight < 140) el.scrollTop = el.scrollHeight;
+  }, [chatOpen, grpChat]);
+  useEffect(function() {
+    if (!chatOpen) return;
+    var el = chatListRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [chatOpen]);
 
   var putGroupItem = function(item) {
     authFetch("/api/user-data?group=put", {
@@ -11465,6 +11520,48 @@ export default function App() {
         .hl-mark.has-note:hover{transform:translate(2px,-55%) scale(1.1)}
         .ltab-n{font-family:var(--serif);font-style:italic;text-transform:none;letter-spacing:0;opacity:.55;margin-left:5px}
         .annot-bar{border-bottom:1px solid var(--rule-soft);padding:6px 0;display:flex;flex-direction:column;gap:6px;background:var(--paper)}
+        /* ── Group chat: a tab on the right edge, below the English one, and a
+           column that opens beside the text. Set like the rest of the page —
+           ruled paper, the ink, a transcript rather than a messenger. */
+        .gchat-tab{position:fixed;right:14px;top:calc(50% + 46px);transform:translateY(-50%);z-index:40;
+          display:flex;align-items:center;gap:6px;background:var(--paper-3);border:1px solid var(--ink);color:var(--ink);
+          padding:7px 10px;cursor:pointer;border-radius:0}
+        .gchat-tab:hover{background:var(--paper)}
+        .gchat-tab.on{background:var(--ink);color:var(--paper);right:374px;z-index:46}
+        .gchat-l{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+        .gchat-n{font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:.04em;color:var(--rubric);font-variant-numeric:tabular-nums}
+        .gchat{position:fixed;top:0;right:0;bottom:0;width:360px;max-width:100vw;z-index:45;display:flex;flex-direction:column;
+          background:var(--paper);border-left:1px solid var(--ink);box-shadow:-1px 0 0 var(--rule-soft)}
+        .gchat-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;
+          padding:18px 20px 12px;border-bottom:3px double var(--ink)}
+        .gchat-k{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)}
+        .gchat-g{font-family:var(--display);font-size:22px;line-height:1.15;color:var(--ink);margin-top:4px}
+        .gchat-sub{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--ink-3);margin-top:3px}
+        .gchat-x{background:none;border:0;font-size:22px;line-height:1;color:var(--ink-2);cursor:pointer;padding:2px 4px}
+        .gchat-x:hover{color:var(--ink)}
+        .gchat-list{flex:1;overflow-y:auto;padding:6px 20px 14px;overscroll-behavior:contain}
+        .gchat-empty{font-family:var(--serif);font-style:italic;font-size:14px;line-height:1.6;color:var(--ink-3);padding:18px 0}
+        .gchat-day{font-family:var(--sans);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);
+          text-align:center;margin:16px 0 4px;display:flex;align-items:center;gap:10px}
+        .gchat-day::before,.gchat-day::after{content:"";flex:1;border-top:1px solid var(--rule-soft)}
+        .gchat-m{padding-top:12px}
+        .gchat-m.cont{padding-top:3px}
+        .gchat-who{display:flex;align-items:center;gap:8px;margin-bottom:3px}
+        .gchat-who .nm{font-family:var(--sans);font-size:11.5px;font-weight:600;letter-spacing:.06em;color:var(--ink)}
+        .gchat-m.mine .gchat-who .nm{color:var(--rubric)}
+        .gchat-who .at{font-family:var(--sans);font-size:10.5px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+        .gchat-t{font-family:var(--serif);font-size:15px;line-height:1.5;color:var(--ink);white-space:pre-wrap;overflow-wrap:anywhere;padding-left:28px}
+        .gchat-form{border-top:1px solid var(--ink);padding:10px 20px 14px;background:var(--paper)}
+        .gchat-in{width:100%;box-sizing:border-box;resize:none;border:0;border-bottom:1px solid var(--rule);background:transparent;
+          font-family:var(--serif);font-size:15px;line-height:1.45;color:var(--ink);padding:6px 0;outline:none}
+        .gchat-in:focus{border-bottom-color:var(--ink)}
+        .gchat-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px}
+        .gchat-hint{font-family:var(--serif);font-style:italic;font-size:12px;color:var(--ink-3)}
+        .gchat-send{background:none;border:0;border-bottom:1px solid var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.18em;
+          text-transform:uppercase;color:var(--ink);padding:3px 0;cursor:pointer}
+        .gchat-send:disabled{opacity:.35;cursor:default}
+        .gchat-closed{border-top:1px solid var(--ink);padding:14px 20px;font-family:var(--serif);font-style:italic;font-size:13px;color:var(--ink-3)}
+        @media (max-width:640px){.gchat-tab{right:10px}.gchat-tab.on{display:none}.gchat{width:100vw;border-left:0}}
         .grp-strip,.pen-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:0 32px}
         .grp-lbl{font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
         .grp-name{font-family:var(--display);font-size:17px;color:var(--ink)}
@@ -15426,6 +15523,103 @@ export default function App() {
                     <div className="lpbar"><div className="lpfill" style={{width:pct+"%"}}/></div>
                   </div>
                 </div>
+
+                {inGrpBook && me && (function(){
+                  var myId = me.id;
+                  var unread = grpChat.filter(function(m){ return m.at > chatSeenAt && m.uid !== myId; }).length;
+                  var here = grpMembers.filter(function(m){ return m.here; }).length;
+                  var fmtAt = function(t) {
+                    var d = new Date(t), now = new Date();
+                    var hm = d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+                    return d.toDateString() === now.toDateString() ? hm
+                      : d.toLocaleDateString([], { day: "numeric", month: "short" }) + ", " + hm;
+                  };
+                  // Portalled to the body: the reader sits inside containers that
+                  // make their own stacking contexts, and from in there the
+                  // banner drew over the top of the panel.
+                  return createPortal(
+                    <>
+                      <button type="button" className={"gchat-tab" + (chatOpen ? " on" : "")}
+                        onClick={function(){ setChatOpen(!chatOpen); }}
+                        aria-label={chatOpen ? "Close the group chat" : "Open the group chat"}
+                        title={chatOpen ? "Close the chat" : "Talk with " + grp.name}>
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor"
+                             strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <path d="M4.5 5.5h15v10h-8l-4.5 3.5v-3.5h-2.5z"/>
+                          <path d="M8 9.5h8M8 12.5h5"/>
+                        </svg>
+                        <span className="gchat-l">Chat</span>
+                        {!chatOpen && unread > 0 && <span className="gchat-n">{unread > 99 ? "99+" : unread}</span>}
+                      </button>
+                      {chatOpen && (
+                        <aside className="gchat" aria-label={"Chat — " + grp.name}>
+                          <div className="gchat-head">
+                            <div>
+                              <div className="gchat-k">Group chat</div>
+                              <div className="gchat-g">{grp.name}</div>
+                              <div className="gchat-sub">
+                                {grp.title ? grp.title + " · " : ""}{here} reading now
+                              </div>
+                            </div>
+                            <button type="button" className="gchat-x" aria-label="Close"
+                              onClick={function(){ setChatOpen(false); }}>×</button>
+                          </div>
+                          <div className="gchat-list" ref={chatListRef}>
+                            {!grpChat.length && (
+                              <div className="gchat-empty">
+                                Nothing said yet. Whatever is written here stays with the
+                                group, alongside its notes.
+                              </div>
+                            )}
+                            {grpChat.map(function(m, i){
+                              var prev = grpChat[i - 1];
+                              // A run of lines from one reader reads as one turn:
+                              // the name is written once, as in a transcript.
+                              var cont = !!(prev && prev.uid === m.uid && m.at - prev.at < 5 * 60 * 1000);
+                              var dayBreak = !prev || new Date(prev.at).toDateString() !== new Date(m.at).toDateString();
+                              return (
+                                <Fragment key={m.id}>
+                                  {dayBreak && (
+                                    <div className="gchat-day">
+                                      {new Date(m.at).toLocaleDateString([], { weekday: "long", day: "numeric", month: "long" })}
+                                    </div>
+                                  )}
+                                  <div className={"gchat-m" + (cont && !dayBreak ? " cont" : "") + (m.uid === myId ? " mine" : "")}>
+                                    {(!cont || dayBreak) && (
+                                      <div className="gchat-who">
+                                        <Avatar id={m.avatar} name={m.name} size={20} />
+                                        <span className="nm">{m.name}</span>
+                                        <span className="at">{fmtAt(m.at)}</span>
+                                      </div>
+                                    )}
+                                    <div className="gchat-t" lang="ru">{m.text}</div>
+                                  </div>
+                                </Fragment>
+                              );
+                            })}
+                          </div>
+                          {grp.closed ? (
+                            <div className="gchat-closed">This group read is closed. Its chat stays, but it takes no new messages.</div>
+                          ) : (
+                            <form className="gchat-form" onSubmit={function(e){ e.preventDefault(); sendChat(); }}>
+                              <textarea className="gchat-in" rows={2} maxLength={1000} value={chatDraft}
+                                placeholder="Write to the group…"
+                                onChange={function(e){ setChatDraft(e.target.value); if (chatErr) setChatErr(""); }}
+                                onKeyDown={function(e){
+                                  if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); sendChat(); }
+                                }} />
+                              <div className="gchat-foot">
+                                <span className="gchat-hint">{chatErr || "Enter to send · Shift+Enter for a new line"}</span>
+                                <button type="submit" className="gchat-send" disabled={chatBusy || !chatDraft.trim()}>Send</button>
+                              </div>
+                            </form>
+                          )}
+                        </aside>
+                      )}
+                    </>,
+                    document.body
+                  );
+                })()}
 
                 {(grp || annTool) && (
                   <div className="annot-bar">

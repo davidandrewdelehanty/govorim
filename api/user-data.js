@@ -868,6 +868,7 @@ function cleanAnnot(raw) {
 
 const GROUPS = `${PREFIX}/_groups`;
 const GROUP_ITEM_CAP = 4000;
+const GROUP_CHAT_CAP = 400;
 
 // The reader's row on the leaderboards, with their current name and avatar
 // carried along so the board never has to look an account up to draw it.
@@ -1089,7 +1090,41 @@ async function handleGroup(req, res, user, action) {
           return cur;
         }).catch(function () {});
       }
-      return res.status(200).json({ now, items, members, group: groupSummary(g), isOwner: g.owner === me.uid });
+      // The group's chat rides the same poll: the messages newer than
+      // `since`, from the same file the notes are in, so talking costs no
+      // extra request every three seconds.
+      const chat = (Array.isArray(g.chat) ? g.chat : []).filter(function (m) { return (m.at || 0) > since; });
+      return res.status(200).json({ now, items, chat, members, group: groupSummary(g), isOwner: g.owner === me.uid });
+    }
+
+    // A line in the group's chat. Kept in the group file with everything
+    // else, newest last, the oldest dropping off past GROUP_CHAT_CAP. Plain
+    // text only — the client draws it as text, never as markup.
+    if (action === "say" && req.method === "POST") {
+      const text = String(body.text || "").replace(/\r\n?/g, "\n").replace(/[\u0000-\u0008\u000b-\u001f]/g, "").trim();
+      if (!text) return res.status(400).json({ error: "Nothing to send." });
+      if (text.length > 1000) return res.status(400).json({ error: "Keep a message under 1000 characters." });
+      const now = Date.now();
+      let refused = "", msg = null;
+      await r2Update(gkey(gid), function (cur) {
+        if (!cur) { refused = "No such group."; return undefined; }
+        if (cur.closed || cur.ended) { refused = "This group read is closed — its chat stays, but it takes no new messages."; return undefined; }
+        if (!cur.members || !cur.members[me.uid]) { refused = "Join the group first."; return undefined; }
+        const chat = Array.isArray(cur.chat) ? cur.chat : [];
+        const last = chat.filter(function (m) { return m.uid === me.uid; }).pop();
+        if (last && now - last.at < 800) { refused = "One moment — that was fast."; return undefined; }
+        msg = {
+          id: now.toString(36) + Math.random().toString(36).slice(2, 6),
+          uid: me.uid, name: me.name, avatar: me.avatar, text, at: now,
+        };
+        chat.push(msg);
+        cur.chat = chat.slice(-GROUP_CHAT_CAP);
+        cur.lastActive = now;
+        cur.members[me.uid].seenAt = now;
+        return cur;
+      });
+      if (refused) return res.status(400).json({ error: refused });
+      return res.status(200).json({ ok: true, msg });
     }
 
     if (action === "put" && req.method === "POST") {
