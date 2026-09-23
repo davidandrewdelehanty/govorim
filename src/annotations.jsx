@@ -184,7 +184,11 @@ export function AnnotLayer(props) {
   //   · tap another word — the choice stretches to it;
   //   · tap anywhere else — the choice is dropped, and that tap does nothing
   //     else: no definition, no following a link underneath.
-  var coarse = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(pointer:coarse)").matches;
+  // Android reports itself in both ways depending on the device and the
+  // browser, and a tablet with a stylus can answer "fine" to the pointer
+  // question while having no hover at all. Either answer means fingers.
+  var coarse = typeof window !== "undefined" && window.matchMedia &&
+    (window.matchMedia("(pointer:coarse)").matches || window.matchMedia("(hover:none)").matches);
   var tsel = useRef({ anchor: null, end: null, active: false, dragging: false, timer: 0, x: 0, y: 0, mute: 0 });
   var paintTouch = function() {
     var root = rootRef.current, T = tsel.current;
@@ -270,12 +274,18 @@ export function AnnotLayer(props) {
       if (w) { T.end = w; paintTouch(); emit(); }
       else dropTouch(true);
     };
-    var noMenu = function(e) { if (T.active || T.dragging) e.preventDefault(); };
+    // Android's long-press menu (Copy · Share · Web search) is a context
+    // menu, and it arrives while the reader is still holding the word down.
+    // Nothing in the text has a context menu worth keeping, so none of them
+    // open here.
+    var noMenu = function(e) { e.preventDefault(); };
+    var noSelect = function(e) { e.preventDefault(); };
     root.addEventListener("touchstart", onStart, { passive: true });
     root.addEventListener("touchmove", onMove, { passive: false });
     root.addEventListener("touchend", onEnd);
     root.addEventListener("touchcancel", onEnd);
     root.addEventListener("contextmenu", noMenu);
+    root.addEventListener("selectstart", noSelect);
     window.addEventListener("click", onClick, true);
     return function() {
       clearTimeout(T.timer);
@@ -284,6 +294,7 @@ export function AnnotLayer(props) {
       root.removeEventListener("touchend", onEnd);
       root.removeEventListener("touchcancel", onEnd);
       root.removeEventListener("contextmenu", noMenu);
+    root.removeEventListener("selectstart", noSelect);
       window.removeEventListener("click", onClick, true);
     };
   }, [rootRef, coarse]);

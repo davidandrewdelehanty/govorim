@@ -11815,8 +11815,9 @@ export default function App() {
         .ltxt [data-hl-layer="group"]{box-shadow:inset 0 -1.5px 0 rgba(27,22,19,.45)}
         /* Touch screens choose words by press-and-hold (annotations.jsx), not
            by the phone's own selection, whose menu covers the marking bar. */
-        @media (pointer:coarse){
-          .ltxt{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+        @media (pointer:coarse),(hover:none){
+          .ltxt,.ltxt *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;
+            -webkit-tap-highlight-color:transparent}
           .ltxt textarea,.ltxt input{-webkit-user-select:text;user-select:text}
         }
         .pop-hint{font-family:var(--serif);font-style:italic;font-size:12px;line-height:1.35;color:var(--ink-3);margin-top:6px}
@@ -11937,6 +11938,17 @@ export default function App() {
         .grp-err button{background:none;border:0;color:var(--rubric);cursor:pointer;font-size:16px;padding:0}
         .annot-pop{position:fixed;z-index:300;background:var(--paper-3);border:1px solid var(--ink);padding:8px 10px;
           box-shadow:0 6px 20px rgba(27,22,19,.16);display:flex;flex-direction:column;gap:6px}
+        /* The phone's marking bar: across the foot of the screen, never over
+           the words. Big enough to hit with a thumb, and it says which words
+           it is about, since they may be under the hand holding the phone. */
+        .annot-pop.dock{left:0;right:0;bottom:0;top:auto;width:auto;border:0;border-top:1px solid var(--ink);
+          padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));box-shadow:0 -6px 20px rgba(27,22,19,.13);
+          background:var(--paper)}
+        .annot-pop.dock .annot-pop-row{gap:14px}
+        .annot-pop.dock .hl-sw{width:34px;height:34px}
+        .annot-pop.dock .pop-btn{font-size:12px;padding:8px 0}
+        .pop-quote{font-family:var(--serif);font-style:italic;font-size:13.5px;line-height:1.35;color:var(--ink-2);
+          max-height:2.8em;overflow:hidden}
         .annot-pop-row,.note-pop-row{display:flex;align-items:center;gap:8px}
         .hl-sw{width:24px;height:24px;border-radius:50%!important;border:1px solid var(--rule);cursor:pointer;padding:0}
         .hl-sw.sm{width:18px;height:18px}
@@ -12394,18 +12406,22 @@ export default function App() {
       )}
 
       {selBox && started && !annTool && lview === "read" && (function(){
-        var touch = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(hover:none)").matches;
+        var touch = typeof window !== "undefined" && window.matchMedia &&
+          (window.matchMedia("(hover:none)").matches || window.matchMedia("(pointer:coarse)").matches);
+        // On a phone the bar does not float beside the words at all: wherever
+        // it is put, it is over the sentence somebody just chose, and a thumb
+        // is on that sentence too. It sits across the bottom of the screen
+        // instead, out of the way of the text and where the hand already is.
         var w = 250;
         var left = Math.max(8, Math.min(window.innerWidth - w - 8, selBox.x - w / 2));
-        // Above the words. On touch the phone's own menu no longer appears
-        // (words are chosen by press-and-hold), so above is free there too,
-        // and it is where a finger resting on the words does not cover it.
-        // Below only when there is no room above.
-        var hTop = touch ? 86 : 58;
-        var top = selBox.y - hTop > 8 ? selBox.y - hTop : selBox.bottom + 12;
+        var top = selBox.y - 58 > 8 ? selBox.y - 58 : selBox.bottom + 12;
+        var style = touch ? {} : { left: left + "px", top: top + "px", width: w + "px" };
         return (
-          <div className="annot-pop" data-annot-keep="" style={{ left: left + "px", top: top + "px", width: w + "px" }}
-            onMouseDown={function(e){ e.preventDefault(); }}>
+          <div className={"annot-pop" + (touch ? " dock" : "")} data-annot-keep="" style={style}
+            onMouseDown={function(e){ if (!touch) e.preventDefault(); }}>
+            {touch && selBox.quote && (
+              <div className="pop-quote">«{selBox.quote.length > 90 ? selBox.quote.slice(0, 90) + "…" : selBox.quote}»</div>
+            )}
             <div className="annot-pop-row">
               {HL_COLORS.map(function(c){
                 return (
@@ -12415,12 +12431,18 @@ export default function App() {
                 );
               })}
               <button type="button" className="pop-btn" onClick={function(){ makeHighlight(hlColor, true); }}>Note</button>
+              {touch && (
+                <button type="button" className="pop-btn quiet" onClick={function(){
+                  setSelBox(null);
+                  try { window.getSelection().removeAllRanges(); } catch (e) {}
+                }}>Cancel</button>
+              )}
             </div>
             {inGrpBook && (
               <div className="pop-share">{grp.closed ? "This group read is closed to new marks" : "Shared with " + grp.name}</div>
             )}
             {selBox.touch && (
-              <div className="pop-hint">Slide, or tap another word, to take in more · tap elsewhere to cancel</div>
+              <div className="pop-hint">Slide, or tap another word, to take in more</div>
             )}
           </div>
         );
