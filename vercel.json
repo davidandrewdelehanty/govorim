@@ -16,30 +16,6 @@
       "includeFiles": "private/books/index.json"
     }
   },
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.samovar.live"
-        }
-      ],
-      "destination": "https://samovar.live/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.govorim.dev"
-        }
-      ],
-      "destination": "https://govorim.dev/:path*",
-      "permanent": true
-    }
-  ],
   "rewrites": [
     {
       "source": "/api/forum/:action*",
