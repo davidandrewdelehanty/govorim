@@ -7105,6 +7105,7 @@ export default function App() {
   // The group's recording, edited from the Group Reads window — a bad link
   // can be replaced there without reopening the book or starting again.
   var [grpAudioRaw, setGrpAudioRaw] = useState("");
+  var [grpAudOpen, setGrpAudOpen]   = useState(false);
   // Whether to carry this reader's own highlights and notes on the book into
   // the group they are starting on it.
   var [grpImport, setGrpImport]     = useState(true);
@@ -7595,7 +7596,7 @@ export default function App() {
   // recording, and this reader's too if they have the book open.
   var setGroupAudioLink = async function() {
     var raw = grpAudioRaw.trim();
-    if (!raw) { if (await putGroupAudio(null)) setGrpAudioRaw(""); return; }
+    if (!raw) { if (await putGroupAudio(null)) { setGrpAudioRaw(""); return true; } return false; }
     var id = youtubeId(raw);
     // A recording is a YouTube page or a file on the web — the same two the
     // Your own book page takes. The group's field took only the first, which
@@ -7603,7 +7604,7 @@ export default function App() {
     // link to.
     if (!id && !audioLinkOk(raw)) {
       setGrpErr("That is neither a YouTube link nor an audio file (mp3, m4a, ogg, wav, opus, flac).");
-      return;
+      return false;
     }
     var ok = await putGroupAudio(id
       ? { mode: "book", id: id, byChapter: {} }
@@ -7612,6 +7613,25 @@ export default function App() {
       setGrpAudioRaw("");
       if (inGrpBook) { if (id) setOwnVideoLink(id, cidx); else addOwnRecording(raw); }
     }
+    return ok;
+  };
+  // The one place a group's recording is changed: a button inside the group
+  // read, and this bubble behind it. The starter's link becomes the group's
+  // and reaches everyone within seconds; anybody else's is their own ears
+  // only, because the group's recording is the starter's to choose.
+  var openAudSrc = function() {
+    var a = normOwnVideo((grp && grp.audio) || null);
+    setGrpAudioRaw(a.id ? "https://youtu.be/" + a.id : (a.url || ""));
+    setGrpErr("");
+    setGrpAudOpen(true);
+  };
+  var saveAudSrc = async function() {
+    if (grpOwner) { if (await setGroupAudioLink()) setGrpAudOpen(false); return; }
+    var raw = grpAudioRaw.trim();
+    if (!raw) { setGrpErr("Paste a link first."); return; }
+    if (!bookMeta || !bookMeta.own) { setGrpErr("Open your copy of the book first — then the recording has something to play beside."); return; }
+    if (addOwnRecording(raw)) { setGrpInfo("Playing for you. The group still hears the starter's."); setGrpAudOpen(false); }
+    else setGrpErr("That is neither a YouTube link nor an audio file (mp3, m4a, ogg, wav, opus, flac).");
   };
   // A member opening the group's file gets the group's recording.
   useEffect(function() {
@@ -12388,6 +12408,12 @@ export default function App() {
         .gchat-send:disabled{opacity:.35;cursor:default}
         .gchat-closed{border-top:1px solid var(--ink);padding:14px 20px;font-family:var(--serif);font-style:italic;font-size:13px;color:var(--ink-3)}
         @media (max-width:640px){.gchat-tab{right:10px}.gchat-tab.on{display:none}.gchat{width:100vw;border-left:0}}
+        .resume-of{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-2);
+          text-align:center;margin-bottom:2px}
+        .grp-src{font-family:var(--sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+          color:var(--rubric);background:none;border:1px solid var(--rule);padding:4px 9px;cursor:pointer}
+        .grp-src:hover{border-color:var(--rubric)}
+        .aud-modal{max-width:520px}
         .grp-strip,.pen-tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:0 32px}
         .grp-lbl{font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
         .grp-name{font-family:var(--display);font-size:17px;color:var(--ink)}
@@ -13135,6 +13161,43 @@ export default function App() {
           </div>
         );
       })()}
+      {grpAudOpen && grp && (
+        <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setGrpAudOpen(false); }}>
+          <div className="adm-modal aud-modal" role="dialog" aria-label="A new audio source">
+            <div className="adm-head">
+              <div className="adm-title">New audio source</div>
+              <button className="adm-x" onClick={function(){ setGrpAudOpen(false); }}>×</button>
+            </div>
+            <div className="adm-body acct-body">
+              <p className="grp-intro">
+                {grpOwner
+                  ? <>A YouTube link, or a link to an audio file — mp3, m4a, ogg. Saved with «{grp.name}»:
+                      everyone reading it hears the new one within a few seconds, with nothing to reload.</>
+                  : <>A YouTube link, or a link to an audio file — mp3, m4a, ogg. It plays beside your copy
+                      and nobody else's; the group's own recording is {grp.ownerName ? grp.ownerName + "'s" : "the starter's"} to
+                      change. Say so in the chat if the group should hear this one.</>}
+              </p>
+              <div className="grp-audio-row">
+                <input className="auth-in acct-in" type="text" value={grpAudioRaw} autoFocus
+                  placeholder="A YouTube link, or a link to an audio file…"
+                  onChange={function(e){ setGrpAudioRaw(e.target.value); setGrpErr(""); }}
+                  onKeyDown={function(e){ if (e.key === "Enter") saveAudSrc(); }} />
+                <button className="grp-act go" onClick={saveAudSrc}>
+                  {grpOwner ? (grpAudioRaw.trim() ? "Save for the group" : (grp.audio ? "Clear it" : "Save")) : "Play it for me"}
+                </button>
+              </div>
+              {grpErr && <div className="acct-msg bad">{grpErr}</div>}
+              {grpOwner && grp.audio && (
+                <p className="acct-note">
+                  Now: {grp.audio.mode === "chapter"
+                    ? Object.keys(grp.audio.byChapter || {}).length + " chapter recordings"
+                    : (grp.audio.id ? "https://youtu.be/" + grp.audio.id : (grp.audio.url || ""))}
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
       {boundsOpen && (
         <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setBoundsOpen(false); }}>
           <div className="adm-modal acct-modal" role="dialog" aria-label="Where each chapter starts">
@@ -13263,29 +13326,11 @@ export default function App() {
                                 : withLinks(grp.audio.url || "")}
                           </div>
                         )}
-                        {grpOwner ? (
-                          <>
-                            <div className="grp-audio-row">
-                              <input className="auth-in acct-in" type="text" value={grpAudioRaw}
-                                placeholder="A YouTube link, or a link to an audio file…"
-                                onChange={function(e){ setGrpAudioRaw(e.target.value); setGrpErr(""); }}
-                                onKeyDown={function(e){ if (e.key === "Enter") setGroupAudioLink(); }} />
-                              <button className="grp-act" onClick={setGroupAudioLink}>
-                                {grpAudioRaw.trim() ? "Save" : (grp.audio ? "Clear" : "Save")}
-                              </button>
-                            </div>
-                            <div className="acct-note">
-                              Change it whenever the last one turns out to be wrong — the group picks the
-                              new one up within a few seconds, with nothing to reload. Per-chapter
-                              recordings are set in the book itself, under Recording.
-                            </div>
-                          </>
-                        ) : (
-                          <div className="acct-note">
-                            Set by {grp.ownerName || "the reader who started the group"}. If it changes
-                            while you are reading, the new one simply takes over.
-                          </div>
-                        )}
+                        <div className="acct-note">
+                          {grpOwner
+                            ? "Changed from inside the group read — open the book and press New audio source. The group picks the new one up within seconds, with nothing to reload."
+                            : "Set by " + (grp.ownerName || "the reader who started the group") + ". If it changes while you are reading, the new one simply takes over."}
+                        </div>
                       </div>
                     )}
                     <div className="grp-acts">
@@ -15391,9 +15436,12 @@ export default function App() {
                       )}
                       <p className="own-note">
                         {grpOwner
-                          ? "Yours, saved with the group — everyone hears this one. Change it from the Group Reads window."
+                          ? "Yours, saved with the group — everyone hears this one."
                           : "Chosen by whoever started the group, and heard by everyone in it. It plays beside the text once your copy is open."}
                       </p>
+                      {grpOwner && (
+                        <button className="own-act" onClick={openAudSrc}>New audio source</button>
+                      )}
                     </div>
                   )}
                   {/* ── The recording ───────────────────────────────────────
@@ -15408,11 +15456,16 @@ export default function App() {
                         : <>The recording <span className="own-opt">optional</span></>}
                     </div>
                     {grpNeedsFile && !grpPicking && (
-                      <p className="own-note">
-                        {grpOwner
-                          ? "Add one here and it is saved with the group — everyone reading with you hears it."
-                          : "Nobody has added one to the group. A link you put here plays for you; if the others should hear the same one, say so in the chat and whoever started the group can save it for everyone."}
-                      </p>
+                      <>
+                        <p className="own-note">
+                          {grpOwner
+                            ? "The group has none yet. Give it one and everyone reading with you hears it."
+                            : "Nobody has added one to the group. A link you put here plays for you; if the others should hear the same one, say so in the chat and whoever started the group can save it for everyone."}
+                        </p>
+                        {grpOwner && (
+                          <button className="own-act" onClick={openAudSrc}>New audio source</button>
+                        )}
+                      </>
                     )}
 
                     <label className="own-check">
@@ -15543,13 +15596,15 @@ export default function App() {
                     <button type="button" className="adm-btn" onClick={cancelGroupPick}>Cancel</button>
                   </div>
                 )}
-                {/* The book this reader has open is not the subject of this
-                    page while they are choosing one for a group — it is the
-                    thing they are most likely to mistake for the choice. */}
-                <h1 className="sti">{grpPicking ? "The library" : (chapters.length > 0 ? bookMeta.title : "The library")}</h1>
+                {/* This page is the library, and it says so. The book left
+                    open behind it used to take the heading — its title in
+                    full size at the top of a page about choosing something
+                    else, which read as though that book WAS the page. It has
+                    its own resume button below; that is where it belongs. */}
+                <h1 className="sti">The library</h1>
                 <p className="sde">{grpPicking
                   ? "Tap the book the group will read — any title here, performances included."
-                  : (chapters.length > 0 ? bookMeta.author : "Russian classics with a narrator, an English translation beside the text, and a dictionary under every word.")}</p>
+                  : "Russian classics with a narrator, an English translation beside the text, and a dictionary under every word."}</p>
                 {/* The reader's own record, for signed-in readers: streak, the
                     week, the year, and the slow counts. Guests have nothing
                     that persists between devices, so they get the library. */}
@@ -15602,6 +15657,9 @@ export default function App() {
                 <div id="read-now" style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:10,scrollMarginTop:12}}>
                   {chapters.length > 0 && !grpPicking ? (
                     <>
+                      {/* The heading above is the library's, so the open book
+                          names itself here, over the button that opens it. */}
+                      <div className="resume-of">{bookLabel(bookMeta)}</div>
                       {cbm > 0 && <button className="btn-p" onClick={function(){ startLit(cbm); }}>{(function(){
                         var sl = sectionLabel(chapters[cbm] && chapters[cbm].heading);
                         return "Resume at " + (sl ? sl.long.toLowerCase() : "your bookmark");
@@ -16896,6 +16954,12 @@ export default function App() {
                         ) : (
                           <button className="grp-open" onClick={function(){ openGroupBook(grp); }}>
                             {grp.own ? "Open your copy of " + (grp.own.title || grp.title) : "Open " + (grp.title || "the group's book")}
+                          </button>
+                        )}
+                        {grp.own && (inGrpBook || grpOwner) && (
+                          <button className="grp-src" onClick={openAudSrc}
+                            title={grpOwner ? "Change the recording everyone in the group hears" : "Play a different recording beside your copy"}>
+                            New audio source
                           </button>
                         )}
                         {grp.closed && <span className="grp-closed">closed — its notes stay, new marks are yours alone</span>}
