@@ -7097,6 +7097,9 @@ export default function App() {
   // The group's recording, edited from the Group Reads window — a bad link
   // can be replaced there without reopening the book or starting again.
   var [grpAudioRaw, setGrpAudioRaw] = useState("");
+  // Whether to carry this reader's own highlights and notes on the book into
+  // the group they are starting on it.
+  var [grpImport, setGrpImport]     = useState(true);
   var [grpInfo, setGrpInfo]         = useState("");
   var [ownHash, setOwnHash]         = useState("");
   var ownHashes                     = useRef({});
@@ -7559,7 +7562,8 @@ export default function App() {
     var words = 0;
     for (var i = 0; i < chs.length; i++) words += ruCount(chs[i] && chs[i].text);
     setGrpOwnPick({ id: entry.id, hash: h, title: entry.title || (d && d.title) || "Untitled",
-                    author: entry.author || (d && d.author) || "", words: words, chapters: chs.length });
+                    author: entry.author || (d && d.author) || "", words: words, chapters: chs.length,
+                    bookKey: (entry.filename || (d && d.filename) || "") + "::" + (entry.title || (d && d.title) || "") });
     setGrpBook("");
     setGrpPicking(false);
     setShowGroups(true);
@@ -7666,6 +7670,50 @@ export default function App() {
   // Leaving the library for another tab ends the choosing: a book opened
   // later from anywhere is a book to read, not a pick.
   useEffect(function() { if (grpPicking && tab !== "chat") setGrpPicking(false); }, [tab]);
+  // Every highlight, note and pen mark this reader has made on the book the
+  // group is about to read. Counted before the group exists, so the offer to
+  // bring them is only made when there is something to bring.
+  var privateMarksFor = function(key) {
+    if (!key) return [];
+    var out = [];
+    Object.keys(annots).forEach(function(k) {
+      var it = annots[k];
+      if (it && !it.deleted && it.bookKey === key) out.push(it);
+    });
+    return out.sort(function(a, b){ return (a.cidx - b.cidx) || ((a.start || 0) - (b.start || 0)); });
+  };
+  var groupBookKey = function() {
+    if (grpOwnPick) return grpOwnPick.bookKey || "";
+    for (var i = 0; i < presetBooks.length; i++) {
+      if (presetBooks[i].filename === grpBook) return bookKey(presetBooks[i]);
+    }
+    return "";
+  };
+  // Copy them in, one at a time, as the group's own. The originals are left
+  // alone: stepping out of the group leaves your private reading of the book
+  // exactly as it was.
+  var importMarks = async function(g, key) {
+    var mine = privateMarksFor(key);
+    if (!mine.length) return;
+    var sent = 0;
+    for (var i = 0; i < mine.length && i < 400; i++) {
+      var it = mine[i];
+      var copy = { id: annotId(), kind: it.kind, cidx: it.cidx, color: it.color,
+                   note: it.note || "", createdAt: it.createdAt || Date.now(), updatedAt: Date.now() };
+      if (it.kind === "hl") { copy.start = it.start; copy.end = it.end; copy.quote = it.quote; }
+      else { copy.paraStart = it.paraStart; copy.points = it.points; copy.size = it.size; }
+      copy.bookKey = it.bookKey;
+      try {
+        var r = await authFetch("/api/user-data?group=put", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id: g.id, item: copy }),
+        });
+        if (r.ok) sent++;
+      } catch (e) {}
+    }
+    setGrpInfo(sent + (sent === 1 ? " mark" : " marks") + " brought over from your own reading.");
+  };
+
   var createGroup = async function() {
     setGrpBusy(true); setGrpErr("");
     try {
@@ -7680,8 +7728,11 @@ export default function App() {
       var d = await r.json().catch(function(){ return {}; });
       if (!r.ok) throw new Error(d.error || "Could not start the group.");
       setGrpName("");
+      var key = groupBookKey();
+      var carry = grpImport;
       setGrpOwnPick(null);
       enterGroup(d.group);
+      if (carry) importMarks(d.group, key);
     } catch (e) { setGrpErr(e.message); }
     setGrpBusy(false);
   };
@@ -9219,6 +9270,10 @@ export default function App() {
           }
           await storage.set(UPLOADS_LIST_KEY, JSON.stringify(current));
           setUploadedBooks(current);
+          // Opening a file while a group is being started is how that group
+          // gets its book: the file opens for this reader exactly as it
+          // always does, and the group form comes back with it chosen.
+          if (grpPickingRef.current) pickGroupOwn(entry);
         } catch(e) { console.log("Failed to track upload:", e); }
       }
       // Resume from saved progress if this exact book has been opened before.
@@ -12244,6 +12299,9 @@ export default function App() {
         .grp-pick-t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         .grp-pick-t.none{color:var(--ink-3);font-style:italic}
         .grp-pick-a{font-style:italic;color:var(--ink-2);font-size:13px;white-space:nowrap}
+        .grp-import{display:flex;align-items:flex-start;gap:9px;font-family:var(--serif);font-size:13.5px;
+          line-height:1.45;color:var(--ink-2);cursor:pointer;margin-top:2px}
+        .grp-import input{margin-top:3px;flex:none}
         .grp-pick-m{font-family:var(--sans);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--rubric)}
         .bnd-list{display:flex;flex-direction:column;max-height:46vh;overflow-y:auto;margin-top:4px}
         .bnd-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
@@ -13263,6 +13321,20 @@ export default function App() {
                     })()}
                     <button className="grp-act go" disabled={grpBusy || grpName.trim().length < 3 || (!grpBook && !grpOwnPick)}
                       onClick={createGroup}>{grpBusy ? "Starting…" : "Start the group"}</button>
+                    {(function(){
+                      var n = privateMarksFor(groupBookKey()).length;
+                      if (!n) return null;
+                      return (
+                        <label className="grp-import">
+                          <input type="checkbox" checked={grpImport}
+                            onChange={function(e){ setGrpImport(e.target.checked); }} />
+                          <span>
+                            Bring my {n} highlight{n === 1 ? "" : "s"} and note{n === 1 ? "" : "s"} on this book
+                            into the group — your own copies stay where they are.
+                          </span>
+                        </label>
+                      );
+                    })()}
                     {grpOwnPick && (
                       <p className="acct-note" style={{marginTop:2}}>
                         Everyone who joins needs the same file on their own device — the file itself
@@ -15205,9 +15277,25 @@ export default function App() {
                   under every word, the words you save, and your reading record. The file
                   is read here in your browser and never sent anywhere.
                 </p>
+                {/* Choosing the book for a group that is being started: the
+                    page works exactly as it always does, and the file that
+                    opens becomes the group's. */}
+                {grpPicking && (
+                  <div className="grp-picking">
+                    <div>
+                      <div className="grp-picking-k">Group read</div>
+                      <div className="grp-picking-t">
+                        Open the file for {grpName.trim() ? "«" + grpName.trim() + "»" : "your group"} — it opens for you
+                        as usual, and comes back to the group form as its book. Everyone who joins will need the same file.
+                      </div>
+                      {grpErr && <div className="grp-picking-e">{grpErr}</div>}
+                    </div>
+                    <button type="button" className="adm-btn" onClick={cancelGroupPick}>Cancel</button>
+                  </div>
+                )}
                 {/* A group on a file its members bring: this is where the
                     reader opens their own copy of it. */}
-                {grp && grp.own && !inGrpBook && (
+                {grp && grp.own && !inGrpBook && !grpPicking && (
                   <div className="grp-picking">
                     <div>
                       <div className="grp-picking-k">«{grp.name}»</div>
@@ -15387,7 +15475,7 @@ export default function App() {
                           group as they make them. Start a group, or join one that is already reading.</>}
                   </span>
                 </button>
-                <button className="own-entry" onClick={function(){ setMode("ownbook"); }}>
+                <button className="own-entry" onClick={function(){ setMode("ownbook"); setGrpErr(""); }}>
                   <span className="own-entry-t">Use your own book</span>
                   <span className="own-entry-s">
                     Open an EPUB, FB2, PDF or text file from this device and read it
