@@ -7230,6 +7230,13 @@ export default function App() {
       ? (bookMeta.own && ownHash && ownHash === grp.own.hash)
       : (bookMeta.filename && bookMeta.filename === grp.filename && !bookMeta.own)));
   var meAsAuthor = me ? { uid: me.id, name: me.username || String(me.email || "").split("@")[0], avatar: me.avatar || "" } : null;
+  // In a group whose book is a file its members bring, without that file
+  // open. The Your own book page is the group's front door in that state:
+  // the group's recording plays there, and the file goes in there.
+  var grpNeedsFile = !!(grp && grp.own && !inGrpBook);
+  var grpAudio = (grp && grp.own && grp.audio) ? normOwnVideo(grp.audio) : null;
+  var grpHasAudio = !!(grpAudio && (grpAudio.id || grpAudio.url ||
+                       Object.keys(grpAudio.byChapter || {}).length));
 
   // What the page shows for this chapter: yours, and the group's if you are
   // on the group's book.
@@ -7622,11 +7629,20 @@ export default function App() {
     var raw = grpAudioRaw.trim();
     if (!raw) { if (await putGroupAudio(null)) setGrpAudioRaw(""); return; }
     var id = youtubeId(raw);
-    if (!id) { setGrpErr("That does not look like a YouTube link."); return; }
-    var ok = await putGroupAudio({ mode: "book", id: id, byChapter: {} });
+    // A recording is a YouTube page or a file on the web — the same two the
+    // Your own book page takes. The group's field took only the first, which
+    // meant a group could not be given an audiobook the reader had a direct
+    // link to.
+    if (!id && !audioLinkOk(raw)) {
+      setGrpErr("That is neither a YouTube link nor an audio file (mp3, m4a, ogg, wav, opus, flac).");
+      return;
+    }
+    var ok = await putGroupAudio(id
+      ? { mode: "book", id: id, byChapter: {} }
+      : { mode: "book", id: "", url: raw, byChapter: {} });
     if (ok) {
       setGrpAudioRaw("");
-      if (inGrpBook) setOwnVideoLink(id, cidx);
+      if (inGrpBook) { if (id) setOwnVideoLink(id, cidx); else addOwnRecording(raw); }
     }
   };
   // A member opening the group's file gets the group's recording.
@@ -13279,14 +13295,16 @@ export default function App() {
                           <div className="grp-audio-cur">
                             {grp.audio.mode === "chapter"
                               ? Object.keys(grp.audio.byChapter || {}).length + " chapter recordings"
-                              : withLinks("https://youtu.be/" + grp.audio.id)}
+                              : grp.audio.id
+                                ? withLinks("https://youtu.be/" + grp.audio.id)
+                                : withLinks(grp.audio.url || "")}
                           </div>
                         )}
                         {grpOwner ? (
                           <>
                             <div className="grp-audio-row">
                               <input className="auth-in acct-in" type="text" value={grpAudioRaw}
-                                placeholder="A YouTube link for the whole book…"
+                                placeholder="A YouTube link, or a link to an audio file…"
                                 onChange={function(e){ setGrpAudioRaw(e.target.value); setGrpErr(""); }}
                                 onKeyDown={function(e){ if (e.key === "Enter") setGroupAudioLink(); }} />
                               <button className="grp-act" onClick={setGroupAudioLink}>
@@ -15336,12 +15354,20 @@ export default function App() {
                 <button className="own-back" onClick={grpPicking ? cancelGroupPick : function(){ setMode("read"); }}>
                   {grpPicking ? "← Back to the group" : "← The library"}
                 </button>
-                <h1 className="sti">{grpPicking ? "Your own book for the group" : "Your own book"}</h1>
+                <h1 className="sti">
+                  {grpPicking ? "Your own book for the group"
+                    : grpNeedsFile ? (grp.own.title || grp.title || "The group's book")
+                    : "Your own book"}
+                </h1>
                 <p className="sde">
                   {grpPicking
                     ? <>Open the file the group will read. It opens for you as it always does — a
                         dictionary under every word, your saved words, your reading record — and comes
                         back to the group form as the group's book. The file itself is never uploaded.</>
+                    : grpNeedsFile
+                    ? <>{grp.own.author || grp.author ? <>{grp.own.author || grp.author} · </> : null}
+                        You are in «{grp.name}» — the chat is open on the right whether or not you have the
+                        book yet. Everything else on this page is here to get you reading with them.</>
                     : <>Read a book of your own with everything the library gets: a dictionary
                         under every word, the words you save, and your reading record. The file
                         is read here in your browser and never sent anywhere.</>}
@@ -15365,14 +15391,13 @@ export default function App() {
                 )}
                 {/* A group on a file its members bring: this is where the
                     reader opens their own copy of it. */}
-                {grp && grp.own && !inGrpBook && !grpPicking && (
+                {grpNeedsFile && !grpPicking && (
                   <div className="grp-picking">
                     <div>
                       <div className="grp-picking-k">«{grp.name}»</div>
                       <div className="grp-picking-t">
-                        Open your copy of {grp.own.title || grp.title} below — it has to be the same file, and
-                        the group's highlights and notes are waiting on it. You are in the group either way:
-                        the chat is open on the right, so you can ask the others where they got theirs.
+                        The group reads a file its members bring, so the text is not on this site — it has to
+                        be the same file, word for word. The group's highlights and notes are waiting on it.
                       </div>
                       {grpErr && <div className="grp-picking-e">{grpErr}</div>}
                     </div>
@@ -15380,12 +15405,52 @@ export default function App() {
                 )}
 
                 <div className="own-frame">
+                  {/* The recording the group is listening to, playing here
+                      before the book is even open: a reader who has to go and
+                      find the file can at least hear what they are looking
+                      for, and knows the group has one waiting. */}
+                  {grpNeedsFile && !grpPicking && grpHasAudio && (
+                    <div className="own-sec">
+                      <div className="own-sec-h">The group's recording</div>
+                      {grpAudio.mode === "chapter" ? (
+                        <p className="own-note">
+                          A recording per chapter, chosen by the group — each one starts as soon as your
+                          copy of the book is open on that chapter.
+                        </p>
+                      ) : grpAudio.id ? (
+                        <div className="chvid own-vid">
+                          <iframe src={ytEmbed(grpAudio.id)} title="The group's recording" loading="lazy"
+                                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                  allowFullScreen />
+                        </div>
+                      ) : (
+                        <OwnAudio url={grpAudio.url} />
+                      )}
+                      <p className="own-note">
+                        {grpOwner
+                          ? "Yours, saved with the group — everyone hears this one. Change it from the Group Reads window."
+                          : "Chosen by whoever started the group, and heard by everyone in it. It plays beside the text once your copy is open."}
+                      </p>
+                    </div>
+                  )}
                   {/* ── The recording ───────────────────────────────────────
                       Two ways to listen, and the reader picks before the book
                       opens because the two need different things from them:
                       one link now, or one link per chapter as they go. */}
+                  {!(grpNeedsFile && !grpPicking && grpHasAudio) && (
                   <div className="own-sec">
-                    <div className="own-sec-h">The recording <span className="own-opt">optional</span></div>
+                    <div className="own-sec-h">
+                      {grpNeedsFile && !grpPicking
+                        ? <>The recording <span className="own-opt">the group has none yet</span></>
+                        : <>The recording <span className="own-opt">optional</span></>}
+                    </div>
+                    {grpNeedsFile && !grpPicking && (
+                      <p className="own-note">
+                        {grpOwner
+                          ? "Add one here and it is saved with the group — everyone reading with you hears it."
+                          : "Nobody has added one to the group. A link you put here plays for you; if the others should hear the same one, say so in the chat and whoever started the group can save it for everyone."}
+                      </p>
+                    )}
 
                     <label className="own-check">
                       <input type="checkbox" checked={ownRec.mode === "chapter"}
@@ -15441,10 +15506,15 @@ export default function App() {
                     )}
                     {ownVideoErr && <p className="own-err">{ownVideoErr}</p>}
                   </div>
+                  )}
 
                   {/* ── The book ─────────────────────────────────────────── */}
                   <div className="own-sec">
-                    <div className="own-sec-h">The book</div>
+                    <div className="own-sec-h">
+                      {grpNeedsFile && !grpPicking
+                        ? "Book not in the library — find and open your copy"
+                        : "The book"}
+                    </div>
                     <div className="own-text">
                       <div className="own-open">
                         <FileBtn label="Open a file" btnClass="own-act own-act-wide" onLoad={function(buf, name){
