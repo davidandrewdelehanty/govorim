@@ -7101,6 +7101,7 @@ export default function App() {
   // one, the fingerprint of the book open now, and the fingerprints of the
   // uploads on this device (worked out once each, when they are needed).
   var [grpOwnPick, setGrpOwnPick]   = useState(null);
+  var [grpPickKind, setGrpPickKind] = useState("");
   // The group's recording, edited from the Group Reads window — a bad link
   // can be replaced there without reopening the book or starting again.
   var [grpAudioRaw, setGrpAudioRaw] = useState("");
@@ -7548,13 +7549,17 @@ export default function App() {
     } catch (e) { setGrpErr(e.message); }
     setGrpBusy(false);
   };
-  var startGroupPick = function() {
+  // Two ways in, and the group form asks which before it sends anyone
+  // anywhere: "library" opens the shelves, "own" opens the same Your own
+  // book page a solo reader gets. Either way the group form is waiting, and
+  // whatever is chosen comes back to it.
+  var startGroupPick = function(kind) {
     setGrpErr("");
+    setGrpPickKind(kind === "own" ? "own" : "library");
     setGrpPicking(true);
     setShowGroups(false);
-    // The library, exactly as the Reading tab opens it.
     setTab("chat");
-    setMode("read");
+    setMode(kind === "own" ? "ownbook" : "read");
     setStarted(false);
     setLview("read");
     stopTTS();
@@ -7574,6 +7579,7 @@ export default function App() {
                     bookKey: (entry.filename || (d && d.filename) || "") + "::" + (entry.title || (d && d.title) || "") });
     setGrpBook("");
     setGrpPicking(false);
+    setGrpPickKind("");
     setShowGroups(true);
   };
   var pickGroupBook = function(book) {
@@ -7585,6 +7591,7 @@ export default function App() {
     }
     setGrpBook(book.filename);
     setGrpPicking(false);
+    setGrpPickKind("");
     setGrpErr("");
     setShowGroups(true);
   };
@@ -7636,7 +7643,12 @@ export default function App() {
     setChapters(function(chs){ return attachVideos(stripVideos(chs), { videos: ownVideoMap(chs, a) }); });
   }, [inGrpBook, grp && grp.audio && JSON.stringify(grp.audio), bookMeta && bookKey(bookMeta)]);
 
-  var cancelGroupPick = function() { setGrpPicking(false); setShowGroups(true); };
+  var cancelGroupPick = function() {
+    setGrpPicking(false);
+    setGrpPickKind("");
+    setMode("read");
+    setShowGroups(true);
+  };
   // Group reads need an account and a username: everyone in a group sees
   // who wrote each note and each line of chat. A reader without an account
   // is taken to sign-up; one without a username, to the place to choose one.
@@ -12301,6 +12313,20 @@ export default function App() {
         .grp-auth-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
         .acct-need{font-family:var(--serif);font-size:14.5px;line-height:1.5;color:var(--ink);
           border-left:2px solid var(--rubric);padding:8px 0 8px 12px;margin:14px 0 4px;background:none}
+        .grp-book{display:flex;flex-direction:column;gap:10px}
+        .grp-chosen{display:flex;align-items:baseline;gap:8px;padding:10px 12px;
+          border:1px solid var(--rule);background:var(--paper-2)}
+        .grp-chosen-x{margin-left:auto;background:none;border:none;cursor:pointer;color:var(--ink-3);
+          font-size:17px;line-height:1;padding:0 2px}
+        .grp-chosen-x:hover{color:var(--rubric)}
+        .grp-two{display:flex;gap:10px;flex-wrap:wrap}
+        .grp-two-b{flex:1 1 200px;min-width:0;display:flex;flex-direction:column;gap:5px;text-align:left;
+          cursor:pointer;padding:13px 14px;background:none;border:1px solid var(--rule)}
+        .grp-two-b:hover{border-color:var(--ink);background:var(--paper-2)}
+        .grp-two-b.on{border-color:var(--rubric)}
+        .grp-two-t{font-family:var(--serif);font-size:15px;color:var(--ink)}
+        .grp-two-s{font-family:var(--serif);font-style:italic;font-size:12.5px;line-height:1.45;color:var(--ink-2)}
+        @media (max-width:560px){ .grp-two{flex-direction:column} }
         .grp-pick{flex:1;min-width:0;display:flex;align-items:baseline;gap:8px;text-align:left;cursor:pointer;
           background:var(--paper-3);border:1px solid var(--rule);padding:8px 11px;font-family:var(--serif);font-size:15px;color:var(--ink)}
         .grp-pick:hover{border-color:var(--ink)}
@@ -13325,19 +13351,35 @@ export default function App() {
                       for (var i = 0; i < presetBooks.length; i++) if (presetBooks[i].filename === grpBook) { chosen = presetBooks[i]; break; }
                       if (grpOwnPick) chosen = { title: grpOwnPick.title, author: grpOwnPick.author, mine: true };
                       return (
-                        <button type="button" className={"grp-pick" + (chosen ? " set" : "")} onClick={startGroupPick}
-                          title="Opens the library — choose the book there the way you would to read it, or one of your own under My uploads">
-                          {chosen ? (
-                            <>
+                        <div className="grp-book">
+                          {chosen && (
+                            <div className="grp-chosen">
                               <span className="grp-pick-t">{chosen.title}</span>
                               {chosen.author && <span className="grp-pick-a">{chosen.author}</span>}
                               {chosen.mine && <span className="grp-pick-m">your own file</span>}
-                              <span className="grp-pick-c">change</span>
-                            </>
-                          ) : (
-                            <span className="grp-pick-t none">Choose a book — from the library or your own…</span>
+                              <button type="button" className="grp-chosen-x" title="Choose a different book"
+                                onClick={function(){ setGrpBook(""); setGrpOwnPick(null); setGrpErr(""); }}>×</button>
+                            </div>
                           )}
-                        </button>
+                          <div className="grp-two">
+                            <button type="button" className={"grp-two-b" + (grpBook ? " on" : "")}
+                              onClick={function(){ startGroupPick("library"); }}>
+                              <span className="grp-two-t">A book from the library</span>
+                              <span className="grp-two-s">
+                                Any title on the shelves — performances included. Everyone reads the same
+                                copy, with the recording and the English it already has.
+                              </span>
+                            </button>
+                            <button type="button" className={"grp-two-b" + (grpOwnPick ? " on" : "")}
+                              onClick={function(){ startGroupPick("own"); }}>
+                              <span className="grp-two-t">Your own book for the group</span>
+                              <span className="grp-two-s">
+                                A file from this device. Everyone who joins opens the very same file, and
+                                one recording you add is heard by all of them.
+                              </span>
+                            </button>
+                          </div>
+                        </div>
                       );
                     })()}
                     <button className="grp-act go" disabled={grpBusy || grpName.trim().length < 3 || (!grpBook && !grpOwnPick)}
@@ -15291,12 +15333,18 @@ export default function App() {
                 book into it. */}
             {!started && mode === "ownbook" && (
               <div className="ss own-page">
-                <button className="own-back" onClick={function(){ setMode("read"); }}>← The library</button>
-                <h1 className="sti">Your own book</h1>
+                <button className="own-back" onClick={grpPicking ? cancelGroupPick : function(){ setMode("read"); }}>
+                  {grpPicking ? "← Back to the group" : "← The library"}
+                </button>
+                <h1 className="sti">{grpPicking ? "Your own book for the group" : "Your own book"}</h1>
                 <p className="sde">
-                  Read a book of your own with everything the library gets: a dictionary
-                  under every word, the words you save, and your reading record. The file
-                  is read here in your browser and never sent anywhere.
+                  {grpPicking
+                    ? <>Open the file the group will read. It opens for you as it always does — a
+                        dictionary under every word, your saved words, your reading record — and comes
+                        back to the group form as the group's book. The file itself is never uploaded.</>
+                    : <>Read a book of your own with everything the library gets: a dictionary
+                        under every word, the words you save, and your reading record. The file
+                        is read here in your browser and never sent anywhere.</>}
                 </p>
                 {/* Choosing the book for a group that is being started: the
                     page works exactly as it always does, and the file that
@@ -15306,8 +15354,9 @@ export default function App() {
                     <div>
                       <div className="grp-picking-k">Group read</div>
                       <div className="grp-picking-t">
-                        Open the file for {grpName.trim() ? "«" + grpName.trim() + "»" : "your group"} — it opens for you
-                        as usual, and comes back to the group form as its book. Everyone who joins will need the same file.
+                        Choosing the book for {grpName.trim() ? "«" + grpName.trim() + "»" : "your group"} — everyone
+                        who joins will need this same file. Nothing is started yet: the group form comes back
+                        with it chosen.
                       </div>
                       {grpErr && <div className="grp-picking-e">{grpErr}</div>}
                     </div>
@@ -15461,12 +15510,17 @@ export default function App() {
                     <button type="button" className="adm-btn" onClick={cancelGroupPick}>Cancel</button>
                   </div>
                 )}
-                <h1 className="sti">{chapters.length > 0 ? bookMeta.title : "The library"}</h1>
-                <p className="sde">{chapters.length > 0 ? bookMeta.author : "Russian classics with a narrator, an English translation beside the text, and a dictionary under every word."}</p>
+                {/* The book this reader has open is not the subject of this
+                    page while they are choosing one for a group — it is the
+                    thing they are most likely to mistake for the choice. */}
+                <h1 className="sti">{grpPicking ? "The library" : (chapters.length > 0 ? bookMeta.title : "The library")}</h1>
+                <p className="sde">{grpPicking
+                  ? "Tap the book the group will read — any title here, performances included."
+                  : (chapters.length > 0 ? bookMeta.author : "Russian classics with a narrator, an English translation beside the text, and a dictionary under every word.")}</p>
                 {/* The reader's own record, for signed-in readers: streak, the
                     week, the year, and the slow counts. Guests have nothing
                     that persists between devices, so they get the library. */}
-                {me && !progHidden && (
+                {me && !progHidden && !grpPicking && (
                   <ProgressPanel
                     stats={stats}
                     learned={learned.length}
@@ -15477,7 +15531,7 @@ export default function App() {
                     onHide={function(){ setProgHidden(true); }}
                     onReview={function(){ setTab("vocab"); setQuizMode(false); setQuizMenu(true); }} />
                 )}
-                {me && progHidden && (
+                {me && progHidden && !grpPicking && (
                   <button className="prog-restore" onClick={function(){ setProgHidden(false); setProgOpen(true); }}>
                     Show your reading record
                   </button>
@@ -15487,6 +15541,7 @@ export default function App() {
                     word, the saved vocabulary, the reading record — works just
                     as well on a book the reader brings themselves. */}
                 {/* Reading with other people. */}
+                {!grpPicking && (
                 <button className="own-entry grp-entry" onClick={openGroupReads}>
                   <span className="own-entry-t">Group Reads</span>
                   <span className="own-entry-s">
@@ -15496,16 +15551,23 @@ export default function App() {
                           group as they make them. Start a group, or join one that is already reading.</>}
                   </span>
                 </button>
-                <button className="own-entry" onClick={function(){ setMode("ownbook"); setGrpErr(""); }}>
-                  <span className="own-entry-t">Use your own book</span>
+                )}
+                <button className="own-entry" onClick={function(){
+                  if (grpPicking) { startGroupPick("own"); return; }
+                  setMode("ownbook"); setGrpErr("");
+                }}>
+                  <span className="own-entry-t">{grpPicking ? "Use your own book instead" : "Use your own book"}</span>
                   <span className="own-entry-s">
-                    Open an EPUB, FB2, PDF or text file from this device and read it
-                    here, with a recording of your choosing beside it. Nothing is
-                    uploaded — the file is read in your browser and stays there.
+                    {grpPicking
+                      ? <>A file from this device, read by the whole group — everyone who joins opens
+                          their own copy of the very same file.</>
+                      : <>Open an EPUB, FB2, PDF or text file from this device and read it
+                          here, with a recording of your choosing beside it. Nothing is
+                          uploaded — the file is read in your browser and stays there.</>}
                   </span>
                 </button>
                 <div id="read-now" style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:10,scrollMarginTop:12}}>
-                  {chapters.length > 0 ? (
+                  {chapters.length > 0 && !grpPicking ? (
                     <>
                       {cbm > 0 && <button className="btn-p" onClick={function(){ startLit(cbm); }}>{(function(){
                         var sl = sectionLabel(chapters[cbm] && chapters[cbm].heading);
@@ -16201,6 +16263,7 @@ export default function App() {
                         // continue. Progress is kept — unmark it and it comes back
                         // where it was — but it stops occupying a slot here, which
                         // only holds six.
+                        if (grpPicking) return null;
                         entries = entries.filter(function(rec){ return !isFinished(rec); });
                         entries.sort(function(a, b){ return (b.lastRead || 0) - (a.lastRead || 0); });
                         var recent = entries.slice(0, 6);
