@@ -1270,6 +1270,69 @@ function mergePlayActs(chs) {
 var RU_DAYS = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
 var RU_MONTHS = ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
 var EN_MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+// ── Links inside a note or a chat line ──
+//
+// A reader who pastes a Wikipedia address gets sixty characters of percent
+// signs across the middle of their note. The address is not what they meant
+// to write down: the page is. So a link is drawn as that page's name, with
+// the site it lives on beside it, and opens in its own tab.
+var URL_RE = /(https?:\/\/[^\s<>"')\]]+|www\.[^\s<>"')\]]+)/g;
+
+function prettyLink(url) {
+  var u = null;
+  try { u = new URL(/^https?:/.test(url) ? url : "https://" + url); } catch (e) { return { title: url, host: "" }; }
+  var host = u.hostname.replace(/^www\./, "");
+  var last = "";
+  try {
+    var segs = u.pathname.split("/").filter(Boolean).map(function(x){
+      return decodeURIComponent(x).replace(/[_+]/g, " ").replace(/\.(html?|php|aspx?)$/i, "");
+    });
+    // The last part of the path that reads as a name. A bare number — an
+    // id, an issue, /ebooks/1234 — is not a title; the site's own name says
+    // more than the number does.
+    for (var i = segs.length - 1; i >= 0; i--) {
+      var seg = segs[i];
+      var titleish = /[A-Za-zА-Яа-яЁё]/.test(seg) && (seg.indexOf(" ") !== -1 || seg.length >= 10);
+      if (titleish) { last = seg; break; }
+    }
+  } catch (e) { last = ""; }
+  // Wikipedia's own share links carry ?wprov=…; a title is enough.
+  // Nothing on the path reads as a title — an id, a short slug, a bare
+  // domain. Then the site's name IS the link, with the path after it so two
+  // links to the same site are still telling apart.
+  if (!last) {
+    var path = (u.pathname || "").replace(/\/$/, "");
+    last = host + (path && path !== "/" ? (path.length > 24 ? path.slice(0, 23) + "…" : path) : "");
+  }
+  if (last.length > 60) last = last.slice(0, 58) + "…";
+  return { title: last, host: last.indexOf(host) === 0 ? "" : host };
+}
+
+// Text with its links drawn as links. Everything else is left exactly as
+// typed, newlines and all.
+function withLinks(text) {
+  var out = [], last = 0, m;
+  URL_RE.lastIndex = 0;
+  var t = String(text || "");
+  while ((m = URL_RE.exec(t)) !== null) {
+    if (m.index > last) out.push(t.slice(last, m.index));
+    var raw = m[0].replace(/[.,;:!?»)]+$/, "");
+    var tail = m[0].slice(raw.length);
+    var p = prettyLink(raw);
+    out.push(
+      <a key={m.index} className="note-link" href={/^https?:/.test(raw) ? raw : "https://" + raw}
+         target="_blank" rel="noopener noreferrer" title={raw}
+         onClick={function(e){ e.stopPropagation(); }}>
+        {p.title}{p.host ? <span className="note-link-h">{p.host}</span> : null}
+      </a>
+    );
+    if (tail) out.push(tail);
+    last = m.index + m[0].length;
+  }
+  if (last < t.length) out.push(t.slice(last));
+  return out.length ? out : t;
+}
+
 function fmtInt(n) { return String(Math.round(n || 0)).replace(/\B(?=(\d{3})+(?!\d))/g, " "); }
 function ruPlural(n, one, few, many) {
   var m10 = n % 10, m100 = n % 100;
@@ -11767,7 +11830,15 @@ export default function App() {
         .note-pop-by{display:flex;align-items:center;gap:8px;font-family:var(--sans);font-size:12px;color:var(--ink-2)}
         .note-pop-q{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-2);line-height:1.45}
         .note-pop-in{width:100%;resize:vertical;font-family:var(--serif);font-size:15px;padding:8px 10px;min-height:84px}
-        .note-pop-t{font-family:var(--serif);font-size:15px;color:var(--ink);line-height:1.5;white-space:pre-wrap}
+        .note-pop-t{font-family:var(--serif);font-size:15px;color:var(--ink);line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+        /* A pasted address, set as the page it points at rather than as the
+           address itself: the title in the rubric, the site after it in small
+           capitals, both on one line that wraps like any other words. */
+        .note-link{color:var(--rubric);border-bottom:1px solid rgba(155,45,31,.4);text-decoration:none;
+          overflow-wrap:anywhere}
+        .note-link:hover{border-bottom-color:var(--rubric)}
+        .note-link-h{font-family:var(--sans);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+          color:var(--ink-3);margin-left:6px;white-space:nowrap}
         .note-none{color:var(--ink-3);font-style:italic}
         .notes-panel{max-width:680px;margin:0 auto;padding:22px 20px 60px}
         .notes-h{display:flex;flex-direction:column;gap:3px;margin-bottom:12px}
@@ -12291,7 +12362,7 @@ export default function App() {
                   placeholder="A note in the margin…" value={noteDraft}
                   onChange={function(e){ setNoteDraft(e.target.value); }} />
               ) : (
-                <div className="note-pop-t">{it.note || <span className="note-none">No note.</span>}</div>
+                <div className="note-pop-t">{it.note ? withLinks(it.note) : <span className="note-none">No note.</span>}</div>
               )}
               <div className="note-pop-row">
                 {mine && HL_COLORS.map(function(c){
@@ -15882,7 +15953,7 @@ export default function App() {
                                         <span className="at">{fmtAt(m.at)}</span>
                                       </div>
                                     )}
-                                    <div className="gchat-t" lang="ru">{m.text}</div>
+                                    <div className="gchat-t" lang="ru">{withLinks(m.text)}</div>
                                   </div>
                                 </Fragment>
                               );
@@ -16423,7 +16494,7 @@ export default function App() {
                               {it.kind === "hl"
                                 ? <span className="note-q">{it.quote}</span>
                                 : <span className="note-q ink">A pen mark</span>}
-                              {it.note ? <span className="note-t">{it.note}</span> : null}
+                              {it.note ? <span className="note-t">{withLinks(it.note)}</span> : null}
                               {it.layer === "group" && it.by ? <span className="note-by">{it.by.name}</span> : null}
                             </span>
                           </button>
