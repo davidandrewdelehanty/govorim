@@ -6928,6 +6928,10 @@ export default function App() {
               return n;
             });
           }
+          if (d.removed && d.removed.length) {
+            var gone = {}; d.removed.forEach(function(id){ gone[id] = true; });
+            setGrpChat(function(list){ return list.filter(function(m){ return !gone[m.id]; }); });
+          }
           if (d.chat && d.chat.length) {
             setGrpChat(function(list) {
               var have = {}; list.forEach(function(m){ have[m.id] = true; });
@@ -7037,6 +7041,10 @@ export default function App() {
           var r = await authFetch("/api/user-data?chat=items&since=" + Math.max(0, roomSince.current - 5000));
           var d = await r.json().catch(function(){ return {}; });
           if (r.ok) {
+            if (d.removed && d.removed.length) {
+              var gone = {}; d.removed.forEach(function(id){ gone[id] = true; });
+              setRoomChat(function(list){ return list.filter(function(m){ return !gone[m.id]; }); });
+            }
             if (d.chat && d.chat.length) {
               setRoomChat(function(list) {
                 var have = {}; list.forEach(function(m){ have[m.id] = true; });
@@ -7054,6 +7062,28 @@ export default function App() {
     tick();
     return function(){ stop = true; clearTimeout(timer); };
   }, [me && me.id, me && me.username, chatOpen, inRoom]);
+
+  // Taking a line back: your own, always; anybody's, if you started the
+  // group or run the site. It goes for everyone, not just for you.
+  var removeChatMsg = async function(m) {
+    if (!m) return;
+    var mine = me && m.uid === me.id;
+    if (!mine && !window.confirm("Remove " + m.name + "'s message for everyone?")) return;
+    var url = inRoom ? "/api/user-data?chat=remove" : "/api/user-data?group=unsay";
+    // In a group the body's `id` is the group's; the message is named
+    // separately, as `msg`.
+    var payload = inRoom ? { id: m.id } : { id: grp.id, msg: m.id };
+    try {
+      var r = await authFetch(url, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      var d = await r.json().catch(function(){ return {}; });
+      if (!r.ok) { setChatErr(d.error || "Could not remove that."); return; }
+      if (inRoom) setRoomChat(function(l){ return l.filter(function(x){ return x.id !== m.id; }); });
+      else setGrpChat(function(l){ return l.filter(function(x){ return x.id !== m.id; }); });
+    } catch (e) { setChatErr("Could not remove that."); }
+  };
 
   var sendChat = function() {
     var text = chatDraft.trim();
@@ -12010,6 +12040,11 @@ export default function App() {
         .gchat-m.mine .gchat-who .nm{color:var(--rubric)}
         .gchat-who .at{font-family:var(--sans);font-size:10.5px;color:var(--ink-3);font-variant-numeric:tabular-nums}
         .gchat-t{font-family:var(--serif);font-size:15px;line-height:1.5;color:var(--ink);white-space:pre-wrap;overflow-wrap:anywhere;padding-left:28px}
+        .gchat-del{background:none;border:0;padding:0 4px;margin-left:6px;cursor:pointer;color:var(--ink-3);
+          font-size:14px;line-height:1;opacity:0;transition:opacity .12s;vertical-align:baseline}
+        .gchat-m:hover .gchat-del,.gchat-del:focus-visible{opacity:1}
+        .gchat-del:hover{color:var(--rubric)}
+        @media (hover:none){.gchat-del{opacity:.45}}
         .gchat-form{border-top:1px solid var(--ink);padding:10px 20px 14px;background:var(--paper)}
         .gchat-in{width:100%;box-sizing:border-box;resize:none;border:0;border-bottom:1px solid var(--rule);background:transparent;
           font-family:var(--serif);font-size:15px;line-height:1.45;color:var(--ink);padding:6px 0;outline:none}
@@ -12635,7 +12670,14 @@ export default function App() {
                         <span className="at">{fmtAt(m.at)}</span>
                       </div>
                     )}
-                    <div className="gchat-t" lang="ru">{withLinks(m.text)}</div>
+                    <div className="gchat-t" lang="ru">
+                      {withLinks(m.text)}
+                      {(m.uid === myId || (me && me.isAdmin) || (!inRoom && grpOwner)) && (
+                        <button type="button" className="gchat-del" title={m.uid === myId ? "Remove your message" : "Remove this message for everyone"}
+                          aria-label="Remove this message"
+                          onClick={function(){ removeChatMsg(m); }}>×</button>
+                      )}
+                    </div>
                   </div>
                 </Fragment>
               );

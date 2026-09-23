@@ -1043,9 +1043,31 @@ async function handleLobby(req, res, user, action) {
   try {
     if (action === "items" && req.method === "GET") {
       const { data } = await r2GetTagged(LOBBY_KEY);
-      const chat = (data && Array.isArray(data.chat) ? data.chat : [])
-        .filter(function (m) { return (m.at || 0) > (Number(q.since) || 0); });
-      return res.status(200).json({ now: Date.now(), chat });
+      const since = Number(q.since) || 0;
+      const all = (data && Array.isArray(data.chat)) ? data.chat : [];
+      const chat = all.filter(function (m) { return !m.del && (m.at || 0) > since; });
+      // A line taken down has to reach the readers who already have it, so
+      // its id is reported for as long as anyone's poll could still be
+      // looking that far back.
+      const removed = all.filter(function (m) { return m.del && m.del > since; })
+        .map(function (m) { return m.id; });
+      return res.status(200).json({ now: Date.now(), chat, removed });
+    }
+
+    // Taking a line down: its own writer, or the site's admin.
+    if (action === "remove" && req.method === "POST") {
+      const id = String(body.id || "");
+      let refused = "";
+      await r2Update(LOBBY_KEY, function (cur) {
+        const chat = (cur && Array.isArray(cur.chat)) ? cur.chat : [];
+        const m = chat.find(function (x) { return x.id === id; });
+        if (!m) { refused = "That message is already gone."; return undefined; }
+        if (m.uid !== me.uid && !user.isAdmin) { refused = "That message is not yours."; return undefined; }
+        m.del = Date.now(); m.text = ""; m.byAdmin = m.uid !== me.uid;
+        return { chat: chat };
+      });
+      if (refused) return res.status(400).json({ error: refused });
+      return res.status(200).json({ ok: true, id });
     }
     if (action === "say" && req.method === "POST") {
       const text = String(body.text || "").replace(/\r\n?/g, "\n")
@@ -1236,8 +1258,11 @@ async function handleGroup(req, res, user, action) {
       // The group's chat rides the same poll: the messages newer than
       // `since`, from the same file the notes are in, so talking costs no
       // extra request every three seconds.
-      const chat = (Array.isArray(g.chat) ? g.chat : []).filter(function (m) { return (m.at || 0) > since; });
-      return res.status(200).json({ now, items, chat, members, group: groupSummary(g), isOwner: g.owner === me.uid });
+      const allChat = Array.isArray(g.chat) ? g.chat : [];
+      const chat = allChat.filter(function (m) { return !m.del && (m.at || 0) > since; });
+      const removed = allChat.filter(function (m) { return m.del && m.del > since; })
+        .map(function (m) { return m.id; });
+      return res.status(200).json({ now, items, chat, removed, members, group: groupSummary(g), isOwner: g.owner === me.uid });
     }
 
     // The recording the starter has put beside the group's own file. One
@@ -1288,6 +1313,29 @@ async function handleGroup(req, res, user, action) {
       if (refused) return res.status(400).json({ error: refused });
       try { await refreshIndex(g); } catch (e) {}
       return res.status(200).json({ ok: true, msg });
+    }
+
+    // A line out of the group's chat: its writer, the group's starter, or
+    // the site's admin. The group's record is the members' own, so nobody
+    // else can edit it.
+    if (action === "unsay" && req.method === "POST") {
+      const id = String(body.msg || "");
+      let refused = "";
+      await r2Update(gkey(gid), function (cur) {
+        if (!cur) { refused = "No such group."; return undefined; }
+        if (!cur.members || !cur.members[me.uid]) { refused = "Join the group first."; return undefined; }
+        const chat = Array.isArray(cur.chat) ? cur.chat : [];
+        const m = chat.find(function (x) { return x.id === id; });
+        if (!m) { refused = "That message is already gone."; return undefined; }
+        if (m.uid !== me.uid && cur.owner !== me.uid && !user.isAdmin) {
+          refused = "That message is not yours."; return undefined;
+        }
+        m.del = Date.now(); m.text = "";
+        cur.chat = chat;
+        return cur;
+      });
+      if (refused) return res.status(400).json({ error: refused });
+      return res.status(200).json({ ok: true, id });
     }
 
     if (action === "put" && req.method === "POST") {
