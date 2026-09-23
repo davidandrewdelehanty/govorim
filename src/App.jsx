@@ -1446,6 +1446,9 @@ function prettyLink(url) {
   // links to the same site are still telling apart.
   if (!last) {
     var path = (u.pathname || "").replace(/\/$/, "");
+    // Show the path the way it was typed — a Russian address should read as
+    // Russian, not as a row of percent signs.
+    try { path = decodeURI(path); } catch (e) {}
     last = host + (path && path !== "/" ? (path.length > 24 ? path.slice(0, 23) + "…" : path) : "");
   }
   if (last.length > 60) last = last.slice(0, 58) + "…";
@@ -7038,6 +7041,10 @@ export default function App() {
   var [selBox, setSelBox]       = useState(null);       // the settled selection
   var [selShared, setSelShared] = useState(true);       // group or just me
   var [notePop, setNotePop]     = useState(null);       // { id, layer, x, y }
+  // Your own note is a thing you wrote and a thing you read. It opens as
+  // written text — where a pasted address is a link you can follow — and
+  // becomes a box to type in when you ask to change it, or when it is new.
+  var [noteEditing, setNoteEditing] = useState(false);
   var [noteDraft, setNoteDraft] = useState("");
   var mergeAnnots = function(a, b) {
     var out = Object.assign({}, a || {});
@@ -7454,6 +7461,7 @@ export default function App() {
   // stands for when it is alone, and otherwise the list of every highlight
   // and note that touches those words — each one openable from there.
   var openMarker = function(it, rect) {
+    setNoteEditing(false);
     var stack = annItems.filter(function(x) {
       return x.kind === "hl" && x.start < it.end && x.end > it.start;
     }).sort(function(a, b){ return (a.createdAt || 0) - (b.createdAt || 0); });
@@ -7471,7 +7479,7 @@ export default function App() {
     else { srcJumpOffsetRef.current = off; navLit(it.cidx); }
   };
   // A selection or an open note belongs to the chapter it was made in.
-  useEffect(function() { setSelBox(null); setNotePop(null); }, [cidx, curBookKey]);
+  useEffect(function() { setSelBox(null); setNotePop(null); setNoteEditing(false); }, [cidx, curBookKey]);
   useEffect(function() { if (annTool) setSelBox(null); }, [annTool]);
 
   // ── group actions ──
@@ -12420,6 +12428,8 @@ export default function App() {
         .note-pop-by{display:flex;align-items:center;gap:8px;font-family:var(--sans);font-size:12px;color:var(--ink-2)}
         .note-pop-q{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-2);line-height:1.45}
         .note-pop-in{width:100%;resize:vertical;font-family:var(--serif);font-size:15px;padding:8px 10px;min-height:84px}
+        .note-pop-t.mine{cursor:text}
+        .note-pop-t.mine:hover{background:var(--paper-2)}
         .note-pop-t{font-family:var(--serif);font-size:15px;color:var(--ink);line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
         /* A pasted address, set as the page it points at rather than as the
            address itself: the title in the rubric, the site after it in small
@@ -13061,13 +13071,14 @@ export default function App() {
         var it = findAnnot(notePop.id, notePop.layer);
         if (!it || it.deleted) return null;
         var mine = canEditAnnot(it, notePop.layer);
+        var editing = mine && (noteEditing || !!notePop.fresh);
         var w = 300;
         var left = Math.max(8, Math.min(window.innerWidth - w - 8, notePop.x - 20));
         var top = Math.min(window.innerHeight - 280, notePop.y);
-        var close = function(){
-          if (mine && (noteDraft || "") !== (it.note || "")) updateAnnot(it.id, notePop.layer, { note: noteDraft.trim() });
-          setNotePop(null);
+        var save = function(){
+          if (editing && (noteDraft || "") !== (it.note || "")) updateAnnot(it.id, notePop.layer, { note: noteDraft.trim() });
         };
+        var close = function(){ save(); setNoteEditing(false); setNotePop(null); };
         return (
           <div className="note-over" data-annot-keep="" onClick={function(e){ if (e.target.className === "note-over") close(); }}>
             <div className="note-pop" style={{ left: left + "px", top: Math.max(8, top) + "px", width: w + "px" }}>
@@ -13077,12 +13088,17 @@ export default function App() {
                 </div>
               )}
               {it.quote && <div className="note-pop-q">«{it.quote.length > 160 ? it.quote.slice(0, 160) + "…" : it.quote}»</div>}
-              {mine ? (
-                <textarea className="note-pop-in" rows={4} autoFocus={!!notePop.fresh}
+              {mine && editing ? (
+                <textarea className="note-pop-in" rows={4} autoFocus
                   placeholder="A note in the margin…" value={noteDraft}
                   onChange={function(e){ setNoteDraft(e.target.value); }} />
               ) : (
-                <div className="note-pop-t">{it.note ? withLinks(it.note) : <span className="note-none">No note.</span>}</div>
+                <div className={"note-pop-t" + (mine ? " mine" : "")}
+                  title={mine ? "Click to change this note" : undefined}
+                  onClick={mine ? function(){ setNoteDraft(it.note || ""); setNoteEditing(true); } : undefined}>
+                  {it.note ? withLinks(it.note)
+                           : <span className="note-none">{mine ? "No note yet — click to write one." : "No note."}</span>}
+                </div>
               )}
               <div className="note-pop-row">
                 {mine && HL_COLORS.map(function(c){
@@ -13095,15 +13111,20 @@ export default function App() {
                 <span style={{flex:1}} />
                 {notePop.back && (
                   <button type="button" className="pop-btn quiet" onClick={function(){
-                    if (mine && (noteDraft || "") !== (it.note || "")) updateAnnot(it.id, notePop.layer, { note: noteDraft.trim() });
+                    save(); setNoteEditing(false);
                     setNotePop({ stack: notePop.back, x: notePop.x, y: notePop.y });
                   }}>← All</button>
+                )}
+                {mine && !editing && it.note && (
+                  <button type="button" className="pop-btn quiet" onClick={function(){
+                    setNoteDraft(it.note || ""); setNoteEditing(true);
+                  }}>Edit</button>
                 )}
                 {mine && (
                   <button type="button" className="pop-btn quiet"
                     onClick={function(){ removeAnnot(it.id, notePop.layer); setNotePop(null); }}>Remove</button>
                 )}
-                <button type="button" className="pop-btn" onClick={close}>{mine ? "Done" : "Close"}</button>
+                <button type="button" className="pop-btn" onClick={close}>{editing ? "Done" : "Close"}</button>
               </div>
             </div>
           </div>
