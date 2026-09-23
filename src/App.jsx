@@ -1333,6 +1333,26 @@ function withLinks(text) {
   return out.length ? out : t;
 }
 
+// ── The fingerprint of a reader's own file ──
+//
+// A group can read a book nobody's library has: everyone opens their own copy
+// of the same file. "The same file" has to mean something checkable, so it
+// means the same text — the chapters as this reader parsed them, stripped of
+// whitespace and case, run through SHA-256. Two readers who opened the same
+// EPUB get the same answer; a different edition, a different scan or a file
+// with one chapter missing does not, and the group says so rather than
+// putting their notes on the wrong words.
+async function textFingerprint(chapters) {
+  var t = (chapters || []).map(function(c){ return String((c && c.text) || ""); }).join("\n");
+  t = t.replace(/\s+/g, " ").trim().toLowerCase();
+  if (!t) return "";
+  try {
+    var buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t));
+    var b = Array.from(new Uint8Array(buf)).map(function(x){ return x.toString(16).padStart(2, "0"); }).join("");
+    return b.slice(0, 32);
+  } catch (e) { return ""; }
+}
+
 function fmtInt(n) { return String(Math.round(n || 0)).replace(/\B(?=(\d{3})+(?!\d))/g, " "); }
 function ruPlural(n, one, few, many) {
   var m10 = n % 10, m100 = n % 100;
@@ -6802,6 +6822,12 @@ export default function App() {
   // can open, a performance included, is something a group can read. While
   // this is set, opening a book picks it for the group instead.
   var [grpPicking, setGrpPicking]   = useState(false);
+  // A group on the reader's own file: which upload was chosen when starting
+  // one, the fingerprint of the book open now, and the fingerprints of the
+  // uploads on this device (worked out once each, when they are needed).
+  var [grpOwnPick, setGrpOwnPick]   = useState(null);
+  var [ownHash, setOwnHash]         = useState("");
+  var ownHashes                     = useRef({});
   // Set when a reader was sent to sign up, or to choose a username, on the
   // way into group reads — so they arrive back at group reads afterwards
   // instead of having to find the button again.
@@ -6885,8 +6911,32 @@ export default function App() {
     return function(){ stop = true; clearTimeout(timer); };
   }, [grp && grp.id, me && me.id]);
 
+  // The open book's fingerprint, for own books only — a library book is
+  // identified by its filename and needs none.
+  useEffect(function() {
+    var live = true;
+    if (!(bookMeta && bookMeta.own && chapters.length)) { setOwnHash(""); return; }
+    textFingerprint(chapters).then(function(h){ if (live) setOwnHash(h); });
+    return function(){ live = false; };
+  }, [bookMeta && bookMeta.own, bookMeta && bookKey(bookMeta), chapters.length]);
+
+  var uploadFingerprint = async function(entry) {
+    if (ownHashes.current[entry.id]) return ownHashes.current[entry.id];
+    try {
+      var r = await bookStore.get(UPLOAD_BOOK_PREFIX + entry.id);
+      if (!r) return "";
+      var d = typeof r === "string" ? JSON.parse(r) : r;
+      var h = await textFingerprint(d.chapters || []);
+      ownHashes.current[entry.id] = h;
+      return h;
+    } catch (e) { return ""; }
+  };
+
   var curBookKey = bookKey(bookMeta);
-  var inGrpBook = !!(grp && bookMeta && bookMeta.filename && bookMeta.filename === grp.filename && !bookMeta.own);
+  var inGrpBook = !!(grp && bookMeta && (
+    (grp.own && grp.own.hash)
+      ? (bookMeta.own && ownHash && ownHash === grp.own.hash)
+      : (bookMeta.filename && bookMeta.filename === grp.filename && !bookMeta.own)));
   var meAsAuthor = me ? { uid: me.id, name: me.username || String(me.email || "").split("@")[0], avatar: me.avatar || "" } : null;
 
   // What the page shows for this chapter: yours, and the group's if you are
@@ -7080,7 +7130,29 @@ export default function App() {
       .then(function(d){ setMyGroups((d && d.groups) || []); })
       .catch(function(){ setMyGroups([]); });
   };
-  var openGroupBook = function(g) {
+  var openGroupBook = async function(g) {
+    // A group on somebody's own file: find the copy on THIS device whose text
+    // matches the group's, and open that. Nothing is downloaded and nothing
+    // is uploaded — the file never leaves either reader's machine; only the
+    // fingerprint of its text is compared.
+    if (g.own && g.own.hash) {
+      if (bookMeta && bookMeta.own && ownHash === g.own.hash && started) { setShowGroups(false); return; }
+      for (var j = 0; j < uploadedBooks.length; j++) {
+        var h = await uploadFingerprint(uploadedBooks[j]);
+        if (h && h === g.own.hash) {
+          setShowGroups(false);
+          setTab("chat");
+          setMode("read");
+          openUploadedBook(uploadedBooks[j]);
+          return;
+        }
+      }
+      setGrpErr("");   // the page it lands on explains this better than a line here
+      setShowGroups(false);
+      setTab("chat");
+      setMode("ownbook");
+      return;
+    }
     var book = null;
     for (var i = 0; i < presetBooks.length; i++) if (presetBooks[i].filename === g.filename) { book = presetBooks[i]; break; }
     if (!book) { setGrpErr("That book is not in your library."); return; }
@@ -7091,7 +7163,8 @@ export default function App() {
     loadPresetBook(book);
   };
   var enterGroup = function(g) {
-    var slim = { id: g.id, name: g.name, filename: g.filename, title: g.title, author: g.author };
+    var slim = { id: g.id, name: g.name, filename: g.filename, title: g.title, author: g.author,
+                 own: g.own || null, audio: g.audio || null };
     setGrp(slim);
     rememberGroup(slim);
     setGrpErr("");
@@ -7122,8 +7195,24 @@ export default function App() {
     stopTTS();
     try { window.scrollTo(0, 0); } catch (e) {}
   };
+  var pickGroupOwn = async function(entry) {
+    setGrpErr("");
+    var h = await uploadFingerprint(entry);
+    if (!h) { setGrpErr("That file could not be read on this device."); return; }
+    var r = await bookStore.get(UPLOAD_BOOK_PREFIX + entry.id).catch(function(){ return null; });
+    var d = r ? (typeof r === "string" ? JSON.parse(r) : r) : null;
+    var chs = (d && d.chapters) || [];
+    var words = 0;
+    for (var i = 0; i < chs.length; i++) words += ruCount(chs[i] && chs[i].text);
+    setGrpOwnPick({ id: entry.id, hash: h, title: entry.title || (d && d.title) || "Untitled",
+                    author: entry.author || (d && d.author) || "", words: words, chapters: chs.length });
+    setGrpBook("");
+    setGrpPicking(false);
+    setShowGroups(true);
+  };
   var pickGroupBook = function(book) {
     if (!book || !book.filename) return;
+    setGrpOwnPick(null);
     if (book.category === "Song Lyrics") {
       setGrpErr("Song collections can't be group reads — choose a book or a performance.");
       return;
@@ -7133,6 +7222,35 @@ export default function App() {
     setGrpErr("");
     setShowGroups(true);
   };
+  // The starter's recording, kept with the group: every member who has the
+  // same file hears it without pasting anything. Library books bring their
+  // own recordings, so this is for own-file groups only.
+  var shareGroupAudio = async function() {
+    if (!grp || !grpOwner) return;
+    setGrpErr("");
+    try {
+      var r = await authFetch("/api/user-data?group=audio", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: grp.id, audio: normOwnVideo(ownRec) }),
+      });
+      var d = await r.json().catch(function(){ return {}; });
+      if (!r.ok) throw new Error(d.error || "Could not save that.");
+      setGrp(function(cur){ return cur ? Object.assign({}, cur, { audio: d.audio || null }) : cur; });
+      setAcctSaved("");
+      setGrpErr(d.audio ? "The group will hear this recording." : "The group's recording has been cleared.");
+    } catch (e) { setGrpErr(e.message || "Could not save that."); }
+  };
+  // A member opening the group's file gets the group's recording.
+  useEffect(function() {
+    if (!inGrpBook || !grp || !grp.own || !grp.audio) return;
+    var a = normOwnVideo(grp.audio);
+    var cur = normOwnVideo(ownRec);
+    if (JSON.stringify(a) === JSON.stringify(cur)) return;
+    setOwnRec(a);
+    rememberOwnVideo(bookMeta, a);
+    setChapters(function(chs){ return attachVideos(stripVideos(chs), { videos: ownVideoMap(chs, a) }); });
+  }, [inGrpBook, grp && grp.audio && JSON.stringify(grp.audio), bookMeta && bookKey(bookMeta)]);
+
   var cancelGroupPick = function() { setGrpPicking(false); setShowGroups(true); };
   // Group reads need an account and a username: everyone in a group sees
   // who wrote each note and each line of chat. A reader without an account
@@ -7180,11 +7298,16 @@ export default function App() {
     try {
       var r = await authFetch("/api/user-data?group=create", {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: grpName.trim(), filename: grpBook }),
+        body: JSON.stringify(grpOwnPick
+          ? { name: grpName.trim(), own: { hash: grpOwnPick.hash, title: grpOwnPick.title,
+                                           author: grpOwnPick.author, words: grpOwnPick.words,
+                                           chapters: grpOwnPick.chapters } }
+          : { name: grpName.trim(), filename: grpBook }),
       });
       var d = await r.json().catch(function(){ return {}; });
       if (!r.ok) throw new Error(d.error || "Could not start the group.");
       setGrpName("");
+      setGrpOwnPick(null);
       enterGroup(d.group);
     } catch (e) { setGrpErr(e.message); }
     setGrpBusy(false);
@@ -8828,6 +8951,7 @@ export default function App() {
   // Open one of the user's previously uploaded books from local storage.
   // Reads the parsed content saved by loadFile and rehydrates the reader state.
   var openUploadedBook = async function(book) {
+    if (grpPickingRef.current) { pickGroupOwn(book); return; }
     // One book at a time. The library cards check bookLoading before calling,
     // but the quick pick and Continue reading did not — a double-click there
     // ran two loads concurrently and let them interleave reader state.
@@ -11746,6 +11870,8 @@ export default function App() {
         .grp-pick-t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         .grp-pick-t.none{color:var(--ink-3);font-style:italic}
         .grp-pick-a{font-style:italic;color:var(--ink-2);font-size:13px;white-space:nowrap}
+        .grp-pick-m{font-family:var(--sans);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--rubric)}
+        .own-rec-grp{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:8px}
         .grp-pick-c{margin-left:auto;font-family:var(--sans);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
         .grp-picking{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;
           background:var(--paper);border-top:1px solid var(--ink);border-bottom:3px double var(--ink);padding:12px 0;margin:0 0 18px}
@@ -12422,6 +12548,11 @@ export default function App() {
                   <div className="grp-now">
                     <div className="grp-row-n">{grp.name}{grp.closed ? <span className="grp-row-c"> · closed</span> : null}</div>
                     <div className="grp-row-b"><i>reading</i> {grp.title}{grp.author ? <span className="grp-row-au"> · {grp.author}</span> : null}</div>
+                    {grp.own && (
+                      <div className="grp-row-m">
+                        a file the group brings itself{grp.audio ? " · with the starter's recording" : ""}
+                      </div>
+                    )}
                     {grpMembers.length > 0 && (
                       <div className="grp-now-who">
                         {grpMembers.map(function(m, i){
@@ -12476,23 +12607,32 @@ export default function App() {
                     {(function(){
                       var chosen = null;
                       for (var i = 0; i < presetBooks.length; i++) if (presetBooks[i].filename === grpBook) { chosen = presetBooks[i]; break; }
+                      if (grpOwnPick) chosen = { title: grpOwnPick.title, author: grpOwnPick.author, mine: true };
                       return (
                         <button type="button" className={"grp-pick" + (chosen ? " set" : "")} onClick={startGroupPick}
-                          title="Opens the library — choose the book there the way you would to read it">
+                          title="Opens the library — choose the book there the way you would to read it, or one of your own under My uploads">
                           {chosen ? (
                             <>
                               <span className="grp-pick-t">{chosen.title}</span>
                               {chosen.author && <span className="grp-pick-a">{chosen.author}</span>}
+                              {chosen.mine && <span className="grp-pick-m">your own file</span>}
                               <span className="grp-pick-c">change</span>
                             </>
                           ) : (
-                            <span className="grp-pick-t none">Choose a book from the library…</span>
+                            <span className="grp-pick-t none">Choose a book — from the library or your own…</span>
                           )}
                         </button>
                       );
                     })()}
-                    <button className="grp-act go" disabled={grpBusy || grpName.trim().length < 3 || !grpBook}
+                    <button className="grp-act go" disabled={grpBusy || grpName.trim().length < 3 || (!grpBook && !grpOwnPick)}
                       onClick={createGroup}>{grpBusy ? "Starting…" : "Start the group"}</button>
+                    {grpOwnPick && (
+                      <p className="acct-note" style={{marginTop:2}}>
+                        Everyone who joins needs the same file on their own device — the file itself
+                        is never uploaded, only a fingerprint of its text, which is what tells the
+                        group that two copies are the same book.
+                      </p>
+                    )}
                   </div>
                 </div>
               )}
@@ -14427,6 +14567,20 @@ export default function App() {
                   under every word, the words you save, and your reading record. The file
                   is read here in your browser and never sent anywhere.
                 </p>
+                {/* A group on a file its members bring: this is where the
+                    reader opens their own copy of it. */}
+                {grp && grp.own && !inGrpBook && (
+                  <div className="grp-picking">
+                    <div>
+                      <div className="grp-picking-k">«{grp.name}»</div>
+                      <div className="grp-picking-t">
+                        Open your copy of {grp.own.title || grp.title} below — it has to be the same file,
+                        and then the group's highlights, notes and chat are waiting on it.
+                      </div>
+                      {grpErr && <div className="grp-picking-e">{grpErr}</div>}
+                    </div>
+                  </div>
+                )}
 
                 <div className="own-frame">
                   {/* ── The recording ───────────────────────────────────────
@@ -14561,7 +14715,7 @@ export default function App() {
                   <div className="grp-picking">
                     <div>
                       <div className="grp-picking-k">Group read</div>
-                      <div className="grp-picking-t">Choose the book for {grpName.trim() ? "«" + grpName.trim() + "»" : "your group"} — tap any title below.</div>
+                      <div className="grp-picking-t">Choose the book for {grpName.trim() ? "«" + grpName.trim() + "»" : "your group"} — tap any title below, from the library or from your own uploads.</div>
                       {grpErr && <div className="grp-picking-e">{grpErr}</div>}
                     </div>
                     <button type="button" className="adm-btn" onClick={cancelGroupPick}>Cancel</button>
@@ -16001,7 +16155,7 @@ export default function App() {
                           </span>
                         ) : (
                           <button className="grp-open" onClick={function(){ openGroupBook(grp); }}>
-                            Open {grp.title || "the group's book"}
+                            {grp.own ? "Open your copy of " + (grp.own.title || grp.title) : "Open " + (grp.title || "the group's book")}
                           </button>
                         )}
                         {grp.closed && <span className="grp-closed">closed — its notes stay, new marks are yours alone</span>}
@@ -16083,6 +16237,24 @@ export default function App() {
                               )}
                             </div>
                             {ownVideoErr && <p className="own-err">{ownVideoErr}</p>}
+                            {inGrpBook && grp && grp.own && (
+                              grpOwner ? (
+                                <div className="own-rec-grp">
+                                  <button className="own-act" onClick={shareGroupAudio}>
+                                    {grp.audio ? "Update the group's recording" : "Give this recording to the group"}
+                                  </button>
+                                  <span className="own-rec-n">
+                                    Everyone reading «{grp.name}» hears it beside their own copy.
+                                  </span>
+                                </div>
+                              ) : (
+                                <p className="own-rec-n">
+                                  {grp.audio
+                                    ? "This is the recording " + grp.name + " is reading to."
+                                    : "The reader who started " + grp.name + " has not set a recording yet."}
+                                </p>
+                              )
+                            )}
                             {ownRec.mode === "chapter" && (
                               <p className="own-rec-n">
                                 {(function(){

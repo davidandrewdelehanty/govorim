@@ -945,9 +945,46 @@ function groupActivity(g) {
   return t;
 }
 
+// A group can read a file its members bring themselves rather than a book
+// from the library. The group then carries what identifies that file — a
+// fingerprint of its text — so every member's copy can be checked against
+// the one the group was started on, and the recording the starter put beside
+// it, which is the one thing about an own book worth sharing.
+function cleanOwn(raw) {
+  const o = raw && typeof raw === "object" ? raw : null;
+  if (!o) return null;
+  const hash = String(o.hash || "");
+  if (!/^[a-f0-9]{16,64}$/.test(hash)) return null;
+  const title = String(o.title || "").trim().slice(0, 120);
+  if (!title) return null;
+  return {
+    hash,
+    title,
+    author: String(o.author || "").trim().slice(0, 120),
+    words: Math.max(0, Math.min(5000000, Math.round(Number(o.words) || 0))),
+    chapters: Math.max(0, Math.min(5000, Math.round(Number(o.chapters) || 0))),
+  };
+}
+
+const YT_ID = /^[A-Za-z0-9_-]{11}$/;
+function cleanAudio(raw) {
+  const a = raw && typeof raw === "object" ? raw : null;
+  if (!a) return null;
+  const out = { mode: a.mode === "chapter" ? "chapter" : "book", id: "", byChapter: {} };
+  if (YT_ID.test(String(a.id || ""))) out.id = String(a.id);
+  const by = a.byChapter && typeof a.byChapter === "object" ? a.byChapter : {};
+  for (const k of Object.keys(by).slice(0, 2000)) {
+    if (!/^\d{1,4}$/.test(k)) continue;
+    if (YT_ID.test(String(by[k] || ""))) out.byChapter[k] = String(by[k]);
+  }
+  if (!out.id && !Object.keys(out.byChapter).length) return null;
+  return out;
+}
+
 function groupSummary(g) {
   return {
     id: g.id, name: g.name, filename: g.filename, title: g.title, author: g.author,
+    own: g.own || null, audio: g.audio || null,
     ownerName: g.ownerName, createdAt: g.createdAt, lastActive: groupActivity(g),
     closed: !!g.closed,
     members: Object.keys(g.members || {}).length,
@@ -1021,7 +1058,7 @@ async function handleGroup(req, res, user, action) {
         });
       }
       const groups = ((idx && idx.groups) || []).filter(function (g) {
-        return !isPublicSite() || !!catalogueBook(g.filename);
+        return !isPublicSite() || !!g.own || !!catalogueBook(g.filename);
       }).sort(function (a, b) { return (b.lastActive || 0) - (a.lastActive || 0); });
       return res.status(200).json({ groups });
     }
@@ -1043,8 +1080,11 @@ async function handleGroup(req, res, user, action) {
     if (action === "create" && req.method === "POST") {
       const name = String(body.name || "").trim().replace(/\s+/g, " ");
       if (name.length < 3 || name.length > 60) return res.status(400).json({ error: "Give the group a name of 3 to 60 characters." });
-      const book = catalogueBook(String(body.filename || ""));
-      if (!book) return res.status(400).json({ error: "Group reads are for books in the library." });
+      const own = cleanOwn(body.own);
+      const book = own ? null : catalogueBook(String(body.filename || ""));
+      if (!own && !book) {
+        return res.status(400).json({ error: "Choose a book from the library, or one of your own files." });
+      }
       const idx = (await r2GetTagged(`${GROUPS}/index.json`)).data;
       const mine = ((idx && idx.groups) || []).filter(function (g) { return g.ownerName === me.name; });
       if (mine.length >= 5) return res.status(400).json({ error: "You already run five group reads — end one first." });
@@ -1053,7 +1093,11 @@ async function handleGroup(req, res, user, action) {
       }).join("");
       const now = Date.now();
       const g = {
-        id, name, filename: book.filename, title: book.title || "", author: book.author || "",
+        id, name,
+        filename: book ? book.filename : "",
+        own: own || null,
+        title: book ? (book.title || "") : own.title,
+        author: book ? (book.author || "") : own.author,
         owner: me.uid, ownerName: me.name, createdAt: now, lastActive: now,
         members: { [me.uid]: { name: me.name, avatar: me.avatar, joinedAt: now, seenAt: now } },
         items: {},
@@ -1138,6 +1182,25 @@ async function handleGroup(req, res, user, action) {
       return res.status(200).json({ now, items, chat, members, group: groupSummary(g), isOwner: g.owner === me.uid });
     }
 
+    // The recording the starter has put beside the group's own file. One
+    // YouTube link for the whole book, or one per chapter, exactly as the
+    // reader's own-book page stores it — so a member who has the same file
+    // hears the same recording without pasting anything.
+    if (action === "audio" && req.method === "POST") {
+      const audio = cleanAudio(body.audio);
+      let refused = "";
+      const g = await r2Update(gkey(gid), function (cur) {
+        if (!cur) { refused = "No such group."; return undefined; }
+        if (cur.owner !== me.uid) { refused = "Only the reader who started the group can set its recording."; return undefined; }
+        if (!cur.own) { refused = "That group reads a book from the library, which brings its own recording."; return undefined; }
+        cur.audio = audio;
+        return cur;
+      });
+      if (refused) return res.status(400).json({ error: refused });
+      if (!g) return res.status(404).json({ error: "No such group." });
+      return res.status(200).json({ ok: true, audio: g.audio || null });
+    }
+
     // A line in the group's chat. Kept in the group file with everything
     // else, newest last, the oldest dropping off past GROUP_CHAT_CAP. Plain
     // text only — the client draws it as text, never as markup.
@@ -1187,7 +1250,7 @@ async function handleGroup(req, res, user, action) {
           refused = "That note belongs to another reader."; return undefined;
         }
         if (!prev && Object.keys(cur.items).length >= GROUP_ITEM_CAP) { refused = "This group's page is full."; return undefined; }
-        const bookKeyOk = !it.bookKey || it.bookKey.indexOf(cur.filename) === 0;
+        const bookKeyOk = cur.own ? true : (!it.bookKey || it.bookKey.indexOf(cur.filename) === 0);
         if (!bookKeyOk) { refused = "That annotation is for another book."; return undefined; }
         it.updatedAt = now;
         it.by = prev && prev.by ? prev.by : { uid: me.uid, name: me.name, avatar: me.avatar };
