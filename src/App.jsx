@@ -6826,6 +6826,10 @@ export default function App() {
   // one, the fingerprint of the book open now, and the fingerprints of the
   // uploads on this device (worked out once each, when they are needed).
   var [grpOwnPick, setGrpOwnPick]   = useState(null);
+  // The group's recording, edited from the Group Reads window — a bad link
+  // can be replaced there without reopening the book or starting again.
+  var [grpAudioRaw, setGrpAudioRaw] = useState("");
+  var [grpInfo, setGrpInfo]         = useState("");
   var [ownHash, setOwnHash]         = useState("");
   var ownHashes                     = useRef({});
   // Set when a reader was sent to sign up, or to choose a username, on the
@@ -7225,20 +7229,36 @@ export default function App() {
   // The starter's recording, kept with the group: every member who has the
   // same file hears it without pasting anything. Library books bring their
   // own recordings, so this is for own-file groups only.
-  var shareGroupAudio = async function() {
-    if (!grp || !grpOwner) return;
+  var putGroupAudio = async function(audio) {
+    if (!grp || !grpOwner) return false;
     setGrpErr("");
     try {
       var r = await authFetch("/api/user-data?group=audio", {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: grp.id, audio: normOwnVideo(ownRec) }),
+        body: JSON.stringify({ id: grp.id, audio: audio }),
       });
       var d = await r.json().catch(function(){ return {}; });
       if (!r.ok) throw new Error(d.error || "Could not save that.");
       setGrp(function(cur){ return cur ? Object.assign({}, cur, { audio: d.audio || null }) : cur; });
-      setAcctSaved("");
-      setGrpErr(d.audio ? "The group will hear this recording." : "The group's recording has been cleared.");
-    } catch (e) { setGrpErr(e.message || "Could not save that."); }
+      setGrpInfo(d.audio
+        ? "Saved. Everyone in the group gets this recording within a few seconds — no reloading needed."
+        : "The group's recording has been cleared.");
+      return true;
+    } catch (e) { setGrpErr(e.message || "Could not save that."); return false; }
+  };
+  var shareGroupAudio = function() { return putGroupAudio(normOwnVideo(ownRec)); };
+  // A link pasted into the Group Reads window: it becomes the group's
+  // recording, and this reader's too if they have the book open.
+  var setGroupAudioLink = async function() {
+    var raw = grpAudioRaw.trim();
+    if (!raw) { if (await putGroupAudio(null)) setGrpAudioRaw(""); return; }
+    var id = youtubeId(raw);
+    if (!id) { setGrpErr("That does not look like a YouTube link."); return; }
+    var ok = await putGroupAudio({ mode: "book", id: id, byChapter: {} });
+    if (ok) {
+      setGrpAudioRaw("");
+      if (inGrpBook) setOwnVideoLink(id, cidx);
+    }
   };
   // A member opening the group's file gets the group's recording.
   useEffect(function() {
@@ -7246,6 +7266,9 @@ export default function App() {
     var a = normOwnVideo(grp.audio);
     var cur = normOwnVideo(ownRec);
     if (JSON.stringify(a) === JSON.stringify(cur)) return;
+    if (cur.id || Object.keys(cur.byChapter).length) {
+      setGrpInfo("The group's recording changed — this is the new one.");
+    }
     setOwnRec(a);
     rememberOwnVideo(bookMeta, a);
     setChapters(function(chs){ return attachVideos(stripVideos(chs), { videos: ownVideoMap(chs, a) }); });
@@ -12026,6 +12049,14 @@ export default function App() {
         .grp-act.link{border:0;padding:8px 0;border-bottom:1px solid var(--rule)}
         .grp-act.link:hover{background:none;border-bottom-color:var(--ink)}
         .grp-act.warn{color:var(--rubric);border-bottom-color:rgba(155,45,31,.35)}
+        .grp-audio{margin-top:12px;border-top:1px solid var(--rule-soft);padding-top:10px}
+        .grp-audio-h{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)}
+        .grp-audio-n{text-transform:none;letter-spacing:0;font-family:var(--serif);font-style:italic;color:var(--ink-3)}
+        .grp-audio-cur{font-family:var(--serif);font-size:14px;margin:6px 0 2px}
+        .grp-audio-row{display:flex;gap:10px;align-items:center;margin-top:8px;flex-wrap:wrap}
+        .grp-audio-row input{flex:1;min-width:180px}
+        .grp-info{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--ink-2);display:inline-flex;align-items:center;gap:6px}
+        .grp-info button{background:none;border:0;color:var(--ink-3);cursor:pointer;font-size:15px;line-height:1;padding:0}
         .grp-now{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:14px 0 16px;display:flex;flex-direction:column;gap:5px}
         .grp-now .grp-row-n{font-size:22px}
         .grp-now-who{display:flex;align-items:center;gap:4px;margin-top:4px}
@@ -12688,6 +12719,44 @@ export default function App() {
                         <span className="grp-row-m">{grpMembers.filter(function(m){ return m.here; }).length} reading now</span>
                       </div>
                     )}
+                    {grp.own && (
+                      <div className="grp-audio">
+                        <div className="grp-audio-h">
+                          Recording
+                          {grp.audio ? null : <span className="grp-audio-n"> — none yet</span>}
+                        </div>
+                        {grp.audio && (
+                          <div className="grp-audio-cur">
+                            {grp.audio.mode === "chapter"
+                              ? Object.keys(grp.audio.byChapter || {}).length + " chapter recordings"
+                              : withLinks("https://youtu.be/" + grp.audio.id)}
+                          </div>
+                        )}
+                        {grpOwner ? (
+                          <>
+                            <div className="grp-audio-row">
+                              <input className="auth-in acct-in" type="text" value={grpAudioRaw}
+                                placeholder="A YouTube link for the whole book…"
+                                onChange={function(e){ setGrpAudioRaw(e.target.value); setGrpErr(""); }}
+                                onKeyDown={function(e){ if (e.key === "Enter") setGroupAudioLink(); }} />
+                              <button className="grp-act" onClick={setGroupAudioLink}>
+                                {grpAudioRaw.trim() ? "Save" : (grp.audio ? "Clear" : "Save")}
+                              </button>
+                            </div>
+                            <div className="acct-note">
+                              Change it whenever the last one turns out to be wrong — the group picks the
+                              new one up within a few seconds, with nothing to reload. Per-chapter
+                              recordings are set in the book itself, under Recording.
+                            </div>
+                          </>
+                        ) : (
+                          <div className="acct-note">
+                            Set by {grp.ownerName || "the reader who started the group"}. If it changes
+                            while you are reading, the new one simply takes over.
+                          </div>
+                        )}
+                      </div>
+                    )}
                     <div className="grp-acts">
                       <button className="grp-act go" onClick={function(){ openGroupBook(grp); }}>Open the book</button>
                       <button className="grp-act link" onClick={leaveGroup}>Step out</button>
@@ -12790,6 +12859,7 @@ export default function App() {
                 </div>
               )}
               {grpErr && <div className="acct-msg bad">{grpErr}</div>}
+              {grpInfo && <div className="acct-msg ok">{grpInfo}</div>}
             </div>
           </div>
         </div>
@@ -16187,6 +16257,11 @@ export default function App() {
                           </button>
                         )}
                         {grp.closed && <span className="grp-closed">closed — its notes stay, new marks are yours alone</span>}
+                        {grpInfo && (
+                          <span className="grp-info">{grpInfo}
+                            <button type="button" onClick={function(){ setGrpInfo(""); }} aria-label="Dismiss">×</button>
+                          </span>
+                        )}
                         <span style={{flex:1}} />
                         <button className="grp-leave" title="Take this group off the page. It stays in Your groups, notes and all."
                           onClick={leaveGroup}>Step out</button>
