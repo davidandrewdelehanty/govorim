@@ -16776,7 +16776,7 @@ export default function App() {
                   <div className="notes-panel">
                     <div className="notes-h">
                       <span>Notes in this book</span>
-                      {inGrpBook && <span className="notes-sub">{grp.name} — everyone's in the group; your own notes on this book stay out of it</span>}
+                      {inGrpBook && <span className="notes-sub">{grp.name} — everyone's in the group; notes from your private read stay out of it</span>}
                     </div>
                     {!bookAnnots.length && (
                       <p className="notes-empty">
