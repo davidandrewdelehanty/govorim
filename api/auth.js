@@ -77,11 +77,22 @@ function readBody(req) {
   return body || {};
 }
 
+// What sign-in and sign-up hand back. This used to be three fields — id,
+// email, isAdmin — and the reader's profile was not among them, so the
+// moment after signing in the header showed no username and a blank avatar,
+// and group reads believed the reader had no username at all. It came back
+// on the next page load, when ?action=me re-read the account. Signing in
+// should not cost a reader their name until they reload, so the profile
+// travels with the answer, exactly as ?action=me sends it.
 function publicUser(account) {
   return {
     id: account.id,
     email: account.email,
     isAdmin: normalizeEmail(account.email) === normalizeEmail(process.env.ADMIN_EMAIL),
+    username: account.username || "",
+    avatar: account.avatar || "",
+    avatarPhoto: account.avatarPhoto || "",
+    createdAt: account.createdAt || null,
   };
 }
 

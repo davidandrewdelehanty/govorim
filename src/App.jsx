@@ -3993,6 +3993,16 @@ export default function App() {
       setMe(d.user || null);
       setAuthOpen(false);
       setAuthPassword("");
+      // The sign-in answer carries the profile, but a reader on a page served
+      // before that was true would be left without their own name until they
+      // reloaded. One read of ?action=me settles it either way, and costs a
+      // single request at the one moment a reader is watching for their name
+      // to appear.
+      try {
+        var mr = await fetch("/api/auth/me", { credentials: "same-origin" });
+        var md = await mr.json().catch(function(){ return {}; });
+        if (md && md.user) setMe(md.user);
+      } catch (_) {}
     } catch (err) {
       setAuthErr(err.message || "Sign-in failed");
     } finally {
