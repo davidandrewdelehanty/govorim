@@ -971,17 +971,30 @@ function cleanOwn(raw) {
 }
 
 const YT_ID = /^[A-Za-z0-9_-]{11}$/;
+// A recording can also be a plain audio file rather than a YouTube page, and
+// either kind can carry where each chapter begins and ends inside it.
+const AUDIO_URL = /^https:\/\/[^\s"'<>]+\.(mp3|m4a|aac|ogg|oga|opus|wav|flac|webm)(\?[^\s"'<>]*)?$/i;
 function cleanAudio(raw) {
   const a = raw && typeof raw === "object" ? raw : null;
   if (!a) return null;
-  const out = { mode: a.mode === "chapter" ? "chapter" : "book", id: "", byChapter: {} };
+  const out = { mode: a.mode === "chapter" ? "chapter" : "book", id: "", url: "", byChapter: {}, bounds: {} };
   if (YT_ID.test(String(a.id || ""))) out.id = String(a.id);
+  const url = String(a.url || "").trim();
+  if (url.length <= 500 && AUDIO_URL.test(url)) out.url = url;
   const by = a.byChapter && typeof a.byChapter === "object" ? a.byChapter : {};
   for (const k of Object.keys(by).slice(0, 2000)) {
     if (!/^\d{1,4}$/.test(k)) continue;
     if (YT_ID.test(String(by[k] || ""))) out.byChapter[k] = String(by[k]);
   }
-  if (!out.id && !Object.keys(out.byChapter).length) return null;
+  const bd = a.bounds && typeof a.bounds === "object" ? a.bounds : {};
+  for (const k of Object.keys(bd).slice(0, 2000)) {
+    if (!/^\d{1,4}$/.test(k)) continue;
+    const v = bd[k] || {};
+    const st = Math.max(0, Math.min(360000, Math.round(Number(v.start) || 0)));
+    const en = Math.max(0, Math.min(360000, Math.round(Number(v.end) || 0)));
+    if (st || en) out.bounds[k] = { start: st, end: en };
+  }
+  if (!out.id && !out.url && !Object.keys(out.byChapter).length) return null;
   return out;
 }
 

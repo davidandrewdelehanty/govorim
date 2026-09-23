@@ -700,6 +700,112 @@ function fmtClock(sec) {
   return (h ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s2 < 10 ? "0" : "") + s2;
 }
 
+// Where each recording was left, by its own id, so a reader who closes the
+// book at 40 minutes into a five-hour reading comes back to 40 minutes and
+// not to the beginning. Chapters with their own start times do not need it —
+// they say where to be — so it is only consulted when they have none.
+var PLAYED_KEY = "gv_played_v1";
+function readPlayed() {
+  try { return JSON.parse(localStorage.getItem(PLAYED_KEY) || "{}") || {}; } catch (e) { return {}; }
+}
+function rememberPlayed(id, sec) {
+  if (!id || !(sec > 5)) return;
+  try {
+    var m = readPlayed();
+    m[id] = { t: Math.round(sec), at: Date.now() };
+    // Twenty recordings is more than anyone has open at once; the oldest go.
+    var keys = Object.keys(m).sort(function(a, b){ return (m[b].at || 0) - (m[a].at || 0); });
+    var out = {};
+    keys.slice(0, 20).forEach(function(k){ out[k] = m[k]; });
+    localStorage.setItem(PLAYED_KEY, JSON.stringify(out));
+  } catch (e) {}
+}
+function playedAt(id) {
+  var m = readPlayed();
+  return (m[id] && m[id].t) || 0;
+}
+
+// A recording that is a plain audio file rather than a YouTube page: the same
+// chapter window, the same controls, one <audio> element.
+function OwnAudio(props) {
+  var url = props.url, start = props.start || 0, end = props.end || 0;
+  var ref = useRef(null);
+  var [pos, setPos] = useState(start);
+  var [playing, setPlaying] = useState(false);
+  var [total, setTotal] = useState(0);
+  var [err, setErr] = useState("");
+  var win = useRef({ start: start, end: end });
+  var stoppedAtEnd = useRef(false);
+
+  useEffect(function() { win.current = { start: start, end: end }; }, [start, end]);
+
+  // Load: at the chapter's own start, or where this recording was left.
+  useEffect(function() {
+    var a = ref.current;
+    if (!a) return;
+    setErr("");
+    var go = function() {
+      var from = start || playedAt(url);
+      if (from > 0 && (!end || from < end)) { try { a.currentTime = from; } catch (e) {} }
+      setTotal(a.duration || 0);
+    };
+    a.addEventListener("loadedmetadata", go);
+    if (props.ctrl) props.ctrl.current = {
+      now: function(){ return (ref.current && ref.current.currentTime) || 0; },
+      seekAbs: function(sec){
+        var el = ref.current; if (!el) return;
+        try { el.currentTime = sec; el.play(); setPos(sec); } catch (e) {}
+      },
+    };
+    return function() {
+      a.removeEventListener("loadedmetadata", go);
+      rememberPlayed(url, a.currentTime || 0);
+      if (props.ctrl) props.ctrl.current = null;
+    };
+  }, [url]);
+
+  // Chapter turned: carry on if the playhead is already inside the new
+  // chapter's window, otherwise go to where it begins.
+  useEffect(function() {
+    var a = ref.current;
+    if (!a) return;
+    var t = a.currentTime || 0;
+    var inside = t >= start - 2 && (!end || t <= end);
+    if (inside && stoppedAtEnd.current) { stoppedAtEnd.current = false; a.play().catch(function(){}); return; }
+    if (inside) return;
+    stoppedAtEnd.current = false;
+    if (start) { try { a.currentTime = start; setPos(start); } catch (e) {} }
+  }, [start, end]);
+
+  var onTime = function() {
+    var a = ref.current; if (!a) return;
+    var t = a.currentTime || 0;
+    setPos(t);
+    var w = win.current;
+    if (w.end && t >= w.end - 0.25 && !stoppedAtEnd.current) {
+      stoppedAtEnd.current = true;
+      try { a.pause(); } catch (e) {}
+    }
+    if (Math.floor(t) % 5 === 0) rememberPlayed(url, t);
+  };
+  var span = Math.max(1, ((end || total || 0) - start) || 0);
+  var rel = Math.min(span, Math.max(0, pos - start));
+  return (
+    <div className="chvid-audio">
+      <audio ref={ref} src={url} preload="metadata" controls
+        onTimeUpdate={onTime}
+        onPlay={function(){ setPlaying(true); stoppedAtEnd.current = false; }}
+        onPause={function(){ setPlaying(false); var a = ref.current; if (a) rememberPlayed(url, a.currentTime || 0); }}
+        onError={function(){ setErr("That audio link could not be played. It has to be a file the browser can open — mp3, m4a, ogg — and the site it is on has to allow it."); }} />
+      <div className="chvid-audio-n">
+        {err ? err : (end || start)
+          ? "This chapter: " + fmtClock(rel) + " of " + fmtClock(span)
+          : "One recording for the whole book" + (playing ? "" : "")}
+      </div>
+    </div>
+  );
+}
+
 function ChapterVideo(props) {
   // props.ctrl, when given, is a ref the page can drive the player through —
   // the jump-here buttons in the text seek with it. Filled when the player is
@@ -768,7 +874,13 @@ function ChapterVideo(props) {
               var d = 0;
               try { d = e.target.getDuration() || 0; } catch (x) {}
               setTotal(d);
-              setPos(start);
+              // No chapter start means one recording running across the whole
+              // book: pick it up where it was left rather than at zero.
+              var from = start || playedAt(id);
+              if (!start && from > 5 && (!end || from < end)) {
+                try { e.target.seekTo(from, true); } catch (x) {}
+              }
+              setPos(from || start);
               setReady(true);
               if (props.ctrl) props.ctrl.current = {
                 // Where the recording is now, for a bookmark that wants to
@@ -832,6 +944,10 @@ function ChapterVideo(props) {
       dead = true;
       if (tick) clearInterval(tick);
       if (props.ctrl) props.ctrl.current = null;
+      try {
+        var at = player.current && player.current.getCurrentTime && player.current.getCurrentTime();
+        if (at) rememberPlayed(id, at);
+      } catch (e) {}
       try { player.current && player.current.destroy && player.current.destroy(); } catch (e) {}
       player.current = null;
       if (node) node.innerHTML = "";
@@ -1634,14 +1750,47 @@ var NEWS = null;   // e.g. { date: "2 September 2026", title: "…", body: "…"
 // different recording each time, set from the reader on the chapter it belongs
 // to. Before this existed the value was a bare id, which is read as the "book"
 // case so nothing anyone saved is lost.
+// A recording set beside the reader's own book: a YouTube link, or a plain
+// audio file on the web (mp3 and its relatives). `bounds` is where each
+// chapter begins and ends inside one long recording, in seconds — what the
+// catalogue books carry and what nobody could set for their own until now.
 function normOwnVideo(v) {
-  if (!v) return { mode: "book", id: "", byChapter: {} };
-  if (typeof v === "string") return { mode: "book", id: v, byChapter: {} };
+  var base = { mode: "book", id: "", url: "", byChapter: {}, bounds: {} };
+  if (!v) return base;
+  if (typeof v === "string") return Object.assign(base, { id: v });
+  var b = {};
+  var raw = (v.bounds && typeof v.bounds === "object") ? v.bounds : {};
+  Object.keys(raw).forEach(function(k) {
+    if (!/^\d{1,4}$/.test(k)) return;
+    var x = raw[k] || {};
+    var st = Math.max(0, Math.round(+x.start || 0));
+    var en = Math.max(0, Math.round(+x.end || 0));
+    if (st || en) b[k] = { start: st, end: en };
+  });
   return {
     mode: v.mode === "chapter" ? "chapter" : "book",
     id: v.id || "",
+    url: typeof v.url === "string" ? v.url : "",
     byChapter: (v.byChapter && typeof v.byChapter === "object") ? v.byChapter : {},
+    bounds: b,
   };
+}
+
+// An audio file anywhere on the web, as opposed to a YouTube page. Checked by
+// extension, because that is all a link can honestly be judged by before it
+// is played; the player says so plainly if it turns out not to be audio.
+function audioLinkOk(u) {
+  return /^https?:\/\/[^\s]+\.(mp3|m4a|aac|ogg|oga|opus|wav|flac|webm)(\?[^\s]*)?$/i.test(String(u || "").trim());
+}
+
+// mm:ss, h:mm:ss, or plain seconds — whichever a reader types.
+function parseClock(t) {
+  var x = String(t == null ? "" : t).trim();
+  if (!x) return 0;
+  if (/^\d+$/.test(x)) return +x;
+  var m = x.match(/^(?:(\d+):)?(\d{1,2}):(\d{1,2})(?:[.,](\d+))?$/);
+  if (!m) return NaN;
+  return (+(m[1] || 0)) * 3600 + (+m[2]) * 60 + (+m[3]);
 }
 
 // The record, in the per-chapter shape the reader already knows how to draw.
@@ -1657,7 +1806,17 @@ function ownVideoMap(chapters, rec) {
   var out = {}, any = false;
   for (var i = 0; i < chapters.length; i++) {
     var id = r.mode === "chapter" ? r.byChapter[i] : r.id;
-    if (id) { out[i] = { youtube: id }; any = true; }
+    var url = r.mode === "chapter" ? "" : r.url;
+    if (!id && !url) continue;
+    var e = id ? { youtube: id } : { audio: url };
+    var b = r.bounds[String(i)];
+    // Bounds belong to one recording covering the whole book. Per-chapter
+    // links each start at their own beginning and need none.
+    if (b && r.mode !== "chapter") {
+      if (b.start) e.start = b.start;
+      if (b.end) e.end = b.end;
+    }
+    out[i] = e; any = true;
   }
   return any ? out : null;
 }
@@ -1779,7 +1938,17 @@ function attachVideos(chapters, entry) {
       raw = (e && typeof e === "object") ? (e.youtube || "") : (e || "");
     }
     var id = ytId(raw);
-    if (!id) return ch;
+    if (!id) {
+      // Not YouTube: an audio file of the reader's own, with the same
+      // chapter window a video would have.
+      var au = (v && typeof v === "object") ? String(v.audio || "") : "";
+      if (!au) return ch;
+      return Object.assign({}, ch, {
+        audioUrl: au,
+        audioStart: (v.start ? +v.start || 0 : 0),
+        audioEnd: (v.end ? +v.end || 0 : 0),
+      });
+    }
     var start = (v && typeof v === "object" && v.start) ? (+v.start || 0) : ytStart(raw);
     var end   = (v && typeof v === "object" && v.end)   ? (+v.end   || 0) : 0;
     return Object.assign({}, ch, {
@@ -4487,6 +4656,77 @@ export default function App() {
   var [ownVideoRaw, setOwnVideoRaw] = useState("");
   var [ownVideoErr, setOwnVideoErr] = useState("");
   var [ownVidOpen, setOwnVidOpen] = useState(false);
+  // The chapter-times window: where each chapter begins and ends inside one
+  // long recording. Draft values are held as typed and only parsed on save,
+  // so a half-written "1:2" does not fight the reader.
+  var [boundsOpen, setBoundsOpen] = useState(false);
+  var [boundsDraft, setBoundsDraft] = useState({});
+  var [boundsErr, setBoundsErr] = useState("");
+  // One box, two kinds of link: a YouTube page, or an audio file anywhere.
+  var addOwnRecording = function(raw) {
+    var t = String(raw || "").trim();
+    var id = youtubeId(t);
+    if (id) { setOwnVideoLink(id, cidx); setOwnVideoErr(""); setOwnVideoRaw(""); return true; }
+    if (audioLinkOk(t)) {
+      var next = normOwnVideo(ownRec);
+      next = { mode: "book", id: "", url: t, byChapter: {}, bounds: next.bounds };
+      setOwnRec(next);
+      if (bookMeta && bookMeta.own) rememberOwnVideo(bookMeta, next);
+      setChapters(function(chs){ return attachVideos(stripVideos(chs), { videos: ownVideoMap(chs, next) }); });
+      if (inGrpBook && grp && grp.own && grpOwner) putGroupAudio(next);
+      setOwnVideoErr(""); setOwnVideoRaw("");
+      return true;
+    }
+    setOwnVideoErr("That is neither a YouTube link nor an audio file (mp3, m4a, ogg, wav, opus, flac).");
+    return false;
+  };
+  var openBounds = function() {
+    var r = normOwnVideo(ownRec);
+    var d = {};
+    chapters.forEach(function(ch, i) {
+      var b = r.bounds[String(i)] || {};
+      d[i] = { start: b.start ? fmtClock(b.start) : "", end: b.end ? fmtClock(b.end) : "" };
+    });
+    setBoundsDraft(d); setBoundsErr(""); setBoundsOpen(true);
+  };
+  var saveBounds = function() {
+    var next = normOwnVideo(ownRec);
+    var b = {};
+    for (var i = 0; i < chapters.length; i++) {
+      var d = boundsDraft[i] || {};
+      var st = parseClock(d.start), en = parseClock(d.end);
+      if (isNaN(st) || isNaN(en)) { setBoundsErr("Chapter " + (i + 1) + ": write the time as 12:34, or 1:02:03, or a number of seconds."); return; }
+      if (st && en && en <= st) { setBoundsErr("Chapter " + (i + 1) + " ends before it starts."); return; }
+      if (st || en) b[String(i)] = { start: Math.round(st), end: Math.round(en) };
+    }
+    next.bounds = b;
+    setOwnRec(next);
+    if (bookMeta && bookMeta.own) rememberOwnVideo(bookMeta, next);
+    setChapters(function(chs){ return attachVideos(stripVideos(chs), { videos: ownVideoMap(chs, next) }); });
+    setBoundsOpen(false);
+    // A group reads one recording together, so its times are the group's too.
+    if (inGrpBook && grp && grp.own && grpOwner) putGroupAudio(next);
+  };
+  // Fill a field from where the recording is playing now — the way anyone
+  // actually finds a chapter boundary: listen until it turns, then write it
+  // down without doing arithmetic.
+  var stampNow = function(i, which) {
+    var t = ytCtrlRef.current && ytCtrlRef.current.now ? ytCtrlRef.current.now() : 0;
+    if (!t) { setBoundsErr("Start the recording first — this takes the time it is at."); return; }
+    setBoundsErr("");
+    setBoundsDraft(function(d) {
+      var n = Object.assign({}, d);
+      n[i] = Object.assign({ start: "", end: "" }, n[i]);
+      n[i][which] = fmtClock(Math.round(t));
+      // The end of one chapter is the start of the next, which is the whole
+      // point of marking them in order.
+      if (which === "start" && i > 0) {
+        n[i - 1] = Object.assign({ start: "", end: "" }, n[i - 1]);
+        if (!n[i - 1].end) n[i - 1].end = fmtClock(Math.round(t));
+      }
+      return n;
+    });
+  };
   var ownVideosRef = useRef(null);
   var readOwnVideos = function() {
     if (ownVideosRef.current) return ownVideosRef.current;
@@ -4503,7 +4743,7 @@ export default function App() {
     if (!k) return;
     var r = normOwnVideo(rec);
     var m = readOwnVideos();
-    var empty = !r.id && !Object.keys(r.byChapter).length;
+    var empty = !r.id && !r.url && !Object.keys(r.byChapter).length;
     if (empty) delete m[k]; else m[k] = r;
     ownVideosRef.current = m;
     try { localStorage.setItem(OWN_VIDEO_KEY, JSON.stringify(m)); } catch (e) {}
@@ -12005,6 +12245,22 @@ export default function App() {
         .grp-pick-t.none{color:var(--ink-3);font-style:italic}
         .grp-pick-a{font-style:italic;color:var(--ink-2);font-size:13px;white-space:nowrap}
         .grp-pick-m{font-family:var(--sans);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--rubric)}
+        .bnd-list{display:flex;flex-direction:column;max-height:46vh;overflow-y:auto;margin-top:4px}
+        .bnd-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+          padding:8px 2px;border-bottom:1px solid var(--rule-soft)}
+        .bnd-row.cur{background:var(--paper-2)}
+        .bnd-n{display:flex;align-items:baseline;gap:9px;min-width:0;flex:1 1 180px}
+        .bnd-i{font-family:var(--sans);font-size:11px;color:var(--ink-3);min-width:22px;font-variant-numeric:tabular-nums}
+        .bnd-h{font-family:var(--serif);font-size:14.5px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .bnd-f{display:flex;align-items:center;gap:6px}
+        .bnd-f input{width:74px;font-size:14px;padding:6px 8px;text-align:center;font-variant-numeric:tabular-nums}
+        .bnd-now{background:none;border:0;border-bottom:1px solid var(--rule);cursor:pointer;padding:2px 0;
+          font-family:var(--sans);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+        .bnd-now:hover{color:var(--rubric);border-bottom-color:var(--rubric)}
+        .bnd-dash{color:var(--ink-3)}
+        .chvid-audio{padding:10px 0}
+        .chvid-audio audio{width:100%}
+        .chvid-audio-n{font-family:var(--serif);font-style:italic;font-size:12.5px;color:var(--ink-3);margin-top:5px}
         .own-rec-grp{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:8px}
         .grp-pick-c{margin-left:auto;font-family:var(--sans);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
         .grp-picking{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;
@@ -12795,6 +13051,69 @@ export default function App() {
           </div>
         );
       })()}
+      {boundsOpen && (
+        <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setBoundsOpen(false); }}>
+          <div className="adm-modal acct-modal" role="dialog" aria-label="Where each chapter starts">
+            <div className="adm-head">
+              <div className="adm-title">Where each chapter starts</div>
+              <button className="adm-x" onClick={function(){ setBoundsOpen(false); }}>×</button>
+            </div>
+            <div className="adm-body acct-body">
+              <p className="grp-intro">
+                One recording covers the whole book, so each chapter is a stretch of it.
+                Write the times as 12:34 or 1:02:03, or press <em>now</em> while it plays to
+                take the moment it is at — that also ends the chapter before. Leave a chapter
+                blank and the recording simply runs on through it.
+              </p>
+              <div className="bnd-list">
+                {chapters.map(function(ch, i){
+                  var d = boundsDraft[i] || { start: "", end: "" };
+                  var set = function(which, v) {
+                    setBoundsDraft(function(cur){
+                      var n = Object.assign({}, cur);
+                      n[i] = Object.assign({ start: "", end: "" }, n[i]);
+                      n[i][which] = v;
+                      return n;
+                    });
+                  };
+                  var sl = sectionLabel(ch && ch.heading);
+                  return (
+                    <div key={i} className={"bnd-row" + (i === cidx ? " cur" : "")}>
+                      <div className="bnd-n">
+                        <span className="bnd-i">{i + 1}</span>
+                        <span className="bnd-h">{(sl && sl.long) || ch.heading || "Chapter " + (i + 1)}</span>
+                      </div>
+                      <div className="bnd-f">
+                        <input className="auth-in" value={d.start} placeholder="start"
+                          inputMode="numeric" onChange={function(e){ set("start", e.target.value); }} />
+                        <button type="button" className="bnd-now" onClick={function(){ stampNow(i, "start"); }}>now</button>
+                        <span className="bnd-dash">–</span>
+                        <input className="auth-in" value={d.end} placeholder="end"
+                          inputMode="numeric" onChange={function(e){ set("end", e.target.value); }} />
+                        <button type="button" className="bnd-now" onClick={function(){ stampNow(i, "end"); }}>now</button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              {boundsErr && <div className="acct-msg bad">{boundsErr}</div>}
+              <div className="grp-acts" style={{marginTop:14}}>
+                <button className="grp-act go" onClick={saveBounds}>Save the times</button>
+                <button className="grp-act link" onClick={function(){
+                  setBoundsDraft(function(cur){
+                    var n = {};
+                    Object.keys(cur).forEach(function(k){ n[k] = { start: "", end: "" }; });
+                    return n;
+                  });
+                }}>Clear them all</button>
+                {inGrpBook && grp && grp.own && grpOwner && (
+                  <span className="acct-note" style={{marginTop:0}}>Saved for the group as well.</span>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       {showGroups && (
         <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setShowGroups(false); }}>
           <div className="adm-modal acct-modal" role="dialog" aria-label="Group reads">
@@ -14945,19 +15264,11 @@ export default function App() {
                             className="own-vid-in"
                             type="text"
                             value={ownVideoRaw}
-                            placeholder="https://www.youtube.com/watch?v=…"
+                            placeholder="A YouTube link, or a link to an audio file…"
                             onChange={function(e){ setOwnVideoRaw(e.target.value); setOwnVideoErr(""); }}
-                            onKeyDown={function(e){ if (e.key === "Enter") {
-                              var id = youtubeId(ownVideoRaw);
-                              if (!id) { setOwnVideoErr("That does not look like a YouTube link."); return; }
-                              setOwnVideoLink(id); setOwnVideoErr("");
-                            } }} />
-                          <button className="own-act" onClick={function(){
-                            var id = youtubeId(ownVideoRaw);
-                            if (!id) { setOwnVideoErr("That does not look like a YouTube link."); return; }
-                            setOwnVideoLink(id); setOwnVideoErr("");
-                          }}>Add</button>
-                          {ownRec.id && (
+                            onKeyDown={function(e){ if (e.key === "Enter") addOwnRecording(ownVideoRaw); }} />
+                          <button className="own-act" onClick={function(){ addOwnRecording(ownVideoRaw); }}>Add</button>
+                          {(ownRec.id || ownRec.url) && (
                             <button className="own-link-btn" onClick={function(){
                               setOwnVideoLink(""); setOwnVideoRaw("");
                             }}>Remove</button>
@@ -16447,17 +16758,13 @@ export default function App() {
                             </div>
                             <div className="own-vid-row">
                               <input className="own-vid-in" type="text" value={ownVideoRaw}
-                                placeholder="https://www.youtube.com/watch?v=…"
+                                placeholder="A YouTube link, or a link to an audio file…"
                                 onChange={function(e){ setOwnVideoRaw(e.target.value); setOwnVideoErr(""); }}
                                 onKeyDown={function(e){ if (e.key === "Enter") {
-                                  var id = youtubeId(ownVideoRaw);
-                                  if (!id) { setOwnVideoErr("That does not look like a YouTube link."); return; }
-                                  setOwnVideoLink(id, cidx); setOwnVideoErr(""); setOwnVidOpen(false);
+                                  if (addOwnRecording(ownVideoRaw)) setOwnVidOpen(false);
                                 } }} />
                               <button className="own-act" onClick={function(){
-                                var id = youtubeId(ownVideoRaw);
-                                if (!id) { setOwnVideoErr("That does not look like a YouTube link."); return; }
-                                setOwnVideoLink(id, cidx); setOwnVideoErr(""); setOwnVidOpen(false);
+                                if (addOwnRecording(ownVideoRaw)) setOwnVidOpen(false);
                               }}>Add</button>
                               {(ownRec.mode === "chapter" ? ownRec.byChapter[cidx] : ownRec.id) && (
                                 <button className="own-link-btn" onClick={function(){
@@ -16466,6 +16773,18 @@ export default function App() {
                               )}
                             </div>
                             {ownVideoErr && <p className="own-err">{ownVideoErr}</p>}
+                            {(normOwnVideo(ownRec).id || normOwnVideo(ownRec).url) && normOwnVideo(ownRec).mode !== "chapter" && (
+                              <div className="own-rec-grp">
+                                <button className="own-act" onClick={openBounds}>Set where each chapter starts</button>
+                                <span className="own-rec-n">
+                                  {(function(){
+                                    var n = Object.keys(normOwnVideo(ownRec).bounds).length;
+                                    return n ? n + (n === 1 ? " chapter is" : " chapters are") + " timed."
+                                             : "One recording, no chapter times: it plays straight on, and your place in it is kept.";
+                                  })()}
+                                </span>
+                              </div>
+                            )}
                             {inGrpBook && grp && grp.own && (
                               grpOwner ? (
                                 <div className="own-rec-grp">
@@ -16545,6 +16864,16 @@ export default function App() {
                             It sits above the text because it is meant to be watched
                             first and read along with — and where it appears, the
                             audio bar stays away (see the player below). */}
+                        {curChapter.audioUrl && !curChapter.merged && (
+                          <div className={"chvid-dock" + (vidStuck ? " stuck" : "")}>
+                            <OwnAudio
+                              key={curChapter.audioUrl}
+                              url={curChapter.audioUrl}
+                              start={curChapter.audioStart}
+                              end={curChapter.audioEnd}
+                              ctrl={ytCtrlRef} />
+                          </div>
+                        )}
                         {curChapter.youtubeId && !curChapter.merged && (
                           <div className={"chvid-dock" + (vidStuck ? " stuck" : "")}>
                             <ChapterVideo
