@@ -12447,6 +12447,107 @@ export default function App() {
           </div>
         );
       })()}
+{/* The group's chat. It hangs off the group rather than off the book:
+          a member who has not opened the group's file yet — an own-file group
+          where the copy is still on somebody's desktop — can still come in,
+          read what has been said and ask for it. It is portalled to the body,
+          so where it sits in the tree does not matter. */}
+      {grp && me && me.username && tab === "chat" && (function(){
+  var myId = me.id;
+  var unread = grpChat.filter(function(m){ return m.at > chatSeenAt && m.uid !== myId; }).length;
+  var here = grpMembers.filter(function(m){ return m.here; }).length;
+  var fmtAt = function(t) {
+    var d = new Date(t), now = new Date();
+    var hm = d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    return d.toDateString() === now.toDateString() ? hm
+      : d.toLocaleDateString([], { day: "numeric", month: "short" }) + ", " + hm;
+  };
+  // Portalled to the body: the reader sits inside containers that
+  // make their own stacking contexts, and from in there the
+  // banner drew over the top of the panel.
+  return createPortal(
+    <>
+      <button type="button" className={"gchat-tab" + (chatOpen ? " on" : "")}
+        onClick={function(){ setChatOpen(!chatOpen); }}
+        aria-label={chatOpen ? "Close the group chat" : "Open the group chat"}
+        title={chatOpen ? "Close the chat" : "Talk with " + grp.name}>
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor"
+             strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M4.5 5.5h15v10h-8l-4.5 3.5v-3.5h-2.5z"/>
+          <path d="M8 9.5h8M8 12.5h5"/>
+        </svg>
+        <span className="gchat-l">Chat</span>
+        {!chatOpen && unread > 0 && <span className="gchat-n">{unread > 99 ? "99+" : unread}</span>}
+      </button>
+      {chatOpen && (
+        <aside className="gchat" aria-label={"Chat — " + grp.name}>
+          <div className="gchat-head">
+            <div>
+              <div className="gchat-k">Group chat</div>
+              <div className="gchat-g">{grp.name}</div>
+              <div className="gchat-sub">
+                {grp.title ? grp.title + " · " : ""}{here} reading now
+              </div>
+            </div>
+            <button type="button" className="gchat-x" aria-label="Close"
+              onClick={function(){ setChatOpen(false); }}>×</button>
+          </div>
+          <div className="gchat-list" ref={chatListRef}>
+            {!grpChat.length && (
+              <div className="gchat-empty">
+                Nothing said yet. Whatever is written here stays with the
+                group, alongside its notes.
+              </div>
+            )}
+            {grpChat.map(function(m, i){
+              var prev = grpChat[i - 1];
+              // A run of lines from one reader reads as one turn:
+              // the name is written once, as in a transcript.
+              var cont = !!(prev && prev.uid === m.uid && m.at - prev.at < 5 * 60 * 1000);
+              var dayBreak = !prev || new Date(prev.at).toDateString() !== new Date(m.at).toDateString();
+              return (
+                <Fragment key={m.id}>
+                  {dayBreak && (
+                    <div className="gchat-day">
+                      {new Date(m.at).toLocaleDateString([], { weekday: "long", day: "numeric", month: "long" })}
+                    </div>
+                  )}
+                  <div className={"gchat-m" + (cont && !dayBreak ? " cont" : "") + (m.uid === myId ? " mine" : "")}>
+                    {(!cont || dayBreak) && (
+                      <div className="gchat-who">
+                        <Avatar id={m.avatar} name={m.name} size={20} />
+                        <span className="nm">{m.name}</span>
+                        <span className="at">{fmtAt(m.at)}</span>
+                      </div>
+                    )}
+                    <div className="gchat-t" lang="ru">{withLinks(m.text)}</div>
+                  </div>
+                </Fragment>
+              );
+            })}
+          </div>
+          {grp.closed ? (
+            <div className="gchat-closed">This group read is closed. Its chat stays, but it takes no new messages.</div>
+          ) : (
+            <form className="gchat-form" onSubmit={function(e){ e.preventDefault(); sendChat(); }}>
+              <textarea className="gchat-in" rows={2} maxLength={1000} value={chatDraft}
+                placeholder="Write to the group…"
+                onChange={function(e){ setChatDraft(e.target.value); if (chatErr) setChatErr(""); }}
+                onKeyDown={function(e){
+                  if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); sendChat(); }
+                }} />
+              <div className="gchat-foot">
+                <span className="gchat-hint">{chatErr || "Enter to send · Shift+Enter for a new line"}</span>
+                <button type="submit" className="gchat-send" disabled={chatBusy || !chatDraft.trim()}>Send</button>
+              </div>
+            </form>
+          )}
+        </aside>
+      )}
+    </>,
+    document.body
+  );
+})()}
       {notePop && notePop.stack && (function(){
         var rows = notePop.stack.map(function(r){ var it = findAnnot(r.id, r.layer); return it && !it.deleted ? Object.assign({ layer: r.layer }, it) : null; })
           .filter(Boolean);
@@ -14596,8 +14697,9 @@ export default function App() {
                     <div>
                       <div className="grp-picking-k">«{grp.name}»</div>
                       <div className="grp-picking-t">
-                        Open your copy of {grp.own.title || grp.title} below — it has to be the same file,
-                        and then the group's highlights, notes and chat are waiting on it.
+                        Open your copy of {grp.own.title || grp.title} below — it has to be the same file, and
+                        the group's highlights and notes are waiting on it. You are in the group either way:
+                        the chat is open on the right, so you can ask the others where they got theirs.
                       </div>
                       {grpErr && <div className="grp-picking-e">{grpErr}</div>}
                     </div>
@@ -16061,102 +16163,6 @@ export default function App() {
                   </div>
                 </div>
 
-                {inGrpBook && me && (function(){
-                  var myId = me.id;
-                  var unread = grpChat.filter(function(m){ return m.at > chatSeenAt && m.uid !== myId; }).length;
-                  var here = grpMembers.filter(function(m){ return m.here; }).length;
-                  var fmtAt = function(t) {
-                    var d = new Date(t), now = new Date();
-                    var hm = d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-                    return d.toDateString() === now.toDateString() ? hm
-                      : d.toLocaleDateString([], { day: "numeric", month: "short" }) + ", " + hm;
-                  };
-                  // Portalled to the body: the reader sits inside containers that
-                  // make their own stacking contexts, and from in there the
-                  // banner drew over the top of the panel.
-                  return createPortal(
-                    <>
-                      <button type="button" className={"gchat-tab" + (chatOpen ? " on" : "")}
-                        onClick={function(){ setChatOpen(!chatOpen); }}
-                        aria-label={chatOpen ? "Close the group chat" : "Open the group chat"}
-                        title={chatOpen ? "Close the chat" : "Talk with " + grp.name}>
-                        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor"
-                             strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                          <path d="M4.5 5.5h15v10h-8l-4.5 3.5v-3.5h-2.5z"/>
-                          <path d="M8 9.5h8M8 12.5h5"/>
-                        </svg>
-                        <span className="gchat-l">Chat</span>
-                        {!chatOpen && unread > 0 && <span className="gchat-n">{unread > 99 ? "99+" : unread}</span>}
-                      </button>
-                      {chatOpen && (
-                        <aside className="gchat" aria-label={"Chat — " + grp.name}>
-                          <div className="gchat-head">
-                            <div>
-                              <div className="gchat-k">Group chat</div>
-                              <div className="gchat-g">{grp.name}</div>
-                              <div className="gchat-sub">
-                                {grp.title ? grp.title + " · " : ""}{here} reading now
-                              </div>
-                            </div>
-                            <button type="button" className="gchat-x" aria-label="Close"
-                              onClick={function(){ setChatOpen(false); }}>×</button>
-                          </div>
-                          <div className="gchat-list" ref={chatListRef}>
-                            {!grpChat.length && (
-                              <div className="gchat-empty">
-                                Nothing said yet. Whatever is written here stays with the
-                                group, alongside its notes.
-                              </div>
-                            )}
-                            {grpChat.map(function(m, i){
-                              var prev = grpChat[i - 1];
-                              // A run of lines from one reader reads as one turn:
-                              // the name is written once, as in a transcript.
-                              var cont = !!(prev && prev.uid === m.uid && m.at - prev.at < 5 * 60 * 1000);
-                              var dayBreak = !prev || new Date(prev.at).toDateString() !== new Date(m.at).toDateString();
-                              return (
-                                <Fragment key={m.id}>
-                                  {dayBreak && (
-                                    <div className="gchat-day">
-                                      {new Date(m.at).toLocaleDateString([], { weekday: "long", day: "numeric", month: "long" })}
-                                    </div>
-                                  )}
-                                  <div className={"gchat-m" + (cont && !dayBreak ? " cont" : "") + (m.uid === myId ? " mine" : "")}>
-                                    {(!cont || dayBreak) && (
-                                      <div className="gchat-who">
-                                        <Avatar id={m.avatar} name={m.name} size={20} />
-                                        <span className="nm">{m.name}</span>
-                                        <span className="at">{fmtAt(m.at)}</span>
-                                      </div>
-                                    )}
-                                    <div className="gchat-t" lang="ru">{withLinks(m.text)}</div>
-                                  </div>
-                                </Fragment>
-                              );
-                            })}
-                          </div>
-                          {grp.closed ? (
-                            <div className="gchat-closed">This group read is closed. Its chat stays, but it takes no new messages.</div>
-                          ) : (
-                            <form className="gchat-form" onSubmit={function(e){ e.preventDefault(); sendChat(); }}>
-                              <textarea className="gchat-in" rows={2} maxLength={1000} value={chatDraft}
-                                placeholder="Write to the group…"
-                                onChange={function(e){ setChatDraft(e.target.value); if (chatErr) setChatErr(""); }}
-                                onKeyDown={function(e){
-                                  if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); sendChat(); }
-                                }} />
-                              <div className="gchat-foot">
-                                <span className="gchat-hint">{chatErr || "Enter to send · Shift+Enter for a new line"}</span>
-                                <button type="submit" className="gchat-send" disabled={chatBusy || !chatDraft.trim()}>Send</button>
-                              </div>
-                            </form>
-                          )}
-                        </aside>
-                      )}
-                    </>,
-                    document.body
-                  );
-                })()}
 
                 {(grp || annTool) && (
                   <div className="annot-bar">
