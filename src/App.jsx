@@ -7129,9 +7129,6 @@ export default function App() {
   var chatListRef                   = useRef(null);
   // The reading room: one chat for everybody who is not inside a group read.
   // The panel is the same; which room it shows follows where the reader is.
-  var [roomChat, setRoomChat]       = useState([]);
-  var [roomSeenAt, setRoomSeenAt]   = useState(0);
-  var roomSince                     = useRef(0);
   // A reload keeps you in your group: it is remembered on the device and
   // checked against the server on the first poll.
   useEffect(function() {
@@ -7281,45 +7278,16 @@ export default function App() {
   // "Inside a group read" means the group's book is actually open in front of
   // the reader. Stepping back to the library is stepping out of that room,
   // even though the book is still loaded behind the page.
-  var inRoom = !(inGrpBook && grp && started);
-  var chatMsgs = inRoom ? roomChat : grpChat;
-  var chatSeen = inRoom ? roomSeenAt : chatSeenAt;
+  // The chat is the group's, and it is there wherever the group is: on its
+  // book, and on the page a member without the file lands on. Off the
+  // group — the library, a book of one's own — there is no chat at all.
+  var grpNeedsFileNow = !!(grp && grp.own && !inGrpBook);
+  var chatHere = !!(grp && (
+    (inGrpBook && started) || (grpNeedsFileNow && !started && mode === "ownbook")
+  ));
+  var chatMsgs = grpChat;
+  var chatSeen = chatSeenAt;
 
-  useEffect(function() {
-    if (!me || !me.username) return;
-    var stop = false, timer = 0;
-    var tick = async function() {
-      if (stop) return;
-      // Nobody is served by polling a chat nobody is looking at every three
-      // seconds. Open: often. Closed: seldom, which is enough for the count
-      // on the tab. Hidden tab: not at all.
-      var wait = document.hidden ? 20000 : (chatOpen && inRoom ? 4000 : 25000);
-      if (!document.hidden) {
-        try {
-          var r = await authFetch("/api/user-data?chat=items&since=" + Math.max(0, roomSince.current - 5000));
-          var d = await r.json().catch(function(){ return {}; });
-          if (r.ok) {
-            if (d.removed && d.removed.length) {
-              var gone = {}; d.removed.forEach(function(id){ gone[id] = true; });
-              setRoomChat(function(list){ return list.filter(function(m){ return !gone[m.id]; }); });
-            }
-            if (d.chat && d.chat.length) {
-              setRoomChat(function(list) {
-                var have = {}; list.forEach(function(m){ have[m.id] = true; });
-                var add = d.chat.filter(function(m){ return m && m.id && !have[m.id]; });
-                if (!add.length) return list;
-                return list.concat(add).sort(function(a, b){ return a.at - b.at; }).slice(-300);
-              });
-            }
-            if (d.now) roomSince.current = d.now;
-          }
-        } catch (e) {}
-      }
-      if (!stop) timer = setTimeout(tick, wait);
-    };
-    tick();
-    return function(){ stop = true; clearTimeout(timer); };
-  }, [me && me.id, me && me.username, chatOpen, inRoom]);
 
   // Taking a line back: your own, always; anybody's, if you started the
   // group or run the site. It goes for everyone, not just for you.
@@ -7327,10 +7295,11 @@ export default function App() {
     if (!m) return;
     var mine = me && m.uid === me.id;
     if (!mine && !window.confirm("Remove " + m.name + "'s message for everyone?")) return;
-    var url = inRoom ? "/api/user-data?chat=remove" : "/api/user-data?group=unsay";
-    // In a group the body's `id` is the group's; the message is named
-    // separately, as `msg`.
-    var payload = inRoom ? { id: m.id } : { id: grp.id, msg: m.id };
+    if (!grp) return;
+    var url = "/api/user-data?group=unsay";
+    // The body's `id` is the group's; the message is named separately, as
+    // `msg`.
+    var payload = { id: grp.id, msg: m.id };
     try {
       var r = await authFetch(url, {
         method: "POST", headers: { "Content-Type": "application/json" },
@@ -7338,18 +7307,17 @@ export default function App() {
       });
       var d = await r.json().catch(function(){ return {}; });
       if (!r.ok) { setChatErr(d.error || "Could not remove that."); return; }
-      if (inRoom) setRoomChat(function(l){ return l.filter(function(x){ return x.id !== m.id; }); });
-      else setGrpChat(function(l){ return l.filter(function(x){ return x.id !== m.id; }); });
+      setGrpChat(function(l){ return l.filter(function(x){ return x.id !== m.id; }); });
     } catch (e) { setChatErr("Could not remove that."); }
   };
 
   var sendChat = function() {
     var text = chatDraft.trim();
     if (!text || chatBusy) return;
-    if (!inRoom && !grp) return;
+    if (!grp) return;
     setChatBusy(true); setChatErr("");
-    var url = inRoom ? "/api/user-data?chat=say" : "/api/user-data?group=say";
-    var payload = inRoom ? { text: text } : { id: grp.id, text: text };
+    var url = "/api/user-data?group=say";
+    var payload = { id: grp.id, text: text };
     authFetch(url, {
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -7361,7 +7329,7 @@ export default function App() {
             if (list.some(function(m){ return m.id === res.d.msg.id; })) return list;
             return list.concat([res.d.msg]);
           };
-          if (inRoom) setRoomChat(add); else setGrpChat(add);
+          setGrpChat(add);
         } else setChatErr((res.d && res.d.error) || "Could not send that.");
       })
       .catch(function(){ setChatErr("Could not send that — your message is still in the box."); })
@@ -7373,15 +7341,15 @@ export default function App() {
   useEffect(function() {
     if (!chatOpen || !chatMsgs.length) return;
     var at = chatMsgs[chatMsgs.length - 1].at;
-    if (inRoom) setRoomSeenAt(at); else setChatSeenAt(at);
+    setChatSeenAt(at);
     var el = chatListRef.current;
     if (el && el.scrollHeight - el.scrollTop - el.clientHeight < 140) el.scrollTop = el.scrollHeight;
-  }, [chatOpen, chatMsgs, inRoom]);
+  }, [chatOpen, chatMsgs]);
   useEffect(function() {
     if (!chatOpen) return;
     var el = chatListRef.current;
     if (el) el.scrollTop = el.scrollHeight;
-  }, [chatOpen, inRoom]);
+  }, [chatOpen, grp && grp.id]);
 
   var putGroupItem = function(item) {
     authFetch("/api/user-data?group=put", {
@@ -12964,7 +12932,7 @@ export default function App() {
           where the copy is still on somebody's desktop — can still come in,
           read what has been said and ask for it. It is portalled to the body,
           so where it sits in the tree does not matter. */}
-      {me && me.username && tab === "chat" && (function(){
+      {me && me.username && tab === "chat" && chatHere && (function(){
   var myId = me.id;
   var unread = chatMsgs.filter(function(m){ return m.at > chatSeen && m.uid !== myId; }).length;
   var here = grpMembers.filter(function(m){ return m.here; }).length;
@@ -12982,7 +12950,7 @@ export default function App() {
       <button type="button" className={"gchat-tab" + (chatOpen ? " on" : "")}
         onClick={function(){ setChatOpen(!chatOpen); }}
         aria-label={chatOpen ? "Close the chat" : "Open the chat"}
-        title={chatOpen ? "Close the chat" : (inRoom ? "The reading room — everyone here now" : "Talk with " + grp.name)}>
+        title={chatOpen ? "Close the chat" : "Talk with " + grp.name}>
         <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor"
              strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path d="M4.5 5.5h15v10h-8l-4.5 3.5v-3.5h-2.5z"/>
@@ -12992,16 +12960,13 @@ export default function App() {
         {!chatOpen && unread > 0 && <span className="gchat-n">{unread > 99 ? "99+" : unread}</span>}
       </button>
       {chatOpen && (
-        <aside className="gchat" data-annot-keep="" aria-label={inRoom ? "The reading room" : "Chat — " + grp.name}>
+        <aside className="gchat" data-annot-keep="" aria-label={"Chat — " + grp.name}>
           <div className="gchat-head">
             <div>
-              <div className="gchat-k">{inRoom ? "Reading room" : "Group chat"}</div>
-              <div className="gchat-g">{inRoom ? SITE_NAME : grp.name}</div>
+              <div className="gchat-k">Group chat</div>
+              <div className="gchat-g">{grp.name}</div>
               <div className="gchat-sub">
-                {inRoom
-                  ? (grp ? "you are in «" + grp.name + "» — open its book for the group's own chat"
-                         : "everyone reading here, in one room")
-                  : ((grp.title ? grp.title + " · " : "") + here + " reading now")}
+                {(grp.title ? grp.title + " · " : "") + here + " reading now"}
               </div>
             </div>
             <button type="button" className="gchat-x" aria-label="Close"
@@ -13010,9 +12975,7 @@ export default function App() {
           <div className="gchat-list" ref={chatListRef}>
             {!chatMsgs.length && (
               <div className="gchat-empty">
-                {inRoom
-                  ? "Nothing said yet. This is the room for everyone reading on the site — ask what is worth reading, or say what you are in the middle of."
-                  : "Nothing said yet. Whatever is written here stays with the group, alongside its notes."}
+                Nothing said yet. Whatever is written here stays with the group, alongside its notes.
               </div>
             )}
             {chatMsgs.map(function(m, i){
@@ -13038,7 +13001,7 @@ export default function App() {
                     )}
                     <div className="gchat-t" lang="ru">
                       {withLinks(m.text)}
-                      {(m.uid === myId || (me && me.isAdmin) || (!inRoom && grpOwner)) && (
+                      {(m.uid === myId || (me && me.isAdmin) || grpOwner) && (
                         <button type="button" className="gchat-del" title={m.uid === myId ? "Remove your message" : "Remove this message for everyone"}
                           aria-label="Remove this message"
                           onClick={function(){ removeChatMsg(m); }}>×</button>
@@ -13049,12 +13012,12 @@ export default function App() {
               );
             })}
           </div>
-          {!inRoom && grp.closed ? (
+          {grp.closed ? (
             <div className="gchat-closed">This group read is closed. Its chat stays, but it takes no new messages.</div>
           ) : (
             <form className="gchat-form" onSubmit={function(e){ e.preventDefault(); sendChat(); }}>
               <textarea className="gchat-in" rows={2} maxLength={1000} value={chatDraft}
-                placeholder={inRoom ? "Write to the room…" : "Write to the group…"}
+                placeholder="Write to the group…"
                 onChange={function(e){ setChatDraft(e.target.value); if (chatErr) setChatErr(""); }}
                 onKeyDown={function(e){
                   if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); sendChat(); }

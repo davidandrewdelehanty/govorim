@@ -471,9 +471,12 @@ export default async function handler(req, res) {
   const groupAction = req.query && req.query.group;
   if (groupAction) return handleGroup(req, res, user, String(groupAction));
 
-  // ── The reading room (?chat=) ──
-  const chatAction = req.query && req.query.chat;
-  if (chatAction) return handleLobby(req, res, user, String(chatAction));
+  // A chat belongs to a group read and to nothing else, so ?chat= — the
+  // site-wide reading room — is gone. A reader still on an old build gets a
+  // plain answer rather than a crash.
+  if (req.query && req.query.chat) {
+    return res.status(410).json({ error: "The reading room has closed — chat lives in group reads now." });
+  }
 
   try {
     if (req.method === "GET") {
@@ -1033,80 +1036,6 @@ async function rememberMembership(uid, gid) {
 
 // ── The reading room ─────────────────────────────────────────────────────
 //
-// One room for everybody who is not inside a group read: the same panel, the
-// same tab, a different room. A group's chat belongs to its members and its
-// book; this one belongs to the site, and is where a reader with nobody to
-// read with can still say something.
-//
-// One file, newest last, the oldest dropping off past LOBBY_CAP. Like the
-// group chat, a username is required — it is what everyone else sees.
-const LOBBY_KEY = `${PREFIX}/_chat/lobby.json`;
-const LOBBY_CAP = 300;
-
-async function handleLobby(req, res, user, action) {
-  let body = req.body;
-  if (typeof body === "string") { try { body = JSON.parse(body); } catch { body = {}; } }
-  body = body || {};
-  const q = req.query || {};
-  const account = await findAccount(user.email).catch(function () { return null; });
-  if (!(account && account.username)) {
-    return res.status(403).json({ error: "Choose a username to write in the reading room.", needUsername: true });
-  }
-  const me = { uid: user.id, name: account.username, avatar: account.avatar || "" };
-  try {
-    if (action === "items" && req.method === "GET") {
-      const { data } = await r2GetTagged(LOBBY_KEY);
-      const since = Number(q.since) || 0;
-      const all = (data && Array.isArray(data.chat)) ? data.chat : [];
-      const chat = all.filter(function (m) { return !m.del && (m.at || 0) > since; });
-      // A line taken down has to reach the readers who already have it, so
-      // its id is reported for as long as anyone's poll could still be
-      // looking that far back.
-      const removed = all.filter(function (m) { return m.del && m.del > since; })
-        .map(function (m) { return m.id; });
-      return res.status(200).json({ now: Date.now(), chat, removed });
-    }
-
-    // Taking a line down: its own writer, or the site's admin.
-    if (action === "remove" && req.method === "POST") {
-      const id = String(body.id || "");
-      let refused = "";
-      await r2Update(LOBBY_KEY, function (cur) {
-        const chat = (cur && Array.isArray(cur.chat)) ? cur.chat : [];
-        const m = chat.find(function (x) { return x.id === id; });
-        if (!m) { refused = "That message is already gone."; return undefined; }
-        if (m.uid !== me.uid && !user.isAdmin) { refused = "That message is not yours."; return undefined; }
-        m.del = Date.now(); m.text = ""; m.byAdmin = m.uid !== me.uid;
-        return { chat: chat };
-      });
-      if (refused) return res.status(400).json({ error: refused });
-      return res.status(200).json({ ok: true, id });
-    }
-    if (action === "say" && req.method === "POST") {
-      const text = String(body.text || "").replace(/\r\n?/g, "\n")
-        .replace(/[\u0000-\u0008\u000b-\u001f]/g, "").trim();
-      if (!text) return res.status(400).json({ error: "Nothing to send." });
-      if (text.length > 1000) return res.status(400).json({ error: "Keep a message under 1000 characters." });
-      const now = Date.now();
-      let refused = "", msg = null;
-      await r2Update(LOBBY_KEY, function (cur) {
-        const chat = (cur && Array.isArray(cur.chat)) ? cur.chat : [];
-        const last = chat.filter(function (m) { return m.uid === me.uid; }).pop();
-        if (last && now - last.at < 1500) { refused = "One moment — that was fast."; return undefined; }
-        msg = { id: now.toString(36) + Math.random().toString(36).slice(2, 6),
-                uid: me.uid, name: me.name, avatar: me.avatar, text, at: now };
-        chat.push(msg);
-        return { chat: chat.slice(-LOBBY_CAP) };
-      });
-      if (refused) return res.status(400).json({ error: refused });
-      return res.status(200).json({ ok: true, msg });
-    }
-    return res.status(404).json({ error: "Unknown chat action: " + action });
-  } catch (err) {
-    return res.status(500).json({ error: err.message || "The reading room is not answering." });
-  }
-}
-
 async function handleGroup(req, res, user, action) {
   let body = req.body;
   if (typeof body === "string") { try { body = JSON.parse(body); } catch { body = {}; } }
