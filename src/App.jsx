@@ -1276,12 +1276,40 @@ var EN_MONTHS = ["January","February","March","April","May","June","July","Augus
 // signs across the middle of their note. The address is not what they meant
 // to write down: the page is. So a link is drawn as that page's name, with
 // the site it lives on beside it, and opens in its own tab.
-var URL_RE = /(https?:\/\/[^\s<>"')\]]+|www\.[^\s<>"')\]]+)/g;
+var URL_RE = /(https?:\/\/[^\s<>"']+|www\.[^\s<>"']+)/g;
+
+// Where an address stops. Wikipedia's Russian titles routinely end in
+// brackets — «Ася (повесть)» — so a closing bracket belongs to the address
+// when the address opened one, and to the sentence when it did not.
+function trimUrl(raw) {
+  var u = raw;
+  for (;;) {
+    var last = u.charAt(u.length - 1);
+    if (".,;:!?»".indexOf(last) !== -1) { u = u.slice(0, -1); continue; }
+    if (last === ")" || last === "]") {
+      var open = (u.match(last === ")" ? /\(/g : /\[/g) || []).length;
+      var close = (u.match(last === ")" ? /\)/g : /\]/g) || []).length;
+      if (close > open) { u = u.slice(0, -1); continue; }
+    }
+    break;
+  }
+  return u;
+}
 
 function prettyLink(url) {
   var u = null;
   try { u = new URL(/^https?:/.test(url) ? url : "https://" + url); } catch (e) { return { title: url, host: "" }; }
   var host = u.hostname.replace(/^www\./, "");
+  // A YouTube address is an id and nothing else — no title to read off it.
+  // Say what it is, and when it starts if the link points into the middle.
+  if (host === "youtu.be" || host === "youtube.com" || host === "m.youtube.com") {
+    var at = u.searchParams.get("t") || u.searchParams.get("start") || "";
+    var secs = /^\d+$/.test(at) ? +at : (function(){
+      var m2 = /^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?$/.exec(at);
+      return m2 ? (+(m2[1] || 0) * 3600 + +(m2[2] || 0) * 60 + +(m2[3] || 0)) : 0;
+    })();
+    return { title: "YouTube recording" + (secs ? " · from " + fmtClock(secs) : ""), host: "youtube" };
+  }
   var last = "";
   try {
     var segs = u.pathname.split("/").filter(Boolean).map(function(x){
@@ -1316,7 +1344,7 @@ function withLinks(text) {
   var t = String(text || "");
   while ((m = URL_RE.exec(t)) !== null) {
     if (m.index > last) out.push(t.slice(last, m.index));
-    var raw = m[0].replace(/[.,;:!?»)]+$/, "");
+    var raw = trimUrl(m[0]);
     var tail = m[0].slice(raw.length);
     var p = prettyLink(raw);
     out.push(
@@ -12511,7 +12539,7 @@ export default function App() {
         {!chatOpen && unread > 0 && <span className="gchat-n">{unread > 99 ? "99+" : unread}</span>}
       </button>
       {chatOpen && (
-        <aside className="gchat" aria-label={"Chat — " + grp.name}>
+        <aside className="gchat" data-annot-keep="" aria-label={"Chat — " + grp.name}>
           <div className="gchat-head">
             <div>
               <div className="gchat-k">Group chat</div>
