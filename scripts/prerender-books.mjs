@@ -30,7 +30,9 @@ if (process.env.SITE_MODE !== "public") {
 
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, "dist");
-const ORIGIN = "https://samovar.live";
+// The host Vercel actually serves (the apex redirects here), so canonical,
+// Open Graph and sitemap all name the page that answers.
+const ORIGIN = "https://www.samovar.live";
 const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, "private", "books", "index.json"), "utf8"));
 const shell = fs.readFileSync(path.join(DIST, "index.html"), "utf8");
 

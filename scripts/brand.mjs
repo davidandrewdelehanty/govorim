@@ -48,8 +48,13 @@ const edits = [
     // the public build, never on Говорим.
     ['<meta name="robots" content="noindex, nofollow" />',
      '<meta name="robots" content="index, follow" />\n    <meta name="google-site-verification" content="_2pVgU3NiXtE3VwCzRaQ7NMioWm30MYHxxIFhX98BaQ" />'],
-    ["https://govorim.dev/", "https://samovar.live/"],
-    ["https://govorim.dev/apple-touch-icon.png", "https://samovar.live/apple-touch-icon.png"],
+    // www, not the bare domain: Vercel serves this project at
+    // www.samovar.live and sends the apex there, so that is the address the
+    // canonical, the Open Graph URL and the sitemap must all agree on. Two
+    // addresses with a canonical pointing at the one that redirects is what
+    // left the site unindexed.
+    ["https://govorim.dev/", "https://www.samovar.live/"],
+    ["https://govorim.dev/apple-touch-icon.png", "https://www.samovar.live/apple-touch-icon.png"],
   ]],
   ["manifest.webmanifest", [
     ['"name": "Говорим"', '"name": "Самовар"'],
