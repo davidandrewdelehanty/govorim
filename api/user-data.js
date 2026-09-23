@@ -471,6 +471,10 @@ export default async function handler(req, res) {
   const groupAction = req.query && req.query.group;
   if (groupAction) return handleGroup(req, res, user, String(groupAction));
 
+  // ── The reading room (?chat=) ──
+  const chatAction = req.query && req.query.chat;
+  if (chatAction) return handleLobby(req, res, user, String(chatAction));
+
   try {
     if (req.method === "GET") {
       // Read vocab + tips from R2
@@ -1011,6 +1015,60 @@ async function rememberMembership(uid, gid) {
   if (ids.indexOf(gid) === -1) {
     ids.unshift(gid);
     await r2Put(uid, "groups", { ids: ids.slice(0, 500) });
+  }
+}
+
+// ── The reading room ─────────────────────────────────────────────────────
+//
+// One room for everybody who is not inside a group read: the same panel, the
+// same tab, a different room. A group's chat belongs to its members and its
+// book; this one belongs to the site, and is where a reader with nobody to
+// read with can still say something.
+//
+// One file, newest last, the oldest dropping off past LOBBY_CAP. Like the
+// group chat, a username is required — it is what everyone else sees.
+const LOBBY_KEY = `${PREFIX}/_chat/lobby.json`;
+const LOBBY_CAP = 300;
+
+async function handleLobby(req, res, user, action) {
+  let body = req.body;
+  if (typeof body === "string") { try { body = JSON.parse(body); } catch { body = {}; } }
+  body = body || {};
+  const q = req.query || {};
+  const account = await findAccount(user.email).catch(function () { return null; });
+  if (!(account && account.username)) {
+    return res.status(403).json({ error: "Choose a username to write in the reading room.", needUsername: true });
+  }
+  const me = { uid: user.id, name: account.username, avatar: account.avatar || "" };
+  try {
+    if (action === "items" && req.method === "GET") {
+      const { data } = await r2GetTagged(LOBBY_KEY);
+      const chat = (data && Array.isArray(data.chat) ? data.chat : [])
+        .filter(function (m) { return (m.at || 0) > (Number(q.since) || 0); });
+      return res.status(200).json({ now: Date.now(), chat });
+    }
+    if (action === "say" && req.method === "POST") {
+      const text = String(body.text || "").replace(/\r\n?/g, "\n")
+        .replace(/[\u0000-\u0008\u000b-\u001f]/g, "").trim();
+      if (!text) return res.status(400).json({ error: "Nothing to send." });
+      if (text.length > 1000) return res.status(400).json({ error: "Keep a message under 1000 characters." });
+      const now = Date.now();
+      let refused = "", msg = null;
+      await r2Update(LOBBY_KEY, function (cur) {
+        const chat = (cur && Array.isArray(cur.chat)) ? cur.chat : [];
+        const last = chat.filter(function (m) { return m.uid === me.uid; }).pop();
+        if (last && now - last.at < 1500) { refused = "One moment — that was fast."; return undefined; }
+        msg = { id: now.toString(36) + Math.random().toString(36).slice(2, 6),
+                uid: me.uid, name: me.name, avatar: me.avatar, text, at: now };
+        chat.push(msg);
+        return { chat: chat.slice(-LOBBY_CAP) };
+      });
+      if (refused) return res.status(400).json({ error: refused });
+      return res.status(200).json({ ok: true, msg });
+    }
+    return res.status(404).json({ error: "Unknown chat action: " + action });
+  } catch (err) {
+    return res.status(500).json({ error: err.message || "The reading room is not answering." });
   }
 }
 

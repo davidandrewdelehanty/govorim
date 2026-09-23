@@ -6876,6 +6876,11 @@ export default function App() {
   var [chatErr, setChatErr]         = useState("");
   var [chatBusy, setChatBusy]       = useState(false);
   var chatListRef                   = useRef(null);
+  // The reading room: one chat for everybody who is not inside a group read.
+  // The panel is the same; which room it shows follows where the reader is.
+  var [roomChat, setRoomChat]       = useState([]);
+  var [roomSeenAt, setRoomSeenAt]   = useState(0);
+  var roomSince                     = useRef(0);
   // A reload keeps you in your group: it is remembered on the device and
   // checked against the server on the first poll.
   useEffect(function() {
@@ -7008,40 +7013,87 @@ export default function App() {
     return out;
   }, [annots, grpItems, curBookKey, inGrpBook]);
 
+  // Which room the panel is showing: the group's, when the reader is inside
+  // its book, and the site's reading room the rest of the time — including
+  // on the library page, where a group's chat has no business being.
+  // "Inside a group read" means the group's book is actually open in front of
+  // the reader. Stepping back to the library is stepping out of that room,
+  // even though the book is still loaded behind the page.
+  var inRoom = !(inGrpBook && grp && started);
+  var chatMsgs = inRoom ? roomChat : grpChat;
+  var chatSeen = inRoom ? roomSeenAt : chatSeenAt;
+
+  useEffect(function() {
+    if (!me || !me.username) return;
+    var stop = false, timer = 0;
+    var tick = async function() {
+      if (stop) return;
+      // Nobody is served by polling a chat nobody is looking at every three
+      // seconds. Open: often. Closed: seldom, which is enough for the count
+      // on the tab. Hidden tab: not at all.
+      var wait = document.hidden ? 20000 : (chatOpen && inRoom ? 4000 : 25000);
+      if (!document.hidden) {
+        try {
+          var r = await authFetch("/api/user-data?chat=items&since=" + Math.max(0, roomSince.current - 5000));
+          var d = await r.json().catch(function(){ return {}; });
+          if (r.ok) {
+            if (d.chat && d.chat.length) {
+              setRoomChat(function(list) {
+                var have = {}; list.forEach(function(m){ have[m.id] = true; });
+                var add = d.chat.filter(function(m){ return m && m.id && !have[m.id]; });
+                if (!add.length) return list;
+                return list.concat(add).sort(function(a, b){ return a.at - b.at; }).slice(-300);
+              });
+            }
+            if (d.now) roomSince.current = d.now;
+          }
+        } catch (e) {}
+      }
+      if (!stop) timer = setTimeout(tick, wait);
+    };
+    tick();
+    return function(){ stop = true; clearTimeout(timer); };
+  }, [me && me.id, me && me.username, chatOpen, inRoom]);
+
   var sendChat = function() {
     var text = chatDraft.trim();
-    if (!text || chatBusy || !grp) return;
+    if (!text || chatBusy) return;
+    if (!inRoom && !grp) return;
     setChatBusy(true); setChatErr("");
-    authFetch("/api/user-data?group=say", {
+    var url = inRoom ? "/api/user-data?chat=say" : "/api/user-data?group=say";
+    var payload = inRoom ? { text: text } : { id: grp.id, text: text };
+    authFetch(url, {
       method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: grp.id, text: text }),
+      body: JSON.stringify(payload),
     }).then(function(r){ return r.json().then(function(d){ return { ok: r.ok, d: d }; }); })
       .then(function(res) {
         if (res.ok && res.d.msg) {
           setChatDraft("");
-          setGrpChat(function(list) {
+          var add = function(list) {
             if (list.some(function(m){ return m.id === res.d.msg.id; })) return list;
             return list.concat([res.d.msg]);
-          });
+          };
+          if (inRoom) setRoomChat(add); else setGrpChat(add);
         } else setChatErr((res.d && res.d.error) || "Could not send that.");
       })
-      .catch(function(){ setChatErr("Could not reach the group. Your message is still in the box."); })
+      .catch(function(){ setChatErr("Could not send that — your message is still in the box."); })
       .then(function(){ setChatBusy(false); });
   };
   // While the panel is open everything in it counts as read, and the list
   // follows new messages down — unless the reader has scrolled up to look at
   // something older, when it stays where they put it.
   useEffect(function() {
-    if (!chatOpen || !grpChat.length) return;
-    setChatSeenAt(grpChat[grpChat.length - 1].at);
+    if (!chatOpen || !chatMsgs.length) return;
+    var at = chatMsgs[chatMsgs.length - 1].at;
+    if (inRoom) setRoomSeenAt(at); else setChatSeenAt(at);
     var el = chatListRef.current;
     if (el && el.scrollHeight - el.scrollTop - el.clientHeight < 140) el.scrollTop = el.scrollHeight;
-  }, [chatOpen, grpChat]);
+  }, [chatOpen, chatMsgs, inRoom]);
   useEffect(function() {
     if (!chatOpen) return;
     var el = chatListRef.current;
     if (el) el.scrollTop = el.scrollHeight;
-  }, [chatOpen]);
+  }, [chatOpen, inRoom]);
 
   var putGroupItem = function(item) {
     authFetch("/api/user-data?group=put", {
@@ -12511,9 +12563,9 @@ export default function App() {
           where the copy is still on somebody's desktop — can still come in,
           read what has been said and ask for it. It is portalled to the body,
           so where it sits in the tree does not matter. */}
-      {grp && me && me.username && tab === "chat" && (function(){
+      {me && me.username && tab === "chat" && (function(){
   var myId = me.id;
-  var unread = grpChat.filter(function(m){ return m.at > chatSeenAt && m.uid !== myId; }).length;
+  var unread = chatMsgs.filter(function(m){ return m.at > chatSeen && m.uid !== myId; }).length;
   var here = grpMembers.filter(function(m){ return m.here; }).length;
   var fmtAt = function(t) {
     var d = new Date(t), now = new Date();
@@ -12528,8 +12580,8 @@ export default function App() {
     <>
       <button type="button" className={"gchat-tab" + (chatOpen ? " on" : "")}
         onClick={function(){ setChatOpen(!chatOpen); }}
-        aria-label={chatOpen ? "Close the group chat" : "Open the group chat"}
-        title={chatOpen ? "Close the chat" : "Talk with " + grp.name}>
+        aria-label={chatOpen ? "Close the chat" : "Open the chat"}
+        title={chatOpen ? "Close the chat" : (inRoom ? "The reading room — everyone here now" : "Talk with " + grp.name)}>
         <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor"
              strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path d="M4.5 5.5h15v10h-8l-4.5 3.5v-3.5h-2.5z"/>
@@ -12539,27 +12591,31 @@ export default function App() {
         {!chatOpen && unread > 0 && <span className="gchat-n">{unread > 99 ? "99+" : unread}</span>}
       </button>
       {chatOpen && (
-        <aside className="gchat" data-annot-keep="" aria-label={"Chat — " + grp.name}>
+        <aside className="gchat" data-annot-keep="" aria-label={inRoom ? "The reading room" : "Chat — " + grp.name}>
           <div className="gchat-head">
             <div>
-              <div className="gchat-k">Group chat</div>
-              <div className="gchat-g">{grp.name}</div>
+              <div className="gchat-k">{inRoom ? "Reading room" : "Group chat"}</div>
+              <div className="gchat-g">{inRoom ? SITE_NAME : grp.name}</div>
               <div className="gchat-sub">
-                {grp.title ? grp.title + " · " : ""}{here} reading now
+                {inRoom
+                  ? (grp ? "you are in «" + grp.name + "» — open its book for the group's own chat"
+                         : "everyone reading here, in one room")
+                  : ((grp.title ? grp.title + " · " : "") + here + " reading now")}
               </div>
             </div>
             <button type="button" className="gchat-x" aria-label="Close"
               onClick={function(){ setChatOpen(false); }}>×</button>
           </div>
           <div className="gchat-list" ref={chatListRef}>
-            {!grpChat.length && (
+            {!chatMsgs.length && (
               <div className="gchat-empty">
-                Nothing said yet. Whatever is written here stays with the
-                group, alongside its notes.
+                {inRoom
+                  ? "Nothing said yet. This is the room for everyone reading on the site — ask what is worth reading, or say what you are in the middle of."
+                  : "Nothing said yet. Whatever is written here stays with the group, alongside its notes."}
               </div>
             )}
-            {grpChat.map(function(m, i){
-              var prev = grpChat[i - 1];
+            {chatMsgs.map(function(m, i){
+              var prev = chatMsgs[i - 1];
               // A run of lines from one reader reads as one turn:
               // the name is written once, as in a transcript.
               var cont = !!(prev && prev.uid === m.uid && m.at - prev.at < 5 * 60 * 1000);
@@ -12585,12 +12641,12 @@ export default function App() {
               );
             })}
           </div>
-          {grp.closed ? (
+          {!inRoom && grp.closed ? (
             <div className="gchat-closed">This group read is closed. Its chat stays, but it takes no new messages.</div>
           ) : (
             <form className="gchat-form" onSubmit={function(e){ e.preventDefault(); sendChat(); }}>
               <textarea className="gchat-in" rows={2} maxLength={1000} value={chatDraft}
-                placeholder="Write to the group…"
+                placeholder={inRoom ? "Write to the room…" : "Write to the group…"}
                 onChange={function(e){ setChatDraft(e.target.value); if (chatErr) setChatErr(""); }}
                 onKeyDown={function(e){
                   if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); sendChat(); }
