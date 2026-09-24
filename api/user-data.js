@@ -990,6 +990,11 @@ function cleanOwn(raw) {
     hash,
     fp,
     bytes: hasBytes ? bytes : null,
+    // The opening words of the copy, and the build that read it — so a
+    // reader whose copy does not match can be shown how the two differ
+    // instead of being told two hex strings disagree.
+    head: String(o.head || "").replace(/\s+/g, " ").trim().slice(0, 120),
+    build: String(o.build || "").slice(0, 40),
     title,
     author: String(o.author || "").trim().slice(0, 120),
     file,

@@ -1592,6 +1592,13 @@ function sameBytes(a, b) {
   if (a.sha && b.sha) return a.sha === b.sha;
   return !!(a.fp && b.fp && a.fp === b.fp && (a.size || 0) === (b.size || 0));
 }
+// The first words of the book, kept with a group so a copy that does not
+// match can be held up against it: "yours starts here, the group's starts
+// there" settles in one line what a pair of hex digests never could.
+function textHead(chapters) {
+  var t = normText(chapters).slice(0, 90);
+  return t ? t.charAt(0).toUpperCase() + t.slice(1) : "";
+}
 function plainFingerprint(chapters) {
   var t = looseText(chapters);
   if (!t) return "";
@@ -7349,7 +7356,7 @@ export default function App() {
       for (var i = 0; i < chs.length; i++) words += ruCount(chs[i] && chs[i].text);
       ownHashes.current[entry.id] = {
         hash: await textFingerprint(chs), fp: plainFingerprint(chs),
-        bytes: d.bytes || entry.bytes || null,
+        bytes: d.bytes || entry.bytes || null, head: textHead(chs),
         words: words, chapters: chs.length,
       };
       return ownHashes.current[entry.id];
@@ -7623,8 +7630,11 @@ export default function App() {
     // matches the group's, and open that. Nothing is downloaded and nothing
     // is uploaded — the file never leaves either reader's machine; only the
     // fingerprint of its text is compared.
-    if (g.own && g.own.hash) {
-      if (bookMeta && bookMeta.own && ownHash === g.own.hash && started) { setShowGroups(false); return; }
+    if (g.own && (g.own.bytes || g.own.hash || g.own.fp)) {
+      // Already reading it. Asked of inGrpBook rather than of the text digest
+      // alone, or a copy matched by its bytes was closed and opened again for
+      // no reason.
+      if (started && inGrpBook && grp && grp.id === g.id) { setShowGroups(false); return; }
       for (var j = 0; j < uploadedBooks.length; j++) {
         var f = await uploadFingerprint(uploadedBooks[j]);
         if (f && (sameBytes(f.bytes, g.own.bytes) ||
@@ -7699,6 +7709,7 @@ export default function App() {
     var words = 0;
     for (var i = 0; i < chs.length; i++) words += ruCount(chs[i] && chs[i].text);
     setGrpOwnPick({ id: entry.id, hash: f.hash, fp: f.fp, bytes: f.bytes || (d && d.bytes) || null,
+                    head: f.head || textHead(chs),
                     title: entry.title || (d && d.title) || "Untitled",
                     author: entry.author || (d && d.author) || "", words: words, chapters: chs.length,
                     file: entry.filename || (d && d.filename) || "",
@@ -7737,7 +7748,7 @@ export default function App() {
       var r = await authFetch("/api/user-data?group=own", {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: grp.id, own: {
-          hash: h, fp: fp, bytes: bookMeta.bytes || null,
+          hash: h, fp: fp, bytes: bookMeta.bytes || null, head: textHead(chapters), build: BUILD_ID,
           title: bookMeta.title || grp.title, author: bookMeta.author || grp.author,
           words: words, chapters: chapters.length, file: bookMeta.filename || "",
         } }),
@@ -7880,6 +7891,39 @@ export default function App() {
     if (!cur.id && !cur.url && !Object.keys(cur.byChapter).length) return;
     applyRecording({ mode: cur.mode, id: "", url: "", byChapter: {} }, false);
   }, [inGrpBook, grp && grp.id, grp && !!grp.audio, bookMeta && bookKey(bookMeta)]);
+  // A group started before the file was known by its bytes carries only a
+  // digest of the parsed text — and a digest of the parsed text is exactly
+  // what stops matching when the parser changes. So the first time the
+  // starter opens the group's book with a copy that does match, the record
+  // is quietly brought up to date: bytes, opening words, size. Nobody has to
+  // press anything, and every other member then matches on bytes too.
+  var healed = useRef("");
+  useEffect(function() {
+    if (!inGrpBook || !grp || !grp.own || !grpOwner) return;
+    if (!bookMeta || !bookMeta.own || !bookMeta.bytes) return;
+    if (grp.own.bytes && grp.own.bytes.sha) return;
+    // Wait for this copy's own text digest. Sending the record back without
+    // one would strip the group of the only thing a reader on an older build
+    // can match against, and put them out of the group to fix a fault they
+    // do not have.
+    if (!ownHash && !grp.own.hash) return;
+    if (healed.current === grp.id) return;
+    healed.current = grp.id;
+    var words = 0;
+    for (var i = 0; i < chapters.length; i++) words += ruCount(chapters[i] && chapters[i].text);
+    authFetch("/api/user-data?group=own", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: grp.id, own: {
+        hash: ownHash || grp.own.hash || "", fp: ownFp || grp.own.fp || "",
+        bytes: bookMeta.bytes, head: textHead(chapters), build: BUILD_ID,
+        title: grp.own.title || bookMeta.title, author: grp.own.author || bookMeta.author,
+        words: words, chapters: chapters.length, file: grp.own.file || bookMeta.filename || "",
+      } }),
+    }).then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){ if (d && d.group) setGrp(function(cur){ return cur ? Object.assign({}, cur, d.group) : cur; }); })
+      .catch(function(){});
+  }, [inGrpBook, grpOwner, grp && grp.id, grp && grp.own && !!(grp.own.bytes && grp.own.bytes.sha),
+      ownHash, bookMeta && bookMeta.bytes && bookMeta.bytes.sha]);
   // A member opening the group's book gets the group's recording.
   useEffect(function() {
     if (!inGrpBook || !grp || !grp.audio) return;
@@ -7990,7 +8034,7 @@ export default function App() {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify(grpOwnPick
           ? { name: grpName.trim(), own: { hash: grpOwnPick.hash, fp: grpOwnPick.fp, bytes: grpOwnPick.bytes,
-                                           title: grpOwnPick.title,
+                                           head: grpOwnPick.head, build: BUILD_ID, title: grpOwnPick.title,
                                            author: grpOwnPick.author, words: grpOwnPick.words,
                                            chapters: grpOwnPick.chapters, file: grpOwnPick.file } }
           : { name: grpName.trim(), filename: grpBook }),
@@ -9581,10 +9625,17 @@ export default function App() {
             addedAt: Date.now(),
           };
           entry.bytes = fileFp;
+          // Which build read this file. A copy saved months ago was cut into
+          // chapters by whatever the parser did then; today's build can read
+          // the same file differently, and two readers comparing a fresh
+          // parse against a saved one would never meet. Stamped here so the
+          // page can say "your saved copy is older than this one" instead of
+          // insisting the files differ.
+          entry.build = BUILD_ID;
           await bookStore.set(UPLOAD_BOOK_PREFIX + id, JSON.stringify({
             chapters: chs, title: title, author: author,
             category: entry.category, splitByNumberedSections: entry.splitByNumberedSections,
-            filename: entry.filename, bytes: fileFp,
+            filename: entry.filename, bytes: fileFp, build: BUILD_ID,
           }));
           // Update list, newest-first, with eviction of oldest beyond MAX_UPLOADS.
           var current = uploadedBooks.slice();
@@ -9731,6 +9782,7 @@ export default function App() {
         audiobook: book.audiobook || d.audiobook || null,
         own: true,
         bytes: d.bytes || book.bytes || null,
+        build: d.build || book.build || "",
       };
       // Videos come off the live catalogue entry, not the cached chapters: a
       // video attached after this book was cached must still appear. For the
@@ -17332,6 +17384,16 @@ export default function App() {
                                             {" "}The two files are not even the same size — the group's is
                                             {" "}{fmtInt(Math.round((grp.own.bytes.size || 0) / 1024))} KB, yours is
                                             {" "}{fmtInt(Math.round((bookMeta.bytes.size || 0) / 1024))} KB.
+                                          </span>
+                                        : null}
+                                      {grp.own.head ? <span className="grp-diag">
+                                        {" "}The group's copy begins «{grp.own.head}…». Yours begins
+                                        {" "}«{textHead(chapters)}…».
+                                      </span> : null}
+                                      {bookMeta.build && grp.own.build && bookMeta.build !== grp.own.build
+                                        ? <span className="grp-diag">
+                                            {" "}Your saved copy was read by an older version of the site —
+                                            open the file itself again and it will be read afresh.
                                           </span>
                                         : null}
                                       {grp.own.words ? <span className="grp-diag">
