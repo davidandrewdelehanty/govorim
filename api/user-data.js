@@ -960,8 +960,13 @@ function groupActivity(g) {
 function cleanOwn(raw) {
   const o = raw && typeof raw === "object" ? raw : null;
   if (!o) return null;
-  const hash = String(o.hash || "");
-  if (!/^[a-f0-9]{16,64}$/.test(hash)) return null;
+  // Two fingerprints of the same text: a SHA-256 digest, and a plain one the
+  // browser can always compute — crypto.subtle is missing outside a secure
+  // context, and a reader there was being told their own file was not the
+  // group's. Either may be absent; one of them has to be there.
+  const hash = /^[a-f0-9]{16,64}$/.test(String(o.hash || "")) ? String(o.hash) : "";
+  const fp = /^[a-f0-9]{16,32}$/.test(String(o.fp || "")) ? String(o.fp) : "";
+  if (!hash && !fp) return null;
   const title = String(o.title || "").trim().slice(0, 120);
   if (!title) return null;
   // The name of the starter's file, kept so the group can say what everyone
@@ -972,6 +977,7 @@ function cleanOwn(raw) {
   const file = String(o.file || "").trim().replace(/^.*[\\/]/, "").slice(0, 160);
   return {
     hash,
+    fp,
     title,
     author: String(o.author || "").trim().slice(0, 120),
     file,
@@ -1160,6 +1166,33 @@ async function handleGroup(req, res, user, action) {
     // handles — this answers so old clients do not error.
     if (action === "leave" && req.method === "POST") {
       return res.status(200).json({ ok: true });
+    }
+
+    // The starter can re-point the group at the copy of the file they have
+    // open. Two copies of the same novel are not always the same text — an
+    // EPUB and an FB2 differ, and so do two FB2s from two libraries — and the
+    // fingerprint turns anything that is not the group's exact file away.
+    // When it is the starter whose copy no longer matches, this is how they
+    // say "this one is the group's", rather than starting over.
+    if (action === "own" && req.method === "POST") {
+      const cur = (await r2GetTagged(gkey(gid))).data;
+      if (!cur || cur.deleted) return res.status(404).json({ error: "No such group." });
+      if (cur.owner !== me.uid && !user.isAdmin) {
+        return res.status(403).json({ error: "Only the reader who started it can change its file." });
+      }
+      if (!cur.own) return res.status(400).json({ error: "This group reads a book from the library." });
+      const own = cleanOwn(body.own);
+      if (!own) return res.status(400).json({ error: "That file could not be read." });
+      const g = await r2Update(gkey(gid), function (c) {
+        if (!c || c.deleted) return undefined;
+        c.own = own;
+        c.title = own.title || c.title;
+        c.author = own.author || c.author;
+        c.ownChangedAt = Date.now();
+        return c;
+      });
+      if (g) await refreshIndex(g);
+      return res.status(200).json({ ok: true, group: groupSummary(g) });
     }
 
     // The starter can delete a group they started. Unlike closing, this does

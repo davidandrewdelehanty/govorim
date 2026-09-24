@@ -1489,9 +1489,52 @@ function withLinks(text) {
 // EPUB get the same answer; a different edition, a different scan or a file
 // with one chapter missing does not, and the group says so rather than
 // putting their notes on the wrong words.
-async function textFingerprint(chapters) {
+// The text of a book, normalised the one way both fingerprints use: every
+// run of whitespace a single space, lower case. Chapter boundaries do not
+// enter into it, so a book cut into 95 chapters and the same book cut into
+// 12 fingerprint the same — it is the words that have to match.
+function normText(chapters) {
   var t = (chapters || []).map(function(c){ return String((c && c.text) || ""); }).join("\n");
-  t = t.replace(/\s+/g, " ").trim().toLowerCase();
+  return t.replace(/\s+/g, " ").trim().toLowerCase();
+}
+// The same book, read by two machines, is not always the same string. One
+// browser's EPUB reader gives a non-breaking space where another gives a
+// plain one; quotation marks come out as « » here and as " " there; a soft
+// hyphen survives one parser and not the next. None of that changes a word
+// of the book, and all of it changes a SHA-256 digest — which is how a
+// reader holding the very file a group was made from was told it was not the
+// group's file.
+//
+// So the second fingerprint throws away everything that is not a letter or a
+// digit: no spaces, no punctuation, no case, ё read as е, the text in NFKC
+// first. What is left is the book's words, which two copies of one file
+// agree on however they were parsed. It is also plain arithmetic — no
+// crypto.subtle, which does not exist outside a secure context — so it is
+// computed even where the digest cannot be. Either fingerprint matching is a
+// match. Two 32-bit FNV-1a passes with different seeds, plus the length:
+// not a cryptographic hash and it does not need to be, since nobody gains
+// anything by forging a match with themselves.
+function looseText(chapters) {
+  var t = (chapters || []).map(function(c){ return String((c && c.text) || ""); }).join(" ");
+  try { t = t.normalize("NFKC"); } catch (e) {}
+  t = t.toLowerCase().replace(/ё/g, "е");
+  return t.replace(/[^0-9a-zа-я]+/g, "");
+}
+function plainFingerprint(chapters) {
+  var t = looseText(chapters);
+  if (!t) return "";
+  var a = 0x811c9dc5, b = (0x01000193 ^ t.length) >>> 0;
+  for (var i = 0; i < t.length; i++) {
+    var c = t.charCodeAt(i);
+    a = Math.imul((a ^ c) >>> 0, 0x01000193) >>> 0;
+    b = Math.imul((b + c) >>> 0, 0x85ebca6b) >>> 0;
+    b = (b ^ (b >>> 13)) >>> 0;
+  }
+  var hex = function(x){ return (x >>> 0).toString(16).padStart(8, "0"); };
+  return hex(a) + hex(b) + hex(t.length);
+}
+async function textFingerprint(chapters) {
+  var t = normText(chapters);
   if (!t) return "";
   try {
     var buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t));
@@ -7121,6 +7164,7 @@ export default function App() {
   var [grpImport, setGrpImport]     = useState(true);
   var [grpInfo, setGrpInfo]         = useState("");
   var [ownHash, setOwnHash]         = useState("");
+  var [ownFp, setOwnFp]             = useState("");
   var ownHashes                     = useRef({});
   // Set when a reader was sent to sign up, or to choose a username, on the
   // way into group reads — so they arrive back at group reads afterwards
@@ -7149,6 +7193,7 @@ export default function App() {
     try { if (g) localStorage.setItem("gv_group_v1", JSON.stringify(g)); else localStorage.removeItem("gv_group_v1"); } catch (e) {}
   };
   var endLocalGroup = function() {
+    audChosen.current = false;
     setGrp(null); setGrpItems({}); setGrpMembers([]); setGrpOwner(false);
     rememberGroup(null);
   };
@@ -7215,7 +7260,8 @@ export default function App() {
   // identified by its filename and needs none.
   useEffect(function() {
     var live = true;
-    if (!(bookMeta && bookMeta.own && chapters.length)) { setOwnHash(""); return; }
+    if (!(bookMeta && bookMeta.own && chapters.length)) { setOwnHash(""); setOwnFp(""); return; }
+    setOwnFp(plainFingerprint(chapters));
     textFingerprint(chapters).then(function(h){ if (live) setOwnHash(h); });
     return function(){ live = false; };
   }, [bookMeta && bookMeta.own, bookMeta && bookKey(bookMeta), chapters.length]);
@@ -7226,16 +7272,31 @@ export default function App() {
       var r = await bookStore.get(UPLOAD_BOOK_PREFIX + entry.id);
       if (!r) return "";
       var d = typeof r === "string" ? JSON.parse(r) : r;
-      var h = await textFingerprint(d.chapters || []);
-      ownHashes.current[entry.id] = h;
-      return h;
-    } catch (e) { return ""; }
+      var chs = d.chapters || [];
+      var words = 0;
+      for (var i = 0; i < chs.length; i++) words += ruCount(chs[i] && chs[i].text);
+      ownHashes.current[entry.id] = {
+        hash: await textFingerprint(chs), fp: plainFingerprint(chs),
+        words: words, chapters: chs.length,
+      };
+      return ownHashes.current[entry.id];
+    } catch (e) { return null; }
   };
 
+  // What this copy holds, for the notice that has to explain a mismatch in
+  // terms a reader can act on.
+  var ownWords = useMemo(function(){
+    var w = 0;
+    for (var i = 0; i < chapters.length; i++) w += ruCount(chapters[i] && chapters[i].text);
+    return w;
+  }, [chapters]);
   var curBookKey = bookKey(bookMeta);
+  // Either fingerprint is enough. A group made before the second one existed
+  // carries only the digest, and matches on it as before.
   var inGrpBook = !!(grp && bookMeta && (
-    (grp.own && grp.own.hash)
-      ? (bookMeta.own && ownHash && ownHash === grp.own.hash)
+    (grp.own && (grp.own.hash || grp.own.fp))
+      ? (bookMeta.own && ((ownHash && ownHash === grp.own.hash) ||
+                          (ownFp && grp.own.fp && ownFp === grp.own.fp)))
       : (bookMeta.filename && bookMeta.filename === grp.filename && !bookMeta.own)));
   var meAsAuthor = me ? { uid: me.id, name: me.username || String(me.email || "").split("@")[0], avatar: me.avatar || "" } : null;
   // In a group whose book is a file its members bring, without that file
@@ -7490,8 +7551,8 @@ export default function App() {
     if (g.own && g.own.hash) {
       if (bookMeta && bookMeta.own && ownHash === g.own.hash && started) { setShowGroups(false); return; }
       for (var j = 0; j < uploadedBooks.length; j++) {
-        var h = await uploadFingerprint(uploadedBooks[j]);
-        if (h && h === g.own.hash) {
+        var f = await uploadFingerprint(uploadedBooks[j]);
+        if (f && ((f.hash && f.hash === g.own.hash) || (f.fp && g.own.fp && f.fp === g.own.fp))) {
           setShowGroups(false);
           setTab("chat");
           setMode("read");
@@ -7553,14 +7614,14 @@ export default function App() {
   };
   var pickGroupOwn = async function(entry) {
     setGrpErr("");
-    var h = await uploadFingerprint(entry);
-    if (!h) { setGrpErr("That file could not be read on this device."); return; }
+    var f = await uploadFingerprint(entry);
+    if (!f || !(f.hash || f.fp)) { setGrpErr("That file could not be read on this device."); return; }
     var r = await bookStore.get(UPLOAD_BOOK_PREFIX + entry.id).catch(function(){ return null; });
     var d = r ? (typeof r === "string" ? JSON.parse(r) : r) : null;
     var chs = (d && d.chapters) || [];
     var words = 0;
     for (var i = 0; i < chs.length; i++) words += ruCount(chs[i] && chs[i].text);
-    setGrpOwnPick({ id: entry.id, hash: h, title: entry.title || (d && d.title) || "Untitled",
+    setGrpOwnPick({ id: entry.id, hash: f.hash, fp: f.fp, title: entry.title || (d && d.title) || "Untitled",
                     author: entry.author || (d && d.author) || "", words: words, chapters: chs.length,
                     file: entry.filename || (d && d.filename) || "",
                     bookKey: (entry.filename || (d && d.filename) || "") + "::" + (entry.title || (d && d.title) || "") });
@@ -7577,6 +7638,38 @@ export default function App() {
   // for rather than being left to guess.
   var grpFileName = function(g) {
     return (g && g.own && g.own.file) ? String(g.own.file) : "";
+  };
+  // The book open right now, offered to the group as its file. Only the
+  // starter, only a group already reading a file its members bring, and only
+  // from a book of one's own — a library book is not a file anyone brings.
+  var useThisCopy = async function() {
+    if (!grp || !grp.own || !grpOwner || !bookMeta || !bookMeta.own) return;
+    var h = ownHash || await textFingerprint(chapters);
+    var fp = ownFp || plainFingerprint(chapters);
+    if (!h && !fp) { setGrpErr("This copy could not be read."); return; }
+    var ok = window.confirm(
+      "Make this copy the file «" + grp.name + "» reads?\n\n" +
+      "Everyone else will have to open this same copy to see the group's marks — and any highlight or note " +
+      "already made against the old copy may land in a different place, because the two texts are not identical.");
+    if (!ok) return;
+    var words = 0;
+    for (var i = 0; i < chapters.length; i++) words += ruCount(chapters[i] && chapters[i].text);
+    setGrpBusy(true); setGrpErr("");
+    try {
+      var r = await authFetch("/api/user-data?group=own", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: grp.id, own: {
+          hash: h, fp: fp, title: bookMeta.title || grp.title, author: bookMeta.author || grp.author,
+          words: words, chapters: chapters.length, file: bookMeta.filename || "",
+        } }),
+      });
+      var d = await r.json().catch(function(){ return {}; });
+      if (!r.ok) throw new Error(d.error || "Could not change the group's file.");
+      setGrp(function(cur){ return cur ? Object.assign({}, cur, d.group || {}) : cur; });
+      setGrpInfo("This copy is now the group's file. Tell the others in the chat — they will need this exact copy.");
+      loadGroups();
+    } catch (e) { setGrpErr(e.message || "Could not change the group's file."); }
+    setGrpBusy(false);
   };
   var pickGroupBook = function(book) {
     if (!book || !book.filename) return;
@@ -7672,6 +7765,7 @@ export default function App() {
       setGrpErr("That is neither a YouTube link nor an audio file (mp3, m4a, ogg, wav, opus, flac).");
       return;
     }
+    audChosen.current = true;
     applyRecording(yid ? { mode: "book", id: yid, byChapter: {} }
                        : { mode: "book", id: "", url: raw, byChapter: {} });
     setGrpInfo("Playing for you. The group still hears the starter's.");
@@ -7682,12 +7776,31 @@ export default function App() {
   // A library book does not: the group's recording stands in for the book's
   // own while the group is being read, and the book's own comes back on the
   // next reload, unchanged for everyone reading it alone.
-  var applyRecording = function(rec) {
+  // A reader who chose a recording for themselves this session keeps it; it
+  // is only the one carried in from reading alone that gives way.
+  var audChosen = useRef(false);
+  var applyRecording = function(rec, keep) {
     var a = normOwnVideo(rec);
     setOwnRec(a);
-    if (bookMeta && bookMeta.own) rememberOwnVideo(bookMeta, a);
+    // `keep === false` applies a recording to the page without writing it
+    // down — used when a group's book plays nothing, so that clearing the
+    // page does not erase what the reader had beside their own copy.
+    if (bookMeta && bookMeta.own && keep !== false) rememberOwnVideo(bookMeta, a);
     setChapters(function(chs){ return attachVideos(stripVideos(chs), { videos: ownVideoMap(chs, a) }); });
   };
+  // A group on a file its members bring plays the group's recording, and
+  // nothing else. The reader's own recording for this book — from reading it
+  // alone, kept under the book's title — used to carry straight into the
+  // group, so everyone heard something different and a group with no
+  // recording sounded as though it had one. It is not forgotten, only set
+  // aside: leave the group, open the book alone, and it is back.
+  useEffect(function() {
+    if (!inGrpBook || !grp || !grp.own || grp.audio) return;
+    if (audChosen.current) return;
+    var cur = normOwnVideo(ownRec);
+    if (!cur.id && !cur.url && !Object.keys(cur.byChapter).length) return;
+    applyRecording({ mode: cur.mode, id: "", url: "", byChapter: {} }, false);
+  }, [inGrpBook, grp && grp.id, grp && !!grp.audio, bookMeta && bookKey(bookMeta)]);
   // A member opening the group's book gets the group's recording.
   useEffect(function() {
     if (!inGrpBook || !grp || !grp.audio) return;
@@ -7797,7 +7910,7 @@ export default function App() {
       var r = await authFetch("/api/user-data?group=create", {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify(grpOwnPick
-          ? { name: grpName.trim(), own: { hash: grpOwnPick.hash, title: grpOwnPick.title,
+          ? { name: grpName.trim(), own: { hash: grpOwnPick.hash, fp: grpOwnPick.fp, title: grpOwnPick.title,
                                            author: grpOwnPick.author, words: grpOwnPick.words,
                                            chapters: grpOwnPick.chapters, file: grpOwnPick.file } }
           : { name: grpName.trim(), filename: grpBook }),
@@ -12486,6 +12599,7 @@ export default function App() {
         @media (max-width:640px){.gchat-tab{right:10px}.gchat-tab.on{display:none}.gchat{width:100vw;border-left:0}}
         .resume-of{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-2);
           text-align:center;margin-bottom:2px}
+        .grp-diag{color:var(--ink-3);font-style:normal;font-size:11.5px}
         .grp-outside{font-family:var(--serif);font-style:italic;font-size:12.5px;color:var(--rubric);
           max-width:520px;line-height:1.4}
         .grp-src{font-family:var(--sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
@@ -17061,10 +17175,29 @@ export default function App() {
                                 not one, so it says so. */}
                             {started && (
                               <span className="grp-outside">
-                                This is your own reading — {grp.own
-                                  ? <>«{grp.name}» reads a file its members bring{grpFileName(grp) ? <>, <b>{grpFileName(grp)}</b></> : null}, not the library copy</>
-                                  : <>not «{grp.name}»'s book</>}. Marks you make here stay yours.
+                                {grp.own && bookMeta.own
+                                  ? <>This copy is not the one «{grp.name}» reads — the same book, a different
+                                      file{grpFileName(grp) ? <>; the group's is <b>{grpFileName(grp)}</b></> : null}.
+                                      Two editions never hold quite the same text, so the group's highlights and notes
+                                      would land in the wrong places and are not shown. What you mark here stays yours,
+                                      and the recording playing is your own, not the group's.
+                                      {grp.own.words ? <span className="grp-diag">
+                                        {" "}The group's copy: {fmtWords(grp.own.words)} in {grp.own.chapters || "?"} chapters.
+                                        {" "}This one: {fmtWords(ownWords)} in {chapters.length} chapters.
+                                        {ownWords === grp.own.words && chapters.length === (grp.own.chapters || 0)
+                                          ? " The same size — send this to the group starter, it is a fingerprinting fault, not your file."
+                                          : ""}
+                                      </span> : null}</>
+                                  : <>This is your own reading — {grp.own
+                                      ? <>«{grp.name}» reads a file its members bring{grpFileName(grp) ? <>, <b>{grpFileName(grp)}</b></> : null}, not the library copy</>
+                                      : <>not «{grp.name}»'s book</>}. Marks you make here stay yours.</>}
                               </span>
+                            )}
+                            {started && grp.own && grpOwner && bookMeta.own && (
+                              <button className="grp-src" disabled={grpBusy} onClick={useThisCopy}
+                                title="Point the group at the copy you have open">
+                                Use this copy as the group's file
+                              </button>
                             )}
                             <button className="grp-open" onClick={function(){ openGroupBook(grp); }}>
                               {grp.own ? "Open your copy of " + (grp.own.title || grp.title) : "Open " + (grp.title || "the group's book")}
