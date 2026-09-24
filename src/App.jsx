@@ -17155,6 +17155,17 @@ export default function App() {
                       <div className="grp-strip">
                         <span className="grp-lbl">Group read</span>
                         <span className="grp-name">{grp.name}</span>
+                        {/* Beside the group's name, on the first line. It sat
+                            further along the strip, after the members and
+                            whatever notice was showing, and on a phone that
+                            put it on a line of its own above the fold — a
+                            button nobody could find. */}
+                        {(inGrpBook || grpOwner) && (
+                          <button className="grp-src" onClick={openAudSrc}
+                            title={grpOwner ? "Change the recording everyone in the group hears" : "Play a different recording beside your copy"}>
+                            New audio source
+                          </button>
+                        )}
                         {inGrpBook ? (
                           <span className="grp-who">
                             {grpMembers.map(function(m, i){
@@ -17203,12 +17214,6 @@ export default function App() {
                               {grp.own ? "Open your copy of " + (grp.own.title || grp.title) : "Open " + (grp.title || "the group's book")}
                             </button>
                           </>
-                        )}
-                        {(inGrpBook || grpOwner) && (
-                          <button className="grp-src" onClick={openAudSrc}
-                            title={grpOwner ? "Change the recording everyone in the group hears" : "Play a different recording beside your copy"}>
-                            New audio source
-                          </button>
                         )}
                         {grp.closed && <span className="grp-closed">closed — its notes stay, new marks are yours alone</span>}
                         {grpInfo && (
@@ -17302,22 +17307,26 @@ export default function App() {
                                 </span>
                               </div>
                             )}
-                            {inGrpBook && grp && grp.own && (
+                            {inGrpBook && grp && (
                               grpOwner ? (
                                 <div className="own-rec-grp">
                                   <button className="own-act" onClick={shareGroupAudio}>
                                     {grp.audio ? "Update the group's recording" : "Give this recording to the group"}
                                   </button>
+                                  <button className="own-link-btn" onClick={openAudSrc}>New audio source</button>
                                   <span className="own-rec-n">
                                     Everyone reading «{grp.name}» hears it beside their own copy.
                                   </span>
                                 </div>
                               ) : (
-                                <p className="own-rec-n">
-                                  {grp.audio
-                                    ? "This is the recording " + grp.name + " is reading to."
-                                    : "The reader who started " + grp.name + " has not set a recording yet."}
-                                </p>
+                                <div className="own-rec-grp">
+                                  <span className="own-rec-n">
+                                    {grp.audio
+                                      ? "This is the recording " + grp.name + " is reading to."
+                                      : "The reader who started " + grp.name + " has not set a recording yet."}
+                                  </span>
+                                  <button className="own-link-btn" onClick={openAudSrc}>New audio source</button>
+                                </div>
                               )
                             )}
                             {ownRec.mode === "chapter" && (
