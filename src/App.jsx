@@ -7966,6 +7966,34 @@ export default function App() {
   // Stepping out of a group only takes it off this page. Membership is
   // permanent: the group stays under "Your groups", notes and all.
   var leaveGroup = function() { endLocalGroup(); };
+  // Out of the group altogether: off the members, off Your groups, gone from
+  // the page. "Step out" beside it only hides the group for now — this is
+  // the one that means it. What was written in the group stays there: the
+  // others are reading around it. Joining again is a click.
+  var quitGroup = async function(g) {
+    if (!g) return;
+    var mine = me && me.username && g.ownerName === me.username;
+    if (mine) {
+      setGrpErr("You started this group — leaving would leave it with nobody to run it. Delete it instead.");
+      return;
+    }
+    if (!window.confirm("Leave «" + g.name + "»?\n\nIt comes off your list and you stop being a member. " +
+                        "Anything you highlighted or wrote in the group stays there for the others — " +
+                        "and you can join again whenever you like.")) return;
+    setGrpBusy(true); setGrpErr("");
+    try {
+      var r = await authFetch("/api/user-data?group=leave", {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: g.id }),
+      });
+      var d = await r.json().catch(function(){ return {}; });
+      if (!r.ok) throw new Error(d.error || "Could not leave the group.");
+      if (grp && grp.id === g.id) endLocalGroup();
+      setMyGroups(function(l){ return (l || []).filter(function(x){ return x.id !== g.id; }); });
+      setGrpInfo("You have left «" + g.name + "».");
+      loadGroups();
+    } catch (e) { setGrpErr(e.message || "Could not leave the group."); }
+    setGrpBusy(false);
+  };
   // The starter can close a group to new marks. Nothing is removed.
   var closeGroup = async function() {
     var g = grp;
@@ -12642,6 +12670,7 @@ export default function App() {
         .grp-diag{color:var(--ink-3);font-style:normal;font-size:11.5px}
         .grp-outside{font-family:var(--serif);font-style:italic;font-size:12.5px;color:var(--rubric);
           max-width:520px;line-height:1.4}
+        .grp-leave.warn{color:var(--rubric)}
         .grp-src{font-family:var(--sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
           color:var(--rubric);background:none;border:1px solid var(--rule);padding:4px 9px;cursor:pointer}
         .grp-src:hover{border-color:var(--rubric)}
@@ -13567,7 +13596,13 @@ export default function App() {
                     )}
                     <div className="grp-acts">
                       <button className="grp-act go" onClick={function(){ openGroupBook(grp); }}>Open the book</button>
-                      <button className="grp-act link" onClick={leaveGroup}>Step out</button>
+                      <button className="grp-act link" onClick={leaveGroup}
+                        title="Take the group off your page for now. You stay a member.">Step out</button>
+                      {!grpOwner && (
+                        <button className="grp-act link warn" disabled={grpBusy}
+                          title="Stop being a member of this group"
+                          onClick={function(){ quitGroup(grp); }}>Leave the group</button>
+                      )}
                       {grpOwner && !grp.closed && <button className="grp-act link warn" onClick={closeGroup}>Close to new notes</button>}
                       {grpOwner && (
                         <button className="grp-act link warn" disabled={grpBusy}
@@ -13578,6 +13613,8 @@ export default function App() {
                   </div>
                   <div className="acct-note">
                     Stepping out only takes the group off your page — you stay a member and keep its notes for good.
+                    Leaving ends the membership: the group comes off your list, and what you wrote in it stays with
+                    the group. You can join again at any time.
                     {grpOwner && !grp.closed ? " Closing it stops new marks; nothing already there is removed." : ""}
                   </div>
                 </div>
@@ -13597,10 +13634,14 @@ export default function App() {
                         </div>
                         <div className="grp-acts">
                           <button className="grp-act" onClick={function(){ enterGroup(g); }}>Open</button>
-                          {me.username && g.ownerName === me.username && (
+                          {me.username && g.ownerName === me.username ? (
                             <button className="grp-act link warn" disabled={grpBusy}
                               title="Delete this group and everything written in it"
                               onClick={function(){ deleteGroup(g); }}>Delete</button>
+                          ) : (
+                            <button className="grp-act link warn" disabled={grpBusy}
+                              title="Stop being a member of this group"
+                              onClick={function(){ quitGroup(g); }}>Leave</button>
                           )}
                         </div>
                       </div>
@@ -13703,6 +13744,12 @@ export default function App() {
                             : (myGroups || []).some(function(x){ return x.id === g.id; })
                               ? <button className="grp-act" onClick={function(){ enterGroup(g); }}>Open</button>
                               : <button className="grp-act go" disabled={grpBusy} onClick={function(){ joinGroup(g); }}>Join</button>}
+                          {me.username && g.ownerName !== me.username &&
+                            (myGroups || []).some(function(x){ return x.id === g.id; }) && (
+                            <button className="grp-act link warn" disabled={grpBusy}
+                              title="Stop being a member of this group"
+                              onClick={function(){ quitGroup(g); }}>Leave</button>
+                          )}
                           {me.username && g.ownerName === me.username && (
                             <button className="grp-act link warn" disabled={grpBusy}
                               title="Delete this group and everything written in it"
@@ -17264,6 +17311,11 @@ export default function App() {
                         <span style={{flex:1}} />
                         <button className="grp-leave" title="Take this group off the page. It stays in Your groups, notes and all."
                           onClick={leaveGroup}>Step out</button>
+                        {!grpOwner && (
+                          <button className="grp-leave warn" disabled={grpBusy}
+                            title="Stop being a member of this group"
+                            onClick={function(){ quitGroup(grp); }}>Leave</button>
+                        )}
                       </div>
                     )}
                     {annTool && (

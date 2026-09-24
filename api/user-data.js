@@ -1161,11 +1161,37 @@ async function handleGroup(req, res, user, action) {
       return res.status(200).json({ ok: true, group: groupSummary(g) });
     }
 
-    // Leaving does not remove anyone. A member keeps the group's notes for
-    // good; "leave" is only the page no longer showing it, which the client
-    // handles — this answers so old clients do not error.
+    // Leaving, for real: out of the members, off your own list of groups. It
+    // was a no-op before — the page simply stopped showing the group and the
+    // membership stayed for good, so a reader who had finished with a group
+    // had no way to be rid of it. What they wrote in the group stays in the
+    // group: the others are reading around it, and a note vanishing from
+    // under someone else's reply helps nobody. Joining again is a click.
+    //
+    // The starter cannot leave their own group — with the owner gone nobody
+    // could ever change or close it. They delete it instead.
     if (action === "leave" && req.method === "POST") {
-      return res.status(200).json({ ok: true });
+      const cur = (await r2GetTagged(gkey(gid))).data;
+      if (cur && !cur.deleted && cur.owner === me.uid && !user.isAdmin) {
+        return res.status(400).json({
+          error: "You started this group — leaving would leave it with nobody to run it. Delete it instead.",
+        });
+      }
+      const g = await r2Update(gkey(gid), function (c) {
+        if (!c || c.deleted) return undefined;
+        if (!c.members || !c.members[me.uid]) return undefined;
+        delete c.members[me.uid];
+        return c;
+      });
+      try {
+        const mine = await r2Get(me.uid, "groups");
+        const ids = (mine && Array.isArray(mine.ids)) ? mine.ids : [];
+        if (ids.indexOf(gid) !== -1) {
+          await r2Put(me.uid, "groups", { ids: ids.filter(function (x) { return x !== gid; }) });
+        }
+      } catch (e) { /* the group is left either way */ }
+      if (g) await refreshIndex(g);
+      return res.status(200).json({ ok: true, left: gid });
     }
 
     // The starter can re-point the group at the copy of the file they have
