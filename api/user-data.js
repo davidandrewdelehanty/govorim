@@ -1093,7 +1093,7 @@ async function handleGroup(req, res, user, action) {
       for (const id of ids.slice(0, 100)) {
         if (!/^[a-z0-9]{8}$/.test(id)) continue;
         const g = (await r2GetTagged(gkey(id))).data;
-        if (g && g.members && g.members[me.uid]) out.push(groupSummary(g));
+        if (g && !g.deleted && g.members && g.members[me.uid]) out.push(groupSummary(g));
       }
       out.sort(function (a, b) { return (b.lastActive || 0) - (a.lastActive || 0); });
       return res.status(200).json({ groups: out });
@@ -1135,13 +1135,13 @@ async function handleGroup(req, res, user, action) {
     if (action === "join" && req.method === "POST") {
       const now = Date.now();
       const g = await r2Update(gkey(gid), function (cur) {
-        if (!cur) return undefined;
+        if (!cur || cur.deleted) return undefined;
         cur.members = cur.members || {};
         cur.members[me.uid] = Object.assign({}, cur.members[me.uid] || { joinedAt: now },
           { name: me.name, avatar: me.avatar, seenAt: now });
         return cur;
       });
-      if (!g) return res.status(404).json({ error: "No such group." });
+      if (!g || g.deleted) return res.status(404).json({ error: "No such group." });
       await refreshIndex(g);
       await rememberMembership(me.uid, gid);
       return res.status(200).json({ ok: true, group: groupSummary(g) });
@@ -1154,11 +1154,31 @@ async function handleGroup(req, res, user, action) {
       return res.status(200).json({ ok: true });
     }
 
+    // The starter can delete a group they started. Unlike closing, this does
+    // take everything with it — the chat, and every highlight and note made
+    // in the group. What each member marked while reading alone is elsewhere
+    // and untouched. The file is replaced by a tombstone rather than removed,
+    // so a poll already in flight gets "no such group" instead of writing the
+    // group back into existence.
+    if (action === "delete" && req.method === "POST") {
+      const cur = (await r2GetTagged(gkey(gid))).data;
+      if (!cur || cur.deleted) return res.status(404).json({ error: "No such group." });
+      if (cur.owner !== me.uid && !user.isAdmin) {
+        return res.status(403).json({ error: "Only the reader who started it can delete it." });
+      }
+      await r2Update(gkey(gid), function (c) {
+        if (!c || c.deleted) return undefined;
+        return { id: c.id, deleted: true, deletedAt: Date.now(), ownerName: c.ownerName || "" };
+      });
+      await refreshIndex({ id: gid }, true);
+      return res.status(200).json({ ok: true, deleted: gid });
+    }
+
     // The starter can close a group to new marks. Nothing is removed: every
     // member keeps reading what is there, forever.
     if ((action === "close" || action === "end") && req.method === "POST") {
       const cur = (await r2GetTagged(gkey(gid))).data;
-      if (!cur) return res.status(404).json({ error: "No such group." });
+      if (!cur || cur.deleted) return res.status(404).json({ error: "No such group." });
       if (cur.owner !== me.uid && !user.isAdmin) return res.status(403).json({ error: "Only the reader who started it can close it." });
       const g = await r2Update(gkey(gid), function (c) {
         if (!c) return undefined;
@@ -1174,7 +1194,7 @@ async function handleGroup(req, res, user, action) {
     // `since`, so no two machines' clocks ever have to agree.
     if (action === "items" && req.method === "GET") {
       const { data: g } = await r2GetTagged(gkey(gid));
-      if (!g) return res.status(404).json({ error: "No such group." });
+      if (!g || g.deleted) return res.status(404).json({ error: "No such group." });
       if (!g.members || !g.members[me.uid]) return res.status(403).json({ error: "Join the group first." });
       const since = Number(q.since) || 0;
       const items = [];
@@ -1215,14 +1235,14 @@ async function handleGroup(req, res, user, action) {
       const audio = cleanAudio(body.audio);
       let refused = "";
       const g = await r2Update(gkey(gid), function (cur) {
-        if (!cur) { refused = "No such group."; return undefined; }
+        if (!cur || cur.deleted) { refused = "No such group."; return undefined; }
         if (cur.owner !== me.uid) { refused = "Only the reader who started the group can set its recording."; return undefined; }
         if (!cur.own) { refused = "That group reads a book from the library, which brings its own recording."; return undefined; }
         cur.audio = audio;
         return cur;
       });
       if (refused) return res.status(400).json({ error: refused });
-      if (!g) return res.status(404).json({ error: "No such group." });
+      if (!g || g.deleted) return res.status(404).json({ error: "No such group." });
       return res.status(200).json({ ok: true, audio: g.audio || null });
     }
 
@@ -1236,7 +1256,7 @@ async function handleGroup(req, res, user, action) {
       const now = Date.now();
       let refused = "", msg = null;
       const g = await r2Update(gkey(gid), function (cur) {
-        if (!cur) { refused = "No such group."; return undefined; }
+        if (!cur || cur.deleted) { refused = "No such group."; return undefined; }
         if (cur.closed || cur.ended) { refused = "This group read is closed — its chat stays, but it takes no new messages."; return undefined; }
         if (!cur.members || !cur.members[me.uid]) { refused = "Join the group first."; return undefined; }
         const chat = Array.isArray(cur.chat) ? cur.chat : [];
@@ -1264,7 +1284,7 @@ async function handleGroup(req, res, user, action) {
       const id = String(body.msg || "");
       let refused = "";
       await r2Update(gkey(gid), function (cur) {
-        if (!cur) { refused = "No such group."; return undefined; }
+        if (!cur || cur.deleted) { refused = "No such group."; return undefined; }
         if (!cur.members || !cur.members[me.uid]) { refused = "Join the group first."; return undefined; }
         const chat = Array.isArray(cur.chat) ? cur.chat : [];
         const m = chat.find(function (x) { return x.id === id; });
@@ -1286,7 +1306,7 @@ async function handleGroup(req, res, user, action) {
       const now = Date.now();
       let refused = "";
       const g = await r2Update(gkey(gid), function (cur) {
-        if (!cur) { refused = "No such group."; return undefined; }
+        if (!cur || cur.deleted) { refused = "No such group."; return undefined; }
         if (cur.closed || cur.ended) { refused = "This group read is closed — its notes stay, but it takes no new ones."; return undefined; }
         if (!cur.members || !cur.members[me.uid]) { refused = "Join the group first."; return undefined; }
         cur.items = cur.items || {};
@@ -1307,7 +1327,7 @@ async function handleGroup(req, res, user, action) {
         return cur;
       });
       if (refused) return res.status(400).json({ error: refused });
-      if (!g) return res.status(404).json({ error: "No such group." });
+      if (!g || g.deleted) return res.status(404).json({ error: "No such group." });
       // The public list only needs to move when the count does.
       try { await refreshIndex(g); } catch (e) {}
       return res.status(200).json({ ok: true, item: g.items[it.id] });

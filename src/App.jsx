@@ -7787,6 +7787,29 @@ export default function App() {
       loadGroups();
     } catch (e) { setGrpErr(e.message); }
   };
+  // Deleting takes the group with it: the chat, and every highlight and note
+  // anyone made in it. Only the reader who started it can, and only their
+  // own. What each member marked reading alone is elsewhere and stays.
+  var deleteGroup = async function(g) {
+    if (!g) return;
+    var ok = window.confirm("Delete «" + g.name + "»?\n\nIts chat and every highlight and note made in the group go with it, for everyone. " +
+                            "This cannot be undone. Your own marks from reading alone are not touched.");
+    if (!ok) return;
+    setGrpBusy(true); setGrpErr("");
+    try {
+      var r = await authFetch("/api/user-data?group=delete", {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: g.id }),
+      });
+      var d = await r.json().catch(function(){ return {}; });
+      if (!r.ok) throw new Error(d.error || "Could not delete it.");
+      if (grp && grp.id === g.id) endLocalGroup();
+      setMyGroups(function(l){ return (l || []).filter(function(x){ return x.id !== g.id; }); });
+      setGroupsList(function(l){ return (l || []).filter(function(x){ return x.id !== g.id; }); });
+      setGrpInfo("«" + g.name + "» is gone.");
+      loadGroups();
+    } catch (e) { setGrpErr(e.message || "Could not delete it."); }
+    setGrpBusy(false);
+  };
   useEffect(function() {
     if (!me || !syncedFromServer || !learnedLoaded.current) return;
     if (!learned || !learned.length) return;
@@ -13347,6 +13370,11 @@ export default function App() {
                       <button className="grp-act go" onClick={function(){ openGroupBook(grp); }}>Open the book</button>
                       <button className="grp-act link" onClick={leaveGroup}>Step out</button>
                       {grpOwner && !grp.closed && <button className="grp-act link warn" onClick={closeGroup}>Close to new notes</button>}
+                      {grpOwner && (
+                        <button className="grp-act link warn" disabled={grpBusy}
+                          title="Delete this group and everything written in it"
+                          onClick={function(){ deleteGroup(grp); }}>Delete</button>
+                      )}
                     </div>
                   </div>
                   <div className="acct-note">
@@ -13370,6 +13398,11 @@ export default function App() {
                         </div>
                         <div className="grp-acts">
                           <button className="grp-act" onClick={function(){ enterGroup(g); }}>Open</button>
+                          {me.username && g.ownerName === me.username && (
+                            <button className="grp-act link warn" disabled={grpBusy}
+                              title="Delete this group and everything written in it"
+                              onClick={function(){ deleteGroup(g); }}>Delete</button>
+                          )}
                         </div>
                       </div>
                     );
@@ -13468,6 +13501,11 @@ export default function App() {
                             : (myGroups || []).some(function(x){ return x.id === g.id; })
                               ? <button className="grp-act" onClick={function(){ enterGroup(g); }}>Open</button>
                               : <button className="grp-act go" disabled={grpBusy} onClick={function(){ joinGroup(g); }}>Join</button>}
+                          {me.username && g.ownerName === me.username && (
+                            <button className="grp-act link warn" disabled={grpBusy}
+                              title="Delete this group and everything written in it"
+                              onClick={function(){ deleteGroup(g); }}>Delete</button>
+                          )}
                         </div>
                       </div>
                     );
