@@ -966,7 +966,18 @@ function cleanOwn(raw) {
   // group's. Either may be absent; one of them has to be there.
   const hash = /^[a-f0-9]{16,64}$/.test(String(o.hash || "")) ? String(o.hash) : "";
   const fp = /^[a-f0-9]{16,32}$/.test(String(o.fp || "")) ? String(o.fp) : "";
-  if (!hash && !fp) return null;
+  // The file itself, by its bytes — what two readers with the same download
+  // hold in common no matter what either one's parser made of it. This is
+  // what a group's file is known by now; the two text fingerprints above stay
+  // for groups started before it, and for copies saved by an older build.
+  const rawBytes = (o.bytes && typeof o.bytes === "object") ? o.bytes : null;
+  const bytes = rawBytes ? {
+    sha: /^[a-f0-9]{16,64}$/.test(String(rawBytes.sha || "")) ? String(rawBytes.sha) : "",
+    fp: /^[a-f0-9]{16,32}$/.test(String(rawBytes.fp || "")) ? String(rawBytes.fp) : "",
+    size: Math.max(0, Math.min(4294967295, Math.round(Number(rawBytes.size) || 0))),
+  } : null;
+  const hasBytes = !!(bytes && (bytes.sha || bytes.fp));
+  if (!hash && !fp && !hasBytes) return null;
   const title = String(o.title || "").trim().slice(0, 120);
   if (!title) return null;
   // The name of the starter's file, kept so the group can say what everyone
@@ -978,6 +989,7 @@ function cleanOwn(raw) {
   return {
     hash,
     fp,
+    bytes: hasBytes ? bytes : null,
     title,
     author: String(o.author || "").trim().slice(0, 120),
     file,

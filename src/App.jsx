@@ -1557,6 +1557,41 @@ function looseText(chapters) {
   t = t.toLowerCase().replace(/ё/g, "е");
   return t.replace(/[^0-9a-zа-я]+/g, "");
 }
+// The file as it came off the disk, before a parser has had an opinion about
+// it. Two readers with the same download hold the same bytes; what those
+// bytes turn into depends on the parser, and the parser has changed under
+// readers' feet — one copy of Москва–Петушки came out as 53 chapters and
+// 45,733 words on one build and 95 chapters and 171,727 words on another, so
+// two people holding one file were told they held different books. Bytes do
+// not drift. They are what a group's file is now known by; the text
+// fingerprints below stay as a fallback for groups made before this.
+async function fileFingerprint(buf) {
+  var bytes = new Uint8Array(buf);
+  var out = { sha: "", fp: "", size: bytes.length };
+  // FNV-1a over the whole file: milliseconds for a novel, and it needs
+  // nothing crypto.subtle has (which is absent outside a secure context).
+  var a = 0x811c9dc5, b = (0x01000193 ^ bytes.length) >>> 0;
+  for (var i = 0; i < bytes.length; i++) {
+    var c = bytes[i];
+    a = Math.imul((a ^ c) >>> 0, 0x01000193) >>> 0;
+    b = Math.imul((b + c) >>> 0, 0x85ebca6b) >>> 0;
+    b = (b ^ (b >>> 13)) >>> 0;
+  }
+  var hex = function(x){ return (x >>> 0).toString(16).padStart(8, "0"); };
+  out.fp = hex(a) + hex(b) + hex(bytes.length);
+  try {
+    var d = await crypto.subtle.digest("SHA-256", bytes);
+    out.sha = Array.from(new Uint8Array(d)).map(function(x){ return x.toString(16).padStart(2, "0"); })
+      .join("").slice(0, 32);
+  } catch (e) {}
+  return out;
+}
+// Two files are the same file when their bytes say so.
+function sameBytes(a, b) {
+  if (!a || !b) return false;
+  if (a.sha && b.sha) return a.sha === b.sha;
+  return !!(a.fp && b.fp && a.fp === b.fp && (a.size || 0) === (b.size || 0));
+}
 function plainFingerprint(chapters) {
   var t = looseText(chapters);
   if (!t) return "";
@@ -7314,6 +7349,7 @@ export default function App() {
       for (var i = 0; i < chs.length; i++) words += ruCount(chs[i] && chs[i].text);
       ownHashes.current[entry.id] = {
         hash: await textFingerprint(chs), fp: plainFingerprint(chs),
+        bytes: d.bytes || entry.bytes || null,
         words: words, chapters: chs.length,
       };
       return ownHashes.current[entry.id];
@@ -7328,11 +7364,13 @@ export default function App() {
     return w;
   }, [chapters]);
   var curBookKey = bookKey(bookMeta);
-  // Either fingerprint is enough. A group made before the second one existed
-  // carries only the digest, and matches on it as before.
+  // The group's book is open when this is the group's file. The bytes decide
+  // it; the text fingerprints answer for groups started before the bytes
+  // were kept, and for a copy that was saved by an older build.
   var inGrpBook = !!(grp && bookMeta && (
-    (grp.own && (grp.own.hash || grp.own.fp))
-      ? (bookMeta.own && ((ownHash && ownHash === grp.own.hash) ||
+    (grp.own && (grp.own.bytes || grp.own.hash || grp.own.fp))
+      ? (bookMeta.own && (sameBytes(bookMeta.bytes, grp.own.bytes) ||
+                          (ownHash && ownHash === grp.own.hash) ||
                           (ownFp && grp.own.fp && ownFp === grp.own.fp)))
       : (bookMeta.filename && bookMeta.filename === grp.filename && !bookMeta.own)));
   var meAsAuthor = me ? { uid: me.id, name: me.username || String(me.email || "").split("@")[0], avatar: me.avatar || "" } : null;
@@ -7589,7 +7627,9 @@ export default function App() {
       if (bookMeta && bookMeta.own && ownHash === g.own.hash && started) { setShowGroups(false); return; }
       for (var j = 0; j < uploadedBooks.length; j++) {
         var f = await uploadFingerprint(uploadedBooks[j]);
-        if (f && ((f.hash && f.hash === g.own.hash) || (f.fp && g.own.fp && f.fp === g.own.fp))) {
+        if (f && (sameBytes(f.bytes, g.own.bytes) ||
+                  (f.hash && f.hash === g.own.hash) ||
+                  (f.fp && g.own.fp && f.fp === g.own.fp))) {
           setShowGroups(false);
           setTab("chat");
           setMode("read");
@@ -7658,7 +7698,8 @@ export default function App() {
     var chs = (d && d.chapters) || [];
     var words = 0;
     for (var i = 0; i < chs.length; i++) words += ruCount(chs[i] && chs[i].text);
-    setGrpOwnPick({ id: entry.id, hash: f.hash, fp: f.fp, title: entry.title || (d && d.title) || "Untitled",
+    setGrpOwnPick({ id: entry.id, hash: f.hash, fp: f.fp, bytes: f.bytes || (d && d.bytes) || null,
+                    title: entry.title || (d && d.title) || "Untitled",
                     author: entry.author || (d && d.author) || "", words: words, chapters: chs.length,
                     file: entry.filename || (d && d.filename) || "",
                     bookKey: (entry.filename || (d && d.filename) || "") + "::" + (entry.title || (d && d.title) || "") });
@@ -7696,7 +7737,8 @@ export default function App() {
       var r = await authFetch("/api/user-data?group=own", {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: grp.id, own: {
-          hash: h, fp: fp, title: bookMeta.title || grp.title, author: bookMeta.author || grp.author,
+          hash: h, fp: fp, bytes: bookMeta.bytes || null,
+          title: bookMeta.title || grp.title, author: bookMeta.author || grp.author,
           words: words, chapters: chapters.length, file: bookMeta.filename || "",
         } }),
       });
@@ -7947,7 +7989,8 @@ export default function App() {
       var r = await authFetch("/api/user-data?group=create", {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify(grpOwnPick
-          ? { name: grpName.trim(), own: { hash: grpOwnPick.hash, fp: grpOwnPick.fp, title: grpOwnPick.title,
+          ? { name: grpName.trim(), own: { hash: grpOwnPick.hash, fp: grpOwnPick.fp, bytes: grpOwnPick.bytes,
+                                           title: grpOwnPick.title,
                                            author: grpOwnPick.author, words: grpOwnPick.words,
                                            chapters: grpOwnPick.chapters, file: grpOwnPick.file } }
           : { name: grpName.trim(), filename: grpBook }),
@@ -9329,6 +9372,7 @@ export default function App() {
     setFErr("");
     opts = opts || {};
     try {
+      var fileFp = await fileFingerprint(buf);
       var result = await parseBook(buf, fname);
       if (!result.chapters || result.chapters.length < 1) throw new Error("No chapters found in file.");
       var chs = result.chapters;
@@ -9483,6 +9527,8 @@ export default function App() {
         // The reader's own file rather than a catalogue book. Decides whether
         // the reader offers to attach a recording.
         own: !opts.fromPreset,
+        // What the file is, as opposed to what it parsed into.
+        bytes: opts.fromPreset ? null : fileFp,
       };
       if (!opts.fromPreset) curSlug.current = "";
       // A book opened from the reader's own machine carries the recording they
@@ -9534,10 +9580,11 @@ export default function App() {
             splitByNumberedSections: !!opts.splitByNumberedSections,
             addedAt: Date.now(),
           };
+          entry.bytes = fileFp;
           await bookStore.set(UPLOAD_BOOK_PREFIX + id, JSON.stringify({
             chapters: chs, title: title, author: author,
             category: entry.category, splitByNumberedSections: entry.splitByNumberedSections,
-            filename: entry.filename,
+            filename: entry.filename, bytes: fileFp,
           }));
           // Update list, newest-first, with eviction of oldest beyond MAX_UPLOADS.
           var current = uploadedBooks.slice();
@@ -9683,6 +9730,7 @@ export default function App() {
         splitByNumberedSections: !!d.splitByNumberedSections,
         audiobook: book.audiobook || d.audiobook || null,
         own: true,
+        bytes: d.bytes || book.bytes || null,
       };
       // Videos come off the live catalogue entry, not the cached chapters: a
       // video attached after this book was cached must still appear. For the
@@ -17279,6 +17327,13 @@ export default function App() {
                                       Two editions never hold quite the same text, so the group's highlights and notes
                                       would land in the wrong places and are not shown. What you mark here stays yours,
                                       and the recording playing is your own, not the group's.
+                                      {grp.own.bytes && bookMeta.bytes && (grp.own.bytes.size || 0) !== (bookMeta.bytes.size || 0)
+                                        ? <span className="grp-diag">
+                                            {" "}The two files are not even the same size — the group's is
+                                            {" "}{fmtInt(Math.round((grp.own.bytes.size || 0) / 1024))} KB, yours is
+                                            {" "}{fmtInt(Math.round((bookMeta.bytes.size || 0) / 1024))} KB.
+                                          </span>
+                                        : null}
                                       {grp.own.words ? <span className="grp-diag">
                                         {" "}The group's copy: {fmtWords(grp.own.words)} in {grp.own.chapters || "?"} chapters.
                                         {" "}This one: {fmtWords(ownWords)} in {chapters.length} chapters.
