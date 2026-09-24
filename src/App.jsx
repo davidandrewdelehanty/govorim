@@ -829,13 +829,24 @@ function ChapterVideo(props) {
     try { return localStorage.getItem("gv_vid_mini") === "1"; } catch (e) { return false; }
   });
   var [ready, setReady]   = useState(false);
+  // A player that never says it is ready, drawn as an empty rectangle: the
+  // API script loaded, the player was constructed, and then nothing — a
+  // content blocker that lets the script through and stops the embed, a
+  // network that drops the player's own requests. The reader saw a blank box
+  // and no transport, with no way to tell whether the recording was there at
+  // all. The watchdogs below replace the API player with a bare iframe after
+  // a few seconds, and failing that offer the recording as a link.
+  var readyRef = useRef(false);
+  var [stuck, setStuck]   = useState(false);
+  var [noEmbed, setNoEmbed] = useState(false);
   var [pos, setPos]       = useState(0);
   var [playing, setPlay]  = useState(false);
   var [total, setTotal]   = useState(0);
   var [drag, setDrag]     = useState(null);
 
   useEffect(function() {
-    setReady(false); setPos(0); setPlay(false); setTotal(0); setDrag(null);
+    setReady(false); setPos(0); setPlay(false); setTotal(0); setDrag(null); setStuck(false); setNoEmbed(false);
+    readyRef.current = false;
     held.current = false; stoppedAtEnd.current = false;
     win.current = { start: start, end: end };
     var dead = false, tick = null;
@@ -881,7 +892,9 @@ function ChapterVideo(props) {
                 try { e.target.seekTo(from, true); } catch (x) {}
               }
               setPos(from || start);
+              readyRef.current = true;
               setReady(true);
+              setStuck(false);
               if (props.ctrl) props.ctrl.current = {
                 // Where the recording is now, for a bookmark that wants to
                 // remember the listening place and not only the reading one.
@@ -914,12 +927,24 @@ function ChapterVideo(props) {
                     where: props.title || "" }),
                 }).catch(function(){});
               } catch (x) {}
+              // 101 and 150 both mean the same thing: whoever posted it has
+              // switched embedding off, so no player anywhere but YouTube
+              // will ever show it. There is nothing to wait for — say so now
+              // and offer the link, instead of leaving a blank rectangle.
+              var code = (e && e.data) || 0;
+              if (code === 101 || code === 150) { setNoEmbed(true); setStuck(true); return; }
               plain();
             }
           }
         });
       } catch (e) { plain(); }
     });
+    // Six seconds without an onReady: stop waiting for the API and put a
+    // plain embed in its place, which needs nothing but the iframe itself.
+    var wd1 = setTimeout(function(){ if (!dead && !readyRef.current) plain(); }, 6000);
+    // Still nothing six seconds after that: say so, and give the reader the
+    // link, rather than leaving an empty rectangle on the page.
+    var wd2 = setTimeout(function(){ if (!dead && !readyRef.current) setStuck(true); }, 12000);
     tick = setInterval(function() {
       var p = player.current;
       if (!p || held.current || !p.getCurrentTime) return;
@@ -943,6 +968,7 @@ function ChapterVideo(props) {
     return function() {
       dead = true;
       if (tick) clearInterval(tick);
+      clearTimeout(wd1); clearTimeout(wd2);
       if (props.ctrl) props.ctrl.current = null;
       try {
         var at = player.current && player.current.getCurrentTime && player.current.getCurrentTime();
@@ -992,6 +1018,17 @@ function ChapterVideo(props) {
   return (
     <>
       <div className={"chvid" + (mini ? " mini" : "")} ref={host} />
+      {stuck && !ready && (
+        <div className="chvid-stuck">
+          {noEmbed
+            ? <>Whoever posted this recording has switched off playing it outside YouTube, so no
+                player here can show it. </>
+            : <>This recording will not start here — a blocker or the network is stopping it. </>}
+          <a href={"https://youtu.be/" + id} target="_blank" rel="noopener noreferrer">
+            Open it on YouTube
+          </a>{" "}and read along{noEmbed ? ", or put a different recording on the book" : ""}.
+        </div>
+      )}
       {ready && (
         <div className="chvid-scrub">
           <button type="button" onClick={toggle} title={playing ? "Pause" : "Play"}
@@ -11028,6 +11065,9 @@ export default function App() {
         /* The chapter's own transport. The embed's scrubber measures the whole
            file, which for a twelve-hour recording makes a single chapter a few
            pixels wide; this one measures the chapter. */
+        .chvid-stuck{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--rubric);
+          max-width:640px;margin:-8px 0 16px;line-height:1.5}
+        .chvid-stuck a{color:var(--rubric)}
         .chvid-scrub{display:flex;align-items:center;gap:8px;width:100%;max-width:640px;
           margin:8px 0 16px;padding:7px 10px;box-sizing:border-box;
           background:rgba(42,31,20,.05);border:1px solid rgba(42,31,20,.13);border-radius:10px;
