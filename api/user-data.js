@@ -964,10 +964,18 @@ function cleanOwn(raw) {
   if (!/^[a-f0-9]{16,64}$/.test(hash)) return null;
   const title = String(o.title || "").trim().slice(0, 120);
   if (!title) return null;
+  // The name of the starter's file, kept so the group can say what everyone
+  // needs to go and find. The text fingerprint is what actually decides
+  // whether two copies are the same book — a file renamed is still the same
+  // file — but a reader looking for it needs a name and an extension, and a
+  // reader whose copy does not match needs to be told which one does.
+  const file = String(o.file || "").trim().replace(/^.*[\\/]/, "").slice(0, 160);
   return {
     hash,
     title,
     author: String(o.author || "").trim().slice(0, 120),
+    file,
+    ext: (file.match(/\.([A-Za-z0-9]{1,8})$/) || ["", ""])[1].toLowerCase(),
     words: Math.max(0, Math.min(5000000, Math.round(Number(o.words) || 0))),
     chapters: Math.max(0, Math.min(5000, Math.round(Number(o.chapters) || 0))),
   };

@@ -7562,11 +7562,21 @@ export default function App() {
     for (var i = 0; i < chs.length; i++) words += ruCount(chs[i] && chs[i].text);
     setGrpOwnPick({ id: entry.id, hash: h, title: entry.title || (d && d.title) || "Untitled",
                     author: entry.author || (d && d.author) || "", words: words, chapters: chs.length,
+                    file: entry.filename || (d && d.filename) || "",
                     bookKey: (entry.filename || (d && d.filename) || "") + "::" + (entry.title || (d && d.title) || "") });
     setGrpBook("");
     setGrpPicking(false);
     setGrpPickKind("");
     setShowGroups(true);
+  };
+  // The exact file a group reads, for the places that have to name it. An
+  // EPUB and an FB2 of the same novel do not hold the same text — different
+  // front matter, different chapter breaks, sometimes a different
+  // translation — so a note anchored in one lands nowhere in the other. The
+  // fingerprint catches that, and this is how a reader is told what to look
+  // for rather than being left to guess.
+  var grpFileName = function(g) {
+    return (g && g.own && g.own.file) ? String(g.own.file) : "";
   };
   var pickGroupBook = function(book) {
     if (!book || !book.filename) return;
@@ -7606,7 +7616,16 @@ export default function App() {
   // recording, and this reader's too if they have the book open.
   var setGroupAudioLink = async function() {
     var raw = grpAudioRaw.trim();
-    if (!raw) { if (await putGroupAudio(null)) { setGrpAudioRaw(""); return true; } return false; }
+    if (!raw) {
+      if (await putGroupAudio(null)) {
+        setGrpAudioRaw("");
+        // Clearing has to reach the page too: the book's own recording comes
+        // back for a library book, and nothing plays for a book of one's own.
+        if (inGrpBook) applyRecording({ mode: "book", id: "", url: "", byChapter: {} });
+        return true;
+      }
+      return false;
+    }
     var id = youtubeId(raw);
     // A recording is a YouTube page or a file on the web — the same two the
     // Your own book page takes. The group's field took only the first, which
@@ -7621,7 +7640,15 @@ export default function App() {
       : { mode: "book", id: "", url: raw, byChapter: {} });
     if (ok) {
       setGrpAudioRaw("");
-      if (inGrpBook) { if (id) setOwnVideoLink(id, cidx); else addOwnRecording(raw); }
+      // Straight onto the page, without waiting for the poll to hand the
+      // group's own record back. applyRecording rebuilds the chapters, which
+      // the older call did only for a book the reader brought themselves —
+      // so on a library book the group's recording saved and then did not
+      // play.
+      if (inGrpBook) {
+        applyRecording(id ? { mode: "book", id: id, byChapter: {} }
+                          : { mode: "book", id: "", url: raw, byChapter: {} });
+      }
     }
     return ok;
   };
@@ -7639,22 +7666,38 @@ export default function App() {
     if (grpOwner) { if (await setGroupAudioLink()) setGrpAudOpen(false); return; }
     var raw = grpAudioRaw.trim();
     if (!raw) { setGrpErr("Paste a link first."); return; }
-    if (!bookMeta || !bookMeta.own) { setGrpErr("Open your copy of the book first — then the recording has something to play beside."); return; }
-    if (addOwnRecording(raw)) { setGrpInfo("Playing for you. The group still hears the starter's."); setGrpAudOpen(false); }
-    else setGrpErr("That is neither a YouTube link nor an audio file (mp3, m4a, ogg, wav, opus, flac).");
+    if (!started || !chapters.length) { setGrpErr("Open the book first — then the recording has something to play beside."); return; }
+    var yid = youtubeId(raw);
+    if (!yid && !audioLinkOk(raw)) {
+      setGrpErr("That is neither a YouTube link nor an audio file (mp3, m4a, ogg, wav, opus, flac).");
+      return;
+    }
+    applyRecording(yid ? { mode: "book", id: yid, byChapter: {} }
+                       : { mode: "book", id: "", url: raw, byChapter: {} });
+    setGrpInfo("Playing for you. The group still hears the starter's.");
+    setGrpAudOpen(false);
   };
-  // A member opening the group's file gets the group's recording.
+  // Put a recording on the open book, whatever kind of book it is. A book
+  // the reader brought keeps it — it is theirs, and it belongs with the file.
+  // A library book does not: the group's recording stands in for the book's
+  // own while the group is being read, and the book's own comes back on the
+  // next reload, unchanged for everyone reading it alone.
+  var applyRecording = function(rec) {
+    var a = normOwnVideo(rec);
+    setOwnRec(a);
+    if (bookMeta && bookMeta.own) rememberOwnVideo(bookMeta, a);
+    setChapters(function(chs){ return attachVideos(stripVideos(chs), { videos: ownVideoMap(chs, a) }); });
+  };
+  // A member opening the group's book gets the group's recording.
   useEffect(function() {
-    if (!inGrpBook || !grp || !grp.own || !grp.audio) return;
+    if (!inGrpBook || !grp || !grp.audio) return;
     var a = normOwnVideo(grp.audio);
     var cur = normOwnVideo(ownRec);
     if (JSON.stringify(a) === JSON.stringify(cur)) return;
     if (cur.id || Object.keys(cur.byChapter).length) {
       setGrpInfo("The group's recording changed — this is the new one.");
     }
-    setOwnRec(a);
-    rememberOwnVideo(bookMeta, a);
-    setChapters(function(chs){ return attachVideos(stripVideos(chs), { videos: ownVideoMap(chs, a) }); });
+    applyRecording(a);
   }, [inGrpBook, grp && grp.audio && JSON.stringify(grp.audio), bookMeta && bookKey(bookMeta)]);
 
   var cancelGroupPick = function() {
@@ -7756,7 +7799,7 @@ export default function App() {
         body: JSON.stringify(grpOwnPick
           ? { name: grpName.trim(), own: { hash: grpOwnPick.hash, title: grpOwnPick.title,
                                            author: grpOwnPick.author, words: grpOwnPick.words,
-                                           chapters: grpOwnPick.chapters } }
+                                           chapters: grpOwnPick.chapters, file: grpOwnPick.file } }
           : { name: grpName.trim(), filename: grpBook }),
       });
       var d = await r.json().catch(function(){ return {}; });
@@ -12443,6 +12486,8 @@ export default function App() {
         @media (max-width:640px){.gchat-tab{right:10px}.gchat-tab.on{display:none}.gchat{width:100vw;border-left:0}}
         .resume-of{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-2);
           text-align:center;margin-bottom:2px}
+        .grp-outside{font-family:var(--serif);font-style:italic;font-size:12.5px;color:var(--rubric);
+          max-width:520px;line-height:1.4}
         .grp-src{font-family:var(--sans);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
           color:var(--rubric);background:none;border:1px solid var(--rule);padding:4px 9px;cursor:pointer}
         .grp-src:hover{border-color:var(--rubric)}
@@ -13344,7 +13389,7 @@ export default function App() {
                         <span className="grp-row-m">{grpMembers.filter(function(m){ return m.here; }).length} reading now</span>
                       </div>
                     )}
-                    {grp.own && (
+                    {(
                       <div className="grp-audio">
                         <div className="grp-audio-h">
                           Recording
@@ -13469,9 +13514,12 @@ export default function App() {
                     })()}
                     {grpOwnPick && (
                       <p className="acct-note" style={{marginTop:2}}>
-                        Everyone who joins needs the same file on their own device — the file itself
-                        is never uploaded, only a fingerprint of its text, which is what tells the
-                        group that two copies are the same book.
+                        Everyone who joins needs this exact file{grpOwnPick.file ? <> — <b>{grpOwnPick.file}</b>,
+                        the same name and the same extension</> : null}. An EPUB and an FB2 of the same novel
+                        hold different text, and a note written in one lands in the wrong place in the other,
+                        so only the same file is let in. The file itself is never uploaded: only a fingerprint
+                        of its text, which is what tells the group that two copies match. Send the others your
+                        copy, or tell them in the chat where you got it.
                       </p>
                     )}
                   </div>
@@ -15452,8 +15500,13 @@ export default function App() {
                     <div>
                       <div className="grp-picking-k">«{grp.name}»</div>
                       <div className="grp-picking-t">
-                        The group reads a file its members bring, so the text is not on this site — it has to
-                        be the same file, word for word. The group's highlights and notes are waiting on it.
+                        The group reads a file its members bring, so the text is not on this site.
+                        {grpFileName(grp)
+                          ? <> Find and open <b>{grpFileName(grp)}</b> — the same file, with the same name and
+                              the same extension. </>
+                          : <> It has to be the same file, word for word. </>}
+                        An EPUB and an FB2 of the same novel are not the same text, and a note written in one
+                        lands in the wrong place in the other, so anything else is turned away.
                       </div>
                       {grpErr && <div className="grp-picking-e">{grpErr}</div>}
                     </div>
@@ -17000,11 +17053,25 @@ export default function App() {
                             })}
                           </span>
                         ) : (
-                          <button className="grp-open" onClick={function(){ openGroupBook(grp); }}>
-                            {grp.own ? "Open your copy of " + (grp.own.title || grp.title) : "Open " + (grp.title || "the group's book")}
-                          </button>
+                          <>
+                            {/* Reading a book while in a group, but not the
+                                group's copy of it — the library edition of a
+                                novel the group reads as a file, most often.
+                                It looks exactly like the group read and is
+                                not one, so it says so. */}
+                            {started && (
+                              <span className="grp-outside">
+                                This is your own reading — {grp.own
+                                  ? <>«{grp.name}» reads a file its members bring{grpFileName(grp) ? <>, <b>{grpFileName(grp)}</b></> : null}, not the library copy</>
+                                  : <>not «{grp.name}»'s book</>}. Marks you make here stay yours.
+                              </span>
+                            )}
+                            <button className="grp-open" onClick={function(){ openGroupBook(grp); }}>
+                              {grp.own ? "Open your copy of " + (grp.own.title || grp.title) : "Open " + (grp.title || "the group's book")}
+                            </button>
+                          </>
                         )}
-                        {grp.own && (inGrpBook || grpOwner) && (
+                        {(inGrpBook || grpOwner) && (
                           <button className="grp-src" onClick={openAudSrc}
                             title={grpOwner ? "Change the recording everyone in the group hears" : "Play a different recording beside your copy"}>
                             New audio source
