@@ -5253,6 +5253,10 @@ export default function App() {
     return writeProgressMap(function(all) { delete all[key]; return all; });
   };
 
+  // The book whose reading has just been declared over, so the word at the
+  // end of it can be said wherever the reader happened to be when they said
+  // so. Cleared when the mark comes off, and when another book opens.
+  var [justRead, setJustRead] = useState("");
   var toggleFinished = function(meta) {
     var k = bookKey(meta);
     if (!k) return;
@@ -5267,9 +5271,11 @@ export default function App() {
       // settle the question in the unmark's favour.
       if (next[k] && !next[k].removed) {
         next[k] = { removed: true, at: Date.now(), title: next[k].title || "", author: next[k].author || "" };
+        setJustRead(function(cur){ return cur === k ? "" : cur; });
       } else {
         next[k] = { at: Date.now(), title: meta.title || "", author: meta.author || "" };
         nowFinished = true;
+        setJustRead(k);
         // There is no page turn after the last chapter, so finishing the book
         // is what counts the tail of it.
         if (k === bookKey(bookMeta) && chapters.length) {
@@ -6154,6 +6160,20 @@ export default function App() {
       clearTimeout(first);
     };
   }, [started, isLit, lview, cidx, chapters.length, bookMeta.title]);
+  // The word at the end of a book is worth seeing: when the reader marks one
+  // read from the middle of the page, the card is brought to them.
+  useEffect(function() {
+    if (!justRead || justRead !== bookKey(bookMeta)) return;
+    var t = setTimeout(function(){
+      try {
+        var el = document.querySelector(".fin-card");
+        if (el && el.scrollIntoView) el.scrollIntoView({ behavior: "smooth", block: "center" });
+      } catch (e) {}
+    }, 260);
+    return function(){ clearTimeout(t); };
+  }, [justRead, bookMeta.title]);
+  // Another book, another reading: the card belongs to the one just finished.
+  useEffect(function(){ setJustRead(""); }, [bookMeta.title, bookMeta.filename]);
   // A new chapter starts its own measurement.
   useEffect(function(){ lastSeen.current = 0; }, [cidx, bookMeta.title]);
 
@@ -18216,8 +18236,19 @@ export default function App() {
                             and that was all. */}
                         {(function(){
                           if (!isFinished(bookMeta)) return null;
-                          if (cidx !== chapters.length - 1) return null;
-                          if (pidx < totalPages - 1) return null;
+                          // Three ways to be at the end of a book, and the
+                          // first version only knew one of them.
+                          //   · the reader has just marked it read, wherever
+                          //     they were standing when they did it;
+                          //   · a short work shown as one page — Белые ночи
+                          //     is six nights on a single scroll, so its
+                          //     chapter index never leaves 0 and "the last
+                          //     chapter" never arrives;
+                          //   · the ordinary case: last chapter, last page.
+                          var mergedNow = !!(mergedCh && mergedCh.merged);
+                          var atEnd = mergedNow ||
+                            (cidx === chapters.length - 1 && pidx >= totalPages - 1);
+                          if (!atEnd && justRead !== bookKey(bookMeta)) return null;
                           var bk = bookKey(bookMeta);
                           var looked = Object.keys(lookedMap[bk] || {}).length;
                           var added = vocab.filter(function(v){
