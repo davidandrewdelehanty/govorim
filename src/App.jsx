@@ -277,6 +277,11 @@ function bookKey(meta) {
 // only so stale blobs keep getting cleaned out of users' storage.
 var QHIST_KEY  = "epub_qhist_v1";
 var UPLOADS_LIST_KEY  = "epub_uploads_v1";
+// Which words were looked up in which book: { "<book key>": { "слово": 1 } }.
+// Counted per book and per device, and only so a finished book can say what
+// the reading cost — no word is sent anywhere, and the whole thing is trimmed
+// to the last sixty books so it cannot grow without end.
+var LOOKED_KEY = "gv_looked_v1";
 // The recording a reader pasted beside their own book, per book. Tiny — one
 // YouTube id each — so it stays in localStorage with the other small keys.
 var OWN_VIDEO_KEY = "gv_own_video_v1";
@@ -4951,6 +4956,16 @@ export default function App() {
     if (!progUiLoaded.current) return;
     storage.set("gv_prog_ui_v1", JSON.stringify({ open: progOpen, hidden: progHidden })).catch(function(){});
   }, [progOpen, progHidden]);
+  useEffect(function() {
+    storage.get(LOOKED_KEY).then(function(r){
+      if (r && r.value) { try { setLookedMap(JSON.parse(r.value) || {}); } catch (e) {} }
+      lookedLoaded.current = true;
+    }).catch(function(){ lookedLoaded.current = true; });
+  }, []);
+  useEffect(function() {
+    if (!lookedLoaded.current) return;
+    storage.set(LOOKED_KEY, JSON.stringify(lookedMap)).catch(function(){});
+  }, [lookedMap]);
   var statsLoaded = useRef(false);
   var learnedLoaded = useRef(false);
   useEffect(function() {
@@ -7242,6 +7257,8 @@ export default function App() {
   // the group they are starting on it.
   var [grpImport, setGrpImport]     = useState(true);
   var [grpInfo, setGrpInfo]         = useState("");
+  var [lookedMap, setLookedMap]     = useState({});
+  var lookedLoaded                  = useRef(false);
   var [ownHash, setOwnHash]         = useState("");
   var [ownFp, setOwnFp]             = useState("");
   var ownHashes                     = useRef({});
@@ -8944,6 +8961,22 @@ export default function App() {
               sentence:srcSentence,where:srcWhere});
     try {
       var data = await fetchDef(clean);
+      // One word, once, against the book it was read in.
+      (function(){
+        var bk = bookKey(bookMeta);
+        var w = String(clean).toLowerCase().replace(/\u0301/g, "").replace(/ё/g, "е");
+        if (!bk || !w) return;
+        setLookedMap(function(prev){
+          var cur = prev[bk] || {};
+          if (cur[w]) return prev;
+          var next = Object.assign({}, prev);
+          next[bk] = Object.assign({}, cur);
+          next[bk][w] = 1;
+          var keys = Object.keys(next);
+          while (keys.length > 60) { delete next[keys.shift()]; }
+          return next;
+        });
+      })();
       // Several headwords behind this spelling: order them by the sentence's
       // cue, and if the cue points at a different reading than the one the
       // dictionary led with, show that one — the others stay a tap away.
@@ -11193,6 +11226,23 @@ export default function App() {
         /* The chapter's own transport. The embed's scrubber measures the whole
            file, which for a twelve-hour recording makes a single chapter a few
            pixels wide; this one measures the chapter. */
+        /* Finished a book. Ruled like a title page rather than dressed up
+           like a trophy: this is a reading site. */
+        .fin-card{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+          padding:22px 0 20px;margin:34px 0 8px;max-width:640px}
+        .fin-k{font-family:var(--sans);font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+          color:var(--rubric);margin-bottom:8px}
+        .fin-t{font-family:var(--display);font-size:24px;line-height:1.25;color:var(--ink);margin:0 0 4px}
+        .fin-a{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-2);margin:0 0 12px}
+        .fin-b{font-family:var(--serif);font-size:15px;line-height:1.6;color:var(--ink-2);margin:0 0 14px}
+        .fin-b b{color:var(--ink);font-weight:400;font-variant-numeric:tabular-nums}
+        .fin-acts{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+        .fin-link{font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+          color:var(--rubric);background:none;border:0;padding:0;cursor:pointer;
+          border-bottom:1px solid rgba(155,45,31,.4)}
+        .fin-link:hover{border-bottom-color:var(--rubric)}
+        .fin-sep{color:var(--ink-3)}
+        @media(max-width:700px){ .fin-t{font-size:21px} }
         .chvid-stuck{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--rubric);
           max-width:640px;margin:-8px 0 16px;line-height:1.5}
         .chvid-stuck a{color:var(--rubric)}
@@ -17833,6 +17883,52 @@ export default function App() {
                             onSelect={function(sb){ if (!annTool) setSelBox(sb); }}
                             selOpen={!!selBox} />
                         </div>
+                        {/* The last page of a book that has been marked read.
+                            A book finished is the only thing on this site that
+                            takes weeks, and it used to pass without a word —
+                            the green tick appeared on a card in the library
+                            and that was all. */}
+                        {(function(){
+                          if (!isFinished(bookMeta)) return null;
+                          if (cidx !== chapters.length - 1) return null;
+                          if (pidx < totalPages - 1) return null;
+                          var bk = bookKey(bookMeta);
+                          var looked = Object.keys(lookedMap[bk] || {}).length;
+                          var added = vocab.filter(function(v){
+                            return (v.srcBook && bookMeta.filename && v.srcBook === bookMeta.filename) ||
+                                   (v.srcTitle && bookMeta.title && v.srcTitle === bookMeta.title);
+                          }).length;
+                          var allRead = statsTotals(stats).read || 0;
+                          return (
+                            <div className="fin-card">
+                              <div className="fin-k">Finished</div>
+                              <h2 className="fin-t">Way to go — you have read «{bookMeta.title}».</h2>
+                              {bookMeta.author ? <div className="fin-a">{bookMeta.author}</div> : null}
+                              <p className="fin-b">
+                                {bookWordsShown
+                                  ? <>It came to <b>{fmtWords(bookWordsShown)}</b>. </>
+                                  : null}
+                                {looked
+                                  ? <>You looked up <b>{fmtInt(looked)}</b> {looked === 1 ? "word" : "words"} in it
+                                      {added ? <> and kept <b>{fmtInt(added)}</b> of them</> : null}. </>
+                                  : (added ? <>You kept <b>{fmtInt(added)}</b> {added === 1 ? "word" : "words"} from it. </> : null)}
+                                {allRead ? <>That is <b>{fmtWords(allRead)}</b> read on this site altogether.</> : null}
+                              </p>
+                              <div className="fin-acts">
+                                <button type="button" className="fin-link" onClick={function(){
+                                  stopTTS(); setMode("read"); setStarted(false); setLview("read");
+                                  try { window.scrollTo(0, 0); } catch (e) {}
+                                }}>Back to the library</button>
+                                <span className="fin-sep">·</span>
+                                <button type="button" className="fin-link" onClick={function(){
+                                  stopTTS(); setStarted(false); setTab("vocab");
+                                  setQuizMode(false); setQuizMenu(true);
+                                  try { window.scrollTo(0, 0); } catch (e) {}
+                                }}>Practise your vocabulary</button>
+                              </div>
+                            </div>
+                          );
+                        })()}
                         {/* The same move again at the foot of the text, where a
                             reader who has finished the chapter actually is. The
                             pair at the top stays: it is for leaving a chapter,
