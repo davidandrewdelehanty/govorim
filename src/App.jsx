@@ -8979,7 +8979,7 @@ export default function App() {
     setSayState("");
     try { if (sayAudioRef.current) sayAudioRef.current.pause(); } catch(e) {}
     // The word before the click, for telling apart readings of one spelling.
-    var prevWord = "", nextWord = "", prevGap = "", nextGap = "";
+    var prevWord = "", nextWord = "", prevGap = "", nextGap = "", prevWord2 = "", nextWord2 = "";
     if (typeof charPosition === "number" && curChapter && curChapter.text) {
       var before = curChapter.text.slice(Math.max(0, charPosition - 40), charPosition);
       var pm = before.match(/([А-Яа-яЁё][А-Яа-яЁё-]*)([^А-Яа-яЁё]*)$/);
@@ -8990,6 +8990,11 @@ export default function App() {
                                         charPosition + String(word || "").length + 40);
       var nm = after.match(/^([^А-Яа-яЁё]*)([А-Яа-яЁё][А-Яа-яЁё-]*)/);
       if (nm) { nextGap = nm[1] || ""; nextWord = nm[2]; }
+      // One more word out on each side, for the preposition case below.
+      var pm2 = before.match(/([А-Яа-яЁё][А-Яа-яЁё-]*) ([А-Яа-яЁё][А-Яа-яЁё-]*)[^А-Яа-яЁё]*$/);
+      if (pm2) prevWord2 = pm2[1];
+      var nm2 = after.match(/^[^А-Яа-яЁё]*[А-Яа-яЁё][А-Яа-яЁё-]* ([А-Яа-яЁё][А-Яа-яЁё-]*)/);
+      if (nm2) nextWord2 = nm2[1];
     }
     // The sentence it sits in, and the work it came from. Kept whether or not
     // the reader saves the word — it is the popup's best example either way.
@@ -9007,7 +9012,8 @@ export default function App() {
               sentence:srcSentence,where:srcWhere,phrases:null});
     // Only a plain space may stand between two words of a phrase: a comma, a
     // dash or a line break means they belong to different thoughts.
-    askPhrases(clean, /^ ?$/.test(prevGap) ? prevWord : "", /^ ?$/.test(nextGap) ? nextWord : "");
+    askPhrases(clean, /^ ?$/.test(prevGap) ? prevWord : "", /^ ?$/.test(nextGap) ? nextWord : "",
+               prevWord2, nextWord2);
     try {
       var data = await fetchDef(clean);
       // One word, once, against the book it was read in.
@@ -9091,7 +9097,7 @@ export default function App() {
                     .split(" ");
   var phraseSkip = {};
   PHRASE_SKIP.forEach(function(w){ phraseSkip[w] = 1; });
-  var askPhrases = function(word, prev, next) {
+  var askPhrases = function(word, prev, next, prev2, next2) {
     var usable = function(w){
       var x = String(w || "").toLowerCase().replace(/ё/g, "е");
       return x.length >= 3 && !phraseSkip[x];
@@ -9099,6 +9105,13 @@ export default function App() {
     var tries = [];
     if (usable(prev)) tries.push(prev.toLowerCase() + " " + word.toLowerCase());
     if (usable(next)) tries.push(word.toLowerCase() + " " + next.toLowerCase());
+    // A preposition in the middle is the one shape worth a third word:
+    // «иметь в виду», «быть в курсе», «на самом деле». The pairs on either
+    // side of it are meaningless on their own, which is why they are skipped
+    // above — so without this the phrase could never be found at all.
+    var isPrep = function(w){ return /^(в|во|на|за|под|из|с|со|о|об|от|до|по|при|над|без|к|ко|у)$/.test(String(w || "").toLowerCase()); };
+    if (isPrep(prev) && usable(prev2)) tries.push(prev2.toLowerCase() + " " + prev.toLowerCase() + " " + word.toLowerCase());
+    if (isPrep(next) && usable(next2)) tries.push(word.toLowerCase() + " " + next.toLowerCase() + " " + next2.toLowerCase());
     if (!tries.length) return;
     var forWord = word;
     tries.forEach(function(ph){
@@ -9133,7 +9146,10 @@ export default function App() {
         word: ph.phrase, data: ph.data, loading: false, error: null, yo: null, noEntry: false,
         asPhrase: true, fromWord: pp.asPhrase ? pp.fromWord : pp.word,
         phrases: (pp.phrases || []).filter(function(x){ return x.phrase !== ph.phrase; })
-          .concat(pp.asPhrase ? [] : [{ phrase: pp.word, data: pp.data, isWord: true }]),
+          // The word can only be offered back when it had an entry of its
+          // own — «дорога» may have had none at all, which is the very case
+          // the phrase is rescuing.
+          .concat((pp.asPhrase || !pp.data) ? [] : [{ phrase: pp.word, data: pp.data, isWord: true }]),
       });
     });
   };
@@ -18898,6 +18914,32 @@ export default function App() {
                 </div>
               )}
 
+              {/* Offered whether or not the word itself was found: a
+                  dictionary can miss «дорога» and still know «железная
+                  дорога», and that is when the pair is worth most. */}
+                {!popup.loading && popup.phrases && popup.phrases.some(function(x){ return x && x.data; }) && (
+                  <div className="preads pphr" role="group" aria-label="Words that go together">
+                    <div className="preads-q">
+                      {popup.asPhrase
+                        ? "Or read it as the single word:"
+                        : (popup.noEntry
+                            ? "On its own this word is not in the dictionary — but the phrase it sits in is:"
+                            : "These words go together — the phrase has its own meaning:")}
+                    </div>
+                    <div className="preads-row">
+                      {popup.phrases.filter(function(ph){ return ph && ph.data; }).map(function(ph, i){
+                        return (
+                          <button key={i} className="pread phr" title={ph.data.translation || ""}
+                                  onClick={function(){ readAsPhrase(ph); }}>
+                            <span className="pread-pos">{ph.isWord ? "word" : "phrase"}</span>
+                            <span className="pread-lem">{ph.phrase}</span>
+                            <span className="pread-note">{String(ph.data.translation || "").split(/[,;]/)[0].slice(0, 28)}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               {!popup.loading && !popup.error && !popup.yo && !popup.noEntry && popup.data && (
                 <>
                   {popup.data.readings && popup.data.readings.length > 1 && (
@@ -18916,27 +18958,6 @@ export default function App() {
                               <span className="pread-pos">{r.pos || "other"}</span>
                               <span className="pread-lem">{r.lemma}</span>
                               {r.note && <span className="pread-note">{r.note.replace(/\s+of\s+.*$/, "")}</span>}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  )}
-                  {popup.phrases && popup.phrases.length > 0 && (
-                    <div className="preads pphr" role="group" aria-label="Words that go together">
-                      <div className="preads-q">
-                        {popup.asPhrase
-                          ? "Or read it as the single word:"
-                          : "These two words go together — that pair has its own meaning:"}
-                      </div>
-                      <div className="preads-row">
-                        {popup.phrases.map(function(ph, i){
-                          return (
-                            <button key={i} className="pread phr" title={ph.data.translation || ""}
-                                    onClick={function(){ readAsPhrase(ph); }}>
-                              <span className="pread-pos">{ph.isWord ? "word" : "phrase"}</span>
-                              <span className="pread-lem">{ph.phrase}</span>
-                              <span className="pread-note">{String(ph.data.translation || "").split(/[,;]/)[0].slice(0, 28)}</span>
                             </button>
                           );
                         })}
