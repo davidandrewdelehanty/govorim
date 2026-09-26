@@ -595,6 +595,89 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "YANDEX_DICT_KEY not configured on the server" });
   }
 
+  // —— A phrase, not a word —————————————————————————————————————
+  //
+  // сад is a garden. детский сад is a kindergarten, and no amount of
+  // morphology on сад will ever say so — the meaning lives in the pair. So
+  // the reader's tap also asks about the word with its neighbour on either
+  // side, and whatever the dictionaries recognise comes back as another
+  // reading to choose from.
+  //
+  // Deliberately a narrow path: the exact phrase, and only the tiers that key
+  // on an exact string — the hand glossary, Yandex, Wiktionary's own page. No
+  // lemma resolution, no ё fan-out beyond the obvious, no AI. A phrase that
+  // is not in a dictionary is not a phrase, and answering 404 quickly is the
+  // whole point: this runs twice on every tap.
+  if (req.query && req.query.phrase) {
+    const pr = String(req.query.phrase).trim().toLowerCase()
+      .replace(/[^\u0430-\u044f\u04510-9\- ]/g, " ").replace(/\s+/g, " ").trim();
+    const parts = pr ? pr.split(" ") : [];
+    if (parts.length < 2 || parts.length > 3 || pr.length > 60 ||
+        parts.some(function (w) { return w.length < 2; })) {
+      return res.status(400).json({ error: "A phrase is two or three words." });
+    }
+    if (!currentUser(req) && !isPublicSite()) {
+      return res.status(401).json({ error: "An account is required." });
+    }
+    // A tap asks about the word AND about the pairs it sits in, so a phrase
+    // probe must not eat the reader's allowance for words: it draws on a
+    // bucket of its own. Being turned away here costs nothing — the word's
+    // definition is already on its way, and the phrase was only an offer.
+    const rlP = checkRateLimit(getClientIp(req) + "|phrase", !!currentUser(req));
+    if (!rlP.ok) return res.status(429).json({ error: rlP.reason });
+
+    const ctrlP = new AbortController();
+    const tP = setTimeout(function () { ctrlP.abort(); }, 4500);
+    const deyoP = pr.replace(/\u0451/g, "\u0435");
+    const cands = pr === deyoP ? [pr] : [pr, deyoP];
+    try {
+      // The curator's own rulings first, exactly as for a single word.
+      try {
+        const gl = await loadGlossary(false);
+        const found = lookupGlossary(gl, cands, "hand");
+        if (found) {
+          const built = glossaryEntry(found.hit, pr, found.matched);
+          if (built) {
+            res.setHeader("Cache-Control", "public, s-maxage=60");
+            return res.status(200).json(Object.assign({ phrase: pr }, built));
+          }
+        }
+      } catch (e) { /* the glossary is a convenience, never a gate */ }
+
+      if (process.env.YANDEX_DICT_KEY) {
+        for (const c of cands) {
+          const defs = await yandexLookup(c, "ru-en", ctrlP.signal);
+          if (defs.length) {
+            const entry = buildEntry(defs, pr, c);
+            res.setHeader("Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
+            return res.status(200).json(Object.assign({ phrase: pr }, entry));
+          }
+        }
+      }
+
+      if (process.env.WIKTIONARY_FALLBACK !== "0") {
+        for (const c of cands) {
+          const pack = await wiktFetch(c, ctrlP.signal);
+          if (!pack) continue;
+          const direct = pickEntry(pack.entries);
+          const real = definedSenses(direct).some(function (x) { return !isFormOf(x); });
+          if (!real) continue;
+          const built = buildWiktEntry(pack, pr, c, "");
+          if (built) {
+            res.setHeader("Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
+            return res.status(200).json(Object.assign({ phrase: pr }, built));
+          }
+        }
+      }
+      res.setHeader("Cache-Control", "public, s-maxage=86400");
+      return res.status(404).json({ error: "No entry for that phrase.", phrase: pr });
+    } catch (e) {
+      return res.status(404).json({ error: "No entry for that phrase.", phrase: pr });
+    } finally {
+      clearTimeout(tP);
+    }
+  }
+
   const raw = (req.query && req.query.word ? String(req.query.word) : "").trim();
   const word = raw.replace(/[^а-яёА-ЯЁ-]/g, "");
   if (!word || word.length < 2 || word.length > 50) {
