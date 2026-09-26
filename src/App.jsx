@@ -4767,6 +4767,23 @@ export default function App() {
     };
   }, [bmMenu]);
 
+  // The move to the next chapter, kept within reach. It lives at the foot of
+  // the text, which is where a reader who has finished the chapter is — but
+  // a reader who stops halfway, or who has scrolled back to check something,
+  // had to travel to one end of the page or the other to turn the page. This
+  // is the same move, pinned to the corner, and it takes itself out of the
+  // way as soon as the proper one at the foot comes into view.
+  var chapFootRef = useRef(null);
+  var [footSeen, setFootSeen] = useState(false);
+  useEffect(function() {
+    var el = chapFootRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") { setFootSeen(false); return; }
+    var io = new IntersectionObserver(function(entries){
+      if (entries && entries.length) setFootSeen(!!entries[0].isIntersecting);
+    }, { rootMargin: "0px 0px -40px 0px" });
+    io.observe(el);
+    return function(){ try { io.disconnect(); } catch (e) {} };
+  }, [started, isLit, lview, cidx, chapters.length, bookMeta.title]);
   var scrollToOffset = function(off) {
     try {
       var nodes = document.querySelectorAll(".lit-body [data-rw-start]");
@@ -4780,6 +4797,9 @@ export default function App() {
   };
   var srcJumpChapterRef = useRef(null);
   var srcJumpOffsetRef = useRef(null);  // vocab source-link: char offset of the saved word, to highlight its sentence on arrival
+  // Bumped whenever a place in the text is asked for, so the page-picking
+  // effect below runs even when nothing else about the view has changed.
+  var [jumpTick, setJumpTick] = useState(0);
   var [vocabCollapsed, setVocabCollapsed] = useState({});
   // Tracks recent uploads (last MAX_UPLOADS) so the library view can show them
   // alongside the preset books. Each entry is metadata; full content lives at
@@ -6298,6 +6318,25 @@ export default function App() {
     return (singlePageMode ? "Song " : "Chapter ") + (i + 1);
   };
   var totalPages = pages.length;
+  // A bookmark, a vocabulary link or a search result names a place in the
+  // chapter, not a page of it — and a chapter opens at its first page. The
+  // page holding that place is chosen here, once the pages for the new
+  // chapter exist; the highlight on arrival then finds the line on screen
+  // instead of waiting for the reader to page forward to it. `jumpTick` is
+  // what makes it run for a jump WITHIN the open chapter, where neither the
+  // chapter nor the page has changed and a ref cannot wake an effect.
+  useEffect(function() {
+    var want = srcJumpOffsetRef.current;
+    if (want == null || !pages.length) return;
+    var cur = pages[Math.min(pidx, pages.length - 1)];
+    if (cur && want >= cur.startChar && want <= cur.endChar) return;
+    for (var i = 0; i < pages.length; i++) {
+      if (want >= pages[i].startChar && want <= pages[i].endChar) {
+        if (i !== pidx) setPidx(i);
+        return;
+      }
+    }
+  }, [pages, pidx, cidx, jumpTick]);
   // Scripture is paged one BOOK at a time, so the reader can be fifty chapters
   // deep in a single scroll. These are the marks to jump between. They come
   // out of the text rather than the catalogue because the paragraph a reader
@@ -6451,7 +6490,10 @@ export default function App() {
     } else {
       setAudioSentences([]);
     }
-  }, [cidx, pidx, mode, curChapter && curChapter.text, currentPage && currentPage.startChar, currentPage && currentPage.endChar, bookMeta.title]);
+    // jumpTick: a search result inside the chapter already on screen changes
+    // neither the chapter nor the page, so without it the reader would be
+    // scrolled to the line and the line would go unmarked.
+  }, [cidx, pidx, mode, curChapter && curChapter.text, currentPage && currentPage.startChar, currentPage && currentPage.endChar, bookMeta.title, jumpTick]);
 
   // ── Audiobook alignment loader ─────────────────────────────────────────────
   // When the current book has an audiobook entry for the current chapter,
@@ -8271,12 +8313,39 @@ export default function App() {
     if (chapters.length > 0) storage && storage.set(EPUB_BM, String(cbm)).catch(function(){});
   }, [cbm]);
 
+  // Search used to answer with chapters: a list of headings, each showing its
+  // opening hundred characters, and a click that put the reader at the top of
+  // the chapter to hunt for the word themselves. It now answers with the
+  // occurrences — every one of them, in the words it is standing in, and a
+  // click lands on that line.
   useEffect(function() {
-    if (!lsearch.trim() || !chapters.length) { setLres([]); return; }
-    var q = lsearch.toLowerCase();
+    var q0 = lsearch.trim().toLowerCase().replace(/ё/g, "е");
+    if (!q0 || q0.length < 2 || !chapters.length) { setLres([]); return; }
     var r = [];
-    for (var i = 0; i < chapters.length && r.length < 50; i++) {
-      if (chapters[i].text.toLowerCase().includes(q) || chapters[i].heading.toLowerCase().includes(q)) r.push(i);
+    var CAP = 200, PER_CH = 12;
+    for (var i = 0; i < chapters.length && r.length < CAP; i++) {
+      var text = String((chapters[i] && chapters[i].text) || "");
+      // ё folded to е on both sides, and the fold is character-for-character,
+      // so every offset found here is an offset into the real text.
+      var hay = text.toLowerCase().replace(/ё/g, "е");
+      var from = 0, found = 0;
+      while (found < PER_CH && r.length < CAP) {
+        var at = hay.indexOf(q0, from);
+        if (at < 0) break;
+        var lead = text.slice(Math.max(0, at - 70), at);
+        // Start the snippet at a word boundary rather than mid-word.
+        var cut = lead.search(/\s\S*$/);
+        r.push({
+          ci: i, off: at,
+          before: (at > 70 ? "…" : "") + (cut > 0 ? lead.slice(cut + 1) : lead),
+          hit: text.slice(at, at + q0.length),
+          after: text.slice(at + q0.length, at + q0.length + 90) + "…",
+        });
+        from = at + q0.length; found++;
+      }
+      if (!found && String((chapters[i] && chapters[i].heading) || "").toLowerCase().replace(/ё/g, "е").indexOf(q0) >= 0) {
+        r.push({ ci: i, off: 0, heading: true, before: "", hit: "", after: text.slice(0, 110) + "…" });
+      }
     }
     setLres(r);
   }, [lsearch, chapters]);
@@ -11769,6 +11838,27 @@ export default function App() {
         .chap-foot-btn:hover:not(:disabled){background:rgba(42,31,20,.09);
           border-color:rgba(42,31,20,.45)}
         .chap-foot-btn:disabled{opacity:.32;cursor:default}
+        /* Nothing that way: the button keeps its place so the pair does not
+           jump about between pages, and says nothing. */
+        .chap-foot-btn.empty{visibility:hidden}
+        /* The pinned pair. Sits above the floating audio bar, and keeps to
+           the corner: it is a way out of the chapter, not a fixture of it. */
+        .chap-dock{position:fixed;right:18px;bottom:104px;z-index:38;display:flex;align-items:center;gap:2px;
+          background:var(--paper);border:1px solid var(--rule);border-radius:999px;
+          padding:3px 6px;box-shadow:0 2px 10px rgba(42,31,20,.13)}
+        .chap-dock-b{background:none;border:0;cursor:pointer;color:var(--ink);font-size:19px;line-height:1;
+          padding:5px 9px;border-radius:999px;font-family:var(--serif)}
+        .chap-dock-b:hover:not(:disabled){background:var(--paper-2)}
+        .chap-dock-b:disabled{opacity:.25;cursor:default}
+        .chap-dock-n{font-family:var(--sans);font-size:11px;letter-spacing:.06em;color:var(--ink-2);
+          min-width:38px;text-align:center}
+        .chap-dock-n .of{color:var(--ink-3)}
+        @media(max-width:700px){ .chap-dock{right:12px;bottom:88px} }
+        @media print{ .chap-dock{display:none} }
+        /* Turning the page is the ordinary move, so it is the one drawn as a
+           button rather than as a link. */
+        .chap-foot-btn.go{background:rgba(42,31,20,.08);border-color:rgba(42,31,20,.34)}
+        .chap-foot-btn.go:hover:not(:disabled){background:rgba(42,31,20,.16)}
         .chap-foot-btn .dir{font-family:'IBM Plex Sans',sans-serif;font-size:11px;
           letter-spacing:.09em;text-transform:uppercase;color:rgba(42,31,20,.45)}
         .chap-foot-btn .name{font-size:16.5px;color:#000;line-height:1.3;
@@ -11778,6 +11868,9 @@ export default function App() {
           .chap-foot-btn{padding:10px 12px}
           .chap-foot-btn .name{font-size:15px}
         }
+        .lscount{font-style:italic}
+        .lhit .lcp{line-height:1.55}
+        .lmark{background:rgba(155,45,31,.16);color:inherit;padding:0 1px;border-radius:2px}
         .lnb-inline{padding:5px 11px;border-radius:8px;border:1px solid rgba(42,31,20,.16);background:rgba(42,31,20,.05);color:rgba(42,31,20,.55);font-family:'Literata',serif;font-size:13px;cursor:pointer;transition:all .15s}
         .lnb-inline:hover:not(:disabled){background:rgba(42,31,20,.1);color:#000}
         .lnb-inline:disabled{opacity:.3;cursor:default}
@@ -18060,25 +18153,73 @@ export default function App() {
                             reader who has finished the chapter actually is. The
                             pair at the top stays: it is for leaving a chapter,
                             this is for finishing one. */}
-                        {chapters.length > 1 && (
-                          <nav className="chap-foot" aria-label="Chapter navigation">
-                            <button className="chap-foot-btn"
-                              onClick={function(){ if (cidx > 0) navLit(cidx - 1); }}
-                              disabled={loading || cidx <= 0}>
-                              <span className="dir">‹ {singlePageMode ? "Previous song" : "Previous"}</span>
-                              <span className="name">{neighbourName(cidx - 1)}</span>
-                            </button>
-                            <button className="chap-foot-btn next"
-                              onClick={function(){ if (cidx < chapters.length - 1) navLit(cidx + 1); }}
-                              disabled={loading || cidx >= chapters.length - 1}>
-                              <span className="dir">{singlePageMode ? "Next song" : "Next"} ›</span>
-                              <span className="name">{neighbourName(cidx + 1)}</span>
-                            </button>
-                          </nav>
-                        )}
+                        {/* Where to go from the end of the text, decided at
+                            the end of the text. A long chapter is several
+                            pages, and the page buttons lived only in the bar
+                            at the top — so a reader who had just finished a
+                            page had to scroll the whole way back up to turn
+                            it. Now whichever move comes next is here: the
+                            next page while there is one, the next chapter
+                            when there is not. */}
+                        {(function(){
+                          var morePages = totalPages > 1;
+                          var atLast = pidx >= totalPages - 1;
+                          var atFirst = pidx <= 0;
+                          var hasCh = chapters.length > 1;
+                          if (!morePages && !hasCh) return null;
+                          var chWord = singlePageMode ? "song" : "chapter";
+                          // Back: the previous page inside this chapter, and
+                          // the chapter before it once the reader is at its
+                          // first page.
+                          var backTo = (!atFirst && morePages) ? "page" : (hasCh && cidx > 0 ? "chap" : "");
+                          var fwdTo = (!atLast && morePages) ? "page" : (hasCh && cidx < chapters.length - 1 ? "chap" : "");
+                          return (
+                            <nav className="chap-foot" ref={chapFootRef} aria-label="Where to next">
+                              <button className={"chap-foot-btn" + (backTo ? "" : " empty")}
+                                disabled={loading || !backTo}
+                                onClick={function(){
+                                  if (backTo === "page") navPage(pidx - 1);
+                                  else if (backTo === "chap") navLit(cidx - 1);
+                                }}>
+                                <span className="dir">‹ {backTo === "page" ? "Previous page" : ("Previous " + chWord)}</span>
+                                <span className="name">
+                                  {backTo === "page"
+                                    ? ("Page " + pidx + " of " + totalPages)
+                                    : (backTo === "chap" ? neighbourName(cidx - 1) : "")}
+                                </span>
+                              </button>
+                              <button className={"chap-foot-btn next" + (fwdTo ? "" : " empty") + (fwdTo === "page" ? " go" : "")}
+                                disabled={loading || !fwdTo}
+                                onClick={function(){
+                                  if (fwdTo === "page") navPage(pidx + 1);
+                                  else if (fwdTo === "chap") navLit(cidx + 1);
+                                }}>
+                                <span className="dir">{fwdTo === "page" ? "Next page" : ("Next " + chWord)} ›</span>
+                                <span className="name">
+                                  {fwdTo === "page"
+                                    ? ("Page " + (pidx + 2) + " of " + totalPages)
+                                    : (fwdTo === "chap" ? neighbourName(cidx + 1) : "")}
+                                </span>
+                              </button>
+                            </nav>
+                          );
+                        })()}
                       </div>
                     </div>
 
+                    {/* Always within reach: the next chapter, in the corner,
+                        while the one at the foot of the text is off screen. */}
+                    {lview === "read" && chapters.length > 1 && !footSeen && !annTool && (
+                      <div className="chap-dock" aria-label="Move between chapters">
+                        <button type="button" className="chap-dock-b" disabled={loading || cidx <= 0}
+                          title={cidx > 0 ? ("Previous: " + neighbourName(cidx - 1)) : "This is the first"}
+                          onClick={function(){ if (cidx > 0) navLit(cidx - 1); }}>‹</button>
+                        <span className="chap-dock-n">{cidx + 1}<span className="of">/{chapters.length}</span></span>
+                        <button type="button" className="chap-dock-b next" disabled={loading || cidx >= chapters.length - 1}
+                          title={cidx < chapters.length - 1 ? ("Next: " + neighbourName(cidx + 1)) : "This is the last"}
+                          onClick={function(){ if (cidx < chapters.length - 1) navLit(cidx + 1); }}>›</button>
+                      </div>
+                    )}
                     {/* Floating audio player — always visible at bottom of viewport
                         while reading. In TTS mode plays sentence-by-sentence via
                         Azure Dmitry. In Audiobook mode (when the book has an
@@ -18278,13 +18419,31 @@ export default function App() {
                     </div>
                     <div className="navpanel">
                       {!lsearch && <div className="lem">Type to search the full text.</div>}
-                      {lsearch && !lres.length && <div className="lem">No results for «{lsearch}»</div>}
-                      {lres.map(function(i){
+                      {lsearch && lsearch.trim().length === 1 && <div className="lem">One letter is not enough — type a little more.</div>}
+                      {lsearch && lsearch.trim().length > 1 && !lres.length && <div className="lem">No results for «{lsearch}»</div>}
+                      {lres.length > 0 && (
+                        <div className="lem lscount">
+                          {lres.length >= 200 ? "The first 200 occurrences" : (lres.length + (lres.length === 1 ? " occurrence" : " occurrences"))}
+                          {" of «" + lsearch.trim() + "»"}
+                        </div>
+                      )}
+                      {lres.map(function(h, k){
                         return (
-                          <div key={i} className={"lcard"+(i===cidx?" cur":"")} onClick={function(){ setLsearch(""); setLview("read"); navLit(i); }}>
-                            <div className="lcn">{[chapterOrdinal(chapters, i), i===cbm?"bookmarked":""].filter(Boolean).join(" · ")}</div>
-                            <div className="lchead">{chapters[i].heading}</div>
-                            <div className="lcp">{chapters[i].text.slice(0,100)}…</div>
+                          <div key={k} className={"lcard lhit" + (h.ci === cidx ? " cur" : "")} onClick={function(){
+                            setLsearch(""); setLview("read");
+                            srcJumpOffsetRef.current = h.off;
+                            setJumpTick(function(t){ return t + 1; });
+                            if (h.ci !== cidx) navLit(h.ci);
+                            else setTimeout(function(){ scrollToOffset(h.off); }, 60);
+                          }}>
+                            <div className="lcn">
+                              {[chapterOrdinal(chapters, h.ci), h.ci === cbm ? "bookmarked" : "", h.heading ? "in the title" : ""]
+                                .filter(Boolean).join(" · ")}
+                            </div>
+                            <div className="lchead">{chapters[h.ci].heading}</div>
+                            <div className="lcp">
+                              {h.before}<mark className="lmark">{h.hit}</mark>{h.after}
+                            </div>
                           </div>
                         );
                       })}
