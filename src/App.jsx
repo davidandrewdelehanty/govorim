@@ -4723,6 +4723,20 @@ export default function App() {
   // Set, clear and jump for the one-per-book bookmark. Same-chapter jumps
   // scroll directly; cross-chapter jumps set the vocab source-link refs and
   // let that path change chapter, highlight and scroll.
+  // The manual flag, written through to the saved place. Only this can undo
+  // the "never backwards" rule — nothing else in the reader may.
+  var setPlaceFlag = function(ci, off) {
+    var key = bookKey(bookMeta);
+    if (!key) return;
+    readMark.current[key] = { cidx: ci, off: off || 0 };
+    saveReadMark();
+    lastSeen.current = off || 0;
+    writeProgressMap(function(all) {
+      if (!all[key]) return all;
+      all[key] = Object.assign({}, all[key], { far: { cidx: ci, off: off || 0, at: Date.now() } });
+      return all;
+    });
+  };
   var setBookmarkAt = function(off, withAudio) {
     var key = bookKey(bookMeta);
     if (!key) return;
@@ -4749,6 +4763,9 @@ export default function App() {
         // A bookmark is the reader saying "I got to here", so the words
         // between the last mark and this point are read.
         advanceReadMark(cidx, off, true);
+        // And it is the one thing that may move the automatic place
+        // backwards: the reader has said plainly where they are.
+        setPlaceFlag(cidx, off);
       }
       return next;
     });
@@ -5219,8 +5236,15 @@ export default function App() {
   };
   var resetBookProgress = function(key) {
     if (!key) return;
+    // "Start over" means start over: the automatic bookmark goes with the
+    // place, or the book would reopen at the far end of a read the reader
+    // has just said they are redoing.
+    try {
+      if (readMark.current && readMark.current[key]) { delete readMark.current[key]; saveReadMark(); }
+    } catch (e) {}
+    lastSeen.current = 0;
     return writeProgressMap(function(all) {
-      if (all[key]) all[key] = Object.assign({}, all[key], { cidx: 0, pidx: 0, sec: 0, lastRead: Date.now() });
+      if (all[key]) all[key] = Object.assign({}, all[key], { cidx: 0, pidx: 0, sec: 0, far: null, lastRead: Date.now() });
       return all;
     });
   };
@@ -5274,8 +5298,19 @@ export default function App() {
     try {
       var r = await storage.get(BOOK_PROGRESS);
       var all = r ? (JSON.parse(r.value) || {}) : {};
+      // Where the reader IS, and separately the furthest they have been —
+      // `far`. Reopening the book goes to `far`, so a wander backwards is
+      // just a wander. The reading mark is the same high-water figure the
+      // word count is credited from, so the two can never disagree.
+      var mark = readMark.current[key] || null;
+      var prev = all[key] || {};
+      var far = prev.far || null;
+      if (mark && (!far || wordsBefore(mark.cidx, mark.off || 0) > wordsBefore(far.cidx || 0, far.off || 0))) {
+        far = { cidx: mark.cidx, off: mark.off || 0, at: Date.now() };
+      }
       all[key] = {
         cidx: ci, pidx: pi,
+        far: far,
         // A merged short story is one page, so cidx and pidx never move and
         // progress would read as "opened, never advanced". `sec` is the
         // paragraph the reader has scrolled to, which is the only thing that
@@ -6031,6 +6066,8 @@ export default function App() {
 
   // Which section of a merged story is on screen. Tracked from the reader's own
   // scroller rather than from cidx, because a merged story has only one chapter.
+  // Bumped when the automatic bookmark moves, so the save below runs.
+  var [placeTick, setPlaceTick] = useState(0);
   var [secAt, setSecAt] = useState(0);
   var secAtRef = useRef(0);
   useEffect(function() { secAtRef.current = secAt; }, [secAt]);
@@ -6063,6 +6100,63 @@ export default function App() {
     };
   }, [mergedCh && mergedCh.merged, mergedCh && mergedCh.text]);
 
+  // ── The automatic bookmark ────────────────────────────────────────────
+  //
+  // The furthest the reader has got, measured by the last word to have
+  // crossed the bottom of the screen. It only ever moves forward: going back
+  // a chapter to check who somebody was, or scrolling up to reread a
+  // paragraph, does not undo an evening's reading. The one thing that can
+  // move it backwards is the reader saying so — the bookmark flag beside a
+  // paragraph, which is an explicit "I am here".
+  //
+  // Measured on scroll rather than on page turns, because a chapter is one
+  // long scroll: without this the place only ever moved a whole chapter at a
+  // time, which for Обломов is twenty minutes of reading lost.
+  var lastSeen = useRef(0);
+  useEffect(function() {
+    if (!(started && isLit) || lview !== "read" || !chapters.length) return;
+    var box = document.querySelector(".lit-left");
+    var timer = null;
+    var measure = function() {
+      timer = null;
+      var nodes = document.querySelectorAll(".lit-body [data-rw-start]");
+      if (!nodes.length) return;
+      // The last word that has been on screen: anything above the fold has
+      // been read, or at least passed. The bottom edge is the honest line —
+      // a word still below it has not been seen.
+      var fold = (window.innerHeight || 0) - 10;
+      var deepest = -1;
+      for (var i = nodes.length - 1; i >= 0; i--) {
+        var r = nodes[i].getBoundingClientRect();
+        if (r.top <= fold) {
+          var v = parseInt(nodes[i].dataset.rwStart, 10);
+          if (!isNaN(v)) deepest = v;
+          break;
+        }
+      }
+      if (deepest < 0) return;
+      if (deepest <= lastSeen.current) return;      // scrolling back changes nothing
+      lastSeen.current = deepest;
+      advanceReadMark(cidx, deepest, true);
+      setPlaceTick(function(t){ return t + 1; });
+    };
+    var onScroll = function() {
+      if (timer) return;
+      timer = setTimeout(measure, 350);
+    };
+    if (box) box.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    var first = setTimeout(measure, 700);
+    return function() {
+      if (box) box.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", onScroll);
+      if (timer) clearTimeout(timer);
+      clearTimeout(first);
+    };
+  }, [started, isLit, lview, cidx, chapters.length, bookMeta.title]);
+  // A new chapter starts its own measurement.
+  useEffect(function(){ lastSeen.current = 0; }, [cidx, bookMeta.title]);
+
   // Auto-save reading progress whenever the user moves to a new page or chapter.
   // Skipped when no book is loaded, when title is missing (transient state), or
   // when we're at chapter 0 / page 0 with no story actually started.
@@ -6072,7 +6166,7 @@ export default function App() {
     if (!chapters || chapters.length === 0) return;
     saveBookProgress(bookMeta, cidx, pidx, chapters.length,
                      bookWordsShown, bookWords.upto[cidx] || 0);
-  }, [cidx, pidx, secAt, started, isLit, bookMeta.title, chapters.length]);
+  }, [cidx, pidx, secAt, placeTick, started, isLit, bookMeta.title, chapters.length]);
 
   // A book can be open before the account's data has come back — a link
   // straight to /book/<slug> opens it in the first second, and the sync
@@ -9386,7 +9480,15 @@ export default function App() {
       if (!entry) return null;
       var was = entry.totalChapters || 0;
       if (was && nowTotal && was !== nowTotal) return null;
-      return { cidx: entry.cidx || 0, pidx: entry.pidx || 0 };
+      // The automatic bookmark decides where the book opens. It is the
+      // furthest the reader reached, not the last place they happened to be
+      // looking at — those differ every time somebody turns back a chapter
+      // and then closes the tab.
+      var far = entry.far;
+      if (far && typeof far.cidx === "number" && (!nowTotal || far.cidx < nowTotal)) {
+        return { cidx: far.cidx, pidx: 0, off: far.off || 0 };
+      }
+      return { cidx: entry.cidx || 0, pidx: entry.pidx || 0, off: 0 };
     } catch(e) { return null; }
   };
 
@@ -9883,6 +9985,8 @@ export default function App() {
       var savedProg = await loadBookProgress(meta, chs.length);
       var startCi = savedProg ? savedProg.cidx : 0;
       var startPi = savedProg ? savedProg.pidx : 0;
+      // Land on the paragraph, not merely in the chapter.
+      if (savedProg && savedProg.off > 0) srcJumpOffsetRef.current = savedProg.off;
       if (srcJumpChapterRef.current !== null && srcJumpChapterRef.current !== undefined) {
         startCi = srcJumpChapterRef.current; startPi = 0;
         srcJumpChapterRef.current = null;
@@ -10032,6 +10136,8 @@ export default function App() {
       var savedProg2 = await loadBookProgress(meta, (d.chapters || []).length);
       var startCi2 = savedProg2 ? savedProg2.cidx : 0;
       var startPi2 = savedProg2 ? savedProg2.pidx : 0;
+      // Land on the paragraph, not merely in the chapter.
+      if (savedProg2 && savedProg2.off > 0) srcJumpOffsetRef.current = savedProg2.off;
       startLit(startCi2, d.chapters, meta, startPi2);
     } catch(err) {
       setFErr("Failed to open uploaded book: " + (err.message || err));
