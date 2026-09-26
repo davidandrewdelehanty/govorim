@@ -497,6 +497,12 @@ export default async function handler(req, res) {
       const drills = await r2Get(userId, "drills");
       // Highlights, notes and pen strokes: { items: { [id]: item } }.
       const annots = await r2Get(userId, "annots");
+      // Where the reader is in each book. Pushed up since the admin panel
+      // grew a per-reader view, and never handed back — so a reader who
+      // cleared their browser, or simply opened the site on another machine,
+      // found every book at chapter one with no way to say otherwise. It is
+      // their own place; it should follow them.
+      const progress = await r2Get(userId, "progress");
 
       return res.status(200).json({
         vocab: Array.isArray(vocab) ? vocab : [],
@@ -507,6 +513,7 @@ export default async function handler(req, res) {
         songs: (songs && typeof songs === "object" && !Array.isArray(songs)) ? songs : {},
         drills: (drills && typeof drills === "object" && !Array.isArray(drills)) ? drills : {},
         annots: (annots && typeof annots === "object" && annots.items) ? annots : { items: {} },
+        progress: (progress && typeof progress === "object" && !Array.isArray(progress)) ? progress : {},
       });
     }
 

@@ -6054,6 +6054,26 @@ export default function App() {
                      bookWordsShown, bookWords.upto[cidx] || 0);
   }, [cidx, pidx, secAt, started, isLit, bookMeta.title, chapters.length]);
 
+  // A book can be open before the account's data has come back — a link
+  // straight to /book/<slug> opens it in the first second, and the sync
+  // answers later. If the place that arrives is ahead of where the reader is
+  // sitting, and they have not moved off the first page themselves, take them
+  // there. Once per opening, and never over a reader who has already turned
+  // a page.
+  var caughtUp = useRef("");
+  useEffect(function() {
+    if (!started || !isLit || !chapters.length) return;
+    if (cidx !== 0 || pidx !== 0) return;
+    var k = bookKey(bookMeta);
+    if (!k || caughtUp.current === k) return;
+    var rec = progressMap[k];
+    if (!rec) return;
+    if ((rec.totalChapters || 0) && (rec.totalChapters !== chapters.length)) return;
+    if (!(rec.cidx > 0 || rec.pidx > 0)) return;
+    caughtUp.current = k;
+    startLit(rec.cidx || 0, chapters, bookMeta, rec.pidx || 0);
+  }, [progressMap, started, isLit, chapters.length, bookMeta.title, cidx, pidx]);
+
   // Plant the reading mark once the book is actually on the page.
   //
   // startLit tries to do this on a setTimeout, but advanceReadMark reads
@@ -7077,6 +7097,26 @@ export default function App() {
         }
         if (data.annots && data.annots.items && Object.keys(data.annots.items).length) {
           setAnnots(function(m){ return mergeAnnots(m, data.annots.items); });
+        }
+        // Where the reader had got to in each book. Merged per book by which
+        // side read it last, in both directions: a phone that has one book
+        // open must not decide the place in the twenty on the laptop, and a
+        // laptop signing in on Monday must not undo Sunday's reading on the
+        // phone. Until this arrived the place was pushed up and never handed
+        // back, so a cleared browser — or simply another machine — opened
+        // every book at the beginning.
+        if (data.progress && typeof data.progress === "object" && Object.keys(data.progress).length) {
+          var srvProg = data.progress;
+          setProgressMap(function(local) {
+            var merged = Object.assign({}, local || {});
+            Object.keys(srvProg).forEach(function(k) {
+              var sv = srvProg[k], lc = merged[k];
+              if (!sv || typeof sv !== "object") return;
+              if (!lc || ((sv.lastRead || 0) > (lc.lastRead || 0))) merged[k] = sv;
+            });
+            try { storage.set(BOOK_PROGRESS, JSON.stringify(merged)); } catch (e4) {}
+            return merged;
+          });
         }
 
         if (serverVocab.length > 0 || serverTips.length > 0) {
