@@ -31,7 +31,11 @@ const BRAND = path.join(process.cwd(), "brand", "samovar");
 // robots.txt: the source copy tells everything to keep out, because Говорим is
 // account-gated and has no business in an index. Самовар is public, so its
 // copy opens the site up and points at a sitemap — which only exists here.
-const swaps = ["favicon.svg", "apple-touch-icon.png", "robots.txt", "sitemap.xml"];
+// icon-192, icon-512 and the maskable one are what Android uses for the
+// home-screen icon and for the "Install app" prompt, which Chrome will not
+// offer at all without a PNG of at least 192px in the manifest.
+const swaps = ["favicon.svg", "apple-touch-icon.png", "robots.txt", "sitemap.xml",
+               "icon-192.png", "icon-512.png", "icon-maskable-512.png"];
 
 const edits = [
   ["index.html", [

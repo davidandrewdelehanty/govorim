@@ -266,6 +266,107 @@ var BOOKS_HIDE_DONE = "books_hide_done_v1";
 
 // Stable identifier for a book — derived from filename + title so the same
 // book always gets the same key whether it's a preset or uploaded.
+// Which browser is asking, for the "put this on your home screen"
+// instructions. Only ever used to decide which set of steps to show first —
+// every set stays on the page, because user-agent sniffing is a guess and a
+// reader looking at the wrong steps should be able to find the right ones.
+function whichBrowser() {
+  var ua = (typeof navigator !== "undefined" && navigator.userAgent) || "";
+  var ios = /iPhone|iPad|iPod/i.test(ua) ||
+    // iPadOS reports itself as a Mac; the touch points give it away.
+    (/Macintosh/.test(ua) && typeof document !== "undefined" &&
+     typeof navigator !== "undefined" && navigator.maxTouchPoints > 1);
+  var android = /Android/i.test(ua);
+  var id = "other";
+  if (ios) {
+    if (/CriOS/.test(ua)) id = "ios-chrome";
+    else if (/FxiOS/.test(ua)) id = "ios-firefox";
+    else if (/EdgiOS/.test(ua)) id = "ios-edge";
+    else if (/YaBrowser/.test(ua)) id = "ios-yandex";
+    else if (/OPT|OPiOS/.test(ua)) id = "ios-opera";
+    else id = "ios-safari";
+  } else if (android) {
+    if (/SamsungBrowser/.test(ua)) id = "and-samsung";
+    else if (/YaBrowser/.test(ua)) id = "and-yandex";
+    else if (/OPR|Opera/.test(ua)) id = "and-opera";
+    else if (/EdgA/.test(ua)) id = "and-edge";
+    else if (/Firefox|FxiOS/.test(ua)) id = "and-firefox";
+    else id = "and-chrome";
+  } else if (/Edg\//.test(ua) || (/Chrome/.test(ua) && !/OPR|YaBrowser/.test(ua))) {
+    // A computer whose browser can install a site outright.
+    id = "desktop";
+  }
+  return { id: id, ios: ios, android: android, mobile: ios || android };
+}
+// Already opened from the home screen? Then there is nothing to add.
+function isStandalone() {
+  try {
+    return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) ||
+           window.navigator.standalone === true;
+  } catch (e) { return false; }
+}
+var HOME_STEPS = [
+  { id: "ios-safari", os: "iPhone & iPad", name: "Safari", steps: [
+      "Tap the Share button at the bottom of the screen — the square with an arrow coming out of it.",
+      "Scroll down the list and tap Add to Home Screen.",
+      "Tap Add, top right.",
+    ] },
+  { id: "ios-chrome", os: "iPhone & iPad", name: "Chrome", steps: [
+      "Tap the Share button in the address bar — the square with an arrow.",
+      "Tap Add to Home Screen.",
+      "Tap Add.",
+    ] },
+  { id: "ios-firefox", os: "iPhone & iPad", name: "Firefox", steps: [
+      "Tap the menu — the three lines, bottom right.",
+      "Tap Share, then Add to Home Screen.",
+      "Tap Add.",
+    ] },
+  { id: "ios-edge", os: "iPhone & iPad", name: "Edge", steps: [
+      "Tap the menu — the three dots at the bottom.",
+      "Tap Share, then Add to Home Screen.",
+      "Tap Add.",
+    ] },
+  { id: "ios-yandex", os: "iPhone & iPad", name: "Yandex", steps: [
+      "Tap the menu beside the address bar.",
+      "Tap Share, then Add to Home Screen («На экран «Домой»»).",
+      "Tap Add.",
+    ] },
+  { id: "and-chrome", os: "Android", name: "Chrome", steps: [
+      "Tap the menu — the three dots, top right.",
+      "Tap Add to Home screen (it may say Install app).",
+      "Tap Install, or Add.",
+    ] },
+  { id: "and-samsung", os: "Android", name: "Samsung Internet", steps: [
+      "Tap the menu — the three lines, bottom right.",
+      "Tap Add page to, then Home screen.",
+      "Tap Add.",
+    ] },
+  { id: "and-firefox", os: "Android", name: "Firefox", steps: [
+      "Tap the menu — the three dots, bottom right.",
+      "Tap Add to Home screen — or Install, if it offers that.",
+      "Tap Add.",
+    ] },
+  { id: "and-edge", os: "Android", name: "Edge", steps: [
+      "Tap the menu — the three dots at the bottom.",
+      "Tap Add to phone, then Add to Home screen.",
+      "Tap Add.",
+    ] },
+  { id: "and-opera", os: "Android", name: "Opera", steps: [
+      "Tap the Opera menu — the O, or the three dots.",
+      "Tap Home screen — or Add to, then Home screen.",
+      "Tap Add.",
+    ] },
+  { id: "and-yandex", os: "Android", name: "Yandex", steps: [
+      "Tap the menu — the three dots beside the address bar.",
+      "Tap Add to Home screen («Добавить на главный экран»).",
+      "Tap Add.",
+    ] },
+  { id: "desktop", os: "Computer", name: "Chrome & Edge", steps: [
+      "Look in the address bar for the install icon — a screen with an arrow, at the right-hand end.",
+      "Click it and choose Install.",
+      "The site then opens in its own window, with no browser chrome around it.",
+    ] },
+];
 function bookKey(meta) {
   if (!meta) return "";
   return (meta.filename || "") + "::" + (meta.title || "");
@@ -4707,6 +4808,34 @@ export default function App() {
     setSeenLanding(true);
   };
 
+  // "Add to home screen": the panel, and Android's own install prompt when
+  // the browser offers us one. Chrome fires beforeinstallprompt instead of
+  // showing anything itself; caught here, it becomes a button that does the
+  // whole thing in one tap. Every other browser gets the written steps.
+  var [homeOpen, setHomeOpen] = useState(false);
+  var [homeAdded, setHomeAdded] = useState(function(){ return isStandalone(); });
+  var [canInstall, setCanInstall] = useState(false);
+  var installEvt = useRef(null);
+  useEffect(function() {
+    var onPrompt = function(e) { e.preventDefault(); installEvt.current = e; setCanInstall(true); };
+    var onInstalled = function() { installEvt.current = null; setCanInstall(false); setHomeAdded(true); setHomeOpen(false); };
+    window.addEventListener("beforeinstallprompt", onPrompt);
+    window.addEventListener("appinstalled", onInstalled);
+    return function() {
+      window.removeEventListener("beforeinstallprompt", onPrompt);
+      window.removeEventListener("appinstalled", onInstalled);
+    };
+  }, []);
+  var runInstall = async function() {
+    var e = installEvt.current;
+    if (!e) return;
+    try {
+      e.prompt();
+      var res = await e.userChoice;
+      if (res && res.outcome === "accepted") { setHomeAdded(true); setHomeOpen(false); }
+    } catch (err) {}
+    installEvt.current = null; setCanInstall(false);
+  };
   var [chapters, setChapters]   = useState([]);
   // Pre-loaded library: books shipped in /public/books/. Fetched once on mount from /books/index.json.
   var [presetBooks, setPresetBooks] = useState([]);
@@ -11969,6 +12098,16 @@ export default function App() {
         .chap-foot-btn.empty{visibility:hidden}
         /* The pinned pair. Sits above the floating audio bar, and keeps to
            the corner: it is a way out of the chapter, not a fixture of it. */
+        .home-now{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:4px 0 16px}
+        .home-b{border-top:1px solid var(--rule);padding:12px 0 2px}
+        .home-b.mine{border-top-color:var(--rubric)}
+        .home-b-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+        .home-b-os{font-family:var(--sans);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+        .home-b-n{font-family:var(--serif);font-size:16px;color:var(--ink)}
+        .home-b-you{font-family:var(--serif);font-style:italic;font-size:12px;color:var(--rubric)}
+        .home-steps{margin:6px 0 10px;padding-left:20px;font-family:var(--serif);font-size:14px;
+          line-height:1.55;color:var(--ink-2)}
+        .home-steps li{margin:3px 0}
         .chap-dock{position:fixed;right:18px;bottom:104px;z-index:38;display:flex;align-items:center;gap:2px;
           background:var(--paper);border:1px solid var(--rule);border-radius:999px;
           padding:3px 6px;box-shadow:0 2px 10px rgba(42,31,20,.13)}
@@ -13913,6 +14052,57 @@ export default function App() {
                     onClick={function(){ removeAnnot(it.id, notePop.layer); setNotePop(null); }}>Remove</button>
                 )}
                 <button type="button" className="pop-btn" onClick={close}>{editing ? "Done" : "Close"}</button>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+      {homeOpen && (function(){
+        var me2 = whichBrowser();
+        var here = HOME_STEPS.filter(function(x){ return x.id === me2.id; });
+        var rest = HOME_STEPS.filter(function(x){ return x.id !== me2.id; });
+        var ordered = here.concat(rest);
+        return (
+          <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setHomeOpen(false); }}>
+            <div className="adm-modal acct-modal" role="dialog" aria-label={"Put " + SITE_NAME + " on your home screen"}>
+              <div className="adm-head">
+                <div className="adm-title">{SITE_NAME} on your home screen</div>
+                <button className="adm-x" onClick={function(){ setHomeOpen(false); }}>×</button>
+              </div>
+              <div className="adm-body acct-body">
+                <p className="grp-intro">
+                  There is nothing to install from a store — the site itself becomes the icon.
+                  Tapping it opens {SITE_NAME} full screen, without the address bar, at the book
+                  you were reading. Your words, notes and place are the same ones you have now.
+                </p>
+                {canInstall && (
+                  <div className="home-now">
+                    <button className="grp-act go" onClick={runInstall}>Add it now</button>
+                    <span className="acct-note" style={{marginTop:0}}>
+                      Your browser can do this in one tap.
+                    </span>
+                  </div>
+                )}
+                {ordered.map(function(b2, i){
+                  var mine = i === 0 && here.length > 0;
+                  return (
+                    <div key={b2.id} className={"home-b" + (mine ? " mine" : "")}>
+                      <div className="home-b-h">
+                        <span className="home-b-os">{b2.os}</span>
+                        <span className="home-b-n">{b2.name}</span>
+                        {mine && <span className="home-b-you">what you are using</span>}
+                      </div>
+                      <ol className="home-steps">
+                        {b2.steps.map(function(st, j){ return <li key={j}>{st}</li>; })}
+                      </ol>
+                    </div>
+                  );
+                })}
+                <p className="acct-note">
+                  On an iPhone this only works from Safari's own Share button — an icon added from
+                  another browser opens that browser instead, which still works, just with its bar
+                  along the top.
+                </p>
               </div>
             </div>
           </div>
@@ -16452,6 +16642,15 @@ export default function App() {
                           uploaded — the file is read in your browser and stays there.</>}
                   </span>
                 </button>
+                {!grpPicking && !homeAdded && (
+                  <button className="own-entry" onClick={function(){ setHomeOpen(true); }}>
+                    <span className="own-entry-t">Put {SITE_NAME} on your phone</span>
+                    <span className="own-entry-s">
+                      Add it to the home screen and it opens like an app — full screen, no address
+                      bar, one tap from where you left off. Nothing to install from a store.
+                    </span>
+                  </button>
+                )}
                 <div id="read-now" style={{width:"100%",maxWidth:500,display:"flex",flexDirection:"column",gap:10,scrollMarginTop:12}}>
                   {chapters.length > 0 && !grpPicking ? (
                     <>
