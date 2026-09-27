@@ -4857,8 +4857,9 @@ export default function App() {
   var setPlaceFlag = function(ci, off) {
     var key = bookKey(bookMeta);
     if (!key) return;
-    readMark.current[key] = { cidx: ci, off: off || 0 };
-    saveReadMark();
+    // Only the place moves. The reading mark is what the word count is
+    // measured from, and moving it back would hand the reader the same
+    // words again on the way forward.
     lastSeen.current = off || 0;
     writeProgressMap(function(all) {
       if (!all[key]) return all;
@@ -5368,8 +5369,15 @@ export default function App() {
     // "Start over" means start over: the automatic bookmark goes with the
     // place, or the book would reopen at the far end of a read the reader
     // has just said they are redoing.
+    // The place goes; what the book has already been credited with stays,
+    // so a second reading of the same book cannot count its words twice.
     try {
-      if (readMark.current && readMark.current[key]) { delete readMark.current[key]; saveReadMark(); }
+      var m0 = readMark.current && readMark.current[key];
+      if (m0) {
+        readMark.current[key] = { cidx: 0, off: 0,
+          paid: (m0.paid != null) ? m0.paid : 0 };
+        saveReadMark();
+      }
     } catch (e) {}
     lastSeen.current = 0;
     return writeProgressMap(function(all) {
@@ -6534,17 +6542,34 @@ export default function App() {
     return n;
   };
   // `credit` false just moves the mark (a jump); true counts the span crossed.
+  //
+  // `paid` is how many of this book's words have already been counted. The
+  // mark alone was not enough: it says where the reader got to, and a reader
+  // who drops a bookmark flag behind them, or starts the book again, can be
+  // standing behind their own high-water line — and every word from there
+  // forward would be counted a second time. A reader finished Записки из
+  // подполья, 35,000 words, and was credited 48,400. A book can only ever
+  // give up the words it holds, so that is now the limit.
   var advanceReadMark = function(ci, off, credit) {
     var key = bookKey(bookMeta);
     if (!key || !chapters.length || ci < 0 || ci >= chapters.length) return;
     var mark = readMark.current[key];
     var to = wordsBefore(ci, off || 0);
+    // Marks written before this existed carry no `paid`: what they had
+    // reached is what they had been credited with.
+    var paid = mark ? ((mark.paid != null) ? mark.paid : wordsBefore(mark.cidx, mark.off || 0)) : 0;
+    var total = bookWords.total || 0;
     if (mark && credit) {
       var from = wordsBefore(mark.cidx, mark.off || 0);
-      if (to > from) bumpToday("read", to - from);
+      var gain = to - from;
+      if (total) gain = Math.min(gain, Math.max(0, total - paid));
+      if (gain > 0) { bumpToday("read", gain); paid += gain; }
     }
     if (!mark || to >= wordsBefore(mark.cidx, mark.off || 0)) {
-      readMark.current[key] = { cidx: ci, off: off || 0 };
+      readMark.current[key] = { cidx: ci, off: off || 0, paid: paid };
+      saveReadMark();
+    } else if (mark && paid !== mark.paid) {
+      readMark.current[key] = Object.assign({}, mark, { paid: paid });
       saveReadMark();
     }
   };
@@ -18462,13 +18487,14 @@ export default function App() {
                               {bookMeta.author ? <div className="fin-a">{bookMeta.author}</div> : null}
                               <p className="fin-b">
                                 {bookWordsShown
-                                  ? <>It came to <b>{fmtWords(bookWordsShown)}</b>. </>
+                                  ? <>This book was <b>{fmtWords(bookWordsShown)}</b> long. </>
                                   : null}
                                 {looked
                                   ? <>You looked up <b>{fmtInt(looked)}</b> {looked === 1 ? "word" : "words"} in it
                                       {added ? <> and kept <b>{fmtInt(added)}</b> of them</> : null}. </>
                                   : (added ? <>You kept <b>{fmtInt(added)}</b> {added === 1 ? "word" : "words"} from it. </> : null)}
-                                {allRead ? <>That is <b>{fmtWords(allRead)}</b> read on this site altogether.</> : null}
+                                {allRead ? <>Across every book you have read here, that makes
+                                    {" "}<b>{fmtWords(allRead)}</b> in all.</> : null}
                               </p>
                               <div className="fin-acts">
                                 <button type="button" className="fin-link" onClick={function(){
