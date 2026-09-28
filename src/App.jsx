@@ -13353,6 +13353,32 @@ export default function App() {
         .pjump:hover{opacity:1}
         .pbm.on{background:none;border:0;opacity:1;color:var(--rubric)}
         @media(max-width:900px){.pjump,.pbm{margin-left:-2px}}
+        /* Two marks, one slot. The play-from-here arrow and the bookmark flag
+           were both floated the same distance into the left margin, and since
+           that pull is exactly their own width, the second landed precisely on
+           top of the first: the flag sat over the arrow and took the click
+           meant for it. On a play it was worse still — a speech hangs its
+           first line back into that same margin, so the speaker's name was
+           painted over the pair and a speech showed no arrow at all, which is
+           most of a play. A play now carries a gutter of its own for them,
+           outside the hanging indent, with a place for each. Narrow screens
+           are left as they were: there is no margin there to hang anything in,
+           so the marks sit in the line, where they already stood side by
+           side. */
+        @media(min-width:901px){
+          .play-speech,.play-text,.play-stage{padding-left:calc(46px + 1.9em)}
+          .play-cast{padding-left:calc(46px + 1.7em)}
+          .play-castHead,.play-sceneHead{padding-left:46px}
+          .play-speech,.play-text,.play-stage,.play-cast,.play-castHead,.play-sceneHead{position:relative}
+          .play-speech>.pjump,.play-text>.pjump,.play-stage>.pjump,.play-cast>.pjump,
+          .play-castHead>.pjump,.play-sceneHead>.pjump,
+          .play-speech>.pbm,.play-text>.pbm,.play-stage>.pbm,.play-cast>.pbm,
+          .play-castHead>.pbm,.play-sceneHead>.pbm{position:absolute;float:none;margin:0;top:.25em}
+          .play-speech>.pjump,.play-text>.pjump,.play-stage>.pjump,.play-cast>.pjump,
+          .play-castHead>.pjump,.play-sceneHead>.pjump{left:0}
+          .play-speech>.pbm,.play-text>.pbm,.play-stage>.pbm,.play-cast>.pbm,
+          .play-castHead>.pbm,.play-sceneHead>.pbm{left:23px}
+        }
         /* The bookmark flag, quieted. At 22% it was still a grey mark beside
            every paragraph of a long chapter — a column of furniture down the
            margin of a page whose whole point is the text. It is invisible now
