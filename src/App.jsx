@@ -367,6 +367,183 @@ var HOME_STEPS = [
       "The site then opens in its own window, with no browser chrome around it.",
     ] },
 ];
+// ── Taking the vocabulary elsewhere ──────────────────────────────────────
+//
+// Every word in the list was saved by hand, while reading, with the sentence
+// it was met in. It belongs to the reader, so a reader who already keeps an
+// Anki deck should not have to choose between it and this list. All of this
+// runs in the browser — the words are already in memory, nothing is uploaded,
+// and no serverless function is spent on it.
+
+// One saved word, flattened to the strings an export needs. The same rows
+// feed all four files, so the four can never disagree about what a word says.
+function exportRows(vocab, learned, withLearned) {
+  var rows = [];
+  var take = function(v, retired) {
+    var ru = String((v && v.ru) || "").trim();
+    if (!ru) return;
+    // The sentences the word was actually met in, if any; failing that the
+    // dictionary's example, failing that the example bank's.
+    var sents = (Array.isArray(v.sentences) && v.sentences.length)
+      ? v.sentences
+      : (v.srcSentence ? [{ s: v.srcSentence, w: v.srcWhere || "" }] : []);
+    var exRu = "", exEn = "";
+    if (!sents.length) {
+      if (v.example) { exRu = v.example; exEn = v.exampleTranslation || ""; }
+      else if (v.exBankRu) { exRu = v.exBankRu; exEn = v.exBankEn || ""; }
+    }
+    rows.push({
+      ru: ru,
+      en: String(v.en || "").trim(),
+      pos: String(v.pos || "").trim(),
+      aspect: String(v.aspect || "").trim(),
+      grammar: String(v.grammar || "").trim(),
+      sentences: sents,
+      exRu: exRu, exEn: exEn,
+      book: String(v.srcTitle || "").trim(),
+      chapter: (typeof v.srcChapter === "number") ? (v.srcChapter + 1) : "",
+      added: v.created || v.id || v.learnedAt || 0,
+      reviews: (v.srs && v.srs.reps) || 0,
+      stability: (v.srs && v.srs.S) ? Math.round(v.srs.S * 10) / 10 : "",
+      status: retired ? "learned" : "learning",
+    });
+  };
+  (vocab || []).forEach(function(v){ take(v, false); });
+  if (withLearned) (learned || []).forEach(function(v){ take(v, true); });
+  return rows;
+}
+// A field in a tab-separated file may hold neither tab nor newline.
+function oneLine(x) {
+  return String(x == null ? "" : x).replace(/[\t\r\n]+/g, " ").replace(/\s{2,}/g, " ").trim();
+}
+function htmlEsc(x) {
+  return String(x == null ? "" : x).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+// Anki separates tags with spaces, so a tag may not contain one; "::" makes a
+// hierarchy, which is how the book a word came from becomes a sub-tag.
+function ankiTag(x) {
+  return String(x == null ? "" : x).trim()
+    .replace(/[\s"]+/g, "_").replace(/_{2,}/g, "_").replace(/^_|_$/g, "");
+}
+function cardWorthy(r, opts) {
+  return !!(r && (r.en || (opts && opts.sentences && (r.sentences.length || r.exRu))));
+}
+function ymd(ts) {
+  if (!ts) return "";
+  try { return new Date(ts).toISOString().slice(0, 10); } catch (e) { return ""; }
+}
+
+// Anki's own text format. The header lines mean the reader imports the file
+// without touching a single setting: Anki reads the separator, the note type,
+// the deck and which column holds the tags straight out of the file. Because
+// the Russian word is the first field, a later export of the same list
+// updates the notes already there instead of duplicating them.
+function ankiFile(rows, opts) {
+  var out = [
+    "#separator:tab",
+    "#html:true",
+    "#notetype:" + (opts.reverse ? "Basic (and reversed card)" : "Basic"),
+    "#deck:" + opts.deck,
+    "#columns:Front\tBack\tTags",
+    "#tags column:3",
+  ];
+  rows.forEach(function(r){
+    if (!cardWorthy(r, opts)) return;
+    var back = [];
+    if (r.en) back.push('<div>' + htmlEsc(r.en) + '</div>');
+    var gram = [r.pos, r.aspect, r.grammar].filter(Boolean).join(" · ");
+    if (gram) back.push('<div style="font-size:.8em;opacity:.65">' + htmlEsc(gram) + '</div>');
+    if (opts.sentences) {
+      var sents = r.sentences.length ? r.sentences : (r.exRu ? [{ s: r.exRu, w: "" }] : []);
+      sents.slice(0, 3).forEach(function(x){
+        back.push('<div style="margin-top:.55em;font-style:italic">' + htmlEsc(oneLine(x.s)) + '</div>');
+        if (x.w && opts.source) {
+          back.push('<div style="font-size:.75em;opacity:.5">' + htmlEsc(oneLine(x.w)) + '</div>');
+        }
+      });
+      if (!r.sentences.length && r.exEn) {
+        back.push('<div style="font-size:.85em;opacity:.7">' + htmlEsc(oneLine(r.exEn)) + '</div>');
+      }
+    }
+    if (opts.source && !r.sentences.length && r.book) {
+      back.push('<div style="font-size:.75em;opacity:.5">' + htmlEsc(oneLine(r.book)) + '</div>');
+    }
+    var tags = [opts.tag];
+    if (r.pos) tags.push(ankiTag(r.pos));
+    if (opts.source && r.book) tags.push(opts.tag + "::" + ankiTag(r.book));
+    if (r.status === "learned") tags.push(opts.tag + "::learned");
+    out.push([htmlEsc(oneLine(r.ru)), back.join(""), tags.join(" ")].join("\t"));
+  });
+  return out.join("\n") + "\n";
+}
+
+// Two columns and nothing else: what Quizlet, Memrise and every other deck
+// site asks for when it offers to paste in a list.
+function pairFile(rows, opts) {
+  var out = [];
+  rows.forEach(function(r){
+    if (!cardWorthy(r, opts)) return;
+    var back = r.en;
+    var gram = [r.pos, r.aspect].filter(Boolean).join(" · ");
+    if (gram) back = back ? (back + " (" + gram + ")") : gram;
+    if (opts.sentences) {
+      var first = r.sentences.length ? r.sentences[0].s : r.exRu;
+      if (first) back = back + " — " + oneLine(first);
+    }
+    if (!back) return;
+    out.push(oneLine(r.ru) + "\t" + oneLine(back));
+  });
+  return out.join("\n") + "\n";
+}
+
+// A spreadsheet, one column per thing known about the word. The byte order
+// mark is there because Excel reads a CSV without one as Windows-1251 and
+// turns every Russian word into mojibake.
+function csvFile(rows) {
+  var cols = ["Russian", "English", "Part of speech", "Aspect", "Grammar",
+              "Sentence", "Sentence (English)", "Where you met it",
+              "Book", "Chapter", "Added", "Reviews", "Stability (days)", "Status"];
+  var q = function(x){ return '"' + String(x == null ? "" : x).replace(/"/g, '""') + '"'; };
+  var lines = [cols.map(q).join(",")];
+  rows.forEach(function(r){
+    var sents = r.sentences.length ? r.sentences : (r.exRu ? [{ s: r.exRu, w: "" }] : []);
+    lines.push([
+      r.ru, r.en, r.pos, r.aspect, r.grammar,
+      sents.map(function(x){ return oneLine(x.s); }).join(" | "),
+      r.exEn,
+      sents.map(function(x){ return oneLine(x.w); }).filter(Boolean).join(" | "),
+      r.book, r.chapter, ymd(r.added), r.reviews, r.stability, r.status,
+    ].map(q).join(","));
+  });
+  return "﻿" + lines.join("\r\n") + "\r\n";
+}
+
+// Everything, unflattened: the file to keep if the point is to have a copy
+// rather than to feed it to something. Reading it back in is one day's work
+// for whoever needs it, and no field has been dropped to make it pretty.
+function jsonFile(vocab, learned, withLearned, site) {
+  return JSON.stringify({
+    site: site,
+    exported: new Date().toISOString(),
+    format: "govorim-vocabulary-1",
+    words: vocab || [],
+    learned: withLearned ? (learned || []) : [],
+  }, null, 2);
+}
+
+function saveFile(name, text, mime) {
+  try {
+    var blob = new Blob([text], { type: mime + ";charset=utf-8" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 2000);
+    return true;
+  } catch (e) { return false; }
+}
+
 function bookKey(meta) {
   if (!meta) return "";
   return (meta.filename || "") + "::" + (meta.title || "");
@@ -4508,6 +4685,16 @@ export default function App() {
   var [quizSkipNote, setQuizSkipNote] = useState("");
   var [quizDue, setQuizDue]           = useState(0);    // how many of this session's words were actually due
   var [quizLearnedNow, setQuizLearnedNow] = useState([]);   // words retired during this session
+  // The export panel, and what goes in the file. Defaults are the generous
+  // ones: a card with the sentence the word was met in is worth far more than
+  // a bare pair of words, and that sentence is the part this site has that a
+  // dictionary does not.
+  var [expOpen, setExpOpen] = useState(false);
+  var [expSent, setExpSent] = useState(true);
+  var [expSrc, setExpSrc] = useState(true);
+  var [expLearned, setExpLearned] = useState(true);
+  var [expRev, setExpRev] = useState(false);
+  var [expDone, setExpDone] = useState("");
 
   // ── Exercises (grammar/reading drills tied to the current chapter) ─────────
   // exData: the loaded exercise set for the current chapter (or null).
@@ -12123,6 +12310,25 @@ export default function App() {
         .chap-foot-btn.empty{visibility:hidden}
         /* The pinned pair. Sits above the floating audio bar, and keeps to
            the corner: it is a way out of the chapter, not a fixture of it. */
+        .exp-opts{display:flex;flex-direction:column;gap:9px;margin:4px 0 16px}
+        .exp-opt{display:flex;gap:9px;align-items:flex-start;font-family:var(--serif);
+          font-size:14px;line-height:1.45;color:var(--ink-2);cursor:pointer}
+        .exp-opt input{margin:3px 0 0;flex:none;accent-color:var(--rubric)}
+        .exp-count{font-family:var(--serif);font-style:italic;font-size:13.5px;color:var(--rubric);margin:0 0 4px}
+        .exp-f{border-top:1px solid var(--rule);padding:14px 0;display:flex;gap:18px;
+          align-items:flex-start;justify-content:space-between}
+        .exp-f-t{font-family:var(--display);font-size:18px;color:var(--ink)}
+        .exp-f-s{font-family:var(--serif);font-size:13px;line-height:1.5;color:var(--ink-2);margin-top:3px}
+        .exp-f-n{font-family:var(--sans);font-size:11px;letter-spacing:.02em;
+          color:var(--ink-3);margin-top:7px;word-break:break-all}
+        .exp-f .grp-act{flex:none}
+        .exp-done{font-family:var(--serif);font-size:13.5px;color:var(--ink);border-top:1px solid var(--rubric);
+          padding-top:10px;margin-top:4px}
+        .exp-help{border-top:1px solid var(--rule);margin-top:14px;padding-top:10px}
+        .exp-help summary{font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+          color:var(--ink-3);cursor:pointer}
+        .exp-help summary:hover{color:var(--ink)}
+        @media(max-width:640px){.exp-f{flex-direction:column;gap:10px}.exp-f .grp-act{width:100%}}
         .home-now{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:4px 0 16px}
         .home-b{border-top:1px solid var(--rule);padding:12px 0 2px}
         .home-b.mine{border-top-color:var(--rubric)}
@@ -19127,10 +19333,122 @@ export default function App() {
             ) : (
               // ── Normal vocab list view ─────────────────────────────────
               <>
+                {expOpen && (function(){
+                  var rows = exportRows(vocab, learned, expLearned);
+                  var stamp = new Date().toISOString().slice(0, 10);
+                  var base = SITE_NAME_LATIN.toLowerCase() + "-vocabulary-" + stamp;
+                  var opts = {
+                    sentences: expSent, source: expSrc, reverse: expRev,
+                    deck: SITE_NAME_LATIN + " vocabulary", tag: SITE_NAME_LATIN,
+                  };
+                  var give = function(name, text, mime, what) {
+                    if (saveFile(name, text, mime)) setExpDone(what + " — " + name);
+                    else setExpDone("Your browser would not save the file. Try again, or use another browser.");
+                  };
+                  var forms = [
+                    { t: "Anki",
+                      s: "A file Anki imports with nothing to set up: it carries the note type, the deck and the tags inside it. Words come in tagged by part of speech and by the book they came from. Exporting again later updates the notes you already have rather than doubling them.",
+                      f: base + "-anki.txt",
+                      go: function(){ give(base + "-anki.txt", ankiFile(rows, opts), "text/plain", "Anki file saved"); } },
+                    { t: "Quizlet, Memrise, anything two-column",
+                      s: "Russian and English separated by a tab, one word to a line. Paste it in or upload it; every deck site takes this.",
+                      f: base + ".txt",
+                      go: function(){ give(base + ".txt", pairFile(rows, opts), "text/plain", "Two-column file saved"); } },
+                    { t: "Spreadsheet",
+                      s: "One column for each thing the list knows: the word, its meaning, its grammar, the sentences you met it in, the book, when you saved it, how often you have reviewed it. Opens in Excel, Numbers or Sheets.",
+                      f: base + ".csv",
+                      go: function(){ give(base + ".csv", csvFile(rows), "text/csv", "Spreadsheet saved"); } },
+                    { t: "Your own copy",
+                      s: "The whole list exactly as it is stored here, nothing flattened and nothing left out. This is the one to keep if you want a copy rather than a deck.",
+                      f: base + ".json",
+                      go: function(){ give(base + ".json", jsonFile(vocab, learned, expLearned, SITE_NAME_LATIN), "application/json", "Copy saved"); } },
+                  ];
+                  return (
+                    <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setExpOpen(false); }}>
+                      <div className="adm-modal acct-modal" role="dialog" aria-label="Export your vocabulary">
+                        <div className="adm-head">
+                          <div className="adm-title">Take your words with you</div>
+                          <button className="adm-x" onClick={function(){ setExpOpen(false); }}>×</button>
+                        </div>
+                        <div className="adm-body acct-body">
+                          <p className="grp-intro">
+                            Every word you have saved, in whatever form the thing you use wants it.
+                            The file is made here in your browser and saved straight to your device.
+                          </p>
+                          <div className="exp-opts">
+                            <label className="exp-opt">
+                              <input type="checkbox" checked={expSent} onChange={function(e){ setExpSent(e.target.checked); }} />
+                              <span>Include the sentence you met the word in — up to three, where you met it more than once.</span>
+                            </label>
+                            <label className="exp-opt">
+                              <input type="checkbox" checked={expSrc} onChange={function(e){ setExpSrc(e.target.checked); }} />
+                              <span>Name the book each word came from.</span>
+                            </label>
+                            {learned.length > 0 && (
+                              <label className="exp-opt">
+                                <input type="checkbox" checked={expLearned} onChange={function(e){ setExpLearned(e.target.checked); }} />
+                                <span>Include the words you have already learned ({learned.length}), tagged as learned.</span>
+                              </label>
+                            )}
+                            <label className="exp-opt">
+                              <input type="checkbox" checked={expRev} onChange={function(e){ setExpRev(e.target.checked); }} />
+                              <span>Ask Anki for both directions — Russian to English and English back to Russian.</span>
+                            </label>
+                          </div>
+                          <div className="exp-count">
+                            {rows.length} word{rows.length === 1 ? "" : "s"} in the file
+                            {expRev ? ", two cards each" : ""}.
+                          </div>
+                          {(function(){
+                            var left = rows.length - rows.filter(function(r){ return cardWorthy(r, opts); }).length;
+                            if (!left) return null;
+                            return (
+                              <p className="acct-note" style={{margin:"0 0 10px"}}>
+                                {left === 1
+                                  ? "One word has no meaning saved against it, so the two card files leave it out — a card with a blank back teaches nothing. The spreadsheet and your own copy still have it."
+                                  : left + " words have no meaning saved against them, so the two card files leave them out — a card with a blank back teaches nothing. The spreadsheet and your own copy still have them."}
+                              </p>
+                            );
+                          })()}
+                          {forms.map(function(x, i){
+                            return (
+                              <div key={i} className="exp-f">
+                                <div>
+                                  <div className="exp-f-t">{x.t}</div>
+                                  <div className="exp-f-s">{x.s}</div>
+                                  <div className="exp-f-n">{x.f}</div>
+                                </div>
+                                <button className="grp-act go" disabled={!rows.length} onClick={x.go}>Download</button>
+                              </div>
+                            );
+                          })}
+                          {expDone && <div className="exp-done">{expDone}</div>}
+                          <details className="exp-help">
+                            <summary>Getting the Anki file in</summary>
+                            <ol className="home-steps">
+                              <li>In Anki on a computer, choose File, then Import, and pick the file you just saved.</li>
+                              <li>Leave the settings as they are — the file sets them itself, including the deck and the note type.</li>
+                              <li>Click Import. The words arrive in a deck called “{SITE_NAME_LATIN} vocabulary”.</li>
+                              <li>On a phone, put the file somewhere AnkiWeb or the desktop app can reach it; AnkiDroid and AnkiMobile import through the same File menu.</li>
+                            </ol>
+                            <p className="acct-note">
+                              If you asked for both directions, Anki makes two cards from each word, so a
+                              hundred words become two hundred cards.
+                            </p>
+                          </details>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()}
                 <div className="phdr">
                   <span className="pti">My Vocabulary</span>
                   <div style={{display:"flex",gap:8}}>
                     {vocab.length > 0 && <button className="ab" onClick={function(){ setQuizMenu(true); }} title="Quiz yourself or practice these words in chat">📝 Review vocab</button>}
+                    {(vocab.length > 0 || learned.length > 0) && (
+                      <button className="ab" onClick={function(){ setExpDone(""); setExpOpen(true); }}
+                        title="Download your words for Anki, Quizlet or a spreadsheet">⤓ Export</button>
+                    )}
                     <button className="ab" onClick={function(){ setNRu(""); setNEn(""); setShowWord(true); }}>+ Add word</button>
                   </div>
                 </div>
