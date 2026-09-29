@@ -5572,10 +5572,27 @@ export default function App() {
       return all;
     });
   };
+  // Forgetting a book leaves a tombstone rather than deleting the record —
+  // the same rule the finished map has to follow, and for the same reason. A
+  // deleted key cannot win a merge: the server still held the record, and
+  // every sign-in handed it straight back, so a book removed from Continue
+  // reading was there again on the next visit. This is the shape most people
+  // met it in — they opened a file of their own, decided against it, removed
+  // it, and it kept coming back. The tombstone records WHEN the removal
+  // happened, and since both merges (here and on the server) settle a key by
+  // whichever side touched it last, the removal wins until the reader opens
+  // the book again, which writes a fresh record over it.
   var forgetBookProgress = function(key) {
     if (!key) return;
-    return writeProgressMap(function(all) { delete all[key]; return all; });
+    return writeProgressMap(function(all) {
+      var now = Date.now();
+      all[key] = { removed: true, at: now, lastRead: now };
+      return all;
+    });
   };
+  // Is this progress record a real place in a book, or the memory of one that
+  // was thrown away? Everything that lists, counts or resumes books asks.
+  var liveProgress = function(rec) { return !!(rec && !rec.removed); };
 
   // The book whose reading has just been declared over, so the word at the
   // end of it can be said wherever the reader happened to be when they said
@@ -7604,16 +7621,25 @@ export default function App() {
         // every book at the beginning.
         if (data.progress && typeof data.progress === "object" && Object.keys(data.progress).length) {
           var srvProg = data.progress;
-          setProgressMap(function(local) {
-            var merged = Object.assign({}, local || {});
-            Object.keys(srvProg).forEach(function(k) {
-              var sv = srvProg[k], lc = merged[k];
-              if (!sv || typeof sv !== "object") return;
-              if (!lc || ((sv.lastRead || 0) > (lc.lastRead || 0))) merged[k] = sv;
-            });
-            try { storage.set(BOOK_PROGRESS, JSON.stringify(merged)); } catch (e4) {}
-            return merged;
+          // Merged against what is STORED, not against what the component has
+          // in hand. This answer arrives from the network, and the state it
+          // used to merge into was filled by a separate read of local storage
+          // on mount; whichever landed second decided the file. Lose that race
+          // and the server's copy was written over the local one — which is
+          // how a book removed a moment earlier came back, tombstone and all.
+          var stored = {};
+          try {
+            var rProg = await storage.get(BOOK_PROGRESS);
+            stored = rProg ? (JSON.parse(rProg.value) || {}) : {};
+          } catch (e4) {}
+          var mergedProg = Object.assign({}, stored);
+          Object.keys(srvProg).forEach(function(k) {
+            var sv = srvProg[k], lc = mergedProg[k];
+            if (!sv || typeof sv !== "object") return;
+            if (!lc || ((sv.lastRead || 0) > (lc.lastRead || 0))) mergedProg[k] = sv;
           });
+          try { await storage.set(BOOK_PROGRESS, JSON.stringify(mergedProg)); } catch (e5) {}
+          setProgressMap(mergedProg);
         }
 
         if (serverVocab.length > 0 || serverTips.length > 0) {
@@ -9838,7 +9864,7 @@ export default function App() {
       if (!r) return null;
       var all = JSON.parse(r.value) || {};
       var entry = all[key];
-      if (!entry) return null;
+      if (!entry || entry.removed) return null;
       var was = entry.totalChapters || 0;
       if (was && nowTotal && was !== nowTotal) return null;
       // The automatic bookmark decides where the book opens. It is the
@@ -10506,13 +10532,21 @@ export default function App() {
     setBookLoading(null);
   };
 
-  // Permanently remove an uploaded book from the library + storage.
+  // Permanently remove an uploaded book from the library + storage. The
+  // reader means the whole book: the parsed copy, its place in this list, and
+  // its line on the Continue reading shelf, which otherwise stayed behind
+  // pointing at a file that is no longer here.
   var removeUploadedBook = async function(id) {
     try {
+      var gone = null;
+      for (var i = 0; i < uploadedBooks.length; i++) {
+        if (uploadedBooks[i].id === id) { gone = uploadedBooks[i]; break; }
+      }
       await bookStore.delete(UPLOAD_BOOK_PREFIX + id);
       var current = uploadedBooks.filter(function(b){ return b.id !== id; });
       await storage.set(UPLOADS_LIST_KEY, JSON.stringify(current));
       setUploadedBooks(current);
+      if (gone) await forgetBookProgress(bookKey({ filename: gone.filename, title: gone.title }));
     } catch(e) {
       console.log("Failed to remove upload:", e);
     }
@@ -14726,7 +14760,9 @@ export default function App() {
                 var goals = { words: GOAL_WORDS, cards: GOAL_CARDS };
                 var st = streaks(stats, goals);
                 var tot = statsTotals(stats);
-                var opened = Object.keys(progressMap || {}).map(function(k){
+                var opened = Object.keys(progressMap || {}).filter(function(k){
+                  return liveProgress(progressMap[k]);
+                }).map(function(k){
                   var v = progressMap[k] || {};
                   return { key: k, title: v.title || k, author: v.author || "", cidx: v.cidx || 0,
                            total: v.totalChapters || 0, at: v.lastRead || 0 };
@@ -17609,7 +17645,7 @@ export default function App() {
                         // where it was — but it stops occupying a slot here, which
                         // only holds six.
                         if (grpPicking) return null;
-                        entries = entries.filter(function(rec){ return !isFinished(rec); });
+                        entries = entries.filter(function(rec){ return liveProgress(rec) && !isFinished(rec); });
                         entries.sort(function(a, b){ return (b.lastRead || 0) - (a.lastRead || 0); });
                         var recent = entries.slice(0, 6);
                         if (recent.length === 0) return null;
