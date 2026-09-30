@@ -53,6 +53,13 @@ DROP_CLASSES = {
     "ws-noexport", "noprint", "mw-editsection", "reference", "references",
     "printfooter", "catlinks", "navbox", "metadata", "ambox", "mw-empty-elt",
     "pagenum", "ws-pagenum", "mw-cite-backlink", "licence", "header_notes",
+    # A corrected typo is marked up as <span class="error2 errortip"><span
+    # class="errortiptext">Исправлена опечатка: тсранным</span>странным</span>.
+    # The note is a tooltip on the web and plain text in a book, where it
+    # arrives welded to the word it corrects — "тсранным" and "странным" run
+    # together in the middle of a sentence. Dropping the tip keeps the
+    # correction, which is the word the reader wants.
+    "errortiptext",
 }
 # Verse pages number every fifth line in the margin. The number is a reading
 # aid on the web and a typo in a book — "5Был монастырь" — so it goes.
