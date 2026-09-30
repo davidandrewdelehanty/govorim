@@ -81,16 +81,26 @@ def probe(vid):
     }
 
 TITLE_FLOOR = 0.8
+# Set by --allow-uncaptioned. Captions are two things at once: proof that the
+# recording is a Russian reading of about the right length, and the only way
+# to find where anything is inside it. Giving them up costs the jump points
+# and leaves the title and the duration as the whole of the evidence — which
+# is why an uncaptioned candidate never beats a captioned one, and why what it
+# places is marked as never having been checked against the text.
+ALLOW_UNCAPTIONED = False
+UNCAPTIONED_PENALTY = 10.0
 
 def score(c, words, book_title, author):
-    if not c or not c['embed'] or not c['ru_orig'] or not c['dur']:
+    if not c or not c['embed'] or not c['dur']:
+        return None
+    if not c['ru_orig'] and not ALLOW_UNCAPTIONED:
         return None
     if title_match(book_title, author, c['title']) < TITLE_FLOOR:
         return None
     r = c['dur'] / max(words, 1)
     if r < RATE_LO or r > RATE_HI:
         return None
-    return abs(r - RATE_IDEAL)
+    return abs(r - RATE_IDEAL) + (0 if c['ru_orig'] else UNCAPTIONED_PENALTY)
 
 def hunt(title, author, words, queries):
     seen, cands = set(), []
@@ -119,7 +129,13 @@ def hunt(title, author, words, queries):
             'pick': best[1] if best else None, 'candidates': rows}
 
 def main():
-    books = json.load(open(sys.argv[1], encoding='utf-8'))
+    global ALLOW_UNCAPTIONED
+    args = [a for a in sys.argv[1:] if not a.startswith('-')]
+    ALLOW_UNCAPTIONED = '--allow-uncaptioned' in sys.argv
+    books = json.load(open(args[0], encoding='utf-8'))
+    if ALLOW_UNCAPTIONED:
+        print('(uncaptioned recordings allowed: title and length are the only '
+              'evidence, and there will be no jump points)', flush=True)
     done = {}
     if os.path.exists(OUT):
         done = {r['file']: r for r in json.load(open(OUT, encoding='utf-8'))}
@@ -136,8 +152,9 @@ def main():
         results.append(r)
         json.dump(results, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
         p = r['pick']
-        print('     %s' % (('PICK %s  %dm  %.2f s/w  %s' % (
-              p['id'], p['dur'] // 60, p['dur'] / max(b['words'], 1), p['title'][:50]))
+        print('     %s' % (('PICK %s  %dm  %.2f s/w %s %s' % (
+              p['id'], p['dur'] // 60, p['dur'] / max(b['words'], 1),
+              '   ' if p.get('ru_orig') else '(no captions)', p['title'][:50]))
               if p else 'no captioned candidate (%d probed)' % len(r['candidates'])), flush=True)
     print('\ndone — %d books, %d with a pick' % (len(results), sum(1 for r in results if r['pick'])))
 

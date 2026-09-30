@@ -113,14 +113,31 @@ def fetch_epub(page, cache_dir=None):
 
 
 def api_html(title):
-    """Rendered HTML of one Wikisource page."""
+    """Rendered HTML of one Wikisource page.
+
+    Patient about being refused, for the same reason the export is: a list of
+    twenty index pages walked into a 429 on the twelfth and lost the rest.
+    """
     q = urllib.parse.urlencode({
         "action": "parse", "prop": "text", "page": title,
         "format": "json", "formatversion": "2", "redirects": "1"})
-    req = urllib.request.Request(API + "?" + q, headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=120) as r:
-        j = json.loads(r.read().decode("utf-8"))
-    return (j.get("parse") or {}).get("text") or ""
+    url = API + "?" + q
+    wait = 4
+    for attempt in range(5):
+        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        try:
+            with urllib.request.urlopen(req, timeout=120) as r:
+                j = json.loads(r.read().decode("utf-8"))
+            return (j.get("parse") or {}).get("text") or ""
+        except urllib.error.HTTPError as e:
+            if e.code not in (429, 500, 502, 503, 504) or attempt == 4:
+                raise
+            ra = e.headers.get("Retry-After") if e.headers else None
+            pause = int(ra) if (ra or "").isdigit() else wait
+            print("   … %s on %s, waiting %ds" % (e.code, title, pause), flush=True)
+            time.sleep(pause)
+            wait = min(wait * 2, 120)
+    return ""
 
 
 def index_members(index_title, index_html):

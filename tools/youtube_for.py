@@ -57,6 +57,18 @@ def main():
     ap.add_argument("--slug", action="append", default=[])
     ap.add_argument("--force", action="store_true",
                     help="include books that already have a videos map")
+    ap.add_argument("--min-words", type=int, default=0,
+                    help="skip anything shorter; a sixty-word lyric has no audiobook, "
+                         "and the search spends a minute per book finding that out")
+    ap.add_argument("--max-books", type=int, default=0,
+                    help="stop after this many, to take a long shelf in sittings")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="list what would be hunted and stop")
+    ap.add_argument("--allow-uncaptioned", action="store_true",
+                    help="accept a recording with no Russian transcript: it gets chapter "
+                         "audio and no jump points, and nothing checks it against the text")
+    ap.add_argument("--retry-misses", action="store_true",
+                    help="ask again about the books the hunt already answered with nothing")
     ap.add_argument("--manifest", default=MANIFEST)
     ap.add_argument("--list-out", default="tools/hunt-wanted.json")
     ap.add_argument("--no-captions", action="store_true",
@@ -81,9 +93,12 @@ def main():
             print("no wordcount %s — skipped, the search needs it to tell a "
                   "reading from a lecture" % (b.get("title") or b.get("slug")))
             continue
+        if a.min_words and b["words"] < a.min_words:
+            continue
+        if a.max_books and len(wanted) >= a.max_books:
+            break
         wanted.append({"file": b["filename"], "title": b.get("title") or "",
                        "author_short": author_short(b), "words": b["words"]})
-        print("wanted       %s (%s words)" % (b.get("title"), b["words"]))
 
     if not wanted:
         print("\nnothing to hunt.")
@@ -92,10 +107,26 @@ def main():
     io.open(a.list_out, "w", encoding="utf-8", newline="\n").write(
         json.dumps(wanted, ensure_ascii=False, indent=1) + "\n")
     print("\n%d book(s) → %s\n" % (len(wanted), a.list_out))
+    if a.dry_run:
+        return 0
 
     # The hunt appends to tools/hunt-results.json and skips any book already
-    # answered there, so this is resumable and re-running costs nothing.
-    rc = subprocess.call([sys.executable, "tools/hunt_audio.py", a.list_out])
+    # answered there, so this is resumable and re-running costs nothing. That
+    # also means a book it once found nothing for is never asked about again —
+    # so when the rules change, the old "nothing" has to be cleared out first.
+    if a.retry_misses and os.path.exists(HUNT_OUT):
+        done = json.load(io.open(HUNT_OUT, encoding="utf-8"))
+        ours = {w["file"] for w in wanted}
+        keep = [r for r in done if r.get("pick") or r.get("file") not in ours]
+        if len(keep) != len(done):
+            io.open(HUNT_OUT, "w", encoding="utf-8", newline="\n").write(
+                json.dumps(keep, ensure_ascii=False, indent=1) + "\n")
+            print("asking again about %d book(s) the hunt had given up on\n" % (len(done) - len(keep)))
+
+    cmd = [sys.executable, "tools/hunt_audio.py", a.list_out]
+    if a.allow_uncaptioned:
+        cmd.append("--allow-uncaptioned")
+    rc = subprocess.call(cmd)
     if rc != 0:
         print("hunt_audio.py exited %d" % rc)
         return rc
@@ -106,6 +137,8 @@ def main():
              if r.get("pick") and r.get("file") in ours]
     misses = [r["file"] for r in results if r.get("file") in ours and not r.get("pick")]
 
+    # A pick with no Russian transcript has nothing to download; tools/
+    # place_uncaptioned.py is what places those.
     if not a.no_captions:
         os.makedirs(VTT_DIR, exist_ok=True)
         for f, vid in picks:
@@ -124,6 +157,10 @@ def main():
     print("\n%d picked, %d with nothing usable" % (len(picks), len(misses)))
     for f in misses:
         print("   no recording: %s" % f)
+    bare = [f for f, vid in picks if not os.path.exists(os.path.join(VTT_DIR, vid + ".ru.vtt"))]
+    if bare:
+        print("\n%d pick(s) came with no transcript — place those with:" % len(bare))
+        print("  python3 tools/place_uncaptioned.py")
     if picks:
         # place_picks.py slices the results that HAVE a pick, not all of them,
         # so the range is worked out against that list rather than guessed.

@@ -85,3 +85,8 @@ tools/captions/*.description
 # EPUBs downloaded by tools/add_wikisource.py. Regenerable, and a complete-works
 # run puts gigabytes here.
 .ws-cache/
+
+# Work log from tools/hunt_audio.py: every candidate yt-dlp probed, for every
+# book. Regenerable, and a whole-library sweep makes it very large.
+tools/hunt-results.json
+tools/hunt-wanted.json
