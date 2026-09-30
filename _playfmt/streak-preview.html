@@ -1,0 +1,98 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Streak panel preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#f5f0e8;color:#000;font-family:'Crimson Pro',serif;font-size:16px}
+.ss{max-width:760px;margin:0 auto;padding:36px 20px 80px;display:flex;flex-direction:column;align-items:center}
+.sti{font-family:'Playfair Display',serif;font-size:30px;margin:0 0 4px;color:#000}
+.sde{margin:0 0 18px;color:rgba(0,0,0,.6);font-style:italic}
+dl,dt,dd{margin:0}
+        /* ── Progress: the tear-off calendar ───────────────────────────── */
+        .prog{width:100%;max-width:620px;margin:4px auto 26px;display:flex;flex-direction:column;gap:18px;text-align:left}
+        .prog-top{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;
+          padding-bottom:14px;border-bottom:1px solid rgba(42,31,20,.18)}
+        .prog-streak{display:flex;align-items:baseline;gap:12px}
+        .prog-num{font-family:'Playfair Display',serif;font-size:64px;font-weight:700;line-height:.9;color:#2a1f14;
+          font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+        .prog-num-lbl{display:flex;flex-direction:column;gap:2px;line-height:1.15}
+        .prog-num-lbl .ru{font-family:'Playfair Display',serif;font-size:19px;color:#2a1f14}
+        .prog-num-lbl .en{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(42,31,20,.55)}
+        .prog-status{margin:0;max-width:30ch;font-size:15px;line-height:1.45;color:rgba(42,31,20,.75);font-style:italic}
+        /* the pad */
+        .cal{background:#fbf8f2;border:1px solid rgba(42,31,20,.16);border-radius:4px;padding:12px 14px 12px;
+          box-shadow:0 1px 0 rgba(42,31,20,.12),0 3px 0 -1px #f1ebdf,0 4px 0 -1px rgba(42,31,20,.12),0 6px 0 -2px #ede6d8,0 7px 0 -2px rgba(42,31,20,.1)}
+        .cal-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+        .cal-title{display:flex;flex-direction:column;align-items:center;line-height:1.1}
+        .cal-title .ru{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#2a1f14;letter-spacing:.02em}
+        .cal-title .en{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(42,31,20,.5);margin-top:3px}
+        .cal-nav{background:none;border:1px solid rgba(42,31,20,.2);border-radius:50%;width:30px;height:30px;font-size:20px;line-height:1;
+          color:#2a1f14;cursor:pointer;font-family:'Crimson Pro',serif}
+        .cal-nav:hover:not(:disabled){background:rgba(42,31,20,.06)} .cal-nav:disabled{opacity:.3;cursor:default}
+        .cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:4px}
+        .cal-days span{text-align:center;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(42,31,20,.5)}
+        .cal-days span:nth-child(n+6){color:rgba(157,70,48,.7)}
+        .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+        .leaf{position:relative;aspect-ratio:1/.82;border:1px solid rgba(42,31,20,.13);border-radius:2px;background:#fff;
+          display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;overflow:hidden}
+        .leaf b{font-family:'Playfair Display',serif;font-weight:600;font-size:14px;color:#2a1f14;line-height:1}
+        .leaf i{font-family:'Inter',sans-serif;font-style:normal;font-size:9.5px;color:rgba(42,31,20,.6);font-variant-numeric:tabular-nums}
+        .leaf.blank{border-color:transparent;background:transparent}
+        .leaf.future{background:transparent;border-style:dashed;border-color:rgba(42,31,20,.12)} .leaf.future b{color:rgba(42,31,20,.3)}
+        /* ink wash by how much was read */
+        .leaf.l1{background:#f3ecdf} .leaf.l2{background:#e9dfcc} .leaf.l3{background:#dccdb2} .leaf.l4{background:#cdb994}
+        .leaf.l4 b{color:#1f150c}
+        /* the torn leaf: goal met — the corner is gone and the pad shows through */
+        .leaf.torn{border-color:rgba(157,70,48,.55);
+          background-image:linear-gradient(225deg,#fbf8f2 0,#fbf8f2 13px,rgba(157,70,48,.9) 13px,rgba(157,70,48,.9) 14.5px,transparent 14.5px)}
+        .leaf.torn::after{content:"";position:absolute;top:0;right:0;width:13px;height:13px;
+          background:linear-gradient(225deg,transparent 0,transparent 7px,rgba(42,31,20,.18) 7px,rgba(42,31,20,.18) 8px,transparent 8px)}
+        .leaf.today{outline:2px solid #2a1f14;outline-offset:-2px}
+        .leaf.today b{color:#000}
+        .cal-foot{display:flex;justify-content:space-between;gap:10px;margin-top:10px;font-size:13px;color:rgba(42,31,20,.6);font-style:italic}
+        /* the ledger */
+        .ledger{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:0;border-top:1px solid rgba(42,31,20,.18);border-bottom:1px solid rgba(42,31,20,.18)}
+        .ledger>div{padding:10px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;border-left:1px solid rgba(42,31,20,.1)}
+        .ledger>div:first-child{border-left:none}
+        .ledger dt{font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(42,31,20,.55);text-align:center}
+        .ledger dd{margin:0;font-family:'Playfair Display',serif;font-size:24px;font-weight:600;color:#2a1f14;font-variant-numeric:tabular-nums;line-height:1}
+        @media (max-width:520px){.ledger{grid-template-columns:repeat(2,1fr)}.ledger>div:nth-child(3){border-left:none}.ledger>div:nth-child(n+3){border-top:1px solid rgba(42,31,20,.1)}
+          .prog-num{font-size:52px}}
+        .prog-due{align-self:center;background:none;border:1px solid rgba(30,122,60,.45);color:#1e7a3c;border-radius:999px;
+          padding:7px 16px;font-family:'Crimson Pro',serif;font-size:15px;cursor:pointer;margin-top:-6px}
+        .prog-due:hover{background:rgba(30,122,60,.08)}
+        /* the shelf */
+        .shelf{padding:0 6px}
+        .shelf-row{display:flex;align-items:flex-end;gap:3px;min-height:122px;padding:0 10px}
+        .shelf-board{height:7px;background:linear-gradient(#5a4632,#3d2f21);border-radius:1px;box-shadow:0 3px 0 #2a1f14,0 6px 8px rgba(42,31,20,.25)}
+        .spine{position:relative;height:110px;border-radius:2px 2px 0 0;box-shadow:inset -3px 0 0 rgba(0,0,0,.18),inset 2px 0 0 rgba(255,255,255,.18);
+          display:flex;align-items:center;justify-content:center;overflow:hidden;flex:none}
+        .spine.sp-a{background:#8d5a3b;height:112px} .spine.sp-b{background:#4e6a5b;height:102px}
+        .spine.sp-c{background:#9d4630;height:118px} .spine.sp-d{background:#5c4a3a;height:106px}
+        .spine.more{background:#d8cfbf;height:84px} .spine.more .spine-t{color:#2a1f14;writing-mode:horizontal-tb;transform:none;font-size:14px}
+        .spine-t{writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Playfair Display',serif;font-size:11.5px;letter-spacing:.03em;
+          color:rgba(255,255,255,.92);white-space:nowrap;max-height:100px;overflow:hidden;text-overflow:ellipsis}
+        .shelf-empty{font-size:13.5px;font-style:italic;color:rgba(42,31,20,.5);align-self:center;margin:0 auto;padding-bottom:30px}
+</style></head><body><div class="ss">
+<h1 class="sti">Open a Russian book</h1><p class="sde">Choose a book from the library to begin reading.</p>
+<section class="prog">
+  <div class="prog-top">
+    <div class="prog-streak"><div class="prog-num">9</div>
+      <div class="prog-num-lbl"><span class="ru">дней подряд</span><span class="en">days in a row</span></div></div>
+    <p class="prog-status">Today’s leaf is torn.</p>
+  </div>
+  <div class="cal">
+    <div class="cal-head"><button class="cal-nav">‹</button>
+      <div class="cal-title"><span class="ru">Сентябрь</span><span class="en">September 2026</span></div>
+      <button class="cal-nav" disabled>›</button></div>
+    <div class="cal-days"><span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span></div>
+    <div class="cal-grid"><span class="leaf blank"></span><span class="leaf l0"><b>1</b></span><span class="leaf l2"><b>2</b><i>340</i></span><span class="leaf l2 torn"><b>3</b><i>700</i></span><span class="leaf l0"><b>4</b></span><span class="leaf l2 torn"><b>5</b><i>700</i></span><span class="leaf l0"><b>6</b></span><span class="leaf l0"><b>7</b></span><span class="leaf l2"><b>8</b><i>340</i></span><span class="leaf l0"><b>9</b></span><span class="leaf l0"><b>10</b></span><span class="leaf l0"><b>11</b></span><span class="leaf l3 torn"><b>12</b><i>840</i></span><span class="leaf l2 torn"><b>13</b><i>560</i></span><span class="leaf l3 torn"><b>14</b><i>1.9k</i></span><span class="leaf l2 torn"><b>15</b><i>560</i></span><span class="leaf l2 torn"><b>16</b><i>560</i></span><span class="leaf l4 torn"><b>17</b><i>1.9k</i></span><span class="leaf l3 torn"><b>18</b><i>1.2k</i></span><span class="leaf l2 torn"><b>19</b><i>560</i></span><span class="leaf l2 torn today"><b>20</b><i>120</i></span><span class="leaf l0 future"><b>21</b></span><span class="leaf l0 future"><b>22</b></span><span class="leaf l0 future"><b>23</b></span><span class="leaf l0 future"><b>24</b></span><span class="leaf l0 future"><b>25</b></span><span class="leaf l0 future"><b>26</b></span><span class="leaf l0 future"><b>27</b></span><span class="leaf l0 future"><b>28</b></span><span class="leaf l0 future"><b>29</b></span><span class="leaf l0 future"><b>30</b></span><span class="leaf blank"></span><span class="leaf blank"></span><span class="leaf blank"></span><span class="leaf blank"></span></div><div class="cal-foot"><span>10 280 words read this month</span><span>11 leaves torn</span></div>
+  </div>
+  <dl class="ledger">
+    <div><dt>Books finished</dt><dd>6</dd></div><div><dt>Words learned</dt><dd>41</dd></div>
+    <div><dt>Days of reading</dt><dd>23</dd></div><div><dt>Longest streak</dt><dd>9</dd></div>
+  </dl>
+  <button class="prog-due">14 words are due for review →</button>
+  <div class="shelf"><div class="shelf-row"><span class="spine sp-a" style="width:33px"><span class="spine-t">Дама с собачкой</span></span><span class="spine sp-b" style="width:26px"><span class="spine-t">Палата № 6</span></span><span class="spine sp-c" style="width:40px"><span class="spine-t">Герой нашего времени</span></span><span class="spine sp-d" style="width:35px"><span class="spine-t">Капитанская дочка</span></span><span class="spine sp-a" style="width:24px"><span class="spine-t">Чайка</span></span><span class="spine sp-b" style="width:38px"><span class="spine-t">Смерть Ивана Ильича</span></span></div><div class="shelf-board"></div></div>
+</section>
+<p style="margin-top:34px;font-size:13px;color:rgba(42,31,20,.55);font-style:italic;max-width:56ch;text-align:center">Sample data. In the app the calendar opens on the current month and pages back; the previous month’s leaves carry their own ink.</p>
+</div></body></html>
