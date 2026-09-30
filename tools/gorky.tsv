@@ -1,0 +1,266 @@
+# Written by tools/wikisource_author.py from Автор:Максим Горький
+# Columns: slug, Wikisource page, author, title, category, blurb.
+# A page beginning @ is a collection index — the importer reads its links.
+# Rows marked #have are already on the shelf and are skipped.
+# Check the category and write the blurbs, then:
+#   python3 tools/add_wikisource.py --list tools/gorky.tsv
+#
+a-kto-tam-idet	А кто там идет... (Купала; Горький)	Горький М.	А кто там идет...	Short Stories	
+artist	Артист (Горький)	Горький М.	Артист	Short Stories	
+beyu	БЭЮ/Горький, Максим	Горький М.	БЭЮ	Short Stories	
+babushka-akulina	Бабушка Акулина (Горький)	Горький М.	Бабушка Акулина	Short Stories	
+babushkin-skvorets	Бабушкин скворец (Горький)	Горький М.	Бабушкин скворец	Short Stories	
+baryshnya-i-durak	Барышня и дурак (Горький)	Горький М.	Барышня и дурак	Short Stories	
+bozhe-my-tvoi-lyudi	Боже, мы твои люди (Горький)	Горький М.	Боже, мы твои люди	Short Stories	
+boles	Болесь (Горький)	Горький М.	Болесь	Short Stories	
+bolshaya-lyubov	Большая любовь (Горький)	Горький М.	Большая любовь	Short Stories	
+bukoyomov-karp-ivanovich	Букоёмов, Карп Иванович (Горький)	Горький М.	Букоёмов, Карп Иванович	Short Stories	
+byvshie-lyudi	Бывшие люди (Горький)	Горький М.	Бывшие люди	Short Stories	
+byk	Бык (Горький)	Горький М.	Бык	Short Stories	
+v-lesu	В лесу (Горький)	Горький М.	В лесу	Short Stories	
+v-lyudyakh	В людях (Горький)	Горький М.	В людях	Short Stories	
+v-sochelnik	В сочельник (Горький)	Горький М.	В сочельник	Short Stories	
+v-stepi	В степи (Горький)	Горький М.	В степи	Short Stories	
+v-teatre-i-tsirke	В театре и цирке (Горький)	Горький М.	В театре и цирке	Short Stories	
+vanka-mazin	Ванька Мазин (Горький)	Горький М.	Ванька Мазин	Short Stories	
+varvary	Варвары (Горький)	Горький М.	Варвары	Short Stories	
+varenka-olesova	Варенька Олесова (Горький)	Горький М.	Варенька Олесова	Short Stories	
+vassa-zheleznova-mat	Васса Железнова (Мать) (Горький)	Горький М.	Васса Железнова (Мать)	Short Stories	
+vaska-krasnyy	Васька Красный (Горький)	Горький М.	Васька Красный	Short Stories	
+vezdesushchee	Вездесущее (Горький)	Горький М.	Вездесущее	Short Stories	
+vesennie-melodii	Весенние мелодии (Горький)	Горький М.	Весенние мелодии	Short Stories	
+voda-i-eyo-znachenie-v-prirode-i-zhizni-cheloveka	Вода и её значение в природе и жизни человека (Горький)	Горький М.	Вода и её значение в природе и жизни человека	Short Stories	
+vor	Вор (Горький)	Горький М.	Вор	Short Stories	
+vorobishko	Воробьишко (Горький)	Горький М.	Воробьишко	Short Stories	
+vragi	Враги (Горький)	Горький М.	Враги	Short Stories	
+vstrecha	Встреча (Горький)	Горький М.	Встреча	Short Stories	
+vstryaska	Встряска (Горький)	Горький М.	Встряска	Short Stories	
+vyvod	Вывод (Горький)	Горький М.	Вывод	Short Stories	
+golodnye	Голодные (Горький)	Горький М.	Голодные	Short Stories	
+goremyka-pavel	Горемыка Павел (Горький)	Горький М.	Горемыка Павел	Short Stories	
+gorodok-okurov	Городок Окуров (Горький)	Горький М.	Городок Окуров	Short Stories	
+gorkiy	Горький (Саша Чёрный)	Горький М.	Горький	Short Stories	
+gospodi-pomiluy	Господи, помилуй! (Горький)	Горький М.	Господи, помилуй!	Short Stories	
+gost	Гость (Горький)	Горький М.	Гость	Short Stories	
+grivennik	Гривенник (Эпизод из жизни одного романтика — Горький)	Горький М.	Гривенник	Short Stories	
+grustnaya-istoriya	Грустная история (Горький)	Горький М.	Грустная история	Short Stories	
+dachniki	Дачники (Горький)	Горький М.	Дачники	Short Stories	
+#have	dvadtsat-shest-i-odna	Двадцать шесть и одна (Горький)	Горький М.	Двадцать шесть и одна	Short Stories	
+devochka	Девочка (Горький)	Горький М.	Девочка	Short Stories	
+devushka-i-smert	Девушка и смерть (Горький)	Горький М.	Девушка и смерть	Short Stories	
+ded-arkhip-i-lyonka	Дед Архип и Лёнька (Горький)	Горький М.	Дед Архип и Лёнька	Short Stories	
+delo-artamonovykh	Дело Артамоновых (Горький)	Горький М.	Дело Артамоновых	Short Stories	
+delo-s-zastyozhkami	Дело с застёжками (Горький)	Горький М.	Дело с застёжками	Short Stories	
+delyozh	Делёж (Горький)	Горький М.	Делёж	Short Stories	
+deti-solntsa	Дети солнца (Горький)	Горький М.	Дети солнца	Short Stories	
+#have	detstvo	Детство (Горький)	Горький М.	Детство	Short Stories	
+diplomatiya	Дипломатия (Горький)	Горький М.	Дипломатия	Short Stories	
+dostigaev-i-drugie	Достигаев и другие (Горький)	Горький М.	Достигаев и другие	Short Stories	
+druzhki	Дружки (Горький)	Горький М.	Дружки	Short Stories	
+druzya	Друзья (Горький)	Горький М.	Друзья	Short Stories	
+egor-bulychov-i-drugie	Егор Булычов и другие (Горький)	Горький М.	Егор Булычов и другие	Short Stories	
+emelyan-pilyay	Емельян Пиляй (Горький)	Горький М.	Емельян Пиляй	Short Stories	
+enblema	Енблема (Горький)	Горький М.	Енблема	Short Stories	
+eshchyo-o-chyorte	Ещё о чёрте (Горький)	Горький М.	Ещё о чёрте	Short Stories	
+zhaloby	Жалобы (Горький)	Горький М.	Жалобы	Short Stories	
+zhenshchina-s-golubymi-glazami	Женщина с голубыми глазами (Горький)	Горький М.	Женщина с голубыми глазами	Short Stories	
+zhizn-klima-samgina	Жизнь Клима Самгина (Горький)	Горький М.	Жизнь Клима Самгина	Short Stories	
+zhizn-matveya-kozhemyakina	Жизнь Матвея Кожемякина (Горький)	Горький М.	Жизнь Матвея Кожемякина	Short Stories	
+zhizn-nenuzhnogo-cheloveka	Жизнь ненужного человека (Горький)	Горький М.	Жизнь ненужного человека	Short Stories	
+za-bortom	За бортом (Горький)	Горький М.	За бортом	Short Stories	
+zazubrina	Зазубрина (Горький)	Горький М.	Зазубрина	Short Stories	
+zametki-iz-dnevnika-vospominaniya	Заметки из дневника. Воспоминания (Горький)	Горький М.	Заметки из дневника. Воспоминания	Short Stories	
+zlodei	Злодеи (Горький)	Горький М.	Злодеи	Short Stories	
+zykovy	Зыковы (Горький)	Горький М.	Зыковы	Short Stories	
+i-eshchyo-o-chyorte	И ещё о чёрте (Горький)	Горький М.	И ещё о чёрте	Short Stories	
+idilliya	Идиллия (Горький)	Горький М.	Идиллия	Short Stories	
+iz-vospominaniy	Из воспоминаний (Горький)	Горький М.	Из воспоминаний	Short Stories	
+iz-dnevnika	Из дневника (Горький)	Горький М.	Из дневника	Short Stories	
+izvozchik	Извозчик (Горький)	Горький М.	Извозчик	Short Stories	
+isklyuchitelnyy-fakt	Исключительный факт (Горький)	Горький М.	Исключительный факт	Short Stories	
+ispoved	Исповедь (Горький)	Горький М.	Исповедь	Short Stories	
+kain-i-artyom	Каин и Артём (Горький)	Горький М.	Каин и Артём	Short Stories	
+kak-menya-otbrili	Как меня отбрили... (Горький)	Горький М.	Как меня отбрили...	Short Stories	
+kak-poymali-semagu	Как поймали Семагу (Горький)	Горький М.	Как поймали Семагу	Short Stories	
+kak-ya-uchilsya	Как я учился (Горький)	Горький М.	Как я учился	Short Stories	
+kirilka	Кирилка (Горький)	Горький М.	Кирилка	Short Stories	
+kolokol	Колокол (Горький)	Горький М.	Колокол	Short Stories	
+kolyusha	Колюша (Горький)	Горький М.	Колюша	Short Stories	
+konovalov	Коновалов (Горький)	Горький М.	Коновалов	Short Stories	
+krazha	Кража (Горький)	Горький М.	Кража	Short Stories	
+#have	krasavitsa	Красавица (Горький)	Горький М.	Красавица	Short Stories	
+krasota	Красота (Горький)	Горький М.	Красота	Short Stories	
+krymskie-eskizy	Крымские эскизы (Горький)	Горький М.	Крымские эскизы	Short Stories	
+l-a-sulerzhitskiy	Л. А. Сулержицкий (Горький)	Горький М.	Л. А. Сулержицкий	Short Stories	
+leonid-andreev	Леонид Андреев (Горький)	Горький М.	Леонид Андреев	Short Stories	
+leto	Лето (Горький)	Горький М.	Лето	Short Stories	
+ma-alenkaya	Ма-аленькая! (Горький)	Горький М.	Ма-аленькая!	Short Stories	
+makar-chudra	Макар Чудра (Горький)	Горький М.	Макар Чудра	Short Stories	
+malva	Мальва (Горький)	Горький М.	Мальва	Short Stories	
+mamasha-kemskikh	Мамаша Кемских (Горький)	Горький М.	Мамаша Кемских	Short Stories	
+#have	mat	Мать (Горький)	Горький М.	Мать	Short Stories	
+mest-paralleli	Месть. Параллели (Горький)	Горький М.	Месть. Параллели	Short Stories	
+meshchane	Мещане (Горький)	Горький М.	Мещане	Short Stories	
+misha	Миша (Горький)	Горький М.	Миша	Short Stories	
+moi-universitety	Мои университеты (Горький)	Горький М.	Мои университеты	Short Stories	
+moy-sputnik	Мой спутник (Горький)	Горький М.	Мой спутник	Short Stories	
+mordovka	Мордовка (Горький)	Горький М.	Мордовка	Short Stories	
+mudrets	Мудрец (Горький)	Горький М.	Мудрец	Short Stories	
+muzyka	Музыка (Я сижу в кабинете — Горький)	Горький М.	Музыка	Short Stories	
+na-bazare	На базаре (Горький)	Горький М.	На базаре	Short Stories	
+#have	na-dne	На дне (Горький)	Горький М.	На дне	Short Stories	
+na-krayu-zemli	На краю земли (Горький)	Горький М.	На краю земли	Short Stories	
+na-plotakh	На плотах (Горький)	Горький М.	На плотах	Short Stories	
+na-soli	На соли (Горький)	Горький М.	На соли	Short Stories	
+navazhdenie	Наваждение (Горький)	Горький М.	Наваждение	Short Stories	
+nemoy	Немой (Горький)	Горький М.	Немой	Short Stories	
+nepriyatnost	Неприятность (Горький)	Горький М.	Неприятность	Short Stories	
+nesvoevremennye-mysli	Несвоевременные мысли (Горький)	Горький М.	Несвоевременные мысли	Short Stories	
+neskolko-dney-v-roli-redaktora-provintsialnoy-gazety	Несколько дней в роли редактора провинциальной газеты (Горький)	Горький М.	Несколько дней в роли редактора провинциальной газеты	Short Stories	
+neskolko-isporchennykh-minut	Несколько испорченных минут (Горький)	Горький М.	Несколько испорченных минут	Short Stories	
+nesoglasnyy	Несогласный (Горький)	Горький М.	Несогласный	Short Stories	
+nishchenka	Нищенка (Горький)	Горький М.	Нищенка	Short Stories	
+nuncha	Нунча (Сказки об Италии, Горький)	Горький М.	Нунча	Short Stories	
+o-bespokoynoy-knige	О беспокойной книге (Горький)	Горький М.	О беспокойной книге	Short Stories	
+o-vrede-filosofii	О вреде философии (Горький)	Горький М.	О вреде философии	Short Stories	
+o-malenkoy-fee-i-molodom-chabane	О маленькой фее и молодом чабане (Горький)	Горький М.	О маленькой фее и молодом чабане	Short Stories	
+o-malchike-i-devochke-kotorye-ne-zamyorzli	О мальчике и девочке, которые не замёрзли (Горький)	Горький М.	О мальчике и девочке, которые не замёрзли	Short Stories	
+o-pervoy-lyubvi	О первой любви (Горький)	Горький М.	О первой любви	Short Stories	
+o-pisatele-kotoryy-zaznalsya	О писателе, который зазнался (Горький)	Горький М.	О писателе, который зазнался	Short Stories	
+o-russkom-krestyanstve	О русском крестьянстве (Горький)	Горький М.	О русском крестьянстве	Short Stories	
+o-skazkakh	О сказках (Горький, 1929)	Горький М.	О сказках	Short Stories	
+o-tarakanakh	О тараканах (Горький)	Горький М.	О тараканах	Short Stories	
+o-chizhe-kotoryy-lgal-i-o-dyatle-lyubitele-istiny	О чиже, который лгал, и о дятле — любителе истины (Горький)	Горький М.	О чиже, который лгал, и о дятле — любителе истины	Short Stories	
+o-chyorte	О чёрте (Горький)	Горький М.	О чёрте	Short Stories	
+ob-odnom-poete	Об одном поэте (Горький)	Горький М.	Об одном поэте	Short Stories	
+odinokiy	Одинокий (Горький)	Горький М.	Одинокий	Short Stories	
+odnazhdy-osenyu	Однажды осенью (Горький)	Горький М.	Однажды осенью	Short Stories	
+ozornik	Озорник (Горький)	Горький М.	Озорник	Short Stories	
+oryol	Орёл (Горький)	Горький М.	Орёл	Short Stories	
+otkrytie	Открытие (Из мемуаров современника — Горький)	Горький М.	Открытие	Short Stories	
+otomstil	Отомстил... (Горький)	Горький М.	Отомстил...	Short Stories	
+oshibka	Ошибка (Горький)	Горький М.	Ошибка	Short Stories	
+pervyy-debyut	Первый дебют (Горький)	Горький М.	Первый дебют	Short Stories	
+pered-litsom-zhizni	Перед лицом жизни (Горький)	Горький М.	Перед лицом жизни	Short Stories	
+pesnya	Песня (Горький)	Горький М.	Песня	Short Stories	
+pesnya-o-burevestnike	Песня о буревестнике (Горький)	Горький М.	Песня о буревестнике	Short Stories	
+pesnya-o-slepykh	Песня о слепых (Горький)	Горький М.	Песня о слепых	Short Stories	
+pesnya-o-sokole	Песня о соколе (Горький)	Горький М.	Песня о соколе	Short Stories	
+pismo	Письмо (Горький)	Горький М.	Письмо	Short Stories	
+pogrom	Погром (Горький)	Горький М.	Погром	Short Stories	
+pozhar	Пожар (Горький)	Горький М.	Пожар	Short Stories	
+pozadi-u-nas-lesa	Позади у нас — леса (Горький)	Горький М.	Позади у нас — леса	Short Stories	
+polem-idut-dvoe	Полем идут двое (Горький)	Горький М.	Полем идут двое	Short Stories	
+poslednie	Последние (Горький)	Горький М.	Последние	Short Stories	
+posledniy-den	Последний день (Горький)	Горький М.	Последний день	Short Stories	
+pochtalon	Почтальон (Горький)	Горький М.	Почтальон	Short Stories	
+poet	Поэт (Горький)	Горький М.	Поэт	Short Stories	
+pravdu-rasskazat-pro-vas	Правду рассказать про вас (Горький)	Горький М.	Правду рассказать про вас	Short Stories	
+presvyataya-bogoroditsa	Пресвятая богородица (Горький)	Горький М.	Пресвятая богородица	Short Stories	
+pro-ivanushku-durachka	Про Иванушку-дурачка (Горький)	Горький М.	Про Иванушку-дурачка	Short Stories	
+probuzhdenie	Пробуждение (Горький)	Горький М.	Пробуждение	Short Stories	
+provodnik	Проводник (Горький)	Горький М.	Проводник	Short Stories	
+prokhodimets	Проходимец (Горький)	Горький М.	Проходимец	Short Stories	
+puzyri	Пузыри (Горький)	Горький М.	Пузыри	Short Stories	
+razgovor-po-dushe	Разговор по душе (Горький)	Горький М.	Разговор по душе	Short Stories	
+rasskaz-filippa-vasilevicha	Рассказ Филиппа Васильевича (Горький)	Горький М.	Рассказ Филиппа Васильевича	Short Stories	
+rasskazy-o-geroyakh	Рассказы о героях (Горький)	Горький М.	Рассказы о героях	Short Stories	
+revolyutsiya-i-kultura	Революция и культура (Горький 1918)	Горький М.	Революция и культура	Short Stories	
+roman	Роман (Горький)	Горький М.	Роман	Short Stories	
+romantik	Романтик (Горький)	Горький М.	Романтик	Short Stories	
+samovar	Самовар (Горький)	Горький М.	Самовар	Short Stories	
+samoubiystvo	Самоубийство (Горький)	Горький М.	Самоубийство	Short Stories	
+#have	svadba	Свадьба (Горький)	Горький М.	Свадьба	Short Stories	
+svidanie	Свидание (Горький)	Горький М.	Свидание	Short Stories	
+svobodnye-dni	Свободные дни (Горький)	Горький М.	Свободные дни	Short Stories	
+sirota	Сирота (Горький)	Горький М.	Сирота	Short Stories	
+skazka	Сказка (Горький)	Горький М.	Сказка	Short Stories	
+skazki-ob-italii	Сказки об Италии (Горький)	Горький М.	Сказки об Италии	Short Stories	
+skuki-radi	Скуки ради (Горький)	Горький М.	Скуки ради	Short Stories	
+sluchay-iz-zhizni-makara	Случай из жизни Макара (Горький)	Горький М.	Случай из жизни Макара	Short Stories	
+sluchay-s-evseykoy	Случай с Евсейкой (Горький)	Горький М.	Случай с Евсейкой	Short Stories	
+snova-tuchi-serye-mchatsya-nad-bolotami	Снова тучи серые мчатся над болотами (Горький)	Горький М.	Снова тучи серые мчатся над болотами	Short Stories	
+sobaka	Собака (Горький)	Горький М.	Собака	Short Stories	
+soldaty	Солдаты (Горький)	Горький М.	Солдаты	Short Stories	
+son	Сон (Горький)	Горький М.	Сон	Short Stories	
+son-koli	Сон Коли (Горький)	Горький М.	Сон Коли	Short Stories	
+starik	Старик (Горький)	Горький М.	Старик	Short Stories	
+#have	starukha-izergil	Старуха Изергиль (Горький)	Горький М.	Старуха Изергиль	Short Stories	
+staryy-god	Старый год (Горький)	Горький М.	Старый год	Short Stories	
+stikhi-vagina-iz-pesy-deti-solntsa	Стихи Вагина из пьесы «Дети Солнца» (Горький)	Горький М.	Стихи Вагина из пьесы «Дети Солнца»	Short Stories	
+stikhi-vinchentso-iz-skazok-ob-italii	Стихи Винченцо из «Сказок об Италии» (Горький)	Горький М.	Стихи Винченцо из «Сказок об Италии»	Short Stories	
+stikhi-simy-devushkina-iz-povesti-gorodok-okurov	Стихи Симы Девушкина из повести «Городок Окуров» (Горький)	Горький М.	Стихи Симы Девушкина из повести «Городок Окуров»	Short Stories	
+storozh	Сторож (Горький)	Горький М.	Сторож	Short Stories	
+suprugi-orlovy	Супруги Орловы (Горький)	Горький М.	Супруги Орловы	Short Stories	
+teatralnoe	Театральное (Горький)	Горький М.	Театральное	Short Stories	
+tovarishch	Товарищ! (Горький)	Горький М.	Товарищ!	Short Stories	
+tovarishchi	Товарищи (Горький)	Горький М.	Товарищи	Short Stories	
+#have	toska	Тоска (Горький)	Горький М.	Тоска	Short Stories	
+tri-dnya	Три дня (Горький)	Горький М.	Три дня	Short Stories	
+troe	Трое (Горький)	Горький М.	Трое	Short Stories	
+tronulo	Тронуло (Горький)	Горький М.	Тронуло	Short Stories	
+trubochist	Трубочист (Горький)	Горький М.	Трубочист	Short Stories	
+tyurma	Тюрьма (Горький)	Горький М.	Тюрьма	Short Stories	
+ubezhal	Убежал (Горький)	Горький М.	Убежал	Short Stories	
+ubiytsy	Убийцы (Горький)	Горький М.	Убийцы	Short Stories	
+utro	Утро (Горький)	Горький М.	Утро	Short Stories	
+falshivaya-moneta	Фальшивая монета (Горький)	Горький М.	Фальшивая монета	Short Stories	
+farforovaya-svinya	Фарфоровая свинья (Горький)	Горький М.	Фарфоровая свинья	Short Stories	
+finogen-ilich	Финоген Ильич (Горький)	Горький М.	Финоген Ильич	Short Stories	
+#have	foma-gordeev	Фома Гордеев (Горький)	Горький М.	Фома Гордеев	Short Stories	
+fyodor-dyadin	Фёдор Дядин (Горький)	Горький М.	Фёдор Дядин	Short Stories	
+khan-i-ego-syn	Хан и его сын (Горький)	Горький М.	Хан и его сын	Short Stories	
+khodyat-volki-po-polyam-da-po-lesam	Ходят волки по полям да по лесам (Горький)	Горький М.	Ходят волки по полям да по лесам	Short Stories	
+khozyain	Хозяин (Горький)	Горький М.	Хозяин	Short Stories	
+khoroshiy-vankin-den	Хороший Ванькин день (Горький)	Горький М.	Хороший Ванькин день	Short Stories	
+charli-men	Чарли Мэн (Горький)	Горький М.	Чарли Мэн	Short Stories	
+chasy	Часы (Горький)	Горький М.	Часы	Short Stories	
+chasy-otdykha-uchitelya-korzhika	Часы отдыха учителя Коржика (Горький)	Горький М.	Часы отдыха учителя Коржика	Short Stories	
+#have	chelkash	Челкаш (Горький)	Горький М.	Челкаш	Short Stories	
+chelovek	Человек (Горький)	Горький М.	Человек	Short Stories	
+chekhov-i-gorkiy	Чехов и Горький (Мережковский)	Горький М.	Чехов и Горький	Short Stories	
+chitatel	Читатель (Горький)	Горький М.	Читатель	Short Stories	
+chudaki	Чудаки (Горький)	Горький М.	Чудаки	Short Stories	
+shabry	Шабры (Горький)	Горький М.	Шабры	Short Stories	
+shornik-i-pozhar	Шорник и пожар (Горький)	Горький М.	Шорник и пожар	Short Stories	
+esg	ЭСГ/Горький, Максим	Горький М.	ЭСГ	Short Stories	
+ekzekutsiya	Экзекуция (Горький)	Горький М.	Экзекуция	Short Stories	
+ekh-popel-by-ya-veselykh-pesen	Эх, попел бы я веселых песен! (Горький)	Горький М.	Эх, попел бы я веселых песен!	Short Stories	
+yarmarka-v-goltve	Ярмарка в Голтве (Горький)	Горький М.	Ярмарка в Голтве	Short Stories	
+yashka	Яшка (Горький)	Горький М.	Яшка	Short Stories	
+#
+# These have subpages. The EPUB export follows chapters by itself, so
+# they need nothing; but if one imports thin or empty it is an index of
+# separate pages, and wants an @ in front of it.
+#   Революция и культура (Горький 1918)                          64
+#   Детство (Горький)                                            14
+#   Дело Артамоновых (Горький)                                   5
+#   Жизнь Клима Самгина (Горький)                                5
+#   Рассказы о героях (Горький)                                  2
+#   Солдаты (Горький)                                            2
+#   Варвары (Горький)                                            1
+#   Весенние мелодии (Горький)                                   1
+#   Городок Окуров (Горький)                                     1
+#   Двадцать шесть и одна (Горький)                              1
+#   Мать (Горький)                                               1
+#   Мещане (Горький)                                             1
+#   На дне (Горький)                                             1
+#   На краю земли (Горький)                                      1
+#   На плотах (Горький)                                          1
+#   Несвоевременные мысли (Горький)                              1
+#   Песня о буревестнике (Горький)                               1
+#   Самовар (Горький)                                            1
+#   Старик (Горький)                                             1
+#   Старуха Изергиль (Горький)                                   1
+#   Хан и его сын (Горький)                                      1
+#   Челкаш (Горький)                                             1
+#   Человек (Горький)                                            1
+#
+# Linked from the author page but not kept (no Горький in the title):
+#   Валерий Яковлевич Брюсов
+#   Гражданский кодекс РФ/Глава 70
+#   Дмитрий Сергеевич Мережковский
+#   Максиму Горькому в июле 1917 года (Брюсов)
+#   Саша Чёрный
+#   ЭСГ/Пешков, Алексей Максимович
+#   Янка Купала

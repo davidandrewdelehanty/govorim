@@ -26,6 +26,7 @@ egress is filtered. That is also why --epub-dir exists.
 """
 import argparse
 import csv
+import time
 import html
 import io
 import json
@@ -88,9 +89,21 @@ def fetch_epub(page, cache_dir=None):
         if os.path.exists(path) and os.path.getsize(path) > 1000:
             return open(path, "rb").read()
     url = EXPORT + urllib.parse.quote(page.replace(" ", "_"))
-    req = urllib.request.Request(url, headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=300) as r:
-        data = r.read()
+    wait, data = 4, None
+    for attempt in range(5):
+        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        try:
+            with urllib.request.urlopen(req, timeout=300) as r:
+                data = r.read()
+            break
+        except urllib.error.HTTPError as e:
+            if e.code not in (429, 500, 502, 503, 504) or attempt == 4:
+                raise
+            ra = e.headers.get("Retry-After") if e.headers else None
+            pause = int(ra) if (ra or "").isdigit() else wait
+            print("   … %s on %s, waiting %ds" % (e.code, page, pause), flush=True)
+            time.sleep(pause)
+            wait = min(wait * 2, 120)
     if not data.startswith(b"PK"):
         raise RuntimeError("export did not return an EPUB for %r" % page)
     if cache_dir:
@@ -748,6 +761,8 @@ def main():
     ap.add_argument("--manifest", default=MANIFEST)
     ap.add_argument("--books-dir", default=BOOKS_DIR)
     ap.add_argument("--no-catalogue", action="store_true")
+    ap.add_argument("--pause", type=float, default=1.0,
+                    help="seconds between exports; the service builds each one on demand")
     ap.add_argument("--replace-entry", action="store_true",
                     help="overwrite an existing entry instead of merging")
     a = ap.parse_args()
@@ -793,7 +808,12 @@ def main():
                 t, au = j["title"], j["author"]
                 page = idx
             else:
+                cached = os.path.exists(os.path.join(
+                    a.epub_dir or a.cache,
+                    page.replace(" ", "_").replace("/", "_") + ".epub"))
                 data = fetch_epub(page, a.epub_dir or a.cache)
+                if not cached and a.pause:
+                    time.sleep(a.pause)
                 t, au, chapters = read_epub(data)
             if not chapters:
                 raise RuntimeError("no readable chapters")

@@ -81,3 +81,7 @@ tools/captions/*.description
 # Intermediate output from tools/flatten_fb2.py — the accepted result is copied
 # over the original and the previous version kept as .bak-preflatten.
 *.fb2.new
+
+# EPUBs downloaded by tools/add_wikisource.py. Regenerable, and a complete-works
+# run puts gigabytes here.
+.ws-cache/

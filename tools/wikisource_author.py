@@ -5,12 +5,21 @@ tools/add_wikisource.py takes a TSV and puts each row on the shelf. Filling
 that TSV by hand means knowing every page title an author has there, which is
 how a shelf ends up with the three famous works and none of the rest. This
 asks Wikisource instead: it reads the author's page, keeps the links that are
-that author's own texts, notices which of them are collections, and writes the
-list in the shape the importer already reads.
+that author's own texts, and writes the list in the shape the importer already
+reads.
 
     python3 tools/wikisource_author.py                       # Bulgakov
     python3 tools/wikisource_author.py --author "Автор:Иван Алексеевич Бунин" \
-        --marker Бунин --out tools/bunin.tsv
+        --marker Бунин --name "Бунин И.А." --out tools/bunin.tsv
+
+NO @ IS WRITTEN. Wikisource's EPUB export already follows a work's chapter
+subpages — that is how Белая гвардия arrived with its nineteen chapters — so
+marking those as collection indexes imports them twice over, once flattened.
+@ belongs only to an index whose members are separate top-level pages, which
+no listing of titles can tell apart from a work in chapters, and which is rare.
+Pages that do have subpages are named at the foot of the file so they can be
+looked at; a page that imports thin or empty is the other way to find them, and
+the importer says so plainly rather than shipping it.
 
 Then read the file. The page titles come from Wikisource and are right; the
 category and the blurb are this script's guess and are meant to be edited.
@@ -195,6 +204,8 @@ def main():
     ap.add_argument("--manifest", default=MANIFEST)
     ap.add_argument("--all", action="store_true",
                     help="keep every page linked from the author page, marker or not")
+    ap.add_argument("--limit", type=int, default=0,
+                    help="write at most this many rows, for a look before the whole shelf")
     a = ap.parse_args()
 
     print("reading %s" % a.author, flush=True)
@@ -219,22 +230,23 @@ def main():
     print("   %d titles, %d of them collections" % (len(universe), len(subs)), flush=True)
 
     have = catalogue_titles(a.manifest)
-    rows, seen = [], set()
+    rows, seen, nested = [], set(), []
     for p in sorted(kept):
         title = bare_title(p)
         if title in seen:
             continue           # a second edition of something already listed
         seen.add(title)
-        known = KNOWN.get(title, ())
+        known = KNOWN.get(title, ()) if a.marker == "Булгаков" else ()
         slug = known[0] if known else slugify(title)
         cat = known[1] if len(known) > 1 else "Short Stories"
         blurb = known[2] if len(known) > 2 else ""
         n_sub = subs.get(p, 0)
-        page = ("@" + p) if n_sub else p
         rows.append(("#have\t" if title in have else "") +
-                    "\t".join([slug, page, a.name, title, cat, blurb]))
-        print("%s %s%s" % ("have " if title in have else "new  ", p,
-                           ("   (%d parts)" % n_sub) if n_sub else ""))
+                    "\t".join([slug, p, a.name, title, cat, blurb]))
+        if n_sub:
+            nested.append((p, n_sub))
+        if a.limit and len(rows) >= a.limit:
+            break
 
     if os.path.dirname(a.out):
         os.makedirs(os.path.dirname(a.out), exist_ok=True)
@@ -246,13 +258,20 @@ def main():
         f.write("# Check the category and write the blurbs, then:\n")
         f.write("#   python3 tools/add_wikisource.py --list %s\n#\n" % a.out)
         f.write("\n".join(rows) + "\n")
+        if nested:
+            f.write("#\n# These have subpages. The EPUB export follows chapters by itself, so\n"
+                    "# they need nothing; but if one imports thin or empty it is an index of\n"
+                    "# separate pages, and wants an @ in front of it.\n")
+            for p, k in sorted(nested, key=lambda x: -x[1]):
+                f.write("#   %-60s %d\n" % (p, k))
         if skipped:
             f.write("#\n# Linked from the author page but not kept (no %s in the title):\n" % a.marker)
             for p in sorted(skipped):
                 f.write("#   %s\n" % p)
 
-    print("\n%d rows → %s   (%d already on the shelf, %d set aside)"
-          % (len(rows), a.out, sum(1 for r in rows if r.startswith("#have")), len(skipped)))
+    print("\n%-28s %4d rows → %s   (%d already on the shelf, %d with subpages, %d set aside)"
+          % (a.marker, len(rows), a.out,
+             sum(1 for r in rows if r.startswith("#have")), len(nested), len(skipped)))
 
 
 if __name__ == "__main__":
