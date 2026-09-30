@@ -10,7 +10,7 @@ list in the shape the importer already reads.
 
     python3 tools/wikisource_author.py                       # Bulgakov
     python3 tools/wikisource_author.py --author "Автор:Иван Алексеевич Бунин" \
-        --marker "(Бунин" --out tools/bunin.tsv
+        --marker Бунин --out tools/bunin.tsv
 
 Then read the file. The page titles come from Wikisource and are right; the
 category and the blurb are this script's guess and are meant to be edited.
@@ -21,18 +21,28 @@ nothing is imported twice by accident. When it looks right:
 
 WHERE THIS RUNS: it needs ru.wikisource.org, so it runs on your machine —
 same as add_wikisource.py, and for the same reason.
+
+ON BEING A GOOD GUEST: an earlier version asked Wikisource one question per
+work to find out which of them were collections, and was rate-limited (429)
+nine works in. It now asks one question for the whole author — every page
+title carrying his name, chapter subpages included — and works out the
+collections from that list on this side. Three or four requests for the
+entire shelf instead of one per book. Requests that are refused anyway are
+retried with a widening wait rather than being allowed to end the run.
 """
 import argparse
+import io
 import json
 import os
 import re
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 
 API = "https://ru.wikisource.org/w/api.php"
-UA = "govorim-app/1.0 (library import; contact via github)"
+UA = "govorim-app/1.0 (library import; https://govorim.dev)"
 MANIFEST = "private/books/index.json"
 
 # Reference works ABOUT the author sit on his page beside the works BY him.
@@ -82,6 +92,8 @@ KNOWN = {
         "Three men set out for one more drink, and the evening goes where such evenings go."),
     "Богема": ("bogema", "Short Stories",
         "How the author survived the winter of 1920 in Vladikavkaz by writing a revolutionary play in three days."),
+    "В ночь на 3-е число": ("v-noch-na-3-e-chislo", "Short Stories",
+        "A night in Kiev as the city changes hands, from the chapter of a novel he never finished."),
     "Театральный роман": ("teatralnyy-roman", "Novels",
         "A clerk's novel is made into a play, and he is drawn into the theatre staging it, where nothing is decided and everything is personal."),
     "Жизнь господина де Мольера": ("zhizn-molera", "Novels",
@@ -101,50 +113,72 @@ KNOWN = {
 }
 
 
-def api(params):
+def api(params, tries=5):
+    """One request, patient about being refused.
+
+    Wikimedia answers a burst from one anonymous address with 429. Failing the
+    whole run on it wastes every request already spent, so a refusal is waited
+    out — Retry-After when it says, doubling seconds when it does not."""
     params = dict(params, format="json", formatversion="2")
-    req = urllib.request.Request(API + "?" + urllib.parse.urlencode(params),
-                                 headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        return json.load(r)
+    url = API + "?" + urllib.parse.urlencode(params)
+    wait = 2
+    for attempt in range(tries):
+        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                return json.load(r)
+        except urllib.error.HTTPError as e:
+            if e.code not in (429, 500, 502, 503, 504) or attempt == tries - 1:
+                raise
+            ra = e.headers.get("Retry-After") if e.headers else None
+            pause = int(ra) if (ra or "").isdigit() else wait
+            print("   … %s, waiting %ds" % (e.code, pause), flush=True)
+            time.sleep(pause)
+            wait = min(wait * 2, 60)
+    raise RuntimeError("unreachable")
+
+
+def all_titles(marker, cap=2000):
+    """Every ns-0 page title carrying the author's name — works, editions and
+    the chapter subpages of collections. One question for the whole shelf, in
+    pages of fifty, instead of one question per work."""
+    out, offset = set(), 0
+    while len(out) < cap:
+        d = api({"action": "query", "list": "search", "srnamespace": 0,
+                 "srsearch": 'intitle:"%s"' % marker, "srlimit": 50,
+                 "sroffset": offset, "srprop": ""})
+        hits = d.get("query", {}).get("search", [])
+        out.update(h["title"] for h in hits)
+        cont = d.get("continue", {}).get("sroffset")
+        if not hits or cont is None:
+            break
+        offset = cont
+        time.sleep(0.4)
+    return out
 
 
 def slugify(title):
-    t = title.lower()
     out = []
-    for ch in t:
+    for ch in title.lower():
         if ch in TRANSLIT:
             out.append(TRANSLIT[ch])
         elif ch.isalnum():
             out.append(ch)
         else:
             out.append("-")
-    s = re.sub(r"-{2,}", "-", "".join(out)).strip("-")
-    return s[:60]
+    return re.sub(r"-{2,}", "-", "".join(out)).strip("-")[:60]
 
 
 def bare_title(page):
-    """«Роковые яйца (Булгаков)» → «Роковые яйца». Editions keep their suffix
-    off the title but not off the page: «Левша (Лесков)/Издание 1902» is still
-    Левша."""
-    t = page.split("/")[0]
-    t = re.sub(r"\s*\([^()]*\)\s*$", "", t).strip()
+    """«Роковые яйца (Булгаков)» → «Роковые яйца». An edition suffix after a
+    slash goes too: «Левша (Лесков)/Издание 1902» is still Левша."""
+    t = re.sub(r"\s*\([^()]*\)\s*$", "", page.split("/")[0]).strip()
     return t
-
-
-def has_subpages(page):
-    """A collection is a page with children: Записки юного врача is an index
-    and the seven stories are separate pages under it. The importer wants
-    those marked with a leading @."""
-    d = api({"action": "query", "list": "allpages", "apnamespace": 0,
-             "apprefix": page + "/", "aplimit": 5})
-    return bool(d.get("query", {}).get("allpages"))
 
 
 def catalogue_titles(manifest):
     try:
-        with open(manifest, encoding="utf-8") as f:
-            data = json.load(f)
+        data = json.load(io.open(manifest, encoding="utf-8"))
     except Exception:
         return set()
     books = data.get("books", data) if isinstance(data, dict) else data
@@ -154,8 +188,8 @@ def catalogue_titles(manifest):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--author", default="Автор:Михаил Афанасьевич Булгаков")
-    ap.add_argument("--marker", default="(Булгаков",
-                    help="keep only pages whose title carries this, the author's disambiguator")
+    ap.add_argument("--marker", default="Булгаков",
+                    help="the author's name as his page titles carry it")
     ap.add_argument("--name", default="Булгаков М.А.", help="author, as the catalogue writes it")
     ap.add_argument("--out", default="tools/bulgakov.tsv")
     ap.add_argument("--manifest", default=MANIFEST)
@@ -163,6 +197,7 @@ def main():
                     help="keep every page linked from the author page, marker or not")
     a = ap.parse_args()
 
+    print("reading %s" % a.author, flush=True)
     d = api({"action": "parse", "page": a.author, "prop": "links"})
     links = d.get("parse", {}).get("links", [])
     pages = [l["title"] for l in links
@@ -170,6 +205,18 @@ def main():
              not l["title"].startswith(DROP_PREFIX)]
     kept = [p for p in pages if a.all or a.marker in p]
     skipped = [p for p in pages if p not in kept]
+    print("   %d works linked, %d set aside" % (len(kept), len(skipped)), flush=True)
+
+    print("asking for every page titled «%s» …" % a.marker, flush=True)
+    universe = all_titles(a.marker)
+    subs = {}
+    for t in universe:
+        if "/" not in t:
+            continue
+        parent = t.split("/")[0]
+        subs.setdefault(parent, 0)
+        subs[parent] += 1
+    print("   %d titles, %d of them collections" % (len(universe), len(subs)), flush=True)
 
     have = catalogue_titles(a.manifest)
     rows, seen = [], set()
@@ -182,14 +229,16 @@ def main():
         slug = known[0] if known else slugify(title)
         cat = known[1] if len(known) > 1 else "Short Stories"
         blurb = known[2] if len(known) > 2 else ""
-        page = ("@" + p) if has_subpages(p) else p
-        time.sleep(0.2)
+        n_sub = subs.get(p, 0)
+        page = ("@" + p) if n_sub else p
         rows.append(("#have\t" if title in have else "") +
                     "\t".join([slug, page, a.name, title, cat, blurb]))
-        print(("have  " if title in have else "new   ") + p)
+        print("%s %s%s" % ("have " if title in have else "new  ", p,
+                           ("   (%d parts)" % n_sub) if n_sub else ""))
 
-    os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
-    with open(a.out, "w", encoding="utf-8", newline="\n") as f:
+    if os.path.dirname(a.out):
+        os.makedirs(os.path.dirname(a.out), exist_ok=True)
+    with io.open(a.out, "w", encoding="utf-8", newline="\n") as f:
         f.write("# Written by tools/wikisource_author.py from %s\n" % a.author)
         f.write("# Columns: slug, Wikisource page, author, title, category, blurb.\n")
         f.write("# A page beginning @ is a collection index — the importer reads its links.\n")
