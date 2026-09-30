@@ -34,8 +34,26 @@ def body_of(root):
 
 # A speech in a printed play opens with its speaker: "Медведенко. Отчего вы
 # всегда ходите в чёрном?" One such line proves nothing — Chekhov's prose is
-# full of "Иван Иванович." — so it takes a third of the paragraphs.
+# full of "Иван Иванович." — so it takes a third of the paragraphs. It also
+# takes a work of some size: a letter that opens "Любезнейший Фёдор
+# Михайлович." and runs to two hundred words matched this test perfectly, and
+# eleven of Turgenev's letters to Dostoevsky were filed as plays.
 SPEAKER = re.compile(r"^[А-ЯЁ][А-Яа-яЁё\s\-]{1,28}\.\s+[А-ЯЁ«—]")
+PLAY_MIN_WORDS, PLAY_MIN_PARAS = 1500, 8
+# Wikisource's export gives a poem no verse markup: every line is a <p> like
+# any other. What marks it is the shape — «И ветер, и дождик, и мгла» is seven
+# words, and a paragraph of prose in these books runs to forty. So verse is
+# read off the median line rather than off the tags, which is why the first
+# run put six hundred lyrics on the Short Stories shelf.
+VERSE_MEDIAN_WORDS = 10
+# Short lines alone are not enough: a story told mostly in dialogue has them
+# too, and Танька — two and a half thousand words of prose — came out as a
+# poem. What separates them is the end of the line. A line of verse stops
+# where the metre stops, most often on a comma or on nothing at all; a
+# paragraph of prose stops on a full stop. Half the lines ending open is a
+# poem; a tenth is a conversation.
+VERSE_OPEN_ENDS = 0.4
+ENDS_SENTENCE = re.compile(r"[.!?…:;]['\"»)]*$")
 
 def look(path):
     root = ET.parse(path).getroot()
@@ -43,26 +61,42 @@ def look(path):
     if body is None:
         return None
     verse = prose = speech = 0
+    lens = []
     for el in body.iter():
         t = local(el)
         if t == "v":
             verse += 1
+            lens.append(len("".join(el.itertext()).split()))
         elif t == "p":
             prose += 1
             txt = re.sub(r"\s+", " ", "".join(el.itertext())).strip()
+            lens.append(len(txt.split()))
             if SPEAKER.match(txt):
                 speech += 1
+    open_end = 0
+    for el in body.iter():
+        if local(el) in ("p", "v"):
+            txt = re.sub(r"\s+", " ", "".join(el.itertext())).strip()
+            if txt and not ENDS_SENTENCE.search(txt):
+                open_end += 1
+    lens = sorted(x for x in lens if x)
     lines = verse + prose
     return {
-        "verse": verse / lines if lines else 0,
+        "tagged_verse": verse / lines if lines else 0,
+        "median_line": lens[len(lens) // 2] if lens else 0,
         "speech": speech / prose if prose else 0,
+        "open_end": open_end / lines if lines else 0,
+        "paras": lines,
     }
 
 def decide(shape, words):
-    if shape and shape["verse"] >= 0.6:
-        return "Poetry", False
-    if shape and shape["speech"] >= 0.33:
+    if shape and shape["speech"] >= 0.33 and words >= PLAY_MIN_WORDS \
+            and shape["paras"] >= PLAY_MIN_PARAS:
         return "Plays", True
+    if shape and (shape["tagged_verse"] >= 0.6 or
+                  (shape["median_line"] <= VERSE_MEDIAN_WORDS and shape["paras"] >= 4
+                   and shape["open_end"] >= VERSE_OPEN_ENDS)):
+        return "Poetry", False
     if words >= NOVEL:
         return "Novels", False
     if words >= NOVELLA:
@@ -77,6 +111,8 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--force", action="store_true",
                     help="also re-shelve books whose category was set by hand")
+    ap.add_argument("--imported-only", action="store_true",
+                    help="only books this repo imported from Wikisource")
     a = ap.parse_args()
     if not a.author and not a.slug:
         ap.error("give --author or --slug")
@@ -89,6 +125,8 @@ def main():
             continue
         if not (any(s in str(b.get("author") or "") for s in a.author) or b.get("slug") in a.slug):
             continue
+        if a.imported_only and not str(b.get("_note") or "").startswith("Text from Russian Wikisource"):
+            continue
         if not a.force and b.get("category") not in PLACEHOLDER:
             continue
         try:
@@ -100,9 +138,9 @@ def main():
         if cat == b.get("category") and bool(b.get("play")) == is_play:
             same += 1
             continue
-        print("%-34s %-14s -> %-14s %6s w   verse %.2f  speech %.2f"
-              % (b.get("slug"), b.get("category"), cat, b.get("words"),
-                 shape["verse"] if shape else 0, shape["speech"] if shape else 0))
+        print("%-40s %-14s -> %-14s %7s w   line %3d  open %.2f"
+              % (b.get("slug")[:40], b.get("category"), cat, b.get("words"),
+                 shape["median_line"] if shape else 0, shape["open_end"] if shape else 0))
         if is_play:
             plays.append(b.get("slug"))
         if not a.dry_run:
