@@ -147,6 +147,34 @@ def api(params, tries=5):
     raise RuntimeError("unreachable")
 
 
+def marker_re(marker):
+    """«(Чехов)», «(Чехов, 1884)», «(драма, Чехов)» — all three are his.
+
+    Wikisource disambiguates a title that exists twice by putting the year or
+    the genre inside the same parenthesis as the author. Testing for the bare
+    «(Чехов)» as a substring misses every one of those, which is how both
+    Ванькас, both Мести and both Юбилеи came to be set aside. The name has to
+    stand alone inside the brackets, though: «Чехов и Горький (Мережковский)»
+    is about him, not by him, and still must not be kept."""
+    name = re.escape(marker.strip("()"))
+    return re.compile(r"\((?:[^()]*,\s*)?" + name + r"(?:\s*,[^()]*)?\)")
+
+
+# «Пёстрые рассказы (сборник, Чехов)» and «Маленькая трилогия (цикл, Чехов)»
+# pass the marker test and are not works: they are indexes over works listed
+# separately, and importing one yields a stub or a second copy of its members.
+# An index is imported deliberately, with an @ in front of it, never by sweep.
+INDEX_WORDS = ("сборник", "цикл", "собрание", "том ")
+
+
+def is_index_page(page):
+    inner = re.search(r"\(([^()]*)\)\s*$", page.split("/")[0])
+    if not inner:
+        return False
+    low = inner.group(1).lower()
+    return any(w in low for w in INDEX_WORDS)
+
+
 def all_titles(marker, cap=2000):
     """Every ns-0 page title carrying the author's name — works, editions and
     the chapter subpages of collections. One question for the whole shelf, in
@@ -185,13 +213,27 @@ def bare_title(page):
     return t
 
 
-def catalogue_titles(manifest):
+def catalogue_titles(manifest, name=""):
+    """What this author already has on the shelf.
+
+    Scoped to the author on purpose. A title is not unique across a library:
+    «Исповедь» is Gorky's, Tolstoy's and Turgenev's, «Сон» is Gorky's and
+    Turgenev's, and asking only whether the title is present answers yes for
+    an author who has never been imported."""
     try:
         data = json.load(io.open(manifest, encoding="utf-8"))
     except Exception:
         return set()
     books = data.get("books", data) if isinstance(data, dict) else data
-    return set(str(b.get("title", "")).strip() for b in books if isinstance(b, dict))
+    key = (name or "").split()[0].strip(",.") if name else ""
+    out = set()
+    for b in books:
+        if not isinstance(b, dict):
+            continue
+        if key and key not in str(b.get("author") or ""):
+            continue
+        out.add(str(b.get("title", "")).strip())
+    return out
 
 
 def main():
@@ -214,7 +256,10 @@ def main():
     pages = [l["title"] for l in links
              if l.get("ns") == 0 and l.get("exists") and
              not l["title"].startswith(DROP_PREFIX)]
-    kept = [p for p in pages if a.all or a.marker in p]
+    mre = marker_re(a.marker)
+    kept = [p for p in pages
+            if (a.all or mre.search(p)) and not is_index_page(p)]
+    indexes = [p for p in pages if mre.search(p) and is_index_page(p)]
     skipped = [p for p in pages if p not in kept]
     print("   %d works linked, %d set aside" % (len(kept), len(skipped)), flush=True)
 
@@ -229,10 +274,26 @@ def main():
         subs[parent] += 1
     print("   %d titles, %d of them collections" % (len(universe), len(subs)), flush=True)
 
-    have = catalogue_titles(a.manifest)
+    have = catalogue_titles(a.manifest, a.name)
     rows, seen, nested = [], set(), []
+    # Which bare titles the author uses twice. «Беда (Чехов, 1886)» and
+    # «Беда (Чехов, 1887)» are two stories, so both are kept and both keep
+    # what tells them apart; a plain second edition of one work still drops.
+    bare_count = {}
+    for p in kept:
+        bare_count[bare_title(p)] = bare_count.get(bare_title(p), 0) + 1
+
     for p in sorted(kept):
         title = bare_title(p)
+        if bare_count.get(title, 0) > 1:
+            inner = re.search(r"\(([^()]*)\)\s*$", p.split("/")[0])
+            tag = ""
+            if inner:
+                bits = [x.strip() for x in inner.group(1).split(",")
+                        if x.strip() and a.marker.strip("()") not in x]
+                tag = ", ".join(bits)
+            if tag:
+                title = "%s (%s)" % (title, tag)
         if title in seen:
             continue           # a second edition of something already listed
         seen.add(title)
@@ -258,6 +319,11 @@ def main():
         f.write("# Check the category and write the blurbs, then:\n")
         f.write("#   python3 tools/add_wikisource.py --list %s\n#\n" % a.out)
         f.write("\n".join(rows) + "\n")
+        if indexes:
+            f.write("#\n# Collections and cycles, left out — each indexes works listed\n"
+                    "# above. To import one as a single book, add it with an @ in front.\n")
+            for p in sorted(indexes):
+                f.write("#   %s\n" % p)
         if nested:
             f.write("#\n# These have subpages. The EPUB export follows chapters by itself, so\n"
                     "# they need nothing; but if one imports thin or empty it is an index of\n"

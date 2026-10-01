@@ -5131,6 +5131,26 @@ export default function App() {
   };
   var srcJumpChapterRef = useRef(null);
   var srcJumpOffsetRef = useRef(null);  // vocab source-link: char offset of the saved word, to highlight its sentence on arrival
+  // Which book that pending offset was asked for.
+  //
+  // The offset is cleared when the jump lands, and only then: if the place it
+  // names is not on the page that opens — a chapter shorter than the saved
+  // offset, a file re-parsed into different chapters, a bookmark into text
+  // that has since changed — nothing clears it. It is a ref, so it outlives
+  // the book, and the reset-to-top below reads it as "a deliberate landing is
+  // pending, leave the scroll alone". The next book then opened wherever the
+  // shelf happened to be scrolled to, with no saved place of its own: the
+  // reader saw a book start partway down. So the request is stamped with the
+  // book it belongs to and ignored anywhere else.
+  var srcJumpForRef = useRef("");
+  var requestSrcJump = function(off, forMeta) {
+    srcJumpOffsetRef.current = (typeof off === "number") ? off : null;
+    srcJumpForRef.current = (off == null) ? "" : (bookKey(forMeta) || "");
+  };
+  var srcJumpPending = function(meta) {
+    return srcJumpOffsetRef.current != null &&
+           srcJumpForRef.current === (bookKey(meta) || "");
+  };
   // Bumped whenever a place in the text is asked for, so the page-picking
   // effect below runs even when nothing else about the view has changed.
   var [jumpTick, setJumpTick] = useState(0);
@@ -6590,7 +6610,10 @@ export default function App() {
   var atTopRef = useRef("");
   useEffect(function() {
     if (!(started && isLit) || lview !== "read") return;
-    if (srcJumpOffsetRef.current != null) return;
+    if (srcJumpPending(bookMeta)) return;
+    // Stale: it belonged to a book that is no longer open. Drop it, so the
+    // next jump is not measured against it either.
+    if (srcJumpOffsetRef.current != null) { srcJumpOffsetRef.current = null; srcJumpForRef.current = ""; }
     if (mergedCh && mergedCh.merged) return;
     var key = (bookKey(bookMeta) || "") + "|" + cidx + "|" + pidx;
     if (atTopRef.current === key) return;
@@ -6798,6 +6821,10 @@ export default function App() {
   // what makes it run for a jump WITHIN the open chapter, where neither the
   // chapter nor the page has changed and a ref cannot wake an effect.
   useEffect(function() {
+    // The owner check matters here too: this effect can run while the reset
+    // above is held off (the reader is not on the read view yet), and a jump
+    // meant for another book must not choose this one's page.
+    if (!srcJumpPending(bookMeta)) return;
     var want = srcJumpOffsetRef.current;
     if (want == null || !pages.length) return;
     var cur = pages[Math.min(pidx, pages.length - 1)];
@@ -6923,6 +6950,7 @@ export default function App() {
         var pageRel = wantOffset - currentPage.startChar;
         if (pageRel >= 0 && pageRel <= pageText.length) {
           srcJumpOffsetRef.current = null;
+          srcJumpForRef.current = "";
           audioSentencesRef.current = parsed;
           // Retry a few times: other effects (audiobook loader, page-change
           // handlers) call clearSentenceHighlight() right after a jump, so a
@@ -8203,7 +8231,7 @@ export default function App() {
     var off = it.kind === "hl" ? it.start : it.paraStart;
     setLview("read");
     if (it.cidx === cidx) setTimeout(function(){ scrollToOffset(off); }, 60);
-    else { srcJumpOffsetRef.current = off; navLit(it.cidx); }
+    else { requestSrcJump(off, bookMeta); navLit(it.cidx); }
   };
   // A selection or an open note belongs to the chapter it was made in.
   useEffect(function() { setSelBox(null); setNotePop(null); setNoteEditing(false); }, [cidx, curBookKey]);
@@ -10390,7 +10418,7 @@ export default function App() {
       var startCi = savedProg ? savedProg.cidx : 0;
       var startPi = savedProg ? savedProg.pidx : 0;
       // Land on the paragraph, not merely in the chapter.
-      if (savedProg && savedProg.off > 0) srcJumpOffsetRef.current = savedProg.off;
+      if (savedProg && savedProg.off > 0) requestSrcJump(savedProg.off, meta);
       if (srcJumpChapterRef.current !== null && srcJumpChapterRef.current !== undefined) {
         startCi = srcJumpChapterRef.current; startPi = 0;
         srcJumpChapterRef.current = null;
@@ -10541,7 +10569,7 @@ export default function App() {
       var startCi2 = savedProg2 ? savedProg2.cidx : 0;
       var startPi2 = savedProg2 ? savedProg2.pidx : 0;
       // Land on the paragraph, not merely in the chapter.
-      if (savedProg2 && savedProg2.off > 0) srcJumpOffsetRef.current = savedProg2.off;
+      if (savedProg2 && savedProg2.off > 0) requestSrcJump(savedProg2.off, meta);
       startLit(startCi2, d.chapters, meta, startPi2);
     } catch(err) {
       setFErr("Failed to open uploaded book: " + (err.message || err));
@@ -10754,7 +10782,7 @@ export default function App() {
     }
     if (!book) { alert("That book isn't in the library anymore."); return; }
     srcJumpChapterRef.current = (typeof v.srcChapter === "number") ? v.srcChapter : 0;
-    srcJumpOffsetRef.current = (typeof v.srcOffset === "number") ? v.srcOffset : null;
+    requestSrcJump(v.srcOffset, book);
     // The reader renders inside the "chat" tab (when started && isLit), so we
     // must switch there — from the vocab tab the reader is otherwise hidden.
     setMode("read");
@@ -17275,7 +17303,7 @@ export default function App() {
                                     onClick={function(){
                                       if (!book || bookLoading !== null) return;
                                       srcJumpChapterRef.current = bm.cidx || 0;
-                                      srcJumpOffsetRef.current = (typeof bm.off === "number") ? bm.off : null;
+                                      requestSrcJump(bm.off, book);
                                       loadPresetBook(book);
                                       // The book has to load, parse and raise a
                                       // player before there is anything to seek.
@@ -18153,7 +18181,7 @@ export default function App() {
                           setLview("read");
                           if (bm.cidx === cidx) { scrollToOffset(bm.off); }
                           else {
-                            srcJumpOffsetRef.current = bm.off;
+                            requestSrcJump(bm.off, bookMeta);
                             navLit(bm.cidx);
                           }
                           // Put the recording back where it was, as soon as
@@ -18597,7 +18625,7 @@ export default function App() {
                                   scrollToOffset(bm.off);
                                   try { ytCtrlRef.current && ytCtrlRef.current.seekAbs(bm.audio); } catch (e) {}
                                 } else {
-                                  srcJumpOffsetRef.current = bm.off;
+                                  requestSrcJump(bm.off, bookMeta);
                                   navLit(bm.cidx);
                                   seekWhenReady(bm.audio);   // fires when the chapter's player is up
                                 }
@@ -19078,7 +19106,7 @@ export default function App() {
                         return (
                           <div key={k} className={"lcard lhit" + (h.ci === cidx ? " cur" : "")} onClick={function(){
                             setLsearch(""); setLview("read");
-                            srcJumpOffsetRef.current = h.off;
+                            requestSrcJump(h.off, bookMeta);
                             setJumpTick(function(t){ return t + 1; });
                             if (h.ci !== cidx) navLit(h.ci);
                             else setTimeout(function(){ scrollToOffset(h.off); }, 60);

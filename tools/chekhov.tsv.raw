@@ -1,0 +1,771 @@
+# Written by tools/wikisource_author.py from Автор:Антон Павлович Чехов
+# Columns: slug, Wikisource page, author, title, category, blurb.
+# A page beginning @ is a collection index — the importer reads its links.
+# Rows marked #have are already on the shelf and are skipped.
+# Check the category and write the blurbs, then:
+#   python3 tools/add_wikisource.py --list tools/chekhov.tsv
+#
+3000-inostrannykh-slov-voshedshikh-v-upotreblenie-russkogo-y	3000 иностранных слов, вошедших в употребление русского языка (Чехов)	Чехов А.П.	3000 иностранных слов, вошедших в употребление русского языка	Short Stories	
+75-000	75 000 (Чехов)	Чехов А.П.	75 000	Short Stories	
+mari-d-elle	Mari d'elle (Чехов)	Чехов А.П.	Mari d'elle	Short Stories	
+perpetuum-mobile	Perpetuum mobile (Чехов)	Чехов А.П.	Perpetuum mobile	Short Stories	
+rara-avis	Rara avis (Чехов)	Чехов А.П.	Rara avis	Short Stories	
+gamlet-na-pushkinskoy-stsene	«Гамлет» на Пушкинской сцене (Чехов)	Чехов А.П.	«Гамлет» на Пушкинской сцене	Short Stories	
+kaliostro-velikiy-charodey-v-vene-v-novom-teatre-m-i-a-l	«Калиостро, великий чародей, в Вене» в «Новом театре» М. и А. Л.*** (Чехов)	Чехов А.П.	«Калиостро, великий чародей, в Вене» в «Новом театре» М. и А. Л.***	Short Stories	
+svidanie-khotya-i-sostoyalos-no	«Свидание хотя и состоялось, но...» (Чехов)	Чехов А.П.	«Свидание хотя и состоялось, но...»	Short Stories	
+yolka	Ёлка (Чехов)	Чехов А.П.	Ёлка	Short Stories	
+avtobiografiya	Автобиография (Чехов)	Чехов А.П.	Автобиография	Short Stories	
+agafya	Агафья (Чехов)	Чехов А.П.	Агафья	Short Stories	
+aktyorskaya-gibel	Актёрская гибель (Чехов)	Чехов А.П.	Актёрская гибель	Short Stories	
+albom	Альбом (Чехов)	Чехов А.П.	Альбом	Short Stories	
+amerika-v-rostove-na-donu	Америка в Ростове-на-Дону (Чехов)	Чехов А.П.	Америка в Ростове-на-Дону	Short Stories	
+#have	anna-na-shee	Анна на шее (Чехов)	Чехов А.П.	Анна на шее	Short Stories	
+antreprenyor-pod-divanom	Антрепренёр под диваном (Чехов)	Чехов А.П.	Антрепренёр под диваном	Short Stories	
+anyuta	Анюта (Чехов)	Чехов А.П.	Анюта	Short Stories	
+aptekarskaya-taksa-ili-spasite-grabyat	Аптекарская такса, или Спасите, грабят!! (Чехов)	Чехов А.П.	Аптекарская такса, или Спасите, грабят!!	Short Stories	
+aptekarsha	Аптекарша (Чехов)	Чехов А.П.	Аптекарша	Short Stories	
+ariadna	Ариадна (Чехов)	Чехов А.П.	Ариадна	Short Stories	
+#have	arkhierey	Архиерей (Чехов)	Чехов А.П.	Архиерей	Short Stories	
+akh-zuby	Ах, зубы! (Чехов)	Чехов А.П.	Ах, зубы!	Short Stories	
+baby	Бабы (Чехов)	Чехов А.П.	Бабы	Short Stories	
+babe-tsarstvo	Бабье царство (Чехов)	Чехов А.П.	Бабье царство	Short Stories	
+baran-i-baryshnya	Баран и барышня (Чехов)	Чехов А.П.	Баран и барышня	Short Stories	
+baron	Барон (Чехов)	Чехов А.П.	Барон	Short Stories	
+barynya	Барыня (Чехов)	Чехов А.П.	Барыня	Short Stories	
+beglets	Беглец (Чехов)	Чехов А.П.	Беглец	Short Stories	
+beda-1886	Беда (Чехов, 1886)	Чехов А.П.	Беда (1886)	Short Stories	
+beda-1887	Беда (Чехов, 1887)	Чехов А.П.	Беда (1887)	Short Stories	
+bez-zaglaviya	Без заглавия (Чехов)	Чехов А.П.	Без заглавия	Short Stories	
+bez-mesta	Без места (Чехов)	Чехов А.П.	Без места	Short Stories	
+bezzakonie	Беззаконие (Чехов)	Чехов А.П.	Беззаконие	Short Stories	
+bezzashchitnoe-sushchestvo	Беззащитное существо (Чехов)	Чехов А.П.	Беззащитное существо	Short Stories	
+beznadyozhnyy	Безнадёжный (Чехов)	Чехов А.П.	Безнадёжный	Short Stories	
+bezottsovshchina	Безотцовщина (Чехов)	Чехов А.П.	Безотцовщина	Short Stories	
+belolobyy	Белолобый (Чехов)	Чехов А.П.	Белолобый	Short Stories	
+benefis-p-m-svobodina	Бенефис П. М. Свободина (Чехов)	Чехов А.П.	Бенефис П. М. Свободина	Short Stories	
+benefis-solovya	Бенефис соловья (Чехов)	Чехов А.П.	Бенефис соловья	Short Stories	
+beseda-pyanogo-s-trezvym-chyortom	Беседа пьяного с трезвым чёртом (Чехов)	Чехов А.П.	Беседа пьяного с трезвым чёртом	Short Stories	
+bespokoynyy-gost	Беспокойный гость (Чехов)	Чехов А.П.	Беспокойный гость	Short Stories	
+bibliografiya	Библиография (Чехов)	Чехов А.П.	Библиография	Short Stories	
+blagodarnyy	Благодарный (Чехов)	Чехов А.П.	Благодарный	Short Stories	
+bliny	Блины (Чехов)	Чехов А.П.	Блины	Short Stories	
+brak-po-raschyotu	Брак по расчёту (Чехов)	Чехов А.П.	Брак по расчёту	Short Stories	
+brak-cherez-10-15-let	Брак через 10—15 лет (Чехов)	Чехов А.П.	Брак через 10—15 лет	Short Stories	
+bratets	Братец (Чехов)	Чехов А.П.	Братец	Short Stories	
+brozhenie-umov	Брожение умов (Чехов)	Чехов А.П.	Брожение умов	Short Stories	
+bumazhnik	Бумажник (Чехов)	Чехов А.П.	Бумажник	Short Stories	
+v-moskve-na-trubnoy-ploshchadi	В Москве на Трубной площади (Чехов)	Чехов А.П.	В Москве на Трубной площади	Short Stories	
+v-parizh	В Париж! (Чехов)	Чехов А.П.	В Париж!	Short Stories	
+v-apteke	В аптеке (Чехов)	Чехов А.П.	В аптеке	Short Stories	
+v-bane	В бане (Чехов)	Чехов А.П.	В бане	Short Stories	
+v-vagone-1881	В вагоне (Чехов, 1881)	Чехов А.П.	В вагоне (1881)	Short Stories	
+v-vagone-1885	В вагоне (Чехов, 1885)	Чехов А.П.	В вагоне (1885)	Short Stories	
+v-gostinoy	В гостиной (Чехов)	Чехов А.П.	В гостиной	Short Stories	
+v-lando	В ландо (Чехов)	Чехов А.П.	В ландо	Short Stories	
+v-more	В море (Чехов)	Чехов А.П.	В море	Short Stories	
+v-nomerakh	В номерах (Чехов)	Чехов А.П.	В номерах	Short Stories	
+#have	v-ovrage	В овраге (Чехов)	Чехов А.П.	В овраге	Short Stories	
+v-pansione	В пансионе (Чехов)	Чехов А.П.	В пансионе	Short Stories	
+v-potyomkakh	В потёмках (Чехов)	Чехов А.П.	В потёмках	Short Stories	
+v-pochtovom-otdelenii	В почтовом отделении (Чехов)	Чехов А.П.	В почтовом отделении	Short Stories	
+v-priyute-dlya-neizlechimo-bolnykh-i-prestarelykh	В приюте для неизлечимо больных и престарелых (Чехов)	Чехов А.П.	В приюте для неизлечимо больных и престарелых	Short Stories	
+v-rodnom-uglu	В родном углу (Чехов)	Чехов А.П.	В родном углу	Short Stories	
+v-rozhdestvenskuyu-noch	В рождественскую ночь (Чехов)	Чехов А.П.	В рождественскую ночь	Short Stories	
+v-sarae	В сарае (Чехов)	Чехов А.П.	В сарае	Short Stories	
+v-ssylke	В ссылке (Чехов)	Чехов А.П.	В ссылке	Short Stories	
+v-sude	В суде (Чехов)	Чехов А.П.	В суде	Short Stories	
+v-sumerkakh	В сумерках (Чехов)	Чехов А.П.	В сумерках	Short Stories	
+v-usadbe	В усадьбе (Чехов)	Чехов А.П.	В усадьбе	Short Stories	
+v-tsirulne	В цирульне (Чехов)	Чехов А.П.	В цирульне	Short Stories	
+v-a-bandakov	В. А. Бандаков (Чехов)	Чехов А.П.	В. А. Бандаков	Short Stories	
+vanka-1884	Ванька (Чехов, 1884)	Чехов А.П.	Ванька (1884)	Short Stories	
+vanka-1886	Ванька (Чехов, 1886)	Чехов А.П.	Ванька (1886)	Short Stories	
+vverkh-po-lestnitse	Вверх по лестнице (Чехов)	Чехов А.П.	Вверх по лестнице	Short Stories	
+vedma	Ведьма (Чехов)	Чехов А.П.	Ведьма	Short Stories	
+verba	Верба (Чехов)	Чехов А.П.	Верба	Short Stories	
+verochka	Верочка (Чехов)	Чехов А.П.	Верочка	Short Stories	
+vesnoy-1886	Весной (Чехов, 1886)	Чехов А.П.	Весной (1886)	Short Stories	
+vesnoy-1887	Весной (Чехов, 1887)	Чехов А.П.	Весной (1887)	Short Stories	
+ves-v-dedushku	Весь в дедушку (Чехов)	Чехов А.П.	Весь в дедушку	Short Stories	
+vizitnye-kartochki	Визитные карточки (Чехов)	Чехов А.П.	Визитные карточки	Short Stories	
+vint	Винт (Чехов)	Чехов А.П.	Винт	Short Stories	
+#have	vishnyovyy-sad	Вишнёвый сад (Чехов)	Чехов А.П.	Вишнёвый сад	Short Stories	
+vodevil	Водевиль (Чехов)	Чехов А.П.	Водевиль	Short Stories	
+volk	Волк (Чехов)	Чехов А.П.	Волк	Short Stories	
+volodya	Володя (Чехов)	Чехов А.П.	Володя	Short Stories	
+volodya-bolshoy-i-volodya-malenkiy	Володя большой и Володя маленький (Чехов)	Чехов А.П.	Володя большой и Володя маленький	Short Stories	
+vopros	Вопрос (Чехов)	Чехов А.П.	Вопрос	Short Stories	
+voprosy-i-otvety	Вопросы и ответы (Чехов)	Чехов А.П.	Вопросы и ответы	Short Stories	
+vor	Вор (Чехов)	Чехов А.П.	Вор	Short Stories	
+vorona	Ворона (Чехов)	Чехов А.П.	Ворона	Short Stories	
+vory	Воры (Чехов)	Чехов А.П.	Воры	Short Stories	
+vosklitsatelnyy-znak	Восклицательный знак (Чехов)	Чехов А.П.	Восклицательный знак	Short Stories	
+vragi	Враги (Чехов)	Чехов А.П.	Враги	Short Stories	
+vrachebnye-sovety	Врачебные советы (Чехов)	Чехов А.П.	Врачебные советы	Short Stories	
+vstrecha	Встреча (Чехов)	Чехов А.П.	Встреча	Short Stories	
+vstrecha-vesny	Встреча весны (Чехов)	Чехов А.П.	Встреча весны	Short Stories	
+vyveska	Вывеска (Чехов)	Чехов А.П.	Вывеска	Short Stories	
+vyigryshnyy-bilet	Выигрышный билет (Чехов)	Чехов А.П.	Выигрышный билет	Short Stories	
+vynuzhdennoe-zayavlenie	Вынужденное заявление (Чехов)	Чехов А.П.	Вынужденное заявление	Short Stories	
+gadalshchiki-i-gadalshchitsy	Гадальщики и гадальщицы (Чехов)	Чехов А.П.	Гадальщики и гадальщицы	Short Stories	
+gerat	Герат (Чехов)	Чехов А.П.	Герат	Short Stories	
+geroy-barynya	Герой-барыня (Чехов)	Чехов А.П.	Герой-барыня	Short Stories	
+glupyy-frantsuz	Глупый француз (Чехов)	Чехов А.П.	Глупый француз	Short Stories	
+govorit-ili-molchat	Говорить или молчать? (Чехов)	Чехов А.П.	Говорить или молчать?	Short Stories	
+gordyy-chelovek	Гордый человек (Чехов)	Чехов А.П.	Гордый человек	Short Stories	
+gore	Горе (Чехов)	Чехов А.П.	Горе	Short Stories	
+gospoda-obyvateli	Господа обыватели (Чехов)	Чехов А.П.	Господа обыватели	Short Stories	
+gost	Гость (Чехов)	Чехов А.П.	Гость	Short Stories	
+grach	Грач (Чехов)	Чехов А.П.	Грач	Short Stories	
+grechnevaya-kasha-sama-sebya-khvalit	Гречневая каша сама себя хвалит (Чехов)	Чехов А.П.	Гречневая каша сама себя хвалит	Short Stories	
+greshnik-iz-toledo	Грешник из Толедо (Чехов)	Чехов А.П.	Грешник из Толедо	Short Stories	
+grisha	Гриша (Чехов)	Чехов А.П.	Гриша	Short Stories	
+gusev	Гусев (Чехов)	Чехов А.П.	Гусев	Short Stories	
+gusinyy-razgovor	Гусиный разговор (Чехов)	Чехов А.П.	Гусиный разговор	Short Stories	
+#have	dama-s-sobachkoy	Дама с собачкой (Чехов)	Чехов А.П.	Дама с собачкой	Short Stories	
+damy	Дамы (Чехов)	Чехов А.П.	Дамы	Short Stories	
+dachniki	Дачники (Чехов)	Чехов А.П.	Дачники	Short Stories	
+dachnitsa	Дачница (Чехов)	Чехов А.П.	Дачница	Short Stories	
+dachnoe-udovolstvie	Дачное удовольствие (Чехов)	Чехов А.П.	Дачное удовольствие	Short Stories	
+dachnye-pravila	Дачные правила (Чехов)	Чехов А.П.	Дачные правила	Short Stories	
+dva-gazetchika	Два газетчика (Чехов)	Чехов А.П.	Два газетчика	Short Stories	
+dva-pisma	Два письма (Чехов)	Чехов А.П.	Два письма	Short Stories	
+dva-romana	Два романа (Чехов)	Чехов А.П.	Два романа	Short Stories	
+dva-skandala	Два скандала (Чехов)	Чехов А.П.	Два скандала	Short Stories	
+dvadtsat-devyatoe-iyunya	Двадцать девятое июня (Чехов)	Чехов А.П.	Двадцать девятое июня	Short Stories	
+dvadtsat-shest	Двадцать шесть (Чехов)	Чехов А.П.	Двадцать шесть	Short Stories	
+dvoe-v-odnom	Двое в одном (Чехов)	Чехов А.П.	Двое в одном	Short Stories	
+delets	Делец (Чехов)	Чехов А.П.	Делец	Short Stories	
+delo-rykova-i-komp	Дело Рыкова и комп. (Чехов)	Чехов А.П.	Дело Рыкова и комп.	Short Stories	
+delo-o-1884-gode	Дело о 1884 годе (Чехов)	Чехов А.П.	Дело о 1884 годе	Short Stories	
+den-za-gorodom	День за городом (Чехов)	Чехов А.П.	День за городом	Short Stories	
+deputat-ili-povest-o-tom-kak-u-dezdemonova-25-rubley-propalo	Депутат, или Повесть о том, как у Дездемонова 25 рублей пропало (Чехов)	Чехов А.П.	Депутат, или Повесть о том, как у Дездемонова 25 рублей пропало	Short Stories	
+detvora	Детвора (Чехов)	Чехов А.П.	Детвора	Short Stories	
+diplomat	Дипломат (Чехов)	Чехов А.П.	Дипломат	Short Stories	
+dlinnyy-yazyk	Длинный язык (Чехов)	Чехов А.П.	Длинный язык	Short Stories	
+dobrodetelnyy-kabatchik	Добродетельный кабатчик (Чехов)	Чехов А.П.	Добродетельный кабатчик	Short Stories	
+dobryy-znakomyy	Добрый знакомый (Чехов)	Чехов А.П.	Добрый знакомый	Short Stories	
+dobryy-nemets	Добрый немец (Чехов)	Чехов А.П.	Добрый немец	Short Stories	
+doktor	Доктор (Чехов)	Чехов А.П.	Доктор	Short Stories	
+#have	dom-s-mezoninom	Дом с мезонином (Чехов)	Чехов А.П.	Дом с мезонином	Short Stories	
+doma	Дома (Чехов)	Чехов А.П.	Дома	Short Stories	
+domashnie-sredstva	Домашние средства (Чехов)	Чехов А.П.	Домашние средства	Short Stories	
+donesenie	Донесение (Чехов)	Чехов А.П.	Донесение	Short Stories	
+dopolnitelnye-voprosy-k-lichnym-kartam-statisticheskoy-perep	Дополнительные вопросы к личным картам статистической переписи, предлагаемые Антошей Чехонте (Чехов)	Чехов А.П.	Дополнительные вопросы к личным картам статистической переписи, предлагаемые Антошей Чехонте	Short Stories	
+dorogaya-sobaka	Дорогая собака (Чехов)	Чехов А.П.	Дорогая собака	Short Stories	
+dorogie-uroki	Дорогие уроки (Чехов)	Чехов А.П.	Дорогие уроки	Short Stories	
+doch-albiona	Дочь Альбиона (Чехов)	Чехов А.П.	Дочь Альбиона	Short Stories	
+doch-kommertsii-sovetnika	Дочь Коммерции советника (Чехов)	Чехов А.П.	Дочь Коммерции советника	Short Stories	
+drama-1886	Драма (Чехов, 1886)	Чехов А.П.	Драма (1886)	Short Stories	
+drama-1887	Драма (Чехов, 1887)	Чехов А.П.	Драма (1887)	Short Stories	
+drama-na-okhote	Драма на охоте (Чехов)	Чехов А.П.	Драма на охоте	Short Stories	
+dramaturg	Драматург (Чехов)	Чехов А.П.	Драматург	Short Stories	
+dura-ili-kapitan-v-otstavke	Дура, или Капитан в отставке (Чехов)	Чехов А.П.	Дура, или Капитан в отставке	Short Stories	
+durak	Дурак (Чехов)	Чехов А.П.	Дурак	Short Stories	
+dushechka	Душечка (Чехов)	Чехов А.П.	Душечка	Short Stories	
+#have	duel	Дуэль (Чехов)	Чехов А.П.	Дуэль	Short Stories	
+#have	dyadya-vanya	Дядя Ваня (Чехов)	Чехов А.П.	Дядя Ваня	Short Stories	
+eger	Егерь (Чехов)	Чехов А.П.	Егерь	Short Stories	
+edinstvennoe-sredstvo	Единственное средство (Чехов)	Чехов А.П.	Единственное средство	Short Stories	
+zhalobnaya-kniga	Жалобная книга (Чехов)	Чехов А.П.	Жалобная книга	Short Stories	
+zhena	Жена (Чехов)	Чехов А.П.	Жена	Short Stories	
+zheneveva-brabantskaya	Женевьева Брабантская (Чехов)	Чехов А.П.	Женевьева Брабантская	Short Stories	
+zhenikh	Жених (Чехов)	Чехов А.П.	Жених	Short Stories	
+zhenikh-i-papenka	Жених и папенька (Чехов)	Чехов А.П.	Жених и папенька	Short Stories	
+zhenskiy-tost	Женский тост (Чехов)	Чехов А.П.	Женский тост	Short Stories	
+zhenskoe-schaste	Женское счастье (Чехов)	Чехов А.П.	Женское счастье	Short Stories	
+zhenshchina-bez-predrassudkov	Женщина без предрассудков (Чехов)	Чехов А.П.	Женщина без предрассудков	Short Stories	
+zhenshchina-s-tochki-zreniya-pyanitsy	Женщина с точки зрения пьяницы (Чехов)	Чехов А.П.	Женщина с точки зрения пьяницы	Short Stories	
+zhivaya-khronologiya	Живая хронология (Чехов)	Чехов А.П.	Живая хронология	Short Stories	
+zhivoy-tovar	Живой товар (Чехов)	Чехов А.П.	Живой товар	Short Stories	
+zhizneopisaniya-dostoprimechatelnykh-sovremennikov	Жизнеописания достопримечательных современников (Чехов)	Чехов А.П.	Жизнеописания достопримечательных современников	Short Stories	
+zhizn-v-voprosakh-i-vosklitsaniyakh	Жизнь в вопросах и восклицаниях (Чехов)	Чехов А.П.	Жизнь в вопросах и восклицаниях	Short Stories	
+zhizn-prekrasna	Жизнь прекрасна! (Чехов)	Чехов А.П.	Жизнь прекрасна!	Short Stories	
+zhilets	Жилец (Чехов)	Чехов А.П.	Жилец	Short Stories	
+zhiteyskaya-meloch	Житейская мелочь (Чехов)	Чехов А.П.	Житейская мелочь	Short Stories	
+zhiteyskie-nevzgody	Житейские невзгоды (Чехов)	Чехов А.П.	Житейские невзгоды	Short Stories	
+zhyony-artistov	Жёны артистов (Чехов)	Чехов А.П.	Жёны артистов	Short Stories	
+z-m-lintvareva	З. М. Линтварева (Чехов)	Чехов А.П.	З. М. Линтварева	Short Stories	
+za-dvumya-zaytsami-pogonishsya-ni-odnogo-ne-poymaesh	За двумя зайцами погонишься, ни одного не поймаешь (Чехов)	Чехов А.П.	За двумя зайцами погонишься, ни одного не поймаешь	Short Stories	
+za-yablochki	За яблочки (Чехов)	Чехов А.П.	За яблочки	Short Stories	
+zabludshie	Заблудшие (Чехов)	Чехов А.П.	Заблудшие	Short Stories	
+zabyl	Забыл!! (Чехов)	Чехов А.П.	Забыл!!	Short Stories	
+zaveshchanie-starogo-1883-go-goda	Завещание старого, 1883-го года (Чехов)	Чехов А.П.	Завещание старого, 1883-го года	Short Stories	
+zagadochnaya-natura	Загадочная натура (Чехов)	Чехов А.П.	Загадочная натура	Short Stories	
+zadacha-1884	Задача (Чехов, 1884)	Чехов А.П.	Задача (1884)	Short Stories	
+zadacha-1887	Задача (Чехов, 1887)	Чехов А.П.	Задача (1887)	Short Stories	
+zadachi-sumasshedshego-matematika	Задачи сумасшедшего математика (Чехов)	Чехов А.П.	Задачи сумасшедшего математика	Short Stories	
+zakaz	Заказ (Чехов)	Чехов А.П.	Заказ	Short Stories	
+zakuska	Закуска (Чехов)	Чехов А.П.	Закуска	Short Stories	
+zapiska	Записка (Чехов)	Чехов А.П.	Записка	Short Stories	
+zatmenie-luny	Затмение Луны (Чехов)	Чехов А.П.	Затмение Луны	Short Stories	
+zelyonaya-kosa	Зелёная коса (Чехов)	Чехов А.П.	Зелёная коса	Short Stories	
+zerkalo	Зеркало (Чехов)	Чехов А.П.	Зеркало	Short Stories	
+zinochka	Зиночка (Чехов)	Чехов А.П.	Зиночка	Short Stories	
+zlodei-i-g-egorov	Злодеи и г. Егоров (Чехов)	Чехов А.П.	Злодеи и г. Егоров	Short Stories	
+zloy-malchik	Злой мальчик (Чехов)	Чехов А.П.	Злой мальчик	Short Stories	
+zlostnye-bankroty	Злостные банкроты (Чехов)	Чехов А.П.	Злостные банкроты	Short Stories	
+#have	zloumyshlennik	Злоумышленник (Чехов)	Чехов А.П.	Злоумышленник	Short Stories	
+zloumyshlenniki	Злоумышленники (Чехов)	Чехов А.П.	Злоумышленники	Short Stories	
+znakomyy-muzhchina	Знакомый мужчина (Чехов)	Чехов А.П.	Знакомый мужчина	Short Stories	
+znamenie-vremeni	Знамение времени (Чехов)	Чехов А.П.	Знамение времени	Short Stories	
+i-prekrasnoe-dolzhno-imet-predely	И прекрасное должно иметь пределы (Чехов)	Чехов А.П.	И прекрасное должно иметь пределы	Short Stories	
+i-to-i-syo-pisma-i-telegrammy	И то и сё (Письма и телеграммы) (Чехов)	Чехов А.П.	И то и сё (Письма и телеграммы)	Short Stories	
+i-to-i-syo-poeziya-i-proza	И то и сё (Поэзия и проза) (Чехов)	Чехов А.П.	И то и сё (Поэзия и проза)	Short Stories	
+i-a-melnikov	И. А. Мельников (Чехов)	Чехов А.П.	И. А. Мельников	Short Stories	
+ivan-matveich	Иван Матвеич (Чехов)	Чехов А.П.	Иван Матвеич	Short Stories	
+ivanov-drama	Иванов (драма, Чехов)	Чехов А.П.	Иванов (драма)	Short Stories	
+ivanov-komediya	Иванов (комедия, Чехов)	Чехов А.П.	Иванов (комедия)	Short Stories	
+idealnyy-ekzamen	Идеальный экзамен (Чехов)	Чехов А.П.	Идеальный экзамен	Short Stories	
+idilliya	Идиллия (Чехов)	Чехов А.П.	Идиллия	Short Stories	
+idilliya-uvy-i-akh	Идиллия — увы и ах! (Чехов)	Чехов А.П.	Идиллия — увы и ах!	Short Stories	
+iz-sibiri	Из Сибири (Чехов)	Чехов А.П.	Из Сибири	Short Stories	
+iz-vospominaniy-idealista	Из воспоминаний идеалиста (Чехов)	Чехов А.П.	Из воспоминаний идеалиста	Short Stories	
+iz-dnevnika-odnoy-devitsy	Из дневника одной девицы (Чехов)	Чехов А.П.	Из дневника одной девицы	Short Stories	
+iz-dnevnika-pomoshchnika-bukhgaltera	Из дневника помощника бухгалтера (Чехов)	Чехов А.П.	Из дневника помощника бухгалтера	Short Stories	
+iz-zapisnoy-knizhki-starogo-pedagoga	Из записной книжки старого педагога (Чехов)	Чехов А.П.	Из записной книжки старого педагога	Short Stories	
+iz-zapisok-vspylchivogo-cheloveka	Из записок вспыльчивого человека (Чехов)	Чехов А.П.	Из записок вспыльчивого человека	Short Stories	
+iz-ognya-da-v-polymya	Из огня да в полымя (Чехов)	Чехов А.П.	Из огня да в полымя	Short Stories	
+imeniny	Именины (Чехов)	Чехов А.П.	Именины	Short Stories	
+indeyskiy-petukh	Индейский петух (Чехов)	Чехов А.П.	Индейский петух	Short Stories	
+intelligentnoe-brevno	Интеллигентное бревно (Чехов)	Чехов А.П.	Интеллигентное бревно	Short Stories	
+intelligenty-kabatchiki	Интеллигенты-кабатчики (Чехов)	Чехов А.П.	Интеллигенты-кабатчики	Short Stories	
+intrigi	Интриги (Чехов)	Чехов А.П.	Интриги	Short Stories	
+#have	ionych	Ионыч (Чехов)	Чехов А.П.	Ионыч	Short Stories	
+ispoved	Исповедь (Чехов)	Чехов А.П.	Исповедь	Short Stories	
+ispoved-ili-olya-zhenya-zoya	Исповедь, или Оля, Женя, Зоя (Чехов)	Чехов А.П.	Исповедь, или Оля, Женя, Зоя	Short Stories	
+istoriya-odnogo-torgovogo-predpriyatiya	История одного торгового предприятия (Чехов)	Чехов А.П.	История одного торгового предприятия	Short Stories	
+k-svadebnomu-sezonu	К свадебному Сезону (Чехов)	Чехов А.П.	К свадебному Сезону	Short Stories	
+k-svedeniyu-muzhey	К сведению мужей (Чехов)	Чехов А.П.	К сведению мужей	Short Stories	
+k-kharakteristike-narodov	К характеристике народов (Чехов)	Чехов А.П.	К характеристике народов	Short Stories	
+kavardak-v-rime	Кавардак в Риме (Чехов)	Чехов А.П.	Кавардак в Риме	Short Stories	
+kazak	Казак (Чехов)	Чехов А.П.	Казак	Short Stories	
+kalendar-budilnika-na-1882-god	Календарь «Будильника» на 1882 год (Чехов)	Чехов А.П.	Календарь «Будильника» на 1882 год	Short Stories	
+kalkhas	Калхас (Чехов)	Чехов А.П.	Калхас	Short Stories	
+kanikulyarnye-raboty-institutki-nadenki-n	Каникулярные работы институтки Наденьки N. (Чехов)	Чехов А.П.	Каникулярные работы институтки Наденьки N.	Short Stories	
+kanitel	Канитель (Чехов)	Чехов А.П.	Канитель	Short Stories	
+kapitanskiy-mundir	Капитанский мундир (Чехов)	Чехов А.П.	Капитанский мундир	Short Stories	
+kartinki-iz-nedavnego-proshlogo	Картинки из недавнего прошлого (Чехов)	Чехов А.П.	Картинки из недавнего прошлого	Short Stories	
+#have	kashtanka	Каштанка (Чехов)	Чехов А.П.	Каштанка	Short Stories	
+kleveta	Клевета (Чехов)	Чехов А.П.	Клевета	Short Stories	
+knyaginya	Княгиня (Чехов)	Чехов А.П.	Княгиня	Short Stories	
+koe-chto-1	Кое-что (1) (Чехов)	Чехов А.П.	Кое-что (1)	Short Stories	
+koe-chto-2	Кое-что (2) (Чехов)	Чехов А.П.	Кое-что (2)	Short Stories	
+koe-chto-ob-a-s-dargomyzhskom	Кое-что об А. С. Даргомыжском (Чехов)	Чехов А.П.	Кое-что об А. С. Даргомыжском	Short Stories	
+kozyol-ili-negodyay	Козёл или негодяй? (Чехов)	Чехов А.П.	Козёл или негодяй?	Short Stories	
+kollektsiya	Коллекция (Чехов)	Чехов А.П.	Коллекция	Short Stories	
+komik	Комик (Чехов)	Чехов А.П.	Комик	Short Stories	
+komicheskie-reklamy-i-obyavleniya	Комические рекламы и объявления (Чехов)	Чехов А.П.	Комические рекламы и объявления	Short Stories	
+konkurs	Конкурс (Чехов)	Чехов А.П.	Конкурс	Short Stories	
+kontora-obyavleniy-antoshi-ch	Контора объявлений Антоши Ч. (Чехов)	Чехов А.П.	Контора объявлений Антоши Ч.	Short Stories	
+kontrabas-i-fleyta	Контрабас и флейта (Чехов)	Чехов А.П.	Контрабас и флейта	Short Stories	
+kontrakt-1884-goda-s-chelovechestvom	Контракт 1884 года с человечеством (Чехов)	Чехов А.П.	Контракт 1884 года с человечеством	Short Stories	
+kon-i-trepetnaya-lan	Конь и трепетная лань (Чехов)	Чехов А.П.	Конь и трепетная лань	Short Stories	
+korrespondent	Корреспондент (Чехов)	Чехов А.П.	Корреспондент	Short Stories	
+kot	Кот (Чехов)	Чехов А.П.	Кот	Short Stories	
+kotoryy-iz-tryokh	Который из трёх? (Чехов)	Чехов А.П.	Который из трёх?	Short Stories	
+koshmar	Кошмар (Чехов)	Чехов А.П.	Кошмар	Short Stories	
+krasavitsy-1888	Красавицы (Чехов, 1888)	Чехов А.П.	Красавицы (1888)	Short Stories	
+krasavitsy-neokonchennoe	Красавицы (Чехов, неоконченное)	Чехов А.П.	Красавицы (неоконченное)	Short Stories	
+krasnaya-gorka	Красная горка (Чехов)	Чехов А.П.	Красная горка	Short Stories	
+kratkaya-anatomiya-cheloveka	Краткая анатомия человека (Чехов)	Чехов А.П.	Краткая анатомия человека	Short Stories	
+krest	Крест (Чехов)	Чехов А.П.	Крест	Short Stories	
+krivoe-zerkalo	Кривое зеркало (Чехов)	Чехов А.П.	Кривое зеркало	Short Stories	
+kritik	Критик (Чехов)	Чехов А.П.	Критик	Short Stories	
+#have	kryzhovnik	Крыжовник (Чехов)	Чехов А.П.	Крыжовник	Short Stories	
+kto-vinovat	Кто виноват? (Чехов)	Чехов А.П.	Кто виноват?	Short Stories	
+kulache-gnezdo	Кулачье гнездо (Чехов)	Чехов А.П.	Кулачье гнездо	Short Stories	
+kukharka-zhenitsya	Кухарка женится (Чехов)	Чехов А.П.	Кухарка женится	Short Stories	
+lebedinaya-pesnya	Лебединая песня (Чехов)	Чехов А.П.	Лебединая песня	Short Stories	
+lev-i-solntse	Лев и Солнце (Чехов)	Чехов А.П.	Лев и Солнце	Short Stories	
+letayushchie-ostrova	Летающие острова (Чехов)	Чехов А.П.	Летающие острова	Short Stories	
+leshiy	Леший (Чехов)	Чехов А.П.	Леший	Short Stories	
+liberal	Либерал (Чехов)	Чехов А.П.	Либерал	Short Stories	
+liberalnyy-dushka	Либеральный душка (Чехов)	Чехов А.П.	Либеральный душка	Short Stories	
+list	Лист (Чехов)	Чехов А.П.	Лист	Short Stories	
+literaturnaya-tabel-o-rangakh	Литературная табель о рангах (Чехов)	Чехов А.П.	Литературная табель о рангах	Short Stories	
+lishnie-lyudi	Лишние люди (Чехов)	Чехов А.П.	Лишние люди	Short Stories	
+#have	loshadinaya-familiya	Лошадиная фамилия (Чехов)	Чехов А.П.	Лошадиная фамилия	Short Stories	
+lyubov	Любовь (Чехов)	Чехов А.П.	Любовь	Short Stories	
+m-a-pototskaya	М. А. Потоцкая (Чехов)	Чехов А.П.	М. А. Потоцкая	Short Stories	
+mayonez	Майонез (Чехов)	Чехов А.П.	Майонез	Short Stories	
+malchiki	Мальчики (Чехов)	Чехов А.П.	Мальчики	Short Stories	
+mamasha-i-g-lentovskiy	Мамаша и г. Лентовский (Чехов)	Чехов А.П.	Мамаша и г. Лентовский	Short Stories	
+marya-ivanovna	Марья Ивановна (Чехов)	Чехов А.П.	Марья Ивановна	Short Stories	
+maska	Маска (Чехов)	Чехов А.П.	Маска	Short Stories	
+maslenichnye-pravila-distsipliny	Масленичные правила дисциплины (Чехов)	Чехов А.П.	Масленичные правила дисциплины	Short Stories	
+#have	medved	Медведь (Чехов)	Чехов А.П.	Медведь	Short Stories	
+melyuzga	Мелюзга (Чехов)	Чехов А.П.	Мелюзга	Short Stories	
+mest-1882	Месть (Чехов, 1882)	Чехов А.П.	Месть (1882)	Short Stories	
+mest-1886	Месть (Чехов, 1886)	Чехов А.П.	Месть (1886)	Short Stories	
+mest-zhenshchiny	Месть женщины (Чехов)	Чехов А.П.	Месть женщины	Short Stories	
+mechty	Мечты (Чехов)	Чехов А.П.	Мечты	Short Stories	
+mneniya-po-povodu-shlyapnoy-katastrofy	Мнения по поводу шляпной катастрофы (Чехов)	Чехов А.П.	Мнения по поводу шляпной катастрофы	Short Stories	
+mnogo-bumagi	Много бумаги (Чехов)	Чехов А.П.	Много бумаги	Short Stories	
+modnyy-effekt	Модный эффект (Чехов)	Чехов А.П.	Модный эффект	Short Stories	
+moi-zhyony	Мои жёны (Чехов)	Чехов А.П.	Мои жёны	Short Stories	
+moi-ostroty-i-izrecheniya	Мои остроты и изречения (Чехов)	Чехов А.П.	Мои остроты и изречения	Short Stories	
+moi-chiny-i-tituly	Мои чины и титулы (Чехов)	Чехов А.П.	Мои чины и титулы	Short Stories	
+moy-domostroy	Мой Домострой (Чехов)	Чехов А.П.	Мой Домострой	Short Stories	
+moy-razgovor-s-pochtmeysterom	Мой разговор с почтмейстером (Чехов)	Чехов А.П.	Мой разговор с почтмейстером	Short Stories	
+moy-yubiley	Мой юбилей (Чехов)	Чехов А.П.	Мой юбилей	Short Stories	
+molodoy-chelovek	Молодой человек (Чехов)	Чехов А.П.	Молодой человек	Short Stories	
+moroz	Мороз (Чехов)	Чехов А.П.	Мороз	Short Stories	
+moskovskie-litsemery	Московские лицемеры (Чехов)	Чехов А.П.	Московские лицемеры	Short Stories	
+moshenniki-ponevole	Мошенники поневоле (Чехов)	Чехов А.П.	Мошенники поневоле	Short Stories	
+moya-ona	Моя «она» (Чехов)	Чехов А.П.	Моя «она»	Short Stories	
+moya-nana	Моя Нана (Чехов)	Чехов А.П.	Моя Нана	Short Stories	
+moya-beseda-s-edisonom	Моя беседа с Эдисоном (Чехов)	Чехов А.П.	Моя беседа с Эдисоном	Short Stories	
+#have	moya-zhizn	Моя жизнь (Чехов)	Чехов А.П.	Моя жизнь	Short Stories	
+mstitel	Мститель (Чехов)	Чехов А.П.	Мститель	Short Stories	
+muzh	Муж (Чехов)	Чехов А.П.	Муж	Short Stories	
+#have	muzhiki	Мужики (Чехов)	Чехов А.П.	Мужики	Short Stories	
+mysli-chitatelya-gazet-i-zhurnalov	Мысли читателя газет и журналов (Чехов)	Чехов А.П.	Мысли читателя газет и журналов	Short Stories	
+myslitel	Мыслитель (Чехов)	Чехов А.П.	Мыслитель	Short Stories	
+myortvoe-telo	Мёртвое тело (Чехов)	Чехов А.П.	Мёртвое тело	Short Stories	
+n-m-przhevalskiy	Н. М. Пржевальский (Чехов)	Чехов А.П.	Н. М. Пржевальский	Short Stories	
+n-n-i-m-i-figner	Н. Н. и М. И. Фигнер (Чехов)	Чехов А.П.	Н. Н. и М. И. Фигнер	Short Stories	
+na-bolshoy-doroge	На большой дороге (Чехов)	Чехов А.П.	На большой дороге	Short Stories	
+na-volchey-sadke	На волчьей садке (Чехов)	Чехов А.П.	На волчьей садке	Short Stories	
+na-gvozde	На гвозде (Чехов)	Чехов А.П.	На гвозде	Short Stories	
+na-gulyane-v-sokolnikakh	На гулянье в Сокольниках (Чехов)	Чехов А.П.	На гулянье в Сокольниках	Short Stories	
+na-dache	На даче (Чехов)	Чехов А.П.	На даче	Short Stories	
+na-kladbishche	На кладбище (Чехов)	Чехов А.П.	На кладбище	Short Stories	
+na-magneticheskom-seanse	На магнетическом сеансе (Чехов)	Чехов А.П.	На магнетическом сеансе	Short Stories	
+na-melnitse	На мельнице (Чехов)	Чехов А.П.	На мельнице	Short Stories	
+na-okhote	На охоте (Чехов)	Чехов А.П.	На охоте	Short Stories	
+na-podvode	На подводе (Чехов)	Чехов А.П.	На подводе	Short Stories	
+na-puti	На пути (Чехов)	Чехов А.П.	На пути	Short Stories	
+na-reke	На реке (Чехов)	Чехов А.П.	На реке	Short Stories	
+na-svyatkakh	На святках (Чехов)	Чехов А.П.	На святках	Short Stories	
+na-strastnoy-nedele	На страстной неделе (Чехов)	Чехов А.П.	На страстной неделе	Short Stories	
+na-chuzhbine	На чужбине (Чехов)	Чехов А.П.	На чужбине	Short Stories	
+nadlezhashchie-mery	Надлежащие меры (Чехов)	Чехов А.П.	Надлежащие меры	Short Stories	
+nadul	Надул (Чехов)	Чехов А.П.	Надул	Short Stories	
+naivnyy-leshiy	Наивный леший (Чехов)	Чехов А.П.	Наивный леший	Short Stories	
+nakanune-posta	Накануне поста (Чехов)	Чехов А.П.	Накануне поста	Short Stories	
+nalim	Налим (Чехов)	Чехов А.П.	Налим	Short Stories	
+narvalsya	Нарвался (Чехов)	Чехов А.П.	Нарвался	Short Stories	
+nakhlebniki	Нахлебники (Чехов)	Чехов А.П.	Нахлебники	Short Stories	
+nakhodchivost-g-rodona	Находчивость г. Родона (Чехов)	Чехов А.П.	Находчивость г. Родона	Short Stories	
+nachalnik-stantsii	Начальник станции (Чехов)	Чехов А.П.	Начальник станции	Short Stories	
+nashe-nishchenstvo	Наше нищенство (Чехов)	Чехов А.П.	Наше нищенство	Short Stories	
+ne-v-dukhe	Не в духе (Чехов)	Чехов А.П.	Не в духе	Short Stories	
+ne-sudba	Не судьба! (Чехов)	Чехов А.П.	Не судьба!	Short Stories	
+ne-tletvornye-mysli	Не тлетворные мысли (Чехов)	Чехов А.П.	Не тлетворные мысли	Short Stories	
+nevesta	Невеста (Чехов)	Чехов А.П.	Невеста	Short Stories	
+nevidimye-miru-slyozy	Невидимые миру слёзы (Чехов)	Чехов А.П.	Невидимые миру слёзы	Short Stories	
+nevinnye-rechi	Невинные речи (Чехов)	Чехов А.П.	Невинные речи	Short Stories	
+nedobraya-noch	Недобрая ночь (Чехов)	Чехов А.П.	Недобрая ночь	Short Stories	
+nedobroe-delo	Недоброе дело (Чехов)	Чехов А.П.	Недоброе дело	Short Stories	
+nenaste	Ненастье (Чехов)	Чехов А.П.	Ненастье	Short Stories	
+nenuzhnaya-pobeda	Ненужная победа (Чехов)	Чехов А.П.	Ненужная победа	Short Stories	
+neobkhodimoe-predislovie	Необходимое предисловие (Чехов)	Чехов А.П.	Необходимое предисловие	Short Stories	
+neobyknovennyy	Необыкновенный (Чехов)	Чехов А.П.	Необыкновенный	Short Stories	
+neostorozhnost	Неосторожность (Чехов)	Чехов А.П.	Неосторожность	Short Stories	
+nepriyatnaya-istoriya	Неприятная история (Чехов)	Чехов А.П.	Неприятная история	Short Stories	
+nepriyatnost	Неприятность (Чехов)	Чехов А.П.	Неприятность	Short Stories	
+nervy	Нервы (Чехов)	Чехов А.П.	Нервы	Short Stories	
+neskolko-mysley-o-dushe	Несколько мыслей о душе (Чехов)	Чехов А.П.	Несколько мыслей о душе	Short Stories	
+nesoobraznye-mysli	Несообразные мысли (Чехов)	Чехов А.П.	Несообразные мысли	Short Stories	
+neschaste	Несчастье (Чехов)	Чехов А.П.	Несчастье	Short Stories	
+neudacha	Неудача (Чехов)	Чехов А.П.	Неудача	Short Stories	
+neudachnyy-vizit	Неудачный визит (Чехов)	Чехов А.П.	Неудачный визит	Short Stories	
+nechistye-tragiki-i-prokazhyonnye-dramaturgi	Нечистые трагики и прокажённые драматурги (Чехов)	Чехов А.П.	Нечистые трагики и прокажённые драматурги	Short Stories	
+nechto-seryoznoe	Нечто серьёзное (Чехов)	Чехов А.П.	Нечто серьёзное	Short Stories	
+ninochka	Ниночка (Чехов)	Чехов А.П.	Ниночка	Short Stories	
+nishchiy	Нищий (Чехов)	Чехов А.П.	Нищий	Short Stories	
+novaya-bolezn-i-staroe-sredstvo	Новая болезнь и старое средство (Чехов)	Чехов А.П.	Новая болезнь и старое средство	Short Stories	
+novaya-dacha	Новая дача (Чехов)	Чехов А.П.	Новая дача	Short Stories	
+noveyshiy-pismovnik	Новейший письмовник (Чехов)	Чехов А.П.	Новейший письмовник	Short Stories	
+novogodnie-velikomucheniki	Новогодние великомученики (Чехов)	Чехов А.П.	Новогодние великомученики	Short Stories	
+novogodnyaya-pytka	Новогодняя пытка (Чехов)	Чехов А.П.	Новогодняя пытка	Short Stories	
+noch-na-kladbishche	Ночь на кладбище (Чехов)	Чехов А.П.	Ночь на кладбище	Short Stories	
+noch-pered-sudom	Ночь перед судом (Чехов)	Чехов А.П.	Ночь перед судом	Short Stories	
+nu-publika	Ну, публика! (Чехов)	Чехов А.П.	Ну, публика!	Short Stories	
+nytyo	Нытьё (Чехов)	Чехов А.П.	Нытьё	Short Stories	
+o-brennosti	О бренности (Чехов)	Чехов А.П.	О бренности	Short Stories	
+o-vrede-tabaka	О вреде табака (Чехов)	Чехов А.П.	О вреде табака	Short Stories	
+o-drame	О драме (Чехов)	Чехов А.П.	О драме	Short Stories	
+o-zhenshchinakh	О женщинах (Чехов)	Чехов А.П.	О женщинах	Short Stories	
+o-zhenshchiny-zhenshchiny	О женщины, женщины! (Чехов)	Чехов А.П.	О женщины, женщины!	Short Stories	
+#have	o-lyubvi	О любви (Чехов)	Чехов А.П.	О любви	Short Stories	
+o-marte-ob-aprele-o-mae-ob-iyune-i-iyule-ob-avguste	О марте. Об апреле. О мае. Об июне и июле. Об августе (Чехов)	Чехов А.П.	О марте. Об апреле. О мае. Об июне и июле. Об августе	Short Stories	
+o-tom-kak-ya-v-zakonnyy-brak-vstupil	О том, как я в законный брак вступил (Чехов)	Чехов А.П.	О том, как я в законный брак вступил	Short Stories	
+o-tom-o-syom	О том, о сём (Чехов)	Чехов А.П.	О том, о сём	Short Stories	
+oba-luchshe	Оба лучше (Чехов)	Чехов А.П.	Оба лучше	Short Stories	
+obedy-belletristov	Обеды беллетристов (Чехов)	Чехов А.П.	Обеды беллетристов	Short Stories	
+ober-verkhi	Обер-верхи (Чехов)	Чехов А.П.	Обер-верхи	Short Stories	
+obshchee-obrazovanie	Общее образование (Чехов)	Чехов А.П.	Общее образование	Short Stories	
+obyvateli	Обыватели (Чехов)	Чехов А.П.	Обыватели	Short Stories	
+ogni	Огни (Чехов)	Чехов А.П.	Огни	Short Stories	
+odin-iz-mnogikh	Один из многих (Чехов)	Чехов А.П.	Один из многих	Short Stories	
+on-i-ona	Он и она (Чехов)	Чехов А.П.	Он и она	Short Stories	
+on-ponyal	Он понял! (Чехов)	Чехов А.П.	Он понял!	Short Stories	
+opekun	Опекун (Чехов)	Чехов А.П.	Опекун	Short Stories	
+opyat-o-sare-bernar	Опять о Саре Бернар (Чехов)	Чехов А.П.	Опять о Саре Бернар	Short Stories	
+orator	Оратор (Чехов)	Чехов А.П.	Оратор	Short Stories	
+orden	Орден (Чехов)	Чехов А.П.	Орден	Short Stories	
+osenyu	Осенью (Чехов)	Чехов А.П.	Осенью	Short Stories	
+oskolki-moskovskoy-zhizni	Осколки московской жизни (Чехов)	Чехов А.П.	Осколки московской жизни	Short Stories	
+ostrov-sakhalin	Остров Сахалин (Чехов)	Чехов А.П.	Остров Сахалин	Short Stories	
+ot-kakoy-bolezni-umer-irod	От какой болезни умер Ирод? (Чехов)	Чехов А.П.	От какой болезни умер Ирод?	Short Stories	
+ot-nechego-delat	От нечего делать (Чехов)	Чехов А.П.	От нечего делать	Short Stories	
+otvergnutaya-lyubov	Отвергнутая любовь (Чехов)	Чехов А.П.	Отвергнутая любовь	Short Stories	
+otvet-na-anketu-otzhil-li-nekrasov	Ответ на анкету «Отжил ли Некрасов?» (Чехов)	Чехов А.П.	Ответ на анкету «Отжил ли Некрасов?»	Short Stories	
+otets	Отец (Чехов)	Чехов А.П.	Отец	Short Stories	
+otets-semeystva	Отец семейства (Чехов)	Чехов А.П.	Отец семейства	Short Stories	
+otkrytie	Открытие (Чехов)	Чехов А.П.	Открытие	Short Stories	
+otrava	Отрава (Чехов)	Чехов А.П.	Отрава	Short Stories	
+otryvok	Отрывок (Чехов)	Чехов А.П.	Отрывок	Short Stories	
+otstavnoy-rab	Отставной раб (Чехов)	Чехов А.П.	Отставной раб	Short Stories	
+#have	palata-6	Палата № 6 (Чехов)	Чехов А.П.	Палата № 6	Short Stories	
+panikhida	Панихида (Чехов)	Чехов А.П.	Панихида	Short Stories	
+papasha	Папаша (Чехов)	Чехов А.П.	Папаша	Short Stories	
+#have	pari	Пари (Чехов)	Чехов А.П.	Пари	Short Stories	
+passazhir-1-go-klassa	Пассажир 1-го класса (Чехов)	Чехов А.П.	Пассажир 1-го класса	Short Stories	
+patriot-svoego-otechestva	Патриот своего отечества (Чехов)	Чехов А.П.	Патриот своего отечества	Short Stories	
+pevchie	Певчие (Чехов)	Чехов А.П.	Певчие	Short Stories	
+pervyy-debyut	Первый дебют (Чехов)	Чехов А.П.	Первый дебют	Short Stories	
+pervyy-lyubovnik	Первый любовник (Чехов)	Чехов А.П.	Первый любовник	Short Stories	
+pered-zatmeniem	Перед затмением (Чехов)	Чехов А.П.	Перед затмением	Short Stories	
+pered-svadboy	Перед свадьбой (Чехов)	Чехов А.П.	Перед свадьбой	Short Stories	
+perezhitoe	Пережитое (Чехов)	Чехов А.П.	Пережитое	Short Stories	
+perekati-pole	Перекати-поле (Чехов)	Чехов А.П.	Перекати-поле	Short Stories	
+perepolokh	Переполох (Чехов)	Чехов А.П.	Переполох	Short Stories	
+pereputannye-obyavleniya	Перепутанные объявления (Чехов)	Чехов А.П.	Перепутанные объявления	Short Stories	
+peresolil	Пересолил (Чехов)	Чехов А.П.	Пересолил	Short Stories	
+persona	Персона (Чехов)	Чехов А.П.	Персона	Short Stories	
+petrov-den	Петров день (Чехов)	Чехов А.П.	Петров день	Short Stories	
+pecheneg	Печенег (Чехов)	Чехов А.П.	Печенег	Short Stories	
+pisatel	Писатель (Чехов)	Чехов А.П.	Писатель	Short Stories	
+pisma	Письма (Чехов)	Чехов А.П.	Письма	Short Stories	
+pismo-1887	Письмо (Чехов, 1887)	Чехов А.П.	Письмо (1887)	Short Stories	
+pismo-konets-1880-kh-nachalo-1890-kh-godov	Письмо (Чехов, конец 1880-х — начало 1890-х годов)	Чехов А.П.	Письмо (конец 1880-х — начало 1890-х годов)	Short Stories	
+pismo-v-redaktsiyu	Письмо в редакцию (Чехов)	Чехов А.П.	Письмо в редакцию	Short Stories	
+pismo-v-redaktsiyu-gazety-novoe-vremya	Письмо в редакцию газеты «Новое время» (Чехов)	Чехов А.П.	Письмо в редакцию газеты «Новое время»	Short Stories	
+pismo-k-reportyoru	Письмо к репортёру (Чехов)	Чехов А.П.	Письмо к репортёру	Short Stories	
+pismo-k-uchyonomu-sosedu	Письмо к учёному соседу (Чехов)	Чехов А.П.	Письмо к учёному соседу	Short Stories	
+plody-dolgikh-razmyshleniy	Плоды долгих размышлений (Чехов)	Чехов А.П.	Плоды долгих размышлений	Short Stories	
+po-delam-sluzhby	По делам службы (Чехов)	Чехов А.П.	По делам службы	Short Stories	
+po-amerikanski	По-американски (Чехов)	Чехов А.П.	По-американски	Short Stories	
+polinka	Полинька (Чехов)	Чехов А.П.	Полинька	Short Stories	
+#have	poprygunya	Попрыгунья (Чехов)	Чехов А.П.	Попрыгунья	Short Stories	
+posle-benefisa	После бенефиса (Чехов)	Чехов А.П.	После бенефиса	Short Stories	
+posle-teatra	После театра (Чехов)	Чехов А.П.	После театра	Short Stories	
+poslednyaya-mogikansha	Последняя могиканша (Чехов)	Чехов А.П.	Последняя могиканша	Short Stories	
+potseluy	Поцелуй (Чехов)	Чехов А.П.	Поцелуй	Short Stories	
+pochta	Почта (Чехов)	Чехов А.П.	Почта	Short Stories	
+pravila-dlya-nachinayushchikh-avtorov	Правила для начинающих авторов (Чехов)	Чехов А.П.	Правила для начинающих авторов	Short Stories	
+prazdnichnaya-povinnost	Праздничная повинность (Чехов)	Чехов А.П.	Праздничная повинность	Short Stories	
+prazdnichnye	Праздничные (Чехов)	Чехов А.П.	Праздничные	Short Stories	
+predlozhenie-pesa	Предложение (пьеса, Чехов)	Чехов А.П.	Предложение (пьеса)	Short Stories	
+predlozhenie-rasskaz	Предложение (рассказ, Чехов)	Чехов А.П.	Предложение (рассказ)	Short Stories	
+predpisanie	Предписание (Чехов)	Чехов А.П.	Предписание	Short Stories	
+pridanoe	Приданое (Чехов)	Чехов А.П.	Приданое	Short Stories	
+priznatelnyy-nemets	Признательный немец (Чехов)	Чехов А.П.	Признательный немец	Short Stories	
+pripadok	Припадок (Чехов)	Чехов А.П.	Припадок	Short Stories	
+proizvedenie-iskusstva	Произведение искусства (Чехов)	Чехов А.П.	Произведение искусства	Short Stories	
+proisshestvie	Происшествие (Чехов)	Чехов А.П.	Происшествие	Short Stories	
+propashchee-delo	Пропащее дело (Чехов)	Чехов А.П.	Пропащее дело	Short Stories	
+protektsiya	Протекция (Чехов)	Чехов А.П.	Протекция	Short Stories	
+proshchenie	Прощение (Чехов)	Чехов А.П.	Прощение	Short Stories	
+psikhopaty	Психопаты (Чехов)	Чехов А.П.	Психопаты	Short Stories	
+pustoy-sluchay	Пустой случай (Чехов)	Чехов А.П.	Пустой случай	Short Stories	
+pyanye	Пьяные (Чехов)	Чехов А.П.	Пьяные	Short Stories	
+#have	radost	Радость (Чехов)	Чехов А.П.	Радость	Short Stories	
+raz-v-god	Раз в год (Чехов)	Чехов А.П.	Раз в год	Short Stories	
+razgovor-cheloveka-s-sobakoy	Разговор человека с собакой (Чехов)	Чехов А.П.	Разговор человека с собакой	Short Stories	
+razmaznya	Размазня (Чехов)	Чехов А.П.	Размазня	Short Stories	
+rano	Рано! (Чехов)	Чехов А.П.	Рано!	Short Stories	
+rasskaz-bez-kontsa	Рассказ без конца (Чехов)	Чехов А.П.	Рассказ без конца	Short Stories	
+rasskaz-gospozhi-nn	Рассказ госпожи NN (Чехов)	Чехов А.П.	Рассказ госпожи NN	Short Stories	
+rasskaz-neizvestnogo-cheloveka	Рассказ неизвестного человека (Чехов)	Чехов А.П.	Рассказ неизвестного человека	Short Stories	
+rasskaz-starshego-sadovnika	Рассказ старшего садовника (Чехов)	Чехов А.П.	Рассказ старшего садовника	Short Stories	
+rasskaz-kotoromu-trudno-podobrat-nazvanie	Рассказ, которому трудно подобрать название (Чехов)	Чехов А.П.	Рассказ, которому трудно подобрать название	Short Stories	
+revnitel	Ревнитель (Чехов)	Чехов А.П.	Ревнитель	Short Stories	
+reklama	Реклама (Чехов)	Чехов А.П.	Реклама	Short Stories	
+reklamy-i-obyavleniya	Рекламы и объявления (Чехов)	Чехов А.П.	Рекламы и объявления	Short Stories	
+repetitor	Репетитор (Чехов)	Чехов А.П.	Репетитор	Short Stories	
+repka	Репка (Чехов)	Чехов А.П.	Репка	Short Stories	
+rech-i-remeshok	Речь и ремешок (Чехов)	Чехов А.П.	Речь и ремешок	Short Stories	
+rech-ministra	Речь министра (Чехов)	Чехов А.П.	Речь министра	Short Stories	
+rozovyy-chulok	Розовый чулок (Чехов)	Чехов А.П.	Розовый чулок	Short Stories	
+roman	Роман (Чехов)	Чехов А.П.	Роман	Short Stories	
+roman-advokata	Роман адвоката (Чехов)	Чехов А.П.	Роман адвоката	Short Stories	
+roman-s-kontrabasom	Роман с контрабасом (Чехов)	Чехов А.П.	Роман с контрабасом	Short Stories	
+rukovodstvo-dlya-zhelayushchikh-zhenitsya	Руководство для желающих жениться (Чехов)	Чехов А.П.	Руководство для желающих жениться	Short Stories	
+russkiy-ugol	Русский уголь (Чехов)	Чехов А.П.	Русский уголь	Short Stories	
+rybe-delo	Рыбье дело (Чехов)	Чехов А.П.	Рыбье дело	Short Stories	
+rybya-lyubov	Рыбья любовь (Чехов)	Чехов А.П.	Рыбья любовь	Short Stories	
+rytsari-bez-strakha-i-upryoka	Рыцари без страха и упрёка (Чехов)	Чехов А.П.	Рыцари без страха и упрёка	Short Stories	
+ryazhenye-1883	Ряженые (Чехов, 1883)	Чехов А.П.	Ряженые (1883)	Short Stories	
+ryazhenye-1885	Ряженые (Чехов, 1885)	Чехов А.П.	Ряженые (1885)	Short Stories	
+s-zhenoy-possorilsya	С женой поссорился (Чехов)	Чехов А.П.	С женой поссорился	Short Stories	
+salon-de-varete	Салон де варьете (Чехов)	Чехов А.П.	Салон де варьете	Short Stories	
+samoobolshchenie	Самообольщение (Чехов)	Чехов А.П.	Самообольщение	Short Stories	
+samyy-bolshoy-gorod	Самый большой город (Чехов)	Чехов А.П.	Самый большой город	Short Stories	
+sapogi	Сапоги (Чехов)	Чехов А.П.	Сапоги	Short Stories	
+sapozhnik-i-nechistaya-sila	Сапожник и нечистая сила (Чехов)	Чехов А.П.	Сапожник и нечистая сила	Short Stories	
+sara-bernar	Сара Бернар (Чехов)	Чехов А.П.	Сара Бернар	Short Stories	
+sbornik-dlya-detey	Сборник для детей (Чехов)	Чехов А.П.	Сборник для детей	Short Stories	
+svadba-pesa	Свадьба (пьеса, Чехов)	Чехов А.П.	Свадьба (пьеса)	Short Stories	
+svadba-rasskaz	Свадьба (рассказ, Чехов)	Чехов А.П.	Свадьба (рассказ)	Short Stories	
+svadba-s-generalom	Свадьба с генералом (Чехов)	Чехов А.П.	Свадьба с генералом	Short Stories	
+svetlaya-lichnost	Светлая личность (Чехов)	Чехов А.П.	Светлая личность	Short Stories	
+svirel	Свирель (Чехов)	Чехов А.П.	Свирель	Short Stories	
+svistuny	Свистуны (Чехов)	Чехов А.П.	Свистуны	Short Stories	
+svyataya-prostota	Святая простота (Чехов)	Чехов А.П.	Святая простота	Short Stories	
+svyatoyu-nochyu	Святою ночью (Чехов)	Чехов А.П.	Святою ночью	Short Stories	
+selskie-eskulapy	Сельские эскулапы (Чехов)	Чехов А.П.	Сельские эскулапы	Short Stories	
+seryoznyy-shag	Серьёзный шаг (Чехов)	Чехов А.П.	Серьёзный шаг	Short Stories	
+silnye-oshchushcheniya	Сильные ощущения (Чехов)	Чехов А.П.	Сильные ощущения	Short Stories	
+simulyanty	Симулянты (Чехов)	Чехов А.П.	Симулянты	Short Stories	
+sirena	Сирена (Чехов)	Чехов А.П.	Сирена	Short Stories	
+skazka	Сказка (Чехов)	Чехов А.П.	Сказка	Short Stories	
+skvernaya-istoriya	Скверная история (Чехов)	Чехов А.П.	Скверная история	Short Stories	
+skomorokh	Скоморох (Чехов)	Чехов А.П.	Скоморох	Short Stories	
+skoraya-pomoshch	Скорая помощь (Чехов)	Чехов А.П.	Скорая помощь	Short Stories	
+#have	skripka-rotshilda	Скрипка Ротшильда (Чехов)	Чехов А.П.	Скрипка Ротшильда	Short Stories	
+skuka-zhizni	Скука жизни (Чехов)	Чехов А.П.	Скука жизни	Short Stories	
+#have	skuchnaya-istoriya	Скучная история (Чехов)	Чехов А.П.	Скучная история	Short Stories	
+sledovatel	Следователь (Чехов)	Чехов А.П.	Следователь	Short Stories	
+slova-slova-i-slova	Слова, слова и слова (Чехов)	Чехов А.П.	Слова, слова и слова	Short Stories	
+slovotolkovatel-dlya-baryshen	Словотолкователь для «барышень» (Чехов)	Чехов А.П.	Словотолкователь для «барышень»	Short Stories	
+sluzhebnye-pometki	Служебные пометки (Чехов)	Чехов А.П.	Служебные пометки	Short Stories	
+sluchai-mania-grandiosa	Случаи mania grandiosa (Чехов)	Чехов А.П.	Случаи mania grandiosa	Short Stories	
+sluchay-iz-praktiki	Случай из практики (Чехов)	Чехов А.П.	Случай из практики	Short Stories	
+sluchay-iz-sudebnoy-praktiki	Случай из судебной практики (Чехов)	Чехов А.П.	Случай из судебной практики	Short Stories	
+#have	sluchay-s-klassikom	Случай с классиком (Чехов)	Чехов А.П.	Случай с классиком	Short Stories	
+#have	smert-chinovnika	Смерть чиновника (Чехов)	Чехов А.П.	Смерть чиновника	Short Stories	
+sobytie	Событие (Чехов)	Чехов А.П.	Событие	Short Stories	
+sovet	Совет (Чехов)	Чехов А.П.	Совет	Short Stories	
+sovremennye-molitvy	Современные молитвы (Чехов)	Чехов А.П.	Современные молитвы	Short Stories	
+son	Сон (Чехов)	Чехов А.П.	Сон	Short Stories	
+son-reportyora	Сон репортёра (Чехов)	Чехов А.П.	Сон репортёра	Short Stories	
+sonnaya-odur	Сонная одурь (Чехов)	Чехов А.П.	Сонная одурь	Short Stories	
+sosedi	Соседи (Чехов)	Чехов А.П.	Соседи	Short Stories	
+#have	spat-khochetsya	Спать хочется (Чехов)	Чехов А.П.	Спать хочется	Short Stories	
+spisok-lits-imeyushchikh-pravo-na-besplatnyy-proezd-po-russk	Список лиц, имеющих право на бесплатный проезд по русским железным дорогам (Чехов)	Чехов А.П.	Список лиц, имеющих право на бесплатный проезд по русским железным дорогам	Short Stories	
+spisok-eksponentov-udostoennykh-chugunnykh-medaley-po-russko	Список экспонентов, удостоенных чугунных медалей по русскому отделу на выставке в Амстердаме (Чехов)	Чехов А.П.	Список экспонентов, удостоенных чугунных медалей по русскому отделу на выставке в Амстердаме	Short Stories	
+spravka	Справка (Чехов)	Чехов А.П.	Справка	Short Stories	
+sredi-milykh-moskvichey	Среди милых москвичей (Чехов)	Чехов А.П.	Среди милых москвичей	Short Stories	
+sredstvo-ot-zapoya	Средство от запоя (Чехов)	Чехов А.П.	Средство от запоя	Short Stories	
+starosta	Староста (Чехов)	Чехов А.П.	Староста	Short Stories	
+starost	Старость (Чехов)	Чехов А.П.	Старость	Short Stories	
+staryy-dom	Старый дом (Чехов)	Чехов А.П.	Старый дом	Short Stories	
+statistika	Статистика (Чехов)	Чехов А.П.	Статистика	Short Stories	
+stena	Стена (Чехов)	Чехов А.П.	Стена	Short Stories	
+#have	step	Степь (Чехов)	Чехов А.П.	Степь	Short Stories	
+stolichnyy-literaturno-artisticheskiy-kruzhok	Столичный литературно-артистический кружок (Чехов)	Чехов А.П.	Столичный литературно-артистический кружок	Short Stories	
+stradaltsy	Страдальцы (Чехов)	Чехов А.П.	Страдальцы	Short Stories	
+strazha-pod-strazhey	Стража под стражей (Чехов)	Чехов А.П.	Стража под стражей	Short Stories	
+strakh	Страх (Чехов)	Чехов А.П.	Страх	Short Stories	
+strakhi	Страхи (Чехов)	Чехов А.П.	Страхи	Short Stories	
+strashnaya-noch	Страшная ночь (Чехов)	Чехов А.П.	Страшная ночь	Short Stories	
+#have	student	Студент (Чехов)	Чехов А.П.	Студент	Short Stories	
+sud	Суд (Чехов)	Чехов А.П.	Суд	Short Stories	
+supruga	Супруга (Чехов)	Чехов А.П.	Супруга	Short Stories	
+sushchaya-pravda	Сущая правда (Чехов)	Чехов А.П.	Сущая правда	Short Stories	
+schastlivchik	Счастливчик (Чехов)	Чехов А.П.	Счастливчик	Short Stories	
+schaste	Счастье (Чехов)	Чехов А.П.	Счастье	Short Stories	
+sezd-estestvoispytateley-v-filadelfii	Съезд естествоиспытателей в Филадельфии (Чехов)	Чехов А.П.	Съезд естествоиспытателей в Филадельфии	Short Stories	
+tayna	Тайна (Чехов)	Чехов А.П.	Тайна	Short Stories	
+tayny-sta-soroka-chetyrekh-katastrof-ili-russkiy-rokambol	Тайны ста сорока четырех катастроф, или Русский Рокамболь (Чехов)	Чехов А.П.	Тайны ста сорока четырех катастроф, или Русский Рокамболь	Short Stories	
+taynyy-sovetnik	Тайный советник (Чехов)	Чехов А.П.	Тайный советник	Short Stories	
+talant	Талант (Чехов)	Чехов А.П.	Талант	Short Stories	
+tapyor	Тапёр (Чехов)	Чехов А.П.	Тапёр	Short Stories	
+tatyana-repina	Татьяна Репина (Чехов)	Чехов А.П.	Татьяна Репина	Short Stories	
+teatr-f-korsha	Театр Ф. Корша (Чехов)	Чехов А.П.	Театр Ф. Корша	Short Stories	
+temnota	Темнота (Чехов)	Чехов А.П.	Темнота	Short Stories	
+temperamenty	Темпераменты (Чехов)	Чехов А.П.	Темпераменты	Short Stories	
+tina	Тина (Чехов)	Чехов А.П.	Тина	Short Stories	
+tif	Тиф (Чехов)	Чехов А.П.	Тиф	Short Stories	
+to-byla-ona	То была она! (Чехов)	Чехов А.П.	То была она!	Short Stories	
+#have	tolstyy-i-tonkiy	Толстый и тонкий (Чехов)	Чехов А.П.	Толстый и тонкий	Short Stories	
+torzhestvo-pobeditelya	Торжество победителя (Чехов)	Чехов А.П.	Торжество победителя	Short Stories	
+#have	toska	Тоска (Чехов)	Чехов А.П.	Тоска	Short Stories	
+tost-prozaikov	Тост прозаиков (Чехов)	Чехов А.П.	Тост прозаиков	Short Stories	
+tragik	Трагик (Чехов)	Чехов А.П.	Трагик	Short Stories	
+tragik-ponevole	Трагик поневоле (Чехов)	Чехов А.П.	Трагик поневоле	Short Stories	
+tri-goda	Три года (Чехов)	Чехов А.П.	Три года	Short Stories	
+#have	tri-sestry	Три сестры (Чехов)	Чехов А.П.	Три сестры	Short Stories	
+trifon	Трифон (Чехов)	Чехов А.П.	Трифон	Short Stories	
+tryapka	Тряпка (Чехов)	Чехов А.П.	Тряпка	Short Stories	
+tsss	Тссс! (Чехов)	Чехов А.П.	Тссс!	Short Stories	
+ty-i-vy	Ты и вы (Чехов)	Чехов А.П.	Ты и вы	Short Stories	
+tysyacha-odna-strast-ili-strashnaya-noch	Тысяча одна страсть, или Страшная ночь (Чехов)	Чехов А.П.	Тысяча одна страсть, или Страшная ночь	Short Stories	
+tyazhyolye-lyudi	Тяжёлые люди (Чехов)	Чехов А.П.	Тяжёлые люди	Short Stories	
+tyomnoyu-nochyu	Тёмною ночью (Чехов)	Чехов А.П.	Тёмною ночью	Short Stories	
+tyoshcha-advokat	Тёща-адвокат (Чехов)	Чехов А.П.	Тёща-адвокат	Short Stories	
+u-zeleninykh	У Зелениных (Чехов)	Чехов А.П.	У Зелениных	Short Stories	
+u-znakomykh	У знакомых (Чехов)	Чехов А.П.	У знакомых	Short Stories	
+u-posteli-bolnogo	У постели больного (Чехов)	Чехов А.П.	У постели больного	Short Stories	
+u-predvoditelshi	У предводительши (Чехов)	Чехов А.П.	У предводительши	Short Stories	
+u-telefona	У телефона (Чехов)	Чехов А.П.	У телефона	Short Stories	
+ubiystvo	Убийство (Чехов)	Чехов А.П.	Убийство	Short Stories	
+ugroza	Угроза (Чехов)	Чехов А.П.	Угроза	Short Stories	
+udav-i-krolik	Удав и кролик (Чехов)	Чехов А.П.	Удав и кролик	Short Stories	
+umnyy-dvornik	Умный дворник (Чехов)	Чехов А.П.	Умный дворник	Short Stories	
+unter-prishibeev	Унтер Пришибеев (Чехов)	Чехов А.П.	Унтер Пришибеев	Short Stories	
+uprazdnili	Упразднили! (Чехов)	Чехов А.П.	Упразднили!	Short Stories	
+ustritsy	Устрицы (Чехов)	Чехов А.П.	Устрицы	Short Stories	
+utoplennik	Утопленник (Чехов)	Чехов А.П.	Утопленник	Short Stories	
+uchitel	Учитель (Чехов)	Чехов А.П.	Учитель	Short Stories	
+#have	uchitel-slovesnosti	Учитель словесности (Чехов)	Чехов А.П.	Учитель словесности	Short Stories	
+ushla	Ушла (Чехов)	Чехов А.П.	Ушла	Short Stories	
+fantasticheskiy-teatr-lentovskogo	Фантастический театр Лентовского (Чехов)	Чехов А.П.	Фантастический театр Лентовского	Short Stories	
+filantrop	Филантроп (Чехов)	Чехов А.П.	Филантроп	Short Stories	
+filosofskie-opredeleniya-zhizni	Философские определения жизни (Чехов)	Чехов А.П.	Философские определения жизни	Short Stories	
+fintiflyushki	Финтифлюшки (Чехов)	Чехов А.П.	Финтифлюшки	Short Stories	
+fokusniki	Фокусники (Чехов)	Чехов А.П.	Фокусники	Short Stories	
+#have	khameleon	Хамелеон (Чехов)	Чехов А.П.	Хамелеон	Short Stories	
+khirurgiya	Хирургия (Чехов)	Чехов А.П.	Хирургия	Short Stories	
+khitrets	Хитрец (Чехов)	Чехов А.П.	Хитрец	Short Stories	
+kholodnaya-krov	Холодная кровь (Чехов)	Чехов А.П.	Холодная кровь	Short Stories	
+khoristka	Хористка (Чехов)	Чехов А.П.	Хористка	Short Stories	
+khoroshaya-novost	Хорошая новость (Чехов)	Чехов А.П.	Хорошая новость	Short Stories	
+khoroshie-lyudi	Хорошие люди (Чехов)	Чехов А.П.	Хорошие люди	Short Stories	
+khoroshiy-konets	Хороший конец (Чехов)	Чехов А.П.	Хороший конец	Short Stories	
+khudozhestvo	Художество (Чехов)	Чехов А.П.	Художество	Short Stories	
+tsvety-zapozdalye	Цветы запоздалые (Чехов)	Чехов А.П.	Цветы запоздалые	Short Stories	
+tsinik	Циник (Чехов)	Чехов А.П.	Циник	Short Stories	
+#have	chayka	Чайка (Чехов)	Чехов А.П.	Чайка	Short Stories	
+chelovek	Человек (Чехов)	Чехов А.П.	Человек	Short Stories	
+#have	chelovek-v-futlyare	Человек в футляре (Чехов)	Чехов А.П.	Человек в футляре	Short Stories	
+chtenie	Чтение (Чехов)	Чехов А.П.	Чтение	Short Stories	
+chto-luchshe	Что лучше? (Чехов)	Чехов А.П.	Что лучше?	Short Stories	
+chto-chashche-vsego-vstrechaetsya-v-romanakh-povestyakh-i-t-	Что чаще всего встречается в романах, повестях и т. п. (Чехов)	Чехов А.П.	Что чаще всего встречается в романах, повестях и т. п.	Short Stories	
+chuzhaya-beda	Чужая беда (Чехов)	Чехов А.П.	Чужая беда	Short Stories	
+#have	chyornyy-monakh	Чёрный монах (Чехов)	Чехов А.П.	Чёрный монах	Short Stories	
+shampanskoe-1885	Шампанское (Чехов, 1885)	Чехов А.П.	Шампанское (1885)	Short Stories	
+shampanskoe-1887	Шампанское (Чехов, 1887)	Чехов А.П.	Шампанское (1887)	Short Stories	
+shvedskaya-spichka	Шведская спичка (Чехов)	Чехов А.П.	Шведская спичка	Short Stories	
+shilo-v-meshke	Шило в мешке (Чехов)	Чехов А.П.	Шило в мешке	Short Stories	
+shults	Шульц (Чехов)	Чехов А.П.	Шульц	Short Stories	
+shutochka	Шуточка (Чехов)	Чехов А.П.	Шуточка	Short Stories	
+ekzamen	Экзамен (Чехов)	Чехов А.П.	Экзамен	Short Stories	
+ekzamen-na-chin	Экзамен на чин (Чехов)	Чехов А.П.	Экзамен на чин	Short Stories	
+yubiley-pesa	Юбилей (пьеса, Чехов)	Чехов А.П.	Юбилей (пьеса)	Short Stories	
+yubiley-rasskaz	Юбилей (рассказ, Чехов)	Чехов А.П.	Юбилей (рассказ)	Short Stories	
+yuristka	Юристка (Чехов)	Чехов А.П.	Юристка	Short Stories	
+yadovityy-sluchay	Ядовитый случай (Чехов)	Чехов А.П.	Ядовитый случай	Short Stories	
+yazyk-do-kieva-dovedyot	Язык до Киева доведёт (Чехов)	Чехов А.П.	Язык до Киева доведёт	Short Stories	
+yarmarka	Ярмарка (Чехов)	Чехов А.П.	Ярмарка	Short Stories	
+yarmarochnoe-itogo	Ярмарочное "итого" (Чехов)	Чехов А.П.	Ярмарочное "итого"	Short Stories	
+#
+# Collections and cycles, left out — each indexes works listed
+# above. To import one as a single book, add it with an @ in front.
+#   Маленькая трилогия (цикл, Чехов)
+#   Пёстрые рассказы (сборник, Чехов)
+#
+# These have subpages. The EPUB export follows chapters by itself, so
+# they need nothing; but if one imports thin or empty it is an index of
+# separate pages, and wants an @ in front of it.
+#   Остров Сахалин (Чехов)                                       23
+#   Палата № 6 (Чехов)                                           16
+#   Попрыгунья (Чехов)                                           8
+#   Безотцовщина (Чехов)                                         5
+#   Леший (Чехов)                                                5
+#   Чайка (Чехов)                                                5
+#   Вишнёвый сад (Чехов)                                         4
+#   Дядя Ваня (Чехов)                                            4
+#   Иванов (драма, Чехов)                                        4
+#   Иванов (комедия, Чехов)                                      4
+#   Хамелеон (Чехов)                                             4
+#   Толстый и тонкий (Чехов)                                     3
+#   Три сестры (Чехов)                                           3
+#   Мужики (Чехов)                                               2
+#   Письмо к учёному соседу (Чехов)                              2
+#   Автобиография (Чехов)                                        1
+#   Америка в Ростове-на-Дону (Чехов)                            1
+#   Анна на шее (Чехов)                                          1
+#   Анюта (Чехов)                                                1
+#   Ариадна (Чехов)                                              1
+#   Бенефис П. М. Свободина (Чехов)                              1
+#   В овраге (Чехов)                                             1
+#   В. А. Бандаков (Чехов)                                       1
+#   Винт (Чехов)                                                 1
+#   Володя большой и Володя маленький (Чехов)                    1
+#   Вопрос (Чехов)                                               1
+#   Воры (Чехов)                                                 1
+#   Герат (Чехов)                                                1
+#   Дама с собачкой (Чехов)                                      1
+#   Дом с мезонином (Чехов)                                      1
+#   Душечка (Чехов)                                              1
+#   Дуэль (Чехов)                                                1
+#   Жалобная книга (Чехов)                                       1
+#   З. М. Линтварева (Чехов)                                     1
+#   Злостные банкроты (Чехов)                                    1
+#   Злоумышленник (Чехов)                                        1
+#   Из Сибири (Чехов)                                            1
+#   Именины (Чехов)                                              1
+#   Интеллигенты-кабатчики (Чехов)                               1
+#   Ионыч (Чехов)                                                1
+#   Княгиня (Чехов)                                              1
+#   Лошадиная фамилия (Чехов)                                    1
+#   Любовь (Чехов)                                               1
+#   М. А. Потоцкая (Чехов)                                       1
+#   Медведь (Чехов)                                              1
+#   Модный эффект (Чехов)                                        1
+#   Московские лицемеры (Чехов)                                  1
+#   Моя жизнь (Чехов)                                            1
+#   Н. М. Пржевальский (Чехов)                                   1
+#   Н. Н. и М. И. Фигнер (Чехов)                                 1
+#   На большой дороге (Чехов)                                    1
+#   На святках (Чехов)                                           1
+#   Наше нищенство (Чехов)                                       1
+#   Неприятность (Чехов)                                         1
+#   Новая дача (Чехов)                                           1
+#   Ночь перед судом (Чехов)                                     1
+#   О вреде табака (Чехов)                                       1
+#   О любви (Чехов)                                              1
+#   Обеды беллетристов (Чехов)                                   1
+#   Опять о Саре Бернар (Чехов)                                  1
+#   Пассажир 1-го класса (Чехов)                                 1
+#   Пересолил (Чехов)                                            1
+#   Печенег (Чехов)                                              1
+#   Почта (Чехов)                                                1
+#   Пустой случай (Чехов)                                        1
+#   Рассказ неизвестного человека (Чехов)                        1
+#   Речь министра (Чехов)                                        1
+#   Сара Бернар (Чехов)                                          1
+#   Святою ночью (Чехов)                                         1
+#   Скучная история (Чехов)                                      1
+#   Смерть чиновника (Чехов)                                     1
+#   Спать хочется (Чехов)                                        1
+#   Среди милых москвичей (Чехов)                                1
+#   Стена (Чехов)                                                1
+#   Степь (Чехов)                                                1
+#   Столичный литературно-артистический кружок (Чехов)           1
+#   Счастье (Чехов)                                              1
+#   Тайный советник (Чехов)                                      1
+#   Татьяна Репина (Чехов)                                       1
+#   Театр Ф. Корша (Чехов)                                       1
+#   Тоска (Чехов)                                                1
+#   Три года (Чехов)                                             1
+#   Учитель словесности (Чехов)                                  1
+#   Фантастический театр Лентовского (Чехов)                     1
+#   Фокусники (Чехов)                                            1
+#   Хирургия (Чехов)                                             1
+#   Хорошая новость (Чехов)                                      1
+#   Человек в футляре (Чехов)                                    1
+#
+# Linked from the author page but not kept (no (Чехов) in the title):
+#   А. П. Чехов (Лазаревский)
+#   А. П. Чехов (Лазаревский)/ДО
+#   Борис Александрович Лазаревский
+#   Владимир Владимирович Маяковский
+#   Вячеслав Андреевич Фаусек
+#   Гражданский кодекс РФ/Глава 70
+#   Два Чехова (Маяковский)
+#   Дмитрий Сергеевич Мережковский
+#   Значение Чехова (Андреевский)
+#   Маленькая трилогия (цикл, Чехов)
+#   Мое знакомство с А. П. Чеховым (Фаусек)
+#   Произведения Антона Павловича Чехова в хронологическом порядке
+#   Пёстрые рассказы (сборник, Чехов)
+#   Сергей Аркадьевич Андреевский
+#   Чехов
+#   Чехов и Горький (Мережковский)
+#   ЭСГ/Чехов, Антон Павлович
