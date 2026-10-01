@@ -24,6 +24,8 @@ MANIFEST = "private/books/index.json"
 NOVEL = 50000      # words. Анна Каренина is 350k, Ася is 22k, Тоска is 1.2k
 NOVELLA = 15000
 PLACEHOLDER = {"Short Stories", "Novels & Stories", ""}
+VERSE_SPREAD = 1.5        # interquartile line length over the median
+VERSE_LONG_SHARE = 0.15   # share of lines over 14 words
 
 def local(e):
     return e.tag.split("}")[-1]
@@ -81,12 +83,29 @@ def look(path):
                 open_end += 1
     lens = sorted(x for x in lens if x)
     lines = verse + prose
+    # Verse keeps its lines to a length. Prose set out like verse — a mock
+    # advertisement, a joke dictionary, a list of aphorisms — does not: its
+    # entries run from two words to thirty. Chekhov has no verse at all and
+    # 35 of his squibs were shelved as poems on short lines and open ends
+    # alone, so the shape of the lines decides too. Measured as the
+    # interquartile spread over the median (scale-free, so a four-word line
+    # and an eight-word line are judged the same way) and the share of lines
+    # long enough that no metre would hold them.
+    spread = long_share = 0
+    if len(lens) >= 4:
+        med = lens[len(lens) // 2]
+        q1 = lens[len(lens) // 4]
+        q3 = lens[(3 * len(lens)) // 4]
+        spread = (q3 - q1) / float(med) if med else 0
+        long_share = sum(1 for x in lens if x > 14) / float(len(lens))
     return {
         "tagged_verse": verse / lines if lines else 0,
         "median_line": lens[len(lens) // 2] if lens else 0,
         "speech": speech / prose if prose else 0,
         "open_end": open_end / lines if lines else 0,
         "paras": lines,
+        "spread": spread,
+        "long_share": long_share,
     }
 
 def decide(shape, words):
@@ -95,7 +114,9 @@ def decide(shape, words):
         return "Plays", True
     if shape and (shape["tagged_verse"] >= 0.6 or
                   (shape["median_line"] <= VERSE_MEDIAN_WORDS and shape["paras"] >= 4
-                   and shape["open_end"] >= VERSE_OPEN_ENDS)):
+                   and shape["open_end"] >= VERSE_OPEN_ENDS
+                   and shape["spread"] <= VERSE_SPREAD
+                   and shape["long_share"] <= VERSE_LONG_SHARE)):
         return "Poetry", False
     if words >= NOVEL:
         return "Novels", False
