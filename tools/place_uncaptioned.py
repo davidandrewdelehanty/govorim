@@ -38,6 +38,45 @@ MANIFEST = "private/books/index.json"
 HUNT = "tools/hunt-results.json"
 VTT = "tools/vtt/%s.ru.vtt"
 
+# Without a transcript the only evidence is the title, and a title alone is
+# worth less than it looks. «Айя-София», «Чёрный камень Каабы» and «Могила
+# поэта» all name a place or an object, so a Quran recitation, a news clip and
+# a video about Mayakovsky's grave each match the poem's title word for word
+# and are not the poem. The uploader's name for the recording is what tells
+# them apart: someone reading Bunin says so.
+#
+# So: the author's surname in the video title, or — for a reading titled with
+# nothing but the work («Гроза промчалась.») — near-exact wording and almost
+# no words of its own. Anything that matches the title while talking about
+# something else fails both.
+import re as _re
+
+TITLE_FLOOR = 0.8        # when the surname is absent
+MAX_EXTRA = 2            # words of its own a bare title may carry
+
+def _words(s):
+    return [w for w in _re.split(r"[^\w\u0400-\u04ff]+", (s or "").lower()) if w]
+
+def surname(author):
+    a = (author or "").strip()
+    return a.split()[0].rstrip(",.").lower() if a else ""
+
+def title_ok(book_title, video_title, author):
+    bt, vt = _words(book_title), _words(video_title)
+    if not bt:
+        return False, "no title to check"
+    have = sum(1 for w in bt if w in vt)
+    ratio = have / float(len(bt))
+    sn = surname(author)
+    if sn and sn in (video_title or "").lower():
+        return (ratio >= 0.5,
+                "the author is named, %d/%d title words" % (have, len(bt)))
+    extra = len([w for w in vt if w not in bt])
+    if ratio >= TITLE_FLOOR and extra <= MAX_EXTRA:
+        return True, "titled with the work and nothing else"
+    return False, ("the author is not named and the title carries %d other "
+                   "word(s) (%d/%d matched)" % (extra, have, len(bt)))
+
 
 def main():
     ap = argparse.ArgumentParser()
@@ -79,9 +118,16 @@ def main():
                 "%s (%d)" % (b.get("slug"), n))
             refused += 1
             continue
-        print("%-42s %-12s %4dm  %.2f s/w  %s"
+        ok, note = title_ok(b.get("title"), pick.get("title"), b.get("author"))
+        if not ok:
+            why.setdefault("the title does not vouch for the recording", []).append(
+                "%s — %s" % (b.get("slug"), note))
+            refused += 1
+            continue
+        print("%-38s %-12s %4dm  %.2f s/w  %-34s  %s"
               % (b.get("slug"), vid, pick["dur"] // 60,
-                 pick["dur"] / max(b.get("words") or 1, 1), pick["title"][:42]))
+                 pick["dur"] / max(b.get("words") or 1, 1),
+                 pick["title"][:34], note))
         if not a.dry_run:
             b["videos"] = {"0": {"youtube": vid, "heading": "Глава 1"}}
             b["videoUnchecked"] = True
