@@ -331,7 +331,20 @@ def _blocks(body):
 NOTES_HEAD = re.compile(r"^(Примечани|Комментари|Сноски|Источники)", re.I)
 FRONT_MATTER = re.compile(
     r"^(Содержание|Оглавление|Редакции|Список редакций|Издания|Версии)\b", re.I)
-LEADERS = re.compile(r"[.\u2024\u2027]\s*[.\u2024\u2027]\s*[.\u2024\u2027]")
+# Dot leaders — the filler between a chapter name and its page number in a
+# printed contents list. Three dots in a row used to be enough, which made
+# every ellipsis a leader: «— А-а-а... мое вам! — зевает фельдшер» reads as a
+# contents line, so over half the paragraphs of «Хирургия» did, and the whole
+# story was thrown away as front matter. Five of Chekhov's works were lost
+# this way and any writer fond of the ellipsis was at risk.
+#
+# A leader is longer than an ellipsis, or it is followed by the page number it
+# was pointing at. An ellipsis is three dots inside a sentence and nothing
+# more, so it no longer counts.
+LEADERS = re.compile(
+    r"[.\u2024\u2027]\s*[.\u2024\u2027]\s*[.\u2024\u2027]\s*[.\u2024\u2027]"   # four or more
+    r"|[.\u2024\u2027\u2026]{2,}\s*\d+\s*$"                                   # … then a page number
+    r"|\u2026\s*\.{2,}")                                                   # … run together with dots
 
 
 # "Часть I", "Том 2", "Книга первая" — a division of the work, not a chapter
