@@ -7969,6 +7969,23 @@ export default function App() {
   var grpHasAudio = !!(grpAudio && (grpAudio.id || grpAudio.url ||
                        Object.keys(grpAudio.byChapter || {}).length));
 
+  // The group strip belongs on the group's book — and on a near miss of it,
+  // a second copy of the same work, where it has something to explain. On an
+  // unrelated book it has nothing to say: a reader who opens Чехов while a
+  // group read of Булгаков is still on the device was being shown that
+  // group's name and its audio button over Чехов. The group is not lost by
+  // hiding it; it stays in Your groups, and the chat tab stays on the page.
+  var normWork = function(t) {
+    return String(t || "").toLowerCase()
+      .replace(/[\u00ab\u00bb"'\u2019\u201c\u201d,.!?:;\u2014\u2013-]/g, " ")
+      .replace(/\s+/g, " ").trim();
+  };
+  var grpWork = grp ? normWork((grp.own && grp.own.title) || grp.title) : "";
+  var sameWorkAsGroup = !!(grp && bookMeta && (
+    inGrpBook ||
+    (grp.filename && bookMeta.filename && grp.filename === bookMeta.filename) ||
+    (grpWork && normWork(bookMeta.title) === grpWork)));
+
   // What the page shows for this chapter: yours, and the group's if you are
   // on the group's book.
   // Inside a group read the page is the group's: its highlights, notes and
@@ -18224,9 +18241,9 @@ export default function App() {
                 </div>
 
 
-                {(grp || annTool) && (
+                {(sameWorkAsGroup || annTool) && (
                   <div className="annot-bar">
-                    {grp && (
+                    {sameWorkAsGroup && (
                       <div className="grp-strip">
                         <span className="grp-lbl">Group read</span>
                         <span className="grp-name">{grp.name}</span>
