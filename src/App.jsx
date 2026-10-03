@@ -9583,22 +9583,52 @@ export default function App() {
     if (navigator.clipboard) navigator.clipboard.writeText(text).catch(function(){});
   };
 
-  // Definitions are cached in localStorage forever. A word's dictionary entry
-  // does not change, and the free Gemini tier is a daily budget — re-looking-up
-  // "который" for the hundredth time should not spend any of it.
-  var DEF_CACHE_PREFIX = "def:";
+  // Definitions are cached in localStorage, but not forever and not blindly.
+  //
+  // They used to be kept for good, on the reasoning that a dictionary entry
+  // does not change. The entry does not, but what the server makes of a word
+  // does: «внесен» was answered "Inserted By" until the lemma rules learned
+  // about participles, and every reader who had tapped it kept that answer
+  // permanently, fix or no fix. So the key carries a version — bump it when
+  // the lookup changes materially and every stale answer is dropped — and an
+  // entry carries its date: a real dictionary entry is good for a month, a
+  // machine-translated guess for a day.
+  var DEF_CACHE_PREFIX = "def3:";
+  var DEF_TTL_DICT = 30 * 86400000, DEF_TTL_MT = 86400000;
   var readDefCache = function(key) {
     try {
       var hit = localStorage.getItem(DEF_CACHE_PREFIX + key);
       if (!hit) return null;
       var parsed = JSON.parse(hit);
-      return (parsed && parsed.translation) ? parsed : null;
+      if (!(parsed && parsed.translation)) return null;
+      var guess = parsed.definitionSource === "mt" || parsed.mtAssisted;
+      var age = Date.now() - (parsed._at || 0);
+      if (age > (guess ? DEF_TTL_MT : DEF_TTL_DICT)) {
+        localStorage.removeItem(DEF_CACHE_PREFIX + key);
+        return null;
+      }
+      return parsed;
     } catch (_) { return null; }
   };
   var writeDefCache = function(key, data) {
-    try { localStorage.setItem(DEF_CACHE_PREFIX + key, JSON.stringify(data)); }
+    try { localStorage.setItem(DEF_CACHE_PREFIX + key, JSON.stringify(Object.assign({}, data, { _at: Date.now() }))); }
     catch (_) {}   // quota full — the cache is an optimisation, not a requirement
   };
+  // Earlier versions of the cache are dead weight in a small quota. Cleared
+  // once per page load, off the main path.
+  useEffect(function() {
+    var t = setTimeout(function() {
+      try {
+        var dead = [];
+        for (var i = 0; i < localStorage.length; i++) {
+          var k = localStorage.key(i);
+          if (k && (k.indexOf("def:") === 0 || k.indexOf("def2:") === 0)) dead.push(k);
+        }
+        dead.forEach(function(k){ localStorage.removeItem(k); });
+      } catch (_) {}
+    }, 4000);
+    return function(){ clearTimeout(t); };
+  }, []);
 
   // Definitions come from dictionaries and nothing else — there is no AI
   // fallback. /api/define tries Yandex first and, server-side, falls through
