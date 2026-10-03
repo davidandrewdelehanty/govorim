@@ -893,21 +893,69 @@ export default async function handler(req, res) {
           // hint rather than a definition — but a hint plus the Russian gloss
           // beats a wall of Russian, and the popup labels it as a guess.
           if (ruWikt.noEnglish && timeLeft() > 1500) {
-            let mtEn = null;
-            try {
-              mtEn = await mtLookup([ruWikt.lemma, lower, deyo].filter(Boolean), word, ctrl.signal);
-            } catch (e) {
-              if (e && e.name === "AbortError") throw e;
-              trace.push("ruwikt:mt-error " + ((e && e.message) || e));
+            // What the Russian entry actually says, without the register
+            // labels in front or the asides in brackets.
+            const ruGloss = String(ruWikt.translation || "");
+            const bareGloss = (ruGloss.split(/;\s*/)[0] || "")
+              .replace(/^\s*(\([^)]*\)\s*)+/, "")
+              .replace(/\([^)]*\)/g, " ")
+              .replace(/\s+/g, " ").trim();
+
+            // 1. A definition that is just another word is a pointer, and the
+            //    word it points at often has a proper English entry. Викисловарь
+            //    defines «поистаскать» as «истаскать (всё или многое)», and
+            //    «истаскать» is "to wear out" in the English Wiktionary. Follow
+            //    it rather than guess.
+            const ptr = /^(?:то же,? что(?: и)?\s+)?([\u0400-\u04ff-]{3,})\.?$/i.exec(bareGloss);
+            const ptrWord = ptr ? ptr[1].toLowerCase() : "";
+            let hop = null;
+            if (ptrWord && ptrWord !== lower && ptrWord !== deyo && wiktEnabled && timeLeft() > 2000) {
+              try {
+                hop = await wiktionaryLookup([ptrWord], word, ctrl.signal, timeLeft, []);
+              } catch (e) {
+                if (e && e.name === "AbortError") throw e;
+                trace.push("ruwikt:pointer-error " + ((e && e.message) || e));
+              }
+              if (hop && (hop.weakFormOf || !hop.translation)) hop = null;
             }
-            if (mtEn && mtEn.translation) {
-              ruWikt.definitionRu = ruWikt.translation;
-              ruWikt.translation = mtEn.translation;
-              ruWikt.mtAssisted = true;
-              ruWikt.mtProvider = mtEn.mtProvider;
-              ruWikt.grammar = [ruWikt.grammar, "English is a machine translation"]
+            if (hop) {
+              ruWikt.definitionRu = ruGloss;
+              ruWikt.translation = hop.translation;
+              ruWikt.grammar = [ruWikt.grammar, "English from the entry for " + ptrWord]
                 .filter(Boolean).join(" · ");
-              trace.push("ruwikt:mt-english");
+              trace.push("ruwikt:pointer " + ptrWord);
+            } else if (timeLeft() > 1500) {
+              // 2. Otherwise machine-translate the DEFINITION, not the
+              //    headword. The headword is rare by construction — that is
+              //    why it ended up here — and MyMemory answers a rare word
+              //    with a confident guess: «поистаскать» came back "search",
+              //    «малява» comes back "naughty". The gloss is written in
+              //    ordinary words, which is what MT is good at. The headword
+              //    is still tried last, for an entry whose gloss will not
+              //    translate.
+              const mtCands = [];
+              if (bareGloss && bareGloss.length <= 140) mtCands.push(bareGloss);
+              let mtEn = null, mtOfGloss = false;
+              try {
+                if (mtCands.length) { mtEn = await mtLookup(mtCands, word, ctrl.signal); mtOfGloss = !!(mtEn && mtEn.translation); }
+                if (!mtOfGloss && timeLeft() > 1500) {
+                  mtEn = await mtLookup([ruWikt.lemma, lower, deyo].filter(Boolean), word, ctrl.signal);
+                }
+              } catch (e) {
+                if (e && e.name === "AbortError") throw e;
+                trace.push("ruwikt:mt-error " + ((e && e.message) || e));
+              }
+              if (mtEn && mtEn.translation) {
+                ruWikt.definitionRu = ruGloss;
+                ruWikt.translation = mtEn.translation;
+                ruWikt.mtAssisted = true;
+                ruWikt.mtProvider = mtEn.mtProvider;
+                ruWikt.grammar = [ruWikt.grammar, mtOfGloss
+                    ? "English is a machine translation of the Russian definition"
+                    : "English is a machine translation"]
+                  .filter(Boolean).join(" · ");
+                trace.push(mtOfGloss ? "ruwikt:mt-of-gloss" : "ruwikt:mt-english");
+              }
             }
           }
           delete ruWikt.noEnglish;
