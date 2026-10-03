@@ -5684,7 +5684,15 @@ export default function App() {
         setJustRead(function(cur){ return allKeys.indexOf(cur) >= 0 ? "" : cur; });
       } else {
         allKeys.forEach(function(x) {
-          next[x] = { at: Date.now(), title: meta.title || "", author: meta.author || "" };
+          // Each half keeps its own name on the finished shelf: the play is
+          // not listed a second time as «… (спектакль)».
+          var t = meta.title || "";
+          if (x !== k) {
+            for (var i = 0; i < presetBooks.length; i++) {
+              if (presetBooks[i] && bookKey(presetBooks[i]) === x) { t = presetBooks[i].title || t; break; }
+            }
+          }
+          next[x] = { at: Date.now(), title: t, author: meta.author || "" };
         });
         nowFinished = true;
         setJustRead(k);
@@ -6541,6 +6549,10 @@ export default function App() {
   var lastSeenCh = useRef(-1);
   // Books whose end has already been noticed, so it is noticed once.
   var endDone = useRef({});
+  // How many pages the open chapter has. A ref, because `pages` is worked out
+  // further down this component: naming it in the effect's dependency list
+  // read it during render, before it existed, and took the whole site down.
+  var pageCountRef = useRef(0);
   useEffect(function() {
     if (!(started && isLit) || lview !== "read" || !chapters.length) return;
     var box = document.querySelector(".lit-left");
@@ -6582,7 +6594,7 @@ export default function App() {
         (((window.innerHeight || 0) + (window.pageYOffset || 0)) >=
          ((docEl && docEl.scrollHeight ? docEl.scrollHeight : 0) - 120));
       if (bk && nearBottom && !endDone.current[bk] &&
-          cidx >= chapters.length - 1 && pidx >= pages.length - 1 &&
+          cidx >= chapters.length - 1 && pidx >= pageCountRef.current - 1 &&
           !isNaN(lastStart) && deepest >= lastStart && !isFinished(bookMeta)) {
         endDone.current[bk] = 1;
         toggleFinished(bookMeta);
@@ -6610,7 +6622,7 @@ export default function App() {
     // pidx and the page count are in here because the closure reads them:
     // without them the listener kept the page it was created on and could
     // not tell the last page of the book from the first.
-  }, [started, isLit, lview, cidx, pidx, pages.length, chapters.length, bookMeta.title]);
+  }, [started, isLit, lview, cidx, pidx, chapters.length, bookMeta.title]);
   // The word at the end of a book is worth seeing: when the reader marks one
   // read from the middle of the page, the card is brought to them.
   useEffect(function() {
@@ -6932,6 +6944,7 @@ export default function App() {
     return (singlePageMode ? "Song " : "Chapter ") + (i + 1);
   };
   var totalPages = pages.length;
+  pageCountRef.current = totalPages;
   // A bookmark, a vocabulary link or a search result names a place in the
   // chapter, not a page of it — and a chapter opens at its first page. The
   // page holding that place is chosen here, once the pages for the new
@@ -10598,6 +10611,11 @@ export default function App() {
       } catch (e) {}
       await loadFile(buf, book.filename, {
         fromPreset: true,
+        // Passed through so the reader knows which catalogue entry it has and
+        // which other entry is the same work. Without these the pairing had
+        // nothing to go on and each entry kept a ledger of its own.
+        slug: book.slug || "",
+        sameWorkAs: book.sameWorkAs || "",
         splitByNumberedSections: !!book.splitByNumberedSections,
         title: book.title,
         author: book.author,
