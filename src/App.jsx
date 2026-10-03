@@ -11564,21 +11564,19 @@ export default function App() {
           }
           var dualCells = [
             <p key={"ru" + pi} className={"dual-ru" + (playKind ? " play-" + playKind.kind : "")} lang="ru" id={"sp" + entry.chIdx}
-               style={Object.assign({gridColumn: 1, gridRow: String(pi + 1)}, pMargin)}>{jumpBtn}{bmBtn}{ruBody}</p>
+               style={Object.assign(flowEn ? {} : {gridColumn: 1, gridRow: String(pi + 1)}, pMargin)}>{jumpBtn}{bmBtn}{ruBody}</p>
           ];
           // Flow mode: the Russian keeps its rows, the English does not get a
           // cell here at all — it is emitted once, below, as a single column.
           if (flowEn) {
             if (secHead) {
               dualCells.unshift(
-                <div key={"sec" + pi} className="sec-div" id={"sec" + entry.chIdx}
-                     style={{gridColumn: 1, gridRow: String(pi + 1)}}>{secHead}</div>
+                <div key={"sec" + pi} className="sec-div" id={"sec" + entry.chIdx}>{secHead}</div>
               );
             }
             if (secVid) {
               dualCells.unshift(
-                <div key={"vid" + pi} className="chvid"
-                     style={{gridColumn: 1, gridRow: String(pi + 1)}}>
+                <div key={"vid" + pi} className="chvid">
                   <iframe src={ytEmbed(secVid.id, secVid.start, secVid.end)}
                           title={secHead || bookMeta.title || "Video"} loading="lazy"
                           allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -11674,10 +11672,18 @@ export default function App() {
           )}
           <div className="dual-scroll" ref={dualRef} onScroll={onDualScroll}>
             <div className={"dual-grid" + (flowEn ? " flow" : "")}>
-              {litRendered}
+              {/* One grid item per column, not one per paragraph.
+                  The English used to be a single cell spanning every Russian
+                  row, and a translation longer than its original is taller
+                  than the rows it spans — so Grid handed the surplus back to
+                  those rows and pushed the Russian paragraphs apart. Hogarth's
+                  Dead Souls runs well past Gogol, which is why that book read
+                  as a column of gaps. Each text is now a column of its own and
+                  neither can set the other's spacing. */}
+              {flowEn ? <div className="dual-ru-flow" lang="ru">{litRendered}</div> : litRendered}
               {flowEn && flowEnBlocks && flowEnBlocks.length > 0 && (
                 <div className="dual-en-flow" lang="en"
-                     style={{gridColumn: 2, gridRow: "1 / span " + Math.max(1, litEntries.length)}}>
+                     style={{gridColumn: 2, gridRow: 1}}>
                   {flowEnBlocks.map(function(t, i) {
                     return <p key={i} className="dual-en">{t}</p>;
                   })}
@@ -12419,7 +12425,17 @@ export default function App() {
            only the one where it was noticed. */
         .dual-en-flow{align-self:start;scroll-snap-align:start}
         .dual-en-flow .dual-en{margin:0 0 1.2em}
-        .dual-grid.flow{align-items:start}
+        /* Flow mode is two columns and one row. The snap point moves to the
+           column itself: it used to sit on '.dual-grid > p', which the
+           paragraphs no longer are now that they live inside their column. */
+        .dual-grid.flow{align-items:start;grid-template-rows:auto}
+        .dual-ru-flow{grid-column:1;grid-row:1;min-width:0;scroll-snap-align:start}
+        /* The jump mark and the bookmark hang 26px into a left margin that a
+           full-width pane does not have, so on a wide screen they sat off the
+           edge of the Russian column and could not be seen — Мёртвые души had
+           every one of its jump points and showed none. Inside this column
+           they sit where the phone layout already puts them. */
+        .dual-ru-flow .pjump,.dual-ru-flow .pbm{margin-left:-2px}
         /* The closed control IS stylable, unlike its options. Full width and a
            16px minimum, because anything smaller makes iOS zoom the page on
            focus and leaves it zoomed. */
