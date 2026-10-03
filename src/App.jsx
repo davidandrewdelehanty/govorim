@@ -5551,9 +5551,49 @@ export default function App() {
     storage && storage.set(BOOKS_HIDE_DONE, JSON.stringify(hideFinished)).catch(function(){});
   }, [hideFinished, finishedLoaded]);
 
+  var entryBySlug = function(slug) {
+    if (!slug) return null;
+    for (var i = 0; i < presetBooks.length; i++) {
+      if (presetBooks[i] && presetBooks[i].slug === slug) return presetBooks[i];
+    }
+    return null;
+  };
+  // Every key this work answers to — its own, and any entry the catalogue
+  // says is the same work, in either direction (the спектакль names the play;
+  // the play says nothing, so its twins are found by looking for entries that
+  // name it).
+  var workKeys = function(meta) {
+    var self = bookKey(meta);
+    if (!self) return [];
+    var out = [self];
+    var add = function(b) {
+      var k = b ? bookKey(b) : "";
+      if (k && out.indexOf(k) < 0) out.push(k);
+    };
+    if (meta && meta.sameWorkAs) add(entryBySlug(meta.sameWorkAs));
+    if (meta && meta.slug) {
+      for (var i = 0; i < presetBooks.length; i++) {
+        var b = presetBooks[i];
+        if (b && b.sameWorkAs === meta.slug) add(b);
+      }
+    }
+    return out;
+  };
+  // Where the work's word credit is kept. The library text when there is one,
+  // so the спектакль and the play draw on a single ledger whichever of them
+  // the reader opened first.
+  var workKey = function(meta) {
+    var twin = (meta && meta.sameWorkAs) ? entryBySlug(meta.sameWorkAs) : null;
+    return (twin && bookKey(twin)) || bookKey(meta);
+  };
+
   var isFinished = function(meta) {
-    var k = bookKey(meta);
-    return !!(k && finishedMap[k] && !finishedMap[k].removed);
+    var ks = workKeys(meta);
+    for (var i = 0; i < ks.length; i++) {
+      var rec = finishedMap[ks[i]];
+      if (rec && !rec.removed) return true;
+    }
+    return false;
   };
   // Two ways of undoing a reading. "Reset" puts a book back at its first
   // page — for the reader who skimmed ahead to see what a book is like and
@@ -5621,6 +5661,10 @@ export default function App() {
   var toggleFinished = function(meta) {
     var k = bookKey(meta);
     if (!k) return;
+    // Both halves of a work are marked together: finishing the спектакль
+    // finishes the play, and the reader is not asked to read the same text
+    // twice to clear it from the shelf.
+    var allKeys = workKeys(meta);
     var nowFinished = false;
     setFinishedMap(function(prev) {
       var next = Object.assign({}, prev);
@@ -5630,11 +5674,18 @@ export default function App() {
       // its push would spread the mark back to every device — permanently.
       // The tombstone records WHEN the unmark happened, so newest-wins merges
       // settle the question in the unmark's favour.
-      if (next[k] && !next[k].removed) {
-        next[k] = { removed: true, at: Date.now(), title: next[k].title || "", author: next[k].author || "" };
-        setJustRead(function(cur){ return cur === k ? "" : cur; });
+      var on = allKeys.some(function(x){ return next[x] && !next[x].removed; });
+      if (on) {
+        allKeys.forEach(function(x) {
+          var had = next[x] || {};
+          next[x] = { removed: true, at: Date.now(),
+                      title: had.title || "", author: had.author || "" };
+        });
+        setJustRead(function(cur){ return allKeys.indexOf(cur) >= 0 ? "" : cur; });
       } else {
-        next[k] = { at: Date.now(), title: meta.title || "", author: meta.author || "" };
+        allKeys.forEach(function(x) {
+          next[x] = { at: Date.now(), title: meta.title || "", author: meta.author || "" };
+        });
         nowFinished = true;
         setJustRead(k);
         // There is no page turn after the last chapter, so finishing the book
@@ -6480,6 +6531,16 @@ export default function App() {
   // long scroll: without this the place only ever moved a whole chapter at a
   // time, which for Обломов is twenty minutes of reading lost.
   var lastSeen = useRef(0);
+  // Which chapter that offset belongs to. It is measured in characters from
+  // the start of the CHAPTER, and it was never reset when the chapter
+  // changed — so after act 1 it sat high, and act 2 onwards credited nothing
+  // until the reader passed the previous act's depth. By act 4 of a four-act
+  // play almost nothing counted. (The mark itself is what prevents double
+  // credit, so resetting this costs nothing: advanceReadMark will not pay
+  // twice for ground already behind the mark.)
+  var lastSeenCh = useRef(-1);
+  // Books whose end has already been noticed, so it is noticed once.
+  var endDone = useRef({});
   useEffect(function() {
     if (!(started && isLit) || lview !== "read" || !chapters.length) return;
     var box = document.querySelector(".lit-left");
@@ -6502,6 +6563,32 @@ export default function App() {
         }
       }
       if (deepest < 0) return;
+
+      // Reaching the end is finishing. There is no page turn after the last
+      // paragraph of the last chapter, so nothing credited a book's tail and
+      // nothing marked it read — act 4 could be read to its final line and
+      // count for nothing. Marking a book read is what pays the tail out
+      // (toggleFinished does that already), so this does by itself what the
+      // reader would otherwise have had to do by hand.
+      //
+      // Ahead of the guard below on purpose: a reader who is already at the
+      // bottom scrolls without `deepest` moving, and this would never run.
+      var bk = bookKey(bookMeta);
+      var lastNode = nodes[nodes.length - 1];
+      var lastStart = lastNode ? parseInt(lastNode.dataset.rwStart, 10) : NaN;
+      var docEl = document.documentElement || document.body;
+      var nearBottom =
+        (box && (box.scrollHeight - box.scrollTop - box.clientHeight < 120)) ||
+        (((window.innerHeight || 0) + (window.pageYOffset || 0)) >=
+         ((docEl && docEl.scrollHeight ? docEl.scrollHeight : 0) - 120));
+      if (bk && nearBottom && !endDone.current[bk] &&
+          cidx >= chapters.length - 1 && pidx >= pages.length - 1 &&
+          !isNaN(lastStart) && deepest >= lastStart && !isFinished(bookMeta)) {
+        endDone.current[bk] = 1;
+        toggleFinished(bookMeta);
+      }
+
+      if (lastSeenCh.current !== cidx) { lastSeen.current = 0; lastSeenCh.current = cidx; }
       if (deepest <= lastSeen.current) return;      // scrolling back changes nothing
       lastSeen.current = deepest;
       advanceReadMark(cidx, deepest, true);
@@ -6520,7 +6607,10 @@ export default function App() {
       if (timer) clearTimeout(timer);
       clearTimeout(first);
     };
-  }, [started, isLit, lview, cidx, chapters.length, bookMeta.title]);
+    // pidx and the page count are in here because the closure reads them:
+    // without them the listener kept the page it was created on and could
+    // not tell the last page of the book from the first.
+  }, [started, isLit, lview, cidx, pidx, pages.length, chapters.length, bookMeta.title]);
   // The word at the end of a book is worth seeing: when the reader marks one
   // read from the middle of the page, the card is brought to them.
   useEffect(function() {
@@ -6745,9 +6835,22 @@ export default function App() {
       readMarkLoaded.current = true;
     }).catch(function(){ readMarkLoaded.current = true; });
   }, []);
+  // How many of a WORK's words have been counted, keyed by its work key
+  // rather than by the entry read. `paid` used to live on the mark itself,
+  // one per catalogue entry, which is why «Вишнёвый сад» could pay out its
+  // 13,021 words once as a play and again as a спектакль. A work can still
+  // only ever give up the words it holds, but now it is the work that is
+  // asked, not the file.
+  var readPaid = useRef({});
+  useEffect(function() {
+    storage.get("gv_readpaid_v1").then(function(r){
+      if (r && r.value) { try { readPaid.current = JSON.parse(r.value) || {}; } catch (e) {} }
+    }).catch(function(){});
+  }, []);
   var saveReadMark = function() {
     if (!readMarkLoaded.current) return;
     try { storage.set("gv_readmark_v1", JSON.stringify(readMark.current)).catch(function(){}); } catch (e) {}
+    try { storage.set("gv_readpaid_v1", JSON.stringify(readPaid.current)).catch(function(){}); } catch (e) {}
   };
   // Russian words in a chapter, and up to a character offset within it.
   var ruCount = function(t) { return (String(t || "").match(/[А-Яа-яЁё][А-Яа-яЁё-]*/g) || []).length; };
@@ -6782,21 +6885,37 @@ export default function App() {
     if (!key || !chapters.length || ci < 0 || ci >= chapters.length) return;
     var mark = readMark.current[key];
     var to = wordsBefore(ci, off || 0);
-    // Marks written before this existed carry no `paid`: what they had
-    // reached is what they had been credited with.
-    var paid = mark ? ((mark.paid != null) ? mark.paid : wordsBefore(mark.cidx, mark.off || 0)) : 0;
+    // The ledger is seeded the first time a work is asked about, from the
+    // most any of its entries had already been credited. Marks written
+    // before `paid` existed carry none: what they had reached is what they
+    // had been credited with.
+    var wk = workKey(bookMeta);
+    if (readPaid.current[wk] == null) {
+      var seed = 0;
+      var ks = workKeys(bookMeta);
+      for (var q = 0; q < ks.length; q++) {
+        var m0 = readMark.current[ks[q]];
+        if (!m0) continue;
+        var p0 = (m0.paid != null) ? m0.paid : wordsBefore(m0.cidx, m0.off || 0);
+        if (p0 > seed) seed = p0;
+      }
+      readPaid.current[wk] = seed;
+    }
+    var paid = readPaid.current[wk] || 0;
     var total = bookWords.total || 0;
     if (mark && credit) {
       var from = wordsBefore(mark.cidx, mark.off || 0);
       var gain = to - from;
       if (total) gain = Math.min(gain, Math.max(0, total - paid));
-      if (gain > 0) { bumpToday("read", gain); paid += gain; }
+      if (gain > 0) { bumpToday("read", gain); paid += gain; readPaid.current[wk] = paid; }
     }
     if (!mark || to >= wordsBefore(mark.cidx, mark.off || 0)) {
       readMark.current[key] = { cidx: ci, off: off || 0, paid: paid };
       saveReadMark();
-    } else if (mark && paid !== mark.paid) {
+    } else if (mark && paid !== (mark.paid != null ? mark.paid : paid)) {
       readMark.current[key] = Object.assign({}, mark, { paid: paid });
+      saveReadMark();
+    } else if (credit) {
       saveReadMark();
     }
   };
@@ -10308,6 +10427,12 @@ export default function App() {
         title: title,
         author: author,
         filename: fname || "",   // needed for vocab source backlinks (goToSource matches on this)
+        slug: opts.slug || "",
+        // Another entry that is the SAME WORK. «Вишнёвый сад» and «Вишнёвый
+        // сад (спектакль)» are one play held twice, once with the film's act
+        // timings: identical text, 13,021 words each. Read both and the words
+        // were counted twice; finish one and the other stayed unread.
+        sameWorkAs: opts.sameWorkAs || "",
         category: opts.category || "",
         splitByNumberedSections: !!opts.splitByNumberedSections,
         audiobook: opts.audiobook || null,
