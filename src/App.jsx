@@ -5143,9 +5143,13 @@ export default function App() {
   // reader saw a book start partway down. So the request is stamped with the
   // book it belongs to and ignored anywhere else.
   var srcJumpForRef = useRef("");
-  var requestSrcJump = function(off, forMeta) {
+  // Whether the pending jump is the reader's own saved place coming back, as
+  // opposed to somewhere they asked to be taken. The two land differently.
+  var srcJumpResumeRef = useRef(false);
+  var requestSrcJump = function(off, forMeta, resume) {
     srcJumpOffsetRef.current = (typeof off === "number") ? off : null;
     srcJumpForRef.current = (off == null) ? "" : (bookKey(forMeta) || "");
+    srcJumpResumeRef.current = !!resume && off != null;
   };
   var srcJumpPending = function(meta) {
     return srcJumpOffsetRef.current != null &&
@@ -7083,6 +7087,8 @@ export default function App() {
         if (pageRel >= 0 && pageRel <= pageText.length) {
           srcJumpOffsetRef.current = null;
           srcJumpForRef.current = "";
+          var resuming = srcJumpResumeRef.current;
+          srcJumpResumeRef.current = false;
           audioSentencesRef.current = parsed;
           // Retry a few times: other effects (audiobook loader, page-change
           // handlers) call clearSentenceHighlight() right after a jump, so a
@@ -7110,7 +7116,25 @@ export default function App() {
                     if (!isNaN(pp) && pp >= lo && pp < hi) { nodes[ni].classList.add("rw-reading"); hits.push(nodes[ni]); }
                   }
                   highlightedElementsRef.current = hits;
-                  if (hits.length && hits[0].scrollIntoView) hits[0].scrollIntoView({ behavior: "smooth", block: "center" });
+                  if (hits.length && hits[0].scrollIntoView) {
+                    if (!resuming) {
+                      hits[0].scrollIntoView({ behavior: "smooth", block: "center" });
+                    } else {
+                      // The saved place is the last line that was on screen —
+                      // the bottom of the screen the reader left. Centring it
+                      // showed half a screen of new text, the mark moved to
+                      // the new bottom, and the next visit centred THAT: a
+                      // book opened and never scrolled crept down the page a
+                      // little further every time. Мёртвые души was opening
+                      // halfway down its first chapter unread. So the line
+                      // goes back where it was, at the foot of the screen —
+                      // and if it is already in view nothing moves at all.
+                      var rr = hits[0].getBoundingClientRect();
+                      var inView = rr.top >= 0 && rr.bottom <= (window.innerHeight || 0);
+                      if (inView) clearSentenceHighlight();
+                      else hits[0].scrollIntoView({ behavior: "smooth", block: "end" });
+                    }
+                  }
                 }
               }
             } catch(e) {}
@@ -10556,7 +10580,7 @@ export default function App() {
       var startCi = savedProg ? savedProg.cidx : 0;
       var startPi = savedProg ? savedProg.pidx : 0;
       // Land on the paragraph, not merely in the chapter.
-      if (savedProg && savedProg.off > 0) requestSrcJump(savedProg.off, meta);
+      if (savedProg && savedProg.off > 0) requestSrcJump(savedProg.off, meta, true);
       if (srcJumpChapterRef.current !== null && srcJumpChapterRef.current !== undefined) {
         startCi = srcJumpChapterRef.current; startPi = 0;
         srcJumpChapterRef.current = null;
@@ -10712,7 +10736,7 @@ export default function App() {
       var startCi2 = savedProg2 ? savedProg2.cidx : 0;
       var startPi2 = savedProg2 ? savedProg2.pidx : 0;
       // Land on the paragraph, not merely in the chapter.
-      if (savedProg2 && savedProg2.off > 0) requestSrcJump(savedProg2.off, meta);
+      if (savedProg2 && savedProg2.off > 0) requestSrcJump(savedProg2.off, meta, true);
       startLit(startCi2, d.chapters, meta, startPi2);
     } catch(err) {
       setFErr("Failed to open uploaded book: " + (err.message || err));
