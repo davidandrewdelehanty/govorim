@@ -80,7 +80,9 @@ for s in entry['songs']:
         sys.exit("ERROR: «%s» already exists for %s — not overwriting." % (title, entry['artist']))
 
 entry['songs'].append({'title': title.strip(), 'youtube': vid, 'lyrics': lyrics})
-json.dump(data, open(p, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+# One list for both sites: the two files are always written identically.
+for out in (p, 'public/music/music.public.json'):
+    json.dump(data, open(out, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 print("Added «%s — %s» (video %s). %d artist(s) in music.json." %
       (entry['artist'], title.strip(), vid, len(data)))
 PYEOF
@@ -88,10 +90,10 @@ PYEOF
 echo
 read -rp "Commit and push now? [y/N] " OK
 if [[ "$OK" =~ ^[Yy] ]]; then
-  git add public/music/music.json
+  git add public/music/music.json public/music/music.public.json
   git commit -m "Music: add ${ARTIST} — ${TITLE}"
   git push
   echo "Pushed — the song will be live after Vercel redeploys."
 else
-  echo "Saved to $MUSIC_REL (not committed yet)."
+  echo "Saved to music.json and music.public.json (not committed yet)."
 fi

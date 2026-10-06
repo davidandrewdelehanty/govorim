@@ -2,8 +2,8 @@
 """Govorim — song upload GUI.
 
 Run from WSL:  python3 tools/add_song_gui.py
-Opens a form in your browser; each submit adds a song to public/music/music.json,
-with an optional commit + push. Ctrl+C in the terminal (or the Quit link) stops it.
+Opens a form in your browser; each submit adds a song to BOTH sites' lists
+(public/music/music.json and music.public.json, kept identical) and commits. Ctrl+C in the terminal (or the Quit link) stops it.
 """
 import io, json, re, os, sys, html, subprocess, threading, urllib.parse
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
@@ -21,7 +21,7 @@ MUSIC_FILES = {
     "public":  os.path.join(REPO, "public", "music", "music.public.json"),
 }
 MUSIC_LABELS = {
-    "private": "govorim (private)",
+    "private": "Govorim + Samovar",
     "public":  "Samovar (public \u2014 public-domain songs only)",
     "both":    "both \u2014 govorim and Samovar",
 }
@@ -29,8 +29,15 @@ MUSIC_LABELS = {
 # "both" is an ADD-time choice only: it writes the same song into each
 # catalogue and commits both files together. Editing and deleting always name
 # one real catalogue, because the listing rows carry the file they came from.
+# ONE LIST (Oct 2026): govorim and Samovar carry the same songs. The two files
+# stay on disk because each site reads its own (and the public build deletes
+# music.json), but they are always written together with identical contents.
+# music.json is the copy that is read; `which` survives in the code below only
+# as a leftover argument and no longer selects anything.
+BOTH_FILES = "music.json and music.public.json"
+
 def targets(which):
-    return ["private", "public"] if which == "both" else [which]
+    return ["private"]
 
 def other(which):
     """The catalogue a song can be copied ACROSS to."""
@@ -53,10 +60,10 @@ MUSIC_REL = {
 # Launch with --public to open straight on the Samovar catalogue. The dropdown
 # still switches either way; this only sets what the form opens on, so the
 # common case doesn't depend on remembering to change it.
-DEFAULT_CATALOGUE = "public" if "--public" in sys.argv else "private"
+DEFAULT_CATALOGUE = "private"
 
-def music_path(which):
-    return MUSIC_FILES.get(which, MUSIC_FILES["private"])
+def music_path(which=None):
+    return MUSIC_FILES["private"]
 PORT = 8765
 
 def load_music(which="private"):
@@ -66,8 +73,9 @@ def load_music(which="private"):
     return json.load(open(path, encoding="utf-8"))
 
 def save_music(which, data):
-    json.dump(data, open(music_path(which), "w", encoding="utf-8"),
-              ensure_ascii=False, indent=1)
+    for path in (MUSIC_FILES["private"], MUSIC_FILES["public"]):
+        json.dump(data, open(path, "w", encoding="utf-8"),
+                  ensure_ascii=False, indent=1)
 
 def counts(data):
     """(artists, songs) for the catalogue header."""
@@ -130,7 +138,7 @@ def git_push_only():
     return _git([["git", "push"]])
 
 def git_publish(which, message, push=True):
-    ok, out = git_commit_paths([MUSIC_REL[w] for w in targets(which)], message)
+    ok, out = git_commit_paths([MUSIC_REL["private"], MUSIC_REL["public"]], message)
     if not ok or not push:
         return ok, out
     ok2, out2 = git_push_only()
@@ -356,27 +364,20 @@ STYLE = """
 def catalogue_html(which):
     """The catalogue(s) as they stand. With "both" selected each file is listed
     separately, so every edit/delete button still names one real catalogue."""
-    if which == "both":
-        return "".join(catalogue_html(w) for w in targets(which))
     try:
         data = load_music(which)
     except Exception as e:
         return '<h2>Current catalogue</h2><div class="err">Couldn\'t read %s: %s</div>' % (
-            html.escape(os.path.basename(music_path(which))), html.escape(str(e)))
+            html.escape(BOTH_FILES), html.escape(str(e)))
 
     n_art, n_song = counts(data)
     head = '<h2>Current catalogue <span class="count">%s &middot; %d artist%s &middot; %d song%s</span></h2>' % (
-        html.escape(os.path.basename(music_path(which))),
+        "Govorim + Samovar",
         n_art, "" if n_art == 1 else "s",
         n_song, "" if n_song == 1 else "s")
 
     if not data:
         return head + '<div class="empty">Nothing in this catalogue yet.</div>'
-
-    dest = other(which)
-    have_there = song_keys(dest)
-    formid = "copy-" + which
-    missing = 0
 
     out = [head]
     for a in sorted(data, key=lambda x: (x.get("artist") or "").lower()):
@@ -385,16 +386,7 @@ def catalogue_html(which):
                    % (html.escape(a.get("artist") or "—"), len(songs)))
         for sg in songs:
             lines = len((sg.get("lyrics") or "").strip().splitlines())
-            key = (artist_key(a.get("artist") or ""), (sg.get("title") or "").strip().lower())
-            if key in have_there:
-                box = '<span class="copybox copyspacer"></span>'
-            else:
-                missing += 1
-                box = ('<input class="copybox cb-%s" type="checkbox" form="%s" name="copy" '
-                       'value="%s" title="copy to %s">'
-                       % (which, formid,
-                          html.escape((a.get("artist") or "") + "|||" + (sg.get("title") or "")),
-                          html.escape(MUSIC_LABELS[dest])))
+            box = ''
             out.append(
                 '<div class="song">'
                 + box +
@@ -423,26 +415,6 @@ def catalogue_html(which):
                    html.escape(sg.get("title") or "")))
         out.append('</div>')
 
-    # Copying across catalogues. The form sits OUTSIDE the song rows and the
-    # checkboxes point at it by id — the rows already carry their own
-    # edit/delete forms, and HTML forms cannot nest.
-    out.append('<form class="copybar" id="%s" method="post" action="/copy" '
-               'enctype="multipart/form-data">' % formid)
-    out.append('<input type="hidden" name="catalogue" value="%s">' % html.escape(which))
-    if missing:
-        # No "<" in the handler: it sits in an HTML attribute.
-        out.append('<button type="button" class="selall" onclick="'
-                   "var b=document.getElementsByClassName('cb-%s');"
-                   "for(var i=b.length;i--;)b[i].checked=!b[i].checked;"
-                   '">select all</button>' % which)
-        out.append('<span class="lbl">%d song%s not in %s</span>'
-                   % (missing, "" if missing == 1 else "s", html.escape(MUSIC_LABELS[dest])))
-        out.append('<button type="submit">Copy checked \u2192 %s</button>'
-                   % html.escape("govorim" if dest == "private" else "Samovar"))
-    else:
-        out.append('<span class="none">Every song here is already in %s.</span>'
-                   % html.escape(MUSIC_LABELS[dest]))
-    out.append('</form>')
     return "".join(out)
 
 def edit_page(which, orig_artist, orig_title, song, msg=""):
@@ -534,9 +506,7 @@ def form_page(msg="", which="private"):
 <h1>Add a song</h1>
 <p class="hint"><a href="/videos" style="color:#c4955a">Chapter videos →</a> — attach a YouTube reading to a chapter of any book</p>%s
 <form method="post" action="/add" enctype="multipart/form-data">
- <label>Catalogue</label>
- <select name="catalogue" onchange="location.search='?catalogue='+this.value">%s</select>
- <div class="hint">Samovar is public \u2014 only songs whose lyrics are public domain</div>
+ <div class="hint">Every song goes to both Govorim and Samovar — one list.</div>
  <label>Artist</label>
  <input type="text" name="artist" list="artists" required>
  <datalist id="artists">%s</datalist>
@@ -553,7 +523,7 @@ def form_page(msg="", which="private"):
   <button type="submit">Add song</button>
  </div>
 </form>
-%s""" % (STYLE, msg, options, artists, catalogue_html(which))
+%s""" % (STYLE, msg, artists, catalogue_html(which))
 
 
 def videos_index_page(msg=""):
@@ -695,12 +665,7 @@ class H(BaseHTTPRequestHandler):
             return
         if (self.path or "").startswith("/videos"):
             return self._send(videos_index_page())
-        which = DEFAULT_CATALOGUE
-        if "catalogue=public" in (self.path or ""):
-            which = "public"
-        elif "catalogue=private" in (self.path or ""):
-            which = "private"
-        self._send(form_page("", which))
+        self._send(form_page("", "private"))
 
     def _parse(self):
         """Fields from either a multipart form (the add form, which carries a
@@ -734,8 +699,7 @@ class H(BaseHTTPRequestHandler):
         return fields, multi, filebytes
 
     def _which(self, fields):
-        w = (fields.get("catalogue") or DEFAULT_CATALOGUE).strip()
-        return w if (w in MUSIC_FILES or w == "both") else "private"
+        return "private"
 
     def _find(self, data, artist, title):
         """Locate an (artist entry, song) pair by exact stored spelling."""
@@ -937,7 +901,7 @@ class H(BaseHTTPRequestHandler):
             (" (" + ", ".join(changes) + ")") if changes else "",
             (" %s had no songs left, so the artist was removed." % html.escape(orig_artist)) if dropped else "")
 
-        site = "Samovar" if which == "public" else "Govorim"
+        site = "Govorim + Samovar"
         ok, out = git_publish(which, "%s music: edit %s \u2014 %s" % (site, artist, title), push=push)
         if ok:
             msg += ('<div class="ok">Committed and pushed \u2014 live after Vercel redeploys.</div>'
@@ -945,16 +909,15 @@ class H(BaseHTTPRequestHandler):
         else:
             msg += ('<div class="err">git step failed \u2014 the change IS saved in %s, '
                     'but it is not published yet.</div>'
-                    % html.escape(os.path.basename(music_path(which))))
+                    % html.escape(BOTH_FILES))
         msg += "<pre>%s</pre>" % html.escape(out)
         self._send(form_page(msg, which))
 
     def act_copy(self, fields, multi):
         """Copy ticked songs into the other catalogue, leaving the source alone."""
         which = self._which(fields)
-        if which == "both":
-            return self._send(form_page(
-                '<div class="err">Pick one catalogue to copy FROM.</div>', which))
+        return self._send(form_page(
+            '<div class="err">Nothing to copy — both sites share one list now.</div>', which))
         dest = other(which)
         picks = multi.get("copy") or []
         push = False
@@ -1074,7 +1037,7 @@ class H(BaseHTTPRequestHandler):
             (" That was the last song by %s, so the artist was removed too."
              % html.escape(artist)) if dropped else "")
 
-        site = "Samovar" if which == "public" else "Govorim"
+        site = "Govorim + Samovar"
         ok, out = git_publish(which, "%s music: remove %s \u2014 %s" % (site, artist, title), push=push)
         if ok:
             msg += ('<div class="ok">Committed and pushed \u2014 gone after Vercel redeploys.</div>'
@@ -1082,7 +1045,7 @@ class H(BaseHTTPRequestHandler):
         else:
             msg += ('<div class="err">git step failed \u2014 the song IS removed from %s, '
                     'but it is not published yet.</div>'
-                    % html.escape(os.path.basename(music_path(which))))
+                    % html.escape(BOTH_FILES))
         msg += "<pre>%s</pre>" % html.escape(out)
         self._send(form_page(msg, which))
 
@@ -1138,12 +1101,11 @@ class H(BaseHTTPRequestHandler):
             save_music(w, data)
             shown = entry["artist"]
 
-        where = " and ".join(os.path.basename(music_path(w)) for w in targets(which))
+        where = BOTH_FILES
         msg = '<div class="ok">Added <b>%s — %s</b> (video %s) to %s.</div>' % (
             html.escape(shown), html.escape(title), vid, html.escape(where))
 
-        site = ("Govorim + Samovar" if which == "both"
-                else "Samovar" if which == "public" else "Govorim")
+        site = "Govorim + Samovar"
         ok, out = git_publish(which, "%s music: add %s \u2014 %s" % (site, artist, title), push=push)
         if ok:
             msg += ('<div class="ok">Committed and pushed \u2014 live after Vercel redeploys.</div>'
@@ -1176,11 +1138,10 @@ if __name__ == "__main__":
             print("Created %s" % target)
         else:
             sys.exit("music.json not found at %s" % target)
-    url = "http://127.0.0.1:%d/?catalogue=%s" % (PORT, DEFAULT_CATALOGUE)
+    url = "http://127.0.0.1:%d/" % PORT
     srv = ThreadingHTTPServer(("127.0.0.1", PORT), H)
     srv.daemon_threads = True
-    print("%s song uploader — %s  (Ctrl+C to stop)"
-          % (MUSIC_LABELS[DEFAULT_CATALOGUE], url))
+    print("Govorim + Samovar song uploader — %s  (Ctrl+C to stop)" % url)
     print("git: %s" % GIT)
     open_browser(url)
     try:
