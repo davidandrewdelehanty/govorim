@@ -76,12 +76,40 @@ def counts(data):
 COMMITTED_ONLY = ('<div class="ok">Committed. Run '
                   '<code>git push origin main</code> to publish.</div>')
 
+# Which git to run. From WSL the repo sits on the Windows drive, and Linux git
+# there is slow twice over: every commit stats all ~18,500 tracked files across
+# the /mnt/c bridge, and because Git Bash last wrote the index with Windows
+# file stamps, Linux git trusts none of them and re-reads the files to compare.
+# Windows git.exe works on the drive natively and shares Git Bash's index, so
+# the same commit takes about a second. Set GOVORIM_GIT to force a choice.
+def _find_git():
+    forced = os.environ.get("GOVORIM_GIT")
+    if forced:
+        return forced
+    if REPO.startswith("/mnt/"):
+        import shutil
+        onpath = shutil.which("git.exe")
+        if onpath:
+            return onpath
+        for c in ("/mnt/c/Program Files/Git/cmd/git.exe",
+                  "/mnt/c/Program Files/Git/bin/git.exe",
+                  "/mnt/c/Program Files (x86)/Git/cmd/git.exe"):
+            if os.path.isfile(c):
+                return c
+    return "git"
+
+GIT = _find_git()
+
 def _git(cmds):
     """Run each command in turn, stopping at the first failure."""
+    import time
     out = []
     for c in cmds:
-        r = subprocess.run(c, cwd=REPO, capture_output=True, text=True)
-        out.append("$ " + " ".join(c) + "\n" + r.stdout + r.stderr)
+        t0 = time.time()
+        r = subprocess.run([GIT] + c[1:], cwd=REPO, capture_output=True,
+                           text=True, encoding="utf-8", errors="replace")
+        out.append("$ %s %s   (%.1fs)\n" % (os.path.basename(GIT), " ".join(c[1:]),
+                                           time.time() - t0) + r.stdout + r.stderr)
         if r.returncode != 0:
             # An empty commit is not a failure: it means the save changed
             # nothing, which is worth saying but not worth shouting about.
@@ -1153,6 +1181,7 @@ if __name__ == "__main__":
     srv.daemon_threads = True
     print("%s song uploader — %s  (Ctrl+C to stop)"
           % (MUSIC_LABELS[DEFAULT_CATALOGUE], url))
+    print("git: %s" % GIT)
     open_browser(url)
     try:
         srv.serve_forever()
