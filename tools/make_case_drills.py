@@ -60,6 +60,10 @@ def bible_chapters(path):
     raw=read_fb2(path)
     raw=re.sub(r'\sxmlns(:\w+)?="[^"]*"','',raw)
     raw=re.sub(r'\s\w+:(\w+)="[^"]*"',r' \1="x"',raw)
+    # Element prefixes too: a book written back out by Python's ElementTree
+    # carries <ns0:section> tags, and with the xmlns declarations stripped
+    # above, ns0 is an unbound prefix and the parse fails outright.
+    raw=re.sub(r'<(/?)[A-Za-z_][\w.-]*:',r'<\1',raw)
     root=ET.fromstring(raw)
     bodies=[b for b in root if b.tag=='body']
     main=next((b for b in bodies if not b.get('name')), bodies[0])
@@ -116,6 +120,10 @@ def fb2_chapters(path):
     raw=read_fb2(path)
     raw=re.sub(r'\sxmlns(:\w+)?="[^"]*"','',raw)
     raw=re.sub(r'\s\w+:(\w+)="[^"]*"',r' \1="x"',raw)
+    # Element prefixes too: a book written back out by Python's ElementTree
+    # carries <ns0:section> tags, and with the xmlns declarations stripped
+    # above, ns0 is an unbound prefix and the parse fails outright.
+    raw=re.sub(r'<(/?)[A-Za-z_][\w.-]*:',r'<\1',raw)
     root=ET.fromstring(raw)
     bodies=[b for b in root if b.tag=='body']
     main=next((b for b in bodies if not b.get('name')), bodies[0])
