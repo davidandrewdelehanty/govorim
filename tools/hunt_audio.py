@@ -88,6 +88,15 @@ TITLE_FLOOR = 0.8
 # is why an uncaptioned candidate never beats a captioned one, and why what it
 # places is marked as never having been checked against the text.
 ALLOW_UNCAPTIONED = False
+# Videos known not to work on the site (embedding off, private, blocked when
+# embedded) — one id per line, '#' comments allowed. Never picked again.
+BLOCKED_FILE = 'tools/hunt-blocked.txt'
+def load_blocked():
+    try:
+        return {l.split('#')[0].strip() for l in open(BLOCKED_FILE, encoding='utf-8')} - {''}
+    except OSError:
+        return set()
+BLOCKED = load_blocked()
 UNCAPTIONED_PENALTY = 10.0
 
 def score(c, words, book_title, author):
@@ -106,7 +115,7 @@ def hunt(title, author, words, queries):
     seen, cands = set(), []
     for q in queries:
         for e in search(q):
-            if e['id'] in seen:
+            if e['id'] in seen or e['id'] in BLOCKED:
                 continue
             seen.add(e['id'])
             d = e.get('duration') or 0

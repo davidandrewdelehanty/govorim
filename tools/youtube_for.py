@@ -114,6 +114,18 @@ def main():
     # answered there, so this is resumable and re-running costs nothing. That
     # also means a book it once found nothing for is never asked about again —
     # so when the rules change, the old "nothing" has to be cleared out first.
+    # --force means "find this book a recording again", so the answer the hunt
+    # cached last time — usually the very video being replaced — has to go,
+    # or the hunt skips the book and hands the old pick straight back.
+    if a.force and os.path.exists(HUNT_OUT):
+        done = json.load(io.open(HUNT_OUT, encoding="utf-8"))
+        ours = {w["file"] for w in wanted}
+        keep = [r for r in done if r.get("file") not in ours]
+        if len(keep) != len(done):
+            io.open(HUNT_OUT, "w", encoding="utf-8", newline="\n").write(
+                json.dumps(keep, ensure_ascii=False, indent=1) + "\n")
+            print("forgetting the last pick for %d book(s)\n" % (len(done) - len(keep)))
+
     if a.retry_misses and os.path.exists(HUNT_OUT):
         done = json.load(io.open(HUNT_OUT, encoding="utf-8"))
         ours = {w["file"] for w in wanted}
