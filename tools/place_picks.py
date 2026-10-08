@@ -150,10 +150,14 @@ def main():
             print('[%2d/%d] %-32s REFUSED — %s' % (i+1, len(picks), name, res['why']), flush=True)
             continue
         v = {}
+        # A book that is being RE-placed (its old video went unplayable) keeps
+        # the chapter headings it already had — «I», «II»… — not «Глава N».
+        old = e.get('videos') or {}
         for ci in range(res['chapters']):
             s0 = res['starts'][ci]
             s1 = res['starts'][ci+1] if ci+1 < res['chapters'] else res['end']
-            x = {'youtube': vid, 'heading': 'Глава %d' % (ci+1), 'start': s0, 'end': s1}
+            head = (old.get(str(ci)) or {}).get('heading') or 'Глава %d' % (ci+1)
+            x = {'youtube': vid, 'heading': head, 'start': s0, 'end': s1}
             if s0 == 0: del x['start']
             v[str(ci)] = x
         e['videos'] = v
