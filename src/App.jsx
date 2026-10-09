@@ -3,7 +3,8 @@ import { useState, useRef, useEffect, useCallback, useMemo, Fragment } from "rea
 import { createPortal } from "react-dom";
 import { isCommonWord, dropCommonWords } from "./commonWords.js";
 import { review as srsReview, isLearned, dueWords, weakestWords, recallNow,
-  LEARN_STEPS_MIN, RELEARN_STEPS_MIN, NEW_PER_DAY, REVIEWS_PER_DAY, LEARN_AHEAD_MIN, studyDay } from "./srs.js";
+  LEARN_STEPS_MIN, RELEARN_STEPS_MIN, NEW_PER_DAY, REVIEWS_PER_DAY, LEARN_AHEAD_MIN, studyDay,
+  LEARNED_STABILITY_DAYS } from "./srs.js";
 import { dayKey, dayMet, bump as bumpStats, streaks, mergeStats,
          totals as statsTotals, GOAL_WORDS, GOAL_CARDS } from "./stats.js";
 import { AnnotLayer, HL_COLORS, INK_COLORS, annotId } from "./annotations.jsx";
@@ -11413,6 +11414,33 @@ export default function App() {
   //   - nouns/adj/etc → lemma in nominative
   //   - verb without clear pair → infinitive
   //   - verb with pair → "imperfective / perfective" (or just "lemma / pair" if aspect unknown)
+  // How far a word is from retiring, in the three numbers that decide it
+  // (srs.js isLearned): memory strength of 90 days, four reviews, and the last
+  // three answers right. Strength is the one that takes time — it grows only
+  // when a review comes after a real gap, so answering a word right ten times
+  // in one sitting moves it hardly at all; that is the spacing working.
+  var srsProgress = function(v, compact) {
+    var srs = v && v.srs;
+    if (v && v.learnedAt) return <div className="srsp srsp-done">Learned · retired from your deck</div>;
+    if (!srs || !srs.S) return <div className="srsp srsp-new">Not reviewed yet · retires after 4 reviews, 3 right in a row, and a memory strength of {LEARNED_STABILITY_DAYS} days</div>;
+    var S = srs.S;
+    var pct = Math.max(2, Math.min(100, S / LEARNED_STABILITY_DAYS * 100));
+    var run = Math.min(srs.run || 0, 3), reps = srs.reps || 0;
+    var dueIn = srs.due ? Math.round((srs.due - Date.now()) / 86400000) : null;
+    var next = dueIn === null ? "" : dueIn <= 0 ? "due now" : dueIn === 1 ? "next review tomorrow" : "next review in " + dueIn + " days";
+    return (
+      <div className={"srsp" + (compact ? " srsp-c" : "")} title="A word retires once all three are met">
+        <span className="srsp-item">
+          <span className="srsp-k">Memory</span> <b>{S < 1 ? Math.round(S * 10) / 10 : Math.round(S)}</b> of {LEARNED_STABILITY_DAYS} days
+          <span className="srsp-bar"><span style={{width: pct + "%"}}></span></span>
+        </span>
+        <span className="srsp-item"><span className="srsp-k">Right in a row</span> <b>{run}</b> of 3</span>
+        {reps < 4 && <span className="srsp-item"><span className="srsp-k">Reviews</span> <b>{reps}</b> of 4</span>}
+        {next && !compact && <span className="srsp-item srsp-next">{next}</span>}
+      </div>
+    );
+  };
+
   var formatVocabEntry = function(data, fallback) {
     var fallbackRu = (fallback || "").trim();
     if (!data) return { ru: fallbackRu, en: "" };
@@ -13376,6 +13404,17 @@ export default function App() {
               color:rgba(42,31,20,.6);white-space:nowrap;transition:color .15s,background .15s,border-color .15s}
         .psay:hover{color:rgba(42,31,20,.85);background:rgba(42,31,20,.08);border-color:rgba(42,31,20,.28)}
         .psay.on{color:#2a1f14;border-color:rgba(160,110,20,.4);background:rgba(160,110,20,.08)}
+        .srsp{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;margin-top:8px;font-size:11.5px;color:rgba(0,0,0,.55);font-family:'IBM Plex Sans',sans-serif}
+        .srsp b{color:#000;font-weight:600;font-variant-numeric:tabular-nums}
+        .srsp-k{color:rgba(0,0,0,.42)}
+        .srsp-item{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+        .srsp-bar{display:inline-block;width:54px;height:4px;border-radius:2px;background:rgba(42,31,20,.12);margin-left:4px;overflow:hidden}
+        .srsp-bar span{display:block;height:100%;background:#2f6a3a;border-radius:2px}
+        .srsp-next{color:rgba(0,0,0,.4);font-style:italic}
+        .srsp-new,.srsp-done{font-style:italic;color:rgba(0,0,0,.42)}
+        .srsp-done{color:#1e7a3c}
+        .rv-prog{display:flex;justify-content:center;margin:-2px 0 18px}
+        .rv-prog .srsp{justify-content:center;margin-top:0}
         .rv-card{padding:16px 4px 8px}
         .rv-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}
         .rv-counts{display:flex;gap:14px;align-items:baseline;font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-variant-numeric:tabular-nums}
@@ -19963,6 +20002,12 @@ export default function App() {
                                 onClick={function(){ setRvConfirm({ key: c.key, word: q.word }); }}>Remove card</button>
                       </div>
                       <div className="rv-pos">{q.pos}{c.from === "learn" ? " · learning" : (q.isNew ? " · new" : "")}</div>
+                      {/* Where this word stands, live: it moves the moment an answer is in. */}
+                      {(function(){
+                        var live = vocab.find(function(v){ return (v._key || v.id || v.ru) === c.key; }) ||
+                                   learned.find(function(v){ return (v._key || v.id || v.ru) === c.key; });
+                        return live ? <div className="rv-prog">{srsProgress(live, true)}</div> : null;
+                      })()}
                       <div className="rv-word-row">
                         <div className="rv-word" lang="ru">{q.word}</div>
                         {rvAudio && rvAudio.key === c.key && rvAudio.url && (
@@ -20253,6 +20298,7 @@ export default function App() {
                                   {v.exBankEn && <div className="iext">{v.exBankEn}</div>}
                                 </div>
                               )}
+                              {srsProgress(v, false)}
                               <div style={{display:"flex",alignItems:"center",gap:10,marginTop:6,flexWrap:"wrap"}}>
                                 {stamp && <span style={{fontSize:11,color:"rgba(0,0,0,.35)",fontStyle:"italic",fontFamily:"'Literata',serif"}}>Added {stamp}</span>}
                                 {v.srcBook && (
