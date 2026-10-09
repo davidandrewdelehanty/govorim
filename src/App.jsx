@@ -2111,6 +2111,42 @@ function sentenceAround(text, pos, maxLen) {
 }
 
 // The clicked word, marked inside its sentence, so the eye lands on it.
+// Lingua Libre: volunteer recordings of single words, kept on Wikimedia
+// Commons beside Wiktionary's — but named "LL-Q7737 (rus)-<speaker>-<word>.wav",
+// so the free Ru-<word>.ogg guess can never find them. One Commons search
+// does: titles carrying both "LL-Q7737" and the word, kept only when the word
+// is the WHOLE recording (Commons also has «Сиамская кошка» for кошка). The
+// backup to Wiktionary's own recording, in the definition popup and on review
+// cards. Answers are remembered on the device, misses for a week.
+var LL_MEM = {};
+function linguaLibreUrl(word) {
+  var w = String(word || "").replace(/\u0301/g, "").trim();
+  if (!w || /\s/.test(w)) return Promise.resolve(null);
+  var norm = function(x){ return String(x).toLowerCase().replace(/ё/g, "е"); };
+  var key = "gv_ll_v1:" + norm(w);
+  if (LL_MEM[key] !== undefined) return LL_MEM[key];
+  try {
+    var hit = JSON.parse(localStorage.getItem(key) || "null");
+    if (hit && (hit.u || Date.now() - (hit.at || 0) < 7 * 86400000)) {
+      return (LL_MEM[key] = Promise.resolve(hit.u || null));
+    }
+  } catch (e) {}
+  var q = 'intitle:"LL-Q7737" intitle:"' + w.replace(/"/g, "") + '"';
+  var url = "https://commons.wikimedia.org/w/api.php?action=query&list=search&srnamespace=6" +
+            "&srlimit=50&format=json&origin=*&srsearch=" + encodeURIComponent(q);
+  LL_MEM[key] = fetch(url).then(function(r){ return r.ok ? r.json() : null; }).then(function(j){
+    var titles = ((j && j.query && j.query.search) || []).map(function(x){ return x.title; });
+    var title = titles.find(function(t){
+      var m = /^File:LL-Q7737 \(rus\)-.+-([^-]+)\.(wav|ogg|oga|flac|mp3|opus)$/i.exec(t);
+      return m && norm(m[1]) === norm(w);
+    }) || null;
+    var u = title ? "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent(title.replace(/^File:/, "")) : null;
+    try { localStorage.setItem(key, JSON.stringify({ u: u || "", at: Date.now() })); } catch (e) {}
+    return u;
+  }).catch(function(){ delete LL_MEM[key]; return null; });
+  return LL_MEM[key];
+}
+
 function markWord(sentence, word) {
   var s2 = String(sentence || ""), w = String(word || "").trim();
   if (!s2 || !w) return [s2];
@@ -10030,16 +10066,31 @@ export default function App() {
        encodeURIComponent("Ru-" + lemma + ".ogg"));
 
     setSayState("");
-    try {
-      if (sayAudioRef.current) { try { sayAudioRef.current.pause(); } catch(e) {} }
-      var a = new Audio(url);
-      sayAudioRef.current = a;
-      a.onplaying = function(){ setSayState("playing"); };
-      a.onended   = function(){ setSayState(""); };
-      a.onerror   = function(){ speakIt(); };
-      var pr = a.play();
-      if (pr && pr.catch) pr.catch(function(){ speakIt(); });
-    } catch (e) { speakIt(); }
+    // Lingua Libre's recording when Wiktionary has none, and only then the
+    // browser's own voice. Once per tap: a failure here does not try again.
+    var triedLL = false;
+    var playUrl = function(u, onFail) {
+      try {
+        if (sayAudioRef.current) { try { sayAudioRef.current.pause(); } catch(e) {} }
+        var a = new Audio(u);
+        sayAudioRef.current = a;
+        var failed = false;
+        var fail = function(){ if (failed) return; failed = true; onFail(); };
+        a.onplaying = function(){ setSayState("playing"); };
+        a.onended   = function(){ setSayState(""); };
+        a.onerror   = fail;
+        var pr = a.play();
+        if (pr && pr.catch) pr.catch(fail);
+      } catch (e) { onFail(); }
+    };
+    var backup = function() {
+      if (triedLL) { speakIt(); return; }
+      triedLL = true;
+      linguaLibreUrl(lemma).then(function(llu){
+        if (llu) playUrl(llu, speakIt); else speakIt();
+      });
+    };
+    playUrl(url, backup);
   };
 
   // Admin-only curation. Блатной жаргон and сленг are a long tail no free
@@ -11400,6 +11451,17 @@ export default function App() {
           if (dead) return;
           c.ok = true;
           setRvAudio(function(x){ return (x && x.key === q.key) ? x : { key: q.key, playing: false }; });
+        };
+        // No Wiktionary recording of this word: Lingua Libre's, if it has one.
+        var triedLL = false;
+        a.onerror = function(){
+          if (dead || triedLL) return;
+          triedLL = true;
+          linguaLibreUrl(h).then(function(llu){
+            if (dead || !llu) return;
+            c.url = llu;
+            a.src = llu;
+          });
         };
         a.src = url;
         c.el = a;
