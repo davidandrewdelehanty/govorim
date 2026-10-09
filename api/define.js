@@ -48,6 +48,28 @@ const RATE_DAILY_PER_IP = 1200;
 const RATE_MAX_PER_WINDOW_ANON = 20;
 const RATE_DAILY_PER_IP_ANON = 400;
 
+// The curated glossary is the блатной жаргон / сленг glossary: a bulk harvest
+// of ru.wiktionary's «Уголовный жаргон» appendix plus entries written by hand
+// from the popup, most of them the same register. Dave's ruling (Oct 2026):
+// a dictionary always answers first, everywhere, and the жаргон glossary is
+// for SONGS only — Круг and Бутырка, not Толстой, where «шеф» must stay
+// "chief" and never become "главарь шайки". So the client marks a song look-up
+// with ?song=1. In a book, only a hand-written entry in some other register
+// can still answer, and only once every dictionary has declined the word.
+function isSlangEntry(hit) {
+  const e = (hit && hit.entry) || {};
+  if (hit && hit.origin !== "hand") return true;
+  return /жарг|сленг|арго|блат|феня/i.test(String(e.register || "блатной жаргон"));
+}
+function glossaryFor(index, candidates, song) {
+  if (!index) return null;
+  // Hand rulings before the bulk harvest, as before.
+  const hand = lookupGlossary(index, candidates, "hand");
+  if (hand && (song || !isSlangEntry(hand))) return hand;
+  if (!song) return null;
+  return lookupGlossary(index, candidates, null);
+}
+
 function getClientIp(req) {
   const fwd = req.headers["x-forwarded-for"];
   if (typeof fwd === "string" && fwd.length) return fwd.split(",")[0].trim();
@@ -630,20 +652,8 @@ export default async function handler(req, res) {
     const tP = setTimeout(function () { ctrlP.abort(); }, 4500);
     const deyoP = pr.replace(/\u0451/g, "\u0435");
     const cands = pr === deyoP ? [pr] : [pr, deyoP];
+    const songP = !!(req.query && req.query.song === "1");
     try {
-      // The curator's own rulings first, exactly as for a single word.
-      try {
-        const gl = await loadGlossary(false);
-        const found = lookupGlossary(gl, cands, "hand");
-        if (found) {
-          const built = glossaryEntry(found.hit, pr, found.matched);
-          if (built) {
-            res.setHeader("Cache-Control", "public, s-maxage=60");
-            return res.status(200).json(Object.assign({ phrase: pr }, built));
-          }
-        }
-      } catch (e) { /* the glossary is a convenience, never a gate */ }
-
       if (process.env.YANDEX_DICT_KEY) {
         for (const c of cands) {
           const defs = await yandexLookup(c, "ru-en", ctrlP.signal);
@@ -669,6 +679,18 @@ export default async function handler(req, res) {
           }
         }
       }
+      // The glossary only after every dictionary — see isSlangEntry.
+      try {
+        const gl = await loadGlossary(false);
+        const found = glossaryFor(gl, cands, songP);
+        if (found) {
+          const built = glossaryEntry(found.hit, pr, found.matched);
+          if (built) {
+            res.setHeader("Cache-Control", "public, s-maxage=60");
+            return res.status(200).json(Object.assign({ phrase: pr }, built));
+          }
+        }
+      } catch (e) { /* the glossary is a convenience, never a gate */ }
       res.setHeader("Cache-Control", "public, s-maxage=86400");
       return res.status(404).json({ error: "No entry for that phrase.", phrase: pr });
     } catch (e) {
@@ -730,23 +752,12 @@ export default async function handler(req, res) {
       .concat(yoVariants(deyo).slice(0, 3))
       .filter(function (w, i, arr) { return arr.indexOf(w) === i; });
 
-    // -- 0. Hand-written corrections ----------------------------------------
-    // ONLY entries curated by hand from the reader popup. Each one is a
-    // deliberate ruling about a specific word, so it outranks every dictionary.
-    // The bulk жаргон harvest is deliberately NOT consulted here — see tier 4.
+    // The glossary is loaded now and consulted only after the dictionaries —
+    // and outside songs, hardly at all. See isSlangEntry.
+    const song = !!(req.query && req.query.song === "1");
     let glossary = null;
     try {
       glossary = await loadGlossary(false);
-      const found = lookupGlossary(glossary, [lower, deyo], "hand");
-      if (found) {
-        const built = glossaryEntry(found.hit, word, found.matched);
-        if (built) {
-          // Short cache: a word curated from the popup should show its new
-          // definition on the next tap, not in a week.
-          res.setHeader("Cache-Control", "public, s-maxage=60");
-          return res.status(200).json(built);
-        }
-      }
     } catch (e) {
       trace.push("glossary:error " + ((e && e.message) || e));
       console.warn("[define] glossary unavailable:", (e && e.message) || e);
@@ -976,7 +987,7 @@ export default async function handler(req, res) {
       // would wreck ordinary reading; consulted after them it only ever fires
       // on a word no dictionary knows, which is exactly the жаргон tail.
       if (glossary) {
-        const slang = lookupGlossary(glossary, [lower, deyo].concat(lemmas).filter(Boolean), null);
+        const slang = glossaryFor(glossary, [lower, deyo].concat(lemmas).filter(Boolean), song);
         if (slang) {
           const built = glossaryEntry(slang.hit, word, slang.matched);
           if (built) {

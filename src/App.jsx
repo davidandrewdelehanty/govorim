@@ -9604,7 +9604,14 @@ export default function App() {
   // the lookup changes materially and every stale answer is dropped — and an
   // entry carries its date: a real dictionary entry is good for a month, a
   // machine-translated guess for a day.
-  var DEF_CACHE_PREFIX = "def3:";
+  // def4: Oct 2026, when the жаргон glossary stopped answering outside songs
+  // (see api/define.js isSlangEntry) — every def3 answer may be one of those.
+  var DEF_CACHE_PREFIX = "def4:";
+  // Whether the word being looked up is in a song. Set by defWord for the
+  // popup it opens; the later look-ups from that popup (another reading, the
+  // ё spelling) inherit it. Songs are the only place the блатной жаргон
+  // glossary answers, and even there only after every dictionary.
+  var defSongRef = useRef(false);
   var DEF_TTL_DICT = 30 * 86400000, DEF_TTL_MT = 86400000;
   var readDefCache = function(key) {
     try {
@@ -9633,7 +9640,7 @@ export default function App() {
         var dead = [];
         for (var i = 0; i < localStorage.length; i++) {
           var k = localStorage.key(i);
-          if (k && (k.indexOf("def:") === 0 || k.indexOf("def2:") === 0)) dead.push(k);
+          if (k && (k.indexOf("def:") === 0 || k.indexOf("def2:") === 0 || k.indexOf("def3:") === 0)) dead.push(k);
         }
         dead.forEach(function(k){ localStorage.removeItem(k); });
       } catch (_) {}
@@ -9652,7 +9659,8 @@ export default function App() {
     var clean = (word || "").trim();
     if (!clean) throw new Error("Empty word");
 
-    var cacheKey = clean.toLowerCase();
+    var song = !!defSongRef.current;
+    var cacheKey = (song ? "song:" : "") + clean.toLowerCase();
     var cached = readDefCache(cacheKey);
     if (cached) return cached;
 
@@ -9660,7 +9668,7 @@ export default function App() {
     var yandexDown = null;
     var defTrace = null;
     try {
-      var r = await authFetch("/api/define?word=" + encodeURIComponent(clean));
+      var r = await authFetch("/api/define?word=" + encodeURIComponent(clean) + (song ? "&song=1" : ""));
       if (r.ok) {
         var data = await r.json();
         if (data && data.translation) {
@@ -9711,6 +9719,8 @@ export default function App() {
     if (noAIMode) return;  // No API calls in read-without-AI mode.
     var clean = word.replace(/[^а-яёА-ЯЁ]/g,"");
     if (!clean || clean.length < 2) return;
+    // A lyric line comes with the tap; a book never passes one.
+    defSongRef.current = lineContext != null || !!(bookMeta && bookMeta.category === "Song Lyrics");
 
     // Stop any in-flight audio and park the player at the sentence that
     // contains this word. User must press ▶ to resume from this point —
@@ -9907,7 +9917,8 @@ export default function App() {
     if (!tries.length) return;
     var forWord = word;
     tries.forEach(function(ph){
-      var hit = phraseCache.current[ph];
+      var pkey = (defSongRef.current ? "song:" : "") + ph;
+      var hit = phraseCache.current[pkey];
       var land = function(data){
         if (!data) return;
         setPopup(function(pp){
@@ -9918,11 +9929,11 @@ export default function App() {
         });
       };
       if (hit !== undefined) { land(hit); return; }
-      authFetch("/api/define?phrase=" + encodeURIComponent(ph))
+      authFetch("/api/define?phrase=" + encodeURIComponent(ph) + (defSongRef.current ? "&song=1" : ""))
         .then(function(r){ return r.ok ? r.json() : null; })
         .then(function(d){
           var ok = d && d.translation ? d : null;
-          phraseCache.current[ph] = ok;
+          phraseCache.current[pkey] = ok;
           land(ok);
         })
         .catch(function(){});
@@ -10053,7 +10064,7 @@ export default function App() {
       });
       var body = await r.json().catch(function(){ return {}; });
       if (!r.ok || !body.entry) throw new Error(body.error || ("HTTP " + r.status));
-      writeDefCache(String(curate.word).toLowerCase(), body.entry);
+      writeDefCache((defSongRef.current ? "song:" : "") + String(curate.word).toLowerCase(), body.entry);
       setPopup(function(p){ return p ? Object.assign({}, p, {data:body.entry, noEntry:null, trace:null}) : null; });
       setCurate(null);
     } catch (e) {
