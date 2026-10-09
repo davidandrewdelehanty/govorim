@@ -9606,7 +9606,9 @@ export default function App() {
   // machine-translated guess for a day.
   // def4: Oct 2026, when the жаргон glossary stopped answering outside songs
   // (see api/define.js isSlangEntry) — every def3 answer may be one of those.
-  var DEF_CACHE_PREFIX = "def4:";
+  // def5: Oct 9 2026 — verb forms reached through Wiktionary had been saved
+  // under the clicked form («сядет») with no aspect; fixed in api/define.js.
+  var DEF_CACHE_PREFIX = "def5:";
   // Whether the word being looked up is in a song. Set by defWord for the
   // popup it opens; the later look-ups from that popup (another reading, the
   // ё spelling) inherit it. Songs are the only place the блатной жаргон
@@ -9640,7 +9642,7 @@ export default function App() {
         var dead = [];
         for (var i = 0; i < localStorage.length; i++) {
           var k = localStorage.key(i);
-          if (k && (k.indexOf("def:") === 0 || k.indexOf("def2:") === 0 || k.indexOf("def3:") === 0)) dead.push(k);
+          if (k && (k.indexOf("def:") === 0 || k.indexOf("def2:") === 0 || k.indexOf("def3:") === 0 || k.indexOf("def4:") === 0)) dead.push(k);
         }
         dead.forEach(function(k){ localStorage.removeItem(k); });
       } catch (_) {}
@@ -11441,6 +11443,66 @@ export default function App() {
       exampleTranslation: (data.exampleTranslation || "").trim()
     };
   };
+
+  // One-time repair (Oct 9 2026). Until today a verb form that the dictionary
+  // reached through Wiktionary — «сядет», which Wiktionary only knows as "third-
+  // person singular future perfective of сесть" — came back with the tapped
+  // form as its headword and no aspect, so it was saved as «сядет» instead of
+  // «садиться / сесть». Those cards say so in their own grammar line ("… of
+  // сесть"), so they can be found without guessing: each is looked up again
+  // by its infinitive and rewritten from the fresh entry, keeping its review
+  // schedule, its sentences and the form that was tapped. Runs once per
+  // device, after a signed-in reader's list has arrived from the server, so
+  // the fixed list is what syncs back.
+  useEffect(function() {
+    if (!localLoaded || (me && !syncedFromServer)) return;
+    var FLAG = "gv_lemmafix_v1";
+    try { if (localStorage.getItem(FLAG) === "done") return; } catch (e) { return; }
+    var norm = function(x){ return String(x || "").toLowerCase().replace(/\u0301/g, "").replace(/ё/g, "е").trim(); };
+    var todo = (vocabRef.current || []).map(function(v){
+      if (!v || !v.ru || /\s\/\s|\s/.test(String(v.ru).trim())) return null;
+      // The card's own form note, not an "also verb: … of носить" aside about
+      // a second word with the same spelling.
+      var m = null;
+      String(v.grammar || "").split(/\s·\s/).some(function(seg){
+        if (/^\s*also\b/i.test(seg)) return false;
+        m = /\bof\s+([\u0400-\u04ff\u0300-\u036f-]{2,})/.exec(seg);
+        return !!m;
+      });
+      if (!m) return null;
+      var lem = norm(m[1]);
+      if (!lem || lem === norm(v.ru)) return null;
+      return { key: v._key || v.id || v.created || v.ru, ru: v.ru, lemma: lem };
+    }).filter(Boolean);
+    if (!todo.length) { try { localStorage.setItem(FLAG, "done"); } catch (e) {} return; }
+    var cancelled = false;
+    (async function() {
+      for (var i = 0; i < todo.length && !cancelled; i++) {
+        var t = todo[i], data = null;
+        try { data = await fetchDef(t.lemma); } catch (e) { data = null; }
+        if (cancelled) return;
+        if (!data || !data.translation || norm(data.lemma) === norm(t.ru)) continue;
+        var f = formatVocabEntry(data, t.ru);
+        setVocab(function(list){
+          // Already have the infinitive as a card of its own: leave both alone
+          // rather than make a duplicate.
+          if (list.some(function(v){ return norm(v.ru) === norm(f.ru); })) return list;
+          return list.map(function(v){
+            if ((v._key || v.id || v.created || v.ru) !== t.key) return v;
+            var forms = (Array.isArray(v.forms) ? v.forms : []).concat(f.forms || []);
+            forms = forms.filter(function(x, k){ return x && forms.indexOf(x) === k; });
+            return Object.assign({}, v, {
+              ru: f.ru, lemma: f.lemma, forms: forms, aspect: f.aspect,
+              grammar: f.grammar, pos: f.pos || v.pos, en: v.en || f.en,
+            });
+          });
+        });
+        await new Promise(function(r){ setTimeout(r, 400); });
+      }
+      if (!cancelled) { try { localStorage.setItem(FLAG, "done"); } catch (e) {} }
+    })();
+    return function(){ cancelled = true; };
+  }, [localLoaded, syncedFromServer, me && me.id]);
 
   var xBold = function(text) {
     var r = []; var re = /\*\*([^*\n(]{1,40})\(([^)]{1,60})\)\*\*/g; var m;

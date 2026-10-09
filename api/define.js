@@ -284,14 +284,42 @@ async function wiktFetch(word, signal) {
   const all = Array.isArray(data && data.entries) ? data.entries : [];
   const ru = all.filter(function (e) { return e && e.language && e.language.code === "ru"; });
   if (!ru.length) return null;
-  return { entries: ru, sourceUrl: (data.source && data.source.url) || "" };
+  return { entries: ru, sourceUrl: (data.source && data.source.url) || "", word: String((data && data.word) || word) };
 }
 
 // The canonical form carries the stress mark and the grammatical tags.
 function canonicalForm(entry) {
   const forms = Array.isArray(entry.forms) ? entry.forms : [];
   for (const f of forms) if (hasTag(f.tags, "canonical")) return f;
+  // Verb pages often carry no "canonical" form at all — сесть doesn't. Their
+  // headword is the infinitive row of the conjugation table, which also
+  // carries the aspect: { word: "се́сть", tags: ["infinitive", "perfective"] }.
+  for (const f of forms) {
+    if (f && f.word && f.word !== "-" && hasTag(f.tags, "infinitive") &&
+        /[\u0400-\u04ff]/.test(f.word)) return f;
+  }
   return null;
+}
+
+// The aspect when the headword row did not say: the senses do («to sit down»
+// is tagged perfective), or the conjugation table's own label.
+function aspectOf(entry, canonTags) {
+  if (hasTag(canonTags, "imperfective")) return "imperfective";
+  if (hasTag(canonTags, "perfective")) return "perfective";
+  if (String(entry.partOfSpeech || "").toLowerCase() !== "verb") return "";
+  let pf = 0, impf = 0;
+  for (const s of definedSenses(entry)) {
+    if (hasTag(s.tags, "perfective")) pf++;
+    if (hasTag(s.tags, "imperfective")) impf++;
+  }
+  for (const f of (Array.isArray(entry.forms) ? entry.forms : [])) {
+    if (f && hasTag(f.tags, "table-tags") && /\b(im)?perfective\b/i.test(f.word || "")) {
+      if (/\bimperfective\b/i.test(f.word)) impf += 2; else pf += 2;
+    }
+  }
+  if (pf && !impf) return "perfective";
+  if (impf && !pf) return "imperfective";
+  return "";
 }
 
 function definedSenses(entry) {
@@ -354,7 +382,9 @@ function buildWiktEntry(pack, clickedWord, matchedForm, formNote) {
   const canon = canonicalForm(entry);
   const accented = canon ? canon.word : "";
   const canonTags = (canon && canon.tags) || [];
-  const lemma = deaccent(accented) || deaccent(entry.word) || matchedForm || clickedWord;
+  // The page's own title before the form that led here: a hop from «сядет»
+  // lands on the page for сесть, and the reader's card must say сесть.
+  const lemma = deaccent(accented) || deaccent(entry.word) || deaccent(pack.word) || matchedForm || clickedWord;
 
   const senses = realSenses(entry);
   const translation = senses.slice(0, 4)
@@ -363,9 +393,7 @@ function buildWiktEntry(pack, clickedWord, matchedForm, formNote) {
     .join("; ");
   if (!translation) return null;
 
-  let aspect = "";
-  if (hasTag(canonTags, "imperfective")) aspect = "imperfective";
-  else if (hasTag(canonTags, "perfective")) aspect = "perfective";
+  const aspect = aspectOf(entry, canonTags);
 
   let gender = "";
   if (hasTag(canonTags, "masculine")) gender = "masculine";
