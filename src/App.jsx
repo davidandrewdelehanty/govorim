@@ -4694,7 +4694,8 @@ export default function App() {
   // The Anki-style review session (see startQuiz): queues, learning steps,
   // the card on screen, and every answer given, for the end-of-session stats.
   var [rv, setRv] = useState(null);
-  var [rvConfirm, setRvConfirm] = useState(null);   // { key, word } while "Remove card?" is open
+  var [rvConfirm, setRvConfirm] = useState(null);
+  var [sentJump, setSentJump] = useState(null);     // { b, c, o, s, where } while "Open in the book?" is open   // { key, word } while "Remove card?" is open
   var [rvAudio, setRvAudio] = useState(null);       // { key, url, playing } once a recording has loaded
   var rvAudioRef = useRef(null);
   // The export panel, and what goes in the file. Defaults are the generous
@@ -5142,6 +5143,9 @@ export default function App() {
     } catch (e) {}
   };
   var srcJumpChapterRef = useRef(null);
+  // A sentence to find in the book being opened, when all that is known is
+  // its text (sentences saved before their place in the book was recorded).
+  var srcJumpTextRef = useRef(null);
   var srcJumpOffsetRef = useRef(null);  // vocab source-link: char offset of the saved word, to highlight its sentence on arrival
   // Which book that pending offset was asked for.
   //
@@ -9860,7 +9864,9 @@ export default function App() {
       // люблю from любить); a form the reader has actually looked up is
       // ground truth, so the list gets more accurate the more they read.
       rememberForm(data && data.lemma, clean);
-      if (srcSentence) noteSentence(data && data.lemma, clean, srcSentence, srcWhere);
+      if (srcSentence) noteSentence(data && data.lemma, clean, srcSentence, srcWhere,
+        (typeof charPosition === "number" && bookMeta && bookMeta.filename)
+          ? { b: bookMeta.filename, c: cidx, o: charPosition } : null);
     } catch(err) {
       var rawMsg = (err && err.message) || "Unknown error";
       var likelyRateLimit = /Too many|rate.?limit|429|quota|exhaust/i.test(rawMsg);
@@ -10636,6 +10642,11 @@ export default function App() {
       var startPi = savedProg ? savedProg.pidx : 0;
       // Land on the paragraph, not merely in the chapter.
       if (savedProg && savedProg.off > 0) requestSrcJump(savedProg.off, meta, true);
+      if (srcJumpTextRef.current) {
+        var found = findSentenceIn(chs, srcJumpTextRef.current);
+        srcJumpTextRef.current = null;
+        if (found) { srcJumpChapterRef.current = found.c; requestSrcJump(found.o, meta); }
+      }
       if (srcJumpChapterRef.current !== null && srcJumpChapterRef.current !== undefined) {
         startCi = srcJumpChapterRef.current; startPi = 0;
         srcJumpChapterRef.current = null;
@@ -10934,7 +10945,9 @@ export default function App() {
   // жаргон in Круг and a suit of cards in Пушкин — so every later encounter is
   // appended instead, up to three, and the card shows them side by side. That
   // turns the polysemy problem into the thing that teaches it.
-  var noteSentence = function(lemma, surface, sentence, where) {
+  // `loc` is where in a book the sentence sits — { b: filename, c: chapter,
+  // o: character offset } — so the review card can take the reader back to it.
+  var noteSentence = function(lemma, surface, sentence, where, loc) {
     var sent = String(sentence || "").trim();
     if (!sent || sent.length < 12) return;
     var l = String(lemma || "").toLowerCase().replace(/\u0301/g, "").replace(/ё/g, "е").trim();
@@ -10952,9 +10965,20 @@ export default function App() {
       // The first sentence may have been stored flat, before this existed.
       if (!cur.length && prev[hit].srcSentence) cur = [{ s: prev[hit].srcSentence, w: prev[hit].srcWhere || "" }];
       var norm = function(x){ return String(x).toLowerCase().replace(/[^а-яё]/gi, ""); };
-      for (var c = 0; c < cur.length; c++) if (norm(cur[c].s) === norm(sent)) return prev;
+      var place = (loc && loc.b) ? { b: loc.b, c: loc.c, o: loc.o } : {};
+      for (var c = 0; c < cur.length; c++) {
+        if (norm(cur[c].s) !== norm(sent)) continue;
+        // Seen before. If it was stored before places were kept, keep it now.
+        if (place.b && !cur[c].b) {
+          var fixed = prev.slice(), list = cur.slice();
+          list[c] = Object.assign({}, cur[c], place);
+          fixed[hit] = Object.assign({}, prev[hit], { sentences: list });
+          return fixed;
+        }
+        return prev;
+      }
       var next = prev.slice();
-      next[hit] = Object.assign({}, prev[hit], { sentences: cur.concat([{ s: sent, w: where || "", at: Date.now() }]).slice(-3) });
+      next[hit] = Object.assign({}, prev[hit], { sentences: cur.concat([Object.assign({ s: sent, w: where || "", at: Date.now() }, place)]).slice(-3) });
       return next;
     });
   };
@@ -10996,6 +11020,44 @@ export default function App() {
   // fewer than 3 valid siblings, that word is skipped (insufficient distractors).
   // Words without a `pos` tag are also skipped — verbs-vs-nouns mixing defeats
   // the pedagogy.
+  // Where a sentence sits: the chapter, and the character offset of its start.
+  // Matched on its opening run of letters, so spacing, dashes and quotes that
+  // differ between the saved copy and the book do not stop it being found.
+  var findSentenceIn = function(chs, sentence) {
+    var letters = function(t){ return String(t || "").toLowerCase().replace(/ё/g, "е"); };
+    var want = letters(sentence).replace(/[^а-яa-z0-9]/g, "").slice(0, 40);
+    if (want.length < 8) return null;
+    for (var ci = 0; ci < (chs || []).length; ci++) {
+      var text = String((chs[ci] && chs[ci].text) || "");
+      var low = letters(text), stripped = "", map = [];
+      for (var i = 0; i < low.length; i++) {
+        if (/[а-яa-z0-9]/.test(low[i])) { stripped += low[i]; map.push(i); }
+      }
+      var at = stripped.indexOf(want);
+      if (at >= 0) return { c: ci, o: map[at] };
+    }
+    return null;
+  };
+  // The review card's example sentence, back in its book.
+  var goToSentence = function(loc) {
+    if (!loc || !loc.b) return;
+    var book = null;
+    for (var i = 0; i < presetBooks.length; i++) {
+      if (presetBooks[i].filename === loc.b) { book = presetBooks[i]; break; }
+    }
+    if (!book) { alert("That book isn't in the library anymore."); return; }
+    if (typeof loc.o === "number") {
+      srcJumpChapterRef.current = (typeof loc.c === "number") ? loc.c : 0;
+      requestSrcJump(loc.o, book);
+    } else {
+      srcJumpTextRef.current = loc.s || null;
+    }
+    setSentJump(null);
+    setMode("read");
+    setTab("chat");
+    loadPresetBook(book);
+  };
+
   var goToSource = function(v) {
     if (!v || !v.srcBook) return;
     var book = null;
@@ -11151,8 +11213,25 @@ export default function App() {
     var met = Array.isArray(v.sentences) ? v.sentences
             : (v.srcSentence ? [{ s: v.srcSentence, w: v.srcWhere || "" }] : []);
     var pick = met.length ? Math.floor(Math.random() * met.length) : 0;
+    // Where in a book the chosen sentence is, if it came from one: stored
+    // with the sentence since Oct 2026; for older ones, the card's own source
+    // fields when it is the sentence the word was saved from, or else the
+    // book named in its label, searched for the sentence when it opens.
+    var loc = null;
+    if (met.length) {
+      var m0 = met[pick];
+      if (m0.b) loc = { b: m0.b, c: m0.c, o: m0.o };
+      else if (v.srcBook && v.srcSentence && m0.s === v.srcSentence) loc = { b: v.srcBook, c: v.srcChapter, o: v.srcOffset };
+      else if (m0.w) {
+        var t0 = String(m0.w).split(" \u00b7 ")[0].trim();
+        var bk = presetBooks.find(function(x){ return x && x.title === t0; });
+        if (bk) loc = { b: bk.filename };
+      }
+      if (loc) { loc.s = m0.s; loc.where = m0.w || v.srcTitle || ""; }
+    }
     return {
       key: keyOf(v),
+      sentenceLoc: loc,
       word: v.ru,
       lemma: v.lemma || "",
       audioUrl: v.audioUrl || "",
@@ -13451,6 +13530,11 @@ export default function App() {
         .rv-done-learned{font-size:14px;color:#1e7a3c;margin:14px auto 0;line-height:1.55}
         .rv-done-note{font-size:12px;color:rgba(0,0,0,.45);font-style:italic;margin:12px auto 0}
         .rv-done-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+        .qex-link{cursor:pointer;transition:background .15s}
+        .qex-link:hover{background:rgba(42,31,20,.05)}
+        .rv-cfm-where{font-size:12px;color:rgba(0,0,0,.45);font-style:italic}
+        .rv-cfm-small{font-size:12px;color:rgba(0,0,0,.5)}
+        .rv-cfm-go{background:#2a1f14;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:14px;font-family:'IBM Plex Sans',sans-serif;cursor:pointer}
         .rv-cfm-over{position:fixed;inset:0;background:rgba(26,22,17,.55);z-index:300;display:flex;align-items:center;justify-content:center;padding:20px}
         .rv-cfm{background:#fbf8f2;border:1px solid rgba(42,31,20,.16);border-radius:14px;max-width:400px;width:100%;padding:22px 22px 18px;box-shadow:0 10px 40px rgba(0,0,0,.25)}
         .rv-cfm-h{font-family:'Old Standard TT',serif;font-size:21px;color:#000;margin-bottom:10px}
@@ -20020,7 +20104,11 @@ export default function App() {
                           English translation of it waits for the answer, since that
                           would give the meaning away. */}
                       {q.sentence && (
-                        <div className="qex">
+                        <div className={"qex" + (q.sentenceLoc ? " qex-link" : "")}
+                             role={q.sentenceLoc ? "button" : undefined}
+                             tabIndex={q.sentenceLoc ? 0 : undefined}
+                             title={q.sentenceLoc ? "See it in the book" : undefined}
+                             onClick={q.sentenceLoc ? function(){ setSentJump(q.sentenceLoc); } : undefined}>
                           <p className="qex-s" lang="ru">{markWord(q.sentence, q.word).map(function(part, i){
                             return i === 1 ? <b key={i}>{part}</b> : <span key={i}>{part}</span>;
                           })}</p>
@@ -20054,6 +20142,24 @@ export default function App() {
                     </div>
                   );
                 })()}
+                {sentJump && (
+                  <div className="rv-cfm-over" onClick={function(e){ if (e.target === e.currentTarget) setSentJump(null); }}>
+                    <div className="rv-cfm" role="dialog" aria-label="See this sentence in the book?">
+                      <div className="rv-cfm-h">See it in the book?</div>
+                      <p className="rv-cfm-p">
+                        <span lang="ru">{sentJump.s}</span>
+                        {sentJump.where && <><br/><span className="rv-cfm-where">{sentJump.where}</span></>}
+                      </p>
+                      <p className="rv-cfm-p rv-cfm-small">
+                        Opens the book at this sentence. Your review stays where it is — come back to the Vocabulary tab to carry on.
+                      </p>
+                      <div className="rv-cfm-btns">
+                        <button className="btn-g" onClick={function(){ setSentJump(null); }}>Cancel</button>
+                        <button className="rv-cfm-go" onClick={function(){ goToSentence(sentJump); }}>Open the book</button>
+                      </div>
+                    </div>
+                  </div>
+                )}
                 {rvConfirm && (
                   <div className="rv-cfm-over" onClick={function(e){ if (e.target === e.currentTarget) setRvConfirm(null); }}>
                     <div className="rv-cfm" role="alertdialog" aria-label="Remove this card?">
