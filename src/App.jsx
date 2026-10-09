@@ -4695,7 +4695,10 @@ export default function App() {
   // the card on screen, and every answer given, for the end-of-session stats.
   var [rv, setRv] = useState(null);
   var [rvConfirm, setRvConfirm] = useState(null);
-  var [sentJump, setSentJump] = useState(null);     // { b, c, o, s, where } while "Open in the book?" is open   // { key, word } while "Remove card?" is open
+  var [sentJump, setSentJump] = useState(null);
+  // Set while the reader is in a book because a review card sent them there:
+  // shows the "Back to review / Dismiss" bar over the reader.
+  var [fromQuiz, setFromQuiz] = useState(false);     // { b, c, o, s, where } while "Open in the book?" is open   // { key, word } while "Remove card?" is open
   var [rvAudio, setRvAudio] = useState(null);       // { key, url, playing } once a recording has loaded
   var rvAudioRef = useRef(null);
   // The export panel, and what goes in the file. Defaults are the generous
@@ -11053,6 +11056,7 @@ export default function App() {
       srcJumpTextRef.current = loc.s || null;
     }
     setSentJump(null);
+    setFromQuiz(true);
     setMode("read");
     setTab("chat");
     loadPresetBook(book);
@@ -13564,6 +13568,11 @@ export default function App() {
         .rv-cfm-where{font-size:12px;color:rgba(0,0,0,.45);font-style:italic}
         .rv-cfm-small{font-size:12px;color:rgba(0,0,0,.5)}
         .rv-cfm-go{background:#2a1f14;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:14px;font-family:'IBM Plex Sans',sans-serif;cursor:pointer}
+        .fq-bar{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:250;display:flex;align-items:center;gap:8px;background:#2a1f14;color:#fbf8f2;border-radius:999px;padding:6px 6px 6px 16px;box-shadow:0 8px 28px rgba(0,0,0,.28);font-family:'IBM Plex Sans',sans-serif;max-width:calc(100vw - 24px)}
+        .fq-lbl{font-size:12px;opacity:.7;white-space:nowrap}
+        .fq-back{background:#fbf8f2;color:#2a1f14;border:none;border-radius:999px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
+        .fq-x{background:none;color:#fbf8f2;border:1px solid rgba(251,248,242,.35);border-radius:999px;padding:7px 12px;font-size:13px;cursor:pointer;white-space:nowrap}
+        @media (max-width:420px){.fq-lbl{display:none}}
         .rv-cfm-over{position:fixed;inset:0;background:rgba(26,22,17,.55);z-index:300;display:flex;align-items:center;justify-content:center;padding:20px}
         .rv-cfm{background:#fbf8f2;border:1px solid rgba(42,31,20,.16);border-radius:14px;max-width:400px;width:100%;padding:22px 22px 18px;box-shadow:0 10px 40px rgba(0,0,0,.25)}
         .rv-cfm-h{font-family:'Old Standard TT',serif;font-size:21px;color:#000;margin-bottom:10px}
@@ -15091,6 +15100,15 @@ export default function App() {
           </div>
         );
       })()}
+      {/* Over the book a review card opened: straight back to the card the
+          reader left (the session is untouched while they are away), or stay. */}
+      {fromQuiz && tab === "chat" && (
+        <div className="fq-bar" role="region" aria-label="Opened from your vocabulary review">
+          <span className="fq-lbl">Opened from your review</span>
+          <button className="fq-back" onClick={function(){ setFromQuiz(false); setTab("vocab"); }}>← Back to review</button>
+          <button className="fq-x" onClick={function(){ setFromQuiz(false); }}>Dismiss</button>
+        </div>
+      )}
       {homeOpen && (function(){
         var me2 = whichBrowser();
         var here = HOME_STEPS.filter(function(x){ return x.id === me2.id; });
