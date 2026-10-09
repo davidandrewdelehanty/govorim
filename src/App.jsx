@@ -13326,6 +13326,7 @@ export default function App() {
         .rv-pos{text-align:center;font-size:12px;color:rgba(0,0,0,.45);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
         .rv-word-row{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:30px;flex-wrap:wrap}
         .rv-word{font-size:42px;font-family:'Old Standard TT',serif;color:#000;font-weight:600;text-align:center}
+        .rv-card .qex{margin:-14px auto 22px}
         .rv-opts{display:flex;flex-direction:column;gap:10px;max-width:560px;margin:0 auto}
         .rv-opt{background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.16);color:#000;padding:14px 18px;border-radius:10px;font-size:16px;font-family:'Literata',serif;cursor:pointer;text-align:left;transition:all .15s}
         .rv-opt:disabled{cursor:default}
@@ -19907,6 +19908,23 @@ export default function App() {
                                   onClick={rvPlay}>Listen</button>
                         )}
                       </div>
+                      {/* Where you met it, on the card from the start — the context is
+                          part of the question, as on a sentence card in Anki. Only an
+                          English translation of it waits for the answer, since that
+                          would give the meaning away. */}
+                      {q.sentence && (
+                        <div className="qex">
+                          <p className="qex-s" lang="ru">{markWord(q.sentence, q.word).map(function(part, i){
+                            return i === 1 ? <b key={i}>{part}</b> : <span key={i}>{part}</span>;
+                          })}</p>
+                          {answered && q.sentenceEn && <div className="qex-en">{q.sentenceEn}</div>}
+                          {q.sentenceWhere && (
+                            <div className="qex-src">{q.sentenceWhere}
+                              {q.sentenceOf > 1 ? " · one of " + q.sentenceOf + " places you met it" : ""}
+                            </div>
+                          )}
+                        </div>
+                      )}
                       <div className="rv-opts">
                         {q.options.map(function(opt, i) {
                           var isCorrect = opt === q.correct;
@@ -19920,19 +19938,6 @@ export default function App() {
                           );
                         })}
                       </div>
-                      {answered && q.sentence && (
-                        <div className="qex">
-                          <p className="qex-s" lang="ru">{markWord(q.sentence, q.word).map(function(part, i){
-                            return i === 1 ? <b key={i}>{part}</b> : <span key={i}>{part}</span>;
-                          })}</p>
-                          {q.sentenceEn && <div className="qex-en">{q.sentenceEn}</div>}
-                          {q.sentenceWhere && (
-                            <div className="qex-src">{q.sentenceWhere}
-                              {q.sentenceOf > 1 ? " · one of " + q.sentenceOf + " places you met it" : ""}
-                            </div>
-                          )}
-                        </div>
-                      )}
                       {answered && (
                         <div style={{marginTop:24,textAlign:"center"}}>
                           <button className="btn-p" style={{maxWidth:280}} onClick={rvNext}>Next →</button>
