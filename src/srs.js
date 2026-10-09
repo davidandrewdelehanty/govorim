@@ -69,6 +69,27 @@ function stabilityAfterForgetting(D, S, R) {
   return Math.min(s, S);
 }
 
+function shortTermStability(S, grade) {
+  var inc = Math.exp(FSRS_W[17] * (grade - 3 + FSRS_W[18])) * Math.pow(S, -FSRS_W[19]);
+  if (grade >= 3) inc = Math.max(inc, 1);
+  return S * inc;
+}
+
+// Anki's defaults for what happens INSIDE a session, before FSRS takes over:
+// a new card is shown again after 1 minute and 10 minutes before it graduates;
+// a review card answered wrong comes back after 10 minutes. The day rolls over
+// at 4 a.m., not midnight, so a late-night session counts toward that day.
+export var LEARN_STEPS_MIN = [1, 10];
+export var RELEARN_STEPS_MIN = [10];
+export var NEW_PER_DAY = 20;
+export var REVIEWS_PER_DAY = 200;
+export var LEARN_AHEAD_MIN = 20;
+export function studyDay(now) {
+  var d = new Date((now || Date.now()) - 4 * 3600000);
+  var m = d.getMonth() + 1, dd = d.getDate();
+  return d.getFullYear() + "-" + (m < 10 ? "0" : "") + m + "-" + (dd < 10 ? "0" : "") + dd;
+}
+
 // The schedule after one answer. `srs` is the word's current state (or
 // undefined for a first review); returns the new state. `now` is a timestamp.
 export function review(srs, correct, now) {
@@ -84,8 +105,16 @@ export function review(srs, correct, now) {
     var days = (now - (prev.last || now)) / DAY;
     R = retrievability(prev.S, days);
     D = nextDifficulty(prev.D, grade);
-    S = correct ? stabilityAfterRecall(prev.D, prev.S, R, grade)
-                : stabilityAfterForgetting(prev.D, prev.S, R);
+    if (days < 1) {
+      // A second look the same day — Anki's learning and relearning steps.
+      // FSRS-6 has its own formula for these (w17–w19): a same-day answer
+      // nudges stability rather than treating ten minutes as a real interval,
+      // and a right answer never lowers it.
+      S = shortTermStability(prev.S, grade);
+    } else {
+      S = correct ? stabilityAfterRecall(prev.D, prev.S, R, grade)
+                  : stabilityAfterForgetting(prev.D, prev.S, R);
+    }
   }
   S = Math.max(0.1, S);
   var interval = intervalFor(S);

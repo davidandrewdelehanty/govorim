@@ -2,7 +2,8 @@
 import { useState, useRef, useEffect, useCallback, useMemo, Fragment } from "react";
 import { createPortal } from "react-dom";
 import { isCommonWord, dropCommonWords } from "./commonWords.js";
-import { review as srsReview, isLearned, dueWords, weakestWords, recallNow } from "./srs.js";
+import { review as srsReview, isLearned, dueWords, weakestWords, recallNow,
+  LEARN_STEPS_MIN, RELEARN_STEPS_MIN, NEW_PER_DAY, REVIEWS_PER_DAY, LEARN_AHEAD_MIN, studyDay } from "./srs.js";
 import { dayKey, dayMet, bump as bumpStats, streaks, mergeStats,
          totals as statsTotals, GOAL_WORDS, GOAL_CARDS } from "./stats.js";
 import { AnnotLayer, HL_COLORS, INK_COLORS, annotId } from "./annotations.jsx";
@@ -4602,6 +4603,10 @@ export default function App() {
     try { localStorage.setItem("gv_chat_level", level); } catch(e) {}
   }, [level]);
   var [vocab, setVocab]       = useState([]);
+  // The latest list, for the review session's state updaters, which run
+  // outside the render that created them.
+  var vocabRef = useRef([]);
+  vocabRef.current = vocab;
   // True once the stored vocabulary has been read back at boot; gates the
   // writers below so they cannot persist the empty initial state over it.
   var [localLoaded, setLocalLoaded] = useState(false);
@@ -4685,6 +4690,12 @@ export default function App() {
   var [quizSkipNote, setQuizSkipNote] = useState("");
   var [quizDue, setQuizDue]           = useState(0);    // how many of this session's words were actually due
   var [quizLearnedNow, setQuizLearnedNow] = useState([]);   // words retired during this session
+  // The Anki-style review session (see startQuiz): queues, learning steps,
+  // the card on screen, and every answer given, for the end-of-session stats.
+  var [rv, setRv] = useState(null);
+  var [rvConfirm, setRvConfirm] = useState(null);   // { key, word } while "Remove card?" is open
+  var [rvAudio, setRvAudio] = useState(null);       // { key, url, playing } once a recording has loaded
+  var rvAudioRef = useRef(null);
   // The export panel, and what goes in the file. Defaults are the generous
   // ones: a card with the sentence the word was met in is worth far more than
   // a bare pair of words, and that sentence is the part this site has that a
@@ -11029,14 +11040,15 @@ export default function App() {
       return a;
     };
 
-    // Spaced repetition decides what gets asked. Words that are due — never
-    // tested, or whose chance of recall has slipped below 90% — come first,
-    // most urgent at the top. If fewer than eight are due, the session is
-    // topped up with the least-secure words, so a reader who wants to
-    // practise always can; but a word the scheduler trusts is never asked
-    // early just to fill a quiz, because that is the time spaced repetition
-    // exists to give back. Twenty questions is a session.
-    var SESSION = 20;
+    // A review session works the way Anki's does. Everything due is in it —
+    // there is no twenty-card session any more — subject to Anki's two daily
+    // limits: twenty NEW words a day and two hundred reviews. Inside the
+    // session, a word goes through Anki's learning steps (see srs.js): a new
+    // word comes back after a minute and again after ten before it graduates,
+    // and a word you miss comes back ten minutes later. When nothing is left
+    // the session says so, and "Study more" carries on past the limits with
+    // the least-secure words, for as long as you want. "Finish" ends it at any
+    // point and shows what the session did.
     var filterPos = (typeof posFilter === "string" && posFilter) ? posFilter.toLowerCase().trim() : null;
     var askable = quizVocab.filter(function(v){
       var p = (v.pos || "").toLowerCase().trim();
@@ -11045,71 +11057,275 @@ export default function App() {
       return (groups[p] || []).length >= QUIZ_MIN;
     });
     var now = Date.now();
-    var picked = dueWords(askable, now, SESSION);
-    var dueCount = picked.length;
-    if (picked.length < 8) {
-      var have = {};
-      picked.forEach(function(v){ have[v._key || v.id || v.ru] = 1; });
-      weakestWords(askable, now).forEach(function(v){
-        if (picked.length >= Math.min(SESSION, 8) || have[v._key || v.id || v.ru]) return;
-        picked.push(v); have[v._key || v.id || v.ru] = 1;
-      });
-    }
-    var questions = [];
-    var skipped = askable.length ? 0 : quizVocab.length;
-    picked.forEach(function(v){
-      var p = (v.pos || "").toLowerCase().trim();
-      // Distractors come from every word of the same kind the reader has ever
-      // saved — retired words included — so a small active list still gives
-      // four plausible choices.
-      var siblings = (groups[p] || []).concat(learned.filter(function(x){ return (x.pos || "").toLowerCase().trim() === p && x.en; }))
-        .filter(function(x){ return (x._key||x.id||x.ru) !== (v._key||v.id||v.ru) && x.en !== v.en; });
-      if (siblings.length < 3) { skipped++; return; }
-      var distractors = shuffle(siblings).slice(0, 3).map(function(s){ return s.en; });
-      var bx = bankExample(v.ru, v.lemma);
-      var met = Array.isArray(v.sentences) ? v.sentences
-              : (v.srcSentence ? [{ s: v.srcSentence, w: v.srcWhere || "" }] : []);
-      var pick = met.length ? Math.floor(Math.random() * met.length) : 0;
-      questions.push({
-        key: v._key || v.id || v.ru,
-        word: v.ru,
-        correct: v.en,
-        options: shuffle(distractors.concat([v.en])),
-        pos: v.pos,
-        isNew: !(v.srs && v.srs.S),
-        // Shown once the answer is in: seeing the word at work, at the moment
-        // the meaning has just been recalled or missed, is where an example
-        // earns its keep.
-        // One of the reader's own encounters, chosen at random so a word met
-        // in several senses shows a different one each time it comes round.
-        sentence: (met.length ? met[pick].s
-                              : (v.example || v.exBankRu || (bx && bx.ru) || "")),
-        sentenceEn: met.length ? "" : (v.exampleTranslation || v.exBankEn || (bx && bx.en) || ""),
-        // The book credited has to be the book the shown sentence came from,
-        // so the choice is made once and both fields read the same index.
-        sentenceWhere: met.length ? (met[pick].w || v.srcTitle || "") : "",
-        sentenceOf: met.length,
-      });
+    var keyOf = function(v){ return v._key || v.id || v.ru; };
+    var day = rvDayCounts(now);
+    var due = dueWords(askable, now);
+    var dueNew = due.filter(function(v){ return !(v.srs && v.srs.S); });
+    var dueRev = due.filter(function(v){ return v.srs && v.srs.S; });
+    var learnSaved = rvLoadLearn().filter(function(l){
+      return askable.some(function(v){ return keyOf(v) === l.key; });
     });
-    setQuizDue(dueCount);
-    setQuizLearnedNow([]);
+    var inLearn = {};
+    learnSaved.forEach(function(l){ inLearn[l.key] = 1; });
+    var newQ = dueNew.filter(function(v){ return !inLearn[keyOf(v)]; })
+      .slice(0, Math.max(0, NEW_PER_DAY - day.newSeen)).map(keyOf);
+    var revQ = dueRev.filter(function(v){ return !inLearn[keyOf(v)]; })
+      .slice(0, Math.max(0, REVIEWS_PER_DAY - day.revSeen)).map(keyOf);
 
-    if (questions.length === 0) {
-      alert("You need more saved vocabulary! Add at least 4 words that share the same part of speech (e.g. 4 verbs), each with an English meaning and a part-of-speech tag.");
-      return;
-    }
-
-    var skipNote = skipped > 0 ? skipped + " word(s) skipped (no part-of-speech tag or too few same-pos siblings)." : "";
-    if (commonSkipped > 0) skipNote += (skipNote ? " " : "") + commonSkipped + " word(s) skipped — already on your known-words list.";
-    if (dueCount === 0 && questions.length) skipNote = "Nothing is due today — these are your least-secure words." + (skipNote ? " " + skipNote : "");
+    var skipNote = commonSkipped > 0 ? commonSkipped + " word(s) skipped — already on your known-words list." : "";
     setQuizSkipNote(skipNote);
-    setQuizQuestions(questions);
-    setQuizIdx(0);
+    setQuizLearnedNow([]);
     setQuizSelected(null);
-    setQuizScore(0);
     setQuizMenu(false);
+    var first = rvDraw({
+      started: now, filterPos: filterPos, groups: groups, shuffle: shuffle,
+      newQ: newQ, revQ: revQ, learn: learnSaved, extraQ: null,
+      newTotal: newQ.length, revTotal: revQ.length, newShown: 0, revShown: 0,
+      cur: null, answered: [], done: false, finished: false,
+      limitedNew: dueNew.length - newQ.length - learnSaved.length > 0,
+    }, now);
+    setRv(first);
     setQuizMode(true);
   };
+
+  // ── Review session helpers ────────────────────────────────────────────
+  // The day's counts of new words introduced and reviews done, for Anki's
+  // daily limits. Kept on this device: the limit is about how much you take
+  // on in a day, not about any one word, so it does not need to sync.
+  var rvDayCounts = function(now) {
+    var today = studyDay(now);
+    try {
+      var j = JSON.parse(localStorage.getItem("gv_srs_day_v1") || "null");
+      if (j && j.day === today) return { day: today, newSeen: j.newSeen || 0, revSeen: j.revSeen || 0 };
+    } catch (e) {}
+    return { day: today, newSeen: 0, revSeen: 0 };
+  };
+  var rvBumpDay = function(field) {
+    var c = rvDayCounts(Date.now());
+    c[field] = (c[field] || 0) + 1;
+    try { localStorage.setItem("gv_srs_day_v1", JSON.stringify(c)); } catch (e) {}
+  };
+  // Words part-way through their learning steps survive leaving the session,
+  // as they do in Anki: the next session picks them up when they fall due.
+  var rvLoadLearn = function() {
+    try {
+      var j = JSON.parse(localStorage.getItem("gv_srs_learn_v1") || "[]");
+      return Array.isArray(j) ? j.filter(function(l){ return l && l.key; }) : [];
+    } catch (e) { return []; }
+  };
+  var rvSaveLearn = function(list) {
+    try {
+      localStorage.setItem("gv_srs_learn_v1", JSON.stringify(list.map(function(l){
+        return { key: l.key, kind: l.kind, step: l.step, dueAt: l.dueAt };
+      })));
+    } catch (e) {}
+  };
+
+  // One multiple-choice question for one word, built fresh each time the
+  // word comes up, so a word met again in its learning steps gets a new set
+  // of distractors and a different example sentence.
+  var rvQuestion = function(s, v) {
+    var p = (v.pos || "").toLowerCase().trim();
+    var keyOf = function(x){ return x._key || x.id || x.ru; };
+    var siblings = (s.groups[p] || []).concat(learned.filter(function(x){ return (x.pos || "").toLowerCase().trim() === p && x.en; }))
+      .filter(function(x){ return keyOf(x) !== keyOf(v) && x.en !== v.en; });
+    var seenEn = {};
+    var uniq = s.shuffle(siblings).filter(function(x){ if (seenEn[x.en]) return false; seenEn[x.en] = 1; return true; });
+    if (uniq.length < 3) return null;
+    var distractors = uniq.slice(0, 3).map(function(x){ return x.en; });
+    var bx = bankExample(v.ru, v.lemma);
+    var met = Array.isArray(v.sentences) ? v.sentences
+            : (v.srcSentence ? [{ s: v.srcSentence, w: v.srcWhere || "" }] : []);
+    var pick = met.length ? Math.floor(Math.random() * met.length) : 0;
+    return {
+      key: keyOf(v),
+      word: v.ru,
+      lemma: v.lemma || "",
+      audioUrl: v.audioUrl || "",
+      correct: v.en,
+      options: s.shuffle(distractors.concat([v.en])),
+      pos: v.pos,
+      isNew: !(v.srs && v.srs.S),
+      sentence: (met.length ? met[pick].s : (v.example || v.exBankRu || (bx && bx.ru) || "")),
+      sentenceEn: met.length ? "" : (v.exampleTranslation || v.exBankEn || (bx && bx.en) || ""),
+      sentenceWhere: met.length ? (met[pick].w || v.srcTitle || "") : "",
+      sentenceOf: met.length,
+    };
+  };
+
+  // Which card comes next — Anki's order. A learning card whose step is up
+  // goes first. Otherwise new and review cards are interleaved, spreading the
+  // new ones evenly through the reviews. With both of those empty, a learning
+  // card that will be due within twenty minutes is shown early rather than
+  // making you wait (Anki's "learn ahead" limit). Nothing left means done.
+  var rvDraw = function(s0, now) {
+    var s = Object.assign({}, s0, { newQ: s0.newQ.slice(), revQ: s0.revQ.slice(),
+      learn: s0.learn.slice(), extraQ: s0.extraQ ? s0.extraQ.slice() : null });
+    var byKey = function(k){ return (vocabRef.current || []).find(function(v){ return (v._key || v.id || v.ru) === k; }); };
+    for (var guard = 0; guard < 5000; guard++) {
+      var take = null;
+      s.learn.sort(function(a, b){ return a.dueAt - b.dueAt; });
+      if (s.learn.length && s.learn[0].dueAt <= now) {
+        take = Object.assign({ from: "learn" }, s.learn.shift());
+      } else if (s.newQ.length || s.revQ.length) {
+        var wantNew = s.newQ.length && (!s.revQ.length ||
+          (s.newShown + 1) / (s.newTotal + 1) <= (s.revShown + 1) / (s.revTotal + 1));
+        if (wantNew) { take = { from: "new", key: s.newQ.shift() }; s.newShown++; }
+        else { take = { from: "review", key: s.revQ.shift() }; s.revShown++; }
+      } else if (s.learn.length && s.learn[0].dueAt <= now + LEARN_AHEAD_MIN * 60000) {
+        take = Object.assign({ from: "learn" }, s.learn.shift());
+      } else if (s.extraQ && s.extraQ.length) {
+        take = { from: "extra", key: s.extraQ.shift() };
+      } else if (s.learn.length && s.extraQ) {
+        take = Object.assign({ from: "learn" }, s.learn.shift());
+      }
+      if (!take) {
+        s.cur = null; s.done = true;
+        rvSaveLearn(s.learn);
+        return s;
+      }
+      var v = byKey(take.key);
+      var q = v && rvQuestion(s, v);
+      if (!q) continue;                       // removed, retired, or too few siblings
+      s.cur = Object.assign({ shownAt: now }, take, { q: q });
+      s.done = false;
+      rvSaveLearn(s.learn);
+      return s;
+    }
+    s.cur = null; s.done = true;
+    return s;
+  };
+
+  // An answer: the scheduler hears it (Good or Again), then the card either
+  // leaves the session or goes back into its learning steps.
+  var rvAnswer = function(opt) {
+    if (!rv || !rv.cur || quizSelected !== null) return;
+    var now = Date.now();
+    var c = rv.cur;
+    var correct = opt === c.q.correct;
+    setQuizSelected(opt);
+    recordAnswer(c.key, correct);
+    if (c.from === "new") rvBumpDay("newSeen");
+    if (c.from === "review") rvBumpDay("revSeen");
+    setRv(function(s){
+      if (!s || !s.cur || s.cur.key !== c.key) return s;
+      var learn = s.learn.slice();
+      var kind = c.from === "learn" ? c.kind : (c.from === "new" || (c.from === "extra" && c.q.isNew) ? "new" : "relearn");
+      var steps = kind === "new" ? LEARN_STEPS_MIN : RELEARN_STEPS_MIN;
+      var step = c.from === "learn" ? c.step : -1;
+      if (!correct) {
+        learn.push({ key: c.key, kind: kind, step: 0, dueAt: now + steps[0] * 60000 });
+      } else if (c.from === "new" || (c.from === "extra" && c.q.isNew) || c.from === "learn") {
+        var nextStep = c.from === "learn" ? step + 1 : 1;
+        if (nextStep < steps.length) learn.push({ key: c.key, kind: kind, step: nextStep, dueAt: now + steps[nextStep] * 60000 });
+      }
+      rvSaveLearn(learn);
+      return Object.assign({}, s, {
+        learn: learn,
+        answered: s.answered.concat([{ key: c.key, word: c.q.word, correct: correct,
+          from: c.from, kind: c.from === "learn" ? (c.kind === "new" ? "learn" : "relearn") : c.from,
+          ms: Math.min(now - (c.shownAt || now), 60000) }]),
+      });
+    });
+  };
+  var rvNext = function() {
+    setQuizSelected(null);
+    setRv(function(s){ return s ? rvDraw(s, Date.now()) : s; });
+  };
+  // Past the day's limits, for as long as you want: everything still in the
+  // queues, then the least-secure words, weakest first.
+  var rvStudyMore = function() {
+    setQuizSelected(null);
+    setRv(function(s){
+      if (!s) return s;
+      var keyOf = function(v){ return v._key || v.id || v.ru; };
+      var pool = dropCommonWords(vocabRef.current || [], function(v){ return v && v.ru; }).filter(function(v){
+        var p = (v.pos || "").toLowerCase().trim();
+        return v.en && p && (!s.filterPos || p === s.filterPos) && (s.groups[p] || []).length >= 10;
+      });
+      var inLearn = {};
+      s.learn.forEach(function(l){ inLearn[l.key] = 1; });
+      var extra = weakestWords(pool, Date.now()).map(keyOf).filter(function(k){ return !inLearn[k]; });
+      return rvDraw(Object.assign({}, s, { extraQ: extra, finished: false }), Date.now());
+    });
+  };
+  var rvFinish = function() {
+    setRv(function(s){ return s ? Object.assign({}, s, { finished: true }) : s; });
+    try { if (rvAudioRef.current) rvAudioRef.current.pause(); } catch (e) {}
+  };
+  // Remove the card on screen from the vocabulary altogether, after the
+  // confirmation. It leaves this session too; nothing about it is recorded.
+  var rvRemove = function(key) {
+    setRvConfirm(null);
+    setVocab(function(list){ return list.filter(function(v){ return (v._key || v.id || v.ru) !== key; }); });
+    setQuizSelected(null);
+    setRv(function(s){
+      if (!s) return s;
+      var gone = function(k){ return k !== key; };
+      var s2 = Object.assign({}, s, {
+        newQ: s.newQ.filter(gone), revQ: s.revQ.filter(gone),
+        learn: s.learn.filter(function(l){ return l.key !== key; }),
+        extraQ: s.extraQ ? s.extraQ.filter(gone) : null,
+        removed: (s.removed || []).concat([s.cur && s.cur.key === key ? s.cur.q.word : key]),
+      });
+      // The queues no longer hold it, so the next draw cannot pick it even
+      // before the vocabulary list itself catches up.
+      return rvDraw(s2, Date.now());
+    });
+  };
+
+  // The card's own recording, when Wiktionary has one. Wiktionary's Russian
+  // pronunciations live on Wikimedia Commons as Ru-<word>.ogg — the same file
+  // the definition popup plays. The Listen button appears only once the file
+  // has actually loaded, so a word with no recording simply shows no button
+  // (no synthetic voice standing in for it here).
+  useEffect(function() {
+    setRvAudio(null);
+    if (!quizMode || !rv || !rv.cur || rv.finished) return;
+    var q = rv.cur.q;
+    var lemma = String(q.lemma || q.word || "").replace(/́/g, "").trim();
+    if (!lemma) return;
+    var url = q.audioUrl || ("https://commons.wikimedia.org/wiki/Special:FilePath/" +
+      encodeURIComponent("Ru-" + lemma + ".ogg"));
+    var dead = false;
+    var a;
+    try {
+      a = new Audio();
+      a.preload = "auto";
+      a.onloadedmetadata = function(){ if (!dead) setRvAudio({ key: q.key, url: url, playing: false }); };
+      a.onplaying = function(){ if (!dead) setRvAudio(function(x){ return x ? Object.assign({}, x, { playing: true }) : x; }); };
+      a.onended = function(){ if (!dead) setRvAudio(function(x){ return x ? Object.assign({}, x, { playing: false }) : x; }); };
+      a.src = url;
+      rvAudioRef.current = a;
+    } catch (e) {}
+    return function(){
+      dead = true;
+      try { if (a) { a.pause(); a.removeAttribute("src"); } } catch (e) {}
+    };
+  }, [quizMode, rv && rv.cur && rv.cur.key, rv && rv.cur && rv.cur.shownAt, rv && rv.finished]);
+  var rvPlay = function() {
+    var a = rvAudioRef.current;
+    if (!a) return;
+    try { a.currentTime = 0; var pr = a.play(); if (pr && pr.catch) pr.catch(function(){}); } catch (e) {}
+  };
+
+  // Keys, as in Anki: 1–4 pick an answer, Enter or Space moves on.
+  useEffect(function() {
+    if (!quizMode || !rv || !rv.cur || rv.finished || rv.done || rvConfirm) return;
+    var onKey = function(e) {
+      var t = e.target && e.target.tagName;
+      if (t === "INPUT" || t === "TEXTAREA" || t === "SELECT" || (e.target && e.target.isContentEditable)) return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      if (quizSelected === null) {
+        var n = parseInt(e.key, 10);
+        if (n >= 1 && n <= rv.cur.q.options.length) { e.preventDefault(); rvAnswer(rv.cur.q.options[n - 1]); }
+      } else if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault(); rvNext();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return function(){ window.removeEventListener("keydown", onKey); };
+  });
 
   // One answer, into the scheduler. The word's next review date moves, the
   // day's practice count goes up, and a word that has just crossed the
@@ -13087,6 +13303,49 @@ export default function App() {
               color:rgba(42,31,20,.6);white-space:nowrap;transition:color .15s,background .15s,border-color .15s}
         .psay:hover{color:rgba(42,31,20,.85);background:rgba(42,31,20,.08);border-color:rgba(42,31,20,.28)}
         .psay.on{color:#2a1f14;border-color:rgba(160,110,20,.4);background:rgba(160,110,20,.08)}
+        .rv-card{padding:16px 4px 8px}
+        .rv-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}
+        .rv-counts{display:flex;gap:14px;align-items:baseline;font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-variant-numeric:tabular-nums}
+        .rv-counts span{padding-bottom:2px;border-bottom:2px solid transparent}
+        .rv-counts .rv-cur{border-bottom-color:currentColor}
+        .rv-new{color:#2f5d8a}.rv-learn{color:#9d4630}.rv-rev{color:#2f6a3a}
+        .rv-extra{color:rgba(42,31,20,.5);font-size:13px}
+        .rv-rm{background:none;border:1px solid rgba(42,31,20,.18);color:rgba(42,31,20,.6);border-radius:8px;padding:5px 11px;font-size:12px;font-family:'IBM Plex Sans',sans-serif;cursor:pointer}
+        .rv-rm:hover{color:#9d4630;border-color:rgba(157,70,48,.5);background:rgba(157,70,48,.06)}
+        .rv-pos{text-align:center;font-size:12px;color:rgba(0,0,0,.45);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+        .rv-word-row{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:30px;flex-wrap:wrap}
+        .rv-word{font-size:42px;font-family:'Old Standard TT',serif;color:#000;font-weight:600;text-align:center}
+        .rv-opts{display:flex;flex-direction:column;gap:10px;max-width:560px;margin:0 auto}
+        .rv-opt{background:rgba(42,31,20,.04);border:1px solid rgba(42,31,20,.16);color:#000;padding:14px 18px;border-radius:10px;font-size:16px;font-family:'Literata',serif;cursor:pointer;text-align:left;transition:all .15s}
+        .rv-opt:disabled{cursor:default}
+        .rv-opt.ok{background:rgba(90,133,86,.18);border-color:rgba(90,133,86,.6);color:#2f5a2a}
+        .rv-opt.bad{background:rgba(157,70,48,.18);border-color:rgba(157,70,48,.6);color:#9d4630}
+        .rv-opt.dim{color:rgba(0,0,0,.4)}
+        .rv-opt-k{display:inline-block;width:22px;color:rgba(0,0,0,.4);font-family:'IBM Plex Sans',sans-serif;font-size:13px}
+        .rv-keys{margin-top:8px;font-size:11px;color:rgba(0,0,0,.35);font-family:'IBM Plex Sans',sans-serif}
+        @media (hover:none){.rv-keys{display:none}}
+        .rv-done{padding:36px 16px;text-align:center;max-width:560px;margin:0 auto}
+        .rv-done-h{font-family:'Old Standard TT',serif;font-size:26px;color:#000;margin-bottom:10px}
+        .rv-done-lead{font-size:15px;color:rgba(0,0,0,.6);line-height:1.55;margin:0 auto 22px}
+        .rv-done-big{font-size:17px;color:#000;margin-bottom:18px;line-height:1.5}
+        .rv-done-sub{color:rgba(0,0,0,.45);font-size:14px}
+        .rv-stat-row{display:flex;justify-content:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+        .rv-stat{min-width:84px;padding:10px 12px;border:1px solid rgba(42,31,20,.12);border-radius:10px;background:rgba(42,31,20,.03);display:flex;flex-direction:column;align-items:center}
+        .rv-stat-n{font-size:22px;font-family:'IBM Plex Sans',sans-serif;font-variant-numeric:tabular-nums;color:#000}
+        .rv-stat-l{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:rgba(0,0,0,.45);margin-top:2px}
+        .rv-stat-n.rv-good{color:#2f6a3a}.rv-stat-n.rv-again{color:#9d4630}.rv-stat-n.rv-new{color:#2f5d8a}.rv-stat-n.rv-learn{color:#9d4630}.rv-stat-n.rv-rev{color:#2f6a3a}
+        .rv-done-miss{font-size:14px;color:rgba(0,0,0,.65);margin:14px auto 0;line-height:1.55}
+        .rv-done-learned{font-size:14px;color:#1e7a3c;margin:14px auto 0;line-height:1.55}
+        .rv-done-note{font-size:12px;color:rgba(0,0,0,.45);font-style:italic;margin:12px auto 0}
+        .rv-done-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+        .rv-cfm-over{position:fixed;inset:0;background:rgba(26,22,17,.55);z-index:300;display:flex;align-items:center;justify-content:center;padding:20px}
+        .rv-cfm{background:#fbf8f2;border:1px solid rgba(42,31,20,.16);border-radius:14px;max-width:400px;width:100%;padding:22px 22px 18px;box-shadow:0 10px 40px rgba(0,0,0,.25)}
+        .rv-cfm-h{font-family:'Old Standard TT',serif;font-size:21px;color:#000;margin-bottom:10px}
+        .rv-cfm-p{font-size:14px;line-height:1.55;color:rgba(0,0,0,.7);margin:0 0 18px}
+        .rv-cfm-btns{display:flex;gap:10px;justify-content:flex-end}
+        .rv-cfm-btns .btn-g{width:auto;padding:9px 16px}
+        .rv-cfm-del{background:#9d4630;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:14px;font-family:'IBM Plex Sans',sans-serif;cursor:pointer}
+        .rv-cfm-del:hover{background:#86391f}
         .panel{flex:1;padding:28px;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
         .phdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
         .pti{font-family:'Old Standard TT',serif;font-size:20px;color:#000}
@@ -19529,95 +19788,162 @@ export default function App() {
         {tab==="vocab" && (
           <div className="panel">
             {quizMode ? (
-              // ── Quiz view ──────────────────────────────────────────────
+              // ── Review session (Anki-style) ─────────────────────────────
               <>
                 <div className="phdr">
-                  <span className="pti">Vocabulary quiz</span>
-                  <button className="ab" onClick={function(){ setQuizMode(false); setQuizMenu(true); }}>← Back</button>
+                  <span className="pti">Review</span>
+                  {rv && !rv.finished
+                    ? <button className="ab" onClick={rvFinish}>Finish</button>
+                    : <button className="ab" onClick={function(){ setQuizMode(false); setQuizMenu(true); setRv(null); }}>← Back</button>}
                 </div>
-                {quizQuestions.length === 0 ? (
-                  <div style={{padding:"40px 20px",textAlign:"center"}}>
-                    <p style={{color:"rgba(0,0,0,.7)",fontSize:15,lineHeight:1.6,maxWidth:480,margin:"0 auto"}}>{quizSkipNote}</p>
-                    <button className="btn-g" style={{marginTop:24,maxWidth:280}} onClick={function(){ setQuizMode(false); }}>Back to vocab list</button>
-                  </div>
-                ) : quizIdx >= quizQuestions.length ? (
-                  // Final score screen
-                  <div style={{padding:"40px 20px",textAlign:"center"}}>
-                    <div style={{fontSize:48,marginBottom:12}}>{quizScore === quizQuestions.length ? "🎉" : quizScore >= quizQuestions.length * 0.7 ? "👏" : "📚"}</div>
-                    <h2 style={{fontFamily:"'Old Standard TT',serif",fontSize:26,color:"#000",marginBottom:8}}>Quiz Complete!</h2>
-                    <p style={{fontSize:20,color:"#000",marginBottom:6}}>You got <strong style={{color:"#000"}}>{quizScore}</strong> of <strong>{quizQuestions.length}</strong> correct.</p>
-                    <p style={{fontSize:14,color:"rgba(0,0,0,.5)",marginBottom:28}}>{Math.round(quizScore / quizQuestions.length * 100)}%</p>
-                    {quizLearnedNow.length > 0 && (
-                      <p style={{fontSize:14,color:"#1e7a3c",marginBottom:14,maxWidth:460,margin:"0 auto 14px"}}>
-                        🎓 Learned and retired from your list: <strong>{quizLearnedNow.join(", ")}</strong>. They stay under Learned words on the Vocabulary tab if you ever want them back.
-                      </p>
-                    )}
-                    {quizSkipNote && <p style={{fontSize:12,color:"rgba(0,0,0,.4)",fontStyle:"italic",marginBottom:20,maxWidth:440,margin:"0 auto 20px"}}>{quizSkipNote}</p>}
-                    <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
-                      <button className="btn-p" style={{maxWidth:200}} onClick={startQuiz}>Retake quiz</button>
-                      <button className="btn-g" style={{maxWidth:200}} onClick={function(){ setQuizMode(false); setQuizMenu(false); }}>Back to vocab list</button>
-                    </div>
-                  </div>
-                ) : (
-                  // Current question
-                  <div style={{padding:"20px 4px"}}>
-                    <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:18,fontSize:13,color:"rgba(0,0,0,.5)"}}>
-                      <span>Question {quizIdx + 1} of {quizQuestions.length}</span>
-                      <span>Score: {quizScore} / {quizIdx + (quizSelected !== null ? 1 : 0)}</span>
-                    </div>
-                    {/* The Russian word being quizzed */}
-                    <div style={{textAlign:"center",marginBottom:8}}>
-                      <span style={{fontSize:12,color:"rgba(0,0,0,.45)",textTransform:"uppercase",letterSpacing:1.5}}>{quizQuestions[quizIdx].pos}{quizQuestions[quizIdx].isNew ? " \u00b7 first review" : ""}</span>
-                    </div>
-                    <div style={{fontSize:42,fontFamily:"'Old Standard TT',serif",color:"#000",textAlign:"center",marginBottom:30,fontWeight:600}}>
-                      {quizQuestions[quizIdx].word}
-                    </div>
-                    {/* Multiple choice options */}
-                    <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:560,margin:"0 auto"}}>
-                      {quizQuestions[quizIdx].options.map(function(opt, i) {
-                        var isCorrect = opt === quizQuestions[quizIdx].correct;
-                        var isPicked  = opt === quizSelected;
-                        var bg = "rgba(42,31,20,.04)", brd = "rgba(42,31,20,.16)", col = "#000";
-                        if (quizSelected !== null) {
-                          if (isCorrect)      { bg = "rgba(90,133,86,.18)";  brd = "rgba(90,133,86,.6)";  col = "#2f5a2a"; }
-                          else if (isPicked)  { bg = "rgba(157,70,48,.18)";  brd = "rgba(157,70,48,.6)";  col = "#9d4630"; }
-                          else                { col = "rgba(0,0,0,.4)"; }
-                        }
-                        return (
-                          <button key={i} disabled={quizSelected !== null} onClick={function(){
-                            setQuizSelected(opt);
-                            if (isCorrect) setQuizScore(function(s){ return s + 1; });
-                            recordAnswer(quizQuestions[quizIdx].key, isCorrect);
-                          }} style={{background:bg,border:"1px solid "+brd,color:col,padding:"14px 18px",borderRadius:10,fontSize:16,fontFamily:"'Literata',serif",cursor: quizSelected !== null ? "default" : "pointer", textAlign:"left", transition:"all .15s"}}>
-                            <span style={{display:"inline-block",width:20,color:"rgba(0,0,0,.45)",fontFamily:"'IBM Plex Sans',sans-serif",fontSize:13}}>{String.fromCharCode(65 + i)}.</span>
-                            {opt}
-                          </button>
-                        );
-                      })}
-                    </div>
-                    {quizSelected !== null && quizQuestions[quizIdx].sentence && (
-                      <div className="qex">
-                        <p className="qex-s" lang="ru">{markWord(quizQuestions[quizIdx].sentence, quizQuestions[quizIdx].word).map(function(part, i){
-                          return i === 1 ? <b key={i}>{part}</b> : <span key={i}>{part}</span>;
-                        })}</p>
-                        {quizQuestions[quizIdx].sentenceEn && <div className="qex-en">{quizQuestions[quizIdx].sentenceEn}</div>}
-                        {quizQuestions[quizIdx].sentenceWhere && (
-                          <div className="qex-src">{quizQuestions[quizIdx].sentenceWhere}
-                            {quizQuestions[quizIdx].sentenceOf > 1 ? " · one of " + quizQuestions[quizIdx].sentenceOf + " places you met it" : ""}
-                          </div>
+                {(function(){
+                  if (!rv) return null;
+                  var ans = rv.answered;
+                  // What the session did — Anki's end-of-session numbers, plus
+                  // the words that tripped you up.
+                  var stats = function(title, lead) {
+                    var n = ans.length;
+                    var right = ans.filter(function(a){ return a.correct; }).length;
+                    var secs = ans.reduce(function(t, a){ return t + (a.ms || 0); }, 0) / 1000;
+                    var mins = Math.max(0, (Date.now() - rv.started) / 60000);
+                    var words = {};
+                    ans.forEach(function(a){ words[a.key] = 1; });
+                    var nw = Object.keys(words).length;
+                    var kinds = { new: 0, learn: 0, review: 0, relearn: 0, extra: 0 };
+                    ans.forEach(function(a){ kinds[a.kind] = (kinds[a.kind] || 0) + 1; });
+                    var missed = [];
+                    var seenMiss = {};
+                    ans.forEach(function(a){ if (!a.correct && !seenMiss[a.key]) { seenMiss[a.key] = 1; missed.push(a.word); } });
+                    return (
+                      <div className="rv-done">
+                        <h2 className="rv-done-h">{title}</h2>
+                        {lead && <p className="rv-done-lead">{lead}</p>}
+                        {n === 0 ? (
+                          <p className="rv-done-lead">No cards answered in this session.</p>
+                        ) : (
+                          <>
+                            <p className="rv-done-big">
+                              Studied <b>{n}</b> card{n === 1 ? "" : "s"} ({nw} word{nw === 1 ? "" : "s"}) in <b>{mins < 1 ? "under a minute" : (Math.round(mins * 10) / 10) + " min"}</b>
+                              <span className="rv-done-sub"> · {(Math.round(secs / n * 10) / 10)}s per card</span>
+                            </p>
+                            <div className="rv-stat-row">
+                              <div className="rv-stat"><span className="rv-stat-n rv-good">{right}</span><span className="rv-stat-l">Good</span></div>
+                              <div className="rv-stat"><span className="rv-stat-n rv-again">{n - right}</span><span className="rv-stat-l">Again</span></div>
+                              <div className="rv-stat"><span className="rv-stat-n">{Math.round(right / n * 100)}%</span><span className="rv-stat-l">Correct</span></div>
+                            </div>
+                            <div className="rv-stat-row rv-stat-kinds">
+                              <div className="rv-stat"><span className="rv-stat-n rv-new">{kinds.new}</span><span className="rv-stat-l">New</span></div>
+                              <div className="rv-stat"><span className="rv-stat-n rv-learn">{kinds.learn + kinds.relearn}</span><span className="rv-stat-l">Learning</span></div>
+                              <div className="rv-stat"><span className="rv-stat-n rv-rev">{kinds.review}</span><span className="rv-stat-l">Review</span></div>
+                              {kinds.extra > 0 && <div className="rv-stat"><span className="rv-stat-n">{kinds.extra}</span><span className="rv-stat-l">Extra</span></div>}
+                            </div>
+                            {missed.length > 0 && (
+                              <p className="rv-done-miss">Missed this session: <span lang="ru">{missed.join(", ")}</span></p>
+                            )}
+                          </>
+                        )}
+                        {quizLearnedNow.length > 0 && (
+                          <p className="rv-done-learned">
+                            Learned and retired from your list: <strong lang="ru">{quizLearnedNow.join(", ")}</strong>. They stay under Learned words on the Vocabulary tab if you ever want them back.
+                          </p>
+                        )}
+                        {rv.removed && rv.removed.length > 0 && (
+                          <p className="rv-done-miss">Removed from your vocabulary: <span lang="ru">{rv.removed.join(", ")}</span></p>
+                        )}
+                        {rv.learn.length > 0 && (
+                          <p className="rv-done-note">{rv.learn.length} word{rv.learn.length === 1 ? " is" : "s are"} still in learning steps and will come back in your next session.</p>
+                        )}
+                        {quizSkipNote && <p className="rv-done-note">{quizSkipNote}</p>}
+                        <div className="rv-done-btns">
+                          {!rv.finished && <button className="btn-p" style={{maxWidth:220}} onClick={rvStudyMore}>Study more</button>}
+                          {rv.finished && !rv.done && <button className="btn-p" style={{maxWidth:220}} onClick={function(){ setRv(function(s){ return s ? Object.assign({}, s, { finished: false }) : s; }); }}>Keep reviewing</button>}
+                          <button className="btn-g" style={{maxWidth:220}} onClick={function(){ setQuizMode(false); setQuizMenu(false); setRv(null); }}>Back to vocab list</button>
+                        </div>
+                      </div>
+                    );
+                  };
+                  if (rv.finished) return stats("Session finished", null);
+                  if (rv.done || !rv.cur) {
+                    return stats("Congratulations! You have finished for now.",
+                      rv.extraQ
+                        ? "You have been through every word that can be asked."
+                        : ("Every word that is due has been reviewed" +
+                           (rv.limitedNew ? ", and today's " + NEW_PER_DAY + " new words have been introduced" : "") +
+                           ". Study more to keep going with your least-secure words."));
+                  }
+                  var c = rv.cur, q = c.q;
+                  var countNew = rv.newQ.length + (c.from === "new" ? 1 : 0);
+                  var countLearn = rv.learn.length + (c.from === "learn" ? 1 : 0);
+                  var countRev = rv.revQ.length + (c.from === "review" ? 1 : 0);
+                  var answered = quizSelected !== null;
+                  return (
+                    <div className="rv-card">
+                      <div className="rv-top">
+                        <div className="rv-counts" title="New · Learning · Review still to go in this session">
+                          <span className={"rv-new" + (c.from === "new" ? " rv-cur" : "")}>{countNew}</span>
+                          <span className={"rv-learn" + (c.from === "learn" ? " rv-cur" : "")}>{countLearn}</span>
+                          <span className={"rv-rev" + (c.from === "review" ? " rv-cur" : "")}>{countRev}</span>
+                          {rv.extraQ && <span className="rv-extra">+{rv.extraQ.length + (c.from === "extra" ? 1 : 0)} more</span>}
+                        </div>
+                        <button className="rv-rm" title="Remove this word from your vocabulary"
+                                onClick={function(){ setRvConfirm({ key: c.key, word: q.word }); }}>Remove card</button>
+                      </div>
+                      <div className="rv-pos">{q.pos}{c.from === "learn" ? " · learning" : (q.isNew ? " · new" : "")}</div>
+                      <div className="rv-word-row">
+                        <div className="rv-word" lang="ru">{q.word}</div>
+                        {rvAudio && rvAudio.key === c.key && rvAudio.url && (
+                          <button className={"psay" + (rvAudio.playing ? " on" : "")} title="Listen" aria-label={"Pronounce " + q.word}
+                                  onClick={rvPlay}>Listen</button>
                         )}
                       </div>
-                    )}
-                    {quizSelected !== null && (
-                      <div style={{marginTop:24,textAlign:"center"}}>
-                        <button className="btn-p" style={{maxWidth:280}} onClick={function(){
-                          setQuizIdx(function(i){ return i + 1; });
-                          setQuizSelected(null);
-                        }}>
-                          {quizIdx + 1 < quizQuestions.length ? "Next →" : "See results"}
-                        </button>
+                      <div className="rv-opts">
+                        {q.options.map(function(opt, i) {
+                          var isCorrect = opt === q.correct;
+                          var isPicked  = opt === quizSelected;
+                          var cls = "rv-opt";
+                          if (answered) cls += isCorrect ? " ok" : (isPicked ? " bad" : " dim");
+                          return (
+                            <button key={i} className={cls} disabled={answered} onClick={function(){ rvAnswer(opt); }}>
+                              <span className="rv-opt-k">{i + 1}</span>{opt}
+                            </button>
+                          );
+                        })}
                       </div>
-                    )}
+                      {answered && q.sentence && (
+                        <div className="qex">
+                          <p className="qex-s" lang="ru">{markWord(q.sentence, q.word).map(function(part, i){
+                            return i === 1 ? <b key={i}>{part}</b> : <span key={i}>{part}</span>;
+                          })}</p>
+                          {q.sentenceEn && <div className="qex-en">{q.sentenceEn}</div>}
+                          {q.sentenceWhere && (
+                            <div className="qex-src">{q.sentenceWhere}
+                              {q.sentenceOf > 1 ? " · one of " + q.sentenceOf + " places you met it" : ""}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                      {answered && (
+                        <div style={{marginTop:24,textAlign:"center"}}>
+                          <button className="btn-p" style={{maxWidth:280}} onClick={rvNext}>Next →</button>
+                          <div className="rv-keys">keys 1–4 to answer · Enter or Space for next</div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })()}
+                {rvConfirm && (
+                  <div className="rv-cfm-over" onClick={function(e){ if (e.target === e.currentTarget) setRvConfirm(null); }}>
+                    <div className="rv-cfm" role="alertdialog" aria-label="Remove this card?">
+                      <div className="rv-cfm-h">Remove this card?</div>
+                      <p className="rv-cfm-p">
+                        <b lang="ru">{rvConfirm.word}</b> will be deleted from your vocabulary, with its review
+                        history. This can't be undone — you would have to save the word again from a book.
+                      </p>
+                      <div className="rv-cfm-btns">
+                        <button className="btn-g" onClick={function(){ setRvConfirm(null); }}>Cancel</button>
+                        <button className="rv-cfm-del" onClick={function(){ rvRemove(rvConfirm.key); }}>Remove</button>
+                      </div>
+                    </div>
                   </div>
                 )}
               </>
