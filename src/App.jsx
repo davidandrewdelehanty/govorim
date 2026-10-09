@@ -11344,7 +11344,7 @@ export default function App() {
   };
   var rvFinish = function() {
     setRv(function(s){ return s ? Object.assign({}, s, { finished: true }) : s; });
-    try { if (rvAudioRef.current) rvAudioRef.current.pause(); } catch (e) {}
+    try { var set = rvAudioRef.current; if (set && set.clips) { set.gen++; set.clips.forEach(function(c){ if (c.el) c.el.pause(); }); } } catch (e) {}
   };
   // Remove the card on screen from the vocabulary altogether, after the
   // confirmation. It leaves this session too; nothing about it is recorded.
@@ -11369,37 +11369,66 @@ export default function App() {
 
   // The card's own recording, when Wiktionary has one. Wiktionary's Russian
   // pronunciations live on Wikimedia Commons as Ru-<word>.ogg — the same file
-  // the definition popup plays. The Listen button appears only once the file
-  // has actually loaded, so a word with no recording simply shows no button
-  // (no synthetic voice standing in for it here).
+  // the definition popup plays. A verb saved with its aspect partner
+  // («садиться / сесть») has a recording for each, and Listen plays them in
+  // the order the card shows them, with a short pause between. The button
+  // appears once at least one file has actually loaded, so a word with no
+  // recording simply shows no button (no synthetic voice standing in here).
   useEffect(function() {
     setRvAudio(null);
+    rvAudioRef.current = null;
     if (!quizMode || !rv || !rv.cur || rv.finished) return;
     var q = rv.cur.q;
-    var lemma = String(q.lemma || q.word || "").replace(/́/g, "").trim();
-    if (!lemma) return;
-    var url = q.audioUrl || ("https://commons.wikimedia.org/wiki/Special:FilePath/" +
-      encodeURIComponent("Ru-" + lemma + ".ogg"));
+    var clean = function(w){ return String(w || "").replace(/\u0301/g, "").trim(); };
+    var heads = String(q.word || "").split(/\s*\/\s*/).map(clean).filter(Boolean);
+    if (heads.length < 2) heads = [clean(q.lemma || q.word)].filter(Boolean);
+    if (!heads.length) return;
     var dead = false;
-    var a;
-    try {
-      a = new Audio();
-      a.preload = "auto";
-      a.onloadedmetadata = function(){ if (!dead) setRvAudio({ key: q.key, url: url, playing: false }); };
-      a.onplaying = function(){ if (!dead) setRvAudio(function(x){ return x ? Object.assign({}, x, { playing: true }) : x; }); };
-      a.onended = function(){ if (!dead) setRvAudio(function(x){ return x ? Object.assign({}, x, { playing: false }) : x; }); };
-      a.src = url;
-      rvAudioRef.current = a;
-    } catch (e) {}
+    var clips = heads.map(function(h, i){
+      var url = (heads.length === 1 && q.audioUrl) ? q.audioUrl
+        : "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent("Ru-" + h + ".ogg");
+      var c = { word: h, url: url, ok: false, el: null };
+      try {
+        var a = new Audio();
+        a.preload = "auto";
+        a.onloadedmetadata = function(){
+          if (dead) return;
+          c.ok = true;
+          setRvAudio(function(x){ return (x && x.key === q.key) ? x : { key: q.key, playing: false }; });
+        };
+        a.src = url;
+        c.el = a;
+      } catch (e) {}
+      return c;
+    });
+    rvAudioRef.current = { key: q.key, clips: clips, gen: 0 };
     return function(){
       dead = true;
-      try { if (a) { a.pause(); a.removeAttribute("src"); } } catch (e) {}
+      clips.forEach(function(c){ try { if (c.el) { c.el.pause(); c.el.removeAttribute("src"); } } catch (e) {} });
     };
   }, [quizMode, rv && rv.cur && rv.cur.key, rv && rv.cur && rv.cur.shownAt, rv && rv.finished]);
   var rvPlay = function() {
-    var a = rvAudioRef.current;
-    if (!a) return;
-    try { a.currentTime = 0; var pr = a.play(); if (pr && pr.catch) pr.catch(function(){}); } catch (e) {}
+    var set = rvAudioRef.current;
+    if (!set || !set.clips) return;
+    var list = set.clips.filter(function(c){ return c.ok && c.el; });
+    if (!list.length) return;
+    set.clips.forEach(function(c){ try { if (c.el) c.el.pause(); } catch (e) {} });
+    var gen = ++set.gen;                      // a second tap restarts the sequence
+    var setPlaying = function(on){ setRvAudio(function(x){ return x ? Object.assign({}, x, { playing: on }) : x; }); };
+    var i = 0;
+    var next = function() {
+      if (gen !== set.gen || rvAudioRef.current !== set) return;
+      if (i >= list.length) { setPlaying(false); return; }
+      var el = list[i++].el;
+      el.onended = function(){ setTimeout(next, i < list.length ? 600 : 0); };
+      try {
+        el.currentTime = 0;
+        var pr = el.play();
+        if (pr && pr.catch) pr.catch(function(){ next(); });
+      } catch (e) { next(); }
+    };
+    setPlaying(true);
+    next();
   };
 
   // Keys, as in Anki: 1–4 pick an answer, Enter or Space moves on.
@@ -20094,7 +20123,7 @@ export default function App() {
                       })()}
                       <div className="rv-word-row">
                         <div className="rv-word" lang="ru">{q.word}</div>
-                        {rvAudio && rvAudio.key === c.key && rvAudio.url && (
+                        {rvAudio && rvAudio.key === c.key && (
                           <button className={"psay" + (rvAudio.playing ? " on" : "")} title="Listen" aria-label={"Pronounce " + q.word}
                                   onClick={rvPlay}>Listen</button>
                         )}
