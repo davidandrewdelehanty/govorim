@@ -2047,6 +2047,7 @@ function ProgressPanel(props) {
       <dl className="ledger">
         <div><dt>Books finished</dt><dd>{shelf.length}</dd></div>
         <div><dt>Words learned</dt><dd>{learnedN}</dd></div>
+        <div><dt>Cards reviewed</dt><dd>{fmtInt(tot.practiced || 0)}</dd></div>
         <div><dt>Days of reading</dt><dd>{tot.days}</dd></div>
         <div><dt>Longest streak</dt><dd>{st.longest}</dd></div>
       </dl>
@@ -13361,12 +13362,12 @@ export default function App() {
         .leaf.today b{color:#000}
         .cal-foot{display:flex;justify-content:space-between;gap:10px;margin-top:10px;font-size:13px;color:rgba(42,31,20,.6);font-style:italic}
         /* the ledger */
-        .ledger{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:0;border-top:1px solid rgba(42,31,20,.18);border-bottom:1px solid rgba(42,31,20,.18)}
+        .ledger{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin:0;border-top:1px solid rgba(42,31,20,.18);border-bottom:1px solid rgba(42,31,20,.18)}
         .ledger>div{padding:10px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;border-left:1px solid rgba(42,31,20,.1)}
         .ledger>div:first-child{border-left:none}
         .ledger dt{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(42,31,20,.55);text-align:center}
         .ledger dd{margin:0;font-family:'Old Standard TT',serif;font-size:24px;font-weight:600;color:#2a1f14;font-variant-numeric:tabular-nums;line-height:1}
-        @media (max-width:520px){.ledger{grid-template-columns:repeat(2,1fr)}.ledger>div:nth-child(3){border-left:none}.ledger>div:nth-child(n+3){border-top:1px solid rgba(42,31,20,.1)}
+        @media (max-width:520px){.ledger{grid-template-columns:repeat(2,1fr)}.ledger>div:nth-child(3),.ledger>div:nth-child(5){border-left:none}.ledger>div:nth-child(n+3){border-top:1px solid rgba(42,31,20,.1)}.ledger>div:nth-child(5){grid-column:1 / -1}
           .prog-num{font-size:52px}}
         .prog-due{align-self:center;background:none;border:1px solid rgba(30,122,60,.45);color:#1e7a3c;border-radius:999px;
           padding:7px 16px;font-family:'Literata',serif;font-size:15px;cursor:pointer;margin-top:-6px}
@@ -16924,7 +16925,7 @@ export default function App() {
             <div className="ss">
               <h1 className="sti">Leaderboard</h1>
               <p className="sde">
-                The readers who have learned the most words and read the most books.
+                The readers who have reviewed the most cards and read the most words.
               </p>
               {me && !me.username && (
                 <div className="lb-join">
@@ -16940,7 +16941,7 @@ export default function App() {
               ) : (
                 <div className="lb-cols">
                   {[
-                    { key: "learned", h: "Words learned", sub: "retired by practice — a word counts once the review scheduler has seen it answered right often enough", unit: "words" },
+                    { key: "reviewed", h: "Cards reviewed", sub: "every answer given in vocabulary review, right or wrong", unit: "cards" },
                     { key: "words", h: "Words read", sub: "Russian words read, counted as you go — a short story counts what it is, and so does a novel", unit: "words" },
                   ].map(function(col){
                     var rows = boards[col.key] || [];
@@ -16970,9 +16971,9 @@ export default function App() {
                 </div>
               )}
               <p className="lib-reads-note">
-                Only readers who have set a username appear here. Words learned count
-                only when practice retires them — saving a word does not, and neither
-                does putting one back. Words read are counted page by page as you
+                Only readers who have set a username appear here. Cards reviewed counts
+                every answer in vocabulary review. The words you have learned — retired
+                from review once you know them — are in your own reading record. Words read are counted page by page as you
                 read, the same figure your own reading record shows, so finishing a
                 long book is worth what it costs and a poem is worth a poem.
               </p>
