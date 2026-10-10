@@ -62,6 +62,56 @@ MUSIC_REL = {
 # common case doesn't depend on remembering to change it.
 DEFAULT_CATALOGUE = "private"
 
+# Songs waiting for their lyrics: built from the YouTube playlist by
+# tools/playlist_pending.py, with the artist already resolved to the ORIGINAL
+# artist for covers. Each one is filled in from the form (lyrics pasted by
+# hand) and leaves the queue once it is added. Never published as it stands.
+PENDING_FILE = os.path.join(REPO, "tools", "music-pending.json")
+
+def load_pending():
+    try:
+        return json.load(open(PENDING_FILE, encoding="utf-8"))
+    except Exception:
+        return []
+
+def save_pending(items):
+    tmp = PENDING_FILE + ".tmp"
+    json.dump(items, open(tmp, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    os.replace(tmp, PENDING_FILE)
+
+def drop_pending(pid):
+    items = load_pending()
+    keep = [x for x in items if x.get("id") != pid]
+    if len(keep) != len(items):
+        save_pending(keep)
+    return len(items) - len(keep)
+
+def pending_html(current=""):
+    items = load_pending()
+    if not items:
+        return ""
+    rows = []
+    for x in items:
+        extra = []
+        if x.get("performer"):
+            extra.append("performed by " + html.escape(x["performer"]))
+        if x.get("note"):
+            extra.append('<span class="pnote">%s</span>' % html.escape(x["note"]))
+        rows.append(
+            '<div class="prow%s"><a href="/?pending=%s"><b>%s</b> \u2014 %s</a>%s'
+            '<form method="post" action="/pending/skip" enctype="multipart/form-data">'
+            '<input type="hidden" name="pending" value="%s">'
+            '<button type="submit" class="pskip" title="Drop it from the list">skip</button></form></div>'
+            % (" cur" if x.get("id") == current else "", html.escape(x["id"]),
+               html.escape(x.get("artist") or ""), html.escape(x.get("title") or ""),
+               (' <span class="pmeta">' + " \u00b7 ".join(extra) + "</span>") if extra else "",
+               html.escape(x["id"])))
+    return ('<h2>From your playlist <span class="count">%d waiting for lyrics</span></h2>'
+            '<p class="hint">Click one to fill in the form with its artist, title and video; '
+            'paste the lyrics and add it. A song marked "check" needs a look at the artist '
+            'or title first \u2014 fix them in the form before adding.</p>'
+            '<div class="plist">%s</div>' % (len(items), "".join(rows)))
+
 def music_path(which=None):
     return MUSIC_FILES["private"]
 PORT = 8765
@@ -301,6 +351,18 @@ def chapter_headings(b):
             stack.append((m.end(), False))
     return list(enumerate(out))
 
+STYLE_EXTRA = """<style>
+.plist{max-height:360px;overflow-y:auto;border:1px solid #3a3229;border-radius:8px;padding:4px 8px;margin-bottom:22px}
+.prow{display:flex;align-items:baseline;gap:8px;padding:5px 2px;border-bottom:1px solid #2a241d;flex-wrap:wrap}
+.prow.cur{background:#2d261e}
+.prow a{color:inherit;text-decoration:none;flex:1;min-width:200px}
+.prow a:hover b{text-decoration:underline}
+.pmeta{font-size:12px;opacity:.65}
+.pnote{color:#d9a35b}
+.prow form{margin:0}
+.pskip{background:none;border:1px solid #4a4036;color:#a89a88;border-radius:6px;font-size:11px;padding:2px 8px;cursor:pointer}
+</style>"""
+
 STYLE = """
 <style>
  body{background:#1a1611;color:#e8ddcb;font-family:Georgia,serif;max-width:640px;
@@ -439,6 +501,8 @@ Change the artist to move the song to a different one.</div>
  <datalist id="artists">%s</datalist>
  <label>Song title</label>
  <input type="text" name="title" value="%s" required>
+ <label>Performed by (only if the video is a cover)</label>
+ <input type="text" name="performer" value="%s">
  <label>YouTube link (or bare video ID)</label>
  <input type="text" name="youtube" value="%s" required>
  <label>Lyrics</label>
@@ -457,6 +521,7 @@ Change the artist to move the song to a different one.</div>
               html.escape(song.get("artist_shown") or orig_artist),
               artists,
               html.escape(song.get("title") or ""),
+              html.escape(song.get("performer") or ""),
               html.escape(song.get("youtube") or ""),
               html.escape(song.get("lyrics") or ""),
               html.escape(which))
@@ -485,7 +550,10 @@ def confirm_page(which, artist, title, lines):
               html.escape(which), html.escape(artist), html.escape(title),
               html.escape(which))
 
-def form_page(msg="", which="private"):
+def form_page(msg="", which="private", pre=None):
+    pre = pre or {}
+    def v(k):
+        return html.escape(pre.get(k) or "")
     artists = ""
     try:
         seen, opts = set(), []
@@ -501,29 +569,33 @@ def form_page(msg="", which="private"):
         '<option value="%s"%s>%s</option>' % (k, " selected" if k == which else "", MUSIC_LABELS[k])
         for k in ("private", "public", "both")
     )
-    return """<!doctype html><meta charset="utf-8"><title>Govorim — add song</title>%s
+    return """<!doctype html><meta charset="utf-8"><title>Govorim — add song</title>%s""" % STYLE_EXTRA + """%s
 <a class="quit" href="/quit">quit</a>
 <h1>Add a song</h1>
 <p class="hint"><a href="/videos" style="color:#c4955a">Chapter videos →</a> — attach a YouTube reading to a chapter of any book</p>%s
 <form method="post" action="/add" enctype="multipart/form-data">
  <div class="hint">Every song goes to both Govorim and Samovar — one list.</div>
+ <input type="hidden" name="pending" value="%s">
  <label>Artist</label>
- <input type="text" name="artist" list="artists" required>
+ <input type="text" name="artist" list="artists" value="%s" required>
  <datalist id="artists">%s</datalist>
- <div class="hint">pick an existing artist or type a new one</div>
+ <div class="hint">pick an existing artist or type a new one — for a cover, the ORIGINAL artist</div>
  <label>Song title</label>
- <input type="text" name="title" required>
+ <input type="text" name="title" value="%s" required>
+ <label>Performed by (only if the video is a cover)</label>
+ <input type="text" name="performer" value="%s">
  <label>YouTube link (or bare video ID)</label>
- <input type="text" name="youtube" required>
+ <input type="text" name="youtube" value="%s" required>
  <label>Lyrics — paste here…</label>
- <textarea name="lyrics" placeholder="Paste the lyrics…"></textarea>
+ <textarea name="lyrics" placeholder="Paste the lyrics…">%s</textarea>
  <label>…or choose a .txt file instead</label>
  <input type="file" name="lyricsfile" accept=".txt">
  <div class="row">
   <button type="submit">Add song</button>
  </div>
 </form>
-%s""" % (STYLE, msg, artists, catalogue_html(which))
+%s%s""" % (STYLE, msg, v("pending"), v("artist"), artists, v("title"), v("performer"), v("youtube"), v("lyrics"),
+               pending_html(pre.get("pending") or ""), catalogue_html(which))
 
 
 def videos_index_page(msg=""):
@@ -665,6 +737,17 @@ class H(BaseHTTPRequestHandler):
             return
         if (self.path or "").startswith("/videos"):
             return self._send(videos_index_page())
+        qs = urllib.parse.parse_qs(urllib.parse.urlparse(self.path or "").query)
+        pid = (qs.get("pending") or [""])[0]
+        if pid:
+            item = next((x for x in load_pending() if x.get("id") == pid), None)
+            if item:
+                note = ('<div class="ok">Filled in from your playlist%s. Paste the lyrics, '
+                        'check the artist and title, and add it.</div>'
+                        % ((' \u2014 <b>note:</b> ' + html.escape(item["note"])) if item.get("note") else ""))
+                return self._send(form_page(note, "private", {
+                    "pending": item["id"], "artist": item.get("artist"), "title": item.get("title"),
+                    "performer": item.get("performer"), "youtube": item.get("youtube")}))
         self._send(form_page("", "private"))
 
     def _parse(self):
@@ -717,6 +800,10 @@ class H(BaseHTTPRequestHandler):
         if self.path.startswith("/videos/book"):
             bid = (fields.get("book") or "").strip()
             return self._send(videos_index_page() if not bid else book_videos_page(bid))
+        if self.path.startswith("/pending/skip"):
+            n = drop_pending((fields.get("pending") or "").strip())
+            return self._send(form_page('<div class="ok">%s</div>' % (
+                "Dropped from the playlist list." if n else "Already gone from the list."), "private"))
         if self.path.startswith("/copy"):
             return self.act_copy(fields, multi)
         if self.path.startswith("/delete/confirm"):
@@ -875,6 +962,11 @@ class H(BaseHTTPRequestHandler):
         song["title"] = title
         song["youtube"] = vid
         song["lyrics"] = lyrics
+        performer = fields.get("performer", "").strip()
+        if performer:
+            song["performer"] = performer
+        else:
+            song.pop("performer", None)
 
         dropped = False
         if moving:
@@ -1055,6 +1147,8 @@ class H(BaseHTTPRequestHandler):
         title = fields.get("title", "").strip()
         yt = fields.get("youtube", "").strip()
         lyrics = fields.get("lyrics", "").strip()
+        performer = fields.get("performer", "").strip()
+        pid = fields.get("pending", "").strip()
         push = False
 
         if not lyrics and filebytes:
@@ -1062,7 +1156,9 @@ class H(BaseHTTPRequestHandler):
         lyrics = lyrics.replace("\r\n", "\n")
 
         def fail(m):
-            self._send(form_page('<div class="err">%s</div>' % html.escape(m), which))
+            self._send(form_page('<div class="err">%s</div>' % html.escape(m), which, {
+                "pending": pid, "artist": artist, "title": title, "performer": performer,
+                "youtube": yt, "lyrics": lyrics}))
 
         if not (artist and title and yt):
             return fail("Artist, title, and YouTube link are all required.")
@@ -1097,13 +1193,18 @@ class H(BaseHTTPRequestHandler):
             elif canon_artist(entry["artist"]) != entry["artist"]:
                 # An entry saved under an older spelling is renamed to the official one.
                 entry["artist"] = canon_artist(entry["artist"])
-            entry["songs"].append({"title": title, "youtube": vid, "lyrics": lyrics})
+            song = {"title": title, "youtube": vid, "lyrics": lyrics}
+            if performer:
+                song["performer"] = performer
+            entry["songs"].append(song)
             save_music(w, data)
             shown = entry["artist"]
 
         where = BOTH_FILES
         msg = '<div class="ok">Added <b>%s — %s</b> (video %s) to %s.</div>' % (
             html.escape(shown), html.escape(title), vid, html.escape(where))
+        if pid and drop_pending(pid):
+            msg += '<div class="ok">Taken off the playlist list.</div>' 
 
         site = "Govorim + Samovar"
         ok, out = git_publish(which, "%s music: add %s \u2014 %s" % (site, artist, title), push=push)

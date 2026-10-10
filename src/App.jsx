@@ -17194,6 +17194,11 @@ export default function App() {
                         </div>
                         <div style={{fontFamily:"'Literata',serif",fontSize:15,color:"rgba(42,31,20,.55)",letterSpacing:.5}}>{artist.artist}</div>
                         <h1 style={{fontFamily:"'Old Standard TT',serif",fontSize:34,color:"#000",fontWeight:700,margin:"2px 0 18px",lineHeight:1.15}}>{song.title}</h1>
+                        {song.performer && (
+                          <div style={{fontFamily:"'IBM Plex Sans',sans-serif",fontSize:13,color:"rgba(0,0,0,.5)",margin:"-12px 0 16px"}}>
+                            Performed in this video by {song.performer}
+                          </div>
+                        )}
                         <div style={{fontFamily:"'Literata',serif",fontSize:19,color:"#1c1610"}}>
                           {renderLyrics(song.lyrics, artist.artist + " · " + song.title)}
                         </div>
