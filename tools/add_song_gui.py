@@ -101,7 +101,8 @@ def pending_html(current=""):
             '<div class="prow%s"><a href="/?pending=%s"><b>%s</b> \u2014 %s</a>%s'
             '<form method="post" action="/pending/skip" enctype="multipart/form-data">'
             '<input type="hidden" name="pending" value="%s">'
-            '<button type="submit" class="pskip" title="Drop it from the list">skip</button></form></div>'
+            '<button type="submit" class="pskip" title="Remove it from the list" '
+            'onclick="return confirm(\'Remove this song from the playlist list?\')">remove</button></form></div>'
             % (" cur" if x.get("id") == current else "", html.escape(x["id"]),
                html.escape(x.get("artist") or ""), html.escape(x.get("title") or ""),
                (' <span class="pmeta">' + " \u00b7 ".join(extra) + "</span>") if extra else "",
@@ -360,6 +361,7 @@ STYLE_EXTRA = """<style>
 .pmeta{font-size:12px;opacity:.65}
 .pnote{color:#d9a35b}
 .prow form{margin:0}
+.rmform{margin-top:14px}
 .pskip{background:none;border:1px solid #4a4036;color:#a89a88;border-radius:6px;font-size:11px;padding:2px 8px;cursor:pointer}
 </style>"""
 
@@ -513,6 +515,12 @@ Change the artist to move the song to a different one.</div>
   <button type="submit">Save changes</button>
   <a href="/?catalogue=%s"><button type="button" class="cancel">Cancel</button></a>
  </div>
+</form>
+<form method="post" action="/delete" enctype="multipart/form-data" class="rmform">
+ <input type="hidden" name="catalogue" value="%s">
+ <input type="hidden" name="artist" value="%s">
+ <input type="hidden" name="title" value="%s">
+ <button type="submit" class="del">Delete this song</button>
 </form>""" % (STYLE, msg,
               html.escape(orig_artist), html.escape(orig_title),
               html.escape(MUSIC_LABELS[which]),
@@ -524,7 +532,8 @@ Change the artist to move the song to a different one.</div>
               html.escape(song.get("performer") or ""),
               html.escape(song.get("youtube") or ""),
               html.escape(song.get("lyrics") or ""),
-              html.escape(which))
+              html.escape(which),
+              html.escape(which), html.escape(orig_artist), html.escape(orig_title))
 
 def confirm_page(which, artist, title, lines):
     """Deleting is not undoable, so it takes a second click."""
@@ -554,6 +563,11 @@ def form_page(msg="", which="private", pre=None):
     pre = pre or {}
     def v(k):
         return html.escape(pre.get(k) or "")
+    # Filled from the playlist list: the entry can be removed from here too.
+    rm_form = ("""<form method="post" action="/pending/skip" enctype="multipart/form-data" class="rmform">
+ <input type="hidden" name="pending" value="%s">
+ <button type="submit" class="del" onclick="return confirm('Remove this song from the playlist list without adding it?')">Remove from the playlist list instead</button>
+</form>""" % v("pending")) if pre.get("pending") else ""
     artists = ""
     try:
         seen, opts = set(), []
@@ -593,9 +607,9 @@ def form_page(msg="", which="private", pre=None):
  <div class="row">
   <button type="submit">Add song</button>
  </div>
-</form>
+</form>%s
 %s%s""" % (STYLE, msg, v("pending"), v("artist"), artists, v("title"), v("performer"), v("youtube"), v("lyrics"),
-               pending_html(pre.get("pending") or ""), catalogue_html(which))
+               rm_form, pending_html(pre.get("pending") or ""), catalogue_html(which))
 
 
 def videos_index_page(msg=""):
@@ -803,7 +817,7 @@ class H(BaseHTTPRequestHandler):
         if self.path.startswith("/pending/skip"):
             n = drop_pending((fields.get("pending") or "").strip())
             return self._send(form_page('<div class="ok">%s</div>' % (
-                "Dropped from the playlist list." if n else "Already gone from the list."), "private"))
+                "Removed from the playlist list." if n else "Already gone from the list."), "private"))
         if self.path.startswith("/copy"):
             return self.act_copy(fields, multi)
         if self.path.startswith("/delete/confirm"):
