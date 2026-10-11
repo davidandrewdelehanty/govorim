@@ -31,7 +31,34 @@ import {
   loadGlossary, lookupGlossary, glossaryEntry, putGlossaryEntry, dictKey,
   logMiss, listMisses, removeMiss,
 } from "../lib/dict.js";
-import { ruWiktionaryLookup, resolveLemma, existingTitles } from "../lib/ruwikt.js";
+import { ruWiktionaryLookup, resolveLemma, existingTitles, ruWiktText, relatedWords } from "../lib/ruwikt.js";
+
+// Some words have a page on the Russian Викисловарь with no meaning written
+// yet — «неплодный» (barren, in the Synodal Bible) is a stub. The page still
+// names its synonyms and its opposite, and the opposite's own page names ITS
+// opposites: плодный's are «неплодный, бесплодный». So a stub is followed to
+// the words the dictionary itself says are the same as it, and the first of
+// them with a real entry answers — labelled as such, never as the word's own.
+async function sameAsCandidates(words, signal, timeLeft) {
+  for (const w of words) {
+    if (timeLeft && timeLeft() < 2500) break;
+    let text = null;
+    try { text = await ruWiktText(w, signal); } catch (e) { if (e && e.name === "AbortError") throw e; }
+    if (!text) continue;
+    const rel = relatedWords(text);
+    if (rel.hasSenses) return null;            // it has meanings of its own
+    const out = rel.syn.slice();
+    for (const a of rel.ant.slice(0, 2)) {
+      if (timeLeft && timeLeft() < 2000) break;
+      let t2 = null;
+      try { t2 = await ruWiktText(a, signal); } catch (e) { if (e && e.name === "AbortError") throw e; }
+      if (!t2) continue;
+      for (const x of relatedWords(t2).ant) if (x !== w && out.indexOf(x) < 0) out.push(x);
+    }
+    if (out.length) return { word: w, cands: out.slice(0, 4) };
+  }
+  return null;
+}
 import { lemmaCandidates } from "../lib/morph.js";
 import { mtLookup } from "../lib/mt.js";
 
@@ -803,11 +830,24 @@ export default async function handler(req, res) {
       if (also && cands.indexOf(also) < 0) cands.push(also);
       cands = cands.filter(function (w, i, a) { return w && a.indexOf(w) === i; });
       let hit = await ruWiktionaryLookup(cands, word, ctrlR.signal, leftR);
+      let real = [];
       if (!hit && leftR() > 2500) {
         try {
           const guesses = lemmaCandidates(lowerR, 12).concat(also ? lemmaCandidates(also, 8) : []);
-          const real = guesses.length ? await existingTitles(guesses, ctrlR.signal) : [];
+          real = guesses.length ? await existingTitles(guesses, ctrlR.signal) : [];
           if (real.length) hit = await ruWiktionaryLookup(real.slice(0, 3), word, ctrlR.signal, leftR);
+        } catch (e) { if (e && e.name === "AbortError") throw e; }
+      }
+      if (!hit && leftR() > 2500) {
+        try {
+          const sa = await sameAsCandidates(cands.concat(real.filter(function (w) { return cands.indexOf(w) < 0; })), ctrlR.signal, leftR);
+          if (sa) {
+            for (const c of sa.cands) {
+              if (leftR() < 1500) break;
+              const got = await ruWiktionaryLookup([c], word, ctrlR.signal, leftR);
+              if (got) { hit = got; hit.lemma = sa.word; hit.sameAs = c; break; }
+            }
+          }
         } catch (e) { if (e && e.name === "AbortError") throw e; }
       }
       if (!hit) {
@@ -1108,6 +1148,42 @@ export default async function handler(req, res) {
           }
         }
         trace.push("slang:miss");
+      }
+
+      // A stub page: answer with a word the dictionary lists as the same.
+      if (timeLeft() > 2500) {
+        try {
+          const sa = await sameAsCandidates([lower, deyo].concat(lemmas).filter(function (w, i, a) { return w && a.indexOf(w) === i; }),
+                                            ctrl.signal, timeLeft);
+          if (sa) {
+            trace.push("sameas:" + sa.cands.join("/"));
+            for (const c of sa.cands) {
+              if (timeLeft() < 1500) break;
+              let got = null;
+              try { got = await wiktionaryLookup([c], word, ctrl.signal, timeLeft, []); }
+              catch (e) { if (e && e.name === "AbortError") throw e; }
+              if (got && got.weakFormOf) got = null;
+              if (!got && timeLeft() > 1500) {
+                try { got = await ruWiktionaryLookup([c], word, ctrl.signal, timeLeft); }
+                catch (e) { if (e && e.name === "AbortError") throw e; }
+                if (got) delete got.noEnglish;
+              }
+              if (got) {
+                got.lemma = sa.word;
+                got.matchedForm = sa.word;
+                got.aspectPair = "";
+                got.grammar = ["no meaning of its own in Викисловарь yet — listed there as the same as «" + c + "»", got.grammar]
+                  .filter(Boolean).join(" · ");
+                got.sameAs = c;
+                res.setHeader("Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
+                return res.status(200).json(got);
+              }
+            }
+          }
+        } catch (e) {
+          if (e && e.name === "AbortError") throw e;
+          trace.push("sameas:error " + ((e && e.message) || e));
+        }
       }
 
       if (weakWikt) {

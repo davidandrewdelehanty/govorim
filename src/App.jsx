@@ -21427,6 +21427,9 @@ export default function App() {
                             {rv.data && (
                               <>
                                 <div className="pru-h">{rv.data.lemma || lem}</div>
+                                {rv.data.sameAs && (
+                                  <div className="pru-syn">В Викисловаре у этого слова ещё нет толкования; ниже — значения слова «{rv.data.sameAs}», которое там указано как синоним.</div>
+                                )}
                                 <ol className="pru-list">
                                   {rv.data.ruSenses.map(function(sn, i){ return <li key={i}>{sn}</li>; })}
                                 </ol>
