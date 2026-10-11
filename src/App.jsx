@@ -17430,7 +17430,7 @@ export default function App() {
             <div className="ss">
               <h1 className="sti">Leaderboard</h1>
               <p className="sde">
-                The readers who have reviewed the most cards and read the most words.
+                The readers who have reviewed the most cards, read the most words, finished the most case drills and listened to the most songs.
               </p>
               {me && !me.username && (
                 <div className="lb-join">
@@ -17448,6 +17448,8 @@ export default function App() {
                   {[
                     { key: "reviewed", h: "Cards reviewed", sub: "every answer given in vocabulary review, right or wrong", unit: "cards" },
                     { key: "words", h: "Words read", sub: "Russian words read, counted as you go — a short story counts what it is, and so does a novel", unit: "words" },
+                    { key: "drills", h: "Case drills completed", sub: "every case drill finished, from any book", unit: "drills" },
+                    { key: "songs", h: "Songs listened to", sub: "different songs played in the Music tab — each song counts once", unit: "songs" },
                   ].map(function(col){
                     var rows = boards[col.key] || [];
                     return (

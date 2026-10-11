@@ -28,7 +28,8 @@ import {
   S3Client, GetObjectCommand, PutObjectCommand
 } from "@aws-sdk/client-s3";
 import { requireUser, currentUser, bumpDaily, touchSeen, findAccount,
-  updateBoardRow, readBoards, learnedCount, finishedCount, wordsRead, cardsReviewed } from "../lib/auth.js";
+  updateBoardRow, readBoards, learnedCount, finishedCount, wordsRead, cardsReviewed,
+  songsCount, drillsDone } from "../lib/auth.js";
 import { sendEmail } from "../lib/admin/helpers.js";
 import { r2Endpoint } from "../lib/r2-endpoint.js";
 
@@ -640,6 +641,7 @@ export default async function handler(req, res) {
           };
         }
         await r2Put(userId, "songs", merged);
+        await noteBoard(user, { songs: songsCount(merged) });
         return res.status(200).json({ ok: true });
       }
 
@@ -674,6 +676,7 @@ export default async function handler(req, res) {
           };
         }
         await r2Put(userId, "drills", merged);
+        await noteBoard(user, { drills: drillsDone(merged) });
         return res.status(200).json({ ok: true, drills: merged });
       }
 
