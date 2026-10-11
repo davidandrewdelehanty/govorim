@@ -273,7 +273,7 @@ async function wiktFetch(word, signal) {
   const go = function () {
     return fetch(WIKT_URL + encodeURIComponent(word), {
       signal,
-      headers: { accept: "application/json", "user-agent": "govorim.dev dictionary lookup" },
+      headers: { accept: "application/json", "user-agent": "SamovarReader/1.0 (https://samovar.live; dictionary lookup for a Russian reading site)" },
     });
   };
   let resp = await go();
