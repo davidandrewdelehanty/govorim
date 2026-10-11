@@ -5026,18 +5026,42 @@ export default function App() {
   // sentence mode. Seeking from the word itself replaces them.
   // After the popup renders, clamp it so it never extends below the viewport.
   // The initial position is an estimate; this corrects it using actual height.
+  //
+  // On an iPhone the bottom of the screen is not window.innerHeight's bottom
+  // once Safari's toolbar is up, and CSS 100vh is taller still — so a long
+  // entry was given a box that ran under the toolbar, with "Save to
+  // vocabulary" inside it and nothing left to scroll. The box is now sized to
+  // the part of the screen that is actually visible, so whatever does not fit
+  // scrolls inside it; and it is re-fitted whenever its content changes
+  // height (the definition arriving, a reading chosen).
   useEffect(function() {
     if (!popup || !popRef.current) return;
     var el = popRef.current;
-    var r = el.getBoundingClientRect();
-    var vh = window.innerHeight;
-    var pad = 12;
-    if (r.bottom > vh - pad) {
-      var overflow = r.bottom - (vh - pad);
-      var newTop = Math.max(pad, popXY.top - overflow);
-      if (newTop !== popXY.top) setPopXY(function(prev){ return {top: newTop, left: prev.left}; });
-    }
-  }, [popup]);
+    var fit = function() {
+      var vv = window.visualViewport;
+      var vh = vv ? vv.height : window.innerHeight;
+      var pad = 12;
+      var top = popXY.top;
+      el.style.maxHeight = Math.max(160, vh - Math.max(pad, top) - pad) + "px";
+      var r = el.getBoundingClientRect();
+      if (r.bottom > vh - pad) {
+        var newTop = Math.max(pad, top - (r.bottom - (vh - pad)));
+        if (newTop !== top) {
+          el.style.maxHeight = Math.max(160, vh - newTop - pad) + "px";
+          setPopXY(function(prev){ return {top: newTop, left: prev.left}; });
+        }
+      }
+    };
+    fit();
+    var ro = null;
+    try { if (typeof ResizeObserver !== "undefined") { ro = new ResizeObserver(function(){ fit(); }); ro.observe(el); } } catch (e) {}
+    var vvp = window.visualViewport;
+    if (vvp) vvp.addEventListener("resize", fit);
+    return function() {
+      try { if (ro) ro.disconnect(); } catch (e) {}
+      if (vvp) vvp.removeEventListener("resize", fit);
+    };
+  }, [popup, popXY.top]);
 
   // First-visit landing screen: remembered in localStorage so users only see it once per device.
   var [seenLanding, setSeenLanding] = useState(function() {
@@ -13634,7 +13658,7 @@ export default function App() {
         .lem{text-align:center;color:rgba(42,31,20,.28);padding:32px;font-size:14px}
         .lsbar{padding:12px 28px;border-bottom:1px solid rgba(42,31,20,.08)}
         .pover{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.15)}
-        .pop{position:fixed;z-index:201;background:#f5f0e8;border:1px solid rgba(42,31,20,.3);border-radius:14px;padding:16px 18px 18px;box-shadow:0 4px 24px rgba(42,31,20,.12);animation:pf .15s ease;max-height:calc(100vh - 32px);overflow-y:auto;overscroll-behavior:contain}
+        .pop{position:fixed;z-index:201;background:#f5f0e8;border:1px solid rgba(42,31,20,.3);border-radius:14px;padding:16px 18px 18px;box-shadow:0 4px 24px rgba(42,31,20,.12);animation:pf .15s ease;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y}
         @keyframes pf{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
         .pcl{position:absolute;top:10px;right:12px;background:none;border:none;color:rgba(42,31,20,.35);font-size:18px;cursor:pointer}
         .pcl:hover{color:rgba(42,31,20,.7)}
@@ -14677,6 +14701,7 @@ export default function App() {
           font-family:var(--serif);font-size:14.5px;color:var(--ink)}
         .acct-li .a{color:var(--ink-3)}
         .acct-li{flex-wrap:wrap}
+        .acct-cnt{font-family:var(--sans);font-size:12px;font-weight:400;color:var(--ink-3);margin-left:6px;text-transform:none;letter-spacing:0}
         .acct-li.go{cursor:pointer}
         .acct-li.go:hover .t{text-decoration:underline}
         .acct-li .t{flex:1;min-width:0}
@@ -15740,7 +15765,8 @@ export default function App() {
                 var doneList = finished.map(function(k){
                   return Object.assign({ key: k, filename: k.split("::")[0] }, finishedMap[k]);
                 }).filter(function(f){
-                  var tag = (f.at || 0) + "|" + (f.author || "");
+                  var base = String(f.title || "").replace(/\s*\(спектакль\)\s*$/i, "").trim().toLowerCase();
+                  var tag = (f.at || 0) + "|" + base;
                   if (f.at && seenAt[tag]) return false;
                   seenAt[tag] = true;
                   return true;
@@ -15876,20 +15902,21 @@ export default function App() {
                           })}
                         </div>
                       )}
-                      <div className="acct-list">
-                        <div className="acct-sub">Books finished{doneWords ? " \u00b7 " + fmtWords(doneWords) + " in all" : ""}</div>
-                        {!doneList.length && <div className="acct-note" style={{marginTop:0}}>None yet. Mark a book as read when you reach the end.</div>}
-                        {doneList.map(function(f){
-                          var m = findBook(f);
-                          return (
-                            <div key={f.key} className={"acct-li" + (m ? " go" : "")} onClick={function(){ openRec(m); }}
-                                 title={m ? "Open it" : ""}>
-                              <span className="t">{f.title || f.filename}{f.author ? <span className="a"> — {f.author}</span> : null}</span>
-                              <span className="w">{f.at ? new Date(f.at).toLocaleDateString() : ""}</span>
-                            </div>
-                          );
-                        })}
-                      </div>
+                    </div>
+
+                    <div className="acct-sec">
+                      <div className="acct-h">Books finished <span className="acct-cnt">{doneList.length}{doneWords ? " \u00b7 " + fmtWords(doneWords) : ""}</span></div>
+                      {!doneList.length && <div className="acct-note" style={{marginTop:0}}>None yet. Mark a book as read when you reach the end, and it is listed here.</div>}
+                      {doneList.map(function(f){
+                        var m = findBook(f);
+                        return (
+                          <div key={f.key} className={"acct-li" + (m ? " go" : "")} onClick={function(){ openRec(m); }}
+                               title={m ? "Open it" : ""}>
+                            <span className="t">{f.title || f.filename}{f.author ? <span className="a"> — {f.author}</span> : null}</span>
+                            <span className="w">{f.at ? new Date(f.at).toLocaleDateString() : ""}</span>
+                          </div>
+                        );
+                      })}
                     </div>
 
                     <div className="acct-sec">
