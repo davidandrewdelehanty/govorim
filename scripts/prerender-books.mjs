@@ -43,7 +43,17 @@ const esc = (s) => String(s || "")
 // first body, drop titles/epigraphs, and keep the first few real paragraphs.
 function excerpt(fb2Path) {
   let src;
-  try { src = fs.readFileSync(fb2Path, "utf8"); } catch { return []; }
+  // Read the bytes and honour the encoding the file declares. Three books are
+  // windows-1251 (Отцы и дети, Мёртвые души, Смерть Ивана Ильича); read as
+  // UTF-8 their prerendered page was a wall of "?" — which is what a visitor
+  // saw of Отцы и дети before the reader itself had loaded.
+  try {
+    const raw = fs.readFileSync(fb2Path);
+    const m = /encoding=["']([^"']+)["']/i.exec(raw.subarray(0, 200).toString("latin1"));
+    const enc = m ? m[1].toLowerCase() : "utf-8";
+    try { src = new TextDecoder(/utf-?8/.test(enc) ? "utf-8" : enc).decode(raw); }
+    catch { src = raw.toString("utf8"); }
+  } catch { return []; }
   src = src.replace(/<binary[\s\S]*?<\/binary>/g, "");
   const body = /<body(?:\s[^>]*)?>([\s\S]*?)<\/body>/.exec(src);
   if (!body) return [];
