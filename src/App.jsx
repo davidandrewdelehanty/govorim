@@ -10025,11 +10025,32 @@ export default function App() {
       });
     });
   };
-  var switchReading = async function(lemma) {
+  var switchReading = async function(lemma, reading) {
     var keep = popup && popup.data ? { readings: popup.data.readings, readingCue: popup.data.readingCue, word: popup.word } : {};
     setPopup(function(p){ return p ? Object.assign({},p,{loading:true,error:null}) : null; });
     try {
       var data = await fetchDef(lemma);
+      // A participle read as an adjective («заломленный») is filed by the
+      // dictionaries under its verb, so the lookup comes back as заломить and
+      // the reader would see the verb they just chose against. Keep the
+      // reading they picked: its own headword and part of speech, with the
+      // verb named as where the meaning comes from.
+      var bare = function(x){ return String(x || "").replace(/\u0301/g, "").toLowerCase().trim(); };
+      var pos = (reading && reading.pos) || "";
+      var gotVerb = data && (/verb/i.test(data.partOfSpeech || "") || !!data.aspect);
+      if (data && bare(data.lemma) && bare(data.lemma) !== bare(lemma) && gotVerb && !/^verb/i.test(pos)) {
+        var rel = (reading && reading.note && /\bof\s/.test(reading.note)) ? reading.note
+          : ((/particip/i.test(pos) ? "participle" : (pos || "form")) + " of " + data.lemma);
+        var gram = [rel];
+        gram.push("the meanings below are the verb's");
+        data = Object.assign({}, data, {
+          lemma: lemma,
+          partOfSpeech: pos || data.partOfSpeech,
+          aspect: "", aspectPair: "",
+          grammar: gram.join(" \u00b7 "),
+          baseLemma: data.lemma,
+        });
+      }
       setPopup(function(p){ return p ? Object.assign({},p,{data:Object.assign({}, data, keep),loading:false}) : null; });
     } catch(err) {
       var m2 = 'Could not define "' + lemma + '" \u2014 ' + ((err && err.message) || "Unknown error");
@@ -20836,7 +20857,7 @@ export default function App() {
                           var cur = String(r.lemma).toLowerCase() === String(popup.data.lemma || "").toLowerCase();
                           return (
                             <button key={i} className={"pread" + (cur ? " on" : "")} disabled={cur}
-                                    title={r.note || ""} onClick={function(){ switchReading(r.lemma); }}>
+                                    title={r.note || ""} onClick={function(){ switchReading(r.lemma, r); }}>
                               <span className="pread-pos">{r.pos || "other"}</span>
                               <span className="pread-lem">{r.lemma}</span>
                               {r.note && <span className="pread-note">{r.note.replace(/\s+of\s+.*$/, "")}</span>}
