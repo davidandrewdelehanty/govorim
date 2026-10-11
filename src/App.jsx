@@ -12083,7 +12083,13 @@ export default function App() {
     // English directly beneath it. Swiping a column away from a numbered verse
     // loses the correspondence that makes it useful, and every other parallel
     // book keeps the two-column view untouched.
-    var bibleInline = !!(bookMeta && bookMeta.isBible);
+    // (Oct 2026) No longer: the KJV is not the Synodal, and an English verse
+    // laid under each Russian one read as its translation when it often was
+    // not. Scripture now reads like every other parallel book — the English
+    // one tap away in its own column, flowing at its own length — with the
+    // verse numbers carried on both sides so a reader can find their place.
+    var bibleInline = false;
+    var isBibleView = !!(bookMeta && bookMeta.isBible);
   // Some translations cannot be paired row by row and never could be. Garnett
   // gives Мёртвые души 70 paragraphs where the Russian has 112; a translator
   // who merges three paragraphs into one is not making a mistake, and neither
@@ -12106,7 +12112,7 @@ export default function App() {
   // correspondence both texts carry, so the Bible keeps its verse pairing and
   // lays the English under each verse (bibleInline) rather than in a column.
   var flowEn = !bibleInline;
-    var dualActive = !!((proseEnUsable || bibleEn) && !bibleInline);
+    var dualActive = !!((proseEnUsable || (isBibleView && bibleEn)) && !bibleInline);
     var litEntries = (function() {
       // Pull the non-empty paragraphs in the order they appear, matching how
       // computePages indexes them.
@@ -12488,7 +12494,42 @@ export default function App() {
     // length. No row is claimed for it, so nothing here can put the wrong
     // paragraph beside a Russian one.
     var flowEnBlocks = null;
-    if (dualActive && flowEn && proseEn) {
+    if (dualActive && flowEn && isBibleView) {
+      // Scripture's English, verse by verse and numbered, for the verses this
+      // page covers. The KJV (the Synodal's pairing) is kept by verse position
+      // in the chapter; the WEB (the NRP's) by verse number. The KJV's
+      // marginal notes («the light from...: Heb. between …») are left out:
+      // they are the translators' apparatus, not the text.
+      var stripNote = function(t) {
+        var x = String(t || "");
+        var k = x.indexOf("...:");
+        if (k < 0) return x.trim();
+        var head = x.slice(0, k);
+        var cut = Math.max(head.lastIndexOf(". "), head.lastIndexOf("; "), head.lastIndexOf(": "),
+                           head.lastIndexOf("! "), head.lastIndexOf("? "));
+        return (cut > 0 ? x.slice(0, cut + 1) : x).trim();
+      };
+      flowEnBlocks = [];
+      if (proseEnUsable) {
+        litEntries.forEach(function(e) {
+          var t = proseEn[String(e.chIdx)];
+          if (t && String(t).trim()) flowEnBlocks.push({ n: String(e.chIdx + 1), t: stripNote(t) });
+        });
+      } else if (bibleEn) {
+        var vnos = [];
+        litEntries.forEach(function(e) {
+          var txt = (e.para || []).map(function(tk){ return tk.text; }).join("");
+          var m = txt.match(/^\s*(\d+)/);
+          if (m) vnos.push(parseInt(m[1], 10));
+        });
+        var lo = pidx <= 0 ? 1 : (vnos.length ? Math.min.apply(null, vnos) : 1);
+        var hi = pidx >= totalPages - 1 ? Infinity : (vnos.length ? Math.max.apply(null, vnos) : Infinity);
+        Object.keys(bibleEn).filter(function(k){ return /^\d+$/.test(k); })
+          .map(function(k){ return parseInt(k, 10); })
+          .sort(function(a, b){ return a - b; })
+          .forEach(function(n){ if (n >= lo && n <= hi) flowEnBlocks.push({ n: String(n), t: stripNote(bibleEn[String(n)]) }); });
+      }
+    } else if (dualActive && flowEn && proseEn) {
       flowEnBlocks = [];
       litEntries.forEach(function(e) {
         var t = proseEn[String(e.chIdx)];
@@ -12530,6 +12571,9 @@ export default function App() {
                 <div className="dual-en-flow" lang="en"
                      style={{gridColumn: 2, gridRow: 1}}>
                   {flowEnBlocks.map(function(t, i) {
+                    if (t && typeof t === "object") {
+                      return <p key={i} className="dual-en"><span className="bible-en-vno">{t.n}</span> {t.t}</p>;
+                    }
                     return <p key={i} className="dual-en">{t}</p>;
                   })}
                 </div>
