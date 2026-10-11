@@ -10440,6 +10440,14 @@ export default function App() {
         }
         return { cidx: entry.cidx || 0, pidx: entry.pidx || 0, off: 0 };
       }
+      // Scripture is not read front to back: a reader goes to Psalms one day
+      // and back to Genesis the next. "Furthest reached" there is whichever
+      // book was visited deepest in the canon, so one visit to the Psalter
+      // made the Bible reopen in it every time after. It opens where the
+      // reader last was instead.
+      if (meta && meta.isBible) {
+        return { cidx: entry.cidx || 0, pidx: entry.pidx || 0, off: 0 };
+      }
       // The automatic bookmark decides where the book opens. It is the
       // furthest the reader reached, not the last place they happened to be
       // looking at — those differ every time somebody turns back a chapter
@@ -11937,6 +11945,35 @@ export default function App() {
       exampleTranslation: (data.exampleTranslation || "").trim()
     };
   };
+
+  // One-time clean-up for one reader, at their request (Oct 11 2026): the
+  // Bible bookmarks outside Genesis go. Bookmarks live on the device, so this
+  // runs on each of their devices once. Genesis is the first fifty chapters
+  // of both Bibles.
+  useEffect(function() {
+    if (!me || String(me.email || "").toLowerCase() !== "david.andrew.delehanty@gmail.com") return;
+    var FLAG = "gv_bible_bm_trim_v1";
+    try { if (localStorage.getItem(FLAG) === "done") return; } catch (e) { return; }
+    var tries = 0, timer = null;
+    // The saved bookmarks arrive from storage a moment after the page does;
+    // trimming before they are in would trim nothing and still mark it done.
+    var go = function() {
+      if (!bookmarksLoaded.current && tries++ < 40) { timer = setTimeout(go, 250); return; }
+      if (!bookmarksLoaded.current) return;
+      try { localStorage.setItem(FLAG, "done"); } catch (e) {}
+      setBookmarkMap(function(prev) {
+        var next = Object.assign({}, prev), n = 0;
+        Object.keys(prev || {}).forEach(function(k) {
+          var bm = prev[k] || {};
+          var isBible = /bible|библи/i.test(k + " " + (bm.title || "") + " " + (bm.filename || ""));
+          if (isBible && (bm.cidx || 0) >= 50) { delete next[k]; n++; }
+        });
+        return n ? next : prev;
+      });
+    };
+    go();
+    return function(){ if (timer) clearTimeout(timer); };
+  }, [me && me.email]);
 
   // One-time merge (Oct 11 2026). Saving a word again from another book made
   // a second card when the two entries spelled the headword differently
