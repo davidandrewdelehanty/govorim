@@ -828,7 +828,12 @@ export default async function handler(req, res) {
       let lemma = "", lemmas = [], weakWikt = null;
       const readings = [];   // every headword this form can belong to — see withReadings
       if (process.env.LEMMA_LOOKUP !== "0" && timeLeft() > 2500) {
-        const guesses = lemmaCandidates(lower, 12);
+        // ё first: books print «подъем» for подъём, and the е-spelling can
+        // lose to a pre-1918 orthography page that ending-stripping finds
+        // («подъ», an old spelling of под). A word-final ъ is never a modern
+        // headword, so no guess may end in one.
+        const guesses = (/\u0451/.test(lower) ? [] : yoVariants(lower).slice(0, 3)).concat(lemmaCandidates(lower, 12))
+          .filter(function (g, i, arr) { return !/\u044a$/.test(g) && arr.indexOf(g) === i; });
         if (guesses.length) {
           try {
             lemmas = (await existingTitles(guesses, ctrl.signal)).slice(0, 3);

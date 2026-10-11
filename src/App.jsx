@@ -9673,7 +9673,7 @@ export default function App() {
   // (see api/define.js isSlangEntry) — every def3 answer may be one of those.
   // def5: Oct 9 2026 — verb forms reached through Wiktionary had been saved
   // under the clicked form («сядет») with no aspect; fixed in api/define.js.
-  var DEF_CACHE_PREFIX = "def5:";
+  var DEF_CACHE_PREFIX = "def6:";
   // Whether the word being looked up is in a song. Set by defWord for the
   // popup it opens; the later look-ups from that popup (another reading, the
   // ё spelling) inherit it. Songs are the only place the блатной жаргон
