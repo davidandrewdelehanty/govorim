@@ -5647,6 +5647,18 @@ export default function App() {
     return (twin && bookKey(twin)) || bookKey(meta);
   };
 
+  // Finished, and not opened again since: the place it would resume from is
+  // the end of the first read, so it opens at the beginning instead.
+  var finishedNotReread = function(meta) {
+    var finAt = 0;
+    workKeys(meta).forEach(function(k){
+      var rec = finishedMap[k];
+      if (rec && !rec.removed) finAt = Math.max(finAt, rec.at || 1);
+    });
+    if (!finAt) return false;
+    var e = progressMap && progressMap[bookKey(meta)];
+    return !(e && e.rereadAt && e.rereadAt > finAt);
+  };
   var isFinished = function(meta) {
     var ks = workKeys(meta);
     for (var i = 0; i < ks.length; i++) {
@@ -5791,7 +5803,14 @@ export default function App() {
       var mark = readMark.current[key] || null;
       var prev = all[key] || {};
       var far = prev.far || null;
-      if (mark && (!far || wordsBefore(mark.cidx, mark.off || 0) > wordsBefore(far.cidx || 0, far.off || 0))) {
+      if (prev.rereadAt) {
+        // A reread keeps its own furthest place, from the pages actually
+        // turned this time; the reading mark already sits at the end of the
+        // book from the first read, so it cannot tell where a reread is.
+        if (!far || ci > (far.cidx || 0) || (ci === (far.cidx || 0) && pi > (far.pidx || 0))) {
+          far = { cidx: ci, pidx: pi, at: Date.now() };
+        }
+      } else if (mark && (!far || wordsBefore(mark.cidx, mark.off || 0) > wordsBefore(far.cidx || 0, far.off || 0))) {
         far = { cidx: mark.cidx, off: mark.off || 0, at: Date.now() };
       }
       all[key] = {
@@ -5816,6 +5835,7 @@ export default function App() {
         words: words || 0,
         wordsRead: wordsRead || 0,
       };
+      if (prev.rereadAt) all[key].rereadAt = prev.rereadAt;
       await storage.set(BOOK_PROGRESS, JSON.stringify(all));
       setProgressMap(all);
     } catch(e) {}
@@ -10184,6 +10204,29 @@ export default function App() {
       if (!entry || entry.removed) return null;
       var was = entry.totalChapters || 0;
       if (was && nowTotal && was !== nowTotal) return null;
+      // A book marked as read opens at its first page. The place saved while
+      // reading it the first time is from before it was finished, so it is
+      // set aside, and a reread starts its own bookmark from here (rereadAt
+      // — see saveBookProgress). Once a reread has moved on, its place is
+      // kept as usual.
+      var finAt = 0;
+      workKeys(meta).forEach(function(k){
+        var rec = finishedMap[k];
+        if (rec && !rec.removed) finAt = Math.max(finAt, rec.at || 1);
+      });
+      if (finAt && !(entry.rereadAt && entry.rereadAt > finAt)) {
+        all[key] = Object.assign({}, entry, { cidx: 0, pidx: 0, far: null, sec: 0,
+                                              rereadAt: Date.now(), lastRead: Date.now() });
+        try { await storage.set(BOOK_PROGRESS, JSON.stringify(all)); setProgressMap(all); } catch (e2) {}
+        return { cidx: 0, pidx: 0, off: 0 };
+      }
+      if (entry.rereadAt) {
+        var rf = entry.far;
+        if (rf && typeof rf.cidx === "number" && (!nowTotal || rf.cidx < nowTotal)) {
+          return { cidx: rf.cidx, pidx: rf.pidx || 0, off: 0 };
+        }
+        return { cidx: entry.cidx || 0, pidx: entry.pidx || 0, off: 0 };
+      }
       // The automatic bookmark decides where the book opens. It is the
       // furthest the reader reached, not the last place they happened to be
       // looking at — those differ every time somebody turns back a chapter
@@ -17785,11 +17828,14 @@ export default function App() {
                       {/* The heading above is the library's, so the open book
                           names itself here, over the button that opens it. */}
                       <div className="resume-of">{bookLabel(bookMeta)}</div>
-                      {cbm > 0 && <button className="btn-p" onClick={function(){ startLit(cbm); }}>{(function(){
+                      {cbm > 0 && !finishedNotReread(bookMeta) && <button className="btn-p" onClick={function(){ startLit(cbm); }}>{(function(){
                         var sl = sectionLabel(chapters[cbm] && chapters[cbm].heading);
                         return "Resume at " + (sl ? sl.long.toLowerCase() : "your bookmark");
                       })()}</button>}
-                      <button className={cbm>0?"btn-g":"btn-p"} onClick={function(){ startLit(0); }}>{cbm>0?"Start from the beginning":"Начать читать →"}</button>
+                      {(function(){
+                        var fresh = cbm > 0 && !finishedNotReread(bookMeta);
+                        return <button className={fresh?"btn-g":"btn-p"} onClick={function(){ startLit(0); }}>{fresh?"Start from the beginning":"Начать читать →"}</button>;
+                      })()}
                       
                       <button onClick={async function(){
                         setChapters([]); setCidx(0); setCbm(0); setBookMeta({title:"",author:""});
