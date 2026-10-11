@@ -5202,7 +5202,20 @@ export default function App() {
   // Whether the pending jump is the reader's own saved place coming back, as
   // opposed to somewhere they asked to be taken. The two land differently.
   var srcJumpResumeRef = useRef(false);
+  // When the jump was asked for. A chapter or page turn that comes straight
+  // after it is the jump's own (bookmark, search hit, note); one that comes
+  // later is the reader moving on, and an old request that never landed —
+  // a saved place past the end of a chapter that has since got shorter —
+  // must not ambush the next chapter: it was opening Дама с собачкой's
+  // second chapter halfway down.
+  var srcJumpAtRef = useRef(0);
+  var dropStaleJump = function() {
+    if (srcJumpOffsetRef.current != null && Date.now() - srcJumpAtRef.current > 1500) {
+      srcJumpOffsetRef.current = null; srcJumpForRef.current = ""; srcJumpResumeRef.current = false;
+    }
+  };
   var requestSrcJump = function(off, forMeta, resume) {
+    srcJumpAtRef.current = Date.now();
     srcJumpOffsetRef.current = (typeof off === "number") ? off : null;
     srcJumpForRef.current = (off == null) ? "" : (bookKey(forMeta) || "");
     srcJumpResumeRef.current = !!resume && off != null;
@@ -10268,6 +10281,7 @@ export default function App() {
     checkForUpdate();
     stopTTS(); charPos.current = 0; paraText.current = "";
     if (idx < 0 || idx >= chapters.length) return;
+    dropStaleJump();
     // Turning the page forward credits the chapter just left; anything else
     // only moves the mark.
     advanceReadMark(idx, 0, idx === cidx + 1);
@@ -10279,6 +10293,7 @@ export default function App() {
   // are only loaded when the user explicitly clicks "Test your comprehension".
   var navPage = async function(newPidx) {
     if (newPidx < 0 || newPidx >= totalPages) return;
+    dropStaleJump();
     checkForUpdate();
     stopTTS(); charPos.current = 0; paraText.current = "";
     // A page turn is reading, and it was not being counted.
