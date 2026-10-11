@@ -256,8 +256,14 @@ def inflect_pair(adj_p, noun_p, case, number):
     if not a2: return None
     return a2.word, n2.word
 
+# A sentence that trails off — the author's own «...» — reads as text cut
+# off in a drill, and a speaker breaking off mid-thought often leaves the
+# blank with nothing that governs its case. Such sentences are not drilled.
+ELLIPSIS=re.compile(r'\.\.\.|…|\.\s\.\s\.')
+
 def drills_for_sentence(sent, seed):
     if not (25<=len(sent)<=220): return []
+    if ELLIPSIS.search(sent): return []
     doc=Doc(sent)
     doc.segment(SEG); doc.tag_morph(TAGGER); doc.parse_syntax(SYNTAX)
     toks={t.id:t for t in doc.tokens}
