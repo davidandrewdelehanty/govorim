@@ -2202,6 +2202,31 @@ function markWord(sentence, word, at) {
   }
   return [s2];
 }
+// The card a newly saved entry belongs to, if the reader already has one.
+// Headwords may carry an aspect pair («сесть / садиться») or a stress mark,
+// and the lemma may be filled in on one and not the other; any shared
+// spelling is the same word.
+function vocabHeads(v) {
+  var out = [];
+  var add = function(x) {
+    String(x || "").split(/\s*\/\s*|,\s*/).forEach(function(y){
+      y = y.replace(/\u0301/g, "").toLowerCase().replace(/ё/g, "е").trim();
+      if (y && out.indexOf(y) < 0) out.push(y);
+    });
+  };
+  if (v) { add(v.ru); add(v.lemma); }
+  return out;
+}
+function findVocabMatch(list, entry) {
+  var want = vocabHeads(entry);
+  if (!want.length) return null;
+  for (var i = 0; i < (list || []).length; i++) {
+    var have = vocabHeads(list[i]);
+    for (var j = 0; j < want.length; j++) if (have.indexOf(want[j]) >= 0) return list[i];
+  }
+  return null;
+}
+
 // Where a form sits in a sentence, as a whole word — recorded when the word
 // is saved, so the review card can mark exactly the word that was tapped.
 function formAt(sentence, form) {
@@ -11226,7 +11251,36 @@ export default function App() {
       : (ruOrEntry || {});
     var ru = (entry.ru || "").trim();
     if (!ru) return;
-    if (vocab.find(function(v){ return v.ru === ru; })) return;
+    // One word, one card. The same word saved again — from another book, or
+    // as another form of it — adds its sentence to the card that is already
+    // there (up to three, the newest kept) and never makes a second card. The
+    // match is on the headword or the lemma, however the entry spells them:
+    // «сесть / садиться» and «сесть» are the same card.
+    var hit = findVocabMatch(vocab, entry);
+    var hitLearned = hit ? null : findVocabMatch(learned, entry);
+    if (hit || hitLearned) {
+      var addSents = function(card) {
+        var cur = Array.isArray(card.sentences) ? card.sentences.slice()
+          : (card.srcSentence ? [{ s: card.srcSentence, w: card.srcWhere || "" }] : []);
+        (entry.sentences || []).forEach(function(x){
+          if (!x || !x.s) return;
+          var same = cur.some(function(y){ return y && String(y.s).trim() === String(x.s).trim(); });
+          if (!same) cur.push(x);
+        });
+        var forms = Array.isArray(card.forms) ? card.forms.slice() : [];
+        (entry.sentences || []).forEach(function(x){
+          var f = String((x && x.f) || "").toLowerCase().replace(/ё/g, "е").trim();
+          if (f && forms.indexOf(f) < 0) forms.push(f);
+        });
+        return Object.assign({}, card, { sentences: cur.slice(-3), forms: forms.slice(-40) });
+      };
+      if (hit) {
+        setVocab(function(p){ return p.map(function(v){ return v === hit ? addSents(v) : v; }); });
+      } else {
+        setLearned(function(p){ return p.map(function(v){ return v === hitLearned ? addSents(v) : v; }); });
+      }
+      return;
+    }
     var now = Date.now();
     // Capture where the word was saved from, for the source backlink. Only set
     // when reading a book (bookMeta.filename present). Stored fields are added
@@ -11828,6 +11882,45 @@ export default function App() {
       exampleTranslation: (data.exampleTranslation || "").trim()
     };
   };
+
+  // One-time merge (Oct 11 2026). Saving a word again from another book made
+  // a second card when the two entries spelled the headword differently
+  // («сесть» and «сесть / садиться»). Cards that share a headword or lemma
+  // become one: the one with the most review history is kept, and the other's
+  // sentences and forms are folded into it. Runs once per device, after the
+  // server's list has arrived, so the merged list is what syncs back.
+  useEffect(function() {
+    if (!localLoaded || (me && !syncedFromServer)) return;
+    var FLAG = "gv_vocabmerge_v1";
+    try { if (localStorage.getItem(FLAG) === "done") return; } catch (e) { return; }
+    try { localStorage.setItem(FLAG, "done"); } catch (e) {}
+    setVocab(function(list) {
+      var out = [];
+      var merged = 0;
+      (list || []).forEach(function(v) {
+        var into = findVocabMatch(out, v);
+        if (!into) { out.push(v); return; }
+        merged++;
+        var a = into, b = v;
+        var score = function(x){ return ((x.srs && x.srs.reps) || 0) * 1e13 - (x.created || 0); };
+        var keep = score(a) >= score(b) ? a : b, other = keep === a ? b : a;
+        var sents = [];
+        [keep, other].forEach(function(x){
+          var list2 = Array.isArray(x.sentences) ? x.sentences : (x.srcSentence ? [{ s: x.srcSentence, w: x.srcWhere || "" }] : []);
+          list2.forEach(function(y){
+            if (y && y.s && !sents.some(function(z){ return String(z.s).trim() === String(y.s).trim(); })) sents.push(y);
+          });
+        });
+        var forms = (Array.isArray(keep.forms) ? keep.forms : []).concat(Array.isArray(other.forms) ? other.forms : []);
+        forms = forms.filter(function(x, k){ return x && forms.indexOf(x) === k; });
+        var joined = Object.assign({}, keep, { sentences: sents.slice(-3), forms: forms.slice(-40) });
+        // A slash headword names both aspects; keep it if either card had it.
+        if (!/\s\/\s/.test(String(keep.ru || "")) && /\s\/\s/.test(String(other.ru || ""))) joined.ru = other.ru;
+        out[out.indexOf(into)] = joined;
+      });
+      return merged ? out : list;
+    });
+  }, [localLoaded, syncedFromServer]);
 
   // One-time repair (Oct 9 2026). Until today a verb form that the dictionary
   // reached through Wiktionary — «сядет», which Wiktionary only knows as "third-
@@ -21270,7 +21363,9 @@ export default function App() {
                       addV(entry);
                     }
                     setPopup(null);
-                  }}>+ Save « {entry.ru || popup.word} » to vocabulary</button>
+                  }}>{findVocabMatch(vocab, entry) || findVocabMatch(learned, entry)
+                      ? (popup.sentence ? "+ Add this sentence to your card for « " + (entry.ru || popup.word) + " »" : "Already in your vocabulary")
+                      : "+ Save « " + (entry.ru || popup.word) + " » to vocabulary"}</button>
                 );
               })()}
             </div>
