@@ -270,10 +270,19 @@ function cleanFormNote(text) {
 }
 
 async function wiktFetch(word, signal) {
-  const resp = await fetch(WIKT_URL + encodeURIComponent(word), {
-    signal,
-    headers: { accept: "application/json", "user-agent": "govorim.dev dictionary lookup" },
-  });
+  const go = function () {
+    return fetch(WIKT_URL + encodeURIComponent(word), {
+      signal,
+      headers: { accept: "application/json", "user-agent": "govorim.dev dictionary lookup" },
+    });
+  };
+  let resp = await go();
+  // A free API: a burst of taps can draw a 429, and a cold edge a 5xx. One
+  // short retry before the word is sent down to the weaker tiers.
+  if (resp.status === 429 || resp.status >= 500) {
+    await new Promise(function (r) { setTimeout(r, 350); });
+    resp = await go();
+  }
   if (resp.status === 404) return null;
   if (!resp.ok) {
     const err = new Error("Wiktionary returned HTTP " + resp.status);
@@ -471,13 +480,16 @@ function buildWiktEntry(pack, clickedWord, matchedForm, formNote) {
 // against this request's shared 10s budget.
 async function wiktionaryLookup(candidates, clickedWord, signal, timeLeft, sharedReadings) {
   let weak = null;   // a form-of page with no lemma behind it; used only last
+  let lastErr = null;
   const readings = sharedReadings || [];
   const finish = function (built) { return withReadings(built, readings); };
   for (const cand of candidates) {
     // Several confirmed lemmas can arrive now, and Vercel kills the function at
     // ten seconds — stop trying rather than be killed mid-answer.
     if (timeLeft && timeLeft() < 1200) break;
-    const pack = await wiktFetch(cand, signal);
+    let pack = null;
+    try { pack = await wiktFetch(cand, signal); }
+    catch (e) { if (e && e.name === "AbortError") throw e; lastErr = e; continue; }
     if (!pack) continue;
     // Every reading this page knows, whichever of them we end up showing.
     for (const r of readingsFromWikt(pack, cand)) addReading(readings, r.lemma, r.pos, r.note);
@@ -506,7 +518,9 @@ async function wiktionaryLookup(candidates, clickedWord, signal, timeLeft, share
     for (let hop = 0; hop < 2 && ptr && !seen[ptr.toLowerCase()]; hop++) {
       if (timeLeft && timeLeft() < 900) break;
       seen[ptr.toLowerCase()] = true;
-      const lemPack = await wiktFetch(ptr, signal);
+      let lemPack = null;
+      try { lemPack = await wiktFetch(ptr, signal); }
+      catch (e) { if (e && e.name === "AbortError") throw e; lastErr = e; break; }
       if (!lemPack) break;
       for (const r of readingsFromWikt(lemPack, ptr)) addReading(readings, r.lemma, r.pos, r.note);
       const lemEntry = pickEntry(lemPack.entries);
@@ -525,7 +539,9 @@ async function wiktionaryLookup(candidates, clickedWord, signal, timeLeft, share
     const asIs = buildWiktEntry(pack, clickedWord, cand, "");
     if (asIs && !weak) { asIs.weakFormOf = true; weak = asIs; }
   }
-  return weak ? finish(weak) : null;
+  if (weak) return finish(weak);
+  if (lastErr) throw lastErr;
+  return null;
 }
 
 // "genitive singular of фраер" / "inflection of фраер" → фраер.
@@ -576,8 +592,20 @@ function readingsFromWikt(pack, surface) {
     }
     for (const sn of senses) {
       if (!isFormOf(sn)) continue;
-      const m = /\bof\s+([\u0400-\u04ff\u0300-\u036f-]+)/.exec(sn.definition);
-      if (m) addReading(out, m[1], pos, String(sn.definition).replace(/\s*\(.*?\)\s*$/, ""));
+      const def = String(sn.definition);
+      const m = /\bof\s+([\u0400-\u04ff\u0300-\u036f-]+)/.exec(def);
+      if (!m) continue;
+      const target = deaccent(m[1]);
+      // «отданный» is the past passive participle of отдать — and is also
+      // read as an adjective. The page files it under "verb", so the reader
+      // was offered only the verb. The participle is a reading of its own.
+      if (/participle of/i.test(def)) {
+        const canon = canonicalForm(e);
+        addReading(out, deaccent(canon ? canon.word : "") || pack.word || surface, "participle", def.replace(/\s*\(.*?\)\s*$/, ""));
+      }
+      // «отданной» is an inflection of «отданный»: that form is the participle.
+      const tPos = (/^verb$/i.test(pos) && /(нный|енный|анный|тый|щий|вший|мый)$/.test(target)) ? "participle" : pos;
+      addReading(out, target, tPos, def.replace(/\s*\(.*?\)\s*$/, ""));
     }
   }
   return out;
@@ -588,8 +616,12 @@ function readingsFromWikt(pack, surface) {
 function withReadings(entry, readings) {
   if (!entry) return entry;
   const labelled = {};
-  for (const r of readings || []) if (r.pos) labelled[r.lemma.toLowerCase()] = true;
-  const list = (readings || []).filter(function (r) { return r.pos || !labelled[r.lemma.toLowerCase()]; });
+  let anyLabelled = false;
+  for (const r of readings || []) if (r.pos) { labelled[r.lemma.toLowerCase()] = true; anyLabelled = true; }
+  // An unlabelled reading is a page title the ending-rules guessed — often
+  // only another form of the same word («чернил», «колодкам»). Once any
+  // dictionary has labelled the readings, the guesses add nothing but noise.
+  const list = (readings || []).filter(function (r) { return r.pos || (!anyLabelled && !labelled[r.lemma.toLowerCase()]); });
   const distinct = {};
   for (const r of list) distinct[r.lemma.toLowerCase()] = true;
   if (Object.keys(distinct).length >= 2) {
@@ -765,6 +797,13 @@ export default async function handler(req, res) {
   // Which tier answered, or why it didn't. Returned on a miss and logged by the
   // client under window.DEF_DEBUG, so a dead tier is visible instead of guessed.
   const trace = [];
+  if (req.query && req.query.debug === "1") {
+    const plainJson = res.json.bind(res);
+    res.json = function (o) {
+      if (o && typeof o === "object" && !Array.isArray(o)) o = Object.assign({}, o, { _trace: trace, _ms: Date.now() - startedAt });
+      return plainJson(o);
+    };
+  }
 
   try {
     // Try the word as clicked, then lowercase, then BOTH directions of the
@@ -968,7 +1007,7 @@ export default async function handler(req, res) {
               ruWikt.grammar = [ruWikt.grammar, "English from the entry for " + ptrWord]
                 .filter(Boolean).join(" · ");
               trace.push("ruwikt:pointer " + ptrWord);
-            } else if (timeLeft() > 1500) {
+            } else if (process.env.DEFINE_MT === "1" && timeLeft() > 1500) {
               // 2. Otherwise machine-translate the DEFINITION, not the
               //    headword. The headword is rare by construction — that is
               //    why it ended up here — and MyMemory answers a rare word
@@ -1055,7 +1094,9 @@ export default async function handler(req, res) {
       // A guess, clearly labelled as one, so reading is not stopped dead by a
       // word nothing has. Azure's bilingual dictionary is tried before raw
       // translation — see lib/mt.js.
-      if (timeLeft() > 1200) {
+      // Off: a machine translation is a guess, and readers took it for a
+      // definition («цапнуть» came back "herniate"). DEFINE_MT=1 brings it back.
+      if (process.env.DEFINE_MT === "1" && timeLeft() > 1200) {
         let mt = null;
         try {
           mt = await mtLookup([lower, deyo].concat(lemmas).filter(Boolean), word, ctrl.signal);

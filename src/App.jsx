@@ -2147,12 +2147,75 @@ function linguaLibreUrl(word) {
   return LL_MEM[key];
 }
 
-function markWord(sentence, word) {
-  var s2 = String(sentence || ""), w = String(word || "").trim();
-  if (!s2 || !w) return [s2];
-  var i = s2.toLowerCase().replace(/ё/g, "е").indexOf(w.toLowerCase().replace(/ё/g, "е"));
-  if (i < 0) return [s2];
-  return [s2.slice(0, i), s2.slice(i, i + w.length), s2.slice(i + w.length)];
+// `word` may be one string or a list of every spelling the word is known by
+// (the form clicked, other forms met, the headword); `at` is where in the
+// sentence the clicked form sits, when that was recorded at saving. The
+// recorded place wins; then a whole-word match on any spelling; then the
+// word in the sentence that shares the headword's stem — «сядет» for сесть
+// would otherwise never be marked, which is why some review cards showed the
+// word in red and others did not.
+function markWord(sentence, word, at) {
+  var s2 = String(sentence || "");
+  var list = (Array.isArray(word) ? word : [word]).map(function(x){
+    return String(x || "").replace(/\u0301/g, "").trim();
+  }).filter(Boolean);
+  if (!s2 || !list.length) return [s2];
+  var fold = function(x){ return x.toLowerCase().replace(/ё/g, "е"); };
+  var low = fold(s2);
+  var cut = function(i, n){ return [s2.slice(0, i), s2.slice(i, i + n), s2.slice(i + n)]; };
+  if (typeof at === "number" && at >= 0) {
+    for (var a = 0; a < list.length; a++) {
+      var f0 = fold(list[a]);
+      if (low.substr(at, f0.length) === f0) return cut(at, f0.length);
+    }
+  }
+  var isL = function(ch){ return !!ch && /[а-яёa-z\u0301-]/i.test(ch); };
+  var whole = function(w) {
+    var from = 0;
+    while (true) {
+      var i = low.indexOf(w, from);
+      if (i < 0) return -1;
+      if (!isL(low.charAt(i - 1)) && !isL(low.charAt(i + w.length))) return i;
+      from = i + 1;
+    }
+  };
+  var spellings = [];
+  list.forEach(function(x){ x.split(/\s*\/\s*|,\s*/).forEach(function(y){ y = fold(y.trim()); if (y && spellings.indexOf(y) < 0) spellings.push(y); }); });
+  for (var c = 0; c < spellings.length; c++) {
+    var j = whole(spellings[c]);
+    if (j >= 0) return cut(j, spellings[c].length);
+  }
+  // The stem: the headword less its ending, matched at the start of a word.
+  var re = /[а-яё]+/g, m;
+  for (var d = 0; d < spellings.length; d++) {
+    var h = spellings[d];
+    // Longest stem first, down to about three-fifths of the headword (and
+    // never under four letters), so заломить still finds «заломленной».
+    var floor = Math.max(4, Math.ceil(h.length * 0.6));
+    for (var L = h.length; L >= Math.min(floor, h.length); L--) {
+      var stem = h.slice(0, L);
+      re.lastIndex = 0;
+      while ((m = re.exec(low))) {
+        if (m[0].indexOf(stem) === 0) return cut(m.index, m[0].length);
+      }
+    }
+  }
+  return [s2];
+}
+// Where a form sits in a sentence, as a whole word — recorded when the word
+// is saved, so the review card can mark exactly the word that was tapped.
+function formAt(sentence, form) {
+  var low = String(sentence || "").toLowerCase().replace(/ё/g, "е");
+  var f = String(form || "").toLowerCase().replace(/ё/g, "е").trim();
+  if (!low || !f) return -1;
+  var isL = function(ch){ return !!ch && /[а-яёa-z-]/i.test(ch); };
+  var from = 0;
+  while (true) {
+    var i = low.indexOf(f, from);
+    if (i < 0) return -1;
+    if (!isL(low.charAt(i - 1)) && !isL(low.charAt(i + f.length))) return i;
+    from = i + 1;
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -9714,7 +9777,7 @@ export default function App() {
   // (see api/define.js isSlangEntry) — every def3 answer may be one of those.
   // def5: Oct 9 2026 — verb forms reached through Wiktionary had been saved
   // under the clicked form («сядет») with no aspect; fixed in api/define.js.
-  var DEF_CACHE_PREFIX = "def6:";
+  var DEF_CACHE_PREFIX = "def7:";
   // Whether the word being looked up is in a song. Set by defWord for the
   // popup it opens; the later look-ups from that popup (another reading, the
   // ё spelling) inherit it. Songs are the only place the блатной жаргон
@@ -9985,9 +10048,11 @@ export default function App() {
       if (vars.length) {
         setPopup(function(p){ return p ? Object.assign({},p,{loading:false,yo:{orig:clean,vars:vars}}) : null; });
       } else {
+        // Never the raw error: a reader has no use for "HTTP 504".
         var msg = likelyRateLimit
           ? "Too many lookups just now — wait a moment and try again."
-          : 'Could not define "' + clean + '" — ' + rawMsg;
+          : "The dictionaries could not be reached just now — try again in a moment.";
+        if (typeof window !== "undefined" && window.DEF_DEBUG) console.warn("[def]", clean, rawMsg);
         setPopup(function(p){ return p ? Object.assign({},p,{loading:false,error:msg}) : null; });
       }
     }
@@ -10092,10 +10157,14 @@ export default function App() {
           baseLemma: data.lemma,
         });
       }
-      setPopup(function(p){ return p ? Object.assign({},p,{data:Object.assign({}, data, keep),loading:false}) : null; });
+      setPopup(function(p){ return p ? Object.assign({},p,{data:Object.assign({}, data, keep),loading:false,readNote:""}) : null; });
     } catch(err) {
-      var m2 = 'Could not define "' + lemma + '" \u2014 ' + ((err && err.message) || "Unknown error");
-      setPopup(function(p){ return p ? Object.assign({},p,{loading:false,error:m2}) : null; });
+      var m2 = (err && err.noEntry)
+        ? "No definition was found in any source for \u00ab" + lemma + "\u00bb."
+        : (/Too many|429/i.test((err && err.message) || "") ? "Too many lookups just now \u2014 wait a moment and try again."
+           : "The dictionaries could not be reached just now \u2014 try again in a moment.");
+      // The reading chips stay up, so another reading is still one tap away.
+      setPopup(function(p){ return p ? Object.assign({},p,{loading:false,readNote:m2}) : null; });
     }
   };
 
@@ -10105,7 +10174,9 @@ export default function App() {
       var data = await fetchDef(word);
       setPopup(function(p){ return p ? Object.assign({},p,{data:data,loading:false}) : null; });
     } catch(err) {
-      var m = 'Could not define "' + word + '" — ' + ((err && err.message) || "Unknown error");
+      var m = (err && err.noEntry)
+        ? "No definition was found in any source."
+        : "The dictionaries could not be reached just now — try again in a moment.";
       setPopup(function(p){ return p ? Object.assign({},p,{loading:false,error:m}) : null; });
     }
   };
@@ -11140,7 +11211,9 @@ export default function App() {
         return prev;
       }
       var next = prev.slice();
-      next[hit] = Object.assign({}, prev[hit], { sentences: cur.concat([Object.assign({ s: sent, w: where || "", at: Date.now() }, place)]).slice(-3) });
+      var fAt = formAt(sent, surface);
+      next[hit] = Object.assign({}, prev[hit], { sentences: cur.concat([Object.assign({ s: sent, w: where || "", at: Date.now(), f: String(surface || "").trim() },
+        fAt >= 0 ? { p: fAt } : {}, place)]).slice(-3) });
       return next;
     });
   };
@@ -11403,6 +11476,8 @@ export default function App() {
       pos: v.pos,
       isNew: !(v.srs && v.srs.S),
       sentence: (met.length ? met[pick].s : (v.example || v.exBankRu || (bx && bx.ru) || "")),
+      sentenceMark: [met.length ? met[pick].f : ""].concat(Array.isArray(v.forms) ? v.forms : [], [v.ru, v.lemma]).filter(Boolean),
+      sentenceAt: met.length && typeof met[pick].p === "number" ? met[pick].p : null,
       sentenceEn: met.length ? "" : (v.exampleTranslation || v.exBankEn || (bx && bx.en) || ""),
       sentenceWhere: met.length ? (met[pick].w || v.srcTitle || "") : "",
       sentenceOf: met.length,
@@ -20502,7 +20577,7 @@ export default function App() {
                              tabIndex={q.sentenceLoc ? 0 : undefined}
                              title={q.sentenceLoc ? "See it in the book" : undefined}
                              onClick={q.sentenceLoc ? function(){ setSentJump(q.sentenceLoc); } : undefined}>
-                          <p className="qex-s" lang="ru">{markWord(q.sentence, q.word).map(function(part, i){
+                          <p className="qex-s" lang="ru">{markWord(q.sentence, q.sentenceMark || q.word, q.sentenceAt).map(function(part, i){
                             return i === 1 ? <b key={i}>{part}</b> : <span key={i}>{part}</span>;
                           })}</p>
                           {answered && q.sentenceEn && <div className="qex-en">{q.sentenceEn}</div>}
@@ -20775,7 +20850,7 @@ export default function App() {
                                     {sents.map(function(x, si){
                                       return (
                                         <div key={si} className="iex ictx">
-                                          {markWord(x.s, v.ru).map(function(part, i){
+                                          {markWord(x.s, [x.f].concat(Array.isArray(v.forms) ? v.forms : [], [v.ru, v.lemma]).filter(Boolean), typeof x.p === "number" ? x.p : null).map(function(part, i){
                                             return i === 1 ? <b key={i}>{part}</b> : <span key={i}>{part}</span>;
                                           })}
                                           {x.w && <div className="iext">{x.w}</div>}
@@ -20969,11 +21044,11 @@ export default function App() {
 
               {popup.noEntry && (
                 <div className="ppos" style={{marginTop:6}}>
-                  Not in the dictionary — likely a proper name or an older form.
+                  No definition was found in any source.
                 </div>
               )}
 
-              {popup.noEntry && isAdmin && popup.trace && (
+              {popup.noEntry && isAdmin && popup.trace && typeof window !== "undefined" && window.DEF_DEBUG && (
                 <div style={{fontSize:"0.68em",opacity:0.45,marginTop:4,wordBreak:"break-word"}}>
                   {popup.trace.join(" · ")}
                 </div>
@@ -21057,6 +21132,7 @@ export default function App() {
                           ? ("Could be more than one word \u2014 \u00ab" + (popup.prev || "") + "\u00bb before it suggests the " + popup.data.readingCue + ":")
                           : "Could be more than one word \u2014 pick from the sentence:"}
                       </div>
+                      {popup.readNote && <div className="perr" style={{marginTop:6}}>{popup.readNote}</div>}
                       <div className="preads-row">
                         {popup.data.readings.map(function(r, i){
                           var cur = String(r.lemma).toLowerCase() === String(popup.data.lemma || "").toLowerCase();
@@ -21183,7 +21259,10 @@ export default function App() {
                       // and the quiz both show it later, when the book is long
                       // closed.
                       if (popup.sentence) {
-                        entry.sentences = [{ s: popup.sentence, w: popup.where || "", at: Date.now() }];
+                        var tapped = String(popup.word || "").trim();
+                        var tappedAt = formAt(popup.sentence, tapped);
+                        entry.sentences = [Object.assign({ s: popup.sentence, w: popup.where || "", at: Date.now(), f: tapped },
+                          tappedAt >= 0 ? { p: tappedAt } : {})];
                       } else {
                         var bx2 = bankExample(popup.word, popup.data && popup.data.lemma);
                         if (bx2) { entry.exBankRu = bx2.ru; entry.exBankEn = bx2.en; }
