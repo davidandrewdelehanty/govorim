@@ -785,6 +785,45 @@ export default async function handler(req, res) {
   const rl = checkRateLimit(ip, !!user || isDesktop);
   if (!rl.ok) return res.status(429).json({ error: rl.reason });
 
+  // —— The Russian definition («По-русски») ————————————————————————————
+  // The popup's button asks Викисловарь itself for the word's meanings in
+  // Russian — for a reader ready to learn Russian through Russian. The client
+  // sends the headword it already resolved; the tapped form and its е/ё and
+  // ending variants are tried after it, so a form still finds its page.
+  if (req.query && req.query.ru === "1") {
+    const ctrlR = new AbortController();
+    const tR = setTimeout(function () { ctrlR.abort(); }, 8000);
+    const t0 = Date.now();
+    const leftR = function () { return 8000 - (Date.now() - t0); };
+    try {
+      const lowerR = word.toLowerCase().replace(/\u0301/g, "");
+      const deyoR = lowerR.replace(/ё/g, "е");
+      let cands = [lowerR, deyoR].concat(yoVariants(deyoR).slice(0, 2));
+      const also = String((req.query && req.query.form) || "").toLowerCase().replace(/[^а-яё-]/g, "");
+      if (also && cands.indexOf(also) < 0) cands.push(also);
+      cands = cands.filter(function (w, i, a) { return w && a.indexOf(w) === i; });
+      let hit = await ruWiktionaryLookup(cands, word, ctrlR.signal, leftR);
+      if (!hit && leftR() > 2500) {
+        try {
+          const guesses = lemmaCandidates(lowerR, 12).concat(also ? lemmaCandidates(also, 8) : []);
+          const real = guesses.length ? await existingTitles(guesses, ctrlR.signal) : [];
+          if (real.length) hit = await ruWiktionaryLookup(real.slice(0, 3), word, ctrlR.signal, leftR);
+        } catch (e) { if (e && e.name === "AbortError") throw e; }
+      }
+      if (!hit) {
+        res.setHeader("Cache-Control", "public, s-maxage=86400");
+        return res.status(404).json({ error: "Викисловарь has no Russian definition for this word.", noEntry: true });
+      }
+      delete hit.noEnglish;
+      res.setHeader("Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
+      return res.status(200).json(hit);
+    } catch (e) {
+      return res.status(502).json({ error: "Викисловарь could not be reached just now." });
+    } finally {
+      clearTimeout(tR);
+    }
+  }
+
   // The whole request — every variant plus the ru-ru pass — shares one budget.
   const ctrl = new AbortController();
   // Vercel kills the function at 10s, so hold the whole tier stack inside a

@@ -10210,6 +10210,44 @@ export default function App() {
     }
   };
 
+  // «По-русски»: the word's meanings from the Russian Викисловарь, in Russian.
+  // Kept on the popup itself, keyed by headword, so choosing another reading
+  // shows that reading's Russian definition rather than the last one's.
+  var ruDefMemo = useRef({});
+  var openRuDef = async function() {
+    var p0 = popup;
+    if (!p0 || !p0.data) return;
+    var lemma = String(p0.data.lemma || p0.word || "").replace(/\u0301/g, "").trim();
+    if (!lemma) return;
+    var cur = p0.ruView;
+    if (cur && cur.lemma === lemma && cur.open) {
+      setPopup(function(p){ return p ? Object.assign({}, p, { ruView: Object.assign({}, p.ruView, { open: false }) }) : null; });
+      return;
+    }
+    var memo = ruDefMemo.current[lemma.toLowerCase()];
+    if (memo) {
+      setPopup(function(p){ return p ? Object.assign({}, p, { ruView: { lemma: lemma, open: true, data: memo.data, error: memo.error } }) : null; });
+      return;
+    }
+    setPopup(function(p){ return p ? Object.assign({}, p, { ruView: { lemma: lemma, open: true, loading: true } }) : null; });
+    var data = null, error = "";
+    try {
+      var r = await authFetch("/api/define?ru=1&word=" + encodeURIComponent(lemma) + "&form=" + encodeURIComponent(p0.word || ""));
+      var j = await r.json().catch(function(){ return null; });
+      if (r.ok && j && j.ruSenses && j.ruSenses.length) data = j;
+      else if (r.status === 404) error = "Викисловарь has no Russian definition for «" + lemma + "».";
+      else if (r.status === 429) error = "Too many lookups just now — wait a moment and try again.";
+      else error = "Викисловарь could not be reached just now — try again in a moment.";
+    } catch (e) {
+      error = "Викисловарь could not be reached just now — try again in a moment.";
+    }
+    if (data || /no Russian definition/.test(error)) ruDefMemo.current[lemma.toLowerCase()] = { data: data, error: error };
+    setPopup(function(p){
+      if (!p || !p.ruView || p.ruView.lemma !== lemma) return p;
+      return Object.assign({}, p, { ruView: { lemma: lemma, open: true, data: data, error: error } });
+    });
+  };
+
   var defWithYo = async function(word) {
     setPopup(function(p){ return p ? Object.assign({},p,{loading:true,yo:null,error:null,word:word}) : null; });
     try {
@@ -13896,6 +13934,17 @@ export default function App() {
         /* Russian-language definition — top of the popup body so the Russian reading practice happens first. */
         .pdru{font-family:'Literata',serif;font-size:15px;color:#000;line-height:1.5;margin-bottom:8px;padding:8px 10px;background:rgba(42,31,20,.06);border-left:2px solid rgba(42,31,20,.4);border-radius:4px}
         .ptr{font-size:16px;color:rgba(42,31,20,.65);margin-bottom:7px;font-style:italic;padding-left:2px}
+        .pru{margin:4px 0 8px}
+        .pru-btn{background:none;border:1px solid rgba(42,31,20,.22);border-radius:7px;padding:4px 10px;font-size:12px;font-family:'IBM Plex Sans',sans-serif;color:rgba(42,31,20,.75);cursor:pointer}
+        .pru-btn:hover,.pru-btn.on{border-color:rgba(42,31,20,.55);color:#2a1f14;background:rgba(42,31,20,.04)}
+        .pru-box{margin-top:8px;padding:8px 10px;border-left:2px solid rgba(42,31,20,.25);background:rgba(42,31,20,.03)}
+        .pru-h{font-family:'Old Standard TT',serif;font-size:16px;font-weight:600;color:#2a1f14;margin-bottom:4px}
+        .pru-list{margin:0;padding-left:20px;font-family:'Literata',serif;font-size:14px;line-height:1.5;color:#2a1f14}
+        .pru-list li{margin-bottom:3px}
+        .pru-syn{font-size:13px;color:rgba(42,31,20,.7);margin-top:6px;font-family:'Literata',serif}
+        .pru-ex{font-size:13px;font-style:italic;color:rgba(42,31,20,.65);margin-top:6px;font-family:'Literata',serif}
+        .pru-src{font-size:11px;opacity:.6;margin-top:6px}
+        .pru-src a{color:inherit}
         .pgr{font-size:13px;color:#33507a;margin-bottom:7px;background:rgba(135,168,196,.08);border-radius:8px;padding:5px 10px}
         .pex{font-size:13px;color:rgba(42,31,20,.5);border-top:1px solid rgba(42,31,20,.08);padding-top:7px;line-height:1.5}
         .pext{font-size:12px;color:rgba(42,31,20,.3);margin-top:3px}
@@ -21324,6 +21373,41 @@ export default function App() {
                   {popup.data.definitionRu && <div className="pdru">{popup.data.definitionRu}</div>}
                   <div className="ptr">{popup.data.translation}</div>
                   {popup.data.grammar && <div className="pgr">{popup.data.grammar}</div>}
+                  {(function(){
+                    var lem = String(popup.data.lemma || popup.word || "").replace(/\u0301/g, "").trim();
+                    var rv = popup.ruView && popup.ruView.lemma === lem ? popup.ruView : null;
+                    var open = !!(rv && rv.open);
+                    return (
+                      <div className="pru">
+                        <button type="button" className={"pru-btn" + (open ? " on" : "")} onClick={openRuDef}
+                                title="The meaning in Russian, from the Russian Викисловарь">
+                          {open ? "Hide the Russian definition" : "По-русски — Russian definition"}
+                        </button>
+                        {open && (
+                          <div className="pru-box" lang="ru">
+                            {rv.loading && <div className="pload">Ищу в Викисловаре…</div>}
+                            {rv.error && <div className="perr">{rv.error}</div>}
+                            {rv.data && (
+                              <>
+                                <div className="pru-h">{rv.data.lemma || lem}</div>
+                                <ol className="pru-list">
+                                  {rv.data.ruSenses.map(function(sn, i){ return <li key={i}>{sn}</li>; })}
+                                </ol>
+                                {rv.data.ruSynonyms && rv.data.ruSynonyms.length > 0 && (
+                                  <div className="pru-syn">Синонимы: {rv.data.ruSynonyms.join(", ")}</div>
+                                )}
+                                {rv.data.example && <div className="pru-ex">«{rv.data.example}»</div>}
+                                <div className="pru-src">
+                                  <a href={rv.data.sourceUrl || ("https://ru.wiktionary.org/wiki/" + encodeURIComponent(lem))} target="_blank" rel="noreferrer">Викисловарь</a>
+                                  {" \u00b7 "}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a>
+                                </div>
+                              </>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })()}
                   {/* Where the reader actually met the word beats any
                       dictionary's example, so it goes first and is cited. The
                       dictionary's own example follows; the frequency deck is
