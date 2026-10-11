@@ -13493,6 +13493,36 @@ export default function App() {
         .leaf.today{outline:2px solid #2a1f14;outline-offset:-2px}
         .leaf.today b{color:#000}
         .cal-foot{display:flex;justify-content:space-between;gap:10px;margin-top:10px;font-size:13px;color:rgba(42,31,20,.6);font-style:italic}
+        /* My Samovar */
+        .mine-head{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+        .mine-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:8px 0 26px}
+        .mine-tile{border:1px solid rgba(42,31,20,.14);border-radius:10px;background:rgba(42,31,20,.03);padding:14px 10px 12px;text-align:center}
+        .mine-n{font-family:'Old Standard TT',serif;font-size:28px;font-weight:600;color:#2a1f14;font-variant-numeric:tabular-nums;line-height:1.1}
+        .mine-l{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(42,31,20,.6);margin-top:6px}
+        .mine-s{font-size:11px;color:rgba(42,31,20,.45);margin-top:2px}
+        @media (max-width:620px){.mine-tiles{grid-template-columns:repeat(2,1fr)}}
+        .mine-sec{margin:0 0 28px;padding-top:16px;border-top:1px solid rgba(42,31,20,.14)}
+        .mine-h{font-family:'Old Standard TT',serif;font-size:22px;font-weight:600;color:#2a1f14;margin:0 0 12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+        .mine-c{font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:400;color:rgba(42,31,20,.5)}
+        .mine-dl{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:2px 18px;margin:0 0 10px}
+        .mine-dl>div{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dotted rgba(42,31,20,.18)}
+        .mine-dl dt{font-size:13.5px;color:rgba(42,31,20,.65)}
+        .mine-dl dd{margin:0;font-size:14px;color:#2a1f14;font-variant-numeric:tabular-nums;text-align:right}
+        .mine-list{list-style:none;margin:0;padding:0}
+        .mine-list li{display:grid;grid-template-columns:1fr auto;column-gap:12px;padding:8px 6px;border-bottom:1px solid rgba(42,31,20,.08);border-radius:6px}
+        .mine-list li.go{cursor:pointer}
+        .mine-list li.go:hover{background:rgba(42,31,20,.05)}
+        .mine-t{font-family:'Literata',serif;font-size:15.5px;color:#2a1f14;grid-column:1}
+        .mine-a{font-size:12.5px;color:rgba(42,31,20,.55);grid-column:1;grid-row:2}
+        .mine-d{font-size:12.5px;color:rgba(42,31,20,.55);grid-column:2;grid-row:1;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+        .mine-bar{grid-column:1 / -1;height:3px;background:rgba(42,31,20,.08);border-radius:2px;overflow:hidden;margin-top:6px}
+        .mine-bar>span{display:block;height:100%;background:#4a3f34}
+        .mine-sub{font-family:'IBM Plex Sans',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(42,31,20,.55);margin:18px 0 8px}
+        .mine-words{display:flex;flex-wrap:wrap;gap:6px}
+        .mine-words>span{font-family:'Literata',serif;font-size:14.5px;padding:3px 10px;border-radius:14px;background:rgba(47,93,138,.08);color:#2f5d8a}
+        .mine-words.done>span{background:rgba(47,106,58,.09);color:#2f6a3a}
+        .mine-link{background:none;border:none;color:#9d4630;font-size:14px;padding:6px 0;cursor:pointer;font-family:'IBM Plex Sans',sans-serif}
+        .mine-link:hover{text-decoration:underline}
         /* the ledger */
         .ledger{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin:0;border-top:1px solid rgba(42,31,20,.18);border-bottom:1px solid rgba(42,31,20,.18)}
         .ledger>div{padding:10px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;border-left:1px solid rgba(42,31,20,.1)}
@@ -16972,7 +17002,7 @@ export default function App() {
               short to begin with — they sit beside the name now and the page
               gets the height back. */}
           <div className="tabs">
-            {["chat","ranked","leaders","vocab","grammar","forum","music"].filter(function(t){
+            {["chat","ranked","leaders","vocab","grammar","forum","music","mine"].filter(function(t){
               if (t === "forum") return FORUM_ENABLED;
               if (t === "grammar") return GRAMMAR_ENABLED;
               return true;
@@ -16999,9 +17029,10 @@ export default function App() {
                     stopTTS();
                   }
                   if (t === "leaders") { loadBoards(); stopTTS(); }
+                  if (t === "mine") { if (me && me.username) loadBoards(); stopTTS(); }
                   setTab(t);
                 }}>
-                  {t==="chat"?"Reading":t==="ranked"?"Books by popularity":t==="leaders"?"Leaderboard":t==="vocab"?"Vocabulary":t==="grammar"?"Grammar":t==="forum"?"Forum":"Music"}
+                  {t==="chat"?"Reading":t==="ranked"?"Books by popularity":t==="leaders"?"Leaderboard":t==="vocab"?"Vocabulary":t==="grammar"?"Grammar":t==="forum"?"Forum":t==="mine"?("My " + SITE_NAME):"Music"}
                   {t==="vocab"&&vocab.length>0&&<span className="bdg">{vocab.length}</span>}
                   {t==="grammar"&&tips.length>0&&<span className="bdg g">{tips.length}</span>}
                 </button>
@@ -17051,6 +17082,274 @@ export default function App() {
             <button onClick={function(){ setSyncErr(""); }} style={{background:"none",border:"none",color:"#9d4630",cursor:"pointer",fontSize:18,padding:0}}>×</button>
           </div>
         )}
+
+        {tab==="mine" && (function(){
+          // My Samovar: everything the site knows about this reader, on one
+          // page. Nothing here is fetched except the leaderboard standing —
+          // every figure comes from the same state the reader, the vocabulary
+          // tab and the reading record already hold, so it can never disagree
+          // with them.
+          var goals = { words: GOAL_WORDS, cards: GOAL_CARDS };
+          var st = streaks(stats, goals);
+          var tot = statsTotals(stats);
+          var todayK = dayKey(Date.now());
+          var now = new Date();
+          var weekAgo = dayKey(Date.now() - 6 * 86400000);
+          var monthPrefix = todayK.slice(0, 7), yearPrefix = todayK.slice(0, 4);
+          var wk = 0, mo = 0, yr = 0, best = null, firstDay = "";
+          Object.keys(stats || {}).forEach(function(k){
+            var r = stats[k] || {}, n = r.read || 0;
+            if ((n || r.practiced) && (!firstDay || k < firstDay)) firstDay = k;
+            if (k >= weekAgo && k <= todayK) wk += n;
+            if (k.slice(0, 7) === monthPrefix) mo += n;
+            if (k.slice(0, 4) === yearPrefix) yr += n;
+            if (n > 0 && (!best || n > best.n)) best = { k: k, n: n };
+          });
+          var readDays = Object.keys(stats || {}).filter(function(k){ return (stats[k] || {}).read > 0; }).length;
+          var avg = readDays ? Math.round(tot.read / readDays) : 0;
+          var fmtDay = function(k) {
+            if (!k) return "";
+            var p = k.split("-");
+            return new Date(+p[0], +p[1] - 1, +p[2]).toLocaleDateString(undefined, { day: "numeric", month: "long", year: "numeric" });
+          };
+
+          var findBook = function(rec) {
+            for (var i = 0; i < uploadedBooks.length; i++) {
+              var u = uploadedBooks[i];
+              if (rec.filename && u.filename === rec.filename && u.title === rec.title) return { type: "upload", book: u };
+            }
+            for (var j = 0; j < presetBooks.length; j++) {
+              if (rec.filename && presetBooks[j].filename === rec.filename) return { type: "preset", book: presetBooks[j] };
+            }
+            return null;
+          };
+          var openRec = function(match) {
+            if (!match) return;
+            setTab("chat");
+            setMode("read");
+            stopTTS();
+            if (match.type === "upload") openUploadedBook(match.book);
+            else if (match.book.category === "Song Lyrics") openSongPicker(match.book);
+            else loadPresetBook(match.book);
+          };
+
+          // Books finished. Finishing a спектакль also finishes its play, in
+          // the same instant — one reading, so one line here.
+          var seenAt = {};
+          var finished = Object.keys(finishedMap || {}).map(function(k){
+            var f = finishedMap[k] || {};
+            var fn = k.split("::")[0];
+            return Object.assign({ key: k, filename: fn }, f);
+          }).filter(function(f){
+            if (!f || f.removed) return false;
+            var tag = (f.at || 0) + "|" + (f.author || "");
+            if (f.at && seenAt[tag]) return false;
+            seenAt[tag] = true;
+            return true;
+          }).sort(function(a, b){ return (b.at || 0) - (a.at || 0); });
+          var finishedWords = finished.reduce(function(t, f){
+            var m = findBook(f);
+            return t + ((m && m.book && m.book.words) || 0);
+          }, 0);
+
+          var reading = Object.keys(progressMap || {}).map(function(k){ return Object.assign({ key: k }, progressMap[k]); })
+            .filter(function(rec){ return liveProgress(rec) && !isFinished(rec) && rec.category !== "Song Lyrics"; })
+            .sort(function(a, b){ return (b.lastRead || 0) - (a.lastRead || 0); });
+
+          // Vocabulary.
+          var active = vocab.length, learnedN = learned.length;
+          var inLearning = 0, reviewedOnce = 0;
+          vocab.forEach(function(v){
+            var s = v && v.srs;
+            if (s && s.S) { reviewedOnce++; if ((s.reps || 0) < 4 || (s.run || 0) < 3) inLearning++; }
+          });
+          var bySource = {};
+          vocab.concat(learned).forEach(function(v){
+            var t = (v && v.srcTitle) || "";
+            if (t) bySource[t] = (bySource[t] || 0) + 1;
+          });
+          var topSources = Object.keys(bySource).map(function(t){ return { t: t, n: bySource[t] }; })
+            .sort(function(a, b){ return b.n - a.n; }).slice(0, 6);
+          var recent = vocab.slice().sort(function(a, b){ return (b.created || 0) - (a.created || 0); }).slice(0, 14);
+          var recentLearned = learned.slice().sort(function(a, b){ return (b.learnedAt || 0) - (a.learnedAt || 0); }).slice(0, 14);
+          var bmCount = Object.keys(bookmarkMap || {}).length;
+
+          // Where they stand on the boards, when they are on them.
+          var rankIn = function(key) {
+            if (!boards || !me || !me.username) return null;
+            var rows = boards[key] || [];
+            for (var i = 0; i < rows.length; i++) if (rows[i].name === me.username) return { rank: i + 1, of: rows.length };
+            return null;
+          };
+          var rRev = rankIn("reviewed"), rWords = rankIn("words");
+
+          var name = me ? (me.username || String(me.email || "").split("@")[0]) : "Guest";
+          var since = (me && me.createdAt) ? new Date(me.createdAt).toLocaleDateString(undefined, { month: "long", year: "numeric" }) : "";
+
+          var tiles = [
+            { l: "Words read", n: fmtInt(tot.read) },
+            { l: "Books finished", n: finished.length },
+            { l: "Words saved", n: fmtInt(active), sub: "in your vocabulary" },
+            { l: "Words learned", n: fmtInt(learnedN), sub: "retired from review" },
+            { l: "Cards reviewed", n: fmtInt(tot.practiced) },
+            { l: "Current streak", n: st.current, sub: st.current === 1 ? "day" : "days" },
+            { l: "Longest streak", n: st.longest, sub: st.longest === 1 ? "day" : "days" },
+            { l: "Days active", n: tot.days },
+          ];
+
+          return (
+            <div className="main">
+              <div className="ss mine">
+                <div className="mine-head">
+                  {me && <Avatar id={me.avatar} name={name} size={56} />}
+                  <div>
+                    <h1 className="sti" style={{margin:0}}>My {SITE_NAME}</h1>
+                    <p className="sde" style={{margin:"4px 0 0"}}>
+                      {name}
+                      {since ? " · member since " + since : ""}
+                      {firstDay ? " · reading here since " + fmtDay(firstDay) : ""}
+                    </p>
+                  </div>
+                </div>
+                {!me && (
+                  <div className="lb-join">
+                    You are reading as a guest, so these figures live on this device only. Sign in to keep them everywhere.
+                  </div>
+                )}
+
+                <div className="mine-tiles">
+                  {tiles.map(function(t){
+                    return (
+                      <div key={t.l} className="mine-tile">
+                        <div className="mine-n">{t.n}</div>
+                        <div className="mine-l">{t.l}</div>
+                        {t.sub && <div className="mine-s">{t.sub}</div>}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <section className="mine-sec">
+                  <h2 className="mine-h">Reading</h2>
+                  <dl className="mine-dl">
+                    <div><dt>Today</dt><dd>{fmtInt((stats[todayK] || {}).read || 0)} words</dd></div>
+                    <div><dt>Last 7 days</dt><dd>{fmtInt(wk)} words</dd></div>
+                    <div><dt>{now.toLocaleDateString(undefined, { month: "long" })}</dt><dd>{fmtInt(mo)} words</dd></div>
+                    <div><dt>{yearPrefix}</dt><dd>{fmtInt(yr)} words</dd></div>
+                    <div><dt>Average reading day</dt><dd>{fmtInt(avg)} words</dd></div>
+                    <div><dt>Best day</dt><dd>{best ? fmtInt(best.n) + " words · " + fmtDay(best.k) : "—"}</dd></div>
+                    <div><dt>Bookmarks</dt><dd>{bmCount}</dd></div>
+                  </dl>
+                </section>
+
+                <section className="mine-sec">
+                  <h2 className="mine-h">Books finished <span className="mine-c">{finished.length}{finishedWords ? " · " + fmtWords(finishedWords) : ""}</span></h2>
+                  {!finished.length && <div className="lib-cat-hint">None yet. Mark a book as read when you reach the end, and it is listed here.</div>}
+                  <ol className="mine-list">
+                    {finished.map(function(f){
+                      var m = findBook(f);
+                      return (
+                        <li key={f.key} className={m ? "go" : ""} onClick={function(){ openRec(m); }}
+                            title={m ? "Open it" : ""}>
+                          <span className="mine-t" lang="ru">{f.title || f.filename || "Untitled"}</span>
+                          {f.author && <span className="mine-a" lang="ru">{f.author}</span>}
+                          <span className="mine-d">{f.at ? new Date(f.at).toLocaleDateString() : ""}</span>
+                        </li>
+                      );
+                    })}
+                  </ol>
+                </section>
+
+                <section className="mine-sec">
+                  <h2 className="mine-h">Reading now <span className="mine-c">{reading.length}</span></h2>
+                  {!reading.length && <div className="lib-cat-hint">No book in progress.</div>}
+                  <ol className="mine-list">
+                    {reading.map(function(rec){
+                      var m = findBook(rec);
+                      var total = rec.totalChapters || 1;
+                      var pct = (rec.words && rec.wordsRead != null)
+                        ? Math.round((rec.wordsRead / rec.words) * 100)
+                        : (total > 1 ? Math.round((rec.cidx / total) * 100) : 0);
+                      pct = Math.max(0, Math.min(100, pct));
+                      return (
+                        <li key={rec.key} className={m ? "go" : ""} onClick={function(){ openRec(m); }}>
+                          <span className="mine-t" lang="ru">{rec.title || "Untitled"}</span>
+                          {rec.author && <span className="mine-a" lang="ru">{rec.author}</span>}
+                          <span className="mine-d">{pct}%</span>
+                          <span className="mine-bar"><span style={{width: pct + "%"}}></span></span>
+                        </li>
+                      );
+                    })}
+                  </ol>
+                </section>
+
+                <section className="mine-sec">
+                  <h2 className="mine-h">Vocabulary</h2>
+                  <dl className="mine-dl">
+                    <div><dt>Saved, still in review</dt><dd>{fmtInt(active)}</dd></div>
+                    <div><dt>Learned and retired</dt><dd>{fmtInt(learnedN)}</dd></div>
+                    <div><dt>Due now</dt><dd>{fmtInt(dueNow)}</dd></div>
+                    <div><dt>Not reviewed yet</dt><dd>{fmtInt(active - reviewedOnce)}</dd></div>
+                    <div><dt>Still being learned</dt><dd>{fmtInt(inLearning)}</dd></div>
+                  </dl>
+                  {dueNow > 0 && (
+                    <button className="prog-due" onClick={function(){ setTab("vocab"); setQuizMode(false); setQuizMenu(true); }}>
+                      {dueNow} {dueNow === 1 ? "word is" : "words are"} due for review →
+                    </button>
+                  )}
+                  {topSources.length > 0 && (
+                    <>
+                      <div className="mine-sub">Where your words come from</div>
+                      <ol className="mine-list mine-src">
+                        {topSources.map(function(s){
+                          return (
+                            <li key={s.t}><span className="mine-t" lang="ru">{s.t}</span><span className="mine-d">{s.n} {s.n === 1 ? "word" : "words"}</span></li>
+                          );
+                        })}
+                      </ol>
+                    </>
+                  )}
+                  {recent.length > 0 && (
+                    <>
+                      <div className="mine-sub">Saved most recently</div>
+                      <div className="mine-words" lang="ru">
+                        {recent.map(function(v, i){ return <span key={i} title={v.en || ""}>{v.ru}</span>; })}
+                      </div>
+                    </>
+                  )}
+                  {recentLearned.length > 0 && (
+                    <>
+                      <div className="mine-sub">Learned most recently</div>
+                      <div className="mine-words done" lang="ru">
+                        {recentLearned.map(function(v, i){ return <span key={i} title={v.en || ""}>{v.ru}</span>; })}
+                      </div>
+                    </>
+                  )}
+                </section>
+
+                <section className="mine-sec">
+                  <h2 className="mine-h">Leaderboard</h2>
+                  {!me ? (
+                    <div className="lib-cat-hint">Sign in and choose a username to appear on the leaderboard.</div>
+                  ) : !me.username ? (
+                    <div className="lb-join">
+                      You are not on the board yet: it only shows readers with a username.
+                      <button type="button" className="adm-btn" onClick={function(){ setShowAcct(true); }}>Choose a username</button>
+                    </div>
+                  ) : !boards ? (
+                    <div className="lib-cat-hint">{boardsLoad ? "Counting…" : "Not loaded."}</div>
+                  ) : (
+                    <dl className="mine-dl">
+                      <div><dt>Cards reviewed</dt><dd>{rRev ? "#" + rRev.rank + " of " + rRev.of : "not ranked yet"}</dd></div>
+                      <div><dt>Words read</dt><dd>{rWords ? "#" + rWords.rank + " of " + rWords.of : "not ranked yet"}</dd></div>
+                    </dl>
+                  )}
+                  <button type="button" className="mine-link" onClick={function(){ loadBoards(); setTab("leaders"); }}>See the full leaderboard →</button>
+                </section>
+              </div>
+            </div>
+          );
+        })()}
 
         {tab==="leaders" && (
           <div className="main">
