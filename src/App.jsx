@@ -1932,6 +1932,155 @@ function ruPlural(n, one, few, many) {
   return many;
 }
 
+// ── Badges ───────────────────────────────────────────────────────────────
+// Rewards a reader collects, worked out entirely from records the page
+// already holds — the finished shelf, the reading log, the vocabulary, the
+// drills and the songs — so they can never disagree with the profile, and
+// nothing new is stored but which ones the reader has already been shown.
+//
+//   · an author badge for finishing any work by that author, and higher
+//     ones for finishing several of theirs (where they wrote that many);
+//   · a badge for the first work finished of each kind — novel, play, poem —
+//     and tiers for finishing more of that kind;
+//   · milestones for words read, days in a row, cards reviewed, words
+//     learned, case drills and songs.
+var BADGE_KINDS = [
+  { cat: "Novels", first: "Первый роман",                  ru: "Романы",          one: "роман",      tiers: [1, 3, 5, 10, 25] },
+  { cat: "Novellas", first: "Первая повесть",                ru: "Повести",         one: "повесть",    tiers: [1, 3, 5, 10, 25] },
+  { cat: "Short Stories", first: "Первый рассказ",           ru: "Рассказы",        one: "рассказ",    tiers: [1, 10, 25, 50, 100, 250] },
+  { cat: "Poetry", first: "Первое стихотворение",                  ru: "Стихи",           one: "стихотворение", tiers: [1, 10, 25, 50, 100, 250] },
+  { cat: "Plays", first: "Первая пьеса",                   ru: "Пьесы",           one: "пьесу",      tiers: [1, 3, 5, 10, 25] },
+  { cat: "Theatrical Performances", first: "Первый спектакль", ru: "Спектакли",       one: "спектакль",  tiers: [1, 3, 5] },
+  { cat: "Religious Texts", first: "Первая священная книга",         ru: "Священные тексты", one: "книгу",     tiers: [1] },
+  { cat: "Speeches by Soviet Leaders", first: "Первая речь", ru: "Речи",         one: "речь",       tiers: [1] },
+];
+var BADGE_MILESTONES = [
+  { id: "words",   ru: "Прочитано слов",       en: "Russian words read",    tiers: [10000, 50000, 100000, 250000, 500000, 1000000, 2500000] },
+  { id: "streak",  ru: "Дней подряд",          en: "longest streak, in days", tiers: [3, 7, 14, 30, 100, 365] },
+  { id: "cards",   ru: "Карточек повторено",   en: "vocabulary cards reviewed", tiers: [100, 500, 1000, 5000, 10000] },
+  { id: "learned", ru: "Слов выучено",         en: "words learned and retired", tiers: [10, 50, 100, 250, 500, 1000] },
+  { id: "saved",   ru: "Слов сохранено",       en: "words saved to your vocabulary", tiers: [25, 100, 250, 500, 1000] },
+  { id: "drills",  ru: "Падежных упражнений",  en: "case drills completed", tiers: [1, 10, 25, 50, 100] },
+  { id: "songs",   ru: "Песен прослушано",     en: "different songs listened to", tiers: [1, 10, 25, 50, 100] },
+];
+// Several works by one author: only offered where the author wrote that many.
+var BADGE_AUTHOR_TIERS = [3, 10, 25, 50, 100];
+var BADGE_SKIP_AUTHORS = { "Religious Texts": 1 };
+
+function badgeShort(n) {
+  if (n >= 1000000) return (Math.round(n / 100000) / 10) + "M";
+  if (n >= 1000) return Math.round(n / 1000) + "k";
+  return String(n);
+}
+// An author's surname, for the medal and the badge's name: «Чехов А.П.» → «Чехов».
+function badgeSurname(a) {
+  return String(a || "").replace(/\s+[А-ЯЁA-Z]\.(\s*[А-ЯЁA-Z]\.)?\s*$/, "").trim() || String(a || "");
+}
+// The genitive of a surname, for «Читатель Чехова». The common endings are
+// regular; anything else is left as it is written.
+function badgeGen(s) {
+  var w = String(s || "");
+  if (/[ая]$/.test(w) && !/(ая|яя)$/.test(w)) return w;          // Драгунский-type stays; Толстая unlikely
+  if (/ий$/.test(w)) return w.replace(/ий$/, "ого");
+  if (/ой$/.test(w)) return w.replace(/ой$/, "ого");
+  if (/ый$/.test(w)) return w.replace(/ый$/, "ого");
+  if (/(ов|ев|ёв|ин|ын)$/.test(w)) return w + "а";
+  if (/[бвгджзклмнпрстфхцчшщ]$/.test(w)) return w + "а";
+  return w;
+}
+
+function computeBadges(src) {
+  var books = src.books || [];
+  var byFile = {};
+  books.forEach(function(b){ if (b && b.filename) byFile[b.filename] = b; });
+  // Finished works, each once: a play marked read with its спектакль is two
+  // works of two kinds, but the same title by the same author is counted once.
+  var done = [], seen = {};
+  Object.keys(src.finished || {}).forEach(function(k) {
+    var f = src.finished[k];
+    if (!f || f.removed) return;
+    var fn = k.split("::")[0];
+    var b = byFile[fn] || null;
+    var cat = (b && b.category) || f.category || "";
+    var author = (b && b.author) || f.author || "";
+    var tag = fn + "|" + cat;
+    if (seen[tag]) return;
+    seen[tag] = 1;
+    done.push({ title: (b && b.title) || f.title || "", author: author, cat: cat, at: f.at || 0 });
+  });
+  var out = [];
+  var add = function(b) { out.push(b); };
+
+  // Kinds of work.
+  BADGE_KINDS.forEach(function(k) {
+    var mine = done.filter(function(d){ return d.cat === k.cat; });
+    var available = books.filter(function(b){ return b && b.category === k.cat; }).length;
+    if (!available) return;
+    k.tiers.forEach(function(t, i) {
+      if (t > available) return;
+      var first = i === 0;
+      var when = mine.length >= t ? mine.map(function(d){ return d.at; }).sort(function(a,b){ return a-b; })[t - 1] : 0;
+      add({
+        id: "kind:" + k.cat + ":" + t, group: "kind", tier: i,
+        mark: first ? k.ru.slice(0, 1) : String(t),
+        title: first ? k.first : (k.ru + ": " + t),
+        desc: first ? ("Finish your first " + k.cat.toLowerCase().replace(/s$/, "")) : ("Finish " + t + " " + k.cat.toLowerCase()),
+        earned: mine.length >= t, n: Math.min(mine.length, t), of: t, at: when,
+      });
+    });
+  });
+
+  // Authors.
+  var authorsAll = {};
+  books.forEach(function(b){
+    var a = b && b.author;
+    if (!a || BADGE_SKIP_AUTHORS[a]) return;
+    authorsAll[a] = (authorsAll[a] || 0) + 1;
+  });
+  var mineBy = {};
+  done.forEach(function(d){
+    if (!d.author || BADGE_SKIP_AUTHORS[d.author]) return;
+    (mineBy[d.author] = mineBy[d.author] || []).push(d);
+  });
+  Object.keys(authorsAll).sort(function(a, b){
+    return (mineBy[b] ? mineBy[b].length : 0) - (mineBy[a] ? mineBy[a].length : 0) || authorsAll[b] - authorsAll[a];
+  }).forEach(function(a) {
+    var mine = mineBy[a] || [];
+    var sur = badgeSurname(a);
+    var ats = mine.map(function(d){ return d.at; }).sort(function(x, y){ return x - y; });
+    add({
+      id: "author:" + a + ":1", group: "author", tier: 0, mark: sur.slice(0, 1),
+      title: / и /.test(sur) ? ("Читатель: " + sur) : ("Читатель " + badgeGen(sur)), desc: "Finish a work by " + a,
+      earned: mine.length >= 1, n: Math.min(mine.length, 1), of: 1, at: ats[0] || 0, author: a,
+    });
+    BADGE_AUTHOR_TIERS.forEach(function(t, i) {
+      if (t > authorsAll[a]) return;
+      add({
+        id: "author:" + a + ":" + t, group: "author", tier: i + 1, mark: String(t),
+        title: sur + ": " + t + " " + ruPlural(t, "произведение", "произведения", "произведений"),
+        desc: "Finish " + t + " works by " + a,
+        earned: mine.length >= t, n: Math.min(mine.length, t), of: t, at: ats[t - 1] || 0, author: a,
+      });
+    });
+  });
+
+  // Milestones.
+  var have = {
+    words: src.wordsRead || 0, streak: src.longestStreak || 0, cards: src.cardsReviewed || 0,
+    learned: src.learned || 0, saved: src.saved || 0, drills: src.drills || 0, songs: src.songs || 0,
+  };
+  BADGE_MILESTONES.forEach(function(m) {
+    m.tiers.forEach(function(t, i) {
+      add({
+        id: "m:" + m.id + ":" + t, group: "milestone", tier: i, mark: badgeShort(t),
+        title: m.ru + ": " + badgeShort(t), desc: t.toLocaleString() + " " + m.en,
+        earned: have[m.id] >= t, n: Math.min(have[m.id], t), of: t, at: 0, kind: m.id,
+      });
+    });
+  });
+  return out;
+}
+
 function ProgressPanel(props) {
   var stats = props.stats || {};
   var goals = { words: GOAL_WORDS, cards: GOAL_CARDS };
@@ -11851,6 +12000,45 @@ export default function App() {
     return dueWords(dropCommonWords(vocab, function(v){ return v && v.ru; }).filter(function(v){ return v && v.en && v.pos; }), Date.now()).length;
   }, [vocab]);
 
+  // Badges — see computeBadges. The toast announces one the moment it is
+  // earned. The first time a device works them out, everything already
+  // earned is recorded silently: a reader with forty books behind them is not
+  // greeted by forty announcements.
+  var badges = useMemo(function(){
+    var stB = streaks(stats, { words: GOAL_WORDS, cards: GOAL_CARDS });
+    var totB = statsTotals(stats);
+    return computeBadges({
+      books: presetBooks, finished: finishedMap,
+      wordsRead: totB.read, longestStreak: stB.longest, cardsReviewed: totB.practiced,
+      learned: learned.length, saved: vocab.length,
+      drills: (drills && drills.runs) || 0,
+      songs: Object.keys(songsRead || {}).filter(function(k){ return ((songsRead[k] || {}).n || 0) > 0; }).length,
+    });
+  }, [presetBooks, finishedMap, stats, learned, vocab.length, drills, songsRead]);
+  var [badgeToast, setBadgeToast] = useState(null);
+  var [badgeAll, setBadgeAll] = useState(false);
+  useEffect(function(){
+    var ready = presetBooks.length > 0 && finishedLoaded && localLoaded && (!me || syncedFromServer);
+    if (!ready) return;
+    var KEY = "gv_badges_seen_v1";
+    var seen = null;
+    try { seen = JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) { seen = null; }
+    var earnedIds = badges.filter(function(b){ return b.earned; }).map(function(b){ return b.id; });
+    if (!Array.isArray(seen)) {
+      try { localStorage.setItem(KEY, JSON.stringify(earnedIds)); } catch (e) {}
+      return;
+    }
+    var fresh = badges.filter(function(b){ return b.earned && seen.indexOf(b.id) < 0; });
+    if (!fresh.length) return;
+    try { localStorage.setItem(KEY, JSON.stringify(seen.concat(fresh.map(function(b){ return b.id; })))); } catch (e) {}
+    setBadgeToast({ list: fresh, at: Date.now() });
+  }, [badges, finishedLoaded, localLoaded, syncedFromServer, me && me.id]);
+  useEffect(function(){
+    if (!badgeToast) return;
+    var t = setTimeout(function(){ setBadgeToast(null); }, 9000);
+    return function(){ clearTimeout(t); };
+  }, [badgeToast && badgeToast.at]);
+
   // Bookmarks for grammar curriculum topics. We only store the topic ID — when
   // the user clicks a saved card we re-render the full content from curriculum.json,
   // so edits to the curriculum are reflected in already-saved entries.
@@ -15016,6 +15204,28 @@ export default function App() {
           font-family:var(--serif);font-size:14.5px;color:var(--ink)}
         .acct-li .a{color:var(--ink-3)}
         .acct-li{flex-wrap:wrap}
+        .bdg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:14px 10px;margin-top:6px}
+        .bdg{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
+        .bdg.locked{opacity:.42}
+        .bdg.locked .bdg-medal{filter:grayscale(1)}
+        .bdg-t{font-family:var(--serif);font-size:13px;line-height:1.25;color:var(--ink)}
+        .bdg-s{font-family:var(--sans);font-size:10.5px;color:var(--ink-3)}
+        .bdg-medal{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+          font-family:'Old Standard TT',serif;font-weight:700;font-size:17px;letter-spacing:-.02em;
+          color:#3b2a14;border:2px solid rgba(59,42,20,.35);box-shadow:inset 0 0 0 3px rgba(255,255,255,.35);flex-shrink:0}
+        .bdg-medal.t0{background:radial-gradient(circle at 35% 30%,#f1d7b4,#c8935a)}
+        .bdg-medal.t1{background:radial-gradient(circle at 35% 30%,#f4f4f2,#a9adb2)}
+        .bdg-medal.t2{background:radial-gradient(circle at 35% 30%,#fff1b8,#d6a92c)}
+        .bdg-medal.t3{background:radial-gradient(circle at 35% 30%,#e8f3ff,#7aa6cf);color:#13324f}
+        .bdg-medal.t4{background:radial-gradient(circle at 35% 30%,#f6e2ff,#9a6fc0);color:#2e1342}
+        .bdg-toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:400;display:flex;align-items:center;gap:12px;
+          background:#fbf8f2;border:1px solid rgba(42,31,20,.25);border-radius:14px;padding:10px 12px 10px 10px;
+          box-shadow:0 10px 30px rgba(0,0,0,.18);max-width:calc(100vw - 32px);animation:pf .2s ease}
+        .bdg-toast-k{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(42,31,20,.55)}
+        .bdg-toast-n{font-family:'Old Standard TT',serif;font-size:17px;color:#2a1f14}
+        .bdg-toast-t{min-width:0}
+        .bdg-toast-b{background:#2a1f14;color:#fbf8f2;border:none;border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif}
+        .bdg-toast-x{background:none;border:none;font-size:20px;color:rgba(42,31,20,.5);cursor:pointer;padding:0 4px}
         .acct-cnt{font-family:var(--sans);font-size:12px;font-weight:400;color:var(--ink-3);margin-left:6px;text-transform:none;letter-spacing:0}
         .acct-li.go{cursor:pointer}
         .acct-li.go:hover .t{text-decoration:underline}
@@ -16006,6 +16216,17 @@ export default function App() {
           </div>
         </div>
       )}
+      {badgeToast && badgeToast.list.length > 0 && (
+        <div className="bdg-toast" role="status">
+          <div className={"bdg-medal t" + Math.min(badgeToast.list[0].tier || 0, 4)}>{badgeToast.list[0].mark}</div>
+          <div className="bdg-toast-t">
+            <div className="bdg-toast-k">Новая награда{badgeToast.list.length > 1 ? " · +" + (badgeToast.list.length - 1) : ""}</div>
+            <div className="bdg-toast-n">{badgeToast.list[0].title}</div>
+          </div>
+          {me && <button type="button" className="bdg-toast-b" onClick={function(){ setBadgeToast(null); setShowAcct(true); }}>See</button>}
+          <button type="button" className="bdg-toast-x" aria-label="Close" onClick={function(){ setBadgeToast(null); }}>×</button>
+        </div>
+      )}
       {showAcct && me && (
         <div className="adm-over" onClick={function(e){ if (e.target.className === "adm-over") setShowAcct(false); }}>
           <div className="adm-modal acct-modal" role="dialog" aria-label="Your account">
@@ -16233,6 +16454,51 @@ export default function App() {
                         );
                       })}
                     </div>
+
+                    {(function(){
+                      var earned = badges.filter(function(b){ return b.earned; })
+                        .sort(function(a, b){ return (b.at || 0) - (a.at || 0); });
+                      var next = badges.filter(function(b){ return !b.earned && b.n > 0; })
+                        .sort(function(a, b){ return (b.n / b.of) - (a.n / a.of); }).slice(0, 6);
+                      var medal = function(b, key) {
+                        return (
+                          <div key={key} className={"bdg" + (b.earned ? "" : " locked")} title={b.desc}>
+                            <div className={"bdg-medal t" + Math.min(b.tier || 0, 4)}>{b.mark}</div>
+                            <div className="bdg-t">{b.title}</div>
+                            <div className="bdg-s">{b.earned
+                              ? (b.at ? new Date(b.at).toLocaleDateString() : b.desc)
+                              : (b.of > 1 ? fmtInt(b.n) + " / " + fmtInt(b.of) : b.desc)}</div>
+                          </div>
+                        );
+                      };
+                      var groups = [["kind", "Kinds of work"], ["author", "Authors"], ["milestone", "Milestones"]];
+                      return (
+                        <div className="acct-sec">
+                          <div className="acct-h">Награды · Badges <span className="acct-cnt">{earned.length} of {badges.length}</span></div>
+                          {earned.length > 0
+                            ? <div className="bdg-grid">{earned.map(function(b){ return medal(b, b.id); })}</div>
+                            : <div className="acct-note" style={{marginTop:0}}>None yet. Finish a book, keep a streak, review your words — badges come for all of it.</div>}
+                          {next.length > 0 && (
+                            <div className="acct-list">
+                              <div className="acct-sub">Closest to earning</div>
+                              <div className="bdg-grid">{next.map(function(b){ return medal(b, "n" + b.id); })}</div>
+                            </div>
+                          )}
+                          <button type="button" className="adm-btn" style={{marginTop:12}} onClick={function(){ setBadgeAll(!badgeAll); }}>
+                            {badgeAll ? "Hide the full list" : "Show every badge"}
+                          </button>
+                          {badgeAll && groups.map(function(g){
+                            var list = badges.filter(function(b){ return b.group === g[0]; });
+                            return (
+                              <div key={g[0]} className="acct-list">
+                                <div className="acct-sub">{g[1]} · {list.filter(function(b){ return b.earned; }).length} of {list.length}</div>
+                                <div className="bdg-grid">{list.map(function(b){ return medal(b, "a" + b.id); })}</div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      );
+                    })()}
 
                     <div className="acct-sec">
                       <div className="acct-h">Words</div>
