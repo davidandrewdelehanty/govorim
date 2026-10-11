@@ -303,6 +303,10 @@ export function AnnotLayer(props) {
     var root = rootRef.current;
     if (!root) return;
     var swallow = function(e) {
+      // The paragraph's own controls — play-from-here, the bookmark pin —
+      // always work. A word left selected from making a highlight (common in
+      // a group read) used to eat the tap, so the triangle did nothing.
+      if (e.target && e.target.closest && e.target.closest("[data-annot-keep], .pjump, .pbm")) return;
       var s = window.getSelection && window.getSelection();
       if (s && !s.isCollapsed && s.toString().trim()) { e.stopPropagation(); }
     };

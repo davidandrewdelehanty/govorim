@@ -11950,12 +11950,18 @@ export default function App() {
         var jumpSec = (paraSync && curChapter && curChapter.youtubeId)
           ? paraSync[String(entry.chIdx)] : null;
         var jumpBtn = (typeof jumpSec === "number") ? (
-          <button className="pjump" type="button"
+          <button className="pjump" type="button" data-annot-keep=""
             title={"Play from here — " + fmtClock(jumpSec - (curChapter.youtubeStart || 0))}
             aria-label="Play the recording from this paragraph"
-            onClick={function(){
-              if (ytCtrlRef.current) ytCtrlRef.current.seekAbs(jumpSec);
+            onClick={function(e){
+              e.stopPropagation();
+              // Words left selected from a highlight would otherwise go on
+              // claiming the next tap.
+              try { var sel = window.getSelection && window.getSelection(); if (sel && !sel.isCollapsed) sel.removeAllRanges(); } catch (x) {}
+              if (ytCtrlRef.current) { try { ytCtrlRef.current.seekAbs(jumpSec); } catch (x) { seekWhenReady(jumpSec); } }
               else try {
+                // The player is still loading: seek as soon as it is up.
+                seekWhenReady(jumpSec);
                 document.querySelector(".chvid-dock") &&
                 document.querySelector(".chvid-dock").scrollIntoView({ behavior: "smooth" });
               } catch (e) {}
