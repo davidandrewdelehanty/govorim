@@ -17,7 +17,7 @@ Run tools/bible_fetch.sh first (WSL — it needs YouTube): it lists the
 playlists into tools/bible-pl/ and downloads the Russian captions into
 tools/vtt/, which is all this needs.
 """
-import glob, io, json, os, re, sys
+import glob, io, json, os, re, sys, unicodedata
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
@@ -31,7 +31,10 @@ RENAME = {'Ездра': '1-я Ездры', 'Неемия': 'Неемии', 'Пе
           'Песнь Песней': 'Песнь песней'}
 
 def book_name(pl_title):
-    t = re.sub(r'\(.*$', '', pl_title).strip()
+    # Some titles spell «й» as и + a combining breve, which looks the same and
+    # matches nothing: «Филиппийцам» and both Thessalonians were missed so.
+    t = unicodedata.normalize('NFC', pl_title or '')
+    t = re.sub(r'\(.*$', '', t).strip()
     t = re.sub(r'\s+', ' ', t)
     m = re.match(r'^(I{1,3}|IV)\s+(.+)$', t)
     if m:
@@ -57,6 +60,7 @@ def proposals():
         try: pl = json.load(io.open(f, encoding='utf-8'))
         except Exception: continue
         book = book_name(pl.get('title') or '')
+        if book.isupper(): book = book[:1] + book[1:].lower()      # «БЫТИЕ»
         for e in pl.get('entries') or []:
             n = chapter_no(e.get('title') or '')
             if not n or not e.get('id'): continue
@@ -78,7 +82,13 @@ if __name__ == '__main__':
     prop, unknown, total = proposals()
     new = {k: v for k, v in prop.items() if str(k) not in have}
     if '--ids' in sys.argv:
-        for k in sorted(new): print(new[k]['youtube'])
+        # New chapters, and any chapter already in the catalogue whose
+        # captions never arrived (a download that failed last time).
+        ids = [new[k]['youtube'] for k in sorted(new)]
+        for k in sorted(have, key=int):
+            v = have[k].get('youtube')
+            if v and v not in ids and not os.path.exists('tools/vtt/%s.ru.vtt' % v): ids.append(v)
+        for v in ids: print(v)
         sys.exit(0)
     print('chapters %d · with a video already %d · new from the channel %d' % (total, len(have), len(new)))
     if unknown: print('playlists whose book name did not match a heading:', ', '.join(sorted(unknown)))

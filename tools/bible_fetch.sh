@@ -23,8 +23,14 @@ n=0
 while read -r id; do
   [ -s "tools/vtt/$id.ru.vtt" ] && continue
   n=$((n+1)); echo "[$n] $id"
-  yt-dlp --write-auto-sub --sub-lang ru --sub-format vtt --skip-download \
+  # Auto captions first; a video can instead carry uploaded captions, or
+  # label its Russian track "ru-orig" — any of those will do.
+  yt-dlp --write-sub --write-auto-sub --sub-langs "ru,ru-orig,ru.*" --sub-format vtt --skip-download \
          -o "tools/vtt/%(id)s" "https://youtu.be/$id" >/dev/null 2>&1 || echo "  failed: $id"
+  if [ ! -s "tools/vtt/$id.ru.vtt" ]; then
+    alt=$(ls "tools/vtt/$id".ru*.vtt 2>/dev/null | head -1)
+    if [ -n "$alt" ]; then mv "$alt" "tools/vtt/$id.ru.vtt"; else echo "  no Russian captions: $id"; fi
+  fi
   sleep 2
 done < /tmp/bible_ids.txt
 python3 tools/bible_videos.py
