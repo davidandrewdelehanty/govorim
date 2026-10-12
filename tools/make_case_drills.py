@@ -260,10 +260,23 @@ def inflect_pair(adj_p, noun_p, case, number):
 # off in a drill, and a speaker breaking off mid-thought often leaves the
 # blank with nothing that governs its case. Such sentences are not drilled.
 ELLIPSIS=re.compile(r'\.\.\.|…|\.\s\.\s\.')
+# Only whole sentences of five words or more: a capital at the start, a full
+# stop, question or exclamation mark at the end, nothing in brackets, and the
+# quotes closed. Fragments cut out of the middle of a longer line read as
+# errors in a drill.
+DRILL_WORD=re.compile(r"[А-Яа-яЁёA-Za-z0-9\u0301-]+")
+def complete_sentence(s):
+    s=s.strip()
+    if '[' in s or ']' in s: return False
+    if not re.match(r'^[—–\-«"„(\s]*[А-ЯЁA-Z]', s): return False
+    if not re.search(r'[.!?…]["»”)]*$', s): return False
+    if s.count('«')!=s.count('»') or s.count('(')!=s.count(')'): return False
+    return len(DRILL_WORD.findall(s))>=5
 
 def drills_for_sentence(sent, seed):
     if not (25<=len(sent)<=220): return []
     if ELLIPSIS.search(sent): return []
+    if not complete_sentence(sent): return []
     doc=Doc(sent)
     doc.segment(SEG); doc.tag_morph(TAGGER); doc.parse_syntax(SYNTAX)
     toks={t.id:t for t in doc.tokens}
