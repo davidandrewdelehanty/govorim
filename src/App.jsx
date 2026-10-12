@@ -13528,8 +13528,8 @@ export default function App() {
         .acct-av-wrap{position:relative;display:inline-flex}
         .acct-dot{position:absolute;top:-5px;right:-7px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#d0342c;color:#fff;
           font-family:'IBM Plex Sans',sans-serif;font-size:10px;font-weight:700;line-height:16px;text-align:center;box-shadow:0 0 0 2px var(--paper, #f5f0e8)}
-        .bdg.fresh .bdg-medal{box-shadow:inset 0 0 0 3px rgba(255,255,255,.35),0 0 0 3px #d0342c}
-        .bdg.fresh .bdg-t::after{content:" · new";color:#d0342c;font-family:var(--sans);font-size:10px;text-transform:uppercase;letter-spacing:.08em}
+        .bdgm.fresh .bdg-medal{box-shadow:inset 0 0 0 3px rgba(255,255,255,.35),0 0 0 3px #d0342c}
+        .bdgm.fresh .bdg-t::after{content:" · new";color:#d0342c;font-family:var(--sans);font-size:10px;text-transform:uppercase;letter-spacing:.08em}
         @media(max-width:700px){ .fin-t{font-size:21px} }
         .chvid-stuck{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--rubric);
           max-width:640px;margin:-8px 0 16px;line-height:1.5}
@@ -14889,7 +14889,15 @@ export default function App() {
         @media(max-width:900px){.hdr{padding:12px 18px 0;gap:0 18px}.tabs{gap:16px}.tab{font-size:11px;letter-spacing:.12em}}
         @media(max-width:640px){
           .hdr{row-gap:6px}
-          .tabs{order:3;width:100%;flex-wrap:wrap;gap:4px 16px}
+          /* One row on a phone: the tabs scroll sideways rather than wrap
+             onto a second line, and each is the same height whether or not
+             it carries a count. */
+          .tabs{order:3;width:100%;flex-wrap:nowrap;gap:0 18px;overflow-x:auto;overflow-y:hidden;
+            -webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px;
+            -webkit-mask-image:linear-gradient(to right,#000 88%,transparent);mask-image:linear-gradient(to right,#000 88%,transparent)}
+          .tabs::-webkit-scrollbar{display:none}
+          .tab{flex:0 0 auto;white-space:nowrap;display:inline-flex;align-items:baseline;font-size:11px;letter-spacing:.12em;padding:6px 0 5px}
+          .tab .bdg{display:inline;margin-left:4px;font-size:9.5px}
           .hdr::after{margin-top:6px}
           .lru{font-size:26px}
           .lsub{display:none}
@@ -15476,9 +15484,9 @@ export default function App() {
         .acct-li .a{color:var(--ink-3)}
         .acct-li{flex-wrap:wrap}
         .bdg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:14px 10px;margin-top:6px}
-        .bdg{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
-        .bdg.locked{opacity:.42}
-        .bdg.locked .bdg-medal{filter:grayscale(1)}
+        .bdgm{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
+        .bdgm.locked{opacity:.42}
+        .bdgm.locked .bdg-medal{filter:grayscale(1)}
         .bdg-t{font-family:var(--serif);font-size:13px;line-height:1.25;color:var(--ink)}
         .bdg-s{font-family:var(--sans);font-size:10.5px;color:var(--ink-3)}
         .bdg-medal{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;
@@ -16803,7 +16811,7 @@ export default function App() {
                         .sort(function(a, b){ return (b.n / b.of) - (a.n / a.of); }).slice(0, 6);
                       var medal = function(b, key) {
                         return (
-                          <div key={key} className={"bdg" + (b.earned ? "" : " locked") + (badgeFresh.indexOf(b.id) >= 0 ? " fresh" : "")} title={b.desc}>
+                          <div key={key} className={"bdgm" + (b.earned ? "" : " locked") + (badgeFresh.indexOf(b.id) >= 0 ? " fresh" : "")} title={b.desc}>
                             <div className={"bdg-medal t" + Math.min(b.tier || 0, 4)}>{b.mark}</div>
                             <div className="bdg-t">{b.title}</div>
                             <div className="bdg-s">{b.earned
