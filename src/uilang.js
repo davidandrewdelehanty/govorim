@@ -103,6 +103,7 @@ export var UI_RU = {
   "Book": "Книга",
   "Create an account": "Создать аккаунт",
   "Create account": "Создать аккаунт",
+  "Make a free account — your words, notes and place follow you between devices": "Создайте бесплатный аккаунт — ваши слова, заметки и место в книге будут на всех устройствах",
   "No account yet? Create one": "Ещё нет аккаунта? Создайте",
   "Already have an account? Sign in": "Уже есть аккаунт? Войдите",
   "Username": "Имя пользователя",

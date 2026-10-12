@@ -14998,6 +14998,9 @@ export default function App() {
         .hdr-right{margin-left:auto;justify-content:flex-end}
         .langpick{display:inline-flex;align-items:baseline;gap:5px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;color:var(--ink-3);flex:none}
         .langpick button{background:none;border:0;border-bottom:1px solid transparent;padding:3px 0;cursor:pointer;color:var(--ink-3);font:inherit;letter-spacing:inherit}
+        .acct-create{background:var(--ink);color:var(--paper);border:0;border-radius:2px;padding:6px 12px;cursor:pointer;white-space:nowrap;
+          font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+        .acct-create:hover{background:var(--rubric)}
         .langpick button.on{color:var(--ink);border-bottom-color:var(--ink);font-weight:600}
         .langpick button:hover{color:var(--rubric)}
         .auth-lang{position:absolute;top:14px;right:18px;z-index:2}
@@ -18308,7 +18311,11 @@ export default function App() {
                 <button className="adm-trigger" onClick={signOut} title="Sign out">Sign out</button>
               </div>
             ) : (
-              <button className="adm-trigger" onClick={function(){ setAuthMode("login"); setAuthErr(""); setAuthOpen(true); }} title="Sign in to sync vocabulary">Sign in</button>
+              <div className="userbtn-wrap">
+                <button className="acct-create" onClick={function(){ setAuthMode("signup"); setAuthErr(""); setAuthNotice(""); setAuthOpen(true); }}
+                  title="Make a free account — your words, notes and place follow you between devices">Create account</button>
+                <button className="adm-trigger" onClick={function(){ setAuthMode("login"); setAuthErr(""); setAuthNotice(""); setAuthOpen(true); }} title="Sign in to sync vocabulary">Sign in</button>
+              </div>
             ))}
             {langPick}
           </div>
