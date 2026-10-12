@@ -917,6 +917,19 @@ function cleanAnnot(raw) {
     out.start = s; out.end = e;
     out.quote = String(raw.quote || "").slice(0, 600);
     out.note = String(raw.note || "").slice(0, 2000);
+    // A favourite quote, and where it came from.
+    if (raw.fav) {
+      out.fav = true;
+      out.favAt = Math.floor(num(raw.favAt, 0, 9e15) || out.createdAt);
+      const src = (raw.src && typeof raw.src === "object") ? raw.src : {};
+      out.src = {
+        title: String(src.title || "").slice(0, 200),
+        author: String(src.author || "").slice(0, 120),
+        filename: String(src.filename || "").slice(0, 200),
+        slug: String(src.slug || "").slice(0, 120),
+        heading: String(src.heading || "").slice(0, 160),
+      };
+    }
   } else {
     out.paraStart = Math.floor(num(raw.paraStart, 0, 1e8) || 0);
     out.size = num(raw.size, 1, 24) || 3;

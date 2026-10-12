@@ -6276,6 +6276,7 @@ export default function App() {
   var [quickEnAudio, setQuickEnAudio] = useState(false);
   // The bookmarks directory on the library screen.
   var [showBookmarks, setShowBookmarks] = useState(false);
+  var [showQuotes, setShowQuotes] = useState(false);
   // Tracks which book is currently being loaded (after click). Shows a spinner
   // overlay on the card and disables further clicks during the fetch+parse cycle
   // so the user gets clear feedback that the click registered.
@@ -8838,6 +8839,67 @@ export default function App() {
       setNotePop({ id: it.id, layer: layer, x: sb.x, y: sb.bottom + 8, fresh: true });
     }
   };
+  // A favourite quote: the chosen words highlighted, and kept on the reader's
+  // own list of quotes with where they came from. It is an ordinary highlight
+  // carrying a `fav` mark and its source, so it syncs with the other marks,
+  // shows on the page like any highlight, and is never shared into a group.
+  var makeQuote = function() {
+    var sb = selBox;
+    if (!sb || !sb.quote) return;
+    var ch = chapters[cidx] || {};
+    addAnnot({
+      kind: "hl", start: sb.start, end: sb.end, quote: sb.quote, color: hlColor, note: "",
+      fav: true, favAt: Date.now(),
+      src: {
+        title: bookMeta.title || "", author: bookMeta.author || "",
+        filename: bookMeta.filename || "", slug: bookMeta.slug || "",
+        heading: String(ch.heading || "").trim(),
+      },
+    }, "me");
+    try { window.getSelection().removeAllRanges(); } catch (e) {}
+    setSelBox(null);
+    setQuoteSaved(Date.now());
+  };
+  var [quoteSaved, setQuoteSaved] = useState(0);
+  useEffect(function(){
+    if (!quoteSaved) return;
+    var t = setTimeout(function(){ setQuoteSaved(0); }, 2600);
+    return function(){ clearTimeout(t); };
+  }, [quoteSaved]);
+  var favQuotes = useMemo(function(){
+    return Object.keys(annots || {}).map(function(k){ return annots[k]; })
+      .filter(function(it){ return it && it.fav && !it.deleted && it.kind === "hl"; })
+      .sort(function(a, b){ return (b.favAt || b.createdAt || 0) - (a.favAt || a.createdAt || 0); });
+  }, [annots]);
+  // Open a quote where it stands: the book, the chapter, the words lit.
+  var openQuote = function(q) {
+    var src = q.src || {};
+    var fn = src.filename || String(q.bookKey || "").split("::")[0];
+    setShowAcct(false);
+    setTab("chat"); setMode("read"); setLview("read");
+    if (started && bookKey(bookMeta) === q.bookKey) {
+      if (q.cidx === cidx) { setTimeout(function(){ scrollToOffset(q.start); }, 60); }
+      else { requestSrcJump(q.start, bookMeta); navLit(q.cidx); }
+      return;
+    }
+    var book = null;
+    for (var i = 0; i < presetBooks.length; i++) if (presetBooks[i].filename === fn) { book = presetBooks[i]; break; }
+    if (book) {
+      srcJumpChapterRef.current = q.cidx || 0;
+      requestSrcJump(q.start, book);
+      if (book.category === "Song Lyrics") openSongPicker(book); else loadPresetBook(book);
+      return;
+    }
+    var up = null;
+    for (var j = 0; j < uploadedBooks.length; j++) if (uploadedBooks[j].filename === fn) { up = uploadedBooks[j]; break; }
+    if (up) {
+      srcJumpChapterRef.current = q.cidx || 0;
+      requestSrcJump(q.start, up);
+      openUploadedBook(up);
+    }
+  };
+  var unfavQuote = function(q) { updateAnnot(q.id, "me", { fav: false }); };
+
   var addInk = function(stroke) {
     if (groupClosedNow()) return;
     addAnnot({ kind: "ink", paraStart: stroke.paraStart, points: stroke.points,
@@ -15268,6 +15330,19 @@ export default function App() {
         .pop-btn{margin-left:auto;background:none;border:0;border-bottom:1px solid var(--ink);padding:2px 0;cursor:pointer;
           font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
         .pop-btn.quiet{margin-left:0;border-bottom-color:var(--rule);color:var(--ink-2)}
+        .pop-btn.quote{margin-left:0;color:var(--rubric);border-bottom-color:var(--rubric)}
+        .fq-list{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+        .fq{position:relative;padding:12px 34px 12px 16px;border-left:3px solid var(--rubric);background:var(--paper-2);cursor:pointer}
+        .fq:hover{background:var(--paper-3)}
+        .fq-q{margin:0 0 6px;font-family:var(--serif);font-size:16px;line-height:1.5;color:var(--ink);font-style:italic}
+        .fq-src{font-family:var(--sans);font-size:12px;color:var(--ink-2)}
+        .fq-a{font-weight:600}
+        .fq-h{color:var(--ink-3)}
+        .fq-x{position:absolute;top:6px;right:8px;background:none;border:0;font-size:18px;color:var(--ink-3);cursor:pointer;padding:2px 4px}
+        .fq-x:hover{color:var(--rubric)}
+        .fq-toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:420;background:#2a1f14;color:#fbf8f2;
+          border-radius:10px;padding:10px 16px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;max-width:calc(100vw - 32px);
+          box-shadow:0 8px 24px rgba(0,0,0,.25)}
         .pop-btn:hover{color:var(--rubric);border-bottom-color:var(--rubric)}
         .pop-share{background:none;border:0;padding:0;text-align:left;cursor:default;font-family:var(--serif);
           font-style:italic;font-size:12.5px;color:var(--ink-2)}
@@ -15764,7 +15839,7 @@ export default function App() {
         // it is put, it is over the sentence somebody just chose, and a thumb
         // is on that sentence too. It sits across the bottom of the screen
         // instead, out of the way of the text and where the hand already is.
-        var w = 250;
+        var w = 300;
         var left = Math.max(8, Math.min(window.innerWidth - w - 8, selBox.x - w / 2));
         var top = selBox.y - 58 > 8 ? selBox.y - 58 : selBox.bottom + 12;
         var style = touch ? {} : { left: left + "px", top: top + "px", width: w + "px" };
@@ -15783,6 +15858,8 @@ export default function App() {
                 );
               })}
               <button type="button" className="pop-btn" onClick={function(){ makeHighlight(hlColor, true); }}>Note</button>
+              <button type="button" className="pop-btn quote" title="Save these words to your favourite quotes"
+                onClick={makeQuote}>★ Quote</button>
               {touch && (
                 <button type="button" className="pop-btn quiet" onClick={function(){
                   setSelBox(null);
@@ -16411,6 +16488,9 @@ export default function App() {
             </div>
           </div>
         </div>
+      )}
+      {quoteSaved > 0 && (
+        <div className="fq-toast" role="status">★ Saved to your quotes — find them under <b>Quotes</b> in the library</div>
       )}
       {conj && (
         <div className="cj-over" onClick={function(e){ if (e.target === e.currentTarget) setConj(null); }}>
@@ -19150,6 +19230,15 @@ export default function App() {
                             })}
                           </select>
                         )}
+                        {(favQuotes.length > 0 || showQuotes) && (
+                          <button
+                            className={"lib-filter-btn" + (showQuotes ? " on" : "")}
+                            aria-pressed={showQuotes}
+                            onClick={function(){ setShowQuotes(!showQuotes); }}
+                            title="Your favourite quotes — click one to open the book at it">
+                            Quotes{favQuotes.length ? " (" + favQuotes.length + ")" : ""}
+                          </button>
+                        )}
                         {(function() {
                           var nbm = Object.keys(bookmarkMap).length;
                           if (!nbm && !showBookmarks) return null;
@@ -19183,6 +19272,36 @@ export default function App() {
                           newest first. Clicking one opens the book and lands on
                           the pinned paragraph, riding the same source-link
                           machinery as the in-book jump. */}
+                      {showQuotes && (
+                        <div className="lib-section">
+                          <div className="lib-section-hdr">Favourite quotes</div>
+                          {!favQuotes.length && (
+                            <div className="lib-cat-hint">No quotes yet — select some words in a book and tap ★ Quote.</div>
+                          )}
+                          <div className="fq-list">
+                            {favQuotes.map(function(q){
+                              var src = q.src || {};
+                              var title = src.title || String(q.bookKey || "").split("::")[1] || "";
+                              return (
+                                <div key={q.id} className="fq" role="button" tabIndex={0}
+                                  title="Open the book at this quote"
+                                  onClick={function(){ openQuote(q); }}
+                                  onKeyDown={function(e){ if (e.key === "Enter") openQuote(q); }}>
+                                  <blockquote className="fq-q" lang="ru">«{q.quote}»</blockquote>
+                                  <div className="fq-src">
+                                    {src.author ? <span className="fq-a">{src.author}</span> : null}
+                                    {src.author && title ? ", " : ""}
+                                    <span className="fq-t">{title}</span>
+                                    {src.heading && src.heading !== title ? <span className="fq-h"> · {src.heading}</span> : null}
+                                  </div>
+                                  <button type="button" className="fq-x" title="Remove from your quotes (the highlight stays)"
+                                    onClick={function(e){ e.stopPropagation(); unfavQuote(q); }}>×</button>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
                       {showBookmarks && (function(){
                         var entries = Object.keys(bookmarkMap).map(function(k){
                           return Object.assign({ key: k }, bookmarkMap[k]);
