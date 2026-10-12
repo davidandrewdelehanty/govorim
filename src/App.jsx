@@ -14993,6 +14993,9 @@ export default function App() {
 
         /* Interface language picker */
         .lit-tabs{display:contents}
+        /* Account controls and the language switch sit in the top right,
+           wherever the header row breaks. */
+        .hdr-right{margin-left:auto;justify-content:flex-end}
         .langpick{display:inline-flex;align-items:baseline;gap:5px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;color:var(--ink-3);flex:none}
         .langpick button{background:none;border:0;border-bottom:1px solid transparent;padding:3px 0;cursor:pointer;color:var(--ink-3);font:inherit;letter-spacing:inherit}
         .langpick button.on{color:var(--ink);border-bottom-color:var(--ink);font-weight:600}
@@ -15000,9 +15003,9 @@ export default function App() {
         .auth-lang{position:absolute;top:14px;right:18px;z-index:2}
         @media(max-width:640px){
           /* The account row: one line, the book's name giving way first. */
-          .hdr-right{width:100%;flex-wrap:nowrap;justify-content:flex-start;gap:12px;min-width:0}
+          .hdr-right{width:100%;flex-wrap:nowrap;justify-content:flex-end;gap:12px;min-width:0}
           .hdr-right > *{flex-shrink:0}
-          .hdr-right > .tbadge{flex:1 1 auto;flex-shrink:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left}
+          .hdr-right > .tbadge{flex:0 1 auto;min-width:0;max-width:none;margin-right:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left}
           .hdr-right .userbtn-wrap{display:inline-flex;gap:12px;flex:none}
           .hdr-right .adm-trigger{white-space:nowrap}
           /* The reader's bar: the tabs on one sideways-scrolling line, the
