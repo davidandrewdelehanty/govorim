@@ -429,7 +429,7 @@ export var UI_RU = {
   "clear cached book": "очистить кэш книги",
   "Untitled": "Без названия",
   "Unknown title": "Без названия",
-  "Russian classics with a narrator, an English translation beside the text, and a dictionary under every word.": "Русская классика с чтецом, английским переводом рядом с текстом и словарём под каждым словом.",
+  "Russian classics with a narrator, an English translation beside the text, and a dictionary under every word.": "Русская классика с чтецом, переводом на английский язык, а также с выпиской из словаря для каждого слова.",
   "Join the Discord": "Присоединяйтесь к Discord",
   "Join the Самовар Discord": "Присоединяйтесь к Discord «Самовар»",
   "talk about the books, ask for titles, report anything broken": "обсуждайте книги, просите новые, сообщайте о поломках",
