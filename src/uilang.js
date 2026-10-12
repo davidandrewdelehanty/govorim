@@ -357,7 +357,7 @@ export var UI_RU = {
   "See": "См.",
 
   // ── Library ──
-  "Read now!": "Читать!",
+  "Read now!": "Читать",
   "Continue reading": "Продолжить чтение",
   "Resume at": "Продолжить с",
   "your bookmark": "вашей закладки",
@@ -431,7 +431,7 @@ export var UI_RU = {
   "Unknown title": "Без названия",
   "Russian classics with a narrator, an English translation beside the text, and a dictionary under every word.": "Русская классика с чтецом, английским переводом рядом с текстом и словарём под каждым словом.",
   "Join the Discord": "Присоединяйтесь к Discord",
-  "Join the Самовар Discord": "Присоединяйтесь к Discord «Самовара»",
+  "Join the Самовар Discord": "Присоединяйтесь к Discord «Самовар»",
   "talk about the books, ask for titles, report anything broken": "обсуждайте книги, просите новые, сообщайте о поломках",
   "Самовар Russian Literature on Discord — opens in a new tab": "«Самовар» в Discord — откроется в новой вкладке",
   "on your phone": "на ваш телефон",
