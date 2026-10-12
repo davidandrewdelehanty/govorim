@@ -11312,7 +11312,15 @@ export default function App() {
       // server — and it records a count and nothing else. Fire-and-forget:
       // this must never delay or fail a book opening.
       try {
-        fetch("/api/user-data?anon=open&b=" + encodeURIComponent(book.filename || ""),
+        var rid = "";
+        try {
+          rid = localStorage.getItem("gv_rid_v1") || "";
+          if (!rid) {
+            rid = Array.from(crypto.getRandomValues(new Uint8Array(12))).map(function(x){ return x.toString(16).padStart(2, "0"); }).join("");
+            localStorage.setItem("gv_rid_v1", rid);
+          }
+        } catch (e) { rid = ""; }
+        fetch("/api/user-data?anon=open&b=" + encodeURIComponent(book.filename || "") + (rid ? "&r=" + rid : ""),
               { method: "POST", credentials: "same-origin" }).catch(function(){});
       } catch (e) {}
       await loadFile(buf, book.filename, {
@@ -18172,7 +18180,11 @@ export default function App() {
                 if (!libReads) {
                   return <div className="lib-cat-hint">{libReadsLoad ? "Counting…" : "Nothing counted yet."}</div>;
                 }
-                var opens = libReads.opens || {};
+                // Ranked by different readers, not by openings: one person
+                // coming back to a book every evening used to outrank twenty
+                // who each opened it once. The figures themselves are not
+                // shown — the order is the answer.
+                var opens = libReads.readers || libReads.opens || {};
                 // Only the library's own books. A reader's own file never
                 // reaches this counter — only loadPresetBook reports an open —
                 // and looking each counted name up in the catalogue makes that
@@ -18219,11 +18231,7 @@ export default function App() {
                   <div className="lib-reads">
                     <div className="lib-reads-h">
                       <span className="lib-reads-sub">
-                        {total.toLocaleString()} opening{total === 1 ? "" : "s"} of {rows.length} title
-                        {rows.length === 1 ? "" : "s"}
-                        {libReads.since
-                          ? ", counted since " + new Date(libReads.since).toLocaleDateString(undefined, { month: "long", year: "numeric" })
-                          : ""}
+                        {rows.length} title{rows.length === 1 ? "" : "s"}, ranked by how many different readers have opened them
                       </span>
                     </div>
                     {!rows.length && <div className="lib-cat-hint">Nothing has been opened yet.</div>}
@@ -18239,7 +18247,6 @@ export default function App() {
                                 {r.title}
                                 {r.author ? <span className="au">{r.author}</span> : null}
                               </span>
-                              <span className="ct">{r.n}</span>
                             </button>
                           </li>
                         );
@@ -18249,10 +18256,7 @@ export default function App() {
                       <>
                         <div className="lib-reads-h" style={{marginTop:26}}>
                           <span>And in the Music tab</span>
-                          <span className="lib-reads-sub">
-                            {songRows.reduce(function(n, r){ return n + r.n; }, 0)} opening
-                            {songRows.reduce(function(n, r){ return n + r.n; }, 0) === 1 ? "" : "s"}
-                          </span>
+                          <span className="lib-reads-sub">most played</span>
                         </div>
                         <ol className="lib-reads-list">
                           {songRows.slice(0, 20).map(function(r, i){
@@ -18262,7 +18266,6 @@ export default function App() {
                                   onClick={function(){ setTab("music"); }}>
                                   <span className="rk">{i + 1}</span>
                                   <span className="tt">{r.title}<span className="au">{r.artist}</span></span>
-                                  <span className="ct">{r.n}</span>
                                 </button>
                               </li>
                             );
@@ -18271,12 +18274,9 @@ export default function App() {
                       </>
                     )}
                     <p className="lib-reads-note">
-                      An opening, not a finishing and not a reader: one person coming back
-                      to a book eight times counts eight. Books you open from your own
-                      machine are never counted here — nothing about them reaches the
-                      server. And nothing is counted further back than the tally itself, so
-                      a title missing from this list has been added recently or read before
-                      counting began, not ignored.
+                      Each reader counts once per book, however often they come back to it —
+                      with an account or without one. Books you open from your own machine
+                      are never counted here; nothing about them reaches the server.
                     </p>
                   </div>
                 );

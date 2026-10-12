@@ -23,10 +23,12 @@
 // Clerk user id; /api/admin/import-userdata copies such a prefix across.
 import { siteName, isPublicSite } from "../lib/site.js";
 import fs from "node:fs";
+import crypto from "node:crypto";
 import path from "node:path";
 import {
   S3Client, GetObjectCommand, PutObjectCommand
 } from "@aws-sdk/client-s3";
+import { listAccounts, userIdFor, r2GetJson as authGetJson, userDataKey as authDataKey } from "../lib/auth.js";
 import { requireUser, currentUser, bumpDaily, touchSeen, findAccount,
   updateBoardRow, readBoards, learnedCount, finishedCount, wordsRead, cardsReviewed,
   songsCount, drillsDone } from "../lib/auth.js";
@@ -171,9 +173,18 @@ export default async function handler(req, res) {
         const [books, songs, anon] = await Promise.all([
           grab("books"), grab("songs"), grab("anon"),
         ]);
+        let rd = await readReaders();
+        if (!rd.seeded) {
+          try {
+            if (await seedReaders(rd, Date.now() + 6000)) rd.seeded = true;
+            await writeReaders(rd);
+          } catch (e) {}
+        }
+        const readers = {};
+        for (const fn of Object.keys(rd.books || {})) readers[fn] = (rd.books[fn] || []).length;
         res.setHeader("Cache-Control", "public, max-age=300, s-maxage=300");
         return res.status(200).json({
-          opens: books, songs: songs, since: anon.since || null,
+          opens: books, readers: readers, songs: songs, since: anon.since || null,
         });
       } catch (e) {
         return res.status(200).json({ opens: {}, songs: {}, since: null });
@@ -416,6 +427,21 @@ export default async function handler(req, res) {
             }));
           }
         } catch (e) { /* the tally must not break the opening */ }
+        // The reader, once per book.
+        try {
+          const rid = String((req.query && req.query.r) || "");
+          const id = who ? ("u:" + (who.id || who.email)) : (/^[A-Za-z0-9_-]{8,64}$/.test(rid) ? ("d:" + rid) : "");
+          if (id) {
+            const rd = await readReaders();
+            const h = readerHash(id);
+            const list = rd.books[bookKey] || (rd.books[bookKey] = []);
+            if (list.indexOf(h) < 0 && list.length < READERS_CAP &&
+                (rd.books[bookKey].length > 0 || Object.keys(rd.books).length < 3000)) {
+              list.push(h);
+              await writeReaders(rd);
+            }
+          }
+        } catch (e) { /* nor must the reader count */ }
       }
       if (who) {
         // A thirty-day cookie hides how recently an account was really used.
@@ -912,6 +938,53 @@ function cleanAnnot(raw) {
 const GROUPS = `${PREFIX}/_groups`;
 const GROUP_ITEM_CAP = 4000;
 const GROUP_CHAT_CAP = 400;
+
+// ── Unique readers per book ──────────────────────────────────────────────
+// "Books by popularity" ranks by how many different people opened a book, not
+// by how many times it was opened — one reader reopening a novel every evening
+// was outranking twenty who each opened it once. Each reader is kept only as
+// a one-way hash: an account by its id, a reader without one by a random id
+// their browser keeps (gv_rid_v1). Nothing here can be turned back into a
+// person. Signed-in readers who already have a place saved in a book are
+// counted from their progress the first time this runs, so the ranking does
+// not start from nothing.
+const READERS_KEY = `${PREFIX}/_stats/book-readers.json`;
+const READERS_CAP = 20000;          // per book — far beyond this site's size
+function readerHash(id) {
+  return crypto.createHash("sha256").update("samovar-reader|" + id).digest("base64url").slice(0, 14);
+}
+async function readReaders() {
+  try {
+    const r = await s3.send(new GetObjectCommand({ Bucket: BUCKET, Key: READERS_KEY }));
+    const j = JSON.parse(await r.Body.transformToString());
+    if (j && typeof j === "object" && j.books) return j;
+  } catch (e) {}
+  return { books: {}, seeded: false, since: Date.now() };
+}
+async function writeReaders(data) {
+  await s3.send(new PutObjectCommand({ Bucket: BUCKET, Key: READERS_KEY,
+    Body: JSON.stringify(data), ContentType: "application/json" }));
+}
+async function seedReaders(data, deadline) {
+  const accounts = await listAccounts();
+  for (const a of accounts) {
+    if (Date.now() > deadline) return false;
+    const uid = a.id || userIdFor(a.email);
+    let progress = null;
+    try { progress = await authGetJson(authDataKey(uid, "progress")); } catch (e) {}
+    if (!progress || typeof progress !== "object") continue;
+    const h = readerHash("u:" + uid);
+    for (const k of Object.keys(progress)) {
+      const p = progress[k] || {};
+      if (p.removed) continue;
+      const fn = String(p.filename || "").slice(0, 160);
+      if (!fn) continue;
+      const list = data.books[fn] || (data.books[fn] = []);
+      if (list.indexOf(h) < 0 && list.length < READERS_CAP) list.push(h);
+    }
+  }
+  return true;
+}
 
 // The reader's row on the leaderboards, with their current name and avatar
 // carried along so the board never has to look an account up to draw it.
