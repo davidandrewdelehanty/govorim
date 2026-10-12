@@ -18289,7 +18289,7 @@ export default function App() {
         {tab==="ranked" && (
           <div className="main">
             <div className="ss">
-              <h1 className="sti">Books by popularity</h1>
+              <h1 className="sti">Most popular</h1>
               <p className="sde">
                 Every book in the library, ranked by how many times it has been opened.
                 Tap one to start reading it.
