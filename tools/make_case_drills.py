@@ -21,7 +21,7 @@
 # Output: public/books/exercises/<slug>__ch<cidx>.json  {"cases":[...]}
 # Existing files are left alone unless --force.
 
-import argparse, json, os, re, sys, hashlib, random
+import argparse, json, os, re, sys, hashlib, random, html
 
 # ── FB2 → chapters (same logic as the reader; trimmed port) ──────────────────
 import xml.etree.ElementTree as ET
@@ -274,6 +274,9 @@ def complete_sentence(s):
     return len(DRILL_WORD.findall(s))>=5
 
 def drills_for_sentence(sent, seed):
+    # HTML entities in the source (&nbsp; and the like) become the characters
+    # they stand for, so they never show up as text in a drill.
+    sent=html.unescape(sent).replace('\u00a0',' ')
     if not (25<=len(sent)<=220): return []
     if ELLIPSIS.search(sent): return []
     if not complete_sentence(sent): return []
