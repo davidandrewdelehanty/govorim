@@ -1989,7 +1989,7 @@ var BADGE_MILESTONES = [
   { id: "cards",   ru: "Карточек повторено",   en: "vocabulary cards reviewed", tiers: [100, 500, 1000, 5000, 10000] },
   { id: "learned", ru: "Слов выучено",         en: "words learned and retired", tiers: [10, 50, 100, 250, 500, 1000] },
   { id: "saved",   ru: "Слов сохранено",       en: "words saved to your vocabulary", tiers: [25, 100, 250, 500, 1000] },
-  { id: "drills",  ru: "Падежных упражнений",  en: "case drills completed", tiers: [1, 10, 25, 50, 100] },
+  { id: "drills",  ru: "Верных падежей",       en: "right answers in case drills", tiers: [10, 50, 100, 250, 500, 1000] },
   { id: "songs",   ru: "Песен прослушано",     en: "different songs listened to", tiers: [1, 10, 25, 50, 100] },
 ];
 // Several works by one author: only offered where the author wrote that many.
@@ -5880,23 +5880,27 @@ export default function App() {
   // A case quiz played to the end. Recorded on the last answer rather than on
   // the results screen: the results screen re-renders, and a render is not an
   // event — counting there would add a run every time React redrew it.
-  var recordDrill = function(nQuestions, nCorrect, meta) {
-    if (!nQuestions) return;
-    var key = (meta && bookKey(meta)) || "";
+  // `runs` is how many drill sessions this closes: one for a book's quiz
+  // played to the end, none for a single answer in the Case drills tab,
+  // which counts its session when Finish is pressed.
+  var recordDrill = function(nQuestions, nCorrect, meta, runs) {
+    var nRuns = (typeof runs === "number") ? runs : 1;
+    if (!nQuestions && !nRuns) return;
+    var key = (meta && meta.filename && bookKey(meta)) || "";
     var title = (meta && meta.title) || "";
     setDrills(function(d){
       var byBook = Object.assign({}, (d && d.byBook) || {});
       if (key) {
         var b = byBook[key] || {};
         byBook[key] = {
-          runs: (b.runs || 0) + 1,
+          runs: (b.runs || 0) + nRuns,
           questions: (b.questions || 0) + nQuestions,
           correct: (b.correct || 0) + nCorrect,
           title: title || b.title || "",
         };
       }
       return {
-        runs: ((d && d.runs) || 0) + 1,
+        runs: ((d && d.runs) || 0) + nRuns,
         questions: ((d && d.questions) || 0) + nQuestions,
         correct: ((d && d.correct) || 0) + nCorrect,
         last: Date.now(),
@@ -8917,39 +8921,53 @@ export default function App() {
     </span>
   );
   // ── Case drills from every book ──────────────────────────────────────
-  // The Case drills tab: ten sentences at a time, each from a chapter picked
-  // at random — a book first, then one of its chapters, so a short story is
-  // as likely to come up as a novel with eighty chapters. The list of drill
-  // files is built with the site (scripts/drill-index.mjs).
-  var CD_SET = 10;
+  // The Case drills tab: one sentence after another for as long as the
+  // reader likes, each from a chapter picked at random — a book first, then
+  // one of its chapters, so a short story is as likely to come up as a novel
+  // with eighty chapters. Every answer is recorded as it is given; Finish
+  // only closes the session. The list of drill files is built with the site
+  // (scripts/drill-index.mjs).
   var [cdIndex, setCdIndex] = useState(null);
   var [cdQs, setCdQs]       = useState([]);
   var [cdIdx, setCdIdx]     = useState(0);
   var [cdSel, setCdSel]     = useState(null);
-  var [cdScore, setCdScore] = useState(0);
+  var [cdAns, setCdAns]     = useState(0);     // answered this session
+  var [cdRight, setCdRight] = useState(0);     // answered right this session
+  var [cdOver, setCdOver]   = useState(false); // Finish pressed
   var [cdBusy, setCdBusy]   = useState(false);
   var [cdErr, setCdErr]     = useState("");
+  var cdFetching = useRef(false);
   var cdSlug = function(fn) {
     return String(fn || "").split("/").pop().replace(/\.[^.]+$/, "").replace(/[^A-Za-z0-9_-]/g, "_");
   };
   var cdUsable = function(c) {
     return !!(c && c.sentence && /___/.test(c.sentence) && c.options && c.options.length > 1 && c.correct);
   };
-  var newCaseSet = function(ixArg) {
-    var ix = ixArg || cdIndex;
-    if (!ix) {
-      setCdBusy(true); setCdErr("");
-      fetch("/books/exercises/_index.json")
-        .then(function(r){ return r.ok ? r.json() : null; })
-        .then(function(j){
-          if (!j || !j.d || !j.d.length) { setCdBusy(false); setCdErr("No case drills could be loaded."); return; }
-          setCdIndex(j);
-          newCaseSet(j);
-        })
-        .catch(function(){ setCdBusy(false); setCdErr("No case drills could be loaded."); });
-      return;
+  // Where a drill comes from, in words: the Bible's files are named by book
+  // and chapter («01-03» is Бытие 3); everything else by its chapter number,
+  // left out for a work that is a single chapter.
+  var cdBibleName = useMemo(function(){
+    var out = {};
+    BIBLE_BOOKS.forEach(function(b){
+      var no = BIBLE_BOOK_NO[String(b[0]).toLowerCase()];
+      if (no && !out[no]) out[no] = b[0];
+    });
+    Object.keys(BIBLE_BOOK_NO).forEach(function(k){
+      var no = BIBLE_BOOK_NO[k];
+      if (!out[no]) out[no] = k;
+    });
+    return out;
+  }, []);
+  var cdWhere = function(key, c, chapters) {
+    var m = /^(\d+)-(\d+)$/.exec(String(key || ""));
+    if (m && cdBibleName[m[1]]) {
+      var nm = cdBibleName[m[1]];
+      return { ru: nm.charAt(0).toUpperCase() + nm.slice(1) + " " + (+m[2]) };
     }
-    // Only the books this reader's library actually holds.
+    return chapters > 1 ? { ch: c + 1 } : null;
+  };
+  // A few more questions, picked at random. Resolves to the new questions.
+  var cdFetchMore = function(ix, n) {
     var allowed = null;
     if (presetBooks && presetBooks.length) {
       allowed = {};
@@ -8962,9 +8980,9 @@ export default function App() {
       (byBook[row[0]] = byBook[row[0]] || []).push(row);
     });
     var bks = Object.keys(byBook);
-    if (!bks.length) { setCdBusy(false); setCdErr("No case drills could be loaded."); return; }
+    if (!bks.length) return Promise.resolve([]);
     var picks = [], used = {};
-    for (var tries = 0; picks.length < CD_SET && tries < CD_SET * 8; tries++) {
+    for (var tries = 0; picks.length < n && tries < n * 8; tries++) {
       var bi = bks[Math.floor(Math.random() * bks.length)];
       var rows = byBook[bi];
       var row = rows[Math.floor(Math.random() * rows.length)];
@@ -8972,25 +8990,70 @@ export default function App() {
       var key = row[3] || (cdSlug(book.f) + "__ch" + row[1]);
       if (used[key]) continue;
       used[key] = 1;
-      picks.push({ key: key, book: book, c: row[1] });
+      picks.push({ key: key, book: book, c: row[1], chapters: rows.length });
     }
-    setCdBusy(true); setCdErr("");
-    Promise.all(picks.map(function(pk){
+    return Promise.all(picks.map(function(pk){
       return fetch("/books/exercises/" + pk.key + ".json")
         .then(function(r){ return r.ok ? r.json() : null; })
         .then(function(j){
           var cs = ((j && j.cases) || []).filter(cdUsable);
           if (!cs.length) return null;
           var c = cs[Math.floor(Math.random() * cs.length)];
-          return Object.assign({}, c, { src: { f: pk.book.f, t: pk.book.t, a: pk.book.a, c: pk.c } });
+          return Object.assign({}, c, { src: { f: pk.book.f, t: pk.book.t, a: pk.book.a, c: pk.c,
+            where: cdWhere(pk.key, pk.c, pk.chapters) } });
         })
         .catch(function(){ return null; });
-    })).then(function(qs){
-      qs = qs.filter(Boolean);
-      setCdBusy(false);
-      if (!qs.length) { setCdErr("No case drills could be loaded."); return; }
-      setCdQs(qs); setCdIdx(0); setCdSel(null); setCdScore(0);
+    })).then(function(qs){ return qs.filter(Boolean); });
+  };
+  var cdTopUp = function(ix) {
+    if (cdFetching.current || !ix) return;
+    cdFetching.current = true;
+    cdFetchMore(ix, 5).then(function(qs){
+      cdFetching.current = false;
+      if (qs.length) setCdQs(function(prev){ return prev.concat(qs); });
     });
+  };
+  var startCaseDrills = function() {
+    setCdErr(""); setCdOver(false); setCdAns(0); setCdRight(0); setCdSel(null);
+    setCdQs([]); setCdIdx(0);
+    var go = function(ix) {
+      setCdBusy(true);
+      cdFetchMore(ix, 6).then(function(qs){
+        setCdBusy(false);
+        if (!qs.length) { setCdErr("No case drills could be loaded."); return; }
+        setCdQs(qs);
+      });
+    };
+    if (cdIndex) { go(cdIndex); return; }
+    setCdBusy(true);
+    fetch("/books/exercises/_index.json")
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){
+        if (!j || !j.d || !j.d.length) { setCdBusy(false); setCdErr("No case drills could be loaded."); return; }
+        setCdIndex(j);
+        go(j);
+      })
+      .catch(function(){ setCdBusy(false); setCdErr("No case drills could be loaded."); });
+  };
+  var cdAnswer = function(q, opt) {
+    if (cdSel !== null) return;
+    var right = opt === q.correct;
+    setCdSel(opt);
+    setCdAns(function(n){ return n + 1; });
+    if (right) setCdRight(function(n){ return n + 1; });
+    // Counted as it is answered, so leaving the tab without pressing Finish
+    // loses nothing. Only right answers count on the leaderboard.
+    recordDrill(1, right ? 1 : 0, { title: (q.src && q.src.t) || "", filename: (q.src && q.src.f) || "" }, 0);
+  };
+  var cdNextQ = function() {
+    setCdSel(null);
+    setCdIdx(function(i){ return i + 1; });
+    if (cdQs.length - (cdIdx + 1) <= 3) cdTopUp(cdIndex);
+  };
+  var cdFinish = function() {
+    if (cdAns > 0) recordDrill(0, 0, null, 1);
+    setCdOver(true);
+    setCdSel(null);
   };
   var [quotesSeenAt, setQuotesSeenAt] = useState(function(){
     try { return Number(localStorage.getItem("gv_quotes_seen_v1")) || 0; } catch (e) { return 0; }
@@ -12410,7 +12473,7 @@ export default function App() {
       books: presetBooks, finished: finishedMap,
       wordsRead: totB.read, longestStreak: stB.longest, cardsReviewed: totB.practiced,
       learned: learned.length, saved: vocab.length,
-      drills: (drills && drills.runs) || 0,
+      drills: (drills && drills.correct) || 0,
       songs: Object.keys(songsRead || {}).filter(function(k){ return ((songsRead[k] || {}).n || 0) > 0; }).length,
       bibleRead: bibleRead,
     });
@@ -15116,6 +15179,13 @@ export default function App() {
         .cd-fb-h.ok{color:#2f5a2a}
         .cd-fb-h.bad{color:#9d4630}
         .cd-fb-x{font-family:var(--serif);font-size:14px;color:var(--ink-2);line-height:1.5}
+        .cd-fin{background:none;border:0;border-bottom:1px solid var(--ink);padding:0 0 1px;cursor:pointer;font:inherit;letter-spacing:inherit;text-transform:inherit;color:var(--ink);font-weight:600}
+        .cd-fin:hover{color:var(--rubric);border-bottom-color:var(--rubric)}
+        .cd-from{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:4px 10px;margin-bottom:14px;
+          font-family:var(--sans);font-size:12px;color:var(--ink-2);text-align:center}
+        .cd-from-a{font-weight:600}
+        .cd-from-t{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink)}
+        .cd-from-c{color:var(--ink-3)}
         .cd-src{margin-top:14px;font-family:var(--sans);font-size:12px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}
         .cd-open{background:none;border:0;padding:0;cursor:pointer;font:inherit;color:var(--rubric);border-bottom:1px solid transparent}
         .cd-open:hover{border-bottom-color:var(--rubric)}
@@ -18391,7 +18461,7 @@ export default function App() {
                     stopTTS();
                   }
                   if (t === "leaders") { loadBoards(); stopTTS(); }
-                  if (t === "drills") { stopTTS(); if (!cdQs.length && !cdBusy) newCaseSet(); }
+                  if (t === "drills") { stopTTS(); if ((!cdQs.length || cdOver) && !cdBusy) startCaseDrills(); }
                   setTab(t);
                 }}>
                   {t==="chat"?"Reading":t==="ranked"?"Most popular":t==="leaders"?"Leaderboard":t==="vocab"?"Vocab":t==="grammar"?"Grammar":t==="forum"?"Forum":t==="quotes"?"Quotes":t==="drills"?"Case drills":"Music"}
@@ -18525,33 +18595,42 @@ export default function App() {
 
         {tab==="drills" && (function(){
           var q = cdQs[cdIdx];
-          var done = cdQs.length > 0 && cdIdx >= cdQs.length;
           return (
             <div className="main">
               <div className="ss">
                 <h1 className="sti">Case drills</h1>
                 <p className="sde">
-                  Sentences from every book in the library, ten at a time. Put the word in the right case.
+                  Sentences from every book in the library, one after another for as long as you like. Put the word in the right case.
                 </p>
                 {cdErr && <p className="cd-msg">{cdErr}</p>}
                 {cdBusy && <p className="cd-msg">Picking sentences…</p>}
-                {!cdBusy && done && (
+                {!cdBusy && cdOver && (
                   <div className="cd-done">
-                    <div className="cd-big">{cdScore} / {cdQs.length}</div>
-                    <p className="cd-msg">{Math.round(cdScore / cdQs.length * 100)}%</p>
-                    <button className="btn-p cd-next" onClick={function(){ newCaseSet(); }}>New set</button>
+                    <div className="cd-big">{cdRight} / {cdAns}</div>
+                    <p className="cd-msg">{cdAns ? Math.round(cdRight / cdAns * 100) + "%" : ""}</p>
+                    <p className="cd-msg">Right answers count on the leaderboard.</p>
+                    <button className="btn-p cd-next" onClick={startCaseDrills}>Keep going</button>
                   </div>
                 )}
-                {!cdBusy && q && !done && (function(){
+                {!cdBusy && !cdOver && !q && cdQs.length > 0 && <p className="cd-msg">Picking sentences…</p>}
+                {!cdBusy && !cdOver && q && (function(){
                   var answered = cdSel !== null;
                   var wasRight = answered && cdSel === q.correct;
                   var parts = String(q.sentence || "").split("___");
                   var src = q.src || {};
+                  var where = src.where;
                   return (
                     <div className="cd">
                       <div className="cd-top">
-                        <span>Question {cdIdx + 1} of {cdQs.length}</span>
-                        <span>Score: {cdScore}</span>
+                        <span>Right: {cdRight} / {cdAns}</span>
+                        <button className="cd-fin" onClick={cdFinish}>Finish</button>
+                      </div>
+                      <div className="cd-from">
+                        {src.a ? <span className="cd-from-a">{src.a}</span> : null}
+                        <span className="cd-from-t" lang="ru">«{src.t}»</span>
+                        {where && where.ru ? <span className="cd-from-c" lang="ru">{where.ru}</span> : null}
+                        {where && where.ch ? <span className="cd-from-c">Chapter {where.ch}</span> : null}
+                        <button className="cd-open" onClick={function(){ goToSource({ srcBook: src.f, srcChapter: src.c }); }}>Open the chapter →</button>
                       </div>
                       <div className="cd-s" lang="ru">
                         {parts[0]}
@@ -18564,10 +18643,7 @@ export default function App() {
                           var cls = "cd-opt";
                           if (answered) cls += opt === q.correct ? " ok" : (opt === cdSel ? " bad" : " dim");
                           return (
-                            <button key={i} className={cls} disabled={answered} onClick={function(){
-                              setCdSel(opt);
-                              if (opt === q.correct) setCdScore(function(s){ return s + 1; });
-                            }}>
+                            <button key={i} className={cls} disabled={answered} onClick={function(){ cdAnswer(q, opt); }}>
                               <span className="cd-k">{String.fromCharCode(65 + i)}.</span>{opt}
                             </button>
                           );
@@ -18579,19 +18655,7 @@ export default function App() {
                           {q.explain && <div className="cd-fb-x">{q.explain}</div>}
                         </div>
                       )}
-                      <div className="cd-src">
-                        <span>{src.a}{src.a && src.t ? ", " : ""}«{src.t}»</span>
-                        <button className="cd-open" onClick={function(){ goToSource({ srcBook: src.f, srcChapter: src.c }); }}>Open the chapter →</button>
-                      </div>
-                      {answered && (
-                        <button className="btn-p cd-next" onClick={function(){
-                          // The last answer finishes the set: counted here,
-                          // not on the results screen, which re-renders.
-                          if (cdIdx + 1 >= cdQs.length) recordDrill(cdQs.length, cdScore, null);
-                          setCdIdx(function(i){ return i + 1; });
-                          setCdSel(null);
-                        }}>{cdIdx + 1 < cdQs.length ? "Next →" : "See results"}</button>
-                      )}
+                      {answered && <button className="btn-p cd-next" onClick={cdNextQ}>Next →</button>}
                     </div>
                   );
                 })()}
@@ -18605,7 +18669,7 @@ export default function App() {
             <div className="ss">
               <h1 className="sti">Leaderboard</h1>
               <p className="sde">
-                The readers who have reviewed the most cards, read the most words, finished the most case drills and listened to the most songs.
+                The readers who have reviewed the most cards, read the most words, answered the most case drills correctly and listened to the most songs.
               </p>
               {me && !me.username && (
                 <div className="lb-join">
@@ -18623,7 +18687,7 @@ export default function App() {
                   {[
                     { key: "reviewed", h: "Cards reviewed", sub: "every answer given in vocabulary review, right or wrong", unit: "cards" },
                     { key: "words", h: "Words read", sub: "Russian words read, counted as you go — a short story counts what it is, and so does a novel", unit: "words" },
-                    { key: "drills", h: "Case drills completed", sub: "every case drill finished, from any book", unit: "drills" },
+                    { key: "drills", h: "Case drills right", sub: "every right answer in a case drill, from any book", unit: "right answers" },
                     { key: "songs", h: "Songs listened to", sub: "different songs played in the Music tab — each song counts once", unit: "songs" },
                   ].map(function(col){
                     var rows = boards[col.key] || [];
