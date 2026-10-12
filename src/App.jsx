@@ -8,6 +8,7 @@ import { review as srsReview, isLearned, dueWords, weakestWords, recallNow,
 import { dayKey, dayMet, bump as bumpStats, streaks, mergeStats,
          totals as statsTotals, GOAL_WORDS, GOAL_CARDS } from "./stats.js";
 import { AnnotLayer, HL_COLORS, INK_COLORS, annotId } from "./annotations.jsx";
+import { readUiLang, saveUiLang, applyUiLang } from "./uilang.js";
 
 // localStorage-backed storage shim, matching the previous window.storage Promise API.
 // Keeps the rest of the app code unchanged (still uses await storage.get/set/delete).
@@ -8902,6 +8903,19 @@ export default function App() {
   // reader last looked (their own never count as unread).
   var [pubQuotes, setPubQuotes] = useState(null);
   var [quoteView, setQuoteView] = useState("all");
+  // The interface language: English or Russian, chosen with EN · RU in the
+  // header. The book text is never touched — see uilang.js.
+  var [uiLang, setUiLang] = useState(readUiLang);
+  useEffect(function(){ saveUiLang(uiLang); applyUiLang(uiLang); }, [uiLang]);
+  var langPick = (
+    <span className="langpick" data-noxl="1" role="group" aria-label="Interface language · Язык интерфейса">
+      <button type="button" className={uiLang === "en" ? "on" : ""} title="Interface in English"
+        onClick={function(){ setUiLang("en"); }}>EN</button>
+      <span aria-hidden="true">·</span>
+      <button type="button" className={uiLang === "ru" ? "on" : ""} title="Интерфейс по-русски"
+        onClick={function(){ setUiLang("ru"); }}>RU</button>
+    </span>
+  );
   var [quotesSeenAt, setQuotesSeenAt] = useState(function(){
     try { return Number(localStorage.getItem("gv_quotes_seen_v1")) || 0; } catch (e) { return 0; }
   });
@@ -14977,6 +14991,36 @@ export default function App() {
           .lsub{display:none}
         }
 
+        /* Interface language picker */
+        .lit-tabs{display:contents}
+        .langpick{display:inline-flex;align-items:baseline;gap:5px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;color:var(--ink-3);flex:none}
+        .langpick button{background:none;border:0;border-bottom:1px solid transparent;padding:3px 0;cursor:pointer;color:var(--ink-3);font:inherit;letter-spacing:inherit}
+        .langpick button.on{color:var(--ink);border-bottom-color:var(--ink);font-weight:600}
+        .langpick button:hover{color:var(--rubric)}
+        .auth-lang{position:absolute;top:14px;right:18px;z-index:2}
+        @media(max-width:640px){
+          /* The account row: one line, the book's name giving way first. */
+          .hdr-right{width:100%;flex-wrap:nowrap;justify-content:flex-start;gap:12px;min-width:0}
+          .hdr-right > *{flex-shrink:0}
+          .hdr-right > .tbadge{flex:1 1 auto;flex-shrink:1;min-width:0;max-width:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left}
+          .hdr-right .userbtn-wrap{display:inline-flex;gap:12px;flex:none}
+          .hdr-right .adm-trigger{white-space:nowrap}
+          /* The reader's bar: the tabs on one sideways-scrolling line, the
+             page and chapter buttons on a second, nothing wrapping. */
+          .lit-top{flex-wrap:wrap;gap:2px 0;padding:6px 16px 4px}
+          .lit-tabs{display:flex;flex-wrap:nowrap;align-items:center;gap:0 18px;width:100%;overflow-x:auto;overflow-y:hidden;
+            -webkit-overflow-scrolling:touch;scrollbar-width:none;padding-right:24px;
+            -webkit-mask-image:linear-gradient(to right,#000 86%,transparent);mask-image:linear-gradient(to right,#000 86%,transparent)}
+          .lit-tabs::-webkit-scrollbar{display:none}
+          .lit-tabs .ltab{flex:0 0 auto;white-space:nowrap}
+          .lit-top-nav{width:100%;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;gap:0 18px;margin-left:0}
+          .lit-top-nav::-webkit-scrollbar{display:none}
+          .lit-top-nav > *{flex:0 0 auto;white-space:nowrap}
+          .lprog{display:none!important}
+          .book-row{flex-wrap:wrap;row-gap:4px}
+          .book-row .book-line{flex:1 1 100%}
+        }
+
         /* ── The page ───────────────────────────────────────────────────── */
         .ss{padding:30px 32px 70px;gap:14px;text-align:left;align-items:center}
         .ss > *{width:100%;max-width:820px}
@@ -18076,6 +18120,7 @@ export default function App() {
 
       {authReady && !me && !guest && (
         <div className="auth-page">
+          <div className="auth-lang">{langPick}</div>
           <div className="auth-foot">{siteFoot}</div>
           <div className="auth-card">
             <div className="auth-brand">
@@ -18262,6 +18307,7 @@ export default function App() {
             ) : (
               <button className="adm-trigger" onClick={function(){ setAuthMode("login"); setAuthErr(""); setAuthOpen(true); }} title="Sign in to sync vocabulary">Sign in</button>
             ))}
+            {langPick}
           </div>
         </header>
         {ttsErr && (
@@ -20036,7 +20082,7 @@ export default function App() {
                           if (showState && isCorrect) { style.background = "rgba(90,150,90,.25)"; style.borderColor = "rgba(90,150,90,.6)"; }
                           if (showState && wbSel === opt && !isCorrect) { style.background = "rgba(157,70,48,.2)"; style.borderColor = "rgba(157,70,48,.6)"; }
                           return (
-                            <button key={oi} className="btn-g" style={style} disabled={showState} onClick={function(){ wbAnswer(opt); }}>{opt}</button>
+                            <button key={oi} data-noxl="1" className="btn-g" style={style} disabled={showState} onClick={function(){ wbAnswer(opt); }}>{opt}</button>
                           );
                         })}
                       </div>
@@ -20309,6 +20355,7 @@ export default function App() {
             {started && isLit && (
               <div className="lit-wrap">
                 <div className="lit-top">
+                  <div className="lit-tabs">
                   <button className={"ltab"+(lview==="read"?" on":"")} onClick={function(){ setLview("read"); }}>Read</button>
                   <button className={"ltab"+(lview==="nav"?" on":"")} onClick={function(){ setLview("nav"); }}>Contents</button>
                   <button className={"ltab"+(lview==="search"?" on":"")} onClick={function(){ setLview("search"); }}>Search</button>
@@ -20381,6 +20428,7 @@ export default function App() {
                       title="Show stress marks — only on words whose stress is unambiguous">Stress marks</button>
                   )}
                   {exData && (exData.cases||[]).length > 0 && <button className={"ltab"+(lview==="exercises"?" on":"")} onClick={function(){ setLview("exercises"); }}>Exercises</button>}
+                  </div>
                   {/* Page + chapter nav moved up here so they stay visible
                       while the floating audio bar covers the bottom of the page. */}
                   {lview === "read" && (
@@ -20629,7 +20677,7 @@ export default function App() {
                         {/* Book title shown small above the chapter heading so the reader always knows
                             which book they're in, even after navigating mid-chapter. */}
                         {bookMeta.title && (
-                          <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,marginBottom:4}}>
+                          <div className="book-row" style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,marginBottom:4}}>
                             <div className="book-line">
                               {bookLabel(bookMeta)}
                               {bookWordsShown ? (
@@ -21459,7 +21507,7 @@ export default function App() {
                               </>)}
 
                               {/* Options */}
-                              <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:520,margin:"0 auto"}}>
+                              <div data-noxl="1" style={{display:"flex",flexDirection:"column",gap:10,maxWidth:520,margin:"0 auto"}}>
                                 {q.options.map(function(opt, i) {
                                   var isCorrect = opt === q.correct;
                                   var isPicked  = opt === exSelected;
