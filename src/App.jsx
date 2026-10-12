@@ -16490,7 +16490,7 @@ export default function App() {
         </div>
       )}
       {quoteSaved > 0 && (
-        <div className="fq-toast" role="status">★ Saved to your quotes — find them under <b>Quotes</b> in the library</div>
+        <div className="fq-toast" role="status">★ Saved to your quotes — find them under <b>Quotes</b> at the top</div>
       )}
       {conj && (
         <div className="cj-over" onClick={function(e){ if (e.target === e.currentTarget) setConj(null); }}>
@@ -18099,7 +18099,7 @@ export default function App() {
               short to begin with — they sit beside the name now and the page
               gets the height back. */}
           <div className="tabs">
-            {["chat","ranked","leaders","vocab","grammar","forum","music"].filter(function(t){
+            {["chat","ranked","leaders","vocab","quotes","grammar","forum","music"].filter(function(t){
               if (t === "forum") return FORUM_ENABLED;
               if (t === "grammar") return GRAMMAR_ENABLED;
               return true;
@@ -18128,8 +18128,9 @@ export default function App() {
                   if (t === "leaders") { loadBoards(); stopTTS(); }
                   setTab(t);
                 }}>
-                  {t==="chat"?"Reading":t==="ranked"?"Books by popularity":t==="leaders"?"Leaderboard":t==="vocab"?"Vocabulary":t==="grammar"?"Grammar":t==="forum"?"Forum":"Music"}
+                  {t==="chat"?"Reading":t==="ranked"?"Most popular":t==="leaders"?"Leaderboard":t==="vocab"?"Vocab":t==="grammar"?"Grammar":t==="forum"?"Forum":t==="quotes"?"Quotes":"Music"}
                   {t==="vocab"&&vocab.length>0&&<span className="bdg">{vocab.length}</span>}
+                  {t==="quotes"&&favQuotes.length>0&&<span className="bdg">{favQuotes.length}</span>}
                   {t==="grammar"&&tips.length>0&&<span className="bdg g">{tips.length}</span>}
                 </button>
               );
@@ -18182,6 +18183,43 @@ export default function App() {
           <div style={{padding:"8px 28px",background:"rgba(157,70,48,.18)",borderBottom:"1px solid rgba(157,70,48,.35)",color:"#9d4630",fontSize:13,display:"flex",alignItems:"center",gap:10}}>
             <span style={{flex:1}}>{syncErr}</span>
             <button onClick={function(){ setSyncErr(""); }} style={{background:"none",border:"none",color:"#9d4630",cursor:"pointer",fontSize:18,padding:0}}>×</button>
+          </div>
+        )}
+
+        {tab==="quotes" && (
+          <div className="main">
+            <div className="ss">
+              <h1 className="sti">Favourite quotes</h1>
+              <p className="sde">
+                Lines you have saved from your reading. Select words in any book and tap ★ Quote to add one;
+                click a quote to open the book at it.
+              </p>
+              {!favQuotes.length && (
+                <div className="lib-cat-hint">No quotes yet — select some words in a book and tap ★ Quote.</div>
+              )}
+              <div className="fq-list">
+                {favQuotes.map(function(q){
+                  var src = q.src || {};
+                  var title = src.title || String(q.bookKey || "").split("::")[1] || "";
+                  return (
+                    <div key={q.id} className="fq" role="button" tabIndex={0}
+                      title="Open the book at this quote"
+                      onClick={function(){ openQuote(q); }}
+                      onKeyDown={function(e){ if (e.key === "Enter") openQuote(q); }}>
+                      <blockquote className="fq-q" lang="ru">«{q.quote}»</blockquote>
+                      <div className="fq-src">
+                        {src.author ? <span className="fq-a">{src.author}</span> : null}
+                        {src.author && title ? ", " : ""}
+                        <span className="fq-t">{title}</span>
+                        {src.heading && src.heading !== title ? <span className="fq-h"> · {src.heading}</span> : null}
+                      </div>
+                      <button type="button" className="fq-x" title="Remove from your quotes (the highlight stays)"
+                        onClick={function(e){ e.stopPropagation(); unfavQuote(q); }}>×</button>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         )}
 
@@ -19230,15 +19268,6 @@ export default function App() {
                             })}
                           </select>
                         )}
-                        {(favQuotes.length > 0 || showQuotes) && (
-                          <button
-                            className={"lib-filter-btn" + (showQuotes ? " on" : "")}
-                            aria-pressed={showQuotes}
-                            onClick={function(){ setShowQuotes(!showQuotes); }}
-                            title="Your favourite quotes — click one to open the book at it">
-                            Quotes{favQuotes.length ? " (" + favQuotes.length + ")" : ""}
-                          </button>
-                        )}
                         {(function() {
                           var nbm = Object.keys(bookmarkMap).length;
                           if (!nbm && !showBookmarks) return null;
@@ -19272,36 +19301,6 @@ export default function App() {
                           newest first. Clicking one opens the book and lands on
                           the pinned paragraph, riding the same source-link
                           machinery as the in-book jump. */}
-                      {showQuotes && (
-                        <div className="lib-section">
-                          <div className="lib-section-hdr">Favourite quotes</div>
-                          {!favQuotes.length && (
-                            <div className="lib-cat-hint">No quotes yet — select some words in a book and tap ★ Quote.</div>
-                          )}
-                          <div className="fq-list">
-                            {favQuotes.map(function(q){
-                              var src = q.src || {};
-                              var title = src.title || String(q.bookKey || "").split("::")[1] || "";
-                              return (
-                                <div key={q.id} className="fq" role="button" tabIndex={0}
-                                  title="Open the book at this quote"
-                                  onClick={function(){ openQuote(q); }}
-                                  onKeyDown={function(e){ if (e.key === "Enter") openQuote(q); }}>
-                                  <blockquote className="fq-q" lang="ru">«{q.quote}»</blockquote>
-                                  <div className="fq-src">
-                                    {src.author ? <span className="fq-a">{src.author}</span> : null}
-                                    {src.author && title ? ", " : ""}
-                                    <span className="fq-t">{title}</span>
-                                    {src.heading && src.heading !== title ? <span className="fq-h"> · {src.heading}</span> : null}
-                                  </div>
-                                  <button type="button" className="fq-x" title="Remove from your quotes (the highlight stays)"
-                                    onClick={function(e){ e.stopPropagation(); unfavQuote(q); }}>×</button>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      )}
                       {showBookmarks && (function(){
                         var entries = Object.keys(bookmarkMap).map(function(k){
                           return Object.assign({ key: k }, bookmarkMap[k]);
