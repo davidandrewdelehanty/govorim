@@ -8916,6 +8916,82 @@ export default function App() {
         onClick={function(){ setUiLang("ru"); }}>RU</button>
     </span>
   );
+  // ── Case drills from every book ──────────────────────────────────────
+  // The Case drills tab: ten sentences at a time, each from a chapter picked
+  // at random — a book first, then one of its chapters, so a short story is
+  // as likely to come up as a novel with eighty chapters. The list of drill
+  // files is built with the site (scripts/drill-index.mjs).
+  var CD_SET = 10;
+  var [cdIndex, setCdIndex] = useState(null);
+  var [cdQs, setCdQs]       = useState([]);
+  var [cdIdx, setCdIdx]     = useState(0);
+  var [cdSel, setCdSel]     = useState(null);
+  var [cdScore, setCdScore] = useState(0);
+  var [cdBusy, setCdBusy]   = useState(false);
+  var [cdErr, setCdErr]     = useState("");
+  var cdSlug = function(fn) {
+    return String(fn || "").split("/").pop().replace(/\.[^.]+$/, "").replace(/[^A-Za-z0-9_-]/g, "_");
+  };
+  var cdUsable = function(c) {
+    return !!(c && c.sentence && /___/.test(c.sentence) && c.options && c.options.length > 1 && c.correct);
+  };
+  var newCaseSet = function(ixArg) {
+    var ix = ixArg || cdIndex;
+    if (!ix) {
+      setCdBusy(true); setCdErr("");
+      fetch("/books/exercises/_index.json")
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(j){
+          if (!j || !j.d || !j.d.length) { setCdBusy(false); setCdErr("No case drills could be loaded."); return; }
+          setCdIndex(j);
+          newCaseSet(j);
+        })
+        .catch(function(){ setCdBusy(false); setCdErr("No case drills could be loaded."); });
+      return;
+    }
+    // Only the books this reader's library actually holds.
+    var allowed = null;
+    if (presetBooks && presetBooks.length) {
+      allowed = {};
+      presetBooks.forEach(function(b){ if (b && b.filename) allowed[b.filename] = 1; });
+    }
+    var byBook = {};
+    ix.d.forEach(function(row){
+      var b = ix.books[row[0]];
+      if (!b || (allowed && !allowed[b.f])) return;
+      (byBook[row[0]] = byBook[row[0]] || []).push(row);
+    });
+    var bks = Object.keys(byBook);
+    if (!bks.length) { setCdBusy(false); setCdErr("No case drills could be loaded."); return; }
+    var picks = [], used = {};
+    for (var tries = 0; picks.length < CD_SET && tries < CD_SET * 8; tries++) {
+      var bi = bks[Math.floor(Math.random() * bks.length)];
+      var rows = byBook[bi];
+      var row = rows[Math.floor(Math.random() * rows.length)];
+      var book = ix.books[row[0]];
+      var key = row[3] || (cdSlug(book.f) + "__ch" + row[1]);
+      if (used[key]) continue;
+      used[key] = 1;
+      picks.push({ key: key, book: book, c: row[1] });
+    }
+    setCdBusy(true); setCdErr("");
+    Promise.all(picks.map(function(pk){
+      return fetch("/books/exercises/" + pk.key + ".json")
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(j){
+          var cs = ((j && j.cases) || []).filter(cdUsable);
+          if (!cs.length) return null;
+          var c = cs[Math.floor(Math.random() * cs.length)];
+          return Object.assign({}, c, { src: { f: pk.book.f, t: pk.book.t, a: pk.book.a, c: pk.c } });
+        })
+        .catch(function(){ return null; });
+    })).then(function(qs){
+      qs = qs.filter(Boolean);
+      setCdBusy(false);
+      if (!qs.length) { setCdErr("No case drills could be loaded."); return; }
+      setCdQs(qs); setCdIdx(0); setCdSel(null); setCdScore(0);
+    });
+  };
   var [quotesSeenAt, setQuotesSeenAt] = useState(function(){
     try { return Number(localStorage.getItem("gv_quotes_seen_v1")) || 0; } catch (e) { return 0; }
   });
@@ -15001,6 +15077,33 @@ export default function App() {
         .acct-create{background:var(--ink);color:var(--paper);border:0;border-radius:2px;padding:6px 12px;cursor:pointer;white-space:nowrap;
           font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
         .acct-create:hover{background:var(--rubric)}
+        .cd{max-width:620px;margin:10px auto 0}
+        .cd-top{display:flex;justify-content:space-between;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:16px}
+        .cd-s{font-family:var(--serif);font-size:23px;line-height:1.55;color:var(--ink);text-align:center;margin-bottom:12px}
+        .cd-blank{display:inline-block;min-width:70px;border-bottom:2px solid var(--ink);padding:0 6px;font-weight:700;text-align:center}
+        .cd-blank.ok{color:#2f5a2a}
+        .cd-lemma{text-align:center;font-family:var(--serif);font-size:15px;color:var(--ink-2);margin-bottom:18px}
+        .cd-lemma strong{font-size:18px;color:var(--ink)}
+        .cd-opts{display:flex;flex-direction:column;gap:9px}
+        .cd-opt{text-align:left;padding:12px 16px;border:1px solid var(--rule);background:var(--paper-3);font-family:var(--serif);font-size:18px;color:var(--ink);cursor:pointer;border-radius:2px}
+        .cd-opt:hover:not(:disabled){border-color:var(--ink)}
+        .cd-opt:disabled{cursor:default}
+        .cd-opt.ok{border-color:#2f5a2a;background:rgba(90,133,86,.15);color:#2f5a2a}
+        .cd-opt.bad{border-color:#9d4630;background:rgba(157,70,48,.12);color:#9d4630}
+        .cd-opt.dim{opacity:.5}
+        .cd-k{display:inline-block;width:22px;font-family:var(--sans);font-size:12px;color:var(--ink-3)}
+        .cd-fb{margin-top:16px;padding:12px 14px;background:var(--paper-2);border-left:3px solid var(--rule)}
+        .cd-fb-h{font-family:var(--sans);font-size:13px;font-weight:600;margin-bottom:4px}
+        .cd-fb-h.ok{color:#2f5a2a}
+        .cd-fb-h.bad{color:#9d4630}
+        .cd-fb-x{font-family:var(--serif);font-size:14px;color:var(--ink-2);line-height:1.5}
+        .cd-src{margin-top:14px;font-family:var(--sans);font-size:12px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}
+        .cd-open{background:none;border:0;padding:0;cursor:pointer;font:inherit;color:var(--rubric);border-bottom:1px solid transparent}
+        .cd-open:hover{border-bottom-color:var(--rubric)}
+        .cd-next{display:block;margin:22px auto 0;max-width:260px}
+        .cd-done{text-align:center;padding:24px 0}
+        .cd-big{font-family:var(--display);font-size:44px;color:var(--ink)}
+        .cd-msg{font-family:var(--serif);font-style:italic;color:var(--ink-2)}
         .langpick button.on{color:var(--ink);border-bottom-color:var(--ink);font-weight:600}
         .langpick button:hover{color:var(--rubric)}
         .auth-lang{position:absolute;top:14px;right:18px;z-index:2}
@@ -18242,7 +18345,7 @@ export default function App() {
               short to begin with — they sit beside the name now and the page
               gets the height back. */}
           <div className="tabs">
-            {["chat","ranked","leaders","vocab","quotes","grammar","forum","music"].filter(function(t){
+            {["chat","ranked","leaders","vocab","drills","quotes","grammar","forum","music"].filter(function(t){
               if (t === "forum") return FORUM_ENABLED;
               if (t === "grammar") return GRAMMAR_ENABLED;
               return true;
@@ -18269,9 +18372,10 @@ export default function App() {
                     stopTTS();
                   }
                   if (t === "leaders") { loadBoards(); stopTTS(); }
+                  if (t === "drills") { stopTTS(); if (!cdQs.length && !cdBusy) newCaseSet(); }
                   setTab(t);
                 }}>
-                  {t==="chat"?"Reading":t==="ranked"?"Most popular":t==="leaders"?"Leaderboard":t==="vocab"?"Vocab":t==="grammar"?"Grammar":t==="forum"?"Forum":t==="quotes"?"Quotes":"Music"}
+                  {t==="chat"?"Reading":t==="ranked"?"Most popular":t==="leaders"?"Leaderboard":t==="vocab"?"Vocab":t==="grammar"?"Grammar":t==="forum"?"Forum":t==="quotes"?"Quotes":t==="drills"?"Case drills":"Music"}
                   {t==="vocab"&&vocab.length>0&&<span className="bdg">{vocab.length}</span>}
                   {t==="quotes"&&quotesUnread>0&&<span className="bdg qn">{quotesUnread > 99 ? "99+" : quotesUnread}</span>}
                   {t==="grammar"&&tips.length>0&&<span className="bdg g">{tips.length}</span>}
@@ -18395,6 +18499,83 @@ export default function App() {
                     );
                   })}
                 </div>
+              </div>
+            </div>
+          );
+        })()}
+
+        {tab==="drills" && (function(){
+          var q = cdQs[cdIdx];
+          var done = cdQs.length > 0 && cdIdx >= cdQs.length;
+          return (
+            <div className="main">
+              <div className="ss">
+                <h1 className="sti">Case drills</h1>
+                <p className="sde">
+                  Sentences from every book in the library, ten at a time. Put the word in the right case.
+                </p>
+                {cdErr && <p className="cd-msg">{cdErr}</p>}
+                {cdBusy && <p className="cd-msg">Picking sentences…</p>}
+                {!cdBusy && done && (
+                  <div className="cd-done">
+                    <div className="cd-big">{cdScore} / {cdQs.length}</div>
+                    <p className="cd-msg">{Math.round(cdScore / cdQs.length * 100)}%</p>
+                    <button className="btn-p cd-next" onClick={function(){ newCaseSet(); }}>New set</button>
+                  </div>
+                )}
+                {!cdBusy && q && !done && (function(){
+                  var answered = cdSel !== null;
+                  var wasRight = answered && cdSel === q.correct;
+                  var parts = String(q.sentence || "").split("___");
+                  var src = q.src || {};
+                  return (
+                    <div className="cd">
+                      <div className="cd-top">
+                        <span>Question {cdIdx + 1} of {cdQs.length}</span>
+                        <span>Score: {cdScore}</span>
+                      </div>
+                      <div className="cd-s" lang="ru">
+                        {parts[0]}
+                        <span className={"cd-blank" + (answered ? " ok" : "")}>{answered ? q.correct : "   "}</span>
+                        {parts[1] || ""}
+                      </div>
+                      <div className="cd-lemma">Put <strong lang="ru">{q.lemma}</strong> in the correct case</div>
+                      <div className="cd-opts" data-noxl="1" lang="ru">
+                        {q.options.map(function(opt, i){
+                          var cls = "cd-opt";
+                          if (answered) cls += opt === q.correct ? " ok" : (opt === cdSel ? " bad" : " dim");
+                          return (
+                            <button key={i} className={cls} disabled={answered} onClick={function(){
+                              setCdSel(opt);
+                              if (opt === q.correct) setCdScore(function(s){ return s + 1; });
+                            }}>
+                              <span className="cd-k">{String.fromCharCode(65 + i)}.</span>{opt}
+                            </button>
+                          );
+                        })}
+                      </div>
+                      {answered && (
+                        <div className="cd-fb">
+                          <div className={"cd-fb-h" + (wasRight ? " ok" : " bad")}>{wasRight ? "Correct" : "Not quite"}{q.case ? " — " + q.case : ""}</div>
+                          {q.explain && <div className="cd-fb-x">{q.explain}</div>}
+                        </div>
+                      )}
+                      <div className="cd-src">
+                        <span>{src.a}{src.a && src.t ? ", " : ""}«{src.t}»</span>
+                        <button className="cd-open" onClick={function(){ goToSource({ srcBook: src.f, srcChapter: src.c }); }}>Open the chapter →</button>
+                      </div>
+                      {answered && (
+                        <button className="btn-p cd-next" onClick={function(){
+                          // The last answer finishes the set: counted here,
+                          // not on the results screen, which re-renders.
+                          if (cdIdx + 1 >= cdQs.length) recordDrill(cdQs.length, cdScore, null);
+                          setCdIdx(function(i){ return i + 1; });
+                          setCdSel(null);
+                        }}>{cdIdx + 1 < cdQs.length ? "Next →" : "See results"}</button>
+                      )}
+                    </div>
+                  );
+                })()}
               </div>
             </div>
           );
