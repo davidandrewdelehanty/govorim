@@ -571,6 +571,54 @@ async function wiktionaryLookup(candidates, clickedWord, signal, timeLeft, share
   return null;
 }
 
+// A verb entry's forms → the conjugation table, or null when it has none.
+function conjugationOf(entry) {
+  const forms = (Array.isArray(entry.forms) ? entry.forms : []).filter(function (f) {
+    return f && f.word && Array.isArray(f.tags) && f.tags.indexOf("dated") < 0 &&
+      f.tags.indexOf("romanization") < 0 && /[\u0400-\u04ff]/.test(f.word);
+  });
+  const has = function (f, tags) { return tags.every(function (t) { return f.tags.indexOf(t) >= 0; }); };
+  const pick = function (tags, not) {
+    const out = [];
+    for (const f of forms) {
+      if (!has(f, tags)) continue;
+      if (not && not.some(function (t) { return f.tags.indexOf(t) >= 0; })) continue;
+      if (out.indexOf(f.word) < 0) out.push(f.word);
+    }
+    return out.join(", ");
+  };
+  const persons = [["1s", ["first-person", "singular"]], ["2s", ["second-person", "singular"]], ["3s", ["third-person", "singular"]],
+                   ["1p", ["first-person", "plural"]], ["2p", ["second-person", "plural"]], ["3p", ["third-person", "plural"]]];
+  const row = function (tense) {
+    const r = {}; let any = false;
+    for (const p of persons) { r[p[0]] = pick([tense].concat(p[1]), ["imperative"]); if (r[p[0]]) any = true; }
+    return any ? r : null;
+  };
+  const present = row("present");
+  const future = row("future");
+  const past = { m: pick(["past", "masculine", "singular"], ["participle"]), f: pick(["past", "feminine", "singular"], ["participle"]),
+                 n: pick(["past", "neuter", "singular"], ["participle"]), pl: pick(["past", "plural"], ["participle"]) };
+  const imperative = { sg: pick(["imperative", "singular"]), pl: pick(["imperative", "plural"]) };
+  const participles = {
+    activePresent: pick(["active", "participle", "present"], ["adverbial"]),
+    activePast: pick(["active", "participle", "past"], ["adverbial"]),
+    passivePresent: pick(["passive", "participle", "present"]),
+    passivePast: pick(["passive", "participle", "past"]),
+    adverbialPresent: pick(["adverbial", "participle", "present"]),
+    adverbialPast: pick(["adverbial", "participle", "past"]),
+  };
+  if (!present && !future && !past.m) return null;
+  const canon = forms.filter(function (f) { return has(f, ["canonical"]) || has(f, ["infinitive"]); })[0];
+  const tags = (canon && canon.tags) || [];
+  const aspect = tags.indexOf("perfective") >= 0 ? "perfective" : (tags.indexOf("imperfective") >= 0 ? "imperfective" : "");
+  const partner = forms.filter(function (f) { return f.tags.length === 1 && (f.tags[0] === "perfective" || f.tags[0] === "imperfective"); })
+    .map(function (f) { return f.word; });
+  return {
+    infinitive: (canon && canon.word) || "", aspect: aspect, partner: partner.slice(0, 3),
+    present: present, future: future, past: past, imperative: imperative, participles: participles,
+  };
+}
+
 // "genitive singular of фраер" / "inflection of фраер" → фраер.
 function lemmaFromNote(note) {
   const m = String(note || "").match(/\bof\s+([\u0400-\u04ff\u0300-\u036f-]{2,})/i);
@@ -811,6 +859,40 @@ export default async function handler(req, res) {
   }
   const rl = checkRateLimit(ip, !!user || isDesktop);
   if (!rl.ok) return res.status(429).json({ error: rl.reason });
+
+  // —— Conjugation —————————————————————————————————————————————————
+  // The verb's own table from Wiktionary (its forms list carries every cell,
+  // stressed and tagged), grouped for the popup's conjugation window. The
+  // pre-1918 "dated" spellings are left out. The client sends the infinitive.
+  if (req.query && req.query.conj === "1") {
+    const ctrlC = new AbortController();
+    const tC = setTimeout(function () { ctrlC.abort(); }, 7000);
+    try {
+      const lowC = word.toLowerCase().replace(/\u0301/g, "");
+      let table = null;
+      for (const cand of [lowC, lowC.replace(/ё/g, "е")].filter(function (w, i, a) { return a.indexOf(w) === i; })) {
+        let pack = null;
+        try { pack = await wiktFetch(cand, ctrlC.signal); } catch (e) { if (e && e.name === "AbortError") throw e; }
+        if (!pack) continue;
+        for (const e of pack.entries) {
+          if (String(e.partOfSpeech || "").toLowerCase() !== "verb") continue;
+          const t = conjugationOf(e);
+          if (t) { table = t; break; }
+        }
+        if (table) break;
+      }
+      if (!table) {
+        res.setHeader("Cache-Control", "public, s-maxage=86400");
+        return res.status(404).json({ error: "Wiktionary has no conjugation table for this verb.", noEntry: true });
+      }
+      res.setHeader("Cache-Control", "public, s-maxage=2592000, stale-while-revalidate=86400");
+      return res.status(200).json(table);
+    } catch (e) {
+      return res.status(502).json({ error: "Wiktionary could not be reached just now." });
+    } finally {
+      clearTimeout(tC);
+    }
+  }
 
   // —— The Russian definition («По-русски») ————————————————————————————
   // The popup's button asks Викисловарь itself for the word's meanings in

@@ -10494,6 +10494,30 @@ export default function App() {
     });
   };
 
+  // The conjugation window: a verb's full table from Wiktionary, opened from
+  // the definition popup. Kept in its own state so it sits above the popup and
+  // closing it leaves the popup where it was.
+  var [conj, setConj] = useState(null);       // { word, loading, data, error }
+  var conjMemo = useRef({});
+  var openConj = async function(word) {
+    var w = String(word || "").replace(/\u0301/g, "").split(/\s*\/\s*/)[0].trim();
+    if (!w) return;
+    var memo = conjMemo.current[w.toLowerCase()];
+    if (memo) { setConj({ word: w, data: memo.data, error: memo.error }); return; }
+    setConj({ word: w, loading: true });
+    var data = null, error = "";
+    try {
+      var r = await authFetch("/api/define?conj=1&word=" + encodeURIComponent(w));
+      var j = await r.json().catch(function(){ return null; });
+      if (r.ok && j && (j.present || j.future || (j.past && j.past.m))) data = j;
+      else if (r.status === 404) error = "Wiktionary has no conjugation table for «" + w + "».";
+      else if (r.status === 429) error = "Too many lookups just now — wait a moment and try again.";
+      else error = "Wiktionary could not be reached just now — try again in a moment.";
+    } catch (e) { error = "Wiktionary could not be reached just now — try again in a moment."; }
+    if (data || /no conjugation/.test(error)) conjMemo.current[w.toLowerCase()] = { data: data, error: error };
+    setConj(function(c){ return c && c.word === w ? { word: w, data: data, error: error } : c; });
+  };
+
   var defWithYo = async function(word) {
     setPopup(function(p){ return p ? Object.assign({},p,{loading:true,yo:null,error:null,word:word}) : null; });
     try {
@@ -14290,6 +14314,16 @@ export default function App() {
         .pdru{font-family:'Literata',serif;font-size:15px;color:#000;line-height:1.5;margin-bottom:8px;padding:8px 10px;background:rgba(42,31,20,.06);border-left:2px solid rgba(42,31,20,.4);border-radius:4px}
         .ptr{font-size:16px;color:rgba(42,31,20,.65);margin-bottom:7px;font-style:italic;padding-left:2px}
         .pru{margin:4px 0 8px}
+        .cj-over{position:fixed;inset:0;z-index:260;background:rgba(26,22,17,.35);display:flex;align-items:center;justify-content:center;padding:16px}
+        .cj{position:relative;background:#f5f0e8;border:1px solid rgba(42,31,20,.3);border-radius:14px;padding:18px 20px 16px;
+          width:100%;max-width:440px;max-height:calc(100dvh - 32px);overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:0 10px 40px rgba(0,0,0,.25)}
+        .cj-h{font-family:'Old Standard TT',serif;font-size:24px;font-weight:600;color:#2a1f14;padding-right:24px}
+        .cj-sub{font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:rgba(42,31,20,.6);margin:2px 0 12px}
+        .cj-sec{font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(42,31,20,.55);margin:14px 0 4px}
+        .cj-t{width:100%;border-collapse:collapse;font-family:'Literata',serif;font-size:15px;color:#2a1f14}
+        .cj-t th{font-family:'IBM Plex Sans',sans-serif;font-size:11px;font-weight:600;text-align:left;color:rgba(42,31,20,.6);padding:2px 6px 4px}
+        .cj-t td{padding:4px 6px;border-top:1px solid rgba(42,31,20,.1);vertical-align:top}
+        .cj-p{color:rgba(42,31,20,.55);font-size:13px;white-space:nowrap;width:1%}
         .pru-btn{background:none;border:1px solid rgba(42,31,20,.22);border-radius:7px;padding:4px 10px;font-size:12px;font-family:'IBM Plex Sans',sans-serif;color:rgba(42,31,20,.75);cursor:pointer}
         .pru-btn:hover,.pru-btn.on{border-color:rgba(42,31,20,.55);color:#2a1f14;background:rgba(42,31,20,.04)}
         .pru-box{margin-top:8px;padding:8px 10px;border-left:2px solid rgba(42,31,20,.25);background:rgba(42,31,20,.03)}
@@ -16343,6 +16377,91 @@ export default function App() {
               {grpErr && <div className="acct-msg bad">{grpErr}</div>}
               {grpInfo && <div className="acct-msg ok">{grpInfo}</div>}
             </div>
+          </div>
+        </div>
+      )}
+      {conj && (
+        <div className="cj-over" onClick={function(e){ if (e.target === e.currentTarget) setConj(null); }}>
+          <div className="cj" role="dialog" aria-label={"Conjugation of " + conj.word}>
+            <button type="button" className="pcl" onClick={function(){ setConj(null); }} aria-label="Close">×</button>
+            <div className="cj-h" lang="ru">{(conj.data && conj.data.infinitive) || conj.word}</div>
+            {conj.data && (
+              <div className="cj-sub">
+                {conj.data.aspect ? conj.data.aspect + " verb" : "verb"}
+                {conj.data.partner && conj.data.partner.length ? (conj.data.aspect === "imperfective" ? " · pf. " : " · impf. ") + conj.data.partner.join(", ") : ""}
+              </div>
+            )}
+            {conj.loading && <div className="pload">Looking up the conjugation…</div>}
+            {conj.error && <div className="perr">{conj.error}</div>}
+            {conj.data && (function(){
+              var d = conj.data;
+              var P = [["1s", "я"], ["2s", "ты"], ["3s", "он, она, оно"], ["1p", "мы"], ["2p", "вы"], ["3p", "они"]];
+              var tenseRow = d.present ? { t: "Present", r: d.present } : null;
+              var futRow = d.future ? { t: d.aspect === "perfective" ? "Future" : "Future (compound)", r: d.future } : null;
+              var fut = function(k) {
+                if (!futRow) return "";
+                var v = futRow.r[k];
+                // The compound future is listed once, in the first person:
+                // build the rest from буду + the infinitive.
+                if (!v && d.aspect !== "perfective" && d.infinitive) {
+                  var aux = { "1s": "бу́ду", "2s": "бу́дешь", "3s": "бу́дет", "1p": "бу́дем", "2p": "бу́дете", "3p": "бу́дут" }[k];
+                  v = aux + " " + d.infinitive;
+                }
+                return v;
+              };
+              var pt = d.participles || {};
+              return (
+                <div lang="ru">
+                  <table className="cj-t">
+                    <thead><tr><th></th>{tenseRow && <th>{tenseRow.t}</th>}{futRow && <th>{futRow.t}</th>}</tr></thead>
+                    <tbody>
+                      {P.map(function(p){
+                        return (
+                          <tr key={p[0]}>
+                            <td className="cj-p">{p[1]}</td>
+                            {tenseRow && <td>{tenseRow.r[p[0]] || "—"}</td>}
+                            {futRow && <td>{fut(p[0]) || "—"}</td>}
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                  <div className="cj-sec">Past</div>
+                  <table className="cj-t"><tbody>
+                    <tr><td className="cj-p">он</td><td>{d.past.m || "—"}</td></tr>
+                    <tr><td className="cj-p">она</td><td>{d.past.f || "—"}</td></tr>
+                    <tr><td className="cj-p">оно</td><td>{d.past.n || "—"}</td></tr>
+                    <tr><td className="cj-p">они</td><td>{d.past.pl || "—"}</td></tr>
+                  </tbody></table>
+                  {(d.imperative.sg || d.imperative.pl) && (
+                    <>
+                      <div className="cj-sec">Imperative</div>
+                      <table className="cj-t"><tbody>
+                        <tr><td className="cj-p">ты</td><td>{d.imperative.sg || "—"}</td></tr>
+                        <tr><td className="cj-p">вы</td><td>{d.imperative.pl || "—"}</td></tr>
+                      </tbody></table>
+                    </>
+                  )}
+                  {(pt.activePresent || pt.activePast || pt.passivePresent || pt.passivePast || pt.adverbialPresent || pt.adverbialPast) && (
+                    <>
+                      <div className="cj-sec">Participles</div>
+                      <table className="cj-t"><tbody>
+                        {pt.activePresent && <tr><td className="cj-p">active present</td><td>{pt.activePresent}</td></tr>}
+                        {pt.activePast && <tr><td className="cj-p">active past</td><td>{pt.activePast}</td></tr>}
+                        {pt.passivePresent && <tr><td className="cj-p">passive present</td><td>{pt.passivePresent}</td></tr>}
+                        {pt.passivePast && <tr><td className="cj-p">passive past</td><td>{pt.passivePast}</td></tr>}
+                        {pt.adverbialPresent && <tr><td className="cj-p">adverbial present</td><td>{pt.adverbialPresent}</td></tr>}
+                        {pt.adverbialPast && <tr><td className="cj-p">adverbial past</td><td>{pt.adverbialPast}</td></tr>}
+                      </tbody></table>
+                    </>
+                  )}
+                  <div className="pru-src" style={{marginTop:10}}>
+                    <a href={"https://en.wiktionary.org/wiki/" + encodeURIComponent(String(d.infinitive || conj.word).replace(/\u0301/g, "")) + "#Russian"} target="_blank" rel="noreferrer">Wiktionary</a>
+                    {" \u00b7 "}<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a>
+                  </div>
+                </div>
+              );
+            })()}
           </div>
         </div>
       )}
@@ -21866,6 +21985,11 @@ export default function App() {
                                 title="The meaning in Russian, from the Russian Викисловарь">
                           {open ? "Hide the Russian definition" : "По-русски — Russian definition"}
                         </button>
+                        {((/verb|глагол/i.test(popup.data.partOfSpeech || "") && !/adverb|наречие/i.test(popup.data.partOfSpeech || "")) || popup.data.aspect) && (
+                          <button type="button" className="pru-btn" style={{marginLeft:6}}
+                                  onClick={function(){ openConj(lem); }}
+                                  title="Every form of the verb, from Wiktionary">Conjugation</button>
+                        )}
                         {open && (
                           <div className="pru-box" lang="ru">
                             {rv.loading && <div className="pload">Ищу в Викисловаре…</div>}
