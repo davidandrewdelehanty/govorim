@@ -1924,6 +1924,20 @@ async function textFingerprint(chapters) {
   } catch (e) { return ""; }
 }
 
+// A phone or tablet, as opposed to a computer — for the home-screen offer,
+// which means nothing on a desktop. The user agent says so on most phones;
+// an iPad passes itself off as a Mac, so a touch screen with no fine pointer
+// counts too.
+function isPhoneOrTablet() {
+  try {
+    var ua = navigator.userAgent || "";
+    if (/Android|iPhone|iPad|iPod|Mobile|Silk|Kindle/i.test(ua)) return true;
+    if (/Macintosh/.test(ua) && (navigator.maxTouchPoints || 0) > 1) return true;
+    var mm = window.matchMedia;
+    return !!(mm && mm("(pointer: coarse)").matches && !mm("(any-pointer: fine)").matches);
+  } catch (e) { return false; }
+}
+
 function fmtInt(n) { return String(Math.round(n || 0)).replace(/\B(?=(\d{3})+(?!\d))/g, " "); }
 function ruPlural(n, one, few, many) {
   var m10 = n % 10, m100 = n % 100;
@@ -18867,7 +18881,7 @@ export default function App() {
                           uploaded — the file is read in your browser and stays there.</>}
                   </span>
                 </button>
-                {!grpPicking && !homeAdded && (
+                {!grpPicking && !homeAdded && isPhoneOrTablet() && (
                   <button className="own-entry" onClick={function(){ setHomeOpen(true); }}>
                     <span className="own-entry-t">Put {SITE_NAME} on your phone</span>
                     <span className="own-entry-s">
