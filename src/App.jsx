@@ -1989,6 +1989,17 @@ function badgeGen(s) {
   return w;
 }
 
+// The books of the Synodal Bible, in its order, with their chapter counts. A
+// Bible book is read when every one of its chapters has been read to its end
+// (src.bibleRead, keyed by chapter heading — «Бытие 1»).
+var BIBLE_BOOKS = [["Бытие", 50], ["Исход", 40], ["Левит", 27], ["Числа", 36], ["Второзаконие", 34], ["Иисуса Навина", 24], ["Судей", 21], ["Руфь", 4], ["1-я Царств", 31], ["2-я Царств", 24], ["3-я Царств", 22], ["4-я Царств", 25], ["1-я Паралипоменон", 29], ["2-я Паралипоменон", 36], ["Молитва Манассии", 1], ["1-я Ездры", 10], ["Неемии", 13], ["2-я Ездры", 9], ["Товит", 14], ["Иудифь", 16], ["Есфирь", 10], ["Иов", 42], ["Псалтирь", 151], ["Притчи", 31], ["Екклесиаст", 12], ["Песнь песней", 8], ["Премудрости Соломона", 19], ["Сирах", 51], ["Исаия", 66], ["Иеремия", 52], ["Плач Иеремии", 5], ["Послание Иеремии", 1], ["Варух", 5], ["Иезекииль", 48], ["Даниил", 14], ["Осия", 14], ["Иоиль", 3], ["Амос", 9], ["Авдий", 1], ["Иона", 4], ["Михей", 7], ["Наум", 3], ["Аввакум", 3], ["Софония", 3], ["Аггей", 2], ["Захария", 14], ["Малахия", 4], ["1-я Маккавейская", 16], ["2-я Маккавейская", 15], ["3-я Маккавейская", 7], ["3-я Ездры", 16], ["Матфея", 28], ["Марка", 16], ["Луки", 24], ["Иоанна", 21], ["Деяния", 28], ["Иакова", 5], ["1-е Петра", 5], ["2-е Петра", 3], ["1-е Иоанна", 5], ["2-е Иоанна", 1], ["3-е Иоанна", 1], ["Иуды", 1], ["Римлянам", 16], ["1-е Коринфянам", 16], ["2-е Коринфянам", 13], ["Галатам", 6], ["Ефесянам", 6], ["Филиппийцам", 4], ["Колоссянам", 4], ["1-е Фессалоникийцам", 5], ["2-е Фессалоникийцам", 3], ["1-е Тимофею", 6], ["2-е Тимофею", 4], ["Титу", 3], ["Филимону", 1], ["Евреям", 13], ["Откровение", 22]];
+var BIBLE_NT_FROM = "Матфея";
+function bibleMark(name) {
+  var m = /^(\d)-[яе]\s+(.)(.)/.exec(name);
+  if (m) return m[1] + m[2] + m[3];
+  return name.slice(0, 3);
+}
+
 function computeBadges(src) {
   var books = src.books || [];
   var byFile = {};
@@ -2063,6 +2074,39 @@ function computeBadges(src) {
       });
     });
   });
+
+  // Books of the Bible, and the collections they make up.
+  var br = src.bibleRead || {};
+  var ntAt = -1;
+  BIBLE_BOOKS.forEach(function(b, i){ if (b[0] === BIBLE_NT_FROM) ntAt = i; });
+  var bookDone = {}, doneAt = {};
+  BIBLE_BOOKS.forEach(function(b) {
+    var n = 0, last = 0;
+    for (var c = 1; c <= b[1]; c++) {
+      var t = br[b[0] + " " + c];
+      if (t) { n++; if (t > last) last = t; }
+    }
+    bookDone[b[0]] = n >= b[1];
+    doneAt[b[0]] = n >= b[1] ? last : 0;
+    add({
+      id: "bible:" + b[0], group: "bible", tier: 0, mark: bibleMark(b[0]),
+      title: b[0], desc: "Read every chapter of «" + b[0] + "»",
+      earned: n >= b[1], n: n, of: b[1], at: doneAt[b[0]],
+    });
+  });
+  var collection = function(id, title, names, tier) {
+    var n = names.filter(function(x){ return bookDone[x]; }).length;
+    var at = n === names.length ? Math.max.apply(null, names.map(function(x){ return doneAt[x] || 0; })) : 0;
+    add({ id: "bible:" + id, group: "bible", tier: tier, mark: title.slice(0, 1),
+          title: title, desc: "Read every book: " + names.length + " in all",
+          earned: n === names.length, n: n, of: names.length, at: at });
+  };
+  var allNames = BIBLE_BOOKS.map(function(b){ return b[0]; });
+  collection("pentateuch", "Пятикнижие", allNames.slice(0, 5), 1);
+  collection("gospels", "Евангелия", ["Матфея", "Марка", "Луки", "Иоанна"], 1);
+  collection("ot", "Ветхий Завет", allNames.slice(0, ntAt), 3);
+  collection("nt", "Новый Завет", allNames.slice(ntAt), 3);
+  collection("all", "Вся Библия", allNames, 4);
 
   // Milestones.
   var have = {
@@ -5449,6 +5493,12 @@ export default function App() {
     io.observe(el);
     return function(){ try { io.disconnect(); } catch (e) {} };
   }, [started, isLit, lview, cidx, chapters.length, bookMeta.title]);
+  // A Bible chapter is read once its end has been on screen.
+  useEffect(function() {
+    if (!footSeen || !(bookMeta && bookMeta.isBible)) return;
+    if (pidx < totalPages - 1) return;
+    markBibleChapter(chapters[cidx] && chapters[cidx].heading);
+  }, [footSeen, cidx, pidx, totalPages, bookMeta && bookMeta.filename]);
   var scrollToOffset = function(off) {
     try {
       var nodes = document.querySelectorAll(".lit-body [data-rw-start]");
@@ -5723,6 +5773,38 @@ export default function App() {
   var songsReadLoaded = useRef(false);
   var [drills, setDrills] = useState({ runs: 0, questions: 0, correct: 0, last: 0, byBook: {} });
   var drillsLoaded = useRef(false);
+  // Bible chapters read to the end: { "Бытие 1": firstReadAt }. The Bible is
+  // read out of order, so "furthest reached" says nothing about which books
+  // are done; this does, and the Bible's book badges come from it.
+  var [bibleRead, setBibleRead] = useState({});
+  var bibleReadLoaded = useRef(false);
+  var mergeBibleRead = function(a, b) {
+    var out = Object.assign({}, a || {});
+    Object.keys(b || {}).forEach(function(k){
+      var t = Number(b[k]) || 0;
+      if (!t) return;
+      out[k] = out[k] ? Math.min(out[k], t) : t;
+    });
+    return out;
+  };
+  useEffect(function() {
+    storage.get("gv_bibleread_v1").then(function(r){
+      if (r && r.value) { try { var v = JSON.parse(r.value) || {}; setBibleRead(function(m){ return mergeBibleRead(m, v); }); } catch (e) {} }
+      bibleReadLoaded.current = true;
+    }).catch(function(){ bibleReadLoaded.current = true; });
+  }, []);
+  useEffect(function() {
+    if (!bibleReadLoaded.current) return;
+    storage.set("gv_bibleread_v1", JSON.stringify(bibleRead)).catch(function(){});
+  }, [bibleRead]);
+  var markBibleChapter = function(heading) {
+    var h = String(heading || "").replace(/\s+/g, " ").trim();
+    if (!/^.+\s\d{1,3}$/.test(h)) return;
+    setBibleRead(function(m){
+      if (m[h]) return m;
+      var next = Object.assign({}, m); next[h] = Date.now(); return next;
+    });
+  };
   useEffect(function() {
     storage.get("gv_songs_v1").then(function(r){
       if (r && r.value) { try { var v = JSON.parse(r.value) || {}; setSongsRead(function(m){ return mergeSongs(m, v); }); } catch (e) {} }
@@ -8164,6 +8246,9 @@ export default function App() {
         if (data.drills && typeof data.drills === "object") {
           setDrills(function(d){ return mergeDrills(d, data.drills); });
         }
+        if (data.bibleread && typeof data.bibleread === "object") {
+          setBibleRead(function(m){ return mergeBibleRead(m, data.bibleread); });
+        }
         if (data.annots && data.annots.items && Object.keys(data.annots.items).length) {
           setAnnots(function(m){ return mergeAnnots(m, data.annots.items); });
         }
@@ -8292,6 +8377,18 @@ export default function App() {
     }, 3000);
     return function(){ clearTimeout(t); };
   }, [drills, me, syncedFromServer]);
+  useEffect(function() {
+    if (!me || !syncedFromServer || !bibleReadLoaded.current) return;
+    if (!bibleRead || !Object.keys(bibleRead).length) return;
+    var t = setTimeout(function() {
+      authFetch("/api/user-data?type=bibleread", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ bibleread: bibleRead }),
+      }).catch(function(){});
+    }, 3000);
+    return function(){ clearTimeout(t); };
+  }, [bibleRead, me, syncedFromServer]);
 
   // ── Annotations: highlights, notes, pen ────────────────────────────────
   //
@@ -10614,6 +10711,7 @@ export default function App() {
     stopTTS(); charPos.current = 0; paraText.current = "";
     if (idx < 0 || idx >= chapters.length) return;
     dropStaleJump();
+    if (idx === cidx + 1 && bookMeta && bookMeta.isBible) markBibleChapter(chapters[cidx] && chapters[cidx].heading);
     // Turning the page forward credits the chapter just left; anything else
     // only moves the mark.
     advanceReadMark(idx, 0, idx === cidx + 1);
@@ -12013,9 +12111,18 @@ export default function App() {
       learned: learned.length, saved: vocab.length,
       drills: (drills && drills.runs) || 0,
       songs: Object.keys(songsRead || {}).filter(function(k){ return ((songsRead[k] || {}).n || 0) > 0; }).length,
+      bibleRead: bibleRead,
     });
-  }, [presetBooks, finishedMap, stats, learned, vocab.length, drills, songsRead]);
+  }, [presetBooks, finishedMap, stats, learned, vocab.length, drills, songsRead, bibleRead]);
   var [badgeToast, setBadgeToast] = useState(null);
+  // Badges earned and not yet looked at: a red dot on the profile picture
+  // until the profile is opened. Kept on the device, so a dot survives a reload.
+  var [badgeUnread, setBadgeUnread] = useState(function(){
+    try { var v = JSON.parse(localStorage.getItem("gv_badges_unread_v1") || "[]"); return Array.isArray(v) ? v : []; } catch (e) { return []; }
+  });
+  useEffect(function(){
+    try { localStorage.setItem("gv_badges_unread_v1", JSON.stringify(badgeUnread)); } catch (e) {}
+  }, [badgeUnread]);
   var [badgeAll, setBadgeAll] = useState(false);
   useEffect(function(){
     var ready = presetBooks.length > 0 && finishedLoaded && localLoaded && (!me || syncedFromServer);
@@ -12032,7 +12139,20 @@ export default function App() {
     if (!fresh.length) return;
     try { localStorage.setItem(KEY, JSON.stringify(seen.concat(fresh.map(function(b){ return b.id; })))); } catch (e) {}
     setBadgeToast({ list: fresh, at: Date.now() });
+    setBadgeUnread(function(u){
+      var next = u.slice();
+      fresh.forEach(function(b){ if (next.indexOf(b.id) < 0) next.push(b.id); });
+      return next;
+    });
   }, [badges, finishedLoaded, localLoaded, syncedFromServer, me && me.id]);
+  useEffect(function(){
+    if (showAcct && badgeUnread.length) {
+      // Seen: the badges section marks them as new this once.
+      setBadgeFresh(badgeUnread.slice());
+      setBadgeUnread([]);
+    }
+  }, [showAcct]);
+  var [badgeFresh, setBadgeFresh] = useState([]);
   useEffect(function(){
     if (!badgeToast) return;
     var t = setTimeout(function(){ setBadgeToast(null); }, 9000);
@@ -13282,6 +13402,16 @@ export default function App() {
           border-bottom:1px solid rgba(155,45,31,.4)}
         .fin-link:hover{border-bottom-color:var(--rubric)}
         .fin-sep{color:var(--ink-3)}
+        .fin-badges{margin:4px 0 16px}
+        .fin-badges-k{font-family:var(--sans);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--rubric);margin-bottom:8px}
+        .fin-badges-row{display:flex;flex-wrap:wrap;gap:10px 18px}
+        .fin-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);font-size:15px;color:var(--ink)}
+        .bdg-medal.sm{width:30px;height:30px;font-size:12px;border-width:1.5px}
+        .acct-av-wrap{position:relative;display:inline-flex}
+        .acct-dot{position:absolute;top:-5px;right:-7px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#d0342c;color:#fff;
+          font-family:'IBM Plex Sans',sans-serif;font-size:10px;font-weight:700;line-height:16px;text-align:center;box-shadow:0 0 0 2px var(--paper, #f5f0e8)}
+        .bdg.fresh .bdg-medal{box-shadow:inset 0 0 0 3px rgba(255,255,255,.35),0 0 0 3px #d0342c}
+        .bdg.fresh .bdg-t::after{content:" · new";color:#d0342c;font-family:var(--sans);font-size:10px;text-transform:uppercase;letter-spacing:.08em}
         @media(max-width:700px){ .fin-t{font-size:21px} }
         .chvid-stuck{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--rubric);
           max-width:640px;margin:-8px 0 16px;line-height:1.5}
@@ -16462,7 +16592,7 @@ export default function App() {
                         .sort(function(a, b){ return (b.n / b.of) - (a.n / a.of); }).slice(0, 6);
                       var medal = function(b, key) {
                         return (
-                          <div key={key} className={"bdg" + (b.earned ? "" : " locked")} title={b.desc}>
+                          <div key={key} className={"bdg" + (b.earned ? "" : " locked") + (badgeFresh.indexOf(b.id) >= 0 ? " fresh" : "")} title={b.desc}>
                             <div className={"bdg-medal t" + Math.min(b.tier || 0, 4)}>{b.mark}</div>
                             <div className="bdg-t">{b.title}</div>
                             <div className="bdg-s">{b.earned
@@ -16471,7 +16601,7 @@ export default function App() {
                           </div>
                         );
                       };
-                      var groups = [["kind", "Kinds of work"], ["author", "Authors"], ["milestone", "Milestones"]];
+                      var groups = [["kind", "Kinds of work"], ["author", "Authors"], ["bible", "Books of the Bible"], ["milestone", "Milestones"]];
                       return (
                         <div className="acct-sec">
                           <div className="acct-h">Награды · Badges <span className="acct-cnt">{earned.length} of {badges.length}</span></div>
@@ -17814,7 +17944,13 @@ export default function App() {
                     setAcctSaved("");
                     setShowAcct(true);
                   }}>
-                  <Avatar id={me.avatar} name={me.username || me.email} size={26} />
+                  <span className="acct-av-wrap">
+                    <Avatar id={me.avatar} name={me.username || me.email} size={26} />
+                    {badgeUnread.length > 0 && (
+                      <span className="acct-dot" title={badgeUnread.length + " new " + (badgeUnread.length === 1 ? "badge" : "badges")}
+                            aria-label={badgeUnread.length + " new badges"}>{badgeUnread.length > 9 ? "9+" : badgeUnread.length}</span>
+                    )}
+                  </span>
                   <span className="acct-email">{me.username || me.email}</span>
                 </button>
                 <button className="adm-trigger" onClick={signOut} title="Sign out">Sign out</button>
@@ -20454,6 +20590,34 @@ export default function App() {
                                 {allRead ? <>Across every book you have read here, that makes
                                     {" "}<b>{fmtWords(allRead)}</b> in all.</> : null}
                               </p>
+                              {(function(){
+                                var finAt = 0;
+                                workKeys(bookMeta).forEach(function(k){
+                                  var r0 = finishedMap[k];
+                                  if (r0 && !r0.removed && r0.at) finAt = Math.max(finAt, r0.at);
+                                });
+                                var won = badges.filter(function(b){
+                                  if (!b.earned) return false;
+                                  if (finAt && b.at && Math.abs(b.at - finAt) < 2000) return true;
+                                  return b.group === "milestone" && badgeUnread.indexOf(b.id) >= 0;
+                                });
+                                if (!won.length) return null;
+                                return (
+                                  <div className="fin-badges">
+                                    <div className="fin-badges-k">{won.length === 1 ? "Badge earned" : won.length + " badges earned"}</div>
+                                    <div className="fin-badges-row">
+                                      {won.map(function(b){
+                                        return (
+                                          <span key={b.id} className="fin-badge" title={b.desc}>
+                                            <span className={"bdg-medal sm t" + Math.min(b.tier || 0, 4)}>{b.mark}</span>
+                                            <span>{b.title}</span>
+                                          </span>
+                                        );
+                                      })}
+                                    </div>
+                                  </div>
+                                );
+                              })()}
                               <div className="fin-acts">
                                 <button type="button" className="fin-link" onClick={function(){
                                   stopTTS(); setMode("read"); setStarted(false); setLview("read");
@@ -20466,6 +20630,42 @@ export default function App() {
                                   try { window.scrollTo(0, 0); } catch (e) {}
                                 }}>Practise your vocabulary</button>
                               </div>
+                            </div>
+                          );
+                        })()}
+                        {/* The end of a book of the Bible: the last chapter of
+                            Бытие, say, once every one of its chapters is read. */}
+                        {(function(){
+                          if (!(bookMeta && bookMeta.isBible)) return null;
+                          if (pidx < totalPages - 1) return null;
+                          var hd = String((chapters[cidx] && chapters[cidx].heading) || "").trim();
+                          var mm = /^(.+?)\s+(\d{1,3})$/.exec(hd);
+                          if (!mm) return null;
+                          var entry = null;
+                          BIBLE_BOOKS.forEach(function(b){ if (b[0] === mm[1]) entry = b; });
+                          if (!entry || Number(mm[2]) !== entry[1]) return null;
+                          for (var c = 1; c <= entry[1]; c++) if (!bibleRead[entry[0] + " " + c]) return null;
+                          var bb = badges.filter(function(b){ return b.group === "bible" && b.earned &&
+                            (b.id === "bible:" + entry[0] || (b.at && b.at === (badges.filter(function(x){ return x.id === "bible:" + entry[0]; })[0] || {}).at)); });
+                          return (
+                            <div className="fin-card">
+                              <div className="fin-k">Finished</div>
+                              <h2 className="fin-t">You have read «{entry[0]}» — all {entry[1]} {ruPlural(entry[1], "глава", "главы", "глав")}.</h2>
+                              {bb.length > 0 && (
+                                <div className="fin-badges">
+                                  <div className="fin-badges-k">{bb.length === 1 ? "Badge earned" : bb.length + " badges earned"}</div>
+                                  <div className="fin-badges-row">
+                                    {bb.map(function(b){
+                                      return (
+                                        <span key={b.id} className="fin-badge" title={b.desc}>
+                                          <span className={"bdg-medal sm t" + Math.min(b.tier || 0, 4)}>{b.mark}</span>
+                                          <span>{b.title}</span>
+                                        </span>
+                                      );
+                                    })}
+                                  </div>
+                                </div>
+                              )}
                             </div>
                           );
                         })()}

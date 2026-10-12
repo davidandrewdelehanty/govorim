@@ -496,6 +496,9 @@ export default async function handler(req, res) {
       // did either.
       const songs = await r2Get(userId, "songs");
       const drills = await r2Get(userId, "drills");
+      // Bible chapters read to the end, { "Бытие 1": firstReadAt } — what the
+      // Bible's book badges are worked out from.
+      const bibleread = await r2Get(userId, "bibleread");
       // Highlights, notes and pen strokes: { items: { [id]: item } }.
       const annots = await r2Get(userId, "annots");
       // Where the reader is in each book. Pushed up since the admin panel
@@ -513,6 +516,7 @@ export default async function handler(req, res) {
         stats: (stats && typeof stats === "object" && !Array.isArray(stats)) ? stats : {},
         songs: (songs && typeof songs === "object" && !Array.isArray(songs)) ? songs : {},
         drills: (drills && typeof drills === "object" && !Array.isArray(drills)) ? drills : {},
+        bibleread: (bibleread && typeof bibleread === "object" && !Array.isArray(bibleread)) ? bibleread : {},
         annots: (annots && typeof annots === "object" && annots.items) ? annots : { items: {} },
         progress: (progress && typeof progress === "object" && !Array.isArray(progress)) ? progress : {},
       });
@@ -678,6 +682,26 @@ export default async function handler(req, res) {
         await r2Put(userId, "drills", merged);
         await noteBoard(user, { drills: drillsDone(merged) });
         return res.status(200).json({ ok: true, drills: merged });
+      }
+
+      if (type === "bibleread") {
+        // Chapters only ever get read, never un-read: the union of both
+        // sides, each keeping the earlier time.
+        const inc = body.bibleread;
+        if (!inc || typeof inc !== "object" || Array.isArray(inc)) {
+          return res.status(400).json({ error: "bibleread must be an object" });
+        }
+        let existing = null;
+        try { existing = await r2Get(userId, "bibleread"); } catch (e) {}
+        const merged = (existing && typeof existing === "object" && !Array.isArray(existing)) ? existing : {};
+        for (const k of Object.keys(inc).slice(0, 3000)) {
+          const key = String(k).slice(0, 60);
+          if (!/^[^\s].* \d{1,3}$/.test(key)) continue;
+          const t = Number(inc[k]) || Date.now();
+          merged[key] = merged[key] ? Math.min(Number(merged[key]) || t, t) : t;
+        }
+        await r2Put(userId, "bibleread", merged);
+        return res.status(200).json({ ok: true });
       }
 
       if (type === "settings") {
