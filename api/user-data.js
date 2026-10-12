@@ -28,7 +28,7 @@ import path from "node:path";
 import {
   S3Client, GetObjectCommand, PutObjectCommand
 } from "@aws-sdk/client-s3";
-import { listAccounts, userIdFor, r2GetJson as authGetJson, userDataKey as authDataKey } from "../lib/auth.js";
+import { listAccounts, userIdFor, r2GetJson as authGetJson, userDataKey as authDataKey, isAdminEmail } from "../lib/auth.js";
 import { requireUser, currentUser, bumpDaily, touchSeen, findAccount,
   updateBoardRow, readBoards, learnedCount, finishedCount, wordsRead, cardsReviewed,
   songsCount, drillsDone } from "../lib/auth.js";
@@ -159,6 +159,90 @@ export default async function handler(req, res) {
       }
     }
 
+    if (req.query.anon === "quotes" && req.method === "GET") {
+      try {
+        const r = await s3.send(new GetObjectCommand({ Bucket: BUCKET, Key: QUOTES_KEY }));
+        const j = JSON.parse(await r.Body.transformToString());
+        res.setHeader("Cache-Control", "public, max-age=30, s-maxage=30");
+        return res.status(200).json({ items: (j && Array.isArray(j.items)) ? j.items.map(function (q) {
+          const o = Object.assign({}, q); delete o.owner; return o;
+        }) : [] });
+      } catch (e) {
+        return res.status(200).json({ items: [] });
+      }
+    }
+    if (req.query.anon === "quote" && req.method === "POST") {
+      try {
+        const ip = String((req.headers["x-forwarded-for"] || "").split(",")[0] || req.socket?.remoteAddress || "");
+        if (!quoteRateOk(ip)) return res.status(429).json({ error: "Too many quotes at once." });
+        const b = req.body || {};
+        const who = currentUser(req);
+        const rid = String(b.rid || "");
+        const ownerId = who ? ("u:" + who.id) : (/^[A-Za-z0-9_-]{8,64}$/.test(rid) ? ("d:" + rid) : "");
+        if (!ownerId) return res.status(400).json({ error: "No reader id." });
+        const id = String(b.id || "");
+        if (!/^[A-Za-z0-9_-]{6,40}$/.test(id)) return res.status(400).json({ error: "Bad id." });
+        const quote = String(b.quote || "").replace(/\s+/g, " ").trim();
+        if (quote.length < 3 || quote.length > 600) return res.status(400).json({ error: "A quote is 3 to 600 characters." });
+        const filename = String(b.filename || "").slice(0, 200);
+        const book = quoteBooks().get(filename);
+        if (!book) return res.status(400).json({ error: "Only quotes from the library's books are shared." });
+        const origin = "https://" + String(req.headers["x-forwarded-host"] || req.headers.host || "samovar.live");
+        if (!(await quoteInBook(filename, quote, origin))) {
+          return res.status(400).json({ error: "Those words were not found in the book." });
+        }
+        let name = "", avatar = "";
+        if (who) {
+          const account = await findAccount(who.email).catch(function () { return null; });
+          name = (account && account.username) || "";
+          avatar = (account && account.avatar) || "";
+        }
+        if (!name) name = guestName(ownerId);
+        const item = {
+          id: id, quote: quote, at: Date.now(),
+          src: { title: book.title || "", author: book.author || "", filename: filename, slug: book.slug || "",
+                 heading: String(b.heading || "").slice(0, 160) },
+          cidx: Math.max(0, Math.floor(Number(b.cidx) || 0)),
+          start: Math.max(0, Math.floor(Number(b.start) || 0)),
+          end: Math.max(0, Math.floor(Number(b.end) || 0)),
+          by: { name: name, avatar: avatar, guest: name.indexOf("Гость ") === 0 },
+          owner: readerHash(ownerId),
+        };
+        await quotesUpdate(function (cur) {
+          if (cur.items.some(function (q) { return q.id === id; })) return null;
+          cur.items.unshift(item);
+          if (cur.items.length > QUOTES_CAP) cur.items.length = QUOTES_CAP;
+          return cur;
+        });
+        const out = Object.assign({}, item); delete out.owner;
+        return res.status(200).json({ ok: true, item: out });
+      } catch (e) {
+        return res.status(500).json({ error: "Could not share the quote." });
+      }
+    }
+    if (req.query.anon === "unquote" && req.method === "POST") {
+      try {
+        const b = req.body || {};
+        const who = currentUser(req);
+        const rid = String(b.rid || "");
+        const keys = [];
+        if (who) keys.push(readerHash("u:" + who.id));
+        if (/^[A-Za-z0-9_-]{8,64}$/.test(rid)) keys.push(readerHash("d:" + rid));
+        const admin = !!(who && isAdminEmail(who.email));
+        const id = String(b.id || "");
+        let removed = false;
+        await quotesUpdate(function (cur) {
+          const i = cur.items.findIndex(function (q) { return q.id === id; });
+          if (i < 0) return null;
+          if (!admin && keys.indexOf(cur.items[i].owner) < 0) return null;
+          cur.items.splice(i, 1); removed = true;
+          return cur;
+        });
+        return res.status(200).json({ ok: removed });
+      } catch (e) {
+        return res.status(500).json({ error: "Could not remove the quote." });
+      }
+    }
     if (req.query.anon === "books" && req.method === "GET") {
       try {
         const grab = async function (name) {
@@ -951,6 +1035,83 @@ function cleanAnnot(raw) {
 const GROUPS = `${PREFIX}/_groups`;
 const GROUP_ITEM_CAP = 4000;
 const GROUP_CHAT_CAP = 400;
+
+// ── The public quote book ────────────────────────────────────────────────
+// Every reader's saved quotes, together, newest first: the Quotes tab. A
+// quote names who saved it — the username, or for a reader without an
+// account (or without a username yet) a name made up from a one-way hash of
+// their browser's or account's id, the same name every time. Only lines from
+// the library's own books are taken, and only when the words really are in
+// that book, so this can carry nothing but the books themselves.
+const QUOTES_KEY = `${PREFIX}/_stats/quotes.json`;
+const QUOTES_CAP = 5000;
+const GUEST_NOUNS = ["Сова", "Лиса", "Ворон", "Ёж", "Заяц", "Журавль", "Соловей", "Барсук", "Рысь", "Сокол",
+  "Олень", "Бобр", "Филин", "Чайка", "Скворец", "Выдра", "Лось", "Синица", "Цапля", "Куница"];
+function guestName(key) {
+  const h = crypto.createHash("sha256").update("samovar-guest|" + key).digest();
+  return "Гость " + GUEST_NOUNS[h[0] % GUEST_NOUNS.length] + " " + (10 + (h[1] % 90));
+}
+let QUOTE_BOOKS = null;
+function quoteBooks() {
+  if (QUOTE_BOOKS) return QUOTE_BOOKS;
+  const m = new Map();
+  try {
+    const j = JSON.parse(fs.readFileSync(path.join(process.cwd(), "private", "books", "index.json"), "utf8"));
+    for (const b of (Array.isArray(j) ? j : [])) if (b && b.filename) m.set(b.filename, b);
+  } catch (e) {}
+  QUOTE_BOOKS = m;
+  return m;
+}
+const quoteFold = function (t) {
+  return String(t || "").replace(/\u0301/g, "").replace(/ё/g, "е").replace(/Ё/g, "Е")
+    .replace(/<[^>]+>/g, " ").replace(/[\s\u00a0]+/g, " ").replace(/[«»"„“”]/g, '"').trim().toLowerCase();
+};
+// Is this text really in that book? The book is read from the site itself.
+async function quoteInBook(filename, quote, origin) {
+  try {
+    const url = origin + "/books/" + filename.split("/").map(encodeURIComponent).join("/");
+    const r = await fetch(url);
+    if (!r.ok) return false;
+    const raw = Buffer.from(await r.arrayBuffer());
+    const m = /encoding=["']([^"']+)["']/i.exec(raw.subarray(0, 200).toString("latin1"));
+    let text;
+    try { text = new TextDecoder(m && !/utf-?8/i.test(m[1]) ? m[1].toLowerCase() : "utf-8").decode(raw); }
+    catch (e) { text = raw.toString("utf8"); }
+    return quoteFold(text).indexOf(quoteFold(quote)) >= 0;
+  } catch (e) { return false; }
+}
+async function quotesUpdate(fn) {
+  for (let attempt = 0; attempt < 6; attempt++) {
+    let data = null, etag = null;
+    try {
+      const r = await s3.send(new GetObjectCommand({ Bucket: BUCKET, Key: QUOTES_KEY }));
+      data = JSON.parse(await r.Body.transformToString());
+      etag = r.ETag || null;
+    } catch (e) {
+      if (!(e.name === "NoSuchKey" || e.$metadata?.httpStatusCode === 404)) throw e;
+    }
+    const cur = (data && Array.isArray(data.items)) ? data : { items: [] };
+    const next = fn(cur);
+    if (!next) return cur;
+    const cmd = { Bucket: BUCKET, Key: QUOTES_KEY, Body: JSON.stringify(next), ContentType: "application/json" };
+    if (etag) cmd.IfMatch = etag; else cmd.IfNoneMatch = "*";
+    try { await s3.send(new PutObjectCommand(cmd)); return next; }
+    catch (e) {
+      const clash = e.name === "PreconditionFailed" || e.$metadata?.httpStatusCode === 412;
+      if (!clash) throw e;
+      await new Promise(function (r) { setTimeout(r, 40 + Math.random() * 120); });
+    }
+  }
+  throw new Error("Quotes busy.");
+}
+const quoteHits = new Map();         // ip -> [times], a light brake on floods
+function quoteRateOk(ip) {
+  const now = Date.now();
+  const list = (quoteHits.get(ip) || []).filter(function (t) { return now - t < 60000; });
+  list.push(now);
+  quoteHits.set(ip, list);
+  return list.length <= 10;
+}
 
 // ── Unique readers per book ──────────────────────────────────────────────
 // "Books by popularity" ranks by how many different people opened a book, not

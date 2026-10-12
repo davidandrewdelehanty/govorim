@@ -1938,6 +1938,20 @@ function isPhoneOrTablet() {
   } catch (e) { return false; }
 }
 
+// This browser's random reader id, made on first use. It stands in for an
+// account when counting readers and when a guest shares a quote; the server
+// keeps only a one-way hash of it.
+function readerRid() {
+  try {
+    var rid = localStorage.getItem("gv_rid_v1") || "";
+    if (!rid) {
+      rid = Array.from(crypto.getRandomValues(new Uint8Array(12))).map(function(x){ return x.toString(16).padStart(2, "0"); }).join("");
+      localStorage.setItem("gv_rid_v1", rid);
+    }
+    return rid;
+  } catch (e) { return ""; }
+}
+
 function fmtInt(n) { return String(Math.round(n || 0)).replace(/\B(?=(\d{3})+(?!\d))/g, " "); }
 function ruPlural(n, one, few, many) {
   var m10 = n % 10, m100 = n % 100;
@@ -8847,7 +8861,7 @@ export default function App() {
     var sb = selBox;
     if (!sb || !sb.quote) return;
     var ch = chapters[cidx] || {};
-    addAnnot({
+    var it = addAnnot({
       kind: "hl", start: sb.start, end: sb.end, quote: sb.quote, color: hlColor, note: "",
       fav: true, favAt: Date.now(),
       src: {
@@ -8858,14 +8872,61 @@ export default function App() {
     }, "me");
     try { window.getSelection().removeAllRanges(); } catch (e) {}
     setSelBox(null);
-    setQuoteSaved(Date.now());
+    var isLibraryBook = presetBooks.some(function(b){ return b.filename === bookMeta.filename; });
+    if (!isLibraryBook) {
+      setQuoteSaved({ at: Date.now(), note: "Saved to your quotes. Quotes from your own files stay private." });
+      return;
+    }
+    setQuoteSaved({ at: Date.now(), note: "" });
+    authFetch("/api/user-data?anon=quote", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: it.id, quote: sb.quote, filename: bookMeta.filename || "",
+                             heading: String(ch.heading || "").trim(), cidx: cidx, start: sb.start, end: sb.end,
+                             rid: readerRid() }),
+    }).then(function(r){ return r.json().then(function(j){ return { ok: r.ok, j: j }; }); })
+      .then(function(res){
+        if (res.ok && res.j && res.j.item) {
+          setPubQuotes(function(list){ return [res.j.item].concat((list || []).filter(function(q){ return q.id !== res.j.item.id; })); });
+        } else {
+          setQuoteSaved({ at: Date.now(), note: "Saved to your quotes, but not shared: " + ((res.j && res.j.error) || "the server said no") });
+        }
+      }).catch(function(){});
   };
-  var [quoteSaved, setQuoteSaved] = useState(0);
+  var [quoteSaved, setQuoteSaved] = useState(null);
   useEffect(function(){
     if (!quoteSaved) return;
-    var t = setTimeout(function(){ setQuoteSaved(0); }, 2600);
+    var t = setTimeout(function(){ setQuoteSaved(null); }, quoteSaved.note ? 5000 : 2600);
     return function(){ clearTimeout(t); };
-  }, [quoteSaved]);
+  }, [quoteSaved && quoteSaved.at]);
+  // Everyone's quotes, for the Quotes tab, and how many arrived since the
+  // reader last looked (their own never count as unread).
+  var [pubQuotes, setPubQuotes] = useState(null);
+  var [quoteView, setQuoteView] = useState("all");
+  var [quotesSeenAt, setQuotesSeenAt] = useState(function(){
+    try { return Number(localStorage.getItem("gv_quotes_seen_v1")) || 0; } catch (e) { return 0; }
+  });
+  var loadPubQuotes = function() {
+    fetch("/api/user-data?anon=quotes").then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){ if (j && Array.isArray(j.items)) setPubQuotes(j.items); }).catch(function(){});
+  };
+  useEffect(function(){
+    loadPubQuotes();
+    var t = setInterval(loadPubQuotes, 5 * 60 * 1000);
+    return function(){ clearInterval(t); };
+  }, []);
+  useEffect(function(){
+    // A first visit starts with nothing unread rather than every quote ever.
+    if (!quotesSeenAt) {
+      var now0 = Date.now(); setQuotesSeenAt(now0);
+      try { localStorage.setItem("gv_quotes_seen_v1", String(now0)); } catch (e) {}
+    }
+  }, []);
+  useEffect(function(){
+    if (tab !== "quotes") return;
+    loadPubQuotes();
+    var now1 = Date.now(); setQuotesSeenAt(now1);
+    try { localStorage.setItem("gv_quotes_seen_v1", String(now1)); } catch (e) {}
+  }, [tab]);
   var favQuotes = useMemo(function(){
     return Object.keys(annots || {}).map(function(k){ return annots[k]; })
       .filter(function(it){ return it && it.fav && !it.deleted && it.kind === "hl"; })
@@ -8898,7 +8959,20 @@ export default function App() {
       openUploadedBook(up);
     }
   };
-  var unfavQuote = function(q) { updateAnnot(q.id, "me", { fav: false }); };
+  var unfavQuote = function(q) {
+    if (annots[q.id]) updateAnnot(q.id, "me", { fav: false });
+    setPubQuotes(function(list){ return (list || []).filter(function(x){ return x.id !== q.id; }); });
+    authFetch("/api/user-data?anon=unquote", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: q.id, rid: readerRid() }),
+    }).catch(function(){});
+  };
+  var myQuoteIds = useMemo(function(){
+    var m = {};
+    Object.keys(annots || {}).forEach(function(k){ var a = annots[k]; if (a && a.fav) m[k] = 1; });
+    return m;
+  }, [annots]);
+  var quotesUnread = (pubQuotes || []).filter(function(q){ return q.at > quotesSeenAt && !myQuoteIds[q.id]; }).length;
 
   var addInk = function(stroke) {
     if (groupClosedNow()) return;
@@ -15346,6 +15420,14 @@ export default function App() {
         .fq-src{font-family:var(--sans);font-size:12px;color:var(--ink-2)}
         .fq-a{font-weight:600}
         .fq-h{color:var(--ink-3)}
+        .fq.new{border-left-color:#d0342c}
+        .fq-by{display:flex;align-items:center;gap:6px;margin-top:6px;font-family:var(--sans);font-size:12px;color:var(--ink-2)}
+        .fq-when{color:var(--ink-3)}
+        .fq-tabs{display:flex;gap:18px;border-bottom:1px solid var(--rule);margin:4px 0 6px}
+        .fq-tab{background:none;border:0;border-bottom:2px solid transparent;padding:6px 0;cursor:pointer;
+          font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+        .fq-tab.on{border-bottom-color:var(--ink);color:var(--ink);font-weight:600}
+        .bdg.qn{background:#d0342c!important;color:#fff!important;border-radius:8px;padding:0 5px!important;font-weight:700;letter-spacing:0}
         .fq-x{position:absolute;top:6px;right:8px;background:none;border:0;font-size:18px;color:var(--ink-3);cursor:pointer;padding:2px 4px}
         .fq-x:hover{color:var(--rubric)}
         .fq-toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:420;background:#2a1f14;color:#fbf8f2;
@@ -16497,8 +16579,10 @@ export default function App() {
           </div>
         </div>
       )}
-      {quoteSaved > 0 && (
-        <div className="fq-toast" role="status">★ Saved to your quotes — find them under <b>Quotes</b> at the top</div>
+      {quoteSaved && (
+        <div className="fq-toast" role="status">{quoteSaved.note
+          ? <>★ {quoteSaved.note}</>
+          : <>★ Saved, and shared under <b>Quotes</b> at the top</>}</div>
       )}
       {conj && (
         <div className="cj-over" onClick={function(e){ if (e.target === e.currentTarget) setConj(null); }}>
@@ -18138,7 +18222,7 @@ export default function App() {
                 }}>
                   {t==="chat"?"Reading":t==="ranked"?"Most popular":t==="leaders"?"Leaderboard":t==="vocab"?"Vocab":t==="grammar"?"Grammar":t==="forum"?"Forum":t==="quotes"?"Quotes":"Music"}
                   {t==="vocab"&&vocab.length>0&&<span className="bdg">{vocab.length}</span>}
-                  {t==="quotes"&&favQuotes.length>0&&<span className="bdg">{favQuotes.length}</span>}
+                  {t==="quotes"&&quotesUnread>0&&<span className="bdg qn">{quotesUnread > 99 ? "99+" : quotesUnread}</span>}
                   {t==="grammar"&&tips.length>0&&<span className="bdg g">{tips.length}</span>}
                 </button>
               );
@@ -18194,42 +18278,71 @@ export default function App() {
           </div>
         )}
 
-        {tab==="quotes" && (
-          <div className="main">
-            <div className="ss">
-              <h1 className="sti">Favourite quotes</h1>
-              <p className="sde">
-                Lines you have saved from your reading. Select words in any book and tap ★ Quote to add one;
-                click a quote to open the book at it.
-              </p>
-              {!favQuotes.length && (
-                <div className="lib-cat-hint">No quotes yet — select some words in a book and tap ★ Quote.</div>
-              )}
-              <div className="fq-list">
-                {favQuotes.map(function(q){
-                  var src = q.src || {};
-                  var title = src.title || String(q.bookKey || "").split("::")[1] || "";
-                  return (
-                    <div key={q.id} className="fq" role="button" tabIndex={0}
-                      title="Open the book at this quote"
-                      onClick={function(){ openQuote(q); }}
-                      onKeyDown={function(e){ if (e.key === "Enter") openQuote(q); }}>
-                      <blockquote className="fq-q" lang="ru">«{q.quote}»</blockquote>
-                      <div className="fq-src">
-                        {src.author ? <span className="fq-a">{src.author}</span> : null}
-                        {src.author && title ? ", " : ""}
-                        <span className="fq-t">{title}</span>
-                        {src.heading && src.heading !== title ? <span className="fq-h"> · {src.heading}</span> : null}
+        {tab==="quotes" && (function(){
+          var mine = quoteView === "mine";
+          var list = mine
+            ? favQuotes.map(function(q){ return Object.assign({}, q, { at: q.favAt || q.createdAt }); })
+            : (pubQuotes || []).map(function(q){
+                return Object.assign({ bookKey: (q.src && q.src.filename ? q.src.filename + "::" + (q.src.title || "") : "") }, q);
+              });
+          return (
+            <div className="main">
+              <div className="ss">
+                <h1 className="sti">Quotes</h1>
+                <p className="sde">
+                  Lines readers have saved from the library — select words in any book and tap ★ Quote to add one.
+                  Click a quote to open the book at it.
+                </p>
+                <div className="fq-tabs" role="tablist">
+                  <button type="button" role="tab" aria-selected={!mine} className={"fq-tab" + (!mine ? " on" : "")}
+                    onClick={function(){ setQuoteView("all"); }}>Everyone's</button>
+                  <button type="button" role="tab" aria-selected={mine} className={"fq-tab" + (mine ? " on" : "")}
+                    onClick={function(){ setQuoteView("mine"); }}>Mine{favQuotes.length ? " (" + favQuotes.length + ")" : ""}</button>
+                </div>
+                {!mine && pubQuotes === null && <div className="lib-cat-hint">Loading…</div>}
+                {list.length === 0 && (mine || pubQuotes !== null) && (
+                  <div className="lib-cat-hint">{mine
+                    ? "No quotes yet — select some words in a book and tap ★ Quote."
+                    : "Nobody has shared a quote yet. Be the first: select some words in a book and tap ★ Quote."}</div>
+                )}
+                <div className="fq-list">
+                  {list.map(function(q){
+                    var src = q.src || {};
+                    var title = src.title || String(q.bookKey || "").split("::")[1] || "";
+                    var isNew = !mine && q.at > quotesSeenAt && !myQuoteIds[q.id];
+                    var canRemove = mine || !!myQuoteIds[q.id] || isAdmin;
+                    return (
+                      <div key={q.id} className={"fq" + (isNew ? " new" : "")} role="button" tabIndex={0}
+                        title="Open the book at this quote"
+                        onClick={function(){ openQuote(q); }}
+                        onKeyDown={function(e){ if (e.key === "Enter") openQuote(q); }}>
+                        <blockquote className="fq-q" lang="ru">«{q.quote}»</blockquote>
+                        <div className="fq-src">
+                          {src.author ? <span className="fq-a">{src.author}</span> : null}
+                          {src.author && title ? ", " : ""}
+                          <span className="fq-t">{title}</span>
+                          {src.heading && src.heading !== title ? <span className="fq-h"> · {src.heading}</span> : null}
+                        </div>
+                        {!mine && q.by && (
+                          <div className="fq-by">
+                            <Avatar id={q.by.avatar || ""} name={q.by.name} size={18} />
+                            <span>{q.by.name}</span>
+                            {q.at ? <span className="fq-when"> · {new Date(q.at).toLocaleDateString()}</span> : null}
+                          </div>
+                        )}
+                        {canRemove && (
+                          <button type="button" className="fq-x"
+                            title={mine || myQuoteIds[q.id] ? "Remove this quote (the highlight stays in the book)" : "Remove this quote (admin)"}
+                            onClick={function(e){ e.stopPropagation(); unfavQuote(q); }}>×</button>
+                        )}
                       </div>
-                      <button type="button" className="fq-x" title="Remove from your quotes (the highlight stays)"
-                        onClick={function(e){ e.stopPropagation(); unfavQuote(q); }}>×</button>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          );
+        })()}
 
         {tab==="leaders" && (
           <div className="main">
