@@ -10065,7 +10065,7 @@ export default function App() {
   // (see api/define.js isSlangEntry) — every def3 answer may be one of those.
   // def5: Oct 9 2026 — verb forms reached through Wiktionary had been saved
   // under the clicked form («сядет») with no aspect; fixed in api/define.js.
-  var DEF_CACHE_PREFIX = "def7:";
+  var DEF_CACHE_PREFIX = "def8:";
   // Whether the word being looked up is in a song. Set by defWord for the
   // popup it opens; the later look-ups from that popup (another reading, the
   // ё spelling) inherit it. Songs are the only place the блатной жаргон
@@ -10432,7 +10432,17 @@ export default function App() {
       var bare = function(x){ return String(x || "").replace(/\u0301/g, "").toLowerCase().trim(); };
       var pos = (reading && reading.pos) || "";
       var gotVerb = data && (/verb/i.test(data.partOfSpeech || "") || !!data.aspect);
-      if (data && bare(data.lemma) && bare(data.lemma) !== bare(lemma) && gotVerb && !/^verb/i.test(pos)) {
+      // Any reading the dictionary answers under a different headword: keep the
+      // one the reader chose. «рабыни» offers рабыня, раб and раба; when the
+      // lookup for рабыня came back filed under раб, the раб button stayed lit
+      // and the tap looked as if it had done nothing.
+      if (data && bare(data.lemma) && bare(data.lemma) !== bare(lemma) && !(gotVerb && !/^verb/i.test(pos))) {
+        data = Object.assign({}, data, {
+          lemma: lemma,
+          grammar: [reading && reading.note ? reading.note : ("see «" + data.lemma + "»"), data.grammar].filter(Boolean).join(" \u00b7 "),
+          baseLemma: data.lemma,
+        });
+      } else if (data && bare(data.lemma) && bare(data.lemma) !== bare(lemma) && gotVerb && !/^verb/i.test(pos)) {
         var rel = (reading && reading.note && /\bof\s/.test(reading.note)) ? reading.note
           : ((/particip/i.test(pos) ? "participle" : (pos || "form")) + " of " + data.lemma);
         var gram = [rel];

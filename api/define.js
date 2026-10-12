@@ -281,8 +281,14 @@ const FORM_OF_RE = new RegExp(
   ")\\b[^.]{0,60}?\\bof\\s+[\\u0400-\\u04ff]", "i");
 
 function isFormOf(sense) {
+  const def = String((sense && sense.definition) || "");
+  // "female equivalent of раб (rab): female slave" is tagged form-of, but the
+  // words after the colon ARE the meaning — «рабыня» is a word of its own,
+  // not an inflection of раб. A bare "inflection of рабы́ня (rabýnja):" has
+  // nothing after its colon and stays a pointer.
+  if (/\bof\b[^:]*:\s*[A-Za-z(]/.test(def) && !/^\s*inflection of\b/i.test(def)) return false;
   if (hasTag(sense && sense.tags, "form of")) return true;
-  return FORM_OF_RE.test(String((sense && sense.definition) || ""));
+  return FORM_OF_RE.test(def);
 }
 
 // The grammatical relation, tidied for display: no romanisation in brackets,
