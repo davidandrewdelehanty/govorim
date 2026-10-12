@@ -16548,26 +16548,6 @@ export default function App() {
                         {tile(best ? fmtInt(best.n) : "—", best ? "best day, " + fmtDay(best.k) : "best day")}
                         {tile(Object.keys(bookmarkMap || {}).length, "bookmarks")}
                       </div>
-                      {nowReading.length > 0 && (
-                        <div className="acct-list">
-                          <div className="acct-sub">Reading now</div>
-                          {nowReading.map(function(b){
-                            var m = findBook(b);
-                            var total = b.totalChapters || 1;
-                            var pct = (b.words && b.wordsRead != null) ? Math.round(b.wordsRead / b.words * 100)
-                              : (total > 1 ? Math.round((b.cidx || 0) / total * 100) : 0);
-                            pct = Math.max(0, Math.min(100, pct));
-                            return (
-                              <div key={b.key} className={"acct-li" + (m ? " go" : "")} onClick={function(){ openRec(m); }}
-                                   title={m ? "Open it" : ""}>
-                                <span className="t">{b.title}{b.author ? <span className="a"> — {b.author}</span> : null}</span>
-                                <span className="w">{pct}%</span>
-                                <span className="acct-bar"><span style={{width: pct + "%"}}></span></span>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      )}
                     </div>
 
                     <div className="acct-sec">
