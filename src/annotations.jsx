@@ -78,21 +78,48 @@ export function readSelection(root) {
   var range = sel.getRangeAt(0);
   if (!root.contains(range.commonAncestorContainer)) return null;
   var spans = root.querySelectorAll("[data-rw-start]");
-  var start = Infinity, end = -1, lastRect = null;
+  var start = Infinity, end = -1, lastRect = null, lastSpan = null;
   for (var i = 0; i < spans.length; i++) {
     if (!range.intersectsNode(spans[i])) continue;
     var r = spanRange(spans[i]);
     if (r[0] < start) start = r[0];
-    if (r[1] > end) { end = r[1]; lastRect = spans[i].getBoundingClientRect(); }
+    if (r[1] > end) { end = r[1]; lastRect = spans[i].getBoundingClientRect(); lastSpan = spans[i]; }
   }
   if (!(end > start)) return null;
   var box = range.getBoundingClientRect();
   return {
     start: start, end: end,
-    quote: sel.toString().replace(/\s+/g, " ").trim().slice(0, 600),
+    quote: withPunct(sel.toString().replace(/\s+/g, " ").trim(), lastSpan).slice(0, 600),
     x: box.left + box.width / 2, y: box.top, bottom: box.bottom,
     lastRect: lastRect,
   };
+}
+
+// The punctuation that closes the last chosen word — «разве я сторож брату
+// моему?» ends in a question mark, and choosing is done by words, so the
+// mark was never part of a quote. Whatever runs straight on from the last
+// word up to the next space (? ! . … , ; : and closing quotes or brackets)
+// is taken with it.
+function trailingPunct(span) {
+  var n = span, out = "";
+  while (n && !n.nextSibling && n.parentNode && !(n.parentNode.matches && n.parentNode.matches("p"))) n = n.parentNode;
+  var next = n ? n.nextSibling : null;
+  var guard = 0;
+  while (next && guard++ < 4) {
+    var t = next.textContent || "";
+    if (next.nodeType === 1 && next.hasAttribute && next.hasAttribute("data-rw-start")) break;
+    var m = /^[?!.…,;:»"”’)\]\u0301]+/.exec(t);
+    if (!m) break;
+    out += m[0];
+    if (m[0].length < t.length) break;
+    next = next.nextSibling;
+  }
+  return out.replace(/\u0301/g, "");
+}
+function withPunct(quote, lastSpan) {
+  var tail = lastSpan ? trailingPunct(lastSpan) : "";
+  if (!tail) return quote;
+  return quote.endsWith(tail) ? quote : quote.replace(/[\s]+$/, "") + tail;
 }
 
 // The same shape as readSelection, for a run of word spans chosen by touch.
@@ -105,7 +132,7 @@ function selectionOfSpans(a, b) {
   var box = range.getBoundingClientRect();
   return {
     start: Math.min(ra[0], rb[0]), end: Math.max(ra[1], rb[1]),
-    quote: range.toString().replace(/\s+/g, " ").trim().slice(0, 600),
+    quote: withPunct(range.toString().replace(/\s+/g, " ").trim(), last).slice(0, 600),
     x: box.left + box.width / 2, y: box.top, bottom: box.bottom,
     lastRect: last.getBoundingClientRect(),
     touch: true,
