@@ -16387,8 +16387,8 @@ export default function App() {
             </div>
             <div className="adm-body acct-body">
               <p className="grp-intro">
-                Read a book together. Everyone in a group sees each other's highlights,
-                notes and pen marks on the page, arriving within a few seconds.
+                Read a book together. Everyone in a group sees each other's highlights
+                and notes on the page, arriving within a few seconds.
               </p>
               {!me && (
                 <div className="acct-sec">
@@ -19147,7 +19147,7 @@ export default function App() {
                   <span className="own-entry-s">
                     {grp
                       ? <>You are in «{grp.name}», reading {grp.title}. Open it, or find another group.</>
-                      : <>Read a book together: highlights, notes and pen marks shared with everyone in the
+                      : <>Read a book together: highlights and notes shared with everyone in the
                           group as they make them. Start a group, or join one that is already reading.</>}
                   </span>
                 </button>
@@ -20383,9 +20383,6 @@ export default function App() {
                         }}>To the bookmark</button>
                     );
                   })()}
-                  <button className={"ltab" + (annTool ? " on" : "")}
-                    title="Draw on the page with a pen"
-                    onClick={function(){ setLview("read"); setAnnTool(annTool ? "" : "pen"); }}>Draw</button>
                   <button className={"ltab" + (lview === "notes" ? " on" : "")}
                     title="Your highlights and notes in this book"
                     onClick={function(){ setAnnTool(""); setLview(lview === "notes" ? "read" : "notes"); }}>
@@ -21236,8 +21233,8 @@ export default function App() {
                     </div>
                     {!bookAnnots.length && (
                       <p className="notes-empty">
-                        Select any words in the text to highlight them or add a note. Draw puts a
-                        pen in your hand. Everything you mark is listed here.
+                        Select any words in the text to highlight them or add a note.
+                        Everything you mark is listed here.
                       </p>
                     )}
                     {bookAnnots.map(function(it, i){
