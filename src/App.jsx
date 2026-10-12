@@ -12139,8 +12139,19 @@ export default function App() {
     var s = Object.assign({}, s0, { newQ: s0.newQ.slice(), revQ: s0.revQ.slice(),
       learn: s0.learn.slice(), extraQ: s0.extraQ ? s0.extraQ.slice() : null });
     var byKey = function(k){ return (vocabRef.current || []).find(function(v){ return (v._key || v.id || v.ru) === k; }); };
+    // The card just answered never comes straight back while anything else
+    // can be shown. Learning ahead used to pick it at once: with the new and
+    // review queues empty (or in Study more), the card you had just answered
+    // was the learning card falling due soonest, so every card came up twice
+    // in a row.
+    var lastKey = s0.cur ? s0.cur.key : null;
     for (var guard = 0; guard < 5000; guard++) {
-      var take = null;
+      var take = null, held = null;
+      if (lastKey) {
+        for (var hi = 0; hi < s.learn.length; hi++) {
+          if (s.learn[hi].key === lastKey) { held = s.learn.splice(hi, 1)[0]; break; }
+        }
+      }
       s.learn.sort(function(a, b){ return a.dueAt - b.dueAt; });
       if (s.learn.length && s.learn[0].dueAt <= now) {
         take = Object.assign({ from: "learn" }, s.learn.shift());
@@ -12149,13 +12160,21 @@ export default function App() {
           (s.newShown + 1) / (s.newTotal + 1) <= (s.revShown + 1) / (s.revTotal + 1));
         if (wantNew) { take = { from: "new", key: s.newQ.shift() }; s.newShown++; }
         else { take = { from: "review", key: s.revQ.shift() }; s.revShown++; }
+      } else if (s.extraQ && s.extraQ.length) {
+        // Study more: fresh words before learning ahead, so the session
+        // moves on instead of circling the last few cards.
+        take = { from: "extra", key: s.extraQ.shift() };
       } else if (s.learn.length && s.learn[0].dueAt <= now + LEARN_AHEAD_MIN * 60000) {
         take = Object.assign({ from: "learn" }, s.learn.shift());
-      } else if (s.extraQ && s.extraQ.length) {
-        take = { from: "extra", key: s.extraQ.shift() };
       } else if (s.learn.length && s.extraQ) {
         take = Object.assign({ from: "learn" }, s.learn.shift());
       }
+      // Nothing else at all: then, and only then, the same card again.
+      if (!take && held && (held.dueAt <= now + LEARN_AHEAD_MIN * 60000 || s.extraQ)) {
+        take = Object.assign({ from: "learn" }, held);
+        held = null;
+      }
+      if (held) s.learn.push(held);
       if (!take) {
         s.cur = null; s.done = true;
         rvSaveLearn(s.learn);
