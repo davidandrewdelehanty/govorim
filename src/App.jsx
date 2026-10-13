@@ -10812,12 +10812,10 @@ export default function App() {
   // closing it leaves the popup where it was.
   var [conj, setConj] = useState(null);       // { word, loading, data, error }
   var conjMemo = useRef({});
-  var openConj = async function(word) {
-    var w = String(word || "").replace(/\u0301/g, "").split(/\s*\/\s*/)[0].trim();
-    if (!w) return;
+  // The table for one verb, fetched once and remembered: { data, error }.
+  var loadConj = async function(w) {
     var memo = conjMemo.current[w.toLowerCase()];
-    if (memo) { setConj({ word: w, data: memo.data, error: memo.error }); return; }
-    setConj({ word: w, loading: true });
+    if (memo) return memo;
     var data = null, error = "";
     try {
       var r = await authFetch("/api/define?conj=1&word=" + encodeURIComponent(w));
@@ -10827,8 +10825,18 @@ export default function App() {
       else if (r.status === 429) error = "Too many lookups just now — wait a moment and try again.";
       else error = "Wiktionary could not be reached just now — try again in a moment.";
     } catch (e) { error = "Wiktionary could not be reached just now — try again in a moment."; }
-    if (data || /no conjugation/.test(error)) conjMemo.current[w.toLowerCase()] = { data: data, error: error };
-    setConj(function(c){ return c && c.word === w ? { word: w, data: data, error: error } : c; });
+    var res = { data: data, error: error };
+    if (data || /no conjugation/.test(error)) conjMemo.current[w.toLowerCase()] = res;
+    return res;
+  };
+  var openConj = async function(word) {
+    var w = String(word || "").replace(/\u0301/g, "").split(/\s*\/\s*/)[0].trim();
+    if (!w) return;
+    var memo = conjMemo.current[w.toLowerCase()];
+    if (memo) { setConj({ word: w, data: memo.data, error: memo.error }); return; }
+    setConj({ word: w, loading: true });
+    var res = await loadConj(w);
+    setConj(function(c){ return c && c.word === w ? { word: w, data: res.data, error: res.error } : c; });
   };
 
   var defWithYo = async function(word) {
@@ -12346,14 +12354,14 @@ export default function App() {
     if (!quizMode || !rv || !rv.cur || rv.finished) return;
     var q = rv.cur.q;
     var clean = function(w){ return String(w || "").replace(/\u0301/g, "").trim(); };
-    var heads = String(q.word || "").split(/\s*\/\s*/).map(clean).filter(Boolean);
+    var heads = rvHeads(q.word).map(clean);
     if (heads.length < 2) heads = [clean(q.lemma || q.word)].filter(Boolean);
     if (!heads.length) return;
     var dead = false;
     var clips = heads.map(function(h, i){
       var url = (heads.length === 1 && q.audioUrl) ? q.audioUrl
         : "https://commons.wikimedia.org/wiki/Special:FilePath/" + encodeURIComponent("Ru-" + h + ".ogg");
-      var c = { word: h, url: url, ok: false, el: null };
+      var c = { word: h, url: url, ok: false, el: null, i: i };
       try {
         var a = new Audio();
         a.preload = "auto";
@@ -12384,6 +12392,32 @@ export default function App() {
       clips.forEach(function(c){ try { if (c.el) { c.el.pause(); c.el.removeAttribute("src"); } } catch (e) {} });
     };
   }, [quizMode, rv && rv.cur && rv.cur.key, rv && rv.cur && rv.cur.shownAt, rv && rv.finished]);
+  // A verb card shows its aspect partners together («делать / сделать»);
+  // each one is played, highlighted, and offered a conjugation table.
+  var rvHeads = function(word) {
+    return String(word || "").split(/\s*[\/,]\s*/).map(function(w){ return w.trim(); }).filter(Boolean);
+  };
+  var [rvConjOk, setRvConjOk] = useState(null);   // { key, words: { [verb]: true } }
+  useEffect(function() {
+    setRvConjOk(null);
+    if (!quizMode || !rv || !rv.cur || rv.finished) return;
+    var q = rv.cur.q;
+    if (!/verb|глагол/i.test(q.pos || "")) return;
+    var heads = rvHeads(q.word).map(function(w){ return w.replace(/\u0301/g, ""); });
+    if (heads.length < 2 && q.lemma) heads = [String(q.lemma).replace(/\u0301/g, "")];
+    var dead = false;
+    heads.forEach(function(h){
+      loadConj(h).then(function(res){
+        if (dead || !res || !res.data) return;
+        setRvConjOk(function(x){
+          var base = (x && x.key === q.key) ? x : { key: q.key, words: {} };
+          var words = Object.assign({}, base.words); words[h] = true;
+          return { key: q.key, words: words };
+        });
+      });
+    });
+    return function(){ dead = true; };
+  }, [quizMode, rv && rv.cur && rv.cur.key, rv && rv.cur && rv.cur.shownAt, rv && rv.finished]);
   var rvPlay = function() {
     var set = rvAudioRef.current;
     if (!set || !set.clips) return;
@@ -12391,12 +12425,14 @@ export default function App() {
     if (!list.length) return;
     set.clips.forEach(function(c){ try { if (c.el) c.el.pause(); } catch (e) {} });
     var gen = ++set.gen;                      // a second tap restarts the sequence
-    var setPlaying = function(on){ setRvAudio(function(x){ return x ? Object.assign({}, x, { playing: on }) : x; }); };
+    var setPlaying = function(on, idx){ setRvAudio(function(x){ return x ? Object.assign({}, x, { playing: on, idx: on ? idx : -1 }) : x; }); };
     var i = 0;
     var next = function() {
       if (gen !== set.gen || rvAudioRef.current !== set) return;
       if (i >= list.length) { setPlaying(false); return; }
-      var el = list[i++].el;
+      var clip = list[i++];
+      var el = clip.el;
+      setPlaying(true, clip.i);
       el.onended = function(){ setTimeout(next, i < list.length ? 600 : 0); };
       try {
         el.currentTime = 0;
@@ -12404,7 +12440,6 @@ export default function App() {
         if (pr && pr.catch) pr.catch(function(){ next(); });
       } catch (e) { next(); }
     };
-    setPlaying(true);
     next();
   };
 
@@ -14698,6 +14733,9 @@ export default function App() {
               font-size:11px;letter-spacing:.3px;line-height:1;padding:6px 9px;border-radius:8px;
               color:rgba(42,31,20,.6);white-space:nowrap;transition:color .15s,background .15s,border-color .15s}
         .psay:hover{color:rgba(42,31,20,.85);background:rgba(42,31,20,.08);border-color:rgba(42,31,20,.28)}
+        .rv-w{border-radius:3px;padding:0 2px;transition:background .15s,color .15s}
+        .rv-w.on{background:rgba(160,110,20,.18);color:#2a1f14}
+        .rv-conj{display:flex;flex-wrap:wrap;gap:8px;margin:-4px 0 12px}
         .psay.on{color:#2a1f14;border-color:rgba(160,110,20,.4);background:rgba(160,110,20,.08)}
         .srsp{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;margin-top:8px;font-size:11.5px;color:rgba(0,0,0,.55);font-family:'IBM Plex Sans',sans-serif}
         .srsp b{color:#000;font-weight:600;font-variant-numeric:tabular-nums}
@@ -21950,12 +21988,37 @@ export default function App() {
                         return live ? <div className="rv-prog">{srsProgress(live, true)}</div> : null;
                       })()}
                       <div className="rv-word-row">
-                        <div className="rv-word" lang="ru">{q.word}</div>
+                        <div className="rv-word" lang="ru">{(function(){
+                          var hs = rvHeads(q.word);
+                          if (hs.length < 2) return q.word;
+                          var playing = rvAudio && rvAudio.key === c.key && rvAudio.playing ? rvAudio.idx : -1;
+                          return hs.map(function(h, i){
+                            return <Fragment key={i}>{i > 0 ? " / " : ""}<span className={"rv-w" + (playing === i ? " on" : "")}>{h}</span></Fragment>;
+                          });
+                        })()}</div>
                         {rvAudio && rvAudio.key === c.key && (
                           <button className={"psay" + (rvAudio.playing ? " on" : "")} title="Listen" aria-label={"Pronounce " + q.word}
                                   onClick={rvPlay}>Listen</button>
                         )}
                       </div>
+                      {rvConjOk && rvConjOk.key === c.key && (function(){
+                        var hs = rvHeads(q.word).map(function(w){ return w.replace(/\u0301/g, ""); });
+                        if (hs.length < 2 && q.lemma) hs = [String(q.lemma).replace(/\u0301/g, "")];
+                        var ok = hs.filter(function(h){ return rvConjOk.words[h]; });
+                        if (!ok.length) return null;
+                        return (
+                          <div className="rv-conj">
+                            {ok.map(function(h){
+                              return (
+                                <button key={h} type="button" className="psay" title="Every form of the verb, from Wiktionary"
+                                        onClick={function(){ openConj(h); }}>
+                                  Conjugation{hs.length > 1 ? <> · <span lang="ru">{h}</span></> : null}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        );
+                      })()}
                       {/* Where you met it, on the card from the start — the context is
                           part of the question, as on a sentence card in Anki. Only an
                           English translation of it waits for the answer, since that
