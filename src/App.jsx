@@ -12318,7 +12318,7 @@ export default function App() {
   };
   var rvFinish = function() {
     setRv(function(s){ return s ? Object.assign({}, s, { finished: true }) : s; });
-    try { var set = rvAudioRef.current; if (set && set.clips) { set.gen++; set.clips.forEach(function(c){ if (c.el) c.el.pause(); }); } } catch (e) {}
+    try { var set = rvAudioRef.current; if (set && set.clips) { set.gen++; set.clips.forEach(function(c){ if (c.el) c.el.pause(); }); if (set.player) set.player.pause(); } } catch (e) {}
   };
   // Remove the card on screen from the vocabulary altogether, after the
   // confirmation. It leaves this session too; nothing about it is recorded.
@@ -12390,6 +12390,7 @@ export default function App() {
     return function(){
       dead = true;
       clips.forEach(function(c){ try { if (c.el) { c.el.pause(); c.el.removeAttribute("src"); } } catch (e) {} });
+      try { var cur = rvAudioRef.current; if (cur && cur.player) { cur.gen++; cur.player.pause(); } } catch (e) {}
     };
   }, [quizMode, rv && rv.cur && rv.cur.key, rv && rv.cur && rv.cur.shownAt, rv && rv.finished]);
   // A verb card shows its aspect partners together («делать / сделать»);
@@ -12426,17 +12427,25 @@ export default function App() {
     set.clips.forEach(function(c){ try { if (c.el) c.el.pause(); } catch (e) {} });
     var gen = ++set.gen;                      // a second tap restarts the sequence
     var setPlaying = function(on, idx){ setRvAudio(function(x){ return x ? Object.assign({}, x, { playing: on, idx: on ? idx : -1 }) : x; }); };
+    // One player for the whole sequence. iPhones only let a sound start from
+    // a tap, and that permission belongs to the element that was tapped into
+    // playing: a second element started when the first one ended was refused,
+    // so only the first form was ever heard. Changing the source of the same
+    // element keeps the permission for every form in turn.
+    var player = set.player || (set.player = new Audio());
+    try { player.pause(); } catch (e) {}
     var i = 0;
     var next = function() {
       if (gen !== set.gen || rvAudioRef.current !== set) return;
       if (i >= list.length) { setPlaying(false); return; }
       var clip = list[i++];
-      var el = clip.el;
       setPlaying(true, clip.i);
-      el.onended = function(){ setTimeout(next, i < list.length ? 600 : 0); };
+      var advance = function(){ setTimeout(next, i < list.length ? 600 : 0); };
+      player.onended = advance;
+      player.onerror = function(){ next(); };
       try {
-        el.currentTime = 0;
-        var pr = el.play();
+        player.src = clip.url;
+        var pr = player.play();
         if (pr && pr.catch) pr.catch(function(){ next(); });
       } catch (e) { next(); }
     };
