@@ -1208,7 +1208,10 @@ export default async function handler(req, res) {
               }
             }
           }
-          delete ruWikt.noEnglish;
+          // Still Russian only (no English found by following a pointer or
+          // otherwise): say so, and the popup heads it "No English Wiktionary
+          // Definition" above the Russian one.
+          if (!ruWikt.noEnglish || ruWikt.mtAssisted || ruWikt.definitionRu) delete ruWikt.noEnglish;
           res.setHeader("Cache-Control", "public, s-maxage=604800, stale-while-revalidate=86400");
           return res.status(200).json(withReadings(ruWikt, readings));
         }
@@ -1254,7 +1257,7 @@ export default async function handler(req, res) {
               if (!got && timeLeft() > 1500) {
                 try { got = await ruWiktionaryLookup([c], word, ctrl.signal, timeLeft); }
                 catch (e) { if (e && e.name === "AbortError") throw e; }
-                if (got) delete got.noEnglish;
+                // got.noEnglish stays: the popup says the definition is Russian only.
               }
               if (got) {
                 got.lemma = sa.word;

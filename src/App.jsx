@@ -10761,7 +10761,7 @@ export default function App() {
       setPopup(function(p){ return p ? Object.assign({},p,{data:Object.assign({}, data, keep),loading:false,readNote:""}) : null; });
     } catch(err) {
       var m2 = (err && err.noEntry)
-        ? "No definition was found in any source for \u00ab" + lemma + "\u00bb."
+        ? "No Wiktionary Definition Exists"
         : (/Too many|429/i.test((err && err.message) || "") ? "Too many lookups just now \u2014 wait a moment and try again."
            : "The dictionaries could not be reached just now \u2014 try again in a moment.");
       // The reading chips stay up, so another reading is still one tap away.
@@ -10846,7 +10846,7 @@ export default function App() {
       setPopup(function(p){ return p ? Object.assign({},p,{data:data,loading:false}) : null; });
     } catch(err) {
       var m = (err && err.noEntry)
-        ? "No definition was found in any source."
+        ? "No Wiktionary Definition Exists"
         : "The dictionaries could not be reached just now — try again in a moment.";
       setPopup(function(p){ return p ? Object.assign({},p,{loading:false,error:m}) : null; });
     }
@@ -14745,6 +14745,10 @@ export default function App() {
         .rv-w{border-radius:3px;padding:0 2px;transition:background .15s,color .15s}
         .rv-w.on{background:rgba(160,110,20,.18);color:#2a1f14}
         .rv-conj{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:2px auto 28px;max-width:560px}
+        .pnoen,.pnodef{font-family:var(--sans,'IBM Plex Sans',sans-serif);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9d4630;margin:6px 0 6px}
+        .pnodef{margin-top:8px}
+        .ptr-ru{font-size:15px}
+        ol.ptr-ru{margin:2px 0 6px 18px;padding:0}
         .psay.on{color:#2a1f14;border-color:rgba(160,110,20,.4);background:rgba(160,110,20,.08)}
         .srsp{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;margin-top:8px;font-size:11.5px;color:rgba(0,0,0,.55);font-family:'IBM Plex Sans',sans-serif}
         .srsp b{color:#000;font-weight:600;font-variant-numeric:tabular-nums}
@@ -22504,9 +22508,7 @@ export default function App() {
               {popup.error && <div className="perr">{popup.error}</div>}
 
               {popup.noEntry && (
-                <div className="ppos" style={{marginTop:6}}>
-                  No definition was found in any source.
-                </div>
+                <div className="pnodef">No Wiktionary Definition Exists</div>
               )}
 
               {popup.noEntry && isAdmin && popup.trace && typeof window !== "undefined" && window.DEF_DEBUG && (
@@ -22626,9 +22628,36 @@ export default function App() {
                     </div>
                   )}
                   <div className="ppos">{popup.data.partOfSpeech}{popup.data.aspect ? " · " + popup.data.aspect : ""}</div>
-                  {popup.data.definitionRu && <div className="pdru">{popup.data.definitionRu}</div>}
-                  <div className="ptr">{popup.data.translation}</div>
-                  {popup.data.grammar && <div className="pgr">{popup.data.grammar}</div>}
+                  {(function(){
+                    // Russian only: Викисловарь has the word but the English
+                    // Wiktionary does not. Said plainly, then the Russian.
+                    // (Answers cached before the flag existed are recognised
+                    // by the note the server used to put in `grammar`.)
+                    var d = popup.data;
+                    var ruOnly = !d.mtAssisted && (d.noEnglish ||
+                      (d.definitionSource === "ruwiktionary" && /no English in Викисловарь/.test(d.grammar || "")));
+                    var gram = String(d.grammar || "").split(" \u00b7 ")
+                      .filter(function(g){ return g && !/no English in Викисловарь/.test(g); }).join(" \u00b7 ");
+                    if (ruOnly) {
+                      var senses = (Array.isArray(d.ruSenses) && d.ruSenses.length) ? d.ruSenses.slice(0, 5) : [d.translation];
+                      return (
+                        <>
+                          <div className="pnoen">No English Wiktionary Definition</div>
+                          {senses.length > 1
+                            ? <ol className="pru-list ptr-ru" lang="ru">{senses.map(function(sn, i){ return <li key={i}>{sn}</li>; })}</ol>
+                            : <div className="ptr ptr-ru" lang="ru">{senses[0]}</div>}
+                          {gram && <div className="pgr">{gram}</div>}
+                        </>
+                      );
+                    }
+                    return (
+                      <>
+                        {d.definitionRu && <div className="pdru">{d.definitionRu}</div>}
+                        <div className="ptr">{d.translation}</div>
+                        {gram && <div className="pgr">{gram}</div>}
+                      </>
+                    );
+                  })()}
                   {(function(){
                     var lem = String(popup.data.lemma || popup.word || "").replace(/\u0301/g, "").trim();
                     var rv = popup.ruView && popup.ruView.lemma === lem ? popup.ruView : null;

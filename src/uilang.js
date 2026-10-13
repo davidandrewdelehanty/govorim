@@ -303,6 +303,8 @@ export var UI_RU = {
 
   // ── Define popup ──
   "Listen": "Слушать",
+  "No English Wiktionary Definition": "В английском Викисловаре определения нет",
+  "No Wiktionary Definition Exists": "В Викисловаре определения нет",
   "Pronounce": "Произнести",
   "No audio available for this word.": "Для этого слова нет аудио.",
   "you clicked:": "вы нажали:",
